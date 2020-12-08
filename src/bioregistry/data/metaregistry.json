@@ -14,6 +14,15 @@
     "pattern": "\\d{7}"
   },
   "atc": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The Anatomical Therapeutic Chemical (ATC) classification system, divides active substances into different groups according to the organ or system on which they act and their therapeutic, pharmacological and chemical properties. Drugs are classified in groups at five different levels;  Drugs are divided into fourteen main groups (1st level), with pharmacological/therapeutic subgroups (2nd level).  The 3rd and 4th levels are chemical/pharmacological/therapeutic subgroups and the 5th level is the chemical substance. The Anatomical Therapeutic Chemical (ATC) classification system and the Defined Daily Dose (DDD) is a tool for exchanging and comparing data on drug use at international, national or local levels.",
+      "id": "00000088",
+      "name": "Anatomical Therapeutic Chemical",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[A-Z](\\d+([A-Z]{1,2}(\\d+)?)?)?$",
+      "prefix": "atc"
+    },
     "synonyms": [
       "ATC_code",
       "ATTC"
@@ -21,6 +30,15 @@
     "title": "Anatomical Therapeutic Chemical Classification System"
   },
   "atcc": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The American Type Culture Collection (ATCC) is a private, nonprofit biological resource center whose mission focuses on the acquisition, authentication, production, preservation, development and distribution of standard reference microorganisms, cell lines and other materials for research in the life sciences.",
+      "id": "00000284",
+      "name": "ATCC",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+$",
+      "prefix": "atcc"
+    },
     "synonyms": [
       "ATCC number",
       "ATCC"
@@ -29,6 +47,15 @@
     "url": "https://www.lgcstandards-atcc.org"
   },
   "bao": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The BioAssay Ontology (BAO) describes chemical biology screening assays and their results including high-throughput screening (HTS) data for the purpose of categorizing assays and data analysis.",
+      "id": "00000597",
+      "name": "BioAssay Ontology",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d{7}$",
+      "prefix": "bao"
+    },
     "synonyms": [
       "BAO"
     ]
@@ -53,12 +80,30 @@
     "pattern": "\\d{7}"
   },
   "bto": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The Brenda tissue ontology is a structured controlled vocabulary eastablished to identify the source of an enzyme cited in the Brenda enzyme database. It comprises terms of tissues, cell lines, cell types and cell cultures from uni- and multicellular organisms.",
+      "id": "00000111",
+      "name": "Brenda Tissue Ontology",
+      "namespaceEmbeddedInLui": true,
+      "pattern": "^BTO:\\d{7}$",
+      "prefix": "bto"
+    },
     "pattern": "\\d{7}",
     "synonyms": [
       "BTO"
     ]
   },
   "cas": {
+    "miriam": {
+      "deprecated": false,
+      "description": "CAS (Chemical Abstracts Service) is a division of the American Chemical Society and is the producer of comprehensive databases of chemical information.",
+      "id": "00000237",
+      "name": "CAS",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d{1,7}\\-\\d{2}\\-\\d$",
+      "prefix": "cas"
+    },
     "synonyms": [
       "CASID",
       "SECONDARY_CAS_RN",
@@ -69,6 +114,15 @@
   },
   "cellosaurus": {
     "example": "CVCL_0440",
+    "miriam": {
+      "deprecated": false,
+      "description": "The Cellosaurus is a knowledge resource on cell lines. It attempts to describe all cell lines used in biomedical research. Its scope includes: Immortalized cell lines; naturally immortal cell lines (example: stem cell lines); finite life cell lines when those are distributed and used widely; vertebrate cell line with an emphasis on human, mouse and rat cell lines; and invertebrate (insects and ticks) cell lines. Its scope does not include primary cell lines (with the exception of the finite life cell lines described above) and plant cell lines.",
+      "id": "00000598",
+      "name": "Cellosaurus",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "CVCL_[A-Z0-9]{4}",
+      "prefix": "cellosaurus"
+    },
     "pattern": "^CVCL_[A-Z0-9]{4}$",
     "wikidata_property": "P3289"
   },
@@ -85,6 +139,15 @@
     "url": "http://birdgenenames.org/cgnc/GeneReport?id="
   },
   "chebi": {
+    "miriam": {
+      "deprecated": false,
+      "description": "Chemical Entities of Biological Interest (ChEBI) is a freely available dictionary of molecular entities focused on 'small' chemical compounds.",
+      "id": "00000002",
+      "name": "ChEBI",
+      "namespaceEmbeddedInLui": true,
+      "pattern": "^CHEBI:\\d+$",
+      "prefix": "chebi"
+    },
     "synonyms": [
       "ChEBI",
       "CHEBI",
@@ -93,6 +156,15 @@
     "wikidata_property": "P683"
   },
   "chembl.compound": {
+    "miriam": {
+      "deprecated": false,
+      "description": "ChEMBL is a database of bioactive compounds, their quantitative properties and bioactivities (binding constants, pharmacology and ADMET, etc). The data is abstracted and curated from the primary scientific literature.",
+      "id": "00000084",
+      "name": "ChEMBL compound",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^CHEMBL\\d+$",
+      "prefix": "chembl.compound"
+    },
     "pattern": "^CHEMBL\\d+$",
     "synonyms": [
       "chembl",
@@ -102,6 +174,15 @@
     "wikidata_property": "P592"
   },
   "chemidplus": {
+    "miriam": {
+      "deprecated": false,
+      "description": "ChemIDplus is a web-based search system that provides access to structure and nomenclature authority files used for the identification of chemical substances cited in National Library of Medicine (NLM) databases. It also provides structure searching and direct links to many biomedical resources at NLM and on the Internet for chemicals of interest.",
+      "id": "00000096",
+      "name": "ChemIDplus",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+\\-\\d+\\-\\d+$",
+      "prefix": "chemidplus"
+    },
     "synonyms": [
       "ChemIDplus"
     ]
@@ -110,6 +191,15 @@
     "not_available_as_obo": true
   },
   "chemspider": {
+    "miriam": {
+      "deprecated": false,
+      "description": "ChemSpider is a collection of compound data from across the web, which aggregates chemical structures and their associated information into a single searchable repository entry. These entries are supplemented with additional properties, related information and links back to original data sources.",
+      "id": "00000138",
+      "name": "ChemSpider",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+$",
+      "prefix": "chemspider"
+    },
     "synonyms": [
       "Chemspider"
     ],
@@ -130,7 +220,16 @@
     "title": "CiteXplore"
   },
   "cl": {
-    "download": "https://raw.githubusercontent.com/obophenotype/cell-ontology/master/cl-full.obo"
+    "download": "https://raw.githubusercontent.com/obophenotype/cell-ontology/master/cl-full.obo",
+    "miriam": {
+      "deprecated": false,
+      "description": "The Cell Ontology is designed as a structured controlled vocabulary for cell types. The ontology was constructed for use by the model organism and other bioinformatics databases, incorporating cell types from prokaryotes to mammals, and includes plants and fungi.",
+      "id": "00000110",
+      "name": "Cell Type Ontology",
+      "namespaceEmbeddedInLui": true,
+      "pattern": "^CL:\\d{7}$",
+      "prefix": "cl"
+    }
   },
   "clo": {
     "not_available_as_obo": true,
@@ -143,6 +242,15 @@
     "pattern": "\\d{7}"
   },
   "complexportal": {
+    "miriam": {
+      "deprecated": false,
+      "description": "A database that describes manually curated macromolecular complexes and provides links to details about these complexes in other databases.",
+      "id": "00000657",
+      "name": "Complex Portal",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^CPX-[0-9]+$",
+      "prefix": "complexportal"
+    },
     "synyonms": [
       "ComplexPortal"
     ]
@@ -203,6 +311,15 @@
     "no_own_terms": true
   },
   "drugbank": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The DrugBank database is a bioinformatics and chemoinformatics resource that combines detailed drug (i.e. chemical, pharmacological and pharmaceutical) data with comprehensive drug target (i.e. sequence, structure, and pathway) information. This collection references drug information.",
+      "id": "00000102",
+      "name": "DrugBank",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^DB\\d{5}$",
+      "prefix": "drugbank"
+    },
     "synonyms": [
       "DrugBank",
       "DRUGBANK_ID"
@@ -279,6 +396,15 @@
     "pattern": "\\d+"
   },
   "ensembl": {
+    "miriam": {
+      "deprecated": false,
+      "description": "Ensembl is a joint project between EMBL - EBI and the Sanger Institute  to develop a software system which produces and maintains automatic annotation on selected eukaryotic genomes. This collections also references outgroup organisms.",
+      "id": "00000003",
+      "name": "Ensembl",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^((ENS[FPTG]\\\\d{11}(\\\\.\\\\d+)?)|(FB\\\\w{2}\\\\d{7})|(Y[A-Z]{2}\\\\d{3}[a-zA-Z](\\\\-[A-Z])?)|([A-Z_a-z0-9]+(\\\\.)?(t)?(\\\\d+)?([a-z])?))$",
+      "prefix": "ensembl"
+    },
     "synonyms": [
       "Ensembl"
     ],
@@ -340,6 +466,15 @@
     ]
   },
   "fplx": {
+    "miriam": {
+      "deprecated": false,
+      "description": "FamPlex is a collection of resources for grounding biological entities from text and describing their hierarchical relationships.",
+      "id": "00000651",
+      "name": "FamPlex",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[a-zA-Z0-9][A-Za-z0-9_]+$",
+      "prefix": "fplx"
+    },
     "synonyms": [
       "famplex"
     ],
@@ -372,6 +507,15 @@
     "pattern": "\\d{7}"
   },
   "geo": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The Gene Expression Omnibus (GEO) is a gene expression repository providing a curated, online resource for gene expression data browsing, query and retrieval.",
+      "id": "00000054",
+      "name": "GEO",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^G(PL|SM|SE|DS)\\d+$",
+      "prefix": "geo"
+    },
     "not_available_as_obo": true
   },
   "gno": {
@@ -402,15 +546,42 @@
     "pattern": "\\d{7}"
   },
   "hgnc": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene.  All approved symbols are stored in the HGNC database, and each symbol is unique. HGNC identifiers refer to records in the HGNC symbol database.",
+      "id": "00000080",
+      "name": "HGNC",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^((HGNC|hgnc):)?\\d{1,5}$",
+      "prefix": "hgnc"
+    },
     "wikidata_property": "P354"
   },
   "hgnc.genefamily": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene. All approved symbols are stored in the HGNC database, and each symbol is unique. In addition, HGNC also provides a unique numerical ID to identify gene families, providing a display of curated hierarchical relationships between families.",
+      "id": "00000573",
+      "name": "HGNC gene family",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+$",
+      "prefix": "hgnc.genefamily"
+    },
     "synonyms": [
       "GFAM",
       "HGNC_GROUP"
     ]
   },
   "hmdb": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The Human Metabolome Database (HMDB) is a database containing detailed information about small molecule metabolites found in the human body.It contains or links 1) chemical 2) clinical and 3) molecular biology/biochemistry data.",
+      "id": "00000051",
+      "name": "HMDB",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^HMDB\\d+$",
+      "prefix": "hmdb"
+    },
     "synonyms": [
       "HMDB"
     ],
@@ -488,9 +659,27 @@
     "pattern": "\\d{7}"
   },
   "inchi": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The IUPAC International Chemical Identifier (InChI) is a non-proprietary identifier for chemical substances that can be used in printed and electronic data sources. It is derived solely from a structural representation of that substance, such that a single compound always yields the same identifier.",
+      "id": "00000383",
+      "name": "InChI",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^InChI\\=1S?\\/[A-Za-z0-9\\.]+(\\+[0-9]+)?(\\/[cnpqbtmsih][A-Za-z0-9\\-\\+\\(\\)\\,\\/\\?\\;\\.]+)*$",
+      "prefix": "inchi"
+    },
     "wikidata_property": "P234"
   },
   "inchikey": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The IUPAC International Chemical Identifier (InChI, see MIR:00000383) is an identifier for chemical substances, and is derived solely from a structural representation of that substance. Since these can be quite unwieldly, particularly for web use, the InChIKey was developed. These are of a fixed length (25 character) and were created as a condensed, more web friendly, digital representation of the InChI.",
+      "id": "00000387",
+      "name": "InChIKey",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[A-Z]{14}\\-[A-Z]{10}(\\-[A-Z])?",
+      "prefix": "inchikey"
+    },
     "wikidata_property": "P235"
   },
   "inn": {
@@ -502,6 +691,15 @@
     "url": "https://mednet-communities.net/inn/db/ViewINN.aspx?i=$1"
   },
   "interpro": {
+    "miriam": {
+      "deprecated": false,
+      "description": "InterPro is a database of protein families, domains and functional sites in which identifiable features found in known proteins can be applied to unknown protein sequences.",
+      "id": "00000011",
+      "name": "InterPro",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^IPR\\d{6}$",
+      "prefix": "interpro"
+    },
     "synonyms": [
       "InterPro",
       "IP"
@@ -515,11 +713,29 @@
     "wikidata_property": "P815"
   },
   "iuphar.family": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The IUPHAR Compendium details the molecular, biophysical and pharmacological properties of identified mammalian sodium, calcium and potassium channels, as well as the related cyclic nucleotide-modulated ion channels and the recently described transient receptor potential channels. It includes information on nomenclature systems, and on inter and intra-species molecular structure variation. This collection references families of receptors or subunits.",
+      "id": "00000317",
+      "name": "IUPHAR family",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+$",
+      "prefix": "iuphar.family"
+    },
     "synonyms": [
       "IUPHARfam"
     ]
   },
   "iuphar.ligand": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The IUPHAR Compendium details the molecular, biophysical and pharmacological properties of identified mammalian sodium, calcium and potassium channels, as well as the related cyclic nucleotide-modulated ion channels and the recently described transient receptor potential channels. It includes information on nomenclature systems, and on inter and intra-species molecular structure variation. This collection references ligands.",
+      "id": "00000457",
+      "name": "IUPHAR ligand",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+$",
+      "prefix": "iuphar.ligand"
+    },
     "synonyms": [
       "IUPHAR_LIGAND",
       "IUPHAR_LIGAND_ID"
@@ -527,36 +743,99 @@
     "wikidata_property": "P595"
   },
   "iuphar.receptor": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The IUPHAR Compendium details the molecular, biophysical and pharmacological properties of identified mammalian sodium, calcium and potassium channels, as well as the related cyclic nucleotide-modulated ion channels and transient receptor potential channels. It includes information on nomenclature systems, and on inter and intra-species molecular structure variation. This collection references individual receptors or subunits.",
+      "id": "00000281",
+      "name": "IUPHAR receptor",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+$",
+      "prefix": "iuphar.receptor"
+    },
     "wikidata_property": "P5458"
   },
   "kegg": {
+    "miriam": {
+      "deprecated": false,
+      "description": "Kyoto Encyclopedia of Genes and Genomes (KEGG) is a database resource for understanding high-level functions and utilities of the biological system, such as the cell, the organism and the ecosystem, from molecular-level information, especially large-scale molecular datasets generated by genome sequencing and other high-throughput experimental technologies.",
+      "id": "00000578",
+      "name": "Kyoto Encyclopedia of Genes and Genomes",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^([CHDEGTMKR]\\d+)|(\\w+:[\\w\\d\\.-]*)|([a-z]{3,5})|(\\w{2,4}\\d{5})$",
+      "prefix": "kegg"
+    },
     "synonyms": [
       "KEGG"
     ]
   },
   "kegg.compound": {
+    "miriam": {
+      "deprecated": false,
+      "description": "KEGG compound contains our knowledge on the universe of chemical substances that are relevant to life.",
+      "id": "00000013",
+      "name": "KEGG Compound",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^C\\d+$",
+      "prefix": "kegg.compound"
+    },
     "synonyms": [
       "KEGG.COMPOUND",
       "KEGG COMPOUND"
     ]
   },
   "kegg.drug": {
+    "miriam": {
+      "deprecated": false,
+      "description": "KEGG DRUG contains chemical structures of drugs and additional information such as therapeutic categories and target molecules.",
+      "id": "00000025",
+      "name": "KEGG Drug",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^D\\d+$",
+      "prefix": "kegg.drug"
+    },
     "synonyms": [
       "KEGG.DRUG",
       "KEGG DRUG"
     ]
   },
   "kegg.pathway": {
+    "miriam": {
+      "deprecated": false,
+      "description": "KEGG PATHWAY is a collection of manually drawn pathway maps representing our knowledge on the molecular interaction and reaction networks.",
+      "id": "00000012",
+      "name": "KEGG Pathway",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\w{2,4}\\d{5}$",
+      "prefix": "kegg.pathway"
+    },
     "synonyms": [
       "KEGG_PATHWAY"
     ]
   },
   "kegg.reaction": {
+    "miriam": {
+      "deprecated": false,
+      "description": "KEGG reaction contains our knowledge on the universe of reactions that are relevant to life.",
+      "id": "00000014",
+      "name": "KEGG Reaction",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^R\\d+$",
+      "prefix": "kegg.reaction"
+    },
     "synonyms": [
       "KEGG_REACTION"
     ]
   },
   "knapsack": {
+    "miriam": {
+      "deprecated": false,
+      "description": "KNApSAcK provides information on metabolites and the\ntaxonomic class with which they are associated.",
+      "id": "00000271",
+      "name": "KNApSAcK",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^C\\d{8}",
+      "prefix": "knapsack"
+    },
     "wikidata_property": "P2064"
   },
   "lincs.cell": {
@@ -582,9 +861,27 @@
     }
   },
   "lincs.smallmolecule": {
-    "id": "00000546"
+    "id": "00000546",
+    "miriam": {
+      "deprecated": false,
+      "description": "The Library of Network-Based Cellular Signatures (LINCS) Program aims to create a network-based understanding of biology by cataloging changes in gene expression and other cellular processes that occur when cells are exposed to a variety of perturbing agents. The LINCS small molecule collection is used as perturbagens in LINCS experiments. The small molecule metadata includes substance-specific batch information provided by each LINCS Data and Signature Generation Center (DSGC).",
+      "id": "00000546",
+      "name": "LINCS Small Molecule",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^LSM-\\d+$",
+      "prefix": "lincs.smallmolecule"
+    }
   },
   "lipidmaps": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The LIPID MAPS Lipid Classification System is comprised of eight lipid categories, each with its own subclassification hierarchy. All lipids in the LIPID MAPS Structure Database (LMSD) have been classified using this system and have been assigned LIPID MAPS ID's which reflects their position in the classification hierarchy.",
+      "id": "00000052",
+      "name": "LIPID MAPS",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^LM(FA|GL|GP|SP|ST|PR|SL|PK)[0-9]{4}([0-9a-zA-Z]{4,6})?$",
+      "prefix": "lipidmaps"
+    },
     "synonyms": [
       "LIPID_MAPS_instance",
       "LIPID MAPS",
@@ -596,12 +893,30 @@
     "title": "LNCipedia"
   },
   "massbank": {
+    "miriam": {
+      "deprecated": false,
+      "description": "MassBank is a federated database of reference spectra from different instruments, including high-resolution mass spectra of small metabolites (<3000 Da).",
+      "id": "00000273",
+      "name": "MassBank",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[A-Z]{2}[A-Z0-9][0-9]{5}$",
+      "prefix": "massbank"
+    },
     "wikidata_property": "P6689"
   },
   "mco": {
     "pattern": "\\d+"
   },
   "meddra": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The Medical Dictionary for Regulatory Activities (MedDRA) was developed by the International Council for Harmonisation of Technical Requirements for Registration of Pharmaceuticals for Human Use (ICH)to provide a standardised medical terminology to facilitate sharing of regulatory information internationally for medical products used by humans. It is used within regulatory processes, safety monitoring, as well as for marketing activities. Products covered by the scope of MedDRA include pharmaceuticals, biologics, vaccines and drug-device combination products. The MedDRA dictionary is organized by System Organ Class (SOC), divided into High-Level Group Terms (HLGT), High-Level Terms (HLT), Preferred Terms (PT) and finally into Lowest Level Terms (LLT).",
+      "id": "00000563",
+      "name": "MedDRA",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+$",
+      "prefix": "meddra"
+    },
     "synonyms": [
       "MedDRA",
       "MeDRA",
@@ -639,15 +954,42 @@
   },
   "mfo": {},
   "mgi": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The Mouse Genome Database (MGD) project includes data on gene characterization, nomenclature, mapping, gene homologies among mammals, sequence links, phenotypes, allelic variants and mutants, and strain data.",
+      "id": "00000037",
+      "name": "Mouse Genome Database",
+      "namespaceEmbeddedInLui": true,
+      "pattern": "^MGI:\\d+$",
+      "prefix": "mgi"
+    },
     "synonyms": [
       "MGI",
       "MGD"
     ]
   },
   "mi": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The Molecular Interactions (MI) ontology forms a structured controlled vocabulary for the annotation of experiments concerned with protein-protein interactions. MI is developed by the HUPO Proteomics Standards Initiative.",
+      "id": "00000109",
+      "name": "Molecular Interactions Ontology",
+      "namespaceEmbeddedInLui": true,
+      "pattern": "^MI:\\d{4}$",
+      "prefix": "mi"
+    },
     "pattern": "\\d{4}"
   },
   "mim": {
+    "miriam": {
+      "deprecated": false,
+      "description": "Online Mendelian Inheritance in Man is a catalog of human genes and genetic disorders.",
+      "id": "00000016",
+      "name": "OMIM",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[*#+%^]?\\d{6}$",
+      "prefix": "mim"
+    },
     "synonyms": [
       "OMIM",
       "OMIMPS"
@@ -655,6 +997,15 @@
     "wikidata_property": "P492"
   },
   "mirbase": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The miRBase Sequence Database is a searchable database of published miRNA sequences and annotation. The data were previously provided by the miRNA Registry. Each entry in the miRBase Sequence database represents a predicted hairpin portion of a miRNA transcript (termed mir in the database), with information on the location and sequence of the mature miRNA sequence (termed miR).",
+      "id": "00000078",
+      "name": "miRBase Sequence",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "MI\\d{7}",
+      "prefix": "mirbase"
+    },
     "url": "http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=$1",
     "wikidata_property": "P2870"
   },
@@ -666,8 +1017,29 @@
     "url": "http://www.mirbase.org/cgi-bin/mirna_summary.pl?fam=$1"
   },
   "mirbase.mature": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The miRBase Sequence Database is a searchable database of published miRNA sequences and annotation. This collection refers specifically to the mature miRNA sequence.",
+      "id": "00000235",
+      "name": "miRBase mature sequence",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "MIMAT\\d{7}",
+      "prefix": "mirbase.mature"
+    },
     "url": "http://mirbase.org/cgi-bin/mature.pl?mature_acc=$1",
     "wikidata_property": "P2871"
+  },
+  "miriam.resource": {
+    "comment": "yo dawg i heard you like registries...",
+    "miriam": {
+      "deprecated": false,
+      "description": "MIRIAM Registry is an online resource created to catalogue data types (Gene Ontology, Taxonomy or PubMed are some examples), their URIs and the corresponding resources (or physical locations), whether these are controlled vocabularies or databases.",
+      "id": "00000188",
+      "name": "MIRIAM Registry resource",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^MIR:001\\d{5}$",
+      "prefix": "miriam.resource"
+    }
   },
   "miro": {
     "download": "http://purl.obolibrary.org/obo/miro.obo",
@@ -718,6 +1090,15 @@
     "pattern": "\\d{7}"
   },
   "ncbigene": {
+    "miriam": {
+      "deprecated": false,
+      "description": "Entrez Gene is the NCBI's database for gene-specific information, focusing on completely sequenced genomes, those with an active research community to contribute gene-specific information, or those that are scheduled for intense sequence analysis.",
+      "id": "00000069",
+      "name": "NCBI Gene",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+$",
+      "prefix": "ncbigene"
+    },
     "synonyms": [
       "entrez",
       "NCBIGene",
@@ -785,6 +1166,15 @@
     "title": "National Drug File - Reference Terminology"
   },
   "nextprot": {
+    "miriam": {
+      "deprecated": false,
+      "description": "neXtProt is a resource on human proteins, and includes information such as proteins\u2019 function, subcellular location, expression, interactions and role in diseases.",
+      "id": "00000236",
+      "name": "nextProt",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^NX_\\w+",
+      "prefix": "nextprot"
+    },
     "synonyms": [
       "NXP"
     ]
@@ -829,6 +1219,15 @@
     "pattern": "\\d{7}"
   },
   "orcid": {
+    "miriam": {
+      "deprecated": false,
+      "description": "ORCID (Open Researcher and Contributor ID) is an open, non-profit, community-based effort to create and maintain a registry of unique identifiers for individual researchers. ORCID records hold non-sensitive information such as name, email, organization name, and research activities.",
+      "id": "00000382",
+      "name": "ORCID",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$",
+      "prefix": "orcid"
+    },
     "namespaces": [
       "ORCiD",
       "ORCID"
@@ -838,6 +1237,15 @@
     "pattern": "\\d{7}"
   },
   "orphanet": {
+    "miriam": {
+      "deprecated": false,
+      "description": "Orphanet is a reference portal for information on rare diseases and orphan drugs. It\u2019s aim is to help improve the diagnosis, care and treatment of patients with rare diseases.",
+      "id": "00000220",
+      "name": "Orphanet",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+$",
+      "prefix": "orphanet"
+    },
     "title": "Orphanet",
     "wikidata_property": "P1550"
   },
@@ -892,6 +1300,15 @@
     "url": "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/$1"
   },
   "pdb.ligand": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The Protein Data Bank is the single worldwide archive of structural data of biological macromolecules. This collection references ligands.",
+      "id": "00000490",
+      "name": "Protein Data Bank Ligand",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[A-Za-z0-9]+$",
+      "prefix": "pdb.ligand"
+    },
     "synonyms": [
       "PDB_CHEM_ID"
     ]
@@ -909,6 +1326,15 @@
     "pattern": "\\d{7}"
   },
   "pfam": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The Pfam database contains information about protein domains and families. For each entry a protein sequence alignment and a Hidden Markov Model is stored.",
+      "id": "00000028",
+      "name": "Pfam",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^PF\\d{5}$",
+      "prefix": "pfam"
+    },
     "synonyms": [
       "PF"
     ]
@@ -934,12 +1360,30 @@
     "pattern": "\\d+"
   },
   "pmc": {
+    "miriam": {
+      "deprecated": false,
+      "description": "PMC International (PMCI) is a free full-text archive of biomedical and life sciences journal literature. PMCI is a collaborative effort between the U.S. National Institutes of Health and the National Library of Medicine, the publishers whose journal content makes up the PMC archive, and organizations in other countries that share NIH's and NLM's interest in archiving life sciences literature.",
+      "id": "00000147",
+      "name": "PMC International",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "PMC\\d+",
+      "prefix": "pmc"
+    },
     "synonyms": [
       "PMCID",
       "PMC"
     ]
   },
   "pombase": {
+    "miriam": {
+      "deprecated": false,
+      "description": "PomBase is a model organism database established to provide access to molecular data and biological information for the fission yeast Schizosaccharomyces pombe. It encompasses annotation of genomic sequence and features, comprehensive manual literature curation and genome-wide data sets.",
+      "id": "00000335",
+      "name": "PomBase",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^S\\w+(\\.)?\\w+(\\.)?$",
+      "prefix": "pombase"
+    },
     "synonyms": [
       "PomBase"
     ]
@@ -948,12 +1392,30 @@
     "pattern": "\\d{7}"
   },
   "pr": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The PRotein Ontology (PRO) has been designed to describe the relationships of proteins and protein evolutionary classes, to delineate the multiple protein forms of a gene locus (ontology for protein forms), and to interconnect existing ontologies.",
+      "id": "00000141",
+      "name": "Protein Ontology",
+      "namespaceEmbeddedInLui": true,
+      "pattern": "^PR:P?\\d+$",
+      "prefix": "pr"
+    },
     "synonyms": [
       "PR",
       "PRO"
     ]
   },
   "prosite": {
+    "miriam": {
+      "deprecated": false,
+      "description": "PROSITE consists of documentation entries describing protein domains, families and functional sites as well as associated patterns and profiles to identify them.",
+      "id": "00000032",
+      "name": "PROSITE",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^PS\\d{5}$",
+      "prefix": "prosite"
+    },
     "wikidata_property": "P4355"
   },
   "pseudogene": {
@@ -962,6 +1424,15 @@
     ]
   },
   "pubchem.compound": {
+    "miriam": {
+      "deprecated": false,
+      "description": "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Compound archives chemical structures and records.",
+      "id": "00000034",
+      "name": "PubChem-compound",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+$",
+      "prefix": "pubchem.compound"
+    },
     "synonyms": [
       "DSSTox_CID",
       "CID",
@@ -972,18 +1443,45 @@
     "wikidata_property": "P662"
   },
   "pubchem.substance": {
+    "miriam": {
+      "deprecated": false,
+      "description": "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Substance archives chemical substance records.",
+      "id": "00000033",
+      "name": "PubChem-substance",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+$",
+      "prefix": "pubchem.substance"
+    },
     "synonyms": [
       "DSSTox_Generic_SID"
     ],
     "wikidata_property": "P2153"
   },
   "pubmed": {
+    "miriam": {
+      "deprecated": false,
+      "description": "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s.",
+      "id": "00000015",
+      "name": "PubMed",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+$",
+      "prefix": "pubmed"
+    },
     "synonyms": [
       "pmid",
       "PMID"
     ]
   },
   "reactome": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The Reactome project is a collaboration to develop a curated resource of core pathways and reactions in human biology.",
+      "id": "00000018",
+      "name": "Reactome",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "(^R-[A-Z]{3}-\\d+(-\\d+)?(\\.\\d+)?$)|(^REACT_\\d+(\\.\\d+)?$)",
+      "prefix": "reactome"
+    },
     "synonyms": [
       "RE",
       "REACT"
@@ -996,11 +1494,29 @@
     ]
   },
   "rgd": {
+    "miriam": {
+      "deprecated": false,
+      "description": "Rat Genome Database seeks to collect, consolidate, and integrate rat genomic and genetic data with curated functional and physiological data and make these data widely available to the scientific community. This collection references genes.",
+      "id": "00000047",
+      "name": "Rat Genome Database",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d{4,}$",
+      "prefix": "rgd"
+    },
     "synonyms": [
       "RGD"
     ]
   },
   "rhea": {
+    "miriam": {
+      "deprecated": false,
+      "description": "Rhea is a manually annotated reaction database, where all reaction participants (reactants and products) are linked to the ChEBI database (Chemical Entities of Biological Interest), providing detailed information about structure, formulae and charge. It is populated with the reactions found in the EC list, IntEnz and ENZYME databases), as well as other biochemical reactions, including those that are often termed \"spontaneous\".",
+      "id": "00000082",
+      "name": "Rhea",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d{5}$",
+      "prefix": "rhea"
+    },
     "synonyms": [
       "RHEA"
     ]
@@ -1009,6 +1525,15 @@
     "pattern": "\\d{7}"
   },
   "ro": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The OBO Relation Ontology provides consistent and unambiguous formal definitions of the relational expressions used in biomedical ontologies.",
+      "id": "00000120",
+      "name": "Relation Ontology",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^RO_\\d{7}$",
+      "prefix": "ro"
+    },
     "synonyms": [
       "obo_rel"
     ],
@@ -1027,6 +1552,15 @@
     "wikidata_property": "P3345"
   },
   "sgd": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The Saccharomyces Genome Database (SGD) project collects information and maintains a database of the molecular biology of the yeast Saccharomyces cerevisiae.",
+      "id": "00000023",
+      "name": "SGD",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^((S\\d+$)|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?))$",
+      "prefix": "sgd"
+    },
     "synonyms": [
       "SGD"
     ]
@@ -1128,6 +1662,15 @@
   },
   "uberon": {
     "download": "http://purl.obolibrary.org/obo/uberon/basic.obo",
+    "miriam": {
+      "deprecated": false,
+      "description": "Uberon is an integrated cross-species anatomy ontology representing a variety of entities classified according to traditional anatomical criteria such as structure, function and developmental lineage. The ontology includes comprehensive relationships to taxon-specific anatomical ontologies, allowing integration of functional, phenotype and expression data.",
+      "id": "00000446",
+      "name": "UBERON",
+      "namespaceEmbeddedInLui": true,
+      "pattern": "^UBERON\\:\\d+$",
+      "prefix": "uberon"
+    },
     "synonyms": [
       "UBERON",
       "Uberon",
@@ -1138,6 +1681,15 @@
     "wikidata_property": "P2576"
   },
   "umbbd.compound": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to compound information.",
+      "id": "00000276",
+      "name": "UM-BBD Compound",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^c\\d+$",
+      "prefix": "umbbd.compound"
+    },
     "synonyms": [
       "UM-BBD_compID"
     ],
@@ -1145,18 +1697,45 @@
     "wikidata_property": "P8121"
   },
   "umbbd.enzyme": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to enzyme information.",
+      "id": "00000326",
+      "name": "UM-BBD Enzyme",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^e\\d+$",
+      "prefix": "umbbd.enzyme"
+    },
     "synonyms": [
       "UM-BBD_enzymeID"
     ],
     "url": "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=ep&enzymeID=$1"
   },
   "umbbd.pathway": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to pathway information.",
+      "id": "00000327",
+      "name": "UM-BBD Pathway",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\w+$",
+      "prefix": "umbbd.pathway"
+    },
     "synonyms": [
       "UM-BBD_pathwayID"
     ],
     "url": "http://eawag-bbd.ethz.ch/$1/$1_map.html"
   },
   "umbbd.reaction": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to reaction information.",
+      "id": "00000325",
+      "name": "UM-BBD Reaction",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^r\\d+$",
+      "prefix": "umbbd.reaction"
+    },
     "synonyms": [
       "UM-BBD_reactionID"
     ],
@@ -1180,10 +1759,28 @@
     "wikidata_property": "P2892"
   },
   "unii": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The purpose of the joint FDA/USP Substance Registration System (SRS) is to support health information technology initiatives by generating unique ingredient identifiers (UNIIs) for substances in drugs, biologics, foods, and devices. The UNII is a non- proprietary, free, unique, unambiguous, non semantic, alphanumeric identifier based on a substance\u2019s molecular structure and/or descriptive information.",
+      "id": "00000531",
+      "name": "UNII",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[A-Z0-9]+$",
+      "prefix": "unii"
+    },
     "title": "Unique Ingredient Identifier",
     "wikidata_property": "P652"
   },
   "uniprot": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. Besides amino acid sequence and a description, it also provides taxonomic data and citation information.",
+      "id": "00000005",
+      "name": "UniProt Knowledgebase",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$",
+      "prefix": "uniprot"
+    },
     "synonyms": [
       "UniProt",
       "UniProtKB",
@@ -1258,11 +1855,29 @@
     ]
   },
   "wikidata": {
+    "miriam": {
+      "deprecated": false,
+      "description": "Wikidata is a collaboratively edited knowledge base operated by the Wikimedia Foundation. It is intended to provide a common source of certain types of data which can be used by Wikimedia projects such as Wikipedia. Wikidata functions as a document-oriented database, centred on individual items. Items represent topics, for which basic information is stored that identifies each topic.",
+      "id": "00000549",
+      "name": "Wikidata",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^(Q|P)\\d+$",
+      "prefix": "wikidata"
+    },
     "synonyms": [
       "wd"
     ]
   },
   "wikipathways": {
+    "miriam": {
+      "deprecated": false,
+      "description": "WikiPathways is a resource providing an open and public collection of  pathway maps created and curated by the community in a Wiki like style.\r\nAll content is under the Creative Commons Attribution 3.0 Unported license.",
+      "id": "00000076",
+      "name": "WikiPathways",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "WP\\d{1,5}(\\_r\\d+)?$",
+      "prefix": "wikipathways"
+    },
     "wikidata_property": "P2410"
   },
   "wormbase": {
@@ -1294,6 +1909,15 @@
     "pattern": "\\d{7}"
   },
   "zfin": {
+    "miriam": {
+      "deprecated": false,
+      "description": "ZFIN serves as the zebrafish model organism database. This collection references all zebrafish biological entities in ZFIN.",
+      "id": "00000079",
+      "name": "ZFIN Bioentity",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^ZDB\\-\\w+\\-\\d+\\-\\d+$",
+      "prefix": "zfin"
+    },
     "synonyms": [
       "ZFIN"
     ],
