@@ -225,8 +225,12 @@
   },
   "eccode": {
     "miriam": {
+      "deprecated": false,
+      "description": "The Enzyme Classification contains the recommendations of the Nomenclature Committee of the International Union of Biochemistry and Molecular Biology on the nomenclature and classification of enzyme-catalysed reactions.",
       "id": "00000004",
+      "name": "Enzyme Nomenclature",
       "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+\\.-\\.-\\.-|\\d+\\.\\d+\\.-\\.-|\\d+\\.\\d+\\.\\d+\\.-|\\d+\\.\\d+\\.\\d+\\.(n)?\\d+$",
       "prefix": "ec-code"
     },
     "synonyms": [
@@ -256,8 +260,12 @@
   "efo": {
     "download": "http://www.ebi.ac.uk/efo/efo.obo",
     "miriam": {
+      "deprecated": false,
+      "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases. It combines parts of several biological ontologies, such as anatomy, disease and chemical compounds. The scope of EFO is to support the annotation, analysis and visualization of data handled by the EBI Functional Genomics Team.",
       "id": "00000391",
+      "name": "Experimental Factor Ontology",
       "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d{7}$",
       "prefix": "efo"
     },
     "obofoundry": {
@@ -318,8 +326,12 @@
   },
   "flybase": {
     "miriam": {
+      "deprecated": false,
+      "description": "FlyBase is the database of the Drosophila Genome Projects and of associated literature.",
       "id": "00000030",
+      "name": "FlyBase",
       "namespaceEmbeddedInLui": false,
+      "pattern": "^FB\\w{2}\\d{7}$",
       "prefix": "fb"
     },
     "synonyms": [
@@ -368,8 +380,12 @@
   "go": {
     "download": "http://purl.obolibrary.org/obo/go.obo",
     "miriam": {
+      "deprecated": false,
+      "description": "The Gene Ontology project provides a controlled vocabulary to describe gene and gene product attributes in any organism.",
       "id": "00000022",
+      "name": "Gene Ontology",
       "namespaceEmbeddedInLui": true,
+      "pattern": "^GO:\\d{7}$",
       "prefix": "go"
     },
     "synonyms": [
@@ -403,8 +419,12 @@
   "hp": {
     "download": "http://purl.obolibrary.org/obo/hp.obo",
     "miriam": {
+      "deprecated": false,
+      "description": "The Human Phenotype Ontology (HPO) aims to provide a standardized vocabulary of phenotypic abnormalities encountered in human disease. Each term in the HPO describes a phenotypic abnormality, such as atrial septal defect. The HPO is currently being developed using the medical literature, Orphanet, DECIPHER, and OMIM.",
       "id": "00000571",
+      "name": "Human Phenotype Ontology",
       "namespaceEmbeddedInLui": true,
+      "pattern": "^HP:\\d{7}$",
       "prefix": "hp"
     },
     "obofoundry": {
@@ -419,8 +439,12 @@
   },
   "icd10": {
     "miriam": {
+      "deprecated": false,
+      "description": "The International Classification of Diseases is the international standard diagnostic classification for all general epidemiological and many health management purposes.",
       "id": "00000009",
+      "name": "ICD",
       "namespaceEmbeddedInLui": false,
+      "pattern": "^[A-Z]\\d+(\\.[-\\d+])?$",
       "prefix": "icd"
     },
     "synonyms": [
@@ -537,12 +561,24 @@
   },
   "lincs.cell": {
     "miriam": {
-      "id": "00000544"
+      "deprecated": false,
+      "description": "The Library of Network-Based Cellular Signatures (LINCS) Program aims to  create a network-based understanding of biology by cataloging changes in gene expression and other cellular processes that occur when cells are exposed to a variety of perturbing agents. The LINCS cell model system can have the following cell categories: cell lines, primary cells, induced pluripotent stem cells, differentiated cells, and embryonic stem cells. The metadata contains information provided by each LINCS Data and Signature Generation Center (DSGC) and the association with a tissue or organ from which the cells were derived, in many cases are also associated to a disease.",
+      "id": "00000544",
+      "name": "LINCS Cell",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "(^LCL-\\d+$)|(^LDC-\\d+$)|(^ES-\\d+$)|(^LSC-\\d+$)|(^LPC-\\d+$)",
+      "prefix": "lincs.cell"
     }
   },
   "lincs.protein": {
     "miriam": {
-      "id": "00000545"
+      "deprecated": false,
+      "description": "The HMS LINCS Database currently contains information on experimental reagents (small molecule perturbagens, cells, and proteins). It aims to collect and disseminate information relating to the fundamental principles of cellular response in humans to perturbation. This collection references proteins.",
+      "id": "00000545",
+      "name": "LINCS Protein",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+$",
+      "prefix": "lincs.protein"
     }
   },
   "lincs.smallmolecule": {
@@ -575,8 +611,12 @@
   },
   "mesh": {
     "miriam": {
+      "deprecated": false,
+      "description": "MeSH (Medical Subject Headings) is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity. This thesaurus is used by NLM for indexing articles from biomedical journals, cataloguing of books, documents, etc.",
       "id": "00000560",
+      "name": "MeSH",
       "namespaceEmbeddedInLui": false,
+      "pattern": "^(C|D)\\d{6,9}$",
       "prefix": "mesh"
     },
     "synonyms": [
@@ -689,8 +729,12 @@
   "ncbitaxon": {
     "download": "http://purl.obolibrary.org/obo/ncbitaxon.obo",
     "miriam": {
+      "deprecated": false,
+      "description": "The taxonomy contains the relationships between all living forms for which nucleic acid or protein sequence have been determined.",
       "id": "00000006",
+      "name": "Taxonomy",
       "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d+$",
       "prefix": "taxonomy"
     },
     "pattern": "\\d+",
@@ -707,8 +751,12 @@
   "ncit": {
     "download": "http://purl.obolibrary.org/obo/ncit.obo",
     "miriam": {
+      "deprecated": false,
+      "description": "NCI Thesaurus (NCIt) provides reference terminology covering vocabulary for clinical care, translational and basic research, and public information and administrative activities, providing a stable and unique identification code.",
       "id": "00000139",
+      "name": "NCIt",
       "namespaceEmbeddedInLui": false,
+      "pattern": "^C\\d+$",
       "prefix": "ncit"
     },
     "synonyms": [
@@ -765,8 +813,12 @@
   "omit": {
     "download": "https://raw.githubusercontent.com/OmniSearch/omit/master/src/ontology/omit.obo",
     "miriam": {
+      "deprecated": false,
+      "description": "The purpose of the OMIT ontology is to establish data exchange standards and common data elements in the microRNA (miR) domain. Biologists (cell biologists in particular) and bioinformaticians can make use of OMIT to leverage emerging semantic technologies in knowledge acquisition and discovery for more effective identification of important roles performed by miRs in humans' various diseases and biological processes (usually through miRs' respective target genes).",
       "id": "00000605",
+      "name": "OMIT",
       "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d{7}$",
       "prefix": "omit"
     },
     "synonyms": [
@@ -791,7 +843,13 @@
   },
   "orphanet.ordo": {
     "miriam": {
-      "id": "00000532"
+      "deprecated": false,
+      "description": "The Orphanet Rare Disease ontology (ORDO) is a structured vocabulary for rare diseases, capturing relationships between diseases, genes and other relevant features which will form a useful resource for the computational analysis of rare diseases.\r\nIt integrates a nosology (classification of rare diseases), relationships (gene-disease relations, epiemological data) and connections with other terminologies (MeSH, UMLS, MedDRA), databases (OMIM, UniProtKB, HGNC, ensembl, Reactome, IUPHAR, Geantlas) and classifications (ICD10).",
+      "id": "00000532",
+      "name": "Orphanet Rare Disease Ontology",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^Orphanet(_|:)C?\\d+$",
+      "prefix": "orphanet.ordo"
     },
     "synonyms": [
       "ordo"
@@ -809,12 +867,24 @@
   },
   "pdb": {
     "miriam": {
-      "id": "00000020"
+      "deprecated": false,
+      "description": "The Protein Data Bank is the single worldwide archive of structural data of biological macromolecules.",
+      "id": "00000020",
+      "name": "Protein Data Bank",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[0-9][A-Za-z0-9]{3}$",
+      "prefix": "pdb"
     }
   },
   "pdb-ccd": {
     "miriam": {
-      "id": "00000113"
+      "deprecated": false,
+      "description": "The Chemical Component Dictionary is as an external reference file describing all residue and small molecule components found in Protein Data Bank entries. It contains detailed chemical descriptions for standard and modified amino acids/nucleotides, small molecule ligands, and solvent molecules. Each chemical definition includes descriptions of chemical properties such as stereochemical assignments, aromatic bond assignments, idealized coordinates, chemical descriptors (SMILES & InChI), and systematic chemical names.",
+      "id": "00000113",
+      "name": "Chemical Component Dictionary",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\w{3}$",
+      "prefix": "pdb-ccd"
     },
     "synonyms": [
       "pdbechem"
@@ -977,8 +1047,12 @@
   "smpdb": {
     "example": "SMP0000219",
     "miriam": {
+      "deprecated": false,
+      "description": "The Small Molecule Pathway Database (SMPDB) contains small molecule pathways found in humans, which are presented visually. All SMPDB pathways include information on the relevant organs, subcellular compartments, protein cofactors, protein locations, metabolite locations, chemical structures and protein quaternary structures. Accompanying data includes detailed descriptions and references, providing an overview of the pathway, condition or processes depicted in each diagram.",
       "id": "00000104",
+      "name": "Small Molecule Pathway Database",
       "namespaceEmbeddedInLui": false,
+      "pattern": "^SMP\\d+$",
       "prefix": "smpdb"
     },
     "pattern": "^SMP\\d+$",
@@ -987,8 +1061,12 @@
   },
   "snomedct": {
     "miriam": {
+      "deprecated": false,
+      "description": "SNOMED CT (Systematized Nomenclature of Medicine -- Clinical Terms), is a systematically organized computer processable collection of medical terminology covering most areas of clinical information such as diseases, findings, procedures, microorganisms, pharmaceuticals, etc.",
       "id": "00000269",
+      "name": "SNOMED CT",
       "namespaceEmbeddedInLui": false,
+      "pattern": "^(\\w+)?\\d+$",
       "prefix": "snomedct"
     },
     "synonyms": [
@@ -1086,9 +1164,13 @@
   },
   "umls": {
     "miriam": {
+      "deprecated": false,
+      "description": "The Disease Ontology has been developed as a standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts.",
       "id": "00000233",
-      "namespaceEmbeddedInLui": false,
-      "prefix": "umls"
+      "name": "Human Disease Ontology",
+      "namespaceEmbeddedInLui": true,
+      "pattern": "^DOID:\\d+$",
+      "prefix": "doid"
     },
     "synonyms": [
       "UMLS",
