@@ -1756,7 +1756,16 @@
     ],
     "wikidata_property": "P486"
   },
-  "metacyc": {
+  "metacyc.compound": {
+    "miriam": {
+      "deprecated": false,
+      "description": "MetaCyc is a curated database of experimentally elucidated metabolic pathways from all domains of life. MetaCyc contains 2526 pathways from 2844 different organisms. MetaCyc contains pathways involved in both primary and secondary metabolism, as well as associated metabolites, reactions, enzymes, and genes. The goal of MetaCyc is to catalog the universe of metabolism by storing a representative sample of each experimentally elucidated pathway.",
+      "id": "00000609",
+      "name": "MetaCyc Compound",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^CPD-\\d{5}$",
+      "prefix": "metacyc.compound"
+    },
     "synonyms": [
       "MetaCyc"
     ]
@@ -2484,7 +2493,52 @@
     ],
     "url": "http://repository.topdownproteomics.org/proteoforms/$1"
   },
-  "pharmgkb": {
+  "pharmgkb.disease": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains.",
+      "id": "00000090",
+      "name": "PharmGKB Disease",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^PA\\d+$",
+      "prefix": "pharmgkb.disease"
+    },
+    "wikidata_property": "P7001"
+  },
+  "pharmgkb.drug": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains.",
+      "id": "00000091",
+      "name": "PharmGKB Drug",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^PA\\d+$",
+      "prefix": "pharmgkb.drug"
+    },
+    "wikidata_property": "P7001"
+  },
+  "pharmgkb.gene": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains.",
+      "id": "00000245",
+      "name": "PharmGKB Gene",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^PA\\w+$",
+      "prefix": "pharmgkb.gene"
+    },
+    "wikidata_property": "P7001"
+  },
+  "pharmgkb.pathways": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains. \r\nPharmGKB Pathways are drug centric, gene based, interactive pathways which focus on candidate genes and gene groups and associated genotype and phenotype data of relevance for pharmacogenetic and pharmacogenomic studies.",
+      "id": "00000089",
+      "name": "PharmGKB Pathways",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^PA\\d+$",
+      "prefix": "pharmgkb.pathways"
+    },
     "wikidata_property": "P7001"
   },
   "phipo": {
@@ -2718,6 +2772,8 @@
     "wikidata_property": "P3937"
   },
   "reaxys": {
+    "homepage": "https://www.reaxys.com",
+    "name": "Reaxys",
     "synonyms": [
       "Reaxys"
     ]
@@ -2944,9 +3000,9 @@
     ]
   },
   "snornabase": {
-    "synonyms": [
-      "snoRNABase"
-    ]
+    "description": "A comprehensive database of\n\nhuman H/ACA and C/D box snoRNAs.",
+    "homepage": "https://www-snorna.biotoul.fr/",
+    "name": "snoRNABase"
   },
   "spd": {
     "obofoundry": {
@@ -3149,6 +3205,8 @@
     ]
   },
   "ucsc": {
+    "homepage": "https://genome.ucsc.edu/",
+    "name": "UCSC Genome Browser",
     "wikidata_property": "P2576"
   },
   "umbbd.compound": {
@@ -3459,9 +3517,9 @@
     "wikidata_property": "P2410"
   },
   "wormbase": {
-    "synonyms": [
-      "WormBase"
-    ]
+    "homepage": "https://wormbase.org",
+    "name": "WormBase",
+    "wikidata_database": "Q3570042"
   },
   "xao": {
     "obofoundry": {
