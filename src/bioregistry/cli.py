@@ -4,9 +4,9 @@
 
 import click
 
-from .external.miriam import get_miriam_df
-from .external.obofoundry import get_obofoundry_df
-from .external.ols import get_ols_df
+from .align import align
+from .external.cli import download
+from .lint import lint
 
 
 @click.group()
@@ -14,12 +14,13 @@ def main():
     """Run the Bioregistry CLI."""
 
 
-@click.command()
-def update():
+@main.command()
+@click.pass_context
+def update(ctx: click.Context):
     """Update the Bioregistry."""
-    get_miriam_df(force_download=True)
-    get_ols_df(force_download=True)
-    get_obofoundry_df(force_download=True)
+    ctx.invoke(download)
+    ctx.invoke(align)
+    ctx.invoke(lint)
 
 
 if __name__ == '__main__':

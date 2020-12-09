@@ -8,8 +8,8 @@ import click
 import pandas as pd
 import pystow
 
-from .constants import BIOREGISTRY_MODULE
 from .utils import ensure_registry
+from ..constants import BIOREGISTRY_MODULE
 
 __all__ = [
     'OLS_FULL_PATH',

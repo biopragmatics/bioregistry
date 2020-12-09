@@ -12,10 +12,10 @@ import click
 import requests
 import requests_ftp
 
-from bioregistry.external.miriam import get_miriam_registry
-from bioregistry.external.obofoundry import get_obofoundry
-from bioregistry.external.ols import get_ols
-from bioregistry.utils import updater
+from .external.miriam import get_miriam_registry
+from .external.obofoundry import get_obofoundry
+from .external.ols import get_ols
+from .utils import clean_set, norm, secho, updater
 
 requests_ftp.monkeypatch_session()
 session = requests.Session()
@@ -153,17 +153,6 @@ def _prepare_obo(obofoundry_entry):
     return rv
 
 
-def _norm(s: str) -> str:
-    rv = s.lower()
-    for x in ' .-':
-        rv = rv.replace(x, '')
-    return rv
-
-
-def _clean_set(it):
-    return {el for el in it if el}
-
-
 @updater
 def cleanup_synonyms(registry):
     """Remove redundant synonyms and empty synonym dictionaries."""
@@ -171,7 +160,7 @@ def cleanup_synonyms(registry):
         if 'synonyms' not in entry:
             continue
 
-        skip_synonyms = _clean_set([
+        skip_synonyms = clean_set([
             key,
             entry.get('miriam', {}).get('name'),
             entry.get('ols', {}).get('name'),
@@ -184,40 +173,7 @@ def cleanup_synonyms(registry):
 
 
 @updater
-def warn_missing_name(registry):
-    """Write warnings for entries that are missing a name."""
-    prefixes = [
-        prefix
-        for prefix, entry in registry.items()
-        if (
-            'name' not in entry
-            and 'name' not in entry.get('miriam', {})
-            and 'name' not in entry.get('ols', {})
-            and 'name' not in entry.get('obofoundry', {})
-        )
-    ]
-    if prefixes:
-        click.secho('Missing titles:', fg='cyan', bold=True)
-        for prefix in prefixes:
-            click.echo(prefix)
-
-
-@updater
-def warn_missing_entry(registry):
-    """Write warnings for entries completely missing content."""
-    prefixes = [
-        prefix
-        for prefix, entry in registry.items()
-        if not entry
-    ]
-    if prefixes:
-        click.secho('Missing entry:', fg='cyan', bold=True)
-        for prefix in prefixes:
-            click.echo(prefix)
-
-
-@updater
-def update_obofoundry(registry):
+def align_obofoundry(registry):
     """Update OBOFoundry references."""
     obofoundry_id_to_bioregistry_id = {
         entry['obofoundry']['prefix']: key
@@ -227,13 +183,13 @@ def update_obofoundry(registry):
     obofoundry_registry = get_obofoundry(mappify=True)
 
     obofoundry_norm_prefix_to_prefix = {
-        _norm(obo_key): obo_key
+        norm(obo_key): obo_key
         for obo_key in obofoundry_registry
     }
     for bioregistry_id, entry in registry.items():
         if 'obofoundry' in entry:
             continue
-        obofoundry_id = obofoundry_norm_prefix_to_prefix.get(_norm(bioregistry_id))
+        obofoundry_id = obofoundry_norm_prefix_to_prefix.get(norm(bioregistry_id))
         if obofoundry_id is not None:
             entry['obofoundry'] = {'prefix': obofoundry_id}
             obofoundry_id_to_bioregistry_id[obofoundry_id] = bioregistry_id
@@ -248,7 +204,7 @@ def update_obofoundry(registry):
 
 
 @updater
-def update_miriam(registry):
+def align_miriam(registry):
     """Update MIRIAM references."""
     miriam_id_to_bioregistry_id = {
         entry['miriam']['id']: key
@@ -259,13 +215,13 @@ def update_miriam(registry):
     miriam_registry = get_miriam_registry(mappify=True)
 
     miriam_prefix_to_miriam_id = {
-        _norm(miriam_entry['prefix']): miriam_entry['mirId'].removeprefix('MIR:')
+        norm(miriam_entry['prefix']): miriam_entry['mirId'].removeprefix('MIR:')
         for miriam_entry in miriam_registry.values()
     }
     for key, entry in registry.items():
         if 'miriam' in entry:
             continue
-        miriam_id = miriam_prefix_to_miriam_id.get(_norm(key))
+        miriam_id = miriam_prefix_to_miriam_id.get(norm(key))
         if miriam_id is not None:
             entry['miriam'] = {'id': miriam_id}
             miriam_id_to_bioregistry_id[miriam_id] = key
@@ -293,7 +249,7 @@ def update_miriam(registry):
 
 
 @updater
-def update_ols(registry):
+def align_ols(registry):
     """Update OLS references."""
     ols_id_to_bioregistry_id = {
         entry['ols']['prefix']: key
@@ -304,13 +260,13 @@ def update_ols(registry):
     ols_registry = get_ols(mappify=True)
 
     ols_norm_prefix_to_prefix = {
-        _norm(obo_key): obo_key
+        norm(obo_key): obo_key
         for obo_key in ols_registry
     }
     for bioregistry_id, entry in registry.items():
         if 'ols' in entry:
             continue
-        ols_id = ols_norm_prefix_to_prefix.get(_norm(bioregistry_id))
+        ols_id = ols_norm_prefix_to_prefix.get(norm(bioregistry_id))
         if ols_id is not None:
             entry['ols'] = {'prefix': ols_id}
             ols_id_to_bioregistry_id[ols_id] = bioregistry_id
@@ -323,9 +279,17 @@ def update_ols(registry):
 
 
 @click.command()
-def _main():
-    update_ols()
+def align():
+    """Align all external registries."""
+    secho('Aligning MIRIAM')
+    align_miriam()
+
+    secho('Aligning OBO Foundry')
+    align_obofoundry()
+
+    secho('Aligning OLS')
+    align_ols()
 
 
 if __name__ == '__main__':
-    _main()
+    align()

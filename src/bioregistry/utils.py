@@ -3,7 +3,10 @@
 """Utilities."""
 
 import json
+from datetime import datetime
 from functools import wraps
+
+import click
 
 from .constants import BIOREGISTRY_PATH
 
@@ -32,3 +35,21 @@ def updater(f):
         return rv
 
     return wrapped
+
+
+def norm(s: str) -> str:
+    """Normalize a string for dictionary key usage."""
+    rv = s.lower()
+    for x in ' .-':
+        rv = rv.replace(x, '')
+    return rv
+
+
+def clean_set(it):
+    """Make a set of the truthy elements in an iterable."""
+    return {el for el in it if el}
+
+
+def secho(s, fg='cyan', bold=True, **kwargs):
+    """Wrap :func:`click.secho`."""
+    click.secho(f'[{datetime.now().strftime("%H:%M:%S")}] {s}', fg=fg, bold=bold, **kwargs)
