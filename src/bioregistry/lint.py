@@ -4,7 +4,7 @@
 
 import click
 
-from .utils import updater
+from .utils import clean_set, secho, updater
 
 
 @updater
@@ -21,7 +21,7 @@ def warn_missing_name(registry):
         )
     ]
     if prefixes:
-        click.secho('Missing titles:', fg='cyan', bold=True)
+        secho('Missing titles:')
         for prefix in prefixes:
             click.echo(prefix)
 
@@ -35,7 +35,7 @@ def warn_missing_entry(registry):
         if not entry
     ]
     if prefixes:
-        click.secho('Missing entry:', fg='cyan', bold=True)
+        secho('Missing entry:')
         for prefix in prefixes:
             click.echo(prefix)
 
@@ -49,3 +49,22 @@ def lint():
 
 if __name__ == '__main__':
     lint()
+
+
+@updater
+def cleanup_synonyms(registry):
+    """Remove redundant synonyms and empty synonym dictionaries."""
+    for key, entry in registry.items():
+        if 'synonyms' not in entry:
+            continue
+
+        skip_synonyms = clean_set([
+            key,
+            entry.get('miriam', {}).get('name'),
+            entry.get('ols', {}).get('name'),
+            entry.get('obofoundry', {}).get('name'),
+        ])
+
+        entry['synonyms'] = [synonym for synonym in entry['synonyms'] if synonym not in skip_synonyms]
+        if 0 == len(entry['synonyms']):
+            del entry['synonyms']

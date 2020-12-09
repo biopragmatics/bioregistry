@@ -1,34 +1,17 @@
 # -*- coding: utf-8 -*-
 
-"""This outputs a dataframe listing all of the stuff missing from the metaregistry.
-
-1. Make sure all miriam entries are represented
-2. Make sure all obo foundry entries are represented
-3. Make sure all OLS entries are represented
-4. WikiData?
-"""
+"""Align the OBO Foundry with the Bioregistry."""
 
 import click
 import requests
 import requests_ftp
 
-from .external.miriam import get_miriam_registry
-from .external.obofoundry import get_obofoundry
-from .external.ols import get_ols
-from .utils import clean_set, norm, secho, updater
+from ..external import get_obofoundry
+from ..utils import norm, updater
 
 requests_ftp.monkeypatch_session()
 session = requests.Session()
 
-MIRIAM_KEYS = {
-    'id',
-    'prefix',
-    'pattern',
-    'namespaceEmbeddedInLui',
-    'name',
-    'deprecated',
-    'description',
-}
 OBO_KEYS = {
     'id',
     'prefix',
@@ -38,28 +21,6 @@ OBO_KEYS = {
     'deprecated',
     'description',
 }
-
-
-def _prepare_ols(ols_entry):
-    ols_id = ols_entry['ontologyId']
-    config = ols_entry['config']
-
-    license_value = config['annotations'].get('license', [None])[0]
-    if license_value in {'Unspecified', 'Unspecified'}:
-        license_value = None
-
-    rv = {
-        'prefix': ols_id,
-        'name': config['title'],
-        'download': config['fileLocation'],
-        'version': config['version'],
-        'version.iri': config['versionIri'],
-        'description': config['description'],
-        'license': license_value,
-    }
-
-    rv = {k: v for k, v in rv.items() if v}
-    return rv
 
 
 def _prepare_obo(obofoundry_entry):
@@ -154,25 +115,6 @@ def _prepare_obo(obofoundry_entry):
 
 
 @updater
-def cleanup_synonyms(registry):
-    """Remove redundant synonyms and empty synonym dictionaries."""
-    for key, entry in registry.items():
-        if 'synonyms' not in entry:
-            continue
-
-        skip_synonyms = clean_set([
-            key,
-            entry.get('miriam', {}).get('name'),
-            entry.get('ols', {}).get('name'),
-            entry.get('obofoundry', {}).get('name'),
-        ])
-
-        entry['synonyms'] = [synonym for synonym in entry['synonyms'] if synonym not in skip_synonyms]
-        if 0 == len(entry['synonyms']):
-            del entry['synonyms']
-
-
-@updater
 def align_obofoundry(registry):
     """Update OBOFoundry references."""
     obofoundry_id_to_bioregistry_id = {
@@ -203,93 +145,5 @@ def align_obofoundry(registry):
         registry[bioregistry_id]['obofoundry'] = _prepare_obo(obofoundry_entry)
 
 
-@updater
-def align_miriam(registry):
-    """Update MIRIAM references."""
-    miriam_id_to_bioregistry_id = {
-        entry['miriam']['id']: key
-        for key, entry in registry.items()
-        if 'miriam' in entry
-    }
-
-    miriam_registry = get_miriam_registry(mappify=True)
-
-    miriam_prefix_to_miriam_id = {
-        norm(miriam_entry['prefix']): miriam_entry['mirId'].removeprefix('MIR:')
-        for miriam_entry in miriam_registry.values()
-    }
-    for key, entry in registry.items():
-        if 'miriam' in entry:
-            continue
-        miriam_id = miriam_prefix_to_miriam_id.get(norm(key))
-        if miriam_id is not None:
-            entry['miriam'] = {'id': miriam_id}
-            miriam_id_to_bioregistry_id[miriam_id] = key
-
-    for miriam_entry in miriam_registry.values():
-        miriam_id = miriam_entry['mirId'].removeprefix('MIR:')
-
-        # Get key by checking the miriam.id key
-        bioregistry_id = miriam_id_to_bioregistry_id.get(miriam_id)
-        if bioregistry_id is None:
-            continue
-
-        miriam_entry = {k: v for k, v in miriam_entry.items() if k in MIRIAM_KEYS}
-        miriam_entry['id'] = miriam_id
-
-        if bioregistry_id is not None:
-            registry[bioregistry_id]['miriam'] = miriam_entry
-        else:
-            prefix = miriam_entry['prefix']
-            registry[prefix] = {
-                'miriam': miriam_entry,
-                'synonyms': [prefix],
-            }
-    return registry
-
-
-@updater
-def align_ols(registry):
-    """Update OLS references."""
-    ols_id_to_bioregistry_id = {
-        entry['ols']['prefix']: key
-        for key, entry in registry.items()
-        if 'ols' in entry
-    }
-
-    ols_registry = get_ols(mappify=True)
-
-    ols_norm_prefix_to_prefix = {
-        norm(obo_key): obo_key
-        for obo_key in ols_registry
-    }
-    for bioregistry_id, entry in registry.items():
-        if 'ols' in entry:
-            continue
-        ols_id = ols_norm_prefix_to_prefix.get(norm(bioregistry_id))
-        if ols_id is not None:
-            entry['ols'] = {'prefix': ols_id}
-            ols_id_to_bioregistry_id[ols_id] = bioregistry_id
-
-    for ols_prefix, ols_entry in ols_registry.items():
-        bioregistry_id = ols_id_to_bioregistry_id.get(ols_prefix)
-        if bioregistry_id is None:
-            continue
-        registry[bioregistry_id]['ols'] = _prepare_ols(ols_entry)
-
-
-@click.command()
-def align():
-    """Align all external registries."""
-    secho('Aligning MIRIAM')
-    align_miriam()
-
-    secho('Aligning OBO Foundry')
-    align_obofoundry()
-
-    secho('Aligning OLS')
-    align_ols()
-
-
 if __name__ == '__main__':
-    align()
+    align_obofoundry()

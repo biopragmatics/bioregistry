@@ -52,4 +52,4 @@ def clean_set(it):
 
 def secho(s, fg='cyan', bold=True, **kwargs):
     """Wrap :func:`click.secho`."""
-    click.secho(f'[{datetime.now().strftime("%H:%M:%S")}] {s}', fg=fg, bold=bold, **kwargs)
+    click.echo(f'[{datetime.now().strftime("%H:%M:%S")}] ' + click.style(s, fg=fg, bold=bold, **kwargs))

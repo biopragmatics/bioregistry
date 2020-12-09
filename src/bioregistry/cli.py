@@ -4,7 +4,7 @@
 
 import click
 
-from .align import align
+from .align.cli import align
 from .external.cli import download
 from .lint import lint
 
