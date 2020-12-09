@@ -7,8 +7,8 @@ from typing import Optional
 import click
 import pandas as pd
 
-from bioregistry.constants import BIOREGISTRY_MODULE
-from bioregistry.external.utils import ensure_registry
+from .utils import ensure_registry
+from ..constants import BIOREGISTRY_MODULE
 
 __all__ = [
     'MIRIAM_FULL_PATH',
@@ -39,6 +39,7 @@ def get_miriam_registry(
 
 
 def get_miriam_df(**kwargs):
+    """Get the MIRIAM registry as a pre-processed dataframe."""
     rows = [
         (
             'miriam',

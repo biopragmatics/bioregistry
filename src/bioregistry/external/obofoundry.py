@@ -4,24 +4,24 @@
 
 import json
 import os
-import tempfile
 from operator import itemgetter
 from typing import Optional
-from urllib.request import urlretrieve
 
 import click
 import pandas as pd
 import yaml
 
-from bioregistry.constants import BIOREGISTRY_MODULE
-from bioregistry.external.utils import list_to_map
+from .utils import list_to_map
+from ..constants import BIOREGISTRY_MODULE
 
 __all__ = [
     'OBOFOUNDRY_FULL_PATH',
     'OBOFOUNDRY_URL',
     'get_obofoundry',
+    'get_obofoundry_df',
 ]
 
+OBOFOUNDRY_YAML_PATH = BIOREGISTRY_MODULE.get('obofoundry.yml')
 OBOFOUNDRY_FULL_PATH = BIOREGISTRY_MODULE.get('obofoundry.json')
 OBOFOUNDRY_SLIM_PATH = BIOREGISTRY_MODULE.get('obofoundry.tsv')
 OBOFOUNDRY_URL = 'https://raw.githubusercontent.com/OBOFoundry/OBOFoundry.github.io/master/registry/ontologies.yml'
@@ -40,11 +40,8 @@ def get_obofoundry(
                 return list_to_map(rv, 'id')
             return rv
 
-    with tempfile.TemporaryDirectory() as d:
-        yaml_path = os.path.join(d, 'obofoundry.yml')
-        urlretrieve(OBOFOUNDRY_URL, yaml_path)
-        with open(yaml_path) as file:
-            rv = yaml.full_load(file)
+    with BIOREGISTRY_MODULE.ensure(url=OBOFOUNDRY_URL).open() as file:
+        rv = yaml.full_load(file)
 
     rv = rv['ontologies']
     for s in rv:
@@ -66,6 +63,7 @@ def get_obofoundry(
 
 
 def get_obofoundry_df(**kwargs):
+    """Get the OBO Foundry registry as a pre-processed dataframe."""
     rows = [
         (
             'obofoundry',

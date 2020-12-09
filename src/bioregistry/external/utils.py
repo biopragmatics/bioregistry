@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+"""Utilities for handling external registries."""
+
 import json
 import logging
 import os
@@ -6,7 +10,11 @@ from typing import List, Mapping, Optional, Union
 
 import requests
 
-from bioregistry.constants import EnsureEntry
+from ..constants import EnsureEntry
+
+__all__ = [
+    'ensure_registry',
+]
 
 logger = logging.getLogger(__name__)
 

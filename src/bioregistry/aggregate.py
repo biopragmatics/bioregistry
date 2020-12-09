@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """This outputs a dataframe listing all of the stuff missing from the metaregistry.
 
 1. Make sure all miriam entries are represented
@@ -6,19 +8,16 @@
 4. WikiData?
 """
 
-import json
-
 import click
 import requests
 import requests_ftp
 
-from bioregistry.constants import BIOREGISTRY_PATH
 from bioregistry.external.miriam import get_miriam_registry
 from bioregistry.external.obofoundry import get_obofoundry
 from bioregistry.external.ols import get_ols
+from bioregistry.utils import updater
 
 requests_ftp.monkeypatch_session()
-
 session = requests.Session()
 
 MIRIAM_KEYS = {
@@ -161,37 +160,40 @@ def _norm(s: str) -> str:
     return rv
 
 
-def updater(f):
-    def wrapped():
-        with open(BIOREGISTRY_PATH) as file:
-            registry = json.load(file)
-        rv = f(registry)
-        with open(BIOREGISTRY_PATH, 'w') as file:
-            json.dump(registry, file, indent=2, sort_keys=True, ensure_ascii=False)
-        return rv
-
-    return wrapped
+def _clean_set(it):
+    return {el for el in it if el}
 
 
 @updater
 def cleanup_synonyms(registry):
+    """Remove redundant synonyms and empty synonym dictionaries."""
     for key, entry in registry.items():
         if 'synonyms' not in entry:
             continue
-        entry['synonyms'] = [synonym for synonym in entry['synonyms'] if synonym != key]
+
+        skip_synonyms = _clean_set([
+            key,
+            entry.get('miriam', {}).get('name'),
+            entry.get('ols', {}).get('name'),
+            entry.get('obofoundry', {}).get('name'),
+        ])
+
+        entry['synonyms'] = [synonym for synonym in entry['synonyms'] if synonym not in skip_synonyms]
         if 0 == len(entry['synonyms']):
             del entry['synonyms']
 
 
 @updater
-def warn_missing_title(registry):
+def warn_missing_name(registry):
+    """Write warnings for entries that are missing a name."""
     prefixes = [
         prefix
         for prefix, entry in registry.items()
         if (
-            'title' not in entry
-            and 'title' not in entry.get('miriam', {})
-            # TODO add for obo foundry and OLS
+            'name' not in entry
+            and 'name' not in entry.get('miriam', {})
+            and 'name' not in entry.get('ols', {})
+            and 'name' not in entry.get('obofoundry', {})
         )
     ]
     if prefixes:
@@ -202,6 +204,7 @@ def warn_missing_title(registry):
 
 @updater
 def warn_missing_entry(registry):
+    """Write warnings for entries completely missing content."""
     prefixes = [
         prefix
         for prefix, entry in registry.items()
@@ -215,6 +218,7 @@ def warn_missing_entry(registry):
 
 @updater
 def update_obofoundry(registry):
+    """Update OBOFoundry references."""
     obofoundry_id_to_bioregistry_id = {
         entry['obofoundry']['prefix']: key
         for key, entry in registry.items()
@@ -245,6 +249,7 @@ def update_obofoundry(registry):
 
 @updater
 def update_miriam(registry):
+    """Update MIRIAM references."""
     miriam_id_to_bioregistry_id = {
         entry['miriam']['id']: key
         for key, entry in registry.items()
@@ -289,6 +294,7 @@ def update_miriam(registry):
 
 @updater
 def update_ols(registry):
+    """Update OLS references."""
     ols_id_to_bioregistry_id = {
         entry['ols']['prefix']: key
         for key, entry in registry.items()
@@ -317,9 +323,9 @@ def update_ols(registry):
 
 
 @click.command()
-def main():
+def _main():
     update_ols()
 
 
 if __name__ == '__main__':
-    main()
+    _main()

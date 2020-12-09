@@ -6,15 +6,16 @@ from typing import Optional
 
 import click
 import pandas as pd
-
 import pystow
-from bioregistry.constants import BIOREGISTRY_MODULE
-from bioregistry.external.utils import ensure_registry
+
+from .constants import BIOREGISTRY_MODULE
+from .utils import ensure_registry
 
 __all__ = [
     'OLS_FULL_PATH',
     'OLS_URL',
     'get_ols',
+    'get_ols_df',
 ]
 
 OLS_URL = 'http://www.ebi.ac.uk/ols/api/ontologies'
@@ -35,6 +36,7 @@ def get_ols(cache_path: Optional[str] = OLS_FULL_PATH, mappify: bool = False, fo
 
 
 def get_ols_df(**kwargs):
+    """Get the OLS registry as a pre-processed dataframe."""
     rows = [
         (
             'ols',
