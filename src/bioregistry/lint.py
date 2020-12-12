@@ -58,11 +58,9 @@ def cleanup_synonyms(registry):
         if 'synonyms' not in entry:
             continue
 
-        skip_synonyms = clean_set([
-            key,
-            entry.get('miriam', {}).get('name'),
-            entry.get('ols', {}).get('name'),
-            entry.get('obofoundry', {}).get('name'),
+        skip_synonyms = clean_set(key, *[
+            entry.get(k, {}).get('name')
+            for k in ['miriam', 'ols', 'obofoundry']
         ])
 
         entry['synonyms'] = [synonym for synonym in entry['synonyms'] if synonym not in skip_synonyms]

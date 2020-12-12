@@ -5,6 +5,7 @@
 import json
 from datetime import datetime
 from functools import wraps
+from typing import Optional
 
 import click
 
@@ -45,7 +46,7 @@ def norm(s: str) -> str:
     return rv
 
 
-def clean_set(it):
+def clean_set(*it: Optional[str]):
     """Make a set of the truthy elements in an iterable."""
     return {el for el in it if el}
 
