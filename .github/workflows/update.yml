@@ -1,5 +1,11 @@
 name: Update Data
 on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Person to greet'
+        required: false
+        default: 'Mona the Octocat'
   schedule:
     - cron: "0 0 * * *"
 jobs:
