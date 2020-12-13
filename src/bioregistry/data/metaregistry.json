@@ -321,7 +321,13 @@
       "CHEBIID"
     ],
     "wikidata": {
-      "property": "P683"
+      "database": "Q902623",
+      "database.label": "ChEBI",
+      "format": "http://purl.obolibrary.org/obo/CHEBI_$1",
+      "pattern": "\\d+",
+      "property": "P683",
+      "property.label": "ChEBI ID",
+      "webpage": "https://www.ebi.ac.uk/chebi"
     }
   },
   "chembl.compound": {
@@ -341,7 +347,13 @@
       "ChEMBL_ID"
     ],
     "wikidata": {
-      "property": "P592"
+      "database": "Q6120337",
+      "database.label": "ChEMBL",
+      "format": "http://rdf.ebi.ac.uk/resource/chembl/molecule/$1",
+      "pattern": "CHEMBL\\d+",
+      "property": "P592",
+      "property.label": "ChEMBL ID",
+      "webpage": "https://www.ebi.ac.uk/chembl"
     }
   },
   "chemidplus": {
@@ -391,7 +403,13 @@
       "Chemspider"
     ],
     "wikidata": {
-      "property": "P661"
+      "database": "Q2311683",
+      "database.label": "ChemSpider",
+      "format": "http://rdf.chemspider.com/$1",
+      "pattern": "[1-9]\\d*",
+      "property": "P661",
+      "property.label": "ChemSpider ID",
+      "webpage": "https://www.chemspider.com/"
     }
   },
   "chiro": {
@@ -911,7 +929,13 @@
       "Ensembl"
     ],
     "wikidata": {
-      "property": "P594"
+      "database": "Q1344256",
+      "database.label": "Ensembl genome database project",
+      "format": "http://rdf.ebi.ac.uk/resource/ensembl/$1",
+      "pattern": "(ENS(|MUS|RNO)G\\d{11})|(Y[A-P][LR]\\d{3}[CW](-[A-G])?)",
+      "property": "P594",
+      "property.label": "Ensembl gene ID",
+      "webpage": "https://www.ensembl.org"
     }
   },
   "ero": {
@@ -1807,7 +1831,13 @@
       "MESH_DESCRIPTOR_UI"
     ],
     "wikidata": {
-      "property": "P486"
+      "database": "Q199897",
+      "database.label": "Medical Subject Headings",
+      "format": "http://id.nlm.nih.gov/mesh/$1",
+      "pattern": "^[CD]\\w{6}(\\w{3}|)$",
+      "property": "P486",
+      "property.label": "MeSH descriptor ID",
+      "webpage": "https://www.wikidata.org/wiki/Q6589563"
     }
   },
   "metacyc.compound": {
@@ -2130,7 +2160,12 @@
       "entrez gene/locuslink"
     ],
     "wikidata": {
-      "property": "P351"
+      "database": "Q1345229",
+      "database.label": "Entrez",
+      "format": "http://purl.uniprot.org/geneid/$1",
+      "pattern": "[1-9]\\d{0,8}",
+      "property": "P351",
+      "property.label": "Entrez Gene ID"
     }
   },
   "ncbitaxon": {
@@ -2171,7 +2206,12 @@
     ],
     "wikidata": {
       "database": "Q13711410",
-      "property": "P685"
+      "database.label": "Taxonomy database of the U.S. National Center for Biotechnology Information",
+      "format": "http://purl.uniprot.org/taxonomy/$1",
+      "pattern": "[1-9][0-9]{0,6}",
+      "property": "P685",
+      "property.label": "NCBI taxonomy ID",
+      "webpage": "http://www.ncbi.nlm.nih.gov/taxonomy"
     }
   },
   "ncit": {
@@ -2807,7 +2847,11 @@
       "Pubchem"
     ],
     "wikidata": {
-      "property": "P662"
+      "format": "http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID$1",
+      "pattern": "[1-9]\\d{0,8}",
+      "property": "P662",
+      "property.label": "PubChem CID",
+      "webpage": "http://pubchem.ncbi.nlm.nih.gov"
     }
   },
   "pubchem.substance": {
@@ -2824,7 +2868,11 @@
       "DSSTox_Generic_SID"
     ],
     "wikidata": {
-      "property": "P2153"
+      "format": "http://rdf.ncbi.nlm.nih.gov/pubchem/substance/SID$1",
+      "pattern": "[1-9]\\d*",
+      "property": "P2153",
+      "property.label": "PubChem Substance ID (SID)",
+      "webpage": "https://www.ncbi.nlm.nih.gov/pcsubstance"
     }
   },
   "pubmed": {
@@ -3417,7 +3465,13 @@
       "uniprot/swiss-prot"
     ],
     "wikidata": {
-      "property": "P352"
+      "database": "Q905695",
+      "database.label": "UniProt",
+      "format": "http://purl.uniprot.org/uniprot/$1",
+      "pattern": "([OPQ][0-9][A-Z0-9]|[A-NR-Z][0-9][A-Z])[A-Z0-9][A-Z0-9][0-9]([A-Z][A-Z0-9][A-Z0-9][0-9])?",
+      "property": "P352",
+      "property.label": "UniProt protein ID",
+      "webpage": "http://mygene.info"
     }
   },
   "uniprot.keyword": {
@@ -3618,7 +3672,13 @@
       "prefix": "wikipathways"
     },
     "wikidata": {
-      "property": "P2410"
+      "database": "Q7999828",
+      "database.label": "WikiPathways",
+      "format": "http://identifiers.org/wikipathways/$1",
+      "pattern": "WP\\d{1,4}",
+      "property": "P2410",
+      "property.label": "WikiPathways ID",
+      "webpage": "http://www.wikipathways.org"
     }
   },
   "wormbase": {

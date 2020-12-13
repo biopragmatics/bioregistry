@@ -7,6 +7,7 @@ import click
 from .miriam import align_miriam
 from .obofoundry import align_obofoundry
 from .ols import align_ols
+from .wikidata import align_wikidata
 from ..utils import secho
 
 __all__ = [
@@ -25,6 +26,9 @@ def align():
 
     secho('Aligning OLS')
     align_ols()
+
+    secho('Aligning Wikidata')
+    align_wikidata()
 
 
 if __name__ == '__main__':

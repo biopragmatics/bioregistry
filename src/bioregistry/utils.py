@@ -3,13 +3,17 @@
 """Utilities."""
 
 import json
+import logging
 from datetime import datetime
 from functools import wraps
 from typing import Optional
 
 import click
+import requests
 
 from .constants import BIOREGISTRY_PATH
+
+logger = logging.getLogger(__name__)
 
 
 def read_bioregistry():
@@ -54,3 +58,15 @@ def clean_set(*it: Optional[str]):
 def secho(s, fg='cyan', bold=True, **kwargs):
     """Wrap :func:`click.secho`."""
     click.echo(f'[{datetime.now().strftime("%H:%M:%S")}] ' + click.style(s, fg=fg, bold=bold, **kwargs))
+
+
+#: WikiData SPARQL endpoint. See https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service#Interfacing
+WIKIDATA_ENDPOINT = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql'
+
+
+def query_wikidata(query: str):
+    logger.debug('running query: %s', query)
+    res = requests.get(WIKIDATA_ENDPOINT, params={'query': query, 'format': 'json'})
+    res.raise_for_status()
+    res_json = res.json()
+    return res_json['results']['bindings']
