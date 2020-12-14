@@ -14,6 +14,9 @@ def main():
     """Run the Bioregistry CLI."""
 
 
+main.add_command(lint)
+
+
 @main.command()
 @click.pass_context
 def update(ctx: click.Context):

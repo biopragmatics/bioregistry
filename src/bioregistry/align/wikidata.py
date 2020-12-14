@@ -15,7 +15,7 @@ def align_wikidata(registry):
     }
 
     query = f'''
-    SELECT 
+    SELECT
       ?prop ?propLabel ?format ?pattern ?webpage ?database ?databaseLabel
     WHERE
     {{

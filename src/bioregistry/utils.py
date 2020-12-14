@@ -6,7 +6,7 @@ import json
 import logging
 from datetime import datetime
 from functools import wraps
-from typing import Optional
+from typing import Any, List, Mapping, Optional
 
 import click
 import requests
@@ -64,9 +64,14 @@ def secho(s, fg='cyan', bold=True, **kwargs):
 WIKIDATA_ENDPOINT = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql'
 
 
-def query_wikidata(query: str):
-    logger.debug('running query: %s', query)
-    res = requests.get(WIKIDATA_ENDPOINT, params={'query': query, 'format': 'json'})
+def query_wikidata(sparql: str) -> List[Mapping[str, Any]]:
+    """Query WikiData's sparql service.
+
+    :param sparql: A SPARQL query string
+    :return: A list of bindings
+    """
+    logger.debug('running query: %s', sparql)
+    res = requests.get(WIKIDATA_ENDPOINT, params={'query': sparql, 'format': 'json'})
     res.raise_for_status()
     res_json = res.json()
     return res_json['results']['bindings']
