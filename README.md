@@ -1,6 +1,12 @@
-# bioregistry
+<p align="center">
+  <img src="docs/source/logo.png" height="150">
+</p>
 
-## Install
+<h1 align="center">
+    Bioregistry
+</h1>
+
+## 🚀 Installation
 
 ```bash
 $ pip install git+https://github.com/cthoyt/bioregistry.git
