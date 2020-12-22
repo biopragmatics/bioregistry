@@ -6,6 +6,8 @@
     Bioregistry
 </h1>
 
+An integrative registry of biological databases, ontologies, and nomenclatures.
+
 ## 🚀 Installation
 
 ```bash
