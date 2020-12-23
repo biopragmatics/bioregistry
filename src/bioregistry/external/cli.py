@@ -7,6 +7,7 @@ import click
 from .miriam import get_miriam_df
 from .obofoundry import get_obofoundry_df
 from .ols import get_ols_df
+from .wikidata import get_wikidata_registry
 from ..utils import secho
 
 __all__ = [
@@ -25,6 +26,9 @@ def download():
 
     secho('Downloading OLS')
     get_ols_df(force_download=True)
+
+    secho('Download Wikidata')
+    get_wikidata_registry()
 
 
 if __name__ == '__main__':
