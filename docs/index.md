@@ -8,7 +8,8 @@ layout: home
 <table>
 <thead>
 <tr>
-    <th>prefix</th>
+    <th>Prefix</th>
+    <th>Name</th>
     <th>MIRIAM</th>
     <th>OLS</th>
     <th>OBO</th>
@@ -19,9 +20,10 @@ layout: home
 {% for entry in site.data.bioregistry %}
     <tr>
         <td>{{ entry.prefix }}</td>
+        <td>{{ entry.name or entry.miriam.name or entry.ols.name or entry.obofoundry.name or entry.wikidata.name }}</td>
         <td>
             {% if entry.miriam %}
-                <a href="https://identifiers.org/MIR:{{ entry.miriam.id }}">{{ entry.miriam.prefix }}</a>
+                <a href="https://registry.identifiers.org/registry/{{ entry.miriam.prefix }}">{{ entry.miriam.prefix }}</a>
             {% endif %}        
         </td>
         <td>
