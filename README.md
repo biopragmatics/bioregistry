@@ -21,7 +21,13 @@ $ pip install git+https://github.com/cthoyt/bioregistry.git
 
 ## Usage
 
+The Bioregistry can be read in a Python project using:
 
+```python
+import bioregistry
+
+registry = bioregistry.read_bioregistry()
+```
 
 ## Update
 
