@@ -21,3 +21,6 @@ BIOREGISTRY_PATH = os.path.join(DATA_DIRECTORY, 'bioregistry.json')
 
 BIOREGISTRY_MODULE = pystow.module('bioregistry')
 EnsureEntry = Any
+
+DOCS = os.path.abspath(os.path.join(HERE, os.pardir, os.pardir, 'docs'))
+DOCS_DATA = os.path.join(DOCS, '_data')

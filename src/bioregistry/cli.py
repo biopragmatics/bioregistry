@@ -8,6 +8,8 @@ import click
 import yaml
 
 from .align.cli import align
+from .compare import compare
+from .constants import DOCS_DATA
 from .external.cli import download
 from .lint import lint
 
@@ -18,15 +20,13 @@ def main():
 
 
 main.add_command(lint)
+main.add_command(compare)
 
 
 @main.command()
 def copy():
     """Copy the source Bioregistry to the docs folder."""
-    here = os.path.abspath(os.path.dirname(__file__))
-    data = os.path.abspath(os.path.join(here, os.pardir, os.pardir, 'docs', '_data', 'bioregistry.yml'))
     from . import read_bioregistry
-
     registry = read_bioregistry()
     ov = [
         {
@@ -35,7 +35,7 @@ def copy():
         }
         for prefix, data in registry.items()
     ]
-    with open(data, 'w') as file:
+    with open(os.path.join(DOCS_DATA, 'bioregistry.yml'), 'w') as file:
         yaml.dump(ov, file)
 
 
@@ -47,6 +47,7 @@ def update(ctx: click.Context):
     ctx.invoke(align)
     ctx.invoke(lint)
     ctx.invoke(copy)
+    ctx.invoke(compare)
 
 
 if __name__ == '__main__':

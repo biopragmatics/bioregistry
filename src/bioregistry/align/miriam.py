@@ -2,7 +2,7 @@
 
 """Align MIRIAM with the Bioregistry."""
 
-from ..external.miriam import get_miriam_registry
+from ..external.miriam import get_miriam
 from ..utils import norm, updater
 
 MIRIAM_KEYS = {
@@ -25,7 +25,7 @@ def align_miriam(registry):
         if 'miriam' in entry
     }
 
-    miriam_registry = get_miriam_registry(mappify=True)
+    miriam_registry = get_miriam(mappify=True)
 
     miriam_prefix_to_miriam_id = {
         norm(miriam_entry['prefix']): miriam_entry['mirId'].removeprefix('MIR:')

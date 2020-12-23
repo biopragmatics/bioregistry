@@ -13,7 +13,7 @@ from ..constants import BIOREGISTRY_MODULE
 __all__ = [
     'MIRIAM_FULL_PATH',
     'MIRIAM_URL',
-    'get_miriam_registry',
+    'get_miriam',
     'get_miriam_df',
 ]
 
@@ -22,7 +22,7 @@ MIRIAM_SLIM_PATH = BIOREGISTRY_MODULE.get('miriam.tsv')
 MIRIAM_URL = 'https://registry.api.identifiers.org/restApi/namespaces'
 
 
-def get_miriam_registry(
+def get_miriam(
     cache_path: Optional[str] = MIRIAM_FULL_PATH,
     mappify: bool = False,
     force_download: bool = False,
@@ -51,7 +51,7 @@ def get_miriam_df(**kwargs):
             entry['deprecated'],
             entry['description'],
         )
-        for entry in get_miriam_registry(**kwargs)
+        for entry in get_miriam(**kwargs)
     ]
     df = pd.DataFrame(rows, columns=[
         'registry', 'identifier', 'prefix',

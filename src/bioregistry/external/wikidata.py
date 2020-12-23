@@ -8,7 +8,7 @@ from typing import Iterable, Tuple
 import pandas as pd
 
 from bioregistry.constants import BIOREGISTRY_MODULE
-from bioregistry.external.miriam import get_miriam_registry
+from bioregistry.external.miriam import get_miriam
 from bioregistry.utils import query_wikidata
 
 logger = logging.getLogger(__name__)
@@ -52,7 +52,7 @@ def get_miriam_mappings() -> pd.DataFrame:
 
 def iter_wikidata_mappings() -> Iterable[Tuple[str, str, str, str]]:
     """Iterate over Wikidata xrefs."""
-    miriam = get_miriam_registry(mappify=True)
+    miriam = get_miriam(mappify=True)
 
     query = """SELECT ?item ?itemLabel ?miriam
     WHERE
@@ -86,13 +86,9 @@ def iter_wikidata_mappings() -> Iterable[Tuple[str, str, str, str]]:
 
 def get_wikidata_registry():
     """Get the wikidata registry."""
+    m = get_miriam_mappings()
     get_database()
-    get_miriam_mappings()
-
-    # for k, values in get_database().items():
-    #     print(k)
-    #     for v in values:
-    #         print('  ', v)
+    return set(m['miriam_label'])
 
 
 if __name__ == '__main__':
