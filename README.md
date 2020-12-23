@@ -8,23 +8,23 @@
 
 An integrative registry of biological databases, ontologies, and nomenclatures.
 
+## ⬇️ Download
+
+The bioregistry database can be downloaded directly
+from [here](https://github.com/cthoyt/bioregistry/blob/main/src/bioregistry/data/bioregistry.json)
+
 ## 🚀 Installation
 
 ```bash
 $ pip install git+https://github.com/cthoyt/bioregistry.git
 ```
 
+## Usage
+
+
+
 ## Update
 
 ```bash
 $ bioregistry update
 ```
-
-## Summary
-
-| Registry    | Persistent Identifier | Version Information | Pattern | License |
-|-------------|-----------------------|---------------------|---------|---------|
-| OLS         | No                    | Sometimes           | No      | Yes     |
-| OBOFoundry  | No                    | No                  | No      | Yes     |
-| MIRIAM      | Yes                   | No                  | Yes     | No      |
-| WikiData    | Yes                   | ?                   | ?       | ?       |
