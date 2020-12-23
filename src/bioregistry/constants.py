@@ -17,7 +17,7 @@ __all__ = [
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 DATA_DIRECTORY = os.path.join(HERE, 'data')
-BIOREGISTRY_PATH = os.path.join(DATA_DIRECTORY, 'metaregistry.json')
+BIOREGISTRY_PATH = os.path.join(DATA_DIRECTORY, 'bioregistry.json')
 
 BIOREGISTRY_MODULE = pystow.module('bioregistry')
 EnsureEntry = Any
