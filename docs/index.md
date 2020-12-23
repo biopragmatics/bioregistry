@@ -5,6 +5,8 @@ layout: home
   <img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/source/logo.png" height="150">
 </p>
 
+An integrative registry of biological databases, ontologies, and nomenclatures.
+
 <table>
 <thead>
 <tr>
@@ -20,7 +22,19 @@ layout: home
 {% for entry in site.data.bioregistry %}
     <tr>
         <td>{{ entry.prefix }}</td>
-        <td>{{ entry.name or entry.miriam.name or entry.ols.name or entry.obofoundry.name or entry.wikidata.name }}</td>
+        <td>
+            {% if entry.name %}
+                {{ entry.name }}
+            {% elsif entry.miriam.name %}
+                {{ entry.miriam.name }}
+            {% elsif entry.ols.name %}
+                {{ entry.ols.name }}
+            {% elsif entry.obofoundry.name %}
+                {{ entry.obofoundry.name }}
+            {% elsif entry.wikidata.name %}
+                {{ entry.wikidata.name }}
+            {% endif %}
+        </td>
         <td>
             {% if entry.miriam %}
                 <a href="https://registry.identifiers.org/registry/{{ entry.miriam.prefix }}">{{ entry.miriam.prefix }}</a>
