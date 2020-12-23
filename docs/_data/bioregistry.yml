@@ -1,0 +1,3769 @@
+- download: https://raw.githubusercontent.com/obophenotype/human-developmental-anatomy-ontology/master/src/ontology/aeo.obo
+  obofoundry:
+    contact: J.Bard@ed.ac.uk
+    contact.label: Jonathan Bard
+    deprecated: false
+    license: CC-BY 4.0
+    name: Anatomical Entity Ontology
+    prefix: aeo
+    repo: https://github.com/obophenotype/human-developmental-anatomy-ontology.git
+  ols:
+    description: AEO is an ontology of anatomical structures that expands CARO, the
+      Common Anatomy Reference Ontology
+    download: http://purl.obolibrary.org/obo/aeo.owl
+    name: Anatomical Entity Ontology
+    prefix: aeo
+    version: '2014-12-05'
+    version.iri: http://purl.obolibrary.org/obo/aeo/releases/2014-12-05/aeo.owl
+  pattern: \d{7}
+  prefix: aeo
+- not_available_as_obo: true
+  obofoundry:
+    contact: m.a.laporte@cgiar.org
+    contact.label: "Marie-Ang\xE9lique Laporte"
+    deprecated: false
+    license: CC-BY
+    name: Agronomy Ontology
+    prefix: agro
+    repo: https://github.com/AgriculturalSemantics/agro.git
+  ols:
+    description: Ontology of agronomic practices, agronomic techniques, and agronomic
+      variables used in agronomic experiments
+    download: http://purl.obolibrary.org/obo/agro.owl
+    name: Agronomy Ontology
+    prefix: agro
+    version: '2020-04-03'
+    version.iri: http://purl.obolibrary.org/obo/agro/releases/2020-04-03/agro.owl
+  prefix: agro
+- obofoundry:
+    contact: stacia@stanford.edu
+    contact.label: Stacia R Engel
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/ascomycete-phenotype-ontology/master/apo.obo
+    license: CC BY 4.0
+    name: Ascomycete phenotype ontology
+    prefix: apo
+  ols:
+    description: A structured controlled vocabulary for the phenotypes of Ascomycete
+      fungi
+    download: http://purl.obolibrary.org/obo/apo.owl
+    name: Ascomycete phenotype ontology
+    prefix: apo
+    version: '2020-03-10'
+    version.iri: http://purl.obolibrary.org/obo/apo/releases/2020-03-10/apo.owl
+  pattern: \d{7}
+  prefix: apo
+  url: https://www.yeastgenome.org/observable/$1
+- obofoundry:
+    contact: card@mcmaster.ca
+    contact.label: CARD
+    deprecated: false
+    license: CC-BY
+    name: Antibiotic Resistance Ontology
+    prefix: aro
+  ols:
+    description: Antibiotic resistance genes and mutations
+    download: http://purl.obolibrary.org/obo/aro.owl
+    name: Antibiotic Resistance Ontology
+    prefix: aro
+    version: 24-10-2019
+  pattern: \d{7}
+  prefix: aro
+- miriam:
+    deprecated: false
+    description: The Anatomical Therapeutic Chemical (ATC) classification system,
+      divides active substances into different groups according to the organ or system
+      on which they act and their therapeutic, pharmacological and chemical properties.
+      Drugs are classified in groups at five different levels;  Drugs are divided
+      into fourteen main groups (1st level), with pharmacological/therapeutic subgroups
+      (2nd level).  The 3rd and 4th levels are chemical/pharmacological/therapeutic
+      subgroups and the 5th level is the chemical substance. The Anatomical Therapeutic
+      Chemical (ATC) classification system and the Defined Daily Dose (DDD) is a tool
+      for exchanging and comparing data on drug use at international, national or
+      local levels.
+    id: 00000088
+    name: Anatomical Therapeutic Chemical
+    namespaceEmbeddedInLui: false
+    pattern: ^[A-Z](\d+([A-Z]{1,2}(\d+)?)?)?$
+    prefix: atc
+  name: Anatomical Therapeutic Chemical Classification System
+  prefix: atc
+  synonyms:
+  - ATC_code
+  - ATTC
+  wikidata:
+    property: P267
+- miriam:
+    deprecated: false
+    description: The American Type Culture Collection (ATCC) is a private, nonprofit
+      biological resource center whose mission focuses on the acquisition, authentication,
+      production, preservation, development and distribution of standard reference
+      microorganisms, cell lines and other materials for research in the life sciences.
+    id: 00000284
+    name: ATCC
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: atcc
+  name: American Type Culture Collection
+  prefix: atcc
+  synonyms:
+  - ATCC number
+  - ATCC
+  url: https://www.lgcstandards-atcc.org
+- miriam:
+    deprecated: false
+    description: The BioAssay Ontology (BAO) describes chemical biology screening
+      assays and their results including high-throughput screening (HTS) data for
+      the purpose of categorizing assays and data analysis.
+    id: 00000597
+    name: BioAssay Ontology
+    namespaceEmbeddedInLui: false
+    pattern: ^\d{7}$
+    prefix: bao
+  ols:
+    description: The BioAssay Ontology (BAO) describes biological screening assays
+      and their results including high-throughput screening (HTS) data for the purpose
+      of categorizing assays and data analysis. BAO is an extensible, knowledge-based,
+      highly expressive (currently SHOIQ(D)) description of biological assays making
+      use of descriptive logic based features of the Web Ontology Language (OWL).
+      BAO currently has over 700 classes and also makes use of several other ontologies.
+      It describes several concepts related to biological screening, including Perturbagen,
+      Format, Meta Target, Design, Detection Technology, and Endpoint. Perturbagens
+      are perturbing agents that are screened in an assay; they are mostly small molecules.
+      Assay Meta Target describes what is known about the biological system and /
+      or its components interrogated in the assay (and influenced by the Perturbagen).
+      Meta target can be directly described as a molecular entity (e.g. a purified
+      protein or a protein complex), or indirectly by a biological process or event
+      (e.g. phosphorylation). Format describes the biological or chemical features
+      common to each test condition in the assay and includes biochemical, cell-based,
+      organism-based, and variations thereof. The assay Design describes the assay
+      methodology and implementation of how the perturbation of the biological system
+      is translated into a detectable signal. Detection Technology relates to the
+      physical method and technical details to detect and record a signal. Endpoints
+      are the final HTS results as they are usually published (such as IC50, percent
+      inhibition, etc). BAO has been designed to accommodate multiplexed assays. All
+      main BAO components include multiple levels of sub-categories and specification
+      classes, which are linked via object property relationships forming an expressive
+      knowledge-based representation.
+    download: http://www.bioassayontology.org/bao/
+    license: https://creativecommons.org/licenses/by-sa/4.0/
+    name: BioAssay Ontology
+    prefix: bao
+    version: 2.6.1
+    version.iri: http://www.bioassayontology.org/bao/bao_complete.owl
+  prefix: bao
+  synonyms:
+  - BAO
+- prefix: bel
+  synonyms:
+  - SCOMP
+  - SFAM
+- obofoundry:
+    contact: phismith@buffalo.edu
+    contact.label: Barry Smith
+    deprecated: false
+    license: CC-BY
+    name: Basic Formal Ontology
+    prefix: bfo
+  ols:
+    description: The upper level ontology upon which OBO Foundry ontologies are built.
+    download: http://purl.obolibrary.org/obo/bfo.owl
+    name: Basic Formal Ontology
+    prefix: bfo
+    version: '2019-08-26'
+    version.iri: http://purl.obolibrary.org/obo/bfo/2019-08-26/bfo.owl
+  pattern: \d{7}
+  prefix: bfo
+- download: https://raw.githubusercontent.com/obophenotype/biological-spatial-ontology/master/bspo.obo
+  obofoundry:
+    contact: cjmungall@lbl.gov
+    contact.label: Chris Mungall
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/biological-spatial-ontology/master/bspo.obo
+    license: CC-BY
+    name: Biological Spatial Ontology
+    prefix: bspo
+    repo: https://github.com/obophenotype/biological-spatial-ontology.git
+  ols:
+    description: An ontology for respresenting spatial concepts, anatomical axes,
+      gradients, regions, planes, sides, and surfaces
+    download: http://purl.obolibrary.org/obo/bspo.owl
+    name: Biological Spatial Ontology
+    prefix: bspo
+    version: '2020-05-11'
+    version.iri: http://purl.obolibrary.org/obo/bspo/releases/2020-05-11/bspo.owl
+  pattern: \d{7}
+  prefix: bspo
+- miriam:
+    deprecated: false
+    description: The Brenda tissue ontology is a structured controlled vocabulary
+      eastablished to identify the source of an enzyme cited in the Brenda enzyme
+      database. It comprises terms of tissues, cell lines, cell types and cell cultures
+      from uni- and multicellular organisms.
+    id: '00000111'
+    name: Brenda Tissue Ontology
+    namespaceEmbeddedInLui: true
+    pattern: ^BTO:\d{7}$
+    prefix: bto
+  obofoundry:
+    contact: a.chang@tu-bs.de
+    contact.label: Antje Chang
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/BRENDA-Enzymes/BTO/master/bto.obo
+    license: CC BY 4.0
+    name: BRENDA tissue / enzyme source
+    prefix: bto
+    repo: https://github.com/BRENDA-Enzymes/BTO.git
+  ols:
+    description: A structured controlled vocabulary for the source of an enzyme comprising
+      tissues, cell lines, cell types and cell cultures.
+    download: http://purl.obolibrary.org/obo/bto.owl
+    license: https://creativecommons.org/licenses/by/4.0/
+    name: The BRENDA Tissue Ontology (BTO)
+    prefix: bto
+    version: '2020-05-02'
+    version.iri: http://purl.obolibrary.org/obo/bto/releases/2020-05-02/bto.owl
+  pattern: \d{7}
+  prefix: bto
+  synonyms:
+  - BTO
+- miriam:
+    deprecated: false
+    description: CAS (Chemical Abstracts Service) is a division of the American Chemical
+      Society and is the producer of comprehensive databases of chemical information.
+    id: '00000237'
+    name: CAS
+    namespaceEmbeddedInLui: false
+    pattern: ^\d{1,7}\-\d{2}\-\d$
+    prefix: cas
+  prefix: cas
+  synonyms:
+  - CASID
+  - SECONDARY_CAS_RN
+  - CAS_RN
+  - cas_id
+  wikidata:
+    property: P231
+- example: CVCL_0440
+  miriam:
+    deprecated: false
+    description: 'The Cellosaurus is a knowledge resource on cell lines. It attempts
+      to describe all cell lines used in biomedical research. Its scope includes:
+      Immortalized cell lines; naturally immortal cell lines (example: stem cell lines);
+      finite life cell lines when those are distributed and used widely; vertebrate
+      cell line with an emphasis on human, mouse and rat cell lines; and invertebrate
+      (insects and ticks) cell lines. Its scope does not include primary cell lines
+      (with the exception of the finite life cell lines described above) and plant
+      cell lines.'
+    id: 00000598
+    name: Cellosaurus
+    namespaceEmbeddedInLui: false
+    pattern: CVCL_[A-Z0-9]{4}
+    prefix: cellosaurus
+  pattern: ^CVCL_[A-Z0-9]{4}$
+  prefix: cellosaurus
+  wikidata:
+    property: P3289
+- download: https://raw.githubusercontent.com/obophenotype/cephalopod-ontology/master/ceph.obo
+  obofoundry:
+    contact: cjmungall@lbl.gov
+    contact.label: Chris Mungall
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/cephalopod-ontology/master/ceph.obo
+    license: CC-BY
+    name: Cephalopod Ontology
+    prefix: ceph
+    repo: https://github.com/obophenotype/cephalopod-ontology.git
+  ols:
+    description: An anatomical and developmental ontology for cephalopods
+    download: http://purl.obolibrary.org/obo/ceph.owl
+    name: Cephalopod Ontology
+    prefix: ceph
+    version: '2016-01-12'
+    version.iri: http://purl.obolibrary.org/obo/ceph/releases/2016-01-12/ceph.owl
+  pattern: \d{7}
+  prefix: ceph
+- name: Chicken Gene Nomenclature Consortium
+  prefix: cgnc
+  synonyms:
+  - BirdBase
+  - CGNC
+  url: http://birdgenenames.org/cgnc/GeneReport?id=
+- miriam:
+    deprecated: false
+    description: Chemical Entities of Biological Interest (ChEBI) is a freely available
+      dictionary of molecular entities focused on 'small' chemical compounds.
+    id: '00000002'
+    name: ChEBI
+    namespaceEmbeddedInLui: true
+    pattern: ^CHEBI:\d+$
+    prefix: chebi
+  obofoundry:
+    contact: amalik@ebi.ac.uk
+    contact.label: Adnan Malik
+    deprecated: false
+    download.obo: ftp://ftp.ebi.ac.uk/pub/databases/chebi/ontology/chebi.obo
+    license: CC-BY 4.0
+    name: Chemical Entities of Biological Interest
+    prefix: chebi
+  ols:
+    description: A structured classification of molecular entities of biological interest
+      focusing on 'small' chemical compounds.
+    download: http://purl.obolibrary.org/obo/chebi.owl
+    name: Chemical Entities of Biological Interest
+    prefix: chebi
+    version: 01-01-2020
+    version.iri: http://purl.obolibrary.org/obo/chebi/194/chebi.owl
+  prefix: chebi
+  synonyms:
+  - ChEBI
+  - CHEBI
+  - CHEBIID
+  wikidata:
+    database: Q902623
+    database.label: ChEBI
+    format: http://purl.obolibrary.org/obo/CHEBI_$1
+    pattern: \d+
+    property: P683
+    property.label: ChEBI ID
+    webpage: https://www.ebi.ac.uk/chebi
+- miriam:
+    deprecated: false
+    description: ChEMBL is a database of bioactive compounds, their quantitative properties
+      and bioactivities (binding constants, pharmacology and ADMET, etc). The data
+      is abstracted and curated from the primary scientific literature.
+    id: 00000084
+    name: ChEMBL compound
+    namespaceEmbeddedInLui: false
+    pattern: ^CHEMBL\d+$
+    prefix: chembl.compound
+  pattern: ^CHEMBL\d+$
+  prefix: chembl.compound
+  synonyms:
+  - chembl
+  - ChEMBL
+  - ChEMBL_ID
+  wikidata:
+    database: Q6120337
+    database.label: ChEMBL
+    format: http://rdf.ebi.ac.uk/resource/chembl/molecule/$1
+    pattern: CHEMBL\d+
+    property: P592
+    property.label: ChEMBL ID
+    webpage: https://www.ebi.ac.uk/chembl
+- miriam:
+    deprecated: false
+    description: ChemIDplus is a web-based search system that provides access to structure
+      and nomenclature authority files used for the identification of chemical substances
+      cited in National Library of Medicine (NLM) databases. It also provides structure
+      searching and direct links to many biomedical resources at NLM and on the Internet
+      for chemicals of interest.
+    id: 00000096
+    name: ChemIDplus
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+\-\d+\-\d+$
+    prefix: chemidplus
+  prefix: chemidplus
+  synonyms:
+  - ChemIDplus
+- not_available_as_obo: true
+  obofoundry:
+    contact: egon.willighagen@gmail.com
+    contact.label: Egon Willighagen
+    deprecated: false
+    license: CC BY 4.0
+    name: Chemical Information Ontology
+    prefix: cheminf
+    repo: https://github.com/semanticchemistry/semanticchemistry.git
+  ols:
+    description: Includes terms for the descriptors commonly used in cheminformatics
+      software applications and the algorithms which generate them.
+    download: http://purl.obolibrary.org/obo/cheminf.owl
+    name: chemical information ontology (cheminf) - information entities about chemical
+      entities
+    prefix: cheminf
+    version: 1.9.3
+  prefix: cheminf
+- miriam:
+    deprecated: false
+    description: ChemSpider is a collection of compound data from across the web,
+      which aggregates chemical structures and their associated information into a
+      single searchable repository entry. These entries are supplemented with additional
+      properties, related information and links back to original data sources.
+    id: 00000138
+    name: ChemSpider
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: chemspider
+  prefix: chemspider
+  synonyms:
+  - Chemspider
+  wikidata:
+    database: Q2311683
+    database.label: ChemSpider
+    format: http://rdf.chemspider.com/$1
+    pattern: '[1-9]\d*'
+    property: P661
+    property.label: ChemSpider ID
+    webpage: https://www.chemspider.com/
+- download: http://purl.obolibrary.org/obo/chiro.obo
+  name: ChEBI Integrated Role Ontology
+  no_own_terms: true
+  obofoundry:
+    contact: vasilevs@ohsu.edu
+    contact.label: Nicole Vasilevsky
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/chiro/master/chiro.obo
+    license: CC-0
+    name: CHEBI Integrated Role Ontology
+    prefix: chiro
+    repo: https://github.com/obophenotype/chiro.git
+  ols:
+    description: CHEBI provides a distinct role hierarchy. Chemicals in the structural
+      hierarchy are connected via a 'has role' relation. CHIRO provides links from
+      these roles to useful other classes in other ontologies. This will allow direct
+      connection between chemical structures (small molecules, drugs) and what they
+      do. This could be formalized using 'capable of', in the same way Uberon and
+      the Cell Ontology link structures to processes.
+    download: http://purl.obolibrary.org/obo/chiro.owl
+    name: CHEBI Integrated Role Ontology
+    prefix: chiro
+    version: '2015-11-23'
+    version.iri: http://purl.obolibrary.org/obo/chiro/releases/2015-11-23/chiro.owl
+  prefix: chiro
+- obofoundry:
+    contact: batchelorc@rsc.org
+    contact.label: Colin Batchelor
+    deprecated: false
+    license: CC-BY
+    name: Chemical Methods Ontology
+    prefix: chmo
+  ols:
+    description: CHMO, the chemical methods ontology, describes methods used to collect
+      data in chemical experiments, such as mass spectrometry and electron microscopy
+      prepare and separate material for further analysis, such as sample ionisation,
+      chromatography, and electrophoresis synthesise materials, such as epitaxy and
+      continuous vapour deposition It also describes the instruments used in these
+      experiments, such as mass spectrometers and chromatography columns. It is intended
+      to be complementary to the Ontology for Biomedical Investigations (OBI).
+    download: http://purl.obolibrary.org/obo/chmo.owl
+    license: http://creativecommons.org/licenses/by/4.0/
+    name: Chemical Methods Ontology
+    prefix: chmo
+    version: 14-11-2019
+    version.iri: http://purl.obolibrary.org/obo/chmo/releases/2014-11-20/chmo.owl
+  pattern: \d{7}
+  prefix: chmo
+- obofoundry:
+    contact: bgee@sib.swiss
+    contact.label: Frederic Bastian
+    deprecated: false
+    license: GNU GPL 3.0
+    name: Confidence Information Ontology
+    prefix: cio
+  ols:
+    description: An ontology to capture confidence information about annotations.
+    download: http://purl.obolibrary.org/obo/cio.owl
+    name: Confidence Information Ontology
+    prefix: cio
+    version: '2015-03-10'
+    version.iri: http://purl.obolibrary.org/obo/cio/releases/2015-03-10/cio.owl
+  pattern: \d{7}
+  prefix: cio
+- name: CiteXplore
+  prefix: citexplore
+- download: https://raw.githubusercontent.com/obophenotype/cell-ontology/master/cl-full.obo
+  miriam:
+    deprecated: false
+    description: The Cell Ontology is designed as a structured controlled vocabulary
+      for cell types. The ontology was constructed for use by the model organism and
+      other bioinformatics databases, incorporating cell types from prokaryotes to
+      mammals, and includes plants and fungi.
+    id: '00000110'
+    name: Cell Type Ontology
+    namespaceEmbeddedInLui: true
+    pattern: ^CL:\d{7}$
+    prefix: cl
+  obofoundry:
+    contact: addiehl@buffalo.edu
+    contact.label: Alexander Diehl
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/cell-ontology/master/cl.obo
+    license: CC-BY
+    name: Cell Ontology
+    prefix: cl
+    repo: https://github.com/obophenotype/cell-ontology.git
+  ols:
+    description: An ontology of cell types.
+    download: http://purl.obolibrary.org/obo/cl.owl
+    license: http://creativecommons.org/licenses/by/4.0/
+    name: Cell Ontology
+    prefix: cl
+    version: '2020-11-11'
+    version.iri: http://purl.obolibrary.org/obo/cl/releases/2020-11-11/cl.owl
+  prefix: cl
+  wikidata:
+    database: Q55118285
+    database.label: Cell Ontology
+    format: http://purl.obolibrary.org/obo/$1
+    pattern: CL_[0-9]{7}
+    property: P7963
+    property.label: Cell Ontology ID
+    webpage: http://www.ontobee.org/ontology/CL
+- not_available_as_obo: true
+  obofoundry:
+    contact: siiraa@umich.edu
+    contact.label: Sirarat Sarntivijai
+    deprecated: false
+    license: CC-BY
+    name: Cell Line Ontology
+    prefix: clo
+  ols:
+    description: The Cell Line Ontology (CLO) is a community-based ontology of cell
+      lines. The CLO is developed to unify publicly available cell line entry data
+      from multiple sources to a standardized logically defined format based on consensus
+      design patterns.
+    download: http://purl.obolibrary.org/obo/clo.owl
+    name: 'CLO: Cell Line Ontology'
+    prefix: clo
+    version: 2.1.162
+  prefix: clo
+  synonyms:
+  - CLO
+  wikidata:
+    property: P2158
+- obofoundry:
+    contact: shimoyama@mcw.edu
+    contact.label: Mary Shimoyama
+    deprecated: false
+    download.obo: ftp://ftp.rgd.mcw.edu/pub/ontology/clinical_measurement/clinical_measurement.obo
+    license: CC-0
+    name: Clinical measurement ontology
+    prefix: cmo
+  ols:
+    description: Morphological and physiological measurement records generated from
+      clinical and model organism research and health programs.
+    download: http://purl.obolibrary.org/obo/cmo.owl
+    name: Clinical measurement ontology
+    prefix: cmo
+    version: '2019-02-19'
+    version.iri: http://purl.obolibrary.org/obo/cmo/releases/2019-02-19/cmo.owl
+  pattern: \d{7}
+  prefix: cmo
+- miriam:
+    deprecated: false
+    description: A database that describes manually curated macromolecular complexes
+      and provides links to details about these complexes in other databases.
+    id: '00000657'
+    name: Complex Portal
+    namespaceEmbeddedInLui: false
+    pattern: ^CPX-[0-9]+$
+    prefix: complexportal
+  prefix: complexportal
+  synyonms:
+  - ComplexPortal
+  wikidata:
+    property: P7718
+- name: Curation of Neurodegeneration Supporting Ontology
+  pattern: CONSO\d{5}
+  prefix: conso
+- download: https://raw.githubusercontent.com/data2health/contributor-role-ontology/master/cro.obo
+  obofoundry:
+    contact: whimar@ohsu.edu
+    contact.label: Marijane White
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/data2health/contributor-role-ontology/master/cro.obo
+    license: CC-BY
+    name: Contributor Role Ontology
+    prefix: cro
+    repo: https://github.com/data2health/contributor-role-ontology.git
+  ols:
+    description: A classification of the diverse roles performed in the work leading
+      to a published research output in the sciences. Its purpose to provide transparency
+      in contributions to scholarly published work, to enable improved systems of
+      attribution, credit, and accountability.
+    download: http://purl.obolibrary.org/obo/cro.owl
+    name: Contributor Role Ontology
+    prefix: cro
+    version: '2019-12-11'
+    version.iri: http://purl.obolibrary.org/obo/cro/releases/2019-12-11/cro.owl
+  pattern: \d{7}
+  prefix: cro
+- name: CRISP Thesaurus
+  prefix: csp
+  synonyms:
+  - CRISP Thesaurus, 2006
+  - CRISP Thesaurus
+  - CSP2005
+- download: https://raw.githubusercontent.com/obophenotype/ctenophore-ontology/master/cteno.obo
+  obofoundry:
+    contact: cjmungall@lbl.gov
+    contact.label: Chris Mungall
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/ctenophore-ontology/master/cteno.obo
+    license: CC-BY
+    name: Ctenophore Ontology
+    prefix: cteno
+    repo: https://github.com/obophenotype/ctenophore-ontology.git
+  ols:
+    description: An anatomical and developmental ontology for ctenophores (Comb Jellies)
+    download: http://purl.obolibrary.org/obo/cteno.owl
+    name: Ctenophore Ontology
+    prefix: cteno
+    version: '2016-10-19'
+    version.iri: http://purl.obolibrary.org/obo/cteno/releases/2016-10-19/cteno.owl
+  pattern: \d{7}
+  prefix: cteno
+- obofoundry:
+    contact: pfey@northwestern.edu
+    contact.label: Petra Fey
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/dictyBase/migration-data/master/ontologies/dicty_anatomy.obo
+    license: CC0 1.0 Universal
+    name: Dictyostelium discoideum anatomy
+    prefix: ddanat
+  ols:
+    description: A structured controlled vocabulary of the anatomy of the slime-mold
+      Dictyostelium discoideum
+    download: http://purl.obolibrary.org/obo/ddanat.owl
+    name: Dictyostelium discoideum anatomy
+    prefix: ddanat
+    version: '2020-04-13'
+    version.iri: http://purl.obolibrary.org/obo/ddanat/releases/2020-04-13/ddanat.owl
+  pattern: \d{7}
+  prefix: ddanat
+- download: https://raw.githubusercontent.com/obophenotype/dicty-phenotype-ontology/master/ddpheno.obo
+  obofoundry:
+    contact: pfey@northwestern.edu
+    contact.label: Petra Fey
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/dicty-phenotype-ontology/master/ddpheno.obo
+    license: CC-0
+    name: Dictyostelium discoideum phenotype ontology
+    prefix: ddpheno
+    repo: https://github.com/obophenotype/dicty-phenotype-ontology.git
+  ols:
+    description: A structured controlled vocabulary of phenotypes of the slime-mould
+      Dictyostelium discoideum.
+    download: http://purl.obolibrary.org/obo/ddpheno.owl
+    name: Dicty Phenotype Ontology (DDPHENO)
+    prefix: ddpheno
+    version: '2020-06-19'
+    version.iri: http://purl.obolibrary.org/obo/ddpheno/releases/2020-06-19/ddpheno.owl
+  pattern: \d{7}
+  prefix: ddpheno
+- description: A resource for Dictyostelid discoideum (a soil-dwelling amoeba) genomics
+  name: dictyBase
+  prefix: dictybase
+  synonyms:
+  - dictyBase
+- name: Diseases Database
+  prefix: diseasesdb
+  wikidata:
+    database: Q213103
+    property: P557
+- download: https://github.com/DiseaseOntology/HumanDiseaseOntology/raw/main/src/ontology/doid.obo
+  miriam:
+    id: '00000233'
+    namespaceEmbeddedInLui: true
+    prefix: doid
+  obofoundry:
+    contact: lynn.schriml@gmail.com
+    contact.label: Lynn Schriml
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/DiseaseOntology/HumanDiseaseOntology/master/src/ontology/doid.obo
+    license: CC0 1.0 Universal
+    name: Human Disease Ontology
+    prefix: doid
+  ols:
+    description: The Disease Ontology has been developed as a standardized ontology
+      for human disease with the purpose of providing the biomedical community with
+      consistent, reusable and sustainable descriptions of human disease terms, phenotype
+      characteristics and related medical vocabulary disease concepts.
+    download: http://purl.obolibrary.org/obo/doid.owl
+    license: https://creativecommons.org/publicdomain/zero/1.0/
+    name: Human Disease Ontology
+    prefix: doid
+    version: '2020-12-02'
+    version.iri: http://purl.obolibrary.org/obo/doid/releases/2020-12-02/doid.owl
+  prefix: doid
+  synonyms:
+  - do
+  wikidata:
+    property: P699
+- no_own_terms: true
+  obofoundry:
+    contact: cp390@cam.ac.uk
+    contact.label: Clare Pilgrim
+    deprecated: false
+    license: CC-BY
+    name: Drosophila Phenotype Ontology
+    prefix: dpo
+    repo: https://github.com/FlyBase/drosophila-phenotype-ontolog.git
+  ols:
+    description: An ontology for the description of Drosophila melanogaster phenotypes.
+    download: http://purl.obolibrary.org/obo/dpo.owl
+    license: https://creativecommons.org/licenses/by/3.0/
+    name: Drosophila Phenotype Ontology (DPO)
+    prefix: dpo
+    version: '2020-10-20'
+    version.iri: http://purl.obolibrary.org/obo/dpo/releases/2020-10-20/dpo.owl
+  prefix: dpo
+- miriam:
+    deprecated: false
+    description: The DrugBank database is a bioinformatics and chemoinformatics resource
+      that combines detailed drug (i.e. chemical, pharmacological and pharmaceutical)
+      data with comprehensive drug target (i.e. sequence, structure, and pathway)
+      information. This collection references drug information.
+    id: '00000102'
+    name: DrugBank
+    namespaceEmbeddedInLui: false
+    pattern: ^DB\d{5}$
+    prefix: drugbank
+  prefix: drugbank
+  synonyms:
+  - DrugBank
+  - DRUGBANK_ID
+  wikidata:
+    property: P715
+- name: DrugBank Salts
+  pattern: DBSALT\d{6}
+  prefix: drugbank.salt
+- name: Drug Central
+  prefix: drugcentral
+  synonyms:
+  - Drug_Central
+  url: http://drugcentral.org/drugcard/$1
+- not_available_as_obo: true
+  obofoundry:
+    contact: mcourtot@gmail.com
+    contact.label: Melanie Courtot
+    deprecated: false
+    license: CC-BY
+    name: Data Use Ontology
+    prefix: duo
+    repo: https://github.com/EBISPOT/duo.git
+  ols:
+    description: DUO is an ontology which represent data use conditions.
+    download: http://purl.obolibrary.org/obo/duo.owl
+    name: Data Use Ontology
+    prefix: duo
+    version: '2020-02-03'
+    version.iri: http://purl.obolibrary.org/obo/duo/releases/2020-02-03/duo.owl
+  prefix: duo
+- miriam:
+    deprecated: false
+    description: The Enzyme Classification contains the recommendations of the Nomenclature
+      Committee of the International Union of Biochemistry and Molecular Biology on
+      the nomenclature and classification of enzyme-catalysed reactions.
+    id: '00000004'
+    name: Enzyme Nomenclature
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$
+    prefix: ec-code
+  name: Enzyme Nomenclature
+  prefix: eccode
+  synonyms:
+  - EC
+  - EC-CODE
+  - EC_CODE
+  - ECCODE
+  - ec-code
+  wikidata:
+    property: P591
+- name: E. coli Metabolite Database
+  pattern: ECMDB\d+
+  prefix: ecmdb
+  synonyms:
+  - ECMDB
+  url: http://ecmdb.ca/compounds/$1
+- obofoundry:
+    contact: p.buttigieg@gmail.com
+    contact.label: Pier Luigi Buttigieg
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/EcologicalSemantics/ecocore/master/ecocore.obo
+    license: CC-BY
+    name: An ontology of core ecological entities
+    prefix: ecocore
+    repo: https://github.com/EcologicalSemantics/ecocore.git
+  ols:
+    description: An ontology to provide core semantics for ecological entities.
+    download: http://purl.obolibrary.org/obo/ecocore.owl
+    name: An ontology of core ecological entities
+    prefix: ecocore
+    version: '2020-12-01'
+    version.iri: http://purl.obolibrary.org/obo/ecocore/releases/2020-12-01/ecocore.owl
+  pattern: \d{7}
+  prefix: ecocore
+- obofoundry:
+    contact: annethessen@gmail.com
+    contact.label: Anne Thessen
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/EnvironmentOntology/environmental-exposure-ontology/master/ecto.obo
+    license: CC-BY
+    name: Environmental conditions, treatments and exposures ontology
+    prefix: ecto
+    repo: https://github.com/EnvironmentOntology/environmental-exposure-ontology.git
+  ols:
+    description: ECTO describes exposures to experimental treatments of plants and
+      model organisms (e.g. exposures to modification of diet, lighting levels, temperature);
+      exposures of humans or any other organisms to stressors through a variety of
+      routes, for purposes of public health, environmental monitoring etc, stimuli,
+      natural and experimental, any kind of environmental condition or change in condition
+      that can be experienced by an organism or population of organisms on earth.
+      The scope is very general and can include for example plant treatment regimens,
+      as well as human clinical exposures (although these may better be handled by
+      a more specialized ontology).
+    download: http://purl.obolibrary.org/obo/ecto.owl
+    license: https://creativecommons.org/publicdomain/zero/1.0/
+    name: Environment Exposure Ontology
+    prefix: ecto
+    version: '2020-09-18'
+    version.iri: http://purl.obolibrary.org/obo/ecto/releases/2020-09-18/ecto.owl
+  pattern: \d{7}
+  prefix: ecto
+- download: http://www.ebi.ac.uk/efo/efo.obo
+  miriam:
+    deprecated: false
+    description: The Experimental Factor Ontology (EFO) provides a systematic description
+      of many experimental variables available in EBI databases. It combines parts
+      of several biological ontologies, such as anatomy, disease and chemical compounds.
+      The scope of EFO is to support the annotation, analysis and visualization of
+      data handled by the EBI Functional Genomics Team.
+    id: 00000391
+    name: Experimental Factor Ontology
+    namespaceEmbeddedInLui: false
+    pattern: ^\d{7}$
+    prefix: efo
+  obofoundry:
+    prefix: efo
+  ols:
+    description: The Experimental Factor Ontology (EFO) provides a systematic description
+      of many experimental variables available in EBI databases, and for external
+      projects such as the NHGRI GWAS catalogue. It combines parts of several biological
+      ontologies, such as anatomy, disease and chemical compounds. The scope of EFO
+      is to support the annotation, analysis and visualization of data handled by
+      many groups at the EBI and as the core ontology for OpenTargets.org
+    download: http://www.ebi.ac.uk/efo/efo.owl
+    license: www.apache.org/licenses/LICENSE-2.0
+    name: Experimental Factor Ontology
+    prefix: efo
+    version: 3.24.0
+    version.iri: http://www.ebi.ac.uk/efo/releases/v3.24.0/efo.owl
+  prefix: efo
+- obofoundry:
+    contact: J.Bard@ed.ac.uk
+    contact.label: Jonathan Bard
+    deprecated: false
+    license: CC-BY 4.0
+    name: Human developmental anatomy, abstract
+    prefix: ehdaa2
+    repo: https://github.com/obophenotype/human-developmental-anatomy-ontology.git
+  ols:
+    description: A structured controlled vocabulary of stage-specific anatomical structures
+      of the developing human.
+    download: http://purl.obolibrary.org/obo/ehdaa2.owl
+    name: Human developmental anatomy, abstract
+    prefix: ehdaa2
+    version: '2013-07-04'
+    version.iri: http://purl.obolibrary.org/obo/ehdaa2/releases/2013-07-04/ehdaa2.owl
+  pattern: \d{7}
+  prefix: ehdaa2
+- obofoundry:
+    contact: Terry.Hayamizu@jax.org
+    contact.label: Terry Hayamizu
+    deprecated: false
+    download.obo: ftp://ftp.hgu.mrc.ac.uk/pub/MouseAtlas/Anatomy/EMAPA.obo
+    license: CC-BY 4.0
+    name: Mouse Developmental Anatomy Ontology
+    prefix: emapa
+  ols:
+    description: An ontology for mouse anatomy covering embryonic development and
+      postnatal stages.
+    download: http://purl.obolibrary.org/obo/emapa.owl
+    name: Mouse Developmental Anatomy Ontology
+    prefix: emapa
+    version: '2020-02-12'
+    version.iri: http://purl.obolibrary.org/obo/emapa/releases/2020-02-12/emapa.owl
+  pattern: \d+
+  prefix: emapa
+- miriam:
+    deprecated: false
+    description: Ensembl is a joint project between EMBL - EBI and the Sanger Institute  to
+      develop a software system which produces and maintains automatic annotation
+      on selected eukaryotic genomes. This collections also references outgroup organisms.
+    id: '00000003'
+    name: Ensembl
+    namespaceEmbeddedInLui: false
+    pattern: ^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$
+    prefix: ensembl
+  prefix: ensembl
+  synonyms:
+  - Ensembl
+  wikidata:
+    database: Q1344256
+    database.label: Ensembl genome database project
+    format: http://rdf.ebi.ac.uk/resource/ensembl/$1
+    pattern: (ENS(|MUS|RNO)G\d{11})|(Y[A-P][LR]\d{3}[CW](-[A-G])?)
+    property: P594
+    property.label: Ensembl gene ID
+    webpage: https://www.ensembl.org
+- not_available_as_obo: true
+  obofoundry:
+    contact: Juliane_Schneider@hms.harvard.edu
+    contact.label: Juliane Schneider
+    deprecated: false
+    license: CC-BY 2.0
+    name: eagle-i resource ontology
+    prefix: ero
+  ols:
+    description: An ontology of research resources such as instruments. protocols,
+      reagents, animal models and biospecimens.
+    download: http://purl.obolibrary.org/obo/ero.owl
+    name: eagle-i resource ontology
+    prefix: ero
+    version: 27-07-2016
+  prefix: ero
+- obofoundry:
+    contact: cjmattin@ncsu.edu
+    contact.label: Carolyn Mattingly
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/CTDbase/exposure-ontology/master/src/ontology/exo.obo
+    license: CC BY 4.0
+    name: Exposure ontology
+    prefix: exo
+  ols:
+    description: Vocabularies for describing exposure data to inform understanding
+      of environmental health.
+    download: http://purl.obolibrary.org/obo/exo.owl
+    name: Exposure ontology
+    prefix: exo
+    version: '2020-03-10'
+    version.iri: http://purl.obolibrary.org/obo/exo/releases/2020-03-10/exo.owl
+  pattern: \d{7}
+  prefix: exo
+  synonyms:
+  - ExO
+- obofoundry:
+    contact: mah79@cam.ac.uk
+    contact.label: Midori Harris
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/fungal-anatomy-ontology/master/fao.obo
+    license: CC-0
+    name: Fungal gross anatomy
+    prefix: fao
+    repo: https://github.com/obophenotype/fungal-anatomy-ontology.git
+  ols:
+    description: A structured controlled vocabulary for the anatomy of fungi.
+    download: http://purl.obolibrary.org/obo/fao.owl
+    name: Fungal gross anatomy
+    prefix: fao
+    version: '2020-05-07'
+    version.iri: http://purl.obolibrary.org/obo/fao/releases/2020-05-07/fao.owl
+  pattern: \d{7}
+  prefix: fao
+- obofoundry:
+    contact: dorloff@ncmir.ucsd.edu
+    contact.label: David Orloff
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/dosumis/fbbi/master/src/ontology/fbbi.obo
+    license: CC BY 4.0
+    name: Biological Imaging Methods Ontology
+    prefix: fbbi
+  ols:
+    description: A structured controlled vocabulary of sample preparation, visualization
+      and imaging methods used in biomedical research.
+    download: http://purl.obolibrary.org/obo/fbbi.owl
+    name: Biological Imaging Methods Ontology
+    prefix: fbbi
+    version: '2020-11-06'
+    version.iri: http://purl.obolibrary.org/obo/fbbi/releases/2020-11-06/fbbi.owl
+  pattern: \d{7}
+  prefix: fbbi
+  synonyms:
+  - FBbi
+- obofoundry:
+    contact: cp390@cam.ac.uk
+    contact.label: Clare Pilgrim
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/FlyBase/drosophila-anatomy-developmental-ontology/master/fbbt.obo
+    license: CC-BY
+    name: Drosophila gross anatomy
+    prefix: fbbt
+    repo: https://github.com/FlyBase/drosophila-anatomy-developmental-ontology.git
+  ols:
+    description: An ontology of Drosophila melanogaster anatomy.
+    download: http://purl.obolibrary.org/obo/fbbt.owl
+    license: https://creativecommons.org/licenses/by/3.0/
+    name: Drosophila Anatomy Ontology (DAO)
+    prefix: fbbt
+    version: '2020-12-02'
+    version.iri: http://purl.obolibrary.org/obo/fbbt/releases/2020-12-02/fbbt.owl
+  pattern: \d{8}
+  prefix: fbbt
+  synonyms:
+  - FBbt_root
+  - FBbt
+- obofoundry:
+    contact: cp390@cam.ac.uk
+    contact.label: Clare Pilgrim
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/FlyBase/flybase-controlled-vocabulary/master/fbcv.obo
+    license: CC-BY
+    name: FlyBase Controlled Vocabulary
+    prefix: fbcv
+    repo: https://github.com/FlyBase/flybase-controlled-vocabulary.git
+  ols:
+    description: A miscellaneous ontology of terms used for curation in FlyBase, including
+      the DPO.
+    download: http://purl.obolibrary.org/obo/fbcv.owl
+    license: https://creativecommons.org/licenses/by/3.0/
+    name: FlyBase Controlled Vocabulary (FBcv)
+    prefix: fbcv
+    version: '2020-10-20'
+    version.iri: http://purl.obolibrary.org/obo/fbcv/releases/2020-10-20/fbcv.owl
+  pattern: \d{7}
+  prefix: fbcv
+  synonyms:
+  - FBcv
+- obofoundry:
+    contact: cp390@cam.ac.uk
+    contact.label: Clare Pilgrim
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/FlyBase/drosophila-developmental-ontology/master/fbdv.obo
+    license: CC-BY
+    name: Drosophila development
+    prefix: fbdv
+    repo: https://github.com/FlyBase/drosophila-developmental-ontology.git
+  ols:
+    description: An ontology of Drosophila melanogaster developmental stages.
+    download: http://purl.obolibrary.org/obo/fbdv.owl
+    license: https://creativecommons.org/licenses/by/3.0/
+    name: FlyBase Developmental Ontology (FBdv)
+    prefix: fbdv
+    version: '2020-10-15'
+    version.iri: http://purl.obolibrary.org/obo/fbdv/releases/2020-10-15/fbdv.owl
+  pattern: \d{8}
+  prefix: fbdv
+  synonyms:
+  - FBdv
+- obofoundry:
+    deprecated: false
+    download.obo: ftp://ftp.ebi.ac.uk/pub/databases/chebi/ontology/fix.obo
+    name: Physico-chemical methods and properties
+    prefix: fix
+  ols:
+    description: An ontology of physico-chemical methods and properties.
+    download: http://purl.obolibrary.org/obo/fix.owl
+    name: Physico-chemical methods and properties
+    prefix: fix
+    version: '2020-04-13'
+    version.iri: http://purl.obolibrary.org/obo/fix/releases/2020-04-13/fix.owl
+  pattern: \d{7}
+  prefix: fix
+- miriam:
+    deprecated: false
+    description: FlyBase is the database of the Drosophila Genome Projects and of
+      associated literature.
+    id: '00000030'
+    name: FlyBase
+    namespaceEmbeddedInLui: false
+    pattern: ^FB\w{2}\d{7}$
+    prefix: fb
+  prefix: flybase
+  synonyms:
+  - FB
+  - FlyBase
+  wikidata:
+    property: P3852
+- miriam:
+    deprecated: false
+    description: FamPlex is a collection of resources for grounding biological entities
+      from text and describing their hierarchical relationships.
+    id: '00000651'
+    name: FamPlex
+    namespaceEmbeddedInLui: false
+    pattern: ^[a-zA-Z0-9][A-Za-z0-9_]+$
+    prefix: fplx
+  name: FamPlex
+  prefix: fplx
+  synonyms:
+  - famplex
+- download: http://purl.obolibrary.org/obo/fypo.obo
+  name: Fission Yeast Phenotype Ontology
+  obofoundry:
+    contact: mah79@cam.ac.uk
+    contact.label: Midori Harris
+    deprecated: false
+    license: CC-BY
+    name: Fission Yeast Phenotype Ontology
+    prefix: fypo
+  ols:
+    description: A formal ontology of phenotypes observed in fission yeast.
+    download: http://purl.obolibrary.org/obo/fypo.owl
+    license: https://creativecommons.org/licenses/by/4.0/
+    name: Fission Yeast Phenotype Ontology (FYPO)
+    prefix: fypo
+    version: '2020-11-30'
+    version.iri: http://purl.obolibrary.org/obo/fypo/releases/2020-11-30/fypo.owl
+  pattern: \d{7}
+  prefix: fypo
+- name: Genetic and Rare Diseases Information Center
+  prefix: gard
+  synonyms:
+  - GARD
+  - Genetic and Rare Diseases Information Center
+  wikidata:
+    property: P4317
+- download: http://purl.obolibrary.org/obo/gaz.obo
+  obofoundry:
+    contact: lschriml@som.umaryland.edu
+    contact.label: Lynn Schriml
+    deprecated: false
+    license: CC0 1.0 Universal
+    name: Gazetteer
+    prefix: gaz
+  ols:
+    description: A gazetteer constructed on ontological principles
+    download: http://purl.obolibrary.org/obo/gaz.obo
+    name: Gazetteer
+    prefix: gaz
+    version: 26-06-2018
+  pattern: \d{8}
+  prefix: gaz
+- name: Global Biodiversity Information Facility
+  prefix: gbif
+  url: https://www.gbif.org/species/$1
+  wikidata:
+    property: P846
+- name: Genetic Code
+  note: 'see comment here: https://github.com/obophenotype/ncbitaxon/issues/47'
+  prefix: gc
+  synonyms:
+  - gc_id
+  url: https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG$1
+- download: https://raw.githubusercontent.com/monarch-initiative/GENO-ontology/develop/geno-full.obo
+  obofoundry:
+    contact: mhb120@gmail.com
+    contact.label: Matthew Brush
+    deprecated: false
+    license: CC-BY-SA
+    name: Genotype Ontology
+    prefix: geno
+    repo: https://github.com/monarch-initiative/GENO-ontology.git
+  ols:
+    description: "GENO is an OWL model of genotypes, their more fundamental sequence\
+      \ components, and links to related biological and experimental entities.  At\
+      \ present many parts of the model are exploratory and set to undergo refactoring.\
+      \  In addition, many classes and properties have GENO URIs but are place holders\
+      \ for classes that will be imported from an external ontology (e.g. SO, ChEBI,\
+      \ OBI, etc).  Furthermore, ongoing work will implement a model of genotype-to-phenotype\
+      \ associations. This will support description of asserted and inferred relationships\
+      \ between a genotypes, phenotypes, and environments, and the evidence/provenance\
+      \ behind these associations. \n\nDocumentation is under development as well,\
+      \ and for now a slidedeck is available at http://www.slideshare.net/mhb120/brush-icbo-2013"
+    download: http://purl.obolibrary.org/obo/geno.owl
+    name: GENO ontology
+    prefix: geno
+    version: '2020-03-08'
+    version.iri: http://purl.obolibrary.org/obo/geno/releases/2020-03-08/geno.owl
+  pattern: \d{7}
+  prefix: geno
+- miriam:
+    deprecated: false
+    description: The Gene Expression Omnibus (GEO) is a gene expression repository
+      providing a curated, online resource for gene expression data browsing, query
+      and retrieval.
+    id: '00000054'
+    name: GEO
+    namespaceEmbeddedInLui: false
+    pattern: ^G(PL|SM|SE|DS)\d+$
+    prefix: geo
+  not_available_as_obo: true
+  obofoundry:
+    contact: hoganwr@gmail.com
+    contact.label: Bill Hogan
+    deprecated: false
+    license: CC-BY 4.0
+    name: Geographical Entity Ontology
+    prefix: geo
+  ols:
+    description: An ontology of geographical entities
+    download: http://purl.obolibrary.org/obo/geo.owl
+    license: https://creativecommons.org/licenses/by/4.0/
+    name: Geographical Entity Ontology
+    prefix: geo
+    version: production version 2016-03-26
+  prefix: geo
+- name: Gmelins Handbuch der anorganischen Chemie
+  pattern: '[1-9][0-9]{3,6}'
+  prefix: gmelin
+  wikidata:
+    property: P1578
+- obofoundry:
+    contact: nje5@georgetown.edu
+    contact.label: Nathan Edwards
+    deprecated: false
+    license: CC-BY 4.0
+    name: Glycan Naming and Subsumption Ontology (GNOme)
+    prefix: gno
+    repo: https://github.com/glygen-glycan-data/GNOme.git
+  ols:
+    description: An ontology for glycans based on GlyTouCan, but organized by subsumption.
+    download: http://purl.obolibrary.org/obo/gno.owl
+    license: http://creativecommons.org/licenses/by/4.0/
+    name: Glycan Naming Ontology
+    prefix: gno
+    version: V1.6.3
+    version.iri: http://purl.obolibrary.org/obo/gno/2020-10-13/gno.owl
+  pattern: \d{8}
+  prefix: gno
+- download: http://purl.obolibrary.org/obo/go.obo
+  miriam:
+    deprecated: false
+    description: The Gene Ontology project provides a controlled vocabulary to describe
+      gene and gene product attributes in any organism.
+    id: '00000022'
+    name: Gene Ontology
+    namespaceEmbeddedInLui: true
+    pattern: ^GO:\d{7}$
+    prefix: go
+  obofoundry:
+    contact: suzia@stanford.edu
+    contact.label: Suzi Aleksander
+    deprecated: false
+    license: CC BY 4.0
+    name: Gene Ontology
+    prefix: go
+  ols:
+    description: The Gene Ontology (GO) provides a framework and set of concepts for
+      describing the functions of gene products from all organisms.
+    download: http://purl.obolibrary.org/obo/go.owl
+    license: http://creativecommons.org/licenses/by/4.0/
+    name: Gene Ontology
+    prefix: go
+    version: '2020-11-18'
+    version.iri: http://purl.obolibrary.org/obo/go/releases/2020-11-18/go.owl
+  prefix: go
+  synonyms:
+  - gobp
+  - gocc
+  - gomf
+  - gobpid
+  - goccid
+  - gomfid
+  wikidata:
+    property: P686
+- obofoundry:
+    contact: diapriid@gmail.com
+    contact.label: Matt Yoder
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/hymao/hao/master/hao.obo
+    license: CC-0
+    name: Hymenoptera Anatomy Ontology
+    prefix: hao
+    repo: https://github.com/hymao/hao.git
+  ols:
+    description: A structured controlled vocabulary of the anatomy of the Hymenoptera
+      (bees, wasps, and ants)
+    download: http://purl.obolibrary.org/obo/hao.owl
+    name: Hymenoptera Anatomy Ontology
+    prefix: hao
+    version: '2018-04-26'
+    version.iri: http://purl.obolibrary.org/obo/hao/2018-04-26/hao.owl
+  pattern: \d{7}
+  prefix: hao
+- miriam:
+    deprecated: false
+    description: The HGNC (HUGO Gene Nomenclature Committee) provides an approved
+      gene name and symbol (short-form abbreviation) for each known human gene.  All
+      approved symbols are stored in the HGNC database, and each symbol is unique.
+      HGNC identifiers refer to records in the HGNC symbol database.
+    id: 00000080
+    name: HGNC
+    namespaceEmbeddedInLui: false
+    pattern: ^((HGNC|hgnc):)?\d{1,5}$
+    prefix: hgnc
+  prefix: hgnc
+  wikidata:
+    property: P354
+- miriam:
+    deprecated: false
+    description: The HGNC (HUGO Gene Nomenclature Committee) provides an approved
+      gene name and symbol (short-form abbreviation) for each known human gene. All
+      approved symbols are stored in the HGNC database, and each symbol is unique.
+      In addition, HGNC also provides a unique numerical ID to identify gene families,
+      providing a display of curated hierarchical relationships between families.
+    id: '00000573'
+    name: HGNC gene family
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: hgnc.genefamily
+  prefix: hgnc.genefamily
+  synonyms:
+  - GFAM
+  - HGNC_GROUP
+- miriam:
+    deprecated: false
+    description: The Human Metabolome Database (HMDB) is a database containing detailed
+      information about small molecule metabolites found in the human body.It contains
+      or links 1) chemical 2) clinical and 3) molecular biology/biochemistry data.
+    id: '00000051'
+    name: HMDB
+    namespaceEmbeddedInLui: false
+    pattern: ^HMDB\d+$
+    prefix: hmdb
+  prefix: hmdb
+  synonyms:
+  - HMDB
+  wikidata:
+    property: P2057
+- download: http://purl.obolibrary.org/obo/hp.obo
+  miriam:
+    deprecated: false
+    description: The Human Phenotype Ontology (HPO) aims to provide a standardized
+      vocabulary of phenotypic abnormalities encountered in human disease. Each term
+      in the HPO describes a phenotypic abnormality, such as atrial septal defect.
+      The HPO is currently being developed using the medical literature, Orphanet,
+      DECIPHER, and OMIM.
+    id: '00000571'
+    name: Human Phenotype Ontology
+    namespaceEmbeddedInLui: true
+    pattern: ^HP:\d{7}$
+    prefix: hp
+  obofoundry:
+    contact: dr.sebastian.koehler@gmail.com
+    contact.label: Sebastian Koehler
+    deprecated: false
+    license: hpo
+    name: Human Phenotype Ontology
+    prefix: hp
+  ols:
+    description: The Human Phenotype Ontology (HPO) provides a standardized vocabulary
+      of phenotypic abnormalities and clinical features encountered in human disease.
+    download: http://purl.obolibrary.org/obo/hp.owl
+    license: license
+    name: Human Phenotype Ontology
+    prefix: hp
+    version: '2020-10-12'
+    version.iri: http://purl.obolibrary.org/obo/hp/releases/2020-10-12/hp.owl
+  prefix: hp
+  wikidata:
+    property: P3841
+- obofoundry:
+    contact: bgee@sib.swiss
+    contact.label: bgee
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/developmental-stage-ontologies/master/src/hsapdv/hsapdv.obo
+    license: CC-BY
+    name: Human Developmental Stages
+    prefix: hsapdv
+  ols:
+    description: Life cycle stages for Human
+    download: http://purl.obolibrary.org/obo/hsapdv.owl
+    name: Human Developmental Stages
+    prefix: hsapdv
+    version: '2020-03-10'
+    version.iri: http://purl.obolibrary.org/obo/hsapdv/releases/2020-03-10/hsapdv.owl
+  pattern: \d{7}
+  prefix: hsapdv
+  synonyms:
+  - HsapDv
+- miriam:
+    deprecated: false
+    description: The International Classification of Diseases is the international
+      standard diagnostic classification for all general epidemiological and many
+      health management purposes.
+    id: 00000009
+    name: ICD
+    namespaceEmbeddedInLui: false
+    pattern: ^[A-Z]\d+(\.[-\d+])?$
+    prefix: icd
+  name: International Classification of Diseases
+  prefix: icd10
+  synonyms:
+  - ICD
+  - ICD10
+  - ICD-10
+  - ICD10CM
+  wikidata:
+    property: P4229
+- prefix: icd11
+  synonyms:
+  - ICD-11
+  wikidata:
+    property: P7807
+- prefix: icd9
+  synonyms:
+  - ICD9
+  - IC9CM
+  - ICD9CM_2005
+  - ICDCM_2005
+  - ICD9_2005
+  - ICD9CM_2006
+  - ICD9CM
+  - ICD9CM_2005
+  - MTHICD9_2006
+  wikidata:
+    property: P493
+- prefix: icdo
+  synonyms:
+  - ICD-O
+  - ICDO
+  wikidata:
+    property: P563
+- download: http://purl.obolibrary.org/obo/idomal.obo
+  obofoundry:
+    contact: topalis@imbb.forth.gr
+    contact.label: Pantelis Topalis
+    deprecated: false
+    license: CC0
+    name: Malaria Ontology
+    prefix: idomal
+  ols:
+    description: An application ontology to cover all aspects of malaria as well as
+      the intervention attempts to control it.
+    download: http://purl.obolibrary.org/obo/idomal.owl
+    name: Malaria Ontology
+    prefix: idomal
+    version: '2015-03-16'
+    version.iri: http://purl.obolibrary.org/obo/idomal/2015-03-16/idomal.owl
+  pattern: \d{7}
+  prefix: idomal
+- obofoundry:
+    deprecated: true
+    download.obo: http://download.baderlab.org/INOH/ontologies/EventOntology_172.obo
+    name: Event (INOH pathway ontology)
+    prefix: iev
+  pattern: \d{7}
+  prefix: iev
+- miriam:
+    deprecated: false
+    description: The IUPAC International Chemical Identifier (InChI) is a non-proprietary
+      identifier for chemical substances that can be used in printed and electronic
+      data sources. It is derived solely from a structural representation of that
+      substance, such that a single compound always yields the same identifier.
+    id: 00000383
+    name: InChI
+    namespaceEmbeddedInLui: false
+    pattern: ^InChI\=1S?\/[A-Za-z0-9\.]+(\+[0-9]+)?(\/[cnpqbtmsih][A-Za-z0-9\-\+\(\)\,\/\?\;\.]+)*$
+    prefix: inchi
+  prefix: inchi
+  wikidata:
+    property: P234
+- miriam:
+    deprecated: false
+    description: The IUPAC International Chemical Identifier (InChI, see MIR:00000383)
+      is an identifier for chemical substances, and is derived solely from a structural
+      representation of that substance. Since these can be quite unwieldly, particularly
+      for web use, the InChIKey was developed. These are of a fixed length (25 character)
+      and were created as a condensed, more web friendly, digital representation of
+      the InChI.
+    id: 00000387
+    name: InChIKey
+    namespaceEmbeddedInLui: false
+    pattern: ^[A-Z]{14}\-[A-Z]{10}(\-[A-Z])?
+    prefix: inchikey
+  prefix: inchikey
+  wikidata:
+    property: P235
+- name: International Nonproprietary Names
+  note: can not find a place to resolve to
+  prefix: inn
+  synonyms:
+  - INN_ID
+  url: https://mednet-communities.net/inn/db/ViewINN.aspx?i=$1
+  wikidata:
+    property: P2275
+- miriam:
+    deprecated: false
+    description: InterPro is a database of protein families, domains and functional
+      sites in which identifiable features found in known proteins can be applied
+      to unknown protein sequences.
+    id: '00000011'
+    name: InterPro
+    namespaceEmbeddedInLui: false
+    pattern: ^IPR\d{6}$
+    prefix: interpro
+  prefix: interpro
+  synonyms:
+  - InterPro
+  - IP
+  wikidata:
+    property: P2926
+- name: Integrated Taxonomic Information System
+  pattern: \d+
+  prefix: itis
+  url: https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=$1
+  wikidata:
+    property: P815
+- miriam:
+    deprecated: false
+    description: The IUPHAR Compendium details the molecular, biophysical and pharmacological
+      properties of identified mammalian sodium, calcium and potassium channels, as
+      well as the related cyclic nucleotide-modulated ion channels and the recently
+      described transient receptor potential channels. It includes information on
+      nomenclature systems, and on inter and intra-species molecular structure variation.
+      This collection references families of receptors or subunits.
+    id: '00000317'
+    name: IUPHAR family
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: iuphar.family
+  prefix: iuphar.family
+  synonyms:
+  - IUPHARfam
+- miriam:
+    deprecated: false
+    description: The IUPHAR Compendium details the molecular, biophysical and pharmacological
+      properties of identified mammalian sodium, calcium and potassium channels, as
+      well as the related cyclic nucleotide-modulated ion channels and the recently
+      described transient receptor potential channels. It includes information on
+      nomenclature systems, and on inter and intra-species molecular structure variation.
+      This collection references ligands.
+    id: '00000457'
+    name: IUPHAR ligand
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: iuphar.ligand
+  prefix: iuphar.ligand
+  synonyms:
+  - IUPHAR_LIGAND
+  - IUPHAR_LIGAND_ID
+  wikidata:
+    property: P595
+- miriam:
+    deprecated: false
+    description: The IUPHAR Compendium details the molecular, biophysical and pharmacological
+      properties of identified mammalian sodium, calcium and potassium channels, as
+      well as the related cyclic nucleotide-modulated ion channels and transient receptor
+      potential channels. It includes information on nomenclature systems, and on
+      inter and intra-species molecular structure variation. This collection references
+      individual receptors or subunits.
+    id: 00000281
+    name: IUPHAR receptor
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: iuphar.receptor
+  prefix: iuphar.receptor
+  wikidata:
+    property: P5458
+- miriam:
+    deprecated: false
+    description: Kyoto Encyclopedia of Genes and Genomes (KEGG) is a database resource
+      for understanding high-level functions and utilities of the biological system,
+      such as the cell, the organism and the ecosystem, from molecular-level information,
+      especially large-scale molecular datasets generated by genome sequencing and
+      other high-throughput experimental technologies.
+    id: 00000578
+    name: Kyoto Encyclopedia of Genes and Genomes
+    namespaceEmbeddedInLui: false
+    pattern: ^([CHDEGTMKR]\d+)|(\w+:[\w\d\.-]*)|([a-z]{3,5})|(\w{2,4}\d{5})$
+    prefix: kegg
+  prefix: kegg
+  synonyms:
+  - KEGG
+- miriam:
+    deprecated: false
+    description: KEGG compound contains our knowledge on the universe of chemical
+      substances that are relevant to life.
+    id: '00000013'
+    name: KEGG Compound
+    namespaceEmbeddedInLui: false
+    pattern: ^C\d+$
+    prefix: kegg.compound
+  prefix: kegg.compound
+  synonyms:
+  - KEGG.COMPOUND
+  - KEGG COMPOUND
+- miriam:
+    deprecated: false
+    description: KEGG DRUG contains chemical structures of drugs and additional information
+      such as therapeutic categories and target molecules.
+    id: '00000025'
+    name: KEGG Drug
+    namespaceEmbeddedInLui: false
+    pattern: ^D\d+$
+    prefix: kegg.drug
+  prefix: kegg.drug
+  synonyms:
+  - KEGG.DRUG
+  - KEGG DRUG
+- miriam:
+    deprecated: false
+    description: KEGG PATHWAY is a collection of manually drawn pathway maps representing
+      our knowledge on the molecular interaction and reaction networks.
+    id: '00000012'
+    name: KEGG Pathway
+    namespaceEmbeddedInLui: false
+    pattern: ^\w{2,4}\d{5}$
+    prefix: kegg.pathway
+  prefix: kegg.pathway
+  synonyms:
+  - KEGG_PATHWAY
+- miriam:
+    deprecated: false
+    description: KEGG reaction contains our knowledge on the universe of reactions
+      that are relevant to life.
+    id: '00000014'
+    name: KEGG Reaction
+    namespaceEmbeddedInLui: false
+    pattern: ^R\d+$
+    prefix: kegg.reaction
+  prefix: kegg.reaction
+  synonyms:
+  - KEGG_REACTION
+- miriam:
+    deprecated: false
+    description: 'KNApSAcK provides information on metabolites and the
+
+      taxonomic class with which they are associated.'
+    id: '00000271'
+    name: KNApSAcK
+    namespaceEmbeddedInLui: false
+    pattern: ^C\d{8}
+    prefix: knapsack
+  prefix: knapsack
+  wikidata:
+    database: Q20900436
+    property: P2064
+- miriam:
+    deprecated: false
+    description: 'The Library of Network-Based Cellular Signatures (LINCS) Program
+      aims to  create a network-based understanding of biology by cataloging changes
+      in gene expression and other cellular processes that occur when cells are exposed
+      to a variety of perturbing agents. The LINCS cell model system can have the
+      following cell categories: cell lines, primary cells, induced pluripotent stem
+      cells, differentiated cells, and embryonic stem cells. The metadata contains
+      information provided by each LINCS Data and Signature Generation Center (DSGC)
+      and the association with a tissue or organ from which the cells were derived,
+      in many cases are also associated to a disease.'
+    id: '00000544'
+    name: LINCS Cell
+    namespaceEmbeddedInLui: false
+    pattern: (^LCL-\d+$)|(^LDC-\d+$)|(^ES-\d+$)|(^LSC-\d+$)|(^LPC-\d+$)
+    prefix: lincs.cell
+  prefix: lincs.cell
+- miriam:
+    deprecated: false
+    description: The HMS LINCS Database currently contains information on experimental
+      reagents (small molecule perturbagens, cells, and proteins). It aims to collect
+      and disseminate information relating to the fundamental principles of cellular
+      response in humans to perturbation. This collection references proteins.
+    id: '00000545'
+    name: LINCS Protein
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: lincs.protein
+  prefix: lincs.protein
+- id: '00000546'
+  miriam:
+    deprecated: false
+    description: The Library of Network-Based Cellular Signatures (LINCS) Program
+      aims to create a network-based understanding of biology by cataloging changes
+      in gene expression and other cellular processes that occur when cells are exposed
+      to a variety of perturbing agents. The LINCS small molecule collection is used
+      as perturbagens in LINCS experiments. The small molecule metadata includes substance-specific
+      batch information provided by each LINCS Data and Signature Generation Center
+      (DSGC).
+    id: '00000546'
+    name: LINCS Small Molecule
+    namespaceEmbeddedInLui: false
+    pattern: ^LSM-\d+$
+    prefix: lincs.smallmolecule
+  prefix: lincs.smallmolecule
+- miriam:
+    deprecated: false
+    description: The LIPID MAPS Lipid Classification System is comprised of eight
+      lipid categories, each with its own subclassification hierarchy. All lipids
+      in the LIPID MAPS Structure Database (LMSD) have been classified using this
+      system and have been assigned LIPID MAPS ID's which reflects their position
+      in the classification hierarchy.
+    id: '00000052'
+    name: LIPID MAPS
+    namespaceEmbeddedInLui: false
+    pattern: ^LM(FA|GL|GP|SP|ST|PR|SL|PK)[0-9]{4}([0-9a-zA-Z]{4,6})?$
+    prefix: lipidmaps
+  prefix: lipidmaps
+  synonyms:
+  - LIPID_MAPS_instance
+  - LIPID MAPS
+  - LIPID_MAPS_class
+- description: A comprehensive compendium of human long non-coding RNAs
+  name: LNCipedia
+  prefix: lncipedia
+- miriam:
+    deprecated: false
+    description: MassBank is a federated database of reference spectra from different
+      instruments, including high-resolution mass spectra of small metabolites (<3000
+      Da).
+    id: '00000273'
+    name: MassBank
+    namespaceEmbeddedInLui: false
+    pattern: ^[A-Z]{2}[A-Z0-9][0-9]{5}$
+    prefix: massbank
+  prefix: massbank
+  wikidata:
+    database: Q24088019
+    property: P6689
+- obofoundry:
+    contact: citlalli.mejiaalmonte@gmail.com
+    contact.label: "Citlalli Mej\xEDa-Almonte"
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/microbial-conditions-ontology/microbial-conditions-ontology/master/mco.obo
+    license: CC-BY
+    name: Microbial Conditions Ontology
+    prefix: mco
+    repo: https://github.com/microbial-conditions-ontology/microbial-conditions-ontology.git
+  ols:
+    description: Microbial Conditions Ontology is an ontology...
+    download: http://purl.obolibrary.org/obo/mco.owl
+    name: Microbial Conditions Ontology
+    prefix: mco
+    version: '2019-05-15'
+    version.iri: http://purl.obolibrary.org/obo/mco/releases/2019-05-15/mco.owl
+  pattern: \d+
+  prefix: mco
+- miriam:
+    deprecated: false
+    description: The Medical Dictionary for Regulatory Activities (MedDRA) was developed
+      by the International Council for Harmonisation of Technical Requirements for
+      Registration of Pharmaceuticals for Human Use (ICH)to provide a standardised
+      medical terminology to facilitate sharing of regulatory information internationally
+      for medical products used by humans. It is used within regulatory processes,
+      safety monitoring, as well as for marketing activities. Products covered by
+      the scope of MedDRA include pharmaceuticals, biologics, vaccines and drug-device
+      combination products. The MedDRA dictionary is organized by System Organ Class
+      (SOC), divided into High-Level Group Terms (HLGT), High-Level Terms (HLT), Preferred
+      Terms (PT) and finally into Lowest Level Terms (LLT).
+    id: '00000563'
+    name: MedDRA
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: meddra
+  prefix: meddra
+  synonyms:
+  - MedDRA
+  - MeDRA
+  - MEDRA
+  - Medical Dictionary for Regulatory Activities
+  wikidata:
+    property: P3201
+- miriam:
+    deprecated: false
+    description: MeSH (Medical Subject Headings) is the National Library of Medicine's
+      controlled vocabulary thesaurus. It consists of sets of terms naming descriptors
+      in a hierarchical structure that permits searching at various levels of specificity.
+      This thesaurus is used by NLM for indexing articles from biomedical journals,
+      cataloguing of books, documents, etc.
+    id: '00000560'
+    name: MeSH
+    namespaceEmbeddedInLui: false
+    pattern: ^(C|D)\d{6,9}$
+    prefix: mesh
+  prefix: mesh
+  synonyms:
+  - MSH
+  - MESH
+  - MESHD
+  - MESHA
+  - MESHC
+  - MESHPP
+  - MESHCS
+  - MESH_SUPPLEMENTAL_RECORD_UI
+  - MESH_DESCRIPTOR_UI
+  wikidata:
+    database: Q199897
+    database.label: Medical Subject Headings
+    format: http://id.nlm.nih.gov/mesh/$1
+    pattern: ^[CD]\w{6}(\w{3}|)$
+    property: P486
+    property.label: MeSH descriptor ID
+    webpage: https://www.wikidata.org/wiki/Q6589563
+- miriam:
+    deprecated: false
+    description: MetaCyc is a curated database of experimentally elucidated metabolic
+      pathways from all domains of life. MetaCyc contains 2526 pathways from 2844
+      different organisms. MetaCyc contains pathways involved in both primary and
+      secondary metabolism, as well as associated metabolites, reactions, enzymes,
+      and genes. The goal of MetaCyc is to catalog the universe of metabolism by storing
+      a representative sample of each experimentally elucidated pathway.
+    id: 00000609
+    name: MetaCyc Compound
+    namespaceEmbeddedInLui: false
+    pattern: ^CPD-\d{5}$
+    prefix: metacyc.compound
+  prefix: metacyc.compound
+  synonyms:
+  - MetaCyc
+- obofoundry:
+    contact: Thorsten.Henrich@embl-heidelberg.de
+    contact.label: Thorsten Henrich
+    deprecated: true
+    name: Medaka fish anatomy and development
+    prefix: mfo
+  prefix: mfo
+- miriam:
+    deprecated: false
+    description: The Mouse Genome Database (MGD) project includes data on gene characterization,
+      nomenclature, mapping, gene homologies among mammals, sequence links, phenotypes,
+      allelic variants and mutants, and strain data.
+    id: '00000037'
+    name: Mouse Genome Database
+    namespaceEmbeddedInLui: true
+    pattern: ^MGI:\d+$
+    prefix: mgi
+  prefix: mgi
+  synonyms:
+  - MGI
+  - MGD
+  wikidata:
+    database: Q1951035
+    property: P671
+- miriam:
+    deprecated: false
+    description: The Molecular Interactions (MI) ontology forms a structured controlled
+      vocabulary for the annotation of experiments concerned with protein-protein
+      interactions. MI is developed by the HUPO Proteomics Standards Initiative.
+    id: 00000109
+    name: Molecular Interactions Ontology
+    namespaceEmbeddedInLui: true
+    pattern: ^MI:\d{4}$
+    prefix: mi
+  obofoundry:
+    contact: pporras@ebi.ac.uk
+    contact.label: "Pablo Porras Mill\xE1n"
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/HUPO-PSI/psi-mi-CV/master/psi-mi.obo
+    license: CC BY 4.0
+    name: Molecular Interactions Controlled Vocabulary
+    prefix: mi
+  ols:
+    description: A structured controlled vocabulary for the annotation of experiments
+      concerned with protein-protein interactions.
+    download: https://raw.githubusercontent.com/HUPO-PSI/psi-mi-CV/master/psi-mi.obo
+    name: Molecular Interactions Controlled Vocabulary
+    prefix: mi
+    version: '2020-04-13'
+    version.iri: http://purl.obolibrary.org/obo/mi/releases/2020-04-13/mi.owl
+  pattern: \d{4}
+  prefix: mi
+- miriam:
+    deprecated: false
+    description: Online Mendelian Inheritance in Man is a catalog of human genes and
+      genetic disorders.
+    id: '00000016'
+    name: OMIM
+    namespaceEmbeddedInLui: false
+    pattern: ^[*#+%^]?\d{6}$
+    prefix: mim
+  prefix: mim
+  synonyms:
+  - OMIM
+  - OMIMPS
+  wikidata:
+    database: Q241953
+    property: P492
+- miriam:
+    deprecated: false
+    description: The miRBase Sequence Database is a searchable database of published
+      miRNA sequences and annotation. The data were previously provided by the miRNA
+      Registry. Each entry in the miRBase Sequence database represents a predicted
+      hairpin portion of a miRNA transcript (termed mir in the database), with information
+      on the location and sequence of the mature miRNA sequence (termed miR).
+    id: 00000078
+    name: miRBase Sequence
+    namespaceEmbeddedInLui: false
+    pattern: MI\d{7}
+    prefix: mirbase
+  prefix: mirbase
+  url: http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=$1
+  wikidata:
+    database: Q6826947
+    property: P2870
+- name: miRBase Families
+  prefix: mirbase.family
+  synonyms:
+  - MIRBASE_FAMILY
+  url: http://www.mirbase.org/cgi-bin/mirna_summary.pl?fam=$1
+  wikidata:
+    database: Q6826947
+- miriam:
+    deprecated: false
+    description: The miRBase Sequence Database is a searchable database of published
+      miRNA sequences and annotation. This collection refers specifically to the mature
+      miRNA sequence.
+    id: '00000235'
+    name: miRBase mature sequence
+    namespaceEmbeddedInLui: false
+    pattern: MIMAT\d{7}
+    prefix: mirbase.mature
+  prefix: mirbase.mature
+  url: http://mirbase.org/cgi-bin/mature.pl?mature_acc=$1
+  wikidata:
+    database: Q6826947
+    property: P2871
+- comment: yo dawg i heard you like registries...
+  miriam:
+    deprecated: false
+    description: MIRIAM Registry is an online resource created to catalogue data types
+      (Gene Ontology, Taxonomy or PubMed are some examples), their URIs and the corresponding
+      resources (or physical locations), whether these are controlled vocabularies
+      or databases.
+    id: 00000188
+    name: MIRIAM Registry resource
+    namespaceEmbeddedInLui: false
+    pattern: ^MIR:001\d{5}$
+    prefix: miriam.resource
+  prefix: miriam.resource
+- download: http://purl.obolibrary.org/obo/miro.obo
+  obofoundry:
+    contact: louis@imbb.forth.gr
+    contact.label: C. Louis
+    deprecated: false
+    name: Mosquito insecticide resistance
+    prefix: miro
+  ols:
+    description: Application ontology for entities related to insecticide resistance
+      in mosquitos
+    download: http://purl.obolibrary.org/obo/miro.owl
+    name: Mosquito insecticide resistance
+    prefix: miro
+    version: '2014-05-14'
+    version.iri: http://purl.obolibrary.org/obo/miro/releases/2014-05-14/miro.owl
+  pattern: \d{8}
+  prefix: miro
+- homepage: http://www.russelllab.org/miRNAs/
+  name: miRNA Target Prediction at EMBL
+  prefix: mirte
+- obofoundry:
+    contact: jrsmith@mcw.edu
+    contact.label: Jennifer Smith
+    deprecated: false
+    download.obo: ftp://ftp.rgd.mcw.edu/pub/ontology/measurement_method/measurement_method.obo
+    license: CC-0
+    name: Measurement method ontology
+    prefix: mmo
+  ols:
+    description: 'A representation of the variety of methods used to make clinical
+      and phenotype measurements. '
+    download: http://purl.obolibrary.org/obo/mmo.owl
+    name: Measurement method ontology
+    prefix: mmo
+    version: 27-03-2019
+    version.iri: http://purl.obolibrary.org/obo/mmo/2.39/mmo.owl
+  pattern: \d{7}
+  prefix: mmo
+- name: Multum MediSource Lexicon
+  prefix: mmsl
+  references:
+  - https://www.nlm.nih.gov/research/umls/rxnorm/sourcereleasedocs/mmsl.html
+  synonyms:
+  - MMSL_CODE
+- obofoundry:
+    contact: bgee@sib.swiss
+    contact.label: bgee
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/developmental-stage-ontologies/master/src/mmusdv/mmusdv.obo
+    license: CC-BY
+    name: Mouse Developmental Stages
+    prefix: mmusdv
+  ols:
+    description: Life cycle stages for Mus Musculus
+    download: http://purl.obolibrary.org/obo/mmusdv.owl
+    name: Mouse Developmental Stages
+    prefix: mmusdv
+    version: '2020-03-10'
+    version.iri: http://purl.obolibrary.org/obo/mmusdv/releases/2020-03-10/mmusdv.owl
+  pattern: \d{7}
+  prefix: mmusdv
+  synonyms:
+  - MmusDv
+- download: http://purl.obolibrary.org/obo/mondo.obo
+  example: '0000001'
+  obofoundry:
+    contact: vasilevs@ohsu.edu
+    contact.label: Nicole Vasilevsky
+    deprecated: false
+    license: CC BY 4.0
+    name: Mondo Disease Ontology
+    prefix: mondo
+  ols:
+    description: A semi-automatically constructed ontology that merges in multiple
+      disease resources to yield a coherent merged ontology.
+    download: http://purl.obolibrary.org/obo/mondo.owl
+    license: http://creativecommons.org/licenses/by/4.0/
+    name: Mondo Disease Ontology
+    prefix: mondo
+    version: '2020-12-02'
+    version.iri: http://purl.obolibrary.org/obo/mondo/releases/2020-12-02/mondo.owl
+  pattern: \d{7}
+  prefix: mondo
+  wikidata:
+    property: P5270
+- download: https://raw.githubusercontent.com/rsc-ontologies/rxno/master/mop.obo
+  obofoundry:
+    contact: batchelorc@rsc.org
+    contact.label: Colin Batchelor
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/rsc-ontologies/rxno/master/mop.owl
+    license: CC-BY 4.0
+    name: Molecular Process Ontology
+    prefix: mop
+    repo: https://github.com/rsc-ontologies/rxno.git
+  ols:
+    description: MOP is the molecular process ontology. It contains the molecular
+      processes that underlie the name reaction ontology RXNO, for example cyclization,
+      methylation and demethylation.
+    download: http://purl.obolibrary.org/obo/mop.owl
+    name: MOP
+    prefix: mop
+    version: '2014-09-03'
+    version.iri: http://purl.obolibrary.org/obo/mop/releases/2014-09-03/mop.owl
+  pattern: \d{7}
+  prefix: mop
+- download: https://raw.githubusercontent.com/PaulNSchofield/mpath/master/mpath.obo
+  obofoundry:
+    contact: pns12@hermes.cam.ac.uk
+    contact.label: Paul Schofield
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/PaulNSchofield/mpath/master/mpath.obo
+    license: CC-BY
+    name: Mouse pathology ontology
+    prefix: mpath
+  ols:
+    description: A structured controlled vocabulary of mutant and transgenic mouse
+      pathology phenotypes
+    download: http://purl.obolibrary.org/obo/mpath.owl
+    name: Mouse pathology ontology
+    prefix: mpath
+    version: '2020-05-19'
+    version.iri: http://purl.obolibrary.org/obo/mpath/2020-05-19/mpath.owl
+  pattern: \d+
+  prefix: mpath
+  synonyms:
+  - MPATH
+- download: https://github.com/obo-behavior/behavior-ontology/raw/master/nbo.obo
+  obofoundry:
+    contact: g.gkoutos@bham.ac.uk
+    contact.label: George Gkoutos
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obo-behavior/behavior-ontology/master/nbo.owl
+    license: CC-BY
+    name: Neuro Behavior Ontology
+    prefix: nbo
+    repo: https://github.com/obo-behavior/behavior-ontology.git
+  ols:
+    description: An ontology of human and animal behaviours and behavioural phenotypes
+    download: http://purl.obolibrary.org/obo/nbo.owl
+    name: Neuro Behavior Ontology
+    prefix: nbo
+    version: '2020-02-10'
+    version.iri: http://purl.obolibrary.org/obo/nbo/releases/2020-02-10/nbo.owl
+  pattern: \d{7}
+  prefix: nbo
+- miriam:
+    deprecated: false
+    description: Entrez Gene is the NCBI's database for gene-specific information,
+      focusing on completely sequenced genomes, those with an active research community
+      to contribute gene-specific information, or those that are scheduled for intense
+      sequence analysis.
+    id: 00000069
+    name: NCBI Gene
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: ncbigene
+  prefix: ncbigene
+  synonyms:
+  - entrez
+  - NCBIGene
+  - EGID
+  - entrez gene/locuslink
+  wikidata:
+    database: Q1345229
+    database.label: Entrez
+    format: http://purl.uniprot.org/geneid/$1
+    pattern: '[1-9]\d{0,8}'
+    property: P351
+    property.label: Entrez Gene ID
+- download: http://purl.obolibrary.org/obo/ncbitaxon.obo
+  miriam:
+    deprecated: false
+    description: The taxonomy contains the relationships between all living forms
+      for which nucleic acid or protein sequence have been determined.
+    id: '00000006'
+    name: Taxonomy
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: taxonomy
+  obofoundry:
+    contact: frederic.bastian@unil.ch
+    contact.label: Frederic Bastian
+    deprecated: false
+    license: CC0 1.0 Universal
+    name: NCBI organismal classification
+    prefix: ncbitaxon
+  ols:
+    description: An ontology representation of the NCBI organismal taxonomy
+    download: http://purl.obolibrary.org/obo/ncbitaxon.owl
+    name: NCBI organismal classification
+    prefix: ncbitaxon
+    version: '2020-04-18'
+    version.iri: http://purl.obolibrary.org/obo/ncbitaxon/2020-04-18/ncbitaxon.owl
+  pattern: \d+
+  prefix: ncbitaxon
+  synonyms:
+  - NCBITaxon
+  - taxid
+  - NCBI_Taxon_ID
+  - NCBI_taxid
+  - taxonomy
+  - TAX
+  wikidata:
+    database: Q13711410
+    database.label: Taxonomy database of the U.S. National Center for Biotechnology
+      Information
+    format: http://purl.uniprot.org/taxonomy/$1
+    pattern: '[1-9][0-9]{0,6}'
+    property: P685
+    property.label: NCBI taxonomy ID
+    webpage: http://www.ncbi.nlm.nih.gov/taxonomy
+- download: http://purl.obolibrary.org/obo/ncit.obo
+  miriam:
+    deprecated: false
+    description: NCI Thesaurus (NCIt) provides reference terminology covering vocabulary
+      for clinical care, translational and basic research, and public information
+      and administrative activities, providing a stable and unique identification
+      code.
+    id: 00000139
+    name: NCIt
+    namespaceEmbeddedInLui: false
+    pattern: ^C\d+$
+    prefix: ncit
+  obofoundry:
+    contact: haendel@ohsu.edu
+    contact.label: Melissa Haendel
+    deprecated: false
+    license: CC-BY 4.0
+    name: NCI Thesaurus OBO Edition
+    prefix: ncit
+  ols:
+    description: The NCIt OBO Edition project aims to increase integration of the
+      NCIt with OBO Library ontologies. NCIt is a reference terminology that includes
+      broad coverage of the cancer domain, including cancer related diseases, findings
+      and abnormalities. NCIt OBO Edition releases should be considered experimental.
+    download: http://purl.obolibrary.org/obo/ncit.owl
+    name: NCI Thesaurus OBO Edition
+    prefix: ncit
+    version: 20.06e
+    version.iri: http://purl.obolibrary.org/obo/ncit/releases/2020-07-17/ncit.owl
+  prefix: ncit
+  synonyms:
+  - NCIt
+  - NCIT
+  - NCI
+  - NCI2004_11_17
+  - ncithesaurus
+  - NCI_Thesaurus
+  - NCIT_Thesaurus
+  - NCITm
+  - NCITt
+  wikidata:
+    database: Q19404626
+    property: P1748
+- name: National Drug Data File
+  prefix: nddf
+  references:
+  - https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDDF/index.html
+- bioportal: NDFRT
+  name: National Drug File - Reference Terminology
+  prefix: ndfrt
+  synonyms:
+  - NUI
+  - ndf-rt
+  wikidata:
+    database: Q21008030
+    property: P2115
+- miriam:
+    deprecated: false
+    description: "neXtProt is a resource on human proteins, and includes information\
+      \ such as proteins\u2019 function, subcellular location, expression, interactions\
+      \ and role in diseases."
+    id: '00000236'
+    name: nextProt
+    namespaceEmbeddedInLui: false
+    pattern: ^NX_\w+
+    prefix: nextprot
+  prefix: nextprot
+  synonyms:
+  - NXP
+  wikidata:
+    database: Q6983890
+- prefix: nist
+  synonyms:
+  - NIST Chemistry WebBook
+  - NIST
+- name: Natural Product Activity and Species Source Database
+  prefix: npass
+- obofoundry:
+    contact: cjmungall@lbl.gov
+    contact.label: Chris Mungall
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/bio-attribute-ontology/master/oba.obo
+    license: CC-0
+    name: Ontology of Biological Attributes
+    prefix: oba
+    repo: https://github.com/obophenotype/bio-attribute-ontology.git
+  ols:
+    description: A collection of biological attributes (traits) covering all kingdoms
+      of life.
+    download: http://purl.obolibrary.org/obo/oba.owl
+    name: Ontology of Biological Attributes
+    prefix: oba
+    version: 22-05-2019
+  pattern: \d{7}
+  prefix: oba
+- name: Internal OBO and PyOBO Relations
+  prefix: obo
+- not_available_as_obo: true
+  obofoundry:
+    contact: baeverma@jcvi.org
+    contact.label: Brian Aevermann
+    deprecated: false
+    license: CC-BY
+    name: Ontology for General Medical Science
+    prefix: ogms
+  ols:
+    description: 'The Ontology for General Medical Science (OGMS) is an ontology of
+      entities involved in a clinical encounter. OGMS includes very general terms
+      that are used across medical disciplines, including: ''disease'', ''disorder'',
+      ''disease course'', ''diagnosis'', ''patient'', and ''healthcare provider''.
+      OGMS uses the Basic Formal Ontology (BFO) as an upper-level ontology. The scope
+      of OGMS is restricted to humans, but many terms can be applied to a variety
+      of organisms. OGMS provides a formal theory of disease that can be further elaborated
+      by specific disease ontologies. This theory is implemented using OWL-DL and
+      OBO Relation Ontology relations and is available in OWL and OBO formats.
+
+
+      OGMS is based on the papers Toward an Ontological Treatment of Disease and Diagnosis
+      and On Carcinomas and Other Pathological Entities. The ontology attempts to
+      address some of the issues raised at the Workshop on Ontology of Diseases (Dallas,
+      TX) and the Signs, Symptoms, and Findings Workshop(Milan, Italy). OGMS was formerly
+      called the clinical phenotype ontology. Terms from OGMS hang from the Basic
+      Formal Ontology.'
+    download: http://purl.obolibrary.org/obo/ogms.owl
+    license: 'url: http://creativecommons.org/licenses/by/4.0/'
+    name: Ontology for General Medical Science
+    prefix: ogms
+    version: '2020-07-06'
+    version.iri: https://github.com/OGMS/ogms/releases/tag/2020-07-06
+  prefix: ogms
+- obofoundry:
+    contact: bgee@sib.swiss
+    contact.label: bgee
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/developmental-stage-ontologies/master/src/olatdv/olatdv.obo
+    license: CC-BY
+    name: Medaka Developmental Stages
+    prefix: olatdv
+  ols:
+    description: Life cycle stages for Medaka
+    download: http://purl.obolibrary.org/obo/olatdv.owl
+    name: Medaka Developmental Stages
+    prefix: olatdv
+    version: '2020-03-10'
+    version.iri: http://purl.obolibrary.org/obo/olatdv/releases/2020-03-10/olatdv.owl
+  pattern: \d{7}
+  prefix: olatdv
+- download: https://raw.githubusercontent.com/OmniSearch/omit/master/src/ontology/omit.obo
+  miriam:
+    deprecated: false
+    description: The purpose of the OMIT ontology is to establish data exchange standards
+      and common data elements in the microRNA (miR) domain. Biologists (cell biologists
+      in particular) and bioinformaticians can make use of OMIT to leverage emerging
+      semantic technologies in knowledge acquisition and discovery for more effective
+      identification of important roles performed by miRs in humans' various diseases
+      and biological processes (usually through miRs' respective target genes).
+    id: '00000605'
+    name: OMIT
+    namespaceEmbeddedInLui: false
+    pattern: ^\d{7}$
+    prefix: omit
+  obofoundry:
+    contact: huang@southalabama.edu
+    contact.label: Huang, Jingshan
+    deprecated: false
+    license: CC-BY 3.0
+    name: Ontology for MIRNA Target
+    prefix: omit
+  ols:
+    description: Ontology to establish data exchange standards and common data elements
+      in the microRNA (miR) domain
+    download: http://purl.obolibrary.org/obo/omit.owl
+    name: Ontology for MIRNA Target
+    prefix: omit
+    version: 07-06-2019
+    version.iri: http://purl.obolibrary.org/obo/omit/dev/omit.owl
+  prefix: omit
+  synonyms:
+  - OMIT
+  wikidata:
+    property: Q55118529
+- obofoundry:
+    contact: jimhu@tamu.edu
+    contact.label: James C. Hu
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/microbialphenotypes/OMP-ontology-files/master/omp.obo
+    license: CC-BY
+    name: Ontology of Microbial Phenotypes
+    prefix: omp
+  ols:
+    description: An ontology of phenotypes covering microbes
+    download: http://purl.obolibrary.org/obo/omp.owl
+    name: Ontology of Microbial Phenotypes
+    prefix: omp
+    version: '2020-11-06'
+    version.iri: http://purl.obolibrary.org/obo/omp/releases/2020-11-06/omp.owl
+  pattern: \d{7}
+  prefix: omp
+  wikidata:
+    database: Q81661753
+- miriam:
+    deprecated: false
+    description: ORCID (Open Researcher and Contributor ID) is an open, non-profit,
+      community-based effort to create and maintain a registry of unique identifiers
+      for individual researchers. ORCID records hold non-sensitive information such
+      as name, email, organization name, and research activities.
+    id: 00000382
+    name: ORCID
+    namespaceEmbeddedInLui: false
+    pattern: ^\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$
+    prefix: orcid
+  prefix: orcid
+  synonyms:
+  - ORCiD
+  - ORCID
+  wikidata:
+    database: Q51044
+    database.label: ORCID iD
+    format: https://orcid.org/$1
+    pattern: 0000-000(1-[5-9]|2-[0-9]|3-[0-4])\d{3}-\d{3}[\dX]
+    property: P496
+    property.label: ORCID iD
+    webpage: https://orcid.org/
+- obofoundry:
+    contact: safisher@upenn.edu
+    contact.label: Stephen Fisher
+    deprecated: false
+    license: CC-BY
+    name: Ontology of RNA Sequencing
+    prefix: ornaseq
+  ols:
+    description: An application ontology designed to annotate next-generation sequencing
+      experiments performed on RNA.
+    download: http://purl.obolibrary.org/obo/ornaseq.owl
+    name: Ontology for RNA sequencing (ORNASEQ)
+    prefix: ornaseq
+    version: '2019-07-08'
+    version.iri: http://purl.obolibrary.org/obo/ornaseq/2019-07-08/ornaseq.owl
+  pattern: \d{7}
+  prefix: ornaseq
+- miriam:
+    deprecated: false
+    description: "Orphanet is a reference portal for information on rare diseases\
+      \ and orphan drugs. It\u2019s aim is to help improve the diagnosis, care and\
+      \ treatment of patients with rare diseases."
+    id: '00000220'
+    name: Orphanet
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: orphanet
+  name: Orphanet
+  prefix: orphanet
+  wikidata:
+    property: P1550
+- miriam:
+    deprecated: false
+    description: "The Orphanet Rare Disease ontology (ORDO) is a structured vocabulary\
+      \ for rare diseases, capturing relationships between diseases, genes and other\
+      \ relevant features which will form a useful resource for the computational\
+      \ analysis of rare diseases.\r\nIt integrates a nosology (classification of\
+      \ rare diseases), relationships (gene-disease relations, epiemological data)\
+      \ and connections with other terminologies (MeSH, UMLS, MedDRA), databases (OMIM,\
+      \ UniProtKB, HGNC, ensembl, Reactome, IUPHAR, Geantlas) and classifications\
+      \ (ICD10)."
+    id: '00000532'
+    name: Orphanet Rare Disease Ontology
+    namespaceEmbeddedInLui: false
+    pattern: ^Orphanet(_|:)C?\d+$
+    prefix: orphanet.ordo
+  prefix: orphanet.ordo
+  synonyms:
+  - ordo
+- prefix: patent
+- example: SMP0000219
+  name: PathBank
+  pattern: ^SMP\d+$
+  prefix: pathbank
+  url: https://pathbank.org/view/$1
+- obofoundry:
+    contact: rlwalls2008@gmail.com
+    contact.label: Ramona Walls
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/PopulationAndCommunityOntology/pco/master/pco.obo
+    license: CC-0
+    name: Population and Community Ontology
+    prefix: pco
+    repo: https://github.com/PopulationAndCommunityOntology/pco.git
+  ols:
+    description: The Population and Community Ontology (PCO) describes material entities,
+      qualities, and processes related to collections of interacting organisms such
+      as populations and communities. It is taxon neutral, and can be used for any
+      species, including humans. The classes in the PCO are useful for describing
+      evolutionary processes, organismal interactions, and ecological experiments.
+      Practical applications of the PCO include community health care, plant pathology,
+      behavioral studies, sociology, and ecology.
+    download: http://purl.obolibrary.org/obo/pco.owl
+    license: http://creativecommons.org/publicdomain/zero/1.0/
+    name: Population and Community Ontology
+    prefix: pco
+    version: '2020-08-26'
+    version.iri: http://purl.obolibrary.org/obo/pco/releases/2020-08-26/pco.owl
+  pattern: \d{7}
+  prefix: pco
+- miriam:
+    deprecated: false
+    description: The Protein Data Bank is the single worldwide archive of structural
+      data of biological macromolecules.
+    id: '00000020'
+    name: Protein Data Bank
+    namespaceEmbeddedInLui: false
+    pattern: ^[0-9][A-Za-z0-9]{3}$
+    prefix: pdb
+  prefix: pdb
+  wikidata:
+    database: Q766195
+    database.label: Protein Data Bank
+    format: https://rdf.wwpdb.org/pdb/$1
+    pattern: '[0-9][0-9A-Za-z]{3}'
+    property: P638
+    property.label: PDB structure ID
+    webpage: https://www.rcsb.org/
+- miriam:
+    deprecated: false
+    description: The Chemical Component Dictionary is as an external reference file
+      describing all residue and small molecule components found in Protein Data Bank
+      entries. It contains detailed chemical descriptions for standard and modified
+      amino acids/nucleotides, small molecule ligands, and solvent molecules. Each
+      chemical definition includes descriptions of chemical properties such as stereochemical
+      assignments, aromatic bond assignments, idealized coordinates, chemical descriptors
+      (SMILES & InChI), and systematic chemical names.
+    id: '00000113'
+    name: Chemical Component Dictionary
+    namespaceEmbeddedInLui: false
+    pattern: ^\w{3}$
+    prefix: pdb-ccd
+  prefix: pdb-ccd
+  synonyms:
+  - pdbechem
+  url: https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/$1
+- miriam:
+    deprecated: false
+    description: The Protein Data Bank is the single worldwide archive of structural
+      data of biological macromolecules. This collection references ligands.
+    id: 00000490
+    name: Protein Data Bank Ligand
+    namespaceEmbeddedInLui: false
+    pattern: ^[A-Za-z0-9]+$
+    prefix: pdb.ligand
+  prefix: pdb.ligand
+  synonyms:
+  - PDB_CHEM_ID
+  wikidata:
+    property: P3636
+- name: Protein Data Bank in Europe
+  prefix: pdbe
+- obofoundry:
+    contact: bgee@sib.swiss
+    contact.label: bgee
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/developmental-stage-ontologies/master/src/pdumdv/pdumdv.obo
+    license: CC-BY
+    name: Platynereis Developmental Stages
+    prefix: pdumdv
+  ols:
+    description: Life cycle stages for Platynereis dumerilii
+    download: http://purl.obolibrary.org/obo/pdumdv.owl
+    name: Platynereis Developmental Stages
+    prefix: pdumdv
+    version: '2020-03-10'
+    version.iri: http://purl.obolibrary.org/obo/pdumdv/releases/2020-03-10/pdumdv.owl
+  pattern: \d{7}
+  prefix: pdumdv
+  synonyms:
+  - PdumDv
+- obofoundry:
+    contact: jaiswalp@science.oregonstate.edu
+    contact.label: Pankaj Jaiswal
+    deprecated: false
+    license: CC-BY 4.0
+    name: Plant Experimental Conditions Ontology
+    prefix: peco
+  ols:
+    description: A structured, controlled vocabulary which describes the treatments,
+      growing conditions, and/or study types used in plant biology experiments.
+    download: http://purl.obolibrary.org/obo/peco.owl
+    name: Plant Experimental Conditions Ontology
+    prefix: peco
+    version: '2020-08-21'
+    version.iri: http://purl.obolibrary.org/obo/peco/releases/2020-08-21/peco.owl
+  pattern: \d{7}
+  prefix: peco
+- miriam:
+    deprecated: false
+    description: The Pfam database contains information about protein domains and
+      families. For each entry a protein sequence alignment and a Hidden Markov Model
+      is stored.
+    id: 00000028
+    name: Pfam
+    namespaceEmbeddedInLui: false
+    pattern: ^PF\d{5}$
+    prefix: pfam
+  prefix: pfam
+  synonyms:
+  - PF
+  wikidata:
+    database: Q906796
+    property: P3519
+- prefix: pfam.clan
+- name: Proteoform Atlas
+  pattern: \d+
+  prefix: pfr
+  synonyms:
+  - TDR
+  url: http://repository.topdownproteomics.org/proteoforms/$1
+- miriam:
+    deprecated: false
+    description: The PharmGKB database is a central repository for genetic, genomic,
+      molecular and cellular phenotype data and clinical information about people
+      who have participated in pharmacogenomics research studies. The data includes,
+      but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic
+      research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter
+      domains.
+    id: 00000090
+    name: PharmGKB Disease
+    namespaceEmbeddedInLui: false
+    pattern: ^PA\d+$
+    prefix: pharmgkb.disease
+  prefix: pharmgkb.disease
+  wikidata:
+    property: P7001
+- miriam:
+    deprecated: false
+    description: The PharmGKB database is a central repository for genetic, genomic,
+      molecular and cellular phenotype data and clinical information about people
+      who have participated in pharmacogenomics research studies. The data includes,
+      but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic
+      research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter
+      domains.
+    id: 00000091
+    name: PharmGKB Drug
+    namespaceEmbeddedInLui: false
+    pattern: ^PA\d+$
+    prefix: pharmgkb.drug
+  prefix: pharmgkb.drug
+  wikidata:
+    property: P7001
+- miriam:
+    deprecated: false
+    description: The PharmGKB database is a central repository for genetic, genomic,
+      molecular and cellular phenotype data and clinical information about people
+      who have participated in pharmacogenomics research studies. The data includes,
+      but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic
+      research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter
+      domains.
+    id: '00000245'
+    name: PharmGKB Gene
+    namespaceEmbeddedInLui: false
+    pattern: ^PA\w+$
+    prefix: pharmgkb.gene
+  prefix: pharmgkb.gene
+  wikidata:
+    property: P7001
+- miriam:
+    deprecated: false
+    description: "The PharmGKB database is a central repository for genetic, genomic,\
+      \ molecular and cellular phenotype data and clinical information about people\
+      \ who have participated in pharmacogenomics research studies. The data includes,\
+      \ but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic\
+      \ research in the cardiovascular, pulmonary, cancer, pathways, metabolic and\
+      \ transporter domains. \r\nPharmGKB Pathways are drug centric, gene based, interactive\
+      \ pathways which focus on candidate genes and gene groups and associated genotype\
+      \ and phenotype data of relevance for pharmacogenetic and pharmacogenomic studies."
+    id: 00000089
+    name: PharmGKB Pathways
+    namespaceEmbeddedInLui: false
+    pattern: ^PA\d+$
+    prefix: pharmgkb.pathways
+  prefix: pharmgkb.pathways
+  wikidata:
+    property: P7001
+- obofoundry:
+    contact: alayne.cuzick@rothamsted.ac.uk
+    contact.label: Alayne Cuzick
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/PHI-base/phipo/master/phipo.obo
+    license: CC-BY
+    name: Pathogen Host Interaction Phenotype Ontology
+    prefix: phipo
+    repo: https://github.com/PHI-base/phipo.git
+  ols:
+    description: Ontology of species-neutral phenotypes observed in pathogen-host
+      interactions.
+    download: http://purl.obolibrary.org/obo/phipo.owl
+    license: https://creativecommons.org/licenses/by/3.0/
+    name: Pathogen Host Interactions Phenotype Ontology
+    prefix: phipo
+    version: '2020-10-22'
+    version.iri: http://purl.obolibrary.org/obo/phipo/releases/2020-10-22/phipo.owl
+  pattern: \d{7}
+  prefix: phipo
+- obofoundry:
+    contact: smr@stowers.org
+    contact.label: Sofia Robb
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/planaria-ontology/master/plana.obo
+    license: CC-BY
+    name: planaria-ontology
+    prefix: plana
+    repo: https://github.com/obophenotype/planaria-ontology.git
+  ols:
+    description: PLANA, the planarian anatomy ontology, encompasses the anatomy and
+      life cycle stages for both __Schmidtea mediterranea__ biotypes.
+    download: http://purl.obolibrary.org/obo/plana.owl
+    name: planaria-ontology
+    prefix: plana
+    version: 18-11-2019
+    version.iri: http://purl.obolibrary.org/obo/plana/releases/2020-11-05
+  pattern: \d{7}
+  prefix: plana
+- obofoundry:
+    contact: smr@stowers.org
+    contact.label: Sofia Robb
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/planarian-phenotype-ontology/master/planp.obo
+    license: CC-BY
+    name: Planarian Phenotype Ontology
+    prefix: planp
+    repo: https://github.com/obophenotype/planarian-phenotype-ontology.git
+  ols:
+    description: Planarian Phenotype Ontology is an ontology of phenotypes observed
+      in the planarian Schmidtea mediterranea.
+    download: http://purl.obolibrary.org/obo/planp.owl
+    license: https://creativecommons.org/licenses/by/3.0/
+    name: Planarian Phenotype Ontology (PLANP)
+    prefix: planp
+    version: '2020-03-28'
+    version.iri: http://purl.obolibrary.org/obo/planp/releases/2020-03-28/planp.owl
+  pattern: \d+
+  prefix: planp
+- miriam:
+    deprecated: false
+    description: PMC International (PMCI) is a free full-text archive of biomedical
+      and life sciences journal literature. PMCI is a collaborative effort between
+      the U.S. National Institutes of Health and the National Library of Medicine,
+      the publishers whose journal content makes up the PMC archive, and organizations
+      in other countries that share NIH's and NLM's interest in archiving life sciences
+      literature.
+    id: '00000147'
+    name: PMC International
+    namespaceEmbeddedInLui: false
+    pattern: PMC\d+
+    prefix: pmc
+  prefix: pmc
+  synonyms:
+  - PMCID
+  - PMC
+  wikidata:
+    property: P932
+- miriam:
+    deprecated: false
+    description: PomBase is a model organism database established to provide access
+      to molecular data and biological information for the fission yeast Schizosaccharomyces
+      pombe. It encompasses annotation of genomic sequence and features, comprehensive
+      manual literature curation and genome-wide data sets.
+    id: '00000335'
+    name: PomBase
+    namespaceEmbeddedInLui: false
+    pattern: ^S\w+(\.)?\w+(\.)?$
+    prefix: pombase
+  prefix: pombase
+  synonyms:
+  - PomBase
+  wikidata:
+    property: P6245
+- obofoundry:
+    contact: robert.thacker@stonybrook.edu
+    contact.label: Bob Thacker
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/porifera-ontology/master/poro.obo
+    license: CC-BY
+    name: Porifera Ontology
+    prefix: poro
+    repo: https://github.com/obophenotype/porifera-ontology.git
+  ols:
+    description: An ontology describing the anatomical structures and characteristics
+      of Porifera (sponges)
+    download: http://purl.obolibrary.org/obo/poro.owl
+    name: Porifera (sponge) ontology
+    prefix: poro
+    version: '2016-09-13'
+    version.iri: http://purl.obolibrary.org/obo/poro/releases/2016-09-13/poro.owl
+  pattern: \d{7}
+  prefix: poro
+- homepage: https://sitem.herts.ac.uk/aeru/ppdb/
+  name: Pesticide Properties DataBase
+  prefix: ppdb
+- miriam:
+    deprecated: false
+    description: The PRotein Ontology (PRO) has been designed to describe the relationships
+      of proteins and protein evolutionary classes, to delineate the multiple protein
+      forms of a gene locus (ontology for protein forms), and to interconnect existing
+      ontologies.
+    id: '00000141'
+    name: Protein Ontology
+    namespaceEmbeddedInLui: true
+    pattern: ^PR:P?\d+$
+    prefix: pr
+  obofoundry:
+    contact: dan5@georgetown.edu
+    contact.label: Darren Natale
+    deprecated: false
+    download.obo: https://proconsortium.org/download/current/pro_nonreasoned.obo
+    license: CC-BY
+    name: PRotein Ontology (PRO)
+    prefix: pr
+  ols:
+    description: An ontological representation of protein-related entities
+    download: http://purl.obolibrary.org/obo/pr.owl
+    license: http://creativecommons.org/licenses/by/4.0/
+    name: PRotein Ontology (PRO)
+    prefix: pr
+    version: 02-10-2019
+    version.iri: http://purl.obolibrary.org/obo/pr/61.0/pr.owl
+  prefix: pr
+  synonyms:
+  - PR
+  - PRO
+  wikidata:
+    database: Q55118584
+    property: P4926
+- miriam:
+    deprecated: false
+    description: PROSITE consists of documentation entries describing protein domains,
+      families and functional sites as well as associated patterns and profiles to
+      identify them.
+    id: '00000032'
+    name: PROSITE
+    namespaceEmbeddedInLui: false
+    pattern: ^PS\d{5}$
+    prefix: prosite
+  prefix: prosite
+  wikidata:
+    property: P4355
+- prefix: pseudogene
+  synonyms:
+  - pseudogene.org
+- miriam:
+    deprecated: false
+    description: PubChem provides information on the biological activities of small
+      molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative.
+      PubChem Compound archives chemical structures and records.
+    id: '00000034'
+    name: PubChem-compound
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: pubchem.compound
+  prefix: pubchem.compound
+  synonyms:
+  - DSSTox_CID
+  - CID
+  - pubchem_id
+  - PUBCHEM_CID
+  - Pubchem
+  wikidata:
+    format: http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID$1
+    pattern: '[1-9]\d{0,8}'
+    property: P662
+    property.label: PubChem CID
+    webpage: http://pubchem.ncbi.nlm.nih.gov
+- miriam:
+    deprecated: false
+    description: PubChem provides information on the biological activities of small
+      molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative.
+      PubChem Substance archives chemical substance records.
+    id: '00000033'
+    name: PubChem-substance
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: pubchem.substance
+  prefix: pubchem.substance
+  synonyms:
+  - DSSTox_Generic_SID
+  wikidata:
+    format: http://rdf.ncbi.nlm.nih.gov/pubchem/substance/SID$1
+    pattern: '[1-9]\d*'
+    property: P2153
+    property.label: PubChem Substance ID (SID)
+    webpage: https://www.ncbi.nlm.nih.gov/pcsubstance
+- miriam:
+    deprecated: false
+    description: PubMed is a service of the U.S. National Library of Medicine that
+      includes citations from MEDLINE and other life science journals for biomedical
+      articles back to the 1950s.
+    id: '00000015'
+    name: PubMed
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: pubmed
+  prefix: pubmed
+  synonyms:
+  - pmid
+  - PMID
+  wikidata:
+    property: P698
+- miriam:
+    deprecated: false
+    description: The Reactome project is a collaboration to develop a curated resource
+      of core pathways and reactions in human biology.
+    id: 00000018
+    name: Reactome
+    namespaceEmbeddedInLui: false
+    pattern: (^R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?$)|(^REACT_\d+(\.\d+)?$)
+    prefix: reactome
+  prefix: reactome
+  synonyms:
+  - RE
+  - REACT
+  wikidata:
+    property: P3937
+- homepage: https://www.reaxys.com
+  name: Reaxys
+  prefix: reaxys
+  synonyms:
+  - Reaxys
+  - Beilstein
+  wikidata:
+    property: P1579
+- miriam:
+    deprecated: false
+    description: Rat Genome Database seeks to collect, consolidate, and integrate
+      rat genomic and genetic data with curated functional and physiological data
+      and make these data widely available to the scientific community. This collection
+      references genes.
+    id: '00000047'
+    name: Rat Genome Database
+    namespaceEmbeddedInLui: false
+    pattern: ^\d{4,}$
+    prefix: rgd
+  prefix: rgd
+  synonyms:
+  - RGD
+  wikidata:
+    property: P3853
+- miriam:
+    deprecated: false
+    description: Rhea is a manually annotated reaction database, where all reaction
+      participants (reactants and products) are linked to the ChEBI database (Chemical
+      Entities of Biological Interest), providing detailed information about structure,
+      formulae and charge. It is populated with the reactions found in the EC list,
+      IntEnz and ENZYME databases), as well as other biochemical reactions, including
+      those that are often termed "spontaneous".
+    id: 00000082
+    name: Rhea
+    namespaceEmbeddedInLui: false
+    pattern: ^\d{5}$
+    prefix: rhea
+  prefix: rhea
+  synonyms:
+  - RHEA
+  wikidata:
+    database: Q24265951
+- obofoundry:
+    contact: BatchelorC@rsc.org
+    contact.label: Colin Batchelor
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/BGSU-RNA/rnao/master/rnao.obo
+    license: CC-0
+    name: RNA ontology
+    prefix: rnao
+    repo: https://github.com/BGSU-RNA/rnao.git
+  ols:
+    description: Controlled vocabulary pertaining to RNA function and based on RNA
+      sequences, secondary and three-dimensional structures.
+    download: http://purl.obolibrary.org/obo/rnao.owl
+    name: 'The RNA Ontology (RNAO): An Ontology for Integrating RNA Sequence and Structure
+      Data'
+    prefix: rnao
+    version: 15-04-2019
+  pattern: \d{7}
+  prefix: rnao
+- miriam:
+    deprecated: false
+    description: The OBO Relation Ontology provides consistent and unambiguous formal
+      definitions of the relational expressions used in biomedical ontologies.
+    id: '00000120'
+    name: Relation Ontology
+    namespaceEmbeddedInLui: false
+    pattern: ^RO_\d{7}$
+    prefix: ro
+  name: Relation Ontology
+  obofoundry:
+    contact: cjmungall@lbl.gov
+    contact.label: Chris Mungall
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/oborel/obo-relations/master/ro.obo
+    license: CC-0
+    name: Relation Ontology
+    prefix: ro
+    repo: https://github.com/oborel/obo-relations.git
+  ols:
+    description: The OBO Relations Ontology (RO) is a collection of OWL relations
+      (ObjectProperties) intended for use across a wide variety of biological ontologies.
+    download: http://purl.obolibrary.org/obo/ro.owl
+    name: OBO Relations Ontology
+    prefix: ro
+    version: '2020-07-21'
+    version.iri: http://purl.obolibrary.org/obo/ro/releases/2020-07-21/ro.owl
+  prefix: ro
+  synonyms:
+  - obo_rel
+  wikidata:
+    property: P3590
+- obofoundry:
+    contact: sjwang@mcw.edu
+    contact.label: Shur-Jen Wang
+    deprecated: false
+    download.obo: ftp://ftp.rgd.mcw.edu/pub/ontology/rat_strain/rat_strain.obo
+    license: CC-BY 4.0
+    name: Rat Strain Ontology
+    prefix: rs
+  ols:
+    description: Ontology of rat strains
+    download: http://purl.obolibrary.org/obo/rs.owl
+    name: Rat Strain Ontology
+    prefix: rs
+    version: 13-12-2019
+    version.iri: http://purl.obolibrary.org/obo/rs/6.106/rs.owl
+  pattern: \d{7}
+  prefix: rs
+- download: https://github.com/rsc-ontologies/rxno/raw/master/rxno.obo
+  obofoundry:
+    contact: batchelorc@rsc.org
+    contact.label: Colin Batchelor
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/rsc-ontologies/rxno/master/rxno.owl
+    license: CC-BY 4.0
+    name: Name Reaction Ontology
+    prefix: rxno
+    repo: https://github.com/rsc-ontologies/rxno.git
+  ols:
+    description: "RXNO is the name reaction ontology. It contains more than 500 classes\
+      \ representing organic reactions such as the Diels\u2013Alder cyclization."
+    download: http://purl.obolibrary.org/obo/rxno.owl
+    name: RXNO
+    prefix: rxno
+    version: 15-11-2019
+    version.iri: http://purl.obolibrary.org/obo/rxno.obo/rxno/releases/2014-10-21/rxno.owl/rxno.obo.owl
+  pattern: \d{7}
+  prefix: rxno
+  wikidata:
+    property: P2106
+- pattern: '[0-9]{1,7}'
+  prefix: rxnorm
+  url: https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=$1
+  wikidata:
+    property: P3345
+- miriam:
+    deprecated: false
+    description: The Saccharomyces Genome Database (SGD) project collects information
+      and maintains a database of the molecular biology of the yeast Saccharomyces
+      cerevisiae.
+    id: '00000023'
+    name: SGD
+    namespaceEmbeddedInLui: false
+    pattern: ^((S\d+$)|(Y[A-Z]{2}\d{3}[a-zA-Z](\-[A-Z])?))$
+    prefix: sgd
+  prefix: sgd
+  wikidata:
+    property: P3406
+- obofoundry:
+    contact: cjmungall@lbl.gov
+    contact.label: Chris Mungall
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/sibo/master/sibo.obo
+    license: CC-BY
+    name: Social Insect Behavior Ontology
+    prefix: sibo
+    repo: https://github.com/obophenotype/sibo.git
+  ols:
+    description: Social Behavior in insects
+    download: http://purl.obolibrary.org/obo/sibo.owl
+    name: Social Insect Behavior Ontology
+    prefix: sibo
+    version: '2015-06-15'
+    version.iri: http://purl.obolibrary.org/obo/sibo/releases/2015-06-15/sibo.owl
+  pattern: \d{7}
+  prefix: sibo
+- name: Signaling Network Open Resource
+  prefix: signor
+  synonyms:
+  - SIGNOR
+- name: Simplified molecular-input line-entry system
+  prefix: smiles
+  wikidata:
+    property: P233
+- example: SMP0000219
+  miriam:
+    deprecated: false
+    description: The Small Molecule Pathway Database (SMPDB) contains small molecule
+      pathways found in humans, which are presented visually. All SMPDB pathways include
+      information on the relevant organs, subcellular compartments, protein cofactors,
+      protein locations, metabolite locations, chemical structures and protein quaternary
+      structures. Accompanying data includes detailed descriptions and references,
+      providing an overview of the pathway, condition or processes depicted in each
+      diagram.
+    id: '00000104'
+    name: Small Molecule Pathway Database
+    namespaceEmbeddedInLui: false
+    pattern: ^SMP\d+$
+    prefix: smpdb
+  name: Small Molecule Pathway Database
+  pattern: ^SMP\d+$
+  prefix: smpdb
+  url: https://smpdb.ca/view/$1
+- miriam:
+    deprecated: false
+    description: SNOMED CT (Systematized Nomenclature of Medicine -- Clinical Terms),
+      is a systematically organized computer processable collection of medical terminology
+      covering most areas of clinical information such as diseases, findings, procedures,
+      microorganisms, pharmaceuticals, etc.
+    id: 00000269
+    name: SNOMED CT
+    namespaceEmbeddedInLui: false
+    pattern: ^(\w+)?\d+$
+    prefix: snomedct
+  prefix: snomedct
+  synonyms:
+  - SNOMED
+  - SNOMECT
+  - SNOMEDCT
+  - SNOMED_CT
+  - SNOMEDCTCT
+  - SCTID
+  - SNOWMEDCT_US
+  - SNOWMEDCT
+  - SNOMEDCT_US
+  - SCTID_2010_1_31
+  - SNOMEDCT_2010_1_31
+  - SNOWMEDCT_US_2018_03_01
+  - SNOMEDCT_US_2018_03_01
+  - SNOMED_CT_US_2018_03_01
+  - SNOMEDCT_US_2018_09_01
+  - SNOMEDCTCT_2018_03_01
+  - SNOMEDCT_US_2019_03_01
+  - SNOMEDCTCT_2019_03_01
+  - SNOMEDCT_US_2020_03_01
+  - SNOMEDCT_US_2020_09_01
+  wikidata:
+    database: Q1753883
+    database.label: SNOMED CT
+    format: http://snomed.info/id/$1
+    pattern: ^[0-9]*$
+    property: P5806
+    property.label: SNOMED CT identifier
+    webpage: http://snomed.info/
+- description: 'A comprehensive database of
+
+
+    human H/ACA and C/D box snoRNAs.'
+  homepage: https://www-snorna.biotoul.fr/
+  name: snoRNABase
+  prefix: snornabase
+  wikidata:
+    paper: Q24675417
+- obofoundry:
+    contact: ramirez@macn.gov.ar
+    contact.label: Martin Ramirez
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/spider-ontology/master/spider_comparative_biology.obo
+    license: CC-BY 3.0
+    name: Spider Ontology
+    prefix: spd
+  ols:
+    description: An ontology for spider comparative biology including anatomical parts
+      (e.g. leg, claw), behavior (e.g. courtship, combing) and products (i.g. silk,
+      web, borrow).
+    download: http://purl.obolibrary.org/obo/spd.owl
+    name: Spider Ontology
+    prefix: spd
+    version: 27-02-2019
+    version.iri: http://purl.obolibrary.org/obo/spd/1.0/spd.owl
+  pattern: \d{7}
+  prefix: spd
+  wikidata:
+    property: P4537
+- obofoundry:
+    contact: lynn.schriml@gmail.com
+    contact.label: Lynn Schriml
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/DiseaseOntology/SymptomOntology/master/symp.obo
+    license: CC0
+    name: Symptom Ontology
+    prefix: symp
+  ols:
+    description: The Symptom Ontology has been developed as a standardized ontology
+      for symptoms of human diseases.
+    download: http://purl.obolibrary.org/obo/symp.owl
+    license: https://creativecommons.org/publicdomain/zero/1.0/
+    name: Symptom Ontology
+    prefix: symp
+    version: '2020-08-04'
+    version.iri: http://purl.obolibrary.org/obo/symp/releases/2020-08-04/symp.owl
+  pattern: \d{7}
+  prefix: symp
+  synonyms:
+  - SYMP
+  wikidata:
+    property: P8656
+- download: http://purl.obolibrary.org/obo/tads.obo
+  obofoundry:
+    contact: dsonensh@odu.edu
+    contact.label: Daniel Sonenshine
+    deprecated: false
+    license: CC-BY 4.0
+    name: Tick Anatomy Ontology
+    prefix: tads
+  ols:
+    description: 'The anatomy of the Tick, <i>Families: Ixodidae, Argassidae</i>'
+    download: http://purl.obolibrary.org/obo/tads.owl
+    name: Tick Anatomy Ontology
+    prefix: tads
+    version: '2015-08-20'
+    version.iri: http://purl.obolibrary.org/obo/tads/2015-08-20/tads.owl
+  pattern: \d{7}
+  prefix: tads
+- obofoundry:
+    contact: balhoff@renci.org
+    contact.label: Jim Balhoff
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/phenoscape/taxrank/master/taxrank.obo
+    license: CC-0
+    name: Taxonomic rank vocabulary
+    prefix: taxrank
+    repo: https://github.com/phenoscape/taxrank.git
+  ols:
+    description: A vocabulary of taxonomic ranks (species, family, phylum, etc)
+    download: http://purl.obolibrary.org/obo/taxrank.owl
+    name: Taxonomic rank vocabulary
+    prefix: taxrank
+    version: '2016-04-15'
+    version.iri: http://purl.obolibrary.org/obo/taxrank/releases/2016-04-15/taxrank.owl
+  pattern: \d{7}
+  prefix: taxrank
+- download: http://purl.obolibrary.org/obo/tgma.obo
+  obofoundry:
+    contact: topalis@imbb.forth.gr
+    contact.label: Pantelis Topalis
+    deprecated: false
+    license: CC0
+    name: Mosquito gross anatomy ontology
+    prefix: tgma
+  ols:
+    description: A structured controlled vocabulary of the anatomy of mosquitoes.
+    download: http://purl.obolibrary.org/obo/tgma.owl
+    name: Mosquito gross anatomy ontology
+    prefix: tgma
+    version: '2013-06-03'
+    version.iri: http://purl.obolibrary.org/obo/tgma/releases/2013-06-03/tgma.owl
+  pattern: \d{7}
+  prefix: tgma
+- obofoundry:
+    contact: jaiswalp@science.oregonstate.edu
+    contact.label: Pankaj Jaiswal
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/Planteome/plant-trait-ontology/master/to.obo
+    license: CC-BY 4.0
+    name: Plant Trait Ontology
+    prefix: to
+    repo: https://github.com/Planteome/plant-trait-ontology.git
+  ols:
+    description: A controlled vocabulary of describe phenotypic traits in plants.
+    download: http://purl.obolibrary.org/obo/to.owl
+    name: Plant Trait Ontology
+    prefix: to
+    version: '2020-10-13'
+    version.iri: http://purl.obolibrary.org/obo/to/releases/2020-10-13/to.owl
+  pattern: \d{7}
+  prefix: to
+- obofoundry:
+    contact: lynn.schriml@gmail.com
+    contact.label: Lynn Schriml
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/DiseaseOntology/PathogenTransmissionOntology/master/src/ontology/trans.obo
+    license: CC0
+    name: Pathogen Transmission Ontology
+    prefix: trans
+  ols:
+    description: The Pathogen Transmission Ontology describes the tranmission methods
+      of human disease pathogens describing how a pathogen is transmitted from one
+      host, reservoir, or source to another host. The pathogen transmission may occur
+      either directly or indirectly and may involve animate vectors or inanimate vehicles.
+    download: http://purl.obolibrary.org/obo/trans.owl
+    license: https://creativecommons.org/publicdomain/zero/1.0/
+    name: Pathogen Transmission Ontology
+    prefix: trans
+    version: '2020-08-04'
+    version.iri: http://purl.obolibrary.org/obo/trans/releases/2020-08-04/trans.owl
+  pattern: \d{7}
+  prefix: trans
+- obofoundry:
+    contact: balhoff@renci.org
+    contact.label: Jim Balhoff
+    deprecated: false
+    license: CC-0
+    name: Teleost taxonomy ontology
+    prefix: tto
+  ols:
+    description: An ontology covering the taxonomy of teleosts (bony fish)
+    download: http://purl.obolibrary.org/obo/tto.owl
+    name: Teleost taxonomy ontology
+    prefix: tto
+    version: 26-03-2018
+    version.iri: http://purl.obolibrary.org/obo/tto/2012-05-18/tto.owl
+  pattern: \d+
+  prefix: tto
+  wikidata:
+    database: Q81661821
+- download: http://purl.obolibrary.org/obo/uberon/basic.obo
+  miriam:
+    deprecated: false
+    description: Uberon is an integrated cross-species anatomy ontology representing
+      a variety of entities classified according to traditional anatomical criteria
+      such as structure, function and developmental lineage. The ontology includes
+      comprehensive relationships to taxon-specific anatomical ontologies, allowing
+      integration of functional, phenotype and expression data.
+    id: '00000446'
+    name: UBERON
+    namespaceEmbeddedInLui: true
+    pattern: ^UBERON\:\d+$
+    prefix: uberon
+  obofoundry:
+    contact: cjmungall@lbl.gov
+    contact.label: Chris Mungall
+    deprecated: false
+    license: CC-BY
+    name: Uberon multi-species anatomy ontology
+    prefix: uberon
+  ols:
+    description: Uberon is an integrated cross-species anatomy ontology representing
+      a variety of entities classified according to traditional anatomical criteria
+      such as structure, function and developmental lineage. The ontology includes
+      comprehensive relationships to taxon-specific anatomical ontologies, allowing
+      integration of functional, phenotype and expression data.
+    download: http://purl.obolibrary.org/obo/uberon.owl
+    license: http://creativecommons.org/licenses/by/3.0/
+    name: Uber-anatomy ontology
+    prefix: uberon
+    version: '2020-09-16'
+    version.iri: http://purl.obolibrary.org/obo/uberon/releases/2020-09-16/uberon.owl
+  prefix: uberon
+  synonyms:
+  - UBERON
+  - Uberon
+  - Uber-anatomy ontology
+  wikidata:
+    property: P1554
+- homepage: https://genome.ucsc.edu/
+  name: UCSC Genome Browser
+  prefix: ucsc
+  wikidata:
+    property: P2576
+- miriam:
+    deprecated: false
+    description: The University of Minnesota Biocatalysis/Biodegradation Database
+      (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation
+      pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD
+      is to provide information on microbial enzyme-catalyzed reactions that are important
+      for biotechnology. This collection refers to compound information.
+    id: '00000276'
+    name: UM-BBD Compound
+    namespaceEmbeddedInLui: false
+    pattern: ^c\d+$
+    prefix: umbbd.compound
+  prefix: umbbd.compound
+  synonyms:
+  - UM-BBD_compID
+  url: http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&compID=$1
+  wikidata:
+    property: P8121
+- miriam:
+    deprecated: false
+    description: The University of Minnesota Biocatalysis/Biodegradation Database
+      (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation
+      pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD
+      is to provide information on microbial enzyme-catalyzed reactions that are important
+      for biotechnology. This collection refers to enzyme information.
+    id: '00000326'
+    name: UM-BBD Enzyme
+    namespaceEmbeddedInLui: false
+    pattern: ^e\d+$
+    prefix: umbbd.enzyme
+  prefix: umbbd.enzyme
+  synonyms:
+  - UM-BBD_enzymeID
+  url: http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=ep&enzymeID=$1
+- miriam:
+    deprecated: false
+    description: The University of Minnesota Biocatalysis/Biodegradation Database
+      (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation
+      pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD
+      is to provide information on microbial enzyme-catalyzed reactions that are important
+      for biotechnology. This collection refers to pathway information.
+    id: '00000327'
+    name: UM-BBD Pathway
+    namespaceEmbeddedInLui: false
+    pattern: ^\w+$
+    prefix: umbbd.pathway
+  prefix: umbbd.pathway
+  synonyms:
+  - UM-BBD_pathwayID
+  url: http://eawag-bbd.ethz.ch/$1/$1_map.html
+- miriam:
+    deprecated: false
+    description: The University of Minnesota Biocatalysis/Biodegradation Database
+      (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation
+      pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD
+      is to provide information on microbial enzyme-catalyzed reactions that are important
+      for biotechnology. This collection refers to reaction information.
+    id: '00000325'
+    name: UM-BBD Reaction
+    namespaceEmbeddedInLui: false
+    pattern: ^r\d+$
+    prefix: umbbd.reaction
+  prefix: umbbd.reaction
+  synonyms:
+  - UM-BBD_reactionID
+  url: http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=r&reacID=$1
+- miriam:
+    deprecated: false
+    description: The Disease Ontology has been developed as a standardized ontology
+      for human disease with the purpose of providing the biomedical community with
+      consistent, reusable and sustainable descriptions of human disease terms, phenotype
+      characteristics and related medical vocabulary disease concepts.
+    id: '00000233'
+    name: Human Disease Ontology
+    namespaceEmbeddedInLui: true
+    pattern: ^DOID:\d+$
+    prefix: doid
+  prefix: umls
+  synonyms:
+  - UMLS
+  - UMLS_CUI
+  - UMLS CUI
+  wikidata:
+    property: P2892
+- miriam:
+    deprecated: false
+    description: "The purpose of the joint FDA/USP Substance Registration System (SRS)\
+      \ is to support health information technology initiatives by generating unique\
+      \ ingredient identifiers (UNIIs) for substances in drugs, biologics, foods,\
+      \ and devices. The UNII is a non- proprietary, free, unique, unambiguous, non\
+      \ semantic, alphanumeric identifier based on a substance\u2019s molecular structure\
+      \ and/or descriptive information."
+    id: '00000531'
+    name: UNII
+    namespaceEmbeddedInLui: false
+    pattern: ^[A-Z0-9]+$
+    prefix: unii
+  name: Unique Ingredient Identifier
+  prefix: unii
+  wikidata:
+    property: P652
+- miriam:
+    deprecated: false
+    description: The UniProt Knowledgebase (UniProtKB) is a comprehensive resource
+      for protein sequence and functional information with extensive cross-references
+      to more than 120 external databases. Besides amino acid sequence and a description,
+      it also provides taxonomic data and citation information.
+    id: '00000005'
+    name: UniProt Knowledgebase
+    namespaceEmbeddedInLui: false
+    pattern: ^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z,
+      0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$
+    prefix: uniprot
+  prefix: uniprot
+  synonyms:
+  - UniProt
+  - UniProtKB
+  - uniprot/swiss-prot
+  wikidata:
+    database: Q905695
+    database.label: UniProt
+    format: http://purl.uniprot.org/uniprot/$1
+    pattern: ([OPQ][0-9][A-Z0-9]|[A-NR-Z][0-9][A-Z])[A-Z0-9][A-Z0-9][0-9]([A-Z][A-Z0-9][A-Z0-9][0-9])?
+    property: P352
+    property.label: UniProt protein ID
+    webpage: http://mygene.info
+- name: UniProt Keywords
+  prefix: uniprot.keyword
+  synonyms:
+  - UniProtKB-KW
+  url: https://www.uniprot.org/keywords/$1
+- pattern: VAR_\d+
+  prefix: uniprot.var
+  synonyms:
+  - UniProtKB_VAR
+  url: https://web.expasy.org/variant_pages/$1.html
+- prefix: unpd
+- obofoundry:
+    contact: Anne.Morgat@sib.swiss
+    contact.label: Anne Morgat
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/geneontology/unipathway/master/upa.obo
+    license: CC-BY
+    name: Unipathway
+    prefix: upa
+    repo: https://github.com/geneontology/unipathway.git
+  ols:
+    description: A manually curated resource for the representation and annotation
+      of metabolic pathways
+    download: http://purl.obolibrary.org/obo/upa.owl
+    name: Unipathway
+    prefix: upa
+    version: '2018-12-12'
+    version.iri: http://purl.obolibrary.org/obo/upa/releases/2018-12-12/upa.owl
+  pattern: \d{8}
+  prefix: upa
+  synonyms:
+  - UPa
+  - unipathway
+  wikidata:
+    database: Q85719315
+- name: Veterans Administration National Drug File
+  prefix: vandf
+  references:
+  - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2244318/
+- prefix: vega
+  synonyms:
+  - VEGA
+- obofoundry:
+    contact: caripark@iastate.edu
+    contact.label: Carissa Park
+    deprecated: false
+    license: CC BY 4.0
+    name: Vertebrate trait ontology
+    prefix: vt
+  ols:
+    description: An ontology of traits covering vertebrates
+    download: http://purl.obolibrary.org/obo/vt.owl
+    name: Vertebrate trait ontology
+    prefix: vt
+    version: 07-06-2019
+  pattern: \d{7}
+  prefix: vt
+- obofoundry:
+    contact: balhoff@renci.org
+    contact.label: Jim Balhoff
+    deprecated: false
+    license: CC-0
+    name: Vertebrate Taxonomy Ontology
+    prefix: vto
+  ols:
+    description: Comprehensive hierarchy of extinct and extant vertebrate taxa.
+    download: http://purl.obolibrary.org/obo/vto.owl
+    license: http://creativecommons.org/publicdomain/zero/1.0/
+    name: Vertebrate Taxonomy Ontology
+    prefix: vto
+    version: '2020-11-13'
+    version.iri: http://purl.obolibrary.org/obo/vto/2020-11-13/vto.owl
+  pattern: \d{7}
+  prefix: vto
+- name: Veterans Health Administration (VHA) unique identifier
+  prefix: vuid
+  references:
+  - https://academic.oup.com/jamia/article/17/4/432/866953
+- name: ViralZone
+  prefix: vz
+  url: https://viralzone.expasy.org/$1
+  wikidata:
+    database: Q15674507
+- obofoundry:
+    contact: raymond@caltech.edu
+    contact.label: Raymond Lee
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/c-elegans-gross-anatomy-ontology/master/wbbt.obo
+    license: CC-BY 4.0
+    name: C. elegans Gross Anatomy Ontology
+    prefix: wbbt
+    repo: https://github.com/obophenotype/c-elegans-gross-anatomy-ontology.git
+  ols:
+    description: Ontology about the gross anatomy of the C. elegans
+    download: http://purl.obolibrary.org/obo/wbbt.owl
+    license: http://creativecommons.org/licenses/by/4.0/
+    name: C. elegans Gross Anatomy Ontology
+    prefix: wbbt
+    version: '2020-10-12'
+    version.iri: http://purl.obolibrary.org/obo/wbbt/releases/2020-10-12/wbbt.owl
+  pattern: \d{7}
+  prefix: wbbt
+  synonyms:
+  - WBbt
+- obofoundry:
+    contact: cgrove@caltech.edu
+    contact.label: Chris Grove
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/c-elegans-development-ontology/master/wbls.obo
+    license: CC BY 4.0
+    name: C. elegans development ontology
+    prefix: wbls
+    repo: https://github.com/obophenotype/c-elegans-development-ontology.git
+  ols:
+    description: Ontology about the development and life stages of the C. elegans
+    download: http://purl.obolibrary.org/obo/wbls.owl
+    license: http://creativecommons.org/licenses/by/4.0/
+    name: C. elegans Development Ontology
+    prefix: wbls
+    version: '2020-09-21'
+    version.iri: http://purl.obolibrary.org/obo/wbls/releases/2020-09-21/wbls.owl
+  pattern: \d{7}
+  prefix: wbls
+  synonyms:
+  - WBls
+- obofoundry:
+    contact: cgrove@caltech.edu
+    contact.label: Chris Grove
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/c-elegans-phenotype-ontology/master/wbphenotype.obo
+    license: CC BY 4.0
+    name: C. elegans phenotype
+    prefix: wbphenotype
+    repo: https://github.com/obophenotype/c-elegans-phenotype-ontology.git
+  ols:
+    description: Ontology about C. elegans and other nematode phenotypes
+    download: http://purl.obolibrary.org/obo/wbphenotype.owl
+    license: http://creativecommons.org/licenses/by/4.0/
+    name: C elegans Phenotype Ontology
+    prefix: wbphenotype
+    version: '2020-09-21'
+    version.iri: http://purl.obolibrary.org/obo/wbphenotype/releases/2020-09-21/wbphenotype.owl
+  pattern: \d{7}
+  prefix: wbphenotype
+  synonyms:
+  - WBPhenotype
+- miriam:
+    deprecated: false
+    description: Wikidata is a collaboratively edited knowledge base operated by the
+      Wikimedia Foundation. It is intended to provide a common source of certain types
+      of data which can be used by Wikimedia projects such as Wikipedia. Wikidata
+      functions as a document-oriented database, centred on individual items. Items
+      represent topics, for which basic information is stored that identifies each
+      topic.
+    id: 00000549
+    name: Wikidata
+    namespaceEmbeddedInLui: false
+    pattern: ^(Q|P)\d+$
+    prefix: wikidata
+  prefix: wikidata
+  synonyms:
+  - wd
+- miriam:
+    deprecated: false
+    description: "WikiPathways is a resource providing an open and public collection\
+      \ of  pathway maps created and curated by the community in a Wiki like style.\r\
+      \nAll content is under the Creative Commons Attribution 3.0 Unported license."
+    id: '00000076'
+    name: WikiPathways
+    namespaceEmbeddedInLui: false
+    pattern: WP\d{1,5}(\_r\d+)?$
+    prefix: wikipathways
+  prefix: wikipathways
+  wikidata:
+    database: Q7999828
+    database.label: WikiPathways
+    format: http://identifiers.org/wikipathways/$1
+    pattern: WP\d{1,4}
+    property: P2410
+    property.label: WikiPathways ID
+    webpage: http://www.wikipathways.org
+- homepage: https://wormbase.org
+  name: WormBase
+  prefix: wormbase
+  wikidata:
+    database: Q3570042
+    property: P3860
+- obofoundry:
+    contact: esegerd3@gmail.com
+    contact.label: Erik Segerdell
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/xenopus-anatomy/xao/master/xenopus_anatomy.obo
+    license: CC-BY
+    name: Xenopus Anatomy Ontology
+    prefix: xao
+  ols:
+    description: XAO represents the anatomy and development of the African frogs Xenopus
+      laevis and tropicalis.
+    download: http://purl.obolibrary.org/obo/xao.owl
+    license: https://creativecommons.org/licenses/by/3.0/
+    name: Xenopus Anatomy Ontology
+    prefix: xao
+    version: '2020-06-26'
+    version.iri: http://purl.obolibrary.org/obo/xao/releases/2020-06-26/xao.owl
+  pattern: \d{7}
+  prefix: xao
+  wikidata:
+    property: P4495
+- obofoundry:
+    contact: jrsmith@mcw.edu
+    contact.label: Jennifer Smith
+    deprecated: false
+    download.obo: ftp://ftp.rgd.mcw.edu/pub/ontology/experimental_condition/experimental_condition.obo
+    license: CC-0
+    name: Experimental condition ontology
+    prefix: xco
+  ols:
+    description: Conditions under which physiological and morphological measurements
+      are made both in the clinic and in studies involving humans or model organisms.
+    download: http://purl.obolibrary.org/obo/xco.owl
+    name: Experimental condition ontology
+    prefix: xco
+    version: 18-12-2019
+    version.iri: http://purl.obolibrary.org/obo/xco/4.46/xco.owl
+  pattern: \d{7}
+  prefix: xco
+- obofoundry:
+    contact: gerhard.mayer@rub.de
+    contact.label: Gerhard Mayer
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/HUPO-PSI/mzIdentML/master/cv/XLMOD.obo
+    license: CC-BY
+    name: HUPO-PSI cross-linking and derivatization reagents controlled vocabulary
+    prefix: xlmod
+  ols:
+    description: A structured controlled vocabulary for cross-linking reagents used
+      with proteomics mass spectrometry.
+    download: http://purl.obolibrary.org/obo/xlmod.owl
+    name: HUPO-PSI cross-linking and derivatization reagents controlled vocabulary
+    prefix: xlmod
+  pattern: \d{5}
+  prefix: xlmod
+- obofoundry:
+    contact: esegerd3@gmail.com
+    contact.label: Erik Segerdell
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/xenopus-phenotype-ontology/master/xpo.obo
+    license: CC-BY
+    name: Xenopus Phenotype Ontology
+    prefix: xpo
+    repo: https://github.com/obophenotype/xenopus-phenotype-ontology.git
+  ols:
+    description: XPO represents anatomical, cellular, and gene function phenotypes
+      occurring throughout the development of the African frogs Xenopus laevis and
+      tropicalis.
+    download: http://purl.obolibrary.org/obo/xpo.owl
+    name: Xenopus Phenotype Ontology
+    prefix: xpo
+    version: '2020-07-04'
+    version.iri: http://purl.obolibrary.org/obo/xpo/releases/2020-07-04/xpo.owl
+  pattern: \d+
+  prefix: xpo
+- name: Yeast Metabolome Database
+  pattern: YMDB\d+
+  prefix: ymdb
+  url: http://www.ymdb.ca/compounds/$1
+- obofoundry:
+    contact: ybradford@zfin.org
+    contact.label: Yvonne Bradford
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/ybradford/zebrafish-experimental-conditions-ontology/master/zeco.obo
+    license: CC-BY
+    name: Zebrafish Experimental Conditions Ontology
+    prefix: zeco
+  ols:
+    description: None
+    download: http://purl.obolibrary.org/obo/zeco.owl
+    license: CC-BY
+    name: Zebrafish Experimental Conditions Ontology
+    prefix: zeco
+    version: '2020-11-30'
+    version.iri: http://purl.obolibrary.org/obo/zeco/releases/2020-11-30/zeco.owl
+  pattern: \d{7}
+  prefix: zeco
+- obofoundry:
+    contact: van_slyke@zfin.org
+    contact.label: Ceri Van Slyke
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/cerivs/zebrafish-anatomical-ontology/master/src/zebrafish_anatomy.obo
+    license: CC-BY
+    name: Zebrafish anatomy and development ontology
+    prefix: zfa
+  ols:
+    description: A structured controlled vocabulary of the anatomy and development
+      of the Zebrafish
+    download: http://purl.obolibrary.org/obo/zfa.owl
+    license: https://creativecommons.org/licenses/by/3.0/
+    name: Zebrafish anatomy and development ontology
+    prefix: zfa
+    version: '2020-03-18'
+    version.iri: http://purl.obolibrary.org/obo/zfa/releases/2020-03-18/zfa.owl
+  pattern: \d{7}
+  prefix: zfa
+- miriam:
+    deprecated: false
+    description: ZFIN serves as the zebrafish model organism database. This collection
+      references all zebrafish biological entities in ZFIN.
+    id: 00000079
+    name: ZFIN Bioentity
+    namespaceEmbeddedInLui: false
+    pattern: ^ZDB\-\w+\-\d+\-\d+$
+    prefix: zfin
+  prefix: zfin
+  synonyms:
+  - ZFIN
+  wikidata:
+    property: P3870
+- obofoundry:
+    contact: van_slyke@zfin.org
+    contact.label: Ceri Van Slyke
+    deprecated: false
+    download.obo: https://raw.githubusercontent.com/obophenotype/developmental-stage-ontologies/master/src/zfs/zfs.obo
+    license: CC-BY 3.0
+    name: Zebrafish developmental stages ontology
+    prefix: zfs
+  ols:
+    description: Developmental stages of the Zebrafish
+    download: http://purl.obolibrary.org/obo/zfs.owl
+    name: Zebrafish developmental stages ontology
+    prefix: zfs
+    version: '2020-03-10'
+    version.iri: http://purl.obolibrary.org/obo/zfs/releases/2020-03-10/zfs.owl
+  pattern: \d{7}
+  prefix: zfs
+- obofoundry:
+    contact: ybradford@zfin.org
+    contact.label: Yvonne Bradford
+    deprecated: false
+    license: CC-BY
+    name: Zebrafish Phenotype Ontology
+    prefix: zp
+    repo: https://github.com/obophenotype/zebrafish-phenotype-ontology.git
+  ols:
+    description: The Zebrafish Phenotype Ontology formally defines all phenotypes
+      of the Zebrafish model organism.
+    download: http://purl.obolibrary.org/obo/zp.owl
+    name: Zebrafish Phenotype Ontology
+    prefix: zp
+    version: '2020-08-02'
+    version.iri: http://purl.obolibrary.org/obo/zp/releases/2020-08-02/zp.owl
+  pattern: \d+
+  prefix: zp
