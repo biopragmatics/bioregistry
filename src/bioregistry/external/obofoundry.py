@@ -31,35 +31,39 @@ def get_obofoundry(
     cache_path: Optional[str] = OBOFOUNDRY_FULL_PATH,
     mappify: bool = False,
     force_download: bool = False,
+    skip_deprecated: bool = False,
 ):
     """Get the OBO Foundry registry."""
     if not force_download and cache_path is not None and os.path.exists(cache_path):
         with open(cache_path) as file:
-            rv = json.load(file)
-            if mappify:
-                return list_to_map(rv, 'id')
-            return rv
+            entries = json.load(file)
+    else:
+        with BIOREGISTRY_MODULE.ensure(url=OBOFOUNDRY_URL).open() as file:
+            entries = yaml.full_load(file)['ontologies']
 
-    with BIOREGISTRY_MODULE.ensure(url=OBOFOUNDRY_URL).open() as file:
-        rv = yaml.full_load(file)
+        for entry in entries:
+            for key in ('browsers', 'usages', 'depicted_by', 'products'):
+                if key in entry:
+                    del entry[key]
 
-    rv = rv['ontologies']
-    for s in rv:
-        for k in ('browsers', 'usages', 'depicted_by', 'products'):
-            if k in s:
-                del s[k]
+        # maintain sorted OBO Foundry
+        entries = sorted(entries, key=itemgetter('id'))
 
-    # maintain sorted OBO Foundry
-    rv = sorted(rv, key=itemgetter('id'))
+        if cache_path is not None:
+            with open(cache_path, 'w') as file:
+                json.dump(entries, file, indent=2)
 
-    if cache_path is not None:
-        with open(cache_path, 'w') as file:
-            json.dump(rv, file, indent=2)
+    if skip_deprecated:
+        entries = [
+            entry
+            for entry in entries
+            if not entry.get('is_obsolete', False)
+        ]
 
     if mappify:
-        rv = list_to_map(rv, 'id')
+        entries = list_to_map(entries, 'id')
 
-    return rv
+    return entries
 
 
 def get_obofoundry_df(**kwargs):

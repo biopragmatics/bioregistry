@@ -26,6 +26,7 @@ def get_miriam(
     cache_path: Optional[str] = MIRIAM_FULL_PATH,
     mappify: bool = False,
     force_download: bool = False,
+    skip_deprecated: bool = False,
 ):
     """Get the MIRIAM registry."""
     return ensure_registry(
@@ -35,6 +36,8 @@ def get_miriam(
         id_key='prefix',
         mappify=mappify,
         force_download=force_download,
+        deprecated_key='deprecated',
+        skip_deprecated=skip_deprecated,
     )
 
 

@@ -20,7 +20,7 @@ def compare():
     bioregistry = read_bioregistry()
     bioregistry_entries = set(bioregistry)
 
-    miriam = get_miriam()
+    miriam = get_miriam(skip_deprecated=True)
     miriam_entries = {
         entry['prefix'].lower()
         for entry in miriam
@@ -32,7 +32,7 @@ def compare():
         for entry in ols
     }
 
-    obofoundry = get_obofoundry()
+    obofoundry = get_obofoundry(skip_deprecated=True)
     obofoundry_entries = {
         entry['id'].lower()
         for entry in obofoundry

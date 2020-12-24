@@ -664,8 +664,15 @@
     property: P557
 - download: https://github.com/DiseaseOntology/HumanDiseaseOntology/raw/main/src/ontology/doid.obo
   miriam:
+    deprecated: false
+    description: The Disease Ontology has been developed as a standardized ontology
+      for human disease with the purpose of providing the biomedical community with
+      consistent, reusable and sustainable descriptions of human disease terms, phenotype
+      characteristics and related medical vocabulary disease concepts.
     id: '00000233'
+    name: Human Disease Ontology
     namespaceEmbeddedInLui: true
+    pattern: ^DOID:\d+$
     prefix: doid
   obofoundry:
     contact: lynn.schriml@gmail.com
@@ -1430,13 +1437,6 @@
     version.iri: http://purl.obolibrary.org/obo/idomal/2015-03-16/idomal.owl
   pattern: \d{7}
   prefix: idomal
-- obofoundry:
-    deprecated: true
-    download.obo: http://download.baderlab.org/INOH/ontologies/EventOntology_172.obo
-    name: Event (INOH pathway ontology)
-    prefix: iev
-  pattern: \d{7}
-  prefix: iev
 - miriam:
     deprecated: false
     description: The IUPAC International Chemical Identifier (InChI) is a non-proprietary
@@ -1796,13 +1796,6 @@
   prefix: metacyc.compound
   synonyms:
   - MetaCyc
-- obofoundry:
-    contact: Thorsten.Henrich@embl-heidelberg.de
-    contact.label: Thorsten Henrich
-    deprecated: true
-    name: Medaka fish anatomy and development
-    prefix: mfo
-  prefix: mfo
 - miriam:
     deprecated: false
     description: The Mouse Genome Database (MGD) project includes data on gene characterization,
@@ -2140,6 +2133,7 @@
     namespaceEmbeddedInLui: false
     pattern: ^C\d+$
     prefix: ncit
+  name: NCI Thesaurus
   obofoundry:
     contact: haendel@ohsu.edu
     contact.label: Melissa Haendel
@@ -2397,6 +2391,8 @@
     namespaceEmbeddedInLui: false
     pattern: ^Orphanet(_|:)C?\d+$
     prefix: orphanet.ordo
+  ols:
+    prefix: ordo
   prefix: orphanet.ordo
   synonyms:
   - ordo
@@ -3357,15 +3353,16 @@
   url: http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=r&reacID=$1
 - miriam:
     deprecated: false
-    description: The Disease Ontology has been developed as a standardized ontology
-      for human disease with the purpose of providing the biomedical community with
-      consistent, reusable and sustainable descriptions of human disease terms, phenotype
-      characteristics and related medical vocabulary disease concepts.
-    id: '00000233'
-    name: Human Disease Ontology
-    namespaceEmbeddedInLui: true
-    pattern: ^DOID:\d+$
-    prefix: doid
+    description: The Unified Medical Language System is a repository of biomedical
+      vocabularies. Vocabularies integrated in the UMLS Metathesaurus include the
+      NCBI taxonomy, Gene Ontology, the Medical Subject Headings (MeSH), OMIM and
+      the Digital Anatomist Symbolic Knowledge Base. UMLS concepts are not only inter-related,
+      but may also be linked to external resources such as GenBank.
+    id: 00000559
+    name: UMLS
+    namespaceEmbeddedInLui: false
+    pattern: ^C\d+$
+    prefix: umls
   prefix: umls
   synonyms:
   - UMLS
@@ -3420,7 +3417,8 @@
   synonyms:
   - UniProtKB-KW
   url: https://www.uniprot.org/keywords/$1
-- pattern: VAR_\d+
+- name: UniProt Variants
+  pattern: VAR_\d+
   prefix: uniprot.var
   synonyms:
   - UniProtKB_VAR
@@ -3454,9 +3452,11 @@
   prefix: vandf
   references:
   - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2244318/
-- prefix: vega
+- name: Vertebrate Genome Annotation Database
+  prefix: vega
   synonyms:
   - VEGA
+  url: https://vega.archive.ensembl.org/index.html
 - obofoundry:
     contact: caripark@iastate.edu
     contact.label: Carissa Park
