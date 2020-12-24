@@ -7,6 +7,9 @@
 </h1>
 
 <p align="center">
+    <a href="https://github.com/cthoyt/bioregistry/actions?query=workflow%3ATests">
+        <img alt="Tests" src="https://github.com/cthoyt/bioregistry/workflows/Tests/badge.svg" />
+    </a>
     <a href="https://pypi.org/project/bioregistry">
         <img alt="PyPI" src="https://img.shields.io/pypi/v/bioregistry" />
     </a>
