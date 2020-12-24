@@ -5,7 +5,7 @@
 import json
 import logging
 from datetime import datetime
-from functools import wraps
+from functools import lru_cache, wraps
 from typing import Any, List, Mapping, Optional
 
 import click
@@ -16,6 +16,7 @@ from .constants import BIOREGISTRY_PATH
 logger = logging.getLogger(__name__)
 
 
+@lru_cache(maxsize=1)
 def read_bioregistry():
     """Read the Bioregistry as JSON."""
     with open(BIOREGISTRY_PATH) as file:
