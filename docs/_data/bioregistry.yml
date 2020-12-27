@@ -174,6 +174,16 @@
     version.iri: http://purl.obolibrary.org/obo/bfo/2019-08-26/bfo.owl
   pattern: \d{7}
   prefix: bfo
+- miriam:
+    deprecated: false
+    description: BindingDB is the first public database of protein-small molecule
+      affinity data.
+    id: '00000264'
+    name: BindingDB
+    namespaceEmbeddedInLui: false
+    pattern: ^\w\d+$
+    prefix: bindingdb
+  prefix: bindingdb
 - download: https://raw.githubusercontent.com/obophenotype/biological-spatial-ontology/master/bspo.obo
   obofoundry:
     contact: cjmungall@lbl.gov
@@ -227,6 +237,23 @@
   prefix: bto
   synonyms:
   - BTO
+- obofoundry:
+    contact: haendel@ohsu.edu
+    contact.label: Melissa Haendel
+    deprecated: false
+    download.obo: http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/anatomy/caro/caro.obo
+    license: CC-BY 3.0
+    name: Common Anatomy Reference Ontology
+    prefix: caro
+  ols:
+    description: An upper level ontology to facilitate interoperability between existing
+      anatomy ontologies for different species
+    download: http://purl.obolibrary.org/obo/caro.owl
+    name: Common Anatomy Reference Ontology
+    prefix: caro
+    version: 24-05-2019
+    version.iri: http://purl.obolibrary.org/obo/caro/2.0/beta/caro.owl
+  prefix: caro
 - miriam:
     deprecated: false
     description: CAS (Chemical Abstracts Service) is a division of the American Chemical
@@ -329,27 +356,6 @@
     webpage: https://www.ebi.ac.uk/chebi
 - miriam:
     deprecated: false
-    description: BindingDB is the first public database of protein-small molecule
-      affinity data.
-    id: '00000264'
-    name: BindingDB
-    namespaceEmbeddedInLui: false
-    pattern: ^\w\d+$
-    prefix: bindingdb
-  prefix: bindingdb
-- miriam:
-    deprecated: false
-    description: The International Standard Book Number (ISBN) is for identifying
-      printed books.
-    id: '00000064'
-    name: ISBN
-    namespaceEmbeddedInLui: false
-    pattern: ^(ISBN)?(-13|-10)?[:]?[ ]?(\d{2,3}[ -]?)?\d{1,5}[ -]?\d{1,7}[ -]?\d{1,6}[
-      -]?(\d|X)$
-    prefix: isbn
-  prefix: isbn
-- miriam:
-    deprecated: false
     description: ChEMBL is a database of bioactive compounds, their quantitative properties
       and bioactivities (binding constants, pharmacology and ADMET, etc). The data
       is abstracted and curated from the primary scientific literature.
@@ -372,23 +378,6 @@
     property: P592
     property.label: ChEMBL ID
     webpage: https://www.ebi.ac.uk/chembl
-- obofoundry:
-    contact: haendel@ohsu.edu
-    contact.label: Melissa Haendel
-    deprecated: false
-    download.obo: http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/anatomy/caro/caro.obo
-    license: CC-BY 3.0
-    name: Common Anatomy Reference Ontology
-    prefix: caro
-  ols:
-    description: An upper level ontology to facilitate interoperability between existing
-      anatomy ontologies for different species
-    download: http://purl.obolibrary.org/obo/caro.owl
-    name: Common Anatomy Reference Ontology
-    prefix: caro
-    version: 24-05-2019
-    version.iri: http://purl.obolibrary.org/obo/caro/2.0/beta/caro.owl
-  prefix: caro
 - miriam:
     deprecated: false
     description: ChemIDplus is a web-based search system that provides access to structure
@@ -1529,6 +1518,17 @@
   - IP
   wikidata:
     property: P2926
+- miriam:
+    deprecated: false
+    description: The International Standard Book Number (ISBN) is for identifying
+      printed books.
+    id: '00000064'
+    name: ISBN
+    namespaceEmbeddedInLui: false
+    pattern: ^(ISBN)?(-13|-10)?[:]?[ ]?(\d{2,3}[ -]?)?\d{1,5}[ -]?\d{1,7}[ -]?\d{1,6}[
+      -]?(\d|X)$
+    prefix: isbn
+  prefix: isbn
 - name: Integrated Taxonomic Information System
   pattern: \d+
   prefix: itis
@@ -1727,6 +1727,8 @@
   - LIPID_MAPS_instance
   - LIPID MAPS
   - LIPID_MAPS_class
+  wikidata:
+    property: P2063
 - description: A comprehensive compendium of human long non-coding RNAs
   name: LNCipedia
   prefix: lncipedia
@@ -1744,6 +1746,21 @@
   wikidata:
     database: Q24088019
     property: P6689
+- miriam:
+    deprecated: false
+    description: MetaboLights is a database for Metabolomics experiments and derived
+      information. The database is cross-species, cross-technique and covers metabolite
+      structures and their reference spectra as well as their biological roles, locations
+      and concentrations, and experimental data from metabolic experiments. This collection
+      references individual metabolomics studies.
+    id: 00000380
+    name: MetaboLights
+    namespaceEmbeddedInLui: false
+    pattern: ^MTBLS\d+$
+    prefix: metabolights
+  prefix: metabolights
+  wikidata:
+    property: P3890
 - obofoundry:
     contact: citlalli.mejiaalmonte@gmail.com
     contact.label: "Citlalli Mej\xEDa-Almonte"
@@ -1834,6 +1851,22 @@
   prefix: metacyc.compound
   synonyms:
   - MetaCyc
+- miriam:
+    deprecated: false
+    description: HomoloGene is a system for automated detection of homologs among
+      the annotated genes of several completely sequenced eukaryotic genomes.
+    id: '00000275'
+    name: HomoloGene
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: homologene
+  prefix: homologene
+  wikidata:
+    property: P593
+- name: Hazardous Substances Data Bank
+  prefix: hsdb
+  wikidata:
+    property: P2062
 - miriam:
     deprecated: false
     description: The Mouse Genome Database (MGD) project includes data on gene characterization,
@@ -2383,6 +2416,9 @@
     property: P496
     property.label: ORCID iD
     webpage: https://orcid.org/
+- prefix: fishbase.species
+  wikidata:
+    property: P938
 - obofoundry:
     contact: safisher@upenn.edu
     contact.label: Stephen Fisher
@@ -3815,6 +3851,8 @@
     pattern: ^(ZINC)?\d+$
     prefix: zinc
   prefix: zinc
+  wikidata:
+    property: P2084
 - obofoundry:
     contact: ybradford@zfin.org
     contact.label: Yvonne Bradford
