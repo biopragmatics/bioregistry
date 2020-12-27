@@ -5,6 +5,7 @@
 import click
 
 from .miriam import align_miriam
+from .n2t import align_n2t
 from .obofoundry import align_obofoundry
 from .ols import align_ols
 from .wikidata import align_wikidata
@@ -20,6 +21,9 @@ def align():
     """Align all external registries."""
     secho('Aligning MIRIAM')
     align_miriam()
+
+    secho('Aligning N2T')
+    align_n2t()
 
     secho('Aligning OBO Foundry')
     align_obofoundry()
