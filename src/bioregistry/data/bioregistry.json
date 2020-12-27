@@ -163,6 +163,17 @@
     },
     "pattern": "\\d{7}"
   },
+  "bindingdb": {
+    "miriam": {
+      "deprecated": false,
+      "description": "BindingDB is the first public database of protein-small molecule affinity data.",
+      "id": "00000264",
+      "name": "BindingDB",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\w\\d+$",
+      "prefix": "bindingdb"
+    }
+  },
   "bspo": {
     "download": "https://raw.githubusercontent.com/obophenotype/biological-spatial-ontology/master/bspo.obo",
     "obofoundry": {
@@ -218,6 +229,25 @@
     "synonyms": [
       "BTO"
     ]
+  },
+  "caro": {
+    "obofoundry": {
+      "contact": "haendel@ohsu.edu",
+      "contact.label": "Melissa Haendel",
+      "deprecated": false,
+      "download.obo": "http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/anatomy/caro/caro.obo",
+      "license": "CC-BY 3.0",
+      "name": "Common Anatomy Reference Ontology",
+      "prefix": "caro"
+    },
+    "ols": {
+      "description": "An upper level ontology to facilitate interoperability between existing anatomy ontologies for different species",
+      "download": "http://purl.obolibrary.org/obo/caro.owl",
+      "name": "Common Anatomy Reference Ontology",
+      "prefix": "caro",
+      "version": "24-05-2019",
+      "version.iri": "http://purl.obolibrary.org/obo/caro/2.0/beta/caro.owl"
+    }
   },
   "cas": {
     "miriam": {
@@ -1598,6 +1628,17 @@
     ],
     "wikidata": {
       "property": "P2926"
+    }
+  },
+  "isbn": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The International Standard Book Number (ISBN) is for identifying printed books.",
+      "id": "00000064",
+      "name": "ISBN",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^(ISBN)?(-13|-10)?[:]?[ ]?(\\d{2,3}[ -]?)?\\d{1,5}[ -]?\\d{1,7}[ -]?\\d{1,6}[ -]?(\\d|X)$",
+      "prefix": "isbn"
     }
   },
   "itis": {
