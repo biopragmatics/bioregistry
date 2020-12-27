@@ -42,7 +42,7 @@ def warn_missing_entry(registry):
 
 @updater
 def warn_missing_wikidata(registry):
-    """Write warnings for entries completely missing a WikiData property, database, or paper."""
+    """Write warnings for entries completely missing a Wikidata property, database, or paper."""
     _warn_missing_key(registry, 'wikidata')
 
 

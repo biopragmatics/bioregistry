@@ -61,12 +61,12 @@ def secho(s, fg='cyan', bold=True, **kwargs):
     click.echo(f'[{datetime.now().strftime("%H:%M:%S")}] ' + click.style(s, fg=fg, bold=bold, **kwargs))
 
 
-#: WikiData SPARQL endpoint. See https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service#Interfacing
+#: Wikidata SPARQL endpoint. See https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service#Interfacing
 WIKIDATA_ENDPOINT = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql'
 
 
 def query_wikidata(sparql: str) -> List[Mapping[str, Any]]:
-    """Query WikiData's sparql service.
+    """Query Wikidata's sparql service.
 
     :param sparql: A SPARQL query string
     :return: A list of bindings

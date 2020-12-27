@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Query, download, and format WikiData as a registry."""
+"""Query, download, and format Wikidata as a registry."""
 
 import logging
 from typing import Iterable, Tuple
@@ -25,7 +25,7 @@ def get_database() -> pd.DataFrame:
 
 
 def iter_database() -> Iterable[Tuple[str, str, str, str]]:
-    """Iterate over database-property pairs from WikiData."""
+    """Iterate over database-property pairs from Wikidata."""
     query = """
     SELECT ?database ?databaseLabel ?prop ?propLabel
     WHERE
@@ -44,7 +44,7 @@ def iter_database() -> Iterable[Tuple[str, str, str, str]]:
 
 
 def get_miriam_mappings() -> pd.DataFrame:
-    """Get MIRIAM-WikiData mappings."""
+    """Get MIRIAM-Wikidata mappings."""
     df = pd.DataFrame(iter_wikidata_mappings(), columns=['prop_id', 'prop_label', 'miriam_id', 'miriam_label'])
     df.to_csv(MIRIAM_PATH, sep='\t', index=False)
     return df
