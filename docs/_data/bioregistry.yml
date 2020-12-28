@@ -1295,22 +1295,6 @@
     version.iri: http://purl.obolibrary.org/obo/gno/2020-10-13/gno.owl
   pattern: \d{8}
   prefix: gno
-- miriam:
-    deprecated: false
-    description: The GO reference collection is a set of abstracts that can be cited
-      in the GO ontologies (e.g. as dbxrefs for term definitions) and annotation files
-      (in the Reference column). It provides two types of reference; It can be used
-      to provide details of why specific Evidence codes (see http://identifiers.org/eco/)
-      are assigned, or to present abstract-style descriptions of "GO content" meetings
-      at which substantial changes in the ontologies are discussed and made.
-    id: '00000450'
-    name: Gene Ontology Reference
-    namespaceEmbeddedInLui: true
-    pattern: ^GO_REF:\d{7}$
-    prefix: go_ref
-  n2t:
-    prefix: go.ref
-  prefix: go.ref
 - download: http://purl.obolibrary.org/obo/go.obo
   miriam:
     deprecated: false
@@ -1349,6 +1333,22 @@
   - gomfid
   wikidata:
     property: P686
+- miriam:
+    deprecated: false
+    description: The GO reference collection is a set of abstracts that can be cited
+      in the GO ontologies (e.g. as dbxrefs for term definitions) and annotation files
+      (in the Reference column). It provides two types of reference; It can be used
+      to provide details of why specific Evidence codes (see http://identifiers.org/eco/)
+      are assigned, or to present abstract-style descriptions of "GO content" meetings
+      at which substantial changes in the ontologies are discussed and made.
+    id: '00000450'
+    name: Gene Ontology Reference
+    namespaceEmbeddedInLui: true
+    pattern: ^GO_REF:\d{7}$
+    prefix: go_ref
+  n2t:
+    prefix: go.ref
+  prefix: go.ref
 - obofoundry:
     contact: diapriid@gmail.com
     contact.label: Matt Yoder
@@ -1402,6 +1402,7 @@
   synonyms:
   - GFAM
   - HGNC_GROUP
+  - hgnc.family
 - miriam:
     deprecated: false
     description: The Human Metabolome Database (HMDB) is a database containing detailed
@@ -1811,11 +1812,6 @@
   n2t:
     prefix: lincs.protein
   prefix: lincs.protein
-- example: SLM:000000341
-  n2t:
-    prefix: swisslipid
-  prefix: swisslipid
-  url: https://www.swisslipids.org/#/entity/$1
 - id: '00000546'
   miriam:
     deprecated: false
@@ -2040,18 +2036,6 @@
   - PSI-MI
 - miriam:
     deprecated: false
-    description: A collection of molecular interaction maps and pathways involved
-      in cancer development and progression with a focus on melanoma.
-    id: '00000075'
-    name: Melanoma Molecular Map Project Biomaps
-    namespaceEmbeddedInLui: false
-    pattern: ^\d+$
-    prefix: mmmp:biomaps
-  n2t:
-    prefix: biomaps
-  prefix: mmmp.biomaps
-- miriam:
-    deprecated: false
     description: Online Mendelian Inheritance in Man is a catalog of human genes and
       genetic disorders.
     id: '00000016'
@@ -2111,6 +2095,20 @@
   wikidata:
     database: Q6826947
     property: P2871
+- miriam:
+    deprecated: true
+    description: MIRIAM Registry is an online resource created to catalogue collections
+      (Gene Ontology, Taxonomy or PubMed are some examples) and the corresponding
+      resources (physical locations) providing access to those data collections. The
+      Registry provides unique and perennial URIs for each entity of those data collections.
+    id: 00000008
+    name: MIRIAM Registry collection
+    namespaceEmbeddedInLui: false
+    pattern: ^MIR:000\d{5}$
+    prefix: miriam.collection
+  n2t:
+    prefix: miriam.collection
+  prefix: miriam.collection
 - comment: yo dawg i heard you like registries...
   miriam:
     deprecated: false
@@ -2126,20 +2124,6 @@
   n2t:
     prefix: miriam.resource
   prefix: miriam.resource
-- miriam:
-    deprecated: true
-    description: MIRIAM Registry is an online resource created to catalogue collections
-      (Gene Ontology, Taxonomy or PubMed are some examples) and the corresponding
-      resources (physical locations) providing access to those data collections. The
-      Registry provides unique and perennial URIs for each entity of those data collections.
-    id: 00000008
-    name: MIRIAM Registry collection
-    namespaceEmbeddedInLui: false
-    pattern: ^MIR:000\d{5}$
-    prefix: miriam.collection
-  n2t:
-    prefix: miriam.collection
-  prefix: miriam.collection
 - download: http://purl.obolibrary.org/obo/miro.obo
   obofoundry:
     contact: louis@imbb.forth.gr
@@ -2160,6 +2144,18 @@
 - homepage: http://www.russelllab.org/miRNAs/
   name: miRNA Target Prediction at EMBL
   prefix: mirte
+- miriam:
+    deprecated: false
+    description: A collection of molecular interaction maps and pathways involved
+      in cancer development and progression with a focus on melanoma.
+    id: '00000075'
+    name: Melanoma Molecular Map Project Biomaps
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: mmmp:biomaps
+  n2t:
+    prefix: biomaps
+  prefix: mmmp.biomaps
 - obofoundry:
     contact: jrsmith@mcw.edu
     contact.label: Jennifer Smith
@@ -3413,6 +3409,11 @@
   prefix: spd
   wikidata:
     property: P4537
+- example: SLM:000000341
+  n2t:
+    prefix: swisslipid
+  prefix: swisslipid
+  url: https://www.swisslipids.org/#/entity/$1
 - obofoundry:
     contact: lynn.schriml@gmail.com
     contact.label: Lynn Schriml
