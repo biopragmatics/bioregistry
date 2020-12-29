@@ -1,7 +1,8 @@
 ---
-layout: page title: Comparison permalink: /comparison/
+layout: page
+title: Comparison
+permalink: /comparison/
 ---
-
 ## Two-Sided Comparison
 
 First, the two-sided comparison shows for each registry, how well the Bioregistry covers it. In the case of Wikidata,
