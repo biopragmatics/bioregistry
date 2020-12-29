@@ -1867,7 +1867,10 @@
     "synonyms": [
       "KEGG.COMPOUND",
       "KEGG COMPOUND"
-    ]
+    ],
+    "wikidata": {
+      "property": "P665"
+    }
   },
   "kegg.drug": {
     "miriam": {
@@ -1885,7 +1888,48 @@
     "synonyms": [
       "KEGG.DRUG",
       "KEGG DRUG"
-    ]
+    ],
+    "wikidata": {
+      "property": "P665"
+    }
+  },
+  "kegg.genes": {
+    "miriam": {
+      "deprecated": false,
+      "description": "KEGG GENES is a collection of gene catalogs for all complete genomes and some partial genomes, generated from publicly available resources.",
+      "id": "00000070",
+      "name": "KEGG Genes",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\w+:[\\w\\d\\.-]*$",
+      "prefix": "kegg.genes"
+    },
+    "n2t": {
+      "prefix": "kegg.genes"
+    },
+    "wikidata": {
+      "property": "P665"
+    }
+  },
+  "kegg.genome": {
+    "miriam": {
+      "deprecated": false,
+      "description": "KEGG Genome is a collection of organisms whose genomes have been completely sequenced.",
+      "id": "00000238",
+      "name": "KEGG Genome",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^(T0\\d+|\\w{3,5})$",
+      "prefix": "kegg.genome"
+    },
+    "n2t": {
+      "prefix": "kegg.genome"
+    },
+    "synonyms": [
+      "kegg_genome",
+      "kegg_genomes"
+    ],
+    "wikidata": {
+      "property": "P665"
+    }
   },
   "kegg.pathway": {
     "miriam": {
@@ -1902,7 +1946,10 @@
     },
     "synonyms": [
       "KEGG_PATHWAY"
-    ]
+    ],
+    "wikidata": {
+      "property": "P665"
+    }
   },
   "kegg.reaction": {
     "miriam": {
@@ -1919,7 +1966,15 @@
     },
     "synonyms": [
       "KEGG_REACTION"
-    ]
+    ],
+    "wikidata": {
+      "database": "Q909442",
+      "database.label": "Kyoto Encyclopedia of Genes and Genomes",
+      "format": "https://www.kegg.jp/entry/$1",
+      "pattern": "[A-Z]\\d+",
+      "property": "P665",
+      "property.label": "KEGG ID"
+    }
   },
   "knapsack": {
     "miriam": {
