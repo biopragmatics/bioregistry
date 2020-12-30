@@ -1770,6 +1770,37 @@
   - kegg_genomes
   wikidata:
     property: P665
+- download: ftp://ftp.rgd.mcw.edu/pub/data_release/ontology_obo_files/pathway/pathway.obo
+  miriam:
+    deprecated: false
+    description: 'The Pathway Ontology captures information on biological networks,
+      the relationships between netweorks and the alterations or malfunctioning of
+      such networks within a hierarchical structure. The five main branches of the
+      ontology are: classic metabolic pathways, regulatory, signaling, drug, and disease
+      pathwaysfor complex human conditions.'
+    id: '00000242'
+    name: Pathway Ontology
+    namespaceEmbeddedInLui: true
+    pattern: ^PW:\d{7}$
+    prefix: pw
+  n2t:
+    prefix: pw
+  obofoundry:
+    contact: gthayman@mcw.edu
+    contact.label: G. Thomas Hayman
+    deprecated: false
+    download.obo: ftp://ftp.rgd.mcw.edu/pub/data_release/ontology_obo_files/pathway/pathway.obo
+    license: CC-BY
+    name: Pathway ontology
+    prefix: pw
+  ols:
+    description: A controlled vocabulary for annotating gene products to pathways.
+    download: http://purl.obolibrary.org/obo/pw.owl
+    name: Pathway ontology
+    prefix: pw
+    version: 23-10-2019
+    version.iri: http://purl.obolibrary.org/obo/pw/7.52/pw.owl
+  prefix: pw
 - miriam:
     deprecated: false
     description: KEGG PATHWAY is a collection of manually drawn pathway maps representing
@@ -2352,6 +2383,16 @@
     pattern: '[1-9]\d{0,8}'
     property: P351
     property.label: Entrez Gene ID
+- miriam:
+    deprecated: false
+    description: This collection is a subset of UniProtKB that provides a means to
+      reference the proteolytic cleavage products of a precursor protein.
+    id: 00000739
+    name: UniProt Chain
+    namespaceEmbeddedInLui: false
+    pattern: ^PRO_[0-9]{10}$
+    prefix: uniprot.chain
+  prefix: uniprot.chain
 - download: http://purl.obolibrary.org/obo/ncbitaxon.obo
   miriam:
     deprecated: false
