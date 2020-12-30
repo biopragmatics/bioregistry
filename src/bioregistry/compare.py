@@ -4,10 +4,9 @@
 
 import itertools as itt
 import os
+import sys
 
 import click
-import matplotlib.pyplot as plt
-from matplotlib_venn import venn2, venn3
 
 from bioregistry import read_bioregistry
 from bioregistry.constants import DOCS
@@ -17,6 +16,17 @@ from bioregistry.external import get_miriam, get_n2t, get_obofoundry, get_ols, g
 @click.command()
 def compare():
     """Compare the registries."""
+    try:
+        import matplotlib.pyplot as plt
+        from matplotlib_venn import venn2, venn3
+    except ImportError:
+        click.secho(
+            'Could not import matplotlib dependencies.'
+            ' Install bioregistry again with `pip install bioregistry[charts]`.',
+            fg='red',
+        )
+        return sys.exit(1)
+
     directory = os.path.join(DOCS, 'img')
     os.makedirs(directory, exist_ok=True)
 
@@ -44,12 +54,6 @@ def compare():
     wikidata = get_wikidata_registry()
 
     n2t_entries = set(get_n2t())
-
-    # MIRIAM vs. N2T
-    print('in n2t but not miriam')
-    for x in n2t_entries - miriam_entries:
-        print(x)
-
     fig, axes = plt.subplots(ncols=2)
     venn2(
         subsets=[miriam_entries, n2t_entries],
@@ -62,6 +66,7 @@ def compare():
         ax=axes[1],
     )
     path = os.path.join(directory, 'comparison_1_way.png')
+    click.echo(f'output to {path}')
     plt.tight_layout()
     plt.savefig(path, dpi=300)
     plt.close(fig)
@@ -87,7 +92,7 @@ def compare():
         axes.ravel()[-1].axis('off')
 
     path = os.path.join(directory, 'comparison_2_way.png')
-    print('output to', path)
+    click.echo(f'output to {path}')
     plt.tight_layout()
     plt.savefig(path, dpi=300)
     plt.close(fig)
@@ -104,7 +109,7 @@ def compare():
         )
 
     path = os.path.join(directory, 'comparison.png')
-    print('output to', path)
+    click.echo(f'output to {path}')
     plt.tight_layout()
     plt.savefig(path, dpi=300)
     plt.close(fig)

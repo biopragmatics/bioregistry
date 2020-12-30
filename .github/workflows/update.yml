@@ -21,13 +21,13 @@ jobs:
           python-version: 3.9
       - name: Create local changes
         run: |
-          pip install -e .
+          pip install -e .[charts]
           bioregistry update
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "🪲 Add changes" -a
+          git commit -m "📮 Automatically update" -a
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
