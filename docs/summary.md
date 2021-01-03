@@ -25,7 +25,7 @@ difficult to know exactly how many relevant properties there are.
 While many of the resources reported above are finite, Wikidata is a bit more difficult. Because it is a general-purpose
 ontology (for lack of a better word), it contains many properties that are irrelevant for the Bioregistry. Further, its
 properties that are relevant are labeled in a variety of ways. The GAS service might provide a solution that enables
-graph traversal over the various hierarchies of properties (see [this](w.wiki/qMG)).
+graph traversal over the various hierarchies of properties (see [this](https://w.wiki/qMG)).
 
 Biological databases, ontologies, and resource will continue to be generated as we learn about new and exciting
 phenomena, so the medium-term plan to grow the Bioregistry is to continue to cover resources that are not covered by the
