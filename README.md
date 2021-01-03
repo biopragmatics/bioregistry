@@ -29,7 +29,9 @@ An integrative registry of biological databases, ontologies, and nomenclatures.
 ## ⬇️ Download
 
 The bioregistry database can be downloaded directly
-from [here](https://github.com/cthoyt/bioregistry/blob/main/src/bioregistry/data/bioregistry.json)
+from [here](https://github.com/cthoyt/bioregistry/blob/main/src/bioregistry/data/bioregistry.json).
+
+The manually curated portions of these data are available under the CC0 1.0 Universal License.
 
 ## 🙏 Contributing
 
@@ -54,7 +56,7 @@ Things that would be helpful:
 $ pip install git+https://github.com/cthoyt/bioregistry.git
 ```
 
-## Usage
+## 💪 Usage
 
 The Bioregistry can be used to normalize prefixes across MIRIAM and all the (very plentiful) variants that pop up in
 ontologies in OBO Foundry and the OLS with the `normalize_prefix()` function.
@@ -93,7 +95,7 @@ import bioregistry
 registry = bioregistry.read_bioregistry()
 ```
 
-## Update
+## ♻️ Update
 
 ```bash
 $ bioregistry update
