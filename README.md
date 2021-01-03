@@ -31,6 +31,23 @@ An integrative registry of biological databases, ontologies, and nomenclatures.
 The bioregistry database can be downloaded directly
 from [here](https://github.com/cthoyt/bioregistry/blob/main/src/bioregistry/data/bioregistry.json)
 
+## 🙏 Contributing
+
+There haven't been any external contributors yet, but if you want to get involved, you can make edits directly to
+the [bioregistry.json](https://github.com/cthoyt/bioregistry/blob/main/src/bioregistry/data/bioregistry.json)
+file.
+
+Things that would be helpful:
+
+1. For all entries, add a `["wikidata"]["database"]` entry. Many ontologies and databases don't have a property in
+   Wikidata because the process of adding a new property is incredibly cautious. However, anyone can add a database as
+   normal Wikidata item with a Q prefix. One example is UniPathway, whose Wikidata database item
+   is [Q85719315](https://www.wikidata.org/wiki/Q85719315). If there's no database item on Wikidata, you can even make
+   one! Note: don't mix this up with a paper describing the
+   resource, [Q35631060](https://www.wikidata.org/wiki/Q35631060). If you see there's a paper, you can add it under
+   the `["wikidata"]["database"]` key.
+2. Adding `["homepage"]` entry for any entry that doesn't have an external reference
+
 ## 🚀 Installation
 
 ```bash
