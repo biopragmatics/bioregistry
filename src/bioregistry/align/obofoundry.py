@@ -149,7 +149,7 @@ def align_obofoundry(registry):
                 click.secho(f'OBO key already in registry: {obofoundry_prefix}')
                 raise KeyError
             registry[bioregistry_id] = {}
-            click.secho(f'Adding obo entry {obofoundry_prefix} to bioregistry', fg='green')
+            click.secho(f'Adding obo entry {obofoundry_prefix}: {obofoundry_entry["name"]}', fg='green')
 
         try:
             registry[bioregistry_id]['obofoundry'] = _prepare_obo(obofoundry_entry)
