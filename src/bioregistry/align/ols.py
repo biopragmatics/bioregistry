@@ -54,7 +54,10 @@ def align_ols(registry):
     for ols_prefix, ols_entry in ols_registry.items():
         bioregistry_id = ols_id_to_bioregistry_id.get(ols_prefix)
         if bioregistry_id is None:
-            continue
+            bioregistry_id = ols_prefix
+            registry[bioregistry_id] = {}
+            secho(f'[{ols_prefix}] added: {ols_entry["config"]["title"]}', fg='green')
+
         registry[bioregistry_id]['ols'] = _prepare_ols(ols_entry)
 
     return registry
