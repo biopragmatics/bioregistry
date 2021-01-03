@@ -3,7 +3,7 @@
 """Align the OLS with the Bioregistry."""
 
 from ..external import get_ols
-from ..utils import norm, updater
+from ..utils import norm, secho, updater
 
 
 def _prepare_ols(ols_entry):
