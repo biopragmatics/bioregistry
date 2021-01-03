@@ -3,6 +3,7 @@
 """Align the OBO Foundry with the Bioregistry."""
 
 import requests
+import requests.exceptions
 import requests_ftp
 
 from ..external import get_obofoundry
@@ -22,7 +23,7 @@ OBO_KEYS = {
 }
 
 
-def _prepare_obo(obofoundry_entry):
+def _prepare_obo(obofoundry_entry):  # noqa:C901
     prefix = obofoundry_entry['id']
     rv = {
         'prefix': prefix,
@@ -47,19 +48,19 @@ def _prepare_obo(obofoundry_entry):
         if method is None and 'checkout in build':
             method = 'vcs'
         if method is None:
-            secho(f'[{prefix}] missing method: {build}', fg='yellow')
+            secho(f'[{prefix}] missing method: {build}', fg='red')
             return rv
 
         if method == 'vcs':
             if 'system' not in build:
-                secho(f'[{prefix}] missing build system', fg='yellow')
+                secho(f'[{prefix}] missing build system', fg='red')
                 return rv
             if build['system'] != 'git':
-                secho(f'[{prefix}] unrecognized build system: {build["system"]}', fg='yellow')
+                secho(f'[{prefix}] unrecognized build system: {build["system"]}', fg='red')
                 return rv
             checkout = build['checkout'].replace('  ', ' ')
             if not checkout.startswith('git clone https://github.com/'):
-                secho(f'[{prefix}] unhandled build checkout: {checkout}', fg='yellow')
+                secho(f'[{prefix}] unhandled build checkout: {checkout}', fg='red')
                 return rv
 
             owner, repo = checkout.removeprefix('git clone https://github.com/').removesuffix('.git').split('/')
@@ -98,7 +99,7 @@ def _prepare_obo(obofoundry_entry):
                 else:
                     secho(f'[{prefix}] [http {res.status_code}] problem with {obo_url}', bold=True, fg='red')
             else:
-                secho(f'[{prefix}] unhandled build.source_url: {source_url}', fg='yellow')
+                secho(f'[{prefix}] unhandled build.source_url: {source_url}', fg='red')
 
         elif method == 'obo2owl':
             source_url = build['source_url']
@@ -111,7 +112,7 @@ def _prepare_obo(obofoundry_entry):
             else:
                 secho(f'[{prefix}] unhandled extension {source_url}', bold=True, fg='red')
         else:
-            secho(f'[{prefix}] unhandled build method: {method}', fg='yellow')
+            secho(f'[{prefix}] unhandled build method: {method}', fg='red')
 
     return rv
 
@@ -142,9 +143,19 @@ def align_obofoundry(registry):
         # Get key by checking the miriam.id key
         bioregistry_id = obofoundry_id_to_bioregistry_id.get(obofoundry_prefix)
         if bioregistry_id is None:
+            if obofoundry_entry.get('is_obsolete'):
+                secho(f'[{obofoundry_prefix}] skipping deprecated. If needed, add manually later', fg='yellow')
+                continue
+
+            bioregistry_id = obofoundry_prefix
+            registry[bioregistry_id] = {}
+            secho(f'[{obofoundry_prefix}] added: {obofoundry_entry["title"]}', fg='green')
+
+        try:
+            registry[bioregistry_id]['obofoundry'] = _prepare_obo(obofoundry_entry)
+        except requests.exceptions.ConnectionError as e:
+            secho(f'failed to get data for {bioregistry_id}: {e}', fg='red')
             continue
-        # secho(f'bioregistry={bioregistry_id}, obo={obofoundry_prefix}')
-        registry[bioregistry_id]['obofoundry'] = _prepare_obo(obofoundry_entry)
 
     return registry
 
