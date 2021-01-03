@@ -257,6 +257,7 @@ def compare():
     sns.barplot(data=sorted(Counter(xref_counts).items()), ci=None, color='blue', alpha=0.4, ax=ax)
     ax.set_xlabel('Number External References')
     ax.set_ylabel('Count')
+    ax.set_yscale('log')
     path = os.path.join(DOCS_IMG, 'xrefs.png')
     click.echo(f'output to {path}')
     fig.tight_layout()
