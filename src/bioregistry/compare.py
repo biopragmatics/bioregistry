@@ -17,40 +17,49 @@ from bioregistry.external import get_miriam, get_n2t, get_obofoundry, get_ols, g
 bioregistry = read_bioregistry()
 
 LICENSES = {
-    'CC-BY 4.0': 'CC-BY',
     'None': None,
-    'creative-commons-attribution-license': 'CC-BY',
-    'CC-BY': 'CC-BY',
-    'https://creativecommons.org/licenses/by/3.0/': 'CC-BY',
+    'license': None,
+    # CC-BY (4.0)
+    'CC-BY 4.0': 'CC-BY',
     'CC BY 4.0': 'CC-BY',
-    'CC-BY 3.0': 'CC-BY',
     'https://creativecommons.org/licenses/by/4.0/': 'CC-BY',
-    'https://creativecommons.org/licenses/by-sa/4.0/': 'CC-BY-SA',
-    'CC-0': 'CC 0',
-    'CC0 1.0 Universal': 'CC 0',
     'http://creativecommons.org/licenses/by/4.0/': 'CC-BY',
-    'GNU GPL 3.0': 'Other',
-    'CC0': 'CC-BY',
-    'https://creativecommons.org/publicdomain/zero/1.0/': 'CC 0',
     'http://creativecommons.org/licenses/by/4.0': 'CC-BY',
-    'www.apache.org/licenses/LICENSE-2.0': 'Other',
-    'CC-BY 3.0 https://creativecommons.org/licenses/by/3.0/': 'CC-BY',
-    'CC-BY 2.0': 'CC-BY',
-    'CC-BY-SA': 'CC-BY-SA',
-    'Apache 2.0 License': 'Other',
-    'LICENSE-2.0': 'Other',
-    'hpo': 'Other',
-    'license': 'Other',
-    'http://creativecommons.org/licenses/by/3.0/': 'CC-BY',
-    'Artistic License 2.0': 'Other',
-    'CC BY 3.0': 'CC-BY',
+    'https://creativecommons.org/licenses/by/3.0/': 'CC-BY',
     'url: http://creativecommons.org/licenses/by/4.0/': 'CC-BY',
-    'New BSD license': 'Other',
-    'http://creativecommons.org/publicdomain/zero/1.0/': 'CC 0',
-    'http://creativecommons.org/licenses/by-nc-sa/2.0/': 'CC-BY-NC-SA',
     'SWO is provided under a Creative Commons Attribution 4.0 International'
     ' (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/).': 'CC-BY',
+    # CC-BY (3.0)
+    'CC-BY 3.0 https://creativecommons.org/licenses/by/3.0/': 'CC-BY',
+    'http://creativecommons.org/licenses/by/3.0/': 'CC-BY',
+    'CC-BY 3.0': 'CC-BY',
+    'CC BY 3.0': 'CC-BY',
     'CC-BY version 3.0': 'CC-BY',
+    # CC-BY (2.0)
+    'CC-BY 2.0': 'CC-BY',
+    # CC-BY (unversioned)
+    'CC-BY': 'CC-BY',
+    'creative-commons-attribution-license': 'CC-BY',
+    # CC-BY-SA
+    'CC-BY-SA': 'CC-BY-SA',
+    'https://creativecommons.org/licenses/by-sa/4.0/': 'CC-BY-SA',
+    # CC-BY-NC-SA
+    'http://creativecommons.org/licenses/by-nc-sa/2.0/': 'CC-BY-NC-SA',
+    # CC 0
+    'CC-0': 'CC-0',
+    'CC0 1.0 Universal': 'CC-0',
+    'CC0': 'CC-0',
+    'http://creativecommons.org/publicdomain/zero/1.0/': 'CC-0',
+    'https://creativecommons.org/publicdomain/zero/1.0/': 'CC-0',
+    # Apache 2.0
+    'Apache 2.0 License': 'Other',
+    'LICENSE-2.0': 'Other',
+    'www.apache.org/licenses/LICENSE-2.0': 'Other',
+    # Other
+    'GNU GPL 3.0': 'Other',
+    'hpo': 'Other',
+    'Artistic License 2.0': 'Other',
+    'New BSD license': 'Other',
 }
 
 
