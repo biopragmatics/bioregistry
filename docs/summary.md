@@ -32,8 +32,9 @@ phenomena, so the medium-term plan to grow the Bioregistry is to continue to cov
 other resources it references. New external registries can be suggested on the Bioregistries
 GitHub [issue tracker](https://github.com/cthoyt/bioregistry/issues/new) using
 the [External Registry](https://github.com/cthoyt/bioregistry/labels/External%20Registry) label. Further, there are
-contribution guidelines on the GitHub site to help potential contributors. It is expected that all contributors will
-be listed as co-authors in the eventual manuscript describing this resource.
+[contribution guidelines](https://github.com/cthoyt/bioregistry#-contributing) on the GitHub site to help guide
+potential contributors towards small but meaningful first contributions. It is expected that all contributors will be
+listed as co-authors in the eventual manuscript describing this resource.
 
 ## Overlap between External Registries
 
