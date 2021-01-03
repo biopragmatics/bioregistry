@@ -4,12 +4,36 @@ title: Summary
 permalink: /summary/
 ---
 
+## Motivation
+
+The goal of the [Inspector Javert's Xref Database](https://cthoyt.com/2020/04/19/inspector-javerts-xref-database.html)
+was to extract all the xrefs from OBO ontologies in the OBO Foundry. However, most ontologies took a lot of creative
+freedom in how what prefixes they used to refer to which resources, and they therefore had to be normalized.
+Unfortunately, most did not appear in popular registries like MIRIAM, so the Bioregistry was created to store this
+information and facilitate downstream data integration. Later, the Bioregistry became a tool that enabled the
+investigation of the discrepancies between MIRIAM, OBO Foundry, OLS, and other biological registries.
+
 ## Bioregistry Coverage
 
 This two-sided comparison shows how well the Bioregistry covers each external registry. In the case of Wikidata, it's
 difficult to know exactly how many relevant properties there are.
 
 <img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/bioregistry_coverage.png" alt="Bioregistry Coverage"/>
+
+### How Complete is the Bioregistry?
+
+While many of the resources reported above are finite, Wikidata is a bit more difficult. Because it is a general-purpose
+ontology (for lack of a better word), it contains many properties that are irrelevant for the Bioregistry. Further, its
+properties that are relevant are labeled in a variety of ways. The GAS service might provide a solution that enables
+graph traversal over the various hierarchies of properties (see [this](w.wiki/qMG)).
+
+Biological databases, ontologies, and resource will continue to be generated as we learn about new and exciting
+phenomena, so the medium-term plan to grow the Bioregistry is to continue to cover resources that are not covered by the
+other resources it references. New external registries can be suggested on the Bioregistries
+GitHub [issue tracker](https://github.com/cthoyt/bioregistry/issues/new) using
+the [External Registry](https://github.com/cthoyt/bioregistry/labels/External%20Registry) label. Further, there are
+contribution guidelines on the GitHub site to help potential contributors. It is expected that all contributors will
+be listed as co-authors in the eventual manuscript describing this resource.
 
 ## Overlap between External Registries
 
