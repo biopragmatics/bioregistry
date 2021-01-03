@@ -68,10 +68,11 @@ def _remap_license(k):
 
 
 SINGLE_FIG = (8, 3.5)
+WATERMARK_TEXT = 'https://github.com/cthoyt/bioregistry'
 
 
 @click.command()
-def compare():
+def compare():  # noqa:C901
     """Compare the registries."""
     try:
         import matplotlib.pyplot as plt
@@ -85,6 +86,7 @@ def compare():
         )
         return sys.exit(1)
 
+    watermark = True
     sns.set_style('whitegrid')
 
     ###############################################
@@ -125,9 +127,16 @@ def compare():
         set_colors=('red', 'green'),
         ax=ax,
     )
+    if watermark:
+        ax.text(
+            0.5, -0.1, WATERMARK_TEXT, transform=plt.gca().transAxes,
+            fontsize=10, color='gray', alpha=0.5,
+            ha='center', va='bottom',
+        )
+
     path = os.path.join(DOCS_IMG, 'license_coverage.png')
     click.echo(f'output to {path}')
-    plt.tight_layout()
+    fig.tight_layout()
     fig.savefig(path, dpi=300)
     plt.close(fig)
 
@@ -136,10 +145,17 @@ def compare():
     ax.set_xlabel('License')
     ax.set_ylabel('Count')
     ax.set_yscale('log')
+    if watermark:
+        fig.text(
+            1.0, 0.5, WATERMARK_TEXT,
+            fontsize=8, color='gray', alpha=0.5,
+            ha='right', va='center', rotation=90,
+        )
+
     path = os.path.join(DOCS_IMG, 'licenses.png')
     click.echo(f'output to {path}')
     fig.tight_layout()
-    plt.savefig(path, dpi=300)
+    fig.savefig(path, dpi=300)
     plt.close(fig)
 
     ##############################################
@@ -177,10 +193,17 @@ def compare():
         ax.set_title(f'Has {label}')
     if len(measurements) % 2:
         axes.ravel()[-1].axis('off')
+    if watermark:
+        fig.text(
+            0.5, 0, WATERMARK_TEXT,
+            fontsize=8, color='gray', alpha=0.5,
+            ha='center', va='bottom',
+        )
 
-    fig.tight_layout()
     path = os.path.join(DOCS_IMG, 'has_attribute.png')
-    plt.savefig(path, dpi=300)
+    click.echo(f'output to {path}')
+    fig.tight_layout()
+    fig.savefig(path, dpi=300)
     plt.close(fig)
 
     # -------------------------------------------------------------------- #
@@ -219,11 +242,17 @@ def compare():
         )
     if len(keys) % 2:
         axes.ravel()[-1].axis('off')
+    if watermark:
+        fig.text(
+            0.5, 0, WATERMARK_TEXT,
+            fontsize=8, color='gray', alpha=0.5,
+            ha='center', va='bottom',
+        )
 
     path = os.path.join(DOCS_IMG, 'bioregistry_coverage.png')
     click.echo(f'output to {path}')
-    plt.tight_layout()
-    plt.savefig(path, dpi=300)
+    fig.tight_layout()
+    fig.savefig(path, dpi=300)
     plt.close(fig)
 
     ######################################################
@@ -245,11 +274,17 @@ def compare():
         )
     if len(keys) % 2:
         axes.ravel()[-1].axis('off')
+    if watermark:
+        fig.text(
+            0.5, 0, WATERMARK_TEXT,  # transform=plt.gca().transAxes,
+            fontsize=8, color='gray', alpha=0.5,
+            ha='center', va='bottom',
+        )
 
     path = os.path.join(DOCS_IMG, 'external_overlap.png')
     click.echo(f'output to {path}')
-    plt.tight_layout()
-    plt.savefig(path, dpi=300)
+    fig.tight_layout()
+    fig.savefig(path, dpi=300)
     plt.close(fig)
 
     ##############################################
@@ -267,10 +302,17 @@ def compare():
     ax.set_xlabel('Number External References')
     ax.set_ylabel('Count')
     ax.set_yscale('log')
+    if watermark:
+        fig.text(
+            1.0, 0.5, WATERMARK_TEXT,
+            fontsize=8, color='gray', alpha=0.5,
+            ha='right', va='center', rotation=90,
+        )
+
     path = os.path.join(DOCS_IMG, 'xrefs.png')
     click.echo(f'output to {path}')
     fig.tight_layout()
-    plt.savefig(path, dpi=300)
+    fig.savefig(path, dpi=300)
     plt.close(fig)
 
 
