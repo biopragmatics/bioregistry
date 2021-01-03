@@ -97,6 +97,15 @@ registry = bioregistry.read_bioregistry()
 
 ## ♻️ Update
 
+The database is automatically updated daily thanks to scheduled workflows in GitHub Actions. The workflow's
+configuration can be found [here](https://github.com/cthoyt/bioregistry/blob/main/.github/workflows/update.yml)
+and the last run can be
+seen [here](https://github.com/cthoyt/bioregistry/actions?query=workflow%3A%22Update+Data%22). Further,
+a [changelog](https://github.com/cthoyt/bioregistry/commits?author=actions-user) can be recapitulated from the commits
+of the GitHub Actions bot.
+
+If you want to manually update the database after installing in development mode, run the following:
+
 ```bash
 $ bioregistry update
 ```
