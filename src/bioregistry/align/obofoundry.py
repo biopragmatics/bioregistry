@@ -143,10 +143,11 @@ def align_obofoundry(registry):
         # Get key by checking the miriam.id key
         bioregistry_id = obofoundry_id_to_bioregistry_id.get(obofoundry_prefix)
         if bioregistry_id is None:
+            if obofoundry_entry['deprecated']:
+                secho(f'[{obofoundry_prefix}] skipping deprecated. If needed, add manually later', fg='yellow')
+                continue
+
             bioregistry_id = obofoundry_prefix
-            if obofoundry_prefix in registry:
-                secho(f'OBO key already in registry: {obofoundry_prefix}')
-                raise KeyError
             registry[bioregistry_id] = {}
             secho(f'[{obofoundry_prefix}] added: {obofoundry_entry["title"]}', fg='green')
 
