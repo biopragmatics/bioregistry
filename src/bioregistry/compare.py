@@ -133,6 +133,27 @@ def compare():
     plt.savefig(path, dpi=300)
     plt.close(fig)
 
+    ##############################################
+    # How many entries have version information? #
+    ##############################################
+    has_version = {
+        key
+        for key, entry in bioregistry.items()
+        if entry.get('ols', {}).get('version')
+    }
+    fig, ax = plt.subplots(figsize=SINGLE_FIG)
+    ax.pie(
+        (len(has_version), len(bioregistry) - len(has_version)),
+        labels=('Has Version', 'No Version'),
+        autopct='%1.f%%',
+        startangle=30,
+        explode=[0, 0.03],
+    )
+    fig.tight_layout()
+    path = os.path.join(DOCS_IMG, 'has_version.png')
+    plt.savefig(path, dpi=300)
+    plt.close(fig)
+
     # -------------------------------------------------------------------- #
 
     miriam_prefixes = set(get_miriam(skip_deprecated=True, mappify=True))

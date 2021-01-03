@@ -40,4 +40,16 @@ more code needs to be written to handle this.
 There are several conflicts, however, many of them involved inappropriate licenses for data such as the Apache 2.0
 license and were collapsed into "Other". The remaining conflicts were between CC-BY and CC 0 references.
 
-<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/licenses.png" alt="License Coverage"/>
+<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/licenses.png" alt="License Types"/>
+
+## Versioning
+
+The OLS is the only registry that actually consumes the data it references, and is therefore the only registry that
+reports version information. The OBO Foundry also references versioned data, but does not consume it and therefore can
+not report version information. Wikidata also contains version information for some databases, but is not currently
+viable for generally tracking version information. The other registries (e.g., MIRIAM, N2T) do no report version
+information as their resolution services are independent of the data versions. Alternatively,
+the [Bioversions](https://github.com/cthoyt/bioversions) project sets out to be a registry-independent solution for
+identifying current versions of different databases, ontologies, and resources.
+
+<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/has_version.png" alt="Version Coverage"/>
