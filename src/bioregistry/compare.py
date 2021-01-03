@@ -58,6 +58,9 @@ def _remap_license(k):
     return k and LICENSES.get(k, k)
 
 
+SINGLE_FIG = (8, 3.5)
+
+
 @click.command()
 def compare():
     """Compare the registries."""
@@ -91,7 +94,7 @@ def compare():
             ols_has_license.add(key)
 
         if not obo_license and not ols_license:
-            continue
+            licenses.append('None')
         if obo_license and not ols_license:
             licenses.append(obo_license)
         elif not obo_license and ols_license:
@@ -106,7 +109,7 @@ def compare():
             continue
 
     # How many times does the license appear in OLS / OBO Foundry
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=SINGLE_FIG)
     venn2(
         subsets=(obo_has_license, ols_has_license),
         set_labels=('OBO', 'OLS'),
@@ -119,10 +122,11 @@ def compare():
     fig.savefig(path, dpi=300)
     plt.close(fig)
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=SINGLE_FIG)
     sns.countplot(x=licenses, ax=ax)
     ax.set_xlabel('License')
     ax.set_ylabel('Count')
+    ax.set_yscale('log')
     path = os.path.join(DOCS_IMG, 'licenses.png')
     click.echo(f'output to {path}')
     fig.tight_layout()
@@ -208,12 +212,13 @@ def compare():
         )
         for entry in bioregistry.values()
     ]
-    sns.barplot(data=sorted(Counter(xref_counts).items()), ci=None, color='blue', alpha=0.4)
-    plt.xlabel('Number External References')
-    plt.ylabel('Count')
+    fig, ax = plt.subplots(figsize=SINGLE_FIG)
+    sns.barplot(data=sorted(Counter(xref_counts).items()), ci=None, color='blue', alpha=0.4, ax=ax)
+    ax.set_xlabel('Number External References')
+    ax.set_ylabel('Count')
     path = os.path.join(DOCS_IMG, 'xrefs.png')
     click.echo(f'output to {path}')
-    plt.tight_layout()
+    fig.tight_layout()
     plt.savefig(path, dpi=300)
     plt.close(fig)
 
