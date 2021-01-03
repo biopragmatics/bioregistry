@@ -8,39 +8,6 @@ from .utils import clean_set, secho, updater
 
 
 @updater
-def warn_missing_name(registry):
-    """Write warnings for entries that are missing a name."""
-    prefixes = [
-        prefix
-        for prefix, entry in registry.items()
-        if (
-            'name' not in entry
-            and 'name' not in entry.get('miriam', {})
-            and 'name' not in entry.get('ols', {})
-            and 'name' not in entry.get('obofoundry', {})
-        )
-    ]
-    if prefixes:
-        secho('Missing titles:')
-        for prefix in prefixes:
-            click.echo(prefix)
-
-
-@updater
-def warn_missing_entry(registry):
-    """Write warnings for entries completely missing content."""
-    prefixes = [
-        prefix
-        for prefix, entry in registry.items()
-        if not entry
-    ]
-    if prefixes:
-        secho('Missing entry:')
-        for prefix in prefixes:
-            click.echo(prefix)
-
-
-@updater
 def warn_missing_wikidata(registry):
     """Write warnings for entries completely missing a Wikidata property, database, or paper."""
     _warn_missing_key(registry, 'wikidata')
@@ -72,8 +39,6 @@ def _get_key(registry, prefix, key):
 @click.command()
 def lint():
     """Run the lint commands."""
-    warn_missing_entry()
-    warn_missing_name()
     warn_missing_wikidata()
 
 
