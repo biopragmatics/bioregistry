@@ -145,15 +145,15 @@ def align_obofoundry(registry):
         if bioregistry_id is None:
             bioregistry_id = obofoundry_prefix
             if obofoundry_prefix in registry:
-                click.secho(f'OBO key already in registry: {obofoundry_prefix}')
+                secho(f'OBO key already in registry: {obofoundry_prefix}')
                 raise KeyError
             registry[bioregistry_id] = {}
-            click.secho(f'Adding obo entry {obofoundry_prefix}: {obofoundry_entry["name"]}', fg='green')
+            secho(f'adding obo entry {obofoundry_prefix}: {obofoundry_entry["title"]}', fg='green')
 
         try:
             registry[bioregistry_id]['obofoundry'] = _prepare_obo(obofoundry_entry)
         except requests.exceptions.ConnectionError as e:
-            click.secho(f'Failed to get data for {bioregistry_id}: {e}', fg='red')
+            secho(f'failed to get data for {bioregistry_id}: {e}', fg='red')
             continue
 
     return registry
