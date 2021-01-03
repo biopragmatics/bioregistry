@@ -36,8 +36,8 @@ The manually curated portions of these data are available under the CC0 1.0 Univ
 ## 🙏 Contributing
 
 There haven't been any external contributors yet, but if you want to get involved, you can make edits directly to
-the [bioregistry.json](https://github.com/cthoyt/bioregistry/blob/main/src/bioregistry/data/bioregistry.json)
-file.
+the [bioregistry.json](https://github.com/cthoyt/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
+file through the GitHub interface.
 
 Things that would be helpful:
 
@@ -52,8 +52,18 @@ Things that would be helpful:
 
 ## 🚀 Installation
 
+The Bioregistry can be installed from [PyPI](https://pypi.org/project/bioregistry/) with:
+
 ```bash
-$ pip install git+https://github.com/cthoyt/bioregistry.git
+$ pip install bioregistry
+```
+
+It can be installed in development mode for local curation with:
+
+```bash
+$ git clone https://github.com/cthoyt/bioregistry.git
+$ cd bioregistry
+$ pip install -e .
 ```
 
 ## 💪 Usage
