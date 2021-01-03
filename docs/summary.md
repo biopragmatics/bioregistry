@@ -44,7 +44,7 @@ license and were collapsed into "Other". The remaining conflicts were between CC
 
 ## Other Attributes
 
-<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/has_version.png" alt="Version Coverage"/>
+<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/has_attribute.png" alt="Attributes Coverage"/>
 
 ### Versioning
 
