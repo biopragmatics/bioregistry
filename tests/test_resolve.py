@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+"""Tests for the bioregistry client."""
+
 import unittest
 
 import bioregistry
