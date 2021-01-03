@@ -136,12 +136,22 @@ def align_obofoundry(registry):
             entry['obofoundry'] = {'prefix': obofoundry_id}
             obofoundry_id_to_bioregistry_id[obofoundry_id] = bioregistry_id
 
+    new_added = 0
+    new_limit = 5
+
     for obofoundry_prefix, obofoundry_entry in obofoundry_registry.items():
         # Get key by checking the miriam.id key
         bioregistry_id = obofoundry_id_to_bioregistry_id.get(obofoundry_prefix)
         if bioregistry_id is None:
-            continue
-        # click.echo(f'bioregistry={bioregistry_id}, obo={obofoundry_prefix}')
+            new_added += 1
+            if new_added < new_limit:
+                continue
+            bioregistry_id = obofoundry_prefix
+            if obofoundry_prefix in registry:
+                click.secho(f'OBO key already in registry: {obofoundry_prefix}')
+                raise KeyError
+            registry[bioregistry_id] = {}
+            click.secho(f'Adding obo entry {obofoundry_prefix} to bioregistry', fg='green')
         registry[bioregistry_id]['obofoundry'] = _prepare_obo(obofoundry_entry)
 
 
