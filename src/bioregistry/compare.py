@@ -141,16 +141,36 @@ def compare():
         for key, entry in bioregistry.items()
         if entry.get('ols', {}).get('version')
     }
-    fig, ax = plt.subplots(figsize=SINGLE_FIG)
-    ax.pie(
-        (len(has_version), len(bioregistry) - len(has_version)),
-        labels=('Has Version', 'No Version'),
-        autopct='%1.f%%',
-        startangle=30,
-        explode=[0, 0.03],
-    )
+    has_pattern = {
+        key
+        for key, entry in bioregistry.items()
+        if 'pattern' in entry or 'pattern' in entry.get('miriam', {}) or 'pattern' in entry.get('wikidata', {})
+    }
+    has_wikidata_database = {
+        key
+        for key, entry in bioregistry.items()
+        if 'database' in entry.get('wikidata', {})
+    }
+    measurements = [
+        ('Pattern', has_pattern),
+        ('Version', has_version),
+        ('Wikidata Database', has_wikidata_database),
+    ]
+    fig, axes = plt.subplots(ncols=2, nrows=(1 + len(measurements)) // 2)
+    for (label, prefixes), ax in zip(measurements, axes.ravel()):
+        ax.pie(
+            (len(prefixes), len(bioregistry) - len(prefixes)),
+            labels=('Yes', 'No'),
+            autopct='%1.f%%',
+            startangle=30,
+            explode=[0.1, 0],
+        )
+        ax.set_title(f'Has {label}')
+    if len(measurements) % 2:
+        axes.ravel()[-1].axis('off')
+
     fig.tight_layout()
-    path = os.path.join(DOCS_IMG, 'has_version.png')
+    path = os.path.join(DOCS_IMG, 'has_attribute.png')
     plt.savefig(path, dpi=300)
     plt.close(fig)
 

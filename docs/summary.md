@@ -42,7 +42,11 @@ license and were collapsed into "Other". The remaining conflicts were between CC
 
 <img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/licenses.png" alt="License Types"/>
 
-## Versioning
+## Other Attributes
+
+<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/has_version.png" alt="Version Coverage"/>
+
+### Versioning
 
 The OLS is the only registry that actually consumes the data it references, and is therefore the only registry that
 reports version information. The OBO Foundry also references versioned data, but does not consume it and therefore can
@@ -52,4 +56,16 @@ information as their resolution services are independent of the data versions. A
 the [Bioversions](https://github.com/cthoyt/bioversions) project sets out to be a registry-independent solution for
 identifying current versions of different databases, ontologies, and resources.
 
-<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/has_version.png" alt="Version Coverage"/>
+### Pattern
+
+MIRIAM and Wikidata are only registies that report patterns, though OBO Foundry has a very consistent pattern of most
+OBO ontologies using the `^<prefix>:\d{7}$` pattern. However, this isn't a rule, so it can't be assumed without
+inspection of some terms from the ontology itself. The Bioregistry also has a place to curate patterns for all the
+entries that do not have a reference in MIRIAM.
+
+### Wikidata Database
+
+It's typically difficult to propose new Wikidata properties to go along with databases, but anyone can add entities
+corresponding to databases. This is one part of the Bioregistry that will require lots of manual effort. Eventually, we
+can develop a minimum information standard for entries in the Bioregistry that would be convincing enough for the
+Wikidata property gateholders and the MIRIAM registry.
