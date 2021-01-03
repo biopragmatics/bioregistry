@@ -3,7 +3,7 @@
 """Align MIRIAM with the Bioregistry."""
 
 from ..external.miriam import get_miriam
-from ..utils import norm, updater
+from ..utils import norm, secho, updater
 
 MIRIAM_KEYS = {
     'id',
@@ -40,24 +40,23 @@ def align_miriam(registry):
             miriam_id_to_bioregistry_id[miriam_id] = key
 
     for miriam_entry in miriam_registry.values():
-        miriam_id = miriam_entry['mirId'].removeprefix('MIR:')
+        miriam_entry['id'] = miriam_entry['mirId'].removeprefix('MIR:')
 
         # Get key by checking the miriam.id key
-        bioregistry_id = miriam_id_to_bioregistry_id.get(miriam_id)
+        bioregistry_id = miriam_id_to_bioregistry_id.get(miriam_entry['id'])
         if bioregistry_id is None:
-            continue
+            if miriam_entry.get('deprecated'):
+                secho(f'[{miriam_entry["prefix"]}] skipping deprecated')
+                continue
+            bioregistry_id = miriam_entry['prefix']
+            registry[bioregistry_id] = {}
 
-        miriam_entry = {k: v for k, v in miriam_entry.items() if k in MIRIAM_KEYS}
-        miriam_entry['id'] = miriam_id
+        registry[bioregistry_id]['miriam'] = {
+            k: v
+            for k, v in miriam_entry.items()
+            if k in MIRIAM_KEYS
+        }
 
-        if bioregistry_id is not None:
-            registry[bioregistry_id]['miriam'] = miriam_entry
-        else:
-            prefix = miriam_entry['prefix']
-            registry[prefix] = {
-                'miriam': miriam_entry,
-                'synonyms': [prefix],
-            }
     return registry
 
 
