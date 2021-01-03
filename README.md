@@ -24,7 +24,9 @@
     </a>
 </p>
 
-An integrative registry of biological databases, ontologies, and nomenclatures.
+<p align="center">
+   A community-driven integrative registry of biological databases, ontologies, nomenclatures, and other resources.
+</p>
 
 ## ⬇️ Download
 
