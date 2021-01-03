@@ -48,19 +48,19 @@ def _prepare_obo(obofoundry_entry):
         if method is None and 'checkout in build':
             method = 'vcs'
         if method is None:
-            secho(f'[{prefix}] missing method: {build}', fg='yellow')
+            secho(f'[{prefix}] missing method: {build}', fg='red')
             return rv
 
         if method == 'vcs':
             if 'system' not in build:
-                secho(f'[{prefix}] missing build system', fg='yellow')
+                secho(f'[{prefix}] missing build system', fg='red')
                 return rv
             if build['system'] != 'git':
-                secho(f'[{prefix}] unrecognized build system: {build["system"]}', fg='yellow')
+                secho(f'[{prefix}] unrecognized build system: {build["system"]}', fg='red')
                 return rv
             checkout = build['checkout'].replace('  ', ' ')
             if not checkout.startswith('git clone https://github.com/'):
-                secho(f'[{prefix}] unhandled build checkout: {checkout}', fg='yellow')
+                secho(f'[{prefix}] unhandled build checkout: {checkout}', fg='red')
                 return rv
 
             owner, repo = checkout.removeprefix('git clone https://github.com/').removesuffix('.git').split('/')
@@ -99,7 +99,7 @@ def _prepare_obo(obofoundry_entry):
                 else:
                     secho(f'[{prefix}] [http {res.status_code}] problem with {obo_url}', bold=True, fg='red')
             else:
-                secho(f'[{prefix}] unhandled build.source_url: {source_url}', fg='yellow')
+                secho(f'[{prefix}] unhandled build.source_url: {source_url}', fg='red')
 
         elif method == 'obo2owl':
             source_url = build['source_url']
@@ -112,7 +112,7 @@ def _prepare_obo(obofoundry_entry):
             else:
                 secho(f'[{prefix}] unhandled extension {source_url}', bold=True, fg='red')
         else:
-            secho(f'[{prefix}] unhandled build method: {method}', fg='yellow')
+            secho(f'[{prefix}] unhandled build method: {method}', fg='red')
 
     return rv
 
@@ -148,7 +148,7 @@ def align_obofoundry(registry):
                 secho(f'OBO key already in registry: {obofoundry_prefix}')
                 raise KeyError
             registry[bioregistry_id] = {}
-            secho(f'adding obo entry {obofoundry_prefix}: {obofoundry_entry["title"]}', fg='green')
+            secho(f'[{obofoundry_prefix}] added: {obofoundry_entry["title"]}', fg='green')
 
         try:
             registry[bioregistry_id]['obofoundry'] = _prepare_obo(obofoundry_entry)
