@@ -109,13 +109,22 @@ registry = bioregistry.read_bioregistry()
 
 The database is automatically updated daily thanks to scheduled workflows in GitHub Actions. The workflow's
 configuration can be found [here](https://github.com/cthoyt/bioregistry/blob/main/.github/workflows/update.yml)
-and the last run can be
-seen [here](https://github.com/cthoyt/bioregistry/actions?query=workflow%3A%22Update+Data%22). Further,
-a [changelog](https://github.com/cthoyt/bioregistry/commits?author=actions-user) can be recapitulated from the commits
-of the GitHub Actions bot.
+and the last run can be seen [here](https://github.com/cthoyt/bioregistry/actions?query=workflow%3A%22Update+Data%22).
+Further, a [changelog](https://github.com/cthoyt/bioregistry/commits?author=actions-user) can be recapitulated from the
+commits of the GitHub Actions bot.
 
 If you want to manually update the database after installing in development mode, run the following:
 
 ```bash
 $ bioregistry update
 ```
+
+## ⚖️ License
+
+The code in this repository is licensed under the
+[MIT License](https://github.com/cthoyt/bioregistry/blob/main/LICENSE).
+
+## 📖 Citation
+
+Hopefully there will be a paper describing this resource on *bioRxiv* sometime in 2021! Until then, you can use the
+Zenodo [BibTeX](https://zenodo.org/record/4404608/export/hx) or [CSL](https://zenodo.org/record/4404608/export/csl).
