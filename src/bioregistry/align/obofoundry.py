@@ -23,7 +23,7 @@ OBO_KEYS = {
 }
 
 
-def _prepare_obo(obofoundry_entry):
+def _prepare_obo(obofoundry_entry):  # noqa:C901
     prefix = obofoundry_entry['id']
     rv = {
         'prefix': prefix,
