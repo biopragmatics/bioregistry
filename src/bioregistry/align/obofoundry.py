@@ -143,7 +143,7 @@ def align_obofoundry(registry):
         # Get key by checking the miriam.id key
         bioregistry_id = obofoundry_id_to_bioregistry_id.get(obofoundry_prefix)
         if bioregistry_id is None:
-            if obofoundry_entry['deprecated']:
+            if obofoundry_entry.get('is_obsolete'):
                 secho(f'[{obofoundry_prefix}] skipping deprecated. If needed, add manually later', fg='yellow')
                 continue
 
