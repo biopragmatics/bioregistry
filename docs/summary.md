@@ -1,0 +1,41 @@
+---
+layout: page title: Summary permalink: /summary/
+---
+
+## Bioregistry Coverage
+
+This two-sided comparison shows how well the Bioregistry covers each external registry. In the case of Wikidata, it's
+difficult to know exactly how many relevant properties there are.
+
+<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/bioregistry_coverage.png" alt="Bioregistry Coverage"/>
+
+## Overlap between External Registries
+
+After normalization and integration in the Bioregistry, it's possible to investigate the overlap between pairs of other
+registries. It can be seen that the MIRIAM and Name-to-Thing (N2T) registries are effectively the same because N2T
+imports from MIRIAM. It can also be seen that OLS and OBO Foundry have a very high overlap, where the OLS includes
+several ontologies that are not included in OBO Foundry. Notably, this discrepancy contains the highly regarded
+Experimental Factor Ontology (EFO).
+
+<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/comparison.png" alt="External Registry Overlaps"/>
+
+## Highly Conserved Resources
+
+The following chart shows how often entries in the Bioregistry have few or many references to external registries. A few
+resources appear in all external registries, such as the NCBI Taxonomy database. However, the notable lack of inclusion
+of controlled vocabularies that aren't *technically* ontologies into the OBO Foundry and OLS severely lacks their
+ability to cover some of the most used resources like the HGNC.
+
+<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/xrefs.png" alt="Reference Counts"/>
+
+## Licensing
+
+Licenses are only directly available from OBO Foundry and the OLS. Wikidata contains some licensing information, but
+more code needs to be written to handle this.
+
+<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/license_coverage.png" alt="License Coverage"/>
+
+There are several conflicts, however, many of them involved inappropriate licenses for data such as the Apache 2.0
+license and were collapsed into "Other". The remaining conflicts were between CC-BY and CC 0 references.
+
+<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/licenses.png" alt="License Coverage"/>

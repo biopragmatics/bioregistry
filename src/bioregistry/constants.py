@@ -24,3 +24,4 @@ EnsureEntry = Any
 
 DOCS = os.path.abspath(os.path.join(HERE, os.pardir, os.pardir, 'docs'))
 DOCS_DATA = os.path.join(DOCS, '_data')
+DOCS_IMG = os.path.join(DOCS, 'img')
