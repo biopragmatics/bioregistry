@@ -1,5 +1,7 @@
 ---
-layout: page title: Summary permalink: /summary/
+layout: page
+title: Summary
+permalink: /summary/
 ---
 
 ## Bioregistry Coverage
