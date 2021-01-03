@@ -57,6 +57,8 @@ def align_ols(registry):
             continue
         registry[bioregistry_id]['ols'] = _prepare_ols(ols_entry)
 
+    return registry
+
 
 if __name__ == '__main__':
     align_ols()

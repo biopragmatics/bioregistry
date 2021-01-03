@@ -24,20 +24,51 @@
     </a>
 </p>
 
-An integrative registry of biological databases, ontologies, and nomenclatures.
+<p align="center">
+   A community-driven integrative registry of biological databases, ontologies, and other resources.
+</p>
 
 ## ⬇️ Download
 
 The bioregistry database can be downloaded directly
-from [here](https://github.com/cthoyt/bioregistry/blob/main/src/bioregistry/data/bioregistry.json)
+from [here](https://github.com/cthoyt/bioregistry/blob/main/src/bioregistry/data/bioregistry.json).
+
+The manually curated portions of these data are available under the CC0 1.0 Universal License.
+
+## 🙏 Contributing
+
+There haven't been any external contributors yet, but if you want to get involved, you can make edits directly to
+the [bioregistry.json](https://github.com/cthoyt/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
+file through the GitHub interface.
+
+Things that would be helpful:
+
+1. For all entries, add a `["wikidata"]["database"]` entry. Many ontologies and databases don't have a property in
+   Wikidata because the process of adding a new property is incredibly cautious. However, anyone can add a database as
+   normal Wikidata item with a Q prefix. One example is UniPathway, whose Wikidata database item
+   is [Q85719315](https://www.wikidata.org/wiki/Q85719315). If there's no database item on Wikidata, you can even make
+   one! Note: don't mix this up with a paper describing the
+   resource, [Q35631060](https://www.wikidata.org/wiki/Q35631060). If you see there's a paper, you can add it under
+   the `["wikidata"]["database"]` key.
+2. Adding `["homepage"]` entry for any entry that doesn't have an external reference
 
 ## 🚀 Installation
 
+The Bioregistry can be installed from [PyPI](https://pypi.org/project/bioregistry/) with:
+
 ```bash
-$ pip install git+https://github.com/cthoyt/bioregistry.git
+$ pip install bioregistry
 ```
 
-## Usage
+It can be installed in development mode for local curation with:
+
+```bash
+$ git clone https://github.com/cthoyt/bioregistry.git
+$ cd bioregistry
+$ pip install -e .
+```
+
+## 💪 Usage
 
 The Bioregistry can be used to normalize prefixes across MIRIAM and all the (very plentiful) variants that pop up in
 ontologies in OBO Foundry and the OLS with the `normalize_prefix()` function.
@@ -76,8 +107,26 @@ import bioregistry
 registry = bioregistry.read_bioregistry()
 ```
 
-## Update
+## ♻️ Update
+
+The database is automatically updated daily thanks to scheduled workflows in GitHub Actions. The workflow's
+configuration can be found [here](https://github.com/cthoyt/bioregistry/blob/main/.github/workflows/update.yml)
+and the last run can be seen [here](https://github.com/cthoyt/bioregistry/actions?query=workflow%3A%22Update+Data%22).
+Further, a [changelog](https://github.com/cthoyt/bioregistry/commits?author=actions-user) can be recapitulated from the
+commits of the GitHub Actions bot.
+
+If you want to manually update the database after installing in development mode, run the following:
 
 ```bash
 $ bioregistry update
 ```
+
+## ⚖️ License
+
+The code in this repository is licensed under the
+[MIT License](https://github.com/cthoyt/bioregistry/blob/main/LICENSE).
+
+## 📖 Citation
+
+Hopefully there will be a paper describing this resource on *bioRxiv* sometime in 2021! Until then, you can use the
+Zenodo [BibTeX](https://zenodo.org/record/4404608/export/hx) or [CSL](https://zenodo.org/record/4404608/export/csl).
