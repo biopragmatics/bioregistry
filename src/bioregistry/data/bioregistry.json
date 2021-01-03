@@ -119,7 +119,7 @@
       "ATCC number",
       "ATCC"
     ],
-    "url": "https://www.lgcstandards-atcc.org"
+    "homepage": "https://www.lgcstandards-atcc.org"
   },
   "bao": {
     "miriam": {
@@ -148,6 +148,7 @@
     ]
   },
   "bel": {
+    "name": "Biological Expression Language",
     "synonyms": [
       "SCOMP",
       "SFAM"
@@ -243,7 +244,10 @@
     "pattern": "\\d{7}",
     "synonyms": [
       "BTO"
-    ]
+    ],
+    "wikidata": {
+      "property": "P5501"
+    }
   },
   "caro": {
     "obofoundry": {
@@ -334,7 +338,7 @@
       "BirdBase",
       "CGNC"
     ],
-    "url": "http://birdgenenames.org/cgnc/GeneReport?id="
+    "url": "http://birdgenenames.org/cgnc/GeneReport?id=$1"
   },
   "chebi": {
     "miriam": {
@@ -428,6 +432,7 @@
     ]
   },
   "cheminf": {
+    "name": "Chemical Information Ontology",
     "not_available_as_obo": true,
     "obofoundry": {
       "contact": "egon.willighagen@gmail.com",
@@ -899,7 +904,10 @@
     "synonyms": [
       "ECMDB"
     ],
-    "url": "http://ecmdb.ca/compounds/$1"
+    "url": "http://ecmdb.ca/compounds/$1",
+    "wikidata": {
+      "database": "Q17052437"
+    }
   },
   "ecocore": {
     "obofoundry": {
@@ -1199,7 +1207,9 @@
     ]
   },
   "fishbase.species": {
+    "name": "FishBase",
     "wikidata": {
+      "database": "Q837101",
       "property": "P938"
     }
   },
@@ -1254,7 +1264,10 @@
     "name": "FamPlex",
     "synonyms": [
       "famplex"
-    ]
+    ],
+    "wikidata": {
+      "paper": "Q55505864"
+    }
   },
   "fypo": {
     "download": "http://purl.obolibrary.org/obo/fypo.obo",
@@ -1305,7 +1318,10 @@
       "prefix": "gaz",
       "version": "26-06-2018"
     },
-    "pattern": "\\d{8}"
+    "pattern": "\\d{8}",
+    "wikidata": {
+      "property": "P6778"
+    }
   },
   "gbif": {
     "name": "Global Biodiversity Information Facility",
@@ -2509,6 +2525,16 @@
       "MPATH"
     ]
   },
+  "msigdb": {
+    "homepage": "https://www.gsea-msigdb.org",
+    "name": "Molecular Signatures Database",
+    "synonyms": [
+      "msig"
+    ],
+    "wikidata": {
+      "paper": "Q34509167"
+    }
+  },
   "nbo": {
     "download": "https://github.com/obo-behavior/behavior-ontology/raw/master/nbo.obo",
     "obofoundry": {
@@ -2740,6 +2766,9 @@
       "prefix": "ogms",
       "version": "2020-07-06",
       "version.iri": "https://github.com/OGMS/ogms/releases/tag/2020-07-06"
+    },
+    "wikidata": {
+      "database": "Q4866972"
     }
   },
   "olatdv": {
@@ -3334,9 +3363,14 @@
     }
   },
   "pseudogene": {
+    "homepage": "http://www.pseudogene.org",
+    "title": "PseudoGene",
     "synonyms": [
       "pseudogene.org"
-    ]
+    ],
+    "wikidata": {
+      "database": "Q7254809"
+    }
   },
   "pubchem.compound": {
     "miriam": {
@@ -3441,6 +3475,10 @@
       "prefix": "pw",
       "version": "23-10-2019",
       "version.iri": "http://purl.obolibrary.org/obo/pw/7.52/pw.owl"
+    },
+    "wikidata": {
+      "database": "Q28864280",
+      "property": "P7333"
     }
   },
   "reactome": {
@@ -3620,9 +3658,11 @@
     }
   },
   "rxnorm": {
+    "name": "RxNorm",
     "pattern": "[0-9]{1,7}",
     "url": "https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=$1",
     "wikidata": {
+      "database": "Q7383767",
       "property": "P3345"
     }
   },
@@ -3778,7 +3818,10 @@
     "n2t": {
       "prefix": "swisslipid"
     },
-    "url": "https://www.swisslipids.org/#/entity/$1"
+    "url": "https://www.swisslipids.org/#/entity/$1",
+    "wikidata": {
+      "property": "P8691"
+    }
   },
   "symp": {
     "obofoundry": {
@@ -4052,7 +4095,10 @@
     "synonyms": [
       "UM-BBD_reactionID"
     ],
-    "url": "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=r&reacID=$1"
+    "url": "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=r&reacID=$1",
+    "wikidata": {
+      "database": "Q24188985"
+    }
   },
   "umls": {
     "miriam": {
@@ -4148,7 +4194,16 @@
     ],
     "url": "https://web.expasy.org/variant_pages/$1.html"
   },
-  "unpd": {},
+  "unpd": {
+    "homepage": "pkuxxj.pku.edu.cn/UNPD/",
+    "name": "Universal Natural Products Database",
+    "references": [
+      "http://bioinf-applied.charite.de/supernatural_new/index.php?site=vendor_info&id=Universal%20Natural%20Products%20Database",
+      "https://pharmacognosy.in/the-universal-natural-products-database-unpd/",
+      "https://pubs.acs.org/doi/abs/10.1021/acs.jnatprod.6b01093",
+      "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0062839",
+    ]
+  },
   "upa": {
     "obofoundry": {
       "contact": "Anne.Morgat@sib.swiss",
@@ -4188,7 +4243,7 @@
     "synonyms": [
       "VEGA"
     ],
-    "url": "https://vega.archive.ensembl.org/index.html"
+    "homepage": "https://vega.archive.ensembl.org/index.html"
   },
   "vt": {
     "obofoundry": {
