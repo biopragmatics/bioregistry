@@ -144,6 +144,8 @@ def align_obofoundry(registry):
         # click.echo(f'bioregistry={bioregistry_id}, obo={obofoundry_prefix}')
         registry[bioregistry_id]['obofoundry'] = _prepare_obo(obofoundry_entry)
 
+    return registry
+
 
 if __name__ == '__main__':
     align_obofoundry()
