@@ -2,12 +2,11 @@
 
 """Align the OBO Foundry with the Bioregistry."""
 
-import click
 import requests
 import requests_ftp
 
 from ..external import get_obofoundry
-from ..utils import norm, updater
+from ..utils import norm, secho, updater
 
 requests_ftp.monkeypatch_session()
 session = requests.Session()
@@ -48,16 +47,19 @@ def _prepare_obo(obofoundry_entry):
         if method is None and 'checkout in build':
             method = 'vcs'
         if method is None:
-            click.echo(f'[{prefix}] missing method: {build}')
+            secho(f'[{prefix}] missing method: {build}', fg='yellow')
             return rv
 
         if method == 'vcs':
+            if 'system' not in build:
+                secho(f'[{prefix}] missing build system', fg='yellow')
+                return rv
             if build['system'] != 'git':
-                click.echo(f'[{prefix}] Unrecognized build system: {build["system"]}')
+                secho(f'[{prefix}] unrecognized build system: {build["system"]}', fg='yellow')
                 return rv
             checkout = build['checkout'].replace('  ', ' ')
             if not checkout.startswith('git clone https://github.com/'):
-                click.echo(f'[{prefix}] unhandled build checkout: {checkout}')
+                secho(f'[{prefix}] unhandled build checkout: {checkout}', fg='yellow')
                 return rv
 
             owner, repo = checkout.removeprefix('git clone https://github.com/').removesuffix('.git').split('/')
@@ -74,7 +76,7 @@ def _prepare_obo(obofoundry_entry):
             if res.status_code == 200:
                 rv['download.obo'] = obo_url
             else:
-                click.secho(f"[{prefix}] [http {res.status_code}] see {rv['repo']} [{path}]", bold=True, fg='red')
+                secho(f"[{prefix}] [http {res.status_code}] see {rv['repo']} [{path}]", bold=True, fg='red')
 
         elif method == 'owl2obo':
             source_url = build['source_url']
@@ -94,9 +96,9 @@ def _prepare_obo(obofoundry_entry):
                 if res.status_code == 200:
                     rv['download.obo'] = source_url
                 else:
-                    click.secho(f'[{prefix}] [http {res.status_code}] problem with {obo_url}', bold=True, fg='red')
+                    secho(f'[{prefix}] [http {res.status_code}] problem with {obo_url}', bold=True, fg='red')
             else:
-                click.echo(f'[{prefix}] unhandled build.source_url: {source_url}')
+                secho(f'[{prefix}] unhandled build.source_url: {source_url}', fg='yellow')
 
         elif method == 'obo2owl':
             source_url = build['source_url']
@@ -105,11 +107,11 @@ def _prepare_obo(obofoundry_entry):
                 if res.status_code == 200:
                     rv['download.obo'] = source_url
                 else:
-                    click.secho(f'[{prefix}] [http {res.status_code}] problem with {source_url}', bold=True, fg='red')
+                    secho(f'[{prefix}] [http {res.status_code}] problem with {source_url}', bold=True, fg='red')
             else:
-                click.secho(f'[{prefix}] unhandled extension {source_url}', bold=True, fg='red')
+                secho(f'[{prefix}] unhandled extension {source_url}', bold=True, fg='red')
         else:
-            click.echo(f'[{prefix}] unhandled build method: {method}')
+            secho(f'[{prefix}] unhandled build method: {method}', fg='yellow')
 
     return rv
 
@@ -141,7 +143,7 @@ def align_obofoundry(registry):
         bioregistry_id = obofoundry_id_to_bioregistry_id.get(obofoundry_prefix)
         if bioregistry_id is None:
             continue
-        # click.echo(f'bioregistry={bioregistry_id}, obo={obofoundry_prefix}')
+        # secho(f'bioregistry={bioregistry_id}, obo={obofoundry_prefix}')
         registry[bioregistry_id]['obofoundry'] = _prepare_obo(obofoundry_entry)
 
     return registry
