@@ -48,7 +48,8 @@ LICENSES = {
     'New BSD license': 'Other',
     'http://creativecommons.org/publicdomain/zero/1.0/': 'CC 0',
     'http://creativecommons.org/licenses/by-nc-sa/2.0/': 'CC-BY-NC-SA',
-    'SWO is provided under a Creative Commons Attribution 4.0 International (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/).': 'CC-BY',
+    'SWO is provided under a Creative Commons Attribution 4.0 International'
+    ' (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/).': 'CC-BY',
     'CC-BY version 3.0': 'CC-BY',
 }
 
@@ -63,8 +64,7 @@ def compare():
     try:
         import matplotlib.pyplot as plt
         import seaborn as sns
-        from matplotlib_venn import venn2, venn3
-        from matplotlib_venn._region import VennRegionException
+        from matplotlib_venn import venn2
     except ImportError:
         click.secho(
             'Could not import matplotlib dependencies.'
@@ -142,7 +142,7 @@ def compare():
         ('ols', 'OLS', 'green', ols_prefixes),
         ('miriam', 'MIRIAM', 'blue', miriam_prefixes),
         ('wikidata', 'Wikidata', 'purple', wikidata_prefixes),
-        ('n2t', 'Name-to-Thing', 'orange', n2t_prefixes)
+        ('n2t', 'Name-to-Thing', 'orange', n2t_prefixes),
     ]
 
     ############################################################
