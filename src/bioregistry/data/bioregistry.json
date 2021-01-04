@@ -1093,6 +1093,21 @@
     },
     "n2t": {
       "prefix": "biomodels.kisao"
+    },
+    "obofoundry": {
+      "contact": "biomodels-net-support@lists.sf.net",
+      "contact.label": "The Biomodels.net team",
+      "deprecated": false,
+      "license": "Artistic License 2.0",
+      "name": "Kinetic Simulation Algorithm Ontology",
+      "prefix": "kisao"
+    },
+    "ols": {
+      "description": "A classification of algorithms available for the simulation of models in biology.",
+      "download": "http://purl.obolibrary.org/obo/kisao.owl",
+      "name": "Kinetic Simulation Algorithm Ontology",
+      "prefix": "kisao",
+      "version": "2.10"
     }
   },
   "biomodels.teddy": {
@@ -1107,6 +1122,14 @@
     },
     "n2t": {
       "prefix": "biomodels.teddy"
+    },
+    "ols": {
+      "description": "TEDDY is an ontology for dynamical behaviours, observable dynamical phenomena, and control elements of bio-models and biological systems in Systems and Synthetic Biology.",
+      "download": "http://www.biomodels.net/teddy/TEDDY",
+      "name": "Terminology for Description of Dynamics",
+      "prefix": "teddy",
+      "version": "rel-2014-04-24",
+      "version.iri": "http://identifiers.org/combine.specifications/teddy.rel-2014-04-24"
     }
   },
   "biomodels.vocabulary": {
@@ -3719,7 +3742,8 @@
       "EC-CODE",
       "EC_CODE",
       "ECCODE",
-      "ec-code"
+      "ec-code",
+      "intenz"
     ],
     "wikidata": {
       "property": "P591"
@@ -4076,7 +4100,10 @@
     },
     "n2t": {
       "prefix": "ena.embl"
-    }
+    },
+    "synonyms": [
+      "ena"
+    ]
   },
   "encode": {
     "miriam": {
@@ -5604,7 +5631,10 @@
     },
     "n2t": {
       "prefix": "google.patent"
-    }
+    },
+    "synonyms": [
+      "patent"
+    ]
   },
   "gpcrdb": {
     "miriam": {
@@ -7372,23 +7402,6 @@
       "property.label": "KEGG ID"
     }
   },
-  "kisao": {
-    "obofoundry": {
-      "contact": "biomodels-net-support@lists.sf.net",
-      "contact.label": "The Biomodels.net team",
-      "deprecated": false,
-      "license": "Artistic License 2.0",
-      "name": "Kinetic Simulation Algorithm Ontology",
-      "prefix": "kisao"
-    },
-    "ols": {
-      "description": "A classification of algorithms available for the simulation of models in biology.",
-      "download": "http://purl.obolibrary.org/obo/kisao.owl",
-      "name": "Kinetic Simulation Algorithm Ontology",
-      "prefix": "kisao",
-      "version": "2.10"
-    }
-  },
   "knapsack": {
     "miriam": {
       "deprecated": false,
@@ -7573,7 +7586,10 @@
     },
     "n2t": {
       "prefix": "lincs.smallmolecule"
-    }
+    },
+    "synonyms": [
+      "lincs"
+    ]
   },
   "lipidbank": {
     "miriam": {
@@ -7742,6 +7758,14 @@
     "n2t": {
       "prefix": "massive"
     }
+  },
+  "matrixdb": {
+    "appearsIn": [
+      "complexportal"
+    ],
+    "example": "MULT_4_VAR1_bovine",
+    "homepage": "http://matrixdb.univ-lyon1.fr/",
+    "url": "http://matrixdb.univ-lyon1.fr/cgi-bin/current/newPort?type=biomolecule&value=$1"
   },
   "matrixdb.association": {
     "miriam": {
@@ -10945,6 +10969,9 @@
     "n2t": {
       "prefix": "pdb"
     },
+    "synonyms": [
+      "wwpdb"
+    ],
     "wikidata": {
       "database": "Q766195",
       "database.label": "Protein Data Bank",
@@ -11057,6 +11084,12 @@
       "version.iri": "http://purl.obolibrary.org/obo/peco/releases/2020-08-21/peco.owl"
     },
     "pattern": "^\\d{7}$"
+  },
+  "peff": {
+    "deprecated": true,
+    "download": "https://github.com/HUPO-PSI/PEFF/raw/master/CV/psi-peff-OBSOLETE-DO_NOT_USE.obo",
+    "homepage": "https://www.psidev.info/peff",
+    "name": "PSI Extended File Format"
   },
   "peptideatlas": {
     "miriam": {
@@ -13640,16 +13673,6 @@
     },
     "n2t": {
       "prefix": "tcdb"
-    }
-  },
-  "teddy": {
-    "ols": {
-      "description": "TEDDY is an ontology for dynamical behaviours, observable dynamical phenomena, and control elements of bio-models and biological systems in Systems and Synthetic Biology.",
-      "download": "http://www.biomodels.net/teddy/TEDDY",
-      "name": "Terminology for Description of Dynamics",
-      "prefix": "teddy",
-      "version": "rel-2014-04-24",
-      "version.iri": "http://identifiers.org/combine.specifications/teddy.rel-2014-04-24"
     }
   },
   "tgd": {
