@@ -9,6 +9,7 @@ from .utils import read_bioregistry
 
 __all__ = [
     'get',
+    'is_deprecated',
     'normalize_prefix',
 ]
 
@@ -22,6 +23,19 @@ def get(prefix: str) -> Optional[Mapping[str, Any]]:
         other registries when available.
     """
     return read_bioregistry().get(normalize_prefix(prefix))
+
+
+def is_deprecated(prefix: str) -> bool:
+    """Return if the given prefix corresponds to a deprecated resource."""
+    entry = get(prefix)
+    if entry is None:
+        return False
+    if 'deprecated' in entry:
+        return entry['deprecated']
+    for key in ('obofoundry', 'ols', 'miriam'):
+        if key in entry and 'deprecated' in entry[key]:
+            return entry[key]['deprecated']
+    return False
 
 
 def normalize_prefix(prefix: str) -> Optional[str]:

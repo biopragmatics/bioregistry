@@ -100,6 +100,16 @@ entry = bioregistry.normalize_prefix('taxonomy')
 # there are lots of mysteries to discover in this dictionary!
 ```
 
+Entries in the Bioregistry can be checked for deprecation with the `is_deprecated()` function. MIRIAM and OBO Foundry
+don't often agree - OBO Foundry takes precedence since it seems to be updated more often.
+
+```python
+import bioregistry
+
+assert bioregistry.is_deprecated('nmr')
+assert not bioregistry.is_deprecated('efo')
+```
+
 The full Bioregistry can be read in a Python project using:
 
 ```python
