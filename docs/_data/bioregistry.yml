@@ -208,8 +208,8 @@
     license: https://creativecommons.org/licenses/by/3.0/
     name: Amphioxus Development and Anatomy Ontology (AMPHX)
     prefix: amphx
-    version: '2020-11-10'
-    version.iri: http://purl.obolibrary.org/obo/amphx/releases/2020-11-10/amphx.owl
+    version: '2020-12-18'
+    version.iri: http://purl.obolibrary.org/obo/amphx/releases/2020-12-18/amphx.owl
   prefix: amphx
 - miriam:
     deprecated: false
@@ -1377,11 +1377,9 @@
     version.iri: http://purl.obolibrary.org/obo/bspo/releases/2020-05-11/bspo.owl
   pattern: ^\d{7}$
   prefix: bspo
-- deprecated: true
-  download: https://github.com/HUPO-PSI/PEFF/raw/master/CV/psi-peff-OBSOLETE-DO_NOT_USE.obo
-  homepage: https://www.psidev.info/peff
-  name: PSI Extended File Format
-  prefix: peff
+- name: OWL Ontology
+  pattern: ^.*$
+  prefix: owl
 - miriam:
     deprecated: false
     description: The Brenda tissue ontology is a structured controlled vocabulary
@@ -1869,7 +1867,7 @@
     name: Chemical Entities of Biological Interest
     prefix: chebi
     version: 01-01-2020
-    version.iri: http://purl.obolibrary.org/obo/chebi/194/chebi.owl
+    version.iri: http://purl.obolibrary.org/obo/chebi/195/chebi.owl
   prefix: chebi
   synonyms:
   - ChEBI
@@ -3443,8 +3441,8 @@
     license: https://creativecommons.org/publicdomain/zero/1.0/
     name: Human Disease Ontology
     prefix: doid
-    version: '2020-12-02'
-    version.iri: http://purl.obolibrary.org/obo/doid/releases/2020-12-02/doid.owl
+    version: '2020-12-22'
+    version.iri: http://purl.obolibrary.org/obo/doid/releases/2020-12-22/doid.owl
   prefix: doid
   synonyms:
   - do
@@ -3787,8 +3785,8 @@
     download: http://purl.obolibrary.org/obo/ecocore.owl
     name: An ontology of core ecological entities
     prefix: ecocore
-    version: '2020-12-15'
-    version.iri: http://purl.obolibrary.org/obo/ecocore/releases/2020-12-15/ecocore.owl
+    version: '2020-12-18'
+    version.iri: http://purl.obolibrary.org/obo/ecocore/releases/2020-12-18/ecocore.owl
   pattern: ^\d{7}$
   prefix: ecocore
 - miriam:
@@ -7749,6 +7747,13 @@
   n2t:
     prefix: massive
   prefix: massive
+- appearsIn:
+  - complexportal
+  example: MULT_4_VAR1_bovine
+  homepage: http://matrixdb.univ-lyon1.fr/
+  name: MatrixDB
+  prefix: matrixdb
+  url: http://matrixdb.univ-lyon1.fr/cgi-bin/current/newPort?type=biomolecule&value=$1
 - miriam:
     deprecated: false
     description: MatrixDB stores experimentally determined interactions involving
@@ -8841,8 +8846,8 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: Mondo Disease Ontology
     prefix: mondo
-    version: '2020-12-02'
-    version.iri: http://purl.obolibrary.org/obo/mondo/releases/2020-12-02/mondo.owl
+    version: '2020-12-18'
+    version.iri: http://purl.obolibrary.org/obo/mondo/releases/2020-12-18/mondo.owl
   pattern: ^\d{7}$
   prefix: mondo
   wikidata:
@@ -9895,8 +9900,8 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: Ontology for Biomedical Investigations
     prefix: obi
-    version: '2020-08-24'
-    version.iri: http://purl.obolibrary.org/obo/obi/2020-08-24/obi.owl
+    version: '2020-12-16'
+    version.iri: http://purl.obolibrary.org/obo/obi/2020-12-16/obi.owl
   prefix: obi
 - obofoundry:
     contact: jiezheng@pennmedicine.upenn.edu
@@ -10207,7 +10212,7 @@
     license: https://creativecommons.org/licenses/by/4.0/
     name: Ontology of units of Measure (OM)
     prefix: om
-    version: 2.0.27
+    version: 2.0.28
   prefix: om
 - miriam:
     deprecated: false
@@ -11121,6 +11126,11 @@
     version.iri: http://purl.obolibrary.org/obo/peco/releases/2020-08-21/peco.owl
   pattern: ^\d{7}$
   prefix: peco
+- deprecated: true
+  download: https://github.com/HUPO-PSI/PEFF/raw/master/CV/psi-peff-OBSOLETE-DO_NOT_USE.obo
+  homepage: https://www.psidev.info/peff
+  name: PSI Extended File Format
+  prefix: peff
 - miriam:
     deprecated: false
     description: The PeptideAtlas Project provides a publicly accessible database
@@ -12016,10 +12026,21 @@
     name: Performance Summary Display Ontology
     prefix: psdo
   ols:
-    description: Ontology to reproducibly study visualizations of clinical performance
+    description: Performance Summary Display Ontology (PSDO) (pronounced "pseudo"
+      or "sudo") is an application ontology about charts, tables, and graphs that
+      are used to communicate performance information to employees and teams in organizations.
+      PSDO's domain focus is on healthcare organizations that use performance summary
+      displays in clinical dashboards and feedback interventions for healthcare professionals
+      and teams. The displays commonly show information about the quality of care
+      and health outcomes that has been derived from clinical data using performance
+      measures (aka metrics, process indicators, quality measures, etc). PSDO uses
+      Basic Formal Ontology as its upper level ontology. This work is not peer-reviewed.
     download: http://purl.obolibrary.org/obo/psdo.owl
+    license: https://creativecommons.org/licenses/by/4.0/
     name: Performance Summary Display Ontology
     prefix: psdo
+    version: 1.0.0
+    version.iri: http://purl.obolibrary.org/obo/2020-12-04/psdo.owl
   prefix: psdo
 - homepage: http://www.pseudogene.org
   name: PseudoGene
@@ -12426,12 +12447,6 @@
   n2t:
     prefix: rgd.strain
   prefix: rgd.strain
-- appearsIn:
-  - complexportal
-  example: MULT_4_VAR1_bovine
-  homepage: http://matrixdb.univ-lyon1.fr/
-  prefix: matrixdb
-  url: http://matrixdb.univ-lyon1.fr/cgi-bin/current/newPort?type=biomolecule&value=$1
 - miriam:
     deprecated: false
     description: Rhea is a manually annotated reaction database, where all reaction
@@ -12608,10 +12623,11 @@
     description: The OBO Relations Ontology (RO) is a collection of OWL relations
       (ObjectProperties) intended for use across a wide variety of biological ontologies.
     download: http://purl.obolibrary.org/obo/ro.owl
+    license: https://creativecommons.org/publicdomain/zero/1.0/
     name: OBO Relations Ontology
     prefix: ro
-    version: '2020-07-21'
-    version.iri: http://purl.obolibrary.org/obo/ro/releases/2020-07-21/ro.owl
+    version: '2020-12-18'
+    version.iri: http://purl.obolibrary.org/obo/ro/releases/2020-12-18/ro.owl
   prefix: ro
   synonyms:
   - obo_rel
@@ -13235,8 +13251,8 @@
     download: http://purl.obolibrary.org/obo/so.owl
     name: Sequence types and features ontology
     prefix: so
-    version: '2020-11-10'
-    version.iri: http://purl.obolibrary.org/obo/so/2020-11-10/so.owl
+    version: '2020-12-30'
+    version.iri: http://purl.obolibrary.org/obo/so/2020-12-30/so.owl
   prefix: so
 - miriam:
     deprecated: false
@@ -14735,14 +14751,14 @@
   ols:
     description: The Vaccine Ontology (VO) is a biomedical ontology in the domain
       of vaccine and vaccination. VO aims to standardize vaccine annotation, integrate
-      various vaccine data, and support computer-assisted reasoning.  VO supports
-      basic vaccine R&D and clincal vaccine usage. VO is being developed as a community-based
+      various vaccine data, and support computer-assisted reasoning. VO supports basic
+      vaccine R&D and clincal vaccine usage. VO is being developed as a community-based
       ontology with support and collaborations from the vaccine and bio-ontology communities.
     download: http://purl.obolibrary.org/obo/vo.owl
-    license: http://creativecommons.org/licenses/by/3.0/
+    license: http://creativecommons.org/licenses/by/4.0/
     name: Vaccine Ontology
     prefix: vo
-    version: 1.3.
+    version: 1.1.133
   prefix: vo
 - obofoundry:
     contact: caripark@iastate.edu
