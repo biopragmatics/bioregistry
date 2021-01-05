@@ -9,6 +9,7 @@ from .utils import read_bioregistry
 
 __all__ = [
     'get',
+    'get_pattern',
     'is_deprecated',
     'normalize_prefix',
 ]
@@ -23,6 +24,24 @@ def get(prefix: str) -> Optional[Mapping[str, Any]]:
         other registries when available.
     """
     return read_bioregistry().get(normalize_prefix(prefix))
+
+
+def get_pattern(prefix: str) -> Optional[str]:
+    """Get the pattern for the given prefix, if it's available.
+
+    Uses the following order of preference:
+
+    1. Custom
+    2. MIRIAM
+    3. Wikidata
+    """
+    entry = get(prefix)
+    if entry is not None:
+        return (
+            entry.get('pattern')
+            or entry.get('miriam', {}).get('pattern')
+            or entry.get('wikidata', {}).get('pattern')
+        )
 
 
 def is_deprecated(prefix: str) -> bool:

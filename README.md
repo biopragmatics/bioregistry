@@ -100,6 +100,15 @@ entry = bioregistry.normalize_prefix('taxonomy')
 # there are lots of mysteries to discover in this dictionary!
 ```
 
+The pattern for an entry in the Bioregistry can be looked up quickly with `get_pattern()` if
+it exists. It prefers the custom curated, then MIRIAM, then Wikidata pattern.
+
+```python
+import bioregistry
+
+assert '^GO:\\d{7}$' == bioregistry.get_pattern('go')
+```
+
 Entries in the Bioregistry can be checked for deprecation with the `is_deprecated()` function. MIRIAM and OBO Foundry
 don't often agree - OBO Foundry takes precedence since it seems to be updated more often.
 
