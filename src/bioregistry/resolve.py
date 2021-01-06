@@ -29,11 +29,12 @@ def get(prefix: str) -> Optional[Mapping[str, Any]]:
 def get_pattern(prefix: str) -> Optional[str]:
     """Get the pattern for the given prefix, if it's available.
 
-    Uses the following order of preference:
-
-    1. Custom
-    2. MIRIAM
-    3. Wikidata
+    :param prefix: The prefix to look up, which is normalized with :func:`normalize_prefix`
+        before lookup in the Bioregistry
+    :returns: The pattern for the prefix, if it is available, using the following order of preference:
+        1. Custom
+        2. MIRIAM
+        3. Wikidata
     """
     entry = get(prefix)
     if entry is not None:
