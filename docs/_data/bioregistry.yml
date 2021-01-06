@@ -13,12 +13,6 @@
   wikidata:
     database: Q23948774
     property: P2796
-- deprecated: true
-  homepage: https://pictar.mdc-berlin.de/
-  name: PicTar
-  prefix: pictar
-  synonyms:
-  - pictar-vert
 - miriam:
     deprecated: false
     description: The database of Annotated regulatory Binding Sites (from orthologous
@@ -562,6 +556,9 @@
   n2t:
     prefix: aspgd.protein
   prefix: aspgd.protein
+- homepage: https://asrp.danforthcenter.org/
+  name: Arabidopsis Small RNA Project
+  prefix: asrp
 - miriam:
     deprecated: false
     description: The Anatomical Therapeutic Chemical (ATC) classification system,
@@ -1541,9 +1538,6 @@
     version: 24-05-2019
     version.iri: http://purl.obolibrary.org/obo/caro/2.0/beta/caro.owl
   prefix: caro
-- homepage: https://asrp.danforthcenter.org/
-  name: Arabidopsis Small RNA Project
-  prefix: asrp
 - miriam:
     deprecated: false
     description: CAS (Chemical Abstracts Service) is a division of the American Chemical
@@ -4277,7 +4271,8 @@
     version: '2020-06-10'
     version.iri: http://purl.obolibrary.org/obo/envo/releases/2020-06-10/envo.owl
   prefix: envo
-- miriam:
+- download: https://raw.githubusercontent.com/Planteome/plant-experimental-conditions-ontology/master/peco.obo
+  miriam:
     deprecated: false
     description: The Plant Environment Ontology is a set of standardized controlled
       vocabularies to describe various types of treatments given to an individual
@@ -4297,11 +4292,22 @@
   obofoundry:
     contact: jaiswalp@science.oregonstate.edu
     contact.label: Pankaj Jaiswal
-    deprecated: true
+    deprecated: false
     license: CC-BY 4.0
-    name: Plant Environment Ontology
-    prefix: eo
-  prefix: eo
+    name: Plant Experimental Conditions Ontology
+    prefix: peco
+  ols:
+    description: A structured, controlled vocabulary which describes the treatments,
+      growing conditions, and/or study types used in plant biology experiments.
+    download: http://purl.obolibrary.org/obo/peco.owl
+    name: Plant Experimental Conditions Ontology
+    prefix: peco
+    version: '2020-08-21'
+    version.iri: http://purl.obolibrary.org/obo/peco/releases/2020-08-21/peco.owl
+  pattern: ^\d{7}$
+  prefix: peco
+  synonyms:
+  - eo
 - ols:
     description: "L'ontologie EOL d\xE9crit les conditions d'environnement des \xE9\
       levages d'animaux domestiques. Elle d\xE9crit plus particuli\xE8rement les modalit\xE9\
@@ -9648,7 +9654,8 @@
   synonyms:
   - NIST Chemistry WebBook
   - NIST
-- miriam:
+- download: https://nmrml.org/cv/stable/nmrCV.owl
+  miriam:
     deprecated: false
     description: nmrCV is a controlled vocabulary to deliver standardized descriptors
       for the open mark-up language for NMR raw and spectrum data, sanctioned by the
@@ -9666,8 +9673,7 @@
     deprecated: true
     name: NMR-instrument specific component of metabolomics investigations
     prefix: nmr
-  prefix: nmr
-- ols:
+  ols:
     description: 'This artefact is an MSI-approved controlled vocabulary primarily
       developed under COSMOS EU and PhenoMeNal EU governance. The nmrCV is supporting
       the nmrML XML format with standardized terms. nmrML is a vendor agnostic open
@@ -9694,7 +9700,9 @@
     name: nuclear magnetic resonance CV
     prefix: nmrcv
     version: 1.1.0
-  prefix: nmrcv
+  prefix: nmr
+  synonyms:
+  - nmrcv
 - miriam:
     deprecated: false
     description: NMR database for organic structures and their nuclear magnetic resonance
@@ -9875,7 +9883,8 @@
     version: '101'
     version.iri: http://purl.obolibrary.org/obo/obcs/2018-02-22/obcs.owl
   prefix: obcs
-- miriam:
+- download: https://github.com/obi-ontology/obi/raw/master/views/obi.obo
+  miriam:
     deprecated: false
     description: The Ontology for Biomedical Investigations (OBI) project is developing
       an integrated ontology for the description of biological and clinical investigations.
@@ -10535,7 +10544,7 @@
   - ORCID
   wikidata:
     database: Q51044
-    database.label: ORCID iD
+    database.label: ORCID ID
     format: https://orcid.org/$1
     pattern: 0000-000(1-[5-9]|2-[0-9]|3-[0-4])\d{3}-\d{3}[\dX]
     property: P496
@@ -11104,10 +11113,6 @@
     version: '2019-09-19'
     version.iri: http://purl.obolibrary.org/obo/pdro/2019-09-19/pdro.owl
   prefix: pdro
-- comment: All of these are typedefs in uberon now
-  deprecated: true
-  name: Uberon Property
-  prefix: ubprop
 - obofoundry:
     contact: bgee@sib.swiss
     contact.label: bgee
@@ -11127,24 +11132,6 @@
   prefix: pdumdv
   synonyms:
   - PdumDv
-- download: https://raw.githubusercontent.com/Planteome/plant-experimental-conditions-ontology/master/peco.obo
-  obofoundry:
-    contact: jaiswalp@science.oregonstate.edu
-    contact.label: Pankaj Jaiswal
-    deprecated: false
-    license: CC-BY 4.0
-    name: Plant Experimental Conditions Ontology
-    prefix: peco
-  ols:
-    description: A structured, controlled vocabulary which describes the treatments,
-      growing conditions, and/or study types used in plant biology experiments.
-    download: http://purl.obolibrary.org/obo/peco.owl
-    name: Plant Experimental Conditions Ontology
-    prefix: peco
-    version: '2020-08-21'
-    version.iri: http://purl.obolibrary.org/obo/peco/releases/2020-08-21/peco.owl
-  pattern: ^\d{7}$
-  prefix: peco
 - deprecated: true
   download: https://github.com/HUPO-PSI/PEFF/raw/master/CV/psi-peff-OBSOLETE-DO_NOT_USE.obo
   homepage: https://www.psidev.info/peff
@@ -11445,6 +11432,12 @@
   n2t:
     prefix: phytozome.locus
   prefix: phytozome.locus
+- deprecated: true
+  homepage: https://pictar.mdc-berlin.de/
+  name: PicTar
+  prefix: pictar
+  synonyms:
+  - pictar-vert
 - miriam:
     deprecated: false
     description: The Pathway Interaction Database is a highly-structured, curated
@@ -12378,7 +12371,8 @@
     prefix: reto
     version: 17-09-2019
   prefix: reto
-- obofoundry:
+- download: http://purl.obolibrary.org/obo/rex.owl
+  obofoundry:
     deprecated: false
     download.obo: http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/physicochemical/rex.obo
     name: Physico-chemical process
@@ -12702,6 +12696,21 @@
     version.iri: http://purl.obolibrary.org/obo/rs/6.106/rs.owl
   pattern: ^\d{7}$
   prefix: rs
+- homepage: http://rna.rega.kuleuven.be/rnamods/
+  name: The RNA Modification Database
+  prefix: rnamod
+  url: http://rna.rega.kuleuven.be/cgi-bin/rnamods/rnashow.pl?$1
+- comment: part of Sequence Ontology (SO). See https://github.com/The-Sequence-Ontology/SO-Ontologies/blob/master/Ontology_Files/subsets/biosapiens.obo
+  name: Biosapiens
+  prefix: bs
+- example: LL379-9
+  homepage: https://loinc.org/
+  name: Logical Observation Identifiers Names and Codes
+  prefix: loinc
+  url: https://loinc.org/$1/
+- homepage: https://www.wikidata.org
+  name: Wikipedia
+  prefix: wikipedia
 - download: https://github.com/rsc-ontologies/rxno/raw/master/rxno.obo
   obofoundry:
     contact: batchelorc@rsc.org
@@ -13245,7 +13254,8 @@
     pattern: ^rs[0-9]+$
     prefix: snp2tfbs
   prefix: snp2tfbs
-- miriam:
+- download: https://github.com/The-Sequence-Ontology/SO-Ontologies/raw/master/Ontology_Files/so.obo
+  miriam:
     deprecated: false
     description: The Sequence Ontology (SO) is a structured controlled vocabulary
       for the parts of a genomic annotation. It provides a common set of terms and
@@ -13562,7 +13572,8 @@
   n2t:
     prefix: swissregulon
   prefix: swissregulon
-- obofoundry:
+- download: https://github.com/allysonlister/swo/raw/master/release/swo.owl
+  obofoundry:
     contact: allyson.lister@oerc.ox.ac.uk
     contact.label: Allyson Lister
     deprecated: false
@@ -14098,6 +14109,10 @@
   n2t:
     prefix: ubio.namebank
   prefix: ubio.namebank
+- comment: All of these are typedefs in uberon now
+  deprecated: true
+  name: Uberon Property
+  prefix: ubprop
 - homepage: https://genome.ucsc.edu/
   name: UCSC Genome Browser
   prefix: ucsc
@@ -14475,7 +14490,8 @@
   - unipathway
   wikidata:
     database: Q85719315
-- obofoundry:
+- download: https://github.com/obophenotype/upheno/blob/master/upheno.owl
+  obofoundry:
     contact: vasilevs@ohsu.edu
     contact.label: Nicole Vasilevsky
     deprecated: false

@@ -1340,6 +1340,10 @@
       "prefix": "broad"
     }
   },
+  "bs": {
+    "comment": "part of Sequence Ontology (SO). See https://github.com/The-Sequence-Ontology/SO-Ontologies/blob/master/Ontology_Files/subsets/biosapiens.obo",
+    "name": "Biosapiens"
+  },
   "bspo": {
     "download": "https://raw.githubusercontent.com/obophenotype/biological-spatial-ontology/master/bspo.obo",
     "obofoundry": {
@@ -4285,41 +4289,6 @@
       "version": "2020-06-10",
       "version.iri": "http://purl.obolibrary.org/obo/envo/releases/2020-06-10/envo.owl"
     }
-  },
-  "peco": {
-    "download": "https://raw.githubusercontent.com/Planteome/plant-experimental-conditions-ontology/master/peco.obo",
-    "obofoundry": {
-      "contact": "jaiswalp@science.oregonstate.edu",
-      "contact.label": "Pankaj Jaiswal",
-      "deprecated": false,
-      "license": "CC-BY 4.0",
-      "name": "Plant Experimental Conditions Ontology",
-      "prefix": "peco"
-    },
-    "ols": {
-      "description": "A structured, controlled vocabulary which describes the treatments, growing conditions, and/or study types used in plant biology experiments.",
-      "download": "http://purl.obolibrary.org/obo/peco.owl",
-      "name": "Plant Experimental Conditions Ontology",
-      "prefix": "peco",
-      "version": "2020-08-21",
-      "version.iri": "http://purl.obolibrary.org/obo/peco/releases/2020-08-21/peco.owl"
-    },
-    "pattern": "^\\d{7}$",
-    "miriam": {
-      "deprecated": false,
-      "description": "The Plant Environment Ontology is a set of standardized controlled vocabularies to describe various types of treatments given to an individual plant / a population or a cultured tissue and/or cell type sample to evaluate the response on its exposure. It also includes the study types, where the terms can be used to identify the growth study facility. Each growth facility such as field study, growth chamber, green house etc is a environment on its own it may also involve instances of biotic and abiotic environments as supplemental treatments used in these studies.",
-      "id": "00000518",
-      "name": "Plant Environment Ontology",
-      "namespaceEmbeddedInLui": true,
-      "pattern": "^(P)?EO\\:\\d{7}$",
-      "prefix": "eo"
-    },
-    "n2t": {
-      "prefix": "eo"
-    },
-    "synonyms": [
-      "eo"
-    ]
   },
   "eol": {
     "ols": {
@@ -7651,6 +7620,12 @@
     "description": "A comprehensive compendium of human long non-coding RNAs",
     "name": "LNCipedia"
   },
+  "loinc": {
+    "example": "LL379-9",
+    "homepage": "https://loinc.org/",
+    "name": "Logical Observation Identifiers Names and Codes",
+    "url": "https://loinc.org/$1/"
+  },
   "lrg": {
     "miriam": {
       "deprecated": false,
@@ -10527,7 +10502,7 @@
     ],
     "wikidata": {
       "database": "Q51044",
-      "database.label": "ORCID iD",
+      "database.label": "ORCID ID",
       "format": "https://orcid.org/$1",
       "pattern": "0000-000(1-[5-9]|2-[0-9]|3-[0-4])\\d{3}-\\d{3}[\\dX]",
       "property": "P496",
@@ -11094,6 +11069,41 @@
     "pattern": "^\\d{7}$",
     "synonyms": [
       "PdumDv"
+    ]
+  },
+  "peco": {
+    "download": "https://raw.githubusercontent.com/Planteome/plant-experimental-conditions-ontology/master/peco.obo",
+    "miriam": {
+      "deprecated": false,
+      "description": "The Plant Environment Ontology is a set of standardized controlled vocabularies to describe various types of treatments given to an individual plant / a population or a cultured tissue and/or cell type sample to evaluate the response on its exposure. It also includes the study types, where the terms can be used to identify the growth study facility. Each growth facility such as field study, growth chamber, green house etc is a environment on its own it may also involve instances of biotic and abiotic environments as supplemental treatments used in these studies.",
+      "id": "00000518",
+      "name": "Plant Environment Ontology",
+      "namespaceEmbeddedInLui": true,
+      "pattern": "^(P)?EO\\:\\d{7}$",
+      "prefix": "eo"
+    },
+    "n2t": {
+      "prefix": "eo"
+    },
+    "obofoundry": {
+      "contact": "jaiswalp@science.oregonstate.edu",
+      "contact.label": "Pankaj Jaiswal",
+      "deprecated": false,
+      "license": "CC-BY 4.0",
+      "name": "Plant Experimental Conditions Ontology",
+      "prefix": "peco"
+    },
+    "ols": {
+      "description": "A structured, controlled vocabulary which describes the treatments, growing conditions, and/or study types used in plant biology experiments.",
+      "download": "http://purl.obolibrary.org/obo/peco.owl",
+      "name": "Plant Experimental Conditions Ontology",
+      "prefix": "peco",
+      "version": "2020-08-21",
+      "version.iri": "http://purl.obolibrary.org/obo/peco/releases/2020-08-21/peco.owl"
+    },
+    "pattern": "^\\d{7}$",
+    "synonyms": [
+      "eo"
     ]
   },
   "peff": {
@@ -12553,6 +12563,11 @@
       "prefix": "rnacentral"
     }
   },
+  "rnamod": {
+    "homepage": "http://rna.rega.kuleuven.be/rnamods/",
+    "name": "The RNA Modification Database",
+    "url": "http://rna.rega.kuleuven.be/cgi-bin/rnamods/rnashow.pl?$1"
+  },
   "rnamods": {
     "miriam": {
       "deprecated": false,
@@ -12674,25 +12689,6 @@
       "version.iri": "http://purl.obolibrary.org/obo/rs/6.106/rs.owl"
     },
     "pattern": "^\\d{7}$"
-  },
-  "rnamod": {
-    "name": "The RNA Modification Database",
-    "homepage": "http://rna.rega.kuleuven.be/rnamods/",
-    "url": "http://rna.rega.kuleuven.be/cgi-bin/rnamods/rnashow.pl?$1"
-  },
-  "bs": {
-    "name": "Biosapiens",
-    "comment": "part of Sequence Ontology (SO). See https://github.com/The-Sequence-Ontology/SO-Ontologies/blob/master/Ontology_Files/subsets/biosapiens.obo"
-  },
-  "loinc": {
-    "homepage": "https://loinc.org/",
-    "name": "Logical Observation Identifiers Names and Codes",
-    "url": "https://loinc.org/$1/",
-    "example": "LL379-9"
-  },
-  "wikipedia": {
-    "homepage": "https://www.wikidata.org",
-    "name": "Wikipedia"
   },
   "rxno": {
     "download": "https://github.com/rsc-ontologies/rxno/raw/master/rxno.obo",
@@ -14969,6 +14965,10 @@
       "property.label": "WikiPathways ID",
       "webpage": "http://www.wikipathways.org"
     }
+  },
+  "wikipedia": {
+    "homepage": "https://www.wikidata.org",
+    "name": "Wikipedia"
   },
   "wikipedia.en": {
     "miriam": {
