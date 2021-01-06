@@ -4286,7 +4286,25 @@
       "version.iri": "http://purl.obolibrary.org/obo/envo/releases/2020-06-10/envo.owl"
     }
   },
-  "eo": {
+  "peco": {
+    "download": "https://raw.githubusercontent.com/Planteome/plant-experimental-conditions-ontology/master/peco.obo",
+    "obofoundry": {
+      "contact": "jaiswalp@science.oregonstate.edu",
+      "contact.label": "Pankaj Jaiswal",
+      "deprecated": false,
+      "license": "CC-BY 4.0",
+      "name": "Plant Experimental Conditions Ontology",
+      "prefix": "peco"
+    },
+    "ols": {
+      "description": "A structured, controlled vocabulary which describes the treatments, growing conditions, and/or study types used in plant biology experiments.",
+      "download": "http://purl.obolibrary.org/obo/peco.owl",
+      "name": "Plant Experimental Conditions Ontology",
+      "prefix": "peco",
+      "version": "2020-08-21",
+      "version.iri": "http://purl.obolibrary.org/obo/peco/releases/2020-08-21/peco.owl"
+    },
+    "pattern": "^\\d{7}$",
     "miriam": {
       "deprecated": false,
       "description": "The Plant Environment Ontology is a set of standardized controlled vocabularies to describe various types of treatments given to an individual plant / a population or a cultured tissue and/or cell type sample to evaluate the response on its exposure. It also includes the study types, where the terms can be used to identify the growth study facility. Each growth facility such as field study, growth chamber, green house etc is a environment on its own it may also involve instances of biotic and abiotic environments as supplemental treatments used in these studies.",
@@ -4299,14 +4317,9 @@
     "n2t": {
       "prefix": "eo"
     },
-    "obofoundry": {
-      "contact": "jaiswalp@science.oregonstate.edu",
-      "contact.label": "Pankaj Jaiswal",
-      "deprecated": true,
-      "license": "CC-BY 4.0",
-      "name": "Plant Environment Ontology",
-      "prefix": "eo"
-    }
+    "synonyms": [
+      "eo"
+    ]
   },
   "eol": {
     "ols": {
@@ -9679,6 +9692,7 @@
     ]
   },
   "nmr": {
+    "download": "https://nmrml.org/cv/stable/nmrCV.owl",
     "miriam": {
       "deprecated": false,
       "description": "nmrCV is a controlled vocabulary to deliver standardized descriptors for the open mark-up language for NMR raw and spectrum data, sanctioned by the metabolomics standards initiative msi.",
@@ -9697,16 +9711,17 @@
       "deprecated": true,
       "name": "NMR-instrument specific component of metabolomics investigations",
       "prefix": "nmr"
-    }
-  },
-  "nmrcv": {
+    },
     "ols": {
       "description": "This artefact is an MSI-approved controlled vocabulary primarily developed under COSMOS EU and PhenoMeNal EU governance. The nmrCV is supporting the nmrML XML format with standardized terms. nmrML is a vendor agnostic open access NMR raw data standard. Its primaly role is analogous to the mzCV for the PSI-approved mzML XML format. It uses BFO2.0 as its Top level. This CV was derived from two predecessors (The NMR CV from the David Wishart Group, developed by Joseph Cruz) and the MSI nmr CV developed by Daniel Schober at the EBI.  This simple taxonomy of terms (no DL semantics used) serves the nuclear magnetic resonance markup language (nmrML) with meaningful descriptors to amend the nmrML xml file with CV terms. Metabolomics scientists are encouraged to use this CV to annotrate their raw and experimental context data, i.e. within nmrML. The approach to have an exchange syntax mixed of an xsd and CV stems from the PSI mzML effort. The reason to branch out from an xsd into a CV is, that in areas where the terminology is likely to change faster than the nmrML xsd could be updated and aligned, an externally and decentrallised maintained CV can accompensate for such dynamics in a more flexible way. A second reason for this set-up is that semantic validity of CV terms used in an nmrML XML instance (allowed CV terms, position/relation to each other, cardinality) can be validated by rule-based proprietary validators:  By means of cardinality specifications and XPath expressions defined in an XML mapping file (an instances of the CvMappingRules.xsd ), one can define what ontology terms are allowed in a specific location of the data model.",
       "download": "http://nmrml.org/cv/stable/nmrCV.owl",
       "name": "nuclear magnetic resonance CV",
       "prefix": "nmrcv",
       "version": "1.1.0"
-    }
+    },
+    "synonyms": [
+      "nmrcv"
+    ]
   },
   "nmrshiftdb2": {
     "miriam": {
@@ -11081,26 +11096,6 @@
       "PdumDv"
     ]
   },
-  "peco": {
-    "download": "https://raw.githubusercontent.com/Planteome/plant-experimental-conditions-ontology/master/peco.obo",
-    "obofoundry": {
-      "contact": "jaiswalp@science.oregonstate.edu",
-      "contact.label": "Pankaj Jaiswal",
-      "deprecated": false,
-      "license": "CC-BY 4.0",
-      "name": "Plant Experimental Conditions Ontology",
-      "prefix": "peco"
-    },
-    "ols": {
-      "description": "A structured, controlled vocabulary which describes the treatments, growing conditions, and/or study types used in plant biology experiments.",
-      "download": "http://purl.obolibrary.org/obo/peco.owl",
-      "name": "Plant Experimental Conditions Ontology",
-      "prefix": "peco",
-      "version": "2020-08-21",
-      "version.iri": "http://purl.obolibrary.org/obo/peco/releases/2020-08-21/peco.owl"
-    },
-    "pattern": "^\\d{7}$"
-  },
   "peff": {
     "deprecated": true,
     "download": "https://github.com/HUPO-PSI/PEFF/raw/master/CV/psi-peff-OBSOLETE-DO_NOT_USE.obo",
@@ -12353,6 +12348,7 @@
     }
   },
   "rex": {
+    "download": "http://purl.obolibrary.org/obo/rex.owl",
     "obofoundry": {
       "deprecated": false,
       "download.obo": "http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/physicochemical/rex.obo",
