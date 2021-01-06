@@ -13,6 +13,12 @@
   wikidata:
     database: Q23948774
     property: P2796
+- deprecated: true
+  homepage: https://pictar.mdc-berlin.de/
+  name: PicTar
+  prefix: pictar
+  synonyms:
+  - pictar-vert
 - miriam:
     deprecated: false
     description: The database of Annotated regulatory Binding Sites (from orthologous
@@ -1377,9 +1383,6 @@
     version.iri: http://purl.obolibrary.org/obo/bspo/releases/2020-05-11/bspo.owl
   pattern: ^\d{7}$
   prefix: bspo
-- name: OWL Ontology
-  pattern: ^.*$
-  prefix: owl
 - miriam:
     deprecated: false
     description: The Brenda tissue ontology is a structured controlled vocabulary
@@ -1519,7 +1522,9 @@
   n2t:
     prefix: caps
   prefix: caps
-- obofoundry:
+- download: https://github.com/obophenotype/caro/raw/master/src/ontology/caro.owl
+  not_available_as_obo: true
+  obofoundry:
     contact: haendel@ohsu.edu
     contact.label: Melissa Haendel
     deprecated: false
@@ -1536,6 +1541,9 @@
     version: 24-05-2019
     version.iri: http://purl.obolibrary.org/obo/caro/2.0/beta/caro.owl
   prefix: caro
+- homepage: https://asrp.danforthcenter.org/
+  name: Arabidopsis Small RNA Project
+  prefix: asrp
 - miriam:
     deprecated: false
     description: CAS (Chemical Abstracts Service) is a division of the American Chemical
@@ -1950,7 +1958,8 @@
   prefix: chemidplus
   synonyms:
   - ChemIDplus
-- name: Chemical Information Ontology
+- download: https://github.com/semanticchemistry/semanticchemistry/blob/master/ontology/cheminf.owl
+  name: Chemical Information Ontology
   not_available_as_obo: true
   obofoundry:
     contact: egon.willighagen@gmail.com
@@ -5961,8 +5970,8 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: Human Ancestry Ontology
     prefix: hancestro
-    version: '2.4'
-    version.iri: http://purl.obolibrary.org/obo/hancestro/releases/2020-11-19/hancestro.owl
+    version: '2.5'
+    version.iri: http://purl.obolibrary.org/obo/hancestro/releases/2020-12-18/hancestro.owl
   prefix: hancestro
 - obofoundry:
     contact: diapriid@gmail.com
@@ -10357,7 +10366,9 @@
   prefix: omp
   wikidata:
     database: Q81661753
-- obofoundry:
+- download: https://github.com/ufbmi/OMRSE/blob/master/omrse/omrse.owl
+  not_available_as_obo: true
+  obofoundry:
     contact: hoganwr@gmail.com
     contact.label: Bill Hogan
     deprecated: false
@@ -10767,6 +10778,9 @@
     prefix: ovae
     version: 'Vision Release: 1.0.34'
   prefix: ovae
+- name: OWL Ontology
+  pattern: ^.*$
+  prefix: owl
 - miriam:
     deprecated: false
     description: Plant Protein Phosphorylation DataBase (P3DB) is a database that
@@ -11090,6 +11104,10 @@
     version: '2019-09-19'
     version.iri: http://purl.obolibrary.org/obo/pdro/2019-09-19/pdro.owl
   prefix: pdro
+- comment: All of these are typedefs in uberon now
+  deprecated: true
+  name: Uberon Property
+  prefix: ubprop
 - obofoundry:
     contact: bgee@sib.swiss
     contact.label: bgee
@@ -11109,7 +11127,8 @@
   prefix: pdumdv
   synonyms:
   - PdumDv
-- obofoundry:
+- download: https://raw.githubusercontent.com/Planteome/plant-experimental-conditions-ontology/master/peco.obo
+  obofoundry:
     contact: jaiswalp@science.oregonstate.edu
     contact.label: Pankaj Jaiswal
     deprecated: false
