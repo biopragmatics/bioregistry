@@ -43,6 +43,7 @@ def get_pattern(prefix: str) -> Optional[str]:
             or entry.get('miriam', {}).get('pattern')
             or entry.get('wikidata', {}).get('pattern')
         )
+    return None
 
 
 def is_deprecated(prefix: str) -> bool:
