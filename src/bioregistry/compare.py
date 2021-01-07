@@ -12,7 +12,7 @@ import click
 
 from bioregistry import read_bioregistry
 from bioregistry.constants import DOCS_IMG
-from bioregistry.external import get_miriam, get_n2t, get_obofoundry, get_ols, get_wikidata_registry
+from bioregistry.external import get_go, get_miriam, get_n2t, get_obofoundry, get_ols, get_wikidata_registry
 
 bioregistry = read_bioregistry()
 
@@ -213,6 +213,7 @@ def compare():  # noqa:C901
     obofoundry_prefixes = set(get_obofoundry(skip_deprecated=True, mappify=True))
     wikidata_prefixes = set(get_wikidata_registry())
     n2t_prefixes = set(get_n2t())
+    go_prefixes = set(get_go(mappify=True))
 
     keys = [
         ('obofoundry', 'OBO Foundry', 'red', obofoundry_prefixes),
@@ -220,6 +221,7 @@ def compare():  # noqa:C901
         ('miriam', 'MIRIAM', 'blue', miriam_prefixes),
         ('wikidata', 'Wikidata', 'purple', wikidata_prefixes),
         ('n2t', 'Name-to-Thing', 'orange', n2t_prefixes),
+        ('go', 'GO', 'yellow', go_prefixes),
     ]
 
     ############################################################
@@ -260,7 +262,10 @@ def compare():  # noqa:C901
     ######################################################
 
     pairs = list(itt.combinations(keys, r=2))
-    fig, axes = plt.subplots(ncols=2, nrows=(1 + len(pairs)) // 2)
+    ncols = 3
+    nrows = (1 + len(pairs)) // ncols
+    figsize = (9, 2.5 * nrows)
+    fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
     for ((l_key, l_label, l_color, l_prefixes), (r_key, r_label, r_color, r_prefixes)), ax in zip(pairs, axes.ravel()):
         # Remap external vocabularies to bioregistry
         #  prefixes, when possible
@@ -272,8 +277,8 @@ def compare():  # noqa:C901
             set_colors=(l_color, r_color),
             ax=ax,
         )
-    if len(pairs) % 2:
-        axes.ravel()[-1].axis('off')
+    # if len(pairs) % 2:
+    #    axes.ravel()[-1].axis('off')
     if watermark:
         fig.text(
             0.5, 0, WATERMARK_TEXT,  # transform=plt.gca().transAxes,

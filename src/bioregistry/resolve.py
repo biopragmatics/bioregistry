@@ -115,7 +115,7 @@ def _synonym_to_canonical() -> NormDict:
     for bioregistry_id, entry in read_bioregistry().items():
         norm_synonym_to_key[bioregistry_id] = bioregistry_id
 
-        for external in ('miriam', 'ols', 'wikidata', 'obofoundry'):
+        for external in ('miriam', 'ols', 'wikidata', 'obofoundry', 'go'):
             if external in entry and 'prefix' in entry[external]:
                 norm_synonym_to_key[entry[external]['prefix']] = bioregistry_id
 
