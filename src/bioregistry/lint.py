@@ -4,7 +4,7 @@
 
 import click
 
-from .utils import clean_set, secho, updater
+from bioregistry.utils import secho, updater
 
 
 @updater
@@ -36,28 +36,18 @@ def _get_key(registry, prefix, key):
     )
 
 
+@updater
+def sort_registry(registry):
+    """Sort the registry."""
+    return registry
+
+
 @click.command()
 def lint():
     """Run the lint commands."""
     warn_missing_wikidata()
+    sort_registry()
 
 
 if __name__ == '__main__':
     lint()
-
-
-@updater
-def cleanup_synonyms(registry):
-    """Remove redundant synonyms and empty synonym dictionaries."""
-    for key, entry in registry.items():
-        if 'synonyms' not in entry:
-            continue
-
-        skip_synonyms = clean_set(key, *[
-            entry.get(k, {}).get('name')
-            for k in ['miriam', 'ols', 'obofoundry']
-        ])
-
-        entry['synonyms'] = [synonym for synonym in entry['synonyms'] if synonym not in skip_synonyms]
-        if 0 == len(entry['synonyms']):
-            del entry['synonyms']

@@ -6,7 +6,7 @@ import json
 import logging
 from datetime import datetime
 from functools import lru_cache, wraps
-from typing import Any, List, Mapping, Optional
+from typing import Any, List, Mapping
 
 import click
 import requests
@@ -49,11 +49,6 @@ def norm(s: str) -> str:
     for x in ' .-':
         rv = rv.replace(x, '')
     return rv
-
-
-def clean_set(*it: Optional[str]):
-    """Make a set of the truthy elements in an iterable."""
-    return {el for el in it if el}
 
 
 def secho(s, fg='cyan', bold=True, **kwargs):
