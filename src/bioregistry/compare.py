@@ -272,7 +272,7 @@ def compare():  # noqa:C901
             set_colors=(l_color, r_color),
             ax=ax,
         )
-    if len(keys) % 2:
+    if len(pairs) % 2:
         axes.ravel()[-1].axis('off')
     if watermark:
         fig.text(
