@@ -282,7 +282,7 @@ def compare():  # noqa:C901
     if watermark:
         fig.text(
             0.5, 0, WATERMARK_TEXT,  # transform=plt.gca().transAxes,
-            fontsize=8, color='gray', alpha=0.5,
+            fontsize=14, color='gray', alpha=0.5,
             ha='center', va='bottom',
         )
 
