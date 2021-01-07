@@ -1360,6 +1360,9 @@
   n2t:
     prefix: broad
   prefix: broad
+- comment: part of Sequence Ontology (SO). See https://github.com/The-Sequence-Ontology/SO-Ontologies/blob/master/Ontology_Files/subsets/biosapiens.obo
+  name: Biosapiens
+  prefix: bs
 - download: https://raw.githubusercontent.com/obophenotype/biological-spatial-ontology/master/bspo.obo
   obofoundry:
     contact: cjmungall@lbl.gov
@@ -4271,43 +4274,6 @@
     version: '2020-06-10'
     version.iri: http://purl.obolibrary.org/obo/envo/releases/2020-06-10/envo.owl
   prefix: envo
-- download: https://raw.githubusercontent.com/Planteome/plant-experimental-conditions-ontology/master/peco.obo
-  miriam:
-    deprecated: false
-    description: The Plant Environment Ontology is a set of standardized controlled
-      vocabularies to describe various types of treatments given to an individual
-      plant / a population or a cultured tissue and/or cell type sample to evaluate
-      the response on its exposure. It also includes the study types, where the terms
-      can be used to identify the growth study facility. Each growth facility such
-      as field study, growth chamber, green house etc is a environment on its own
-      it may also involve instances of biotic and abiotic environments as supplemental
-      treatments used in these studies.
-    id: 00000518
-    name: Plant Environment Ontology
-    namespaceEmbeddedInLui: true
-    pattern: ^(P)?EO\:\d{7}$
-    prefix: eo
-  n2t:
-    prefix: eo
-  obofoundry:
-    contact: jaiswalp@science.oregonstate.edu
-    contact.label: Pankaj Jaiswal
-    deprecated: false
-    license: CC-BY 4.0
-    name: Plant Experimental Conditions Ontology
-    prefix: peco
-  ols:
-    description: A structured, controlled vocabulary which describes the treatments,
-      growing conditions, and/or study types used in plant biology experiments.
-    download: http://purl.obolibrary.org/obo/peco.owl
-    name: Plant Experimental Conditions Ontology
-    prefix: peco
-    version: '2020-08-21'
-    version.iri: http://purl.obolibrary.org/obo/peco/releases/2020-08-21/peco.owl
-  pattern: ^\d{7}$
-  prefix: peco
-  synonyms:
-  - eo
 - ols:
     description: "L'ontologie EOL d\xE9crit les conditions d'environnement des \xE9\
       levages d'animaux domestiques. Elle d\xE9crit plus particuli\xE8rement les modalit\xE9\
@@ -7641,6 +7607,11 @@
 - description: A comprehensive compendium of human long non-coding RNAs
   name: LNCipedia
   prefix: lncipedia
+- example: LL379-9
+  homepage: https://loinc.org/
+  name: Logical Observation Identifiers Names and Codes
+  prefix: loinc
+  url: https://loinc.org/$1/
 - miriam:
     deprecated: false
     description: A Locus Reference Genomic (LRG) is a manually curated record that
@@ -11132,6 +11103,43 @@
   prefix: pdumdv
   synonyms:
   - PdumDv
+- download: https://raw.githubusercontent.com/Planteome/plant-experimental-conditions-ontology/master/peco.obo
+  miriam:
+    deprecated: false
+    description: The Plant Environment Ontology is a set of standardized controlled
+      vocabularies to describe various types of treatments given to an individual
+      plant / a population or a cultured tissue and/or cell type sample to evaluate
+      the response on its exposure. It also includes the study types, where the terms
+      can be used to identify the growth study facility. Each growth facility such
+      as field study, growth chamber, green house etc is a environment on its own
+      it may also involve instances of biotic and abiotic environments as supplemental
+      treatments used in these studies.
+    id: 00000518
+    name: Plant Environment Ontology
+    namespaceEmbeddedInLui: true
+    pattern: ^(P)?EO\:\d{7}$
+    prefix: eo
+  n2t:
+    prefix: eo
+  obofoundry:
+    contact: jaiswalp@science.oregonstate.edu
+    contact.label: Pankaj Jaiswal
+    deprecated: false
+    license: CC-BY 4.0
+    name: Plant Experimental Conditions Ontology
+    prefix: peco
+  ols:
+    description: A structured, controlled vocabulary which describes the treatments,
+      growing conditions, and/or study types used in plant biology experiments.
+    download: http://purl.obolibrary.org/obo/peco.owl
+    name: Plant Experimental Conditions Ontology
+    prefix: peco
+    version: '2020-08-21'
+    version.iri: http://purl.obolibrary.org/obo/peco/releases/2020-08-21/peco.owl
+  pattern: ^\d{7}$
+  prefix: peco
+  synonyms:
+  - eo
 - deprecated: true
   download: https://github.com/HUPO-PSI/PEFF/raw/master/CV/psi-peff-OBSOLETE-DO_NOT_USE.obo
   homepage: https://www.psidev.info/peff
@@ -12577,6 +12585,10 @@
   n2t:
     prefix: rnacentral
   prefix: rnacentral
+- homepage: http://rna.rega.kuleuven.be/rnamods/
+  name: The RNA Modification Database
+  prefix: rnamod
+  url: http://rna.rega.kuleuven.be/cgi-bin/rnamods/rnashow.pl?$1
 - miriam:
     deprecated: false
     description: The RNA modification database provides a comprehensive listing of
@@ -12696,21 +12708,6 @@
     version.iri: http://purl.obolibrary.org/obo/rs/6.106/rs.owl
   pattern: ^\d{7}$
   prefix: rs
-- homepage: http://rna.rega.kuleuven.be/rnamods/
-  name: The RNA Modification Database
-  prefix: rnamod
-  url: http://rna.rega.kuleuven.be/cgi-bin/rnamods/rnashow.pl?$1
-- comment: part of Sequence Ontology (SO). See https://github.com/The-Sequence-Ontology/SO-Ontologies/blob/master/Ontology_Files/subsets/biosapiens.obo
-  name: Biosapiens
-  prefix: bs
-- example: LL379-9
-  homepage: https://loinc.org/
-  name: Logical Observation Identifiers Names and Codes
-  prefix: loinc
-  url: https://loinc.org/$1/
-- homepage: https://www.wikidata.org
-  name: Wikipedia
-  prefix: wikipedia
 - download: https://github.com/rsc-ontologies/rxno/raw/master/rxno.obo
   obofoundry:
     contact: batchelorc@rsc.org
@@ -14984,6 +14981,9 @@
     property: P2410
     property.label: WikiPathways ID
     webpage: http://www.wikipathways.org
+- homepage: https://www.wikidata.org
+  name: Wikipedia
+  prefix: wikipedia
 - miriam:
     deprecated: false
     description: Wikipedia is a multilingual, web-based, free-content encyclopedia
