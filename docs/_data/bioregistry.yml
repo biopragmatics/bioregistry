@@ -129,7 +129,9 @@
   n2t:
     prefix: aftol.taxonomy
   prefix: aftol.taxonomy
-- miriam:
+- go:
+    prefix: AGRICOLA_ID
+  miriam:
     deprecated: false
     description: AGRICOLA (AGRICultural OnLine Access) serves as the catalog and index
       to the collections of the National Agricultural Library, as well as a primary
@@ -1081,7 +1083,9 @@
   n2t:
     prefix: biominder
   prefix: biominder
-- miriam:
+- go:
+    prefix: BIOMD
+  miriam:
     deprecated: false
     description: BioModels Database is a data resource that allows biologists to store,
       search and retrieve published mathematical models of biological interests.
@@ -1195,6 +1199,10 @@
   n2t:
     prefix: bioproject
   prefix: bioproject
+- go:
+    prefix: bioRxiv
+  name: bioRxiv
+  prefix: biorxiv
 - miriam:
     deprecated: false
     description: The BioSample Database stores information about biological samples
@@ -3700,7 +3708,9 @@
     version: '2020-05-22'
     version.iri: http://purl.obolibrary.org/obo/ecao/releases/2020-05-22/ecao.owl
   prefix: ecao
-- miriam:
+- go:
+    prefix: ENZYME
+  miriam:
     deprecated: false
     description: The Enzyme Classification contains the recommendations of the Nomenclature
       Committee of the International Union of Biochemistry and Molecular Biology on
@@ -5637,7 +5647,9 @@
   n2t:
     prefix: gpmdb
   prefix: gpmdb
-- miriam:
+- go:
+    prefix: GR_GENE
+  miriam:
     deprecated: false
     description: Gramene is a comparative genome mapping database for grasses and
       crop plants. It combines a semi-automatically generated database of cereal genomic
@@ -5669,7 +5681,9 @@
   n2t:
     prefix: gramene.growthstage
   prefix: gramene.growthstage
-- miriam:
+- go:
+    prefix: GR_PROTEIN
+  miriam:
     deprecated: false
     description: Gramene is a comparative genome mapping database for grasses and
       crop plants. It combines a semi-automatically generated database of cereal genomic
@@ -5685,7 +5699,9 @@
   n2t:
     prefix: gramene.protein
   prefix: gramene.protein
-- miriam:
+- go:
+    prefix: GR_QTL
+  miriam:
     deprecated: false
     description: Gramene is a comparative genome mapping database for grasses and
       crop plants. It combines a semi-automatically generated database of cereal genomic
@@ -5741,7 +5757,9 @@
   n2t:
     prefix: grid
   prefix: grid
-- miriam:
+- go:
+    prefix: GRIN
+  miriam:
     deprecated: false
     description: GRIN (Germplasm Resources Information Network) Taxonomy for Plants
       provides information on scientific and common names, classification, distribution,
@@ -5930,7 +5948,7 @@
     prefix: hamap
   prefix: hamap
 - obofoundry:
-    contact: dwelter@ebi.ac.uk
+    contact: danielle.welter@uni.lu
     contact.label: Danielle Welter
     deprecated: false
     license: CC-BY 4.0
@@ -6021,7 +6039,9 @@
   n2t:
     prefix: hgmd
   prefix: hgmd
-- miriam:
+- go:
+    prefix: HUGO
+  miriam:
     deprecated: false
     description: The HGNC (HUGO Gene Nomenclature Committee) provides an approved
       gene name and symbol (short-form abbreviation) for each known human gene.  All
@@ -7246,6 +7266,10 @@
   n2t:
     prefix: kegg.environ
   prefix: kegg.environ
+- go:
+    prefix: KEGG_ENZYME
+  name: KEGG Enzyme
+  prefix: kegg.enzyme
 - miriam:
     deprecated: false
     description: KEGG GENES is a collection of gene catalogs for all complete genomes
@@ -7291,6 +7315,10 @@
   n2t:
     prefix: kegg.glycan
   prefix: kegg.glycan
+- go:
+    prefix: KEGG_LIGAND
+  name: KEGG LIGAND
+  prefix: kegg.ligand
 - miriam:
     deprecated: false
     description: The KEGG Metagenome Database collection information on environmental
@@ -8749,7 +8777,9 @@
   n2t:
     prefix: mobidb
   prefix: mobidb
-- miriam:
+- go:
+    prefix: PSI-MOD
+  miriam:
     deprecated: false
     description: The Proteomics Standards Initiative modification ontology (PSI-MOD)  aims
       to define a concensus nomenclature and ontology reconciling, in a hierarchical
@@ -8765,7 +8795,7 @@
     contact: pierre-alain.binz@chuv.ch
     contact.label: Pierre-Alain Binz
     deprecated: false
-    download.obo: https://raw.githubusercontent.com/MICommunity/psidev/master/psi/mod/data/PSI-MOD.obo
+    download.obo: https://raw.githubusercontent.com/HUPO-PSI/psi-mod-CV/master/PSI-MOD.obo
     license: CC-BY 4.0
     name: Protein modification
     prefix: mod
@@ -9324,7 +9354,9 @@
     pattern: '[1-9]\d{0,8}'
     property: P351
     property.label: Entrez Gene ID
-- miriam:
+- go:
+    prefix: NCBI_NP
+  miriam:
     deprecated: false
     description: The Protein database is a collection of sequences from several sources,
       including translations from annotated coding regions in GenBank, RefSeq and
@@ -9338,6 +9370,8 @@
     prefix: ncbiprotein
   prefix: ncbiprotein
 - download: http://purl.obolibrary.org/obo/ncbitaxon.obo
+  go:
+    prefix: taxon
   miriam:
     deprecated: false
     description: The taxonomy contains the relationships between all living forms
@@ -9346,6 +9380,8 @@
     name: Taxonomy
     namespaceEmbeddedInLui: false
     pattern: ^\d+$
+    prefix: taxonomy
+  n2t:
     prefix: taxonomy
   obofoundry:
     contact: frederic.bastian@unil.ch
@@ -10804,7 +10840,9 @@
   n2t:
     prefix: paleodb
   prefix: paleodb
-- miriam:
+- go:
+    prefix: PANTHER
+  miriam:
     deprecated: false
     description: The PANTHER (Protein ANalysis THrough Evolutionary Relationships)
       Classification System is a resource that classifies genes by their functions,
@@ -11587,7 +11625,9 @@
   n2t:
     prefix: planttfdb
   prefix: planttfdb
-- miriam:
+- go:
+    prefix: ApiDB_PlasmoDB
+  miriam:
     deprecated: false
     description: AmoebaDB is one of the databases that can be accessed through the
       EuPathDB (http://EuPathDB.org; formerly ApiDB) portal, covering eukaryotic pathogens
@@ -12768,7 +12808,9 @@
   n2t:
     prefix: sabiork.ec
   prefix: sabiork.ec
-- miriam:
+- go:
+    prefix: SABIO-RK
+  miriam:
     deprecated: false
     description: SABIO-RK is a relational database system that contains information
       about biochemical reactions, their kinetic equations with their parameters,
@@ -13656,7 +13698,9 @@
   n2t:
     prefix: tair.gene
   prefix: tair.gene
-- miriam:
+- go:
+    prefix: TAIR
+  miriam:
     deprecated: false
     description: The Arabidopsis Information Resource (TAIR) maintains a database
       of genetic and molecular biology data for the model higher plant Arabidopsis
@@ -14191,7 +14235,9 @@
   url: http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=r&reacID=$1
   wikidata:
     database: Q24188985
-- miriam:
+- go:
+    prefix: UM-BBD_ruleID
+  miriam:
     deprecated: false
     description: The University of Minnesota Biocatalysis/Biodegradation Database
       (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation
@@ -14546,6 +14592,8 @@
   n2t:
     prefix: vario
   obofoundry:
+    contact: mauno.vihinen@med.lu.se
+    contact.label: Mauno Vihinen
     deprecated: false
     download.obo: http://variationontology.org/vario_download/vario.obo
     name: Variation Ontology
@@ -14981,9 +15029,6 @@
     property: P2410
     property.label: WikiPathways ID
     webpage: http://www.wikipathways.org
-- homepage: https://www.wikidata.org
-  name: Wikipedia
-  prefix: wikipedia
 - miriam:
     deprecated: false
     description: Wikipedia is a multilingual, web-based, free-content encyclopedia
@@ -14997,6 +15042,8 @@
   n2t:
     prefix: wikipedia.en
   prefix: wikipedia.en
+  synonyms:
+  - wikipedia
 - miriam:
     deprecated: false
     description: WOrfDB (Worm ORFeome DataBase) contains data from the cloning of
@@ -15011,7 +15058,9 @@
   n2t:
     prefix: worfdb
   prefix: worfdb
-- homepage: https://wormbase.org
+- go:
+    prefix: WB_REF
+  homepage: https://wormbase.org
   name: WormBase
   prefix: wormbase
   wikidata:
@@ -15327,3 +15376,11 @@
     version.iri: http://purl.obolibrary.org/obo/zp/releases/2020-08-02/zp.owl
   pattern: ^\d+$
   prefix: zp
+- obofoundry:
+    contact: fernanda.dorea@sva.se
+    contact.label: Fernanda Dorea
+    deprecated: false
+    license: CC-BY
+    name: Health Surveillance Ontology
+    prefix: hso
+  prefix: hso
