@@ -3,10 +3,9 @@
 """Download registry information from NCBI."""
 
 import re
-from typing import Dict, Optional
+from typing import Dict
 
 import click
-import pystow
 from bs4 import BeautifulSoup
 
 from ..constants import BIOREGISTRY_MODULE
