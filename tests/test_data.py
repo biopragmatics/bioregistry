@@ -45,6 +45,7 @@ class TestDuplicates(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.assertTrue(pattern.startswith('^'), msg=f'{prefix} pattern {pattern} should start with ^')
                 self.assertTrue(pattern.endswith('$'), msg=f'{prefix} pattern {pattern} should end with $')
+                self.assertIn('example', entry.keys(), msg=f'{prefix} is missing an example local identifier')
 
                 # Check that it's the same as external definitions
                 for key in ('miriam', 'wikidata'):
