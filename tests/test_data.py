@@ -26,6 +26,16 @@ class TestDuplicates(unittest.TestCase):
                     msg=f'{prefix} is missing a name',
                 )
 
+    def test_format_urls(self):
+        """Test that entries with a format URL are formatted right (yo dawg)."""
+        for prefix, entry in self.registry.items():
+            url = entry.get('url')
+            if not url:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIn('$1', url, msg=f'{prefix} format does not have a $1')
+                self.assertIn('example', entry.keys(), msg=f'{prefix} is missing an example local identifier')
+
     def test_patterns(self):
         """Test that all prefixes are norm-unique."""
         for prefix, entry in self.registry.items():
