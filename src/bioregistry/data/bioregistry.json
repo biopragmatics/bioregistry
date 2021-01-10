@@ -155,7 +155,10 @@
     },
     "n2t": {
       "prefix": "agricola"
-    }
+    },
+    "synonyms": [
+      "AGR"
+    ]
   },
   "agro": {
     "not_available_as_obo": true,
@@ -371,7 +374,10 @@
       "version.iri": "http://purl.obolibrary.org/obo/apo/releases/2020-03-10/apo.owl"
     },
     "pattern": "^\\d{7}$",
-    "url": "https://www.yeastgenome.org/observable/$1"
+    "url": "https://www.yeastgenome.org/observable/$1",
+    "synonyms": [
+      "YPO"
+    ]
   },
   "apollo_sv": {
     "obofoundry": {
@@ -1324,6 +1330,12 @@
       "prefix": "bold.taxonomy"
     }
   },
+  "bpdb": {
+    "example": "2404",
+    "homepage": "https://sitem.herts.ac.uk/aeru/bpdb/index.htm",
+    "name": "Bio-Pesticides DataBase",
+    "url": "https://sitem.herts.ac.uk/aeru/bpdb/Reports/$1.htm"
+  },
   "brenda": {
     "miriam": {
       "deprecated": false,
@@ -1629,6 +1641,11 @@
     "n2t": {
       "prefix": "cazy"
     }
+  },
+  "cba": {
+    "example": "375364",
+    "name": "Chinese Biological Abstracts",
+    "url": "https://europepmc.org/article/CBA/$1"
   },
   "cbioportal": {
     "miriam": {
@@ -2092,7 +2109,12 @@
     "pattern": "^\\d{7}$"
   },
   "citexplore": {
-    "name": "CiteXplore"
+    "example": "C6155",
+    "name": "CiteXplore",
+    "synonyms": [
+      "CTX"
+    ],
+    "url": "https://europepmc.org/article/CTX/$1"
   },
   "cl": {
     "download": "https://raw.githubusercontent.com/obophenotype/cell-ontology/master/cl-full.obo",
@@ -2638,6 +2660,11 @@
     "n2t": {
       "prefix": "combine.specifications"
     }
+  },
+  "come": {
+    "example": "MOL000160",
+    "name": "The Bioinorganic Motif Database",
+    "url": "https://www.flymine.org/come/entry?gn=$1"
   },
   "complexportal": {
     "miriam": {
@@ -4064,7 +4091,10 @@
       "version": "2013-07-04",
       "version.iri": "http://purl.obolibrary.org/obo/ehdaa2/releases/2013-07-04/ehdaa2.owl"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "synonyms": [
+      "HDAA2"
+    ]
   },
   "elm": {
     "miriam": {
@@ -4584,7 +4614,12 @@
       "FBbt"
     ]
   },
+  "fbql": {
+    "name":"Flybase Quantitative Loci",
+    "prefixcommons": "fbql"
+  },
   "fbcv": {
+    "download": "https://raw.githubusercontent.com/FlyBase/flybase-controlled-vocabulary/master/fbcv.obo",
     "obofoundry": {
       "contact": "cp390@cam.ac.uk",
       "contact.label": "Clare Pilgrim",
@@ -4786,6 +4821,12 @@
       "prefix": "fobi",
       "version.iri": "http://purl.obolibrary.org/obo/fobi/fobi.owl"
     }
+  },
+  "foodb": {
+    "example": "FDB015448",
+    "homepage": "https://foodb.ca/",
+    "pattern": "^FDB\\{d}+$",
+    "url": "https://foodb.ca/compounds/$1"
   },
   "foodb.compound": {
     "miriam": {
@@ -5805,6 +5846,15 @@
     "n2t": {
       "prefix": "grsdb"
     }
+  },
+  "gsfa": {
+    "example": "174",
+    "homepage": "http://www.fao.org/gsfaonline",
+    "name": "General Standard for Food Additives (GSFA) Online Database",
+    "synonyms": [
+      "FAO/WHO_standards"
+    ],
+    "url": "http://www.fao.org/gsfaonline/additives/details.html?id=$1"
   },
   "gsso": {
     "miriam": {
@@ -11221,6 +11271,11 @@
       "prefix": "peroxibase"
     }
   },
+  "pesticides": {
+    "example": "derivatives/thiocyclam%20hydrochloride",
+    "name": "Alan Wood's Pesticides",
+    "url": "http://www.alanwood.net/pesticides/$1.html"
+  },
   "pfam": {
     "miriam": {
       "deprecated": false,
@@ -11817,8 +11872,10 @@
     "pattern": "^\\d{7}$"
   },
   "ppdb": {
+    "example": "1484",
     "homepage": "https://sitem.herts.ac.uk/aeru/ppdb/",
-    "name": "Pesticide Properties DataBase"
+    "name": "Pesticide Properties DataBase",
+    "url": "https://sitem.herts.ac.uk/aeru/ppdb/en/Reports/$1.htm"
   },
   "ppo": {
     "obofoundry": {
@@ -11837,6 +11894,12 @@
       "version": "2018-10-26",
       "version.iri": "https://raw.githubusercontent.com/PlantPhenoOntology/ppo/master/releases/2018-10-26/ppo.owl"
     }
+  },
+  "ppr": {
+    "description": "Preprints are articles which have not been peer-reviewed from various preprint servers and open research platforms such as bioRxiv, ChemRxiv, PeerJ Preprints and F1000.",
+    "example": "ppr103739",
+    "name": "Eurpoe PMC Preprints",
+    "url": "https://europepmc.org/article/ppr/$1"
   },
   "pr": {
     "miriam": {
@@ -13211,6 +13274,15 @@
     "n2t": {
       "prefix": "smart"
     }
+  },
+  "smid": {
+    "example": "ascr%238%0D",
+    "homepage": "https://smid-db.org/",
+    "name": "C. elegans Small Molecule Identifier Database",
+    "synonyms": [
+      "SMID-DB"
+    ],
+    "url": "https://smid-db.org/detail/$1"
   },
   "smiles": {
     "name": "Simplified molecular-input line-entry system",
@@ -14838,6 +14910,12 @@
       "prefix": "vo",
       "version": "1.1.133"
     }
+  },
+  "vsdb": {
+    "example": "1868",
+    "homepage": "https://sitem.herts.ac.uk/aeru/vsdb",
+    "name": "Veterinary Substances DataBase",
+    "url": "https://sitem.herts.ac.uk/aeru/vsdb/Reports/$1.htm"
   },
   "vt": {
     "obofoundry": {
