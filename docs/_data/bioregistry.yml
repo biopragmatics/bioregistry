@@ -146,6 +146,8 @@
   n2t:
     prefix: agricola
   prefix: agricola
+  synonyms:
+  - AGR
 - not_available_as_obo: true
   obofoundry:
     contact: m.a.laporte@cgiar.org
@@ -350,6 +352,8 @@
     version.iri: http://purl.obolibrary.org/obo/apo/releases/2020-03-10/apo.owl
   pattern: ^\d{7}$
   prefix: apo
+  synonyms:
+  - YPO
   url: https://www.yeastgenome.org/observable/$1
 - obofoundry:
     contact: MBrochhausen@uams.edu
@@ -1334,6 +1338,11 @@
   n2t:
     prefix: bold.taxonomy
   prefix: bold.taxonomy
+- example: '2404'
+  homepage: https://sitem.herts.ac.uk/aeru/bpdb/index.htm
+  name: Bio-Pesticides DataBase
+  prefix: bpdb
+  url: https://sitem.herts.ac.uk/aeru/bpdb/Reports/$1.htm
 - miriam:
     deprecated: false
     description: BRENDA is a collection of enzyme functional data available to the
@@ -1643,6 +1652,10 @@
   n2t:
     prefix: cazy
   prefix: cazy
+- example: '375364'
+  name: Chinese Biological Abstracts
+  prefix: cba
+  url: https://europepmc.org/article/CBA/$1
 - miriam:
     deprecated: false
     description: The cBioPortal for Cancer Genomics provides visualization, analysis
@@ -2104,8 +2117,12 @@
     version.iri: http://purl.obolibrary.org/obo/cio/releases/2015-03-10/cio.owl
   pattern: ^\d{7}$
   prefix: cio
-- name: CiteXplore
+- example: C6155
+  name: CiteXplore
   prefix: citexplore
+  synonyms:
+  - CTX
+  url: https://europepmc.org/article/CTX/$1
 - download: https://raw.githubusercontent.com/obophenotype/cell-ontology/master/cl-full.obo
   miriam:
     deprecated: false
@@ -2608,6 +2625,10 @@
   n2t:
     prefix: combine.specifications
   prefix: combine.specifications
+- example: MOL000160
+  name: The Bioinorganic Motif Database
+  prefix: come
+  url: https://www.flymine.org/come/entry?gn=$1
 - miriam:
     deprecated: false
     description: A database that describes manually curated macromolecular complexes
@@ -4048,6 +4069,8 @@
     version.iri: http://purl.obolibrary.org/obo/ehdaa2/releases/2013-07-04/ehdaa2.owl
   pattern: ^\d{7}$
   prefix: ehdaa2
+  synonyms:
+  - HDAA2
 - miriam:
     deprecated: false
     description: Linear motifs are short, evolutionarily plastic components of regulatory
@@ -4580,7 +4603,11 @@
   synonyms:
   - FBbt_root
   - FBbt
-- obofoundry:
+- name: Flybase Quantitative Loci
+  prefix: fbql
+  prefixcommons: fbql
+- download: https://raw.githubusercontent.com/FlyBase/flybase-controlled-vocabulary/master/fbcv.obo
+  obofoundry:
     contact: cp390@cam.ac.uk
     contact.label: Clare Pilgrim
     deprecated: false
@@ -4766,6 +4793,11 @@
     prefix: fobi
     version.iri: http://purl.obolibrary.org/obo/fobi/fobi.owl
   prefix: fobi
+- example: FDB015448
+  homepage: https://foodb.ca/
+  pattern: ^FDB\{d}+$
+  prefix: foodb
+  url: https://foodb.ca/compounds/$1
 - miriam:
     deprecated: false
     description: "FooDB is resource on food and its constituent compounds. It includes\
@@ -5789,6 +5821,13 @@
   n2t:
     prefix: grsdb
   prefix: grsdb
+- example: '174'
+  homepage: http://www.fao.org/gsfaonline
+  name: General Standard for Food Additives (GSFA) Online Database
+  prefix: gsfa
+  synonyms:
+  - FAO/WHO_standards
+  url: http://www.fao.org/gsfaonline/additives/details.html?id=$1
 - miriam:
     deprecated: false
     description: The Gender, Sex, and Sexual Orientation (GSSO) ontology is an interdisciplinary
@@ -11229,6 +11268,10 @@
   n2t:
     prefix: peroxibase
   prefix: peroxibase
+- example: derivatives/thiocyclam%20hydrochloride
+  name: Alan Wood's Pesticides
+  prefix: pesticides
+  url: http://www.alanwood.net/pesticides/$1.html
 - miriam:
     deprecated: false
     description: The Pfam database contains information about protein domains and
@@ -11824,9 +11867,11 @@
     version.iri: http://purl.obolibrary.org/obo/poro/releases/2016-09-13/poro.owl
   pattern: ^\d{7}$
   prefix: poro
-- homepage: https://sitem.herts.ac.uk/aeru/ppdb/
+- example: '1484'
+  homepage: https://sitem.herts.ac.uk/aeru/ppdb/
   name: Pesticide Properties DataBase
   prefix: ppdb
+  url: https://sitem.herts.ac.uk/aeru/ppdb/en/Reports/$1.htm
 - obofoundry:
     contact: rlwalls2008@gmail.com
     contact.label: Ramona Walls
@@ -11844,6 +11889,13 @@
     version: '2018-10-26'
     version.iri: https://raw.githubusercontent.com/PlantPhenoOntology/ppo/master/releases/2018-10-26/ppo.owl
   prefix: ppo
+- description: Preprints are articles which have not been peer-reviewed from various
+    preprint servers and open research platforms such as bioRxiv, ChemRxiv, PeerJ
+    Preprints and F1000.
+  example: ppr103739
+  name: Eurpoe PMC Preprints
+  prefix: ppr
+  url: https://europepmc.org/article/ppr/$1
 - miriam:
     deprecated: false
     description: The PRotein Ontology (PRO) has been designed to describe the relationships
@@ -13212,6 +13264,13 @@
   n2t:
     prefix: smart
   prefix: smart
+- example: ascr%238%0D
+  homepage: https://smid-db.org/
+  name: C. elegans Small Molecule Identifier Database
+  prefix: smid
+  synonyms:
+  - SMID-DB
+  url: https://smid-db.org/detail/$1
 - name: Simplified molecular-input line-entry system
   prefix: smiles
   wikidata:
@@ -14848,6 +14907,11 @@
     prefix: vo
     version: 1.1.133
   prefix: vo
+- example: '1868'
+  homepage: https://sitem.herts.ac.uk/aeru/vsdb
+  name: Veterinary Substances DataBase
+  prefix: vsdb
+  url: https://sitem.herts.ac.uk/aeru/vsdb/Reports/$1.htm
 - obofoundry:
     contact: caripark@iastate.edu
     contact.label: Carissa Park
