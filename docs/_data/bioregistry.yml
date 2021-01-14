@@ -1506,6 +1506,9 @@
   n2t:
     prefix: cadsr
   prefix: cadsr
+- download: ftp://ftp.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo
+  name: Human anatomical ontology
+  prefix: caloha
 - miriam:
     deprecated: false
     description: The goal of the CAMEO (Continuous Automated Model EvaluatiOn) community
@@ -2754,6 +2757,11 @@
     version: '2020-08-28'
     version.iri: http://purl.obolibrary.org/obo/covoc/releases/2020-08-28/covoc.owl
   prefix: covoc
+- appears_in:
+  - cl
+  comment: Part of cell ontology but deprecated, see https://github.com/obophenotype/cell-ontology/issues/572
+  name: Cellular Phenotypes
+  prefix: cp
 - miriam:
     deprecated: false
     description: The Cooperative Patent Classification (CPC) is a patent classification
@@ -4641,8 +4649,8 @@
     license: https://creativecommons.org/licenses/by/3.0/
     name: FlyBase Developmental Ontology (FBdv)
     prefix: fbdv
-    version: '2020-10-15'
-    version.iri: http://purl.obolibrary.org/obo/fbdv/releases/2020-10-15/fbdv.owl
+    version: '2021-01-13'
+    version.iri: http://purl.obolibrary.org/obo/fbdv/releases/2021-01-13/fbdv.owl
   pattern: ^\d{8}$
   prefix: fbdv
   synonyms:
@@ -4793,12 +4801,8 @@
     prefix: fobi
     version.iri: http://purl.obolibrary.org/obo/fobi/fobi.owl
   prefix: fobi
-- example: FDB015448
-  homepage: https://foodb.ca/
-  pattern: ^FDB\{d}+$
-  prefix: foodb
-  url: https://foodb.ca/compounds/$1
-- miriam:
+- homepage: https://foodb.ca/
+  miriam:
     deprecated: false
     description: "FooDB is resource on food and its constituent compounds. It includes\
       \ data on the compound\u2019s nomenclature, its description, information on\
@@ -4814,6 +4818,8 @@
   n2t:
     prefix: foodb.compound
   prefix: foodb.compound
+  synonyms:
+  - foodb
 - miriam:
     deprecated: false
     description: FoodOn is a comprehensive and easily accessible global farm-to-fork
@@ -5001,8 +5007,8 @@
     license: https://creativecommons.org/licenses/by/4.0/
     name: Fission Yeast Phenotype Ontology (FYPO)
     prefix: fypo
-    version: '2021-01-07'
-    version.iri: http://purl.obolibrary.org/obo/fypo/releases/2021-01-07/fypo.owl
+    version: '2021-01-12'
+    version.iri: http://purl.obolibrary.org/obo/fypo/releases/2021-01-12/fypo.owl
   pattern: ^\d{7}$
   prefix: fypo
 - miriam:
@@ -5987,7 +5993,7 @@
     prefix: hamap
   prefix: hamap
 - obofoundry:
-    contact: danielle.welter@uni.lu
+    contact: dwelter@ebi.ac.uk
     contact.label: Danielle Welter
     deprecated: false
     license: CC-BY 4.0
@@ -6213,6 +6219,9 @@
   - HMDB
   wikidata:
     property: P2057
+- download: ftp://ftp.bgee.org/general/ontologies/HOG.obo
+  name: Homologous Organ Groups
+  prefix: hog
 - miriam:
     deprecated: false
     description: HOGENOM is a database of homologous genes from fully sequenced organisms
@@ -7458,6 +7467,10 @@
   wikidata:
     database: Q20900436
     property: P2064
+- appears_in:
+  - cl
+  name: Kidney and Urinary Pathway Ontology
+  prefix: kupo
 - obofoundry:
     contact: paul.fabry@usherbrooke.ca
     contact.label: Paul Fabry
@@ -8842,7 +8855,7 @@
     contact: pierre-alain.binz@chuv.ch
     contact.label: Pierre-Alain Binz
     deprecated: false
-    download.obo: https://raw.githubusercontent.com/HUPO-PSI/psi-mod-CV/master/PSI-MOD.obo
+    download.obo: https://raw.githubusercontent.com/MICommunity/psidev/master/psi/mod/data/PSI-MOD.obo
     license: CC-BY 4.0
     name: Protein modification
     prefix: mod
@@ -9062,8 +9075,8 @@
     license: http://creativecommons.org/licenses/by/3.0/
     name: MHC Restriction Ontology
     prefix: mro
-    version: '2020-12-16'
-    version.iri: http://purl.obolibrary.org/obo/mro/2020-12-16/mro.owl
+    version: '2021-01-11'
+    version.iri: http://purl.obolibrary.org/obo/mro/2021-01-11/mro.owl
   prefix: mro
 - miriam:
     deprecated: false
@@ -9708,6 +9721,10 @@
   synonyms:
   - NIST Chemistry WebBook
   - NIST
+- example: 090201
+  name: NeuroLex Anatomy
+  prefix: nlxanat
+  url: http://uri.neuinfo.org/nif/nifstd/nlx_anat_$1
 - download: https://nmrml.org/cv/stable/nmrCV.owl
   miriam:
     deprecated: false
@@ -10510,7 +10527,7 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: Ontology of Organizational Structures of Trauma centers and Trauma Systems
     prefix: oostt
-    version: release version - 2021-01-08
+    version: release version - 2021-01-11
     version.iri: http://purl.obolibrary.org/obo/oostt//2021-01-08/oostt.owl
   prefix: oostt
 - miriam:
@@ -12901,6 +12918,16 @@
   n2t:
     prefix: sabiork.reaction
   prefix: sabiork.reaction
+- name: Subcellular Anatomy Ontology
+  obofoundry:
+    contact: slarson@ncmir.ucsd.edu
+    contact.label: Stephen Larson
+    deprecated: true
+    name: Subcellular anatomy ontology
+    prefix: sao
+  prefix: sao
+  references:
+  - http://www.ontobee.org/ontology/SAO
 - miriam:
     deprecated: false
     description: Small Angle Scattering Biological Data Bank (SASBDB) is a curated
@@ -13825,7 +13852,8 @@
     version.iri: http://purl.obolibrary.org/obo/taxrank/releases/2016-04-15/taxrank.owl
   pattern: ^\d{7}$
   prefix: taxrank
-- miriam:
+- homepage: https://www.tcdb.org
+  miriam:
     deprecated: false
     description: The database details a comprehensive  IUBMB approved classification
       system for membrane transport proteins known as the Transporter Classification
@@ -13839,6 +13867,8 @@
   n2t:
     prefix: tcdb
   prefix: tcdb
+  synonyms:
+  - TC
 - miriam:
     deprecated: false
     description: The Tetrahymena Genome Database (TGD) Wiki is a database of information
@@ -14659,8 +14689,6 @@
   n2t:
     prefix: vario
   obofoundry:
-    contact: mauno.vihinen@med.lu.se
-    contact.label: Mauno Vihinen
     deprecated: false
     download.obo: http://variationontology.org/vario_download/vario.obo
     name: Variation Ontology
@@ -14791,6 +14819,13 @@
     pattern: ^((VGNC|vgnc):)?\d{1,9}$
     prefix: vgnc
   prefix: vgnc
+- download: ftp://ftp.bgee.org/general/ontologies/vHOG.obo
+  name: Vertebrate Homologous Organ Group Ontology
+  obofoundry:
+    deprecated: true
+    name: Vertebrate Homologous Ontology Group Ontology
+    prefix: vhog
+  prefix: vhog
 - miriam:
     deprecated: false
     description: "The VIAF\xAE (Virtual International Authority File) combines multiple\
@@ -14907,6 +14942,32 @@
     prefix: vo
     version: 1.1.133
   prefix: vo
+- bioportal:
+    prefix: VSAO
+  name: Vertebrate Skeletal Anatomy Ontology
+  obofoundry:
+    contact: wasila.dahdul@usd.edu
+    contact.label: Wasila Dahdul
+    deprecated: true
+    name: Vertebrate Skeletal Anatomy Ontology-
+    prefix: vsao
+  prefix: vsao
+- appears_in:
+  - cl
+  obofoundry:
+    contact: eVOC mailing list
+    contact.label: evoc@sanbi.ac.za
+    deprecated: true
+    name: eVOC (Expressed Sequence Annotation for Humans)
+    prefix: ev
+  prefix: ev
+- obofoundry:
+    contact: David Blackburn
+    contact.label: david.c.blackburn@gmail.com
+    deprecated: true
+    name: Amphibian gross anatomy
+    prefix: aao
+  prefix: aao
 - example: '1868'
   homepage: https://sitem.herts.ac.uk/aeru/vsdb
   name: Veterinary Substances DataBase
