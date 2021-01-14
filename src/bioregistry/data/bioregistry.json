@@ -1500,6 +1500,10 @@
       "prefix": "cadsr"
     }
   },
+  "caloha": {
+    "download": "ftp://ftp.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo",
+    "name": "Human anatomical ontology"
+  },
   "cameo": {
     "miriam": {
       "deprecated": false,
@@ -2795,6 +2799,13 @@
       "version": "2020-08-28",
       "version.iri": "http://purl.obolibrary.org/obo/covoc/releases/2020-08-28/covoc.owl"
     }
+  },
+  "cp": {
+    "appears_in": [
+      "cl"
+    ],
+    "comment": "Part of cell ontology but deprecated, see https://github.com/obophenotype/cell-ontology/issues/572",
+    "name": "Cellular Phenotypes"
   },
   "cpc": {
     "miriam": {
@@ -4822,13 +4833,8 @@
       "version.iri": "http://purl.obolibrary.org/obo/fobi/fobi.owl"
     }
   },
-  "foodb": {
-    "example": "FDB015448",
-    "homepage": "https://foodb.ca/",
-    "pattern": "^FDB\\{d}+$",
-    "url": "https://foodb.ca/compounds/$1"
-  },
   "foodb.compound": {
+    "homepage": "https://foodb.ca/",
     "miriam": {
       "deprecated": false,
       "description": "FooDB is resource on food and its constituent compounds. It includes data on the compound’s nomenclature, its description, information on its structure, chemical class, its physico-chemical data, its food source(s), its color, its aroma, its taste, its physiological effect, presumptive health effects (from published studies), and concentrations in various foods. This collection references compounds.",
@@ -4840,7 +4846,10 @@
     },
     "n2t": {
       "prefix": "foodb.compound"
-    }
+    },
+    "synonyms": [
+      "foodb"
+    ]
   },
   "foodon": {
     "miriam": {
@@ -6215,6 +6224,10 @@
       "property": "P2057"
     }
   },
+  "hog": {
+    "download": "ftp://ftp.bgee.org/general/ontologies/HOG.obo",
+    "name": "Homologous Organ Groups"
+  },
   "hogenom": {
     "miriam": {
       "deprecated": false,
@@ -7510,6 +7523,12 @@
       "database": "Q20900436",
       "property": "P2064"
     }
+  },
+  "kupo": {
+    "appears_in": [
+      "cl"
+    ],
+    "name": "Kidney and Urinary Pathway Ontology"
   },
   "labo": {
     "obofoundry": {
@@ -9781,6 +9800,7 @@
     ]
   },
   "nlxanat": {
+    "name": "NeuroLex Anatomy",
     "example": "090201",
     "url": "http://uri.neuinfo.org/nif/nifstd/nlx_anat_$1"
   },
@@ -14812,6 +14832,10 @@
       "prefix": "vgnc"
     }
   },
+  "vhog": {
+    "download": "ftp://ftp.bgee.org/general/ontologies/vHOG.obo",
+    "name": "Vertebrate Homologous Organ Group Ontology"
+  },
   "viaf": {
     "miriam": {
       "deprecated": false,
@@ -14923,6 +14947,12 @@
       "name": "Vaccine Ontology",
       "prefix": "vo",
       "version": "1.1.133"
+    }
+  },
+  "vsao": {
+    "name": "Vertebrate Skeletal Anatomy Ontology",
+    "bioportal": {
+      "prefix": "VSAO"
     }
   },
   "vsdb": {
