@@ -13,6 +13,13 @@
   wikidata:
     database: Q23948774
     property: P2796
+- obofoundry:
+    contact: David Blackburn
+    contact.label: david.c.blackburn@gmail.com
+    deprecated: true
+    name: Amphibian gross anatomy
+    prefix: aao
+  prefix: aao
 - miriam:
     deprecated: false
     description: The database of Annotated regulatory Binding Sites (from orthologous
@@ -1979,7 +1986,7 @@
   prefix: chemidplus
   synonyms:
   - ChemIDplus
-- download: https://github.com/semanticchemistry/semanticchemistry/blob/master/ontology/cheminf.owl
+- download: https://github.com/semanticchemistry/semanticchemistry/raw/master/ontology/cheminf.owl
   name: Chemical Information Ontology
   not_available_as_obo: true
   obofoundry:
@@ -1999,6 +2006,10 @@
     prefix: cheminf
     version: 1.9.3
   prefix: cheminf
+- prefix: goc
+- example: H3.03.00.0.00007
+  name: Terminologia Histologica
+  prefix: th
 - miriam:
     deprecated: false
     description: ChemSpider is a collection of compound data from across the web,
@@ -2108,7 +2119,7 @@
     contact: bgee@sib.swiss
     contact.label: Frederic Bastian
     deprecated: false
-    license: GNU GPL 3.0
+    license: CC0
     name: Confidence Information Ontology
     prefix: cio
   ols:
@@ -4447,6 +4458,15 @@
     version: '2020-10-15'
     version.iri: http://purl.obolibrary.org/obo/eupath/2020-10-15/eupath.owl
   prefix: eupath
+- appears_in:
+  - cl
+  obofoundry:
+    contact: eVOC mailing list
+    contact.label: evoc@sanbi.ac.za
+    deprecated: true
+    name: eVOC (Expressed Sequence Annotation for Humans)
+    prefix: ev
+  prefix: ev
 - miriam:
     deprecated: false
     description: The Exome Aggregation Consortium (ExAC) is a coalition of investigators
@@ -5993,7 +6013,7 @@
     prefix: hamap
   prefix: hamap
 - obofoundry:
-    contact: dwelter@ebi.ac.uk
+    contact: danielle.welter@uni.lu
     contact.label: Danielle Welter
     deprecated: false
     license: CC-BY 4.0
@@ -6240,7 +6260,7 @@
     contact: bgee@sib.swiss
     contact.label: Frederic Bastian
     deprecated: false
-    license: CC-BY
+    license: CC0
     name: Homology Ontology
     prefix: hom
     repo: https://github.com/BgeeDB/homology-ontology.git
@@ -8855,7 +8875,7 @@
     contact: pierre-alain.binz@chuv.ch
     contact.label: Pierre-Alain Binz
     deprecated: false
-    download.obo: https://raw.githubusercontent.com/MICommunity/psidev/master/psi/mod/data/PSI-MOD.obo
+    download.obo: https://raw.githubusercontent.com/HUPO-PSI/psi-mod-CV/master/PSI-MOD.obo
     license: CC-BY 4.0
     name: Protein modification
     prefix: mod
@@ -10485,7 +10505,7 @@
     contact.label: Francesco Vitali
     deprecated: false
     license: CC-BY
-    name: ONS
+    name: Ontology for Nutritional Studies
     prefix: ons
   ols:
     description: An ontology for description of concepts in the nutritional studies
@@ -12740,7 +12760,8 @@
     version: 15-04-2019
   pattern: ^\d{7}$
   prefix: rnao
-- miriam:
+- download: https://github.com/oborel/obo-relations/raw/master/ro.obo
+  miriam:
     deprecated: false
     description: The OBO Relation Ontology provides consistent and unambiguous formal
       definitions of the relational expressions used in biomedical ontologies.
@@ -14689,6 +14710,8 @@
   n2t:
     prefix: vario
   obofoundry:
+    contact: mauno.vihinen@med.lu.se
+    contact.label: Mauno Vihinen
     deprecated: false
     download.obo: http://variationontology.org/vario_download/vario.obo
     name: Variation Ontology
@@ -14952,22 +14975,6 @@
     name: Vertebrate Skeletal Anatomy Ontology-
     prefix: vsao
   prefix: vsao
-- appears_in:
-  - cl
-  obofoundry:
-    contact: eVOC mailing list
-    contact.label: evoc@sanbi.ac.za
-    deprecated: true
-    name: eVOC (Expressed Sequence Annotation for Humans)
-    prefix: ev
-  prefix: ev
-- obofoundry:
-    contact: David Blackburn
-    contact.label: david.c.blackburn@gmail.com
-    deprecated: true
-    name: Amphibian gross anatomy
-    prefix: aao
-  prefix: aao
 - example: '1868'
   homepage: https://sitem.herts.ac.uk/aeru/vsdb
   name: Veterinary Substances DataBase
