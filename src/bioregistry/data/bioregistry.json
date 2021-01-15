@@ -1286,6 +1286,10 @@
       "prefix": "biotools"
     }
   },
+  "birnlex": {
+    "comment": "Part of the NeuroLex namespace now",
+    "name": "Biomedical Informatics Research Network Lexicon"
+  },
   "bitterdb.cpd": {
     "miriam": {
       "deprecated": false,
@@ -2107,7 +2111,7 @@
       "contact": "bgee@sib.swiss",
       "contact.label": "Frederic Bastian",
       "deprecated": false,
-      "license": "CC0",
+      "license": "GNU GPL 3.0",
       "name": "Confidence Information Ontology",
       "prefix": "cio"
     },
@@ -2659,6 +2663,11 @@
       "version": "2020-09-02",
       "version.iri": "http://purl.obolibrary.org/obo/cob/2020-04-15/cob.owl"
     }
+  },
+  "cohd": {
+    "comment": "not really sure where the source is. this also links to a system called athena. I was not able to figure out what COHD stands for.",
+    "homepage": "https://github.com/MIT-LCP/mimic-omop",
+    "name": "MIMIC III Database"
   },
   "combine.specifications": {
     "miriam": {
@@ -3245,6 +3254,13 @@
     "n2t": {
       "prefix": "dbsnp"
     }
+  },
+  "dc": {
+    "appears_in": [
+      "efo"
+    ],
+    "download": "https://github.com/obophenotype/human-disease-ontology/raw/master/src/experimental/missing-omc.obo",
+    "name": "Disease Class"
   },
   "ddanat": {
     "obofoundry": {
@@ -4364,6 +4380,12 @@
       "version": "13-09-2018"
     }
   },
+  "epcc": {
+    "name": "European Paediatric Cardiac Codes",
+    "references": [
+      "https://www.cambridge.org/core/journals/cardiology-in-the-young/article/abs/european-paediatric-cardiac-codes-the-long-list-with-icd9-icd10-crossmapping-and-crossmap-to-epcc-short-list/FCA4DFCCB661298294A3D113FC79D5BE"
+    ]
+  },
   "epd": {
     "miriam": {
       "deprecated": false,
@@ -5028,6 +5050,9 @@
       "prefix": "fungidb"
     }
   },
+  "fyler": {
+    "name": "Fyler"
+  },
   "fypo": {
     "download": "http://purl.obolibrary.org/obo/fypo.obo",
     "name": "Fission Yeast Phenotype Ontology",
@@ -5655,7 +5680,10 @@
       "prefix": "goa"
     }
   },
-  "goc": {},
+  "goeco": {
+    "homepage": "http://geneontology.org/docs/guide-go-evidence-codes/",
+    "name": "GO Evidence Code"
+  },
   "gold": {
     "miriam": {
       "deprecated": false,
@@ -5711,6 +5739,10 @@
     "synonyms": [
       "patent"
     ]
+  },
+  "gorel": {
+    "download": "ftp://ftp.geneontology.org/pub/go/ontology/extensions/gorel.owl",
+    "name": "GO Relations"
   },
   "gpcrdb": {
     "miriam": {
@@ -6030,7 +6062,7 @@
   },
   "hancestro": {
     "obofoundry": {
-      "contact": "danielle.welter@uni.lu",
+      "contact": "dwelter@ebi.ac.uk",
       "contact.label": "Danielle Welter",
       "deprecated": false,
       "license": "CC-BY 4.0",
@@ -6269,7 +6301,7 @@
       "contact": "bgee@sib.swiss",
       "contact.label": "Frederic Bastian",
       "deprecated": false,
-      "license": "CC0",
+      "license": "CC-BY",
       "name": "Homology Ontology",
       "prefix": "hom",
       "repo": "https://github.com/BgeeDB/homology-ontology.git"
@@ -6748,6 +6780,12 @@
       "version": "2020-21-07",
       "version.iri": "http://purl.obolibrary.org/obo/2020-21-07/ido-covid-19.owl"
     }
+  },
+  "idoden": {
+    "bioportal": {
+      "prefix": "IDODEN"
+    },
+    "name": "Dengue Fever Ontology"
   },
   "idomal": {
     "download": "http://purl.obolibrary.org/obo/idomal.obo",
@@ -8934,7 +8972,7 @@
       "contact": "pierre-alain.binz@chuv.ch",
       "contact.label": "Pierre-Alain Binz",
       "deprecated": false,
-      "download.obo": "https://raw.githubusercontent.com/HUPO-PSI/psi-mod-CV/master/PSI-MOD.obo",
+      "download.obo": "https://raw.githubusercontent.com/MICommunity/psidev/master/psi/mod/data/PSI-MOD.obo",
       "license": "CC-BY 4.0",
       "name": "Protein modification",
       "prefix": "mod"
@@ -10508,6 +10546,15 @@
       "version": "2020-10-27"
     }
   },
+  "oncotree": {
+    "appears_in": [
+      "efo"
+    ],
+    "example": "BLL",
+    "homepage": "http://oncotree.mskcc.org",
+    "name": "OncoTree",
+    "url": "http://oncotree.mskcc.org/api/tumorTypes/search/code/"
+  },
   "one": {
     "obofoundry": {
       "contact": "chen.yang@ugent.be",
@@ -10530,7 +10577,7 @@
       "contact.label": "Francesco Vitali",
       "deprecated": false,
       "license": "CC-BY",
-      "name": "Ontology for Nutritional Studies",
+      "name": "ONS",
       "prefix": "ons"
     },
     "ols": {
@@ -11737,6 +11784,16 @@
     },
     "n2t": {
       "prefix": "plasmodb"
+    }
+  },
+  "plo": {
+    "name": "Plasmodium Life Cycle",
+    "obofoundry": {
+      "contact": "mb4@sanger.ac.uk",
+      "contact.label": "Matt Berriman",
+      "deprecated": true,
+      "name": "Plasmodium life cycle",
+      "prefix": "plo"
     }
   },
   "pmap.cutdb": {
@@ -13371,6 +13428,12 @@
     ],
     "url": "https://smpdb.ca/view/$1"
   },
+  "snap": {
+    "name": "Snapshot",
+    "references": [
+      "http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf"
+    ]
+  },
   "snomedct": {
     "miriam": {
       "deprecated": false,
@@ -13403,6 +13466,7 @@
       "SNOMEDCTCT_2018_03_01",
       "SNOMEDCT_US_2019_03_01",
       "SNOMEDCTCT_2019_03_01",
+      "SNOMEDCT_US_2019_09_01",
       "SNOMEDCT_US_2020_03_01",
       "SNOMEDCT_US_2020_09_01"
     ],
@@ -13479,6 +13543,10 @@
     "n2t": {
       "prefix": "soybase"
     }
+  },
+  "span": {
+    "comment": "see also snap",
+    "name": "Span"
   },
   "spd": {
     "obofoundry": {
@@ -13873,6 +13941,18 @@
     },
     "n2t": {
       "prefix": "tair.protein"
+    }
+  },
+  "tao": {
+    "name": "Teleost Anatomy Ontology",
+    "obofoundry": {
+      "contact": "wasila.dahdul@usd.edu",
+      "contact.label": "Wasila Dahdul",
+      "deprecated": true,
+      "download.obo": "http://purl.obolibrary.org/obo/tao.obo",
+      "license": "CC-0",
+      "name": "Teleost Anatomy Ontology",
+      "prefix": "tao"
     }
   },
   "tarbase": {
@@ -14737,8 +14817,6 @@
       "prefix": "vario"
     },
     "obofoundry": {
-      "contact": "mauno.vihinen@med.lu.se",
-      "contact.label": "Mauno Vihinen",
       "deprecated": false,
       "download.obo": "http://variationontology.org/vario_download/vario.obo",
       "name": "Variation Ontology",
@@ -14941,6 +15019,14 @@
     "n2t": {
       "prefix": "virsirna"
     }
+  },
+  "vmc": {
+    "deprecated": true,
+    "name": "Variation Modelling Collaboration",
+    "references": [
+      "https://docs.google.com/document/d/12E8WbQlvfZWk5NrxwLytmympPby6vsv60RxCeD5wc1E/edit#heading=h.67hbe76b6a4z",
+      "https://github.com/ga4gh/vr-spec"
+    ]
   },
   "vmhmetabolite": {
     "miriam": {
@@ -15390,6 +15476,12 @@
     },
     "pattern": "^\\d+$"
   },
+  "xuo": {
+    "appears_in": [
+      "hsapdv"
+    ],
+    "name": "XUO"
+  },
   "ydpm": {
     "miriam": {
       "deprecated": false,
@@ -15463,6 +15555,15 @@
     },
     "n2t": {
       "prefix": "yrcpdr"
+    }
+  },
+  "zea": {
+    "obofoundry": {
+      "contact": "Leszek@missouri.edu",
+      "contact.label": "Leszek Vincent",
+      "deprecated": true,
+      "name": "Maize gross anatomy",
+      "prefix": "zea"
     }
   },
   "zeco": {
