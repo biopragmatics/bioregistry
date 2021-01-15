@@ -203,6 +203,14 @@
       "prefix": "allergome"
     }
   },
+  "alzforum.mutation": {
+    "example": "app-d678n-tottori",
+    "name": "Alzforum Mutations",
+    "synonyms": [
+      "Alzforum_mut"
+    ],
+    "url": "https://www.alzforum.org/mutations/$1"
+  },
   "amoebadb": {
     "miriam": {
       "deprecated": false,
@@ -420,6 +428,11 @@
     "n2t": {
       "prefix": "arachnoserver"
     }
+  },
+  "araport": {
+    "homepage": "https://www.araport.org/",
+    "name": "Arabidopsis Information Portal",
+    "url": "https://www.arabidopsis.org/servlets/TairObject?type=locus&name=$1"
   },
   "ardb": {
     "miriam": {
@@ -3778,6 +3791,13 @@
     ],
     "url": "http://drugcentral.org/drugcard/$1"
   },
+  "dto": {
+    "appears_in": [
+      "pr"
+    ],
+    "homepage": "https://github.com/DrugTargetOntology/DTO",
+    "name": "Drug Target Ontology"
+  },
   "duo": {
     "not_available_as_obo": true,
     "obofoundry": {
@@ -3797,6 +3817,12 @@
       "version": "2020-02-03",
       "version.iri": "http://purl.obolibrary.org/obo/duo/releases/2020-02-03/duo.owl"
     }
+  },
+  "ecacc": {
+    "example": "90062901",
+    "homepage": "https://www.phe-culturecollections.org.uk/collections/ecacc.aspx",
+    "name": "European Collection of Authenticated Cell Culture",
+    "url": "https://www.phe-culturecollections.org.uk/products/celllines/generalcell/detail.jsp?collection=ecacc_gc&refId=$1"
   },
   "ecao": {
     "obofoundry": {
@@ -3924,6 +3950,11 @@
       "version.iri": "http://purl.obolibrary.org/obo/ecocore/releases/2020-12-18/ecocore.owl"
     },
     "pattern": "^\\d{7}$"
+  },
+  "ecocyc": {
+    "example": "AICARTRANSIMPCYCLO-CPLX",
+    "name": "EcoCyc",
+    "url": "https://biocyc.org/gene?id=$1"
   },
   "ecogene": {
     "miriam": {
@@ -6867,6 +6898,13 @@
       "prefix": "idr"
     }
   },
+  "imdrf": {
+    "homepage": "http://www.imdrf.org/",
+    "name": "International Medical Device Regulators Forum",
+    "references": [
+      "https://www.fda.gov/medical-devices/mandatory-reporting-requirements-manufacturers-importers-and-device-user-facilities/mdr-adverse-event-codes"
+    ]
+  },
   "imex": {
     "miriam": {
       "deprecated": false,
@@ -7132,6 +7170,13 @@
       "prefix": "irefweb"
     }
   },
+  "iro": {
+    "deprecated": true,
+    "example": "0000008",
+    "name": "Insect Resistance Ontology",
+    "needs_curation": true,
+    "url": "https://legacy.vectorbase.org/ontology-browser?cv=MIRO&t=IRO:$1"
+  },
   "isbn": {
     "miriam": {
       "deprecated": false,
@@ -7247,6 +7292,9 @@
     "n2t": {
       "prefix": "iuphar.receptor"
     },
+    "synonyms": [
+      "IUPHARobj"
+    ],
     "wikidata": {
       "property": "P5458"
     }
@@ -11686,7 +11734,10 @@
     },
     "n2t": {
       "prefix": "pid.pathway"
-    }
+    },
+    "synonyms": [
+      "pid"
+    ]
   },
   "pigqtldb": {
     "miriam": {
@@ -12916,7 +12967,8 @@
       "version.iri": "http://purl.obolibrary.org/obo/ro/releases/2020-12-18/ro.owl"
     },
     "synonyms": [
-      "obo_rel"
+      "obo_rel",
+      "RO_proposed_relation"
     ],
     "wikidata": {
       "property": "P3590"
