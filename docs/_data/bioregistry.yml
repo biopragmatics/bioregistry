@@ -186,6 +186,12 @@
   n2t:
     prefix: allergome
   prefix: allergome
+- example: app-d678n-tottori
+  name: Alzforum Mutations
+  prefix: alzforum.mutation
+  synonyms:
+  - Alzforum_mut
+  url: https://www.alzforum.org/mutations/$1
 - miriam:
     deprecated: false
     description: AmoebaDB is one of the databases that can be accessed through the
@@ -394,6 +400,10 @@
   n2t:
     prefix: arachnoserver
   prefix: arachnoserver
+- homepage: https://www.araport.org/
+  name: Arabidopsis Information Portal
+  prefix: araport
+  url: https://www.arabidopsis.org/servlets/TairObject?type=locus&name=$1
 - miriam:
     deprecated: false
     description: The Antibiotic Resistance Genes Database (ARDB) is a manually curated
@@ -1283,6 +1293,9 @@
   n2t:
     prefix: biotools
   prefix: biotools
+- comment: Part of the NeuroLex namespace now
+  name: Biomedical Informatics Research Network Lexicon
+  prefix: birnlex
 - miriam:
     deprecated: false
     description: BitterDB is a database of compounds reported to taste bitter to humans.
@@ -1514,8 +1527,10 @@
     prefix: cadsr
   prefix: cadsr
 - download: ftp://ftp.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo
-  name: Human anatomical ontology
+  name: CALIPHO Group Ontology of Human Anatomy
   prefix: caloha
+  references:
+  - https://twitter.com/neXtProt_news/status/1350105997633867781
 - miriam:
     deprecated: false
     description: The goal of the CAMEO (Continuous Automated Model EvaluatiOn) community
@@ -2006,10 +2021,6 @@
     prefix: cheminf
     version: 1.9.3
   prefix: cheminf
-- prefix: goc
-- example: H3.03.00.0.00007
-  name: Terminologia Histologica
-  prefix: th
 - miriam:
     deprecated: false
     description: ChemSpider is a collection of compound data from across the web,
@@ -2624,6 +2635,11 @@
     version: '2020-09-02'
     version.iri: http://purl.obolibrary.org/obo/cob/2020-04-15/cob.owl
   prefix: cob
+- comment: not really sure where the source is. this also links to a system called
+    athena. I was not able to figure out what COHD stands for.
+  homepage: https://github.com/MIT-LCP/mimic-omop
+  name: MIMIC III Database
+  prefix: cohd
 - miriam:
     deprecated: false
     description: The 'COmputational Modeling in BIology' NEtwork (COMBINE) is an initiative
@@ -3242,6 +3258,11 @@
   n2t:
     prefix: dbsnp
   prefix: dbsnp
+- appears_in:
+  - efo
+  download: https://github.com/obophenotype/human-disease-ontology/raw/master/src/experimental/missing-omc.obo
+  name: Disease Class
+  prefix: dc
 - obofoundry:
     contact: pfey@northwestern.edu
     contact.label: Petra Fey
@@ -3311,6 +3332,10 @@
   n2t:
     prefix: depod
   prefix: depod
+- bioportal:
+    prefix: DERMO
+  name: Human Dermatological Disease Ontology
+  prefix: dermo
 - miriam:
     deprecated: false
     description: Assists in resolving data across cloud resources.
@@ -3714,6 +3739,11 @@
   synonyms:
   - Drug_Central
   url: http://drugcentral.org/drugcard/$1
+- appears_in:
+  - pr
+  homepage: https://github.com/DrugTargetOntology/DTO
+  name: Drug Target Ontology
+  prefix: dto
 - not_available_as_obo: true
   obofoundry:
     contact: mcourtot@gmail.com
@@ -3731,6 +3761,11 @@
     version: '2020-02-03'
     version.iri: http://purl.obolibrary.org/obo/duo/releases/2020-02-03/duo.owl
   prefix: duo
+- example: '90062901'
+  homepage: https://www.phe-culturecollections.org.uk/collections/ecacc.aspx
+  name: European Collection of Authenticated Cell Culture
+  prefix: ecacc
+  url: https://www.phe-culturecollections.org.uk/products/celllines/generalcell/detail.jsp?collection=ecacc_gc&refId=$1
 - obofoundry:
     contact: ettensohn@cmu.edu
     contact.label: Charles Ettensohn
@@ -3845,6 +3880,10 @@
     version.iri: http://purl.obolibrary.org/obo/ecocore/releases/2020-12-18/ecocore.owl
   pattern: ^\d{7}$
   prefix: ecocore
+- example: AICARTRANSIMPCYCLO-CPLX
+  name: EcoCyc
+  prefix: ecocyc
+  url: https://biocyc.org/gene?id=$1
 - miriam:
     deprecated: false
     description: The EcoGene database contains updated information about the E. coli
@@ -4336,6 +4375,10 @@
     prefix: eol
     version: 13-09-2018
   prefix: eol
+- name: European Paediatric Cardiac Codes
+  prefix: epcc
+  references:
+  - https://www.cambridge.org/core/journals/cardiology-in-the-young/article/abs/european-paediatric-cardiac-codes-the-long-list-with-icd9-icd10-crossmapping-and-crossmap-to-epcc-short-list/FCA4DFCCB661298294A3D113FC79D5BE
 - miriam:
     deprecated: false
     description: The Eukaryotic Promoter Database (EPD) is an annotated non-redundant
@@ -4467,6 +4510,8 @@
     name: eVOC (Expressed Sequence Annotation for Humans)
     prefix: ev
   prefix: ev
+  references:
+  - https://twitter.com/Bgeedb/status/1350124337815281664
 - miriam:
     deprecated: false
     description: The Exome Aggregation Consortium (ExAC) is a coalition of investigators
@@ -5012,6 +5057,8 @@
   n2t:
     prefix: fungidb
   prefix: fungidb
+- name: Fyler
+  prefix: fyler
 - download: http://purl.obolibrary.org/obo/fypo.obo
   name: Fission Yeast Phenotype Ontology
   obofoundry:
@@ -5614,6 +5661,9 @@
   n2t:
     prefix: goa
   prefix: goa
+- homepage: http://geneontology.org/docs/guide-go-evidence-codes/
+  name: GO Evidence Code
+  prefix: goeco
 - miriam:
     deprecated: false
     description: 'The Genomes OnLine Database (GOLD) catalogues genome and metagenome
@@ -5678,6 +5728,9 @@
   prefix: google.patent
   synonyms:
   - patent
+- download: ftp://ftp.geneontology.org/pub/go/ontology/extensions/gorel.owl
+  name: GO Relations
+  prefix: gorel
 - miriam:
     deprecated: false
     description: The G protein-coupled receptor database (GPCRDB) collects, large
@@ -5898,6 +5951,14 @@
   n2t:
     prefix: gtex
   prefix: gtex
+- appears_in:
+  - mondo
+  comment: Identifiers appearing in MONDO don't match any of the resources apparent
+    endpoints
+  example: AN0097748
+  homepage: https://www.ncbi.nlm.nih.gov/gtr/
+  name: Genetic Testing Registry
+  prefix: gtr
 - miriam:
     deprecated: false
     description: The GenitoUrinary Development Molecular Anatomy Project (GUDMAP)
@@ -6725,6 +6786,10 @@
     version: '2020-21-07'
     version.iri: http://purl.obolibrary.org/obo/2020-21-07/ido-covid-19.owl
   prefix: idocovid19
+- bioportal:
+    prefix: IDODEN
+  name: Dengue Fever Ontology
+  prefix: idoden
 - download: http://purl.obolibrary.org/obo/idomal.obo
   obofoundry:
     contact: topalis@imbb.forth.gr
@@ -6781,6 +6846,11 @@
     pattern: ^[0-9]{4}$
     prefix: idr
   prefix: idr
+- homepage: http://www.imdrf.org/
+  name: International Medical Device Regulators Forum
+  prefix: imdrf
+  references:
+  - https://www.fda.gov/medical-devices/mandatory-reporting-requirements-manufacturers-importers-and-device-user-facilities/mdr-adverse-event-codes
 - miriam:
     deprecated: false
     description: The International Molecular Exchange (IMEx) is a consortium of molecular
@@ -7041,6 +7111,12 @@
   n2t:
     prefix: irefweb
   prefix: irefweb
+- deprecated: true
+  example: 0000008
+  name: Insect Resistance Ontology
+  needs_curation: true
+  prefix: iro
+  url: https://legacy.vectorbase.org/ontology-browser?cv=MIRO&t=IRO:$1
 - miriam:
     deprecated: false
     description: The International Standard Book Number (ISBN) is for identifying
@@ -7166,6 +7242,8 @@
   n2t:
     prefix: iuphar.receptor
   prefix: iuphar.receptor
+  synonyms:
+  - IUPHARobj
   wikidata:
     property: P5458
 - miriam:
@@ -9303,6 +9381,12 @@
   n2t:
     prefix: mzspec
   prefix: mzspec
+- comment: The nomenclature used for named reactions in text mining software from
+    NextMove
+  name: NameRXN
+  prefix: namerxn
+  references:
+  - https://www.nextmovesoftware.com/products/HazELNutPoster.pdf
 - miriam:
     deprecated: false
     description: The Natural Product-Drug Interaction Research Data Repository, a
@@ -9745,6 +9829,12 @@
   name: NeuroLex Anatomy
   prefix: nlxanat
   url: http://uri.neuinfo.org/nif/nifstd/nlx_anat_$1
+- appears_in:
+  - mondo
+  example: '20090303'
+  name: NeuroLex Dysfunction
+  prefix: nlxdys
+  url: http://uri.neuinfo.org/nif/nifstd/nlx_dys_$1
 - download: https://nmrml.org/cv/stable/nmrCV.owl
   miriam:
     deprecated: false
@@ -10447,6 +10537,11 @@
     version: '2020-06-08'
     version.iri: http://purl.obolibrary.org/obo/omo/2020-06-08/omo.owl
   prefix: omo
+- homepage: https://www.ohdsi.org/data-standardization/the-common-data-model/
+  name: Observational Medical Outcomes Partnership
+  prefix: omop
+  references:
+  - https://github.com/callahantiff/OMOP2OBO
 - obofoundry:
     contact: jimhu@tamu.edu
     contact.label: James C. Hu
@@ -10486,6 +10581,13 @@
     prefix: omrse
     version: '2020-10-27'
   prefix: omrse
+- appears_in:
+  - efo
+  example: BLL
+  homepage: http://oncotree.mskcc.org
+  name: OncoTree
+  prefix: oncotree
+  url: http://oncotree.mskcc.org/api/tumorTypes/search/code/
 - obofoundry:
     contact: chen.yang@ugent.be
     contact.label: Chen Yang
@@ -11586,6 +11688,8 @@
   n2t:
     prefix: pid.pathway
   prefix: pid.pathway
+  synonyms:
+  - pid
 - miriam:
     deprecated: false
     description: The Animal Quantitative Trait Loci (QTL) database (Animal QTLdb)
@@ -11732,6 +11836,14 @@
   n2t:
     prefix: plasmodb
   prefix: plasmodb
+- name: Plasmodium Life Cycle
+  obofoundry:
+    contact: mb4@sanger.ac.uk
+    contact.label: Matt Berriman
+    deprecated: true
+    name: Plasmodium life cycle
+    prefix: plo
+  prefix: plo
 - miriam:
     deprecated: false
     description: The Proteolysis MAP is a resource for proteolytic networks and pathways.
@@ -12794,6 +12906,7 @@
   prefix: ro
   synonyms:
   - obo_rel
+  - RO_proposed_relation
   wikidata:
     property: P3590
 - miriam:
@@ -13346,6 +13459,10 @@
   synonyms:
   - SMP
   url: https://smpdb.ca/view/$1
+- name: Snapshot
+  prefix: snap
+  references:
+  - http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf
 - miriam:
     deprecated: false
     description: SNOMED CT (Systematized Nomenclature of Medicine -- Clinical Terms),
@@ -13379,6 +13496,7 @@
   - SNOMEDCTCT_2018_03_01
   - SNOMEDCT_US_2019_03_01
   - SNOMEDCTCT_2019_03_01
+  - SNOMEDCT_US_2019_09_01
   - SNOMEDCT_US_2020_03_01
   - SNOMEDCT_US_2020_09_01
   wikidata:
@@ -13449,6 +13567,9 @@
   n2t:
     prefix: soybase
   prefix: soybase
+- comment: see also snap
+  name: Span
+  prefix: span
 - obofoundry:
     contact: ramirez@macn.gov.ar
     contact.label: Martin Ramirez
@@ -13842,6 +13963,16 @@
   n2t:
     prefix: tair.protein
   prefix: tair.protein
+- name: Teleost Anatomy Ontology
+  obofoundry:
+    contact: wasila.dahdul@usd.edu
+    contact.label: Wasila Dahdul
+    deprecated: true
+    download.obo: http://purl.obolibrary.org/obo/tao.obo
+    license: CC-0
+    name: Teleost Anatomy Ontology
+    prefix: tao
+  prefix: tao
 - miriam:
     deprecated: false
     description: "TarBase stores microRNA (miRNA) information for miRNA\u2013gene\
@@ -13922,6 +14053,9 @@
     version.iri: http://purl.obolibrary.org/obo/tgma/releases/2013-06-03/tgma.owl
   pattern: ^\d{7}$
   prefix: tgma
+- example: H3.03.00.0.00007
+  name: Terminologia Histologica
+  prefix: th
 - miriam:
     deprecated: false
     description: TIGRFAMs is a resource consisting of curated multiple sequence alignments,
@@ -14922,6 +15056,12 @@
   n2t:
     prefix: virsirna
   prefix: virsirna
+- deprecated: true
+  name: Variation Modelling Collaboration
+  prefix: vmc
+  references:
+  - https://docs.google.com/document/d/12E8WbQlvfZWk5NrxwLytmympPby6vsv60RxCeD5wc1E/edit#heading=h.67hbe76b6a4z
+  - https://github.com/ga4gh/vr-spec
 - miriam:
     deprecated: false
     description: The Virtual Metabolic Human (VMH) is a resource that combines human
@@ -15328,6 +15468,10 @@
     version.iri: http://purl.obolibrary.org/obo/xpo/releases/2020-07-04/xpo.owl
   pattern: ^\d+$
   prefix: xpo
+- appears_in:
+  - hsapdv
+  name: XUO
+  prefix: xuo
 - miriam:
     deprecated: false
     description: The YDPM database serves to support the Yeast Deletion and the Mitochondrial
@@ -15411,6 +15555,13 @@
   n2t:
     prefix: yrcpdr
   prefix: yrcpdr
+- obofoundry:
+    contact: Leszek@missouri.edu
+    contact.label: Leszek Vincent
+    deprecated: true
+    name: Maize gross anatomy
+    prefix: zea
+  prefix: zea
 - obofoundry:
     contact: ybradford@zfin.org
     contact.label: Yvonne Bradford
