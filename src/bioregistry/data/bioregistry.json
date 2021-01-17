@@ -108,7 +108,10 @@
       "version": "2014-12-05",
       "version.iri": "http://purl.obolibrary.org/obo/aeo/releases/2014-12-05/aeo.owl"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "synonyms": [
+      "AEO_RETIRED"
+    ]
   },
   "affy.probeset": {
     "miriam": {
@@ -745,6 +748,13 @@
       "prefix": "bacmap.map"
     }
   },
+  "bams": {
+    "deprecated": true,
+    "homepage": "https://bams1.org",
+    "references": [
+      "https://www.frontiersin.org/articles/10.3389/neuro.11.002.2008/full"
+    ]
+  },
   "bao": {
     "miriam": {
       "deprecated": false,
@@ -1005,6 +1015,11 @@
     },
     "n2t": {
       "prefix": "bigg.reaction"
+    }
+  },
+  "bila": {
+    "obofoundry": {
+      "prefix": "bila"
     }
   },
   "bindingdb": {
@@ -2127,7 +2142,7 @@
       "contact": "bgee@sib.swiss",
       "contact.label": "Frederic Bastian",
       "deprecated": false,
-      "license": "CC0",
+      "license": "GNU GPL 3.0",
       "name": "Confidence Information Ontology",
       "prefix": "cio"
     },
@@ -4149,6 +4164,24 @@
       "prefix": "eggnog"
     }
   },
+  "ehda": {
+    "obofoundry": {
+      "contact": "Jonathan Bard",
+      "contact.label": "J.Bard@ed.ac.uk",
+      "deprecated": true,
+      "name": "Human developmental anatomy, timed version",
+      "prefix": "ehda"
+    }
+  },
+  "ehdaa": {
+    "obofoundry": {
+      "contact": "Jonathan Bard",
+      "contact.label": "J.Bard@ed.ac.uk",
+      "deprecated": true,
+      "name": "Human developmental anatomy, abstract version",
+      "prefix": "ehdaa"
+    }
+  },
   "ehdaa2": {
     "obofoundry": {
       "contact": "J.Bard@ed.ac.uk",
@@ -4169,7 +4202,9 @@
     },
     "pattern": "^\\d{7}$",
     "synonyms": [
-      "HDAA2"
+      "HDAA2",
+      "EHDAA2_RETIRED",
+      "RETIRED_EHDAA2"
     ]
   },
   "elm": {
@@ -4204,7 +4239,10 @@
       "version": "2020-02-12",
       "version.iri": "http://purl.obolibrary.org/obo/emapa/releases/2020-02-12/emapa.owl"
     },
-    "pattern": "^\\d+$"
+    "pattern": "^\\d+$",
+    "synonyms": [
+      "EMAPA_RETIRED"
+    ]
   },
   "emdb": {
     "miriam": {
@@ -4548,6 +4586,13 @@
       "https://twitter.com/Bgeedb/status/1350124337815281664"
     ]
   },
+  "evm": {
+    "deprecated": true,
+    "name": "eVOC mouse development stage",
+    "references": [
+      "https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-10-r229"
+    ]
+  },
   "exac.gene": {
     "miriam": {
       "deprecated": false,
@@ -4780,6 +4825,9 @@
     "name": "Flybase Quantitative Loci",
     "prefixcommons": "fbql"
   },
+  "fbtc": {
+    "name": "Flybase Cell Line"
+  },
   "fideo": {
     "obofoundry": {
       "contact": "georgeta.bordea@u-bordeaux.fr",
@@ -4899,7 +4947,11 @@
       "prefix": "fma",
       "version": "2020-04-13",
       "version.iri": "http://purl.obolibrary.org/obo/fma/releases/2020-04-13/fma.owl"
-    }
+    },
+    "synonyms": [
+      "FMAID",
+      "FMA_RETIRED"
+    ]
   },
   "fobi": {
     "obofoundry": {
@@ -5144,6 +5196,11 @@
     },
     "n2t": {
       "prefix": "gabi"
+    }
+  },
+  "galen": {
+    "bioportal": {
+      "prefix": "GALEN"
     }
   },
   "gard": {
@@ -5444,6 +5501,11 @@
       "prefix": "gexo",
       "version": "18-09-2019"
     }
+  },
+  "ghr": {
+    "example": "saddan",
+    "name": "Genetics Home Reference",
+    "url": "https://medlineplus.gov/genetics/condition/$1"
   },
   "giardiadb": {
     "miriam": {
@@ -6114,7 +6176,7 @@
   },
   "hancestro": {
     "obofoundry": {
-      "contact": "danielle.welter@uni.lu",
+      "contact": "dwelter@ebi.ac.uk",
       "contact.label": "Danielle Welter",
       "deprecated": false,
       "license": "CC-BY 4.0",
@@ -6353,7 +6415,7 @@
       "contact": "bgee@sib.swiss",
       "contact.label": "Frederic Bastian",
       "deprecated": false,
-      "license": "CC0",
+      "license": "CC-BY",
       "name": "Homology Ontology",
       "prefix": "hom",
       "repo": "https://github.com/BgeeDB/homology-ontology.git"
@@ -7189,7 +7251,11 @@
     },
     "n2t": {
       "prefix": "isbn"
-    }
+    },
+    "synonyms": [
+      "ISBN-10",
+      "ISBN-13"
+    ]
   },
   "isfinder": {
     "miriam": {
@@ -7298,6 +7364,11 @@
     "wikidata": {
       "property": "P5458"
     }
+  },
+  "jax": {
+    "example": "004435",
+    "name": "Jackson Laboratories Strain",
+    "url": "https://www.jax.org/strain/$1"
   },
   "jaxmice": {
     "miriam": {
@@ -8004,6 +8075,19 @@
       "prefix": "massive"
     }
   },
+  "mat": {
+    "bioportal": {
+      "prefix": "MAT"
+    },
+    "name": "Minimal Anatomical Terminology",
+    "obofoundry": {
+      "contact": "j.bard@ed.ac.uk",
+      "contact.label": "Jonathan Bard",
+      "deprecated": true,
+      "name": "Minimal anatomical terminology",
+      "prefix": "mat"
+    }
+  },
   "matrixdb": {
     "appearsIn": [
       "complexportal"
@@ -8047,6 +8131,13 @@
       "version": "2020-12-10",
       "version.iri": "http://purl.obolibrary.org/obo/maxo/releases/2020-12-10/maxo.owl"
     }
+  },
+  "mcc": {
+    "bioportal": {
+      "prefix": "MCCL"
+    },
+    "deprecated": true,
+    "name": "Cell Line Ontology [derivative]"
   },
   "mco": {
     "obofoundry": {
@@ -8394,6 +8485,15 @@
       "version.iri": "http://purl.obolibrary.org/obo/mfmo/2013-11-16/mfmo.owl"
     }
   },
+  "mfo": {
+    "obofoundry": {
+      "contact": "Thorsten.Henrich@embl-heidelberg.de",
+      "contact.label": "Thorsten Henrich",
+      "deprecated": true,
+      "name": "Medaka fish anatomy and development",
+      "prefix": "mfo"
+    }
+  },
   "mfoem": {
     "obofoundry": {
       "contact": "janna.hastings@gmail.com",
@@ -8531,6 +8631,13 @@
       "PSI-MI"
     ]
   },
+  "miaa": {
+    "comment": "same as MAT",
+    "name": "Minimal Information About Anatomy ontology",
+    "references": [
+      "https://bioconductor.statistik.tu-dortmund.de/packages/3.1/bioc/vignettes/rols/inst/doc/rols.pdf"
+    ]
+  },
   "miapa": {
     "obofoundry": {
       "contact": "hilmar.lapp@duke.edu",
@@ -8595,6 +8702,7 @@
     }
   },
   "mim": {
+    "comment": "OMIMPS and PS should probably be split to their own entry called OMIM Phenotypic Series",
     "miriam": {
       "deprecated": false,
       "description": "Online Mendelian Inheritance in Man is a catalog of human genes and genetic disorders.",
@@ -8609,7 +8717,8 @@
     },
     "synonyms": [
       "OMIM",
-      "OMIMPS"
+      "OMIMPS",
+      "PS"
     ],
     "wikidata": {
       "database": "Q241953",
@@ -9041,7 +9150,7 @@
       "contact": "pierre-alain.binz@chuv.ch",
       "contact.label": "Pierre-Alain Binz",
       "deprecated": false,
-      "download.obo": "https://raw.githubusercontent.com/HUPO-PSI/psi-mod-CV/master/PSI-MOD.obo",
+      "download.obo": "https://raw.githubusercontent.com/MICommunity/psidev/master/psi/mod/data/PSI-MOD.obo",
       "license": "CC-BY 4.0",
       "name": "Protein modification",
       "prefix": "mod"
@@ -10668,7 +10777,7 @@
       "contact.label": "Francesco Vitali",
       "deprecated": false,
       "license": "CC-BY",
-      "name": "Ontology for Nutritional Studies",
+      "name": "ONS",
       "prefix": "ons"
     },
     "ols": {
@@ -13115,6 +13224,20 @@
       "prefix": "sabiork.reaction"
     }
   },
+  "sael": {
+    "deprecated": true,
+    "name": "Standards and Ontologies for Functional Genomics (SOFG) Anatomy Entry List (SAEL)",
+    "references": [
+      "https://pubmed.ncbi.nlm.nih.gov/18629134/"
+    ]
+  },
+  "salk": {
+    "appears_in": [
+      "efo"
+    ],
+    "example": "037727",
+    "url": "https://abrc.osu.edu/stocks/number/SALK_$1"
+  },
   "sao": {
     "name": "Subcellular Anatomy Ontology",
     "obofoundry": {
@@ -14048,7 +14171,10 @@
       "license": "CC-0",
       "name": "Teleost Anatomy Ontology",
       "prefix": "tao"
-    }
+    },
+    "synonyms": [
+      "TAO_RETIRED"
+    ]
   },
   "tarbase": {
     "miriam": {
@@ -14102,6 +14228,13 @@
     "synonyms": [
       "TC"
     ]
+  },
+  "te": {
+    "example": "E5.11.2.0.0.0.4",
+    "name": "Terminologia Embryologica",
+    "wikidata": {
+      "property": "P1693"
+    }
   },
   "tgd": {
     "miriam": {
@@ -14912,8 +15045,6 @@
       "prefix": "vario"
     },
     "obofoundry": {
-      "contact": "mauno.vihinen@med.lu.se",
-      "contact.label": "Mauno Vihinen",
       "deprecated": false,
       "download.obo": "http://variationontology.org/vario_download/vario.obo",
       "name": "Variation Ontology",
@@ -15048,7 +15179,10 @@
       "deprecated": true,
       "name": "Vertebrate Homologous Ontology Group Ontology",
       "prefix": "vhog"
-    }
+    },
+    "synonyms": [
+      "VHOG_RETIRED"
+    ]
   },
   "viaf": {
     "miriam": {
@@ -15182,7 +15316,10 @@
       "deprecated": true,
       "name": "Vertebrate Skeletal Anatomy Ontology-",
       "prefix": "vsao"
-    }
+    },
+    "synonyms": [
+      "VSAO_RETIRED"
+    ]
   },
   "vsdb": {
     "example": "1868",
@@ -15703,7 +15840,10 @@
       "version": "2020-03-18",
       "version.iri": "http://purl.obolibrary.org/obo/zfa/releases/2020-03-18/zfa.owl"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "synonyms": [
+      "ZFA_RETIRED"
+    ]
   },
   "zfin": {
     "miriam": {
