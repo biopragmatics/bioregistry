@@ -99,6 +99,8 @@
     version.iri: http://purl.obolibrary.org/obo/aeo/releases/2014-12-05/aeo.owl
   pattern: ^\d{7}$
   prefix: aeo
+  synonyms:
+  - AEO_RETIRED
 - miriam:
     deprecated: false
     description: An Affymetrix ProbeSet is a collection of up to 11 short (~22 nucleotide)
@@ -741,6 +743,11 @@
   n2t:
     prefix: bacmap.map
   prefix: bacmap.map
+- deprecated: true
+  homepage: https://bams1.org
+  prefix: bams
+  references:
+  - https://www.frontiersin.org/articles/10.3389/neuro.11.002.2008/full
 - miriam:
     deprecated: false
     description: The BioAssay Ontology (BAO) describes chemical biology screening
@@ -1015,6 +1022,9 @@
   n2t:
     prefix: bigg.reaction
   prefix: bigg.reaction
+- obofoundry:
+    prefix: bila
+  prefix: bila
 - miriam:
     deprecated: false
     description: BindingDB is the first public database of protein-small molecule
@@ -4110,6 +4120,20 @@
     prefix: eggnog
   prefix: eggnog
 - obofoundry:
+    contact: Jonathan Bard
+    contact.label: J.Bard@ed.ac.uk
+    deprecated: true
+    name: Human developmental anatomy, timed version
+    prefix: ehda
+  prefix: ehda
+- obofoundry:
+    contact: Jonathan Bard
+    contact.label: J.Bard@ed.ac.uk
+    deprecated: true
+    name: Human developmental anatomy, abstract version
+    prefix: ehdaa
+  prefix: ehdaa
+- obofoundry:
     contact: J.Bard@ed.ac.uk
     contact.label: Jonathan Bard
     deprecated: false
@@ -4129,6 +4153,8 @@
   prefix: ehdaa2
   synonyms:
   - HDAA2
+  - EHDAA2_RETIRED
+  - RETIRED_EHDAA2
 - miriam:
     deprecated: false
     description: Linear motifs are short, evolutionarily plastic components of regulatory
@@ -4160,6 +4186,8 @@
     version.iri: http://purl.obolibrary.org/obo/emapa/releases/2020-02-12/emapa.owl
   pattern: ^\d+$
   prefix: emapa
+  synonyms:
+  - EMAPA_RETIRED
 - miriam:
     deprecated: false
     description: The Electron Microscopy Data Bank (EMDB) is a public repository for
@@ -4512,6 +4540,11 @@
   prefix: ev
   references:
   - https://twitter.com/Bgeedb/status/1350124337815281664
+- deprecated: true
+  name: eVOC mouse development stage
+  prefix: evm
+  references:
+  - https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-10-r229
 - miriam:
     deprecated: false
     description: The Exome Aggregation Consortium (ExAC) is a coalition of investigators
@@ -4737,6 +4770,8 @@
 - name: Flybase Quantitative Loci
   prefix: fbql
   prefixcommons: fbql
+- name: Flybase Cell Line
+  prefix: fbtc
 - obofoundry:
     contact: georgeta.bordea@u-bordeaux.fr
     contact.label: Georgeta Bordea
@@ -4850,6 +4885,9 @@
     version: '2020-04-13'
     version.iri: http://purl.obolibrary.org/obo/fma/releases/2020-04-13/fma.owl
   prefix: fma
+  synonyms:
+  - FMAID
+  - FMA_RETIRED
 - obofoundry:
     contact: polcaes@gmail.com
     contact.label: Pol Castellano Escuder
@@ -5104,6 +5142,9 @@
   n2t:
     prefix: gabi
   prefix: gabi
+- bioportal:
+    prefix: GALEN
+  prefix: galen
 - name: Genetic and Rare Diseases Information Center
   prefix: gard
   synonyms:
@@ -5379,6 +5420,10 @@
     prefix: gexo
     version: 18-09-2019
   prefix: gexo
+- example: saddan
+  name: Genetics Home Reference
+  prefix: ghr
+  url: https://medlineplus.gov/genetics/condition/$1
 - miriam:
     deprecated: false
     description: GiardiaDB is one of the databases that can be accessed through the
@@ -7130,6 +7175,9 @@
   n2t:
     prefix: isbn
   prefix: isbn
+  synonyms:
+  - ISBN-10
+  - ISBN-13
 - miriam:
     deprecated: false
     description: ISfinder is a database of bacterial insertion sequences (IS). It
@@ -7246,6 +7294,10 @@
   - IUPHARobj
   wikidata:
     property: P5458
+- example: '004435'
+  name: Jackson Laboratories Strain
+  prefix: jax
+  url: https://www.jax.org/strain/$1
 - miriam:
     deprecated: false
     description: JAX Mice is a catalogue of mouse strains supplied by the Jackson
@@ -7919,6 +7971,16 @@
   n2t:
     prefix: massive
   prefix: massive
+- bioportal:
+    prefix: MAT
+  name: Minimal Anatomical Terminology
+  obofoundry:
+    contact: j.bard@ed.ac.uk
+    contact.label: Jonathan Bard
+    deprecated: true
+    name: Minimal anatomical terminology
+    prefix: mat
+  prefix: mat
 - appearsIn:
   - complexportal
   example: MULT_4_VAR1_bovine
@@ -7960,6 +8022,11 @@
     version: '2020-12-10'
     version.iri: http://purl.obolibrary.org/obo/maxo/releases/2020-12-10/maxo.owl
   prefix: maxo
+- bioportal:
+    prefix: MCCL
+  deprecated: true
+  name: Cell Line Ontology [derivative]
+  prefix: mcc
 - obofoundry:
     contact: citlalli.mejiaalmonte@gmail.com
     contact.label: "Citlalli Mej\xEDa-Almonte"
@@ -8319,6 +8386,13 @@
     version.iri: http://purl.obolibrary.org/obo/mfmo/2013-11-16/mfmo.owl
   prefix: mfmo
 - obofoundry:
+    contact: Thorsten.Henrich@embl-heidelberg.de
+    contact.label: Thorsten Henrich
+    deprecated: true
+    name: Medaka fish anatomy and development
+    prefix: mfo
+  prefix: mfo
+- obofoundry:
     contact: janna.hastings@gmail.com
     contact.label: Janna Hastings
     deprecated: false
@@ -8450,6 +8524,11 @@
   prefix: mi
   synonyms:
   - PSI-MI
+- comment: same as MAT
+  name: Minimal Information About Anatomy ontology
+  prefix: miaa
+  references:
+  - https://bioconductor.statistik.tu-dortmund.de/packages/3.1/bioc/vignettes/rols/inst/doc/rols.pdf
 - obofoundry:
     contact: hilmar.lapp@duke.edu
     contact.label: Hilmar Lapp
@@ -8544,7 +8623,9 @@
   n2t:
     prefix: microsporidia
   prefix: microsporidia
-- miriam:
+- comment: OMIMPS and PS should probably be split to their own entry called OMIM Phenotypic
+    Series
+  miriam:
     deprecated: false
     description: Online Mendelian Inheritance in Man is a catalog of human genes and
       genetic disorders.
@@ -8559,6 +8640,7 @@
   synonyms:
   - OMIM
   - OMIMPS
+  - PS
   wikidata:
     database: Q241953
     property: P492
@@ -13052,6 +13134,17 @@
   n2t:
     prefix: sabiork.reaction
   prefix: sabiork.reaction
+- deprecated: true
+  name: Standards and Ontologies for Functional Genomics (SOFG) Anatomy Entry List
+    (SAEL)
+  prefix: sael
+  references:
+  - https://pubmed.ncbi.nlm.nih.gov/18629134/
+- appears_in:
+  - efo
+  example: '037727'
+  prefix: salk
+  url: https://abrc.osu.edu/stocks/number/SALK_$1
 - name: Subcellular Anatomy Ontology
   obofoundry:
     contact: slarson@ncmir.ucsd.edu
@@ -13973,6 +14066,8 @@
     name: Teleost Anatomy Ontology
     prefix: tao
   prefix: tao
+  synonyms:
+  - TAO_RETIRED
 - miriam:
     deprecated: false
     description: "TarBase stores microRNA (miRNA) information for miRNA\u2013gene\
@@ -14021,6 +14116,11 @@
   prefix: tcdb
   synonyms:
   - TC
+- example: E5.11.2.0.0.0.4
+  name: Terminologia Embryologica
+  prefix: te
+  wikidata:
+    property: P1693
 - miriam:
     deprecated: false
     description: The Tetrahymena Genome Database (TGD) Wiki is a database of information
@@ -14983,6 +15083,8 @@
     name: Vertebrate Homologous Ontology Group Ontology
     prefix: vhog
   prefix: vhog
+  synonyms:
+  - VHOG_RETIRED
 - miriam:
     deprecated: false
     description: "The VIAF\xAE (Virtual International Authority File) combines multiple\
@@ -15115,6 +15217,8 @@
     name: Vertebrate Skeletal Anatomy Ontology-
     prefix: vsao
   prefix: vsao
+  synonyms:
+  - VSAO_RETIRED
 - example: '1868'
   homepage: https://sitem.herts.ac.uk/aeru/vsdb
   name: Veterinary Substances DataBase
@@ -15599,6 +15703,8 @@
     version.iri: http://purl.obolibrary.org/obo/zfa/releases/2020-03-18/zfa.owl
   pattern: ^\d{7}$
   prefix: zfa
+  synonyms:
+  - ZFA_RETIRED
 - miriam:
     deprecated: false
     description: ZFIN serves as the zebrafish model organism database. This collection
