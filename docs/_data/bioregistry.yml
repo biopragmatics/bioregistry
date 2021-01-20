@@ -4067,8 +4067,8 @@
     license: www.apache.org/licenses/LICENSE-2.0
     name: Experimental Factor Ontology
     prefix: efo
-    version: 3.25.0
-    version.iri: http://www.ebi.ac.uk/efo/releases/v3.25.0/efo.owl
+    version: 3.26.0
+    version.iri: http://www.ebi.ac.uk/efo/releases/v3.26.0/efo.owl
   prefix: efo
 - miriam:
     deprecated: false
@@ -5178,6 +5178,8 @@
 - name: Genetic Code
   note: 'see comment here: https://github.com/obophenotype/ncbitaxon/issues/47'
   prefix: gc
+  references:
+  - https://github.com/obophenotype/ncbitaxon/issues/47
   synonyms:
   - gc_id
   url: https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG$1
@@ -7390,7 +7392,9 @@
   n2t:
     prefix: kaggle
   prefix: kaggle
-- miriam:
+- comments: KEGG prefix has been split into several others
+  deprecated: true
+  miriam:
     deprecated: false
     description: Kyoto Encyclopedia of Genes and Genomes (KEGG) is a database resource
       for understanding high-level functions and utilities of the biological system,
@@ -13986,6 +13990,11 @@
   - SYMP
   wikidata:
     property: P8656
+- deprecated: true
+  name: Gemina Symptom Ontology Identifier
+  prefix: syoid
+  references:
+  - https://github.com/DiseaseOntology/SymptomOntology/issues/7#event-4223716562
 - miriam:
     deprecated: false
     description: Toxin and Toxin Target Database (T3DB) is a bioinformatics resource
