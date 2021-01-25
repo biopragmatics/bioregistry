@@ -2,9 +2,12 @@
 
 """Tests for data integrity."""
 
+import logging
 import unittest
 
 import bioregistry
+
+logger = logging.getLogger(__name__)
 
 
 class TestDuplicates(unittest.TestCase):
@@ -41,3 +44,46 @@ class TestDuplicates(unittest.TestCase):
                     external_pattern = entry.get('key', {}).get('pattern')
                     if external_pattern:
                         self.assertEqual(pattern, external_pattern, msg=f'{prefix}: {key} pattern not same')
+
+    def test_ols_versions(self):
+        """Test that all OLS entries have a version annotation on them."""
+        for bioregistry_id, bioregistry_entry in self.registry.items():
+            ols = bioregistry_entry.get('ols')
+            if not ols:
+                continue
+
+            with self.subTest(prefix=bioregistry_id):
+                version = ols.get('version')
+                self.assertIsNotNone(version)
+
+                if version != version.strip():
+                    logger.warning('Extra whitespace in %s', bioregistry_id)
+                    version = version.strip()
+
+                version_prefix = bioregistry_entry.get('ols_version_prefix')
+                if version_prefix:
+                    if not version.startswith(version_prefix):
+                        raise
+                    version = version[len(version_prefix):]
+
+                if bioregistry_entry.get('ols_version_suffix_split'):
+                    version = version.split()[0]
+
+                version_suffix = bioregistry_entry.get('ols_version_suffix')
+                if version_suffix:
+                    if not version.endswith(version_suffix):
+                        raise
+                    version = version[:-len(version_suffix)]
+
+                version_type = bioregistry_entry.get('ols_version_type')
+                version_date_fmt = bioregistry_entry.get('ols_version_date_format')
+
+                if version_date_fmt:
+                    if version_date_fmt in {"%Y-%d-%m"}:
+                        logger.warning('Confusing date format for %s (%s)', bioregistry_id, version_date_fmt)
+                    try:
+                        version = datetime.datetime.strptime(version, version_date_fmt)
+                    except ValueError:
+                        logger.warning('Wrong format for %s (%s)', bioregistry_id, version)
+                elif not version_type:
+                    logger.warning('No type for %s (%s)', bioregistry_id, version)
