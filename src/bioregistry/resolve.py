@@ -134,7 +134,9 @@ def _synonym_to_canonical() -> NormDict:
 
 def get_version(prefix: str) -> Optional[str]:
     """Get the version."""
-    return get_versions().get(normalize_prefix(prefix))
+    norm_prefix = normalize_prefix(prefix)
+    if norm_prefix is not None:
+        return get_versions().get(norm_prefix)
 
 
 @lru_cache(maxsize=1)
