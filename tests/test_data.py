@@ -2,6 +2,7 @@
 
 """Tests for data integrity."""
 
+import datetime
 import logging
 import unittest
 
@@ -52,18 +53,19 @@ class TestDuplicates(unittest.TestCase):
             if not ols:
                 continue
 
-            with self.subTest(prefix=bioregistry_id):
-                version = ols.get('version')
-                self.assertIsNotNone(version)
+            version = ols.get('version')
+            if version is None:
+                logger.warning('[%s] missing version', bioregistry_id)
+                continue
 
+            with self.subTest(prefix=bioregistry_id):
                 if version != version.strip():
                     logger.warning('Extra whitespace in %s', bioregistry_id)
                     version = version.strip()
 
                 version_prefix = bioregistry_entry.get('ols_version_prefix')
                 if version_prefix:
-                    if not version.startswith(version_prefix):
-                        raise
+                    self.assertTrue(version.startswith(version_prefix))
                     version = version[len(version_prefix):]
 
                 if bioregistry_entry.get('ols_version_suffix_split'):
@@ -71,12 +73,12 @@ class TestDuplicates(unittest.TestCase):
 
                 version_suffix = bioregistry_entry.get('ols_version_suffix')
                 if version_suffix:
-                    if not version.endswith(version_suffix):
-                        raise
+                    self.assertTrue(version.endswith(version_suffix))
                     version = version[:-len(version_suffix)]
 
                 version_type = bioregistry_entry.get('ols_version_type')
                 version_date_fmt = bioregistry_entry.get('ols_version_date_format')
+                self.assertTrue(version_type is not None or version_date_fmt is not None)
 
                 if version_date_fmt:
                     if version_date_fmt in {"%Y-%d-%m"}:
@@ -85,5 +87,3 @@ class TestDuplicates(unittest.TestCase):
                         version = datetime.datetime.strptime(version, version_date_fmt)
                     except ValueError:
                         logger.warning('Wrong format for %s (%s)', bioregistry_id, version)
-                elif not version_type:
-                    logger.warning('No type for %s (%s)', bioregistry_id, version)
