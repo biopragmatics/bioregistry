@@ -19,13 +19,13 @@ logger = logging.getLogger(__name__)
 @lru_cache(maxsize=1)
 def read_bioregistry():
     """Read the Bioregistry as JSON."""
-    with open(BIOREGISTRY_PATH) as file:
+    with open(BIOREGISTRY_PATH, encoding='utf-8') as file:
         return json.load(file)
 
 
 def write_bioregistry(registry):
     """Write to the Bioregistry."""
-    with open(BIOREGISTRY_PATH, 'w') as file:
+    with open(BIOREGISTRY_PATH, mode='w', encoding='utf-8') as file:
         json.dump(registry, file, indent=2, sort_keys=True, ensure_ascii=False)
 
 

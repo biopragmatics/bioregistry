@@ -17,6 +17,15 @@
       "property": "P2796"
     }
   },
+  "aao": {
+    "obofoundry": {
+      "contact": "David Blackburn",
+      "contact.label": "david.c.blackburn@gmail.com",
+      "deprecated": true,
+      "name": "Amphibian gross anatomy",
+      "prefix": "aao"
+    }
+  },
   "abs": {
     "miriam": {
       "deprecated": false,
@@ -99,7 +108,11 @@
       "version": "2014-12-05",
       "version.iri": "http://purl.obolibrary.org/obo/aeo/releases/2014-12-05/aeo.owl"
     },
-    "pattern": "^\\d{7}$"
+    "ols_version_date_format": "%Y-%m-%d",
+    "pattern": "^\\d{7}$",
+    "synonyms": [
+      "AEO_RETIRED"
+    ]
   },
   "affy.probeset": {
     "miriam": {
@@ -124,7 +137,9 @@
       "prefix": "afo",
       "version": "REC/2019/05/10",
       "version.iri": "http://purl.allotrope.org/voc/afo/merged-OLS/REC/2019/05/10"
-    }
+    },
+    "ols_version_date_format": "%Y/%m/%d",
+    "ols_version_prefix": "REC/"
   },
   "aftol.taxonomy": {
     "miriam": {
@@ -178,7 +193,8 @@
       "prefix": "agro",
       "version": "2020-04-03",
       "version.iri": "http://purl.obolibrary.org/obo/agro/releases/2020-04-03/agro.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "allergome": {
     "miriam": {
@@ -193,6 +209,14 @@
     "n2t": {
       "prefix": "allergome"
     }
+  },
+  "alzforum.mutation": {
+    "example": "app-d678n-tottori",
+    "name": "Alzforum Mutations",
+    "synonyms": [
+      "Alzforum_mut"
+    ],
+    "url": "https://www.alzforum.org/mutations/$1"
   },
   "amoebadb": {
     "miriam": {
@@ -227,7 +251,8 @@
       "prefix": "amphx",
       "version": "2020-12-18",
       "version.iri": "http://purl.obolibrary.org/obo/amphx/releases/2020-12-18/amphx.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "antibodyregistry": {
     "miriam": {
@@ -373,11 +398,12 @@
       "version": "2020-03-10",
       "version.iri": "http://purl.obolibrary.org/obo/apo/releases/2020-03-10/apo.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
-    "url": "https://www.yeastgenome.org/observable/$1",
     "synonyms": [
       "YPO"
-    ]
+    ],
+    "url": "https://www.yeastgenome.org/observable/$1"
   },
   "apollo_sv": {
     "obofoundry": {
@@ -396,7 +422,9 @@
       "prefix": "apollo_sv",
       "version": "v4.1.1",
       "version.iri": "http://purl.obolibrary.org/obo/apollo_sv/v4.1.1./apollo_sv.owl"
-    }
+    },
+    "ols_version_prefix": "v",
+    "ols_version_type": "semver"
   },
   "arachnoserver": {
     "miriam": {
@@ -411,6 +439,11 @@
     "n2t": {
       "prefix": "arachnoserver"
     }
+  },
+  "araport": {
+    "homepage": "https://www.araport.org/",
+    "name": "Arabidopsis Information Portal",
+    "url": "https://www.arabidopsis.org/servlets/TairObject?type=locus&name=$1"
   },
   "ardb": {
     "miriam": {
@@ -456,6 +489,7 @@
       "prefix": "aro",
       "version": "24-10-2019"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "pattern": "^\\d{7}$"
   },
   "arrayexpress": {
@@ -665,7 +699,8 @@
       "name": "Animal Trait Ontology for Livestock",
       "prefix": "atol",
       "version": "13-09-2018"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "autdb": {
     "miriam": {
@@ -723,6 +758,14 @@
       "prefix": "bacmap.map"
     }
   },
+  "bams": {
+    "deprecated": true,
+    "homepage": "https://bams1.org",
+    "name": "Brain Architecture Knowledge Management System Neuroanatomical Ontology",
+    "references": [
+      "https://www.frontiersin.org/articles/10.3389/neuro.11.002.2008/full"
+    ]
+  },
   "bao": {
     "miriam": {
       "deprecated": false,
@@ -745,6 +788,7 @@
       "version": "2.7",
       "version.iri": "http://www.bioassayontology.org/bao/bao_complete.owl"
     },
+    "ols_version_type": "semver",
     "synonyms": [
       "BAO"
     ]
@@ -757,7 +801,8 @@
       "prefix": "bcio",
       "version": "2020-12-15",
       "version.iri": "http://humanbehaviourchange.org/ontology/bcio.owl/2020-12-15"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "bco": {
     "obofoundry": {
@@ -775,7 +820,8 @@
       "prefix": "bco",
       "version": "2020-03-27",
       "version.iri": "http://purl.obolibrary.org/obo/bco/releases/2020-03-27/bco.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "bdgp.est": {
     "miriam": {
@@ -871,6 +917,7 @@
       "version": "2019-08-26",
       "version.iri": "http://purl.obolibrary.org/obo/bfo/2019-08-26/bfo.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "bgee.family": {
@@ -983,6 +1030,12 @@
     },
     "n2t": {
       "prefix": "bigg.reaction"
+    }
+  },
+  "bila": {
+    "obofoundry": {
+      "name": "Bilateria anatomy",
+      "prefix": "bila"
     }
   },
   "bindingdb": {
@@ -1123,8 +1176,9 @@
       "download": "http://purl.obolibrary.org/obo/kisao.owl",
       "name": "Kinetic Simulation Algorithm Ontology",
       "prefix": "kisao",
-      "version": "2.10"
-    }
+      "version": "2.12"
+    },
+    "ols_version_type": "semver"
   },
   "biomodels.teddy": {
     "miriam": {
@@ -1146,7 +1200,9 @@
       "prefix": "teddy",
       "version": "rel-2014-04-24",
       "version.iri": "http://identifiers.org/combine.specifications/teddy.rel-2014-04-24"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d",
+    "ols_version_prefix": "rel-"
   },
   "biomodels.vocabulary": {
     "miriam": {
@@ -1277,6 +1333,10 @@
       "prefix": "biotools"
     }
   },
+  "birnlex": {
+    "comment": "Part of the NeuroLex namespace now",
+    "name": "Biomedical Informatics Research Network Lexicon"
+  },
   "bitterdb.cpd": {
     "miriam": {
       "deprecated": false,
@@ -1388,6 +1448,7 @@
       "version": "2020-05-11",
       "version.iri": "http://purl.obolibrary.org/obo/bspo/releases/2020-05-11/bspo.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "bto": {
@@ -1422,6 +1483,7 @@
       "version": "2020-05-02",
       "version.iri": "http://purl.obolibrary.org/obo/bto/releases/2020-05-02/bto.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "synonyms": [
       "BTO"
@@ -1500,6 +1562,13 @@
       "prefix": "cadsr"
     }
   },
+  "caloha": {
+    "download": "ftp://ftp.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo",
+    "name": "CALIPHO Group Ontology of Human Anatomy",
+    "references": [
+      "https://twitter.com/neXtProt_news/status/1350105997633867781"
+    ]
+  },
   "cameo": {
     "miriam": {
       "deprecated": false,
@@ -1547,7 +1616,8 @@
       "prefix": "caro",
       "version": "24-05-2019",
       "version.iri": "http://purl.obolibrary.org/obo/caro/2.0/beta/caro.owl"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "cas": {
     "miriam": {
@@ -1694,7 +1764,8 @@
       "name": "Cell Cycle Ontology",
       "prefix": "cco",
       "version": "23-03-2016"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "cdao": {
     "obofoundry": {
@@ -1713,7 +1784,8 @@
       "prefix": "cdao",
       "version": "2019-06-26",
       "version.iri": "http://purl.obolibrary.org/obo/cdao/2019-06-26/cdao.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "cdd": {
     "miriam": {
@@ -1796,6 +1868,7 @@
       "version": "2016-01-12",
       "version.iri": "http://purl.obolibrary.org/obo/ceph/releases/2016-01-12/ceph.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "cgd": {
@@ -1878,6 +1951,7 @@
       "version": "01-01-2020",
       "version.iri": "http://purl.obolibrary.org/obo/chebi/195/chebi.owl"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "synonyms": [
       "ChEBI",
       "CHEBI",
@@ -1968,7 +2042,7 @@
     ]
   },
   "cheminf": {
-    "download": "https://github.com/semanticchemistry/semanticchemistry/blob/master/ontology/cheminf.owl",
+    "download": "https://github.com/semanticchemistry/semanticchemistry/raw/master/ontology/cheminf.owl",
     "name": "Chemical Information Ontology",
     "not_available_as_obo": true,
     "obofoundry": {
@@ -1986,7 +2060,8 @@
       "name": "chemical information ontology (cheminf) - information entities about chemical entities",
       "prefix": "cheminf",
       "version": "1.9.3"
-    }
+    },
+    "ols_version_type": "semver"
   },
   "chemspider": {
     "miriam": {
@@ -2049,7 +2124,8 @@
       "prefix": "chiro",
       "version": "2015-11-23",
       "version.iri": "http://purl.obolibrary.org/obo/chiro/releases/2015-11-23/chiro.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "chmo": {
     "obofoundry": {
@@ -2069,6 +2145,7 @@
       "version": "14-11-2019",
       "version.iri": "http://purl.obolibrary.org/obo/chmo/releases/2014-11-20/chmo.owl"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "pattern": "^\\d{7}$"
   },
   "cido": {
@@ -2087,14 +2164,15 @@
       "name": "CIDO: Ontology of Coronavirus Infectious Disease",
       "prefix": "cido",
       "version": "1.0.173"
-    }
+    },
+    "ols_version_type": "semver"
   },
   "cio": {
     "obofoundry": {
       "contact": "bgee@sib.swiss",
       "contact.label": "Frederic Bastian",
       "deprecated": false,
-      "license": "GNU GPL 3.0",
+      "license": "CC0",
       "name": "Confidence Information Ontology",
       "prefix": "cio"
     },
@@ -2106,6 +2184,7 @@
       "version": "2015-03-10",
       "version.iri": "http://purl.obolibrary.org/obo/cio/releases/2015-03-10/cio.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "citexplore": {
@@ -2149,6 +2228,7 @@
       "version": "2020-11-11",
       "version.iri": "http://purl.obolibrary.org/obo/cl/releases/2020-11-11/cl.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "wikidata": {
       "database": "Q55118285",
       "database.label": "Cell Ontology",
@@ -2177,7 +2257,8 @@
       "prefix": "clao",
       "version": "2020-15-05",
       "version.iri": "http://purl.obolibrary.org/obo/2020-05-16/CLAO.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%d-%m"
   },
   "classyfire": {
     "miriam": {
@@ -2277,6 +2358,7 @@
       "prefix": "clo",
       "version": "2.1.162"
     },
+    "ols_version_type": "semver",
     "synonyms": [
       "CLO"
     ],
@@ -2302,7 +2384,8 @@
       "prefix": "clyh",
       "version": "2020-05-29",
       "version.iri": "http://purl.obolibrary.org/obo/clyh/releases/2020-05-29/clyh.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "cmf": {
     "obofoundry": {
@@ -2331,6 +2414,7 @@
       "version": "2019-02-19",
       "version.iri": "http://purl.obolibrary.org/obo/cmo/releases/2019-02-19/cmo.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "cmpo": {
@@ -2341,7 +2425,8 @@
       "prefix": "cmpo",
       "version": "2017-12-19",
       "version.iri": "http://www.ebi.ac.uk/cmpo/releases/2017-12-19/cmpo.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "co_320": {
     "ols": {
@@ -2350,7 +2435,8 @@
       "name": "Rice ontology",
       "prefix": "co_320",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_321": {
     "ols": {
@@ -2359,7 +2445,8 @@
       "name": "Wheat ontology",
       "prefix": "co_321",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_321:root": {
     "ols": {
@@ -2367,7 +2454,8 @@
       "download": "http://www.cropontology.org/ontology/CO_321:ROOT/Wheat/owl",
       "name": "Wheat ontology",
       "prefix": "co_321:root"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_322": {
     "ols": {
@@ -2376,7 +2464,8 @@
       "name": "Maize ontology",
       "prefix": "co_322",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_323": {
     "ols": {
@@ -2385,7 +2474,8 @@
       "name": "Barley ontology",
       "prefix": "co_323",
       "version": "20-11-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_324": {
     "ols": {
@@ -2394,7 +2484,8 @@
       "name": "Sorghum ontology",
       "prefix": "co_324",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_325": {
     "ols": {
@@ -2403,7 +2494,8 @@
       "name": "Banana ontology",
       "prefix": "co_325",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_327": {
     "ols": {
@@ -2412,7 +2504,8 @@
       "name": "Pearl millet ontology",
       "prefix": "co_327",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_330": {
     "ols": {
@@ -2421,7 +2514,8 @@
       "name": "Potato ontology",
       "prefix": "co_330",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_331": {
     "ols": {
@@ -2430,7 +2524,8 @@
       "name": "Sweet Potato ontology",
       "prefix": "co_331",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_333": {
     "ols": {
@@ -2439,7 +2534,8 @@
       "name": "Beet Ontology ontology",
       "prefix": "co_333",
       "version": "23-01-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_334": {
     "ols": {
@@ -2448,7 +2544,8 @@
       "name": "Cassava ontology",
       "prefix": "co_334",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_335": {
     "ols": {
@@ -2457,7 +2554,8 @@
       "name": "Common Bean ontology",
       "prefix": "co_335",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_336": {
     "ols": {
@@ -2465,7 +2563,8 @@
       "download": "http://www.cropontology.org/ontology/CO_336/Soybean/owl",
       "name": "Soybean ontology",
       "prefix": "co_336"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_337": {
     "ols": {
@@ -2474,7 +2573,8 @@
       "name": "Groundnut ontology",
       "prefix": "co_337",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_338": {
     "ols": {
@@ -2483,7 +2583,8 @@
       "name": "Chickpea ontology",
       "prefix": "co_338",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_339": {
     "ols": {
@@ -2492,7 +2593,8 @@
       "name": "Lentil ontology",
       "prefix": "co_339",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_340": {
     "ols": {
@@ -2501,7 +2603,8 @@
       "name": "Cowpea ontology",
       "prefix": "co_340",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_341": {
     "ols": {
@@ -2510,7 +2613,8 @@
       "name": "Pigeonpea ontology",
       "prefix": "co_341",
       "version": "18-11-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_343": {
     "ols": {
@@ -2519,7 +2623,8 @@
       "name": "Yam ontology",
       "prefix": "co_343",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_345": {
     "ols": {
@@ -2528,7 +2633,8 @@
       "name": "Brachiaria ontology",
       "prefix": "co_345",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_346": {
     "ols": {
@@ -2537,7 +2643,8 @@
       "name": "Mungbean ontology",
       "prefix": "co_346",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_347": {
     "ols": {
@@ -2546,7 +2653,8 @@
       "name": "Castor bean ontology",
       "prefix": "co_347",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_348": {
     "ols": {
@@ -2555,7 +2663,8 @@
       "name": "Brassica ontology",
       "prefix": "co_348",
       "version": "29-11-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_350": {
     "ols": {
@@ -2564,7 +2673,8 @@
       "name": "Oat ontology",
       "prefix": "co_350",
       "version": "09-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_356": {
     "ols": {
@@ -2573,7 +2683,8 @@
       "name": "Vitis ontology",
       "prefix": "co_356",
       "version": "29-11-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_357": {
     "ols": {
@@ -2582,7 +2693,8 @@
       "name": "Woody Plant Ontology ontology",
       "prefix": "co_357",
       "version": "18-11-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_358": {
     "ols": {
@@ -2591,7 +2703,8 @@
       "name": "Cotton ontology",
       "prefix": "co_358",
       "version": "03-01-2020"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_359": {
     "ols": {
@@ -2599,7 +2712,8 @@
       "download": "http://www.cropontology.org/ontology/CO_359/Sunflower/owl",
       "name": "Sunflower ontology",
       "prefix": "co_359"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_360": {
     "ols": {
@@ -2608,7 +2722,8 @@
       "name": "Sugar Kelp trait ontology",
       "prefix": "co_360",
       "version": "26-06-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_365": {
     "ols": {
@@ -2617,7 +2732,8 @@
       "name": "Fababean ontology",
       "prefix": "co_365",
       "version": "15-10-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "co_366": {
     "ols": {
@@ -2626,7 +2742,8 @@
       "name": "Bambara groundnut ontology",
       "prefix": "co_366",
       "version": "23-12-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "cob": {
     "obofoundry": {
@@ -2645,7 +2762,13 @@
       "prefix": "cob",
       "version": "2020-09-02",
       "version.iri": "http://purl.obolibrary.org/obo/cob/2020-04-15/cob.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
+  },
+  "cohd": {
+    "comment": "not really sure where the source is. this also links to a system called athena. I was not able to figure out what COHD stands for.",
+    "homepage": "https://github.com/MIT-LCP/mimic-omop",
+    "name": "MIMIC III Database"
   },
   "combine.specifications": {
     "miriam": {
@@ -2794,7 +2917,15 @@
       "prefix": "covoc",
       "version": "2020-08-28",
       "version.iri": "http://purl.obolibrary.org/obo/covoc/releases/2020-08-28/covoc.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
+  },
+  "cp": {
+    "appears_in": [
+      "cl"
+    ],
+    "comment": "Part of cell ontology but deprecated, see https://github.com/obophenotype/cell-ontology/issues/572",
+    "name": "Cellular Phenotypes"
   },
   "cpc": {
     "miriam": {
@@ -2844,6 +2975,7 @@
       "version": "2019-12-11",
       "version.iri": "http://purl.obolibrary.org/obo/cro/releases/2019-12-11/cro.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "cryptodb": {
@@ -2972,6 +3104,7 @@
       "version": "2016-10-19",
       "version.iri": "http://purl.obolibrary.org/obo/cteno/releases/2016-10-19/cteno.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "cto": {
@@ -2990,7 +3123,9 @@
       "name": "CTO: Core Ontology of Clinical Trials",
       "prefix": "cto",
       "version": "Version Release: 1.0.0"
-    }
+    },
+    "ols_version_prefix": "Version Release: ",
+    "ols_version_type": "semver"
   },
   "cubedb": {
     "miriam": {
@@ -3023,7 +3158,8 @@
       "prefix": "cvdo",
       "version": "2020-03-05",
       "version.iri": "http://purl.obolibrary.org/obo/2020-03-05/cvdo.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "d1id": {
     "miriam": {
@@ -3226,6 +3362,13 @@
       "prefix": "dbsnp"
     }
   },
+  "dc": {
+    "appears_in": [
+      "efo"
+    ],
+    "download": "https://github.com/obophenotype/human-disease-ontology/raw/master/src/experimental/missing-omc.obo",
+    "name": "Disease Class"
+  },
   "ddanat": {
     "obofoundry": {
       "contact": "pfey@northwestern.edu",
@@ -3244,6 +3387,7 @@
       "version": "2020-04-13",
       "version.iri": "http://purl.obolibrary.org/obo/ddanat/releases/2020-04-13/ddanat.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "ddpheno": {
@@ -3266,6 +3410,7 @@
       "version": "2020-06-19",
       "version.iri": "http://purl.obolibrary.org/obo/ddpheno/releases/2020-06-19/ddpheno.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "degradome": {
@@ -3295,6 +3440,12 @@
     "n2t": {
       "prefix": "depod"
     }
+  },
+  "dermo": {
+    "bioportal": {
+      "prefix": "DERMO"
+    },
+    "name": "Human Dermatological Disease Ontology"
   },
   "dev.ga4ghdos": {
     "miriam": {
@@ -3384,7 +3535,9 @@
       "prefix": "dideo",
       "version": "release version 2019-01-30",
       "version.iri": "http://purl.obolibrary.org/obo/dideo/release/2019-01-30/dideo.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d",
+    "ols_version_prefix": "release version "
   },
   "dip": {
     "miriam": {
@@ -3500,6 +3653,7 @@
       "version": "2020-12-22",
       "version.iri": "http://purl.obolibrary.org/obo/doid/releases/2020-12-22/doid.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "synonyms": [
       "do"
     ],
@@ -3580,9 +3734,10 @@
       "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "Drosophila Phenotype Ontology (DPO)",
       "prefix": "dpo",
-      "version": "2020-10-20",
-      "version.iri": "http://purl.obolibrary.org/obo/dpo/releases/2020-10-20/dpo.owl"
-    }
+      "version": "2021-01-14",
+      "version.iri": "http://purl.obolibrary.org/obo/dpo/releases/2021-01-14/dpo.owl"
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "dpv": {
     "miriam": {
@@ -3671,7 +3826,8 @@
       "name": "The Drug Ontology",
       "prefix": "dron",
       "version": "2020-06-01"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "drsc": {
     "miriam": {
@@ -3733,6 +3889,13 @@
     ],
     "url": "http://drugcentral.org/drugcard/$1"
   },
+  "dto": {
+    "appears_in": [
+      "pr"
+    ],
+    "homepage": "https://github.com/DrugTargetOntology/DTO",
+    "name": "Drug Target Ontology"
+  },
   "duo": {
     "not_available_as_obo": true,
     "obofoundry": {
@@ -3751,7 +3914,14 @@
       "prefix": "duo",
       "version": "2020-02-03",
       "version.iri": "http://purl.obolibrary.org/obo/duo/releases/2020-02-03/duo.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
+  },
+  "ecacc": {
+    "example": "90062901",
+    "homepage": "https://www.phe-culturecollections.org.uk/collections/ecacc.aspx",
+    "name": "European Collection of Authenticated Cell Culture",
+    "url": "https://www.phe-culturecollections.org.uk/products/celllines/generalcell/detail.jsp?collection=ecacc_gc&refId=$1"
   },
   "ecao": {
     "obofoundry": {
@@ -3771,7 +3941,8 @@
       "prefix": "ecao",
       "version": "2020-05-22",
       "version.iri": "http://purl.obolibrary.org/obo/ecao/releases/2020-05-22/ecao.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "eccode": {
     "go": {
@@ -3855,9 +4026,10 @@
       "license": "https://creativecommons.org/publicdomain/zero/1.0/",
       "name": "Evidence & Conclusion Ontology (ECO)",
       "prefix": "eco",
-      "version": "2020-11-08",
-      "version.iri": "http://purl.obolibrary.org/obo/eco/releases/2020-11-08/eco.owl"
-    }
+      "version": "2021-01-08",
+      "version.iri": "http://purl.obolibrary.org/obo/eco/releases/2021-01-08/eco.owl"
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "ecocore": {
     "obofoundry": {
@@ -3878,7 +4050,13 @@
       "version": "2020-12-18",
       "version.iri": "http://purl.obolibrary.org/obo/ecocore/releases/2020-12-18/ecocore.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
+  },
+  "ecocyc": {
+    "example": "AICARTRANSIMPCYCLO-CPLX",
+    "name": "EcoCyc",
+    "url": "https://biocyc.org/gene?id=$1"
   },
   "ecogene": {
     "miriam": {
@@ -3928,6 +4106,7 @@
       "version": "2020-09-18",
       "version.iri": "http://purl.obolibrary.org/obo/ecto/releases/2020-09-18/ecto.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "ecyano.entity": {
@@ -4002,7 +4181,8 @@
       "name": "Bioinformatics operations, data types, formats, identifiers and topics",
       "prefix": "edam",
       "version": "17-07-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "efo": {
     "download": "http://www.ebi.ac.uk/efo/efo.obo",
@@ -4027,9 +4207,10 @@
       "license": "www.apache.org/licenses/LICENSE-2.0",
       "name": "Experimental Factor Ontology",
       "prefix": "efo",
-      "version": "3.25.0",
-      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.25.0/efo.owl"
-    }
+      "version": "3.26.0",
+      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.26.0/efo.owl"
+    },
+    "ols_version_type": "semver"
   },
   "ega.dataset": {
     "miriam": {
@@ -4073,6 +4254,24 @@
       "prefix": "eggnog"
     }
   },
+  "ehda": {
+    "obofoundry": {
+      "contact": "Jonathan Bard",
+      "contact.label": "J.Bard@ed.ac.uk",
+      "deprecated": true,
+      "name": "Human developmental anatomy, timed version",
+      "prefix": "ehda"
+    }
+  },
+  "ehdaa": {
+    "obofoundry": {
+      "contact": "Jonathan Bard",
+      "contact.label": "J.Bard@ed.ac.uk",
+      "deprecated": true,
+      "name": "Human developmental anatomy, abstract version",
+      "prefix": "ehdaa"
+    }
+  },
   "ehdaa2": {
     "obofoundry": {
       "contact": "J.Bard@ed.ac.uk",
@@ -4091,9 +4290,12 @@
       "version": "2013-07-04",
       "version.iri": "http://purl.obolibrary.org/obo/ehdaa2/releases/2013-07-04/ehdaa2.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "synonyms": [
-      "HDAA2"
+      "HDAA2",
+      "EHDAA2_RETIRED",
+      "RETIRED_EHDAA2"
     ]
   },
   "elm": {
@@ -4128,7 +4330,11 @@
       "version": "2020-02-12",
       "version.iri": "http://purl.obolibrary.org/obo/emapa/releases/2020-02-12/emapa.owl"
     },
-    "pattern": "^\\d+$"
+    "ols_version_date_format": "%Y-%m-%d",
+    "pattern": "^\\d+$",
+    "synonyms": [
+      "EMAPA_RETIRED"
+    ]
   },
   "emdb": {
     "miriam": {
@@ -4183,7 +4389,8 @@
       "name": "eNanoMapper Ontology",
       "prefix": "enm",
       "version": "5.0.1"
-    }
+    },
+    "ols_version_type": "semver"
   },
   "ensembl": {
     "miriam": {
@@ -4289,7 +4496,8 @@
       "prefix": "ensemblglossary",
       "version": "2020-12-10",
       "version.iri": "http://ensembl.org/glossary/ensembl-glossary/releases/2020-12-10/ensembl-glossary.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "envipath": {
     "miriam": {
@@ -4333,7 +4541,8 @@
       "prefix": "envo",
       "version": "2020-06-10",
       "version.iri": "http://purl.obolibrary.org/obo/envo/releases/2020-06-10/envo.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "eol": {
     "ols": {
@@ -4342,7 +4551,14 @@
       "name": "Environment Ontology for Livestock",
       "prefix": "eol",
       "version": "13-09-2018"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
+  },
+  "epcc": {
+    "name": "European Paediatric Cardiac Codes",
+    "references": [
+      "https://www.cambridge.org/core/journals/cardiology-in-the-young/article/abs/european-paediatric-cardiac-codes-the-long-list-with-icd9-icd10-crossmapping-and-crossmap-to-epcc-short-list/FCA4DFCCB661298294A3D113FC79D5BE"
+    ]
   },
   "epd": {
     "miriam": {
@@ -4388,7 +4604,8 @@
       "name": "eagle-i resource ontology",
       "prefix": "ero",
       "version": "27-07-2016"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "erv": {
     "miriam": {
@@ -4447,9 +4664,32 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "VEuPathDB Ontology",
       "prefix": "eupath",
-      "version": "2020-10-15",
-      "version.iri": "http://purl.obolibrary.org/obo/eupath/2020-10-15/eupath.owl"
-    }
+      "version": "2021-01-08",
+      "version.iri": "http://purl.obolibrary.org/obo/eupath/2021-01-08/eupath.owl"
+    },
+    "ols_version_date_format": "%Y-%m-%d"
+  },
+  "ev": {
+    "appears_in": [
+      "cl"
+    ],
+    "obofoundry": {
+      "contact": "eVOC mailing list",
+      "contact.label": "evoc@sanbi.ac.za",
+      "deprecated": true,
+      "name": "eVOC (Expressed Sequence Annotation for Humans)",
+      "prefix": "ev"
+    },
+    "references": [
+      "https://twitter.com/Bgeedb/status/1350124337815281664"
+    ]
+  },
+  "evm": {
+    "deprecated": true,
+    "name": "eVOC mouse development stage",
+    "references": [
+      "https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-10-r229"
+    ]
   },
   "exac.gene": {
     "miriam": {
@@ -4511,6 +4751,7 @@
       "version": "2020-03-10",
       "version.iri": "http://purl.obolibrary.org/obo/exo/releases/2020-03-10/exo.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "synonyms": [
       "ExO"
@@ -4563,6 +4804,7 @@
       "version": "2020-05-07",
       "version.iri": "http://purl.obolibrary.org/obo/fao/releases/2020-05-07/fao.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "fbbi": {
@@ -4583,6 +4825,7 @@
       "version": "2020-11-06",
       "version.iri": "http://purl.obolibrary.org/obo/fbbi/releases/2020-11-06/fbbi.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "synonyms": [
       "FBbi"
@@ -4605,18 +4848,15 @@
       "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "Drosophila Anatomy Ontology (DAO)",
       "prefix": "fbbt",
-      "version": "2020-12-02",
-      "version.iri": "http://purl.obolibrary.org/obo/fbbt/releases/2020-12-02/fbbt.owl"
+      "version": "2021-01-14",
+      "version.iri": "http://purl.obolibrary.org/obo/fbbt/releases/2021-01-14/fbbt.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{8}$",
     "synonyms": [
       "FBbt_root",
       "FBbt"
     ]
-  },
-  "fbql": {
-    "name":"Flybase Quantitative Loci",
-    "prefixcommons": "fbql"
   },
   "fbcv": {
     "download": "https://raw.githubusercontent.com/FlyBase/flybase-controlled-vocabulary/master/fbcv.obo",
@@ -4636,9 +4876,10 @@
       "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "FlyBase Controlled Vocabulary (FBcv)",
       "prefix": "fbcv",
-      "version": "2020-10-20",
-      "version.iri": "http://purl.obolibrary.org/obo/fbcv/releases/2020-10-20/fbcv.owl"
+      "version": "2021-01-14",
+      "version.iri": "http://purl.obolibrary.org/obo/fbcv/releases/2021-01-14/fbcv.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "synonyms": [
       "FBcv"
@@ -4661,9 +4902,10 @@
       "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "FlyBase Developmental Ontology (FBdv)",
       "prefix": "fbdv",
-      "version": "2020-10-15",
-      "version.iri": "http://purl.obolibrary.org/obo/fbdv/releases/2020-10-15/fbdv.owl"
+      "version": "2021-01-13",
+      "version.iri": "http://purl.obolibrary.org/obo/fbdv/releases/2021-01-13/fbdv.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{8}$",
     "synonyms": [
       "FBdv"
@@ -4682,6 +4924,13 @@
     "n2t": {
       "prefix": "fbol"
     }
+  },
+  "fbql": {
+    "name": "Flybase Quantitative Loci",
+    "prefixcommons": "fbql"
+  },
+  "fbtc": {
+    "name": "Flybase Cell Line"
   },
   "fideo": {
     "obofoundry": {
@@ -4721,6 +4970,7 @@
       "version": "2020-04-13",
       "version.iri": "http://purl.obolibrary.org/obo/fix/releases/2020-04-13/fix.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "flopo": {
@@ -4739,7 +4989,8 @@
       "name": "Flora Phenotype Ontology",
       "prefix": "flopo",
       "version": "09-09-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "flowrepository": {
     "miriam": {
@@ -4802,7 +5053,12 @@
       "prefix": "fma",
       "version": "2020-04-13",
       "version.iri": "http://purl.obolibrary.org/obo/fma/releases/2020-04-13/fma.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d",
+    "synonyms": [
+      "FMAID",
+      "FMA_RETIRED"
+    ]
   },
   "fobi": {
     "obofoundry": {
@@ -4822,13 +5078,8 @@
       "version.iri": "http://purl.obolibrary.org/obo/fobi/fobi.owl"
     }
   },
-  "foodb": {
-    "example": "FDB015448",
-    "homepage": "https://foodb.ca/",
-    "pattern": "^FDB\\{d}+$",
-    "url": "https://foodb.ca/compounds/$1"
-  },
   "foodb.compound": {
+    "homepage": "https://foodb.ca/",
     "miriam": {
       "deprecated": false,
       "description": "FooDB is resource on food and its constituent compounds. It includes data on the compound’s nomenclature, its description, information on its structure, chemical class, its physico-chemical data, its food source(s), its color, its aroma, its taste, its physiological effect, presumptive health effects (from published studies), and concentrations in various foods. This collection references compounds.",
@@ -4840,7 +5091,10 @@
     },
     "n2t": {
       "prefix": "foodb.compound"
-    }
+    },
+    "synonyms": [
+      "foodb"
+    ]
   },
   "foodon": {
     "miriam": {
@@ -4871,7 +5125,8 @@
       "prefix": "foodon",
       "version": "2020-12-04",
       "version.iri": "http://purl.obolibrary.org/obo/foodon/releases/2020-12-04/foodon.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "fovt": {
     "obofoundry": {
@@ -4891,7 +5146,8 @@
       "prefix": "fovt",
       "version": "2020-06-08",
       "version.iri": "http://purl.obolibrary.org/obo/fovt/releases/2020-06-08/fovt.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "fplx": {
     "miriam": {
@@ -4998,6 +5254,9 @@
       "prefix": "fungidb"
     }
   },
+  "fyler": {
+    "name": "Fyler"
+  },
   "fypo": {
     "download": "http://purl.obolibrary.org/obo/fypo.obo",
     "name": "Fission Yeast Phenotype Ontology",
@@ -5015,9 +5274,10 @@
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "name": "Fission Yeast Phenotype Ontology (FYPO)",
       "prefix": "fypo",
-      "version": "2021-01-07",
-      "version.iri": "http://purl.obolibrary.org/obo/fypo/releases/2021-01-07/fypo.owl"
+      "version": "2021-01-20",
+      "version.iri": "http://purl.obolibrary.org/obo/fypo/releases/2021-01-20/fypo.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "ga4ghdos": {
@@ -5048,6 +5308,12 @@
       "prefix": "gabi"
     }
   },
+  "galen": {
+    "bioportal": {
+      "prefix": "GALEN"
+    },
+    "name": "Galen Ontology"
+  },
   "gard": {
     "name": "Genetic and Rare Diseases Information Center",
     "synonyms": [
@@ -5075,6 +5341,7 @@
       "prefix": "gaz",
       "version": "26-06-2018"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "pattern": "^\\d{8}$",
     "wikidata": {
       "property": "P6778"
@@ -5090,6 +5357,9 @@
   "gc": {
     "name": "Genetic Code",
     "note": "see comment here: https://github.com/obophenotype/ncbitaxon/issues/47",
+    "references": [
+      "https://github.com/obophenotype/ncbitaxon/issues/47"
+    ],
     "synonyms": [
       "gc_id"
     ],
@@ -5152,9 +5422,10 @@
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "name": "Genomics Cohorts Knowledge Ontology",
       "prefix": "gecko",
-      "version": "2020-12-03",
-      "version.iri": "http://purl.obolibrary.org/obo/gecko/releases/2020-12-03/gecko.owl"
-    }
+      "version": "2021-01-18",
+      "version.iri": "http://purl.obolibrary.org/obo/gecko/releases/2021-01-18/gecko.owl"
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "genatlas": {
     "miriam": {
@@ -5228,7 +5499,8 @@
       "prefix": "genepio",
       "version": "2020-08-09",
       "version.iri": "http://purl.obolibrary.org/obo/genepio/releases/2020-08-09/genepio.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "genetree": {
     "miriam": {
@@ -5277,6 +5549,7 @@
       "version": "2020-03-08",
       "version.iri": "http://purl.obolibrary.org/obo/geno/releases/2020-03-08/geno.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "genpept": {
@@ -5336,7 +5609,9 @@
       "name": "Geographical Entity Ontology",
       "prefix": "geo",
       "version": "production version 2016-03-26"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d",
+    "ols_version_prefix": "production version "
   },
   "gexo": {
     "ols": {
@@ -5345,7 +5620,13 @@
       "name": "Gene Expression Ontology",
       "prefix": "gexo",
       "version": "18-09-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
+  },
+  "ghr": {
+    "example": "saddan",
+    "name": "Genetics Home Reference",
+    "url": "https://medlineplus.gov/genetics/condition/$1"
   },
   "giardiadb": {
     "miriam": {
@@ -5538,6 +5819,8 @@
       "version": "V1.6.3",
       "version.iri": "http://purl.obolibrary.org/obo/gno/2020-10-13/gno.owl"
     },
+    "ols_version_prefix": "V",
+    "ols_version_type": "semver",
     "pattern": "^\\d{8}$"
   },
   "gnpis": {
@@ -5582,9 +5865,10 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "Gene Ontology",
       "prefix": "go",
-      "version": "2020-12-08",
-      "version.iri": "http://purl.obolibrary.org/obo/go/releases/2020-12-08/go.owl"
+      "version": "2021-01-01",
+      "version.iri": "http://purl.obolibrary.org/obo/go/releases/2021-01-01/go.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "synonyms": [
       "gobp",
       "gocc",
@@ -5624,6 +5908,10 @@
     "n2t": {
       "prefix": "goa"
     }
+  },
+  "goeco": {
+    "homepage": "http://geneontology.org/docs/guide-go-evidence-codes/",
+    "name": "GO Evidence Code"
   },
   "gold": {
     "miriam": {
@@ -5680,6 +5968,10 @@
     "synonyms": [
       "patent"
     ]
+  },
+  "gorel": {
+    "download": "ftp://ftp.geneontology.org/pub/go/ontology/extensions/gorel.owl",
+    "name": "GO Relations"
   },
   "gpcrdb": {
     "miriam": {
@@ -5899,6 +6191,15 @@
       "prefix": "gtex"
     }
   },
+  "gtr": {
+    "appears_in": [
+      "mondo"
+    ],
+    "comment": "Identifiers appearing in MONDO don't match any of the resources apparent endpoints",
+    "example": "AN0097748",
+    "homepage": "https://www.ncbi.nlm.nih.gov/gtr/",
+    "name": "Genetic Testing Registry"
+  },
   "gudmap": {
     "miriam": {
       "deprecated": false,
@@ -6014,7 +6315,8 @@
       "prefix": "hancestro",
       "version": "2.5",
       "version.iri": "http://purl.obolibrary.org/obo/hancestro/releases/2020-12-18/hancestro.owl"
-    }
+    },
+    "ols_version_type": "semver"
   },
   "hao": {
     "obofoundry": {
@@ -6035,6 +6337,7 @@
       "version": "2018-04-26",
       "version.iri": "http://purl.obolibrary.org/obo/hao/2018-04-26/hao.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "hcao": {
@@ -6045,7 +6348,8 @@
       "prefix": "hcao",
       "version": "2020-12-03",
       "version.iri": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2020-12-03/hcao.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "hcvdb": {
     "miriam": {
@@ -6215,6 +6519,10 @@
       "property": "P2057"
     }
   },
+  "hog": {
+    "download": "ftp://ftp.bgee.org/general/ontologies/HOG.obo",
+    "name": "Homologous Organ Groups"
+  },
   "hogenom": {
     "miriam": {
       "deprecated": false,
@@ -6234,7 +6542,7 @@
       "contact": "bgee@sib.swiss",
       "contact.label": "Frederic Bastian",
       "deprecated": false,
-      "license": "CC-BY",
+      "license": "CC0",
       "name": "Homology Ontology",
       "prefix": "hom",
       "repo": "https://github.com/BgeeDB/homology-ontology.git"
@@ -6246,7 +6554,8 @@
       "prefix": "hom",
       "version": "2015-01-07",
       "version.iri": "http://purl.obolibrary.org/obo/hom/releases/2015-01-07/hom.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "homd.seq": {
     "miriam": {
@@ -6338,6 +6647,7 @@
       "version": "2020-12-07",
       "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2020-12-07/hp.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "wikidata": {
       "property": "P3841"
     }
@@ -6363,7 +6673,8 @@
       "name": "Histopathology Ontology",
       "prefix": "hpath",
       "version": "05-07-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "hpm.peptide": {
     "miriam": {
@@ -6439,6 +6750,7 @@
       "version": "2020-03-10",
       "version.iri": "http://purl.obolibrary.org/obo/hsapdv/releases/2020-03-10/hsapdv.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "synonyms": [
       "HsapDv"
@@ -6489,7 +6801,8 @@
       "name": "Hypertension Ontology For Clinical Data",
       "prefix": "htn",
       "version": "10-06-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "huge": {
     "miriam": {
@@ -6535,7 +6848,8 @@
       "prefix": "iao",
       "version": "2020-12-09",
       "version.iri": "http://purl.obolibrary.org/obo/iao/2020-12-09/iao.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "icd10": {
     "miriam": {
@@ -6637,8 +6951,9 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "ICEO: Ontology of Integrative and Conjugative Elements",
       "prefix": "iceo",
-      "version": "1.1"
-    }
+      "version": "2.0"
+    },
+    "ols_version_type": "semver"
   },
   "ico": {
     "obofoundry": {
@@ -6657,7 +6972,9 @@
       "prefix": "ico",
       "version": "Arbor version; 1.0.100",
       "version.iri": "http://purl.obolibrary.org/obo/2020-08-27/ico.owl"
-    }
+    },
+    "ols_version_prefix": "Arbor version; ",
+    "ols_version_type": "semver"
   },
   "ideal": {
     "miriam": {
@@ -6701,7 +7018,8 @@
       "prefix": "ido",
       "version": "2017-11-03",
       "version.iri": "http://purl.obolibrary.org/obo/ido/2017-11-03/ido.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "idocovid19": {
     "ols": {
@@ -6712,7 +7030,14 @@
       "prefix": "idocovid19",
       "version": "2020-21-07",
       "version.iri": "http://purl.obolibrary.org/obo/2020-21-07/ido-covid-19.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%d-%m"
+  },
+  "idoden": {
+    "bioportal": {
+      "prefix": "IDODEN"
+    },
+    "name": "Dengue Fever Ontology"
   },
   "idomal": {
     "download": "http://purl.obolibrary.org/obo/idomal.obo",
@@ -6732,6 +7057,7 @@
       "version": "2015-03-16",
       "version.iri": "http://purl.obolibrary.org/obo/idomal/2015-03-16/idomal.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "idoo": {
@@ -6772,6 +7098,13 @@
       "pattern": "^[0-9]{4}$",
       "prefix": "idr"
     }
+  },
+  "imdrf": {
+    "homepage": "http://www.imdrf.org/",
+    "name": "International Medical Device Regulators Forum",
+    "references": [
+      "https://www.fda.gov/medical-devices/mandatory-reporting-requirements-manufacturers-importers-and-device-user-facilities/mdr-adverse-event-codes"
+    ]
   },
   "imex": {
     "miriam": {
@@ -6903,7 +7236,8 @@
       "name": "INO: Interaction Network Ontology",
       "prefix": "ino",
       "version": "1.0.112"
-    }
+    },
+    "ols_version_type": "semver"
   },
   "insdc": {
     "miriam": {
@@ -7038,6 +7372,13 @@
       "prefix": "irefweb"
     }
   },
+  "iro": {
+    "deprecated": true,
+    "example": "0000008",
+    "name": "Insect Resistance Ontology",
+    "needs_curation": true,
+    "url": "https://legacy.vectorbase.org/ontology-browser?cv=MIRO&t=IRO:$1"
+  },
   "isbn": {
     "miriam": {
       "deprecated": false,
@@ -7050,7 +7391,11 @@
     },
     "n2t": {
       "prefix": "isbn"
-    }
+    },
+    "synonyms": [
+      "ISBN-10",
+      "ISBN-13"
+    ]
   },
   "isfinder": {
     "miriam": {
@@ -7153,9 +7498,17 @@
     "n2t": {
       "prefix": "iuphar.receptor"
     },
+    "synonyms": [
+      "IUPHARobj"
+    ],
     "wikidata": {
       "property": "P5458"
     }
+  },
+  "jax": {
+    "example": "004435",
+    "name": "Jackson Laboratories Strain",
+    "url": "https://www.jax.org/strain/$1"
   },
   "jaxmice": {
     "miriam": {
@@ -7256,6 +7609,8 @@
     }
   },
   "kegg": {
+    "comments": "KEGG prefix has been split into several others",
+    "deprecated": true,
     "miriam": {
       "deprecated": false,
       "description": "Kyoto Encyclopedia of Genes and Genomes (KEGG) is a database resource for understanding high-level functions and utilities of the biological system, such as the cell, the organism and the ecosystem, from molecular-level information, especially large-scale molecular datasets generated by genome sequencing and other high-throughput experimental technologies.",
@@ -7511,6 +7866,12 @@
       "property": "P2064"
     }
   },
+  "kupo": {
+    "appears_in": [
+      "cl"
+    ],
+    "name": "Kidney and Urinary Pathway Ontology"
+  },
   "labo": {
     "obofoundry": {
       "contact": "paul.fabry@usherbrooke.ca",
@@ -7527,7 +7888,8 @@
       "prefix": "labo",
       "version": "2019-08-29",
       "version.iri": "http://purl.obolibrary.org/obo/labo/2019-08-29/labo.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "lbo": {
     "ols": {
@@ -7536,7 +7898,8 @@
       "name": "Livestock Breed Ontology",
       "prefix": "lbo",
       "version": "26-03-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "lei": {
     "miriam": {
@@ -7765,7 +8128,8 @@
       "prefix": "ma",
       "version": "2017-02-07",
       "version.iri": "http://purl.obolibrary.org/obo/ma/releases/2017-02-07/ma.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "macie": {
     "miriam": {
@@ -7822,7 +8186,8 @@
       "name": "Mathematical Modelling Ontology",
       "prefix": "mamo",
       "version": "2020-08-24"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "massbank": {
     "miriam": {
@@ -7854,6 +8219,19 @@
     },
     "n2t": {
       "prefix": "massive"
+    }
+  },
+  "mat": {
+    "bioportal": {
+      "prefix": "MAT"
+    },
+    "name": "Minimal Anatomical Terminology",
+    "obofoundry": {
+      "contact": "j.bard@ed.ac.uk",
+      "contact.label": "Jonathan Bard",
+      "deprecated": true,
+      "name": "Minimal anatomical terminology",
+      "prefix": "mat"
     }
   },
   "matrixdb": {
@@ -7898,7 +8276,15 @@
       "prefix": "maxo",
       "version": "2020-12-10",
       "version.iri": "http://purl.obolibrary.org/obo/maxo/releases/2020-12-10/maxo.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
+  },
+  "mcc": {
+    "bioportal": {
+      "prefix": "MCCL"
+    },
+    "deprecated": true,
+    "name": "Cell Line Ontology [derivative]"
   },
   "mco": {
     "obofoundry": {
@@ -7919,6 +8305,7 @@
       "version": "2019-05-15",
       "version.iri": "http://purl.obolibrary.org/obo/mco/releases/2019-05-15/mco.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d+$"
   },
   "mdm": {
@@ -8056,10 +8443,10 @@
       "database": "Q199897",
       "database.label": "Medical Subject Headings",
       "format": "http://id.nlm.nih.gov/mesh/$1",
-      "pattern": "^[CD]\\d{6}(\\d{3}|)(Q\\d{6}(\\d{3}|))?$",
+      "pattern": "^[CD]\\w{6}(\\w{3}|)$",
       "property": "P486",
       "property.label": "MeSH descriptor ID",
-      "webpage": "https://meshb.nlm.nih.gov/search"
+      "webpage": "https://www.wikidata.org/wiki/Q6589563"
     }
   },
   "mesh.2012": {
@@ -8226,7 +8613,8 @@
       "prefix": "mf",
       "version": "2020-08-07",
       "version.iri": "http://purl.obolibrary.org/obo/MF/2020-08-07/MF.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "mfmo": {
     "obofoundry": {
@@ -8244,6 +8632,16 @@
       "prefix": "mfmo",
       "version": "2013-11-16",
       "version.iri": "http://purl.obolibrary.org/obo/mfmo/2013-11-16/mfmo.owl"
+    },
+    "ols_version_date_format": "%Y-%m-%d"
+  },
+  "mfo": {
+    "obofoundry": {
+      "contact": "Thorsten.Henrich@embl-heidelberg.de",
+      "contact.label": "Thorsten Henrich",
+      "deprecated": true,
+      "name": "Medaka fish anatomy and development",
+      "prefix": "mfo"
     }
   },
   "mfoem": {
@@ -8264,7 +8662,8 @@
       "prefix": "mfoem",
       "version": "2020-05-13",
       "version.iri": "http://purl.obolibrary.org/obo/MFOEM/2020-05-13/MFOEM.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "mfomd": {
     "obofoundry": {
@@ -8282,7 +8681,8 @@
       "prefix": "mfomd",
       "version": "2020-04-26",
       "version.iri": "http://purl.obolibrary.org/obo/MFOMD/2020-04-26/MFOMD.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "mge": {
     "miriam": {
@@ -8378,9 +8778,17 @@
       "version": "2020-04-13",
       "version.iri": "http://purl.obolibrary.org/obo/mi/releases/2020-04-13/mi.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{4}$",
     "synonyms": [
       "PSI-MI"
+    ]
+  },
+  "miaa": {
+    "comment": "same as MAT",
+    "name": "Minimal Information About Anatomy ontology",
+    "references": [
+      "https://bioconductor.statistik.tu-dortmund.de/packages/3.1/bioc/vignettes/rols/inst/doc/rols.pdf"
     ]
   },
   "miapa": {
@@ -8399,7 +8807,8 @@
       "prefix": "miapa",
       "version": "09-05-2017",
       "version.iri": "http://purl.obolibrary.org/obo/miapa/2013-02-01/miapa.owl"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "micro": {
     "obofoundry": {
@@ -8416,7 +8825,10 @@
       "name": "Ontology of Prokaryotic Phenotypic and Metabolic Characters",
       "prefix": "micro",
       "version": "MicrO (An Ontology of Prokaryotic Phenotypic and Metabolic Characters).  Version 1.5.1 released 6/14/2018.\n\nIncludes terms and term synonyms extracted from > 3000 prokaryotic taxonomic descriptions, collected from a large number of taxonomic descriptions from Archaea, Cyanobacteria, Bacteroidetes, Firmicutes and Mollicutes.\n\nThe ontology and the synonym lists were developed to facilitate the automated extraction of phenotypic data and character states from prokaryotic taxonomic descriptions using a natural language processing algorithm (MicroPIE).  MicroPIE was developed by Hong Cui, Elvis Hsin-Hui Wu, and Jin Mao (University of Arizona) in collaboration with Carrine E. Blank (University of Montana) and Lisa R. Moore (University of Southern Maine).\n\nDescriptions and links to MicroPIE can be found at http://avatol.org/ngp/nlp/overview-2/.\nhttps://github.com/biosemantics/micropie2\n\nThe most current version of MicrO can be downloaded from https://github.com/carrineblank/MicrO."
-    }
+    },
+    "ols_version_prefix": "MicrO (An Ontology of Prokaryotic Phenotypic and Metabolic Characters).  Version ",
+    "ols_version_suffix_split": true,
+    "ols_version_type": "semver"
   },
   "microscope": {
     "miriam": {
@@ -8447,6 +8859,7 @@
     }
   },
   "mim": {
+    "comment": "OMIMPS and PS should probably be split to their own entry called OMIM Phenotypic Series",
     "miriam": {
       "deprecated": false,
       "description": "Online Mendelian Inheritance in Man is a catalog of human genes and genetic disorders.",
@@ -8461,7 +8874,8 @@
     },
     "synonyms": [
       "OMIM",
-      "OMIMPS"
+      "OMIMPS",
+      "PS"
     ],
     "wikidata": {
       "database": "Q241953",
@@ -8671,6 +9085,7 @@
       "version": "2014-05-14",
       "version.iri": "http://purl.obolibrary.org/obo/miro/releases/2014-05-14/miro.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{8}$"
   },
   "mirtarbase": {
@@ -8737,6 +9152,7 @@
       "version": "27-03-2019",
       "version.iri": "http://purl.obolibrary.org/obo/mmo/2.39/mmo.owl"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "pattern": "^\\d{7}$"
   },
   "mmp.cat": {
@@ -8833,6 +9249,7 @@
       "version": "2020-03-10",
       "version.iri": "http://purl.obolibrary.org/obo/mmusdv/releases/2020-03-10/mmusdv.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "synonyms": [
       "MmusDv"
@@ -8905,7 +9322,8 @@
       "prefix": "mod",
       "version": "2020-04-14",
       "version.iri": "http://purl.obolibrary.org/obo/mod/releases/2020-04-14/mod.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "modeldb": {
     "miriam": {
@@ -8963,9 +9381,10 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "Mondo Disease Ontology",
       "prefix": "mondo",
-      "version": "2020-12-18",
-      "version.iri": "http://purl.obolibrary.org/obo/mondo/releases/2020-12-18/mondo.owl"
+      "version": "2021-01-15",
+      "version.iri": "http://purl.obolibrary.org/obo/mondo/releases/2021-01-15/mondo.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "wikidata": {
       "property": "P5270"
@@ -8986,11 +9405,13 @@
     "ols": {
       "description": "MOP is the molecular process ontology. It contains the molecular processes that underlie the name reaction ontology RXNO, for example cyclization, methylation and demethylation.",
       "download": "http://purl.obolibrary.org/obo/mop.owl",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "MOP",
       "prefix": "mop",
       "version": "2014-09-03",
       "version.iri": "http://purl.obolibrary.org/obo/mop/releases/2014-09-03/mop.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "morpheus": {
@@ -9034,7 +9455,8 @@
       "prefix": "mp",
       "version": "11-11-2019",
       "version.iri": "http://purl.obolibrary.org/obo/mp/releases/2020-11-05"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "mpath": {
     "download": "https://raw.githubusercontent.com/PaulNSchofield/mpath/master/mpath.obo",
@@ -9055,6 +9477,7 @@
       "version": "2020-05-19",
       "version.iri": "http://purl.obolibrary.org/obo/mpath/2020-05-19/mpath.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d+$",
     "synonyms": [
       "MPATH"
@@ -9090,7 +9513,9 @@
       "prefix": "mpio",
       "version": "release version 2019-01-30",
       "version.iri": "http://purl.obolibrary.org/obo/mpio/release/2019-01-30/mpio.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d",
+    "ols_version_prefix": "release version "
   },
   "mro": {
     "obofoundry": {
@@ -9107,9 +9532,10 @@
       "license": "http://creativecommons.org/licenses/by/3.0/",
       "name": "MHC Restriction Ontology",
       "prefix": "mro",
-      "version": "2020-12-16",
-      "version.iri": "http://purl.obolibrary.org/obo/mro/2020-12-16/mro.owl"
-    }
+      "version": "2021-01-15",
+      "version.iri": "http://purl.obolibrary.org/obo/mro/2021-01-15/mro.owl"
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "ms": {
     "miriam": {
@@ -9140,7 +9566,8 @@
       "prefix": "ms",
       "version": "21-11-2019",
       "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.35/ms.owl"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "msigdb": {
     "homepage": "https://www.gsea-msigdb.org",
@@ -9159,7 +9586,8 @@
       "name": "Metabolomics Standards Initiative Ontology (MSIO)",
       "prefix": "msio",
       "version": "1.0.1"
-    }
+    },
+    "ols_version_type": "semver"
   },
   "multicellds.cell_line": {
     "miriam": {
@@ -9315,6 +9743,13 @@
       "prefix": "mzspec"
     }
   },
+  "namerxn": {
+    "comment": "The nomenclature used for named reactions in text mining software from NextMove",
+    "name": "NameRXN",
+    "references": [
+      "https://www.nextmovesoftware.com/products/HazELNutPoster.pdf"
+    ]
+  },
   "napdi": {
     "miriam": {
       "deprecated": false,
@@ -9405,6 +9840,7 @@
       "version": "2020-02-10",
       "version.iri": "http://purl.obolibrary.org/obo/nbo/releases/2020-02-10/nbo.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "nbrc": {
@@ -9499,6 +9935,7 @@
       "version": "2020-04-18",
       "version.iri": "http://purl.obolibrary.org/obo/ncbitaxon/2020-04-18/ncbitaxon.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d+$",
     "synonyms": [
       "NCBITaxon",
@@ -9563,6 +10000,7 @@
       "version": "20.06e",
       "version.iri": "http://purl.obolibrary.org/obo/ncit/releases/2020-07-17/ncit.owl"
     },
+    "ols_version_type": "other",
     "synonyms": [
       "NCIt",
       "NCIT",
@@ -9595,7 +10033,8 @@
       "prefix": "ncro",
       "version": "2015-12-10",
       "version.iri": "http://purl.obolibrary.org/obo/ncro/2015-12-10/ncro-combined.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "ndc": {
     "miriam": {
@@ -9780,6 +10219,19 @@
       "NIST"
     ]
   },
+  "nlxanat": {
+    "example": "090201",
+    "name": "NeuroLex Anatomy",
+    "url": "http://uri.neuinfo.org/nif/nifstd/nlx_anat_$1"
+  },
+  "nlxdys": {
+    "appears_in": [
+      "mondo"
+    ],
+    "example": "20090303",
+    "name": "NeuroLex Dysfunction",
+    "url": "http://uri.neuinfo.org/nif/nifstd/nlx_dys_$1"
+  },
   "nmr": {
     "download": "https://nmrml.org/cv/stable/nmrCV.owl",
     "miriam": {
@@ -9808,6 +10260,7 @@
       "prefix": "nmrcv",
       "version": "1.1.0"
     },
+    "ols_version_type": "semver",
     "synonyms": [
       "nmrcv"
     ]
@@ -9839,7 +10292,8 @@
       "name": "NOMEN - A nomenclatural ontology for biological names",
       "prefix": "nomen",
       "version": "17-04-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "noncodev3": {
     "miriam": {
@@ -9931,7 +10385,8 @@
       "name": "OAE: Ontology of Adverse Events",
       "prefix": "oae",
       "version": "1.2.36"
-    }
+    },
+    "ols_version_type": "semver"
   },
   "oarcs": {
     "obofoundry": {
@@ -9949,7 +10404,8 @@
       "prefix": "oarcs",
       "version": "2019-04-18",
       "version.iri": "http://purl.obolibrary.org/obo/hao/2019-04-18/hao.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "oba": {
     "obofoundry": {
@@ -9969,6 +10425,7 @@
       "prefix": "oba",
       "version": "22-05-2019"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "pattern": "^\\d{7}$"
   },
   "obcs": {
@@ -9987,7 +10444,8 @@
       "prefix": "obcs",
       "version": "101",
       "version.iri": "http://purl.obolibrary.org/obo/obcs/2018-02-22/obcs.owl"
-    }
+    },
+    "ols_version_type": "sequential"
   },
   "obi": {
     "download": "https://github.com/obi-ontology/obi/raw/master/views/obi.obo",
@@ -10019,7 +10477,8 @@
       "prefix": "obi",
       "version": "2020-12-16",
       "version.iri": "http://purl.obolibrary.org/obo/obi/2020-12-16/obi.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "obib": {
     "obofoundry": {
@@ -10037,7 +10496,8 @@
       "prefix": "obib",
       "version": "2019-06-20",
       "version.iri": "http://purl.obolibrary.org/obo/obib/2019-06-20/obib.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "obo": {
     "name": "Internal OBO and PyOBO Relations"
@@ -10136,7 +10596,9 @@
       "name": "OGG: Ontology of Genes and Genomes",
       "prefix": "ogg",
       "version": "Vision Release: 1.0.59"
-    }
+    },
+    "ols_version_prefix": "Vision Release: ",
+    "ols_version_type": "semver"
   },
   "ogi": {
     "obofoundry": {
@@ -10150,7 +10612,8 @@
       "name": "Ontology for genetic interval",
       "prefix": "ogi",
       "version": "2.0"
-    }
+    },
+    "ols_version_type": "semver"
   },
   "ogms": {
     "not_available_as_obo": true,
@@ -10171,6 +10634,7 @@
       "version": "2020-07-06",
       "version.iri": "https://github.com/OGMS/ogms/releases/tag/2020-07-06"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "wikidata": {
       "database": "Q4866972"
     }
@@ -10191,7 +10655,8 @@
       "name": "Ontology of Genetic Susceptibility Factor",
       "prefix": "ogsf",
       "version": "2.0"
-    }
+    },
+    "ols_version_type": "semver"
   },
   "ohd": {
     "obofoundry": {
@@ -10210,7 +10675,8 @@
       "prefix": "ohd",
       "version": "2016-06-27",
       "version.iri": "http://purl.obolibrary.org/obo/2016-06-27/ohd-inferred.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "ohmi": {
     "obofoundry": {
@@ -10228,7 +10694,8 @@
       "prefix": "ohmi",
       "version": "2019-09-17",
       "version.iri": "http://purl.obolibrary.org/obo/ohmi/2019-09-17/ohmi.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "ohpi": {
     "obofoundry": {
@@ -10247,7 +10714,8 @@
       "prefix": "ohpi",
       "version": "02-10-2019",
       "version.iri": "http://purl.obolibrary.org/obo/ohpi/releases/2019-09-30"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "oid": {
     "miriam": {
@@ -10281,6 +10749,7 @@
       "version": "2020-03-10",
       "version.iri": "http://purl.obolibrary.org/obo/olatdv/releases/2020-03-10/olatdv.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "om": {
@@ -10291,7 +10760,8 @@
       "name": "Ontology of units of Measure (OM)",
       "prefix": "om",
       "version": "2.0.28"
-    }
+    },
+    "ols_version_type": "semver"
   },
   "oma.grp": {
     "miriam": {
@@ -10361,7 +10831,8 @@
       "name": "Ontologized MIABIS",
       "prefix": "omiabis",
       "version": " 2014-05-28"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "omit": {
     "download": "https://raw.githubusercontent.com/OmniSearch/omit/master/src/ontology/omit.obo",
@@ -10393,6 +10864,7 @@
       "version": "07-06-2019",
       "version.iri": "http://purl.obolibrary.org/obo/omit/dev/omit.owl"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "synonyms": [
       "OMIT"
     ],
@@ -10416,7 +10888,15 @@
       "prefix": "omo",
       "version": "2020-06-08",
       "version.iri": "http://purl.obolibrary.org/obo/omo/2020-06-08/omo.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
+  },
+  "omop": {
+    "homepage": "https://www.ohdsi.org/data-standardization/the-common-data-model/",
+    "name": "Observational Medical Outcomes Partnership",
+    "references": [
+      "https://github.com/callahantiff/OMOP2OBO"
+    ]
   },
   "omp": {
     "obofoundry": {
@@ -10433,9 +10913,10 @@
       "download": "http://purl.obolibrary.org/obo/omp.owl",
       "name": "Ontology of Microbial Phenotypes",
       "prefix": "omp",
-      "version": "2020-12-04",
-      "version.iri": "http://purl.obolibrary.org/obo/omp/releases/2020-12-04/omp.owl"
+      "version": "2021-01-08",
+      "version.iri": "http://purl.obolibrary.org/obo/omp/releases/2021-01-08/omp.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "wikidata": {
       "database": "Q81661753"
@@ -10460,7 +10941,17 @@
       "name": "Ontology of Medically Related Social Entities",
       "prefix": "omrse",
       "version": "2020-10-27"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
+  },
+  "oncotree": {
+    "appears_in": [
+      "efo"
+    ],
+    "example": "BLL",
+    "homepage": "http://oncotree.mskcc.org",
+    "name": "OncoTree",
+    "url": "http://oncotree.mskcc.org/api/tumorTypes/search/code/"
   },
   "one": {
     "obofoundry": {
@@ -10484,7 +10975,7 @@
       "contact.label": "Francesco Vitali",
       "deprecated": false,
       "license": "CC-BY",
-      "name": "ONS",
+      "name": "Ontology for Nutritional Studies",
       "prefix": "ons"
     },
     "ols": {
@@ -10494,7 +10985,9 @@
       "name": "Ontology for Nutritional Studies",
       "prefix": "ons",
       "version": "Relese version 1.0"
-    }
+    },
+    "ols_version_prefix": "Relese version ",
+    "ols_version_type": "semver"
   },
   "ontoneo": {
     "obofoundry": {
@@ -10512,7 +11005,8 @@
       "prefix": "ontoneo",
       "version": "2017-03-04",
       "version.iri": "http://purl.obolibrary.org/obo/ontoneo/releases/2017-03-04/ontoneo.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "oostt": {
     "obofoundry": {
@@ -10529,9 +11023,11 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "Ontology of Organizational Structures of Trauma centers and Trauma Systems",
       "prefix": "oostt",
-      "version": "release version - 2019-03-27",
-      "version.iri": "http://purl.obolibrary.org/obo/oostt//2019-03-28/oostt.owl"
-    }
+      "version": "release version - 2021-01-11",
+      "version.iri": "http://purl.obolibrary.org/obo/oostt//2021-01-08/oostt.owl"
+    },
+    "ols_version_date_format": "%Y-%m-%d",
+    "ols_version_prefix": "release version - "
   },
   "opb": {
     "miriam": {
@@ -10563,7 +11059,8 @@
       "prefix": "opl",
       "version": "2020-02-08",
       "version.iri": "http://purl.obolibrary.org/obo/opl/2020-02-08/opl.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "opm": {
     "miriam": {
@@ -10594,8 +11091,10 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "OPMI: Ontology of Precision Medicine and Investigation",
       "prefix": "opmi",
-      "version": "Vision Release: 1.0.101"
-    }
+      "version": "Vision Release: 1.0.118"
+    },
+    "ols_version_prefix": "Vision Release: ",
+    "ols_version_type": "semver"
   },
   "orcid": {
     "miriam": {
@@ -10683,6 +11182,7 @@
       "version": "2019-07-08",
       "version.iri": "http://purl.obolibrary.org/obo/ornaseq/2019-07-08/ornaseq.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "orphanet": {
@@ -10725,6 +11225,7 @@
       "version": "3.1",
       "version.iri": "http://www.orpha.net/version3.1"
     },
+    "ols_version_type": "semver",
     "synonyms": [
       "ordo"
     ]
@@ -10842,7 +11343,9 @@
       "name": "OVAE: Ontology of Vaccine Adverse Events",
       "prefix": "ovae",
       "version": "Vision Release: 1.0.34"
-    }
+    },
+    "ols_version_prefix": "Vision Release: ",
+    "ols_version_type": "semver"
   },
   "owl": {
     "name": "OWL Ontology",
@@ -11012,7 +11515,8 @@
       "prefix": "pato",
       "version": "2020-08-02",
       "version.iri": "http://purl.obolibrary.org/obo/pato/releases/2020-08-02/pato.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "paxdb.organism": {
     "miriam": {
@@ -11076,6 +11580,7 @@
       "version": "2020-08-26",
       "version.iri": "http://purl.obolibrary.org/obo/pco/releases/2020-08-26/pco.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "pdb": {
@@ -11163,7 +11668,8 @@
       "prefix": "pdro",
       "version": "2019-09-19",
       "version.iri": "http://purl.obolibrary.org/obo/pdro/2019-09-19/pdro.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "pdumdv": {
     "obofoundry": {
@@ -11183,6 +11689,7 @@
       "version": "2020-03-10",
       "version.iri": "http://purl.obolibrary.org/obo/pdumdv/releases/2020-03-10/pdumdv.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "synonyms": [
       "PdumDv"
@@ -11218,6 +11725,7 @@
       "version": "2020-08-21",
       "version.iri": "http://purl.obolibrary.org/obo/peco/releases/2020-08-21/peco.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "synonyms": [
       "eo"
@@ -11422,7 +11930,8 @@
       "name": "PHI-base Ontology",
       "prefix": "phi",
       "version": "10-12-2018"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "phipo": {
     "obofoundry": {
@@ -11444,6 +11953,7 @@
       "version": "2020-12-03",
       "version.iri": "http://purl.obolibrary.org/obo/phipo/releases/2020-12-03/phipo.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "phosphopoint.kinase": {
@@ -11550,7 +12060,10 @@
     },
     "n2t": {
       "prefix": "pid.pathway"
-    }
+    },
+    "synonyms": [
+      "pid"
+    ]
   },
   "pigqtldb": {
     "miriam": {
@@ -11638,6 +12151,7 @@
       "version": "2020-12-09",
       "version.iri": "http://purl.obolibrary.org/obo/plana/releases/2020-12-09"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "planp": {
@@ -11660,6 +12174,7 @@
       "version": "2020-03-28",
       "version.iri": "http://purl.obolibrary.org/obo/planp/releases/2020-03-28/planp.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d+$"
   },
   "planttfdb": {
@@ -11691,6 +12206,16 @@
     },
     "n2t": {
       "prefix": "plasmodb"
+    }
+  },
+  "plo": {
+    "name": "Plasmodium Life Cycle",
+    "obofoundry": {
+      "contact": "mb4@sanger.ac.uk",
+      "contact.label": "Matt Berriman",
+      "deprecated": true,
+      "name": "Plasmodium life cycle",
+      "prefix": "plo"
     }
   },
   "pmap.cutdb": {
@@ -11800,7 +12325,8 @@
       "prefix": "po",
       "version": "2020-08-20",
       "version.iri": "http://purl.obolibrary.org/obo/po/releases/2020-08-20/po.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "pocketome": {
     "miriam": {
@@ -11869,6 +12395,7 @@
       "version": "2016-09-13",
       "version.iri": "http://purl.obolibrary.org/obo/poro/releases/2016-09-13/poro.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "ppdb": {
@@ -11893,7 +12420,8 @@
       "prefix": "ppo",
       "version": "2018-10-26",
       "version.iri": "https://raw.githubusercontent.com/PlantPhenoOntology/ppo/master/releases/2018-10-26/ppo.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "ppr": {
     "description": "Preprints are articles which have not been peer-reviewed from various preprint servers and open research platforms such as bioRxiv, ChemRxiv, PeerJ Preprints and F1000.",
@@ -11932,6 +12460,7 @@
       "version": "02-10-2019",
       "version.iri": "http://purl.obolibrary.org/obo/pr/62.0/pr.owl"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "synonyms": [
       "PR",
       "PRO"
@@ -11960,7 +12489,8 @@
       "name": "PRIDE Controlled Vocabulary",
       "prefix": "pride",
       "version": "05-11-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "pride.project": {
     "miriam": {
@@ -12009,7 +12539,8 @@
       "name": "Probability Distribution Ontology",
       "prefix": "probonto",
       "version": "2.5.0"
-    }
+    },
+    "ols_version_type": "semver"
   },
   "prodom": {
     "miriam": {
@@ -12157,7 +12688,8 @@
       "prefix": "psdo",
       "version": "1.0.0",
       "version.iri": "http://purl.obolibrary.org/obo/2020-12-04/psdo.owl"
-    }
+    },
+    "ols_version_type": "semver"
   },
   "pseudogene": {
     "homepage": "http://www.pseudogene.org",
@@ -12215,7 +12747,8 @@
       "prefix": "pso",
       "version": "2020-05-19",
       "version.iri": "http://purl.obolibrary.org/obo/pso/releases/2020-05-19/pso.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "pubchem.bioassay": {
     "miriam": {
@@ -12335,6 +12868,7 @@
       "version": "23-10-2019",
       "version.iri": "http://purl.obolibrary.org/obo/pw/7.52/pw.owl"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "wikidata": {
       "database": "Q28864280",
       "property": "P7333"
@@ -12458,7 +12992,8 @@
       "name": "REPRODUCE-ME Ontology",
       "prefix": "reproduceme",
       "version": "1.1"
-    }
+    },
+    "ols_version_type": "semver"
   },
   "resid": {
     "miriam": {
@@ -12488,7 +13023,8 @@
       "name": "Regulation of Transcription Ontology",
       "prefix": "reto",
       "version": "17-09-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "rex": {
     "download": "http://purl.obolibrary.org/obo/rex.owl",
@@ -12505,7 +13041,8 @@
       "prefix": "rex",
       "version": "2017-11-19",
       "version.iri": "http://purl.obolibrary.org/obo/rex/releases/2017-11-19/rex.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "rexo": {
     "ols": {
@@ -12514,7 +13051,8 @@
       "name": "Regulation of Gene Expression Ontology",
       "prefix": "rexo",
       "version": "11-04-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "rfam": {
     "miriam": {
@@ -12733,9 +13271,11 @@
       "prefix": "rnao",
       "version": "15-04-2019"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "pattern": "^\\d{7}$"
   },
   "ro": {
+    "download": "https://github.com/oborel/obo-relations/raw/master/ro.obo",
     "miriam": {
       "deprecated": false,
       "description": "The OBO Relation Ontology provides consistent and unambiguous formal definitions of the relational expressions used in biomedical ontologies.",
@@ -12768,8 +13308,10 @@
       "version": "2020-12-18",
       "version.iri": "http://purl.obolibrary.org/obo/ro/releases/2020-12-18/ro.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "synonyms": [
-      "obo_rel"
+      "obo_rel",
+      "RO_proposed_relation"
     ],
     "wikidata": {
       "property": "P3590"
@@ -12821,6 +13363,7 @@
       "version": "13-12-2019",
       "version.iri": "http://purl.obolibrary.org/obo/rs/6.106/rs.owl"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "pattern": "^\\d{7}$"
   },
   "rxno": {
@@ -12843,6 +13386,7 @@
       "version": "15-11-2019",
       "version.iri": "http://purl.obolibrary.org/obo/rxno.obo/rxno/releases/2014-10-21/rxno.owl/rxno.obo.owl"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "pattern": "^\\d{7}$",
     "wikidata": {
       "property": "P2106"
@@ -12916,6 +13460,35 @@
       "prefix": "sabiork.reaction"
     }
   },
+  "sael": {
+    "deprecated": true,
+    "name": "Standards and Ontologies for Functional Genomics (SOFG) Anatomy Entry List (SAEL)",
+    "references": [
+      "https://pubmed.ncbi.nlm.nih.gov/18629134/"
+    ]
+  },
+  "salk": {
+    "appears_in": [
+      "efo"
+    ],
+    "comment": "spider stuff!",
+    "example": "037727",
+    "name": "Salk Institute for Biological Studies Accession",
+    "url": "https://abrc.osu.edu/stocks/number/SALK_$1"
+  },
+  "sao": {
+    "name": "Subcellular Anatomy Ontology",
+    "obofoundry": {
+      "contact": "slarson@ncmir.ucsd.edu",
+      "contact.label": "Stephen Larson",
+      "deprecated": true,
+      "name": "Subcellular anatomy ontology",
+      "prefix": "sao"
+    },
+    "references": [
+      "http://www.ontobee.org/ontology/SAO"
+    ]
+  },
   "sasbdb": {
     "miriam": {
       "deprecated": false,
@@ -12958,7 +13531,8 @@
       "name": "Systems Biology Ontology",
       "prefix": "sbo",
       "version": "20:10:2020 13:19"
-    }
+    },
+    "ols_version_date_format": "%d:%m:%Y %H:%M"
   },
   "scdo": {
     "ols": {
@@ -12968,7 +13542,8 @@
       "prefix": "scdo",
       "version": "2019-06-26",
       "version.iri": "http://purl.obolibrary.org/obo/scdo/releases/2019-06-26/scdo.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "scop": {
     "miriam": {
@@ -13020,7 +13595,8 @@
       "prefix": "sdgio",
       "version": "2018-08-10",
       "version.iri": "http://purl.unep.org/sdg/releases/2018-08-10/sdgio.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "seed": {
     "miriam": {
@@ -13081,7 +13657,8 @@
       "prefix": "sepio",
       "version": "$Revision$",
       "version.iri": "http://purl.obolibrary.org/obo/sepio-v20170929.owl"
-    }
+    },
+    "ols_version_type": "other"
   },
   "sgd": {
     "miriam": {
@@ -13161,6 +13738,7 @@
       "version": "2015-06-15",
       "version.iri": "http://purl.obolibrary.org/obo/sibo/releases/2015-06-15/sibo.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "sider.drug": {
@@ -13220,7 +13798,8 @@
       "prefix": "sio",
       "version": "1.48",
       "version.iri": "http://semanticscience.org/ontology/sio/v1.48/sio-release.owl"
-    }
+    },
+    "ols_version_type": "semver"
   },
   "sisu": {
     "miriam": {
@@ -13311,6 +13890,12 @@
     ],
     "url": "https://smpdb.ca/view/$1"
   },
+  "snap": {
+    "name": "Snapshot",
+    "references": [
+      "http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf"
+    ]
+  },
   "snomedct": {
     "miriam": {
       "deprecated": false,
@@ -13343,6 +13928,7 @@
       "SNOMEDCTCT_2018_03_01",
       "SNOMEDCT_US_2019_03_01",
       "SNOMEDCTCT_2019_03_01",
+      "SNOMEDCT_US_2019_09_01",
       "SNOMEDCT_US_2020_03_01",
       "SNOMEDCT_US_2020_09_01"
     ],
@@ -13404,7 +13990,8 @@
       "prefix": "so",
       "version": "2020-12-30",
       "version.iri": "http://purl.obolibrary.org/obo/so/2020-12-30/so.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "soybase": {
     "miriam": {
@@ -13419,6 +14006,10 @@
     "n2t": {
       "prefix": "soybase"
     }
+  },
+  "span": {
+    "comment": "see also snap",
+    "name": "Span"
   },
   "spd": {
     "obofoundry": {
@@ -13438,6 +14029,7 @@
       "version": "27-02-2019",
       "version.iri": "http://purl.obolibrary.org/obo/spd/1.0/spd.owl"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "pattern": "^\\d{7}$",
     "wikidata": {
       "property": "P4537"
@@ -13535,7 +14127,8 @@
       "name": "STATO: the statistical methods ontology",
       "prefix": "stato",
       "version": "RC1.4"
-    }
+    },
+    "ols_version_type": "other"
   },
   "stitch": {
     "miriam": {
@@ -13707,7 +14300,8 @@
       "prefix": "swo",
       "version": "1.7",
       "version.iri": "http://www.ebi.ac.uk/swo/swo.owl/1.7"
-    }
+    },
+    "ols_version_type": "semver"
   },
   "symp": {
     "obofoundry": {
@@ -13728,6 +14322,7 @@
       "version": "2020-08-04",
       "version.iri": "http://purl.obolibrary.org/obo/symp/releases/2020-08-04/symp.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "synonyms": [
       "SYMP"
@@ -13735,6 +14330,13 @@
     "wikidata": {
       "property": "P8656"
     }
+  },
+  "syoid": {
+    "deprecated": true,
+    "name": "Gemina Symptom Ontology Identifier",
+    "references": [
+      "https://github.com/DiseaseOntology/SymptomOntology/issues/7#event-4223716562"
+    ]
   },
   "t3db": {
     "miriam": {
@@ -13768,6 +14370,7 @@
       "version": "2015-08-20",
       "version.iri": "http://purl.obolibrary.org/obo/tads/2015-08-20/tads.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "tair.gene": {
@@ -13815,6 +14418,21 @@
       "prefix": "tair.protein"
     }
   },
+  "tao": {
+    "name": "Teleost Anatomy Ontology",
+    "obofoundry": {
+      "contact": "wasila.dahdul@usd.edu",
+      "contact.label": "Wasila Dahdul",
+      "deprecated": true,
+      "download.obo": "http://purl.obolibrary.org/obo/tao.obo",
+      "license": "CC-0",
+      "name": "Teleost Anatomy Ontology",
+      "prefix": "tao"
+    },
+    "synonyms": [
+      "TAO_RETIRED"
+    ]
+  },
   "tarbase": {
     "miriam": {
       "deprecated": false,
@@ -13848,9 +14466,11 @@
       "version": "2016-04-15",
       "version.iri": "http://purl.obolibrary.org/obo/taxrank/releases/2016-04-15/taxrank.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "tcdb": {
+    "homepage": "https://www.tcdb.org",
     "miriam": {
       "deprecated": false,
       "description": "The database details a comprehensive  IUBMB approved classification system for membrane transport proteins known as the Transporter Classification (TC) system. The TC system is analogous to the Enzyme Commission (EC) system for classification of enzymes, but incorporates phylogenetic information additionally.",
@@ -13862,6 +14482,16 @@
     },
     "n2t": {
       "prefix": "tcdb"
+    },
+    "synonyms": [
+      "TC"
+    ]
+  },
+  "te": {
+    "example": "E5.11.2.0.0.0.4",
+    "name": "Terminologia Embryologica",
+    "wikidata": {
+      "property": "P1693"
     }
   },
   "tgd": {
@@ -13896,7 +14526,12 @@
       "version": "2013-06-03",
       "version.iri": "http://purl.obolibrary.org/obo/tgma/releases/2013-06-03/tgma.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
+  },
+  "th": {
+    "example": "H3.03.00.0.00007",
+    "name": "Terminologia Histologica"
   },
   "tigrfam": {
     "miriam": {
@@ -13945,6 +14580,7 @@
       "version": "2020-10-13",
       "version.iri": "http://purl.obolibrary.org/obo/to/releases/2020-10-13/to.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "tol": {
@@ -14022,6 +14658,7 @@
       "version": "2020-08-04",
       "version.iri": "http://purl.obolibrary.org/obo/trans/releases/2020-08-04/trans.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "transyt": {
@@ -14136,6 +14773,7 @@
       "version": "26-03-2018",
       "version.iri": "http://purl.obolibrary.org/obo/tto/2012-05-18/tto.owl"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "pattern": "^\\d+$",
     "wikidata": {
       "database": "Q81661821"
@@ -14158,7 +14796,8 @@
       "prefix": "txpo",
       "version": "2020/07/09",
       "version.iri": "http://purl.obolibrary.org/obo/txpo/releases/2020-03-03/txpo.owl"
-    }
+    },
+    "ols_version_date_format": "%Y/%m/%d"
   },
   "uberon": {
     "download": "http://purl.obolibrary.org/obo/uberon/basic.obo",
@@ -14191,6 +14830,7 @@
       "version": "2020-09-16",
       "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2020-09-16/uberon.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "synonyms": [
       "UBERON",
       "Uberon",
@@ -14394,7 +15034,8 @@
       "name": "Unimod protein modification database for mass spectrometry",
       "prefix": "unimod",
       "version": "21-11-2019"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "uniparc": {
     "miriam": {
@@ -14573,7 +15214,8 @@
       "prefix": "uo",
       "version": "2020-03-10",
       "version.iri": "http://purl.obolibrary.org/obo/uo/releases/2020-03-10/uo.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "upa": {
     "obofoundry": {
@@ -14594,6 +15236,7 @@
       "version": "2018-12-12",
       "version.iri": "http://purl.obolibrary.org/obo/upa/releases/2018-12-12/upa.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{8}$",
     "synonyms": [
       "UPa",
@@ -14619,7 +15262,8 @@
       "name": "Unified phenotype ontology (uPheno)",
       "prefix": "upheno",
       "version": "31-10-2017"
-    }
+    },
+    "ols_version_date_format": "%d-%m-%Y"
   },
   "uspto": {
     "miriam": {
@@ -14683,7 +15327,8 @@
       "prefix": "vario",
       "version": "2018-11-09",
       "version.iri": "http://purl.obolibrary.org/obo/vario/2018-11-09/vario.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "vbase2": {
     "miriam": {
@@ -14798,6 +15443,18 @@
       "prefix": "vgnc"
     }
   },
+  "vhog": {
+    "download": "ftp://ftp.bgee.org/general/ontologies/vHOG.obo",
+    "name": "Vertebrate Homologous Organ Group Ontology",
+    "obofoundry": {
+      "deprecated": true,
+      "name": "Vertebrate Homologous Ontology Group Ontology",
+      "prefix": "vhog"
+    },
+    "synonyms": [
+      "VHOG_RETIRED"
+    ]
+  },
   "viaf": {
     "miriam": {
       "deprecated": false,
@@ -14821,7 +15478,8 @@
       "prefix": "vido",
       "version": "2020-25-08",
       "version.iri": "http://purl.obolibrary.org/obo/2020-25-08/vido.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%d-%m"
   },
   "vipr": {
     "miriam": {
@@ -14864,6 +15522,14 @@
     "n2t": {
       "prefix": "virsirna"
     }
+  },
+  "vmc": {
+    "deprecated": true,
+    "name": "Variation Modelling Collaboration",
+    "references": [
+      "https://docs.google.com/document/d/12E8WbQlvfZWk5NrxwLytmympPby6vsv60RxCeD5wc1E/edit#heading=h.67hbe76b6a4z",
+      "https://github.com/ga4gh/vr-spec"
+    ]
   },
   "vmhmetabolite": {
     "miriam": {
@@ -14908,8 +15574,25 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "Vaccine Ontology",
       "prefix": "vo",
-      "version": "1.1.133"
-    }
+      "version": "1.1.138"
+    },
+    "ols_version_type": "semver"
+  },
+  "vsao": {
+    "bioportal": {
+      "prefix": "VSAO"
+    },
+    "name": "Vertebrate Skeletal Anatomy Ontology",
+    "obofoundry": {
+      "contact": "wasila.dahdul@usd.edu",
+      "contact.label": "Wasila Dahdul",
+      "deprecated": true,
+      "name": "Vertebrate Skeletal Anatomy Ontology-",
+      "prefix": "vsao"
+    },
+    "synonyms": [
+      "VSAO_RETIRED"
+    ]
   },
   "vsdb": {
     "example": "1868",
@@ -14933,6 +15616,7 @@
       "prefix": "vt",
       "version": "07-06-2019"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "pattern": "^\\d{7}$"
   },
   "vto": {
@@ -14953,6 +15637,7 @@
       "version": "2020-11-13",
       "version.iri": "http://purl.obolibrary.org/obo/vto/2020-11-13/vto.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "vuid": {
@@ -15016,6 +15701,7 @@
       "version": "2020-12-14",
       "version.iri": "http://purl.obolibrary.org/obo/wbbt/releases/2020-12-14/wbbt.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "synonyms": [
       "WBbt"
@@ -15041,6 +15727,7 @@
       "version": "2020-12-15",
       "version.iri": "http://purl.obolibrary.org/obo/wbls/releases/2020-12-15/wbls.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "synonyms": [
       "WBls"
@@ -15066,6 +15753,7 @@
       "version": "2020-12-15",
       "version.iri": "http://purl.obolibrary.org/obo/wbphenotype/releases/2020-12-15/wbphenotype.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "synonyms": [
       "WBPhenotype"
@@ -15214,6 +15902,7 @@
       "version": "2020-06-26",
       "version.iri": "http://purl.obolibrary.org/obo/xao/releases/2020-06-26/xao.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
     "wikidata": {
       "property": "P4495"
@@ -15237,6 +15926,7 @@
       "version": "18-12-2019",
       "version.iri": "http://purl.obolibrary.org/obo/xco/4.46/xco.owl"
     },
+    "ols_version_date_format": "%d-%m-%Y",
     "pattern": "^\\d{7}$"
   },
   "xenbase": {
@@ -15298,7 +15988,14 @@
       "version": "2020-07-04",
       "version.iri": "http://purl.obolibrary.org/obo/xpo/releases/2020-07-04/xpo.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d+$"
+  },
+  "xuo": {
+    "appears_in": [
+      "hsapdv"
+    ],
+    "name": "XUO"
   },
   "ydpm": {
     "miriam": {
@@ -15375,6 +16072,15 @@
       "prefix": "yrcpdr"
     }
   },
+  "zea": {
+    "obofoundry": {
+      "contact": "Leszek@missouri.edu",
+      "contact.label": "Leszek Vincent",
+      "deprecated": true,
+      "name": "Maize gross anatomy",
+      "prefix": "zea"
+    }
+  },
   "zeco": {
     "obofoundry": {
       "contact": "ybradford@zfin.org",
@@ -15394,6 +16100,7 @@
       "version": "2020-11-30",
       "version.iri": "http://purl.obolibrary.org/obo/zeco/releases/2020-11-30/zeco.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "zfa": {
@@ -15415,7 +16122,11 @@
       "version": "2020-03-18",
       "version.iri": "http://purl.obolibrary.org/obo/zfa/releases/2020-03-18/zfa.owl"
     },
-    "pattern": "^\\d{7}$"
+    "ols_version_date_format": "%Y-%m-%d",
+    "pattern": "^\\d{7}$",
+    "synonyms": [
+      "ZFA_RETIRED"
+    ]
   },
   "zfin": {
     "miriam": {
@@ -15455,6 +16166,7 @@
       "version": "2020-03-10",
       "version.iri": "http://purl.obolibrary.org/obo/zfs/releases/2020-03-10/zfs.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
   },
   "zinc": {
@@ -15492,6 +16204,7 @@
       "version": "2020-08-02",
       "version.iri": "http://purl.obolibrary.org/obo/zp/releases/2020-08-02/zp.owl"
     },
+    "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d+$"
   }
 }
