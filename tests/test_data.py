@@ -38,7 +38,6 @@ class TestDuplicates(unittest.TestCase):
                 continue
             with self.subTest(prefix=prefix):
                 self.assertIn('$1', url, msg=f'{prefix} format does not have a $1')
-                self.assertIn('example', entry.keys(), msg=f'{prefix} is missing an example local identifier')
 
     def test_patterns(self):
         """Test that all prefixes are norm-unique."""
@@ -49,13 +48,18 @@ class TestDuplicates(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.assertTrue(pattern.startswith('^'), msg=f'{prefix} pattern {pattern} should start with ^')
                 self.assertTrue(pattern.endswith('$'), msg=f'{prefix} pattern {pattern} should end with $')
-                self.assertIn('example', entry.keys(), msg=f'{prefix} is missing an example local identifier')
 
                 # Check that it's the same as external definitions
                 for key in ('miriam', 'wikidata'):
                     external_pattern = entry.get('key', {}).get('pattern')
                     if external_pattern:
                         self.assertEqual(pattern, external_pattern, msg=f'{prefix}: {key} pattern not same')
+
+    def test_examples(self):
+        """Test that all entries have examples."""
+        for prefix, entry in self.registry.items():
+            with self.subTest(prefix=prefix):
+                self.assertIn('example', set(entry), msg=f'{prefix} is missing an example local identifier')
 
     def test_ols_versions(self):
         """Test that all OLS entries have a version annotation on them."""
