@@ -2,6 +2,8 @@
 
 """Utilities for normalizing prefixes."""
 
+import datetime
+import logging
 from functools import lru_cache
 from typing import Any, Mapping, Optional
 
@@ -12,7 +14,11 @@ __all__ = [
     'get_pattern',
     'is_deprecated',
     'normalize_prefix',
+    'get_version',
+    'get_versions',
 ]
+
+logger = logging.getLogger(__name__)
 
 
 def get(prefix: str) -> Optional[Mapping[str, Any]]:
@@ -124,3 +130,61 @@ def _synonym_to_canonical() -> NormDict:
             norm_synonym_to_key[synonym] = bioregistry_id
 
     return norm_synonym_to_key
+
+
+def get_version(prefix: str) -> Optional[str]:
+    """Get the version."""
+    norm_prefix = normalize_prefix(prefix)
+    if norm_prefix is None:
+        return None
+    return get_versions().get(norm_prefix)
+
+
+@lru_cache(maxsize=1)
+def get_versions() -> Mapping[str, str]:
+    """Get a map of prefixes to versions."""
+    rv = {}
+
+    for bioregistry_id, bioregistry_entry in read_bioregistry().items():
+        if 'ols' not in bioregistry_entry:
+            continue
+        version = bioregistry_entry['ols'].get('version')
+        if version is None:
+            logger.warning('[%s] missing version', bioregistry_id)
+            continue
+
+        if version != version.strip():
+            logger.warning('[%s] extra whitespace in version: %s', bioregistry_id, version)
+            version = version.strip()
+
+        version_prefix = bioregistry_entry.get('ols_version_prefix')
+        if version_prefix:
+            if not version.startswith(version_prefix):
+                raise ValueError(f'[{bioregistry_id}] version {version} does not start with prefix {version_prefix}')
+            version = version[len(version_prefix):]
+
+        if bioregistry_entry.get('ols_version_suffix_split'):
+            version = version.split()[0]
+
+        version_suffix = bioregistry_entry.get('ols_version_suffix')
+        if version_suffix:
+            if not version.endswith(version_suffix):
+                raise ValueError(f'[{bioregistry_id}] version {version} does not end with prefix {version_suffix}')
+            version = version[:-len(version_suffix)]
+
+        version_type = bioregistry_entry.get('ols_version_type')
+        version_date_fmt = bioregistry_entry.get('ols_version_date_format')
+
+        if version_date_fmt:
+            if version_date_fmt in {"%Y-%d-%m"}:
+                logger.warning('[%s] confusing date format: %s', bioregistry_id, version_date_fmt)
+            try:
+                version = datetime.datetime.strptime(version, version_date_fmt)
+            except ValueError:
+                logger.warning('[%s] wrong format for version %s', bioregistry_id, version)
+        elif not version_type:
+            logger.warning('[%s] no type for version %s', bioregistry_id, version)
+
+        rv[bioregistry_id] = version
+
+    return rv
