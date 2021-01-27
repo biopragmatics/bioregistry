@@ -2,6 +2,7 @@
 
 """This script compares what's in OBO, OLS, and MIRIAM."""
 
+import datetime
 import itertools as itt
 import os
 import sys
@@ -68,7 +69,8 @@ def _remap_license(k):
 
 
 SINGLE_FIG = (8, 3.5)
-WATERMARK_TEXT = 'https://github.com/cthoyt/bioregistry'
+TODAY = datetime.datetime.today().strftime('%Y-%m-%d')
+WATERMARK_TEXT = f'https://github.com/cthoyt/bioregistry ({TODAY})'
 
 
 @click.command()
