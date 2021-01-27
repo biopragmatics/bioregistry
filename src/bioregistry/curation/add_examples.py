@@ -28,20 +28,21 @@ def main(registry):
 
 def _get_example(prefix: str) -> Optional[str]:
     if prefix in {'gaz', 'bila', 'pubchem.compound'}:
-        return
+        return None
     if prefix in pyobo.getters.SKIP:
-        return
+        return None
     try:
         x = pyobo.get_id_name_mapping(prefix)
     except (pyobo.getters.NoBuild, ValueError, urllib.error.URLError):
-        return
+        return None
     if not x:
-        return
+        return None
     x = list(x)
     try:
         rv = x[random.randint(0, len(x))]  # noqa:S311
     except IndexError:
         print('failed', prefix, x)
+        return None
     else:
         print('adding', prefix, rv)
         return rv
