@@ -6,11 +6,11 @@ import random
 from typing import Optional
 
 import click
+import pyobo
+import pyobo.getters
 
 import bioregistry
 import bioregistry.utils
-import pyobo
-import pyobo.getters
 
 
 @click.command()
@@ -39,7 +39,7 @@ def _get_example(prefix: str) -> Optional[str]:
         return
     x = list(x)
     try:
-        rv = x[random.randint(0, len(x))]
+        rv = x[random.randint(0, len(x))]  # noqa:S311
     except IndexError:
         print('failed', prefix, x)
     else:
