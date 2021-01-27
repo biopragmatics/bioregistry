@@ -61,7 +61,10 @@ class TestDuplicates(unittest.TestCase):
             if 'pattern' not in entry:  # TODO remove this later
                 continue
             with self.subTest(prefix=prefix):
-                self.assertIn('example', set(entry), msg=f'{prefix} is missing an example local identifier')
+                msg = f'{prefix} is missing an example local identifier'
+                if 'ols' in entry:
+                    msg += f'\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry["ols"]["prefix"]}/terms'
+                self.assertIn('example', set(entry), msg=msg)
 
     def test_ols_versions(self):
         """Test that all OLS entries have a version annotation on them."""
