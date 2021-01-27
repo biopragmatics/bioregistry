@@ -98,7 +98,10 @@ class TestDuplicates(unittest.TestCase):
 
                 version_type = bioregistry_entry.get('ols_version_type')
                 version_date_fmt = bioregistry_entry.get('ols_version_date_format')
-                self.assertTrue(version_type is not None or version_date_fmt is not None)
+                self.assertTrue(
+                    version_type is not None or version_date_fmt is not None,
+                    msg='missing either a version type or date format string',
+                )
 
                 if version_date_fmt:
                     if version_date_fmt in {"%Y-%d-%m"}:
