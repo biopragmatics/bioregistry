@@ -55,6 +55,17 @@ class TestDuplicates(unittest.TestCase):
                     if external_pattern:
                         self.assertEqual(pattern, external_pattern, msg=f'{prefix}: {key} pattern not same')
 
+    def test_examples(self):
+        """Test that all entries have examples."""
+        for prefix, entry in self.registry.items():
+            if 'pattern' not in entry:  # TODO remove this later
+                continue
+            with self.subTest(prefix=prefix):
+                msg = f'{prefix} is missing an example local identifier'
+                if 'ols' in entry:
+                    msg += f'\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry["ols"]["prefix"]}/terms'
+                self.assertIn('example', set(entry), msg=msg)
+
     def test_ols_versions(self):
         """Test that all OLS entries have a version annotation on them."""
         for bioregistry_id, bioregistry_entry in self.registry.items():
