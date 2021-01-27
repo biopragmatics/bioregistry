@@ -3,37 +3,37 @@
 """Script for adding examples automatically."""
 
 import random
+import urllib.error
 from typing import Optional
 
-import click
 import pyobo
 import pyobo.getters
 
-import bioregistry
-import bioregistry.utils
+from bioregistry.utils import updater
 
 
-@click.command()
-def main():
+@updater
+def main(registry):
     """Add examples to the bioregistry from OBO/OLS."""
-    registry = bioregistry.read_bioregistry()
     for prefix, entry in registry.items():
-        if 'pattern' not in entry:  # TODO remove this later
-            continue
+        # if 'pattern' not in entry:  # TODO remove this later
+        #     continue
         if 'example' in entry:
             continue
         example = _get_example(prefix)
         if example is not None:
             entry['example'] = example
-    bioregistry.utils.write_bioregistry(registry)
+    return registry
 
 
 def _get_example(prefix: str) -> Optional[str]:
-    if prefix in {'gaz'}:
+    if prefix in {'gaz', 'bila', 'pubchem.compound'}:
+        return
+    if prefix in pyobo.getters.SKIP:
         return
     try:
         x = pyobo.get_id_name_mapping(prefix)
-    except (pyobo.getters.NoBuild, ValueError):
+    except (pyobo.getters.NoBuild, ValueError, urllib.error.URLError):
         return
     if not x:
         return
