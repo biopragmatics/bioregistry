@@ -4,6 +4,7 @@
 
 import datetime
 import logging
+import re
 from functools import lru_cache
 from typing import Any, Mapping, Optional
 
@@ -11,8 +12,10 @@ from .utils import read_bioregistry
 
 __all__ = [
     'get',
-    'get_pattern',
     'get_name',
+    'get_pattern',
+    'get_pattern_re',
+    'validate',
     'get_format',
     'is_deprecated',
     'normalize_prefix',
@@ -67,6 +70,23 @@ def get_pattern(prefix: str) -> Optional[str]:
         or entry.get('miriam', {}).get('pattern')
         or entry.get('wikidata', {}).get('pattern')
     )
+
+
+@lru_cache()
+def get_pattern_re(prefix: str) -> Optional[re.Pattern]:
+    """Get the compiled pattern for the given prefix, if it's available."""
+    pattern = get_pattern(prefix)
+    if pattern is None:
+        return None
+    return re.compile(pattern)
+
+
+def validate(prefix: str, identifier: str) -> Optional[bool]:
+    """Validate the identifier against the prefix's pattern, if it exists."""
+    pattern = get_pattern_re(prefix)
+    if pattern is None:
+        return None
+    return bool(pattern.match(identifier))
 
 
 def get_format(prefix: str) -> Optional[str]:
@@ -149,7 +169,7 @@ class NormDict(dict):
         return super().get(_norm(key), default)
 
 
-@lru_cache()
+@lru_cache(maxsize=1)
 def _synonym_to_canonical() -> NormDict:
     """Return a mapping from several variants of each synonym to the canonical namespace."""
     norm_synonym_to_key = NormDict()
