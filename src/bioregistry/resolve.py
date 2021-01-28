@@ -74,7 +74,17 @@ def get_format(prefix: str) -> Optional[str]:
     entry = get(prefix)
     if entry is None:
         return None
-    return entry.get('url')
+    url = entry.get('url')
+    if url is not None:
+        return url
+    miriam_id = entry.get('miriam', {}).get('prefix')
+    if miriam_id is not None:
+        return f'https://identifiers.org/{miriam_id}:$1'
+    ols_id = entry.get('ols', {}).get('prefix')
+    if ols_id is not None:
+        purl = f'http://purl.obolibrary.org/obo/{ols_id.upper()}_$1'
+        return f'https://www.ebi.ac.uk/ols/ontologies/{ols_id}/terms?iri={purl}'
+    return None
 
 
 def is_deprecated(prefix: str) -> bool:
