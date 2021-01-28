@@ -17,6 +17,7 @@ __all__ = [
     'get_pattern_re',
     'validate',
     'get_format',
+    'get_example',
     'is_deprecated',
     'normalize_prefix',
     'get_version',
@@ -104,6 +105,20 @@ def get_format(prefix: str) -> Optional[str]:
     if ols_id is not None:
         purl = f'http://purl.obolibrary.org/obo/{ols_id.upper()}_$1'
         return f'https://www.ebi.ac.uk/ols/ontologies/{ols_id}/terms?iri={purl}'
+    return None
+
+
+def get_example(prefix: str) -> Optional[str]:
+    """Get an example identifier, if it's available."""
+    entry = get(prefix)
+    if entry is None:
+        return None
+    example = entry.get('example')
+    if example is not None:
+        return example
+    miriam_example = entry.get('miriam', {}).get('sampleId')
+    if miriam_example is not None:
+        return miriam_example
     return None
 
 

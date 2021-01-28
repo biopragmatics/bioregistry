@@ -11,7 +11,7 @@ from typing import Collection, Set
 
 import click
 
-from bioregistry import read_bioregistry
+from bioregistry import get_example, get_format, get_pattern, get_version, read_bioregistry
 from bioregistry.constants import DOCS_IMG
 from bioregistry.external import get_go, get_miriam, get_n2t, get_obofoundry, get_ols, get_wikidata_registry
 
@@ -163,25 +163,21 @@ def compare():  # noqa:C901
     ##############################################
     # How many entries have version information? #
     ##############################################
-    has_version = {
-        key
-        for key, entry in bioregistry.items()
-        if entry.get('ols', {}).get('version')
-    }
-    has_pattern = {
-        key
-        for key, entry in bioregistry.items()
-        if 'pattern' in entry or 'pattern' in entry.get('miriam', {}) or 'pattern' in entry.get('wikidata', {})
-    }
+    has_version = {key for key in bioregistry if get_version(key)}
+    has_pattern = {key for key in bioregistry if get_pattern(key)}
     has_wikidata_database = {
         key
         for key, entry in bioregistry.items()
         if 'database' in entry.get('wikidata', {})
     }
+    has_formatter = {key for key in bioregistry if get_format(key)}
+    has_example = {key for key in bioregistry if get_example(key)}
     measurements = [
         ('Pattern', has_pattern),
         ('Version', has_version),
         ('Wikidata Database', has_wikidata_database),
+        ('Format URL', has_formatter),
+        ('Example', has_example),
     ]
     fig, axes = plt.subplots(ncols=2, nrows=(1 + len(measurements)) // 2)
     for (label, prefixes), ax in zip(measurements, axes.ravel()):
