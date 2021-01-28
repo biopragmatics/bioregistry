@@ -2,5 +2,8 @@
 
 """Extract registry information."""
 
-from .resolve import get, get_pattern, is_deprecated, normalize_prefix  # noqa
+from .resolve import (  # noqa
+    get, get_name, get_pattern, get_version, get_versions, is_deprecated,
+    normalize_prefix,
+)
 from .utils import read_bioregistry  # noqa
