@@ -19,6 +19,35 @@ annotated.
 3. Add second relationship `official website` ([P856](https://www.wikidata.org/wiki/Property:P856))
 4. Fill in any other information you want! `country`, `main subject`, `maintained by`, etc.
 
+### Editing the Bioregistry 
+
+1. Follow [this link](https://github.com/cthoyt/bioregistry/edit/main/src/bioregistry/data/bioregistry.json) to edit
+   directly on GitHub.
+2. Here's an example of `3dmet`, which has the wikidata database annotated properly.
+   ```json
+   {
+      "3dmet": {
+         "miriam": {
+            "deprecated": false,
+            "description": "3DMET is a database collecting three-dimensional structures of natural metabolites.",
+            "id": "00000066",
+            "name": "3DMET",
+            "namespaceEmbeddedInLui": false,
+            "pattern": "^B\\d{5}$",
+            "prefix": "3dmet"
+         },
+         "n2t": {
+            "prefix": "3dmet"
+         },
+         "wikidata": {
+            "database": "Q23948774",  // <-- this is it!!
+            "property": "P2796"
+         }
+      },
+      ...
+   }
+   ```
+
 <details>
     <summary>Wikidata</summary>
 <table>
