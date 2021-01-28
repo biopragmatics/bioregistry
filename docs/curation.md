@@ -68,5 +68,26 @@ annotated.
 </table>
 </details>
 
+## Patterns
 
+Same drill for patterns - these entries need a `["pattern"]` entry.
 
+<details>
+    <summary>Pattern</summary>
+<table>
+<thead>
+<tr>
+    <th>Prefix</th>
+    <th>Name</th>
+</tr>
+</thead>
+<tbody>
+    {% for entry in site.data.curation["pattern"] %}
+    <tr>
+        <td>{{ entry.prefix }}</td>
+        <td>{{ entry.name }}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+</details>
