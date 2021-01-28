@@ -12,6 +12,7 @@ from .utils import read_bioregistry
 __all__ = [
     'get',
     'get_pattern',
+    'get_name',
     'is_deprecated',
     'normalize_prefix',
     'get_version',
@@ -30,6 +31,21 @@ def get(prefix: str) -> Optional[Mapping[str, Any]]:
         other registries when available.
     """
     return read_bioregistry().get(normalize_prefix(prefix))
+
+
+def get_name(prefix: str) -> Optional[str]:
+    """Get the name for the given prefix, it it's availble."""
+    entry = get(prefix)
+    if entry is None:
+        return None
+    name = entry.get('name')
+    if name is not None:
+        return name
+    for key in ('miriam', 'ols', 'wikidata'):
+        name = entry.get(key, {}).get('name')
+        if name is not None:
+            return name
+    return None
 
 
 def get_pattern(prefix: str) -> Optional[str]:
