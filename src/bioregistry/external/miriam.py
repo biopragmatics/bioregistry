@@ -53,12 +53,13 @@ def get_miriam_df(**kwargs):
             entry['name'],
             entry['deprecated'],
             entry['description'],
+            entry['sampleId'],
         )
         for entry in get_miriam(**kwargs)
     ]
     df = pd.DataFrame(rows, columns=[
         'registry', 'identifier', 'prefix',
-        'pattern', 'namespaceEmbeddedInLui', 'name', 'deprecated', 'description',
+        'pattern', 'namespaceEmbeddedInLui', 'name', 'deprecated', 'description', 'sampleId',
     ])
     df.to_csv(MIRIAM_SLIM_PATH, sep='\t', index=False)
     return df

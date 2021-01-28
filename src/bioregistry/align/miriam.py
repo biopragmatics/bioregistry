@@ -13,6 +13,7 @@ MIRIAM_KEYS = {
     'name',
     'deprecated',
     'description',
+    'sampleId',
 }
 
 
