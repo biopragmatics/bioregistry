@@ -2,45 +2,41 @@
 
 """Make the curation list."""
 
-import copy
 import os
 
 import click
 import yaml
 
-from bioregistry import get_name, get_pattern, read_bioregistry
+from bioregistry import get_format, get_name, get_pattern, read_bioregistry
 from bioregistry.constants import DOCS_DATA
+
+items = sorted(read_bioregistry().items())
+
+
+def _g(predicate):
+    return [
+        {
+            'prefix': bioregistry_id,
+            'name': get_name(bioregistry_id),
+        }
+        for bioregistry_id, bioregistry_entry in items
+        if predicate(bioregistry_id, bioregistry_entry)
+    ]
 
 
 @click.command()
 def curation():
     """Make curation list."""
-    items = sorted(read_bioregistry().items())
-    missing_wikidata_database = [
-        {
-            'prefix': bioregistry_id,
-            'name': get_name(bioregistry_id),
-            **bioregistry_entry,
-        }
-        for bioregistry_id, bioregistry_entry in items
-        if bioregistry_entry.get('wikidata', {}).get('database') is None
-    ]
-
-    missing_pattern = [
-        {
-            'prefix': bioregistry_id,
-            'name': get_name(bioregistry_id),
-            **bioregistry_entry,
-        }
-        for bioregistry_id, bioregistry_entry in items
-        if get_pattern(bioregistry_id)
-    ]
+    missing_wikidata_database = _g(lambda prefix, entry: entry.get('wikidata', {}).get('database') is None)
+    missing_pattern = _g(lambda prefix, entry: get_pattern(prefix))
+    missing_format_url = _g(lambda prefix, entry: get_format(prefix))
 
     with open(os.path.join(DOCS_DATA, 'curation.yml'), 'w') as file:
         yaml.safe_dump(
             {
-                'wikidata': copy.deepcopy(missing_wikidata_database),
-                'pattern': copy.deepcopy(missing_pattern),
+                'wikidata': missing_wikidata_database,
+                'pattern': missing_pattern,
+                'formatter': missing_format_url,
             },
             file,
         )

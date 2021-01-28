@@ -13,6 +13,7 @@ __all__ = [
     'get',
     'get_pattern',
     'get_name',
+    'get_format',
     'is_deprecated',
     'normalize_prefix',
     'get_version',
@@ -59,13 +60,21 @@ def get_pattern(prefix: str) -> Optional[str]:
         3. Wikidata
     """
     entry = get(prefix)
-    if entry is not None:
-        return (
-            entry.get('pattern')
-            or entry.get('miriam', {}).get('pattern')
-            or entry.get('wikidata', {}).get('pattern')
-        )
-    return None
+    if entry is None:
+        return None
+    return (
+        entry.get('pattern')
+        or entry.get('miriam', {}).get('pattern')
+        or entry.get('wikidata', {}).get('pattern')
+    )
+
+
+def get_format(prefix: str) -> Optional[str]:
+    """Get the URL format string for the given prefix, if it's available."""
+    entry = get(prefix)
+    if entry is None:
+        return None
+    return entry.get('url')
 
 
 def is_deprecated(prefix: str) -> bool:
