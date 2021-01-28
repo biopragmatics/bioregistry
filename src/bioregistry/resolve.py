@@ -41,7 +41,7 @@ def get_name(prefix: str) -> Optional[str]:
     name = entry.get('name')
     if name is not None:
         return name
-    for key in ('miriam', 'ols', 'wikidata'):
+    for key in ('miriam', 'ols', 'obofoundry', 'wikidata'):
         name = entry.get(key, {}).get('name')
         if name is not None:
             return name

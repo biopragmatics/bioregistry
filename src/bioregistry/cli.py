@@ -12,6 +12,7 @@ from .compare import compare
 from .constants import DOCS_DATA
 from .external.cli import download
 from .lint import lint
+from .make_curation_list import curation
 
 
 @click.group()
@@ -66,6 +67,7 @@ def update(ctx: click.Context):
     ctx.invoke(lint)
     ctx.invoke(copy)
     ctx.invoke(compare)
+    ctx.invoke(curation)
 
 
 if __name__ == '__main__':
