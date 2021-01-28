@@ -38,7 +38,7 @@ class TestResolve(unittest.TestCase):
         self.assertIn('wikidata', ncbitaxon_entry)
 
     def test_validate(self):
-        """Test validation of identifiers"""
+        """Test validation of identifiers."""
         self.assertIsNone(bioregistry.validate('lol', 'lol:nope'))
         self.assertTrue(bioregistry.validate('chebi', 'CHEBI:1234'))
         self.assertFalse(bioregistry.validate('chebi', '1234'))
