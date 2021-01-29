@@ -24,7 +24,7 @@ The following entries have an incorrect value in the `namespaceEmbeddedInLui` fi
       </tr>
    </thead>
    <tbody>
-   {% for entry in site.data.curation["embedding_rewrites"] %}
+   {% for entry in site.data.warnings["embedding_rewrites"] %}
       <tr>
          <td>{{ entry.prefix }}</td>
          <td>{{ entry.name }}</td>
@@ -52,7 +52,7 @@ case.
       </tr>
    </thead>
    <tbody>
-   {% for entry in site.data.curation["prefix_rewrites"] %}
+   {% for entry in site.data.warnings["prefix_rewrites"] %}
       <tr>
          <td>{{ entry.prefix }}</td>
          <td>{{ entry.name }}</td>
