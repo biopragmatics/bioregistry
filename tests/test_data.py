@@ -64,7 +64,7 @@ class TestDuplicates(unittest.TestCase):
                 msg = f'{prefix} is missing an example local identifier'
                 if 'ols' in entry:
                     msg += f'\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry["ols"]["prefix"]}/terms'
-                self.assertIn('example', set(entry), msg=msg)
+                self.assertIsNotNone(bioregistry.get_example(prefix), msg=msg)
 
     def test_examples_pass_patterns(self):
         """Test that all examples pass the patterns."""
