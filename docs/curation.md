@@ -98,7 +98,7 @@ describing the local identifiers for this namespace.
 
 ## URL Formatter
 
-<a id="format"></a>
+<a id="formatter"></a>
 Same drill for URL Formatters - these entries need a `["url"]` entry. This is a URL with a `$1`
 character where the local identifier gets put.
 
@@ -115,7 +115,7 @@ character where the local identifier gets put.
 ```
 
 <details>
-   <summary>Entries ({{ site.data.curation["pattern"] | size }})</summary>
+   <summary>Entries ({{ site.data.curation["formatter"] | size }})</summary>
    <table>
    <thead>
       <tr>
@@ -124,7 +124,45 @@ character where the local identifier gets put.
       </tr>
    </thead>
    <tbody>
-   {% for entry in site.data.curation["pattern"] %}
+   {% for entry in site.data.curation["formatter"] %}
+      <tr>
+         <td>{{ entry.prefix }}</td>
+         <td>{{ entry.name }}</td>
+      </tr>
+   {% endfor %}
+   </tbody>
+   </table>
+</details>
+
+## Example Identifier
+
+<a id="example"></a>
+As a courtesy to newcomers, it's nice to show an example local identifier. These
+entries need a `["example"]` entry. 
+
+```json
+{
+   ...
+   "jax": {
+      "example": "004435",  // <-- this one here
+      "name": "Jackson Laboratories Strain",
+      "url": "https://www.jax.org/strain/$1"
+   },
+   ...
+}
+```
+
+<details>
+   <summary>Entries ({{ site.data.curation["example"] | size }})</summary>
+   <table>
+   <thead>
+      <tr>
+         <th>Prefix</th>
+         <th>Name</th>
+      </tr>
+   </thead>
+   <tbody>
+   {% for entry in site.data.curation["example"] %}
       <tr>
          <td>{{ entry.prefix }}</td>
          <td>{{ entry.name }}</td>

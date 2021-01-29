@@ -7,7 +7,7 @@ import os
 import click
 import yaml
 
-from bioregistry import get_format, get_name, get_pattern, read_bioregistry
+from bioregistry import get_example, get_format, get_name, get_pattern, read_bioregistry
 from bioregistry.constants import DOCS_DATA
 
 items = sorted(read_bioregistry().items())
@@ -30,6 +30,7 @@ def curation():
     missing_wikidata_database = _g(lambda prefix, entry: entry.get('wikidata', {}).get('database') is None)
     missing_pattern = _g(lambda prefix, entry: get_pattern(prefix) is None)
     missing_format_url = _g(lambda prefix, entry: get_format(prefix) is None)
+    missing_example = _g(lambda prefix, entry: get_example(prefix) is None)
 
     with open(os.path.join(DOCS_DATA, 'curation.yml'), 'w') as file:
         yaml.safe_dump(
@@ -37,6 +38,7 @@ def curation():
                 'wikidata': missing_wikidata_database,
                 'pattern': missing_pattern,
                 'formatter': missing_format_url,
+                'example': missing_example,
             },
             file,
         )
