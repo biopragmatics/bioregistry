@@ -11,6 +11,7 @@ from .align.cli import align
 from .compare import compare
 from .constants import DOCS_DATA
 from .external.cli import download
+from .generate_warnings_file import warnings
 from .lint import lint
 from .make_curation_list import curation
 
@@ -22,6 +23,7 @@ def main():
 
 main.add_command(lint)
 main.add_command(compare)
+main.add_command(warnings)
 
 
 @main.command()
@@ -68,6 +70,7 @@ def update(ctx: click.Context):
     ctx.invoke(copy)
     ctx.invoke(compare)
     ctx.invoke(curation)
+    ctx.invoke(warnings)
 
 
 if __name__ == '__main__':
