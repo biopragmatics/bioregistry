@@ -23,19 +23,18 @@ items = sorted(read_bioregistry().items())
 @click.command()
 def warnings():
     """Make warnings list."""
-    # When are namespace rewrites required?
-    miriam_rewrites = [
+    miriam_pattern_wrong = [
         dict(
             prefix=prefix,
             name=get_name(prefix),
-            pattern=get_pattern(prefix),
-            correct=entry['namespace.rewrite'],
+            correct=entry['pattern'],
+            miriam=entry['miriam']['pattern'],
         )
         for prefix, entry in items
-        if 'namespace.rewrite' in entry
+        if 'miriam' in entry and 'pattern' in entry and entry['pattern'] != entry['miriam']['pattern']
     ]
 
-    embedding_rewrites = [
+    miriam_embedding_rewrites = [
         dict(
             prefix=prefix,
             name=get_name(prefix),
@@ -47,23 +46,24 @@ def warnings():
         if 'namespace.embedded' in entry
     ]
 
-    miriam_pattern_wrong = [
+    # When are namespace rewrites required?
+    miriam_prefix_rewrites = [
         dict(
             prefix=prefix,
             name=get_name(prefix),
-            correct_pattern=entry['pattern'],
-            miriam_pattern=entry['miriam']['pattern'],
+            pattern=get_pattern(prefix),
+            correct=entry['namespace.rewrite'],
         )
         for prefix, entry in items
-        if 'miriam' in entry and 'pattern' in entry and entry['pattern'] != entry['miriam']['pattern']
+        if 'namespace.rewrite' in entry
     ]
 
     with open(os.path.join(DOCS_DATA, 'warnings.yml'), 'w') as file:
         yaml.safe_dump(
             {
-                'prefix_rewrites': miriam_rewrites,
-                'embedding_rewrites': embedding_rewrites,
                 'wrong_patterns': miriam_pattern_wrong,
+                'embedding_rewrites': miriam_embedding_rewrites,
+                'prefix_rewrites': miriam_prefix_rewrites,
             },
             file,
         )

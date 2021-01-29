@@ -1,33 +1,32 @@
 embedding_rewrites:
-- name: Ontology for Biomedical Investigations
+- correct: true
+  miriam: false
+  name: Ontology for Biomedical Investigations
   pattern: (^OBI:\d{7}$)|(^OBI_\d{7}$)
   prefix: obi
 prefix_rewrites:
 - correct: GRO
-  miriam: true
   name: Gramene Growth Stage Ontology
   pattern: ^GRO\:\d+$
   prefix: gramene.growthstage
 - correct: HOG
-  miriam: true
   name: OMA HOGs
   pattern: ^HOG:[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
   prefix: oma.hog
 - correct: VariO
-  miriam: true
   name: VariO
   pattern: ^VariO:\d+$
   prefix: vario
 wrong_patterns:
-- correct_pattern: ^CVCL_[A-Z0-9]{4}$
-  miriam_pattern: CVCL_[A-Z0-9]{4}
+- correct: ^CVCL_[A-Z0-9]{4}$
+  miriam: CVCL_[A-Z0-9]{4}
   name: Cellosaurus
   prefix: cellosaurus
-- correct_pattern: ^HGVPM\d+$
-  miriam_pattern: ^HGVP\d+$
+- correct: ^HGVPM\d+$
+  miriam: ^HGVP\d+$
   name: GWAS Central Phenotype
   prefix: gwascentral.phenotype
-- correct_pattern: ^\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b$
-  miriam_pattern: ^\w+$
+- correct: ^\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b$
+  miriam: ^\w+$
   name: 'NCI Pathway Interaction Database: Pathway'
   prefix: pid.pathway

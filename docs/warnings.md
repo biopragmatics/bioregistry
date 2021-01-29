@@ -9,7 +9,32 @@ This lists any sorts of things that should be fixed upstream, but are instead ma
 
 The following issues are with the integrity of the data in the MIRIAM registry (identifiers.org).
 
-### Rewrite of "namespaceEmbeddedInLui"
+### Incorrect Pattern
+
+The following entries have an incorrect value in the `pattern` field.
+
+<table>
+   <thead>
+      <tr>
+         <th>Prefix</th>
+         <th>Name</th>
+         <th>MIRIAM</th>
+         <th>Correct</th>
+      </tr>
+   </thead>
+   <tbody>
+   {% for entry in site.data.warnings["embedding_rewrites"] %}
+      <tr>
+         <td>{{ entry.prefix }}</td>
+         <td>{{ entry.name }}</td>
+         <td>{{ entry.miriam }}</td>
+         <td>{{ entry.correct }}</td>
+      </tr>
+   {% endfor %}
+   </tbody>
+</table>
+
+### Embedding of Namespace in LUI
 
 The following entries have an incorrect value in the `namespaceEmbeddedInLui` field.
 
@@ -47,7 +72,6 @@ case.
          <th>Prefix</th>
          <th>Name</th>
          <th>Pattern</th>
-         <th>MIRIAM</th>
          <th>Correct</th>
       </tr>
    </thead>
