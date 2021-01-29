@@ -1861,6 +1861,7 @@
     "n2t": {
       "prefix": "cco"
     },
+    "namespace.capitalized": true,
     "ols": {
       "description": "The Cell Cycle Ontology extends existing ontologies for cell cycle knowledge building a resource that integrates and manages knowledge about the cell cycle components and regulatory aspects.",
       "download": "http://www.bio.ntnu.no/ontology/CCO/cco.owl",
@@ -4152,7 +4153,6 @@
     "ols_version_date_format": "%Y-%m-%d"
   },
   "eccode": {
-    "example": "3.1.27",
     "go": {
       "prefix": "ENZYME"
     },
@@ -6205,7 +6205,8 @@
     },
     "n2t": {
       "prefix": "go.ref"
-    }
+    },
+    "namespace.capitalized": true
   },
   "goa": {
     "miriam": {
@@ -6351,7 +6352,8 @@
     },
     "n2t": {
       "prefix": "gramene.growthstage"
-    }
+    },
+    "namespace.rewrite": "GRO"
   },
   "gramene.protein": {
     "go": {
@@ -6573,7 +6575,8 @@
     },
     "n2t": {
       "prefix": "gwascentral.phenotype"
-    }
+    },
+    "pattern": "^HGVPM\\d+$"
   },
   "gwascentral.study": {
     "miriam": {
@@ -9196,6 +9199,7 @@
     "n2t": {
       "prefix": "mgi"
     },
+    "namespace.capitalized": true,
     "synonyms": [
       "MGI",
       "MGD"
@@ -9268,7 +9272,6 @@
       "version.iri": "http://purl.obolibrary.org/obo/mi/releases/2020-04-13/mi.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
-    "pattern": "^\\d{4}$",
     "synonyms": [
       "PSI-MI"
     ]
@@ -9459,7 +9462,8 @@
     },
     "n2t": {
       "prefix": "mir"
-    }
+    },
+    "namespace.capitalized": true
   },
   "mirbase": {
     "example": "MI0026471",
@@ -11046,6 +11050,8 @@
     "n2t": {
       "prefix": "obi"
     },
+    "namespace.capitalized": true,
+    "namespace.embedded": true,
     "obofoundry": {
       "contact": "bpeters@lji.org",
       "contact.label": "Bjoern Peters",
@@ -11373,6 +11379,7 @@
     }
   },
   "oma.hog": {
+    "example": "0459895",
     "miriam": {
       "deprecated": false,
       "description": "Hierarchical orthologous groups predicted by OMA (Orthologous MAtrix) database. Hierarchical orthologous groups are sets of genes that have started diverging from a single common ancestor gene at a certain taxonomic level of reference. ",
@@ -11382,7 +11389,8 @@
       "pattern": "^HOG:[0-9]{7}(\\.[0-9a-z.]+)?(_[0-9]+)?$",
       "prefix": "oma.hog",
       "sampleId": "HOG:0459895"
-    }
+    },
+    "namespace.rewrite": "HOG"
   },
   "oma.protein": {
     "miriam": {
@@ -14084,7 +14092,8 @@
     },
     "n2t": {
       "prefix": "rrid"
-    }
+    },
+    "namespace.capitalized": true
   },
   "rs": {
     "example": "0001807",
@@ -14608,7 +14617,8 @@
       "pattern": "^SLM:\\d+$",
       "prefix": "slm",
       "sampleId": "000048885"
-    }
+    },
+    "namespace.capitalized": true
   },
   "smart": {
     "miriam": {
@@ -16067,6 +16077,7 @@
     "ols_version_date_format": "%Y-%m-%d"
   },
   "upa": {
+    "download": "https://raw.githubusercontent.com/geneontology/unipathway/master/upa.obo",
     "example": "UCR00513",
     "obofoundry": {
       "contact": "Anne.Morgat@sib.swiss",
@@ -16087,7 +16098,7 @@
       "version.iri": "http://purl.obolibrary.org/obo/upa/releases/2018-12-12/upa.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
-    "pattern": "^\\d{8}$",
+    "pattern": "^(UCR|UCY|UER|ULS|UPA|UPC|UPX)\\d{5}$",
     "synonyms": [
       "UPa",
       "unipathway"
@@ -16167,6 +16178,7 @@
     "n2t": {
       "prefix": "vario"
     },
+    "namespace.rewrite": "VariO",
     "obofoundry": {
       "contact": "mauno.vihinen@med.lu.se",
       "contact.label": "Mauno Vihinen",

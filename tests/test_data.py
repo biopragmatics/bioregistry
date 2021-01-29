@@ -64,7 +64,28 @@ class TestDuplicates(unittest.TestCase):
                 msg = f'{prefix} is missing an example local identifier'
                 if 'ols' in entry:
                     msg += f'\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry["ols"]["prefix"]}/terms'
-                self.assertIn('example', set(entry), msg=msg)
+                self.assertIsNotNone(bioregistry.get_example(prefix), msg=msg)
+
+    def test_examples_pass_patterns(self):
+        """Test that all examples pass the patterns."""
+        for prefix, entry in self.registry.items():
+            pattern = bioregistry.get_pattern_re(prefix)
+            example = bioregistry.get_example(prefix)
+            if pattern is None or example is None:
+                continue
+
+            if 'namespace.rewrite' in entry:
+                embedded_prefix = entry['namespace.rewrite']
+                example = f'{embedded_prefix}:{example}'
+            elif bioregistry.namespace_in_lui(prefix):
+                embedded_prefix = entry['miriam']['prefix']  # FIXME not always available via miriam
+                if entry.get('namespace.capitalized') or 'obofoundry' in entry:
+                    embedded_prefix = embedded_prefix.upper()
+                example = f'{embedded_prefix}:{example}'
+            if bioregistry.validate(prefix, example):
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertRegex(example, pattern)
 
     def test_ols_versions(self):
         """Test that all OLS entries have a version annotation on them."""
