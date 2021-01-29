@@ -15,6 +15,7 @@ __all__ = [
     'get_name',
     'get_pattern',
     'get_pattern_re',
+    'namespace_in_lui',
     'validate',
     'get_format',
     'get_example',
@@ -80,6 +81,17 @@ def get_pattern_re(prefix: str) -> Optional[re.Pattern]:
     if pattern is None:
         return None
     return re.compile(pattern)
+
+
+def namespace_in_lui(prefix: str) -> Optional[bool]:
+    """Check if the namespace should appear in the LUI."""
+    entry = get(prefix)
+    if entry is None:
+        return None
+    rv = entry.get('namespaceEmbeddedInLui')  # TODO is this the best tag name?
+    if rv is not None:
+        return rv
+    return entry.get('miriam', {}).get('namespaceEmbeddedInLui')
 
 
 def validate(prefix: str, identifier: str) -> Optional[bool]:

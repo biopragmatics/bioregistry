@@ -66,6 +66,21 @@ class TestDuplicates(unittest.TestCase):
                     msg += f'\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry["ols"]["prefix"]}/terms'
                 self.assertIn('example', set(entry), msg=msg)
 
+    def test_examples_pass_patterns(self):
+        """Test that all examples pass the patterns."""
+        for prefix, entry in self.registry.items():
+            pattern = bioregistry.get_pattern_re(prefix)
+            example = bioregistry.get_example(prefix)
+            if pattern is None or example is None:
+                continue
+            if bioregistry.namespace_in_lui(prefix):
+                miriam_prefix = entry['miriam']['prefix'].upper()  # FIXME not always available via miriam
+                example = f'{miriam_prefix}:{example}'
+            if bioregistry.validate(prefix, example):
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertRegex(example, pattern)
+
     def test_ols_versions(self):
         """Test that all OLS entries have a version annotation on them."""
         for bioregistry_id, bioregistry_entry in self.registry.items():
