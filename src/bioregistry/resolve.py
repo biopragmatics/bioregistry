@@ -88,7 +88,7 @@ def namespace_in_lui(prefix: str) -> Optional[bool]:
     entry = get(prefix)
     if entry is None:
         return None
-    rv = entry.get('namespaceEmbeddedInLui')  # TODO is this the best tag name?
+    rv = entry.get('namespace.embedded')  # TODO is this the best tag name?
     if rv is not None:
         return rv
     return entry.get('miriam', {}).get('namespaceEmbeddedInLui')
