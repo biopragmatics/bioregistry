@@ -73,9 +73,15 @@ class TestDuplicates(unittest.TestCase):
             example = bioregistry.get_example(prefix)
             if pattern is None or example is None:
                 continue
-            if bioregistry.namespace_in_lui(prefix):
-                miriam_prefix = entry['miriam']['prefix'].upper()  # FIXME not always available via miriam
-                example = f'{miriam_prefix}:{example}'
+
+            if 'namespace.rewrite' in entry:
+                embedded_prefix = entry['namespace.rewrite']
+                example = f'{embedded_prefix}:{example}'
+            elif bioregistry.namespace_in_lui(prefix):
+                embedded_prefix = entry['miriam']['prefix']  # FIXME not always available via miriam
+                if entry.get('namespace.capitalized') or 'obofoundry' in entry:
+                    embedded_prefix = embedded_prefix.upper()
+                example = f'{embedded_prefix}:{example}'
             if bioregistry.validate(prefix, example):
                 continue
             with self.subTest(prefix=prefix):
