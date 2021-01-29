@@ -12720,6 +12720,7 @@
     "n2t": {
       "prefix": "pid.pathway"
     },
+    "pattern": "\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b",
     "synonyms": [
       "pid"
     ]
@@ -13108,7 +13109,6 @@
     "url": "https://europepmc.org/article/ppr/$1"
   },
   "pr": {
-    "example": "Q80ZI2",
     "miriam": {
       "deprecated": false,
       "description": "The PRotein Ontology (PRO) has been designed to describe the relationships of proteins and protein evolutionary classes, to delineate the multiple protein forms of a gene locus (ontology for protein forms), and to interconnect existing ontologies.",
@@ -15080,6 +15080,7 @@
   },
   "swo": {
     "download": "https://github.com/allysonlister/swo/raw/master/release/swo.owl",
+    "example": "0000144",
     "obofoundry": {
       "contact": "allyson.lister@oerc.ox.ac.uk",
       "contact.label": "Allyson Lister",
@@ -15098,7 +15099,8 @@
       "version": "1.7",
       "version.iri": "http://www.ebi.ac.uk/swo/swo.owl/1.7"
     },
-    "ols_version_type": "semver"
+    "ols_version_type": "semver",
+    "pattern": "^\\d{7}$"
   },
   "symp": {
     "example": "0019171",
