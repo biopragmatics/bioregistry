@@ -23,7 +23,7 @@ The following entries have an incorrect value in the `pattern` field.
       </tr>
    </thead>
    <tbody>
-   {% for entry in site.data.warnings["embedding_rewrites"] %}
+   {% for entry in site.data.warnings["wrong_patterns"] %}
       <tr>
          <td>{{ entry.prefix }}</td>
          <td>{{ entry.name }}</td>
@@ -72,7 +72,7 @@ case.
          <th>Prefix</th>
          <th>Name</th>
          <th>Pattern</th>
-         <th>Correct</th>
+         <th>Correct Prefix</th>
       </tr>
    </thead>
    <tbody>
