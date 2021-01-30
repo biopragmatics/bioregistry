@@ -857,7 +857,7 @@
     name: The Behaviour Change Intervention Ontology
     prefix: bcio
     version: '2020-12-15'
-    version.iri: http://humanbehaviourchange.org/ontology/bcio.owl/2021-01-25
+    version.iri: http://humanbehaviourchange.org/ontology/bcio.owl/2021-01-28
   ols_version_date_format: '%Y-%m-%d'
   prefix: bcio
 - obofoundry:
@@ -1854,6 +1854,7 @@
     sampleId: '0000003'
   n2t:
     prefix: cco
+  namespace.capitalized: true
   ols:
     description: The Cell Cycle Ontology extends existing ontologies for cell cycle
       knowledge building a resource that integrates and manages knowledge about the
@@ -3801,8 +3802,8 @@
     license: https://creativecommons.org/publicdomain/zero/1.0/
     name: Human Disease Ontology
     prefix: doid
-    version: '2020-12-22'
-    version.iri: http://purl.obolibrary.org/obo/doid/releases/2020-12-22/doid.owl
+    version: '2021-01-28'
+    version.iri: http://purl.obolibrary.org/obo/doid/releases/2021-01-28/doid.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: doid
   synonyms:
@@ -4085,8 +4086,7 @@
     version.iri: http://purl.obolibrary.org/obo/ecao/releases/2020-05-22/ecao.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: ecao
-- example: 3.1.27
-  go:
+- go:
     prefix: ENZYME
   miriam:
     deprecated: false
@@ -6125,6 +6125,7 @@
     sampleId: '0000041'
   n2t:
     prefix: go.ref
+  namespace.capitalized: true
   prefix: go.ref
 - miriam:
     deprecated: false
@@ -6281,6 +6282,7 @@
     sampleId: '0007133'
   n2t:
     prefix: gramene.growthstage
+  namespace.rewrite: GRO
   prefix: gramene.growthstage
 - go:
     prefix: GR_PROTEIN
@@ -6511,6 +6513,7 @@
     sampleId: HGVPM623
   n2t:
     prefix: gwascentral.phenotype
+  pattern: ^HGVPM\d+$
   prefix: gwascentral.phenotype
 - miriam:
     deprecated: false
@@ -9091,6 +9094,7 @@
     sampleId: '2442292'
   n2t:
     prefix: mgi
+  namespace.capitalized: true
   prefix: mgi
   synonyms:
   - MGI
@@ -9164,7 +9168,6 @@
     version: '2020-04-13'
     version.iri: http://purl.obolibrary.org/obo/mi/releases/2020-04-13/mi.owl
   ols_version_date_format: '%Y-%m-%d'
-  pattern: ^\d{4}$
   prefix: mi
   synonyms:
   - PSI-MI
@@ -9380,6 +9383,7 @@
     sampleId: '00100037'
   n2t:
     prefix: mir
+  namespace.capitalized: true
   prefix: mir
 - example: MI0026471
   miriam:
@@ -9882,7 +9886,7 @@
     name: The Mammalian Phenotype Ontology
     prefix: mp
     version: 11-11-2019
-    version.iri: http://purl.obolibrary.org/obo/mp/releases/2020-11-05
+    version.iri: http://purl.obolibrary.org/obo/mp/releases/2021-01-12
   ols_version_date_format: '%d-%m-%Y'
   prefix: mp
 - download: https://raw.githubusercontent.com/PaulNSchofield/mpath/master/mpath.obo
@@ -10931,6 +10935,8 @@
     sampleId: OBI_0000070
   n2t:
     prefix: obi
+  namespace.capitalized: true
+  namespace.embedded: true
   obofoundry:
     contact: bpeters@lji.org
     contact.label: Bjoern Peters
@@ -11302,7 +11308,8 @@
   n2t:
     prefix: oma.grp
   prefix: oma.grp
-- miriam:
+- example: 0459895
+  miriam:
     deprecated: false
     description: 'Hierarchical orthologous groups predicted by OMA (Orthologous MAtrix)
       database. Hierarchical orthologous groups are sets of genes that have started
@@ -11314,6 +11321,7 @@
     pattern: ^HOG:[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
     prefix: oma.hog
     sampleId: HOG:0459895
+  namespace.rewrite: HOG
   prefix: oma.hog
 - miriam:
     deprecated: false
@@ -11572,10 +11580,11 @@
       and anatomical location. OPL is based on the Basic Formal Ontology (BFO) and
       follows the rules set by the OBO Foundry consortium.
     download: http://purl.obolibrary.org/obo/opl.owl
+    license: http://creativecommons.org/licenses/by/4.0/
     name: Ontology for Parasite Lifecycle
     prefix: opl
-    version: '2020-02-08'
-    version.iri: http://purl.obolibrary.org/obo/opl/2020-02-08/opl.owl
+    version: '2021-01-28'
+    version.iri: http://purl.obolibrary.org/obo/opl/2021-01-28/opl.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: opl
 - miriam:
@@ -12527,8 +12536,8 @@
     license: https://creativecommons.org/licenses/by/3.0/
     name: Pathogen Host Interactions Phenotype Ontology
     prefix: phipo
-    version: '2020-12-03'
-    version.iri: http://purl.obolibrary.org/obo/phipo/releases/2020-12-03/phipo.owl
+    version: '2021-01-28'
+    version.iri: http://purl.obolibrary.org/obo/phipo/releases/2021-01-28/phipo.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: phipo
@@ -13558,6 +13567,14 @@
     name: Radiation Biology Ontology
     prefix: rbo
     repo: https://github.com/DanBerrios/RBO.git
+  ols:
+    description: The RBO is an ontology about Radiation Biology, with emphasis on
+      Space Biology.
+    download: http://purl.obolibrary.org/obo/rbo.owl
+    name: Radiation Biology Ontology
+    prefix: rbo
+    version: '2021-01-20'
+    version.iri: http://purl.obolibrary.org/obo/rbo/releases/2021-01-20/rbo.owl
   prefix: rbo
 - example: R-BTA-418592
   miriam:
@@ -13999,6 +14016,7 @@
     sampleId: AB_262044
   n2t:
     prefix: rrid
+  namespace.capitalized: true
   prefix: rrid
 - example: 0001807
   obofoundry:
@@ -14519,6 +14537,7 @@
     pattern: ^SLM:\d+$
     prefix: slm
     sampleId: 000048885
+  namespace.capitalized: true
   prefix: slm
 - miriam:
     deprecated: false
@@ -15975,7 +15994,8 @@
     version.iri: http://purl.obolibrary.org/obo/uo/releases/2020-03-10/uo.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: uo
-- example: UCR00513
+- download: https://raw.githubusercontent.com/geneontology/unipathway/master/upa.obo
+  example: UCR00513
   obofoundry:
     contact: Anne.Morgat@sib.swiss
     contact.label: Anne Morgat
@@ -15994,7 +16014,7 @@
     version: '2018-12-12'
     version.iri: http://purl.obolibrary.org/obo/upa/releases/2018-12-12/upa.owl
   ols_version_date_format: '%Y-%m-%d'
-  pattern: ^\d{8}$
+  pattern: ^(UCR|UCY|UER|ULS|UPA|UPC|UPX)\d{5}$
   prefix: upa
   synonyms:
   - UPa
@@ -16065,6 +16085,7 @@
     sampleId: 0294
   n2t:
     prefix: vario
+  namespace.rewrite: VariO
   obofoundry:
     contact: mauno.vihinen@med.lu.se
     contact.label: Mauno Vihinen
