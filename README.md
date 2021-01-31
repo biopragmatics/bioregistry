@@ -94,15 +94,6 @@ assert 'eccode' == bioregistry.normalize_prefix('EC_CODE')
 assert bioregistry.normalize_prefix('not a real key') is None
 ```
 
-Entries in the Bioregistry can be looked up with the `get()` function.
-
-```python
-import bioregistry
-
-entry = bioregistry.normalize_prefix('taxonomy')
-# there are lots of mysteries to discover in this dictionary!
-```
-
 The pattern for an entry in the Bioregistry can be looked up quickly with `get_pattern()` if
 it exists. It prefers the custom curated, then MIRIAM, then Wikidata pattern.
 
@@ -120,6 +111,15 @@ import bioregistry
 
 assert bioregistry.is_deprecated('nmr')
 assert not bioregistry.is_deprecated('efo')
+```
+
+Entries in the Bioregistry can be looked up with the `get()` function.
+
+```python
+import bioregistry
+
+entry = bioregistry.get('taxonomy')
+# there are lots of mysteries to discover in this dictionary!
 ```
 
 The full Bioregistry can be read in a Python project using:
