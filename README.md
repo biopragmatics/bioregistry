@@ -50,8 +50,11 @@ Things that would be helpful:
    is [Q85719315](https://www.wikidata.org/wiki/Q85719315). If there's no database item on Wikidata, you can even make
    one! Note: don't mix this up with a paper describing the
    resource, [Q35631060](https://www.wikidata.org/wiki/Q35631060). If you see there's a paper, you can add it under
-   the `["wikidata"]["database"]` key.
+   the `["wikidata"]["paper"]` key.
 2. Adding `["homepage"]` entry for any entry that doesn't have an external reference
+
+A full list of curation to-do's is automatically generated as a web page
+[here](https://cthoyt.com/bioregistry/curation/). This page also has a more in-depth tutorial on how to contribute.
 
 ## 🚀 Installation
 
