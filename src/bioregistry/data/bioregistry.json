@@ -1981,6 +1981,9 @@
     "pattern": "^\\d{7}$"
   },
   "cgd": {
+    "go": {
+      "prefix": "CGD"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Candida Genome Database (CGD) provides access to genomic sequence data and manually curated functional information about genes and proteins of the human pathogen Candida albicans. It collects gene names and aliases, and assigns gene ontology terms to describe the molecular function, biological process, and subcellular localization of gene products.",
@@ -3642,6 +3645,7 @@
     }
   },
   "dicom": {
+    "ols_version_type": "other",
     "ols": {
       "description": "DICOM Controlled Terminology",
       "download": "ftp://medical.nema.org/MEDICAL/Dicom/Resources/Ontology/DCM/dcm.owl",
@@ -4270,6 +4274,9 @@
   },
   "ecocyc": {
     "example": "AICARTRANSIMPCYCLO-CPLX",
+    "go": {
+      "prefix": "EcoCyc_REF"
+    },
     "name": "EcoCyc",
     "url": "https://biocyc.org/gene?id=$1"
   },
@@ -5008,6 +5015,14 @@
     "synonyms": [
       "ExO"
     ]
+  },
+  "go.model": {
+    "name": "Gene Ontology Causal Assembly Model",
+    "url": "noctua.geneontology.org/editor/graph/gomodel:$1",
+    "example": "5fce9b7300001250",
+    "go": {
+      "prefix": "gomodel"
+    }
   },
   "facebase": {
     "miriam": {
@@ -13656,7 +13671,8 @@
       "prefix": "rbo",
       "version": "2021-01-20",
       "version.iri": "http://purl.obolibrary.org/obo/rbo/releases/2021-01-20/rbo.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "reactome": {
     "example": "R-BTA-418592",
