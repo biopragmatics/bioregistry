@@ -1238,7 +1238,7 @@
     download: http://purl.obolibrary.org/obo/kisao.owl
     name: Kinetic Simulation Algorithm Ontology
     prefix: kisao
-    version: '2.13'
+    version: '2.14'
   ols_version_type: semver
   prefix: biomodels.kisao
 - miriam:
@@ -1738,7 +1738,7 @@
     id: '00000612'
     name: CATH Protein Structural Domain Superfamily
     namespaceEmbeddedInLui: false
-    pattern: ^[1-4]\.[0-9]+\.[0-9]+\.[0-9]+$
+    pattern: ^[1-6]\.[0-9]+\.[0-9]+\.[0-9]+$
     prefix: cath
     sampleId: 1.10.8.10
   n2t:
@@ -1957,7 +1957,7 @@
     id: 00000598
     name: Cellosaurus
     namespaceEmbeddedInLui: false
-    pattern: CVCL_[A-Z0-9]{4}
+    pattern: ^CVCL_[A-Z0-9]{4}$
     prefix: cellosaurus
     sampleId: CVCL_0030
   n2t:
@@ -3620,6 +3620,7 @@
     download: ftp://medical.nema.org/MEDICAL/Dicom/Resources/Ontology/DCM/dcm.owl
     name: DICOM Controlled Terminology
     prefix: dicom
+    version: 2021a_20210130
   prefix: dicom
 - description: A resource for Dictyostelid discoideum (a soil-dwelling amoeba) genomics
   name: dictyBase
@@ -4781,8 +4782,8 @@
 - example: '0001655'
   not_available_as_obo: true
   obofoundry:
-    contact: Marc_Ciriello@hms.harvard.edu
-    contact.label: Marc Ciriello
+    contact: Juliane_Schneider@hms.harvard.edu
+    contact.label: Juliane Schneider
     deprecated: false
     license: CC-BY 2.0
     name: eagle-i resource ontology
@@ -6508,7 +6509,7 @@
     id: '00000543'
     name: GWAS Central Phenotype
     namespaceEmbeddedInLui: false
-    pattern: ^HGVP\d+$
+    pattern: ^HGVPM\d+$
     prefix: gwascentral.phenotype
     sampleId: HGVPM623
   n2t:
@@ -9797,8 +9798,8 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: Mondo Disease Ontology
     prefix: mondo
-    version: '2021-01-15'
-    version.iri: http://purl.obolibrary.org/obo/mondo/releases/2021-01-15/mondo.owl
+    version: '2021-01-29'
+    version.iri: http://purl.obolibrary.org/obo/mondo/releases/2021-01-29/mondo.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: mondo
@@ -14052,10 +14053,11 @@
     description: "RXNO is the name reaction ontology. It contains more than 500 classes\
       \ representing organic reactions such as the Diels\u2013Alder cyclization."
     download: http://purl.obolibrary.org/obo/rxno.owl
+    license: http://creativecommons.org/licenses/by/4.0/
     name: RXNO
     prefix: rxno
-    version: 15-11-2019
-    version.iri: http://purl.obolibrary.org/obo/rxno.obo/rxno/releases/2014-10-21/rxno.owl/rxno.obo.owl
+    version: '2021-01-21'
+    version.iri: http://purl.obolibrary.org/obo/rxno.obo/2021-01-21/rxno.obo.owl
   ols_version_date_format: '%d-%m-%Y'
   pattern: ^\d{7}$
   prefix: rxno
@@ -16981,3 +16983,14 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d+$
   prefix: zp
+- miriam:
+    deprecated: false
+    description: The Virtual Metabolic Human (VMH) is a resource that combines human
+      and gut microbiota metabolism with nutrition and disease.
+    id: '00000774'
+    name: VMH Gene
+    namespaceEmbeddedInLui: false
+    pattern: ^[0-9]+\.[0-9]+
+    prefix: vmhgene
+    sampleId: '8639.1'
+  prefix: vmhgene

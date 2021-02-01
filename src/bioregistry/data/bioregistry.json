@@ -1244,7 +1244,7 @@
       "download": "http://purl.obolibrary.org/obo/kisao.owl",
       "name": "Kinetic Simulation Algorithm Ontology",
       "prefix": "kisao",
-      "version": "2.13"
+      "version": "2.14"
     },
     "ols_version_type": "semver"
   },
@@ -1744,7 +1744,7 @@
       "id": "00000612",
       "name": "CATH Protein Structural Domain Superfamily",
       "namespaceEmbeddedInLui": false,
-      "pattern": "^[1-4]\\.[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "pattern": "^[1-6]\\.[0-9]+\\.[0-9]+\\.[0-9]+$",
       "prefix": "cath",
       "sampleId": "1.10.8.10"
     },
@@ -1944,7 +1944,7 @@
       "id": "00000598",
       "name": "Cellosaurus",
       "namespaceEmbeddedInLui": false,
-      "pattern": "CVCL_[A-Z0-9]{4}",
+      "pattern": "^CVCL_[A-Z0-9]{4}$",
       "prefix": "cellosaurus",
       "sampleId": "CVCL_0030"
     },
@@ -3646,7 +3646,8 @@
       "description": "DICOM Controlled Terminology",
       "download": "ftp://medical.nema.org/MEDICAL/Dicom/Resources/Ontology/DCM/dcm.owl",
       "name": "DICOM Controlled Terminology",
-      "prefix": "dicom"
+      "prefix": "dicom",
+      "version": "2021a_20210130"
     }
   },
   "dictybase": {
@@ -4835,8 +4836,8 @@
     "example": "0001655",
     "not_available_as_obo": true,
     "obofoundry": {
-      "contact": "Marc_Ciriello@hms.harvard.edu",
-      "contact.label": "Marc Ciriello",
+      "contact": "Juliane_Schneider@hms.harvard.edu",
+      "contact.label": "Juliane Schneider",
       "deprecated": false,
       "license": "CC-BY 2.0",
       "name": "eagle-i resource ontology",
@@ -6569,7 +6570,7 @@
       "id": "00000543",
       "name": "GWAS Central Phenotype",
       "namespaceEmbeddedInLui": false,
-      "pattern": "^HGVP\\d+$",
+      "pattern": "^HGVPM\\d+$",
       "prefix": "gwascentral.phenotype",
       "sampleId": "HGVPM623"
     },
@@ -9912,8 +9913,8 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "Mondo Disease Ontology",
       "prefix": "mondo",
-      "version": "2021-01-15",
-      "version.iri": "http://purl.obolibrary.org/obo/mondo/releases/2021-01-15/mondo.owl"
+      "version": "2021-01-29",
+      "version.iri": "http://purl.obolibrary.org/obo/mondo/releases/2021-01-29/mondo.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
@@ -14142,10 +14143,11 @@
     "ols": {
       "description": "RXNO is the name reaction ontology. It contains more than 500 classes representing organic reactions such as the Diels–Alder cyclization.",
       "download": "http://purl.obolibrary.org/obo/rxno.owl",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "RXNO",
       "prefix": "rxno",
-      "version": "15-11-2019",
-      "version.iri": "http://purl.obolibrary.org/obo/rxno.obo/rxno/releases/2014-10-21/rxno.owl/rxno.obo.owl"
+      "version": "2021-01-21",
+      "version.iri": "http://purl.obolibrary.org/obo/rxno.obo/2021-01-21/rxno.obo.owl"
     },
     "ols_version_date_format": "%d-%m-%Y",
     "pattern": "^\\d{7}$",
@@ -16420,6 +16422,18 @@
       "https://docs.google.com/document/d/12E8WbQlvfZWk5NrxwLytmympPby6vsv60RxCeD5wc1E/edit#heading=h.67hbe76b6a4z",
       "https://github.com/ga4gh/vr-spec"
     ]
+  },
+  "vmhgene": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The Virtual Metabolic Human (VMH) is a resource that combines human and gut microbiota metabolism with nutrition and disease.",
+      "id": "00000774",
+      "name": "VMH Gene",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[0-9]+\\.[0-9]+",
+      "prefix": "vmhgene",
+      "sampleId": "8639.1"
+    }
   },
   "vmhmetabolite": {
     "miriam": {
