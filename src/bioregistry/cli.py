@@ -17,6 +17,7 @@ from .make_curation_list import curation
 
 
 @click.group()
+@click.version_option()
 def main():
     """Run the Bioregistry CLI."""
 
