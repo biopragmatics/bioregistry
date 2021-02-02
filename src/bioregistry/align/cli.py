@@ -4,6 +4,7 @@
 
 import click
 
+from .go import GoAligner
 from .miriam import align_miriam
 from .n2t import align_n2t
 from .obofoundry import align_obofoundry
@@ -33,6 +34,9 @@ def align():
 
     secho('Aligning Wikidata')
     align_wikidata()
+
+    secho('Aligning GO')
+    GoAligner.align()
 
 
 if __name__ == '__main__':

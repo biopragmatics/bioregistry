@@ -3,6 +3,7 @@
 """Constants and utilities for registries."""
 
 import os
+import pathlib
 from typing import Any
 
 import pystow
@@ -15,9 +16,9 @@ __all__ = [
     'EnsureEntry',
 ]
 
-HERE = os.path.abspath(os.path.dirname(__file__))
-DATA_DIRECTORY = os.path.join(HERE, 'data')
-BIOREGISTRY_PATH = os.path.join(DATA_DIRECTORY, 'bioregistry.json')
+HERE = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
+DATA_DIRECTORY = HERE / 'data'
+BIOREGISTRY_PATH = DATA_DIRECTORY / 'bioregistry.json'
 
 BIOREGISTRY_MODULE = pystow.module('bioregistry')
 EnsureEntry = Any
