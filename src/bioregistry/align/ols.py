@@ -2,8 +2,13 @@
 
 """Align the OLS with the Bioregistry."""
 
-from ..external import get_ols
-from ..utils import norm, secho, updater
+import logging
+from email.utils import parseaddr
+
+from bioregistry.external import get_ols
+from bioregistry.utils import norm, secho, updater
+
+logger = logging.getLogger(__name__)
 
 
 def _prepare_ols(ols_entry):
@@ -23,6 +28,14 @@ def _prepare_ols(ols_entry):
         'description': config['description'],
         'license': license_value,
     }
+
+    email = config.get('mailingList')
+    if email:
+        name, email = parseaddr(email)
+        if email.startswith('//'):
+            logger.warning('[%s] invalid email address: %s', ols_id, config['mailingList'])
+        else:
+            rv['contact'] = email
 
     rv = {k: v for k, v in rv.items() if v}
     return rv
