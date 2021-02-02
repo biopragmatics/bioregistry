@@ -20,6 +20,7 @@ __all__ = [
     'get_format',
     'get_example',
     'is_deprecated',
+    'get_email',
     'normalize_prefix',
     'get_version',
     'get_versions',
@@ -147,6 +148,20 @@ def is_deprecated(prefix: str) -> bool:
     return False
 
 
+def get_email(prefix: str) -> Optional[str]:
+    """Return the contact email, if available."""
+    entry = get(prefix)
+    if entry is None:
+        return None
+
+    for key in ('obofoundry', 'ols'):
+        obo_email = entry.get(key, {}).get('contact')
+        if obo_email:
+            return obo_email
+
+    return None
+
+
 def normalize_prefix(prefix: str) -> Optional[str]:
     """Get the normalized prefix, or return None if not registered.
 
@@ -232,11 +247,14 @@ def get_versions() -> Mapping[str, str]:
             continue
         version = bioregistry_entry['ols'].get('version')
         if version is None:
-            logger.warning('[%s] missing version', bioregistry_id)
+            logger.warning('[%s] missing version. Contact: %s', bioregistry_id, get_email(bioregistry_id))
             continue
 
         if version != version.strip():
-            logger.warning('[%s] extra whitespace in version: %s', bioregistry_id, version)
+            logger.warning(
+                '[%s] extra whitespace in version: %s. Contact: %s',
+                bioregistry_id, version, get_email(bioregistry_id),
+            )
             version = version.strip()
 
         version_prefix = bioregistry_entry.get('ols_version_prefix')
@@ -259,7 +277,10 @@ def get_versions() -> Mapping[str, str]:
 
         if version_date_fmt:
             if version_date_fmt in {"%Y-%d-%m"}:
-                logger.warning('[%s] confusing date format: %s', bioregistry_id, version_date_fmt)
+                logger.warning(
+                    '[%s] confusing date format: %s. Contact: %s', bioregistry_id, version_date_fmt,
+                    get_email(bioregistry_id),
+                )
             try:
                 version = datetime.datetime.strptime(version, version_date_fmt)
             except ValueError:

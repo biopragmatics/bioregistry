@@ -11,7 +11,7 @@ from typing import Collection, Set
 
 import click
 
-from bioregistry import get_example, get_format, get_pattern, get_version, read_bioregistry
+from bioregistry import get_email, get_example, get_format, get_pattern, get_version, read_bioregistry
 from bioregistry.constants import DOCS_IMG
 from bioregistry.external import get_go, get_miriam, get_n2t, get_obofoundry, get_ols, get_wikidata_registry
 
@@ -172,12 +172,14 @@ def compare():  # noqa:C901
     }
     has_formatter = {key for key in bioregistry if get_format(key)}
     has_example = {key for key in bioregistry if get_example(key)}
+    has_email = {key for key in bioregistry if get_email(key)}
     measurements = [
         ('Pattern', has_pattern),
         ('Version', has_version),
         ('Wikidata Database', has_wikidata_database),
         ('Format URL', has_formatter),
         ('Example', has_example),
+        ('Contact Email', has_email),
     ]
     fig, axes = plt.subplots(ncols=2, nrows=(1 + len(measurements)) // 2)
     for (label, prefixes), ax in zip(measurements, axes.ravel()):
