@@ -165,6 +165,8 @@
   },
   "agricola": {
     "go": {
+      "homepage": "http://agricola.nal.usda.gov/",
+      "name": "AGRICultural OnLine Access",
       "prefix": "AGRICOLA_ID"
     },
     "miriam": {
@@ -578,6 +580,12 @@
     }
   },
   "asap": {
+    "go": {
+      "formatter": "https://asap.genetics.wisc.edu/asap/feature_info.php?FeatureID=$1",
+      "homepage": "https://asap.genetics.wisc.edu/asap/ASAP1.htm",
+      "name": "A Systematic Annotation Package for Community Analysis of Genomes",
+      "prefix": "ASAP"
+    },
     "miriam": {
       "deprecated": false,
       "description": "ASAP (a systematic annotation package for community analysis of genomes) stores bacterial genome sequence and functional characterization data. It includes multiple genome sequences at various stages of analysis, corresponding experimental data and access to collections of related genome resources.",
@@ -623,6 +631,12 @@
     }
   },
   "aspgd.locus": {
+    "go": {
+      "formatter": "http://www.aspergillusgenome.org/cgi-bin/locus.pl?locus=$1",
+      "homepage": "http://www.aspergillusgenome.org/",
+      "name": "Aspergillus Genome Database",
+      "prefix": "AspGD_LOCUS"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Aspergillus Genome Database (AspGD) is a repository for information relating to fungi of the genus Aspergillus, which includes organisms of clinical, agricultural and industrial importance. AspGD facilitates comparative genomics by providing a full-featured genomics viewer, as well as matched and standardized sets of genomic information for the sequenced aspergilli. This collection references gene information.",
@@ -952,6 +966,10 @@
   },
   "bfo": {
     "example": "0000001",
+    "go": {
+      "name": "Basic Formal Ontology",
+      "prefix": "BFO"
+    },
     "obofoundry": {
       "contact": "phismith@buffalo.edu",
       "contact.label": "Barry Smith",
@@ -1143,6 +1161,12 @@
     }
   },
   "biocyc": {
+    "go": {
+      "formatter": "http://biocyc.org/META/NEW-IMAGE?type=PATHWAY&object=$1",
+      "homepage": "http://biocyc.org/",
+      "name": "BioCyc collection of metabolic pathway databases",
+      "prefix": "BioCyc"
+    },
     "miriam": {
       "deprecated": false,
       "description": "BioCyc is a collection of Pathway/Genome Databases (PGDBs) which provides an electronic reference source on the genomes and metabolic pathways of sequenced organisms.",
@@ -1201,7 +1225,13 @@
   },
   "biomodels.db": {
     "go": {
-      "prefix": "BIOMD"
+      "formatter": "https://www.ebi.ac.uk/biomodels/$1",
+      "homepage": "https://www.ebi.ac.uk/biomodels/",
+      "name": "BioModels Database",
+      "prefix": "BIOMD",
+      "synonyms": [
+        "BIOMDID"
+      ]
     },
     "miriam": {
       "deprecated": false,
@@ -1335,7 +1365,13 @@
   },
   "biorxiv": {
     "go": {
-      "prefix": "bioRxiv"
+      "formatter": "https://www.biorxiv.org/content/$1",
+      "homepage": "https://www.biorxiv.org/",
+      "name": "bioRxiv",
+      "prefix": "bioRxiv",
+      "synonyms": [
+        "BIORXIV"
+      ]
     },
     "name": "bioRxiv"
   },
@@ -1479,6 +1515,12 @@
     "url": "https://sitem.herts.ac.uk/aeru/bpdb/Reports/$1.htm"
   },
   "brenda": {
+    "go": {
+      "formatter": "https://www.brenda-enzymes.info/enzyme.php?ecno=$1",
+      "homepage": "http://www.brenda-enzymes.info",
+      "name": "BRENDA, The Comprehensive Enzyme Information System",
+      "prefix": "BRENDA"
+    },
     "miriam": {
       "deprecated": false,
       "description": "BRENDA is a collection of enzyme functional data available to the scientific community. Data on enzyme function are extracted directly from the primary literature The database covers information on classification and nomenclature, reaction and specificity, functional parameters, occurrence, enzyme structure and stability, mutants and enzyme engineering, preparation and isolation, the application of enzymes, and ligand-related data.",
@@ -1538,6 +1580,10 @@
   },
   "bto": {
     "example": "0000590",
+    "go": {
+      "name": "BRENDA tissue / enzyme ontology",
+      "prefix": "BTO"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Brenda tissue ontology is a structured controlled vocabulary eastablished to identify the source of an enzyme cited in the Brenda enzyme database. It comprises terms of tissues, cell lines, cell types and cell cultures from uni- and multicellular organisms.",
@@ -1693,6 +1739,10 @@
   "caro": {
     "download": "https://github.com/obophenotype/caro/raw/master/src/ontology/caro.owl",
     "example": "0000000",
+    "go": {
+      "name": "Common Anatomy Reference Ontology",
+      "prefix": "CARO"
+    },
     "not_available_as_obo": true,
     "obofoundry": {
       "contact": "haendel@ohsu.edu",
@@ -1714,6 +1764,11 @@
     "ols_version_date_format": "%d-%m-%Y"
   },
   "cas": {
+    "go": {
+      "homepage": "http://www.cas.org/expertise/cascontent/registry/index.html",
+      "name": "CAS Chemical Registry",
+      "prefix": "CAS"
+    },
     "miriam": {
       "deprecated": false,
       "description": "CAS (Chemical Abstracts Service) is a division of the American Chemical Society and is the producer of comprehensive databases of chemical information.",
@@ -1798,6 +1853,12 @@
     }
   },
   "cazy": {
+    "go": {
+      "formatter": "http://www.cazy.org/$1.html",
+      "homepage": "http://www.cazy.org/",
+      "name": "Carbohydrate Active EnZYmes",
+      "prefix": "CAZY"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Carbohydrate-Active Enzyme (CAZy) database is a resource specialized in enzymes that build and breakdown complex carbohydrates and glycoconjugates. These enzymes are classified into families based on structural features.",
@@ -1892,6 +1953,12 @@
     "ols_version_date_format": "%Y-%m-%d"
   },
   "cdd": {
+    "go": {
+      "formatter": "http://www.ncbi.nlm.nih.gov/Structure/cdd/cddsrv.cgi?uid=$1",
+      "homepage": "https://www.ncbi.nlm.nih.gov/cdd",
+      "name": "Conserved Domain Database at NCBI",
+      "prefix": "CDD"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Conserved Domain Database (CDD) is a collection of multiple sequence alignments and derived database search models, which represent protein domains conserved in molecular evolution.",
@@ -1982,7 +2049,13 @@
   },
   "cgd": {
     "go": {
-      "prefix": "CGD"
+      "formatter": "http://www.candidagenome.org/cgi-bin/locus.pl?dbid=$1",
+      "homepage": "http://www.candidagenome.org/",
+      "name": "Candida Genome Database",
+      "prefix": "CGD",
+      "synonyms": [
+        "CGDID"
+      ]
     },
     "miriam": {
       "deprecated": false,
@@ -2008,6 +2081,11 @@
     "url": "http://birdgenenames.org/cgnc/GeneReport?id=$1"
   },
   "cgsc": {
+    "go": {
+      "homepage": "http://cgsc.biology.yale.edu/",
+      "name": "CGSC",
+      "prefix": "CGSC"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The CGSC Database of E. coli genetic information includes genotypes and reference information for the strains in the CGSC collection, the names, synonyms, properties, and map position for genes, gene product information, and information on specific mutations and references to primary literature.",
@@ -2039,6 +2117,15 @@
   },
   "chebi": {
     "example": "24867",
+    "go": {
+      "formatter": "http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1",
+      "homepage": "http://www.ebi.ac.uk/chebi/",
+      "name": "Chemical Entities of Biological Interest",
+      "prefix": "CHEBI",
+      "synonyms": [
+        "ChEBI"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "Chemical Entities of Biological Interest (ChEBI) is a freely available dictionary of molecular entities focused on 'small' chemical compounds.",
@@ -2325,6 +2412,11 @@
   "cl": {
     "download": "https://raw.githubusercontent.com/obophenotype/cell-ontology/master/cl-full.obo",
     "example": "0000062",
+    "go": {
+      "homepage": "http://cellontology.org",
+      "name": "Cell Type Ontology",
+      "prefix": "CL"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Cell Ontology is designed as a structured controlled vocabulary for cell types. The ontology was constructed for use by the model organism and other bioinformatics databases, incorporating cell types from prokaryotes to mammals, and includes plants and fungi.",
@@ -2929,6 +3021,12 @@
   },
   "complexportal": {
     "example": "CPX-263",
+    "go": {
+      "formatter": "https://www.ebi.ac.uk/complexportal/complex/$1",
+      "homepage": "https://www.ebi.ac.uk/complexportal",
+      "name": "Complex Portal database of macromolecular complexes",
+      "prefix": "ComplexPortal"
+    },
     "miriam": {
       "deprecated": false,
       "description": "A database that describes manually curated macromolecular complexes and provides links to details about these complexes in other databases.",
@@ -3001,6 +3099,12 @@
     "url": "https://pharmacome.github.io/conso/$1"
   },
   "coriell": {
+    "go": {
+      "formatter": "http://ccr.coriell.org/Sections/Search/Sample_Detail.aspx?Ref=$1",
+      "homepage": "http://ccr.coriell.org/",
+      "name": "Coriell Institute for Medical Research",
+      "prefix": "CORIELL"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Coriell Cell Repositories provide essential research reagents to the scientific community by establishing, verifying, maintaining, and distributing cell cultures and DNA derived from cell cultures. These collections, supported by funds from the National Institutes of Health (NIH) and several foundations, are extensively utilized by research scientists around the world.",
@@ -3016,6 +3120,12 @@
     }
   },
   "corum": {
+    "go": {
+      "formatter": "https://mips.helmholtz-muenchen.de/corum/?id=$1",
+      "homepage": "https://mips.helmholtz-muenchen.de/corum/",
+      "name": "CORUM - the Comprehensive Resource of Mammalian protein complexes",
+      "prefix": "CORUM"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The CORUM database provides a resource of manually annotated protein complexes from mammalian organisms. Annotation includes protein complex function, localization, subunit composition, literature references and more. All information is obtained from individual experiments published in scientific articles, data from high-throughput experiments is excluded.",
@@ -3525,6 +3635,12 @@
     }
   },
   "dbsnp": {
+    "go": {
+      "formatter": "http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=$1",
+      "homepage": "http://www.ncbi.nlm.nih.gov/projects/SNP",
+      "name": "NCBI dbSNP",
+      "prefix": "dbSNP"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The dbSNP database is a repository for both single base nucleotide subsitutions and short deletion and insertion polymorphisms.",
@@ -3549,6 +3665,11 @@
   },
   "ddanat": {
     "example": "0000006",
+    "go": {
+      "homepage": "http://dictybase.org/Dicty_Info/dicty_anatomy_ontology.html",
+      "name": "Dictyostelium discoideum anatomy",
+      "prefix": "DDANAT"
+    },
     "obofoundry": {
       "contact": "pfey@northwestern.edu",
       "contact.label": "Petra Fey",
@@ -3645,17 +3766,27 @@
     }
   },
   "dicom": {
-    "ols_version_type": "other",
     "ols": {
       "description": "DICOM Controlled Terminology",
       "download": "ftp://medical.nema.org/MEDICAL/Dicom/Resources/Ontology/DCM/dcm.owl",
       "name": "DICOM Controlled Terminology",
       "prefix": "dicom",
       "version": "2021a_20210130"
-    }
+    },
+    "ols_version_type": "other"
   },
   "dictybase": {
     "description": "A resource for Dictyostelid discoideum (a soil-dwelling amoeba) genomics",
+    "go": {
+      "formatter": "http://dictybase.org/gene/$1",
+      "homepage": "http://dictybase.org",
+      "name": "dictyBase",
+      "prefix": "dictyBase",
+      "synonyms": [
+        "DDB",
+        "DictyBase"
+      ]
+    },
     "name": "dictyBase",
     "synonyms": [
       "dictyBase"
@@ -3802,6 +3933,12 @@
     }
   },
   "doi": {
+    "go": {
+      "formatter": "http://dx.doi.org/$1",
+      "homepage": "http://dx.doi.org/",
+      "name": "Digital Object Identifier",
+      "prefix": "DOI"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Digital Object Identifier System is for identifying content objects in the digital environment.",
@@ -4159,6 +4296,9 @@
   },
   "eccode": {
     "go": {
+      "formatter": "https://enzyme.expasy.org/EC/$1",
+      "homepage": "https://enzyme.expasy.org/",
+      "name": "Swiss Institute of Bioinformatics enzyme database",
       "prefix": "ENZYME"
     },
     "miriam": {
@@ -4188,6 +4328,12 @@
     }
   },
   "echobase": {
+    "go": {
+      "formatter": "https://www.york.ac.uk/res/thomas/Gene.cfm?&recordID=$1",
+      "homepage": "https://www.york.ac.uk/res/thomas/",
+      "name": "EchoBASE post-genomic database for Escherichia coli",
+      "prefix": "EchoBASE"
+    },
     "miriam": {
       "deprecated": false,
       "description": "EchoBASE is a database designed to contain and manipulate information from post-genomic experiments using the model bacterium Escherichia coli K-12. The database is built on an enhanced annotation of the updated genome sequence of strain MG1655 and the association of experimental data with the E.coli genes and their products.",
@@ -4216,6 +4362,12 @@
   },
   "eco": {
     "example": "0007807",
+    "go": {
+      "formatter": "http://www.evidenceontology.org/browse/#ECO_$1",
+      "homepage": "http://www.evidenceontology.org/",
+      "name": "Evidence Code Ontology",
+      "prefix": "ECO"
+    },
     "miriam": {
       "deprecated": false,
       "description": "Evidence codes can be used to specify the type of supporting evidence for a piece of knowledge. This allows inference of a 'level of support' between an entity and an annotation made to an entity.",
@@ -4275,7 +4427,13 @@
   "ecocyc": {
     "example": "AICARTRANSIMPCYCLO-CPLX",
     "go": {
-      "prefix": "EcoCyc_REF"
+      "formatter": "http://biocyc.org/ECOLI/reference.html?type=CITATION-FRAME&object=$1",
+      "homepage": "http://ecocyc.org/",
+      "name": "Encyclopedia of E. coli metabolism",
+      "prefix": "EcoCyc_REF",
+      "synonyms": [
+        "ECOCYC_REF"
+      ]
     },
     "name": "EcoCyc",
     "url": "https://biocyc.org/gene?id=$1"
@@ -4296,6 +4454,11 @@
     }
   },
   "ecoliwiki": {
+    "go": {
+      "homepage": "http://ecoliwiki.net/",
+      "name": "EcoliWiki from EcoliHub",
+      "prefix": "EcoliWiki"
+    },
     "miriam": {
       "deprecated": false,
       "description": "EcoliWiki is a wiki-based resource to store information related to non-pathogenic E. coli, its phages, plasmids, and mobile genetic elements. This collection references genes.",
@@ -4551,6 +4714,12 @@
   },
   "emapa": {
     "example": "26753",
+    "go": {
+      "formatter": "http://www.informatics.jax.org/vocab/gxd/anatomy/EMAPA:$1",
+      "homepage": "http://emouseatlas.org/",
+      "name": "Mouse gross anatomy and development, abstract",
+      "prefix": "EMAPA"
+    },
     "obofoundry": {
       "contact": "Terry.Hayamizu@jax.org",
       "contact.label": "Terry Hayamizu",
@@ -4590,6 +4759,12 @@
     }
   },
   "ena.embl": {
+    "go": {
+      "formatter": "http://www.ebi.ac.uk/ena/data/view/$1",
+      "homepage": "http://www.ebi.ac.uk/ena/",
+      "name": "European Nucleotide Archive",
+      "prefix": "ENA"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The European Nucleotide Archive (ENA) captures and presents information relating to experimental workflows that are based around nucleotide sequencing. ENA is made up of a number of distinct databases that includes EMBL-Bank, the Sequence Read Archive (SRA) and the Trace Archive each with their own data formats and standards. This collection references Embl-Bank identifiers.",
@@ -4634,6 +4809,15 @@
     "ols_version_type": "semver"
   },
   "ensembl": {
+    "go": {
+      "homepage": "http://www.ensembl.org/",
+      "name": "Ensembl database of automatically annotated genomic data",
+      "prefix": "ENSEMBL",
+      "synonyms": [
+        "Ensembl",
+        "ensembl"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "Ensembl is a joint project between EMBL - EBI and the Sanger Institute  to develop a software system which produces and maintains automatic annotation on selected eukaryotic genomes. This collections also references outgroup organisms.",
@@ -4676,6 +4860,12 @@
     }
   },
   "ensembl.fungi": {
+    "go": {
+      "formatter": "http://www.ensemblgenomes.org/id/$1",
+      "homepage": "http://fungi.ensembl.org/",
+      "name": "Ensembl Fungi, the Ensembl database for accessing genome-scale data from fungi.",
+      "prefix": "EnsemblFungi"
+    },
     "miriam": {
       "deprecated": false,
       "description": "Ensembl Genomes consists of five sub-portals (for bacteria, protists, fungi, plants and invertebrate metazoa) designed to complement the availability of vertebrate genomes in Ensembl. This collection is concerned with fungal genomes.",
@@ -4691,6 +4881,12 @@
     }
   },
   "ensembl.metazoa": {
+    "go": {
+      "formatter": "http://www.ensemblgenomes.org/id/$1",
+      "homepage": "http://metazoa.ensembl.org/",
+      "name": "Ensembl Metazoa, the Ensembl database for accessing genome-scale data from non-vertebrate metazoa.",
+      "prefix": "EnsemblMetazoa"
+    },
     "miriam": {
       "deprecated": false,
       "description": "Ensembl Genomes consists of five sub-portals (for bacteria, protists, fungi, plants and invertebrate metazoa) designed to complement the availability of vertebrate genomes in Ensembl. This collection is concerned with metazoa genomes.",
@@ -5016,14 +5212,6 @@
       "ExO"
     ]
   },
-  "go.model": {
-    "name": "Gene Ontology Causal Assembly Model",
-    "url": "noctua.geneontology.org/editor/graph/gomodel:$1",
-    "example": "5fce9b7300001250",
-    "go": {
-      "prefix": "gomodel"
-    }
-  },
   "facebase": {
     "miriam": {
       "deprecated": false,
@@ -5104,6 +5292,12 @@
   },
   "fbbt": {
     "example": "00007294",
+    "go": {
+      "formatter": "http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:$1",
+      "homepage": "http://flybase.org/",
+      "name": "Drosophila gross anatomy",
+      "prefix": "FBbt"
+    },
     "obofoundry": {
       "contact": "cp390@cam.ac.uk",
       "contact.label": "Clare Pilgrim",
@@ -5285,6 +5479,16 @@
     }
   },
   "flybase": {
+    "go": {
+      "formatter": "http://flybase.org/reports/$1.html",
+      "homepage": "http://flybase.org/",
+      "name": "FlyBase",
+      "prefix": "FB",
+      "synonyms": [
+        "FlyBase",
+        "FLYBASE"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "FlyBase is the database of the Drosophila Genome Projects and of associated literature.",
@@ -5305,6 +5509,11 @@
   },
   "fma": {
     "example": "63189",
+    "go": {
+      "homepage": "http://sig.biostr.washington.edu/projects/fm/index.html",
+      "name": "Foundational Model of Anatomy",
+      "prefix": "FMA"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Foundational Model of Anatomy Ontology (FMA) is a biomedical informatics ontology. It is concerned with the representation of classes or types and relationships necessary for the symbolic representation of the phenotypic structure of the human body.  Specifically, the FMA is a domain ontology that represents a coherent body of explicit declarative knowledge about human anatomy.",
@@ -5551,6 +5760,11 @@
   "fypo": {
     "download": "http://purl.obolibrary.org/obo/fypo.obo",
     "example": "0001707",
+    "go": {
+      "homepage": "http://www.pombase.org/",
+      "name": "Fission Yeast Phenotype Ontology",
+      "prefix": "FYPO"
+    },
     "name": "Fission Yeast Phenotype Ontology",
     "obofoundry": {
       "contact": "mah79@cam.ac.uk",
@@ -5758,6 +5972,12 @@
     }
   },
   "genedb": {
+    "go": {
+      "formatter": "http://www.genedb.org/gene/$1",
+      "homepage": "http://www.genedb.org/gene/",
+      "name": "GeneDB",
+      "prefix": "GeneDB"
+    },
     "miriam": {
       "deprecated": false,
       "description": "GeneDB is a genome database for prokaryotic and eukaryotic organisms and provides a portal through which data generated by the \"Pathogen Genomics\" group at the Wellcome Trust Sanger Institute and other collaborating sequencing centres can be accessed.",
@@ -5890,6 +6110,12 @@
     }
   },
   "geo": {
+    "go": {
+      "formatter": "http://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=$1",
+      "homepage": "http://www.ncbi.nlm.nih.gov/geo/",
+      "name": "NCBI Gene Expression Omnibus",
+      "prefix": "GEO"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Gene Expression Omnibus (GEO) is a gene expression repository providing a curated, online resource for gene expression data browsing, query and retrieval.",
@@ -6165,6 +6391,11 @@
   "go": {
     "download": "http://purl.obolibrary.org/obo/go.obo",
     "example": "0032571",
+    "go": {
+      "homepage": "http://amigo.geneontology.org/",
+      "name": "Gene Ontology Database",
+      "prefix": "GO"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Gene Ontology project provides a controlled vocabulary to describe gene and gene product attributes in any organism.",
@@ -6208,7 +6439,23 @@
       "property": "P686"
     }
   },
+  "go.model": {
+    "example": "5fce9b7300001250",
+    "go": {
+      "formatter": "http://www.geneontology.org/gocam/$1",
+      "homepage": "http://www.geneontology.org/gocam",
+      "name": "Gene Ontology Causal Activity Model Database",
+      "prefix": "gomodel"
+    },
+    "name": "Gene Ontology Causal Assembly Model",
+    "url": "noctua.geneontology.org/editor/graph/gomodel:$1"
+  },
   "go.ref": {
+    "go": {
+      "homepage": "http://current.geneontology.org/metadata/gorefs/index.html",
+      "name": "Gene Ontology Database references",
+      "prefix": "GO_REF"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The GO reference collection is a set of abstracts that can be cited in the GO ontologies (e.g. as dbxrefs for term definitions) and annotation files (in the Reference column). It provides two types of reference; It can be used to provide details of why specific Evidence codes (see http://identifiers.org/eco/) are assigned, or to present abstract-style descriptions of \"GO content\" meetings at which substantial changes in the ontologies are discussed and made.",
@@ -6305,6 +6552,10 @@
   },
   "gorel": {
     "download": "ftp://ftp.geneontology.org/pub/go/ontology/extensions/gorel.owl",
+    "go": {
+      "name": "GO Extensions to OBO Relation Ontology Ontology",
+      "prefix": "GOREL"
+    },
     "name": "GO Relations"
   },
   "gpcrdb": {
@@ -6339,7 +6590,13 @@
   },
   "gramene.gene": {
     "go": {
-      "prefix": "GR_GENE"
+      "formatter": "http://www.gramene.org/db/genes/search_gene?acc=$1",
+      "homepage": "http://www.gramene.org/",
+      "name": "Gramene",
+      "prefix": "GR_GENE",
+      "synonyms": [
+        "GR_gene"
+      ]
     },
     "miriam": {
       "deprecated": false,
@@ -6373,7 +6630,13 @@
   },
   "gramene.protein": {
     "go": {
-      "prefix": "GR_PROTEIN"
+      "formatter": "http://www.gramene.org/db/protein/protein_search?acc=$1",
+      "homepage": "http://www.gramene.org/",
+      "name": "Gramene",
+      "prefix": "GR_PROTEIN",
+      "synonyms": [
+        "GR_protein"
+      ]
     },
     "miriam": {
       "deprecated": false,
@@ -6391,6 +6654,9 @@
   },
   "gramene.qtl": {
     "go": {
+      "formatter": "http://www.gramene.org/db/qtl/qtl_display?qtl_accession_id=$1",
+      "homepage": "http://www.gramene.org/",
+      "name": "Gramene",
       "prefix": "GR_QTL"
     },
     "miriam": {
@@ -6454,7 +6720,13 @@
   },
   "grin.taxonomy": {
     "go": {
-      "prefix": "GRIN"
+      "formatter": "https://npgsweb.ars-grin.gov/gringlobal/accessiondetail.aspx?id=$1",
+      "homepage": "https://www.ars-grin.gov/",
+      "name": "Germplasm Resources Information Network",
+      "prefix": "GRIN",
+      "synonyms": [
+        "grin"
+      ]
     },
     "miriam": {
       "deprecated": false,
@@ -6640,6 +6912,12 @@
     }
   },
   "hamap": {
+    "go": {
+      "formatter": "http://hamap.expasy.org/unirule/$1",
+      "homepage": "http://hamap.expasy.org/",
+      "name": "High-quality Automated and Manual Annotation of microbial Proteomes",
+      "prefix": "HAMAP"
+    },
     "miriam": {
       "deprecated": false,
       "description": "HAMAP is a system that identifies and semi-automatically annotates proteins that are part of well-conserved and orthologous microbial families or subfamilies. These are used to build rules which are used to propagate annotations to member bacterial, archaeal and plastid-encoded protein entries.",
@@ -6756,6 +7034,8 @@
   "hgnc": {
     "example": "16793",
     "go": {
+      "homepage": "http://www.hugo-international.org/",
+      "name": "Human Genome Organisation",
       "prefix": "HUGO"
     },
     "miriam": {
@@ -7031,6 +7311,12 @@
     }
   },
   "hpa": {
+    "go": {
+      "formatter": "http://www.proteinatlas.org/tissue_profile.php?antibody_id=$1",
+      "homepage": "http://www.proteinatlas.org/",
+      "name": "Human Protein Atlas tissue profile information",
+      "prefix": "HPA"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Human Protein Atlas (HPA) is a publicly available database with high-resolution images showing the spatial distribution of proteins in different normal and cancer human cell lines. Primary access to this collection is through Ensembl Gene identifiers.",
@@ -7216,6 +7502,10 @@
     }
   },
   "iao": {
+    "go": {
+      "name": "Information Artifact Ontology",
+      "prefix": "IAO"
+    },
     "miriam": {
       "deprecated": false,
       "description": "An ontology of information entities, originally driven by work by the Ontology of Biomedical Investigation (OBI) digital entity and realizable information entity branch.",
@@ -7562,6 +7852,11 @@
     }
   },
   "imgt.hla": {
+    "go": {
+      "homepage": "http://www.ebi.ac.uk/imgt/hla",
+      "name": "IMGT/HLA human major histocompatibility complex sequence database",
+      "prefix": "IMGT_HLA"
+    },
     "miriam": {
       "deprecated": false,
       "description": "IMGT, the international ImMunoGeneTics project, is a collection of high-quality integrated databases specialising in Immunoglobulins, T cell receptors and the Major Histocompatibility Complex (MHC) of all vertebrate species. IMGT/HLA is a database for sequences of the human MHC, referred to as HLA. It includes all the official sequences for the WHO Nomenclature Committee For Factors of the HLA System. This collection references allele information through the WHO nomenclature.",
@@ -7577,6 +7872,11 @@
     }
   },
   "imgt.ligm": {
+    "go": {
+      "homepage": "http://www.imgt.org/",
+      "name": "ImMunoGeneTics database covering immunoglobulins and T-cell receptors",
+      "prefix": "IMGT_LIGM"
+    },
     "miriam": {
       "deprecated": false,
       "description": "IMGT, the international ImMunoGeneTics project, is a collection of high-quality integrated databases specialising in Immunoglobulins, T cell receptors and the Major Histocompatibility Complex (MHC) of all vertebrate species. IMGT/LIGM is a comprehensive database of fully annotated sequences of Immunoglobulins and T cell receptors from human and other vertebrates.",
@@ -7718,6 +8018,11 @@
     }
   },
   "intact": {
+    "go": {
+      "homepage": "https://www.ebi.ac.uk/intact/",
+      "name": "IntAct protein interaction database",
+      "prefix": "IntAct"
+    },
     "miriam": {
       "deprecated": false,
       "description": "IntAct provides a freely available, open source database system and analysis tools for protein interaction data.",
@@ -7749,6 +8054,16 @@
   },
   "interpro": {
     "example": "IPR016380",
+    "go": {
+      "formatter": "http://www.ebi.ac.uk/interpro/entry/$1",
+      "homepage": "http://www.ebi.ac.uk/interpro/",
+      "name": "InterPro database of protein domains and motifs",
+      "prefix": "InterPro",
+      "synonyms": [
+        "INTERPRO",
+        "IPR"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "InterPro is a database of protein families, domains and functional sites in which identifiable features found in known proteins can be applied to unknown protein sequences.",
@@ -7808,6 +8123,12 @@
     "url": "https://legacy.vectorbase.org/ontology-browser?cv=MIRO&t=IRO:$1"
   },
   "isbn": {
+    "go": {
+      "formatter": "https://www.worldcat.org/search?q=bn%3A$1",
+      "homepage": "https://www.worldcat.org",
+      "name": "International Standard Book Number",
+      "prefix": "ISBN"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The International Standard Book Number (ISBN) is for identifying printed books.",
@@ -7857,6 +8178,11 @@
     }
   },
   "issn": {
+    "go": {
+      "homepage": "http://www.issn.org/",
+      "name": "International Standard Serial Number",
+      "prefix": "ISSN"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The International Standard Serial Number (ISSN) is a unique eight-digit number used to identify a print or electronic periodical publication, rather than individual articles or books.",
@@ -7921,6 +8247,12 @@
     }
   },
   "iuphar.receptor": {
+    "go": {
+      "formatter": "https://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=$1",
+      "homepage": "http://www.iuphar.org/",
+      "name": "International Union of Pharmacology",
+      "prefix": "IUPHAR_RECEPTOR"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The IUPHAR Compendium details the molecular, biophysical and pharmacological properties of identified mammalian sodium, calcium and potassium channels, as well as the related cyclic nucleotide-modulated ion channels and transient receptor potential channels. It includes information on nomenclature systems, and on inter and intra-species molecular structure variation. This collection references individual receptors or subunits.",
@@ -8007,6 +8339,12 @@
     }
   },
   "jstor": {
+    "go": {
+      "formatter": "https://www.jstor.org/stable/$1",
+      "homepage": "https://www.jstor.org/",
+      "name": "Digital archive of scholarly articles",
+      "prefix": "JSTOR"
+    },
     "miriam": {
       "deprecated": false,
       "description": "JSTOR (Journal Storage) is a digital library containing digital versions of historical academic journals, as well as books, pamphlets and current issues of journals. Some public domain content is free to access, while other articles require registration.",
@@ -8054,6 +8392,11 @@
   "kegg": {
     "comments": "KEGG prefix has been split into several others",
     "deprecated": true,
+    "go": {
+      "homepage": "http://www.genome.ad.jp/kegg/",
+      "name": "Kyoto Encyclopedia of Genes and Genomes",
+      "prefix": "KEGG"
+    },
     "miriam": {
       "deprecated": false,
       "description": "Kyoto Encyclopedia of Genes and Genomes (KEGG) is a database resource for understanding high-level functions and utilities of the biological system, such as the cell, the organism and the ecosystem, from molecular-level information, especially large-scale molecular datasets generated by genome sequencing and other high-throughput experimental technologies.",
@@ -8147,6 +8490,9 @@
   },
   "kegg.enzyme": {
     "go": {
+      "formatter": "http://www.genome.jp/dbget-bin/www_bget?ec:$1",
+      "homepage": "http://www.genome.jp/dbget-bin/www_bfind?enzyme",
+      "name": "KEGG Enzyme Database",
       "prefix": "KEGG_ENZYME"
     },
     "name": "KEGG Enzyme"
@@ -8210,6 +8556,9 @@
   },
   "kegg.ligand": {
     "go": {
+      "formatter": "http://www.genome.jp/dbget-bin/www_bget?cpd:$1",
+      "homepage": "http://www.genome.ad.jp/kegg/docs/upd_ligand.html",
+      "name": "KEGG LIGAND Database",
       "prefix": "KEGG_LIGAND"
     },
     "name": "KEGG LIGAND"
@@ -8261,6 +8610,12 @@
   },
   "kegg.pathway": {
     "example": "rsk00410",
+    "go": {
+      "formatter": "http://www.genome.jp/dbget-bin/www_bget?path:$1",
+      "homepage": "http://www.genome.jp/kegg/pathway.html",
+      "name": "KEGG Pathways Database",
+      "prefix": "KEGG_PATHWAY"
+    },
     "miriam": {
       "deprecated": false,
       "description": "KEGG PATHWAY is a collection of manually drawn pathway maps representing our knowledge on the molecular interaction and reaction networks.",
@@ -8282,6 +8637,12 @@
     }
   },
   "kegg.reaction": {
+    "go": {
+      "formatter": "http://www.genome.jp/dbget-bin/www_bget?rn:$1",
+      "homepage": "http://www.genome.jp/kegg/reaction/",
+      "name": "KEGG Reaction Database",
+      "prefix": "KEGG_REACTION"
+    },
     "miriam": {
       "deprecated": false,
       "description": "KEGG reaction contains our knowledge on the universe of reactions that are relevant to life.",
@@ -8580,6 +8941,12 @@
     }
   },
   "ma": {
+    "go": {
+      "formatter": "http://www.informatics.jax.org/searches/AMA.cgi?id=MA:$1",
+      "homepage": "http://www.informatics.jax.org/",
+      "name": "Adult Mouse Anatomical Dictionary",
+      "prefix": "MA"
+    },
     "miriam": {
       "deprecated": false,
       "description": "A structured controlled vocabulary of the adult anatomy of the mouse (Mus)",
@@ -8622,6 +8989,12 @@
     }
   },
   "maizegdb.locus": {
+    "go": {
+      "formatter": "https://www.maizegdb.org/gene_center/gene/$1",
+      "homepage": "https://www.maizegdb.org/",
+      "name": "MaizeGDB",
+      "prefix": "MaizeGDB_Locus"
+    },
     "miriam": {
       "deprecated": false,
       "description": "MaizeGDB is the maize research community's central repository for genetics and genomics information.",
@@ -8860,6 +9233,12 @@
     }
   },
   "merops": {
+    "go": {
+      "formatter": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=$1",
+      "homepage": "https://www.ebi.ac.uk/merops/",
+      "name": "MEROPS peptidase database",
+      "prefix": "MEROPS"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them.",
@@ -8906,6 +9285,16 @@
   },
   "mesh": {
     "example": "C063233",
+    "go": {
+      "formatter": "http://id.nlm.nih.gov/mesh/$1",
+      "homepage": "https://meshb.nlm.nih.gov",
+      "name": "Medical Subject Headings",
+      "prefix": "MeSH",
+      "synonyms": [
+        "MESH",
+        "MSH"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "MeSH (Medical Subject Headings) is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity. This thesaurus is used by NLM for indexing articles from biomedical journals, cataloguing of books, documents, etc.",
@@ -8989,6 +9378,15 @@
     }
   },
   "metacyc.compound": {
+    "go": {
+      "formatter": "http://biocyc.org/META/NEW-IMAGE?type=NIL&object=$1",
+      "homepage": "http://metacyc.org/",
+      "name": "Metabolic Encyclopedia of metabolic and other pathways",
+      "prefix": "MetaCyc",
+      "synonyms": [
+        "METACYC"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "MetaCyc is a curated database of experimentally elucidated metabolic pathways from all domains of life. MetaCyc contains 2526 pathways from 2844 different organisms. MetaCyc contains pathways involved in both primary and secondary metabolism, as well as associated metabolites, reactions, enzymes, and genes. The goal of MetaCyc is to catalog the universe of metabolism by storing a representative sample of each experimentally elucidated pathway.",
@@ -9202,6 +9600,11 @@
   },
   "mgi": {
     "example": "6017782",
+    "go": {
+      "homepage": "http://www.informatics.jax.org/",
+      "name": "Mouse Genome Informatics",
+      "prefix": "MGI"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Mouse Genome Database (MGD) project includes data on gene characterization, nomenclature, mapping, gene homologies among mammals, sequence links, phenotypes, allelic variants and mutants, and strain data.",
@@ -9257,6 +9660,14 @@
   },
   "mi": {
     "example": "0058",
+    "go": {
+      "homepage": "http://www.psidev.info/",
+      "name": "Proteomic Standard Initiative for Molecular Interaction",
+      "prefix": "PSI-MI",
+      "synonyms": [
+        "MI"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Molecular Interactions (MI) ontology forms a structured controlled vocabulary for the annotation of experiments concerned with protein-protein interactions. MI is developed by the HUPO Proteomics Standards Initiative.",
@@ -9370,6 +9781,15 @@
   },
   "mim": {
     "comment": "OMIMPS and PS should probably be split to their own entry called OMIM Phenotypic Series",
+    "go": {
+      "formatter": "https://omim.org/entry/$1",
+      "homepage": "https://omim.org/",
+      "name": "Mendelian Inheritance in Man",
+      "prefix": "OMIM",
+      "synonyms": [
+        "MIM"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "Online Mendelian Inheritance in Man is a catalog of human genes and genetic disorders.",
@@ -9835,7 +10255,12 @@
   "mod": {
     "example": "01467",
     "go": {
-      "prefix": "PSI-MOD"
+      "homepage": "http://www.psidev.info/groups/protein-modifications",
+      "name": "Proteomics Standards Initiative protein modification ontology",
+      "prefix": "PSI-MOD",
+      "synonyms": [
+        "MOD"
+      ]
     },
     "miriam": {
       "deprecated": false,
@@ -10432,6 +10857,17 @@
     }
   },
   "ncbigene": {
+    "go": {
+      "formatter": "https://www.ncbi.nlm.nih.gov/gene$1",
+      "homepage": "http://www.ncbi.nlm.nih.gov/",
+      "name": "NCBI Gene",
+      "prefix": "NCBIGene",
+      "synonyms": [
+        "GeneID",
+        "LocusID",
+        "NCBI_Gene"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "Entrez Gene is the NCBI's database for gene-specific information, focusing on completely sequenced genomes, those with an active research community to contribute gene-specific information, or those that are scheduled for intense sequence analysis.",
@@ -10462,6 +10898,8 @@
   },
   "ncbiprotein": {
     "go": {
+      "homepage": "https://www.ncbi.nlm.nih.gov/protein",
+      "name": "NCBI Protein",
       "prefix": "NCBI_NP"
     },
     "miriam": {
@@ -10482,7 +10920,14 @@
     "download": "http://purl.obolibrary.org/obo/ncbitaxon.obo",
     "example": "2170610",
     "go": {
-      "prefix": "taxon"
+      "formatter": "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=$1",
+      "homepage": "http://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/",
+      "name": "NCBI Taxonomy",
+      "prefix": "taxon",
+      "synonyms": [
+        "NCBITaxon",
+        "ncbi_taxid"
+      ]
     },
     "miriam": {
       "deprecated": false,
@@ -11053,6 +11498,11 @@
   "obi": {
     "download": "https://github.com/obi-ontology/obi/raw/master/views/obi.obo",
     "example": "0400109",
+    "go": {
+      "homepage": "http://obi-ontology.org/",
+      "name": "Ontology for Biomedical Investigations",
+      "prefix": "OBI"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Ontology for Biomedical Investigations (OBI) project is developing an integrated ontology for the description of biological and clinical investigations. The ontology will represent the design of an investigation, the protocols and instrumentation used, the material used, the data generated and the type analysis performed on it. Currently OBI is being built under the Basic Formal Ontology (BFO).",
@@ -12037,6 +12487,9 @@
   },
   "panther.family": {
     "go": {
+      "formatter": "http://www.pantherdb.org/panther/lookupId.jsp?id=$1",
+      "homepage": "http://www.pantherdb.org/",
+      "name": "Protein ANalysis THrough Evolutionary Relationships Classification System",
       "prefix": "PANTHER"
     },
     "miriam": {
@@ -12135,6 +12588,11 @@
     }
   },
   "pato": {
+    "go": {
+      "homepage": "http://www.obofoundry.org/ontology/pato.html",
+      "name": "Phenotypic quality ontology",
+      "prefix": "PATO"
+    },
     "miriam": {
       "deprecated": false,
       "description": "PATO is an ontology of phenotypic qualities, intended for use in a number of applications, primarily defining composite phenotypes and phenotype  annotation.",
@@ -12237,6 +12695,12 @@
     "pattern": "^\\d{7}$"
   },
   "pdb": {
+    "go": {
+      "formatter": "https://www.rcsb.org/structure/$1",
+      "homepage": "https://www.rcsb.org/pdb/",
+      "name": "Protein Data Bank",
+      "prefix": "PDB"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Protein Data Bank is the single worldwide archive of structural data of biological macromolecules.",
@@ -12448,6 +12912,11 @@
   },
   "pfam": {
     "example": "PF11779",
+    "go": {
+      "homepage": "http://pfam.xfam.org",
+      "name": "Pfam database of protein families",
+      "prefix": "Pfam"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Pfam database contains information about protein domains and families. For each entry a protein sequence alignment and a Hidden Markov Model is stored.",
@@ -12794,6 +13263,12 @@
     }
   },
   "pirsf": {
+    "go": {
+      "formatter": "http://pir.georgetown.edu/cgi-bin/ipcSF?id=$1",
+      "homepage": "http://pir.georgetown.edu/pirsf/",
+      "name": "PIR Superfamily Classification System",
+      "prefix": "PIRSF"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The PIR SuperFamily concept is being used as a guiding principle to provide comprehensive and non-overlapping clustering of UniProtKB sequences into a hierarchical order to reflect their evolutionary relationships.",
@@ -12884,6 +13359,9 @@
   },
   "plasmodb": {
     "go": {
+      "formatter": "http://www.plasmodb.org/gene/$1",
+      "homepage": "http://plasmodb.org/",
+      "name": "PlasmoDB Plasmodium Genome Resource",
       "prefix": "ApiDB_PlasmoDB"
     },
     "miriam": {
@@ -12941,6 +13419,15 @@
     }
   },
   "pmc": {
+    "go": {
+      "formatter": "https://www.ncbi.nlm.nih.gov/pmc/articles/$1",
+      "homepage": "https://www.ncbi.nlm.nih.gov/pmc/",
+      "name": "Pubmed Central",
+      "prefix": "PMCID",
+      "synonyms": [
+        "PMC"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "PMC International (PMCI) is a free full-text archive of biomedical and life sciences journal literature. PMCI is a collaborative effort between the U.S. National Institutes of Health and the National Library of Medicine, the publishers whose journal content makes up the PMC archive, and organizations in other countries that share NIH's and NLM's interest in archiving life sciences literature.",
@@ -12993,6 +13480,11 @@
     }
   },
   "po": {
+    "go": {
+      "homepage": "http://www.planteome.org/",
+      "name": "Plant Ontology",
+      "prefix": "PO"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Plant Ontology is a structured vocabulary and database resource that links plant anatomy, morphology and growth and development to plant genomics data.",
@@ -13057,6 +13549,12 @@
     }
   },
   "pombase": {
+    "go": {
+      "formatter": "https://www.pombase.org/gene/$1",
+      "homepage": "https://www.pombase.org/",
+      "name": "PomBase",
+      "prefix": "PomBase"
+    },
     "miriam": {
       "deprecated": false,
       "description": "PomBase is a model organism database established to provide access to molecular data and biological information for the fission yeast Schizosaccharomyces pombe. It encompasses annotation of genomic sequence and features, comprehensive manual literature curation and genome-wide data sets.",
@@ -13132,6 +13630,15 @@
     "url": "https://europepmc.org/article/ppr/$1"
   },
   "pr": {
+    "go": {
+      "formatter": "https://proconsortium.org/app/entry/PR_$1",
+      "homepage": "https://proconsortium.org/",
+      "name": "Protein Ontology",
+      "prefix": "PR",
+      "synonyms": [
+        "PRO"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "The PRotein Ontology (PRO) has been designed to describe the relationships of proteins and protein evolutionary classes, to delineate the multiple protein forms of a gene locus (ontology for protein forms), and to interconnect existing ontologies.",
@@ -13212,6 +13719,12 @@
     }
   },
   "prints": {
+    "go": {
+      "formatter": "http://www.bioinf.manchester.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1",
+      "homepage": "http://www.bioinf.manchester.ac.uk/dbbrowser/PRINTS/",
+      "name": "PRINTS compendium of protein fingerprints",
+      "prefix": "PRINTS"
+    },
     "miriam": {
       "deprecated": false,
       "description": "PRINTS is a compendium of protein fingerprints. A fingerprint is a group of conserved motifs used to characterise a protein family; its diagnostic power is refined by iterative scanning of a SWISS-PROT/TrEMBL composite. Usually the motifs do not overlap, but are separated along a sequence, though they may be contiguous in 3D-space. Fingerprints can encode protein folds and functionalities more flexibly and powerfully than can single motifs, full diagnostic potency deriving from the mutual context provided by motif neighbours.",
@@ -13280,6 +13793,12 @@
     }
   },
   "prosite": {
+    "go": {
+      "formatter": "https://prosite.expasy.org/$1",
+      "homepage": "https://prosite.expasy.org/",
+      "name": "Prosite database of protein families and domains",
+      "prefix": "Prosite"
+    },
     "miriam": {
       "deprecated": false,
       "description": "PROSITE consists of documentation entries describing protein domains, families and functional sites as well as associated patterns and profiles to identify them.",
@@ -13470,6 +13989,12 @@
     "ols_version_date_format": "%Y-%m-%d"
   },
   "pubchem.bioassay": {
+    "go": {
+      "formatter": "https://pubchem.ncbi.nlm.nih.gov/bioassay/$1",
+      "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+      "name": "NCBI PubChem database of bioassay records",
+      "prefix": "PubChem_BioAssay"
+    },
     "miriam": {
       "deprecated": false,
       "description": "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem bioassay archives active compounds and bioassay results.",
@@ -13485,6 +14010,12 @@
     }
   },
   "pubchem.compound": {
+    "go": {
+      "formatter": "https://pubchem.ncbi.nlm.nih.gov/compound/$1",
+      "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+      "name": "NCBI PubChem database of chemical structures",
+      "prefix": "PubChem_Compound"
+    },
     "miriam": {
       "deprecated": false,
       "description": "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Compound archives chemical structures and records.",
@@ -13514,6 +14045,12 @@
     }
   },
   "pubchem.substance": {
+    "go": {
+      "formatter": "https://pubchem.ncbi.nlm.nih.gov/substance/$1",
+      "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+      "name": "NCBI PubChem database of chemical substances",
+      "prefix": "PubChem_Substance"
+    },
     "miriam": {
       "deprecated": false,
       "description": "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Substance archives chemical substance records.",
@@ -13539,6 +14076,15 @@
     }
   },
   "pubmed": {
+    "go": {
+      "formatter": "http://www.ncbi.nlm.nih.gov/pubmed/$1",
+      "homepage": "https://www.ncbi.nlm.nih.gov/pubmed",
+      "name": "PubMed",
+      "prefix": "PMID",
+      "synonyms": [
+        "PUBMED"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s.",
@@ -13676,6 +14222,16 @@
   },
   "reactome": {
     "example": "R-BTA-418592",
+    "go": {
+      "formatter": "https://www.reactome.org/content/detail/$1",
+      "homepage": "https://www.reactome.org/",
+      "name": "Reactome - a curated knowledgebase of biological pathways",
+      "prefix": "Reactome",
+      "synonyms": [
+        "REACTOME",
+        "REAC"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Reactome project is a collaboration to develop a curated resource of core pathways and reactions in human biology.",
@@ -13710,6 +14266,12 @@
     }
   },
   "rebase": {
+    "go": {
+      "formatter": "http://rebase.neb.com/rebase/enz/$1.html",
+      "homepage": "http://rebase.neb.com/rebase/rebase.html",
+      "name": "REBASE restriction enzyme database",
+      "prefix": "REBASE"
+    },
     "miriam": {
       "deprecated": false,
       "description": "REBASE is a comprehensive database of information about restriction enzymes, DNA methyltransferases and related proteins involved in the biological process of restriction-modification (R-M). It contains fully referenced information about recognition and cleavage sites, isoschizomers, neoschizomers, commercial availability, methylation sensitivity, crystal and sequence data.",
@@ -13725,6 +14287,11 @@
     }
   },
   "refseq": {
+    "go": {
+      "homepage": "http://www.ncbi.nlm.nih.gov/RefSeq/",
+      "name": "RefSeq",
+      "prefix": "RefSeq"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Reference Sequence (RefSeq) collection aims to provide a comprehensive, integrated, non-redundant set of sequences, including genomic DNA, transcript (RNA), and protein products.",
@@ -13751,6 +14318,12 @@
     "ols_version_type": "semver"
   },
   "resid": {
+    "go": {
+      "formatter": "https://proteininformationresource.org/cgi-bin/resid?id=$1",
+      "homepage": "https://proteininformationresource.org/resid/resid.shtml",
+      "name": "RESID Database of Protein Modifications",
+      "prefix": "RESID"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The RESID Database of Protein Modifications is a comprehensive collection of annotations and structures for protein modifications including amino-terminal, carboxyl-terminal and peptide chain cross-link post-translational modifications.",
@@ -13811,6 +14384,12 @@
     "ols_version_date_format": "%d-%m-%Y"
   },
   "rfam": {
+    "go": {
+      "formatter": "https://rfam.org/family/$1",
+      "homepage": "https://rfam.org",
+      "name": "Rfam database of RNA families",
+      "prefix": "Rfam"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Rfam database is a collection of RNA families, each represented by multiple sequence alignments, consensus secondary structures and covariance models (CMs). The families in Rfam break down into three broad functional classes: non-coding RNA genes, structured cis-regulatory elements and self-splicing RNAs. Typically these functional RNAs often have a conserved secondary structure which may be better preserved than the RNA sequence. The CMs used to describe each family are a slightly more complicated relative of the profile hidden Markov models (HMMs) used by Pfam. CMs can simultaneously model RNA sequence and the structure in an elegant and accurate fashion.",
@@ -13827,6 +14406,16 @@
   },
   "rgd": {
     "example": "7499841",
+    "go": {
+      "formatter": "https://rgd.mcw.edu/rgdweb/search/search.html?term=$1",
+      "homepage": "https://rgd.mcw.edu/",
+      "name": "Rat Genome Database",
+      "prefix": "RGD",
+      "synonyms": [
+        "RAD",
+        "RGDID"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "Rat Genome Database seeks to collect, consolidate, and integrate rat genomic and genetic data with curated functional and physiological data and make these data widely available to the scientific community. This collection references genes.",
@@ -13878,6 +14467,12 @@
     }
   },
   "rhea": {
+    "go": {
+      "formatter": "https://www.rhea-db.org/rhea/$1",
+      "homepage": "https://www.rhea-db.org",
+      "name": "Rhea, the Annotated Reactions Database",
+      "prefix": "RHEA"
+    },
     "miriam": {
       "deprecated": false,
       "description": "Rhea is a manually annotated reaction database, where all reaction participants (reactants and products) are linked to the ChEBI database (Chemical Entities of Biological Interest), providing detailed information about structure, formulae and charge. It is populated with the reactions found in the EC list, IntEnz and ENZYME databases), as well as other biochemical reactions, including those that are often termed \"spontaneous\".",
@@ -13989,6 +14584,12 @@
     }
   },
   "rnacentral": {
+    "go": {
+      "formatter": "https://rnacentral.org/rna/$1",
+      "homepage": "https://rnacentral.org",
+      "name": "RNAcentral",
+      "prefix": "RNAcentral"
+    },
     "miriam": {
       "deprecated": false,
       "description": "RNAcentral is a public resource that offers integrated access to a comprehensive and up-to-date set of non-coding RNA sequences provided by a collaborating group of Expert Databases.",
@@ -14010,6 +14611,15 @@
     "url": "http://rna.rega.kuleuven.be/cgi-bin/rnamods/rnashow.pl?$1"
   },
   "rnamods": {
+    "go": {
+      "formatter": "https://mods.rna.albany.edu/mods/modifications/view/$1",
+      "homepage": "https://mods.rna.albany.edu/",
+      "name": "RNA Modification Database",
+      "prefix": "RNAmods",
+      "synonyms": [
+        "RNAMDB"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "The RNA modification database provides a comprehensive listing of post-transcriptionally modified nucleosides from RNA. The database consists of all RNA-derived ribonucleosides of known structure, including those from established sequence positions, as well as those detected or characterized from hydrolysates of RNA.",
@@ -14048,6 +14658,10 @@
   },
   "ro": {
     "download": "https://github.com/oborel/obo-relations/raw/master/ro.obo",
+    "go": {
+      "name": "OBO Relation Ontology Ontology",
+      "prefix": "RO"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The OBO Relation Ontology provides consistent and unambiguous formal definitions of the relational expressions used in biomedical ontologies.",
@@ -14213,6 +14827,9 @@
   },
   "sabiork.kineticrecord": {
     "go": {
+      "formatter": "http://sabio.villa-bosch.de/reacdetails.jsp?reactid=$1",
+      "homepage": "http://sabio.villa-bosch.de/",
+      "name": "SABIO Reaction Kinetics",
       "prefix": "SABIO-RK"
     },
     "miriam": {
@@ -14389,6 +15006,12 @@
     "ols_version_date_format": "%Y-%m-%d"
   },
   "seed": {
+    "go": {
+      "formatter": "http://www.theseed.org/linkin.cgi?id=$1",
+      "homepage": "http://www.theseed.org",
+      "name": "The SEED;",
+      "prefix": "SEED"
+    },
     "miriam": {
       "deprecated": false,
       "description": "This cooperative effort, which includes Fellowship for Interpretation of Genomes (FIG), Argonne National Laboratory, and the University of Chicago, focuses on the development of the comparative genomics environment called the SEED. It is a framework to support comparative analysis and annotation of genomes, and the development of curated genomic data (annotation). Curation is performed at the level of subsystems by an expert annotator, across many genomes, and not on a gene by gene basis. This collection references subsystems.",
@@ -14455,6 +15078,15 @@
   },
   "sgd": {
     "example": "S000002493",
+    "go": {
+      "formatter": "https://www.yeastgenome.org/locus/$1",
+      "homepage": "http://www.yeastgenome.org/",
+      "name": "Saccharomyces Genome Database",
+      "prefix": "SGD",
+      "synonyms": [
+        "SGDID"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Saccharomyces Genome Database (SGD) project collects information and maintains a database of the molecular biology of the yeast Saccharomyces cerevisiae.",
@@ -14488,6 +15120,15 @@
     }
   },
   "sgn": {
+    "go": {
+      "formatter": "http://solgenomics.net/phenome/locus_display.pl?locus_id=$1",
+      "homepage": "https://www.sgn.cornell.edu/",
+      "name": "Sol Genomics Network",
+      "prefix": "SGN",
+      "synonyms": [
+        "SGN_gene"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Sol Genomics Network (SGN) is a database and website dedicated to the genomic information of the nightshade family, which includes species such as tomato, potato, pepper, petunia and eggplant.",
@@ -14648,6 +15289,12 @@
     "namespace.capitalized": true
   },
   "smart": {
+    "go": {
+      "formatter": "http://smart.embl-heidelberg.de/smart/do_annotation.pl?BLAST=DUMMY&DOMAIN=$1",
+      "homepage": "http://smart.embl-heidelberg.de/",
+      "name": "Simple Modular Architecture Research Tool",
+      "prefix": "SMART"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Simple Modular Architecture Research Tool (SMART) is an online tool for the identification and annotation of protein domains, and the analysis of domain architectures.",
@@ -14776,6 +15423,11 @@
   "so": {
     "download": "https://github.com/The-Sequence-Ontology/SO-Ontologies/raw/master/Ontology_Files/so.obo",
     "example": "0001157",
+    "go": {
+      "homepage": "http://www.sequenceontology.org/",
+      "name": "Sequence Ontology",
+      "prefix": "SO"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Sequence Ontology (SO) is a structured controlled vocabulary for the parts of a genomic annotation. It provides a common set of terms and definitions to facilitate the exchange, analysis and management of genomic data.",
@@ -15226,6 +15878,8 @@
   },
   "tair.locus": {
     "go": {
+      "homepage": "http://www.arabidopsis.org/",
+      "name": "The Arabidopsis Information Resource",
       "prefix": "TAIR"
     },
     "miriam": {
@@ -15312,6 +15966,12 @@
     "pattern": "^\\d{7}$"
   },
   "tcdb": {
+    "go": {
+      "formatter": "http://www.tcdb.org/tcdb/index.php?tc=$1",
+      "homepage": "http://www.tcdb.org/",
+      "name": "Transport Protein Database",
+      "prefix": "TC"
+    },
     "homepage": "https://www.tcdb.org",
     "miriam": {
       "deprecated": false,
@@ -15338,6 +15998,11 @@
     }
   },
   "tgd": {
+    "go": {
+      "homepage": "http://www.ciliate.org/",
+      "name": "Tetrahymena Genome Database",
+      "prefix": "TGD"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Tetrahymena Genome Database (TGD) Wiki is a database of information about the Tetrahymena thermophila genome sequence. It provides information curated from the literature about each published gene, including a standardized gene name, a link to the genomic locus, gene product annotations utilizing the Gene Ontology, and links to published literature.",
@@ -15663,6 +16328,11 @@
   "uberon": {
     "download": "http://purl.obolibrary.org/obo/uberon/basic.obo",
     "example": "2005080",
+    "go": {
+      "homepage": "http://uberon.org",
+      "name": "Uber-anatomy ontology",
+      "prefix": "UBERON"
+    },
     "miriam": {
       "deprecated": false,
       "description": "Uberon is an integrated cross-species anatomy ontology representing a variety of entities classified according to traditional anatomical criteria such as structure, function and developmental lineage. The ontology includes comprehensive relationships to taxon-specific anatomical ontologies, allowing integration of functional, phenotype and expression data.",
@@ -15754,6 +16424,12 @@
     }
   },
   "umbbd.enzyme": {
+    "go": {
+      "formatter": "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=ep&enzymeID=$1",
+      "homepage": "http://eawag-bbd.ethz.ch/",
+      "name": "EAWAG Biocatalysis/Biodegradation Database",
+      "prefix": "UM-BBD_enzymeID"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to enzyme information.",
@@ -15773,6 +16449,12 @@
     "url": "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=ep&enzymeID=$1"
   },
   "umbbd.pathway": {
+    "go": {
+      "formatter": "http://eawag-bbd.ethz.ch/$1/$1_map.html",
+      "homepage": "http://eawag-bbd.ethz.ch/",
+      "name": "EAWAG Biocatalysis/Biodegradation Database",
+      "prefix": "UM-BBD_pathwayID"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to pathway information.",
@@ -15792,6 +16474,12 @@
     "url": "http://eawag-bbd.ethz.ch/$1/$1_map.html"
   },
   "umbbd.reaction": {
+    "go": {
+      "formatter": "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=r&reacID=$1",
+      "homepage": "http://eawag-bbd.ethz.ch/",
+      "name": "EAWAG Biocatalysis/Biodegradation Database",
+      "prefix": "UM-BBD_reactionID"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to reaction information.",
@@ -15815,6 +16503,9 @@
   },
   "umbbd.rule": {
     "go": {
+      "formatter": "http://eawag-bbd.ethz.ch/servlets/rule.jsp?rule=$1",
+      "homepage": "http://eawag-bbd.ethz.ch/",
+      "name": "EAWAG Biocatalysis/Biodegradation Database",
       "prefix": "UM-BBD_ruleID"
     },
     "miriam": {
@@ -15913,6 +16604,12 @@
     "ols_version_date_format": "%d-%m-%Y"
   },
   "uniparc": {
+    "go": {
+      "formatter": "https://www.uniprot.org/uniparc/$1",
+      "homepage": "https://www.uniprot.org/uniparc/",
+      "name": "UniProt Archive",
+      "prefix": "UniParc"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The UniProt Archive (UniParc) is a  database containing non-redundant protein sequence information from many sources. Each unique sequence is given a stable and unique identifier (UPI) making it possible to identify the same protein from different source databases.",
@@ -15958,6 +16655,12 @@
     }
   },
   "uniprot": {
+    "go": {
+      "formatter": "https://www.uniprot.org/uniprot/$1",
+      "homepage": "http://www.uniprot.org",
+      "name": "Universal Protein Knowledgebase",
+      "prefix": "UniProtKB"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. Besides amino acid sequence and a description, it also provides taxonomic data and citation information.",
@@ -16015,6 +16718,15 @@
   },
   "uniprot.keyword": {
     "example": "KW-1273",
+    "go": {
+      "formatter": "https://www.uniprot.org/keywords/$1",
+      "homepage": "http://www.uniprot.org/keywords/",
+      "name": "UniProt Knowledgebase keywords",
+      "prefix": "UniProtKB-KW",
+      "synonyms": [
+        "SP_KW"
+      ]
+    },
     "name": "UniProt Keywords",
     "synonyms": [
       "UniProtKB-KW"
@@ -16106,6 +16818,12 @@
   "upa": {
     "download": "https://raw.githubusercontent.com/geneontology/unipathway/master/upa.obo",
     "example": "UCR00513",
+    "go": {
+      "formatter": "http://www.grenoble.prabi.fr/obiwarehouse/unipathway/upa?upid=$1",
+      "homepage": "http://www.grenoble.prabi.fr/obiwarehouse/unipathway",
+      "name": "UniPathway",
+      "prefix": "UniPathway"
+    },
     "obofoundry": {
       "contact": "Anne.Morgat@sib.swiss",
       "contact.label": "Anne Morgat",
@@ -16572,6 +17290,12 @@
   },
   "vz": {
     "example": "886",
+    "go": {
+      "formatter": "http://viralzone.expasy.org/all_by_protein/$1.html",
+      "homepage": "http://viralzone.expasy.org/",
+      "name": "ViralZone",
+      "prefix": "VZ"
+    },
     "name": "ViralZone",
     "url": "https://viralzone.expasy.org/$1",
     "wikidata": {
@@ -16579,6 +17303,14 @@
     }
   },
   "wb": {
+    "go": {
+      "homepage": "http://www.wormbase.org/",
+      "name": "WormBase database of nematode biology",
+      "prefix": "WB",
+      "synonyms": [
+        "WormBase"
+      ]
+    },
     "miriam": {
       "deprecated": false,
       "description": "WormBase is an online bioinformatics database of the biology and genome of the model organism Caenorhabditis elegans and other nematodes. It is used by the C. elegans research community both as an information resource and as a mode to publish and distribute their results. This collection references WormBase-accessioned entities.",
@@ -16610,6 +17342,11 @@
   },
   "wbbt": {
     "example": "0001290",
+    "go": {
+      "homepage": "http://www.wormbase.org/",
+      "name": "C. elegans gross anatomy",
+      "prefix": "WBbt"
+    },
     "obofoundry": {
       "contact": "raymond@caltech.edu",
       "contact.label": "Raymond Lee",
@@ -16637,6 +17374,12 @@
   },
   "wbls": {
     "example": "0000690",
+    "go": {
+      "formatter": "http://www.wormbase.org/get?name=$1",
+      "homepage": "http://www.wormbase.org/",
+      "name": "C. elegans development",
+      "prefix": "WBls"
+    },
     "obofoundry": {
       "contact": "cgrove@caltech.edu",
       "contact.label": "Chris Grove",
@@ -16664,6 +17407,12 @@
   },
   "wbphenotype": {
     "example": "0000983",
+    "go": {
+      "formatter": "http://www.wormbase.org/get?name=$1",
+      "homepage": "http://www.wormbase.org/",
+      "name": "WormBase phenotype ontology",
+      "prefix": "WBPhenotype"
+    },
     "obofoundry": {
       "contact": "cgrove@caltech.edu",
       "contact.label": "Chris Grove",
@@ -16748,6 +17497,12 @@
     }
   },
   "wikipedia.en": {
+    "go": {
+      "formatter": "http://en.wikipedia.org/wiki/$1",
+      "homepage": "http://en.wikipedia.org/",
+      "name": "Wikipedia",
+      "prefix": "Wikipedia"
+    },
     "miriam": {
       "deprecated": false,
       "description": "Wikipedia is a multilingual, web-based, free-content encyclopedia project based on an openly editable model. It is written collaboratively by largely anonymous Internet volunteers who write without pay.",
@@ -16783,6 +17538,9 @@
   "wormbase": {
     "example": "C05G5/12462-12364",
     "go": {
+      "formatter": "http://www.wormbase.org/get?name=$1",
+      "homepage": "http://www.wormbase.org/",
+      "name": "WormBase database of nematode biology",
       "prefix": "WB_REF"
     },
     "homepage": "https://wormbase.org",
@@ -16871,6 +17629,11 @@
     "pattern": "^\\d{7}$"
   },
   "xenbase": {
+    "go": {
+      "homepage": "http://www.xenbase.org/",
+      "name": "Xenbase",
+      "prefix": "Xenbase"
+    },
     "miriam": {
       "deprecated": false,
       "description": "Xenbase is the model organism database for Xenopus laevis and X. (Silurana) tropicalis. It contains genomic, development data and community information for Xenopus research. it includes gene expression patterns that incorporates image data from the literature, large scale screens and community submissions.",
@@ -17081,6 +17844,11 @@
     ]
   },
   "zfin": {
+    "go": {
+      "homepage": "http://zfin.org/",
+      "name": "Zebrafish Information Network",
+      "prefix": "ZFIN"
+    },
     "miriam": {
       "deprecated": false,
       "description": "ZFIN serves as the zebrafish model organism database. This collection references all zebrafish biological entities in ZFIN.",
