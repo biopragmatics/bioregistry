@@ -76,7 +76,7 @@ def get_pattern(prefix: str) -> Optional[str]:
 
 
 @lru_cache()
-def get_pattern_re(prefix: str) -> Optional[re.Pattern]:
+def get_pattern_re(prefix: str):
     """Get the compiled pattern for the given prefix, if it's available."""
     pattern = get_pattern(prefix)
     if pattern is None:

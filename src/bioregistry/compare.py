@@ -94,32 +94,7 @@ def compare():  # noqa:C901
     ###############################################
     # What kinds of licenses are resources using? #
     ###############################################
-    licenses = []
-    conflicts = set()
-    obo_has_license, ols_has_license = set(), set()
-    for key, entry in bioregistry.items():
-        obo_license = _remap_license(entry.get('obofoundry', {}).get('license'))
-        if obo_license:
-            obo_has_license.add(key)
-
-        ols_license = _remap_license(entry.get('ols', {}).get('license'))
-        if ols_license:
-            ols_has_license.add(key)
-
-        if not obo_license and not ols_license:
-            licenses.append('None')
-        if obo_license and not ols_license:
-            licenses.append(obo_license)
-        elif not obo_license and ols_license:
-            licenses.append(ols_license)
-        elif obo_license == ols_license:
-            licenses.append(obo_license)
-        else:  # different licenses!
-            licenses.append(ols_license)
-            licenses.append(obo_license)
-            conflicts.add(key)
-            print(f'[{key}] Conflicting licenses- {obo_license} and {ols_license}')
-            continue
+    licenses, conflicts, obo_has_license, ols_has_license = _get_license_and_conflicts()
 
     # How many times does the license appear in OLS / OBO Foundry
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
@@ -319,6 +294,36 @@ def compare():  # noqa:C901
     fig.tight_layout()
     fig.savefig(path, dpi=300)
     plt.close(fig)
+
+
+def _get_license_and_conflicts():
+    licenses = []
+    conflicts = set()
+    obo_has_license, ols_has_license = set(), set()
+    for key, entry in bioregistry.items():
+        obo_license = _remap_license(entry.get('obofoundry', {}).get('license'))
+        if obo_license:
+            obo_has_license.add(key)
+
+        ols_license = _remap_license(entry.get('ols', {}).get('license'))
+        if ols_license:
+            ols_has_license.add(key)
+
+        if not obo_license and not ols_license:
+            licenses.append('None')
+        if obo_license and not ols_license:
+            licenses.append(obo_license)
+        elif not obo_license and ols_license:
+            licenses.append(ols_license)
+        elif obo_license == ols_license:
+            licenses.append(obo_license)
+        else:  # different licenses!
+            licenses.append(ols_license)
+            licenses.append(obo_license)
+            conflicts.add(key)
+            print(f'[{key}] Conflicting licenses- {obo_license} and {ols_license}')
+            continue
+    return licenses, conflicts, obo_has_license, ols_has_license
 
 
 def _remap(*, key: str, prefixes: Collection[str]) -> Set[str]:

@@ -8,11 +8,11 @@ from bioregistry.utils import query_wikidata, updater
 @updater
 def align_wikidata(registry):
     """Update Wikidata references."""
-    properties = {
-        wikidata_property: bioregistry_id
-        for bioregistry_id, v in registry.items()
-        if (wikidata_property := v.get('wikidata', {}).get('property')) is not None
-    }
+    properties = {}
+    for bioregistry_id, v in registry.items():
+        wikidata_property = v.get('wikidata', {}).get('property')
+        if wikidata_property is not None:
+            properties[wikidata_property] = bioregistry_id
 
     query = f'''
     SELECT
