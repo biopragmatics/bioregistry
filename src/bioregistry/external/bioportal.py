@@ -15,6 +15,10 @@ from more_click import verbose_option
 from bioregistry.constants import BIOREGISTRY_MODULE
 from bioregistry.external.utils import list_to_map
 
+__all__ = [
+    'get_bioportal',
+]
+
 BIOPORTAL_PATH = BIOREGISTRY_MODULE.get('bioportal.json')
 BIOPORTAL_API_KEY = pystow.get_config('bioportal', 'api_key')
 BASE_URL = 'https://data.bioontology.org'
@@ -26,9 +30,9 @@ def query(url: str, **params) -> requests.Response:
     return requests.get(f'{BASE_URL}/{url}', params=params)
 
 
-def get_bioportal(force: bool = True, mappify: bool = False):
+def get_bioportal(force_download: bool = True, mappify: bool = False):
     """Get the BioPortal registry."""
-    if BIOPORTAL_PATH.exists() and not force:
+    if BIOPORTAL_PATH.exists() and not force_download:
         with BIOPORTAL_PATH.open() as file:
             entries = json.load(file)
     else:

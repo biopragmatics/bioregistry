@@ -4,6 +4,7 @@
 
 import click
 
+from .bioportal import BioPortalAligner
 from .go import GoAligner
 from .miriam import align_miriam
 from .n2t import align_n2t
@@ -37,6 +38,9 @@ def align():
 
     secho('Aligning GO')
     GoAligner.align()
+
+    secho('Aligning BioPortal')
+    BioPortalAligner.align()
 
 
 if __name__ == '__main__':

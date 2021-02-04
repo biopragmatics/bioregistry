@@ -4,6 +4,8 @@
 
 import click
 
+from .bioportal import get_bioportal
+from .go import get_go
 from .miriam import get_miriam_df
 from .n2t import get_n2t
 from .obofoundry import get_obofoundry_df
@@ -33,6 +35,12 @@ def download():
 
     secho('Download Wikidata')
     get_wikidata_registry()
+
+    secho('Download GO')
+    get_go(force_download=True)
+
+    secho('Download BioPortal')
+    get_bioportal(force_download=True)
 
 
 if __name__ == '__main__':
