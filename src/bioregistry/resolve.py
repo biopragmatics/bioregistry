@@ -250,28 +250,7 @@ def get_versions() -> Mapping[str, str]:
             logger.warning('[%s] missing version. Contact: %s', bioregistry_id, get_email(bioregistry_id))
             continue
 
-        if version != version.strip():
-            logger.warning(
-                '[%s] extra whitespace in version: %s. Contact: %s',
-                bioregistry_id, version, get_email(bioregistry_id),
-            )
-            version = version.strip()
-
-        version_prefix = bioregistry_entry.get('ols_version_prefix')
-        if version_prefix:
-            if not version.startswith(version_prefix):
-                raise ValueError(f'[{bioregistry_id}] version {version} does not start with prefix {version_prefix}')
-            version = version[len(version_prefix):]
-
-        if bioregistry_entry.get('ols_version_suffix_split'):
-            version = version.split()[0]
-
-        version_suffix = bioregistry_entry.get('ols_version_suffix')
-        if version_suffix:
-            if not version.endswith(version_suffix):
-                raise ValueError(f'[{bioregistry_id}] version {version} does not end with prefix {version_suffix}')
-            version = version[:-len(version_suffix)]
-
+        version = _clean_version(bioregistry_id, version, bioregistry_entry=bioregistry_entry)
         version_type = bioregistry_entry.get('ols_version_type')
         version_date_fmt = bioregistry_entry.get('ols_version_date_format')
 
@@ -291,3 +270,38 @@ def get_versions() -> Mapping[str, str]:
         rv[bioregistry_id] = version
 
     return rv
+
+
+def _clean_version(
+    bioregistry_id: str,
+    version: str,
+    *,
+    bioregistry_entry: Optional[Mapping[str, Any]] = None,
+) -> str:
+    if bioregistry_entry is None:
+        bioregistry_entry = get(bioregistry_id)
+    assert bioregistry_entry is not None
+
+    if version != version.strip():
+        logger.warning(
+            '[%s] extra whitespace in version: %s. Contact: %s',
+            bioregistry_id, version, get_email(bioregistry_id),
+        )
+        version = version.strip()
+
+    version_prefix = bioregistry_entry.get('ols_version_prefix')
+    if version_prefix:
+        if not version.startswith(version_prefix):
+            raise ValueError(f'[{bioregistry_id}] version {version} does not start with prefix {version_prefix}')
+        version = version[len(version_prefix):]
+
+    if bioregistry_entry.get('ols_version_suffix_split'):
+        version = version.split()[0]
+
+    version_suffix = bioregistry_entry.get('ols_version_suffix')
+    if version_suffix:
+        if not version.endswith(version_suffix):
+            raise ValueError(f'[{bioregistry_id}] version {version} does not end with prefix {version_suffix}')
+        version = version[:-len(version_suffix)]
+
+    return version
