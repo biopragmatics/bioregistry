@@ -66,7 +66,10 @@
   n2t:
     prefix: addgene
   prefix: addgene
-- miriam:
+- bioportal:
+    name: Animal Natural History and Life History Ontology
+    prefix: ADW
+  miriam:
     deprecated: false
     description: Animal Diversity Web (ADW) is an online database of animal natural
       history, distribution, classification, and conservation biology.
@@ -85,7 +88,10 @@
     name: Animal natural history and life history
     prefix: adw
   prefix: adw
-- download: https://raw.githubusercontent.com/obophenotype/human-developmental-anatomy-ontology/master/src/ontology/aeo.obo
+- bioportal:
+    name: Anatomical Entity Ontology
+    prefix: AEO
+  download: https://raw.githubusercontent.com/obophenotype/human-developmental-anatomy-ontology/master/src/ontology/aeo.obo
   example: '0001017'
   obofoundry:
     contact: J.Bard@ed.ac.uk
@@ -122,7 +128,10 @@
   n2t:
     prefix: affy.probeset
   prefix: affy.probeset
-- ols:
+- bioportal:
+    name: Allotrope Merged Ontology Suite
+    prefix: AFO
+  ols:
     description: Allotrope Merged Ontology Suite
     download: http://afo-ols.semanticsfirst.com/ontologies/afo
     license: creative-commons-attribution-license
@@ -150,6 +159,8 @@
     prefix: aftol.taxonomy
   prefix: aftol.taxonomy
 - go:
+    homepage: http://agricola.nal.usda.gov/
+    name: AGRICultural OnLine Access
     prefix: AGRICOLA_ID
   miriam:
     deprecated: false
@@ -169,7 +180,10 @@
   prefix: agricola
   synonyms:
   - AGR
-- not_available_as_obo: true
+- bioportal:
+    name: AGRonomy Ontology
+    prefix: AGRO
+  not_available_as_obo: true
   obofoundry:
     contact: m.a.laporte@cgiar.org
     contact.label: "Marie-Ang\xE9lique Laporte"
@@ -226,7 +240,10 @@
   n2t:
     prefix: amoebadb
   prefix: amoebadb
-- obofoundry:
+- bioportal:
+    name: The Amphioxus Development and Anatomy Ontology
+    prefix: AMPHX
+  obofoundry:
     contact: hescriva@obs-banyuls.fr
     contact.label: Hector Escriva
     deprecated: false
@@ -374,7 +391,10 @@
   n2t:
     prefix: apid.interactions
   prefix: apid.interactions
-- example: 0000184
+- bioportal:
+    name: Ascomycete Phenotype Ontology
+    prefix: APO
+  example: 0000184
   obofoundry:
     contact: stacia@stanford.edu
     contact.label: Stacia R Engel
@@ -397,7 +417,10 @@
   synonyms:
   - YPO
   url: https://www.yeastgenome.org/observable/$1
-- obofoundry:
+- bioportal:
+    name: Apollo Structured Vocabulary
+    prefix: APOLLO-SV
+  obofoundry:
     contact: MBrochhausen@uams.edu
     contact.label: Mathias Brochhausen
     deprecated: false
@@ -467,7 +490,10 @@
   n2t:
     prefix: ark
   prefix: ark
-- example: '1000001'
+- bioportal:
+    name: Antibiotic Resistance Ontology
+    prefix: ARO
+  example: '1000001'
   obofoundry:
     contact: card@mcmaster.ca
     contact.label: CARD
@@ -542,7 +568,12 @@
   n2t:
     prefix: arxiv
   prefix: arxiv
-- miriam:
+- go:
+    formatter: https://asap.genetics.wisc.edu/asap/feature_info.php?FeatureID=$1
+    homepage: https://asap.genetics.wisc.edu/asap/ASAP1.htm
+    name: A Systematic Annotation Package for Community Analysis of Genomes
+    prefix: ASAP
+  miriam:
     deprecated: false
     description: ASAP (a systematic annotation package for community analysis of genomes)
       stores bacterial genome sequence and functional characterization data. It includes
@@ -590,7 +621,12 @@
   n2t:
     prefix: asin
   prefix: asin
-- miriam:
+- go:
+    formatter: http://www.aspergillusgenome.org/cgi-bin/locus.pl?locus=$1
+    homepage: http://www.aspergillusgenome.org/
+    name: Aspergillus Genome Database
+    prefix: AspGD_LOCUS
+  miriam:
     deprecated: false
     description: The Aspergillus Genome Database (AspGD) is a repository for information
       relating to fungi of the genus Aspergillus, which includes organisms of clinical,
@@ -628,7 +664,10 @@
   homepage: https://asrp.danforthcenter.org/
   name: Arabidopsis Small RNA Project
   prefix: asrp
-- miriam:
+- bioportal:
+    name: Anatomical Therapeutic Chemical Classification
+    prefix: ATC
+  miriam:
     deprecated: false
     description: The Anatomical Therapeutic Chemical (ATC) classification system,
       divides active substances into different groups according to the organ or system
@@ -707,7 +746,11 @@
   n2t:
     prefix: atfdb.family
   prefix: atfdb.family
-- ols:
+- bioportal:
+    name: Animal Trait Ontology for Livestock
+    prefix: ATOL
+  ols:
+    contact: pylebail@rennes.inra.fr
     description: 'ATOL (Animal Trait Ontology for Livestock) is an ontology of characteristics
       defining phenotypes of livestock in their environment (EOL). ATOL aims to: -
       provide a reference ontology of phenotypic traits of farm animals for the international
@@ -802,7 +845,10 @@
   prefix: bams
   references:
   - https://www.frontiersin.org/articles/10.3389/neuro.11.002.2008/full
-- miriam:
+- bioportal:
+    name: BioAssay Ontology
+    prefix: BAO
+  miriam:
     deprecated: false
     description: The BioAssay Ontology (BAO) describes chemical biology screening
       assays and their results including high-throughput screening (HTS) data for
@@ -850,7 +896,10 @@
   prefix: bao
   synonyms:
   - BAO
-- ols:
+- bioportal:
+    name: Brain-Computer Interaction (BCI) Ontology
+    prefix: BCI-O
+  ols:
     description: The Behaviour Change Intervention Ontology is an ontology for all
       aspects of human behaviour change interventions and their evaluation.
     download: http://humanbehaviourchange.org/ontology/bcio.owl
@@ -860,7 +909,10 @@
     version.iri: http://humanbehaviourchange.org/ontology/bcio.owl/2021-01-28
   ols_version_date_format: '%Y-%m-%d'
   prefix: bcio
-- obofoundry:
+- bioportal:
+    name: Biological Collections Ontology
+    prefix: BCO
+  obofoundry:
     contact: rlwalls2008@gmail.com
     contact.label: Ramona Walls
     deprecated: false
@@ -954,7 +1006,13 @@
   synonyms:
   - SCOMP
   - SFAM
-- example: '0000001'
+- bioportal:
+    name: Basic Formal Ontology
+    prefix: BFO
+  example: '0000001'
+  go:
+    name: Basic Formal Ontology
+    prefix: BFO
   obofoundry:
     contact: phismith@buffalo.edu
     contact.label: Barry Smith
@@ -1145,7 +1203,12 @@
   n2t:
     prefix: biocatalogue.service
   prefix: biocatalogue.service
-- miriam:
+- go:
+    formatter: http://biocyc.org/META/NEW-IMAGE?type=PATHWAY&object=$1
+    homepage: http://biocyc.org/
+    name: BioCyc collection of metabolic pathway databases
+    prefix: BioCyc
+  miriam:
     deprecated: false
     description: BioCyc is a collection of Pathway/Genome Databases (PGDBs) which
       provides an electronic reference source on the genomes and metabolic pathways
@@ -1197,7 +1260,12 @@
     prefix: biominder
   prefix: biominder
 - go:
+    formatter: https://www.ebi.ac.uk/biomodels/$1
+    homepage: https://www.ebi.ac.uk/biomodels/
+    name: BioModels Database
     prefix: BIOMD
+    synonyms:
+    - BIOMDID
   miriam:
     deprecated: false
     description: BioModels Database is a data resource that allows biologists to store,
@@ -1211,7 +1279,10 @@
   n2t:
     prefix: biomodels.db
   prefix: biomodels.db
-- miriam:
+- bioportal:
+    name: Kinetic Simulation Algorithm Ontology
+    prefix: KISAO
+  miriam:
     deprecated: false
     description: The Kinetic Simulation Algorithm Ontology (KiSAO) is an ontology
       that describes simulation algorithms and methods used for biological kinetic
@@ -1241,7 +1312,10 @@
     version: '2.14'
   ols_version_type: semver
   prefix: biomodels.kisao
-- miriam:
+- bioportal:
+    name: Terminology for the Description of Dynamics
+    prefix: TEDDY
+  miriam:
     deprecated: false
     description: The Terminology for Description of Dynamics (TEDDY) is an ontology
       for dynamical behaviours, observable dynamical phenomena, and control elements
@@ -1323,7 +1397,12 @@
     prefix: bioproject
   prefix: bioproject
 - go:
+    formatter: https://www.biorxiv.org/content/$1
+    homepage: https://www.biorxiv.org/
+    name: bioRxiv
     prefix: bioRxiv
+    synonyms:
+    - BIORXIV
   name: bioRxiv
   prefix: biorxiv
 - miriam:
@@ -1400,7 +1479,10 @@
   n2t:
     prefix: biotools
   prefix: biotools
-- comment: Part of the NeuroLex namespace now
+- bioportal:
+    name: Biomedical Informatics Research Network Project Lexicon
+    prefix: BIRNLEX
+  comment: Part of the NeuroLex namespace now
   name: Biomedical Informatics Research Network Lexicon
   prefix: birnlex
 - miriam:
@@ -1474,7 +1556,12 @@
   name: Bio-Pesticides DataBase
   prefix: bpdb
   url: https://sitem.herts.ac.uk/aeru/bpdb/Reports/$1.htm
-- miriam:
+- go:
+    formatter: https://www.brenda-enzymes.info/enzyme.php?ecno=$1
+    homepage: http://www.brenda-enzymes.info
+    name: BRENDA, The Comprehensive Enzyme Information System
+    prefix: BRENDA
+  miriam:
     deprecated: false
     description: BRENDA is a collection of enzyme functional data available to the
       scientific community. Data on enzyme function are extracted directly from the
@@ -1513,7 +1600,10 @@
 - comment: part of Sequence Ontology (SO). See https://github.com/The-Sequence-Ontology/SO-Ontologies/blob/master/Ontology_Files/subsets/biosapiens.obo
   name: Biosapiens
   prefix: bs
-- download: https://raw.githubusercontent.com/obophenotype/biological-spatial-ontology/master/bspo.obo
+- bioportal:
+    name: Spatial Ontology
+    prefix: BSPO
+  download: https://raw.githubusercontent.com/obophenotype/biological-spatial-ontology/master/bspo.obo
   example: 0000029
   obofoundry:
     contact: cjmungall@lbl.gov
@@ -1535,7 +1625,13 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: bspo
-- example: 0000590
+- bioportal:
+    name: BRENDA Tissue and Enzyme Source Ontology
+    prefix: BTO
+  example: 0000590
+  go:
+    name: BRENDA tissue / enzyme ontology
+    prefix: BTO
   miriam:
     deprecated: false
     description: The Brenda tissue ontology is a structured controlled vocabulary
@@ -1688,8 +1784,14 @@
   n2t:
     prefix: caps
   prefix: caps
-- download: https://github.com/obophenotype/caro/raw/master/src/ontology/caro.owl
+- bioportal:
+    name: Common Anatomy Reference Ontology
+    prefix: CARO
+  download: https://github.com/obophenotype/caro/raw/master/src/ontology/caro.owl
   example: '0000000'
+  go:
+    name: Common Anatomy Reference Ontology
+    prefix: CARO
   not_available_as_obo: true
   obofoundry:
     contact: haendel@ohsu.edu
@@ -1709,7 +1811,11 @@
     version.iri: http://purl.obolibrary.org/obo/caro/2.0/beta/caro.owl
   ols_version_date_format: '%d-%m-%Y'
   prefix: caro
-- miriam:
+- go:
+    homepage: http://www.cas.org/expertise/cascontent/registry/index.html
+    name: CAS Chemical Registry
+    prefix: CAS
+  miriam:
     deprecated: false
     description: CAS (Chemical Abstracts Service) is a division of the American Chemical
       Society and is the producer of comprehensive databases of chemical information.
@@ -1795,7 +1901,12 @@
   n2t:
     prefix: cattleqtldb
   prefix: cattleqtldb
-- miriam:
+- go:
+    formatter: http://www.cazy.org/$1.html
+    homepage: http://www.cazy.org/
+    name: Carbohydrate Active EnZYmes
+    prefix: CAZY
+  miriam:
     deprecated: false
     description: The Carbohydrate-Active Enzyme (CAZy) database is a resource specialized
       in enzymes that build and breakdown complex carbohydrates and glycoconjugates.
@@ -1842,7 +1953,10 @@
   n2t:
     prefix: ccds
   prefix: ccds
-- miriam:
+- bioportal:
+    name: Cell Cycle Ontology
+    prefix: CCO
+  miriam:
     deprecated: false
     description: The Cell Cycle Ontology is an application ontology that captures
       and integrates detailed knowledge on the cell cycle process.
@@ -1856,6 +1970,7 @@
     prefix: cco
   namespace.capitalized: true
   ols:
+    contact: vladimir.n.mironov@gmail.com
     description: The Cell Cycle Ontology extends existing ontologies for cell cycle
       knowledge building a resource that integrates and manages knowledge about the
       cell cycle components and regulatory aspects.
@@ -1865,7 +1980,10 @@
     version: 23-03-2016
   ols_version_date_format: '%d-%m-%Y'
   prefix: cco
-- obofoundry:
+- bioportal:
+    name: Comparative Data Analysis Ontology
+    prefix: CDAO
+  obofoundry:
     contact: balhoff@renci.org
     contact.label: Jim Balhoff
     deprecated: false
@@ -1898,7 +2016,12 @@
     version.iri: http://purl.obolibrary.org/obo/cdao/2019-06-26/cdao.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: cdao
-- miriam:
+- go:
+    formatter: http://www.ncbi.nlm.nih.gov/Structure/cdd/cddsrv.cgi?uid=$1
+    homepage: https://www.ncbi.nlm.nih.gov/cdd
+    name: Conserved Domain Database at NCBI
+    prefix: CDD
+  miriam:
     deprecated: false
     description: The Conserved Domain Database (CDD) is a collection of multiple sequence
       alignments and derived database search models, which represent protein domains
@@ -1966,7 +2089,10 @@
   prefix: cellosaurus
   wikidata:
     property: P3289
-- download: https://raw.githubusercontent.com/obophenotype/cephalopod-ontology/master/ceph.obo
+- bioportal:
+    name: Cephalopod Ontology
+    prefix: CEPH
+  download: https://raw.githubusercontent.com/obophenotype/cephalopod-ontology/master/ceph.obo
   example: 0000109
   obofoundry:
     contact: cjmungall@lbl.gov
@@ -1987,7 +2113,14 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: ceph
-- miriam:
+- go:
+    formatter: http://www.candidagenome.org/cgi-bin/locus.pl?dbid=$1
+    homepage: http://www.candidagenome.org/
+    name: Candida Genome Database
+    prefix: CGD
+    synonyms:
+    - CGDID
+  miriam:
     deprecated: false
     description: The Candida Genome Database (CGD) provides access to genomic sequence
       data and manually curated functional information about genes and proteins of
@@ -2010,7 +2143,11 @@
   - BirdBase
   - CGNC
   url: http://birdgenenames.org/cgnc/GeneReport?id=$1
-- miriam:
+- go:
+    homepage: http://cgsc.biology.yale.edu/
+    name: CGSC
+    prefix: CGSC
+  miriam:
     deprecated: false
     description: The CGSC Database of E. coli genetic information includes genotypes
       and reference information for the strains in the CGSC collection, the names,
@@ -2040,7 +2177,17 @@
   n2t:
     prefix: charprot
   prefix: charprot
-- example: '24867'
+- bioportal:
+    name: Chemical Entities of Biological Interest Ontology
+    prefix: CHEBI
+  example: '24867'
+  go:
+    formatter: http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1
+    homepage: http://www.ebi.ac.uk/chebi/
+    name: Chemical Entities of Biological Interest
+    prefix: CHEBI
+    synonyms:
+    - ChEBI
   miriam:
     deprecated: false
     description: Chemical Entities of Biological Interest (ChEBI) is a freely available
@@ -2068,7 +2215,7 @@
     name: Chemical Entities of Biological Interest
     prefix: chebi
     version: 01-01-2020
-    version.iri: http://purl.obolibrary.org/obo/chebi/195/chebi.owl
+    version.iri: http://purl.obolibrary.org/obo/chebi/196/chebi.owl
   ols_version_date_format: '%d-%m-%Y'
   prefix: chebi
   synonyms:
@@ -2157,7 +2304,10 @@
   prefix: chemidplus
   synonyms:
   - ChemIDplus
-- download: https://github.com/semanticchemistry/semanticchemistry/raw/master/ontology/cheminf.owl
+- bioportal:
+    name: Chemical Information Ontology
+    prefix: CHEMINF
+  download: https://github.com/semanticchemistry/semanticchemistry/raw/master/ontology/cheminf.owl
   name: Chemical Information Ontology
   not_available_as_obo: true
   obofoundry:
@@ -2218,7 +2368,10 @@
   n2t:
     prefix: chickenqtldb
   prefix: chickenqtldb
-- download: http://purl.obolibrary.org/obo/chiro.obo
+- bioportal:
+    name: CHEBI Integrated Role Ontology
+    prefix: CHIRO
+  download: http://purl.obolibrary.org/obo/chiro.obo
   name: ChEBI Integrated Role Ontology
   no_own_terms: true
   obofoundry:
@@ -2244,7 +2397,10 @@
     version.iri: http://purl.obolibrary.org/obo/chiro/releases/2015-11-23/chiro.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: chiro
-- example: 0002902
+- bioportal:
+    name: Chemical Methods Ontology
+    prefix: CHMO
+  example: 0002902
   obofoundry:
     contact: batchelorc@rsc.org
     contact.label: Colin Batchelor
@@ -2253,6 +2409,7 @@
     name: Chemical Methods Ontology
     prefix: chmo
   ols:
+    contact: chemistry-ontologies@googlegroups.com
     description: CHMO, the chemical methods ontology, describes methods used to collect
       data in chemical experiments, such as mass spectrometry and electron microscopy
       prepare and separate material for further analysis, such as sample ionisation,
@@ -2269,7 +2426,10 @@
   ols_version_date_format: '%d-%m-%Y'
   pattern: ^\d{7}$
   prefix: chmo
-- obofoundry:
+- bioportal:
+    name: Coronavirus Infectious Disease Ontology
+    prefix: CIDO
+  obofoundry:
     contact: yongqunh@med.umich.edu
     contact.label: Yongqun Oliver He
     deprecated: false
@@ -2277,6 +2437,7 @@
     name: Coronavirus Infectious Disease Ontology
     prefix: cido
   ols:
+    contact: cido-discuss@googlegroups.com
     description: The Ontology of Coronavirus Infectious Disease (CIDO) is a community-driven
       open-source biomedical ontology in the area of coronavirus infectious disease.
       The CIDO is developed to provide standardized human- and computer-interpretable
@@ -2286,10 +2447,13 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: 'CIDO: Ontology of Coronavirus Infectious Disease'
     prefix: cido
-    version: 1.0.173
+    version: 1.0.181
   ols_version_type: semver
   prefix: cido
-- example: '0000040'
+- bioportal:
+    name: Confidence Information Ontology
+    prefix: CIO
+  example: '0000040'
   obofoundry:
     contact: bgee@sib.swiss
     contact.label: Frederic Bastian
@@ -2307,14 +2471,24 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: cio
-- example: C6155
+- bioportal:
+    name: Cerebrotendinous Xanthomatosis Ontology
+    prefix: CTX
+  example: C6155
   name: CiteXplore
   prefix: citexplore
   synonyms:
   - CTX
   url: https://europepmc.org/article/CTX/$1
-- download: https://raw.githubusercontent.com/obophenotype/cell-ontology/master/cl-full.obo
+- bioportal:
+    name: Cell Ontology
+    prefix: CL
+  download: https://raw.githubusercontent.com/obophenotype/cell-ontology/master/cl-full.obo
   example: '0000062'
+  go:
+    homepage: http://cellontology.org
+    name: Cell Type Ontology
+    prefix: CL
   miriam:
     deprecated: false
     description: The Cell Ontology is designed as a structured controlled vocabulary
@@ -2344,8 +2518,8 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: Cell Ontology
     prefix: cl
-    version: '2021-01-22'
-    version.iri: http://purl.obolibrary.org/obo/cl/releases/2021-01-22/cl.owl
+    version: '2021-02-01'
+    version.iri: http://purl.obolibrary.org/obo/cl/releases/2021-02-01/cl.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: cl
   wikidata:
@@ -2479,7 +2653,10 @@
   n2t:
     prefix: clinvar.submission
   prefix: clinvar.submission
-- example: 0000091
+- bioportal:
+    name: Cell Line Ontology
+    prefix: CLO
+  example: 0000091
   not_available_as_obo: true
   obofoundry:
     contact: siiraa@umich.edu
@@ -2503,7 +2680,10 @@
   - CLO
   wikidata:
     property: P2158
-- obofoundry:
+- bioportal:
+    name: Clytia hemisphaerica Development and Anatomy Ontology
+    prefix: CLYH
+  obofoundry:
     contact: lucas.leclere@obs-vlfr.fr
     contact.label: Lucas Leclere
     deprecated: false
@@ -2529,7 +2709,10 @@
     name: CranioMaxilloFacial ontology
     prefix: cmf
   prefix: cmf
-- example: '0001350'
+- bioportal:
+    name: Clinical Measurement Ontology
+    prefix: CMO
+  example: '0001350'
   obofoundry:
     contact: shimoyama@mcw.edu
     contact.label: Mary Shimoyama
@@ -2549,7 +2732,11 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: cmo
-- ols:
+- bioportal:
+    name: Cellular microscopy phenotype ontology
+    prefix: CMPO
+  ols:
+    contact: jupp@ebi.ac.uk
     description: CMPO is a species neutral ontology for describing general phenotypic
       observations relating to the whole cell, cellular components, cellular processes
       and cell populations.
@@ -2561,6 +2748,7 @@
   ols_version_date_format: '%Y-%m-%d'
   prefix: cmpo
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Rice Trait Dictionary in template v 5.0 - IRRI - March 2016 - Based
       on SES, RD, UPOV variables and on variables used by CIAT, FLAR and the GRISP
       Phenotyping Network variables
@@ -2571,6 +2759,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_320
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Sept 2020
     download: http://www.cropontology.org/ontology/CO_321/Wheat/owl
     name: Wheat ontology
@@ -2579,6 +2768,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_321
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: T3 Wheat traits
     download: http://www.cropontology.org/ontology/CO_321:ROOT/Wheat/owl
     name: Wheat ontology
@@ -2586,6 +2776,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_321:root
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Maize Trait Dictionary in template 5 - CIMMYT- September 2016
     download: http://www.cropontology.org/ontology/CO_322/Maize/owl
     name: Maize ontology
@@ -2594,6 +2785,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_322
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: ICARDA - TDv5 - Sept 2018
     download: http://www.cropontology.org/ontology/CO_323/Barley/owl
     name: Barley ontology
@@ -2602,6 +2794,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_323
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Sorghum TDv5 Nov. 2020
     download: http://www.cropontology.org/ontology/CO_324/Sorghum/owl
     name: Sorghum ontology
@@ -2610,6 +2803,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_324
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Banana Trait Dictionary in template 5 - Bioversity & IITA - April
       2019
     download: http://www.cropontology.org/ontology/CO_325/Banana/owl
@@ -2619,6 +2813,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_325
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Pearl millet Trait Dictionary in template 5 - ICRISAT/INERA - April
       2016
     download: http://www.cropontology.org/ontology/CO_327/Pearl%20millet/owl
@@ -2628,6 +2823,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_327
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: CIP - potato ontology - december 2018
     download: http://www.cropontology.org/ontology/CO_330/Potato/owl
     name: Potato ontology
@@ -2636,6 +2832,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_330
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Sweet Potato Trait Dictionary in template v5 - CIP - November 2019
     download: http://www.cropontology.org/ontology/CO_331/Sweet%20Potato/owl
     name: Sweet Potato ontology
@@ -2644,6 +2841,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_331
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: 'This ontology was built as part of the AKER project. It describes
       variables used in beet phenotyping (experimental properties and measurement
       scale) for each institution (INRAE, Geves, ITB) and breeding companies (Florimond
@@ -2656,6 +2854,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_333
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Cassava Trait Dictionary in template 5 - IITA - July 2015, updated
       in February 2016
     download: http://www.cropontology.org/ontology/CO_334/Cassava/owl
@@ -2665,6 +2864,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_334
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: CIAT Common bean trait dictionary - version August 2014
     download: http://www.cropontology.org/ontology/CO_335/Common%20Bean/owl
     name: Common Bean ontology
@@ -2673,6 +2873,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_335
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Soybean Trait Dictionary in template v5 - IITA - July 2015
     download: http://www.cropontology.org/ontology/CO_336/Soybean/owl
     name: Soybean ontology
@@ -2680,6 +2881,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_336
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Groundnut Trait Dictionary in template v5 - ICRISAT/ISRA/DARS - Sept
       2015
     download: http://www.cropontology.org/ontology/CO_337/Groundnut/owl
@@ -2689,6 +2891,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_337
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Chickpea Trait Dictionary in template v5 - ICRISAT - July 2015
     download: http://www.cropontology.org/ontology/CO_338/Chickpea/owl
     name: Chickpea ontology
@@ -2697,6 +2900,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_338
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Lentil Trait Dictionary in template v5 - ICARDA - July 2015
     download: http://www.cropontology.org/ontology/CO_339/Lentil/owl
     name: Lentil ontology
@@ -2705,6 +2909,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_339
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Cowpea Trait Dictionary in template v5 - IITA - August 2015
     download: http://www.cropontology.org/ontology/CO_340/Cowpea/owl
     name: Cowpea ontology
@@ -2713,6 +2918,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_340
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Pigeonpea Trait Dictionary in template v5 - ICRISAT - July 2015
     download: http://www.cropontology.org/ontology/CO_341/Pigeonpea/owl
     name: Pigeonpea ontology
@@ -2721,6 +2927,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_341
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: version 2019 - pvs
     download: http://www.cropontology.org/ontology/CO_343/Yam/owl
     name: Yam ontology
@@ -2729,6 +2936,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_343
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Brachiaria (forages) ontology TD v5 - Version Oct 2016
     download: http://www.cropontology.org/ontology/CO_345/Brachiaria/owl
     name: Brachiaria ontology
@@ -2737,6 +2945,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_345
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: oct 2016
     download: http://www.cropontology.org/ontology/CO_346/Mungbean/owl
     name: Mungbean ontology
@@ -2745,6 +2954,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_346
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: 'March 2017 version '
     download: http://www.cropontology.org/ontology/CO_347/Castor%20bean/owl
     name: Castor bean ontology
@@ -2753,6 +2963,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_347
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Brassica Trait Ontology (BRaTO) hosts trait information to describe
       brassica crop data. Terms are collected from various projects including OREGIN,
       RIPR (UK) and Rapsodyn (France). BRATO development is conducted by Earlham Institute
@@ -2764,6 +2975,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_348
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Oat trait dictionary started by Oat Global (http://oatglobal.org/)
       and improved by NIAB and PepsiCo
     download: http://www.cropontology.org/ontology/CO_350/Oat/owl
@@ -2773,6 +2985,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_350
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Grape Ontology including OIV and bioversity descriptors. INRA July
       2017
     download: http://www.cropontology.org/ontology/CO_356/Vitis/owl
@@ -2782,6 +2995,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_356
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: 'This ontology lists all variables used for woody plant observations.
       Terms are collected from various sources (past and ongoing projects at national
       and international levels). Curators: Celia Michotey (INRAE) & Ines Chaves (IBET)
@@ -2793,6 +3007,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_357
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Cotton ontology from CottonGen database - June 2019
     download: http://www.cropontology.org/ontology/CO_358/Cotton/owl
     name: Cotton ontology
@@ -2801,6 +3016,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_358
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: December 2019
     download: http://www.cropontology.org/ontology/CO_359/Sunflower/owl
     name: Sunflower ontology
@@ -2808,6 +3024,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_359
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: Sugar Kelp trait ontology
     download: http://www.cropontology.org/ontology/CO_360/Sugar%20Kelp%20trait/owl
     name: Sugar Kelp trait ontology
@@ -2816,6 +3033,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_360
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: developed by ICARDA - Dec 2018
     download: http://www.cropontology.org/ontology/CO_365/Fababean/owl
     name: Fababean ontology
@@ -2824,6 +3042,7 @@
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_365
 - ols:
+    contact: helpdesk@cropontology-curationtool.org
     description: version Dec 2019
     download: http://www.cropontology.org/ontology/CO_366/Bambara%20groundnut/owl
     name: Bambara groundnut ontology
@@ -2831,7 +3050,10 @@
     version: 23-12-2019
   ols_version_date_format: '%d-%m-%Y'
   prefix: co_366
-- obofoundry:
+- bioportal:
+    name: Core Ontology for Biology and Biomedicine
+    prefix: COB
+  obofoundry:
     contact: bpeters@lji.org
     contact.label: Bjoern Peters
     deprecated: false
@@ -2875,6 +3097,11 @@
   prefix: come
   url: https://www.flymine.org/come/entry?gn=$1
 - example: CPX-263
+  go:
+    formatter: https://www.ebi.ac.uk/complexportal/complex/$1
+    homepage: https://www.ebi.ac.uk/complexportal
+    name: Complex Portal database of macromolecular complexes
+    prefix: ComplexPortal
   miriam:
     deprecated: false
     description: A database that describes manually curated macromolecular complexes
@@ -2941,7 +3168,12 @@
   pattern: ^CONSO\d{5}$
   prefix: conso
   url: https://pharmacome.github.io/conso/$1
-- miriam:
+- go:
+    formatter: http://ccr.coriell.org/Sections/Search/Sample_Detail.aspx?Ref=$1
+    homepage: http://ccr.coriell.org/
+    name: Coriell Institute for Medical Research
+    prefix: CORIELL
+  miriam:
     deprecated: false
     description: The Coriell Cell Repositories provide essential research reagents
       to the scientific community by establishing, verifying, maintaining, and distributing
@@ -2957,7 +3189,12 @@
   n2t:
     prefix: coriell
   prefix: coriell
-- miriam:
+- go:
+    formatter: https://mips.helmholtz-muenchen.de/corum/?id=$1
+    homepage: https://mips.helmholtz-muenchen.de/corum/
+    name: CORUM - the Comprehensive Resource of Mammalian protein complexes
+    prefix: CORUM
+  miriam:
     deprecated: false
     description: The CORUM database provides a resource of manually annotated protein
       complexes from mammalian organisms. Annotation includes protein complex function,
@@ -2988,7 +3225,10 @@
   n2t:
     prefix: cosmic
   prefix: cosmic
-- miriam:
+- bioportal:
+    name: COVID-19 Ontology
+    prefix: COVID-19
+  miriam:
     deprecated: false
     description: Curated contextual database gathering samples related to SARS-CoV-2
       virus and covid-19 disease.
@@ -3050,7 +3290,10 @@
   n2t:
     prefix: crisprdb
   prefix: crisprdb
-- download: https://raw.githubusercontent.com/data2health/contributor-role-ontology/master/cro.obo
+- bioportal:
+    name: Contributor Role Ontology
+    prefix: CRO
+  download: https://raw.githubusercontent.com/data2health/contributor-role-ontology/master/cro.obo
   example: 0000038
   obofoundry:
     contact: whimar@ohsu.edu
@@ -3196,7 +3439,10 @@
   n2t:
     prefix: ctd.gene
   prefix: ctd.gene
-- download: https://raw.githubusercontent.com/obophenotype/ctenophore-ontology/master/cteno.obo
+- bioportal:
+    name: Ctenophore Ontology
+    prefix: CTENO
+  download: https://raw.githubusercontent.com/obophenotype/ctenophore-ontology/master/cteno.obo
   example: '0000047'
   obofoundry:
     contact: cjmungall@lbl.gov
@@ -3217,7 +3463,10 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: cteno
-- obofoundry:
+- bioportal:
+    name: Clinical Trials Ontology
+    prefix: CTO
+  obofoundry:
     contact: alpha.tom.kodamullil@scai.fraunhofer.de
     contact.label: Dr. Alpha Tom Kodamullil
     deprecated: false
@@ -3254,7 +3503,10 @@
   n2t:
     prefix: cubedb
   prefix: cubedb
-- obofoundry:
+- bioportal:
+    name: Cardiovascular Disease Ontology
+    prefix: CVDO
+  obofoundry:
     contact: paul.fabry@usherbrooke.ca
     contact.label: Paul Fabry
     deprecated: false
@@ -3505,7 +3757,12 @@
   n2t:
     prefix: dbprobe
   prefix: dbprobe
-- miriam:
+- go:
+    formatter: http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=$1
+    homepage: http://www.ncbi.nlm.nih.gov/projects/SNP
+    name: NCBI dbSNP
+    prefix: dbSNP
+  miriam:
     deprecated: false
     description: The dbSNP database is a repository for both single base nucleotide
       subsitutions and short deletion and insertion polymorphisms.
@@ -3520,11 +3777,21 @@
   prefix: dbsnp
 - appears_in:
   - efo
+  bioportal:
+    name: Dublin Core
+    prefix: DC
   download: https://github.com/obophenotype/human-disease-ontology/raw/master/src/experimental/missing-omc.obo
   example: 0000598
   name: Disease Class
   prefix: dc
-- example: '0000006'
+- bioportal:
+    name: Dictyostelium Discoideum Anatomy Ontology
+    prefix: DDANAT
+  example: '0000006'
+  go:
+    homepage: http://dictybase.org/Dicty_Info/dicty_anatomy_ontology.html
+    name: Dictyostelium discoideum anatomy
+    prefix: DDANAT
   obofoundry:
     contact: pfey@northwestern.edu
     contact.label: Petra Fey
@@ -3544,7 +3811,10 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: ddanat
-- download: https://raw.githubusercontent.com/obophenotype/dicty-phenotype-ontology/master/ddpheno.obo
+- bioportal:
+    name: Dictyostelium Discoideum Phenotype Ontology
+    prefix: DDPHENO
+  download: https://raw.githubusercontent.com/obophenotype/dicty-phenotype-ontology/master/ddpheno.obo
   example: '0001417'
   obofoundry:
     contact: pfey@northwestern.edu
@@ -3600,6 +3870,7 @@
     prefix: depod
   prefix: depod
 - bioportal:
+    name: Human Dermatological Disease Ontology
     prefix: DERMO
   name: Human Dermatological Disease Ontology
   prefix: dermo
@@ -3616,13 +3887,23 @@
     prefix: dev.ga4ghdos
   prefix: dev.ga4ghdos
 - ols:
+    contact: dclunie@dclunie.com
     description: DICOM Controlled Terminology
     download: ftp://medical.nema.org/MEDICAL/Dicom/Resources/Ontology/DCM/dcm.owl
     name: DICOM Controlled Terminology
     prefix: dicom
     version: 2021a_20210130
+  ols_version_type: other
   prefix: dicom
 - description: A resource for Dictyostelid discoideum (a soil-dwelling amoeba) genomics
+  go:
+    formatter: http://dictybase.org/gene/$1
+    homepage: http://dictybase.org
+    name: dictyBase
+    prefix: dictyBase
+    synonyms:
+    - DDB
+    - DictyBase
   name: dictyBase
   prefix: dictybase
   synonyms:
@@ -3671,7 +3952,10 @@
   n2t:
     prefix: did
   prefix: did
-- obofoundry:
+- bioportal:
+    name: Drug Interaction and Evidence Ontology
+    prefix: DIDEO
+  obofoundry:
     contact: mbrochhausen@gmail.com
     contact.label: Mathias Brochhausen
     deprecated: false
@@ -3757,7 +4041,12 @@
     prefix: dlxc
     sampleId: M77F7JM
   prefix: dlxc
-- miriam:
+- go:
+    formatter: http://dx.doi.org/$1
+    homepage: http://dx.doi.org/
+    name: Digital Object Identifier
+    prefix: DOI
+  miriam:
     deprecated: false
     description: The Digital Object Identifier System is for identifying content objects
       in the digital environment.
@@ -3770,7 +4059,10 @@
   n2t:
     prefix: doi
   prefix: doi
-- download: https://github.com/DiseaseOntology/HumanDiseaseOntology/raw/main/src/ontology/doid.obo
+- bioportal:
+    name: Human Disease Ontology
+    prefix: DOID
+  download: https://github.com/DiseaseOntology/HumanDiseaseOntology/raw/main/src/ontology/doid.obo
   example: 0110974
   miriam:
     deprecated: false
@@ -3871,7 +4163,10 @@
   n2t:
     prefix: doqcs.pathway
   prefix: doqcs.pathway
-- no_own_terms: true
+- bioportal:
+    name: Drosophila Phenotype Ontology
+    prefix: DPO
+  no_own_terms: true
   obofoundry:
     contact: cp390@cam.ac.uk
     contact.label: Clare Pilgrim
@@ -3959,7 +4254,10 @@
   n2t:
     prefix: dragondb.protein
   prefix: dragondb.protein
-- obofoundry:
+- bioportal:
+    name: The Drug Ontology
+    prefix: DRON
+  obofoundry:
     contact: hoganwr@gmail.com
     contact.label: William Hogan
     deprecated: false
@@ -4043,10 +4341,16 @@
   url: http://drugcentral.org/drugcard/$1
 - appears_in:
   - pr
+  bioportal:
+    name: Drug Target Ontology
+    prefix: DTO
   homepage: https://github.com/DrugTargetOntology/DTO
   name: Drug Target Ontology
   prefix: dto
-- not_available_as_obo: true
+- bioportal:
+    name: The Data Use Ontology
+    prefix: DUO
+  not_available_as_obo: true
   obofoundry:
     contact: mcourtot@gmail.com
     contact.label: Melanie Courtot
@@ -4069,7 +4373,10 @@
   name: European Collection of Authenticated Cell Culture
   prefix: ecacc
   url: https://www.phe-culturecollections.org.uk/products/celllines/generalcell/detail.jsp?collection=ecacc_gc&refId=$1
-- obofoundry:
+- bioportal:
+    name: The Echinoderm Anatomy and Development Ontology
+    prefix: ECAO
+  obofoundry:
     contact: ettensohn@cmu.edu
     contact.label: Charles Ettensohn
     deprecated: false
@@ -4088,6 +4395,9 @@
   ols_version_date_format: '%Y-%m-%d'
   prefix: ecao
 - go:
+    formatter: https://enzyme.expasy.org/EC/$1
+    homepage: https://enzyme.expasy.org/
+    name: Swiss Institute of Bioinformatics enzyme database
     prefix: ENZYME
   miriam:
     deprecated: false
@@ -4113,7 +4423,12 @@
   - intenz
   wikidata:
     property: P591
-- miriam:
+- go:
+    formatter: https://www.york.ac.uk/res/thomas/Gene.cfm?&recordID=$1
+    homepage: https://www.york.ac.uk/res/thomas/
+    name: EchoBASE post-genomic database for Escherichia coli
+    prefix: EchoBASE
+  miriam:
     deprecated: false
     description: EchoBASE is a database designed to contain and manipulate information
       from post-genomic experiments using the model bacterium Escherichia coli K-12.
@@ -4138,7 +4453,15 @@
   url: http://ecmdb.ca/compounds/$1
   wikidata:
     database: Q17052437
-- example: 0007807
+- bioportal:
+    name: Evidence and Conclusion Ontology
+    prefix: ECO
+  example: 0007807
+  go:
+    formatter: http://www.evidenceontology.org/browse/#ECO_$1
+    homepage: http://www.evidenceontology.org/
+    name: Evidence Code Ontology
+    prefix: ECO
   miriam:
     deprecated: false
     description: Evidence codes can be used to specify the type of supporting evidence
@@ -4172,7 +4495,10 @@
     version.iri: http://purl.obolibrary.org/obo/eco/releases/2021-01-08/eco.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: eco
-- example: '00000001'
+- bioportal:
+    name: An ontology of core ecological entities
+    prefix: ECOCORE
+  example: '00000001'
   obofoundry:
     contact: p.buttigieg@gmail.com
     contact.label: Pier Luigi Buttigieg
@@ -4194,6 +4520,13 @@
   pattern: ^\d+$
   prefix: ecocore
 - example: AICARTRANSIMPCYCLO-CPLX
+  go:
+    formatter: http://biocyc.org/ECOLI/reference.html?type=CITATION-FRAME&object=$1
+    homepage: http://ecocyc.org/
+    name: Encyclopedia of E. coli metabolism
+    prefix: EcoCyc_REF
+    synonyms:
+    - ECOCYC_REF
   name: EcoCyc
   prefix: ecocyc
   url: https://biocyc.org/gene?id=$1
@@ -4211,7 +4544,11 @@
   n2t:
     prefix: ecogene
   prefix: ecogene
-- miriam:
+- go:
+    homepage: http://ecoliwiki.net/
+    name: EcoliWiki from EcoliHub
+    prefix: EcoliWiki
+  miriam:
     deprecated: false
     description: EcoliWiki is a wiki-based resource to store information related to
       non-pathogenic E. coli, its phages, plasmids, and mobile genetic elements. This
@@ -4225,7 +4562,10 @@
   n2t:
     prefix: ecoliwiki
   prefix: ecoliwiki
-- example: '0000001'
+- bioportal:
+    name: Environmental conditions, treatments and exposures ontology
+    prefix: ECTO
+  example: '0000001'
   obofoundry:
     contact: annethessen@gmail.com
     contact.label: Anne Thessen
@@ -4324,7 +4664,11 @@
   n2t:
     prefix: ecyano.rule
   prefix: ecyano.rule
-- miriam:
+- bioportal:
+    name: EDAM bioinformatics operations, types of data, data formats, identifiers,
+      and topics
+    prefix: EDAM
+  miriam:
     deprecated: false
     description: 'EDAM is an ontology of general bioinformatics concepts, including
       topics, data types, formats, identifiers and operations. EDAM provides a controlled
@@ -4342,6 +4686,7 @@
   n2t:
     prefix: edam
   ols:
+    contact: edam@elixir-dk.org
     description: EDAM is a simple ontology of well established, familiar concepts
       that are prevalent within bioinformatics, including types of data and data identifiers,
       data formats, operations and topics. EDAM provides a set of terms with synonyms
@@ -4352,7 +4697,10 @@
     version: 17-07-2019
   ols_version_date_format: '%d-%m-%Y'
   prefix: edam
-- download: http://www.ebi.ac.uk/efo/efo.obo
+- bioportal:
+    name: Experimental Factor Ontology
+    prefix: EFO
+  download: http://www.ebi.ac.uk/efo/efo.obo
   example: '0005147'
   miriam:
     deprecated: false
@@ -4372,6 +4720,7 @@
   obofoundry:
     prefix: efo
   ols:
+    contact: efo-users@lists.sourceforge.net
     description: The Experimental Factor Ontology (EFO) provides a systematic description
       of many experimental variables available in EBI databases, and for external
       projects such as the NHGRI GWAS catalogue. It combines parts of several biological
@@ -4438,21 +4787,30 @@
   n2t:
     prefix: eggnog
   prefix: eggnog
-- obofoundry:
+- bioportal:
+    name: Human Developmental Anatomy Ontology, timed version
+    prefix: EHDA
+  obofoundry:
     contact: Jonathan Bard
     contact.label: J.Bard@ed.ac.uk
     deprecated: true
     name: Human developmental anatomy, timed version
     prefix: ehda
   prefix: ehda
-- obofoundry:
+- bioportal:
+    name: Human Developmental Anatomy Ontology, abstract version 1
+    prefix: EHDAA
+  obofoundry:
     contact: Jonathan Bard
     contact.label: J.Bard@ed.ac.uk
     deprecated: true
     name: Human developmental anatomy, abstract version
     prefix: ehdaa
   prefix: ehdaa
-- example: '0000000'
+- bioportal:
+    name: Human Developmental Anatomy Ontology, abstract version 2
+    prefix: EHDAA2
+  example: '0000000'
   obofoundry:
     contact: J.Bard@ed.ac.uk
     contact.label: Jonathan Bard
@@ -4490,7 +4848,15 @@
   n2t:
     prefix: elm
   prefix: elm
-- example: '26753'
+- bioportal:
+    name: Mouse gross anatomy and development, timed
+    prefix: EMAPA
+  example: '26753'
+  go:
+    formatter: http://www.informatics.jax.org/vocab/gxd/anatomy/EMAPA:$1
+    homepage: http://emouseatlas.org/
+    name: Mouse gross anatomy and development, abstract
+    prefix: EMAPA
   obofoundry:
     contact: Terry.Hayamizu@jax.org
     contact.label: Terry Hayamizu
@@ -4529,7 +4895,12 @@
   n2t:
     prefix: emdb
   prefix: emdb
-- miriam:
+- go:
+    formatter: http://www.ebi.ac.uk/ena/data/view/$1
+    homepage: http://www.ebi.ac.uk/ena/
+    name: European Nucleotide Archive
+    prefix: ENA
+  miriam:
     deprecated: false
     description: The European Nucleotide Archive (ENA) captures and presents information
       relating to experimental workflows that are based around nucleotide sequencing.
@@ -4563,7 +4934,10 @@
   n2t:
     prefix: encode
   prefix: encode
-- ols:
+- bioportal:
+    name: eNanoMapper
+    prefix: ENM
+  ols:
     description: 'The eNanoMapper project (www.enanomapper.net) is creating a pan-European
       computational infrastructure for toxicological data management for ENMs, based
       on semantic web standards and ontologies. > This ontology is an application
@@ -4576,7 +4950,14 @@
     version: 5.0.1
   ols_version_type: semver
   prefix: enm
-- miriam:
+- go:
+    homepage: http://www.ensembl.org/
+    name: Ensembl database of automatically annotated genomic data
+    prefix: ENSEMBL
+    synonyms:
+    - Ensembl
+    - ensembl
+  miriam:
     deprecated: false
     description: Ensembl is a joint project between EMBL - EBI and the Sanger Institute  to
       develop a software system which produces and maintains automatic annotation
@@ -4615,7 +4996,13 @@
   n2t:
     prefix: ensembl.bacteria
   prefix: ensembl.bacteria
-- miriam:
+- go:
+    formatter: http://www.ensemblgenomes.org/id/$1
+    homepage: http://fungi.ensembl.org/
+    name: Ensembl Fungi, the Ensembl database for accessing genome-scale data from
+      fungi.
+    prefix: EnsemblFungi
+  miriam:
     deprecated: false
     description: Ensembl Genomes consists of five sub-portals (for bacteria, protists,
       fungi, plants and invertebrate metazoa) designed to complement the availability
@@ -4629,7 +5016,13 @@
   n2t:
     prefix: ensembl.fungi
   prefix: ensembl.fungi
-- miriam:
+- go:
+    formatter: http://www.ensemblgenomes.org/id/$1
+    homepage: http://metazoa.ensembl.org/
+    name: Ensembl Metazoa, the Ensembl database for accessing genome-scale data from
+      non-vertebrate metazoa.
+    prefix: EnsemblMetazoa
+  miriam:
     deprecated: false
     description: Ensembl Genomes consists of five sub-portals (for bacteria, protists,
       fungi, plants and invertebrate metazoa) designed to complement the availability
@@ -4697,7 +5090,10 @@
     prefix: envipath
     sampleId: 32de3cf4-e3e6-4168-956e-32fa5ddb0ce1/compound/b545cabc-8c9e-4b20-8848-efa015b481ea
   prefix: envipath
-- miriam:
+- bioportal:
+    name: Environment Ontology
+    prefix: ENVO
+  miriam:
     deprecated: false
     description: The Environment Ontology is a resource and research target for the
       semantically controlled description of environmental entities. The ontology's
@@ -4731,7 +5127,11 @@
     version.iri: http://purl.obolibrary.org/obo/envo/releases/2020-06-10/envo.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: envo
-- ols:
+- bioportal:
+    name: Environment Ontology for Livestock
+    prefix: EOL
+  ols:
+    contact: pylebail@rennes.inra.fr
     description: "L'ontologie EOL d\xE9crit les conditions d'environnement des \xE9\
       levages d'animaux domestiques. Elle d\xE9crit plus particuli\xE8rement les modalit\xE9\
       s de l'alimentation, de l'environnement, de la structure des \xE9levages et\
@@ -4779,7 +5179,10 @@
   n2t:
     prefix: erm
   prefix: erm
-- example: '0001655'
+- bioportal:
+    name: Eagle-I Research Resource Ontology
+    prefix: ERO
+  example: '0001655'
   not_available_as_obo: true
   obofoundry:
     contact: Juliane_Schneider@hms.harvard.edu
@@ -4849,7 +5252,10 @@
   n2t:
     prefix: euclinicaltrials
   prefix: euclinicaltrials
-- obofoundry:
+- bioportal:
+    name: VEuPathDB Ontology
+    prefix: EUPATH
+  obofoundry:
     contact: stoeckrt@pennmedicine.upenn.edu
     contact.label: Chris Stoeckert
     deprecated: false
@@ -4946,7 +5352,10 @@
   n2t:
     prefix: exac.variant
   prefix: exac.variant
-- example: 0000078
+- bioportal:
+    name: Exposure Ontology
+    prefix: EXO
+  example: 0000078
   obofoundry:
     contact: cjmattin@ncsu.edu
     contact.label: Carolyn Mattingly
@@ -5003,7 +5412,10 @@
   n2t:
     prefix: fairsharing
   prefix: fairsharing
-- example: '0000001'
+- bioportal:
+    name: Fungal Gross Anatomy Ontology
+    prefix: FAO
+  example: '0000001'
   obofoundry:
     contact: mah79@cam.ac.uk
     contact.label: Midori Harris
@@ -5023,7 +5435,10 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: fao
-- example: 00000268
+- bioportal:
+    name: Biological Imaging Methods Ontology
+    prefix: FBbi
+  example: 00000268
   obofoundry:
     contact: dorloff@ncmir.ucsd.edu
     contact.label: David Orloff
@@ -5045,7 +5460,15 @@
   prefix: fbbi
   synonyms:
   - FBbi
-- example: 00007294
+- bioportal:
+    name: Drosophila Gross Anatomy Ontology
+    prefix: FB-BT
+  example: 00007294
+  go:
+    formatter: http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:$1
+    homepage: http://flybase.org/
+    name: Drosophila gross anatomy
+    prefix: FBbt
   obofoundry:
     contact: cp390@cam.ac.uk
     contact.label: Clare Pilgrim
@@ -5069,7 +5492,10 @@
   synonyms:
   - FBbt_root
   - FBbt
-- download: https://raw.githubusercontent.com/FlyBase/flybase-controlled-vocabulary/master/fbcv.obo
+- bioportal:
+    name: FlyBase Controlled Vocabulary
+    prefix: FB-CV
+  download: https://raw.githubusercontent.com/FlyBase/flybase-controlled-vocabulary/master/fbcv.obo
   example: 0000586
   obofoundry:
     contact: cp390@cam.ac.uk
@@ -5094,7 +5520,10 @@
   prefix: fbcv
   synonyms:
   - FBcv
-- example: '00000000'
+- bioportal:
+    name: Drosophila Development Ontology
+    prefix: FB-DV
+  example: '00000000'
   obofoundry:
     contact: cp390@cam.ac.uk
     contact.label: Clare Pilgrim
@@ -5137,7 +5566,10 @@
   prefixcommons: fbql
 - name: Flybase Cell Line
   prefix: fbtc
-- obofoundry:
+- bioportal:
+    name: Food Interactions with Drugs Evidence Ontology
+    prefix: FIDEO
+  obofoundry:
     contact: georgeta.bordea@u-bordeaux.fr
     contact.label: Georgeta Bordea
     deprecated: false
@@ -5162,7 +5594,10 @@
   wikidata:
     database: Q837101
     property: P938
-- example: 0000390
+- bioportal:
+    name: Physico-Chemical Methods and Properties
+    prefix: FIX
+  example: 0000390
   obofoundry:
     deprecated: false
     download.obo: ftp://ftp.ebi.ac.uk/pub/databases/chebi/ontology/fix.obo
@@ -5178,7 +5613,10 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: fix
-- obofoundry:
+- bioportal:
+    name: Flora Phenotype Ontology
+    prefix: FLOPO
+  obofoundry:
     contact: robert.hoehndorf@kaust.edu.sa
     contact.label: Robert Hoehndorf
     deprecated: false
@@ -5210,7 +5648,15 @@
   n2t:
     prefix: flowrepository
   prefix: flowrepository
-- miriam:
+- go:
+    formatter: http://flybase.org/reports/$1.html
+    homepage: http://flybase.org/
+    name: FlyBase
+    prefix: FB
+    synonyms:
+    - FlyBase
+    - FLYBASE
+  miriam:
     deprecated: false
     description: FlyBase is the database of the Drosophila Genome Projects and of
       associated literature.
@@ -5226,7 +5672,14 @@
   - FlyBase
   wikidata:
     property: P3852
-- example: '63189'
+- bioportal:
+    name: Foundational Model of Anatomy
+    prefix: FMA
+  example: '63189'
+  go:
+    homepage: http://sig.biostr.washington.edu/projects/fm/index.html
+    name: Foundational Model of Anatomy
+    prefix: FMA
   miriam:
     deprecated: false
     description: The Foundational Model of Anatomy Ontology (FMA) is a biomedical
@@ -5262,7 +5715,10 @@
   synonyms:
   - FMAID
   - FMA_RETIRED
-- obofoundry:
+- bioportal:
+    name: FOBI (Food-Biomarker Ontology)
+    prefix: FOBI
+  obofoundry:
     contact: polcaes@gmail.com
     contact.label: Pol Castellano Escuder
     deprecated: false
@@ -5298,7 +5754,10 @@
   prefix: foodb.compound
   synonyms:
   - foodb
-- miriam:
+- bioportal:
+    name: The FoodOn Food Ontology
+    prefix: FOODON
+  miriam:
     deprecated: false
     description: FoodOn is a comprehensive and easily accessible global farm-to-fork
       ontology about food that accurately and consistently describes foods commonly
@@ -5329,11 +5788,14 @@
     license: https://creativecommons.org/licenses/by/3.0/
     name: Food Ontology
     prefix: foodon
-    version: '2020-12-04'
-    version.iri: http://purl.obolibrary.org/obo/foodon/releases/2020-12-04/foodon.owl
+    version: '2021-02-03'
+    version.iri: http://purl.obolibrary.org/obo/foodon/releases/2021-02-03/foodon.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: foodon
-- obofoundry:
+- bioportal:
+    name: FuTRES Ontology of Vertebrate Traits
+    prefix: FOVT
+  obofoundry:
     contact: rlwalls2008@gmail.com
     contact.label: FuTRES Ontology of Vertebrate Traits
     deprecated: false
@@ -5351,7 +5813,10 @@
     version.iri: http://purl.obolibrary.org/obo/fovt/releases/2020-06-08/fovt.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: fovt
-- example: GPIb_IX_V
+- bioportal:
+    name: FamPlex
+    prefix: FPLX
+  example: GPIb_IX_V
   miriam:
     deprecated: false
     description: FamPlex is a collection of resources for grounding biological entities
@@ -5483,8 +5948,15 @@
   prefix: fungidb
 - name: Fyler
   prefix: fyler
-- download: http://purl.obolibrary.org/obo/fypo.obo
+- bioportal:
+    name: Fission Yeast Phenotype Ontology
+    prefix: FYPO
+  download: http://purl.obolibrary.org/obo/fypo.obo
   example: '0001707'
+  go:
+    homepage: http://www.pombase.org/
+    name: Fission Yeast Phenotype Ontology
+    prefix: FYPO
   name: Fission Yeast Phenotype Ontology
   obofoundry:
     contact: mah79@cam.ac.uk
@@ -5499,8 +5971,8 @@
     license: https://creativecommons.org/licenses/by/4.0/
     name: Fission Yeast Phenotype Ontology (FYPO)
     prefix: fypo
-    version: '2021-01-27'
-    version.iri: http://purl.obolibrary.org/obo/fypo/releases/2021-01-27/fypo.owl
+    version: '2021-02-03'
+    version.iri: http://purl.obolibrary.org/obo/fypo/releases/2021-02-03/fypo.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: fypo
@@ -5533,6 +6005,7 @@
     prefix: gabi
   prefix: gabi
 - bioportal:
+    name: Galen Ontology
     prefix: GALEN
   name: Galen Ontology
   prefix: galen
@@ -5544,7 +6017,10 @@
   - Genetic and Rare Diseases Information Center
   wikidata:
     property: P4317
-- download: http://purl.obolibrary.org/obo/gaz.obo
+- bioportal:
+    name: Gazetteer
+    prefix: GAZ
+  download: http://purl.obolibrary.org/obo/gaz.obo
   example: '00620027'
   obofoundry:
     contact: lschriml@som.umaryland.edu
@@ -5622,7 +6098,10 @@
   n2t:
     prefix: gdsc
   prefix: gdsc
-- obofoundry:
+- bioportal:
+    name: Genomics Cohorts Knowledge Ontology
+    prefix: GECKO
+  obofoundry:
     contact: rbca.jackson@gmail.com
     contact.label: Rebecca Jackson
     deprecated: false
@@ -5667,7 +6146,12 @@
   n2t:
     prefix: genecards
   prefix: genecards
-- miriam:
+- go:
+    formatter: http://www.genedb.org/gene/$1
+    homepage: http://www.genedb.org/gene/
+    name: GeneDB
+    prefix: GeneDB
+  miriam:
     deprecated: false
     description: GeneDB is a genome database for prokaryotic and eukaryotic organisms
       and provides a portal through which data generated by the "Pathogen Genomics"
@@ -5741,7 +6225,10 @@
   n2t:
     prefix: genewiki
   prefix: genewiki
-- download: https://raw.githubusercontent.com/monarch-initiative/GENO-ontology/develop/geno-full.obo
+- bioportal:
+    name: Genotype Ontology
+    prefix: GENO
+  download: https://raw.githubusercontent.com/monarch-initiative/GENO-ontology/develop/geno-full.obo
   example: '0000632'
   obofoundry:
     contact: mhb120@gmail.com
@@ -5797,7 +6284,15 @@
   n2t:
     prefix: genprop
   prefix: genprop
-- miriam:
+- bioportal:
+    name: Geographical Entity Ontology
+    prefix: GEO
+  go:
+    formatter: http://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=$1
+    homepage: http://www.ncbi.nlm.nih.gov/geo/
+    name: NCBI Gene Expression Omnibus
+    prefix: GEO
+  miriam:
     deprecated: false
     description: The Gene Expression Omnibus (GEO) is a gene expression repository
       providing a curated, online resource for gene expression data browsing, query
@@ -5828,7 +6323,11 @@
   ols_version_date_format: '%Y-%m-%d'
   ols_version_prefix: 'production version '
   prefix: geo
-- ols:
+- bioportal:
+    name: Gene Expression Ontology
+    prefix: GEXO
+  ols:
+    contact: vladimir.n.mironov@gmail.com
     description: Gene Expression Ontology
     download: http://www.bio.ntnu.no/ontology/GeXO/gexo.rdf
     name: Gene Expression Ontology
@@ -6032,7 +6531,10 @@
   prefix: gmelin
   wikidata:
     property: P1578
-- example: '10004892'
+- bioportal:
+    name: Glycan Naming Ontology
+    prefix: GNO
+  example: '10004892'
   obofoundry:
     contact: nje5@georgetown.edu
     contact.label: Nathan Edwards
@@ -6069,8 +6571,15 @@
   n2t:
     prefix: gnpis
   prefix: gnpis
-- download: http://purl.obolibrary.org/obo/go.obo
+- bioportal:
+    name: Gene Ontology
+    prefix: GO
+  download: http://purl.obolibrary.org/obo/go.obo
   example: '0032571'
+  go:
+    homepage: http://amigo.geneontology.org/
+    name: Gene Ontology Database
+    prefix: GO
   miriam:
     deprecated: false
     description: The Gene Ontology project provides a controlled vocabulary to describe
@@ -6097,8 +6606,8 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: Gene Ontology
     prefix: go
-    version: '2021-01-01'
-    version.iri: http://purl.obolibrary.org/obo/go/releases/2021-01-01/go.owl
+    version: '2021-02-01'
+    version.iri: http://purl.obolibrary.org/obo/go/releases/2021-02-01/go.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: go
   synonyms:
@@ -6110,7 +6619,20 @@
   - gomfid
   wikidata:
     property: P686
-- miriam:
+- example: 5fce9b7300001250
+  go:
+    formatter: http://www.geneontology.org/gocam/$1
+    homepage: http://www.geneontology.org/gocam
+    name: Gene Ontology Causal Activity Model Database
+    prefix: gomodel
+  name: Gene Ontology Causal Assembly Model
+  prefix: go.model
+  url: noctua.geneontology.org/editor/graph/gomodel:$1
+- go:
+    homepage: http://current.geneontology.org/metadata/gorefs/index.html
+    name: Gene Ontology Database references
+    prefix: GO_REF
+  miriam:
     deprecated: false
     description: The GO reference collection is a set of abstracts that can be cited
       in the GO ontologies (e.g. as dbxrefs for term definitions) and annotation files
@@ -6217,6 +6739,9 @@
   synonyms:
   - patent
 - download: ftp://ftp.geneontology.org/pub/go/ontology/extensions/gorel.owl
+  go:
+    name: GO Extensions to OBO Relation Ontology Ontology
+    prefix: GOREL
   name: GO Relations
   prefix: gorel
 - miriam:
@@ -6249,7 +6774,12 @@
     prefix: gpmdb
   prefix: gpmdb
 - go:
+    formatter: http://www.gramene.org/db/genes/search_gene?acc=$1
+    homepage: http://www.gramene.org/
+    name: Gramene
     prefix: GR_GENE
+    synonyms:
+    - GR_gene
   miriam:
     deprecated: false
     description: Gramene is a comparative genome mapping database for grasses and
@@ -6286,7 +6816,12 @@
   namespace.rewrite: GRO
   prefix: gramene.growthstage
 - go:
+    formatter: http://www.gramene.org/db/protein/protein_search?acc=$1
+    homepage: http://www.gramene.org/
+    name: Gramene
     prefix: GR_PROTEIN
+    synonyms:
+    - GR_protein
   miriam:
     deprecated: false
     description: Gramene is a comparative genome mapping database for grasses and
@@ -6305,6 +6840,9 @@
     prefix: gramene.protein
   prefix: gramene.protein
 - go:
+    formatter: http://www.gramene.org/db/qtl/qtl_display?qtl_accession_id=$1
+    homepage: http://www.gramene.org/
+    name: Gramene
     prefix: GR_QTL
   miriam:
     deprecated: false
@@ -6367,7 +6905,12 @@
     prefix: grid
   prefix: grid
 - go:
+    formatter: https://npgsweb.ars-grin.gov/gringlobal/accessiondetail.aspx?id=$1
+    homepage: https://www.ars-grin.gov/
+    name: Germplasm Resources Information Network
     prefix: GRIN
+    synonyms:
+    - grin
   miriam:
     deprecated: false
     description: GRIN (Germplasm Resources Information Network) Taxonomy for Plants
@@ -6407,7 +6950,10 @@
   synonyms:
   - FAO/WHO_standards
   url: http://www.fao.org/gsfaonline/additives/details.html?id=$1
-- miriam:
+- bioportal:
+    name: Gender, Sex, and Sexual Orientation Ontology
+    prefix: GSSO
+  miriam:
     deprecated: false
     description: The Gender, Sex, and Sexual Orientation (GSSO) ontology is an interdisciplinary
       ontology connecting terms from biology, medicine, psychology, sociology, and
@@ -6568,7 +7114,12 @@
   n2t:
     prefix: gxa.gene
   prefix: gxa.gene
-- miriam:
+- go:
+    formatter: http://hamap.expasy.org/unirule/$1
+    homepage: http://hamap.expasy.org/
+    name: High-quality Automated and Manual Annotation of microbial Proteomes
+    prefix: HAMAP
+  miriam:
     deprecated: false
     description: HAMAP is a system that identifies and semi-automatically annotates
       proteins that are part of well-conserved and orthologous microbial families
@@ -6583,7 +7134,10 @@
   n2t:
     prefix: hamap
   prefix: hamap
-- obofoundry:
+- bioportal:
+    name: Human Ancestry Ontology
+    prefix: HANCESTRO
+  obofoundry:
     contact: danielle.welter@uni.lu
     contact.label: Danielle Welter
     deprecated: false
@@ -6600,7 +7154,10 @@
     version.iri: http://purl.obolibrary.org/obo/hancestro/releases/2020-12-18/hancestro.owl
   ols_version_type: semver
   prefix: hancestro
-- example: 0000187
+- bioportal:
+    name: Hymenoptera Anatomy Ontology
+    prefix: HAO
+  example: 0000187
   obofoundry:
     contact: diapriid@gmail.com
     contact.label: Matt Yoder
@@ -6682,8 +7239,13 @@
   n2t:
     prefix: hgmd
   prefix: hgmd
-- example: '16793'
+- bioportal:
+    name: HUGO Gene Nomenclature
+    prefix: HGNC
+  example: '16793'
   go:
+    homepage: http://www.hugo-international.org/
+    name: Human Genome Organisation
     prefix: HUGO
   miriam:
     deprecated: false
@@ -6846,7 +7408,10 @@
   n2t:
     prefix: hogenom
   prefix: hogenom
-- obofoundry:
+- bioportal:
+    name: Ontology of Homology and Related Concepts in Biology
+    prefix: HOM
+  obofoundry:
     contact: bgee@sib.swiss
     contact.label: Frederic Bastian
     deprecated: false
@@ -6925,7 +7490,10 @@
   n2t:
     prefix: hovergen
   prefix: hovergen
-- download: http://purl.obolibrary.org/obo/hp.obo
+- bioportal:
+    name: Human Phenotype Ontology
+    prefix: HP
+  download: http://purl.obolibrary.org/obo/hp.obo
   example: '0011140'
   miriam:
     deprecated: false
@@ -6962,7 +7530,12 @@
   prefix: hp
   wikidata:
     property: P3841
-- miriam:
+- go:
+    formatter: http://www.proteinatlas.org/tissue_profile.php?antibody_id=$1
+    homepage: http://www.proteinatlas.org/
+    name: Human Protein Atlas tissue profile information
+    prefix: HPA
+  miriam:
     deprecated: false
     description: The Human Protein Atlas (HPA) is a publicly available database with
       high-resolution images showing the spatial distribution of proteins in different
@@ -7055,7 +7628,10 @@
   n2t:
     prefix: hpscreg
   prefix: hpscreg
-- example: 0000194
+- bioportal:
+    name: Human Developmental Stages Ontology
+    prefix: HSAPDV
+  example: 0000194
   obofoundry:
     contact: bgee@sib.swiss
     contact.label: bgee
@@ -7081,7 +7657,10 @@
   prefix: hsdb
   wikidata:
     property: P2062
-- obofoundry:
+- bioportal:
+    name: Health Surveillance Ontology
+    prefix: HSO
+  obofoundry:
     contact: fernanda.dorea@sva.se
     contact.label: Fernanda Dorea
     deprecated: false
@@ -7116,7 +7695,10 @@
   n2t:
     prefix: hssp
   prefix: hssp
-- obofoundry:
+- bioportal:
+    name: Hypertension Ontology
+    prefix: HTN
+  obofoundry:
     contact: aellenhicks@gmail.com
     contact.label: Amanda Hicks
     deprecated: false
@@ -7146,7 +7728,13 @@
   n2t:
     prefix: huge
   prefix: huge
-- miriam:
+- bioportal:
+    name: Information Artifact Ontology
+    prefix: IAO
+  go:
+    name: Information Artifact Ontology
+    prefix: IAO
+  miriam:
     deprecated: false
     description: An ontology of information entities, originally driven by work by
       the Ontology of Biomedical Investigation (OBI) digital entity and realizable
@@ -7179,7 +7767,10 @@
     version.iri: http://purl.obolibrary.org/obo/iao/2020-12-09/iao.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: iao
-- miriam:
+- bioportal:
+    name: International Classification of Diseases, Version 10
+    prefix: ICD10
+  miriam:
     deprecated: false
     description: The International Classification of Diseases is the international
       standard diagnostic classification for all general epidemiological and many
@@ -7206,7 +7797,10 @@
   - ICD-11
   wikidata:
     property: P7807
-- example: '277.9'
+- bioportal:
+    name: International Classification of Diseases, Version 9 - Clinical Modification
+    prefix: ICD9CM
+  example: '277.9'
   name: International Classification of Diseases 9th Revision
   prefix: icd9
   synonyms:
@@ -7221,7 +7815,10 @@
   - MTHICD9_2006
   wikidata:
     property: P493
-- example: M9861/3
+- bioportal:
+    name: International Classification of Diseases Ontology
+    prefix: ICDO
+  example: M9861/3
   name: The International Classification of Diseases for Oncology
   prefix: icdo
   synonyms:
@@ -7265,7 +7862,10 @@
   n2t:
     prefix: iceberg.family
   prefix: iceberg.family
-- obofoundry:
+- bioportal:
+    name: Integrative and Conjugative Element Ontology
+    prefix: ICEO
+  obofoundry:
     contact: liumeng94@sjtu.edu.cn
     contact.label: Meng LIU
     deprecated: false
@@ -7279,10 +7879,13 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: 'ICEO: Ontology of Integrative and Conjugative Elements'
     prefix: iceo
-    version: '2.0'
+    version: '2.1'
   ols_version_type: semver
   prefix: iceo
-- obofoundry:
+- bioportal:
+    name: Informed Consent Ontology
+    prefix: ICO
+  obofoundry:
     contact: yongqunh@med.umich.edu
     contact.label: Yongqun Oliver He
     deprecated: false
@@ -7316,7 +7919,10 @@
   n2t:
     prefix: ideal
   prefix: ideal
-- miriam:
+- bioportal:
+    name: Infectious Disease Ontology
+    prefix: IDO
+  miriam:
     deprecated: false
     description: Infectious Disease Ontology holds entities relevant to both biomedical
       and clinical aspects of most infectious diseases.
@@ -7347,7 +7953,11 @@
     version.iri: http://purl.obolibrary.org/obo/ido/2017-11-03/ido.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: ido
-- ols:
+- bioportal:
+    name: The COVID-19 Infectious Disease Ontology
+    prefix: IDO-COVID-19
+  ols:
+    contact: johnbeverley2021@u.northwestern.edu
     description: The COVID-19 Infectious Disease Ontology (IDO-COVID-19) is an extension
       of the Infectious Disease Ontology (IDO) and the Virus Infectious Disease Ontology
       (VIDO). IDO-COVID-19 follows OBO Foundry guidelines, employs the Basic Formal
@@ -7363,10 +7973,14 @@
   ols_version_date_format: '%Y-%d-%m'
   prefix: idocovid19
 - bioportal:
+    name: Dengue Fever Ontology
     prefix: IDODEN
   name: Dengue Fever Ontology
   prefix: idoden
-- download: http://purl.obolibrary.org/obo/idomal.obo
+- bioportal:
+    name: Malaria Ontology
+    prefix: IDOMAL
+  download: http://purl.obolibrary.org/obo/idomal.obo
   example: '0002350'
   obofoundry:
     contact: topalis@imbb.forth.gr
@@ -7478,7 +8092,11 @@
   n2t:
     prefix: img.taxon
   prefix: img.taxon
-- miriam:
+- go:
+    homepage: http://www.ebi.ac.uk/imgt/hla
+    name: IMGT/HLA human major histocompatibility complex sequence database
+    prefix: IMGT_HLA
+  miriam:
     deprecated: false
     description: IMGT, the international ImMunoGeneTics project, is a collection of
       high-quality integrated databases specialising in Immunoglobulins, T cell receptors
@@ -7496,7 +8114,11 @@
   n2t:
     prefix: imgt.hla
   prefix: imgt.hla
-- miriam:
+- go:
+    homepage: http://www.imgt.org/
+    name: ImMunoGeneTics database covering immunoglobulins and T-cell receptors
+    prefix: IMGT_LIGM
+  miriam:
     deprecated: false
     description: IMGT, the international ImMunoGeneTics project, is a collection of
       high-quality integrated databases specialising in Immunoglobulins, T cell receptors
@@ -7557,7 +8179,10 @@
   url: https://mednet-communities.net/inn/db/ViewINN.aspx?i=$1
   wikidata:
     property: P2275
-- obofoundry:
+- bioportal:
+    name: Interaction Network Ontology
+    prefix: INO
+  obofoundry:
     contact: yongqunh@med.umich.edu
     contact.label: Yongqun Oliver He
     deprecated: false
@@ -7633,7 +8258,11 @@
   n2t:
     prefix: insdc.sra
   prefix: insdc.sra
-- miriam:
+- go:
+    homepage: https://www.ebi.ac.uk/intact/
+    name: IntAct protein interaction database
+    prefix: IntAct
+  miriam:
     deprecated: false
     description: IntAct provides a freely available, open source database system and
       analysis tools for protein interaction data.
@@ -7661,6 +8290,14 @@
     prefix: intact.molecule
   prefix: intact.molecule
 - example: IPR016380
+  go:
+    formatter: http://www.ebi.ac.uk/interpro/entry/$1
+    homepage: http://www.ebi.ac.uk/interpro/
+    name: InterPro database of protein domains and motifs
+    prefix: InterPro
+    synonyms:
+    - INTERPRO
+    - IPR
   miriam:
     deprecated: false
     description: InterPro is a database of protein families, domains and functional
@@ -7717,7 +8354,12 @@
   needs_curation: true
   prefix: iro
   url: https://legacy.vectorbase.org/ontology-browser?cv=MIRO&t=IRO:$1
-- miriam:
+- go:
+    formatter: https://www.worldcat.org/search?q=bn%3A$1
+    homepage: https://www.worldcat.org
+    name: International Standard Book Number
+    prefix: ISBN
+  miriam:
     deprecated: false
     description: The International Standard Book Number (ISBN) is for identifying
       printed books.
@@ -7774,7 +8416,11 @@
   n2t:
     prefix: isni
   prefix: isni
-- miriam:
+- go:
+    homepage: http://www.issn.org/
+    name: International Standard Serial Number
+    prefix: ISSN
+  miriam:
     deprecated: false
     description: The International Standard Serial Number (ISSN) is a unique eight-digit
       number used to identify a print or electronic periodical publication, rather
@@ -7836,7 +8482,12 @@
   - IUPHAR_LIGAND_ID
   wikidata:
     property: P595
-- miriam:
+- go:
+    formatter: https://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=$1
+    homepage: http://www.iuphar.org/
+    name: International Union of Pharmacology
+    prefix: IUPHAR_RECEPTOR
+  miriam:
     deprecated: false
     description: The IUPHAR Compendium details the molecular, biophysical and pharmacological
       properties of identified mammalian sodium, calcium and potassium channels, as
@@ -7918,7 +8569,12 @@
   n2t:
     prefix: jcsd
   prefix: jcsd
-- miriam:
+- go:
+    formatter: https://www.jstor.org/stable/$1
+    homepage: https://www.jstor.org/
+    name: Digital archive of scholarly articles
+    prefix: JSTOR
+  miriam:
     deprecated: false
     description: JSTOR (Journal Storage) is a digital library containing digital versions
       of historical academic journals, as well as books, pamphlets and current issues
@@ -7962,6 +8618,10 @@
   prefix: kaggle
 - comments: KEGG prefix has been split into several others
   deprecated: true
+  go:
+    homepage: http://www.genome.ad.jp/kegg/
+    name: Kyoto Encyclopedia of Genes and Genomes
+    prefix: KEGG
   miriam:
     deprecated: false
     description: Kyoto Encyclopedia of Genes and Genomes (KEGG) is a database resource
@@ -8050,6 +8710,9 @@
     prefix: kegg.environ
   prefix: kegg.environ
 - go:
+    formatter: http://www.genome.jp/dbget-bin/www_bget?ec:$1
+    homepage: http://www.genome.jp/dbget-bin/www_bfind?enzyme
+    name: KEGG Enzyme Database
     prefix: KEGG_ENZYME
   name: KEGG Enzyme
   prefix: kegg.enzyme
@@ -8104,6 +8767,9 @@
     prefix: kegg.glycan
   prefix: kegg.glycan
 - go:
+    formatter: http://www.genome.jp/dbget-bin/www_bget?cpd:$1
+    homepage: http://www.genome.ad.jp/kegg/docs/upd_ligand.html
+    name: KEGG LIGAND Database
     prefix: KEGG_LIGAND
   name: KEGG LIGAND
   prefix: kegg.ligand
@@ -8150,6 +8816,11 @@
     prefix: kegg.orthology
   prefix: kegg.orthology
 - example: rsk00410
+  go:
+    formatter: http://www.genome.jp/dbget-bin/www_bget?path:$1
+    homepage: http://www.genome.jp/kegg/pathway.html
+    name: KEGG Pathways Database
+    prefix: KEGG_PATHWAY
   miriam:
     deprecated: false
     description: KEGG PATHWAY is a collection of manually drawn pathway maps representing
@@ -8167,7 +8838,12 @@
   - KEGG_PATHWAY
   wikidata:
     property: P665
-- miriam:
+- go:
+    formatter: http://www.genome.jp/dbget-bin/www_bget?rn:$1
+    homepage: http://www.genome.jp/kegg/reaction/
+    name: KEGG Reaction Database
+    prefix: KEGG_REACTION
+  miriam:
     deprecated: false
     description: KEGG reaction contains our knowledge on the universe of reactions
       that are relevant to life.
@@ -8210,7 +8886,10 @@
   - cl
   name: Kidney and Urinary Pathway Ontology
   prefix: kupo
-- obofoundry:
+- bioportal:
+    name: clinical LABoratory Ontology
+    prefix: LABO
+  obofoundry:
     contact: paul.fabry@usherbrooke.ca
     contact.label: Paul Fabry
     deprecated: false
@@ -8227,7 +8906,11 @@
     version.iri: http://purl.obolibrary.org/obo/labo/2019-08-29/labo.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: labo
-- ols:
+- bioportal:
+    name: Livestock Breed Ontology
+    prefix: LBO
+  ols:
+    contact: jreecy@iastate.edu
     description: A vocabulary for cattle, chicken, horse, pig, and sheep breeds.
     download: http://data.bioontology.org/ontologies/LBO/download?apikey=8b5b7825-538d-40e0-9e9e-5ab9274a9aeb
     name: Livestock Breed Ontology
@@ -8449,7 +9132,10 @@
   example: SNHG3
   name: LNCipedia
   prefix: lncipedia
-- example: LL379-9
+- bioportal:
+    name: Logical Observation Identifier Names and Codes
+    prefix: LOINC
+  example: LL379-9
   homepage: https://loinc.org/
   name: Logical Observation Identifiers Names and Codes
   prefix: loinc
@@ -8469,7 +9155,15 @@
   n2t:
     prefix: lrg
   prefix: lrg
-- miriam:
+- bioportal:
+    name: Mouse Adult Gross Anatomy Ontology
+    prefix: MA
+  go:
+    formatter: http://www.informatics.jax.org/searches/AMA.cgi?id=MA:$1
+    homepage: http://www.informatics.jax.org/
+    name: Adult Mouse Anatomical Dictionary
+    prefix: MA
+  miriam:
     deprecated: false
     description: A structured controlled vocabulary of the adult anatomy of the mouse
       (Mus)
@@ -8510,7 +9204,12 @@
   n2t:
     prefix: macie
   prefix: macie
-- miriam:
+- go:
+    formatter: https://www.maizegdb.org/gene_center/gene/$1
+    homepage: https://www.maizegdb.org/
+    name: MaizeGDB
+    prefix: MaizeGDB_Locus
+  miriam:
     deprecated: false
     description: MaizeGDB is the maize research community's central repository for
       genetics and genomics information.
@@ -8523,7 +9222,10 @@
   n2t:
     prefix: maizegdb.locus
   prefix: maizegdb.locus
-- miriam:
+- bioportal:
+    name: Mathematical Modelling Ontology
+    prefix: MAMO
+  miriam:
     deprecated: false
     description: The Mathematical Modelling Ontology (MAMO) is a classification of
       the types of mathematical models used mostly in the life sciences, their variables,
@@ -8585,6 +9287,7 @@
     prefix: massive
   prefix: massive
 - bioportal:
+    name: Minimal Anatomical Terminology
     prefix: MAT
   name: Minimal Anatomical Terminology
   obofoundry:
@@ -8617,7 +9320,10 @@
   n2t:
     prefix: matrixdb.association
   prefix: matrixdb.association
-- obofoundry:
+- bioportal:
+    name: Medical Action Ontology
+    prefix: MAXO
+  obofoundry:
     contact: Leigh.Carmody@jax.org
     contact.label: Leigh Carmody
     deprecated: false
@@ -8638,11 +9344,15 @@
   ols_version_date_format: '%Y-%m-%d'
   prefix: maxo
 - bioportal:
+    name: Cell Line Ontology [by Mahadevan]
     prefix: MCCL
   deprecated: true
   name: Cell Line Ontology [derivative]
   prefix: mcc
-- example: 0000858
+- bioportal:
+    name: Microbial Conditions Ontology
+    prefix: MCO
+  example: 0000858
   obofoundry:
     contact: citlalli.mejiaalmonte@gmail.com
     contact.label: "Citlalli Mej\xEDa-Almonte"
@@ -8680,7 +9390,10 @@
   n2t:
     prefix: mdm
   prefix: mdm
-- miriam:
+- bioportal:
+    name: Medical Dictionary for Regulatory Activities Terminology (MedDRA)
+    prefix: MEDDRA
+  miriam:
     deprecated: false
     description: The Medical Dictionary for Regulatory Activities (MedDRA) was developed
       by the International Council for Harmonisation of Technical Requirements for
@@ -8725,7 +9438,10 @@
   n2t:
     prefix: medgen
   prefix: medgen
-- miriam:
+- bioportal:
+    name: MedlinePlus Health Topics
+    prefix: MEDLINEPLUS
+  miriam:
     deprecated: false
     description: MedlinePlus is the National Institutes of Health's Web site for patients
       and their families and friends. Produced by the National Library of Medicine,
@@ -8740,7 +9456,12 @@
   n2t:
     prefix: medlineplus
   prefix: medlineplus
-- miriam:
+- go:
+    formatter: https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=$1
+    homepage: https://www.ebi.ac.uk/merops/
+    name: MEROPS peptidase database
+    prefix: MEROPS
+  miriam:
     deprecated: false
     description: The MEROPS database is an information resource for peptidases (also
       termed proteases, proteinases and proteolytic enzymes) and the proteins that
@@ -8785,7 +9506,18 @@
   n2t:
     prefix: merops.inhibitor
   prefix: merops.inhibitor
-- example: C063233
+- bioportal:
+    name: Medical Subject Headings
+    prefix: MESH
+  example: C063233
+  go:
+    formatter: http://id.nlm.nih.gov/mesh/$1
+    homepage: https://meshb.nlm.nih.gov
+    name: Medical Subject Headings
+    prefix: MeSH
+    synonyms:
+    - MESH
+    - MSH
   miriam:
     deprecated: false
     description: MeSH (Medical Subject Headings) is the National Library of Medicine's
@@ -8872,7 +9604,14 @@
   prefix: metabolights
   wikidata:
     property: P3890
-- miriam:
+- go:
+    formatter: http://biocyc.org/META/NEW-IMAGE?type=NIL&object=$1
+    homepage: http://metacyc.org/
+    name: Metabolic Encyclopedia of metabolic and other pathways
+    prefix: MetaCyc
+    synonyms:
+    - METACYC
+  miriam:
     deprecated: false
     description: MetaCyc is a curated database of experimentally elucidated metabolic
       pathways from all domains of life. MetaCyc contains 2526 pathways from 2844
@@ -8986,7 +9725,10 @@
   n2t:
     prefix: mex
   prefix: mex
-- obofoundry:
+- bioportal:
+    name: Mental Functioning Ontology
+    prefix: MF
+  obofoundry:
     contact: janna.hastings@gmail.com
     contact.label: Janna Hastings
     deprecated: false
@@ -9005,7 +9747,10 @@
     version.iri: http://purl.obolibrary.org/obo/MF/2020-08-07/MF.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: mf
-- obofoundry:
+- bioportal:
+    name: Mammalian Feeding Muscle Ontology
+    prefix: MFMO
+  obofoundry:
     contact: druzinsk@uic.edu
     contact.label: Robert Druzinsky
     deprecated: false
@@ -9023,14 +9768,20 @@
     version.iri: http://purl.obolibrary.org/obo/mfmo/2013-11-16/mfmo.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: mfmo
-- obofoundry:
+- bioportal:
+    name: Medaka Fish Anatomy and Development Ontology
+    prefix: MFO
+  obofoundry:
     contact: Thorsten.Henrich@embl-heidelberg.de
     contact.label: Thorsten Henrich
     deprecated: true
     name: Medaka fish anatomy and development
     prefix: mfo
   prefix: mfo
-- obofoundry:
+- bioportal:
+    name: Emotion Ontology
+    prefix: MFOEM
+  obofoundry:
     contact: janna.hastings@gmail.com
     contact.label: Janna Hastings
     deprecated: false
@@ -9049,7 +9800,10 @@
     version.iri: http://purl.obolibrary.org/obo/MFOEM/2020-05-13/MFOEM.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: mfoem
-- obofoundry:
+- bioportal:
+    name: MFO Mental Disease Ontology
+    prefix: MFOMD
+  obofoundry:
     contact: janna.hastings@gmail.com
     contact.label: Janna Hastings
     deprecated: false
@@ -9082,6 +9836,10 @@
     prefix: mge
   prefix: mge
 - example: '6017782'
+  go:
+    homepage: http://www.informatics.jax.org/
+    name: Mouse Genome Informatics
+    prefix: MGI
   miriam:
     deprecated: false
     description: The Mouse Genome Database (MGD) project includes data on gene characterization,
@@ -9138,7 +9896,16 @@
   n2t:
     prefix: mgnify.samp
   prefix: mgnify.samp
-- example: 0058
+- bioportal:
+    name: Molecular Interactions
+    prefix: MI
+  example: 0058
+  go:
+    homepage: http://www.psidev.info/
+    name: Proteomic Standard Initiative for Molecular Interaction
+    prefix: PSI-MI
+    synonyms:
+    - MI
   miriam:
     deprecated: false
     description: The Molecular Interactions (MI) ontology forms a structured controlled
@@ -9177,7 +9944,10 @@
   prefix: miaa
   references:
   - https://bioconductor.statistik.tu-dortmund.de/packages/3.1/bioc/vignettes/rols/inst/doc/rols.pdf
-- obofoundry:
+- bioportal:
+    name: MIAPA Ontology
+    prefix: MIAPA
+  obofoundry:
     contact: hilmar.lapp@duke.edu
     contact.label: Hilmar Lapp
     deprecated: false
@@ -9278,8 +10048,18 @@
   n2t:
     prefix: microsporidia
   prefix: microsporidia
-- comment: OMIMPS and PS should probably be split to their own entry called OMIM Phenotypic
+- bioportal:
+    name: Molecular Interaction Map
+    prefix: MIM
+  comment: OMIMPS and PS should probably be split to their own entry called OMIM Phenotypic
     Series
+  go:
+    formatter: https://omim.org/entry/$1
+    homepage: https://omim.org/
+    name: Mendelian Inheritance in Man
+    prefix: OMIM
+    synonyms:
+    - MIM
   miriam:
     deprecated: false
     description: Online Mendelian Inheritance in Man is a catalog of human genes and
@@ -9495,7 +10275,10 @@
   n2t:
     prefix: mirnest
   prefix: mirnest
-- download: http://purl.obolibrary.org/obo/miro.obo
+- bioportal:
+    name: Mosquito Insecticide Resistance
+    prefix: MIRO
+  download: http://purl.obolibrary.org/obo/miro.obo
   example: '40000617'
   obofoundry:
     contact: louis@imbb.forth.gr
@@ -9563,7 +10346,10 @@
   n2t:
     prefix: biomaps
   prefix: mmmp.biomaps
-- example: '0000574'
+- bioportal:
+    name: Measurement Method Ontology
+    prefix: MMO
+  example: '0000574'
   obofoundry:
     contact: jrsmith@mcw.edu
     contact.label: Jennifer Smith
@@ -9653,7 +10439,10 @@
   - https://www.nlm.nih.gov/research/umls/rxnorm/sourcereleasedocs/mmsl.html
   synonyms:
   - MMSL_CODE
-- example: '0000066'
+- bioportal:
+    name: Mouse Developmental Stages
+    prefix: MMUSDV
+  example: '0000066'
   obofoundry:
     contact: bgee@sib.swiss
     contact.label: bgee
@@ -9674,7 +10463,10 @@
   prefix: mmusdv
   synonyms:
   - MmusDv
-- miriam:
+- bioportal:
+    name: Microarray and Gene Expression Data Ontology
+    prefix: MO
+  miriam:
     deprecated: false
     description: The MGED Ontology (MO) provides terms for annotating all aspects
       of a microarray experiment from the design of the experiment and array layout,
@@ -9707,9 +10499,16 @@
   n2t:
     prefix: mobidb
   prefix: mobidb
-- example: '01467'
+- bioportal:
+    name: Protein Modification Ontology
+    prefix: PSIMOD
+  example: '01467'
   go:
+    homepage: http://www.psidev.info/groups/protein-modifications
+    name: Proteomics Standards Initiative protein modification ontology
     prefix: PSI-MOD
+    synonyms:
+    - MOD
   miriam:
     deprecated: false
     description: The Proteomics Standards Initiative modification ontology (PSI-MOD)  aims
@@ -9782,7 +10581,10 @@
     prefix: molmedb
     sampleId: MM00040
   prefix: molmedb
-- download: http://purl.obolibrary.org/obo/mondo.obo
+- bioportal:
+    name: Mondo Disease Ontology
+    prefix: MONDO
+  download: http://purl.obolibrary.org/obo/mondo.obo
   example: '0000001'
   obofoundry:
     contact: vasilevs@ohsu.edu
@@ -9805,7 +10607,10 @@
   prefix: mondo
   wikidata:
     property: P5270
-- download: https://raw.githubusercontent.com/rsc-ontologies/rxno/master/mop.obo
+- bioportal:
+    name: Molecular Process Ontology
+    prefix: MOP
+  download: https://raw.githubusercontent.com/rsc-ontologies/rxno/master/mop.obo
   example: 0000079
   obofoundry:
     contact: batchelorc@rsc.org
@@ -9817,6 +10622,7 @@
     prefix: mop
     repo: https://github.com/rsc-ontologies/rxno.git
   ols:
+    contact: chemistry-ontologies@googlegroups.com
     description: MOP is the molecular process ontology. It contains the molecular
       processes that underlie the name reaction ontology RXNO, for example cyclization,
       methylation and demethylation.
@@ -9844,7 +10650,10 @@
     prefix: morpheus
     sampleId: M0001
   prefix: morpheus
-- miriam:
+- bioportal:
+    name: Mammalian Phenotype Ontology
+    prefix: MP
+  miriam:
     deprecated: false
     description: The Mammalian Phenotype Ontology (MP) classifies and organises phenotypic
       information related to the mouse and other mammalian species. This ontology
@@ -9890,7 +10699,10 @@
     version.iri: http://purl.obolibrary.org/obo/mp/releases/2021-01-12
   ols_version_date_format: '%d-%m-%Y'
   prefix: mp
-- download: https://raw.githubusercontent.com/PaulNSchofield/mpath/master/mpath.obo
+- bioportal:
+    name: Mouse Pathology Ontology
+    prefix: MPATH
+  download: https://raw.githubusercontent.com/PaulNSchofield/mpath/master/mpath.obo
   example: '728'
   obofoundry:
     contact: pns12@hermes.cam.ac.uk
@@ -9929,7 +10741,10 @@
   n2t:
     prefix: mpid
   prefix: mpid
-- obofoundry:
+- bioportal:
+    name: Minimum PDDI Information Ontology
+    prefix: MPIO
+  obofoundry:
     contact: mbrochhausen@uams.edu
     contact.label: Mathias Brochhausen
     deprecated: false
@@ -9947,7 +10762,10 @@
   ols_version_date_format: '%Y-%m-%d'
   ols_version_prefix: 'release version '
   prefix: mpio
-- example: '0000634'
+- bioportal:
+    name: Defen
+    prefix: MRO
+  example: '0000634'
   obofoundry:
     contact: bpeters@lji.org
     contact.label: Bjoern Peters
@@ -9968,7 +10786,10 @@
     version.iri: http://purl.obolibrary.org/obo/mro/2021-01-25/mro.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: mro
-- example: '1000560'
+- bioportal:
+    name: Mass Spectrometry Ontology
+    prefix: MS
+  example: '1000560'
   miriam:
     deprecated: false
     description: The PSI-Mass Spectrometry (MS) CV contains all the terms used in
@@ -9996,6 +10817,7 @@
     name: Mass spectrometry ontology
     prefix: ms
   ols:
+    contact: psidev-ms-vocab@lists.sourceforge.net
     description: A structured controlled vocabulary for the annotation of experiments
       concerned with proteomics mass spectrometry.
     download: http://purl.obolibrary.org/obo/ms.owl
@@ -10270,7 +11092,10 @@
   n2t:
     prefix: nbn
   prefix: nbn
-- download: https://github.com/obo-behavior/behavior-ontology/raw/master/nbo.obo
+- bioportal:
+    name: Neuro Behavior Ontology
+    prefix: NBO
+  download: https://github.com/obo-behavior/behavior-ontology/raw/master/nbo.obo
   example: '0000564'
   obofoundry:
     contact: g.gkoutos@bham.ac.uk
@@ -10308,7 +11133,16 @@
   n2t:
     prefix: nbrc
   prefix: nbrc
-- miriam:
+- go:
+    formatter: https://www.ncbi.nlm.nih.gov/gene$1
+    homepage: http://www.ncbi.nlm.nih.gov/
+    name: NCBI Gene
+    prefix: NCBIGene
+    synonyms:
+    - GeneID
+    - LocusID
+    - NCBI_Gene
+  miriam:
     deprecated: false
     description: Entrez Gene is the NCBI's database for gene-specific information,
       focusing on completely sequenced genomes, those with an active research community
@@ -10336,6 +11170,8 @@
     property: P351
     property.label: Entrez Gene ID
 - go:
+    homepage: https://www.ncbi.nlm.nih.gov/protein
+    name: NCBI Protein
     prefix: NCBI_NP
   miriam:
     deprecated: false
@@ -10351,10 +11187,19 @@
   n2t:
     prefix: ncbiprotein
   prefix: ncbiprotein
-- download: http://purl.obolibrary.org/obo/ncbitaxon.obo
+- bioportal:
+    name: National Center for Biotechnology Information (NCBI) Organismal Classification
+    prefix: NCBITAXON
+  download: http://purl.obolibrary.org/obo/ncbitaxon.obo
   example: '2170610'
   go:
+    formatter: http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=$1
+    homepage: http://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/
+    name: NCBI Taxonomy
     prefix: taxon
+    synonyms:
+    - NCBITaxon
+    - ncbi_taxid
   miriam:
     deprecated: false
     description: The taxonomy contains the relationships between all living forms
@@ -10416,7 +11261,10 @@
   n2t:
     prefix: ncim
   prefix: ncim
-- download: http://purl.obolibrary.org/obo/ncit.obo
+- bioportal:
+    name: National Cancer Institute Thesaurus
+    prefix: NCIT
+  download: http://purl.obolibrary.org/obo/ncit.obo
   example: C138986
   miriam:
     deprecated: false
@@ -10465,7 +11313,10 @@
   wikidata:
     database: Q19404626
     property: P1748
-- obofoundry:
+- bioportal:
+    name: Non-coding RNA Ontology
+    prefix: NCRO
+  obofoundry:
     contact: huang@southalabama.edu
     contact.label: Jingshan Huang
     deprecated: false
@@ -10473,6 +11324,7 @@
     name: Non-Coding RNA Ontology
     prefix: ncro
   ols:
+    contact: ncro-devel@googlegroups.com
     description: An ontology for non-coding RNA, both of biological origin, and engineered.
     download: http://purl.obolibrary.org/obo/ncro.owl
     name: Non-Coding RNA Ontology
@@ -10496,12 +11348,17 @@
   n2t:
     prefix: ndc
   prefix: ndc
-- example: 002678
+- bioportal:
+    name: National Drug Data File
+    prefix: NDDF
+  example: 002678
   name: National Drug Data File
   prefix: nddf
   references:
   - https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDDF/index.html
-- bioportal: NDFRT
+- bioportal:
+    name: National Drug File - Reference Terminology
+    prefix: NDFRT
   example: N0000001662
   name: National Drug File - Reference Terminology
   prefix: ndfrt
@@ -10511,7 +11368,10 @@
   wikidata:
     database: Q21008030
     property: P2115
-- miriam:
+- bioportal:
+    name: Neural ElectroMagnetic Ontology
+    prefix: NEMO
+  miriam:
     deprecated: false
     description: This namespace is about Neuroscience Multi-Omic data, specially focused
       on that data generated from the BRAIN Initiative and related brain research
@@ -10674,7 +11534,10 @@
   name: NeuroLex Dysfunction
   prefix: nlxdys
   url: http://uri.neuinfo.org/nif/nifstd/nlx_dys_$1
-- download: https://nmrml.org/cv/stable/nmrCV.owl
+- bioportal:
+    name: NMR-Controlled Vocabulary
+    prefix: NMR
+  download: https://nmrml.org/cv/stable/nmrCV.owl
   miriam:
     deprecated: false
     description: nmrCV is a controlled vocabulary to deliver standardized descriptors
@@ -10737,7 +11600,10 @@
     prefix: nmrshiftdb2
     sampleId: '234'
   prefix: nmrshiftdb2
-- obofoundry:
+- bioportal:
+    name: NOMEN - A nomenclatural ontology for biological names
+    prefix: NOMEN
+  obofoundry:
     contact: diapriid@gmail.com
     contact.label: Matt Yoder
     deprecated: false
@@ -10838,7 +11704,10 @@
   n2t:
     prefix: nuclearbd
   prefix: nuclearbd
-- obofoundry:
+- bioportal:
+    name: Ontology of Adverse Events
+    prefix: OAE
+  obofoundry:
     contact: yongqunh@med.umich.edu
     contact.label: Yongqunh He
     deprecated: false
@@ -10861,7 +11730,10 @@
     version: 1.2.36
   ols_version_type: semver
   prefix: oae
-- obofoundry:
+- bioportal:
+    name: Ontology of Arthropod Circulatory Systems
+    prefix: OARCS
+  obofoundry:
     contact: mjyoder@illinois.edu
     contact.label: Matt Yoder
     deprecated: false
@@ -10877,7 +11749,10 @@
     version.iri: http://purl.obolibrary.org/obo/hao/2019-04-18/hao.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: oarcs
-- example: '0000001'
+- bioportal:
+    name: Ontology of Biological Attributes
+    prefix: OBA
+  example: '0000001'
   obofoundry:
     contact: cjmungall@lbl.gov
     contact.label: Chris Mungall
@@ -10897,7 +11772,10 @@
   ols_version_date_format: '%d-%m-%Y'
   pattern: ^\d{7}$
   prefix: oba
-- obofoundry:
+- bioportal:
+    name: Ontology of Biological and Clinical Statistics
+    prefix: OBCS
+  obofoundry:
     contact: jiezheng@pennmedicine.upenn.edu
     contact.label: Jie Zheng
     deprecated: false
@@ -10918,8 +11796,15 @@
     version.iri: http://purl.obolibrary.org/obo/obcs/2018-02-22/obcs.owl
   ols_version_type: sequential
   prefix: obcs
-- download: https://github.com/obi-ontology/obi/raw/master/views/obi.obo
+- bioportal:
+    name: Ontology for Biomedical Investigations
+    prefix: OBI
+  download: https://github.com/obi-ontology/obi/raw/master/views/obi.obo
   example: 0400109
+  go:
+    homepage: http://obi-ontology.org/
+    name: Ontology for Biomedical Investigations
+    prefix: OBI
   miriam:
     deprecated: false
     description: The Ontology for Biomedical Investigations (OBI) project is developing
@@ -10961,7 +11846,10 @@
     version.iri: http://purl.obolibrary.org/obo/obi/2020-12-16/obi.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: obi
-- obofoundry:
+- bioportal:
+    name: Ontology for Biobanking
+    prefix: OBIB
+  obofoundry:
     contact: jiezheng@pennmedicine.upenn.edu
     contact.label: Jie Zheng
     deprecated: false
@@ -11078,7 +11966,10 @@
   n2t:
     prefix: odor
   prefix: odor
-- obofoundry:
+- bioportal:
+    name: Ontology of Genes and Genomes
+    prefix: OGG
+  obofoundry:
     contact: yongqunh@med.umich.edu
     contact.label: Yongqun Oliver He
     deprecated: false
@@ -11101,7 +11992,10 @@
   ols_version_prefix: 'Vision Release: '
   ols_version_type: semver
   prefix: ogg
-- obofoundry:
+- bioportal:
+    name: Ontology for Genetic Interval
+    prefix: OGI
+  obofoundry:
     deprecated: false
     name: Ontology for genetic interval
     prefix: ogi
@@ -11129,7 +12023,10 @@
     version: '2.0'
   ols_version_type: semver
   prefix: ogi
-- example: '0000031'
+- bioportal:
+    name: Ontology for General Medical Science
+    prefix: OGMS
+  example: '0000031'
   not_available_as_obo: true
   obofoundry:
     contact: baeverma@jcvi.org
@@ -11166,7 +12063,10 @@
   prefix: ogms
   wikidata:
     database: Q4866972
-- obofoundry:
+- bioportal:
+    name: Ontology for Genetic Susceptibility Factor
+    prefix: OGSF
+  obofoundry:
     contact: linikujp@gmail.com
     contact.label: Asiyah Yu Lin
     deprecated: false
@@ -11183,7 +12083,10 @@
     version: '2.0'
   ols_version_type: semver
   prefix: ogsf
-- obofoundry:
+- bioportal:
+    name: The Oral Health and Disease Ontology
+    prefix: OHD
+  obofoundry:
     contact: alanruttenberg@gmail.com
     contact.label: Alan Ruttenberg
     deprecated: false
@@ -11201,7 +12104,10 @@
     version.iri: http://purl.obolibrary.org/obo/2016-06-27/ohd-inferred.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: ohd
-- obofoundry:
+- bioportal:
+    name: Ontology of Host-Microbe Interactions
+    prefix: OHMI
+  obofoundry:
     contact: yongqunh@med.umich.edu
     contact.label: Yongqun Oliver He
     deprecated: false
@@ -11218,7 +12124,10 @@
     version.iri: http://purl.obolibrary.org/obo/ohmi/2019-09-17/ohmi.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: ohmi
-- obofoundry:
+- bioportal:
+    name: Ontology of Host-Pathogen Interactions
+    prefix: OHPI
+  obofoundry:
     contact: edong@umich.edu
     contact.label: Edison Ong
     deprecated: false
@@ -11251,7 +12160,10 @@
   n2t:
     prefix: oid
   prefix: oid
-- example: '0000210'
+- bioportal:
+    name: Medaka Developmental Stages
+    prefix: OLATDV
+  example: '0000210'
   obofoundry:
     contact: bgee@sib.swiss
     contact.label: bgee
@@ -11270,7 +12182,11 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: olatdv
-- ols:
+- bioportal:
+    name: Ontology of units of Measure
+    prefix: OM
+  ols:
+    contact: hajo.rijgersberg@wur.nl
     description: 'The OM ontology provides classes, instances, and properties that
       represent the different concepts used for defining and using measures and units.
       It includes, for instance, common units such as the SI units meter and kilogram,
@@ -11354,7 +12270,10 @@
   n2t:
     prefix: omia
   prefix: omia
-- obofoundry:
+- bioportal:
+    name: Ontologized MIABIS
+    prefix: OMIABIS
+  obofoundry:
     contact: mbrochhausen@gmail.com
     contact.label: Mathias Brochhausen
     deprecated: false
@@ -11370,7 +12289,10 @@
     version: ' 2014-05-28'
   ols_version_date_format: '%Y-%m-%d'
   prefix: omiabis
-- download: https://raw.githubusercontent.com/OmniSearch/omit/master/src/ontology/omit.obo
+- bioportal:
+    name: Ontology for MicroRNA Target
+    prefix: OMIT
+  download: https://raw.githubusercontent.com/OmniSearch/omit/master/src/ontology/omit.obo
   example: 0000069
   miriam:
     deprecated: false
@@ -11409,7 +12331,10 @@
   - OMIT
   wikidata:
     property: Q55118529
-- obofoundry:
+- bioportal:
+    name: OBO Metadata Ontology
+    prefix: OMO
+  obofoundry:
     contact: cjmungall@lbl.gov
     contact.label: Chris Mungall
     deprecated: false
@@ -11432,7 +12357,10 @@
   prefix: omop
   references:
   - https://github.com/callahantiff/OMOP2OBO
-- example: '0005067'
+- bioportal:
+    name: Ontology of Microbial Phenotypes
+    prefix: OMP
+  example: '0005067'
   obofoundry:
     contact: jimhu@tamu.edu
     contact.label: James C. Hu
@@ -11453,7 +12381,10 @@
   prefix: omp
   wikidata:
     database: Q81661753
-- download: https://github.com/ufbmi/OMRSE/blob/master/omrse/omrse.owl
+- bioportal:
+    name: Ontology of Medically Related Social Entities
+    prefix: OMRSE
+  download: https://github.com/ufbmi/OMRSE/blob/master/omrse/omrse.owl
   not_available_as_obo: true
   obofoundry:
     contact: hoganwr@gmail.com
@@ -11481,7 +12412,10 @@
   name: OncoTree
   prefix: oncotree
   url: http://oncotree.mskcc.org/api/tumorTypes/search/code/$1
-- obofoundry:
+- bioportal:
+    name: Ontology for Nutritional Epidemiology
+    prefix: ONE
+  obofoundry:
     contact: chen.yang@ugent.be
     contact.label: Chen Yang
     deprecated: false
@@ -11495,7 +12429,10 @@
     name: Ontology for Nutritional Epidemiology
     prefix: one
   prefix: one
-- obofoundry:
+- bioportal:
+    name: Ontology for Nutritional Studies
+    prefix: ONS
+  obofoundry:
     contact: francesco.vitali@ibba.cnr.it
     contact.label: Francesco Vitali
     deprecated: false
@@ -11513,7 +12450,10 @@
   ols_version_prefix: 'Relese version '
   ols_version_type: semver
   prefix: ons
-- obofoundry:
+- bioportal:
+    name: Obstetric and Neonatal Ontology
+    prefix: ONTONEO
+  obofoundry:
     contact: fernanda.farinelli@gmail.com
     contact.label: Fernanda Farinelli
     deprecated: false
@@ -11531,7 +12471,10 @@
     version.iri: http://purl.obolibrary.org/obo/ontoneo/releases/2017-03-04/ontoneo.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: ontoneo
-- obofoundry:
+- bioportal:
+    name: Ontology of Organizational Structures of Trauma centers and Trauma systems
+    prefix: OOSTT
+  obofoundry:
     contact: mbrochhausen@gmail.com
     contact.label: Mathias Brochhausen
     deprecated: false
@@ -11550,7 +12493,10 @@
   ols_version_date_format: '%Y-%m-%d'
   ols_version_prefix: 'release version - '
   prefix: oostt
-- miriam:
+- bioportal:
+    name: Ontology of Physics for Biology
+    prefix: OPB
+  miriam:
     deprecated: false
     description: The OPB is a reference ontology of classical physics as applied to
       the dynamics of biological systems. It is designed to encompass the multiple
@@ -11566,7 +12512,10 @@
   n2t:
     prefix: opb
   prefix: opb
-- obofoundry:
+- bioportal:
+    name: Ontology for Parasite LifeCycle
+    prefix: OPL
+  obofoundry:
     contact: preets79@gmail.com
     contact.label: Priti Parikh
     deprecated: false
@@ -11603,7 +12552,10 @@
   n2t:
     prefix: opm
   prefix: opm
-- obofoundry:
+- bioportal:
+    name: Ontology of Precision Medicine and Investigation
+    prefix: OPMI
+  obofoundry:
     contact: yongqunh@med.umich.edu
     contact.label: Yongqun Oliver He
     deprecated: false
@@ -11694,7 +12646,10 @@
   n2t:
     prefix: oridb.schizo
   prefix: oridb.schizo
-- obofoundry:
+- bioportal:
+    name: Ontology of RNA Sequencing
+    prefix: ORNASEQ
+  obofoundry:
     contact: safisher@upenn.edu
     contact.label: Stephen Fisher
     deprecated: false
@@ -11728,7 +12683,10 @@
   prefix: orphanet
   wikidata:
     property: P1550
-- miriam:
+- bioportal:
+    name: Orphanet Rare Disease Ontology
+    prefix: ORDO
+  miriam:
     deprecated: false
     description: "The Orphanet Rare Disease ontology (ORDO) is a structured vocabulary\
       \ for rare diseases, capturing relationships between diseases, genes and other\
@@ -11883,7 +12841,10 @@
   n2t:
     prefix: otl
   prefix: otl
-- obofoundry:
+- bioportal:
+    name: Ontology of Vaccine Adverse Events
+    prefix: OVAE
+  obofoundry:
     contact: yongqunh@med.umich.edu
     contact.label: Yongqunh He
     deprecated: false
@@ -11949,6 +12910,9 @@
     prefix: paleodb
   prefix: paleodb
 - go:
+    formatter: http://www.pantherdb.org/panther/lookupId.jsp?id=$1
+    homepage: http://www.pantherdb.org/
+    name: Protein ANalysis THrough Evolutionary Relationships Classification System
     prefix: PANTHER
   miriam:
     deprecated: false
@@ -12058,7 +13022,14 @@
   n2t:
     prefix: pathwaycommons
   prefix: pathwaycommons
-- miriam:
+- bioportal:
+    name: Phenotypic Quality Ontology
+    prefix: PATO
+  go:
+    homepage: http://www.obofoundry.org/ontology/pato.html
+    name: Phenotypic quality ontology
+    prefix: PATO
+  miriam:
     deprecated: false
     description: PATO is an ontology of phenotypic qualities, intended for use in
       a number of applications, primarily defining composite phenotypes and phenotype  annotation.
@@ -12139,7 +13110,10 @@
   n2t:
     prefix: pazar
   prefix: pazar
-- example: '0000021'
+- bioportal:
+    name: Population and Community Ontology
+    prefix: PCO
+  example: '0000021'
   obofoundry:
     contact: rlwalls2008@gmail.com
     contact.label: Ramona Walls
@@ -12166,7 +13140,12 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: pco
-- miriam:
+- go:
+    formatter: https://www.rcsb.org/structure/$1
+    homepage: https://www.rcsb.org/pdb/
+    name: Protein Data Bank
+    prefix: PDB
+  miriam:
     deprecated: false
     description: The Protein Data Bank is the single worldwide archive of structural
       data of biological macromolecules.
@@ -12229,7 +13208,10 @@
     property: P3636
 - name: Protein Data Bank in Europe
   prefix: pdbe
-- obofoundry:
+- bioportal:
+    name: The Prescription of Drugs Ontology
+    prefix: PDRO
+  obofoundry:
     contact: paul.fabry@usherbrooke.ca
     contact.label: Paul Fabry
     deprecated: false
@@ -12247,7 +13229,10 @@
     version.iri: http://purl.obolibrary.org/obo/pdro/2019-09-19/pdro.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: pdro
-- example: '0001410'
+- bioportal:
+    name: Platynereis Developmental Stages
+    prefix: PDUMDV
+  example: '0001410'
   obofoundry:
     contact: bgee@sib.swiss
     contact.label: bgee
@@ -12268,7 +13253,10 @@
   prefix: pdumdv
   synonyms:
   - PdumDv
-- download: https://raw.githubusercontent.com/Planteome/plant-experimental-conditions-ontology/master/peco.obo
+- bioportal:
+    name: Plant Experimental Conditions Ontology
+    prefix: PECO
+  download: https://raw.githubusercontent.com/Planteome/plant-experimental-conditions-ontology/master/peco.obo
   example: '0007114'
   miriam:
     deprecated: false
@@ -12359,6 +13347,10 @@
   prefix: pesticides
   url: http://www.alanwood.net/pesticides/$1.html
 - example: PF11779
+  go:
+    homepage: http://pfam.xfam.org
+    name: Pfam database of protein families
+    prefix: Pfam
   miriam:
     deprecated: false
     description: The Pfam database contains information about protein domains and
@@ -12520,7 +13512,10 @@
     version: 10-12-2018
   ols_version_date_format: '%d-%m-%Y'
   prefix: phi
-- example: '0000001'
+- bioportal:
+    name: Pathogen Host Interaction Phenotype Ontology
+    prefix: PHIPO
+  example: '0000001'
   obofoundry:
     contact: alayne.cuzick@rothamsted.ac.uk
     contact.label: Alayne Cuzick
@@ -12710,7 +13705,12 @@
   n2t:
     prefix: piroplasma
   prefix: piroplasma
-- miriam:
+- go:
+    formatter: http://pir.georgetown.edu/cgi-bin/ipcSF?id=$1
+    homepage: http://pir.georgetown.edu/pirsf/
+    name: PIR Superfamily Classification System
+    prefix: PIRSF
+  miriam:
     deprecated: false
     description: The PIR SuperFamily concept is being used as a guiding principle
       to provide comprehensive and non-overlapping clustering of UniProtKB sequences
@@ -12737,7 +13737,10 @@
     prefix: pkdb
     sampleId: PKDB00198
   prefix: pkdb
-- example: '0000001'
+- bioportal:
+    name: Planarian Anatomy and Developmental Stage Ontolgoy
+    prefix: PLANA
+  example: '0000001'
   obofoundry:
     contact: smr@stowers.org
     contact.label: Sofia Robb
@@ -12758,7 +13761,10 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: plana
-- example: '0000001'
+- bioportal:
+    name: Planarian Phenotype Ontology
+    prefix: PLANP
+  example: '0000001'
   obofoundry:
     contact: smr@stowers.org
     contact.label: Sofia Robb
@@ -12798,6 +13804,9 @@
     prefix: planttfdb
   prefix: planttfdb
 - go:
+    formatter: http://www.plasmodb.org/gene/$1
+    homepage: http://plasmodb.org/
+    name: PlasmoDB Plasmodium Genome Resource
     prefix: ApiDB_PlasmoDB
   miriam:
     deprecated: false
@@ -12853,7 +13862,14 @@
   n2t:
     prefix: pmap.substratedb
   prefix: pmap.substratedb
-- miriam:
+- go:
+    formatter: https://www.ncbi.nlm.nih.gov/pmc/articles/$1
+    homepage: https://www.ncbi.nlm.nih.gov/pmc/
+    name: Pubmed Central
+    prefix: PMCID
+    synonyms:
+    - PMC
+  miriam:
     deprecated: false
     description: PMC International (PMCI) is a free full-text archive of biomedical
       and life sciences journal literature. PMCI is a collaborative effort between
@@ -12906,7 +13922,14 @@
   n2t:
     prefix: pmp
   prefix: pmp
-- miriam:
+- bioportal:
+    name: Plant Ontology
+    prefix: PO
+  go:
+    homepage: http://www.planteome.org/
+    name: Plant Ontology
+    prefix: PO
+  miriam:
     deprecated: false
     description: The Plant Ontology is a structured vocabulary and database resource
       that links plant anatomy, morphology and growth and development to plant genomics
@@ -12969,7 +13992,12 @@
   n2t:
     prefix: polbase
   prefix: polbase
-- miriam:
+- go:
+    formatter: https://www.pombase.org/gene/$1
+    homepage: https://www.pombase.org/
+    name: PomBase
+    prefix: PomBase
+  miriam:
     deprecated: false
     description: PomBase is a model organism database established to provide access
       to molecular data and biological information for the fission yeast Schizosaccharomyces
@@ -12988,7 +14016,10 @@
   - PomBase
   wikidata:
     property: P6245
-- example: '0000550'
+- bioportal:
+    name: Porifera Ontology
+    prefix: PORO
+  example: '0000550'
   obofoundry:
     contact: robert.thacker@stonybrook.edu
     contact.label: Bob Thacker
@@ -13014,7 +14045,10 @@
   name: Pesticide Properties DataBase
   prefix: ppdb
   url: https://sitem.herts.ac.uk/aeru/ppdb/en/Reports/$1.htm
-- obofoundry:
+- bioportal:
+    name: Plant Phenology Ontology
+    prefix: PPO
+  obofoundry:
     contact: rlwalls2008@gmail.com
     contact.label: Ramona Walls
     deprecated: false
@@ -13022,6 +14056,7 @@
     name: Plant Phenology Ontology
     prefix: ppo
   ols:
+    contact: ppo-discuss@googlegroups.com
     description: An ontology for describing the phenology of individual plants and
       populations of plants, and for integrating plant phenological data across sources
       and scales.
@@ -13039,7 +14074,17 @@
   name: Eurpoe PMC Preprints
   prefix: ppr
   url: https://europepmc.org/article/ppr/$1
-- miriam:
+- bioportal:
+    name: Protein Ontology
+    prefix: PR
+  go:
+    formatter: https://proconsortium.org/app/entry/PR_$1
+    homepage: https://proconsortium.org/
+    name: Protein Ontology
+    prefix: PR
+    synonyms:
+    - PRO
+  miriam:
     deprecated: false
     description: The PRotein Ontology (PRO) has been designed to describe the relationships
       of proteins and protein evolutionary classes, to delineate the multiple protein
@@ -13116,7 +14161,12 @@
   n2t:
     prefix: pride.project
   prefix: pride.project
-- miriam:
+- go:
+    formatter: http://www.bioinf.manchester.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1
+    homepage: http://www.bioinf.manchester.ac.uk/dbbrowser/PRINTS/
+    name: PRINTS compendium of protein fingerprints
+    prefix: PRINTS
+  miriam:
     deprecated: false
     description: PRINTS is a compendium of protein fingerprints. A fingerprint is
       a group of conserved motifs used to characterise a protein family; its diagnostic
@@ -13150,6 +14200,7 @@
   n2t:
     prefix: probonto
   ols:
+    contact: probonto.dev@gmail.com
     description: ProbOnto, is an ontology-based knowledge base of probability distributions,
       featuring more than eighty uni- and multivariate distributions with their defining
       functions, characteristics, relationships and reparameterisation formulas.
@@ -13189,7 +14240,12 @@
   n2t:
     prefix: proglyc
   prefix: proglyc
-- miriam:
+- go:
+    formatter: https://prosite.expasy.org/$1
+    homepage: https://prosite.expasy.org/
+    name: Prosite database of protein families and domains
+    prefix: Prosite
+  miriam:
     deprecated: false
     description: PROSITE consists of documentation entries describing protein domains,
       families and functional sites as well as associated patterns and profiles to
@@ -13298,7 +14354,10 @@
   n2t:
     prefix: pscdb
   prefix: pscdb
-- obofoundry:
+- bioportal:
+    name: Performance Summary Display Ontology
+    prefix: PSDO
+  obofoundry:
     contact: zachll@umich.edu
     contact.label: Zach Landis-Lewis
     deprecated: false
@@ -13362,7 +14421,10 @@
   n2t:
     prefix: psipar
   prefix: psipar
-- obofoundry:
+- bioportal:
+    name: PatientSafetyOntology
+    prefix: PSO
+  obofoundry:
     contact: cooperl@science.oregonstate.edu
     contact.label: Laurel Cooper
     deprecated: false
@@ -13380,7 +14442,12 @@
     version.iri: http://purl.obolibrary.org/obo/pso/releases/2020-05-19/pso.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: pso
-- miriam:
+- go:
+    formatter: https://pubchem.ncbi.nlm.nih.gov/bioassay/$1
+    homepage: https://pubchem.ncbi.nlm.nih.gov
+    name: NCBI PubChem database of bioassay records
+    prefix: PubChem_BioAssay
+  miriam:
     deprecated: false
     description: PubChem provides information on the biological activities of small
       molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative.
@@ -13394,7 +14461,12 @@
   n2t:
     prefix: pubchem.bioassay
   prefix: pubchem.bioassay
-- miriam:
+- go:
+    formatter: https://pubchem.ncbi.nlm.nih.gov/compound/$1
+    homepage: https://pubchem.ncbi.nlm.nih.gov
+    name: NCBI PubChem database of chemical structures
+    prefix: PubChem_Compound
+  miriam:
     deprecated: false
     description: PubChem provides information on the biological activities of small
       molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative.
@@ -13420,7 +14492,12 @@
     property: P662
     property.label: PubChem CID
     webpage: http://pubchem.ncbi.nlm.nih.gov
-- miriam:
+- go:
+    formatter: https://pubchem.ncbi.nlm.nih.gov/substance/$1
+    homepage: https://pubchem.ncbi.nlm.nih.gov
+    name: NCBI PubChem database of chemical substances
+    prefix: PubChem_Substance
+  miriam:
     deprecated: false
     description: PubChem provides information on the biological activities of small
       molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative.
@@ -13442,7 +14519,14 @@
     property: P2153
     property.label: PubChem Substance ID (SID)
     webpage: https://www.ncbi.nlm.nih.gov/pcsubstance
-- miriam:
+- go:
+    formatter: http://www.ncbi.nlm.nih.gov/pubmed/$1
+    homepage: https://www.ncbi.nlm.nih.gov/pubmed
+    name: PubMed
+    prefix: PMID
+    synonyms:
+    - PUBMED
+  miriam:
     deprecated: false
     description: PubMed is a service of the U.S. National Library of Medicine that
       includes citations from MEDLINE and other life science journals for biomedical
@@ -13461,7 +14545,10 @@
   - PMID
   wikidata:
     property: P698
-- download: ftp://ftp.rgd.mcw.edu/pub/data_release/ontology_obo_files/pathway/pathway.obo
+- bioportal:
+    name: Pathway Ontology
+    prefix: PW
+  download: ftp://ftp.rgd.mcw.edu/pub/data_release/ontology_obo_files/pathway/pathway.obo
   example: '0000423'
   miriam:
     deprecated: false
@@ -13559,7 +14646,10 @@
   n2t:
     prefix: rbk
   prefix: rbk
-- obofoundry:
+- bioportal:
+    name: Radiation Biology Ontology
+    prefix: RBO
+  obofoundry:
     contact: daniel.c.berrios@nasa.gov
     contact.label: Daniel C. Berrios
     deprecated: false
@@ -13576,8 +14666,17 @@
     prefix: rbo
     version: '2021-01-20'
     version.iri: http://purl.obolibrary.org/obo/rbo/releases/2021-01-20/rbo.owl
+  ols_version_date_format: '%Y-%m-%d'
   prefix: rbo
 - example: R-BTA-418592
+  go:
+    formatter: https://www.reactome.org/content/detail/$1
+    homepage: https://www.reactome.org/
+    name: Reactome - a curated knowledgebase of biological pathways
+    prefix: Reactome
+    synonyms:
+    - REACTOME
+    - REAC
   miriam:
     deprecated: false
     description: The Reactome project is a collaboration to develop a curated resource
@@ -13605,7 +14704,12 @@
   - Beilstein
   wikidata:
     property: P1579
-- miriam:
+- go:
+    formatter: http://rebase.neb.com/rebase/enz/$1.html
+    homepage: http://rebase.neb.com/rebase/rebase.html
+    name: REBASE restriction enzyme database
+    prefix: REBASE
+  miriam:
     deprecated: false
     description: REBASE is a comprehensive database of information about restriction
       enzymes, DNA methyltransferases and related proteins involved in the biological
@@ -13621,7 +14725,11 @@
   n2t:
     prefix: rebase
   prefix: rebase
-- miriam:
+- go:
+    homepage: http://www.ncbi.nlm.nih.gov/RefSeq/
+    name: RefSeq
+    prefix: RefSeq
+  miriam:
     deprecated: false
     description: The Reference Sequence (RefSeq) collection aims to provide a comprehensive,
       integrated, non-redundant set of sequences, including genomic DNA, transcript
@@ -13635,7 +14743,11 @@
   n2t:
     prefix: refseq
   prefix: refseq
-- ols:
+- bioportal:
+    name: REPRODUCE-ME
+    prefix: REPRODUCE-ME
+  ols:
+    contact: sheeba.samuel@uni-jena.de
     description: The REPRODUCE-ME ontology is an extension of the PROV-O and the P-Plan
       ontology to describe a complete path of a scientific experiment. It expresses
       the REPRODUCE-ME Data Model using the OWL2 Web Ontology Language (OWL2). It
@@ -13653,7 +14765,12 @@
     version: '1.1'
   ols_version_type: semver
   prefix: reproduceme
-- miriam:
+- go:
+    formatter: https://proteininformationresource.org/cgi-bin/resid?id=$1
+    homepage: https://proteininformationresource.org/resid/resid.shtml
+    name: RESID Database of Protein Modifications
+    prefix: RESID
+  miriam:
     deprecated: false
     description: The RESID Database of Protein Modifications is a comprehensive collection
       of annotations and structures for protein modifications including amino-terminal,
@@ -13673,7 +14790,11 @@
     name: Protein covalent bond
     prefix: resid
   prefix: resid
-- ols:
+- bioportal:
+    name: Regulation of Transcription Ontology
+    prefix: RETO
+  ols:
+    contact: vladimir.n.mironov@gmail.com
     description: Regulation of Transcription
     download: http://www.bio.ntnu.no/ontology/ReTO/reto.rdf
     name: Regulation of Transcription Ontology
@@ -13681,7 +14802,10 @@
     version: 17-09-2019
   ols_version_date_format: '%d-%m-%Y'
   prefix: reto
-- download: http://purl.obolibrary.org/obo/rex.owl
+- bioportal:
+    name: Physico-Chemical Process
+    prefix: REX
+  download: http://purl.obolibrary.org/obo/rex.owl
   obofoundry:
     deprecated: false
     download.obo: http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/physicochemical/rex.obo
@@ -13697,7 +14821,11 @@
     version.iri: http://purl.obolibrary.org/obo/rex/releases/2017-11-19/rex.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: rex
-- ols:
+- bioportal:
+    name: Regulation of Gene Expression Ontolology
+    prefix: REXO
+  ols:
+    contact: vladimir.n.mironov@gmail.com
     description: Regulation of Gene Expression
     download: http://www.bio.ntnu.no/ontology/ReXO/rexo.rdf
     name: Regulation of Gene Expression Ontology
@@ -13705,7 +14833,12 @@
     version: 11-04-2019
   ols_version_date_format: '%d-%m-%Y'
   prefix: rexo
-- miriam:
+- go:
+    formatter: https://rfam.org/family/$1
+    homepage: https://rfam.org
+    name: Rfam database of RNA families
+    prefix: Rfam
+  miriam:
     deprecated: false
     description: 'The Rfam database is a collection of RNA families, each represented
       by multiple sequence alignments, consensus secondary structures and covariance
@@ -13725,7 +14858,18 @@
   n2t:
     prefix: rfam
   prefix: rfam
-- example: '7499841'
+- bioportal:
+    name: RRB Group D
+    prefix: RGD
+  example: '7499841'
+  go:
+    formatter: https://rgd.mcw.edu/rgdweb/search/search.html?term=$1
+    homepage: https://rgd.mcw.edu/
+    name: Rat Genome Database
+    prefix: RGD
+    synonyms:
+    - RAD
+    - RGDID
   miriam:
     deprecated: false
     description: Rat Genome Database seeks to collect, consolidate, and integrate
@@ -13777,7 +14921,12 @@
   n2t:
     prefix: rgd.strain
   prefix: rgd.strain
-- miriam:
+- go:
+    formatter: https://www.rhea-db.org/rhea/$1
+    homepage: https://www.rhea-db.org
+    name: Rhea, the Annotated Reactions Database
+    prefix: RHEA
+  miriam:
     deprecated: false
     description: Rhea is a manually annotated reaction database, where all reaction
       participants (reactants and products) are linked to the ChEBI database (Chemical
@@ -13888,7 +15037,12 @@
   n2t:
     prefix: ricenetdb.reaction
   prefix: ricenetdb.reaction
-- miriam:
+- go:
+    formatter: https://rnacentral.org/rna/$1
+    homepage: https://rnacentral.org
+    name: RNAcentral
+    prefix: RNAcentral
+  miriam:
     deprecated: false
     description: RNAcentral is a public resource that offers integrated access to
       a comprehensive and up-to-date set of non-coding RNA sequences provided by a
@@ -13907,7 +15061,14 @@
   name: The RNA Modification Database
   prefix: rnamod
   url: http://rna.rega.kuleuven.be/cgi-bin/rnamods/rnashow.pl?$1
-- miriam:
+- go:
+    formatter: https://mods.rna.albany.edu/mods/modifications/view/$1
+    homepage: https://mods.rna.albany.edu/
+    name: RNA Modification Database
+    prefix: RNAmods
+    synonyms:
+    - RNAMDB
+  miriam:
     deprecated: false
     description: The RNA modification database provides a comprehensive listing of
       post-transcriptionally modified nucleosides from RNA. The database consists
@@ -13923,7 +15084,10 @@
   n2t:
     prefix: rnamods
   prefix: rnamods
-- example: 0000128
+- bioportal:
+    name: RNA Ontology
+    prefix: RNAO
+  example: 0000128
   obofoundry:
     contact: BatchelorC@rsc.org
     contact.label: Colin Batchelor
@@ -13944,7 +15108,13 @@
   ols_version_date_format: '%d-%m-%Y'
   pattern: ^\d{7}$
   prefix: rnao
-- download: https://github.com/oborel/obo-relations/raw/master/ro.obo
+- bioportal:
+    name: Radiomics Ontology
+    prefix: RO
+  download: https://github.com/oborel/obo-relations/raw/master/ro.obo
+  go:
+    name: OBO Relation Ontology Ontology
+    prefix: RO
   miriam:
     deprecated: false
     description: The OBO Relation Ontology provides consistent and unambiguous formal
@@ -14019,7 +15189,10 @@
     prefix: rrid
   namespace.capitalized: true
   prefix: rrid
-- example: 0001807
+- bioportal:
+    name: Rat Strain Ontology
+    prefix: RS
+  example: 0001807
   obofoundry:
     contact: sjwang@mcw.edu
     contact.label: Shur-Jen Wang
@@ -14038,7 +15211,10 @@
   ols_version_date_format: '%d-%m-%Y'
   pattern: ^\d{7}$
   prefix: rs
-- download: https://github.com/rsc-ontologies/rxno/raw/master/rxno.obo
+- bioportal:
+    name: Name Reaction Ontology
+    prefix: RXNO
+  download: https://github.com/rsc-ontologies/rxno/raw/master/rxno.obo
   example: '0000253'
   obofoundry:
     contact: batchelorc@rsc.org
@@ -14050,6 +15226,7 @@
     prefix: rxno
     repo: https://github.com/rsc-ontologies/rxno.git
   ols:
+    contact: chemistry-ontologies@googlegroups.com
     description: "RXNO is the name reaction ontology. It contains more than 500 classes\
       \ representing organic reactions such as the Diels\u2013Alder cyclization."
     download: http://purl.obolibrary.org/obo/rxno.owl
@@ -14058,12 +15235,15 @@
     prefix: rxno
     version: '2021-01-21'
     version.iri: http://purl.obolibrary.org/obo/rxno.obo/2021-01-21/rxno.obo.owl
-  ols_version_date_format: '%d-%m-%Y'
+  ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: rxno
   wikidata:
     property: P2106
-- example: '221058'
+- bioportal:
+    name: RxNORM
+    prefix: RXNORM
+  example: '221058'
   name: RxNorm
   pattern: ^[0-9]{1,7}$
   prefix: rxnorm
@@ -14105,6 +15285,9 @@
     prefix: sabiork.ec
   prefix: sabiork.ec
 - go:
+    formatter: http://sabio.villa-bosch.de/reacdetails.jsp?reactid=$1
+    homepage: http://sabio.villa-bosch.de/
+    name: SABIO Reaction Kinetics
     prefix: SABIO-RK
   miriam:
     deprecated: false
@@ -14152,7 +15335,10 @@
   name: Salk Institute for Biological Studies Accession
   prefix: salk
   url: https://abrc.osu.edu/stocks/number/SALK_$1
-- name: Subcellular Anatomy Ontology
+- bioportal:
+    name: Subcellular Anatomy Ontology
+    prefix: SAO
+  name: Subcellular Anatomy Ontology
   obofoundry:
     contact: slarson@ncmir.ucsd.edu
     contact.label: Stephen Larson
@@ -14180,7 +15366,10 @@
   n2t:
     prefix: sasbdb
   prefix: sasbdb
-- example: 0000485
+- bioportal:
+    name: Systems Biology Ontology
+    prefix: SBO
+  example: 0000485
   miriam:
     deprecated: false
     description: The goal of the Systems Biology Ontology is to develop controlled
@@ -14212,7 +15401,10 @@
     version: 20:10:2020 13:19
   ols_version_date_format: '%d:%m:%Y %H:%M'
   prefix: sbo
-- ols:
+- bioportal:
+    name: Sickle Cell Disease Ontology
+    prefix: SCDO
+  ols:
     description: "The Sickle Cell Disease Ontology (SCDO) project is a collaboration\
       \ between H3ABioNet (Pan African Bioinformatics Network) and SPAN (Sickle Cell\
       \ Disease Pan African Network). The SCDO is currently under development and\
@@ -14284,7 +15476,12 @@
     version.iri: http://purl.unep.org/sdg/releases/2018-08-10/sdgio.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: sdgio
-- miriam:
+- go:
+    formatter: http://www.theseed.org/linkin.cgi?id=$1
+    homepage: http://www.theseed.org
+    name: The SEED;
+    prefix: SEED
+  miriam:
     deprecated: false
     description: This cooperative effort, which includes Fellowship for Interpretation
       of Genomes (FIG), Argonne National Laboratory, and the University of Chicago,
@@ -14336,7 +15533,10 @@
   n2t:
     prefix: seed.reaction
   prefix: seed.reaction
-- obofoundry:
+- bioportal:
+    name: Scientific Evidence and Provenance Information Ontology
+    prefix: SEPIO
+  obofoundry:
     contact: mhb120@gmail.com
     contact.label: Matthew Brush
     deprecated: false
@@ -14355,6 +15555,13 @@
   ols_version_type: other
   prefix: sepio
 - example: S000002493
+  go:
+    formatter: https://www.yeastgenome.org/locus/$1
+    homepage: http://www.yeastgenome.org/
+    name: Saccharomyces Genome Database
+    prefix: SGD
+    synonyms:
+    - SGDID
   miriam:
     deprecated: false
     description: The Saccharomyces Genome Database (SGD) project collects information
@@ -14384,7 +15591,14 @@
   n2t:
     prefix: sgd.pathways
   prefix: sgd.pathways
-- miriam:
+- go:
+    formatter: http://solgenomics.net/phenome/locus_display.pl?locus_id=$1
+    homepage: https://www.sgn.cornell.edu/
+    name: Sol Genomics Network
+    prefix: SGN
+    synonyms:
+    - SGN_gene
+  miriam:
     deprecated: false
     description: The Sol Genomics Network (SGN) is a database and website dedicated
       to the genomic information of the nightshade family, which includes species
@@ -14413,7 +15627,10 @@
   n2t:
     prefix: sheepqtldb
   prefix: sheepqtldb
-- example: 0000509
+- bioportal:
+    name: Social Inset Behavior Ontology
+    prefix: SIBO
+  example: 0000509
   obofoundry:
     contact: cjmungall@lbl.gov
     contact.label: Chris Mungall
@@ -14480,7 +15697,11 @@
   prefix: signor
   synonyms:
   - SIGNOR
-- ols:
+- bioportal:
+    name: Semanticscience Integrated Ontology
+    prefix: SIO
+  ols:
+    contact: sio-ontology@googlegroups.com
     description: The Semanticscience Integrated Ontology (SIO) provides a simple,
       integrated ontology of types and relations for rich description of objects,
       processes and their attributes.
@@ -14541,7 +15762,12 @@
     sampleId: 000048885
   namespace.capitalized: true
   prefix: slm
-- miriam:
+- go:
+    formatter: http://smart.embl-heidelberg.de/smart/do_annotation.pl?BLAST=DUMMY&DOMAIN=$1
+    homepage: http://smart.embl-heidelberg.de/
+    name: Simple Modular Architecture Research Tool
+    prefix: SMART
+  miriam:
     deprecated: false
     description: The Simple Modular Architecture Research Tool (SMART) is an online
       tool for the identification and annotation of protein domains, and the analysis
@@ -14595,7 +15821,10 @@
   prefix: snap
   references:
   - http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf
-- miriam:
+- bioportal:
+    name: SNOMED CT
+    prefix: SNOMEDCT
+  miriam:
     deprecated: false
     description: SNOMED CT (Systematized Nomenclature of Medicine -- Clinical Terms),
       is a systematically organized computer processable collection of medical terminology
@@ -14660,8 +15889,15 @@
     prefix: snp2tfbs
     sampleId: rs11603840
   prefix: snp2tfbs
-- download: https://github.com/The-Sequence-Ontology/SO-Ontologies/raw/master/Ontology_Files/so.obo
+- bioportal:
+    name: Sequence Types and Features Ontology
+    prefix: SO
+  download: https://github.com/The-Sequence-Ontology/SO-Ontologies/raw/master/Ontology_Files/so.obo
   example: '0001157'
+  go:
+    homepage: http://www.sequenceontology.org/
+    name: Sequence Ontology
+    prefix: SO
   miriam:
     deprecated: false
     description: The Sequence Ontology (SO) is a structured controlled vocabulary
@@ -14688,8 +15924,8 @@
     download: http://purl.obolibrary.org/obo/so.owl
     name: Sequence types and features ontology
     prefix: so
-    version: '2021-01-27'
-    version.iri: http://purl.obolibrary.org/obo/so/2021-01-27/so.owl
+    version: '2021-02-03'
+    version.iri: http://purl.obolibrary.org/obo/so/2021-02-03/so.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: so
 - miriam:
@@ -14708,7 +15944,10 @@
 - comment: see also snap
   name: Span
   prefix: span
-- example: '0000001'
+- bioportal:
+    name: Spider Anatomy Ontology
+    prefix: SPD
+  example: '0000001'
   obofoundry:
     contact: ramirez@macn.gov.ar
     contact.label: Martin Ramirez
@@ -14799,6 +16038,7 @@
     sampleId: 10.1621/vwN2g2HaX3
   prefix: spp
 - ols:
+    contact: contact@fairsharing.org
     description: The FAIRsharing Subject Ontology (SRAO) is an application ontology
       for the categorization of research disciplines across all research domains,
       from the humanities to the natural sciences. It utilizes multiple external vocabularies.
@@ -14824,7 +16064,10 @@
   n2t:
     prefix: stap
   prefix: stap
-- obofoundry:
+- bioportal:
+    name: Statistics Ontology
+    prefix: STATO
+  obofoundry:
     contact: alejandra.gonzalez.beltran@gmail.com
     contact.label: Alejandra Gonzalez-Beltran
     deprecated: false
@@ -14832,6 +16075,7 @@
     name: The Statistical Methods Ontology
     prefix: stato
   ols:
+    contact: stat-ontology@googlegroups.com
     description: STATO is the statistical methods ontology. It contains concepts and
       properties related to statistical methods, probability distributions and other
       concepts related to statistical analysis, including relationships to study designs
@@ -15003,7 +16247,10 @@
   n2t:
     prefix: swissregulon
   prefix: swissregulon
-- download: https://github.com/allysonlister/swo/raw/master/release/swo.owl
+- bioportal:
+    name: Software Ontology
+    prefix: SWO
+  download: https://github.com/allysonlister/swo/raw/master/release/swo.owl
   example: '0000144'
   obofoundry:
     contact: allyson.lister@oerc.ox.ac.uk
@@ -15028,7 +16275,10 @@
   ols_version_type: semver
   pattern: ^\d{7}$
   prefix: swo
-- example: 0019171
+- bioportal:
+    name: Symptom Ontology
+    prefix: SYMP
+  example: 0019171
   obofoundry:
     contact: lynn.schriml@gmail.com
     contact.label: Lynn Schriml
@@ -15071,7 +16321,10 @@
   n2t:
     prefix: t3db
   prefix: t3db
-- download: http://purl.obolibrary.org/obo/tads.obo
+- bioportal:
+    name: Tick Gross Anatomy Ontology
+    prefix: TADS
+  download: http://purl.obolibrary.org/obo/tads.obo
   example: '0000547'
   obofoundry:
     contact: dsonensh@odu.edu
@@ -15105,6 +16358,8 @@
     prefix: tair.gene
   prefix: tair.gene
 - go:
+    homepage: http://www.arabidopsis.org/
+    name: The Arabidopsis Information Resource
     prefix: TAIR
   miriam:
     deprecated: false
@@ -15135,7 +16390,10 @@
   n2t:
     prefix: tair.protein
   prefix: tair.protein
-- example: 0000086
+- bioportal:
+    name: Teleost Anatomy Ontology
+    prefix: TAO
+  example: 0000086
   name: Teleost Anatomy Ontology
   obofoundry:
     contact: wasila.dahdul@usd.edu
@@ -15162,7 +16420,10 @@
   n2t:
     prefix: tarbase
   prefix: tarbase
-- example: '0000001'
+- bioportal:
+    name: Taxonomic Rank Vocabulary
+    prefix: TAXRANK
+  example: '0000001'
   obofoundry:
     contact: balhoff@renci.org
     contact.label: Jim Balhoff
@@ -15182,7 +16443,12 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: taxrank
-- homepage: https://www.tcdb.org
+- go:
+    formatter: http://www.tcdb.org/tcdb/index.php?tc=$1
+    homepage: http://www.tcdb.org/
+    name: Transport Protein Database
+    prefix: TC
+  homepage: https://www.tcdb.org
   miriam:
     deprecated: false
     description: The database details a comprehensive  IUBMB approved classification
@@ -15205,7 +16471,11 @@
   prefix: te
   wikidata:
     property: P1693
-- miriam:
+- go:
+    homepage: http://www.ciliate.org/
+    name: Tetrahymena Genome Database
+    prefix: TGD
+  miriam:
     deprecated: false
     description: The Tetrahymena Genome Database (TGD) Wiki is a database of information
       about the Tetrahymena thermophila genome sequence. It provides information curated
@@ -15221,7 +16491,10 @@
   n2t:
     prefix: tgd
   prefix: tgd
-- download: http://purl.obolibrary.org/obo/tgma.obo
+- bioportal:
+    name: Mosquito Gross Anatomy Ontology
+    prefix: TGMA
+  download: http://purl.obolibrary.org/obo/tgma.obo
   example: 0000984
   obofoundry:
     contact: topalis@imbb.forth.gr
@@ -15363,7 +16636,10 @@
   n2t:
     prefix: toxoplasma
   prefix: toxoplasma
-- example: '0000024'
+- bioportal:
+    name: Nurse Transitional
+    prefix: TRANS
+  example: '0000024'
   obofoundry:
     contact: lynn.schriml@gmail.com
     contact.label: Lynn Schriml
@@ -15501,7 +16777,10 @@
   n2t:
     prefix: ttd.target
   prefix: ttd.target
-- example: '1058367'
+- bioportal:
+    name: Teleost Taxonomy Ontology
+    prefix: TTO
+  example: '1058367'
   obofoundry:
     contact: balhoff@renci.org
     contact.label: Jim Balhoff
@@ -15521,7 +16800,10 @@
   prefix: tto
   wikidata:
     database: Q81661821
-- obofoundry:
+- bioportal:
+    name: Toxic Process Ontology
+    prefix: TXPO
+  obofoundry:
     contact: y-yamagata@nibiohn.go.jp
     contact.label: Yuki Yamagata
     deprecated: false
@@ -15554,8 +16836,15 @@
     version.iri: http://purl.obolibrary.org/obo/txpo/releases/2020-03-03/txpo.owl
   ols_version_date_format: '%Y/%m/%d'
   prefix: txpo
-- download: http://purl.obolibrary.org/obo/uberon/basic.obo
+- bioportal:
+    name: Uber Anatomy Ontology
+    prefix: UBERON
+  download: http://purl.obolibrary.org/obo/uberon/basic.obo
   example: '2005080'
+  go:
+    homepage: http://uberon.org
+    name: Uber-anatomy ontology
+    prefix: UBERON
   miriam:
     deprecated: false
     description: Uberon is an integrated cross-species anatomy ontology representing
@@ -15644,7 +16933,12 @@
   url: http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&compID=$1
   wikidata:
     property: P8121
-- miriam:
+- go:
+    formatter: http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=ep&enzymeID=$1
+    homepage: http://eawag-bbd.ethz.ch/
+    name: EAWAG Biocatalysis/Biodegradation Database
+    prefix: UM-BBD_enzymeID
+  miriam:
     deprecated: false
     description: The University of Minnesota Biocatalysis/Biodegradation Database
       (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation
@@ -15663,7 +16957,12 @@
   synonyms:
   - UM-BBD_enzymeID
   url: http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=ep&enzymeID=$1
-- miriam:
+- go:
+    formatter: http://eawag-bbd.ethz.ch/$1/$1_map.html
+    homepage: http://eawag-bbd.ethz.ch/
+    name: EAWAG Biocatalysis/Biodegradation Database
+    prefix: UM-BBD_pathwayID
+  miriam:
     deprecated: false
     description: The University of Minnesota Biocatalysis/Biodegradation Database
       (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation
@@ -15682,7 +16981,12 @@
   synonyms:
   - UM-BBD_pathwayID
   url: http://eawag-bbd.ethz.ch/$1/$1_map.html
-- miriam:
+- go:
+    formatter: http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=r&reacID=$1
+    homepage: http://eawag-bbd.ethz.ch/
+    name: EAWAG Biocatalysis/Biodegradation Database
+    prefix: UM-BBD_reactionID
+  miriam:
     deprecated: false
     description: The University of Minnesota Biocatalysis/Biodegradation Database
       (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation
@@ -15704,6 +17008,9 @@
   wikidata:
     database: Q24188985
 - go:
+    formatter: http://eawag-bbd.ethz.ch/servlets/rule.jsp?rule=$1
+    homepage: http://eawag-bbd.ethz.ch/
+    name: EAWAG Biocatalysis/Biodegradation Database
     prefix: UM-BBD_ruleID
   miriam:
     deprecated: false
@@ -15801,6 +17108,7 @@
   n2t:
     prefix: unimod
   ols:
+    contact: psidev-ms-vocab@lists.sourceforge.net
     description: Unimod is a community supported, comprehensive database of protein
       modifications for mass spectrometry applications. That is, accurate and verifiable
       values, derived from elemental compositions, for the mass differences introduced
@@ -15814,7 +17122,12 @@
     version: 21-11-2019
   ols_version_date_format: '%d-%m-%Y'
   prefix: unimod
-- miriam:
+- go:
+    formatter: https://www.uniprot.org/uniparc/$1
+    homepage: https://www.uniprot.org/uniparc/
+    name: UniProt Archive
+    prefix: UniParc
+  miriam:
     deprecated: false
     description: The UniProt Archive (UniParc) is a  database containing non-redundant
       protein sequence information from many sources. Each unique sequence is given
@@ -15861,7 +17174,12 @@
   n2t:
     prefix: unipathway.reaction
   prefix: unipathway.reaction
-- miriam:
+- go:
+    formatter: https://www.uniprot.org/uniprot/$1
+    homepage: http://www.uniprot.org
+    name: Universal Protein Knowledgebase
+    prefix: UniProtKB
+  miriam:
     deprecated: false
     description: The UniProt Knowledgebase (UniProtKB) is a comprehensive resource
       for protein sequence and functional information with extensive cross-references
@@ -15917,6 +17235,13 @@
     prefix: uniprot.isoform
   prefix: uniprot.isoform
 - example: KW-1273
+  go:
+    formatter: https://www.uniprot.org/keywords/$1
+    homepage: http://www.uniprot.org/keywords/
+    name: UniProt Knowledgebase keywords
+    prefix: UniProtKB-KW
+    synonyms:
+    - SP_KW
   name: UniProt Keywords
   prefix: uniprot.keyword
   synonyms:
@@ -15968,7 +17293,10 @@
   - https://pharmacognosy.in/the-universal-natural-products-database-unpd/
   - https://pubs.acs.org/doi/abs/10.1021/acs.jnatprod.6b01093
   - https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0062839
-- miriam:
+- bioportal:
+    name: Units of Measurement Ontology
+    prefix: UO
+  miriam:
     deprecated: false
     description: Ontology of standardized units
     id: '00000136'
@@ -15996,8 +17324,16 @@
     version.iri: http://purl.obolibrary.org/obo/uo/releases/2020-03-10/uo.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: uo
-- download: https://raw.githubusercontent.com/geneontology/unipathway/master/upa.obo
+- bioportal:
+    name: Unipathway
+    prefix: UPA
+  download: https://raw.githubusercontent.com/geneontology/unipathway/master/upa.obo
   example: UCR00513
+  go:
+    formatter: http://www.grenoble.prabi.fr/obiwarehouse/unipathway/upa?upid=$1
+    homepage: http://www.grenoble.prabi.fr/obiwarehouse/unipathway
+    name: UniPathway
+    prefix: UniPathway
   obofoundry:
     contact: Anne.Morgat@sib.swiss
     contact.label: Anne Morgat
@@ -16023,7 +17359,10 @@
   - unipathway
   wikidata:
     database: Q85719315
-- download: https://github.com/obophenotype/upheno/blob/master/upheno.owl
+- bioportal:
+    name: Combined Phenotype Ontology
+    prefix: UPHENO
+  download: https://github.com/obophenotype/upheno/blob/master/upheno.owl
   obofoundry:
     contact: vasilevs@ohsu.edu
     contact.label: Nicole Vasilevsky
@@ -16068,12 +17407,18 @@
   n2t:
     prefix: validatordb
   prefix: validatordb
-- example: '4019477'
+- bioportal:
+    name: Veterans Health Administration National Drug File
+    prefix: VANDF
+  example: '4019477'
   name: Veterans Administration National Drug File
   prefix: vandf
   references:
   - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2244318/
-- example: '0376'
+- bioportal:
+    name: Variation Ontology
+    prefix: VARIO
+  example: '0376'
   miriam:
     deprecated: false
     description: The Variation Ontology (VariO) is an ontology for the standardized,
@@ -16231,7 +17576,10 @@
     prefix: vgnc
     sampleId: VGNC:3792
   prefix: vgnc
-- download: ftp://ftp.bgee.org/general/ontologies/vHOG.obo
+- bioportal:
+    name: Vertebrate Homologous Organ Group Ontology
+    prefix: VHOG
+  download: ftp://ftp.bgee.org/general/ontologies/vHOG.obo
   example: '0000411'
   name: Vertebrate Homologous Organ Group Ontology
   obofoundry:
@@ -16257,7 +17605,11 @@
   n2t:
     prefix: viaf
   prefix: viaf
-- ols:
+- bioportal:
+    name: Virus Infectious Disease Ontology
+    prefix: VIDO
+  ols:
+    contact: johnbeverley2021@u.northwestern.edu
     description: The Virus Infectious Disease Ontology (IDO Virus) is an extension
       of the Infectious Disease Ontology (IDO). IDO Virus follows OBO Foundry guidelines,
       employs the Basic Formal Ontology as its starting point, and covers epidemiology,
@@ -16329,6 +17681,17 @@
     deprecated: false
     description: The Virtual Metabolic Human (VMH) is a resource that combines human
       and gut microbiota metabolism with nutrition and disease.
+    id: '00000774'
+    name: VMH Gene
+    namespaceEmbeddedInLui: false
+    pattern: ^[0-9]+\.[0-9]+
+    prefix: vmhgene
+    sampleId: '8639.1'
+  prefix: vmhgene
+- miriam:
+    deprecated: false
+    description: The Virtual Metabolic Human (VMH) is a resource that combines human
+      and gut microbiota metabolism with nutrition and disease.
     id: '00000636'
     name: VMH metabolite
     namespaceEmbeddedInLui: false
@@ -16351,7 +17714,10 @@
   n2t:
     prefix: vmhreaction
   prefix: vmhreaction
-- obofoundry:
+- bioportal:
+    name: Vaccine Ontology
+    prefix: VO
+  obofoundry:
     contact: yongqunh@med.umich.edu
     contact.label: Yongqunh He
     deprecated: false
@@ -16372,6 +17738,7 @@
   ols_version_type: semver
   prefix: vo
 - bioportal:
+    name: Vertebrate Skeletal Anatomy Ontology
     prefix: VSAO
   name: Vertebrate Skeletal Anatomy Ontology
   obofoundry:
@@ -16388,7 +17755,10 @@
   name: Veterinary Substances DataBase
   prefix: vsdb
   url: https://sitem.herts.ac.uk/aeru/vsdb/Reports/$1.htm
-- example: 0000685
+- bioportal:
+    name: Vertebrate Trait Ontology
+    prefix: VT
+  example: 0000685
   obofoundry:
     contact: caripark@iastate.edu
     contact.label: Carissa Park
@@ -16405,7 +17775,10 @@
   ols_version_date_format: '%d-%m-%Y'
   pattern: ^\d{7}$
   prefix: vt
-- example: '9008500'
+- bioportal:
+    name: Vertebrate Taxonomy Ontology
+    prefix: VTO
+  example: '9008500'
   obofoundry:
     contact: balhoff@renci.org
     contact.label: Jim Balhoff
@@ -16429,12 +17802,23 @@
   references:
   - https://academic.oup.com/jamia/article/17/4/432/866953
 - example: '886'
+  go:
+    formatter: http://viralzone.expasy.org/all_by_protein/$1.html
+    homepage: http://viralzone.expasy.org/
+    name: ViralZone
+    prefix: VZ
   name: ViralZone
   prefix: vz
   url: https://viralzone.expasy.org/$1
   wikidata:
     database: Q15674507
-- miriam:
+- go:
+    homepage: http://www.wormbase.org/
+    name: WormBase database of nematode biology
+    prefix: WB
+    synonyms:
+    - WormBase
+  miriam:
     deprecated: false
     description: WormBase is an online bioinformatics database of the biology and
       genome of the model organism Caenorhabditis elegans and other nematodes. It
@@ -16466,7 +17850,14 @@
   n2t:
     prefix: wb.rnai
   prefix: wb.rnai
-- example: 0001290
+- bioportal:
+    name: C. elegans Gross Anatomy Vocabulary
+    prefix: WB-BT
+  example: 0001290
+  go:
+    homepage: http://www.wormbase.org/
+    name: C. elegans gross anatomy
+    prefix: WBbt
   obofoundry:
     contact: raymond@caltech.edu
     contact.label: Raymond Lee
@@ -16489,7 +17880,15 @@
   prefix: wbbt
   synonyms:
   - WBbt
-- example: 0000690
+- bioportal:
+    name: C. elegans Development Vocabulary
+    prefix: WB-LS
+  example: 0000690
+  go:
+    formatter: http://www.wormbase.org/get?name=$1
+    homepage: http://www.wormbase.org/
+    name: C. elegans development
+    prefix: WBls
   obofoundry:
     contact: cgrove@caltech.edu
     contact.label: Chris Grove
@@ -16512,7 +17911,15 @@
   prefix: wbls
   synonyms:
   - WBls
-- example: 0000983
+- bioportal:
+    name: C. elegans Phenotype Vocabulary
+    prefix: WB-PHENOTYPE
+  example: 0000983
+  go:
+    formatter: http://www.wormbase.org/get?name=$1
+    homepage: http://www.wormbase.org/
+    name: WormBase phenotype ontology
+    prefix: WBPhenotype
   obofoundry:
     contact: cgrove@caltech.edu
     contact.label: Chris Grove
@@ -16571,7 +17978,10 @@
   n2t:
     prefix: wikigenes
   prefix: wikigenes
-- example: WP732
+- bioportal:
+    name: WikiPathways
+    prefix: WIKIPATHWAYS
+  example: WP732
   miriam:
     deprecated: false
     description: "WikiPathways is a resource providing an open and public collection\
@@ -16594,7 +18004,12 @@
     property: P2410
     property.label: WikiPathways ID
     webpage: http://www.wikipathways.org
-- miriam:
+- go:
+    formatter: http://en.wikipedia.org/wiki/$1
+    homepage: http://en.wikipedia.org/
+    name: Wikipedia
+    prefix: Wikipedia
+  miriam:
     deprecated: false
     description: Wikipedia is a multilingual, web-based, free-content encyclopedia
       project based on an openly editable model. It is written collaboratively by
@@ -16627,6 +18042,9 @@
   prefix: worfdb
 - example: C05G5/12462-12364
   go:
+    formatter: http://www.wormbase.org/get?name=$1
+    homepage: http://www.wormbase.org/
+    name: WormBase database of nematode biology
     prefix: WB_REF
   homepage: https://wormbase.org
   name: WormBase
@@ -16662,7 +18080,10 @@
   n2t:
     prefix: worms
   prefix: worms
-- example: 0004486
+- bioportal:
+    name: Xenopus Anatomy Ontology
+    prefix: XAO
+  example: 0004486
   obofoundry:
     contact: esegerd3@gmail.com
     contact.label: Erik Segerdell
@@ -16685,7 +18106,10 @@
   prefix: xao
   wikidata:
     property: P4495
-- example: 0000780
+- bioportal:
+    name: Experimental Conditions Ontology
+    prefix: XCO
+  example: 0000780
   obofoundry:
     contact: jrsmith@mcw.edu
     contact.label: Jennifer Smith
@@ -16705,7 +18129,11 @@
   ols_version_date_format: '%d-%m-%Y'
   pattern: ^\d{7}$
   prefix: xco
-- miriam:
+- go:
+    homepage: http://www.xenbase.org/
+    name: Xenbase
+    prefix: Xenbase
+  miriam:
     deprecated: false
     description: Xenbase is the model organism database for Xenopus laevis and X.
       (Silurana) tropicalis. It contains genomic, development data and community information
@@ -16721,13 +18149,17 @@
     prefix: xenbase
   prefix: xenbase
 - ols:
+    contact: psidev-ms-vocab@lists.sourceforge.net
     description: A structured controlled vocabulary for cross-linking reagents used
       with proteomics mass spectrometry.
     download: http://purl.obolibrary.org/obo/xl.owl
     name: Cross-linker reagents ontology
     prefix: xl
   prefix: xl
-- example: '00050'
+- bioportal:
+    name: mass spectrometry cross-linking and derivatization reagents
+    prefix: XLMOD
+  example: '00050'
   obofoundry:
     contact: gerhard.mayer@rub.de
     contact.label: Gerhard Mayer
@@ -16737,6 +18169,7 @@
     name: HUPO-PSI cross-linking and derivatization reagents controlled vocabulary
     prefix: xlmod
   ols:
+    contact: psidev-ms-vocab@lists.sourceforge.net
     description: A structured controlled vocabulary for cross-linking reagents used
       with proteomics mass spectrometry.
     download: http://purl.obolibrary.org/obo/xlmod.owl
@@ -16744,7 +18177,10 @@
     prefix: xlmod
   pattern: ^\d{5}$
   prefix: xlmod
-- example: '0100002'
+- bioportal:
+    name: Xenopus Phenotype Ontology
+    prefix: XPO
+  example: '0100002'
   obofoundry:
     contact: esegerd3@gmail.com
     contact.label: Erik Segerdell
@@ -16859,14 +18295,20 @@
   n2t:
     prefix: yrcpdr
   prefix: yrcpdr
-- obofoundry:
+- bioportal:
+    name: Maize Gross Anatomy Ontology
+    prefix: ZEA
+  obofoundry:
     contact: Leszek@missouri.edu
     contact.label: Leszek Vincent
     deprecated: true
     name: Maize gross anatomy
     prefix: zea
   prefix: zea
-- example: '0000171'
+- bioportal:
+    name: Zebrafish Experimental Conditions Ontology
+    prefix: ZECO
+  example: '0000171'
   obofoundry:
     contact: ybradford@zfin.org
     contact.label: Yvonne Bradford
@@ -16886,7 +18328,10 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: zeco
-- example: 0005926
+- bioportal:
+    name: Zebrafish Anatomy and Development Ontology
+    prefix: ZFA
+  example: 0005926
   obofoundry:
     contact: van_slyke@zfin.org
     contact.label: Ceri Van Slyke
@@ -16909,7 +18354,11 @@
   prefix: zfa
   synonyms:
   - ZFA_RETIRED
-- miriam:
+- go:
+    homepage: http://zfin.org/
+    name: Zebrafish Information Network
+    prefix: ZFIN
+  miriam:
     deprecated: false
     description: ZFIN serves as the zebrafish model organism database. This collection
       references all zebrafish biological entities in ZFIN.
@@ -16926,7 +18375,10 @@
   - ZFIN
   wikidata:
     property: P3870
-- example: '0000050'
+- bioportal:
+    name: Zebrafish Developmental Stages
+    prefix: ZFS
+  example: '0000050'
   obofoundry:
     contact: van_slyke@zfin.org
     contact.label: Ceri Van Slyke
@@ -16963,7 +18415,10 @@
   prefix: zinc
   wikidata:
     property: P2084
-- example: 0019030
+- bioportal:
+    name: Zebrafish Phenotype Ontology
+    prefix: ZP
+  example: 0019030
   obofoundry:
     contact: ybradford@zfin.org
     contact.label: Yvonne Bradford
@@ -16983,14 +18438,3 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d+$
   prefix: zp
-- miriam:
-    deprecated: false
-    description: The Virtual Metabolic Human (VMH) is a resource that combines human
-      and gut microbiota metabolism with nutrition and disease.
-    id: '00000774'
-    name: VMH Gene
-    namespaceEmbeddedInLui: false
-    pattern: ^[0-9]+\.[0-9]+
-    prefix: vmhgene
-    sampleId: '8639.1'
-  prefix: vmhgene
