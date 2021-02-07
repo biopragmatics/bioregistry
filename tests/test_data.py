@@ -55,6 +55,10 @@ class TestDuplicates(unittest.TestCase):
                     if external_pattern:
                         self.assertEqual(pattern, external_pattern, msg=f'{prefix}: {key} pattern not same')
 
+        for eccode in ['1', '1.1', '1.1.1', '1.1.1.1']:
+            with self.subTest(eccode=eccode):
+                self.assertTrue(bioregistry.validate('eccode', eccode))
+
     def test_examples(self):
         """Test that all entries have examples."""
         for prefix, entry in self.registry.items():
