@@ -18,7 +18,7 @@ class BioPortalAligner(Aligner):
     key = 'bioportal'
     getter = get_bioportal
     getter_kwargs = {'mappify': True}
-    curation_header = 'name',
+    curation_header = ('name',)
 
     def prepare_external(self, external_id, external_entry) -> Mapping[str, Any]:
         """Prepare BioPortal data to be added to the Bioregistry for each BioPortal registry entry."""

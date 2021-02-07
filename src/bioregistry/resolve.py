@@ -280,7 +280,8 @@ def _clean_version(
 ) -> str:
     if bioregistry_entry is None:
         bioregistry_entry = get(bioregistry_id)
-    assert bioregistry_entry is not None
+    if bioregistry_entry is None:
+        raise ValueError
 
     if version != version.strip():
         logger.warning(
