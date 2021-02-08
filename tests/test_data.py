@@ -55,7 +55,7 @@ class TestDuplicates(unittest.TestCase):
                     if external_pattern:
                         self.assertEqual(pattern, external_pattern, msg=f'{prefix}: {key} pattern not same')
 
-        for eccode in ['1', '1.1', '1.1.1', '1.1.1.1']:
+        for eccode in ['1', '1.1', '1.1.1', '1.1.1.1', '1.1.123.1', '1.1.1.123']:
             with self.subTest(eccode=eccode):
                 self.assertTrue(bioregistry.validate('eccode', eccode))
 
