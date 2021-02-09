@@ -16,6 +16,7 @@ from bioregistry.constants import DOCS_IMG
 from bioregistry.external import (
     get_bioportal, get_go, get_miriam, get_n2t, get_obofoundry, get_ols, get_wikidata_registry,
 )
+from bioregistry.external.prefix_commons import get_prefix_commons
 
 bioregistry = read_bioregistry()
 
@@ -192,6 +193,7 @@ def compare():  # noqa:C901
     n2t_prefixes = set(get_n2t())
     go_prefixes = set(get_go(mappify=True))
     bioportal_prefixes = set(get_bioportal(mappify=True))
+    prefixcommons_prefixes = set(get_prefix_commons())
 
     keys = [
         ('obofoundry', 'OBO Foundry', 'red', obofoundry_prefixes),
@@ -201,6 +203,7 @@ def compare():  # noqa:C901
         ('n2t', 'Name-to-Thing', 'orange', n2t_prefixes),
         ('go', 'GO', 'yellow', go_prefixes),
         ('bioportal', 'BioPortal', 'cyan', bioportal_prefixes),
+        ('prefixcommons', 'Prefix Commons', 'magenta', prefixcommons_prefixes),
     ]
 
     ############################################################

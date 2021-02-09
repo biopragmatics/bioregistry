@@ -10,6 +10,7 @@ from .miriam import align_miriam
 from .n2t import align_n2t
 from .obofoundry import align_obofoundry
 from .ols import align_ols
+from .prefix_commons import PrefixCommonsAligner
 from .wikidata import align_wikidata
 from ..utils import secho
 
@@ -41,6 +42,9 @@ def align():
 
     secho('Aligning BioPortal')
     BioPortalAligner.align()
+
+    secho('Aligning Prefix Commons')
+    PrefixCommonsAligner.align()
 
 
 if __name__ == '__main__':
