@@ -2,6 +2,7 @@
 
 """Workflows for downloading and aligning various external registries."""
 
+from .biolink import get_biolink  # noqa:F401
 from .bioportal import get_bioportal  # noqa:F401
 from .go import get_go  # noqa:F401
 from .miriam import get_miriam, get_miriam_df  # noqa:F401
