@@ -212,7 +212,10 @@ def compare():  # noqa:C901
     # How well does the Bioregistry cover the other resources? #
     ############################################################
 
-    fig, axes = plt.subplots(ncols=2, nrows=(1 + len(keys)) // 2)
+    ncols = 3
+    nrows = (1 + len(keys)) // ncols
+    figsize = (3.25 * ncols, 2.0 * nrows)
+    fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
     for (key, label, color, prefixes), ax in zip(keys, axes.ravel()):
         # Remap bioregistry prefixes to match the external
         #  vocabulary, when possible
@@ -226,8 +229,8 @@ def compare():  # noqa:C901
             set_colors=('grey', color),
             ax=ax,
         )
-    if len(keys) % 2:
-        axes.ravel()[-1].axis('off')
+    for i in range(len(keys) % ncols):
+        axes.ravel()[-1 - i].axis('off')
     if watermark:
         fig.text(
             0.5, 0, WATERMARK_TEXT,
