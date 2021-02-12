@@ -79,10 +79,11 @@ class Aligner(ABC):
         """  # noqa:DAR202
 
     @classmethod
-    def align(cls):
+    def align(cls, dry: bool = False):
         """Align and output the curation sheet."""
         instance = cls()
-        write_bioregistry(instance.internal_registry)
+        if not dry:
+            write_bioregistry(instance.internal_registry)
         instance.print_uncurated()
 
     @abstractmethod
