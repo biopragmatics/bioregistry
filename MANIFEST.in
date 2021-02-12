@@ -1,9 +1,13 @@
 graft src
 graft tests
 
+recursive-include docs *.py
+recursive-include docs *.rst
+recursive-include docs Makefile
 recursive-include docs *.png
 global-exclude *.py[cod] __pycache__ *.so *.dylib .DS_Store *.gpickle
 
+prune docs/build
 prune docs/_data
 exclude docs/*.md
 exclude docs/_config.yml
