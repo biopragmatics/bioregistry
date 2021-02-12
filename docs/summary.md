@@ -44,7 +44,10 @@ imports from MIRIAM. It can also be seen that OLS and OBO Foundry have a very hi
 several ontologies that are not included in OBO Foundry. Notably, this discrepancy contains the highly regarded
 Experimental Factor Ontology (EFO).
 
+<details>
+<summary>Pairwise Overlap Comparisons</summary>
 <img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/external_overlap.png" alt="External Registry Overlaps"/>
+</details>
 
 ## Highly Conserved Resources
 
