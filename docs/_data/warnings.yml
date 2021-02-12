@@ -18,6 +18,10 @@ prefix_rewrites:
   pattern: ^VariO:\d+$
   prefix: vario
 wrong_patterns:
+- correct: ^\d{1,2}(\.\d{0,3}){0,3}$
+  miriam: ^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$
+  name: Enzyme Nomenclature
+  prefix: eccode
 - correct: ^\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b$
   miriam: ^\w+$
   name: 'NCI Pathway Interaction Database: Pathway'

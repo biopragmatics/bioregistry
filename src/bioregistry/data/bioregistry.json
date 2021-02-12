@@ -1632,6 +1632,12 @@
     }
   },
   "biolink": {
+    "biolink": {
+      "formatter": "https://w3id.org/biolink/vocab/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "biolink"
+    },
     "miriam": {
       "deprecated": false,
       "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations.",
@@ -2170,8 +2176,8 @@
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "name": "The BRENDA Tissue Ontology (BTO)",
       "prefix": "bto",
-      "version": "2020-05-02",
-      "version.iri": "http://purl.obolibrary.org/obo/bto/releases/2020-05-02/bto.owl"
+      "version": "2021-02-09",
+      "version.iri": "http://purl.obolibrary.org/obo/bto/releases/2021-02-09/bto.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "prefixcommons": {
@@ -3338,6 +3344,18 @@
       "prefix": "CLDB"
     }
   },
+  "clingene": {
+    "biolink": {
+      "formatter": "http://reg.clinicalgenome.org/redmine/projects/registry/genboree_registry/by_caid?caid=$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "CAID"
+    },
+    "example": "CA981206459",
+    "homepage": "https://reg.clinicalgenome.org",
+    "name": "ClinGen Allele Registry",
+    "url": "https://reg.clinicalgenome.org/redmine/projects/registry/genboree_registry/by_caid?caid=$1"
+  },
   "clinicaltrials": {
     "miriam": {
       "deprecated": false,
@@ -3822,7 +3840,7 @@
   "co_356": {
     "ols": {
       "contact": "helpdesk@cropontology-curationtool.org",
-      "description": "Grape Ontology including OIV and bioversity descriptors. INRA July 2017",
+      "description": "Grape Ontology including OIV and bioversity descriptors. INRAE Jan 2021",
       "download": "http://www.cropontology.org/ontology/CO_356/Vitis/owl",
       "name": "Vitis ontology",
       "prefix": "co_356",
@@ -4816,6 +4834,49 @@
       "prefix": "dc"
     }
   },
+  "dc.terms": {
+    "biolink": {
+      "formatter": "http://purl.org/dc/terms/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "dct"
+    },
+    "bioportal": {
+      "name": "DCMI Metadata Terms: properties in /terms/ namespace",
+      "prefix": "DCTERMS"
+    },
+    "example": "title",
+    "name": "Dublin Core Metadata Vocabulary",
+    "prefixcommons": {
+      "formatter": "http://purl.org/dc/terms/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "dcterms"
+    },
+    "url": "https://dublincore.org/specifications/dublin-core/dcmi-terms/#$1"
+  },
+  "dcat": {
+    "biolink": {
+      "formatter": "http://www.w3.org/ns/dcat#$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "dcat"
+    },
+    "bioportal": {
+      "name": "Data Catalog Vocabulary",
+      "prefix": "DCAT"
+    },
+    "example": "Dataset",
+    "homepage": "https://www.w3.org/ns/dcat",
+    "name": "Data Catalog",
+    "prefixcommons": {
+      "formatter": "http://www.w3.org/ns/dcat#$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "dcat"
+    },
+    "url": "http://www.w3.org/ns/dcat#$1"
+  },
   "ddanat": {
     "bioportal": {
       "name": "Dictyostelium Discoideum Anatomy Ontology",
@@ -5166,6 +5227,12 @@
     }
   },
   "doi": {
+    "biolink": {
+      "formatter": "https://doi.org/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "doi"
+    },
     "go": {
       "formatter": "http://dx.doi.org/$1",
       "homepage": "http://dx.doi.org/",
@@ -5543,6 +5610,12 @@
     "example": "DBSALT001211",
     "name": "DrugBank Salts",
     "pattern": "^DBSALT\\d{6}$",
+    "prefixcommons": {
+      "formatter": "http://identifiers.org/drugbank.target/$1",
+      "is_identifiers": true,
+      "is_obo": false,
+      "prefix": "DRUGBANK.TARGET"
+    },
     "synonyms": [
       "drugbank.target"
     ],
@@ -5570,6 +5643,12 @@
     }
   },
   "drugcentral": {
+    "biolink": {
+      "formatter": "http://translator.ncats.nih.gov/DrugCentral_$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "DrugCentral"
+    },
     "example": "307",
     "name": "Drug Central",
     "synonyms": [
@@ -5769,8 +5848,8 @@
       "license": "https://creativecommons.org/publicdomain/zero/1.0/",
       "name": "Evidence & Conclusion Ontology (ECO)",
       "prefix": "eco",
-      "version": "2021-01-08",
-      "version.iri": "http://purl.obolibrary.org/obo/eco/releases/2021-01-08/eco.owl"
+      "version": "2021-02-08",
+      "version.iri": "http://purl.obolibrary.org/obo/eco/releases/2021-02-08/eco.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "prefixcommons": {
@@ -5875,6 +5954,12 @@
     }
   },
   "ecto": {
+    "biolink": {
+      "formatter": "http://purl.obolibrary.org/obo/ECTO_$1",
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "ECTO"
+    },
     "bioportal": {
       "name": "Environmental conditions, treatments and exposures ontology",
       "prefix": "ECTO"
@@ -6838,6 +6923,12 @@
     }
   },
   "exo": {
+    "biolink": {
+      "formatter": "http://purl.obolibrary.org/obo/ExO_$1",
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "ExO"
+    },
     "bioportal": {
       "name": "Exposure Ontology",
       "prefix": "EXO"
@@ -7320,6 +7411,26 @@
       "FMA_RETIRED"
     ]
   },
+  "foaf": {
+    "biolink": {
+      "formatter": "http://xmlns.com/foaf/0.1/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "foaf"
+    },
+    "bioportal": {
+      "name": "Friend of a Friend Vocabulary",
+      "prefix": "FOAF"
+    },
+    "name": "Friend of a Friend",
+    "prefixcommons": {
+      "formatter": "http://xmlns.com/foaf/0.1/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "foaf"
+    },
+    "url": "http://xmlns.com/foaf/0.1/$1"
+  },
   "fobi": {
     "bioportal": {
       "name": "FOBI (Food-Biomarker Ontology)",
@@ -7343,6 +7454,12 @@
     }
   },
   "foodb.compound": {
+    "biolink": {
+      "formatter": "http://foodb.ca/compounds/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "foodb.compound"
+    },
     "homepage": "https://foodb.ca/",
     "miriam": {
       "deprecated": false,
@@ -7624,8 +7741,8 @@
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "name": "Fission Yeast Phenotype Ontology (FYPO)",
       "prefix": "fypo",
-      "version": "2021-02-03",
-      "version.iri": "http://purl.obolibrary.org/obo/fypo/releases/2021-02-03/fypo.owl"
+      "version": "2021-02-10",
+      "version.iri": "http://purl.obolibrary.org/obo/fypo/releases/2021-02-10/fypo.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
@@ -8628,7 +8745,22 @@
       "patent"
     ]
   },
+  "google.scholar": {
+    "biolink": {
+      "formatter": "https://scholar.google.com/citations?user=$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "GSID"
+    },
+    "name": "Google Scholar Researcher ID"
+  },
   "gorel": {
+    "biolink": {
+      "formatter": "http://purl.obolibrary.org/obo/GOREL_$1",
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "GOREL"
+    },
     "download": "ftp://ftp.geneontology.org/pub/go/ontology/extensions/gorel.owl",
     "go": {
       "name": "GO Extensions to OBO Relation Ontology Ontology",
@@ -8945,6 +9077,12 @@
     }
   },
   "gtex": {
+    "biolink": {
+      "formatter": "https://www.gtexportal.org/home/gene/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "GTEx"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Genotype-Tissue Expression (GTEx) project aims to provide to the scientific community a resource with which to study human gene expression and regulation and its relationship to genetic variation.",
@@ -9129,6 +9267,12 @@
     }
   },
   "hancestro": {
+    "biolink": {
+      "formatter": "http://www.ebi.ac.uk/ancestro/ancestro_$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "HANCESTRO"
+    },
     "bioportal": {
       "name": "Human Ancestry Ontology",
       "prefix": "HANCESTRO"
@@ -9195,6 +9339,19 @@
       "version.iri": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2020-12-03/hcao.owl"
     },
     "ols_version_date_format": "%Y-%m-%d"
+  },
+  "hcpcs": {
+    "biolink": {
+      "formatter": "http://purl.bioontology.org/ontology/HCPCS/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "HCPCS"
+    },
+    "bioportal": {
+      "name": "Healthcare Common Procedure Coding System",
+      "prefix": "HCPCS"
+    },
+    "name": "Healthcare Common Procedure Coding System"
   },
   "hcvdb": {
     "miriam": {
@@ -9620,8 +9777,8 @@
       "license": "license",
       "name": "Human Phenotype Ontology",
       "prefix": "hp",
-      "version": "2020-12-07",
-      "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2020-12-07/hp.owl"
+      "version": "2021-02-08",
+      "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2021-02-08/hp.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "prefixcommons": {
@@ -9750,6 +9907,12 @@
     }
   },
   "hsapdv": {
+    "biolink": {
+      "formatter": "http://purl.obolibrary.org/obo/HsapDv_$1",
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "HsapDv"
+    },
     "bioportal": {
       "name": "Human Developmental Stages Ontology",
       "prefix": "HSAPDV"
@@ -9928,6 +10091,12 @@
     }
   },
   "icd10": {
+    "biolink": {
+      "formatter": "http://translator.ncats.nih.gov/ICD10_$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "ICD10"
+    },
     "bioportal": {
       "name": "International Classification of Diseases, Version 10",
       "prefix": "ICD10"
@@ -9970,6 +10139,12 @@
     }
   },
   "icd9": {
+    "biolink": {
+      "formatter": "http://translator.ncats.nih.gov/ICD9_$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "ICD9"
+    },
     "bioportal": {
       "name": "International Classification of Diseases, Version 9 - Clinical Modification",
       "prefix": "ICD9CM"
@@ -10605,6 +10780,12 @@
     }
   },
   "interpro": {
+    "biolink": {
+      "formatter": "https://www.ebi.ac.uk/interpro/entry/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "interpro"
+    },
     "example": "IPR016380",
     "go": {
       "formatter": "http://www.ebi.ac.uk/interpro/entry/$1",
@@ -10693,6 +10874,12 @@
     "url": "https://legacy.vectorbase.org/ontology-browser?cv=MIRO&t=IRO:$1"
   },
   "isbn": {
+    "biolink": {
+      "formatter": "https://www.isbn-international.org/identifier/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "isbn"
+    },
     "go": {
       "formatter": "https://www.worldcat.org/search?q=bn%3A$1",
       "homepage": "https://www.worldcat.org",
@@ -10745,6 +10932,12 @@
     }
   },
   "isni": {
+    "biolink": {
+      "formatter": "https://isni.org/isni/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "isni"
+    },
     "miriam": {
       "deprecated": false,
       "description": "ISNI is the ISO certified global standard number for identifying the millions of contributors to creative works and those active in their distribution, including researchers, inventors, writers, artists, visual creators, performers, producers, publishers, aggregators, and more. It is part of a family of international standard identifiers that includes identifiers of works, recordings, products and right holders in all repertoires, e.g. DOI, ISAN, ISBN, ISRC, ISSN, ISTC, and ISWC.\r\n\r\nThe mission of the ISNI International Authority (ISNI-IA) is to assign to the public name(s) of a researcher, inventor, writer, artist, performer, publisher, etc. a persistent unique identifying number in order to resolve the problem of name ambiguity in search and discovery; and diffuse each assigned ISNI across all repertoires in the global supply chain so that every published work can be unambiguously attributed to its creator wherever that work is described.",
@@ -10760,6 +10953,12 @@
     }
   },
   "issn": {
+    "biolink": {
+      "formatter": "https://portal.issn.org/resource/ISSN/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "issn"
+    },
     "go": {
       "homepage": "http://www.issn.org/",
       "name": "International Standard Serial Number",
@@ -10819,6 +11018,12 @@
     ]
   },
   "iuphar.ligand": {
+    "biolink": {
+      "formatter": "https://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "GTOPDB"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The IUPHAR Compendium details the molecular, biophysical and pharmacological properties of identified mammalian sodium, calcium and potassium channels, as well as the related cyclic nucleotide-modulated ion channels and the recently described transient receptor potential channels. It includes information on nomenclature systems, and on inter and intra-species molecular structure variation. This collection references ligands.",
@@ -11167,6 +11372,12 @@
     }
   },
   "kegg.enzyme": {
+    "biolink": {
+      "formatter": "http://www.kegg.jp/entry/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "KEGG.ENZYME"
+    },
     "go": {
       "formatter": "http://www.genome.jp/dbget-bin/www_bget?ec:$1",
       "homepage": "http://www.genome.jp/dbget-bin/www_bfind?enzyme",
@@ -11176,6 +11387,12 @@
     "name": "KEGG Enzyme"
   },
   "kegg.genes": {
+    "biolink": {
+      "formatter": "http://www.kegg.jp/entry/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "KEGG.GENE"
+    },
     "example": "bsu:BSU01340",
     "miriam": {
       "deprecated": false,
@@ -11722,6 +11939,12 @@
     "name": "LNCipedia"
   },
   "loinc": {
+    "biolink": {
+      "formatter": "http://loinc.org/rdf/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "LOINC"
+    },
     "bioportal": {
       "name": "Logical Observation Identifier Names and Codes",
       "prefix": "LOINC"
@@ -12001,8 +12224,8 @@
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "name": "Medical Action Ontology",
       "prefix": "maxo",
-      "version": "2020-12-10",
-      "version.iri": "http://purl.obolibrary.org/obo/maxo/releases/2020-12-10/maxo.owl"
+      "version": "2021-02-09",
+      "version.iri": "http://purl.obolibrary.org/obo/maxo/releases/2021-02-09/maxo.owl"
     },
     "ols_version_date_format": "%Y-%m-%d"
   },
@@ -12097,6 +12320,12 @@
     }
   },
   "medgen": {
+    "biolink": {
+      "formatter": "https://www.ncbi.nlm.nih.gov/medgen/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "medgen"
+    },
     "miriam": {
       "deprecated": false,
       "description": "MedGen is a portal for information about conditions and phenotypes related to Medical Genetics. Terms from multiple sources are aggregated into concepts, each of which is assigned a unique identifier and a preferred name and symbol. The core content of the record may include names, identifiers used by other databases, mode of inheritance, clinical features, and map location of the loci affecting the disorder.",
@@ -12334,6 +12563,12 @@
     }
   },
   "metacyc.compound": {
+    "biolink": {
+      "formatter": "http://translator.ncats.nih.gov/MetaCyc_$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "MetaCyc"
+    },
     "go": {
       "formatter": "http://biocyc.org/META/NEW-IMAGE?type=NIL&object=$1",
       "homepage": "http://metacyc.org/",
@@ -12713,6 +12948,12 @@
     }
   },
   "mi": {
+    "biolink": {
+      "formatter": "http://purl.obolibrary.org/obo/MI_$1",
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "MI"
+    },
     "bioportal": {
       "name": "Molecular Interactions",
       "prefix": "MI"
@@ -13906,6 +14147,12 @@
     }
   },
   "msigdb": {
+    "biolink": {
+      "formatter": "https://www.gsea-msigdb.org/gsea/msigdb/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "MSigDB"
+    },
     "example": "NADELLA_PRKAR1A_TARGETS_DN",
     "homepage": "https://www.gsea-msigdb.org",
     "name": "Molecular Signatures Database",
@@ -14324,6 +14571,12 @@
       "prefix": "NBRC"
     }
   },
+  "ncats.drug": {
+    "example": "44259",
+    "homepage": "https://drugs.ncats.io/",
+    "name": "NCATS Drugs",
+    "url": "https://drugs.ncats.io/drug/$1"
+  },
   "ncbigene": {
     "go": {
       "formatter": "https://www.ncbi.nlm.nih.gov/gene$1",
@@ -14601,6 +14854,12 @@
     }
   },
   "nddf": {
+    "biolink": {
+      "formatter": "http://purl.bioontology.org/ontology/NDDF/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "NDDF"
+    },
     "bioportal": {
       "name": "National Drug Data File",
       "prefix": "NDDF"
@@ -14846,6 +15105,17 @@
       "NIST"
     ]
   },
+  "nlm": {
+    "biolink": {
+      "formatter": "https://www.ncbi.nlm.nih.gov/nlmcatalog/?term=$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "NLMID"
+    },
+    "example": "101775319",
+    "name": "National Library of Medicine (NLM) Catalog",
+    "url": "https://www.ncbi.nlm.nih.gov/nlmcatalog/$1"
+  },
   "nlxanat": {
     "example": "090201",
     "name": "NeuroLex Anatomy",
@@ -15067,7 +15337,7 @@
       "license": "http://creativecommons.org/licenses/by/3.0/",
       "name": "OAE: Ontology of Adverse Events",
       "prefix": "oae",
-      "version": "1.2.36"
+      "version": "1.2.37"
     },
     "ols_version_type": "semver",
     "prefixcommons": {
@@ -15233,12 +15503,13 @@
       "prefix": "obib"
     },
     "ols": {
-      "description": "An ontology built for annotation and modeling of biobank repository and biobanking administration",
+      "description": "The Ontology for Biobanking (OBIB) is an ontology for the annotation and modeling of the activities, contents, and administration of a biobank. Biobanks are facilities that store specimens, such as bodily fluids and tissues, typically along with specimen annotation and clinical data. OBIB is based on a subset of the Ontology for Biomedical Investigation (OBI), has the Basic Formal Ontology (BFO) as its upper ontology, and is developed following OBO Foundry principles. The first version of OBIB resulted from the merging of two existing biobank-related ontologies, OMIABIS and biobank ontology.",
       "download": "http://purl.obolibrary.org/obo/obib.owl",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "Ontology for BIoBanking (OBIB)",
       "prefix": "obib",
-      "version": "2019-06-20",
-      "version.iri": "http://purl.obolibrary.org/obo/obib/2019-06-20/obib.owl"
+      "version": "2021-02-02",
+      "version.iri": "http://purl.obolibrary.org/obo/obib/2021-02-02/obib.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "prefixcommons": {
@@ -15829,8 +16100,8 @@
       "download": "http://purl.obolibrary.org/obo/omp.owl",
       "name": "Ontology of Microbial Phenotypes",
       "prefix": "omp",
-      "version": "2021-01-08",
-      "version.iri": "http://purl.obolibrary.org/obo/omp/releases/2021-01-08/omp.owl"
+      "version": "2021-02-05",
+      "version.iri": "http://purl.obolibrary.org/obo/omp/releases/2021-02-05/omp.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
@@ -16090,6 +16361,12 @@
     "ols_version_type": "semver"
   },
   "orcid": {
+    "biolink": {
+      "formatter": "https://orcid.org/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "ORCID"
+    },
     "miriam": {
       "deprecated": false,
       "description": "ORCID (Open Researcher and Contributor ID) is an open, non-profit, community-based effort to create and maintain a registry of unique identifiers for individual researchers. ORCID records hold non-sensitive information such as name, email, organization name, and research activities.",
@@ -16235,6 +16512,12 @@
     }
   },
   "orphanet.ordo": {
+    "biolink": {
+      "formatter": "http://www.orpha.net/ORDO/Orphanet_$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "ORPHA"
+    },
     "bioportal": {
       "name": "Orphanet Rare Disease Ontology",
       "prefix": "ORDO"
@@ -18360,6 +18643,24 @@
       "prefix": "PROTONET.PROTEINCARD"
     }
   },
+  "prov": {
+    "biolink": {
+      "formatter": "http://www.w3.org/ns/prov#$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "prov"
+    },
+    "example": "Activity",
+    "homepage": "https://www.w3.org/ns/prov",
+    "name": "PROV Namespace",
+    "prefixcommons": {
+      "formatter": "http://www.w3.org/ns/prov#$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "prov"
+    },
+    "url": "https://www.w3.org/ns/prov#$1"
+  },
   "pscdb": {
     "miriam": {
       "deprecated": false,
@@ -18511,6 +18812,12 @@
     }
   },
   "pubchem.compound": {
+    "biolink": {
+      "formatter": "http://pubchem.ncbi.nlm.nih.gov/compound/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "CID"
+    },
     "go": {
       "formatter": "https://pubchem.ncbi.nlm.nih.gov/compound/$1",
       "homepage": "https://pubchem.ncbi.nlm.nih.gov",
@@ -18544,6 +18851,8 @@
       "Pubchem"
     ],
     "wikidata": {
+      "database": "Q278487",
+      "database.label": "PubChem",
       "format": "http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID$1",
       "pattern": "[1-9]\\d{0,8}",
       "property": "P662",
@@ -18587,6 +18896,16 @@
       "property.label": "PubChem Substance ID (SID)",
       "webpage": "https://www.ncbi.nlm.nih.gov/pcsubstance"
     }
+  },
+  "publons.researcher": {
+    "biolink": {
+      "formatter": "https://publons.com/researcher/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "ResearchID"
+    },
+    "name": "Publons Researcher ID",
+    "url": "https://publons.com/researcher/$1"
   },
   "pubmed": {
     "go": {
@@ -18694,6 +19013,21 @@
       "is_obo": false,
       "prefix": "PX"
     }
+  },
+  "qudt": {
+    "biolink": {
+      "formatter": "http://qudt.org/1.1/schema/qudt#$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "qud"
+    },
+    "bioportal": {
+      "name": "Quantities, Units, Dimensions, and Types Ontology",
+      "prefix": "QUDT"
+    },
+    "example": "baseDimensionEnumeration",
+    "name": "Quantities, Units, Dimensions, and Types Ontology",
+    "url": "http://qudt.org/schema/qudt#$1"
   },
   "rapdb.locus": {
     "miriam": {
@@ -19343,6 +19677,12 @@
     }
   },
   "ro": {
+    "biolink": {
+      "formatter": "http://purl.obolibrary.org/obo/RO_$1",
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "RO"
+    },
     "bioportal": {
       "name": "Radiomics Ontology",
       "prefix": "RO"
@@ -19515,6 +19855,12 @@
     }
   },
   "rxnorm": {
+    "biolink": {
+      "formatter": "https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "RXCUI"
+    },
     "bioportal": {
       "name": "RxNORM",
       "prefix": "RXNORM"
@@ -19759,6 +20105,17 @@
       "is_obo": false,
       "prefix": "SCOP"
     }
+  },
+  "scopus": {
+    "biolink": {
+      "formatter": "https://www.scopus.com/authid/detail.uri?authorId=$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "ScopusID"
+    },
+    "example": "56305849200",
+    "name": "Scopus Researcher Identifier",
+    "pattern": "^\\d+$"
   },
   "scretf": {
     "miriam": {
@@ -20116,6 +20473,12 @@
     ]
   },
   "sio": {
+    "biolink": {
+      "formatter": "http://semanticscience.org/resource/SIO_$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "SIO"
+    },
     "bioportal": {
       "name": "Semanticscience Integrated Ontology",
       "prefix": "SIO"
@@ -20237,6 +20600,12 @@
     }
   },
   "smpdb": {
+    "biolink": {
+      "formatter": "http://smpdb.ca/pathways/#$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "PathWhiz"
+    },
     "example": "SMP0000219",
     "miriam": {
       "deprecated": false,
@@ -20385,8 +20754,8 @@
       "download": "http://purl.obolibrary.org/obo/so.owl",
       "name": "Sequence types and features ontology",
       "prefix": "so",
-      "version": "2021-02-03",
-      "version.iri": "http://purl.obolibrary.org/obo/so/2021-02-03/so.owl"
+      "version": "2021-02-11",
+      "version.iri": "http://purl.obolibrary.org/obo/so/2021-02-11/so.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "prefixcommons": {
@@ -22317,6 +22686,12 @@
     }
   },
   "vandf": {
+    "biolink": {
+      "formatter": "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/VANDF/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "VANDF"
+    },
     "bioportal": {
       "name": "Veterans Health Administration National Drug File",
       "prefix": "VANDF"
@@ -22642,6 +23017,12 @@
     }
   },
   "vmc": {
+    "biolink": {
+      "formatter": "https://github.com/ga4gh/vr-spec/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "VMC"
+    },
     "deprecated": true,
     "name": "Variation Modelling Collaboration",
     "references": [
@@ -22844,6 +23225,12 @@
     }
   },
   "wb": {
+    "biolink": {
+      "formatter": "http://bio2rdf.org/wormbase_vocabulary$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "WBVocab"
+    },
     "go": {
       "homepage": "http://www.wormbase.org/",
       "name": "WormBase database of nematode biology",
@@ -22963,8 +23350,8 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "C. elegans Development Ontology",
       "prefix": "wbls",
-      "version": "2020-12-15",
-      "version.iri": "http://purl.obolibrary.org/obo/wbls/releases/2020-12-15/wbls.owl"
+      "version": "2021-02-09",
+      "version.iri": "http://purl.obolibrary.org/obo/wbls/releases/2021-02-09/wbls.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
@@ -23006,8 +23393,8 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "C elegans Phenotype Ontology",
       "prefix": "wbphenotype",
-      "version": "2020-12-15",
-      "version.iri": "http://purl.obolibrary.org/obo/wbphenotype/releases/2020-12-15/wbphenotype.owl"
+      "version": "2021-02-08",
+      "version.iri": "http://purl.obolibrary.org/obo/wbphenotype/releases/2021-02-08/wbphenotype.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
@@ -23021,7 +23408,24 @@
       "WBPhenotype"
     ]
   },
+  "wgs84": {
+    "biolink": {
+      "formatter": "http://www.w3.org/2003/01/geo/wgs84_pos$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "wgs"
+    },
+    "homepage": "https://www.w3.org/2003/01/geo/wgs84_pos",
+    "name": "WGS84 Geo Positioning",
+    "url": "http://www.w3.org/2003/01/geo/wgs84_pos#$1"
+  },
   "wikidata": {
+    "biolink": {
+      "formatter": "https://www.wikidata.org/wiki/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "WIKIDATA"
+    },
     "miriam": {
       "deprecated": false,
       "description": "Wikidata is a collaboratively edited knowledge base operated by the Wikimedia Foundation. It is intended to provide a common source of certain types of data which can be used by Wikimedia projects such as Wikipedia. Wikidata functions as a document-oriented database, centred on individual items. Items represent topics, for which basic information is stored that identifies each topic.",
@@ -23045,6 +23449,15 @@
       "wd",
       "WD_Entity"
     ]
+  },
+  "wikidata.property": {
+    "biolink": {
+      "formatter": "https://www.wikidata.org/wiki/Property:$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "WIKIDATA_PROPERTY"
+    },
+    "name": "Wikidata Property"
   },
   "wikigenes": {
     "miriam": {

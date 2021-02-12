@@ -4,6 +4,7 @@
 
 import click
 
+from .biolink import BiolinkAligner
 from .bioportal import BioPortalAligner
 from .go import GoAligner
 from .miriam import align_miriam
@@ -45,6 +46,9 @@ def align():
 
     secho('Aligning Prefix Commons')
     PrefixCommonsAligner.align()
+
+    secho('Aligning Biolink')
+    BiolinkAligner.align()
 
 
 if __name__ == '__main__':
