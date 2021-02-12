@@ -2,14 +2,18 @@
 
 """Align the Biolink with the Bioregistry."""
 
+import json
 from typing import Any, Mapping, Sequence
 
 from bioregistry.align.utils import Aligner
+from bioregistry.constants import DATA_DIRECTORY
 from bioregistry.external.biolink import get_biolink
 
 __all__ = [
     'BiolinkAligner',
 ]
+
+PROCESSING_BIOLINK_PATH = DATA_DIRECTORY / 'processing_biolink.json'
 
 
 class BiolinkAligner(Aligner):
@@ -18,6 +22,12 @@ class BiolinkAligner(Aligner):
     key = 'biolink'
     getter = get_biolink
     curation_header = ['formatter', 'identifiers', 'purl']
+
+    def get_skip(self) -> Mapping[str, str]:
+        """Get the skipped Biolink identifiers."""
+        with PROCESSING_BIOLINK_PATH.open() as file:
+            j = json.load(file)
+        return {entry['prefix']: entry['reason'] for entry in j['skip']}
 
     def prepare_external(self, external_id, external_entry) -> Mapping[str, Any]:
         """Prepare Biolink data to be added to the Biolink for each BioPortal registry entry."""
