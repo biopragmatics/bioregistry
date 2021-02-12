@@ -3338,6 +3338,15 @@
       "prefix": "CLDB"
     }
   },
+  "clingene": {
+    "biolink": {
+      "prefix": "CAID"
+    },
+    "example": "CA981206459",
+    "homepage": "https://reg.clinicalgenome.org",
+    "name": "ClinGen Allele Registry",
+    "url": "https://reg.clinicalgenome.org/redmine/projects/registry/genboree_registry/by_caid?caid=$1"
+  },
   "clinicaltrials": {
     "miriam": {
       "deprecated": false,
@@ -4815,6 +4824,20 @@
       "is_obo": false,
       "prefix": "dc"
     }
+  },
+  "dc.terms": {
+    "biolink": {
+      "prefix": "dct"
+    },
+    "example": "title",
+    "name": "Dublin Core Metadata Vocabulary",
+    "url": "https://dublincore.org/specifications/dublin-core/dcmi-terms/#$1"
+  },
+  "dcat": {
+    "example": "Dataset",
+    "homepage": "https://www.w3.org/ns/dcat",
+    "name": "Data Catalog",
+    "url": "http://www.w3.org/ns/dcat#$1"
   },
   "ddanat": {
     "bioportal": {
@@ -7320,6 +7343,10 @@
       "FMA_RETIRED"
     ]
   },
+  "foaf": {
+    "name": "Friend of a Friend",
+    "url": "http://xmlns.com/foaf/0.1/$1"
+  },
   "fobi": {
     "bioportal": {
       "name": "FOBI (Food-Biomarker Ontology)",
@@ -8629,10 +8656,10 @@
     ]
   },
   "google.scholar": {
-    "name": "Google Scholar Researcher ID",
     "biolink": {
       "prefix": "GSID"
-    }
+    },
+    "name": "Google Scholar Researcher ID"
   },
   "gorel": {
     "download": "ftp://ftp.geneontology.org/pub/go/ontology/extensions/gorel.owl",
@@ -9201,6 +9228,15 @@
       "version.iri": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2020-12-03/hcao.owl"
     },
     "ols_version_date_format": "%Y-%m-%d"
+  },
+  "hcpcs": {
+    "biolink": {
+      "prefix": "HCPCS"
+    },
+    "bioportal": {
+      "prefix": "HCPCS"
+    },
+    "name": "Healthcare Common Procedure Coding System"
   },
   "hcvdb": {
     "miriam": {
@@ -15401,15 +15437,6 @@
       "prefix": "OGG"
     }
   },
-  "hcpcs": {
-    "name": "Healthcare Common Procedure Coding System",
-    "biolink": {
-      "prefix": "HCPCS"
-    },
-    "bioportal": {
-      "prefix": "HCPCS"
-    }
-  },
   "ogi": {
     "bioportal": {
       "name": "Ontology for Genetic Interval",
@@ -18384,6 +18411,15 @@
       "prefix": "PROTONET.PROTEINCARD"
     }
   },
+  "prov": {
+    "biolink": {
+      "prefix": "prov"
+    },
+    "example": "Activity",
+    "homepage": "https://www.w3.org/ns/prov",
+    "name": "PROV Namespace",
+    "url": "https://www.w3.org/ns/prov#$1"
+  },
   "pscdb": {
     "miriam": {
       "deprecated": false,
@@ -18611,6 +18647,13 @@
       "property.label": "PubChem Substance ID (SID)",
       "webpage": "https://www.ncbi.nlm.nih.gov/pcsubstance"
     }
+  },
+  "publons.researcher": {
+    "biolink": {
+      "prefix": "ResearchID"
+    },
+    "name": "Publons Researcher ID",
+    "url": "https://publons.com/researcher/$1"
   },
   "pubmed": {
     "go": {
@@ -19784,6 +19827,14 @@
       "prefix": "SCOP"
     }
   },
+  "scopus": {
+    "biolink": {
+      "prefix": "ScopusID"
+    },
+    "example": "56305849200",
+    "name": "Scopus Researcher Identifier",
+    "pattern": "^\\d+$"
+  },
   "scretf": {
     "miriam": {
       "deprecated": false,
@@ -20518,14 +20569,6 @@
       "is_obo": false,
       "prefix": "SPIKE.MAP"
     }
-  },
-  "scopus": {
-    "name": "Scopus Researcher Identifier",
-    "biolink": {
-      "prefix": "ScopusID"
-    },
-    "example": "56305849200",
-    "pattern": "^\\d+$"
   },
   "splash": {
     "miriam": {
@@ -22879,6 +22922,9 @@
     }
   },
   "wb": {
+    "biolink": {
+      "prefix": "WBVocab"
+    },
     "go": {
       "homepage": "http://www.wormbase.org/",
       "name": "WormBase database of nematode biology",
@@ -23056,15 +23102,13 @@
       "WBPhenotype"
     ]
   },
-  "foaf": {
-    "name": "Friend of a Friend",
-    "url":  "http://xmlns.com/foaf/0.1/$1"
-  },
-  "wikidata.property": {
-    "name": "Wikidata Property",
-    "biolink":  {
-      "prefix": "WIKIDATA_PROPERTY"
-    }
+  "wgs84": {
+    "biolink": {
+      "prefix": "wgs"
+    },
+    "homepage": "https://www.w3.org/2003/01/geo/wgs84_pos",
+    "name": "WGS84 Geo Positioning",
+    "url": "http://www.w3.org/2003/01/geo/wgs84_pos#$1"
   },
   "wikidata": {
     "miriam": {
@@ -23090,6 +23134,12 @@
       "wd",
       "WD_Entity"
     ]
+  },
+  "wikidata.property": {
+    "biolink": {
+      "prefix": "WIKIDATA_PROPERTY"
+    },
+    "name": "Wikidata Property"
   },
   "wikigenes": {
     "miriam": {
