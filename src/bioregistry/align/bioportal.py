@@ -17,7 +17,7 @@ class BioPortalAligner(Aligner):
 
     key = 'bioportal'
     getter = get_bioportal
-    getter_kwargs = {'mappify': True}
+    getter_kwargs = {'mappify': True, 'force_download': True}
     curation_header = ('name',)
 
     def prepare_external(self, external_id, external_entry) -> Mapping[str, Any]:

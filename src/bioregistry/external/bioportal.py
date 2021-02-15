@@ -26,6 +26,8 @@ BASE_URL = 'https://data.bioontology.org'
 
 def query(url: str, **params) -> requests.Response:
     """Query the given endpoint on BioPortal."""
+    if BIOPORTAL_API_KEY is None:
+        raise ValueError('missing API key for bioportal')
     params.setdefault('apikey', BIOPORTAL_API_KEY)
     return requests.get(f'{BASE_URL}/{url}', params=params)
 
@@ -48,7 +50,11 @@ def get_bioportal(force_download: bool = True, mappify: bool = False):
             json.dump(entries, file, indent=2)
 
     if mappify:
-        entries = list_to_map(entries, 'acronym')
+        try:
+            entries = list_to_map(entries, 'acronym')
+        except TypeError:
+            print(entries)
+            raise
 
     return entries
 
