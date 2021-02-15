@@ -18,6 +18,8 @@ jobs:
         run: |
           pip install -e .[charts]
           bioregistry update
+        env:
+          BIOPORTAL_API_KEY: ${{ secrets.BIOPORTAL_API_KEY }}
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
