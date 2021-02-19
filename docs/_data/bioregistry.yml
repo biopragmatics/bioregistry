@@ -3040,7 +3040,7 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: 'CIDO: Ontology of Coronavirus Infectious Disease'
     prefix: cido
-    version: 1.0.181
+    version: 1.0.183
   ols_version_type: semver
   prefix: cido
 - bioportal:
@@ -3291,6 +3291,23 @@
     is_identifiers: true
     is_obo: false
     prefix: CLINVAR.SUBMISSION
+- miriam:
+    deprecated: false
+    description: ClinVar archives reports of relationships among medically important
+      variants and phenotypes. It records human variation, interpretations of the
+      relationship specific variations to human health, and supporting evidence for
+      each interpretation. Each ClinVar record (RCV identifier) represents an aggregated
+      view of interpretations of the same variation and condition from one or more
+      submitters (Submitter IDs). Submissions for individual variation/phenotype combinations
+      (SCV identifier) are also collected and made available separately. This collection
+      references submitters (submitter ids) that submit the submissions (SCVs).
+    id: 00000769
+    name: ClinVar Submitter
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: clinvar.submitter
+    sampleId: '26957'
+  prefix: clinvar.submitter
 - bioportal:
     name: Cell Line Ontology
     prefix: CLO
@@ -7320,8 +7337,8 @@
     license: https://creativecommons.org/licenses/by/4.0/
     name: Fission Yeast Phenotype Ontology (FYPO)
     prefix: fypo
-    version: '2021-02-11'
-    version.iri: http://purl.obolibrary.org/obo/fypo/releases/2021-02-11/fypo.owl
+    version: '2021-02-17'
+    version.iri: http://purl.obolibrary.org/obo/fypo/releases/2021-02-17/fypo.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: fypo
@@ -13851,8 +13868,8 @@
     download: http://purl.obolibrary.org/obo/ncbitaxon.owl
     name: NCBI organismal classification
     prefix: ncbitaxon
-    version: '2020-04-18'
-    version.iri: http://purl.obolibrary.org/obo/ncbitaxon/2020-04-18/ncbitaxon.owl
+    version: '2021-02-15'
+    version.iri: http://purl.obolibrary.org/obo/ncbitaxon/2021-02-15/ncbitaxon.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d+$
   prefix: ncbitaxon
@@ -16368,6 +16385,28 @@
     prefix: PECO
   synonyms:
   - eo
+- miriam:
+    deprecated: false
+    description: The Protein Ensemble Database is an open access database for the
+      deposition of structural ensembles, including intrinsically disordered proteins.
+    id: '00000777'
+    name: Protein Ensemble Database
+    namespaceEmbeddedInLui: false
+    pattern: ^PED\d{5}$
+    prefix: ped
+    sampleId: PED00037
+  prefix: ped
+- miriam:
+    deprecated: false
+    description: The Protein Ensemble Database is an open access database for the
+      deposition of structural ensembles, including intrinsically disordered proteins.
+    id: 00000795
+    name: Protein Ensemble Database ensemble
+    namespaceEmbeddedInLui: false
+    pattern: ^PED\d{5}e\d{3}$
+    prefix: ped.ensemble
+    sampleId: PED00017e001
+  prefix: ped.ensemble
 - deprecated: true
   download: https://github.com/HUPO-PSI/PEFF/raw/master/CV/psi-peff-OBSOLETE-DO_NOT_USE.obo
   example: '0001011'
@@ -18166,6 +18205,28 @@
     is_identifiers: false
     is_obo: false
     prefix: RefSeq
+- miriam:
+    deprecated: false
+    description: RepeatsDB is a database of annotated tandem repeat protein structures.
+      This collection references protein entries in the database.
+    id: 00000792
+    name: RepeatsDB Protein
+    namespaceEmbeddedInLui: false
+    pattern: ^[OPQopq][0-9][A-Za-z0-9]{3}[0-9]|[A-Na-nR-Zr-z][0-9]([A-Za-z][A-Za-z0-9]{2}[0-9]){1,2}$
+    prefix: repeatsdb.protein
+    sampleId: P29894
+  prefix: repeatsdb.protein
+- miriam:
+    deprecated: false
+    description: RepeatsDB is a database of annotated tandem repeat protein structures.
+      This collection references structural entries in the database.
+    id: '00000764'
+    name: RepeatsDB Structure
+    namespaceEmbeddedInLui: false
+    pattern: ^[0-9][A-Za-z0-9]{3}[A-Za-z0-9][A-Za-z0-9]?[0-9]?[0-9]?$
+    prefix: repeatsdb.structure
+    sampleId: 2gc4E
+  prefix: repeatsdb.structure
 - bioportal:
     name: REPRODUCE-ME
     prefix: REPRODUCE-ME
@@ -20804,8 +20865,8 @@
     license: http://creativecommons.org/licenses/by/3.0/
     name: Uber-anatomy ontology
     prefix: uberon
-    version: '2020-09-16'
-    version.iri: http://purl.obolibrary.org/obo/uberon/releases/2020-09-16/uberon.owl
+    version: '2021-02-12'
+    version.iri: http://purl.obolibrary.org/obo/uberon/releases/2021-02-12/uberon.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: uberon
   prefixcommons:
@@ -22748,64 +22809,3 @@
     is_identifiers: false
     is_obo: true
     prefix: ZP
-- miriam:
-    deprecated: false
-    description: ClinVar archives reports of relationships among medically important
-      variants and phenotypes. It records human variation, interpretations of the
-      relationship specific variations to human health, and supporting evidence for
-      each interpretation. Each ClinVar record (RCV identifier) represents an aggregated
-      view of interpretations of the same variation and condition from one or more
-      submitters (Submitter IDs). Submissions for individual variation/phenotype combinations
-      (SCV identifier) are also collected and made available separately. This collection
-      references submitters (submitter ids) that submit the submissions (SCVs).
-    id: 00000769
-    name: ClinVar Submitter
-    namespaceEmbeddedInLui: false
-    pattern: ^\d+$
-    prefix: clinvar.submitter
-    sampleId: '26957'
-  prefix: clinvar.submitter
-- miriam:
-    deprecated: false
-    description: The Protein Ensemble Database is an open access database for the
-      deposition of structural ensembles, including intrinsically disordered proteins.
-    id: '00000777'
-    name: Protein Ensemble Database
-    namespaceEmbeddedInLui: false
-    pattern: ^PED\d{5}$
-    prefix: ped
-    sampleId: PED00037
-  prefix: ped
-- miriam:
-    deprecated: false
-    description: The Protein Ensemble Database is an open access database for the
-      deposition of structural ensembles, including intrinsically disordered proteins.
-    id: 00000795
-    name: Protein Ensemble Database ensemble
-    namespaceEmbeddedInLui: false
-    pattern: ^PED\d{5}e\d{3}$
-    prefix: ped.ensemble
-    sampleId: PED00017e001
-  prefix: ped.ensemble
-- miriam:
-    deprecated: false
-    description: RepeatsDB is a database of annotated tandem repeat protein structures.
-      This collection references protein entries in the database.
-    id: 00000792
-    name: RepeatsDB Protein
-    namespaceEmbeddedInLui: false
-    pattern: ^[OPQopq][0-9][A-Za-z0-9]{3}[0-9]|[A-Na-nR-Zr-z][0-9]([A-Za-z][A-Za-z0-9]{2}[0-9]){1,2}$
-    prefix: repeatsdb.protein
-    sampleId: P29894
-  prefix: repeatsdb.protein
-- miriam:
-    deprecated: false
-    description: RepeatsDB is a database of annotated tandem repeat protein structures.
-      This collection references structural entries in the database.
-    id: '00000764'
-    name: RepeatsDB Structure
-    namespaceEmbeddedInLui: false
-    pattern: ^[0-9][A-Za-z0-9]{3}[A-Za-z0-9][A-Za-z0-9]?[0-9]?[0-9]?$
-    prefix: repeatsdb.structure
-    sampleId: 2gc4E
-  prefix: repeatsdb.structure
