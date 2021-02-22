@@ -14615,7 +14615,7 @@
   },
   "ncbigene": {
     "go": {
-      "formatter": "https://www.ncbi.nlm.nih.gov/gene$1",
+      "formatter": "https://www.ncbi.nlm.nih.gov/gene/$1",
       "homepage": "http://www.ncbi.nlm.nih.gov/",
       "name": "NCBI Gene",
       "prefix": "NCBIGene",
@@ -17544,7 +17544,14 @@
     }
   },
   "pharmgkb.gene": {
+    "bioportal": {
+      "name": "PharmGKB Ontology",
+      "prefix": "PHARMGKB"
+    },
     "go": {
+      "formatter": "https://www.pharmgkb.org/do/serve?objId=$1",
+      "homepage": "https://www.pharmgkb.org",
+      "name": "Pharmacogenetics and Pharmacogenomics Knowledge Base",
       "prefix": "PharmGKB"
     },
     "miriam": {
@@ -17834,15 +17841,6 @@
       "is_obo": false,
       "prefix": "PIGQTLDB"
     }
-  },
-  "tfclass": {
-    "go": {
-      "prefix": "TFClass"
-    },
-    "name": "Classification of Transcription Factors in Mammalia",
-    "example": "2.1.1",
-    "url": "http://tfclass.bioinf.med.uni-goettingen.de/?tfclass=$1",
-    "homepage": "http://tfclass.bioinf.med.uni-goettingen.de"
   },
   "pina": {
     "miriam": {
@@ -21600,6 +21598,22 @@
     "wikidata": {
       "property": "P1693"
     }
+  },
+  "tfclass": {
+    "example": "2.1.1",
+    "go": {
+      "formatter": "http://tfclass.bioinf.med.uni-goettingen.de/?tfclass=$1",
+      "homepage": "http://tfclass.bioinf.med.uni-goettingen.de/",
+      "name": "TFClass is a resource for the classification of eukaryotic transcription factors based on the characteristics of their DNA-binding domains",
+      "prefix": "TFClass",
+      "synonyms": [
+        "TFCLASS_FAMILY",
+        "tfclass"
+      ]
+    },
+    "homepage": "http://tfclass.bioinf.med.uni-goettingen.de",
+    "name": "Classification of Transcription Factors in Mammalia",
+    "url": "http://tfclass.bioinf.med.uni-goettingen.de/?tfclass=$1"
   },
   "tgd": {
     "go": {
