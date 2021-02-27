@@ -8839,11 +8839,11 @@
 - ols:
     description: Application ontology for human cell types, anatomy and development
       stages for the Human Cell Atlas.
-    download: https://raw.githubusercontent.com/HumanCellAtlas/ontology/master/hcao.owl
+    download: https://raw.githubusercontent.com/ebi-ait/ontology/master/hcao.owl
     name: Human Cell Atlas Ontology
     prefix: hcao
-    version: '2020-12-03'
-    version.iri: http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2020-12-03/hcao.owl
+    version: '2021-02-18'
+    version.iri: http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2021-02-18/hcao.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: hcao
 - biolink:
@@ -11538,8 +11538,8 @@
     license: https://creativecommons.org/licenses/by/4.0/
     name: Medical Action Ontology
     prefix: maxo
-    version: '2021-02-22'
-    version.iri: http://purl.obolibrary.org/obo/maxo/releases/2021-02-22/maxo.owl
+    version: '2021-02-25'
+    version.iri: http://purl.obolibrary.org/obo/maxo/releases/2021-02-25/maxo.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: maxo
 - bioportal:
@@ -11931,7 +11931,7 @@
     id: '00000567'
     name: MetaNetX chemical
     namespaceEmbeddedInLui: false
-    pattern: ^(MNXM\d+|BIOMASS)$
+    pattern: ^(MNXM\d+|BIOMASS|WATER)$
     prefix: metanetx.chemical
     sampleId: MNXM1723
   n2t:
@@ -11952,7 +11952,7 @@
     id: 00000569
     name: MetaNetX compartment
     namespaceEmbeddedInLui: false
-    pattern: ^(MNX[CD]\d+|BOUNDARY)$
+    pattern: ^(MNX[CD]\d+|BOUNDARY|IN|OUT)$
     prefix: metanetx.compartment
     sampleId: MNXC15
   n2t:
@@ -11973,7 +11973,7 @@
     id: 00000568
     name: MetaNetX reaction
     namespaceEmbeddedInLui: false
-    pattern: ^MNXR\d+$
+    pattern: ^(MNXR\d+|EMPTY)$
     prefix: metanetx.reaction
     sampleId: MNXR101574
   n2t:
@@ -16696,8 +16696,8 @@
     license: https://creativecommons.org/licenses/by/3.0/
     name: Pathogen Host Interactions Phenotype Ontology
     prefix: phipo
-    version: '2021-01-28'
-    version.iri: http://purl.obolibrary.org/obo/phipo/releases/2021-01-28/phipo.owl
+    version: '2021-02-25'
+    version.iri: http://purl.obolibrary.org/obo/phipo/releases/2021-02-25/phipo.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: phipo
@@ -17707,6 +17707,12 @@
   example: Activity
   homepage: https://www.w3.org/ns/prov
   name: PROV Namespace
+  ols:
+    download: https://www.w3.org/ns/prov-o
+    name: Provenance Ontology (PROV-O)
+    prefix: prov
+    version: Recommendation version 2013-04-30
+    version.iri: http://www.w3.org/ns/prov-o-20130430
   prefix: prov
   prefixcommons:
     formatter: http://www.w3.org/ns/prov#$1
@@ -22830,3 +22836,29 @@
     is_identifiers: false
     is_obo: true
     prefix: ZP
+- miriam:
+    deprecated: false
+    description: The Health Data Research Innovation Gateway (the 'Gateway') provides
+      a common entry point to discover and enquire about access to UK health datasets
+      for research and innovation. It provides detailed information about the datasets,
+      which are held by members of the UK Health Data Research Alliance, such as a
+      description, size of the population, and the legal basis for access.
+    id: 00000796
+    name: gateway
+    namespaceEmbeddedInLui: false
+    pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
+    prefix: gateway
+    sampleId: fd8d0743-344a-4758-bb97-f8ad84a37357
+  prefix: gateway
+- miriam:
+    deprecated: false
+    description: The Animal Quantitative Trait Loci (QTL) database (Animal QTLdb)
+      is designed to house publicly all available QTL and single-nucleotide polymorphism/gene
+      association data on livestock animal species. This collection is species-independent.
+    id: 00000798
+    name: Animal Genome QTL
+    namespaceEmbeddedInLui: false
+    pattern: ^\d+$
+    prefix: qtldb
+    sampleId: '4685'
+  prefix: qtldb
