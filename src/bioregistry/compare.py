@@ -114,7 +114,7 @@ def compare():  # noqa:C901
             ha='center', va='bottom',
         )
 
-    path = os.path.join(DOCS_IMG, 'license_coverage.png')
+    path = os.path.join(DOCS_IMG, 'license_coverage.svg')
     click.echo(f'output to {path}')
     fig.tight_layout()
     fig.savefig(path, dpi=300)
@@ -132,7 +132,7 @@ def compare():  # noqa:C901
             ha='right', va='center', rotation=90,
         )
 
-    path = os.path.join(DOCS_IMG, 'licenses.png')
+    path = os.path.join(DOCS_IMG, 'licenses.svg')
     click.echo(f'output to {path}')
     fig.tight_layout()
     fig.savefig(path, dpi=300)
@@ -178,7 +178,7 @@ def compare():  # noqa:C901
             ha='center', va='bottom',
         )
 
-    path = os.path.join(DOCS_IMG, 'has_attribute.png')
+    path = os.path.join(DOCS_IMG, 'has_attribute.svg')
     click.echo(f'output to {path}')
     fig.tight_layout()
     fig.savefig(path, dpi=300)
@@ -238,7 +238,7 @@ def compare():  # noqa:C901
             ha='center', va='bottom',
         )
 
-    path = os.path.join(DOCS_IMG, 'bioregistry_coverage.png')
+    path = os.path.join(DOCS_IMG, 'bioregistry_coverage.svg')
     click.echo(f'output to {path}')
     fig.tight_layout()
     fig.savefig(path, dpi=300)
@@ -273,7 +273,7 @@ def compare():  # noqa:C901
             ha='center', va='bottom',
         )
 
-    path = os.path.join(DOCS_IMG, 'external_overlap.png')
+    path = os.path.join(DOCS_IMG, 'external_overlap.svg')
     click.echo(f'output to {path}')
     fig.tight_layout()
     fig.savefig(path, dpi=300)
@@ -301,7 +301,7 @@ def compare():  # noqa:C901
             ha='right', va='center', rotation=90,
         )
 
-    path = os.path.join(DOCS_IMG, 'xrefs.png')
+    path = os.path.join(DOCS_IMG, 'xrefs.svg')
     click.echo(f'output to {path}')
     fig.tight_layout()
     fig.savefig(path, dpi=300)
