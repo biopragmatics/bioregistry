@@ -63,7 +63,7 @@ def _download_paginated(start_url: str, embedded_key: str) -> List[EnsureEntry]:
     results = []
     url = start_url
     while True:
-        logger.debug('getting', url)
+        logger.debug('getting %s', url)
         g = requests.get(url)
         j = g.json()
         r = j['_embedded'][embedded_key]
