@@ -19,7 +19,7 @@ class NcbiAligner(Aligner):
     ) -> Dict[str, Any]:
         return external_entry
 
-    def get_curation_row(self, external_id, eternal_entry) -> List[str]:
+    def get_curation_row(self, external_id, external_entry) -> List[str]:
         return [external_entry["name"]]
 
 
