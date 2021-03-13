@@ -4,6 +4,7 @@
 
 import re
 from typing import Dict
+from urllib.parse import urlsplit, urlunsplit
 
 import click
 from bs4 import BeautifulSoup
@@ -11,10 +12,11 @@ from bs4 import BeautifulSoup
 from ..constants import BIOREGISTRY_MODULE
 
 URL = "https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/"
+NCBI_URL_PARTS = urlsplit(URL)
 DATA_TABLE_CAPTION_RE = re.compile(r"db_xref List")
 
 
-def get_ncbi() -> Dict[str, str]:
+def get_ncbi() -> Dict[str, Dict[str, str]]:
     """Get the NCBI data."""
     path = BIOREGISTRY_MODULE.ensure(url=URL)
     with open(path) as f:
@@ -27,12 +29,44 @@ def get_ncbi() -> Dict[str, str]:
         cells = row.find_all("td")
         if not cells:
             continue
+
         prefix = cells[0].text.strip()
-        provider = cells[2].text.strip()
-        if not (prefix and provider):
+        name = cells[2].text.strip()
+        if not (prefix and name):
             continue
 
-        rv[prefix] = provider
+        item = {"name": name}
+
+        link = cells[0].find("a")
+        if link and "href" in link.attrs:
+            link_href = link.attrs["href"]
+            url_parts = urlsplit(link_href)
+            if not url_parts.netloc:  # handle relative links
+                if url_parts.path.startswith("/"):  # relative to site root
+                    url_parts = (
+                        NCBI_URL_PARTS.scheme,
+                        NCBI_URL_PARTS.netloc,
+                        url_parts.path,
+                        url_parts.query,
+                        url_parts.fragment,
+                    )
+                else:  # relative to the page we got it from
+                    url_parts = (
+                        NCBI_URL_PARTS.scheme,
+                        NCBI_URL_PARTS.netloc,
+                        NCBI_URL_PARTS.path + url_parts.path,
+                        url_parts.query,
+                        url_parts.fragment,
+                    )
+                item["generic_urls"] = [urlunsplit(url_parts)]
+            else:
+                item["generic_urls"] = link_href
+
+        example = cells[4].text.strip()
+        if example:
+            item["example"] = example
+
+        rv[prefix] = item
 
     return rv
 
