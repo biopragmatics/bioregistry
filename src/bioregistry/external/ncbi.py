@@ -68,7 +68,10 @@ def get_ncbi() -> Dict[str, Dict[str, str]]:
         example = examples.split()[0]
         if example:
             # example text is like `/db_xref="FOO BAR"`
-            item['example'] = example.split('=', 1)[1].strip('"')
+            example = example.split('=', 1)[1].strip('"')
+            if not example.startswith(f'{prefix}:'):
+                raise ValueError(f'example does not start with prefix {prefix} -> {example}')
+            item['example'] = example
 
         rv[prefix] = item
 
