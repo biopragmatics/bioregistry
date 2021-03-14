@@ -60,7 +60,7 @@ def get_ncbi() -> Dict[str, Dict[str, str]]:
                             url_parts.fragment,
                         )
                     item['homepage'] = urlunsplit(url_parts)
-                else:
+                else:  # absolute links can pass through unchanged
                     item['homepage'] = link_href
 
         examples = cells[4].text.strip()
