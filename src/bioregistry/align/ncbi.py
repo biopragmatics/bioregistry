@@ -15,7 +15,7 @@ class NcbiAligner(Aligner):
 
     key = 'ncbi'
     getter = get_ncbi
-    curation_header = ('name', 'generic_urls', 'example')
+    curation_header = ('name', 'homepage', 'example')
 
     def prepare_external(
         self,
@@ -37,7 +37,7 @@ class NcbiAligner(Aligner):
         """Return the relevant fields from an NCBI entry for pretty-printing."""
         return [
             external_entry['name'],
-            external_entry.get('generic_urls'),
+            external_entry.get('homepage'),
             external_entry.get('example'),
         ]
 

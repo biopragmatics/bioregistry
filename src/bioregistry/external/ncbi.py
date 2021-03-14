@@ -59,9 +59,9 @@ def get_ncbi() -> Dict[str, Dict[str, str]]:
                             url_parts.query,
                             url_parts.fragment,
                         )
-                    item['generic_urls'] = [urlunsplit(url_parts)]
+                    item['homepage'] = urlunsplit(url_parts)
                 else:
-                    item['generic_urls'] = [link_href]
+                    item['homepage'] = link_href
 
         examples = cells[4].text.strip()
         # only bother with the first line of examples
