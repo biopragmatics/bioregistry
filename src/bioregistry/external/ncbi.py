@@ -18,7 +18,7 @@ DATA_TABLE_CAPTION_RE = re.compile(r"db_xref List")
 
 def get_ncbi() -> Dict[str, Dict[str, str]]:
     """Get the NCBI data."""
-    path = BIOREGISTRY_MODULE.ensure(url=URL, name='ncbi.html')
+    path = BIOREGISTRY_MODULE.ensure(url=URL, name="ncbi.html")
     with open(path) as f:
         soup = BeautifulSoup(f, "html.parser")
     # find the data table based on its caption element
