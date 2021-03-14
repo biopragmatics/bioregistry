@@ -20,7 +20,7 @@ class NcbiAligner(Aligner):
         return external_entry
 
     def get_curation_row(self, external_id, external_entry) -> List[str]:
-        return [external_entry["name"]]
+        return [external_entry["name"], external_entry.get('generic_urls')]
 
 
 if __name__ == "__main__":
