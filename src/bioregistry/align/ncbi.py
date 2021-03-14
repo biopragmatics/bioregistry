@@ -2,7 +2,7 @@
 
 """Align NCBI with the Bioregistry."""
 
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Mapping
 
 from bioregistry.align.utils import Aligner
 from bioregistry.external.ncbi import get_ncbi
@@ -21,7 +21,7 @@ class NcbiAligner(Aligner):
         self,
         external_id: str,
         external_entry: Dict[str, str],
-    ) -> Dict[str, Any]:
+    ) -> Mapping[str, Any]:
         """Stub for preparing NCBI xref data to be added to the bioregistry.
 
         The NCBI getter does all the necessary processing, so use the superclass'
