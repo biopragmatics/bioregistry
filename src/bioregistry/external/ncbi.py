@@ -39,28 +39,29 @@ def get_ncbi() -> Dict[str, Dict[str, str]]:
 
         link = cells[0].find("a")
         if link and "href" in link.attrs:
-            link_href = link.attrs["href"]
-            url_parts = urlsplit(link_href)
-            if not url_parts.netloc:  # handle relative links
-                if url_parts.path.startswith("/"):  # relative to site root
-                    url_parts = (
-                        NCBI_URL_PARTS.scheme,
-                        NCBI_URL_PARTS.netloc,
-                        url_parts.path,
-                        url_parts.query,
-                        url_parts.fragment,
-                    )
-                else:  # relative to the page we got it from
-                    url_parts = (
-                        NCBI_URL_PARTS.scheme,
-                        NCBI_URL_PARTS.netloc,
-                        NCBI_URL_PARTS.path + url_parts.path,
-                        url_parts.query,
-                        url_parts.fragment,
-                    )
-                item["generic_urls"] = [urlunsplit(url_parts)]
-            else:
-                item["generic_urls"] = link_href
+            link_href = link.attrs["href"].strip()
+            if link_href:
+                url_parts = urlsplit(link_href)
+                if not url_parts.netloc:  # handle relative links
+                    if url_parts.path.startswith("/"):  # relative to site root
+                        url_parts = (
+                            NCBI_URL_PARTS.scheme,
+                            NCBI_URL_PARTS.netloc,
+                            url_parts.path,
+                            url_parts.query,
+                            url_parts.fragment,
+                        )
+                    else:  # relative to the page we got it from
+                        url_parts = (
+                            NCBI_URL_PARTS.scheme,
+                            NCBI_URL_PARTS.netloc,
+                            NCBI_URL_PARTS.path + url_parts.path,
+                            url_parts.query,
+                            url_parts.fragment,
+                        )
+                    item["generic_urls"] = [urlunsplit(url_parts)]
+                else:
+                    item["generic_urls"] = [link_href]
 
         example = cells[4].text.strip()
         if example:
