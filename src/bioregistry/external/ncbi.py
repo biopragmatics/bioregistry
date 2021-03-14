@@ -68,8 +68,6 @@ def get_ncbi() -> Dict[str, Dict[str, str]]:
         example = examples.split()[0]
         if example:
             # example text is like `/db_xref="FOO BAR"`
-            if "db_xref" in item["example"] or '"' in item["example"]:
-                breakpoint()
             item['example'] = example.split('=', 1)[1].strip('"')
 
         rv[prefix] = item
