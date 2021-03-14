@@ -13,6 +13,7 @@ __all__ = ["NcbiAligner"]
 class NcbiAligner(Aligner):
     key = "ncbi"
     getter = get_ncbi
+    curation_header = ("name", "generic_urls", "example")
 
     def prepare_external(
         self, external_id: str, external_entry: Dict[str, str]
@@ -20,7 +21,11 @@ class NcbiAligner(Aligner):
         return external_entry
 
     def get_curation_row(self, external_id, external_entry) -> List[str]:
-        return [external_entry["name"], external_entry.get('generic_urls')]
+        return [
+            external_entry["name"],
+            external_entry.get("generic_urls"),
+            external_entry.get("example"),
+        ]
 
 
 if __name__ == "__main__":
