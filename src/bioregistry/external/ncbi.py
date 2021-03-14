@@ -63,9 +63,14 @@ def get_ncbi() -> Dict[str, Dict[str, str]]:
                 else:
                     item["generic_urls"] = [link_href]
 
-        example = cells[4].text.strip()
+        examples = cells[4].text.strip()
+        # only bother with the first line of examples
+        example = examples.split()[0]
         if example:
-            item["example"] = example
+            # example text is like `/db_xref="FOO BAR"`
+            item["example"] = example.split("=", 1)[1].strip('"')
+            if "db_xref" in item["example"] or '"' in item["example"]:
+                breakpoint()
 
         rv[prefix] = item
 
