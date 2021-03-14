@@ -73,10 +73,14 @@ class Aligner(ABC):
     def prepare_external(self, external_id, external_entry) -> Mapping[str, Any]:
         """Prepare a dictionary to be added to the bioregistry for each external registry entry.
 
+        The default implementation returns `external_entry` unchanged. Call it with super() in
+        the derived class.
+
         :param external_id: The external registry identifier
         :param external_entry: The external registry data
         :return: The dictionary to be added to the bioregistry for the aligned entry
         """  # noqa:DAR202
+        return external_entry
 
     @classmethod
     def align(cls, dry: bool = False):
