@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
-"""This script compares what's in OBO, OLS, and MIRIAM."""
+"""This script compares what's in each resource."""
 
 import datetime
 import itertools as itt
+import math
 import os
 import sys
 from collections import Counter
@@ -23,6 +24,7 @@ bioregistry = read_bioregistry()
 LICENSES = {
     'None': None,
     'license': None,
+    'unspecified': None,
     # CC-BY (4.0)
     'CC-BY 4.0': 'CC-BY',
     'CC BY 4.0': 'CC-BY',
@@ -159,7 +161,10 @@ def compare():  # noqa:C901
         ('Example', has_example),
         ('Contact Email', has_email),
     ]
-    fig, axes = plt.subplots(ncols=2, nrows=(1 + len(measurements)) // 2)
+
+    ncols = 2
+    nrows = (1 + len(measurements)) // 2
+    fig, axes = plt.subplots(ncols=ncols, nrows=nrows)
     for (label, prefixes), ax in zip(measurements, axes.ravel()):
         ax.pie(
             (len(prefixes), len(bioregistry) - len(prefixes)),
@@ -213,7 +218,7 @@ def compare():  # noqa:C901
     ############################################################
 
     ncols = 3
-    nrows = (1 + len(keys)) // ncols
+    nrows = int(math.ceil(len(keys) / ncols))
     figsize = (3.25 * ncols, 2.0 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
     for (key, label, color, prefixes), ax in zip(keys, axes.ravel()):
@@ -249,9 +254,9 @@ def compare():  # noqa:C901
     ######################################################
 
     pairs = list(itt.combinations(keys, r=2))
-    ncols = 3
-    nrows = (1 + len(pairs)) // ncols
-    figsize = (9, 2.5 * nrows)
+    ncols = 4
+    nrows = int(math.ceil(len(pairs) / ncols))
+    figsize = (3 * ncols, 2.5 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
     for ((l_key, l_label, l_color, l_prefixes), (r_key, r_label, r_color, r_prefixes)), ax in zip(pairs, axes.ravel()):
         # Remap external vocabularies to bioregistry
