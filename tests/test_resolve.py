@@ -37,8 +37,48 @@ class TestResolve(unittest.TestCase):
         self.assertIn('ols', ncbitaxon_entry)
         self.assertIn('wikidata', ncbitaxon_entry)
 
-    def test_validate(self):
-        """Test validation of identifiers."""
+    def test_validate_none(self):
+        """Test validation of identifiers for a prefix that does not exist."""
         self.assertIsNone(bioregistry.validate('lol', 'lol:nope'))
-        self.assertTrue(bioregistry.validate('chebi', 'CHEBI:1234'))
-        self.assertFalse(bioregistry.validate('chebi', '1234'))
+
+    def test_validate_true(self):
+        """Test that validation returns true."""
+        for prefix, identifier in [
+            ('eccode', '1'),
+            ('eccode', '1.1'),
+            ('eccode', '1.1.1'),
+            ('eccode', '1.1.1.1'),
+            ('eccode', '1.1.123.1'),
+            ('eccode', '1.1.1.123'),
+            ('chebi', '24867'),
+            ('chebi', 'CHEBI:1234'),
+        ]:
+            with self.subTest(prefix=prefix, identifier=identifier):
+                self.assertTrue(bioregistry.validate(prefix, identifier))
+
+    def test_validate_false(self):
+        """Test that validation returns false."""
+        for prefix, identifier in [
+            ('chebi', 'A1234'),
+            ('chebi', 'chebi:1234'),
+        ]:
+            with self.subTest(prefix=prefix, identifier=identifier):
+                self.assertFalse(bioregistry.validate(prefix, identifier))
+
+    @unittest.skip
+    def test_lui(self):
+        """Test the LUI makes sense (spoilers, they don't).
+
+        Discussion is ongoing at:
+
+        - https://github.com/identifiers-org/identifiers-org.github.io/issues/151
+        """
+        for prefix in bioregistry.read_bioregistry():
+            if not bioregistry.namespace_in_lui(prefix):
+                continue
+            with self.subTest(prefix=prefix):
+                re_pattern = bioregistry.get_pattern(prefix)
+                self.assertTrue(
+                    re_pattern.startswith(f'^{prefix.upper()}') or re_pattern.startswith(prefix.upper()),
+                    msg=f'{prefix} pattern: {re_pattern}',
+                )
