@@ -118,6 +118,8 @@ def get_format(prefix: str) -> Optional[str]:
         return url
     miriam_id = entry.get('miriam', {}).get('prefix')
     if miriam_id is not None:
+        if namespace_in_lui(prefix):
+            miriam_id = miriam_id.upper()  # not exact solution, some less common ones don't use capitalization
         return f'https://identifiers.org/{miriam_id}:$1'
     ols_id = entry.get('ols', {}).get('prefix')
     if ols_id is not None:

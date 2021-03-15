@@ -6,6 +6,7 @@ import os
 
 import click
 import yaml
+from more_click import make_web_command
 
 from .align.cli import align
 from .compare import compare
@@ -25,6 +26,7 @@ def main():
 main.add_command(lint)
 main.add_command(compare)
 main.add_command(warnings)
+main.add_command(make_web_command('bioregistry.app.wsgi:app'))
 
 
 @main.command()

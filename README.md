@@ -130,6 +130,16 @@ import bioregistry
 registry = bioregistry.read_bioregistry()
 ```
 
+## 🕸️ Resolver App
+
+After installing with the `[web]` extras, run the resolver CLI with
+
+```shell
+$ bioregistry web
+```
+
+to run a web app that functions like Identifiers.org, but backed by the Bioregistry.
+
 ## ♻️ Update
 
 The database is automatically updated daily thanks to scheduled workflows in GitHub Actions. The workflow's
