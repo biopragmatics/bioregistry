@@ -3,7 +3,7 @@
 """Utilities for registry alignment."""
 
 from abc import ABC, abstractmethod
-from typing import Any, Callable, ClassVar, Iterable, Mapping, Optional, Sequence
+from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, Sequence
 
 from tabulate import tabulate
 
@@ -69,7 +69,7 @@ class Aligner(ABC):
                 self.internal_registry[bioregistry_id][self.key] = _entry
                 self.external_id_to_bioregistry_id[external_id] = bioregistry_id
 
-    def prepare_external(self, external_id, external_entry) -> Mapping[str, Any]:
+    def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
         """Prepare a dictionary to be added to the bioregistry for each external registry entry.
 
         The default implementation returns `external_entry` unchanged.
@@ -78,7 +78,7 @@ class Aligner(ABC):
         :param external_id: The external registry identifier
         :param external_entry: The external registry data
         :return: The dictionary to be added to the bioregistry for the aligned entry
-        """  # noqa:DAR202
+        """
         return external_entry
 
     @classmethod
