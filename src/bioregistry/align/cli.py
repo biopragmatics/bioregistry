@@ -9,6 +9,7 @@ from .bioportal import BioPortalAligner
 from .go import GoAligner
 from .miriam import align_miriam
 from .n2t import align_n2t
+from .ncbi import NcbiAligner
 from .obofoundry import align_obofoundry
 from .ols import align_ols
 from .prefix_commons import PrefixCommonsAligner
@@ -28,6 +29,9 @@ def align():
 
     secho('Aligning N2T')
     align_n2t()
+
+    secho('Aligning NCBI')
+    NcbiAligner.align()
 
     secho('Aligning OBO Foundry')
     align_obofoundry()

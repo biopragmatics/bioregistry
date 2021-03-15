@@ -8,6 +8,7 @@ from .bioportal import get_bioportal
 from .go import get_go
 from .miriam import get_miriam_df
 from .n2t import get_n2t
+from .ncbi import get_ncbi
 from .obofoundry import get_obofoundry_df
 from .ols import get_ols_df
 from .wikidata import get_wikidata_registry
@@ -26,6 +27,9 @@ def download():
 
     secho('Download N2T')
     get_n2t()
+
+    secho('Downloading NCBI')
+    get_ncbi()
 
     secho('Downloading OBO Foundry')
     get_obofoundry_df(force_download=True)
