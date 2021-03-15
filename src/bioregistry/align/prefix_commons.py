@@ -2,7 +2,7 @@
 
 """Align the Prefix Commons with the Bioregistry."""
 
-from typing import Any, Mapping, Sequence
+from typing import Any, Dict, Sequence
 
 from bioregistry.align.utils import Aligner
 from bioregistry.external.prefix_commons import get_prefix_commons
@@ -19,7 +19,7 @@ class PrefixCommonsAligner(Aligner):
     getter = get_prefix_commons
     curation_header = ['formatter', 'identifiers', 'purl']
 
-    def prepare_external(self, external_id, external_entry) -> Mapping[str, Any]:
+    def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
         """Prepare Prefix Commons data to be added to the Prefix Commons for each BioPortal registry entry."""
         formatter = external_entry['formatter'].strip()
         return {

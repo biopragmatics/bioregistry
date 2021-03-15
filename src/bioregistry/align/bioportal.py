@@ -2,7 +2,7 @@
 
 """Align the BioPortal with the Bioregistry."""
 
-from typing import Any, Mapping, Sequence
+from typing import Any, Dict, Sequence
 
 from bioregistry.align.utils import Aligner
 from bioregistry.external import get_bioportal
@@ -20,7 +20,7 @@ class BioPortalAligner(Aligner):
     getter_kwargs = {'mappify': True, 'force_download': True}
     curation_header = ('name',)
 
-    def prepare_external(self, external_id, external_entry) -> Mapping[str, Any]:
+    def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
         """Prepare BioPortal data to be added to the Bioregistry for each BioPortal registry entry."""
         return {
             'name': external_entry['name'].strip(),
