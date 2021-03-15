@@ -15,9 +15,9 @@ import click
 from bioregistry import get_email, get_example, get_format, get_pattern, get_version, read_bioregistry
 from bioregistry.constants import DOCS_IMG
 from bioregistry.external import (
-    get_biolink, get_bioportal, get_go, get_miriam, get_n2t, get_obofoundry, get_ols, get_wikidata_registry,
+    get_biolink, get_bioportal, get_go, get_miriam, get_n2t, get_obofoundry, get_ols, get_prefix_commons,
+    get_wikidata_registry,
 )
-from bioregistry.external.prefix_commons import get_prefix_commons
 
 bioregistry = read_bioregistry()
 
