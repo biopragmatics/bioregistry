@@ -17,7 +17,7 @@ NCBI_URL_PARTS = urlsplit(URL)
 DATA_TABLE_CAPTION_RE = re.compile(r'db_xref List')
 
 MISSING = {
-    'EnsemblGenomes-Gn'
+    'EnsemblGenomes-Gn',
 }
 REWRITES = {
     'JGI Phytozome': 'Phytozome',
