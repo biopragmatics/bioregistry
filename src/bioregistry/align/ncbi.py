@@ -2,7 +2,7 @@
 
 """Align NCBI with the Bioregistry."""
 
-from typing import Any, Dict, List, Mapping
+from typing import List
 
 from bioregistry.align.utils import Aligner
 from bioregistry.external.ncbi import get_ncbi
