@@ -3,7 +3,7 @@
 """Align the GO with the Bioregistry."""
 
 import json
-from typing import Any, Mapping
+from typing import Any, Dict, Mapping
 
 from bioregistry.align.utils import Aligner
 from bioregistry.constants import DATA_DIRECTORY
@@ -30,7 +30,7 @@ class GoAligner(Aligner):
             j = json.load(file)
         return j['skip']
 
-    def prepare_external(self, external_id, external_entry) -> Mapping[str, Any]:
+    def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
         """Prepare GO data to be added to the bioregistry for each GO registry entry."""
         rv = {
             'name': external_entry['name'],
