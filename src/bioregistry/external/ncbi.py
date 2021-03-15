@@ -65,11 +65,15 @@ def get_ncbi() -> Dict[str, Dict[str, str]]:
 
         examples = cells[4].text.strip()
         # only bother with the first line of examples
-        example = examples.split()[0]
-        if example:
+        example = examples.split('\n')[0].strip()
+        if example and ':' in example:
             # example text is like `/db_xref="FOO BAR"`
-            example = example.split('=', 1)[1].strip('"')
-            if not example.startswith(f'{prefix}:'):
+            example = example.split('=', 1)[1].strip('"').strip()
+            if (
+                not example.replace(' ', '')
+                .lower()
+                .startswith(f'{prefix}:'.replace(' ', '').lower())
+            ):
                 raise ValueError(f'example does not start with prefix {prefix} -> {example}')
             item['example'] = example
 
