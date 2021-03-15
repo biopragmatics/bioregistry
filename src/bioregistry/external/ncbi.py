@@ -2,6 +2,7 @@
 
 """Download registry information from NCBI."""
 
+import json
 import re
 from typing import Dict
 from urllib.parse import urlsplit, urlunsplit
@@ -9,17 +10,46 @@ from urllib.parse import urlsplit, urlunsplit
 import click
 from bs4 import BeautifulSoup
 
-from ..constants import BIOREGISTRY_MODULE
+from bioregistry.constants import BIOREGISTRY_MODULE
 
 URL = 'https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/'
 NCBI_URL_PARTS = urlsplit(URL)
 DATA_TABLE_CAPTION_RE = re.compile(r'db_xref List')
 
+MISSING = {
+    'EnsemblGenomes-Gn'
+}
+REWRITES = {
+    'JGI Phytozome': 'Phytozome',
+    'UniProtKB/Swiss-Prot': 'UniProt',
+}
+XREF_PREFIX = [
+    '/db_xref="',  # standard
+    'db_xref="',  # ERIC
+    '/dbxref="',  # PDB
+    '/db_xref=',  # Xenbase
+]
+REDUNDANT = {
+    'ATCC(dna)': 'ATCC',
+    'ATCC(in host)': 'ATCC',
+    'UniProtKB/TrEMBL': 'UniProt',
+    'LocusID': 'GeneID',  # As of March 2005
+}
+OBSOLETE = {
+    'ERIC',  # should be at http://www.ericbrc.org/portal/eric/, but gone.
+    'PBmice',  # website down
+}
 
-def get_ncbi() -> Dict[str, Dict[str, str]]:
+
+def get_ncbi(force: bool = False) -> Dict[str, Dict[str, str]]:
     """Get the NCBI data."""
-    path = BIOREGISTRY_MODULE.ensure(url=URL, name='ncbi.html')
-    with open(path) as f:
+    parsed_path = BIOREGISTRY_MODULE.get('ncbi.json')
+    if parsed_path.exists() and not force:
+        with parsed_path.open() as file:
+            return json.load(file)
+
+    source_path = BIOREGISTRY_MODULE.ensure(url=URL, name='ncbi.html', force=force)
+    with open(source_path) as f:
         soup = BeautifulSoup(f, 'html.parser')
     # find the data table based on its caption element
     data_table = soup.find('caption', string=DATA_TABLE_CAPTION_RE).parent
@@ -31,8 +61,14 @@ def get_ncbi() -> Dict[str, Dict[str, str]]:
             continue
 
         prefix = cells[0].text.strip()
+        prefix = REWRITES.get(prefix, prefix)
+
+        if prefix in REDUNDANT:
+            print('skipping', prefix)
+            continue
+
         name = cells[2].text.strip()
-        if not (prefix and name):
+        if not (prefix and name):  # blank line
             continue
 
         item = {'name': name}
@@ -63,21 +99,34 @@ def get_ncbi() -> Dict[str, Dict[str, str]]:
                 else:  # absolute links can pass through unchanged
                     item['homepage'] = link_href
 
-        examples = cells[4].text.strip()
-        # only bother with the first line of examples
-        example = examples.split('\n')[0].strip()
-        if example and ':' in example:
-            # example text is like `/db_xref="FOO BAR"`
-            example = example.split('=', 1)[1].strip('"').strip()
-            if (
-                not example.replace(' ', '')
-                .lower()
-                .startswith(f'{prefix}:'.replace(' ', '').lower())
-            ):
-                raise ValueError(f'example does not start with prefix {prefix} -> {example}')
-            item['example'] = example
+        if prefix not in MISSING:
+            examples = cells[4].text.strip()
+            # only bother with the first line of examples
+            example = examples.split('\n')[0].strip()
+
+            for xref_prefix in XREF_PREFIX:
+                if example.startswith(xref_prefix):
+                    stripped_example = example[len(xref_prefix):].rstrip('"').lstrip()
+                    break
+            else:
+                raise ValueError(f'[{prefix}] wrong xref prefix: {example}')
+
+            if ':' not in stripped_example:
+                raise ValueError(f'[{prefix}] not formatted as CURIE: {example}')
+
+            if not stripped_example.lower().startswith(prefix.lower()):
+                raise ValueError(f'[{prefix}] invalid prefix: {example}')
+
+            parsed_prefix, identifier = [x.strip() for x in stripped_example.split(':', 1)]
+            if prefix.casefold() != REWRITES.get(parsed_prefix, parsed_prefix).casefold():
+                raise ValueError(f'example does not start with prefix {prefix} -> {identifier} from {example}')
+
+            item['example'] = identifier
 
         rv[prefix] = item
+
+    with parsed_path.open('w') as file:
+        json.dump(rv, file, indent=2)
 
     return rv
 
@@ -85,7 +134,7 @@ def get_ncbi() -> Dict[str, Dict[str, str]]:
 @click.command()
 def main():
     """Reload NCBI data."""
-    get_ncbi()
+    get_ncbi(force=True)
 
 
 if __name__ == '__main__':
