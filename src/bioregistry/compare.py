@@ -165,7 +165,11 @@ def compare():  # noqa:C901
     ncols = 2
     nrows = (1 + len(measurements)) // 2
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows)
-    for (label, prefixes), ax in zip(measurements, axes.ravel()):
+    for measurement, ax in itt.zip_longest(measurements, axes.ravel()):
+        if measurement is None:
+            ax.axis('off')
+            continue
+        label, prefixes = measurement
         ax.pie(
             (len(prefixes), len(bioregistry) - len(prefixes)),
             labels=('Yes', 'No'),
@@ -174,8 +178,6 @@ def compare():  # noqa:C901
             explode=[0.1, 0],
         )
         ax.set_title(f'Has {label}')
-    if len(measurements) % 2:
-        axes.ravel()[-1].axis('off')
     if watermark:
         fig.text(
             0.5, 0, WATERMARK_TEXT,
@@ -223,7 +225,11 @@ def compare():  # noqa:C901
     nrows = int(math.ceil(len(keys) / ncols))
     figsize = (3.25 * ncols, 2.0 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
-    for (key, label, color, prefixes), ax in zip(keys, axes.ravel()):
+    for key, ax in itt.zip_longest(keys, axes.ravel()):
+        if key is None:
+            ax.axis('off')
+            continue
+        key, label, color, prefixes = key
         # Remap bioregistry prefixes to match the external
         #  vocabulary, when possible
         bioregistry_remapped = {
@@ -236,8 +242,6 @@ def compare():  # noqa:C901
             set_colors=('grey', color),
             ax=ax,
         )
-    for i in range(len(keys) % ncols):
-        axes.ravel()[-1 - i].axis('off')
     if watermark:
         fig.text(
             0.5, 0, WATERMARK_TEXT,
@@ -260,7 +264,11 @@ def compare():  # noqa:C901
     nrows = int(math.ceil(len(pairs) / ncols))
     figsize = (3 * ncols, 2.5 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
-    for ((l_key, l_label, l_color, l_prefixes), (r_key, r_label, r_color, r_prefixes)), ax in zip(pairs, axes.ravel()):
+    for pair, ax in itt.zip_longest(pairs, axes.ravel()):
+        if pair is None:
+            ax.axis('off')
+            continue
+        (l_key, l_label, l_color, l_prefixes), (r_key, r_label, r_color, r_prefixes) = pair
         # Remap external vocabularies to bioregistry
         #  prefixes, when possible
         l_prefixes = _remap(key=l_key, prefixes=l_prefixes)
@@ -271,8 +279,6 @@ def compare():  # noqa:C901
             set_colors=(l_color, r_color),
             ax=ax,
         )
-    # if len(pairs) % 2:
-    #    axes.ravel()[-1].axis('off')
     if watermark:
         fig.text(
             0.5, 0, WATERMARK_TEXT,  # transform=plt.gca().transAxes,
