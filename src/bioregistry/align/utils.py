@@ -69,12 +69,11 @@ class Aligner(ABC):
                 self.internal_registry[bioregistry_id][self.key] = _entry
                 self.external_id_to_bioregistry_id[external_id] = bioregistry_id
 
-    @abstractmethod
     def prepare_external(self, external_id, external_entry) -> Mapping[str, Any]:
         """Prepare a dictionary to be added to the bioregistry for each external registry entry.
 
-        The default implementation returns `external_entry` unchanged. Call it with super() in
-        the derived class.
+        The default implementation returns `external_entry` unchanged.
+        If you need more than that, override this method.
 
         :param external_id: The external registry identifier
         :param external_entry: The external registry data
