@@ -2,6 +2,7 @@
 
 """Align NCBI with the Bioregistry."""
 
+import textwrap
 from typing import List
 
 from bioregistry.align.utils import Aligner
@@ -20,11 +21,10 @@ class NcbiAligner(Aligner):
     def get_curation_row(self, external_id, external_entry) -> List[str]:
         """Return the relevant fields from an NCBI entry for pretty-printing."""
         return [
-            external_entry['name'],
+            textwrap.shorten(external_entry['name'], 50),
             external_entry.get('homepage'),
-            external_entry.get('example'),
         ]
 
 
 if __name__ == '__main__':
-    NcbiAligner.align()
+    NcbiAligner.align(dry=True)
