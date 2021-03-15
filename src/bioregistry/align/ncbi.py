@@ -22,6 +22,7 @@ class NcbiAligner(Aligner):
         """Return the relevant fields from an NCBI entry for pretty-printing."""
         return [
             textwrap.shorten(external_entry['name'], 50),
+            external_entry.get('example'),
             external_entry.get('homepage'),
         ]
 
