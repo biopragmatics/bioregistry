@@ -100,6 +100,11 @@ def validate(prefix: str, identifier: str) -> Optional[bool]:
     pattern = get_pattern_re(prefix)
     if pattern is None:
         return None
+
+    if namespace_in_lui(prefix) and not identifier.startswith(f'{prefix.upper()}:'):
+        # Some cases do not use uppercase
+        identifier = f'{prefix.upper()}:{identifier}'
+
     return bool(pattern.match(identifier))
 
 
