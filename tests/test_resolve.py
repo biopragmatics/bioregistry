@@ -4,6 +4,8 @@
 
 import unittest
 
+import requests
+
 import bioregistry
 
 
@@ -65,7 +67,6 @@ class TestResolve(unittest.TestCase):
             with self.subTest(prefix=prefix, identifier=identifier):
                 self.assertFalse(bioregistry.validate(prefix, identifier))
 
-    @unittest.skip
     def test_lui(self):
         """Test the LUI makes sense (spoilers, they don't).
 
@@ -76,9 +77,33 @@ class TestResolve(unittest.TestCase):
         for prefix in bioregistry.read_bioregistry():
             if not bioregistry.namespace_in_lui(prefix):
                 continue
+            if bioregistry.get_banana(prefix):
+                continue  # rewrite rules are applied to prefixes with bananas
+            if prefix in {'ark', 'obi'}:
+                continue  # these patterns on identifiers.org are garb
             with self.subTest(prefix=prefix):
                 re_pattern = bioregistry.get_pattern(prefix)
+                miriam_prefix = bioregistry.get_identifiers_org_prefix(prefix)
                 self.assertTrue(
-                    re_pattern.startswith(f'^{prefix.upper()}') or re_pattern.startswith(prefix.upper()),
+                    re_pattern.startswith(f'^{miriam_prefix.upper()}') or re_pattern.startswith(miriam_prefix.upper()),
                     msg=f'{prefix} pattern: {re_pattern}',
                 )
+
+    def test_banana(self):
+        """Test that entries curated with a new banana are resolved properly."""
+        for prefix, entry in bioregistry.read_bioregistry().items():
+            banana = entry.get('banana')
+            if banana is None:
+                continue
+            if prefix in {'gramene.growthstage', 'oma.hog'}:
+                continue  # identifiers.org is broken for these prefixes
+            with self.subTest(
+                prefix=prefix,
+                banana=banana,
+                pattern=bioregistry.get_pattern(prefix),
+            ):
+                identifier = bioregistry.get_example(prefix)
+                self.assertIsNotNone(identifier)
+                url = bioregistry.resolve_identifier.get_identifiers_org_url(prefix, identifier)
+                res = requests.get(url)
+                self.assertEqual(200, res.status_code, msg=f'failed with URL: {url}')

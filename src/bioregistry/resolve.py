@@ -16,7 +16,6 @@ __all__ = [
     'get_pattern',
     'get_pattern_re',
     'namespace_in_lui',
-    'validate',
     'get_format',
     'get_example',
     'is_deprecated',
@@ -95,17 +94,34 @@ def namespace_in_lui(prefix: str) -> Optional[bool]:
     return entry.get('miriam', {}).get('namespaceEmbeddedInLui')
 
 
-def validate(prefix: str, identifier: str) -> Optional[bool]:
-    """Validate the identifier against the prefix's pattern, if it exists."""
-    pattern = get_pattern_re(prefix)
-    if pattern is None:
+def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
+    """Get the identifiers.org prefix if available."""
+    return _get_mapped_prefix(prefix, 'miriam')
+
+
+def get_obofoundry_prefix(prefix: str) -> Optional[str]:
+    """Get the OBO Foundry prefix if available."""
+    return _get_mapped_prefix(prefix, 'obofoundry')
+
+
+def get_ols_prefix(prefix: str) -> Optional[str]:
+    """Get the OLS prefix if available."""
+    return _get_mapped_prefix(prefix, 'ols')
+
+
+def _get_mapped_prefix(prefix: str, external: str) -> Optional[str]:
+    entry = get(prefix)
+    if entry is None:
         return None
+    return entry.get(external, {}).get('prefix')
 
-    if namespace_in_lui(prefix) and not identifier.startswith(f'{prefix.upper()}:'):
-        # Some cases do not use uppercase
-        identifier = f'{prefix.upper()}:{identifier}'
 
-    return bool(pattern.match(identifier))
+def get_banana(prefix: str) -> Optional[str]:
+    """Get the optional redundant prefix to go before an identifier."""
+    entry = get(prefix)
+    if entry is None:
+        return None
+    return entry.get('banana')
 
 
 def get_format(prefix: str) -> Optional[str]:
@@ -116,10 +132,12 @@ def get_format(prefix: str) -> Optional[str]:
     url = entry.get('url')
     if url is not None:
         return url
-    miriam_id = entry.get('miriam', {}).get('prefix')
+    miriam_id = get_identifiers_org_prefix(prefix)
     if miriam_id is not None:
         if namespace_in_lui(prefix):
-            miriam_id = miriam_id.upper()  # not exact solution, some less common ones don't use capitalization
+            # not exact solution, some less common ones don't use capitalization
+            # align with the banana solution
+            miriam_id = miriam_id.upper()
         return f'https://identifiers.org/{miriam_id}:$1'
     ols_id = entry.get('ols', {}).get('prefix')
     if ols_id is not None:

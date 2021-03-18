@@ -53,14 +53,13 @@ def _get_identifier(prefix, identifier):
         return abort(404, f'invalid prefix: {prefix}')
     if not bioregistry.validate(prefix, identifier):
         return abort(404, f'invalid identifier: {prefix}:{identifier} for pattern {bioregistry.get_pattern(prefix)}')
-    formatter = bioregistry.get_format(prefix)
-    if formatter is None:
-        return abort(404, f'missing resolution for {prefix}')
+    providers = bioregistry.get_providers(prefix, identifier)
+    if not providers:
+        return abort(404, f'no providers available for {prefix}:{identifier}')
 
-    url = formatter.replace('$1', identifier)
     return dict(
         query=dict(prefix=prefix, identifier=identifier),
-        url=url,
+        providers=providers,
     )
 
 
