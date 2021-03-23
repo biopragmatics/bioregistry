@@ -20,6 +20,9 @@ difficult to know exactly how many relevant properties there are.
 
 <img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/bioregistry_coverage.svg" alt="Bioregistry Coverage"/>
 
+Additional external registries that have been queued for alignment can be listed via the
+[GitHub issue tracker](https://github.com/cthoyt/bioregistry/issues? q=is%3Aissue+is%3Aopen+label%3A%22External+Registry%22).
+
 ### How Complete is the Bioregistry?
 
 While many of the resources reported above are finite, Wikidata is a bit more difficult. Because it is a general-purpose
