@@ -1340,7 +1340,9 @@
     "name": "Biological Expression Language",
     "synonyms": [
       "SCOMP",
-      "SFAM"
+      "SFAM",
+      "SDIS",
+      "SCHEM"
     ]
   },
   "bfo": {
@@ -2798,6 +2800,9 @@
       "is_obo": false,
       "prefix": "CELLOSAURUS"
     },
+    "synonyms": [
+      "CVCL"
+    ],
     "wikidata": {
       "property": "P3289"
     }
@@ -4373,7 +4378,8 @@
       "prefix": "cryoem",
       "version": "2021-03-09",
       "version.iri": "http://scipion.i2pc.es/ontology/cryoem/releases/2021-03-09/cryoem.owl"
-    }
+    },
+    "ols_version_date_format": "%Y-%m-%d"
   },
   "cryptodb": {
     "miriam": {
@@ -9861,6 +9867,14 @@
       "property": "P2057"
     }
   },
+  "hms.lincs.compound": {
+    "example": "10001-101",
+    "name": "HMS LINCS Compound",
+    "synonyms": [
+      "HMS-LINCS"
+    ],
+    "url": "https://lincs.hms.harvard.edu/db/sm/$1"
+  },
   "hog": {
     "download": "ftp://ftp.bgee.org/general/ontologies/HOG.obo",
     "example": "0000255",
@@ -12315,6 +12329,10 @@
       "prefix": "LRG"
     }
   },
+  "lspci": {
+    "homepage": "https://labsyspharm.shinyapps.io/smallmoleculesuite/",
+    "name": "Laboratory of Systems Pharmacology Compound ID"
+  },
   "ma": {
     "bioportal": {
       "name": "Mouse Adult Gross Anatomy Ontology",
@@ -13702,7 +13720,10 @@
     "wikidata": {
       "database": "Q6826947",
       "property": "P2871"
-    }
+    },
+    "synonyms": [
+      "MIRBASEM"
+    ]
   },
   "mirex": {
     "miriam": {
@@ -15451,6 +15472,15 @@
       "database": "Q6983890"
     }
   },
+  "nextprot.family": {
+    "example": "01406",
+    "name": "neXtProt family",
+    "pattern": "^\\d+$",
+    "synonyms": [
+      "NXPFA"
+    ],
+    "url": "https://www.nextprot.org/term/FA-$1"
+  },
   "ngl": {
     "miriam": {
       "deprecated": false,
@@ -16980,7 +17010,8 @@
       "prefix": "orth",
       "version": "This ontology is the second version of the orthology ontology first published in 2015 and available at http://purl.bioontology.org/ontology/ORTH .\n@authors T.M. de Farias, H. Chiba, J.T. Fernandez-Breis, E. Antezana, D. Kuznetsov, C. Dessimoz and F. Villiers.",
       "version.iri": "http://purl.org/net/orth/2.0"
-    }
+    },
+    "ols_version_type": "garbage"
   },
   "orthodb": {
     "miriam": {
@@ -19733,7 +19764,7 @@
     },
     "synonyms": [
       "REFSEQ_PROT"
-    ],
+    ]
   },
   "repeatsdb.protein": {
     "miriam": {
@@ -20180,7 +20211,10 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "RNACENTRAL"
-    }
+    },
+    "synonyms": [
+      "LNCRNADB"
+    ]
   },
   "rnamod": {
     "example": "051",
@@ -23136,6 +23170,16 @@
       "UniProtKB-KW"
     ],
     "url": "https://www.uniprot.org/keywords/$1"
+  },
+  "uniprot.location": {
+    "example": "0002",
+    "homepage": "https://www.uniprot.org/locations/",
+    "name": "UniProt Subcellular Locations",
+    "pattern": "^\\d+$",
+    "synonyms": [
+      "UPLOC"
+    ],
+    "url": "https://www.uniprot.org/locations/SL-$1"
   },
   "uniprot.var": {
     "example": "VAR_068078",

@@ -121,7 +121,7 @@ class TestDuplicates(unittest.TestCase):
                 version_date_fmt = bioregistry_entry.get('ols_version_date_format')
                 self.assertTrue(
                     version_type is not None or version_date_fmt is not None,
-                    msg='missing either a version type or date format string',
+                    msg=f'missing either a ``ols_version_type`` or ``ols_version_date_format`` for date: {version}',
                 )
 
                 if version_date_fmt:
