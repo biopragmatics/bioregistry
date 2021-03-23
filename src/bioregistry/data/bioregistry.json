@@ -394,6 +394,12 @@
     "n2t": {
       "prefix": "antweb"
     },
+    "ncbi": {
+      "example": "CASENT0058943-D01",
+      "homepage": "http://www.antweb.org",
+      "name": "Ant Database",
+      "prefix": "AntWeb"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/antweb/$1",
       "is_identifiers": true,
@@ -633,6 +639,12 @@
   "araport": {
     "homepage": "https://www.araport.org/",
     "name": "Arabidopsis Information Portal",
+    "ncbi": {
+      "example": "AT1G01010",
+      "homepage": "https://www.araport.org/",
+      "name": "Arabidopsis Information Portal",
+      "prefix": "Araport"
+    },
     "url": "https://www.arabidopsis.org/servlets/TairObject?type=locus&name=$1"
   },
   "ardb": {
@@ -811,6 +823,12 @@
     "n2t": {
       "prefix": "asap"
     },
+    "ncbi": {
+      "example": "ABE-0000006",
+      "homepage": "https://asap.genetics.wisc.edu/asap/logon.php",
+      "name": "A Systematic Annotation Package for Community Analysis of Genomes",
+      "prefix": "ASAP"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/asap/$1",
       "is_identifiers": true,
@@ -962,6 +980,12 @@
       "prefix": "atcc"
     },
     "name": "American Type Culture Collection",
+    "ncbi": {
+      "example": "123456",
+      "homepage": "http://www.atcc.org/",
+      "name": "American Type Culture Collection database",
+      "prefix": "ATCC"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/atcc/$1",
       "is_identifiers": true,
@@ -1214,6 +1238,12 @@
     "n2t": {
       "prefix": "bdgp.est"
     },
+    "ncbi": {
+      "example": "123456",
+      "homepage": "http://www.fruitfly.org/EST/index.shtml",
+      "name": "Berkeley Drosophila Genome Project EST database",
+      "prefix": "BDGP_EST"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/bdgp.est/$1",
       "is_identifiers": true,
@@ -1270,6 +1300,12 @@
     },
     "n2t": {
       "prefix": "beetlebase"
+    },
+    "ncbi": {
+      "example": "TC030551",
+      "homepage": "http://www.beetlebase.org/",
+      "name": "Tribolium Genome Database -- Insertion",
+      "prefix": "BEETLEBASE"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/beetlebase/$1",
@@ -2040,14 +2076,17 @@
     "n2t": {
       "prefix": "bold.taxonomy"
     },
+    "ncbi": {
+      "example": "EPAF263",
+      "homepage": "http://www.barcodinglife.com",
+      "name": "Barcode of Life database",
+      "prefix": "BOLD"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/bold.taxonomy/$1",
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "BOLD.TAXONOMY"
-    },
-    "ncbi": {
-      "prefix": "BOLD"
     }
   },
   "bpdb": {
@@ -2274,6 +2313,11 @@
     },
     "n2t": {
       "prefix": "cabri"
+    },
+    "ncbi": {
+      "example": "ACC 424",
+      "name": "Common Access to Biological Resources and Information Project",
+      "prefix": "CABRI"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/cabri/$1",
@@ -2655,6 +2699,12 @@
     "n2t": {
       "prefix": "cdd"
     },
+    "ncbi": {
+      "example": "02194",
+      "homepage": "https://www.ncbi.nlm.nih.gov/Structure/cdd/cdd.shtml",
+      "name": "Conserved Domain Database",
+      "prefix": "CDD"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/cdd/$1",
       "is_identifiers": true,
@@ -2809,6 +2859,12 @@
     "n2t": {
       "prefix": "cgd"
     },
+    "ncbi": {
+      "example": "CAL0005934",
+      "homepage": "http://www.candidagenome.org/",
+      "name": "Candida Genome Database",
+      "prefix": "CGD"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/cgd/$1",
       "is_identifiers": true,
@@ -2914,8 +2970,7 @@
       "download": "http://purl.obolibrary.org/obo/chebi.owl",
       "name": "Chemical Entities of Biological Interest",
       "prefix": "chebi",
-      "version": "01-01-2020",
-      "version.iri": "http://purl.obolibrary.org/obo/chebi/196/chebi.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/chebi/197/chebi.owl"
     },
     "ols_version_date_format": "%d-%m-%Y",
     "prefixcommons": {
@@ -2939,6 +2994,23 @@
       "webpage": "https://www.ebi.ac.uk/chebi"
     }
   },
+  "chembl": {
+    "miriam": {
+      "deprecated": false,
+      "description": "ChEMBL is a database of bioactive compounds, their quantitative properties and bioactivities (binding constants, pharmacology and ADMET, etc). The data is abstracted and curated from the primary scientific literature.",
+      "id": "00000799",
+      "name": "ChEMBL",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^CHEMBL\\d+$",
+      "prefix": "chembl",
+      "sampleId": "CHEMBL4303805"
+    },
+    "synonyms": [
+      "chembl",
+      "ChEMBL",
+      "ChEMBL_ID"
+    ]
+  },
   "chembl.compound": {
     "example": "CHEMBL465070",
     "miriam": {
@@ -2961,11 +3033,6 @@
       "is_obo": false,
       "prefix": "CHEMBL.COMPOUND"
     },
-    "synonyms": [
-      "chembl",
-      "ChEMBL",
-      "ChEMBL_ID"
-    ],
     "wikidata": {
       "database": "Q6120337",
       "database.label": "ChEMBL",
@@ -3064,7 +3131,7 @@
       "download": "http://purl.obolibrary.org/obo/cheminf.owl",
       "name": "chemical information ontology (cheminf) - information entities about chemical entities",
       "prefix": "cheminf",
-      "version": "1.9.3"
+      "version": "2.0"
     },
     "ols_version_type": "semver",
     "prefixcommons": {
@@ -3209,7 +3276,7 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "CIDO: Ontology of Coronavirus Infectious Disease",
       "prefix": "cido",
-      "version": "1.0.184"
+      "version": "1.0.187"
     },
     "ols_version_type": "semver"
   },
@@ -3297,8 +3364,8 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "Cell Ontology",
       "prefix": "cl",
-      "version": "2021-02-01",
-      "version.iri": "http://purl.obolibrary.org/obo/cl/releases/2021-02-01/cl.owl"
+      "version": "2021-03-05",
+      "version.iri": "http://purl.obolibrary.org/obo/cl/releases/2021-03-05/cl.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "prefixcommons": {
@@ -3971,7 +4038,7 @@
       "license": "https://creativecommons.org/publicdomain/zero/1.0/",
       "name": "Core Ontology for Biology and Biomedicine",
       "prefix": "cob",
-      "version": "2020-09-02",
+      "version": "2021-02-21",
       "version.iri": "http://purl.obolibrary.org/obo/cob/2020-04-15/cob.owl"
     },
     "ols_version_date_format": "%Y-%m-%d"
@@ -4296,6 +4363,18 @@
       "prefix": "CRO"
     }
   },
+  "cryoem": {
+    "ols": {
+      "contact": "isanchez@cnb.csic.es",
+      "description": "Ontology that describes data types and image processing operations in Cryo Electron Microscopy of Single Particles",
+      "download": "http://scipion.i2pc.es/ontology/cryoem.owl",
+      "license": "https://creativecommons.org/licenses/by/3.0/",
+      "name": "Cryo Electron Microscopy ontology",
+      "prefix": "cryoem",
+      "version": "2021-03-09",
+      "version.iri": "http://scipion.i2pc.es/ontology/cryoem/releases/2021-03-09/cryoem.owl"
+    }
+  },
   "cryptodb": {
     "miriam": {
       "deprecated": false,
@@ -4348,6 +4427,10 @@
     ]
   },
   "cst": {
+    "bioportal": {
+      "name": "Cancer Staging Terms",
+      "prefix": "CST"
+    },
     "miriam": {
       "deprecated": false,
       "description": "Cell Signaling Technology is a commercial organisation which provides a pathway portal to showcase their phospho-antibody products. This collection references pathways.",
@@ -4758,6 +4841,12 @@
     "n2t": {
       "prefix": "dbest"
     },
+    "ncbi": {
+      "example": "123456",
+      "homepage": "https://www.ncbi.nlm.nih.gov/genbank/dbest",
+      "name": "EST database maintained at the NCBI.",
+      "prefix": "dbEST"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/dbest/$1",
       "is_identifiers": true,
@@ -4821,6 +4910,12 @@
     "n2t": {
       "prefix": "dbprobe"
     },
+    "ncbi": {
+      "example": "38",
+      "homepage": "https://www.ncbi.nlm.nih.gov/sites/entrez?db=probe",
+      "name": "NCBI Probe database Public registry of nucleic acid reagents",
+      "prefix": "dbProbe"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/dbprobe/$1",
       "is_identifiers": true,
@@ -4847,6 +4942,12 @@
     },
     "n2t": {
       "prefix": "dbsnp"
+    },
+    "ncbi": {
+      "example": "4647",
+      "homepage": "https://www.ncbi.nlm.nih.gov/snp",
+      "name": "Variation database maintained at the NCBI.",
+      "prefix": "dbSNP"
     },
     "prefixcommons": {
       "formatter": "http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=$1",
@@ -5085,6 +5186,12 @@
       ]
     },
     "name": "dictyBase",
+    "ncbi": {
+      "example": "DDB0191090",
+      "homepage": "http://dictybase.org/",
+      "name": "Dictyostelium genome database",
+      "prefix": "dictyBase"
+    },
     "prefixcommons": {
       "formatter": "http://dictybase.org/gene/$1",
       "is_identifiers": false,
@@ -5460,8 +5567,8 @@
       "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "Drosophila Phenotype Ontology (DPO)",
       "prefix": "dpo",
-      "version": "2021-01-14",
-      "version.iri": "http://purl.obolibrary.org/obo/dpo/releases/2021-01-14/dpo.owl"
+      "version": "2021-03-11",
+      "version.iri": "http://purl.obolibrary.org/obo/dpo/releases/2021-03-11/dpo.owl"
     },
     "ols_version_date_format": "%Y-%m-%d"
   },
@@ -5814,6 +5921,16 @@
       "property": "P591"
     }
   },
+  "ecg": {
+    "bioportal": {
+      "name": "Electrocardiography Ontology",
+      "prefix": "ECG"
+    },
+    "name": "Electrocardiogram Ontology",
+    "synonyms": [
+      "ECGOntology"
+    ]
+  },
   "echobase": {
     "go": {
       "formatter": "https://www.york.ac.uk/res/thomas/Gene.cfm?&recordID=$1",
@@ -5893,8 +6010,8 @@
       "license": "https://creativecommons.org/publicdomain/zero/1.0/",
       "name": "Evidence & Conclusion Ontology (ECO)",
       "prefix": "eco",
-      "version": "2021-02-08",
-      "version.iri": "http://purl.obolibrary.org/obo/eco/releases/2021-02-08/eco.owl"
+      "version": "2021-03-05",
+      "version.iri": "http://purl.obolibrary.org/obo/eco/releases/2021-03-05/eco.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "prefixcommons": {
@@ -5949,6 +6066,12 @@
       ]
     },
     "name": "EcoCyc",
+    "ncbi": {
+      "example": "sroC",
+      "homepage": "https://ecocyc.org/",
+      "name": "E. coli database",
+      "prefix": "ECOCYC"
+    },
     "url": "https://biocyc.org/gene?id=$1"
   },
   "ecogene": {
@@ -5964,6 +6087,12 @@
     },
     "n2t": {
       "prefix": "ecogene"
+    },
+    "ncbi": {
+      "example": "EG11277",
+      "homepage": "http://ecogene.org",
+      "name": "Database of Escherichia coli Sequence and Function",
+      "prefix": "EcoGene"
     },
     "prefixcommons": {
       "formatter": "http://ecogene.org/gene/$1",
@@ -6142,6 +6271,12 @@
     }
   },
   "efo": {
+    "biolink": {
+      "formatter": "http://www.ebi.ac.uk/efo/EFO_$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "EFO"
+    },
     "bioportal": {
       "name": "Experimental Factor Ontology",
       "prefix": "EFO"
@@ -6171,8 +6306,8 @@
       "license": "www.apache.org/licenses/LICENSE-2.0",
       "name": "Experimental Factor Ontology",
       "prefix": "efo",
-      "version": "3.27.0",
-      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.27.0/efo.owl"
+      "version": "3.28.0",
+      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.28.0/efo.owl"
     },
     "ols_version_type": "semver",
     "prefixcommons": {
@@ -6342,6 +6477,8 @@
     }
   },
   "emapa": {
+    "_download": "ftp://ftp.hgu.mrc.ac.uk/pub/MouseAtlas/Anatomy/EMAP_combined.obo",
+    "_download_comment": "New download link? probabl not right",
     "bioportal": {
       "name": "Mouse gross anatomy and development, timed",
       "prefix": "EMAPA"
@@ -6491,6 +6628,12 @@
     "n2t": {
       "prefix": "ensembl"
     },
+    "ncbi": {
+      "example": "HUMAN-Clone-AC005612",
+      "homepage": "http://useast.ensembl.org/index.html",
+      "name": "Database of automatically annotated genomic data",
+      "prefix": "ENSEMBL"
+    },
     "prefixcommons": {
       "formatter": "http://ensembl.org/id/$1",
       "is_identifiers": false,
@@ -6633,8 +6776,8 @@
       "download": "https://raw.githubusercontent.com/Ensembl/ensembl-glossary/master/ensembl-glossary.owl",
       "name": "Ensembl Glossary",
       "prefix": "ensemblglossary",
-      "version": "2021-02-15",
-      "version.iri": "http://ensembl.org/glossary/ensembl-glossary/releases/2021-02-15/ensembl-glossary.owl"
+      "version": "2021-03-16",
+      "version.iri": "http://ensembl.org/glossary/ensembl-glossary/releases/2021-03-16/ensembl-glossary.owl"
     },
     "ols_version_date_format": "%Y-%m-%d"
   },
@@ -6729,6 +6872,12 @@
     },
     "n2t": {
       "prefix": "epd"
+    },
+    "ncbi": {
+      "example": "EP00576",
+      "homepage": "http://epd.vital-it.ch/",
+      "name": "Eukaryotic Promoter Database",
+      "prefix": "EPD"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/epd/$1",
@@ -7145,8 +7294,8 @@
       "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "Drosophila Anatomy Ontology (DAO)",
       "prefix": "fbbt",
-      "version": "2021-01-14",
-      "version.iri": "http://purl.obolibrary.org/obo/fbbt/releases/2021-01-14/fbbt.owl"
+      "version": "2021-03-11",
+      "version.iri": "http://purl.obolibrary.org/obo/fbbt/releases/2021-03-11/fbbt.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{8}$",
@@ -7184,8 +7333,8 @@
       "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "FlyBase Controlled Vocabulary (FBcv)",
       "prefix": "fbcv",
-      "version": "2021-01-14",
-      "version.iri": "http://purl.obolibrary.org/obo/fbcv/releases/2021-01-14/fbcv.owl"
+      "version": "2021-03-11",
+      "version.iri": "http://purl.obolibrary.org/obo/fbcv/releases/2021-03-11/fbcv.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
@@ -7221,8 +7370,8 @@
       "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "FlyBase Developmental Ontology (FBdv)",
       "prefix": "fbdv",
-      "version": "2021-01-13",
-      "version.iri": "http://purl.obolibrary.org/obo/fbdv/releases/2021-01-13/fbdv.owl"
+      "version": "2021-03-10",
+      "version.iri": "http://purl.obolibrary.org/obo/fbdv/releases/2021-03-10/fbdv.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{8}$",
@@ -7249,6 +7398,12 @@
     },
     "n2t": {
       "prefix": "fbol"
+    },
+    "ncbi": {
+      "example": "2224",
+      "homepage": "http://www.fungalbarcoding.org/",
+      "name": "International Fungal Working Group Fungal Barcoding.",
+      "prefix": "FBOL"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/fbol/$1",
@@ -7387,6 +7542,12 @@
       "pattern": "^FB\\w{2}\\d{7}$",
       "prefix": "fb",
       "sampleId": "FBgn0011293"
+    },
+    "ncbi": {
+      "example": "FBgn0000024",
+      "homepage": "http://www.flybase.org/",
+      "name": "Database of Genetic and molecular data of Drosophila.",
+      "prefix": "FLYBASE"
     },
     "prefixcommons": {
       "formatter": "http://flybase.org/reports/$1",
@@ -7560,8 +7721,8 @@
       "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "Food Ontology",
       "prefix": "foodon",
-      "version": "2021-02-03",
-      "version.iri": "http://purl.obolibrary.org/obo/foodon/releases/2021-02-03/foodon.owl"
+      "version": "2021-03-11",
+      "version.iri": "http://purl.obolibrary.org/obo/foodon/releases/2021-03-11/foodon.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "prefixcommons": {
@@ -7589,10 +7750,11 @@
     "ols": {
       "description": "None",
       "download": "http://purl.obolibrary.org/obo/fovt.owl",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/",
       "name": "FuTRES Ontology of Vertebrate Traits",
       "prefix": "fovt",
-      "version": "2020-06-08",
-      "version.iri": "http://purl.obolibrary.org/obo/fovt/releases/2020-06-08/fovt.owl"
+      "version": "2021-03-03",
+      "version.iri": "http://purl.obolibrary.org/obo/fovt/releases/2021-03-03/fovt.owl"
     },
     "ols_version_date_format": "%Y-%m-%d"
   },
@@ -7785,8 +7947,8 @@
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "name": "Fission Yeast Phenotype Ontology (FYPO)",
       "prefix": "fypo",
-      "version": "2021-02-23",
-      "version.iri": "http://purl.obolibrary.org/obo/fypo/releases/2021-02-23/fypo.owl"
+      "version": "2021-03-16",
+      "version.iri": "http://purl.obolibrary.org/obo/fypo/releases/2021-03-16/fypo.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
@@ -7831,6 +7993,12 @@
     },
     "n2t": {
       "prefix": "gabi"
+    },
+    "ncbi": {
+      "example": "HA05J18",
+      "homepage": "http://www.gabipd.org/information/about.shtml",
+      "name": "Network of Different Plant Genomic Research Projects",
+      "prefix": "GABI"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/gabi/$1",
@@ -8058,6 +8226,12 @@
     },
     "n2t": {
       "prefix": "genedb"
+    },
+    "ncbi": {
+      "example": "SPCC285.16c",
+      "homepage": "http://www.genedb.org/",
+      "name": "Curated gene database for Leishmania major and Trypanosoma brucei",
+      "prefix": "GeneDB"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/genedb/$1",
@@ -8571,8 +8745,8 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "Glycan Naming Ontology",
       "prefix": "gno",
-      "version": "V1.6.3",
-      "version.iri": "http://purl.obolibrary.org/obo/gno/2020-10-13/gno.owl"
+      "version": "V1.7.0",
+      "version.iri": "http://purl.obolibrary.org/obo/gno/2021-03-05/gno.owl"
     },
     "ols_version_prefix": "V",
     "ols_version_type": "semver",
@@ -8623,6 +8797,12 @@
     },
     "n2t": {
       "prefix": "go"
+    },
+    "ncbi": {
+      "example": "123",
+      "homepage": "http://amigo.geneontology.org/",
+      "name": "Gene Ontology Database identifier",
+      "prefix": "GO"
     },
     "obofoundry": {
       "contact": "suzia@stanford.edu",
@@ -8711,6 +8891,12 @@
     },
     "n2t": {
       "prefix": "goa"
+    },
+    "ncbi": {
+      "example": "P01100",
+      "homepage": "http://www.ebi.ac.uk/GOA/",
+      "name": "Gene Ontology Annotation Database Identifier",
+      "prefix": "GOA"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/goa/$1",
@@ -9011,6 +9197,12 @@
     "n2t": {
       "prefix": "greengenes"
     },
+    "ncbi": {
+      "example": "269185",
+      "homepage": "http://greengenes.lbl.gov/",
+      "name": "16S rRNA gene database",
+      "prefix": "Greengenes"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/greengenes/$1",
       "is_identifiers": true,
@@ -9061,6 +9253,12 @@
     },
     "n2t": {
       "prefix": "grin.taxonomy"
+    },
+    "ncbi": {
+      "example": "1005973",
+      "homepage": "http://www.ars-grin.gov/",
+      "name": "Germplasm Resources Information Network",
+      "prefix": "GRIN"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/grin.taxonomy/$1",
@@ -9374,8 +9572,8 @@
       "download": "http://purl.obolibrary.org/obo/hao.owl",
       "name": "Hymenoptera Anatomy Ontology",
       "prefix": "hao",
-      "version": "2018-04-26",
-      "version.iri": "http://purl.obolibrary.org/obo/hao/2018-04-26/hao.owl"
+      "version": "2021-03-05",
+      "version.iri": "http://purl.obolibrary.org/obo/hao/2021-03-05/hao.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
@@ -9496,6 +9694,12 @@
     },
     "n2t": {
       "prefix": "hgnc"
+    },
+    "ncbi": {
+      "example": "HGNC:2041",
+      "homepage": "http://www.genenames.org/cgi-bin/search",
+      "name": "Human Gene Nomenclature Database",
+      "prefix": "HGNC"
     },
     "prefixcommons": {
       "formatter": "http://www.genenames.org/cgi-bin/gene_symbol_report?hgnc_id=$1",
@@ -9834,8 +10038,8 @@
       "license": "license",
       "name": "Human Phenotype Ontology",
       "prefix": "hp",
-      "version": "2021-02-08",
-      "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2021-02-08/hp.owl"
+      "version": "2021-02-28",
+      "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2021-02-28/hp.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "prefixcommons": {
@@ -10048,6 +10252,11 @@
     },
     "n2t": {
       "prefix": "hssp"
+    },
+    "ncbi": {
+      "example": "12GS",
+      "name": "Database of homology-derived secondary structure of proteins",
+      "prefix": "HSSP"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/hssp/$1",
@@ -10501,6 +10710,18 @@
       "sampleId": "0001"
     }
   },
+  "igsn": {
+    "miriam": {
+      "deprecated": false,
+      "description": "IGSN is a globally unique and persistent identifier for material samples and specimens.  IGSNs are obtained from IGSN e.V. Agents.",
+      "id": "00000806",
+      "name": "International Geo Sample Number",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[A-Za-z]{2,4}[A-Za-z0-9.-]{1,71}$",
+      "prefix": "igsn",
+      "sampleId": "AU124"
+    }
+  },
   "imdrf": {
     "homepage": "http://www.imdrf.org/",
     "name": "International Medical Device Regulators Forum",
@@ -10590,6 +10811,12 @@
     "n2t": {
       "prefix": "imgt.hla"
     },
+    "ncbi": {
+      "example": "HLA00031",
+      "homepage": "http://www.ebi.ac.uk/imgt/hla/",
+      "name": "Immunogenetics database, human MHC",
+      "prefix": "IMGT/HLA"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/imgt.hla/$1",
       "is_identifiers": true,
@@ -10615,6 +10842,12 @@
     },
     "n2t": {
       "prefix": "imgt.ligm"
+    },
+    "ncbi": {
+      "example": "U03895",
+      "homepage": "http://www.imgt.org/IMGTinformation/LIGM.html",
+      "name": "Immunogenetics database, immunoglobulins and T-cell receptors",
+      "prefix": "IMGT/LIGM"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/imgt.ligm/$1",
@@ -10684,6 +10917,12 @@
     }
   },
   "ino": {
+    "biolink": {
+      "formatter": "http://purl.obolibrary.org/obo/INO_$1",
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "INO"
+    },
     "bioportal": {
       "name": "Interaction Network Ontology",
       "prefix": "INO"
@@ -10836,6 +11075,15 @@
       "prefix": "INTACT.MOLECULE"
     }
   },
+  "interlex": {
+    "name": "InterLex",
+    "references": [
+      "https://github.com/AllenInstitute/nomenclature"
+    ],
+    "synonyms": [
+      "ILX"
+    ]
+  },
   "interpro": {
     "biolink": {
       "formatter": "https://www.ebi.ac.uk/interpro/entry/$1",
@@ -10866,6 +11114,12 @@
     },
     "n2t": {
       "prefix": "interpro"
+    },
+    "ncbi": {
+      "example": "IPR002928",
+      "homepage": "http://www.ebi.ac.uk/interpro/",
+      "name": "InterPro protein sequence database",
+      "prefix": "InterPro"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/interpro/$1",
@@ -10981,6 +11235,12 @@
     "n2t": {
       "prefix": "isfinder"
     },
+    "ncbi": {
+      "example": "ISA1083-2",
+      "homepage": "http://www-is.biotoul.fr/",
+      "name": "Insertion sequence elements database",
+      "prefix": "ISFinder"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/isfinder/$1",
       "is_identifiers": true,
@@ -11048,6 +11308,22 @@
     "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=$1",
     "wikidata": {
       "property": "P815"
+    }
+  },
+  "ito": {
+    "bioportal": {
+      "name": "Intelligence Task Ontology",
+      "prefix": "ITO"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "The Intelligence Task Ontology (ITO) provides a comprehensive map of machine intelligence tasks, as well as broader human intelligence or hybrid human/machine intelligence tasks.",
+      "id": "00000802",
+      "name": "Intelligence Task Ontology",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^.+$",
+      "prefix": "ito",
+      "sampleId": "ITO_01625"
     }
   },
   "iuphar.family": {
@@ -11208,6 +11484,12 @@
     },
     "n2t": {
       "prefix": "jcm"
+    },
+    "ncbi": {
+      "example": "1339",
+      "homepage": "http://www.jcm.riken.go.jp/",
+      "name": "Japan Collection of Microorganisms",
+      "prefix": "JCM"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/jcm/$1",
@@ -12397,6 +12679,12 @@
     "n2t": {
       "prefix": "medgen"
     },
+    "ncbi": {
+      "example": "C0010674",
+      "homepage": "https://www.ncbi.nlm.nih.gov/medgen",
+      "name": "Human Medical Genetics",
+      "prefix": "MedGen"
+    },
     "prefixcommons": {
       "formatter": "http://www.ncbi.nlm.nih.gov/medgen/$1",
       "is_identifiers": false,
@@ -12884,8 +13172,8 @@
       "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "Emotion Ontology",
       "prefix": "mfoem",
-      "version": "2020-05-13",
-      "version.iri": "http://purl.obolibrary.org/obo/MFOEM/2020-05-13/MFOEM.owl"
+      "version": "2021-03-09",
+      "version.iri": "http://purl.obolibrary.org/obo/MFOEM/2021-03-09/MFOEM.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "prefixcommons": {
@@ -12961,6 +13249,12 @@
       "prefix": "mgi"
     },
     "namespace.capitalized": true,
+    "ncbi": {
+      "example": "MGI:1894891",
+      "homepage": "http://www.informatics.jax.org/",
+      "name": "Mouse Genome Informatics",
+      "prefix": "MGI"
+    },
     "prefixcommons": {
       "formatter": "http://www.informatics.jax.org/accession/MGI:$1",
       "is_identifiers": false,
@@ -13199,6 +13493,12 @@
     "n2t": {
       "prefix": "mim"
     },
+    "ncbi": {
+      "example": "123456",
+      "homepage": "https://www.ncbi.nlm.nih.gov/omim",
+      "name": "Mendelian Inheritance in Man numbers",
+      "prefix": "MIM"
+    },
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/OMIM_$1",
       "is_identifiers": false,
@@ -13347,6 +13647,12 @@
     },
     "n2t": {
       "prefix": "mirbase"
+    },
+    "ncbi": {
+      "example": "MI0000681",
+      "homepage": "http://www.mirbase.org/",
+      "name": "miRNA Database",
+      "prefix": "miRBase"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/mirbase/$1",
@@ -13935,8 +14241,8 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "Mondo Disease Ontology",
       "prefix": "mondo",
-      "version": "2021-01-29",
-      "version.iri": "http://purl.obolibrary.org/obo/mondo/releases/2021-01-29/mondo.owl"
+      "version": "2021-03-03",
+      "version.iri": "http://purl.obolibrary.org/obo/mondo/releases/2021-03-03/mondo.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
@@ -14149,8 +14455,8 @@
       "license": "http://creativecommons.org/licenses/by/3.0/",
       "name": "MHC Restriction Ontology",
       "prefix": "mro",
-      "version": "2021-01-25",
-      "version.iri": "http://purl.obolibrary.org/obo/mro/2021-01-25/mro.owl"
+      "version": "2021-03-09",
+      "version.iri": "http://purl.obolibrary.org/obo/mro/2021-03-09/mro.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "prefixcommons": {
@@ -14435,6 +14741,12 @@
     "n2t": {
       "prefix": "mycobank"
     },
+    "ncbi": {
+      "example": "8284",
+      "homepage": "http://www.mycobank.org",
+      "name": "Fungal Nomenclature and Species Bank",
+      "prefix": "MycoBank"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/mycobank/$1",
       "is_identifiers": true,
@@ -14624,6 +14936,12 @@
     "n2t": {
       "prefix": "nbrc"
     },
+    "ncbi": {
+      "example": "3189",
+      "homepage": "http://www.nbrc.nite.go.jp/e/catalog-e.html",
+      "name": "NITE Biological Resource Center",
+      "prefix": "NBRC"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/nbrc/$1",
       "is_identifiers": true,
@@ -14662,14 +14980,17 @@
     "n2t": {
       "prefix": "ncbigene"
     },
+    "ncbi": {
+      "example": "3054987",
+      "homepage": "https://www.ncbi.nlm.nih.gov/gene",
+      "name": "Entrez Gene Database (replaces NCBI Locus Link)",
+      "prefix": "GeneID"
+    },
     "prefixcommons": {
       "formatter": "http://www.ncbi.nlm.nih.gov/gene/$1",
       "is_identifiers": false,
       "is_obo": false,
       "prefix": "NCBIGene"
-    },
-    "ncbi": {
-      "prefix": "GeneID"
     },
     "synonyms": [
       "entrez",
@@ -14739,11 +15060,14 @@
       "prefix": "taxonomy",
       "sampleId": "9606"
     },
-    "ncbi": {
-      "prefix": "taxon"
-    },
     "n2t": {
       "prefix": "taxonomy"
+    },
+    "ncbi": {
+      "example": "4932",
+      "homepage": "https://www.ncbi.nlm.nih.gov/taxonomy",
+      "name": "NCBI's taxonomic identifier",
+      "prefix": "taxon"
     },
     "obofoundry": {
       "contact": "frederic.bastian@unil.ch",
@@ -15087,6 +15411,12 @@
     "n2t": {
       "prefix": "nextdb"
     },
+    "ncbi": {
+      "example": "CELK01662",
+      "homepage": "http://nematode.lab.nig.ac.jp/",
+      "name": "Nematode Expression Pattern DataBase",
+      "prefix": "NextDB"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/nextdb/$1",
       "is_identifiers": true,
@@ -15155,6 +15485,12 @@
     },
     "n2t": {
       "prefix": "niaest"
+    },
+    "ncbi": {
+      "example": "L0304H12-3",
+      "homepage": "http://esbank.nia.nih.gov/",
+      "name": "NIA Mouse cDNA Project",
+      "prefix": "niaEST"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/niaest/$1",
@@ -15403,7 +15739,7 @@
       "license": "http://creativecommons.org/licenses/by/3.0/",
       "name": "OAE: Ontology of Adverse Events",
       "prefix": "oae",
-      "version": "1.2.37"
+      "version": "1.2.38"
     },
     "ols_version_type": "semver",
     "prefixcommons": {
@@ -15674,6 +16010,18 @@
       "pattern": "^[A-Za-z0-9]+$",
       "prefix": "odam",
       "sampleId": "frim1"
+    }
+  },
+  "odc.sci": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The Open Data Commons for Spinal Cord Injury is a cloud-based community-driven repository to store, share, and publish spinal cord injury research data.",
+      "id": "00000804",
+      "name": "Open Data Commons for Spinal Cord Injury",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[0-9]*$",
+      "prefix": "odc.sci",
+      "sampleId": "602"
     }
   },
   "odor": {
@@ -15958,7 +16306,7 @@
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "name": "Ontology of units of Measure (OM)",
       "prefix": "om",
-      "version": "2.0.29"
+      "version": "2.0.30"
     },
     "ols_version_type": "semver"
   },
@@ -15996,8 +16344,8 @@
       "prefix": "oma.hog",
       "sampleId": "HOG:0459895"
     },
-    "url": "https://omabrowser.org/oma/hog/HOG:$1",
-    "namespace.rewrite": "HOG"
+    "namespace.rewrite": "HOG",
+    "url": "https://omabrowser.org/oma/hog/HOG:$1"
   },
   "oma.protein": {
     "miriam": {
@@ -16169,8 +16517,8 @@
       "download": "http://purl.obolibrary.org/obo/omp.owl",
       "name": "Ontology of Microbial Phenotypes",
       "prefix": "omp",
-      "version": "2021-02-05",
-      "version.iri": "http://purl.obolibrary.org/obo/omp/releases/2021-02-05/omp.owl"
+      "version": "2021-03-05",
+      "version.iri": "http://purl.obolibrary.org/obo/omp/releases/2021-03-05/omp.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
@@ -16623,6 +16971,16 @@
     "synonyms": [
       "ordo"
     ]
+  },
+  "orth": {
+    "ols": {
+      "description": "The need of a common ontology for describing orthology information in biological research communities has led to the creation of the Orthology Ontology (ORTH). ORTH ontology is designed to describe sequence homology data available in multiple orthology databases on the Web (e.g.: OMA, OrthoDB, HieranoiDB, and etc.). By sequence homology data, we mostly mean gene region, gene and protein centric orthology, paralogy, and xenology information. Depending on the database, the homology information is structured in different ways. ORTH ontology accommodates these disparate data structures namely Hierarchical Orthologous Group (HOG), cluster of homologous sequences and homologous-pairwise relations between sequences. In addition to the specific ORTH terms, this specification includes terms of the imported ontologies (e.g. Semanticscience Integrated Ontology, SIO) which are pertinents to represent the information from various orthology databases in a homogeneous way.",
+      "download": "http://purl.org/net/orth",
+      "name": "Orthology Ontology",
+      "prefix": "orth",
+      "version": "This ontology is the second version of the orthology ontology first published in 2015 and available at http://purl.bioontology.org/ontology/ORTH .\n@authors T.M. de Farias, H. Chiba, J.T. Fernandez-Breis, E. Antezana, D. Kuznetsov, C. Dessimoz and F. Villiers.",
+      "version.iri": "http://purl.org/net/orth/2.0"
+    }
   },
   "orthodb": {
     "miriam": {
@@ -17169,6 +17527,12 @@
     "n2t": {
       "prefix": "pdb"
     },
+    "ncbi": {
+      "example": "12GS",
+      "homepage": "http://www.rcsb.org/pdb/",
+      "name": "Biological macromolecule three dimensional structure database",
+      "prefix": "PDB"
+    },
     "prefixcommons": {
       "formatter": "http://www.ebi.ac.uk/pdbsum/$1",
       "is_identifiers": false,
@@ -17469,6 +17833,12 @@
     "n2t": {
       "prefix": "pfam"
     },
+    "ncbi": {
+      "example": "PF00003",
+      "homepage": "http://pfam.xfam.org/",
+      "name": "Collection of protein families",
+      "prefix": "PFAM"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/pfam/$1",
       "is_identifiers": true,
@@ -17687,8 +18057,8 @@
       "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "Pathogen Host Interactions Phenotype Ontology",
       "prefix": "phipo",
-      "version": "2021-02-25",
-      "version.iri": "http://purl.obolibrary.org/obo/phipo/releases/2021-02-25/phipo.owl"
+      "version": "2021-03-11",
+      "version.iri": "http://purl.obolibrary.org/obo/phipo/releases/2021-03-11/phipo.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$"
@@ -17813,6 +18183,9 @@
       "prefix": "phytozome.locus"
     },
     "ncbi": {
+      "example": "Glyma0021s00410",
+      "homepage": "http://phytozome.jgi.doe.gov/pz/portal.html",
+      "name": "Plant Genome Network",
       "prefix": "Phytozome"
     },
     "prefixcommons": {
@@ -18063,6 +18436,12 @@
     },
     "n2t": {
       "prefix": "plasmodb"
+    },
+    "ncbi": {
+      "example": "PF11_0344",
+      "homepage": "http://www.plasmodb.org/plasmo/home.jsp",
+      "name": "Plasmodium Genome Resources",
+      "prefix": "ApiDB_PlasmoDB"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/plasmodb/$1",
@@ -18319,6 +18698,12 @@
     "n2t": {
       "prefix": "pombase"
     },
+    "ncbi": {
+      "example": "SPBC11B10.09",
+      "homepage": "http://www.pombase.org/",
+      "name": "Database of Structural and Functional Data for Schizosaccaromyces pombe",
+      "prefix": "PomBase"
+    },
     "prefixcommons": {
       "formatter": "https://www.pombase.org/spombe/result/$1",
       "is_identifiers": false,
@@ -18449,7 +18834,6 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "PRotein Ontology (PRO)",
       "prefix": "pr",
-      "version": "02-10-2019",
       "version.iri": "http://purl.obolibrary.org/obo/pr/62.0/pr.owl"
     },
     "ols_version_date_format": "%d-%m-%Y",
@@ -18486,8 +18870,7 @@
       "description": "The PRIDE PRoteomics IDEntifications (PRIDE) database is a centralized, standards compliant, public data repository for proteomics data, including protein and peptide identifications, post-translational modifications and supporting spectral evidence.",
       "download": "https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.obo",
       "name": "PRIDE Controlled Vocabulary",
-      "prefix": "pride",
-      "version": "05-11-2019"
+      "prefix": "pride"
     },
     "ols_version_date_format": "%d-%m-%Y",
     "prefixcommons": {
@@ -18906,6 +19289,12 @@
     },
     "ols_version_date_format": "%Y-%m-%d"
   },
+  "pspub": {
+    "name": "Phenoscape Publication",
+    "references": [
+      "https://wiki.phenoscape.org/wiki/Curation_workflow"
+    ]
+  },
   "pubchem.bioassay": {
     "go": {
       "formatter": "https://pubchem.ncbi.nlm.nih.gov/bioassay/$1",
@@ -19234,6 +19623,11 @@
     },
     "ols_version_date_format": "%Y-%m-%d"
   },
+  "rdo": {
+    "_download": "http://ratmine.mcw.edu/ontology/disease/RDO.obo",
+    "_download_comment": "Problem with security certificate",
+    "name": "RGD Disease_Ontology"
+  },
   "reactome": {
     "example": "R-BTA-418592",
     "go": {
@@ -19490,6 +19884,12 @@
     "n2t": {
       "prefix": "rfam"
     },
+    "ncbi": {
+      "example": "RF00230",
+      "homepage": "http://www.sanger.ac.uk/Software/Rfam/",
+      "name": "RNA families database of alignments and CMs",
+      "prefix": "RFAM"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/rfam/$1",
       "is_identifiers": true,
@@ -19523,11 +19923,14 @@
       "prefix": "rgd",
       "sampleId": "2018"
     },
-    "ncbi": {
-      "prefix": "RATMAP"
-    },
     "n2t": {
       "prefix": "rgd"
+    },
+    "ncbi": {
+      "example": "620528",
+      "homepage": "http://rgd.mcw.edu/rgdweb/search/search.html",
+      "name": "Rat Genome Database",
+      "prefix": "RGD"
     },
     "prefixcommons": {
       "formatter": "http://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1",
@@ -19763,6 +20166,12 @@
     "n2t": {
       "prefix": "rnacentral"
     },
+    "ncbi": {
+      "example": "URS00001B9622_9606",
+      "homepage": "http://rnacentral.org",
+      "name": "Noncoding RNA Sequence Database",
+      "prefix": "RNAcentral"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/rnacentral/$1",
       "is_identifiers": true,
@@ -19884,8 +20293,8 @@
       "license": "https://creativecommons.org/publicdomain/zero/1.0/",
       "name": "OBO Relations Ontology",
       "prefix": "ro",
-      "version": "2020-12-18",
-      "version.iri": "http://purl.obolibrary.org/obo/ro/releases/2020-12-18/ro.owl"
+      "version": "2021-03-08",
+      "version.iri": "http://purl.obolibrary.org/obo/ro/releases/2021-03-08/ro.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "prefixcommons": {
@@ -19975,6 +20384,18 @@
       "is_identifiers": false,
       "is_obo": true,
       "prefix": "RS"
+    }
+  },
+  "runbiosimulations": {
+    "miriam": {
+      "deprecated": false,
+      "description": "runBioSimulations is a platform for sharing simulation experiments and their results. runBioSimulations enables investigators to use a wide range of simulation tools to execute a wide range of simulations. runBioSimulations permanently saves the results of these simulations, and investigators can share results by sharing URLs similar to sharing URLs for files with DropBox and Google Drive.",
+      "id": "00000897",
+      "name": "runBioSimulations",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "[0-9a-z]{24,24}",
+      "prefix": "runbiosimulations",
+      "sampleId": "5fde96bdc5f1aa9ff0cce18a"
     }
   },
   "rxno": {
@@ -20222,7 +20643,7 @@
       "download": "http://purl.obolibrary.org/obo/sbo.owl",
       "name": "Systems Biology Ontology",
       "prefix": "sbo",
-      "version": "20:10:2020 13:19"
+      "version": "05:03:2021 10:21"
     },
     "ols_version_date_format": "%d:%m:%Y %H:%M",
     "prefixcommons": {
@@ -20352,6 +20773,12 @@
     "n2t": {
       "prefix": "seed"
     },
+    "ncbi": {
+      "example": "fig|83331.1.peg.1",
+      "homepage": "http://www.theseed.org",
+      "name": "The SEED Database",
+      "prefix": "SEED"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/seed/$1",
       "is_identifiers": true,
@@ -20449,6 +20876,12 @@
     "n2t": {
       "prefix": "sgd"
     },
+    "ncbi": {
+      "example": "L0000470",
+      "homepage": "http://www.yeastgenome.org/",
+      "name": "Saccharomyces Genome Database",
+      "prefix": "SGD"
+    },
     "prefixcommons": {
       "formatter": "https://www.yeastgenome.org/locus/$1",
       "is_identifiers": false,
@@ -20502,6 +20935,12 @@
     },
     "n2t": {
       "prefix": "sgn"
+    },
+    "ncbi": {
+      "example": "E553090",
+      "homepage": "http://www.sgn.cornell.edu",
+      "name": "SOL Genomics Network",
+      "prefix": "SGN"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/sgn/$1",
@@ -20941,6 +21380,12 @@
     "n2t": {
       "prefix": "soybase"
     },
+    "ncbi": {
+      "example": "Satt005",
+      "homepage": "http://soybase.org",
+      "name": "Glycine max Genome Database",
+      "prefix": "SoyBase"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/soybase/$1",
       "is_identifiers": true,
@@ -21193,6 +21638,12 @@
     },
     "n2t": {
       "prefix": "subtilist"
+    },
+    "ncbi": {
+      "example": "BG10001",
+      "homepage": "http://genolist.pasteur.fr/SubtiList/",
+      "name": "Bacillus subtilis genome sequencing project",
+      "prefix": "SubtiList"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/subtilist/$1",
@@ -21518,6 +21969,12 @@
     "n2t": {
       "prefix": "tair.locus"
     },
+    "ncbi": {
+      "example": "AT1F51370",
+      "homepage": "http://www.arabidopsis.org/servlets/Search?type=gene&action=new_search",
+      "name": "Arabidopsis IR",
+      "prefix": "TAIR"
+    },
     "prefixcommons": {
       "formatter": "https://www.arabidopsis.org/servlets/TairObject?type=locus&id=$1",
       "is_identifiers": false,
@@ -21758,6 +22215,12 @@
     },
     "n2t": {
       "prefix": "tigrfam"
+    },
+    "ncbi": {
+      "example": "TIGR00094",
+      "homepage": "http://www.tigr.org/TIGRFAMs/index.shtml",
+      "name": "TIGR protein families",
+      "prefix": "TIGRFAM"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/tigrfam/$1",
@@ -22577,6 +23040,12 @@
     "n2t": {
       "prefix": "uniprot"
     },
+    "ncbi": {
+      "example": "P12345",
+      "homepage": "http://www.uniprot.org",
+      "name": "section of the UniProt Knowledgebase, containing annotated records, which include curator-evaluated computational analysis, as well as, information extracted from the literature",
+      "prefix": "UniProt"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/uniprot/$1",
       "is_identifiers": true,
@@ -22610,6 +23079,15 @@
       "prefix": "uniprot.chain",
       "sampleId": "PRO_0000016681"
     }
+  },
+  "uniprot.disease": {
+    "example": "04240",
+    "homepage": "https://www.uniprot.org/diseases/",
+    "name": "UniProt Diseases",
+    "synonyms": [
+      "DI"
+    ],
+    "url": "https://www.uniprot.org/diseases/DI-$1"
   },
   "uniprot.isoform": {
     "miriam": {
@@ -22672,6 +23150,11 @@
     "n2t": {
       "prefix": "unists"
     },
+    "ncbi": {
+      "example": "486599",
+      "name": "Database of Sequence Tagged Sites",
+      "prefix": "UniSTS"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/unists/$1",
       "is_identifiers": true,
@@ -22692,6 +23175,12 @@
     },
     "n2t": {
       "prefix": "unite"
+    },
+    "ncbi": {
+      "example": "UDB000157",
+      "homepage": "http://unite.ut.ee/index.php",
+      "name": "Molecular database for the identification of fungi",
+      "prefix": "UNITE"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/unite/$1",
@@ -22947,6 +23436,12 @@
     "n2t": {
       "prefix": "vbase2"
     },
+    "ncbi": {
+      "example": "humIGKV165",
+      "homepage": "http://www.vbase2.org/",
+      "name": "Integrative database of germ-line V genes from the immunoglobulin loci of human and mouse",
+      "prefix": "VBASE2"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/vbase2/$1",
       "is_identifiers": true,
@@ -22988,6 +23483,12 @@
     },
     "n2t": {
       "prefix": "vectorbase"
+    },
+    "ncbi": {
+      "example": "ENSANGG00000007825",
+      "homepage": "http://www.vectorbase.org/index.php",
+      "name": "Bioinformatics Resource Center for Invertebrate Vectors of Human Pathogens",
+      "prefix": "VectorBase"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/vectorbase/$1",
@@ -23083,6 +23584,12 @@
       "pattern": "^((VGNC|vgnc):)?\\d{1,9}$",
       "prefix": "vgnc",
       "sampleId": "VGNC:3792"
+    },
+    "ncbi": {
+      "example": "VGNC:4927",
+      "homepage": "http://vertebrate.genenames.org/data/gene-symbol-report/#!/",
+      "name": "Vertebrate Gene Nomenclature Committee",
+      "prefix": "VGNC"
     }
   },
   "vhog": {
@@ -23153,6 +23660,12 @@
     },
     "n2t": {
       "prefix": "vipr"
+    },
+    "ncbi": {
+      "example": "HRV-A34_p1058_sR263_2008",
+      "homepage": "http://www.viprbrc.org/brc/home.do?decorator=vipr",
+      "name": "Virus Pathogen Resource",
+      "prefix": "ViPR"
     },
     "prefixcommons": {
       "formatter": "http://identifiers.org/vipr/$1",
@@ -23580,8 +24093,8 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "C elegans Phenotype Ontology",
       "prefix": "wbphenotype",
-      "version": "2021-02-18",
-      "version.iri": "http://purl.obolibrary.org/obo/wbphenotype/releases/2021-02-18/wbphenotype.owl"
+      "version": "2021-03-10",
+      "version.iri": "http://purl.obolibrary.org/obo/wbphenotype/releases/2021-03-10/wbphenotype.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
@@ -23746,6 +24259,12 @@
     "n2t": {
       "prefix": "worfdb"
     },
+    "ncbi": {
+      "example": "pos-1",
+      "homepage": "http://worfdb.dfci.harvard.edu/",
+      "name": "C. elegans ORFeome cloning project",
+      "prefix": "WorfDB"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/worfdb/$1",
       "is_identifiers": true,
@@ -23763,6 +24282,12 @@
     },
     "homepage": "https://wormbase.org",
     "name": "WormBase",
+    "ncbi": {
+      "example": "R13H7",
+      "homepage": "http://www.wormbase.org/",
+      "name": "Caenorhabditis elegans Genome Database",
+      "prefix": "WormBase"
+    },
     "prefixcommons": {
       "formatter": "https://www.wormbase.org/get?name=$1",
       "is_identifiers": false,
@@ -23837,8 +24362,8 @@
       "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "Xenopus Anatomy Ontology",
       "prefix": "xao",
-      "version": "2020-06-26",
-      "version.iri": "http://purl.obolibrary.org/obo/xao/releases/2020-06-26/xao.owl"
+      "version": "2021-03-04",
+      "version.iri": "http://purl.obolibrary.org/obo/xao/releases/2021-03-04/xao.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d{7}$",
@@ -23902,6 +24427,12 @@
     },
     "n2t": {
       "prefix": "xenbase"
+    },
+    "ncbi": {
+      "example": "XB-GENE-1019547",
+      "homepage": "http://www.xenbase.org/common/",
+      "name": "Xenopus laevis and tropicalis biology and genomics resource",
+      "prefix": "Xenbase"
     },
     "prefixcommons": {
       "formatter": "http://www.xenbase.org/gene/showgene.do?method=display&geneId=$1",
@@ -23968,10 +24499,11 @@
     "ols": {
       "description": "XPO represents anatomical, cellular, and gene function phenotypes occurring throughout the development of the African frogs Xenopus laevis and tropicalis.",
       "download": "http://purl.obolibrary.org/obo/xpo.owl",
+      "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "Xenopus Phenotype Ontology",
       "prefix": "xpo",
-      "version": "2020-07-04",
-      "version.iri": "http://purl.obolibrary.org/obo/xpo/releases/2020-07-04/xpo.owl"
+      "version": "2021-03-05",
+      "version.iri": "http://purl.obolibrary.org/obo/xpo/releases/2021-03-05/xpo.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d+$"
@@ -24199,6 +24731,12 @@
     },
     "n2t": {
       "prefix": "zfin"
+    },
+    "ncbi": {
+      "example": "ZDB-GENE-011205-17",
+      "homepage": "http://zfin.org",
+      "name": "Zebrafish Information Network",
+      "prefix": "ZFIN"
     },
     "prefixcommons": {
       "formatter": "http://zfin.org/$1",

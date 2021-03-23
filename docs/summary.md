@@ -36,6 +36,19 @@ the [External Registry](https://github.com/cthoyt/bioregistry/labels/External%20
 potential contributors towards small but meaningful first contributions. It is expected that all contributors will be
 listed as co-authors in the eventual manuscript describing this resource.
 
+### Why does the Bioregistry not completely cover some resources?
+
+While the Bioregistry has been completely aligned with the OBO Foundry, the OLS,
+MIRIAM, Wikidata, and Name-to-Thing, the coverage summaries show that it does not
+completely cover other resources. This is due to the lack of or low
+quality metadata associated with records in other resources. In many cases, there
+is not enough information to determine what the resource is, the resource has moved
+to a non-obvious new location, the resource has been superseded by another resource (e.g., 
+TrEMBL is not part of UniProt), or the resource has been decommissioned. In the case of the
+BioPortal, records are not automatically added to the Bioregistry because of the general
+poor quality of its ontologies that can not be automatically mapped to Bioregistry through
+other means.
+
 ## Overlap between External Registries
 
 After normalization and integration in the Bioregistry, it's possible to investigate the overlap between pairs of other

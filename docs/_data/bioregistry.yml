@@ -356,6 +356,11 @@
     sampleId: casent0106247
   n2t:
     prefix: antweb
+  ncbi:
+    example: CASENT0058943-D01
+    homepage: http://www.antweb.org
+    name: Ant Database
+    prefix: AntWeb
   prefix: antweb
   prefixcommons:
     formatter: http://identifiers.org/antweb/$1
@@ -572,6 +577,11 @@
     prefix: ARACHNOSERVER
 - homepage: https://www.araport.org/
   name: Arabidopsis Information Portal
+  ncbi:
+    example: AT1G01010
+    homepage: https://www.araport.org/
+    name: Arabidopsis Information Portal
+    prefix: Araport
   prefix: araport
   url: https://www.arabidopsis.org/servlets/TairObject?type=locus&name=$1
 - miriam:
@@ -737,6 +747,11 @@
     sampleId: ABE-0009634
   n2t:
     prefix: asap
+  ncbi:
+    example: ABE-0000006
+    homepage: https://asap.genetics.wisc.edu/asap/logon.php
+    name: A Systematic Annotation Package for Community Analysis of Genomes
+    prefix: ASAP
   prefix: asap
   prefixcommons:
     formatter: http://identifiers.org/asap/$1
@@ -890,6 +905,11 @@
   n2t:
     prefix: atcc
   name: American Type Culture Collection
+  ncbi:
+    example: '123456'
+    homepage: http://www.atcc.org/
+    name: American Type Culture Collection database
+    prefix: ATCC
   prefix: atcc
   prefixcommons:
     formatter: http://identifiers.org/atcc/$1
@@ -899,6 +919,8 @@
   synonyms:
   - ATCC number
   - ATCC
+  - ATCC(in host)
+  - ATCC(dna)
 - miriam:
     deprecated: false
     description: The ATCvet system for the classification of veterinary medicines
@@ -1163,6 +1185,11 @@
     sampleId: EY223054.1
   n2t:
     prefix: bdgp.est
+  ncbi:
+    example: '123456'
+    homepage: http://www.fruitfly.org/EST/index.shtml
+    name: Berkeley Drosophila Genome Project EST database
+    prefix: BDGP_EST
   prefix: bdgp.est
   prefixcommons:
     formatter: http://identifiers.org/bdgp.est/$1
@@ -1214,6 +1241,11 @@
     sampleId: TC010103
   n2t:
     prefix: beetlebase
+  ncbi:
+    example: TC030551
+    homepage: http://www.beetlebase.org/
+    name: Tribolium Genome Database -- Insertion
+    prefix: BEETLEBASE
   prefix: beetlebase
   prefixcommons:
     formatter: http://identifiers.org/beetlebase/$1
@@ -1935,6 +1967,11 @@
     sampleId: '27267'
   n2t:
     prefix: bold.taxonomy
+  ncbi:
+    example: EPAF263
+    homepage: http://www.barcodinglife.com
+    name: Barcode of Life database
+    prefix: BOLD
   prefix: bold.taxonomy
   prefixcommons:
     formatter: http://identifiers.org/bold.taxonomy/$1
@@ -2154,6 +2191,10 @@
     sampleId: dsmz_mutz-id:ACC 291
   n2t:
     prefix: cabri
+  ncbi:
+    example: ACC 424
+    name: Common Access to Biological Resources and Information Project
+    prefix: CABRI
   prefix: cabri
   prefixcommons:
     formatter: http://identifiers.org/cabri/$1
@@ -2524,6 +2565,11 @@
     sampleId: cd00400
   n2t:
     prefix: cdd
+  ncbi:
+    example: 02194
+    homepage: https://www.ncbi.nlm.nih.gov/Structure/cdd/cdd.shtml
+    name: Conserved Domain Database
+    prefix: CDD
   prefix: cdd
   prefixcommons:
     formatter: http://identifiers.org/cdd/$1
@@ -2547,6 +2593,7 @@
     prefix: cdno
     version: '2021-02-06'
     version.iri: http://purl.obolibrary.org/obo/cdno/releases/2021-02-06/cdno.owl
+  ols_version_date_format: '%Y-%m-%d'
   prefix: cdno
 - miriam:
     deprecated: false
@@ -2668,6 +2715,11 @@
     sampleId: CAL0003079
   n2t:
     prefix: cgd
+  ncbi:
+    example: CAL0005934
+    homepage: http://www.candidagenome.org/
+    name: Candida Genome Database
+    prefix: CGD
   prefix: cgd
   prefixcommons:
     formatter: http://identifiers.org/cgd/$1
@@ -2762,8 +2814,7 @@
     download: http://purl.obolibrary.org/obo/chebi.owl
     name: Chemical Entities of Biological Interest
     prefix: chebi
-    version: 01-01-2020
-    version.iri: http://purl.obolibrary.org/obo/chebi/196/chebi.owl
+    version.iri: http://purl.obolibrary.org/obo/chebi/197/chebi.owl
   ols_version_date_format: '%d-%m-%Y'
   prefix: chebi
   prefixcommons:
@@ -2783,6 +2834,22 @@
     property: P683
     property.label: ChEBI ID
     webpage: https://www.ebi.ac.uk/chebi
+- miriam:
+    deprecated: false
+    description: ChEMBL is a database of bioactive compounds, their quantitative properties
+      and bioactivities (binding constants, pharmacology and ADMET, etc). The data
+      is abstracted and curated from the primary scientific literature.
+    id: 00000799
+    name: ChEMBL
+    namespaceEmbeddedInLui: false
+    pattern: ^CHEMBL\d+$
+    prefix: chembl
+    sampleId: CHEMBL4303805
+  prefix: chembl
+  synonyms:
+  - chembl
+  - ChEMBL
+  - ChEMBL_ID
 - example: CHEMBL465070
   miriam:
     deprecated: false
@@ -2804,10 +2871,6 @@
     is_identifiers: true
     is_obo: false
     prefix: CHEMBL.COMPOUND
-  synonyms:
-  - chembl
-  - ChEMBL
-  - ChEMBL_ID
   wikidata:
     database: Q6120337
     database.label: ChEMBL
@@ -2898,7 +2961,7 @@
     name: chemical information ontology (cheminf) - information entities about chemical
       entities
     prefix: cheminf
-    version: 1.9.3
+    version: '2.0'
   ols_version_type: semver
   prefix: cheminf
   prefixcommons:
@@ -3040,7 +3103,7 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: 'CIDO: Ontology of Coronavirus Infectious Disease'
     prefix: cido
-    version: 1.0.184
+    version: 1.0.187
   ols_version_type: semver
   prefix: cido
 - bioportal:
@@ -3116,8 +3179,8 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: Cell Ontology
     prefix: cl
-    version: '2021-02-01'
-    version.iri: http://purl.obolibrary.org/obo/cl/releases/2021-02-01/cl.owl
+    version: '2021-03-05'
+    version.iri: http://purl.obolibrary.org/obo/cl/releases/2021-03-05/cl.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: cl
   prefixcommons:
@@ -3737,7 +3800,7 @@
     license: https://creativecommons.org/publicdomain/zero/1.0/
     name: Core Ontology for Biology and Biomedicine
     prefix: cob
-    version: '2020-09-02'
+    version: '2021-02-21'
     version.iri: http://purl.obolibrary.org/obo/cob/2020-04-15/cob.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: cob
@@ -4092,7 +4155,10 @@
   - CRISP Thesaurus, 2006
   - CRISP Thesaurus
   - CSP2005
-- miriam:
+- bioportal:
+    name: Cancer Staging Terms
+    prefix: CST
+  miriam:
     deprecated: false
     description: Cell Signaling Technology is a commercial organisation which provides
       a pathway portal to showcase their phospho-antibody products. This collection
@@ -4523,6 +4589,11 @@
     sampleId: BP100000
   n2t:
     prefix: dbest
+  ncbi:
+    example: '123456'
+    homepage: https://www.ncbi.nlm.nih.gov/genbank/dbest
+    name: EST database maintained at the NCBI.
+    prefix: dbEST
   prefix: dbest
   prefixcommons:
     formatter: http://identifiers.org/dbest/$1
@@ -4581,6 +4652,11 @@
     sampleId: '1000000'
   n2t:
     prefix: dbprobe
+  ncbi:
+    example: '38'
+    homepage: https://www.ncbi.nlm.nih.gov/sites/entrez?db=probe
+    name: NCBI Probe database Public registry of nucleic acid reagents
+    prefix: dbProbe
   prefix: dbprobe
   prefixcommons:
     formatter: http://identifiers.org/dbprobe/$1
@@ -4604,6 +4680,11 @@
     sampleId: rs121909098
   n2t:
     prefix: dbsnp
+  ncbi:
+    example: '4647'
+    homepage: https://www.ncbi.nlm.nih.gov/snp
+    name: Variation database maintained at the NCBI.
+    prefix: dbSNP
   prefix: dbsnp
   prefixcommons:
     formatter: http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=$1
@@ -4808,6 +4889,11 @@
     - DDB
     - DictyBase
   name: dictyBase
+  ncbi:
+    example: DDB0191090
+    homepage: http://dictybase.org/
+    name: Dictyostelium genome database
+    prefix: dictyBase
   prefix: dictybase
   prefixcommons:
     formatter: http://dictybase.org/gene/$1
@@ -4855,7 +4941,8 @@
     is_identifiers: true
     is_obo: false
     prefix: DICTYBASE.GENE
-- miriam:
+- banana: did
+  miriam:
     deprecated: false
     description: DIDs are an effort by the W3C Credentials Community Group and the
       wider Internet identity community to define identifiers that can be registered,
@@ -5148,8 +5235,8 @@
     license: https://creativecommons.org/licenses/by/3.0/
     name: Drosophila Phenotype Ontology (DPO)
     prefix: dpo
-    version: '2021-01-14'
-    version.iri: http://purl.obolibrary.org/obo/dpo/releases/2021-01-14/dpo.owl
+    version: '2021-03-11'
+    version.iri: http://purl.obolibrary.org/obo/dpo/releases/2021-03-11/dpo.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: dpo
 - miriam:
@@ -5459,6 +5546,13 @@
   - intenz
   wikidata:
     property: P591
+- bioportal:
+    name: Electrocardiography Ontology
+    prefix: ECG
+  name: Electrocardiogram Ontology
+  prefix: ecg
+  synonyms:
+  - ECGOntology
 - go:
     formatter: https://www.york.ac.uk/res/thomas/Gene.cfm?&recordID=$1
     homepage: https://www.york.ac.uk/res/thomas/
@@ -5532,8 +5626,8 @@
     license: https://creativecommons.org/publicdomain/zero/1.0/
     name: Evidence & Conclusion Ontology (ECO)
     prefix: eco
-    version: '2021-02-08'
-    version.iri: http://purl.obolibrary.org/obo/eco/releases/2021-02-08/eco.owl
+    version: '2021-03-05'
+    version.iri: http://purl.obolibrary.org/obo/eco/releases/2021-03-05/eco.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: eco
   prefixcommons:
@@ -5579,6 +5673,11 @@
     synonyms:
     - ECOCYC_REF
   name: EcoCyc
+  ncbi:
+    example: sroC
+    homepage: https://ecocyc.org/
+    name: E. coli database
+    prefix: ECOCYC
   prefix: ecocyc
   url: https://biocyc.org/gene?id=$1
 - miriam:
@@ -5594,6 +5693,11 @@
     sampleId: EG10173
   n2t:
     prefix: ecogene
+  ncbi:
+    example: EG11277
+    homepage: http://ecogene.org
+    name: Database of Escherichia coli Sequence and Function
+    prefix: EcoGene
   prefix: ecogene
   prefixcommons:
     formatter: http://ecogene.org/gene/$1
@@ -5782,7 +5886,12 @@
     is_identifiers: true
     is_obo: false
     prefix: EDAM
-- bioportal:
+- biolink:
+    formatter: http://www.ebi.ac.uk/efo/EFO_$1
+    is_identifiers: false
+    is_obo: false
+    prefix: EFO
+  bioportal:
     name: Experimental Factor Ontology
     prefix: EFO
   download: http://www.ebi.ac.uk/efo/efo.obo
@@ -5816,8 +5925,8 @@
     license: www.apache.org/licenses/LICENSE-2.0
     name: Experimental Factor Ontology
     prefix: efo
-    version: 3.27.0
-    version.iri: http://www.ebi.ac.uk/efo/releases/v3.27.0/efo.owl
+    version: 3.28.0
+    version.iri: http://www.ebi.ac.uk/efo/releases/v3.28.0/efo.owl
   ols_version_type: semver
   prefix: efo
   prefixcommons:
@@ -5973,7 +6082,9 @@
     is_identifiers: true
     is_obo: false
     prefix: ELM
-- bioportal:
+- _download: ftp://ftp.hgu.mrc.ac.uk/pub/MouseAtlas/Anatomy/EMAP_combined.obo
+  _download_comment: New download link? probabl not right
+  bioportal:
     name: Mouse gross anatomy and development, timed
     prefix: EMAPA
   example: '26753'
@@ -6114,6 +6225,11 @@
     sampleId: ENSG00000139618
   n2t:
     prefix: ensembl
+  ncbi:
+    example: HUMAN-Clone-AC005612
+    homepage: http://useast.ensembl.org/index.html
+    name: Database of automatically annotated genomic data
+    prefix: ENSEMBL
   prefix: ensembl
   prefixcommons:
     formatter: http://ensembl.org/id/$1
@@ -6246,8 +6362,8 @@
     download: https://raw.githubusercontent.com/Ensembl/ensembl-glossary/master/ensembl-glossary.owl
     name: Ensembl Glossary
     prefix: ensemblglossary
-    version: '2021-02-15'
-    version.iri: http://ensembl.org/glossary/ensembl-glossary/releases/2021-02-15/ensembl-glossary.owl
+    version: '2021-03-16'
+    version.iri: http://ensembl.org/glossary/ensembl-glossary/releases/2021-03-16/ensembl-glossary.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: ensemblglossary
 - miriam:
@@ -6343,6 +6459,11 @@
     sampleId: TA_H3
   n2t:
     prefix: epd
+  ncbi:
+    example: EP00576
+    homepage: http://epd.vital-it.ch/
+    name: Eukaryotic Promoter Database
+    prefix: EPD
   prefix: epd
   prefixcommons:
     formatter: http://identifiers.org/epd/$1
@@ -6743,8 +6864,8 @@
     license: https://creativecommons.org/licenses/by/3.0/
     name: Drosophila Anatomy Ontology (DAO)
     prefix: fbbt
-    version: '2021-01-14'
-    version.iri: http://purl.obolibrary.org/obo/fbbt/releases/2021-01-14/fbbt.owl
+    version: '2021-03-11'
+    version.iri: http://purl.obolibrary.org/obo/fbbt/releases/2021-03-11/fbbt.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{8}$
   prefix: fbbt
@@ -6777,8 +6898,8 @@
     license: https://creativecommons.org/licenses/by/3.0/
     name: FlyBase Controlled Vocabulary (FBcv)
     prefix: fbcv
-    version: '2021-01-14'
-    version.iri: http://purl.obolibrary.org/obo/fbcv/releases/2021-01-14/fbcv.owl
+    version: '2021-03-11'
+    version.iri: http://purl.obolibrary.org/obo/fbcv/releases/2021-03-11/fbcv.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: fbcv
@@ -6808,8 +6929,8 @@
     license: https://creativecommons.org/licenses/by/3.0/
     name: FlyBase Developmental Ontology (FBdv)
     prefix: fbdv
-    version: '2021-01-13'
-    version.iri: http://purl.obolibrary.org/obo/fbdv/releases/2021-01-13/fbdv.owl
+    version: '2021-03-10'
+    version.iri: http://purl.obolibrary.org/obo/fbdv/releases/2021-03-10/fbdv.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{8}$
   prefix: fbdv
@@ -6834,6 +6955,11 @@
     sampleId: '2224'
   n2t:
     prefix: fbol
+  ncbi:
+    example: '2224'
+    homepage: http://www.fungalbarcoding.org/
+    name: International Fungal Working Group Fungal Barcoding.
+    prefix: FBOL
   prefix: fbol
   prefixcommons:
     formatter: http://identifiers.org/fbol/$1
@@ -6956,6 +7082,11 @@
     pattern: ^FB\w{2}\d{7}$
     prefix: fb
     sampleId: FBgn0011293
+  ncbi:
+    example: FBgn0000024
+    homepage: http://www.flybase.org/
+    name: Database of Genetic and molecular data of Drosophila.
+    prefix: FLYBASE
   prefix: flybase
   prefixcommons:
     formatter: http://flybase.org/reports/$1
@@ -7114,8 +7245,8 @@
     license: https://creativecommons.org/licenses/by/3.0/
     name: Food Ontology
     prefix: foodon
-    version: '2021-02-03'
-    version.iri: http://purl.obolibrary.org/obo/foodon/releases/2021-02-03/foodon.owl
+    version: '2021-03-11'
+    version.iri: http://purl.obolibrary.org/obo/foodon/releases/2021-03-11/foodon.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: foodon
   prefixcommons:
@@ -7138,10 +7269,11 @@
   ols:
     description: None
     download: http://purl.obolibrary.org/obo/fovt.owl
+    license: http://creativecommons.org/publicdomain/zero/1.0/
     name: FuTRES Ontology of Vertebrate Traits
     prefix: fovt
-    version: '2020-06-08'
-    version.iri: http://purl.obolibrary.org/obo/fovt/releases/2020-06-08/fovt.owl
+    version: '2021-03-03'
+    version.iri: http://purl.obolibrary.org/obo/fovt/releases/2021-03-03/fovt.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: fovt
 - bioportal:
@@ -7337,8 +7469,8 @@
     license: https://creativecommons.org/licenses/by/4.0/
     name: Fission Yeast Phenotype Ontology (FYPO)
     prefix: fypo
-    version: '2021-02-23'
-    version.iri: http://purl.obolibrary.org/obo/fypo/releases/2021-02-23/fypo.owl
+    version: '2021-03-16'
+    version.iri: http://purl.obolibrary.org/obo/fypo/releases/2021-03-16/fypo.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: fypo
@@ -7379,6 +7511,11 @@
     sampleId: '2679240'
   n2t:
     prefix: gabi
+  ncbi:
+    example: HA05J18
+    homepage: http://www.gabipd.org/information/about.shtml
+    name: Network of Different Plant Genomic Research Projects
+    prefix: GABI
   prefix: gabi
   prefixcommons:
     formatter: http://identifiers.org/gabi/$1
@@ -7580,6 +7717,11 @@
     sampleId: LinJ.20.0070
   n2t:
     prefix: genedb
+  ncbi:
+    example: SPCC285.16c
+    homepage: http://www.genedb.org/
+    name: Curated gene database for Leishmania major and Trypanosoma brucei
+    prefix: GeneDB
   prefix: genedb
   prefixcommons:
     formatter: http://identifiers.org/genedb/$1
@@ -8064,8 +8206,8 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: Glycan Naming Ontology
     prefix: gno
-    version: V1.6.3
-    version.iri: http://purl.obolibrary.org/obo/gno/2020-10-13/gno.owl
+    version: V1.7.0
+    version.iri: http://purl.obolibrary.org/obo/gno/2021-03-05/gno.owl
   ols_version_prefix: V
   ols_version_type: semver
   pattern: ^\d{8}$
@@ -8112,6 +8254,11 @@
     sampleId: 0006915
   n2t:
     prefix: go
+  ncbi:
+    example: '123'
+    homepage: http://amigo.geneontology.org/
+    name: Gene Ontology Database identifier
+    prefix: GO
   obofoundry:
     contact: suzia@stanford.edu
     contact.label: Suzi Aleksander
@@ -8196,6 +8343,11 @@
     sampleId: P12345
   n2t:
     prefix: goa
+  ncbi:
+    example: P01100
+    homepage: http://www.ebi.ac.uk/GOA/
+    name: Gene Ontology Annotation Database Identifier
+    prefix: GOA
   prefix: goa
   prefixcommons:
     formatter: http://identifiers.org/goa/$1
@@ -8374,7 +8526,8 @@
     is_identifiers: true
     is_obo: false
     prefix: GRAMENE.GENE
-- miriam:
+- banana: gramene.growthstage:GRO\
+  miriam:
     deprecated: false
     description: Gramene is a comparative genome mapping database for grasses and
       crop plants. It combines a semi-automatically generated database of cereal genomic
@@ -8487,6 +8640,11 @@
     sampleId: '100000'
   n2t:
     prefix: greengenes
+  ncbi:
+    example: '269185'
+    homepage: http://greengenes.lbl.gov/
+    name: 16S rRNA gene database
+    prefix: Greengenes
   prefix: greengenes
   prefixcommons:
     formatter: http://identifiers.org/greengenes/$1
@@ -8531,6 +8689,11 @@
     sampleId: '19333'
   n2t:
     prefix: grin.taxonomy
+  ncbi:
+    example: '1005973'
+    homepage: http://www.ars-grin.gov/
+    name: Germplasm Resources Information Network
+    prefix: GRIN
   prefix: grin.taxonomy
   prefixcommons:
     formatter: http://identifiers.org/grin.taxonomy/$1
@@ -8840,8 +9003,8 @@
     download: http://purl.obolibrary.org/obo/hao.owl
     name: Hymenoptera Anatomy Ontology
     prefix: hao
-    version: '2018-04-26'
-    version.iri: http://purl.obolibrary.org/obo/hao/2018-04-26/hao.owl
+    version: '2021-03-05'
+    version.iri: http://purl.obolibrary.org/obo/hao/2021-03-05/hao.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: hao
@@ -8958,6 +9121,11 @@
     sampleId: '2674'
   n2t:
     prefix: hgnc
+  ncbi:
+    example: HGNC:2041
+    homepage: http://www.genenames.org/cgi-bin/search
+    name: Human Gene Nomenclature Database
+    prefix: HGNC
   prefix: hgnc
   prefixcommons:
     formatter: http://www.genenames.org/cgi-bin/gene_symbol_report?hgnc_id=$1
@@ -9286,8 +9454,8 @@
     license: license
     name: Human Phenotype Ontology
     prefix: hp
-    version: '2021-02-08'
-    version.iri: http://purl.obolibrary.org/obo/hp/releases/2021-02-08/hp.owl
+    version: '2021-02-28'
+    version.iri: http://purl.obolibrary.org/obo/hp/releases/2021-02-28/hp.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: hp
   prefixcommons:
@@ -9491,6 +9659,10 @@
     sampleId: 102l
   n2t:
     prefix: hssp
+  ncbi:
+    example: 12GS
+    name: Database of homology-derived secondary structure of proteins
+    prefix: HSSP
   prefix: hssp
   prefixcommons:
     formatter: http://identifiers.org/hssp/$1
@@ -9903,6 +10075,17 @@
     prefix: idr
     sampleId: '0001'
   prefix: idr
+- miriam:
+    deprecated: false
+    description: IGSN is a globally unique and persistent identifier for material
+      samples and specimens.  IGSNs are obtained from IGSN e.V. Agents.
+    id: 00000806
+    name: International Geo Sample Number
+    namespaceEmbeddedInLui: false
+    pattern: ^[A-Za-z]{2,4}[A-Za-z0-9.-]{1,71}$
+    prefix: igsn
+    sampleId: AU124
+  prefix: igsn
 - homepage: http://www.imdrf.org/
   name: International Medical Device Regulators Forum
   prefix: imdrf
@@ -9990,6 +10173,11 @@
     sampleId: A*01:01:01:01
   n2t:
     prefix: imgt.hla
+  ncbi:
+    example: HLA00031
+    homepage: http://www.ebi.ac.uk/imgt/hla/
+    name: Immunogenetics database, human MHC
+    prefix: IMGT/HLA
   prefix: imgt.hla
   prefixcommons:
     formatter: http://identifiers.org/imgt.hla/$1
@@ -10015,6 +10203,11 @@
     sampleId: M94112
   n2t:
     prefix: imgt.ligm
+  ncbi:
+    example: U03895
+    homepage: http://www.imgt.org/IMGTinformation/LIGM.html
+    name: Immunogenetics database, immunoglobulins and T-cell receptors
+    prefix: IMGT/LIGM
   prefix: imgt.ligm
   prefixcommons:
     formatter: http://identifiers.org/imgt.ligm/$1
@@ -10076,7 +10269,12 @@
   url: https://mednet-communities.net/inn/db/ViewINN.aspx?i=$1
   wikidata:
     property: P2275
-- bioportal:
+- biolink:
+    formatter: http://purl.obolibrary.org/obo/INO_$1
+    is_identifiers: false
+    is_obo: true
+    prefix: INO
+  bioportal:
     name: Interaction Network Ontology
     prefix: INO
   obofoundry:
@@ -10216,6 +10414,12 @@
     is_identifiers: true
     is_obo: false
     prefix: INTACT.MOLECULE
+- name: InterLex
+  prefix: interlex
+  references:
+  - https://github.com/AllenInstitute/nomenclature
+  synonyms:
+  - ILX
 - biolink:
     formatter: https://www.ebi.ac.uk/interpro/entry/$1
     is_identifiers: false
@@ -10243,6 +10447,11 @@
     sampleId: IPR000100
   n2t:
     prefix: interpro
+  ncbi:
+    example: IPR002928
+    homepage: http://www.ebi.ac.uk/interpro/
+    name: InterPro protein sequence database
+    prefix: InterPro
   prefix: interpro
   prefixcommons:
     formatter: http://identifiers.org/interpro/$1
@@ -10348,6 +10557,11 @@
     sampleId: ISA1083-2
   n2t:
     prefix: isfinder
+  ncbi:
+    example: ISA1083-2
+    homepage: http://www-is.biotoul.fr/
+    name: Insertion sequence elements database
+    prefix: ISFinder
   prefix: isfinder
   prefixcommons:
     formatter: http://identifiers.org/isfinder/$1
@@ -10418,6 +10632,21 @@
   url: https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=$1
   wikidata:
     property: P815
+- bioportal:
+    name: Intelligence Task Ontology
+    prefix: ITO
+  miriam:
+    deprecated: false
+    description: The Intelligence Task Ontology (ITO) provides a comprehensive map
+      of machine intelligence tasks, as well as broader human intelligence or hybrid
+      human/machine intelligence tasks.
+    id: 00000802
+    name: Intelligence Task Ontology
+    namespaceEmbeddedInLui: false
+    pattern: ^.+$
+    prefix: ito
+    sampleId: ITO_01625
+  prefix: ito
 - miriam:
     deprecated: false
     description: The IUPHAR Compendium details the molecular, biophysical and pharmacological
@@ -10503,6 +10732,7 @@
     prefix: IUPHAR.RECEPTOR
   synonyms:
   - IUPHARobj
+  - IUPHAR_GPCR
   wikidata:
     property: P5458
 - example: '004435'
@@ -10567,6 +10797,11 @@
     sampleId: '17254'
   n2t:
     prefix: jcm
+  ncbi:
+    example: '1339'
+    homepage: http://www.jcm.riken.go.jp/
+    name: Japan Collection of Microorganisms
+    prefix: JCM
   prefix: jcm
   prefixcommons:
     formatter: http://identifiers.org/jcm/$1
@@ -11665,6 +11900,11 @@
     sampleId: '760050'
   n2t:
     prefix: medgen
+  ncbi:
+    example: C0010674
+    homepage: https://www.ncbi.nlm.nih.gov/medgen
+    name: Human Medical Genetics
+    prefix: MedGen
   prefix: medgen
   prefixcommons:
     formatter: http://www.ncbi.nlm.nih.gov/medgen/$1
@@ -12124,8 +12364,8 @@
     license: https://creativecommons.org/licenses/by/3.0/
     name: Emotion Ontology
     prefix: mfoem
-    version: '2020-05-13'
-    version.iri: http://purl.obolibrary.org/obo/MFOEM/2020-05-13/MFOEM.owl
+    version: '2021-03-09'
+    version.iri: http://purl.obolibrary.org/obo/MFOEM/2021-03-09/MFOEM.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: mfoem
   prefixcommons:
@@ -12159,7 +12399,8 @@
     is_identifiers: false
     is_obo: true
     prefix: MFOMD
-- miriam:
+- banana: mge
+  miriam:
     deprecated: false
     description: ACLAME is a database dedicated to the collection and classification
       of mobile genetic elements (MGEs) from various sources, comprising all known
@@ -12192,6 +12433,11 @@
   n2t:
     prefix: mgi
   namespace.capitalized: true
+  ncbi:
+    example: MGI:1894891
+    homepage: http://www.informatics.jax.org/
+    name: Mouse Genome Informatics
+    prefix: MGI
   prefix: mgi
   prefixcommons:
     formatter: http://www.informatics.jax.org/accession/MGI:$1
@@ -12445,6 +12691,11 @@
     sampleId: '603903'
   n2t:
     prefix: mim
+  ncbi:
+    example: '123456'
+    homepage: https://www.ncbi.nlm.nih.gov/omim
+    name: Mendelian Inheritance in Man numbers
+    prefix: MIM
   prefix: mim
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/OMIM_$1
@@ -12585,6 +12836,11 @@
     sampleId: MI0000001
   n2t:
     prefix: mirbase
+  ncbi:
+    example: MI0000681
+    homepage: http://www.mirbase.org/
+    name: miRNA Database
+    prefix: miRBase
   prefix: mirbase
   prefixcommons:
     formatter: http://identifiers.org/mirbase/$1
@@ -13108,8 +13364,8 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: Mondo Disease Ontology
     prefix: mondo
-    version: '2021-01-29'
-    version.iri: http://purl.obolibrary.org/obo/mondo/releases/2021-01-29/mondo.owl
+    version: '2021-03-03'
+    version.iri: http://purl.obolibrary.org/obo/mondo/releases/2021-03-03/mondo.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: mondo
@@ -13320,8 +13576,8 @@
     license: http://creativecommons.org/licenses/by/3.0/
     name: MHC Restriction Ontology
     prefix: mro
-    version: '2021-01-25'
-    version.iri: http://purl.obolibrary.org/obo/mro/2021-01-25/mro.owl
+    version: '2021-03-09'
+    version.iri: http://purl.obolibrary.org/obo/mro/2021-03-09/mro.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: mro
   prefixcommons:
@@ -13593,13 +13849,19 @@
     sampleId: '349124'
   n2t:
     prefix: mycobank
+  ncbi:
+    example: '8284'
+    homepage: http://www.mycobank.org
+    name: Fungal Nomenclature and Species Bank
+    prefix: MycoBank
   prefix: mycobank
   prefixcommons:
     formatter: http://identifiers.org/mycobank/$1
     is_identifiers: true
     is_obo: false
     prefix: MYCOBANK
-- miriam:
+- banana: mzspec
+  miriam:
     deprecated: false
     description: The Universal Spectrum Identifier (USI) is a compound identifier
       that provides an abstract path to refer to a single spectrum generated by a
@@ -13770,6 +14032,11 @@
     sampleId: '00001234'
   n2t:
     prefix: nbrc
+  ncbi:
+    example: '3189'
+    homepage: http://www.nbrc.nite.go.jp/e/catalog-e.html
+    name: NITE Biological Resource Center
+    prefix: NBRC
   prefix: nbrc
   prefixcommons:
     formatter: http://identifiers.org/nbrc/$1
@@ -13804,6 +14071,11 @@
     sampleId: '100010'
   n2t:
     prefix: ncbigene
+  ncbi:
+    example: '3054987'
+    homepage: https://www.ncbi.nlm.nih.gov/gene
+    name: Entrez Gene Database (replaces NCBI Locus Link)
+    prefix: GeneID
   prefix: ncbigene
   prefixcommons:
     formatter: http://www.ncbi.nlm.nih.gov/gene/$1
@@ -13870,6 +14142,11 @@
     sampleId: '9606'
   n2t:
     prefix: taxonomy
+  ncbi:
+    example: '4932'
+    homepage: https://www.ncbi.nlm.nih.gov/taxonomy
+    name: NCBI's taxonomic identifier
+    prefix: taxon
   obofoundry:
     contact: frederic.bastian@unil.ch
     contact.label: Frederic Bastian
@@ -14181,6 +14458,11 @@
     sampleId: 6b1
   n2t:
     prefix: nextdb
+  ncbi:
+    example: CELK01662
+    homepage: http://nematode.lab.nig.ac.jp/
+    name: Nematode Expression Pattern DataBase
+    prefix: NextDB
   prefix: nextdb
   prefixcommons:
     formatter: http://identifiers.org/nextdb/$1
@@ -14245,6 +14527,11 @@
     sampleId: J0705A10
   n2t:
     prefix: niaest
+  ncbi:
+    example: L0304H12-3
+    homepage: http://esbank.nia.nih.gov/
+    name: NIA Mouse cDNA Project
+    prefix: niaEST
   prefix: niaest
   prefixcommons:
     formatter: http://identifiers.org/niaest/$1
@@ -14499,7 +14786,7 @@
     license: http://creativecommons.org/licenses/by/3.0/
     name: 'OAE: Ontology of Adverse Events'
     prefix: oae
-    version: 1.2.37
+    version: 1.2.38
   ols_version_type: semver
   prefix: oae
   prefixcommons:
@@ -14729,7 +15016,8 @@
     is_identifiers: true
     is_obo: false
     prefix: OCI
-- miriam:
+- banana: ocid
+  miriam:
     deprecated: false
     description: '''ocid'' stands for "Ontology Concept Identifiers" and are 12 digit
       long integers covering IDs in topical ontologies from anatomy up to toxicology.'
@@ -14777,6 +15065,17 @@
     prefix: odam
     sampleId: frim1
   prefix: odam
+- miriam:
+    deprecated: false
+    description: The Open Data Commons for Spinal Cord Injury is a cloud-based community-driven
+      repository to store, share, and publish spinal cord injury research data.
+    id: 00000804
+    name: Open Data Commons for Spinal Cord Injury
+    namespaceEmbeddedInLui: false
+    pattern: ^[0-9]*$
+    prefix: odc.sci
+    sampleId: '602'
+  prefix: odc.sci
 - miriam:
     deprecated: false
     description: OdorDB stores information related to odorous compounds, specifically
@@ -15069,7 +15368,7 @@
     license: https://creativecommons.org/licenses/by/4.0/
     name: Ontology of units of Measure (OM)
     prefix: om
-    version: 2.0.29
+    version: 2.0.30
   ols_version_type: semver
   prefix: om
 - miriam:
@@ -15094,7 +15393,8 @@
     is_identifiers: true
     is_obo: false
     prefix: OMA.GRP
-- example: 0459895
+- banana: HOG
+  example: 0459895
   miriam:
     deprecated: false
     description: 'Hierarchical orthologous groups predicted by OMA (Orthologous MAtrix)
@@ -15109,6 +15409,7 @@
     sampleId: HOG:0459895
   namespace.rewrite: HOG
   prefix: oma.hog
+  url: https://omabrowser.org/oma/hog/HOG:$1
 - miriam:
     deprecated: false
     description: OMA (Orthologous MAtrix) is a database that identifies orthologs
@@ -15263,8 +15564,8 @@
     download: http://purl.obolibrary.org/obo/omp.owl
     name: Ontology of Microbial Phenotypes
     prefix: omp
-    version: '2021-02-05'
-    version.iri: http://purl.obolibrary.org/obo/omp/releases/2021-02-05/omp.owl
+    version: '2021-03-05'
+    version.iri: http://purl.obolibrary.org/obo/omp/releases/2021-03-05/omp.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: omp
@@ -16231,6 +16532,11 @@
     sampleId: 2gc4
   n2t:
     prefix: pdb
+  ncbi:
+    example: 12GS
+    homepage: http://www.rcsb.org/pdb/
+    name: Biological macromolecule three dimensional structure database
+    prefix: PDB
   prefix: pdb
   prefixcommons:
     formatter: http://www.ebi.ac.uk/pdbsum/$1
@@ -16351,7 +16657,8 @@
     prefix: PDUMDV
   synonyms:
   - PdumDv
-- bioportal:
+- banana: EO
+  bioportal:
     name: Plant Experimental Conditions Ontology
     prefix: PECO
   download: https://raw.githubusercontent.com/Planteome/plant-experimental-conditions-ontology/master/peco.obo
@@ -16499,6 +16806,11 @@
     sampleId: PF01234
   n2t:
     prefix: pfam
+  ncbi:
+    example: PF00003
+    homepage: http://pfam.xfam.org/
+    name: Collection of protein families
+    prefix: PFAM
   prefix: pfam
   prefixcommons:
     formatter: http://identifiers.org/pfam/$1
@@ -16710,8 +17022,8 @@
     license: https://creativecommons.org/licenses/by/3.0/
     name: Pathogen Host Interactions Phenotype Ontology
     prefix: phipo
-    version: '2021-02-25'
-    version.iri: http://purl.obolibrary.org/obo/phipo/releases/2021-02-25/phipo.owl
+    version: '2021-03-11'
+    version.iri: http://purl.obolibrary.org/obo/phipo/releases/2021-03-11/phipo.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: phipo
@@ -16831,12 +17143,19 @@
     sampleId: Glyma0021s00410
   n2t:
     prefix: phytozome.locus
+  ncbi:
+    example: Glyma0021s00410
+    homepage: http://phytozome.jgi.doe.gov/pz/portal.html
+    name: Plant Genome Network
+    prefix: Phytozome
   prefix: phytozome.locus
   prefixcommons:
     formatter: http://identifiers.org/phytozome.locus/$1
     is_identifiers: true
     is_obo: false
     prefix: PHYTOZOME.LOCUS
+  synonyms:
+  - JGI Phytozome
 - deprecated: true
   example: hsa-let-7a
   homepage: https://pictar.mdc-berlin.de/
@@ -17068,6 +17387,11 @@
     sampleId: PF11_0344
   n2t:
     prefix: plasmodb
+  ncbi:
+    example: PF11_0344
+    homepage: http://www.plasmodb.org/plasmo/home.jsp
+    name: Plasmodium Genome Resources
+    prefix: ApiDB_PlasmoDB
   prefix: plasmodb
   prefixcommons:
     formatter: http://identifiers.org/plasmodb/$1
@@ -17304,6 +17628,11 @@
     sampleId: SPCC13B11.01
   n2t:
     prefix: pombase
+  ncbi:
+    example: SPBC11B10.09
+    homepage: http://www.pombase.org/
+    name: Database of Structural and Functional Data for Schizosaccaromyces pombe
+    prefix: PomBase
   prefix: pombase
   prefixcommons:
     formatter: https://www.pombase.org/spombe/result/$1
@@ -17420,7 +17749,6 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: PRotein Ontology (PRO)
     prefix: pr
-    version: 02-10-2019
     version.iri: http://purl.obolibrary.org/obo/pr/62.0/pr.owl
   ols_version_date_format: '%d-%m-%Y'
   prefix: pr
@@ -17457,7 +17785,6 @@
     download: https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.obo
     name: PRIDE Controlled Vocabulary
     prefix: pride
-    version: 05-11-2019
   ols_version_date_format: '%d-%m-%Y'
   prefix: pride
   prefixcommons:
@@ -17727,6 +18054,8 @@
     prefix: prov
     version: Recommendation version 2013-04-30
     version.iri: http://www.w3.org/ns/prov-o-20130430
+  ols_version_date_format: '%Y-%m-%d'
+  ols_version_prefix: 'Recommendation version '
   prefix: prov
   prefixcommons:
     formatter: http://www.w3.org/ns/prov#$1
@@ -17854,6 +18183,10 @@
     version.iri: http://purl.obolibrary.org/obo/pso/releases/2020-05-19/pso.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: pso
+- name: Phenoscape Publication
+  prefix: pspub
+  references:
+  - https://wiki.phenoscape.org/wiki/Curation_workflow
 - go:
     formatter: https://pubchem.ncbi.nlm.nih.gov/bioassay/$1
     homepage: https://pubchem.ncbi.nlm.nih.gov
@@ -17990,6 +18323,7 @@
   synonyms:
   - pmid
   - PMID
+  - MEDLINE
   wikidata:
     property: P698
 - bioportal:
@@ -18154,6 +18488,10 @@
     version.iri: http://purl.obolibrary.org/obo/rbo/releases/2021-01-20/rbo.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: rbo
+- _download: http://ratmine.mcw.edu/ontology/disease/RDO.obo
+  _download_comment: Problem with security certificate
+  name: RGD Disease_Ontology
+  prefix: rdo
 - example: R-BTA-418592
   go:
     formatter: https://www.reactome.org/content/detail/$1
@@ -18390,6 +18728,11 @@
     sampleId: RF00230
   n2t:
     prefix: rfam
+  ncbi:
+    example: RF00230
+    homepage: http://www.sanger.ac.uk/Software/Rfam/
+    name: RNA families database of alignments and CMs
+    prefix: RFAM
   prefix: rfam
   prefixcommons:
     formatter: http://identifiers.org/rfam/$1
@@ -18422,6 +18765,11 @@
     sampleId: '2018'
   n2t:
     prefix: rgd
+  ncbi:
+    example: '620528'
+    homepage: http://rgd.mcw.edu/rgdweb/search/search.html
+    name: Rat Genome Database
+    prefix: RGD
   prefix: rgd
   prefixcommons:
     formatter: http://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1
@@ -18643,6 +18991,11 @@
     sampleId: URS0000759CF4
   n2t:
     prefix: rnacentral
+  ncbi:
+    example: URS00001B9622_9606
+    homepage: http://rnacentral.org
+    name: Noncoding RNA Sequence Database
+    prefix: RNAcentral
   prefix: rnacentral
   prefixcommons:
     formatter: http://identifiers.org/rnacentral/$1
@@ -18752,8 +19105,8 @@
     license: https://creativecommons.org/publicdomain/zero/1.0/
     name: OBO Relations Ontology
     prefix: ro
-    version: '2020-12-18'
-    version.iri: http://purl.obolibrary.org/obo/ro/releases/2020-12-18/ro.owl
+    version: '2021-03-08'
+    version.iri: http://purl.obolibrary.org/obo/ro/releases/2021-03-08/ro.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: ro
   prefixcommons:
@@ -18839,6 +19192,21 @@
     is_identifiers: false
     is_obo: true
     prefix: RS
+- miriam:
+    deprecated: false
+    description: runBioSimulations is a platform for sharing simulation experiments
+      and their results. runBioSimulations enables investigators to use a wide range
+      of simulation tools to execute a wide range of simulations. runBioSimulations
+      permanently saves the results of these simulations, and investigators can share
+      results by sharing URLs similar to sharing URLs for files with DropBox and Google
+      Drive.
+    id: 00000897
+    name: runBioSimulations
+    namespaceEmbeddedInLui: false
+    pattern: '[0-9a-z]{24,24}'
+    prefix: runbiosimulations
+    sampleId: 5fde96bdc5f1aa9ff0cce18a
+  prefix: runbiosimulations
 - bioportal:
     name: Name Reaction Ontology
     prefix: RXNO
@@ -19068,7 +19436,7 @@
     download: http://purl.obolibrary.org/obo/sbo.owl
     name: Systems Biology Ontology
     prefix: sbo
-    version: 20:10:2020 13:19
+    version: 05:03:2021 10:21
   ols_version_date_format: '%d:%m:%Y %H:%M'
   prefix: sbo
   prefixcommons:
@@ -19197,6 +19565,11 @@
     sampleId: Biotin_biosynthesis
   n2t:
     prefix: seed
+  ncbi:
+    example: fig|83331.1.peg.1
+    homepage: http://www.theseed.org
+    name: The SEED Database
+    prefix: SEED
   prefix: seed
   prefixcommons:
     formatter: http://identifiers.org/seed/$1
@@ -19289,6 +19662,11 @@
     sampleId: S000003909
   n2t:
     prefix: sgd
+  ncbi:
+    example: L0000470
+    homepage: http://www.yeastgenome.org/
+    name: Saccharomyces Genome Database
+    prefix: SGD
   prefix: sgd
   prefixcommons:
     formatter: https://www.yeastgenome.org/locus/$1
@@ -19335,6 +19713,11 @@
     sampleId: '0001'
   n2t:
     prefix: sgn
+  ncbi:
+    example: E553090
+    homepage: http://www.sgn.cornell.edu
+    name: SOL Genomics Network
+    prefix: SGN
   prefix: sgn
   prefixcommons:
     formatter: http://identifiers.org/sgn/$1
@@ -19739,6 +20122,11 @@
     sampleId: BARC-013845-01256
   n2t:
     prefix: soybase
+  ncbi:
+    example: Satt005
+    homepage: http://soybase.org
+    name: Glycine max Genome Database
+    prefix: SoyBase
   prefix: soybase
   prefixcommons:
     formatter: http://identifiers.org/soybase/$1
@@ -19996,6 +20384,11 @@
     sampleId: BG11523
   n2t:
     prefix: subtilist
+  ncbi:
+    example: BG10001
+    homepage: http://genolist.pasteur.fr/SubtiList/
+    name: Bacillus subtilis genome sequencing project
+    prefix: SubtiList
   prefix: subtilist
   prefixcommons:
     formatter: http://identifiers.org/subtilist/$1
@@ -20063,7 +20456,8 @@
     is_identifiers: true
     is_obo: false
     prefix: SUPFAM
-- miriam:
+- banana: swh
+  miriam:
     deprecated: false
     description: Software Heritage is the universal archive of software source code.
     id: '00000655'
@@ -20283,6 +20677,11 @@
     sampleId: '2200950'
   n2t:
     prefix: tair.locus
+  ncbi:
+    example: AT1F51370
+    homepage: http://www.arabidopsis.org/servlets/Search?type=gene&action=new_search
+    name: Arabidopsis IR
+    prefix: TAIR
   prefix: tair.locus
   prefixcommons:
     formatter: https://www.arabidopsis.org/servlets/TairObject?type=locus&id=$1
@@ -20405,6 +20804,8 @@
     prefix: TCDB
   synonyms:
   - TC
+  wikidata:
+    property: P7260
 - example: E5.11.2.0.0.0.4
   name: Terminologia Embryologica
   prefix: te
@@ -20493,6 +20894,11 @@
     sampleId: TIGR00010
   n2t:
     prefix: tigrfam
+  ncbi:
+    example: TIGR00094
+    homepage: http://www.tigr.org/TIGRFAMs/index.shtml
+    name: TIGR protein families
+    prefix: TIGRFAM
   prefix: tigrfam
   prefixcommons:
     formatter: http://identifiers.org/tigrfam/$1
@@ -21310,6 +21716,13 @@
     sampleId: P0DP23
   n2t:
     prefix: uniprot
+  ncbi:
+    example: P12345
+    homepage: http://www.uniprot.org
+    name: section of the UniProt Knowledgebase, containing annotated records, which
+      include curator-evaluated computational analysis, as well as, information extracted
+      from the literature
+    prefix: UniProt
   prefix: uniprot
   prefixcommons:
     formatter: http://identifiers.org/uniprot/$1
@@ -21340,6 +21753,13 @@
     prefix: uniprot.chain
     sampleId: PRO_0000016681
   prefix: uniprot.chain
+- example: '04240'
+  homepage: https://www.uniprot.org/diseases/
+  name: UniProt Diseases
+  prefix: uniprot.disease
+  synonyms:
+  - DI
+  url: https://www.uniprot.org/diseases/DI-$1
 - miriam:
     deprecated: false
     description: The UniProt Knowledgebase (UniProtKB) is a comprehensive resource
@@ -21395,6 +21815,10 @@
     sampleId: '456789'
   n2t:
     prefix: unists
+  ncbi:
+    example: '486599'
+    name: Database of Sequence Tagged Sites
+    prefix: UniSTS
   prefix: unists
   prefixcommons:
     formatter: http://identifiers.org/unists/$1
@@ -21416,6 +21840,11 @@
     sampleId: UDB000691
   n2t:
     prefix: unite
+  ncbi:
+    example: UDB000157
+    homepage: http://unite.ut.ee/index.php
+    name: Molecular database for the identification of fungi
+    prefix: UNITE
   prefix: unite
   prefixcommons:
     formatter: http://identifiers.org/unite/$1
@@ -21582,7 +22011,8 @@
   prefix: vandf
   references:
   - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2244318/
-- bioportal:
+- banana: VariO
+  bioportal:
     name: Variation Ontology
     prefix: VARIO
   example: '0376'
@@ -21634,6 +22064,12 @@
     sampleId: humIGHV025
   n2t:
     prefix: vbase2
+  ncbi:
+    example: humIGKV165
+    homepage: http://www.vbase2.org/
+    name: Integrative database of germ-line V genes from the immunoglobulin loci of
+      human and mouse
+    prefix: VBASE2
   prefix: vbase2
   prefixcommons:
     formatter: http://identifiers.org/vbase2/$1
@@ -21682,6 +22118,11 @@
     sampleId: ISCW007415
   n2t:
     prefix: vectorbase
+  ncbi:
+    example: ENSANGG00000007825
+    homepage: http://www.vectorbase.org/index.php
+    name: Bioinformatics Resource Center for Invertebrate Vectors of Human Pathogens
+    prefix: VectorBase
   prefix: vectorbase
   prefixcommons:
     formatter: http://identifiers.org/vectorbase/$1
@@ -21772,6 +22213,11 @@
     pattern: ^((VGNC|vgnc):)?\d{1,9}$
     prefix: vgnc
     sampleId: VGNC:3792
+  ncbi:
+    example: VGNC:4927
+    homepage: http://vertebrate.genenames.org/data/gene-symbol-report/#!/
+    name: Vertebrate Gene Nomenclature Committee
+    prefix: VGNC
   prefix: vgnc
 - bioportal:
     name: Vertebrate Homologous Organ Group Ontology
@@ -21840,6 +22286,11 @@
     sampleId: BeAn 70563
   n2t:
     prefix: vipr
+  ncbi:
+    example: HRV-A34_p1058_sR263_2008
+    homepage: http://www.viprbrc.org/brc/home.do?decorator=vipr
+    name: Virus Pathogen Resource
+    prefix: ViPR
   prefix: vipr
   prefixcommons:
     formatter: http://identifiers.org/vipr/$1
@@ -22212,8 +22663,8 @@
     license: http://creativecommons.org/licenses/by/4.0/
     name: C elegans Phenotype Ontology
     prefix: wbphenotype
-    version: '2021-02-18'
-    version.iri: http://purl.obolibrary.org/obo/wbphenotype/releases/2021-02-18/wbphenotype.owl
+    version: '2021-03-10'
+    version.iri: http://purl.obolibrary.org/obo/wbphenotype/releases/2021-03-10/wbphenotype.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: wbphenotype
@@ -22363,6 +22814,11 @@
     sampleId: T01B6.1
   n2t:
     prefix: worfdb
+  ncbi:
+    example: pos-1
+    homepage: http://worfdb.dfci.harvard.edu/
+    name: C. elegans ORFeome cloning project
+    prefix: WorfDB
   prefix: worfdb
   prefixcommons:
     formatter: http://identifiers.org/worfdb/$1
@@ -22377,6 +22833,11 @@
     prefix: WB_REF
   homepage: https://wormbase.org
   name: WormBase
+  ncbi:
+    example: R13H7
+    homepage: http://www.wormbase.org/
+    name: Caenorhabditis elegans Genome Database
+    prefix: WormBase
   prefix: wormbase
   prefixcommons:
     formatter: https://www.wormbase.org/get?name=$1
@@ -22443,8 +22904,8 @@
     license: https://creativecommons.org/licenses/by/3.0/
     name: Xenopus Anatomy Ontology
     prefix: xao
-    version: '2020-06-26'
-    version.iri: http://purl.obolibrary.org/obo/xao/releases/2020-06-26/xao.owl
+    version: '2021-03-04'
+    version.iri: http://purl.obolibrary.org/obo/xao/releases/2021-03-04/xao.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: xao
@@ -22501,6 +22962,11 @@
     sampleId: XB-GENE-922462
   n2t:
     prefix: xenbase
+  ncbi:
+    example: XB-GENE-1019547
+    homepage: http://www.xenbase.org/common/
+    name: Xenopus laevis and tropicalis biology and genomics resource
+    prefix: Xenbase
   prefix: xenbase
   prefixcommons:
     formatter: http://www.xenbase.org/gene/showgene.do?method=display&geneId=$1
@@ -22559,10 +23025,11 @@
       occurring throughout the development of the African frogs Xenopus laevis and
       tropicalis.
     download: http://purl.obolibrary.org/obo/xpo.owl
+    license: https://creativecommons.org/licenses/by/3.0/
     name: Xenopus Phenotype Ontology
     prefix: xpo
-    version: '2020-07-04'
-    version.iri: http://purl.obolibrary.org/obo/xpo/releases/2020-07-04/xpo.owl
+    version: '2021-03-05'
+    version.iri: http://purl.obolibrary.org/obo/xpo/releases/2021-03-05/xpo.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d+$
   prefix: xpo
@@ -22774,6 +23241,11 @@
     sampleId: ZDB-GENE-041118-11
   n2t:
     prefix: zfin
+  ncbi:
+    example: ZDB-GENE-011205-17
+    homepage: http://zfin.org
+    name: Zebrafish Information Network
+    prefix: ZFIN
   prefix: zfin
   prefixcommons:
     formatter: http://zfin.org/$1
@@ -22862,3 +23334,39 @@
     is_identifiers: false
     is_obo: true
     prefix: ZP
+- ols:
+    contact: isanchez@cnb.csic.es
+    description: Ontology that describes data types and image processing operations
+      in Cryo Electron Microscopy of Single Particles
+    download: http://scipion.i2pc.es/ontology/cryoem.owl
+    license: https://creativecommons.org/licenses/by/3.0/
+    name: Cryo Electron Microscopy ontology
+    prefix: cryoem
+    version: '2021-03-09'
+    version.iri: http://scipion.i2pc.es/ontology/cryoem/releases/2021-03-09/cryoem.owl
+  prefix: cryoem
+- ols:
+    description: 'The need of a common ontology for describing orthology information
+      in biological research communities has led to the creation of the Orthology
+      Ontology (ORTH). ORTH ontology is designed to describe sequence homology data
+      available in multiple orthology databases on the Web (e.g.: OMA, OrthoDB, HieranoiDB,
+      and etc.). By sequence homology data, we mostly mean gene region, gene and protein
+      centric orthology, paralogy, and xenology information. Depending on the database,
+      the homology information is structured in different ways. ORTH ontology accommodates
+      these disparate data structures namely Hierarchical Orthologous Group (HOG),
+      cluster of homologous sequences and homologous-pairwise relations between sequences.
+      In addition to the specific ORTH terms, this specification includes terms of
+      the imported ontologies (e.g. Semanticscience Integrated Ontology, SIO) which
+      are pertinents to represent the information from various orthology databases
+      in a homogeneous way.'
+    download: http://purl.org/net/orth
+    name: Orthology Ontology
+    prefix: orth
+    version: 'This ontology is the second version of the orthology ontology first
+      published in 2015 and available at http://purl.bioontology.org/ontology/ORTH
+      .
+
+      @authors T.M. de Farias, H. Chiba, J.T. Fernandez-Breis, E. Antezana, D. Kuznetsov,
+      C. Dessimoz and F. Villiers.'
+    version.iri: http://purl.org/net/orth/2.0
+  prefix: orth
