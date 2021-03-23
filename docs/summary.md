@@ -118,3 +118,23 @@ It's typically difficult to propose new Wikidata properties to go along with dat
 corresponding to databases. This is one part of the Bioregistry that will require lots of manual effort. Eventually, we
 can develop a minimum information standard for entries in the Bioregistry that would be convincing enough for the
 Wikidata property gatekeepers and the MIRIAM registry.
+
+## Unexpected usage of CURIEs across Open Biomedical Ontologies
+
+### Misguided Attribution
+
+In the OBO file format, terms have a description field which allows for the specification
+of a list of CURIEs to consider as provenance. Often, this will point to PubMed identifiers
+or Wikipedia pages. However, many resources create their own prefix with which they identify
+the original curator. For example, in the Gene Ontology, there is a prefix `GOC` that often
+appears in CURIEs with the initials of the curator such as in `GOC:vw`. Unfortunately, this
+information is hard to deconvolute because `GOC` has not been registered with Identifiers.org
+or another resource, the identifiers are not MIRIAM compliant, and it's not obvious to whom
+`vw` refers since there is no (obvious) resource to resolve these.
+
+In the example of the Human Phenotype Ontology, whose prefix is `hp`, the prefix `HPO` is used
+to denote curators in the provenance for descriptions. Luckily, they use slightly more informative
+tags such as `HPO:skoehler`, which can be easily attributed to Sebastian Köhler, one of its main
+contributors. However, it would be much more informative to use a CURIE for the ORCID identifier 
+for this author, `orcid:0000-0002-5316-1399`, which immediately addresses all concerns shared across
+`GOC` and `HPO`.
