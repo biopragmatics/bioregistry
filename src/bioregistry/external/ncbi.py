@@ -43,7 +43,7 @@ OBSOLETE = {
 
 def get_ncbi(force: bool = False) -> Dict[str, Dict[str, str]]:
     """Get the NCBI data."""
-    parsed_path = BIOREGISTRY_MODULE.get('ncbi.json')
+    parsed_path = BIOREGISTRY_MODULE.join(name='ncbi.json')
     if parsed_path.exists() and not force:
         with parsed_path.open() as file:
             return json.load(file)
