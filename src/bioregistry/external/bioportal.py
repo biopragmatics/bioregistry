@@ -19,7 +19,7 @@ __all__ = [
     'get_bioportal',
 ]
 
-BIOPORTAL_PATH = BIOREGISTRY_MODULE.get('bioportal.json')
+BIOPORTAL_PATH = BIOREGISTRY_MODULE.join(name='bioportal.json')
 BIOPORTAL_API_KEY = pystow.get_config('bioportal', 'api_key')
 BASE_URL = 'https://data.bioontology.org'
 

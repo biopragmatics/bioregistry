@@ -21,9 +21,9 @@ __all__ = [
     'get_obofoundry_df',
 ]
 
-OBOFOUNDRY_YAML_PATH = BIOREGISTRY_MODULE.get('obofoundry.yml')
-OBOFOUNDRY_FULL_PATH = BIOREGISTRY_MODULE.get('obofoundry.json')
-OBOFOUNDRY_SLIM_PATH = BIOREGISTRY_MODULE.get('obofoundry.tsv')
+OBOFOUNDRY_YAML_PATH = BIOREGISTRY_MODULE.join(name='obofoundry.yml')
+OBOFOUNDRY_FULL_PATH = BIOREGISTRY_MODULE.join(name='obofoundry.json')
+OBOFOUNDRY_SLIM_PATH = BIOREGISTRY_MODULE.join(name='obofoundry.tsv')
 OBOFOUNDRY_URL = 'https://raw.githubusercontent.com/OBOFoundry/OBOFoundry.github.io/master/registry/ontologies.yml'
 
 

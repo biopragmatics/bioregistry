@@ -17,8 +17,8 @@ __all__ = [
     'get_miriam_df',
 ]
 
-MIRIAM_FULL_PATH = BIOREGISTRY_MODULE.get('miriam.json')
-MIRIAM_SLIM_PATH = BIOREGISTRY_MODULE.get('miriam.tsv')
+MIRIAM_FULL_PATH = BIOREGISTRY_MODULE.join(name='miriam.json')
+MIRIAM_SLIM_PATH = BIOREGISTRY_MODULE.join(name='miriam.tsv')
 MIRIAM_URL = 'https://registry.api.identifiers.org/restApi/namespaces'
 
 

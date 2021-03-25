@@ -13,7 +13,7 @@ from more_itertools import pairwise
 
 URL = 'https://n2t.net/e/cdl_ebi_prefixes.yaml'
 
-PATH = pystow.get('bioregistry', 'n2t.json')
+PATH = pystow.join('bioregistry', name='n2t.json')
 
 
 def _parse_1(file):

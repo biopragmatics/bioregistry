@@ -35,8 +35,8 @@ REDUNDANT = {
     "AspGD": "AspGD_LOCUS",
 }
 
-GO_YAML_PATH = BIOREGISTRY_MODULE.get('go.yml')
-GO_FULL_PATH = BIOREGISTRY_MODULE.get('go.json')
+GO_YAML_PATH = BIOREGISTRY_MODULE.join(name='go.yml')
+GO_FULL_PATH = BIOREGISTRY_MODULE.join(name='go.json')
 GO_URL = 'https://raw.githubusercontent.com/geneontology/go-site/master/metadata/db-xrefs.yaml'
 
 

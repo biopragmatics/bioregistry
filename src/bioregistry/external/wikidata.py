@@ -13,8 +13,8 @@ from bioregistry.utils import query_wikidata
 
 logger = logging.getLogger(__name__)
 
-DATABASES_PATH = BIOREGISTRY_MODULE.get('wikidata_databases.tsv')
-MIRIAM_PATH = BIOREGISTRY_MODULE.get('wikidata_miriam.tsv')
+DATABASES_PATH = BIOREGISTRY_MODULE.join(name='wikidata_databases.tsv')
+MIRIAM_PATH = BIOREGISTRY_MODULE.join(name='wikidata_miriam.tsv')
 
 
 def get_database() -> pd.DataFrame:

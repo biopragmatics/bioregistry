@@ -19,8 +19,8 @@ __all__ = [
 ]
 
 OLS_URL = 'http://www.ebi.ac.uk/ols/api/ontologies'
-OLS_FULL_PATH = BIOREGISTRY_MODULE.get('ols.json')
-OLS_SLIM_PATH = BIOREGISTRY_MODULE.get('ols.tsv')
+OLS_FULL_PATH = BIOREGISTRY_MODULE.join(name='ols.json')
+OLS_SLIM_PATH = BIOREGISTRY_MODULE.join(name='ols.tsv')
 
 
 def get_ols(cache_path: Optional[str] = OLS_FULL_PATH, mappify: bool = False, force_download: bool = False):
