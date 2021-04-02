@@ -6,6 +6,7 @@ import datetime
 import logging
 import re
 from functools import lru_cache
+from textwrap import dedent
 from typing import Any, Mapping, Optional
 
 from .utils import read_bioregistry
@@ -318,7 +319,10 @@ def _clean_version(
     version_prefix = bioregistry_entry.get('ols_version_prefix')
     if version_prefix:
         if not version.startswith(version_prefix):
-            raise ValueError(f'[{bioregistry_id}] version {version} does not start with prefix {version_prefix}')
+            raise ValueError(dedent(f'''\
+            [{bioregistry_id}] version "{version}" does not start with prefix "{version_prefix}".
+            Update the ["{bioregistry_id}"]["ols_version_prefix"] entry.
+            '''))
         version = version[len(version_prefix):]
 
     if bioregistry_entry.get('ols_version_suffix_split'):

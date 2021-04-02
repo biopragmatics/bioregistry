@@ -28,7 +28,7 @@ def get_ols(cache_path: Optional[str] = OLS_FULL_PATH, mappify: bool = False, fo
     return ensure_registry(
         url=OLS_URL,
         embedded_key='ontologies',
-        cache_path=cache_path or pystow.get('bioregistry'),
+        cache_path=cache_path,
         id_key='ontologyId',
         mappify=mappify,
         force_download=force_download,
