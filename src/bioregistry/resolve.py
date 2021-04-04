@@ -203,7 +203,7 @@ def normalize_prefix(prefix: str) -> Optional[str]:
 
     This works for common mistaken prefixes, like:
 
-    >>> assert 'chembl.compound' == normalize_prefix('chembl')
+    >>> assert 'pubchem.compound' == normalize_prefix('pubchem')
 
     This works for prefixes that are often written many ways, like:
 
