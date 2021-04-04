@@ -7,7 +7,7 @@ import logging
 import re
 from functools import lru_cache
 from textwrap import dedent
-from typing import Any, Mapping, Optional
+from typing import Any, Mapping, Optional, Tuple, Union
 
 from .utils import read_bioregistry
 
@@ -21,6 +21,7 @@ __all__ = [
     'get_example',
     'is_deprecated',
     'get_email',
+    'parse_curie',
     'normalize_prefix',
     'get_version',
     'get_versions',
@@ -186,6 +187,39 @@ def get_email(prefix: str) -> Optional[str]:
             return obo_email
 
     return None
+
+
+def parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
+    """Parse a CURIE, normalizing the prefix and identifier if necessary.
+
+    :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
+    :returns: A tuple of the prefix, identifier. If not parsable, returns a tuple of None, None
+
+    Parse canonical CURIE
+    >>> parse_curie('go:1234')
+    ('go', '1234')
+
+    Normalize prefix
+    >>> parse_curie('GO:1234')
+    ('go', '1234')
+
+    Address banana problem
+    >>> parse_curie('GO:GO:1234')
+    ('go', '1234')
+    """
+    try:
+        prefix, identifier = curie.split(':', 1)
+    except ValueError:
+        return None, None
+
+    # remove redundant prefix
+    if identifier.casefold().startswith(f'{prefix.casefold()}:'):
+        identifier = identifier[len(prefix) + 1:]
+
+    norm_prefix = normalize_prefix(prefix)
+    if not norm_prefix:
+        return None, None
+    return norm_prefix, identifier
 
 
 def normalize_prefix(prefix: str) -> Optional[str]:
