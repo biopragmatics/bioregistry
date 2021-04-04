@@ -6,7 +6,6 @@ from typing import Optional
 
 import click
 import pandas as pd
-import pystow
 
 from .utils import ensure_registry
 from ..constants import BIOREGISTRY_MODULE
