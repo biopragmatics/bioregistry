@@ -16,6 +16,7 @@ __all__ = [
     'get_identifiers_org_curie',
     'get_obofoundry_link',
     'get_ols_link',
+    'get_link',
 ]
 
 
@@ -36,7 +37,12 @@ def get_providers(prefix: str, identifier: str) -> Mapping[str, str]:
     """Get all providers for the CURIE."""
     providers = {}
     bioregistry_format = get_format(prefix)
-    if bioregistry_format:
+    if (
+        bioregistry_format
+        and not bioregistry_format.startswith('https://identifiers.org')
+        and not bioregistry_format.startswith('https://www.ebi.ac.uk/ols')
+        and not bioregistry_format.startswith('http://purl.obolibrary.org/obo')
+    ):
         providers['bioregistry'] = bioregistry_format.replace('$1', identifier)
     for provider, get_url in [
         ('miriam', get_identifiers_org_url),
@@ -92,3 +98,20 @@ def get_ols_link(prefix: str, identifier: str) -> Optional[str]:
     if ols_prefix is None or obo_link is None:
         return None
     return f'https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_link}'
+
+
+LINK_PRIORITY = [
+    'bioregistry',
+    'miriam',
+    'ols',
+    'obofoundry',
+]
+
+
+def get_link(prefix: str, identifier: str) -> Optional[str]:
+    """Get the best link for the CURIE, if possible."""
+    providers = get_providers(prefix, identifier)
+    for key in LINK_PRIORITY:
+        if key in providers:
+            return providers[key]
+    return None

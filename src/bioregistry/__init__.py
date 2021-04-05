@@ -8,7 +8,7 @@ from .resolve import (  # noqa
     parse_curie,
 )
 from .resolve_identifier import (  # noqa
-    get_identifiers_org_curie, get_identifiers_org_url, get_obofoundry_link, get_ols_link,
-    get_providers, validate,
+    get_identifiers_org_curie, get_identifiers_org_url, get_link, get_obofoundry_link, get_ols_link, get_providers,
+    validate,
 )
 from .utils import read_bioregistry  # noqa
