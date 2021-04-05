@@ -1071,6 +1071,11 @@
     is_identifiers: true
     is_obo: false
     prefix: BACMAP.MAP
+- example: BAC045
+  homepage: http://bactibase.hammamilab.org
+  name: 'Bactibase: a database dedicated to bacteriocins'
+  prefix: bactibase
+  url: http://bactibase.hammamilab.org/$1
 - deprecated: true
   homepage: https://bams1.org
   name: Brain Architecture Knowledge Management System Neuroanatomical Ontology
@@ -8077,6 +8082,11 @@
     prefix: glycopost
     sampleId: GPST000024
   prefix: glycopost
+- example: G24361QY
+  homepage: https://glygen.org/glycan/
+  name: 'GlyGen: Computational and Informatics Resources for Glycoscience'
+  prefix: glygen
+  url: https://glygen.org/glycan/$1
 - miriam:
     deprecated: false
     description: GlyTouCan is the single worldwide registry of glycan (carbohydrate
@@ -14205,6 +14215,7 @@
   - NCBI_taxid
   - taxonomy
   - TAX
+  - TaxonomyID
   wikidata:
     database: Q13711410
     database.label: Taxonomy database of the U.S. National Center for Biotechnology
@@ -14415,6 +14426,13 @@
     is_identifiers: true
     is_obo: false
     prefix: NEUROMORPHO
+- example: '268'
+  homepage: http://braininfo.rprc.washington.edu/
+  name: NeuroNames
+  prefix: neuronames
+  references:
+  - https://en.wikipedia.org/wiki/NeuroNames
+  url: https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=$1
 - miriam:
     deprecated: false
     description: 'NeuronDB provides a dynamically searchable database of three types
@@ -15615,8 +15633,7 @@
 - bioportal:
     name: Ontology of Medically Related Social Entities
     prefix: OMRSE
-  download: https://github.com/ufbmi/OMRSE/blob/master/omrse/omrse.owl
-  not_available_as_obo: true
+  download: https://github.com/ufbmi/OMRSE/raw/master/omrse-full.obo
   obofoundry:
     contact: hoganwr@gmail.com
     contact.label: Bill Hogan
