@@ -12,7 +12,7 @@ from typing import Collection, Set
 
 import click
 
-from bioregistry import get_email, get_example, get_format, get_pattern, get_version, read_bioregistry
+from bioregistry import get_email, get_example, get_format, get_homepage, get_pattern, get_version, read_bioregistry
 from bioregistry.constants import DOCS_IMG
 from bioregistry.external import (
     get_biolink, get_bioportal, get_go, get_miriam, get_n2t, get_ncbi, get_obofoundry, get_ols, get_prefix_commons,
@@ -153,6 +153,7 @@ def compare():  # noqa:C901
     has_formatter = {key for key in bioregistry if get_format(key)}
     has_example = {key for key in bioregistry if get_example(key)}
     has_email = {key for key in bioregistry if get_email(key)}
+    has_homepage = {key for key in bioregistry if get_homepage(key)}
     measurements = [
         ('Pattern', has_pattern),
         ('Version', has_version),
@@ -160,10 +161,11 @@ def compare():  # noqa:C901
         ('Format URL', has_formatter),
         ('Example', has_example),
         ('Contact Email', has_email),
+        ('Homepage', has_homepage),
     ]
 
-    ncols = 2
-    nrows = (1 + len(measurements)) // 2
+    ncols = 3
+    nrows = int(math.ceil(len(measurements) / ncols))
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows)
     for measurement, ax in itt.zip_longest(measurements, axes.ravel()):
         if measurement is None:

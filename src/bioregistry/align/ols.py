@@ -26,6 +26,7 @@ def _prepare_ols(ols_entry):
         'version': config['version'],
         'version.iri': config['versionIri'],
         'description': config['description'],
+        'homepage': config['homepage'],
         'license': license_value,
     }
 

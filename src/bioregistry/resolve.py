@@ -21,6 +21,7 @@ __all__ = [
     'get_example',
     'is_deprecated',
     'get_email',
+    'get_homepage',
     'parse_curie',
     'normalize_prefix',
     'get_version',
@@ -186,6 +187,21 @@ def get_email(prefix: str) -> Optional[str]:
         if obo_email:
             return obo_email
 
+    return None
+
+
+def get_homepage(prefix: str) -> Optional[str]:
+    """Return the homepage, if available."""
+    entry = get(prefix)
+    if entry is None:
+        return None
+    homepage = entry.get('homepage')
+    if homepage:
+        return homepage
+    for key in ['obofoundry', 'ols', 'n2t', 'wikidata', 'go', 'ncbi']:
+        homepage = entry.get(key, {}).get('homepage')
+        if homepage:
+            return homepage
     return None
 
 

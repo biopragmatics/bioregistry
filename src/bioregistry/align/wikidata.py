@@ -16,12 +16,12 @@ def align_wikidata(registry):
 
     query = f'''
     SELECT
-      ?prop ?propLabel ?format ?pattern ?webpage ?database ?databaseLabel
+      ?prop ?propLabel ?format ?pattern ?homepage ?database ?databaseLabel
     WHERE
     {{
         OPTIONAL {{ ?prop wdt:P1921 ?format }}
         OPTIONAL {{ ?prop wdt:P1793 ?pattern }}
-        OPTIONAL {{ ?prop wdt:P1896 ?webpage }}
+        OPTIONAL {{ ?prop wdt:P1896 ?homepage }}
         OPTIONAL {{ ?prop wdt:P1629 ?database }}
         VALUES ?prop {{{' '.join(set(f'wd:{p}' for p in properties))}}}
         SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }}

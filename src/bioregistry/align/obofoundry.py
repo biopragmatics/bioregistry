@@ -20,6 +20,7 @@ OBO_KEYS = {
     'name',
     'deprecated',
     'description',
+    'homepage',
 }
 
 
@@ -34,6 +35,10 @@ def _prepare_obo(obofoundry_entry):  # noqa:C901
     license_dict = obofoundry_entry.get('license')
     if license_dict is not None:
         rv['license'] = license_dict['label']
+
+    homepage = obofoundry_entry.get('homepage')
+    if homepage is not None:
+        rv['homepage'] = homepage
 
     contact_dict = obofoundry_entry.get('contact')
     if contact_dict is not None and contact_dict.get('email'):

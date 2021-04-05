@@ -36,6 +36,9 @@ def align_n2t(registry):
             # TODO add providers? they're not so informative though
             # 'providers': n2t_entry,
         }
+        if len(_n2t_entry) == 1:
+            registry[bioregistry_id]['n2t']['homepage'] = _n2t_entry[0]['homepage']
+            registry[bioregistry_id]['n2t']['name'] = _n2t_entry[0]['title']
 
     return registry
 
