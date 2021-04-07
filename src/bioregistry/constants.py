@@ -12,6 +12,7 @@ __all__ = [
     'HERE',
     'DATA_DIRECTORY',
     'BIOREGISTRY_PATH',
+    'METAREGISTRY_PATH',
     'BIOREGISTRY_MODULE',
     'EnsureEntry',
 ]
@@ -19,6 +20,7 @@ __all__ = [
 HERE = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
 DATA_DIRECTORY = HERE / 'data'
 BIOREGISTRY_PATH = DATA_DIRECTORY / 'bioregistry.json'
+METAREGISTRY_PATH = DATA_DIRECTORY / 'metaregistry.json'
 
 BIOREGISTRY_MODULE = pystow.module('bioregistry')
 EnsureEntry = Any

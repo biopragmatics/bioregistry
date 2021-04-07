@@ -3,8 +3,9 @@
 """Extract registry information."""
 
 from .resolve import (  # noqa
-    get, get_banana, get_email, get_example, get_format, get_homepage, get_identifiers_org_prefix, get_name,
-    get_pattern, get_pattern_re, get_version, get_versions, is_deprecated, namespace_in_lui, normalize_prefix,
+    get, get_banana, get_description, get_email, get_example, get_format, get_homepage, get_identifiers_org_prefix,
+    get_mappings, get_name, get_pattern, get_pattern_re, get_registry, get_registry_homepage, get_registry_name,
+    get_registry_url, get_synonyms, get_version, get_versions, is_deprecated, namespace_in_lui, normalize_prefix,
     parse_curie,
 )
 from .resolve_identifier import (  # noqa

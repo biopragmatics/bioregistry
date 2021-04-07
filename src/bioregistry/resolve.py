@@ -7,13 +7,16 @@ import logging
 import re
 from functools import lru_cache
 from textwrap import dedent
-from typing import Any, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Set, Tuple, Union
 
-from .utils import read_bioregistry
+from .utils import read_bioregistry, read_metaregistry
 
 __all__ = [
     'get',
     'get_name',
+    'get_description',
+    'get_mappings',
+    'get_synonyms',
     'get_pattern',
     'get_pattern_re',
     'namespace_in_lui',
@@ -26,13 +29,18 @@ __all__ = [
     'normalize_prefix',
     'get_version',
     'get_versions',
+    # Metaregistry stuff
+    'get_registry',
+    'get_registry_name',
+    'get_registry_url',
+    'get_registry_homepage',
 ]
 
 logger = logging.getLogger(__name__)
 
 
 def get(prefix: str) -> Optional[Mapping[str, Any]]:
-    """Get the entry for the given prefix.
+    """Get the Bioregistry entry for the given prefix.
 
     :param prefix: The prefix to look up, which is normalized with :func:`normalize_prefix`
         before lookup in the Bioregistry
@@ -42,18 +50,86 @@ def get(prefix: str) -> Optional[Mapping[str, Any]]:
     return read_bioregistry().get(normalize_prefix(prefix))
 
 
+def get_registry(metaprefix: str) -> Optional[Mapping[str, Any]]:
+    """Get the metaregistry entry for the given prefix."""
+    return read_metaregistry().get(metaprefix)
+
+
+def get_registry_name(metaprefix: str) -> Optional[str]:
+    """Get the metaregistry name for the given prefix, if it's available."""
+    registry = get_registry(metaprefix)
+    if registry is None:
+        return None
+    return registry['name']
+
+
+def get_registry_homepage(metaprefix: str) -> Optional[str]:
+    """Get the URL for the registry, if available."""
+    registry = get_registry(metaprefix)
+    if registry is None:
+        return None
+    return registry.get('homepage')
+
+
+def get_registry_url(metaprefix: str, prefix: str) -> Optional[str]:
+    """Get the URL for the resource inside registry, if available."""
+    entry = get_registry(metaprefix)
+    if entry is None:
+        return None
+    formatter = entry.get('formatter')
+    if formatter is None:
+        return None
+    return formatter.replace('$1', prefix)
+
+
 def get_name(prefix: str) -> Optional[str]:
-    """Get the name for the given prefix, it it's availble."""
+    """Get the name for the given prefix, it it's available."""
+    return _get_prefix_key(prefix, 'name', ('miriam', 'ols', 'obofoundry', 'wikidata'))
+
+
+def get_description(prefix: str) -> Optional[str]:
+    """Get the description for the given prefix, if available."""
+    return _get_prefix_key(prefix, 'description', ('miriam', 'ols', 'obofoundry', 'wikidata'))
+
+
+def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
+    """Get the mappings to external registries, if available."""
     entry = get(prefix)
     if entry is None:
         return None
-    name = entry.get('name')
-    if name is not None:
-        return name
-    for key in ('miriam', 'ols', 'obofoundry', 'wikidata'):
-        name = entry.get(key, {}).get('name')
-        if name is not None:
-            return name
+    rv = {}
+    for key in read_metaregistry():
+        if key not in entry:
+            continue
+        if key != 'wikidata':
+            rv[key] = entry[key]['prefix']
+        else:
+            value = entry[key].get('property')
+            if value is not None:
+                rv['wikidata'] = value
+    return rv
+
+
+def get_synonyms(prefix: str) -> Optional[Set[str]]:
+    """Get the synonyms for a given prefix, if available."""
+    entry = get(prefix)
+    if entry is None:
+        return None
+    # TODO aggregate even more from xrefs
+    return entry.get('synonyms')
+
+
+def _get_prefix_key(prefix: str, key: str, sources: Sequence[str]) -> Optional[str]:
+    entry = get(prefix)
+    if entry is None:
+        return None
+    rv = entry.get(key)
+    if rv is not None:
+        return rv
+    for source in sources:
+        rv = entry.get(source, {}).get(key)
+        if rv is not None:
+            return rv
     return None
 
 
@@ -67,14 +143,7 @@ def get_pattern(prefix: str) -> Optional[str]:
         2. MIRIAM
         3. Wikidata
     """
-    entry = get(prefix)
-    if entry is None:
-        return None
-    return (
-        entry.get('pattern')
-        or entry.get('miriam', {}).get('pattern')
-        or entry.get('wikidata', {}).get('pattern')
-    )
+    return _get_prefix_key(prefix, 'pattern', ('miriam', 'wikidata'))
 
 
 @lru_cache()

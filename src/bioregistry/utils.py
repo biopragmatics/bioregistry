@@ -11,9 +11,19 @@ from typing import Any, List, Mapping
 import click
 import requests
 
-from .constants import BIOREGISTRY_PATH
+from .constants import BIOREGISTRY_PATH, METAREGISTRY_PATH
 
 logger = logging.getLogger(__name__)
+
+
+@lru_cache(maxsize=1)
+def read_metaregistry() -> Mapping[str, Mapping[str, Any]]:
+    """Read the metaregistry as JSON."""
+    with open(METAREGISTRY_PATH, encoding='utf-8') as file:
+        return {
+            entry['prefix']: entry
+            for entry in json.load(file)
+        }
 
 
 @lru_cache(maxsize=1)
