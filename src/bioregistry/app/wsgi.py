@@ -102,7 +102,7 @@ def search():
     return jsonify([
         prefix
         for prefix in bioregistry.read_bioregistry()
-        if prefix.startswith(q_norm)
+        if q_norm in prefix
     ])
 
 
