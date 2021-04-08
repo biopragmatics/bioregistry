@@ -46,11 +46,29 @@
                     </dd>
                 {% endif %}
                 <dt>Homepage</dt>
-                <dd>{% if homepage %}<a href="{{ homepage }}">{{ homepage.rstrip('/') }}</a>{% endif %}</dd>
+                <dd>
+                    {% if homepage %}
+                        <a href="{{ homepage }}">{{ homepage.rstrip('/') }}</a>
+                    {% else %}
+                        <span class="badge badge-pill badge-warning">Missing Homepage</span>
+                    {% endif %}
+                </dd>
                 <dt>Contact</dt>
-                <dd>{% if contact %}<a href="mailto:{{ contact }}">{{ contact }}</a>{% endif %}</dd>
+                <dd>
+                    {% if contact %}
+                        <a href="mailto:{{ contact }}">{{ contact }}</a>
+                    {% else %}
+                        <span class="badge badge-pill badge-warning">Missing Contact</span>
+                    {% endif %}
+                </dd>
                 <dt>Pattern</dt>
-                <dd>{% if pattern %}<code>{{ pattern }}</code>{% endif %}</dd>
+                <dd>
+                    {% if pattern %}
+                        <code>{{ pattern }}</code>
+                    {% else %}
+                        <span class="badge badge-pill badge-warning">Missing Pattern</span>
+                    {% endif %}
+                </dd>
                 <dt>Namespace in Pattern</dt>
                 <dd>
                     {% if namespace_in_lui %}
@@ -63,6 +81,8 @@
                 <dd>
                     {% if example %}
                         <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example }}</a>
+                    {% else %}
+                        <span class="badge badge-pill badge-warning">Missing Example</span>
                     {% endif %}
                 </dd>
             </dl>
