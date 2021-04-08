@@ -2,7 +2,7 @@
 
 """User blueprint for the bioregistry web application."""
 
-from flask import Blueprint, abort, redirect, render_template
+from flask import Blueprint, abort, redirect, render_template, url_for
 
 import bioregistry
 from .utils import _get_resource_mapping_rows, _get_resource_providers, _normalize_prefix_or_404
@@ -33,10 +33,16 @@ def resources():
     return render_template('resources.html', rows=rows)
 
 
+@ui_blueprint.route('/<prefix>')
+def resource_redirect(prefix: str):
+    """Redirect to the canonical endpoint for serving prefix information."""
+    return redirect(url_for('.' + resource.__name__, prefix=prefix))
+
+
 @ui_blueprint.route('/registry/<prefix>')
 def resource(prefix: str):
     """Serve the a Bioregistry entry page."""
-    prefix = _normalize_prefix_or_404(prefix, ui_blueprint.name + '.' + resource.__name__)
+    prefix = _normalize_prefix_or_404(prefix, '.' + resource.__name__)
     if not isinstance(prefix, str):
         return prefix
     example = bioregistry.get_example(prefix)
