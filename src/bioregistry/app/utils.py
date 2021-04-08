@@ -2,7 +2,9 @@
 
 """Utility functions for the Bioregistry :mod:`flask` app."""
 
-from flask import abort
+from typing import Optional
+
+from flask import abort, redirect, url_for
 
 import bioregistry
 
@@ -44,8 +46,10 @@ def _get_resource_mapping_rows(prefix: str):
     ]
 
 
-def _normalize_prefix_or_404(prefix: str) -> str:
+def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
     norm_prefix = bioregistry.normalize_prefix(prefix)
     if norm_prefix is None:
-        abort(404)
+        abort(404, f'Invalid prefix: {prefix}')
+    elif endpoint is not None and norm_prefix != prefix:
+        return redirect(url_for(endpoint, prefix=norm_prefix))
     return norm_prefix

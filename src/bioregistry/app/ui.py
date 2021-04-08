@@ -36,7 +36,7 @@ def resources():
 @ui_blueprint.route('/registry/<prefix>')
 def resource(prefix: str):
     """Serve the a Bioregistry entry page."""
-    prefix = _normalize_prefix_or_404(prefix)
+    prefix = _normalize_prefix_or_404(prefix, ui_blueprint.name + '.' + resource.__name__)
     example = bioregistry.get_example(prefix)
     return render_template(
         'resource.html',
