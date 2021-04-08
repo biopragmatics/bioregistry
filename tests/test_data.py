@@ -43,6 +43,10 @@ class TestDuplicates(unittest.TestCase):
                 with self.subTest(prefix=prefix):
                     self.fail(msg=f'{prefix} acronym ({name}) is not expanded')
 
+            if '.' in prefix and prefix.split('.')[0] == name.lower():
+                with self.subTest(prefix=prefix):
+                    self.fail(msg=f'{prefix} acronym ({name}) is not expanded')
+
     def test_no_redundant_acronym(self):
         """Test that there is no redundant acronym in the name.
 
