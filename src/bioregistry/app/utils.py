@@ -14,7 +14,7 @@ def _get_resource_providers(prefix: str, identifier: str):
     if identifier is None:
         return
     rv = []
-    for metaprefix, url in bioregistry.get_providers(prefix, identifier).items():
+    for metaprefix, url in bioregistry.get_providers_list(prefix, identifier):
         if metaprefix == 'default':
             metaprefix = prefix
             name = bioregistry.get_name(prefix)

@@ -10,6 +10,6 @@ from .resolve import (  # noqa
 )
 from .resolve_identifier import (  # noqa
     get_identifiers_org_curie, get_identifiers_org_url, get_link, get_obofoundry_link, get_ols_link, get_providers,
-    validate,
+    get_providers_list, validate,
 )
 from .utils import read_bioregistry  # noqa

@@ -2,16 +2,18 @@
 
 """Resolvers for CURIE (e.g., pairs of prefix and identifier)."""
 
-from typing import Callable, Mapping, Optional
+from typing import Callable, Mapping, Optional, Sequence, Tuple
 
+from .constants import BIOREGISTRY_REMOTE_URL
 from .resolve import (
     get, get_banana, get_identifiers_org_prefix, get_obofoundry_prefix, get_ols_prefix, get_pattern_re,
-    namespace_in_lui,
+    namespace_in_lui, normalize_prefix,
 )
 
 __all__ = [
     'validate',
     'get_providers',
+    'get_providers_list',
     'get_identifiers_org_url',
     'get_identifiers_org_curie',
     'get_obofoundry_link',
@@ -46,11 +48,25 @@ def get_default_url(prefix: str, identifier: str) -> Optional[str]:
 
 def get_providers(prefix: str, identifier: str) -> Mapping[str, str]:
     """Get all providers for the CURIE."""
-    rv = {}
+    return dict(get_providers_list(prefix, identifier))
+
+
+def get_providers_list(prefix: str, identifier: str) -> Sequence[Tuple[str, str]]:
+    """Get all providers for the CURIE."""
+    rv = []
     for provider, get_url in PROVIDER_FUNCTIONS.items():
         link = get_url(prefix, identifier)
         if link is not None:
-            rv[provider] = link
+            rv.append((provider, link))
+    if not rv:
+        return rv
+
+    bioregistry_link = _get_bioregistry_link(prefix, identifier)
+    if not bioregistry_link:
+        return rv
+
+    # if a default URL is available, it goes first. otherwise the bioregistry URL goes first.
+    rv.insert(1 if rv[0][0] == 'default' else 0, ('bioregistry', bioregistry_link))
     return rv
 
 
@@ -99,6 +115,22 @@ def get_ols_link(prefix: str, identifier: str) -> Optional[str]:
     return f'https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_link}'
 
 
+def _get_bioregistry_link(prefix: str, identifier: str) -> Optional[str]:
+    """Get the bioregistry link.
+
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE
+    :return: A link to the bioregistry resolver
+
+    >>> _get_bioregistry_link('chebi', '1234')
+    http://bioregistry.io/chebi:1234
+    """
+    norm_prefix = normalize_prefix(prefix)
+    if norm_prefix is None:
+        return None
+    return f'{BIOREGISTRY_REMOTE_URL.rstrip()}/{norm_prefix}:{identifier}'
+
+
 PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
     'default': get_default_url,
     'miriam': get_identifiers_org_url,
@@ -108,6 +140,7 @@ PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
 
 LINK_PRIORITY = [
     'default',
+    'bioregistry',
     'miriam',
     'ols',
     'obofoundry',
