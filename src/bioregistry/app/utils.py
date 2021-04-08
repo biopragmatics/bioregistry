@@ -47,7 +47,10 @@ def _get_resource_mapping_rows(prefix: str):
 
 
 def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
-    norm_prefix = bioregistry.normalize_prefix(prefix)
+    try:
+        norm_prefix = bioregistry.normalize_prefix(prefix)
+    except ValueError:
+        norm_prefix = None
     if norm_prefix is None:
         abort(404, f'Invalid prefix: {prefix}')
     elif endpoint is not None and norm_prefix != prefix:
