@@ -2,6 +2,7 @@
 
 """Utility functions for the Bioregistry :mod:`flask` app."""
 
+import itertools as itt
 from typing import Optional
 
 from flask import abort, redirect, url_for
@@ -42,7 +43,10 @@ def _get_resource_mapping_rows(prefix: str):
             name=bioregistry.get_registry_name(metaprefix),
             url=bioregistry.get_registry_url(metaprefix, xref),
         )
-        for metaprefix, xref in mappings.items()
+        for metaprefix, xref in itt.chain(
+            [('bioregistry', prefix)],
+            mappings.items(),
+        )
     ]
 
 
