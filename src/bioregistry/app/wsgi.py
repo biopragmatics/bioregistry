@@ -3,12 +3,13 @@
 """Web application for the Bioregistry."""
 
 from flasgger import Swagger
-from flask import Blueprint, Flask, abort, jsonify, redirect, request, url_for
+from flask import Blueprint, Flask, abort, jsonify, render_template, request
 from flask_bootstrap import Bootstrap
 
 import bioregistry
 from bioregistry.app.ui import ui_blueprint
 from .utils import _normalize_prefix_or_404
+from ..resolve_identifier import _get_bioregistry_link
 
 app = Flask(__name__)
 Swagger.DEFAULT_CONFIG.update({
@@ -113,7 +114,14 @@ app.register_blueprint(ui_blueprint)
 @app.route('/')
 def home():
     """Render the homepage."""
-    return redirect(url_for('ui.resources'))
+    example_prefix, example_identifier = 'chebi', '138488'
+    example_url = _get_bioregistry_link(example_prefix, example_identifier)
+    return render_template(
+        'home.html',
+        example_url=example_url,
+        example_prefix=example_prefix,
+        example_identifier=example_identifier,
+    )
 
 
 if __name__ == '__main__':
