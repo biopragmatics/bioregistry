@@ -16,7 +16,15 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col-8"><h5 style="margin: 0">{{ name }}</h5></div>
+                <div class="col-8">
+                    <h5 style="margin: 0">{{ name }}
+                        {% if deprecated %}
+                            <span class="badge badge-warning" style="display: inline-block;">
+                                Deprecated <i class="fas fa-exclamation-triangle"></i>
+                            </span>
+                        {% endif %}
+                    </h5>
+                </div>
                 <div class="col-4 text-right">
                     <a href="{{ url_for("api.resource", prefix=prefix) }}">
                         JSON <i class="fas fa-download"></i>
@@ -39,6 +47,8 @@
                 {% endif %}
                 <dt>Homepage</dt>
                 <dd>{% if homepage %}<a href="{{ homepage }}">{{ homepage.rstrip('/') }}</a>{% endif %}</dd>
+                <dt>Contact</dt>
+                <dd>{% if contact %}<a href="mailto:{{ contact }}">{{ contact }}</a>{% endif %}</dd>
                 <dt>Pattern</dt>
                 <dd>{% if pattern %}<code>{{ pattern }}</code>{% endif %}</dd>
                 <dt>Namespace in Pattern</dt>
