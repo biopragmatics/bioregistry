@@ -38,6 +38,9 @@ __all__ = [
 
 logger = logging.getLogger(__name__)
 
+# not a perfect email regex, but close enough
+EMAIL_RE = re.compile(r'^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,5}$')
+
 
 def get(prefix: str) -> Optional[Mapping[str, Any]]:
     """Get the Bioregistry entry for the given prefix.
@@ -247,7 +250,11 @@ def is_deprecated(prefix: str) -> bool:
 
 def get_email(prefix: str) -> Optional[str]:
     """Return the contact email, if available."""
-    return _get_prefix_key(prefix, 'contact', ('obofoundry', 'ols'))
+    rv = _get_prefix_key(prefix, 'contact', ('obofoundry', 'ols'))
+    if rv and not EMAIL_RE.match(rv):
+        logger.warning('[%s] invalid email address listed: %s', prefix, rv)
+        return None
+    return rv
 
 
 def get_homepage(prefix: str) -> Optional[str]:

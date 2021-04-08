@@ -7,6 +7,7 @@ import logging
 import unittest
 
 import bioregistry
+from bioregistry.resolve import EMAIL_RE, _get_prefix_key
 
 logger = logging.getLogger(__name__)
 
@@ -55,6 +56,17 @@ class TestDuplicates(unittest.TestCase):
                 continue
             with self.subTest(prefix=prefix):
                 self.fail(msg=f'malformed homepage: {homepage}')
+
+    @unittest.skip('some data needs to be updated from the source. solution proposed at '
+                   'https://github.com/OBOFoundry/OBOFoundry.github.io/pull/1480/files')
+    def test_email(self):
+        """Test that the email getter returns valid email addresses."""
+        for prefix in bioregistry.read_bioregistry():
+            email = _get_prefix_key(prefix, 'contact', ('obofoundry', 'ols'))
+            if email is None or EMAIL_RE.match(email):
+                continue
+            with self.subTest(prefix=prefix):
+                self.fail(msg=f'bad email: {email}')
 
     def test_no_redundant_acronym(self):
         """Test that there is no redundant acronym in the name.
