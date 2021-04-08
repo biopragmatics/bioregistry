@@ -21,10 +21,18 @@
             </div>
         </div>
         <div class="card-body">
-            <a class="btn btn-success btn-lg" href="{{ url_for("ui.resolve", prefix=prefix, identifier=identifier) }}">
-                Resolve <code>{{ prefix }}:{{ identifier }}</code> with Default Provider &nbsp;&nbsp;
-                <i class="fas fa-share-square"></i>
-            </a>
+            {% if providers %}
+                <a class="btn btn-success btn-lg"
+                   href="{{ url_for("ui.resolve", prefix=prefix, identifier=identifier) }}">
+                    Resolve <code>{{ prefix }}:{{ identifier }}</code> with Default Provider&nbsp;&nbsp;
+                    <i class="fas fa-share-square"></i>
+                </a>
+            {% else %}
+                <span class="btn btn-warning btn-lg">
+                    Unable to resolve entries in <code>{{ prefix }}</code>&nbsp;&nbsp;
+                    <i class="fas fa-skull-crossbones"></i>
+                </span>
+            {% endif %}
         </div>
         {{ utils.render_provider_table(prefix, identifier, providers) }}
     </div>
