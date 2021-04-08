@@ -37,6 +37,8 @@ def resources():
 def resource(prefix: str):
     """Serve the a Bioregistry entry page."""
     prefix = _normalize_prefix_or_404(prefix, ui_blueprint.name + '.' + resource.__name__)
+    if not isinstance(prefix, str):
+        return prefix
     example = bioregistry.get_example(prefix)
     return render_template(
         'resource.html',
