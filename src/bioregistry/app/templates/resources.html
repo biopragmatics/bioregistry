@@ -19,7 +19,7 @@
     <script>
         $(document).ready(function () {
             $("#table-entries").DataTable({
-                // pageLength: 5
+                "order": [[ 1, "asc" ]]
             });
             $("#table-entries_wrapper").children(":first-child").addClass("card-body");
             $("#table-entries_wrapper").children(":last-child").addClass("card-body");
