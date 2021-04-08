@@ -84,7 +84,7 @@ def get_registry_url(metaprefix: str, prefix: str) -> Optional[str]:
 
 def get_name(prefix: str) -> Optional[str]:
     """Get the name for the given prefix, it it's available."""
-    return _get_prefix_key(prefix, 'name', ('miriam', 'ols', 'obofoundry', 'wikidata'))
+    return _get_prefix_key(prefix, 'name', ('ols', 'obofoundry', 'wikidata', 'go', 'ncbi', 'bioportal', 'miriam'))
 
 
 def get_description(prefix: str) -> Optional[str]:

@@ -30,6 +30,19 @@ class TestDuplicates(unittest.TestCase):
                     msg=f'{prefix} is missing a name',
                 )
 
+    def test_name_expansions(self):
+        """Test that default names are not capital acronyms."""
+        for prefix in bioregistry.read_bioregistry():
+            if bioregistry.is_deprecated(prefix):
+                continue
+            entry = bioregistry.get(prefix)
+            if 'name' in entry:
+                continue
+            name = bioregistry.get_name(prefix)
+            if prefix == name.lower() and name.upper() == name:
+                with self.subTest(prefix=prefix):
+                    self.fail(msg=f'{prefix} acronym ({name}) is not expanded')
+
     def test_format_urls(self):
         """Test that entries with a format URL are formatted right (yo dawg)."""
         for prefix, entry in self.registry.items():
