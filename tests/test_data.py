@@ -47,6 +47,15 @@ class TestDuplicates(unittest.TestCase):
                 with self.subTest(prefix=prefix):
                     self.fail(msg=f'{prefix} acronym ({name}) is not expanded')
 
+    def test_homepage_http(self):
+        """Test that all homepages start with http."""
+        for prefix in bioregistry.read_bioregistry():
+            homepage = bioregistry.get_homepage(prefix)
+            if homepage is None or homepage.startswith('http'):
+                continue
+            with self.subTest(prefix=prefix):
+                self.fail(msg=f'malformed homepage: {homepage}')
+
     def test_no_redundant_acronym(self):
         """Test that there is no redundant acronym in the name.
 
