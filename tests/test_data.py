@@ -43,6 +43,28 @@ class TestDuplicates(unittest.TestCase):
                 with self.subTest(prefix=prefix):
                     self.fail(msg=f'{prefix} acronym ({name}) is not expanded')
 
+    def test_no_redundant_acronym(self):
+        """Test that there is no redundant acronym in the name.
+
+        For example, "Amazon Standard Identification Number (ASIN)" is a problematic
+        name for prefix "asin".
+        """
+        for prefix in bioregistry.read_bioregistry():
+            if bioregistry.is_deprecated(prefix):
+                continue
+            entry = bioregistry.get(prefix)
+            if 'name' in entry:
+                continue
+            name = bioregistry.get_name(prefix)
+
+            try:
+                _, rest = name.rstrip(')').rsplit('(', 1)
+            except ValueError:
+                continue
+            if rest.lower() == prefix.lower():
+                with self.subTest(prefix=prefix):
+                    self.fail(msg=f'{prefix} has redundany acronym in name "{name}"')
+
     def test_format_urls(self):
         """Test that entries with a format URL are formatted right (yo dawg)."""
         for prefix, entry in self.registry.items():
