@@ -49,6 +49,7 @@ def resource(prefix: str):
         synonyms=bioregistry.get_synonyms(prefix),
         homepage=bioregistry.get_homepage(prefix),
         pattern=bioregistry.get_pattern(prefix),
+        version=bioregistry.get_version(prefix),
         namespace_in_lui=bioregistry.namespace_in_lui(prefix),
         deprecated=bioregistry.is_deprecated(prefix),
         contact=bioregistry.get_email(prefix),

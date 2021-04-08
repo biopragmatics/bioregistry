@@ -394,7 +394,7 @@ def get_versions() -> Mapping[str, str]:
                     get_email(bioregistry_id),
                 )
             try:
-                version = datetime.datetime.strptime(version, version_date_fmt)
+                version = datetime.datetime.strptime(version, version_date_fmt).strftime('%Y-%m-%d')
             except ValueError:
                 logger.warning('[%s] wrong format for version %s', bioregistry_id, version)
         elif not version_type:
