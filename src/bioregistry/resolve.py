@@ -247,31 +247,12 @@ def is_deprecated(prefix: str) -> bool:
 
 def get_email(prefix: str) -> Optional[str]:
     """Return the contact email, if available."""
-    entry = get(prefix)
-    if entry is None:
-        return None
-
-    for key in ('obofoundry', 'ols'):
-        obo_email = entry.get(key, {}).get('contact')
-        if obo_email:
-            return obo_email
-
-    return None
+    return _get_prefix_key(prefix, 'contact', ('obofoundry', 'ols'))
 
 
 def get_homepage(prefix: str) -> Optional[str]:
     """Return the homepage, if available."""
-    entry = get(prefix)
-    if entry is None:
-        return None
-    homepage = entry.get('homepage')
-    if homepage:
-        return homepage
-    for key in ['obofoundry', 'ols', 'n2t', 'wikidata', 'go', 'ncbi']:
-        homepage = entry.get(key, {}).get('homepage')
-        if homepage:
-            return homepage
-    return None
+    return _get_prefix_key(prefix, 'homepage', ('obofoundry', 'ols', 'n2t', 'wikidata', 'go', 'ncbi'))
 
 
 def parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
