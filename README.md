@@ -139,6 +139,8 @@ $ bioregistry web
 ```
 
 to run a web app that functions like Identifiers.org, but backed by the Bioregistry.
+A public instance of this app is hosted by the [INDRA Lab](https://indralab.github.io) at 
+https://bioregistry.io.
 
 ## ♻️ Update
 
