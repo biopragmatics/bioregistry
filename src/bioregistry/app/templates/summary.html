@@ -194,6 +194,22 @@
         that would be convincing enough for the Wikidata property gatekeepers and the MIRIAM registry.
     </p>
     <h2>Unexpected usage of CURIEs </h2>
+    <h3>Example Unresolvable CURIEs</h3>
+    <p>Some CURIEs can not be resolved in the Bioregistry. There are three typical reasons:</p>
+    <ol>
+        <li>
+            The prefix is not registered with the Bioregistry.<br/>Example:
+            <a href="{{ url_for('ui.resolve', prefix='nope', identifier='1234') }}"><code>nope:1234</code></a>.
+        </li>
+        <li>
+            The prefix has a validation pattern and the identifier does not match it.<br/>Example:
+            <a href="{{ url_for('ui.resolve', prefix='chebi', identifier='ABCD') }}"><code>chebi:ABCD</code></a>.
+        </li>
+        <li>
+            There are no providers available for the prefix.<br/>Example:
+            <a href="{{ url_for('ui.resolve', prefix='dc', identifier='1234') }}"><code>dc:1234</code></a>.
+        </li>
+    </ol>
     <h3>Misguided Attribution</h3>
     <p>
         In the OBO file format, terms have a description field which allows for the specification

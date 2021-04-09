@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Bioregistry Resolution Error{% endblock %}
+
+{% block container %}
+    <div class="card card-body">
+        <h5 class="card-title">HTTP 404 - Missing Provider</h5>
+        <p>
+            There are no providers available for <a
+                href="{{ url_for('ui.resource', prefix=prefix) }}"><code>{{ prefix }}</code></a>. If are able to
+            contribute one, please feel free to do one of the following:
+        </p>
+        <ul>
+            <li>
+                <a href="https://github.com/bioregistry/bioregistry/issues/new?title=Add%20provider%20for%20{{ prefix }}&body=Add your provider URL here:&assignee=cthoyt&labels=provider">
+                    Add an issue</a> on our GitHub issue tracker.
+            </li>
+            <li>
+                Add the provider yourself by <a href="https://github.com/bioregistry/bioregistry/edit/main/src/bioregistry/data/bioregistry.json">
+                    editing the Bioregistry</a> in GitHub through the web browser.
+            </li>
+            <li>
+                Make a pull request to <a href="https://github.com/bioregistry/bioregistry">
+                <i class="fab fa-github"></i> bioregistry/bioregistry</a>.
+            </li>
+        </ul>
+    </div>
+{% endblock %}

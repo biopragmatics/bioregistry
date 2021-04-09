@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Bioregistry Resolution Error{% endblock %}
+
+{% block container %}
+    <div class="card card-body">
+        <h5 class="card-title">HTTP 404 - Invalid Identifier</h5>
+        <p>
+            The identifier <code>{{ identifier }}</code> does not match the pattern for
+            <a href="{{ url_for('ui.resource', prefix=prefix) }}"><code>{{ prefix }}</code></a>:
+
+        </p>
+        <p class="text-center">
+            <kbd>{{ pattern }}</kbd>
+        </p>
+        <p>
+            If you believe this judgement to be erroneous but don't know how it should be updated, please let us know
+            via the
+            <a href="https://github.com/bioregistry/bioregistry/issues/new?title=Update%20pattern%20for%20{{ prefix }}&body=I think there is a problem with the pattern for {{ prefix }} becuase I could not resolve `{{ identifier }}`&assignee=cthoyt&labels=pattern">
+                GitHub Issue tracker</a>.
+        </p>
+        <p>
+            If you know how the pattern should be updated, do the following:
+        </p>
+        <ul>
+            <li>
+                <a href="https://github.com/bioregistry/bioregistry/issues/new?title=Update%20pattern%20for%20{{ prefix }}&body=The pattern for {{ prefix }} should be updated to be:&assignee=cthoyt&labels=pattern">
+                    Add an issue</a> on our GitHub issue tracker stating how the pattern should be updated.
+            </li>
+            <li>
+                Update the pattern yourself by <a
+                    href="https://github.com/bioregistry/bioregistry/edit/main/src/bioregistry/data/bioregistry.json">
+                editing the Bioregistry</a> in GitHub through the web browser.
+            </li>
+            <li>
+                Make a pull request to <a href="https://github.com/bioregistry/bioregistry">
+                <i class="fab fa-github"></i> bioregistry/bioregistry</a>.
+            </li>
+        </ul>
+    </div>
+{% endblock %}

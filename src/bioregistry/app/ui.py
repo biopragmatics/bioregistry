@@ -2,7 +2,7 @@
 
 """User blueprint for the bioregistry web application."""
 
-from flask import Blueprint, abort, redirect, render_template, url_for
+from flask import Blueprint, redirect, render_template, url_for
 
 import bioregistry
 from .utils import _get_resource_mapping_rows, _get_resource_providers, _normalize_prefix_or_404
@@ -88,8 +88,24 @@ def reference(prefix: str, identifier: str):
 
 @ui_blueprint.route('/<prefix>:<identifier>')
 def resolve(prefix: str, identifier: str):
-    """Resolve a CURIE."""
+    """Resolve a CURIE.
+
+    The following things can make a CURIE unable to resolve:
+
+    1. The prefix is not registered with the Bioregistry
+    2. The prefix has a validation pattern and the identifier does not match it
+    3. There are no providers available for the URL
+    """
+    if not bioregistry.normalize_prefix(prefix):
+        return render_template('resolve_missing_prefix.html', prefix=prefix, identifier=identifier), 404
+
+    pattern = bioregistry.get_pattern(prefix)
+    if pattern and not bioregistry.validate(prefix, identifier):
+        return render_template(
+            'resolve_invalid_identifier.html', prefix=prefix, identifier=identifier, pattern=pattern,
+        ), 404
+
     url = bioregistry.get_link(prefix, identifier)
     if not url:
-        abort(400)
+        return render_template('resolve_missing_providers.html', prefix=prefix, identifier=identifier), 404
     return redirect(url)
