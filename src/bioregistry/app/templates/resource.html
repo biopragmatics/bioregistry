@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "macros.html" as utils %}
 
-{% block title %}Bioregistry - {{ prefix }}{% endblock %}
+{% block title %}Bioregistry - {{ name }}{% endblock %}
 
 {% block scripts %}
     {{ super() }}
@@ -41,7 +41,7 @@
                     <dt>Alternative Prefixes</dt>
                     <dd>
                         {% for synonym in synonyms %}
-                            <span class="badge badge-secondary">{{ synonym }}</span>
+                            <span class="badge badge-light">{{ synonym }}</span>
                         {% endfor %}
                     </dd>
                 {% endif %}
@@ -49,12 +49,24 @@
                     <dt>Version</dt>
                     <dd>{{ version }}</dd>
                 {% endif %}
-                <dt>Homepage</dt>
+                <dt>Links</dt>
                 <dd>
                     {% if homepage %}
-                        <a href="{{ homepage }}">{{ homepage.rstrip('/') }}</a>
+                        <a class="badge badge-pill badge-light" href="{{ homepage }}">
+                            Homepage <i class="fas fa-home"></i>
+                        </a>
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Homepage</span>
+                    {% endif %}
+                    {% if obo_download %}
+                        <a class="badge badge-pill badge-light" href="{{ obo_download }}">
+                            OBO <i class="fas fa-download"></i>
+                        </a>
+                    {% endif %}
+                    {% if owl_download %}
+                        <a class="badge badge-pill badge-light" href="{{ owl_download }}">
+                            OWL <i class="fas fa-download"></i>
+                        </a>
                     {% endif %}
                 </dd>
                 <dt>Contact</dt>
@@ -67,23 +79,29 @@
                 </dd>
                 <dt>Pattern</dt>
                 <dd>
-                    {% if pattern %}
+                    {% if not has_terms %}
+                        <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
+                    {% elif pattern %}
                         <code>{{ pattern }}</code>
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Pattern</span>
                     {% endif %}
                 </dd>
-                <dt>Namespace in Pattern</dt>
-                <dd>
-                    {% if namespace_in_lui %}
-                        True (<code>{{ banana if banana else prefix.upper() }}:</code>)
-                    {% else %}
-                        False
-                    {% endif %}
-                </dd>
+                {% if pattern %}
+                    <dt>Namespace in Pattern</dt>
+                    <dd>
+                        {% if namespace_in_lui %}
+                            True (<code>{{ banana if banana else prefix.upper() }}:</code>)
+                        {% else %}
+                            False
+                        {% endif %}
+                    </dd>
+                {% endif %}
                 <dt>Example Identifier</dt>
                 <dd>
-                    {% if example %}
+                    {% if not has_terms %}
+                        <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
+                    {% elif example %}
                         <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example }}</a>
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Example</span>

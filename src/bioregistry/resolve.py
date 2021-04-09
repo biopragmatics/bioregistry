@@ -22,9 +22,12 @@ __all__ = [
     'namespace_in_lui',
     'get_format',
     'get_example',
+    'has_terms',
     'is_deprecated',
     'get_email',
     'get_homepage',
+    'get_obo_download',
+    'get_owl_download',
     'parse_curie',
     'normalize_prefix',
     'get_version',
@@ -232,7 +235,18 @@ def get_example(prefix: str) -> Optional[str]:
     miriam_example = entry.get('miriam', {}).get('sampleId')
     if miriam_example is not None:
         return miriam_example
+    example = entry.get('ncbi', {}).get('example')
+    if example is not None:
+        return example
     return None
+
+
+def has_terms(prefix: str) -> bool:
+    """Check if the prefix is specifically noted to not have terms."""
+    entry = get(prefix)
+    if entry is None:
+        return True
+    return not entry.get('no_own_terms', False)
 
 
 def is_deprecated(prefix: str) -> bool:
@@ -260,6 +274,22 @@ def get_email(prefix: str) -> Optional[str]:
 def get_homepage(prefix: str) -> Optional[str]:
     """Return the homepage, if available."""
     return _get_prefix_key(prefix, 'homepage', ('obofoundry', 'ols', 'n2t', 'wikidata', 'go', 'ncbi'))
+
+
+def get_obo_download(prefix: str) -> Optional[str]:
+    """Get the download link for the latest OBO file."""
+    entry = get(prefix)
+    if entry is None:
+        return
+    return entry.get('obofoundry', {}).get('download.obo')
+
+
+def get_owl_download(prefix: str) -> Optional[str]:
+    """Get the download link for the latest OWL file."""
+    entry = get(prefix)
+    if entry is None:
+        return
+    return entry.get('ols', {}).get('version.iri')
 
 
 def parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
