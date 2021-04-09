@@ -12,7 +12,10 @@ from typing import Collection, Set
 
 import click
 
-from bioregistry import get_email, get_example, get_format, get_homepage, get_pattern, get_version, read_bioregistry
+from bioregistry import (
+    get_description, get_email, get_example, get_format, get_homepage, get_name, get_obo_download, get_owl_download,
+    get_pattern, get_version, read_bioregistry,
+)
 from bioregistry.constants import DOCS_IMG
 from bioregistry.external import (
     get_biolink, get_bioportal, get_go, get_miriam, get_n2t, get_ncbi, get_obofoundry, get_ols, get_prefix_commons,
@@ -143,25 +146,26 @@ def compare():  # noqa:C901
     ##############################################
     # How many entries have version information? #
     ##############################################
-    has_version = {key for key in bioregistry if get_version(key)}
-    has_pattern = {key for key in bioregistry if get_pattern(key)}
+    def _get_has(f):
+        return {key for key in bioregistry if f(key)}
+
     has_wikidata_database = {
         key
         for key, entry in bioregistry.items()
         if 'database' in entry.get('wikidata', {})
     }
-    has_formatter = {key for key in bioregistry if get_format(key)}
-    has_example = {key for key in bioregistry if get_example(key)}
-    has_email = {key for key in bioregistry if get_email(key)}
-    has_homepage = {key for key in bioregistry if get_homepage(key)}
     measurements = [
-        ('Pattern', has_pattern),
-        ('Version', has_version),
+        ('Name', _get_has(get_name)),
+        ('Description', _get_has(get_description)),
+        ('Version', _get_has(get_version)),
+        ('Homepage', _get_has(get_homepage)),
+        ('Contact Email', _get_has(get_email)),
+        ('Pattern', _get_has(get_pattern)),
+        ('Format URL', _get_has(get_format)),
+        ('Example', _get_has(get_example)),
         ('Wikidata Database', has_wikidata_database),
-        ('Format URL', has_formatter),
-        ('Example', has_example),
-        ('Contact Email', has_email),
-        ('Homepage', has_homepage),
+        ('OBO', _get_has(get_obo_download)),
+        ('OWL', _get_has(get_owl_download)),
     ]
 
     ncols = 3
@@ -179,7 +183,7 @@ def compare():  # noqa:C901
             startangle=30,
             explode=[0.1, 0],
         )
-        ax.set_title(f'Has {label}')
+        ax.set_title(label)
     if watermark:
         fig.text(
             0.5, 0, WATERMARK_TEXT,
