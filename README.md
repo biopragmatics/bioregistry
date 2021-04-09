@@ -28,8 +28,8 @@
 </p>
 
 <p align="center">
-   A community-driven integrative registry of biological databases, ontologies, and other resources.
-   <br />More information <a href="https://cthoyt.com/bioregistry/summary/">here</a>.
+   A community-driven integrative meta-registry of biological databases, ontologies, and other resources.
+   <br />More information <a href="https://bioregistry.github.io/bioregistry/summary/">here</a>.
 </p>
 
 ## ⬇️ Download
