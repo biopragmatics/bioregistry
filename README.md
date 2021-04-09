@@ -7,8 +7,8 @@
 </h1>
 
 <p align="center">
-    <a href="https://github.com/cthoyt/bioregistry/actions?query=workflow%3ATests">
-        <img alt="Tests" src="https://github.com/cthoyt/bioregistry/workflows/Tests/badge.svg" />
+    <a href="https://github.com/bioregistry/bioregistry/actions?query=workflow%3ATests">
+        <img alt="Tests" src="https://github.com/bioregistry/bioregistry/workflows/Tests/badge.svg" />
     </a>
     <a href="https://pypi.org/project/bioregistry">
         <img alt="PyPI" src="https://img.shields.io/pypi/v/bioregistry" />
@@ -16,7 +16,7 @@
     <a href="https://pypi.org/project/bioregistry">
         <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/bioregistry" />
     </a>
-    <a href="https://github.com/cthoyt/bioregistry/blob/main/LICENSE">
+    <a href="https://github.com/bioregistry/bioregistry/blob/main/LICENSE">
         <img alt="PyPI - License" src="https://img.shields.io/pypi/l/bioregistry" />
     </a>
     <a href="https://zenodo.org/badge/latestdoi/319481281">
@@ -32,14 +32,14 @@
 ## ⬇️ Download
 
 The bioregistry database can be downloaded directly
-from [here](https://github.com/cthoyt/bioregistry/blob/main/src/bioregistry/data/bioregistry.json).
+from [here](https://github.com/bioregistry/bioregistry/blob/main/src/bioregistry/data/bioregistry.json).
 
 The manually curated portions of these data are available under the CC0 1.0 Universal License.
 
 ## 🙏 Contributing
 
 There haven't been any external contributors yet, but if you want to get involved, you can make edits directly to
-the [bioregistry.json](https://github.com/cthoyt/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
+the [bioregistry.json](https://github.com/bioregistry/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
 file through the GitHub interface.
 
 Things that would be helpful:
@@ -67,7 +67,7 @@ $ pip install bioregistry
 It can be installed in development mode for local curation with:
 
 ```bash
-$ git clone https://github.com/cthoyt/bioregistry.git
+$ git clone https://github.com/bioregistry/bioregistry.git
 $ cd bioregistry
 $ pip install -e .
 ```
@@ -143,9 +143,9 @@ to run a web app that functions like Identifiers.org, but backed by the Bioregis
 ## ♻️ Update
 
 The database is automatically updated daily thanks to scheduled workflows in GitHub Actions. The workflow's
-configuration can be found [here](https://github.com/cthoyt/bioregistry/blob/main/.github/workflows/update.yml)
-and the last run can be seen [here](https://github.com/cthoyt/bioregistry/actions?query=workflow%3A%22Update+Data%22).
-Further, a [changelog](https://github.com/cthoyt/bioregistry/commits?author=actions-user) can be recapitulated from the
+configuration can be found [here](https://github.com/bioregistry/bioregistry/blob/main/.github/workflows/update.yml)
+and the last run can be seen [here](https://github.com/bioregistry/bioregistry/actions?query=workflow%3A%22Update+Data%22).
+Further, a [changelog](https://github.com/bioregistry/bioregistry/commits?author=actions-user) can be recapitulated from the
 commits of the GitHub Actions bot.
 
 If you want to manually update the database after installing in development mode, run the following:
@@ -157,7 +157,7 @@ $ bioregistry update
 ## ⚖️ License
 
 The code in this repository is licensed under the
-[MIT License](https://github.com/cthoyt/bioregistry/blob/main/LICENSE).
+[MIT License](https://github.com/bioregistry/bioregistry/blob/main/LICENSE).
 
 ## 📖 Citation
 

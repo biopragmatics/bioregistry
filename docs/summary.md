@@ -18,10 +18,10 @@ investigation of the discrepancies between MIRIAM, OBO Foundry, OLS, and other b
 This two-sided comparison shows how well the Bioregistry covers each external registry. In the case of Wikidata, it's
 difficult to know exactly how many relevant properties there are.
 
-<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/bioregistry_coverage.svg" alt="Bioregistry Coverage"/>
+<img src="https://raw.githubusercontent.com/bioregistry/bioregistry/main/docs/img/bioregistry_coverage.svg" alt="Bioregistry Coverage"/>
 
 Additional external registries that have been queued for alignment can be listed via the
-[GitHub issue tracker](https://github.com/cthoyt/bioregistry/issues? q=is%3Aissue+is%3Aopen+label%3A%22External+Registry%22).
+[GitHub issue tracker](https://github.com/bioregistry/bioregistry/issues? q=is%3Aissue+is%3Aopen+label%3A%22External+Registry%22).
 
 ### How Complete is the Bioregistry?
 
@@ -33,9 +33,9 @@ graph traversal over the various hierarchies of properties (see [this](https://w
 Biological databases, ontologies, and resource will continue to be generated as we learn about new and exciting
 phenomena, so the medium-term plan to grow the Bioregistry is to continue to cover resources that are not covered by the
 other resources it references. New external registries can be suggested on the Bioregistries
-GitHub [issue tracker](https://github.com/cthoyt/bioregistry/issues/new) using
-the [External Registry](https://github.com/cthoyt/bioregistry/labels/External%20Registry) label. Further, there are
-[contribution guidelines](https://github.com/cthoyt/bioregistry#-contributing) on the GitHub site to help guide
+GitHub [issue tracker](https://github.com/bioregistry/bioregistry/issues/new) using
+the [External Registry](https://github.com/bioregistry/bioregistry/labels/External%20Registry) label. Further, there are
+[contribution guidelines](https://github.com/bioregistry/bioregistry#-contributing) on the GitHub site to help guide
 potential contributors towards small but meaningful first contributions. It is expected that all contributors will be
 listed as co-authors in the eventual manuscript describing this resource.
 
@@ -62,7 +62,7 @@ Experimental Factor Ontology (EFO).
 
 <details>
 <summary>Pairwise Overlap Comparisons</summary>
-<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/external_overlap.svg" alt="External Registry Overlaps"/>
+<img src="https://raw.githubusercontent.com/bioregistry/bioregistry/main/docs/img/external_overlap.svg" alt="External Registry Overlaps"/>
 </details>
 
 ## Highly Conserved Resources
@@ -73,27 +73,27 @@ of controlled vocabularies that aren't *technically* ontologies into the OBO Fou
 ability to cover some of the most used resources like the HGNC. Entries with no references are uniquely curated in the
 Bioregistry.
 
-<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/xrefs.svg" alt="Reference Counts"/>
+<img src="https://raw.githubusercontent.com/bioregistry/bioregistry/main/docs/img/xrefs.svg" alt="Reference Counts"/>
 
 ## Licensing
 
 Licenses are only directly available from OBO Foundry and the OLS. Wikidata contains some licensing information, but
 more would need to be written to handle this.
 
-<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/license_coverage.svg" alt="License Coverage"/>
+<img src="https://raw.githubusercontent.com/bioregistry/bioregistry/main/docs/img/license_coverage.svg" alt="License Coverage"/>
 
 However, even internally, neither the OBO Foundry nor OLS use a consistent nomenclature for licenses, so they were
-remapped using [this ruleset](https://github.com/cthoyt/bioregistry/blob/main/src/bioregistry/compare.py#L19). Further,
+remapped using [this ruleset](https://github.com/bioregistry/bioregistry/blob/main/src/bioregistry/compare.py#L19). Further,
 some licenses that were inappropriate for data (e.g., Apache 2.0 License, GNU GPL 3.0 License, BSD License) appeared
 infrequently and were collapsed into "Other". Other uncommon and infrequent licenses were likewise collapsed into
 "Other". After, there were still several conflicts between the reported license in OBO Foundry and OLS, in which case
 both were added to the tally. In the majority of the conflicts, OBO Foundry reported CC-BY and OLS reported CC 0.
 
-<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/licenses.svg" alt="License Types"/>
+<img src="https://raw.githubusercontent.com/bioregistry/bioregistry/main/docs/img/licenses.svg" alt="License Types"/>
 
 ## Other Attributes
 
-<img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/img/has_attribute.svg" alt="Attributes Coverage"/>
+<img src="https://raw.githubusercontent.com/bioregistry/bioregistry/main/docs/img/has_attribute.svg" alt="Attributes Coverage"/>
 
 ### Versioning
 

@@ -4,7 +4,7 @@ title: Download
 permalink: /download/
 ---
 The bioregistry database can be downloaded directly
-from [here](https://github.com/cthoyt/bioregistry/blob/main/src/bioregistry/data/bioregistry.json).
+from [here](https://github.com/bioregistry/bioregistry/blob/main/src/bioregistry/data/bioregistry.json).
 
 ## License
 
@@ -49,4 +49,4 @@ import bioregistry
 registry = bioregistry.read_bioregistry()
 ```
 
-The source code can be found at [https://github.com/cthoyt/bioregistry](https://github.com/cthoyt/bioregistry).
+The source code can be found at [https://github.com/bioregistry/bioregistry](https://github.com/bioregistry/bioregistry).

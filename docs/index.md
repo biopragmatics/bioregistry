@@ -2,7 +2,7 @@
 layout: home
 ---
 <p align="center">
-  <img src="https://raw.githubusercontent.com/cthoyt/bioregistry/main/docs/source/logo.png" height="150">
+  <img src="https://raw.githubusercontent.com/bioregistry/bioregistry/main/docs/source/logo.png" height="150">
 </p>
 
 An integrative registry of biological databases, ontologies, and nomenclatures.

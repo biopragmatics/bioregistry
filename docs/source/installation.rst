@@ -11,12 +11,12 @@ The most recent code and data can be installed directly from GitHub with:
 
 .. code-block:: shell
 
-    $ pip install git+https://github.com/cthoyt/bioregistry.git
+    $ pip install git+https://github.com/bioregistry/bioregistry.git
 
 To install in development mode, use the following:
 
 .. code-block:: shell
 
-    $ git clone git+https://github.com/cthoyt/bioregistry.git
+    $ git clone git+https://github.com/bioregistry/bioregistry.git
     $ cd bioregistry
     $ pip install -e .
