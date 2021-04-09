@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    {{ super() }}
+    <link
+        rel="stylesheet"
+        href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css"
+    />
+    <style>
+        nav[data-toggle="toc"] {
+            top: 42px;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
+{% endblock %}
+
+{% block bodyattr %}data-spy="scroll" data-target="#toc"{% endblock %}
+{% block containerattr %}class="row"{% endblock %}
+
+{% block container %}
+    <!-- sidebar, which will move to the top on a small screen -->
+    <div class="col-sm-3">
+        <nav id="toc" data-toggle="toc" class="sticky-top"></nav>
+    </div>
+    <!-- main content area -->
+    <div class="col-sm-9">
+        {% block content %}{% endblock %}
+    </div>
+{% endblock %}

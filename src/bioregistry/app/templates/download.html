@@ -1,0 +1,73 @@
+{% extends "prose.html" %}
+
+{% block title %}Bioregistry Downloads{% endblock %}
+
+{% block content %}
+    <h2>Download</h2>
+    <p>
+        The bioregistry database can be downloaded as:
+    </p>
+    <ul>
+        <li>
+            <a href="https://github.com/bioregistry/bioregistry/blob/main/src/bioregistry/data/bioregistry.json">JSON</a>
+        </li>
+        <li>
+            <a href="https://github.com/bioregistry/bioregistry/blob/main/docs/_data/bioregistry.yml">YAML</a>
+        </li>
+    </ul>
+    <p>
+        The manually curated portions of these data are available under the
+        <a href="https://creativecommons.org/share-your-work/public-domain/cc0/">
+            <i class="fab fa-creative-commons-zero"></i> CC0 1.0 Universal License
+        </a>.
+    </p>
+    <h2>API Usage</h2>
+    <p>
+        See the Swagger <a href="{{ url_for('flasgger.apidocs') }}">API documentation</a>.
+    </p>
+    <h2>Programmatic Usage</h2>
+    <p>
+        The Python source code can be found at
+        <a href="https://github.com/bioregistry/bioregistry"><i class="fab fa-github"></i> bioregistry/bioregistry</a>.
+        It can be installed with <code>pip install bioregistry</code> or in development mode by following
+        <a href="https://github.com/bioregistry/bioregistry#-installation">these instructions</a>.
+    </p>
+    <h3>Example Usage</h3>
+    <p>
+        The Bioregistry can be used to normalize prefixes across MIRIAM and all the (very plentiful) variants that pop
+        up in ontologies in OBO Foundry and the OLS with the <code>normalize_prefix()</code> function.
+    </p>
+    <pre><code>
+    import bioregistry
+
+    # This works for synonym prefixes, like:
+    assert 'ncbitaxon' == bioregistry.normalize_prefix('taxonomy')
+
+    # This works for common mistaken prefixes, like:
+    assert 'chembl.compound' == bioregistry.normalize_prefix('chembl')
+
+    # This works for prefixes that are often written many ways, like:
+    assert 'eccode' == bioregistry.normalize_prefix('ec-code')
+    assert 'eccode' == bioregistry.normalize_prefix('EC_CODE')
+
+    # If a prefix is not registered, it gives back `None`
+    assert bioregistry.normalize_prefix('not a real key') is None
+    </code></pre>
+
+    Entries in the Bioregistry can be looked up with the `get()` function.
+
+    <pre><code>
+    import bioregistry
+
+    entry = bioregistry.normalize_prefix('taxonomy')
+    # there are lots of mysteries to discover in this dictionary!
+    </code></pre>
+
+    The full Bioregistry can be read in a Python project using:
+
+    <pre><code>
+    import bioregistry
+
+    registry = bioregistry.read_bioregistry()
+    </code></pre>
+{% endblock %}

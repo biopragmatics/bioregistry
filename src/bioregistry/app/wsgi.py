@@ -124,5 +124,17 @@ def home():
     )
 
 
+@app.route('/summary')
+def summary():
+    """Render the summary page."""
+    return render_template('summary.html')
+
+
+@app.route('/download')
+def download():
+    """Render the download page."""
+    return render_template('download.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)  # noqa

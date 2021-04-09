@@ -31,7 +31,7 @@
         <title>{% block title %}{% endblock %}</title>
     {% endblock %}
 </head>
-<body>
+<body {% block bodyattr %}{% endblock %}>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="{{ url_for("home") }}">
         <img src="{{ url_for('static', filename='logo.svg') }}" width="30" height="30" alt="">
@@ -47,13 +47,13 @@
                 <a class="nav-link" href="{{ url_for("ui.resources") }}">Registry</a>
             </li>
             <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for("summary") }}">Summary</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for("download") }}">Downloads</a>
+            </li>
+            <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('flasgger.apidocs') }}">API</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="https://bioregistry.github.io/bioregistry/summary/">Summary</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="https://bioregistry.github.io/bioregistry/download/">Download</a>
             </li>
         </ul>
     </div>
@@ -61,7 +61,7 @@
 
 <div class="container" style="margin-top: 50px; margin-bottom: 50px">
     <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-10">
+        <div {% block containerattr %}class="col-md-10 col-lg-10"{% endblock %}>
             {% block container %}{% endblock %}
         </div>
     </div>
