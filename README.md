@@ -19,6 +19,9 @@
     <a href="https://github.com/bioregistry/bioregistry/blob/main/LICENSE">
         <img alt="PyPI - License" src="https://img.shields.io/pypi/l/bioregistry" />
     </a>
+    <a href='https://bioregistry.readthedocs.io/en/latest/?badge=latest'>
+        <img src='https://readthedocs.org/projects/bioregistry/badge/?version=latest' alt='Documentation Status' />
+    </a>
     <a href="https://zenodo.org/badge/latestdoi/319481281">
         <img src="https://zenodo.org/badge/319481281.svg" alt="DOI">
     </a>
