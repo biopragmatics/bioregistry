@@ -13,15 +13,43 @@
     </script>
 {% endblock %}
 
-{% block containerattr %}class="col-md-8 col-lg-8"{% endblock %}
+{% block containerattr %}class="col-md-10 col-lg-10"{% endblock %}
 
 {% block container %}
     <div class="card card-body bg-light">
         <h1 class="display-3">Bioregistry</h1>
         <p class="lead">
             The Bioregistry is an open source, community curated registry, meta-registry, and compact
-            identifier resolver.
+            identifier resolver. Here's what that means:
         </p>
+        <dl class="row">
+            <dt class="col-lg-2 text-right text-nowrap">Registry</dt>
+            <dd class="col-lg-10">
+                A collection of metadata about ontologies, controlled vocabularies, and resources. Some other
+                well-known registries are the <a href="http://www.obofoundry.org/">OBO Foundry</a>,
+                <a href="https://identifiers.org">Identifiers.org</a>, and the
+                the <a href="https://www.ebi.ac.uk/ols/index">OLS</a>.
+            </dd>
+            <dt class="col-lg-2 text-right text-nowrap">Metaregistry</dt>
+            <dd class="col-lg-10">
+                A collection of metadata about registries and mappings between the resources they describe. For
+                example, <a href="https://www.ebi.ac.uk/chebi">ChEBI</a> appears in all of the example registries
+                from above. So far, the Bioregistry is the <i>only</i> metaregistry.
+            </dd>
+            <dt class="col-lg-2 text-right text-nowrap">Resolver</dt>
+            <dd class="col-lg-10">
+                A tool for mapping compact identifiers of the form <code>prefix:identifier</code> to HTML and structured
+                content providers. Some other well-known resolvers are
+                <a href="https://identifiers.org">Identifiers.org</a> and <a href="https://n2t.net/">Name-To-Thing</a>.
+            </dd>
+            <dt class="col-lg-2 text-right text-nowrap">Open Source</dt>
+            <dd class="col-lg-10">
+                Anyone can suggest or make pull requests to update the underlying database, which is stored in
+                <a href="https://github.com/bioregistry/bioregistry/blob/main/src/bioregistry/data/bioregistry.json">
+                    JSON</a> on GitHub where the community can engage in an open review process.
+            </dd>
+        </dl>
+        <p>Here's how to get started with the Bioregistry site:</p>
         <div class="list-group">
             <a href="{{ example_url }}" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
