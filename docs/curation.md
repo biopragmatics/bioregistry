@@ -23,7 +23,7 @@ annotated.
 
 ### Editing the Bioregistry 
 
-1. Follow [this link](https://github.com/cthoyt/bioregistry/edit/main/src/bioregistry/data/bioregistry.json) to edit
+1. Follow [this link](https://github.com/bioregistry/bioregistry/edit/main/src/bioregistry/data/bioregistry.json) to edit
    directly on GitHub.
 2. Here's an example of `3dmet`, which has the wikidata database annotated properly.
    ```json
