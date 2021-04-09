@@ -29,7 +29,7 @@
 
 <p align="center">
    A community-driven integrative meta-registry of biological databases, ontologies, and other resources.
-   <br />More information <a href="https://bioregistry.github.io/bioregistry/summary/">here</a>.
+   <br />More information <a href="https://bioregistry.io/summary/">here</a>.
 </p>
 
 ## ⬇️ Download
