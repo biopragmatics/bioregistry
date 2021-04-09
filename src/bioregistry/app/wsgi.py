@@ -2,16 +2,13 @@
 
 """Web application for the Bioregistry."""
 
-from typing import List
-
 from flasgger import Swagger
 from flask import Blueprint, Flask, abort, jsonify, render_template, request
 from flask_bootstrap import Bootstrap
 
 import bioregistry
 from bioregistry.app.ui import ui_blueprint
-from bioregistry.constants import BIOREGISTRY_REMOTE_URL
-from .utils import _normalize_prefix_or_404
+from .utils import _autocomplete, _get_identifier, _normalize_prefix_or_404, _search
 from ..resolve_identifier import _get_bioregistry_link
 
 app = Flask(__name__)
@@ -59,20 +56,6 @@ def resource(prefix: str):
     return jsonify(prefix=prefix, **bioregistry.get(prefix))  # type:ignore
 
 
-def _get_identifier(prefix: str, identifier: str):
-    prefix = _normalize_prefix_or_404(prefix)
-    if not bioregistry.validate(prefix, identifier):
-        return abort(404, f'invalid identifier: {prefix}:{identifier} for pattern {bioregistry.get_pattern(prefix)}')
-    providers = bioregistry.get_providers(prefix, identifier)
-    if not providers:
-        return abort(404, f'no providers available for {prefix}:{identifier}')
-
-    return dict(
-        query=dict(prefix=prefix, identifier=identifier),
-        providers=providers,
-    )
-
-
 @api_blueprint.route('/reference/<prefix>:<identifier>')
 def reference(prefix: str, identifier: str):
     """Look up information on the CURIE.
@@ -108,16 +91,9 @@ def search():
       type: string
     """  # noqa:DAR101,DAR201
     q = request.args.get('q')
+    if q is None:
+        abort(400)
     return jsonify(_search(q))
-
-
-def _search(q: str) -> List[str]:
-    q_norm = q.lower()
-    return [
-        prefix
-        for prefix in bioregistry.read_bioregistry()
-        if q_norm in prefix
-    ]
 
 
 @api_blueprint.route('/autocomplete')
@@ -133,52 +109,9 @@ def autocomplete():
       type: string
     """  # noqa:DAR101,DAR201
     q = request.args.get('q')
-    if ':' not in q:
-        if q in bioregistry.read_bioregistry():
-            reason = 'matched prefix'
-            url = f'{BIOREGISTRY_REMOTE_URL.rstrip()}/{q}'
-        else:
-            reason = 'searched prefix'
-            url = None
-        return jsonify(
-            query=q,
-            results=_search(q),
-            success=True,
-            reason=reason,
-            url=url,
-        )
-    prefix, identifier = q.split(':', 1)
-    norm_prefix = bioregistry.normalize_prefix(prefix)
-    if norm_prefix is None:
-        return jsonify(
-            query=q,
-            prefix=prefix,
-            identifier=identifier,
-            success=False,
-            reason='bad prefix',
-        )
-    pattern = bioregistry.get_pattern(prefix)
-    if pattern is None:
-        success = True
-        reason = 'no pattern'
-        url = bioregistry.resolve_identifier._get_bioregistry_link(prefix, identifier)
-    elif bioregistry.validate(prefix, identifier):
-        success = True
-        reason = 'passed validation'
-        url = bioregistry.resolve_identifier._get_bioregistry_link(prefix, identifier)
-    else:
-        success = False
-        reason = 'failed validation'
-        url = None
-    return jsonify(
-        query=q,
-        prefix=prefix,
-        pattern=pattern,
-        identifier=identifier,
-        success=success,
-        reason=reason,
-        url=url,
-    )
+    if q is None:
+        abort(400)
+    return jsonify(_autocomplete(q))
 
 
 app.register_blueprint(api_blueprint)
