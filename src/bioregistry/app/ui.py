@@ -105,7 +105,7 @@ def resolve(prefix: str, identifier: str):
             'resolve_invalid_identifier.html', prefix=prefix, identifier=identifier, pattern=pattern,
         ), 404
 
-    url = bioregistry.get_link(prefix, identifier)
+    url = bioregistry.get_link(prefix, identifier, use_bioregistry_io=False)
     if not url:
         return render_template('resolve_missing_providers.html', prefix=prefix, identifier=identifier), 404
     return redirect(url)

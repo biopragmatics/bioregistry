@@ -147,10 +147,12 @@ LINK_PRIORITY = [
 ]
 
 
-def get_link(prefix: str, identifier: str) -> Optional[str]:
+def get_link(prefix: str, identifier: str, use_bioregistry_io: bool = True) -> Optional[str]:
     """Get the best link for the CURIE, if possible."""
     providers = get_providers(prefix, identifier)
     for key in LINK_PRIORITY:
+        if not use_bioregistry_io and key == 'bioregistry':
+            continue
         if key not in providers:
             continue
         rv = providers[key]
