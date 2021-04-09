@@ -2,12 +2,15 @@
 
 """Web application for the Bioregistry."""
 
+from typing import List
+
 from flasgger import Swagger
 from flask import Blueprint, Flask, abort, jsonify, render_template, request
 from flask_bootstrap import Bootstrap
 
 import bioregistry
 from bioregistry.app.ui import ui_blueprint
+from bioregistry.constants import BIOREGISTRY_REMOTE_URL
 from .utils import _normalize_prefix_or_404
 from ..resolve_identifier import _get_bioregistry_link
 
@@ -105,12 +108,77 @@ def search():
       type: string
     """  # noqa:DAR101,DAR201
     q = request.args.get('q')
+    return jsonify(_search(q))
+
+
+def _search(q: str) -> List[str]:
     q_norm = q.lower()
-    return jsonify([
+    return [
         prefix
         for prefix in bioregistry.read_bioregistry()
         if q_norm in prefix
-    ])
+    ]
+
+
+@api_blueprint.route('/autocomplete')
+def autocomplete():
+    """Complete a resolution query.
+
+    ---
+    parameters:
+    - name: q
+      in: query
+      description: The prefix for the entry
+      required: true
+      type: string
+    """  # noqa:DAR101,DAR201
+    q = request.args.get('q')
+    if ':' not in q:
+        if q in bioregistry.read_bioregistry():
+            reason = 'matched prefix'
+            url = f'{BIOREGISTRY_REMOTE_URL.rstrip()}/{q}'
+        else:
+            reason = 'searched prefix'
+            url = None
+        return jsonify(
+            query=q,
+            results=_search(q),
+            success=True,
+            reason=reason,
+            url=url,
+        )
+    prefix, identifier = q.split(':', 1)
+    norm_prefix = bioregistry.normalize_prefix(prefix)
+    if norm_prefix is None:
+        return jsonify(
+            query=q,
+            prefix=prefix,
+            identifier=identifier,
+            success=False,
+            reason='bad prefix',
+        )
+    pattern = bioregistry.get_pattern(prefix)
+    if pattern is None:
+        success = True
+        reason = 'no pattern'
+        url = bioregistry.resolve_identifier._get_bioregistry_link(prefix, identifier)
+    elif bioregistry.validate(prefix, identifier):
+        success = True
+        reason = 'passed validation'
+        url = bioregistry.resolve_identifier._get_bioregistry_link(prefix, identifier)
+    else:
+        success = False
+        reason = 'failed validation'
+        url = None
+    return jsonify(
+        query=q,
+        prefix=prefix,
+        pattern=pattern,
+        identifier=identifier,
+        success=success,
+        reason=reason,
+        url=url,
+    )
 
 
 app.register_blueprint(api_blueprint)
