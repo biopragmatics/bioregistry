@@ -280,7 +280,7 @@ def get_obo_download(prefix: str) -> Optional[str]:
     """Get the download link for the latest OBO file."""
     entry = get(prefix)
     if entry is None:
-        return
+        return None
     return entry.get('obofoundry', {}).get('download.obo')
 
 
@@ -288,7 +288,7 @@ def get_owl_download(prefix: str) -> Optional[str]:
     """Get the download link for the latest OWL file."""
     entry = get(prefix)
     if entry is None:
-        return
+        return None
     return entry.get('ols', {}).get('version.iri')
 
 
