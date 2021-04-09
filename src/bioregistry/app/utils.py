@@ -74,6 +74,7 @@ def _search(q: str) -> List[str]:
 
 def _autocomplete(q: str) -> Mapping[str, Any]:
     if ':' not in q:
+        url: Optional[str]
         if q in bioregistry.read_bioregistry():
             reason = 'matched prefix'
             url = f'{BIOREGISTRY_REMOTE_URL.rstrip()}/{q}'

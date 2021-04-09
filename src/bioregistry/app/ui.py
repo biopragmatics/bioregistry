@@ -95,7 +95,7 @@ def resolve(prefix: str, identifier: str):
     1. The prefix is not registered with the Bioregistry
     2. The prefix has a validation pattern and the identifier does not match it
     3. There are no providers available for the URL
-    """
+    """  # noqa:DAR101,DAR201
     if not bioregistry.normalize_prefix(prefix):
         return render_template('resolve_missing_prefix.html', prefix=prefix, identifier=identifier), 404
 
