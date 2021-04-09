@@ -73,6 +73,31 @@ def _search(q: str) -> List[str]:
 
 
 def _autocomplete(q: str) -> Mapping[str, Any]:
+    r"""Run the autocomplete algorithm.
+
+    :param q: The query string
+    :return: A dictionary with the autocomplete results.
+
+    Before completion is of prefix:
+
+    >>> _autocomplete('cheb')
+    {"query": "chebi", "reason": "searched prefix", results=["chebi"], success: True, url: None}
+
+    If only prefix is complete:
+
+    >>> _autocomplete('chebi')
+    {"query": "chebi", "reason": "matched prefix", results=["chebi"], success: True, url: "https://bioregistry.io/chebi"}
+
+    Not matching the pattern:
+
+    >>> _autocomplete('chebi:NOPE')
+    {"identifier": "NOPE", "pattern": "^CHEBI:\\d+$", "prefix": "chebi", "query": "chebi:NOPE", "reason": "failed validation", "success": False, "url": None}
+
+    Matching the pattern:
+
+    >>> _autocomplete('chebi:1234')
+    {"identifier":"1234", "pattern": "^CHEBI:\\d+$", "prefix": "chebi", "query": "chebi:1234", "reason": "passed validation", "success": True, "url": "https://bioregistry.io/chebi:1234"}
+    """  # noqa: E501
     if ':' not in q:
         url: Optional[str]
         if q in bioregistry.read_bioregistry():
