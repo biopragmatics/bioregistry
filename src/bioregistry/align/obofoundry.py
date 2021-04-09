@@ -159,7 +159,7 @@ def align_obofoundry(registry):
         try:
             registry[bioregistry_id]['obofoundry'] = _prepare_obo(obofoundry_entry)
         except requests.exceptions.ConnectionError as e:
-            secho(f'failed to get data for {bioregistry_id}: {e}', fg='red')
+            secho(f'[{bioregistry_id}] failed to get data: {e}', fg='red')
             continue
 
     return registry
