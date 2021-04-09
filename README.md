@@ -163,3 +163,7 @@ The code in this repository is licensed under the
 
 Hopefully there will be a paper describing this resource on *bioRxiv* sometime in 2021! Until then, you can use the
 Zenodo [BibTeX](https://zenodo.org/record/4404608/export/hx) or [CSL](https://zenodo.org/record/4404608/export/csl).
+
+## 💰 Funding
+
+The development of the Bioregistry is funded by the DARPA Young Faculty Award W911NF2010255 (PI: Benjamin M. Gyori).
