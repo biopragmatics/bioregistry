@@ -75,7 +75,7 @@ def _remap_license(k):
 
 SINGLE_FIG = (8, 3.5)
 TODAY = datetime.datetime.today().strftime('%Y-%m-%d')
-WATERMARK_TEXT = f'https://github.com/cthoyt/bioregistry ({TODAY})'
+WATERMARK_TEXT = f'https://github.com/bioregistry/bioregistry ({TODAY})'
 
 
 @click.command()
