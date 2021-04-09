@@ -6,4 +6,6 @@ layout: home
 </p>
 
 An integrative meta-registry of biological databases, ontologies, and nomenclatures. See the full listing
-at [https://bioregistry.io/registry](https://bioregistry.io/registry/).
+at [https://bioregistry.io/registry](https://bioregistry.io/registry/). This site hosts the curation and warning
+summary pages, automatically generated and served with GitHub Pages.
+

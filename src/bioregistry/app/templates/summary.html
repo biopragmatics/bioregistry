@@ -3,6 +3,64 @@
 {% block title %}Bioregistry Summary{% endblock %}
 
 {% block content %}
+    <h2>What is the Bioregistry?</h2>
+    <p>
+        The Bioregistry is a curated database and accompanying web application that act as a:
+    </p>
+    <dl class="row">
+        <dt class="col-lg-2 text-right text-nowrap">Registry</dt>
+        <dd class="col-lg-10">
+            A collection of metadata about ontologies, controlled vocabularies, and resources. Some other
+            well-known registries are the <a href="http://www.obofoundry.org/">OBO Foundry</a>,
+            <a href="https://identifiers.org">Identifiers.org</a>,
+            the <a href="https://www.ebi.ac.uk/ols/index">OLS</a>,
+            <a href="https://bioportal.bioontology.org/">BioPortal</a>,
+            and <a href="https://prefixcommons.org/">Prefix Commons</a>.
+        </dd>
+        <dt class="col-lg-2 text-right text-nowrap">Metaregistry</dt>
+        <dd class="col-lg-10">
+            A collection of metadata about registries and mappings between the resources they describe. For
+            example, <a href="https://www.ebi.ac.uk/chebi">ChEBI</a> appears in all of the example registries
+            from above. So far, the Bioregistry is the <i>only</i> metaregistry.
+        </dd>
+        <dt class="col-lg-2 text-right text-nowrap">Resolver</dt>
+        <dd class="col-lg-10">
+            A tool for mapping CURIEs of the form <code>prefix:identifier</code> to HTML and structured content
+            providers. Some other well-known resolvers are <a href="https://identifiers.org">Identifiers.org</a>
+            and <a href="https://n2t.net/">Name-To-Thing</a>.
+        </dd>
+    </dl>
+    <p>The Bioregistry is different from other registries. It is:</p>
+    <dl class="row">
+        <dt class="col-lg-2 text-right text-nowrap">Open Source</dt>
+        <dd class="col-lg-10">
+            Anyone can make updates by pull requesting against the single source of truth JSON
+            "database". There are clear contribution guidelines and several potential reviewers. Automated
+            testing notifies contributors of mistakes or omissions before review.
+        </dd>
+        <dt class="col-lg-2 text-right text-nowrap">Automated</dt>
+        <dd class="col-lg-10">
+            Continuous integration is used to automatically update the database nightly and align with other
+            registries. It suggests new curations to help maintain the community's semantic health.
+        </dd>
+        <dt class="col-lg-2 text-right text-nowrap">Extensible</dt>
+        <dd class="col-lg-10">
+            The underlying codebase can also be improved to add new features. It's all written in idiomatic,
+            high quality Python code.
+        </dd>
+    </dl>
+    <p>The Bioregistry is <strong>not</strong> a:</p>
+    <dl class="row">
+        <dt class="col-lg-2 text-right">Lookup Service</dt>
+        <dd class="col-lg-10">
+            A service that provides information about an entity based on its prefix/identifier pair. Some
+            well-known lookup services are the <a href="https://www.ebi.ac.uk/ols/index">OLS</a>,
+            <a href="http://aber-owl.net">AberOWL</a>,
+            <a href="http://www.ontobee.org/">OntoBee</a>, and
+            <a href="https://bioportal.bioontology.org/">BioPortal</a>.
+        </dd>
+    </dl>
+
     <h2>Motivation</h2>
     <p>
         The goal of the <a href="https://cthoyt.com/2020/04/19/inspector-javerts-xref-database.html">Inspector
@@ -18,7 +76,7 @@
         This two-sided comparison shows how well the Bioregistry covers each external registry. In the case of
         Wikidata, it's difficult to know exactly how many relevant properties there are.
         <img src="https://raw.githubusercontent.com/bioregistry/bioregistry/main/docs/img/bioregistry_coverage.svg"
-             alt="Bioregistry Coverage"/>
+             alt="Bioregistry Coverage" class="img-fluid"/>
     </p>
     <p>
         Additional external registries that have been queued for alignment can be listed via the

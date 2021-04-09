@@ -33,6 +33,12 @@ def resources():
     return jsonify(bioregistry.read_bioregistry())
 
 
+@api_blueprint.route('/metaregistry/')
+def metaresources():
+    """List the entire Bioregistry metaregistry."""
+    return jsonify(bioregistry.read_metaregistry())
+
+
 @api_blueprint.route('/registry/<prefix>')
 def resource(prefix: str):
     """Get an entry.
@@ -121,6 +127,8 @@ def home():
         example_url=example_url,
         example_prefix=example_prefix,
         example_identifier=example_identifier,
+        registry_size=len(bioregistry.read_bioregistry()),
+        metaregistry_size=len(bioregistry.read_metaregistry()),
     )
 
 

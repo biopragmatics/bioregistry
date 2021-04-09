@@ -13,81 +13,60 @@
     </script>
 {% endblock %}
 
+{% block containerattr %}class="col-md-8 col-lg-8"{% endblock %}
+
 {% block container %}
-    <div class="card">
-        <h5 class="card-header">Bioregistry</h5>
-        <div class="card-body">
-            <div class="row justify-content-center" style="margin-top:1em; margin-bottom: 2em;">
-                <a class="btn btn-primary btn-lg" href="{{ example_url }}">
-                    Resolve identifiers like <span class="badge badge-dark">{{ example_url }}</span>
-                    <i class="fas fa-share-square"></i>
-                </a>
-            </div>
-
-            <!--<a href={{ swagger_url }}>Swagger UI</a>-->
-            <p>
-                The Bioregistry is a:
-            </p>
-            <dl class="row">
-                <dt class="col-lg-2 text-right text-nowrap">Registry</dt>
-                <dd class="col-lg-10">
-                    A collection of metadata about ontologies, controlled vocabularies, and resources. Some other
-                    well-known registries are the <a href="http://www.obofoundry.org/">OBO Foundry</a>,
-                    <a href="https://identifiers.org">Identifiers.org</a>,
-                    the <a href="https://www.ebi.ac.uk/ols/index">OLS</a>,
-                    <a href="https://bioportal.bioontology.org/">BioPortal</a>,
-                    and <a href="https://prefixcommons.org/">Prefix Commons</a>.
-                </dd>
-                <dt class="col-lg-2 text-right text-nowrap">Metaregistry*</dt>
-                <dd class="col-lg-10">
-                    A collection of metadata about registries and mappings between the resources they describe. For
-                    example, <a href="https://www.ebi.ac.uk/chebi">ChEBI</a> appears in all of the example registries
-                    from above.
-                </dd>
-                <dt class="col-lg-2 text-right text-nowrap">Resolver</dt>
-                <dd class="col-lg-10">
-                    A tool for mapping CURIEs of the form <code>prefix:identifier</code> to HTML and structured content
-                    providers. Some other well-known resolvers are <a href="https://identifiers.org">Identifiers.org</a>
-                    and <a href="https://n2t.net/">Name-To-Thing</a>.
-                </dd>
-            </dl>
-            <p>The Bioregistry is different from similar tools:</p>
-            <dl class="row">
-                <dt class="col-lg-2 text-right text-nowrap">Open Source</dt>
-                <dd class="col-lg-10">
-                    Anyone can make updates by pull requesting against the single source of truth JSON
-                    "database". There are clear contribution guidelines and several potential reviewers. Automated
-                    testing notifies contributors of mistakes or omissions before review.
-                </dd>
-                <dt class="col-lg-2 text-right text-nowrap">Automated</dt>
-                <dd class="col-lg-10">
-                    Continuous integration is used to automatically update the database nightly and align with other
-                    registries. It suggests new curations to help maintain the community's semantic health.
-                </dd>
-                <dt class="col-lg-2 text-right text-nowrap">Extensible</dt>
-                <dd class="col-lg-10">
-                    The underlying codebase can also be improved to add new features. It's all written in idiomatic,
-                    high quality Python code.
-                </dd>
-            </dl>
-            <p>The Bioregistry is <strong>not</strong> a:</p>
-            <dl class="row">
-                <dt class="col-lg-2 text-right">Lookup Service</dt>
-                <dd class="col-lg-10">
-                    A service that provides information about an entity based on its prefix/identifier pair. Some
-                    well-known lookup services are the <a href="https://www.ebi.ac.uk/ols/index">OLS</a>,
-                    <a href="http://www.ontobee.org/">OntoBee</a>, and
-                    <a href="https://bioportal.bioontology.org/">BioPortal</a>.
-                </dd>
-            </dl>
-
-            <div class="row justify-content-center" style="margin-top:1em; margin-bottom: 1em;">
-                <a class="btn btn-success btn-lg" href="{{ url_for('ui.resources') }}">
-                    View the registry&nbsp;<i class="fas fa-share-square"></i>
-                </a>
-            </div>
+    <div class="card card-body bg-light">
+        <h1 class="display-3">Bioregistry</h1>
+        <p class="lead">
+            The Bioregistry is an open source, community curated registry, meta-registry, and compact
+            identifier resolver.
+        </p>
+        <div class="list-group">
+            <a href="{{ example_url }}" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><i class="fas fa-share-square"></i> Resolve</h5>
+                </div>
+                <p class="mb-1">A compact identifier like <span class="badge badge-light">{{ example_url }}</span>.</p>
+            </a>
+            <a href="{{ url_for('ui.resources') }}"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><i class="fas fa-list"></i> View Registry</h5>
+                    <small class="text-muted">{{ registry_size }} entries</small>
+                </div>
+                <p class="mb-1">The integrative registry of biological databases, ontologies, and resources.</p>
+            </a>
+            <a href="{{ url_for('ui.metaresources') }}"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><i class="fas fa-atom"></i> View Metaregistry</h5>
+                    <small class="text-muted">{{ metaregistry_size }} registries</small>
+                </div>
+                <p class="mb-1">The registry of registries.</p>
+            </a>
+            <a href="{{ url_for('summary') }}"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><i class="fas fa-book"></i> Learn</h5>
+                </div>
+                <p class="mb-1">About the motivation for constructing the Bioregistry and insights gathered from the
+                    meta-registry.</p>
+                {# <small class="text-muted">Donec id elit non mi porta.</small> #}
+            </a>
+            {#
+            <a href="{{ url_for('download') }}"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><i class="fas fa-download"></i> Download</h5>
+                </div>
+                <p class="mb-1">All of the data in the Bioregistry.</p>
+                <small class="text-muted">Available under the CC0 1.0 Universal License.</small>
+            </a>
+            #}
         </div>
-        {#
+    </div>
+    {#
         <div class="card-body">
             <h5 class="card-title">Prefix Search</h5>
             <div class="input-group mb-3">
@@ -103,6 +82,5 @@
             </div>
         </div>
          #}
-    </div>
 {% endblock %}
 

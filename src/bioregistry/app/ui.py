@@ -33,6 +33,12 @@ def resources():
     return render_template('resources.html', rows=rows)
 
 
+@ui_blueprint.route('/metaregistry/')
+def metaresources():
+    """Serve the Bioregistry metaregistry page."""
+    return render_template('metaresources.html', rows=bioregistry.read_metaregistry().values())
+
+
 @ui_blueprint.route('/<prefix>')
 def resource_redirect(prefix: str):
     """Redirect to the canonical endpoint for serving prefix information."""
