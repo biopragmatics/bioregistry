@@ -108,4 +108,8 @@ def resolve(prefix: str, identifier: str):
     url = bioregistry.get_link(prefix, identifier, use_bioregistry_io=False)
     if not url:
         return render_template('resolve_missing_providers.html', prefix=prefix, identifier=identifier), 404
-    return redirect(url)
+    try:
+        # TODO remove any garbage characters?
+        return redirect(url)
+    except ValueError:  # headers could not be constructed
+        return render_template('resolve_disallowed_identifier.html', prefix=prefix, identifier=identifier), 404
