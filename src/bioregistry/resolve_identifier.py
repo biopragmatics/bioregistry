@@ -28,11 +28,9 @@ def validate(prefix: str, identifier: str) -> Optional[bool]:
     if pattern is None:
         return None
 
-    if namespace_in_lui(prefix) and not identifier.startswith(f'{prefix.upper()}:'):
-        # Some cases do not use uppercase
-        identifier = f'{prefix.upper()}:{identifier}'
-
-    return bool(pattern.match(identifier))
+    if not namespace_in_lui(prefix):
+        return bool(pattern.match(identifier))
+    return bool(pattern.match(_get_modified_id(prefix, identifier)))
 
 
 def get_default_url(prefix: str, identifier: str) -> Optional[str]:

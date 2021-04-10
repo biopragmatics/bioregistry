@@ -54,6 +54,11 @@ class TestResolve(unittest.TestCase):
             ('eccode', '1.1.1.123'),
             ('chebi', '24867'),
             ('chebi', 'CHEBI:1234'),
+            # BANANA
+            ('vario', '0376'),  # this showcases the banana problem where the namespace in LUI is weird
+            ('vario', 'VariO:0376'),
+            ('did', 'sov:WRfXPg8dantKVubE3HX8pw'),
+            ('did', 'did:sov:WRfXPg8dantKVubE3HX8pw'),
         ]:
             with self.subTest(prefix=prefix, identifier=identifier):
                 self.assertTrue(bioregistry.validate(prefix, identifier))
