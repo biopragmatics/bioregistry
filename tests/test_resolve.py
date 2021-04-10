@@ -59,6 +59,7 @@ class TestResolve(unittest.TestCase):
             ('vario', 'VariO:0376'),
             ('did', 'sov:WRfXPg8dantKVubE3HX8pw'),
             ('did', 'did:sov:WRfXPg8dantKVubE3HX8pw'),
+            ('go.ref', '0000041'),
         ]:
             with self.subTest(prefix=prefix, identifier=identifier):
                 self.assertTrue(bioregistry.validate(prefix, identifier))
