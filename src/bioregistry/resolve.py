@@ -292,6 +292,36 @@ def get_owl_download(prefix: str) -> Optional[str]:
     return entry.get('ols', {}).get('version.iri')
 
 
+def is_provider(prefix: str) -> bool:
+    """Get if the prefix is a provider.
+
+    :param prefix: The prefix to look up
+    :returns: if the prefix is a provider
+
+    >>> assert not is_provider('pdb')
+    >>> assert is_provider('validatordb')
+    """
+    entry = get(prefix)
+    if entry is None:
+        return False
+    return entry.get('type') == 'provider'
+
+
+def get_provides_for(prefix: str) -> Optional[str]:
+    """Get the resource that the given prefix provides for, or return none if not a provider.
+
+    :param prefix: The prefix to look up
+    :returns: The prefix of the resource that the given prefix provides for, if it's a provider
+
+    >>> assert get_provides_for('pdb') is None
+    >>> assert 'pdb' == get_provides_for('validatordb')
+    """
+    entry = get(prefix)
+    if entry is None:
+        return None
+    return entry.get('provides')
+
+
 def parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
     """Parse a CURIE, normalizing the prefix and identifier if necessary.
 
