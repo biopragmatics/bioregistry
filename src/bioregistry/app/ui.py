@@ -2,7 +2,7 @@
 
 """User blueprint for the bioregistry web application."""
 
-from flask import Blueprint, redirect, render_template, url_for
+from flask import Blueprint, abort, redirect, render_template, url_for
 
 import bioregistry
 from .utils import _get_resource_mapping_rows, _get_resource_providers, _normalize_prefix_or_404
@@ -37,12 +37,6 @@ def resources():
 def metaresources():
     """Serve the Bioregistry metaregistry page."""
     return render_template('metaresources.html', rows=bioregistry.read_metaregistry().values())
-
-
-@ui_blueprint.route('/<prefix>')
-def resource_redirect(prefix: str):
-    """Redirect to the canonical endpoint for serving prefix information."""
-    return redirect(url_for('.' + resource.__name__, prefix=prefix))
 
 
 @ui_blueprint.route('/registry/<prefix>')
@@ -86,8 +80,8 @@ def reference(prefix: str, identifier: str):
     )
 
 
-@ui_blueprint.route('/<prefix>:<identifier>')
-def resolve(prefix: str, identifier: str):
+@ui_blueprint.route('/<curie>')
+def resolve(curie: str):
     """Resolve a CURIE.
 
     The following things can make a CURIE unable to resolve:
@@ -96,6 +90,15 @@ def resolve(prefix: str, identifier: str):
     2. The prefix has a validation pattern and the identifier does not match it
     3. There are no providers available for the URL
     """  # noqa:DAR101,DAR201
+    if ':' not in curie:
+        if bioregistry.normalize_prefix(curie):
+            return redirect(url_for('.' + resource.__name__, prefix=curie))
+        else:
+            return render_template('resolve_missing_prefix.html', prefix=curie), 404
+
+    # since there's a check for at least one colon before, this shouldn't error
+    prefix, identifier = curie.split(':', 1)
+
     if not bioregistry.normalize_prefix(prefix):
         return render_template('resolve_missing_prefix.html', prefix=prefix, identifier=identifier), 404
 
