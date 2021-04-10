@@ -5,7 +5,7 @@
 import itertools as itt
 from typing import Any, List, Mapping, Optional
 
-from flask import abort, redirect, url_for
+from flask import abort, redirect, render_template, url_for
 
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL
@@ -57,7 +57,7 @@ def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
     except ValueError:
         norm_prefix = None
     if norm_prefix is None:
-        abort(404, f'Invalid prefix: {prefix}')
+        return render_template('resolve_missing_prefix.html', prefix=prefix), 404
     elif endpoint is not None and norm_prefix != prefix:
         return redirect(url_for(endpoint, prefix=norm_prefix))
     return norm_prefix
