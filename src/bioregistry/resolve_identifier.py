@@ -85,6 +85,10 @@ def get_identifiers_org_curie(prefix: str, identifier: str) -> Optional[str]:
         return None
     if not namespace_in_lui(prefix):
         return f'{prefix}:{identifier}'
+    return _get_modified_id(prefix, identifier)
+
+
+def _get_modified_id(prefix: str, identifier: str) -> str:
     banana = get_banana(prefix)
     if banana:
         if identifier.startswith(f'{banana}:'):
