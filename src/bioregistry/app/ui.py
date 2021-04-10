@@ -2,7 +2,7 @@
 
 """User blueprint for the bioregistry web application."""
 
-from flask import Blueprint, abort, redirect, render_template, url_for
+from flask import Blueprint, redirect, render_template, url_for
 
 import bioregistry
 from .utils import _get_resource_mapping_rows, _get_resource_providers, _normalize_prefix_or_404
