@@ -62,13 +62,15 @@
     </div>
 </nav>
 
-<div class="container" style="margin-top: 50px; margin-bottom: 50px">
-    <div class="row justify-content-center">
-        <div {% block containerattr %}class="col-md-10 col-lg-10"{% endblock %}>
-            {% block container %}{% endblock %}
+{% block main %}
+    <div class="container" style="margin-top: 50px; margin-bottom: 50px">
+        <div class="row justify-content-center">
+            <div {% block containerattr %}class="col-md-10 col-lg-10"{% endblock %}>
+                {% block container %}{% endblock %}
+            </div>
         </div>
     </div>
-</div>
+{% endblock %}
 
 <footer class="footer">
     <p class="small text-center text-muted">

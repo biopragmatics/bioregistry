@@ -3,8 +3,8 @@
 {% block styles %}
     {{ super() }}
     <link
-        rel="stylesheet"
-        href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css"
+            rel="stylesheet"
+            href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css"
     />
     <style>
         nav[data-toggle="toc"] {
@@ -19,15 +19,18 @@
 {% endblock %}
 
 {% block bodyattr %}data-spy="scroll" data-target="#toc"{% endblock %}
-{% block containerattr %}class="row"{% endblock %}
 
-{% block container %}
-    <!-- sidebar, which will move to the top on a small screen -->
-    <div class="col-sm-3">
-        <nav id="toc" data-toggle="toc" class="sticky-top"></nav>
-    </div>
-    <!-- main content area -->
-    <div class="col-sm-9">
-        {% block content %}{% endblock %}
+{% block main %}
+    <div class="container" style="margin-top: 2.5em; margin-bottom: 2.5em">
+        <div class="row justify-content-center">
+            <!-- sidebar, which will move to the top on a small screen -->
+            <div class="col-sm-3">
+                <nav id="toc" data-toggle="toc" class="sticky-top"></nav>
+            </div>
+            <!-- main content area -->
+            <div class="col-sm-9">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
     </div>
 {% endblock %}
