@@ -3094,6 +3094,7 @@
     "n2t": {
       "prefix": "chembl.compound"
     },
+    "part_of": "chembl",
     "pattern": "^CHEMBL\\d+$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/chembl.compound/$1",
@@ -3125,6 +3126,7 @@
     "n2t": {
       "prefix": "chembl.target"
     },
+    "part_of": "chembl",
     "prefixcommons": {
       "formatter": "http://identifiers.org/chembl.target/$1",
       "is_identifiers": true,
@@ -4624,12 +4626,14 @@
     "n2t": {
       "prefix": "ctd.chemical"
     },
+    "part_of": "ctd",
     "prefixcommons": {
       "formatter": "http://identifiers.org/ctd.chemical/$1",
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "CTD.CHEMICAL"
-    }
+    },
+    "provides": "mesh"
   },
   "ctd.disease": {
     "miriam": {
@@ -4645,12 +4649,14 @@
     "n2t": {
       "prefix": "ctd.disease"
     },
+    "part_of": "ctd",
     "prefixcommons": {
       "formatter": "http://identifiers.org/ctd.disease/$1",
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "CTD.DISEASE"
-    }
+    },
+    "provides": "mesh"
   },
   "ctd.gene": {
     "miriam": {
@@ -4666,12 +4672,14 @@
     "n2t": {
       "prefix": "ctd.gene"
     },
+    "part_of": "ctd",
     "prefixcommons": {
       "formatter": "http://identifiers.org/ctd.gene/$1",
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "CTD.GENE"
-    }
+    },
+    "provides": "ncbigene"
   },
   "cteno": {
     "bioportal": {
@@ -4917,7 +4925,8 @@
       "pattern": "^K[0-9]+$",
       "prefix": "datanator.gene",
       "sampleId": "K00973"
-    }
+    },
+    "part_of": "datanator"
   },
   "datanator.metabolite": {
     "miriam": {
@@ -4929,7 +4938,8 @@
       "pattern": "^[A-Z\\-]+$",
       "prefix": "datanator.metabolite",
       "sampleId": "OUYCCCASQSFEME-MRVPVSSYSA-N"
-    }
+    },
+    "part_of": "datanator"
   },
   "datf": {
     "deprecated": true,
@@ -5282,7 +5292,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "DEPOD"
-    }
+    },
+    "provides": "hgnc.symbol"
   },
   "dermo": {
     "bioportal": {
@@ -5371,6 +5382,8 @@
     "n2t": {
       "prefix": "dictybase.est"
     },
+    "name": "dictyBase Expressed Sequence Tag",
+    "part_of": "dictybase",
     "prefixcommons": {
       "formatter": "http://identifiers.org/dictybase.est/$1",
       "is_identifiers": true,
@@ -5392,6 +5405,7 @@
     "n2t": {
       "prefix": "dictybase.gene"
     },
+    "part_of": "dictybase",
     "prefixcommons": {
       "formatter": "http://identifiers.org/dictybase.gene/$1",
       "is_identifiers": true,
@@ -5413,7 +5427,8 @@
     },
     "n2t": {
       "prefix": "did"
-    }
+    },
+    "name": "Decentralized Identifier"
   },
   "dideo": {
     "bioportal": {
@@ -5520,7 +5535,8 @@
       "pattern": "^[A-Z0-9]{6,7}$",
       "prefix": "dlxb",
       "sampleId": "6VDC956"
-    }
+    },
+    "part_of": "dlx"
   },
   "dlxc": {
     "miriam": {
@@ -5532,7 +5548,8 @@
       "pattern": "^[A-Z0-9]{6,7}$",
       "prefix": "dlxc",
       "sampleId": "M77F7JM"
-    }
+    },
+    "part_of": "dlx"
   },
   "doi": {
     "biolink": {
@@ -5680,6 +5697,7 @@
     "n2t": {
       "prefix": "doqcs.model"
     },
+    "part_of": "doqcs",
     "prefixcommons": {
       "formatter": "http://identifiers.org/doqcs.model/$1",
       "is_identifiers": true,
@@ -5701,6 +5719,7 @@
     "n2t": {
       "prefix": "doqcs.pathway"
     },
+    "part_of": "doqcs",
     "prefixcommons": {
       "formatter": "http://identifiers.org/doqcs.pathway/$1",
       "is_identifiers": true,
@@ -5772,6 +5791,7 @@
     "n2t": {
       "prefix": "dragondb.allele"
     },
+    "part_of": "dragondb",
     "prefixcommons": {
       "formatter": "http://identifiers.org/dragondb.allele/$1",
       "is_identifiers": true,
@@ -5793,6 +5813,7 @@
     "n2t": {
       "prefix": "dragondb.dna"
     },
+    "part_of": "dragondb",
     "prefixcommons": {
       "formatter": "http://identifiers.org/dragondb.dna/$1",
       "is_identifiers": true,
@@ -5814,6 +5835,7 @@
     "n2t": {
       "prefix": "dragondb.locus"
     },
+    "part_of": "dragondb",
     "prefixcommons": {
       "formatter": "http://identifiers.org/dragondb.locus/$1",
       "is_identifiers": true,
@@ -5835,6 +5857,7 @@
     "n2t": {
       "prefix": "dragondb.protein"
     },
+    "part_of": "dragondb",
     "prefixcommons": {
       "formatter": "http://identifiers.org/dragondb.protein/$1",
       "is_identifiers": true,
@@ -5930,6 +5953,7 @@
     "example": "DBSALT001211",
     "homepage": "http://www.drugbank.ca",
     "name": "DrugBank Salts",
+    "part_of": "drugbank",
     "pattern": "^DBSALT\\d{6}$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/drugbank.target/$1",
@@ -5956,6 +5980,7 @@
     "n2t": {
       "prefix": "drugbankv4.target"
     },
+    "part_of": "drugbank",
     "prefixcommons": {
       "formatter": "http://identifiers.org/drugbankv4.target/$1",
       "is_identifiers": true,
@@ -6356,6 +6381,7 @@
     "n2t": {
       "prefix": "ecyano.entity"
     },
+    "part_of": "ecyano",
     "prefixcommons": {
       "formatter": "http://identifiers.org/ecyano.entity/$1",
       "is_identifiers": true,
@@ -6373,7 +6399,8 @@
       "pattern": "^\\d+$",
       "prefix": "ecyano.experiment",
       "sampleId": "18"
-    }
+    },
+    "part_of": "ecyano"
   },
   "ecyano.model": {
     "miriam": {
@@ -6410,6 +6437,7 @@
     "n2t": {
       "prefix": "ecyano.rule"
     },
+    "part_of": "ecyano",
     "prefixcommons": {
       "formatter": "http://identifiers.org/ecyano.rule/$1",
       "is_identifiers": true,
@@ -11947,6 +11975,7 @@
     "n2t": {
       "prefix": "kegg.compound"
     },
+    "part_of": "kegg",
     "prefixcommons": {
       "formatter": "http://identifiers.org/kegg.compound/$1",
       "is_identifiers": true,
@@ -11975,6 +12004,7 @@
     "n2t": {
       "prefix": "kegg.disease"
     },
+    "part_of": "kegg",
     "prefixcommons": {
       "formatter": "http://identifiers.org/kegg.disease/$1",
       "is_identifiers": true,
@@ -11996,6 +12026,7 @@
     "n2t": {
       "prefix": "kegg.drug"
     },
+    "part_of": "kegg",
     "prefixcommons": {
       "formatter": "http://identifiers.org/kegg.drug/$1",
       "is_identifiers": true,
@@ -12024,6 +12055,7 @@
     "n2t": {
       "prefix": "kegg.environ"
     },
+    "part_of": "kegg",
     "prefixcommons": {
       "formatter": "http://identifiers.org/kegg.environ/$1",
       "is_identifiers": true,
@@ -12044,7 +12076,8 @@
       "name": "KEGG Enzyme Database",
       "prefix": "KEGG_ENZYME"
     },
-    "name": "KEGG Enzyme"
+    "name": "KEGG Enzyme",
+    "part_of": "kegg"
   },
   "kegg.genes": {
     "biolink": {
@@ -12067,6 +12100,7 @@
     "n2t": {
       "prefix": "kegg.genes"
     },
+    "part_of": "kegg",
     "prefixcommons": {
       "formatter": "http://identifiers.org/kegg.genes/$1",
       "is_identifiers": true,
@@ -12092,6 +12126,7 @@
     "n2t": {
       "prefix": "kegg.genome"
     },
+    "part_of": "kegg",
     "prefixcommons": {
       "formatter": "http://identifiers.org/kegg.genome/$1",
       "is_identifiers": true,
@@ -12120,6 +12155,7 @@
     "n2t": {
       "prefix": "kegg.glycan"
     },
+    "part_of": "kegg",
     "prefixcommons": {
       "formatter": "http://identifiers.org/kegg.glycan/$1",
       "is_identifiers": true,
@@ -12134,7 +12170,8 @@
       "name": "KEGG LIGAND Database",
       "prefix": "KEGG_LIGAND"
     },
-    "name": "KEGG LIGAND"
+    "name": "KEGG LIGAND",
+    "part_of": "kegg"
   },
   "kegg.metagenome": {
     "miriam": {
@@ -12150,6 +12187,7 @@
     "n2t": {
       "prefix": "kegg.metagenome"
     },
+    "part_of": "kegg",
     "prefixcommons": {
       "formatter": "http://identifiers.org/kegg.metagenome/$1",
       "is_identifiers": true,
@@ -12171,6 +12209,7 @@
     "n2t": {
       "prefix": "kegg.module"
     },
+    "part_of": "kegg",
     "prefixcommons": {
       "formatter": "http://identifiers.org/kegg.module/$1",
       "is_identifiers": true,
@@ -12192,6 +12231,7 @@
     "n2t": {
       "prefix": "kegg.orthology"
     },
+    "part_of": "kegg",
     "prefixcommons": {
       "formatter": "http://identifiers.org/kegg.orthology/$1",
       "is_identifiers": true,
@@ -12220,6 +12260,7 @@
     "n2t": {
       "prefix": "kegg.pathway"
     },
+    "part_of": "kegg",
     "prefixcommons": {
       "formatter": "http://www.kegg.jp/dbget-bin/www_bget?path:$1",
       "is_identifiers": false,
@@ -12254,6 +12295,7 @@
     "n2t": {
       "prefix": "kegg.reaction"
     },
+    "part_of": "kegg",
     "prefixcommons": {
       "formatter": "http://identifiers.org/kegg.reaction/$1",
       "is_identifiers": true,
