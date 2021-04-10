@@ -2,6 +2,17 @@
 
 {% block title %}Bioregistry Downloads{% endblock %}
 
+{% block styles %}
+    {{ super() }}
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+{% endblock %}
+
 {% block content %}
     <h2>Download</h2>
     <p>
@@ -37,7 +48,7 @@
         The Bioregistry can be used to normalize prefixes across MIRIAM and all the (very plentiful) variants that pop
         up in ontologies in OBO Foundry and the OLS with the <code>normalize_prefix()</code> function.
     </p>
-    <pre><code>
+    <pre><code class="language-python">
     import bioregistry
 
     # This works for synonym prefixes, like:
@@ -56,7 +67,7 @@
 
     Entries in the Bioregistry can be looked up with the `get()` function.
 
-    <pre><code>
+    <pre><code class="language-python">
     import bioregistry
 
     entry = bioregistry.normalize_prefix('taxonomy')
@@ -65,7 +76,7 @@
 
     The full Bioregistry can be read in a Python project using:
 
-    <pre><code>
+    <pre><code class="language-python">
     import bioregistry
 
     registry = bioregistry.read_bioregistry()
