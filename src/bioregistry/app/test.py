@@ -20,8 +20,9 @@ SLASH_URL_ENCODED = '%2F'
 def main(url: str, local: bool):
     """Test the API."""
     url = url.rstrip('/')
-    if local or True:
+    if local:
         url = 'http://localhost:5000'
+    click.echo(f'Testing resolution API on {url}')
     failure = False
     prefixes = tqdm(bioregistry.read_bioregistry())
 
