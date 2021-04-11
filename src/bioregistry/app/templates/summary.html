@@ -199,15 +199,15 @@
     <ol>
         <li>
             The prefix is not registered with the Bioregistry.<br/>Example:
-            <a href="{{ url_for('ui.resolve', curie='nope:1234') }}"><code>nope:1234</code></a>.
+            <a href="{{ url_for('ui.resolve', prefix='nope', identifier='1234') }}"><code>nope:1234</code></a>.
         </li>
         <li>
             The prefix has a validation pattern and the identifier does not match it.<br/>Example:
-            <a href="{{ url_for('ui.resolve', curie='chebi:ABCD') }}"><code>chebi:ABCD</code></a>.
+            <a href="{{ url_for('ui.resolve', prefix='chebi', identifier='ABCD') }}"><code>chebi:ABCD</code></a>.
         </li>
         <li>
             There are no providers available for the prefix.<br/>Example:
-            <a href="{{ url_for('ui.resolve', curie='gmelin:1466') }}"><code>gmelin:1466</code></a>.
+            <a href="{{ url_for('ui.resolve', prefix='gmelin', identifier='1466') }}"><code>gmelin:1466</code></a>.
         </li>
     </ol>
     <h3>Misguided Attribution</h3>

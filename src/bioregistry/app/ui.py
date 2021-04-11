@@ -2,6 +2,8 @@
 
 """User blueprint for the bioregistry web application."""
 
+from typing import Optional
+
 from flask import Blueprint, redirect, render_template, url_for
 
 import bioregistry
@@ -68,7 +70,7 @@ def resource(prefix: str):
     )
 
 
-@ui_blueprint.route('/reference/<prefix>:<identifier>')
+@ui_blueprint.route('/reference/<prefix>:<path:identifier>')
 def reference(prefix: str, identifier: str):
     """Serve the a Bioregistry reference page."""
     return render_template(
@@ -80,8 +82,9 @@ def reference(prefix: str, identifier: str):
     )
 
 
-@ui_blueprint.route('/<curie>')
-def resolve(curie: str):
+@ui_blueprint.route('/<prefix>')
+@ui_blueprint.route('/<prefix>:<path:identifier>')
+def resolve(prefix: str, identifier: Optional[str] = None):
     """Resolve a CURIE.
 
     The following things can make a CURIE unable to resolve:
@@ -90,17 +93,11 @@ def resolve(curie: str):
     2. The prefix has a validation pattern and the identifier does not match it
     3. There are no providers available for the URL
     """  # noqa:DAR101,DAR201
-    if ':' not in curie:
-        if bioregistry.normalize_prefix(curie):
-            return redirect(url_for('.' + resource.__name__, prefix=curie))
-        else:
-            return render_template('resolve_missing_prefix.html', prefix=curie), 404
-
-    # since there's a check for at least one colon before, this shouldn't error
-    prefix, identifier = curie.split(':', 1)
-
-    if not bioregistry.normalize_prefix(prefix):
+    norm_prefix = bioregistry.normalize_prefix(prefix)
+    if norm_prefix is None:
         return render_template('resolve_missing_prefix.html', prefix=prefix, identifier=identifier), 404
+    if identifier is None:
+        return redirect(url_for('.' + resource.__name__, prefix=norm_prefix))
 
     pattern = bioregistry.get_pattern(prefix)
     if pattern and not bioregistry.validate(prefix, identifier):
