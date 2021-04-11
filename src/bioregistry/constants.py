@@ -31,3 +31,10 @@ DOCS_IMG = os.path.join(DOCS, 'img')
 
 #: The URL of the remote Bioregistry site
 BIOREGISTRY_REMOTE_URL = pystow.get_config('bioregistry', 'url') or 'https://bioregistry.io'
+
+#: Resolution is broken on identifiers.org for the following
+IDOT_BROKEN = {
+    'gramene.growthstage',
+    'oma.hog',
+    'obi',
+}

@@ -27,10 +27,23 @@ def validate(prefix: str, identifier: str) -> Optional[bool]:
     pattern = get_pattern_re(prefix)
     if pattern is None:
         return None
-
-    if not namespace_in_lui(prefix):
-        return bool(pattern.match(identifier))
     return bool(pattern.match(_get_modified_id(prefix, identifier)))
+
+
+def _get_modified_id(prefix: str, identifier: str) -> str:
+    if not namespace_in_lui(prefix):
+        return identifier
+    banana = get_banana(prefix)
+    if banana:
+        if identifier.startswith(f'{banana}:'):
+            return identifier
+        else:
+            return f'{banana}:{identifier}'
+    else:
+        if identifier.startswith(prefix.upper()):
+            return identifier
+        else:
+            return f'{prefix.upper()}:{identifier}'
 
 
 def get_default_url(prefix: str, identifier: str) -> Optional[str]:
@@ -76,28 +89,32 @@ def get_identifiers_org_url(prefix: str, identifier: str) -> Optional[str]:
     return f'https://identifiers.org/{curie}'
 
 
+# MIRIAM definitions that don't make any sense
+MIRIAM_BLACKLIST = {
+    # this one uses the names instead of IDs, and points to a dead resource.
+    # See https://github.com/identifiers-org/identifiers-org.github.io/issues/139
+    'pid.pathway',
+}
+
+
 def get_identifiers_org_curie(prefix: str, identifier: str) -> Optional[str]:
     """Get the identifiers.org CURIE for the given CURIE."""
     miriam_prefix = get_identifiers_org_prefix(prefix)
-    if miriam_prefix is None:
+    if miriam_prefix is None or miriam_prefix in MIRIAM_BLACKLIST:
         return None
-    if not namespace_in_lui(prefix):
-        return f'{prefix}:{identifier}'
-    return _get_modified_id(prefix, identifier)
-
-
-def _get_modified_id(prefix: str, identifier: str) -> str:
     banana = get_banana(prefix)
     if banana:
         if identifier.startswith(f'{banana}:'):
             return identifier
         else:
             return f'{banana}:{identifier}'
-    else:
+    elif namespace_in_lui(prefix):
         if identifier.startswith(prefix.upper()):
             return identifier
         else:
             return f'{prefix.upper()}:{identifier}'
+    else:
+        return f'{miriam_prefix}:{identifier}'
 
 
 def get_obofoundry_link(prefix: str, identifier: str) -> Optional[str]:

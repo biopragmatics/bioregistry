@@ -125,7 +125,7 @@ def get_synonyms(prefix: str) -> Optional[Set[str]]:
     return entry.get('synonyms')
 
 
-def _get_prefix_key(prefix: str, key: str, sources: Sequence[str]) -> Optional[str]:
+def _get_prefix_key(prefix: str, key: str, sources: Sequence[str]):
     entry = get(prefix)
     if entry is None:
         return None
@@ -163,13 +163,7 @@ def get_pattern_re(prefix: str):
 
 def namespace_in_lui(prefix: str) -> Optional[bool]:
     """Check if the namespace should appear in the LUI."""
-    entry = get(prefix)
-    if entry is None:
-        return None
-    rv = entry.get('namespace.embedded')  # TODO is this the best tag name?
-    if rv is not None:
-        return rv
-    return entry.get('miriam', {}).get('namespaceEmbeddedInLui')
+    return _get_prefix_key(prefix, 'namespaceEmbeddedInLui', ('miriam',))
 
 
 def get_identifiers_org_prefix(prefix: str) -> Optional[str]:

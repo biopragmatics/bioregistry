@@ -7,7 +7,7 @@ import logging
 import unittest
 
 import bioregistry
-from bioregistry.resolve import EMAIL_RE, _get_prefix_key
+from bioregistry.resolve import EMAIL_RE, _get_prefix_key, get_identifiers_org_prefix
 
 logger = logging.getLogger(__name__)
 
@@ -134,14 +134,11 @@ class TestDuplicates(unittest.TestCase):
             if pattern is None or example is None:
                 continue
 
-            if 'namespace.rewrite' in entry:
-                embedded_prefix = entry['namespace.rewrite']
-                example = f'{embedded_prefix}:{example}'
-            elif bioregistry.namespace_in_lui(prefix):
-                embedded_prefix = entry['miriam']['prefix']  # FIXME not always available via miriam
+            if bioregistry.namespace_in_lui(prefix):
+                miriam_prefix = get_identifiers_org_prefix(prefix)
                 if entry.get('namespace.capitalized') or 'obofoundry' in entry:
-                    embedded_prefix = embedded_prefix.upper()
-                example = f'{embedded_prefix}:{example}'
+                    miriam_prefix = miriam_prefix.upper()
+                example = f'{miriam_prefix}:{example}'
             if bioregistry.validate(prefix, example):
                 continue
             with self.subTest(prefix=prefix):
