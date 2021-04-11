@@ -516,6 +516,8 @@
     is_identifiers: true
     is_obo: false
     prefix: APID.INTERACTIONS
+  provides: uniprot
+  type: provider
 - bioportal:
     name: Ascomycete Phenotype Ontology
     prefix: APO
@@ -2928,6 +2930,7 @@
     sampleId: CHEMBL308052
   n2t:
     prefix: chembl.compound
+  part_of: chembl
   pattern: ^CHEMBL\d+$
   prefix: chembl.compound
   prefixcommons:
@@ -2956,6 +2959,7 @@
     sampleId: CHEMBL3467
   n2t:
     prefix: chembl.target
+  part_of: chembl
   prefix: chembl.target
   prefixcommons:
     formatter: http://identifiers.org/chembl.target/$1
@@ -4357,12 +4361,14 @@
     sampleId: D001151
   n2t:
     prefix: ctd.chemical
+  part_of: ctd
   prefix: ctd.chemical
   prefixcommons:
     formatter: http://identifiers.org/ctd.chemical/$1
     is_identifiers: true
     is_obo: false
     prefix: CTD.CHEMICAL
+  provides: mesh
 - miriam:
     deprecated: false
     description: The Comparative Toxicogenomics Database (CTD) presents scientifically
@@ -4380,12 +4386,14 @@
     sampleId: D053716
   n2t:
     prefix: ctd.disease
+  part_of: ctd
   prefix: ctd.disease
   prefixcommons:
     formatter: http://identifiers.org/ctd.disease/$1
     is_identifiers: true
     is_obo: false
     prefix: CTD.DISEASE
+  provides: mesh
 - miriam:
     deprecated: false
     description: The Comparative Toxicogenomics Database (CTD) presents scientifically
@@ -4403,12 +4411,14 @@
     sampleId: '101'
   n2t:
     prefix: ctd.gene
+  part_of: ctd
   prefix: ctd.gene
   prefixcommons:
     formatter: http://identifiers.org/ctd.gene/$1
     is_identifiers: true
     is_obo: false
     prefix: CTD.GENE
+  provides: ncbigene
 - bioportal:
     name: Ctenophore Ontology
     prefix: CTENO
@@ -4669,6 +4679,7 @@
     pattern: ^K[0-9]+$
     prefix: datanator.gene
     sampleId: K00973
+  part_of: datanator
   prefix: datanator.gene
 - miriam:
     deprecated: false
@@ -4687,6 +4698,7 @@
     pattern: ^[A-Z\-]+$
     prefix: datanator.metabolite
     sampleId: OUYCCCASQSFEME-MRVPVSSYSA-N
+  part_of: datanator
   prefix: datanator.metabolite
 - deprecated: true
   miriam:
@@ -5005,6 +5017,7 @@
     is_identifiers: true
     is_obo: false
     prefix: DEPOD
+  provides: hgnc.symbol
 - bioportal:
     name: Human Dermatological Disease Ontology
     prefix: DERMO
@@ -5077,6 +5090,8 @@
     sampleId: DDB0016567
   n2t:
     prefix: dictybase.est
+  name: dictyBase Expressed Sequence Tag
+  part_of: dictybase
   prefix: dictybase.est
   prefixcommons:
     formatter: http://identifiers.org/dictybase.est/$1
@@ -5096,6 +5111,7 @@
     sampleId: DDB_G0267522
   n2t:
     prefix: dictybase.gene
+  part_of: dictybase
   prefix: dictybase.gene
   prefixcommons:
     formatter: http://identifiers.org/dictybase.gene/$1
@@ -5117,6 +5133,7 @@
     sampleId: sov:WRfXPg8dantKVubE3HX8pw
   n2t:
     prefix: did
+  name: Decentralized Identifier
   prefix: did
 - bioportal:
     name: Drug Interaction and Evidence Ontology
@@ -5211,6 +5228,7 @@
     pattern: ^[A-Z0-9]{6,7}$
     prefix: dlxb
     sampleId: 6VDC956
+  part_of: dlx
   prefix: dlxb
 - miriam:
     deprecated: false
@@ -5222,6 +5240,7 @@
     pattern: ^[A-Z0-9]{6,7}$
     prefix: dlxc
     sampleId: M77F7JM
+  part_of: dlx
   prefix: dlxc
 - biolink:
     formatter: https://doi.org/$1
@@ -5358,6 +5377,7 @@
     sampleId: '57'
   n2t:
     prefix: doqcs.model
+  part_of: doqcs
   prefix: doqcs.model
   prefixcommons:
     formatter: http://identifiers.org/doqcs.model/$1
@@ -5379,6 +5399,7 @@
     sampleId: '131'
   n2t:
     prefix: doqcs.pathway
+  part_of: doqcs
   prefix: doqcs.pathway
   prefixcommons:
     formatter: http://identifiers.org/doqcs.pathway/$1
@@ -5444,6 +5465,7 @@
     sampleId: cho
   n2t:
     prefix: dragondb.allele
+  part_of: dragondb
   prefix: dragondb.allele
   prefixcommons:
     formatter: http://identifiers.org/dragondb.allele/$1
@@ -5462,6 +5484,7 @@
     sampleId: 3hB06
   n2t:
     prefix: dragondb.dna
+  part_of: dragondb
   prefix: dragondb.dna
   prefixcommons:
     formatter: http://identifiers.org/dragondb.dna/$1
@@ -5480,6 +5503,7 @@
     sampleId: DEF
   n2t:
     prefix: dragondb.locus
+  part_of: dragondb
   prefix: dragondb.locus
   prefixcommons:
     formatter: http://identifiers.org/dragondb.locus/$1
@@ -5498,6 +5522,7 @@
     sampleId: AMDEFA
   n2t:
     prefix: dragondb.protein
+  part_of: dragondb
   prefix: dragondb.protein
   prefixcommons:
     formatter: http://identifiers.org/dragondb.protein/$1
@@ -5584,6 +5609,7 @@
 - example: DBSALT001211
   homepage: http://www.drugbank.ca
   name: DrugBank Salts
+  part_of: drugbank
   pattern: ^DBSALT\d{6}$
   prefix: drugbank.salt
   prefixcommons:
@@ -5609,6 +5635,7 @@
     sampleId: BE0000048
   n2t:
     prefix: drugbankv4.target
+  part_of: drugbank
   prefix: drugbankv4.target
   prefixcommons:
     formatter: http://identifiers.org/drugbankv4.target/$1
@@ -5969,6 +5996,7 @@
     sampleId: '23'
   n2t:
     prefix: ecyano.entity
+  part_of: ecyano
   prefix: ecyano.entity
   prefixcommons:
     formatter: http://identifiers.org/ecyano.entity/$1
@@ -5987,6 +6015,7 @@
     pattern: ^\d+$
     prefix: ecyano.experiment
     sampleId: '18'
+  part_of: ecyano
   prefix: ecyano.experiment
 - miriam:
     deprecated: false
@@ -6030,6 +6059,7 @@
     sampleId: '56'
   n2t:
     prefix: ecyano.rule
+  part_of: ecyano
   prefix: ecyano.rule
   prefixcommons:
     formatter: http://identifiers.org/ecyano.rule/$1
@@ -8555,7 +8585,8 @@
   name: Gene Ontology Causal Assembly Model
   prefix: go.model
   url: noctua.geneontology.org/editor/graph/gomodel:$1
-- go:
+- banana: GO_REF
+  go:
     homepage: http://current.geneontology.org/metadata/gorefs/index.html
     name: Gene Ontology Database references
     prefix: GO_REF
@@ -8803,7 +8834,9 @@
   n2t:
     prefix: gramene.growthstage
   name: Gramene Growth Stage Ontology
+  namespace.embedded: false
   namespace.rewrite: GRO
+  pattern: ^\d+$
   prefix: gramene.growthstage
   prefixcommons:
     formatter: http://identifiers.org/gramene.growthstage/$1
@@ -11244,6 +11277,7 @@
     sampleId: C12345
   n2t:
     prefix: kegg.compound
+  part_of: kegg
   prefix: kegg.compound
   prefixcommons:
     formatter: http://identifiers.org/kegg.compound/$1
@@ -11270,6 +11304,7 @@
     sampleId: H00076
   n2t:
     prefix: kegg.disease
+  part_of: kegg
   prefix: kegg.disease
   prefixcommons:
     formatter: http://identifiers.org/kegg.disease/$1
@@ -11288,6 +11323,7 @@
     sampleId: D00123
   n2t:
     prefix: kegg.drug
+  part_of: kegg
   prefix: kegg.drug
   prefixcommons:
     formatter: http://identifiers.org/kegg.drug/$1
@@ -11315,6 +11351,7 @@
     sampleId: ev:E00032
   n2t:
     prefix: kegg.environ
+  part_of: kegg
   prefix: kegg.environ
   prefixcommons:
     formatter: http://identifiers.org/kegg.environ/$1
@@ -11332,6 +11369,7 @@
     name: KEGG Enzyme Database
     prefix: KEGG_ENZYME
   name: KEGG Enzyme
+  part_of: kegg
   prefix: kegg.enzyme
 - biolink:
     formatter: http://www.kegg.jp/entry/$1
@@ -11351,6 +11389,7 @@
     sampleId: syn:ssr3451
   n2t:
     prefix: kegg.genes
+  part_of: kegg
   prefix: kegg.genes
   prefixcommons:
     formatter: http://identifiers.org/kegg.genes/$1
@@ -11372,6 +11411,7 @@
     sampleId: eco
   n2t:
     prefix: kegg.genome
+  part_of: kegg
   prefix: kegg.genome
   prefixcommons:
     formatter: http://identifiers.org/kegg.genome/$1
@@ -11397,6 +11437,7 @@
     sampleId: G00123
   n2t:
     prefix: kegg.glycan
+  part_of: kegg
   prefix: kegg.glycan
   prefixcommons:
     formatter: http://identifiers.org/kegg.glycan/$1
@@ -11409,6 +11450,7 @@
     name: KEGG LIGAND Database
     prefix: KEGG_LIGAND
   name: KEGG LIGAND
+  part_of: kegg
   prefix: kegg.ligand
 - miriam:
     deprecated: false
@@ -11422,6 +11464,7 @@
     sampleId: T30002
   n2t:
     prefix: kegg.metagenome
+  part_of: kegg
   prefix: kegg.metagenome
   prefixcommons:
     formatter: http://identifiers.org/kegg.metagenome/$1
@@ -11442,6 +11485,7 @@
     sampleId: M00002
   n2t:
     prefix: kegg.module
+  part_of: kegg
   prefix: kegg.module
   prefixcommons:
     formatter: http://identifiers.org/kegg.module/$1
@@ -11461,6 +11505,7 @@
     sampleId: K00001
   n2t:
     prefix: kegg.orthology
+  part_of: kegg
   prefix: kegg.orthology
   prefixcommons:
     formatter: http://identifiers.org/kegg.orthology/$1
@@ -11485,6 +11530,7 @@
     sampleId: hsa00620
   n2t:
     prefix: kegg.pathway
+  part_of: kegg
   prefix: kegg.pathway
   prefixcommons:
     formatter: http://www.kegg.jp/dbget-bin/www_bget?path:$1
@@ -11513,6 +11559,7 @@
     sampleId: R00100
   n2t:
     prefix: kegg.reaction
+  part_of: kegg
   prefix: kegg.reaction
   prefixcommons:
     formatter: http://identifiers.org/kegg.reaction/$1
@@ -20768,7 +20815,8 @@
     prefix: SPD
   wikidata:
     property: P4537
-- miriam:
+- homepage: https://spdx.org/licenses
+  miriam:
     deprecated: false
     description: The SPDX License List is a list of commonly found licenses and exceptions
       used in free and open source and other collaborative software or documentation.
@@ -20785,6 +20833,7 @@
     sampleId: CC-BY-1.0
   n2t:
     prefix: spdx
+  name: Software Package Data Exchange License
   prefix: spdx
 - miriam:
     deprecated: false
@@ -22641,7 +22690,8 @@
     is_identifiers: true
     is_obo: false
     prefix: USPTO
-- miriam:
+- example: 2h6o
+  miriam:
     deprecated: false
     description: Database of validation results for ligands and non-standard residues
       in the Protein Data Bank.
@@ -22659,6 +22709,9 @@
     is_identifiers: true
     is_obo: false
     prefix: VALIDATORDB
+  provides: pdb
+  type: provider
+  url: https://webchem.ncbr.muni.cz/Platform/ValidatorDb/ByStructure/$1
 - biolink:
     formatter: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/VANDF/$1
     is_identifiers: false

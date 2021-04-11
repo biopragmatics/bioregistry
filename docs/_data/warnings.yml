@@ -1,4 +1,9 @@
 embedding_rewrites:
+- correct: false
+  miriam: true
+  name: Gramene Growth Stage Ontology
+  pattern: ^\d+$
+  prefix: gramene.growthstage
 - correct: true
   miriam: false
   name: Ontology for Biomedical Investigations
@@ -7,7 +12,7 @@ embedding_rewrites:
 prefix_rewrites:
 - correct: GRO
   name: Gramene Growth Stage Ontology
-  pattern: ^GRO\:\d+$
+  pattern: ^\d+$
   prefix: gramene.growthstage
 - correct: HOG
   name: OMA HOGs
@@ -22,6 +27,10 @@ wrong_patterns:
   miriam: ^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$
   name: Enzyme Nomenclature
   prefix: eccode
+- correct: ^\d+$
+  miriam: ^GRO\:\d+$
+  name: Gramene Growth Stage Ontology
+  prefix: gramene.growthstage
 - correct: ^\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b$
   miriam: ^\w+$
   name: 'NCI Pathway Interaction Database: Pathway'
