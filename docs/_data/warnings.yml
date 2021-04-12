@@ -1,37 +1,27 @@
-embedding_rewrites:
-- correct: false
-  miriam: true
-  name: Gramene Growth Stage Ontology
-  pattern: ^\d+$
-  prefix: gramene.growthstage
-- correct: true
-  miriam: false
-  name: Ontology for Biomedical Investigations
-  pattern: (^OBI:\d{7}$)|(^OBI_\d{7}$)
-  prefix: obi
-prefix_rewrites:
-- correct: GRO
-  name: Gramene Growth Stage Ontology
-  pattern: ^\d+$
-  prefix: gramene.growthstage
-- correct: HOG
-  name: OMA HOGs
-  pattern: ^HOG:[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
-  prefix: oma.hog
-- correct: VariO
-  name: Variation Ontology
-  pattern: ^VariO:\d+$
-  prefix: vario
+embedding_rewrites: []
+prefix_rewrites: []
 wrong_patterns:
 - correct: ^\d{1,2}(\.\d{0,3}){0,3}$
   miriam: ^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$
   name: Enzyme Nomenclature
   prefix: eccode
-- correct: ^\d+$
+- correct: ^\d{7}$
   miriam: ^GRO\:\d+$
   name: Gramene Growth Stage Ontology
   prefix: gramene.growthstage
+- correct: ^\d{7}$
+  miriam: (^OBI:\d{7}$)|(^OBI_\d{7}$)
+  name: Ontology for Biomedical Investigations
+  prefix: obi
+- correct: ^[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
+  miriam: ^HOG:[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
+  name: OMA HOGs
+  prefix: oma.hog
 - correct: ^\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b$
   miriam: ^\w+$
   name: 'NCI Pathway Interaction Database: Pathway'
   prefix: pid.pathway
+- correct: ^\d+$
+  miriam: ^VariO:\d+$
+  name: Variation Ontology
+  prefix: vario

@@ -8834,15 +8834,15 @@
   n2t:
     prefix: gramene.growthstage
   name: Gramene Growth Stage Ontology
-  namespace.embedded: false
-  namespace.rewrite: GRO
-  pattern: ^\d+$
+  namespaceEmbeddedInLui: false
+  pattern: ^\d{7}$
   prefix: gramene.growthstage
   prefixcommons:
     formatter: http://identifiers.org/gramene.growthstage/$1
     is_identifiers: true
     is_obo: false
     prefix: GRAMENE.GROWTHSTAGE
+  url: http://www.gramene.org/db/ontology/search?id=GRO:$1
 - go:
     formatter: http://www.gramene.org/db/protein/protein_search?acc=$1
     homepage: http://www.gramene.org/
@@ -15377,7 +15377,6 @@
   n2t:
     prefix: obi
   namespace.capitalized: true
-  namespace.embedded: true
   obofoundry:
     contact: bpeters@lji.org
     contact.label: Bjoern Peters
@@ -15402,12 +15401,14 @@
     version: '2020-12-16'
     version.iri: http://purl.obolibrary.org/obo/obi/2020-12-16/obi.owl
   ols_version_date_format: '%Y-%m-%d'
+  pattern: ^\d{7}$
   prefix: obi
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/OBI_$1
     is_identifiers: false
     is_obo: true
     prefix: OBI
+  url: http://purl.obolibrary.org/obo/OBI_$1
 - bioportal:
     name: Ontology for Biobanking
     prefix: OBIB
@@ -15906,7 +15907,8 @@
     pattern: ^HOG:[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
     prefix: oma.hog
     sampleId: HOG:0459895
-  namespace.rewrite: HOG
+  namespaceEmbeddedInLui: false
+  pattern: ^[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
   prefix: oma.hog
   url: https://omabrowser.org/oma/hog/HOG:$1
 - miriam:
@@ -22743,7 +22745,8 @@
     sampleId: 0294
   n2t:
     prefix: vario
-  namespace.rewrite: VariO
+  name: Variation Ontology
+  namespaceEmbeddedInLui: false
   obofoundry:
     contact: mauno.vihinen@med.lu.se
     contact.label: Mauno Vihinen
@@ -22762,6 +22765,7 @@
     version: '2018-11-09'
     version.iri: http://purl.obolibrary.org/obo/vario/2018-11-09/vario.owl
   ols_version_date_format: '%Y-%m-%d'
+  pattern: ^\d+$
   prefix: vario
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/VARIO_$1
