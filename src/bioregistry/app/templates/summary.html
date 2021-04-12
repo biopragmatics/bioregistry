@@ -210,6 +210,39 @@
             <a href="{{ url_for('ui.resolve', prefix='gmelin', identifier='1466') }}"><code>gmelin:1466</code></a>.
         </li>
     </ol>
+    <h3>Resources that Aren't Authorities</h3>
+    <p>
+        While entries in the Bioregistry are <i>supposed</i> to represent nomenclature authorities, this is not always
+        true because it imports from external sources that don't enforce this constraint.
+        For example, the Chemotoxicogenomics Database uses
+        <a href="{{ url_for('ui.resource', prefix='ncbigene') }}">NCBI Gene</a> for naming genes and
+        <a href="{{ url_for('ui.resource', prefix='mesh') }}">MeSH</a> for naming diseases and chemicals.
+        Identifiers.org has minted 3 prefixes
+        (<a href="{{ url_for('ui.resource', prefix='ctd.gene') }}"><code>ctd.gene</code></a>,
+        <a href="{{ url_for('ui.resource', prefix='ctd.disease') }}"><code>ctd.disease</code></a>, and
+        <a href="{{ url_for('ui.resource', prefix='ctd.chemical') }}"><code>ctd.chemical</code></a>) that
+        mostly reflect the entries of the authorities for which they are providers. Another example is
+        <a href="{{ url_for('ui.resource', prefix='validatordb') }}">ValidatorDB</a>, which provides information
+        based on <a href="{{ url_for('ui.resource', prefix='pdb') }}">Protein Databank</a> records.
+    </p>
+    <p>
+        An even more exotic example are the <a href="{{ url_for('ui.resource', prefix='goa') }}">
+        Gene Ontology Annotations</a> provided by the EBI because it provides for several types of identifiers
+        including those from <a href="{{ url_for('ui.resource', prefix='uniprot') }}">UniProt</a>,
+        <a href="{{ url_for('ui.resource', prefix='rnacentral') }}">RNA Central</a>, and the
+        <a href="{{ url_for('ui.resource', prefix='complexportal') }}">ComplexPortal</a>. This is more similar to
+        providers like the OLS and OntoBee since it can accept prefix/identifier pairs instead of just identifiers
+        for the single prefix that it serves.
+    </p>
+    <p>
+        Each entry in the Bioregistry now has a slot <code>"provides"</code> that can codify these connections and we
+        may begin annotating all entries with a "type" in the future such that resources and providers, which have many
+        common aspects to their metadata schemata, can be more easily listed and curated in the same place.
+        Further discussion about this is taking place on <a href="https://github.com/bioregistry/bioregistry/issues/32">
+        <i class="fab fa-github"></i> bioregistry/bioregistry#32</a>.
+        The first commits to the repo related to that are available
+        <a href="https://github.com/bioregistry/bioregistry/commit/1462f1a781cbc7078d7634de2073bad299b13205">here</a>.
+    </p>
     <h3>Misguided Attribution</h3>
     <p>
         In the OBO file format, terms have a description field which allows for the specification
@@ -217,7 +250,7 @@
         or Wikipedia pages. However, many resources create their own prefix with which they identify
         the original curator. For example, in the Gene Ontology, there is a prefix <code>GOC</code> that often
         appears in CURIEs with the initials of the curator such as in <code>GOC:vw</code>. Unfortunately, this
-        information is hard to deconvolute because <code>GOC</code> has not been registered with Identifiers.org
+        information is hard to deconvolve because <code>GOC</code> has not been registered with Identifiers.org
         or another resource, the identifiers are not MIRIAM compliant, and it's not obvious to whom
         <code>vw</code> refers since there is no (obvious) resource to resolve these.
     </p>
