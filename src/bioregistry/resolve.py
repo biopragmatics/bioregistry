@@ -71,10 +71,19 @@ def get_registry_name(metaprefix: str) -> Optional[str]:
 
 def get_registry_homepage(metaprefix: str) -> Optional[str]:
     """Get the URL for the registry, if available."""
+    return _get_registry_key(metaprefix, 'homepage')
+
+
+def get_registry_description(metaprefix: str) -> Optional[str]:
+    """Get the description for the registry, if available."""
+    return _get_registry_key(metaprefix, 'description')
+
+
+def _get_registry_key(metaprefix: str, key: str):
     registry = get_registry(metaprefix)
     if registry is None:
         return None
-    return registry.get('homepage')
+    return registry.get(key)
 
 
 def get_registry_url(metaprefix: str, prefix: str) -> Optional[str]:
