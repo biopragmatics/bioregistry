@@ -3,60 +3,105 @@
     "prefix": "bioregistry",
     "name": "Bioregistry",
     "homepage": "http://bioregistry.io",
-    "formatter": "http://bioregistry.io/registry/$1"
+    "formatter": "http://bioregistry.io/registry/$1",
+    "resolver": true,
+    "registry": true,
+    "provider": false,
+    "description": "The Bioregistry is integrative meta-registry of biological databases, ontologies, and nomenclatures that is backed by an open database."
   },
   {
     "prefix": "obofoundry",
     "name": "OBO Foundry",
     "homepage": "http://www.obofoundry.org/",
-    "formatter": "http://www.obofoundry.org/ontology/$1"
+    "formatter": "http://www.obofoundry.org/ontology/$1",
+    "registry": true,
+    "provider": false,
+    "resolver": false,
+    "description": "The mission of the OBO Foundry is to develop a family of interoperable ontologies that are both logically well-formed and scientifically accurate."
   },
   {
     "prefix": "ols",
     "name": "Ontology Lookup Service",
     "homepage": "https://www.ebi.ac.uk/ols",
-    "formatter": "https://www.ebi.ac.uk/ols/ontologies/$1"
+    "formatter": "https://www.ebi.ac.uk/ols/ontologies/$1",
+    "registry": true,
+    "provider": true,
+    "resolver": false,
+    "description": "The Ontology Lookup Service (OLS) is a repository for biomedical ontologies that aims to provide a single point of access to the latest ontology versions. "
   },
   {
     "prefix": "miriam",
     "name": "Identifiers.org",
     "homepage": "https://identifiers.org",
-    "formatter": "https://registry.identifiers.org/registry/$1"
+    "formatter": "https://registry.identifiers.org/registry/$1",
+    "registry": true,
+    "provider": false,
+    "resolver": true,
+    "description": "The Identifiers.org Resolution Service provides consistent access to life science data using Compact Identifiers. Compact Identifiers consist of an assigned unique prefix and a local provider designated accession number (prefix:accession)."
   },
   {
     "prefix": "wikidata",
     "name": "Wikidata",
     "homepage": "https://www.wikidata.org",
-    "formatter": "https://www.wikidata.org/wiki/Property:$1"
+    "formatter": "https://www.wikidata.org/wiki/Property:$1",
+    "description": "An open, community-curated knowledgebase that contains several properties corresponding to resources listed in other biomedical registries.",
+    "registry": true,
+    "provider": true,
+    "resolver": true
   },
   {
     "prefix": "bioportal",
     "name": "BioPortal",
     "homepage": "https://bioportal.bioontology.org/",
-    "formatter": "https://bioportal.bioontology.org/ontologies/$1"
+    "formatter": "https://bioportal.bioontology.org/ontologies/$1",
+    "registry": true,
+    "provider": true,
+    "resolver": false,
+    "description": "The BioPortal is a less stringent registry of biomedical ontologies than the OBO Foundry"
   },
   {
     "prefix": "n2t",
     "name": "Name-to-Thing",
-    "homepage": "https://n2t.net"
+    "homepage": "https://n2t.net",
+    "registry": true,
+    "provider": false,
+    "resolver": true,
+    "description": "An ARK resolver as well as resolver built with common prefxies as in Identifiers.org"
   },
   {
     "prefix": "go",
     "name": "Gene Ontology",
-    "homepage": "http://geneontology.org/"
+    "homepage": "http://geneontology.org/",
+    "registry": true,
+    "provider": false,
+    "resolver": false,
+    "description": "A database-specific registry supporting curation in the Gene Ontology"
   },
   {
     "prefix": "prefixcommons",
     "name": "Prefix Commons",
-    "homepage": "https://prefixcommons.org"
+    "homepage": "https://prefixcommons.org",
+    "registry": true,
+    "provider": false,
+    "resolver": false,
+    "description": "A registry of commonly used prefixes in the life sciences and linked data"
   },
   {
     "prefix": "biolink",
-    "name": "Biolink Model"
+    "name": "Biolink Model",
+    "registry": true,
+    "provider": false,
+    "homepage": "https://raw.githubusercontent.com/biolink/biolink-model/master/biolink-model.yaml",
+    "resolver": false,
+    "description": "A modeling paradigm-specific registry of prefixes and their URL expansions"
   },
   {
     "prefix": "ncbi",
     "name": "National Center for Biotechnology Information",
-    "homepage": "https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/"
+    "homepage": "https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/",
+    "registry": true,
+    "provider": false,
+    "resolver": false,
+    "description": "A database-specific registry supporting curation in the NCBI GenBank and related NCBI resources"
   }
 ]
