@@ -4,7 +4,7 @@
 
 from typing import Optional
 
-from flask import Blueprint, redirect, render_template, url_for
+from flask import Blueprint, abort, redirect, render_template, url_for
 
 import bioregistry
 from .utils import _get_resource_mapping_rows, _get_resource_providers, _normalize_prefix_or_404
@@ -67,6 +67,35 @@ def resource(prefix: str):
         banana=bioregistry.get_banana(prefix),
         description=bioregistry.get_description(prefix),
         providers=None if example is None else _get_resource_providers(prefix, example),
+    )
+
+
+@ui_blueprint.route('/metaregistry/<metaprefix>')
+def metaresource(metaprefix: str):
+    """Serve the a Bioregistry registry page."""
+    entry = bioregistry.get_registry(metaprefix)
+    if entry is None:
+        abort(404, f'Invalid metaprefix: {metaprefix}')
+
+    example_prefix = entry.get('example')
+    example_identifier = bioregistry.get_example(example_prefix) if example_prefix else None
+    return render_template(
+        'metaresource.html',
+        metaprefix=metaprefix,
+        name=bioregistry.get_registry_name(metaprefix),
+        description=bioregistry.get_registry_description(metaprefix),
+        homepage=bioregistry.get_registry_homepage(metaprefix),
+        download=entry.get('download'),
+        formatter=entry.get('formatter'),
+        example_prefix=example_prefix,
+        example_prefix_url=bioregistry.get_registry_url(metaprefix, example_prefix) if example_prefix else None,
+        example_identifier=example_identifier,
+        example_curie_url=(
+            bioregistry.get_registry_resolve_url(metaprefix, example_prefix, example_identifier)
+            if example_prefix and example_identifier else
+            None
+        ),
+        entry=entry,
     )
 
 

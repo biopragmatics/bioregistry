@@ -79,6 +79,11 @@ def get_registry_description(metaprefix: str) -> Optional[str]:
     return _get_registry_key(metaprefix, 'description')
 
 
+def get_registry_example(metaprefix: str) -> Optional[str]:
+    """Get an example for the registry, if available."""
+    return _get_registry_key(metaprefix, 'example')
+
+
 def _get_registry_key(metaprefix: str, key: str):
     registry = get_registry(metaprefix)
     if registry is None:

@@ -39,6 +39,15 @@ def metaresources():
     return jsonify(bioregistry.read_metaregistry())
 
 
+@api_blueprint.route('/metaregistry/<metaprefix>')
+def metaresource(metaprefix: str):
+    """List the registry."""
+    data = bioregistry.get_registry(metaprefix)
+    if not data:
+        abort(404, f'Invalid metaprefix: {metaprefix}')
+    return jsonify(data)
+
+
 @api_blueprint.route('/registry/<prefix>')
 def resource(prefix: str):
     """Get an entry.
