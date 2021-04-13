@@ -180,6 +180,16 @@ def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
     return _get_mapped_prefix(prefix, 'miriam')
 
 
+def get_n2t_prefix(prefix: str) -> Optional[str]:
+    """Get the name-to-thing prefix if available."""
+    return _get_mapped_prefix(prefix, 'n2t')
+
+
+def get_bioportal_prefix(prefix: str) -> Optional[str]:
+    """Get the Bioportal prefix if available."""
+    return _get_mapped_prefix(prefix, 'bioportal')
+
+
 def get_obofoundry_prefix(prefix: str) -> Optional[str]:
     """Get the OBO Foundry prefix if available."""
     return _get_mapped_prefix(prefix, 'obofoundry')

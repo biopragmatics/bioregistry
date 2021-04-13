@@ -6,8 +6,8 @@ from typing import Callable, Mapping, Optional, Sequence, Tuple
 
 from .constants import BIOREGISTRY_REMOTE_URL
 from .resolve import (
-    get, get_banana, get_identifiers_org_prefix, get_obofoundry_prefix, get_ols_prefix, get_pattern_re,
-    namespace_in_lui, normalize_prefix,
+    get, get_banana, get_bioportal_prefix, get_identifiers_org_prefix, get_n2t_prefix, get_obofoundry_prefix,
+    get_ols_prefix, get_pattern_re, namespace_in_lui, normalize_prefix,
 )
 
 __all__ = [
@@ -18,7 +18,10 @@ __all__ = [
     'get_identifiers_org_curie',
     'get_obofoundry_link',
     'get_ols_link',
+    'get_bioportal_url',
+    'get_n2t_url',
     'get_link',
+    'get_registry_resolve_url',
 ]
 
 
@@ -89,6 +92,37 @@ def get_identifiers_org_url(prefix: str, identifier: str) -> Optional[str]:
     return f'https://identifiers.org/{curie}'
 
 
+def get_n2t_url(prefix: str, identifier: str) -> Optional[str]:
+    """Get the name-to-thing URL for the given CURIE."""
+    n2t_prefix = get_n2t_prefix(prefix)
+    if n2t_prefix is None:
+        return None
+    curie = f'{n2t_prefix}:{identifier}'
+    if curie is None:
+        return None
+    return f'https://n2t.net/{curie}'
+
+
+def get_bioportal_url(prefix: str, identifier: str) -> Optional[str]:
+    """Get the Bioportal URL for the given CURIE.
+
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE
+    :return: A link to the Bioportal page
+
+    >>> get_bioportal_url('chebi', '24431')
+    "https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_24431"
+    """
+    bioportal_prefix = get_bioportal_prefix(prefix)
+    if bioportal_prefix is None:
+        return None
+    obo_link = get_obofoundry_link(prefix, identifier)
+    if obo_link is not None:
+        return f'https://bioportal.bioontology.org/ontologies/{bioportal_prefix}/?p=classes&conceptid={obo_link}'
+    # TODO there must be other rules?
+    return None
+
+
 # MIRIAM definitions that don't make any sense
 MIRIAM_BLACKLIST = {
     # this one uses the names instead of IDs, and points to a dead resource.
@@ -155,6 +189,8 @@ PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
     'miriam': get_identifiers_org_url,
     'obofoundry': get_obofoundry_link,
     'ols': get_ols_link,
+    'n2t': get_n2t_url,
+    'bioportal': get_bioportal_url,
 }
 
 LINK_PRIORITY = [
@@ -163,6 +199,8 @@ LINK_PRIORITY = [
     'miriam',
     'ols',
     'obofoundry',
+    'n2t',
+    'bioportal',
 ]
 
 
@@ -178,3 +216,11 @@ def get_link(prefix: str, identifier: str, use_bioregistry_io: bool = True) -> O
         if rv is not None:
             return rv
     return None
+
+
+def get_registry_resolve_url(metaprefix: str, prefix: str, identifier: str) -> Optional[str]:
+    """Get the URL to resolve the given prefix/identifier pair with the given resolver."""
+    providers = get_providers(prefix, identifier)
+    if not providers:
+        return None
+    return providers.get(metaprefix)
