@@ -6,8 +6,8 @@ from typing import Callable, Mapping, Optional, Sequence, Tuple
 
 from .constants import BIOREGISTRY_REMOTE_URL
 from .resolve import (
-    get, get_banana, get_bioportal_prefix, get_identifiers_org_prefix, get_n2t_prefix, get_obofoundry_prefix,
-    get_ols_prefix, get_pattern_re, namespace_in_lui, normalize_prefix,
+    get, get_banana, get_bioportal_prefix, get_identifiers_org_prefix, get_n2t_prefix,
+    get_obofoundry_prefix, get_ols_prefix, get_pattern_re, namespace_in_lui, normalize_prefix,
 )
 
 __all__ = [

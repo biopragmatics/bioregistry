@@ -1964,9 +1964,9 @@
     "contact": "cthoyt@gmail.com",
     "description": "Manually curated collections of resources stored in the bioregistry",
     "example": "0000001",
-    "pattern": "^\\d{7}$",
     "homepage": "https://bioregistry.io/collection",
     "name": "Bioregistry Collections",
+    "pattern": "^\\d{7}$",
     "url": "https://bioregistry.io/collection/$1"
   },
   "biorxiv": {
@@ -2015,6 +2015,9 @@
     }
   },
   "biostudies": {
+    "mapping": {
+      "fairsharing": "biodbcore-000989"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The BioStudies database holds descriptions of biological studies, links to data from these studies in other databases at EMBL-EBI or outside, as well as data that do not fit in the structured archives at EMBL-EBI. The database can accept a wide range of types of studies described via a simple format. It also enables manuscript authors to submit supplementary information and link to it from the publication.",
@@ -2122,6 +2125,9 @@
     }
   },
   "bmrb": {
+    "mappings": {
+      "fairsharing": "FAIRsharing.p06nme"
+    },
     "miriam": {
       "deprecated": false,
       "description": "BMRB collects, annotates, archives, and disseminates (worldwide in the public domain) the important spectral and quantitative data derived from NMR spectroscopic investigations of biological macromolecules and metabolites. The goal is to empower scientists in their analysis of the structure, dynamics, and chemistry of biological systems and to support further development of the field of biomolecular NMR spectroscopy.",
@@ -2847,6 +2853,9 @@
     }
   },
   "cellimage": {
+    "mappings": {
+      "fairsharing": "FAIRsharing.8t18te"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Cell: An Image Library™ is a freely accessible, public repository of reviewed and annotated images, videos, and animations of cells from a variety of organisms, showcasing cell architecture, intracellular functionalities, and both normal and abnormal processes.",
@@ -6564,6 +6573,10 @@
     }
   },
   "ega.dataset": {
+    "homepage": "https://ega-archive.org/",
+    "mappings": {
+      "fairsharing": "FAIRsharing.mya1ff"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The EGA is a service for permanent archiving and sharing of all types of personally identifiable genetic and phenotypic data resulting from biomedical research projects. The EGA contains exclusive data collected from individuals whose consent agreements authorize data release only for specific research use or to bona fide researchers. Strict protocols govern how information is managed, stored and distributed by the EGA project. This collection references 'Datasets'.",
@@ -6771,6 +6784,9 @@
     ]
   },
   "emdb": {
+    "mappings": {
+      "fairsharing": "FAIRsharing.651n9j"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Electron Microscopy Data Bank (EMDB) is a public repository for electron microscopy density maps of macromolecular complexes and subcellular structures. It covers a variety of techniques, including single-particle analysis, electron tomography, and electron (2D) crystallography. The EMDB map distribution format follows the CCP4 definition, which is widely recognized by software packages used by the structural biology community.",
@@ -6795,6 +6811,9 @@
     "description": "EMPIAR, the Electron Microscopy Public Image Archive, is a public resource for raw, 2D electron microscopy images. Here, you can browse, upload and download the raw images used to build a 3D structure",
     "example": "10595",
     "homepage": "https://www.ebi.ac.uk/pdbe/emdb",
+    "mapping": {
+      "fairsharing": "biodbcore-001140"
+    },
     "name": "Electron Microscopy Public Image Archive",
     "url": "https://www.ebi.ac.uk/pdbe/emdb/empiar/entry/$1"
   },
@@ -8500,6 +8519,9 @@
       ]
     },
     "homepage": "https://www.ncbi.nlm.nih.gov/genbank/",
+    "mappings": {
+      "fairsharing": "FAIRsharing.9kahy4"
+    },
     "name": "GenBank",
     "prefixcommons": {
       "formatter": "http://www.ncbi.nlm.nih.gov/nuccore/$1",
@@ -8736,6 +8758,9 @@
       "homepage": "http://www.ncbi.nlm.nih.gov/geo/",
       "name": "NCBI Gene Expression Omnibus",
       "prefix": "GEO"
+    },
+    "mappings": {
+      "fairsharing": "FAIRsharing.5hc8vt"
     },
     "miriam": {
       "deprecated": false,
@@ -11116,6 +11141,9 @@
     }
   },
   "idr": {
+    "mapping": {
+      "fairsharing": "FAIRsharing.6wf1zw"
+    },
     "miriam": {
       "deprecated": false,
       "description": "Image Data Resource (IDR) is an online, public data repository that seeks to store, integrate and serve image datasets from published scientific studies. We have collected and are continuing to receive existing and newly created “reference image\" datasets that are valuable resources for a broad community of users, either because they will be frequently accessed and cited or because they can serve as a basis for re-analysis and the development of new computational tools.",
@@ -11428,6 +11456,9 @@
     }
   },
   "insdc.sra": {
+    "mappings": {
+      "fairsharing": "FAIRsharing.g7t2hv"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The Sequence Read Archive (SRA) stores raw sequencing data from the next generation of sequencing platforms Data submitted to SRA. It is organized using a metadata model consisting of six objects: study, sample, experiment, run, analysis and submission. The SRA study contains high-level information including goals of the study and literature references, and may be linked to the INSDC BioProject database.",
@@ -12920,6 +12951,9 @@
     }
   },
   "massive": {
+    "mappings": {
+      "fairsharing": "FAIRsharing.LYsiMd"
+    },
     "miriam": {
       "deprecated": false,
       "description": "MassIVE is a community resource developed by the NIH-funded Center for Computational Mass Spectrometry to promote the global, free exchange of mass spectrometry data.",
@@ -17849,6 +17883,9 @@
     "description": "Panorama is a freely-available, open-source repository server application for targeted mass spectrometry assays that integrates into a Skyline mass spec workflow. It makes links to the Proteomics Exchange when possible.",
     "example": "FxnI151FMs",
     "homepage": "https://panoramaweb.org",
+    "mapping": {
+      "fairsharing": "FAIRsharing.uBpQ1q"
+    },
     "name": "Panorama Public",
     "url": "https://panoramaweb.org/$1.url"
   },
@@ -18148,6 +18185,9 @@
       "homepage": "https://www.rcsb.org/pdb/",
       "name": "Protein Data Bank",
       "prefix": "PDB"
+    },
+    "mappings": {
+      "fairsharing": "FAIRsharing.2t35ja"
     },
     "miriam": {
       "deprecated": false,
@@ -19515,6 +19555,9 @@
     }
   },
   "pride": {
+    "mappings": {
+      "fairsharing": "FAIRsharing.e1byny"
+    },
     "miriam": {
       "deprecated": false,
       "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence. This collection references experiments and assays.",
@@ -22250,6 +22293,9 @@
   "ssbd.dataset": {
     "example": "1",
     "homepage": "https://ssbd.riken.jp",
+    "mappings": {
+      "fairsharing": "FAIRsharing.we2r5a"
+    },
     "name": "System Science of Biological Dynamics dataset",
     "url": "https://ssbd.riken.jp/database/dataset/$1"
   },

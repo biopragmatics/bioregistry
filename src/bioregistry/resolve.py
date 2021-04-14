@@ -125,6 +125,7 @@ def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
     if entry is None:
         return None
     rv = {}
+    rv.update(entry.get('mappings', {}))  # This will be the replacement later
     for key in read_metaregistry():
         if key not in entry:
             continue
@@ -212,11 +213,16 @@ def get_ols_prefix(prefix: str) -> Optional[str]:
     return _get_mapped_prefix(prefix, 'ols')
 
 
+def get_fairsharing_prefix(prefix: str) -> Optional[str]:
+    """Get the FAIRSharing prefix if available."""
+    return _get_mapped_prefix(prefix, 'fairsharing')
+
+
 def _get_mapped_prefix(prefix: str, external: str) -> Optional[str]:
-    entry = get(prefix)
+    entry = get_mappings(prefix)
     if entry is None:
         return None
-    return entry.get(external, {}).get('prefix')
+    return entry.get(external)
 
 
 def get_banana(prefix: str) -> Optional[str]:
