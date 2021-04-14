@@ -5,6 +5,7 @@
 import datetime
 import logging
 import unittest
+from collections import Counter
 
 import bioregistry
 from bioregistry.resolve import EMAIL_RE, _get_prefix_key, get_identifiers_org_prefix
@@ -206,3 +207,9 @@ class TestDuplicates(unittest.TestCase):
                     if prefix not in self.registry
                 }
                 self.assertEqual(set(), incorrect)
+                duplicates = {
+                    prefix
+                    for prefix, count in Counter(collection['resources']).items()
+                    if 1 < count
+                }
+                self.assertEqual(set(), duplicates, msg='Duplicates found')
