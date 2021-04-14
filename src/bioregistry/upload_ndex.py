@@ -35,7 +35,7 @@ def upload():
     })
 
     metaregistry = bioregistry.read_metaregistry()
-    registry = bioregistry.read_bioregistry()
+    registry = bioregistry.read_registry()
 
     registry_nodes = {
         metaprefix: make_registry_node(cx, metaprefix)
@@ -43,7 +43,7 @@ def upload():
     }
     resource_nodes = {
         prefix: make_resource_node(cx, prefix)
-        for prefix in bioregistry.read_bioregistry()
+        for prefix in registry
     }
 
     for prefix, entry in registry.items():

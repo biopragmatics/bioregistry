@@ -30,7 +30,7 @@ def resources():
             banana=bioregistry.get_banana(prefix),
             description=bioregistry.get_description(prefix),
         )
-        for prefix in bioregistry.read_bioregistry()
+        for prefix in bioregistry.read_registry()
     ]
     return render_template('resources.html', rows=rows)
 

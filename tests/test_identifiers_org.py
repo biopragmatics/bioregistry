@@ -34,7 +34,7 @@ class TestIdentifiersOrg(unittest.TestCase):
 
     def test_banana(self):
         """Test that entries curated with a new banana are resolved properly."""
-        for prefix, entry in bioregistry.read_bioregistry().items():
+        for prefix, entry in bioregistry.read_registry().items():
             banana = entry.get('banana')
             if banana is None:
                 continue
@@ -53,7 +53,7 @@ class TestIdentifiersOrg(unittest.TestCase):
 
     def test_url_auto(self):
         """Test formatting URLs."""
-        for prefix, entry in bioregistry.read_bioregistry().items():
+        for prefix, entry in bioregistry.read_registry().items():
             if prefix in IDOT_BROKEN:
                 continue
             identifier = bioregistry.get_example(prefix)

@@ -7,7 +7,7 @@ from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, S
 
 from tabulate import tabulate
 
-from bioregistry import normalize_prefix, read_bioregistry
+from bioregistry import normalize_prefix, read_registry
 from bioregistry.utils import write_bioregistry
 
 __all__ = [
@@ -33,7 +33,7 @@ class Aligner(ABC):
 
     def __init__(self):
         """Instantiate the aligner."""
-        self.internal_registry = read_bioregistry()
+        self.internal_registry = read_registry()
         self.external_registry = self.__class__.getter(**(self.getter_kwargs or {}))
         self.skip_external = self.get_skip()
 

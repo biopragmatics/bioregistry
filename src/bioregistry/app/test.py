@@ -24,7 +24,7 @@ def main(url: str, local: bool):
         url = 'http://localhost:5000'
     click.echo(f'Testing resolution API on {url}')
     failure = False
-    prefixes = tqdm(bioregistry.read_bioregistry())
+    prefixes = tqdm(bioregistry.read_registry())
 
     for prefix in prefixes:
         identifier = bioregistry.get_example(prefix)

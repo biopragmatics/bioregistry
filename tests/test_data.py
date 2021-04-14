@@ -33,7 +33,7 @@ class TestDuplicates(unittest.TestCase):
 
     def test_name_expansions(self):
         """Test that default names are not capital acronyms."""
-        for prefix in bioregistry.read_bioregistry():
+        for prefix in bioregistry.read_registry():
             if bioregistry.is_deprecated(prefix):
                 continue
             entry = bioregistry.get(prefix)
@@ -50,7 +50,7 @@ class TestDuplicates(unittest.TestCase):
 
     def test_homepage_http(self):
         """Test that all homepages start with http."""
-        for prefix in bioregistry.read_bioregistry():
+        for prefix in bioregistry.read_registry():
             homepage = bioregistry.get_homepage(prefix)
             if homepage is None or homepage.startswith('http'):
                 continue
@@ -61,7 +61,7 @@ class TestDuplicates(unittest.TestCase):
                    'https://github.com/OBOFoundry/OBOFoundry.github.io/pull/1480/files')
     def test_email(self):
         """Test that the email getter returns valid email addresses."""
-        for prefix in bioregistry.read_bioregistry():
+        for prefix in bioregistry.read_registry():
             email = _get_prefix_key(prefix, 'contact', ('obofoundry', 'ols'))
             if email is None or EMAIL_RE.match(email):
                 continue
@@ -74,7 +74,7 @@ class TestDuplicates(unittest.TestCase):
         For example, "Amazon Standard Identification Number (ASIN)" is a problematic
         name for prefix "asin".
         """
-        for prefix in bioregistry.read_bioregistry():
+        for prefix in bioregistry.read_registry():
             if bioregistry.is_deprecated(prefix):
                 continue
             entry = bioregistry.get(prefix)

@@ -32,8 +32,8 @@ main.add_command(make_web_command('bioregistry.app.wsgi:app'))
 @main.command()
 def copy():
     """Copy the source Bioregistry to the docs folder."""
-    from . import read_bioregistry
-    registry = read_bioregistry()
+    from .utils import read_registry
+    registry = read_registry()
     ov = [
         {
             'prefix': prefix,
@@ -48,11 +48,11 @@ def copy():
 @main.command()
 def versions():
     """Print the versions."""
-    from . import read_bioregistry
+    from .utils import read_registry
     from .resolve import get_versions
     from tabulate import tabulate
 
-    registry = read_bioregistry()
+    registry = read_registry()
     click.echo(tabulate(
         [
             (k, v)

@@ -130,7 +130,7 @@ The full Bioregistry can be read in a Python project using:
 ```python
 import bioregistry
 
-registry = bioregistry.read_bioregistry()
+registry = bioregistry.read_registry()
 ```
 
 ## 🕸️ Resolver App

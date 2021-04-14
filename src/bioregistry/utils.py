@@ -61,7 +61,7 @@ def updater(f):
 
     @wraps(f)
     def wrapped():
-        registry = read_bioregistry()
+        registry = read_registry()
         rv = f(registry)
         if rv is not None:
             write_bioregistry(registry)

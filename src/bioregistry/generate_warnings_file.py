@@ -10,14 +10,14 @@ import os
 import click
 import yaml
 
-from bioregistry import get_name, get_pattern, read_bioregistry
+import bioregistry
 from bioregistry.constants import DOCS_DATA
 
 __all__ = [
     'warnings',
 ]
 
-items = sorted(read_bioregistry().items())
+items = sorted(bioregistry.read_registry().items())
 
 
 @click.command()
@@ -26,7 +26,7 @@ def warnings():
     miriam_pattern_wrong = [
         dict(
             prefix=prefix,
-            name=get_name(prefix),
+            name=bioregistry.get_name(prefix),
             correct=entry['pattern'],
             miriam=entry['miriam']['pattern'],
         )
@@ -37,8 +37,8 @@ def warnings():
     miriam_embedding_rewrites = [
         dict(
             prefix=prefix,
-            name=get_name(prefix),
-            pattern=get_pattern(prefix),
+            name=bioregistry.get_name(prefix),
+            pattern=bioregistry.get_pattern(prefix),
             correct=entry['namespace.embedded'],
             miriam=entry['miriam']['namespaceEmbeddedInLui'],
         )
@@ -50,8 +50,8 @@ def warnings():
     miriam_prefix_rewrites = [
         dict(
             prefix=prefix,
-            name=get_name(prefix),
-            pattern=get_pattern(prefix),
+            name=bioregistry.get_name(prefix),
+            pattern=bioregistry.get_pattern(prefix),
             correct=entry['namespace.rewrite'],
         )
         for prefix, entry in items

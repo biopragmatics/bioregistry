@@ -30,7 +30,7 @@ api_blueprint = Blueprint('api', __name__, url_prefix='/api')
 @api_blueprint.route('/registry/')
 def resources():
     """List the entire Bioregistry."""
-    return jsonify(bioregistry.read_bioregistry())
+    return jsonify(bioregistry.read_registry())
 
 
 @api_blueprint.route('/metaregistry/')
@@ -152,7 +152,7 @@ def home():
         example_url=example_url,
         example_prefix=example_prefix,
         example_identifier=example_identifier,
-        registry_size=len(bioregistry.read_bioregistry()),
+        registry_size=len(bioregistry.read_registry()),
         metaregistry_size=len(bioregistry.read_metaregistry()),
         collections_size=len(bioregistry.read_collections()),
     )

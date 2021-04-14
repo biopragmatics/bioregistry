@@ -9,7 +9,7 @@ from functools import lru_cache
 from textwrap import dedent
 from typing import Any, Mapping, Optional, Sequence, Set, Tuple, Union
 
-from .utils import read_bioregistry, read_collections, read_metaregistry
+from .utils import read_collections, read_metaregistry, read_registry
 
 __all__ = [
     'get',
@@ -55,7 +55,7 @@ def get(prefix: str) -> Optional[Mapping[str, Any]]:
     :returns: The Bioregistry entry dictionary, which includes several keys cross-referencing
         other registries when available.
     """
-    return read_bioregistry().get(normalize_prefix(prefix))
+    return read_registry().get(normalize_prefix(prefix))
 
 
 def get_collection(identifier: str) -> Optional[Mapping[str, Any]]:
@@ -437,7 +437,7 @@ def _synonym_to_canonical() -> NormDict:
     """Return a mapping from several variants of each synonym to the canonical namespace."""
     norm_synonym_to_key = NormDict()
 
-    for bioregistry_id, entry in read_bioregistry().items():
+    for bioregistry_id, entry in read_registry().items():
         norm_synonym_to_key[bioregistry_id] = bioregistry_id
         for synonym in entry.get('synonyms', []):
             norm_synonym_to_key[synonym] = bioregistry_id
@@ -464,7 +464,7 @@ def get_versions() -> Mapping[str, str]:
     """Get a map of prefixes to versions."""
     rv = {}
 
-    for bioregistry_id, bioregistry_entry in read_bioregistry().items():
+    for bioregistry_id, bioregistry_entry in read_registry().items():
         if 'ols' not in bioregistry_entry:
             continue
         version = bioregistry_entry['ols'].get('version')

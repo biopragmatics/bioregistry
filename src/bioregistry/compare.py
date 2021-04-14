@@ -15,7 +15,7 @@ import click
 
 from bioregistry import (
     get_description, get_email, get_example, get_format, get_homepage, get_name, get_obo_download, get_owl_download,
-    get_pattern, get_version, read_bioregistry,
+    get_pattern, get_version, read_registry,
 )
 from bioregistry.constants import DOCS_IMG
 from bioregistry.external import (
@@ -23,7 +23,7 @@ from bioregistry.external import (
     get_wikidata_registry,
 )
 
-bioregistry = read_bioregistry()
+bioregistry = read_registry()
 
 LICENSES = {
     'None': None,
