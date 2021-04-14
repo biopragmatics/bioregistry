@@ -418,7 +418,7 @@ class NormDict(dict):
     def __getitem__(self, item: str) -> str:
         return super().__getitem__(_norm(item))
 
-    def __contains__(self, item: str) -> bool:
+    def __contains__(self, item) -> bool:
         return super().__contains__(_norm(item))
 
     def get(self, key: str, default=None) -> str:
