@@ -9,7 +9,7 @@ from functools import lru_cache
 from textwrap import dedent
 from typing import Any, Mapping, Optional, Sequence, Set, Tuple, Union
 
-from .utils import read_bioregistry, read_metaregistry
+from .utils import read_bioregistry, read_collections, read_metaregistry
 
 __all__ = [
     'get',
@@ -37,6 +37,8 @@ __all__ = [
     'get_registry_name',
     'get_registry_url',
     'get_registry_homepage',
+    # Collection stuff
+    'get_collection',
 ]
 
 logger = logging.getLogger(__name__)
@@ -54,6 +56,11 @@ def get(prefix: str) -> Optional[Mapping[str, Any]]:
         other registries when available.
     """
     return read_bioregistry().get(normalize_prefix(prefix))
+
+
+def get_collection(identifier: str) -> Optional[Mapping[str, Any]]:
+    """Get the metaregistry entry for the given identifier."""
+    return read_collections().get(identifier)
 
 
 def get_registry(metaprefix: str) -> Optional[Mapping[str, Any]]:
@@ -488,10 +495,10 @@ def get_versions() -> Mapping[str, str]:
 
 
 def _clean_version(
-    bioregistry_id: str,
-    version: str,
-    *,
-    bioregistry_entry: Optional[Mapping[str, Any]] = None,
+        bioregistry_id: str,
+        version: str,
+        *,
+        bioregistry_entry: Optional[Mapping[str, Any]] = None,
 ) -> str:
     if bioregistry_entry is None:
         bioregistry_entry = get(bioregistry_id)

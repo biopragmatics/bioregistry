@@ -12,7 +12,7 @@ from typing import Any, List, Mapping
 import click
 import requests
 
-from .constants import BIOREGISTRY_PATH, METAREGISTRY_PATH
+from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH
 
 logger = logging.getLogger(__name__)
 
@@ -38,6 +38,16 @@ def read_registry():
     """Read the Bioregistry as JSON."""
     with open(BIOREGISTRY_PATH, encoding='utf-8') as file:
         return json.load(file)
+
+
+@lru_cache(maxsize=1)
+def read_collections():
+    """Read the manually curated collections."""
+    with open(COLLECTIONS_PATH, encoding='utf-8') as file:
+        rv = json.load(file)
+    for k, v in rv.items():
+        v['identifier'] = k
+    return rv
 
 
 def write_bioregistry(registry):

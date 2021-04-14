@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% import "macros.html" as utils %}
+
+{% block title %}Bioregistry - {{ entry.name }}{% endblock %}
+
+{% block container %}
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-8">
+                    <h5 style="margin: 0">{{ entry.name }}</h5>
+                </div>
+                <div class="col-4 text-right">
+                    <a href="{{ url_for("api.collection", identifier=identifier) }}">
+                        JSON <i class="fas fa-download"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>{{ entry.description }}</p>
+            <dl>
+                <dt>Identifier</dt>
+                <dd><code>{{ identifier }}</code></dd>
+                <dt>Author</dt>
+                <dd>
+                    <a href="{{ url_for("ui.resolve", prefix="orcid", identifier=entry.author.orcid) }}">
+                        {{ entry.author.name }}
+                        <i class="fab fa-orcid"></i>
+                    </a>
+                </dd>
+                <dt>Resources</dt>
+                <dd>
+                    <ul>
+                        {% for prefix in entry.resources %}
+                            <li><a href="{{ url_for("ui.resource", prefix=prefix) }}">{{ prefix }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    </div>
+{% endblock %}

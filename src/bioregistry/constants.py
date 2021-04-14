@@ -21,6 +21,7 @@ HERE = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
 DATA_DIRECTORY = HERE / 'data'
 BIOREGISTRY_PATH = DATA_DIRECTORY / 'bioregistry.json'
 METAREGISTRY_PATH = DATA_DIRECTORY / 'metaregistry.json'
+COLLECTIONS_PATH = DATA_DIRECTORY / 'collections.json'
 
 BIOREGISTRY_MODULE = pystow.module('bioregistry')
 EnsureEntry = Any

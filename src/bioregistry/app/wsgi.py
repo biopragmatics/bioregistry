@@ -48,6 +48,21 @@ def metaresource(metaprefix: str):
     return jsonify(data)
 
 
+@api_blueprint.route('/collection/')
+def collections():
+    """Get the collection."""
+    return jsonify(bioregistry.read_collections())
+
+
+@api_blueprint.route('/collection/<identifier>')
+def collection(identifier: str):
+    """Get the collection."""
+    data = bioregistry.get_collection(identifier)
+    if not data:
+        abort(404, f'Invalid collection: {identifier}')
+    return jsonify(data)
+
+
 @api_blueprint.route('/registry/<prefix>')
 def resource(prefix: str):
     """Get an entry.
@@ -139,6 +154,7 @@ def home():
         example_identifier=example_identifier,
         registry_size=len(bioregistry.read_bioregistry()),
         metaregistry_size=len(bioregistry.read_metaregistry()),
+        collections_size=len(bioregistry.read_collections()),
     )
 
 

@@ -17,7 +17,7 @@ class TestDuplicates(unittest.TestCase):
 
     def setUp(self) -> None:
         """Set up the test case."""
-        self.registry = bioregistry.read_bioregistry()
+        self.registry = bioregistry.read_registry()
 
     def test_names(self):
         """Test that all entries have a name."""
@@ -188,3 +188,21 @@ class TestDuplicates(unittest.TestCase):
                         version = datetime.datetime.strptime(version, version_date_fmt)
                     except ValueError:
                         logger.warning('Wrong format for %s (%s)', bioregistry_id, version)
+
+    def test_collections(self):
+        """Check collections have minimal metadata and correct prefixes."""
+        for key, collection in sorted(bioregistry.read_collections().items()):
+            with self.subTest(key=key):
+                self.assertRegex(key, '^\\d{7}$')
+                self.assertIn('name', collection)
+                self.assertIn('author', collection)
+                self.assertIn('name', collection['author'])
+                self.assertIn('orcid', collection['author'])
+                self.assertRegex(collection['author']['orcid'], bioregistry.get_pattern('orcid'))
+                self.assertIn('description', collection)
+                incorrect = {
+                    prefix
+                    for prefix in collection['resources']
+                    if prefix not in self.registry
+                }
+                self.assertEqual(set(), incorrect)

@@ -41,6 +41,12 @@ def metaresources():
     return render_template('metaresources.html', rows=bioregistry.read_metaregistry().values())
 
 
+@ui_blueprint.route('/collection/')
+def collections():
+    """Serve the Bioregistry collection page."""
+    return render_template('collections.html', rows=bioregistry.read_collections().items())
+
+
 @ui_blueprint.route('/registry/<prefix>')
 def resource(prefix: str):
     """Serve the a Bioregistry entry page."""
@@ -95,6 +101,19 @@ def metaresource(metaprefix: str):
             if example_prefix and example_identifier else
             None
         ),
+        entry=entry,
+    )
+
+
+@ui_blueprint.route('/collection/<identifier>')
+def collection(identifier: str):
+    """Serve the a Bioregistry registry page."""
+    entry = bioregistry.get_collection(identifier)
+    if entry is None:
+        abort(404, f'Invalid collection: {identifier}')
+    return render_template(
+        'collection.html',
+        identifier=identifier,
         entry=entry,
     )
 
