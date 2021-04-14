@@ -418,6 +418,9 @@ class NormDict(dict):
     def __getitem__(self, item: str) -> str:
         return super().__getitem__(_norm(item))
 
+    def __contains__(self, item: str) -> bool:
+        return super().__contains__(_norm(item))
+
     def get(self, key: str, default=None) -> str:
         return super().get(_norm(key), default)
 
@@ -429,13 +432,14 @@ def _synonym_to_canonical() -> NormDict:
 
     for bioregistry_id, entry in read_bioregistry().items():
         norm_synonym_to_key[bioregistry_id] = bioregistry_id
+        for synonym in entry.get('synonyms', []):
+            norm_synonym_to_key[synonym] = bioregistry_id
 
         for external in ('miriam', 'ols', 'wikidata', 'obofoundry', 'go'):
             if external in entry and 'prefix' in entry[external]:
-                norm_synonym_to_key[entry[external]['prefix']] = bioregistry_id
-
-        for synonym in entry.get('synonyms', []):
-            norm_synonym_to_key[synonym] = bioregistry_id
+                s = entry[external]['prefix']
+                if s not in norm_synonym_to_key:
+                    logger.debug('[%s] missing potential synonym: %s', bioregistry_id, s)
 
     return norm_synonym_to_key
 
