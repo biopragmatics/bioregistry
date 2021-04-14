@@ -4,6 +4,7 @@
 
 import json
 import logging
+import warnings
 from datetime import datetime
 from functools import lru_cache, wraps
 from typing import Any, List, Mapping
@@ -26,8 +27,14 @@ def read_metaregistry() -> Mapping[str, Mapping[str, Any]]:
         }
 
 
-@lru_cache(maxsize=1)
 def read_bioregistry():
+    """Read the Bioregistry as JSON."""
+    warnings.warn('Renamed read_bioregistry() to read_registry(). Will remove soon.', DeprecationWarning)
+    return read_registry()
+
+
+@lru_cache(maxsize=1)
+def read_registry():
     """Read the Bioregistry as JSON."""
     with open(BIOREGISTRY_PATH, encoding='utf-8') as file:
         return json.load(file)
