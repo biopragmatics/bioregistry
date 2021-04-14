@@ -31,7 +31,7 @@ def upload():
     cx.add_network_attribute('author', 'Charles Tapley Hoyt')
     cx.set_context({
         'bioregistry.registry': 'https://bioregistry.io/metaregistry/',
-        'bioregistry.resource': 'https://bioregistry.io/registry/',
+        'bioregistry': 'https://bioregistry.io/registry/',
     })
 
     metaregistry = bioregistry.read_metaregistry()
