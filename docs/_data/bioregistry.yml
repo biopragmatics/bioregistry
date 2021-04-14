@@ -2004,6 +2004,17 @@
     prefix: bmrb
     sampleId: '15000'
   prefix: bmrb
+- description: The NMR Restraints Grid contains the original NMR data as collected
+    for over 2500 protein and nucleic acid structures with corresponding PDB entries.
+    In addition to the original restraints, most of the distance, dihedral angle and
+    RDC restraint data (>85%) were parsed, and those in over 500 entries were converted
+    and filtered. The converted and filtered data sets constitute the DOCR and FRED
+    databases respectively.
+  example: '28789'
+  homepage: https://restraintsgrid.bmrb.io/NRG/MRGridServlet
+  name: NMR Restraints Grid
+  prefix: bmrb.restraint
+  url: https://restraintsgrid.bmrb.io/NRG/MRGridServlet?block_text_type=2-parsed&db_username=wattos1&file_detail=2-parsed&format=n%2Fa&program=STAR&request_type=block&subtype=full&type=entry&mrblock_id=$1
 - miriam:
     deprecated: false
     description: The Barcode of Life Data System (BOLD) is an informatics workbench
@@ -6373,6 +6384,14 @@
     is_identifiers: true
     is_obo: false
     prefix: EMDB
+- description: EMPIAR, the Electron Microscopy Public Image Archive, is a public resource
+    for raw, 2D electron microscopy images. Here, you can browse, upload and download
+    the raw images used to build a 3D structure
+  example: '10595'
+  homepage: https://www.ebi.ac.uk/pdbe/emdb
+  name: Electron Microscopy Public Image Archive
+  prefix: empiar
+  url: https://www.ebi.ac.uk/pdbe/emdb/empiar/entry/$1
 - go:
     formatter: http://www.ebi.ac.uk/ena/data/view/$1
     homepage: http://www.ebi.ac.uk/ena/
@@ -7741,8 +7760,8 @@
     license: https://creativecommons.org/licenses/by/4.0/
     name: Fission Yeast Phenotype Ontology (FYPO)
     prefix: fypo
-    version: '2021-04-12'
-    version.iri: http://purl.obolibrary.org/obo/fypo/releases/2021-04-12/fypo.owl
+    version: '2021-04-13'
+    version.iri: http://purl.obolibrary.org/obo/fypo/releases/2021-04-13/fypo.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: fypo
@@ -7955,6 +7974,22 @@
     is_identifiers: true
     is_obo: false
     prefix: GENATLAS
+- example: U49845
+  go:
+    homepage: http://www.ncbi.nlm.nih.gov/Genbank/
+    name: GenBank
+    prefix: GenBank
+    synonyms:
+    - GB
+  homepage: https://www.ncbi.nlm.nih.gov/genbank/
+  name: GenBank
+  prefix: genbank
+  prefixcommons:
+    formatter: http://www.ncbi.nlm.nih.gov/nuccore/$1
+    is_identifiers: false
+    is_obo: false
+    prefix: GenBank
+  url: https://www.ncbi.nlm.nih.gov/nucleotide/$1
 - miriam:
     deprecated: false
     description: The GeneCards human gene database stores gene related transcriptomic,
@@ -16808,6 +16843,14 @@
     is_identifiers: true
     is_obo: false
     prefix: PALEODB
+- description: Panorama is a freely-available, open-source repository server application
+    for targeted mass spectrometry assays that integrates into a Skyline mass spec
+    workflow. It makes links to the Proteomics Exchange when possible.
+  example: FxnI151FMs
+  homepage: https://panoramaweb.org
+  name: Panorama Public
+  prefix: panormapublic
+  url: https://panoramaweb.org/$1.url
 - go:
     formatter: http://www.pantherdb.org/panther/lookupId.jsp?id=$1
     homepage: http://www.pantherdb.org/
@@ -20935,6 +20978,16 @@
     prefix: srao
     version.iri: http://www.fairsharing.org/ontology/subject/SRAO.owl/0.2.2
   prefix: srao
+- example: '1'
+  homepage: https://ssbd.riken.jp
+  name: System Science of Biological Dynamics dataset
+  prefix: ssbd.dataset
+  url: https://ssbd.riken.jp/database/dataset/$1
+- example: '1'
+  homepage: https://ssbd.riken.jp
+  name: System Science of Biological Dynamics project
+  prefix: ssbd.project
+  url: https://ssbd.riken.jp/database/project/$1
 - miriam:
     deprecated: false
     description: STAP (Statistical Torsional Angles Potentials) was developed since,

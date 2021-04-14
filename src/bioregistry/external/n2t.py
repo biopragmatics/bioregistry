@@ -39,9 +39,9 @@ def _parse(file):
         yield dict(itt.chain(a, b))
 
 
-def get_n2t():
+def get_n2t(force: bool = True):
     """Get the N2T registry."""
-    path = pystow.ensure('bioregistry', url=URL)
+    path = pystow.ensure('bioregistry', url=URL, force=force)
     # they give malformed YAML so time to write a new parser
     with open(path) as file:
         rv = sorted(_parse(file), key=itemgetter('namespace'))

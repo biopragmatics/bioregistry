@@ -6,6 +6,7 @@ import datetime
 import itertools as itt
 import math
 import os
+import random
 import sys
 from collections import Counter
 from typing import Collection, Set
@@ -84,6 +85,7 @@ WATERMARK_TEXT = f'https://github.com/bioregistry/bioregistry ({TODAY})'
 @click.command()
 def compare():  # noqa:C901
     """Compare the registries."""
+    random.seed(0)
     try:
         import matplotlib.pyplot as plt
         import seaborn as sns
