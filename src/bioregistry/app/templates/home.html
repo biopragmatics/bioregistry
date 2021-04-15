@@ -140,18 +140,19 @@
       var app = new Vue({
         el: '#vue-app',
         data: {
-          last_yielding_result: null,
           content: null,
           current_results: null,
+          last_yielding_result: null,
           autocomplete_url: "{{ url_for('api.autocomplete') }}"
         },
         methods: {
           /// Get the data to suggest auto-completes to the prefix.
-          getPrefix: async function(input_event) {
+          getPrefix: async function() {
             // If we are adding more text to a result query that returns nothing, it will
             // continue to return nothing.
-            if (input_event.inputType === "insertText"
-                && this.content
+            if (this.content
+                && this.last_yielding_result
+                && this.content.length > this.last_yielding_result.length
                 && this.current_results
                 && !this.current_results.length) {
               return
