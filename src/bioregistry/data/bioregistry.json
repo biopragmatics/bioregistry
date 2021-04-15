@@ -335,7 +335,8 @@
   },
   "allergome": {
     "mappings": {
-      "prefixcommons": "ALLERGOME"
+      "prefixcommons": "ALLERGOME",
+      "uniprot": "Allergome"
     },
     "miriam": {
       "deprecated": false,
@@ -355,6 +356,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "ALLERGOME"
+    },
+    "uniprot": {
+      "category": "Protein family/group databases",
+      "formatter": "http://www.allergome.org/script/dettaglio.php?id_molecule=%s",
+      "identifier": "160",
+      "link_is_explicit": "true",
+      "name": "Allergome; a platform for allergen knowledge",
+      "prefix": "Allergome"
     }
   },
   "alzforum.mutation": {
@@ -720,7 +729,8 @@
   },
   "arachnoserver": {
     "mappings": {
-      "prefixcommons": "ARACHNOSERVER"
+      "prefixcommons": "ARACHNOSERVER",
+      "uniprot": "ArachnoServer"
     },
     "miriam": {
       "deprecated": false,
@@ -740,17 +750,34 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "ARACHNOSERVER"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "http://www.arachnoserver.org/toxincard.html?id=%s",
+      "identifier": "145",
+      "link_is_explicit": "true",
+      "name": "ArachnoServer: Spider toxin database",
+      "prefix": "ArachnoServer"
     }
   },
   "araport": {
     "homepage": "https://www.araport.org/",
     "mappings": {
-      "ncbi": "Araport"
+      "ncbi": "Araport",
+      "uniprot": "Araport"
     },
     "name": "Arabidopsis Information Portal",
     "ncbi": {
       "example": "AT1G01010",
       "homepage": "https://www.araport.org/",
+      "name": "Arabidopsis Information Portal",
+      "prefix": "Araport"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "https://bar.utoronto.ca/thalemine/portal.do?externalids=%s",
+      "identifier": "221",
+      "link_is_explicit": "true",
       "name": "Arabidopsis Information Portal",
       "prefix": "Araport"
     },
@@ -1812,7 +1839,8 @@
   },
   "bindingdb": {
     "mappings": {
-      "prefixcommons": "BINDINGDB"
+      "prefixcommons": "BINDINGDB",
+      "uniprot": "BindingDB"
     },
     "miriam": {
       "deprecated": false,
@@ -1832,6 +1860,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "BINDINGDB"
+    },
+    "uniprot": {
+      "category": "Chemistry databases",
+      "formatter": "https://www.bindingdb.org/uniprot/%u",
+      "identifier": "127",
+      "link_is_explicit": "true",
+      "name": "BindingDB database of measured binding affinities",
+      "prefix": "BindingDB"
     }
   },
   "biocarta.pathway": {
@@ -1892,7 +1928,8 @@
     },
     "mappings": {
       "go": "BioCyc",
-      "prefixcommons": "BIOCYC"
+      "prefixcommons": "BIOCYC",
+      "uniprot": "BioCyc"
     },
     "miriam": {
       "deprecated": false,
@@ -1912,11 +1949,20 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "BIOCYC"
+    },
+    "uniprot": {
+      "category": "Enzyme and pathway databases",
+      "formatter": "https://biocyc.org/getid?id=%s",
+      "identifier": "5",
+      "link_is_explicit": "true",
+      "name": "BioCyc Collection of Pathway/Genome Databases",
+      "prefix": "BioCyc"
     }
   },
   "biogrid": {
     "mappings": {
-      "prefixcommons": "BIOGRID"
+      "prefixcommons": "BIOGRID",
+      "uniprot": "BioGRID"
     },
     "miriam": {
       "deprecated": false,
@@ -1936,6 +1982,14 @@
       "is_identifiers": false,
       "is_obo": false,
       "prefix": "BIOGRID"
+    },
+    "uniprot": {
+      "category": "Protein-protein interaction databases",
+      "formatter": "https://thebiogrid.org/%s",
+      "identifier": "184",
+      "link_is_explicit": "true",
+      "name": "The Biological General Repository for Interaction Datasets (BioGRID)",
+      "prefix": "BioGRID"
     }
   },
   "biolink": {
@@ -2403,7 +2457,8 @@
   },
   "bmrb": {
     "mappings": {
-      "fairsharing": "FAIRsharing.p06nme"
+      "fairsharing": "FAIRsharing.p06nme",
+      "uniprot": "BMRB"
     },
     "miriam": {
       "deprecated": false,
@@ -2414,6 +2469,14 @@
       "pattern": "^(bmr|bmse|bmst)?[0-9]{1,6}$",
       "prefix": "bmrb",
       "sampleId": "15000"
+    },
+    "uniprot": {
+      "category": "3D structure databases",
+      "formatter": "http://www.bmrb.wisc.edu/data_library/summary/protein.php?uniprot=%u",
+      "identifier": "256",
+      "link_is_explicit": "true",
+      "name": "Biological Magnetic Resonance Data Bank",
+      "prefix": "BMRB"
     }
   },
   "bmrb.restraint": {
@@ -2469,7 +2532,8 @@
     },
     "mappings": {
       "go": "BRENDA",
-      "prefixcommons": "BRENDA"
+      "prefixcommons": "BRENDA",
+      "uniprot": "BRENDA"
     },
     "miriam": {
       "deprecated": false,
@@ -2488,6 +2552,14 @@
       "formatter": "http://identifiers.org/brenda/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "BRENDA"
+    },
+    "uniprot": {
+      "category": "Enzyme and pathway databases",
+      "formatter": "https://www.brenda-enzymes.org/enzyme.php?ecno=%s&UniProtAcc=%u&OrganismID=%d",
+      "identifier": "131",
+      "link_is_explicit": "true",
+      "name": "BRENDA Comprehensive Enzyme Information System",
       "prefix": "BRENDA"
     }
   },
@@ -2984,7 +3056,8 @@
     },
     "mappings": {
       "go": "CAZY",
-      "prefixcommons": "CAZY"
+      "prefixcommons": "CAZY",
+      "uniprot": "CAZy"
     },
     "miriam": {
       "deprecated": false,
@@ -3004,6 +3077,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "CAZY"
+    },
+    "uniprot": {
+      "category": "Protein family/group databases",
+      "formatter": "http://www.cazy.org/fam/%s.html",
+      "identifier": "136",
+      "link_is_explicit": "true",
+      "name": "Carbohydrate-Active enZymes",
+      "prefix": "CAZy"
     }
   },
   "cba": {
@@ -3028,7 +3109,8 @@
   },
   "ccds": {
     "mappings": {
-      "prefixcommons": "CCDS"
+      "prefixcommons": "CCDS",
+      "uniprot": "CCDS"
     },
     "miriam": {
       "deprecated": false,
@@ -3047,6 +3129,14 @@
       "formatter": "http://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=CCDS&DATA=$1",
       "is_identifiers": false,
       "is_obo": false,
+      "prefix": "CCDS"
+    },
+    "uniprot": {
+      "category": "Sequence databases",
+      "formatter": "https://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=CCDS&GO=MainBrowse&DATA=%s",
+      "identifier": "187",
+      "link_is_explicit": "true",
+      "name": "The Consensus CDS (CCDS) project",
       "prefix": "CCDS"
     }
   },
@@ -3136,7 +3226,8 @@
     "mappings": {
       "go": "CDD",
       "ncbi": "CDD",
-      "prefixcommons": "CDD"
+      "prefixcommons": "CDD",
+      "uniprot": "CDD"
     },
     "miriam": {
       "deprecated": false,
@@ -3161,6 +3252,14 @@
       "formatter": "http://identifiers.org/cdd/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "CDD"
+    },
+    "uniprot": {
+      "category": "Family and domain databases",
+      "formatter": "https://www.ncbi.nlm.nih.gov/Structure/cdd/cddsrv.cgi?uid=%s",
+      "identifier": "214",
+      "link_is_explicit": "true",
+      "name": "Conserved Domains Database",
       "prefix": "CDD"
     }
   },
@@ -3322,7 +3421,8 @@
     "mappings": {
       "go": "CGD",
       "ncbi": "CGD",
-      "prefixcommons": "CGD"
+      "prefixcommons": "CGD",
+      "uniprot": "CGD"
     },
     "miriam": {
       "deprecated": false,
@@ -3347,6 +3447,14 @@
       "formatter": "http://identifiers.org/cgd/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "CGD"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "http://www.candidagenome.org/cgi-bin/locus.pl?dbid=%s",
+      "identifier": "126",
+      "link_is_explicit": "true",
+      "name": "Candida Genome Database",
       "prefix": "CGD"
     }
   },
@@ -3545,7 +3653,8 @@
   },
   "chembl.target": {
     "mappings": {
-      "prefixcommons": "CHEMBL.TARGET"
+      "prefixcommons": "CHEMBL.TARGET",
+      "uniprot": "ChEMBL"
     },
     "miriam": {
       "deprecated": false,
@@ -3566,6 +3675,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "CHEMBL.TARGET"
+    },
+    "uniprot": {
+      "category": "Chemistry databases",
+      "formatter": "https://www.ebi.ac.uk/chembldb/target/inspect/%s",
+      "identifier": "174",
+      "link_is_explicit": "true",
+      "name": "ChEMBL database of bioactive drug-like small molecules",
+      "prefix": "ChEMBL"
     }
   },
   "chemdb": {
@@ -4724,7 +4841,8 @@
     },
     "mappings": {
       "go": "ComplexPortal",
-      "prefixcommons": "COMPLEXPORTAL"
+      "prefixcommons": "COMPLEXPORTAL",
+      "uniprot": "ComplexPortal"
     },
     "miriam": {
       "deprecated": false,
@@ -4748,6 +4866,14 @@
     "synyonms": [
       "ComplexPortal"
     ],
+    "uniprot": {
+      "category": "Protein-protein interaction databases",
+      "formatter": "https://www.ebi.ac.uk/complexportal/complex/%s",
+      "identifier": "228",
+      "link_is_explicit": "true",
+      "name": "ComplexPortal: manually curated resource of macromolecular complexes",
+      "prefix": "ComplexPortal"
+    },
     "wikidata": {
       "property": "P7718"
     }
@@ -4803,7 +4929,8 @@
   },
   "conoserver": {
     "mappings": {
-      "prefixcommons": "CONOSERVER"
+      "prefixcommons": "CONOSERVER",
+      "uniprot": "ConoServer"
     },
     "miriam": {
       "deprecated": false,
@@ -4824,6 +4951,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "CONOSERVER"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "http://www.conoserver.org/?page=card&table=protein&id=%s",
+      "identifier": "156",
+      "link_is_explicit": "true",
+      "name": "ConoServer: Cone snail toxin database",
+      "prefix": "ConoServer"
     }
   },
   "conso": {
@@ -4873,7 +5008,8 @@
     },
     "mappings": {
       "go": "CORUM",
-      "prefixcommons": "CORUM"
+      "prefixcommons": "CORUM",
+      "uniprot": "CORUM"
     },
     "miriam": {
       "deprecated": false,
@@ -4892,6 +5028,14 @@
       "formatter": "http://identifiers.org/corum/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "CORUM"
+    },
+    "uniprot": {
+      "category": "Protein-protein interaction databases",
+      "formatter": "http://mips.helmholtz-muenchen.de/corum/#?uniprotID=%u",
+      "identifier": "224",
+      "link_is_explicit": "true",
+      "name": "CORUM comprehensive resource of mammalian protein complexes",
       "prefix": "CORUM"
     }
   },
@@ -5716,7 +5860,8 @@
     "mappings": {
       "go": "dbSNP",
       "ncbi": "dbSNP",
-      "prefixcommons": "dbSNP"
+      "prefixcommons": "dbSNP",
+      "uniprot": "dbSNP"
     },
     "miriam": {
       "deprecated": false,
@@ -5741,6 +5886,14 @@
       "formatter": "http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=$1",
       "is_identifiers": false,
       "is_obo": false,
+      "prefix": "dbSNP"
+    },
+    "uniprot": {
+      "category": "Genetic variation databases",
+      "formatter": "https://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=%s",
+      "identifier": "13",
+      "link_is_explicit": "true",
+      "name": "Database of single nucleotide polymorphism",
       "prefix": "dbSNP"
     }
   },
@@ -5929,7 +6082,8 @@
   },
   "depod": {
     "mappings": {
-      "prefixcommons": "DEPOD"
+      "prefixcommons": "DEPOD",
+      "uniprot": "DEPOD"
     },
     "miriam": {
       "deprecated": false,
@@ -5951,7 +6105,15 @@
       "is_obo": false,
       "prefix": "DEPOD"
     },
-    "provides": "hgnc.symbol"
+    "provides": "hgnc.symbol",
+    "uniprot": {
+      "category": "PTM databases",
+      "formatter": "http://depod.bioss.uni-freiburg.de/showp.php?name=%s",
+      "identifier": "190",
+      "link_is_explicit": "true",
+      "name": "DEPOD human dephosphorylation database",
+      "prefix": "DEPOD"
+    }
   },
   "dermo": {
     "bioportal": {
@@ -6021,7 +6183,8 @@
     "mappings": {
       "go": "dictyBase",
       "ncbi": "dictyBase",
-      "prefixcommons": "dictyBase"
+      "prefixcommons": "dictyBase",
+      "uniprot": "dictyBase"
     },
     "name": "dictyBase",
     "ncbi": {
@@ -6038,7 +6201,16 @@
     },
     "synonyms": [
       "dictyBase"
-    ]
+    ],
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "comment": "Replacement for DictyBase",
+      "formatter": "http://dictybase.org/db/cgi-bin/gene_page.pl?primary_id=%s",
+      "identifier": "15",
+      "link_is_explicit": "true",
+      "name": "Dictyostelium discoideum online informatics resource",
+      "prefix": "dictyBase"
+    }
   },
   "dictybase.est": {
     "mappings": {
@@ -6147,7 +6319,8 @@
   },
   "dip": {
     "mappings": {
-      "prefixcommons": "DIP"
+      "prefixcommons": "DIP",
+      "uniprot": "DIP"
     },
     "miriam": {
       "deprecated": false,
@@ -6167,6 +6340,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "DIP"
+    },
+    "uniprot": {
+      "category": "Protein-protein interaction databases",
+      "formatter": "https://dip.doe-mbi.ucla.edu/dip/Browse.cgi?ID=%s",
+      "identifier": "16",
+      "link_is_explicit": "true",
+      "name": "Database of interacting proteins",
+      "prefix": "DIP"
     }
   },
   "diseasesdb": {
@@ -6179,7 +6360,8 @@
   },
   "disprot": {
     "mappings": {
-      "prefixcommons": "DISPROT"
+      "prefixcommons": "DISPROT",
+      "uniprot": "DisProt"
     },
     "miriam": {
       "deprecated": false,
@@ -6199,6 +6381,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "DISPROT"
+    },
+    "uniprot": {
+      "category": "Family and domain databases",
+      "formatter": "https://disprot.org/%s",
+      "identifier": "17",
+      "link_is_explicit": "true",
+      "name": "Database of protein disorder",
+      "prefix": "DisProt"
     }
   },
   "disprot.region": {
@@ -6657,7 +6847,8 @@
     "example": "DB14938",
     "homepage": "http://www.drugbank.ca",
     "mappings": {
-      "prefixcommons": "DrugBank"
+      "prefixcommons": "DrugBank",
+      "uniprot": "DrugBank"
     },
     "miriam": {
       "deprecated": false,
@@ -6682,6 +6873,14 @@
       "DrugBank",
       "DRUGBANK_ID"
     ],
+    "uniprot": {
+      "category": "Chemistry databases",
+      "formatter": "https://www.drugbank.ca/drugs/%s",
+      "identifier": "19",
+      "link_is_explicit": "true",
+      "name": "Drug and drug target database",
+      "prefix": "DrugBank"
+    },
     "wikidata": {
       "property": "P715"
     }
@@ -6741,12 +6940,21 @@
     "example": "307",
     "homepage": "http://drugcentral.org",
     "mappings": {
-      "biolink": "DrugCentral"
+      "biolink": "DrugCentral",
+      "uniprot": "DrugCentral"
     },
     "name": "Drug Central",
     "synonyms": [
       "Drug_Central"
     ],
+    "uniprot": {
+      "category": "Chemistry databases",
+      "formatter": "https://drugcentral.org/target/%u",
+      "identifier": "239",
+      "link_is_explicit": "true",
+      "name": "DrugCentral",
+      "prefix": "DrugCentral"
+    },
     "url": "http://drugcentral.org/drugcard/$1"
   },
   "dto": {
@@ -6903,7 +7111,8 @@
     },
     "mappings": {
       "go": "EchoBASE",
-      "prefixcommons": "ECHOBASE"
+      "prefixcommons": "ECHOBASE",
+      "uniprot": "EchoBASE"
     },
     "miriam": {
       "deprecated": false,
@@ -6923,6 +7132,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "ECHOBASE"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=%s",
+      "identifier": "20",
+      "link_is_explicit": "true",
+      "name": "EchoBASE - an integrated post-genomic database for E. coli",
+      "prefix": "EchoBASE"
     }
   },
   "ecmdb": {
@@ -7390,7 +7607,8 @@
   },
   "eggnog": {
     "mappings": {
-      "prefixcommons": "EGGNOG"
+      "prefixcommons": "EGGNOG",
+      "uniprot": "eggNOG"
     },
     "miriam": {
       "deprecated": false,
@@ -7410,6 +7628,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "EGGNOG"
+    },
+    "uniprot": {
+      "category": "Phylogenomic databases",
+      "formatter": "http://eggnogdb.embl.de/#/app/results?seqid=%u&target_nogs=%s",
+      "identifier": "152",
+      "link_is_explicit": "true",
+      "name": "evolutionary genealogy of genes: Non-supervised Orthologous Groups",
+      "prefix": "eggNOG"
     }
   },
   "ehda": {
@@ -7504,7 +7730,8 @@
   },
   "elm": {
     "mappings": {
-      "prefixcommons": "ELM"
+      "prefixcommons": "ELM",
+      "uniprot": "ELM"
     },
     "miriam": {
       "deprecated": false,
@@ -7524,6 +7751,14 @@
       "formatter": "http://identifiers.org/elm/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "ELM"
+    },
+    "uniprot": {
+      "category": "Protein-protein interaction databases",
+      "formatter": "http://elm.eu.org/instances.html?q=%u",
+      "identifier": "223",
+      "link_is_explicit": "true",
+      "name": "The Eukaryotic Linear Motif resource for Functional Sites in Proteins",
       "prefix": "ELM"
     }
   },
@@ -7701,7 +7936,8 @@
     "mappings": {
       "go": "ENSEMBL",
       "ncbi": "ENSEMBL",
-      "prefixcommons": "ENSEMBL"
+      "prefixcommons": "ENSEMBL",
+      "uniprot": "Ensembl"
     },
     "miriam": {
       "deprecated": false,
@@ -7731,6 +7967,14 @@
     "synonyms": [
       "Ensembl"
     ],
+    "uniprot": {
+      "category": "Genome annotation databases",
+      "formatter": "https://www.ensembl.org/id/%s",
+      "identifier": "23",
+      "link_is_explicit": "true",
+      "name": "Ensembl eukaryotic genome annotation project",
+      "prefix": "Ensembl"
+    },
     "wikidata": {
       "database": "Q1344256",
       "database.label": "Ensembl genome database project",
@@ -7743,7 +7987,8 @@
   },
   "ensembl.bacteria": {
     "mappings": {
-      "prefixcommons": "ENSEMBL.BACTERIA"
+      "prefixcommons": "ENSEMBL.BACTERIA",
+      "uniprot": "EnsemblBacteria"
     },
     "miriam": {
       "deprecated": false,
@@ -7763,6 +8008,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "ENSEMBL.BACTERIA"
+    },
+    "uniprot": {
+      "category": "Genome annotation databases",
+      "formatter": "http://www.ensemblgenomes.org/id/%s",
+      "identifier": "147",
+      "link_is_explicit": "true",
+      "name": "Ensembl bacterial and archaeal genome annotation project",
+      "prefix": "EnsemblBacteria"
     }
   },
   "ensembl.fungi": {
@@ -7774,7 +8027,8 @@
     },
     "mappings": {
       "go": "EnsemblFungi",
-      "prefixcommons": "ENSEMBL.FUNGI"
+      "prefixcommons": "ENSEMBL.FUNGI",
+      "uniprot": "EnsemblFungi"
     },
     "miriam": {
       "deprecated": false,
@@ -7794,6 +8048,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "ENSEMBL.FUNGI"
+    },
+    "uniprot": {
+      "category": "Genome annotation databases",
+      "formatter": "http://www.ensemblgenomes.org/id/%s",
+      "identifier": "148",
+      "link_is_explicit": "true",
+      "name": "Ensembl fungal genome annotation project",
+      "prefix": "EnsemblFungi"
     }
   },
   "ensembl.metazoa": {
@@ -7805,7 +8067,8 @@
     },
     "mappings": {
       "go": "EnsemblMetazoa",
-      "prefixcommons": "ENSEMBL.METAZOA"
+      "prefixcommons": "ENSEMBL.METAZOA",
+      "uniprot": "EnsemblMetazoa"
     },
     "miriam": {
       "deprecated": false,
@@ -7825,6 +8088,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "ENSEMBL.METAZOA"
+    },
+    "uniprot": {
+      "category": "Genome annotation databases",
+      "formatter": "http://www.ensemblgenomes.org/id/%s",
+      "identifier": "149",
+      "link_is_explicit": "true",
+      "name": "Ensembl metazoan genome annotation project",
+      "prefix": "EnsemblMetazoa"
     }
   },
   "ensembl.plant": {
@@ -7978,7 +8249,8 @@
   "epd": {
     "mappings": {
       "ncbi": "EPD",
-      "prefixcommons": "EPD"
+      "prefixcommons": "EPD",
+      "uniprot": "EPD"
     },
     "miriam": {
       "deprecated": false,
@@ -8003,6 +8275,14 @@
       "formatter": "http://identifiers.org/epd/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "EPD"
+    },
+    "uniprot": {
+      "category": "Proteomic databases",
+      "formatter": "https://www.peptracker.com/epd/analytics/?protein_id=%u",
+      "identifier": "205",
+      "link_is_explicit": "true",
+      "name": "Encyclopedia of Proteome Dynamics",
       "prefix": "EPD"
     }
   },
@@ -8753,7 +9033,8 @@
     "mappings": {
       "go": "FB",
       "ncbi": "FLYBASE",
-      "prefixcommons": "FlyBase"
+      "prefixcommons": "FlyBase",
+      "uniprot": "FlyBase"
     },
     "miriam": {
       "deprecated": false,
@@ -8781,6 +9062,15 @@
       "FB",
       "FlyBase"
     ],
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "comment": "Replacement for DMAP",
+      "formatter": "http://flybase.org/reports/%s.html",
+      "identifier": "26",
+      "link_is_explicit": "true",
+      "name": "Drosophila genome database",
+      "prefix": "FlyBase"
+    },
     "wikidata": {
       "property": "P3852"
     }
@@ -9478,7 +9768,8 @@
   },
   "genatlas": {
     "mappings": {
-      "prefixcommons": "GENATLAS"
+      "prefixcommons": "GENATLAS",
+      "uniprot": "GenAtlas"
     },
     "miriam": {
       "deprecated": false,
@@ -9498,6 +9789,13 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "GENATLAS"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "http://genatlas.medecine.univ-paris5.fr/fiche.php?symbol=%s",
+      "identifier": "27",
+      "name": "GenAtlas: human gene database",
+      "prefix": "GenAtlas"
     }
   },
   "genbank": {
@@ -9514,7 +9812,8 @@
     "mappings": {
       "fairsharing": "FAIRsharing.9kahy4",
       "go": "GenBank",
-      "prefixcommons": "GenBank"
+      "prefixcommons": "GenBank",
+      "uniprot": "GenBank"
     },
     "name": "GenBank",
     "prefixcommons": {
@@ -9523,11 +9822,19 @@
       "is_obo": false,
       "prefix": "GenBank"
     },
+    "uniprot": {
+      "category": "Sequence databases",
+      "formatter": "https://www.ncbi.nlm.nih.gov/nuccore/%s",
+      "identifier": "28",
+      "name": "GenBank nucleotide sequence database",
+      "prefix": "GenBank"
+    },
     "url": "https://www.ncbi.nlm.nih.gov/nucleotide/$1"
   },
   "genecards": {
     "mappings": {
-      "prefixcommons": "GENECARDS"
+      "prefixcommons": "GENECARDS",
+      "uniprot": "GeneCards"
     },
     "miriam": {
       "deprecated": false,
@@ -9547,6 +9854,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "GENECARDS"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=%s",
+      "identifier": "30",
+      "link_is_explicit": "true",
+      "name": "GeneCards: human genes, protein and diseases",
+      "prefix": "GeneCards"
     }
   },
   "genedb": {
@@ -9559,7 +9874,8 @@
     "mappings": {
       "go": "GeneDB",
       "ncbi": "GeneDB",
-      "prefixcommons": "GENEDB"
+      "prefixcommons": "GENEDB",
+      "uniprot": "GeneDB"
     },
     "miriam": {
       "deprecated": false,
@@ -9585,6 +9901,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "GENEDB"
+    },
+    "uniprot": {
+      "category": "Genome annotation databases",
+      "formatter": "https://www.genedb.org/gene/%s",
+      "identifier": "199",
+      "link_is_explicit": "true",
+      "name": "GeneDB pathogen genome database from Sanger Institute",
+      "prefix": "GeneDB"
     }
   },
   "genefarm": {
@@ -9643,7 +9967,8 @@
   },
   "genetree": {
     "mappings": {
-      "prefixcommons": "GENETREE"
+      "prefixcommons": "GENETREE",
+      "uniprot": "GeneTree"
     },
     "miriam": {
       "deprecated": false,
@@ -9663,11 +9988,20 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "GENETREE"
+    },
+    "uniprot": {
+      "category": "Phylogenomic databases",
+      "formatter": "http://www.ensemblgenomes.org/id-genetree/%s",
+      "identifier": "162",
+      "link_is_explicit": "true",
+      "name": "Ensembl GeneTree",
+      "prefix": "GeneTree"
     }
   },
   "genewiki": {
     "mappings": {
-      "prefixcommons": "GENEWIKI"
+      "prefixcommons": "GENEWIKI",
+      "uniprot": "GeneWiki"
     },
     "miriam": {
       "deprecated": false,
@@ -9687,6 +10021,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "GENEWIKI"
+    },
+    "uniprot": {
+      "category": "Miscellaneous databases",
+      "formatter": "https://en.wikipedia.org/wiki/%s",
+      "identifier": "180",
+      "link_is_explicit": "true",
+      "name": "The Gene Wiki collection of pages on human genes and proteins",
+      "prefix": "GeneWiki"
     }
   },
   "geno": {
@@ -9799,24 +10141,6 @@
     },
     "n2t": {
       "prefix": "geo"
-    },
-    "obofoundry": {
-      "contact": "hoganwr@gmail.com",
-      "contact.label": "Bill Hogan",
-      "deprecated": false,
-      "homepage": "https://github.com/ufbmi/geographical-entity-ontology/wiki",
-      "license": "CC-BY 4.0",
-      "name": "Geographical Entity Ontology",
-      "prefix": "geo"
-    },
-    "ols": {
-      "description": "An ontology of geographical entities",
-      "download": "http://purl.obolibrary.org/obo/geo.owl",
-      "homepage": "https://github.com/ufbmi/geographical-entity-ontology/wiki",
-      "license": "https://creativecommons.org/licenses/by/4.0/",
-      "name": "Geographical Entity Ontology",
-      "prefix": "geo",
-      "version": "production version 2016-03-26"
     }
   },
   "geoeo": {
@@ -10015,7 +10339,18 @@
   "glygen": {
     "example": "G24361QY",
     "homepage": "https://glygen.org/glycan/",
+    "mappings": {
+      "uniprot": "GlyGen"
+    },
     "name": "GlyGen: Computational and Informatics Resources for Glycoscience",
+    "uniprot": {
+      "category": "PTM databases",
+      "formatter": "https://glygen.org/protein/%u#glycosylation",
+      "identifier": "254",
+      "link_is_explicit": "true",
+      "name": "GlyGen: Computational and Informatics Resources for Glycoscience",
+      "prefix": "GlyGen"
+    },
     "url": "https://glygen.org/glycan/$1"
   },
   "glytoucan": {
@@ -10243,7 +10578,8 @@
       "bioportal": "GO",
       "go": "GO",
       "ncbi": "GO",
-      "prefixcommons": "GO"
+      "prefixcommons": "GO",
+      "uniprot": "GO"
     },
     "miriam": {
       "deprecated": false,
@@ -10298,6 +10634,14 @@
       "goccid",
       "gomfid"
     ],
+    "uniprot": {
+      "category": "Ontologies",
+      "formatter": "https://www.ebi.ac.uk/QuickGO/term/%s",
+      "identifier": "37",
+      "link_is_explicit": "true",
+      "name": "Gene Ontology",
+      "prefix": "GO"
+    },
     "wikidata": {
       "property": "P686"
     }
@@ -10503,7 +10847,8 @@
   },
   "gpcrdb": {
     "mappings": {
-      "prefixcommons": "GPCRDB"
+      "prefixcommons": "GPCRDB",
+      "uniprot": "GPCRDB"
     },
     "miriam": {
       "deprecated": false,
@@ -10523,6 +10868,13 @@
       "formatter": "http://identifiers.org/gpcrdb/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "GPCRDB"
+    },
+    "uniprot": {
+      "category": "Protein family/group databases",
+      "formatter": "https://gpcrdb.org/protein/%s/",
+      "identifier": "38",
+      "name": "Information system for G protein-coupled receptors (GPCRs)",
       "prefix": "GPCRDB"
     }
   },
@@ -11084,7 +11436,8 @@
     },
     "mappings": {
       "go": "HAMAP",
-      "prefixcommons": "HAMAP"
+      "prefixcommons": "HAMAP",
+      "uniprot": "HAMAP"
     },
     "miriam": {
       "deprecated": false,
@@ -11103,6 +11456,14 @@
       "formatter": "http://identifiers.org/hamap/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "HAMAP"
+    },
+    "uniprot": {
+      "category": "Family and domain databases",
+      "formatter": "https://hamap.expasy.org/signature/%s",
+      "identifier": "41",
+      "link_is_explicit": "true",
+      "name": "HAMAP database of protein families",
       "prefix": "HAMAP"
     }
   },
@@ -11300,7 +11661,8 @@
       "bioportal": "HGNC",
       "go": "HUGO",
       "ncbi": "HGNC",
-      "prefixcommons": "HGNC"
+      "prefixcommons": "HGNC",
+      "uniprot": "HGNC"
     },
     "miriam": {
       "deprecated": false,
@@ -11326,6 +11688,15 @@
       "formatter": "http://www.genenames.org/cgi-bin/gene_symbol_report?hgnc_id=$1",
       "is_identifiers": false,
       "is_obo": false,
+      "prefix": "HGNC"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "comment": "Replacement for Genew",
+      "formatter": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/%s",
+      "identifier": "42",
+      "link_is_explicit": "true",
+      "name": "Human Gene Nomenclature Database",
       "prefix": "HGNC"
     },
     "wikidata": {
@@ -11517,7 +11888,8 @@
   },
   "hogenom": {
     "mappings": {
-      "prefixcommons": "HOGENOM"
+      "prefixcommons": "HOGENOM",
+      "uniprot": "HOGENOM"
     },
     "miriam": {
       "deprecated": false,
@@ -11537,6 +11909,14 @@
       "formatter": "http://identifiers.org/hogenom/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "HOGENOM"
+    },
+    "uniprot": {
+      "category": "Phylogenomic databases",
+      "formatter": "http://hogenom.univ-lyon1.fr/query_sequence?seq=%u",
+      "identifier": "44",
+      "link_is_explicit": "true",
+      "name": "The HOGENOM Database of Homologous Genes from Fully Sequenced Organisms",
       "prefix": "HOGENOM"
     }
   },
@@ -11740,7 +12120,8 @@
     },
     "mappings": {
       "go": "HPA",
-      "prefixcommons": "HPA"
+      "prefixcommons": "HPA",
+      "uniprot": "HPA"
     },
     "miriam": {
       "deprecated": false,
@@ -11759,6 +12140,14 @@
       "formatter": "http://identifiers.org/hpa/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "HPA"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "https://www.proteinatlas.org/%s",
+      "identifier": "46",
+      "link_is_explicit": "true",
+      "name": "Human Protein Atlas",
       "prefix": "HPA"
     }
   },
@@ -12004,7 +12393,8 @@
   },
   "huge": {
     "mappings": {
-      "prefixcommons": "HUGE"
+      "prefixcommons": "HUGE",
+      "uniprot": "HUGE"
     },
     "miriam": {
       "deprecated": false,
@@ -12024,6 +12414,13 @@
       "formatter": "http://identifiers.org/huge/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "HUGE"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "http://www.kazusa.or.jp/huge/gfpage/%s",
+      "identifier": "49",
+      "name": "Human Unidentified Gene-Encoded large proteins database",
       "prefix": "HUGE"
     }
   },
@@ -12300,7 +12697,8 @@
   "ideal": {
     "homepage": "https://www.ideal-db.org",
     "mappings": {
-      "prefixcommons": "IDEAL"
+      "prefixcommons": "IDEAL",
+      "uniprot": "IDEAL"
     },
     "miriam": {
       "deprecated": false,
@@ -12320,6 +12718,14 @@
       "formatter": "http://identifiers.org/ideal/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "IDEAL"
+    },
+    "uniprot": {
+      "category": "Family and domain databases",
+      "formatter": "http://idp1.force.cs.is.nagoya-u.ac.jp/IDEAL/ideal.php?id=%s",
+      "identifier": "251",
+      "link_is_explicit": "true",
+      "name": "Intrinsically Disordered proteins with Extensive Annotations and Literature",
       "prefix": "IDEAL"
     }
   },
@@ -12865,7 +13271,8 @@
     },
     "mappings": {
       "go": "IntAct",
-      "prefixcommons": "INTACT"
+      "prefixcommons": "INTACT",
+      "uniprot": "IntAct"
     },
     "miriam": {
       "deprecated": false,
@@ -12885,6 +13292,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "INTACT"
+    },
+    "uniprot": {
+      "category": "Protein-protein interaction databases",
+      "formatter": "https://www.ebi.ac.uk/intact/interactors/id:%s*",
+      "identifier": "51",
+      "link_is_explicit": "true",
+      "name": "Protein interaction database and analysis system",
+      "prefix": "IntAct"
     }
   },
   "intact.molecule": {
@@ -12942,7 +13357,8 @@
       "biolink": "interpro",
       "go": "InterPro",
       "ncbi": "InterPro",
-      "prefixcommons": "INTERPRO"
+      "prefixcommons": "INTERPRO",
+      "uniprot": "InterPro"
     },
     "miriam": {
       "deprecated": false,
@@ -12973,6 +13389,14 @@
       "InterPro",
       "IP"
     ],
+    "uniprot": {
+      "category": "Family and domain databases",
+      "formatter": "https://www.ebi.ac.uk/interpro/entry/%s",
+      "identifier": "52",
+      "link_is_explicit": "true",
+      "name": "Integrated resource of protein families, domains and functional sites",
+      "prefix": "InterPro"
+    },
     "wikidata": {
       "property": "P2926"
     }
@@ -13495,7 +13919,8 @@
     },
     "mappings": {
       "go": "KEGG",
-      "prefixcommons": "KEGG"
+      "prefixcommons": "KEGG",
+      "uniprot": "KEGG"
     },
     "miriam": {
       "deprecated": false,
@@ -13518,7 +13943,15 @@
     },
     "synonyms": [
       "KEGG"
-    ]
+    ],
+    "uniprot": {
+      "category": "Genome annotation databases",
+      "formatter": "https://www.genome.jp/dbget-bin/www_bget?%s",
+      "identifier": "53",
+      "link_is_explicit": "true",
+      "name": "KEGG: Kyoto Encyclopedia of Genes and Genomes",
+      "prefix": "KEGG"
+    }
   },
   "kegg.compound": {
     "mappings": {
@@ -14519,7 +14952,8 @@
   "massive": {
     "mappings": {
       "fairsharing": "FAIRsharing.LYsiMd",
-      "prefixcommons": "MASSIVE"
+      "prefixcommons": "MASSIVE",
+      "uniprot": "MassIVE"
     },
     "miriam": {
       "deprecated": false,
@@ -14539,6 +14973,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "MASSIVE"
+    },
+    "uniprot": {
+      "category": "Proteomic databases",
+      "formatter": "https://massive.ucsd.edu/ProteoSAFe/protein_explorer.jsp?libraries=2&protein_name=%u",
+      "identifier": "241",
+      "link_is_explicit": "true",
+      "name": "MassIVE - Mass Spectrometry Interactive Virtual Environment",
+      "prefix": "MassIVE"
     }
   },
   "mat": {
@@ -14813,7 +15255,8 @@
     },
     "mappings": {
       "go": "MEROPS",
-      "prefixcommons": "MEROPS"
+      "prefixcommons": "MEROPS",
+      "uniprot": "MEROPS"
     },
     "miriam": {
       "deprecated": false,
@@ -14832,6 +15275,14 @@
       "formatter": "http://identifiers.org/merops/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "MEROPS"
+    },
+    "uniprot": {
+      "category": "Protein family/group databases",
+      "formatter": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?mid=%s",
+      "identifier": "59",
+      "link_is_explicit": "true",
+      "name": "MEROPS protease database",
       "prefix": "MEROPS"
     }
   },
@@ -15402,7 +15853,8 @@
     "mappings": {
       "go": "MGI",
       "ncbi": "MGI",
-      "prefixcommons": "MGI"
+      "prefixcommons": "MGI",
+      "uniprot": "MGI"
     },
     "miriam": {
       "deprecated": false,
@@ -15434,6 +15886,15 @@
       "MGI",
       "MGD"
     ],
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "comment": "Replacement for MGD",
+      "formatter": "http://www.informatics.jax.org/marker/%s",
+      "identifier": "60",
+      "link_is_explicit": "true",
+      "name": "Mouse genome database (MGD) from Mouse Genome Informatics (MGI)",
+      "prefix": "MGI"
+    },
     "wikidata": {
       "database": "Q1951035",
       "property": "P671"
@@ -15678,7 +16139,8 @@
       "bioportal": "MIM",
       "go": "OMIM",
       "ncbi": "MIM",
-      "prefixcommons": "OMIM"
+      "prefixcommons": "OMIM",
+      "uniprot": "MIM"
     },
     "miriam": {
       "deprecated": false,
@@ -15710,6 +16172,14 @@
       "OMIMPS",
       "PS"
     ],
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "https://www.omim.org/entry/%s",
+      "identifier": "62",
+      "link_is_explicit": "true",
+      "name": "Online Mendelian Inheritance in Man (OMIM)",
+      "prefix": "MIM"
+    },
     "wikidata": {
       "database": "Q241953",
       "property": "P492"
@@ -15777,7 +16247,8 @@
   },
   "mint": {
     "mappings": {
-      "prefixcommons": "MINT"
+      "prefixcommons": "MINT",
+      "uniprot": "MINT"
     },
     "miriam": {
       "deprecated": false,
@@ -15797,6 +16268,14 @@
       "formatter": "http://identifiers.org/mint/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "MINT"
+    },
+    "uniprot": {
+      "category": "Protein-protein interaction databases",
+      "formatter": "https://mint.bio.uniroma2.it/cgi-bin/protein.py?id=%u",
+      "identifier": "158",
+      "link_is_explicit": "true",
+      "name": "Molecular INTeraction database",
       "prefix": "MINT"
     }
   },
@@ -16382,7 +16861,8 @@
   "mobidb": {
     "homepage": "http://mobidb.bio.unipd.it",
     "mappings": {
-      "prefixcommons": "MOBIDB"
+      "prefixcommons": "MOBIDB",
+      "uniprot": "MobiDB"
     },
     "miriam": {
       "deprecated": false,
@@ -16402,6 +16882,13 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "MOBIDB"
+    },
+    "uniprot": {
+      "category": "Family and domain databases",
+      "formatter": "https://mobidb.bio.unipd.it/entries/%u",
+      "identifier": "183",
+      "name": "MobiDB: a database of protein disorder and mobility annotations",
+      "prefix": "MobiDB"
     }
   },
   "mod": {
@@ -17926,7 +18413,8 @@
   },
   "nextprot": {
     "mappings": {
-      "prefixcommons": "NEXTPROT"
+      "prefixcommons": "NEXTPROT",
+      "uniprot": "neXtProt"
     },
     "miriam": {
       "deprecated": false,
@@ -17950,6 +18438,14 @@
     "synonyms": [
       "NXP"
     ],
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "https://www.nextprot.org/entry/%s",
+      "identifier": "161",
+      "link_is_explicit": "true",
+      "name": "neXtProt; the human protein knowledge platform",
+      "prefix": "neXtProt"
+    },
     "wikidata": {
       "database": "Q6983890"
     }
@@ -19658,7 +20154,8 @@
   },
   "orphanet": {
     "mappings": {
-      "prefixcommons": "Orphanet"
+      "prefixcommons": "Orphanet",
+      "uniprot": "Orphanet"
     },
     "miriam": {
       "deprecated": false,
@@ -19678,6 +20175,14 @@
       "formatter": "http://www.orpha.net/ORDO/Orphanet_$1",
       "is_identifiers": false,
       "is_obo": false,
+      "prefix": "Orphanet"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=GB&Expert=%s",
+      "identifier": "68",
+      "link_is_explicit": "true",
+      "name": "Orphanet; a database dedicated to information on rare diseases and orphan drugs",
       "prefix": "Orphanet"
     },
     "wikidata": {
@@ -19754,7 +20259,8 @@
   },
   "orthodb": {
     "mappings": {
-      "prefixcommons": "ORTHODB"
+      "prefixcommons": "ORTHODB",
+      "uniprot": "OrthoDB"
     },
     "miriam": {
       "deprecated": false,
@@ -19774,6 +20280,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "ORTHODB"
+    },
+    "uniprot": {
+      "category": "Phylogenomic databases",
+      "formatter": "https://www.orthodb.org/?query=%u",
+      "identifier": "143",
+      "link_is_explicit": "true",
+      "name": "Database of Orthologous Groups",
+      "prefix": "OrthoDB"
     }
   },
   "oryzabase.gene": {
@@ -20180,7 +20694,8 @@
   },
   "pathwaycommons": {
     "mappings": {
-      "prefixcommons": "PATHWAYCOMMONS"
+      "prefixcommons": "PATHWAYCOMMONS",
+      "uniprot": "PathwayCommons"
     },
     "miriam": {
       "deprecated": false,
@@ -20200,6 +20715,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "PATHWAYCOMMONS"
+    },
+    "uniprot": {
+      "category": "Enzyme and pathway databases",
+      "formatter": "http://apps.pathwaycommons.org/search?q=%u",
+      "identifier": "253",
+      "link_is_explicit": "true",
+      "name": "Pathway Commons web resource for biological pathway data",
+      "prefix": "PathwayCommons"
     }
   },
   "pato": {
@@ -20381,7 +20904,8 @@
       "fairsharing": "FAIRsharing.2t35ja",
       "go": "PDB",
       "ncbi": "PDB",
-      "prefixcommons": "PDB"
+      "prefixcommons": "PDB",
+      "uniprot": "PDB"
     },
     "miriam": {
       "deprecated": false,
@@ -20411,6 +20935,14 @@
     "synonyms": [
       "wwpdb"
     ],
+    "uniprot": {
+      "category": "3D structure databases",
+      "formatter": "https://www.ebi.ac.uk/pdbe-srv/view/entry/%s",
+      "identifier": "70",
+      "link_is_explicit": "true",
+      "name": "Protein Data Bank Europe",
+      "prefix": "PDB"
+    },
     "wikidata": {
       "database": "Q766195",
       "database.label": "Protein Data Bank",
@@ -20646,7 +21178,8 @@
   },
   "peptideatlas": {
     "mappings": {
-      "prefixcommons": "PEPTIDEATLAS"
+      "prefixcommons": "PEPTIDEATLAS",
+      "uniprot": "PeptideAtlas"
     },
     "miriam": {
       "deprecated": false,
@@ -20666,6 +21199,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "PEPTIDEATLAS"
+    },
+    "uniprot": {
+      "category": "Proteomic databases",
+      "formatter": "https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/Search?action=GO&search_key=%s",
+      "identifier": "71",
+      "link_is_explicit": "true",
+      "name": "PeptideAtlas",
+      "prefix": "PeptideAtlas"
     }
   },
   "peptideatlas.dataset": {
@@ -20685,7 +21226,8 @@
   },
   "peroxibase": {
     "mappings": {
-      "prefixcommons": "PEROXIBASE"
+      "prefixcommons": "PEROXIBASE",
+      "uniprot": "PeroxiBase"
     },
     "miriam": {
       "deprecated": false,
@@ -20705,6 +21247,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "PEROXIBASE"
+    },
+    "uniprot": {
+      "category": "Protein family/group databases",
+      "formatter": "http://peroxibase.toulouse.inra.fr/display_perox/view_perox/%s",
+      "identifier": "72",
+      "link_is_explicit": "true",
+      "name": "PeroxiBase, a peroxidase database",
+      "prefix": "PeroxiBase"
     }
   },
   "pesticides": {
@@ -20723,7 +21273,8 @@
     "mappings": {
       "go": "Pfam",
       "ncbi": "PFAM",
-      "prefixcommons": "PFAM"
+      "prefixcommons": "PFAM",
+      "uniprot": "Pfam"
     },
     "miriam": {
       "deprecated": false,
@@ -20753,6 +21304,14 @@
     "synonyms": [
       "PF"
     ],
+    "uniprot": {
+      "category": "Family and domain databases",
+      "formatter": "https://pfam.xfam.org/family/%s",
+      "identifier": "73",
+      "link_is_explicit": "true",
+      "name": "Pfam protein domain database",
+      "prefix": "Pfam"
+    },
     "wikidata": {
       "database": "Q906796",
       "property": "P3519"
@@ -21091,7 +21650,8 @@
   },
   "phylomedb": {
     "mappings": {
-      "prefixcommons": "PHYLOMEDB"
+      "prefixcommons": "PHYLOMEDB",
+      "uniprot": "PhylomeDB"
     },
     "miriam": {
       "deprecated": false,
@@ -21111,6 +21671,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "PHYLOMEDB"
+    },
+    "uniprot": {
+      "category": "Phylogenomic databases",
+      "formatter": "http://phylomedb.org/?q=search_tree&seqid=%s",
+      "identifier": "144",
+      "link_is_explicit": "true",
+      "name": "Database for complete collections of gene phylogenies",
+      "prefix": "PhylomeDB"
     }
   },
   "phytozome.locus": {
@@ -21267,7 +21835,8 @@
     },
     "mappings": {
       "go": "PIRSF",
-      "prefixcommons": "PIRSF"
+      "prefixcommons": "PIRSF",
+      "uniprot": "PIRSF"
     },
     "miriam": {
       "deprecated": false,
@@ -21286,6 +21855,14 @@
       "formatter": "http://identifiers.org/pirsf/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "PIRSF"
+    },
+    "uniprot": {
+      "category": "Family and domain databases",
+      "formatter": "https://proteininformationresource.org/cgi-bin/ipcSF?id=%s",
+      "identifier": "79",
+      "link_is_explicit": "true",
+      "name": "PIRSF; a whole-protein classification database",
       "prefix": "PIRSF"
     }
   },
@@ -21710,7 +22287,8 @@
     "mappings": {
       "go": "PomBase",
       "ncbi": "PomBase",
-      "prefixcommons": "PomBase"
+      "prefixcommons": "PomBase",
+      "uniprot": "PomBase"
     },
     "miriam": {
       "deprecated": false,
@@ -21740,6 +22318,15 @@
     "synonyms": [
       "PomBase"
     ],
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "comment": "Replacement for GeneDB_Spombe",
+      "formatter": "https://www.pombase.org/spombe/result/%s",
+      "identifier": "31",
+      "link_is_explicit": "true",
+      "name": "Schizosaccharomyces pombe database",
+      "prefix": "PomBase"
+    },
     "wikidata": {
       "property": "P6245"
     }
@@ -21848,7 +22435,8 @@
     "mappings": {
       "bioportal": "PR",
       "go": "PR",
-      "prefixcommons": "PR"
+      "prefixcommons": "PR",
+      "uniprot": "PRO"
     },
     "miriam": {
       "deprecated": false,
@@ -21893,6 +22481,14 @@
       "PR",
       "PRO"
     ],
+    "uniprot": {
+      "category": "Miscellaneous databases",
+      "formatter": "https://proconsortium.org/app/entry/%s",
+      "identifier": "181",
+      "link_is_explicit": "true",
+      "name": "Protein Ontology",
+      "prefix": "PRO"
+    },
     "wikidata": {
       "database": "Q55118584",
       "property": "P4926"
@@ -21901,7 +22497,8 @@
   "pride": {
     "mappings": {
       "fairsharing": "FAIRsharing.e1byny",
-      "prefixcommons": "PRIDE"
+      "prefixcommons": "PRIDE",
+      "uniprot": "PRIDE"
     },
     "miriam": {
       "deprecated": false,
@@ -21928,6 +22525,14 @@
       "formatter": "http://identifiers.org/pride/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "PRIDE"
+    },
+    "uniprot": {
+      "category": "Proteomic databases",
+      "formatter": "https://www.ebi.ac.uk/pride/searchSummary.do?queryTypeSelected=identification%20accession%20number&identificationAccessionNumber=%s",
+      "identifier": "130",
+      "link_is_explicit": "true",
+      "name": "PRoteomics IDEntifications database",
       "prefix": "PRIDE"
     }
   },
@@ -21964,7 +22569,8 @@
     },
     "mappings": {
       "go": "PRINTS",
-      "prefixcommons": "PRINTS"
+      "prefixcommons": "PRINTS",
+      "uniprot": "PRINTS"
     },
     "miriam": {
       "deprecated": false,
@@ -21983,6 +22589,15 @@
       "formatter": "http://identifiers.org/prints/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "PRINTS"
+    },
+    "uniprot": {
+      "category": "Family and domain databases",
+      "comment": "Replacement for PRINT",
+      "formatter": "http://umber.sbs.man.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&prints_accn=%s",
+      "identifier": "82",
+      "link_is_explicit": "true",
+      "name": "Protein Motif fingerprint database; a protein domain database",
       "prefix": "PRINTS"
     }
   },
@@ -22077,7 +22692,8 @@
     },
     "mappings": {
       "go": "Prosite",
-      "prefixcommons": "PROSITE"
+      "prefixcommons": "PROSITE",
+      "uniprot": "PROSITE"
     },
     "miriam": {
       "deprecated": false,
@@ -22096,6 +22712,14 @@
       "formatter": "http://identifiers.org/prosite/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "PROSITE"
+    },
+    "uniprot": {
+      "category": "Family and domain databases",
+      "formatter": "https://prosite.expasy.org/doc/%s",
+      "identifier": "84",
+      "link_is_explicit": "true",
+      "name": "PROSITE; a protein domain and family database",
       "prefix": "PROSITE"
     },
     "wikidata": {
@@ -22799,7 +23423,8 @@
     },
     "mappings": {
       "go": "Reactome",
-      "prefixcommons": "REACT"
+      "prefixcommons": "REACT",
+      "uniprot": "Reactome"
     },
     "miriam": {
       "deprecated": false,
@@ -22824,6 +23449,15 @@
       "RE",
       "REACT"
     ],
+    "uniprot": {
+      "category": "Enzyme and pathway databases",
+      "comment": "Replacement for GK",
+      "formatter": "https://www.reactome.org/PathwayBrowser/#%s&FLG=%u",
+      "identifier": "88",
+      "link_is_explicit": "true",
+      "name": "Reactome - a knowledgebase of biological pathways and processes",
+      "prefix": "Reactome"
+    },
     "wikidata": {
       "property": "P3937"
     }
@@ -22849,7 +23483,8 @@
     },
     "mappings": {
       "go": "REBASE",
-      "prefixcommons": "REBASE"
+      "prefixcommons": "REBASE",
+      "uniprot": "REBASE"
     },
     "miriam": {
       "deprecated": false,
@@ -22869,6 +23504,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "REBASE"
+    },
+    "uniprot": {
+      "category": "Protein family/group databases",
+      "formatter": "http://rebase.neb.com/rebase/enz/%s.html",
+      "identifier": "89",
+      "link_is_explicit": "true",
+      "name": "Restriction enzymes and methylases database",
+      "prefix": "REBASE"
     }
   },
   "receptome.family": {
@@ -22885,7 +23528,8 @@
     },
     "mappings": {
       "go": "RefSeq",
-      "prefixcommons": "RefSeq"
+      "prefixcommons": "RefSeq",
+      "uniprot": "RefSeq"
     },
     "miriam": {
       "deprecated": false,
@@ -22909,7 +23553,15 @@
     },
     "synonyms": [
       "REFSEQ_PROT"
-    ]
+    ],
+    "uniprot": {
+      "category": "Sequence databases",
+      "formatter": "https://www.ncbi.nlm.nih.gov/protein/%s",
+      "identifier": "117",
+      "link_is_explicit": "true",
+      "name": "NCBI Reference Sequences",
+      "prefix": "RefSeq"
+    }
   },
   "repeatsdb.protein": {
     "miriam": {
@@ -23122,7 +23774,8 @@
       "bioportal": "RGD",
       "go": "RGD",
       "ncbi": "RGD",
-      "prefixcommons": "RGD"
+      "prefixcommons": "RGD",
+      "uniprot": "RGD"
     },
     "miriam": {
       "deprecated": false,
@@ -23152,6 +23805,14 @@
     "synonyms": [
       "RGD"
     ],
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "http://rgd.mcw.edu/tools/genes/genes_view.cgi?id=%s",
+      "identifier": "91",
+      "link_is_explicit": "true",
+      "name": "Rat genome database",
+      "prefix": "RGD"
+    },
     "wikidata": {
       "property": "P3853"
     }
@@ -23578,7 +24239,8 @@
   },
   "rouge": {
     "mappings": {
-      "prefixcommons": "ROUGE"
+      "prefixcommons": "ROUGE",
+      "uniprot": "Rouge"
     },
     "miriam": {
       "deprecated": false,
@@ -23593,11 +24255,19 @@
     "n2t": {
       "prefix": "rouge"
     },
+    "name": "Rodent Unidentified Gene-Encoded Large Proteins",
     "prefixcommons": {
       "formatter": "http://identifiers.org/rouge/$1",
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "ROUGE"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "http://www.kazusa.or.jp/rouge/gfpage/%s",
+      "identifier": "92",
+      "name": "Rodent Unidentified Gene-Encoded large proteins database",
+      "prefix": "Rouge"
     }
   },
   "rrid": {
@@ -23896,7 +24566,8 @@
   },
   "sasbdb": {
     "mappings": {
-      "prefixcommons": "SASBDB"
+      "prefixcommons": "SASBDB",
+      "uniprot": "SASBDB"
     },
     "miriam": {
       "deprecated": false,
@@ -23916,6 +24587,14 @@
       "formatter": "http://identifiers.org/sasbdb/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "SASBDB"
+    },
+    "uniprot": {
+      "category": "3D structure databases",
+      "formatter": "https://www.sasbdb.org/uniprot/%u/",
+      "identifier": "258",
+      "link_is_explicit": "true",
+      "name": "Small Angle Scattering Biological Data Bank",
       "prefix": "SASBDB"
     }
   },
@@ -24213,7 +24892,8 @@
     "mappings": {
       "go": "SGD",
       "ncbi": "SGD",
-      "prefixcommons": "SGD"
+      "prefixcommons": "SGD",
+      "uniprot": "SGD"
     },
     "miriam": {
       "deprecated": false,
@@ -24239,6 +24919,14 @@
       "formatter": "https://www.yeastgenome.org/locus/$1",
       "is_identifiers": false,
       "is_obo": false,
+      "prefix": "SGD"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "https://www.yeastgenome.org/locus/%s",
+      "identifier": "95",
+      "link_is_explicit": "true",
+      "name": "Saccharomyces Genome Database",
       "prefix": "SGD"
     },
     "wikidata": {
@@ -24447,6 +25135,9 @@
   },
   "signor": {
     "example": "SIGNOR-C41",
+    "mappings": {
+      "uniprot": "SIGNOR"
+    },
     "miriam": {
       "deprecated": false,
       "description": "SIGNOR, the SIGnaling Network Open Resource, organizes and stores in a structured format signaling information published in the scientific literature.",
@@ -24460,7 +25151,15 @@
     "name": "Signaling Network Open Resource",
     "synonyms": [
       "SIGNOR"
-    ]
+    ],
+    "uniprot": {
+      "category": "Enzyme and pathway databases",
+      "formatter": "https://signor.uniroma2.it/relation_result.php?id=%u",
+      "identifier": "206",
+      "link_is_explicit": "true",
+      "name": "SIGNOR Signaling Network Open Resource",
+      "prefix": "SIGNOR"
+    }
   },
   "sio": {
     "biolink": {
@@ -24568,7 +25267,8 @@
     },
     "mappings": {
       "go": "SMART",
-      "prefixcommons": "SMART"
+      "prefixcommons": "SMART",
+      "uniprot": "SMART"
     },
     "miriam": {
       "deprecated": false,
@@ -24587,6 +25287,14 @@
       "formatter": "http://identifiers.org/smart/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "SMART"
+    },
+    "uniprot": {
+      "category": "Family and domain databases",
+      "formatter": "http://smart.embl.de/smart/do_annotation.pl?DOMAIN=%s",
+      "identifier": "97",
+      "link_is_explicit": "true",
+      "name": "Simple Modular Architecture Research Tool; a protein domain database",
       "prefix": "SMART"
     }
   },
@@ -25082,7 +25790,8 @@
   },
   "string": {
     "mappings": {
-      "prefixcommons": "STRING"
+      "prefixcommons": "STRING",
+      "uniprot": "STRING"
     },
     "miriam": {
       "deprecated": false,
@@ -25102,6 +25811,14 @@
       "formatter": "http://identifiers.org/string/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "STRING"
+    },
+    "uniprot": {
+      "category": "Protein-protein interaction databases",
+      "formatter": "https://string-db.org/network/%s",
+      "identifier": "141",
+      "link_is_explicit": "true",
+      "name": "STRING: functional protein association networks",
       "prefix": "STRING"
     }
   },
@@ -25186,7 +25903,8 @@
   },
   "supfam": {
     "mappings": {
-      "prefixcommons": "SUPFAM"
+      "prefixcommons": "SUPFAM",
+      "uniprot": "SUPFAM"
     },
     "miriam": {
       "deprecated": false,
@@ -25206,6 +25924,14 @@
       "formatter": "http://identifiers.org/supfam/$1",
       "is_identifiers": true,
       "is_obo": false,
+      "prefix": "SUPFAM"
+    },
+    "uniprot": {
+      "category": "Family and domain databases",
+      "formatter": "http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid=%s",
+      "identifier": "155",
+      "link_is_explicit": "true",
+      "name": "Superfamily database of structural and functional annotation",
       "prefix": "SUPFAM"
     }
   },
@@ -25646,7 +26372,8 @@
     "homepage": "https://www.tcdb.org",
     "mappings": {
       "go": "TC",
-      "prefixcommons": "TCDB"
+      "prefixcommons": "TCDB",
+      "uniprot": "TCDB"
     },
     "miriam": {
       "deprecated": false,
@@ -25670,6 +26397,14 @@
     "synonyms": [
       "TC"
     ],
+    "uniprot": {
+      "category": "Protein family/group databases",
+      "formatter": "http://www.tcdb.org/search/result.php?tc=%s",
+      "identifier": "135",
+      "link_is_explicit": "true",
+      "name": "Transport Classification Database",
+      "prefix": "TCDB"
+    },
     "wikidata": {
       "property": "P7260"
     }
@@ -26042,7 +26777,8 @@
   },
   "treefam": {
     "mappings": {
-      "prefixcommons": "TREEFAM"
+      "prefixcommons": "TREEFAM",
+      "uniprot": "TreeFam"
     },
     "miriam": {
       "deprecated": false,
@@ -26062,6 +26798,14 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "TREEFAM"
+    },
+    "uniprot": {
+      "category": "Phylogenomic databases",
+      "formatter": "http://www.treefam.org/family/%s",
+      "identifier": "185",
+      "link_is_explicit": "true",
+      "name": "TreeFam database of animal gene trees",
+      "prefix": "TreeFam"
     }
   },
   "trichdb": {
@@ -26328,13 +27072,22 @@
     "example": "uc001rvw.5",
     "homepage": "https://genome.ucsc.edu/",
     "mappings": {
-      "prefixcommons": "UCSC"
+      "prefixcommons": "UCSC",
+      "uniprot": "UCSC"
     },
     "name": "UCSC Genome Browser",
     "prefixcommons": {
       "formatter": "ftp://hgdownload.cse.ucsc.edu/goldenPath/$1",
       "is_identifiers": false,
       "is_obo": false,
+      "prefix": "UCSC"
+    },
+    "uniprot": {
+      "category": "Genome annotation databases",
+      "formatter": "https://genome.ucsc.edu/cgi-bin/hgLinkIn?resource=uniprot&id=%u",
+      "identifier": "139",
+      "link_is_explicit": "true",
+      "name": "UCSC genome browser",
       "prefix": "UCSC"
     },
     "wikidata": {
@@ -27002,7 +27755,8 @@
     "mappings": {
       "bioportal": "UPA",
       "go": "UniPathway",
-      "prefixcommons": "UNIPATHWAY"
+      "prefixcommons": "UNIPATHWAY",
+      "uniprot": "UniPathway"
     },
     "obofoundry": {
       "contact": "Anne.Morgat@sib.swiss",
@@ -27036,6 +27790,14 @@
       "UPa",
       "unipathway"
     ],
+    "uniprot": {
+      "category": "Enzyme and pathway databases",
+      "formatter": "http://www.unipathway.org?upid=%s&entryac=%u",
+      "identifier": "170",
+      "link_is_explicit": "true",
+      "name": "UniPathway: a resource for the exploration and annotation of metabolic pathways",
+      "prefix": "UniPathway"
+    },
     "wikidata": {
       "database": "Q85719315"
     }
@@ -27375,7 +28137,8 @@
   },
   "vgnc": {
     "mappings": {
-      "ncbi": "VGNC"
+      "ncbi": "VGNC",
+      "uniprot": "VGNC"
     },
     "miriam": {
       "deprecated": false,
@@ -27391,6 +28154,14 @@
       "example": "VGNC:4927",
       "homepage": "http://vertebrate.genenames.org/data/gene-symbol-report/#!/",
       "name": "Vertebrate Gene Nomenclature Committee",
+      "prefix": "VGNC"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "https://vertebrate.genenames.org/data/gene-symbol-report/#!/vgnc_id/%s",
+      "identifier": "226",
+      "link_is_explicit": "true",
+      "name": "Vertebrate Gene Nomenclature Database",
       "prefix": "VGNC"
     }
   },
@@ -28201,7 +28972,8 @@
     "mappings": {
       "go": "WB_REF",
       "ncbi": "WormBase",
-      "prefixcommons": "WormBase"
+      "prefixcommons": "WormBase",
+      "uniprot": "WormBase"
     },
     "name": "WormBase",
     "ncbi": {
@@ -28214,6 +28986,14 @@
       "formatter": "https://www.wormbase.org/get?name=$1",
       "is_identifiers": false,
       "is_obo": false,
+      "prefix": "WormBase"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "https://wormbase.org/db/seq/protein?name=%s;class=CDS",
+      "identifier": "110",
+      "link_is_explicit": "true",
+      "name": "WormBase",
       "prefix": "WormBase"
     },
     "wikidata": {
@@ -28358,7 +29138,8 @@
     "mappings": {
       "go": "Xenbase",
       "ncbi": "Xenbase",
-      "prefixcommons": "Xenbase"
+      "prefixcommons": "Xenbase",
+      "uniprot": "Xenbase"
     },
     "miriam": {
       "deprecated": false,
@@ -28383,6 +29164,14 @@
       "formatter": "http://www.xenbase.org/gene/showgene.do?method=display&geneId=$1",
       "is_identifiers": false,
       "is_obo": false,
+      "prefix": "Xenbase"
+    },
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "https://www.xenbase.org/gene/showgene.do?method=display&geneId=%s",
+      "identifier": "129",
+      "link_is_explicit": "true",
+      "name": "Xenopus laevis and tropicalis biology and genomics resource",
       "prefix": "Xenbase"
     }
   },
@@ -28714,7 +29503,8 @@
     "mappings": {
       "go": "ZFIN",
       "ncbi": "ZFIN",
-      "prefixcommons": "ZFIN"
+      "prefixcommons": "ZFIN",
+      "uniprot": "ZFIN"
     },
     "miriam": {
       "deprecated": false,
@@ -28744,6 +29534,14 @@
     "synonyms": [
       "ZFIN"
     ],
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "https://zfin.org/%s",
+      "identifier": "113",
+      "link_is_explicit": "true",
+      "name": "Zebrafish Information Network genome database",
+      "prefix": "ZFIN"
+    },
     "wikidata": {
       "property": "P3870"
     }
