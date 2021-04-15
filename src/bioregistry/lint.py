@@ -45,7 +45,6 @@ def sort_registry(registry):
 @click.command()
 def lint():
     """Run the lint commands."""
-    warn_missing_wikidata()
     sort_registry()
 
 
