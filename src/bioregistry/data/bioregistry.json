@@ -26845,7 +26845,8 @@
     "name": "UniProt Subcellular Locations",
     "pattern": "^\\d+$",
     "synonyms": [
-      "UPLOC"
+      "UPLOC",
+      "UniProtKB-SubCell"
     ],
     "url": "https://www.uniprot.org/locations/SL-$1"
   },
@@ -26857,6 +26858,13 @@
       "UniProtKB_VAR"
     ],
     "url": "https://web.expasy.org/variant_pages/$1.html"
+  },
+  "unirule": {
+    "description": "Rules are devised and tested by experienced curators using experimental data from manually annotated entries as templates. UniRule rules can annotate protein properties such as the protein name, function, catalytic activity, pathway membership, and subcellular location, along with sequence specific information, such as the positions of post-translational modifications and active sites.",
+    "example": "UR000124451",
+    "homepage": "https://www.uniprot.org/unirule/",
+    "name": "UniRule",
+    "url": "https://www.uniprot.org/unirule/$1"
   },
   "unists": {
     "mappings": {
@@ -28044,9 +28052,13 @@
       "prefix": "WIKIDATA_PROPERTY"
     },
     "mappings": {
-      "biolink": "WIKIDATA_PROPERTY"
+      "biolink": "WIKIDATA_PROPERTY",
+      "prefixcommons": "WD_Prop"
     },
-    "name": "Wikidata Property"
+    "name": "Wikidata Property",
+    "prefixcommons": {
+      "prefix": "WD_Prop"
+    }
   },
   "wikigenes": {
     "mappings": {
