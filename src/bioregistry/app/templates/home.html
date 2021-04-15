@@ -90,7 +90,6 @@
                     meta-registry.</p>
                 {# <small class="text-muted">Donec id elit non mi porta.</small> #}
             </a>
-            {#
             <a href="{{ url_for('download') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
@@ -99,24 +98,90 @@
                 <p class="mb-1">All of the data in the Bioregistry.</p>
                 <small class="text-muted">Available under the CC0 1.0 Universal License.</small>
             </a>
-            #}
         </div>
     </div>
-    {#
-        <div class="card-body">
-            <h5 class="card-title">Prefix Search</h5>
-            <div class="input-group mb-3">
-                <input type="text"
-                       class="form-control basicAutoComplete"
-                       autocomplete="off"
-                       placeholder="Search for a prefix"
-                       aria-label="Search for a prefix"
-                       aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <input class="btn btn-outline-secondary" type="submit" value="Search">
-                </div>
-            </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    {# This is a Vue template which also uses {{ value }} syntax, use raw to avoid mixups. #}
+    {% raw %}
+    <div id="vue-app">
+      <div class="card-body">
+        <h5 class="card-title">Prefix Search</h5>
+        <div class="input-group mb-3">
+          <input type="text"
+                 v-model="content"
+                 class="form-control"
+                 @input="getPrefix"
+                 placeholder="Search for a prefix"
+                 aria-label="Search for a prefix"
+                 aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <input class="btn btn-outline-secondary" type="submit" value="Search">
+          </div>
         </div>
-         #}
+      </div>
+      <div v-show="current_results" class="card-body">
+        <h6 class="card-title">
+          Completions for {{ content }}
+        </h6>
+        <div v-if="current_results && current_results.length">
+          <div v-for="result in current_results">
+            {{ result }}
+          </div>
+        </div>
+        <div v-else>
+          <i style="color: red;">No results.</i>
+        </div>
+      </div>
+    </div>
+    {% endraw %}
+
+    <script>
+      var app = new Vue({
+        el: '#vue-app',
+        data: {
+          last_yielding_result: null,
+          content: null,
+          current_results: null,
+          autocomplete_url: "{{ url_for('api.autocomplete') }}"
+        },
+        methods: {
+          /// Get the data to suggest auto-completes to the prefix.
+          getPrefix: async function(input_event) {
+            // If we are adding more text to a result query that returns nothing, it will
+            // continue to return nothing.
+            if (input_event.inputType === "insertText"
+                && this.content
+                && this.current_results
+                && !this.current_results.length) {
+              return
+            }
+
+            // If the content has been emptied, clear out the display field.
+            if (this.content === "") {
+              this.current_results = null;
+              return
+            }
+
+            // Get the suggestions from the server.
+            console.log(`Getting autocomplete options for: "${this.content}".`);
+            const resp = await fetch(`${this.autocomplete_url}?q=${this.content}`);
+            if (resp.status !== 200) {
+              console.log(`ERROR: ${resp.status}: ${resp.statusText}`);
+            }
+            const resp_json = await resp.json();
+            console.log(resp_json);
+
+            // Populate the results.
+            this.current_results = resp_json.results;
+
+            // If this result yielded something, remember it.
+            if (this.current_results.length) {
+              this.last_yielding_result = this.content;
+            }
+          }
+        }
+      })
+    </script>
 {% endblock %}
 
