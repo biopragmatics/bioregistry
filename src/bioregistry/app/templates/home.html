@@ -104,7 +104,7 @@
 
     {# This is a Vue template which also uses {{ value }} syntax, use raw to avoid mixups. #}
     {% raw %}
-    <div id="vue-app">
+    <div id="vue-app" class="card">
       <div class="card-body">
         <h5 class="card-title">Prefix Search</h5>
         <div class="input-group mb-3">
@@ -119,18 +119,32 @@
             <input class="btn btn-outline-secondary" type="submit" value="Search">
           </div>
         </div>
-      </div>
-      <div v-show="current_results" class="card-body">
-        <h6 class="card-title">
-          Completions for {{ content }}
-        </h6>
-        <div v-if="current_results && current_results.length">
-          <div v-for="result in current_results">
-            {{ result }}
+        <div v-if="current_result">
+          <div class="card-body bg-light">
+            <h6 class="card-title">
+              {{ result_reason }}:
+              <span v-if="!result_url">
+                "{{ content }}"
+              </span>
+              <span v-else>
+                <a href="result_url">{{ content }}</a>
+              </span>
+            </h6>
+            <div  class="bg-white"
+                  style="height: 200px; overflow: scroll;">
+              <span v-if="result_has_options">
+                <div v-for="option in result_options">
+                  {{ option }}
+                </div>
+              </span>
+              <span v-else class="bg-white">
+                <i style="color: red;">No results.</i>
+              </span>
+              <div v-show="error">
+                <b style="color: red;">ERROR: {{ error }}</b>
+              </div>
+            </div>
           </div>
-        </div>
-        <div v-else>
-          <i style="color: red;">No results.</i>
         </div>
       </div>
     </div>
@@ -141,26 +155,29 @@
         el: '#vue-app',
         data: {
           content: null,
-          current_results: null,
+          current_result: null,
           last_yielding_result: null,
+          error: null,
           autocomplete_url: "{{ url_for('api.autocomplete') }}"
         },
         methods: {
           /// Get the data to suggest auto-completes to the prefix.
-          getPrefix: async function() {
+          getPrefix: async function () {
+            // Reset the error message
+            this.error = null;
+
             // If we are adding more text to a result query that returns nothing, it will
             // continue to return nothing.
             if (this.content
-                && this.last_yielding_result
-                && this.content.length > this.last_yielding_result.length
-                && this.current_results
-                && !this.current_results.length) {
+              && this.last_yielding_result
+              && this.content.length > this.last_yielding_result.length
+              && !this.result_has_options) {
               return
             }
 
             // If the content has been emptied, clear out the display field.
             if (this.content === "") {
-              this.current_results = null;
+              this.current_result = null;
               return
             }
 
@@ -169,17 +186,47 @@
             const resp = await fetch(`${this.autocomplete_url}?q=${this.content}`);
             if (resp.status !== 200) {
               console.log(`ERROR: ${resp.status}: ${resp.statusText}`);
+              this.error = "Unsuccessful response from the survey."
             }
             const resp_json = await resp.json();
             console.log(resp_json);
 
             // Populate the results.
-            this.current_results = resp_json.results;
+            this.current_result = resp_json;
+
+            // Check the response
+            if (this.current_result.query !== this.content) {
+              this.error = "Query returned does not match content sent."
+            }
 
             // If this result yielded something, remember it.
-            if (this.current_results.length) {
+            if (this.current_result.results.length)
               this.last_yielding_result = this.content;
-            }
+          },
+        },
+        computed: {
+          result_url: function() {
+            if (this.current_result)
+              return this.current_result.url;
+            return null;
+          },
+
+          result_reason: function() {
+            if (this.current_result)
+              return this.current_result.reason;
+            return null;
+          },
+
+          result_options: function() {
+            if (this.current_result)
+              return this.current_result.results;
+            return null
+          },
+
+          result_has_options: function() {
+            if (this.current_result)
+              return this.current_result.results.length > 0;
+            return false;
           }
         }
       })
