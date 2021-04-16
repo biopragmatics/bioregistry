@@ -10141,6 +10141,24 @@
     },
     "n2t": {
       "prefix": "geo"
+    },
+    "obofoundry": {
+      "contact": "hoganwr@gmail.com",
+      "contact.label": "Bill Hogan",
+      "deprecated": false,
+      "homepage": "https://github.com/ufbmi/geographical-entity-ontology/wiki",
+      "license": "CC-BY 4.0",
+      "name": "Geographical Entity Ontology",
+      "prefix": "geo"
+    },
+    "ols": {
+      "description": "An ontology of geographical entities",
+      "download": "http://purl.obolibrary.org/obo/geo.owl",
+      "homepage": "https://github.com/ufbmi/geographical-entity-ontology/wiki",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "name": "Geographical Entity Ontology",
+      "prefix": "geo",
+      "version": "production version 2016-03-26"
     }
   },
   "geoeo": {
@@ -27594,7 +27612,19 @@
   },
   "uniprot.location": {
     "example": "0002",
+    "go": {
+      "formatter": "http://www.uniprot.org/locations/$1",
+      "homepage": "https://www.uniprot.org/locations/",
+      "name": "UniProt Knowledgebase Subcellular Location vocabulary",
+      "prefix": "UniProtKB-SubCell",
+      "synonyms": [
+        "SP_SL"
+      ]
+    },
     "homepage": "https://www.uniprot.org/locations/",
+    "mappings": {
+      "go": "UniProtKB-SubCell"
+    },
     "name": "UniProt Subcellular Locations",
     "pattern": "^\\d+$",
     "synonyms": [
@@ -27615,7 +27645,16 @@
   "unirule": {
     "description": "Rules are devised and tested by experienced curators using experimental data from manually annotated entries as templates. UniRule rules can annotate protein properties such as the protein name, function, catalytic activity, pathway membership, and subcellular location, along with sequence specific information, such as the positions of post-translational modifications and active sites.",
     "example": "UR000124451",
+    "go": {
+      "formatter": "https://www.uniprot.org/unirule/$1",
+      "homepage": "https://www.uniprot.org/unirule/",
+      "name": "Manually curated rules for automatic annotation of UniProtKB unreviewed entries",
+      "prefix": "UniRule"
+    },
     "homepage": "https://www.uniprot.org/unirule/",
+    "mappings": {
+      "go": "UniRule"
+    },
     "name": "UniRule",
     "url": "https://www.uniprot.org/unirule/$1"
   },
@@ -28828,6 +28867,9 @@
     },
     "name": "Wikidata Property",
     "prefixcommons": {
+      "formatter": "https://www.wikidata.org/wiki/Property:$1",
+      "is_identifiers": false,
+      "is_obo": false,
       "prefix": "WD_Prop"
     }
   },
