@@ -109,7 +109,7 @@
         <h5 class="card-title">Prefix Search</h5>
         <div class="input-group mb-3">
           <input type="text"
-                 v-model="content"
+                 v-model="user_input"
                  class="form-control"
                  @input="getPrefix"
                  placeholder="Search for a prefix"
@@ -124,25 +124,24 @@
             <h6 class="card-title">
               {{ result_reason }}:
               <span v-if="!result_url">
-                "{{ content }}"
+                "{{ user_input }}"
               </span>
               <span v-else>
-                <a href="result_url">{{ content }}</a>
+                <a href="result_url">{{ user_input }}</a>
               </span>
             </h6>
-            <div  class="bg-white"
-                  style="height: 200px; overflow: scroll;">
-              <span v-if="result_has_options">
-                <div v-for="option in result_options">
-                  {{ option }}
-                </div>
-              </span>
-              <span v-else class="bg-white">
-                <i style="color: red;">No results.</i>
-              </span>
-              <div v-show="error">
-                <b style="color: red;">ERROR: {{ error }}</b>
+            <div v-if="result_has_options && options_are_worth_showing"
+                 class="bg-white" style="max-height: 200px; overflow: scroll;">
+              <div v-for="option in result_options"
+                   @click="setUserInput">
+                {{ option }}
               </div>
+            </div>
+            <div v-else-if="options_are_worth_showing" class="bg-white">
+              <i style="color: red;">No results.</i>
+            </div>
+            <div v-show="error">
+              <b style="color: red;">ERROR: {{ error }}</b>
             </div>
           </div>
         </div>
@@ -154,7 +153,7 @@
       var app = new Vue({
         el: '#vue-app',
         data: {
-          content: null,
+          user_input: null,
           current_result: null,
           last_yielding_result: null,
           error: null,
@@ -168,22 +167,22 @@
 
             // If we are adding more text to a result query that returns nothing, it will
             // continue to return nothing.
-            if (this.content
+            if (this.user_input
               && this.last_yielding_result
-              && this.content.length > this.last_yielding_result.length
+              && this.user_input.length > this.last_yielding_result.length
               && !this.result_has_options) {
               return
             }
 
-            // If the content has been emptied, clear out the display field.
-            if (this.content === "") {
+            // If the user_input has been emptied, clear out the display field.
+            if (this.user_input === "") {
               this.current_result = null;
               return
             }
 
             // Get the suggestions from the server.
-            console.log(`Getting autocomplete options for: "${this.content}".`);
-            const resp = await fetch(`${this.autocomplete_url}?q=${this.content}`);
+            console.log(`Getting autocomplete options for: "${this.user_input}".`);
+            const resp = await fetch(`${this.autocomplete_url}?q=${this.user_input}`);
             if (resp.status !== 200) {
               console.log(`ERROR: ${resp.status}: ${resp.statusText}`);
               this.error = "Unsuccessful response from the survey."
@@ -195,14 +194,19 @@
             this.current_result = resp_json;
 
             // Check the response
-            if (this.current_result.query !== this.content) {
+            if (this.current_result.query !== this.user_input) {
               this.error = "Query returned does not match content sent."
             }
 
             // If this result yielded something, remember it.
             if (this.current_result.results.length)
-              this.last_yielding_result = this.content;
+              this.last_yielding_result = this.user_input;
           },
+
+          setUserInput: function(event) {
+            this.user_input = event.target.innerText;
+            this.getPrefix();
+          }
         },
         computed: {
           result_url: function() {
@@ -227,6 +231,13 @@
             if (this.current_result)
               return this.current_result.results.length > 0;
             return false;
+          },
+
+          options_are_worth_showing: function() {
+            if (!this.current_result)
+              return false;
+            return (this.current_result.reason !== "matched prefix"
+                    || this.current_result.results.length > 1)
           }
         }
       })
