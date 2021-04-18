@@ -7503,7 +7503,7 @@
     id: 00000591
     name: Environment Ontology
     namespaceEmbeddedInLui: true
-    pattern: ^ENVO:\d{8}$
+    pattern: ^ENVO:\d{7,8}$
     prefix: envo
     sampleId: 09200010
   n2t:
@@ -14190,7 +14190,7 @@
     id: 00000609
     name: MetaCyc Compound
     namespaceEmbeddedInLui: false
-    pattern: ^CPD-\d{5}$
+    pattern: ^[A-Za-z0-9+_.%-:]+$
     prefix: metacyc.compound
     sampleId: CPD-10330
   n2t:
@@ -14216,7 +14216,7 @@
     id: '00000610'
     name: MetaCyc Reaction
     namespaceEmbeddedInLui: false
-    pattern: ^RXN-\d{5}$
+    pattern: ^[A-Za-z0-9+_.%-:]+$
     prefix: metacyc.reaction
     sampleId: RXN-14904
   n2t:
