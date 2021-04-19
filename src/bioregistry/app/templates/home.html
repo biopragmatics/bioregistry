@@ -138,23 +138,47 @@
               pattern: "{{ current_result.prefix }}:{{ current_result.pattern }}"
             </div>
             <div v-if="result_has_options && options_are_worth_showing"
-                 class="bg-white" style="max-height: 200px; overflow-y: scroll;">
+                 class="option-box">
               <div v-for="option in result_options"
+                   class="option-line"
                    @click="setUserInput">
                 {{ option }}
               </div>
             </div>
-            <div v-else-if="options_are_worth_showing" class="bg-white">
-              <i style="color: grey;">No results.</i>
+            <div v-else-if="options_are_worth_showing"
+                 class="no-option-box bg-white">
+              <i>No results.</i>
             </div>
-            <div v-show="error">
-              <b style="color: red;">ERROR: {{ error }}</b>
+            <div v-show="error_message"
+                 class="error-msg">
+              <b>ERROR: {{ error_message }}</b>
             </div>
           </div>
         </div>
       </div>
     </div>
     {% endraw %}
+
+    <style>
+      .error-msg {
+          color: red;
+      }
+
+      .option-box {
+          background-color: white;
+          max-height: 200px;
+          overflow-y: scroll;
+      }
+
+      .option-line:hover {
+          color: darkblue;
+          cursor: pointer;
+      }
+
+      .no-option-box {
+          color: grey;
+      }
+    </style>
 
     <script>
       const SEARCHED_PREFIX = "searched prefix";
@@ -167,14 +191,14 @@
           user_input: null,
           current_result: null,
           last_yielding_result: null,
-          error: null,
+          error_message: null,
           autocomplete_url: "{{ url_for('api.autocomplete') }}"
         },
         methods: {
           /// Get the data to suggest auto-completes to the prefix.
           getPrefix: async function () {
             // Reset the error message
-            this.error = null;
+            this.error_message = null;
 
             // If we are adding more text to a result query that returns nothing, it will
             // continue to return nothing.
@@ -196,7 +220,7 @@
             const resp = await fetch(`${this.autocomplete_url}?q=${this.user_input}`);
             if (resp.status !== 200) {
               console.log(`ERROR: ${resp.status}: ${resp.statusText}`);
-              this.error = "Unsuccessful response from the survey."
+              this.error_message = "Unsuccessful response from the survey."
             }
             const resp_json = await resp.json();
             console.log(resp_json);
@@ -206,7 +230,7 @@
 
             // Check the response
             if (this.current_result.query !== this.user_input) {
-              this.error = "Query returned does not match content sent."
+              this.error_message = "Query returned does not match content sent."
             }
 
             // If this result yielded something, remember it.
