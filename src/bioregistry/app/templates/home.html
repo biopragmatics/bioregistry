@@ -130,6 +130,9 @@
                 <a :href="result_url">{{ user_input }}</a>
               </span>
             </h6>
+            <div v-if="validation_failed">
+              pattern: "{{ current_result.prefix }}:{{ current_result.pattern }}"
+            </div>
             <div v-if="result_has_options && options_are_worth_showing"
                  class="bg-white" style="max-height: 200px; overflow-y: scroll;">
               <div v-for="option in result_options"
@@ -138,7 +141,7 @@
               </div>
             </div>
             <div v-else-if="options_are_worth_showing" class="bg-white">
-              <i style="color: red;">No results.</i>
+              <i style="color: grey;">No results.</i>
             </div>
             <div v-show="error">
               <b style="color: red;">ERROR: {{ error }}</b>
@@ -150,6 +153,10 @@
     {% endraw %}
 
     <script>
+      const SEARCHED_PREFIX = "searched prefix";
+      const MATCHED_PREFIX = "matched prefix";
+      const FAILED_VALIDATION = "failed validation";
+      const PASSED_VALIDATION = "passed validation";
       var app = new Vue({
         el: '#vue-app',
         data: {
@@ -171,6 +178,7 @@
               && this.last_yielding_result
               && this.user_input.length > this.last_yielding_result.length
               && !this.result_has_options) {
+              console.log(`Ignoring input modification: ${this.user_input}.`)
               return
             }
 
@@ -199,8 +207,16 @@
             }
 
             // If this result yielded something, remember it.
-            if (this.current_result.results.length)
-              this.last_yielding_result = this.user_input;
+            if (this.current_result.results) {
+              if (this.current_result.results.length) {
+                this.last_yielding_result = this.user_input;
+                console.log(`Set last_yielding_result for ${this.user_input}`)
+              }
+            }
+            else if (this.current_result.reason !== SEARCHED_PREFIX) {
+                this.last_yielding_result = null;
+                console.log(`Set last_yielding_result as null: ${this.user_input}`)
+            }
           },
 
           setUserInput: function(event) {
@@ -229,15 +245,26 @@
 
           result_has_options: function() {
             if (this.current_result)
-              return this.current_result.results.length > 0;
+              if (this.current_result.results)
+                return this.current_result.results.length > 0;
             return false;
           },
 
           options_are_worth_showing: function() {
             if (!this.current_result)
               return false;
-            return (this.current_result.reason !== "matched prefix"
-                    || this.current_result.results.length > 1)
+            if (this.current_result.reason === SEARCHED_PREFIX)
+              return true;
+            if (this.current_result.reason === MATCHED_PREFIX)
+              if (this.current_result.results.length > 1)
+                return true;
+            return false;
+          },
+
+          validation_failed: function() {
+            if (!this.current_result)
+              return false;
+            return this.current_result.reason === FAILED_VALIDATION
           }
         }
       })
