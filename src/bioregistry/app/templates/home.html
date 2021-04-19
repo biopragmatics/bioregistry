@@ -123,36 +123,35 @@
                    value="Go">
           </div>
         </div>
-        <div v-if="current_result">
-          <div class="card-body bg-light">
-            <h6 class="card-title">
-              <span v-html="result_reason_icon"></span>
-              <span v-if="!result_url">
-                "{{ user_input }}"
-              </span>
-              <span v-else>
-                <a :href="result_url" target="_blank">{{ user_input }}</a>
-              </span>
-            </h6>
-            <div v-if="validation_failed">
-              pattern: "{{ current_result.prefix }}:{{ current_result.pattern }}"
+        <div v-if="error_message"
+             class="error-msg">
+          <i>{{ error_message }}</i>
+        </div>
+        <div v-if="current_result"
+             class="card-body bg-light">
+          <h6 class="card-title">
+            <span v-html="result_reason_icon"></span>
+            <span v-if="!result_url">
+              "{{ user_input }}"
+            </span>
+            <span v-else>
+              <a :href="result_url" target="_blank">{{ user_input }}</a>
+            </span>
+          </h6>
+          <div v-if="validation_failed">
+            pattern: "{{ current_result.prefix }}:{{ current_result.pattern }}"
+          </div>
+          <div v-if="result_has_options && options_are_worth_showing"
+               class="option-box">
+            <div v-for="option in result_options"
+                 class="option-line"
+                 @click="setUserInput">
+              {{ option }}
             </div>
-            <div v-if="result_has_options && options_are_worth_showing"
-                 class="option-box">
-              <div v-for="option in result_options"
-                   class="option-line"
-                   @click="setUserInput">
-                {{ option }}
-              </div>
-            </div>
-            <div v-else-if="options_are_worth_showing"
-                 class="no-option-box bg-white">
-              <i>No results.</i>
-            </div>
-            <div v-show="error_message"
-                 class="error-msg">
-              <b>ERROR: {{ error_message }}</b>
-            </div>
+          </div>
+          <div v-else-if="options_are_worth_showing"
+               class="no-option-box bg-white">
+            <i>No results.</i>
           </div>
         </div>
       </div>
@@ -171,6 +170,7 @@
       }
 
       .option-line:hover {
+          background-color: #f5f5f5;
           color: darkblue;
           cursor: pointer;
       }
@@ -250,13 +250,34 @@
           },
 
           followLink: function() {
+            this.error_message = null;
             if (this.result_url) {
-              console.log("Opening", this.result_url);
               window.open(this.result_url, "_blank");
+            } else {
+              switch (this.result_reason) {
+                case null:
+                  this.error_message = "Please enter text first.";
+                  break;
+                case SEARCHED_PREFIX:
+                  this.error_message = "Please select prefix before searching.";
+                  break;
+                case MATCHED_PREFIX:
+                  this.error_message = `No URL available for prefix ${this.user_input}.`;
+                  break;
+                case FAILED_VALIDATION:
+                  this.error_message = "Please enter valid identifier.";
+                  break;
+                case PASSED_VALIDATION:
+                  this.error_message = `No URL available for identifier ${this.user_input}.`;
+                  break;
+                default:
+                  this.error_message = "Unexpected state does not permit link-outs.";
+              }
+              window.setTimeout(() => {this.error_message = null}, 3000);
             }
-            return
           }
         },
+
         computed: {
           result_url: function() {
             if (this.current_result)
@@ -271,7 +292,9 @@
           },
 
           result_reason_icon: function() {
-            switch (this.current_result.reason){
+            switch (this.result_reason){
+              case null:
+                return null;
               case SEARCHED_PREFIX:
                 return "searched prefix: ";
               case MATCHED_PREFIX:
