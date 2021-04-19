@@ -122,7 +122,7 @@
         <div v-if="current_result">
           <div class="card-body bg-light">
             <h6 class="card-title">
-              {{ result_reason }}:
+              <span v-html="result_reason_icon"></span>
               <span v-if="!result_url">
                 "{{ user_input }}"
               </span>
@@ -232,6 +232,21 @@
             if (this.current_result)
               return this.current_result.reason;
             return null;
+          },
+
+          result_reason_icon: function() {
+            switch (this.current_result.reason){
+              case SEARCHED_PREFIX:
+                return "searched prefix: ";
+              case MATCHED_PREFIX:
+                return '<i class="far fa-check-circle" style="color: green;"></i>';
+              case FAILED_VALIDATION:
+                return '<i class="far fa-times-circle" style="color: red;"></i>';
+              case PASSED_VALIDATION:
+                return '<i class="far fa-check-circle" style="color: green;"></i>';
+              default:
+                return this.current_result.result;
+            }
           },
 
           result_options: function() {
