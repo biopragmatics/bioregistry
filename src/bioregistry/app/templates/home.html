@@ -178,7 +178,6 @@
               && this.last_yielding_result
               && this.user_input.length > this.last_yielding_result.length
               && !this.result_has_options) {
-              console.log(`Ignoring input modification: ${this.user_input}.`)
               return
             }
 
@@ -210,12 +209,10 @@
             if (this.current_result.results) {
               if (this.current_result.results.length) {
                 this.last_yielding_result = this.user_input;
-                console.log(`Set last_yielding_result for ${this.user_input}`)
               }
             }
             else if (this.current_result.reason !== SEARCHED_PREFIX) {
                 this.last_yielding_result = null;
-                console.log(`Set last_yielding_result as null: ${this.user_input}`)
             }
           },
 
