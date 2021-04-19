@@ -112,11 +112,15 @@
                  v-model="user_input"
                  class="form-control"
                  @input="getPrefix"
+                 @keyup.enter="followLink"
                  placeholder="Search for a prefix"
                  aria-label="Search for a prefix"
                  aria-describedby="basic-addon2">
           <div class="input-group-append">
-            <input class="btn btn-outline-secondary" type="submit" value="Search">
+            <input class="btn btn-outline-secondary"
+                   @click="followLink"
+                   type="submit"
+                   value="Go">
           </div>
         </div>
         <div v-if="current_result">
@@ -219,6 +223,14 @@
           setUserInput: function(event) {
             this.user_input = event.target.innerText;
             this.getPrefix();
+          },
+
+          followLink: function() {
+            if (this.result_url) {
+              console.log("Opening", this.result_url);
+              window.open(this.result_url, "_blank");
+            }
+            return
           }
         },
         computed: {
