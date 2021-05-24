@@ -42,7 +42,7 @@ The manually curated portions of these data are available under the CC0 1.0 Univ
 ## 🙏 Contributing
 
 There haven't been any external contributors yet, but if you want to get involved, you can make edits directly to
-the [bioregistry.json](https://github.com/bioregistry/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
+the [bioregistry.json](https://github.com/bioregistry/bioregistry/blob/main/src/bioregistry/data/bioregistry.json)
 file through the GitHub interface.
 
 Things that would be helpful:
