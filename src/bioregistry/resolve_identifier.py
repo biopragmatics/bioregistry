@@ -111,7 +111,7 @@ def get_bioportal_url(prefix: str, identifier: str) -> Optional[str]:
     :return: A link to the Bioportal page
 
     >>> get_bioportal_url('chebi', '24431')
-    "https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_24431"
+    'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24431'
     """
     bioportal_prefix = get_bioportal_prefix(prefix)
     if bioportal_prefix is None:
@@ -176,7 +176,7 @@ def _get_bioregistry_link(prefix: str, identifier: str) -> Optional[str]:
     :return: A link to the bioregistry resolver
 
     >>> _get_bioregistry_link('chebi', '1234')
-    http://bioregistry.io/chebi:1234
+    'https://bioregistry.io/chebi:1234'
     """
     norm_prefix = normalize_prefix(prefix)
     if norm_prefix is None:

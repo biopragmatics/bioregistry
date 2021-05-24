@@ -77,12 +77,34 @@ def get_registry_name(metaprefix: str) -> Optional[str]:
 
 
 def get_registry_homepage(metaprefix: str) -> Optional[str]:
-    """Get the URL for the registry, if available."""
+    """Get the URL for the registry, if available.
+
+    :param metaprefix: The metaprefix of the registry
+    :return: The URL for the registry, if available, otherwise ``None``.
+
+    >>> get_registry_homepage('biolink')
+    'https://raw.githubusercontent.com/biolink/biolink-model'
+
+    ``None`` is returned on missing values.
+
+    >>> get_registry_homepage('missing')
+    None
+    """
     return _get_registry_key(metaprefix, 'homepage')
 
 
 def get_registry_description(metaprefix: str) -> Optional[str]:
-    """Get the description for the registry, if available."""
+    """Get the description for the registry, if available.
+
+    :param metaprefix: The metaprefix of the registry
+    :return: The description for the registry, if available, otherwise ``None``.
+
+    >>> get_registry_description('prefixcommons')
+    'A registry of commonly used prefixes in the life sciences and linked data'
+
+    >>> get_registry_description('missing')
+    None
+    """
     return _get_registry_key(metaprefix, 'description')
 
 
