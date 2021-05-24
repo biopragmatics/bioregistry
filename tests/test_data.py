@@ -58,8 +58,6 @@ class TestDuplicates(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.fail(msg=f'malformed homepage: {homepage}')
 
-    @unittest.skip('some data needs to be updated from the source. solution proposed at '
-                   'https://github.com/OBOFoundry/OBOFoundry.github.io/pull/1480/files')
     def test_email(self):
         """Test that the email getter returns valid email addresses."""
         for prefix in bioregistry.read_registry():
