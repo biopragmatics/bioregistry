@@ -81,22 +81,22 @@ def _autocomplete(q: str) -> Mapping[str, Any]:
     Before completion is of prefix:
 
     >>> _autocomplete('cheb')
-    {"query": "chebi", "reason": "searched prefix", results=["chebi"], success: True, url: None}
+    {'query': 'cheb', 'results': ['chebi'], 'success': True, 'reason': 'searched prefix', 'url': None}
 
     If only prefix is complete:
 
     >>> _autocomplete('chebi')
-    {"query": "chebi", "reason": "matched prefix", results=["chebi"], success: True, url: "https://bioregistry.io/chebi"}
+    {'query': 'chebi', 'results': ['chebi'], 'success': True, 'reason': 'matched prefix', 'url': 'https://bioregistry.io/chebi'}
 
     Not matching the pattern:
 
     >>> _autocomplete('chebi:NOPE')
-    {"identifier": "NOPE", "pattern": "^CHEBI:\\d+$", "prefix": "chebi", "query": "chebi:NOPE", "reason": "failed validation", "success": False, "url": None}
+    {'query': 'chebi:NOPE', 'prefix': 'chebi', 'pattern': '^CHEBI:\\d+$', 'identifier': 'NOPE', 'success': False, 'reason': 'failed validation', 'url': None}
 
     Matching the pattern:
 
     >>> _autocomplete('chebi:1234')
-    {"identifier":"1234", "pattern": "^CHEBI:\\d+$", "prefix": "chebi", "query": "chebi:1234", "reason": "passed validation", "success": True, "url": "https://bioregistry.io/chebi:1234"}
+    {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^CHEBI:\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': 'https://bioregistry.io/chebi:1234'}
     """  # noqa: E501
     if ':' not in q:
         url: Optional[str]
