@@ -53,7 +53,7 @@
         {# This is a Vue template which also uses {{ value }} syntax, use raw to avoid mixups. #}
         {% raw %}
         <div id="vue-app">
-            <h5 class="card-title">Prefix Search</h5>
+            <h5 class="card-title">Prefix and Compact Identifier Search</h5>
             <div class="input-group mb-3">
                 <input type="text"
                        v-model="user_input"
@@ -73,25 +73,23 @@
                     <i>{{ error_message }}</i>
                 </div>
                 <div v-if="current_result" class="patrick-dropdown">
-                    <div v-if="result_url">
+                    <div v-if="result_url" class="option-line">
                         <i class="far fa-check-circle" style="color: green;"></i>
                         <a :href="result_url" target="_blank">{{ user_input }}</a>
                     </div>
-                    <div v-if="validation_failed">
+                    <div v-if="validation_failed" class="option-line">
                         <i class="far fa-times-circle" style="color: red;"></i> Does not match pattern <kbd>{{
                         current_result.pattern }}</kbd>
                     </div>
-                    <div v-if="result_has_options && options_are_worth_showing"
-                         class="option-box" style="position: relative; display: inline-block;">
+                    <div v-if="result_has_options && options_are_worth_showing" class="option-box">
                         <div v-for="option in result_options"
                              class="option-line"
                              @click="setUserInput">
                             {{ option }}
                         </div>
                     </div>
-                    <div v-else-if="options_are_worth_showing"
-                         class="no-option-box bg-white">
-                        <i class="fas fa-exclamation-circle" style="color: yellow"></i> No results
+                    <div v-else-if="options_are_worth_showing" class="option-line">
+                        <i class="fas fa-exclamation-circle" style="color: goldenrod"></i> No results
                     </div>
                 </div>
             </div>
@@ -160,10 +158,7 @@
             left: auto;
             background-color: white;
             z-index: 1000;
-            padding: 0.75em;
-            border-left: 1px;
-            border-bottom: 1px;
-            border-right: 1px;
+            border-width: 2px;
             border-color: black;
         }
 
@@ -172,20 +167,21 @@
         }
 
         .option-box {
-            background-color: white;
             max-height: 200px;
             overflow-y: scroll;
             width: 100%;
+        }
+
+        .option-line {
+            padding: 0.76em;
+            padding-top: 0.2em;
+            padding-bottom: 0.2em;
         }
 
         .option-line:hover {
             background-color: #f5f5f5;
             color: darkblue;
             cursor: pointer;
-        }
-
-        .no-option-box {
-            color: grey;
         }
     </style>
 
