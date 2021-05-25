@@ -151,12 +151,15 @@ def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
     for key in read_metaregistry():
         if key not in entry:
             continue
-        if key != 'wikidata':
-            rv[key] = entry[key]['prefix']
-        else:
+        if key == 'wikidata':
             value = entry[key].get('property')
             if value is not None:
                 rv['wikidata'] = value
+        elif key == 'obofoundry':
+            rv[key] = entry[key].get('preferredPrefix', entry[key]['prefix'].upper())
+        else:
+            rv[key] = entry[key]['prefix']
+
     return rv
 
 
@@ -228,6 +231,14 @@ def get_bioportal_prefix(prefix: str) -> Optional[str]:
 def get_obofoundry_prefix(prefix: str) -> Optional[str]:
     """Get the OBO Foundry prefix if available."""
     return _get_mapped_prefix(prefix, 'obofoundry')
+
+
+def get_obofoundry_format(prefix: str) -> Optional[str]:
+    """Get the OBO Foundry URL format if possible."""
+    obo_prefix = get_obofoundry_prefix(prefix)
+    if obo_prefix is None:
+        return None
+    return f'http://purl.obolibrary.org/obo/{obo_prefix}_'
 
 
 def get_ols_prefix(prefix: str) -> Optional[str]:

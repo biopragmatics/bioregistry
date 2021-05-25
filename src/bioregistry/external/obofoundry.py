@@ -21,7 +21,6 @@ __all__ = [
     'get_obofoundry_df',
 ]
 
-OBOFOUNDRY_YAML_PATH = BIOREGISTRY_MODULE.join(name='obofoundry.yml')
 OBOFOUNDRY_FULL_PATH = BIOREGISTRY_MODULE.join(name='obofoundry.json')
 OBOFOUNDRY_SLIM_PATH = BIOREGISTRY_MODULE.join(name='obofoundry.tsv')
 OBOFOUNDRY_URL = 'https://raw.githubusercontent.com/OBOFoundry/OBOFoundry.github.io/master/registry/ontologies.yml'
@@ -38,7 +37,7 @@ def get_obofoundry(
         with open(cache_path) as file:
             entries = json.load(file)
     else:
-        with BIOREGISTRY_MODULE.ensure(url=OBOFOUNDRY_URL).open() as file:
+        with BIOREGISTRY_MODULE.ensure(url=OBOFOUNDRY_URL, name='obofoundry.yml').open() as file:
             entries = yaml.full_load(file)['ontologies']
 
         for entry in entries:
@@ -72,6 +71,7 @@ def get_obofoundry_df(**kwargs):
         (
             'obofoundry',
             entry['id'],
+            entry.get('preferredPrefix'),
             entry['title'],
             entry.get('is_obsolete', False),
             entry.get('license', {}).get('label'),
@@ -80,7 +80,7 @@ def get_obofoundry_df(**kwargs):
         for entry in get_obofoundry(**kwargs)
     ]
     df = pd.DataFrame(rows, columns=[
-        'registry', 'prefix', 'name',
+        'registry', 'prefix', 'preferred_prefix', 'name',
         'redundant', 'license', 'description',
     ])
     df.to_csv(OBOFOUNDRY_SLIM_PATH, sep='\t', index=False)
