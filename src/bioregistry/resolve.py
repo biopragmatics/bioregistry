@@ -133,7 +133,7 @@ def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
             value = entry[key].get('property')
             if value is not None:
                 rv['wikidata'] = value
-        elif key == 'obo':
+        elif key == 'obofoundry':
             rv[key] = entry[key].get('preferredPrefix', entry[key]['prefix'].upper())
         else:
             rv[key] = entry[key]['prefix']

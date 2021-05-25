@@ -12,5 +12,9 @@ class TestOBO(unittest.TestCase):
 
     def test_prefix(self):
         """Test looking up stylized prefixes."""
-        self.assertEqual('FBbt', get_obofoundry_prefix('fbbt'))
-        self.assertEqual('CHEBI', get_obofoundry_prefix('chebi'))
+        for expected, query in [
+            ('FBbt', 'fbbt'),
+            ('CHEBI', 'chebi'),
+        ]:
+            with self.subTest(query=query):
+                self.assertEqual(expected, get_obofoundry_prefix(query))
