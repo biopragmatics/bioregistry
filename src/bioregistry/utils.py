@@ -5,6 +5,7 @@
 import json
 import logging
 import warnings
+from copy import deepcopy
 from datetime import datetime
 from functools import lru_cache, wraps
 from typing import Any, List, Mapping
@@ -48,6 +49,17 @@ def read_collections():
     for k, v in rv.items():
         v['identifier'] = k
     return rv
+
+
+def write_collections(collections):
+    """Write the collections."""
+    collections = deepcopy(collections)
+    for v in collections.values():
+        if 'identifier' in v:
+            del v['identifier']
+        v['resources'] = sorted(set(v['resources']))
+    with open(COLLECTIONS_PATH, encoding='utf-8', mode='w') as file:
+        json.dump(collections, file, indent=2, sort_keys=True, ensure_ascii=False)
 
 
 def write_bioregistry(registry):
