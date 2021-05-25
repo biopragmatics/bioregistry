@@ -129,12 +129,15 @@ def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
     for key in read_metaregistry():
         if key not in entry:
             continue
-        if key != 'wikidata':
-            rv[key] = entry[key]['prefix']
-        else:
+        if key == 'wikidata':
             value = entry[key].get('property')
             if value is not None:
                 rv['wikidata'] = value
+        elif key == 'obo':
+            rv[key] = entry[key].get('preferredPrefix', entry[key]['prefix'].upper())
+        else:
+            rv[key] = entry[key]['prefix']
+
     return rv
 
 

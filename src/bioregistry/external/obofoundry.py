@@ -72,6 +72,7 @@ def get_obofoundry_df(**kwargs):
         (
             'obofoundry',
             entry['id'],
+            entry.get('preferredPrefix'),
             entry['title'],
             entry.get('is_obsolete', False),
             entry.get('license', {}).get('label'),
@@ -80,7 +81,7 @@ def get_obofoundry_df(**kwargs):
         for entry in get_obofoundry(**kwargs)
     ]
     df = pd.DataFrame(rows, columns=[
-        'registry', 'prefix', 'name',
+        'registry', 'prefix', 'preferred_prefix', 'name',
         'redundant', 'license', 'description',
     ])
     df.to_csv(OBOFOUNDRY_SLIM_PATH, sep='\t', index=False)
