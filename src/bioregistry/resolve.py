@@ -208,6 +208,14 @@ def get_obofoundry_prefix(prefix: str) -> Optional[str]:
     return _get_mapped_prefix(prefix, 'obofoundry')
 
 
+def get_obofoundry_format(prefix: str) -> Optional[str]:
+    """Get the OBO Foundry URL format if possible."""
+    obo_prefix = get_obofoundry_prefix(prefix)
+    if obo_prefix is None:
+        return None
+    return f'http://purl.obolibrary.org/obo/{obo_prefix}_'
+
+
 def get_ols_prefix(prefix: str) -> Optional[str]:
     """Get the OLS prefix if available."""
     return _get_mapped_prefix(prefix, 'ols')

@@ -7,7 +7,7 @@ from typing import Callable, Mapping, Optional, Sequence, Tuple
 from .constants import BIOREGISTRY_REMOTE_URL
 from .resolve import (
     get, get_banana, get_bioportal_prefix, get_identifiers_org_prefix, get_n2t_prefix,
-    get_obofoundry_prefix, get_ols_prefix, get_pattern_re, namespace_in_lui, normalize_prefix,
+    get_obofoundry_format, get_ols_prefix, get_pattern_re, namespace_in_lui, normalize_prefix,
 )
 
 __all__ = [
@@ -16,6 +16,7 @@ __all__ = [
     'get_providers_list',
     'get_identifiers_org_url',
     'get_identifiers_org_curie',
+    'get_obofoundry_format',
     'get_obofoundry_link',
     'get_ols_link',
     'get_bioportal_url',
@@ -153,10 +154,10 @@ def get_identifiers_org_curie(prefix: str, identifier: str) -> Optional[str]:
 
 def get_obofoundry_link(prefix: str, identifier: str) -> Optional[str]:
     """Get the OBO Foundry URL if possible."""
-    obo_prefix = get_obofoundry_prefix(prefix)
-    if obo_prefix is None:
+    fmt = get_obofoundry_format(prefix)
+    if fmt is None:
         return None
-    return f'http://purl.obolibrary.org/obo/{obo_prefix.upper()}_{identifier}'
+    return f'{fmt}_{identifier}'
 
 
 def get_ols_link(prefix: str, identifier: str) -> Optional[str]:
