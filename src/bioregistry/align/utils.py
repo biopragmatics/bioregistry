@@ -64,10 +64,16 @@ class Aligner(ABC):
                 bioregistry_id = normalize_prefix(external_id)
 
             if bioregistry_id is not None:  # a match was found
-                _entry = self.prepare_external(external_id, external_entry)
-                _entry['prefix'] = external_id
-                self.internal_registry[bioregistry_id][self.key] = _entry
-                self.external_id_to_bioregistry_id[external_id] = bioregistry_id
+                self._align_action(bioregistry_id, external_id, external_entry)
+
+    def _align_action(self, bioregistry_id, external_id, external_entry):
+        # Add mapping
+        self.internal_registry[bioregistry_id].setdefault('mappings', {})[self.key] = external_id
+
+        _entry = self.prepare_external(external_id, external_entry)
+        _entry['prefix'] = external_id
+        self.internal_registry[bioregistry_id][self.key] = _entry
+        self.external_id_to_bioregistry_id[external_id] = bioregistry_id
 
     def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
         """Prepare a dictionary to be added to the bioregistry for each external registry entry.

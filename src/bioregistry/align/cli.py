@@ -13,6 +13,7 @@ from .ncbi import NcbiAligner
 from .obofoundry import align_obofoundry
 from .ols import align_ols
 from .prefix_commons import PrefixCommonsAligner
+from .uniprot import UniProtAligner
 from .wikidata import align_wikidata
 from ..utils import secho
 
@@ -53,6 +54,9 @@ def align():
 
     secho('Aligning Biolink')
     BiolinkAligner.align()
+
+    secho('Aligning UniProt')
+    UniProtAligner.align()
 
 
 if __name__ == '__main__':

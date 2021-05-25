@@ -18,10 +18,7 @@ from bioregistry import (
     get_pattern, get_version, read_registry,
 )
 from bioregistry.constants import DOCS_IMG
-from bioregistry.external import (
-    get_biolink, get_bioportal, get_go, get_miriam, get_n2t, get_ncbi, get_obofoundry, get_ols, get_prefix_commons,
-    get_wikidata_registry,
-)
+from bioregistry.external import GETTERS
 
 bioregistry = read_registry()
 
@@ -71,6 +68,9 @@ LICENSES = {
     'Artistic License 2.0': 'Other',
     'New BSD license': 'Other',
 }
+
+# see named colors https://matplotlib.org/stable/gallery/color/named_colors.html
+BIOREGISTRY_COLOR = 'silver'
 
 
 def _remap_license(k):
@@ -200,29 +200,10 @@ def compare():  # noqa:C901
     plt.close(fig)
 
     # -------------------------------------------------------------------- #
-
-    miriam_prefixes = set(get_miriam(skip_deprecated=True, mappify=True))
-    ols_prefixes = set(get_ols(mappify=True))
-    obofoundry_prefixes = set(get_obofoundry(skip_deprecated=True, mappify=True))
-    wikidata_prefixes = set(get_wikidata_registry())
-    n2t_prefixes = set(get_n2t())
-    go_prefixes = set(get_go(mappify=True))
-    bioportal_prefixes = set(get_bioportal(mappify=True))
-    prefixcommons_prefixes = set(get_prefix_commons())
-    biolink_prefixes = set(get_biolink())
-    ncbi_prefixes = set(get_ncbi())
-
+    palette = sns.color_palette("Paired", len(GETTERS))
     keys = [
-        ('obofoundry', 'OBO Foundry', 'red', obofoundry_prefixes),
-        ('ols', 'OLS', 'green', ols_prefixes),
-        ('miriam', 'MIRIAM', 'blue', miriam_prefixes),
-        ('wikidata', 'Wikidata', 'purple', wikidata_prefixes),
-        ('n2t', 'Name-to-Thing', 'orange', n2t_prefixes),
-        ('go', 'GO', 'yellow', go_prefixes),
-        ('bioportal', 'BioPortal', 'cyan', bioportal_prefixes),
-        ('prefixcommons', 'Prefix Commons', 'magenta', prefixcommons_prefixes),
-        ('biolink', 'Biolink Model', 'pink', biolink_prefixes),
-        ('ncbi', 'NCBI', 'green', ncbi_prefixes),
+        (metaprefix, label, color, set(func()))
+        for (metaprefix, label, func), color in zip(GETTERS, palette)
     ]
 
     ############################################################
@@ -247,7 +228,7 @@ def compare():  # noqa:C901
         venn2(
             subsets=(bioregistry_remapped, prefixes),
             set_labels=('Bioregistry', label),
-            set_colors=('grey', color),
+            set_colors=(BIOREGISTRY_COLOR, color),
             ax=ax,
         )
     if watermark:

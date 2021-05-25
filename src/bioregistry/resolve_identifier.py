@@ -7,7 +7,7 @@ from typing import Callable, Mapping, Optional, Sequence, Tuple
 from .constants import BIOREGISTRY_REMOTE_URL
 from .resolve import (
     get, get_banana, get_bioportal_prefix, get_identifiers_org_prefix, get_n2t_prefix,
-    get_obofoundry_prefix, get_ols_prefix, get_pattern_re, namespace_in_lui, normalize_prefix,
+    get_obofoundry_format, get_ols_prefix, get_pattern_re, namespace_in_lui, normalize_prefix,
 )
 
 __all__ = [
@@ -16,6 +16,7 @@ __all__ = [
     'get_providers_list',
     'get_identifiers_org_url',
     'get_identifiers_org_curie',
+    'get_obofoundry_format',
     'get_obofoundry_link',
     'get_ols_link',
     'get_bioportal_url',
@@ -111,7 +112,7 @@ def get_bioportal_url(prefix: str, identifier: str) -> Optional[str]:
     :return: A link to the Bioportal page
 
     >>> get_bioportal_url('chebi', '24431')
-    "https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_24431"
+    'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24431'
     """
     bioportal_prefix = get_bioportal_prefix(prefix)
     if bioportal_prefix is None:
@@ -152,11 +153,24 @@ def get_identifiers_org_curie(prefix: str, identifier: str) -> Optional[str]:
 
 
 def get_obofoundry_link(prefix: str, identifier: str) -> Optional[str]:
-    """Get the OBO Foundry URL if possible."""
-    obo_prefix = get_obofoundry_prefix(prefix)
-    if obo_prefix is None:
+    """Get the OBO Foundry URL if possible.
+
+    :param prefix: The prefix
+    :param identifier: The identifier
+    :return: The OBO Foundry URL if the prefix can be mapped to an OBO Foundry entry
+
+    >>> get_obofoundry_link('chebi', '24431')
+    'http://purl.obolibrary.org/obo/CHEBI_24431'
+
+    For entries where there's a preferred prefix, it is respected.
+
+    >>> get_obofoundry_link('fbbt', '00007294')
+    'http://purl.obolibrary.org/obo/FBbt_00007294'
+    """
+    fmt = get_obofoundry_format(prefix)
+    if fmt is None:
         return None
-    return f'http://purl.obolibrary.org/obo/{obo_prefix.upper()}_{identifier}'
+    return f'{fmt}{identifier}'
 
 
 def get_ols_link(prefix: str, identifier: str) -> Optional[str]:
@@ -176,7 +190,7 @@ def _get_bioregistry_link(prefix: str, identifier: str) -> Optional[str]:
     :return: A link to the bioregistry resolver
 
     >>> _get_bioregistry_link('chebi', '1234')
-    http://bioregistry.io/chebi:1234
+    'https://bioregistry.io/chebi:1234'
     """
     norm_prefix = normalize_prefix(prefix)
     if norm_prefix is None:

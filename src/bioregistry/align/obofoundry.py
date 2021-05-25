@@ -15,12 +15,16 @@ session = requests.Session()
 OBO_KEYS = {
     'id',
     'prefix',
+    'preferred_prefix',
     'pattern',
     'namespaceEmbeddedInLui',
     'name',
     'deprecated',
     'description',
     'homepage',
+}
+SKIP = {
+    'bila',
 }
 
 
@@ -39,6 +43,10 @@ def _prepare_obo(obofoundry_entry):  # noqa:C901
     homepage = obofoundry_entry.get('homepage')
     if homepage is not None:
         rv['homepage'] = homepage
+
+    preferred_prefix = obofoundry_entry.get('preferredPrefix')
+    if preferred_prefix is not None:
+        rv['preferredPrefix'] = preferred_prefix
 
     contact_dict = obofoundry_entry.get('contact')
     if contact_dict is not None and contact_dict.get('email'):
@@ -78,11 +86,11 @@ def _prepare_obo(obofoundry_entry):  # noqa:C901
                 # TODO maybe try recovering if this doesn't work
                 obo_url = f'https://raw.githubusercontent.com/{owner}/{repo}/master/{prefix}.obo'
 
-            res = session.get(obo_url)
-            if res.status_code == 200:
-                rv['download.obo'] = obo_url
-            else:
-                secho(f"[{prefix}] [http {res.status_code}] see {rv['repo']} [{path}]", bold=True, fg='red')
+            with session.get(obo_url, stream=True) as res:
+                if res.status_code == 200:
+                    rv['download.obo'] = obo_url
+                else:
+                    secho(f"[{prefix}] [http {res.status_code}] see {rv['repo']} [{path}]", bold=True, fg='red')
 
         elif method == 'owl2obo':
             source_url = build['source_url']
@@ -98,22 +106,22 @@ def _prepare_obo(obofoundry_entry):  # noqa:C901
                 rv['download.obo'] = source_url
             elif source_url.endswith('.owl'):
                 obo_url = source_url.removesuffix('.owl') + '.obo'
-                res = session.get(obo_url)
-                if res.status_code == 200:
-                    rv['download.obo'] = source_url
-                else:
-                    secho(f'[{prefix}] [http {res.status_code}] problem with {obo_url}', bold=True, fg='red')
+                with session.get(obo_url) as res:
+                    if res.status_code == 200:
+                        rv['download.obo'] = source_url
+                    else:
+                        secho(f'[{prefix}] [http {res.status_code}] problem with {obo_url}', bold=True, fg='red')
             else:
                 secho(f'[{prefix}] unhandled build.source_url: {source_url}', fg='red')
 
         elif method == 'obo2owl':
             source_url = build['source_url']
             if source_url.endswith('.obo'):
-                res = session.get(source_url)
-                if res.status_code == 200:
-                    rv['download.obo'] = source_url
-                else:
-                    secho(f'[{prefix}] [http {res.status_code}] problem with {source_url}', bold=True, fg='red')
+                with session.get(source_url, stream=True) as res:
+                    if res.status_code == 200:
+                        rv['download.obo'] = source_url
+                    else:
+                        secho(f'[{prefix}] [http {res.status_code}] problem with {source_url}', bold=True, fg='red')
             else:
                 secho(f'[{prefix}] unhandled extension {source_url}', bold=True, fg='red')
         else:
@@ -145,6 +153,9 @@ def align_obofoundry(registry):
             obofoundry_id_to_bioregistry_id[obofoundry_id] = bioregistry_id
 
     for obofoundry_prefix, obofoundry_entry in obofoundry_registry.items():
+        if obofoundry_prefix in SKIP:
+            secho(f'[{obofoundry_prefix}] skipping', fg='yellow')
+            continue
         # Get key by checking the miriam.id key
         bioregistry_id = obofoundry_id_to_bioregistry_id.get(obofoundry_prefix)
         if bioregistry_id is None:

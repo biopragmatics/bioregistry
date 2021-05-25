@@ -58,8 +58,6 @@ class TestDuplicates(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.fail(msg=f'malformed homepage: {homepage}')
 
-    @unittest.skip('some data needs to be updated from the source. solution proposed at '
-                   'https://github.com/OBOFoundry/OBOFoundry.github.io/pull/1480/files')
     def test_email(self):
         """Test that the email getter returns valid email addresses."""
         for prefix in bioregistry.read_registry():
@@ -196,10 +194,12 @@ class TestDuplicates(unittest.TestCase):
             with self.subTest(key=key):
                 self.assertRegex(key, '^\\d{7}$')
                 self.assertIn('name', collection)
-                self.assertIn('author', collection)
-                self.assertIn('name', collection['author'])
-                self.assertIn('orcid', collection['author'])
-                self.assertRegex(collection['author']['orcid'], bioregistry.get_pattern('orcid'))
+                self.assertIn('authors', collection)
+                self.assertIsInstance(collection['authors'], list)
+                for author in collection['authors']:
+                    self.assertIn('name', author)
+                    self.assertIn('orcid', author)
+                    self.assertRegex(author['orcid'], bioregistry.get_pattern('orcid'))
                 self.assertIn('description', collection)
                 incorrect = {
                     prefix
