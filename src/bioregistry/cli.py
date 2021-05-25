@@ -16,10 +16,11 @@ from .generate_warnings_file import warnings
 from .lint import lint
 from .make_curation_list import curation
 from .prefix_maps import generate_context_json_ld
+from .version import VERSION
 
 
 @click.group()
-@click.version_option()
+@click.version_option(version=VERSION)
 def main():
     """Run the Bioregistry CLI."""
 
