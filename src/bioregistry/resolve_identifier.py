@@ -153,11 +153,24 @@ def get_identifiers_org_curie(prefix: str, identifier: str) -> Optional[str]:
 
 
 def get_obofoundry_link(prefix: str, identifier: str) -> Optional[str]:
-    """Get the OBO Foundry URL if possible."""
+    """Get the OBO Foundry URL if possible.
+
+    :param prefix: The prefix
+    :param identifier: The identifier
+    :return: The OBO Foundry URL if the prefix can be mapped to an OBO Foundry entry
+
+    >>> get_obofoundry_link('chebi', '24431')
+    'http://purl.obolibrary.org/obo/CHEBI_24431'
+
+    For entries where there's a preferred prefix, it is respected.
+
+    >>> get_obofoundry_link('fbbt', '00007294')
+    'http://purl.obolibrary.org/obo/FBbt_00007294'
+    """
     fmt = get_obofoundry_format(prefix)
     if fmt is None:
         return None
-    return f'{fmt}_{identifier}'
+    return f'{fmt}{identifier}'
 
 
 def get_ols_link(prefix: str, identifier: str) -> Optional[str]:
