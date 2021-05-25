@@ -22,6 +22,9 @@ OBO_KEYS = {
     'description',
     'homepage',
 }
+SKIP = {
+    'bila',
+}
 
 
 def _prepare_obo(obofoundry_entry):  # noqa:C901
@@ -145,6 +148,9 @@ def align_obofoundry(registry):
             obofoundry_id_to_bioregistry_id[obofoundry_id] = bioregistry_id
 
     for obofoundry_prefix, obofoundry_entry in obofoundry_registry.items():
+        if obofoundry_prefix in SKIP:
+            secho(f'[{obofoundry_prefix}] skipping', fg='yellow')
+            continue
         # Get key by checking the miriam.id key
         bioregistry_id = obofoundry_id_to_bioregistry_id.get(obofoundry_prefix)
         if bioregistry_id is None:
