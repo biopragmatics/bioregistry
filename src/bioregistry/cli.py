@@ -15,6 +15,7 @@ from .external.cli import download
 from .generate_warnings_file import warnings
 from .lint import lint
 from .make_curation_list import curation
+from .prefix_maps import generate_context_json_ld
 
 
 @click.group()
@@ -74,6 +75,7 @@ def update(ctx: click.Context):
     ctx.invoke(compare)
     ctx.invoke(curation)
     ctx.invoke(warnings)
+    ctx.invoke(generate_context_json_ld)
 
 
 if __name__ == '__main__':

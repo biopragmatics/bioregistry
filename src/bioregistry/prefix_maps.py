@@ -13,7 +13,7 @@ from bioregistry.constants import DOCS_DATA
 
 
 @click.command()
-def main():
+def generate_context_json_ld():
     """Generate various JSON-LD context files."""
     contexts_directory = Path(DOCS_DATA) / 'contexts'
     contexts_directory.mkdir(parents=True, exist_ok=True)
@@ -37,4 +37,4 @@ def get_obofoundry_prefix_map() -> Mapping[str, str]:
 
 
 if __name__ == '__main__':
-    main()
+    generate_context_json_ld()
