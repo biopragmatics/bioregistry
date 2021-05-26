@@ -2,11 +2,14 @@
 
 """Web application for the Bioregistry."""
 
+import platform
+
 from flasgger import Swagger
 from flask import Blueprint, Flask, abort, jsonify, render_template, request
 from flask_bootstrap import Bootstrap
 
 import bioregistry
+from bioregistry import version
 from bioregistry.app.ui import ui_blueprint
 from .utils import _autocomplete, _get_identifier, _normalize_prefix_or_404, _search
 from ..resolve_identifier import _get_bioregistry_link
@@ -168,6 +171,32 @@ def summary():
 def download():
     """Render the download page."""
     return render_template('download.html')
+
+
+_VERSION = version.get_version()
+_GIT_HASH = version.get_git_hash()
+_PLATFORM = platform.platform()
+_PLATFORM_VERSION = platform.version()
+_PYTHON_VERSION = platform.python_version()
+
+
+@app.route('/sustainability')
+def sustainability():
+    """Render the sustainability page."""
+    return render_template(
+        'sustainability.html',
+        software_version=_VERSION,
+        software_git_hash=_GIT_HASH,
+        platform=_PLATFORM,
+        platform_version=_PLATFORM_VERSION,
+        python_version=_PYTHON_VERSION,
+    )
+
+
+@app.route('/usage')
+def usage():
+    """Render the programmatic usage page."""
+    return render_template('access.html')
 
 
 if __name__ == '__main__':
