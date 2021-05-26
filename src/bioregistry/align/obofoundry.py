@@ -7,7 +7,7 @@ import requests.exceptions
 import requests_ftp
 
 from ..external import get_obofoundry
-from ..utils import norm, secho, updater
+from ..utils import is_mismatch, norm, secho, updater
 
 requests_ftp.monkeypatch_session()
 session = requests.Session()
@@ -148,9 +148,12 @@ def align_obofoundry(registry):
         if 'obofoundry' in entry:
             continue
         obofoundry_id = obofoundry_norm_prefix_to_prefix.get(norm(bioregistry_id))
-        if obofoundry_id is not None:
-            entry['obofoundry'] = {'prefix': obofoundry_id}
-            obofoundry_id_to_bioregistry_id[obofoundry_id] = bioregistry_id
+        if obofoundry_id is None:
+            continue
+        if is_mismatch(bioregistry_id, 'obofoundry', obofoundry_id):
+            continue
+        entry['obofoundry'] = {'prefix': obofoundry_id}
+        obofoundry_id_to_bioregistry_id[obofoundry_id] = bioregistry_id
 
     for obofoundry_prefix, obofoundry_entry in obofoundry_registry.items():
         if obofoundry_prefix in SKIP:
@@ -161,6 +164,10 @@ def align_obofoundry(registry):
         if bioregistry_id is None:
             if obofoundry_entry.get('is_obsolete'):
                 secho(f'[{obofoundry_prefix}] skipping deprecated. If needed, add manually later', fg='yellow')
+                continue
+
+            # Don't automatically add a new entry that's already known as a mismatch (e.g., GEO)
+            if is_mismatch(obofoundry_prefix, 'obofoundry', obofoundry_prefix):
                 continue
 
             bioregistry_id = obofoundry_prefix
