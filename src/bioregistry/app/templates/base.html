@@ -60,11 +60,13 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ url_for("summary") }}">Summary</a>
-                    <a class="dropdown-item" href="{{ url_for("download") }}">Downloads</a>
-                    <a class="dropdown-item" href="{{ url_for("access") }}">Programmatic Access</a>
-                    <a class="dropdown-item" href="{{ url_for("sustainability") }}">Sustainability</a>
+                    <a class="dropdown-item" href="{{ url_for("usage") }}">Programmatic Usage</a>
+                    <a class="dropdown-item" href="{{ url_for("sustainability") }}">Deployment and Sustainability</a>
                     <!--<div class="dropdown-divider"></div>-->
                 </div>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('download') }}">Downloads</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('flasgger.apidocs') }}">API</a>

@@ -176,9 +176,9 @@ def sustainability():
     return render_template('sustainability.html')
 
 
-@app.route('/access')
-def access():
-    """Render the programmatic access page."""
+@app.route('/usage')
+def usage():
+    """Render the programmatic usage page."""
     return render_template('access.html')
 
 
