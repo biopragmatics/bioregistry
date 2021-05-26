@@ -36,6 +36,10 @@
         (HiTS)</a> at Harvard Medical School.
     </p>
     <h3>Software</h3>
+    <p>
+        These are the software and operating system specifications for the currently running instance of the
+        Bioregistry:
+    </p>
     <dl>
         <dt>Bioregistry Version</dt>
         <dd>{{ software_version }}</dd>
@@ -54,14 +58,19 @@
         <dt>Platform Version</dt>
         <dd>{{ platform_version }}</dd>
     </dl>
-    <h3>Deployment</h3>
+    <h3>Containerization</h3>
     <p>
-        A docker image is automatically built on a cron job in the
+        A Docker image is automatically built on a cron job in the
         <a href="https://github.com/bioregistry/bioregistry-docker"><i class="fab fa-github"></i>
             bioregistry/bioregistry-docker</a> GitHub repository
         and pushed to the <a href="https://hub.docker.com/r/bioregistry/bioregistry"><i class="fab fa-docker"></i>
-        bioregistry/bioregistry</a> DockerHub repository.
+        bioregistry/bioregistry</a> DockerHub repository. This image is built with the Python 3.9 alpine base image,
+        which significantly reduces non-essential components. The final compressed image weights less than 40 MB of disk
+        space and runs inside Docker with about 65 MB of memory at baseline. This could easily fit on a dedicated
+        <a href="https://aws.amazon.com/ec2/instance-types/t4/">t4g.nano</a> instance on AWS that costs about
+        $37/year on-demand or around $20/year reserved.
     </p>
+    <h3>Deployment</h3>
     <p>
         The Bioregistry's EC2 instance runs the following script on a cron job that stops the current running instance,
         pulls the latest image from this DockerHub repository and starts it back up. The whole process only takes a few
