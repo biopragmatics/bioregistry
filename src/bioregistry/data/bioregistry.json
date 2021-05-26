@@ -6023,7 +6023,16 @@
   "dctypes": {
     "example": "Collection",
     "homepage": "https://dublincore.org/specifications/dublin-core/dcmi-terms/",
+    "mappings": {
+      "prefixcommons": "dctypes"
+    },
     "name": "Dublin Core Types",
+    "prefixcommons": {
+      "formatter": "http://purl.org/dc/dcmitype/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "dctypes"
+    },
     "url": "http://purl.org/dc/dcmitype/$1"
   },
   "ddanat": {
@@ -8702,9 +8711,23 @@
     }
   },
   "faldo": {
+    "bioportal": {
+      "name": "Feature Annotation Location Description Ontology",
+      "prefix": "FALDO"
+    },
     "example": "ForwardStrandPosition",
     "homepage": "http://biohackathon.org/resource/faldo",
+    "mappings": {
+      "bioportal": "FALDO",
+      "prefixcommons": "faldo"
+    },
     "name": "Feature Annotation Location Description Ontology ",
+    "prefixcommons": {
+      "formatter": "http://biohackathon.org/resource/faldo#$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "faldo"
+    },
     "url": "http://biohackathon.org/resource/faldo#$1"
   },
   "fao": {
@@ -10018,10 +10041,11 @@
       "description": "The Genomic Epidemiology Ontology (GenEpiO) covers vocabulary necessary to identify, document and research foodborne pathogens and associated outbreaks.",
       "download": "http://purl.obolibrary.org/obo/genepio.owl",
       "homepage": "http://genepio.org/",
+      "license": "http://creativecommons.org/licenses/by/3.0/",
       "name": "Genomic Epidemiology Ontology",
       "prefix": "genepio",
-      "version": "2020-08-09",
-      "version.iri": "http://purl.obolibrary.org/obo/genepio/releases/2020-08-09/genepio.owl"
+      "version": "2021-05-24",
+      "version.iri": "http://purl.obolibrary.org/obo/genepio/releases/2021-05-24/genepio.owl"
     },
     "ols_version_date_format": "%Y-%m-%d",
     "prefixcommons": {
@@ -18192,8 +18216,8 @@
       "homepage": "https://github.com/NCI-Thesaurus/thesaurus-obo-edition",
       "name": "NCI Thesaurus OBO Edition",
       "prefix": "ncit",
-      "version": "21.01d",
-      "version.iri": "http://purl.obolibrary.org/obo/ncit/releases/2021-03-10/ncit.owl"
+      "version": "21.03e",
+      "version.iri": "http://purl.obolibrary.org/obo/ncit/releases/2021-04-12/ncit.owl"
     },
     "ols_version_type": "other",
     "prefixcommons": {
@@ -18858,8 +18882,22 @@
     }
   },
   "oa": {
+    "bioportal": {
+      "name": "Web Annotation Ontology",
+      "prefix": "OA"
+    },
     "homepage": "http://www.w3.org/ns/oa",
+    "mappings": {
+      "bioportal": "OA",
+      "prefixcommons": "oa"
+    },
     "name": "Web Annotation Ontology",
+    "prefixcommons": {
+      "formatter": "http://www.w3.org/ns/oa#$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "oa"
+    },
     "url": "http://www.w3.org/ns/oa#$1"
   },
   "oae": {
@@ -19118,7 +19156,16 @@
     "download": "https://github.com/geneontology/go-ontology/raw/master/contrib/oboInOwl.obo",
     "example": "DbXref",
     "homepage": "https://github.com/geneontology/go-ontology/tree/master/contrib",
+    "mappings": {
+      "prefixcommons": "oboInOwl"
+    },
     "name": "OBO in OWL",
+    "prefixcommons": {
+      "formatter": "http://www.geneontology.org/formats/oboInOwl#$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "oboInOwl"
+    },
     "url": "http://www.geneontology.org/formats/oboInOwl#$1"
   },
   "occ": {
@@ -23528,13 +23575,36 @@
   "rdf": {
     "example": "RDF",
     "homepage": "http://www.w3.org/1999/02/22-rdf-syntax-ns",
+    "mappings": {
+      "prefixcommons": "rdf"
+    },
     "name": "Resource Description Framework",
+    "prefixcommons": {
+      "formatter": "http://www.w3.org/1999/02/22-rdf-syntax-ns#$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "rdf"
+    },
     "url": "http://www.w3.org/1999/02/22-rdf-syntax-ns#$1"
   },
   "rdfs": {
+    "bioportal": {
+      "name": "The RDF Schema vocabulary",
+      "prefix": "RDFS"
+    },
     "example": "label",
     "homepage": "https://www.w3.org/TR/rdf-schema/",
+    "mappings": {
+      "bioportal": "RDFS",
+      "prefixcommons": "rdfs"
+    },
     "name": "RDF Schema",
+    "prefixcommons": {
+      "formatter": "http://www.w3.org/2000/01/rdf-schema#$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "rdfs"
+    },
     "url": "http://www.w3.org/2000/01/rdf-schema#$1"
   },
   "rdo": {
@@ -28587,7 +28657,16 @@
   "void": {
     "example": "feature",
     "homepage": "http://vocab.deri.ie/void",
+    "mappings": {
+      "prefixcommons": "void"
+    },
     "name": "Vocabulary of Interlinked Datasets",
+    "prefixcommons": {
+      "formatter": "http://rdfs.org/ns/void#$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "void"
+    },
     "url": "http://rdfs.org/ns/void#$1"
   },
   "vsao": {
@@ -29436,7 +29515,16 @@
   },
   "xsd": {
     "homepage": "http://www.w3.org/2001/XMLSchema",
+    "mappings": {
+      "prefixcommons": "xsd"
+    },
     "name": "XML Schema Definition",
+    "prefixcommons": {
+      "formatter": "http://www.w3.org/2001/XMLSchema#$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "xsd"
+    },
     "url": "http://www.w3.org/2001/XMLSchema#$1"
   },
   "xuo": {
