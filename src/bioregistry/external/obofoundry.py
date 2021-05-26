@@ -8,7 +8,6 @@ from operator import itemgetter
 from typing import Optional
 
 import click
-import pandas as pd
 import yaml
 
 from .utils import list_to_map
@@ -18,11 +17,9 @@ __all__ = [
     'OBOFOUNDRY_FULL_PATH',
     'OBOFOUNDRY_URL',
     'get_obofoundry',
-    'get_obofoundry_df',
 ]
 
 OBOFOUNDRY_FULL_PATH = BIOREGISTRY_MODULE.join(name='obofoundry.json')
-OBOFOUNDRY_SLIM_PATH = BIOREGISTRY_MODULE.join(name='obofoundry.tsv')
 OBOFOUNDRY_URL = 'https://raw.githubusercontent.com/OBOFoundry/OBOFoundry.github.io/master/registry/ontologies.yml'
 
 
@@ -65,32 +62,10 @@ def get_obofoundry(
     return entries
 
 
-def get_obofoundry_df(**kwargs):
-    """Get the OBO Foundry registry as a pre-processed dataframe."""
-    rows = [
-        (
-            'obofoundry',
-            entry['id'],
-            entry.get('preferredPrefix'),
-            entry['title'],
-            entry.get('is_obsolete', False),
-            entry.get('license', {}).get('label'),
-            entry.get('description'),
-        )
-        for entry in get_obofoundry(**kwargs)
-    ]
-    df = pd.DataFrame(rows, columns=[
-        'registry', 'prefix', 'preferred_prefix', 'name',
-        'redundant', 'license', 'description',
-    ])
-    df.to_csv(OBOFOUNDRY_SLIM_PATH, sep='\t', index=False)
-    return df
-
-
 @click.command()
 def main():
     """Reload the OBO Foundry data."""
-    get_obofoundry_df(force_download=True)
+    get_obofoundry(force_download=True)
 
 
 if __name__ == '__main__':
