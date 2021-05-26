@@ -17,7 +17,6 @@ __all__ = [
     'OBOFOUNDRY_FULL_PATH',
     'OBOFOUNDRY_URL',
     'get_obofoundry',
-    'get_obofoundry_df',
 ]
 
 OBOFOUNDRY_FULL_PATH = BIOREGISTRY_MODULE.join(name='obofoundry.json')
