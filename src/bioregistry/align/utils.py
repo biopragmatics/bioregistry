@@ -8,7 +8,7 @@ from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, S
 from tabulate import tabulate
 
 from bioregistry import normalize_prefix, read_registry
-from bioregistry.utils import write_bioregistry
+from bioregistry.utils import is_mismatch, write_bioregistry
 
 __all__ = [
     'Aligner',
@@ -67,6 +67,10 @@ class Aligner(ABC):
                 self._align_action(bioregistry_id, external_id, external_entry)
 
     def _align_action(self, bioregistry_id, external_id, external_entry):
+        # skip mismatches
+        if is_mismatch(bioregistry_id, self.key, external_id):
+            return
+
         # Add mapping
         self.internal_registry[bioregistry_id].setdefault('mappings', {})[self.key] = external_id
 

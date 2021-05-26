@@ -9,6 +9,7 @@ from collections import Counter
 
 import bioregistry
 from bioregistry.resolve import EMAIL_RE, _get_prefix_key, get_identifiers_org_prefix
+from bioregistry.utils import is_mismatch
 
 logger = logging.getLogger(__name__)
 
@@ -213,3 +214,8 @@ class TestDuplicates(unittest.TestCase):
                     if 1 < count
                 }
                 self.assertEqual(set(), duplicates, msg='Duplicates found')
+
+    def test_is_mismatch(self):
+        """Check for mismatches."""
+        self.assertTrue(is_mismatch('geo', 'ols', 'geo'))
+        self.assertFalse(is_mismatch('geo', 'miriam', 'geo'))

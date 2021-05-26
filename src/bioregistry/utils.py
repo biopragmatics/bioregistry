@@ -48,6 +48,11 @@ def read_mismatches() -> Mapping[str, Mapping[str, str]]:
         return json.load(file)
 
 
+def is_mismatch(bioregistry_prefix, external_metaprefix, external_prefix) -> bool:
+    """Return if the triple is a mismatch."""
+    return external_prefix in read_mismatches().get(bioregistry_prefix, {}).get(external_metaprefix, {})
+
+
 @lru_cache(maxsize=1)
 def read_collections():
     """Read the manually curated collections."""
