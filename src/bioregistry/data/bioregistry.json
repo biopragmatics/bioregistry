@@ -74,6 +74,11 @@
       "prefix": "ABS"
     }
   },
+  "ac": {
+    "homepage": "http://www.w3.org/ns/activitystreams",
+    "name": "Activity Streams",
+    "url": "http://www.w3.org/ns/activitystreams#$1"
+  },
   "aceview.worm": {
     "mappings": {
       "prefixcommons": "ACEVIEW.WORM"
@@ -5959,32 +5964,6 @@
       "prefix": "dc"
     }
   },
-  "dc.terms": {
-    "biolink": {
-      "formatter": "http://purl.org/dc/terms/$1",
-      "is_identifiers": false,
-      "is_obo": false,
-      "prefix": "dct"
-    },
-    "bioportal": {
-      "name": "DCMI Metadata Terms: properties in /terms/ namespace",
-      "prefix": "DCTERMS"
-    },
-    "example": "title",
-    "mappings": {
-      "biolink": "dct",
-      "bioportal": "DCTERMS",
-      "prefixcommons": "dcterms"
-    },
-    "name": "Dublin Core Metadata Vocabulary",
-    "prefixcommons": {
-      "formatter": "http://purl.org/dc/terms/$1",
-      "is_identifiers": false,
-      "is_obo": false,
-      "prefix": "dcterms"
-    },
-    "url": "https://dublincore.org/specifications/dublin-core/dcmi-terms/#$1"
-  },
   "dcat": {
     "biolink": {
       "formatter": "http://www.w3.org/ns/dcat#$1",
@@ -6011,6 +5990,41 @@
       "prefix": "dcat"
     },
     "url": "http://www.w3.org/ns/dcat#$1"
+  },
+  "dcterms": {
+    "biolink": {
+      "formatter": "http://purl.org/dc/terms/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "dct"
+    },
+    "bioportal": {
+      "name": "DCMI Metadata Terms: properties in /terms/ namespace",
+      "prefix": "DCTERMS"
+    },
+    "example": "title",
+    "mappings": {
+      "biolink": "dct",
+      "bioportal": "DCTERMS",
+      "prefixcommons": "dcterms"
+    },
+    "name": "Dublin Core Metadata Vocabulary",
+    "prefixcommons": {
+      "formatter": "http://purl.org/dc/terms/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "dcterms"
+    },
+    "synonyms": [
+      "dc.terms"
+    ],
+    "url": "https://dublincore.org/specifications/dublin-core/dcmi-terms/#$1"
+  },
+  "dctypes": {
+    "example": "Collection",
+    "homepage": "https://dublincore.org/specifications/dublin-core/dcmi-terms/",
+    "name": "Dublin Core Types",
+    "url": "http://purl.org/dc/dcmitype/$1"
   },
   "ddanat": {
     "bioportal": {
@@ -8686,6 +8700,12 @@
       "is_obo": false,
       "prefix": "FAIRSHARING"
     }
+  },
+  "faldo": {
+    "example": "ForwardStrandPosition",
+    "homepage": "http://biohackathon.org/resource/faldo",
+    "name": "Feature Annotation Location Description Ontology ",
+    "url": "http://biohackathon.org/resource/faldo#$1"
   },
   "fao": {
     "bioportal": {
@@ -12921,6 +12941,7 @@
     }
   },
   "idot": {
+    "homepage": "http://biomodels.net/vocab/idot.rdf",
     "mappings": {
       "prefixcommons": "IDOT"
     },
@@ -12942,7 +12963,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "IDOT"
-    }
+    },
+    "url": "https://biomodels.net/vocab/idot.rdf#$1"
   },
   "idr": {
     "mapping": {
@@ -18835,6 +18857,11 @@
       "prefix": "NUCLEARBD"
     }
   },
+  "oa": {
+    "homepage": "http://www.w3.org/ns/oa",
+    "name": "Web Annotation Ontology",
+    "url": "http://www.w3.org/ns/oa#$1"
+  },
   "oae": {
     "bioportal": {
       "name": "Ontology of Adverse Events",
@@ -19086,6 +19113,13 @@
       "is_obo": true,
       "prefix": "OBO"
     }
+  },
+  "oboinowl": {
+    "download": "https://github.com/geneontology/go-ontology/raw/master/contrib/oboInOwl.obo",
+    "example": "DbXref",
+    "homepage": "https://github.com/geneontology/go-ontology/tree/master/contrib",
+    "name": "OBO in OWL",
+    "url": "http://www.geneontology.org/formats/oboInOwl#$1"
   },
   "occ": {
     "miriam": {
@@ -20555,7 +20589,8 @@
       "is_identifiers": false,
       "is_obo": false,
       "prefix": "owl"
-    }
+    },
+    "url": "http://www.w3.org/2002/07/owl#$1"
   },
   "p3db.protein": {
     "mappings": {
@@ -23489,6 +23524,18 @@
       "version.iri": "http://purl.obolibrary.org/obo/rbo/releases/2021-05-21/rbo.owl"
     },
     "ols_version_date_format": "%Y-%m-%d"
+  },
+  "rdf": {
+    "example": "RDF",
+    "homepage": "http://www.w3.org/1999/02/22-rdf-syntax-ns",
+    "name": "Resource Description Framework",
+    "url": "http://www.w3.org/1999/02/22-rdf-syntax-ns#$1"
+  },
+  "rdfs": {
+    "example": "label",
+    "homepage": "https://www.w3.org/TR/rdf-schema/",
+    "name": "RDF Schema",
+    "url": "http://www.w3.org/2000/01/rdf-schema#$1"
   },
   "rdo": {
     "_download": "http://ratmine.mcw.edu/ontology/disease/RDO.obo",
@@ -28537,6 +28584,12 @@
       "prefix": "VO"
     }
   },
+  "void": {
+    "example": "feature",
+    "homepage": "http://vocab.deri.ie/void",
+    "name": "Vocabulary of Interlinked Datasets",
+    "url": "http://rdfs.org/ns/void#$1"
+  },
   "vsao": {
     "bioportal": {
       "name": "Vertebrate Skeletal Anatomy Ontology",
@@ -28943,6 +28996,7 @@
       "is_obo": false,
       "prefix": "WIKIDATA_PROPERTY"
     },
+    "example": "P4355",
     "mappings": {
       "biolink": "WIKIDATA_PROPERTY",
       "prefixcommons": "WD_Prop"
@@ -29379,6 +29433,11 @@
     },
     "ols_version_date_format": "%Y-%m-%d",
     "pattern": "^\\d+$"
+  },
+  "xsd": {
+    "homepage": "http://www.w3.org/2001/XMLSchema",
+    "name": "XML Schema Definition",
+    "url": "http://www.w3.org/2001/XMLSchema#$1"
   },
   "xuo": {
     "appears_in": [
