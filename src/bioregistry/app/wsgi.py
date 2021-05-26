@@ -180,7 +180,6 @@ _PLATFORM_VERSION = platform.version()
 _PYTHON_VERSION = platform.python_version()
 
 
-
 @app.route('/sustainability')
 def sustainability():
     """Render the sustainability page."""
