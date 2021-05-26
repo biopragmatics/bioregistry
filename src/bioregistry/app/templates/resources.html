@@ -19,7 +19,7 @@
     <script>
         $(document).ready(function () {
             $("#table-entries").DataTable({
-                "order": [[ 1, "asc" ]]
+                "order": [[1, "asc"]]
             });
             $("#table-entries_wrapper").children(":first-child").addClass("card-body");
             $("#table-entries_wrapper").children(":last-child").addClass("card-body");
@@ -38,6 +38,12 @@
                     </a>
                 </div>
             </div>
+        </div>
+        <div class="card-body" style="padding-bottom: 0">
+            <p style="margin-bottom: 0">
+                The registry contains metadata about ontologies, controlled vocabularies, and resources including their
+                preferred prefix, name, description, homepage, mappings to other registries, and more.
+            </p>
         </div>
         <table id="table-entries" class="table table-striped table-hover ">
             <thead>
