@@ -13,6 +13,8 @@ __all__ = [
     'DATA_DIRECTORY',
     'BIOREGISTRY_PATH',
     'METAREGISTRY_PATH',
+    'COLLECTIONS_PATH',
+    'MISMATCH_PATH',
     'BIOREGISTRY_MODULE',
     'EnsureEntry',
 ]
@@ -22,6 +24,7 @@ DATA_DIRECTORY = HERE / 'data'
 BIOREGISTRY_PATH = DATA_DIRECTORY / 'bioregistry.json'
 METAREGISTRY_PATH = DATA_DIRECTORY / 'metaregistry.json'
 COLLECTIONS_PATH = DATA_DIRECTORY / 'collections.json'
+MISMATCH_PATH = DATA_DIRECTORY / 'mismatch.json'
 
 BIOREGISTRY_MODULE = pystow.module('bioregistry')
 EnsureEntry = Any

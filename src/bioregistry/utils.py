@@ -13,7 +13,7 @@ from typing import Any, List, Mapping
 import click
 import requests
 
-from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH
+from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH, MISMATCH_PATH
 
 logger = logging.getLogger(__name__)
 
@@ -38,6 +38,13 @@ def read_bioregistry():
 def read_registry():
     """Read the Bioregistry as JSON."""
     with open(BIOREGISTRY_PATH, encoding='utf-8') as file:
+        return json.load(file)
+
+
+@lru_cache(maxsize=1)
+def read_mismatches() -> Mapping[str, Mapping[str, str]]:
+    """Read the mismatches as JSON."""
+    with MISMATCH_PATH.open() as file:
         return json.load(file)
 
 
