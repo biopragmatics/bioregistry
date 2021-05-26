@@ -2,10 +2,9 @@
 
 """Query, download, and format Wikidata as a registry."""
 
+import csv
 import logging
 from typing import Iterable, Tuple
-
-import pandas as pd
 
 from bioregistry.constants import BIOREGISTRY_MODULE
 from bioregistry.external.miriam import get_miriam
@@ -17,11 +16,9 @@ DATABASES_PATH = BIOREGISTRY_MODULE.join(name='wikidata_databases.tsv')
 MIRIAM_PATH = BIOREGISTRY_MODULE.join(name='wikidata_miriam.tsv')
 
 
-def get_database() -> pd.DataFrame:
+def _get_database():
     """Get the databases dataframe."""
-    df = pd.DataFrame(iter_database(), columns=['database_id', 'database_label', 'prop_id', 'prop_label'])
-    df.to_csv(DATABASES_PATH, sep='\t', index=False)
-    return df
+    return _ensure_df(DATABASES_PATH, iter_database, ['database_id', 'database_label', 'prop_id', 'prop_label'])
 
 
 def iter_database() -> Iterable[Tuple[str, str, str, str]]:
@@ -43,14 +40,30 @@ def iter_database() -> Iterable[Tuple[str, str, str, str]]:
         yield database_id, database_label, prop_id, prop_label
 
 
-def get_miriam_mappings() -> pd.DataFrame:
+HEADER = ['prop_id', 'prop_label', 'miriam_id', 'miriam_label']
+
+
+def get_miriam_mappings():
     """Get MIRIAM-Wikidata mappings."""
-    df = pd.DataFrame(iter_wikidata_mappings(), columns=['prop_id', 'prop_label', 'miriam_id', 'miriam_label'])
-    df.to_csv(MIRIAM_PATH, sep='\t', index=False)
-    return df
+    return _ensure_df(MIRIAM_PATH, iter_miriam_mappings, HEADER)
 
 
-def iter_wikidata_mappings() -> Iterable[Tuple[str, str, str, str]]:
+def _ensure_df(path, fn, header, force: bool = False):
+    if path.exists() and not force:
+        with path.open() as file:
+            reader = csv.reader(file, delimiter='\t')
+            _ = next(reader)  # header
+            return list(reader)
+
+    rv = list(fn())
+    with path.open('w') as file:
+        writer = csv.writer(file, delimiter='\t')
+        writer.writerow(header)
+        writer.writerows(rv)
+    return rv
+
+
+def iter_miriam_mappings() -> Iterable[Tuple[str, str, str, str]]:
     """Iterate over Wikidata xrefs."""
     miriam = get_miriam(mappify=True)
 
@@ -87,9 +100,9 @@ def iter_wikidata_mappings() -> Iterable[Tuple[str, str, str, str]]:
 def get_wikidata_registry():
     """Get the wikidata registry."""
     m = get_miriam_mappings()
-    get_database()
-    return set(m['miriam_label'])
+    _get_database()
+    return {row[3] for row in m}
 
 
 if __name__ == '__main__':
-    get_wikidata_registry()
+    print(get_wikidata_registry())
