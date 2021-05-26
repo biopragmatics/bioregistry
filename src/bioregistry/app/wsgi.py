@@ -170,5 +170,17 @@ def download():
     return render_template('download.html')
 
 
+@app.route('/sustainability')
+def sustainability():
+    """Render the sustainability page."""
+    return render_template('sustainability.html')
+
+
+@app.route('/access')
+def access():
+    """Render the programmatic access page."""
+    return render_template('access.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)  # noqa

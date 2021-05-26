@@ -14,9 +14,10 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Download</h2>
+    <h2>Downloads</h2>
+    <h3>Registry</h3>
     <p>
-        The bioregistry database can be downloaded as:
+        The registry can be downloaded as:
     </p>
     <ul>
         <li>
@@ -31,7 +32,47 @@
     <p>
         The manually curated portions of these data are available under the
         <a href="https://creativecommons.org/share-your-work/public-domain/cc0/">
+            <i class="fab fa-creative-commons-zero"></i> CC0 1.0 Universal License</a>. Aggregated data are
+        redistributed under their original licenses.
+    </p>
+    <h3>Metaregistry</h3>
+    <p>
+        The metaregistry can be downloaded as:
+    </p>
+    <ul>
+        <li>
+            <a href="https://github.com/bioregistry/bioregistry/blob/main/src/bioregistry/data/metaregistry.json">JSON</a>
+            (reference file)
+        </li>
+    </ul>
+    <p>
+        The entirety of the metaregistry is manually curated and is available under the
+        <a href="https://creativecommons.org/share-your-work/public-domain/cc0/">
             <i class="fab fa-creative-commons-zero"></i> CC0 1.0 Universal License</a>.
+    </p>
+    <h3>Collections</h3>
+    <p>
+        The collections can be downloaded as:
+    </p>
+    <ul>
+        <li>
+            <a href="https://github.com/bioregistry/bioregistry/blob/main/src/bioregistry/data/collections.json">JSON</a>
+            (reference file)
+        </li>
+    </ul>
+    <p>
+        The entirety of the collections is manually curated and is available under the
+        <a href="https://creativecommons.org/share-your-work/public-domain/cc0/">
+            <i class="fab fa-creative-commons-zero"></i> CC0 1.0 Universal License</a>.
+    </p>
+    <h2>Derived and Related Resources</h2>
+    <h3>Bioregistry Regular Expression Report</h3>
+    <p>
+        The Bioregistry Regular Expression Report uses <a href="https://github.com/pyobo/pyobo">PyOBO</a> to check how
+        consistent all of the regular expression patterns are with the actual identifiers from databases that are parsed
+        by PyOBO. This contains most entries from the OBO Foundry that are still accessible as well as several
+        additional resources such as HGNC, UniProt, etc. The automatically generated/updated report is available
+        <a href="https://bioregistry.github.io/regex-report/">here</a>.
     </p>
     <h3>Bioregistry Knowledge Graph</h3>
     <p>
@@ -40,53 +81,4 @@
         <a href="{{ url_for("ui.resolve", prefix="ndex", identifier="aa78a43f-9c4d-11eb-9e72-0ac135e8bacf") }}">
             Network Data Exchange (NDEx)</a>.
     </p>
-    <h2>API Usage</h2>
-    <p>
-        See the Swagger <a href="{{ url_for('flasgger.apidocs') }}">API documentation</a>.
-    </p>
-    <h2>Programmatic Usage</h2>
-    <p>
-        The Python source code can be found at
-        <a href="https://github.com/bioregistry/bioregistry"><i class="fab fa-github"></i> bioregistry/bioregistry</a>.
-        It can be installed with <code>pip install bioregistry</code> or in development mode by following
-        <a href="https://github.com/bioregistry/bioregistry#-installation">these instructions</a>.
-    </p>
-    <h3>Example Usage</h3>
-    <p>
-        The Bioregistry can be used to normalize prefixes across MIRIAM and all the (very plentiful) variants that pop
-        up in ontologies in OBO Foundry and the OLS with the <code>normalize_prefix()</code> function.
-    </p>
-    <pre><code class="language-python">
-    import bioregistry
-
-    # This works for synonym prefixes, like:
-    assert 'ncbitaxon' == bioregistry.normalize_prefix('taxonomy')
-
-    # This works for common mistaken prefixes, like:
-    assert 'chembl.compound' == bioregistry.normalize_prefix('chembl')
-
-    # This works for prefixes that are often written many ways, like:
-    assert 'eccode' == bioregistry.normalize_prefix('ec-code')
-    assert 'eccode' == bioregistry.normalize_prefix('EC_CODE')
-
-    # If a prefix is not registered, it gives back `None`
-    assert bioregistry.normalize_prefix('not a real key') is None
-    </code></pre>
-
-    Entries in the Bioregistry can be looked up with the <code>get()</code> function.
-
-    <pre><code class="language-python">
-    import bioregistry
-
-    entry = bioregistry.get('taxonomy')
-    # there are lots of mysteries to discover in this dictionary!
-    </code></pre>
-
-    The full Bioregistry can be read in a Python project using:
-
-    <pre><code class="language-python">
-    import bioregistry
-
-    registry = bioregistry.read_bioregistry()
-    </code></pre>
 {% endblock %}
