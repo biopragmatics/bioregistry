@@ -5964,38 +5964,6 @@
       "prefix": "dc"
     }
   },
-  "dc.terms": {
-    "biolink": {
-      "formatter": "http://purl.org/dc/terms/$1",
-      "is_identifiers": false,
-      "is_obo": false,
-      "prefix": "dct"
-    },
-    "bioportal": {
-      "name": "DCMI Metadata Terms: properties in /terms/ namespace",
-      "prefix": "DCTERMS"
-    },
-    "example": "title",
-    "mappings": {
-      "biolink": "dct",
-      "bioportal": "DCTERMS",
-      "prefixcommons": "dcterms"
-    },
-    "name": "Dublin Core Metadata Vocabulary",
-    "prefixcommons": {
-      "formatter": "http://purl.org/dc/terms/$1",
-      "is_identifiers": false,
-      "is_obo": false,
-      "prefix": "dcterms"
-    },
-    "url": "https://dublincore.org/specifications/dublin-core/dcmi-terms/#$1"
-  },
-  "dc.types": {
-    "example": "Collection",
-    "homepage": "https://dublincore.org/specifications/dublin-core/dcmi-terms/",
-    "name": "Dublin Core Types",
-    "url": "http://purl.org/dc/dcmitype/$1"
-  },
   "dcat": {
     "biolink": {
       "formatter": "http://www.w3.org/ns/dcat#$1",
@@ -6022,6 +5990,41 @@
       "prefix": "dcat"
     },
     "url": "http://www.w3.org/ns/dcat#$1"
+  },
+  "dcterms": {
+    "biolink": {
+      "formatter": "http://purl.org/dc/terms/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "dct"
+    },
+    "bioportal": {
+      "name": "DCMI Metadata Terms: properties in /terms/ namespace",
+      "prefix": "DCTERMS"
+    },
+    "example": "title",
+    "mappings": {
+      "biolink": "dct",
+      "bioportal": "DCTERMS",
+      "prefixcommons": "dcterms"
+    },
+    "name": "Dublin Core Metadata Vocabulary",
+    "prefixcommons": {
+      "formatter": "http://purl.org/dc/terms/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "dcterms"
+    },
+    "synonyms": [
+      "dc.terms"
+    ],
+    "url": "https://dublincore.org/specifications/dublin-core/dcmi-terms/#$1"
+  },
+  "dctypes": {
+    "example": "Collection",
+    "homepage": "https://dublincore.org/specifications/dublin-core/dcmi-terms/",
+    "name": "Dublin Core Types",
+    "url": "http://purl.org/dc/dcmitype/$1"
   },
   "ddanat": {
     "bioportal": {
@@ -12960,7 +12963,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "IDOT"
-    }
+    },
+    "url": "https://biomodels.net/vocab/idot.rdf#$1"
   },
   "idr": {
     "mapping": {
