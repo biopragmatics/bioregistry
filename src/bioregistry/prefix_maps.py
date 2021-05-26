@@ -11,6 +11,7 @@ import click
 
 import bioregistry
 from bioregistry.constants import DOCS_DATA
+from bioregistry.resolve import get_format_url
 
 logger = logging.getLogger(__name__)
 
@@ -40,17 +41,9 @@ def get_collection_prefix_map(key: str) -> Mapping[str, str]:
     """Get a prefix map for a given collection."""
     rv = {}
     for prefix in bioregistry.read_collections()[key]['resources']:
-        fmt = bioregistry.get_format(prefix)
-        if fmt is None:
-            logging.warning('collection term missing formatter: %s', prefix)
-            continue
-        if not fmt.endswith('$1'):
-            logging.warning('formatter missing $1: %s', prefix)
-            continue
-        if fmt.count('$1') != 1:
-            logging.warning('formatter has multiple $1: %s', prefix)
-            continue
-        rv[prefix] = fmt[:-len('$1')]
+        fmt = get_format_url(prefix)
+        if fmt is not None:
+            rv[prefix] = fmt
     return rv
 
 

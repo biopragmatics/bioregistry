@@ -288,6 +288,21 @@ def get_format(prefix: str) -> Optional[str]:
     return None
 
 
+def get_format_url(prefix: str) -> Optional[str]:
+    """Get a well-formed format URL for usage in a prefix map."""
+    fmt = get_format(prefix)
+    if fmt is None:
+        logging.warning('term missing formatter: %s', prefix)
+        return None
+    if not fmt.endswith('$1'):
+        logging.warning('formatter missing $1: %s', prefix)
+        return None
+    if fmt.count('$1') != 1:
+        logging.warning('formatter has multiple $1: %s', prefix)
+        return None
+    return fmt[:-len('$1')]
+
+
 def get_example(prefix: str) -> Optional[str]:
     """Get an example identifier, if it's available."""
     entry = get(prefix)
