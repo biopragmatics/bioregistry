@@ -35,6 +35,25 @@
         Systems Pharmacology</a> and <a href="https://hits.harvard.edu/">Harvard Program in Therapeutic Science
         (HiTS)</a> at Harvard Medical School.
     </p>
+    <h3>Software</h3>
+    <dl>
+        <dt>Bioregistry Version</dt>
+        <dd>{{ software_version }}</dd>
+        {% if software_git_hash %}
+            <dt>Git Hash</dt>
+            <dd>
+                <a href="https://github.com/bioregistry/bioregistry/commit/{{ software_git_hash }}">
+                    {{ software_git_hash }}
+                </a>
+            </dd>
+        {% endif %}
+        <dt>Python</dt>
+        <dd>{{ python_version }}</dd>
+        <dt>Platform</dt>
+        <dd>{{ platform }}</dd>
+        <dt>Platform Version</dt>
+        <dd>{{ platform_version }}</dd>
+    </dl>
     <h3>Deployment</h3>
     <p>
         A docker image is automatically built on a cron job in the
