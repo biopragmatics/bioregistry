@@ -1,11 +1,13 @@
 example:
 - name: Amphibian gross anatomy
   prefix: aao
+- name: Activity Streams
+  prefix: ac
 - name: Allotrope Merged Ontology Suite
   prefix: afo
 - name: Agronomy Ontology
   prefix: agro
-- name: Ontology for the Anatomy of the Insect SkeletoMuscular system (AISM)
+- name: Ontology for the Anatomy of the Insect SkeletoMuscular system
   prefix: aism
 - name: The Amphioxus Development and Anatomy Ontology
   prefix: amphx
@@ -221,8 +223,6 @@ example:
   prefix: imdrf
 - name: Interaction Network Ontology
   prefix: ino
-- name: InterLex
-  prefix: interlex
 - name: KEGG Enzyme
   prefix: kegg.enzyme
 - name: KEGG LIGAND
@@ -269,6 +269,8 @@ example:
   prefix: nist
 - name: NOMEN - A nomenclatural ontology for biological names
   prefix: nomen
+- name: Web Annotation Ontology
+  prefix: oa
 - name: Ontology of Adverse Events
   prefix: oae
 - name: Ontology of Arthropod Circulatory Systems
@@ -398,10 +400,10 @@ example:
   prefix: vuid
 - name: WGS84 Geo Positioning
   prefix: wgs84
-- name: Wikidata Property
-  prefix: wikidata.property
 - name: Cross-linker reagents ontology
   prefix: xl
+- name: XML Schema Definition
+  prefix: xsd
 - name: XUO
   prefix: xuo
 - name: Maize gross anatomy
@@ -493,8 +495,6 @@ formatter:
   prefix: idoden
 - name: International Medical Device Regulators Forum
   prefix: imdrf
-- name: InterLex
-  prefix: interlex
 - name: KEGG Enzyme
   prefix: kegg.enzyme
 - name: KEGG LIGAND
@@ -533,8 +533,6 @@ formatter:
   prefix: obo
 - name: Observational Medical Outcomes Partnership
   prefix: omop
-- name: OWL Ontology
-  prefix: owl
 - name: Protein Data Bank in Europe
   prefix: pdbe
 - name: PSI Extended File Format
@@ -605,11 +603,13 @@ formatter:
 pattern:
 - name: Amphibian gross anatomy
   prefix: aao
+- name: Activity Streams
+  prefix: ac
 - name: Allotrope Merged Ontology Suite
   prefix: afo
 - name: Agronomy Ontology
   prefix: agro
-- name: Ontology for the Anatomy of the Insect SkeletoMuscular system (AISM)
+- name: Ontology for the Anatomy of the Insect SkeletoMuscular system
   prefix: aism
 - name: Alzforum Mutations
   prefix: alzforum.mutation
@@ -763,10 +763,12 @@ pattern:
   prefix: cvdo
 - name: Disease Class
   prefix: dc
-- name: Dublin Core Metadata Vocabulary
-  prefix: dc.terms
 - name: Data Catalog
   prefix: dcat
+- name: Dublin Core Metadata Vocabulary
+  prefix: dcterms
+- name: Dublin Core Types
+  prefix: dctypes
 - name: Human Dermatological Disease Ontology
   prefix: dermo
 - name: DICOM Controlled Terminology
@@ -817,6 +819,8 @@ pattern:
   prefix: ev
 - name: eVOC mouse development stage
   prefix: evm
+- name: 'Feature Annotation Location Description Ontology '
+  prefix: faldo
 - name: Flybase Quantitative Loci
   prefix: fbql
 - name: Flybase Cell Line
@@ -909,8 +913,6 @@ pattern:
   prefix: inn
 - name: Interaction Network Ontology
   prefix: ino
-- name: InterLex
-  prefix: interlex
 - name: Insect Resistance Ontology
   prefix: iro
 - name: Jackson Laboratories Strain
@@ -995,6 +997,8 @@ pattern:
   prefix: nomen
 - name: Natural Product Activity and Species Source Database
   prefix: npass
+- name: Web Annotation Ontology
+  prefix: oa
 - name: Ontology of Adverse Events
   prefix: oae
 - name: Ontology of Arthropod Circulatory Systems
@@ -1005,6 +1009,8 @@ pattern:
   prefix: obib
 - name: Internal OBO and PyOBO Relations
   prefix: obo
+- name: OBO in OWL
+  prefix: oboinowl
 - name: The Ontology of Genes and Genomes
   prefix: ogg
 - name: Ontology for genetic interval
@@ -1091,6 +1097,10 @@ pattern:
   prefix: qudt
 - name: Radiation Biology Ontology
   prefix: rbo
+- name: Resource Description Framework
+  prefix: rdf
+- name: RDF Schema
+  prefix: rdfs
 - name: RGD Disease_Ontology
   prefix: rdo
 - name: Reaxys
@@ -1180,6 +1190,8 @@ pattern:
   prefix: vmc
 - name: Vaccine Ontology
   prefix: vo
+- name: Vocabulary of Interlinked Datasets
+  prefix: void
 - name: Vertebrate Skeletal Anatomy Ontology
   prefix: vsao
 - name: Veterinary Substances DataBase
@@ -1196,6 +1208,8 @@ pattern:
   prefix: wormbase
 - name: Cross-linker reagents ontology
   prefix: xl
+- name: XML Schema Definition
+  prefix: xsd
 - name: XUO
   prefix: xuo
 - name: Maize gross anatomy
@@ -1205,6 +1219,8 @@ wikidata:
   prefix: aao
 - name: Annotated Regulatory Binding Sites
   prefix: abs
+- name: Activity Streams
+  prefix: ac
 - name: Aceview Worm
   prefix: aceview.worm
 - name: Addgene Plasmid Repository
@@ -1223,7 +1239,7 @@ wikidata:
   prefix: agricola
 - name: Agronomy Ontology
   prefix: agro
-- name: Ontology for the Anatomy of the Insect SkeletoMuscular system (AISM)
+- name: Ontology for the Anatomy of the Insect SkeletoMuscular system
   prefix: aism
 - name: Allergome
   prefix: allergome
@@ -1681,10 +1697,12 @@ wikidata:
   prefix: dbsnp
 - name: Disease Class
   prefix: dc
-- name: Dublin Core Metadata Vocabulary
-  prefix: dc.terms
 - name: Data Catalog
   prefix: dcat
+- name: Dublin Core Metadata Vocabulary
+  prefix: dcterms
+- name: Dublin Core Types
+  prefix: dctypes
 - name: Dictyostelium discoideum anatomy
   prefix: ddanat
 - name: Dictyostelium discoideum phenotype ontology
@@ -1870,6 +1888,8 @@ wikidata:
   prefix: facebase
 - name: FAIRsharing
   prefix: fairsharing
+- name: 'Feature Annotation Location Description Ontology '
+  prefix: faldo
 - name: Fungal gross anatomy
   prefix: fao
 - name: Biological Imaging Methods Ontology
@@ -1972,7 +1992,7 @@ wikidata:
   prefix: genpept
 - name: Genome Properties
   prefix: genprop
-- name: Geographical Entity Ontology
+- name: NCBI Gene Expression Omnibus
   prefix: geo
 - name: Geographical Entity Ontology
   prefix: geoeo
@@ -2594,6 +2614,8 @@ wikidata:
   prefix: npass
 - name: NucleaRDB
   prefix: nuclearbd
+- name: Web Annotation Ontology
+  prefix: oa
 - name: Ontology of Adverse Events
   prefix: oae
 - name: Ontology of Arthropod Circulatory Systems
@@ -2608,6 +2630,8 @@ wikidata:
   prefix: obib
 - name: Internal OBO and PyOBO Relations
   prefix: obo
+- name: OBO in OWL
+  prefix: oboinowl
 - name: OpenCitations Corpus
   prefix: occ
 - name: Open Citation Identifier
@@ -2620,6 +2644,8 @@ wikidata:
   prefix: odam
 - name: Open Data Commons for Spinal Cord Injury
   prefix: odc.sci
+- name: Open Data Commons for Traumatic Brain Injury
+  prefix: odc.tbi
 - name: Odor Molecules DataBase
   prefix: odor
 - name: The Ontology of Genes and Genomes
@@ -2910,6 +2936,10 @@ wikidata:
   prefix: rbk
 - name: Radiation Biology Ontology
   prefix: rbo
+- name: Resource Description Framework
+  prefix: rdf
+- name: RDF Schema
+  prefix: rdfs
 - name: RGD Disease_Ontology
   prefix: rdo
 - name: Reactome - a curated knowledgebase of biological pathways
@@ -3272,6 +3302,8 @@ wikidata:
   prefix: vmhreaction
 - name: Vaccine Ontology
   prefix: vo
+- name: Vocabulary of Interlinked Datasets
+  prefix: void
 - name: Vertebrate Skeletal Anatomy Ontology
   prefix: vsao
 - name: Veterinary Substances DataBase
@@ -3320,6 +3352,8 @@ wikidata:
   prefix: xlmod
 - name: Xenopus Phenotype Ontology
   prefix: xpo
+- name: XML Schema Definition
+  prefix: xsd
 - name: XUO
   prefix: xuo
 - name: Yeast Deletion and the Mitochondrial Proteomics Project

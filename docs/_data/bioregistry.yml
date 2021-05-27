@@ -61,6 +61,10 @@
     is_identifiers: true
     is_obo: false
     prefix: ABS
+- homepage: http://www.w3.org/ns/activitystreams
+  name: Activity Streams
+  prefix: ac
+  url: http://www.w3.org/ns/activitystreams#$1
 - mappings:
     prefixcommons: ACEVIEW.WORM
   miriam:
@@ -296,6 +300,7 @@
     prefix: AISM
   mappings:
     bioportal: AISM
+  name: Ontology for the Anatomy of the Insect SkeletoMuscular system
   obofoundry:
     contact: entiminae@gmail.com
     contact.label: "Jennifer C. Gir\xF3n"
@@ -316,8 +321,9 @@
     license: https://creativecommons.org/licenses/by/4.0/
     name: Ontology for the Anatomy of the Insect SkeletoMuscular system
     prefix: aism
-    version: '2021-04-26'
-    version.iri: http://purl.obolibrary.org/obo/aism/releases/2021-04-26/aism.owl
+    version: '2021-05-21'
+    version.iri: http://purl.obolibrary.org/obo/aism/releases/2021-05-21/aism.owl
+  ols_version_date_format: '%Y-%m-$%d'
   prefix: aism
 - mappings:
     prefixcommons: ALLERGOME
@@ -5497,27 +5503,6 @@
     is_obo: false
     prefix: dc
 - biolink:
-    formatter: http://purl.org/dc/terms/$1
-    is_identifiers: false
-    is_obo: false
-    prefix: dct
-  bioportal:
-    name: 'DCMI Metadata Terms: properties in /terms/ namespace'
-    prefix: DCTERMS
-  example: title
-  mappings:
-    biolink: dct
-    bioportal: DCTERMS
-    prefixcommons: dcterms
-  name: Dublin Core Metadata Vocabulary
-  prefix: dc.terms
-  prefixcommons:
-    formatter: http://purl.org/dc/terms/$1
-    is_identifiers: false
-    is_obo: false
-    prefix: dcterms
-  url: https://dublincore.org/specifications/dublin-core/dcmi-terms/#$1
-- biolink:
     formatter: http://www.w3.org/ns/dcat#$1
     is_identifiers: false
     is_obo: false
@@ -5539,6 +5524,41 @@
     is_obo: false
     prefix: dcat
   url: http://www.w3.org/ns/dcat#$1
+- biolink:
+    formatter: http://purl.org/dc/terms/$1
+    is_identifiers: false
+    is_obo: false
+    prefix: dct
+  bioportal:
+    name: 'DCMI Metadata Terms: properties in /terms/ namespace'
+    prefix: DCTERMS
+  example: title
+  mappings:
+    biolink: dct
+    bioportal: DCTERMS
+    prefixcommons: dcterms
+  name: Dublin Core Metadata Vocabulary
+  prefix: dcterms
+  prefixcommons:
+    formatter: http://purl.org/dc/terms/$1
+    is_identifiers: false
+    is_obo: false
+    prefix: dcterms
+  synonyms:
+  - dc.terms
+  url: https://dublincore.org/specifications/dublin-core/dcmi-terms/#$1
+- example: Collection
+  homepage: https://dublincore.org/specifications/dublin-core/dcmi-terms/
+  mappings:
+    prefixcommons: dctypes
+  name: Dublin Core Types
+  prefix: dctypes
+  prefixcommons:
+    formatter: http://purl.org/dc/dcmitype/$1
+    is_identifiers: false
+    is_obo: false
+    prefix: dctypes
+  url: http://purl.org/dc/dcmitype/$1
 - bioportal:
     name: Dictyostelium Discoideum Anatomy Ontology
     prefix: DDANAT
@@ -6131,6 +6151,7 @@
     homepage: http://purl.obolibrary.org/obo/fbcv
     license: CC-BY
     name: Drosophila Phenotype Ontology
+    preferredPrefix: FBcv
     prefix: dpo
     repo: https://github.com/FlyBase/drosophila-phenotype-ontolog.git
   ols:
@@ -7909,6 +7930,7 @@
     homepage: http://ctdbase.org/help/exposureHelp.jsp
     license: CC BY 4.0
     name: Exposure ontology
+    preferredPrefix: ExO
     prefix: exo
   ols:
     description: Vocabularies for describing exposure data to inform understanding
@@ -7979,6 +8001,22 @@
     is_obo: false
     prefix: FAIRSHARING
 - bioportal:
+    name: Feature Annotation Location Description Ontology
+    prefix: FALDO
+  example: ForwardStrandPosition
+  homepage: http://biohackathon.org/resource/faldo
+  mappings:
+    bioportal: FALDO
+    prefixcommons: faldo
+  name: 'Feature Annotation Location Description Ontology '
+  prefix: faldo
+  prefixcommons:
+    formatter: http://biohackathon.org/resource/faldo#$1
+    is_identifiers: false
+    is_obo: false
+    prefix: faldo
+  url: http://biohackathon.org/resource/faldo#$1
+- bioportal:
     name: Fungal Gross Anatomy Ontology
     prefix: FAO
   example: '0000001'
@@ -8026,6 +8064,7 @@
     homepage: http://cellimagelibrary.org/
     license: CC BY 4.0
     name: Biological Imaging Methods Ontology
+    preferredPrefix: FBbi
     prefix: fbbi
   ols:
     description: A structured controlled vocabulary of sample preparation, visualization
@@ -8067,6 +8106,7 @@
     homepage: http://purl.obolibrary.org/obo/fbbt
     license: CC-BY
     name: Drosophila gross anatomy
+    preferredPrefix: FBbt
     prefix: fbbt
     repo: https://github.com/FlyBase/drosophila-anatomy-developmental-ontology.git
   ols:
@@ -8105,6 +8145,7 @@
     homepage: http://purl.obolibrary.org/obo/fbcv
     license: CC-BY
     name: FlyBase Controlled Vocabulary
+    preferredPrefix: FBcv
     prefix: fbcv
     repo: https://github.com/FlyBase/flybase-controlled-vocabulary.git
   ols:
@@ -8142,6 +8183,7 @@
     homepage: http://purl.obolibrary.org/obo/fbdv
     license: CC-BY
     name: Drosophila development
+    preferredPrefix: FBdv
     prefix: fbdv
     repo: https://github.com/FlyBase/drosophila-developmental-ontology.git
   ols:
@@ -8514,12 +8556,12 @@
       that accurately and consistently describes foods commonly known in cultures
       from around the world.
     download: http://purl.obolibrary.org/obo/foodon.owl
-    homepage: http://foodontology.github.io/foodon/
+    homepage: https://foodon.org/
     license: https://creativecommons.org/licenses/by/3.0/
     name: Food Ontology
     prefix: foodon
-    version: '2021-03-20'
-    version.iri: http://purl.obolibrary.org/obo/foodon/releases/2021-03-20/foodon.owl
+    version: '2021-05-24'
+    version.iri: http://purl.obolibrary.org/obo/foodon/releases/2021-05-24/foodon.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: foodon
   prefixcommons:
@@ -8769,8 +8811,8 @@
     license: https://creativecommons.org/licenses/by/4.0/
     name: Fission Yeast Phenotype Ontology (FYPO)
     prefix: fypo
-    version: '2021-05-13'
-    version.iri: http://purl.obolibrary.org/obo/fypo/releases/2021-05-13/fypo.owl
+    version: '2021-05-20'
+    version.iri: http://purl.obolibrary.org/obo/fypo/releases/2021-05-20/fypo.owl
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d{7}$
   prefix: fypo
@@ -9140,10 +9182,11 @@
       to identify, document and research foodborne pathogens and associated outbreaks.
     download: http://purl.obolibrary.org/obo/genepio.owl
     homepage: http://genepio.org/
+    license: http://creativecommons.org/licenses/by/3.0/
     name: Genomic Epidemiology Ontology
     prefix: genepio
-    version: '2020-08-09'
-    version.iri: http://purl.obolibrary.org/obo/genepio/releases/2020-08-09/genepio.owl
+    version: '2021-05-24'
+    version.iri: http://purl.obolibrary.org/obo/genepio/releases/2021-05-24/genepio.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: genepio
   prefixcommons:
@@ -9314,22 +9357,6 @@
     sampleId: GDS1234
   n2t:
     prefix: geo
-  obofoundry:
-    contact: hoganwr@gmail.com
-    contact.label: Bill Hogan
-    deprecated: false
-    homepage: https://github.com/ufbmi/geographical-entity-ontology/wiki
-    license: CC-BY 4.0
-    name: Geographical Entity Ontology
-    prefix: geo
-  ols:
-    description: An ontology of geographical entities
-    download: http://purl.obolibrary.org/obo/geo.owl
-    homepage: https://github.com/ufbmi/geographical-entity-ontology/wiki
-    license: https://creativecommons.org/licenses/by/4.0/
-    name: Geographical Entity Ontology
-    prefix: geo
-    version: production version 2016-03-26
   prefix: geo
 - bioportal:
     name: Geographical Entity Ontology
@@ -11316,6 +11343,7 @@
     homepage: https://github.com/obophenotype/developmental-stage-ontologies/wiki/HsapDv
     license: CC-BY
     name: Human Developmental Stages
+    preferredPrefix: HsapDv
     prefix: hsapdv
   ols:
     description: Life cycle stages for Human
@@ -11848,7 +11876,8 @@
   n2t:
     prefix: idoo
   prefix: idoo
-- mappings:
+- homepage: http://biomodels.net/vocab/idot.rdf
+  mappings:
     prefixcommons: IDOT
   miriam:
     deprecated: false
@@ -11868,6 +11897,7 @@
     is_identifiers: true
     is_obo: false
     prefix: IDOT
+  url: https://biomodels.net/vocab/idot.rdf#$1
 - mapping:
     fairsharing: FAIRsharing.6wf1zw
   miriam:
@@ -12271,7 +12301,25 @@
     is_identifiers: true
     is_obo: false
     prefix: INTACT.MOLECULE
-- name: InterLex
+- miriam:
+    deprecated: false
+    description: 'InterLex is a dynamic lexicon, initially built on the foundation
+      of NeuroLex (PMID: 24009581), of biomedical terms and common data elements designed
+      to help improve the way that biomedical scientists communicate about their data,
+      so that information systems can find data more easily and provide more powerful
+      means of integrating data across distributed resources and datasets. InterLex
+      allows for the association of data fields and data values to common data elements
+      and terminologies enabling the crowdsourcing of data-terminology mappings within
+      and across communities. InterLex provides a stable layer on top of the many
+      other existing terminologies, lexicons, ontologies, and common data element
+      collections and provides a set of inter-lexical and inter-data-lexical mappings. '
+    id: 00000814
+    name: InterLex
+    namespaceEmbeddedInLui: false
+    pattern: ^[0-9]+$
+    prefix: ilx
+    sampleId: 0101963
+  name: InterLex
   prefix: interlex
   references:
   - https://github.com/AllenInstitute/nomenclature
@@ -15430,6 +15478,7 @@
     homepage: https://github.com/obophenotype/developmental-stage-ontologies/wiki/MmusDv
     license: CC-BY
     name: Mouse Developmental Stages
+    preferredPrefix: MmusDv
     prefix: mmusdv
   ols:
     description: Life cycle stages for Mus Musculus
@@ -16524,6 +16573,7 @@
     homepage: https://github.com/obophenotype/ncbitaxon
     license: CC0 1.0 Universal
     name: NCBI organismal classification
+    preferredPrefix: NCBITaxon
     prefix: ncbitaxon
   ols:
     description: An ontology representation of the NCBI organismal taxonomy
@@ -16623,8 +16673,8 @@
     homepage: https://github.com/NCI-Thesaurus/thesaurus-obo-edition
     name: NCI Thesaurus OBO Edition
     prefix: ncit
-    version: 21.01d
-    version.iri: http://purl.obolibrary.org/obo/ncit/releases/2021-03-10/ncit.owl
+    version: 21.03e
+    version.iri: http://purl.obolibrary.org/obo/ncit/releases/2021-04-12/ncit.owl
   ols_version_type: other
   prefix: ncit
   prefixcommons:
@@ -17232,6 +17282,21 @@
     is_obo: false
     prefix: NUCLEARBD
 - bioportal:
+    name: Web Annotation Ontology
+    prefix: OA
+  homepage: http://www.w3.org/ns/oa
+  mappings:
+    bioportal: OA
+    prefixcommons: oa
+  name: Web Annotation Ontology
+  prefix: oa
+  prefixcommons:
+    formatter: http://www.w3.org/ns/oa#$1
+    is_identifiers: false
+    is_obo: false
+    prefix: oa
+  url: http://www.w3.org/ns/oa#$1
+- bioportal:
     name: Ontology of Adverse Events
     prefix: OAE
   mappings:
@@ -17471,6 +17536,19 @@
     is_identifiers: false
     is_obo: true
     prefix: OBO
+- download: https://github.com/geneontology/go-ontology/raw/master/contrib/oboInOwl.obo
+  example: DbXref
+  homepage: https://github.com/geneontology/go-ontology/tree/master/contrib
+  mappings:
+    prefixcommons: oboInOwl
+  name: OBO in OWL
+  prefix: oboinowl
+  prefixcommons:
+    formatter: http://www.geneontology.org/formats/oboInOwl#$1
+    is_identifiers: false
+    is_obo: false
+    prefix: oboInOwl
+  url: http://www.geneontology.org/formats/oboInOwl#$1
 - miriam:
     deprecated: false
     description: The OpenCitations Corpus is open repository of scholarly citation
@@ -17583,6 +17661,18 @@
     prefix: odc.sci
     sampleId: '602'
   prefix: odc.sci
+- miriam:
+    deprecated: false
+    description: The Open Data Commons for Traumatic Brain Injury is a cloud-based
+      community-driven repository to store, share, and publish traumatic brain injury
+      research data.
+    id: 00000816
+    name: Open Data Commons for Traumatic Brain Injury
+    namespaceEmbeddedInLui: false
+    pattern: ^[0-9]*$
+    prefix: odc.tbi
+    sampleId: '408'
+  prefix: odc.tbi
 - mappings:
     prefixcommons: ODOR
   miriam:
@@ -17876,6 +17966,7 @@
     homepage: https://github.com/obophenotype/developmental-stage-ontologies/wiki/OlatDv
     license: CC-BY
     name: Medaka Developmental Stages
+    preferredPrefix: OlatDv
     prefix: olatdv
   ols:
     description: Life cycle stages for Medaka
@@ -18875,6 +18966,7 @@
     is_identifiers: false
     is_obo: false
     prefix: owl
+  url: http://www.w3.org/2002/07/owl#$1
 - mappings:
     prefixcommons: P3DB.PROTEIN
   miriam:
@@ -19431,6 +19523,7 @@
     homepage: https://github.com/obophenotype/developmental-stage-ontologies/wiki/PdumDv
     license: CC-BY
     name: Platynereis Developmental Stages
+    preferredPrefix: PdumDv
     prefix: pdumdv
   ols:
     description: Life cycle stages for Platynereis dumerilii
@@ -21554,16 +21647,45 @@
     prefix: rbo
     repo: https://github.com/Radiobiology-Informatics-Consortium/RBO.git
   ols:
-    description: The RBO is an ontology about Radiation Biology, with emphasis on
-      Space Biology.
+    description: RBO is an ontology for the effects of radiation on biota in terrestrial
+      and space environments.
     download: http://purl.obolibrary.org/obo/rbo.owl
     homepage: https://github.com/Radiobiology-Informatics-Consortium/RBO
+    license: http://creativecommons.org/licenses/by/3.0/
     name: Radiation Biology Ontology
     prefix: rbo
-    version: '2021-02-26'
-    version.iri: http://purl.obolibrary.org/obo/rbo/releases/2021-02-26/rbo.owl
+    version: '2021-05-21'
+    version.iri: http://purl.obolibrary.org/obo/rbo/releases/2021-05-21/rbo.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: rbo
+- example: RDF
+  homepage: http://www.w3.org/1999/02/22-rdf-syntax-ns
+  mappings:
+    prefixcommons: rdf
+  name: Resource Description Framework
+  prefix: rdf
+  prefixcommons:
+    formatter: http://www.w3.org/1999/02/22-rdf-syntax-ns#$1
+    is_identifiers: false
+    is_obo: false
+    prefix: rdf
+  url: http://www.w3.org/1999/02/22-rdf-syntax-ns#$1
+- bioportal:
+    name: The RDF Schema vocabulary
+    prefix: RDFS
+  example: label
+  homepage: https://www.w3.org/TR/rdf-schema/
+  mappings:
+    bioportal: RDFS
+    prefixcommons: rdfs
+  name: RDF Schema
+  prefix: rdfs
+  prefixcommons:
+    formatter: http://www.w3.org/2000/01/rdf-schema#$1
+    is_identifiers: false
+    is_obo: false
+    prefix: rdfs
+  url: http://www.w3.org/2000/01/rdf-schema#$1
 - _download: http://ratmine.mcw.edu/ontology/disease/RDO.obo
   _download_comment: Problem with security certificate
   name: RGD Disease_Ontology
@@ -26178,6 +26300,18 @@
     is_identifiers: false
     is_obo: true
     prefix: VO
+- example: feature
+  homepage: http://vocab.deri.ie/void
+  mappings:
+    prefixcommons: void
+  name: Vocabulary of Interlinked Datasets
+  prefix: void
+  prefixcommons:
+    formatter: http://rdfs.org/ns/void#$1
+    is_identifiers: false
+    is_obo: false
+    prefix: void
+  url: http://rdfs.org/ns/void#$1
 - bioportal:
     name: Vertebrate Skeletal Anatomy Ontology
     prefix: VSAO
@@ -26365,6 +26499,7 @@
     homepage: https://github.com/obophenotype/c-elegans-gross-anatomy-ontology
     license: CC-BY 4.0
     name: C. elegans Gross Anatomy Ontology
+    preferredPrefix: WBbt
     prefix: wbbt
     repo: https://github.com/obophenotype/c-elegans-gross-anatomy-ontology.git
   ols:
@@ -26407,6 +26542,7 @@
     homepage: https://github.com/obophenotype/c-elegans-development-ontology
     license: CC BY 4.0
     name: C. elegans development ontology
+    preferredPrefix: WBls
     prefix: wbls
     repo: https://github.com/obophenotype/c-elegans-development-ontology.git
   ols:
@@ -26449,6 +26585,7 @@
     homepage: https://github.com/obophenotype/c-elegans-phenotype-ontology
     license: CC BY 4.0
     name: C. elegans phenotype
+    preferredPrefix: WBPhenotype
     prefix: wbphenotype
     repo: https://github.com/obophenotype/c-elegans-phenotype-ontology.git
   ols:
@@ -26519,6 +26656,7 @@
     is_identifiers: false
     is_obo: false
     prefix: WIKIDATA_PROPERTY
+  example: P4355
   mappings:
     biolink: WIKIDATA_PROPERTY
     prefixcommons: WD_Prop
@@ -26902,6 +27040,17 @@
   ols_version_date_format: '%Y-%m-%d'
   pattern: ^\d+$
   prefix: xpo
+- homepage: http://www.w3.org/2001/XMLSchema
+  mappings:
+    prefixcommons: xsd
+  name: XML Schema Definition
+  prefix: xsd
+  prefixcommons:
+    formatter: http://www.w3.org/2001/XMLSchema#$1
+    is_identifiers: false
+    is_obo: false
+    prefix: xsd
+  url: http://www.w3.org/2001/XMLSchema#$1
 - appears_in:
   - hsapdv
   name: XUO
