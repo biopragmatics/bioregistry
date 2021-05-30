@@ -3145,6 +3145,18 @@
       "prefix": "cbioportal"
     }
   },
+  "ccdc": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The Cambridge Crystallographic Data Centre (CCDC) develops and maintains the Cambridge Stuctural Database, the world's most comprehensive archive of small-molecule crystal structure data. A CCDC Number is a unique identifier assigned to a dataset deposited with the CCDC.",
+      "id": "00000818",
+      "name": "CCDC Number",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d{6,7}$",
+      "prefix": "ccdc",
+      "sampleId": "1829126"
+    }
+  },
   "ccds": {
     "mappings": {
       "prefixcommons": "CCDS",
@@ -5304,6 +5316,18 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "CSA"
+    }
+  },
+  "csd": {
+    "miriam": {
+      "deprecated": false,
+      "description": "The Cambridge Stuctural Database (CSD) is the world's most comprehensive collection of small-molecule crystal structures. Entries curated into the CSD are identified by a CSD Refcode.",
+      "id": "00000820",
+      "name": "Cambridge Structural Database",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[A-Z]{6}(\\d{2})?$",
+      "prefix": "csd",
+      "sampleId": "PELNAW"
     }
   },
   "csp": {
@@ -10234,7 +10258,7 @@
       "prefix": "geo"
     }
   },
-  "geoeo": {
+  "geogeo": {
     "bioportal": {
       "name": "Geographical Entity Ontology",
       "prefix": "GEO"
@@ -10242,6 +10266,16 @@
     "mappings": {
       "bioportal": "GEO",
       "prefixcommons": "GEO"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "An ontology and inventory of geopolitical entities such as nations and their components (states, provinces, districts, counties) and the actual physical territories over which they have jurisdiction.  We thus distinguish and assign different identifiers to the US in \"The US declared war on Germany\" vs. the US in \"The plane entered US airspace\".",
+      "id": "00000824",
+      "name": "Geographical Entity Ontology",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^GEO_[0-9]{9}$",
+      "prefix": "geogeo",
+      "sampleId": "GEO_000000021"
     },
     "not_available_as_obo": true,
     "obofoundry": {
@@ -24082,7 +24116,7 @@
     },
     "miriam": {
       "deprecated": false,
-      "description": "Rhea is a manually annotated reaction database, where all reaction participants (reactants and products) are linked to the ChEBI database (Chemical Entities of Biological Interest), providing detailed information about structure, formulae and charge. It is populated with the reactions found in the EC list, IntEnz and ENZYME databases), as well as other biochemical reactions, including those that are often termed \"spontaneous\".",
+      "description": " Rhea is an expert-curated knowledgebase of chemical and transport reactions of biological interest. Enzyme-catalyzed and spontaneously occurring reactions are curated from peer-reviewed literature and represented in a computationally tractable manner by using the ChEBI (Chemical Entities of Biological Interest) ontology to describe reaction participants.\n\nRhea covers the reactions described by the IUBMB Enzyme Nomenclature as well as many additional reactions and can be used for enzyme annotation, genome-scale metabolic modeling and omics-related analyses. Rhea is the standard for enzyme and transporter annotation in UniProtKB.",
       "id": "00000082",
       "name": "Rhea",
       "namespaceEmbeddedInLui": false,
