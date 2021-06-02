@@ -8,6 +8,7 @@ import click
 import yaml
 from more_click import make_web_command
 
+from bioregistry import read_collections, read_metaregistry
 from .align.cli import align
 from .compare import compare
 from .constants import DOCS_DATA
@@ -32,10 +33,12 @@ main.add_command(make_web_command('bioregistry.app.wsgi:app'))
 
 
 @main.command()
-def copy():
+def export():
     """Copy the source Bioregistry to the docs folder."""
     from .utils import read_registry
     registry = read_registry()
+
+    # YAML - registry
     ov = [
         {
             'prefix': prefix,
@@ -45,6 +48,24 @@ def copy():
     ]
     with open(os.path.join(DOCS_DATA, 'bioregistry.yml'), 'w') as file:
         yaml.dump(ov, file)
+
+    import pandas as pd
+    rows = []
+    for identifier, data in read_collections().items():
+        rows.append((
+            identifier,
+            data['name'],
+            data['description'],
+            '|'.join(data['resources']),
+            '|'.join(e['name'] for e in data['authors']),
+            '|'.join(e['orcid'] for e in data['authors']),
+        ))
+    df = pd.DataFrame(rows, columns=['identifier', 'name', 'description', 'resources', 'author_names', 'author_orcids'])
+    df.to_csv(os.path.join(DOCS_DATA, 'collections.tsv'), index=False, sep='\t')
+
+    df = pd.DataFrame.from_dict(dict(read_metaregistry()), orient='index')
+    df.index.name = 'metaprefix'
+    df.to_csv(os.path.join(DOCS_DATA, 'metaregistry.tsv'), sep='\t')
 
 
 @main.command()
@@ -72,7 +93,7 @@ def update(ctx: click.Context):
     ctx.invoke(download)
     ctx.invoke(align)
     ctx.invoke(lint)
-    ctx.invoke(copy)
+    ctx.invoke(exports)
     ctx.invoke(compare)
     ctx.invoke(curation)
     ctx.invoke(warnings)
