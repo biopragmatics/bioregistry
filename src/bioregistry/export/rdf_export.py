@@ -34,7 +34,10 @@ orcid = Namespace('https://orcid.org/')
 @click.command()
 def export_rdf():
     """Export RDF."""
-    get_full_rdf().serialize(os.path.join(DOCS_DATA, 'bioregistry.ttl'), format='turtle')
+    graph = get_full_rdf()
+    graph.serialize(os.path.join(DOCS_DATA, 'bioregistry.ttl'), format='turtle')
+    graph.serialize(os.path.join(DOCS_DATA, 'bioregistry.nt'), format='nt')
+    graph.serialize(os.path.join(DOCS_DATA, 'bioregistry.xml'), format='xml')
 
 
 def _bind(graph: rdflib.Graph) -> None:
