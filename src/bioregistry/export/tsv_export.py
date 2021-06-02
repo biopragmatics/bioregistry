@@ -5,7 +5,6 @@
 import os
 
 import click
-import pandas as pd
 
 from bioregistry import read_collections, read_metaregistry
 from .. import resolve
@@ -33,12 +32,15 @@ def get_collections_df():
             '|'.join(e['name'] for e in data['authors']),
             '|'.join(e['orcid'] for e in data['authors']),
         ))
+
+    import pandas as pd
     df = pd.DataFrame(rows, columns=['identifier', 'name', 'description', 'resources', 'author_names', 'author_orcids'])
     return df
 
 
 def get_metaregistry_df():
     """Get a dataframe of all metaresources."""
+    import pandas as pd
     df = pd.DataFrame.from_dict(dict(read_metaregistry()), orient='index')
     df.index.name = 'metaprefix'
     return df
@@ -78,6 +80,7 @@ def get_registry_df():
             # TODO could add more, especially mappings
         ))
 
+    import pandas as pd
     df = pd.DataFrame(rows, columns=[
         'identifier', 'name', 'homepage', 'description', 'pattern',
         'example', 'email', 'formatter', 'download', 'synonyms',

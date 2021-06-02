@@ -8,8 +8,8 @@ from typing import Optional
 
 import click
 import rdflib
-from rdflib import BNode, FOAF, Literal, Namespace, RDF, RDFS, XSD
-from rdflib.namespace import ClosedNamespace
+from rdflib import BNode, Literal
+from rdflib.namespace import ClosedNamespace, FOAF, Namespace, RDF, RDFS, XSD
 
 import bioregistry
 from bioregistry import read_collections, read_metaregistry, read_registry
