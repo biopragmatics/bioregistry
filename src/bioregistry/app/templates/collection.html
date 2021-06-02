@@ -11,9 +11,11 @@
                     <h5 style="margin: 0">{{ entry.name }}</h5>
                 </div>
                 <div class="col-4 text-right">
-                    <a href="{{ url_for("api.collection", identifier=identifier) }}">
-                        JSON <i class="fas fa-download"></i>
-                    </a>
+                    {% for label, key in formats %}
+                        <a href="{{ url_for("api.collection", identifier=identifier, format=key) }}">
+                            {{ label }} <i class="fas fa-download"></i>
+                        </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>

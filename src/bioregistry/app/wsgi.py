@@ -5,141 +5,42 @@
 import platform
 
 from flasgger import Swagger
-from flask import Blueprint, Flask, abort, jsonify, render_template, request
+from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 
 import bioregistry
 from bioregistry import version
-from bioregistry.app.ui import ui_blueprint
-from .utils import _autocomplete, _get_identifier, _normalize_prefix_or_404, _search
+from .api import api_blueprint
+from .ui import ui_blueprint
 from ..resolve_identifier import _get_bioregistry_link
 
 app = Flask(__name__)
 Swagger.DEFAULT_CONFIG.update({
-    'title': 'Bioregistry API',
-    'description': 'A service for resolving CURIEs',
-    'contact': {
-        'responsibleDeveloper': 'Charles Tapley Hoyt',
-        'email': 'cthoyt@gmail.com',
+    "info": {
+        'title': 'Bioregistry',
+        'description': 'A service for resolving CURIEs',
+        'contact': {
+            'responsibleDeveloper': 'Charles Tapley Hoyt',
+            'email': 'cthoyt@gmail.com',
+        },
+        'version': '1.0',
+        'license': {
+            'name': 'Code available under the MIT License',
+            'url': "https://github.com/bioregistry/bioregistry/blob/main/LICENSE",
+        },
     },
-    'version': '1.0',
+    "host": "bioregistry.io",
+    "tags": [
+        {
+            "name": "collections",
+            "externalDocs": {
+                "url": "https://bioregistry.io/collection/",
+            },
+        },
+    ],
 })
 Swagger(app)
 Bootstrap(app)
-
-api_blueprint = Blueprint('api', __name__, url_prefix='/api')
-
-
-@api_blueprint.route('/registry/')
-def resources():
-    """List the entire Bioregistry."""
-    return jsonify(bioregistry.read_registry())
-
-
-@api_blueprint.route('/metaregistry/')
-def metaresources():
-    """List the entire Bioregistry metaregistry."""
-    return jsonify(bioregistry.read_metaregistry())
-
-
-@api_blueprint.route('/metaregistry/<metaprefix>')
-def metaresource(metaprefix: str):
-    """List the registry."""
-    data = bioregistry.get_registry(metaprefix)
-    if not data:
-        abort(404, f'Invalid metaprefix: {metaprefix}')
-    return jsonify(data)
-
-
-@api_blueprint.route('/collection/')
-def collections():
-    """Get the collection."""
-    return jsonify(bioregistry.read_collections())
-
-
-@api_blueprint.route('/collection/<identifier>')
-def collection(identifier: str):
-    """Get the collection."""
-    data = bioregistry.get_collection(identifier)
-    if not data:
-        abort(404, f'Invalid collection: {identifier}')
-    return jsonify(data)
-
-
-@api_blueprint.route('/registry/<prefix>')
-def resource(prefix: str):
-    """Get an entry.
-
-    ---
-    parameters:
-    - name: prefix
-      in: path
-      description: The prefix for the entry
-      required: true
-      type: string
-      example: doid
-    """  # noqa:DAR101,DAR201
-    prefix = _normalize_prefix_or_404(prefix)
-    return jsonify(prefix=prefix, **bioregistry.get(prefix))  # type:ignore
-
-
-@api_blueprint.route('/reference/<prefix>:<identifier>')
-def reference(prefix: str, identifier: str):
-    """Look up information on the CURIE.
-
-    ---
-    parameters:
-    - name: prefix
-      in: path
-      description: The prefix for the entry
-      required: true
-      type: string
-      example: efo
-    - name: identifier
-      in: path
-      description: The identifier for the entry
-      required: true
-      type: string
-      example: 0000311
-    """  # noqa:DAR101,DAR201
-    return jsonify(_get_identifier(prefix, identifier))
-
-
-@api_blueprint.route('/search')
-def search():
-    """Search for a prefix.
-
-    ---
-    parameters:
-    - name: q
-      in: query
-      description: The prefix for the entry
-      required: true
-      type: string
-    """  # noqa:DAR101,DAR201
-    q = request.args.get('q')
-    if q is None:
-        abort(400)
-    return jsonify(_search(q))
-
-
-@api_blueprint.route('/autocomplete')
-def autocomplete():
-    """Complete a resolution query.
-
-    ---
-    parameters:
-    - name: q
-      in: query
-      description: The prefix for the entry
-      required: true
-      type: string
-    """  # noqa:DAR101,DAR201
-    q = request.args.get('q')
-    if q is None:
-        abort(400)
-    return jsonify(_autocomplete(q))
-
 
 app.register_blueprint(api_blueprint)
 app.register_blueprint(ui_blueprint)

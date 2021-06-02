@@ -33,9 +33,11 @@
             <div class="row">
                 <div class="col-8"><h5 style="margin: 0">Registry</h5></div>
                 <div class="col-4 text-right">
-                    <a href="{{ url_for("api.resources") }}">
-                        JSON <i class="fas fa-download"></i>
-                    </a>
+                    {% for label, key in formats %}
+                        <a href="{{ url_for("api.resources", format=key) }}">
+                            {{ label }} <i class="fas fa-download"></i>
+                        </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>

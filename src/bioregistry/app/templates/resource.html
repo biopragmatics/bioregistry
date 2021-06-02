@@ -6,9 +6,9 @@
 {% block scripts %}
     {{ super() }}
     <script type="text/javascript">
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     </script>
 {% endblock %}
 
@@ -26,9 +26,11 @@
                     </h5>
                 </div>
                 <div class="col-4 text-right">
-                    <a href="{{ url_for("api.resource", prefix=prefix) }}">
-                        JSON <i class="fas fa-download"></i>
-                    </a>
+                    {% for label, key in formats %}
+                        <a href="{{ url_for("api.resource", prefix=prefix, format=key) }}">
+                            {{ label }} <i class="fas fa-download"></i>
+                        </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>

@@ -15,6 +15,11 @@ __all__ = [
 
 ui_blueprint = Blueprint('ui', __name__)
 
+FORMATS = [
+    ("JSON", "json"),
+    ("YAML", "yaml"),
+]
+
 
 @ui_blueprint.route('/registry/')
 def resources():
@@ -32,19 +37,32 @@ def resources():
         )
         for prefix in bioregistry.read_registry()
     ]
-    return render_template('resources.html', rows=rows)
+
+    return render_template(
+        'resources.html',
+        rows=rows,
+        formats=FORMATS,
+    )
 
 
 @ui_blueprint.route('/metaregistry/')
 def metaresources():
     """Serve the Bioregistry metaregistry page."""
-    return render_template('metaresources.html', rows=bioregistry.read_metaregistry().values())
+    return render_template(
+        'metaresources.html',
+        rows=bioregistry.read_metaregistry().values(),
+        formats=FORMATS,
+    )
 
 
 @ui_blueprint.route('/collection/')
 def collections():
     """Serve the Bioregistry collection page."""
-    return render_template('collections.html', rows=bioregistry.read_collections().items())
+    return render_template(
+        'collections.html',
+        rows=bioregistry.read_collections().items(),
+        formats=FORMATS,
+    )
 
 
 @ui_blueprint.route('/registry/<prefix>')
@@ -73,6 +91,7 @@ def resource(prefix: str):
         banana=bioregistry.get_banana(prefix),
         description=bioregistry.get_description(prefix),
         providers=None if example is None else _get_resource_providers(prefix, example),
+        formats=FORMATS,
     )
 
 
@@ -102,6 +121,7 @@ def metaresource(metaprefix: str):
             None
         ),
         entry=entry,
+        formats=FORMATS,
     )
 
 
@@ -115,6 +135,7 @@ def collection(identifier: str):
         'collection.html',
         identifier=identifier,
         entry=entry,
+        formats=FORMATS,
     )
 
 
@@ -127,6 +148,7 @@ def reference(prefix: str, identifier: str):
         name=bioregistry.get_name(prefix),
         identifier=identifier,
         providers=_get_resource_providers(prefix, identifier),
+        formats=FORMATS,
     )
 
 
