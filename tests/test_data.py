@@ -244,10 +244,14 @@ class TestMetaregistry(unittest.TestCase):
                 # When a registry is a resolver, it means it
                 # can resolve entries (prefixes) + identifiers
                 self.assertIn('resolver', data)
+                if data['resolver']:
+                    self.assertIn('resolver_url', data)
+                    self.assertIn('$1', data['resolver_url'])
+                    self.assertIn('$2', data['resolver_url'])
 
                 invalid_keys = set(data).difference({
                     'prefix', 'name', 'homepage', 'download', 'registry',
                     'provider', 'resolver', 'description', 'formatter',
-                    'example',
+                    'example', 'resolver_url',
                 })
                 self.assertEqual(set(), invalid_keys, msg='invalid metadata')
