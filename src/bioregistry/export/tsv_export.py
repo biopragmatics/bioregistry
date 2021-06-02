@@ -2,6 +2,7 @@
 
 """Export components of the bioregistry to TSV."""
 
+import csv
 import os
 
 import click
@@ -15,12 +16,50 @@ from ..utils import read_registry
 @click.command()
 def export_tsv():
     """Export TSV."""
-    get_collections_df().to_csv(os.path.join(DOCS_DATA, 'collections.tsv'), index=False, sep='\t')
-    get_metaregistry_df().to_csv(os.path.join(DOCS_DATA, 'metaregistry.tsv'), sep='\t')
-    get_registry_df().to_csv(os.path.join(DOCS_DATA, 'registry.tsv'), index=False, sep='\t')
+    with open(os.path.join(DOCS_DATA, 'collections.tsv'), 'w') as file:
+        writer = csv.writer(file, delimiter='\t')
+        writer.writerow(COLLECTIONS_HEADER)
+        writer.writerows(get_collections_rows())
+
+    with open(os.path.join(DOCS_DATA, 'metaregistry.tsv'), 'w') as file:
+        writer = csv.writer(file, delimiter='\t')
+        writer.writerow(METAREGISTRY_HEADER)
+        writer.writerows(get_metaregistry_rows())
+
+    with open(os.path.join(DOCS_DATA, 'registry.tsv'), 'w') as file:
+        writer = csv.writer(file, delimiter='\t')
+        writer.writerow(REGISTRY_HEADER)
+        writer.writerows(get_registry_rows())
 
 
-def get_collections_df():
+COLLECTIONS_HEADER = ['identifier', 'name', 'description', 'resources', 'author_names', 'author_orcids']
+METAREGISTRY_HEADER = [
+    'metaprefix',
+    'name',
+    'homepage',
+    'description',
+    'download',
+    'example',
+    'provider',
+    'registry',
+    'resolver',
+    'provider_formatter',
+    'resolver_formatter',
+]
+METAPREFIXES = [
+    k
+    for k in sorted(read_metaregistry())
+    if k not in {'bioregistry', 'biolink', 'ncbi', 'fairsharing', 'go'}
+]
+REGISTRY_HEADER = [
+    'identifier', 'name', 'homepage', 'description', 'pattern',
+    'example', 'email', 'formatter', 'download', 'synonyms',
+    'deprecated', *METAPREFIXES, 'part_of', 'provides',
+    # 'type',
+]
+
+
+def get_collections_rows():
     """Get a dataframe of all collections."""
     rows = []
     for identifier, data in read_collections().items():
@@ -32,28 +71,31 @@ def get_collections_df():
             '|'.join(e['name'] for e in data['authors']),
             '|'.join(e['orcid'] for e in data['authors']),
         ))
-
-    import pandas as pd
-    df = pd.DataFrame(rows, columns=['identifier', 'name', 'description', 'resources', 'author_names', 'author_orcids'])
-    return df
+    return rows
 
 
-def get_metaregistry_df():
+def get_metaregistry_rows():
     """Get a dataframe of all metaresources."""
-    import pandas as pd
-    df = pd.DataFrame.from_dict(dict(read_metaregistry()), orient='index')
-    df.index.name = 'metaprefix'
-    return df
+    rows = []
+    for metaprefix, data in read_metaregistry().items():
+        rows.append((
+            metaprefix,
+            data['name'],
+            data['homepage'],
+            data['description'],
+            data.get('download'),
+            data['example'],
+            data['provider'],
+            data['registry'],
+            data['resolver'],
+            data.get('formatter'),
+            data.get('resolver_url'),
+        ))
+    return rows
 
 
-def get_registry_df():
+def get_registry_rows():
     """Get a dataframe of all resources."""
-    metaprefixes = [
-        k
-        for k in sorted(read_metaregistry())
-        if k not in {'bioregistry', 'biolink', 'ncbi', 'fairsharing', 'go'}
-    ]
-
     rows = []
     for prefix, data in read_registry().items():
         mappings = resolve.get_mappings(prefix)
@@ -71,22 +113,15 @@ def get_registry_df():
             resolve.is_deprecated(prefix),
             *[
                 mappings.get(metaprefix)
-                for metaprefix in metaprefixes
+                for metaprefix in METAPREFIXES
             ],
             # '|'.join(data.get('appears_in', [])),
             data.get('part_of'),
             data.get('provides'),
-            data.get('type'),
+            # data.get('type'),
             # TODO could add more, especially mappings
         ))
-
-    import pandas as pd
-    df = pd.DataFrame(rows, columns=[
-        'identifier', 'name', 'homepage', 'description', 'pattern',
-        'example', 'email', 'formatter', 'download', 'synonyms',
-        'deprecated', *metaprefixes, 'part_of', 'provides', 'type',
-    ])
-    return df
+    return rows
 
 
 if __name__ == '__main__':
