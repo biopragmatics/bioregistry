@@ -8,18 +8,60 @@ import unittest
 from collections import Counter
 
 import bioregistry
-from bioregistry.resolve import EMAIL_RE, _get_prefix_key, get_identifiers_org_prefix
+from bioregistry.resolve import EMAIL_RE, _get_prefix_key
 from bioregistry.utils import is_mismatch
 
 logger = logging.getLogger(__name__)
 
 
-class TestDuplicates(unittest.TestCase):
-    """Tests for duplicates."""
+class TestRegistry(unittest.TestCase):
+    """Tests for the registry."""
 
     def setUp(self) -> None:
         """Set up the test case."""
         self.registry = bioregistry.read_registry()
+
+    def test_keys(self):
+        """Check the required metadata is there."""
+        keys = {
+            # Required
+            'description',
+            'homepage',
+            'name',
+            # Recommended
+            'contact',
+            'download',
+            'example',
+            'pattern',
+            'type',
+            'url',
+            # Only there if true
+            'no_own_terms',
+            'not_available_as_obo',
+            'namespaceEmbeddedInLui',
+            # Only there if false
+            # Lists
+            'appears_in',
+            # Other
+            'deprecated',
+            'banana',
+            'mappings',
+            'ols_version_date_format',
+            'ols_version_prefix',
+            'ols_version_suffix_split',
+            'ols_version_type',
+            'part_of',
+            'provides',
+            'references',
+            'synonyms',
+        }
+        keys.update(bioregistry.read_metaregistry())
+        for prefix, entry in self.registry.items():
+            extra = {k for k in set(entry) - keys if not k.startswith('_')}
+            if not extra:
+                continue
+            with self.subTest(prefix=prefix):
+                self.fail(f'had extra keys: {extra}')
 
     def test_names(self):
         """Test that all entries have a name."""
@@ -128,17 +170,13 @@ class TestDuplicates(unittest.TestCase):
 
     def test_examples_pass_patterns(self):
         """Test that all examples pass the patterns."""
-        for prefix, entry in self.registry.items():
+        for prefix in self.registry:
             pattern = bioregistry.get_pattern_re(prefix)
             example = bioregistry.get_example(prefix)
             if pattern is None or example is None:
                 continue
-
-            if bioregistry.namespace_in_lui(prefix):
-                miriam_prefix = get_identifiers_org_prefix(prefix)
-                if entry.get('namespace.capitalized') or 'obofoundry' in entry:
-                    miriam_prefix = miriam_prefix.upper()
-                example = f'{miriam_prefix}:{example}'
+            if prefix == 'ark':
+                continue  # FIXME
             if bioregistry.validate(prefix, example):
                 continue
             with self.subTest(prefix=prefix):
@@ -189,8 +227,19 @@ class TestDuplicates(unittest.TestCase):
                     except ValueError:
                         logger.warning('Wrong format for %s (%s)', bioregistry_id, version)
 
-    def test_collections(self):
+    def test_is_mismatch(self):
+        """Check for mismatches."""
+        self.assertTrue(is_mismatch('geo', 'ols', 'geo'))
+        self.assertFalse(is_mismatch('geo', 'miriam', 'geo'))
+
+
+class TestCollections(unittest.TestCase):
+    """Tests for collections."""
+
+    def test_minimum_metadata(self):
         """Check collections have minimal metadata and correct prefixes."""
+        registry = bioregistry.read_registry()
+
         for key, collection in sorted(bioregistry.read_collections().items()):
             with self.subTest(key=key):
                 self.assertRegex(key, '^\\d{7}$')
@@ -205,7 +254,7 @@ class TestDuplicates(unittest.TestCase):
                 incorrect = {
                     prefix
                     for prefix in collection['resources']
-                    if prefix not in self.registry
+                    if prefix not in registry
                 }
                 self.assertEqual(set(), incorrect)
                 duplicates = {
@@ -214,11 +263,6 @@ class TestDuplicates(unittest.TestCase):
                     if 1 < count
                 }
                 self.assertEqual(set(), duplicates, msg='Duplicates found')
-
-    def test_is_mismatch(self):
-        """Check for mismatches."""
-        self.assertTrue(is_mismatch('geo', 'ols', 'geo'))
-        self.assertFalse(is_mismatch('geo', 'miriam', 'geo'))
 
 
 class TestMetaregistry(unittest.TestCase):
