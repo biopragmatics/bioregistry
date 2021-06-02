@@ -1,0 +1,149 @@
+biolink:
+  description: A modeling paradigm-specific registry of prefixes and their URL expansions
+  download: https://raw.githubusercontent.com/biolink/biolink-model/master/biolink-model.yaml
+  example: doi
+  homepage: https://raw.githubusercontent.com/biolink/biolink-model
+  name: Biolink Model Registry
+  prefix: biolink
+  provider: false
+  registry: true
+  resolver: false
+bioportal:
+  description: The BioPortal is a less stringent registry of biomedical ontologies
+    than the OBO Foundry
+  example: CHEBI
+  formatter: https://bioportal.bioontology.org/ontologies/$1
+  homepage: https://bioportal.bioontology.org/
+  name: BioPortal Prefixes
+  prefix: bioportal
+  provider: true
+  registry: true
+  resolver: false
+bioregistry:
+  description: The Bioregistry is integrative meta-registry of biological databases,
+    ontologies, and nomenclatures that is backed by an open database.
+  download: https://bioregistry.io/api/registry/
+  example: chebi
+  formatter: https://bioregistry.io/registry/$1
+  homepage: https://bioregistry.io
+  name: Bioregistry
+  prefix: bioregistry
+  provider: false
+  registry: true
+  resolver: true
+  resolver_url: https://bioregistry.io/$1:$2
+fairsharing:
+  description: A curated, informative and educational resource on data and metadata
+    standards, inter-related to databases and data policies.
+  example: FAIRsharing.62qk8w
+  formatter: https://fairsharing.org/$1
+  homepage: https://fairsharing.org/
+  name: FAIRSharing
+  prefix: fairsharing
+  provider: true
+  registry: true
+  resolver: false
+go:
+  description: A database-specific registry supporting curation in the Gene Ontology
+  download: https://raw.githubusercontent.com/geneontology/go-site/master/metadata/db-xrefs.yaml
+  example: CHEBI
+  homepage: http://geneontology.org/
+  name: Gene Ontology Registry
+  prefix: go
+  provider: false
+  registry: true
+  resolver: false
+miriam:
+  description: The Identifiers.org Resolution Service provides consistent access to
+    life science data using Compact Identifiers. Compact Identifiers consist of an
+    assigned unique prefix and a local provider designated accession number (prefix:accession).
+  download: https://registry.api.identifiers.org/resolutionApi/getResolverDataset
+  example: chebi
+  formatter: https://registry.identifiers.org/registry/$1
+  homepage: https://identifiers.org
+  name: Identifiers.org
+  prefix: miriam
+  provider: false
+  registry: true
+  resolver: true
+  resolver_url: https://identifiers.org/$1:$2
+n2t:
+  description: An ARK resolver as well as resolver built with common prefxies as in
+    Identifiers.org
+  download: https://n2t.net/e/cdl_ebi_prefixes.yaml
+  example: chebi
+  homepage: https://n2t.net
+  name: Name-to-Thing
+  prefix: n2t
+  provider: false
+  registry: true
+  resolver: true
+  resolver_url: https://n2t.net/$1:$2
+ncbi:
+  description: A database-specific registry supporting curation in the NCBI GenBank
+    and related NCBI resources
+  example: ECOCYC
+  homepage: https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/
+  name: National Center for Biotechnology Information Registry
+  prefix: ncbi
+  provider: false
+  registry: true
+  resolver: false
+obofoundry:
+  description: The mission of the OBO Foundry is to develop a family of interoperable
+    ontologies that are both logically well-formed and scientifically accurate.
+  download: http://www.obofoundry.org/registry/ontologies.yml
+  example: chebi
+  formatter: http://www.obofoundry.org/ontology/$1
+  homepage: http://www.obofoundry.org/
+  name: OBO Foundry
+  prefix: obofoundry
+  provider: false
+  registry: true
+  resolver: false
+ols:
+  description: 'The Ontology Lookup Service (OLS) is a repository for biomedical ontologies
+    that aims to provide a single point of access to the latest ontology versions. '
+  example: chebi
+  formatter: https://www.ebi.ac.uk/ols/ontologies/$1
+  homepage: https://www.ebi.ac.uk/ols
+  name: Ontology Lookup Service
+  prefix: ols
+  provider: true
+  registry: true
+  resolver: false
+prefixcommons:
+  description: A registry of commonly used prefixes in the life sciences and linked
+    data
+  download: https://raw.githubusercontent.com/prefixcommons/biocontext/master/registry/commons_context.jsonld
+  example: CHEBI
+  homepage: https://prefixcommons.org
+  name: Prefix Commons
+  prefix: prefixcommons
+  provider: false
+  registry: true
+  resolver: false
+uniprot.database:
+  description: The cross-references section of UniProtKB entries displays explicit
+    and implicit links to databases such as nucleotide sequence databases, model organism
+    databases and genomics and proteomics resources.
+  download: https://www.uniprot.org/database/?format=rdf
+  example: '0174'
+  formatter: https://www.uniprot.org/database/DB-$1
+  homepage: https://www.uniprot.org/database/
+  name: UniProt Cross-ref database
+  prefix: uniprot.database
+  provider: false
+  registry: true
+  resolver: false
+wikidata:
+  description: An open, community-curated knowledgebase that contains several properties
+    corresponding to resources listed in other biomedical registries.
+  example: P683
+  formatter: https://www.wikidata.org/wiki/Property:$1
+  homepage: https://www.wikidata.org
+  name: Wikidata Property
+  prefix: wikidata
+  provider: true
+  registry: true
+  resolver: false

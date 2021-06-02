@@ -2,15 +2,12 @@
 
 """Command line interface for the bioregistry."""
 
-import os
-
 import click
-import yaml
 from more_click import make_web_command
 
 from .align.cli import align
 from .compare import compare
-from .constants import DOCS_DATA
+from .export.cli import export
 from .external.cli import download
 from .generate_warnings_file import warnings
 from .lint import lint
@@ -28,23 +25,8 @@ def main():
 main.add_command(lint)
 main.add_command(compare)
 main.add_command(warnings)
+main.add_command(export)
 main.add_command(make_web_command('bioregistry.app.wsgi:app'))
-
-
-@main.command()
-def copy():
-    """Copy the source Bioregistry to the docs folder."""
-    from .utils import read_registry
-    registry = read_registry()
-    ov = [
-        {
-            'prefix': prefix,
-            **data,
-        }
-        for prefix, data in registry.items()
-    ]
-    with open(os.path.join(DOCS_DATA, 'bioregistry.yml'), 'w') as file:
-        yaml.dump(ov, file)
 
 
 @main.command()
@@ -72,7 +54,7 @@ def update(ctx: click.Context):
     ctx.invoke(download)
     ctx.invoke(align)
     ctx.invoke(lint)
-    ctx.invoke(copy)
+    ctx.invoke(export)
     ctx.invoke(compare)
     ctx.invoke(curation)
     ctx.invoke(warnings)

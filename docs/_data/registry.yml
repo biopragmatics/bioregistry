@@ -327,7 +327,7 @@
   prefix: aism
 - mappings:
     prefixcommons: ALLERGOME
-    uniprot: Allergome
+    uniprot.database: Allergome
   miriam:
     deprecated: false
     description: Allergome is a repository of data related to all IgE-binding compounds.
@@ -347,7 +347,7 @@
     is_identifiers: true
     is_obo: false
     prefix: ALLERGOME
-  uniprot:
+  uniprot.database:
     category: Protein family/group databases
     formatter: http://www.allergome.org/script/dettaglio.php?id_molecule=%s
     identifier: '160'
@@ -677,7 +677,7 @@
   prefix: apollo_sv
 - mappings:
     prefixcommons: ARACHNOSERVER
-    uniprot: ArachnoServer
+    uniprot.database: ArachnoServer
   miriam:
     deprecated: false
     description: ArachnoServer (www.arachnoserver.org) is a manually curated database
@@ -698,7 +698,7 @@
     is_identifiers: true
     is_obo: false
     prefix: ARACHNOSERVER
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: http://www.arachnoserver.org/toxincard.html?id=%s
     identifier: '145'
@@ -708,7 +708,7 @@
 - homepage: https://www.araport.org/
   mappings:
     ncbi: Araport
-    uniprot: Araport
+    uniprot.database: Araport
   name: Arabidopsis Information Portal
   ncbi:
     example: AT1G01010
@@ -716,7 +716,7 @@
     name: Arabidopsis Information Portal
     prefix: Araport
   prefix: araport
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: https://bar.utoronto.ca/thalemine/portal.do?externalids=%s
     identifier: '221'
@@ -1728,7 +1728,7 @@
     prefix: BILA
 - mappings:
     prefixcommons: BINDINGDB
-    uniprot: BindingDB
+    uniprot.database: BindingDB
   miriam:
     deprecated: false
     description: BindingDB is the first public database of protein-small molecule
@@ -1747,7 +1747,7 @@
     is_identifiers: true
     is_obo: false
     prefix: BINDINGDB
-  uniprot:
+  uniprot.database:
     category: Chemistry databases
     formatter: https://www.bindingdb.org/uniprot/%u
     identifier: '127'
@@ -1809,7 +1809,7 @@
   mappings:
     go: BioCyc
     prefixcommons: BIOCYC
-    uniprot: BioCyc
+    uniprot.database: BioCyc
   miriam:
     deprecated: false
     description: BioCyc is a collection of Pathway/Genome Databases (PGDBs) which
@@ -1829,7 +1829,7 @@
     is_identifiers: true
     is_obo: false
     prefix: BIOCYC
-  uniprot:
+  uniprot.database:
     category: Enzyme and pathway databases
     formatter: https://biocyc.org/getid?id=%s
     identifier: '5'
@@ -1838,7 +1838,7 @@
     prefix: BioCyc
 - mappings:
     prefixcommons: BIOGRID
-    uniprot: BioGRID
+    uniprot.database: BioGRID
   miriam:
     deprecated: false
     description: BioGRID is a database of physical and genetic interactions in Saccharomyces
@@ -1858,7 +1858,7 @@
     is_identifiers: false
     is_obo: false
     prefix: BIOGRID
-  uniprot:
+  uniprot.database:
     category: Protein-protein interaction databases
     formatter: https://thebiogrid.org/%s
     identifier: '184'
@@ -2164,7 +2164,7 @@
     prefix: biosimulators
     sampleId: vcell
   prefix: biosimulators
-- mapping:
+- mappings:
     fairsharing: biodbcore-000989
   miriam:
     deprecated: false
@@ -2223,10 +2223,10 @@
     is_identifiers: true
     is_obo: false
     prefix: BIOTOOLS
-- bioportal:
+- _comment: Part of the NeuroLex namespace now
+  bioportal:
     name: Biomedical Informatics Research Network Project Lexicon
     prefix: BIRNLEX
-  comment: Part of the NeuroLex namespace now
   mappings:
     bioportal: BIRNLEX
   name: Biomedical Informatics Research Network Lexicon
@@ -2283,7 +2283,7 @@
     prefix: BITTERDB.REC
 - mappings:
     fairsharing: FAIRsharing.p06nme
-    uniprot: BMRB
+    uniprot.database: BMRB
   miriam:
     deprecated: false
     description: BMRB collects, annotates, archives, and disseminates (worldwide in
@@ -2299,7 +2299,7 @@
     prefix: bmrb
     sampleId: '15000'
   prefix: bmrb
-  uniprot:
+  uniprot.database:
     category: 3D structure databases
     formatter: http://www.bmrb.wisc.edu/data_library/summary/protein.php?uniprot=%u
     identifier: '256'
@@ -2358,7 +2358,7 @@
   mappings:
     go: BRENDA
     prefixcommons: BRENDA
-    uniprot: BRENDA
+    uniprot.database: BRENDA
   miriam:
     deprecated: false
     description: BRENDA is a collection of enzyme functional data available to the
@@ -2381,7 +2381,7 @@
     is_identifiers: true
     is_obo: false
     prefix: BRENDA
-  uniprot:
+  uniprot.database:
     category: Enzyme and pathway databases
     formatter: https://www.brenda-enzymes.org/enzyme.php?ecno=%s&UniProtAcc=%u&OrganismID=%d
     identifier: '131'
@@ -2414,7 +2414,7 @@
     is_identifiers: true
     is_obo: false
     prefix: BROAD
-- comment: part of Sequence Ontology (SO). See https://github.com/The-Sequence-Ontology/SO-Ontologies/blob/master/Ontology_Files/subsets/biosapiens.obo
+- _comment: part of Sequence Ontology (SO). See https://github.com/The-Sequence-Ontology/SO-Ontologies/blob/master/Ontology_Files/subsets/biosapiens.obo
   name: Biosapiens
   prefix: bs
 - bioportal:
@@ -2843,7 +2843,7 @@
   mappings:
     go: CAZY
     prefixcommons: CAZY
-    uniprot: CAZy
+    uniprot.database: CAZy
   miriam:
     deprecated: false
     description: The Carbohydrate-Active Enzyme (CAZy) database is a resource specialized
@@ -2863,7 +2863,7 @@
     is_identifiers: true
     is_obo: false
     prefix: CAZY
-  uniprot:
+  uniprot.database:
     category: Protein family/group databases
     formatter: http://www.cazy.org/fam/%s.html
     identifier: '136'
@@ -2902,7 +2902,7 @@
   prefix: ccdc
 - mappings:
     prefixcommons: CCDS
-    uniprot: CCDS
+    uniprot.database: CCDS
   miriam:
     deprecated: false
     description: The Consensus CDS (CCDS) project is a collaborative effort to identify
@@ -2924,7 +2924,7 @@
     is_identifiers: false
     is_obo: false
     prefix: CCDS
-  uniprot:
+  uniprot.database:
     category: Sequence databases
     formatter: https://www.ncbi.nlm.nih.gov/CCDS/CcdsBrowse.cgi?REQUEST=CCDS&GO=MainBrowse&DATA=%s
     identifier: '187'
@@ -2949,7 +2949,6 @@
     sampleId: '0000003'
   n2t:
     prefix: cco
-  namespace.capitalized: true
   ols:
     contact: vladimir.n.mironov@gmail.com
     description: The Cell Cycle Ontology extends existing ontologies for cell cycle
@@ -3022,7 +3021,7 @@
     go: CDD
     ncbi: CDD
     prefixcommons: CDD
-    uniprot: CDD
+    uniprot.database: CDD
   miriam:
     deprecated: false
     description: The Conserved Domain Database (CDD) is a collection of multiple sequence
@@ -3047,7 +3046,7 @@
     is_identifiers: true
     is_obo: false
     prefix: CDD
-  uniprot:
+  uniprot.database:
     category: Family and domain databases
     formatter: https://www.ncbi.nlm.nih.gov/Structure/cdd/cddsrv.cgi?uid=%s
     identifier: '214'
@@ -3198,7 +3197,7 @@
     go: CGD
     ncbi: CGD
     prefixcommons: CGD
-    uniprot: CGD
+    uniprot.database: CGD
   miriam:
     deprecated: false
     description: The Candida Genome Database (CGD) provides access to genomic sequence
@@ -3225,7 +3224,7 @@
     is_identifiers: true
     is_obo: false
     prefix: CGD
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: http://www.candidagenome.org/cgi-bin/locus.pl?dbid=%s
     identifier: '126'
@@ -3405,7 +3404,7 @@
     property.label: ChEMBL ID
 - mappings:
     prefixcommons: CHEMBL.TARGET
-    uniprot: ChEMBL
+    uniprot.database: ChEMBL
   miriam:
     deprecated: false
     description: ChEMBL is a database of bioactive compounds, their quantitative properties
@@ -3426,7 +3425,7 @@
     is_identifiers: true
     is_obo: false
     prefix: CHEMBL.TARGET
-  uniprot:
+  uniprot.database:
     category: Chemistry databases
     formatter: https://www.ebi.ac.uk/chembldb/target/inspect/%s
     identifier: '174'
@@ -4455,7 +4454,7 @@
     version.iri: http://purl.obolibrary.org/obo/cob/2020-04-15/cob.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: cob
-- comment: not really sure where the source is. this also links to a system called
+- _comment: not really sure where the source is. this also links to a system called
     athena. I was not able to figure out what COHD stands for.
   homepage: https://github.com/MIT-LCP/mimic-omop
   name: MIMIC III Database
@@ -4496,7 +4495,7 @@
   mappings:
     go: ComplexPortal
     prefixcommons: COMPLEXPORTAL
-    uniprot: ComplexPortal
+    uniprot.database: ComplexPortal
   miriam:
     deprecated: false
     description: A database that describes manually curated macromolecular complexes
@@ -4515,9 +4514,9 @@
     is_identifiers: true
     is_obo: false
     prefix: COMPLEXPORTAL
-  synyonms:
+  synonyms:
   - ComplexPortal
-  uniprot:
+  uniprot.database:
     category: Protein-protein interaction databases
     formatter: https://www.ebi.ac.uk/complexportal/complex/%s
     identifier: '228'
@@ -4574,7 +4573,7 @@
     prefix: COMPULYEAST
 - mappings:
     prefixcommons: CONOSERVER
-    uniprot: ConoServer
+    uniprot.database: ConoServer
   miriam:
     deprecated: false
     description: ConoServer is a database specialized in the sequence and structures
@@ -4594,7 +4593,7 @@
     is_identifiers: true
     is_obo: false
     prefix: CONOSERVER
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: http://www.conoserver.org/?page=card&table=protein&id=%s
     identifier: '156'
@@ -4644,7 +4643,7 @@
   mappings:
     go: CORUM
     prefixcommons: CORUM
-    uniprot: CORUM
+    uniprot.database: CORUM
   miriam:
     deprecated: false
     description: The CORUM database provides a resource of manually annotated protein
@@ -4666,7 +4665,7 @@
     is_identifiers: true
     is_obo: false
     prefix: CORUM
-  uniprot:
+  uniprot.database:
     category: Protein-protein interaction databases
     formatter: http://mips.helmholtz-muenchen.de/corum/#?uniprotID=%u
     identifier: '224'
@@ -4724,9 +4723,9 @@
     version.iri: http://purl.obolibrary.org/obo/covoc/releases/2020-08-28/covoc.owl
   ols_version_date_format: '%Y-%m-%d'
   prefix: covoc
-- appears_in:
+- _comment: Part of cell ontology but deprecated, see https://github.com/obophenotype/cell-ontology/issues/572
+  appears_in:
   - cl
-  comment: Part of cell ontology but deprecated, see https://github.com/obophenotype/cell-ontology/issues/572
   name: Cellular Phenotypes
   prefix: cp
 - mappings:
@@ -5480,7 +5479,7 @@
     go: dbSNP
     ncbi: dbSNP
     prefixcommons: dbSNP
-    uniprot: dbSNP
+    uniprot.database: dbSNP
   miriam:
     deprecated: false
     description: The dbSNP database is a repository for both single base nucleotide
@@ -5504,7 +5503,7 @@
     is_identifiers: false
     is_obo: false
     prefix: dbSNP
-  uniprot:
+  uniprot.database:
     category: Genetic variation databases
     formatter: https://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=%s
     identifier: '13'
@@ -5682,7 +5681,7 @@
     prefix: DEGRADOME
 - mappings:
     prefixcommons: DEPOD
-    uniprot: DEPOD
+    uniprot.database: DEPOD
   miriam:
     deprecated: false
     description: The human DEPhOsphorylation Database (DEPOD) contains information
@@ -5708,7 +5707,7 @@
     is_obo: false
     prefix: DEPOD
   provides: hgnc.symbol
-  uniprot:
+  uniprot.database:
     category: PTM databases
     formatter: http://depod.bioss.uni-freiburg.de/showp.php?name=%s
     identifier: '190'
@@ -5769,7 +5768,7 @@
     go: dictyBase
     ncbi: dictyBase
     prefixcommons: dictyBase
-    uniprot: dictyBase
+    uniprot.database: dictyBase
   name: dictyBase
   ncbi:
     example: DDB0191090
@@ -5784,7 +5783,7 @@
     prefix: dictyBase
   synonyms:
   - dictyBase
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     comment: Replacement for DictyBase
     formatter: http://dictybase.org/db/cgi-bin/gene_page.pl?primary_id=%s
@@ -5889,7 +5888,7 @@
     prefix: DIDEO
 - mappings:
     prefixcommons: DIP
-    uniprot: DIP
+    uniprot.database: DIP
   miriam:
     deprecated: false
     description: The database of interacting protein (DIP) database stores experimentally
@@ -5909,7 +5908,7 @@
     is_identifiers: true
     is_obo: false
     prefix: DIP
-  uniprot:
+  uniprot.database:
     category: Protein-protein interaction databases
     formatter: https://dip.doe-mbi.ucla.edu/dip/Browse.cgi?ID=%s
     identifier: '16'
@@ -5924,7 +5923,7 @@
     property: P557
 - mappings:
     prefixcommons: DISPROT
-    uniprot: DisProt
+    uniprot.database: DisProt
   miriam:
     deprecated: false
     description: DisProt is a database of intrinsically disordered proteins and protein
@@ -5943,7 +5942,7 @@
     is_identifiers: true
     is_obo: false
     prefix: DISPROT
-  uniprot:
+  uniprot.database:
     category: Family and domain databases
     formatter: https://disprot.org/%s
     identifier: '17'
@@ -6359,7 +6358,7 @@
   homepage: http://www.drugbank.ca
   mappings:
     prefixcommons: DrugBank
-    uniprot: DrugBank
+    uniprot.database: DrugBank
   miriam:
     deprecated: false
     description: The DrugBank database is a bioinformatics and chemoinformatics resource
@@ -6383,7 +6382,7 @@
   synonyms:
   - DrugBank
   - DRUGBANK_ID
-  uniprot:
+  uniprot.database:
     category: Chemistry databases
     formatter: https://www.drugbank.ca/drugs/%s
     identifier: '19'
@@ -6441,12 +6440,12 @@
   homepage: http://drugcentral.org
   mappings:
     biolink: DrugCentral
-    uniprot: DrugCentral
+    uniprot.database: DrugCentral
   name: Drug Central
   prefix: drugcentral
   synonyms:
   - Drug_Central
-  uniprot:
+  uniprot.database:
     category: Chemistry databases
     formatter: https://drugcentral.org/target/%u
     identifier: '239'
@@ -6581,7 +6580,7 @@
   mappings:
     go: EchoBASE
     prefixcommons: ECHOBASE
-    uniprot: EchoBASE
+    uniprot.database: EchoBASE
   miriam:
     deprecated: false
     description: EchoBASE is a database designed to contain and manipulate information
@@ -6603,7 +6602,7 @@
     is_identifiers: true
     is_obo: false
     prefix: ECHOBASE
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=%s
     identifier: '20'
@@ -7062,7 +7061,7 @@
     prefix: EGA.STUDY
 - mappings:
     prefixcommons: EGGNOG
-    uniprot: eggNOG
+    uniprot.database: eggNOG
   miriam:
     deprecated: false
     description: 'eggNOG (evolutionary genealogy of genes: Non-supervised Orthologous
@@ -7084,7 +7083,7 @@
     is_identifiers: true
     is_obo: false
     prefix: EGGNOG
-  uniprot:
+  uniprot.database:
     category: Phylogenomic databases
     formatter: http://eggnogdb.embl.de/#/app/results?seqid=%u&target_nogs=%s
     identifier: '152'
@@ -7167,7 +7166,7 @@
   - RETIRED_EHDAA2
 - mappings:
     prefixcommons: ELM
-    uniprot: ELM
+    uniprot.database: ELM
   miriam:
     deprecated: false
     description: Linear motifs are short, evolutionarily plastic components of regulatory
@@ -7188,16 +7187,14 @@
     is_identifiers: true
     is_obo: false
     prefix: ELM
-  uniprot:
+  uniprot.database:
     category: Protein-protein interaction databases
     formatter: http://elm.eu.org/instances.html?q=%u
     identifier: '223'
     link_is_explicit: 'true'
     name: The Eukaryotic Linear Motif resource for Functional Sites in Proteins
     prefix: ELM
-- _download: ftp://ftp.hgu.mrc.ac.uk/pub/MouseAtlas/Anatomy/EMAP_combined.obo
-  _download_comment: New download link? probabl not right
-  bioportal:
+- bioportal:
     name: Mouse gross anatomy and development, timed
     prefix: EMAPA
   example: '26753'
@@ -7267,7 +7264,7 @@
     the raw images used to build a 3D structure
   example: '10595'
   homepage: https://www.ebi.ac.uk/pdbe/emdb
-  mapping:
+  mappings:
     fairsharing: biodbcore-001140
   name: Electron Microscopy Public Image Archive
   prefix: empiar
@@ -7356,7 +7353,7 @@
     go: ENSEMBL
     ncbi: ENSEMBL
     prefixcommons: ENSEMBL
-    uniprot: Ensembl
+    uniprot.database: Ensembl
   miriam:
     deprecated: false
     description: Ensembl is a joint project between EMBL - EBI and the Sanger Institute  to
@@ -7383,7 +7380,7 @@
     prefix: ENSEMBL
   synonyms:
   - Ensembl
-  uniprot:
+  uniprot.database:
     category: Genome annotation databases
     formatter: https://www.ensembl.org/id/%s
     identifier: '23'
@@ -7400,7 +7397,7 @@
     property.label: Ensembl gene ID
 - mappings:
     prefixcommons: ENSEMBL.BACTERIA
-    uniprot: EnsemblBacteria
+    uniprot.database: EnsemblBacteria
   miriam:
     deprecated: false
     description: Ensembl Genomes consists of five sub-portals (for bacteria, protists,
@@ -7421,7 +7418,7 @@
     is_identifiers: true
     is_obo: false
     prefix: ENSEMBL.BACTERIA
-  uniprot:
+  uniprot.database:
     category: Genome annotation databases
     formatter: http://www.ensemblgenomes.org/id/%s
     identifier: '147'
@@ -7437,7 +7434,7 @@
   mappings:
     go: EnsemblFungi
     prefixcommons: ENSEMBL.FUNGI
-    uniprot: EnsemblFungi
+    uniprot.database: EnsemblFungi
   miriam:
     deprecated: false
     description: Ensembl Genomes consists of five sub-portals (for bacteria, protists,
@@ -7457,7 +7454,7 @@
     is_identifiers: true
     is_obo: false
     prefix: ENSEMBL.FUNGI
-  uniprot:
+  uniprot.database:
     category: Genome annotation databases
     formatter: http://www.ensemblgenomes.org/id/%s
     identifier: '148'
@@ -7473,7 +7470,7 @@
   mappings:
     go: EnsemblMetazoa
     prefixcommons: ENSEMBL.METAZOA
-    uniprot: EnsemblMetazoa
+    uniprot.database: EnsemblMetazoa
   miriam:
     deprecated: false
     description: Ensembl Genomes consists of five sub-portals (for bacteria, protists,
@@ -7494,7 +7491,7 @@
     is_identifiers: true
     is_obo: false
     prefix: ENSEMBL.METAZOA
-  uniprot:
+  uniprot.database:
     category: Genome annotation databases
     formatter: http://www.ensemblgenomes.org/id/%s
     identifier: '149'
@@ -7641,7 +7638,7 @@
 - mappings:
     ncbi: EPD
     prefixcommons: EPD
-    uniprot: EPD
+    uniprot.database: EPD
   miriam:
     deprecated: false
     description: The Eukaryotic Promoter Database (EPD) is an annotated non-redundant
@@ -7671,7 +7668,7 @@
     is_identifiers: true
     is_obo: false
     prefix: EPD
-  uniprot:
+  uniprot.database:
     category: Proteomic databases
     formatter: https://www.peptracker.com/epd/analytics/?protein_id=%u
     identifier: '205'
@@ -8381,7 +8378,7 @@
     go: FB
     ncbi: FLYBASE
     prefixcommons: FlyBase
-    uniprot: FlyBase
+    uniprot.database: FlyBase
   miriam:
     deprecated: false
     description: FlyBase is the database of the Drosophila Genome Projects and of
@@ -8406,7 +8403,7 @@
   synonyms:
   - FB
   - FlyBase
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     comment: Replacement for DMAP
     formatter: http://flybase.org/reports/%s.html
@@ -8964,8 +8961,8 @@
   url: https://www.gbif.org/species/$1
   wikidata:
     property: P846
-- name: Genetic Code
-  note: 'see comment here: https://github.com/obophenotype/ncbitaxon/issues/47'
+- _comment: 'see comment here: https://github.com/obophenotype/ncbitaxon/issues/47'
+  name: Genetic Code
   prefix: gc
   references:
   - https://github.com/obophenotype/ncbitaxon/issues/47
@@ -9049,7 +9046,7 @@
   prefix: gecko
 - mappings:
     prefixcommons: GENATLAS
-    uniprot: GenAtlas
+    uniprot.database: GenAtlas
   miriam:
     deprecated: false
     description: GenAtlas is a database containing information on human genes, markers
@@ -9068,7 +9065,7 @@
     is_identifiers: true
     is_obo: false
     prefix: GENATLAS
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: http://genatlas.medecine.univ-paris5.fr/fiche.php?symbol=%s
     identifier: '27'
@@ -9086,7 +9083,7 @@
     fairsharing: FAIRsharing.9kahy4
     go: GenBank
     prefixcommons: GenBank
-    uniprot: GenBank
+    uniprot.database: GenBank
   name: GenBank
   prefix: genbank
   prefixcommons:
@@ -9094,7 +9091,7 @@
     is_identifiers: false
     is_obo: false
     prefix: GenBank
-  uniprot:
+  uniprot.database:
     category: Sequence databases
     formatter: https://www.ncbi.nlm.nih.gov/nuccore/%s
     identifier: '28'
@@ -9103,7 +9100,7 @@
   url: https://www.ncbi.nlm.nih.gov/nucleotide/$1
 - mappings:
     prefixcommons: GENECARDS
-    uniprot: GeneCards
+    uniprot.database: GeneCards
   miriam:
     deprecated: false
     description: The GeneCards human gene database stores gene related transcriptomic,
@@ -9124,7 +9121,7 @@
     is_identifiers: true
     is_obo: false
     prefix: GENECARDS
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: https://www.genecards.org/cgi-bin/carddisp.pl?gene=%s
     identifier: '30'
@@ -9140,7 +9137,7 @@
     go: GeneDB
     ncbi: GeneDB
     prefixcommons: GENEDB
-    uniprot: GeneDB
+    uniprot.database: GeneDB
   miriam:
     deprecated: false
     description: GeneDB is a genome database for prokaryotic and eukaryotic organisms
@@ -9166,7 +9163,7 @@
     is_identifiers: true
     is_obo: false
     prefix: GENEDB
-  uniprot:
+  uniprot.database:
     category: Genome annotation databases
     formatter: https://www.genedb.org/gene/%s
     identifier: '199'
@@ -9222,7 +9219,7 @@
     prefix: GENEPIO
 - mappings:
     prefixcommons: GENETREE
-    uniprot: GeneTree
+    uniprot.database: GeneTree
   miriam:
     deprecated: false
     description: Genetree displays the maximum likelihood phylogenetic (protein) trees
@@ -9242,7 +9239,7 @@
     is_identifiers: true
     is_obo: false
     prefix: GENETREE
-  uniprot:
+  uniprot.database:
     category: Phylogenomic databases
     formatter: http://www.ensemblgenomes.org/id-genetree/%s
     identifier: '162'
@@ -9251,7 +9248,7 @@
     prefix: GeneTree
 - mappings:
     prefixcommons: GENEWIKI
-    uniprot: GeneWiki
+    uniprot.database: GeneWiki
   miriam:
     deprecated: false
     description: The Gene Wiki is project which seeks to provide detailed information
@@ -9272,7 +9269,7 @@
     is_identifiers: true
     is_obo: false
     prefix: GENEWIKI
-  uniprot:
+  uniprot.database:
     category: Miscellaneous databases
     formatter: https://en.wikipedia.org/wiki/%s
     identifier: '180'
@@ -9577,10 +9574,10 @@
 - example: G24361QY
   homepage: https://glygen.org/glycan/
   mappings:
-    uniprot: GlyGen
+    uniprot.database: GlyGen
   name: 'GlyGen: Computational and Informatics Resources for Glycoscience'
   prefix: glygen
-  uniprot:
+  uniprot.database:
     category: PTM databases
     formatter: https://glygen.org/protein/%u#glycosylation
     identifier: '254'
@@ -9795,7 +9792,7 @@
     go: GO
     ncbi: GO
     prefixcommons: GO
-    uniprot: GO
+    uniprot.database: GO
   miriam:
     deprecated: false
     description: The Gene Ontology project provides a controlled vocabulary to describe
@@ -9845,7 +9842,7 @@
   - gobpid
   - goccid
   - gomfid
-  uniprot:
+  uniprot.database:
     category: Ontologies
     formatter: https://www.ebi.ac.uk/QuickGO/term/%s
     identifier: '37'
@@ -9889,7 +9886,6 @@
     sampleId: '0000041'
   n2t:
     prefix: go.ref
-  namespace.capitalized: true
   prefix: go.ref
   prefixcommons:
     formatter: http://www.geneontology.org/cgi-bin/references.cgi#GO_REF:$1
@@ -10044,7 +10040,7 @@
   prefix: gorel
 - mappings:
     prefixcommons: GPCRDB
-    uniprot: GPCRDB
+    uniprot.database: GPCRDB
   miriam:
     deprecated: false
     description: The G protein-coupled receptor database (GPCRDB) collects, large
@@ -10066,7 +10062,7 @@
     is_identifiers: true
     is_obo: false
     prefix: GPCRDB
-  uniprot:
+  uniprot.database:
     category: Protein family/group databases
     formatter: https://gpcrdb.org/protein/%s/
     identifier: '38'
@@ -10432,10 +10428,10 @@
     is_identifiers: true
     is_obo: false
     prefix: GTEX
-- appears_in:
-  - mondo
-  comment: Identifiers appearing in MONDO don't match any of the resources apparent
+- _comment: Identifiers appearing in MONDO don't match any of the resources apparent
     endpoints
+  appears_in:
+  - mondo
   example: AN0097748
   homepage: https://www.ncbi.nlm.nih.gov/gtr/
   name: Genetic Testing Registry
@@ -10601,7 +10597,7 @@
   mappings:
     go: HAMAP
     prefixcommons: HAMAP
-    uniprot: HAMAP
+    uniprot.database: HAMAP
   miriam:
     deprecated: false
     description: HAMAP is a system that identifies and semi-automatically annotates
@@ -10622,7 +10618,7 @@
     is_identifiers: true
     is_obo: false
     prefix: HAMAP
-  uniprot:
+  uniprot.database:
     category: Family and domain databases
     formatter: https://hamap.expasy.org/signature/%s
     identifier: '41'
@@ -10805,7 +10801,7 @@
     go: HUGO
     ncbi: HGNC
     prefixcommons: HGNC
-    uniprot: HGNC
+    uniprot.database: HGNC
   miriam:
     deprecated: false
     description: The HGNC (HUGO Gene Nomenclature Committee) provides an approved
@@ -10832,7 +10828,7 @@
     is_identifiers: false
     is_obo: false
     prefix: HGNC
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     comment: Replacement for Genew
     formatter: https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/%s
@@ -11023,7 +11019,7 @@
   prefix: hog
 - mappings:
     prefixcommons: HOGENOM
-    uniprot: HOGENOM
+    uniprot.database: HOGENOM
   miriam:
     deprecated: false
     description: HOGENOM is a database of homologous genes from fully sequenced organisms
@@ -11045,7 +11041,7 @@
     is_identifiers: true
     is_obo: false
     prefix: HOGENOM
-  uniprot:
+  uniprot.database:
     category: Phylogenomic databases
     formatter: http://hogenom.univ-lyon1.fr/query_sequence?seq=%u
     identifier: '44'
@@ -11232,7 +11228,7 @@
   mappings:
     go: HPA
     prefixcommons: HPA
-    uniprot: HPA
+    uniprot.database: HPA
   miriam:
     deprecated: false
     description: The Human Protein Atlas (HPA) is a publicly available database with
@@ -11253,7 +11249,7 @@
     is_identifiers: true
     is_obo: false
     prefix: HPA
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: https://www.proteinatlas.org/%s
     identifier: '46'
@@ -11486,7 +11482,7 @@
   prefix: htn
 - mappings:
     prefixcommons: HUGE
-    uniprot: HUGE
+    uniprot.database: HUGE
   miriam:
     deprecated: false
     description: The Human Unidentified Gene-Encoded (HUGE) protein database contains  results
@@ -11507,7 +11503,7 @@
     is_identifiers: true
     is_obo: false
     prefix: HUGE
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: http://www.kazusa.or.jp/huge/gfpage/%s
     identifier: '49'
@@ -11768,7 +11764,7 @@
 - homepage: https://www.ideal-db.org
   mappings:
     prefixcommons: IDEAL
-    uniprot: IDEAL
+    uniprot.database: IDEAL
   miriam:
     deprecated: false
     description: IDEAL provides a collection of knowledge on experimentally verified
@@ -11790,7 +11786,7 @@
     is_identifiers: true
     is_obo: false
     prefix: IDEAL
-  uniprot:
+  uniprot.database:
     category: Family and domain databases
     formatter: http://idp1.force.cs.is.nagoya-u.ac.jp/IDEAL/ideal.php?id=%s
     identifier: '251'
@@ -11937,7 +11933,7 @@
     is_obo: false
     prefix: IDOT
   url: https://biomodels.net/vocab/idot.rdf#$1
-- mapping:
+- mappings:
     fairsharing: FAIRsharing.6wf1zw
   miriam:
     deprecated: false
@@ -12159,9 +12155,9 @@
     prefix: INCHIKEY
   wikidata:
     property: P235
-- example: fluticasone
+- _comment: can not find a place to resolve to
+  example: fluticasone
   name: International Nonproprietary Names
-  note: can not find a place to resolve to
   prefix: inn
   synonyms:
   - INN_ID
@@ -12293,7 +12289,7 @@
   mappings:
     go: IntAct
     prefixcommons: INTACT
-    uniprot: IntAct
+    uniprot.database: IntAct
   miriam:
     deprecated: false
     description: IntAct provides a freely available, open source database system and
@@ -12312,7 +12308,7 @@
     is_identifiers: true
     is_obo: false
     prefix: INTACT
-  uniprot:
+  uniprot.database:
     category: Protein-protein interaction databases
     formatter: https://www.ebi.ac.uk/intact/interactors/id:%s*
     identifier: '51'
@@ -12383,7 +12379,7 @@
     go: InterPro
     ncbi: InterPro
     prefixcommons: INTERPRO
-    uniprot: InterPro
+    uniprot.database: InterPro
   miriam:
     deprecated: false
     description: InterPro is a database of protein families, domains and functional
@@ -12411,7 +12407,7 @@
   synonyms:
   - InterPro
   - IP
-  uniprot:
+  uniprot.database:
     category: Family and domain databases
     formatter: https://www.ebi.ac.uk/interpro/entry/%s
     identifier: '52'
@@ -12468,7 +12464,6 @@
 - deprecated: true
   example: 0000008
   name: Insect Resistance Ontology
-  needs_curation: true
   prefix: iro
   url: https://legacy.vectorbase.org/ontology-browser?cv=MIRO&t=IRO:$1
 - biolink:
@@ -12884,7 +12879,7 @@
   n2t:
     prefix: kaggle
   prefix: kaggle
-- comments: KEGG prefix has been split into several others
+- _comment: KEGG prefix has been split into several others
   deprecated: true
   go:
     homepage: http://www.genome.ad.jp/kegg/
@@ -12893,7 +12888,7 @@
   mappings:
     go: KEGG
     prefixcommons: KEGG
-    uniprot: KEGG
+    uniprot.database: KEGG
   miriam:
     deprecated: false
     description: Kyoto Encyclopedia of Genes and Genomes (KEGG) is a database resource
@@ -12917,7 +12912,7 @@
     prefix: KEGG
   synonyms:
   - KEGG
-  uniprot:
+  uniprot.database:
     category: Genome annotation databases
     formatter: https://www.genome.jp/dbget-bin/www_bget?%s
     identifier: '53'
@@ -13536,8 +13531,7 @@
     is_identifiers: true
     is_obo: false
     prefix: LINCS.PROTEIN
-- id: '00000546'
-  mappings:
+- mappings:
     prefixcommons: LINCS.SMALLMOLECULE
   miriam:
     deprecated: false
@@ -13822,7 +13816,7 @@
 - mappings:
     fairsharing: FAIRsharing.LYsiMd
     prefixcommons: MASSIVE
-    uniprot: MassIVE
+    uniprot.database: MassIVE
   miriam:
     deprecated: false
     description: MassIVE is a community resource developed by the NIH-funded Center
@@ -13842,7 +13836,7 @@
     is_identifiers: true
     is_obo: false
     prefix: MASSIVE
-  uniprot:
+  uniprot.database:
     category: Proteomic databases
     formatter: https://massive.ucsd.edu/ProteoSAFe/protein_explorer.jsp?libraries=2&protein_name=%u
     identifier: '241'
@@ -13868,7 +13862,7 @@
     is_identifiers: false
     is_obo: true
     prefix: MAT
-- appearsIn:
+- appears_in:
   - complexportal
   example: MULT_4_VAR1_bovine
   homepage: http://matrixdb.univ-lyon1.fr/
@@ -14097,7 +14091,7 @@
   mappings:
     go: MEROPS
     prefixcommons: MEROPS
-    uniprot: MEROPS
+    uniprot.database: MEROPS
   miriam:
     deprecated: false
     description: The MEROPS database is an information resource for peptidases (also
@@ -14117,7 +14111,7 @@
     is_identifiers: true
     is_obo: false
     prefix: MEROPS
-  uniprot:
+  uniprot.database:
     category: Protein family/group databases
     formatter: https://www.ebi.ac.uk/merops/cgi-bin/pepsum?mid=%s
     identifier: '59'
@@ -14644,7 +14638,7 @@
     go: MGI
     ncbi: MGI
     prefixcommons: MGI
-    uniprot: MGI
+    uniprot.database: MGI
   miriam:
     deprecated: false
     description: The Mouse Genome Database (MGD) project includes data on gene characterization,
@@ -14658,7 +14652,6 @@
     sampleId: '2442292'
   n2t:
     prefix: mgi
-  namespace.capitalized: true
   ncbi:
     example: MGI:1894891
     homepage: http://www.informatics.jax.org/
@@ -14673,9 +14666,9 @@
   synonyms:
   - MGI
   - MGD
-  uniprot:
+  uniprot.database:
+    _comment: Replacement for MGD
     category: Organism-specific databases
-    comment: Replacement for MGD
     formatter: http://www.informatics.jax.org/marker/%s
     identifier: '60'
     link_is_explicit: 'true'
@@ -14779,7 +14772,7 @@
     prefix: MI
   synonyms:
   - PSI-MI
-- comment: same as MAT
+- _comment: same as MAT
   name: Minimal Information About Anatomy ontology
   prefix: miaa
   references:
@@ -14921,11 +14914,11 @@
     is_identifiers: true
     is_obo: false
     prefix: MICROSPORIDIA
-- bioportal:
+- _comment: OMIMPS and PS should probably be split to their own entry called OMIM
+    Phenotypic Series
+  bioportal:
     name: Molecular Interaction Map
     prefix: MIM
-  comment: OMIMPS and PS should probably be split to their own entry called OMIM Phenotypic
-    Series
   go:
     formatter: https://omim.org/entry/$1
     homepage: https://omim.org/
@@ -14938,7 +14931,7 @@
     go: OMIM
     ncbi: MIM
     prefixcommons: OMIM
-    uniprot: MIM
+    uniprot.database: MIM
   miriam:
     deprecated: false
     description: Online Mendelian Inheritance in Man is a catalog of human genes and
@@ -14966,7 +14959,7 @@
   - OMIM
   - OMIMPS
   - PS
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: https://www.omim.org/entry/%s
     identifier: '62'
@@ -15033,7 +15026,7 @@
   prefix: minid.test
 - mappings:
     prefixcommons: MINT
-    uniprot: MINT
+    uniprot.database: MINT
   miriam:
     deprecated: false
     description: The Molecular INTeraction database (MINT) stores, in a structured
@@ -15054,7 +15047,7 @@
     is_identifiers: true
     is_obo: false
     prefix: MINT
-  uniprot:
+  uniprot.database:
     category: Protein-protein interaction databases
     formatter: https://mint.bio.uniroma2.it/cgi-bin/protein.py?id=%u
     identifier: '158'
@@ -15099,7 +15092,6 @@
     sampleId: '00100037'
   n2t:
     prefix: mir
-  namespace.capitalized: true
   prefix: mir
   prefixcommons:
     formatter: http://identifiers.org/mir/$1
@@ -15225,7 +15217,7 @@
     is_identifiers: true
     is_obo: false
     prefix: MIRIAM.COLLECTION
-- comment: yo dawg i heard you like registries...
+- _comment: yo dawg i heard you like registries...
   mappings:
     prefixcommons: MIRIAM.RESOURCE
   miriam:
@@ -15573,7 +15565,7 @@
 - homepage: http://mobidb.bio.unipd.it
   mappings:
     prefixcommons: MOBIDB
-    uniprot: MobiDB
+    uniprot.database: MobiDB
   miriam:
     deprecated: false
     description: MobiDB is a database of protein disorder and mobility annotations.
@@ -15591,7 +15583,7 @@
     is_identifiers: true
     is_obo: false
     prefix: MOBIDB
-  uniprot:
+  uniprot.database:
     category: Family and domain databases
     formatter: https://mobidb.bio.unipd.it/entries/%u
     identifier: '183'
@@ -16306,7 +16298,7 @@
     is_identifiers: true
     is_obo: false
     prefix: MZSPEC
-- comment: The nomenclature used for named reactions in text mining software from
+- _comment: The nomenclature used for named reactions in text mining software from
     NextMove
   name: NameRXN
   prefix: namerxn
@@ -16985,7 +16977,7 @@
     prefix: NEXTDB
 - mappings:
     prefixcommons: NEXTPROT
-    uniprot: neXtProt
+    uniprot.database: neXtProt
   miriam:
     deprecated: false
     description: "neXtProt is a resource on human proteins, and includes information\
@@ -17007,7 +16999,7 @@
     prefix: NEXTPROT
   synonyms:
   - NXP
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: https://www.nextprot.org/entry/%s
     identifier: '161'
@@ -17497,7 +17489,6 @@
     sampleId: OBI_0000070
   n2t:
     prefix: obi
-  namespace.capitalized: true
   obofoundry:
     contact: bpeters@lji.org
     contact.label: Bjoern Peters
@@ -18681,7 +18672,7 @@
   prefix: ornaseq
 - mappings:
     prefixcommons: Orphanet
-    uniprot: Orphanet
+    uniprot.database: Orphanet
   miriam:
     deprecated: false
     description: "Orphanet is a reference portal for information on rare diseases\
@@ -18702,7 +18693,7 @@
     is_identifiers: false
     is_obo: false
     prefix: Orphanet
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: https://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=GB&Expert=%s
     identifier: '68'
@@ -18802,7 +18793,7 @@
   prefix: orth
 - mappings:
     prefixcommons: ORTHODB
-    uniprot: OrthoDB
+    uniprot.database: OrthoDB
   miriam:
     deprecated: false
     description: OrthoDB presents a catalog of eukaryotic orthologous protein-coding
@@ -18826,7 +18817,7 @@
     is_identifiers: true
     is_obo: false
     prefix: ORTHODB
-  uniprot:
+  uniprot.database:
     category: Phylogenomic databases
     formatter: https://www.orthodb.org/?query=%u
     identifier: '143'
@@ -19080,7 +19071,7 @@
     workflow. It makes links to the Proteomics Exchange when possible.
   example: FxnI151FMs
   homepage: https://panoramaweb.org
-  mapping:
+  mappings:
     fairsharing: FAIRsharing.uBpQ1q
   name: Panorama Public
   prefix: panorama
@@ -19223,7 +19214,7 @@
   url: https://pathbank.org/view/$1
 - mappings:
     prefixcommons: PATHWAYCOMMONS
-    uniprot: PathwayCommons
+    uniprot.database: PathwayCommons
   miriam:
     deprecated: false
     description: Pathway Commons is a convenient point of access to biological pathway
@@ -19245,7 +19236,7 @@
     is_identifiers: true
     is_obo: false
     prefix: PATHWAYCOMMONS
-  uniprot:
+  uniprot.database:
     category: Enzyme and pathway databases
     formatter: http://apps.pathwaycommons.org/search?q=%u
     identifier: '253'
@@ -19423,7 +19414,7 @@
     go: PDB
     ncbi: PDB
     prefixcommons: PDB
-    uniprot: PDB
+    uniprot.database: PDB
   miriam:
     deprecated: false
     description: The Protein Data Bank is the single worldwide archive of structural
@@ -19449,7 +19440,7 @@
     prefix: PDB
   synonyms:
   - wwpdb
-  uniprot:
+  uniprot.database:
     category: 3D structure databases
     formatter: https://www.ebi.ac.uk/pdbe-srv/view/entry/%s
     identifier: '70'
@@ -19666,7 +19657,7 @@
   prefix: peff
 - mappings:
     prefixcommons: PEPTIDEATLAS
-    uniprot: PeptideAtlas
+    uniprot.database: PeptideAtlas
   miriam:
     deprecated: false
     description: The PeptideAtlas Project provides a publicly accessible database
@@ -19686,7 +19677,7 @@
     is_identifiers: true
     is_obo: false
     prefix: PEPTIDEATLAS
-  uniprot:
+  uniprot.database:
     category: Proteomic databases
     formatter: https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/Search?action=GO&search_key=%s
     identifier: '71'
@@ -19708,7 +19699,7 @@
   prefix: peptideatlas.dataset
 - mappings:
     prefixcommons: PEROXIBASE
-    uniprot: PeroxiBase
+    uniprot.database: PeroxiBase
   miriam:
     deprecated: false
     description: Peroxibase provides access to peroxidase sequences from all kingdoms
@@ -19728,7 +19719,7 @@
     is_identifiers: true
     is_obo: false
     prefix: PEROXIBASE
-  uniprot:
+  uniprot.database:
     category: Protein family/group databases
     formatter: http://peroxibase.toulouse.inra.fr/display_perox/view_perox/%s
     identifier: '72'
@@ -19749,7 +19740,7 @@
     go: Pfam
     ncbi: PFAM
     prefixcommons: PFAM
-    uniprot: Pfam
+    uniprot.database: Pfam
   miriam:
     deprecated: false
     description: The Pfam database contains information about protein domains and
@@ -19776,7 +19767,7 @@
     prefix: PFAM
   synonyms:
   - PF
-  uniprot:
+  uniprot.database:
     category: Family and domain databases
     formatter: https://pfam.xfam.org/family/%s
     identifier: '73'
@@ -20100,7 +20091,7 @@
     prefix: PHOSPHOSITE.RESIDUE
 - mappings:
     prefixcommons: PHYLOMEDB
-    uniprot: PhylomeDB
+    uniprot.database: PhylomeDB
   miriam:
     deprecated: false
     description: PhylomeDB is a database of complete phylomes derived for different
@@ -20120,7 +20111,7 @@
     is_identifiers: true
     is_obo: false
     prefix: PHYLOMEDB
-  uniprot:
+  uniprot.database:
     category: Phylogenomic databases
     formatter: http://phylomedb.org/?q=search_tree&seqid=%s
     identifier: '144'
@@ -20272,7 +20263,7 @@
   mappings:
     go: PIRSF
     prefixcommons: PIRSF
-    uniprot: PIRSF
+    uniprot.database: PIRSF
   miriam:
     deprecated: false
     description: The PIR SuperFamily concept is being used as a guiding principle
@@ -20292,7 +20283,7 @@
     is_identifiers: true
     is_obo: false
     prefix: PIRSF
-  uniprot:
+  uniprot.database:
     category: Family and domain databases
     formatter: https://proteininformationresource.org/cgi-bin/ipcSF?id=%s
     identifier: '79'
@@ -20683,7 +20674,7 @@
     go: PomBase
     ncbi: PomBase
     prefixcommons: PomBase
-    uniprot: PomBase
+    uniprot.database: PomBase
   miriam:
     deprecated: false
     description: PomBase is a model organism database established to provide access
@@ -20711,7 +20702,7 @@
     prefix: PomBase
   synonyms:
   - PomBase
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     comment: Replacement for GeneDB_Spombe
     formatter: https://www.pombase.org/spombe/result/%s
@@ -20813,7 +20804,7 @@
     bioportal: PR
     go: PR
     prefixcommons: PR
-    uniprot: PRO
+    uniprot.database: PRO
   miriam:
     deprecated: false
     description: The PRotein Ontology (PRO) has been designed to describe the relationships
@@ -20855,7 +20846,7 @@
   synonyms:
   - PR
   - PRO
-  uniprot:
+  uniprot.database:
     category: Miscellaneous databases
     formatter: https://proconsortium.org/app/entry/%s
     identifier: '181'
@@ -20868,7 +20859,7 @@
 - mappings:
     fairsharing: FAIRsharing.e1byny
     prefixcommons: PRIDE
-    uniprot: PRIDE
+    uniprot.database: PRIDE
   miriam:
     deprecated: false
     description: The PRIDE PRoteomics IDEntifications database is a centralized, standards
@@ -20899,7 +20890,7 @@
     is_identifiers: true
     is_obo: false
     prefix: PRIDE
-  uniprot:
+  uniprot.database:
     category: Proteomic databases
     formatter: https://www.ebi.ac.uk/pride/searchSummary.do?queryTypeSelected=identification%20accession%20number&identificationAccessionNumber=%s
     identifier: '130'
@@ -20935,7 +20926,7 @@
   mappings:
     go: PRINTS
     prefixcommons: PRINTS
-    uniprot: PRINTS
+    uniprot.database: PRINTS
   miriam:
     deprecated: false
     description: PRINTS is a compendium of protein fingerprints. A fingerprint is
@@ -20959,7 +20950,7 @@
     is_identifiers: true
     is_obo: false
     prefix: PRINTS
-  uniprot:
+  uniprot.database:
     category: Family and domain databases
     comment: Replacement for PRINT
     formatter: http://umber.sbs.man.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&prints_accn=%s
@@ -21053,7 +21044,7 @@
   mappings:
     go: Prosite
     prefixcommons: PROSITE
-    uniprot: PROSITE
+    uniprot.database: PROSITE
   miriam:
     deprecated: false
     description: PROSITE consists of documentation entries describing protein domains,
@@ -21073,7 +21064,7 @@
     is_identifiers: true
     is_obo: false
     prefix: PROSITE
-  uniprot:
+  uniprot.database:
     category: Family and domain databases
     formatter: https://prosite.expasy.org/doc/%s
     identifier: '84'
@@ -21726,8 +21717,7 @@
     is_obo: false
     prefix: rdfs
   url: http://www.w3.org/2000/01/rdf-schema#$1
-- _download: http://ratmine.mcw.edu/ontology/disease/RDO.obo
-  _download_comment: Problem with security certificate
+- download: https://ratmine.mcw.edu/ontology/disease/RDO.obo
   name: RGD Disease_Ontology
   prefix: rdo
 - example: R-BTA-418592
@@ -21742,7 +21732,7 @@
   mappings:
     go: Reactome
     prefixcommons: REACT
-    uniprot: Reactome
+    uniprot.database: Reactome
   miriam:
     deprecated: false
     description: The Reactome project is a collaboration to develop a curated resource
@@ -21764,7 +21754,7 @@
   synonyms:
   - RE
   - REACT
-  uniprot:
+  uniprot.database:
     category: Enzyme and pathway databases
     comment: Replacement for GK
     formatter: https://www.reactome.org/PathwayBrowser/#%s&FLG=%u
@@ -21791,7 +21781,7 @@
   mappings:
     go: REBASE
     prefixcommons: REBASE
-    uniprot: REBASE
+    uniprot.database: REBASE
   miriam:
     deprecated: false
     description: REBASE is a comprehensive database of information about restriction
@@ -21813,7 +21803,7 @@
     is_identifiers: true
     is_obo: false
     prefix: REBASE
-  uniprot:
+  uniprot.database:
     category: Protein family/group databases
     formatter: http://rebase.neb.com/rebase/enz/%s.html
     identifier: '89'
@@ -21832,7 +21822,7 @@
   mappings:
     go: RefSeq
     prefixcommons: RefSeq
-    uniprot: RefSeq
+    uniprot.database: RefSeq
   miriam:
     deprecated: false
     description: The Reference Sequence (RefSeq) collection aims to provide a comprehensive,
@@ -21855,7 +21845,7 @@
     prefix: RefSeq
   synonyms:
   - REFSEQ_PROT
-  uniprot:
+  uniprot.database:
     category: Sequence databases
     formatter: https://www.ncbi.nlm.nih.gov/protein/%s
     identifier: '117'
@@ -22056,7 +22046,7 @@
     go: RGD
     ncbi: RGD
     prefixcommons: RGD
-    uniprot: RGD
+    uniprot.database: RGD
   miriam:
     deprecated: false
     description: Rat Genome Database seeks to collect, consolidate, and integrate
@@ -22084,7 +22074,7 @@
     prefix: RGD
   synonyms:
   - RGD
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: http://rgd.mcw.edu/tools/genes/genes_view.cgi?id=%s
     identifier: '91'
@@ -22479,7 +22469,7 @@
     property: P3590
 - mappings:
     prefixcommons: ROUGE
-    uniprot: Rouge
+    uniprot.database: Rouge
   miriam:
     deprecated: false
     description: The Rouge protein database contains results from sequence analysis
@@ -22499,7 +22489,7 @@
     is_identifiers: true
     is_obo: false
     prefix: ROUGE
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: http://www.kazusa.or.jp/rouge/gfpage/%s
     identifier: '92'
@@ -22529,7 +22519,6 @@
   n2t:
     prefix: rrid
   name: Research Resource Identification
-  namespace.capitalized: true
   prefix: rrid
   prefixcommons:
     formatter: http://identifiers.org/rrid/$1
@@ -22749,9 +22738,9 @@
   prefix: sael
   references:
   - https://pubmed.ncbi.nlm.nih.gov/18629134/
-- appears_in:
+- _comment: spider stuff!
+  appears_in:
   - efo
-  comment: spider stuff!
   example: '037727'
   name: Salk Institute for Biological Studies Accession
   prefix: salk
@@ -22780,7 +22769,7 @@
   - http://www.ontobee.org/ontology/SAO
 - mappings:
     prefixcommons: SASBDB
-    uniprot: SASBDB
+    uniprot.database: SASBDB
   miriam:
     deprecated: false
     description: Small Angle Scattering Biological Data Bank (SASBDB) is a curated
@@ -22805,7 +22794,7 @@
     is_identifiers: true
     is_obo: false
     prefix: SASBDB
-  uniprot:
+  uniprot.database:
     category: 3D structure databases
     formatter: https://www.sasbdb.org/uniprot/%u/
     identifier: '258'
@@ -23095,7 +23084,7 @@
     go: SGD
     ncbi: SGD
     prefixcommons: SGD
-    uniprot: SGD
+    uniprot.database: SGD
   miriam:
     deprecated: false
     description: The Saccharomyces Genome Database (SGD) project collects information
@@ -23121,7 +23110,7 @@
     is_identifiers: false
     is_obo: false
     prefix: SGD
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: https://www.yeastgenome.org/locus/%s
     identifier: '95'
@@ -23305,7 +23294,7 @@
     prefix: SIGNALING-GATEWAY
 - example: SIGNOR-C41
   mappings:
-    uniprot: SIGNOR
+    uniprot.database: SIGNOR
   miriam:
     deprecated: false
     description: SIGNOR, the SIGnaling Network Open Resource, organizes and stores
@@ -23320,7 +23309,7 @@
   prefix: signor
   synonyms:
   - SIGNOR
-  uniprot:
+  uniprot.database:
     category: Enzyme and pathway databases
     formatter: https://signor.uniroma2.it/relation_result.php?id=%u
     identifier: '206'
@@ -23420,7 +23409,6 @@
     pattern: ^SLM:\d+$
     prefix: slm
     sampleId: 000048885
-  namespace.capitalized: true
   prefix: slm
 - go:
     formatter: http://smart.embl-heidelberg.de/smart/do_annotation.pl?BLAST=DUMMY&DOMAIN=$1
@@ -23430,7 +23418,7 @@
   mappings:
     go: SMART
     prefixcommons: SMART
-    uniprot: SMART
+    uniprot.database: SMART
   miriam:
     deprecated: false
     description: The Simple Modular Architecture Research Tool (SMART) is an online
@@ -23450,7 +23438,7 @@
     is_identifiers: true
     is_obo: false
     prefix: SMART
-  uniprot:
+  uniprot.database:
     category: Family and domain databases
     formatter: http://smart.embl.de/smart/do_annotation.pl?DOMAIN=%s
     identifier: '97'
@@ -23663,7 +23651,7 @@
     is_identifiers: true
     is_obo: false
     prefix: SOYBASE
-- comment: see also snap
+- _comment: see also snap
   name: Span
   prefix: span
 - bioportal:
@@ -23917,7 +23905,7 @@
     prefix: STOREDB
 - mappings:
     prefixcommons: STRING
-    uniprot: STRING
+    uniprot.database: STRING
   miriam:
     deprecated: false
     description: "STRING (Search Tool for Retrieval of Interacting Genes/Proteins)\
@@ -23943,7 +23931,7 @@
     is_identifiers: true
     is_obo: false
     prefix: STRING
-  uniprot:
+  uniprot.database:
     category: Protein-protein interaction databases
     formatter: https://string-db.org/network/%s
     identifier: '141'
@@ -24027,7 +24015,7 @@
     prefix: SUGARBIND
 - mappings:
     prefixcommons: SUPFAM
-    uniprot: SUPFAM
+    uniprot.database: SUPFAM
   miriam:
     deprecated: false
     description: SUPERFAMILY provides structural, functional and evolutionary information
@@ -24048,7 +24036,7 @@
     is_identifiers: true
     is_obo: false
     prefix: SUPFAM
-  uniprot:
+  uniprot.database:
     category: Family and domain databases
     formatter: http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid=%s
     identifier: '155'
@@ -24429,7 +24417,7 @@
   mappings:
     go: TC
     prefixcommons: TCDB
-    uniprot: TCDB
+    uniprot.database: TCDB
   miriam:
     deprecated: false
     description: The database details a comprehensive  IUBMB approved classification
@@ -24452,7 +24440,7 @@
     prefix: TCDB
   synonyms:
   - TC
-  uniprot:
+  uniprot.database:
     category: Protein family/group databases
     formatter: http://www.tcdb.org/search/result.php?tc=%s
     identifier: '135'
@@ -24802,7 +24790,7 @@
     prefix: TREEBASE
 - mappings:
     prefixcommons: TREEFAM
-    uniprot: TreeFam
+    uniprot.database: TreeFam
   miriam:
     deprecated: false
     description: TreeFam is a database of phylogenetic trees of gene families found
@@ -24823,7 +24811,7 @@
     is_identifiers: true
     is_obo: false
     prefix: TREEFAM
-  uniprot:
+  uniprot.database:
     category: Phylogenomic databases
     formatter: http://www.treefam.org/family/%s
     identifier: '185'
@@ -25088,7 +25076,7 @@
     is_identifiers: true
     is_obo: false
     prefix: UBIO.NAMEBANK
-- comment: All of these are typedefs in uberon now
+- _comment: All of these are typedefs in uberon now
   deprecated: true
   name: Uberon Property
   prefix: ubprop
@@ -25096,7 +25084,7 @@
   homepage: https://genome.ucsc.edu/
   mappings:
     prefixcommons: UCSC
-    uniprot: UCSC
+    uniprot.database: UCSC
   name: UCSC Genome Browser
   prefix: ucsc
   prefixcommons:
@@ -25104,7 +25092,7 @@
     is_identifiers: false
     is_obo: false
     prefix: UCSC
-  uniprot:
+  uniprot.database:
     category: Genome annotation databases
     formatter: https://genome.ucsc.edu/cgi-bin/hgLinkIn?resource=uniprot&id=%u
     identifier: '139'
@@ -25742,7 +25730,7 @@
     bioportal: UPA
     go: UniPathway
     prefixcommons: UNIPATHWAY
-    uniprot: UniPathway
+    uniprot.database: UniPathway
   obofoundry:
     contact: Anne.Morgat@sib.swiss
     contact.label: Anne Morgat
@@ -25773,7 +25761,7 @@
   synonyms:
   - UPa
   - unipathway
-  uniprot:
+  uniprot.database:
     category: Enzyme and pathway databases
     formatter: http://www.unipathway.org?upid=%s&entryac=%u
     identifier: '170'
@@ -26089,7 +26077,7 @@
     prefix: VFDB.GENUS
 - mappings:
     ncbi: VGNC
-    uniprot: VGNC
+    uniprot.database: VGNC
   miriam:
     deprecated: false
     description: The Vertebrate Gene Nomenclature Committee (VGNC) is an extension
@@ -26108,7 +26096,7 @@
     name: Vertebrate Gene Nomenclature Committee
     prefix: VGNC
   prefix: vgnc
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: https://vertebrate.genenames.org/data/gene-symbol-report/#!/vgnc_id/%s
     identifier: '226'
@@ -26839,7 +26827,7 @@
     go: WB_REF
     ncbi: WormBase
     prefixcommons: WormBase
-    uniprot: WormBase
+    uniprot.database: WormBase
   name: WormBase
   ncbi:
     example: R13H7
@@ -26852,7 +26840,7 @@
     is_identifiers: false
     is_obo: false
     prefix: WormBase
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: https://wormbase.org/db/seq/protein?name=%s;class=CDS
     identifier: '110'
@@ -26981,7 +26969,7 @@
     go: Xenbase
     ncbi: Xenbase
     prefixcommons: Xenbase
-    uniprot: Xenbase
+    uniprot.database: Xenbase
   miriam:
     deprecated: false
     description: Xenbase is the model organism database for Xenopus laevis and X.
@@ -27007,7 +26995,7 @@
     is_identifiers: false
     is_obo: false
     prefix: Xenbase
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: https://www.xenbase.org/gene/showgene.do?method=display&geneId=%s
     identifier: '129'
@@ -27321,7 +27309,7 @@
     go: ZFIN
     ncbi: ZFIN
     prefixcommons: ZFIN
-    uniprot: ZFIN
+    uniprot.database: ZFIN
   miriam:
     deprecated: false
     description: ZFIN serves as the zebrafish model organism database. This collection
@@ -27347,7 +27335,7 @@
     prefix: ZFIN
   synonyms:
   - ZFIN
-  uniprot:
+  uniprot.database:
     category: Organism-specific databases
     formatter: https://zfin.org/%s
     identifier: '113'
