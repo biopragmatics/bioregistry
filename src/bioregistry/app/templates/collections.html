@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "macros.html" as utils %}
 
-{% block title %}Bioregistry - Colletions{% endblock %}
+{% block title %}Bioregistry - Collections{% endblock %}
 
 {% block container %}
     <div class="card">
@@ -9,13 +9,23 @@
             <div class="row">
                 <div class="col-8"><h5 style="margin: 0">Collections</h5></div>
                 <div class="col-4 text-right">
-                    <a href="{{ url_for("api.collections") }}">
-                        JSON <i class="fas fa-download"></i>
-                    </a>
+                    {% for label, key in formats %}
+                        <a href="{{ url_for("api.collections", format=key) }}">
+                            {{ label }} <i class="fas fa-download"></i>
+                        </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>
         <div class="card-body">
+            <p>
+                Collections are curated lists of prefixes along with a description of what the list is for. For example,
+                there's a <a href="{{ url_for(".collection", identifier="0000001") }}">collection</a> that lists all
+                of the resources from the review article <i><a href="https://doi.org/10.1002/1873-3468.14067">Sharing
+                biological data: why, when, and how</a></i>. There's also a
+                <a href="{{ url_for(".collection", identifier="0000002") }}">collection</a> comprising semantic web
+                prefixes.
+            </p>
             <p>New collections can be added in one of the following ways:</p>
             <ul>
                 <li>Edit the <a

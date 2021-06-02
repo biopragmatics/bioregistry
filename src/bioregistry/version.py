@@ -4,6 +4,7 @@
 
 import os
 from subprocess import CalledProcessError, check_output  # noqa: S404
+from typing import Optional
 
 __all__ = [
     'VERSION',
@@ -11,10 +12,10 @@ __all__ = [
     'get_git_hash',
 ]
 
-VERSION = '0.1.4-dev'
+VERSION = '0.1.9-dev'
 
 
-def get_git_hash() -> str:
+def get_git_hash() -> Optional[str]:
     """Get the bioregistry git hash."""
     with open(os.devnull, 'w') as devnull:
         try:
@@ -23,8 +24,10 @@ def get_git_hash() -> str:
                 cwd=os.path.dirname(__file__),
                 stderr=devnull,
             )
+        except OSError:  # git isn't available
+            return None
         except CalledProcessError:
-            return 'UNHASHED'
+            return None
         else:
             return ret.strip().decode('utf-8')[:8]
 

@@ -6,11 +6,11 @@ import click
 
 from .bioportal import get_bioportal
 from .go import get_go
-from .miriam import get_miriam_df
+from .miriam import get_miriam
 from .n2t import get_n2t
 from .ncbi import get_ncbi
-from .obofoundry import get_obofoundry_df
-from .ols import get_ols_df
+from .obofoundry import get_obofoundry
+from .ols import get_ols
 from .wikidata import get_wikidata_registry
 from ..utils import secho
 
@@ -23,7 +23,7 @@ __all__ = [
 def download():
     """Download/update the external entries in the Bioregistry."""
     secho('Downloading MIRIAM')
-    get_miriam_df(force_download=True)
+    get_miriam(force_download=True)
 
     secho('Download N2T')
     get_n2t(force=True)
@@ -32,10 +32,10 @@ def download():
     get_ncbi()
 
     secho('Downloading OBO Foundry')
-    get_obofoundry_df(force_download=True)
+    get_obofoundry(force_download=True)
 
     secho('Downloading OLS')
-    get_ols_df(force_download=True)
+    get_ols(force_download=True)
 
     secho('Download Wikidata')
     get_wikidata_registry()

@@ -3,9 +3,11 @@
 """Utility functions for the Bioregistry :mod:`flask` app."""
 
 import itertools as itt
+from io import StringIO
 from typing import Any, List, Mapping, Optional
 
-from flask import abort, redirect, render_template, url_for
+import yaml
+from flask import abort, current_app, jsonify, redirect, render_template, request, url_for
 
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL
@@ -57,7 +59,7 @@ def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
     except ValueError:
         norm_prefix = None
     if norm_prefix is None:
-        return render_template('resolve_missing_prefix.html', prefix=prefix), 404
+        return render_template('resolve_errors/missing_prefix.html', prefix=prefix), 404
     elif endpoint is not None and norm_prefix != prefix:
         return redirect(url_for(endpoint, prefix=norm_prefix))
     return norm_prefix
@@ -159,3 +161,37 @@ def _get_identifier(prefix: str, identifier: str) -> Mapping[str, Any]:
         query=dict(prefix=prefix, identifier=identifier),
         providers=providers,
     )
+
+
+def yamlify(*args, **kwargs):
+    """Dump data as YAML, like :func:`flask.jsonify`."""
+    if args and kwargs:
+        raise TypeError("yamlify() behavior undefined when passed both args and kwargs")
+    elif len(args) == 1:  # single args are passed directly to dumps()
+        data = args[0]
+    else:
+        data = args or kwargs
+
+    sio = StringIO()
+    yaml.safe_dump(data=data, stream=sio)
+    sio.seek(0)
+
+    return current_app.response_class(
+        sio.getvalue(),
+        mimetype='application/yaml',
+    )
+
+
+def _get_format(default: str = 'json') -> str:
+    return request.args.get('format', default=default)
+
+
+def serialize(*args, **kwargs):
+    """Serialize either as JSON or YAML."""
+    fmt = _get_format()
+    if fmt == 'json':
+        return jsonify(*args, **kwargs)
+    elif fmt in {'yaml', 'yml'}:
+        return yamlify(*args, **kwargs)
+    else:
+        return abort(404, f'invalid format: {fmt}')

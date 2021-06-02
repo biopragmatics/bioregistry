@@ -1,0 +1,119 @@
+{% extends "prose.html" %}
+
+{% block title %}Bioregistry Programmatic Usage{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+{% endblock %}
+
+{% block content %}
+    <h2>API Usage</h2>
+    <p>
+        The Bioregistry web application is built on <a href="https://flask.palletsprojects.com">Flask</a>
+        as a thin wrapper around the <a href="https://github.com/bioregistry/bioregistry"><code>bioregistry</code></a>
+        Python package. It exposes several endpoints for accessing the registry, metaregistry, collections, and search
+        functionality for which <a href="https://swagger.io/">Swagger</a> API documentation is automatically generated
+        by <a href="https://github.com/flasgger/flasgger">Flasgger</a>.
+    </p>
+    <p>
+        See the remaining Bioregistry <a href="{{ url_for('flasgger.apidocs') }}"><i class="fas fa-book"></i> API
+        documentation</a> or follow some of these examples using Python:
+    </p>
+    <h3>Registry</h3>
+    <p>
+        Get the whole registry:
+    </p>
+    <pre><code class="language-python">import requests
+res = requests.get('https://bioregistry.io/api/registry').json()</code></pre>
+    <p>
+        Just get metadata for ChEBI:
+    </p>
+    <pre><code class="language-python">import requests
+res = requests.get('https://bioregistry.io/api/registry/chebi').json()</code></pre>
+    <p>
+        Get metadata about ChEBI entry 138488 (alsterpaullone):
+    </p>
+    <pre><code
+            class="language-python">res = requests.get('https://bioregistry.io/api/registry/chebi:138488').json()</code></pre>
+    <p>
+        Search prefixes containing <code>che</code>:
+    </p>
+    <pre><code class="language-python">res = requests.get(
+    'https://bioregistry.io/api/search',
+    params={'q': 'che'},
+).json()</code></pre>
+    {#
+    <h3>Metaregistry</h3>
+    <p>TODO</p>
+    <h3>Collections</h3>
+    <p>TODO</p>
+    #}
+    <h2>Python Package Usage</h2>
+    <p>
+        The Python source code can be found at
+        <a href="https://github.com/bioregistry/bioregistry"><i class="fab fa-github"></i> bioregistry/bioregistry</a>.
+        It can be installed with <code>pip install bioregistry</code> or in development mode by following
+        <a href="https://github.com/bioregistry/bioregistry#-installation">these instructions</a>.
+    </p>
+    <p>
+        The Bioregistry can be used to normalize prefixes across MIRIAM and all the (very plentiful) variants that pop
+        up in ontologies in OBO Foundry and the OLS with the <code>normalize_prefix()</code> function.
+    </p>
+    <pre><code class="language-python">import bioregistry
+
+# This works for synonym prefixes, like:
+assert 'ncbitaxon' == bioregistry.normalize_prefix('taxonomy')
+
+# This works for common mistaken prefixes, like:
+assert 'pubchem.compound' == bioregistry.normalize_prefix('pubchem')
+
+# This works for prefixes that are often written many ways, like:
+assert 'eccode' == bioregistry.normalize_prefix('ec-code')
+assert 'eccode' == bioregistry.normalize_prefix('EC_CODE')
+
+# If a prefix is not registered, it gives back `None`
+assert bioregistry.normalize_prefix('not a real key') is None</code></pre>
+    <p>
+        Entries in the Bioregistry can be looked up with the <code>get()</code> function.
+    </p>
+    <pre><code class="language-python">entry = bioregistry.get('taxonomy')
+# there are lots of mysteries to discover in this dictionary!</code></pre>
+    <p>
+        The full Bioregistry can be read in a Python project using:
+    </p>
+    <pre><code class="language-python">registry = bioregistry.read_registry()</code></pre>
+
+    <h2>Local Deployment of the Bioregistry Web Application</h2>
+    <p>
+        As the Bioregistry is open source, it's possible to host your own instance of the Bioregistry web application.
+        Further, it's possible create a local derivative of the registry, metaregistry, or collections that can be
+        deployed in your own instance. Here are examples how to do that:
+    </p>
+    <h4>Python CLI</h4>
+    <p>
+        You can also install and run the Bioregistry app from the shell:
+    </p>
+    <pre><code class="language-shell">$ pip install bioregistry[web]
+$ bioregistry web</code></pre>
+    <p>You can also download the source code, install in development mode, and run the Bioregistry app from the shell:
+    </p>
+    <pre><code class="language-shell">$ git clone https://github.com/bioregistry/bioregistry.git
+$ cd bioregistry
+$ pip install --editable .[web]
+$ bioregistry web</code></pre>
+    <h4>Docker</h4>
+    <p>You can deploy your own instance of the Bioregistry with:</p>
+    <pre><code class="language-shell">$ docker run -id -p 8766:8766 bioregistry/bioregistry:latest</code></pre>
+    <p>
+        If you want to mix using a custom version of the Bioregistry with a Docker-based deployment, please
+        see the dockerfile in <a href="https://github.com/bioregistry/bioregistry-docker">
+        <i class="fab fa-github"></i> bioregistry/bioregistry-docker</a> for inspiration.
+    </p>
+{% endblock %}

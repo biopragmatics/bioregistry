@@ -1,0 +1,127 @@
+{% extends "prose.html" %}
+
+{% block title %}Bioregistry Deployment and Sustainability{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+{% endblock %}
+
+{% block content %}
+    <h1>Sustainability</h1>
+    <h2>Deployment in the Cloud</h2>
+    <p>
+        There are several aspects to the way the Bioregistry web application is deployed listed in this section.
+    </p>
+    <h3>Domain Name</h3>
+    <p>
+        The <code>bioregistry.io</code> domain is registered with Namecheap and costs about $33 per year. It is managed
+        and supported by the <a
+            href="https://indralab.github.io/">INDRA Lab</a>, a part of the <a
+            href="https://hits.harvard.edu/the-program/laboratory-of-systems-pharmacology/">Laboratory of
+        Systems Pharmacology</a> and <a href="https://hits.harvard.edu/">Harvard Program in Therapeutic Science
+        (HiTS)</a> at Harvard Medical School.
+    </p>
+    <h3>Hardware</h3>
+    <p>
+        The Bioregistry is hosted on an Amazon Elastic Compute Cloud (EC2) via a load balancing service to stay secure
+        and highly available. It is managed and supported by the <a href="https://indralab.github.io/">INDRA Lab</a>, a
+        part of the <a href="https://hits.harvard.edu/the-program/laboratory-of-systems-pharmacology/">Laboratory of
+        Systems Pharmacology</a> and <a href="https://hits.harvard.edu/">Harvard Program in Therapeutic Science
+        (HiTS)</a> at Harvard Medical School.
+    </p>
+    <h3>Software</h3>
+    <p>
+        These are the software and operating system specifications for the currently running instance of the
+        Bioregistry:
+    </p>
+    <dl>
+        <dt>Bioregistry Version</dt>
+        <dd>{{ software_version }}</dd>
+        {% if software_git_hash %}
+            <dt>Git Hash</dt>
+            <dd>
+                <a href="https://github.com/bioregistry/bioregistry/commit/{{ software_git_hash }}">
+                    {{ software_git_hash }}
+                </a>
+            </dd>
+        {% endif %}
+        <dt>Python</dt>
+        <dd>{{ python_version }}</dd>
+        <dt>Platform</dt>
+        <dd>{{ platform }}</dd>
+        <dt>Platform Version</dt>
+        <dd>{{ platform_version }}</dd>
+    </dl>
+    <h3>Containerization</h3>
+    <p>
+        A Docker image is automatically built on a cron job in the
+        <a href="https://github.com/bioregistry/bioregistry-docker"><i class="fab fa-github"></i>
+            bioregistry/bioregistry-docker</a> GitHub repository
+        and pushed to the <a href="https://hub.docker.com/r/bioregistry/bioregistry"><i class="fab fa-docker"></i>
+        bioregistry/bioregistry</a> DockerHub repository. This image is built with the Python 3.9 alpine base image,
+        which significantly reduces non-essential components. The final compressed image weights less than 40 MB of disk
+        space and runs inside Docker with about 65 MB of memory at baseline. This could easily fit on a dedicated
+        <a href="https://aws.amazon.com/ec2/instance-types/t4/">t4g.nano</a> instance on AWS that costs about
+        $37/year on-demand or around $20/year reserved.
+    </p>
+    <h3>Deployment</h3>
+    <p>
+        The Bioregistry's EC2 instance runs the following script on a cron job that stops the current running instance,
+        pulls the latest image from this DockerHub repository and starts it back up. The whole process only takes a few
+        seconds.
+    </p>
+    <pre><code class="language-bash">#!/bin/bash
+
+# store the bioregistry id
+BIOREGISTRY_CONTAINER_ID=$(docker ps --filter "name=bioregistry" -q)
+
+# Stop and remove the old container taking advantage
+#   of the fact that it's named specifically
+docker stop $BIOREGISTRY_CONTAINER_ID
+docker rm $BIOREGISTRY_CONTAINER_ID
+
+# Pull the latest
+docker pull bioregistry/bioregistry:latest
+
+# Run the start script
+docker run -id --name bioregistry -p 8766:8766 bioregistry/bioregistry:latest</code></pre>
+    <h3>SSL/TLS</h3>
+    <p>
+        The SSL/TLS certificate for <code>bioregistry.io</code> so it can be served with HTTPS is managed through
+        the <a href="https://aws.amazon.com/certificate-manager/">AWS Certificate Manager</a>.
+    </p>
+    <h2>Data Maintenance, Interoperability with other Projects, and Project Governance</h2>
+    <p>
+        So far, the Bioregistry (both the data and web application) have been curated and developed within a small team
+        and used by a limited audience. This means we have been able to address issues very quickly. However, this
+        attitude is not scalable to larger audiences, where changes have higher potential for disruption of users'
+        usages. With that being said, there are many things we are looking to discuss with potential stakeholders
+        including (but not limited to):
+    </p>
+    <ul>
+        <li>Will the service still be running in 10 years?</li>
+        <li>Who makes technical decisions about how the web application?</li>
+        <li>Who makes curation decisions about the underlying registry?</li>
+        <li>
+            Should there be acceptance criteria for new entries, such as a minimum metadata standard or assessment of
+            impact?
+        </li>
+        <li>How should inevitable prefix/namespace collisions be handled?</li>
+        <li>... and many more</li>
+    </ul>
+    <p>
+        These questions do not have easy answers and apply to most databases, software, and web applications in the life
+        sciences. If you would like to be part of this discussion, please <a
+            href="https://join.slack.com/t/obo-communitygroup/shared_invite/zt-qdvt040i-ac3eU1MOgXF~lehfeNa9eA">join
+        us</a> on the OBO Community Slack workspace's <a
+            href="https://obo-communitygroup.slack.com/archives/C01E0H083BP">#ontotools</a>
+        channel.
+    </p>
+{% endblock %}

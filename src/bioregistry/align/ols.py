@@ -6,7 +6,7 @@ import logging
 from email.utils import parseaddr
 
 from bioregistry.external import get_ols
-from bioregistry.utils import norm, secho, updater
+from bioregistry.utils import is_mismatch, norm, secho, updater
 
 logger = logging.getLogger(__name__)
 
@@ -61,9 +61,12 @@ def align_ols(registry):
         if 'ols' in entry:
             continue
         ols_id = ols_norm_prefix_to_prefix.get(norm(bioregistry_id))
-        if ols_id is not None:
-            entry['ols'] = {'prefix': ols_id}
-            ols_id_to_bioregistry_id[ols_id] = bioregistry_id
+        if ols_id is None:
+            continue
+        if is_mismatch(bioregistry_id, 'ols', ols_id):
+            continue
+        entry['ols'] = {'prefix': ols_id}
+        ols_id_to_bioregistry_id[ols_id] = bioregistry_id
 
     for ols_prefix, ols_entry in ols_registry.items():
         bioregistry_id = ols_id_to_bioregistry_id.get(ols_prefix)
