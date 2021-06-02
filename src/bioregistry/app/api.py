@@ -157,7 +157,7 @@ def collection(identifier: str):
 
 @api_blueprint.route('/reference/<prefix>:<identifier>')
 def reference(prefix: str, identifier: str):
-    """Look up information on the CURIE.
+    """Look up information on the reference.
 
     ---
     tags:

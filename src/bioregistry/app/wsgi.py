@@ -65,13 +65,13 @@ def home():
 @app.route('/summary')
 def summary():
     """Render the summary page."""
-    return render_template('summary.html')
+    return render_template('meta/summary.html')
 
 
 @app.route('/download')
 def download():
     """Render the download page."""
-    return render_template('download.html')
+    return render_template('meta/download.html')
 
 
 _VERSION = version.get_version()
@@ -85,7 +85,7 @@ _PYTHON_VERSION = platform.python_version()
 def sustainability():
     """Render the sustainability page."""
     return render_template(
-        'sustainability.html',
+        'meta/sustainability.html',
         software_version=_VERSION,
         software_git_hash=_GIT_HASH,
         platform=_PLATFORM,
@@ -97,7 +97,7 @@ def sustainability():
 @app.route('/usage')
 def usage():
     """Render the programmatic usage page."""
-    return render_template('access.html')
+    return render_template('meta/access.html')
 
 
 if __name__ == '__main__':
