@@ -6,6 +6,8 @@ from flask import Blueprint, abort, jsonify, request
 
 import bioregistry
 from .utils import _autocomplete, _get_identifier, _normalize_prefix_or_404, _search, serialize
+from .. import normalize_prefix
+from ..resolve import get_format_url
 
 api_blueprint = Blueprint('api', __name__, url_prefix='/api')
 
@@ -221,3 +223,38 @@ def autocomplete():
     if q is None:
         abort(400)
     return jsonify(_autocomplete(q))
+
+
+@api_blueprint.route('/context.jsonld')
+def generate_context_json_ld():
+    """Generate an *ad-hoc* context JSON-LD file from the given parameters.
+
+    You can either give prefixes as a comma-separated list like:
+
+    https://bioregistry.io/api/context.jsonld?prefix=go,doid,oa
+
+    or you can use multiple entries for "prefix" like:
+
+    https://bioregistry.io/api/context.jsonld?prefix=go&prefix=doid&prefix=oa
+    ---
+    parameters:
+    - name: prefix
+      in: query
+      description: The prefix for the entry. Can be given multiple.
+      required: true
+      type: string
+    """  # noqa:DAR101,DAR201
+    prefix_map = {}
+    for arg in request.args.getlist('prefix', type=str):
+        for prefix in arg.split(','):
+            prefix = normalize_prefix(prefix.strip())
+            if prefix is None:
+                continue
+            fmt = get_format_url(prefix)
+            if fmt is None:
+                continue
+            prefix_map[prefix] = fmt
+
+    return jsonify({
+        "@context": prefix_map,
+    })
