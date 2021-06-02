@@ -165,21 +165,21 @@ def resolve(prefix: str, identifier: Optional[str] = None):
     """  # noqa:DAR101,DAR201
     norm_prefix = bioregistry.normalize_prefix(prefix)
     if norm_prefix is None:
-        return render_template('resolve_missing_prefix.html', prefix=prefix, identifier=identifier), 404
+        return render_template('resolve_errors/missing_prefix.html', prefix=prefix, identifier=identifier), 404
     if identifier is None:
         return redirect(url_for('.' + resource.__name__, prefix=norm_prefix))
 
     pattern = bioregistry.get_pattern(prefix)
     if pattern and not bioregistry.validate(prefix, identifier):
         return render_template(
-            'resolve_invalid_identifier.html', prefix=prefix, identifier=identifier, pattern=pattern,
+            'resolve_errors/invalid_identifier.html', prefix=prefix, identifier=identifier, pattern=pattern,
         ), 404
 
     url = bioregistry.get_link(prefix, identifier, use_bioregistry_io=False)
     if not url:
-        return render_template('resolve_missing_providers.html', prefix=prefix, identifier=identifier), 404
+        return render_template('resolve_errors/missing_providers.html', prefix=prefix, identifier=identifier), 404
     try:
         # TODO remove any garbage characters?
         return redirect(url)
     except ValueError:  # headers could not be constructed
-        return render_template('resolve_disallowed_identifier.html', prefix=prefix, identifier=identifier), 404
+        return render_template('resolve_errors/disallowed_identifier.html', prefix=prefix, identifier=identifier), 404

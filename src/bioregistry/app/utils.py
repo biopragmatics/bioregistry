@@ -59,7 +59,7 @@ def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
     except ValueError:
         norm_prefix = None
     if norm_prefix is None:
-        return render_template('resolve_missing_prefix.html', prefix=prefix), 404
+        return render_template('resolve_errors/missing_prefix.html', prefix=prefix), 404
     elif endpoint is not None and norm_prefix != prefix:
         return redirect(url_for(endpoint, prefix=norm_prefix))
     return norm_prefix
