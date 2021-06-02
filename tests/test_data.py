@@ -227,8 +227,19 @@ class TestRegistry(unittest.TestCase):
                     except ValueError:
                         logger.warning('Wrong format for %s (%s)', bioregistry_id, version)
 
-    def test_collections(self):
+    def test_is_mismatch(self):
+        """Check for mismatches."""
+        self.assertTrue(is_mismatch('geo', 'ols', 'geo'))
+        self.assertFalse(is_mismatch('geo', 'miriam', 'geo'))
+
+
+class TestCollections(unittest.TestCase):
+    """Tests for collections."""
+
+    def test_minimum_metadata(self):
         """Check collections have minimal metadata and correct prefixes."""
+        registry = bioregistry.read_registry()
+
         for key, collection in sorted(bioregistry.read_collections().items()):
             with self.subTest(key=key):
                 self.assertRegex(key, '^\\d{7}$')
@@ -243,7 +254,7 @@ class TestRegistry(unittest.TestCase):
                 incorrect = {
                     prefix
                     for prefix in collection['resources']
-                    if prefix not in self.registry
+                    if prefix not in registry
                 }
                 self.assertEqual(set(), incorrect)
                 duplicates = {
@@ -252,11 +263,6 @@ class TestRegistry(unittest.TestCase):
                     if 1 < count
                 }
                 self.assertEqual(set(), duplicates, msg='Duplicates found')
-
-    def test_is_mismatch(self):
-        """Check for mismatches."""
-        self.assertTrue(is_mismatch('geo', 'ols', 'geo'))
-        self.assertFalse(is_mismatch('geo', 'miriam', 'geo'))
 
 
 class TestMetaregistry(unittest.TestCase):
