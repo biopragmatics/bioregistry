@@ -84,7 +84,7 @@ def get_registry_df():
     df = pd.DataFrame(rows, columns=[
         'identifier', 'name', 'homepage', 'description', 'pattern',
         'example', 'email', 'formatter', 'download', 'synonyms',
-        'deprecated', *metaprefixes, 'appears_in', 'part_of', 'provides', 'type',
+        'deprecated', *metaprefixes, 'part_of', 'provides', 'type',
     ])
     return df
 
