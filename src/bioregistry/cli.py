@@ -8,8 +8,6 @@ import click
 import yaml
 from more_click import make_web_command
 
-from bioregistry import read_collections, read_metaregistry
-from . import resolve
 from .align.cli import align
 from .compare import compare
 from .constants import DOCS_DATA
@@ -49,8 +47,6 @@ def export():
     ]
     with open(os.path.join(DOCS_DATA, 'bioregistry.yml'), 'w') as file:
         yaml.dump(ov, file)
-
-
 
 
 @main.command()
