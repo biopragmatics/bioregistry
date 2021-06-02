@@ -8,24 +8,24 @@ import click
 import yaml
 
 from ..constants import DOCS_DATA
-from ..utils import read_registry
+from ..utils import read_collections, read_metaregistry, read_registry
 
 
 @click.command()
 def export_yaml():
     """Export the registry as YAML."""
-    registry = read_registry()
-
-    # YAML - registry
-    ov = [
-        {
-            'prefix': prefix,
-            **data,
-        }
-        for prefix, data in registry.items()
-    ]
     with open(os.path.join(DOCS_DATA, 'registry.yml'), 'w') as file:
-        yaml.dump(ov, file)
+        yaml.dump(stream=file, data=[
+            {
+                'prefix': prefix,
+                **data,
+            }
+            for prefix, data in read_registry().items()
+        ])
+    with open(os.path.join(DOCS_DATA, 'metaregistry.yml'), 'w') as file:
+        yaml.dump(stream=file, data=read_metaregistry())
+    with open(os.path.join(DOCS_DATA, 'collections.yml'), 'w') as file:
+        yaml.dump(stream=file, data=read_collections())
 
 
 if __name__ == '__main__':
