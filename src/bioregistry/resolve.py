@@ -21,6 +21,7 @@ __all__ = [
     'get_pattern_re',
     'namespace_in_lui',
     'get_format',
+    'get_format_url',
     'get_example',
     'has_terms',
     'is_deprecated',

@@ -186,12 +186,15 @@ def _get_format(default: str = 'json') -> str:
     return request.args.get('format', default=default)
 
 
-def serialize(*args, **kwargs):
+def serialize(*args, serializers=None, **kwargs):
     """Serialize either as JSON or YAML."""
     fmt = _get_format()
     if fmt == 'json':
         return jsonify(*args, **kwargs)
     elif fmt in {'yaml', 'yml'}:
         return yamlify(*args, **kwargs)
-    else:
-        return abort(404, f'invalid format: {fmt}')
+    elif serializers:
+        for name, func in serializers.items():
+            if fmt == name:
+                return func(*args, **kwargs)
+    return abort(404, f'invalid format: {fmt}')

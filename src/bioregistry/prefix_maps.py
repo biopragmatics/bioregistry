@@ -32,15 +32,28 @@ def generate_context_json_ld():
         if name is None:
             continue
         with contexts_directory.joinpath(f'{name}_context').with_suffix('.jsonld').open('w') as file:
-            json.dump(fp=file, indent=4, sort_keys=True, obj={
-                "@context": get_collection_prefix_map(key),
-            })
+            json.dump(fp=file, indent=4, sort_keys=True, obj=get_collection_jsonld(key))
 
 
-def get_collection_prefix_map(key: str) -> Mapping[str, str]:
-    """Get a prefix map for a given collection."""
+def get_collection_jsonld(identifier: str) -> Mapping[str, Mapping[str, str]]:
+    """Get the JSON-LD context based on a given collection."""
+    collection = bioregistry.get_collection(identifier)
+    if collection is None:
+        raise KeyError
+    return collection_to_context(collection)
+
+
+def collection_to_context(collection) -> Mapping[str, Mapping[str, str]]:
+    """Get the JSON-LD context from a given collection."""
+    return {
+        "@context": collection_to_prefix_map(collection),
+    }
+
+
+def collection_to_prefix_map(collection) -> Mapping[str, str]:
+    """Get the prefix map for a given collection."""
     rv = {}
-    for prefix in bioregistry.read_collections()[key]['resources']:
+    for prefix in collection['resources']:
         fmt = get_format_url(prefix)
         if fmt is not None:
             rv[prefix] = fmt

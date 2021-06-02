@@ -7,6 +7,7 @@ from flask import Blueprint, abort, jsonify, request
 import bioregistry
 from .utils import _autocomplete, _get_identifier, _normalize_prefix_or_404, _search, serialize
 from .. import normalize_prefix
+from ..prefix_maps import collection_to_context
 from ..resolve import get_format_url
 
 api_blueprint = Blueprint('api', __name__, url_prefix='/api')
@@ -154,7 +155,9 @@ def collection(identifier: str):
     data = bioregistry.get_collection(identifier)
     if not data:
         abort(404, f'Invalid collection: {identifier}')
-    return serialize(data)
+    return serialize(data, serializers={
+        'jsonld': collection_to_context,
+    })
 
 
 @api_blueprint.route('/reference/<prefix>:<identifier>')
