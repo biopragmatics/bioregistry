@@ -18,10 +18,11 @@ def export_tsv():
     """Export TSV."""
     get_collections_df().to_csv(os.path.join(DOCS_DATA, 'collections.tsv'), index=False, sep='\t')
     get_metaregistry_df().to_csv(os.path.join(DOCS_DATA, 'metaregistry.tsv'), sep='\t')
-    get_registry_df().to_csv(os.path.join(DOCS_DATA, 'bioregistry.tsv'), index=False, sep='\t')
+    get_registry_df().to_csv(os.path.join(DOCS_DATA, 'registry.tsv'), index=False, sep='\t')
 
 
 def get_collections_df():
+    """Get a dataframe of all collections."""
     rows = []
     for identifier, data in read_collections().items():
         rows.append((
@@ -37,12 +38,14 @@ def get_collections_df():
 
 
 def get_metaregistry_df():
+    """Get a dataframe of all metaresources."""
     df = pd.DataFrame.from_dict(dict(read_metaregistry()), orient='index')
     df.index.name = 'metaprefix'
     return df
 
 
 def get_registry_df():
+    """Get a dataframe of all resources."""
     metaprefixes = [
         k
         for k in sorted(read_metaregistry())

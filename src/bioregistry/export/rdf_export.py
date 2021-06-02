@@ -26,7 +26,7 @@ bioregistry_schema = ClosedNamespace(
         'pattern', 'email', 'download', 'part_of', 'provides', 'deprecated',
         'hasMetaresource', 'hasMetaidentifier', 'mapping',
         'resource', 'metaresource', 'collection',
-    ]
+    ],
 )
 orcid = Namespace('https://orcid.org/')
 
@@ -183,7 +183,8 @@ def _add_resource(graph: rdflib.Graph, prefix, data):
         Literal(bioregistry.is_deprecated(prefix), datatype=XSD.boolean),
     ))
 
-    for metaprefix, metaidentifier in bioregistry.get_mappings(prefix).items():
+    mappings = bioregistry.get_mappings(prefix)
+    for metaprefix, metaidentifier in (mappings or {}).items():
         mapping_node = BNode()
         graph.add((node, bioregistry_schema['mapping'], mapping_node))
         graph.add((mapping_node, RDF['type'], bioregistry_schema['mapping']))

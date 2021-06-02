@@ -45,7 +45,7 @@ def export():
         }
         for prefix, data in registry.items()
     ]
-    with open(os.path.join(DOCS_DATA, 'bioregistry.yml'), 'w') as file:
+    with open(os.path.join(DOCS_DATA, 'registry.yml'), 'w') as file:
         yaml.dump(ov, file)
 
 
@@ -74,7 +74,7 @@ def update(ctx: click.Context):
     ctx.invoke(download)
     ctx.invoke(align)
     ctx.invoke(lint)
-    ctx.invoke(exports)
+    ctx.invoke(export)
     ctx.invoke(compare)
     ctx.invoke(curation)
     ctx.invoke(warnings)
