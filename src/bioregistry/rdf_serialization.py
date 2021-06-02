@@ -1,15 +1,21 @@
 from io import BytesIO
-from pprint import pprint
 
 import rdflib
-from rdflib import Literal, Namespace, RDFS
+from rdflib import FOAF, Literal, Namespace, RDFS, XSD
+from rdflib.namespace import ClosedNamespace
 
 from bioregistry import get, get_registry, read_collections, read_metaregistry
 
 bioregistry_collection = Namespace('https://bioregistry.io/collection/')
 bioregistry_resource = Namespace('https://bioregistry.io/registry/')
 bioregistry_metaresource = Namespace('https://bioregistry.io/metaregistry/')
-bioregistry_schema = Namespace('https://bioregistry.io/schema/#')
+bioregistry_schema = ClosedNamespace(
+    'https://bioregistry.io/schema/#',
+    terms=[
+        'contains', 'example', 'isRegistry', 'isProvider',
+        'isResolver', 'hasAuthor', 'provider_formatter', 'resolver_formatter',
+    ]
+)
 orcid = Namespace('https://orcid.org/')
 
 
@@ -20,14 +26,17 @@ def get_graph() -> rdflib.Graph:
     graph.namespace_manager.bind('bioregistry.collection', bioregistry_collection)
     graph.namespace_manager.bind('bioregistry.schema', bioregistry_schema)
     graph.namespace_manager.bind('orcid', orcid)
+    graph.namespace_manager.bind('foaf', FOAF)
 
-    k = list(read_metaregistry())[0]
-    mr = get_registry(k)
-    pprint(mr)
-    _add_metaresource(graph, mr)
+    add_metaresources(graph)
     # add_collections(graph)
 
     return graph
+
+
+def add_metaresources(graph: rdflib.Graph):
+    for metaresource in read_metaregistry().values():
+        _add_metaresource(graph, metaresource)
 
 
 def add_collections(graph: rdflib.Graph):
@@ -58,6 +67,15 @@ def _add_metaresource(graph: rdflib.Graph, metaresource):
     node = bioregistry_metaresource[metaresource['prefix']]
     graph.add((node, RDFS['label'], Literal(metaresource['name'])))
     graph.add((node, RDFS['comment'], Literal(metaresource['description'])))
+    graph.add((node, FOAF['homepage'], Literal(metaresource['homepage'])))
+    graph.add((node, bioregistry_schema['example'], Literal(metaresource['example'])))
+    graph.add((node, bioregistry_schema['isRegistry'], Literal(metaresource['registry'], datatype=XSD.boolean)))
+    graph.add((node, bioregistry_schema['isProvider'], Literal(metaresource['provider'], datatype=XSD.boolean)))
+    if metaresource['provider']:
+        graph.add((node, bioregistry_schema['provider_formatter'], Literal(metaresource['formatter'])))
+    graph.add((node, bioregistry_schema['isResolver'], Literal(metaresource['resolver'], datatype=XSD.boolean)))
+    if metaresource['resolver']:
+        graph.add((node, bioregistry_schema['resolver_formatter'], Literal(metaresource['resolver_url'])))
 
 
 def resource_triples(prefix):
