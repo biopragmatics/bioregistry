@@ -219,3 +219,35 @@ class TestDuplicates(unittest.TestCase):
         """Check for mismatches."""
         self.assertTrue(is_mismatch('geo', 'ols', 'geo'))
         self.assertFalse(is_mismatch('geo', 'miriam', 'geo'))
+
+
+class TestMetaregistry(unittest.TestCase):
+    """Tests for the metaregistry."""
+
+    def test_minimum_metadata(self):
+        """Test the metaregistry entries have a minimum amount of data."""
+        for metaprefix, data in bioregistry.read_metaregistry().items():
+            with self.subTest(metaprefix=metaprefix):
+                self.assertIn('name', data)
+                self.assertIn('homepage', data)
+                self.assertIn('example', data)
+                self.assertIn('description', data)
+                self.assertIn('registry', data)
+
+                # When a registry is a provider, it means it
+                # provides for its entries
+                self.assertIn('provider', data)
+                if data['provider']:
+                    self.assertIn('formatter', data)
+                    self.assertIn('$1', data['formatter'])
+
+                # When a registry is a resolver, it means it
+                # can resolve entries (prefixes) + identifiers
+                self.assertIn('resolver', data)
+
+                invalid_keys = set(data).difference({
+                    'prefix', 'name', 'homepage', 'download', 'registry',
+                    'provider', 'resolver', 'description', 'formatter',
+                    'example',
+                })
+                self.assertEqual(set(), invalid_keys, msg='invalid metadata')

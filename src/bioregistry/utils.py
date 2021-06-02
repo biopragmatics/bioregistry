@@ -80,6 +80,13 @@ def write_bioregistry(registry):
         json.dump(registry, file, indent=2, sort_keys=True, ensure_ascii=False)
 
 
+def write_metaregistry(metaregistry):
+    """Write to the metaregistry."""
+    values = [v for _, v in sorted(metaregistry.items())]
+    with open(METAREGISTRY_PATH, mode='w', encoding='utf-8') as file:
+        json.dump(values, file, indent=2, sort_keys=True, ensure_ascii=False)
+
+
 def updater(f):
     """Make a decorator for functions that auto-update the bioregistry."""
 

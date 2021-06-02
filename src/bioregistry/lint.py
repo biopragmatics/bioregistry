@@ -4,7 +4,7 @@
 
 import click
 
-from bioregistry.utils import read_collections, secho, updater, write_collections
+from bioregistry.utils import read_collections, read_metaregistry, secho, updater, write_collections, write_metaregistry
 
 
 @updater
@@ -47,6 +47,7 @@ def lint():
     """Run the lint commands."""
     sort_registry()
     write_collections(read_collections())
+    write_metaregistry(read_metaregistry())
 
 
 if __name__ == '__main__':
