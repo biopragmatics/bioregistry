@@ -50,62 +50,7 @@ def export():
     with open(os.path.join(DOCS_DATA, 'bioregistry.yml'), 'w') as file:
         yaml.dump(ov, file)
 
-    import pandas as pd
-    rows = []
-    for identifier, data in read_collections().items():
-        rows.append((
-            identifier,
-            data['name'],
-            data['description'],
-            '|'.join(data['resources']),
-            '|'.join(e['name'] for e in data['authors']),
-            '|'.join(e['orcid'] for e in data['authors']),
-        ))
-    df = pd.DataFrame(rows, columns=['identifier', 'name', 'description', 'resources', 'author_names', 'author_orcids'])
-    df.to_csv(os.path.join(DOCS_DATA, 'collections.tsv'), index=False, sep='\t')
 
-    df = pd.DataFrame.from_dict(dict(read_metaregistry()), orient='index')
-    df.index.name = 'metaprefix'
-    df.to_csv(os.path.join(DOCS_DATA, 'metaregistry.tsv'), sep='\t')
-
-    metaprefixes = [
-        k
-        for k in sorted(read_metaregistry())
-        if k not in {'bioregistry', 'biolink', 'ncbi', 'fairsharing', 'go'}
-    ]
-
-    rows = []
-    for prefix, data in read_registry().items():
-        mappings = resolve.get_mappings(prefix)
-        rows.append((
-            prefix,
-            resolve.get_name(prefix),
-            resolve.get_homepage(prefix),
-            resolve.get_description(prefix),
-            resolve.get_pattern(prefix),
-            resolve.get_example(prefix),
-            resolve.get_email(prefix),
-            resolve.get_format(prefix),
-            data.get('download'),
-            '|'.join(data.get('synonyms', [])),
-            data.get('deprecated', False),
-            *[
-                mappings.get(metaprefix)
-                for metaprefix in metaprefixes
-            ],
-            '|'.join(data.get('appears_in', [])),
-            data.get('part_of'),
-            data.get('provides'),
-            data.get('type'),
-            # TODO could add more, especially mappings
-        ))
-
-    df = pd.DataFrame(rows, columns=[
-        'identifier', 'name', 'homepage', 'description', 'pattern',
-        'example', 'email', 'formatter', 'download', 'synonyms',
-        'deprecated', *metaprefixes, 'appears_in', 'part_of', 'provides', 'type',
-    ])
-    df.to_csv(os.path.join(DOCS_DATA, 'bioregistry.tsv'), index=False, sep='\t')
 
 
 @main.command()
