@@ -135,7 +135,7 @@ def collection(identifier: str):
         'collection.html',
         identifier=identifier,
         entry=entry,
-        formats=FORMATS,
+        formats=[*FORMATS, ('JSON-LD', 'jsonld')],
     )
 
 

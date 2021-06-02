@@ -21,6 +21,7 @@ __all__ = [
     'get_pattern_re',
     'namespace_in_lui',
     'get_format',
+    'get_format_url',
     'get_example',
     'has_terms',
     'is_deprecated',
@@ -286,6 +287,21 @@ def get_format(prefix: str) -> Optional[str]:
         purl = f'http://purl.obolibrary.org/obo/{ols_id.upper()}_$1'
         return f'https://www.ebi.ac.uk/ols/ontologies/{ols_id}/terms?iri={purl}'
     return None
+
+
+def get_format_url(prefix: str) -> Optional[str]:
+    """Get a well-formed format URL for usage in a prefix map."""
+    fmt = get_format(prefix)
+    if fmt is None:
+        logging.warning('term missing formatter: %s', prefix)
+        return None
+    if not fmt.endswith('$1'):
+        logging.warning('formatter missing $1: %s', prefix)
+        return None
+    if fmt.count('$1') != 1:
+        logging.warning('formatter has multiple $1: %s', prefix)
+        return None
+    return fmt[:-len('$1')]
 
 
 def get_example(prefix: str) -> Optional[str]:
