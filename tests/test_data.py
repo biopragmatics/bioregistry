@@ -14,12 +14,54 @@ from bioregistry.utils import is_mismatch
 logger = logging.getLogger(__name__)
 
 
-class TestDuplicates(unittest.TestCase):
-    """Tests for duplicates."""
+class TestRegistry(unittest.TestCase):
+    """Tests for the registry."""
 
     def setUp(self) -> None:
         """Set up the test case."""
         self.registry = bioregistry.read_registry()
+
+    def test_keys(self):
+        """Check the required metadata is there."""
+        keys = {
+            # Required
+            'description',
+            'homepage',
+            'name',
+            # Recommended
+            'contact',
+            'download',
+            'example',
+            'pattern',
+            'type',
+            'url',
+            # Only there if true
+            'no_own_terms',
+            'not_available_as_obo',
+            'namespaceEmbeddedInLui',
+            # Only there if false
+            # Lists
+            'appears_in',
+            # Other
+            'deprecated',
+            'banana',
+            'mappings',
+            'ols_version_date_format',
+            'ols_version_prefix',
+            'ols_version_suffix_split',
+            'ols_version_type',
+            'part_of',
+            'provides',
+            'references',
+            'synonyms',
+        }
+        keys.update(bioregistry.read_metaregistry())
+        for prefix, entry in self.registry.items():
+            extra = {k for k in set(entry) - keys if not k.startswith('_')}
+            if not extra:
+                continue
+            with self.subTest(prefix=prefix):
+                self.fail(f'had extra keys: {extra}')
 
     def test_names(self):
         """Test that all entries have a name."""
@@ -128,7 +170,7 @@ class TestDuplicates(unittest.TestCase):
 
     def test_examples_pass_patterns(self):
         """Test that all examples pass the patterns."""
-        for prefix, entry in self.registry.items():
+        for prefix in self.registry:
             pattern = bioregistry.get_pattern_re(prefix)
             example = bioregistry.get_example(prefix)
             if pattern is None or example is None:
