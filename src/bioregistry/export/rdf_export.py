@@ -24,7 +24,7 @@ bioregistry_schema = ClosedNamespace(
         'contains', 'example', 'isRegistry', 'isProvider',
         'isResolver', 'hasAuthor', 'provider_formatter', 'resolver_formatter',
         'pattern', 'email', 'download', 'part_of', 'provides', 'deprecated',
-        'hasMetaresource', 'hasMetaidentifier', 'mapping',
+        'hasMetaresource', 'hasMetaidentifier', 'mapping', 'hasMapping',
         'resource', 'metaresource', 'collection',
     ],
 )
@@ -186,7 +186,7 @@ def _add_resource(graph: rdflib.Graph, prefix, data):
     mappings = bioregistry.get_mappings(prefix)
     for metaprefix, metaidentifier in (mappings or {}).items():
         mapping_node = BNode()
-        graph.add((node, bioregistry_schema['mapping'], mapping_node))
+        graph.add((node, bioregistry_schema['hasMapping'], mapping_node))
         graph.add((mapping_node, RDF['type'], bioregistry_schema['mapping']))
         graph.add((mapping_node, bioregistry_schema['hasMetaresource'], bioregistry_metaresource[metaprefix]))
         graph.add((mapping_node, bioregistry_schema['hasMetaidentifier'], Literal(metaidentifier)))
