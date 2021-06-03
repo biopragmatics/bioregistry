@@ -57,7 +57,10 @@ def get(prefix: str) -> Optional[Mapping[str, Any]]:
     :returns: The Bioregistry entry dictionary, which includes several keys cross-referencing
         other registries when available.
     """
-    return read_registry().get(normalize_prefix(prefix))
+    norm_prefix = normalize_prefix(prefix)
+    if norm_prefix is None:
+        return None
+    return read_registry().get(norm_prefix)
 
 
 def get_collection(identifier: str) -> Optional[Collection]:

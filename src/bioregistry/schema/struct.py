@@ -7,7 +7,7 @@
 
 import json
 import pathlib
-from typing import List, Mapping, Optional
+from typing import Any, List, Mapping, Optional
 
 from pydantic import BaseModel
 
@@ -21,6 +21,53 @@ class Author(BaseModel):
     name: str
     #: The ORCID identifier for the author
     orcid: str
+
+
+class Resource(BaseModel):
+    """Metadata about an ontology, database, or other resource."""
+
+    name: Optional[str]
+    description: Optional[str]
+    pattern: Optional[str]
+    url: Optional[str]
+    homepage: Optional[str]
+    contact: Optional[str]
+    example: Optional[str]
+    part_of: Optional[str]
+    provides: Optional[str]
+    type: Optional[str]
+    download: Optional[str]
+    banana: Optional[str]
+    deprecated: Optional[bool]
+    mappings: Optional[Mapping[str, str]]
+    synonyms: Optional[List[str]]
+    references: Optional[List[str]]
+    appears_in: Optional[List[str]]
+    ols_version_type: Optional[str]
+    ols_version_date_format: Optional[str]
+    ols_version_prefix: Optional[str]
+    ols_version_suffix_split: Optional[bool]
+    namespaceEmbeddedInLui: Optional[bool]  # noqa:N815
+    not_available_as_obo: Optional[bool]
+    no_own_terms: Optional[bool]
+    comment: Optional[str]
+
+    # Registry-specific data
+    miriam: Optional[Mapping[str, Any]]
+    n2t: Optional[Mapping[str, Any]]
+    prefixcommons: Optional[Mapping[str, Any]]
+    wikidata: Optional[Mapping[str, Any]]
+    go: Optional[Mapping[str, Any]]
+    obofoundry: Optional[Mapping[str, Any]]
+    bioportal: Optional[Mapping[str, Any]]
+    ols: Optional[Mapping[str, Any]]
+    ncbi: Optional[Mapping[str, Any]]
+    uniprot: Optional[Mapping[str, Any]]
+    biolink: Optional[Mapping[str, Any]]
+
+    def cdict(self) -> Mapping[str, Any]:
+        """Dump as a dict with keys that have null values removed."""
+        return {k: v for k, v in self.dict().items() if v is not None}
 
 
 class Registry(BaseModel):
@@ -84,6 +131,7 @@ class Collection(BaseModel):
 def main():
     """Dump the JSON schemata."""
     for name, cls in [
+        ('resource.schema.json', Resource),
         ('collection.schema.json', Collection),
         ('author.schema.json', Author),
         ('registry.schema.json', Registry),

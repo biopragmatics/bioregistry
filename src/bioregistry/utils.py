@@ -14,7 +14,7 @@ import requests
 from pydantic.json import pydantic_encoder
 
 from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH, MISMATCH_PATH
-from .schema.struct import Collection, Registry
+from .schema.struct import Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
@@ -40,7 +40,14 @@ def read_bioregistry():
 def read_registry():
     """Read the Bioregistry as JSON."""
     with open(BIOREGISTRY_PATH, encoding='utf-8') as file:
-        return json.load(file)
+        data = json.load(file)
+    return {
+        # Why bother doing this? Because now, Pydantic does all sorts of nice schema
+        # checks for us. Later, we'll switch over to using first-class Resource instances
+        # in the rest of the code.
+        key: Resource(**value).cdict()
+        for key, value in data.items()
+    }
 
 
 @lru_cache(maxsize=1)
