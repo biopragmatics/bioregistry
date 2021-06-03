@@ -120,8 +120,8 @@ def metaresource_to_rdf_str(data: Union[str, Registry], fmt: Optional[str] = Non
 def resource_to_rdf_str(data, fmt: Optional[str] = None) -> str:
     """Get a collection as an RDF string."""
     if isinstance(data, str):
-        data = {'prefix': data, **bioregistry.get(data)}
-    graph, _ = _add_resource(data=data)
+        data = {'prefix': data, **bioregistry.get(data)}  # type: ignore
+    graph, _ = _add_resource(data)
     return _graph_str(graph, fmt=fmt)
 
 
