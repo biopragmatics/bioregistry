@@ -53,12 +53,15 @@ class TestMetaregistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_registry_homepage('nope'))
         self.assertIsNone(bioregistry.get_registry_url('nope', ...))
         self.assertIsNone(bioregistry.get_registry_example('nope'))
-        self.assertIsNone(bioregistry.get_registry_url('n2g', ...))  # no provider available for N2T registry
+        self.assertIsNone(bioregistry.get_registry_description('nope'))
+        self.assertIsNone(bioregistry.get_registry_url('n2t', ...))  # no provider available for N2T registry
 
         metaprefix = 'uniprot.database'
         registry = bioregistry.get_registry(metaprefix)
         self.assertIsInstance(registry, Registry)
         self.assertEqual(metaprefix, registry.prefix)
+
+        self.assertEqual(registry.description, bioregistry.get_registry_description(metaprefix))
 
         homepage = 'https://www.uniprot.org/database/'
         self.assertEqual(homepage, registry.homepage)

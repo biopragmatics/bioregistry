@@ -7,6 +7,7 @@ import logging
 import unittest
 
 import bioregistry
+from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.resolve import EMAIL_RE, _get_prefix_key
 from bioregistry.utils import is_mismatch
 
@@ -230,3 +231,52 @@ class TestRegistry(unittest.TestCase):
         """Check for mismatches."""
         self.assertTrue(is_mismatch('geo', 'ols', 'geo'))
         self.assertFalse(is_mismatch('geo', 'miriam', 'geo'))
+
+    def test_get_nope(self):
+        """Test when functions don't return."""
+        self.assertIsNone(bioregistry.get_banana('nope'))
+        self.assertIsNone(bioregistry.get_description('nope'))
+        self.assertIsNone(bioregistry.get_homepage('nope'))
+        self.assertIsNone(bioregistry.get_format('gmelin'))  # no URL
+        self.assertIsNone(bioregistry.get_format('nope'))
+        self.assertIsNone(bioregistry.get_version('nope'))
+        self.assertIsNone(bioregistry.get_name('nope'))
+        self.assertIsNone(bioregistry.get_example('nope'))
+        self.assertIsNone(bioregistry.get_email('nope'))
+        self.assertIsNone(bioregistry.get_mappings('nope'))
+        self.assertIsNone(bioregistry.get_fairsharing_prefix('nope'))
+        self.assertIsNone(bioregistry.get_obofoundry_prefix('nope'))
+        self.assertIsNone(bioregistry.get_obofoundry_format('nope'))
+        self.assertIsNone(bioregistry.get_obo_download('nope'))
+        self.assertIsNone(bioregistry.get_owl_download('nope'))
+        self.assertIsNone(bioregistry.get_ols_link('nope', ...))
+        self.assertIsNone(bioregistry.get_obofoundry_link('nope', ...))
+        self.assertTrue(bioregistry.has_terms('nope'))
+        self.assertFalse(bioregistry.is_deprecated('nope'))
+        self.assertFalse(bioregistry.is_provider('nope'))
+        self.assertIsNone(bioregistry.get_provides_for('nope'))
+        self.assertIsNone(bioregistry.get_version('gmelin'))
+        self.assertIsNone(bioregistry.validate('nope', ...))
+        self.assertIsNone(bioregistry.get_default_url('nope', ...))
+        self.assertIsNone(bioregistry.get_identifiers_org_url('nope', ...))
+        self.assertIsNone(bioregistry.get_n2t_url('nope', ...))
+        self.assertIsNone(bioregistry.get_bioportal_url('nope', ...))
+        self.assertIsNone(bioregistry.get_bioportal_url('gmelin', ...))
+        self.assertIsNone(bioregistry.get_identifiers_org_url('nope', ...))
+        self.assertIsNone(bioregistry.get_identifiers_org_url('pid.pathway', ...))
+        self.assertIsNone(bioregistry.get_identifiers_org_url('gmelin', ...))
+        self.assertIsNone(bioregistry.get_link('gmelin', ...))
+
+    def test_get(self):
+        """Test getting resources."""
+        self.assertIsInstance(bioregistry.get_description('chebi'), str)
+
+        # No OBO Foundry format for dbSNP b/c not in OBO Foundry (and probably never will be)
+        self.assertIsNone(bioregistry.get_obofoundry_format('dbsnp'))
+
+        self.assertEqual('FAIRsharing.mya1ff', bioregistry.get_fairsharing_prefix('ega.dataset'))
+
+    def test_get_rdf(self):
+        """Test conversion to RDF."""
+        s = resource_to_rdf_str('chebi')
+        self.assertIsInstance(s, str)
