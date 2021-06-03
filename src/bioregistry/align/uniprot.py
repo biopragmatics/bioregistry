@@ -15,7 +15,7 @@ __all__ = [
 class UniProtAligner(Aligner):
     """Aligner for UniProt."""
 
-    key = 'uniprot.database'
+    key = 'uniprot'
     getter = get_uniprot
     getter_kwargs = {'force_download': True}
     curation_header = ('id', 'name', 'formatter', 'category')

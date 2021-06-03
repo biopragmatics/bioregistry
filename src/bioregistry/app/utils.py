@@ -3,11 +3,14 @@
 """Utility functions for the Bioregistry :mod:`flask` app."""
 
 import itertools as itt
+import json
 from io import StringIO
 from typing import Any, Callable, List, Mapping, Optional, Sequence, Tuple
 
 import yaml
-from flask import Response, abort, current_app, jsonify, redirect, render_template, request, url_for
+from flask import abort, current_app, redirect, render_template, request, url_for
+from pydantic import BaseModel
+from pydantic.json import pydantic_encoder
 
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL
@@ -163,19 +166,22 @@ def _get_identifier(prefix: str, identifier: str) -> Mapping[str, Any]:
     )
 
 
-def yamlify(*args, **kwargs):
+def jsonify(data):
+    """Dump data as JSON, like like :func:`flask.jsonify`."""
+    return current_app.response_class(
+        json.dumps(data, ensure_ascii=False, default=pydantic_encoder) + "\n",
+        mimetype=current_app.config["JSONIFY_MIMETYPE"],
+    )
+
+
+def yamlify(data):
     """Dump data as YAML, like :func:`flask.jsonify`."""
-    if args and kwargs:
-        raise TypeError("yamlify() behavior undefined when passed both args and kwargs")
-    elif len(args) == 1:  # single args are passed directly to dumps()
-        data = args[0]
-    else:
-        data = args or kwargs
+    if isinstance(data, BaseModel):
+        data = data.dict()
 
     sio = StringIO()
     yaml.safe_dump(data=data, stream=sio)
     sio.seek(0)
-
     return current_app.response_class(
         sio.getvalue(),
         mimetype='text/plain',
@@ -195,5 +201,5 @@ def serialize(data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] =
         return yamlify(data)
     for name, mimetype, func in serializers or []:
         if fmt == name:
-            return Response(func(data), mimetype=mimetype)
+            return current_app.response_class(func(data), mimetype=mimetype)
     return abort(404, f'invalid format: {fmt}')

@@ -5,27 +5,29 @@
 import json
 import logging
 import warnings
-from copy import deepcopy
 from datetime import datetime
 from functools import lru_cache, wraps
 from typing import Any, List, Mapping
 
 import click
 import requests
+from pydantic.json import pydantic_encoder
 
 from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH, MISMATCH_PATH
+from .schema.struct import Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
 
 @lru_cache(maxsize=1)
-def read_metaregistry() -> Mapping[str, Mapping[str, Any]]:
-    """Read the metaregistry as JSON."""
+def read_metaregistry() -> Mapping[str, Registry]:
+    """Read the metaregistry."""
     with open(METAREGISTRY_PATH, encoding='utf-8') as file:
-        return {
-            entry['prefix']: entry
-            for entry in json.load(file)
-        }
+        data = json.load(file)
+    return {
+        registry.prefix: registry
+        for registry in (Registry(**record) for record in data['metaregistry'])
+    }
 
 
 def read_bioregistry():
@@ -38,7 +40,14 @@ def read_bioregistry():
 def read_registry():
     """Read the Bioregistry as JSON."""
     with open(BIOREGISTRY_PATH, encoding='utf-8') as file:
-        return json.load(file)
+        data = json.load(file)
+    return {
+        # Why bother doing this? Because now, Pydantic does all sorts of nice schema
+        # checks for us. Later, we'll switch over to using first-class Resource instances
+        # in the rest of the code.
+        key: Resource(**value).cdict()
+        for key, value in data.items()
+    }
 
 
 @lru_cache(maxsize=1)
@@ -54,24 +63,23 @@ def is_mismatch(bioregistry_prefix, external_metaprefix, external_prefix) -> boo
 
 
 @lru_cache(maxsize=1)
-def read_collections():
+def read_collections() -> Mapping[str, Collection]:
     """Read the manually curated collections."""
     with open(COLLECTIONS_PATH, encoding='utf-8') as file:
-        rv = json.load(file)
-    for k, v in rv.items():
-        v['identifier'] = k
-    return rv
+        data = json.load(file)
+    return {
+        collection.identifier: collection
+        for collection in (Collection(**record) for record in data['collections'])
+    }
 
 
-def write_collections(collections):
+def write_collections(collections: Mapping[str, Collection]) -> None:
     """Write the collections."""
-    collections = deepcopy(collections)
-    for v in collections.values():
-        if 'identifier' in v:
-            del v['identifier']
-        v['resources'] = sorted(set(v['resources']))
+    values = [v for _, v in sorted(collections.items())]
+    for collection in values:
+        collection.resources = sorted(set(collection.resources))
     with open(COLLECTIONS_PATH, encoding='utf-8', mode='w') as file:
-        json.dump(collections, file, indent=2, sort_keys=True, ensure_ascii=False)
+        json.dump({'collections': values}, file, indent=2, sort_keys=True, ensure_ascii=False, default=pydantic_encoder)
 
 
 def write_bioregistry(registry):
@@ -80,11 +88,18 @@ def write_bioregistry(registry):
         json.dump(registry, file, indent=2, sort_keys=True, ensure_ascii=False)
 
 
-def write_metaregistry(metaregistry):
+def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
     """Write to the metaregistry."""
     values = [v for _, v in sorted(metaregistry.items())]
     with open(METAREGISTRY_PATH, mode='w', encoding='utf-8') as file:
-        json.dump(values, file, indent=2, sort_keys=True, ensure_ascii=False)
+        json.dump(
+            {'metaregistry': values},
+            fp=file,
+            indent=2,
+            sort_keys=True,
+            ensure_ascii=False,
+            default=pydantic_encoder,
+        )
 
 
 def updater(f):

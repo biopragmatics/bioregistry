@@ -83,7 +83,10 @@ def metaresources():
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    return serialize(bioregistry.read_metaregistry())
+    return serialize({
+        prefix: record.dict()
+        for prefix, record in bioregistry.read_metaregistry().items()
+    })
 
 
 @api_blueprint.route('/metaregistry/<metaprefix>')
@@ -135,7 +138,10 @@ def collections():
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    return serialize(bioregistry.read_collections())
+    return serialize({
+        identifier: c.dict()
+        for identifier, c in bioregistry.read_collections().items()
+    })
 
 
 @api_blueprint.route('/collection/<identifier>')

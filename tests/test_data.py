@@ -5,9 +5,9 @@
 import datetime
 import logging
 import unittest
-from collections import Counter
 
 import bioregistry
+from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.resolve import EMAIL_RE, _get_prefix_key
 from bioregistry.utils import is_mismatch
 
@@ -54,6 +54,7 @@ class TestRegistry(unittest.TestCase):
             'provides',
             'references',
             'synonyms',
+            'comment',
         }
         keys.update(bioregistry.read_metaregistry())
         for prefix, entry in self.registry.items():
@@ -232,70 +233,51 @@ class TestRegistry(unittest.TestCase):
         self.assertTrue(is_mismatch('geo', 'ols', 'geo'))
         self.assertFalse(is_mismatch('geo', 'miriam', 'geo'))
 
+    def test_get_nope(self):
+        """Test when functions don't return."""
+        self.assertIsNone(bioregistry.get_banana('nope'))
+        self.assertIsNone(bioregistry.get_description('nope'))
+        self.assertIsNone(bioregistry.get_homepage('nope'))
+        self.assertIsNone(bioregistry.get_format('gmelin'))  # no URL
+        self.assertIsNone(bioregistry.get_format('nope'))
+        self.assertIsNone(bioregistry.get_version('nope'))
+        self.assertIsNone(bioregistry.get_name('nope'))
+        self.assertIsNone(bioregistry.get_example('nope'))
+        self.assertIsNone(bioregistry.get_email('nope'))
+        self.assertIsNone(bioregistry.get_mappings('nope'))
+        self.assertIsNone(bioregistry.get_fairsharing_prefix('nope'))
+        self.assertIsNone(bioregistry.get_obofoundry_prefix('nope'))
+        self.assertIsNone(bioregistry.get_obofoundry_format('nope'))
+        self.assertIsNone(bioregistry.get_obo_download('nope'))
+        self.assertIsNone(bioregistry.get_owl_download('nope'))
+        self.assertIsNone(bioregistry.get_ols_link('nope', ...))
+        self.assertIsNone(bioregistry.get_obofoundry_link('nope', ...))
+        self.assertTrue(bioregistry.has_terms('nope'))
+        self.assertFalse(bioregistry.is_deprecated('nope'))
+        self.assertFalse(bioregistry.is_provider('nope'))
+        self.assertIsNone(bioregistry.get_provides_for('nope'))
+        self.assertIsNone(bioregistry.get_version('gmelin'))
+        self.assertIsNone(bioregistry.validate('nope', ...))
+        self.assertIsNone(bioregistry.get_default_url('nope', ...))
+        self.assertIsNone(bioregistry.get_identifiers_org_url('nope', ...))
+        self.assertIsNone(bioregistry.get_n2t_url('nope', ...))
+        self.assertIsNone(bioregistry.get_bioportal_url('nope', ...))
+        self.assertIsNone(bioregistry.get_bioportal_url('gmelin', ...))
+        self.assertIsNone(bioregistry.get_identifiers_org_url('nope', ...))
+        self.assertIsNone(bioregistry.get_identifiers_org_url('pid.pathway', ...))
+        self.assertIsNone(bioregistry.get_identifiers_org_url('gmelin', ...))
+        self.assertIsNone(bioregistry.get_link('gmelin', ...))
 
-class TestCollections(unittest.TestCase):
-    """Tests for collections."""
+    def test_get(self):
+        """Test getting resources."""
+        self.assertIsInstance(bioregistry.get_description('chebi'), str)
 
-    def test_minimum_metadata(self):
-        """Check collections have minimal metadata and correct prefixes."""
-        registry = bioregistry.read_registry()
+        # No OBO Foundry format for dbSNP b/c not in OBO Foundry (and probably never will be)
+        self.assertIsNone(bioregistry.get_obofoundry_format('dbsnp'))
 
-        for key, collection in sorted(bioregistry.read_collections().items()):
-            with self.subTest(key=key):
-                self.assertRegex(key, '^\\d{7}$')
-                self.assertIn('name', collection)
-                self.assertIn('authors', collection)
-                self.assertIsInstance(collection['authors'], list)
-                for author in collection['authors']:
-                    self.assertIn('name', author)
-                    self.assertIn('orcid', author)
-                    self.assertRegex(author['orcid'], bioregistry.get_pattern('orcid'))
-                self.assertIn('description', collection)
-                incorrect = {
-                    prefix
-                    for prefix in collection['resources']
-                    if prefix not in registry
-                }
-                self.assertEqual(set(), incorrect)
-                duplicates = {
-                    prefix
-                    for prefix, count in Counter(collection['resources']).items()
-                    if 1 < count
-                }
-                self.assertEqual(set(), duplicates, msg='Duplicates found')
+        self.assertEqual('FAIRsharing.mya1ff', bioregistry.get_fairsharing_prefix('ega.dataset'))
 
-
-class TestMetaregistry(unittest.TestCase):
-    """Tests for the metaregistry."""
-
-    def test_minimum_metadata(self):
-        """Test the metaregistry entries have a minimum amount of data."""
-        for metaprefix, data in bioregistry.read_metaregistry().items():
-            with self.subTest(metaprefix=metaprefix):
-                self.assertIn('name', data)
-                self.assertIn('homepage', data)
-                self.assertIn('example', data)
-                self.assertIn('description', data)
-                self.assertIn('registry', data)
-
-                # When a registry is a provider, it means it
-                # provides for its entries
-                self.assertIn('provider', data)
-                if data['provider']:
-                    self.assertIn('formatter', data)
-                    self.assertIn('$1', data['formatter'])
-
-                # When a registry is a resolver, it means it
-                # can resolve entries (prefixes) + identifiers
-                self.assertIn('resolver', data)
-                if data['resolver']:
-                    self.assertIn('resolver_url', data)
-                    self.assertIn('$1', data['resolver_url'])
-                    self.assertIn('$2', data['resolver_url'])
-
-                invalid_keys = set(data).difference({
-                    'prefix', 'name', 'homepage', 'download', 'registry',
-                    'provider', 'resolver', 'description', 'formatter',
-                    'example', 'resolver_url',
-                })
-                self.assertEqual(set(), invalid_keys, msg='invalid metadata')
+    def test_get_rdf(self):
+        """Test conversion to RDF."""
+        s = resource_to_rdf_str('chebi')
+        self.assertIsInstance(s, str)

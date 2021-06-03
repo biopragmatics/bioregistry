@@ -1,0 +1,289 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bioregistry.io/schemas/myschema.json",
+  "definitions": {
+    "Author": {
+      "title": "Author",
+      "description": "Metadata for an author.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "orcid": {
+          "title": "Orcid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "orcid"
+      ]
+    },
+    "Collection": {
+      "title": "Collection",
+      "description": "A collection of resources.",
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "title": "Identifier",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "resources": {
+          "title": "Resources",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "authors": {
+          "title": "Authors",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Author"
+          }
+        }
+      },
+      "required": [
+        "identifier",
+        "name",
+        "description",
+        "resources",
+        "authors"
+      ]
+    },
+    "Resource": {
+      "title": "Resource",
+      "description": "Metadata about an ontology, database, or other resource.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "pattern": {
+          "title": "Pattern",
+          "type": "string"
+        },
+        "url": {
+          "title": "Url",
+          "type": "string"
+        },
+        "homepage": {
+          "title": "Homepage",
+          "type": "string"
+        },
+        "contact": {
+          "title": "Contact",
+          "type": "string"
+        },
+        "example": {
+          "title": "Example",
+          "type": "string"
+        },
+        "part_of": {
+          "title": "Part Of",
+          "type": "string"
+        },
+        "provides": {
+          "title": "Provides",
+          "type": "string"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        },
+        "download": {
+          "title": "Download",
+          "type": "string"
+        },
+        "banana": {
+          "title": "Banana",
+          "type": "string"
+        },
+        "deprecated": {
+          "title": "Deprecated",
+          "type": "boolean"
+        },
+        "mappings": {
+          "title": "Mappings",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "synonyms": {
+          "title": "Synonyms",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "references": {
+          "title": "References",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "appears_in": {
+          "title": "Appears In",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ols_version_type": {
+          "title": "Ols Version Type",
+          "type": "string"
+        },
+        "ols_version_date_format": {
+          "title": "Ols Version Date Format",
+          "type": "string"
+        },
+        "ols_version_prefix": {
+          "title": "Ols Version Prefix",
+          "type": "string"
+        },
+        "ols_version_suffix_split": {
+          "title": "Ols Version Suffix Split",
+          "type": "boolean"
+        },
+        "namespaceEmbeddedInLui": {
+          "title": "Namespaceembeddedinlui",
+          "type": "boolean"
+        },
+        "not_available_as_obo": {
+          "title": "Not Available As Obo",
+          "type": "boolean"
+        },
+        "no_own_terms": {
+          "title": "No Own Terms",
+          "type": "boolean"
+        },
+        "comment": {
+          "title": "Comment",
+          "type": "string"
+        },
+        "miriam": {
+          "title": "Miriam",
+          "type": "object"
+        },
+        "n2t": {
+          "title": "N2T",
+          "type": "object"
+        },
+        "prefixcommons": {
+          "title": "Prefixcommons",
+          "type": "object"
+        },
+        "wikidata": {
+          "title": "Wikidata",
+          "type": "object"
+        },
+        "go": {
+          "title": "Go",
+          "type": "object"
+        },
+        "obofoundry": {
+          "title": "Obofoundry",
+          "type": "object"
+        },
+        "bioportal": {
+          "title": "Bioportal",
+          "type": "object"
+        },
+        "ols": {
+          "title": "Ols",
+          "type": "object"
+        },
+        "ncbi": {
+          "title": "Ncbi",
+          "type": "object"
+        },
+        "uniprot": {
+          "title": "Uniprot",
+          "type": "object"
+        },
+        "biolink": {
+          "title": "Biolink",
+          "type": "object"
+        }
+      }
+    },
+    "Registry": {
+      "title": "Registry",
+      "description": "Metadata about a registry.",
+      "type": "object",
+      "properties": {
+        "prefix": {
+          "title": "Prefix",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "homepage": {
+          "title": "Homepage",
+          "type": "string"
+        },
+        "example": {
+          "title": "Example",
+          "type": "string"
+        },
+        "download": {
+          "title": "Download",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "boolean"
+        },
+        "resolver": {
+          "title": "Resolver",
+          "type": "boolean"
+        },
+        "registry": {
+          "title": "Registry",
+          "type": "boolean"
+        },
+        "provider_url": {
+          "title": "Provider Url",
+          "type": "string"
+        },
+        "resolver_url": {
+          "title": "Resolver Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "prefix",
+        "name",
+        "description",
+        "homepage",
+        "example",
+        "provider",
+        "resolver",
+        "registry"
+      ]
+    }
+  }
+}
