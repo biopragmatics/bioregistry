@@ -70,8 +70,8 @@ class TestIdentifiersOrg(unittest.TestCase):
             if url is None:
                 continue
 
-            print(prefix)
             with self.subTest(prefix=prefix, identifier=identifier):
+                # FIXME
                 # The following tests don't work because the CURIE generation often throws away the prefix.
                 # miriam_prefix = bioregistry.get_identifiers_org_prefix(prefix)
                 # self.assertIsNotNone(miriam_prefix)
