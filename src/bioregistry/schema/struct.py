@@ -130,14 +130,10 @@ class Collection(BaseModel):
 
 def main():
     """Dump the JSON schemata."""
-    for name, cls in [
-        ('resource.schema.json', Resource),
-        ('collection.schema.json', Collection),
-        ('author.schema.json', Author),
-        ('registry.schema.json', Registry),
-    ]:
-        with HERE.joinpath(name).open('w') as file:
-            json.dump(cls.schema(), fp=file, indent=4)
+    import pydantic.schema
+    top_level_schema = pydantic.schema.schema([Author, Collection, Resource, Registry])
+    with HERE.joinpath('schema.json').open('w') as file:
+        json.dump(top_level_schema, indent=2, fp=file)
 
 
 if __name__ == '__main__':
