@@ -67,30 +67,33 @@ def _bind(graph: rdflib.Graph) -> None:
 def get_full_rdf() -> rdflib.Graph:
     """Get a combine RDF graph representing the Bioregistry using :mod:`rdflib`."""
     graph = _graph()
-    _add_metaresources(graph)
-    _add_collections(graph)
-    _add_resources(graph)
-
+    _add_metaresources(graph=graph)
+    _add_collections(graph=graph)
+    _add_resources(graph=graph)
     return graph
-
-
-def get_resource_rdf(prefix: str) -> rdflib.Graph:
-    """Get the RDF for a single resource."""
-    graph = _graph()
-    data = bioregistry.get(prefix)
-    if data is None:
-        raise KeyError
-    _add_resource(graph=graph, prefix=prefix, data=data)
-    return graph
-
-
-def get_resource_rdf_str(prefix: str, fmt: Optional[str] = None) -> str:
-    """Get the RDF for a single resource serialized."""
-    return _graph_str(get_resource_rdf(prefix), fmt=fmt)
 
 
 def collection_to_rdf_str(data, fmt: Optional[str] = None) -> str:
+    """Get a collection as an RDF string."""
+    if isinstance(data, str):
+        data = bioregistry.get_collection(data)
     graph, _ = _add_collection(data)
+    return _graph_str(graph, fmt=fmt)
+
+
+def metaresource_to_rdf_str(data, fmt: Optional[str] = None) -> str:
+    """Get a collection as an RDF string."""
+    if isinstance(data, str):
+        data = bioregistry.get_registry(data)
+    graph, _ = _add_metaresource(data)
+    return _graph_str(graph, fmt=fmt)
+
+
+def resource_to_rdf_str(data, fmt: Optional[str] = None) -> str:
+    """Get a collection as an RDF string."""
+    if isinstance(data, str):
+        data = bioregistry.get(data)
+    graph, _ = _add_resource(data=data)
     return _graph_str(graph, fmt=fmt)
 
 
@@ -100,39 +103,28 @@ def _graph_str(graph: rdflib.Graph, fmt: Optional[str] = None) -> str:
     return stream.getvalue().decode('utf8')
 
 
-def get_metaresource_rdf(metaprefix: str) -> rdflib.Graph:
-    """Get the RDF for a single metaresource."""
-    graph = _graph()
-    data = bioregistry.get_registry(metaprefix)
-    if data is None:
-        raise KeyError
-    _add_metaresource(graph=graph, data=data)
-    return graph
-
-
-def get_collection_rdf(identifier: str) -> rdflib.Graph:
-    """Get the RDF for a single collection."""
-    graph = _graph()
-    data = bioregistry.get_collection(identifier)
-    if data is None:
-        raise KeyError
-    _add_collection(graph=graph, data=data)
-    return graph
-
-
-def _add_metaresources(graph: rdflib.Graph) -> None:
+def _add_metaresources(*, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
+    if graph is None:
+        graph = _graph()
     for data in read_metaregistry().values():
         _add_metaresource(graph=graph, data=data)
+    return graph
 
 
-def _add_collections(graph: rdflib.Graph) -> None:
+def _add_collections(*, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
+    if graph is None:
+        graph = _graph()
     for collection in read_collections().values():
         _add_collection(graph=graph, data=collection)
+    return graph
 
 
-def _add_resources(graph: rdflib.Graph) -> None:
+def _add_resources(*, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
+    if graph is None:
+        graph = _graph()
     for prefix, data in read_registry().items():
-        _add_resource(graph=graph, prefix=prefix, data=data)
+        _add_resource(graph=graph, data={'prefix': prefix, **data})
+    return graph
 
 
 def _add_collection(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib.Graph, Node]:
@@ -172,9 +164,10 @@ def _add_metaresource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rd
     return graph, node
 
 
-def _add_resource(data, *, graph: Optional[rdflib.Graph] = None, prefix) -> Tuple[rdflib.Graph, Node]:
+def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib.Graph, Node]:
     if graph is None:
         graph = _graph()
+    prefix = data['prefix']
     node = cast(URIRef, bioregistry_resource[prefix])
     graph.add((node, RDF['type'], bioregistry_schema['resource']))
     graph.add((node, RDFS['label'], Literal(bioregistry.get_name(prefix))))

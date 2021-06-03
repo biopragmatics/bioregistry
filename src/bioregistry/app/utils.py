@@ -178,7 +178,7 @@ def yamlify(*args, **kwargs):
 
     return current_app.response_class(
         sio.getvalue(),
-        mimetype='application/yaml',
+        mimetype='text/plain',
     )
 
 
