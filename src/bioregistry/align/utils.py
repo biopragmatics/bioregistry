@@ -8,7 +8,7 @@ from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, S
 from tabulate import tabulate
 
 from bioregistry import normalize_prefix, read_registry
-from bioregistry.utils import is_mismatch, write_bioregistry
+from bioregistry.utils import is_mismatch, write_bioregistry, read_metaregistry
 
 __all__ = [
     'Aligner',
@@ -33,6 +33,9 @@ class Aligner(ABC):
 
     def __init__(self):
         """Instantiate the aligner."""
+        if self.key not in read_metaregistry():
+            raise TypeError(f'invalid metaprefix for aligner: {self.key}')
+
         self.internal_registry = read_registry()
         self.external_registry = self.__class__.getter(**(self.getter_kwargs or {}))
         self.skip_external = self.get_skip()
