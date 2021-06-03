@@ -7,8 +7,8 @@ from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, S
 
 from tabulate import tabulate
 
-from bioregistry import normalize_prefix, read_registry
-from bioregistry.utils import is_mismatch, write_bioregistry, read_metaregistry
+from ..resolve import normalize_prefix
+from ..utils import is_mismatch, read_metaregistry, read_registry, write_bioregistry
 
 __all__ = [
     'Aligner',
