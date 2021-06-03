@@ -9,7 +9,7 @@ from typing import Optional
 import click
 import rdflib
 from rdflib import BNode, Literal
-from rdflib.namespace import ClosedNamespace, FOAF, Namespace, RDF, RDFS, XSD
+from rdflib.namespace import ClosedNamespace, DC, DCTERMS, FOAF, Namespace, RDF, RDFS, XSD
 
 import bioregistry
 from bioregistry import read_collections, read_metaregistry, read_registry
@@ -21,9 +21,9 @@ bioregistry_metaresource = Namespace('https://bioregistry.io/metaregistry/')
 bioregistry_schema = ClosedNamespace(
     'https://bioregistry.io/schema/#',
     terms=[
-        'contains', 'example', 'isRegistry', 'isProvider',
-        'isResolver', 'hasAuthor', 'provider_formatter', 'resolver_formatter',
-        'pattern', 'email', 'download', 'part_of', 'provides', 'deprecated',
+        'example', 'isRegistry', 'isProvider',
+        'isResolver', 'provider_formatter', 'resolver_formatter',
+        'pattern', 'email', 'download', 'provides', 'deprecated',
         'hasMetaresource', 'hasMetaidentifier', 'mapping', 'hasMapping',
         'resource', 'metaresource', 'collection',
     ],
@@ -39,6 +39,12 @@ def export_rdf():
     graph.serialize(os.path.join(DOCS_DATA, 'bioregistry.nt'), format='nt')
     graph.serialize(os.path.join(DOCS_DATA, 'bioregistry.xml'), format='xml')
 
+    context = {
+        "@language": "en",
+        **dict(graph.namespaces()),
+    }
+    graph.serialize(os.path.join(DOCS_DATA, 'bioregistry.jsonld'), format='json-ld', context=context)
+
 
 def _bind(graph: rdflib.Graph) -> None:
     graph.namespace_manager.bind('bioregistry.resource', bioregistry_resource)
@@ -47,6 +53,8 @@ def _bind(graph: rdflib.Graph) -> None:
     graph.namespace_manager.bind('bioregistry.schema', bioregistry_schema)
     graph.namespace_manager.bind('orcid', orcid)
     graph.namespace_manager.bind('foaf', FOAF)
+    graph.namespace_manager.bind('dc', DC)
+    graph.namespace_manager.bind('dcterms', DCTERMS)
 
 
 def get_full_rdf() -> rdflib.Graph:
@@ -123,14 +131,16 @@ def _add_collection(graph: rdflib.Graph, data):
     node = bioregistry_collection[data['identifier']]
     graph.add((node, RDF['type'], bioregistry_schema['collection']))
     graph.add((node, RDFS['label'], Literal(data['name'])))
-    graph.add((node, RDFS['comment'], Literal(data['description'])))
+    graph.add((node, DC.description, Literal(data['description'])))
 
     for author in data.get('authors', []):
-        graph.add((node, bioregistry_schema['hasAuthor'], orcid[author['orcid']]))
+        graph.add((node, DC.creator, orcid[author['orcid']]))
         graph.add((orcid[author['orcid']], RDFS['label'], Literal(author['name'])))
 
     for resource in data['resources']:
-        graph.add((node, bioregistry_schema['contains'], bioregistry_resource[resource]))
+        graph.add((node, DCTERMS.hasPart, bioregistry_resource[resource]))
+        graph.add((bioregistry_resource[resource], DCTERMS.isPartOf, node))
+
     return node
 
 
@@ -138,7 +148,7 @@ def _add_metaresource(graph: rdflib.Graph, data):
     node = bioregistry_metaresource[data['prefix']]
     graph.add((node, RDF['type'], bioregistry_schema['metaresource']))
     graph.add((node, RDFS['label'], Literal(data['name'])))
-    graph.add((node, RDFS['comment'], Literal(data['description'])))
+    graph.add((node, DC.description, Literal(data['description'])))
     graph.add((node, FOAF['homepage'], Literal(data['homepage'])))
     graph.add((node, bioregistry_schema['example'], Literal(data['example'])))
     graph.add((node, bioregistry_schema['isRegistry'], Literal(data['registry'], datatype=XSD.boolean)))
@@ -155,8 +165,6 @@ def _add_resource(graph: rdflib.Graph, prefix, data):
     node = bioregistry_resource[prefix]
     graph.add((node, RDF['type'], bioregistry_schema['resource']))
     graph.add((node, RDFS['label'], Literal(bioregistry.get_name(prefix))))
-    graph.add((node, RDFS['comment'], Literal(bioregistry.get_description(prefix))))
-    graph.add((node, FOAF['homepage'], Literal(bioregistry.get_homepage(prefix))))
 
     for key, func in [
         ('pattern', bioregistry.get_pattern),
@@ -168,13 +176,22 @@ def _add_resource(graph: rdflib.Graph, prefix, data):
         if value is not None:
             graph.add((node, bioregistry_schema[key], Literal(value)))
 
+    for rel, func in [
+        (DC.description, bioregistry.get_description),
+        (FOAF.homepage, bioregistry.get_homepage),
+    ]:
+        value = func(prefix)
+        if value is not None:
+            graph.add((node, rel, Literal(value)))
+
     download = data.get('download')
     if download:
         graph.add((node, bioregistry_schema['download'], Literal(download)))
 
     part_of = data.get('part_of')
     if part_of:
-        graph.add((node, bioregistry_schema['part_of'], bioregistry_resource[part_of]))
+        graph.add((node, DCTERMS.isPartOf, bioregistry_resource[part_of]))
+        graph.add((bioregistry_resource[part_of], DCTERMS.hasPart, node))
 
     provides = data.get('provides')
     if provides:
