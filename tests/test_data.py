@@ -5,7 +5,6 @@
 import datetime
 import logging
 import unittest
-from collections import Counter
 
 import bioregistry
 from bioregistry.resolve import EMAIL_RE, _get_prefix_key
@@ -231,71 +230,3 @@ class TestRegistry(unittest.TestCase):
         """Check for mismatches."""
         self.assertTrue(is_mismatch('geo', 'ols', 'geo'))
         self.assertFalse(is_mismatch('geo', 'miriam', 'geo'))
-
-
-class TestCollections(unittest.TestCase):
-    """Tests for collections."""
-
-    def test_minimum_metadata(self):
-        """Check collections have minimal metadata and correct prefixes."""
-        registry = bioregistry.read_registry()
-
-        for key, collection in sorted(bioregistry.read_collections().items()):
-            with self.subTest(key=key):
-                self.assertRegex(key, '^\\d{7}$')
-                self.assertIn('name', collection)
-                self.assertIn('authors', collection)
-                self.assertIsInstance(collection['authors'], list)
-                for author in collection['authors']:
-                    self.assertIn('name', author)
-                    self.assertIn('orcid', author)
-                    self.assertRegex(author['orcid'], bioregistry.get_pattern('orcid'))
-                self.assertIn('description', collection)
-                incorrect = {
-                    prefix
-                    for prefix in collection['resources']
-                    if prefix not in registry
-                }
-                self.assertEqual(set(), incorrect)
-                duplicates = {
-                    prefix
-                    for prefix, count in Counter(collection['resources']).items()
-                    if 1 < count
-                }
-                self.assertEqual(set(), duplicates, msg='Duplicates found')
-
-
-class TestMetaregistry(unittest.TestCase):
-    """Tests for the metaregistry."""
-
-    def test_minimum_metadata(self):
-        """Test the metaregistry entries have a minimum amount of data."""
-        for metaprefix, data in bioregistry.read_metaregistry().items():
-            with self.subTest(metaprefix=metaprefix):
-                self.assertIn('name', data)
-                self.assertIn('homepage', data)
-                self.assertIn('example', data)
-                self.assertIn('description', data)
-                self.assertIn('registry', data)
-
-                # When a registry is a provider, it means it
-                # provides for its entries
-                self.assertIn('provider', data)
-                if data['provider']:
-                    self.assertIn('formatter', data)
-                    self.assertIn('$1', data['formatter'])
-
-                # When a registry is a resolver, it means it
-                # can resolve entries (prefixes) + identifiers
-                self.assertIn('resolver', data)
-                if data['resolver']:
-                    self.assertIn('resolver_url', data)
-                    self.assertIn('$1', data['resolver_url'])
-                    self.assertIn('$2', data['resolver_url'])
-
-                invalid_keys = set(data).difference({
-                    'prefix', 'name', 'homepage', 'download', 'registry',
-                    'provider', 'resolver', 'description', 'formatter',
-                    'example', 'resolver_url',
-                })
-                self.assertEqual(set(), invalid_keys, msg='invalid metadata')

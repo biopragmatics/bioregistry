@@ -11,7 +11,7 @@ import click
 
 import bioregistry
 from bioregistry.constants import DOCS_DATA
-from bioregistry.resolve import get_format_url
+from bioregistry.schema import Collection
 
 logger = logging.getLogger(__name__)
 
@@ -40,29 +40,12 @@ def get_collection_jsonld(identifier: str) -> Mapping[str, Mapping[str, str]]:
     collection = bioregistry.get_collection(identifier)
     if collection is None:
         raise KeyError
-    return collection_to_context_jsonld(collection)
+    return collection.as_context_jsonld()
 
 
-def collection_to_context_jsonlds(collection) -> str:
+def collection_to_context_jsonlds(collection: Collection) -> str:
     """Get the JSON-LD context as a string from a given collection."""
-    return json.dumps(collection_to_context_jsonld(collection))
-
-
-def collection_to_context_jsonld(collection) -> Mapping[str, Mapping[str, str]]:
-    """Get the JSON-LD context from a given collection."""
-    return {
-        "@context": collection_to_prefix_map(collection),
-    }
-
-
-def collection_to_prefix_map(collection) -> Mapping[str, str]:
-    """Get the prefix map for a given collection."""
-    rv = {}
-    for prefix in collection['resources']:
-        fmt = get_format_url(prefix)
-        if fmt is not None:
-            rv[prefix] = fmt
-    return rv
+    return json.dumps(collection.as_context_jsonld())
 
 
 def get_obofoundry_prefix_map() -> Mapping[str, str]:

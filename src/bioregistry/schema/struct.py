@@ -7,7 +7,7 @@
 
 import json
 import pathlib
-from typing import List, Optional
+from typing import List, Mapping, Optional
 
 from pydantic import BaseModel
 
@@ -63,6 +63,22 @@ class Collection(BaseModel):
     resources: List[str]
     #: Authors/contributors to the collection
     authors: List[Author]
+
+    def as_context_jsonld(self) -> Mapping[str, Mapping[str, str]]:
+        """Get the JSON-LD context from a given collection."""
+        return {
+            "@context": self.as_prefix_map(),
+        }
+
+    def as_prefix_map(self) -> Mapping[str, str]:
+        """Get the prefix map for a given collection."""
+        from ..resolve import get_format_url
+        rv = {}
+        for prefix in self.resources:
+            fmt = get_format_url(prefix)
+            if fmt is not None:
+                rv[prefix] = fmt
+        return rv
 
 
 def main():

@@ -9,6 +9,7 @@ from functools import lru_cache
 from textwrap import dedent
 from typing import Any, Mapping, Optional, Sequence, Set, Tuple, Union
 
+from .schema import Collection, Registry
 from .utils import read_collections, read_metaregistry, read_registry
 
 __all__ = [
@@ -59,12 +60,12 @@ def get(prefix: str) -> Optional[Mapping[str, Any]]:
     return read_registry().get(normalize_prefix(prefix))
 
 
-def get_collection(identifier: str) -> Optional[Mapping[str, Any]]:
+def get_collection(identifier: str) -> Optional[Collection]:
     """Get the metaregistry entry for the given identifier."""
     return read_collections().get(identifier)
 
 
-def get_registry(metaprefix: str) -> Optional[Mapping[str, Any]]:
+def get_registry(metaprefix: str) -> Optional[Registry]:
     """Get the metaregistry entry for the given prefix."""
     return read_metaregistry().get(metaprefix)
 
@@ -74,7 +75,7 @@ def get_registry_name(metaprefix: str) -> Optional[str]:
     registry = get_registry(metaprefix)
     if registry is None:
         return None
-    return registry['name']
+    return registry.name
 
 
 def get_registry_homepage(metaprefix: str) -> Optional[str]:
@@ -91,7 +92,10 @@ def get_registry_homepage(metaprefix: str) -> Optional[str]:
     >>> get_registry_homepage('missing')
     None
     """
-    return _get_registry_key(metaprefix, 'homepage')
+    registry = get_registry(metaprefix)
+    if registry is None:
+        return None
+    return registry.homepage
 
 
 def get_registry_description(metaprefix: str) -> Optional[str]:
@@ -106,19 +110,18 @@ def get_registry_description(metaprefix: str) -> Optional[str]:
     >>> get_registry_description('missing')
     None
     """
-    return _get_registry_key(metaprefix, 'description')
+    registry = get_registry(metaprefix)
+    if registry is None:
+        return None
+    return registry.description
 
 
 def get_registry_example(metaprefix: str) -> Optional[str]:
     """Get an example for the registry, if available."""
-    return _get_registry_key(metaprefix, 'example')
-
-
-def _get_registry_key(metaprefix: str, key: str):
     registry = get_registry(metaprefix)
     if registry is None:
         return None
-    return registry.get(key)
+    return registry.example
 
 
 def get_registry_url(metaprefix: str, prefix: str) -> Optional[str]:
@@ -126,10 +129,10 @@ def get_registry_url(metaprefix: str, prefix: str) -> Optional[str]:
     entry = get_registry(metaprefix)
     if entry is None:
         return None
-    formatter = entry.get('formatter')
-    if formatter is None:
+    provider_url = entry.provider_url
+    if provider_url is None:
         return None
-    return formatter.replace('$1', prefix)
+    return provider_url.replace('$1', prefix)
 
 
 def get_name(prefix: str) -> Optional[str]:
@@ -550,10 +553,10 @@ def get_versions() -> Mapping[str, str]:
 
 
 def _clean_version(
-        bioregistry_id: str,
-        version: str,
-        *,
-        bioregistry_entry: Optional[Mapping[str, Any]] = None,
+    bioregistry_id: str,
+    version: str,
+    *,
+    bioregistry_entry: Optional[Mapping[str, Any]] = None,
 ) -> str:
     if bioregistry_entry is None:
         bioregistry_entry = get(bioregistry_id)
