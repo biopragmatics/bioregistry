@@ -100,16 +100,20 @@ def get_full_rdf() -> rdflib.Graph:
 def collection_to_rdf_str(data: Union[str, Collection], fmt: Optional[str] = None) -> str:
     """Get a collection as an RDF string."""
     if isinstance(data, str):
-        data = bioregistry.get_collection(data)
-    graph, _ = _add_collection(data)
+        data = bioregistry.get_collection(data)  # type: ignore
+        if data is None:
+            raise KeyError
+    graph, _ = _add_collection(cast(Collection, data))
     return _graph_str(graph, fmt=fmt)
 
 
 def metaresource_to_rdf_str(data: Union[str, Registry], fmt: Optional[str] = None) -> str:
     """Get a collection as an RDF string."""
     if isinstance(data, str):
-        data = bioregistry.get_registry(data)
-    graph, _ = _add_metaresource(data)
+        data = bioregistry.get_registry(data)  # type: ignore
+        if data is None:
+            raise KeyError
+    graph, _ = _add_metaresource(cast(Registry, data))
     return _graph_str(graph, fmt=fmt)
 
 
