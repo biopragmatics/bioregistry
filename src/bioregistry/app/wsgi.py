@@ -12,6 +12,7 @@ import bioregistry
 from bioregistry import version
 from .api import api_blueprint
 from .ui import ui_blueprint
+from ..export.rdf_export import bioregistry_schema_terms
 from ..resolve_identifier import _get_bioregistry_link
 
 app = Flask(__name__)
@@ -98,6 +99,12 @@ def sustainability():
 def usage():
     """Render the programmatic usage page."""
     return render_template('meta/access.html')
+
+
+@app.route('/schema/')
+def schema():
+    """Render the Bioregistry RDF schema."""
+    return render_template('meta/schema.html', terms=bioregistry_schema_terms)
 
 
 if __name__ == '__main__':

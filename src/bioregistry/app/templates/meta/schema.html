@@ -1,0 +1,18 @@
+{% extends "prose.html" %}
+
+{% block title %}Bioregistry RDF Schema{% endblock %}
+
+
+{% block content %}
+    <h2>Bioregistry RDF Schema</h2>
+    <p>
+        This page describes the schema used in the RDF dumps of the Bioregistry used with prefix
+        <code>bioregistry.schema</code> and URL <code>https://bioregistry.io/schema/#</code>
+    </p>
+    <dl>
+        {% for term, description in terms.items() %}
+            <dt><a name="{{ term }}" href="#{{ term }}">{{ term }}</a></dt>
+            <dd>{{ description }}</dd>
+        {% endfor %}
+    </dl>
+{% endblock %}
