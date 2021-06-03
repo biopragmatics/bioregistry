@@ -5,6 +5,7 @@
 import unittest
 
 import bioregistry
+from bioregistry.export.rdf_export import metaresource_to_rdf_str
 from bioregistry.schema import Registry
 
 
@@ -83,3 +84,8 @@ class TestMetaregistry(unittest.TestCase):
 
         url = bioregistry.get_registry_resolve_url('bioregistry', 'chebi', '1234')
         self.assertEqual('https://bioregistry.io/chebi:1234', url)
+
+    def test_get_rdf(self):
+        """Test conversion to RDF."""
+        s = metaresource_to_rdf_str('uniprot.database')
+        self.assertIsInstance(s, str)

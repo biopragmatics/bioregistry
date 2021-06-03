@@ -4,7 +4,7 @@
 
 import os
 from io import BytesIO
-from typing import Optional, Tuple, cast
+from typing import Optional, Tuple, Union, cast
 
 import click
 import rdflib
@@ -15,6 +15,7 @@ from rdflib.term import Node, URIRef
 import bioregistry
 from bioregistry import read_collections, read_metaregistry, read_registry
 from bioregistry.constants import DOCS_DATA
+from bioregistry.schema import Collection, Registry
 
 bioregistry_schema_terms = {
     'resource': "A type for entries in the Bioregistry's registry.",
@@ -96,7 +97,7 @@ def get_full_rdf() -> rdflib.Graph:
     return graph
 
 
-def collection_to_rdf_str(data, fmt: Optional[str] = None) -> str:
+def collection_to_rdf_str(data: Union[str, Collection], fmt: Optional[str] = None) -> str:
     """Get a collection as an RDF string."""
     if isinstance(data, str):
         data = bioregistry.get_collection(data)
@@ -104,7 +105,7 @@ def collection_to_rdf_str(data, fmt: Optional[str] = None) -> str:
     return _graph_str(graph, fmt=fmt)
 
 
-def metaresource_to_rdf_str(data, fmt: Optional[str] = None) -> str:
+def metaresource_to_rdf_str(data: Union[str, Registry], fmt: Optional[str] = None) -> str:
     """Get a collection as an RDF string."""
     if isinstance(data, str):
         data = bioregistry.get_registry(data)
@@ -150,40 +151,40 @@ def _add_resources(*, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
     return graph
 
 
-def _add_collection(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib.Graph, Node]:
+def _add_collection(data: Collection, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib.Graph, Node]:
     if graph is None:
         graph = _graph()
-    node = cast(URIRef, bioregistry_collection[data['identifier']])
+    node = cast(URIRef, bioregistry_collection[data.identifier])
     graph.add((node, RDF['type'], bioregistry_schema['collection']))
-    graph.add((node, RDFS['label'], Literal(data['name'])))
-    graph.add((node, DC.description, Literal(data['description'])))
+    graph.add((node, RDFS['label'], Literal(data.name)))
+    graph.add((node, DC.description, Literal(data.description)))
 
-    for author in data.get('authors', []):
-        graph.add((node, DC.creator, orcid[author['orcid']]))
-        graph.add((orcid[author['orcid']], RDFS['label'], Literal(author['name'])))
+    for author in data.authors:
+        graph.add((node, DC.creator, orcid[author.orcid]))
+        graph.add((orcid[author.orcid], RDFS['label'], Literal(author.name)))
 
-    for resource in data['resources']:
+    for resource in data.resources:
         graph.add((node, DCTERMS.hasPart, bioregistry_resource[resource]))
 
     return graph, node
 
 
-def _add_metaresource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib.Graph, Node]:
+def _add_metaresource(data: Registry, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib.Graph, Node]:
     if graph is None:
         graph = _graph()
-    node = cast(URIRef, bioregistry_metaresource[data['prefix']])
-    graph.add((node, RDF['type'], bioregistry_schema['metaresource']))
-    graph.add((node, RDFS['label'], Literal(data['name'])))
-    graph.add((node, DC.description, Literal(data['description'])))
-    graph.add((node, FOAF['homepage'], Literal(data['homepage'])))
-    graph.add((node, bioregistry_schema['hasExample'], Literal(data['example'])))
-    graph.add((node, bioregistry_schema['isRegistry'], Literal(data['registry'], datatype=XSD.boolean)))
-    graph.add((node, bioregistry_schema['isProvider'], Literal(data['provider'], datatype=XSD.boolean)))
-    if data['provider']:
-        graph.add((node, bioregistry_schema['hasProviderFormatter'], Literal(data['formatter'])))
-    graph.add((node, bioregistry_schema['isResolver'], Literal(data['resolver'], datatype=XSD.boolean)))
-    if data['resolver']:
-        graph.add((node, bioregistry_schema['hasResolverFormatter'], Literal(data['resolver_url'])))
+    node = cast(URIRef, bioregistry_metaresource[data.prefix])
+    graph.add((node, RDF['type'], bioregistry_schema.metaresource))
+    graph.add((node, RDFS['label'], Literal(data.name)))
+    graph.add((node, DC.description, Literal(data.description)))
+    graph.add((node, FOAF['homepage'], Literal(data.homepage)))
+    graph.add((node, bioregistry_schema['hasExample'], Literal(data.example)))
+    graph.add((node, bioregistry_schema['isRegistry'], Literal(data.registry, datatype=XSD.boolean)))
+    graph.add((node, bioregistry_schema['isProvider'], Literal(data.provider, datatype=XSD.boolean)))
+    if data.provider_url:
+        graph.add((node, bioregistry_schema['hasProviderFormatter'], Literal(data.provider_url)))
+    graph.add((node, bioregistry_schema['isResolver'], Literal(data.resolver, datatype=XSD.boolean)))
+    if data.resolver_url:
+        graph.add((node, bioregistry_schema['hasResolverFormatter'], Literal(data.resolver_url)))
     return graph, node
 
 
