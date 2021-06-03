@@ -9,6 +9,7 @@ from typing import Any, Callable, List, Mapping, Optional, Sequence, Tuple
 
 import yaml
 from flask import abort, current_app, redirect, render_template, request, url_for
+from pydantic import BaseModel
 from pydantic.json import pydantic_encoder
 
 import bioregistry
@@ -175,6 +176,9 @@ def jsonify(data):
 
 def yamlify(data):
     """Dump data as YAML, like :func:`flask.jsonify`."""
+    if isinstance(data, BaseModel):
+        data = data.dict()
+
     sio = StringIO()
     yaml.safe_dump(data=data, stream=sio)
     sio.seek(0)
