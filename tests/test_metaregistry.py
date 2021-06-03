@@ -56,7 +56,7 @@ class TestMetaregistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_registry_description('nope'))
         self.assertIsNone(bioregistry.get_registry_url('n2t', ...))  # no provider available for N2T registry
 
-        metaprefix = 'uniprot.database'
+        metaprefix = 'uniprot'
         registry = bioregistry.get_registry(metaprefix)
         self.assertIsInstance(registry, Registry)
         self.assertEqual(metaprefix, registry.prefix)
@@ -90,5 +90,5 @@ class TestMetaregistry(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = metaresource_to_rdf_str('uniprot.database')
+        s = metaresource_to_rdf_str('uniprot')
         self.assertIsInstance(s, str)
