@@ -30,14 +30,24 @@
 {% block container %}
     <div class="card">
         <div class="card-header">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-8"><h5 style="margin: 0">Registry</h5></div>
                 <div class="col-4 text-right">
-                    {% for label, key in formats %}
-                        <a href="{{ url_for("api.resources", format=key) }}">
-                            {{ label }} <i class="fas fa-download"></i>
-                        </a>
-                    {% endfor %}
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-dark dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            Download
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {% for label, key in formats %}
+                                <a class="dropdown-item"
+                                   href="{{ url_for("api.resources", format=key) }}">
+                                    {{ label }} <i class="fas fa-download"></i>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
