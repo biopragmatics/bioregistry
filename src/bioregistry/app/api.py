@@ -9,7 +9,7 @@ import bioregistry
 from .utils import _autocomplete, _get_identifier, _normalize_prefix_or_404, _search, serialize
 from .. import normalize_prefix
 from ..export.rdf_export import collection_to_rdf_str, metaresource_to_rdf_str, resource_to_rdf_str
-from ..prefix_maps import collection_to_context_jsonld
+from ..prefix_maps import collection_to_context_jsonlds
 from ..resolve import get_format_url
 
 api_blueprint = Blueprint('api', __name__, url_prefix='/api')
@@ -165,7 +165,7 @@ def collection(identifier: str):
     if not data:
         abort(404, f'Invalid collection: {identifier}')
     return serialize(data, serializers=[
-        ('context', 'application/ld+json', collection_to_context_jsonld),
+        ('context', 'application/ld+json', collection_to_context_jsonlds),
         ('turtle', 'text/plain', partial(collection_to_rdf_str, fmt='turtle')),
         ('jsonld', 'application/ld+json', partial(collection_to_rdf_str, fmt='json-ld')),
     ])

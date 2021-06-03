@@ -43,6 +43,10 @@ def get_collection_jsonld(identifier: str) -> Mapping[str, Mapping[str, str]]:
     return collection_to_context_jsonld(collection)
 
 
+def collection_to_context_jsonlds(collection) -> str:
+    """Get the JSON-LD context as a string from a given collection."""
+    return json.dumps(collection_to_context_jsonld(collection))
+
 def collection_to_context_jsonld(collection) -> Mapping[str, Mapping[str, str]]:
     """Get the JSON-LD context from a given collection."""
     return {

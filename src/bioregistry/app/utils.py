@@ -193,8 +193,7 @@ def serialize(data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] =
         return jsonify(data)
     elif fmt in {'yaml', 'yml'}:
         return yamlify(data)
-    elif serializers:
-        for name, mimetype, func in serializers:
-            if fmt == name:
-                return Response(func(data), mimetype=mimetype)
+    for name, mimetype, func in serializers or []:
+        if fmt == name:
+            return Response(func(data), mimetype=mimetype)
     return abort(404, f'invalid format: {fmt}')
