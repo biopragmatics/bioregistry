@@ -5,7 +5,7 @@
 import platform
 
 from flasgger import Swagger
-from flask import Flask, render_template
+from flask import Flask, jsonify, render_template
 from flask_bootstrap import Bootstrap
 
 import bioregistry
@@ -14,6 +14,7 @@ from .api import api_blueprint
 from .ui import ui_blueprint
 from ..export.rdf_export import bioregistry_schema_terms
 from ..resolve_identifier import _get_bioregistry_link
+from ..schema import get_json_schema
 
 app = Flask(__name__)
 Swagger.DEFAULT_CONFIG.update({
@@ -105,6 +106,12 @@ def usage():
 def schema():
     """Render the Bioregistry RDF schema."""
     return render_template('meta/schema.html', terms=bioregistry_schema_terms)
+
+
+@app.route('/schema.json')
+def json_schema():
+    """Return the JSON schema."""
+    return jsonify(get_json_schema())
 
 
 if __name__ == '__main__':

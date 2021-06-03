@@ -7,8 +7,10 @@
 
 import json
 import pathlib
+from functools import lru_cache
 from typing import Any, List, Mapping, Optional
 
+import pydantic.schema
 from pydantic import BaseModel
 
 HERE = pathlib.Path(__file__).parent.resolve()
@@ -128,12 +130,23 @@ class Collection(BaseModel):
         return rv
 
 
+@lru_cache(maxsize=1)
+def get_json_schema():
+    """Get the JSON schema for the bioregistry."""
+    rv = {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "https://bioregistry.io/schema.json",
+    }
+    rv.update(pydantic.schema.schema([
+        Author, Collection, Resource, Registry,
+    ]))
+    return rv
+
+
 def main():
     """Dump the JSON schemata."""
-    import pydantic.schema
-    top_level_schema = pydantic.schema.schema([Author, Collection, Resource, Registry])
     with HERE.joinpath('schema.json').open('w') as file:
-        json.dump(top_level_schema, indent=2, fp=file)
+        json.dump(get_json_schema(), indent=2, fp=file)
 
 
 if __name__ == '__main__':

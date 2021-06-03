@@ -2,4 +2,4 @@
 
 """Data structures."""
 
-from .struct import Author, Collection, Registry, Resource  # noqa:F401
+from .struct import Author, Collection, Registry, Resource, get_json_schema  # noqa:F401
