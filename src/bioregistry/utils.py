@@ -14,19 +14,20 @@ import requests
 from pydantic.json import pydantic_encoder
 
 from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH, MISMATCH_PATH
-from .schema.struct import Collection
+from .schema.struct import Collection, Registry
 
 logger = logging.getLogger(__name__)
 
 
 @lru_cache(maxsize=1)
-def read_metaregistry() -> Mapping[str, Mapping[str, Any]]:
-    """Read the metaregistry as JSON."""
+def read_metaregistry() -> Mapping[str, Registry]:
+    """Read the metaregistry."""
     with open(METAREGISTRY_PATH, encoding='utf-8') as file:
-        return {
-            entry['prefix']: entry
-            for entry in json.load(file)
-        }
+        records = json.load(file)
+    return {
+        registry.prefix: registry
+        for registry in (Registry(**record) for record in records)
+    }
 
 
 def read_bioregistry():
@@ -58,22 +59,20 @@ def is_mismatch(bioregistry_prefix, external_metaprefix, external_prefix) -> boo
 def read_collections() -> Mapping[str, Collection]:
     """Read the manually curated collections."""
     with open(COLLECTIONS_PATH, encoding='utf-8') as file:
-        collections = json.load(file)
-
-    collections = [Collection(**collection) for collection in collections]
-
+        records = json.load(file)
     return {
         collection.identifier: collection
-        for collection in collections
+        for collection in (Collection(**record) for record in records)
     }
 
 
 def write_collections(collections: Mapping[str, Collection]) -> None:
     """Write the collections."""
-    for collection in collections.values():
+    values = [v for _, v in sorted(collections.items())]
+    for collection in values:
         collection.resources = sorted(set(collection.resources))
     with open(COLLECTIONS_PATH, encoding='utf-8', mode='w') as file:
-        json.dump(collections.values(), file, indent=2, sort_keys=True, ensure_ascii=False, default=pydantic_encoder)
+        json.dump(values, file, indent=2, sort_keys=True, ensure_ascii=False, default=pydantic_encoder)
 
 
 def write_bioregistry(registry):
@@ -82,11 +81,11 @@ def write_bioregistry(registry):
         json.dump(registry, file, indent=2, sort_keys=True, ensure_ascii=False)
 
 
-def write_metaregistry(metaregistry):
+def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
     """Write to the metaregistry."""
     values = [v for _, v in sorted(metaregistry.items())]
     with open(METAREGISTRY_PATH, mode='w', encoding='utf-8') as file:
-        json.dump(values, file, indent=2, sort_keys=True, ensure_ascii=False)
+        json.dump(values, file, indent=2, sort_keys=True, ensure_ascii=False, default=pydantic_encoder)
 
 
 def updater(f):
