@@ -5,15 +5,16 @@
 import json
 import logging
 import warnings
-from copy import deepcopy
 from datetime import datetime
 from functools import lru_cache, wraps
 from typing import Any, List, Mapping
 
 import click
 import requests
+from pydantic.json import pydantic_encoder
 
 from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH, MISMATCH_PATH
+from .schema.struct import Collection
 
 logger = logging.getLogger(__name__)
 
@@ -54,24 +55,25 @@ def is_mismatch(bioregistry_prefix, external_metaprefix, external_prefix) -> boo
 
 
 @lru_cache(maxsize=1)
-def read_collections():
+def read_collections() -> Mapping[str, Collection]:
     """Read the manually curated collections."""
     with open(COLLECTIONS_PATH, encoding='utf-8') as file:
-        rv = json.load(file)
-    for k, v in rv.items():
-        v['identifier'] = k
-    return rv
+        collections = json.load(file)
+
+    collections = [Collection(**collection) for collection in collections]
+
+    return {
+        collection.identifier: collection
+        for collection in collections
+    }
 
 
-def write_collections(collections):
+def write_collections(collections: Mapping[str, Collection]) -> None:
     """Write the collections."""
-    collections = deepcopy(collections)
-    for v in collections.values():
-        if 'identifier' in v:
-            del v['identifier']
-        v['resources'] = sorted(set(v['resources']))
+    for collection in collections.values():
+        collection.resources = sorted(set(collection.resources))
     with open(COLLECTIONS_PATH, encoding='utf-8', mode='w') as file:
-        json.dump(collections, file, indent=2, sort_keys=True, ensure_ascii=False)
+        json.dump(collections.values(), file, indent=2, sort_keys=True, ensure_ascii=False, default=pydantic_encoder)
 
 
 def write_bioregistry(registry):
