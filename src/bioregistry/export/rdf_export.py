@@ -4,12 +4,13 @@
 
 import os
 from io import BytesIO
-from typing import Optional
+from typing import Optional, Tuple, cast
 
 import click
 import rdflib
 from rdflib import BNode, Literal
 from rdflib.namespace import ClosedNamespace, DC, DCTERMS, FOAF, Namespace, RDF, RDFS, XSD
+from rdflib.term import Node, URIRef
 
 import bioregistry
 from bioregistry import read_collections, read_metaregistry, read_registry
@@ -46,6 +47,12 @@ def export_rdf():
     graph.serialize(os.path.join(DOCS_DATA, 'bioregistry.jsonld'), format='json-ld', context=context)
 
 
+def _graph() -> rdflib.Graph:
+    graph = rdflib.Graph()
+    _bind(graph)
+    return graph
+
+
 def _bind(graph: rdflib.Graph) -> None:
     graph.namespace_manager.bind('bioregistry.resource', bioregistry_resource)
     graph.namespace_manager.bind('bioregistry.metaresource', bioregistry_metaresource)
@@ -59,29 +66,35 @@ def _bind(graph: rdflib.Graph) -> None:
 
 def get_full_rdf() -> rdflib.Graph:
     """Get a combine RDF graph representing the Bioregistry using :mod:`rdflib`."""
-    graph = rdflib.Graph()
-    _bind(graph)
-    _add_metaresources(graph)
-    _add_collections(graph)
-    _add_resources(graph)
-
+    graph = _graph()
+    _add_metaresources(graph=graph)
+    _add_collections(graph=graph)
+    _add_resources(graph=graph)
     return graph
 
 
-def get_resource_rdf(prefix: str) -> rdflib.Graph:
-    """Get the RDF for a single resource."""
-    graph = rdflib.Graph()
-    _bind(graph)
-    data = bioregistry.get(prefix)
-    if data is None:
-        raise KeyError
-    _add_resource(graph, prefix, data)
-    return graph
+def collection_to_rdf_str(data, fmt: Optional[str] = None) -> str:
+    """Get a collection as an RDF string."""
+    if isinstance(data, str):
+        data = bioregistry.get_collection(data)
+    graph, _ = _add_collection(data)
+    return _graph_str(graph, fmt=fmt)
 
 
-def get_resource_rdf_str(prefix: str, fmt: Optional[str] = None) -> str:
-    """Get the RDF for a single resource serialized."""
-    return _graph_str(get_resource_rdf(prefix), fmt=fmt)
+def metaresource_to_rdf_str(data, fmt: Optional[str] = None) -> str:
+    """Get a collection as an RDF string."""
+    if isinstance(data, str):
+        data = bioregistry.get_registry(data)
+    graph, _ = _add_metaresource(data)
+    return _graph_str(graph, fmt=fmt)
+
+
+def resource_to_rdf_str(data, fmt: Optional[str] = None) -> str:
+    """Get a collection as an RDF string."""
+    if isinstance(data, str):
+        data = bioregistry.get(data)
+    graph, _ = _add_resource(data=data)
+    return _graph_str(graph, fmt=fmt)
 
 
 def _graph_str(graph: rdflib.Graph, fmt: Optional[str] = None) -> str:
@@ -90,45 +103,34 @@ def _graph_str(graph: rdflib.Graph, fmt: Optional[str] = None) -> str:
     return stream.getvalue().decode('utf8')
 
 
-def get_metaresource_rdf(metaprefix: str) -> rdflib.Graph:
-    """Get the RDF for a single metaresource."""
-    graph = rdflib.Graph()
-    _bind(graph)
-    data = bioregistry.get_registry(metaprefix)
-    if data is None:
-        raise KeyError
-    _add_metaresource(graph, data)
+def _add_metaresources(*, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
+    if graph is None:
+        graph = _graph()
+    for data in read_metaregistry().values():
+        _add_metaresource(graph=graph, data=data)
     return graph
 
 
-def get_collection_rdf(identifier: str) -> rdflib.Graph:
-    """Get the RDF for a single collection."""
-    graph = rdflib.Graph()
-    _bind(graph)
-    data = bioregistry.get_collection(identifier)
-    if data is None:
-        raise KeyError
-    _add_collection(graph, data)
-    return graph
-
-
-def _add_metaresources(graph: rdflib.Graph) -> None:
-    for metaresource in read_metaregistry().values():
-        _add_metaresource(graph, metaresource)
-
-
-def _add_collections(graph: rdflib.Graph) -> None:
+def _add_collections(*, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
+    if graph is None:
+        graph = _graph()
     for collection in read_collections().values():
-        _add_collection(graph, collection)
+        _add_collection(graph=graph, data=collection)
+    return graph
 
 
-def _add_resources(graph: rdflib.Graph) -> None:
+def _add_resources(*, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
+    if graph is None:
+        graph = _graph()
     for prefix, data in read_registry().items():
-        _add_resource(graph, prefix, data)
+        _add_resource(graph=graph, data={'prefix': prefix, **data})
+    return graph
 
 
-def _add_collection(graph: rdflib.Graph, data):
-    node = bioregistry_collection[data['identifier']]
+def _add_collection(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib.Graph, Node]:
+    if graph is None:
+        graph = _graph()
+    node = cast(URIRef, bioregistry_collection[data['identifier']])
     graph.add((node, RDF['type'], bioregistry_schema['collection']))
     graph.add((node, RDFS['label'], Literal(data['name'])))
     graph.add((node, DC.description, Literal(data['description'])))
@@ -139,13 +141,14 @@ def _add_collection(graph: rdflib.Graph, data):
 
     for resource in data['resources']:
         graph.add((node, DCTERMS.hasPart, bioregistry_resource[resource]))
-        graph.add((bioregistry_resource[resource], DCTERMS.isPartOf, node))
 
-    return node
+    return graph, node
 
 
-def _add_metaresource(graph: rdflib.Graph, data):
-    node = bioregistry_metaresource[data['prefix']]
+def _add_metaresource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib.Graph, Node]:
+    if graph is None:
+        graph = _graph()
+    node = cast(URIRef, bioregistry_metaresource[data['prefix']])
     graph.add((node, RDF['type'], bioregistry_schema['metaresource']))
     graph.add((node, RDFS['label'], Literal(data['name'])))
     graph.add((node, DC.description, Literal(data['description'])))
@@ -158,11 +161,14 @@ def _add_metaresource(graph: rdflib.Graph, data):
     graph.add((node, bioregistry_schema['isResolver'], Literal(data['resolver'], datatype=XSD.boolean)))
     if data['resolver']:
         graph.add((node, bioregistry_schema['resolver_formatter'], Literal(data['resolver_url'])))
-    return node
+    return graph, node
 
 
-def _add_resource(graph: rdflib.Graph, prefix, data):
-    node = bioregistry_resource[prefix]
+def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib.Graph, Node]:
+    if graph is None:
+        graph = _graph()
+    prefix = data['prefix']
+    node = cast(URIRef, bioregistry_resource[prefix])
     graph.add((node, RDF['type'], bioregistry_schema['resource']))
     graph.add((node, RDFS['label'], Literal(bioregistry.get_name(prefix))))
 
@@ -211,7 +217,7 @@ def _add_resource(graph: rdflib.Graph, prefix, data):
         graph.add((mapping_node, bioregistry_schema['hasMetaresource'], bioregistry_metaresource[metaprefix]))
         graph.add((mapping_node, bioregistry_schema['hasMetaidentifier'], Literal(metaidentifier)))
 
-    return node
+    return graph, node
 
 
 if __name__ == '__main__':

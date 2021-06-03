@@ -91,7 +91,11 @@ def resource(prefix: str):
         banana=bioregistry.get_banana(prefix),
         description=bioregistry.get_description(prefix),
         providers=None if example is None else _get_resource_providers(prefix, example),
-        formats=FORMATS,
+        formats=[
+            *FORMATS,
+            ('RDF (turtle)', 'turtle'),
+            ('RDF (JSON-LD)', 'jsonld'),
+        ],
     )
 
 
@@ -121,7 +125,11 @@ def metaresource(metaprefix: str):
             None
         ),
         entry=entry,
-        formats=FORMATS,
+        formats=[
+            *FORMATS,
+            ('RDF (turtle)', 'turtle'),
+            ('RDF (JSON-LD)', 'jsonld'),
+        ],
     )
 
 
@@ -135,7 +143,12 @@ def collection(identifier: str):
         'collection.html',
         identifier=identifier,
         entry=entry,
-        formats=[*FORMATS, ('JSON-LD', 'jsonld')],
+        formats=[
+            *FORMATS,
+            ('RDF (turtle)', 'turtle'),
+            ('RDF (JSON-LD)', 'jsonld'),
+            ('Context JSON-LD', 'context'),
+        ],
     )
 
 

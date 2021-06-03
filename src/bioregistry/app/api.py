@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 
 """API blueprint and routes."""
+from functools import partial
 
 from flask import Blueprint, abort, jsonify, request
 
 import bioregistry
 from .utils import _autocomplete, _get_identifier, _normalize_prefix_or_404, _search, serialize
 from .. import normalize_prefix
-from ..prefix_maps import collection_to_context
+from ..export.rdf_export import collection_to_rdf_str, metaresource_to_rdf_str, resource_to_rdf_str
+from ..prefix_maps import collection_to_context_jsonlds
 from ..resolve import get_format_url
 
 api_blueprint = Blueprint('api', __name__, url_prefix='/api')
@@ -54,10 +56,14 @@ def resource(prefix: str):
       default: json
       schema:
         type: string
-        enum: [json, yaml]
+        enum: [json, yaml, turtle, jsonld]
     """  # noqa:DAR101,DAR201
     prefix = _normalize_prefix_or_404(prefix)
-    return serialize(prefix=prefix, **bioregistry.get(prefix))  # type: ignore
+    data = dict(prefix=prefix, **bioregistry.get(prefix))  # type:ignore
+    return serialize(data, serializers=[
+        ('turtle', 'text/plain', partial(resource_to_rdf_str, fmt='turtle')),
+        ('jsonld', 'application/ld+json', partial(resource_to_rdf_str, fmt='json-ld')),
+    ])
 
 
 @api_blueprint.route('/metaregistry')
@@ -101,12 +107,15 @@ def metaresource(metaprefix: str):
       default: json
       schema:
         type: string
-        enum: [json, yaml]
+        enum: [json, yaml, turtle, jsonld]
     """  # noqa:DAR101,DAR201
     data = bioregistry.get_registry(metaprefix)
     if not data:
         abort(404, f'Invalid metaprefix: {metaprefix}')
-    return serialize(data)
+    return serialize(data, serializers=[
+        ('turtle', 'text/plain', partial(metaresource_to_rdf_str, fmt='turtle')),
+        ('jsonld', 'application/ld+json', partial(metaresource_to_rdf_str, fmt='json-ld')),
+    ])
 
 
 @api_blueprint.route('/collections')
@@ -150,14 +159,16 @@ def collection(identifier: str):
       default: json
       schema:
         type: string
-        enum: [json, yaml]
+        enum: [json, yaml, context, turtle, jsonld]
     """  # noqa:DAR101,DAR201
     data = bioregistry.get_collection(identifier)
     if not data:
         abort(404, f'Invalid collection: {identifier}')
-    return serialize(data, serializers={
-        'jsonld': collection_to_context,
-    })
+    return serialize(data, serializers=[
+        ('context', 'application/ld+json', collection_to_context_jsonlds),
+        ('turtle', 'text/plain', partial(collection_to_rdf_str, fmt='turtle')),
+        ('jsonld', 'application/ld+json', partial(collection_to_rdf_str, fmt='json-ld')),
+    ])
 
 
 @api_blueprint.route('/reference/<prefix>:<identifier>')

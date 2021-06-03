@@ -4,10 +4,10 @@
 
 import itertools as itt
 from io import StringIO
-from typing import Any, List, Mapping, Optional
+from typing import Any, Callable, List, Mapping, Optional, Sequence, Tuple
 
 import yaml
-from flask import abort, current_app, jsonify, redirect, render_template, request, url_for
+from flask import Response, abort, current_app, jsonify, redirect, render_template, request, url_for
 
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL
@@ -178,7 +178,7 @@ def yamlify(*args, **kwargs):
 
     return current_app.response_class(
         sio.getvalue(),
-        mimetype='application/yaml',
+        mimetype='text/plain',
     )
 
 
@@ -186,15 +186,14 @@ def _get_format(default: str = 'json') -> str:
     return request.args.get('format', default=default)
 
 
-def serialize(*args, serializers=None, **kwargs):
+def serialize(data, serializers: Optional[Sequence[Tuple[str, str, Callable]]] = None):
     """Serialize either as JSON or YAML."""
     fmt = _get_format()
     if fmt == 'json':
-        return jsonify(*args, **kwargs)
+        return jsonify(data)
     elif fmt in {'yaml', 'yml'}:
-        return yamlify(*args, **kwargs)
-    elif serializers:
-        for name, func in serializers.items():
-            if fmt == name:
-                return func(*args, **kwargs)
+        return yamlify(data)
+    for name, mimetype, func in serializers or []:
+        if fmt == name:
+            return Response(func(data), mimetype=mimetype)
     return abort(404, f'invalid format: {fmt}')
