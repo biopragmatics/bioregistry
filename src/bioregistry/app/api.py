@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 
 """API blueprint and routes."""
+from functools import partial
 
 from flask import Blueprint, abort, jsonify, request
 
 import bioregistry
 from .utils import _autocomplete, _get_identifier, _normalize_prefix_or_404, _search, serialize
 from .. import normalize_prefix
-from ..prefix_maps import collection_to_context
+from ..export.rdf_export import collection_to_rdf_str
+from ..prefix_maps import collection_to_context_jsonld
 from ..resolve import get_format_url
 
 api_blueprint = Blueprint('api', __name__, url_prefix='/api')
@@ -57,7 +59,7 @@ def resource(prefix: str):
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
     prefix = _normalize_prefix_or_404(prefix)
-    return serialize(prefix=prefix, **bioregistry.get(prefix))  # type: ignore
+    return serialize(dict(prefix=prefix, **bioregistry.get(prefix)))  # type: ignore
 
 
 @api_blueprint.route('/metaregistry')
@@ -150,14 +152,16 @@ def collection(identifier: str):
       default: json
       schema:
         type: string
-        enum: [json, yaml]
+        enum: [json, yaml, context-jsonld, rdf-turtle, rdf-jsonld]
     """  # noqa:DAR101,DAR201
     data = bioregistry.get_collection(identifier)
     if not data:
         abort(404, f'Invalid collection: {identifier}')
-    return serialize(data, serializers={
-        'jsonld': collection_to_context,
-    })
+    return serialize(data, serializers=[
+        ('context-jsonld', 'application/ld+json', collection_to_context_jsonld),
+        ('rdf', 'text/plain', partial(collection_to_rdf_str, fmt='turtle')),
+        ('rdf-jsonld', 'application/ld+json', partial(collection_to_rdf_str, fmt='json-ld')),
+    ])
 
 
 @api_blueprint.route('/reference/<prefix>:<identifier>')

@@ -135,7 +135,11 @@ def collection(identifier: str):
         'collection.html',
         identifier=identifier,
         entry=entry,
-        formats=[*FORMATS, ('JSON-LD', 'jsonld')],
+        formats=[
+            *FORMATS,
+            ('RDF', 'rdf'),
+            ('Context JSON-LD', 'context'),
+        ],
     )
 
 

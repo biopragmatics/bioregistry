@@ -40,10 +40,10 @@ def get_collection_jsonld(identifier: str) -> Mapping[str, Mapping[str, str]]:
     collection = bioregistry.get_collection(identifier)
     if collection is None:
         raise KeyError
-    return collection_to_context(collection)
+    return collection_to_context_jsonld(collection)
 
 
-def collection_to_context(collection) -> Mapping[str, Mapping[str, str]]:
+def collection_to_context_jsonld(collection) -> Mapping[str, Mapping[str, str]]:
     """Get the JSON-LD context from a given collection."""
     return {
         "@context": collection_to_prefix_map(collection),
