@@ -54,6 +54,7 @@ class TestRegistry(unittest.TestCase):
             'provides',
             'references',
             'synonyms',
+            'comment',
         }
         keys.update(bioregistry.read_metaregistry())
         for prefix, entry in self.registry.items():
