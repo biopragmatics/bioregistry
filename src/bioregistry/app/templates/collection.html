@@ -8,7 +8,8 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h5 style="margin: 0">{{ entry.name }}</h5>
+                    <h5 style="margin: 0"><a href="{{ url_for("ui.collections") }}">Collections</a>
+                        <i class="fas fa-angle-right"></i> {{ entry.name }}</h5>
                 </div>
                 <div class="col-4 text-right">
                     <div class="dropdown">
