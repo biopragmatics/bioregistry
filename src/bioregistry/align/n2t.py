@@ -16,7 +16,7 @@ class N2TAligner(Aligner):
     getter_kwargs = {'force_download': True}
     curation_header = ('name', 'homepage', 'description')
 
-    def get_skip(self) -> Mapping[str, str]:
+    def get_skip(self) -> Mapping[str, str]:  # noqa:D102
         return {
             'zzztestprefix': 'test prefix should not be considered',
         }
