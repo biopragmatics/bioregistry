@@ -21,7 +21,7 @@ GETTERS = [
     ('wikidata', 'Wikidata', get_wikidata_registry),
     ('n2t', 'N2T', get_n2t),
     ('go', 'GO', lambda: get_go(mappify=True)),
-    ('bioportal', 'BioPortal', lambda: get_bioportal(mappify=True)),
+    ('bioportal', 'BioPortal', get_bioportal),
     ('prefixcommons', 'Prefix Commons', get_prefix_commons),
     ('biolink', 'Biolink', get_biolink),
     ('ncbi', 'NCBI', get_ncbi),

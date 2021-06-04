@@ -37,7 +37,10 @@ class Aligner(ABC):
             raise TypeError(f'invalid metaprefix for aligner: {self.key}')
 
         self.internal_registry = read_registry()
-        self.external_registry = self.__class__.getter(**(self.getter_kwargs or {}))
+
+        kwargs = self.getter_kwargs or {}
+        kwargs.setdefault('force_download', True)
+        self.external_registry = self.__class__.getter(**kwargs)
         self.skip_external = self.get_skip()
 
         # Get all of the pre-curated mappings from the Bioregistry
