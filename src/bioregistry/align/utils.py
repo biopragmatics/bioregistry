@@ -127,7 +127,7 @@ class Aligner(ABC):
                     *self.get_curation_row(external_id, external_entry),
                 )
 
-    def get_curation_table(self, **kwargs) -> str:
+    def get_curation_table(self, **kwargs) -> Optional[str]:
         """Get the curation table as a string, built by :mod:`tabulate`."""
         kwargs.setdefault('tablefmt', 'rst')
         if self.curation_header:
@@ -135,12 +135,17 @@ class Aligner(ABC):
         else:
             headers = ()
 
+        rows = list(self._iter_curation_rows())
+        if not rows:
+            return None
         return tabulate(
-            list(self._iter_curation_rows()),
+            rows,
             headers=headers,
             **kwargs,
         )
 
     def print_uncurated(self, **kwargs) -> None:
         """Print the curation table."""
-        print(self.get_curation_table(**kwargs))
+        s = self.get_curation_table(**kwargs)
+        if s:
+            print(s)

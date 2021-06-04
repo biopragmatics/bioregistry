@@ -2,7 +2,6 @@
 
 """Tests for data integrity."""
 
-import datetime
 import logging
 import unittest
 
