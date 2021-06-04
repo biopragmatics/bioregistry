@@ -51,7 +51,7 @@ def align_ols(registry):
         if 'ols' in entry
     }
 
-    ols_registry = get_ols(mappify=True)
+    ols_registry = get_ols()
 
     ols_norm_prefix_to_prefix = {
         norm(obo_key): obo_key
