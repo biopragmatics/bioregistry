@@ -96,7 +96,7 @@ class TestRegistry(unittest.TestCase):
         """Test that all homepages start with http."""
         for prefix in bioregistry.read_registry():
             homepage = bioregistry.get_homepage(prefix)
-            if homepage is None or homepage.startswith('http'):
+            if homepage is None or homepage.startswith('http') or homepage.startswith('ftp'):
                 continue
             with self.subTest(prefix=prefix):
                 self.fail(msg=f'malformed homepage: {homepage}')
