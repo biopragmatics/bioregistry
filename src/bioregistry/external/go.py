@@ -39,11 +39,7 @@ GO_FULL_PATH = BIOREGISTRY_MODULE.join(name='go.json')
 GO_URL = 'https://raw.githubusercontent.com/geneontology/go-site/master/metadata/db-xrefs.yaml'
 
 
-def get_go(
-    cache_path: Optional[str] = GO_FULL_PATH,
-    mappify: bool = False,
-    force_download: bool = False,
-):
+def get_go(cache_path: Optional[str] = GO_FULL_PATH, force_download: bool = False):
     """Get the GO registry."""
     if not force_download and cache_path is not None and os.path.exists(cache_path):
         with open(cache_path) as file:
