@@ -8,7 +8,7 @@ from .biolink import BiolinkAligner
 from .bioportal import BioPortalAligner
 from .go import GoAligner
 from .miriam import align_miriam
-from .n2t import align_n2t
+from .n2t import N2TAligner
 from .ncbi import NcbiAligner
 from .obofoundry import align_obofoundry
 from .ols import OLSAligner
@@ -29,7 +29,7 @@ def align():
     align_miriam()
 
     secho('Aligning N2T')
-    align_n2t()
+    N2TAligner.align()
 
     secho('Aligning NCBI')
     NcbiAligner.align()
