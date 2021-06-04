@@ -19,6 +19,7 @@ class OLSAligner(Aligner):
     getter = get_ols
     getter_kwargs = {'force_download': True}
     curation_header = ('name',)
+    include_new = True
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Prepare curation rows for unaligned BioPortal registry entries."""

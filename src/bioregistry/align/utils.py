@@ -31,6 +31,10 @@ class Aligner(ABC):
     #: Optional header to put on the curation table
     curation_header: ClassVar[Optional[Sequence[str]]] = None
 
+    #: Should new entries be included automatically? Only set this true for aligners of
+    #: very high confidence (e.g., OBO Foundry but not BioPortal)
+    include_new: ClassVar[bool] = False
+
     def __init__(self):
         """Instantiate the aligner."""
         if self.key not in read_metaregistry():
@@ -68,6 +72,11 @@ class Aligner(ABC):
             # try to lookup with lexical match
             if bioregistry_id is None:
                 bioregistry_id = normalize_prefix(external_id)
+
+            # add the identifier from an external resource if it's been marked as high quality
+            if bioregistry_id is None and self.include_new:
+                bioregistry_id = external_id
+                self.internal_registry[bioregistry_id] = {}
 
             if bioregistry_id is not None:  # a match was found
                 self._align_action(bioregistry_id, external_id, external_entry)
