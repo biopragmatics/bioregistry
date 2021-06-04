@@ -10,7 +10,6 @@ import click
 import yaml
 
 from bioregistry.constants import BIOREGISTRY_MODULE
-from bioregistry.external.utils import list_to_map
 
 __all__ = [
     'GO_FULL_PATH',
@@ -43,7 +42,6 @@ GO_URL = 'https://raw.githubusercontent.com/geneontology/go-site/master/metadata
 def get_go(
     cache_path: Optional[str] = GO_FULL_PATH,
     mappify: bool = False,
-
     force_download: bool = False,
 ):
     """Get the GO registry."""
@@ -62,10 +60,7 @@ def get_go(
             with open(cache_path, 'w') as file:
                 json.dump(entries, file, indent=2, sort_keys=True)
 
-    if mappify:
-        entries = list_to_map(entries, 'database')
-
-    return entries
+    return {entry['database']: entry for entry in entries}
 
 
 @click.command()
