@@ -4,6 +4,7 @@
 
 import click
 
+from .prefix_maps import generate_context_json_ld
 from .rdf_export import export_rdf
 from .tsv_export import export_tsv
 from .yaml_export import export_yaml
@@ -16,6 +17,7 @@ def export(ctx: click.Context):
     ctx.invoke(export_rdf)
     ctx.invoke(export_tsv)
     ctx.invoke(export_yaml)
+    ctx.invoke(generate_context_json_ld)
 
 
 if __name__ == '__main__':

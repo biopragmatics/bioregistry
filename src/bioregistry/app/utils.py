@@ -10,11 +10,11 @@ from typing import Any, Callable, List, Mapping, Optional, Sequence, Tuple
 import yaml
 from flask import abort, current_app, redirect, render_template, request, url_for
 from pydantic import BaseModel
-from pydantic.json import pydantic_encoder
 
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL
 from bioregistry.schema import sanitize_model
+from bioregistry.utils import extended_encoder
 
 
 def _get_resource_providers(prefix: str, identifier: str):
@@ -170,7 +170,7 @@ def _get_identifier(prefix: str, identifier: str) -> Mapping[str, Any]:
 def jsonify(data):
     """Dump data as JSON, like like :func:`flask.jsonify`."""
     return current_app.response_class(
-        json.dumps(data, ensure_ascii=False, default=pydantic_encoder) + "\n",
+        json.dumps(data, ensure_ascii=False, default=extended_encoder) + "\n",
         mimetype=current_app.config["JSONIFY_MIMETYPE"],
     )
 

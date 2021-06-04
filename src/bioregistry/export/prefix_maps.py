@@ -28,7 +28,7 @@ def generate_context_json_ld():
         })
 
     for key, collection in bioregistry.read_collections().items():
-        name = collection.get('contextName')
+        name = collection.context
         if name is None:
             continue
         with contexts_directory.joinpath(f'{name}_context').with_suffix('.jsonld').open('w') as file:

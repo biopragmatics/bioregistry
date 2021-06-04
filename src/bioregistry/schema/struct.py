@@ -161,6 +161,8 @@ class Collection(BaseModel):
     resources: List[str]
     #: Authors/contributors to the collection
     authors: List[Author]
+    #: JSON-LD context name
+    context: Optional[str]
 
     def add_triples(self, graph: rdflib.Graph) -> Node:
         """Add triples to an RDF graph for this collection."""

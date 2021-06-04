@@ -5,13 +5,15 @@
 import json
 import logging
 import warnings
+from dataclasses import asdict, is_dataclass
 from datetime import datetime
 from functools import lru_cache, wraps
 from typing import Any, List, Mapping
 
 import click
 import requests
-from pydantic.json import pydantic_encoder
+from pydantic import BaseModel
+from pydantic.json import ENCODERS_BY_TYPE
 
 from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH, MISMATCH_PATH
 from .schema import Collection, Registry, Resource, sanitize_model
@@ -79,7 +81,7 @@ def write_collections(collections: Mapping[str, Collection]) -> None:
     for collection in values:
         collection.resources = sorted(set(collection.resources))
     with open(COLLECTIONS_PATH, encoding='utf-8', mode='w') as file:
-        json.dump({'collections': values}, file, indent=2, sort_keys=True, ensure_ascii=False, default=pydantic_encoder)
+        json.dump({'collections': values}, file, indent=2, sort_keys=True, ensure_ascii=False, default=extended_encoder)
 
 
 def write_bioregistry(registry):
@@ -98,7 +100,7 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
             indent=2,
             sort_keys=True,
             ensure_ascii=False,
-            default=pydantic_encoder,
+            default=extended_encoder,
         )
 
 
@@ -144,3 +146,21 @@ def query_wikidata(sparql: str) -> List[Mapping[str, Any]]:
     res.raise_for_status()
     res_json = res.json()
     return res_json['results']['bindings']
+
+
+def extended_encoder(obj: Any) -> Any:
+    """Encode objects similarly to :func:`pydantic.json.pydantic_encoder`."""
+    if isinstance(obj, BaseModel):
+        return obj.dict(exclude_none=True)
+    elif is_dataclass(obj):
+        return asdict(obj)
+
+    # Check the class type and its superclasses for a matching encoder
+    for base in obj.__class__.__mro__[:-1]:
+        try:
+            encoder = ENCODERS_BY_TYPE[base]
+        except KeyError:
+            continue
+        return encoder(obj)
+    else:  # We have exited the for loop without finding a suitable encoder
+        raise TypeError(f"Object of type '{obj.__class__.__name__}' is not JSON serializable")
