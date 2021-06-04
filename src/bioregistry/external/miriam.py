@@ -2,46 +2,67 @@
 
 """Download registry information from Identifiers.org/MIRIAMs."""
 
-from typing import Optional
+import json
 
 import click
+from pystow.utils import download
 
-from .utils import ensure_registry
-from ..constants import BIOREGISTRY_MODULE
+from bioregistry.data import EXTERNAL
 
 __all__ = [
-    'MIRIAM_FULL_PATH',
-    'MIRIAM_URL',
     'get_miriam',
 ]
 
-MIRIAM_FULL_PATH = BIOREGISTRY_MODULE.join(name='miriam.json')
-MIRIAM_URL = 'https://registry.api.identifiers.org/restApi/namespaces'
+DIRECTORY = EXTERNAL / 'miriam'
+DIRECTORY.mkdir(exist_ok=True, parents=True)
+RAW_PATH = DIRECTORY / 'raw.json'
+PROCESSED_PATH = DIRECTORY / 'processed.json'
+MIRIAM_URL = 'https://registry.api.identifiers.org/resolutionApi/getResolverDataset'
 
 
-def get_miriam(
-    cache_path: Optional[str] = MIRIAM_FULL_PATH,
-    mappify: bool = False,
-    force_download: bool = False,
-    skip_deprecated: bool = False,
-):
+def get_miriam(force_download: bool = False):
     """Get the MIRIAM registry."""
-    return ensure_registry(
-        url=MIRIAM_URL,
-        embedded_key='namespaces',
-        cache_path=cache_path,
-        id_key='prefix',
-        mappify=mappify,
-        force_download=force_download,
-        deprecated_key='deprecated',
-        skip_deprecated=skip_deprecated,
-    )
+    if PROCESSED_PATH.exists() and not force_download:
+        with PROCESSED_PATH.open() as file:
+            return json.load(file)
+
+    download(url=MIRIAM_URL, path=RAW_PATH, force=force_download)
+    with RAW_PATH.open() as file:
+        data = json.load(file)
+
+    rv = {
+        record['prefix']: _process(record)
+        for record in data['payload']['namespaces']
+    }
+    with PROCESSED_PATH.open('w') as file:
+        json.dump(rv, file, indent=2, sort_keys=True)
+    return rv
+
+
+def _process(record):
+    rv = {
+        'prefix': record['prefix'],
+        'id': record['mirId'][len('MIR:'):],
+        'name': record['name'],
+        'deprecated': record['deprecated'],
+        'namespaceEmbeddedInLui': record['namespaceEmbeddedInLui'],
+        'sampleId': record['sampleId'],
+        'description': record['description'],
+        'pattern': record['pattern'],
+    }
+    for resource in record.get('resources', []):
+        if not resource['official'] or resource['deprecated']:
+            continue
+        rv['homepage'] = resource['resourceHomeUrl']
+        rv['provider_url'] = resource['urlPattern'].replace('{$id}', '$1')
+    return rv
 
 
 @click.command()
 def main():
     """Reload the MIRIAM data."""
-    get_miriam(force_download=True)
+    r = get_miriam(force_download=True)
+    click.echo(f'Got {len(r)} results')
 
 
 if __name__ == '__main__':

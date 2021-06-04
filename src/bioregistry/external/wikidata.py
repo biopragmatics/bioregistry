@@ -65,7 +65,7 @@ def _ensure_df(path, fn, header, force: bool = False):
 
 def iter_miriam_mappings() -> Iterable[Tuple[str, str, str, str]]:
     """Iterate over Wikidata xrefs."""
-    miriam = get_miriam(mappify=True)
+    miriam = get_miriam()
 
     query = """SELECT ?item ?itemLabel ?miriam
     WHERE
