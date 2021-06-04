@@ -26,7 +26,7 @@ def download():
     get_miriam(force_download=True)
 
     secho('Download N2T')
-    get_n2t(force=True)
+    get_n2t(force_download=True)
 
     secho('Downloading NCBI')
     get_ncbi()

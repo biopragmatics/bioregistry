@@ -2,71 +2,61 @@
 
 """Download registry information from N2T."""
 
-import itertools as itt
-from operator import itemgetter
+import json
 
 import click
-import pystow
 import yaml
-from more_itertools import pairwise
+from pystow.utils import download
+
+from bioregistry.data import HERE
+
+URL = 'https://n2t.net/e/n2t_full_prefixes.yaml'
+DIRECTORY = HERE / 'n2t'
+DIRECTORY.mkdir(exist_ok=True, parents=True)
+RAW_PATH = DIRECTORY / 'raw.yml'
+PROCESSED = DIRECTORY / 'processed.json'
 
 
-URL = 'https://n2t.net/e/cdl_ebi_prefixes.yaml'
-
-PATH = pystow.join('bioregistry', name='n2t.json')
-
-
-def _parse_1(file):
-    lines = (
-        line.strip()
-        for line in file
-        if not line.startswith('#') and line.strip()
-    )
-    it = itt.groupby(lines, lambda line: line.startswith('-'))
-    for a, grouped_lines in it:
-        if a:
-            k, v = [part.strip() for part in list(grouped_lines)[0].lstrip('-').lstrip().split(':', 1)]
-            yield [(k, v)]
-        else:
-            yield [
-                [part.strip() for part in line.split(':', 1)]
-                for line in grouped_lines
-            ]
-
-
-def _parse(file):
-    for a, b in pairwise(_parse_1(file)):
-        yield dict(itt.chain(a, b))
-
-
-def get_n2t(force: bool = True):
+def get_n2t(force_download: bool = False):
     """Get the N2T registry."""
-    path = pystow.ensure('bioregistry', url=URL, force=force)
-    # they give malformed YAML so time to write a new parser
-    with open(path) as file:
-        rv = sorted(_parse(file), key=itemgetter('namespace'))
+    if PROCESSED.exists() and not force_download:
+        with PROCESSED.open() as file:
+            return json.load(file)
 
-    nrv = {
-        prefix: _clean_providers(lines)
-        for prefix, lines in itt.groupby(rv, key=itemgetter('namespace'))
+    download(url=URL, path=RAW_PATH, force=force_download)
+    # they give malformed YAML so time to write a new parser
+    with RAW_PATH.open() as file:
+        data = yaml.safe_load(file)
+
+    rv = {
+        key: _process(record)
+        for key, record in data.items()
+        if record['type'] == 'scheme' and '/' not in key
     }
 
-    with PATH.open('w') as file:
-        yaml.dump(nrv, file)
-    return nrv
+    with PROCESSED.open('w') as file:
+        json.dump(rv, file, sort_keys=True, indent=2)
+    return rv
 
 
-def _clean_providers(lines):
-    providers = list(lines)
-    for provider in providers:
-        del provider['namespace']
-    return providers
+def _process(record):
+    rv = {
+        "name": record.get('name'),
+        "provider_url": record['redirect'].replace('$id', '$1') if 'redirect' in record else None,
+        "description": record.get('description'),
+        "homepage": record.get('more'),
+        'pattern': record.get('pattern'),
+        'example': record.get('test'),
+        'namespaceEmbeddedInLui': (record.get('prefixed') == 'true'),
+    }
+    return {k: v for k, v in rv.items() if v is not None}
 
 
 @click.command()
 def main():
     """Reload the N2T data."""
-    get_n2t()
+    rv = get_n2t(force_download=True)
+    click.echo(f'Got {len(rv)} entries from n2t.')
 
 
 if __name__ == '__main__':
