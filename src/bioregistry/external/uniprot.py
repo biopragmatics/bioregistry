@@ -21,8 +21,8 @@ logger = logging.getLogger(__name__)
 URL = 'https://www.uniprot.org/database/?format=rdf'
 DIRECTORY = EXTERNAL / 'uniprot'
 DIRECTORY.mkdir(exist_ok=True, parents=True)
-UNPARSED_PATH = DIRECTORY / 'uniprot.xml'
-PATH = DIRECTORY / 'uniprot.json'
+RAW_PATH = DIRECTORY / 'raw.xml'
+PROCESSED_PATH = DIRECTORY / 'processed.json'
 
 kz = {
     'prefix': '{http://purl.uniprot.org/core/}abbreviation',
@@ -43,8 +43,8 @@ kzi = {v: k for k, v in kz.items()}
 
 def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
     """Get the UniProt registry."""
-    download(url=URL, path=UNPARSED_PATH, force=force_download)
-    with UNPARSED_PATH.open() as file:
+    download(url=URL, path=RAW_PATH, force=force_download)
+    with RAW_PATH.open() as file:
         tree = ElementTree.parse(file)
     root = tree.getroot()
     rv = {}
@@ -59,7 +59,7 @@ def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
         if prefix is not None:
             rv[prefix] = entry
 
-    with PATH.open('w') as file:
+    with PROCESSED_PATH.open('w') as file:
         json.dump(rv, file, indent=2)
     return rv
 

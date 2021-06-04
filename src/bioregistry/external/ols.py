@@ -22,20 +22,20 @@ logger = logging.getLogger(__name__)
 DIRECTORY = EXTERNAL / 'ols'
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 URL = 'https://www.ebi.ac.uk/ols/api/ontologies?size=1000'
-OLS_FULL_PATH = DIRECTORY / 'raw.json'
-OLS_PROCESSED_PATH = DIRECTORY / 'processed.json'
+RAW_PATH = DIRECTORY / 'raw.json'
+PROCESSED_PATH = DIRECTORY / 'processed.json'
 
 _PROCESSING = get_ols_processing()
 
 
 def get_ols(force_download: bool = False):
     """Get the OLS registry."""
-    if OLS_PROCESSED_PATH.exists() and not force_download:
-        with OLS_PROCESSED_PATH.open() as file:
+    if PROCESSED_PATH.exists() and not force_download:
+        with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    download(url=URL, path=OLS_FULL_PATH, force=force_download)
-    with OLS_FULL_PATH.open() as file:
+    download(url=URL, path=RAW_PATH, force=force_download)
+    with RAW_PATH.open() as file:
         data = json.load(file)
 
     if 'next' in data['_links']:
@@ -45,7 +45,7 @@ def get_ols(force_download: bool = False):
         ontology['ontologyId']: _process(ontology)
         for ontology in data['_embedded']['ontologies']
     }
-    with OLS_PROCESSED_PATH.open('w') as file:
+    with PROCESSED_PATH.open('w') as file:
         json.dump(processed, file, indent=2, sort_keys=True)
     return processed
 

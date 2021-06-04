@@ -9,9 +9,18 @@ from urllib.parse import urlsplit, urlunsplit
 
 import click
 from bs4 import BeautifulSoup
+from pystow.utils import download
 
-from bioregistry.constants import BIOREGISTRY_MODULE
+from bioregistry.data import EXTERNAL
 
+__all__ = [
+    'get_ncbi',
+]
+
+DIRECTORY = EXTERNAL / 'ncbi'
+DIRECTORY.mkdir(exist_ok=True, parents=True)
+RAW_PATH = DIRECTORY / 'raw.html'
+PROCESSED_PATH = DIRECTORY / 'processed.json'
 URL = 'https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/'
 NCBI_URL_PARTS = urlsplit(URL)
 DATA_TABLE_CAPTION_RE = re.compile(r'db_xref List')
@@ -41,16 +50,15 @@ OBSOLETE = {
 }
 
 
-def get_ncbi(force: bool = False) -> Dict[str, Dict[str, str]]:
+def get_ncbi(force_download: bool = False) -> Dict[str, Dict[str, str]]:
     """Get the NCBI data."""
-    parsed_path = BIOREGISTRY_MODULE.join(name='ncbi.json')
-    if parsed_path.exists() and not force:
-        with parsed_path.open() as file:
+    if PROCESSED_PATH.exists() and not force_download:
+        with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    source_path = BIOREGISTRY_MODULE.ensure(url=URL, name='ncbi.html', force=force)
-    with open(source_path) as f:
-        soup = BeautifulSoup(f, 'html.parser')
+    download(url=URL, path=RAW_PATH, force=force_download)
+    with RAW_PATH.open() as file:
+        soup = BeautifulSoup(file, 'html.parser')
     # find the data table based on its caption element
     data_table = soup.find('caption', string=DATA_TABLE_CAPTION_RE).parent
 
@@ -125,8 +133,8 @@ def get_ncbi(force: bool = False) -> Dict[str, Dict[str, str]]:
 
         rv[prefix] = item
 
-    with parsed_path.open('w') as file:
-        json.dump(rv, file, indent=2)
+    with PROCESSED_PATH.open('w') as file:
+        json.dump(rv, file, indent=2, sort_keys=True)
 
     return rv
 
@@ -134,7 +142,8 @@ def get_ncbi(force: bool = False) -> Dict[str, Dict[str, str]]:
 @click.command()
 def main():
     """Reload NCBI data."""
-    get_ncbi(force=True)
+    r = get_ncbi(force_download=True)
+    click.echo(f'Got {len(r)} records')
 
 
 if __name__ == '__main__':

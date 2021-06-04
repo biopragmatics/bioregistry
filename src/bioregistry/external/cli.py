@@ -29,7 +29,7 @@ def download():
     get_n2t(force_download=True)
 
     secho('Downloading NCBI')
-    get_ncbi()
+    get_ncbi(force_download=True)
 
     secho('Downloading OBO Foundry')
     get_obofoundry(force_download=True)
