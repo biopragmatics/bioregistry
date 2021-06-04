@@ -183,51 +183,6 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.assertRegex(example, pattern)
 
-    def test_ols_versions(self):
-        """Test that all OLS entries have a version annotation on them."""
-        for bioregistry_id, bioregistry_entry in self.registry.items():
-            ols = bioregistry_entry.get('ols')
-            if not ols:
-                continue
-
-            version = ols.get('version')
-            if version is None:
-                logger.warning('[%s] missing version', bioregistry_id)
-                continue
-
-            with self.subTest(prefix=bioregistry_id):
-                if version != version.strip():
-                    logger.warning('Extra whitespace in %s', bioregistry_id)
-                    version = version.strip()
-
-                version_prefix = bioregistry_entry.get('ols_version_prefix')
-                if version_prefix:
-                    self.assertTrue(version.startswith(version_prefix))
-                    version = version[len(version_prefix):]
-
-                if bioregistry_entry.get('ols_version_suffix_split'):
-                    version = version.split()[0]
-
-                version_suffix = bioregistry_entry.get('ols_version_suffix')
-                if version_suffix:
-                    self.assertTrue(version.endswith(version_suffix))
-                    version = version[:-len(version_suffix)]
-
-                version_type = bioregistry_entry.get('ols_version_type')
-                version_date_fmt = bioregistry_entry.get('ols_version_date_format')
-                self.assertTrue(
-                    version_type is not None or version_date_fmt is not None,
-                    msg=f'missing either a ``ols_version_type`` or ``ols_version_date_format`` for date: {version}',
-                )
-
-                if version_date_fmt:
-                    if version_date_fmt in {"%Y-%d-%m"}:
-                        logger.warning('Confusing date format for %s (%s)', bioregistry_id, version_date_fmt)
-                    try:
-                        version = datetime.datetime.strptime(version, version_date_fmt)
-                    except ValueError:
-                        logger.warning('Wrong format for %s (%s)', bioregistry_id, version)
-
     def test_is_mismatch(self):
         """Check for mismatches."""
         self.assertTrue(is_mismatch('geo', 'ols', 'geo'))
