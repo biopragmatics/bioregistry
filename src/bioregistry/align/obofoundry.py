@@ -19,10 +19,11 @@ class OBOFoundryAligner(Aligner):
     getter = get_obofoundry
     getter_kwargs = {'force_download': True}
     curation_header = ('name', 'description')
+    include_new = True
 
     def get_skip(self) -> Mapping[str, str]:  # noqa:D102
         return {
-            'bila': 'website is not longer active'
+            'bila': 'website is not longer active',
         }
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:

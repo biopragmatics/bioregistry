@@ -15,7 +15,7 @@ from .uniprot import get_uniprot  # noqa:F401
 from .wikidata import get_wikidata_registry  # noqa:F401
 
 GETTERS = [
-    ('obofoundry', 'OBO', lambda: get_obofoundry(skip_deprecated=True, mappify=True)),
+    ('obofoundry', 'OBO', get_obofoundry),
     ('ols', 'OLS', get_ols),
     ('miriam', 'MIRIAM', lambda: get_miriam(skip_deprecated=True, mappify=True)),
     ('wikidata', 'Wikidata', get_wikidata_registry),
