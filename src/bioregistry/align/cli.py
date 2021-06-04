@@ -11,7 +11,7 @@ from .miriam import align_miriam
 from .n2t import align_n2t
 from .ncbi import NcbiAligner
 from .obofoundry import align_obofoundry
-from .ols import align_ols
+from .ols import OLSAligner
 from .prefix_commons import PrefixCommonsAligner
 from .uniprot import UniProtAligner
 from .wikidata import align_wikidata
@@ -38,7 +38,7 @@ def align():
     align_obofoundry()
 
     secho('Aligning OLS')
-    align_ols()
+    OLSAligner.align()
 
     secho('Aligning Wikidata')
     align_wikidata()

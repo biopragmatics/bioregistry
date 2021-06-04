@@ -59,12 +59,15 @@ def list_to_map(entries, key):
     return {entry[key]: entry for entry in entries}
 
 
-def _download_paginated(start_url: str, embedded_key: str) -> List[EnsureEntry]:
+def _download_paginated(start_url: str, embedded_key: str, size: Optional[int] = None) -> List[EnsureEntry]:
     results = []
     url = start_url
+    params = {}
+    if size is not None:
+        params['size'] = size
     while True:
         logger.debug('getting %s', url)
-        g = requests.get(url)
+        g = requests.get(url, params=params)
         j = g.json()
         r = j['_embedded'][embedded_key]
         results.extend(r)

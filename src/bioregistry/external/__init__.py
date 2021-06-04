@@ -16,7 +16,7 @@ from .wikidata import get_wikidata_registry  # noqa:F401
 
 GETTERS = [
     ('obofoundry', 'OBO', lambda: get_obofoundry(skip_deprecated=True, mappify=True)),
-    ('ols', 'OLS', lambda: get_ols(mappify=True)),
+    ('ols', 'OLS', get_ols),
     ('miriam', 'MIRIAM', lambda: get_miriam(skip_deprecated=True, mappify=True)),
     ('wikidata', 'Wikidata', get_wikidata_registry),
     ('n2t', 'N2T', get_n2t),

@@ -2,11 +2,9 @@
 
 """Utilities for normalizing prefixes."""
 
-import datetime
 import logging
 import re
 from functools import lru_cache
-from textwrap import dedent
 from typing import Any, Mapping, Optional, Sequence, Set, Tuple, Union
 
 from .schema import Collection, Registry
@@ -521,71 +519,8 @@ def get_version(prefix: str) -> Optional[str]:
 def get_versions() -> Mapping[str, str]:
     """Get a map of prefixes to versions."""
     rv = {}
-
     for bioregistry_id, bioregistry_entry in read_registry().items():
-        if 'ols' not in bioregistry_entry:
-            continue
-        version = bioregistry_entry['ols'].get('version')
-        if version is None:
-            logger.warning('[%s] missing version. Contact: %s', bioregistry_id, get_email(bioregistry_id))
-            continue
-
-        version = _clean_version(bioregistry_id, version, bioregistry_entry=bioregistry_entry)
-        version_type = bioregistry_entry.get('ols_version_type')
-        version_date_fmt = bioregistry_entry.get('ols_version_date_format')
-
-        if version_date_fmt:
-            if version_date_fmt in {"%Y-%d-%m"}:
-                logger.warning(
-                    '[%s] confusing date format: %s. Contact: %s', bioregistry_id, version_date_fmt,
-                    get_email(bioregistry_id),
-                )
-            try:
-                version = datetime.datetime.strptime(version, version_date_fmt).strftime('%Y-%m-%d')
-            except ValueError:
-                logger.warning('[%s] wrong format for version %s', bioregistry_id, version)
-        elif not version_type:
-            logger.warning('[%s] no type for version %s', bioregistry_id, version)
-
-        rv[bioregistry_id] = version
-
+        version = bioregistry_entry.get('ols', {}).get('version')
+        if version is not None:
+            rv[bioregistry_id] = version
     return rv
-
-
-def _clean_version(
-    bioregistry_id: str,
-    version: str,
-    *,
-    bioregistry_entry: Optional[Mapping[str, Any]] = None,
-) -> str:
-    if bioregistry_entry is None:
-        bioregistry_entry = get(bioregistry_id)
-    if bioregistry_entry is None:
-        raise ValueError
-
-    if version != version.strip():
-        logger.warning(
-            '[%s] extra whitespace in version: %s. Contact: %s',
-            bioregistry_id, version, get_email(bioregistry_id),
-        )
-        version = version.strip()
-
-    version_prefix = bioregistry_entry.get('ols_version_prefix')
-    if version_prefix:
-        if not version.startswith(version_prefix):
-            raise ValueError(dedent(f'''\
-            [{bioregistry_id}] version "{version}" does not start with prefix "{version_prefix}".
-            Update the ["{bioregistry_id}"]["ols_version_prefix"] entry.
-            '''))
-        version = version[len(version_prefix):]
-
-    if bioregistry_entry.get('ols_version_suffix_split'):
-        version = version.split()[0]
-
-    version_suffix = bioregistry_entry.get('ols_version_suffix')
-    if version_suffix:
-        if not version.endswith(version_suffix):
-            raise ValueError(f'[{bioregistry_id}] version {version} does not end with prefix {version_suffix}')
-        version = version[:-len(version_suffix)]
-
-    return version

@@ -74,10 +74,6 @@ class Resource(BaseModel):
     synonyms: Optional[List[str]]
     references: Optional[List[str]]
     appears_in: Optional[List[str]]
-    ols_version_type: Optional[str]
-    ols_version_date_format: Optional[str]
-    ols_version_prefix: Optional[str]
-    ols_version_suffix_split: Optional[bool]
     namespaceEmbeddedInLui: Optional[bool]  # noqa:N815
     not_available_as_obo: Optional[bool]
     no_own_terms: Optional[bool]
