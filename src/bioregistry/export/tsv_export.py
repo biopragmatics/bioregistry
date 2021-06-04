@@ -62,14 +62,14 @@ REGISTRY_HEADER = [
 def get_collections_rows():
     """Get a dataframe of all collections."""
     rows = []
-    for identifier, data in read_collections().items():
+    for identifier, collection in read_collections().items():
         rows.append((
             identifier,
-            data['name'],
-            data['description'],
-            '|'.join(data['resources']),
-            '|'.join(e['name'] for e in data['authors']),
-            '|'.join(e['orcid'] for e in data['authors']),
+            collection.name,
+            collection.description,
+            '|'.join(collection.resources),
+            '|'.join(author.name for author in collection.authors),
+            '|'.join(author.orcid for author in collection.authors),
         ))
     return rows
 
@@ -80,16 +80,16 @@ def get_metaregistry_rows():
     for metaprefix, data in read_metaregistry().items():
         rows.append((
             metaprefix,
-            data['name'],
-            data['homepage'],
-            data['description'],
-            data.get('download'),
-            data['example'],
-            data['provider'],
-            data['registry'],
-            data['resolver'],
-            data.get('formatter'),
-            data.get('resolver_url'),
+            data.name,
+            data.homepage,
+            data.description,
+            data.download,
+            data.example,
+            data.provider,
+            data.registry,
+            data.resolver,
+            data.provider_url,
+            data.resolver_url,
         ))
     return rows
 

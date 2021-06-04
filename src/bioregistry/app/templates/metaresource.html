@@ -72,11 +72,15 @@
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}
                 </dd>
-                {% if entry.registry %}
-                    <dt>Example Metaidentifier <span class="badge badge-pill badge-success">Registry</span></dt>
+                <dt>Example Metaidentifier <span class="badge badge-pill badge-success">Registry</span></dt>
+                <dd>
+                    <code>{{ entry.example }}</code>
+                </dd>
+                {% if entry.provider %}
+                    <dt>Example Provider <span class="badge badge-pill badge-success">Provider</span></dt>
                     <dd>
-                        {% if example_prefix %}
-                            <a href="{{ example_prefix_url }}">{{ example_prefix }}</a>
+                        {% if example_prefix_url %}
+                            <a href="{{ example_prefix_url }}"><code>{{ example_prefix_url }}</code></a>
                         {% else %}
                             <span class="badge badge-pill badge-warning">Does not provide specific page for each resource</span>
                         {% endif %}
@@ -85,19 +89,8 @@
                 {% if entry.resolver %}
                     <dt>Example CURIE Resolution <span class="badge badge-pill badge-success">Resolver</span></dt>
                     <dd>
-                        {% if  example_curie_url %}
-                            <a href="{{ example_curie_url }}"><code>{{ example_prefix }}:{{ example_identifier }}</code></a>
-                        {% else %}
-                            <span class="badge badge-pill badge-warning">Unable to generate URL
-                                for <code>{{ example_prefix }}:{{ example_identifier }}</code></span>
-                        {% endif %}
-                    </dd>
-                {% endif %}
-                {% if entry.provider %}
-                    <dt>Example CURIE Lookup <span class="badge badge-pill badge-success">Provider</span></dt>
-                    <dd>
                         {% if example_curie_url %}
-                            <a href="{{ example_curie_url }}">{{ example_prefix }}:{{ example_identifier }}</a>
+                            <a href="{{ example_curie_url }}"><code>{{ example_curie_url }}</code></a>
                         {% else %}
                             <span class="badge badge-pill badge-warning">Unable to generate URL
                                 for <code>{{ example_prefix }}:{{ example_identifier }}</code></span>

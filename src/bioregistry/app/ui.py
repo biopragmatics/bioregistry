@@ -106,22 +106,22 @@ def metaresource(metaprefix: str):
     if entry is None:
         abort(404, f'Invalid metaprefix: {metaprefix}')
 
-    example_prefix = entry.get('example')
-    example_identifier = bioregistry.get_example(example_prefix) if example_prefix else None
+    example_identifier = bioregistry.get_example(entry.example)
     return render_template(
         'metaresource.html',
+        registry=entry,
         metaprefix=metaprefix,
         name=bioregistry.get_registry_name(metaprefix),
         description=bioregistry.get_registry_description(metaprefix),
         homepage=bioregistry.get_registry_homepage(metaprefix),
-        download=entry.get('download'),
-        formatter=entry.get('formatter'),
-        example_prefix=example_prefix,
-        example_prefix_url=bioregistry.get_registry_url(metaprefix, example_prefix) if example_prefix else None,
+        download=entry.download,
+        provider_url=entry.provider_url,
+        example_prefix=entry.example,
+        example_prefix_url=entry.get_provider(entry.example),
         example_identifier=example_identifier,
         example_curie_url=(
-            bioregistry.get_registry_resolve_url(metaprefix, example_prefix, example_identifier)
-            if example_prefix and example_identifier else
+            bioregistry.get_registry_resolve_url(metaprefix, entry.example, example_identifier)
+            if example_identifier else
             None
         ),
         entry=entry,

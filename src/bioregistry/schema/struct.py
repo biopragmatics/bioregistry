@@ -11,9 +11,32 @@ from functools import lru_cache
 from typing import Any, List, Mapping, Optional
 
 import pydantic.schema
+import rdflib
 from pydantic import BaseModel
+from rdflib import Literal
+from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS, XSD
+from rdflib.term import Node
+
+from .constants import bioregistry_collection, bioregistry_metaresource, bioregistry_resource, bioregistry_schema, orcid
 
 HERE = pathlib.Path(__file__).parent.resolve()
+
+
+def sanitize_model(base_model: BaseModel) -> Mapping[str, Any]:
+    """Sanitize a single pydantic model."""
+    return {
+        key: value
+        for key, value in base_model.dict().items()
+        if value is not None
+    }
+
+
+def sanitize_mapping(mapping: Mapping[str, BaseModel]) -> Mapping[str, Mapping[str, Any]]:
+    """Sanitize a pydantic dictionary."""
+    return {
+        key: sanitize_model(base_model)
+        for key, base_model in mapping.items()
+    }
 
 
 class Author(BaseModel):
@@ -23,6 +46,12 @@ class Author(BaseModel):
     name: str
     #: The ORCID identifier for the author
     orcid: str
+
+    def add_triples(self, graph: rdflib.Graph) -> Node:
+        """Add triples to an RDF graph for this collection."""
+        node = orcid.term(self.orcid)
+        graph.add((node, RDFS['label'], Literal(self.name)))
+        return node
 
 
 class Resource(BaseModel):
@@ -67,10 +96,6 @@ class Resource(BaseModel):
     uniprot: Optional[Mapping[str, Any]]
     biolink: Optional[Mapping[str, Any]]
 
-    def cdict(self) -> Mapping[str, Any]:
-        """Dump as a dict with keys that have null values removed."""
-        return {k: v for k, v in self.dict().items() if v is not None}
-
 
 class Registry(BaseModel):
     """Metadata about a registry."""
@@ -98,6 +123,30 @@ class Registry(BaseModel):
     #: A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry
     resolver_url: Optional[str]
 
+    def get_provider(self, metaidentifier: str) -> Optional[str]:
+        """Get the provider string."""
+        provider_url = self.provider_url
+        if provider_url is None:
+            return None
+        return provider_url.replace('$1', metaidentifier)
+
+    def add_triples(self, graph: rdflib.Graph) -> Node:
+        """Add triples to an RDF graph for this registry."""
+        node = bioregistry_metaresource.term(self.prefix)
+        graph.add((node, RDF['type'], bioregistry_schema[self.__class__.__name__]))
+        graph.add((node, RDFS['label'], Literal(self.name)))
+        graph.add((node, DC.description, Literal(self.description)))
+        graph.add((node, FOAF['homepage'], Literal(self.homepage)))
+        graph.add((node, bioregistry_schema['hasExample'], Literal(self.example)))
+        graph.add((node, bioregistry_schema['isRegistry'], Literal(self.registry, datatype=XSD.boolean)))
+        graph.add((node, bioregistry_schema['isProvider'], Literal(self.provider, datatype=XSD.boolean)))
+        graph.add((node, bioregistry_schema['isResolver'], Literal(self.resolver, datatype=XSD.boolean)))
+        if self.provider_url:
+            graph.add((node, bioregistry_schema['hasProviderFormatter'], Literal(self.provider_url)))
+        if self.resolver_url:
+            graph.add((node, bioregistry_schema['hasResolverFormatter'], Literal(self.resolver_url)))
+        return node
+
 
 class Collection(BaseModel):
     """A collection of resources."""
@@ -112,6 +161,22 @@ class Collection(BaseModel):
     resources: List[str]
     #: Authors/contributors to the collection
     authors: List[Author]
+
+    def add_triples(self, graph: rdflib.Graph) -> Node:
+        """Add triples to an RDF graph for this collection."""
+        node = bioregistry_collection.term(self.identifier)
+        graph.add((node, RDF['type'], bioregistry_schema[self.__class__.__name__]))
+        graph.add((node, RDFS['label'], Literal(self.name)))
+        graph.add((node, DC.description, Literal(self.description)))
+
+        for author in self.authors:
+            author_node = author.add_triples(graph)
+            graph.add((node, DC.creator, author_node))
+
+        for resource in self.resources:
+            graph.add((node, DCTERMS.hasPart, bioregistry_resource[resource]))
+
+        return node
 
     def as_context_jsonld(self) -> Mapping[str, Mapping[str, str]]:
         """Get the JSON-LD context from a given collection."""

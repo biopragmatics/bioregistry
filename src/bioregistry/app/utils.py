@@ -14,6 +14,7 @@ from pydantic.json import pydantic_encoder
 
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL
+from bioregistry.schema import sanitize_model
 
 
 def _get_resource_providers(prefix: str, identifier: str):
@@ -177,7 +178,7 @@ def jsonify(data):
 def yamlify(data):
     """Dump data as YAML, like :func:`flask.jsonify`."""
     if isinstance(data, BaseModel):
-        data = data.dict()
+        data = sanitize_model(data)
 
     sio = StringIO()
     yaml.safe_dump(data=data, stream=sio)

@@ -14,7 +14,7 @@ import requests
 from pydantic.json import pydantic_encoder
 
 from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH, MISMATCH_PATH
-from .schema.struct import Collection, Registry, Resource
+from .schema import Collection, Registry, Resource, sanitize_model
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +45,7 @@ def read_registry():
         # Why bother doing this? Because now, Pydantic does all sorts of nice schema
         # checks for us. Later, we'll switch over to using first-class Resource instances
         # in the rest of the code.
-        key: Resource(**value).cdict()
+        key: sanitize_model(Resource(**value))
         for key, value in data.items()
     }
 

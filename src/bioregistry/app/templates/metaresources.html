@@ -46,7 +46,7 @@
                         <a href="{{ url_for('ui.metaresource', metaprefix=row.prefix) }}">{{ row.name }}</a>
                     </td>
                     <td class="text-nowrap"><code>{{ row.prefix }}</code></td>
-                    <td>{% if row.description %}<small>{{ row.description }}</small>{% endif %}</td>
+                    <td><small>{{ row.description }}</small></td>
                 </tr>
             {% endfor %}
         </table>

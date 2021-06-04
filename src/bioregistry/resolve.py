@@ -132,10 +132,7 @@ def get_registry_url(metaprefix: str, prefix: str) -> Optional[str]:
     entry = get_registry(metaprefix)
     if entry is None:
         return None
-    provider_url = entry.provider_url
-    if provider_url is None:
-        return None
-    return provider_url.replace('$1', prefix)
+    return entry.get_provider(prefix)
 
 
 def get_name(prefix: str) -> Optional[str]:

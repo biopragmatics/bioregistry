@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """API blueprint and routes."""
+
 from functools import partial
 
 from flask import Blueprint, abort, jsonify, request
@@ -11,6 +12,11 @@ from .. import normalize_prefix
 from ..export.rdf_export import collection_to_rdf_str, metaresource_to_rdf_str, resource_to_rdf_str
 from ..prefix_maps import collection_to_context_jsonlds
 from ..resolve import get_format_url
+from ..schema import sanitize_mapping
+
+__all__ = [
+    'api_blueprint',
+]
 
 api_blueprint = Blueprint('api', __name__, url_prefix='/api')
 
@@ -83,10 +89,7 @@ def metaresources():
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    return serialize({
-        prefix: record.dict()
-        for prefix, record in bioregistry.read_metaregistry().items()
-    })
+    return serialize(sanitize_mapping(bioregistry.read_metaregistry()))
 
 
 @api_blueprint.route('/metaregistry/<metaprefix>')
@@ -138,10 +141,7 @@ def collections():
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    return serialize({
-        identifier: c.dict()
-        for identifier, c in bioregistry.read_collections().items()
-    })
+    return serialize(sanitize_mapping(bioregistry.read_collections()))
 
 
 @api_blueprint.route('/collection/<identifier>')

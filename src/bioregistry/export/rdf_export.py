@@ -9,51 +9,16 @@ from typing import Optional, Tuple, Union, cast
 import click
 import rdflib
 from rdflib import BNode, Literal
-from rdflib.namespace import ClosedNamespace, DC, DCTERMS, FOAF, Namespace, RDF, RDFS, XSD
+from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS, XSD
 from rdflib.term import Node, URIRef
 
 import bioregistry
 from bioregistry import read_collections, read_metaregistry, read_registry
 from bioregistry.constants import DOCS_DATA
-from bioregistry.schema import Collection, Registry
-
-bioregistry_schema_terms = {
-    'resource': "A type for entries in the Bioregistry's registry.",
-    'metaresource': "A type for entries in the Bioregistry's metaregistry.",
-    'collection': "A type for entries in the Bioregistry's collections",
-    'mapping': "A type, typically instantiated as a blank node, that connects a given resource to a metaresource"
-               " and a metaidentifier using the hasMetaresource and hasMetaidentifier relations.",
-    'hasExample': 'An identifier for a resource or metaresource.',
-    'isRegistry': 'Denotes whether a metaresource is capable of acting as a registry',
-    'isProvider': 'Denotes whether a metaresource is capable of acting as a provider. If so, should be accompanied'
-                  ' by a "provider_formatter" relation as well.',
-    'isResolver': 'Denotes whether a metaresource is capable of acting as a resolver. If so, should be accompanied'
-                  ' by a "resolver_formatter" relation as well.',
-    'hasProviderFormatter': "The URL format for a provider that contains $1 for the identifier (or metaidentifier)"
-                            " that should be resolved.",
-    'hasResolverFormatter': "The URL format for a resolver that contains $1 for the prefix and $2 for the identifier"
-                            " that should be resolved.",
-    'hasPattern': "The pattern for identifiers in the given resource",
-    'hasContactEmail': "The email of the contact person for the given resource",
-    'hasDownloadURL': "A download link for the given resource",
-    'providesFor': "For resources that do not create their own controlled vocabulary, this relation should be used"
-                   " to point to a different resource that it uses. For example, CTD's gene resource provides for"
-                   " the NCBI Entres Gene resource.",
-    'isDeprecated': "A property whose subject is a resource that denotes if it is still available and usable?"
-                    " Currently this is a blanket term for decomissioned, unable to locate, abandoned, etc.",
-    'hasMapping': "A property whose subject is a resource and object is a mapping",
-    'hasMetaresource': "A property whose subject is a mapping and object is a metaresource.",
-    'hasMetaidentifier': "A property whose subject is a mapping and object is an identifier string.",
-}
-
-bioregistry_collection = Namespace('https://bioregistry.io/collection/')
-bioregistry_resource = Namespace('https://bioregistry.io/registry/')
-bioregistry_metaresource = Namespace('https://bioregistry.io/metaregistry/')
-bioregistry_schema = ClosedNamespace(
-    'https://bioregistry.io/schema/#',
-    terms=sorted(bioregistry_schema_terms),
+from bioregistry.schema import (
+    Collection, Registry, bioregistry_collection, bioregistry_metaresource,
+    bioregistry_resource, bioregistry_schema, orcid,
 )
-orcid = Namespace('https://orcid.org/')
 
 
 @click.command()
@@ -158,37 +123,14 @@ def _add_resources(*, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
 def _add_collection(data: Collection, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib.Graph, Node]:
     if graph is None:
         graph = _graph()
-    node = cast(URIRef, bioregistry_collection[data.identifier])
-    graph.add((node, RDF['type'], bioregistry_schema['collection']))
-    graph.add((node, RDFS['label'], Literal(data.name)))
-    graph.add((node, DC.description, Literal(data.description)))
-
-    for author in data.authors:
-        graph.add((node, DC.creator, orcid[author.orcid]))
-        graph.add((orcid[author.orcid], RDFS['label'], Literal(author.name)))
-
-    for resource in data.resources:
-        graph.add((node, DCTERMS.hasPart, bioregistry_resource[resource]))
-
+    node = data.add_triples(graph)
     return graph, node
 
 
 def _add_metaresource(data: Registry, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib.Graph, Node]:
     if graph is None:
         graph = _graph()
-    node = cast(URIRef, bioregistry_metaresource[data.prefix])
-    graph.add((node, RDF['type'], bioregistry_schema.metaresource))
-    graph.add((node, RDFS['label'], Literal(data.name)))
-    graph.add((node, DC.description, Literal(data.description)))
-    graph.add((node, FOAF['homepage'], Literal(data.homepage)))
-    graph.add((node, bioregistry_schema['hasExample'], Literal(data.example)))
-    graph.add((node, bioregistry_schema['isRegistry'], Literal(data.registry, datatype=XSD.boolean)))
-    graph.add((node, bioregistry_schema['isProvider'], Literal(data.provider, datatype=XSD.boolean)))
-    if data.provider_url:
-        graph.add((node, bioregistry_schema['hasProviderFormatter'], Literal(data.provider_url)))
-    graph.add((node, bioregistry_schema['isResolver'], Literal(data.resolver, datatype=XSD.boolean)))
-    if data.resolver_url:
-        graph.add((node, bioregistry_schema['hasResolverFormatter'], Literal(data.resolver_url)))
+    node = data.add_triples(graph)
     return graph, node
 
 
@@ -197,7 +139,7 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
         graph = _graph()
     prefix = data['prefix']
     node = cast(URIRef, bioregistry_resource[prefix])
-    graph.add((node, RDF['type'], bioregistry_schema['resource']))
+    graph.add((node, RDF['type'], bioregistry_schema['Resource']))
     graph.add((node, RDFS['label'], Literal(bioregistry.get_name(prefix))))
 
     for key, func in [
@@ -241,8 +183,8 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
     for metaprefix, metaidentifier in (mappings or {}).items():
         mapping_node = BNode()
         graph.add((node, bioregistry_schema['hasMapping'], mapping_node))
-        graph.add((mapping_node, RDF['type'], bioregistry_schema['mapping']))
-        graph.add((mapping_node, bioregistry_schema['hasMetaresource'], bioregistry_metaresource[metaprefix]))
+        graph.add((mapping_node, RDF['type'], bioregistry_schema['Mapping']))
+        graph.add((mapping_node, bioregistry_schema['hasRegistry'], bioregistry_metaresource[metaprefix]))
         graph.add((mapping_node, bioregistry_schema['hasMetaidentifier'], Literal(metaidentifier)))
 
     return graph, node
