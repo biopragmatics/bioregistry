@@ -7,7 +7,7 @@ import click
 from .biolink import BiolinkAligner
 from .bioportal import BioPortalAligner
 from .go import GoAligner
-from .miriam import align_miriam
+from .miriam import MiriamAligner
 from .n2t import N2TAligner
 from .ncbi import NcbiAligner
 from .obofoundry import OBOFoundryAligner
@@ -26,7 +26,7 @@ __all__ = [
 def align():
     """Align all external registries."""
     secho('Aligning MIRIAM')
-    align_miriam()
+    MiriamAligner.align()
 
     secho('Aligning N2T')
     N2TAligner.align()
