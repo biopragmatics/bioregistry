@@ -14,8 +14,8 @@ from typing import Collection, Set
 import click
 
 from bioregistry import (
-    get_description, get_email, get_example, get_format, get_homepage, get_name, get_obo_download, get_owl_download,
-    get_pattern, get_version, read_registry,
+    get_description, get_email, get_example, get_format, get_homepage, get_json_download, get_name, get_obo_download,
+    get_owl_download, get_pattern, get_version, read_registry,
 )
 from bioregistry.constants import DOCS_IMG
 from bioregistry.external import GETTERS
@@ -168,6 +168,7 @@ def compare():  # noqa:C901
         ('Wikidata Database', has_wikidata_database),
         ('OBO', _get_has(get_obo_download)),
         ('OWL', _get_has(get_owl_download)),
+        ('JSON', _get_has(get_json_download)),
     ]
 
     ncols = 3

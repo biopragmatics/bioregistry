@@ -27,6 +27,7 @@ __all__ = [
     'get_email',
     'get_homepage',
     'get_obo_download',
+    'get_json_download',
     'get_owl_download',
     'parse_curie',
     'normalize_prefix',
@@ -365,12 +366,20 @@ def get_obo_download(prefix: str) -> Optional[str]:
     return entry.get('obofoundry', {}).get('download.obo')
 
 
+def get_json_download(prefix: str) -> Optional[str]:
+    """Get the download link for the latest OBOGraph JSON file."""
+    entry = get(prefix)
+    if entry is None:
+        return None
+    return entry.get('obofoundry', {}).get('download.json')
+
+
 def get_owl_download(prefix: str) -> Optional[str]:
     """Get the download link for the latest OWL file."""
     entry = get(prefix)
     if entry is None:
         return None
-    return entry.get('ols', {}).get('version.iri')
+    return entry.get('ols', {}).get('version.iri') or entry.get('obofoundry', {}).get('download.owl')
 
 
 def is_provider(prefix: str) -> bool:

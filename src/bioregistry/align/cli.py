@@ -10,7 +10,7 @@ from .go import GoAligner
 from .miriam import align_miriam
 from .n2t import N2TAligner
 from .ncbi import NcbiAligner
-from .obofoundry import align_obofoundry
+from .obofoundry import OBOFoundryAligner
 from .ols import OLSAligner
 from .prefix_commons import PrefixCommonsAligner
 from .uniprot import UniProtAligner
@@ -35,7 +35,7 @@ def align():
     NcbiAligner.align()
 
     secho('Aligning OBO Foundry')
-    align_obofoundry()
+    OBOFoundryAligner.align()
 
     secho('Aligning OLS')
     OLSAligner.align()
