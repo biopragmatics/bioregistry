@@ -4,7 +4,6 @@
 
 import json
 import logging
-import os
 from typing import Mapping
 
 from defusedxml import ElementTree
@@ -20,8 +19,10 @@ logger = logging.getLogger(__name__)
 
 #: Download URL for the UniProt registry
 URL = 'https://www.uniprot.org/database/?format=rdf'
-UNPARSED_PATH = os.path.join(EXTERNAL, 'uniprot.xml')
-PATH = os.path.join(EXTERNAL, 'uniprot.json')
+DIRECTORY = EXTERNAL / 'uniprot'
+DIRECTORY.mkdir(exist_ok=True, parents=True)
+UNPARSED_PATH = DIRECTORY / 'uniprot.xml'
+PATH = DIRECTORY / 'uniprot.json'
 
 kz = {
     'prefix': '{http://purl.uniprot.org/core/}abbreviation',
@@ -40,11 +41,10 @@ kz = {
 kzi = {v: k for k, v in kz.items()}
 
 
-def get_uniprot(force_download: bool = False) -> Mapping[str, Mapping[str, str]]:
+def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
     """Get the UniProt registry."""
-    if not os.path.exists(PATH) or force_download:
-        download(URL, UNPARSED_PATH)
-    with open(UNPARSED_PATH) as file:
+    download(url=URL, path=UNPARSED_PATH, force=force_download)
+    with UNPARSED_PATH.open() as file:
         tree = ElementTree.parse(file)
     root = tree.getroot()
     rv = {}
@@ -59,7 +59,7 @@ def get_uniprot(force_download: bool = False) -> Mapping[str, Mapping[str, str]]
         if prefix is not None:
             rv[prefix] = entry
 
-    with open(PATH, 'w') as file:
+    with PATH.open('w') as file:
         json.dump(rv, file, indent=2)
     return rv
 
