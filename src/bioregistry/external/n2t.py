@@ -8,10 +8,10 @@ import click
 import yaml
 from pystow.utils import download
 
-from bioregistry.data import HERE
+from bioregistry.data import EXTERNAL
 
 URL = 'https://n2t.net/e/n2t_full_prefixes.yaml'
-DIRECTORY = HERE / 'n2t'
+DIRECTORY = EXTERNAL / 'n2t'
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 RAW_PATH = DIRECTORY / 'raw.yml'
 PROCESSED = DIRECTORY / 'processed.json'
