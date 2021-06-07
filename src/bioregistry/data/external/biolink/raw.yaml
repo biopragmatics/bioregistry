@@ -6416,6 +6416,18 @@ classes:
       - MESH
     in_subset:
       - model_organism_database
+  
+  ## Temporal Entities
+  
+  event:
+    is_a: named thing
+    description: >-
+      Something that happens at a given place and time.
+    exact_mappings:
+      - NCIT:C25499
+      # UMLS "Event"
+      - UMLSSC:T051
+      - UMLSST:evnt
 
   ## Administrative Entities
 
@@ -6452,9 +6464,6 @@ classes:
       # Group
       - UMLSSC:T096
       - UMLSST:grup
-      # Professional or Occupational Group
-      - UMLSSC:T097
-      - UMLSST:prog
     slot_usage:
       id:
         required: true
@@ -6933,6 +6942,9 @@ classes:
       # Drug Delivery Device
       - UMLSSC:T203
       - UMLSST:drdd
+      # Biomedical or Dental Material
+      - UMLSSC:T122
+      - UMLSST:bodm
 
   ## Scientific Studies
 
@@ -7043,7 +7055,6 @@ classes:
     narrow_mappings:
       - UMLSSC:T088 # Carbohydrate
       - UMLSSC:T085 # Molecular Sequence
-      - UMLSSG:T127 # Vitamin
     in_subset:
       - translator_minimal
 
@@ -7062,19 +7073,15 @@ classes:
       - WIKIDATA:Q79529 # Chemical substance
     narrow_mappings:
       - WIKIDATA:Q43460564
-      - UMLSSG:T103 # Chemical
-      - UMLSSG:T120 # Chemical Viewed Functionally
-      - UMLSSG:T104 # Chemical Viewed Structurally
-      - UMLSSG:T197 # Inorganic Chemical
-      - UMLSSG:T109 # Organic Chemical
-      - UMLSSG:T121 # Pharmacological Substance
-      - UMLSSG:T125 # Hormone
-      - UMLSSG:T200 # Clinical Drug
-      - UMLSSG:T195 # Antibiotic
+      - UMLSSC:T103 # Chemical
+      - UMLSSC:T120 # Chemical Viewed Functionally
+      - UMLSSC:T104 # Chemical Viewed Structurally
+      - UMLSSC:T197 # Inorganic Chemical
+      - UMLSSC:T109 # Organic Chemical
+      - UMLSSC:T125 # Hormone
       - UMLSSC:T123 # Biologically Active Substance
       - UMLSSC:T129 # Immunologic Factor
       - UMLSSC:T131 # Hazardous or Poisonous Substance
-      # - UMLSSC:T122 # Biomedical or Dental Material
       # - UMLSSC:T130 # Indicator, Reagent, or Diagnostic Aid
     broad_mappings:
       - UMLSSC:T167 # Substance
@@ -7522,16 +7529,6 @@ classes:
       - UMLSSC:T098
       - UMLSST:popg
       - OBI:0000181
-    narrow_mappings:
-      # Family Group
-      - UMLSSC:T099
-      - UMLSST:famg
-      # Age Group
-      - UMLSSC:T100
-      - UMLSST:aggp
-      # Patient or Disabled Group
-      - UMLSSC:T101
-      - UMLSST:podg
     id_prefixes:
       - HANCESTRO
     in_subset:
@@ -7946,9 +7943,12 @@ classes:
       - model_organism_database
     narrow_mappings:
       - SO:0000104 # polypeptide definde in SO conflates protein and polypeptide
-      - UMLSSC:T126 # Enzyme
-      - UMLSSC:T116 # Amino Acid, Peptide, or Protein
-      - UMLSSC:T087 # UMLS Semantic Type: "Amino Acid Sequence"
+      # Amino Acid, Peptide, or Protein
+      - UMLSSC:T116
+      - UMLSST:aapp
+      # Amino Acid Sequence
+      - UMLSSC:T087
+      - UMLSST:amas
 
   protein:
     description: >-
@@ -7958,11 +7958,16 @@ classes:
     mixins:
       - gene product mixin
     exact_mappings:
-      - PR:000000001 # protein
-      - SIO:010043 # protein
-      - WIKIDATA:Q8054 # protein
+      - PR:000000001
+      - SIO:010043
+      - WIKIDATA:Q8054
     narrow_mappings:
-      - UMLSSC:T116 # Amino Acid, Peptide, or Protein
+      # Enzyme
+      - UMLSSC:T126
+      - UMLSST:enzy
+      # Receptor
+      - UMLSSC:T192
+      - UMLSST:rcpt      
 
   protein isoform:
     aliases: ['proteoform']
@@ -8366,10 +8371,6 @@ classes:
     description: >-
       A (possibly time bounded) incidence of a feature of the environment of an organism that
       influences one or more phenotypic features of that organism, potentially mediated by genes
-    broad_mappings:
-      # Event
-      - UMLSSC:T051
-      - UMLSST:evnt
     exact_mappings:
       - XCO:0000000
     in_subset:
