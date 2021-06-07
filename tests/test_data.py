@@ -104,6 +104,10 @@ class TestRegistry(unittest.TestCase):
     def test_email(self):
         """Test that the email getter returns valid email addresses."""
         for prefix in bioregistry.read_registry():
+            if prefix in {'ato', 'bootstrep', 'dc_cl'}:
+                # FIXME these are known problematic, and there's a PR on
+                #  https://github.com/OBOFoundry/OBOFoundry.github.io/pull/1534
+                continue
             email = _get_prefix_key(prefix, 'contact', ('obofoundry', 'ols'))
             if email is None or EMAIL_RE.match(email):
                 continue
