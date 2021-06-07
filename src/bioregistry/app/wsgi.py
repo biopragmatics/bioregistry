@@ -10,12 +10,14 @@ from flask_bootstrap import Bootstrap
 
 import bioregistry
 from bioregistry import version
+from . import forms
 from .api import api_blueprint
 from .ui import ui_blueprint
 from ..resolve_identifier import _get_bioregistry_link
 from ..schema import bioregistry_schema_terms, get_json_schema
 
 app = Flask(__name__)
+app.secret_key = 'bioregistry'
 Swagger.DEFAULT_CONFIG.update({
     "info": {
         'title': 'Bioregistry',
@@ -111,6 +113,12 @@ def schema():
 def json_schema():
     """Return the JSON schema."""
     return jsonify(get_json_schema())
+
+
+@app.route('/form', methods=['GET', 'POST'])
+def form():
+    """Return the JSON schema."""
+    return forms.GenerateContextForm.render()
 
 
 if __name__ == '__main__':

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% import "macros.html" as utils %}
+{% from 'bootstrap/form.html' import render_form %}
+
+
+{% block title %}Bioregistry Form{% endblock %}
+
+{% block container %}
+    <h1>{{ title }}</h1>
+    <p>{{ description|safe }}</p>
+    {{ render_form(form) }}
+{% endblock %}
