@@ -177,20 +177,12 @@ def get_synonyms(prefix: str) -> Optional[Set[str]]:
 
 
 def _get_prefix_key(prefix: str, key: str, metaprefixes: Sequence[str]):
+    # This function doesn't have a type annotation since there are different
+    # kinds of values that might come out (str or bool)
     entry = get(prefix)
     if entry is None:
         return None
-    rv = entry.get(key)
-    if rv is not None:
-        return rv
-    for metaprefix in metaprefixes:
-        external = get_external(prefix, metaprefix)
-        if external is None:
-            raise TypeError
-        rv = external.get(key)
-        if rv is not None:
-            return rv
-    return None
+    return entry.get_prefix_key(key, metaprefixes)
 
 
 def get_pattern(prefix: str) -> Optional[str]:
@@ -305,8 +297,7 @@ def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:
     entry = read_registry()[prefix]  # should already be canonicalized
     if entry is None:
         raise KeyError
-    # TODO subject to change based on the use of the Pydantic classes
-    return entry.get(metaprefix) or dict()
+    return entry.get_external(metaprefix)
 
 
 def get_format_url(prefix: str) -> Optional[str]:

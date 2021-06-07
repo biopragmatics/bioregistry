@@ -8,7 +8,7 @@
 import json
 import pathlib
 from functools import lru_cache
-from typing import Any, Dict, List, Mapping, Optional
+from typing import Any, Dict, List, Mapping, Optional, Sequence
 
 import pydantic.schema
 import rdflib
@@ -92,9 +92,23 @@ class Resource(BaseModel):
     uniprot: Optional[Mapping[str, Any]]
     biolink: Optional[Mapping[str, Any]]
 
-    def get(self, key, default=None):
-        """Dispatch to getting from the dict."""
-        return self.dict().get(key, default)
+    def get_external(self, metaprefix) -> Mapping[str, Any]:
+        """Get an external registry."""
+        return self.dict().get(metaprefix) or dict()
+
+    def get_prefix_key(self, key: str, metaprefixes: Sequence[str]):
+        """Get a key enriched by the given external resources' data."""
+        rv = self.dict().get(key)
+        if rv is not None:
+            return rv
+        for metaprefix in metaprefixes:
+            external = self.get_external(metaprefix)
+            if external is None:
+                raise TypeError
+            rv = external.get(key)
+            if rv is not None:
+                return rv
+        return None
 
     def __setitem__(self, key, value):  # noqa: D105
         setattr(self, key, value)
