@@ -4,7 +4,7 @@
 
 import os
 from io import BytesIO
-from typing import Optional, Tuple, Union, cast
+from typing import Callable, List, Optional, Tuple, Union, cast
 
 import click
 import rdflib
@@ -134,6 +134,14 @@ def _add_metaresource(data: Registry, *, graph: Optional[rdflib.Graph] = None) -
     return graph, node
 
 
+RESOURCE_FUNCTIONS: List[Tuple[str, Callable[[str], Optional[str]]]] = [
+    ('hasPattern', bioregistry.get_pattern),
+    ('hasProviderFormatter', bioregistry.get_format),
+    ('hasExample', bioregistry.get_example),
+    ('hasContactEmail', bioregistry.get_email),
+]
+
+
 def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib.Graph, Node]:
     if graph is None:
         graph = _graph()
@@ -142,12 +150,7 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
     graph.add((node, RDF['type'], bioregistry_schema['Resource']))
     graph.add((node, RDFS['label'], Literal(bioregistry.get_name(prefix))))
 
-    for key, func in [
-        ('hasPattern', bioregistry.get_pattern),
-        ('hasProviderFormatter', bioregistry.get_format),
-        ('hasExample', bioregistry.get_example),
-        ('hasContactEmail', bioregistry.get_email),
-    ]:
+    for key, func in RESOURCE_FUNCTIONS:
         value = func(prefix)
         if value is not None:
             graph.add((node, bioregistry_schema[key], Literal(value)))
