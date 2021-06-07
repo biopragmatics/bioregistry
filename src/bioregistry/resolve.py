@@ -344,7 +344,18 @@ def _get_bioregistry_format(prefix) -> Optional[str]:
     entry = get(prefix)
     if entry is None:
         return None
-    return entry.url
+    if entry.url:
+        return entry.url
+    rv = get_external(prefix, 'miriam').get('provider_url')
+    if rv is not None:
+        return rv
+    rv = get_external(prefix, 'prefixcommons').get('formatter')
+    if rv is not None:
+        return rv
+    rv = get_external(prefix, 'wikidata').get('format')
+    if rv is not None:
+        return rv
+    return None
 
 
 def get_miriam_url_prefix(prefix: str) -> Optional[str]:
