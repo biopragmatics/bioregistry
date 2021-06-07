@@ -50,11 +50,26 @@ def _process(record):
         'description': record['description'],
         'pattern': record['pattern'],
     }
-    for resource in record.get('resources', []):
-        if not resource['official'] or resource['deprecated']:
-            continue
-        rv['homepage'] = resource['resourceHomeUrl']
-        rv['provider_url'] = resource['urlPattern'].replace('{$id}', '$1')
+    resources = record.get('resources', [])
+    has_official = any(
+        resource['official']
+        for resource in resources
+    )
+    if has_official:
+        for resource in resources:
+            if not resource['official']:
+                continue
+            rv['homepage'] = resource['resourceHomeUrl']
+            rv['provider_url'] = resource['urlPattern'].replace('{$id}', '$1')
+            break
+    else:
+        for resource in resources:
+            homepage = resource.get('resourceHomeUrl')
+            if homepage:
+                rv['homepage'] = homepage
+            url = resource.get('urlPattern')
+            if url:
+                rv['provider_url'] = url.replace('{$id}', '$1')
     return rv
 
 
