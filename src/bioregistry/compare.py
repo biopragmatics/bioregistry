@@ -19,8 +19,7 @@ from bioregistry import (
 )
 from bioregistry.constants import DOCS_IMG
 from bioregistry.external import GETTERS
-
-bioregistry = read_registry()
+from bioregistry.resolve import get_external
 
 LICENSES = {
     'None': None,
@@ -149,12 +148,12 @@ def compare():  # noqa:C901
     # How many entries have version information? #
     ##############################################
     def _get_has(f):
-        return {key for key in bioregistry if f(key)}
+        return {key for key in read_registry() if f(key)}
 
     has_wikidata_database = {
         key
-        for key, entry in bioregistry.items()
-        if 'database' in entry.get('wikidata', {})
+        for key in read_registry()
+        if 'database' in get_external(key, 'wikidata')
     }
     measurements = [
         ('Name', _get_has(get_name)),
@@ -180,7 +179,7 @@ def compare():  # noqa:C901
             continue
         label, prefixes = measurement
         ax.pie(
-            (len(prefixes), len(bioregistry) - len(prefixes)),
+            (len(prefixes), len(read_registry()) - len(prefixes)),
             labels=('Yes', 'No'),
             autopct='%1.f%%',
             startangle=30,
@@ -223,8 +222,8 @@ def compare():  # noqa:C901
         # Remap bioregistry prefixes to match the external
         #  vocabulary, when possible
         bioregistry_remapped = {
-            br_entry.get(key, {}).get('prefix', br_key)
-            for br_key, br_entry in bioregistry.items()
+            get_external(br_key, key).get('prefix', br_key)
+            for br_key, br_entry in read_registry().items()
         }
         venn2(
             subsets=(bioregistry_remapped, prefixes),
@@ -290,7 +289,7 @@ def compare():  # noqa:C901
             key in entry
             for key, *_ in keys
         )
-        for entry in bioregistry.values()
+        for entry in read_registry().values()
     ]
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
     sns.barplot(data=sorted(Counter(xref_counts).items()), ci=None, color='blue', alpha=0.4, ax=ax)
@@ -315,12 +314,12 @@ def _get_license_and_conflicts():
     licenses = []
     conflicts = set()
     obo_has_license, ols_has_license = set(), set()
-    for key, entry in bioregistry.items():
-        obo_license = _remap_license(entry.get('obofoundry', {}).get('license'))
+    for key in read_registry():
+        obo_license = _remap_license(get_external(key, 'obofoundry').get('license'))
         if obo_license:
             obo_has_license.add(key)
 
-        ols_license = _remap_license(entry.get('ols', {}).get('license'))
+        ols_license = _remap_license(get_external(key, 'ols').get('license'))
         if ols_license:
             ols_has_license.add(key)
 
@@ -344,7 +343,7 @@ def _get_license_and_conflicts():
 def _remap(*, key: str, prefixes: Collection[str]) -> Set[str]:
     br_external_to = {
         br_entry[key]['prefix']: br_id
-        for br_id, br_entry in bioregistry.items()
+        for br_id, br_entry in read_registry().items()
         if key in br_entry and 'prefix' in br_entry[key]
     }
     return {

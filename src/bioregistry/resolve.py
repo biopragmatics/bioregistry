@@ -175,15 +175,15 @@ def get_synonyms(prefix: str) -> Optional[Set[str]]:
     return entry.get('synonyms')
 
 
-def _get_prefix_key(prefix: str, key: str, sources: Sequence[str]):
+def _get_prefix_key(prefix: str, key: str, metaprefixes: Sequence[str]):
     entry = get(prefix)
     if entry is None:
         return None
     rv = entry.get(key)
     if rv is not None:
         return rv
-    for source in sources:
-        rv = entry.get(source, {}).get(key)
+    for metaprefix in metaprefixes:
+        rv = get_external(prefix, metaprefix).get(key)
         if rv is not None:
             return rv
     return None
@@ -289,11 +289,20 @@ def get_format(prefix: str) -> Optional[str]:
             # align with the banana solution
             miriam_id = miriam_id.upper()
         return f'https://identifiers.org/{miriam_id}:$1'
-    ols_id = entry.get('ols', {}).get('prefix')
+    ols_id = get_external(prefix, 'ols').get('prefix')
     if ols_id is not None:
         purl = f'http://purl.obolibrary.org/obo/{ols_id.upper()}_$1'
         return f'https://www.ebi.ac.uk/ols/ontologies/{ols_id}/terms?iri={purl}'
     return None
+
+
+def get_external(prefix, metaprefix) -> Mapping[str, Any]:
+    """Get the external data for the entry."""
+    entry = get(prefix)
+    if entry is None:
+        raise KeyError
+    # TODO subject to change based on the use of the Pydantic classes
+    return entry.get(metaprefix, {})
 
 
 def get_format_url(prefix: str) -> Optional[str]:
@@ -319,10 +328,10 @@ def get_example(prefix: str) -> Optional[str]:
     example = entry.get('example')
     if example is not None:
         return example
-    miriam_example = entry.get('miriam', {}).get('sampleId')
+    miriam_example = get_external(prefix, 'miriam').get('sampleId')
     if miriam_example is not None:
         return miriam_example
-    example = entry.get('ncbi', {}).get('example')
+    example = get_external(prefix, 'ncbi').get('example')
     if example is not None:
         return example
     return None
@@ -368,7 +377,7 @@ def get_obo_download(prefix: str) -> Optional[str]:
     entry = get(prefix)
     if entry is None:
         return None
-    return entry.get('obofoundry', {}).get('download.obo')
+    return get_external(prefix, 'obofoundry').get('download.obo')
 
 
 def get_json_download(prefix: str) -> Optional[str]:
@@ -376,7 +385,7 @@ def get_json_download(prefix: str) -> Optional[str]:
     entry = get(prefix)
     if entry is None:
         return None
-    return entry.get('obofoundry', {}).get('download.json')
+    return get_external(prefix, 'obofoundry').get('download.json')
 
 
 def get_owl_download(prefix: str) -> Optional[str]:
@@ -384,7 +393,7 @@ def get_owl_download(prefix: str) -> Optional[str]:
     entry = get(prefix)
     if entry is None:
         return None
-    return entry.get('ols', {}).get('version.iri') or entry.get('obofoundry', {}).get('download.owl')
+    return get_external(prefix, 'ols').get('version.iri') or get_external(prefix, 'obofoundry').get('download.owl')
 
 
 def is_provider(prefix: str) -> bool:
@@ -533,8 +542,8 @@ def get_version(prefix: str) -> Optional[str]:
 def get_versions() -> Mapping[str, str]:
     """Get a map of prefixes to versions."""
     rv = {}
-    for bioregistry_id, bioregistry_entry in read_registry().items():
-        version = bioregistry_entry.get('ols', {}).get('version')
+    for prefix in read_registry():
+        version = get_external(prefix, 'ols').get('version')
         if version is not None:
-            rv[bioregistry_id] = version
+            rv[prefix] = version
     return rv
