@@ -96,8 +96,9 @@ class Resource(BaseModel):
         """Dispatch to getting from the dict."""
         return self.dict().get(key, default)
 
-    def __setitem__(self, key, value):
+    def __setitem__(self, key, value):  # noqa: D105
         setattr(self, key, value)
+
 
 class Registry(BaseModel):
     """Metadata about a registry."""
