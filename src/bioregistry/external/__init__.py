@@ -12,13 +12,13 @@ from .obofoundry import get_obofoundry  # noqa:F401
 from .ols import get_ols  # noqa:F401
 from .prefix_commons import get_prefix_commons  # noqa:F401
 from .uniprot import get_uniprot  # noqa:F401
-from .wikidata import get_wikidata_registry  # noqa:F401
+from .wikidata import get_wikidata  # noqa:F401
 
 GETTERS = [
     ('obofoundry', 'OBO', get_obofoundry),
     ('ols', 'OLS', get_ols),
     ('miriam', 'MIRIAM', get_miriam),
-    ('wikidata', 'Wikidata', get_wikidata_registry),
+    ('wikidata', 'Wikidata', get_wikidata),
     ('n2t', 'N2T', get_n2t),
     ('go', 'GO', get_go),
     ('bioportal', 'BioPortal', get_bioportal),

@@ -8,7 +8,6 @@ import click
 import yaml
 from pystow.utils import download
 
-from bioregistry.constants import BIOREGISTRY_MODULE
 from bioregistry.data import EXTERNAL
 
 __all__ = [
@@ -29,7 +28,7 @@ def get_obofoundry(force_download: bool = False):
             return json.load(file)
 
     download(url=OBOFOUNDRY_URL, path=RAW_PATH, force=force_download)
-    with BIOREGISTRY_MODULE.ensure(url=OBOFOUNDRY_URL, name='obofoundry.yml').open() as file:
+    with RAW_PATH.open() as file:
         data = yaml.full_load(file)
 
     rv = {

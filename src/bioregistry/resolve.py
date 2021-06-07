@@ -226,6 +226,11 @@ def get_n2t_prefix(prefix: str) -> Optional[str]:
     return _get_mapped_prefix(prefix, 'n2t')
 
 
+def get_wikidata_prefix(prefix: str) -> Optional[str]:
+    """Get the wikidata prefix if available."""
+    return _get_mapped_prefix(prefix, 'wikidata')
+
+
 def get_bioportal_prefix(prefix: str) -> Optional[str]:
     """Get the Bioportal prefix if available."""
     return _get_mapped_prefix(prefix, 'bioportal')

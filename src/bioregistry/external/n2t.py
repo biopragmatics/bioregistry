@@ -14,13 +14,13 @@ URL = 'https://n2t.net/e/n2t_full_prefixes.yaml'
 DIRECTORY = EXTERNAL / 'n2t'
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 RAW_PATH = DIRECTORY / 'raw.yml'
-PROCESSED = DIRECTORY / 'processed.json'
+PROCESSED_PATH = DIRECTORY / 'processed.json'
 
 
 def get_n2t(force_download: bool = False):
     """Get the N2T registry."""
-    if PROCESSED.exists() and not force_download:
-        with PROCESSED.open() as file:
+    if PROCESSED_PATH.exists() and not force_download:
+        with PROCESSED_PATH.open() as file:
             return json.load(file)
 
     download(url=URL, path=RAW_PATH, force=force_download)
@@ -34,7 +34,7 @@ def get_n2t(force_download: bool = False):
         if record['type'] == 'scheme' and '/' not in key
     }
 
-    with PROCESSED.open('w') as file:
+    with PROCESSED_PATH.open('w') as file:
         json.dump(rv, file, sort_keys=True, indent=2)
     return rv
 

@@ -35,6 +35,8 @@ class Aligner(ABC):
     #: very high confidence (e.g., OBO Foundry but not BioPortal)
     include_new: ClassVar[bool] = False
 
+    subkey: ClassVar[str] = 'prefix'
+
     def __init__(self):
         """Instantiate the aligner."""
         if self.key not in read_metaregistry():
@@ -48,14 +50,17 @@ class Aligner(ABC):
         self.skip_external = self.get_skip()
 
         # Get all of the pre-curated mappings from the Bioregistry
-        self.external_id_to_bioregistry_id = {
-            bioregistry_entry[self.key]['prefix']: bioregistry_id
-            for bioregistry_id, bioregistry_entry in self.internal_registry.items()
-            if self.key in bioregistry_entry
-        }
+        self.external_id_to_bioregistry_id = self._prepopulate(self.internal_registry)
 
         # Run lexical alignment
         self._align()
+
+    def _prepopulate(self, registry):
+        return {
+            bioregistry_entry[self.key][self.subkey]: bioregistry_id
+            for bioregistry_id, bioregistry_entry in registry.items()
+            if self.key in bioregistry_entry and self.subkey in bioregistry_entry[self.key]
+        }
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the mapping prefixes that should be skipped to their reasons (strings)."""
@@ -90,7 +95,7 @@ class Aligner(ABC):
         self.internal_registry[bioregistry_id].setdefault('mappings', {})[self.key] = external_id
 
         _entry = self.prepare_external(external_id, external_entry)
-        _entry['prefix'] = external_id
+        _entry[self.subkey] = external_id
         self.internal_registry[bioregistry_id][self.key] = _entry
         self.external_id_to_bioregistry_id[external_id] = bioregistry_id
 
@@ -143,7 +148,7 @@ class Aligner(ABC):
         """Get the curation table as a string, built by :mod:`tabulate`."""
         kwargs.setdefault('tablefmt', 'rst')
         if self.curation_header:
-            headers = ('prefix', *self.curation_header)
+            headers = (self.subkey, *self.curation_header)
         else:
             headers = ()
 
