@@ -5,9 +5,9 @@
 import logging
 import re
 from functools import lru_cache
-from typing import Any, Mapping, Optional, Sequence, Set, Tuple, Union
+from typing import Any, Dict, Mapping, Optional, Sequence, Set, Tuple, Union
 
-from .schema import Collection, Registry
+from .schema import Collection, Registry, Resource
 from .utils import read_collections, read_metaregistry, read_registry
 
 __all__ = [
@@ -48,7 +48,7 @@ logger = logging.getLogger(__name__)
 EMAIL_RE = re.compile(r'^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,5}$')
 
 
-def get(prefix: str) -> Optional[Mapping[str, Any]]:
+def get(prefix: str) -> Optional[Resource]:
     """Get the Bioregistry entry for the given prefix.
 
     :param prefix: The prefix to look up, which is normalized with :func:`normalize_prefix`
@@ -149,19 +149,20 @@ def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
     entry = get(prefix)
     if entry is None:
         return None
-    rv = {}
-    rv.update(entry.get('mappings', {}))  # This will be the replacement later
-    for key in read_metaregistry():
-        if key not in entry:
+    rv: Dict[str, str] = {}
+    rv.update(entry.mappings or {})  # This will be the replacement later
+    for metaprefix in read_metaregistry():
+        external = get_external(prefix, metaprefix)
+        if not external:
             continue
-        if key == 'wikidata':
-            value = entry[key].get('prefix')
+        if metaprefix == 'wikidata':
+            value = external.get('prefix')
             if value is not None:
                 rv['wikidata'] = value
-        elif key == 'obofoundry':
-            rv[key] = entry[key].get('preferredPrefix', entry[key]['prefix'].upper())
+        elif metaprefix == 'obofoundry':
+            rv[metaprefix] = external.get('preferredPrefix', external['prefix'].upper())
         else:
-            rv[key] = entry[key]['prefix']
+            rv[metaprefix] = external['prefix']
 
     return rv
 
@@ -172,21 +173,16 @@ def get_synonyms(prefix: str) -> Optional[Set[str]]:
     if entry is None:
         return None
     # TODO aggregate even more from xrefs
-    return entry.get('synonyms')
+    return set(entry.synonyms or {})
 
 
 def _get_prefix_key(prefix: str, key: str, metaprefixes: Sequence[str]):
+    # This function doesn't have a type annotation since there are different
+    # kinds of values that might come out (str or bool)
     entry = get(prefix)
     if entry is None:
         return None
-    rv = entry.get(key)
-    if rv is not None:
-        return rv
-    for metaprefix in metaprefixes:
-        rv = get_external(prefix, metaprefix).get(key)
-        if rv is not None:
-            return rv
-    return None
+    return entry.get_prefix_key(key, metaprefixes)
 
 
 def get_pattern(prefix: str) -> Optional[str]:
@@ -271,7 +267,7 @@ def get_banana(prefix: str) -> Optional[str]:
     entry = get(prefix)
     if entry is None:
         return None
-    return entry.get('banana')
+    return entry.banana
 
 
 def get_format(prefix: str) -> Optional[str]:
@@ -279,7 +275,7 @@ def get_format(prefix: str) -> Optional[str]:
     entry = get(prefix)
     if entry is None:
         return None
-    url = entry.get('url')
+    url = entry.url
     if url is not None:
         return url
     miriam_id = get_identifiers_org_prefix(prefix)
@@ -296,13 +292,12 @@ def get_format(prefix: str) -> Optional[str]:
     return None
 
 
-def get_external(prefix, metaprefix) -> Mapping[str, Any]:
+def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:
     """Get the external data for the entry."""
-    entry = get(prefix)
+    entry = read_registry()[prefix]  # should already be canonicalized
     if entry is None:
         raise KeyError
-    # TODO subject to change based on the use of the Pydantic classes
-    return entry.get(metaprefix, {})
+    return entry.get_external(metaprefix)
 
 
 def get_format_url(prefix: str) -> Optional[str]:
@@ -325,7 +320,7 @@ def get_example(prefix: str) -> Optional[str]:
     entry = get(prefix)
     if entry is None:
         return None
-    example = entry.get('example')
+    example = entry.example
     if example is not None:
         return example
     miriam_example = get_external(prefix, 'miriam').get('sampleId')
@@ -342,7 +337,7 @@ def has_terms(prefix: str) -> bool:
     entry = get(prefix)
     if entry is None:
         return True
-    return not entry.get('no_own_terms', False)
+    return entry.no_own_terms or False
 
 
 def is_deprecated(prefix: str) -> bool:
@@ -408,7 +403,7 @@ def is_provider(prefix: str) -> bool:
     entry = get(prefix)
     if entry is None:
         return False
-    return entry.get('type') == 'provider'
+    return entry.type == 'provider'
 
 
 def get_provides_for(prefix: str) -> Optional[str]:
@@ -423,7 +418,7 @@ def get_provides_for(prefix: str) -> Optional[str]:
     entry = get(prefix)
     if entry is None:
         return None
-    return entry.get('provides')
+    return entry.provides
 
 
 def parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
@@ -518,7 +513,7 @@ def _synonym_to_canonical() -> NormDict:
 
     for bioregistry_id, entry in read_registry().items():
         norm_synonym_to_key[bioregistry_id] = bioregistry_id
-        for synonym in entry.get('synonyms', []):
+        for synonym in entry.synonyms or []:
             norm_synonym_to_key[synonym] = bioregistry_id
 
         for external in ('miriam', 'ols', 'wikidata', 'obofoundry', 'go'):

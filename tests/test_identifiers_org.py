@@ -35,7 +35,7 @@ class TestIdentifiersOrg(unittest.TestCase):
     def test_banana(self):
         """Test that entries curated with a new banana are resolved properly."""
         for prefix, entry in bioregistry.read_registry().items():
-            banana = entry.get('banana')
+            banana = entry.banana
             if banana is None:
                 continue
             if prefix in IDOT_BROKEN:
