@@ -27,6 +27,11 @@ def generate_context_json_ld():
             "@context": get_obofoundry_prefix_map(),
         })
 
+    with contexts_directory.joinpath('obo_context_synonyms.jsonld').open('w') as file:
+        json.dump(fp=file, indent=4, sort_keys=True, obj={
+            "@context": get_obofoundry_prefix_map(include_synonyms=True),
+        })
+
     for key, collection in bioregistry.read_collections().items():
         name = collection.context
         if name is None:
@@ -58,25 +63,33 @@ OBO_REMAPPING = {
 }
 
 
-def get_obofoundry_prefix_map() -> Mapping[str, str]:
-    """Get the OBO Foundry prefix map."""
+def get_obofoundry_prefix_map(include_synonyms: bool = False) -> Mapping[str, str]:
+    """Get the OBO Foundry prefix map.
+
+    :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
+        the same URL prefix?
+    :return: A mapping from prefixes to prefix URLs.
+    """
     remapping = bioregistry.get_registry_map('obofoundry')
     remapping.update(OBO_REMAPPING)
-    return get_general_prefix_map(remapping=remapping, priority=OBO_PRIORITY)
+    return get_general_prefix_map(remapping=remapping, priority=OBO_PRIORITY, include_synonyms=include_synonyms)
 
 
 def get_general_prefix_map(
     *,
     remapping: Optional[Mapping[str, str]] = None,
     priority: Optional[Sequence[str]] = None,
+    include_synonyms: bool = False,
 ) -> Mapping[str, str]:
     """Get the full prefix map.
 
     :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
     :param priority: A priority list for how to generate prefix URLs.
+    :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
+        the same URL prefix?
     :return: A mapping from prefixes to prefix URLs.
     """
-    urls = bioregistry.get_format_urls(priority=priority)
+    urls = bioregistry.get_format_urls(priority=priority, include_synonyms=include_synonyms)
     if remapping is None:
         return urls
     return {

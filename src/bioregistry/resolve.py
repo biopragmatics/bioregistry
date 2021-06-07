@@ -497,13 +497,26 @@ def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:
     return entry.get_external(metaprefix)
 
 
-def get_format_urls(*, priority: Optional[Sequence[str]] = None) -> Mapping[str, str]:
-    """Get a mapping from Bioregistry prefixes to their prefix URLs via :func:`get_format_url`."""
+def get_format_urls(
+    *, priority: Optional[Sequence[str]] = None,
+    include_synonyms: bool = False,
+) -> Mapping[str, str]:
+    """Get a mapping from Bioregistry prefixes to their prefix URLs via :func:`get_format_url`.
+
+    :param priority: A priority list for how to generate prefix URLs.
+    :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
+        the same URL prefix?
+    :return: A mapping from prefixes to prefix URLs.
+    """
     rv = {}
     for prefix in read_registry():
-        fmt = get_format_url(prefix, priority=priority)
-        if fmt is not None:
-            rv[prefix] = fmt
+        prefix_url = get_format_url(prefix, priority=priority)
+        if prefix_url is None:
+            continue
+        rv[prefix] = prefix_url
+        if include_synonyms:
+            for synonym in get_synonyms(prefix) or []:
+                rv[synonym] = prefix_url
     return rv
 
 
@@ -760,11 +773,15 @@ def _synonym_to_canonical() -> NormDict:
         for synonym in entry.synonyms or []:
             norm_synonym_to_key[synonym] = bioregistry_id
 
-        for external in ('miriam', 'ols', 'wikidata', 'obofoundry', 'go'):
-            if external in entry and 'prefix' in entry[external]:
-                s = entry[external]['prefix']
-                if s not in norm_synonym_to_key:
-                    logger.debug('[%s] missing potential synonym: %s', bioregistry_id, s)
+        for metaprefix in ('miriam', 'ols', 'obofoundry', 'go'):
+            external = entry.get_external(metaprefix)
+            if external is None:
+                continue
+            external_prefix = external.get('prefix')
+            if external_prefix is None:
+                continue
+            if external_prefix not in norm_synonym_to_key:
+                logger.debug(f'[{bioregistry_id}] missing potential synonym: {external_prefix}')
 
     return norm_synonym_to_key
 
