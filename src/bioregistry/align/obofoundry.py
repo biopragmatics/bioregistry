@@ -17,7 +17,6 @@ class OBOFoundryAligner(Aligner):
 
     key = 'obofoundry'
     getter = get_obofoundry
-    getter_kwargs = {'force_download': True}
     curation_header = ('name', 'description')
     include_new = True
 

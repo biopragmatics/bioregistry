@@ -98,7 +98,7 @@ def get_registry_rows():
     """Get a dataframe of all resources."""
     rows = []
     for prefix, data in read_registry().items():
-        mappings = resolve.get_mappings(prefix)
+        mappings = resolve.get_mappings(prefix) or {}
         rows.append((
             prefix,
             resolve.get_name(prefix),

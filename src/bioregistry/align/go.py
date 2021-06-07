@@ -21,7 +21,6 @@ class GoAligner(Aligner):
 
     key = 'go'
     getter = get_go
-    getter_kwargs = {'mappify': True}
     curation_header = 'name', 'description'
 
     def get_skip(self) -> Mapping[str, str]:

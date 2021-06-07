@@ -17,7 +17,6 @@ class UniProtAligner(Aligner):
 
     key = 'uniprot'
     getter = get_uniprot
-    getter_kwargs = {'force_download': True}
     curation_header = ('id', 'name', 'formatter', 'category')
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:

@@ -17,7 +17,6 @@ class OLSAligner(Aligner):
 
     key = 'ols'
     getter = get_ols
-    getter_kwargs = {'force_download': True}
     curation_header = ('name',)
     include_new = True
 

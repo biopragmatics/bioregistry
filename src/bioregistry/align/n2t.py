@@ -13,7 +13,6 @@ class N2TAligner(Aligner):
 
     key = 'n2t'
     getter = get_n2t
-    getter_kwargs = {'force_download': True}
     curation_header = ('name', 'homepage', 'description')
 
     def get_skip(self) -> Mapping[str, str]:  # noqa:D102
