@@ -249,7 +249,7 @@ def get_obofoundry_prefix(prefix: str) -> Optional[str]:
 
 
 def get_registry_map(metaprefix: str) -> Dict[str, str]:
-    """Get a mapping from the Bioregistry to prefixes in another registry."""
+    """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
     rv = {}
     for prefix in read_registry():
         mapped_prefix = _get_mapped_prefix(prefix, metaprefix)

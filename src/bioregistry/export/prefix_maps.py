@@ -5,7 +5,7 @@
 import json
 import logging
 from pathlib import Path
-from typing import Mapping
+from typing import Mapping, Optional, Sequence
 
 import click
 
@@ -59,15 +59,30 @@ OBO_REMAPPING = {
 
 
 def get_obofoundry_prefix_map() -> Mapping[str, str]:
-    """Get the OBO foundry prefix map."""
+    """Get the OBO Foundry prefix map."""
     remapping = bioregistry.get_registry_map('obofoundry')
     remapping.update(OBO_REMAPPING)
+    return get_general_prefix_map(remapping=remapping, priority=OBO_PRIORITY)
 
-    rv = {}
-    for prefix, prefix_url in bioregistry.get_format_urls(priority=OBO_PRIORITY).items():
-        mapped_prefix = remapping.get(prefix, prefix)
-        rv[mapped_prefix] = prefix_url
-    return rv
+
+def get_general_prefix_map(
+    *,
+    remapping: Optional[Mapping[str, str]] = None,
+    priority: Optional[Sequence[str]] = None,
+) -> Mapping[str, str]:
+    """Get the full prefix map.
+
+    :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
+    :param priority: A priority list for how to generate prefix URLs.
+    :return: A mapping from prefixes to prefix URLs.
+    """
+    urls = bioregistry.get_format_urls(priority=priority)
+    if remapping is None:
+        return urls
+    return {
+        remapping.get(prefix, prefix): prefix_url
+        for prefix, prefix_url in urls.items()
+    }
 
 
 if __name__ == '__main__':
