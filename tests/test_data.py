@@ -68,7 +68,7 @@ class TestRegistry(unittest.TestCase):
         for prefix, entry in self.registry.items():
             with self.subTest(prefix=prefix):
                 self.assertFalse(
-                    entry.get('name') is None
+                    entry.name is None
                     and 'name' not in get_external(prefix, 'miriam')
                     and 'name' not in get_external(prefix, 'ols')
                     and 'name' not in get_external(prefix, 'obofoundry'),
@@ -81,7 +81,7 @@ class TestRegistry(unittest.TestCase):
             if bioregistry.is_deprecated(prefix):
                 continue
             entry = bioregistry.get(prefix)
-            if entry.get('name'):
+            if entry.name:
                 continue
             name = bioregistry.get_name(prefix)
             if prefix == name.lower() and name.upper() == name:
@@ -139,7 +139,7 @@ class TestRegistry(unittest.TestCase):
     def test_format_urls(self):
         """Test that entries with a format URL are formatted right (yo dawg)."""
         for prefix, entry in self.registry.items():
-            url = entry.get('url')
+            url = entry.url
             if not url:
                 continue
             with self.subTest(prefix=prefix):
@@ -148,7 +148,7 @@ class TestRegistry(unittest.TestCase):
     def test_patterns(self):
         """Test that all prefixes are norm-unique."""
         for prefix, entry in self.registry.items():
-            pattern = entry.get('pattern')
+            pattern = entry.pattern
             if pattern is None:
                 continue
             with self.subTest(prefix=prefix):
@@ -156,10 +156,10 @@ class TestRegistry(unittest.TestCase):
                 self.assertTrue(pattern.endswith('$'), msg=f'{prefix} pattern {pattern} should end with $')
 
                 # Check that it's the same as external definitions
-                for key in ('miriam', 'wikidata'):
-                    external_pattern = entry.get('key', {}).get('pattern')
-                    if external_pattern:
-                        self.assertEqual(pattern, external_pattern, msg=f'{prefix}: {key} pattern not same')
+                # for key in ('miriam', 'wikidata'):
+                #     external_pattern = get_external(prefix, key).get('pattern')
+                #     if external_pattern:
+                #         self.assertEqual(pattern, external_pattern, msg=f'{prefix}: {key} pattern not same')
 
     def test_examples(self):
         """Test that all entries have examples."""

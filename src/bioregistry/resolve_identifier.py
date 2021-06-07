@@ -55,7 +55,7 @@ def get_default_url(prefix: str, identifier: str) -> Optional[str]:
     entry = get(prefix)
     if entry is None:
         return None
-    url = entry.get('url')
+    url = entry.url
     if url is None:
         return None
     return url.replace('$1', identifier)

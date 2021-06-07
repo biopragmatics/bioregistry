@@ -108,7 +108,7 @@ def get_registry_rows():
             resolve.get_example(prefix),
             resolve.get_email(prefix),
             resolve.get_format(prefix),
-            data.get('download'),
+            data.download,
             '|'.join(data.synonyms or []),
             resolve.is_deprecated(prefix),
             *[
@@ -116,8 +116,8 @@ def get_registry_rows():
                 for metaprefix in METAPREFIXES
             ],
             # '|'.join(data.get('appears_in', [])),
-            data.get('part_of'),
-            data.get('provides'),
+            data.part_of,
+            data.provides,
             # data.get('type'),
             # TODO could add more, especially mappings
         ))
