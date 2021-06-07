@@ -87,7 +87,7 @@ import bioregistry
 assert 'ncbitaxon' == bioregistry.normalize_prefix('taxonomy')
 
 # This works for common mistaken prefixes, like:
-assert 'chembl.compound' == bioregistry.normalize_prefix('chembl')
+assert 'pubchem.compound' == bioregistry.normalize_prefix('pubchem')
 
 # This works for prefixes that are often written many ways, like:
 assert 'eccode' == bioregistry.normalize_prefix('ec-code')
