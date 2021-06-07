@@ -340,7 +340,7 @@ def get_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Optiona
     return None
 
 
-def _get_bioregistry_format(prefix) -> Optional[str]:
+def _get_bioregistry_format(prefix: str) -> Optional[str]:
     entry = get(prefix)
     if entry is None:
         return None
