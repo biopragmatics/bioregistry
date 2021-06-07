@@ -14,7 +14,7 @@ from .obofoundry import OBOFoundryAligner
 from .ols import OLSAligner
 from .prefix_commons import PrefixCommonsAligner
 from .uniprot import UniProtAligner
-from .wikidata import align_wikidata
+from .wikidata import WikidataAligner
 from ..utils import secho
 
 __all__ = [
@@ -41,7 +41,7 @@ def align():
     OLSAligner.align()
 
     secho('Aligning Wikidata')
-    align_wikidata()
+    WikidataAligner.align()
 
     secho('Aligning GO')
     GoAligner.align()

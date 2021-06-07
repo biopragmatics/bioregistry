@@ -11,7 +11,7 @@ from .n2t import get_n2t
 from .ncbi import get_ncbi
 from .obofoundry import get_obofoundry
 from .ols import get_ols
-from .wikidata import get_wikidata_registry
+from .wikidata import get_wikidata
 from ..utils import secho
 
 __all__ = [
@@ -38,7 +38,7 @@ def download():
     get_ols(force_download=True)
 
     secho('Download Wikidata')
-    get_wikidata_registry()
+    get_wikidata(force_download=True)
 
     secho('Download GO')
     get_go(force_download=True)
