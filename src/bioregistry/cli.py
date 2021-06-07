@@ -25,23 +25,18 @@ main.add_command(lint)
 main.add_command(compare)
 main.add_command(warnings)
 main.add_command(export)
+main.add_command(align)
 main.add_command(make_web_command('bioregistry.app.wsgi:app'))
 
 
 @main.command()
 def versions():
     """Print the versions."""
-    from .utils import read_registry
     from .resolve import get_versions
     from tabulate import tabulate
 
-    registry = read_registry()
     click.echo(tabulate(
-        [
-            (k, v)
-            for k, v in sorted(get_versions().items())
-            if "ols_version_date_format" not in registry[k] and "ols_version_type" not in registry[k]
-        ],
+        sorted(get_versions().items()),
         headers=['Prefix', 'Version'],
     ))
 
