@@ -27,6 +27,6 @@ class TestDuplicates(unittest.TestCase):
         norm_prefixes = {norm(prefix) for prefix in registry}
 
         for key, entry in registry.items():
-            for synonym in entry.get('synonyms', []):
+            for synonym in entry.synonyms or []:
                 with self.subTest(key=key, synonym=synonym):
                     self.assertNotIn(synonym, norm_prefixes - {norm(key)})

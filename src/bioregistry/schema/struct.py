@@ -92,6 +92,10 @@ class Resource(BaseModel):
     uniprot: Optional[Mapping[str, Any]]
     biolink: Optional[Mapping[str, Any]]
 
+    def get(self, key, default=None):
+        """Dispatch to getting from the dict."""
+        return self.dict().get(key, default)
+
 
 class Registry(BaseModel):
     """Metadata about a registry."""

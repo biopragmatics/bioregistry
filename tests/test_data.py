@@ -7,7 +7,7 @@ import unittest
 
 import bioregistry
 from bioregistry.export.rdf_export import resource_to_rdf_str
-from bioregistry.resolve import EMAIL_RE, _get_prefix_key
+from bioregistry.resolve import EMAIL_RE, _get_prefix_key, get_external
 from bioregistry.utils import is_mismatch
 
 logger = logging.getLogger(__name__)
@@ -57,7 +57,7 @@ class TestRegistry(unittest.TestCase):
         }
         keys.update(bioregistry.read_metaregistry())
         for prefix, entry in self.registry.items():
-            extra = {k for k in set(entry) - keys if not k.startswith('_')}
+            extra = {k for k in set(entry.dict()) - keys if not k.startswith('_')}
             if not extra:
                 continue
             with self.subTest(prefix=prefix):
@@ -68,10 +68,10 @@ class TestRegistry(unittest.TestCase):
         for prefix, entry in self.registry.items():
             with self.subTest(prefix=prefix):
                 self.assertFalse(
-                    'name' not in entry
-                    and 'name' not in entry.get('miriam', {})
-                    and 'name' not in entry.get('ols', {})
-                    and 'name' not in entry.get('obofoundry', {}),
+                    entry.get('name') is None
+                    and 'name' not in get_external(prefix, 'miriam')
+                    and 'name' not in get_external(prefix, 'ols')
+                    and 'name' not in get_external(prefix, 'obofoundry'),
                     msg=f'{prefix} is missing a name',
                 )
 
@@ -81,7 +81,7 @@ class TestRegistry(unittest.TestCase):
             if bioregistry.is_deprecated(prefix):
                 continue
             entry = bioregistry.get(prefix)
-            if 'name' in entry:
+            if entry.get('name'):
                 continue
             name = bioregistry.get_name(prefix)
             if prefix == name.lower() and name.upper() == name:
@@ -134,7 +134,7 @@ class TestRegistry(unittest.TestCase):
                 continue
             if rest.lower() == prefix.lower():
                 with self.subTest(prefix=prefix):
-                    self.fail(msg=f'{prefix} has redundany acronym in name "{name}"')
+                    self.fail(msg=f'{prefix} has redundant acronym in name "{name}"')
 
     def test_format_urls(self):
         """Test that entries with a format URL are formatted right (yo dawg)."""

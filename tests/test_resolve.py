@@ -6,6 +6,7 @@ import unittest
 from typing import Iterable, Tuple
 
 import bioregistry
+from bioregistry.resolve import get_external
 
 
 class TestResolve(unittest.TestCase):
@@ -31,12 +32,11 @@ class TestResolve(unittest.TestCase):
     def test_get(self):
         """Test getting content from the bioregistry."""
         ncbitaxon_entry = bioregistry.get('ncbitaxon')
-        self.assertIn('synonyms', ncbitaxon_entry)
-        self.assertIn('NCBI_Taxon_ID', ncbitaxon_entry['synonyms'])
-        self.assertIn('miriam', ncbitaxon_entry)
-        self.assertIn('obofoundry', ncbitaxon_entry)
-        self.assertIn('ols', ncbitaxon_entry)
-        self.assertIn('wikidata', ncbitaxon_entry)
+        self.assertIn('NCBI_Taxon_ID', ncbitaxon_entry.synonyms)
+        self.assertIsNotNone(get_external('ncbitaxon', 'miriam'))
+        self.assertIsNotNone(get_external('ncbitaxon', 'obofoundry'))
+        self.assertIsNotNone(get_external('ncbitaxon', 'ols'))
+        self.assertIsNotNone(get_external('ncbitaxon', 'wikidata'))
 
     def test_validate_none(self):
         """Test validation of identifiers for a prefix that does not exist."""
