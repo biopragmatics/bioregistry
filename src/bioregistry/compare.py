@@ -223,10 +223,7 @@ def compare():  # noqa:C901
         # Remap bioregistry prefixes to match the external
         #  vocabulary, when possible
         bioregistry_remapped = {
-            br_entry.get(key, {}).get(
-                'prefix',
-                br_entry.get(key, {}).get('property', br_key),  # this line only applicable for wikidata
-            )
+            br_entry.get(key, {}).get('prefix', br_key)
             for br_key, br_entry in bioregistry.items()
         }
         venn2(

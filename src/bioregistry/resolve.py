@@ -155,7 +155,7 @@ def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
         if key not in entry:
             continue
         if key == 'wikidata':
-            value = entry[key].get('property')
+            value = entry[key].get('prefix')
             if value is not None:
                 rv['wikidata'] = value
         elif key == 'obofoundry':

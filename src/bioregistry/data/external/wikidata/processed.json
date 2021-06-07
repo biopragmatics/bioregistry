@@ -5,25 +5,25 @@
     "database.label": "The Plant List",
     "format": "http://www.theplantlist.org/tpl1.1/record/$1",
     "homepage": "http://www.theplantlist.org",
+    "name": "PlantList-ID",
     "pattern": "(gcc|ifn|ild|kew|rjp|tro)-\\d+",
-    "property": "P1070",
-    "property.label": "PlantList-ID"
+    "prefix": "P1070"
   },
   "P1391": {
     "database": "Q1860469",
     "database.homepage": "http://www.indexfungorum.org/",
     "database.label": "Index Fungorum",
     "format": "http://www.indexfungorum.org/names/NamesRecord.asp?RecordID=$1",
+    "name": "Index Fungorum ID",
     "pattern": "[1-9]\\d{0,5}|",
-    "property": "P1391",
-    "property.label": "Index Fungorum ID"
+    "prefix": "P1391"
   },
   "P141": {
     "database": "Q48268",
     "database.homepage": "https://www.iucn.org",
     "database.label": "International Union for Conservation of Nature",
-    "property": "P141",
-    "property.label": "IUCN conservation status"
+    "name": "IUCN conservation status",
+    "prefix": "P141"
   },
   "P1550": {
     "database": "Q1515833",
@@ -32,9 +32,9 @@
     "database.miriam": "orphanet",
     "format": "https://www.orpha.net/consor/cgi-bin//OC_Exp.php?lng=EN&Expert=$1",
     "homepage": "https://www.orpha.net",
+    "name": "Orphanet ID",
     "pattern": "[1-9]\\d{0,5}",
-    "property": "P1550",
-    "property.label": "Orphanet ID"
+    "prefix": "P1550"
   },
   "P1727": {
     "database": "Q1429295",
@@ -42,9 +42,9 @@
     "database.label": "Flora of North America",
     "format": "http://www.efloras.org/florataxon.aspx?flora_id=1&taxon_id=$1",
     "homepage": "http://www.efloras.org/flora_page.aspx?flora_id=1",
+    "name": "Flora of North America taxon ID",
     "pattern": "[1-9]\\d{4,9}",
-    "property": "P1727",
-    "property.label": "Flora of North America taxon ID"
+    "prefix": "P1727"
   },
   "P1745": {
     "database": "Q19544711",
@@ -52,9 +52,9 @@
     "database.label": "Database of Vascular Plants of Canada",
     "format": "http://data.canadensys.net/vascan/taxon/$1",
     "homepage": "http://data.canadensys.net/vascan/search",
+    "name": "VASCAN ID",
     "pattern": "\\d{1,5}",
-    "property": "P1745",
-    "property.label": "VASCAN ID"
+    "prefix": "P1745"
   },
   "P1746": {
     "database": "Q8074026",
@@ -62,9 +62,9 @@
     "database.label": "ZooBank",
     "format": "http://zoobank.org/NomenclaturalActs/$1",
     "homepage": "http://zoobank.org/",
+    "name": "ZooBank ID for name or act",
     "pattern": "^[A-Z0-9]{8}(-[A-Z0-9]{4}){3}-[A-Z0-9]{12}$",
-    "property": "P1746",
-    "property.label": "ZooBank ID for name or act"
+    "prefix": "P1746"
   },
   "P1747": {
     "database": "Q5460442",
@@ -72,9 +72,9 @@
     "database.label": "Flora of China",
     "format": "http://www.efloras.org/florataxon.aspx?flora_id=2&taxon_id=$1",
     "homepage": "http://www.efloras.org/flora_page.aspx?flora_id=2",
+    "name": "Flora of China ID",
     "pattern": "[1-9]\\d{4,9}",
-    "property": "P1747",
-    "property.label": "Flora of China ID"
+    "prefix": "P1747"
   },
   "P1761": {
     "database": "Q3011194",
@@ -82,9 +82,9 @@
     "database.label": "The families of flowering plants by Watson & Dallwitz",
     "format": "http://delta-intkey.com/angio/www/$1.htm",
     "homepage": "http://delta-intkey.com",
+    "name": "Watson & Dallwitz family ID",
     "pattern": "[a-z]{6,8}",
-    "property": "P1761",
-    "property.label": "Watson & Dallwitz family ID"
+    "prefix": "P1761"
   },
   "P1772": {
     "database": "Q19636200",
@@ -92,9 +92,9 @@
     "database.label": "United States Department of Agriculture Plants Database",
     "format": "https://plants.sc.egov.usda.gov/home/plantProfile?symbol=$1",
     "homepage": "https://plants.sc.egov.usda.gov/home",
+    "name": "USDA PLANTS ID",
     "pattern": "[A-Z]{3,5}[0-9]{0,3}|",
-    "property": "P1772",
-    "property.label": "USDA PLANTS ID"
+    "prefix": "P1772"
   },
   "P1832": {
     "database": "Q19816560",
@@ -102,9 +102,9 @@
     "database.label": "GrassBase",
     "format": "http://www.kew.org/data/grasses-db/www/$1.htm",
     "homepage": "http://www.kew.org/data/grasses-syn/index.htm",
+    "name": "GrassBase ID",
     "pattern": "(imp|gen){1}\\d{5}",
-    "property": "P1832",
-    "property.label": "GrassBase ID"
+    "prefix": "P1832"
   },
   "P1929": {
     "database": "Q20023123",
@@ -112,8 +112,8 @@
     "database.label": "ClinVar",
     "format": "http://www.ncbi.nlm.nih.gov/clinvar/variation/$1/",
     "homepage": "http://www.ncbi.nlm.nih.gov/clinvar/",
-    "property": "P1929",
-    "property.label": "ClinVar Variation ID"
+    "name": "ClinVar Variation ID",
+    "prefix": "P1929"
   },
   "P1992": {
     "database": "Q20644485",
@@ -121,9 +121,9 @@
     "format": "http://treatment.plazi.org/id/$1",
     "format.rdf": "http://treatment.plazi.org/id/$1.rdf",
     "homepage": "http://plazi.org/",
+    "name": "Plazi ID",
     "pattern": "[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}",
-    "property": "P1992",
-    "property.label": "Plazi ID"
+    "prefix": "P1992"
   },
   "P2006": {
     "database": "Q8074026",
@@ -131,9 +131,9 @@
     "database.label": "ZooBank",
     "format": "http://zoobank.org/Authors/$1",
     "homepage": "http://zoobank.org/",
+    "name": "ZooBank author ID",
     "pattern": "[A-Z0-9]{8}(-[A-Z0-9]{4}){3}-[A-Z0-9]{12}",
-    "property": "P2006",
-    "property.label": "ZooBank author ID"
+    "prefix": "P2006"
   },
   "P2007": {
     "database": "Q8074026",
@@ -141,9 +141,9 @@
     "database.label": "ZooBank",
     "format": "http://zoobank.org/References/$1",
     "homepage": "http://zoobank.org/",
+    "name": "ZooBank publication ID",
     "pattern": "^[A-Z0-9]{8}(-[A-Z0-9]{4}){3}-[A-Z0-9]{12}$",
-    "property": "P2007",
-    "property.label": "ZooBank publication ID"
+    "prefix": "P2007"
   },
   "P2026": {
     "database": "Q20749148",
@@ -151,9 +151,9 @@
     "database.label": "Avibase",
     "format": "https://avibase.bsc-eoc.org/species.jsp?avibaseid=$1",
     "homepage": "https://avibase.bsc-eoc.org/avibase.jsp",
+    "name": "Avibase ID",
     "pattern": "[A-Z0-9]{16}",
-    "property": "P2026",
-    "property.label": "Avibase ID"
+    "prefix": "P2026"
   },
   "P2036": {
     "database": "Q20862705",
@@ -161,9 +161,9 @@
     "database.label": "African Plant Database",
     "format": "http://www.ville-ge.ch/musinfo/bd/cjb/africa/details.php?langue=an&id=$1",
     "homepage": "http://www.ville-ge.ch/musinfo/bd/cjb/africa/index.php?langue=an",
+    "name": "African Plant Database ID",
     "pattern": "\\d{1,6}",
-    "property": "P2036",
-    "property.label": "African Plant Database ID"
+    "prefix": "P2036"
   },
   "P2040": {
     "database": "Q20962955",
@@ -171,9 +171,9 @@
     "database.label": "Species+",
     "format": "https://speciesplus.net/#/taxon_concepts/$1/legal",
     "homepage": "http://www.speciesplus.net/",
+    "name": "CITES Species+ ID",
     "pattern": "\\d{4,5}",
-    "property": "P2040",
-    "property.label": "CITES Species+ ID"
+    "prefix": "P2040"
   },
   "P2057": {
     "database": "Q5937262",
@@ -181,9 +181,9 @@
     "database.label": "Human Metabolome Database",
     "database.miriam": "hmdb",
     "format": "https://www.hmdb.ca/metabolites/$1",
+    "name": "Human Metabolome Database ID",
     "pattern": "HMDB\\d+",
-    "property": "P2057",
-    "property.label": "Human Metabolome Database ID"
+    "prefix": "P2057"
   },
   "P2064": {
     "database": "Q20900436",
@@ -191,16 +191,16 @@
     "database.label": "KNApSAcK",
     "database.miriam": "knapsack",
     "format": "http://www.knapsackfamily.com/knapsack_core/information.php?sname=C_ID&word=$1",
+    "name": "KNApSAcK ID",
     "pattern": "C\\d{8}",
-    "property": "P2064",
-    "property.label": "KNApSAcK ID"
+    "prefix": "P2064"
   },
   "P2065": {
     "database": "Q6954254",
     "database.label": "NIAID ChemDB",
     "format": "http://chemdb.niaid.nih.gov/CompoundDetails.aspx?AIDSNO=$1",
-    "property": "P2065",
-    "property.label": "NIAID ChemDB ID"
+    "name": "NIAID ChemDB ID",
+    "prefix": "P2065"
   },
   "P2153": {
     "database": "Q278487",
@@ -210,9 +210,9 @@
     "format.rdf": "http://rdf.ncbi.nlm.nih.gov/pubchem/substance/SID$1",
     "homepage": "https://www.ncbi.nlm.nih.gov/pcsubstance",
     "miriam": "pubchem.substance",
+    "name": "PubChem Substance ID (SID)",
     "pattern": "[1-9]\\d*",
-    "property": "P2153",
-    "property.label": "PubChem Substance ID (SID)"
+    "prefix": "P2153"
   },
   "P2249": {
     "database": "Q7307074",
@@ -220,26 +220,26 @@
     "database.label": "RefSeq",
     "format": "https://www.ncbi.nlm.nih.gov/nuccore/$1",
     "homepage": "http://mygene.info",
+    "name": "RefSeq genome ID",
     "pattern": "[A-Z]{2}_\\d+(\\.\\d{1,2})?",
-    "property": "P2249",
-    "property.label": "RefSeq genome ID"
+    "prefix": "P2249"
   },
   "P2293": {
     "database": "Q22330995",
     "database.homepage": "http://chibi.ubc.ca/Gemma/phenotypes.html",
     "database.label": "Phenocarta",
     "homepage": "http://omim.org",
-    "property": "P2293",
-    "property.label": "genetic association"
+    "name": "genetic association",
+    "prefix": "P2293"
   },
   "P2393": {
     "database": "Q82494",
     "database.homepage": "https://www.ncbi.nlm.nih.gov/",
     "database.label": "National Center for Biotechnology Information",
     "format": "https://www.ncbi.nlm.nih.gov/gene/?term=$1",
+    "name": "NCBI locus tag",
     "pattern": "[0-9A-Za-z_.\\-()]{2,18}",
-    "property": "P2393",
-    "property.label": "NCBI locus tag"
+    "prefix": "P2393"
   },
   "P2394": {
     "database": "Q1951035",
@@ -247,9 +247,9 @@
     "database.label": "Mouse Genome Informatics",
     "format": "http://www.ncbi.nlm.nih.gov/gene/?term=($1%5BSYM%5D)+AND+Mus+musculus%5BOrganism%5D",
     "homepage": "http://www.informatics.jax.org/",
+    "name": "MGI Gene Symbol",
     "pattern": "[A-Z][a-z\\d]{2,9}",
-    "property": "P2394",
-    "property.label": "MGI Gene Symbol"
+    "prefix": "P2394"
   },
   "P2410": {
     "database": "Q7999828",
@@ -260,9 +260,9 @@
     "format.rdf": "http://identifiers.org/wikipathways/$1",
     "homepage": "http://www.wikipathways.org",
     "miriam": "wikipathways",
+    "name": "WikiPathways ID",
     "pattern": "WP\\d{1,4}",
-    "property": "P2410",
-    "property.label": "WikiPathways ID"
+    "prefix": "P2410"
   },
   "P2426": {
     "database": "Q8043516",
@@ -270,9 +270,9 @@
     "database.label": "Xeno-canto",
     "format": "https://www.xeno-canto.org/species/$1",
     "homepage": "http://www.xeno-canto.org/",
+    "name": "Xeno-canto species ID",
     "pattern": "[A-Z][a-z]+\\-[a-z]{2,}",
-    "property": "P2426",
-    "property.label": "Xeno-canto species ID"
+    "prefix": "P2426"
   },
   "P2434": {
     "database": "Q28064236",
@@ -280,8 +280,8 @@
     "database.label": "Panarctic Flora",
     "format": "http://panarcticflora.org/results?name=#paf-$1",
     "homepage": "http://panarcticflora.org/",
-    "property": "P2434",
-    "property.label": "Panarctic Flora ID"
+    "name": "Panarctic Flora ID",
+    "prefix": "P2434"
   },
   "P2455": {
     "database": "Q24248482",
@@ -289,17 +289,17 @@
     "database.label": "Species Profile and Threats Database",
     "format": "https://www.environment.gov.au/cgi-bin/sprat/public/publicspecies.pl?taxon_id=$1",
     "homepage": "http://www.environment.gov.au/cgi-bin/sprat/public/sprat.pl",
-    "property": "P2455",
-    "property.label": "Species Profile and Threats Database ID"
+    "name": "Species Profile and Threats Database ID",
+    "prefix": "P2455"
   },
   "P2464": {
     "database": "Q4986057",
     "database.homepage": "http://bugguide.net/",
     "database.label": "BugGuide",
     "format": "https://bugguide.net/node/view/$1",
+    "name": "BugGuide ID",
     "pattern": "[1-9]\\d{0,6}",
-    "property": "P2464",
-    "property.label": "BugGuide ID"
+    "prefix": "P2464"
   },
   "P2646": {
     "database": "Q6826951",
@@ -308,9 +308,9 @@
     "database.miriam": "mirtarbase",
     "format": "http://mirtarbase.mbc.nctu.edu.tw/php/detail.php?mirtid=$1",
     "homepage": "http://mirtarbase.mbc.nctu.edu.tw/php/download.php",
+    "name": "mirTarBase ID",
     "pattern": "MIRT\\d{6}",
-    "property": "P2646",
-    "property.label": "mirTarBase ID"
+    "prefix": "P2646"
   },
   "P2752": {
     "database": "Q23893915",
@@ -318,9 +318,9 @@
     "database.label": "New Zealand Organisms Register",
     "format": "http://www.nzor.org.nz/names/$1",
     "homepage": "http://www.nzor.org.nz/",
+    "name": "New Zealand Organisms Register ID",
     "pattern": "[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}",
-    "property": "P2752",
-    "property.label": "New Zealand Organisms Register ID"
+    "prefix": "P2752"
   },
   "P2809": {
     "database": "Q24009610",
@@ -328,9 +328,9 @@
     "database.label": "Australasian Pollen and Spore Atlas",
     "format": "https://web.archive.org/web/*/http://apsa.anu.edu.au/sample/$1",
     "homepage": "http://apsa.anu.edu.au/",
+    "name": "Australasian Pollen and Spore Atlas Code",
     "pattern": "\\d+(\\-\\d+)*(-\\(\\d+(\\-\\d+)*\\))?",
-    "property": "P2809",
-    "property.label": "Australasian Pollen and Spore Atlas Code"
+    "prefix": "P2809"
   },
   "P2833": {
     "database": "Q433276",
@@ -338,9 +338,9 @@
     "database.label": "ARKive",
     "format": "https://web.archive.org/web/*/www.arkive.org/wd/$1/",
     "homepage": "http://www.arkive.org/",
+    "name": "ARKive ID",
     "pattern": "[a-z]+(\\-[a-z]+)*",
-    "property": "P2833",
-    "property.label": "ARKive ID"
+    "prefix": "P2833"
   },
   "P2870": {
     "database": "Q6826947",
@@ -348,9 +348,9 @@
     "database.label": "miRBase",
     "format": "http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=$1",
     "homepage": "http://www.mirbase.org/",
+    "name": "miRBase pre-miRNA ID",
     "pattern": "MI\\d{7}",
-    "property": "P2870",
-    "property.label": "miRBase pre-miRNA ID"
+    "prefix": "P2870"
   },
   "P2871": {
     "database": "Q6826947",
@@ -358,9 +358,9 @@
     "database.label": "miRBase",
     "format": "http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=$1",
     "homepage": "http://www.mirbase.org/",
+    "name": "miRBase mature miRNA ID",
     "pattern": "MIMAT\\d{7}",
-    "property": "P2871",
-    "property.label": "miRBase mature miRNA ID"
+    "prefix": "P2871"
   },
   "P2874": {
     "database": "Q278487",
@@ -368,9 +368,9 @@
     "database.label": "PubChem",
     "format": "https://pubchem.ncbi.nlm.nih.gov/bioassay/$1",
     "homepage": "http://pubchem.ncbi.nlm.nih.gov",
+    "name": "PubChem BioAssay ID (AID)",
     "pattern": "\\d+",
-    "property": "P2874",
-    "property.label": "PubChem BioAssay ID (AID)"
+    "prefix": "P2874"
   },
   "P2877": {
     "database": "Q24091097",
@@ -378,18 +378,18 @@
     "database.label": "SureChEMBL",
     "format": "https://www.surechembl.org/chemical/$1",
     "homepage": "https://www.surechembl.org/",
+    "name": "SureChEMBL ID",
     "pattern": "SCHEMBL\\d+",
-    "property": "P2877",
-    "property.label": "SureChEMBL ID"
+    "prefix": "P2877"
   },
   "P2946": {
     "database": "Q25349390",
     "database.homepage": "http://bacdive.dsmz.de/",
     "database.label": "BacDive",
     "format": "https://bacdive.dsmz.de/index.php?rd=$1",
+    "name": "BacDive ID",
     "pattern": "\\d{1,6}",
-    "property": "P2946",
-    "property.label": "BacDive ID"
+    "prefix": "P2946"
   },
   "P3060": {
     "database": "Q27777766",
@@ -397,9 +397,9 @@
     "database.label": "Butterflies and Moths of the World",
     "format": "http://www.nhm.ac.uk/jdsml/research-curation/research/projects/butmoth/GenusDetails.dsml?NUMBER=$1",
     "homepage": "http://www.nhm.ac.uk/our-science/data/butmoth/",
+    "name": "ButMoth ID",
     "pattern": "[1-9]\\d{0,4}\\.0",
-    "property": "P3060",
-    "property.label": "ButMoth ID"
+    "prefix": "P3060"
   },
   "P3064": {
     "database": "Q7736786",
@@ -407,9 +407,9 @@
     "database.label": "The Global Lepidoptera Names Index",
     "format": "http://www.nhm.ac.uk/our-science/data/lepindex/detail/?taxonno=$1",
     "homepage": "http://www.nhm.ac.uk/jdsml/research-curation/research/projects/lepindex",
+    "name": "LepIndex ID",
     "pattern": "[1-9]\\d{0,6}",
-    "property": "P3064",
-    "property.label": "LepIndex ID"
+    "prefix": "P3064"
   },
   "P3088": {
     "database": "Q26218155",
@@ -417,9 +417,9 @@
     "database.label": "Catalogue of Life in Taiwan",
     "format": "http://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1",
     "homepage": "http://taibnet.sinica.edu.tw/home.php",
+    "name": "Catalogue of Life in Taiwan ID",
     "pattern": "([1-9]\\d{5})",
-    "property": "P3088",
-    "property.label": "Catalogue of Life in Taiwan ID"
+    "prefix": "P3088"
   },
   "P3099": {
     "database": "Q1809095",
@@ -427,17 +427,17 @@
     "database.label": "Handbook of the Birds of the World",
     "format": "https://www.hbw.com/species/$1",
     "homepage": "http://www.hbw.com/ibc",
-    "property": "P3099",
-    "property.label": "Internet Bird Collection species ID"
+    "name": "Internet Bird Collection species ID",
+    "prefix": "P3099"
   },
   "P3100": {
     "database": "Q3073852",
     "database.label": "Flora of Australia",
     "format": "https://web.archive.org/web/*/https://www.anbg.gov.au/abrs/online-resources/flora/stddisplay.xsql?pnid=$1",
     "homepage": "http://www.anbg.gov.au/abrs/online-resources/flora/",
+    "name": "Flora of Australia ID (old)",
     "pattern": "\\d+",
-    "property": "P3100",
-    "property.label": "Flora of Australia ID (old)"
+    "prefix": "P3100"
   },
   "P3102": {
     "database": "Q59786454",
@@ -445,9 +445,9 @@
     "database.label": "Plantarium",
     "format": "http://www.plantarium.ru/page/view/item/$1.html",
     "homepage": "http://www.plantarium.ru/",
+    "name": "Plantarium ID",
     "pattern": "\\d+",
-    "property": "P3102",
-    "property.label": "Plantarium ID"
+    "prefix": "P3102"
   },
   "P3105": {
     "database": "Q3517247",
@@ -455,8 +455,8 @@
     "database.label": "Tela Botanica",
     "format": "https://www.tela-botanica.org/bdtfx-nn-$1",
     "homepage": "http://www.tela-botanica.org/page:eflore",
-    "property": "P3105",
-    "property.label": "Tela Botanica ID"
+    "name": "Tela Botanica ID",
+    "prefix": "P3105"
   },
   "P3130": {
     "database": "Q59786136",
@@ -464,17 +464,17 @@
     "database.label": "NSW Flora Online",
     "format": "https://web.archive.org/web/*/https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?page=nswfl&lvl=sp&name=$1",
     "homepage": "http://plantnet.rbgsyd.nsw.gov.au/floraonline.htm",
+    "name": "NSW Flora ID",
     "pattern": "[A-Z][a-z]*(~[a-z]*)?",
-    "property": "P3130",
-    "property.label": "NSW Flora ID"
+    "prefix": "P3130"
   },
   "P3240": {
     "database": "Q6970988",
     "database.homepage": "http://www.nbn.org.uk",
     "database.label": "National Biodiversity Network",
     "format": "https://data.nbn.org.uk/Taxa/$1",
-    "property": "P3240",
-    "property.label": "NBN System Key"
+    "name": "NBN System Key",
+    "prefix": "P3240"
   },
   "P3289": {
     "database": "Q24691710",
@@ -482,9 +482,9 @@
     "database.label": "Cellosaurus",
     "database.miriam": "cellosaurus",
     "format": "https://web.expasy.org/cellosaurus/$1",
+    "name": "Cellosaurus ID",
     "pattern": "CVCL_[A-Z\\d][A-Z\\d][A-Z\\d][A-Z\\d]",
-    "property": "P3289",
-    "property.label": "Cellosaurus ID"
+    "prefix": "P3289"
   },
   "P3322": {
     "database": "Q24053150",
@@ -492,9 +492,9 @@
     "database.label": "Vlinderstichting vlinders",
     "format": "https://www.vlinderstichting.nl/vlinders/overzicht-vlinders/details-vlinder/?vlinder=$1",
     "homepage": "https://www.vlinderstichting.nl/vlinders",
+    "name": "Vlinderstichting-ID",
     "pattern": "\\d+",
-    "property": "P3322",
-    "property.label": "Vlinderstichting-ID"
+    "prefix": "P3322"
   },
   "P3329": {
     "database": "Q27612411",
@@ -502,9 +502,9 @@
     "database.label": "CIViC database",
     "format": "https://civic.genome.wustl.edu/links/variants/$1",
     "homepage": "https://civic.genome.wustl.edu/#/home",
+    "name": "CIViC variant ID",
     "pattern": "[1-9]\\d*",
-    "property": "P3329",
-    "property.label": "CIViC variant ID"
+    "prefix": "P3329"
   },
   "P3382": {
     "database": "Q5531047",
@@ -513,8 +513,8 @@
     "database.miriam": "genedb",
     "format": "https://www.genedb.org/gene/$1",
     "homepage": "http://www.genedb.org/",
-    "property": "P3382",
-    "property.label": "GeneDB ID"
+    "name": "GeneDB ID",
+    "prefix": "P3382"
   },
   "P3398": {
     "database": "Q26879218",
@@ -522,9 +522,9 @@
     "database.label": "Butterflies and Moths of North America",
     "format": "https://www.butterfliesandmoths.org/$1",
     "homepage": "http://www.butterfliesandmoths.org/",
+    "name": "Butterflies and Moths of North America ID",
     "pattern": "(species|taxonomy)\\/[^\\s\\/]+",
-    "property": "P3398",
-    "property.label": "Butterflies and Moths of North America ID"
+    "prefix": "P3398"
   },
   "P3405": {
     "database": "Q2246990",
@@ -532,9 +532,9 @@
     "database.label": "Nederlands Soortenregister",
     "format": "https://www.nederlandsesoorten.nl/linnaeus_ng/app/views/species/nsr_taxon.php?id=$1",
     "homepage": "http://www.nederlandsesoorten.nl/",
+    "name": "Nederlands Soortenregister ID",
     "pattern": "[1-9]\\d*",
-    "property": "P3405",
-    "property.label": "Nederlands Soortenregister ID"
+    "prefix": "P3405"
   },
   "P3406": {
     "database": "Q3460832",
@@ -543,9 +543,9 @@
     "database.miriam": "sgd",
     "format": "http://www.yeastgenome.org/locus/$1/overview",
     "homepage": "http://www.yeastgenome.org",
+    "name": "Saccharomyces Genome Database ID",
     "pattern": "S\\d{9}",
-    "property": "P3406",
-    "property.label": "Saccharomyces Genome Database ID"
+    "prefix": "P3406"
   },
   "P3444": {
     "database": "Q5322614",
@@ -553,19 +553,20 @@
     "database.label": "eBird",
     "format": "https://ebird.org/species/$1",
     "homepage": "http://ebird.org",
+    "name": "eBird taxon ID",
     "pattern": "[a-z-]{2,6}\\d{0,2}|y00\\d{3}",
-    "property": "P3444",
-    "property.label": "eBird taxon ID"
+    "prefix": "P3444"
   },
   "P351": {
     "database": "Q1345229",
     "database.homepage": "http://www.ncbi.nlm.nih.gov/gquery/",
     "database.label": "Entrez",
+    "database.miriam": "ncbigene",
     "format": "https://www.ncbi.nlm.nih.gov/gene/$1",
     "format.rdf": "http://purl.uniprot.org/geneid/$1",
+    "name": "Entrez Gene ID",
     "pattern": "[1-9]\\d{0,8}",
-    "property": "P351",
-    "property.label": "Entrez Gene ID"
+    "prefix": "P351"
   },
   "P3519": {
     "database": "Q906796",
@@ -573,22 +574,24 @@
     "database.label": "Pfam",
     "database.miriam": "pfam",
     "format": "http://pfam.xfam.org/family?acc=$1",
+    "homepage": "https://pfam.xfam.org/",
     "miriam": "pfam",
+    "name": "Pfam ID",
     "pattern": "(PF\\d{5}|CL\\d{4})",
-    "property": "P3519",
-    "property.label": "Pfam ID"
+    "prefix": "P3519"
   },
   "P352": {
     "database": "Q905695",
     "database.homepage": "https://www.uniprot.org/",
     "database.label": "UniProt",
+    "database.miriam": "uniprot",
     "format": "https://www.uniprot.org/uniprot/$1",
     "format.rdf": "http://purl.uniprot.org/uniprot/$1",
     "homepage": "http://mygene.info",
     "miriam": "uniprot",
+    "name": "UniProt protein ID",
     "pattern": "([OPQ][0-9][A-Z0-9]|[A-NR-Z][0-9][A-Z])[A-Z0-9][A-Z0-9][0-9]([A-Z][A-Z0-9][A-Z0-9][0-9])?",
-    "property": "P352",
-    "property.label": "UniProt protein ID"
+    "prefix": "P352"
   },
   "P3523": {
     "database": "Q3577126",
@@ -596,18 +599,19 @@
     "database.label": "Rfam",
     "database.miriam": "rfam",
     "format": "http://rfam.xfam.org/family/$1",
+    "homepage": "https://rfam.xfam.org/",
     "miriam": "rfam",
+    "name": "Rfam ID",
     "pattern": "RF\\d{5}",
-    "property": "P3523",
-    "property.label": "Rfam ID"
+    "prefix": "P3523"
   },
   "P3524": {
     "database": "Q12746855",
     "database.label": "Simple Modular Architecture Research Tool",
     "format": "http://smart.embl-heidelberg.de/smart/do_annotation.pl?DOMAIN=$1",
+    "name": "Simple Modular Architecture Research Tool ID",
     "pattern": "SM\\d{5}",
-    "property": "P3524",
-    "property.label": "Simple Modular Architecture Research Tool ID"
+    "prefix": "P3524"
   },
   "P3594": {
     "database": "Q59785126",
@@ -615,17 +619,17 @@
     "database.label": "Araneae online database",
     "format": "https://araneae.nmbe.ch/data/$1",
     "homepage": "https://araneae.nmbe.ch/search",
+    "name": "Araneae Spider ID",
     "pattern": "[1-9]\\d{1,3}",
-    "property": "P3594",
-    "property.label": "Araneae Spider ID"
+    "prefix": "P3594"
   },
   "P3606": {
     "database": "Q16934719",
     "database.homepage": "http://www.barcodinglife.org/",
     "database.label": "Barcode of Life Data Systems",
     "format": "http://www.boldsystems.org/index.php/TaxBrowser_TaxonPage?taxid=$1",
-    "property": "P3606",
-    "property.label": "BOLD Systems taxon ID"
+    "name": "BOLD Systems taxon ID",
+    "prefix": "P3606"
   },
   "P3717": {
     "database": "Q25712",
@@ -633,18 +637,18 @@
     "database.label": "MEROPS",
     "database.miriam": "merops",
     "format": "http://www.ebi.ac.uk/merops/cgi-bin/famsum?family=$1",
+    "name": "MEROPS enzyme ID",
     "pattern": "S\\d{2}",
-    "property": "P3717",
-    "property.label": "MEROPS enzyme ID"
+    "prefix": "P3717"
   },
   "P3746": {
     "database": "Q25489909",
     "database.homepage": "http://www.wildflowers.co.il",
     "database.label": "Wildflowers of Palestine",
     "format": "http://www.wildflowers.co.il/english/plant.asp?ID=$1",
+    "name": "Wildflowers of Israel ID",
     "pattern": "[1-9]\\d{0,3}",
-    "property": "P3746",
-    "property.label": "Wildflowers of Israel ID"
+    "prefix": "P3746"
   },
   "P3841": {
     "database": "Q17027854",
@@ -653,9 +657,9 @@
     "database.miriam": "hp",
     "format": "https://hpo.jax.org/app/browse/term/$1",
     "homepage": "http://human-phenotype-ontology.github.io/about.html",
+    "name": "Human Phenotype Ontology ID",
     "pattern": "HP:[0-9]{7}",
-    "property": "P3841",
-    "property.label": "Human Phenotype Ontology ID"
+    "prefix": "P3841"
   },
   "P3852": {
     "database": "Q3074571",
@@ -664,9 +668,10 @@
     "database.miriam": "flybase",
     "format": "http://flybase.org/reports/$1",
     "homepage": "http://flybase.org/",
+    "miriam": "fb",
+    "name": "FlyBase Gene ID",
     "pattern": "FBgn\\d{7}",
-    "property": "P3852",
-    "property.label": "FlyBase Gene ID"
+    "prefix": "P3852"
   },
   "P3853": {
     "database": "Q7295410",
@@ -675,8 +680,8 @@
     "database.miriam": "rgd",
     "format": "http://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1",
     "homepage": "http://rgd.mcw.edu/",
-    "property": "P3853",
-    "property.label": "Rat Genome Database ID"
+    "name": "Rat Genome Database ID",
+    "prefix": "P3853"
   },
   "P3870": {
     "database": "Q29128476",
@@ -684,8 +689,8 @@
     "database.label": "Zebrafish Model Organism Database",
     "format": "https://zfin.org/$1",
     "homepage": "http://zfin.org",
-    "property": "P3870",
-    "property.label": "ZFIN Gene ID"
+    "name": "ZFIN Gene ID",
+    "prefix": "P3870"
   },
   "P3890": {
     "database": "Q24174701",
@@ -693,9 +698,9 @@
     "database.label": "MetaboLights",
     "database.miriam": "metabolights",
     "format": "http://www.ebi.ac.uk/metabolights/$1",
+    "name": "MetaboLights Compound ID",
     "pattern": "MTBLC\\d+",
-    "property": "P3890",
-    "property.label": "MetaboLights Compound ID"
+    "prefix": "P3890"
   },
   "P3937": {
     "database": "Q2134522",
@@ -704,8 +709,8 @@
     "database.miriam": "reactome",
     "format": "http://identifiers.org/reactome:$1",
     "homepage": "http://www.reactome.org/",
-    "property": "P3937",
-    "property.label": "Reactome ID"
+    "name": "Reactome ID",
+    "prefix": "P3937"
   },
   "P4018": {
     "database": "Q3519804",
@@ -713,8 +718,8 @@
     "database.label": "The Arabidopsis Information Resource",
     "format": "https://www.arabidopsis.org/servlets/TairObject?accession=$1",
     "homepage": "https://www.arabidopsis.org",
-    "property": "P4018",
-    "property.label": "The Arabidopsis Information Resource Accession"
+    "name": "The Arabidopsis Information Resource Accession",
+    "prefix": "P4018"
   },
   "P4024": {
     "database": "Q2850008",
@@ -723,8 +728,8 @@
     "database.miriam": "adw",
     "format": "https://animaldiversity.org/accounts/$1/",
     "homepage": "http://animaldiversity.org",
-    "property": "P4024",
-    "property.label": "ADW taxon ID"
+    "name": "ADW taxon ID",
+    "prefix": "P4024"
   },
   "P4081": {
     "database": "Q172266",
@@ -732,9 +737,9 @@
     "database.label": "Biodiversity Heritage Library",
     "format": "http://www.biodiversitylibrary.org/creator/$1",
     "homepage": "http://www.biodiversitylibrary.org/",
+    "name": "BHL creator ID",
     "pattern": "[1-9]\\d*",
-    "property": "P4081",
-    "property.label": "BHL creator ID"
+    "prefix": "P4081"
   },
   "P4122": {
     "database": "Q59786289",
@@ -742,9 +747,9 @@
     "database.label": "Palynological Database",
     "format": "https://www.paldat.org/pub/$1",
     "homepage": "https://www.paldat.org/",
+    "name": "PalDat plant ID",
     "pattern": "[A-Z][a-z]*\\__?[a-z-]+",
-    "property": "P4122",
-    "property.label": "PalDat plant ID"
+    "prefix": "P4122"
   },
   "P4125": {
     "database": "Q59801025",
@@ -752,9 +757,9 @@
     "database.label": "Titan",
     "format": "http://titan.gbif.fr/sel_genann1.php?numero=$1",
     "homepage": "http://titan.gbif.fr/",
+    "name": "Titan ID",
     "pattern": "\\d+",
-    "property": "P4125",
-    "property.label": "Titan ID"
+    "prefix": "P4125"
   },
   "P4168": {
     "database": "Q1653430",
@@ -762,18 +767,18 @@
     "database.label": "Immune Epitope Database and Analysis Resource",
     "format": "http://www.iedb.org/epitope/$1",
     "homepage": "http://www.iedb.org/home_v3.php",
+    "name": "IEDB Epitope ID",
     "pattern": "[1-9]\\d*",
-    "property": "P4168",
-    "property.label": "IEDB Epitope ID"
+    "prefix": "P4168"
   },
   "P4194": {
     "database": "Q5020710",
     "database.homepage": "http://www.cnps.org",
     "database.label": "California Native Plant Society",
     "format": "http://www.rareplants.cnps.org/detail/$1.html",
+    "name": "CNPS ID",
     "pattern": "[1-9]\\d*",
-    "property": "P4194",
-    "property.label": "CNPS ID"
+    "prefix": "P4194"
   },
   "P4301": {
     "database": "Q246234",
@@ -781,18 +786,18 @@
     "database.label": "Plants for a Future",
     "format": "http://www.pfaf.org/user/Plant.aspx?LatinName=$1",
     "homepage": "http://www.pfaf.org/",
+    "name": "PfaF ID",
     "pattern": "([A-Z][a-z]* )([a-z]* ?)*",
-    "property": "P4301",
-    "property.label": "PfaF ID"
+    "prefix": "P4301"
   },
   "P4327": {
     "database": "Q172266",
     "database.homepage": "https://www.biodiversitylibrary.org/",
     "database.label": "Biodiversity Heritage Library",
     "format": "http://www.biodiversitylibrary.org/bibliography/$1",
+    "name": "BHL bibliography ID",
     "pattern": "[1-9]\\d*",
-    "property": "P4327",
-    "property.label": "BHL bibliography ID"
+    "prefix": "P4327"
   },
   "P4355": {
     "database": "Q899676",
@@ -800,56 +805,57 @@
     "database.label": "PROSITE",
     "database.miriam": "prosite",
     "format": "http://prosite.expasy.org/$1",
+    "name": "PROSITE documentation ID",
     "pattern": "PDOC\\d{5}",
-    "property": "P4355",
-    "property.label": "PROSITE documentation ID"
+    "prefix": "P4355"
   },
   "P4526": {
     "database": "Q4743180",
     "database.homepage": "http://www.aba.org/",
     "database.label": "American Birding Association",
     "homepage": "http://jaxbirding.com/ABA-sixlettercode.php",
+    "name": "ABA bird ID",
     "pattern": "[a-z]{4,6}",
-    "property": "P4526",
-    "property.label": "ABA bird ID"
+    "prefix": "P4526"
   },
   "P4567": {
     "database": "Q2925763",
     "database.homepage": "http://www.bto.org",
     "database.label": "British Trust for Ornithology",
     "homepage": "https://www.bto.org/about-birds/birdfacts/british-list",
+    "name": "BTO five-letter code",
     "pattern": "[A-Z\\.]{5}",
-    "property": "P4567",
-    "property.label": "BTO five-letter code"
+    "prefix": "P4567"
   },
   "P4616": {
     "database": "Q905695",
     "database.homepage": "https://www.uniprot.org/",
     "database.label": "UniProt",
+    "database.miriam": "uniprot",
     "format": "https://www.uniprot.org/journals/$1",
     "format.rdf": "http://purl.uniprot.org/journals/$1",
     "homepage": "https://www.uniprot.org/journals",
+    "name": "UniProt journal ID",
     "pattern": "\\d{4}",
-    "property": "P4616",
-    "property.label": "UniProt journal ID"
+    "prefix": "P4616"
   },
   "P4630": {
     "database": "Q3036834",
     "database.homepage": "http://doris.ffessm.fr/accueil.asp",
     "database.label": "Donn\u00e9es d'observations pour la reconnaissance et l'identification de la faune et de la flore subaquatiques",
     "format": "http://doris.ffessm.fr/ref/specie/$1",
+    "name": "DORIS ID",
     "pattern": "[1-9]\\d*",
-    "property": "P4630",
-    "property.label": "DORIS ID"
+    "prefix": "P4630"
   },
   "P4664": {
     "database": "Q45892814",
     "database.label": "Wiki Aves",
     "format": "https://www.wikiaves.com.br/$1",
     "homepage": "http://www.wikiaves.com.br/",
+    "name": "Wiki Aves bird ID",
     "pattern": "[^?\\s\\/]+",
-    "property": "P4664",
-    "property.label": "Wiki Aves bird ID"
+    "prefix": "P4664"
   },
   "P4715": {
     "database": "Q46968363",
@@ -857,8 +863,8 @@
     "database.label": "Guide to North American Birds",
     "format": "https://www.audubon.org/field-guide/bird/$1",
     "homepage": "http://www.audubon.org/bird-guide",
-    "property": "P4715",
-    "property.label": "Guide to North American Birds ID"
+    "name": "Guide to North American Birds ID",
+    "prefix": "P4715"
   },
   "P4728": {
     "database": "Q3551271",
@@ -866,18 +872,18 @@
     "database.label": "Universal Biological Indexer and Organizer",
     "format": "http://www.ubio.org/browser/details.php?namebankID=$1",
     "homepage": "http://www.ubio.org/index.php?pagename=namebank",
+    "name": "uBio ID",
     "pattern": "[1-9]\\d*",
-    "property": "P4728",
-    "property.label": "uBio ID"
+    "prefix": "P4728"
   },
   "P4753": {
     "database": "Q47129765",
     "database.homepage": "http://ecocrop.fao.org/ecocrop/srv/en/home",
     "database.label": "Ecocrop",
     "format": "http://ecocrop.fao.org/ecocrop/srv/en/cropView?id=$1",
+    "name": "Ecocrop ID",
     "pattern": "\\d+",
-    "property": "P4753",
-    "property.label": "Ecocrop ID"
+    "prefix": "P4753"
   },
   "P4758": {
     "database": "Q59786087",
@@ -885,19 +891,20 @@
     "database.label": "Moths of North America",
     "format": "http://mothphotographersgroup.msstate.edu/species.php?hodges=$1",
     "homepage": "http://mothphotographersgroup.msstate.edu/CheckList.shtml",
+    "name": "MONA ID",
     "pattern": "\\d{2,5}(.\\d)?",
-    "property": "P4758",
-    "property.label": "MONA ID"
+    "prefix": "P4758"
   },
   "P4793": {
     "database": "Q16335166",
     "database.homepage": "http://www.ebi.ac.uk/miriam/main/mdb?section=intro",
     "database.label": "Identifiers.org Registry",
     "database.miriam": "mir",
-    "format": "https://identifiers.org/$1",
+    "format": "https://registry.identifiers.org/registry/$1",
+    "miriam": "mir",
+    "name": "identifiers.org prefix",
     "pattern": "[A-Za-z][0-9A-Za-z_]+",
-    "property": "P4793",
-    "property.label": "identifiers.org prefix"
+    "prefix": "P4793"
   },
   "P4855": {
     "database": "Q49417701",
@@ -905,9 +912,9 @@
     "database.label": "Phasmida Species File",
     "format": "http://phasmida.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1",
     "homepage": "http://phasmida.speciesfile.org/HomePage/Phasmida/HomePage.aspx",
+    "name": "Phasmida Species File ID",
     "pattern": "[1-9]\\d*",
-    "property": "P4855",
-    "property.label": "Phasmida Species File ID"
+    "prefix": "P4855"
   },
   "P4866": {
     "database": "Q7301611",
@@ -915,16 +922,16 @@
     "database.label": "REBASE",
     "database.miriam": "rebase",
     "format": "http://rebase.neb.com/cgi-bin/reb_get.pl?enzname=$1",
+    "name": "REBASE Enzyme Number",
     "pattern": "[1-9]\\d*",
-    "property": "P4866",
-    "property.label": "REBASE Enzyme Number"
+    "prefix": "P4866"
   },
   "P4902": {
     "database": "Q5152005",
     "database.homepage": "http://www.conabio.gob.mx/",
     "database.label": "National Commission for the Knowledge and Use of Biodiversity",
-    "property": "P4902",
-    "property.label": "CONABIO ID"
+    "name": "CONABIO ID",
+    "prefix": "P4902"
   },
   "P4904": {
     "database": "Q2578548",
@@ -932,9 +939,9 @@
     "database.label": "Tropicos",
     "format": "http://legacy.tropicos.org/Publication/$1",
     "homepage": "http://www.tropicos.org/ReferenceSearch.aspx",
+    "name": "Tropicos publication ID",
     "pattern": "[1-9]\\d*",
-    "property": "P4904",
-    "property.label": "Tropicos publication ID"
+    "prefix": "P4904"
   },
   "P492": {
     "database": "Q241953",
@@ -942,9 +949,9 @@
     "database.label": "Online Mendelian Inheritance in Man",
     "database.miriam": "omim",
     "format": "https://omim.org/entry/$1",
+    "name": "OMIM ID",
     "pattern": "\\d{6}",
-    "property": "P492",
-    "property.label": "OMIM ID"
+    "prefix": "P492"
   },
   "P4926": {
     "database": "Q55118584",
@@ -952,9 +959,9 @@
     "database.label": "Protein Ontology",
     "format": "https://proconsortium.org/app/entry/$1/",
     "homepage": "https://pir.georgetown.edu/pro/pro.shtml",
+    "name": "PRotein Ontology ID",
     "pattern": "PR:\\d*",
-    "property": "P4926",
-    "property.label": "PRotein Ontology ID"
+    "prefix": "P4926"
   },
   "P5003": {
     "database": "Q59784234",
@@ -962,18 +969,18 @@
     "database.label": "Amphibians of India",
     "format": "http://www.indianamphibians.org/#!/sp/$1",
     "homepage": "http://www.indianamphibians.org/",
+    "name": "Amphibians of India ID",
     "pattern": "[0-9]+",
-    "property": "P5003",
-    "property.label": "Amphibians of India ID"
+    "prefix": "P5003"
   },
   "P5036": {
     "database": "Q47263042",
     "database.homepage": "https://amphibiaweb.org/",
     "database.label": "AmphibiaWeb",
     "format": "https://amphibiaweb.org/species/$1",
+    "name": "AmphibiaWeb Species ID",
     "pattern": "[1-9]\\d*",
-    "property": "P5036",
-    "property.label": "AmphibiaWeb Species ID"
+    "prefix": "P5036"
   },
   "P5037": {
     "database": "Q47542613",
@@ -981,9 +988,9 @@
     "database.label": "Plants of the World Online",
     "format": "http://www.plantsoftheworldonline.org/taxon/$1",
     "format.rdf": "http://lsid.tdwg.org/$1",
+    "name": "Plants of the World online ID",
     "pattern": "urn:lsid:ipni\\.org:names:[1-9]\\d{0,7}-[123]",
-    "property": "P5037",
-    "property.label": "Plants of the World online ID"
+    "prefix": "P5037"
   },
   "P5179": {
     "database": "Q53388063",
@@ -991,9 +998,9 @@
     "database.label": "FloraCatalana",
     "format": "http://www.floracatalana.cat/flora/vasculars/taxons/$1",
     "homepage": "http://floracatalana.cat/flora/vasculars",
+    "name": "FloraCatalana ID",
     "pattern": "VTax[1-9]\\d{0,3}",
-    "property": "P5179",
-    "property.label": "FloraCatalana ID"
+    "prefix": "P5179"
   },
   "P5200": {
     "database": "Q5322614",
@@ -1001,9 +1008,9 @@
     "database.label": "eBird",
     "format": "https://ebird.org/hotspot/$1",
     "homepage": "https://ebird.org/hotspots",
+    "name": "eBird hotspot ID",
     "pattern": "L\\d{6,7}",
-    "property": "P5200",
-    "property.label": "eBird hotspot ID"
+    "prefix": "P5200"
   },
   "P5211": {
     "database": "Q59798923",
@@ -1011,9 +1018,9 @@
     "database.label": "GONIAT",
     "format": "http://www.goniat.org/showAut.html?AutId=$1",
     "homepage": "http://www.goniat.org/",
+    "name": "GONIAT author ID",
     "pattern": "aut[0-9]{29}",
-    "property": "P5211",
-    "property.label": "GONIAT author ID"
+    "prefix": "P5211"
   },
   "P5214": {
     "database": "Q59798923",
@@ -1021,9 +1028,9 @@
     "database.label": "GONIAT",
     "format": "http://www.goniat.org/showLit.html?LitId=$1",
     "homepage": "http://www.goniat.org/",
+    "name": "GONIAT paper ID",
     "pattern": "lit[0-9]{29}",
-    "property": "P5214",
-    "property.label": "GONIAT paper ID"
+    "prefix": "P5214"
   },
   "P5215": {
     "database": "Q59798923",
@@ -1031,9 +1038,9 @@
     "database.label": "GONIAT",
     "format": "http://www.goniat.org/showLocGeo.html?GeoId=$1",
     "homepage": "http://www.goniat.org/",
+    "name": "GONIAT place ID",
     "pattern": "geo[0-9]{29}",
-    "property": "P5215",
-    "property.label": "GONIAT place ID"
+    "prefix": "P5215"
   },
   "P5216": {
     "database": "Q59798923",
@@ -1041,9 +1048,9 @@
     "database.label": "GONIAT",
     "format": "http://www.goniat.org/showTax.html?TaxId=$1",
     "homepage": "http://www.goniat.org/",
+    "name": "GONIAT taxon ID",
     "pattern": "tax[0-9]{29}",
-    "property": "P5216",
-    "property.label": "GONIAT taxon ID"
+    "prefix": "P5216"
   },
   "P5221": {
     "database": "Q2300489",
@@ -1051,9 +1058,9 @@
     "database.label": "Tree of Life Web Project",
     "format": "http://tolweb.org/$1",
     "homepage": "https://tolweb.org",
+    "name": "Tree of Life Web Project ID",
     "pattern": "[1-9]\\d*",
-    "property": "P5221",
-    "property.label": "Tree of Life Web Project ID"
+    "prefix": "P5221"
   },
   "P5257": {
     "database": "Q210108",
@@ -1061,9 +1068,9 @@
     "database.label": "BirdLife International",
     "format": "http://datazone.birdlife.org/species/factsheet/$1",
     "homepage": "http://datazone.birdlife.org",
+    "name": "BirdLife taxon ID",
     "pattern": "[1-9]\\d{7,8}",
-    "property": "P5257",
-    "property.label": "BirdLife taxon ID"
+    "prefix": "P5257"
   },
   "P5299": {
     "database": "Q2507304",
@@ -1072,9 +1079,9 @@
     "database.miriam": "antweb",
     "format": "https://www.antweb.org/description.do?taxonName=$1",
     "homepage": "https://www.antweb.org",
+    "name": "AntWeb ID",
     "pattern": "[A-Z][a-z]+( [a-z]+){0,2}",
-    "property": "P5299",
-    "property.label": "AntWeb ID"
+    "prefix": "P5299"
   },
   "P5354": {
     "database": "Q2844175",
@@ -1082,9 +1089,9 @@
     "database.label": "Amphibian Species of the World",
     "format": "https://amphibiansoftheworld.amnh.org/Amphibia/$1",
     "homepage": "http://research.amnh.org/vz/herpetology/amphibia/index.php",
+    "name": "Amphibian Species of the World ID",
     "pattern": "[a-zA-Z]+(\\/[a-zA-Z-]+){0,5}",
-    "property": "P5354",
-    "property.label": "Amphibian Species of the World ID"
+    "prefix": "P5354"
   },
   "P5458": {
     "database": "Q17091219",
@@ -1092,9 +1099,9 @@
     "database.label": "IUPHAR/BPS Guide to PHARMACOLOGY",
     "format": "http://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=$1",
     "homepage": "http://www.guidetopharmacology.org/GRAC/",
+    "name": "Guide to Pharmacology Target ID",
     "pattern": "[1-9]\\d{0,3}",
-    "property": "P5458",
-    "property.label": "Guide to Pharmacology Target ID"
+    "prefix": "P5458"
   },
   "P5501": {
     "database": "Q4836352",
@@ -1102,27 +1109,27 @@
     "database.miriam": "bto",
     "format": "https://www.brenda-enzymes.org/ontology.php?ontology_id=3&id_go=$1",
     "homepage": "https://www.brenda-enzymes.org/ontology.php?ontology_id=3",
+    "name": "Brenda Tissue Ontology ID",
     "pattern": "BTO:\\d+",
-    "property": "P5501",
-    "property.label": "Brenda Tissue Ontology ID"
+    "prefix": "P5501"
   },
   "P5626": {
     "database": "Q3108953",
     "database.homepage": "http://www.iucngisd.org/gisd/",
     "database.label": "Global Invasive Species Database",
     "format": "http://www.iucngisd.org/gisd/species.php?sc=$1",
+    "name": "Global Invasive Species Database ID",
     "pattern": "[1-9]\\d*",
-    "property": "P5626",
-    "property.label": "Global Invasive Species Database ID"
+    "prefix": "P5626"
   },
   "P5862": {
     "database": "Q59799645",
     "database.homepage": "https://projects.biodiversity.be/lepidoptera",
     "database.label": "Catalogue of the Lepidoptera of Belgium",
     "format": "http://projects.biodiversity.be/lepidoptera/species/$1/",
+    "name": "Lepidoptera of Belgium ID",
     "pattern": "[1-9]\\d*",
-    "property": "P5862",
-    "property.label": "Lepidoptera of Belgium ID"
+    "prefix": "P5862"
   },
   "P592": {
     "database": "Q6120337",
@@ -1131,9 +1138,9 @@
     "format": "https://www.ebi.ac.uk/chembl/compound_report_card/$1/",
     "format.rdf": "http://rdf.ebi.ac.uk/resource/chembl/molecule/$1",
     "homepage": "https://www.ebi.ac.uk/chembl",
+    "name": "ChEMBL ID",
     "pattern": "CHEMBL\\d+",
-    "property": "P592",
-    "property.label": "ChEMBL ID"
+    "prefix": "P592"
   },
   "P593": {
     "database": "Q468215",
@@ -1142,9 +1149,9 @@
     "database.miriam": "homologene",
     "format": "https://www.ncbi.nlm.nih.gov/homologene?term=$1",
     "homepage": "http://www.ncbi.nlm.nih.gov/homologene",
+    "name": "HomoloGene ID",
     "pattern": "[1-9]\\d{0,5}",
-    "property": "P593",
-    "property.label": "HomoloGene ID"
+    "prefix": "P593"
   },
   "P594": {
     "database": "Q1344256",
@@ -1154,9 +1161,9 @@
     "format": "https://identifiers.org/ensembl/$1",
     "format.rdf": "http://rdf.ebi.ac.uk/resource/ensembl/$1",
     "homepage": "https://www.ensembl.org",
+    "name": "Ensembl gene ID",
     "pattern": "(ENS(|MUS|RNO)G\\d{11})|(Y[A-P][LR]\\d{3}[CW](-[A-G])?)",
-    "property": "P594",
-    "property.label": "Ensembl gene ID"
+    "prefix": "P594"
   },
   "P5945": {
     "database": "Q58380943",
@@ -1164,9 +1171,9 @@
     "database.label": "VicFlora",
     "format": "https://vicflora.rbg.vic.gov.au/flora/taxon/$1",
     "homepage": "https://vicflora.rbg.vic.gov.au/flora/search?q=*:*",
+    "name": "VicFlora ID",
     "pattern": "[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}",
-    "property": "P5945",
-    "property.label": "VicFlora ID"
+    "prefix": "P5945"
   },
   "P595": {
     "database": "Q17091219",
@@ -1174,9 +1181,9 @@
     "database.label": "IUPHAR/BPS Guide to PHARMACOLOGY",
     "format": "https://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=$1",
     "homepage": "https://www.guidetopharmacology.org/",
+    "name": "Guide to Pharmacology Ligand ID",
     "pattern": "\\d{1,4}",
-    "property": "P595",
-    "property.label": "Guide to Pharmacology Ligand ID"
+    "prefix": "P595"
   },
   "P5953": {
     "database": "Q58881929",
@@ -1184,9 +1191,9 @@
     "database.label": "NT Flora",
     "format": "http://eflora.nt.gov.au/factsheet?id=$1",
     "homepage": "http://eflora.nt.gov.au/search?",
+    "name": "NT Flora ID",
     "pattern": "[1-9]\\d*",
-    "property": "P5953",
-    "property.label": "NT Flora ID"
+    "prefix": "P5953"
   },
   "P6003": {
     "database": "Q3196675",
@@ -1194,9 +1201,9 @@
     "database.label": "Center for Biological Diversity",
     "format": "https://www.biologicaldiversity.org/species/$1/index.html",
     "homepage": "https://www.biologicaldiversity.org/species/",
+    "name": "Center for Biological Diversity ID",
     "pattern": "[a-z]+\\/[a-zA-Z_\\-]+",
-    "property": "P6003",
-    "property.label": "Center for Biological Diversity ID"
+    "prefix": "P6003"
   },
   "P6018": {
     "database": "Q7439813",
@@ -1204,9 +1211,9 @@
     "database.label": "SeaLifeBase",
     "format": "https://www.sealifebase.ca/Summary/SpeciesSummary.php?id=$1",
     "homepage": "https://www.sealifebase.ca/search.php",
+    "name": "SeaLifeBase ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6018",
-    "property.label": "SeaLifeBase ID"
+    "prefix": "P6018"
   },
   "P6019": {
     "database": "Q57631366",
@@ -1214,9 +1221,9 @@
     "database.label": "Species at risk public registry",
     "format": "https://wildlife-species.canada.ca/species-risk-registry/species/speciesDetails_e.cfm?sid=$1",
     "homepage": "https://wildlife-species.canada.ca/species-risk-registry/sar/index/default_e.cfm",
+    "name": "Species at Risk public registry ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6019",
-    "property.label": "Species at Risk public registry ID"
+    "prefix": "P6019"
   },
   "P6021": {
     "database": "Q57624315",
@@ -1224,18 +1231,18 @@
     "database.label": "Hymenoptera Online",
     "format": "https://hol.osu.edu/index.html?id=$1",
     "homepage": "https://hol.osu.edu/",
+    "name": "Hymenoptera Online taxon ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6021",
-    "property.label": "Hymenoptera Online taxon ID"
+    "prefix": "P6021"
   },
   "P6025": {
     "database": "Q3349966",
     "database.label": "Oiseaux.net",
     "format": "http://www.oiseaux.net/oiseaux/$1.html",
     "homepage": "http://www.oiseaux.net/oiseaux/",
+    "name": "Oiseaux.net ID",
     "pattern": "[a-z]+(\\.[a-z]+)*",
-    "property": "P6025",
-    "property.label": "Oiseaux.net ID"
+    "prefix": "P6025"
   },
   "P6030": {
     "database": "Q57643800",
@@ -1243,9 +1250,9 @@
     "database.label": "Environmental Conservation Online System",
     "format": "https://ecos.fws.gov/ecp0/profile/speciesProfile?sId=$1",
     "homepage": "https://ecos.fws.gov/ecp/",
+    "name": "ECOS ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6030",
-    "property.label": "ECOS ID"
+    "prefix": "P6030"
   },
   "P6033": {
     "database": "Q125371",
@@ -1253,8 +1260,8 @@
     "database.label": "Bonn Convention",
     "format": "https://www.cms.int/en/species/$1",
     "homepage": "https://www.cms.int/en/species",
-    "property": "P6033",
-    "property.label": "CMS ID"
+    "name": "CMS ID",
+    "prefix": "P6033"
   },
   "P6034": {
     "database": "Q1852803",
@@ -1262,26 +1269,26 @@
     "database.label": "Missouri Botanical Garden",
     "format": "http://www.missouribotanicalgarden.org/PlantFinder/PlantFinderDetails.aspx?taxonid=$1",
     "homepage": "http://www.missouribotanicalgarden.org/plantfinder/plantfindersearch.aspx",
+    "name": "Plant Finder ID",
     "pattern": "[1-9]\\d{5}",
-    "property": "P6034",
-    "property.label": "Plant Finder ID"
+    "prefix": "P6034"
   },
   "P6035": {
     "database": "Q59929455",
     "database.label": "C. V. Starr Virtual Herbarium",
     "format": "http://sycamore.nybg.org/science/vh/taxon.php?irn=$1",
     "homepage": "http://sycamore.nybg.org/science/vh/",
+    "name": "C.V. Starr Virtual Herbarium ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6035",
-    "property.label": "C.V. Starr Virtual Herbarium ID"
+    "prefix": "P6035"
   },
   "P6036": {
     "database": "Q57669159",
     "database.label": "Wild Herps",
     "format": "http://www.wildherps.com/species/$1.html",
     "homepage": "http://www.wildherps.com/index.html",
-    "property": "P6036",
-    "property.label": "Wild Herps ID"
+    "name": "Wild Herps ID",
+    "prefix": "P6036"
   },
   "P6039": {
     "database": "Q2784883",
@@ -1289,9 +1296,9 @@
     "database.label": "Australian Faunal Directory",
     "format": "https://biodiversity.org.au/afd/taxa/$1",
     "homepage": "https://biodiversity.org.au/afd/search/names",
+    "name": "Australian Faunal Directory ID",
     "pattern": "[a-zA-Z]*([;_ +][a-zA-Z]*)*|\\d*",
-    "property": "P6039",
-    "property.label": "Australian Faunal Directory ID"
+    "prefix": "P6039"
   },
   "P6040": {
     "database": "Q4915823",
@@ -1299,9 +1306,9 @@
     "database.label": "BirdLife Australia",
     "format": "http://birdlife.org.au/bird-profile/$1",
     "homepage": "http://birdlife.org.au/all-about-birds/australias-birds/find-a-bird/",
+    "name": "BirdLife Australia ID",
     "pattern": "[a-z]+(\\-[a-z]+)*",
-    "property": "P6040",
-    "property.label": "BirdLife Australia ID"
+    "prefix": "P6040"
   },
   "P6042": {
     "database": "Q57687518",
@@ -1309,9 +1316,9 @@
     "database.label": "Echinoid Directory",
     "format": "http://www.nhm.ac.uk/our-science/data/echinoid-directory/taxa/taxon.jsp?id=$1",
     "homepage": "http://www.nhm.ac.uk/our-science/data/echinoid-directory/taxa/search.jsp?search=",
+    "name": "Echinoid Directory ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6042",
-    "property.label": "Echinoid Directory ID"
+    "prefix": "P6042"
   },
   "P6043": {
     "database": "Q57697094",
@@ -1319,9 +1326,9 @@
     "database.label": "Les Esp\u00e8ces exotiques envahissantes en outre-mer",
     "format": "https://especes-envahissantes-outremer.fr/especes_envahissante/$1/",
     "homepage": "https://especes-envahissantes-outremer.fr/base-especes-exotiques-envahissantes/",
+    "name": "Esp\u00e8ces Envahissantes Outre-mer ID",
     "pattern": "[a-z]+(\\-[a-z]+)*",
-    "property": "P6043",
-    "property.label": "Esp\u00e8ces Envahissantes Outre-mer ID"
+    "prefix": "P6043"
   },
   "P6044": {
     "database": "Q57692890",
@@ -1329,8 +1336,8 @@
     "database.label": "FEIS",
     "format": "https://www.fs.fed.us/database/feis/$1/all.html",
     "homepage": "https://www.feis-crs.org/feis/faces/index.xhtml",
-    "property": "P6044",
-    "property.label": "FEIS ID"
+    "name": "FEIS ID",
+    "prefix": "P6044"
   },
   "P6047": {
     "database": "Q3338243",
@@ -1338,8 +1345,8 @@
     "database.label": "Neotropical Birds Online",
     "format": "https://neotropical.birds.cornell.edu/Species-Account/nb/species/$1",
     "homepage": "https://neotropical.birds.cornell.edu/Species-Account/nb/species",
-    "property": "P6047",
-    "property.label": "Neotropical Birds ID"
+    "name": "Neotropical Birds ID",
+    "prefix": "P6047"
   },
   "P6048": {
     "database": "Q57694376",
@@ -1347,9 +1354,9 @@
     "database.label": "New Zealand Birds Online",
     "format": "http://nzbirdsonline.org.nz/species/$1",
     "homepage": "http://nzbirdsonline.org.nz/name-search?title=&field_other_names_value=&field_search_scientific_name_value=",
+    "name": "New Zealand Birds Online ID",
     "pattern": "[a-z]+(\\-[a-z]+)*",
-    "property": "P6048",
-    "property.label": "New Zealand Birds Online ID"
+    "prefix": "P6048"
   },
   "P6049": {
     "database": "Q57696082",
@@ -1357,9 +1364,9 @@
     "database.label": "NOAA Fisheries Species Directory",
     "format": "https://www.fisheries.noaa.gov/species/$1",
     "homepage": "https://www.fisheries.noaa.gov/species-directory",
+    "name": "NOAA Fisheries Species Directory ID",
     "pattern": "[a-z]+(\\-[a-z]+)*",
-    "property": "P6049",
-    "property.label": "NOAA Fisheries Species Directory ID"
+    "prefix": "P6049"
   },
   "P6050": {
     "database": "Q57673331",
@@ -1367,18 +1374,18 @@
     "database.label": "Orthoptera Species File",
     "format": "http://orthoptera.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1",
     "homepage": "http://orthoptera.speciesfile.org/Common/editTaxon/SearchForTaxon.aspx",
+    "name": "OSF Online ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6050",
-    "property.label": "OSF Online ID"
+    "prefix": "P6050"
   },
   "P6051": {
     "database": "Q57672749",
     "database.label": "Sea Slug Forum",
     "format": "http://www.seaslugforum.net/find/$1",
     "homepage": "http://www.seaslugforum.net/species.htm",
+    "name": "Sea Slug Forum ID",
     "pattern": "[a-z]+",
-    "property": "P6051",
-    "property.label": "Sea Slug Forum ID"
+    "prefix": "P6051"
   },
   "P6052": {
     "database": "Q57715163",
@@ -1386,9 +1393,9 @@
     "database.label": "Cockroach Species File",
     "format": "http://cockroach.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1",
     "homepage": "http://cockroach.speciesfile.org/Common/editTaxon/SearchForTaxon.aspx",
+    "name": "Cockroach Species File ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6052",
-    "property.label": "Cockroach Species File ID"
+    "prefix": "P6052"
   },
   "P6053": {
     "database": "Q57714687",
@@ -1396,9 +1403,9 @@
     "database.label": "Coreoidea Species File",
     "format": "http://coreoidea.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1",
     "homepage": "http://coreoidea.speciesfile.org/Common/editTaxon/SearchForTaxon.aspx",
+    "name": "Coreoidea Species File ID",
     "pattern": "[1-9]\\d{6}",
-    "property": "P6053",
-    "property.label": "Coreoidea Species File ID"
+    "prefix": "P6053"
   },
   "P6054": {
     "database": "Q57713732",
@@ -1406,9 +1413,9 @@
     "database.label": "Groupe de travail Invasions biologiques en milieux aquatiques",
     "format": "http://www.gt-ibma.eu/espece/$1/",
     "homepage": "http://www.gt-ibma.eu/?s=&post_type=product",
+    "name": "GT IBMA ID",
     "pattern": "[a-z]+(\\-[a-z]+)*",
-    "property": "P6054",
-    "property.label": "GT IBMA ID"
+    "prefix": "P6054"
   },
   "P6055": {
     "database": "Q57714294",
@@ -1416,9 +1423,9 @@
     "database.label": "Mantodea Species File",
     "format": "http://mantodea.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1",
     "homepage": "http://mantodea.speciesfile.org/Common/editTaxon/SearchForTaxon.aspx",
+    "name": "Mantodea Species File ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6055",
-    "property.label": "Mantodea Species File ID"
+    "prefix": "P6055"
   },
   "P6056": {
     "database": "Q57715373",
@@ -1426,9 +1433,9 @@
     "database.label": "Red List of South African Plants",
     "format": "http://redlist.sanbi.org/species.php?species=$1",
     "homepage": "http://redlist.sanbi.org/index.php",
+    "name": "Red List of South African Plants ID",
     "pattern": "[1-9]\\d*-[1-9]\\d*",
-    "property": "P6056",
-    "property.label": "Red List of South African Plants ID"
+    "prefix": "P6056"
   },
   "P6057": {
     "database": "Q57727030",
@@ -1436,9 +1443,9 @@
     "database.label": "Systematic Catalog of Culicidae",
     "format": "http://www.mosquitocatalog.org/taxon_descr.aspx?ID=$1",
     "homepage": "http://www.mosquitocatalog.org/default.aspx",
+    "name": "Systematic Catalog of Culicidae ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6057",
-    "property.label": "Systematic Catalog of Culicidae ID"
+    "prefix": "P6057"
   },
   "P6092": {
     "database": "Q57988401",
@@ -1446,8 +1453,8 @@
     "database.label": "Map of Life",
     "format": "https://mol.org/species/$1",
     "homepage": "https://mol.org",
-    "property": "P6092",
-    "property.label": "Map of Life ID"
+    "name": "Map of Life ID",
+    "prefix": "P6092"
   },
   "P6093": {
     "database": "Q58004504",
@@ -1455,9 +1462,9 @@
     "database.label": "AfroMoths",
     "format": "http://www.afromoths.net/species_by_code/$1",
     "homepage": "http://www.afromoths.net/species/queryAjax",
+    "name": "AfroMoths ID",
     "pattern": "[A-Z0-9]{8}",
-    "property": "P6093",
-    "property.label": "AfroMoths ID"
+    "prefix": "P6093"
   },
   "P6094": {
     "database": "Q20073251",
@@ -1465,9 +1472,9 @@
     "database.label": "FloraWeb",
     "format": "http://www.floraweb.de/pflanzenarten/artenhome.xsql?suchnr=$1",
     "homepage": "http://www.floraweb.de/pflanzenarten/namenssuche.html",
+    "name": "FloraWeb ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6094",
-    "property.label": "FloraWeb ID"
+    "prefix": "P6094"
   },
   "P6096": {
     "database": "Q58011838",
@@ -1475,9 +1482,9 @@
     "database.label": "Fulgoromorpha Lists On the Web",
     "format": "https://www.hemiptera-databases.org/flow/?page=explorer&db=flow&lang=en&card=taxon&rank=species&id=$1",
     "homepage": "https://www.hemiptera-databases.org/flow/?db=flow&page=explorer&card=speciess&lang=en",
+    "name": "FLOW ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6096",
-    "property.label": "FLOW ID"
+    "prefix": "P6096"
   },
   "P6098": {
     "database": "Q58006102",
@@ -1485,9 +1492,9 @@
     "database.label": "Info Flora",
     "format": "https://www.infoflora.ch/en/flora/$1.html",
     "homepage": "https://www.infoflora.ch/en/#",
+    "name": "Info Flora ID",
     "pattern": "[a-z]+(\\-[a-z]+)*",
-    "property": "P6098",
-    "property.label": "Info Flora ID"
+    "prefix": "P6098"
   },
   "P6101": {
     "database": "Q4377029",
@@ -1495,9 +1502,9 @@
     "database.label": "Mushroom Observer",
     "format": "https://mushroomobserver.org/name/show_name/$1",
     "homepage": "http://mushroomobserver.org",
+    "name": "Mushroom Observer ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6101",
-    "property.label": "Mushroom Observer ID"
+    "prefix": "P6101"
   },
   "P6103": {
     "database": "Q58068716",
@@ -1505,9 +1512,9 @@
     "database.label": "Michigan Flora",
     "format": "https://michiganflora.net/species.aspx?id=$1",
     "homepage": "https://michiganflora.net/search.aspx",
+    "name": "Michigan Flora ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6103",
-    "property.label": "Michigan Flora ID"
+    "prefix": "P6103"
   },
   "P6114": {
     "database": "Q58298971",
@@ -1515,9 +1522,9 @@
     "database.label": "Portal to the Flora of Italy",
     "format": "http://dryades.units.it/floritaly/index.php?procedure=taxon_page&tipo=all&id=$1",
     "homepage": "http://dryades.units.it/floritaly/index.php?procedure=simple_new&tipo=all",
+    "name": "Portal to the Flora of Italy ID",
     "pattern": "[1-9]\\d+",
-    "property": "P6114",
-    "property.label": "Portal to the Flora of Italy ID"
+    "prefix": "P6114"
   },
   "P6115": {
     "database": "Q58255160",
@@ -1525,9 +1532,9 @@
     "database.label": "The Digital Flora of Central Africa",
     "format": "http://db.plantentuinmeise.be/RESEARCH/DATABASES/FOCA/speciesdetails.php?refid=$1",
     "homepage": "http://db.plantentuinmeise.be/RESEARCH/DATABASES/FOCA/searchnamefoca.php",
+    "name": "Digital Flora of Central Africa ID",
     "pattern": "[1-9]\\d{5}",
-    "property": "P6115",
-    "property.label": "Digital Flora of Central Africa ID"
+    "prefix": "P6115"
   },
   "P6128": {
     "database": "Q58361748",
@@ -1535,9 +1542,9 @@
     "database.label": "Threatened Species Link",
     "format": "https://www.threatenedspecieslink.tas.gov.au/Pages/$1.aspx",
     "homepage": "https://www.threatenedspecieslink.tas.gov.au/Pages/SpeciesList.aspx",
+    "name": "Threatened Species Link ID",
     "pattern": "[A-Z][a-z]+(\\-\\(?[A-Za-z]+\\)?)*",
-    "property": "P6128",
-    "property.label": "Threatened Species Link ID"
+    "prefix": "P6128"
   },
   "P6137": {
     "database": "Q58411589",
@@ -1545,9 +1552,9 @@
     "database.label": "Alabama Plant Atlas",
     "format": "http://floraofalabama.org/Plant.aspx?id=$1",
     "homepage": "http://floraofalabama.org/Search.aspx",
+    "name": "APA ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6137",
-    "property.label": "APA ID"
+    "prefix": "P6137"
   },
   "P6139": {
     "database": "Q58430446",
@@ -1555,9 +1562,9 @@
     "database.label": "Virtual Guide to the Flora of Mongolia",
     "format": "https://floragreif.uni-greifswald.de/taxon/?taxon_id=$1",
     "homepage": "https://floragreif.uni-greifswald.de/taxon/?flora_search=Taxon&action=species",
+    "name": "Virtual Guide to the Flora of Mongolia ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6139",
-    "property.label": "Virtual Guide to the Flora of Mongolia ID"
+    "prefix": "P6139"
   },
   "P6142": {
     "database": "Q58466085",
@@ -1565,8 +1572,8 @@
     "database.label": "Netherlands species distributions",
     "format": "https://www.verspreidingsatlas.nl/$1",
     "homepage": "https://www.verspreidingsatlas.nl/",
-    "property": "P6142",
-    "property.label": "Verspreidingsatlas.nl ID"
+    "name": "Verspreidingsatlas.nl ID",
+    "prefix": "P6142"
   },
   "P6159": {
     "database": "Q58759647",
@@ -1574,9 +1581,9 @@
     "database.label": "Atlas of Florida Plants",
     "format": "http://florida.plantatlas.usf.edu/Plant.aspx?id=$1",
     "homepage": "http://florida.plantatlas.usf.edu/Search.aspx",
+    "name": "Atlas of Florida Plants ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6159",
-    "property.label": "Atlas of Florida Plants ID"
+    "prefix": "P6159"
   },
   "P6161": {
     "database": "Q58786944",
@@ -1584,9 +1591,9 @@
     "database.label": "Invasive Plant Atlas of the United States",
     "format": "https://www.invasiveplantatlas.org/subject.html?sub=$1",
     "homepage": "https://www.invasiveplantatlas.org/distribution.html",
+    "name": "Invasive Plant Atlas of the United States ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6161",
-    "property.label": "Invasive Plant Atlas of the United States ID"
+    "prefix": "P6161"
   },
   "P6163": {
     "database": "Q58786227",
@@ -1594,9 +1601,9 @@
     "database.label": "Nonindigenous Aquatic Species",
     "format": "https://nas.er.usgs.gov/queries/FactSheet.aspx?speciesID=$1",
     "homepage": "https://nas.er.usgs.gov/queries/FactSheetList.aspx",
+    "name": "NAS ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6163",
-    "property.label": "NAS ID"
+    "prefix": "P6163"
   },
   "P6176": {
     "database": "Q58819364",
@@ -1604,9 +1611,9 @@
     "database.label": "California Invasive Plant Council",
     "format": "https://www.cal-ipc.org/plants/profile/$1-profile/",
     "homepage": "https://www.cal-ipc.org/plants/profiles/",
+    "name": "Cal-IPC ID",
     "pattern": "[a-z\\-]*",
-    "property": "P6176",
-    "property.label": "Cal-IPC ID"
+    "prefix": "P6176"
   },
   "P6177": {
     "database": "Q374924",
@@ -1615,9 +1622,9 @@
     "format": "https://eunis.eea.europa.eu/species/$1",
     "format.rdf": "http://eunis.eea.europa.eu/species/$1",
     "homepage": "https://eunis.eea.europa.eu/species.jsp",
+    "name": "EUNIS ID for species",
     "pattern": "[1-9]\\d*",
-    "property": "P6177",
-    "property.label": "EUNIS ID for species"
+    "prefix": "P6177"
   },
   "P6209": {
     "database": "Q59263290",
@@ -1625,9 +1632,9 @@
     "database.label": "SEINet",
     "format": "http://swbiodiversity.org/seinet/taxa/index.php?taxon=$1",
     "homepage": "http://swbiodiversity.org/seinet/index.php",
+    "name": "SEINet ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6209",
-    "property.label": "SEINet ID"
+    "prefix": "P6209"
   },
   "P6227": {
     "database": "Q59800095",
@@ -1635,9 +1642,9 @@
     "database.label": "Flora of Wisconsin",
     "format": "http://wisflora.herbarium.wisc.edu/taxa/index.php?taxon=$1",
     "homepage": "http://wisflora.herbarium.wisc.edu/index.php",
+    "name": "Flora of Wisconsin ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6227",
-    "property.label": "Flora of Wisconsin ID"
+    "prefix": "P6227"
   },
   "P6245": {
     "database": "Q25304673",
@@ -1645,17 +1652,17 @@
     "database.label": "PomBase",
     "database.miriam": "pombase",
     "format": "https://www.pombase.org/gene/$1",
-    "property": "P6245",
-    "property.label": "PomBase systematic ID"
+    "name": "PomBase systematic ID",
+    "prefix": "P6245"
   },
   "P627": {
     "database": "Q48268",
     "database.homepage": "https://www.iucn.org",
     "database.label": "International Union for Conservation of Nature",
     "format": "https://apiv3.iucnredlist.org/api/v3/taxonredirect/$1",
+    "name": "IUCN taxon ID",
     "pattern": "[1-9]\\d{0,8}",
-    "property": "P627",
-    "property.label": "IUCN taxon ID"
+    "prefix": "P627"
   },
   "P6285": {
     "database": "Q59848752",
@@ -1663,9 +1670,9 @@
     "database.label": "Weeds in Ontario",
     "format": "http://www.omafra.gov.on.ca/english/crops/facts/ontweeds/$1.htm",
     "homepage": "http://www.omafra.gov.on.ca/english/crops/facts/ontweeds/weedgalfam.htm",
+    "name": "Weeds in Ontario ID",
     "pattern": "[a-z]+(_[a-z]+)*",
-    "property": "P6285",
-    "property.label": "Weeds in Ontario ID"
+    "prefix": "P6285"
   },
   "P637": {
     "database": "Q7307074",
@@ -1674,9 +1681,9 @@
     "format": "https://www.ncbi.nlm.nih.gov/protein/$1",
     "format.rdf": "http://purl.uniprot.org/refseq/$1",
     "homepage": "http://www.ncbi.nlm.nih.gov",
+    "name": "RefSeq protein ID",
     "pattern": "[NYXW]P_(\\d{6}|\\d{9})(\\.\\d{1,2})?",
-    "property": "P637",
-    "property.label": "RefSeq protein ID"
+    "prefix": "P637"
   },
   "P639": {
     "database": "Q7307074",
@@ -1684,9 +1691,9 @@
     "database.label": "RefSeq",
     "format": "https://www.ncbi.nlm.nih.gov/nuccore/$1",
     "homepage": "http://www.ncbi.nlm.nih.gov/",
+    "name": "RefSeq RNA ID",
     "pattern": "(N|X)(M|R)_(\\d{6}|\\d{9})",
-    "property": "P639",
-    "property.label": "RefSeq RNA ID"
+    "prefix": "P639"
   },
   "P6535": {
     "database": "Q172266",
@@ -1694,9 +1701,9 @@
     "database.label": "Biodiversity Heritage Library",
     "format": "https://www.biodiversitylibrary.org/part/$1",
     "homepage": "http://www.biodiversitylibrary.org/part/$1",
+    "name": "BHL part ID",
     "pattern": "[1-9]\\d*",
-    "property": "P6535",
-    "property.label": "BHL part ID"
+    "prefix": "P6535"
   },
   "P656": {
     "database": "Q7307074",
@@ -1704,8 +1711,8 @@
     "database.label": "RefSeq",
     "homepage": "http://www.ncbi.nlm.nih.gov/",
     "miriam": "refseq",
-    "property": "P656",
-    "property.label": "RefSeq"
+    "name": "RefSeq",
+    "prefix": "P656"
   },
   "P661": {
     "database": "Q2311683",
@@ -1715,9 +1722,9 @@
     "format": "https://www.chemspider.com/Chemical-Structure.$1.html",
     "format.rdf": "http://rdf.chemspider.com/$1",
     "homepage": "https://www.chemspider.com/",
+    "name": "ChemSpider ID",
     "pattern": "[1-9]\\d*",
-    "property": "P661",
-    "property.label": "ChemSpider ID"
+    "prefix": "P661"
   },
   "P662": {
     "database": "Q278487",
@@ -1726,9 +1733,10 @@
     "format": "https://pubchem.ncbi.nlm.nih.gov/compound/$1",
     "format.rdf": "http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID$1",
     "homepage": "http://pubchem.ncbi.nlm.nih.gov",
+    "miriam": "pubchem.compound",
+    "name": "PubChem CID",
     "pattern": "[1-9]\\d{0,8}",
-    "property": "P662",
-    "property.label": "PubChem CID"
+    "prefix": "P662"
   },
   "P665": {
     "database": "Q909442",
@@ -1736,10 +1744,11 @@
     "database.label": "Kyoto Encyclopedia of Genes and Genomes",
     "format": "https://www.kegg.jp/entry/$1",
     "format.rdf": "https://www.kegg.jp/entry/$1",
+    "homepage": "https://www.kegg.jp/",
     "miriam": "kegg",
+    "name": "KEGG ID",
     "pattern": "[A-Z]\\d+",
-    "property": "P665",
-    "property.label": "KEGG ID"
+    "prefix": "P665"
   },
   "P6678": {
     "database": "Q604063",
@@ -1747,9 +1756,9 @@
     "database.label": "World Register of Marine Species",
     "database.miriam": "worms",
     "format": "https://www.marinespecies.org/aphia.php?p=sourcedetails&id=$1",
+    "name": "WoRMS source ID",
     "pattern": "[1-9]\\d{0,6}",
-    "property": "P6678",
-    "property.label": "WoRMS source ID"
+    "prefix": "P6678"
   },
   "P6681": {
     "database": "Q374924",
@@ -1757,25 +1766,25 @@
     "database.label": "European Nature Information System",
     "format": "https://eunis.eea.europa.eu/habitats/$1",
     "homepage": "https://eunis.eea.europa.eu",
+    "name": "EUNIS ID for habitats",
     "pattern": "^(1\\d{4}|[1-9]\\d{0,3})$",
-    "property": "P6681",
-    "property.label": "EUNIS ID for habitats"
+    "prefix": "P6681"
   },
   "P6756": {
     "database": "Q3073852",
     "database.label": "Flora of Australia",
     "format": "https://profiles.ala.org.au/opus/foa/profile/$1",
     "homepage": "https://profiles.ala.org.au/opus/foa/profile/",
+    "name": "Flora of Australia ID (new)",
     "pattern": "[\\w][\\w\\- \\.]*[\\w]",
-    "property": "P6756",
-    "property.label": "Flora of Australia ID (new)"
+    "prefix": "P6756"
   },
   "P6800": {
     "database": "Q87630124",
     "database.homepage": "https://www.ncbi.nlm.nih.gov/genome",
     "database.label": "NCBI Genome",
-    "property": "P6800",
-    "property.label": "sequenced genome URL"
+    "name": "sequenced genome URL",
+    "prefix": "P6800"
   },
   "P683": {
     "database": "Q902623",
@@ -1786,9 +1795,9 @@
     "format.rdf": "http://purl.obolibrary.org/obo/CHEBI_$1",
     "homepage": "https://www.ebi.ac.uk/chebi",
     "miriam": "chebi",
+    "name": "ChEBI ID",
     "pattern": "\\d+",
-    "property": "P683",
-    "property.label": "ChEBI ID"
+    "prefix": "P683"
   },
   "P685": {
     "database": "Q13711410",
@@ -1797,9 +1806,9 @@
     "format": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1",
     "format.rdf": "http://purl.uniprot.org/taxonomy/$1",
     "homepage": "http://www.ncbi.nlm.nih.gov/taxonomy",
+    "name": "NCBI taxonomy ID",
     "pattern": "[1-9][0-9]{0,6}",
-    "property": "P685",
-    "property.label": "NCBI taxonomy ID"
+    "prefix": "P685"
   },
   "P6861": {
     "database": "Q5243761",
@@ -1808,17 +1817,17 @@
     "format": "https://www.ncbi.nlm.nih.gov/snp/$1",
     "homepage": "https://civicdb.org/home",
     "miriam": "dbsnp",
-    "property": "P6861",
-    "property.label": "dbSNP ID"
+    "name": "dbSNP ID",
+    "prefix": "P6861"
   },
   "P687": {
     "database": "Q172266",
     "database.homepage": "https://www.biodiversitylibrary.org/",
     "database.label": "Biodiversity Heritage Library",
     "format": "https://biodiversitylibrary.org/page/$1",
+    "name": "BHL Page ID",
     "pattern": "[1-9]\\d*",
-    "property": "P687",
-    "property.label": "BHL Page ID"
+    "prefix": "P687"
   },
   "P6982": {
     "database": "Q2784883",
@@ -1826,9 +1835,9 @@
     "database.label": "Australian Faunal Directory",
     "format": "https://biodiversity.org.au/afd/publication/$1",
     "homepage": "https://biodiversity.org.au/afd/home",
+    "name": "Australian Faunal Directory publication ID",
     "pattern": "^[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$",
-    "property": "P6982",
-    "property.label": "Australian Faunal Directory publication ID"
+    "prefix": "P6982"
   },
   "P699": {
     "database": "Q5282129",
@@ -1837,9 +1846,9 @@
     "format": "http://www.disease-ontology.org/?id=$1",
     "homepage": "http://disease-ontology.org",
     "miriam": "doid",
+    "name": "Disease Ontology ID",
     "pattern": "DOID:([0-9]{7}|[1-9][0-9]{0,4})",
-    "property": "P699",
-    "property.label": "Disease Ontology ID"
+    "prefix": "P699"
   },
   "P704": {
     "database": "Q1344256",
@@ -1848,9 +1857,9 @@
     "database.miriam": "ensembl",
     "format": "http://identifiers.org/ensembl/$1",
     "format.rdf": "http://rdf.ebi.ac.uk/resource/ensembl/$1",
+    "name": "Ensembl transcript ID",
     "pattern": "ENS([GT]|MUST|RNOT|DART)\\d{11}|Y[A-Z]{2}\\d{3}[A-Z](-[A-Z])?|FBtr\\d{7}|Q\\d{4}|((([0-9]?[A-Z]{1,4}\\d{1,3})[A-Z0-9]?)|(cTel\\d{2}X)|([0-9]RSSE)|(Y[0-9]{1,3}[A-Z]\\d{1,2}((LA|UA)|[A-C][A-Z]?)))*(\\.\\d{1,4}[a-z]?)+",
-    "property": "P704",
-    "property.label": "Ensembl transcript ID"
+    "prefix": "P704"
   },
   "P705": {
     "database": "Q1344256",
@@ -1858,9 +1867,9 @@
     "database.label": "Ensembl genome database project",
     "database.miriam": "ensembl",
     "format": "http://identifiers.org/ensembl/$1",
+    "name": "Ensembl protein ID",
     "pattern": "(ENS(MNE|MUS|RNO|DAR)?(P|G)\\d{11})|(Y[A-P][LR]\\d{3}[CW](-[A-G])?)|FBpp\\d{7}|Q\\d{4}|((([0-9]?[A-Z]{1,4}\\d{1,3})[A-Z0-9]?)|(cTel\\d{2}X)|([0-9]RSSE)|(Y[0-9]{1,3}[A-Z]\\d{1,2}[A-C][A-Z]))*(\\.\\d{1,2}[a-z]?)+",
-    "property": "P705",
-    "property.label": "Ensembl protein ID"
+    "prefix": "P705"
   },
   "P7202": {
     "database": "Q64007131",
@@ -1868,9 +1877,9 @@
     "database.label": "Belgian Species List",
     "format": "http://www.species.be/en/$1",
     "homepage": "http://www.species.be/",
+    "name": "Belgian Species List ID",
     "pattern": "[1-9]\\d*",
-    "property": "P7202",
-    "property.label": "Belgian Species List ID"
+    "prefix": "P7202"
   },
   "P7260": {
     "database": "Q142667",
@@ -1879,9 +1888,9 @@
     "database.miriam": "tcdb",
     "format": "http://www.tcdb.org/search/result.php?tc=$1",
     "homepage": "https://www.tcdb.org",
+    "name": "Transporter Classification Database ID",
     "pattern": "\\d|(\\d\\.[A-Z](\\.(\\d{1,3}){0,3}))",
-    "property": "P7260",
-    "property.label": "Transporter Classification Database ID"
+    "prefix": "P7260"
   },
   "P7536": {
     "database": "Q59785035",
@@ -1889,9 +1898,9 @@
     "database.label": "Birds of India",
     "format": "https://www.birdsofindia.org/#!/sp/$1",
     "homepage": "https://www.indianodonata.org/species-pages",
+    "name": "Birds of India ID",
     "pattern": "^[0-9]+$",
-    "property": "P7536",
-    "property.label": "Birds of India ID"
+    "prefix": "P7536"
   },
   "P7538": {
     "database": "Q59785007",
@@ -1899,9 +1908,9 @@
     "database.label": "Moths of India",
     "format": "https://www.mothsofindia.org/#!/sp/$1",
     "homepage": "https://www.mothsofindia.org/history-of-species-pages-on-moths-of-india-website",
+    "name": "Moths of India ID",
     "pattern": "^[0-9]+$",
-    "property": "P7538",
-    "property.label": "Moths of India ID"
+    "prefix": "P7538"
   },
   "P7540": {
     "database": "Q59785028",
@@ -1909,9 +1918,9 @@
     "database.label": "Odonata of India",
     "format": "https://www.indianodonata.org/#!/sp/$1",
     "homepage": "https://www.indianodonata.org/species-pages",
+    "name": "Odonata of India ID",
     "pattern": "^[0-9]+$",
-    "property": "P7540",
-    "property.label": "Odonata of India ID"
+    "prefix": "P7540"
   },
   "P7542": {
     "database": "Q59785031",
@@ -1919,9 +1928,9 @@
     "database.label": "Reptiles of India",
     "format": "https://www.indianreptiles.org/#!/sp/$1",
     "homepage": "https://www.indianreptiles.org/species-pages-history",
+    "name": "Reptiles of India ID",
     "pattern": "^[0-9]+$",
-    "property": "P7542",
-    "property.label": "Reptiles of India ID"
+    "prefix": "P7542"
   },
   "P7587": {
     "database": "Q58824067",
@@ -1929,9 +1938,9 @@
     "database.label": "eFloraSA",
     "format": "http://www.flora.sa.gov.au/cgi-bin/speciesfacts_display.cgi?form=speciesfacts&name=$1",
     "homepage": "http://www.flora.sa.gov.au/",
+    "name": "eFloraSA ID",
     "pattern": "^[A-Z][a-z]*_[a-z]+$",
-    "property": "P7587",
-    "property.label": "eFloraSA ID"
+    "prefix": "P7587"
   },
   "P7715": {
     "database": "Q77076820",
@@ -1939,9 +1948,9 @@
     "database.label": "World Flora Online",
     "format": "http://www.worldfloraonline.org/taxon/$1",
     "homepage": "http://www.worldfloraonline.org/",
+    "name": "World Flora Online ID",
     "pattern": "^wfo-\\d{10}$",
-    "property": "P7715",
-    "property.label": "World Flora Online ID"
+    "prefix": "P7715"
   },
   "P7718": {
     "database": "Q47196990",
@@ -1950,9 +1959,9 @@
     "format": "https://www.ebi.ac.uk/complexportal/complex/$1",
     "homepage": "https://www.ebi.ac.uk/complexportal/home",
     "miriam": "complexportal",
+    "name": "Complex Portal accession ID",
     "pattern": "^CPX-[0-9]+$",
-    "property": "P7718",
-    "property.label": "Complex Portal accession ID"
+    "prefix": "P7718"
   },
   "P7720": {
     "database": "Q796451",
@@ -1961,9 +1970,9 @@
     "database.miriam": "paleodb",
     "format": "http://fossilworks.org/?a=referenceInfo&reference_no=$1",
     "homepage": "http://fossilworks.org",
+    "name": "Fossilworks ID for journal article",
     "pattern": "\\d+",
-    "property": "P7720",
-    "property.label": "Fossilworks ID for journal article"
+    "prefix": "P7720"
   },
   "P7743": {
     "database": "Q79004272",
@@ -1971,34 +1980,34 @@
     "database.label": "Microworld",
     "format": "https://www.arcella.nl/$1/",
     "homepage": "https://www.arcella.nl/",
+    "name": "Microworld ID",
     "pattern": "^[a-z-]+$",
-    "property": "P7743",
-    "property.label": "Microworld ID"
+    "prefix": "P7743"
   },
   "P7905": {
     "database": "Q480003",
     "database.homepage": "http://www.animalbase.org",
     "database.label": "AnimalBase",
     "format": "http://www.animalbase.uni-goettingen.de/zooweb/servlet/AnimalBase/home/speciestaxon?id=$1",
-    "property": "P7905",
-    "property.label": "AnimalBase ID"
+    "name": "AnimalBase ID",
+    "prefix": "P7905"
   },
   "P814": {
     "database": "Q48268",
     "database.homepage": "https://www.iucn.org",
     "database.label": "International Union for Conservation of Nature",
     "homepage": "https://en.wikipedia.org/wiki/Category:Protected_areas_by_World_Conservation_Union_category",
-    "property": "P814",
-    "property.label": "IUCN protected areas category"
+    "name": "IUCN protected areas category",
+    "prefix": "P814"
   },
   "P8145": {
     "database": "Q89384967",
     "database.homepage": "http://psocodea.speciesfile.org",
     "database.label": "Psocodea Species File",
     "format": "http://psocodea.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=$1",
+    "name": "Psocodea Species File ID",
     "pattern": "\\d+",
-    "property": "P8145",
-    "property.label": "Psocodea Species File ID"
+    "prefix": "P8145"
   },
   "P830": {
     "database": "Q82486",
@@ -2006,26 +2015,26 @@
     "database.label": "Encyclopedia of Life",
     "format": "https://eol.org/ar/pages/$1",
     "homepage": "http://eol.org/api/docs/pages",
+    "name": "Encyclopedia of Life ID",
     "pattern": "[1-9]\\d{0,7}",
-    "property": "P830",
-    "property.label": "Encyclopedia of Life ID"
+    "prefix": "P830"
   },
   "P8354": {
     "database": "Q4918969",
     "database.homepage": "http://bitterdb.agri.huji.ac.il/dbbitter.php",
     "database.label": "BitterDB",
     "format": "http://bitterdb.agri.huji.ac.il/compound.php?id=$1",
-    "property": "P8354",
-    "property.label": "BitterDB compound ID"
+    "name": "BitterDB compound ID",
+    "prefix": "P8354"
   },
   "P838": {
     "database": "Q12345690",
     "database.homepage": "http://www.biolib.cz",
     "database.label": "BioLib",
     "format": "https://www.biolib.cz/en/taxon/id$1",
+    "name": "BioLib taxon ID",
     "pattern": "\\d{1,7}",
-    "property": "P838",
-    "property.label": "BioLib taxon ID"
+    "prefix": "P838"
   },
   "P842": {
     "database": "Q796451",
@@ -2034,9 +2043,9 @@
     "database.miriam": "paleodb",
     "format": "http://fossilworks.org/bridge.pl?a=taxonInfo&taxon_no=$1",
     "homepage": "http://fossilworks.org",
+    "name": "Fossilworks taxon ID",
     "pattern": "([1-9]\\d{0,5})",
-    "property": "P842",
-    "property.label": "Fossilworks taxon ID"
+    "prefix": "P842"
   },
   "P850": {
     "database": "Q604063",
@@ -2046,9 +2055,9 @@
     "format": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=$1",
     "format.rdf": "urn:lsid:marinespecies.org:taxname:$1",
     "homepage": "http://www.marinespecies.org/aphia.php?p=search",
+    "name": "WoRMS-ID for taxa",
     "pattern": "[1-9]\\d{0,6}",
-    "property": "P850",
-    "property.label": "WoRMS-ID for taxa"
+    "prefix": "P850"
   },
   "P8660": {
     "database": "Q97323972",
@@ -2056,8 +2065,8 @@
     "database.label": "Native Plants Database",
     "format": "https://www.wildflower.org/plants/result.php?id_plant=$1",
     "homepage": "https://www.wildflower.org/plants/index.php",
-    "property": "P8660",
-    "property.label": "Native Plants Database ID"
+    "name": "Native Plants Database ID",
+    "prefix": "P8660"
   },
   "P8691": {
     "database": "Q41165322",
@@ -2066,8 +2075,8 @@
     "database.miriam": "swisslipid",
     "format": "https://www.swisslipids.org/#/entity/$1/",
     "homepage": "https://www.swisslipids.org/#/",
-    "property": "P8691",
-    "property.label": "SwissLipids identifier"
+    "name": "SwissLipids identifier",
+    "prefix": "P8691"
   },
   "P8697": {
     "database": "Q99839604",
@@ -2075,8 +2084,8 @@
     "database.label": "RNACentral",
     "format": "https://rnacentral.org/rna/$1",
     "homepage": "https://rnacentral.org/",
-    "property": "P8697",
-    "property.label": "RNACentral ID"
+    "name": "RNACentral ID",
+    "prefix": "P8697"
   },
   "P8707": {
     "database": "Q11959214",
@@ -2084,9 +2093,9 @@
     "database.label": "Species Nomenclature Database",
     "format": "https://artsdatabanken.no/Taxon/_/$1",
     "homepage": "https://www.artsdatabanken.no/",
+    "name": "NBIC taxon ID",
     "pattern": "[1-9]\\d{0,5}",
-    "property": "P8707",
-    "property.label": "NBIC taxon ID"
+    "prefix": "P8707"
   },
   "P8724": {
     "database": "Q172266",
@@ -2094,8 +2103,8 @@
     "database.label": "Biodiversity Heritage Library",
     "format": "https://www.biodiversitylibrary.org/name/$1",
     "homepage": "https://www.biodiversitylibrary.org/advsearch",
-    "property": "P8724",
-    "property.label": "BHL name ID"
+    "name": "BHL name ID",
+    "prefix": "P8724"
   },
   "P8741": {
     "database": "Q100328698",
@@ -2103,16 +2112,16 @@
     "database.label": "Great Places",
     "format": "https://www.calflora.org/app/ipl/ipx?loc_id=gpi$1",
     "homepage": "https://www.calflora.org/entry/gphome.html",
-    "property": "P8741",
-    "property.label": "Great Places ID"
+    "name": "Great Places ID",
+    "prefix": "P8741"
   },
   "P8792": {
     "database": "Q94974628",
     "database.homepage": "https://bioweb.bio/",
     "database.label": "Bioweb Ecuador",
     "format": "https://bioweb.bio/$1",
-    "property": "P8792",
-    "property.label": "Bioweb Ecuador ID"
+    "name": "Bioweb Ecuador ID",
+    "prefix": "P8792"
   },
   "P9076": {
     "database": "Q104816425",
@@ -2120,9 +2129,9 @@
     "database.label": "Australian Fungi ID",
     "format": "https://id.biodiversity.org.au/name/fungi/$1",
     "homepage": "https://fungi.biodiversity.org.au/nsl/services/",
+    "name": "Australian Fungi ID",
     "pattern": "[1-9]\\d*",
-    "property": "P9076",
-    "property.label": "Australian Fungi ID"
+    "prefix": "P9076"
   },
   "P9169": {
     "database": "Q2300489",
@@ -2130,8 +2139,8 @@
     "database.label": "Tree of Life Web Project",
     "format": "http://www.tolweb.org/onlinecontributors/app?page=ContributorDetailPage&service=external&sp=$1&sp=l1",
     "homepage": "http://www.tolweb.org/onlinecontributors/app?page=PeopleList&service=external&sp=1",
-    "property": "P9169",
-    "property.label": "Tree of Life contributor ID"
+    "name": "Tree of Life contributor ID",
+    "prefix": "P9169"
   },
   "P9503": {
     "database": "Q106677021",
@@ -2139,9 +2148,9 @@
     "database.label": "Malaysia Biodiversity Information System",
     "format": "https://www.mybis.gov.my/sp/$1",
     "homepage": "https://www.mybis.gov.my/one/",
+    "name": "MyBIS species ID",
     "pattern": "[1-9]\\d*",
-    "property": "P9503",
-    "property.label": "MyBIS species ID"
+    "prefix": "P9503"
   },
   "P9552": {
     "database": "Q106677021",
@@ -2149,27 +2158,27 @@
     "database.label": "Malaysia Biodiversity Information System",
     "format": "https://www.mybis.gov.my/pa/$1",
     "homepage": "https://www.mybis.gov.my/one/pamaps.php",
+    "name": "MyBIS protected area ID",
     "pattern": "[1-9]\\d*",
-    "property": "P9552",
-    "property.label": "MyBIS protected area ID"
+    "prefix": "P9552"
   },
   "P959": {
     "database": "Q1538807",
     "database.homepage": "http://www.departments.bucknell.edu/biology/resources/msw3",
     "database.label": "Mammal Species of the World",
     "format": "http://www.departments.bucknell.edu/biology/resources/msw3/browse.asp?s=y&id=$1",
+    "name": "MSW ID",
     "pattern": "1\\d{7}",
-    "property": "P959",
-    "property.label": "MSW ID"
+    "prefix": "P959"
   },
   "P960": {
     "database": "Q2578548",
     "database.homepage": "https://www.tropicos.org",
     "database.label": "Tropicos",
     "format": "http://legacy.tropicos.org/Name/$1",
+    "name": "Tropicos ID",
     "pattern": "[1-9]\\d{0,8}",
-    "property": "P960",
-    "property.label": "Tropicos ID"
+    "prefix": "P960"
   },
   "P962": {
     "database": "Q2574835",
@@ -2177,8 +2186,8 @@
     "database.label": "MycoBank",
     "database.miriam": "mycobank",
     "format": "https://www.mycobank.org/MB/$1",
+    "name": "MycoBank taxon name ID",
     "pattern": "[1-9][0-9]{0,5}",
-    "property": "P962",
-    "property.label": "MycoBank taxon name ID"
+    "prefix": "P962"
   }
 }

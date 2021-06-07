@@ -20,15 +20,14 @@ class WikidataAligner(Aligner):
 
     key = 'wikidata'
     getter = get_wikidata
-    curation_header = ('miriam', 'databaseMiriam', 'propLabel', 'database', 'databaseLabel')
-    subkey = 'property'
+    curation_header = ('miriam', 'databaseMiriam', 'name', 'database', 'databaseLabel')
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Prepare curation rows for unaligned Wikidata properties."""
         return [
             external_entry.get('miriam'),
             external_entry.get('database.miriam'),
-            external_entry['property.label'],
+            external_entry['name'],
             external_entry['database'],
             external_entry['database.label'],
         ]
