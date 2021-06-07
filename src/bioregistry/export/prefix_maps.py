@@ -48,18 +48,25 @@ def collection_to_context_jsonlds(collection: Collection) -> str:
     return json.dumps(collection.as_context_jsonld())
 
 
+OBO_PRIORITY = (
+    'obofoundry', 'bioregistry', 'prefixcommons', 'miriam', 'ols',
+)
+OBO_REMAPPING = {
+    'umls': 'UMLS',
+    'snomedct': 'SCTID',
+    'ensembl': 'ENSEMBL',
+}
+
+
 def get_obofoundry_prefix_map() -> Mapping[str, str]:
     """Get the OBO foundry prefix map."""
+    remapping = bioregistry.get_registry_map('obofoundry')
+    remapping.update(OBO_REMAPPING)
+
     rv = {}
-    # TODO handle conflicts, e.g., GEO
-    for prefix in bioregistry.read_registry():
-        prefix = bioregistry.get_obofoundry_prefix(prefix) or prefix
-        fmt = bioregistry.get_format_url(prefix, priority=(
-            'obofoundry', 'bioregistry', 'prefixcommons', 'miriam', 'ols',
-        ))
-        if prefix is None or fmt is None:
-            continue
-        rv[prefix] = fmt
+    for prefix, prefix_url in bioregistry.get_format_urls(priority=OBO_PRIORITY).items():
+        mapped_prefix = remapping.get(prefix, prefix)
+        rv[mapped_prefix] = prefix_url
     return rv
 
 

@@ -248,6 +248,16 @@ def get_obofoundry_prefix(prefix: str) -> Optional[str]:
     return _get_mapped_prefix(prefix, 'obofoundry')
 
 
+def get_registry_map(metaprefix: str) -> Dict[str, str]:
+    """Get a mapping from the Bioregistry to prefixes in another registry."""
+    rv = {}
+    for prefix in read_registry():
+        mapped_prefix = _get_mapped_prefix(prefix, metaprefix)
+        if mapped_prefix is not None:
+            rv[prefix] = mapped_prefix
+    return rv
+
+
 def get_obofoundry_format(prefix: str) -> Optional[str]:
     """Get the URL format for an OBO Foundry entry.
 
@@ -485,6 +495,16 @@ def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:
         return {}
     entry = read_registry()[norm_prefix]
     return entry.get_external(metaprefix)
+
+
+def get_format_urls(*, priority: Optional[Sequence[str]] = None) -> Mapping[str, str]:
+    """Get a mapping from Bioregistry prefixes to their prefix URLs via :func:`get_format_url`."""
+    rv = {}
+    for prefix in read_registry():
+        fmt = get_format_url(prefix, priority=priority)
+        if fmt is not None:
+            rv[prefix] = fmt
+    return rv
 
 
 def get_format_url(prefix: str, priority: Optional[Sequence[str]] = None) -> Optional[str]:
