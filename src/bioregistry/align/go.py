@@ -29,13 +29,13 @@ class GoAligner(Aligner):
             j = json.load(file)
         return j['skip']
 
-    def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
+    def prepare_external(self, external_id: str, external_entry: Mapping[str, Any]) -> Dict[str, Any]:
         """Prepare GO data to be added to the bioregistry for each GO registry entry."""
         rv = {
             'name': external_entry['name'],
         }
 
-        description = external_entry.get('desription')
+        description = external_entry.get('description')
         if description:
             rv['description'] = description
 
