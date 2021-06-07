@@ -366,9 +366,9 @@ def get_miriam_url_prefix(prefix: str) -> Optional[str]:
 
     >>> import bioregistry
     >>> bioregistry.get_miriam_url_prefix('ncbitaxon')
-    'https://identifiers.org/taxonomy:$1'
+    'https://identifiers.org/taxonomy:'
     >>> bioregistry.get_miriam_url_prefix('go')
-    'https://identifiers.org/GO:$1'
+    'https://identifiers.org/GO:'
     >>> assert bioregistry.get_miriam_url_prefix('sty') is None
     """
     miriam_prefix = get_identifiers_org_prefix(prefix)
@@ -397,7 +397,7 @@ def get_miriam_format(prefix: str) -> Optional[str]:
     miriam_url_prefix = get_miriam_url_prefix(prefix)
     if miriam_url_prefix is None:
         return None
-    return f'{miriam_url_prefix}:$1'
+    return f'{miriam_url_prefix}$1'
 
 
 def get_obofoundry_formatter(prefix: str) -> Optional[str]:
