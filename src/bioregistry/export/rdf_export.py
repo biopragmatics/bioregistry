@@ -116,7 +116,7 @@ def _add_resources(*, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
     if graph is None:
         graph = _graph()
     for prefix, data in read_registry().items():
-        _add_resource(graph=graph, data={'prefix': prefix, **data})
+        _add_resource(graph=graph, data={'prefix': prefix, **data.dict()})
     return graph
 
 

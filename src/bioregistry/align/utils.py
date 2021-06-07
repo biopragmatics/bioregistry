@@ -8,6 +8,7 @@ from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, S
 from tabulate import tabulate
 
 from ..resolve import normalize_prefix
+from ..schema import Resource
 from ..utils import is_mismatch, read_metaregistry, read_registry, write_bioregistry
 
 __all__ = [
@@ -42,7 +43,7 @@ class Aligner(ABC):
         if self.key not in read_metaregistry():
             raise TypeError(f'invalid metaprefix for aligner: {self.key}')
 
-        self.internal_registry = read_registry()
+        self.internal_registry = dict(read_registry())
 
         kwargs = self.getter_kwargs or {}
         kwargs.setdefault('force_download', True)
@@ -81,7 +82,7 @@ class Aligner(ABC):
             # add the identifier from an external resource if it's been marked as high quality
             if bioregistry_id is None and self.include_new:
                 bioregistry_id = external_id
-                self.internal_registry[bioregistry_id] = {}
+                self.internal_registry[bioregistry_id] = Resource()
 
             if bioregistry_id is not None:  # a match was found
                 self._align_action(bioregistry_id, external_id, external_entry)
@@ -92,7 +93,9 @@ class Aligner(ABC):
             return
 
         # Add mapping
-        self.internal_registry[bioregistry_id].setdefault('mappings', {})[self.key] = external_id
+        if self.internal_registry[bioregistry_id].mappings is None:
+            self.internal_registry[bioregistry_id].mappings = {}
+        self.internal_registry[bioregistry_id].mappings[self.key] = external_id
 
         _entry = self.prepare_external(external_id, external_entry)
         _entry[self.subkey] = external_id

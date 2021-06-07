@@ -8,7 +8,7 @@
 import json
 import pathlib
 from functools import lru_cache
-from typing import Any, List, Mapping, Optional
+from typing import Any, Dict, List, Mapping, Optional
 
 import pydantic.schema
 import rdflib
@@ -70,7 +70,7 @@ class Resource(BaseModel):
     download: Optional[str]
     banana: Optional[str]
     deprecated: Optional[bool]
-    mappings: Optional[Mapping[str, str]]
+    mappings: Optional[Dict[str, str]]
     synonyms: Optional[List[str]]
     references: Optional[List[str]]
     appears_in: Optional[List[str]]
@@ -96,6 +96,8 @@ class Resource(BaseModel):
         """Dispatch to getting from the dict."""
         return self.dict().get(key, default)
 
+    def __setitem__(self, key, value):
+        setattr(self, key, value)
 
 class Registry(BaseModel):
     """Metadata about a registry."""

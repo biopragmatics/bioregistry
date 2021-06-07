@@ -109,7 +109,7 @@ def get_registry_rows():
             resolve.get_email(prefix),
             resolve.get_format(prefix),
             data.get('download'),
-            '|'.join(data.get('synonyms', [])),
+            '|'.join(data.synonyms or []),
             resolve.is_deprecated(prefix),
             *[
                 mappings.get(metaprefix)
