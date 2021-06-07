@@ -32,6 +32,9 @@ class TestIdentifiersOrg(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.assertEqual(miriam_prefix, bioregistry.get_identifiers_org_prefix(prefix))
 
+        for prefix in ['MONDO']:
+            self.assertIsNone(bioregistry.get_identifiers_org_prefix(prefix))
+
     def test_banana(self):
         """Test that entries curated with a new banana are resolved properly."""
         for prefix, entry in bioregistry.read_registry().items():

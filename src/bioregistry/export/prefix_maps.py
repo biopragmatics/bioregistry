@@ -51,12 +51,15 @@ def collection_to_context_jsonlds(collection: Collection) -> str:
 def get_obofoundry_prefix_map() -> Mapping[str, str]:
     """Get the OBO foundry prefix map."""
     rv = {}
+    # TODO handle conflicts, e.g., GEO
     for prefix in bioregistry.read_registry():
-        obofoundry_prefix = bioregistry.get_obofoundry_prefix(prefix)
-        obofoundry_fmt = bioregistry.get_obofoundry_format(prefix)
-        if obofoundry_prefix is None or obofoundry_fmt is None:
+        prefix = bioregistry.get_obofoundry_prefix(prefix) or prefix
+        fmt = bioregistry.get_format_url(prefix, priority=(
+            'obofoundry', 'bioregistry', 'prefixcommons', 'miriam', 'ols',
+        ))
+        if prefix is None or fmt is None:
             continue
-        rv[obofoundry_prefix] = obofoundry_fmt
+        rv[prefix] = fmt
     return rv
 
 
