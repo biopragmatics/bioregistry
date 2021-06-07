@@ -25,6 +25,7 @@ main.add_command(lint)
 main.add_command(compare)
 main.add_command(warnings)
 main.add_command(export)
+main.add_command(download)
 main.add_command(align)
 main.add_command(make_web_command('bioregistry.app.wsgi:app'))
 
@@ -45,7 +46,6 @@ def versions():
 @click.pass_context
 def update(ctx: click.Context):
     """Update the Bioregistry."""
-    ctx.invoke(download)
     ctx.invoke(align)
     ctx.invoke(lint)
     ctx.invoke(export)
