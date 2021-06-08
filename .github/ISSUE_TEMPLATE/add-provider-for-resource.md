@@ -2,7 +2,7 @@
 name: Add provider for resource
 about: Add a URL for resolving identifiers in a given resource
 title: Add provider for [X]
-labels: New
+labels: Provider, New
 assignees: ''
 
 ---
