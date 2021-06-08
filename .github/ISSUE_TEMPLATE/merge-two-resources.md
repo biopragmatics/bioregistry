@@ -2,7 +2,7 @@
 name: Merge two resources
 about: When two prefixes are redundant and shoud be merged
 title: Merge resource [X] into [Y]
-labels: Update, Merge
+labels: Merge, Update
 assignees: ''
 
 ---
