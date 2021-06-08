@@ -34,9 +34,11 @@ The following fields are required for all new entries in the Bioregistry:
 
 ## Optional
 
+The following entries are optional, but nice to have. If you're having trouble with some of these, go ahead and submit your issue and we can discuss below :)
+
 ### Pattern
 
-> Replace this with a regular expression that matches all identifiers in the resource. Do not include redundant information about the prefix within the pattern. This information can be inferred from the "Namespace Embedded in Identifier" field directly belo
+> Replace this with a regular expression that matches all identifiers in the resource. Do not include redundant information about the prefix within the pattern. This information can be inferred from the "Namespace Embedded in Identifier" field directly below
 
 ### Namespace Embedded in Identifier
 
