@@ -2,7 +2,7 @@
 name: Request new prefix
 about: Add metadata about a database, ontology, or other authority that issues stable
   identifiers.
-title: ''
+title: Add resource [X]
 labels: New, Prefix
 assignees: ''
 

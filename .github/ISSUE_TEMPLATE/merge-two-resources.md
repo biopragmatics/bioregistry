@@ -1,7 +1,7 @@
 ---
 name: Merge two resources
 about: When two prefixes are redundant and shoud be merged
-title: ''
+title: Merge resource [X] into [Y]
 labels: bug
 assignees: ''
 
