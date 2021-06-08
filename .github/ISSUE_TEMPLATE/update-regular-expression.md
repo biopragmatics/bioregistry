@@ -2,7 +2,7 @@
 name: Update regular expression
 about: Describe this issue template's purpose here.
 title: Update regular expression pattern for [X]
-labels: enhancement
+labels: Regex, Update
 assignees: ''
 
 ---
