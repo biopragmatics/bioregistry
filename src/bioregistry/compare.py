@@ -5,7 +5,6 @@
 import datetime
 import itertools as itt
 import math
-import os
 import random
 import sys
 from collections import Counter
