@@ -13,77 +13,40 @@ from typing import Collection, Set
 import click
 
 from bioregistry import (
-    get_description, get_email, get_example, get_format, get_homepage, get_json_download, get_name, get_obo_download,
-    get_owl_download, get_pattern, get_version, read_registry,
+    get_description, get_email, get_example, get_format, get_homepage, get_json_download, get_license, get_name,
+    get_obo_download, get_owl_download, get_pattern, get_version, read_registry,
 )
 from bioregistry.constants import DOCS_IMG
 from bioregistry.external import GETTERS
-from bioregistry.resolve import get_external
-
-LICENSES = {
-    'None': None,
-    'license': None,
-    'unspecified': None,
-    # CC-BY (4.0)
-    'CC-BY 4.0': 'CC-BY',
-    'CC BY 4.0': 'CC-BY',
-    'https://creativecommons.org/licenses/by/4.0/': 'CC-BY',
-    'http://creativecommons.org/licenses/by/4.0/': 'CC-BY',
-    'http://creativecommons.org/licenses/by/4.0': 'CC-BY',
-    'https://creativecommons.org/licenses/by/3.0/': 'CC-BY',
-    'url: http://creativecommons.org/licenses/by/4.0/': 'CC-BY',
-    'SWO is provided under a Creative Commons Attribution 4.0 International'
-    ' (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/).': 'CC-BY',
-    # CC-BY (3.0)
-    'CC-BY 3.0 https://creativecommons.org/licenses/by/3.0/': 'CC-BY',
-    'http://creativecommons.org/licenses/by/3.0/': 'CC-BY',
-    'CC-BY 3.0': 'CC-BY',
-    'CC BY 3.0': 'CC-BY',
-    'CC-BY version 3.0': 'CC-BY',
-    # CC-BY (2.0)
-    'CC-BY 2.0': 'CC-BY',
-    # CC-BY (unversioned)
-    'CC-BY': 'CC-BY',
-    'creative-commons-attribution-license': 'CC-BY',
-    # CC-BY-SA
-    'CC-BY-SA': 'CC-BY-SA',
-    'https://creativecommons.org/licenses/by-sa/4.0/': 'CC-BY-SA',
-    # CC-BY-NC-SA
-    'http://creativecommons.org/licenses/by-nc-sa/2.0/': 'CC-BY-NC-SA',
-    # CC 0
-    'CC-0': 'CC-0',
-    'CC0 1.0 Universal': 'CC-0',
-    'CC0': 'CC-0',
-    'http://creativecommons.org/publicdomain/zero/1.0/': 'CC-0',
-    'https://creativecommons.org/publicdomain/zero/1.0/': 'CC-0',
-    # Apache 2.0
-    'Apache 2.0 License': 'Other',
-    'LICENSE-2.0': 'Other',
-    'www.apache.org/licenses/LICENSE-2.0': 'Other',
-    # Other
-    'GNU GPL 3.0': 'Other',
-    'hpo': 'Other',
-    'Artistic License 2.0': 'Other',
-    'New BSD license': 'Other',
-}
+from bioregistry.resolve import _remap_license, get_external
 
 # see named colors https://matplotlib.org/stable/gallery/color/named_colors.html
 BIOREGISTRY_COLOR = 'silver'
 
 
-def _get_has(f):
-    return {key for key in read_registry() if f(key)}
+def _get_has(func, yes: str = 'Yes', no: str = 'No') -> Counter:
+    return Counter(
+        no if func(prefix) is None else yes
+        for prefix in read_registry()
+    )
 
 
-HAS_WIKIDATA_DATABASE = {
-    key
+HAS_WIKIDATA_DATABASE = Counter(
+    'No' if key is None else 'Yes'
     for key in read_registry()
     if 'database' in get_external(key, 'wikidata')
-}
+)
 
 
-def _remap_license(k):
-    return k and LICENSES.get(k, k)
+def _get_has_present(func) -> Counter:
+    return Counter(
+        x
+        for x in (
+            func(prefix)
+            for prefix in read_registry()
+        )
+        if x
+    )
 
 
 SINGLE_FIG = (8, 3.5)
@@ -91,33 +54,48 @@ TODAY = datetime.datetime.today().strftime('%Y-%m-%d')
 WATERMARK_TEXT = f'https://github.com/bioregistry/bioregistry ({TODAY})'
 
 
-def _save(fig, name: str, *, png: bool = False) -> None:
+def _save(fig, name: str, *, svg: bool = True, png: bool = False) -> None:
     import matplotlib.pyplot as plt
     path = DOCS_IMG.joinpath(name).with_suffix('.svg')
     click.echo(f'output to {path}')
     fig.tight_layout()
-    fig.savefig(path)
+    if svg:
+        fig.savefig(path)
     if png:
         fig.savefig(DOCS_IMG.joinpath(name).with_suffix('.png'), dpi=300)
     plt.close(fig)
 
 
-def _plot_attribute_pies(*, measurements, watermark):
+def _plot_attribute_pies(*, measurements, watermark, ncols: int = 4, keep_ontology: bool = True):
     import matplotlib.pyplot as plt
-    ncols = 3
+    if not keep_ontology:
+        measurements = [
+            (label, counter)
+            for label, counter in measurements
+            if label not in {'OWL', 'JSON', 'OBO'}
+        ]
+
     nrows = int(math.ceil(len(measurements) / ncols))
-    fig, axes = plt.subplots(ncols=ncols, nrows=nrows)
-    for measurement, ax in itt.zip_longest(measurements, axes.ravel()):
-        if measurement is None:
+    figsize = (2.75 * ncols, 2.0 * nrows)
+    fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
+    for (label, counter), ax in itt.zip_longest(measurements, axes.ravel(), fillvalue=(None, None)):
+        if label is None:
             ax.axis('off')
             continue
-        label, prefixes = measurement
+        if label == 'License Type':
+            labels, sizes = zip(*counter.most_common())
+            explode = None
+        else:
+            labels = ('Yes', 'No')
+            n_yes = counter.get('Yes')
+            sizes = (n_yes, len(read_registry()) - n_yes)
+            explode = [0.1, 0]
         ax.pie(
-            (len(prefixes), len(read_registry()) - len(prefixes)),
-            labels=('Yes', 'No'),
+            sizes,
+            labels=labels,
             autopct='%1.f%%',
             startangle=30,
-            explode=[0.1, 0],
+            explode=explode,
         )
         ax.set_title(label)
     if watermark:
@@ -129,10 +107,9 @@ def _plot_attribute_pies(*, measurements, watermark):
     return fig, axes
 
 
-def _plot_coverage(*, keys, watermark):
+def _plot_coverage(*, keys, watermark, ncols: int = 3):
     import matplotlib.pyplot as plt
     from matplotlib_venn import venn2
-    ncols = 3
     nrows = int(math.ceil(len(keys) / ncols))
     figsize = (3.25 * ncols, 2.0 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
@@ -162,11 +139,10 @@ def _plot_coverage(*, keys, watermark):
     return fig, axes
 
 
-def _plot_external_overlap(*, keys, watermark):
+def _plot_external_overlap(*, keys, watermark, ncols: int = 4):
     import matplotlib.pyplot as plt
     from matplotlib_venn import venn2
     pairs = list(itt.combinations(keys, r=2))
-    ncols = 4
     nrows = int(math.ceil(len(pairs) / ncols))
     figsize = (3 * ncols, 2.5 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
@@ -257,13 +233,15 @@ def compare(png: bool):  # noqa:C901
     ##############################################
     measurements = [
         ('Name', _get_has(get_name)),
-        ('Description', _get_has(get_description)),
-        ('Version', _get_has(get_version)),
         ('Homepage', _get_has(get_homepage)),
-        ('Contact Email', _get_has(get_email)),
-        ('Pattern', _get_has(get_pattern)),
-        ('Format URL', _get_has(get_format)),
+        ('Description', _get_has(get_description)),
         ('Example', _get_has(get_example)),
+        ('Pattern', _get_has(get_pattern)),
+        ('Provider', _get_has(get_format)),
+        ('License', _get_has(get_license)),
+        ('License Type', _get_has_present(get_license)),
+        ('Version', _get_has(get_version)),
+        ('Contact Email', _get_has(get_email)),
         ('Wikidata Database', HAS_WIKIDATA_DATABASE),
         ('OBO', _get_has(get_obo_download)),
         ('OWL', _get_has(get_owl_download)),
@@ -272,6 +250,11 @@ def compare(png: bool):  # noqa:C901
 
     fig, axes = _plot_attribute_pies(measurements=measurements, watermark=watermark)
     _save(fig, 'has_attribute', png=png)
+
+    # Slightly reorganized for the paper
+    if png:
+        fig, axes = _plot_attribute_pies(measurements=measurements, watermark=watermark, keep_ontology=False)
+        _save(fig, 'paper_figure_3', png=True, svg=False)
 
     # -------------------------------------------------------------------- #
     palette = sns.color_palette("Paired", len(GETTERS))
@@ -285,6 +268,11 @@ def compare(png: bool):  # noqa:C901
     ############################################################
     fig, axes = _plot_coverage(keys=keys, watermark=watermark)
     _save(fig, name='bioregistry_coverage', png=png)
+
+    # Slightly reorganized for the paper
+    if png:
+        fig, axes = _plot_coverage(keys=keys, watermark=watermark, ncols=4)
+        _save(fig, name='paper_figure_2', png=png, svg=False)
 
     ######################################################
     # What's the overlap between each pair of resources? #

@@ -7,6 +7,7 @@ import re
 from functools import lru_cache
 from typing import Any, Callable, Dict, Mapping, Optional, Sequence, Set, Tuple, Union
 
+from .constants import LICENSES
 from .schema import Collection, Registry, Resource
 from .utils import read_collections, read_metaregistry, read_registry
 
@@ -676,6 +677,28 @@ def get_provides_for(prefix: str) -> Optional[str]:
     if entry is None:
         return None
     return entry.provides
+
+
+def get_license(prefix: str) -> Optional[str]:
+    """Get the license for the resource.
+
+    :param prefix: The prefix to look up
+    :returns: The license of the resource (normalized) if available
+
+    >>> assert get_provides_for('pdb') is None
+    >>> assert 'pdb' == get_provides_for('validatordb')
+    """
+    for metaprefix in ('obofoundry', 'ols'):
+        license_value = _remap_license(get_external(prefix, metaprefix).get('license'))
+        if license_value is not None:
+            return license_value
+    return None
+
+
+def _remap_license(k: Optional[str]) -> Optional[str]:
+    if k is None:
+        return None
+    return LICENSES.get(k, k)
 
 
 def parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:

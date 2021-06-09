@@ -5,7 +5,7 @@
 from .resolve import (  # noqa
     get, get_banana, get_bioportal_prefix, get_collection, get_description, get_email, get_example,
     get_fairsharing_prefix, get_format, get_format_url, get_format_urls, get_homepage, get_identifiers_org_prefix,
-    get_json_download, get_mappings, get_miriam_format, get_miriam_url_prefix, get_n2t_prefix, get_name,
+    get_json_download, get_license, get_mappings, get_miriam_format, get_miriam_url_prefix, get_n2t_prefix, get_name,
     get_obo_download, get_obofoundry_format, get_obofoundry_formatter, get_obofoundry_prefix, get_ols_format,
     get_ols_prefix, get_ols_url_prefix, get_owl_download, get_pattern, get_pattern_re, get_prefixcommons_format,
     get_provides_for, get_registry, get_registry_description, get_registry_example, get_registry_homepage,
