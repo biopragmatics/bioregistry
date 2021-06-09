@@ -26,7 +26,7 @@ def get_miriam(force_download: bool = False):
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    download(url=MIRIAM_URL, path=RAW_PATH, force=force_download)
+    download(url=MIRIAM_URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as file:
         data = json.load(file)
 

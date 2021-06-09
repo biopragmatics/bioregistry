@@ -23,7 +23,7 @@ def get_n2t(force_download: bool = False):
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    download(url=URL, path=RAW_PATH, force=force_download)
+    download(url=URL, path=RAW_PATH, force=True)
     # they give malformed YAML so time to write a new parser
     with RAW_PATH.open() as file:
         data = yaml.safe_load(file)
