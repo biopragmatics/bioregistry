@@ -46,6 +46,8 @@ class Author(BaseModel):
     name: str
     #: The ORCID identifier for the author
     orcid: str
+    #: The email for the author
+    email: Optional[str]
 
     def add_triples(self, graph: rdflib.Graph) -> Node:
         """Add triples to an RDF graph for this collection."""
@@ -133,12 +135,12 @@ class Registry(BaseModel):
     provider: bool
     #: Does this registry act as a resolver for its prefixes and their respective identifiers?
     resolver: bool
-    #: Does this registry have a front-end?
-    registry: bool
     #: A URL with a $1 for a prefix to resolve in the registry
     provider_url: Optional[str]
     #: A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry
     resolver_url: Optional[str]
+    #: An optional contact email
+    contact: Optional[str]
 
     def get_provider(self, metaidentifier: str) -> Optional[str]:
         """Get the provider string."""
