@@ -211,6 +211,9 @@ def compare(png: bool):  # noqa:C901
         )
         return sys.exit(1)
 
+    # This should make SVG output deterministic
+    plt.rcParams['svg.hashsalt'] = 'saltyregistry'
+
     watermark = True
     sns.set_style('whitegrid')
 
@@ -233,14 +236,7 @@ def compare(png: bool):  # noqa:C901
             fontsize=10, color='gray', alpha=0.5,
             ha='center', va='bottom',
         )
-
-    path = DOCS_IMG.joinpath('license_coverage.svg')
-    click.echo(f'output to {path}')
-    fig.tight_layout()
-    fig.savefig(path)
-    if png:
-        fig.savefig(DOCS_IMG.joinpath('license_coverage.png'), dpi=300)
-    plt.close(fig)
+    _save(fig, name='license_coverage', png=png)
 
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
     sns.countplot(x=licenses, ax=ax)
@@ -253,12 +249,7 @@ def compare(png: bool):  # noqa:C901
             fontsize=8, color='gray', alpha=0.5,
             ha='right', va='center', rotation=90,
         )
-
-    path = DOCS_IMG.joinpath('licenses.svg')
-    click.echo(f'output to {path}')
-    fig.tight_layout()
-    fig.savefig(path, dpi=300)
-    plt.close(fig)
+    _save(fig, name='licenses', png=png)
 
     ##############################################
     # How many entries have version information? #
@@ -322,13 +313,7 @@ def compare(png: bool):  # noqa:C901
             ha='right', va='center', rotation=90,
         )
 
-    path = DOCS_IMG.joinpath('xrefs.svg')
-    click.echo(f'output to {path}')
-    fig.tight_layout()
-    fig.savefig(path)
-    if png:
-        fig.savefig(path.with_name('xrefs.png'), dpi=300)
-    plt.close(fig)
+    _save(fig, name='xrefs', png=png)
 
 
 def _get_license_and_conflicts():
