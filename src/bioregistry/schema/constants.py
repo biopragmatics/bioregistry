@@ -21,7 +21,6 @@ bioregistry_schema_terms = {
     'Mapping': "A type, typically instantiated as a blank node, that connects a given resource to a metaresource"
                " and a metaidentifier using the hasMetaresource and hasMetaidentifier relations.",
     'hasExample': 'An identifier for a resource or metaresource.',
-    'isRegistry': 'Denotes whether a metaresource is capable of acting as a registry',
     'isProvider': 'Denotes whether a metaresource is capable of acting as a provider. If so, should be accompanied'
                   ' by a "provider_formatter" relation as well.',
     'isResolver': 'Denotes whether a metaresource is capable of acting as a resolver. If so, should be accompanied'

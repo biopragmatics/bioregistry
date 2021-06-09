@@ -66,8 +66,8 @@
                 </dd>
                 <dt>Contact</dt>
                 <dd>
-                    {% if contact %}
-                        <a href="mailto:{{ contact }}">{{ contact }}</a>
+                    {% if entry.contact %}
+                        <a href="mailto:{{ entry.contact }}">{{ entry.contact }}</a>
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}

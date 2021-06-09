@@ -1,3 +1,26 @@
+aberowl:
+  description: AberOWL is a framework for ontology-based access to biological data.
+    It consists of a repository of bio-ontologies, a set of webservices which provide
+    access to OWL(-EL) reasoning over the ontologies, and several frontends which
+    utilise the ontology repository and reasoning services to provide access to specific
+    biological datasets.
+  download: http://aber-owl.net/api/ontology/?format=json
+  example: CHEBI
+  homepage: http://aber-owl.net
+  name: AberOWL
+  prefix: aberowl
+  provider: true
+  provider_url: http://aber-owl.net/ontology/$1
+  resolver: false
+agroportal:
+  description: A vocabulary and ontology repository for agronomy and related domains.
+  example: ENVO
+  homepage: http://agroportal.lirmm.fr
+  name: AgroPortal
+  prefix: agroportal
+  provider: true
+  provider_url: http://agroportal.lirmm.fr/ontologies/$1
+  resolver: false
 biolink:
   description: A modeling paradigm-specific registry of prefixes and their URL expansions
   download: https://raw.githubusercontent.com/biolink/biolink-model/master/biolink-model.yaml
@@ -6,7 +29,6 @@ biolink:
   name: Biolink Model Registry
   prefix: biolink
   provider: false
-  registry: true
   resolver: false
 bioportal:
   description: The BioPortal is a less stringent registry of biomedical ontologies
@@ -17,7 +39,6 @@ bioportal:
   prefix: bioportal
   provider: true
   provider_url: https://bioportal.bioontology.org/ontologies/$1
-  registry: true
   resolver: false
 bioregistry:
   description: The Bioregistry is integrative meta-registry of biological databases,
@@ -29,9 +50,31 @@ bioregistry:
   prefix: bioregistry
   provider: true
   provider_url: https://bioregistry.io/registry/$1
-  registry: true
   resolver: true
   resolver_url: https://bioregistry.io/$1:$2
+cropoct:
+  description: The Crop Ontology (CO) current objective is to compile validated concepts
+    along with their inter-relationships on anatomy, structure and phenotype of Crops,
+    on trait measurement and methods as well as on Germplasm with the multi-crop passport
+    terms
+  download: https://github.com/bioversity/Crop-Ontology/blob/master/public/dump.json
+  example: CO_010
+  homepage: https://www.cropontology.org
+  name: Crop Ontology Curation Tool
+  prefix: cropoct
+  provider: true
+  provider_url: https://www.cropontology.org/ontology/$1
+  resolver: false
+ecoportal:
+  description: The LifeWatch ERIC repository of semantic resources for the ecological
+    domain.
+  example: ALIENSPECIES
+  homepage: http://ecoportal.lifewatchitaly.eu
+  name: EcoPortal
+  prefix: ecoportal
+  provider: true
+  provider_url: http://ecoportal.lifewatchitaly.eu/ontologies/$1
+  resolver: false
 fairsharing:
   description: A curated, informative and educational resource on data and metadata
     standards, inter-related to databases and data policies.
@@ -41,7 +84,6 @@ fairsharing:
   prefix: fairsharing
   provider: true
   provider_url: https://fairsharing.org/$1
-  registry: true
   resolver: false
 go:
   description: A database-specific registry supporting curation in the Gene Ontology
@@ -51,9 +93,9 @@ go:
   name: Gene Ontology Registry
   prefix: go
   provider: false
-  registry: true
   resolver: false
 miriam:
+  contact: hhe@ebi.ac.uk
   description: The Identifiers.org Resolution Service provides consistent access to
     life science data using Compact Identifiers. Compact Identifiers consist of an
     assigned unique prefix and a local provider designated accession number (prefix:accession).
@@ -64,7 +106,6 @@ miriam:
   prefix: miriam
   provider: true
   provider_url: https://registry.identifiers.org/registry/$1
-  registry: true
   resolver: true
   resolver_url: https://identifiers.org/$1:$2
 n2t:
@@ -76,7 +117,6 @@ n2t:
   name: Name-to-Thing
   prefix: n2t
   provider: false
-  registry: true
   resolver: true
   resolver_url: https://n2t.net/$1:$2
 ncbi:
@@ -87,7 +127,6 @@ ncbi:
   name: National Center for Biotechnology Information Registry
   prefix: ncbi
   provider: false
-  registry: true
   resolver: false
 obofoundry:
   description: The mission of the OBO Foundry is to develop a family of interoperable
@@ -99,7 +138,6 @@ obofoundry:
   prefix: obofoundry
   provider: false
   provider_url: http://www.obofoundry.org/ontology/$1
-  registry: true
   resolver: false
 ols:
   description: 'The Ontology Lookup Service (OLS) is a repository for biomedical ontologies
@@ -110,7 +148,6 @@ ols:
   prefix: ols
   provider: true
   provider_url: https://www.ebi.ac.uk/ols/ontologies/$1
-  registry: true
   resolver: false
 prefixcommons:
   description: A registry of commonly used prefixes in the life sciences and linked
@@ -122,7 +159,6 @@ prefixcommons:
   prefix: prefixcommons
   provider: true
   provider_url: https://prefixcommons.org/?q=id:$1
-  registry: true
   resolver: false
 uniprot:
   description: The cross-references section of UniProtKB entries displays explicit
@@ -135,7 +171,6 @@ uniprot:
   prefix: uniprot
   provider: true
   provider_url: https://www.uniprot.org/database/DB-$1
-  registry: true
   resolver: false
 wikidata:
   description: An open, community-curated knowledgebase that contains several properties
@@ -146,5 +181,4 @@ wikidata:
   prefix: wikidata
   provider: true
   provider_url: https://www.wikidata.org/wiki/Property:$1
-  registry: true
   resolver: false

@@ -2232,6 +2232,7 @@
     },
     "example": "0000001",
     "go": {
+      "description": "An upper ontology used by Open Bio Ontologies (OBO) Foundry. BFO contains upper-level classes as well as core relations such as part_of (BFO_0000050)",
       "name": "Basic Formal Ontology",
       "prefix": "BFO"
     },
@@ -3651,6 +3652,7 @@
     },
     "example": "0000590",
     "go": {
+      "description": "A structured controlled vocabulary for the source of an enzyme comprising tissues, cell lines, cell types and cell cultures.",
       "name": "BRENDA tissue / enzyme ontology",
       "prefix": "BTO"
     },
@@ -3989,6 +3991,7 @@
     "download": "https://github.com/obophenotype/caro/raw/master/src/ontology/caro.owl",
     "example": "0000000",
     "go": {
+      "description": "An upper ontology for anatomy used by OBO Foundry ontologies. Used to facilitate interoperability between existing anatomy ontologies for different species",
       "name": "Common Anatomy Reference Ontology",
       "prefix": "CARO"
     },
@@ -4029,6 +4032,7 @@
   },
   "cas": {
     "go": {
+      "description": "CAS REGISTRY is the most authoritative collection of disclosed chemical substance information, containing more than 54 million organic and inorganic substances and 62 million sequences. CAS REGISTRY covers substances identified from the scientific literature from 1957 to the present, with additional substances going back to the early 1900s.",
       "homepage": "http://www.cas.org/expertise/cascontent/registry/index.html",
       "name": "CAS Chemical Registry",
       "prefix": "CAS"
@@ -4219,6 +4223,7 @@
   },
   "cazy": {
     "go": {
+      "description": "The CAZy database describes the families of structurally-related catalytic and carbohydrate-binding modules (or functional domains) of enzymes that degrade, modify, or create glycosidic bonds.",
       "formatter": "http://www.cazy.org/$1.html",
       "homepage": "http://www.cazy.org/",
       "name": "Carbohydrate Active EnZYmes",
@@ -6636,6 +6641,7 @@
   },
   "coriell": {
     "go": {
+      "description": "The Coriell Cell Repositories provide essential research reagents to the scientific community by establishing, verifying, maintaining, and distributing cell cultures and DNA derived from cell cultures. These collections, supported by funds from the National Institutes of Health (NIH) and several foundations, are extensively utilized by research scientists around the world.",
       "formatter": "http://ccr.coriell.org/Sections/Search/Sample_Detail.aspx?Ref=$1",
       "homepage": "http://ccr.coriell.org/",
       "name": "Coriell Institute for Medical Research",
@@ -8704,8 +8710,8 @@
       "license": "https://creativecommons.org/publicdomain/zero/1.0/",
       "name": "Human Disease Ontology",
       "prefix": "doid",
-      "version": "2021-06-03",
-      "version.iri": "http://purl.obolibrary.org/obo/doid/releases/2021-06-03/doid.owl"
+      "version": "2021-06-08",
+      "version.iri": "http://purl.obolibrary.org/obo/doid/releases/2021-06-08/doid.owl"
     },
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/DOID_$1",
@@ -9395,12 +9401,12 @@
   "eccode": {
     "go": {
       "formatter": "https://enzyme.expasy.org/EC/$1",
-      "homepage": "https://enzyme.expasy.org/",
-      "name": "Swiss Institute of Bioinformatics enzyme database",
-      "prefix": "ENZYME"
+      "homepage": "http://enzyme.expasy.org/",
+      "name": "Enzyme Commission",
+      "prefix": "EC"
     },
     "mappings": {
-      "go": "ENZYME",
+      "go": "EC",
       "miriam": "ec-code",
       "n2t": "ec-code",
       "prefixcommons": "EC"
@@ -9640,16 +9646,13 @@
   "ecocyc": {
     "example": "AICARTRANSIMPCYCLO-CPLX",
     "go": {
-      "formatter": "http://biocyc.org/ECOLI/reference.html?type=CITATION-FRAME&object=$1",
+      "formatter": "http://biocyc.org/ECOLI/NEW-IMAGE?type=PATHWAY&object=$1",
       "homepage": "http://ecocyc.org/",
       "name": "Encyclopedia of E. coli metabolism",
-      "prefix": "EcoCyc_REF",
-      "synonyms": [
-        "ECOCYC_REF"
-      ]
+      "prefix": "EcoCyc"
     },
     "mappings": {
-      "go": "EcoCyc_REF",
+      "go": "EcoCyc",
       "ncbi": "ECOCYC"
     },
     "name": "EcoCyc",
@@ -9705,6 +9708,7 @@
   },
   "ecoliwiki": {
     "go": {
+      "description": "EcoliHub\\'s subsystem for community annotation of E. coli K-12",
       "homepage": "http://ecoliwiki.net/",
       "name": "EcoliWiki from EcoliHub",
       "prefix": "EcoliWiki"
@@ -10318,6 +10322,7 @@
     },
     "example": "26753",
     "go": {
+      "description": "A time-independent Mouse Anatomical Dictionary; part of Gene Expression Database",
       "formatter": "http://www.informatics.jax.org/vocab/gxd/anatomy/EMAPA:$1",
       "homepage": "http://emouseatlas.org/",
       "name": "Mouse gross anatomy and development, abstract",
@@ -10410,6 +10415,7 @@
   },
   "ena.embl": {
     "go": {
+      "description": "ENA is made up of a number of distinct databases that includes EMBL-Bank, the newly established Sequence Read Archive (SRA) and the Trace Archive. International nucleotide sequence database collaboration, comprising ENA-EBI nucleotide sequence data library (EMBL-Bank), DNA DataBank of Japan (DDBJ), and NCBI GenBank",
       "formatter": "http://www.ebi.ac.uk/ena/data/view/$1",
       "homepage": "http://www.ebi.ac.uk/ena/",
       "name": "European Nucleotide Archive",
@@ -12624,8 +12630,8 @@
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "name": "Fission Yeast Phenotype Ontology (FYPO)",
       "prefix": "fypo",
-      "version": "2021-06-03",
-      "version.iri": "http://purl.obolibrary.org/obo/fypo/releases/2021-06-03/fypo.owl"
+      "version": "2021-06-07",
+      "version.iri": "http://purl.obolibrary.org/obo/fypo/releases/2021-06-07/fypo.owl"
     },
     "pattern": "^\\d{7}$",
     "prefixcommons": {
@@ -12984,6 +12990,7 @@
   "genbank": {
     "example": "U49845",
     "go": {
+      "description": "The NIH genetic sequence database, an annotated collection of all publicly available DNA sequences.",
       "homepage": "http://www.ncbi.nlm.nih.gov/Genbank/",
       "name": "GenBank",
       "prefix": "GenBank",
@@ -13400,7 +13407,8 @@
       "fairsharing": "FAIRsharing.5hc8vt",
       "go": "GEO",
       "miriam": "geo",
-      "n2t": "geo"
+      "n2t": "geo",
+      "prefixcommons": "GEO"
     },
     "miriam": {
       "deprecated": false,
@@ -13423,6 +13431,12 @@
       "pattern": "^G(PL|SM|SE|DS)\\d+$",
       "prefix": "geo",
       "provider_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=$1"
+    },
+    "prefixcommons": {
+      "formatter": "http://purl.obolibrary.org/obo/GEO_$1",
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "GEO"
     }
   },
   "geogeo": {
@@ -14350,6 +14364,7 @@
     },
     "download": "ftp://ftp.geneontology.org/pub/go/ontology/extensions/gorel.owl",
     "go": {
+      "description": "Additional relations pending addition into RO",
       "name": "GO Extensions to OBO Relation Ontology Ontology",
       "prefix": "GOREL"
     },
@@ -15469,14 +15484,15 @@
     },
     "example": "16793",
     "go": {
-      "homepage": "http://www.hugo-international.org/",
-      "name": "Human Genome Organisation",
-      "prefix": "HUGO"
+      "formatter": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:$1",
+      "homepage": "http://www.genenames.org/",
+      "name": "HUGO Gene Nomenclature Committee",
+      "prefix": "HGNC"
     },
     "homepage": "http://www.genenames.org",
     "mappings": {
       "bioportal": "HGNC",
-      "go": "HUGO",
+      "go": "HGNC",
       "miriam": "hgnc",
       "n2t": "hgnc",
       "ncbi": "HGNC",
@@ -16087,8 +16103,8 @@
       "license": "license",
       "name": "Human Phenotype Ontology",
       "prefix": "hp",
-      "version": "2021-04-13",
-      "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2021-04-13/hp.owl"
+      "version": "2021-06-08",
+      "version.iri": "http://purl.obolibrary.org/obo/hp/releases/2021-06-08/hp.owl"
     },
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/HP_$1",
@@ -16519,6 +16535,7 @@
       "prefix": "IAO"
     },
     "go": {
+      "description": "Ontology of information entities, including ontology metadata relations.",
       "name": "Information Artifact Ontology",
       "prefix": "IAO"
     },
@@ -17327,6 +17344,7 @@
   },
   "imgt.ligm": {
     "go": {
+      "description": "Database of immunoglobulins and T cell receptors from human and other vertebrates, with translation for fully annotated sequences.",
       "homepage": "http://www.imgt.org/",
       "name": "ImMunoGeneTics database covering immunoglobulins and T-cell receptors",
       "prefix": "IMGT_LIGM"
@@ -19784,6 +19802,7 @@
       "prefix": "MA"
     },
     "go": {
+      "description": "Adult Mouse Anatomical Dictionary; part of Gene Expression Database",
       "formatter": "http://www.informatics.jax.org/searches/AMA.cgi?id=MA:$1",
       "homepage": "http://www.informatics.jax.org/",
       "name": "Adult Mouse Anatomical Dictionary",
@@ -22281,7 +22300,8 @@
   },
   "mmmp:biomaps": {
     "mappings": {
-      "miriam": "mmmp:biomaps"
+      "miriam": "mmmp:biomaps",
+      "prefixcommons": "MMMP:BIOMAPS"
     },
     "miriam": {
       "deprecated": false,
@@ -22294,6 +22314,12 @@
       "prefix": "mmmp:biomaps",
       "provider_url": "http://www.mmmp.org/MMMP/public/biomap/viewBiomap.mmmp?id=$1",
       "sampleId": "37"
+    },
+    "prefixcommons": {
+      "formatter": "http://identifiers.org/mmmp:biomaps/$1",
+      "is_identifiers": true,
+      "is_obo": false,
+      "prefix": "MMMP:BIOMAPS"
     }
   },
   "mmo": {
@@ -26432,13 +26458,13 @@
       "prefix": "ons"
     },
     "ols": {
-      "description": "An ontology for description of concepts in the nutritional studies domain.",
+      "description": "The Ontology for Nutritional Studies (ONS) has been developed as part of the ENPADASI European project (http://www.enpadasi.eu/) with the aim to define a common language and building ontologies for nutritional studies.",
       "download": "http://purl.obolibrary.org/obo/ons.owl",
       "homepage": "https://github.com/enpadasi/Ontology-for-Nutritional-Studies",
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "name": "Ontology for Nutritional Studies",
       "prefix": "ons",
-      "version": "1.0"
+      "version": "1.2.0"
     }
   },
   "ontoneo": {
@@ -27419,7 +27445,7 @@
       "go": "PANTHER",
       "miriam": "panther.family",
       "n2t": "panther.family",
-      "prefixcommons": "PANTHER"
+      "prefixcommons": "PANTHER.FAMILY"
     },
     "miriam": {
       "deprecated": false,
@@ -27444,10 +27470,10 @@
       "provider_url": "http://www.pantherdb.org/panther/family.do?clsAccession=$1"
     },
     "prefixcommons": {
-      "formatter": "http://www.pantherdb.org/panther/family.do?clsAccession=$1",
-      "is_identifiers": false,
+      "formatter": "http://identifiers.org/panther.family/$1",
+      "is_identifiers": true,
       "is_obo": false,
-      "prefix": "PANTHER"
+      "prefix": "PANTHER.FAMILY"
     }
   },
   "panther.node": {
@@ -28083,10 +28109,11 @@
       "description": "An ontology to describe entities related to prescription of drugs",
       "download": "http://purl.obolibrary.org/obo/pdro.owl",
       "homepage": "https://github.com/OpenLHS/PDRO",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "The Prescription of Drugs Ontology",
       "prefix": "pdro",
-      "version": "2020-02-05",
-      "version.iri": "http://purl.obolibrary.org/obo/2020-02-05/pdro.owl"
+      "version": "2021-06-08",
+      "version.iri": "http://purl.obolibrary.org/obo/pdro/2021-06-08/pdro.owl"
     },
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/PDRO_$1",
@@ -28377,6 +28404,7 @@
   "pfam": {
     "example": "PF11779",
     "go": {
+      "description": "Pfam is a collection of protein families represented by sequence alignments and hidden Markov models (HMMs)",
       "homepage": "http://pfam.xfam.org",
       "name": "Pfam database of protein families",
       "prefix": "Pfam"
@@ -31854,6 +31882,7 @@
   },
   "rhea": {
     "go": {
+      "description": "Rhea is a manually annotated database of chemical reactions. All data in Rhea is freely accessible and available for anyone to use.",
       "formatter": "https://www.rhea-db.org/rhea/$1",
       "homepage": "https://www.rhea-db.org",
       "name": "Rhea, the Annotated Reactions Database",
@@ -32112,6 +32141,7 @@
   },
   "rnacentral": {
     "go": {
+      "description": "An international database of ncRNA sequences",
       "formatter": "https://rnacentral.org/rna/$1",
       "homepage": "https://rnacentral.org",
       "name": "RNAcentral",
@@ -32266,6 +32296,7 @@
     },
     "download": "https://github.com/oborel/obo-relations/raw/master/ro.obo",
     "go": {
+      "description": "A collection of relations used across OBO ontologies",
       "name": "OBO Relation Ontology Ontology",
       "prefix": "RO"
     },
@@ -33015,6 +33046,7 @@
   },
   "seed": {
     "go": {
+      "description": "Project to annotate the first 1000 sequenced genomes, develop detailed metabolic reconstructions, and construct the corresponding stoichiometric matrices",
       "formatter": "http://www.theseed.org/linkin.cgi?id=$1",
       "homepage": "http://www.theseed.org",
       "name": "The SEED;",
@@ -33674,7 +33706,16 @@
   "skos": {
     "example": "prefLabel",
     "homepage": "https://www.w3.org/2004/02/skos/",
+    "mappings": {
+      "prefixcommons": "skos"
+    },
     "name": "Simple Knowledge Organization System",
+    "prefixcommons": {
+      "formatter": "https://www.w3.org/TR/skos-reference/#$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "skos"
+    },
     "url": "http://www.w3.org/2004/02/skos/core#$1"
   },
   "slm": {
@@ -35014,7 +35055,7 @@
       "miriam": "tair.locus",
       "n2t": "tair.locus",
       "ncbi": "TAIR",
-      "prefixcommons": "TAIR"
+      "prefixcommons": "TAIR.LOCUS"
     },
     "miriam": {
       "deprecated": false,
@@ -35045,10 +35086,10 @@
       "prefix": "TAIR"
     },
     "prefixcommons": {
-      "formatter": "https://www.arabidopsis.org/servlets/TairObject?type=locus&id=$1",
-      "is_identifiers": false,
+      "formatter": "http://identifiers.org/tair.locus/$1",
+      "is_identifiers": true,
       "is_obo": false,
-      "prefix": "TAIR"
+      "prefix": "TAIR.LOCUS"
     }
   },
   "tair.protein": {
@@ -35999,6 +36040,7 @@
     "download": "http://purl.obolibrary.org/obo/uberon/basic.obo",
     "example": "2005080",
     "go": {
+      "description": "A multi-species anatomy ontology",
       "homepage": "http://uberon.org",
       "name": "Uber-anatomy ontology",
       "prefix": "UBERON"
@@ -36532,6 +36574,7 @@
   },
   "uniparc": {
     "go": {
+      "description": "A non-redundant archive of protein sequences extracted from Swiss-Prot, TrEMBL, PIR-PSD, EMBL, Ensembl, IPI, PDB, RefSeq, FlyBase, WormBase, European Patent Office, United States Patent and Trademark Office, and Japanese Patent Office",
       "formatter": "https://www.uniprot.org/uniparc/$1",
       "homepage": "https://www.uniprot.org/uniparc/",
       "name": "UniProt Archive",
@@ -36644,6 +36687,7 @@
   },
   "uniprot": {
     "go": {
+      "description": "A central repository of protein sequence and function created by joining the information contained in Swiss-Prot, TrEMBL, and PIR database",
       "formatter": "https://www.uniprot.org/uniprot/$1",
       "homepage": "http://www.uniprot.org",
       "name": "Universal Protein Knowledgebase",
@@ -37009,6 +37053,7 @@
     "download": "https://raw.githubusercontent.com/geneontology/unipathway/master/upa.obo",
     "example": "UCR00513",
     "go": {
+      "description": "UniPathway is a a metabolic door to UniProtKB/Swiss-Prot, a curated resource of metabolic pathways for the UniProtKB/Swiss-Prot knowledgebase.",
       "formatter": "http://www.grenoble.prabi.fr/obiwarehouse/unipathway/upa?upid=$1",
       "homepage": "http://www.grenoble.prabi.fr/obiwarehouse/unipathway",
       "name": "UniPathway",
@@ -38041,16 +38086,14 @@
       "prefix": "WBVocab"
     },
     "go": {
+      "formatter": "http://www.wormbase.org/get?name=$1",
       "homepage": "http://www.wormbase.org/",
       "name": "WormBase database of nematode biology",
-      "prefix": "WB",
-      "synonyms": [
-        "WormBase"
-      ]
+      "prefix": "WB_REF"
     },
     "mappings": {
       "biolink": "WBVocab",
-      "go": "WB",
+      "go": "WB_REF",
       "miriam": "wb",
       "n2t": "wb",
       "prefixcommons": "WB"

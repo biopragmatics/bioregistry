@@ -29,9 +29,9 @@ MISMATCH_PATH = DATA_DIRECTORY / 'mismatch.json'
 BIOREGISTRY_MODULE = pystow.module('bioregistry')
 EnsureEntry = Any
 
-DOCS = os.path.abspath(os.path.join(HERE, os.pardir, os.pardir, 'docs'))
-DOCS_DATA = os.path.join(DOCS, '_data')
-DOCS_IMG = os.path.join(DOCS, 'img')
+DOCS = HERE.parent.parent.joinpath('docs').resolve()
+DOCS_DATA = DOCS.joinpath('_data')
+DOCS_IMG = DOCS.joinpath('img')
 
 #: The URL of the remote Bioregistry site
 BIOREGISTRY_REMOTE_URL = pystow.get_config('bioregistry', 'url') or 'https://bioregistry.io'

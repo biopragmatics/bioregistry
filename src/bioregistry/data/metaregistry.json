@@ -1,6 +1,27 @@
 {
   "metaregistry": [
     {
+      "description": "AberOWL is a framework for ontology-based access to biological data. It consists of a repository of bio-ontologies, a set of webservices which provide access to OWL(-EL) reasoning over the ontologies, and several frontends which utilise the ontology repository and reasoning services to provide access to specific biological datasets.",
+      "download": "http://aber-owl.net/api/ontology/?format=json",
+      "example": "CHEBI",
+      "homepage": "http://aber-owl.net",
+      "name": "AberOWL",
+      "prefix": "aberowl",
+      "provider": true,
+      "provider_url": "http://aber-owl.net/ontology/$1",
+      "resolver": false
+    },
+    {
+      "description": "A vocabulary and ontology repository for agronomy and related domains.",
+      "example": "ENVO",
+      "homepage": "http://agroportal.lirmm.fr",
+      "name": "AgroPortal",
+      "prefix": "agroportal",
+      "provider": true,
+      "provider_url": "http://agroportal.lirmm.fr/ontologies/$1",
+      "resolver": false
+    },
+    {
       "description": "A modeling paradigm-specific registry of prefixes and their URL expansions",
       "download": "https://raw.githubusercontent.com/biolink/biolink-model/master/biolink-model.yaml",
       "example": "doi",
@@ -8,7 +29,6 @@
       "name": "Biolink Model Registry",
       "prefix": "biolink",
       "provider": false,
-      "registry": true,
       "resolver": false
     },
     {
@@ -19,7 +39,6 @@
       "prefix": "bioportal",
       "provider": true,
       "provider_url": "https://bioportal.bioontology.org/ontologies/$1",
-      "registry": true,
       "resolver": false
     },
     {
@@ -31,9 +50,29 @@
       "prefix": "bioregistry",
       "provider": true,
       "provider_url": "https://bioregistry.io/registry/$1",
-      "registry": true,
       "resolver": true,
       "resolver_url": "https://bioregistry.io/$1:$2"
+    },
+    {
+      "description": "The Crop Ontology (CO) current objective is to compile validated concepts along with their inter-relationships on anatomy, structure and phenotype of Crops, on trait measurement and methods as well as on Germplasm with the multi-crop passport terms",
+      "download": "https://github.com/bioversity/Crop-Ontology/blob/master/public/dump.json",
+      "example": "CO_010",
+      "homepage": "https://www.cropontology.org",
+      "name": "Crop Ontology Curation Tool",
+      "prefix": "cropoct",
+      "provider": true,
+      "provider_url": "https://www.cropontology.org/ontology/$1",
+      "resolver": false
+    },
+    {
+      "description": "The LifeWatch ERIC repository of semantic resources for the ecological domain.",
+      "example": "ALIENSPECIES",
+      "homepage": "http://ecoportal.lifewatchitaly.eu",
+      "name": "EcoPortal",
+      "prefix": "ecoportal",
+      "provider": true,
+      "provider_url": "http://ecoportal.lifewatchitaly.eu/ontologies/$1",
+      "resolver": false
     },
     {
       "description": "A curated, informative and educational resource on data and metadata standards, inter-related to databases and data policies.",
@@ -43,7 +82,6 @@
       "prefix": "fairsharing",
       "provider": true,
       "provider_url": "https://fairsharing.org/$1",
-      "registry": true,
       "resolver": false
     },
     {
@@ -54,10 +92,10 @@
       "name": "Gene Ontology Registry",
       "prefix": "go",
       "provider": false,
-      "registry": true,
       "resolver": false
     },
     {
+      "contact": "hhe@ebi.ac.uk",
       "description": "The Identifiers.org Resolution Service provides consistent access to life science data using Compact Identifiers. Compact Identifiers consist of an assigned unique prefix and a local provider designated accession number (prefix:accession).",
       "download": "https://registry.api.identifiers.org/resolutionApi/getResolverDataset",
       "example": "chebi",
@@ -66,7 +104,6 @@
       "prefix": "miriam",
       "provider": true,
       "provider_url": "https://registry.identifiers.org/registry/$1",
-      "registry": true,
       "resolver": true,
       "resolver_url": "https://identifiers.org/$1:$2"
     },
@@ -78,7 +115,6 @@
       "name": "Name-to-Thing",
       "prefix": "n2t",
       "provider": false,
-      "registry": true,
       "resolver": true,
       "resolver_url": "https://n2t.net/$1:$2"
     },
@@ -89,7 +125,6 @@
       "name": "National Center for Biotechnology Information Registry",
       "prefix": "ncbi",
       "provider": false,
-      "registry": true,
       "resolver": false
     },
     {
@@ -101,7 +136,6 @@
       "prefix": "obofoundry",
       "provider": false,
       "provider_url": "http://www.obofoundry.org/ontology/$1",
-      "registry": true,
       "resolver": false
     },
     {
@@ -112,7 +146,6 @@
       "prefix": "ols",
       "provider": true,
       "provider_url": "https://www.ebi.ac.uk/ols/ontologies/$1",
-      "registry": true,
       "resolver": false
     },
     {
@@ -124,7 +157,6 @@
       "prefix": "prefixcommons",
       "provider": true,
       "provider_url": "https://prefixcommons.org/?q=id:$1",
-      "registry": true,
       "resolver": false
     },
     {
@@ -136,7 +168,6 @@
       "prefix": "uniprot",
       "provider": true,
       "provider_url": "https://www.uniprot.org/database/DB-$1",
-      "registry": true,
       "resolver": false
     },
     {
@@ -147,7 +178,6 @@
       "prefix": "wikidata",
       "provider": true,
       "provider_url": "https://www.wikidata.org/wiki/Property:$1",
-      "registry": true,
       "resolver": false
     }
   ]
