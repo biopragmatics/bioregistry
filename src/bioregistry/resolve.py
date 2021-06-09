@@ -248,6 +248,16 @@ def get_obofoundry_prefix(prefix: str) -> Optional[str]:
     return _get_mapped_prefix(prefix, 'obofoundry')
 
 
+def get_registry_map(metaprefix: str) -> Dict[str, str]:
+    """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
+    rv = {}
+    for prefix in read_registry():
+        mapped_prefix = _get_mapped_prefix(prefix, metaprefix)
+        if mapped_prefix is not None:
+            rv[prefix] = mapped_prefix
+    return rv
+
+
 def get_obofoundry_format(prefix: str) -> Optional[str]:
     """Get the URL format for an OBO Foundry entry.
 
@@ -485,6 +495,29 @@ def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:
         return {}
     entry = read_registry()[norm_prefix]
     return entry.get_external(metaprefix)
+
+
+def get_format_urls(
+    *, priority: Optional[Sequence[str]] = None,
+    include_synonyms: bool = False,
+) -> Mapping[str, str]:
+    """Get a mapping from Bioregistry prefixes to their prefix URLs via :func:`get_format_url`.
+
+    :param priority: A priority list for how to generate prefix URLs.
+    :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
+        the same URL prefix?
+    :return: A mapping from prefixes to prefix URLs.
+    """
+    rv = {}
+    for prefix in read_registry():
+        prefix_url = get_format_url(prefix, priority=priority)
+        if prefix_url is None:
+            continue
+        rv[prefix] = prefix_url
+        if include_synonyms:
+            for synonym in get_synonyms(prefix) or []:
+                rv[synonym] = prefix_url
+    return rv
 
 
 def get_format_url(prefix: str, priority: Optional[Sequence[str]] = None) -> Optional[str]:
@@ -740,11 +773,15 @@ def _synonym_to_canonical() -> NormDict:
         for synonym in entry.synonyms or []:
             norm_synonym_to_key[synonym] = bioregistry_id
 
-        for external in ('miriam', 'ols', 'wikidata', 'obofoundry', 'go'):
-            if external in entry and 'prefix' in entry[external]:
-                s = entry[external]['prefix']
-                if s not in norm_synonym_to_key:
-                    logger.debug('[%s] missing potential synonym: %s', bioregistry_id, s)
+        for metaprefix in ('miriam', 'ols', 'obofoundry', 'go'):
+            external = entry.get_external(metaprefix)
+            if external is None:
+                continue
+            external_prefix = external.get('prefix')
+            if external_prefix is None:
+                continue
+            if external_prefix not in norm_synonym_to_key:
+                logger.debug(f'[{bioregistry_id}] missing potential synonym: {external_prefix}')
 
     return norm_synonym_to_key
 
