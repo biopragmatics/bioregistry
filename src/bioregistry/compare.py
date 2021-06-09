@@ -212,6 +212,7 @@ def compare(png: bool):  # noqa:C901
         return sys.exit(1)
 
     # This should make SVG output deterministic
+    # See https://matplotlib.org/3.1.0/users/prev_whats_new/whats_new_2.0.0.html#added-svg-hashsalt-key-to-rcparams
     plt.rcParams['svg.hashsalt'] = 'saltyregistry'
 
     watermark = True
