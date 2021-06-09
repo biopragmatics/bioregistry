@@ -27,7 +27,7 @@ def get_obofoundry(force_download: bool = False):
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    download(url=OBOFOUNDRY_URL, path=RAW_PATH, force=force_download)
+    download(url=OBOFOUNDRY_URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as file:
         data = yaml.full_load(file)
 

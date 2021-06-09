@@ -25,7 +25,7 @@ def get_prefix_commons(force_download: bool = False):
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
-    download(url=URL, path=RAW_PATH, force=force_download)
+    download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as file:
         data = json.load(file)
     rv = {

@@ -43,7 +43,10 @@ kzi = {v: k for k, v in kz.items()}
 
 def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
     """Get the UniProt registry."""
-    download(url=URL, path=RAW_PATH, force=force_download)
+    if PROCESSED_PATH.is_file() and not force_download:
+        with PROCESSED_PATH.open() as file:
+            return json.load(file)
+    download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as file:
         tree = ElementTree.parse(file)
     root = tree.getroot()

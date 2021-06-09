@@ -56,7 +56,7 @@ def get_ncbi(force_download: bool = False) -> Dict[str, Dict[str, str]]:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    download(url=URL, path=RAW_PATH, force=force_download)
+    download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as file:
         soup = BeautifulSoup(file, 'html.parser')
     # find the data table based on its caption element
