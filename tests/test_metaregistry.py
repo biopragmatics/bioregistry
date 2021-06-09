@@ -22,7 +22,6 @@ class TestMetaregistry(unittest.TestCase):
                 self.assertIn('homepage', data)
                 self.assertIn('example', data)
                 self.assertIn('description', data)
-                self.assertIn('registry', data)
 
                 # When a registry is a provider, it means it
                 # provides for its entries
@@ -40,9 +39,9 @@ class TestMetaregistry(unittest.TestCase):
                     self.assertIn('$2', data['resolver_url'])
 
                 invalid_keys = set(data).difference({
-                    'prefix', 'name', 'homepage', 'download', 'registry',
+                    'prefix', 'name', 'homepage', 'download',
                     'provider', 'resolver', 'description', 'provider_url',
-                    'example', 'resolver_url',
+                    'example', 'resolver_url', 'contact',
                 })
                 self.assertEqual(set(), invalid_keys, msg='invalid metadata')
 
