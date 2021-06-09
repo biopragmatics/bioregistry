@@ -157,7 +157,6 @@ class Registry(BaseModel):
         graph.add((node, DC.description, Literal(self.description)))
         graph.add((node, FOAF['homepage'], Literal(self.homepage)))
         graph.add((node, bioregistry_schema['hasExample'], Literal(self.example)))
-        graph.add((node, bioregistry_schema['isRegistry'], Literal(self.registry, datatype=XSD.boolean)))
         graph.add((node, bioregistry_schema['isProvider'], Literal(self.provider, datatype=XSD.boolean)))
         graph.add((node, bioregistry_schema['isResolver'], Literal(self.resolver, datatype=XSD.boolean)))
         if self.provider_url:
