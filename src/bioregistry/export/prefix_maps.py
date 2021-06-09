@@ -22,12 +22,12 @@ def generate_context_json_ld():
     contexts_directory = Path(DOCS_DATA) / 'contexts'
     contexts_directory.mkdir(parents=True, exist_ok=True)
 
-    with contexts_directory.joinpath('obo_context.jsonld').open('w') as file:
+    with contexts_directory.joinpath('obo.context.jsonld').open('w') as file:
         json.dump(fp=file, indent=4, sort_keys=True, obj={
             "@context": get_obofoundry_prefix_map(),
         })
 
-    with contexts_directory.joinpath('obo_context_synonyms.jsonld').open('w') as file:
+    with contexts_directory.joinpath('obo_synonyms.context.jsonld').open('w') as file:
         json.dump(fp=file, indent=4, sort_keys=True, obj={
             "@context": get_obofoundry_prefix_map(include_synonyms=True),
         })
@@ -36,7 +36,7 @@ def generate_context_json_ld():
         name = collection.context
         if name is None:
             continue
-        with contexts_directory.joinpath(f'{name}_context').with_suffix('.jsonld').open('w') as file:
+        with contexts_directory.joinpath(name).with_suffix('.context.jsonld').open('w') as file:
             json.dump(fp=file, indent=4, sort_keys=True, obj=get_collection_jsonld(key))
 
 
