@@ -82,7 +82,8 @@ WATERMARK_TEXT = f'https://github.com/bioregistry/bioregistry ({TODAY})'
 
 
 @click.command()
-def compare():  # noqa:C901
+@click.option('--png', is_flag=True)
+def compare(png: bool):  # noqa:C901
     """Compare the registries."""
     random.seed(0)
     try:
@@ -120,10 +121,12 @@ def compare():  # noqa:C901
             ha='center', va='bottom',
         )
 
-    path = os.path.join(DOCS_IMG, 'license_coverage.svg')
+    path = DOCS_IMG.joinpath('license_coverage.svg')
     click.echo(f'output to {path}')
     fig.tight_layout()
-    fig.savefig(path, dpi=300)
+    fig.savefig(path)
+    if png:
+        fig.savefig(DOCS_IMG.joinpath('license_coverage.png'), dpi=300)
     plt.close(fig)
 
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
@@ -138,7 +141,7 @@ def compare():  # noqa:C901
             ha='right', va='center', rotation=90,
         )
 
-    path = os.path.join(DOCS_IMG, 'licenses.svg')
+    path = DOCS_IMG.joinpath('licenses.svg')
     click.echo(f'output to {path}')
     fig.tight_layout()
     fig.savefig(path, dpi=300)
@@ -193,10 +196,12 @@ def compare():  # noqa:C901
             ha='center', va='bottom',
         )
 
-    path = os.path.join(DOCS_IMG, 'has_attribute.svg')
+    path = DOCS_IMG.joinpath('has_attribute.svg')
     click.echo(f'output to {path}')
     fig.tight_layout()
-    fig.savefig(path, dpi=300)
+    fig.savefig(path)
+    if png:
+        fig.savefig(path.with_name('has_attribute.png'), dpi=300)
     plt.close(fig)
 
     # -------------------------------------------------------------------- #
@@ -238,10 +243,12 @@ def compare():  # noqa:C901
             ha='center', va='bottom',
         )
 
-    path = os.path.join(DOCS_IMG, 'bioregistry_coverage.svg')
+    path = DOCS_IMG.joinpath('bioregistry_coverage.svg')
     click.echo(f'output to {path}')
     fig.tight_layout()
     fig.savefig(path, dpi=300)
+    if png:
+        fig.savefig(path.with_name('bioregistry_coverage.png'), dpi=300)
     plt.close(fig)
 
     ######################################################
@@ -275,10 +282,12 @@ def compare():  # noqa:C901
             ha='center', va='bottom',
         )
 
-    path = os.path.join(DOCS_IMG, 'external_overlap.svg')
+    path = DOCS_IMG.joinpath('external_overlap.svg')
     click.echo(f'output to {path}')
     fig.tight_layout()
     fig.savefig(path, dpi=300)
+    if png:
+        fig.savefig(path.with_name('external_overlap.png'), dpi=300)
     plt.close(fig)
 
     ##############################################
@@ -286,7 +295,7 @@ def compare():  # noqa:C901
     ##############################################
     xref_counts = [
         sum(
-            key in entry
+            0 < len(entry.get_external(key))
             for key, *_ in keys
         )
         for entry in read_registry().values()
@@ -303,10 +312,12 @@ def compare():  # noqa:C901
             ha='right', va='center', rotation=90,
         )
 
-    path = os.path.join(DOCS_IMG, 'xrefs.svg')
+    path = DOCS_IMG.joinpath('xrefs.svg')
     click.echo(f'output to {path}')
     fig.tight_layout()
-    fig.savefig(path, dpi=300)
+    fig.savefig(path)
+    if png:
+        fig.savefig(path.with_name('xrefs.png'), dpi=300)
     plt.close(fig)
 
 
@@ -341,11 +352,12 @@ def _get_license_and_conflicts():
 
 
 def _remap(*, key: str, prefixes: Collection[str]) -> Set[str]:
-    br_external_to = {
-        br_entry[key]['prefix']: br_id
-        for br_id, br_entry in read_registry().items()
-        if key in br_entry and 'prefix' in br_entry[key]
-    }
+    br_external_to = {}
+    for br_id, resource in read_registry().items():
+        _k = (resource.dict().get(key) or {}).get('prefix')
+        if _k:
+            br_external_to[_k] = br_id
+
     return {
         br_external_to.get(prefix, prefix)
         for prefix in prefixes
