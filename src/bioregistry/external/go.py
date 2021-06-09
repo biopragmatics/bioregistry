@@ -44,7 +44,7 @@ def get_go(force_download: bool = False):
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    download(url=GO_URL, path=RAW_PATH, force=force_download)
+    download(url=GO_URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as file:
         entries = yaml.full_load(file)
     entries = [

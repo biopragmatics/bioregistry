@@ -71,6 +71,17 @@ LICENSES = {
 BIOREGISTRY_COLOR = 'silver'
 
 
+def _get_has(f):
+    return {key for key in read_registry() if f(key)}
+
+
+HAS_WIKIDATA_DATABASE = {
+    key
+    for key in read_registry()
+    if 'database' in get_external(key, 'wikidata')
+}
+
+
 def _remap_license(k):
     return k and LICENSES.get(k, k)
 
@@ -78,6 +89,109 @@ def _remap_license(k):
 SINGLE_FIG = (8, 3.5)
 TODAY = datetime.datetime.today().strftime('%Y-%m-%d')
 WATERMARK_TEXT = f'https://github.com/bioregistry/bioregistry ({TODAY})'
+
+
+def _save(fig, name: str, *, png: bool = False) -> None:
+    import matplotlib.pyplot as plt
+    path = DOCS_IMG.joinpath(name).with_suffix('.svg')
+    click.echo(f'output to {path}')
+    fig.tight_layout()
+    fig.savefig(path)
+    if png:
+        fig.savefig(DOCS_IMG.joinpath(name).with_suffix('.png'), dpi=300)
+    plt.close(fig)
+
+
+def _plot_attribute_pies(*, measurements, watermark):
+    import matplotlib.pyplot as plt
+    ncols = 3
+    nrows = int(math.ceil(len(measurements) / ncols))
+    fig, axes = plt.subplots(ncols=ncols, nrows=nrows)
+    for measurement, ax in itt.zip_longest(measurements, axes.ravel()):
+        if measurement is None:
+            ax.axis('off')
+            continue
+        label, prefixes = measurement
+        ax.pie(
+            (len(prefixes), len(read_registry()) - len(prefixes)),
+            labels=('Yes', 'No'),
+            autopct='%1.f%%',
+            startangle=30,
+            explode=[0.1, 0],
+        )
+        ax.set_title(label)
+    if watermark:
+        fig.text(
+            0.5, 0, WATERMARK_TEXT,
+            fontsize=8, color='gray', alpha=0.5,
+            ha='center', va='bottom',
+        )
+    return fig, axes
+
+
+def _plot_coverage(*, keys, watermark):
+    import matplotlib.pyplot as plt
+    from matplotlib_venn import venn2
+    ncols = 3
+    nrows = int(math.ceil(len(keys) / ncols))
+    figsize = (3.25 * ncols, 2.0 * nrows)
+    fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
+    for key, ax in itt.zip_longest(keys, axes.ravel()):
+        if key is None:
+            ax.axis('off')
+            continue
+        key, label, color, prefixes = key
+        # Remap bioregistry prefixes to match the external
+        #  vocabulary, when possible
+        bioregistry_remapped = {
+            get_external(br_key, key).get('prefix', br_key)
+            for br_key, br_entry in read_registry().items()
+        }
+        venn2(
+            subsets=(bioregistry_remapped, prefixes),
+            set_labels=('Bioregistry', label),
+            set_colors=(BIOREGISTRY_COLOR, color),
+            ax=ax,
+        )
+    if watermark:
+        fig.text(
+            0.5, 0, WATERMARK_TEXT,
+            fontsize=8, color='gray', alpha=0.5,
+            ha='center', va='bottom',
+        )
+    return fig, axes
+
+
+def _plot_external_overlap(*, keys, watermark):
+    import matplotlib.pyplot as plt
+    from matplotlib_venn import venn2
+    pairs = list(itt.combinations(keys, r=2))
+    ncols = 4
+    nrows = int(math.ceil(len(pairs) / ncols))
+    figsize = (3 * ncols, 2.5 * nrows)
+    fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
+    for pair, ax in itt.zip_longest(pairs, axes.ravel()):
+        if pair is None:
+            ax.axis('off')
+            continue
+        (l_key, l_label, l_color, l_prefixes), (r_key, r_label, r_color, r_prefixes) = pair
+        # Remap external vocabularies to bioregistry
+        #  prefixes, when possible
+        l_prefixes = _remap(key=l_key, prefixes=l_prefixes)
+        r_prefixes = _remap(key=r_key, prefixes=r_prefixes)
+        venn2(
+            subsets=(l_prefixes, r_prefixes),
+            set_labels=(l_label, r_label),
+            set_colors=(l_color, r_color),
+            ax=ax,
+        )
+    if watermark:
+        fig.text(
+            0.5, 0, WATERMARK_TEXT,  # transform=plt.gca().transAxes,
+            fontsize=14, color='gray', alpha=0.5,
+            ha='center', va='bottom',
+        )
+    return fig, axes
 
 
 @click.command()
@@ -149,14 +263,6 @@ def compare(png: bool):  # noqa:C901
     ##############################################
     # How many entries have version information? #
     ##############################################
-    def _get_has(f):
-        return {key for key in read_registry() if f(key)}
-
-    has_wikidata_database = {
-        key
-        for key in read_registry()
-        if 'database' in get_external(key, 'wikidata')
-    }
     measurements = [
         ('Name', _get_has(get_name)),
         ('Description', _get_has(get_description)),
@@ -166,42 +272,14 @@ def compare(png: bool):  # noqa:C901
         ('Pattern', _get_has(get_pattern)),
         ('Format URL', _get_has(get_format)),
         ('Example', _get_has(get_example)),
-        ('Wikidata Database', has_wikidata_database),
+        ('Wikidata Database', HAS_WIKIDATA_DATABASE),
         ('OBO', _get_has(get_obo_download)),
         ('OWL', _get_has(get_owl_download)),
         ('JSON', _get_has(get_json_download)),
     ]
 
-    ncols = 3
-    nrows = int(math.ceil(len(measurements) / ncols))
-    fig, axes = plt.subplots(ncols=ncols, nrows=nrows)
-    for measurement, ax in itt.zip_longest(measurements, axes.ravel()):
-        if measurement is None:
-            ax.axis('off')
-            continue
-        label, prefixes = measurement
-        ax.pie(
-            (len(prefixes), len(read_registry()) - len(prefixes)),
-            labels=('Yes', 'No'),
-            autopct='%1.f%%',
-            startangle=30,
-            explode=[0.1, 0],
-        )
-        ax.set_title(label)
-    if watermark:
-        fig.text(
-            0.5, 0, WATERMARK_TEXT,
-            fontsize=8, color='gray', alpha=0.5,
-            ha='center', va='bottom',
-        )
-
-    path = DOCS_IMG.joinpath('has_attribute.svg')
-    click.echo(f'output to {path}')
-    fig.tight_layout()
-    fig.savefig(path)
-    if png:
-        fig.savefig(path.with_name('has_attribute.png'), dpi=300)
-    plt.close(fig)
+    fig, axes = _plot_attribute_pies(measurements=measurements, watermark=watermark)
+    _save(fig, 'has_attribute', png=png)
 
     # -------------------------------------------------------------------- #
     palette = sns.color_palette("Paired", len(GETTERS))
@@ -213,81 +291,14 @@ def compare(png: bool):  # noqa:C901
     ############################################################
     # How well does the Bioregistry cover the other resources? #
     ############################################################
-
-    ncols = 3
-    nrows = int(math.ceil(len(keys) / ncols))
-    figsize = (3.25 * ncols, 2.0 * nrows)
-    fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
-    for key, ax in itt.zip_longest(keys, axes.ravel()):
-        if key is None:
-            ax.axis('off')
-            continue
-        key, label, color, prefixes = key
-        # Remap bioregistry prefixes to match the external
-        #  vocabulary, when possible
-        bioregistry_remapped = {
-            get_external(br_key, key).get('prefix', br_key)
-            for br_key, br_entry in read_registry().items()
-        }
-        venn2(
-            subsets=(bioregistry_remapped, prefixes),
-            set_labels=('Bioregistry', label),
-            set_colors=(BIOREGISTRY_COLOR, color),
-            ax=ax,
-        )
-    if watermark:
-        fig.text(
-            0.5, 0, WATERMARK_TEXT,
-            fontsize=8, color='gray', alpha=0.5,
-            ha='center', va='bottom',
-        )
-
-    path = DOCS_IMG.joinpath('bioregistry_coverage.svg')
-    click.echo(f'output to {path}')
-    fig.tight_layout()
-    fig.savefig(path, dpi=300)
-    if png:
-        fig.savefig(path.with_name('bioregistry_coverage.png'), dpi=300)
-    plt.close(fig)
+    fig, axes = _plot_coverage(keys=keys, watermark=watermark)
+    _save(fig, name='bioregistry_coverage', png=png)
 
     ######################################################
     # What's the overlap between each pair of resources? #
     ######################################################
-
-    pairs = list(itt.combinations(keys, r=2))
-    ncols = 4
-    nrows = int(math.ceil(len(pairs) / ncols))
-    figsize = (3 * ncols, 2.5 * nrows)
-    fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
-    for pair, ax in itt.zip_longest(pairs, axes.ravel()):
-        if pair is None:
-            ax.axis('off')
-            continue
-        (l_key, l_label, l_color, l_prefixes), (r_key, r_label, r_color, r_prefixes) = pair
-        # Remap external vocabularies to bioregistry
-        #  prefixes, when possible
-        l_prefixes = _remap(key=l_key, prefixes=l_prefixes)
-        r_prefixes = _remap(key=r_key, prefixes=r_prefixes)
-        venn2(
-            subsets=(l_prefixes, r_prefixes),
-            set_labels=(l_label, r_label),
-            set_colors=(l_color, r_color),
-            ax=ax,
-        )
-    if watermark:
-        fig.text(
-            0.5, 0, WATERMARK_TEXT,  # transform=plt.gca().transAxes,
-            fontsize=14, color='gray', alpha=0.5,
-            ha='center', va='bottom',
-        )
-
-    path = DOCS_IMG.joinpath('external_overlap.svg')
-    click.echo(f'output to {path}')
-    fig.tight_layout()
-    fig.savefig(path, dpi=300)
-    if png:
-        fig.savefig(path.with_name('external_overlap.png'), dpi=300)
-    plt.close(fig)
+    fig, axes = _plot_external_overlap(keys=keys, watermark=watermark)
+    _save(fig, name='external_overlap', png=png)
 
     ##############################################
     # Histogram of how many xrefs each entry has #
