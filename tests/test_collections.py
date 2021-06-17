@@ -38,7 +38,7 @@ class TestCollections(unittest.TestCase):
                     for prefix in collection['resources']
                     if prefix not in registry
                 }
-                self.assertEqual(set(), incorrect)
+                self.assertEqual(set(), incorrect, msg='Invalid prefixes')
                 duplicates = {
                     prefix
                     for prefix, count in Counter(collection['resources']).items()
