@@ -6444,11 +6444,11 @@
     }
   },
   "come": {
+    "description": "COMe (Co-Ordination of Metals) at the EBI represents an ontology for bioinorganic and other small molecule centres in complex proteins, using a classification system based on the concept of a bioinorganic motif.",
     "example": "MOL000160",
-    "name": "The Bioinorganic Motif Database",
     "homepage": "https://www.flymine.org/come",
-    "url": "https://www.flymine.org/come/entry?gn=$1",
-    "description": "COMe (Co-Ordination of Metals) at the EBI represents an ontology for bioinorganic and other small molecule centres in complex proteins, using a classification system based on the concept of a bioinorganic motif."
+    "name": "The Bioinorganic Motif Database",
+    "url": "https://www.flymine.org/come/entry?gn=$1"
   },
   "complexportal": {
     "example": "CPX-263",
@@ -10933,11 +10933,6 @@
       "https://www.cambridge.org/core/journals/cardiology-in-the-young/article/abs/european-paediatric-cardiac-codes-the-long-list-with-icd9-icd10-crossmapping-and-crossmap-to-epcc-short-list/FCA4DFCCB661298294A3D113FC79D5BE"
     ]
   },
-  "eurofir": {
-    "description": "EuroFir (European Food Information Resource Network), the world-leading European Network of Excellence on Food Composition Databank systems, is a partnership between 48 universities, research institutes and small-to-medium sized enterprises (SMEs) from 25 European countries.",
-    "name":  "European Food Information Resource Network",
-    "homepage": "https://www.eurofir.org"
-  },
   "epd": {
     "mappings": {
       "miriam": "epd",
@@ -11225,6 +11220,11 @@
       "is_obo": true,
       "prefix": "EUPATH"
     }
+  },
+  "eurofir": {
+    "description": "EuroFir (European Food Information Resource Network), the world-leading European Network of Excellence on Food Composition Databank systems, is a partnership between 48 universities, research institutes and small-to-medium sized enterprises (SMEs) from 25 European countries.",
+    "homepage": "https://www.eurofir.org",
+    "name": "European Food Information Resource Network"
   },
   "ev": {
     "appears_in": [
@@ -22823,6 +22823,14 @@
       "prefix": "MOLBASE"
     }
   },
+  "molbase.sheffield": {
+    "deprecated": true,
+    "description": "An online database of inorganic compounds, MolBase was constructed by Dr Mark Winter of the University of Sheffield with input from undergraduate students.",
+    "example": "1868",
+    "homepage": "https://winter.group.shef.ac.uk/molbase/",
+    "name": "MolBase",
+    "pattern": "^\\d$"
+  },
   "molmedb": {
     "mappings": {
       "miriam": "molmedb"
@@ -28403,11 +28411,11 @@
     }
   },
   "pesticides": {
+    "description": "The Alan Wood’s Pesticides is a compendium of pesticides which contain nomenclature data sheets for more than 1700 different active ingredients.",
     "example": "derivatives%2Fthiocyclam%20hydrochloride",
     "homepage": "http://www.alanwood.net/pesticides",
     "name": "Alan Wood's Pesticides",
-    "url": "http://www.alanwood.net/pesticides/$1.html",
-    "description": "The Alan Wood’s Pesticides is a compendium of pesticides which contain nomenclature data sheets for more than 1700 different active ingredients."
+    "url": "http://www.alanwood.net/pesticides/$1.html"
   },
   "pfam": {
     "example": "PF11779",
@@ -38331,6 +38339,14 @@
       "WBPhenotype"
     ]
   },
+  "webelements": {
+    "description": "Browser for the periodic table of the elements",
+    "example": "chromium",
+    "homepage": "https://www.webelements.com/",
+    "name": "Web Elements",
+    "pattern": "^\\w+$",
+    "url": "https://www.webelements.com/$1"
+  },
   "wgs84": {
     "biolink": {
       "formatter": "http://www.w3.org/2003/01/geo/wgs84_pos$1",
@@ -39099,6 +39115,7 @@
     }
   },
   "ymdb": {
+    "description": "The Yeast Metabolome Database (YMDB) is a manually curated database of small molecule metabolites found in or produced by Saccharomyces cerevisiae (also known as Baker’s yeast and Brewer’s yeast).",
     "example": "YMDB00001",
     "name": "Yeast Metabolome Database",
     "pattern": "^YMDB\\d+$",
