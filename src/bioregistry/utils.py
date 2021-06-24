@@ -32,12 +32,6 @@ def read_metaregistry() -> Mapping[str, Registry]:
     }
 
 
-def read_bioregistry():
-    """Read the Bioregistry as JSON."""
-    warnings.warn('Renamed read_bioregistry() to read_registry(). Will remove soon.', DeprecationWarning)
-    return read_registry()
-
-
 @lru_cache(maxsize=1)
 def read_registry() -> Mapping[str, Resource]:
     """Read the Bioregistry as JSON."""

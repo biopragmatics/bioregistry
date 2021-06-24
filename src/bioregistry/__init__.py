@@ -16,4 +16,4 @@ from .resolve_identifier import (  # noqa
     get_bioportal_url, get_default_url, get_identifiers_org_curie, get_identifiers_org_url, get_link, get_n2t_url,
     get_obofoundry_link, get_ols_link, get_providers, get_providers_list, get_registry_resolve_url, validate,
 )
-from .utils import read_bioregistry, read_collections, read_metaregistry, read_mismatches, read_registry  # noqa
+from .utils import read_collections, read_metaregistry, read_mismatches, read_registry  # noqa
