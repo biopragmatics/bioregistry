@@ -29,7 +29,8 @@ class TestRegistry(unittest.TestCase):
             'name',
             # Recommended
             'contact',
-            'download',
+            'download_obo',
+            'download_owl',
             'example',
             'pattern',
             'type',
