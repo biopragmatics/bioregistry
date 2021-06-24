@@ -630,6 +630,8 @@ def get_obo_download(prefix: str) -> Optional[str]:
     entry = get(prefix)
     if entry is None:
         return None
+    if entry.download_obo:
+        return entry.download_obo
     return get_external(prefix, 'obofoundry').get('download.obo')
 
 
@@ -646,7 +648,13 @@ def get_owl_download(prefix: str) -> Optional[str]:
     entry = get(prefix)
     if entry is None:
         return None
-    return get_external(prefix, 'ols').get('version.iri') or get_external(prefix, 'obofoundry').get('download.owl')
+    if entry.download_owl:
+        return entry.download_owl
+    return (
+        get_external(prefix, 'ols').get('version.iri')
+        or get_external(prefix, 'ols').get('download')
+        or get_external(prefix, 'obofoundry').get('download.owl')
+    )
 
 
 def is_provider(prefix: str) -> bool:
