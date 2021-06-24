@@ -4,7 +4,6 @@
 
 import json
 import logging
-import warnings
 from dataclasses import asdict, is_dataclass
 from datetime import datetime
 from functools import lru_cache, wraps
