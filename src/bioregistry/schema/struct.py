@@ -17,7 +17,10 @@ from rdflib import Literal
 from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS, XSD
 from rdflib.term import Node
 
-from .constants import bioregistry_collection, bioregistry_metaresource, bioregistry_resource, bioregistry_schema, orcid
+from bioregistry.schema.constants import (
+    bioregistry_collection, bioregistry_metaresource, bioregistry_resource,
+    bioregistry_schema, orcid,
+)
 
 HERE = pathlib.Path(__file__).parent.resolve()
 
@@ -59,27 +62,52 @@ class Author(BaseModel):
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
+    #: The human-readable name of the resource
     name: Optional[str]
+    #: A description of the resource
     description: Optional[str]
+    #: The regular expression pattern for identifiers in the resource
     pattern: Optional[str]
+    #: The format URL, which must have at least one "$1" in it
     url: Optional[str]
+    #: The home page for the resource
     homepage: Optional[str]
+    #: The contact email address for the resource
     contact: Optional[str]
+    #: An example identifier for the resource
     example: Optional[str]
+    #: Another bioregistry prefix denoting which resource this one is a part of
+    #: (e.g., chembl.compound is part of chembl)
     part_of: Optional[str]
+    #: Another bioregistry prefix denoting that this resource provides for another
+    #: (e.g., ctd.gene provides for ncbigene)
     provides: Optional[str]
+    #: The resource type TODO
     type: Optional[str]
+    #: A URL to download this resource as OWL
     download_owl: Optional[str]
+    #: A URL to download this resource as OBO
     download_obo: Optional[str]
+    #: The redundant prefix that may appear in identifiers (e.g., "FBbt:")
     banana: Optional[str]
+    #: A flag to note if this resource is deprecated - will override OLS, OBO Foundry, and prefixcommons notes
     deprecated: Optional[bool]
+    #: A dictionary of metaprefixes to prefixes in external registries
     mappings: Optional[Dict[str, str]]
+    #: A list of synonyms for the prefix of this resource
     synonyms: Optional[List[str]]
+    #: A list of URLs to also see
     references: Optional[List[str]]
+    #: A list of prefixes that use this resource for xrefs, provenance, etc.
     appears_in: Optional[List[str]]
+    #: A flag denoting if the namespace is embedded in the LUI (if this is true and it is not accompanied by a banana,
+    #: assume that the banana is the prefix in all caps plus a colon, as is standard in OBO)
     namespaceEmbeddedInLui: Optional[bool]  # noqa:N815
+    #: A flag to denote if the resource is not available as OBO TODO remove this
     not_available_as_obo: Optional[bool]
+    #: A flag to denote if the resource does not have any identifiers itself
     no_own_terms: Optional[bool]
+    #: Free text comment
     comment: Optional[str]
 
     # Registry-specific data
@@ -112,6 +140,12 @@ class Resource(BaseModel):
             if rv is not None:
                 return rv
         return None
+
+    def get_default_url(self, identifier: str) -> Optional[str]:
+        """Return the default URL for the identifier."""
+        if self.url is None:
+            return None
+        return self.url.replace('$1', identifier)
 
     def __setitem__(self, key, value):  # noqa: D105
         setattr(self, key, value)

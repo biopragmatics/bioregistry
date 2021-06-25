@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://bioregistry.io/schemas/myschema.json",
+  "$id": "https://bioregistry.io/schema.json",
   "definitions": {
     "Author": {
       "title": "Author",
@@ -13,6 +13,10 @@
         },
         "orcid": {
           "title": "Orcid",
+          "type": "string"
+        },
+        "email": {
+          "title": "Email",
           "type": "string"
         }
       },
@@ -51,6 +55,10 @@
           "items": {
             "$ref": "#/definitions/Author"
           }
+        },
+        "context": {
+          "title": "Context",
+          "type": "string"
         }
       },
       "required": [
@@ -106,8 +114,12 @@
           "title": "Type",
           "type": "string"
         },
-        "download": {
-          "title": "Download",
+        "download_owl": {
+          "title": "Download Owl",
+          "type": "string"
+        },
+        "download_obo": {
+          "title": "Download Obo",
           "type": "string"
         },
         "banana": {
@@ -145,22 +157,6 @@
           "items": {
             "type": "string"
           }
-        },
-        "ols_version_type": {
-          "title": "Ols Version Type",
-          "type": "string"
-        },
-        "ols_version_date_format": {
-          "title": "Ols Version Date Format",
-          "type": "string"
-        },
-        "ols_version_prefix": {
-          "title": "Ols Version Prefix",
-          "type": "string"
-        },
-        "ols_version_suffix_split": {
-          "title": "Ols Version Suffix Split",
-          "type": "boolean"
         },
         "namespaceEmbeddedInLui": {
           "title": "Namespaceembeddedinlui",
@@ -261,16 +257,16 @@
           "title": "Resolver",
           "type": "boolean"
         },
-        "registry": {
-          "title": "Registry",
-          "type": "boolean"
-        },
         "provider_url": {
           "title": "Provider Url",
           "type": "string"
         },
         "resolver_url": {
           "title": "Resolver Url",
+          "type": "string"
+        },
+        "contact": {
+          "title": "Contact",
           "type": "string"
         }
       },
@@ -281,8 +277,7 @@
         "homepage",
         "example",
         "provider",
-        "resolver",
-        "registry"
+        "resolver"
       ]
     }
   }
