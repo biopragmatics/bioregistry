@@ -236,6 +236,8 @@ class TestRegistry(unittest.TestCase):
 
         self.assertEqual('FAIRsharing.mya1ff', bioregistry.get_fairsharing_prefix('ega.dataset'))
 
+        self.assertEqual('https://meshb.nlm.nih.gov/record/ui?ui=D010146', bioregistry.get_link('mesh', 'D010146'))
+
     def test_get_rdf(self):
         """Test conversion to RDF."""
         s = resource_to_rdf_str('chebi')
