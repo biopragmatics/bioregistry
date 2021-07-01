@@ -726,6 +726,14 @@ def parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
     Address banana problem
     >>> parse_curie('GO:GO:1234')
     ('go', '1234')
+
+    Address banana problem with mixed case
+    >>> parse_curie('go:GO:1234')
+    ('go', '1234')
+
+    Address banana problem with non-standard
+    >>> parse_curie('fbbt:FBbt:1234')
+    ('fbbt', '1234')
     """
     try:
         prefix, identifier = curie.split(':', 1)

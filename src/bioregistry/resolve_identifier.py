@@ -23,6 +23,7 @@ __all__ = [
     'get_n2t_url',
     'get_link',
     'get_registry_resolve_url',
+    'get_bioregistry_link',
 ]
 
 
@@ -73,7 +74,7 @@ def get_providers_list(prefix: str, identifier: str) -> Sequence[Tuple[str, str]
     if not rv:
         return rv
 
-    bioregistry_link = _get_bioregistry_link(prefix, identifier)
+    bioregistry_link = get_bioregistry_link(prefix, identifier)
     if not bioregistry_link:
         return rv
 
@@ -179,15 +180,21 @@ def get_ols_link(prefix: str, identifier: str) -> Optional[str]:
     return f'https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_link}'
 
 
-def _get_bioregistry_link(prefix: str, identifier: str) -> Optional[str]:
+def get_bioregistry_link(prefix: str, identifier: str) -> Optional[str]:
     """Get the bioregistry link.
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
     :return: A link to the bioregistry resolver
 
-    >>> _get_bioregistry_link('chebi', '1234')
+    >>> get_bioregistry_link('chebi', '1234')
     'https://bioregistry.io/chebi:1234'
+
+    >>> get_bioregistry_link('go', 'go:0120212 ')
+    'https://bioregistry.io/go:0120212'
+
+    >>> get_bioregistry_link('go', 'GO:0120212 ')
+    'https://bioregistry.io/go:0120212'
     """
     norm_prefix = normalize_prefix(prefix)
     if norm_prefix is None:

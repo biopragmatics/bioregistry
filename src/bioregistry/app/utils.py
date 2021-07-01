@@ -133,11 +133,11 @@ def _autocomplete(q: str) -> Mapping[str, Any]:
     if pattern is None:
         success = True
         reason = 'no pattern'
-        url = bioregistry.resolve_identifier._get_bioregistry_link(prefix, identifier)
+        url = bioregistry.resolve_identifier.get_bioregistry_link(prefix, identifier)
     elif bioregistry.validate(prefix, identifier):
         success = True
         reason = 'passed validation'
-        url = bioregistry.resolve_identifier._get_bioregistry_link(prefix, identifier)
+        url = bioregistry.resolve_identifier.get_bioregistry_link(prefix, identifier)
     else:
         success = False
         reason = 'failed validation'
