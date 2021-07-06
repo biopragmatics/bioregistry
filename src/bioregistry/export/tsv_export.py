@@ -53,7 +53,7 @@ METAPREFIXES = [
 ]
 REGISTRY_HEADER = [
     'identifier', 'name', 'homepage', 'description', 'pattern',
-    'example', 'email', 'formatter', 'download.owl','download.obo', 'synonyms',
+    'example', 'email', 'formatter', 'download.owl', 'download.obo', 'synonyms',
     'deprecated', *METAPREFIXES, 'part_of', 'provides',
     # 'type',
 ]
