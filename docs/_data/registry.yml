@@ -21550,8 +21550,6 @@ mim:
   bioportal:
     name: Molecular Interaction Map
     prefix: MIM
-  comment: OMIMPS and PS should probably be split to their own entry called OMIM Phenotypic
-    Series
   go:
     formatter: https://omim.org/entry/$1
     homepage: https://omim.org/
@@ -21596,6 +21594,7 @@ mim:
     homepage: https://www.ncbi.nlm.nih.gov/omim
     name: Mendelian Inheritance in Man numbers
     prefix: MIM
+  pattern: ^\d+$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/OMIM_$1
     is_identifiers: false
@@ -21603,8 +21602,6 @@ mim:
     prefix: OMIM
   synonyms:
   - OMIM
-  - OMIMPS
-  - PS
   uniprot:
     category: Organism-specific databases
     formatter: https://www.omim.org/entry/%s
@@ -21620,6 +21617,16 @@ mim:
     name: OMIM ID
     pattern: \d{6}
     prefix: P492
+mim.ps:
+  description: A Phenotypic Series is a tabular view of genetic heterogeneity of similar
+    phenotypes across the genome.
+  example: PS214100
+  homepage: https://www.omim.org/phenotypicSeriesTitles/all
+  name: OMIM Phenotypic Series
+  synonyms:
+  - OMIMPS
+  - PS
+  url: https://omim.org/phenotypicSeries/$1
 mimodb:
   mappings:
     miriam: mimodb
