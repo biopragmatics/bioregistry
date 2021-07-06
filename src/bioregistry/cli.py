@@ -27,7 +27,7 @@ main.add_command(warnings)
 main.add_command(export)
 main.add_command(download)
 main.add_command(align)
-main.add_command(make_web_command('bioregistry.app.wsgi:app'))
+main.add_command(make_web_command("bioregistry.app.wsgi:app"))
 
 
 @main.command()
@@ -36,10 +36,12 @@ def versions():
     from .resolve import get_versions
     from tabulate import tabulate
 
-    click.echo(tabulate(
-        sorted(get_versions().items()),
-        headers=['Prefix', 'Version'],
-    ))
+    click.echo(
+        tabulate(
+            sorted(get_versions().items()),
+            headers=["Prefix", "Version"],
+        )
+    )
 
 
 @main.command()
@@ -54,5 +56,5 @@ def update(ctx: click.Context):
     ctx.invoke(warnings)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

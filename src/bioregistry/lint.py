@@ -4,7 +4,13 @@
 
 import click
 
-from bioregistry.utils import read_collections, read_metaregistry, updater, write_collections, write_metaregistry
+from bioregistry.utils import (
+    read_collections,
+    read_metaregistry,
+    updater,
+    write_collections,
+    write_metaregistry,
+)
 
 
 @updater
@@ -21,5 +27,5 @@ def lint():
     write_metaregistry(read_metaregistry())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     lint()

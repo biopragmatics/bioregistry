@@ -12,41 +12,41 @@ from .schema import Collection, Registry, Resource
 from .utils import read_collections, read_metaregistry, read_registry
 
 __all__ = [
-    'get',
-    'get_name',
-    'get_description',
-    'get_mappings',
-    'get_synonyms',
-    'get_pattern',
-    'get_pattern_re',
-    'namespace_in_lui',
-    'get_format',
-    'get_format_url',
-    'get_example',
-    'has_terms',
-    'is_deprecated',
-    'get_email',
-    'get_homepage',
-    'get_obo_download',
-    'get_json_download',
-    'get_owl_download',
-    'parse_curie',
-    'normalize_prefix',
-    'get_version',
-    'get_versions',
+    "get",
+    "get_name",
+    "get_description",
+    "get_mappings",
+    "get_synonyms",
+    "get_pattern",
+    "get_pattern_re",
+    "namespace_in_lui",
+    "get_format",
+    "get_format_url",
+    "get_example",
+    "has_terms",
+    "is_deprecated",
+    "get_email",
+    "get_homepage",
+    "get_obo_download",
+    "get_json_download",
+    "get_owl_download",
+    "parse_curie",
+    "normalize_prefix",
+    "get_version",
+    "get_versions",
     # Metaregistry stuff
-    'get_registry',
-    'get_registry_name',
-    'get_registry_url',
-    'get_registry_homepage',
+    "get_registry",
+    "get_registry_name",
+    "get_registry_url",
+    "get_registry_homepage",
     # Collection stuff
-    'get_collection',
+    "get_collection",
 ]
 
 logger = logging.getLogger(__name__)
 
 # not a perfect email regex, but close enough
-EMAIL_RE = re.compile(r'^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,5}$')
+EMAIL_RE = re.compile(r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,5}$")
 
 
 def get(prefix: str) -> Optional[Resource]:
@@ -137,12 +137,14 @@ def get_registry_url(metaprefix: str, prefix: str) -> Optional[str]:
 
 def get_name(prefix: str) -> Optional[str]:
     """Get the name for the given prefix, it it's available."""
-    return _get_prefix_key(prefix, 'name', ('obofoundry', 'ols', 'wikidata', 'go', 'ncbi', 'bioportal', 'miriam'))
+    return _get_prefix_key(
+        prefix, "name", ("obofoundry", "ols", "wikidata", "go", "ncbi", "bioportal", "miriam")
+    )
 
 
 def get_description(prefix: str) -> Optional[str]:
     """Get the description for the given prefix, if available."""
-    return _get_prefix_key(prefix, 'description', ('miriam', 'ols', 'obofoundry', 'wikidata'))
+    return _get_prefix_key(prefix, "description", ("miriam", "ols", "obofoundry", "wikidata"))
 
 
 def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
@@ -156,14 +158,14 @@ def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
         external = get_external(prefix, metaprefix)
         if not external:
             continue
-        if metaprefix == 'wikidata':
-            value = external.get('prefix')
+        if metaprefix == "wikidata":
+            value = external.get("prefix")
             if value is not None:
-                rv['wikidata'] = value
-        elif metaprefix == 'obofoundry':
-            rv[metaprefix] = external.get('preferredPrefix', external['prefix'].upper())
+                rv["wikidata"] = value
+        elif metaprefix == "obofoundry":
+            rv[metaprefix] = external.get("preferredPrefix", external["prefix"].upper())
         else:
-            rv[metaprefix] = external['prefix']
+            rv[metaprefix] = external["prefix"]
 
     return rv
 
@@ -196,7 +198,7 @@ def get_pattern(prefix: str) -> Optional[str]:
         2. MIRIAM
         3. Wikidata
     """
-    return _get_prefix_key(prefix, 'pattern', ('miriam', 'wikidata'))
+    return _get_prefix_key(prefix, "pattern", ("miriam", "wikidata"))
 
 
 @lru_cache()
@@ -210,7 +212,7 @@ def get_pattern_re(prefix: str):
 
 def namespace_in_lui(prefix: str) -> Optional[bool]:
     """Check if the namespace should appear in the LUI."""
-    return _get_prefix_key(prefix, 'namespaceEmbeddedInLui', ('miriam',))
+    return _get_prefix_key(prefix, "namespaceEmbeddedInLui", ("miriam",))
 
 
 def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
@@ -226,27 +228,27 @@ def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
     'taxonomy'
     >>> assert bioregistry.get_identifiers_org_prefix('MONDO') is None
     """
-    return _get_mapped_prefix(prefix, 'miriam')
+    return _get_mapped_prefix(prefix, "miriam")
 
 
 def get_n2t_prefix(prefix: str) -> Optional[str]:
     """Get the name-to-thing prefix if available."""
-    return _get_mapped_prefix(prefix, 'n2t')
+    return _get_mapped_prefix(prefix, "n2t")
 
 
 def get_wikidata_prefix(prefix: str) -> Optional[str]:
     """Get the wikidata prefix if available."""
-    return _get_mapped_prefix(prefix, 'wikidata')
+    return _get_mapped_prefix(prefix, "wikidata")
 
 
 def get_bioportal_prefix(prefix: str) -> Optional[str]:
     """Get the Bioportal prefix if available."""
-    return _get_mapped_prefix(prefix, 'bioportal')
+    return _get_mapped_prefix(prefix, "bioportal")
 
 
 def get_obofoundry_prefix(prefix: str) -> Optional[str]:
     """Get the OBO Foundry prefix if available."""
-    return _get_mapped_prefix(prefix, 'obofoundry')
+    return _get_mapped_prefix(prefix, "obofoundry")
 
 
 def get_registry_map(metaprefix: str) -> Dict[str, str]:
@@ -275,17 +277,17 @@ def get_obofoundry_format(prefix: str) -> Optional[str]:
     obo_prefix = get_obofoundry_prefix(prefix)
     if obo_prefix is None:
         return None
-    return f'http://purl.obolibrary.org/obo/{obo_prefix}_'
+    return f"http://purl.obolibrary.org/obo/{obo_prefix}_"
 
 
 def get_ols_prefix(prefix: str) -> Optional[str]:
     """Get the OLS prefix if available."""
-    return _get_mapped_prefix(prefix, 'ols')
+    return _get_mapped_prefix(prefix, "ols")
 
 
 def get_fairsharing_prefix(prefix: str) -> Optional[str]:
     """Get the FAIRSharing prefix if available."""
-    return _get_mapped_prefix(prefix, 'fairsharing')
+    return _get_mapped_prefix(prefix, "fairsharing")
 
 
 def _get_mapped_prefix(prefix: str, external: str) -> Optional[str]:
@@ -304,11 +306,11 @@ def get_banana(prefix: str) -> Optional[str]:
 
 
 DEFAULT_FORMAT_PRIORITY = (
-    'bioregistry',
-    'obofoundry',
-    'prefixcommons',
-    'miriam',
-    'ols',
+    "bioregistry",
+    "obofoundry",
+    "prefixcommons",
+    "miriam",
+    "ols",
 )
 
 
@@ -357,13 +359,13 @@ def _get_bioregistry_format(prefix: str) -> Optional[str]:
         return None
     if entry.url:
         return entry.url
-    rv = get_external(prefix, 'miriam').get('provider_url')
+    rv = get_external(prefix, "miriam").get("provider_url")
     if rv is not None:
         return rv
-    rv = get_external(prefix, 'prefixcommons').get('formatter')
+    rv = get_external(prefix, "prefixcommons").get("formatter")
     if rv is not None:
         return rv
-    rv = get_external(prefix, 'wikidata').get('format')
+    rv = get_external(prefix, "wikidata").get("format")
     if rv is not None:
         return rv
     return None
@@ -389,7 +391,7 @@ def get_miriam_url_prefix(prefix: str) -> Optional[str]:
         # not exact solution, some less common ones don't use capitalization
         # align with the banana solution
         miriam_prefix = miriam_prefix.upper()
-    return f'https://identifiers.org/{miriam_prefix}:'
+    return f"https://identifiers.org/{miriam_prefix}:"
 
 
 def get_miriam_format(prefix: str) -> Optional[str]:
@@ -408,7 +410,7 @@ def get_miriam_format(prefix: str) -> Optional[str]:
     miriam_url_prefix = get_miriam_url_prefix(prefix)
     if miriam_url_prefix is None:
         return None
-    return f'{miriam_url_prefix}$1'
+    return f"{miriam_url_prefix}$1"
 
 
 def get_obofoundry_formatter(prefix: str) -> Optional[str]:
@@ -427,7 +429,7 @@ def get_obofoundry_formatter(prefix: str) -> Optional[str]:
     rv = get_obofoundry_format(prefix)
     if rv is None:
         return None
-    return f'{rv}$1'
+    return f"{rv}$1"
 
 
 def get_ols_url_prefix(prefix: str) -> Optional[str]:
@@ -450,7 +452,7 @@ def get_ols_url_prefix(prefix: str) -> Optional[str]:
         return None
     obo_format = get_obofoundry_format(prefix)
     if obo_format:
-        return f'https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_format}'
+        return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_format}"
     # TODO find examples, like for EFO on when it's not based on OBO Foundry PURLs
     return None
 
@@ -473,7 +475,7 @@ def get_ols_format(prefix: str) -> Optional[str]:
     ols_url_prefix = get_ols_url_prefix(prefix)
     if ols_url_prefix is None:
         return None
-    return f'{ols_url_prefix}$1'
+    return f"{ols_url_prefix}$1"
 
 
 def get_prefixcommons_format(prefix: str) -> Optional[str]:
@@ -486,7 +488,7 @@ def get_prefixcommons_format(prefix: str) -> Optional[str]:
     >>> bioregistry.get_prefixcommons_format('hgmd')
     'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
     """
-    return get_external(prefix, 'prefixcommons').get('formatter')
+    return get_external(prefix, "prefixcommons").get("formatter")
 
 
 def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:
@@ -499,7 +501,8 @@ def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:
 
 
 def get_format_urls(
-    *, priority: Optional[Sequence[str]] = None,
+    *,
+    priority: Optional[Sequence[str]] = None,
     include_synonyms: bool = False,
 ) -> Mapping[str, str]:
     """Get a mapping from Bioregistry prefixes to their prefix URLs via :func:`get_format_url`.
@@ -535,19 +538,19 @@ def get_format_url(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
     """
     fmt = get_format(prefix, priority=priority)
     if fmt is None:
-        logging.warning('term missing formatter: %s', prefix)
+        logging.warning("term missing formatter: %s", prefix)
         return None
-    count = fmt.count('$1')
+    count = fmt.count("$1")
     if 0 == count:
-        logging.warning('formatter missing $1: %s', prefix)
+        logging.warning("formatter missing $1: %s", prefix)
         return None
-    if fmt.count('$1') != 1:
-        logging.warning('formatter has multiple $1: %s', prefix)
+    if fmt.count("$1") != 1:
+        logging.warning("formatter has multiple $1: %s", prefix)
         return None
-    if not fmt.endswith('$1'):
-        logging.warning('formatter does not end with $1: %s', prefix)
+    if not fmt.endswith("$1"):
+        logging.warning("formatter does not end with $1: %s", prefix)
         return None
-    return fmt[:-len('$1')]
+    return fmt[: -len("$1")]
 
 
 def get_example(prefix: str) -> Optional[str]:
@@ -558,10 +561,10 @@ def get_example(prefix: str) -> Optional[str]:
     example = entry.example
     if example is not None:
         return example
-    miriam_example = get_external(prefix, 'miriam').get('sampleId')
+    miriam_example = get_external(prefix, "miriam").get("sampleId")
     if miriam_example is not None:
         return miriam_example
-    example = get_external(prefix, 'ncbi').get('example')
+    example = get_external(prefix, "ncbi").get("example")
     if example is not None:
         return example
     return None
@@ -593,9 +596,9 @@ def is_deprecated(prefix: str) -> bool:
         return False
     if entry.deprecated:
         return True
-    for key in ('obofoundry', 'ols', 'miriam'):
+    for key in ("obofoundry", "ols", "miriam"):
         external = entry.get_external(key)
-        if external.get('deprecated'):
+        if external.get("deprecated"):
             return True
     return False
 
@@ -613,16 +616,18 @@ def get_email(prefix: str) -> Optional[str]:
     'amalik@ebi.ac.uk'
     >>> assert bioregistry.get_email('pass2') is None  # dead resource
     """
-    rv = _get_prefix_key(prefix, 'contact', ('obofoundry', 'ols'))
+    rv = _get_prefix_key(prefix, "contact", ("obofoundry", "ols"))
     if rv and not EMAIL_RE.match(rv):
-        logger.warning('[%s] invalid email address listed: %s', prefix, rv)
+        logger.warning("[%s] invalid email address listed: %s", prefix, rv)
         return None
     return rv
 
 
 def get_homepage(prefix: str) -> Optional[str]:
     """Return the homepage, if available."""
-    return _get_prefix_key(prefix, 'homepage', ('obofoundry', 'ols', 'n2t', 'wikidata', 'go', 'ncbi'))
+    return _get_prefix_key(
+        prefix, "homepage", ("obofoundry", "ols", "n2t", "wikidata", "go", "ncbi")
+    )
 
 
 def get_obo_download(prefix: str) -> Optional[str]:
@@ -632,7 +637,7 @@ def get_obo_download(prefix: str) -> Optional[str]:
         return None
     if entry.download_obo:
         return entry.download_obo
-    return get_external(prefix, 'obofoundry').get('download.obo')
+    return get_external(prefix, "obofoundry").get("download.obo")
 
 
 def get_json_download(prefix: str) -> Optional[str]:
@@ -640,7 +645,7 @@ def get_json_download(prefix: str) -> Optional[str]:
     entry = get(prefix)
     if entry is None:
         return None
-    return get_external(prefix, 'obofoundry').get('download.json')
+    return get_external(prefix, "obofoundry").get("download.json")
 
 
 def get_owl_download(prefix: str) -> Optional[str]:
@@ -651,9 +656,9 @@ def get_owl_download(prefix: str) -> Optional[str]:
     if entry.download_owl:
         return entry.download_owl
     return (
-        get_external(prefix, 'ols').get('version.iri')
-        or get_external(prefix, 'ols').get('download')
-        or get_external(prefix, 'obofoundry').get('download.owl')
+        get_external(prefix, "ols").get("version.iri")
+        or get_external(prefix, "ols").get("download")
+        or get_external(prefix, "obofoundry").get("download.owl")
     )
 
 
@@ -669,7 +674,7 @@ def is_provider(prefix: str) -> bool:
     entry = get(prefix)
     if entry is None:
         return False
-    return entry.type == 'provider'
+    return entry.type == "provider"
 
 
 def get_provides_for(prefix: str) -> Optional[str]:
@@ -696,8 +701,8 @@ def get_license(prefix: str) -> Optional[str]:
     >>> assert get_provides_for('pdb') is None
     >>> assert 'pdb' == get_provides_for('validatordb')
     """
-    for metaprefix in ('obofoundry', 'ols'):
-        license_value = _remap_license(get_external(prefix, metaprefix).get('license'))
+    for metaprefix in ("obofoundry", "ols"):
+        license_value = _remap_license(get_external(prefix, metaprefix).get("license"))
         if license_value is not None:
             return license_value
     return None
@@ -728,13 +733,13 @@ def parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
     ('go', '1234')
     """
     try:
-        prefix, identifier = curie.split(':', 1)
+        prefix, identifier = curie.split(":", 1)
     except ValueError:
         return None, None
 
     # remove redundant prefix
-    if identifier.casefold().startswith(f'{prefix.casefold()}:'):
-        identifier = identifier[len(prefix) + 1:]
+    if identifier.casefold().startswith(f"{prefix.casefold()}:"):
+        identifier = identifier[len(prefix) + 1 :]
 
     norm_prefix = normalize_prefix(prefix)
     if not norm_prefix:
@@ -770,8 +775,8 @@ def normalize_prefix(prefix: str) -> Optional[str]:
 def _norm(s: str) -> str:
     """Normalize a string for dictionary key usage."""
     rv = s.casefold().lower()
-    for x in ' .-_./':
-        rv = rv.replace(x, '')
+    for x in " .-_./":
+        rv = rv.replace(x, "")
     return rv
 
 
@@ -779,9 +784,11 @@ class NormDict(dict):
     def __setitem__(self, key: str, value: str) -> None:
         norm_key = _norm(key)
         if value is None:
-            raise ValueError(f'Tried to add empty value for {key}/{norm_key}')
+            raise ValueError(f"Tried to add empty value for {key}/{norm_key}")
         if norm_key in self and self[norm_key] != value:
-            raise KeyError(f'Tried to add {norm_key}/{value} when already had {norm_key}/{self[norm_key]}')
+            raise KeyError(
+                f"Tried to add {norm_key}/{value} when already had {norm_key}/{self[norm_key]}"
+            )
         super().__setitem__(norm_key, value)
 
     def __getitem__(self, item: str) -> str:
@@ -804,15 +811,15 @@ def _synonym_to_canonical() -> NormDict:
         for synonym in entry.synonyms or []:
             norm_synonym_to_key[synonym] = bioregistry_id
 
-        for metaprefix in ('miriam', 'ols', 'obofoundry', 'go'):
+        for metaprefix in ("miriam", "ols", "obofoundry", "go"):
             external = entry.get_external(metaprefix)
             if external is None:
                 continue
-            external_prefix = external.get('prefix')
+            external_prefix = external.get("prefix")
             if external_prefix is None:
                 continue
             if external_prefix not in norm_synonym_to_key:
-                logger.debug(f'[{bioregistry_id}] missing potential synonym: {external_prefix}')
+                logger.debug(f"[{bioregistry_id}] missing potential synonym: {external_prefix}")
 
     return norm_synonym_to_key
 
@@ -830,16 +837,16 @@ def get_versions() -> Mapping[str, str]:
     """Get a map of prefixes to versions."""
     rv = {}
     for prefix in read_registry():
-        version = get_external(prefix, 'ols').get('version')
+        version = get_external(prefix, "ols").get("version")
         if version is not None:
             rv[prefix] = version
     return rv
 
 
 FORMATTERS: Mapping[str, Callable[[str], Optional[str]]] = {
-    'bioregistry': _get_bioregistry_format,
-    'obofoundry': get_obofoundry_formatter,
-    'prefixcommons': get_prefixcommons_format,
-    'miriam': get_miriam_format,
-    'ols': get_ols_format,
+    "bioregistry": _get_bioregistry_format,
+    "obofoundry": get_obofoundry_formatter,
+    "prefixcommons": get_prefixcommons_format,
+    "miriam": get_miriam_format,
+    "ols": get_ols_format,
 }

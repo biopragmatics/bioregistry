@@ -16,15 +16,15 @@ from tqdm.contrib.concurrent import thread_map
 from bioregistry.data import EXTERNAL
 
 __all__ = [
-    'get_bioportal',
+    "get_bioportal",
 ]
 
-DIRECTORY = EXTERNAL / 'bioportal'
+DIRECTORY = EXTERNAL / "bioportal"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
-RAW_PATH = DIRECTORY / 'raw.json'
-PROCESSED_PATH = DIRECTORY / 'processed.json'
-BIOPORTAL_API_KEY = pystow.get_config('bioportal', 'api_key')
-BASE_URL = 'https://data.bioontology.org'
+RAW_PATH = DIRECTORY / "raw.json"
+PROCESSED_PATH = DIRECTORY / "processed.json"
+BIOPORTAL_API_KEY = pystow.get_config("bioportal", "api_key")
+BASE_URL = "https://data.bioontology.org"
 
 
 def query(url: str, **params) -> requests.Response:
@@ -39,8 +39,8 @@ def query(url: str, **params) -> requests.Response:
     https://www.bioontology.org/wiki/Annotator_Optimizing_and_Troublehooting
     """
     if BIOPORTAL_API_KEY is None:
-        raise ValueError('missing API key for bioportal')
-    params.setdefault('apikey', BIOPORTAL_API_KEY)
+        raise ValueError("missing API key for bioportal")
+    params.setdefault("apikey", BIOPORTAL_API_KEY)
     return requests.get(url, params=params)
 
 
@@ -51,15 +51,15 @@ def get_bioportal(force_download: bool = False):
             return json.load(file)
 
     # see https://data.bioontology.org/documentation#Ontology
-    res = query(BASE_URL + '/ontologies', summaryOnly=False, notes=True)
+    res = query(BASE_URL + "/ontologies", summaryOnly=False, notes=True)
     records = res.json()
-    with RAW_PATH.open('w') as file:
+    with RAW_PATH.open("w") as file:
         json.dump(records, file, indent=2, sort_keys=True)
 
     records = thread_map(_process, records)
-    rv = {result['prefix']: result for result in records}
+    rv = {result["prefix"]: result for result in records}
 
-    with PROCESSED_PATH.open('w') as file:
+    with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, indent=2, sort_keys=True)
     return rv
 
@@ -74,16 +74,16 @@ def _process(entry):
     #     print('failed on', bioportal_key)
     #     extra_data = {}
 
-    contact = (extra_data.get('contact') or [{}])[0]
+    contact = (extra_data.get("contact") or [{}])[0]
     rv = {
-        'prefix': bioportal_key,
-        'name': entry['name'],
-        'description': extra_data.get('description'),
-        'contact': contact.get('email'),
-        'contact.label': contact.get('name'),
-        'homepage': extra_data.get('homepage'),
-        'version': extra_data.get('version'),
-        'publication': extra_data.get('publication'),
+        "prefix": bioportal_key,
+        "name": entry["name"],
+        "description": extra_data.get("description"),
+        "contact": contact.get("email"),
+        "contact.label": contact.get("name"),
+        "homepage": extra_data.get("homepage"),
+        "version": extra_data.get("version"),
+        "publication": extra_data.get("publication"),
     }
     return {k: v for k, v in rv.items() if v is not None}
 
@@ -92,8 +92,8 @@ def _process(entry):
 @verbose_option
 def _main():
     r = get_bioportal(force_download=True)
-    click.echo(f'Got {len(r)} records')
+    click.echo(f"Got {len(r)} records")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     _main()

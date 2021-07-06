@@ -10,11 +10,11 @@ from pystow.utils import download
 
 from bioregistry.data import EXTERNAL
 
-URL = 'https://n2t.net/e/n2t_full_prefixes.yaml'
-DIRECTORY = EXTERNAL / 'n2t'
+URL = "https://n2t.net/e/n2t_full_prefixes.yaml"
+DIRECTORY = EXTERNAL / "n2t"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
-RAW_PATH = DIRECTORY / 'raw.yml'
-PROCESSED_PATH = DIRECTORY / 'processed.json'
+RAW_PATH = DIRECTORY / "raw.yml"
+PROCESSED_PATH = DIRECTORY / "processed.json"
 
 
 def get_n2t(force_download: bool = False):
@@ -31,23 +31,23 @@ def get_n2t(force_download: bool = False):
     rv = {
         key: _process(record)
         for key, record in data.items()
-        if record['type'] == 'scheme' and '/' not in key
+        if record["type"] == "scheme" and "/" not in key
     }
 
-    with PROCESSED_PATH.open('w') as file:
+    with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, sort_keys=True, indent=2)
     return rv
 
 
 def _process(record):
     rv = {
-        "name": record.get('name'),
-        "provider_url": record['redirect'].replace('$id', '$1') if 'redirect' in record else None,
-        "description": record.get('description'),
-        "homepage": record.get('more'),
-        'pattern': record.get('pattern'),
-        'example': record.get('test'),
-        'namespaceEmbeddedInLui': (record.get('prefixed') == 'true'),
+        "name": record.get("name"),
+        "provider_url": record["redirect"].replace("$id", "$1") if "redirect" in record else None,
+        "description": record.get("description"),
+        "homepage": record.get("more"),
+        "pattern": record.get("pattern"),
+        "example": record.get("test"),
+        "namespaceEmbeddedInLui": (record.get("prefixed") == "true"),
     }
     return {k: v for k, v in rv.items() if v is not None}
 
@@ -56,8 +56,8 @@ def _process(record):
 def main():
     """Reload the N2T data."""
     rv = get_n2t(force_download=True)
-    click.echo(f'Got {len(rv)} entries from n2t.')
+    click.echo(f"Got {len(rv)} entries from n2t.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

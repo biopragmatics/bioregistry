@@ -10,15 +10,15 @@ from pystow.utils import download
 from bioregistry.data import EXTERNAL
 
 __all__ = [
-    'get_biolink',
+    "get_biolink",
 ]
 
-URL = 'https://raw.githubusercontent.com/biolink/biolink-model/master/biolink-model.yaml'
+URL = "https://raw.githubusercontent.com/biolink/biolink-model/master/biolink-model.yaml"
 
-DIRECTORY = EXTERNAL / 'biolink'
+DIRECTORY = EXTERNAL / "biolink"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
-RAW_PATH = DIRECTORY / 'raw.yaml'
-PROCESSED_PATH = DIRECTORY / 'processed.json'
+RAW_PATH = DIRECTORY / "raw.yaml"
+PROCESSED_PATH = DIRECTORY / "processed.json"
 
 
 # FIXME this isn't the real prefix commons
@@ -30,14 +30,11 @@ def get_biolink(force_download: bool = False):
     download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as file:
         data = yaml.safe_load(file)
-    rv = {
-        prefix: {'formatter': f'{url}$1'}
-        for prefix, url in data['prefixes'].items()
-    }
-    with PROCESSED_PATH.open('w') as file:
+    rv = {prefix: {"formatter": f"{url}$1"} for prefix, url in data["prefixes"].items()}
+    with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, indent=2, sort_keys=True)
     return rv
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     get_biolink(force_download=True)

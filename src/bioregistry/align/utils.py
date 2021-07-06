@@ -12,7 +12,7 @@ from ..schema import Resource
 from ..utils import is_mismatch, read_metaregistry, read_registry, write_bioregistry
 
 __all__ = [
-    'Aligner',
+    "Aligner",
 ]
 
 
@@ -36,17 +36,17 @@ class Aligner(ABC):
     #: very high confidence (e.g., OBO Foundry but not BioPortal)
     include_new: ClassVar[bool] = False
 
-    subkey: ClassVar[str] = 'prefix'
+    subkey: ClassVar[str] = "prefix"
 
     def __init__(self):
         """Instantiate the aligner."""
         if self.key not in read_metaregistry():
-            raise TypeError(f'invalid metaprefix for aligner: {self.key}')
+            raise TypeError(f"invalid metaprefix for aligner: {self.key}")
 
         self.internal_registry = dict(read_registry())
 
         kwargs = self.getter_kwargs or {}
-        kwargs.setdefault('force_download', True)
+        kwargs.setdefault("force_download", True)
         self.external_registry = self.__class__.getter(**kwargs)
         self.skip_external = self.get_skip()
 
@@ -136,7 +136,9 @@ class Aligner(ABC):
         """  # noqa:DAR202
 
     def _iter_curation_rows(self) -> Iterable[Sequence[str]]:
-        for external_id, external_entry in sorted(self.external_registry.items(), key=lambda s: s[0].casefold()):
+        for external_id, external_entry in sorted(
+            self.external_registry.items(), key=lambda s: s[0].casefold()
+        ):
             if external_id in self.skip_external:
                 continue
 
@@ -149,7 +151,7 @@ class Aligner(ABC):
 
     def get_curation_table(self, **kwargs) -> Optional[str]:
         """Get the curation table as a string, built by :mod:`tabulate`."""
-        kwargs.setdefault('tablefmt', 'rst')
+        kwargs.setdefault("tablefmt", "rst")
         if self.curation_header:
             headers = (self.subkey, *self.curation_header)
         else:

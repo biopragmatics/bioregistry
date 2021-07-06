@@ -24,33 +24,29 @@ class TestCollections(unittest.TestCase):
             self.assertIsInstance(collection_pydantic, Collection)
             collection = collection_pydantic.dict()
             with self.subTest(key=key):
-                self.assertRegex(key, '^\\d{7}$')
-                self.assertIn('name', collection)
-                self.assertIn('authors', collection)
-                self.assertIsInstance(collection['authors'], list, msg=f'Collection: {collection}')
-                for author in collection['authors']:
-                    self.assertIn('name', author)
-                    self.assertIn('orcid', author)
-                    self.assertRegex(author['orcid'], bioregistry.get_pattern('orcid'))
-                self.assertIn('description', collection)
-                incorrect = {
-                    prefix
-                    for prefix in collection['resources']
-                    if prefix not in registry
-                }
-                self.assertEqual(set(), incorrect, msg='Invalid prefixes')
+                self.assertRegex(key, "^\\d{7}$")
+                self.assertIn("name", collection)
+                self.assertIn("authors", collection)
+                self.assertIsInstance(collection["authors"], list, msg=f"Collection: {collection}")
+                for author in collection["authors"]:
+                    self.assertIn("name", author)
+                    self.assertIn("orcid", author)
+                    self.assertRegex(author["orcid"], bioregistry.get_pattern("orcid"))
+                self.assertIn("description", collection)
+                incorrect = {prefix for prefix in collection["resources"] if prefix not in registry}
+                self.assertEqual(set(), incorrect, msg="Invalid prefixes")
                 duplicates = {
                     prefix
-                    for prefix, count in Counter(collection['resources']).items()
+                    for prefix, count in Counter(collection["resources"]).items()
                     if 1 < count
                 }
-                self.assertEqual(set(), duplicates, msg='Duplicates found')
+                self.assertEqual(set(), duplicates, msg="Duplicates found")
 
     def test_get_collection(self):
         """Test getting a collection."""
-        self.assertIsNone(bioregistry.get_collection('nope'))
+        self.assertIsNone(bioregistry.get_collection("nope"))
 
-        identifier = '0000001'
+        identifier = "0000001"
         collection = bioregistry.get_collection(identifier)
         self.assertIsInstance(collection, Collection)
         self.assertEqual(identifier, collection.identifier)
@@ -62,10 +58,10 @@ class TestCollections(unittest.TestCase):
         # Check building a JSON-LD context.
         context_jsonld = collection.as_context_jsonld()
         self.assertIsInstance(context_jsonld, dict)
-        self.assertIn('@context', context_jsonld)
-        self.assertEqual(prefix_map, context_jsonld['@context'])
+        self.assertIn("@context", context_jsonld)
+        self.assertEqual(prefix_map, context_jsonld["@context"])
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = collection_to_rdf_str('0000001')
+        s = collection_to_rdf_str("0000001")
         self.assertIsInstance(s, str)

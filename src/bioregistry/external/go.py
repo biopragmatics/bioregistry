@@ -11,19 +11,19 @@ from pystow.utils import download
 from bioregistry.data import EXTERNAL
 
 __all__ = [
-    'get_go',
+    "get_go",
 ]
 
 # Xrefs from GO that aren't generally useful
 SKIP = {
-    'TO_GIT',
-    'OBO_SF_PO',
-    'OBO_SF2_PO',
-    'OBO_SF2_PECO',
-    'PECO_GIT',
-    'PO_GIT',
-    'PSO_GIT',
-    'EO_GIT',
+    "TO_GIT",
+    "OBO_SF_PO",
+    "OBO_SF2_PO",
+    "OBO_SF2_PECO",
+    "PECO_GIT",
+    "PO_GIT",
+    "PSO_GIT",
+    "EO_GIT",
 }
 
 # The key is redundant of the value
@@ -31,11 +31,11 @@ REDUNDANT = {
     "AspGD": "AspGD_LOCUS",
 }
 
-DIRECTORY = EXTERNAL / 'go'
+DIRECTORY = EXTERNAL / "go"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
-RAW_PATH = DIRECTORY / 'raw.yml'
-PROCESSED_PATH = DIRECTORY / 'processed.json'
-GO_URL = 'https://raw.githubusercontent.com/geneontology/go-site/master/metadata/db-xrefs.yaml'
+RAW_PATH = DIRECTORY / "raw.yml"
+PROCESSED_PATH = DIRECTORY / "processed.json"
+GO_URL = "https://raw.githubusercontent.com/geneontology/go-site/master/metadata/db-xrefs.yaml"
 
 
 def get_go(force_download: bool = False):
@@ -50,10 +50,10 @@ def get_go(force_download: bool = False):
     entries = [
         entry
         for entry in entries
-        if entry['database'] not in SKIP and entry['database'] not in REDUNDANT
+        if entry["database"] not in SKIP and entry["database"] not in REDUNDANT
     ]
-    rv = {entry['database']: entry for entry in entries}
-    with PROCESSED_PATH.open('w') as file:
+    rv = {entry["database"]: entry for entry in entries}
+    with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, indent=2, sort_keys=True)
     return rv
 
@@ -64,5 +64,5 @@ def main():
     get_go(force_download=True)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

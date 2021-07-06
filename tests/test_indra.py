@@ -13,25 +13,27 @@ except ImportError:
     indra = None
 
 NON_BIOLOGY = {
-    'UN',
-    'WDI',
-    'HUME',  # hume is a reading system
-    'SOFIA',  # sofia is a reading system
-    'CWMS',  # world modelers
+    "UN",
+    "WDI",
+    "HUME",  # hume is a reading system
+    "SOFIA",  # sofia is a reading system
+    "CWMS",  # world modelers
 }
 
 
-@unittest.skipIf(indra is None, 'INDRA not installed')
+@unittest.skipIf(indra is None, "INDRA not installed")
 class TestIndra(unittest.TestCase):
     """Test the Bioregistry is a superset of INDRA identifier utilities."""
 
     def test_identifiers_mapping(self):
         """Test the identifier mappings are all contained in the Bioregistry."""
         for prefix, target in indra.databases.identifiers.identifiers_mappings.items():
-            if prefix in {'CTD', 'NONCODE', 'NCBI'}:  # these aren't specific enough
+            if prefix in {"CTD", "NONCODE", "NCBI"}:  # these aren't specific enough
                 continue
             with self.subTest(prefix=prefix):
-                self.assertIsNotNone(bioregistry.normalize_prefix(prefix), msg=f'should be {target}')
+                self.assertIsNotNone(
+                    bioregistry.normalize_prefix(prefix), msg=f"should be {target}"
+                )
 
     def test_non_registry(self):
         """Test the Bioregistry has entries for all non-registry entries in INDRA."""

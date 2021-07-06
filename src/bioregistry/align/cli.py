@@ -18,46 +18,46 @@ from .wikidata import WikidataAligner
 from ..utils import secho
 
 __all__ = [
-    'align',
+    "align",
 ]
 
 
 @click.command()
 def align():
     """Align all external registries."""
-    secho('Aligning MIRIAM')
+    secho("Aligning MIRIAM")
     MiriamAligner.align()
 
-    secho('Aligning N2T')
+    secho("Aligning N2T")
     N2TAligner.align()
 
-    secho('Aligning NCBI')
+    secho("Aligning NCBI")
     NcbiAligner.align()
 
-    secho('Aligning OBO Foundry')
+    secho("Aligning OBO Foundry")
     OBOFoundryAligner.align()
 
-    secho('Aligning OLS')
+    secho("Aligning OLS")
     OLSAligner.align()
 
-    secho('Aligning Wikidata')
+    secho("Aligning Wikidata")
     WikidataAligner.align()
 
-    secho('Aligning GO')
+    secho("Aligning GO")
     GoAligner.align()
 
-    secho('Aligning BioPortal')
+    secho("Aligning BioPortal")
     BioPortalAligner.align()
 
-    secho('Aligning Prefix Commons')
+    secho("Aligning Prefix Commons")
     PrefixCommonsAligner.align()
 
-    secho('Aligning Biolink')
+    secho("Aligning Biolink")
     BiolinkAligner.align()
 
-    secho('Aligning UniProt')
+    secho("Aligning UniProt")
     UniProtAligner.align()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     align()

@@ -12,19 +12,19 @@ from pydantic import BaseModel
 
 HERE = pathlib.Path(__file__).parent.resolve()
 
-EXTERNAL = HERE / 'external'
-OLS_PROCESSING = HERE / 'ols_processing.json'
+EXTERNAL = HERE / "external"
+OLS_PROCESSING = HERE / "ols_processing.json"
 
 
 class VersionType(str, enum.Enum):
     """Types for OLS ontology versions"""
 
-    date = 'date'
-    semver = 'semver'
-    other = 'other'
-    sequential = 'sequential'
-    garbage = 'garbage'
-    missing = 'missing'
+    date = "date"
+    semver = "semver"
+    other = "other"
+    sequential = "sequential"
+    garbage = "garbage"
+    missing = "missing"
 
 
 class OLSConfig(BaseModel):
@@ -43,7 +43,4 @@ def get_ols_processing() -> Mapping[str, OLSConfig]:
     """Get OLS processing configurations."""
     with OLS_PROCESSING.open() as file:
         data = json.load(file)
-    return {
-        record['prefix']: OLSConfig(**record)
-        for record in data['configurations']
-    }
+    return {record["prefix"]: OLSConfig(**record) for record in data["configurations"]}

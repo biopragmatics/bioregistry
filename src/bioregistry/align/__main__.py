@@ -4,5 +4,5 @@
 
 from .cli import align
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     align()

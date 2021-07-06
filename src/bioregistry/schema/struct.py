@@ -18,8 +18,11 @@ from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS, XSD
 from rdflib.term import Node
 
 from bioregistry.schema.constants import (
-    bioregistry_collection, bioregistry_metaresource, bioregistry_resource,
-    bioregistry_schema, orcid,
+    bioregistry_collection,
+    bioregistry_metaresource,
+    bioregistry_resource,
+    bioregistry_schema,
+    orcid,
 )
 
 HERE = pathlib.Path(__file__).parent.resolve()
@@ -27,19 +30,12 @@ HERE = pathlib.Path(__file__).parent.resolve()
 
 def sanitize_model(base_model: BaseModel) -> Mapping[str, Any]:
     """Sanitize a single pydantic model."""
-    return {
-        key: value
-        for key, value in base_model.dict().items()
-        if value is not None
-    }
+    return {key: value for key, value in base_model.dict().items() if value is not None}
 
 
 def sanitize_mapping(mapping: Mapping[str, BaseModel]) -> Mapping[str, Mapping[str, Any]]:
     """Sanitize a pydantic dictionary."""
-    return {
-        key: sanitize_model(base_model)
-        for key, base_model in mapping.items()
-    }
+    return {key: sanitize_model(base_model) for key, base_model in mapping.items()}
 
 
 class Author(BaseModel):
@@ -55,7 +51,7 @@ class Author(BaseModel):
     def add_triples(self, graph: rdflib.Graph) -> Node:
         """Add triples to an RDF graph for this collection."""
         node = orcid.term(self.orcid)
-        graph.add((node, RDFS['label'], Literal(self.name)))
+        graph.add((node, RDFS["label"], Literal(self.name)))
         return node
 
 
@@ -145,7 +141,7 @@ class Resource(BaseModel):
         """Return the default URL for the identifier."""
         if self.url is None:
             return None
-        return self.url.replace('$1', identifier)
+        return self.url.replace("$1", identifier)
 
     def __setitem__(self, key, value):  # noqa: D105
         setattr(self, key, value)
@@ -182,22 +178,30 @@ class Registry(BaseModel):
         provider_url = self.provider_url
         if provider_url is None:
             return None
-        return provider_url.replace('$1', metaidentifier)
+        return provider_url.replace("$1", metaidentifier)
 
     def add_triples(self, graph: rdflib.Graph) -> Node:
         """Add triples to an RDF graph for this registry."""
         node = bioregistry_metaresource.term(self.prefix)
-        graph.add((node, RDF['type'], bioregistry_schema[self.__class__.__name__]))
-        graph.add((node, RDFS['label'], Literal(self.name)))
+        graph.add((node, RDF["type"], bioregistry_schema[self.__class__.__name__]))
+        graph.add((node, RDFS["label"], Literal(self.name)))
         graph.add((node, DC.description, Literal(self.description)))
-        graph.add((node, FOAF['homepage'], Literal(self.homepage)))
-        graph.add((node, bioregistry_schema['hasExample'], Literal(self.example)))
-        graph.add((node, bioregistry_schema['isProvider'], Literal(self.provider, datatype=XSD.boolean)))
-        graph.add((node, bioregistry_schema['isResolver'], Literal(self.resolver, datatype=XSD.boolean)))
+        graph.add((node, FOAF["homepage"], Literal(self.homepage)))
+        graph.add((node, bioregistry_schema["hasExample"], Literal(self.example)))
+        graph.add(
+            (node, bioregistry_schema["isProvider"], Literal(self.provider, datatype=XSD.boolean))
+        )
+        graph.add(
+            (node, bioregistry_schema["isResolver"], Literal(self.resolver, datatype=XSD.boolean))
+        )
         if self.provider_url:
-            graph.add((node, bioregistry_schema['hasProviderFormatter'], Literal(self.provider_url)))
+            graph.add(
+                (node, bioregistry_schema["hasProviderFormatter"], Literal(self.provider_url))
+            )
         if self.resolver_url:
-            graph.add((node, bioregistry_schema['hasResolverFormatter'], Literal(self.resolver_url)))
+            graph.add(
+                (node, bioregistry_schema["hasResolverFormatter"], Literal(self.resolver_url))
+            )
         return node
 
 
@@ -220,8 +224,8 @@ class Collection(BaseModel):
     def add_triples(self, graph: rdflib.Graph) -> Node:
         """Add triples to an RDF graph for this collection."""
         node = bioregistry_collection.term(self.identifier)
-        graph.add((node, RDF['type'], bioregistry_schema[self.__class__.__name__]))
-        graph.add((node, RDFS['label'], Literal(self.name)))
+        graph.add((node, RDF["type"], bioregistry_schema[self.__class__.__name__]))
+        graph.add((node, RDFS["label"], Literal(self.name)))
         graph.add((node, DC.description, Literal(self.description)))
 
         for author in self.authors:
@@ -242,6 +246,7 @@ class Collection(BaseModel):
     def as_prefix_map(self) -> Mapping[str, str]:
         """Get the prefix map for a given collection."""
         from ..resolve import get_format_url
+
         rv = {}
         for prefix in self.resources:
             fmt = get_format_url(prefix)
@@ -257,17 +262,24 @@ def get_json_schema():
         "$schema": "http://json-schema.org/draft-07/schema#",
         "$id": "https://bioregistry.io/schema.json",
     }
-    rv.update(pydantic.schema.schema([
-        Author, Collection, Resource, Registry,
-    ]))
+    rv.update(
+        pydantic.schema.schema(
+            [
+                Author,
+                Collection,
+                Resource,
+                Registry,
+            ]
+        )
+    )
     return rv
 
 
 def main():
     """Dump the JSON schemata."""
-    with HERE.joinpath('schema.json').open('w') as file:
+    with HERE.joinpath("schema.json").open("w") as file:
         json.dump(get_json_schema(), indent=2, fp=file)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

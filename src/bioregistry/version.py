@@ -7,20 +7,20 @@ from subprocess import CalledProcessError, check_output  # noqa: S404
 from typing import Optional
 
 __all__ = [
-    'VERSION',
-    'get_version',
-    'get_git_hash',
+    "VERSION",
+    "get_version",
+    "get_git_hash",
 ]
 
-VERSION = '0.2.4-dev'
+VERSION = "0.2.4-dev"
 
 
 def get_git_hash() -> Optional[str]:
     """Get the bioregistry git hash."""
-    with open(os.devnull, 'w') as devnull:
+    with open(os.devnull, "w") as devnull:
         try:
             ret = check_output(  # noqa: S603,S607
-                ['git', 'rev-parse', 'HEAD'],
+                ["git", "rev-parse", "HEAD"],
                 cwd=os.path.dirname(__file__),
                 stderr=devnull,
             )
@@ -29,13 +29,13 @@ def get_git_hash() -> Optional[str]:
         except CalledProcessError:
             return None
         else:
-            return ret.strip().decode('utf-8')[:8]
+            return ret.strip().decode("utf-8")[:8]
 
 
 def get_version(with_git_hash: bool = False):
     """Get the bioregistry version string, including a git hash."""
-    return f'{VERSION}-{get_git_hash()}' if with_git_hash else VERSION
+    return f"{VERSION}-{get_git_hash()}" if with_git_hash else VERSION
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_version(with_git_hash=True))  # noqa: T001

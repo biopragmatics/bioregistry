@@ -15,13 +15,13 @@ from ..resolve import get_format_url
 from ..schema import sanitize_mapping
 
 __all__ = [
-    'api_blueprint',
+    "api_blueprint",
 ]
 
-api_blueprint = Blueprint('api', __name__, url_prefix='/api')
+api_blueprint = Blueprint("api", __name__, url_prefix="/api")
 
 
-@api_blueprint.route('/registry')
+@api_blueprint.route("/registry")
 def resources():
     """Get all resources.
 
@@ -41,7 +41,7 @@ def resources():
     return serialize(bioregistry.read_registry())
 
 
-@api_blueprint.route('/registry/<prefix>')
+@api_blueprint.route("/registry/<prefix>")
 def resource(prefix: str):
     """Get a resource.
 
@@ -66,13 +66,16 @@ def resource(prefix: str):
     """  # noqa:DAR101,DAR201
     prefix = _normalize_prefix_or_404(prefix)
     data = dict(prefix=prefix, **bioregistry.get(prefix))  # type:ignore
-    return serialize(data, serializers=[
-        ('turtle', 'text/plain', partial(resource_to_rdf_str, fmt='turtle')),
-        ('jsonld', 'application/ld+json', partial(resource_to_rdf_str, fmt='json-ld')),
-    ])
+    return serialize(
+        data,
+        serializers=[
+            ("turtle", "text/plain", partial(resource_to_rdf_str, fmt="turtle")),
+            ("jsonld", "application/ld+json", partial(resource_to_rdf_str, fmt="json-ld")),
+        ],
+    )
 
 
-@api_blueprint.route('/metaregistry')
+@api_blueprint.route("/metaregistry")
 def metaresources():
     """Get all metaresources.
 
@@ -92,7 +95,7 @@ def metaresources():
     return serialize(sanitize_mapping(bioregistry.read_metaregistry()))
 
 
-@api_blueprint.route('/metaregistry/<metaprefix>')
+@api_blueprint.route("/metaregistry/<metaprefix>")
 def metaresource(metaprefix: str):
     """Get a metaresource.
 
@@ -117,14 +120,17 @@ def metaresource(metaprefix: str):
     """  # noqa:DAR101,DAR201
     data = bioregistry.get_registry(metaprefix)
     if not data:
-        abort(404, f'Invalid metaprefix: {metaprefix}')
-    return serialize(data, serializers=[
-        ('turtle', 'text/plain', partial(metaresource_to_rdf_str, fmt='turtle')),
-        ('jsonld', 'application/ld+json', partial(metaresource_to_rdf_str, fmt='json-ld')),
-    ])
+        abort(404, f"Invalid metaprefix: {metaprefix}")
+    return serialize(
+        data,
+        serializers=[
+            ("turtle", "text/plain", partial(metaresource_to_rdf_str, fmt="turtle")),
+            ("jsonld", "application/ld+json", partial(metaresource_to_rdf_str, fmt="json-ld")),
+        ],
+    )
 
 
-@api_blueprint.route('/collections')
+@api_blueprint.route("/collections")
 def collections():
     """Get all collections.
 
@@ -144,7 +150,7 @@ def collections():
     return serialize(sanitize_mapping(bioregistry.read_collections()))
 
 
-@api_blueprint.route('/collection/<identifier>')
+@api_blueprint.route("/collection/<identifier>")
 def collection(identifier: str):
     """Get a collection.
 
@@ -169,15 +175,18 @@ def collection(identifier: str):
     """  # noqa:DAR101,DAR201
     data = bioregistry.get_collection(identifier)
     if not data:
-        abort(404, f'Invalid collection: {identifier}')
-    return serialize(data, serializers=[
-        ('context', 'application/ld+json', collection_to_context_jsonlds),
-        ('turtle', 'text/plain', partial(collection_to_rdf_str, fmt='turtle')),
-        ('jsonld', 'application/ld+json', partial(collection_to_rdf_str, fmt='json-ld')),
-    ])
+        abort(404, f"Invalid collection: {identifier}")
+    return serialize(
+        data,
+        serializers=[
+            ("context", "application/ld+json", collection_to_context_jsonlds),
+            ("turtle", "text/plain", partial(collection_to_rdf_str, fmt="turtle")),
+            ("jsonld", "application/ld+json", partial(collection_to_rdf_str, fmt="json-ld")),
+        ],
+    )
 
 
-@api_blueprint.route('/reference/<prefix>:<identifier>')
+@api_blueprint.route("/reference/<prefix>:<identifier>")
 def reference(prefix: str, identifier: str):
     """Look up information on the reference.
 
@@ -209,7 +218,7 @@ def reference(prefix: str, identifier: str):
     return serialize(_get_identifier(prefix, identifier))
 
 
-@api_blueprint.route('/search')
+@api_blueprint.route("/search")
 def search():
     """Search for a prefix.
 
@@ -221,13 +230,13 @@ def search():
       required: true
       type: string
     """  # noqa:DAR101,DAR201
-    q = request.args.get('q')
+    q = request.args.get("q")
     if q is None:
         abort(400)
     return jsonify(_search(q))
 
 
-@api_blueprint.route('/autocomplete')
+@api_blueprint.route("/autocomplete")
 def autocomplete():
     """Complete a resolution query.
 
@@ -239,13 +248,13 @@ def autocomplete():
       required: true
       type: string
     """  # noqa:DAR101,DAR201
-    q = request.args.get('q')
+    q = request.args.get("q")
     if q is None:
         abort(400)
     return jsonify(_autocomplete(q))
 
 
-@api_blueprint.route('/context.jsonld')
+@api_blueprint.route("/context.jsonld")
 def generate_context_json_ld():
     """Generate an *ad-hoc* context JSON-LD file from the given parameters.
 
@@ -265,8 +274,8 @@ def generate_context_json_ld():
       type: string
     """  # noqa:DAR101,DAR201
     prefix_map = {}
-    for arg in request.args.getlist('prefix', type=str):
-        for prefix in arg.split(','):
+    for arg in request.args.getlist("prefix", type=str):
+        for prefix in arg.split(","):
             prefix = normalize_prefix(prefix.strip())
             if prefix is None:
                 continue
@@ -275,6 +284,8 @@ def generate_context_json_ld():
                 continue
             prefix_map[prefix] = fmt
 
-    return jsonify({
-        "@context": prefix_map,
-    })
+    return jsonify(
+        {
+            "@context": prefix_map,
+        }
+    )

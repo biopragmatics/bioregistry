@@ -6,23 +6,31 @@ from typing import Callable, Mapping, Optional, Sequence, Tuple
 
 from .constants import BIOREGISTRY_REMOTE_URL
 from .resolve import (
-    get, get_banana, get_bioportal_prefix, get_identifiers_org_prefix, get_n2t_prefix,
-    get_obofoundry_format, get_ols_prefix, get_pattern_re, namespace_in_lui, normalize_prefix,
+    get,
+    get_banana,
+    get_bioportal_prefix,
+    get_identifiers_org_prefix,
+    get_n2t_prefix,
+    get_obofoundry_format,
+    get_ols_prefix,
+    get_pattern_re,
+    namespace_in_lui,
+    normalize_prefix,
 )
 
 __all__ = [
-    'validate',
-    'get_providers',
-    'get_providers_list',
-    'get_identifiers_org_url',
-    'get_identifiers_org_curie',
-    'get_obofoundry_format',
-    'get_obofoundry_link',
-    'get_ols_link',
-    'get_bioportal_url',
-    'get_n2t_url',
-    'get_link',
-    'get_registry_resolve_url',
+    "validate",
+    "get_providers",
+    "get_providers_list",
+    "get_identifiers_org_url",
+    "get_identifiers_org_curie",
+    "get_obofoundry_format",
+    "get_obofoundry_link",
+    "get_ols_link",
+    "get_bioportal_url",
+    "get_n2t_url",
+    "get_link",
+    "get_registry_resolve_url",
 ]
 
 
@@ -39,15 +47,15 @@ def _get_modified_id(prefix: str, identifier: str) -> str:
         return identifier
     banana = get_banana(prefix)
     if banana:
-        if identifier.startswith(f'{banana}:'):
+        if identifier.startswith(f"{banana}:"):
             return identifier
         else:
-            return f'{banana}:{identifier}'
+            return f"{banana}:{identifier}"
     else:
         if identifier.startswith(prefix.upper()):
             return identifier
         else:
-            return f'{prefix.upper()}:{identifier}'
+            return f"{prefix.upper()}:{identifier}"
 
 
 def get_default_url(prefix: str, identifier: str) -> Optional[str]:
@@ -78,7 +86,7 @@ def get_providers_list(prefix: str, identifier: str) -> Sequence[Tuple[str, str]
         return rv
 
     # if a default URL is available, it goes first. otherwise the bioregistry URL goes first.
-    rv.insert(1 if rv[0][0] == 'default' else 0, ('bioregistry', bioregistry_link))
+    rv.insert(1 if rv[0][0] == "default" else 0, ("bioregistry", bioregistry_link))
     return rv
 
 
@@ -87,7 +95,7 @@ def get_identifiers_org_url(prefix: str, identifier: str) -> Optional[str]:
     curie = get_identifiers_org_curie(prefix, identifier)
     if curie is None:
         return None
-    return f'https://identifiers.org/{curie}'
+    return f"https://identifiers.org/{curie}"
 
 
 def get_n2t_url(prefix: str, identifier: str) -> Optional[str]:
@@ -95,10 +103,10 @@ def get_n2t_url(prefix: str, identifier: str) -> Optional[str]:
     n2t_prefix = get_n2t_prefix(prefix)
     if n2t_prefix is None:
         return None
-    curie = f'{n2t_prefix}:{identifier}'
+    curie = f"{n2t_prefix}:{identifier}"
     if curie is None:
         return None
-    return f'https://n2t.net/{curie}'
+    return f"https://n2t.net/{curie}"
 
 
 def get_bioportal_url(prefix: str, identifier: str) -> Optional[str]:
@@ -116,7 +124,7 @@ def get_bioportal_url(prefix: str, identifier: str) -> Optional[str]:
         return None
     obo_link = get_obofoundry_link(prefix, identifier)
     if obo_link is not None:
-        return f'https://bioportal.bioontology.org/ontologies/{bioportal_prefix}/?p=classes&conceptid={obo_link}'
+        return f"https://bioportal.bioontology.org/ontologies/{bioportal_prefix}/?p=classes&conceptid={obo_link}"
     # TODO there must be other rules?
     return None
 
@@ -125,7 +133,7 @@ def get_bioportal_url(prefix: str, identifier: str) -> Optional[str]:
 MIRIAM_BLACKLIST = {
     # this one uses the names instead of IDs, and points to a dead resource.
     # See https://github.com/identifiers-org/identifiers-org.github.io/issues/139
-    'pid.pathway',
+    "pid.pathway",
 }
 
 
@@ -136,17 +144,17 @@ def get_identifiers_org_curie(prefix: str, identifier: str) -> Optional[str]:
         return None
     banana = get_banana(prefix)
     if banana:
-        if identifier.startswith(f'{banana}:'):
+        if identifier.startswith(f"{banana}:"):
             return identifier
         else:
-            return f'{banana}:{identifier}'
+            return f"{banana}:{identifier}"
     elif namespace_in_lui(prefix):
         if identifier.startswith(prefix.upper()):
             return identifier
         else:
-            return f'{prefix.upper()}:{identifier}'
+            return f"{prefix.upper()}:{identifier}"
     else:
-        return f'{miriam_prefix}:{identifier}'
+        return f"{miriam_prefix}:{identifier}"
 
 
 def get_obofoundry_link(prefix: str, identifier: str) -> Optional[str]:
@@ -167,7 +175,7 @@ def get_obofoundry_link(prefix: str, identifier: str) -> Optional[str]:
     fmt = get_obofoundry_format(prefix)
     if fmt is None:
         return None
-    return f'{fmt}{identifier}'
+    return f"{fmt}{identifier}"
 
 
 def get_ols_link(prefix: str, identifier: str) -> Optional[str]:
@@ -176,7 +184,7 @@ def get_ols_link(prefix: str, identifier: str) -> Optional[str]:
     obo_link = get_obofoundry_link(prefix, identifier)
     if ols_prefix is None or obo_link is None:
         return None
-    return f'https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_link}'
+    return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_link}"
 
 
 def _get_bioregistry_link(prefix: str, identifier: str) -> Optional[str]:
@@ -192,26 +200,26 @@ def _get_bioregistry_link(prefix: str, identifier: str) -> Optional[str]:
     norm_prefix = normalize_prefix(prefix)
     if norm_prefix is None:
         return None
-    return f'{BIOREGISTRY_REMOTE_URL.rstrip()}/{norm_prefix}:{identifier}'
+    return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{norm_prefix}:{identifier}"
 
 
 PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
-    'default': get_default_url,
-    'miriam': get_identifiers_org_url,
-    'obofoundry': get_obofoundry_link,
-    'ols': get_ols_link,
-    'n2t': get_n2t_url,
-    'bioportal': get_bioportal_url,
+    "default": get_default_url,
+    "miriam": get_identifiers_org_url,
+    "obofoundry": get_obofoundry_link,
+    "ols": get_ols_link,
+    "n2t": get_n2t_url,
+    "bioportal": get_bioportal_url,
 }
 
 LINK_PRIORITY = [
-    'default',
-    'bioregistry',
-    'miriam',
-    'ols',
-    'obofoundry',
-    'n2t',
-    'bioportal',
+    "default",
+    "bioregistry",
+    "miriam",
+    "ols",
+    "obofoundry",
+    "n2t",
+    "bioportal",
 ]
 
 
@@ -219,7 +227,7 @@ def get_link(prefix: str, identifier: str, use_bioregistry_io: bool = True) -> O
     """Get the best link for the CURIE, if possible."""
     providers = get_providers(prefix, identifier)
     for key in LINK_PRIORITY:
-        if not use_bioregistry_io and key == 'bioregistry':
+        if not use_bioregistry_io and key == "bioregistry":
             continue
         if key not in providers:
             continue

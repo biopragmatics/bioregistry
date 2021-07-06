@@ -20,5 +20,5 @@ def export(ctx: click.Context):
     ctx.invoke(generate_context_json_ld)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     export()
