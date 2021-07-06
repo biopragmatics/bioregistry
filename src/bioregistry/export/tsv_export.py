@@ -53,7 +53,7 @@ METAPREFIXES = [
 ]
 REGISTRY_HEADER = [
     'identifier', 'name', 'homepage', 'description', 'pattern',
-    'example', 'email', 'formatter', 'download', 'synonyms',
+    'example', 'email', 'formatter', 'download.owl','download.obo', 'synonyms',
     'deprecated', *METAPREFIXES, 'part_of', 'provides',
     # 'type',
 ]
@@ -108,7 +108,8 @@ def get_registry_rows():
             resolve.get_example(prefix),
             resolve.get_email(prefix),
             resolve.get_format(prefix),
-            data.download,
+            data.download_owl,
+            data.download_obo,
             '|'.join(data.synonyms or []),
             resolve.is_deprecated(prefix),
             *[
