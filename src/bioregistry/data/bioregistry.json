@@ -2225,14 +2225,6 @@
       "SCHEM"
     ]
   },
-  "emolecules": {
-    "name": "Reaxys eMoleules",
-    "example": "491187",
-    "homepage": "https://reaxys.emolecules.com",
-    "pattern": "^\\d+$",
-    "description": "Catalog of purchasable reagents and building blocks",
-    "url": "https://reaxys.emolecules.com/cgi-bin/more?vid=$1"
-  },
   "bfo": {
     "bioportal": {
       "name": "Basic Formal Ontology",
@@ -10444,6 +10436,14 @@
       "prefix": "EMDB"
     }
   },
+  "emolecules": {
+    "description": "Catalog of purchasable reagents and building blocks",
+    "example": "491187",
+    "homepage": "https://reaxys.emolecules.com",
+    "name": "Reaxys eMoleules",
+    "pattern": "^\\d+$",
+    "url": "https://reaxys.emolecules.com/cgi-bin/more?vid=$1"
+  },
   "empiar": {
     "description": "EMPIAR, the Electron Microscopy Public Image Archive, is a public resource for raw, 2D electron microscopy images. Here, you can browse, upload and download the raw images used to build a 3D structure",
     "example": "10595",
@@ -15845,7 +15845,8 @@
     "example": "10001-101",
     "name": "HMS LINCS Compound",
     "synonyms": [
-      "HMS-LINCS"
+      "HMS-LINCS",
+      "hmsl_id"
     ],
     "url": "https://lincs.hms.harvard.edu/db/sm/$1"
   },
@@ -19864,9 +19865,9 @@
     }
   },
   "lspci": {
+    "example": "1",
     "homepage": "https://labsyspharm.github.io/lspci/",
     "name": "Laboratory of Systems Pharmacology Compound ID",
-    "example": "1",
     "pattern": "^\\d+$",
     "url": "https://labsyspharm.github.io/lspci/$1"
   },

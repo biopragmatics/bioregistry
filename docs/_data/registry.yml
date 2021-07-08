@@ -4404,6 +4404,13 @@ ccds:
     link_is_explicit: 'true'
     name: The Consensus CDS (CCDS) project
     prefix: CCDS
+ccle.cell:
+  example: BT20_BREAST
+  homepage: https://www.cbioportal.org/study/summary?id=ccle_broad_2019
+  name: Cancer Cell Line Encyclopedia (CCLE) Cells
+  synonyms:
+  - ccle
+  url: https://www.cbioportal.org/patient?studyId=ccle_broad_2019&caseId=$1
 cco:
   bioportal:
     name: Cell Cycle Ontology
@@ -4656,6 +4663,7 @@ cellimage:
     is_obo: false
     prefix: CELLIMAGE
 cellosaurus:
+  download_obo: https://ftp.expasy.org/databases/cellosaurus/cellosaurus.obo
   example: CVCL_0440
   mappings:
     miriam: cellosaurus
@@ -6724,6 +6732,11 @@ cosmic:
     is_identifiers: false
     is_obo: false
     prefix: COSMIC
+cosmic.cell:
+  example: '906801'
+  homepage: https://cancer.sanger.ac.uk/cell_lines/
+  name: COSMIC Cell Lines
+  url: https://cancer.sanger.ac.uk/cell_lines/sample/overview?id=$1
 covid19:
   bioportal:
     name: COVID-19 Ontology
@@ -7813,6 +7826,12 @@ dbgap:
     is_identifiers: true
     is_obo: false
     prefix: DBGAP
+dbmhc:
+  appears_in:
+  - cellosaurus
+  deprecated: true
+  example: '48439'
+  name: Database of human Major Histocompatibility Complex
 dbprobe:
   mappings:
     miriam: dbprobe
@@ -8114,6 +8133,14 @@ degradome:
     is_identifiers: true
     is_obo: false
     prefix: DEGRADOME
+depmap:
+  description: Cell lines used in the Dependency Map (DepMap). Highly related to CCLE
+    Cells.
+  example: ACH-000001
+  homepage: https://depmap.org/portal
+  name: DepMap Cell Lines
+  pattern: ^ACH-\d+$
+  url: https://depmap.org/portal/cell_line/$1
 depod:
   mappings:
     miriam: depod
@@ -10339,6 +10366,13 @@ emdb:
     is_identifiers: true
     is_obo: false
     prefix: EMDB
+emolecules:
+  description: Catalog of purchasable reagents and building blocks
+  example: '491187'
+  homepage: https://reaxys.emolecules.com
+  name: Reaxys eMoleules
+  pattern: ^\d+$
+  url: https://reaxys.emolecules.com/cgi-bin/more?vid=$1
 empiar:
   description: EMPIAR, the Electron Microscopy Public Image Archive, is a public resource
     for raw, 2D electron microscopy images. Here, you can browse, upload and download
@@ -15778,6 +15812,7 @@ hms.lincs.compound:
   name: HMS LINCS Compound
   synonyms:
   - HMS-LINCS
+  - hmsl_id
   url: https://lincs.hms.harvard.edu/db/sm/$1
 hog:
   download_obo: ftp://ftp.bgee.org/general/ontologies/HOG.obo
@@ -17126,6 +17161,11 @@ igsn:
     namespaceEmbeddedInLui: false
     prefix: igsn
     provider_url: hdl.handle.net/10273/$1
+ihw:
+  example: IHW09326
+  homepage: https://www.fredhutch.org/en/research/institutes-networks-ircs/international-histocompatibility-working-group.html
+  name: International Histocompatibility Workshop cell lines
+  pattern: ^IHW\d+$
 imdrf:
   homepage: http://www.imdrf.org/
   name: International Medical Device Regulators Forum
@@ -19752,8 +19792,11 @@ lrg:
     is_obo: false
     prefix: LRG
 lspci:
-  homepage: https://labsyspharm.shinyapps.io/smallmoleculesuite/
+  example: '1'
+  homepage: https://labsyspharm.github.io/lspci/
   name: Laboratory of Systems Pharmacology Compound ID
+  pattern: ^\d+$
+  url: https://labsyspharm.github.io/lspci/$1
 ma:
   bioportal:
     name: Mouse Adult Gross Anatomy Ontology
@@ -33640,6 +33683,15 @@ sitex:
     is_identifiers: true
     is_obo: false
     prefix: SITEX
+skip:
+  description: SKIP is aiming to promote the exchange of information and joint research
+    between researchers by aggregating various information of stem cells (iPS cells,
+    iPS cells derived from patients, etc.) to stimulate research on disease and regenerative
+    medicine.
+  example: SKIP001214
+  homepage: https://skip.stemcellinformatics.org/en/
+  name: Stemcell Knowledge and Information Portal
+  url: https://skip.stemcellinformatics.org/SKIPSearch/cell_line_detail?accession=$1
 skos:
   example: prefLabel
   homepage: https://www.w3.org/2004/02/skos/
