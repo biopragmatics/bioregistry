@@ -15,7 +15,7 @@ from .resolve import (
     get_ols_prefix,
     get_pattern_re,
     namespace_in_lui,
-    normalize_prefix,
+    normalize_curie,
 )
 
 __all__ = [
@@ -239,13 +239,37 @@ def _get_bioregistry_link(prefix: str, identifier: str) -> Optional[str]:
     :param identifier: The identifier in the CURIE
     :return: A link to the bioregistry resolver
 
-    >>> _get_bioregistry_link('chebi', '1234')
-    'https://bioregistry.io/chebi:1234'
+    >>> _get_bioregistry_link('pdb', '1234')
+    'https://bioregistry.io/pdb:1234'
+
+    Redundant prefix (OBO)
+
+    >>> _get_bioregistry_link('go', 'GO:0120212')
+    'https://bioregistry.io/go:0120212'
+    >>> _get_bioregistry_link('go', 'go:0120212')
+    'https://bioregistry.io/go:0120212'
+    >>> _get_bioregistry_link('go', '0120212')
+    'https://bioregistry.io/go:0120212'
+
+    Redundant prefix (banana; OBO)
+
+    >>> _get_bioregistry_link('fbbt', 'FBbt:1234')
+    'https://bioregistry.io/fbbt:1234'
+    >>> _get_bioregistry_link('fbbt', 'fbbt:1234')
+    'https://bioregistry.io/fbbt:1234'
+    >>> _get_bioregistry_link('fbbt', '1234')
+    'https://bioregistry.io/fbbt:1234'
+
+    Redundant prefix (banana; explicit)
+    >>> _get_bioregistry_link('go.ref', 'GO_REF:1234')
+    'https://bioregistry.io/go.ref:1234'
+    >>> _get_bioregistry_link('go.ref', '1234')
+    'https://bioregistry.io/go.ref:1234'
     """
-    norm_prefix = normalize_prefix(prefix)
+    norm_prefix, norm_identifier = normalize_curie(prefix, identifier)
     if norm_prefix is None:
         return None
-    return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{norm_prefix}:{identifier}"
+    return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{norm_prefix}:{norm_identifier}"
 
 
 PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {

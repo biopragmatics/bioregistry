@@ -30,10 +30,12 @@ __all__ = [
     "get_obo_download",
     "get_json_download",
     "get_owl_download",
-    "parse_curie",
-    "normalize_prefix",
     "get_version",
     "get_versions",
+    # CURIE handling
+    "normalize_prefix",
+    "parse_curie",
+    "normalize_curie",
     # Metaregistry stuff
     "get_registry",
     "get_registry_name",
@@ -744,30 +746,57 @@ def parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
     :returns: A tuple of the prefix, identifier. If not parsable, returns a tuple of None, None
 
-    Parse canonical CURIE
+    >>> parse_curie('pdb:1234')
+    ('pdb', '1234')
+
+    Address banana problem
+    >>> parse_curie('go:GO:1234')
+    ('go', '1234')
+    >>> parse_curie('go:go:1234')
+    ('go', '1234')
     >>> parse_curie('go:1234')
     ('go', '1234')
 
-    Normalize prefix
-    >>> parse_curie('GO:1234')
-    ('go', '1234')
+    Address banana problem with OBO banana
+    >>> parse_curie('fbbt:FBbt:1234')
+    ('fbbt', '1234')
+    >>> parse_curie('fbbt:fbbt:1234')
+    ('fbbt', '1234')
+    >>> parse_curie('fbbt:1234')
+    ('fbbt', '1234')
 
-    Address banana problem
-    >>> parse_curie('GO:GO:1234')
-    ('go', '1234')
+    Address banana problem with explit banana
+    >>> parse_curie('go.ref:GO_REF:1234')
+    ('go.ref', '1234')
+    >>> parse_curie('go.ref:1234')
+    ('go.ref', '1234')
     """
     try:
         prefix, identifier = curie.split(":", 1)
     except ValueError:
         return None, None
+    return normalize_curie(prefix, identifier)
 
-    # remove redundant prefix
-    if identifier.casefold().startswith(f"{prefix.casefold()}:"):
-        identifier = identifier[len(prefix) + 1 :]
 
+def normalize_curie(prefix: str, identifier: str) -> Union[Tuple[str, str], Tuple[None, None]]:
+    """Normalize a prefix/identifier pair.
+
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE
+    :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
+        prefixes or bananas, all lowercase.
+    """
     norm_prefix = normalize_prefix(prefix)
     if not norm_prefix:
         return None, None
+
+    banana = get_banana(prefix)
+    if banana is not None and identifier.startswith(f"{banana}:"):
+        identifier = identifier[len(banana) + 1 :]
+    # remove redundant prefix
+    elif identifier.casefold().startswith(f"{prefix.casefold()}:"):
+        identifier = identifier[len(prefix) + 1 :]
+
     return norm_prefix, identifier
 
 
