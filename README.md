@@ -124,7 +124,7 @@ Entries in the Bioregistry can be looked up with the `get()` function.
 ```python
 import bioregistry
 
-entry = bioregistry.get('taxonomy')
+entry = bioregistry.get_resource('taxonomy')
 # there are lots of mysteries to discover in this dictionary!
 ```
 

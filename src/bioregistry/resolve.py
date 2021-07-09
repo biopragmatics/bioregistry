@@ -4,6 +4,7 @@
 
 import logging
 import re
+import warnings
 from functools import lru_cache
 from typing import Any, Callable, Dict, Mapping, Optional, Sequence, Set, Tuple, Union
 
@@ -12,7 +13,7 @@ from .schema import Collection, Registry, Resource
 from .utils import read_collections, read_metaregistry, read_registry
 
 __all__ = [
-    "get",
+    "get_resource",
     "get_name",
     "get_description",
     "get_mappings",
@@ -51,7 +52,7 @@ logger = logging.getLogger(__name__)
 EMAIL_RE = re.compile(r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,5}$")
 
 
-def get(prefix: str) -> Optional[Resource]:
+def get_resource(prefix: str) -> Optional[Resource]:
     """Get the Bioregistry entry for the given prefix.
 
     :param prefix: The prefix to look up, which is normalized with :func:`normalize_prefix`
@@ -63,6 +64,12 @@ def get(prefix: str) -> Optional[Resource]:
     if norm_prefix is None:
         return None
     return read_registry().get(norm_prefix)
+
+
+def get(prefix: str) -> Optional[Resource]:
+    """Get the Bioregistry entry for the given prefix, deprecated for :func:`get_resource`."""
+    warnings.warn("use bioregistry.get_resource", DeprecationWarning)
+    return get_resource(prefix)
 
 
 def get_collection(identifier: str) -> Optional[Collection]:
@@ -151,7 +158,7 @@ def get_description(prefix: str) -> Optional[str]:
 
 def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
     """Get the mappings to external registries, if available."""
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
     rv: Dict[str, str] = {}
@@ -174,7 +181,7 @@ def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
 
 def get_synonyms(prefix: str) -> Optional[Set[str]]:
     """Get the synonyms for a given prefix, if available."""
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
     # TODO aggregate even more from xrefs
@@ -184,7 +191,7 @@ def get_synonyms(prefix: str) -> Optional[Set[str]]:
 def _get_prefix_key(prefix: str, key: str, metaprefixes: Sequence[str]):
     # This function doesn't have a type annotation since there are different
     # kinds of values that might come out (str or bool)
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
     return entry.get_prefix_key(key, metaprefixes)
@@ -321,7 +328,7 @@ def get_banana(prefix: str) -> Optional[str]:
     No banana, no namespace in LUI
     >>> assert get_banana('pdb') is None
     """
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
     if entry.banana is not None:
@@ -368,7 +375,7 @@ def get_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Optiona
     >>> bioregistry.get_format('chebi', priority=['obofoundry', 'bioregistry', 'prefixcommons', 'miriam', 'ols'])
     'http://purl.obolibrary.org/obo/CHEBI_$1'
     """
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
     for metaprefix in priority or DEFAULT_FORMAT_PRIORITY:
@@ -380,7 +387,7 @@ def get_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Optiona
 
 
 def _get_bioregistry_format(prefix: str) -> Optional[str]:
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
     if entry.url:
@@ -581,7 +588,7 @@ def get_format_url(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
 
 def get_example(prefix: str) -> Optional[str]:
     """Get an example identifier, if it's available."""
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
     example = entry.example
@@ -598,7 +605,7 @@ def get_example(prefix: str) -> Optional[str]:
 
 def has_no_terms(prefix: str) -> bool:
     """Check if the prefix is specifically noted to not have terms."""
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None or entry.no_own_terms is None:
         return False
     return entry.no_own_terms
@@ -617,7 +624,7 @@ def is_deprecated(prefix: str) -> bool:
     >>> assert bioregistry.is_deprecated('iro') # marked by Bioregistry
     >>> assert bioregistry.is_deprecated('miriam.collection') # marked by MIRIAM
     """
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return False
     if entry.deprecated:
@@ -658,7 +665,7 @@ def get_homepage(prefix: str) -> Optional[str]:
 
 def get_obo_download(prefix: str) -> Optional[str]:
     """Get the download link for the latest OBO file."""
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
     if entry.download_obo:
@@ -668,7 +675,7 @@ def get_obo_download(prefix: str) -> Optional[str]:
 
 def get_json_download(prefix: str) -> Optional[str]:
     """Get the download link for the latest OBOGraph JSON file."""
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
     return get_external(prefix, "obofoundry").get("download.json")
@@ -676,7 +683,7 @@ def get_json_download(prefix: str) -> Optional[str]:
 
 def get_owl_download(prefix: str) -> Optional[str]:
     """Get the download link for the latest OWL file."""
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
     if entry.download_owl:
@@ -697,7 +704,7 @@ def is_provider(prefix: str) -> bool:
     >>> assert not is_provider('pdb')
     >>> assert is_provider('validatordb')
     """
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return False
     return entry.type == "provider"
@@ -712,7 +719,7 @@ def get_provides_for(prefix: str) -> Optional[str]:
     >>> assert get_provides_for('pdb') is None
     >>> assert 'pdb' == get_provides_for('validatordb')
     """
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
     return entry.provides

@@ -3,7 +3,6 @@
 """Extract registry information."""
 
 from .resolve import (  # noqa
-    get,
     get_banana,
     get_bioportal_prefix,
     get_collection,
@@ -42,6 +41,7 @@ from .resolve import (  # noqa
     get_registry_map,
     get_registry_name,
     get_registry_url,
+    get_resource,
     get_synonyms,
     get_version,
     get_versions,

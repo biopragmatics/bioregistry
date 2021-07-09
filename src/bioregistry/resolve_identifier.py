@@ -6,7 +6,6 @@ from typing import Callable, Mapping, Optional, Sequence, Tuple
 
 from .constants import BIOREGISTRY_REMOTE_URL
 from .resolve import (
-    get,
     get_banana,
     get_bioportal_prefix,
     get_identifiers_org_prefix,
@@ -14,6 +13,7 @@ from .resolve import (
     get_obofoundry_format,
     get_ols_prefix,
     get_pattern_re,
+    get_resource,
     namespace_in_lui,
     normalize_curie,
 )
@@ -105,7 +105,7 @@ def normalize_identifier(prefix: str, identifier: str) -> str:
 
 def get_default_url(prefix: str, identifier: str) -> Optional[str]:
     """Get the default URL for the given CURIE."""
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
     return entry.get_default_url(identifier)

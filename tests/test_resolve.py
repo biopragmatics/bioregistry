@@ -31,7 +31,7 @@ class TestResolve(unittest.TestCase):
 
     def test_get(self):
         """Test getting content from the bioregistry."""
-        ncbitaxon_entry = bioregistry.get("ncbitaxon")
+        ncbitaxon_entry = bioregistry.get_resource("ncbitaxon")
         self.assertIn("NCBI_Taxon_ID", ncbitaxon_entry.synonyms)
         self.assertIsNotNone(get_external("ncbitaxon", "miriam"))
         self.assertIsNotNone(get_external("ncbitaxon", "obofoundry"))

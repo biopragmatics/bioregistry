@@ -81,7 +81,7 @@ class TestRegistry(unittest.TestCase):
         for prefix in bioregistry.read_registry():
             if bioregistry.is_deprecated(prefix):
                 continue
-            entry = bioregistry.get(prefix)
+            entry = bioregistry.get_resource(prefix)
             if entry.name:
                 continue
             name = bioregistry.get_name(prefix)
@@ -124,7 +124,7 @@ class TestRegistry(unittest.TestCase):
         for prefix in bioregistry.read_registry():
             if bioregistry.is_deprecated(prefix):
                 continue
-            entry = bioregistry.get(prefix)
+            entry = bioregistry.get_resource(prefix)
             if "name" in entry:
                 continue
             name = bioregistry.get_name(prefix)
