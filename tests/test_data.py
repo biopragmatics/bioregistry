@@ -196,6 +196,14 @@ class TestRegistry(unittest.TestCase):
         self.assertTrue(is_mismatch("geo", "ols", "geo"))
         self.assertFalse(is_mismatch("geo", "miriam", "geo"))
 
+    def test_own_terms(self):
+        """Test own terms."""
+        self.assertFalse(bioregistry.has_no_terms("chebi"), msg="ChEBI should be marked as false")
+        self.assertTrue(bioregistry.has_no_terms("chiro"), msg="CHIRO has no terms")
+        self.assertFalse(
+            bioregistry.has_no_terms("nope"), msg="Missing prefix should be false by definition"
+        )
+
     def test_get_nope(self):
         """Test when functions don't return."""
         self.assertIsNone(bioregistry.get_banana("nope"))
@@ -215,7 +223,6 @@ class TestRegistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_owl_download("nope"))
         self.assertIsNone(bioregistry.get_ols_link("nope", ...))
         self.assertIsNone(bioregistry.get_obofoundry_link("nope", ...))
-        self.assertTrue(bioregistry.has_terms("nope"))
         self.assertFalse(bioregistry.is_deprecated("nope"))
         self.assertFalse(bioregistry.is_provider("nope"))
         self.assertIsNone(bioregistry.get_provides_for("nope"))

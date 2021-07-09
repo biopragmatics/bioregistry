@@ -91,10 +91,10 @@
                 </dd>
                 <dt>Pattern</dt>
                 <dd>
-                    {% if not has_terms %}
-                        <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
-                    {% elif pattern %}
+                    {% if pattern %}
                         <code>{{ pattern }}</code>
+                    {% elif has_no_terms %}
+                        <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Pattern</span>
                     {% endif %}
@@ -111,10 +111,10 @@
                 {% endif %}
                 <dt>Example Identifier</dt>
                 <dd>
-                    {% if not has_terms %}
-                        <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
-                    {% elif example %}
+                    {% if example %}
                         <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example }}</a>
+                    {% elif has_no_terms %}
+                        <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Example</span>
                     {% endif %}

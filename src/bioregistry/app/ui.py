@@ -82,7 +82,7 @@ def resource(prefix: str):
         homepage=bioregistry.get_homepage(prefix),
         pattern=bioregistry.get_pattern(prefix),
         version=bioregistry.get_version(prefix),
-        has_terms=bioregistry.has_terms(prefix),
+        has_no_terms=bioregistry.has_no_terms(prefix),
         obo_download=bioregistry.get_obo_download(prefix),
         owl_download=bioregistry.get_owl_download(prefix),
         namespace_in_lui=bioregistry.namespace_in_lui(prefix),

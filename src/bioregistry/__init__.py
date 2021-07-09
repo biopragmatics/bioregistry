@@ -46,7 +46,7 @@ from .resolve import (  # noqa
     get_version,
     get_versions,
     get_wikidata_prefix,
-    has_terms,
+    has_no_terms,
     is_deprecated,
     is_provider,
     namespace_in_lui,

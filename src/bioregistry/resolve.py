@@ -23,7 +23,7 @@ __all__ = [
     "get_format",
     "get_format_url",
     "get_example",
-    "has_terms",
+    "has_no_terms",
     "is_deprecated",
     "get_email",
     "get_homepage",
@@ -570,12 +570,12 @@ def get_example(prefix: str) -> Optional[str]:
     return None
 
 
-def has_terms(prefix: str) -> bool:
+def has_no_terms(prefix: str) -> bool:
     """Check if the prefix is specifically noted to not have terms."""
     entry = get(prefix)
-    if entry is None:
-        return True
-    return entry.no_own_terms or False
+    if entry is None or entry.no_own_terms is None:
+        return False
+    return entry.no_own_terms
 
 
 def is_deprecated(prefix: str) -> bool:
