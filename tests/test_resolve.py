@@ -44,29 +44,41 @@ class TestResolve(unittest.TestCase):
 
     def test_validate_true(self):
         """Test that validation returns true."""
-        self.assert_validate(
-            [
-                ("eccode", "1"),
-                ("eccode", "1.1"),
-                ("eccode", "1.1.1"),
-                ("eccode", "1.1.1.1"),
-                ("eccode", "1.1.123.1"),
-                ("eccode", "1.1.1.123"),
-                # Namespace in LUI: Standard rule for upper-casing
-                ("chebi", "24867"),
-                ("chebi", "CHEBI:1234"),
-                # BANANA
-                (
-                    "vario",
-                    "0376",
-                ),  # this showcases the banana problem where the namespace in LUI is weird
-                ("VariO", "0376"),
-                ("did", "sov:WRfXPg8dantKVubE3HX8pw"),
-                ("did", "did:sov:WRfXPg8dantKVubE3HX8pw"),
-                ("go.ref", "0000041"),
-                ("go.ref", "GO_REF:0000041"),
-            ]
-        )
+        tests = [
+            ("eccode", "1"),
+            ("eccode", "1.1"),
+            ("eccode", "1.1.1"),
+            ("eccode", "1.1.1.1"),
+            ("eccode", "1.1.123.1"),
+            ("eccode", "1.1.1.123"),
+            # Namespace in LUI: Standard rule for upper-casing
+            ("chebi", "24867"),
+            ("chebi", "CHEBI:1234"),
+            # BANANA (explicit)
+            (
+                "vario",
+                "0376",
+            ),  # this showcases the banana problem where the namespace in LUI is weird
+            ("VariO", "0376"),
+            ("did", "sov:WRfXPg8dantKVubE3HX8pw"),
+            ("did", "did:sov:WRfXPg8dantKVubE3HX8pw"),
+            ("go.ref", "0000041"),
+            ("go.ref", "GO_REF:0000041"),
+            # bananas from OBO
+            ("fbbt", "1234"),
+            ("fbbt", "FBbt:1234"),
+        ]
+        for prefix in bioregistry.read_registry():
+            banana = bioregistry.get_banana(prefix)
+            if banana is None or bioregistry.has_no_terms(prefix):
+                continue
+            example = bioregistry.get_example(prefix)
+            self.assertIsNotNone(
+                example, msg=f"{prefix} has a banana {banana} but is missing an example"
+            )
+            tests.append(("prefix", example))
+            tests.append(("prefix", f"{banana}:{example}"))
+        self.assert_validate(tests)
 
     def assert_validate(self, examples: Iterable[Tuple[str, str]]) -> None:
         """Validate the examples."""
@@ -74,7 +86,9 @@ class TestResolve(unittest.TestCase):
             is_valid = bioregistry.validate(prefix, identifier)
             if is_valid is False:
                 with self.subTest(prefix=prefix, identifier=identifier):
-                    self.fail(msg=f"CURIE {prefix}:{identifier}")
+                    self.fail(
+                        msg=f"CURIE {prefix}:{identifier} does not match {bioregistry.get_pattern(prefix)}"
+                    )
 
     def test_validate_false(self):
         """Test that validation returns false."""

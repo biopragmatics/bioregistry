@@ -46,6 +46,10 @@ def validate(prefix: str, identifier: str) -> Optional[bool]:
 def normalize_identifier(prefix: str, identifier: str) -> str:
     """Normalize the identifier with the appropriate banana.
 
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE
+    :return: A normalize identifier, possibly with banana/redundant prefix added
+
     Examples with explicitly annotated bananas:
 
     >>> assert "VariO" == get_banana('vario')
