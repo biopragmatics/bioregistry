@@ -31,6 +31,7 @@ __all__ = [
     "get_n2t_url",
     "get_link",
     "get_registry_resolve_url",
+    "normalize_identifier",
 ]
 
 
@@ -39,23 +40,63 @@ def validate(prefix: str, identifier: str) -> Optional[bool]:
     pattern = get_pattern_re(prefix)
     if pattern is None:
         return None
-    return bool(pattern.match(_get_modified_id(prefix, identifier)))
+    return bool(pattern.match(normalize_identifier(prefix, identifier)))
 
 
-def _get_modified_id(prefix: str, identifier: str) -> str:
-    if not namespace_in_lui(prefix):
-        return identifier
+def normalize_identifier(prefix: str, identifier: str) -> str:
+    """Normalize the identifier with the appropriate banana.
+
+    Examples with explicitly annotated bananas:
+
+    >>> assert "VariO" == get_banana('vario')
+    >>> normalize_identifier('vario', '0376')
+    'VariO:0376'
+    >>> normalize_identifier('vario', 'VariO:0376')
+    'VariO:0376'
+
+    Examples with bananas from OBO:
+    >>> assert "FBbt" == get_banana('fbbt')
+    >>> normalize_identifier('fbbt', '00007294')
+    'FBbt:00007294'
+    >>> normalize_identifier('fbbt', 'FBbt:00007294')
+    'FBbt:00007294'
+
+    Examples from OBO Foundry:
+
+    >>> assert get_banana('chebi') is None
+    >>> normalize_identifier('chebi', '1234')
+    'CHEBI:1234'
+    >>> normalize_identifier('chebi', 'CHEBI:1234')
+    'CHEBI:1234'
+
+    Standard:
+
+    >>> assert get_banana('pdb') is None
+    >>> assert not namespace_in_lui('pdb')
+    >>> normalize_identifier('pdb', '00000020')
+    '00000020'
+    """
+    # A "banana" is an embedded prefix that isn't actually part of the identifier.
+    # Usually this corresponds to the prefix itself, with some specific stylization
+    # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
     banana = get_banana(prefix)
     if banana:
-        if identifier.startswith(f"{banana}:"):
-            return identifier
-        else:
-            return f"{banana}:{identifier}"
-    else:
-        if identifier.startswith(prefix.upper()):
-            return identifier
-        else:
-            return f"{prefix.upper()}:{identifier}"
+        banana = f"{banana}:"
+        if not identifier.startswith(banana):
+            return f"{banana}{identifier}"
+    # Handle when the namespace is in the LUI, but no specific banana
+    # has been given. This is most common for OBO Foundry ontologies'
+    # identifiers, like CHEBI:XXXX
+    elif namespace_in_lui(prefix):
+        banana = f"{prefix.upper()}:"
+        if not identifier.startswith(banana):
+            return f"{banana}{identifier}"
+
+    # TODO Unnecessary redundant prefix?
+    # elif identifier.lower().startswith(f'{prefix}:'):
+    #
+
+    return identifier
 
 
 def get_default_url(prefix: str, identifier: str) -> Optional[str]:

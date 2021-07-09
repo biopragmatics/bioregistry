@@ -298,11 +298,35 @@ def _get_mapped_prefix(prefix: str, external: str) -> Optional[str]:
 
 
 def get_banana(prefix: str) -> Optional[str]:
-    """Get the optional redundant prefix to go before an identifier."""
+    """Get the optional redundant prefix to go before an identifier.
+
+    A "banana" is an embedded prefix that isn't actually part of the identifier.
+    Usually this corresponds to the prefix itself, with some specific stylization
+    such as in the case of FBbt. The banana does NOT include a colon ":" at the end
+
+    :param prefix: The name of the prefix (possibly unnormalized)
+    :return: The banana, if the prefix is valid and has an associated banana.
+
+    Explicitly annotated banana
+    >>> assert "GO_REF" == get_banana('go.ref')
+
+    Banana imported through OBO Foundry
+    >>> assert "FBbt" == get_banana('fbbt')
+
+    No banana (ChEBI does have namespace in LUI, though)
+    >>> assert get_banana('chebi') is None
+
+    No banana, no namespace in LUI
+    >>> assert get_banana('pdb') is None
+    """
     entry = get(prefix)
     if entry is None:
         return None
-    return entry.banana
+    if entry.banana is not None:
+        return entry.banana
+    if entry.obofoundry and "preferredPrefix" in entry.obofoundry:
+        return entry.obofoundry["preferredPrefix"]
+    return None
 
 
 DEFAULT_FORMAT_PRIORITY = (
