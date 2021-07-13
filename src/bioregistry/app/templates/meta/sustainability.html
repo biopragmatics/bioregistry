@@ -92,6 +92,10 @@ docker pull bioregistry/bioregistry:latest
 
 # Run the start script
 docker run -id --name bioregistry -p 8766:8766 bioregistry/bioregistry:latest</code></pre>
+    <p>This script can be put on the EC2 instane and run via SSH with:</p>
+    <pre><code class="language-bash">#!/bin/bash
+
+ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/services/restart_bioregistry.sh'</code></pre>
     <h3>SSL/TLS</h3>
     <p>
         The SSL/TLS certificate for <code>bioregistry.io</code> so it can be served with HTTPS is managed through
