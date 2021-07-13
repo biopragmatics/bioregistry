@@ -2,6 +2,7 @@
 
 """Web application for the Bioregistry."""
 
+import datetime
 import platform
 
 from flasgger import Swagger
@@ -82,6 +83,7 @@ _GIT_HASH = version.get_git_hash()
 _PLATFORM = platform.platform()
 _PLATFORM_VERSION = platform.version()
 _PYTHON_VERSION = platform.python_version()
+_DEPLOYED = datetime.datetime.now()
 
 
 @app.route("/sustainability")
@@ -94,6 +96,7 @@ def sustainability():
         platform=_PLATFORM,
         platform_version=_PLATFORM_VERSION,
         python_version=_PYTHON_VERSION,
+        deployed=_DEPLOYED,
     )
 
 
