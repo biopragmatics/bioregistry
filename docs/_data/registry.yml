@@ -515,6 +515,8 @@ allergome:
     name: Allergome; a platform for allergen knowledge
     prefix: Allergome
 alzforum.mutation:
+  description: Alzforum mutations is a repository of genes and rare variants associated
+    with Alzheimer's disease.
   example: app-d678n-tottori
   name: Alzforum Mutations
   synonyms:
@@ -1501,6 +1503,8 @@ aspgd.protein:
     is_obo: false
     prefix: ASPGD.PROTEIN
 asrp:
+  description: Arabidopsis Small RNA Project is a repository of data on Arabidopsis
+    small RNA genes.
   example: ASRP1423
   homepage: https://asrp.danforthcenter.org/
   name: Arabidopsis Small RNA Project
@@ -1896,12 +1900,17 @@ bacmap.map:
     is_obo: false
     prefix: BACMAP.MAP
 bactibase:
+  description: Bactibase is a database describing the physical and chemical properties
+    of bacteriocins from gram-negative and gram-positive bacteria.
   example: BAC045
   homepage: http://bactibase.hammamilab.org
   name: 'Bactibase: a database dedicated to bacteriocins'
   url: http://bactibase.hammamilab.org/$1
 bams:
   deprecated: true
+  description: 'BAMS (Brain Architectural Management System) describes vertebrate
+    neuroinformatics data at four levels of organization: expressed molecules, neuron
+    types and classes, brain regions, and networks of brain regions.'
   homepage: https://bams1.org
   name: Brain Architecture Knowledge Management System Neuroanatomical Ontology
   references:
@@ -1970,7 +1979,7 @@ bao:
     license: https://creativecommons.org/licenses/by-sa/4.0/
     name: BioAssay Ontology
     prefix: bao
-    version: 2.7.1
+    version: 2.7.2
     version.iri: http://www.bioassayontology.org/bao/bao_complete.owl
   prefixcommons:
     formatter: http://identifiers.org/bao/$1
@@ -2232,6 +2241,9 @@ begdb:
     is_obo: false
     prefix: BEGDB
 bel:
+  description: The Biological Expression Language is a domain-specific language for
+    describing causal, correlative, and associative relationships between a variety
+    of biological agents.
   example: 9-1-1 Complex
   name: Biological Expression Language
   synonyms:
@@ -3169,6 +3181,7 @@ bioregistry.collection:
   pattern: ^\d{7}$
   url: https://bioregistry.io/collection/$1
 biorxiv:
+  description: The bioRxiv is a preprint server for biology
   go:
     formatter: https://www.biorxiv.org/content/$1
     homepage: https://www.biorxiv.org/
@@ -3176,6 +3189,7 @@ biorxiv:
     prefix: bioRxiv
     synonyms:
     - BIORXIV
+  homepage: https://biorxiv.org
   mappings:
     go: bioRxiv
   name: bioRxiv
@@ -3307,6 +3321,8 @@ biosystems:
     is_obo: false
     prefix: BIOSYSTEMS
 biotools:
+  description: BioTools is a registry of databases and software with tools, services,
+    and workflows for biological and biomedical research.
   mappings:
     miriam: biotools
     n2t: biotools
@@ -6601,6 +6617,9 @@ conoserver:
     name: 'ConoServer: Cone snail toxin database'
     prefix: ConoServer
 conso:
+  description: An ontology describing phenomena encountered in the literature surrounding
+    neurodegenerative diseases such as Alzheimer's disease, Parkinson's disease, Huntington's
+    disease, tauopathies, and related protein aggregation diseases.
   example: CONSO00010
   homepage: https://pharmacome.github.io/conso/
   name: Curation of Neurodegeneration Supporting Ontology
@@ -22849,8 +22868,8 @@ mondo:
     license: http://creativecommons.org/licenses/by/4.0/
     name: Mondo Disease Ontology
     prefix: mondo
-    version: '2021-06-01'
-    version.iri: http://purl.obolibrary.org/obo/mondo/releases/2021-06-01/mondo.owl
+    version: '2021-07-12'
+    version.iri: http://purl.obolibrary.org/obo/mondo/releases/2021-07-12/mondo.owl
   pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/MONDO_$1
@@ -33584,6 +33603,16 @@ signor:
     link_is_explicit: 'true'
     name: SIGNOR Signaling Network Open Resource
     prefix: SIGNOR
+signor.relation:
+  comment: Currently, you can put a SIGNOR relation ID into the main page search box
+    and it will resolve, but there is not currently a way to resolve them via a URL
+    pattern
+  description: Identifiers for relationships between proteins and complexes, along
+    with their type and provenance
+  example: SIGNOR-252737
+  name: SIGNOR Relation
+  part_of: signor
+  pattern: ^SIGNOR-\d+$
 sio:
   biolink:
     formatter: http://semanticscience.org/resource/SIO_$1
@@ -34010,8 +34039,8 @@ so:
     homepage: https://github.com/The-Sequence-Ontology/SO-Ontologies
     name: Sequence types and features ontology
     prefix: so
-    version: '2021-07-01'
-    version.iri: http://purl.obolibrary.org/obo/so/2021-07-01/so.owl
+    version: '2021-07-12'
+    version.iri: http://purl.obolibrary.org/obo/so/2021-07-12/so.owl
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/SO_$1
     is_identifiers: false
@@ -37927,7 +37956,7 @@ vo:
     license: http://creativecommons.org/licenses/by/4.0/
     name: Vaccine Ontology
     prefix: vo
-    version: 1.1.158
+    version: 1.1.165
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/VO_$1
     is_identifiers: false
