@@ -6431,6 +6431,42 @@
       "version.iri": "http://purl.obolibrary.org/obo/cob/2020-04-15/cob.owl"
     }
   },
+  "cog": {
+    "contact": "cogs@ncbi.nlm.nih.gov",
+    "description": "COGs stands for Clusters of Orthologous Genes. The database was initially created in 1997 (Tatusov et al., PMID: 9381173) followed by several updates, most recently in 2014 (Galperin et al., PMID: 25428365). The current update includes complete genomes of 1,187 bacteria and 122 archaea that map into 1,234 genera. The new features include ~250 updated COG annotations with corresponding references and PDB links, where available; new COGs for proteins involved in CRISPR-Cas immunity, sporulation, and photosynthesis, and the lists of COGs grouped by pathways and functional systems.",
+    "example": "COG0001",
+    "go": {
+      "homepage": "http://www.ncbi.nlm.nih.gov/COG/",
+      "name": "NCBI Clusters of Orthologous Groups",
+      "prefix": "COG"
+    },
+    "homepage": "https://www.ncbi.nlm.nih.gov/research/cog/",
+    "mappings": {
+      "go": "COG"
+    },
+    "name": "Cluster of orthologous genes",
+    "pattern": "^COG\\d+$",
+    "synonyms": [
+      "COG_Cluster"
+    ],
+    "url": "https://www.ncbi.nlm.nih.gov/research/cog/cog/$1"
+  },
+  "cog.category": {
+    "contact": "cogs@ncbi.nlm.nih.gov",
+    "description": "Higher-level classifications of COG Pathways",
+    "example": "K",
+    "name": "COG Categories",
+    "part_of": "cog",
+    "url": "https://www.ncbi.nlm.nih.gov/research/cog/cogcategory/$1"
+  },
+  "cog.pathway": {
+    "contact": "cogs@ncbi.nlm.nih.gov",
+    "example": "NAD%20biosynthesis",
+    "homepage": "https://www.ncbi.nlm.nih.gov/research/cog/pathways",
+    "name": "COG Pathways",
+    "part_of": "cog",
+    "url": "https://www.ncbi.nlm.nih.gov/research/cog/pathway/$1"
+  },
   "cohd": {
     "comment": "not really sure where the source is. this also links to a system called athena. I was not able to figure out what COHD stands for.",
     "homepage": "https://github.com/MIT-LCP/mimic-omop",
