@@ -25,7 +25,7 @@ def _g(predicate: Callable[[str], bool]):
 
 
 @click.command()
-def curation():
+def main():
     """Make curation list."""
     missing_wikidata_database = _g(
         lambda prefix: get_external(prefix, "wikidata").get("database") is None
@@ -47,4 +47,4 @@ def curation():
 
 
 if __name__ == "__main__":
-    curation()
+    main()

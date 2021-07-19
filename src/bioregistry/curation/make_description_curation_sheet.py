@@ -1,0 +1,103 @@
+# -*- coding: utf-8 -*-
+
+"""Make a curation sheet for the bioregistry."""
+
+import pandas as pd
+
+import bioregistry
+from bioregistry.constants import BIOREGISTRY_MODULE
+
+
+def descriptions():
+    """Make a curation sheet for descriptions."""
+    columns = [
+        "prefix",
+        "name",
+        "homepage",
+        "deprecated",
+        "description",
+    ]
+    path = BIOREGISTRY_MODULE.join("curation", name="descriptions.tsv")
+    rows = []
+    for prefix in bioregistry.read_registry():
+        if bioregistry.get_description(prefix):
+            continue
+        homepage = bioregistry.get_homepage(prefix)
+        if homepage is None:
+            continue
+        deprecated = bioregistry.is_deprecated(prefix)
+        rows.append(
+            (
+                prefix,
+                bioregistry.get_name(prefix),
+                homepage,
+                "x" if deprecated else "",
+                "",
+            )
+        )
+    df = pd.DataFrame(rows, columns=columns)
+    df.to_csv(path, sep="\t")
+
+
+def examples():
+    """Make a curation sheet for examples."""
+    columns = [
+        "prefix",
+        "name",
+        "homepage",
+        "deprecated",
+        "example",
+    ]
+    rows = []
+    for prefix in bioregistry.read_registry():
+        if bioregistry.get_example(prefix):
+            continue
+        homepage = bioregistry.get_homepage(prefix)
+        if homepage is None:
+            continue
+        deprecated = bioregistry.is_deprecated(prefix)
+        rows.append(
+            (
+                prefix,
+                bioregistry.get_name(prefix),
+                homepage,
+                "x" if deprecated else "",
+                "",
+            )
+        )
+    df = pd.DataFrame(rows, columns=columns)
+    path = BIOREGISTRY_MODULE.join("curation", name="examples.tsv")
+    df.to_csv(path, sep="\t")
+
+
+def homepages():
+    """Make a curation sheet for homepages."""
+    columns = [
+        "prefix",
+        "name",
+        "deprecated",
+        "homepage",
+    ]
+    path = BIOREGISTRY_MODULE.join("curation", name="homepages.tsv")
+    rows = []
+    for prefix in bioregistry.read_registry():
+        homepage = bioregistry.get_homepage(prefix)
+        if homepage is not None:
+            continue
+        deprecated = bioregistry.is_deprecated(prefix)
+        rows.append(
+            (
+                prefix,
+                bioregistry.get_name(prefix),
+                "x" if deprecated else "",
+                homepage,
+            )
+        )
+    df = pd.DataFrame(rows, columns=columns)
+    df.to_csv(path, sep="\t")
+
+
+if __name__ == "__main__":
+    descriptions()
+    examples()
+    homepages()
