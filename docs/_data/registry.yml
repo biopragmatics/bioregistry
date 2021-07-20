@@ -6388,6 +6388,51 @@ cob:
     prefix: cob
     version: '2021-02-21'
     version.iri: http://purl.obolibrary.org/obo/cob/2020-04-15/cob.owl
+cog:
+  contact: cogs@ncbi.nlm.nih.gov
+  description: 'COGs stands for Clusters of Orthologous Genes. The database was initially
+    created in 1997 (Tatusov et al., PMID: 9381173) followed by several updates, most
+    recently in 2014 (Galperin et al., PMID: 25428365). The current update includes
+    complete genomes of 1,187 bacteria and 122 archaea that map into 1,234 genera.
+    The new features include ~250 updated COG annotations with corresponding references
+    and PDB links, where available; new COGs for proteins involved in CRISPR-Cas immunity,
+    sporulation, and photosynthesis, and the lists of COGs grouped by pathways and
+    functional systems.'
+  example: COG0001
+  go:
+    formatter: http://www.ncbi.nlm.nih.gov/COG/new/release/cow.cgi?cog=$1
+    homepage: http://www.ncbi.nlm.nih.gov/COG/
+    name: NCBI COG cluster
+    prefix: COG_Cluster
+  homepage: https://www.ncbi.nlm.nih.gov/research/cog/
+  mappings:
+    go: COG_Cluster
+  name: Cluster of orthologous genes
+  pattern: ^COG\d+$
+  synonyms:
+  - COG_Cluster
+  url: https://www.ncbi.nlm.nih.gov/research/cog/cog/$1
+cog.category:
+  contact: cogs@ncbi.nlm.nih.gov
+  description: Higher-level classifications of COG Pathways
+  example: K
+  name: COG Categories
+  part_of: cog
+  url: https://www.ncbi.nlm.nih.gov/research/cog/cogcategory/$1
+cog.pathway:
+  contact: cogs@ncbi.nlm.nih.gov
+  example: NAD%20biosynthesis
+  go:
+    formatter: http://www.ncbi.nlm.nih.gov/COG/new/release/coglist.cgi?pathw=$1
+    homepage: http://www.ncbi.nlm.nih.gov/COG/
+    name: NCBI COG pathway
+    prefix: COG_Pathway
+  homepage: https://www.ncbi.nlm.nih.gov/research/cog/pathways
+  mappings:
+    go: COG_Pathway
+  name: COG Pathways
+  part_of: cog
+  url: https://www.ncbi.nlm.nih.gov/research/cog/pathway/$1
 cohd:
   comment: not really sure where the source is. this also links to a system called
     athena. I was not able to figure out what COHD stands for.
@@ -8918,8 +8963,8 @@ dpo:
     license: https://creativecommons.org/licenses/by/3.0/
     name: Drosophila Phenotype Ontology (DPO)
     prefix: dpo
-    version: '2021-07-09'
-    version.iri: http://purl.obolibrary.org/obo/dpo/releases/2021-07-09/dpo.owl
+    version: '2021-07-15'
+    version.iri: http://purl.obolibrary.org/obo/dpo/releases/2021-07-15/dpo.owl
 dpv:
   mappings:
     miriam: dpv
@@ -10022,8 +10067,8 @@ efo:
     license: www.apache.org/licenses/LICENSE-2.0
     name: Experimental Factor Ontology
     prefix: efo
-    version: 3.31.0
-    version.iri: http://www.ebi.ac.uk/efo/releases/v3.31.0/efo.owl
+    version: 3.32.0
+    version.iri: http://www.ebi.ac.uk/efo/releases/v3.32.0/efo.owl
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/EFO_$1
     is_identifiers: false
@@ -11691,8 +11736,8 @@ fbcv:
     license: https://creativecommons.org/licenses/by/3.0/
     name: FlyBase Controlled Vocabulary (FBcv)
     prefix: fbcv
-    version: '2021-05-12'
-    version.iri: http://purl.obolibrary.org/obo/fbcv/releases/2021-05-12/fbcv.owl
+    version: '2021-07-15'
+    version.iri: http://purl.obolibrary.org/obo/fbcv/releases/2021-07-15/fbcv.owl
   pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/FBcv_$1
