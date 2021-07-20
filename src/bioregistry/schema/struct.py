@@ -118,6 +118,7 @@ class Resource(BaseModel):
     ncbi: Optional[Mapping[str, Any]]
     uniprot: Optional[Mapping[str, Any]]
     biolink: Optional[Mapping[str, Any]]
+    cellosaurus: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
