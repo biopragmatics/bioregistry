@@ -22,10 +22,10 @@ class CellosaurusAligner(Aligner):
     def get_skip(self) -> Mapping[str, str]:
         """Get the skipped Cellosaurus identifiers."""
         return {
-            'Biosample': '',
-            'CCRID': 'not in english',
-            'CCTCC': 'dead site',
-            'CCLV': 'stub website, URL dead'
+            "Biosample": "",
+            "CCRID": "not in english",
+            "CCTCC": "dead site",
+            "CCLV": "stub website, URL dead",
         }
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
