@@ -40,11 +40,21 @@
     }
   },
   "4dn.biosource": {
+    "cellosaurus": {
+      "category": "Biological sample resources",
+      "homepage": "https://data.4dnucleome.org/",
+      "name": "4D Nucleome Data Portal",
+      "prefix": "4DN",
+      "url": "https://data.4dnucleome.org/biosources/$1"
+    },
     "example": "4DNSR73BT2A2",
     "mappings": {
       "cellosaurus": "4DN"
     },
     "name": "4D Nucleome Data Portal Biosource",
+    "synonyms": [
+      "4DN"
+    ],
     "url": "https://data.4dnucleome.org/biosources/$1"
   },
   "4dn.replicate": {
@@ -73,9 +83,19 @@
     }
   },
   "abcd": {
+    "cellosaurus": {
+      "category": "Biological sample resources",
+      "homepage": "https://web.expasy.org/abcd/",
+      "name": "AntiBodies Chemically Defined database",
+      "prefix": "ABCD",
+      "url": "https://web.expasy.org/abcd/$1"
+    },
     "description": "The ABCD (AntiBodies Chemically Defined) database is a manually curated depository of sequenced antibodies",
     "example": "AD834",
     "homepage": "https://web.expasy.org/abcd/",
+    "mappings": {
+      "cellosaurus": "ABCD"
+    },
     "name": "AntiBodies Chemically Defined database",
     "url": "https://web.expasy.org/abcd/ABCD_$1"
   },
@@ -17667,12 +17687,20 @@
     }
   },
   "imgt.hla": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "https://www.ebi.ac.uk/ipd/imgt/hla/",
+      "name": "IPD-IMGT/HLA database",
+      "prefix": "IPD-IMGT/HLA",
+      "url": "https://www.ebi.ac.uk/cgi-bin/imgt/hla/fetch_cell.cgi?$1"
+    },
     "go": {
       "homepage": "http://www.ebi.ac.uk/imgt/hla",
       "name": "IMGT/HLA human major histocompatibility complex sequence database",
       "prefix": "IMGT_HLA"
     },
     "mappings": {
+      "cellosaurus": "IPD-IMGT/HLA",
       "go": "IMGT_HLA",
       "miriam": "imgt.hla",
       "n2t": "imgt.hla",
@@ -17712,7 +17740,10 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "IMGT.HLA"
-    }
+    },
+    "synonyms": [
+      "IPD-IMGT/HLA"
+    ]
   },
   "imgt.ligm": {
     "go": {
