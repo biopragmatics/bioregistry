@@ -4,6 +4,7 @@
 
 from .biolink import get_biolink  # noqa:F401
 from .bioportal import get_bioportal  # noqa:F401
+from .cellosaurus import get_cellosaurus  # noqa:F401
 from .go import get_go  # noqa:F401
 from .miriam import get_miriam  # noqa:F401
 from .n2t import get_n2t  # noqa:F401
@@ -26,4 +27,5 @@ GETTERS = [
     ("biolink", "Biolink", get_biolink),
     ("ncbi", "NCBI", get_ncbi),
     ("uniprot", "UniProt", get_uniprot),
+    ("cellosaurus", "Cellosaurus", get_cellosaurus),
 ]
