@@ -34,6 +34,24 @@
   wikidata:
     database: Q23948774
     prefix: P2796
+4dn.biosource:
+  cellosaurus:
+    category: Biological sample resources
+    homepage: https://data.4dnucleome.org/
+    name: 4D Nucleome Data Portal
+    prefix: 4DN
+    url: https://data.4dnucleome.org/biosources/$1
+  example: 4DNSR73BT2A2
+  mappings:
+    cellosaurus: 4DN
+  name: 4D Nucleome Data Portal Biosource
+  synonyms:
+  - 4DN
+  url: https://data.4dnucleome.org/biosources/$1
+4dn.replicate:
+  example: 4DNESWX1J3QU
+  name: 4D Nucleome Data Portal Experiment Replicate
+  url: https://data.4dnucleome.org/experiment-set-replicates/$1
 aao:
   mappings:
     obofoundry: aao
@@ -50,6 +68,29 @@ aao:
     is_identifiers: false
     is_obo: true
     prefix: AAO
+abcd:
+  cellosaurus:
+    category: Biological sample resources
+    homepage: https://web.expasy.org/abcd/
+    name: AntiBodies Chemically Defined database
+    prefix: ABCD
+    url: https://web.expasy.org/abcd/$1
+  description: The ABCD (AntiBodies Chemically Defined) database is a manually curated
+    depository of sequenced antibodies
+  example: AD834
+  homepage: https://web.expasy.org/abcd/
+  mappings:
+    cellosaurus: ABCD
+    uniprot: ABCD
+  name: AntiBodies Chemically Defined database
+  uniprot:
+    category: Protocols and materials databases
+    formatter: https://web.expasy.org/cgi-bin/abcd/search_abcd.pl?input=%u
+    identifier: '236'
+    link_is_explicit: 'true'
+    name: ABCD curated depository of sequenced antibodies
+    prefix: ABCD
+  url: https://web.expasy.org/abcd/ABCD_$1
 abs:
   mappings:
     miriam: abs
@@ -1149,7 +1190,14 @@ aro:
     is_obo: true
     prefix: ARO
 arrayexpress:
+  cellosaurus:
+    category: Gene expression databases
+    homepage: https://www.ebi.ac.uk/arrayexpress/
+    name: ArrayExpress Archive of Functional Genomics
+    prefix: ArrayExpress
+    url: https://www.ebi.ac.uk/arrayexpress/experiments/$1
   mappings:
+    cellosaurus: ArrayExpress
     miriam: arrayexpress
     n2t: arrayexpress
     prefixcommons: ARRAYEXPRESS
@@ -1567,8 +1615,15 @@ atc:
   wikidata:
     prefix: P267
 atcc:
+  cellosaurus:
+    category: Cell line collections
+    homepage: https://www.atcc.org/
+    name: American Type Culture Collection
+    prefix: ATCC
+    url: https://www.atcc.org/Products/All/$1.aspx
   homepage: https://www.lgcstandards-atcc.org
   mappings:
+    cellosaurus: ATCC
     miriam: atcc
     n2t: atcc
     ncbi: ATCC
@@ -1992,8 +2047,15 @@ bcgo:
   bioportal:
     name: Breast Cancer Grading Ontology
     prefix: BCGO
+  cellosaurus:
+    category: Ontologies
+    homepage: https://github.com/obi-bcgo/bcgo
+    name: Beta Cell Genomics Ontology
+    prefix: BCGO
+    url: http://www.ontobee.org/ontology/BCGO?iri=http://purl.obolibrary.org/obo/$1
   mappings:
     bioportal: BCGO
+    cellosaurus: BCGO
     obofoundry: bcgo
     prefixcommons: BCGO
   obofoundry:
@@ -3194,7 +3256,14 @@ biorxiv:
     go: bioRxiv
   name: bioRxiv
 biosample:
+  cellosaurus:
+    category: Biological sample resources
+    homepage: https://www.ncbi.nlm.nih.gov/biosample
+    name: BioSample database
+    prefix: BioSample
+    url: https://www.ncbi.nlm.nih.gov/biosample/?term=$1
   mappings:
+    cellosaurus: BioSample
     miriam: biosample
     n2t: biosample
     prefixcommons: BIOSAMPLE
@@ -3691,6 +3760,12 @@ bto:
   bioportal:
     name: BRENDA Tissue and Enzyme Source Ontology
     prefix: BTO
+  cellosaurus:
+    category: Ontologies
+    homepage: https://bioportal.bioontology.org/ontologies/BTO
+    name: BRENDA Tissue Ontology
+    prefix: BTO
+    url: https://bioportal.bioontology.org/ontologies/BTO?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FBTO_$1
   example: 0000590
   go:
     description: A structured controlled vocabulary for the source of an enzyme comprising
@@ -3699,6 +3774,7 @@ bto:
     prefix: BTO
   mappings:
     bioportal: BTO
+    cellosaurus: BTO
     go: BTO
     miriam: bto
     n2t: bto
@@ -4338,7 +4414,15 @@ cazy:
     name: Carbohydrate-Active enZymes
     prefix: CAZy
 cba:
+  cellosaurus:
+    category: Cell line collections
+    homepage: http://www.cellbankaustralia.com/cellbank-australia-exclusive-lines/
+    name: CellBank Australia
+    prefix: CBA
+    url: http://www.cellbankaustralia.com/$1
   example: '375364'
+  mappings:
+    cellosaurus: CBA
   name: Chinese Biological Abstracts
   url: https://europepmc.org/article/CBA/$1
 cbioportal:
@@ -4432,8 +4516,16 @@ ccds:
     name: The Consensus CDS (CCDS) project
     prefix: CCDS
 ccle.cell:
+  cellosaurus:
+    category: Cell line databases/resources
+    homepage: https://portals.broadinstitute.org/ccle
+    name: Cancer Cell Line Encyclopedia
+    prefix: CCLE
+    url: https://portals.broadinstitute.org/ccle/page?cell_line=$1
   example: BT20_BREAST
   homepage: https://www.cbioportal.org/study/summary?id=ccle_broad_2019
+  mappings:
+    cellosaurus: CCLE
   name: Cancer Cell Line Encyclopedia (CCLE) Cells
   synonyms:
   - ccle
@@ -4934,6 +5026,12 @@ chebi:
   bioportal:
     name: Chemical Entities of Biological Interest Ontology
     prefix: CHEBI
+  cellosaurus:
+    category: Chemistry resources
+    homepage: https://www.ebi.ac.uk/chebi/
+    name: Chemical Entities of Biological Interest
+    prefix: ChEBI
+    url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=$1
   example: '24867'
   go:
     formatter: http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1
@@ -4944,6 +5042,7 @@ chebi:
     - ChEBI
   mappings:
     bioportal: CHEBI
+    cellosaurus: ChEBI
     go: CHEBI
     miriam: chebi
     n2t: chebi
@@ -5615,7 +5714,14 @@ classyfire:
     provider_url: http://classyfire.wishartlab.com/tax_nodes/$1
     sampleId: C0004828
 cldb:
+  cellosaurus:
+    category: Cell line databases/resources
+    homepage: http://bioinformatics.hsanmartino.it/cldb/
+    name: Cell Line Data Base
+    prefix: CLDB
+    url: http://bioinformatics.hsanmartino.it/cldb/$1.html
   mappings:
+    cellosaurus: CLDB
     miriam: cldb
     n2t: cldb
     prefixcommons: CLDB
@@ -5698,7 +5804,14 @@ clinicaltrials:
     is_obo: false
     prefix: CLINICALTRIALS
 clinvar:
+  cellosaurus:
+    category: Polymorphism and mutation databases
+    homepage: https://www.ncbi.nlm.nih.gov/clinvar/
+    name: ClinVar
+    prefix: ClinVar
+    url: https://www.ncbi.nlm.nih.gov/clinvar/variation/$1
   mappings:
+    cellosaurus: ClinVar
     miriam: clinvar
     n2t: clinvar
     prefixcommons: ClinVar
@@ -5854,9 +5967,16 @@ clo:
   bioportal:
     name: Cell Line Ontology
     prefix: CLO
+  cellosaurus:
+    category: Ontologies
+    homepage: http://www.clo-ontology.org
+    name: Cell Line Ontology
+    prefix: CLO
+    url: https://www.ebi.ac.uk/ols/ontologies/clo/terms?iri=http://purl.obolibrary.org/obo/$1
   example: 0000091
   mappings:
     bioportal: CLO
+    cellosaurus: CLO
     obofoundry: clo
     ols: clo
     prefixcommons: CLO
@@ -6671,6 +6791,12 @@ conso:
   pattern: ^CONSO\d{5}$
   url: https://pharmacome.github.io/conso/$1
 coriell:
+  cellosaurus:
+    category: Cell line collections
+    homepage: https://catalog.coriell.org
+    name: Coriell Institute Biorepositories
+    prefix: Coriell
+    url: https://catalog.coriell.org/0/Sections/Search/Sample_Detail.aspx?Ref=$1&Product=CC
   go:
     description: The Coriell Cell Repositories provide essential research reagents
       to the scientific community by establishing, verifying, maintaining, and distributing
@@ -6682,6 +6808,7 @@ coriell:
     name: Coriell Institute for Medical Research
     prefix: CORIELL
   mappings:
+    cellosaurus: Coriell
     go: CORIELL
     miriam: coriell
     n2t: coriell
@@ -6773,7 +6900,14 @@ corum:
     name: CORUM comprehensive resource of mammalian protein complexes
     prefix: CORUM
 cosmic:
+  cellosaurus:
+    category: Polymorphism and mutation databases
+    homepage: https://cancer.sanger.ac.uk/cosmic
+    name: Catalogue of somatic mutations in cancer
+    prefix: Cosmic
+    url: https://cancer.sanger.ac.uk/cosmic/sample/overview?id=$1
   mappings:
+    cellosaurus: Cosmic
     miriam: cosmic
     n2t: cosmic
     prefixcommons: COSMIC
@@ -7905,8 +8039,15 @@ dbgap:
 dbmhc:
   appears_in:
   - cellosaurus
+  cellosaurus:
+    category: Cell line databases/resources
+    homepage: https://www.ncbi.nlm.nih.gov/gv/mhc/
+    name: dbMHC database
+    prefix: dbMHC
   deprecated: true
   example: '48439'
+  mappings:
+    cellosaurus: dbMHC
   name: Database of human Major Histocompatibility Complex
 dbprobe:
   mappings:
@@ -7951,12 +8092,19 @@ dbprobe:
     is_obo: false
     prefix: DBPROBE
 dbsnp:
+  cellosaurus:
+    category: Polymorphism and mutation databases
+    homepage: https://www.ncbi.nlm.nih.gov/snp/
+    name: Single Nucleotide Polymorphism database
+    prefix: dbSNP
+    url: https://www.ncbi.nlm.nih.gov/snp/$1
   go:
     formatter: http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=$1
     homepage: http://www.ncbi.nlm.nih.gov/projects/SNP
     name: NCBI dbSNP
     prefix: dbSNP
   mappings:
+    cellosaurus: dbSNP
     go: dbSNP
     miriam: dbsnp
     n2t: dbsnp
@@ -8210,10 +8358,18 @@ degradome:
     is_obo: false
     prefix: DEGRADOME
 depmap:
+  cellosaurus:
+    category: Cell line databases/resources
+    homepage: https://depmap.org/portal/
+    name: Cancer Dependency Map
+    prefix: DepMap
+    url: https://depmap.org/portal/cell_line/$1
   description: Cell lines used in the Dependency Map (DepMap). Highly related to CCLE
     Cells.
   example: ACH-000001
   homepage: https://depmap.org/portal
+  mappings:
+    cellosaurus: DepMap
   name: DepMap Cell Lines
   pattern: ^ACH-\d+$
   url: https://depmap.org/portal/cell_line/$1
@@ -8666,6 +8822,12 @@ doi:
     is_identifiers: false
     is_obo: false
     prefix: doi
+  cellosaurus:
+    category: Reference resources
+    homepage: https://dx.doi.org
+    name: Digital Object Identifier
+    prefix: DOI
+    url: https://dx.doi.org/$1
   go:
     formatter: http://dx.doi.org/$1
     homepage: http://dx.doi.org/
@@ -8673,6 +8835,7 @@ doi:
     prefix: DOI
   mappings:
     biolink: doi
+    cellosaurus: DOI
     go: DOI
     miriam: doi
     n2t: doi
@@ -9212,9 +9375,16 @@ drsc:
     is_obo: false
     prefix: DRSC
 drugbank:
+  cellosaurus:
+    category: Chemistry resources
+    homepage: https://go.drugbank.com/
+    name: DrugBank database
+    prefix: DrugBank
+    url: https://go.drugbank.com/drugs/$1
   example: DB14938
   homepage: http://www.drugbank.ca
   mappings:
+    cellosaurus: DrugBank
     miriam: drugbank
     n2t: drugbank
     prefixcommons: DrugBank
@@ -9341,6 +9511,10 @@ drugcentral:
     name: DrugCentral
     prefix: DrugCentral
   url: http://drugcentral.org/drugcard/$1
+dsmz:
+  example: ACC-1
+  name: Deutsche Sammlung von Mikroorganismen und Zellkulturen
+  url: https://www.dsmz.de/collection/catalogue/details/culture/$1
 dto:
   appears_in:
   - pr
@@ -9385,9 +9559,22 @@ duo:
     is_identifiers: false
     is_obo: true
     prefix: DUO
+eaglei:
+  example: 0000012b-5661-2f63-2f73-b43980000000
+  homepage: https://hawaii.eagle-i.net
+  name: eagle-i
+  url: http://hawaii.eagle-i.net/i/$1
 ecacc:
+  cellosaurus:
+    category: Cell line collections
+    homepage: https://www.phe-culturecollections.org.uk/products/celllines/index.aspx
+    name: European Collection of Cell Cultures
+    prefix: ECACC
+    url: https://www.phe-culturecollections.org.uk/products/celllines/generalcell/detail.jsp?refId=$1&collection=ecacc_gc
   example: '90062901'
   homepage: https://www.phe-culturecollections.org.uk/collections/ecacc.aspx
+  mappings:
+    cellosaurus: ECACC
   name: European Collection of Authenticated Cell Culture
   url: https://www.phe-culturecollections.org.uk/products/celllines/generalcell/detail.jsp?collection=ecacc_gc&refId=$1
 ecao:
@@ -10015,11 +10202,18 @@ efo:
   bioportal:
     name: Experimental Factor Ontology
     prefix: EFO
+  cellosaurus:
+    category: Ontologies
+    homepage: https://www.ebi.ac.uk/efo/
+    name: Experimental Factor Ontology
+    prefix: EFO
+    url: https://www.ebi.ac.uk/efo/$1
   download_obo: http://www.ebi.ac.uk/efo/efo.obo
   example: '0005147'
   mappings:
     biolink: EFO
     bioportal: EFO
+    cellosaurus: EFO
     miriam: efo
     n2t: efo
     ols: efo
@@ -10510,8 +10704,15 @@ ena.embl:
   synonyms:
   - ena
 encode:
+  cellosaurus:
+    category: Biological sample resources
+    homepage: https://www.encodeproject.org
+    name: Encyclopedia of DNA Elements
+    prefix: ENCODE
+    url: https://www.encodeproject.org/biosamples/$1
   homepage: https://www.encodeproject.org
   mappings:
+    cellosaurus: ENCODE
     miriam: encode
     n2t: encode
     prefixcommons: ENCODE
@@ -12010,6 +12211,12 @@ flu:
     is_obo: true
     prefix: FLU
 flybase:
+  cellosaurus:
+    category: Organism-specific databases
+    homepage: https://flybase.org
+    name: Drosophila genome database
+    prefix: FlyBase
+    url: https://flybase.org/reports/$1.html
   go:
     formatter: http://flybase.org/reports/$1.html
     homepage: http://flybase.org/
@@ -12019,6 +12226,7 @@ flybase:
     - FlyBase
     - FLYBASE
   mappings:
+    cellosaurus: FlyBase
     go: FB
     miriam: fb
     n2t: fb
@@ -12919,7 +13127,14 @@ gdc:
     is_obo: false
     prefix: GDC
 gdsc:
+  cellosaurus:
+    category: Chemistry resources
+    homepage: https://www.cancerrxgene.org
+    name: Genomics of Drug Sensitivity in Cancer Project
+    prefix: GDSC
+    url: https://www.cancerrxgene.org/translation/CellLine/$1
   mappings:
+    cellosaurus: GDSC
     miriam: gdsc
     n2t: gdsc
   miriam:
@@ -13410,12 +13625,19 @@ genprop:
     is_obo: false
     prefix: GENPROP
 geo:
+  cellosaurus:
+    category: Gene expression databases
+    homepage: https://www.ncbi.nlm.nih.gov/geo/
+    name: Gene Expression Omnibus
+    prefix: GEO
+    url: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=$1
   go:
     formatter: http://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=$1
     homepage: http://www.ncbi.nlm.nih.gov/geo/
     name: NCBI Gene Expression Omnibus
     prefix: GEO
   mappings:
+    cellosaurus: GEO
     fairsharing: FAIRsharing.5hc8vt
     go: GEO
     miriam: geo
@@ -14339,7 +14561,14 @@ gold.meta:
     is_obo: false
     prefix: GOLD.META
 google.patent:
+  cellosaurus:
+    category: Reference resources
+    homepage: https://patents.google.com
+    name: Google Patents
+    prefix: Patent
+    url: https://patents.google.com/patent/$1
   mappings:
+    cellosaurus: Patent
     miriam: google.patent
     n2t: google.patent
     prefixcommons: GOOGLE.PATENT
@@ -15403,8 +15632,8 @@ hcao:
     download: https://raw.githubusercontent.com/ebi-ait/ontology/master/hcao.owl
     name: Human Cell Atlas Ontology
     prefix: hcao
-    version: '2021-06-16'
-    version.iri: http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2021-06-16/hcao.owl
+    version: '2021-07-19'
+    version.iri: http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2021-07-19/hcao.owl
 hcpcs:
   biolink:
     formatter: http://purl.bioontology.org/ontology/HCPCS/$1
@@ -15545,6 +15774,12 @@ hgnc:
   bioportal:
     name: HUGO Gene Nomenclature
     prefix: HGNC
+  cellosaurus:
+    category: Organism-specific databases
+    homepage: https://www.genenames.org
+    name: Human Gene Nomenclature Committee Database
+    prefix: HGNC
+    url: https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:$1
   example: '16793'
   go:
     formatter: https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:$1
@@ -15554,6 +15789,7 @@ hgnc:
   homepage: http://www.genenames.org
   mappings:
     bioportal: HGNC
+    cellosaurus: HGNC
     go: HGNC
     miriam: hgnc
     n2t: hgnc
@@ -16399,7 +16635,14 @@ hprd:
     is_obo: false
     prefix: HPRD
 hpscreg:
+  cellosaurus:
+    category: Cell line databases/resources
+    homepage: https://hpscreg.eu
+    name: Human Pluripotent Stem Cell Registry
+    prefix: hPSCreg
+    url: https://hpscreg.eu/cell-line/$1
   mappings:
+    cellosaurus: hPSCreg
     miriam: hpscreg
     n2t: hpscreg
   miriam:
@@ -17239,8 +17482,15 @@ igsn:
     prefix: igsn
     provider_url: hdl.handle.net/10273/$1
 ihw:
+  cellosaurus:
+    category: Cell line databases/resources
+    homepage: https://www.fredhutch.org/en/research/institutes-networks-ircs/international-histocompatibility-working-group.html
+    name: International Histocompatibility Workshop cell lines
+    prefix: IHW
   example: IHW09326
   homepage: https://www.fredhutch.org/en/research/institutes-networks-ircs/international-histocompatibility-working-group.html
+  mappings:
+    cellosaurus: IHW
   name: International Histocompatibility Workshop cell lines
   pattern: ^IHW\d+$
 imdrf:
@@ -17360,11 +17610,18 @@ img.taxon:
     is_obo: false
     prefix: IMG.TAXON
 imgt.hla:
+  cellosaurus:
+    category: Cell line databases/resources
+    homepage: https://www.ebi.ac.uk/ipd/imgt/hla/
+    name: IPD-IMGT/HLA database
+    prefix: IPD-IMGT/HLA
+    url: https://www.ebi.ac.uk/cgi-bin/imgt/hla/fetch_cell.cgi?$1
   go:
     homepage: http://www.ebi.ac.uk/imgt/hla
     name: IMGT/HLA human major histocompatibility complex sequence database
     prefix: IMGT_HLA
   mappings:
+    cellosaurus: IPD-IMGT/HLA
     go: IMGT_HLA
     miriam: imgt.hla
     n2t: imgt.hla
@@ -17412,6 +17669,8 @@ imgt.hla:
     is_identifiers: true
     is_obo: false
     prefix: IMGT.HLA
+  synonyms:
+  - IPD-IMGT/HLA
 imgt.ligm:
   go:
     description: Database of immunoglobulins and T cell receptors from human and other
@@ -20633,6 +20892,12 @@ mesh:
   bioportal:
     name: Medical Subject Headings
     prefix: MESH
+  cellosaurus:
+    category: Ontologies
+    homepage: https://www.ncbi.nlm.nih.gov/mesh
+    name: Medical Subject Headings
+    prefix: MeSH
+    url: https://www.nlm.nih.gov/cgi/mesh/2013/MB_cgi?field=uid&term=$1
   example: C063233
   go:
     formatter: http://id.nlm.nih.gov/mesh/$1
@@ -20644,6 +20909,7 @@ mesh:
     - MSH
   mappings:
     bioportal: MESH
+    cellosaurus: MeSH
     go: MeSH
     miriam: mesh
     n2t: mesh
@@ -20782,7 +21048,14 @@ mesh.2013:
     is_obo: false
     prefix: MESH.2013
 metabolights:
+  cellosaurus:
+    category: Metabolomic databases
+    homepage: https://www.ebi.ac.uk/metabolights/
+    name: MetaboLights database for metabolomics experiments and derived information
+    prefix: MetaboLights
+    url: https://www.ebi.ac.uk/metabolights/$1
   mappings:
+    cellosaurus: MetaboLights
     miriam: metabolights
     n2t: metabolights
     prefixcommons: METABOLIGHTS
@@ -21305,12 +21578,19 @@ mge:
     prefix: mge
     provider_url: http://aclame.ulb.ac.be/perl/Aclame/Genomes/mge_view.cgi?view=info&id=mge:$1
 mgi:
+  cellosaurus:
+    category: Organism-specific databases
+    homepage: http://www.informatics.jax.org
+    name: Mouse Genome Database (MGD) from Mouse Genome Informatics
+    prefix: MGI
+    url: http://www.informatics.jax.org/marker/$1
   example: '6017782'
   go:
     homepage: http://www.informatics.jax.org/
     name: Mouse Genome Informatics
     prefix: MGI
   mappings:
+    cellosaurus: MGI
     go: MGI
     miriam: mgi
     n2t: mgi
@@ -22548,8 +22828,15 @@ mmp.ref:
     is_obo: false
     prefix: MMP.REF
 mmrrc:
+  cellosaurus:
+    category: Cell line collections
+    homepage: https://www.mmrrc.org/
+    name: Mutant Mouse Resource & Research Centers
+    prefix: MMRRC
+    url: https://www.mmrrc.org/catalog/getSDS.php?mmrrc_id=$1
   homepage: https://www.mmrrc.org
   mappings:
+    cellosaurus: MMRRC
     miriam: mmrrc
     n2t: mmrrc
     prefixcommons: MMRRC
@@ -24107,6 +24394,12 @@ ncbitaxon:
   bioportal:
     name: National Center for Biotechnology Information (NCBI) Organismal Classification
     prefix: NCBITAXON
+  cellosaurus:
+    category: Taxonomy
+    homepage: https://www.ncbi.nlm.nih.gov/taxonomy
+    name: NCBI taxonomy database
+    prefix: NCBI_TaxID
+    url: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1&lvl=3
   download_obo: http://purl.obolibrary.org/obo/ncbitaxon.obo
   example: '2170610'
   go:
@@ -24119,6 +24412,7 @@ ncbitaxon:
     - ncbi_taxid
   mappings:
     bioportal: NCBITAXON
+    cellosaurus: NCBI_TaxID
     go: taxon
     miriam: taxonomy
     n2t: taxonomy
@@ -24244,10 +24538,17 @@ ncit:
   bioportal:
     name: National Cancer Institute Thesaurus
     prefix: NCIT
+  cellosaurus:
+    category: Ontologies
+    homepage: https://ncit.nci.nih.gov/ncitbrowser
+    name: NCI thesaurus
+    prefix: NCIt
+    url: https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&code=$1
   download_obo: http://purl.obolibrary.org/obo/ncit.obo
   example: C138986
   mappings:
     bioportal: NCIT
+    cellosaurus: NCIt
     miriam: ncit
     n2t: ncit
     obofoundry: ncit
@@ -26991,9 +27292,16 @@ orphanet.ordo:
   bioportal:
     name: Orphanet Rare Disease Ontology
     prefix: ORDO
+  cellosaurus:
+    category: Ontologies
+    homepage: https://www.ebi.ac.uk/ols/ontologies/ordo
+    name: Orphanet Rare Disease Ontology
+    prefix: ORDO
+    url: https://www.ebi.ac.uk/ols/ontologies/ordo/terms?iri=http://www.orpha.net/ORDO/$1
   mappings:
     biolink: ORPHA
     bioportal: ORDO
+    cellosaurus: ORDO
     miriam: orphanet.ordo
     n2t: orphanet.ordo
     ols: ordo
@@ -28653,6 +28961,20 @@ pgx:
     is_identifiers: true
     is_obo: false
     prefix: PGX
+pharmacodb.cell:
+  cellosaurus:
+    prefix: PharmacoDB
+  example: 22RV1_12_2019
+  name: PharmacoDB Cells
+  url: https://pharmacodb.ca/cell_lines/$1
+pharmacodb.dataset:
+  example: '1'
+  name: PharmacoDB Datasets
+  url: https://pharmacodb.ca/datasets/$1
+pharmacodb.tissue:
+  example: '13'
+  name: PharmacoDB Tissues
+  url: https://pharmacodb.ca/tissues/$1
 pharmgkb.disease:
   mappings:
     miriam: pharmgkb.disease
@@ -30148,7 +30470,14 @@ pr:
     pattern: PR:\d*
     prefix: P4926
 pride:
+  cellosaurus:
+    category: Proteomic databases
+    homepage: https://www.ebi.ac.uk/pride/archive/
+    name: PRoteomics IDEntifications archive
+    prefix: PRIDE
+    url: https://www.ebi.ac.uk/pride/archive/projects/$1
   mappings:
+    cellosaurus: PRIDE
     fairsharing: FAIRsharing.e1byny
     miriam: pride
     n2t: pride
@@ -30942,6 +31271,12 @@ pubchem.compound:
     is_identifiers: false
     is_obo: false
     prefix: CID
+  cellosaurus:
+    category: Chemistry resources
+    homepage: https://pubchem.ncbi.nlm.nih.gov
+    name: PubChem compound database
+    prefix: PubChem
+    url: https://pubchem.ncbi.nlm.nih.gov/compound/$1
   go:
     formatter: https://pubchem.ncbi.nlm.nih.gov/compound/$1
     homepage: https://pubchem.ncbi.nlm.nih.gov
@@ -30949,6 +31284,7 @@ pubchem.compound:
     prefix: PubChem_Compound
   mappings:
     biolink: CID
+    cellosaurus: PubChem
     go: PubChem_Compound
     miriam: pubchem.compound
     n2t: pubchem.compound
@@ -31064,6 +31400,12 @@ publons.researcher:
   name: Publons Researcher ID
   url: https://publons.com/researcher/$1
 pubmed:
+  cellosaurus:
+    category: Reference resources
+    homepage: https://www.ncbi.nlm.nih.gov/pubmed
+    name: PubMed
+    prefix: PubMed
+    url: https://www.ncbi.nlm.nih.gov/pubmed/$1
   go:
     formatter: http://www.ncbi.nlm.nih.gov/pubmed/$1
     homepage: https://www.ncbi.nlm.nih.gov/pubmed
@@ -31072,6 +31414,7 @@ pubmed:
     synonyms:
     - PUBMED
   mappings:
+    cellosaurus: PubMed
     go: PMID
     miriam: pubmed
     n2t: pubmed
@@ -31351,6 +31694,12 @@ rbo:
     prefix: rbo
     version: '2021-05-21'
     version.iri: http://purl.obolibrary.org/obo/rbo/releases/2021-05-21/rbo.owl
+rcb:
+  example: RCB0002
+  homepage: https://cell.brc.riken.jp/en/rcb
+  name: RIKEN Bioresource Center Cell Bank
+  pattern: ^RCB\d+$
+  url: https://cellbank.brc.riken.jp/cell_bank/CellInfo/?cellNo=$1
 rdf:
   example: RDF
   homepage: http://www.w3.org/1999/02/22-rdf-syntax-ns
@@ -31795,6 +32144,12 @@ rgd:
   bioportal:
     name: RRB Group D
     prefix: RGD
+  cellosaurus:
+    category: Organism-specific databases
+    homepage: https://rgd.mcw.edu
+    name: Rat Genome Database
+    prefix: RGD
+    url: http://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1
   example: '7499841'
   go:
     formatter: https://rgd.mcw.edu/rgdweb/search/search.html?term=$1
@@ -31806,6 +32161,7 @@ rgd:
     - RGDID
   mappings:
     bioportal: RGD
+    cellosaurus: RGD
     go: RGD
     miriam: rgd
     n2t: rgd
@@ -33771,12 +34127,20 @@ sitex:
     is_obo: false
     prefix: SITEX
 skip:
+  cellosaurus:
+    category: Cell line databases/resources
+    homepage: https://www.skip.stemcellinformatics.org/en/
+    name: Stemcell Knowledge and Information Portal
+    prefix: SKIP
+    url: https://skip.stemcellinformatics.org/SKIPSearch/cell_line_detail?accession=$1
   description: SKIP is aiming to promote the exchange of information and joint research
     between researchers by aggregating various information of stem cells (iPS cells,
     iPS cells derived from patients, etc.) to stimulate research on disease and regenerative
     medicine.
   example: SKIP001214
   homepage: https://skip.stemcellinformatics.org/en/
+  mappings:
+    cellosaurus: SKIP
   name: Stemcell Knowledge and Information Portal
   url: https://skip.stemcellinformatics.org/SKIPSearch/cell_line_detail?accession=$1
 skos:
@@ -35527,6 +35891,10 @@ tissuelist:
     is_identifiers: true
     is_obo: false
     prefix: TISSUELIST
+tkg:
+  homepage: http://www2.idac.tohoku.ac.jp/dep/ccr/
+  name: Tohoku University cell line catalog
+  url: http://www2.idac.tohoku.ac.jp/dep/ccr/TKGdate/TKGvol08/$1.html
 to:
   bioportal:
     name: Plant Trait Ontology
@@ -36812,6 +37180,11 @@ unipathway.reaction:
     is_obo: false
     prefix: UNIPATHWAY.REACTION
 uniprot:
+  cellosaurus:
+    category: Sequence databases
+    name: UniProt knowledgebase
+    prefix: UniProtKB
+    url: https://www.uniprot.org/uniprot/$1
   go:
     description: A central repository of protein sequence and function created by
       joining the information contained in Swiss-Prot, TrEMBL, and PIR database
@@ -36821,6 +37194,7 @@ uniprot:
     prefix: UniProtKB
   homepage: http://www.uniprot.org
   mappings:
+    cellosaurus: UniProtKB
     go: UniProtKB
     miriam: uniprot
     n2t: uniprot
@@ -37652,7 +38026,14 @@ vfdb.genus:
     is_obo: false
     prefix: VFDB.GENUS
 vgnc:
+  cellosaurus:
+    category: Organism-specific databases
+    homepage: https://vertebrate.genenames.org/
+    name: Vertebrate Gene Nomenclature Committee Database
+    prefix: VGNC
+    url: https://vertebrate.genenames.org/data/gene-symbol-report/#!/vgnc_id/VGNC:$1
   mappings:
+    cellosaurus: VGNC
     miriam: vgnc
     ncbi: VGNC
     uniprot: VGNC
@@ -38386,8 +38767,15 @@ wikidata:
     is_identifiers: false
     is_obo: false
     prefix: WIKIDATA
+  cellosaurus:
+    category: Other
+    homepage: https://www.wikidata.org/wiki/Wikidata:Main_Page
+    name: Wikidata
+    prefix: Wikidata
+    url: https://www.wikidata.org/wiki/$1
   mappings:
     biolink: WIKIDATA
+    cellosaurus: Wikidata
     miriam: wikidata
     n2t: wikidata
     prefixcommons: WD_Entity
