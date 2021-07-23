@@ -43,8 +43,7 @@ body:
     id: description
     attributes:
       label: Description
-      description: |
-        Please describe this resource in a sentence or two of english prose. A good description says what kind of entities the resource makes identifiers for, why the resource exists, and who might want to use it.
+      description: Please describe this resource in a sentence or two of english prose. A good description says what kind of entities the resource makes identifiers for, why the resource exists, and who might want to use it.
       placeholder: Tell us about this nomenclature authority!
       # value: "A bug happened!"
     validations:
@@ -54,18 +53,12 @@ body:
     attributes:
       label: Regular Expression Pattern
       description: |
-        The regular expression (regex) that matches all of the identifiers in the
-        nomenclature authority. If you're not sure how to write a regex, please
-        make sure you've included an example identifier and we'll be happy
-        to help you out!
+        The regular expression (regex) that matches all of the identifiers in the nomenclature authority. If you're not sure how to write a regex, please make sure you've included an example identifier and we'll be happy to help you out!
 
-        Do include a carat `^` at the beginning and a dollar sign `$` at the end to signify that
-        your pattern only matches the identifier, and not potentially any other parts of the string.
+        Do include a carat `^` at the beginning and a dollar sign `$` at the end to signify that your pattern only matches the identifier, and not potentially any other parts of the string.
 
         Do not include a redundant prefix within the pattern (e.g., do not write `^CHEBI:\d+$`).
-        If your identifiers contain a redundant prefix, simply write it as write it simply as `^\d+$`
-        and follow the instructions below in the  "Redundant Prefix" section to capture the
-        redundant `CHEBI:`. This is important for some communities using the Bioregistry.
+        If your identifiers contain a redundant prefix, simply write it as write it simply as `^\d+$` and follow the instructions below in the  "Redundant Prefix" section to capture the redundant `CHEBI:`. This is important for some communities using the Bioregistry.
       placeholder: ex. ^\d+$
     validations:
       required: false
@@ -73,10 +66,7 @@ body:
     id: banana
     attributes:
       label: Redundant Prefix
-      description: |
-        If your nomenclature authority's regex pattern includes a redundant prefix, then you can write
-        it out exactly as it appears in the identifier here. For example, ChEBI's redundant prefix should
-        be written as `CHEBI:`.
+      description: If your nomenclature authority's regex pattern includes a redundant prefix, then you can write it out exactly as it appears in the identifier here. For example, ChEBI's redundant prefix should be written as `CHEBI:`.
       placeholder: "ex. CHEBI:"
     validations:
       required: false
@@ -84,7 +74,6 @@ body:
     id: comments
     attributes:
       label: Additional Comments
-      description: |
-        If you have any additional comments about this nomenclature authority to include in the Bioregistry that don't exactly belong in the description, please leave them here.
+      description: If you have any additional comments about this nomenclature authority to include in the Bioregistry that don't exactly belong in the description, please leave them here.
     validations:
       required: false
