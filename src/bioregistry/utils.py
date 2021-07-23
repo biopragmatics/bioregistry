@@ -45,6 +45,22 @@ def read_registry() -> Mapping[str, Resource]:
     }
 
 
+def add_resource(prefix: str, resource: Resource) -> None:
+    """Add a resource to the registry.
+
+    :param prefix: A prefix.
+    :param resource: A resource object to write
+    :raises KeyError: if the prefix is already present in the registry
+    """
+    registry = dict(read_registry())
+    if prefix in registry:
+        raise KeyError("Tried to add duplicate entry to the registry")
+    registry[prefix] = resource
+    # Clear the cache
+    read_registry.cache_clear()
+    write_bioregistry(registry)
+
+
 @lru_cache(maxsize=1)
 def read_mismatches() -> Mapping[str, Mapping[str, str]]:
     """Read the mismatches as JSON."""
