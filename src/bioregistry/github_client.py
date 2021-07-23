@@ -104,15 +104,18 @@ def open_pull_request(
     }
     if token:
         headers["Authorization"] = f"token {token}"
+
+    params = {
+        "title": title,
+        "head": head,
+        "base": base,
+    }
+    if body:
+        params["body"] = body
     res = requests.post(
         f"https://api.github.com/repos/{owner}/{repo}/pulls",
         headers=headers,
-        params={
-            "title": title,
-            "head": head,
-            "base": base,
-            "body": body or "",
-        },
+        params=params,
     )
     return res.json()
 
@@ -272,8 +275,8 @@ def main(dry: bool):
     click.secho(f"opening PR from {branch_name} to {MAIN_BRANCH}", fg="green")
     time.sleep(2)  # avoid race condition?
     open_bioregistry_pr(
-        head=branch_name,
         title=banger,
+        head=branch_name,
         body=closes_text,
     )
 
