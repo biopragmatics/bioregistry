@@ -276,7 +276,7 @@ def main(dry: bool):
     time.sleep(2)  # avoid race condition?
     open_bioregistry_pr(
         title=banger,
-        head=branch_name,
+        head=f"bioregistry:{branch_name}",
         body=closes_text,
     )
 
