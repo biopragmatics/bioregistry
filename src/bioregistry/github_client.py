@@ -251,14 +251,14 @@ def main(dry: bool):
 
     prefixes = sorted(prefix for prefix, _ in github_id_to_prefix.values())
     if len(prefixes) == 1:
-        banger = f"Add prefix {prefixes[0]}"
+        title = f"Add prefix {prefixes[0]}"
     elif len(prefixes) == 3:
-        banger = f"Add prefixes {prefixes[0]} and {prefixes[1]}"
+        title = f"Add prefixes {prefixes[0]} and {prefixes[1]}"
     else:
-        banger = f'Add prefixes {", ".join(prefixes[:-1])}, and {prefixes[-1]}'
+        title = f'Add prefixes {", ".join(prefixes[:-1])}, and {prefixes[-1]}'
 
-    closes_text = ", ".join(f"Closes #{issue}" for issue in github_id_to_prefix)
-    message = f"{banger}\n\n{closes_text}"
+    body = ", ".join(f"Closes #{issue}" for issue in github_id_to_prefix)
+    message = f"{title}\n\n{body}"
     branch_name = str(uuid4())[:8]
     if dry:
         click.secho(
@@ -275,9 +275,9 @@ def main(dry: bool):
     click.secho(f"opening PR from {branch_name} to {MAIN_BRANCH}", fg="green")
     time.sleep(2)  # avoid race condition?
     open_bioregistry_pr(
-        title=banger,
-        head=f"bioregistry:{branch_name}",
-        body=closes_text,
+        title=title,
+        head=branch_name,
+        body=body,
     )
 
 
