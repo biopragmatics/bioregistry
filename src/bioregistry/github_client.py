@@ -23,7 +23,7 @@ from bioregistry.utils import add_resource
 logger = logging.getLogger(__name__)
 TOKEN = pystow.get_config("github", "access_token")
 HERE = os.path.dirname(os.path.abspath(__file__))
-MAIN_BRANCH = ""
+MAIN_BRANCH = "main"
 #: A mapping from the headers in the GitHub new prefix form to Bioregistry internal keys
 MAPPING = {
     "Prefix": "prefix",
@@ -61,7 +61,7 @@ def open_bioregistry_pr(
     body: Optional[str] = None,
 ):
     """Open a pull request for the Bioregistry."""
-    return open_pull_request(
+    rv = open_pull_request(
         owner="bioregistry",
         repo="bioregistry",
         base=MAIN_BRANCH,
@@ -70,6 +70,8 @@ def open_bioregistry_pr(
         body=body,
         token=TOKEN,
     )
+    print(rv)
+    return rv
 
 
 def open_pull_request(
@@ -93,11 +95,11 @@ def open_pull_request(
         you make many more queries before getting rate limited.
     :returns: JSON response from GitHub
     """
-    headers: Dict[str, Any] = {
+    headers = {
         "Accept": "application/vnd.github.v3+json",
     }
     if token:
-        headers["Authorization"] = (f"token {token}",)
+        headers["Authorization"] = f"token {token}"
     res = requests.get(
         f"https://api.github.com/repos/{owner}/{repo}/pulls",
         headers=headers,
@@ -126,11 +128,11 @@ def get_form_data(
         you make many more queries before getting rate limited.
     :return: A mapping from github issue issue data
     """
-    headers: Dict[str, Any] = {
+    headers = {
         "Accept": "application/vnd.github.v3+json",
     }
     if token:
-        headers["Authorization"] = (f"token {token}",)
+        headers["Authorization"] = f"token {token}"
 
     labels = labels if isinstance(labels, str) else ",".join(labels)
     res = requests.get(
@@ -250,17 +252,23 @@ def main(dry: bool):
 
     closes_text = ", ".join(f"Closes #{issue}" for issue in github_id_to_prefix)
     message = f"{banger}\n\n{closes_text}"
+    branch_name = str(uuid4())[:8]
+    if dry:
+        click.secho(f'skipping making branch {branch_name}, committing, pushing, and PRing', fg='yellow')
+        sys.exit(0)
 
-    if not dry:
-        branch_name = str(uuid4())[:8]
-        branch(branch_name)
-        commit(message, BIOREGISTRY_PATH.as_posix())
-        push()
-        open_bioregistry_pr(
-            head=branch_name,
-            title=banger,
-            body=closes_text,
-        )
+    click.secho('creating branch', fg='green')
+    branch(branch_name)
+    click.secho('committing', fg='green')
+    commit(message, BIOREGISTRY_PATH.as_posix())
+    click.secho('pushing', fg='green')
+    push()
+    click.secho(f'opening PR from {branch_name} to {MAIN_BRANCH}', fg='green')
+    open_bioregistry_pr(
+        head=branch_name,
+        title=banger,
+        body=closes_text,
+    )
 
 
 if __name__ == "__main__":
