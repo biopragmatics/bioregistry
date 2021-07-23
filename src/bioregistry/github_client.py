@@ -104,7 +104,7 @@ def open_pull_request(
     }
     if token:
         headers["Authorization"] = f"token {token}"
-    res = requests.get(
+    res = requests.post(
         f"https://api.github.com/repos/{owner}/{repo}/pulls",
         headers=headers,
         params={
