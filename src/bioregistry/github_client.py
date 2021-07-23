@@ -5,6 +5,7 @@
 import logging
 import os
 import sys
+import time
 from subprocess import CalledProcessError, check_output  # noqa: S404
 from typing import Any, Dict, Iterable, Mapping, Optional, Tuple
 from uuid import uuid4
@@ -269,6 +270,7 @@ def main(dry: bool):
     click.secho("pushing", fg="green")
     click.echo(push("origin", branch_name))
     click.secho(f"opening PR from {branch_name} to {MAIN_BRANCH}", fg="green")
+    time.sleep(2)  # avoid race condition?
     open_bioregistry_pr(
         head=branch_name,
         title=banger,
