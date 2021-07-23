@@ -2,12 +2,13 @@
 
 """Update the bioregistry from GitHub Issue templates."""
 
+import itertools as itt
 import logging
 import os
 import sys
 import time
 from subprocess import CalledProcessError, check_output  # noqa: S404
-from typing import Any, Dict, Iterable, Mapping, Optional, Tuple
+from typing import Any, Dict, Iterable, Mapping, Optional, Set, Tuple
 from uuid import uuid4
 
 import click
@@ -72,6 +73,42 @@ def open_bioregistry_pr(
         body=body,
         token=TOKEN,
     )
+
+
+def get_pulled_issues(issue_ids: Set[int]) -> Set[int]:
+    """Get the set of issues that are already closed by a pull request."""
+    pulls = list_pulls(owner="bioregistry", repo="bioregistry", token=TOKEN)
+    return {
+        issue_id
+        for pull, issue_id in itt.product(pulls, issue_ids)
+        if f"Closes #{issue_id}" in pull["body"]
+    }
+
+
+def list_pulls(
+    *,
+    owner: str,
+    repo: str,
+    token: Optional[str] = None,
+):
+    """List pull requests.
+
+    :param owner: The name of the owner/organization for the repository.
+    :param repo: The name of the repository.
+    :param token: The GitHub OAuth token. Not required, but if given, will let
+        you make many more queries before getting rate limited.
+    :returns: JSON response from GitHub
+    """
+    headers = {
+        "Accept": "application/vnd.github.v3+json",
+    }
+    if token:
+        headers["Authorization"] = f"token {token}"
+    res = requests.get(
+        f"https://api.github.com/repos/{owner}/{repo}/pulls",
+        headers=headers,
+    )
+    return res.json()
 
 
 def open_pull_request(
@@ -245,11 +282,27 @@ def main(dry: bool):
         sys.exit(0)
 
     github_id_to_prefix = get_prefix_issues()
+    click.echo(f'Got {len(github_id_to_prefix)} issues: {",".join(map(str, github_id_to_prefix))}')
+    pulled_issues = get_pulled_issues(set(github_id_to_prefix))
+    click.echo(f'Got {len(pulled_issues)} PRs: {",".join(map(str, pulled_issues))}')
+
+    # filter out issues that already have an associated pull request
+    github_id_to_prefix = {
+        issue_id: value
+        for issue_id, value in github_id_to_prefix.items()
+        if issue_id not in pulled_issues
+    }
+    click.echo(
+        f'Remaining {len(github_id_to_prefix)} issues after filter: {",".join(map(str, github_id_to_prefix))}'
+    )
 
     prefixes = sorted(prefix for prefix, _ in github_id_to_prefix.values())
+    if len(prefixes) == 0:
+        click.secho("No issues to worry about")
+        sys.exit(0)
     if len(prefixes) == 1:
         title = f"Add prefix: {prefixes[0]}"
-    elif len(prefixes) == 3:
+    elif len(prefixes) == 2:
         title = f"Add prefixes: {prefixes[0]} and {prefixes[1]}"
     else:
         title = f'Add prefixes: {", ".join(prefixes[:-1])}, and {prefixes[-1]}'
