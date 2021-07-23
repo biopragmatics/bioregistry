@@ -1,7 +1,7 @@
 name: Request new prefix (form)
 description: Add metadata about a database, ontology, or other authority that issues stable
   identifiers.
-title: "[Resource]: "
+title: "[Resource]:"
 labels: [ New, Prefix ]
 assignees:
   - cthoyt
@@ -49,6 +49,14 @@ body:
     validations:
       required: true
   - type: input
+    id: example
+    attributes:
+      label: Example Identifier
+      description: Please provide an example identifier from the nomenclature authority. While this field isn't required, it's HIGHLY suggested.
+      placeholder: ex. CHEBI:1234
+    validations:
+      required: false
+  - type: input
     id: pattern
     attributes:
       label: Regular Expression Pattern
@@ -65,7 +73,7 @@ body:
   - type: input
     id: banana
     attributes:
-      label: Redundant Prefix
+      label: Redundant Prefix in Regular Expression Pattern
       description: If your nomenclature authority's regex pattern includes a redundant prefix, then you can write it out exactly as it appears in the identifier here. For example, ChEBI's redundant prefix should be written as `CHEBI:`.
       placeholder: "ex. CHEBI:"
     validations:
