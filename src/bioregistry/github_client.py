@@ -14,6 +14,7 @@ import more_itertools
 import pystow
 import requests
 from more_click import verbose_option
+from rich import print
 
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_PATH
@@ -56,6 +57,7 @@ def get_prefix_issues() -> Mapping[int, Tuple[str, Resource]]:
 
 
 def open_bioregistry_pr(
+    *,
     title: str,
     head: str,
     body: Optional[str] = None,
@@ -75,6 +77,7 @@ def open_bioregistry_pr(
 
 
 def open_pull_request(
+    *,
     owner: str,
     repo: str,
     title: str,
@@ -244,11 +247,11 @@ def main(dry: bool):
 
     prefixes = sorted(prefix for prefix, _ in github_id_to_prefix.values())
     if len(prefixes) == 1:
-        banger = f"Add {prefixes[0]}"
+        banger = f"Add prefix {prefixes[0]}"
     elif len(prefixes) == 3:
-        banger = f"Add {prefixes[0]} and {prefixes[1]}"
+        banger = f"Add prefixes {prefixes[0]} and {prefixes[1]}"
     else:
-        banger = f'Add {", ".join(prefixes[:-1])}, and {prefixes[-1]}'
+        banger = f'Add prefixes {", ".join(prefixes[:-1])}, and {prefixes[-1]}'
 
     closes_text = ", ".join(f"Closes #{issue}" for issue in github_id_to_prefix)
     message = f"{banger}\n\n{closes_text}"
