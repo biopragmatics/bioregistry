@@ -115,7 +115,7 @@ def open_pull_request(
     res = requests.post(
         f"https://api.github.com/repos/{owner}/{repo}/pulls",
         headers=headers,
-        data=data,
+        json=data,
     )
     return res.json()
 
