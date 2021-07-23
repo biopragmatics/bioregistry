@@ -184,9 +184,9 @@ def status_porcelain() -> Optional[str]:
     return _git("status", "--porcelain")
 
 
-def push() -> Optional[str]:
+def push(*args) -> Optional[str]:
     """Push the git repo."""
-    return _git("push")
+    return _git("push", *args)
 
 
 def branch(name: str) -> Optional[str]:
@@ -254,16 +254,18 @@ def main(dry: bool):
     message = f"{banger}\n\n{closes_text}"
     branch_name = str(uuid4())[:8]
     if dry:
-        click.secho(f'skipping making branch {branch_name}, committing, pushing, and PRing', fg='yellow')
+        click.secho(
+            f"skipping making branch {branch_name}, committing, pushing, and PRing", fg="yellow"
+        )
         sys.exit(0)
 
-    click.secho('creating branch', fg='green')
-    branch(branch_name)
-    click.secho('committing', fg='green')
-    commit(message, BIOREGISTRY_PATH.as_posix())
-    click.secho('pushing', fg='green')
-    push()
-    click.secho(f'opening PR from {branch_name} to {MAIN_BRANCH}', fg='green')
+    click.secho("creating branch", fg="green")
+    click.echo(branch(branch_name))
+    click.secho("committing", fg="green")
+    click.echo(commit(message, BIOREGISTRY_PATH.as_posix()))
+    click.secho("pushing", fg="green")
+    click.echo(push("origin", branch_name))
+    click.secho(f"opening PR from {branch_name} to {MAIN_BRANCH}", fg="green")
     open_bioregistry_pr(
         head=branch_name,
         title=banger,
