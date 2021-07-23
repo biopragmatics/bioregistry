@@ -15,7 +15,6 @@ import more_itertools
 import pystow
 import requests
 from more_click import verbose_option
-from rich import print
 
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_PATH
@@ -64,7 +63,7 @@ def open_bioregistry_pr(
     body: Optional[str] = None,
 ):
     """Open a pull request for the Bioregistry."""
-    rv = open_pull_request(
+    return open_pull_request(
         owner="bioregistry",
         repo="bioregistry",
         base=MAIN_BRANCH,
@@ -73,8 +72,6 @@ def open_bioregistry_pr(
         body=body,
         token=TOKEN,
     )
-    print(rv)
-    return rv
 
 
 def open_pull_request(
@@ -251,11 +248,11 @@ def main(dry: bool):
 
     prefixes = sorted(prefix for prefix, _ in github_id_to_prefix.values())
     if len(prefixes) == 1:
-        title = f"Add prefix {prefixes[0]}"
+        title = f"Add prefix: {prefixes[0]}"
     elif len(prefixes) == 3:
-        title = f"Add prefixes {prefixes[0]} and {prefixes[1]}"
+        title = f"Add prefixes: {prefixes[0]} and {prefixes[1]}"
     else:
-        title = f'Add prefixes {", ".join(prefixes[:-1])}, and {prefixes[-1]}'
+        title = f'Add prefixes: {", ".join(prefixes[:-1])}, and {prefixes[-1]}'
 
     body = ", ".join(f"Closes #{issue}" for issue in github_id_to_prefix)
     message = f"{title}\n\n{body}"
@@ -274,11 +271,12 @@ def main(dry: bool):
     click.echo(push("origin", branch_name))
     click.secho(f"opening PR from {branch_name} to {MAIN_BRANCH}", fg="green")
     time.sleep(2)  # avoid race condition?
-    open_bioregistry_pr(
+    rv = open_bioregistry_pr(
         title=title,
         head=branch_name,
         body=body,
     )
+    click.secho(f'PR at {rv["url"]}')
 
 
 if __name__ == "__main__":
