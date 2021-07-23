@@ -282,7 +282,9 @@ def main(dry: bool):
         sys.exit(0)
 
     github_id_to_prefix = get_prefix_issues()
+    click.echo(f'Got {len(github_id_to_prefix)} issues: {",".join(map(str, github_id_to_prefix))}')
     pulled_issues = get_pulled_issues(set(github_id_to_prefix))
+    click.echo(f'Got {len(pulled_issues)} PRs: {",".join(map(str, pulled_issues))}')
 
     # filter out issues that already have an associated pull request
     github_id_to_prefix = {
@@ -290,6 +292,7 @@ def main(dry: bool):
         for issue_id, value in github_id_to_prefix.items()
         if issue_id not in pulled_issues
     }
+    click.echo(f'Remaining {len(github_id_to_prefix)} issues after filter: {",".join(github_id_to_prefix)}')
 
     prefixes = sorted(prefix for prefix, _ in github_id_to_prefix.values())
     if len(prefixes) == 0:
