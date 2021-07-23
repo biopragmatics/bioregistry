@@ -292,11 +292,13 @@ def main(dry: bool):
         for issue_id, value in github_id_to_prefix.items()
         if issue_id not in pulled_issues
     }
-    click.echo(f'Remaining {len(github_id_to_prefix)} issues after filter: {",".join(github_id_to_prefix)}')
+    click.echo(
+        f'Remaining {len(github_id_to_prefix)} issues after filter: {",".join(map(str, github_id_to_prefix))}'
+    )
 
     prefixes = sorted(prefix for prefix, _ in github_id_to_prefix.values())
     if len(prefixes) == 0:
-        click.secho('No issues to worry about')
+        click.secho("No issues to worry about")
         sys.exit(0)
     if len(prefixes) == 1:
         title = f"Add prefix: {prefixes[0]}"
