@@ -329,7 +329,10 @@ def main(dry: bool):
         head=branch_name,
         body=body,
     )
-    click.secho(f'PR at {rv["url"]}')
+    if "url" in rv:
+        click.secho(f'PR at {rv["url"]}')
+    else:  # probably an error
+        click.secho(rv, fg="red")
 
 
 if __name__ == "__main__":
