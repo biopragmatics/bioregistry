@@ -292,9 +292,12 @@ def main(dry: bool):
     }
 
     prefixes = sorted(prefix for prefix, _ in github_id_to_prefix.values())
+    if len(prefixes) == 0:
+        click.secho('No issues to worry about')
+        sys.exit(0)
     if len(prefixes) == 1:
         title = f"Add prefix: {prefixes[0]}"
-    elif len(prefixes) == 3:
+    elif len(prefixes) == 2:
         title = f"Add prefixes: {prefixes[0]} and {prefixes[1]}"
     else:
         title = f'Add prefixes: {", ".join(prefixes[:-1])}, and {prefixes[-1]}'
