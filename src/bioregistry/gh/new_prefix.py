@@ -31,6 +31,7 @@ MAPPING = {
     "Example Identifier": "example",
     "Regular Expression Pattern": "pattern",
     "Provider Format URL": "url",
+    "Redundant Prefix in Regular Expression Pattern": "banana",
 }
 
 
