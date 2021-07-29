@@ -25,12 +25,6 @@ jobs:
         run: python -m bioregistry.gh.new_prefix --github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Sanity check
-        run: |
-          echo ${{ steps.update.outputs.BR_BODY }}
-          echo ${{ steps.update.outputs.BR_TITLE }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:

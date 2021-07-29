@@ -48,7 +48,9 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Tuple[str
     :returns: A mapping of issue identifiers to pairs of the prefix itself and a :class:`Resource` instance
         that has been parsed out of the issue form
     """
-    data = github_client.get_bioregistry_form_data(["New", "Prefix"], remapping=MAPPING, token=token)
+    data = github_client.get_bioregistry_form_data(
+        ["New", "Prefix"], remapping=MAPPING, token=token
+    )
     rv = {}
     for issue_id, resource_data in data.items():
         prefix = resource_data.pop("prefix")
@@ -129,10 +131,12 @@ def main(dry: bool, github: bool, force: bool):
     branch_name = str(uuid4())[:8]
 
     if github:
-        click.echo(f'''
-          ::set-output name=BR_BODY::'{body}'"
-          ::set-output name=BR_TITLE::'{title}'"
-        ''')
+        click.echo(
+            f"""
+          ::set-output name=BR_BODY::{body}
+          ::set-output name=BR_TITLE::{title}
+        """
+        )
         return sys.exit(0)
     elif dry:
         click.secho(
