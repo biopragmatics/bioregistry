@@ -1,0 +1,34 @@
+name: Update regular expression pattern
+description: Use this to request an update to a regular expression pattern for a given resource
+title: Update regular expression pattern for [X]
+labels: [ Regex, Update ]
+assignees:
+  - cthoyt
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this regex update form!
+  - type: input
+    id: prefix
+    attributes:
+      label: Prefix
+      description: What is the Bioregistry prefix of the resource whose regex should be updated?
+      placeholder: ex. chebi
+    validations:
+      required: true
+  - type: input
+    id: pattern
+    attributes:
+      label: New Regular Expression Pattern
+      description: What is the new regular expression pattern?
+      placeholder: ex. `^\d+$`
+    validations:
+      required: true
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Explanation
+      description: Please explain why the regular expression should be updated.
+    validations:
+      required: true
