@@ -30,6 +30,7 @@ MAPPING = {
     "Homepage": "homepage",
     "Example Identifier": "example",
     "Regular Expression Pattern": "pattern",
+    "Provider Format URL": "url",
 }
 
 
