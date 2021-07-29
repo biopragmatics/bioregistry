@@ -25,8 +25,8 @@ jobs:
         run: |
           OUTPUT=$(python -m bioregistry.gh.new_prefix --dry)
           echo $OUTPUT
-          echo "::set-output name=BR_BODY::$(echo $output | grep Closes)"
-          echo "::set-output name=BR_TITLE::$(echo $output | grep Add)"
+          echo "::set-output name=BR_BODY::$(echo $OUTPUT | grep Closes)"
+          echo "::set-output name=BR_TITLE::$(echo OUTPUT | grep Add)"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Pull Request
