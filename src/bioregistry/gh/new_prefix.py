@@ -8,7 +8,7 @@ Run with: ``python -m bioregistry.gh.new_prefix``
 import logging
 import sys
 import time
-from typing import Iterable, Mapping, Sequence, Tuple
+from typing import Iterable, Mapping, Optional, Sequence, Tuple
 from uuid import uuid4
 
 import click
@@ -33,7 +33,7 @@ MAPPING = {
 }
 
 
-def get_new_prefix_issues() -> Mapping[int, Tuple[str, Resource]]:
+def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Tuple[str, Resource]]:
     """Get Bioregistry prefix issues from the GitHub API.
 
     This is done by filtering on issues containing the "New" and "Prefix" labels.
@@ -43,10 +43,12 @@ def get_new_prefix_issues() -> Mapping[int, Tuple[str, Resource]]:
         Issues corresponding to a prefix that is already in the Bioregistry should be sent a message then
         automatically closed
 
+    :param token: The GitHub OAuth token. Not required, but if given, will let
+        you make many more queries before getting rate limited.
     :returns: A mapping of issue identifiers to pairs of the prefix itself and a :class:`Resource` instance
         that has been parsed out of the issue form
     """
-    data = github_client.get_bioregistry_form_data(["New", "Prefix"], remapping=MAPPING)
+    data = github_client.get_bioregistry_form_data(["New", "Prefix"], remapping=MAPPING, token=token)
     rv = {}
     for issue_id, resource_data in data.items():
         prefix = resource_data.pop("prefix")
