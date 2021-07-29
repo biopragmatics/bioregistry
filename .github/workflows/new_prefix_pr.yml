@@ -22,3 +22,5 @@ jobs:
         run: pip install -e .
       - name: Run
         run: python -m bioregistry.gh.new_prefix
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
