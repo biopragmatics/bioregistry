@@ -3226,6 +3226,7 @@ bioproject:
     is_identifiers: true
     is_obo: false
     prefix: BIOPROJECT
+  url: https://www.ncbi.nlm.nih.gov/bioproject/?term=$1
 bioregistry:
   contact: cthoyt@gmail.com
   description: The Bioregistry is integrative meta-registry of biological databases,
@@ -14203,6 +14204,7 @@ gno:
     bioportal: GNO
     obofoundry: gno
     ols: gno
+  name: Glycan Naming and Subsumption Ontology
   obofoundry:
     contact: nje5@georgetown.edu
     contact.label: Nathan Edwards
@@ -15159,6 +15161,7 @@ gsso:
     prefix: gsso
     provider_url: http://purl.obolibrary.org/obo/GSSO_$1
     sampleId: 002368
+  name: Gender, Sex, and Sexual Orientation Ontology
   obofoundry:
     contact: kronkcj@mail.uc.edu
     contact.label: Clair Kronk
@@ -28076,7 +28079,7 @@ pathbank:
   example: SMP0000219
   homepage: https://pathbank.org
   name: PathBank
-  pattern: ^SMP\d+$
+  pattern: ^(SMP|PW)\d+$
   url: https://pathbank.org/view/$1
 pathwaycommons:
   mappings:
@@ -30434,6 +30437,7 @@ pr:
     pattern: ^PR\:P?\d+$
     prefix: pr
     provider_url: https://proconsortium.org/app/entry/PR:$1
+  name: Protein Ontology
   obofoundry:
     contact: dan5@georgetown.edu
     contact.label: Darren Natale
