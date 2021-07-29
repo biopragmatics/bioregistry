@@ -166,7 +166,11 @@ def get_form_data(
             "state": "open",
         },
     )
-    rv = {issue["number"]: parse_body(issue["body"]) for issue in res.json()}
+    rv = {
+        issue["number"]: parse_body(issue["body"])
+        for issue in res.json()
+        if "pull_request" not in issue
+    }
     if remapping:
         rv = {issue: remap(body_data, remapping) for issue, body_data in rv.items()}
     return rv
