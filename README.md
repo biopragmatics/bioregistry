@@ -44,7 +44,14 @@ The manually curated portions of these data are available under the CC0 1.0 Univ
 
 ## 🙏 Contributing
 
-There haven't been any external contributors yet, but if you want to get involved, you can make edits directly to
+If you'd like to request a new prefix, please fill out this [issue template](https://github.com/bioregistry/bioregistry/issues/new?assignees=cthoyt&labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D).
+It will automatically generate a pull request!
+
+There are a few other issue templates for certain updates (e.g., update regex, merge two prefixes, etc.) that you
+can check [here](https://github.com/bioregistry/bioregistry/issues/new/choose). For anything updates that don't
+have a corresponding template, feel free to leave a freeform issue for us!
+
+If you want to make a direct contribution, feel free to make edits directly to
 the [bioregistry.json](https://github.com/bioregistry/bioregistry/blob/main/src/bioregistry/data/bioregistry.json)
 file through the GitHub interface.
 
