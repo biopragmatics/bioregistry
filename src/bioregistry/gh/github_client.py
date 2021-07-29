@@ -168,13 +168,18 @@ def get_form_data(
     )
     rv = {issue["number"]: parse_body(issue["body"]) for issue in res.json()}
     if remapping:
-        rv = {k: remap(v, remapping) for k, v in rv.items()}
+        rv = {issue: remap(body_data, remapping) for issue, body_data in rv.items()}
     return rv
 
 
-def remap(d: Dict[str, Any], m: Mapping[str, str]) -> Dict[str, Any]:
+def remap(data: Dict[str, Any], mapping: Mapping[str, str]) -> Dict[str, Any]:
     """Map the keys in dictionary ``d`` based on dictionary ``m``."""
-    return {m[k]: v for k, v in d.items()}
+    try:
+        return {mapping[key]: value for key, value in data.items()}
+    except KeyError:
+        logger.warning("original dict: %s", data)
+        logger.warning("mapping dict: %s", mapping)
+        raise
 
 
 def parse_body(body: str) -> Dict[str, Any]:
