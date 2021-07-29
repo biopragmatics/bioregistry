@@ -26,12 +26,14 @@ logger = logging.getLogger(__name__)
 MAPPING = {
     "Prefix": "prefix",
     "Name": "name",
-    "Description": "description",
     "Homepage": "homepage",
+    "Description": "description",
     "Example Identifier": "example",
     "Regular Expression Pattern": "pattern",
-    "Provider Format URL": "url",
     "Redundant Prefix in Regular Expression Pattern": "banana",
+    "Provider Format URL": "url",
+    "Contact": "contact",
+    "Additional Comments": "comments",
 }
 
 
