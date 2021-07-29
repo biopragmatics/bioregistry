@@ -67,6 +67,7 @@ def _join(x: Iterable[int], sep=", ") -> str:
 
 
 def make_title(prefixes: Sequence[str]) -> str:
+    """Make a title for the PR."""
     if len(prefixes) == 0:
         raise ValueError
     if len(prefixes) == 1:
@@ -128,7 +129,7 @@ def main(dry: bool):
         )
         sys.exit(0)
 
-    click.secho("creating branch", fg="green")
+    click.secho("creating and switching to branch", fg="green")
     click.echo(github_client.branch(branch_name))
     click.secho("committing", fg="green")
     click.echo(github_client.commit(message, BIOREGISTRY_PATH.as_posix()))
@@ -145,6 +146,9 @@ def main(dry: bool):
         click.secho(f'PR at {rv["url"]}')
     else:  # probably an error
         click.secho(rv, fg="red")
+
+    click.secho(f"switching back to {github_client.MAIN_BRANCH} branch", fg="green")
+    click.echo(github_client.branch(github_client.MAIN_BRANCH))
 
 
 if __name__ == "__main__":
