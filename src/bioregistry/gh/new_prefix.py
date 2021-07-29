@@ -33,7 +33,7 @@ MAPPING = {
     "Redundant Prefix in Regular Expression Pattern": "banana",
     "Provider Format URL": "url",
     "Contact": "contact",
-    "Additional Comments": "comments",
+    "Additional Comments": "comment",
 }
 
 
