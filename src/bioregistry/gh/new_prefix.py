@@ -82,11 +82,13 @@ def make_title(prefixes: Sequence[str]) -> str:
 
 @click.command()
 @click.option("--dry", is_flag=True)
+@click.option("--github", is_flag=True)
+@click.option("--force", is_flag=True)
 @verbose_option
-def main(dry: bool):
+def main(dry: bool, github: bool, force: bool):
     """Run the automatic curator."""
     status_porcelain_result = github_client.status_porcelain()
-    if status_porcelain_result:
+    if status_porcelain_result and not force:
         click.secho(f"The working directory is dirty:\n\n{status_porcelain_result}", fg="red")
         sys.exit(1)
 
@@ -125,13 +127,18 @@ def main(dry: bool):
     body = ", ".join(f"Closes #{issue}" for issue in issue_to_resource)
     message = f"{title}\n\n{body}"
     branch_name = str(uuid4())[:8]
-    if dry:
-        click.echo(title)
-        click.echo(body)
+
+    if github:
+        click.echo(f'''
+          ::set-output name=BR_BODY::'{body}'"
+          ::set-output name=BR_TITLE::'{title}'"
+        ''')
+        return sys.exit(0)
+    elif dry:
         click.secho(
             f"skipping making branch {branch_name}, committing, pushing, and PRing", fg="yellow"
         )
-        sys.exit(0)
+        return sys.exit(0)
 
     click.secho("creating and switching to branch", fg="green")
     click.echo(github_client.branch(branch_name))
