@@ -1,7 +1,7 @@
 name: Request new prefix
 description: Add metadata about a database, ontology, or other authority that issues stable
   identifiers.
-title: "[Resource]:"
+title: Add prefix [X]
 labels: [ New, Prefix ]
 assignees:
   - cthoyt
@@ -76,6 +76,14 @@ body:
       label: Redundant Prefix in Regular Expression Pattern
       description: If your nomenclature authority's regex pattern includes a redundant prefix, then you can write it out exactly as it appears in the identifier here. For example, ChEBI's redundant prefix should be written as `CHEBI:`.
       placeholder: "ex. CHEBI:"
+    validations:
+      required: false
+  - type: input
+    id: url
+    attributes:
+      label: Provider Format URL
+      description: A URL that can be used in combination with the identifier to make a webpage for the identifier. It should contain a `$1` that gets replaced with the identifier
+      placeholder: ex. `https://www.ebi.ac.uk/chebi/searchId.do?chebiId=$1`
     validations:
       required: false
   - type: textarea
