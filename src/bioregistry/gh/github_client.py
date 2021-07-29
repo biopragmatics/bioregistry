@@ -19,6 +19,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MAIN_BRANCH = "main"
 
 
+def has_token() -> bool:
+    """Check if there is a github token available."""
+    return pystow.get_config("github", "token") is not None
+
+
 def get_issues_with_pr(issue_ids: Iterable[int], token: Optional[str] = None) -> Set[int]:
     """Get the set of issues that are already closed by a pull request."""
     pulls = list_pulls(owner="bioregistry", repo="bioregistry", token=token)
@@ -34,7 +39,7 @@ def get_headers(token: Optional[str] = None):
     headers = {
         "Accept": "application/vnd.github.v3+json",
     }
-    token = pystow.get_config("github", "access_token", passthrough=token)
+    token = pystow.get_config("github", "token", passthrough=token)
     if token:
         headers["Authorization"] = f"token {token}"
     return headers

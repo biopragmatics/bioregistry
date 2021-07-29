@@ -87,6 +87,10 @@ def main(dry: bool):
         click.secho(f"The working directory is dirty:\n\n{status_porcelain_result}", fg="red")
         sys.exit(0)
 
+    if not github_client.has_token():
+        click.secho("No GitHub access token is available through GITHUB_TOKEN", fg="red")
+        sys.exit(0)
+
     issue_to_resource = get_new_prefix_issues()
     click.echo(f"Found {len(issue_to_resource)} new prefix issues: {_join(issue_to_resource)}")
 
