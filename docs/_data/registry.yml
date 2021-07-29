@@ -20575,7 +20575,11 @@ mco:
     version.iri: http://purl.obolibrary.org/obo/mco/releases/2019-05-15/mco.owl
   pattern: ^\d+$
 mdm:
+  bioportal:
+    name: Mapping of Drug Names and MeSH 2021
+    prefix: MDM
   mappings:
+    bioportal: MDM
     miriam: mdm
     n2t: mdm
     prefixcommons: MDM
@@ -25198,6 +25202,18 @@ nlxdys:
   example: '20090303'
   name: NeuroLex Dysfunction
   url: http://uri.neuinfo.org/nif/nifstd/nlx_dys_$1
+nmdc:
+  contact: donny@polyneme.xyz
+  description: An initiative to empower the research community to harness microbiome
+    data exploration and discovery through a collaborative integrative data science
+    ecosystem.
+  example: y3ax-8bq3-60
+  homepage: https://microbiomedata.org/
+  name: National Microbiome Data Collaborative
+  pattern: ^[\w\-.]{3,}$
+  url: https://drs.microbiomedata.org/objects/$1
+  wikidata:
+    database: Q107698738
 nmr:
   bioportal:
     name: NMR-Controlled Vocabulary
@@ -33613,6 +33629,8 @@ sep:
   bioportal:
     name: Sample Processing and Separation Techniques Ontology
     prefix: SEP
+  download_obo: https://raw.githubusercontent.com/HUPO-PSI/gelml/master/CV/sep.obo
+  homepage: https://psidev.info/sepcv
   mappings:
     bioportal: SEP
     obofoundry: sep
@@ -39277,6 +39295,7 @@ xlmod:
   bioportal:
     name: mass spectrometry cross-linking and derivatization reagents
     prefix: XLMOD
+  download_obo: https://raw.githubusercontent.com/HUPO-PSI/mzIdentML/master/cv/XLMOD.obo
   example: '00050'
   mappings:
     bioportal: XLMOD
