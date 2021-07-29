@@ -148,7 +148,7 @@ def main(dry: bool):
         click.secho(rv, fg="red")
 
     click.secho(f"switching back to {github_client.MAIN_BRANCH} branch", fg="green")
-    click.echo(github_client.branch(github_client.MAIN_BRANCH))
+    click.echo(github_client.home())
 
 
 if __name__ == "__main__":

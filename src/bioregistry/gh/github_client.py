@@ -216,6 +216,14 @@ def branch(name: str) -> Optional[str]:
     return _git("checkout", "-b", name)
 
 
+def home() -> Optional[str]:
+    """Return to the main branch.
+
+    :returns: The message from the command
+    """
+    return _git("checkout", MAIN_BRANCH)
+
+
 def commit(message: str, *args: str) -> Optional[str]:
     """Make a commit with the following message."""
     return _git("commit", *args, "-m", message)
