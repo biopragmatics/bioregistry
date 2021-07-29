@@ -198,7 +198,7 @@ def parse_body(body: str) -> Dict[str, Any]:
         header, *rest = group
         header = header.lstrip("#").lstrip()
         rest = " ".join(x.strip() for x in rest)
-        if rest == "_No response_":
+        if rest == "_No response_" or not rest:
             continue
         rv[header] = rest
     return rv
