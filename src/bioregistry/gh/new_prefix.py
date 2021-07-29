@@ -126,6 +126,8 @@ def main(dry: bool):
     message = f"{title}\n\n{body}"
     branch_name = str(uuid4())[:8]
     if dry:
+        click.echo(title)
+        click.echo(body)
         click.secho(
             f"skipping making branch {branch_name}, committing, pushing, and PRing", fg="yellow"
         )
