@@ -67,9 +67,9 @@ def main():
         else:
             tqdm.write(f"[{prefix}] got example {res}")
             if res.startswith(prefix.upper() + "_"):
-                res = res[len(prefix) + 1:]
+                res = res[len(prefix) + 1 :]
             if res.startswith(prefix.upper() + ":"):
-                res = res[len(prefix) + 1:]
+                res = res[len(prefix) + 1 :]
             r[prefix]["example"] = res
     write_bioregistry(r)
 
