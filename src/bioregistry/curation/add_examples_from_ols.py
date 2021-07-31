@@ -3,6 +3,7 @@
 """Add examples from OLS."""
 
 import random
+from typing import Mapping
 
 import requests
 from tqdm import tqdm
@@ -37,7 +38,7 @@ def _get_example_helper(prefix: str, url: str) -> str:
 SKIP = {"afo", "dicom", "ensemblglossary", "co_321:root", "co_336", "co_359", "gexo", "hcao"}
 
 
-def _get_missing_ols() -> dict[str, str]:
+def _get_missing_ols() -> Mapping[str, str]:
     """Get a map of prefixes to OLS prefixes that need checking."""
     return {
         prefix: bioregistry.get_ols_prefix(prefix)  # type: ignore
