@@ -177,7 +177,9 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 msg = f"{prefix} is missing an example local identifier"
                 if entry.ols:
-                    msg += f'\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry.ols["prefix"]}/terms'
+                    msg += (
+                        f'\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry.ols["prefix"]}/terms'
+                    )
                 self.assertIsNotNone(bioregistry.get_example(prefix), msg=msg)
 
     def test_examples_pass_patterns(self):
