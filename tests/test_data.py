@@ -169,7 +169,11 @@ class TestRegistry(unittest.TestCase):
     def test_examples(self):
         """Test that all entries have examples."""
         for prefix, entry in self.registry.items():
-            if bioregistry.has_no_terms(prefix) or bioregistry.is_deprecated(prefix):
+            if (
+                bioregistry.has_no_terms(prefix)
+                or bioregistry.is_deprecated(prefix)
+                or bioregistry.get_provides_for(prefix)
+            ):
                 continue
             if not bioregistry.get_pattern(prefix) and not entry.ols:
                 continue
