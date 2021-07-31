@@ -40,7 +40,7 @@ SKIP = {"afo", "dicom", "ensemblglossary", "co_321:root", "co_336", "co_359", "g
 def _get_missing_ols() -> dict[str, str]:
     """Get a map of prefixes to OLS prefixes that need checking."""
     return {
-        prefix: bioregistry.get_ols_prefix(prefix)
+        prefix: bioregistry.get_ols_prefix(prefix)  # type: ignore
         for prefix, resource in bioregistry.read_registry().items()
         if (
             prefix not in SKIP
