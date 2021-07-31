@@ -169,12 +169,15 @@ class TestRegistry(unittest.TestCase):
     def test_examples(self):
         """Test that all entries have examples."""
         for prefix, entry in self.registry.items():
-            if "pattern" not in entry:  # TODO remove this later
+            if bioregistry.has_no_terms(prefix) or bioregistry.is_deprecated(prefix):
                 continue
+            if not bioregistry.get_pattern(prefix) and not entry.ols:
+                continue
+
             with self.subTest(prefix=prefix):
                 msg = f"{prefix} is missing an example local identifier"
-                if "ols" in entry:
-                    msg += f'\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry["ols"]["prefix"]}/terms'
+                if entry.ols:
+                    msg += f'\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry.ols["prefix"]}/terms'
                 self.assertIsNotNone(bioregistry.get_example(prefix), msg=msg)
 
     def test_examples_pass_patterns(self):
