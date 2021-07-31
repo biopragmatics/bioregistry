@@ -72,6 +72,12 @@ def summary():
     return render_template("meta/summary.html")
 
 
+@app.route("/related")
+def related():
+    """Render the related page."""
+    return render_template("meta/related.html")
+
+
 @app.route("/download")
 def download():
     """Render the download page."""
