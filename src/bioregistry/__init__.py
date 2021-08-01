@@ -69,6 +69,7 @@ from .resolve_identifier import (  # noqa:F401
 )
 from .utils import (  # noqa:F401
     read_collections,
+    read_contributors,
     read_metaregistry,
     read_mismatches,
     read_registry,
