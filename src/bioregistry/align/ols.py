@@ -22,7 +22,10 @@ class OLSAligner(Aligner):
 
     def get_skip(self) -> Mapping[str, str]:
         """Get skipped entries from OLS."""
-        return {"co_321:root": "this is a mistake in the way OLS imports CO"}
+        return {
+            "co_321:root": "this is a mistake in the way OLS imports CO",
+            "phi": "this is low quality and has no associated metadata",
+        }
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Prepare curation rows for unaligned BioPortal registry entries."""

@@ -3451,6 +3451,7 @@
       "prefix": "BIRNLEX"
     },
     "comment": "Part of the NeuroLex namespace now",
+    "homepage": "https://bioportal.bioontology.org/ontologies/BIRNLEX",
     "mappings": {
       "bioportal": "BIRNLEX"
     },
@@ -6680,6 +6681,7 @@
     "contact": "cogs@ncbi.nlm.nih.gov",
     "description": "Higher-level classifications of COG Pathways",
     "example": "K",
+    "homepage": "https://www.ncbi.nlm.nih.gov/research/cog/",
     "name": "COG Categories",
     "part_of": "cog",
     "url": "https://www.ncbi.nlm.nih.gov/research/cog/cogcategory/$1"
@@ -7136,6 +7138,7 @@
       "cl"
     ],
     "comment": "Part of cell ontology but deprecated, see https://github.com/obophenotype/cell-ontology/issues/572",
+    "deprecated": true,
     "name": "Cellular Phenotypes"
   },
   "cpc": {
@@ -8259,6 +8262,7 @@
       "name": "Dublin Core",
       "prefix": "DC"
     },
+    "deprecated": true,
     "download_obo": "https://github.com/obophenotype/human-disease-ontology/raw/master/src/experimental/missing-omc.obo",
     "example": "0000598",
     "mappings": {
@@ -8559,6 +8563,7 @@
       "name": "Human Dermatological Disease Ontology",
       "prefix": "DERMO"
     },
+    "homepage": "https://jbiomedsem.biomedcentral.com/articles/10.1186/s13326-016-0085-x",
     "mappings": {
       "bioportal": "DERMO"
     },
@@ -8882,6 +8887,7 @@
   },
   "diseasesdb": {
     "example": "1784",
+    "homepage": "http://www.diseasesdatabase.com/",
     "name": "Diseases Database",
     "wikidata": {
       "database": "Q213103",
@@ -9883,6 +9889,7 @@
       "name": "Electrocardiography Ontology",
       "prefix": "ECG"
     },
+    "homepage": "https://bioportal.bioontology.org/ontologies/ECG",
     "mappings": {
       "bioportal": "ECG"
     },
@@ -11380,6 +11387,7 @@
     }
   },
   "epcc": {
+    "homepage": "https://www.aepc.org/european-paediatric-cardiac-coding",
     "name": "European Paediatric Cardiac Codes",
     "references": [
       "https://www.cambridge.org/core/journals/cardiology-in-the-young/article/abs/european-paediatric-cardiac-codes-the-long-list-with-icd9-icd10-crossmapping-and-crossmap-to-epcc-short-list/FCA4DFCCB661298294A3D113FC79D5BE"
@@ -12237,6 +12245,7 @@
     }
   },
   "fbql": {
+    "homepage": "https://flybase.org",
     "name": "Flybase Quantitative Loci",
     "prefixcommons": {
       "prefix": "fbql"
@@ -12270,6 +12279,7 @@
     }
   },
   "fbtc": {
+    "homepage": "https://flybase.org",
     "name": "Flybase Cell Line"
   },
   "fideo": {
@@ -12304,6 +12314,7 @@
   },
   "fishbase.species": {
     "example": "6472",
+    "homepage": "http://fishbase.org",
     "name": "FishBase",
     "wikidata": {
       "database": "Q837101",
@@ -12316,6 +12327,7 @@
       "prefix": "FIX"
     },
     "example": "0000390",
+    "homepage": "https://www.ebi.ac.uk/chebi/",
     "mappings": {
       "bioportal": "FIX",
       "obofoundry": "fix",
@@ -12339,6 +12351,7 @@
       "version": "2020-04-13",
       "version.iri": "http://purl.obolibrary.org/obo/fix/releases/2020-04-13/fix.owl"
     },
+    "part_of": "chebi",
     "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/FIX_$1",
@@ -13063,7 +13076,13 @@
     }
   },
   "fyler": {
-    "name": "Fyler"
+    "description": "A hierarchical classification of congenital heart disease ",
+    "homepage": "https://www.elsevier.com/books/nadas-pediatric-cardiology/9781416023906",
+    "name": "Fyler",
+    "references": [
+      "https://github.com/obophenotype/human-phenotype-ontology/issues/2568",
+      "https://github.com/obophenotype/human-phenotype-ontology/issues/2511"
+    ]
   },
   "fypo": {
     "bioportal": {
@@ -13197,6 +13216,7 @@
       "name": "Galen Ontology",
       "prefix": "GALEN"
     },
+    "homepage": "https://www.opengalen.org",
     "mappings": {
       "bioportal": "GALEN"
     },
@@ -13204,6 +13224,7 @@
   },
   "gard": {
     "example": "6038",
+    "homepage": "https://rarediseases.info.nih.gov/diseases",
     "name": "Genetic and Rare Diseases Information Center",
     "synonyms": [
       "GARD",
@@ -13277,6 +13298,7 @@
   },
   "gbif": {
     "example": "4238",
+    "homepage": "https://www.gbif.org/species",
     "name": "Global Biodiversity Information Facility",
     "url": "https://www.gbif.org/species/$1",
     "wikidata": {
@@ -13285,6 +13307,7 @@
   },
   "gc": {
     "comment": "see comment here: https://github.com/obophenotype/ncbitaxon/issues/47",
+    "homepage": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html",
     "name": "Genetic Code",
     "references": [
       "https://github.com/obophenotype/ncbitaxon/issues/47"
@@ -14005,6 +14028,7 @@
   },
   "ghr": {
     "example": "saddan",
+    "homepage": "https://medlineplus.gov/genetics/condition",
     "name": "Genetics Home Reference",
     "url": "https://medlineplus.gov/genetics/condition/$1"
   },
@@ -14871,6 +14895,7 @@
       "name": "GO Extensions to OBO Relation Ontology Ontology",
       "prefix": "GOREL"
     },
+    "homepage": "http://geneontology.org/docs/ontology-relations/",
     "mappings": {
       "biolink": "GOREL",
       "go": "GOREL"
@@ -15845,6 +15870,7 @@
     }
   },
   "hcao": {
+    "homepage": "https://www.humancellatlas.org",
     "mappings": {
       "ols": "hcao"
     },
@@ -15869,6 +15895,7 @@
       "name": "Healthcare Common Procedure Coding System",
       "prefix": "HCPCS"
     },
+    "homepage": "https://www.cms.gov/Medicare/Coding/MedHCPCSGenInfo",
     "mappings": {
       "biolink": "HCPCS",
       "bioportal": "HCPCS"
@@ -16312,6 +16339,7 @@
   },
   "hms.lincs.compound": {
     "example": "10001-101",
+    "homepage": "https://lincs.hms.harvard.edu/db/sm/",
     "name": "HMS LINCS Compound",
     "synonyms": [
       "HMS-LINCS",
@@ -16322,6 +16350,7 @@
   "hog": {
     "download_obo": "ftp://ftp.bgee.org/general/ontologies/HOG.obo",
     "example": "0000255",
+    "homepage": "https://bgee.org/bgee/bgee?page=documentation#sectionHomologyRelationships",
     "name": "Homologous Organ Groups"
   },
   "hogenom": {
@@ -16901,7 +16930,9 @@
   },
   "hsdb": {
     "example": "5621",
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov/source/hsdb",
     "name": "Hazardous Substances Data Bank",
+    "url": "https://pubchem.ncbi.nlm.nih.gov/source/hsdb/$1",
     "wikidata": {
       "prefix": "P2062"
     }
@@ -17136,6 +17167,7 @@
       "name": "International Classification of Diseases, Version 10",
       "prefix": "ICD10"
     },
+    "homepage": "https://icd.who.int/browse10",
     "mappings": {
       "biolink": "ICD10",
       "bioportal": "ICD10",
@@ -17184,6 +17216,7 @@
   },
   "icd11": {
     "example": "RA01.0",
+    "homepage": "https://icd.who.int/",
     "name": "International Classification of Diseases 11th Revision",
     "synonyms": [
       "ICD-11"
@@ -17204,6 +17237,7 @@
       "prefix": "ICD9CM"
     },
     "example": "277.9",
+    "homepage": "https://www.cdc.gov/nchs/icd/icd9cm.htm",
     "mappings": {
       "biolink": "ICD9",
       "bioportal": "ICD9CM"
@@ -17247,6 +17281,7 @@
       "prefix": "ICDO"
     },
     "example": "M9861/3",
+    "homepage": "https://www.who.int/classifications/icd/adaptations/oncology/en/",
     "mappings": {
       "bioportal": "ICDO"
     },
@@ -17537,10 +17572,14 @@
       "name": "Dengue Fever Ontology",
       "prefix": "IDODEN"
     },
+    "homepage": "https://bioportal.bioontology.org/ontologies/IDODEN",
     "mappings": {
       "bioportal": "IDODEN"
     },
-    "name": "Dengue Fever Ontology"
+    "name": "Dengue Fever Ontology",
+    "references": [
+      "https://journals.plos.org/plosntds/article?id=10.1371/journal.pntd.0003479"
+    ]
   },
   "idomal": {
     "bioportal": {
@@ -18047,6 +18086,7 @@
   "inn": {
     "comment": "can not find a place to resolve to",
     "example": "fluticasone",
+    "homepage": "https://www.who.int/teams/health-product-and-policy-standards/inn",
     "name": "International Nonproprietary Names",
     "synonyms": [
       "INN_ID"
@@ -18708,6 +18748,7 @@
   },
   "itis": {
     "example": "589462",
+    "homepage": "https://www.itis.gov/",
     "name": "Integrated Taxonomic Information System",
     "pattern": "^\\d+$",
     "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=$1",
@@ -18891,6 +18932,7 @@
   },
   "jax": {
     "example": "004435",
+    "homepage": "https://www.jax.org/strain",
     "mappings": {
       "prefixcommons": "JAX"
     },
@@ -19797,7 +19839,11 @@
     "appears_in": [
       "cl"
     ],
-    "name": "Kidney and Urinary Pathway Ontology"
+    "homepage": "http://www.kupkb.org/",
+    "name": "Kidney and Urinary Pathway Ontology",
+    "references": [
+      "https://jbiomedsem.biomedcentral.com/articles/10.1186/2041-1480-2-S2-S7"
+    ]
   },
   "labo": {
     "bioportal": {
@@ -20296,6 +20342,7 @@
   "lncipedia": {
     "description": "A comprehensive compendium of human long non-coding RNAs",
     "example": "SNHG3",
+    "homepage": "https://lncipedia.org",
     "name": "LNCipedia"
   },
   "loggerhead": {
@@ -22057,6 +22104,7 @@
   },
   "miaa": {
     "comment": "same as MAT",
+    "deprecated": true,
     "name": "Minimal Information About Anatomy ontology",
     "references": [
       "https://bioconductor.statistik.tu-dortmund.de/packages/3.1/bioc/vignettes/rols/inst/doc/rols.pdf"
@@ -23170,10 +23218,8 @@
   },
   "mmsl": {
     "example": "3355",
+    "homepage": "https://www.nlm.nih.gov/research/umls/rxnorm/sourcereleasedocs/mmsl.html",
     "name": "Multum MediSource Lexicon",
-    "references": [
-      "https://www.nlm.nih.gov/research/umls/rxnorm/sourcereleasedocs/mmsl.html"
-    ],
     "synonyms": [
       "MMSL_CODE"
     ]
@@ -24313,7 +24359,8 @@
     }
   },
   "namerxn": {
-    "comment": "The nomenclature used for named reactions in text mining software from NextMove",
+    "description": "The nomenclature used for named reactions in text mining software from NextMove",
+    "homepage": "https://www.nextmovesoftware.com/namerxn.html",
     "name": "NameRXN",
     "references": [
       "https://www.nextmovesoftware.com/products/HazELNutPoster.pdf"
@@ -25032,14 +25079,12 @@
       "prefix": "NDDF"
     },
     "example": "002678",
+    "homepage": "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDDF",
     "mappings": {
       "biolink": "NDDF",
       "bioportal": "NDDF"
     },
-    "name": "National Drug Data File",
-    "references": [
-      "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDDF/index.html"
-    ]
+    "name": "National Drug Data File"
   },
   "ndex": {
     "description": "The Network Data Exchange (NDEx) is an open-source framework where scientists and organizations can store, share, manipulate, and publish biological network knowledge.",
@@ -25054,6 +25099,7 @@
       "prefix": "NDFRT"
     },
     "example": "N0000001662",
+    "homepage": "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT",
     "mappings": {
       "bioportal": "NDFRT"
     },
@@ -25368,6 +25414,7 @@
   },
   "nextprot.family": {
     "example": "01406",
+    "homepage": "https://www.nextprot.org/",
     "name": "neXtProt family",
     "pattern": "^\\d+$",
     "synonyms": [
@@ -25535,6 +25582,7 @@
       "prefix": "NLMID"
     },
     "example": "101775319",
+    "homepage": "https://www.ncbi.nlm.nih.gov/nlmcatalog",
     "mappings": {
       "biolink": "NLMID"
     },
@@ -25543,7 +25591,9 @@
   },
   "nlxanat": {
     "example": "090201",
+    "homepage": "https://scicrunch.org/scicrunch/interlex/dashboard",
     "name": "NeuroLex Anatomy",
+    "part_of": "neurolex",
     "url": "http://uri.neuinfo.org/nif/nifstd/nlx_anat_$1"
   },
   "nlxdys": {
@@ -25551,7 +25601,9 @@
       "mondo"
     ],
     "example": "20090303",
+    "homepage": "https://scicrunch.org/scicrunch/interlex/dashboard",
     "name": "NeuroLex Dysfunction",
+    "part_of": "neurolex",
     "url": "http://uri.neuinfo.org/nif/nifstd/nlx_dys_$1"
   },
   "nmdc": {
@@ -25821,6 +25873,7 @@
   },
   "npass": {
     "example": "NPC139585",
+    "homepage": "http://bidd.group/NPASS/",
     "name": "Natural Product Activity and Species Source Database"
   },
   "nuclearbd": {
@@ -26150,6 +26203,7 @@
     }
   },
   "obo": {
+    "homepage": "http://www.obofoundry.org/",
     "mappings": {
       "prefixcommons": "OBO"
     },
@@ -28026,6 +28080,7 @@
     }
   },
   "owl": {
+    "homepage": "https://www.w3.org/TR/owl-features/",
     "mappings": {
       "prefixcommons": "owl"
     },
@@ -28801,6 +28856,7 @@
     }
   },
   "pdbe": {
+    "homepage": "https://www.ebi.ac.uk/pdbe/",
     "name": "Protein Data Bank in Europe"
   },
   "pdro": {
@@ -29198,10 +29254,12 @@
     }
   },
   "pfam.clan": {
+    "homepage": "http://pfam.xfam.org",
     "name": "Pfam Clans"
   },
   "pfr": {
     "example": "1001",
+    "homepage": "http://repository.topdownproteomics.org/proteoforms",
     "name": "Proteoform Atlas",
     "pattern": "^\\d+$",
     "synonyms": [
@@ -29286,16 +29344,19 @@
       "prefix": "PharmacoDB"
     },
     "example": "22RV1_12_2019",
+    "homepage": "https://pharmacodb.ca/cell_lines",
     "name": "PharmacoDB Cells",
     "url": "https://pharmacodb.ca/cell_lines/$1"
   },
   "pharmacodb.dataset": {
     "example": "1",
+    "homepage": "https://pharmacodb.ca/datasets",
     "name": "PharmacoDB Datasets",
     "url": "https://pharmacodb.ca/datasets/$1"
   },
   "pharmacodb.tissue": {
     "example": "13",
+    "homepage": "https://pharmacodb.ca/tissues",
     "name": "PharmacoDB Tissues",
     "url": "https://pharmacodb.ca/tissues/$1"
   },
@@ -29496,19 +29557,6 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "PHENOLEXPLORER"
-    }
-  },
-  "phi": {
-    "example": "1000000",
-    "mappings": {
-      "ols": "phi"
-    },
-    "ols": {
-      "description": "Pathogen-Host Interaction database Ontology used by Ensembl",
-      "download": "file:/nfs/panda/ensembl/production/ensprod/ontologies/phi/PHI.obo",
-      "name": "PHI-base Ontology",
-      "prefix": "phi",
-      "version": "2018-12-10"
     }
   },
   "phipo": {
@@ -30678,7 +30726,8 @@
   "ppr": {
     "description": "Preprints are articles which have not been peer-reviewed from various preprint servers and open research platforms such as bioRxiv, ChemRxiv, PeerJ Preprints and F1000.",
     "example": "ppr103739",
-    "name": "Eurpoe PMC Preprints",
+    "homepage": "https://europepmc.org",
+    "name": "Europe PMC Preprints",
     "url": "https://europepmc.org/article/ppr/$1"
   },
   "pr": {
@@ -31529,10 +31578,8 @@
     }
   },
   "pspub": {
-    "name": "Phenoscape Publication",
-    "references": [
-      "https://wiki.phenoscape.org/wiki/Curation_workflow"
-    ]
+    "homepage": "https://wiki.phenoscape.org/wiki/Curation_workflow",
+    "name": "Phenoscape Publication"
   },
   "pubchem.bioassay": {
     "go": {
@@ -31717,6 +31764,7 @@
       "is_obo": false,
       "prefix": "ResearchID"
     },
+    "homepage": "https://publons.com/researcher",
     "mappings": {
       "biolink": "ResearchID"
     },
@@ -31917,6 +31965,7 @@
       "prefix": "QUDT"
     },
     "example": "baseDimensionEnumeration",
+    "homepage": "https://qudt.org",
     "mappings": {
       "biolink": "qud",
       "bioportal": "QUDT"
@@ -32076,6 +32125,7 @@
       "prefix": "RDO"
     },
     "download_obo": "https://ratmine.mcw.edu/ontology/disease/RDO.obo",
+    "homepage": "https://ratmine.mcw.edu/ontology/disease/",
     "mappings": {
       "bioportal": "RDO"
     },
@@ -32412,6 +32462,7 @@
     },
     "download_owl": "http://purl.obolibrary.org/obo/rex.owl",
     "example": "0000512",
+    "homepage": "https://www.ebi.ac.uk/chebi/",
     "mappings": {
       "bioportal": "REX",
       "obofoundry": "rex",
@@ -32433,6 +32484,7 @@
       "version": "2017-11-19",
       "version.iri": "http://purl.obolibrary.org/obo/rex/releases/2017-11-19/rex.owl"
     },
+    "part_of": "chebi",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/REX_$1",
       "is_identifiers": false,
@@ -33352,6 +33404,7 @@
       "prefix": "RXNORM"
     },
     "example": "221058",
+    "homepage": "https://www.nlm.nih.gov/research/umls/rxnorm/",
     "mappings": {
       "biolink": "RXCUI",
       "bioportal": "RXNORM",
@@ -33527,6 +33580,7 @@
     ],
     "comment": "spider stuff!",
     "example": "037727",
+    "homepage": "https://www.salk.edu/",
     "name": "Salk Institute for Biological Studies Accession",
     "url": "https://abrc.osu.edu/stocks/number/SALK_$1"
   },
@@ -33744,6 +33798,7 @@
       "prefix": "ScopusID"
     },
     "example": "56305849200",
+    "homepage": "https://www.scopus.com",
     "mappings": {
       "biolink": "ScopusID"
     },
@@ -34395,6 +34450,7 @@
     "comment": "Currently, you can put a SIGNOR relation ID into the main page search box and it will resolve, but there is not currently a way to resolve them via a URL pattern",
     "description": "Identifiers for relationships between proteins and complexes, along with their type and provenance",
     "example": "SIGNOR-252737",
+    "homepage": "https://signor.uniroma2.it",
     "name": "SIGNOR Relation",
     "part_of": "signor",
     "pattern": "^SIGNOR-\\d+$"
@@ -34618,6 +34674,7 @@
   },
   "smiles": {
     "example": "COc1ccc2c(c1)OC[C@H]1[C@@H]2C2=C(OC1(C)C)C1=C(C(=O)C2=O)[C@H]2c3ccc(OC)cc3OC[C@H]2C(C)(C)O1",
+    "homepage": "https://www.daylight.com/dayhtml/doc/theory/theory.smiles.html",
     "name": "Simplified molecular-input line-entry system",
     "wikidata": {
       "prefix": "P233"
@@ -34673,10 +34730,8 @@
     "url": "https://smpdb.ca/view/$1"
   },
   "snap": {
-    "name": "Snapshot",
-    "references": [
-      "http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf"
-    ]
+    "homepage": "http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf",
+    "name": "Snapshot"
   },
   "snomedct": {
     "bioportal": {
@@ -34917,6 +34972,7 @@
   },
   "span": {
     "comment": "see also snap",
+    "homepage": "http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf",
     "name": "Span"
   },
   "spd": {
@@ -36128,6 +36184,7 @@
   },
   "te": {
     "example": "E5.11.2.0.0.0.4",
+    "homepage": "https://ifaa.unifr.ch/",
     "name": "Terminologia Embryologica",
     "wikidata": {
       "prefix": "P1693"
@@ -36237,6 +36294,7 @@
   },
   "th": {
     "example": "H3.03.00.0.00007",
+    "homepage": "https://ifaa.unifr.ch/",
     "name": "Terminologia Histologica"
   },
   "tigrfam": {
@@ -37703,6 +37761,7 @@
   },
   "uniprot.var": {
     "example": "VAR_068078",
+    "homepage": "https://web.expasy.org/variant_pages",
     "name": "UniProt Variants",
     "pattern": "^VAR_\\d+$",
     "synonyms": [
@@ -38075,6 +38134,7 @@
       "prefix": "VANDF"
     },
     "example": "4019477",
+    "homepage": "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/VANDF",
     "mappings": {
       "biolink": "VANDF",
       "bioportal": "VANDF"
@@ -38902,6 +38962,7 @@
     }
   },
   "vuid": {
+    "homepage": "https://www.va.gov/health",
     "name": "Veterans Health Administration (VHA) unique identifier",
     "references": [
       "https://academic.oup.com/jamia/article/17/4/432/866953"
@@ -39253,6 +39314,7 @@
       "prefix": "WIKIDATA_PROPERTY"
     },
     "example": "P4355",
+    "homepage": "https://www.wikidata.org",
     "mappings": {
       "biolink": "WIKIDATA_PROPERTY",
       "prefixcommons": "WD_Prop"
@@ -39812,6 +39874,7 @@
     "appears_in": [
       "hsapdv"
     ],
+    "deprecated": true,
     "name": "XUO"
   },
   "ydpm": {
@@ -39958,6 +40021,7 @@
   "ymdb": {
     "description": "The Yeast Metabolome Database (YMDB) is a manually curated database of small molecule metabolites found in or produced by Saccharomyces cerevisiae (also known as Baker’s yeast and Brewer’s yeast).",
     "example": "YMDB00001",
+    "homepage": "http://www.ymdb.ca",
     "name": "Yeast Metabolome Database",
     "pattern": "^YMDB\\d+$",
     "url": "http://www.ymdb.ca/compounds/$1"
