@@ -218,6 +218,35 @@ def reference(prefix: str, identifier: str):
     return serialize(_get_identifier(prefix, identifier))
 
 
+@api_blueprint.route("/contributors")
+def contributors():
+    """Get all contributors.
+
+    ---
+    tags:
+    - contributor
+    """  # noqa:DAR101,DAR201
+    raise NotImplementedError
+
+
+@api_blueprint.route("/contributor/<orcid>")
+def contributor(orcid: str):
+    """Get a contributor.
+
+    ---
+    tags:
+    - collection
+    parameters:
+    - name: orcid
+      in: path
+      description: The ORCID identifier of the contributor
+      required: true
+      type: string
+      example: 0000-0002-8424-0604
+    """  # noqa:DAR101,DAR201
+    raise NotImplementedError
+
+
 @api_blueprint.route("/search")
 def search():
     """Search for a prefix.
