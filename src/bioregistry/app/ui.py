@@ -75,6 +75,7 @@ def resource(prefix: str):
     return render_template(
         "resource.html",
         prefix=prefix,
+        resource=bioregistry.get_resource(prefix),
         name=bioregistry.get_name(prefix),
         example=example,
         mappings=_get_resource_mapping_rows(prefix),
@@ -85,6 +86,7 @@ def resource(prefix: str):
         has_no_terms=bioregistry.has_no_terms(prefix),
         obo_download=bioregistry.get_obo_download(prefix),
         owl_download=bioregistry.get_owl_download(prefix),
+        json_download=bioregistry.get_json_download(prefix),
         namespace_in_lui=bioregistry.namespace_in_lui(prefix),
         deprecated=bioregistry.is_deprecated(prefix),
         contact=bioregistry.get_email(prefix),

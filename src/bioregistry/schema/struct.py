@@ -105,6 +105,8 @@ class Resource(BaseModel):
     no_own_terms: Optional[bool]
     #: Free text comment
     comment: Optional[str]
+    #: Contributor information
+    contributor: Optional[Author]
 
     # Registry-specific data
     miriam: Optional[Mapping[str, Any]]

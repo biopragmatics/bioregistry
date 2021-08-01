@@ -80,6 +80,11 @@
                             OWL <i class="fas fa-download"></i>
                         </a>
                     {% endif %}
+                    {% if json_download %}
+                        <a class="badge badge-pill badge-light" href="{{ json_download }}">
+                            OBO JSON <i class="fas fa-download"></i>
+                        </a>
+                    {% endif %}
                 </dd>
                 <dt>Contact</dt>
                 <dd>
@@ -119,6 +124,24 @@
                         <span class="badge badge-pill badge-warning">Missing Example</span>
                     {% endif %}
                 </dd>
+                {% if resource.references %}
+                    <dt>References</dt>
+                    <dd>
+                        <ul>
+                            {% for reference in resource.references %}
+                                <li><a href="{{ reference }}">{{ reference }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                {% endif %}
+                {% if resource.contributor %}
+                    <dt>Contributor</dt>
+                    <dd>
+                        <a href="https://bioregistry.io/orcid:{{ resource.contributor.orcid }}">
+                            {{ resource.contributor.name }}
+                        </a>
+                    </dd>
+                {% endif %}
             </dl>
         </div>
 
