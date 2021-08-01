@@ -243,7 +243,7 @@ def contributor(orcid: str):
     return render_template(
         "contributor.html",
         contributor=author,
-        collections=read_collections_contributions().get(author.orcid, []),
-        prefixes=read_prefix_contributions().get(author.orcid, []),
+        collections=sorted(read_collections_contributions().get(author.orcid, [])),
+        prefixes=sorted(read_prefix_contributions().get(author.orcid, [])),
         formats=FORMATS,
     )

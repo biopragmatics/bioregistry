@@ -269,8 +269,8 @@ def contributor(orcid: str):
     return serialize(
         {
             **author.dict(),
-            "prefixes": read_prefix_contributions().get(orcid, []),
-            "collections": read_collections_contributions().get(orcid, []),
+            "prefixes": sorted(read_prefix_contributions().get(orcid, [])),
+            "collections": sorted(read_collections_contributions().get(orcid, [])),
         }
     )
 
