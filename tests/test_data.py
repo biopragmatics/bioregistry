@@ -146,6 +146,14 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.assertIn("$1", url, msg=f"{prefix} format does not have a $1")
 
+    def test_own_terms_conflict(self):
+        """Test there is no conflict between no own terms and having an example."""
+        for prefix, resource in self.registry.items():
+            if bioregistry.has_no_terms(prefix):
+                with self.subTest(prefix=prefix):
+                    self.assertIsNone(bioregistry.get_example(prefix))
+                    self.assertIsNone(resource.url)
+
     def test_patterns(self):
         """Test that all prefixes are norm-unique."""
         for prefix, entry in self.registry.items():
