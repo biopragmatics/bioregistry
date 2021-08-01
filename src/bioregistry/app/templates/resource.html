@@ -124,6 +124,16 @@
                         <span class="badge badge-pill badge-warning">Missing Example</span>
                     {% endif %}
                 </dd>
+                {% if resource.references %}
+                    <dt>References</dt>
+                    <dd>
+                        <ul>
+                            {% for reference in resource.references %}
+                                <li><a href="{{ reference }}">{{ reference }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                {% endif %}
             </dl>
         </div>
 

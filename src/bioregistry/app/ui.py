@@ -75,6 +75,7 @@ def resource(prefix: str):
     return render_template(
         "resource.html",
         prefix=prefix,
+        resource=bioregistry.get_resource(prefix),
         name=bioregistry.get_name(prefix),
         example=example,
         mappings=_get_resource_mapping_rows(prefix),
