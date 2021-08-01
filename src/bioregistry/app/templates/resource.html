@@ -137,7 +137,7 @@
                 {% if resource.contributor %}
                     <dt>Contributor</dt>
                     <dd>
-                        <a href="{{ url_for('ui.contributor', identifier=resource.contributor.orcid) }}">
+                        <a href="{{ url_for('ui.contributor', orcid=resource.contributor.orcid) }}">
                             {{ resource.contributor.name }}
                         </a>
                     </dd>

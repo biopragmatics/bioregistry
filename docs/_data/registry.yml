@@ -42,6 +42,7 @@
     prefix: 4DN
     url: https://data.4dnucleome.org/biosources/$1
   example: 4DNSR73BT2A2
+  homepage: https://data.4dnucleome.org/biosources
   mappings:
     cellosaurus: 4DN
   name: 4D Nucleome Data Portal Biosource
@@ -50,6 +51,7 @@
   url: https://data.4dnucleome.org/biosources/$1
 4dn.replicate:
   example: 4DNESWX1J3QU
+  homepage: https://data.4dnucleome.org/experiment-set-replicates/
   name: 4D Nucleome Data Portal Experiment Replicate
   url: https://data.4dnucleome.org/experiment-set-replicates/$1
 aao:
@@ -345,6 +347,7 @@ afo:
   bioportal:
     name: Allotrope Merged Ontology Suite
     prefix: AFO
+  homepage: https://www.allotrope.org/
   mappings:
     bioportal: AFO
     ols: afo
@@ -563,6 +566,7 @@ alzforum.mutation:
   description: Alzforum mutations is a repository of genes and rare variants associated
     with Alzheimer's disease.
   example: app-d678n-tottori
+  homepage: https://www.alzforum.org/mutations
   name: Alzforum Mutations
   synonyms:
   - Alzforum_mut
@@ -2316,6 +2320,7 @@ bel:
     describing causal, correlative, and associative relationships between a variety
     of biological agents.
   example: 9-1-1 Complex
+  homepage: https://biological-expression-language.github.io/
   name: Biological Expression Language
   synonyms:
   - SCOMP
@@ -2900,6 +2905,7 @@ biolink:
     is_identifiers: false
     is_obo: false
     prefix: biolink
+  homepage: https://biolink.github.io/biolink-model/
   mappings:
     biolink: biolink
     miriam: biolink
@@ -3438,6 +3444,7 @@ birnlex:
     name: Biomedical Informatics Research Network Project Lexicon
     prefix: BIRNLEX
   comment: Part of the NeuroLex namespace now
+  homepage: https://bioportal.bioontology.org/ontologies/BIRNLEX
   mappings:
     bioportal: BIRNLEX
   name: Biomedical Informatics Research Network Lexicon
@@ -3728,8 +3735,13 @@ broad:
     is_obo: false
     prefix: BROAD
 bs:
-  comment: part of Sequence Ontology (SO). See https://github.com/The-Sequence-Ontology/SO-Ontologies/blob/master/Ontology_Files/subsets/biosapiens.obo
-  name: Biosapiens
+  comment: An alernative vocabulary that has been aligned and integrated in Sequence
+    Ontology (SO).
+  download_obo: https://raw.githubusercontent.com/The-Sequence-Ontology/SO-Ontologies/master/Ontology_Files/subsets/biosapiens.obo
+  example: '00042'
+  homepage: https://github.com/The-Sequence-Ontology/SO-Ontologies
+  name: Biosapiens Protein Feature Ontology
+  pattern: ^\d+$
 bspo:
   bioportal:
     name: Spatial Ontology
@@ -4039,6 +4051,7 @@ cadsr:
 caloha:
   download_obo: ftp://ftp.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo
   example: '0001'
+  homepage: https://github.com/calipho-sib/controlled-vocabulary
   name: CALIPHO Group Ontology of Human Anatomy
   pattern: ^\d+$
   references:
@@ -5595,6 +5608,7 @@ citexplore:
     name: Cerebrotendinous Xanthomatosis Ontology
     prefix: CTX
   example: C6155
+  homepage: https://www.ebi.ac.uk/citexplore/
   mappings:
     bioportal: CTX
   name: CiteXplore
@@ -6147,6 +6161,7 @@ co_320:
     name: Rice ontology
     prefix: co_320
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_320:$1
 co_321:
   example: 0000449
   mappings:
@@ -6159,17 +6174,7 @@ co_321:
     name: Wheat ontology
     prefix: co_321
     version: '2019-10-09'
-co_321:root:
-  mappings:
-    ols: co_321:root
-  no_own_terms: true
-  ols:
-    contact: helpdesk@cropontology-curationtool.org
-    description: T3 Wheat traits
-    download: http://www.cropontology.org/ontology/CO_321:ROOT/Wheat/owl
-    homepage: http://www.cropontology.org/ontology/CO_321:ROOT/Wheat
-    name: Wheat ontology
-    prefix: co_321:root
+  url: https://www.cropontology.org/rdf/CO_321:$1
 co_322:
   example: '0000773'
   mappings:
@@ -6182,6 +6187,7 @@ co_322:
     name: Maize ontology
     prefix: co_322
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_322:$1
 co_323:
   example: '0000252'
   mappings:
@@ -6194,6 +6200,7 @@ co_323:
     name: Barley ontology
     prefix: co_323
     version: '2019-11-20'
+  url: https://www.cropontology.org/rdf/CO_323:$1
 co_324:
   example: '0000111'
   mappings:
@@ -6206,6 +6213,7 @@ co_324:
     name: Sorghum ontology
     prefix: co_324
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_324:$1
 co_325:
   example: 0000519
   mappings:
@@ -6219,6 +6227,7 @@ co_325:
     name: Banana ontology
     prefix: co_325
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_325:$1
 co_327:
   example: 0000095
   mappings:
@@ -6232,6 +6241,7 @@ co_327:
     name: Pearl millet ontology
     prefix: co_327
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_327:$1
 co_330:
   example: '0000106'
   mappings:
@@ -6244,6 +6254,7 @@ co_330:
     name: Potato ontology
     prefix: co_330
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_330:$1
 co_331:
   example: 0000088
   mappings:
@@ -6256,6 +6267,7 @@ co_331:
     name: Sweet Potato ontology
     prefix: co_331
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_331:$1
 co_333:
   example: '3000045'
   mappings:
@@ -6272,6 +6284,7 @@ co_333:
     name: Beet Ontology ontology
     prefix: co_333
     version: '2019-01-23'
+  url: https://www.cropontology.org/rdf/CO_333:$1
 co_334:
   example: '0000070'
   mappings:
@@ -6285,6 +6298,7 @@ co_334:
     name: Cassava ontology
     prefix: co_334
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_334:$1
 co_335:
   example: 0000189
   mappings:
@@ -6297,10 +6311,11 @@ co_335:
     name: Common Bean ontology
     prefix: co_335
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_335:$1
 co_336:
+  example: 0000339
   mappings:
     ols: co_336
-  no_own_terms: true
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: Soybean Trait Dictionary in template v5 - IITA - July 2015
@@ -6308,6 +6323,7 @@ co_336:
     homepage: http://www.cropontology.org/ontology/CO_336/Soybean
     name: Soybean ontology
     prefix: co_336
+  url: https://www.cropontology.org/rdf/CO_336:$1
 co_337:
   example: '0000054'
   mappings:
@@ -6321,6 +6337,7 @@ co_337:
     name: Groundnut ontology
     prefix: co_337
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_337:$1
 co_338:
   example: 0000138
   mappings:
@@ -6333,6 +6350,7 @@ co_338:
     name: Chickpea ontology
     prefix: co_338
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_338:$1
 co_339:
   example: '0000032'
   mappings:
@@ -6345,6 +6363,7 @@ co_339:
     name: Lentil ontology
     prefix: co_339
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_339:$1
 co_340:
   example: 0000639
   mappings:
@@ -6357,6 +6376,7 @@ co_340:
     name: Cowpea ontology
     prefix: co_340
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_340:$1
 co_341:
   example: '0000140'
   mappings:
@@ -6369,6 +6389,7 @@ co_341:
     name: Pigeonpea ontology
     prefix: co_341
     version: '2019-11-18'
+  url: https://www.cropontology.org/rdf/CO_341:$1
 co_343:
   example: '0100010'
   mappings:
@@ -6381,6 +6402,7 @@ co_343:
     name: Yam ontology
     prefix: co_343
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_343:$1
 co_345:
   example: '0000127'
   mappings:
@@ -6393,6 +6415,7 @@ co_345:
     name: Brachiaria ontology
     prefix: co_345
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_345:$1
 co_346:
   example: 0000199
   mappings:
@@ -6405,6 +6428,7 @@ co_346:
     name: Mungbean ontology
     prefix: co_346
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_346:$1
 co_347:
   example: 0000108
   mappings:
@@ -6417,6 +6441,7 @@ co_347:
     name: Castor bean ontology
     prefix: co_347
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_347:$1
 co_348:
   example: '1100107'
   mappings:
@@ -6432,6 +6457,7 @@ co_348:
     name: Brassica ontology
     prefix: co_348
     version: '2019-11-29'
+  url: https://www.cropontology.org/rdf/CO_348:$1
 co_350:
   example: '0000215'
   mappings:
@@ -6445,6 +6471,7 @@ co_350:
     name: Oat ontology
     prefix: co_350
     version: '2019-10-09'
+  url: https://www.cropontology.org/rdf/CO_350:$1
 co_356:
   example: '4000027'
   mappings:
@@ -6458,6 +6485,7 @@ co_356:
     name: Vitis ontology
     prefix: co_356
     version: '2019-11-29'
+  url: https://www.cropontology.org/rdf/CO_356:$1
 co_357:
   example: '1000290'
   mappings:
@@ -6473,6 +6501,7 @@ co_357:
     name: Woody Plant Ontology ontology
     prefix: co_357
     version: '2019-11-18'
+  url: https://www.cropontology.org/rdf/CO_357:$1
 co_358:
   example: 0000139
   mappings:
@@ -6485,10 +6514,11 @@ co_358:
     name: Cotton ontology
     prefix: co_358
     version: '2020-01-03'
+  url: https://www.cropontology.org/rdf/CO_358:$1
 co_359:
+  example: 0000947
   mappings:
     ols: co_359
-  no_own_terms: true
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: December 2019
@@ -6496,6 +6526,7 @@ co_359:
     homepage: http://www.cropontology.org/ontology/CO_359/Sunflower
     name: Sunflower ontology
     prefix: co_359
+  url: https://www.cropontology.org/rdf/CO_359:$1
 co_360:
   example: '0000071'
   mappings:
@@ -6508,6 +6539,7 @@ co_360:
     name: Sugar Kelp trait ontology
     prefix: co_360
     version: '2019-06-26'
+  url: https://www.cropontology.org/rdf/CO_360:$1
 co_365:
   example: '0000205'
   mappings:
@@ -6520,6 +6552,7 @@ co_365:
     name: Fababean ontology
     prefix: co_365
     version: '2019-10-15'
+  url: https://www.cropontology.org/rdf/CO_365:$1
 co_366:
   example: '0000072'
   mappings:
@@ -6532,6 +6565,7 @@ co_366:
     name: Bambara groundnut ontology
     prefix: co_366
     version: '2019-12-23'
+  url: https://www.cropontology.org/rdf/CO_366:$1
 cob:
   bioportal:
     name: Core Ontology for Biology and Biomedicine
@@ -6590,6 +6624,7 @@ cog.category:
   contact: cogs@ncbi.nlm.nih.gov
   description: Higher-level classifications of COG Pathways
   example: K
+  homepage: https://www.ncbi.nlm.nih.gov/research/cog/
   name: COG Categories
   part_of: cog
   url: https://www.ncbi.nlm.nih.gov/research/cog/cogcategory/$1
@@ -7040,6 +7075,7 @@ cp:
   appears_in:
   - cl
   comment: Part of cell ontology but deprecated, see https://github.com/obophenotype/cell-ontology/issues/572
+  deprecated: true
   name: Cellular Phenotypes
 cpc:
   mappings:
@@ -7277,8 +7313,14 @@ csd:
     provider_url: https://www.ccdc.cam.ac.uk/services/structures?pid=csd:$1&sid=IDORG
     sampleId: PELNAW
 csp:
+  bioportal:
+    prefix: CRISP
+  deprecated: true
   example: 2004-2820
-  name: CRISP Thesaurus
+  homepage: https://web.archive.org/web/20091223034048/http://crisp.cit.nih.gov/Thesaurus/index.htm
+  mappings:
+    bioportal: CRISP
+  name: Computer Retrieval of Information on Science Projects (CRISP) Thesaurus
   synonyms:
   - CRISP Thesaurus, 2006
   - CRISP Thesaurus
@@ -8216,6 +8258,7 @@ dc:
   bioportal:
     name: Dublin Core
     prefix: DC
+  deprecated: true
   download_obo: https://github.com/obophenotype/human-disease-ontology/raw/master/src/experimental/missing-omc.obo
   example: 0000598
   mappings:
@@ -8275,6 +8318,7 @@ dcterms:
     name: 'DCMI Metadata Terms: properties in /terms/ namespace'
     prefix: DCTERMS
   example: title
+  homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
   mappings:
     biolink: dct
     bioportal: DCTERMS
@@ -8489,6 +8533,7 @@ dermo:
   bioportal:
     name: Human Dermatological Disease Ontology
     prefix: DERMO
+  homepage: https://jbiomedsem.biomedcentral.com/articles/10.1186/s13326-016-0085-x
   mappings:
     bioportal: DERMO
   name: Human Dermatological Disease Ontology
@@ -8784,6 +8829,7 @@ dip:
     prefix: DIP
 diseasesdb:
   example: '1784'
+  homepage: http://www.diseasesdatabase.com/
   name: Diseases Database
   wikidata:
     database: Q213103
@@ -9161,7 +9207,7 @@ dpo:
   bioportal:
     name: Drosophila Phenotype Ontology
     prefix: DPO
-  example: 0000559
+  comment: DPO is a subset of terms from FBcv
   mappings:
     bioportal: DPO
     obofoundry: dpo
@@ -9576,6 +9622,7 @@ drugcentral:
   url: http://drugcentral.org/drugcard/$1
 dsmz:
   example: ACC-1
+  homepage: https://www.dsmz.de
   name: Deutsche Sammlung von Mikroorganismen und Zellkulturen
   url: https://www.dsmz.de/collection/catalogue/details/culture/$1
 dto:
@@ -9726,6 +9773,7 @@ ecg:
   bioportal:
     name: Electrocardiography Ontology
     prefix: ECG
+  homepage: https://bioportal.bioontology.org/ontologies/ECG
   mappings:
     bioportal: ECG
   name: Electrocardiogram Ontology
@@ -9786,6 +9834,7 @@ echobase:
     prefix: EchoBASE
 ecmdb:
   example: ECMDB00005
+  homepage: https://ecmdb.ca
   name: E. coli Metabolite Database
   pattern: ^ECMDB\d+$
   synonyms:
@@ -11238,6 +11287,7 @@ eol:
     prefix: eol
     version: '2018-09-13'
 epcc:
+  homepage: https://www.aepc.org/european-paediatric-cardiac-coding
   name: European Paediatric Cardiac Codes
   references:
   - https://www.cambridge.org/core/journals/cardiology-in-the-young/article/abs/european-paediatric-cardiac-codes-the-long-list-with-icd9-icd10-crossmapping-and-crossmap-to-epcc-short-list/FCA4DFCCB661298294A3D113FC79D5BE
@@ -12102,6 +12152,7 @@ fbol:
     is_obo: false
     prefix: FBOL
 fbql:
+  homepage: https://flybase.org
   name: Flybase Quantitative Loci
   prefixcommons:
     prefix: fbql
@@ -12129,6 +12180,7 @@ fbsp:
     is_obo: true
     prefix: FBSP
 fbtc:
+  homepage: https://flybase.org
   name: Flybase Cell Line
 fideo:
   bioportal:
@@ -12163,6 +12215,7 @@ fideo:
     prefix: fideo
 fishbase.species:
   example: '6472'
+  homepage: http://fishbase.org
   name: FishBase
   wikidata:
     database: Q837101
@@ -12172,6 +12225,7 @@ fix:
     name: Physico-Chemical Methods and Properties
     prefix: FIX
   example: 0000390
+  homepage: https://www.ebi.ac.uk/chebi/
   mappings:
     bioportal: FIX
     obofoundry: fix
@@ -12192,6 +12246,7 @@ fix:
     prefix: fix
     version: '2020-04-13'
     version.iri: http://purl.obolibrary.org/obo/fix/releases/2020-04-13/fix.owl
+  part_of: chebi
   pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/FIX_$1
@@ -12441,6 +12496,7 @@ foaf:
   bioportal:
     name: Friend of a Friend Vocabulary
     prefix: FOAF
+  homepage: http://xmlns.com/foaf/spec/
   mappings:
     biolink: foaf
     bioportal: FOAF
@@ -12457,6 +12513,7 @@ fobi:
     name: FOBI (Food-Biomarker Ontology)
     prefix: FOBI
   example: 030719
+  homepage: https://github.com/pcastellanoescuder/FoodBiomarkerOntology
   mappings:
     bioportal: FOBI
     obofoundry: fobi
@@ -12934,7 +12991,12 @@ fungidb:
     is_obo: false
     prefix: FUNGIDB
 fyler:
+  description: 'A hierarchical classification of congenital heart disease '
+  homepage: https://www.elsevier.com/books/nadas-pediatric-cardiology/9781416023906
   name: Fyler
+  references:
+  - https://github.com/obophenotype/human-phenotype-ontology/issues/2568
+  - https://github.com/obophenotype/human-phenotype-ontology/issues/2511
 fypo:
   bioportal:
     name: Fission Yeast Phenotype Ontology
@@ -13056,11 +13118,13 @@ galen:
   bioportal:
     name: Galen Ontology
     prefix: GALEN
+  homepage: https://www.opengalen.org
   mappings:
     bioportal: GALEN
   name: Galen Ontology
 gard:
   example: '6038'
+  homepage: https://rarediseases.info.nih.gov/diseases
   name: Genetic and Rare Diseases Information Center
   synonyms:
   - GARD
@@ -13125,12 +13189,14 @@ gaz:
     prefix: P6778
 gbif:
   example: '4238'
+  homepage: https://www.gbif.org/species
   name: Global Biodiversity Information Facility
   url: https://www.gbif.org/species/$1
   wikidata:
     prefix: P846
 gc:
   comment: 'see comment here: https://github.com/obophenotype/ncbitaxon/issues/47'
+  homepage: https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html
   name: Genetic Code
   references:
   - https://github.com/obophenotype/ncbitaxon/issues/47
@@ -13816,6 +13882,7 @@ gexo:
     version: '2019-09-18'
 ghr:
   example: saddan
+  homepage: https://medlineplus.gov/genetics/condition
   name: Genetics Home Reference
   url: https://medlineplus.gov/genetics/condition/$1
 giardiadb:
@@ -14267,6 +14334,7 @@ gmd.ref:
     prefix: GMD.REF
 gmelin:
   example: '1466'
+  homepage: https://link.springer.com/bookseries/562
   name: Gmelins Handbuch der anorganischen Chemie
   pattern: ^[1-9][0-9]{3,6}$
   wikidata:
@@ -14690,6 +14758,7 @@ google.scholar:
     is_identifiers: false
     is_obo: false
     prefix: GSID
+  homepage: https://scholar.google.com/
   mappings:
     biolink: GSID
   name: Google Scholar Researcher ID
@@ -14704,6 +14773,7 @@ gorel:
     description: Additional relations pending addition into RO
     name: GO Extensions to OBO Relation Ontology Ontology
     prefix: GOREL
+  homepage: http://geneontology.org/docs/ontology-relations/
   mappings:
     biolink: GOREL
     go: GOREL
@@ -15705,6 +15775,7 @@ hao:
     is_obo: true
     prefix: HAO
 hcao:
+  homepage: https://www.humancellatlas.org
   mappings:
     ols: hcao
   no_own_terms: true
@@ -15725,6 +15796,7 @@ hcpcs:
   bioportal:
     name: Healthcare Common Procedure Coding System
     prefix: HCPCS
+  homepage: https://www.cms.gov/Medicare/Coding/MedHCPCSGenInfo
   mappings:
     biolink: HCPCS
     bioportal: HCPCS
@@ -16204,6 +16276,7 @@ hmdb:
     prefix: P2057
 hms.lincs.compound:
   example: 10001-101
+  homepage: https://lincs.hms.harvard.edu/db/sm/
   name: HMS LINCS Compound
   synonyms:
   - HMS-LINCS
@@ -16212,6 +16285,7 @@ hms.lincs.compound:
 hog:
   download_obo: ftp://ftp.bgee.org/general/ontologies/HOG.obo
   example: '0000255'
+  homepage: https://bgee.org/bgee/bgee?page=documentation#sectionHomologyRelationships
   name: Homologous Organ Groups
 hogenom:
   mappings:
@@ -16797,7 +16871,9 @@ hsapdv:
   - HsapDv
 hsdb:
   example: '5621'
+  homepage: https://pubchem.ncbi.nlm.nih.gov/source/hsdb
   name: Hazardous Substances Data Bank
+  url: https://pubchem.ncbi.nlm.nih.gov/source/hsdb/$1
   wikidata:
     prefix: P2062
 hso:
@@ -17021,6 +17097,7 @@ icd10:
   bioportal:
     name: International Classification of Diseases, Version 10
     prefix: ICD10
+  homepage: https://icd.who.int/browse10
   mappings:
     biolink: ICD10
     bioportal: ICD10
@@ -17067,6 +17144,7 @@ icd10:
     prefix: P4229
 icd11:
   example: RA01.0
+  homepage: https://icd.who.int/
   name: International Classification of Diseases 11th Revision
   synonyms:
   - ICD-11
@@ -17082,6 +17160,7 @@ icd9:
     name: International Classification of Diseases, Version 9 - Clinical Modification
     prefix: ICD9CM
   example: '277.9'
+  homepage: https://www.cdc.gov/nchs/icd/icd9cm.htm
   mappings:
     biolink: ICD9
     bioportal: ICD9CM
@@ -17121,6 +17200,7 @@ icdo:
     name: International Classification of Diseases Ontology
     prefix: ICDO
   example: M9861/3
+  homepage: https://www.who.int/classifications/icd/adaptations/oncology/en/
   mappings:
     bioportal: ICDO
   name: The International Classification of Diseases for Oncology
@@ -17413,9 +17493,12 @@ idoden:
   bioportal:
     name: Dengue Fever Ontology
     prefix: IDODEN
+  homepage: https://bioportal.bioontology.org/ontologies/IDODEN
   mappings:
     bioportal: IDODEN
   name: Dengue Fever Ontology
+  references:
+  - https://journals.plos.org/plosntds/article?id=10.1371/journal.pntd.0003479
 idomal:
   bioportal:
     name: Malaria Ontology
@@ -17911,6 +17994,7 @@ inchikey:
 inn:
   comment: can not find a place to resolve to
   example: fluticasone
+  homepage: https://www.who.int/teams/health-product-and-policy-standards/inn
   name: International Nonproprietary Names
   synonyms:
   - INN_ID
@@ -18051,6 +18135,21 @@ insdc.gca:
     is_identifiers: true
     is_obo: false
     prefix: INSDC.GCA
+insdc.run:
+  comment: 'https://www.insdc.org/ is the authoritative source for INSDC. However,
+    confusingly, they don''t mention runs in this table. I think we should ask them
+    to include. ENA is a partner and they have documentation here: https://ena-docs.readthedocs.io/en/latest/submit/general-guide/accessions.html
+    Runs | (E\|D\|S)RR[0-9]{6,} | ERR123456 -- | -- | --'
+  contributor:
+    email: cjmungall@lbl.gov
+    name: Chris Mungall
+    orcid: 0000-0002-6601-2165
+  description: An experimental run, served thrugh the ENA
+  example: ERR436051
+  homepage: https://www.insdc.org/
+  name: International Nucleotide Sequence Database Collaboration (INSDC) Run
+  pattern: ^(E|D|S)RR[0-9]{6,}$
+  url: https://www.ebi.ac.uk/ena/browser/view/$1
 insdc.sra:
   mappings:
     fairsharing: FAIRsharing.g7t2hv
@@ -18566,6 +18665,7 @@ issn:
     prefix: ISSN
 itis:
   example: '589462'
+  homepage: https://www.itis.gov/
   name: Integrated Taxonomic Information System
   pattern: ^\d+$
   url: https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=$1
@@ -18753,6 +18853,7 @@ iuphar.receptor:
     prefix: P5458
 jax:
   example: '004435'
+  homepage: https://www.jax.org/strain
   mappings:
     prefixcommons: JAX
   name: Jackson Laboratories Strain
@@ -19613,7 +19714,10 @@ knapsack:
 kupo:
   appears_in:
   - cl
+  homepage: http://www.kupkb.org/
   name: Kidney and Urinary Pathway Ontology
+  references:
+  - https://jbiomedsem.biomedcentral.com/articles/10.1186/2041-1480-2-S2-S7
 labo:
   bioportal:
     name: clinical LABoratory Ontology
@@ -20152,6 +20256,7 @@ lipro:
 lncipedia:
   description: A comprehensive compendium of human long non-coding RNAs
   example: SNHG3
+  homepage: https://lncipedia.org
   name: LNCipedia
 loggerhead:
   mappings:
@@ -21905,6 +22010,7 @@ mi:
   - PSI-MI
 miaa:
   comment: same as MAT
+  deprecated: true
   name: Minimal Information About Anatomy ontology
   references:
   - https://bioconductor.statistik.tu-dortmund.de/packages/3.1/bioc/vignettes/rols/inst/doc/rols.pdf
@@ -22982,9 +23088,8 @@ mmrrc:
     prefix: MMRRC
 mmsl:
   example: '3355'
+  homepage: https://www.nlm.nih.gov/research/umls/rxnorm/sourcereleasedocs/mmsl.html
   name: Multum MediSource Lexicon
-  references:
-  - https://www.nlm.nih.gov/research/umls/rxnorm/sourcereleasedocs/mmsl.html
   synonyms:
   - MMSL_CODE
 mmusdv:
@@ -24118,8 +24223,9 @@ mzspec:
     is_obo: false
     prefix: MZSPEC
 namerxn:
-  comment: The nomenclature used for named reactions in text mining software from
+  description: The nomenclature used for named reactions in text mining software from
     NextMove
+  homepage: https://www.nextmovesoftware.com/namerxn.html
   name: NameRXN
   references:
   - https://www.nextmovesoftware.com/products/HazELNutPoster.pdf
@@ -24819,12 +24925,11 @@ nddf:
     name: National Drug Data File
     prefix: NDDF
   example: 002678
+  homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDDF
   mappings:
     biolink: NDDF
     bioportal: NDDF
   name: National Drug Data File
-  references:
-  - https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDDF/index.html
 ndex:
   description: The Network Data Exchange (NDEx) is an open-source framework where
     scientists and organizations can store, share, manipulate, and publish biological
@@ -24838,6 +24943,7 @@ ndfrt:
     name: National Drug File - Reference Terminology
     prefix: NDFRT
   example: N0000001662
+  homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT
   mappings:
     bioportal: NDFRT
   name: National Drug File - Reference Terminology
@@ -25137,6 +25243,7 @@ nextprot:
     database: Q6983890
 nextprot.family:
   example: '01406'
+  homepage: https://www.nextprot.org/
   name: neXtProt family
   pattern: ^\d+$
   synonyms:
@@ -25276,6 +25383,10 @@ nif_grossanatomy:
     is_obo: true
     prefix: NIF_GROSSANATOMY
 nist:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   homepage: https://webbook.nist.gov/chemistry/
   name: NIST Chemistry WebBook
   no_own_terms: true
@@ -25289,22 +25400,31 @@ nlm:
     is_obo: false
     prefix: NLMID
   example: '101775319'
+  homepage: https://www.ncbi.nlm.nih.gov/nlmcatalog
   mappings:
     biolink: NLMID
   name: National Library of Medicine (NLM) Catalog
   url: https://www.ncbi.nlm.nih.gov/nlmcatalog/$1
 nlxanat:
   example: 090201
+  homepage: https://scicrunch.org/scicrunch/interlex/dashboard
   name: NeuroLex Anatomy
+  part_of: neurolex
   url: http://uri.neuinfo.org/nif/nifstd/nlx_anat_$1
 nlxdys:
   appears_in:
   - mondo
   example: '20090303'
+  homepage: https://scicrunch.org/scicrunch/interlex/dashboard
   name: NeuroLex Dysfunction
+  part_of: neurolex
   url: http://uri.neuinfo.org/nif/nifstd/nlx_dys_$1
 nmdc:
   contact: donny@polyneme.xyz
+  contributor:
+    email: donny@polyneme.xyz
+    name: Donny Winston
+    orcid: 0000-0002-8424-0604
   description: An initiative to empower the research community to harness microbiome
     data exploration and discovery through a collaborative integrative data science
     ecosystem.
@@ -25601,6 +25721,7 @@ norine:
     prefix: NORINE
 npass:
   example: NPC139585
+  homepage: http://bidd.group/NPASS/
   name: Natural Product Activity and Species Source Database
 nuclearbd:
   mappings:
@@ -25923,6 +26044,7 @@ obib:
     is_obo: true
     prefix: OBIB
 obo:
+  homepage: http://www.obofoundry.org/
   mappings:
     prefixcommons: OBO
   name: Internal OBO and PyOBO Relations
@@ -27860,6 +27982,7 @@ ovae:
     is_obo: true
     prefix: OVAE
 owl:
+  homepage: https://www.w3.org/TR/owl-features/
   mappings:
     prefixcommons: owl
   name: OWL Ontology
@@ -28661,6 +28784,7 @@ pdb.ligand:
   wikidata:
     prefix: P3636
 pdbe:
+  homepage: https://www.ebi.ac.uk/pdbe/
   name: Protein Data Bank in Europe
 pdro:
   bioportal:
@@ -29035,9 +29159,11 @@ pfam:
     pattern: (PF\d{5}|CL\d{4})
     prefix: P3519
 pfam.clan:
+  homepage: http://pfam.xfam.org
   name: Pfam Clans
 pfr:
   example: '1001'
+  homepage: http://repository.topdownproteomics.org/proteoforms
   name: Proteoform Atlas
   pattern: ^\d+$
   synonyms:
@@ -29120,14 +29246,17 @@ pharmacodb.cell:
   cellosaurus:
     prefix: PharmacoDB
   example: 22RV1_12_2019
+  homepage: https://pharmacodb.ca/cell_lines
   name: PharmacoDB Cells
   url: https://pharmacodb.ca/cell_lines/$1
 pharmacodb.dataset:
   example: '1'
+  homepage: https://pharmacodb.ca/datasets
   name: PharmacoDB Datasets
   url: https://pharmacodb.ca/datasets/$1
 pharmacodb.tissue:
   example: '13'
+  homepage: https://pharmacodb.ca/tissues
   name: PharmacoDB Tissues
   url: https://pharmacodb.ca/tissues/$1
 pharmgkb.disease:
@@ -29352,16 +29481,6 @@ phenolexplorer:
     is_identifiers: true
     is_obo: false
     prefix: PHENOLEXPLORER
-phi:
-  example: '1000000'
-  mappings:
-    ols: phi
-  ols:
-    description: Pathogen-Host Interaction database Ontology used by Ensembl
-    download: file:/nfs/panda/ensembl/production/ensprod/ontologies/phi/PHI.obo
-    name: PHI-base Ontology
-    prefix: phi
-    version: '2018-12-10'
 phipo:
   bioportal:
     name: Pathogen Host Interaction Phenotype Ontology
@@ -30533,7 +30652,8 @@ ppr:
     preprint servers and open research platforms such as bioRxiv, ChemRxiv, PeerJ
     Preprints and F1000.
   example: ppr103739
-  name: Eurpoe PMC Preprints
+  homepage: https://europepmc.org
+  name: Europe PMC Preprints
   url: https://europepmc.org/article/ppr/$1
 pr:
   bioportal:
@@ -31382,9 +31502,8 @@ pso:
     version: '2020-05-19'
     version.iri: http://purl.obolibrary.org/obo/pso/releases/2020-05-19/pso.owl
 pspub:
+  homepage: https://wiki.phenoscape.org/wiki/Curation_workflow
   name: Phenoscape Publication
-  references:
-  - https://wiki.phenoscape.org/wiki/Curation_workflow
 pubchem.bioassay:
   go:
     formatter: https://pubchem.ncbi.nlm.nih.gov/bioassay/$1
@@ -31555,6 +31674,7 @@ publons.researcher:
     is_identifiers: false
     is_obo: false
     prefix: ResearchID
+  homepage: https://publons.com/researcher
   mappings:
     biolink: ResearchID
   name: Publons Researcher ID
@@ -31742,6 +31862,7 @@ qudt:
     name: Quantities, Units, Dimensions, and Types Ontology
     prefix: QUDT
   example: baseDimensionEnumeration
+  homepage: https://qudt.org
   mappings:
     biolink: qud
     bioportal: QUDT
@@ -31894,6 +32015,7 @@ rdo:
     name: Reusable Biodiversity Ontology
     prefix: RDO
   download_obo: https://ratmine.mcw.edu/ontology/disease/RDO.obo
+  homepage: https://ratmine.mcw.edu/ontology/disease/
   mappings:
     bioportal: RDO
   name: RGD Disease_Ontology
@@ -32206,6 +32328,7 @@ rex:
     prefix: REX
   download_owl: http://purl.obolibrary.org/obo/rex.owl
   example: '0000512'
+  homepage: https://www.ebi.ac.uk/chebi/
   mappings:
     bioportal: REX
     obofoundry: rex
@@ -32226,6 +32349,7 @@ rex:
     prefix: rex
     version: '2017-11-19'
     version.iri: http://purl.obolibrary.org/obo/rex/releases/2017-11-19/rex.owl
+  part_of: chebi
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/REX_$1
     is_identifiers: false
@@ -33145,6 +33269,7 @@ rxnorm:
     name: RxNORM
     prefix: RXNORM
   example: '221058'
+  homepage: https://www.nlm.nih.gov/research/umls/rxnorm/
   mappings:
     biolink: RXCUI
     bioportal: RXNORM
@@ -33328,6 +33453,7 @@ salk:
   - efo
   comment: spider stuff!
   example: '037727'
+  homepage: https://www.salk.edu/
   name: Salk Institute for Biological Studies Accession
   url: https://abrc.osu.edu/stocks/number/SALK_$1
 sao:
@@ -33543,6 +33669,7 @@ scopus:
     is_obo: false
     prefix: ScopusID
   example: '56305849200'
+  homepage: https://www.scopus.com
   mappings:
     biolink: ScopusID
   name: Scopus Researcher Identifier
@@ -34181,6 +34308,7 @@ signor.relation:
   description: Identifiers for relationships between proteins and complexes, along
     with their type and provenance
   example: SIGNOR-252737
+  homepage: https://signor.uniroma2.it
   name: SIGNOR Relation
   part_of: signor
   pattern: ^SIGNOR-\d+$
@@ -34402,6 +34530,7 @@ smid:
   url: https://smid-db.org/smid/$1
 smiles:
   example: COc1ccc2c(c1)OC[C@H]1[C@@H]2C2=C(OC1(C)C)C1=C(C(=O)C2=O)[C@H]2c3ccc(OC)cc3OC[C@H]2C(C)(C)O1
+  homepage: https://www.daylight.com/dayhtml/doc/theory/theory.smiles.html
   name: Simplified molecular-input line-entry system
   wikidata:
     prefix: P233
@@ -34460,9 +34589,8 @@ smpdb:
   - SMP
   url: https://smpdb.ca/view/$1
 snap:
+  homepage: http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf
   name: Snapshot
-  references:
-  - http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf
 snomedct:
   bioportal:
     name: SNOMED CT
@@ -34687,6 +34815,7 @@ soybase:
     prefix: SOYBASE
 span:
   comment: see also snap
+  homepage: http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf
   name: Span
 spd:
   bioportal:
@@ -35888,6 +36017,7 @@ tcdb:
     prefix: P7260
 te:
   example: E5.11.2.0.0.0.4
+  homepage: https://ifaa.unifr.ch/
   name: Terminologia Embryologica
   wikidata:
     prefix: P1693
@@ -35988,6 +36118,7 @@ tgma:
     prefix: TGMA
 th:
   example: H3.03.00.0.00007
+  homepage: https://ifaa.unifr.ch/
   name: Terminologia Histologica
 tigrfam:
   mappings:
@@ -37531,6 +37662,7 @@ uniprot.location:
   url: https://www.uniprot.org/locations/SL-$1
 uniprot.var:
   example: VAR_068078
+  homepage: https://web.expasy.org/variant_pages
   name: UniProt Variants
   pattern: ^VAR_\d+$
   synonyms:
@@ -37881,6 +38013,7 @@ vandf:
     name: Veterans Health Administration National Drug File
     prefix: VANDF
   example: '4019477'
+  homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/VANDF
   mappings:
     biolink: VANDF
     bioportal: VANDF
@@ -38678,6 +38811,7 @@ vto:
     is_obo: true
     prefix: VTO
 vuid:
+  homepage: https://www.va.gov/health
   name: Veterans Health Administration (VHA) unique identifier
   references:
   - https://academic.oup.com/jamia/article/17/4/432/866953
@@ -39002,6 +39136,7 @@ wikidata.property:
     is_obo: false
     prefix: WIKIDATA_PROPERTY
   example: P4355
+  homepage: https://www.wikidata.org
   mappings:
     biolink: WIKIDATA_PROPERTY
     prefixcommons: WD_Prop
@@ -39525,6 +39660,7 @@ xsd:
 xuo:
   appears_in:
   - hsapdv
+  deprecated: true
   name: XUO
 ydpm:
   mappings:
@@ -39690,6 +39826,7 @@ ymdb:
     \ of small molecule metabolites found in or produced by Saccharomyces cerevisiae\
     \ (also known as Baker\u2019s yeast and Brewer\u2019s yeast)."
   example: YMDB00001
+  homepage: http://www.ymdb.ca
   name: Yeast Metabolome Database
   pattern: ^YMDB\d+$
   url: http://www.ymdb.ca/compounds/$1
