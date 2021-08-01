@@ -134,20 +134,20 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
 
 def read_contributors() -> Mapping[str, Author]:
     """Get a mapping from contributor ORCID identifiers to author objects."""
-    om = {}
+    rv = {}
     for prefix, resource in read_registry().items():
         if resource.contributor:
-            om[resource.contributor.orcid] = resource.contributor
+            rv[resource.contributor.orcid] = resource.contributor
     for resource in read_collections().values():
         for author in resource.authors or []:
-            om[author.orcid] = author
-    return om
+            rv[author.orcid] = author
+    return rv
 
 
 def read_prefix_contributions() -> Mapping[str, Set[str]]:
     """Get a mapping from contributor ORCID identifiers to prefixes."""
     rv = defaultdict(set)
-    for resource in read_registry().values():
+    for prefix, resource in read_registry().items():
         if resource.contributor:
             rv[resource.contributor.orcid].add(prefix)
     return dict(rv)
