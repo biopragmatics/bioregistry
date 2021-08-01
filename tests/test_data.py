@@ -93,6 +93,14 @@ class TestRegistry(unittest.TestCase):
                 with self.subTest(prefix=prefix):
                     self.fail(msg=f"{prefix} acronym ({name}) is not expanded")
 
+    def test_has_homepage(self):
+        """Test that all non-deprecated entries have a homepage."""
+        for prefix in bioregistry.read_registry():
+            if bioregistry.is_deprecated(prefix):
+                continue
+            with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
+                self.assertIsNotNone(bioregistry.get_homepage(prefix))
+
     def test_homepage_http(self):
         """Test that all homepages start with http."""
         for prefix in bioregistry.read_registry():
@@ -146,6 +154,14 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.assertIn("$1", url, msg=f"{prefix} format does not have a $1")
 
+    def test_own_terms_conflict(self):
+        """Test there is no conflict between no own terms and having an example."""
+        for prefix, resource in self.registry.items():
+            if bioregistry.has_no_terms(prefix):
+                with self.subTest(prefix=prefix):
+                    self.assertIsNone(bioregistry.get_example(prefix))
+                    self.assertIsNone(resource.url)
+
     def test_patterns(self):
         """Test that all prefixes are norm-unique."""
         for prefix, entry in self.registry.items():
@@ -169,12 +185,21 @@ class TestRegistry(unittest.TestCase):
     def test_examples(self):
         """Test that all entries have examples."""
         for prefix, entry in self.registry.items():
-            if "pattern" not in entry:  # TODO remove this later
+            if (
+                bioregistry.has_no_terms(prefix)
+                or bioregistry.is_deprecated(prefix)
+                or bioregistry.get_provides_for(prefix)
+            ):
                 continue
+            if not bioregistry.get_pattern(prefix) and not entry.ols:
+                continue
+
             with self.subTest(prefix=prefix):
                 msg = f"{prefix} is missing an example local identifier"
-                if "ols" in entry:
-                    msg += f'\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry["ols"]["prefix"]}/terms'
+                if entry.ols:
+                    msg += (
+                        f'\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry.ols["prefix"]}/terms'
+                    )
                 self.assertIsNotNone(bioregistry.get_example(prefix), msg=msg)
 
     def test_examples_pass_patterns(self):

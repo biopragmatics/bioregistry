@@ -33,7 +33,7 @@ MAPPING = {
     "Redundant Prefix in Regular Expression Pattern": "banana",
     "Provider Format URL": "url",
     "Contact": "contact",
-    "Additional Comments": "comments",
+    "Additional Comments": "comment",
 }
 
 
@@ -58,6 +58,9 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Tuple[str
     rv = {}
     for issue_id, resource_data in data.items():
         prefix = resource_data.pop("prefix")
+        # Remove redundant prefix from identifier if given as a CURIE
+        if "example" in resource_data and resource_data["example"].startswith(f"{prefix}:"):
+            resource_data["example"] = resource_data["example"][len(prefix) + 1 :]
         if bioregistry.get_resource(prefix) is not None:
             # TODO close issue
             logger.warning(

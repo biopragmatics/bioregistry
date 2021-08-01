@@ -127,6 +127,7 @@ abs:
     is_obo: false
     prefix: ABS
 ac:
+  example: Add
   homepage: http://www.w3.org/ns/activitystreams
   name: Activity Streams
   url: http://www.w3.org/ns/activitystreams#$1
@@ -347,6 +348,7 @@ afo:
   mappings:
     bioportal: AFO
     ols: afo
+  no_own_terms: true
   ols:
     description: Allotrope Merged Ontology Suite
     download: http://afo-ols.semanticsfirst.com/ontologies/afo
@@ -445,6 +447,7 @@ agro:
   bioportal:
     name: AGRonomy Ontology
     prefix: AGRO
+  example: '00020007'
   mappings:
     bioportal: AGRO
     obofoundry: agro
@@ -480,6 +483,7 @@ aism:
   bioportal:
     name: Ontology for the Anatomy of the Insect SkeletoMuscular system
     prefix: AISM
+  example: '0000027'
   mappings:
     bioportal: AISM
     obofoundry: aism
@@ -609,6 +613,7 @@ amphx:
   bioportal:
     name: The Amphioxus Development and Anatomy Ontology
     prefix: AMPHX
+  example: '1000160'
   mappings:
     bioportal: AMPHX
     obofoundry: amphx
@@ -993,6 +998,7 @@ apollo_sv:
   bioportal:
     name: Apollo Structured Vocabulary
     prefix: APOLLO-SV
+  example: '00000443'
   mappings:
     bioportal: APOLLO-SV
     obofoundry: apollo_sv
@@ -1771,6 +1777,7 @@ atol:
   bioportal:
     name: Animal Trait Ontology for Livestock
     prefix: ATOL
+  example: '0002233'
   mappings:
     bioportal: ATOL
     ols: atol
@@ -2077,6 +2084,7 @@ bcio:
   bioportal:
     name: Brain-Computer Interaction (BCI) Ontology
     prefix: BCI-O
+  example: '040000'
   mappings:
     bioportal: BCI-O
     ols: bcio
@@ -2093,6 +2101,7 @@ bco:
   bioportal:
     name: Biological Collections Ontology
     prefix: BCO
+  example: 0000081
   mappings:
     bioportal: BCO
     obofoundry: bco
@@ -2653,6 +2662,7 @@ bigg.reaction:
     is_obo: false
     prefix: BIGG.REACTION
 bila:
+  deprecated: true
   mappings:
     prefixcommons: BILA
   obofoundry:
@@ -3245,6 +3255,7 @@ bioregistry.collection:
   url: https://bioregistry.io/collection/$1
 biorxiv:
   description: The bioRxiv is a preprint server for biology
+  example: 2021.07.23.453588
   go:
     formatter: https://www.biorxiv.org/content/$1
     homepage: https://www.biorxiv.org/
@@ -4027,7 +4038,9 @@ cadsr:
     provider_url: https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement[@publicId=$1]
 caloha:
   download_obo: ftp://ftp.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo
+  example: '0001'
   name: CALIPHO Group Ontology of Human Anatomy
+  pattern: ^\d+$
   references:
   - https://twitter.com/neXtProt_news/status/1350105997633867781
 cameo:
@@ -4582,6 +4595,7 @@ cdao:
   bioportal:
     name: Comparative Data Analysis Ontology
     prefix: CDAO
+  example: '0000072'
   mappings:
     bioportal: CDAO
     obofoundry: cdao
@@ -4683,6 +4697,7 @@ cdd:
     name: Conserved Domains Database
     prefix: CDD
 cdno:
+  example: '0000013'
   mappings:
     obofoundry: cdno
     ols: cdno
@@ -5306,6 +5321,7 @@ cheminf:
     name: Chemical Information Ontology
     prefix: CHEMINF
   download_owl: https://github.com/semanticchemistry/semanticchemistry/raw/master/ontology/cheminf.owl
+  example: '000410'
   mappings:
     bioportal: CHEMINF
     obofoundry: cheminf
@@ -5508,6 +5524,7 @@ cido:
   bioportal:
     name: Coronavirus Infectious Disease Ontology
     prefix: CIDO
+  example: '0000005'
   mappings:
     bioportal: CIDO
     obofoundry: cido
@@ -5666,6 +5683,7 @@ clao:
   bioportal:
     name: Collembola Anatomy Ontology
     prefix: CLAO
+  example: 0000088
   mappings:
     bioportal: CLAO
     obofoundry: clao
@@ -6016,6 +6034,7 @@ clyh:
   bioportal:
     name: Clytia hemisphaerica Development and Anatomy Ontology
     prefix: CLYH
+  example: '1000100'
   mappings:
     bioportal: CLYH
     obofoundry: clyh
@@ -6099,6 +6118,7 @@ cmpo:
   bioportal:
     name: Cellular microscopy phenotype ontology
     prefix: CMPO
+  example: '0000435'
   mappings:
     bioportal: CMPO
     ols: cmpo
@@ -6114,6 +6134,7 @@ cmpo:
     version: '2017-12-19'
     version.iri: http://www.ebi.ac.uk/cmpo/releases/2017-12-19/cmpo.owl
 co_320:
+  example: 0000618
   mappings:
     ols: co_320
   ols:
@@ -6127,6 +6148,7 @@ co_320:
     prefix: co_320
     version: '2019-10-09'
 co_321:
+  example: 0000449
   mappings:
     ols: co_321
   ols:
@@ -6140,6 +6162,7 @@ co_321:
 co_321:root:
   mappings:
     ols: co_321:root
+  no_own_terms: true
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: T3 Wheat traits
@@ -6148,6 +6171,7 @@ co_321:root:
     name: Wheat ontology
     prefix: co_321:root
 co_322:
+  example: '0000773'
   mappings:
     ols: co_322
   ols:
@@ -6159,6 +6183,7 @@ co_322:
     prefix: co_322
     version: '2019-10-09'
 co_323:
+  example: '0000252'
   mappings:
     ols: co_323
   ols:
@@ -6170,6 +6195,7 @@ co_323:
     prefix: co_323
     version: '2019-11-20'
 co_324:
+  example: '0000111'
   mappings:
     ols: co_324
   ols:
@@ -6181,6 +6207,7 @@ co_324:
     prefix: co_324
     version: '2019-10-09'
 co_325:
+  example: 0000519
   mappings:
     ols: co_325
   ols:
@@ -6193,6 +6220,7 @@ co_325:
     prefix: co_325
     version: '2019-10-09'
 co_327:
+  example: 0000095
   mappings:
     ols: co_327
   ols:
@@ -6205,6 +6233,7 @@ co_327:
     prefix: co_327
     version: '2019-10-09'
 co_330:
+  example: '0000106'
   mappings:
     ols: co_330
   ols:
@@ -6216,6 +6245,7 @@ co_330:
     prefix: co_330
     version: '2019-10-09'
 co_331:
+  example: 0000088
   mappings:
     ols: co_331
   ols:
@@ -6227,6 +6257,7 @@ co_331:
     prefix: co_331
     version: '2019-10-09'
 co_333:
+  example: '3000045'
   mappings:
     ols: co_333
   ols:
@@ -6242,6 +6273,7 @@ co_333:
     prefix: co_333
     version: '2019-01-23'
 co_334:
+  example: '0000070'
   mappings:
     ols: co_334
   ols:
@@ -6254,6 +6286,7 @@ co_334:
     prefix: co_334
     version: '2019-10-09'
 co_335:
+  example: 0000189
   mappings:
     ols: co_335
   ols:
@@ -6267,6 +6300,7 @@ co_335:
 co_336:
   mappings:
     ols: co_336
+  no_own_terms: true
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: Soybean Trait Dictionary in template v5 - IITA - July 2015
@@ -6275,6 +6309,7 @@ co_336:
     name: Soybean ontology
     prefix: co_336
 co_337:
+  example: '0000054'
   mappings:
     ols: co_337
   ols:
@@ -6287,6 +6322,7 @@ co_337:
     prefix: co_337
     version: '2019-10-09'
 co_338:
+  example: 0000138
   mappings:
     ols: co_338
   ols:
@@ -6298,6 +6334,7 @@ co_338:
     prefix: co_338
     version: '2019-10-09'
 co_339:
+  example: '0000032'
   mappings:
     ols: co_339
   ols:
@@ -6309,6 +6346,7 @@ co_339:
     prefix: co_339
     version: '2019-10-09'
 co_340:
+  example: 0000639
   mappings:
     ols: co_340
   ols:
@@ -6320,6 +6358,7 @@ co_340:
     prefix: co_340
     version: '2019-10-09'
 co_341:
+  example: '0000140'
   mappings:
     ols: co_341
   ols:
@@ -6331,6 +6370,7 @@ co_341:
     prefix: co_341
     version: '2019-11-18'
 co_343:
+  example: '0100010'
   mappings:
     ols: co_343
   ols:
@@ -6342,6 +6382,7 @@ co_343:
     prefix: co_343
     version: '2019-10-09'
 co_345:
+  example: '0000127'
   mappings:
     ols: co_345
   ols:
@@ -6353,6 +6394,7 @@ co_345:
     prefix: co_345
     version: '2019-10-09'
 co_346:
+  example: 0000199
   mappings:
     ols: co_346
   ols:
@@ -6364,6 +6406,7 @@ co_346:
     prefix: co_346
     version: '2019-10-09'
 co_347:
+  example: 0000108
   mappings:
     ols: co_347
   ols:
@@ -6375,6 +6418,7 @@ co_347:
     prefix: co_347
     version: '2019-10-09'
 co_348:
+  example: '1100107'
   mappings:
     ols: co_348
   ols:
@@ -6389,6 +6433,7 @@ co_348:
     prefix: co_348
     version: '2019-11-29'
 co_350:
+  example: '0000215'
   mappings:
     ols: co_350
   ols:
@@ -6401,6 +6446,7 @@ co_350:
     prefix: co_350
     version: '2019-10-09'
 co_356:
+  example: '4000027'
   mappings:
     ols: co_356
   ols:
@@ -6413,6 +6459,7 @@ co_356:
     prefix: co_356
     version: '2019-11-29'
 co_357:
+  example: '1000290'
   mappings:
     ols: co_357
   ols:
@@ -6427,6 +6474,7 @@ co_357:
     prefix: co_357
     version: '2019-11-18'
 co_358:
+  example: 0000139
   mappings:
     ols: co_358
   ols:
@@ -6440,6 +6488,7 @@ co_358:
 co_359:
   mappings:
     ols: co_359
+  no_own_terms: true
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: December 2019
@@ -6448,6 +6497,7 @@ co_359:
     name: Sunflower ontology
     prefix: co_359
 co_360:
+  example: '0000071'
   mappings:
     ols: co_360
   ols:
@@ -6459,6 +6509,7 @@ co_360:
     prefix: co_360
     version: '2019-06-26'
 co_365:
+  example: '0000205'
   mappings:
     ols: co_365
   ols:
@@ -6470,6 +6521,7 @@ co_365:
     prefix: co_365
     version: '2019-10-15'
 co_366:
+  example: '0000072'
   mappings:
     ols: co_366
   ols:
@@ -6484,6 +6536,7 @@ cob:
   bioportal:
     name: Core Ontology for Biology and Biomedicine
     prefix: COB
+  example: 0000080
   mappings:
     bioportal: COB
     obofoundry: cob
@@ -6559,6 +6612,7 @@ cohd:
     athena. I was not able to figure out what COHD stands for.
   homepage: https://github.com/MIT-LCP/mimic-omop
   name: MIMIC III Database
+  no_own_terms: true
 combine.specifications:
   mappings:
     miriam: combine.specifications
@@ -6968,6 +7022,7 @@ covid19:
     provider_url: https://covid19.sfb.uit.no/api/records/$1
     sampleId: SFB_COVID19_MW286762
 covoc:
+  example: '0010034'
   mappings:
     ols: covoc
   ols:
@@ -7111,6 +7166,7 @@ cryoem:
   bioportal:
     name: Cryo Electron Microscopy
     prefix: CRYOEM
+  example: '0000052'
   mappings:
     bioportal: CRYOEM
     ols: cryoem
@@ -7470,6 +7526,7 @@ cto:
   bioportal:
     name: Clinical Trials Ontology
     prefix: CTO
+  example: '0000022'
   mappings:
     bioportal: CTO
     obofoundry: cto
@@ -7542,6 +7599,7 @@ cvdo:
   bioportal:
     name: Cardiovascular Disease Ontology
     prefix: CVDO
+  example: '0000546'
   mappings:
     bioportal: CVDO
     obofoundry: cvdo
@@ -8468,6 +8526,7 @@ dicom:
   bioportal:
     name: DICOM Controlled Terminology
     prefix: DCM
+  example: '109082'
   mappings:
     bioportal: DCM
     ols: dicom
@@ -8625,6 +8684,7 @@ dideo:
   bioportal:
     name: Drug Interaction and Evidence Ontology
     prefix: DIDEO
+  example: 00000180
   mappings:
     bioportal: DIDEO
     obofoundry: dideo
@@ -9101,6 +9161,7 @@ dpo:
   bioportal:
     name: Drosophila Phenotype Ontology
     prefix: DPO
+  example: 0000559
   mappings:
     bioportal: DPO
     obofoundry: dpo
@@ -9306,6 +9367,7 @@ dron:
   bioportal:
     name: The Drug Ontology
     prefix: DRON
+  example: '00023232'
   mappings:
     bioportal: DRON
     obofoundry: dron
@@ -9522,6 +9584,7 @@ dto:
   bioportal:
     name: Drug Target Ontology
     prefix: DTO
+  example: '90000018'
   homepage: https://github.com/DrugTargetOntology/DTO
   mappings:
     bioportal: DTO
@@ -9530,6 +9593,7 @@ duo:
   bioportal:
     name: The Data Use Ontology
     prefix: DUO
+  example: '0000046'
   mappings:
     bioportal: DUO
     obofoundry: duo
@@ -9582,6 +9646,7 @@ ecao:
   bioportal:
     name: The Echinoderm Anatomy and Development Ontology
     prefix: ECAO
+  example: 0107180
   mappings:
     bioportal: ECAO
     obofoundry: ecao
@@ -10755,6 +10820,7 @@ enm:
   bioportal:
     name: eNanoMapper
     prefix: ENM
+  example: '8000221'
   mappings:
     bioportal: ENM
     ols: enm
@@ -11058,6 +11124,7 @@ ensembl.protist:
     is_obo: false
     prefix: ENSEMBL.PROTIST
 ensemblglossary:
+  example: 0000198
   mappings:
     ols: ensemblglossary
   ols:
@@ -11155,6 +11222,7 @@ eol:
   bioportal:
     name: Environment Ontology for Livestock
     prefix: EOL
+  example: 0001927
   mappings:
     bioportal: EOL
     ols: eol
@@ -11442,6 +11510,7 @@ eupath:
   bioportal:
     name: VEuPathDB Ontology
     prefix: EUPATH
+  example: '0010316'
   mappings:
     bioportal: EUPATH
     obofoundry: eupath
@@ -12065,6 +12134,7 @@ fideo:
   bioportal:
     name: Food Interactions with Drugs Evidence Ontology
     prefix: FIDEO
+  example: '00000021'
   mappings:
     bioportal: FIDEO
     obofoundry: fideo
@@ -12132,6 +12202,7 @@ flopo:
   bioportal:
     name: Flora Phenotype Ontology
     prefix: FLOPO
+  example: '0005250'
   mappings:
     bioportal: FLOPO
     obofoundry: flopo
@@ -12385,6 +12456,7 @@ fobi:
   bioportal:
     name: FOBI (Food-Biomarker Ontology)
     prefix: FOBI
+  example: 030719
   mappings:
     bioportal: FOBI
     obofoundry: fobi
@@ -12530,6 +12602,7 @@ fovt:
   bioportal:
     name: FuTRES Ontology of Vertebrate Traits
     prefix: FOVT
+  example: 0000009
   mappings:
     bioportal: FOVT
     obofoundry: fovt
@@ -13169,6 +13242,7 @@ gecko:
   bioportal:
     name: Genomics Cohorts Knowledge Ontology
     prefix: GECKO
+  example: '0000044'
   mappings:
     bioportal: GECKO
     obofoundry: gecko
@@ -13397,6 +13471,7 @@ genefarm:
     is_obo: false
     prefix: GENEFARM
 genepio:
+  example: 0001885
   mappings:
     obofoundry: genepio
     ols: genepio
@@ -13730,6 +13805,7 @@ gexo:
   mappings:
     bioportal: GEXO
     ols: gexo
+  no_own_terms: true
   ols:
     contact: vladimir.n.mironov@gmail.com
     description: Gene Expression Ontology
@@ -15564,6 +15640,7 @@ hancestro:
   bioportal:
     name: Human Ancestry Ontology
     prefix: HANCESTRO
+  example: 0290
   mappings:
     biolink: HANCESTRO
     bioportal: HANCESTRO
@@ -15630,6 +15707,7 @@ hao:
 hcao:
   mappings:
     ols: hcao
+  no_own_terms: true
   ols:
     description: Application ontology for human cell types, anatomy and development
       stages for the Human Cell Atlas.
@@ -16185,6 +16263,7 @@ hom:
   bioportal:
     name: Ontology of Homology and Related Concepts in Biology
     prefix: HOM
+  example: 0000049
   mappings:
     bioportal: HOM
     obofoundry: hom
@@ -16499,6 +16578,7 @@ hpa:
     name: Human Protein Atlas
     prefix: HPA
 hpath:
+  example: '2000191'
   mappings:
     ols: hpath
   ols:
@@ -16724,6 +16804,7 @@ hso:
   bioportal:
     name: Health Surveillance Ontology
     prefix: HSO
+  example: '0000062'
   mappings:
     bioportal: HSO
     obofoundry: hso
@@ -16798,6 +16879,7 @@ htn:
   bioportal:
     name: Hypertension Ontology
     prefix: HTN
+  example: '00000014'
   mappings:
     bioportal: HTN
     obofoundry: htn
@@ -17135,6 +17217,7 @@ iceo:
   bioportal:
     name: Integrative and Conjugative Element Ontology
     prefix: ICEO
+  example: '0000712_1'
   mappings:
     bioportal: ICEO
     obofoundry: iceo
@@ -17163,6 +17246,7 @@ ico:
   bioportal:
     name: Informed Consent Ontology
     prefix: ICO
+  example: ICODEV_0000066
   mappings:
     bioportal: ICO
     obofoundry: ico
@@ -17306,6 +17390,7 @@ idocovid19:
   bioportal:
     name: The COVID-19 Infectious Disease Ontology
     prefix: IDO-COVID-19
+  example: 0001191
   mappings:
     bioportal: IDO-COVID-19
     ols: idocovid19
@@ -17500,6 +17585,7 @@ ihw:
 imdrf:
   homepage: http://www.imdrf.org/
   name: International Medical Device Regulators Forum
+  no_own_terms: true
   references:
   - https://www.fda.gov/medical-devices/mandatory-reporting-requirements-manufacturers-importers-and-device-user-facilities/mdr-adverse-event-codes
 imex:
@@ -17840,6 +17926,7 @@ ino:
   bioportal:
     name: Interaction Network Ontology
     prefix: INO
+  example: '0000003'
   mappings:
     biolink: INO
     bioportal: INO
@@ -19150,6 +19237,7 @@ kegg.enzyme:
     go: KEGG_ENZYME
   name: KEGG Enzyme
   part_of: kegg
+  provides: eccode
 kegg.genes:
   biolink:
     formatter: http://www.kegg.jp/entry/$1
@@ -19530,6 +19618,7 @@ labo:
   bioportal:
     name: clinical LABoratory Ontology
     prefix: LABO
+  example: '0000124'
   mappings:
     bioportal: LABO
     obofoundry: labo
@@ -19558,6 +19647,7 @@ lbo:
   bioportal:
     name: Livestock Breed Ontology
     prefix: LBO
+  example: 0000487
   mappings:
     bioportal: LBO
     ols: lbo
@@ -20511,6 +20601,7 @@ maxo:
   bioportal:
     name: Medical Action Ontology
     prefix: MAXO
+  example: 0000008
   mappings:
     bioportal: MAXO
     obofoundry: maxo
@@ -21397,6 +21488,7 @@ mf:
   bioportal:
     name: Mental Functioning Ontology
     prefix: MF
+  example: 0000091
   mappings:
     bioportal: MF
     obofoundry: mf
@@ -21432,6 +21524,7 @@ mfmo:
   bioportal:
     name: Mammalian Feeding Muscle Ontology
     prefix: MFMO
+  example: 0000208
   mappings:
     bioportal: MFMO
     obofoundry: mfmo
@@ -21490,6 +21583,7 @@ mfoem:
   bioportal:
     name: Emotion Ontology
     prefix: MFOEM
+  example: '000204'
   mappings:
     bioportal: MFOEM
     obofoundry: mfoem
@@ -21525,6 +21619,7 @@ mfomd:
   bioportal:
     name: MFO Mental Disease Ontology
     prefix: MFOMD
+  example: '0000046'
   mappings:
     bioportal: MFOMD
     obofoundry: mfomd
@@ -21817,6 +21912,7 @@ miapa:
   bioportal:
     name: MIAPA Ontology
     prefix: MIAPA
+  example: '0000010'
   mappings:
     bioportal: MIAPA
     obofoundry: miapa
@@ -21859,6 +21955,7 @@ miapa:
     is_obo: true
     prefix: MIAPA
 micro:
+  example: 0002999
   mappings:
     obofoundry: micro
     ols: micro
@@ -23444,6 +23541,7 @@ mpio:
   bioportal:
     name: Minimum PDDI Information Ontology
     prefix: MPIO
+  example: '0000004'
   mappings:
     bioportal: MPIO
     obofoundry: mpio
@@ -23601,6 +23699,7 @@ msigdb:
   wikidata:
     paper: Q34509167
 msio:
+  example: '0000111'
   mappings:
     ols: msio
   name: Metabolomics Standards Initiative Ontology
@@ -24645,6 +24744,7 @@ ncro:
   bioportal:
     name: Non-coding RNA Ontology
     prefix: NCRO
+  example: 0002927
   mappings:
     bioportal: NCRO
     obofoundry: ncro
@@ -25178,6 +25278,7 @@ nif_grossanatomy:
 nist:
   homepage: https://webbook.nist.gov/chemistry/
   name: NIST Chemistry WebBook
+  no_own_terms: true
   synonyms:
   - NIST Chemistry WebBook
   - NIST
@@ -25315,6 +25416,7 @@ nomen:
   bioportal:
     name: NOMEN - A nomenclatural ontology for biological names
     prefix: NOMEN
+  example: 0000295
   mappings:
     bioportal: NOMEN
     obofoundry: nomen
@@ -25538,6 +25640,7 @@ oa:
   bioportal:
     name: Web Annotation Ontology
     prefix: OA
+  example: sourceDateStart
   homepage: http://www.w3.org/ns/oa
   mappings:
     bioportal: OA
@@ -25553,6 +25656,7 @@ oae:
   bioportal:
     name: Ontology of Adverse Events
     prefix: OAE
+  example: 0002959
   mappings:
     bioportal: OAE
     obofoundry: oae
@@ -25591,6 +25695,7 @@ oarcs:
   bioportal:
     name: Ontology of Arthropod Circulatory Systems
     prefix: OARCS
+  example: 0000029
   mappings:
     bioportal: OARCS
     obofoundry: oarcs
@@ -25659,6 +25764,7 @@ obcs:
   bioportal:
     name: Ontology of Biological and Clinical Statistics
     prefix: OBCS
+  example: '0000121'
   mappings:
     bioportal: OBCS
     obofoundry: obcs
@@ -25778,6 +25884,7 @@ obib:
   bioportal:
     name: Ontology for Biobanking
     prefix: OBIB
+  example: 0000389
   mappings:
     bioportal: OBIB
     obofoundry: obib
@@ -26068,6 +26175,7 @@ ogg:
   bioportal:
     name: Ontology of Genes and Genomes
     prefix: OGG
+  example: '3000887619'
   mappings:
     bioportal: OGG
     obofoundry: ogg
@@ -26106,6 +26214,7 @@ ogi:
   bioportal:
     name: Ontology for Genetic Interval
     prefix: OGI
+  example: 0000019
   mappings:
     bioportal: OGI
     obofoundry: ogi
@@ -26205,6 +26314,7 @@ ogsf:
   bioportal:
     name: Ontology for Genetic Susceptibility Factor
     prefix: OGSF
+  example: '0000025'
   mappings:
     bioportal: OGSF
     obofoundry: ogsf
@@ -26239,6 +26349,7 @@ ohd:
   bioportal:
     name: The Oral Health and Disease Ontology
     prefix: OHD
+  example: '0000006'
   mappings:
     bioportal: OHD
     obofoundry: ohd
@@ -26273,6 +26384,7 @@ ohmi:
   bioportal:
     name: Ontology of Host-Microbe Interactions
     prefix: OHMI
+  example: '0000460'
   mappings:
     bioportal: OHMI
     obofoundry: ohmi
@@ -26309,6 +26421,7 @@ ohpi:
   bioportal:
     name: Ontology of Host-Pathogen Interactions
     prefix: OHPI
+  example: '9001411'
   mappings:
     bioportal: OHPI
     obofoundry: ohpi
@@ -26406,6 +26519,7 @@ om:
   bioportal:
     name: Ontology of units of Measure
     prefix: OM
+  example: Dimension
   mappings:
     bioportal: OM
     ols: om
@@ -26571,6 +26685,7 @@ omiabis:
   bioportal:
     name: Ontologized MIABIS
     prefix: OMIABIS
+  example: 0001079
   mappings:
     bioportal: OMIABIS
     obofoundry: omiabis
@@ -26681,6 +26796,7 @@ omo:
     bioportal: OMO
     obofoundry: omo
     ols: omo
+  no_own_terms: true
   obofoundry:
     contact: cjmungall@lbl.gov
     contact.label: Chris Mungall
@@ -26706,6 +26822,7 @@ omo:
 omop:
   homepage: https://www.ohdsi.org/data-standardization/the-common-data-model/
   name: Observational Medical Outcomes Partnership
+  no_own_terms: true
   references:
   - https://github.com/callahantiff/OMOP2OBO
 omp:
@@ -26750,6 +26867,7 @@ omrse:
     name: Ontology of Medically Related Social Entities
     prefix: OMRSE
   download_obo: https://github.com/ufbmi/OMRSE/raw/master/omrse-full.obo
+  example: '00000022'
   mappings:
     bioportal: OMRSE
     obofoundry: omrse
@@ -26793,6 +26911,7 @@ one:
   bioportal:
     name: Ontology for Nutritional Epidemiology
     prefix: ONE
+  example: '0001021'
   mappings:
     bioportal: ONE
     obofoundry: one
@@ -26819,6 +26938,7 @@ ons:
   bioportal:
     name: Ontology for Nutritional Studies
     prefix: ONS
+  example: '0000060'
   mappings:
     bioportal: ONS
     obofoundry: ons
@@ -26848,6 +26968,7 @@ ontoneo:
   bioportal:
     name: Obstetric and Neonatal Ontology
     prefix: ONTONEO
+  example: 00000098
   homepage: http://ontoneo.com
   mappings:
     bioportal: ONTONEO
@@ -26885,6 +27006,7 @@ oostt:
   bioportal:
     name: Ontology of Organizational Structures of Trauma centers and Trauma systems
     prefix: OOSTT
+  example: 00000099
   mappings:
     bioportal: OOSTT
     obofoundry: oostt
@@ -26962,6 +27084,7 @@ opl:
   bioportal:
     name: Ontology for Parasite LifeCycle
     prefix: OPL
+  example: 0000319
   mappings:
     bioportal: OPL
     obofoundry: opl
@@ -27037,6 +27160,7 @@ opmi:
   bioportal:
     name: Ontology of Precision Medicine and Investigation
     prefix: OPMI
+  example: '0000101'
   mappings:
     bioportal: OPMI
     obofoundry: opmi
@@ -27231,6 +27355,7 @@ ornaseq:
   bioportal:
     name: Ontology of RNA Sequencing
     prefix: ORNASEQ
+  example: '0000010'
   mappings:
     bioportal: ORNASEQ
     obofoundry: ornaseq
@@ -27394,6 +27519,7 @@ orth:
   bioportal:
     name: Orthology Ontology
     prefix: ORTH
+  example: HomologyRelation
   mappings:
     bioportal: ORTH
     ols: orth
@@ -27704,6 +27830,7 @@ ovae:
   bioportal:
     name: Ontology of Vaccine Adverse Events
     prefix: OVAE
+  example: 0000609
   mappings:
     bioportal: OVAE
     obofoundry: ovae
@@ -28539,6 +28666,7 @@ pdro:
   bioportal:
     name: The Prescription of Drugs Ontology
     prefix: PDRO
+  example: 0010039
   mappings:
     bioportal: PDRO
     obofoundry: pdro
@@ -29225,6 +29353,7 @@ phenolexplorer:
     is_obo: false
     prefix: PHENOLEXPLORER
 phi:
+  example: '1000000'
   mappings:
     ols: phi
   ols:
@@ -30365,6 +30494,7 @@ ppo:
   bioportal:
     name: Plant Phenology Ontology
     prefix: PPO
+  example: 0002058
   mappings:
     bioportal: PPO
     obofoundry: ppo
@@ -31104,6 +31234,7 @@ psdo:
   bioportal:
     name: Performance Summary Display Ontology
     prefix: PSDO
+  example: '0000055'
   mappings:
     bioportal: PSDO
     obofoundry: psdo
@@ -31226,6 +31357,7 @@ pso:
   bioportal:
     name: PatientSafetyOntology
     prefix: PSO
+  example: '0000013'
   mappings:
     bioportal: PSO
     obofoundry: pso
@@ -31695,6 +31827,7 @@ rbo:
   bioportal:
     name: Radiation Biology Ontology
     prefix: RBO
+  example: '00000105'
   mappings:
     bioportal: RBO
     obofoundry: rbo
@@ -31980,6 +32113,7 @@ reproduceme:
   bioportal:
     name: REPRODUCE-ME
     prefix: REPRODUCE-ME
+  example: MicrobeamManipulation
   mappings:
     bioportal: REPRODUCE-ME
     ols: reproduceme
@@ -32057,6 +32191,7 @@ reto:
   mappings:
     bioportal: RETO
     ols: reto
+  no_own_terms: true
   ols:
     contact: vladimir.n.mironov@gmail.com
     description: Regulation of Transcription
@@ -32070,6 +32205,7 @@ rex:
     name: Physico-Chemical Process
     prefix: REX
   download_owl: http://purl.obolibrary.org/obo/rex.owl
+  example: '0000512'
   mappings:
     bioportal: REX
     obofoundry: rex
@@ -32102,6 +32238,7 @@ rexo:
   mappings:
     bioportal: REXO
     ols: rexo
+  no_own_terms: true
   ols:
     contact: vladimir.n.mironov@gmail.com
     description: Regulation of Gene Expression
@@ -33334,6 +33471,7 @@ scdo:
   bioportal:
     name: Sickle Cell Disease Ontology
     prefix: SCDO
+  example: 0000728
   mappings:
     bioportal: SCDO
     obofoundry: scdo
@@ -33484,6 +33622,7 @@ sdbs:
     is_obo: false
     prefix: SDBS
 sdgio:
+  example: '00020134'
   mappings:
     ols: sdgio
   ols:
@@ -33654,6 +33793,7 @@ sepio:
   bioportal:
     name: Scientific Evidence and Provenance Information Ontology
     prefix: SEPIO
+  example: 0000048
   mappings:
     bioportal: SEPIO
     obofoundry: sepio
@@ -34053,6 +34193,7 @@ sio:
   bioportal:
     name: Semanticscience Integrated Ontology
     prefix: SIO
+  example: 000912
   mappings:
     biolink: SIO
     bioportal: SIO
@@ -34397,6 +34538,7 @@ snornabase:
 
 
     human H/ACA and C/D box snoRNAs.'
+  example: SR0000178
   homepage: https://www-snorna.biotoul.fr/
   name: snoRNABase
   wikidata:
@@ -34725,6 +34867,7 @@ spp:
     provider_url: https://www.signalingpathways.org/datasets/dataset.jsf?doi=$1
     sampleId: 10.1621/vwN2g2HaX3
 srao:
+  example: '0000400'
   mappings:
     ols: srao
   name: FAIRsharing Subject Ontology
@@ -34795,6 +34938,7 @@ stato:
   bioportal:
     name: Statistics Ontology
     prefix: STATO
+  example: 0000288
   mappings:
     bioportal: STATO
     obofoundry: stato
@@ -36478,6 +36622,7 @@ txpo:
   bioportal:
     name: Toxic Process Ontology
     prefix: TXPO
+  example: '0002066'
   mappings:
     bioportal: TXPO
     obofoundry: txpo
@@ -37628,6 +37773,7 @@ upheno:
     ols: upheno
     prefixcommons: UPHENO
   name: Unified Phenotype Ontology
+  no_own_terms: true
   obofoundry:
     contact: vasilevs@ohsu.edu
     contact.label: Nicole Vasilevsky
@@ -38153,6 +38299,7 @@ vido:
   bioportal:
     name: Virus Infectious Disease Ontology
     prefix: VIDO
+  example: '0001114'
   mappings:
     bioportal: VIDO
     ols: vido
@@ -38386,6 +38533,7 @@ vo:
   bioportal:
     name: Vaccine Ontology
     prefix: VO
+  example: 0000093
   mappings:
     bioportal: VO
     obofoundry: vo
@@ -39275,6 +39423,7 @@ xenbase:
     name: Xenopus laevis and tropicalis biology and genomics resource
     prefix: Xenbase
 xl:
+  deprecated: true
   mappings:
     ols: xl
     prefixcommons: XL
@@ -39362,6 +39511,7 @@ xpo:
     version.iri: http://purl.obolibrary.org/obo/xpo/releases/2021-03-05/xpo.owl
   pattern: ^\d+$
 xsd:
+  example: decimal
   homepage: http://www.w3.org/2001/XMLSchema
   mappings:
     prefixcommons: xsd

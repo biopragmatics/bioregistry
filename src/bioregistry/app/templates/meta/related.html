@@ -1,0 +1,29 @@
+{% extends "prose.html" %}
+
+{% block title %}Related{% endblock %}
+
+{% block content %}
+    <h2>Conversion between CURIEs and IRIs</h2>
+    <p>
+        The semantic web and ontology communities are bound to the use of IRIs as identifiers and therefore are very
+        interested in the interconversion between compact identifiers (i.e., CURIEs) and IRIs. While the Bioregistry
+        provides many tools for one way conversion from CURIEs to IRIs, there are several related packages that help
+        parse CURIEs from IRIs:
+    </p>
+    <ul>
+        <li>
+            The <a href="https://www.npmjs.com/package/@geneontology/dbxrefs">@geneontogy/dbxrefs</a> Node.js package
+            translates CURIEs into URLs using the Gene Ontology Registry.
+        </li>
+        <li>
+            The <a href="https://github.com/geneontology/curie-util-py">curie-util-py</a> Python package more generally
+            loads JSON-LD files to convert between IRIs and CURIEs.
+        </li>
+        <li>
+            The <a href="https://github.com/prefixcommons/biocontext">BioContext</a> Python package generates URIs from
+            CURIEs based on information from the OBO Registry, Identifiers.org, the Gene Ontology Registry, and from the
+            Monarch Initiative. This package makes several assumptions about what the "correct" IRIs are in the
+            "semantic web".
+        </li>
+    </ul>
+{% endblock %}

@@ -9,7 +9,7 @@ from tabulate import tabulate
 
 from ..resolve import normalize_prefix
 from ..schema import Resource
-from ..utils import is_mismatch, read_metaregistry, read_registry, write_bioregistry
+from ..utils import is_mismatch, read_metaregistry, read_registry, write_registry
 
 __all__ = [
     "Aligner",
@@ -119,7 +119,7 @@ class Aligner(ABC):
         """Align and output the curation sheet."""
         instance = cls()
         if not dry:
-            write_bioregistry(instance.internal_registry)
+            write_registry(instance.internal_registry)
         instance.print_uncurated()
 
     @abstractmethod
