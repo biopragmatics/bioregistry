@@ -13,7 +13,7 @@ from ..export.prefix_maps import collection_to_context_jsonlds
 from ..export.rdf_export import collection_to_rdf_str, metaresource_to_rdf_str, resource_to_rdf_str
 from ..resolve import get_format_url
 from ..schema import sanitize_mapping
-from ..utils import read_contributors, read_contributions
+from ..utils import read_contributors, read_prefix_contributions, read_collections_contributions
 
 __all__ = [
     "api_blueprint",
@@ -263,13 +263,13 @@ def contributor(orcid: str):
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
     author = read_contributors().get(orcid)
-    prefixes = read_contributions().get(orcid)
-    if author is None or prefixes is None:
+    if author is None:
         return abort(404, f'No contributor with orcid:{orcid}')
 
     return serialize({
         **author.dict(),
-        "prefixes": prefixes,
+        "prefixes": read_prefix_contributions().get(orcid, []),
+        "collections": read_collections_contributions().get(orcid, []),
     })
 
 
