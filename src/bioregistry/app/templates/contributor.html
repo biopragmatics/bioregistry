@@ -17,7 +17,10 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h5 style="margin: 0">Contributor</h5>
+                    <h5 style="margin: 0">
+                        <a href="{{ url_for('ui.contributors') }}">Contributors</a>
+                        <i class="fas fa-angle-right"></i> {{ contributor.name }}
+                    </h5>
                 </div>
                 <div class="col-4 text-right">
                     <div class="dropdown">
@@ -43,7 +46,11 @@
                 <dt>Name</dt>
                 <dd>{{ contributor.name }}</dd>
                 <dt>ORCID</dt>
-                <dd><a href="https://orcid.org/{{ contributor.orcid }}">{{ contributor.orcid }}</a></dd>
+                <dd>
+                    <a href="https://orcid.org/{{ contributor.orcid }}">
+                        {{ contributor.orcid }} <i class="fab fa-orcid"></i>
+                    </a>
+                </dd>
                 {% if contributor.email %}
                     <dt>Email</dt>
                     <dd><a href="mailto:{{ contributor.email }}">{{ contributor.email }}</a></dd>
@@ -59,7 +66,7 @@
                     </dd>
                 {% endif %}
                 {% if collections %}
-                    <dt>Prefixes Contributed</dt>
+                    <dt>Collections Contributed</dt>
                     <dd>
                         <ul>
                             {% for collection in collections %}

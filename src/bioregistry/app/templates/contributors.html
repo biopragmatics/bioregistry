@@ -21,8 +21,8 @@
             $("#contributor-entries").DataTable({
                 "order": [[1, "asc"]]
             });
-            // $("#table-entries_wrapper").children(":first-child").addClass("card-body");
-            // $("#table-entries_wrapper").children(":last-child").addClass("card-body");
+            $("#contributor-entries_wrapper").children(":first-child").addClass("card-body");
+            $("#contributor-entries_wrapper").children(":last-child").addClass("card-body");
         });
     </script>
 {% endblock %}
@@ -75,9 +75,8 @@
                             <a href="mailto:{{ row.email }}">{{ row.email }}</a>
                         {% endif %}
                     </td>
-                    <td>{{ prefixes.get(row.orcid, []) | length }}</td>
-                    <td>{{ collections.get(row.orcid, []) | length }}</td>
-                    <td></td>
+                    <td style="text-align: right;">{{ prefixes.get(row.orcid, []) | length }}</td>
+                    <td style="text-align: right;">{{ collections.get(row.orcid, []) | length }}</td>
                 </tr>
             {% endfor %}
         </table>
