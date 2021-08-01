@@ -13,6 +13,7 @@ from ..export.prefix_maps import collection_to_context_jsonlds
 from ..export.rdf_export import collection_to_rdf_str, metaresource_to_rdf_str, resource_to_rdf_str
 from ..resolve import get_format_url
 from ..schema import sanitize_mapping
+from ..utils import read_contributors
 
 __all__ = [
     "api_blueprint",
@@ -226,7 +227,7 @@ def contributors():
     tags:
     - contributor
     """  # noqa:DAR101,DAR201
-    raise NotImplementedError
+    return serialize(read_contributors())
 
 
 @api_blueprint.route("/contributor/<orcid>")

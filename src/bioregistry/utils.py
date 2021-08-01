@@ -16,7 +16,7 @@ from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
 
 from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH, MISMATCH_PATH
-from .schema import Collection, Registry, Resource
+from .schema import Author, Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
@@ -129,6 +129,15 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
             ensure_ascii=False,
             default=extended_encoder,
         )
+
+
+def read_contributors() -> Mapping[str, Author]:
+    """Get contributors."""
+    om = {}
+    for prefix, resource in read_registry().items():
+        if resource.contributor:
+            om[resource.contributor.orcid] = resource.contributor
+    return om
 
 
 def updater(f):
