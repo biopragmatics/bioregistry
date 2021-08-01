@@ -63,9 +63,13 @@
                 {% endif %}
                 <dt>Links</dt>
                 <dd>
-                    <a class="badge badge-pill badge-light" href="{{ homepage }}">
-                        Homepage <i class="fas fa-home"></i>
-                    </a>
+                    {% if homepage %}
+                        <a class="badge badge-pill badge-light" href="{{ homepage }}">
+                            Homepage <i class="fas fa-home"></i>
+                        </a>
+                    {% else %}
+                        <span class="badge badge-pill badge-warning">Missing Homepage</span>
+                    {% endif %}
                     {% if obo_download %}
                         <a class="badge badge-pill badge-light" href="{{ obo_download }}">
                             OBO <i class="fas fa-download"></i>
