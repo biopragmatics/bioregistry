@@ -2,7 +2,7 @@
 
 """Extract registry information."""
 
-from .resolve import (  # noqa
+from .resolve import (  # noqa:F401
     get_banana,
     get_bioportal_prefix,
     get_collection,
@@ -53,7 +53,7 @@ from .resolve import (  # noqa
     normalize_prefix,
     parse_curie,
 )
-from .resolve_identifier import (  # noqa
+from .resolve_identifier import (  # noqa:F401
     get_bioportal_url,
     get_default_url,
     get_identifiers_org_curie,
@@ -67,4 +67,10 @@ from .resolve_identifier import (  # noqa
     get_registry_resolve_url,
     validate,
 )
-from .utils import read_collections, read_metaregistry, read_mismatches, read_registry  # noqa
+from .utils import (  # noqa:F401
+    read_collections,
+    read_metaregistry,
+    read_mismatches,
+    read_registry,
+    write_registry,
+)

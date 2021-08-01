@@ -4,6 +4,7 @@
 
 import json
 import logging
+import warnings
 from dataclasses import asdict, is_dataclass
 from datetime import datetime
 from functools import lru_cache, wraps
@@ -58,7 +59,7 @@ def add_resource(prefix: str, resource: Resource) -> None:
     registry[prefix] = resource
     # Clear the cache
     read_registry.cache_clear()
-    write_bioregistry(registry)
+    write_registry(registry)
 
 
 @lru_cache(maxsize=1)
@@ -104,6 +105,12 @@ def write_collections(collections: Mapping[str, Collection]) -> None:
 
 def write_bioregistry(registry: Mapping[str, Resource]):
     """Write to the Bioregistry."""
+    warnings.warn("use bioregistry.write_registry", DeprecationWarning)
+    write_registry(registry)
+
+
+def write_registry(registry: Mapping[str, Resource]):
+    """Write to the Bioregistry."""
     with open(BIOREGISTRY_PATH, mode="w", encoding="utf-8") as file:
         json.dump(
             registry, file, indent=2, sort_keys=True, ensure_ascii=False, default=extended_encoder
@@ -132,7 +139,7 @@ def updater(f):
         registry = read_registry()
         rv = f(registry)
         if rv is not None:
-            write_bioregistry(registry)
+            write_registry(registry)
         return rv
 
     return wrapped

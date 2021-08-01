@@ -9,7 +9,6 @@ import requests
 from tqdm import tqdm
 
 import bioregistry
-from bioregistry.utils import write_bioregistry
 
 
 def _get_example(prefix: str, size: int = 1000):
@@ -72,7 +71,7 @@ def main():
             if res.startswith(prefix.upper() + ":"):
                 res = res[len(prefix) + 1 :]
             r[prefix]["example"] = res
-    write_bioregistry(r)
+    bioregistry.write_registry(r)
 
 
 if __name__ == "__main__":

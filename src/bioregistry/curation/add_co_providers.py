@@ -5,7 +5,6 @@
 import requests
 
 import bioregistry
-from bioregistry.utils import write_bioregistry
 
 
 def main():
@@ -25,7 +24,7 @@ def main():
             print()
             continue
         resource.url = f"https://www.cropontology.org/rdf/{prefix.upper()}:$1"
-    write_bioregistry(r)
+    bioregistry.write_registry(r)
 
 
 if __name__ == "__main__":
