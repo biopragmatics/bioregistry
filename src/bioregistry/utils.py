@@ -5,10 +5,11 @@
 import json
 import logging
 import warnings
+from collections import defaultdict
 from dataclasses import asdict, is_dataclass
 from datetime import datetime
 from functools import lru_cache, wraps
-from typing import Any, List, Mapping
+from typing import Any, List, Mapping, Set
 
 import click
 import requests
@@ -16,7 +17,7 @@ from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
 
 from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH, MISMATCH_PATH
-from .schema import Collection, Registry, Resource
+from .schema import Author, Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
@@ -129,6 +130,36 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
             ensure_ascii=False,
             default=extended_encoder,
         )
+
+
+def read_contributors() -> Mapping[str, Author]:
+    """Get a mapping from contributor ORCID identifiers to author objects."""
+    rv = {}
+    for resource in read_registry().values():
+        if resource.contributor:
+            rv[resource.contributor.orcid] = resource.contributor
+    for resource in read_collections().values():
+        for author in resource.authors or []:
+            rv[author.orcid] = author
+    return rv
+
+
+def read_prefix_contributions() -> Mapping[str, Set[str]]:
+    """Get a mapping from contributor ORCID identifiers to prefixes."""
+    rv = defaultdict(set)
+    for prefix, resource in read_registry().items():
+        if resource.contributor:
+            rv[resource.contributor.orcid].add(prefix)
+    return dict(rv)
+
+
+def read_collections_contributions():
+    """Get a mapping from contributor ORCID identifiers to collections."""
+    rv = defaultdict(set)
+    for collection_id, resource in read_collections().items():
+        for author in resource.authors or []:
+            rv[author.orcid].add(collection_id)
+    return dict(rv)
 
 
 def updater(f):

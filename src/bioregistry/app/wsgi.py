@@ -63,6 +63,7 @@ def home():
         registry_size=len(bioregistry.read_registry()),
         metaregistry_size=len(bioregistry.read_metaregistry()),
         collections_size=len(bioregistry.read_collections()),
+        contributors_size=len(bioregistry.read_contributors()),
     )
 
 

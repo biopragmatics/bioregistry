@@ -8,6 +8,7 @@ from flask import Blueprint, abort, redirect, render_template, url_for
 
 import bioregistry
 from .utils import _get_resource_mapping_rows, _get_resource_providers, _normalize_prefix_or_404
+from ..utils import read_collections_contributions, read_prefix_contributions
 
 __all__ = [
     "ui_blueprint",
@@ -219,3 +220,30 @@ def resolve(prefix: str, identifier: Optional[str] = None):
             ),
             404,
         )
+
+
+@ui_blueprint.route("/contributors/")
+def contributors():
+    """Serve the Bioregistry contributors page."""
+    return render_template(
+        "contributors.html",
+        rows=bioregistry.read_contributors().values(),
+        collections=read_collections_contributions(),
+        prefixes=read_prefix_contributions(),
+        formats=FORMATS,
+    )
+
+
+@ui_blueprint.route("/contributor/<orcid>")
+def contributor(orcid: str):
+    """Serve the a Bioregistry contributor page."""
+    author = bioregistry.read_contributors().get(orcid)
+    if author is None:
+        abort(404)
+    return render_template(
+        "contributor.html",
+        contributor=author,
+        collections=sorted(read_collections_contributions().get(author.orcid, [])),
+        prefixes=sorted(read_prefix_contributions().get(author.orcid, [])),
+        formats=FORMATS,
+    )

@@ -49,7 +49,7 @@ class Author(BaseModel):
     email: Optional[str]
 
     def add_triples(self, graph: rdflib.Graph) -> Node:
-        """Add triples to an RDF graph for this collection."""
+        """Add triples to an RDF graph for this author."""
         node = orcid.term(self.orcid)
         graph.add((node, RDFS["label"], Literal(self.name)))
         return node

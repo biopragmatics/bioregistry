@@ -13,6 +13,7 @@ from ..export.prefix_maps import collection_to_context_jsonlds
 from ..export.rdf_export import collection_to_rdf_str, metaresource_to_rdf_str, resource_to_rdf_str
 from ..resolve import get_format_url
 from ..schema import sanitize_mapping
+from ..utils import read_collections_contributions, read_contributors, read_prefix_contributions
 
 __all__ = [
     "api_blueprint",
@@ -216,6 +217,62 @@ def reference(prefix: str, identifier: str):
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
     return serialize(_get_identifier(prefix, identifier))
+
+
+@api_blueprint.route("/contributors")
+def contributors():
+    """Get all contributors.
+
+    ---
+    tags:
+    - contributor
+    parameters:
+    - name: format
+      description: The file type
+      in: query
+      required: false
+      default: json
+      schema:
+        type: string
+        enum: [json, yaml]
+    """  # noqa:DAR101,DAR201
+    return serialize(read_contributors())
+
+
+@api_blueprint.route("/contributor/<orcid>")
+def contributor(orcid: str):
+    """Get a contributor.
+
+    ---
+    tags:
+    - contributor
+    parameters:
+    - name: orcid
+      in: path
+      description: The ORCID identifier of the contributor
+      required: true
+      type: string
+      example: 0000-0002-8424-0604
+    - name: format
+      description: The file type
+      in: query
+      required: false
+      default: json
+      schema:
+        type: string
+        enum: [json, yaml]
+    """  # noqa:DAR101,DAR201
+    author = read_contributors().get(orcid)
+    if author is None:
+        return abort(404, f"No contributor with orcid:{orcid}")
+
+    return serialize(
+        {
+            **author.dict(),
+            "prefixes": sorted(read_prefix_contributions().get(orcid, [])),
+            "collections": sorted(read_collections_contributions().get(orcid, [])),
+        }
+    )
 
 
 @api_blueprint.route("/search")
