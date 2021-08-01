@@ -138,7 +138,7 @@ def read_contributors() -> Mapping[str, Author]:
     for prefix, resource in read_registry().items():
         if resource.contributor:
             om[resource.contributor.orcid] = resource.contributor
-    for prefix, resource in read_collections().items():
+    for resource in read_collections().values():
         for author in resource.authors or []:
             om[author.orcid] = author
     return om
@@ -147,7 +147,7 @@ def read_contributors() -> Mapping[str, Author]:
 def read_prefix_contributions() -> Mapping[str, Set[str]]:
     """Get a mapping from contributor ORCID identifiers to prefixes."""
     rv = defaultdict(set)
-    for prefix, resource in read_registry().items():
+    for resource in read_registry().values():
         if resource.contributor:
             rv[resource.contributor.orcid].add(prefix)
     return dict(rv)

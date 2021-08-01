@@ -264,13 +264,15 @@ def contributor(orcid: str):
     """  # noqa:DAR101,DAR201
     author = read_contributors().get(orcid)
     if author is None:
-        return abort(404, f'No contributor with orcid:{orcid}')
+        return abort(404, f"No contributor with orcid:{orcid}")
 
-    return serialize({
-        **author.dict(),
-        "prefixes": read_prefix_contributions().get(orcid, []),
-        "collections": read_collections_contributions().get(orcid, []),
-    })
+    return serialize(
+        {
+            **author.dict(),
+            "prefixes": read_prefix_contributions().get(orcid, []),
+            "collections": read_collections_contributions().get(orcid, []),
+        }
+    )
 
 
 @api_blueprint.route("/search")
