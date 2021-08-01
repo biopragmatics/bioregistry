@@ -135,7 +135,7 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
 def read_contributors() -> Mapping[str, Author]:
     """Get a mapping from contributor ORCID identifiers to author objects."""
     rv = {}
-    for prefix, resource in read_registry().items():
+    for resource in read_registry().values():
         if resource.contributor:
             rv[resource.contributor.orcid] = resource.contributor
     for resource in read_collections().values():
