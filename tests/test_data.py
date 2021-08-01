@@ -93,6 +93,14 @@ class TestRegistry(unittest.TestCase):
                 with self.subTest(prefix=prefix):
                     self.fail(msg=f"{prefix} acronym ({name}) is not expanded")
 
+    def test_has_description(self):
+        """Test that all non-deprecated entries have a description."""
+        for prefix in bioregistry.read_registry():
+            if bioregistry.is_deprecated(prefix):
+                continue
+            with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
+                self.assertIsNotNone(bioregistry.get_description(prefix))
+
     def test_has_homepage(self):
         """Test that all non-deprecated entries have a homepage."""
         for prefix in bioregistry.read_registry():
