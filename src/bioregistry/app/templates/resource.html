@@ -134,6 +134,14 @@
                         </ul>
                     </dd>
                 {% endif %}
+                {% if resource.contributor %}
+                    <dt>Contributor</dt>
+                    <dd>
+                        <a href="https://bioregistry.io/orcid:{{ resource.contributor.orcid }}">
+                            {{ resource.contributor.name }}
+                        </a>
+                    </dd>
+                {% endif %}
             </dl>
         </div>
 
