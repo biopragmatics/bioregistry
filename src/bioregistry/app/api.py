@@ -13,7 +13,7 @@ from ..export.prefix_maps import collection_to_context_jsonlds
 from ..export.rdf_export import collection_to_rdf_str, metaresource_to_rdf_str, resource_to_rdf_str
 from ..resolve import get_format_url
 from ..schema import sanitize_mapping
-from ..utils import read_contributors
+from ..utils import read_contributors, read_contributions
 
 __all__ = [
     "api_blueprint",
@@ -226,6 +226,15 @@ def contributors():
     ---
     tags:
     - contributor
+    parameters:
+    - name: format
+      description: The file type
+      in: query
+      required: false
+      default: json
+      schema:
+        type: string
+        enum: [json, yaml]
     """  # noqa:DAR101,DAR201
     return serialize(read_contributors())
 
@@ -236,7 +245,7 @@ def contributor(orcid: str):
 
     ---
     tags:
-    - collection
+    - contributor
     parameters:
     - name: orcid
       in: path
@@ -244,8 +253,24 @@ def contributor(orcid: str):
       required: true
       type: string
       example: 0000-0002-8424-0604
+    - name: format
+      description: The file type
+      in: query
+      required: false
+      default: json
+      schema:
+        type: string
+        enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    raise NotImplementedError
+    author = read_contributors().get(orcid)
+    prefixes = read_contributions().get(orcid)
+    if author is None or prefixes is None:
+        return abort(404, f'No contributor with orcid:{orcid}')
+
+    return serialize({
+        **author.dict(),
+        "prefixes": prefixes,
+    })
 
 
 @api_blueprint.route("/search")

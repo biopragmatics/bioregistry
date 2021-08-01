@@ -5,10 +5,11 @@
 import json
 import logging
 import warnings
+from collections import defaultdict
 from dataclasses import asdict, is_dataclass
 from datetime import datetime
 from functools import lru_cache, wraps
-from typing import Any, List, Mapping
+from typing import Any, List, Mapping, Set
 
 import click
 import requests
@@ -132,12 +133,21 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
 
 
 def read_contributors() -> Mapping[str, Author]:
-    """Get contributors."""
+    """Get a mapping from contributor ORCID identifiers to author objects."""
     om = {}
     for prefix, resource in read_registry().items():
         if resource.contributor:
             om[resource.contributor.orcid] = resource.contributor
     return om
+
+
+def read_contributions() -> Mapping[str, Set[str]]:
+    """Get a mapping from contributor ORCID identifeirs to prefixes."""
+    rv = defaultdict(set)
+    for prefix, resource in read_registry().items():
+        if resource.contributor:
+            rv[resource.contributor.orcid].add(prefix)
+    return dict(rv)
 
 
 def updater(f):
