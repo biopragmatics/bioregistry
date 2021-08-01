@@ -659,7 +659,7 @@ def get_email(prefix: str) -> Optional[str]:
 def get_homepage(prefix: str) -> Optional[str]:
     """Return the homepage, if available."""
     return _get_prefix_key(
-        prefix, "homepage", ("obofoundry", "ols", "n2t", "wikidata", "go", "ncbi")
+        prefix, "homepage", ("obofoundry", "ols", "miriam", "n2t", "wikidata", "go", "ncbi", "cellosaurus")
     )
 
 

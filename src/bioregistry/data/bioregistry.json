@@ -48,6 +48,7 @@
       "url": "https://data.4dnucleome.org/biosources/$1"
     },
     "example": "4DNSR73BT2A2",
+    "homepage": "https://data.4dnucleome.org/biosources",
     "mappings": {
       "cellosaurus": "4DN"
     },
@@ -59,6 +60,7 @@
   },
   "4dn.replicate": {
     "example": "4DNESWX1J3QU",
+    "homepage": "https://data.4dnucleome.org/experiment-set-replicates/",
     "name": "4D Nucleome Data Portal Experiment Replicate",
     "url": "https://data.4dnucleome.org/experiment-set-replicates/$1"
   },
@@ -374,6 +376,7 @@
       "name": "Allotrope Merged Ontology Suite",
       "prefix": "AFO"
     },
+    "homepage": "https://www.allotrope.org/",
     "mappings": {
       "bioportal": "AFO",
       "ols": "afo"
@@ -595,6 +598,7 @@
   "alzforum.mutation": {
     "description": "Alzforum mutations is a repository of genes and rare variants associated with Alzheimer's disease.",
     "example": "app-d678n-tottori",
+    "homepage": "https://www.alzforum.org/mutations",
     "name": "Alzforum Mutations",
     "synonyms": [
       "Alzforum_mut"
@@ -2304,6 +2308,7 @@
   "bel": {
     "description": "The Biological Expression Language is a domain-specific language for describing causal, correlative, and associative relationships between a variety of biological agents.",
     "example": "9-1-1 Complex",
+    "homepage": "https://biological-expression-language.github.io/",
     "name": "Biological Expression Language",
     "synonyms": [
       "SCOMP",
@@ -2887,6 +2892,7 @@
       "is_obo": false,
       "prefix": "biolink"
     },
+    "homepage": "https://biolink.github.io/biolink-model/",
     "mappings": {
       "biolink": "biolink",
       "miriam": "biolink"
@@ -3711,8 +3717,12 @@
     }
   },
   "bs": {
-    "comment": "part of Sequence Ontology (SO). See https://github.com/The-Sequence-Ontology/SO-Ontologies/blob/master/Ontology_Files/subsets/biosapiens.obo",
-    "name": "Biosapiens"
+    "comment": "An alernative vocabulary that has been aligned and integrated in Sequence Ontology (SO).",
+    "download_obo": "https://raw.githubusercontent.com/The-Sequence-Ontology/SO-Ontologies/master/Ontology_Files/subsets/biosapiens.obo",
+    "example": "00042",
+    "homepage": "https://github.com/The-Sequence-Ontology/SO-Ontologies",
+    "name": "Biosapiens Protein Feature Ontology",
+    "pattern": "^\\d+$"
   },
   "bspo": {
     "bioportal": {
@@ -4027,6 +4037,7 @@
   "caloha": {
     "download_obo": "ftp://ftp.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo",
     "example": "0001",
+    "homepage": "https://github.com/calipho-sib/controlled-vocabulary",
     "name": "CALIPHO Group Ontology of Human Anatomy",
     "pattern": "^\\d+$",
     "references": [
@@ -5583,6 +5594,7 @@
       "prefix": "CTX"
     },
     "example": "C6155",
+    "homepage": "https://www.ebi.ac.uk/citexplore/",
     "mappings": {
       "bioportal": "CTX"
     },
@@ -7348,8 +7360,16 @@
     }
   },
   "csp": {
+    "bioportal": {
+      "prefix": "CRISP"
+    },
+    "deprecated": true,
     "example": "2004-2820",
-    "name": "CRISP Thesaurus",
+    "homepage": "https://web.archive.org/web/20091223034048/http://crisp.cit.nih.gov/Thesaurus/index.htm",
+    "mappings": {
+      "bioportal": "CRISP"
+    },
+    "name": "Computer Retrieval of Information on Science Projects (CRISP) Thesaurus",
     "synonyms": [
       "CRISP Thesaurus, 2006",
       "CRISP Thesaurus",
@@ -8312,6 +8332,7 @@
       "prefix": "DCTERMS"
     },
     "example": "title",
+    "homepage": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/",
     "mappings": {
       "biolink": "dct",
       "bioportal": "DCTERMS",
@@ -9687,6 +9708,7 @@
   },
   "dsmz": {
     "example": "ACC-1",
+    "homepage": "https://www.dsmz.de",
     "name": "Deutsche Sammlung von Mikroorganismen und Zellkulturen",
     "url": "https://www.dsmz.de/collection/catalogue/details/culture/$1"
   },
@@ -9923,6 +9945,7 @@
   },
   "ecmdb": {
     "example": "ECMDB00005",
+    "homepage": "https://ecmdb.ca",
     "name": "E. coli Metabolite Database",
     "pattern": "^ECMDB\\d+$",
     "synonyms": [
@@ -12588,6 +12611,7 @@
       "name": "Friend of a Friend Vocabulary",
       "prefix": "FOAF"
     },
+    "homepage": "http://xmlns.com/foaf/spec/",
     "mappings": {
       "biolink": "foaf",
       "bioportal": "FOAF",
@@ -12608,6 +12632,7 @@
       "prefix": "FOBI"
     },
     "example": "030719",
+    "homepage": "https://github.com/pcastellanoescuder/FoodBiomarkerOntology",
     "mappings": {
       "bioportal": "FOBI",
       "obofoundry": "fobi",
@@ -14405,6 +14430,7 @@
   },
   "gmelin": {
     "example": "1466",
+    "homepage": "https://link.springer.com/bookseries/562",
     "name": "Gmelins Handbuch der anorganischen Chemie",
     "pattern": "^[1-9][0-9]{3,6}$",
     "wikidata": {
@@ -14826,6 +14852,7 @@
       "is_obo": false,
       "prefix": "GSID"
     },
+    "homepage": "https://scholar.google.com/",
     "mappings": {
       "biolink": "GSID"
     },
