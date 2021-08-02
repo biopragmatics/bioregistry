@@ -194,6 +194,11 @@ class TestRegistry(unittest.TestCase):
                 or bioregistry.is_proprietary(prefix)
             ):
                 continue
+            if prefix in {
+                "obo",
+                "pspub",
+            }:  # FIXME the minting of this prefix for PyOBO needs to be reinvestigated
+                continue
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
                 msg = f"{prefix} is missing an example local identifier"
                 if entry.ols:
