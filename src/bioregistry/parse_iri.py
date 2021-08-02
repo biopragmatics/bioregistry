@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+"""Functionality for parsing IRIs."""
+
 from typing import Tuple, Union
 
 from bioregistry.resolve import get_format_urls
@@ -15,8 +19,29 @@ def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
     :param iri: A valid IRI
     :return: A pair of prefix/identifier, if can be parsed
 
+    IRIs from Identifiers.org (https and http):
+
+    >>> parse_iri("https://identifiers.org/aop.relationships:5")
+    ('aop.relationships', '5')
+    >>> parse_iri("http://identifiers.org/aop.relationships:5")
+    ('aop.relationships', '5')
+
+    IRI from an OBO PURL:
+
+    >>> parse_iri("http://purl.obolibrary.org/obo/DRON_00023232")
+    ('dron', '00023232')
+
+    IRI from the OLS:
+
+    >>> parse_iri("https://www.ebi.ac.uk/ols/ontologies/ecao/terms?iri=http://purl.obolibrary.org/obo/ECAO_0107180")
+    ('ecao', '0107180')
+
+    IRI from native provider
+
     >>> parse_iri("https://www.alzforum.org/mutations/1234")
     ('alzforum.mutation', '1234')
+
+    .. todo:: IRI with weird embedding, like ones that end in .html
     """
     for prefix, prefix_url in _D:
         if iri.startswith(prefix_url):
@@ -24,10 +49,10 @@ def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
     return None, None
 
 
-def main():
+def _main():
     import bioregistry
     from tabulate import tabulate
-    rows=[]
+    rows = []
     for prefix, resource in bioregistry.read_registry().items():
         example = bioregistry.get_example(prefix)
         if example is None:
@@ -42,4 +67,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    _main()
