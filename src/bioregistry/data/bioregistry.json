@@ -13079,8 +13079,10 @@
   },
   "fyler": {
     "description": "A hierarchical classification of congenital heart disease ",
+    "example": "4447",
     "homepage": "https://www.elsevier.com/books/nadas-pediatric-cardiology/9781416023906",
     "name": "Fyler",
+    "pattern": "^\\d+$",
     "references": [
       "https://github.com/obophenotype/human-phenotype-ontology/issues/2568",
       "https://github.com/obophenotype/human-phenotype-ontology/issues/2511"
@@ -13218,6 +13220,8 @@
       "name": "Galen Ontology",
       "prefix": "GALEN"
     },
+    "deprecated": true,
+    "example": "MagnitudeValueType",
     "homepage": "https://www.opengalen.org",
     "mappings": {
       "bioportal": "GALEN"
@@ -24383,6 +24387,7 @@
     "description": "The nomenclature used for named reactions in text mining software from NextMove",
     "homepage": "https://www.nextmovesoftware.com/namerxn.html",
     "name": "NameRXN",
+    "proprietary": true,
     "references": [
       "https://www.nextmovesoftware.com/products/HazELNutPoster.pdf"
     ]
@@ -28111,6 +28116,7 @@
     }
   },
   "owl": {
+    "example": "Ontology",
     "homepage": "https://www.w3.org/TR/owl-features/",
     "mappings": {
       "prefixcommons": "owl"
@@ -28786,7 +28792,8 @@
       "prefix": "PDB"
     },
     "synonyms": [
-      "wwpdb"
+      "wwpdb",
+      "pdbe"
     ],
     "uniprot": {
       "category": "3D structure databases",
@@ -28885,10 +28892,6 @@
     "wikidata": {
       "prefix": "P3636"
     }
-  },
-  "pdbe": {
-    "homepage": "https://www.ebi.ac.uk/pdbe/",
-    "name": "Protein Data Bank in Europe"
   },
   "pdro": {
     "bioportal": {
@@ -29287,7 +29290,7 @@
   "pfam.clan": {
     "description": "Higher order grouping of Pfam families",
     "example": "CL0192",
-    "homepage": "httsp://pfam.xfam.org",
+    "homepage": "https://pfam.xfam.org",
     "name": "Pfam Clans",
     "pattern": "^CL\\d+$",
     "url": "https://pfam.xfam.org/clan/$1"
@@ -31799,6 +31802,7 @@
       "is_obo": false,
       "prefix": "ResearchID"
     },
+    "example": "1981638",
     "homepage": "https://publons.com/researcher",
     "mappings": {
       "biolink": "ResearchID"
@@ -32160,11 +32164,13 @@
       "prefix": "RDO"
     },
     "download_obo": "https://ratmine.mcw.edu/ontology/disease/RDO.obo",
+    "example": "9002859",
     "homepage": "https://ratmine.mcw.edu/ontology/disease/",
     "mappings": {
       "bioportal": "RDO"
     },
-    "name": "RGD Disease_Ontology"
+    "name": "RGD Disease_Ontology",
+    "pattern": "^\\d{7}$"
   },
   "reactome": {
     "example": "R-BTA-418592",
@@ -34765,6 +34771,7 @@
     "url": "https://smpdb.ca/view/$1"
   },
   "snap": {
+    "example": "Quality",
     "homepage": "http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf",
     "name": "Snapshot"
   },
@@ -36410,8 +36417,10 @@
     }
   },
   "tkg": {
+    "example": "0221",
     "homepage": "http://www2.idac.tohoku.ac.jp/dep/ccr/",
     "name": "Tohoku University cell line catalog",
+    "pattern": "^\\d+$",
     "url": "http://www2.idac.tohoku.ac.jp/dep/ccr/TKGdate/TKGvol08/$1.html"
   },
   "to": {
@@ -39280,6 +39289,7 @@
       "is_obo": false,
       "prefix": "wgs"
     },
+    "example": "latitude",
     "homepage": "https://www.w3.org/2003/01/geo/wgs84_pos",
     "mappings": {
       "biolink": "wgs"
