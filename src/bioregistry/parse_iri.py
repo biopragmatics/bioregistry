@@ -4,7 +4,7 @@
 
 from typing import Tuple, Union
 
-from bioregistry.resolve import get_format_urls
+from bioregistry.resolve import get_format_urls, normalize_curie, parse_curie
 
 __all__ = [
     'parse_iri',
@@ -43,10 +43,23 @@ def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
 
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
+    if iri.startswith('https://www.ebi.ac.uk/ols/ontologies/'):
+        return _parse_purl(iri.rsplit('=', 1)[1])
+    if iri.startswith('http://purl.obolibrary.org/obo/TTO_1058367'):
+        return _parse_purl(iri)
+    if iri.startswith('https://identifiers.org/'):
+        return parse_curie(iri[len('https://identifiers.org/'):])
+    if iri.startswith('http://identifiers.org/'):
+        return parse_curie(iri[len('http://identifiers.org/'):])
     for prefix, prefix_url in _D:
         if iri.startswith(prefix_url):
             return prefix, iri[len(prefix_url):]
     return None, None
+
+
+def _parse_purl(iri: str):
+    prefix, identifier = iri[len('http://purl.obolibrary.org/obo/'):].split('_', 1)
+    return normalize_curie(prefix, identifier)
 
 
 def _main():
@@ -55,14 +68,15 @@ def _main():
     rows = []
     for prefix, resource in bioregistry.read_registry().items():
         example = bioregistry.get_example(prefix)
-        if example is None:
+        if example is None or len(example) > 30:
             continue
         iri = bioregistry.get_link(prefix, example, use_bioregistry_io=False)
         if iri is None:
             # print('no iri for', prefix, example)
             continue
         k, v = parse_iri(iri)
-        rows.append((prefix, example, iri, k, v))
+        if k is None:
+            rows.append((prefix, example, iri, k, v))
     print(tabulate(rows))
 
 
