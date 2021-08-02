@@ -751,11 +751,11 @@ def _remap_license(k: Optional[str]) -> Optional[str]:
 
 
 def is_proprietary(prefix: str) -> Optional[bool]:
-    """Get if the prefix is proprietary
-    
+    """Get if the prefix is proprietary.
+
     :param prefix: The prefix to look up
     :returns: If the prefix corresponds to a proprietary resource. Assume false if not annotated explicitly
-    
+
     >>> assert is_proprietary('eurofir')
     >>> assert not is_proprietary('chebi')
     """
