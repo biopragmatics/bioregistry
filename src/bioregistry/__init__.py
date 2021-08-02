@@ -2,6 +2,7 @@
 
 """Extract registry information."""
 
+from .parse_iri import parse_iri  # noqa:F401
 from .resolve import (  # noqa:F401
     get_banana,
     get_bioportal_prefix,
