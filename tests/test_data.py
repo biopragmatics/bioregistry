@@ -197,6 +197,8 @@ class TestRegistry(unittest.TestCase):
             if prefix in {
                 "obo",
                 "pspub",
+                "unpd",
+                "span",
             }:  # FIXME the minting of this prefix for PyOBO needs to be reinvestigated
                 continue
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
