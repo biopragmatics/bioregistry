@@ -48,6 +48,7 @@ from .resolve import (  # noqa:F401
     get_wikidata_prefix,
     has_no_terms,
     is_deprecated,
+    is_proprietary,
     is_provider,
     namespace_in_lui,
     normalize_prefix,

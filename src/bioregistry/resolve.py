@@ -26,6 +26,7 @@ __all__ = [
     "get_example",
     "has_no_terms",
     "is_deprecated",
+    "is_proprietary",
     "get_email",
     "get_homepage",
     "get_obo_download",
@@ -747,6 +748,23 @@ def _remap_license(k: Optional[str]) -> Optional[str]:
     if k is None:
         return None
     return LICENSES.get(k, k)
+
+
+def is_proprietary(prefix: str) -> Optional[bool]:
+    """Get if the prefix is proprietary
+    
+    :param prefix: The prefix to look up
+    :returns: If the prefix corresponds to a proprietary resource. Assume false if not annotated explicitly
+    
+    >>> assert is_proprietary('eurofir')
+    >>> assert not is_proprietary('chebi')
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    if entry.proprietary is None:
+        return False
+    return entry.proprietary
 
 
 def parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
