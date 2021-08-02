@@ -192,7 +192,7 @@ class TestRegistry(unittest.TestCase):
                 or bioregistry.get_provides_for(prefix)
             ):
                 continue
-            with self.subTest(prefix=prefix):
+            with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
                 msg = f"{prefix} is missing an example local identifier"
                 if entry.ols:
                     msg += (
