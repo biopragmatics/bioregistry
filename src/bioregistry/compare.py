@@ -25,6 +25,7 @@ from bioregistry import (
     get_owl_download,
     get_pattern,
     get_version,
+    is_deprecated,
     read_registry,
 )
 from bioregistry.constants import DOCS_IMG
@@ -36,13 +37,17 @@ BIOREGISTRY_COLOR = "silver"
 
 
 def _get_has(func, yes: str = "Yes", no: str = "No") -> Counter:
-    return Counter(no if func(prefix) is None else yes for prefix in read_registry())
+    return Counter(
+        no if func(prefix) is None else yes
+        for prefix in read_registry()
+        if not is_deprecated(prefix)
+    )
 
 
 HAS_WIKIDATA_DATABASE = Counter(
     "No" if key is None else "Yes"
     for key in read_registry()
-    if "database" in get_external(key, "wikidata")
+    if not is_deprecated(key) and "database" in get_external(key, "wikidata")
 )
 
 
