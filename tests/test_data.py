@@ -56,6 +56,7 @@ class TestRegistry(unittest.TestCase):
             "synonyms",
             "comment",
             "contributor",
+            "proprietary",
         }
         keys.update(bioregistry.read_metaregistry())
         for prefix, entry in self.registry.items():
@@ -190,6 +191,7 @@ class TestRegistry(unittest.TestCase):
                 bioregistry.has_no_terms(prefix)
                 or bioregistry.is_deprecated(prefix)
                 or bioregistry.get_provides_for(prefix)
+                or bioregistry.is_proprietary(prefix)
             ):
                 continue
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
