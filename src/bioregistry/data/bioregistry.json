@@ -3451,6 +3451,7 @@
       "prefix": "BIRNLEX"
     },
     "comment": "Part of the NeuroLex namespace now",
+    "example": "birnlex_2023",
     "homepage": "https://bioportal.bioontology.org/ontologies/BIRNLEX",
     "mappings": {
       "bioportal": "BIRNLEX"
@@ -6048,6 +6049,7 @@
     }
   },
   "cmf": {
+    "deprecated": true,
     "mappings": {
       "obofoundry": "cmf",
       "prefixcommons": "CMF"
@@ -8563,6 +8565,7 @@
       "name": "Human Dermatological Disease Ontology",
       "prefix": "DERMO"
     },
+    "example": "0000000",
     "homepage": "https://jbiomedsem.biomedcentral.com/articles/10.1186/s13326-016-0085-x",
     "mappings": {
       "bioportal": "DERMO"
@@ -9889,11 +9892,13 @@
       "name": "Electrocardiography Ontology",
       "prefix": "ECG"
     },
+    "example": "000000159",
     "homepage": "https://bioportal.bioontology.org/ontologies/ECG",
     "mappings": {
       "bioportal": "ECG"
     },
     "name": "Electrocardiogram Ontology",
+    "pattern": "^\\d+$",
     "synonyms": [
       "ECGOntology"
     ]
@@ -11389,6 +11394,7 @@
   "epcc": {
     "homepage": "https://www.aepc.org/european-paediatric-cardiac-coding",
     "name": "European Paediatric Cardiac Codes",
+    "proprietary": true,
     "references": [
       "https://www.cambridge.org/core/journals/cardiology-in-the-young/article/abs/european-paediatric-cardiac-codes-the-long-list-with-icd9-icd10-crossmapping-and-crossmap-to-epcc-short-list/FCA4DFCCB661298294A3D113FC79D5BE"
     ]
@@ -11685,7 +11691,8 @@
   "eurofir": {
     "description": "EuroFir (European Food Information Resource Network), the world-leading European Network of Excellence on Food Composition Databank systems, is a partnership between 48 universities, research institutes and small-to-medium sized enterprises (SMEs) from 25 European countries.",
     "homepage": "https://www.eurofir.org",
-    "name": "European Food Information Resource Network"
+    "name": "European Food Information Resource Network",
+    "proprietary": true
   },
   "ev": {
     "appears_in": [
@@ -12244,12 +12251,12 @@
       "prefix": "FBOL"
     }
   },
-  "fbql": {
+  "fbrf": {
+    "description": "FlyBase internal citation identifiers",
+    "example": "0187632",
     "homepage": "https://flybase.org",
-    "name": "Flybase Quantitative Loci",
-    "prefixcommons": {
-      "prefix": "fbql"
-    }
+    "name": "FlyBase Reference Report",
+    "url": "https://flybase.org/reports/FBrf$1"
   },
   "fbsp": {
     "bioportal": {
@@ -12279,8 +12286,10 @@
     }
   },
   "fbtc": {
+    "example": "0000190",
     "homepage": "https://flybase.org",
-    "name": "Flybase Cell Line"
+    "name": "Flybase Cell Line",
+    "url": "https://flybase.org/reports/FBtc$1.html"
   },
   "fideo": {
     "bioportal": {
@@ -12624,6 +12633,7 @@
       "name": "Friend of a Friend Vocabulary",
       "prefix": "FOAF"
     },
+    "example": "familyName",
     "homepage": "http://xmlns.com/foaf/spec/",
     "mappings": {
       "biolink": "foaf",
@@ -13077,8 +13087,10 @@
   },
   "fyler": {
     "description": "A hierarchical classification of congenital heart disease ",
+    "example": "4447",
     "homepage": "https://www.elsevier.com/books/nadas-pediatric-cardiology/9781416023906",
     "name": "Fyler",
+    "pattern": "^\\d+$",
     "references": [
       "https://github.com/obophenotype/human-phenotype-ontology/issues/2568",
       "https://github.com/obophenotype/human-phenotype-ontology/issues/2511"
@@ -13216,6 +13228,8 @@
       "name": "Galen Ontology",
       "prefix": "GALEN"
     },
+    "deprecated": true,
+    "example": "MagnitudeValueType",
     "homepage": "https://www.opengalen.org",
     "mappings": {
       "bioportal": "GALEN"
@@ -13307,8 +13321,10 @@
   },
   "gc": {
     "comment": "see comment here: https://github.com/obophenotype/ncbitaxon/issues/47",
+    "example": "11",
     "homepage": "https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html",
     "name": "Genetic Code",
+    "pattern": "^\\d+$",
     "references": [
       "https://github.com/obophenotype/ncbitaxon/issues/47"
     ],
@@ -14732,6 +14748,8 @@
     }
   },
   "goeco": {
+    "description": "A GO annotation is a statement about the function of a particular gene. Each annotation includes an evidence code to indicate how the annotation to a particular term is supported.",
+    "example": "IPI",
     "homepage": "http://geneontology.org/docs/guide-go-evidence-codes/",
     "name": "GO Evidence Code"
   },
@@ -14876,6 +14894,7 @@
       "is_obo": false,
       "prefix": "GSID"
     },
+    "example": "PjrpzUIAAAAJ",
     "homepage": "https://scholar.google.com/",
     "mappings": {
       "biolink": "GSID"
@@ -14890,6 +14909,7 @@
       "prefix": "GOREL"
     },
     "download_owl": "ftp://ftp.geneontology.org/pub/go/ontology/extensions/gorel.owl",
+    "example": "0002005",
     "go": {
       "description": "Additional relations pending addition into RO",
       "name": "GO Extensions to OBO Relation Ontology Ontology",
@@ -15895,6 +15915,7 @@
       "name": "Healthcare Common Procedure Coding System",
       "prefix": "HCPCS"
     },
+    "example": "G8944",
     "homepage": "https://www.cms.gov/Medicare/Coding/MedHCPCSGenInfo",
     "mappings": {
       "biolink": "HCPCS",
@@ -17572,6 +17593,7 @@
       "name": "Dengue Fever Ontology",
       "prefix": "IDODEN"
     },
+    "example": "0003463",
     "homepage": "https://bioportal.bioontology.org/ontologies/IDODEN",
     "mappings": {
       "bioportal": "IDODEN"
@@ -19575,6 +19597,8 @@
     }
   },
   "kegg.ligand": {
+    "comment": "This database has been discontinued by KEGG. It now lives inside the compound database",
+    "deprecated": true,
     "go": {
       "formatter": "http://www.genome.jp/dbget-bin/www_bget?cpd:$1",
       "homepage": "http://www.genome.ad.jp/kegg/docs/upd_ligand.html",
@@ -19853,6 +19877,7 @@
     "appears_in": [
       "cl"
     ],
+    "example": "0001009",
     "homepage": "http://www.kupkb.org/",
     "name": "Kidney and Urinary Pathway Ontology",
     "references": [
@@ -24376,6 +24401,7 @@
     "description": "The nomenclature used for named reactions in text mining software from NextMove",
     "homepage": "https://www.nextmovesoftware.com/namerxn.html",
     "name": "NameRXN",
+    "proprietary": true,
     "references": [
       "https://www.nextmovesoftware.com/products/HazELNutPoster.pdf"
     ]
@@ -28104,6 +28130,7 @@
     }
   },
   "owl": {
+    "example": "Ontology",
     "homepage": "https://www.w3.org/TR/owl-features/",
     "mappings": {
       "prefixcommons": "owl"
@@ -28779,7 +28806,8 @@
       "prefix": "PDB"
     },
     "synonyms": [
-      "wwpdb"
+      "wwpdb",
+      "pdbe"
     ],
     "uniprot": {
       "category": "3D structure databases",
@@ -28878,10 +28906,6 @@
     "wikidata": {
       "prefix": "P3636"
     }
-  },
-  "pdbe": {
-    "homepage": "https://www.ebi.ac.uk/pdbe/",
-    "name": "Protein Data Bank in Europe"
   },
   "pdro": {
     "bioportal": {
@@ -29278,8 +29302,12 @@
     }
   },
   "pfam.clan": {
-    "homepage": "http://pfam.xfam.org",
-    "name": "Pfam Clans"
+    "description": "Higher order grouping of Pfam families",
+    "example": "CL0192",
+    "homepage": "https://pfam.xfam.org",
+    "name": "Pfam Clans",
+    "pattern": "^CL\\d+$",
+    "url": "https://pfam.xfam.org/clan/$1"
   },
   "pfr": {
     "example": "1001",
@@ -31788,6 +31816,7 @@
       "is_obo": false,
       "prefix": "ResearchID"
     },
+    "example": "1981638",
     "homepage": "https://publons.com/researcher",
     "mappings": {
       "biolink": "ResearchID"
@@ -32149,11 +32178,13 @@
       "prefix": "RDO"
     },
     "download_obo": "https://ratmine.mcw.edu/ontology/disease/RDO.obo",
+    "example": "9002859",
     "homepage": "https://ratmine.mcw.edu/ontology/disease/",
     "mappings": {
       "bioportal": "RDO"
     },
-    "name": "RGD Disease_Ontology"
+    "name": "RGD Disease_Ontology",
+    "pattern": "^\\d{7}$"
   },
   "reactome": {
     "example": "R-BTA-418592",
@@ -34754,6 +34785,7 @@
     "url": "https://smpdb.ca/view/$1"
   },
   "snap": {
+    "example": "Quality",
     "homepage": "http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf",
     "name": "Snapshot"
   },
@@ -34995,7 +35027,7 @@
     }
   },
   "span": {
-    "comment": "see also snap",
+    "comment": "see also snap. This ontology only exists in description in the paper and does not have an associated web resource",
     "homepage": "http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf",
     "name": "Span"
   },
@@ -36399,8 +36431,10 @@
     }
   },
   "tkg": {
+    "example": "0221",
     "homepage": "http://www2.idac.tohoku.ac.jp/dep/ccr/",
     "name": "Tohoku University cell line catalog",
+    "pattern": "^\\d+$",
     "url": "http://www2.idac.tohoku.ac.jp/dep/ccr/TKGdate/TKGvol08/$1.html"
   },
   "to": {
@@ -37893,6 +37927,7 @@
     }
   },
   "unpd": {
+    "comment": "The website is dead, there are no places to get the source information",
     "homepage": "http://pkuxxj.pku.edu.cn/UNPD/",
     "name": "Universal Natural Products Database",
     "references": [
@@ -38986,6 +39021,8 @@
     }
   },
   "vuid": {
+    "comment": "The example corresponds to acetaminophen",
+    "example": "4007166",
     "homepage": "https://www.va.gov/health",
     "name": "Veterans Health Administration (VHA) unique identifier",
     "references": [
@@ -39269,6 +39306,7 @@
       "is_obo": false,
       "prefix": "wgs"
     },
+    "example": "latitude",
     "homepage": "https://www.w3.org/2003/01/geo/wgs84_pos",
     "mappings": {
       "biolink": "wgs"

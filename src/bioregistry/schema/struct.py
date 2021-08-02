@@ -107,6 +107,8 @@ class Resource(BaseModel):
     comment: Optional[str]
     #: Contributor information
     contributor: Optional[Author]
+    #: Set to true if this database is proprietary. If missing, assume it's not.
+    proprietary: Optional[bool]
 
     # Registry-specific data
     miriam: Optional[Mapping[str, Any]]
