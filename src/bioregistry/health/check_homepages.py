@@ -3,14 +3,14 @@
 """A script to check which homepages in entries in the Bioregistry actually can be accessed."""
 
 from collections import defaultdict
+from datetime import datetime
+from typing import Optional, Set, Tuple
 
 import click
 import pandas as pd
 import requests
-from datetime import datetime
 from tqdm import tqdm
 from tqdm.contrib.concurrent import thread_map
-from typing import Optional, Set, Tuple
 
 import bioregistry
 
