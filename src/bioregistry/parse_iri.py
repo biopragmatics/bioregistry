@@ -4,13 +4,15 @@
 
 from typing import Tuple, Union
 
-from bioregistry.resolve import get_format_urls, parse_curie
+from .resolve import get_format_urls, parse_curie
 
 __all__ = [
     "parse_iri",
 ]
 
-_D = sorted(get_format_urls().items(), key=lambda kv: -len(kv[0]))
+#: A prefix map in reverse sorted order based on length of the URL
+#: in order to avoid conflicts of sub-URIs (thanks to Nico Matentzoglu for the idea)
+PREFIX_MAP = sorted(get_format_urls().items(), key=lambda kv: -len(kv[0]))
 
 OLS_URL_PREFIX = "https://www.ebi.ac.uk/ols/ontologies/"
 BIOREGISTRY_PREFIX = "https://bioregistry.io"
@@ -82,7 +84,7 @@ def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
     if iri.startswith(N2T_PREFIX):
         curie = iri[len(N2T_PREFIX) :]
         return parse_curie(curie)
-    for prefix, prefix_url in _D:
+    for prefix, prefix_url in PREFIX_MAP:
         if iri.startswith(prefix_url):
             return prefix, iri[len(prefix_url) :]
     return None, None
@@ -113,6 +115,7 @@ def parse_obolibrary_purl(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]
 
 
 def _main():
+    """Run this as ``python -m bioregistry.parse_iri`` to get a list of IRIs that can be constructed, but not parsed."""
     import bioregistry
     from tabulate import tabulate
 
