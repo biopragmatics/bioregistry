@@ -35,44 +35,25 @@
    <br />More information <a href="https://bioregistry.io/summary">here</a>.
 </p>
 
-## 💾 Data
+## 🔑 Access
+
+## 🌐 Website
 
 The Bioregistry can be accessed, searched, and queried through its associated website at
 https://bioregistry.io.
 
 ### 📥 Download
 
-The source of the Bioregistry can be downloaded directly
+The underlying data of the Bioregistry can be downloaded directly
 from [here](https://github.com/bioregistry/bioregistry/blob/main/src/bioregistry/data/bioregistry.json).
-Several exports to YAML, TSV, and RDF can be downloaded at https://bioregistry.io/download.
+Several exports to YAML, TSV, and RDF can be downloaded via https://bioregistry.io/download.
 
 The manually curated portions of these data are available under the
 [CC0 1.0 Universal License](https://creativecommons.org/publicdomain/zero/1.0/).
 
-### 🫀 Health Report
+## 🧹 Maintenance
 
-[![Health Report](https://github.com/bioregistry/bioregistry/actions/workflows/health.yml/badge.svg)](https://github.com/bioregistry/bioregistry/actions/workflows/health.yml)
-
-The Bioregistry runs some automated tests weekly to check that various metadata haven't gone stale. For example,
-it checks that the homepages are still available and that each provider URL is still able to resolve. The
-tests fail if even a single metadata is out of place, so don't be frightened that this badge is almost always
-red.
-
-### ♻️ Update
-
-The database is automatically updated daily thanks to scheduled workflows in GitHub Actions. The workflow's
-configuration can be found [here](https://github.com/bioregistry/bioregistry/blob/main/.github/workflows/update.yml)
-and the last run can be seen [here](https://github.com/bioregistry/bioregistry/actions?query=workflow%3A%22Update+Data%22).
-Further, a [changelog](https://github.com/bioregistry/bioregistry/commits?author=actions-user) can be recapitulated from the
-commits of the GitHub Actions bot.
-
-If you want to manually update the database after installing in development mode, run the following:
-
-```shell
-$ bioregistry update
-```
-
-## 🙏 Contributing
+### 🙏 Contributing
 
 If you'd like to request a new prefix, please fill out this [issue template](https://github.com/bioregistry/bioregistry/issues/new?assignees=cthoyt&labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D).
 It will automatically generate a pull request!
@@ -98,6 +79,29 @@ Things that would be helpful:
 
 A full list of curation to-do's is automatically generated as a web page
 [here](https://bioregistry.github.io/bioregistry/curation/). This page also has a more in-depth tutorial on how to contribute.
+
+### 🫀 Health Report
+
+[![Health Report](https://github.com/bioregistry/bioregistry/actions/workflows/health.yml/badge.svg)](https://github.com/bioregistry/bioregistry/actions/workflows/health.yml)
+
+The Bioregistry runs some automated tests weekly to check that various metadata haven't gone stale. For example,
+it checks that the homepages are still available and that each provider URL is still able to resolve. The
+tests fail if even a single metadata is out of place, so don't be frightened that this badge is almost always
+red.
+
+### ♻️ Update
+
+The database is automatically updated daily thanks to scheduled workflows in GitHub Actions. The workflow's
+configuration can be found [here](https://github.com/bioregistry/bioregistry/blob/main/.github/workflows/update.yml)
+and the last run can be seen [here](https://github.com/bioregistry/bioregistry/actions?query=workflow%3A%22Update+Data%22).
+Further, a [changelog](https://github.com/bioregistry/bioregistry/commits?author=actions-user) can be recapitulated from the
+commits of the GitHub Actions bot.
+
+If you want to manually update the database after installing in development mode, run the following:
+
+```shell
+$ bioregistry update
+```
 
 ## 🚀 Installation
 
