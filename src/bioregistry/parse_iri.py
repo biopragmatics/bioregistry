@@ -109,7 +109,7 @@ def parse_obolibrary_purl(iri: str) -> Tuple[str, str]:
     ('fbbt', '0000001')
     """
     curie = iri[len("http://purl.obolibrary.org/obo/") :]
-    return _safe_parse_curie(curie)
+    return parse_curie(curie, sep="_")
 
 
 def _main():
@@ -119,7 +119,7 @@ def _main():
     rows = []
     for prefix in bioregistry.read_registry():
         example = bioregistry.get_example(prefix)
-        if example is None or len(example) > 30:
+        if example is None:
             continue
         iri = bioregistry.get_link(prefix, example, use_bioregistry_io=False)
         if iri is None:
