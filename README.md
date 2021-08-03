@@ -35,10 +35,6 @@
    <br />More information <a href="https://bioregistry.io/summary">here</a>.
 </p>
 
-## 🔑 Access
-
-### 🌐 Website
-
 The Bioregistry can be accessed, searched, and queried through its associated website at
 https://bioregistry.io.
 
@@ -51,9 +47,7 @@ Several exports to YAML, TSV, and RDF can be downloaded via https://bioregistry.
 The manually curated portions of these data are available under the
 [CC0 1.0 Universal License](https://creativecommons.org/publicdomain/zero/1.0/).
 
-## 🧹 Maintenance
-
-### 🙏 Contributing
+## 🙏 Contributing
 
 If you'd like to request a new prefix, please fill out this [issue template](https://github.com/bioregistry/bioregistry/issues/new?assignees=cthoyt&labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D).
 It will automatically generate a pull request!
@@ -79,6 +73,8 @@ Things that would be helpful:
 
 A full list of curation to-do's is automatically generated as a web page
 [here](https://bioregistry.github.io/bioregistry/curation/). This page also has a more in-depth tutorial on how to contribute.
+
+## 🧹 Maintenance
 
 ### 🫀 Health Report
 
