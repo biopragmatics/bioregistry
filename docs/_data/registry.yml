@@ -2322,17 +2322,13 @@ begdb:
     is_obo: false
     prefix: BEGDB
 bel:
+  comment: INDRA uses bel as a catch-all for scomp/sfam
   description: The Biological Expression Language is a domain-specific language for
     describing causal, correlative, and associative relationships between a variety
     of biological agents.
   example: 9-1-1 Complex
   homepage: https://biological-expression-language.github.io/
   name: Biological Expression Language
-  synonyms:
-  - SCOMP
-  - SFAM
-  - SDIS
-  - SCHEM
 bfo:
   bioportal:
     name: Basic Formal Ontology
@@ -6612,6 +6608,11 @@ cob:
     version: '2021-02-21'
     version.iri: http://purl.obolibrary.org/obo/cob/2020-04-15/cob.owl
 cog:
+  biolink:
+    formatter: https://www.ncbi.nlm.nih.gov/research/cog-project/$1
+    is_identifiers: false
+    is_obo: false
+    prefix: COG
   contact: cogs@ncbi.nlm.nih.gov
   description: 'COGs stands for Clusters of Orthologous Genes. The database was initially
     created in 1997 (Tatusov et al., PMID: 9381173) followed by several updates, most
@@ -6629,6 +6630,7 @@ cog:
     prefix: COG_Cluster
   homepage: https://www.ncbi.nlm.nih.gov/research/cog/
   mappings:
+    biolink: COG
     go: COG_Cluster
   name: Cluster of orthologous genes
   pattern: ^COG\d+$
@@ -20810,11 +20812,17 @@ matrixdb.association:
     is_obo: false
     prefix: MATRIXDB.ASSOCIATION
 maxo:
+  biolink:
+    formatter: http://purl.obolibrary.org/obo/MAXO_$1
+    is_identifiers: false
+    is_obo: true
+    prefix: MAXO
   bioportal:
     name: Medical Action Ontology
     prefix: MAXO
   example: 0000008
   mappings:
+    biolink: MAXO
     bioportal: MAXO
     obofoundry: maxo
     ols: maxo
@@ -22555,9 +22563,15 @@ mir:
     is_obo: false
     prefix: MIR
 mirbase:
+  biolink:
+    formatter: http://identifiers.org/mirbase$1
+    is_identifiers: true
+    is_obo: false
+    prefix: mirbase
   example: MI0026471
   homepage: http://www.mirbase.org/
   mappings:
+    biolink: mirbase
     miriam: mirbase
     n2t: mirbase
     ncbi: miRBase
@@ -28255,12 +28269,18 @@ panorama:
   name: Panorama Public
   url: https://panoramaweb.org/$1.url
 panther.family:
+  biolink:
+    formatter: http://www.pantherdb.org/panther/family.do?clsAccession=$1
+    is_identifiers: false
+    is_obo: false
+    prefix: PANTHER.FAMILY
   go:
     formatter: http://www.pantherdb.org/panther/lookupId.jsp?id=$1
     homepage: http://www.pantherdb.org/
     name: Protein ANalysis THrough Evolutionary Relationships Classification System
     prefix: PANTHER
   mappings:
+    biolink: PANTHER.FAMILY
     go: PANTHER
     miriam: panther.family
     n2t: panther.family
@@ -33782,6 +33802,20 @@ scdo:
     prefix: scdo
     version: '2021-04-15'
     version.iri: http://purl.obolibrary.org/obo/scdo/releases/2021-04-15/scdo.owl
+schem:
+  description: Selventa legacy chemical namespace used with the Biological Expression
+    Language
+  example: A0001
+  homepage: https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets
+  name: Selventa Chemicals
+  pattern: ^A\d{4}$
+scomp:
+  description: Selventa legacy complex namespace used with the Biological Expression
+    Language
+  example: C0001
+  homepage: https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets
+  name: Selventa Complexes
+  pattern: ^C\d{4}$
 scop:
   mappings:
     miriam: scop
@@ -33920,6 +33954,13 @@ sdgio:
     prefix: sdgio
     version: '2018-08-10'
     version.iri: http://purl.unep.org/sdg/releases/2018-08-10/sdgio.owl
+sdis:
+  description: Selventa legacy disease namespace used with the Biological Expression
+    Language
+  example: D0001
+  homepage: https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets
+  name: Selventa iseasess
+  pattern: ^D\d{4}$
 seed:
   go:
     description: Project to annotate the first 1000 sequenced genomes, develop detailed
@@ -34110,6 +34151,13 @@ sepio:
     is_identifiers: false
     is_obo: true
     prefix: SEPIO
+sfam:
+  description: Selventa legacy protein family namespace used with the Biological Expression
+    Language
+  example: F0001
+  homepage: https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets
+  name: Selventa Families
+  pattern: ^F\d{4}$
 sgd:
   example: S000002493
   go:
@@ -39682,11 +39730,17 @@ xco:
     is_obo: true
     prefix: XCO
 xenbase:
+  biolink:
+    formatter: http://www.xenbase.org/gene/showgene.do?method=display&geneId=$1
+    is_identifiers: false
+    is_obo: false
+    prefix: Xenbase
   go:
     homepage: http://www.xenbase.org/
     name: Xenbase
     prefix: Xenbase
   mappings:
+    biolink: Xenbase
     go: Xenbase
     miriam: xenbase
     n2t: xenbase

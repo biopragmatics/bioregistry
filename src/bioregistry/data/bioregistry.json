@@ -6660,6 +6660,12 @@
     }
   },
   "cog": {
+    "biolink": {
+      "formatter": "https://www.ncbi.nlm.nih.gov/research/cog-project/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "COG"
+    },
     "contact": "cogs@ncbi.nlm.nih.gov",
     "description": "COGs stands for Clusters of Orthologous Genes. The database was initially created in 1997 (Tatusov et al., PMID: 9381173) followed by several updates, most recently in 2014 (Galperin et al., PMID: 25428365). The current update includes complete genomes of 1,187 bacteria and 122 archaea that map into 1,234 genera. The new features include ~250 updated COG annotations with corresponding references and PDB links, where available; new COGs for proteins involved in CRISPR-Cas immunity, sporulation, and photosynthesis, and the lists of COGs grouped by pathways and functional systems.",
     "example": "COG0001",
@@ -6671,6 +6677,7 @@
     },
     "homepage": "https://www.ncbi.nlm.nih.gov/research/cog/",
     "mappings": {
+      "biolink": "COG",
       "go": "COG_Cluster"
     },
     "name": "Cluster of orthologous genes",
@@ -20873,12 +20880,19 @@
     }
   },
   "maxo": {
+    "biolink": {
+      "formatter": "http://purl.obolibrary.org/obo/MAXO_$1",
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "MAXO"
+    },
     "bioportal": {
       "name": "Medical Action Ontology",
       "prefix": "MAXO"
     },
     "example": "0000008",
     "mappings": {
+      "biolink": "MAXO",
       "bioportal": "MAXO",
       "obofoundry": "maxo",
       "ols": "maxo"
@@ -22607,9 +22621,16 @@
     }
   },
   "mirbase": {
+    "biolink": {
+      "formatter": "http://identifiers.org/mirbase$1",
+      "is_identifiers": true,
+      "is_obo": false,
+      "prefix": "mirbase"
+    },
     "example": "MI0026471",
     "homepage": "http://www.mirbase.org/",
     "mappings": {
+      "biolink": "mirbase",
       "miriam": "mirbase",
       "n2t": "mirbase",
       "ncbi": "miRBase",
@@ -28290,6 +28311,12 @@
     "url": "https://panoramaweb.org/$1.url"
   },
   "panther.family": {
+    "biolink": {
+      "formatter": "http://www.pantherdb.org/panther/family.do?clsAccession=$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "PANTHER.FAMILY"
+    },
     "go": {
       "formatter": "http://www.pantherdb.org/panther/lookupId.jsp?id=$1",
       "homepage": "http://www.pantherdb.org/",
@@ -28297,6 +28324,7 @@
       "prefix": "PANTHER"
     },
     "mappings": {
+      "biolink": "PANTHER.FAMILY",
       "go": "PANTHER",
       "miriam": "panther.family",
       "n2t": "panther.family",
@@ -39831,12 +39859,19 @@
     }
   },
   "xenbase": {
+    "biolink": {
+      "formatter": "http://www.xenbase.org/gene/showgene.do?method=display&geneId=$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "Xenbase"
+    },
     "go": {
       "homepage": "http://www.xenbase.org/",
       "name": "Xenbase",
       "prefix": "Xenbase"
     },
     "mappings": {
+      "biolink": "Xenbase",
       "go": "Xenbase",
       "miriam": "xenbase",
       "n2t": "xenbase",
