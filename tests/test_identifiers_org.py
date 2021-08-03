@@ -8,7 +8,7 @@ from textwrap import dedent, fill
 import requests
 
 import bioregistry
-from bioregistry import get_identifiers_org_curie, get_identifiers_org_url
+from bioregistry import get_identifiers_org_curie, get_identifiers_org_iri
 from bioregistry.constants import IDOT_BROKEN
 from bioregistry.version import VERSION
 
@@ -50,7 +50,7 @@ class TestIdentifiersOrg(unittest.TestCase):
             ):
                 identifier = bioregistry.get_example(prefix)
                 self.assertIsNotNone(identifier)
-                url = bioregistry.resolve_identifier.get_identifiers_org_url(prefix, identifier)
+                url = bioregistry.resolve_identifier.get_identifiers_org_iri(prefix, identifier)
                 res = self.session.get(url, allow_redirects=False)
                 self.assertEqual(302, res.status_code, msg=f"failed with URL: {url}")
 
@@ -67,7 +67,7 @@ class TestIdentifiersOrg(unittest.TestCase):
             with self.subTest(prefix=prefix, identifier=identifier):
                 self.assertIsNotNone(identifier, msg="All MIRIAM entries should have an example")
 
-                url = get_identifiers_org_url(prefix, identifier)
+                url = get_identifiers_org_iri(prefix, identifier)
                 self.assertIsNotNone(url, msg="All MIRIAM entries should be formattable")
                 self.assertTrue(
                     url.startswith(f"https://identifiers.org/{miriam_prefix}:"),
@@ -111,7 +111,7 @@ class TestIdentifiersOrg(unittest.TestCase):
                 curie = get_identifiers_org_curie(prefix, identifier)
                 self.assertEqual(expected, curie, msg="wrong CURIE")
 
-                url = get_identifiers_org_url(prefix, identifier)
+                url = get_identifiers_org_iri(prefix, identifier)
                 self.assertEqual(f"https://identifiers.org/{curie}", url, msg="wrong URL")
 
                 # Check that the URL resolves

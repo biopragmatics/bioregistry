@@ -168,6 +168,39 @@ assert ('chebi', '24867') == bioregistry.parse_iri('http://identifiers.org/CHEBI
 assert ('chebi', '24867') == bioregistry.parse_iri('https://bioregistry.io/chebi:24867')
 ```
 
+### Generating IRIs
+
+```python
+import bioregistry
+
+# Bioregistry IRI
+assert bioregistry.get_bioregistry_iri('chebi', '24867') == 'https://bioregistry.io/chebi:24867'
+
+# Default Provider
+assert bioregistry.get_default_iri('chebi', '24867') == 'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+
+# OBO Library
+assert bioregistry.get_obofoundry_iri('chebi', '24867') == 'http://purl.obolibrary.org/obo/CHEBI_24867'
+
+# OLS IRI
+assert bioregistry.get_ols_iri('chebi', '24867') == \
+        'https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867'
+
+# Bioportal IRI
+assert bioregistry.get_bioportal_iri('chebi', '24867') == \
+        'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24867'
+
+# Identifiers.org IRI
+assert bioregistry.get_identifiers_org_iri('chebi', '24867') == 'https://identifiers.org/CHEBI:24867'
+
+# Name-to-Thing IRI
+assert bioregistry.get_n2t_iri('chebi', '24867') == 'https://n2t.net/chebi:24867'
+```
+
+If you're not sure which to choose, use `bioregistry.get_link` and it will pick the best one for you.
+Each of these functions could also return `None` if there isn't a provider available or if the prefix
+can't be mapped to the various resources.
+
 ### Getting Metadata
 
 The pattern for an entry in the Bioregistry can be looked up quickly with `get_pattern()` if

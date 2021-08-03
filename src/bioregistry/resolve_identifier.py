@@ -22,13 +22,13 @@ __all__ = [
     "validate",
     "get_providers",
     "get_providers_list",
-    "get_identifiers_org_url",
+    "get_identifiers_org_iri",
     "get_identifiers_org_curie",
     "get_obofoundry_format",
-    "get_obofoundry_link",
-    "get_ols_link",
-    "get_bioportal_url",
-    "get_n2t_url",
+    "get_obofoundry_iri",
+    "get_ols_iri",
+    "get_bioportal_iri",
+    "get_n2t_iri",
     "get_link",
     "get_registry_resolve_url",
     "normalize_identifier",
@@ -103,8 +103,16 @@ def normalize_identifier(prefix: str, identifier: str) -> str:
     return identifier
 
 
-def get_default_url(prefix: str, identifier: str) -> Optional[str]:
-    """Get the default URL for the given CURIE."""
+def get_default_iri(prefix: str, identifier: str) -> Optional[str]:
+    """Get the default URL for the given CURIE.
+
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE
+    :return: A IRI string corresponding to the default provider, if available.
+
+    >>> get_default_iri('chebi', '24867')
+    'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+    """
     entry = get_resource(prefix)
     if entry is None:
         return None
@@ -126,7 +134,7 @@ def get_providers_list(prefix: str, identifier: str) -> Sequence[Tuple[str, str]
     if not rv:
         return rv
 
-    bioregistry_link = _get_bioregistry_link(prefix, identifier)
+    bioregistry_link = get_bioregistry_iri(prefix, identifier)
     if not bioregistry_link:
         return rv
 
@@ -135,39 +143,60 @@ def get_providers_list(prefix: str, identifier: str) -> Sequence[Tuple[str, str]
     return rv
 
 
-def get_identifiers_org_url(prefix: str, identifier: str) -> Optional[str]:
-    """Get the identifiers.org URL for the given CURIE."""
+IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
+
+
+def get_identifiers_org_iri(prefix: str, identifier: str) -> Optional[str]:
+    """Get the identifiers.org URL for the given CURIE.
+
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE
+    :return: A IRI string corresponding to the Identifiers.org, if the prefix exists and is
+        mapped to MIRIAM.
+
+    >>> get_identifiers_org_iri('chebi', '24867')
+    'https://identifiers.org/CHEBI:24867'
+    """
     curie = get_identifiers_org_curie(prefix, identifier)
     if curie is None:
         return None
-    return f"https://identifiers.org/{curie}"
+    return f"{IDENTIFIERS_ORG_URL_PREFIX}{curie}"
 
 
-def get_n2t_url(prefix: str, identifier: str) -> Optional[str]:
-    """Get the name-to-thing URL for the given CURIE."""
+N2T_URL_PREFIX = "https://n2t.net/"
+
+
+def get_n2t_iri(prefix: str, identifier: str) -> Optional[str]:
+    """Get the name-to-thing URL for the given CURIE.
+
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE
+    :return: A IRI string corresponding to the N2T resolve, if the prefix exists and is
+        mapped to N2T.
+
+    >>> get_n2t_iri('chebi', '24867')
+    'https://n2t.net/chebi:24867'
+    """
     n2t_prefix = get_n2t_prefix(prefix)
     if n2t_prefix is None:
         return None
-    curie = f"{n2t_prefix}:{identifier}"
-    if curie is None:
-        return None
-    return f"https://n2t.net/{curie}"
+    return f"{N2T_URL_PREFIX}{n2t_prefix}:{identifier}"
 
 
-def get_bioportal_url(prefix: str, identifier: str) -> Optional[str]:
+def get_bioportal_iri(prefix: str, identifier: str) -> Optional[str]:
     """Get the Bioportal URL for the given CURIE.
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
     :return: A link to the Bioportal page
 
-    >>> get_bioportal_url('chebi', '24431')
+    >>> get_bioportal_iri('chebi', '24431')
     'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24431'
     """
     bioportal_prefix = get_bioportal_prefix(prefix)
     if bioportal_prefix is None:
         return None
-    obo_link = get_obofoundry_link(prefix, identifier)
+    obo_link = get_obofoundry_iri(prefix, identifier)
     if obo_link is not None:
         return f"https://bioportal.bioontology.org/ontologies/{bioportal_prefix}/?p=classes&conceptid={obo_link}"
     # TODO there must be other rules?
@@ -202,19 +231,19 @@ def get_identifiers_org_curie(prefix: str, identifier: str) -> Optional[str]:
         return f"{miriam_prefix}:{identifier}"
 
 
-def get_obofoundry_link(prefix: str, identifier: str) -> Optional[str]:
+def get_obofoundry_iri(prefix: str, identifier: str) -> Optional[str]:
     """Get the OBO Foundry URL if possible.
 
     :param prefix: The prefix
     :param identifier: The identifier
     :return: The OBO Foundry URL if the prefix can be mapped to an OBO Foundry entry
 
-    >>> get_obofoundry_link('chebi', '24431')
+    >>> get_obofoundry_iri('chebi', '24431')
     'http://purl.obolibrary.org/obo/CHEBI_24431'
 
     For entries where there's a preferred prefix, it is respected.
 
-    >>> get_obofoundry_link('fbbt', '00007294')
+    >>> get_obofoundry_iri('fbbt', '00007294')
     'http://purl.obolibrary.org/obo/FBbt_00007294'
     """
     fmt = get_obofoundry_format(prefix)
@@ -223,47 +252,47 @@ def get_obofoundry_link(prefix: str, identifier: str) -> Optional[str]:
     return f"{fmt}{identifier}"
 
 
-def get_ols_link(prefix: str, identifier: str) -> Optional[str]:
+def get_ols_iri(prefix: str, identifier: str) -> Optional[str]:
     """Get the OLS URL if possible."""
     ols_prefix = get_ols_prefix(prefix)
-    obo_link = get_obofoundry_link(prefix, identifier)
-    if ols_prefix is None or obo_link is None:
+    obo_iri = get_obofoundry_iri(prefix, identifier)
+    if ols_prefix is None or obo_iri is None:
         return None
-    return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_link}"
+    return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_iri}"
 
 
-def _get_bioregistry_link(prefix: str, identifier: str) -> Optional[str]:
+def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
     """Get the bioregistry link.
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
     :return: A link to the bioregistry resolver
 
-    >>> _get_bioregistry_link('pdb', '1234')
+    >>> get_bioregistry_iri('pdb', '1234')
     'https://bioregistry.io/pdb:1234'
 
     Redundant prefix (OBO)
 
-    >>> _get_bioregistry_link('go', 'GO:0120212')
+    >>> get_bioregistry_iri('go', 'GO:0120212')
     'https://bioregistry.io/go:0120212'
-    >>> _get_bioregistry_link('go', 'go:0120212')
+    >>> get_bioregistry_iri('go', 'go:0120212')
     'https://bioregistry.io/go:0120212'
-    >>> _get_bioregistry_link('go', '0120212')
+    >>> get_bioregistry_iri('go', '0120212')
     'https://bioregistry.io/go:0120212'
 
     Redundant prefix (banana; OBO)
 
-    >>> _get_bioregistry_link('fbbt', 'FBbt:1234')
+    >>> get_bioregistry_iri('fbbt', 'FBbt:1234')
     'https://bioregistry.io/fbbt:1234'
-    >>> _get_bioregistry_link('fbbt', 'fbbt:1234')
+    >>> get_bioregistry_iri('fbbt', 'fbbt:1234')
     'https://bioregistry.io/fbbt:1234'
-    >>> _get_bioregistry_link('fbbt', '1234')
+    >>> get_bioregistry_iri('fbbt', '1234')
     'https://bioregistry.io/fbbt:1234'
 
     Redundant prefix (banana; explicit)
-    >>> _get_bioregistry_link('go.ref', 'GO_REF:1234')
+    >>> get_bioregistry_iri('go.ref', 'GO_REF:1234')
     'https://bioregistry.io/go.ref:1234'
-    >>> _get_bioregistry_link('go.ref', '1234')
+    >>> get_bioregistry_iri('go.ref', '1234')
     'https://bioregistry.io/go.ref:1234'
     """
     norm_prefix, norm_identifier = normalize_curie(prefix, identifier)
@@ -273,12 +302,12 @@ def _get_bioregistry_link(prefix: str, identifier: str) -> Optional[str]:
 
 
 PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
-    "default": get_default_url,
-    "miriam": get_identifiers_org_url,
-    "obofoundry": get_obofoundry_link,
-    "ols": get_ols_link,
-    "n2t": get_n2t_url,
-    "bioportal": get_bioportal_url,
+    "default": get_default_iri,
+    "miriam": get_identifiers_org_iri,
+    "obofoundry": get_obofoundry_iri,
+    "ols": get_ols_iri,
+    "n2t": get_n2t_iri,
+    "bioportal": get_bioportal_iri,
 }
 
 LINK_PRIORITY = [

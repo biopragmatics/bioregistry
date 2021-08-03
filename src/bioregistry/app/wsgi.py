@@ -13,7 +13,7 @@ import bioregistry
 from bioregistry import version
 from .api import api_blueprint
 from .ui import ui_blueprint
-from ..resolve_identifier import _get_bioregistry_link
+from ..resolve_identifier import get_bioregistry_iri
 from ..schema import bioregistry_schema_terms, get_json_schema
 
 app = Flask(__name__)
@@ -54,7 +54,7 @@ app.register_blueprint(ui_blueprint)
 def home():
     """Render the homepage."""
     example_prefix, example_identifier = "chebi", "138488"
-    example_url = _get_bioregistry_link(example_prefix, example_identifier)
+    example_url = get_bioregistry_iri(example_prefix, example_identifier)
     return render_template(
         "home.html",
         example_url=example_url,
