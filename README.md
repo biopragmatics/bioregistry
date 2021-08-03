@@ -168,6 +168,30 @@ assert ('chebi', '24867') == bioregistry.parse_iri('http://identifiers.org/CHEBI
 assert ('chebi', '24867') == bioregistry.parse_iri('https://bioregistry.io/chebi:24867')
 ```
 
+### Generating IRIs
+
+```python
+import bioregistry
+
+# Bioregistry IRI
+assert 'https://bioregistry.io/chebi:24867' == bioregistry.get_bioregistry_iri('chebi', '24867')
+
+# OBO Library
+assert 'http://purl.obolibrary.org/obo/CHEBI_24867' == bioregistry.get_obofoundry_iri('chebi', '24867')
+
+# OLS IRI
+assert 'https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867' == bioregistry.get_ols_iri('chebi', '24867')
+
+# Bioportal IRI
+assert 'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24867' == bioregistry.get_bioportal_iri('chebi', '24867')
+
+# Identifiers.org IRI
+assert 'https://identifiers.org/CHEBI:24867' == bioregistry.get_identifiers_org_url('chebi', '24867')
+
+# Name-to-Thing IRI
+assert 'https://n2t.net/chebi:24867' == bioregistry.get_n2t_iri('chebi', '24867')
+```
+
 ### Getting Metadata
 
 The pattern for an entry in the Bioregistry can be looked up quickly with `get_pattern()` if
