@@ -2,7 +2,8 @@
 
 """Functionality for parsing IRIs."""
 
-from typing import Tuple, Union
+import collections.abc
+from typing import Mapping, Sequence, Tuple, Union
 
 from .resolve import get_format_urls, parse_curie
 
@@ -22,10 +23,17 @@ IDOT_HTTP_PREFIX = "http://identifiers.org/"
 N2T_PREFIX = "https://n2t.net/"
 
 
-def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
+def parse_iri(
+    iri: str, prefix_map: Union[None, Mapping[str, str], Sequence[Tuple[str, str]]] = None
+) -> Union[Tuple[str, str], Tuple[None, None]]:
     """Parse a compact identifier from an IRI.
 
     :param iri: A valid IRI
+    :param prefix_map:
+        If None, will use the default prefix map. If a mapping, will convert into a sorted
+        list using ``sorted(prefix_map.items(), key=lambda kv: -len(kv[0]))``. If you plan
+        to use this function in a loop, pre-compute this and pass it instead.
+        If a list of pairs is passed, will use it directly.
     :return: A pair of prefix/identifier, if can be parsed
 
     IRI from an OBO PURL:
@@ -67,6 +75,8 @@ def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
 
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
+    if isinstance(prefix_map, collections.abc.Mapping):
+        prefix_map = sorted(prefix_map.items(), key=lambda kv: -len(kv[0]))
     if iri.startswith(BIOREGISTRY_PREFIX):
         curie = iri[len(BIOREGISTRY_PREFIX) :]
         return parse_curie(curie)
@@ -84,7 +94,7 @@ def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
     if iri.startswith(N2T_PREFIX):
         curie = iri[len(N2T_PREFIX) :]
         return parse_curie(curie)
-    for prefix, prefix_url in PREFIX_MAP:
+    for prefix, prefix_url in prefix_map or PREFIX_MAP:
         if iri.startswith(prefix_url):
             return prefix, iri[len(prefix_url) :]
     return None, None
