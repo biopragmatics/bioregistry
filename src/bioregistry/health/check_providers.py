@@ -19,11 +19,11 @@ __all__ = [
 ]
 
 
-def _process(element: Tuple[str, str, str]) -> Tuple[str, str, str, bool, Optional[str]]:
+def _process(element: Tuple[str, str, str]) -> Tuple[str, str, str, bool, str]:
     prefix, example, url = element
 
     failed = False
-    msg = None
+    msg = ''
     try:
         res = requests.get(url, timeout=10)
     except IOError as e:
