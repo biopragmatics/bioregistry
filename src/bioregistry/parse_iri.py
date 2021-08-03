@@ -61,7 +61,7 @@ def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
     if iri.startswith(BIOREGISTRY_PREFIX):
-        curie = iri[len(BIOREGISTRY_PREFIX): ]
+        curie = iri[len(BIOREGISTRY_PREFIX) :]
         return parse_curie(curie)
     if iri.startswith(OLS_URL_PREFIX):
         sub_iri = iri.rsplit("=", 1)[1]
@@ -70,13 +70,21 @@ def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
         return parse_obolibrary_purl(iri)
     if iri.startswith(IDOT_HTTPS_PREFIX):
         curie = iri[len(IDOT_HTTPS_PREFIX) :]
-        return parse_curie(curie)
+        return _safe_parse_curie(curie)
     if iri.startswith(IDOT_HTTP_PREFIX):
         curie = iri[len(IDOT_HTTP_PREFIX) :]
-        return parse_curie(curie)
+        return _safe_parse_curie(curie)
     for prefix, prefix_url in _D:
         if iri.startswith(prefix_url):
             return prefix, iri[len(prefix_url) :]
+    return None, None
+
+
+def _safe_parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
+    for sep in "_/:":
+        prefix, identifier = parse_curie(curie, sep)
+        if prefix is not None:
+            return prefix, identifier
     return None, None
 
 
@@ -93,7 +101,7 @@ def parse_obolibrary_purl(iri: str) -> Tuple[str, str]:
     ('fbbt', '0000001')
     """
     curie = iri[len("http://purl.obolibrary.org/obo/") :]
-    return parse_curie(curie, sep="_")
+    return _safe_parse_curie(curie)
 
 
 def _main():
