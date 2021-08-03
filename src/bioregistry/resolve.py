@@ -572,17 +572,17 @@ def get_format_url(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
     """
     fmt = get_format(prefix, priority=priority)
     if fmt is None:
-        logging.warning("term missing formatter: %s", prefix)
+        logging.debug("term missing formatter: %s", prefix)
         return None
     count = fmt.count("$1")
     if 0 == count:
-        logging.warning("formatter missing $1: %s", prefix)
+        logging.debug("formatter missing $1: %s", prefix)
         return None
     if fmt.count("$1") != 1:
-        logging.warning("formatter has multiple $1: %s", prefix)
+        logging.debug("formatter has multiple $1: %s", prefix)
         return None
     if not fmt.endswith("$1"):
-        logging.warning("formatter does not end with $1: %s", prefix)
+        logging.debug("formatter does not end with $1: %s", prefix)
         return None
     return fmt[: -len("$1")]
 
