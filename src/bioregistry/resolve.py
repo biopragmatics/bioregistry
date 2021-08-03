@@ -572,17 +572,17 @@ def get_format_url(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
     """
     fmt = get_format(prefix, priority=priority)
     if fmt is None:
-        logging.warning("term missing formatter: %s", prefix)
+        logging.debug("term missing formatter: %s", prefix)
         return None
     count = fmt.count("$1")
     if 0 == count:
-        logging.warning("formatter missing $1: %s", prefix)
+        logging.debug("formatter missing $1: %s", prefix)
         return None
     if fmt.count("$1") != 1:
-        logging.warning("formatter has multiple $1: %s", prefix)
+        logging.debug("formatter has multiple $1: %s", prefix)
         return None
     if not fmt.endswith("$1"):
-        logging.warning("formatter does not end with $1: %s", prefix)
+        logging.debug("formatter does not end with $1: %s", prefix)
         return None
     return fmt[: -len("$1")]
 
@@ -767,11 +767,17 @@ def is_proprietary(prefix: str) -> Optional[bool]:
     return entry.proprietary
 
 
-def parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
+def parse_curie(curie: str, sep: str = ":") -> Union[Tuple[str, str], Tuple[None, None]]:
     """Parse a CURIE, normalizing the prefix and identifier if necessary.
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
+    :param sep: The separator for the CURIE. Defaults to the semicolon ":" however the slash
+        "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
     :returns: A tuple of the prefix, identifier. If not parsable, returns a tuple of None, None
+
+    The algorithm for parsing a CURIE is very simple: it splits the string on the leftmost occurrence
+    of the separator (usually a colon ":" unless specified otherwise). The left part is the prefix,
+    and the right part is the identifier.
 
     >>> parse_curie('pdb:1234')
     ('pdb', '1234')
@@ -797,9 +803,13 @@ def parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
     ('go.ref', '1234')
     >>> parse_curie('go.ref:1234')
     ('go.ref', '1234')
+
+    Parse OBO PURL curies
+    >>> parse_curie('GO_1234', sep="_")
+    ('go', '1234')
     """
     try:
-        prefix, identifier = curie.split(":", 1)
+        prefix, identifier = curie.split(sep, 1)
     except ValueError:
         return None, None
     return normalize_curie(prefix, identifier)

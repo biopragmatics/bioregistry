@@ -115,6 +115,33 @@ assert 'eccode' == bioregistry.normalize_prefix('EC_CODE')
 assert bioregistry.normalize_prefix('not a real key') is None
 ```
 
+The Bioregistry can be used to parse CURIEs from IRIs due to its vast registry of provider URL
+strings and additional programmatic logic implemented with Python. It can parse OBO Library PURLs,
+IRIs from the OLS and identifiers.org, IRIs from the Bioregistry website, and any other IRIs
+from well-formed providers registered in the Bioregistry.
+
+```python
+import bioregistry
+
+# First-party IRI
+assert ('chebi', '24867') == bioregistry.parse_iri('https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867')
+
+# OBO Library PURL
+assert ('chebi', '24867') == bioregistry.parse_iri('http://purl.obolibrary.org/obo/CHEBI_24867')
+
+# OLS IRI
+assert ('chebi', '24867') == bioregistry.parse_iri('https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867')
+
+# Identifiers.org IRIs (with varying usage of HTTP(s) and colon/slash separator
+assert ('chebi', '24867') == bioregistry.parse_iri('https://identifiers.org/CHEBI:24867')
+assert ('chebi', '24867') == bioregistry.parse_iri('http://identifiers.org/CHEBI:24867')
+assert ('chebi', '24867') == bioregistry.parse_iri('https://identifiers.org/CHEBI/24867')
+assert ('chebi', '24867') == bioregistry.parse_iri('http://identifiers.org/CHEBI/24867')
+
+# Bioregistry IRI
+assert ('chebi', '24867') == bioregistry.parse_iri('https://bioregistry.io/chebi:24867')
+```
+
 The pattern for an entry in the Bioregistry can be looked up quickly with `get_pattern()` if
 it exists. It prefers the custom curated, then MIRIAM, then Wikidata pattern.
 
@@ -134,7 +161,7 @@ assert bioregistry.is_deprecated('nmr')
 assert not bioregistry.is_deprecated('efo')
 ```
 
-Entries in the Bioregistry can be looked up with the `get()` function.
+Entries in the Bioregistry can be looked up with the `get_resource()` function.
 
 ```python
 import bioregistry
