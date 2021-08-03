@@ -14,7 +14,7 @@ jobs:
         with:
           python-version: 3.9
       - name: Install the Bioregistry
-        run: pip install .
+        run: pip install .[health]
       - name: Run the homepage checks
         run: python -m bioregistry.health homepages
   providers:
@@ -27,6 +27,6 @@ jobs:
         with:
           python-version: 3.9
       - name: Install the Bioregistry
-        run: pip install .
+        run: pip install .[health]
       - name: Run the provider checks
         run: python -m bioregistry.health providers
