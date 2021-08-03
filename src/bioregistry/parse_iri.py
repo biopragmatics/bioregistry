@@ -89,7 +89,7 @@ def _safe_parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
 
 
 def parse_obolibrary_purl(iri: str) -> Tuple[str, str]:
-    """Parse an OBO Library PURL
+    """Parse an OBO Library PURL.
 
     :param iri: A valid IRI
     :return: A pair of prefix/identifier, if can be parsed
@@ -109,7 +109,7 @@ def _main():
     from tabulate import tabulate
 
     rows = []
-    for prefix, resource in bioregistry.read_registry().items():
+    for prefix in bioregistry.read_registry():
         example = bioregistry.get_example(prefix)
         if example is None or len(example) > 30:
             continue
