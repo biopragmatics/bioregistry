@@ -2,6 +2,7 @@
 
 """A script to check which homepages in entries in the Bioregistry actually can be accessed."""
 
+import sys
 from collections import defaultdict
 from datetime import datetime
 from typing import Optional, Set, Tuple
@@ -79,6 +80,7 @@ def main():
         ],
     )
     click.echo(df.to_markdown())
+    sys.exit(1 if 0 < failed else 0)
 
 
 if __name__ == "__main__":

@@ -2,6 +2,7 @@
 
 """A script to check which providers in entries in the Bioregistry actually can be accessed."""
 
+import sys
 from datetime import datetime
 from typing import Tuple
 
@@ -76,6 +77,7 @@ def main():
         data=[(prefix, example, url, msg) for prefix, example, url, failed, msg in rv if failed],
     )
     click.echo(df.to_markdown())
+    sys.exit(1 if 0 < failed else 0)
 
 
 if __name__ == "__main__":
