@@ -32,15 +32,20 @@
 
 <p align="center">
    A community-driven integrative meta-registry of biological databases, ontologies, and other resources.
-   <br />More information <a href="https://bioregistry.io/summary/">here</a>.
+   <br />More information <a href="https://bioregistry.io/summary">here</a>.
 </p>
 
-## ⬇️ Download
+The Bioregistry can be accessed, searched, and queried through its associated website at
+https://bioregistry.io.
 
-The bioregistry database can be downloaded directly
+### 📥 Download
+
+The underlying data of the Bioregistry can be downloaded directly
 from [here](https://github.com/bioregistry/bioregistry/blob/main/src/bioregistry/data/bioregistry.json).
+Several exports to YAML, TSV, and RDF can be downloaded via https://bioregistry.io/download.
 
-The manually curated portions of these data are available under the CC0 1.0 Universal License.
+The manually curated portions of these data are available under the
+[CC0 1.0 Universal License](https://creativecommons.org/publicdomain/zero/1.0/).
 
 ## 🙏 Contributing
 
@@ -69,31 +74,50 @@ Things that would be helpful:
 A full list of curation to-do's is automatically generated as a web page
 [here](https://bioregistry.github.io/bioregistry/curation/). This page also has a more in-depth tutorial on how to contribute.
 
+## 🧹 Maintenance
 
 ### 🫀 Health Report
 
 [![Health Report](https://github.com/bioregistry/bioregistry/actions/workflows/health.yml/badge.svg)](https://github.com/bioregistry/bioregistry/actions/workflows/health.yml)
 
 The Bioregistry runs some automated tests weekly to check that various metadata haven't gone stale. For example,
-it checks that the homepages are still available and that each provider URL is still able to resolve.
+it checks that the homepages are still available and that each provider URL is still able to resolve. The
+tests fail if even a single metadata is out of place, so don't be frightened that this badge is almost always
+red.
+
+### ♻️ Update
+
+The database is automatically updated daily thanks to scheduled workflows in GitHub Actions. The workflow's
+configuration can be found [here](https://github.com/bioregistry/bioregistry/blob/main/.github/workflows/update.yml)
+and the last run can be seen [here](https://github.com/bioregistry/bioregistry/actions?query=workflow%3A%22Update+Data%22).
+Further, a [changelog](https://github.com/bioregistry/bioregistry/commits?author=actions-user) can be recapitulated from the
+commits of the GitHub Actions bot.
+
+If you want to manually update the database after installing in development mode, run the following:
+
+```shell
+$ bioregistry update
+```
 
 ## 🚀 Installation
 
 The Bioregistry can be installed from [PyPI](https://pypi.org/project/bioregistry/) with:
 
-```bash
+```shell
 $ pip install bioregistry
 ```
 
 It can be installed in development mode for local curation with:
 
-```bash
+```shell
 $ git clone https://github.com/bioregistry/bioregistry.git
 $ cd bioregistry
-$ pip install -e .
+$ pip install --editable .
 ```
 
 ## 💪 Usage
+
+### Normalizing Prefixes
 
 The Bioregistry can be used to normalize prefixes across MIRIAM and all the (very plentiful) variants that pop up in
 ontologies in OBO Foundry and the OLS with the `normalize_prefix()` function.
@@ -114,6 +138,8 @@ assert 'eccode' == bioregistry.normalize_prefix('EC_CODE')
 # If a prefix is not registered, it gives back `None`
 assert bioregistry.normalize_prefix('not a real key') is None
 ```
+
+### Parsing IRIs
 
 The Bioregistry can be used to parse CURIEs from IRIs due to its vast registry of provider URL
 strings and additional programmatic logic implemented with Python. It can parse OBO Library PURLs,
@@ -141,6 +167,8 @@ assert ('chebi', '24867') == bioregistry.parse_iri('http://identifiers.org/CHEBI
 # Bioregistry IRI
 assert ('chebi', '24867') == bioregistry.parse_iri('https://bioregistry.io/chebi:24867')
 ```
+
+### Getting Metadata
 
 The pattern for an entry in the Bioregistry can be looked up quickly with `get_pattern()` if
 it exists. It prefers the custom curated, then MIRIAM, then Wikidata pattern.
@@ -190,20 +218,6 @@ to run a web app that functions like Identifiers.org, but backed by the Bioregis
 A public instance of this app is hosted by the [INDRA Lab](https://indralab.github.io) at 
 https://bioregistry.io.
 
-## ♻️ Update
-
-The database is automatically updated daily thanks to scheduled workflows in GitHub Actions. The workflow's
-configuration can be found [here](https://github.com/bioregistry/bioregistry/blob/main/.github/workflows/update.yml)
-and the last run can be seen [here](https://github.com/bioregistry/bioregistry/actions?query=workflow%3A%22Update+Data%22).
-Further, a [changelog](https://github.com/bioregistry/bioregistry/commits?author=actions-user) can be recapitulated from the
-commits of the GitHub Actions bot.
-
-If you want to manually update the database after installing in development mode, run the following:
-
-```bash
-$ bioregistry update
-```
-
 ## ⚖️ License
 
 The code in this repository is licensed under the
@@ -213,6 +227,13 @@ The code in this repository is licensed under the
 
 Hopefully there will be a paper describing this resource on *bioRxiv* sometime in 2021! Until then, you can use the
 Zenodo [BibTeX](https://zenodo.org/record/4404608/export/hx) or [CSL](https://zenodo.org/record/4404608/export/csl).
+
+## 🎁 Support
+
+The Bioregistry was developed by the [INDRA Lab](https://indralab.github.io), a part of the
+[Laboratory of Systems Pharmacology](https://hits.harvard.edu/the-program/laboratory-of-systems-pharmacology/about/)
+and the [Harvard Program in Therapeutic Science (HiTS)](https://hits.harvard.edu)
+at [Harvard Medical School](https://hms.harvard.edu/).
 
 ## 💰 Funding
 
