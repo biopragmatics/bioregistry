@@ -17,6 +17,7 @@ BIOREGISTRY_PREFIX = "https://bioregistry.io"
 OBO_PREFIX = "http://purl.obolibrary.org/obo/"
 IDOT_HTTPS_PREFIX = "https://identifiers.org/"
 IDOT_HTTP_PREFIX = "http://identifiers.org/"
+N2T_PREFIX = "https://n2t.net/"
 
 
 def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
@@ -58,6 +59,10 @@ def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
     >>> parse_iri("http://identifiers.org/aop.relationships/5")
     ('aop.relationships', '5')
 
+    IRI from N2T
+    >>> parse_iri("https://n2t.net/aop.relationships:5")
+    ('aop.relationships', '5')
+
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
     if iri.startswith(BIOREGISTRY_PREFIX):
@@ -74,6 +79,9 @@ def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
     if iri.startswith(IDOT_HTTP_PREFIX):
         curie = iri[len(IDOT_HTTP_PREFIX) :]
         return _safe_parse_curie(curie)
+    if iri.startswith(N2T_PREFIX):
+        curie = iri[len(N2T_PREFIX) :]
+        return parse_curie(curie)
     for prefix, prefix_url in _D:
         if iri.startswith(prefix_url):
             return prefix, iri[len(prefix_url) :]
