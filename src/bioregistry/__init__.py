@@ -58,9 +58,9 @@ from .resolve import (  # noqa:F401
 from .resolve_identifier import (  # noqa:F401
     get_bioportal_iri,
     get_bioregistry_iri,
-    get_default_url,
+    get_default_iri,
     get_identifiers_org_curie,
-    get_identifiers_org_url,
+    get_identifiers_org_iri,
     get_link,
     get_n2t_iri,
     get_obofoundry_iri,

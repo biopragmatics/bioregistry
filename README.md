@@ -174,22 +174,27 @@ assert ('chebi', '24867') == bioregistry.parse_iri('https://bioregistry.io/chebi
 import bioregistry
 
 # Bioregistry IRI
-assert 'https://bioregistry.io/chebi:24867' == bioregistry.get_bioregistry_iri('chebi', '24867')
+assert bioregistry.get_bioregistry_iri('chebi', '24867') == 'https://bioregistry.io/chebi:24867'
+
+# Default Provider
+assert bioregistry.get_default_iri('chebi', '24867') == 'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
 
 # OBO Library
-assert 'http://purl.obolibrary.org/obo/CHEBI_24867' == bioregistry.get_obofoundry_iri('chebi', '24867')
+assert bioregistry.get_obofoundry_iri('chebi', '24867') == 'http://purl.obolibrary.org/obo/CHEBI_24867'
 
 # OLS IRI
-assert 'https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867' == bioregistry.get_ols_iri('chebi', '24867')
+assert bioregistry.get_ols_iri('chebi', '24867') == \
+        'https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867'
 
 # Bioportal IRI
-assert 'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24867' == bioregistry.get_bioportal_iri('chebi', '24867')
+assert bioregistry.get_bioportal_iri('chebi', '24867') == \
+        'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24867'
 
 # Identifiers.org IRI
-assert 'https://identifiers.org/CHEBI:24867' == bioregistry.get_identifiers_org_url('chebi', '24867')
+assert bioregistry.get_identifiers_org_iri('chebi', '24867') == 'https://identifiers.org/CHEBI:24867'
 
 # Name-to-Thing IRI
-assert 'https://n2t.net/chebi:24867' == bioregistry.get_n2t_iri('chebi', '24867')
+assert bioregistry.get_n2t_iri('chebi', '24867') == 'https://n2t.net/chebi:24867'
 ```
 
 ### Getting Metadata

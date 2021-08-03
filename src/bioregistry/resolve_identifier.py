@@ -22,7 +22,7 @@ __all__ = [
     "validate",
     "get_providers",
     "get_providers_list",
-    "get_identifiers_org_url",
+    "get_identifiers_org_iri",
     "get_identifiers_org_curie",
     "get_obofoundry_format",
     "get_obofoundry_iri",
@@ -103,8 +103,16 @@ def normalize_identifier(prefix: str, identifier: str) -> str:
     return identifier
 
 
-def get_default_url(prefix: str, identifier: str) -> Optional[str]:
-    """Get the default URL for the given CURIE."""
+def get_default_iri(prefix: str, identifier: str) -> Optional[str]:
+    """Get the default URL for the given CURIE.
+
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE
+    :return: A IRI string corresponding to the default provider, if available.
+
+    >>> get_default_iri('chebi', '24867')
+    'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+    """
     entry = get_resource(prefix)
     if entry is None:
         return None
@@ -135,23 +143,44 @@ def get_providers_list(prefix: str, identifier: str) -> Sequence[Tuple[str, str]
     return rv
 
 
-def get_identifiers_org_url(prefix: str, identifier: str) -> Optional[str]:
-    """Get the identifiers.org URL for the given CURIE."""
+IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
+
+
+def get_identifiers_org_iri(prefix: str, identifier: str) -> Optional[str]:
+    """Get the identifiers.org URL for the given CURIE.
+
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE
+    :return: A IRI string corresponding to the Identifiers.org, if the prefix exists and is
+        mapped to MIRIAM.
+
+    >>> get_identifiers_org_iri('chebi', '24867')
+    'https://identifiers.org/CHEBI:24867'
+    """
     curie = get_identifiers_org_curie(prefix, identifier)
     if curie is None:
         return None
-    return f"https://identifiers.org/{curie}"
+    return f"{IDENTIFIERS_ORG_URL_PREFIX}{curie}"
+
+
+N2T_URL_PREFIX = "https://n2t.net/"
 
 
 def get_n2t_iri(prefix: str, identifier: str) -> Optional[str]:
-    """Get the name-to-thing URL for the given CURIE."""
+    """Get the name-to-thing URL for the given CURIE.
+
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE
+    :return: A IRI string corresponding to the N2T resolve, if the prefix exists and is
+        mapped to N2T.
+
+    >>> get_n2t_iri('chebi', '24867')
+    'https://n2t.net/chebi:24867'
+    """
     n2t_prefix = get_n2t_prefix(prefix)
     if n2t_prefix is None:
         return None
-    curie = f"{n2t_prefix}:{identifier}"
-    if curie is None:
-        return None
-    return f"https://n2t.net/{curie}"
+    return f"{N2T_URL_PREFIX}{n2t_prefix}:{identifier}"
 
 
 def get_bioportal_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -226,10 +255,10 @@ def get_obofoundry_iri(prefix: str, identifier: str) -> Optional[str]:
 def get_ols_iri(prefix: str, identifier: str) -> Optional[str]:
     """Get the OLS URL if possible."""
     ols_prefix = get_ols_prefix(prefix)
-    obo_link = get_obofoundry_iri(prefix, identifier)
-    if ols_prefix is None or obo_link is None:
+    obo_iri = get_obofoundry_iri(prefix, identifier)
+    if ols_prefix is None or obo_iri is None:
         return None
-    return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_link}"
+    return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_iri}"
 
 
 def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -273,8 +302,8 @@ def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
 
 
 PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
-    "default": get_default_url,
-    "miriam": get_identifiers_org_url,
+    "default": get_default_iri,
+    "miriam": get_identifiers_org_iri,
     "obofoundry": get_obofoundry_iri,
     "ols": get_ols_iri,
     "n2t": get_n2t_iri,
