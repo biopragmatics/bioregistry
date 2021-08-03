@@ -118,6 +118,9 @@ import bioregistry
 # First-party IRI
 assert ('chebi', '24867') == bioregistry.parse_iri('https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867')
 
+# OBO Library PURL
+assert ('chebi', '24867') == bioregistry.parse_iri('http://purl.obolibrary.org/obo/CHEBI_24867')
+
 # OLS IRI
 assert ('chebi', '24867') == bioregistry.parse_iri('https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867')
 
