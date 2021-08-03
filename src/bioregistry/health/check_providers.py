@@ -3,7 +3,7 @@
 """A script to check which providers in entries in the Bioregistry actually can be accessed."""
 
 from datetime import datetime
-from typing import Optional, Tuple
+from typing import Tuple
 
 import click
 import pandas as pd
@@ -23,7 +23,7 @@ def _process(element: Tuple[str, str, str]) -> Tuple[str, str, str, bool, str]:
     prefix, example, url = element
 
     failed = False
-    msg = ''
+    msg = ""
     try:
         res = requests.get(url, timeout=10)
     except IOError as e:

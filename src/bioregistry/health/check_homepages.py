@@ -27,7 +27,7 @@ def _process(element: Tuple[str, Set[str]]) -> Tuple[str, Set[str], bool, Option
         return homepage, prefixes, True, "no PURLs allowed"
 
     failed = False
-    msg = ''
+    msg = ""
     try:
         res = requests.get(homepage, timeout=10)
     except IOError as e:
