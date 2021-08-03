@@ -197,6 +197,10 @@ assert bioregistry.get_identifiers_org_iri('chebi', '24867') == 'https://identif
 assert bioregistry.get_n2t_iri('chebi', '24867') == 'https://n2t.net/chebi:24867'
 ```
 
+If you're not sure which to choose, use `bioregistry.get_link` and it will pick the best one for you.
+Each of these functions could also return `None` if there isn't a provider available or if the prefix
+can't be mapped to the various resources.
+
 ### Getting Metadata
 
 The pattern for an entry in the Bioregistry can be looked up quickly with `get_pattern()` if
