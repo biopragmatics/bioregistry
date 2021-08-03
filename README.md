@@ -32,17 +32,22 @@
 
 <p align="center">
    A community-driven integrative meta-registry of biological databases, ontologies, and other resources.
-   <br />More information <a href="https://bioregistry.io/summary/">here</a>.
+   <br />More information <a href="https://bioregistry.io/summary">here</a>.
 </p>
 
 ## 💾 Data
 
+The Bioregistry can be accessed, searched, and queried through its associated website at
+https://bioregistry.io.
+
 ### 📥 Download
 
-The bioregistry database can be downloaded directly
+The source of the Bioregistry can be downloaded directly
 from [here](https://github.com/bioregistry/bioregistry/blob/main/src/bioregistry/data/bioregistry.json).
+Several exports to YAML, TSV, and RDF can be downloaded at https://bioregistry.io/download.
 
-The manually curated portions of these data are available under the CC0 1.0 Universal License.
+The manually curated portions of these data are available under the
+[CC0 1.0 Universal License](https://creativecommons.org/publicdomain/zero/1.0/).
 
 ### 🫀 Health Report
 
