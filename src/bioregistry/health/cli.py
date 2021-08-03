@@ -21,18 +21,19 @@ COMMANDS = {
     name="health",
     commands=COMMANDS.copy(),
     cls=DefaultGroup,
-    default='all', default_if_no_args=True,
+    default="all",
+    default_if_no_args=True,
 )
 def main():
     """Run the bioregistry health tests."""
 
 
-@main.command(name='all')
+@main.command(name="all")
 @click.pass_context
 def run_all_commands(ctx: click.Context):
     """Run all."""
     for name, command in COMMANDS.items():
-        click.secho(f'Running python -m bioregistry.health {name}', fg='green')
+        click.secho(f"Running python -m bioregistry.health {name}", fg="green")
         ctx.invoke(command)
 
 
