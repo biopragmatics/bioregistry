@@ -91,12 +91,12 @@ def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
 def _safe_parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
     for sep in "_/:":
         prefix, identifier = parse_curie(curie, sep)
-        if prefix is not None:
+        if prefix is not None and identifier is not None:
             return prefix, identifier
     return None, None
 
 
-def parse_obolibrary_purl(iri: str) -> Tuple[str, str]:
+def parse_obolibrary_purl(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
     """Parse an OBO Library PURL.
 
     :param iri: A valid IRI
