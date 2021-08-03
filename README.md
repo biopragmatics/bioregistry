@@ -37,7 +37,7 @@
 
 ## 🔑 Access
 
-## 🌐 Website
+### 🌐 Website
 
 The Bioregistry can be accessed, searched, and queried through its associated website at
 https://bioregistry.io.
