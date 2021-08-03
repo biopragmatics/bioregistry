@@ -4,13 +4,19 @@
 
 from typing import Tuple, Union
 
-from bioregistry.resolve import get_format_urls, normalize_curie, parse_curie
+from bioregistry.resolve import get_format_urls, parse_curie
 
 __all__ = [
-    'parse_iri',
+    "parse_iri",
 ]
 
 _D = sorted(get_format_urls().items(), key=lambda kv: -len(kv[0]))
+
+OLS_URL_PREFIX = "https://www.ebi.ac.uk/ols/ontologies/"
+BIOREGISTRY_PREFIX = "https://bioregistry.io"
+OBO_PREFIX = "http://purl.obolibrary.org/obo/"
+IDOT_HTTPS_PREFIX = "https://identifiers.org/"
+IDOT_HTTP_PREFIX = "http://identifiers.org/"
 
 
 def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
@@ -18,13 +24,6 @@ def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
 
     :param iri: A valid IRI
     :return: A pair of prefix/identifier, if can be parsed
-
-    IRIs from Identifiers.org (https and http):
-
-    >>> parse_iri("https://identifiers.org/aop.relationships:5")
-    ('aop.relationships', '5')
-    >>> parse_iri("http://identifiers.org/aop.relationships:5")
-    ('aop.relationships', '5')
 
     IRI from an OBO PURL:
 
@@ -36,35 +35,71 @@ def parse_iri(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]:
     >>> parse_iri("https://www.ebi.ac.uk/ols/ontologies/ecao/terms?iri=http://purl.obolibrary.org/obo/ECAO_0107180")
     ('ecao', '0107180')
 
+    .. todo:: IRI from bioportal
+
     IRI from native provider
 
     >>> parse_iri("https://www.alzforum.org/mutations/1234")
     ('alzforum.mutation', '1234')
 
+    Dog food:
+
+    >>> parse_iri("https://bioregistry.io/DRON:00023232")
+    ('dron', '00023232')
+
+    IRIs from Identifiers.org (https and http, colon and slash):
+
+    >>> parse_iri("https://identifiers.org/aop.relationships:5")
+    ('aop.relationships', '5')
+    >>> parse_iri("http://identifiers.org/aop.relationships:5")
+    ('aop.relationships', '5')
+    >>> parse_iri("https://identifiers.org/aop.relationships/5")
+    ('aop.relationships', '5')
+    >>> parse_iri("http://identifiers.org/aop.relationships/5")
+    ('aop.relationships', '5')
+
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
-    if iri.startswith('https://www.ebi.ac.uk/ols/ontologies/'):
-        return _parse_purl(iri.rsplit('=', 1)[1])
-    if iri.startswith('http://purl.obolibrary.org/obo/TTO_1058367'):
-        return _parse_purl(iri)
-    if iri.startswith('https://identifiers.org/'):
-        return parse_curie(iri[len('https://identifiers.org/'):])
-    if iri.startswith('http://identifiers.org/'):
-        return parse_curie(iri[len('http://identifiers.org/'):])
+    if iri.startswith(BIOREGISTRY_PREFIX):
+        curie = iri[len(BIOREGISTRY_PREFIX): ]
+        return parse_curie(curie)
+    if iri.startswith(OLS_URL_PREFIX):
+        sub_iri = iri.rsplit("=", 1)[1]
+        return parse_obolibrary_purl(sub_iri)
+    if iri.startswith(OBO_PREFIX):
+        return parse_obolibrary_purl(iri)
+    if iri.startswith(IDOT_HTTPS_PREFIX):
+        curie = iri[len(IDOT_HTTPS_PREFIX) :]
+        return parse_curie(curie)
+    if iri.startswith(IDOT_HTTP_PREFIX):
+        curie = iri[len(IDOT_HTTP_PREFIX) :]
+        return parse_curie(curie)
     for prefix, prefix_url in _D:
         if iri.startswith(prefix_url):
-            return prefix, iri[len(prefix_url):]
+            return prefix, iri[len(prefix_url) :]
     return None, None
 
 
-def _parse_purl(iri: str):
-    prefix, identifier = iri[len('http://purl.obolibrary.org/obo/'):].split('_', 1)
-    return normalize_curie(prefix, identifier)
+def parse_obolibrary_purl(iri: str) -> Tuple[str, str]:
+    """Parse an OBO Library PURL
+
+    :param iri: A valid IRI
+    :return: A pair of prefix/identifier, if can be parsed
+
+    >>> parse_obolibrary_purl("http://purl.obolibrary.org/obo/DRON_00023232")
+    ('dron', '00023232')
+
+    >>> parse_obolibrary_purl("http://purl.obolibrary.org/obo/FBbt_0000001")
+    ('fbbt', '0000001')
+    """
+    curie = iri[len("http://purl.obolibrary.org/obo/") :]
+    return parse_curie(curie, sep="_")
 
 
 def _main():
     import bioregistry
     from tabulate import tabulate
+
     rows = []
     for prefix, resource in bioregistry.read_registry().items():
         example = bioregistry.get_example(prefix)
@@ -80,5 +115,5 @@ def _main():
     print(tabulate(rows))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     _main()
