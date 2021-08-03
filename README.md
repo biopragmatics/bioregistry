@@ -69,6 +69,14 @@ Things that would be helpful:
 A full list of curation to-do's is automatically generated as a web page
 [here](https://bioregistry.github.io/bioregistry/curation/). This page also has a more in-depth tutorial on how to contribute.
 
+
+### 🫀 Health Report
+
+[![Health Report](https://github.com/bioregistry/bioregistry/actions/workflows/health.yml/badge.svg)](https://github.com/bioregistry/bioregistry/actions/workflows/health.yml)
+
+The Bioregistry runs some automated tests weekly to check that various metadata haven't gone stale. For example,
+it checks that the homepages are still available and that each provider URL is still able to resolve.
+
 ## 🚀 Installation
 
 The Bioregistry can be installed from [PyPI](https://pypi.org/project/bioregistry/) with:
