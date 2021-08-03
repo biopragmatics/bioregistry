@@ -142,11 +142,26 @@ class Resource(BaseModel):
                 return rv
         return None
 
+    def _default_provider_url(self) -> Optional[str]:
+        if self.url is not None:
+            return self.url
+        if self.miriam is not None and "provider_url" in self.miriam:
+            return self.miriam["provider_url"]
+        if self.n2t is not None:
+            return self.n2t["provider_url"]
+        if (
+            self.prefixcommons is not None
+            and "identifiers.org" not in self.prefixcommons["formatter"]
+        ):
+            return self.prefixcommons["formatter"]
+        return None
+
     def get_default_url(self, identifier: str) -> Optional[str]:
         """Return the default URL for the identifier."""
-        if self.url is None:
+        fmt = self._default_provider_url()
+        if fmt is None:
             return None
-        return self.url.replace("$1", identifier)
+        return fmt.replace("$1", identifier)
 
     def __setitem__(self, key, value):  # noqa: D105
         setattr(self, key, value)
