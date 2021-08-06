@@ -15,6 +15,7 @@ __all__ = [
 def _sort_key(kv):
     return -len(kv[0])
 
+
 #: A prefix map in reverse sorted order based on length of the URL
 #: in order to avoid conflicts of sub-URIs (thanks to Nico Matentzoglu for the idea)
 PREFIX_MAP = sorted(get_format_urls().items(), key=_sort_key)
