@@ -3240,7 +3240,7 @@
       "namespaceEmbeddedInLui": false,
       "pattern": "^PRJ[DEN][A-Z]\\d+$",
       "prefix": "bioproject",
-      "provider_url": "https://www.ebi.ac.uk/ena/data/view/$1",
+      "provider_url": "https://www.ebi.ac.uk/ena/browser/view/$1",
       "sampleId": "PRJDB3"
     },
     "n2t": {
@@ -10921,7 +10921,7 @@
       "namespaceEmbeddedInLui": false,
       "pattern": "^[A-Z]+[0-9]+(\\.\\d+)?$",
       "prefix": "ena.embl",
-      "provider_url": "https://www.ebi.ac.uk/ena/data/view/$1",
+      "provider_url": "https://www.ebi.ac.uk/ena/browser/view/$1",
       "sampleId": "BN000065"
     },
     "n2t": {
@@ -23429,13 +23429,13 @@
     "miriam": {
       "deprecated": false,
       "description": "MobiDB is a database of protein disorder and mobility annotations.",
-      "homepage": "http://mobidb.bio.unipd.it",
+      "homepage": "https://mobidb.org/",
       "id": "00000637",
       "name": "MobiDB",
       "namespaceEmbeddedInLui": false,
       "pattern": "^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}$",
       "prefix": "mobidb",
-      "provider_url": "http://mobidb.bio.unipd.it/$1",
+      "provider_url": "https://mobidb.org/$1",
       "sampleId": "P10636"
     },
     "n2t": {
@@ -34645,8 +34645,21 @@
     "mappings": {
       "biolink": "SIO",
       "bioportal": "SIO",
+      "miriam": "sio",
       "ols": "sio",
       "prefixcommons": "SIO"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "The semanticscience integrated ontology (SIO) provides a simple, integrated upper level ontology (types, relations) for consistent knowledge representation across physical, processual and informational entities.",
+      "homepage": "https://www.ebi.ac.uk",
+      "id": "00000851",
+      "name": "Semanticscience Integrated Ontology",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^SIO_\\d{6,6}$",
+      "prefix": "sio",
+      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/sio/terms?short_form=$1",
+      "sampleId": "SIO_000276"
     },
     "ols": {
       "contact": "sio-ontology@googlegroups.com",
