@@ -221,7 +221,7 @@ class TestRegistry(unittest.TestCase):
             if bioregistry.validate(prefix, example):
                 continue
             with self.subTest(prefix=prefix):
-                self.assertRegex(example, pattern)
+                self.assertRegex(example, pattern, msg=f"Failed on prefix={prefix}")
 
     def test_is_mismatch(self):
         """Check for mismatches."""
