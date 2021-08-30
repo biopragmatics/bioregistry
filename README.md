@@ -251,23 +251,25 @@ to run a web app that functions like Identifiers.org, but backed by the Bioregis
 A public instance of this app is hosted by the [INDRA Lab](https://indralab.github.io) at 
 https://bioregistry.io.
 
-## ⚖️ License
+## 👋 Attribution
+
+### ⚖️ License
 
 The code in this repository is licensed under the
 [MIT License](https://github.com/bioregistry/bioregistry/blob/main/LICENSE).
 
-## 📖 Citation
+### 📖 Citation
 
 Hopefully there will be a paper describing this resource on *bioRxiv* sometime in 2021! Until then, you can use the
 Zenodo [BibTeX](https://zenodo.org/record/4404608/export/hx) or [CSL](https://zenodo.org/record/4404608/export/csl).
 
-## 🎁 Support
+### 🎁 Support
 
 The Bioregistry was developed by the [INDRA Lab](https://indralab.github.io), a part of the
 [Laboratory of Systems Pharmacology](https://hits.harvard.edu/the-program/laboratory-of-systems-pharmacology/about/)
 and the [Harvard Program in Therapeutic Science (HiTS)](https://hits.harvard.edu)
 at [Harvard Medical School](https://hms.harvard.edu/).
 
-## 💰 Funding
+### 💰 Funding
 
 The development of the Bioregistry is funded by the DARPA Young Faculty Award W911NF2010255 (PI: Benjamin M. Gyori).
