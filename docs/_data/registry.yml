@@ -5862,6 +5862,11 @@ clinicaltrials:
     is_obo: false
     prefix: CLINICALTRIALS
 clinvar:
+  biolink:
+    formatter: http://identifiers.org/clinvar$1
+    is_identifiers: true
+    is_obo: false
+    prefix: CLINVAR
   cellosaurus:
     category: Polymorphism and mutation databases
     homepage: https://www.ncbi.nlm.nih.gov/clinvar/
@@ -5869,6 +5874,7 @@ clinvar:
     prefix: ClinVar
     url: https://www.ncbi.nlm.nih.gov/clinvar/variation/$1
   mappings:
+    biolink: CLINVAR
     cellosaurus: ClinVar
     miriam: clinvar
     n2t: clinvar
@@ -21229,6 +21235,11 @@ merops.inhibitor:
     is_obo: false
     prefix: MEROPS.INHIBITOR
 mesh:
+  biolink:
+    formatter: http://id.nlm.nih.gov/mesh/$1
+    is_identifiers: false
+    is_obo: false
+    prefix: MESH
   bioportal:
     name: Medical Subject Headings
     prefix: MESH
@@ -21248,6 +21259,7 @@ mesh:
     - MESH
     - MSH
   mappings:
+    biolink: MESH
     bioportal: MESH
     cellosaurus: MeSH
     go: MeSH
