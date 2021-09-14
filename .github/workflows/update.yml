@@ -20,6 +20,8 @@ jobs:
           bioregistry update
         env:
           BIOPORTAL_API_KEY: ${{ secrets.BIOPORTAL_API_KEY }}
+      - name: Push to PyPI
+        run: tox -e finish
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
