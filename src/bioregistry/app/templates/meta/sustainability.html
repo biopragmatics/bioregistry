@@ -94,7 +94,7 @@ docker pull biopragmatics/bioregistry:latest
 
 # Run the start script
 docker run -id --name bioregistry -p 8766:8766 biopragmatics/bioregistry:latest</code></pre>
-    <p>This script can be put on the EC2 instane and run via SSH with:</p>
+    <p>This script can be put on the EC2 instance and run via SSH with:</p>
     <pre><code class="language-bash">#!/bin/bash
 
 ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/services/restart_bioregistry.sh'</code></pre>
