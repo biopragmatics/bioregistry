@@ -28,7 +28,7 @@ jobs:
       - name: Release to PyPI
         run: |
           pip install tox
-          tox -e bumpversion release --tags
+          tox -e bumpversion-release
           tox -e release
           tox -e bumpversion patch
         env:
