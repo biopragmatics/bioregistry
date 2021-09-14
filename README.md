@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/bioregistry/bioregistry/raw/main/docs/source/logo.png" height="150">
+  <img src="https://github.com/biopragmatics/bioregistry/raw/main/docs/source/logo.png" height="150">
 </p>
 
 <h1 align="center">
@@ -7,8 +7,8 @@
 </h1>
 
 <p align="center">
-    <a href="https://github.com/bioregistry/bioregistry/actions?query=workflow%3ATests">
-        <img alt="Tests" src="https://github.com/bioregistry/bioregistry/workflows/Tests/badge.svg" />
+    <a href="https://github.com/biopragmatics/bioregistry/actions?query=workflow%3ATests">
+        <img alt="Tests" src="https://github.com/biopragmatics/bioregistry/workflows/Tests/badge.svg" />
     </a>
     <a href="https://pypi.org/project/bioregistry">
         <img alt="PyPI" src="https://img.shields.io/pypi/v/bioregistry" />
@@ -16,7 +16,7 @@
     <a href="https://pypi.org/project/bioregistry">
         <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/bioregistry" />
     </a>
-    <a href="https://github.com/bioregistry/bioregistry/blob/main/LICENSE">
+    <a href="https://github.com/biopragmatics/bioregistry/blob/main/LICENSE">
         <img alt="PyPI - License" src="https://img.shields.io/pypi/l/bioregistry" />
     </a>
     <a href='https://bioregistry.readthedocs.io/en/latest/?badge=latest'>
@@ -41,7 +41,7 @@ https://bioregistry.io.
 ### 📥 Download
 
 The underlying data of the Bioregistry can be downloaded directly
-from [here](https://github.com/bioregistry/bioregistry/blob/main/src/bioregistry/data/bioregistry.json).
+from [here](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/bioregistry.json).
 Several exports to YAML, TSV, and RDF can be downloaded via https://bioregistry.io/download.
 
 The manually curated portions of these data are available under the
@@ -49,15 +49,15 @@ The manually curated portions of these data are available under the
 
 ## 🙏 Contributing
 
-If you'd like to request a new prefix, please fill out this [issue template](https://github.com/bioregistry/bioregistry/issues/new?assignees=cthoyt&labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D).
+If you'd like to request a new prefix, please fill out this [issue template](https://github.com/biopragmatics/bioregistry/issues/new?assignees=cthoyt&labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D).
 It will automatically generate a pull request!
 
 There are a few other issue templates for certain updates (e.g., update regex, merge two prefixes, etc.) that you
-can check [here](https://github.com/bioregistry/bioregistry/issues/new/choose). For anything updates that don't
+can check [here](https://github.com/biopragmatics/bioregistry/issues/new/choose). For anything updates that don't
 have a corresponding template, feel free to leave a freeform issue for us!
 
 If you want to make a direct contribution, feel free to make edits directly to
-the [bioregistry.json](https://github.com/bioregistry/bioregistry/blob/main/src/bioregistry/data/bioregistry.json)
+the [bioregistry.json](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/bioregistry.json)
 file through the GitHub interface.
 
 Things that would be helpful:
@@ -78,7 +78,7 @@ A full list of curation to-do's is automatically generated as a web page
 
 ### 🫀 Health Report
 
-[![Health Report](https://github.com/bioregistry/bioregistry/actions/workflows/health.yml/badge.svg)](https://github.com/bioregistry/bioregistry/actions/workflows/health.yml)
+[![Health Report](https://github.com/biopragmatics/bioregistry/actions/workflows/health.yml/badge.svg)](https://github.com/biopragmatics/bioregistry/actions/workflows/health.yml)
 
 The Bioregistry runs some automated tests weekly to check that various metadata haven't gone stale. For example,
 it checks that the homepages are still available and that each provider URL is still able to resolve. The
@@ -88,9 +88,9 @@ red.
 ### ♻️ Update
 
 The database is automatically updated daily thanks to scheduled workflows in GitHub Actions. The workflow's
-configuration can be found [here](https://github.com/bioregistry/bioregistry/blob/main/.github/workflows/update.yml)
-and the last run can be seen [here](https://github.com/bioregistry/bioregistry/actions?query=workflow%3A%22Update+Data%22).
-Further, a [changelog](https://github.com/bioregistry/bioregistry/commits?author=actions-user) can be recapitulated from the
+configuration can be found [here](https://github.com/biopragmatics/bioregistry/blob/main/.github/workflows/update.yml)
+and the last run can be seen [here](https://github.com/biopragmatics/bioregistry/actions?query=workflow%3A%22Update+Data%22).
+Further, a [changelog](https://github.com/biopragmatics/bioregistry/commits?author=actions-user) can be recapitulated from the
 commits of the GitHub Actions bot.
 
 If you want to manually update the database after installing in development mode, run the following:
@@ -110,7 +110,7 @@ $ pip install bioregistry
 It can be installed in development mode for local curation with:
 
 ```shell
-$ git clone https://github.com/bioregistry/bioregistry.git
+$ git clone https://github.com/biopragmatics/bioregistry.git
 $ cd bioregistry
 $ pip install --editable .
 ```
@@ -256,7 +256,7 @@ https://bioregistry.io.
 ### ⚖️ License
 
 The code in this repository is licensed under the
-[MIT License](https://github.com/bioregistry/bioregistry/blob/main/LICENSE).
+[MIT License](https://github.com/biopragmatics/bioregistry/blob/main/LICENSE).
 
 ### 📖 Citation
 

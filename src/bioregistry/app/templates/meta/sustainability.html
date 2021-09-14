@@ -47,7 +47,7 @@
         {% if software_git_hash %}
             <dt>Git Hash</dt>
             <dd>
-                <a href="https://github.com/bioregistry/bioregistry/commit/{{ software_git_hash }}">
+                <a href="https://github.com/biopragmatics/bioregistry/commit/{{ software_git_hash }}">
                     {{ software_git_hash }}
                 </a>
             </dd>
@@ -64,10 +64,10 @@
     <h3>Containerization</h3>
     <p>
         A Docker image is automatically built on a cron job in the
-        <a href="https://github.com/bioregistry/bioregistry-docker"><i class="fab fa-github"></i>
-            bioregistry/bioregistry-docker</a> GitHub repository
-        and pushed to the <a href="https://hub.docker.com/r/bioregistry/bioregistry"><i class="fab fa-docker"></i>
-        bioregistry/bioregistry</a> DockerHub repository. This image is built with the Python 3.9 alpine base image,
+        <a href="https://github.com/biopragmatics/bioregistry-docker"><i class="fab fa-github"></i>
+            biopragmatics/bioregistry-docker</a> GitHub repository
+        and pushed to the <a href="https://hub.docker.com/r/biopragmatics/bioregistry"><i class="fab fa-docker"></i>
+        biopragmatics/bioregistry</a> DockerHub repository. This image is built with the Python 3.9 alpine base image,
         which significantly reduces non-essential components. The final compressed image weights less than 40 MB of disk
         space and runs inside Docker with about 65 MB of memory at baseline. This could easily fit on a dedicated
         <a href="https://aws.amazon.com/ec2/instance-types/t4/">t4g.nano</a> instance on AWS that costs about
@@ -90,10 +90,10 @@ docker stop $BIOREGISTRY_CONTAINER_ID
 docker rm $BIOREGISTRY_CONTAINER_ID
 
 # Pull the latest
-docker pull bioregistry/bioregistry:latest
+docker pull biopragmatics/bioregistry:latest
 
 # Run the start script
-docker run -id --name bioregistry -p 8766:8766 bioregistry/bioregistry:latest</code></pre>
+docker run -id --name bioregistry -p 8766:8766 biopragmatics/bioregistry:latest</code></pre>
     <p>This script can be put on the EC2 instane and run via SSH with:</p>
     <pre><code class="language-bash">#!/bin/bash
 

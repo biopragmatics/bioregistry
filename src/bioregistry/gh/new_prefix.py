@@ -65,7 +65,7 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Tuple[str
         if bioregistry.get_resource(prefix) is not None:
             # TODO close issue
             logger.warning(
-                "Issue is for duplicate prefix %s in https://github.com/bioregistry/bioregistry/issues/%s",
+                "Issue is for duplicate prefix %s in https://github.com/biopragmatics/bioregistry/issues/%s",
                 prefix,
                 issue_id,
             )

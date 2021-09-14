@@ -29,7 +29,7 @@ Swagger.DEFAULT_CONFIG.update(
             "version": "1.0",
             "license": {
                 "name": "Code available under the MIT License",
-                "url": "https://github.com/bioregistry/bioregistry/blob/main/LICENSE",
+                "url": "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE",
             },
         },
         "host": "bioregistry.io",

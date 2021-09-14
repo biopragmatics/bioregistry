@@ -57,7 +57,7 @@ def _get_has_present(func) -> Counter:
 
 SINGLE_FIG = (8, 3.5)
 TODAY = datetime.datetime.today().strftime("%Y-%m-%d")
-WATERMARK_TEXT = f"https://github.com/bioregistry/bioregistry ({TODAY})"
+WATERMARK_TEXT = f"https://github.com/biopragmatics/bioregistry ({TODAY})"
 
 
 def _save(fig, name: str, *, svg: bool = True, png: bool = False) -> None:
