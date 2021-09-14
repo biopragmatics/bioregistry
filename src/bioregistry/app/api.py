@@ -66,7 +66,7 @@ def resource(prefix: str):
         enum: [json, yaml, turtle, jsonld]
     """  # noqa:DAR101,DAR201
     prefix = _normalize_prefix_or_404(prefix)
-    data = dict(prefix=prefix, **bioregistry.get_resource(prefix))  # type:ignore
+    data = dict(prefix=prefix, **bioregistry.get_resource(prefix).dict())  # type:ignore
     return serialize(
         data,
         serializers=[
