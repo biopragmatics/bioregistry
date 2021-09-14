@@ -27,6 +27,7 @@ jobs:
           git commit -m "📮 Automatically update" -a
       - name: Release to PyPI
         run: |
+          pip install tox
           tox -e bumpversion release --tags
           tox -e release
           tox -e bumpversion patch
