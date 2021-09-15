@@ -39,9 +39,6 @@ def read_registry() -> Mapping[str, Resource]:
     with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
         data = json.load(file)
     return {
-        # Why bother doing this? Because now, Pydantic does all sorts of nice schema
-        # checks for us. Later, we'll switch over to using first-class Resource instances
-        # in the rest of the code.
         key: Resource(**value)
         for key, value in data.items()
     }
