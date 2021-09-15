@@ -23,7 +23,8 @@ __all__ = [
 
 
 @click.command()
-def align():
+@click.option("--quiet", is_flag=True)
+def align(quiet: bool):
     """Align all external registries."""
     for aligner_cls in [
         MiriamAligner,
@@ -40,7 +41,7 @@ def align():
     ]:
         secho(f"Aligning {aligner_cls.key}")
         try:
-            aligner_cls.align()
+            aligner_cls.align(quiet=quiet)
         except IOError:
             secho(f"Failed to align {aligner_cls.key}", fg="red")
 
