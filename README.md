@@ -139,6 +139,28 @@ assert 'eccode' == bioregistry.normalize_prefix('EC_CODE')
 assert bioregistry.normalize_prefix('not a real key') is None
 ```
 
+### Normalizing CURIEs
+
+The Bioregistry supports converting a CURIE to a canonical CURIE by normalizing
+the prefix and removing redundant namespaces embedded in LUIs with the
+`normalize_curie()` function.
+
+```python
+from bioregistry import normalize_curie
+
+# Idempotent to canonical CURIEs
+assert 'chebi:1234' == normalize_curie('chebi:1234')
+
+# Normalize common mistaken prefixes
+assert 'pubchem.compound:1234' == normalize_curie('pubchem:1234')
+
+# Normalize mixed case prefixes
+assert 'fbbt:1234' == normalize_curie('FBbt:1234')
+
+# Remove the redundant prefix and normalize
+assert 'go:1234' == normalize_curie('GO:GO:1234')
+```
+
 ### Parsing IRIs
 
 The Bioregistry can be used to parse CURIEs from IRIs due to its vast registry of provider URL

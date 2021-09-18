@@ -15,7 +15,7 @@ from .resolve import (
     get_pattern_re,
     get_resource,
     namespace_in_lui,
-    normalize_curie,
+    normalize_parsed_curie,
 )
 
 __all__ = [
@@ -295,7 +295,7 @@ def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_bioregistry_iri('go.ref', '1234')
     'https://bioregistry.io/go.ref:1234'
     """
-    norm_prefix, norm_identifier = normalize_curie(prefix, identifier)
+    norm_prefix, norm_identifier = normalize_parsed_curie(prefix, identifier)
     if norm_prefix is None:
         return None
     return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{norm_prefix}:{norm_identifier}"

@@ -52,6 +52,8 @@ from .resolve import (  # noqa:F401
     is_proprietary,
     is_provider,
     namespace_in_lui,
+    normalize_curie,
+    normalize_parsed_curie,
     normalize_prefix,
     parse_curie,
 )

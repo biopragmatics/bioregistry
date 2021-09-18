@@ -37,6 +37,7 @@ __all__ = [
     # CURIE handling
     "normalize_prefix",
     "parse_curie",
+    "normalize_parsed_curie",
     "normalize_curie",
     # Metaregistry stuff
     "get_registry",
@@ -771,7 +772,7 @@ def parse_curie(curie: str, sep: str = ":") -> Union[Tuple[str, str], Tuple[None
     """Parse a CURIE, normalizing the prefix and identifier if necessary.
 
     :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
-    :param sep: The separator for the CURIE. Defaults to the semicolon ":" however the slash
+    :param sep: The separator for the CURIE. Defaults to the colon ":" however the slash
         "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
     :returns: A tuple of the prefix, identifier. If not parsable, returns a tuple of None, None
 
@@ -812,10 +813,12 @@ def parse_curie(curie: str, sep: str = ":") -> Union[Tuple[str, str], Tuple[None
         prefix, identifier = curie.split(sep, 1)
     except ValueError:
         return None, None
-    return normalize_curie(prefix, identifier)
+    return normalize_parsed_curie(prefix, identifier)
 
 
-def normalize_curie(prefix: str, identifier: str) -> Union[Tuple[str, str], Tuple[None, None]]:
+def normalize_parsed_curie(
+    prefix: str, identifier: str
+) -> Union[Tuple[str, str], Tuple[None, None]]:
     """Normalize a prefix/identifier pair.
 
     :param prefix: The prefix in the CURIE
@@ -835,6 +838,55 @@ def normalize_curie(prefix: str, identifier: str) -> Union[Tuple[str, str], Tupl
         identifier = identifier[len(prefix) + 1 :]
 
     return norm_prefix, identifier
+
+
+def normalize_curie(curie: str, sep: str = ":") -> Optional[str]:
+    """Normalize a CURIE.
+
+    :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
+    :param sep: The separator for the CURIE. Defaults to the colon ":" however the slash
+        "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
+    :return: A normalized CURIE, if possible using the colon as a separator
+
+    >>> normalize_curie('pdb:1234')
+    'pdb:1234'
+
+    Fix commonly mistaken prefix
+    >>> normalize_curie('pubchem:1234')
+    'pubchem.compound:1234'
+
+    Address banana problem
+    >>> normalize_curie('GO:GO:1234')
+    'go:1234'
+    >>> normalize_curie('go:GO:1234')
+    'go:1234'
+    >>> normalize_curie('go:go:1234')
+    'go:1234'
+    >>> normalize_curie('go:1234')
+    'go:1234'
+
+    Address banana problem with OBO banana
+    >>> normalize_curie('fbbt:FBbt:1234')
+    'fbbt:1234'
+    >>> normalize_curie('fbbt:fbbt:1234')
+    'fbbt:1234'
+    >>> normalize_curie('fbbt:1234')
+    'fbbt:1234'
+
+    Address banana problem with explit banana
+    >>> normalize_curie('go.ref:GO_REF:1234')
+    'go.ref:1234'
+    >>> normalize_curie('go.ref:1234')
+    'go.ref:1234'
+
+    Parse OBO PURL curies
+    >>> normalize_curie('GO_1234', sep="_")
+    'go:1234'
+    """
+    prefix, identifier = parse_curie(curie, sep=sep)
+    if prefix is None:
+        return None
+    return f"{prefix}:{identifier}"
 
 
 def normalize_prefix(prefix: str) -> Optional[str]:
