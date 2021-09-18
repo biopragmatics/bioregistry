@@ -166,28 +166,33 @@ assert 'go:1234' == normalize_curie('GO:GO:1234')
 The Bioregistry can be used to parse CURIEs from IRIs due to its vast registry of provider URL
 strings and additional programmatic logic implemented with Python. It can parse OBO Library PURLs,
 IRIs from the OLS and identifiers.org, IRIs from the Bioregistry website, and any other IRIs
-from well-formed providers registered in the Bioregistry.
+from well-formed providers registered in the Bioregistry. The `parse_iri()` function
+gets a pre-parsed CURIE, while the `curie_from_iri()` function makes a canonical CURIE
+from the pre-parsed CURIE.
 
 ```python
-import bioregistry
+from bioregistry import curie_from_iri, parse_iri
 
 # First-party IRI
-assert ('chebi', '24867') == bioregistry.parse_iri('https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867')
+assert ('chebi', '24867') == parse_iri('https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867')
+assert 'chebi:24867' == curie_from_iri('https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867')
 
 # OBO Library PURL
-assert ('chebi', '24867') == bioregistry.parse_iri('http://purl.obolibrary.org/obo/CHEBI_24867')
+assert ('chebi', '24867') == parse_iri('http://purl.obolibrary.org/obo/CHEBI_24867')
+assert 'chebi:24867' == curie_from_iri('http://purl.obolibrary.org/obo/CHEBI_24867')
 
 # OLS IRI
-assert ('chebi', '24867') == bioregistry.parse_iri('https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867')
+assert ('chebi', '24867') == parse_iri('https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867')
+assert 'chebi:24867' == curie_from_iri('https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867')
 
 # Identifiers.org IRIs (with varying usage of HTTP(s) and colon/slash separator
-assert ('chebi', '24867') == bioregistry.parse_iri('https://identifiers.org/CHEBI:24867')
-assert ('chebi', '24867') == bioregistry.parse_iri('http://identifiers.org/CHEBI:24867')
-assert ('chebi', '24867') == bioregistry.parse_iri('https://identifiers.org/CHEBI/24867')
-assert ('chebi', '24867') == bioregistry.parse_iri('http://identifiers.org/CHEBI/24867')
+assert ('chebi', '24867') == parse_iri('https://identifiers.org/CHEBI:24867')
+assert ('chebi', '24867') == parse_iri('http://identifiers.org/CHEBI:24867')
+assert ('chebi', '24867') == parse_iri('https://identifiers.org/CHEBI/24867')
+assert ('chebi', '24867') == parse_iri('http://identifiers.org/CHEBI/24867')
 
 # Bioregistry IRI
-assert ('chebi', '24867') == bioregistry.parse_iri('https://bioregistry.io/chebi:24867')
+assert ('chebi', '24867') == parse_iri('https://bioregistry.io/chebi:24867')
 ```
 
 ### Generating IRIs

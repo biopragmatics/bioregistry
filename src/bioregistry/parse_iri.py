@@ -3,11 +3,12 @@
 """Functionality for parsing IRIs."""
 
 import collections.abc
-from typing import Mapping, Sequence, Tuple, Union
+from typing import Mapping, Optional, Sequence, Tuple, Union
 
 from .resolve import get_format_urls, parse_curie
 
 __all__ = [
+    "curie_from_iri",
     "parse_iri",
 ]
 
@@ -26,6 +27,58 @@ OBO_PREFIX = "http://purl.obolibrary.org/obo/"
 IDOT_HTTPS_PREFIX = "https://identifiers.org/"
 IDOT_HTTP_PREFIX = "http://identifiers.org/"
 N2T_PREFIX = "https://n2t.net/"
+
+
+def curie_from_iri(
+    iri: str, prefix_map: Union[None, Mapping[str, str], Sequence[Tuple[str, str]]] = None
+) -> Optional[str]:
+    """Parse a compact identifier from an IRI using :func:`parse_iri` and reconstitute it.
+
+    :param iri: A valid IRI
+    :param prefix_map: See :func:`parse_iri`
+    :return: A CURIE string, if the IRI can be parsed by :func:`parse_iri`.
+
+    IRI from an OBO PURL:
+
+    >>> curie_from_iri("http://purl.obolibrary.org/obo/DRON_00023232")
+    'dron:00023232'
+
+    IRI from the OLS:
+
+    >>> curie_from_iri("https://www.ebi.ac.uk/ols/ontologies/ecao/terms?iri=http://purl.obolibrary.org/obo/ECAO_1")
+    'ecao:1'
+
+    .. todo:: IRI from bioportal
+
+    IRI from native provider
+
+    >>> curie_from_iri("https://www.alzforum.org/mutations/1234")
+    'alzforum.mutation:1234'
+
+    Dog food:
+
+    >>> curie_from_iri("https://bioregistry.io/DRON:00023232")
+    'dron:00023232'
+
+    IRIs from Identifiers.org (https and http, colon and slash):
+
+    >>> curie_from_iri("https://identifiers.org/aop.relationships:5")
+    'aop.relationships:5'
+    >>> curie_from_iri("http://identifiers.org/aop.relationships:5")
+    'aop.relationships:5'
+    >>> curie_from_iri("https://identifiers.org/aop.relationships/5")
+    'aop.relationships:5'
+    >>> curie_from_iri("http://identifiers.org/aop.relationships/5")
+    'aop.relationships:5'
+
+    IRI from N2T
+    >>> curie_from_iri("https://n2t.net/aop.relationships:5")
+    'aop.relationships:5'
+    """
+    prefix, identifier = parse_iri(iri=iri, prefix_map=prefix_map)
+    if prefix is None:
+        return None
+    return f"{prefix}:{identifier}"
 
 
 def parse_iri(
