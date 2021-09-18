@@ -50,7 +50,8 @@ The manually curated portions of these data are available under the
 ## 🙏 Contributing
 
 If you'd like to request a new prefix, please fill out this [issue template](https://github.com/biopragmatics/bioregistry/issues/new?assignees=cthoyt&labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D).
-It will automatically generate a pull request!
+It will automatically generate a pull request! Here's a list of all of the
+open [requests for new prefixes](https://github.com/biopragmatics/bioregistry/issues?q=is%3Aissue+label%3APrefix+is%3Aopen).
 
 There are a few other issue templates for certain updates (e.g., update regex, merge two prefixes, etc.) that you
 can check [here](https://github.com/biopragmatics/bioregistry/issues/new/choose). For anything updates that don't
