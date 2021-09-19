@@ -7,13 +7,11 @@ from .resolve import (  # noqa:F401
     get_banana,
     get_bioportal_prefix,
     get_collection,
+    get_default_format,
     get_description,
     get_email,
     get_example,
     get_fairsharing_prefix,
-    get_format,
-    get_format_url,
-    get_format_urls,
     get_homepage,
     get_identifiers_org_prefix,
     get_json_download,
@@ -57,6 +55,7 @@ from .resolve import (  # noqa:F401
     normalize_prefix,
     parse_curie,
 )
+from .uri_format import get_format, get_format_url, get_format_urls  # noqa:F401
 from .resolve_identifier import (  # noqa:F401
     get_bioportal_iri,
     get_bioregistry_iri,

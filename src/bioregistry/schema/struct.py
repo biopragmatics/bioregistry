@@ -265,7 +265,7 @@ class Collection(BaseModel):
 
     def as_prefix_map(self) -> Mapping[str, str]:
         """Get the prefix map for a given collection."""
-        from ..resolve import get_format_url
+        from ..uri_format import get_format_url
 
         rv = {}
         for prefix in self.resources:

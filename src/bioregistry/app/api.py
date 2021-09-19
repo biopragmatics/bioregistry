@@ -11,8 +11,8 @@ from .utils import _autocomplete, _get_identifier, _normalize_prefix_or_404, _se
 from .. import normalize_prefix
 from ..export.prefix_maps import collection_to_context_jsonlds
 from ..export.rdf_export import collection_to_rdf_str, metaresource_to_rdf_str, resource_to_rdf_str
-from ..resolve import get_format_url
 from ..schema import sanitize_mapping
+from ..uri_format import get_format_url
 from ..utils import read_collections_contributions, read_contributors, read_prefix_contributions
 
 __all__ = [

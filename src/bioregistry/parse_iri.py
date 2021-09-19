@@ -5,21 +5,13 @@
 import collections.abc
 from typing import Mapping, Optional, Sequence, Tuple, Union
 
-from .resolve import get_format_urls, parse_curie
+from .resolve import parse_curie
+from .uri_format import get_default_prefix_list, prepare_prefix_list
 
 __all__ = [
     "curie_from_iri",
     "parse_iri",
 ]
-
-
-def _sort_key(kv):
-    return -len(kv[0])
-
-
-#: A prefix map in reverse sorted order based on length of the URL
-#: in order to avoid conflicts of sub-URIs (thanks to Nico Matentzoglu for the idea)
-PREFIX_MAP = sorted(get_format_urls().items(), key=_sort_key)
 
 OLS_URL_PREFIX = "https://www.ebi.ac.uk/ols/ontologies/"
 BIOREGISTRY_PREFIX = "https://bioregistry.io"
@@ -134,7 +126,7 @@ def parse_iri(
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
     if isinstance(prefix_map, collections.abc.Mapping):
-        prefix_map = sorted(prefix_map.items(), key=_sort_key)
+        prefix_map = prepare_prefix_list(prefix_map)
     if iri.startswith(BIOREGISTRY_PREFIX):
         curie = iri[len(BIOREGISTRY_PREFIX) :]
         return parse_curie(curie)
@@ -152,7 +144,7 @@ def parse_iri(
     if iri.startswith(N2T_PREFIX):
         curie = iri[len(N2T_PREFIX) :]
         return parse_curie(curie)
-    for prefix, prefix_url in prefix_map or PREFIX_MAP:
+    for prefix, prefix_url in prefix_map or get_default_prefix_list():
         if iri.startswith(prefix_url):
             return prefix, iri[len(prefix_url) :]
     return None, None
