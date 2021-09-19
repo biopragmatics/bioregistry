@@ -9,8 +9,8 @@ from functools import lru_cache
 from typing import Any, Dict, Mapping, Optional, Sequence, Set, Tuple, Union
 
 from .constants import LICENSES
-from .schema import Collection, Registry, Resource
-from .utils import read_collections, read_metaregistry, read_registry
+from .schema import Resource
+from .utils import read_metaregistry, read_registry
 
 __all__ = [
     "get_resource",
@@ -37,13 +37,6 @@ __all__ = [
     "parse_curie",
     "normalize_parsed_curie",
     "normalize_curie",
-    # Metaregistry stuff
-    "get_registry",
-    "get_registry_name",
-    "get_registry_url",
-    "get_registry_homepage",
-    # Collection stuff
-    "get_collection",
 ]
 
 logger = logging.getLogger(__name__)
@@ -70,78 +63,6 @@ def get(prefix: str) -> Optional[Resource]:
     """Get the Bioregistry entry for the given prefix, deprecated for :func:`get_resource`."""
     warnings.warn("use bioregistry.get_resource", DeprecationWarning)
     return get_resource(prefix)
-
-
-def get_collection(identifier: str) -> Optional[Collection]:
-    """Get the metaregistry entry for the given identifier."""
-    return read_collections().get(identifier)
-
-
-def get_registry(metaprefix: str) -> Optional[Registry]:
-    """Get the metaregistry entry for the given prefix."""
-    return read_metaregistry().get(metaprefix)
-
-
-def get_registry_name(metaprefix: str) -> Optional[str]:
-    """Get the metaregistry name for the given prefix, if it's available."""
-    registry = get_registry(metaprefix)
-    if registry is None:
-        return None
-    return registry.name
-
-
-def get_registry_homepage(metaprefix: str) -> Optional[str]:
-    """Get the URL for the registry, if available.
-
-    :param metaprefix: The metaprefix of the registry
-    :return: The URL for the registry, if available, otherwise ``None``.
-
-    >>> get_registry_homepage('biolink')
-    'https://raw.githubusercontent.com/biolink/biolink-model'
-
-    ``None`` is returned on missing values.
-
-    >>> get_registry_homepage('missing')
-    None
-    """
-    registry = get_registry(metaprefix)
-    if registry is None:
-        return None
-    return registry.homepage
-
-
-def get_registry_description(metaprefix: str) -> Optional[str]:
-    """Get the description for the registry, if available.
-
-    :param metaprefix: The metaprefix of the registry
-    :return: The description for the registry, if available, otherwise ``None``.
-
-    >>> get_registry_description('prefixcommons')
-    'A registry of commonly used prefixes in the life sciences and linked data'
-
-    >>> get_registry_description('missing')
-    None
-    """
-    registry = get_registry(metaprefix)
-    if registry is None:
-        return None
-    return registry.description
-
-
-def get_registry_example(metaprefix: str) -> Optional[str]:
-    """Get an example for the registry, if available."""
-    registry = get_registry(metaprefix)
-    if registry is None:
-        return None
-    return registry.example
-
-
-def get_registry_url(metaprefix: str, prefix: str) -> Optional[str]:
-    """Get the URL for the resource inside registry, if available."""
-    entry = get_registry(metaprefix)
-    if entry is None:
-        return None
-    return entry.get_provider(prefix)
 
 
 def get_name(prefix: str) -> Optional[str]:

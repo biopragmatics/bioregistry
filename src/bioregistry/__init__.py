@@ -6,7 +6,6 @@ from .parse_iri import curie_from_iri, parse_iri  # noqa:F401
 from .resolve import (  # noqa:F401
     get_banana,
     get_bioportal_prefix,
-    get_collection,
     get_default_format,
     get_description,
     get_email,
@@ -33,13 +32,7 @@ from .resolve import (  # noqa:F401
     get_pattern_re,
     get_prefixcommons_format,
     get_provides_for,
-    get_registry,
-    get_registry_description,
-    get_registry_example,
-    get_registry_homepage,
     get_registry_map,
-    get_registry_name,
-    get_registry_url,
     get_resource,
     get_synonyms,
     get_version,
@@ -55,6 +48,7 @@ from .resolve import (  # noqa:F401
     normalize_prefix,
     parse_curie,
 )
+from .collection_api import get_collection  # noqa:F401
 from .uri_format import get_format, get_format_url, get_format_urls  # noqa:F401
 from .resolve_identifier import (  # noqa:F401
     get_bioportal_iri,
@@ -68,8 +62,16 @@ from .resolve_identifier import (  # noqa:F401
     get_ols_iri,
     get_providers,
     get_providers_list,
-    get_registry_resolve_url,
     validate,
+)
+from .metaresource_api import (  # noqa:F401
+    get_registry,
+    get_registry_description,
+    get_registry_example,
+    get_registry_homepage,
+    get_registry_name,
+    get_registry_resolve_url,
+    get_registry_url,
 )
 from .utils import (  # noqa:F401
     read_collections,

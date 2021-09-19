@@ -30,7 +30,6 @@ __all__ = [
     "get_bioportal_iri",
     "get_n2t_iri",
     "get_link",
-    "get_registry_resolve_url",
     "normalize_identifier",
 ]
 
@@ -333,11 +332,3 @@ def get_link(prefix: str, identifier: str, use_bioregistry_io: bool = True) -> O
         if rv is not None:
             return rv
     return None
-
-
-def get_registry_resolve_url(metaprefix: str, prefix: str, identifier: str) -> Optional[str]:
-    """Get the URL to resolve the given prefix/identifier pair with the given resolver."""
-    providers = get_providers(prefix, identifier)
-    if not providers:
-        return None
-    return providers.get(metaprefix)
