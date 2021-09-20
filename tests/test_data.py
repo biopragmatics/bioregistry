@@ -7,7 +7,8 @@ import unittest
 
 import bioregistry
 from bioregistry.export.rdf_export import resource_to_rdf_str
-from bioregistry.resolve import EMAIL_RE, _get_prefix_key, get_external
+from bioregistry.resolve import get_external
+from bioregistry.schema.struct import EMAIL_RE
 from bioregistry.utils import is_mismatch
 
 logger = logging.getLogger(__name__)
@@ -119,7 +120,9 @@ class TestRegistry(unittest.TestCase):
                 # FIXME these are known problematic, and there's a PR on
                 #  https://github.com/OBOFoundry/OBOFoundry.github.io/pull/1534
                 continue
-            email = _get_prefix_key(prefix, "contact", ("obofoundry", "ols"))
+            resource = bioregistry.get_resource(prefix)
+            self.assertIsNotNone(resource)
+            email = resource.get_prefix_key("contact", ("obofoundry", "ols"))
             if email is None or EMAIL_RE.match(email):
                 continue
             with self.subTest(prefix=prefix):

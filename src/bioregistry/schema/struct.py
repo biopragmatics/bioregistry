@@ -6,9 +6,11 @@
 """
 
 import json
+import logging
 import pathlib
+import re
 from functools import lru_cache
-from typing import Any, Dict, List, Mapping, Optional, Sequence
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Set
 
 import pydantic.schema
 import rdflib
@@ -25,7 +27,12 @@ from bioregistry.schema.constants import (
     orcid,
 )
 
+logger = logging.getLogger(__name__)
+
 HERE = pathlib.Path(__file__).parent.resolve()
+
+# not a perfect email regex, but close enough
+EMAIL_RE = re.compile(r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,5}$")
 
 
 def sanitize_model(base_model: BaseModel) -> Mapping[str, Any]:
@@ -157,7 +164,16 @@ class Resource(BaseModel):
         return None
 
     def get_default_url(self, identifier: str) -> Optional[str]:
-        """Return the default URL for the identifier."""
+        """Return the default URL for the identifier.
+
+        :param identifier: The local identifier in the nomenclature represented by this resource
+        :returns: The first-party provider URL for the local identifier, if one can be constructed
+
+        >>> import bioregistry
+        >>> resource = bioregistry.get_resource("chebi")
+        >>> resource.get_default_url("24867")
+        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+        """
         fmt = self._default_provider_url()
         if fmt is None:
             return None
@@ -165,6 +181,165 @@ class Resource(BaseModel):
 
     def __setitem__(self, key, value):  # noqa: D105
         setattr(self, key, value)
+
+    def get_banana(self) -> Optional[str]:
+        """Get the optional redundant prefix to go before an identifier.
+
+        A "banana" is an embedded prefix that isn't actually part of the identifier.
+        Usually this corresponds to the prefix itself, with some specific stylization
+        such as in the case of FBbt. The banana does NOT include a colon ":" at the end
+
+        :return: The banana, if the prefix is valid and has an associated banana.
+
+        Explicitly annotated banana
+        >>> import bioregistry
+        >>> assert "GO_REF" == bioregistry.get_resource("go.ref").get_banana()
+
+        Banana imported through OBO Foundry
+        >>> assert "FBbt" == bioregistry.get_resource("fbbt").get_banana()
+
+        No banana (ChEBI does have namespace in LUI, though)
+        >>> assert bioregistry.get_resource("chebi").get_banana() is None
+
+        No banana, no namespace in LUI
+        >>> assert bioregistry.get_resource("pdb").get_banana() is None
+        """
+        if self.banana is not None:
+            return self.banana
+        if self.obofoundry and "preferredPrefix" in self.obofoundry:
+            return self.obofoundry["preferredPrefix"]
+        return None
+
+    def get_default_format(self) -> Optional[str]:
+        """Get the default, first-party URI prefix.
+
+        :returns: The first-party URI prefix string, if available.
+
+        >>> import bioregistry
+        >>> bioregistry.get_resource("ncbitaxon").get_default_format()
+        'https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1'
+        >>> bioregistry.get_resource("go").get_default_format()
+        'http://amigo.geneontology.org/amigo/term/GO:$1'
+        """
+        if self.url:
+            return self.url
+        rv = self.get_external("miriam").get("provider_url")
+        if rv is not None:
+            return rv
+        rv = self.get_external("prefixcommons").get("formatter")
+        if rv is not None:
+            return rv
+        rv = self.get_external("wikidata").get("format")
+        if rv is not None:
+            return rv
+        return None
+
+    def get_synonyms(self) -> Set[str]:
+        """Get synonyms."""
+        # TODO aggregate even more from xrefs
+        return set(self.synonyms or {})
+
+    def get_mappings(self) -> Optional[Mapping[str, str]]:
+        """Get the mappings to external registries, if available."""
+        from ..utils import read_metaregistry
+
+        rv: Dict[str, str] = {}
+        rv.update(self.mappings or {})  # This will be the replacement later
+        for metaprefix in read_metaregistry():
+            external = self.get_external(metaprefix)
+            if not external:
+                continue
+            if metaprefix == "wikidata":
+                value = external.get("prefix")
+                if value is not None:
+                    rv["wikidata"] = value
+            elif metaprefix == "obofoundry":
+                rv[metaprefix] = external.get("preferredPrefix", external["prefix"].upper())
+            else:
+                rv[metaprefix] = external["prefix"]
+
+        return rv
+
+    def get_name(self) -> Optional[str]:
+        """Get the name for the given prefix, it it's available."""
+        return self.get_prefix_key(
+            "name", ("obofoundry", "ols", "wikidata", "go", "ncbi", "bioportal", "miriam")
+        )
+
+    def get_description(self) -> Optional[str]:
+        """Get the description for the given prefix, if available."""
+        return self.get_prefix_key("description", ("miriam", "ols", "obofoundry", "wikidata"))
+
+    def get_pattern(self) -> Optional[str]:
+        """Get the pattern for the given prefix, if it's available.
+
+        :returns: The pattern for the prefix, if it is available, using the following order of preference:
+            1. Custom
+            2. MIRIAM
+            3. Wikidata
+        """
+        return self.get_prefix_key("pattern", ("miriam", "wikidata"))
+
+    def namespace_in_lui(self) -> Optional[bool]:
+        """Check if the namespace should appear in the LUI."""
+        return self.get_prefix_key("namespaceEmbeddedInLui", ("miriam",))
+
+    def get_homepage(self) -> Optional[str]:
+        """Return the homepage, if available."""
+        return self.get_prefix_key(
+            "homepage",
+            ("obofoundry", "ols", "miriam", "n2t", "wikidata", "go", "ncbi", "cellosaurus"),
+        )
+
+    def get_email(self) -> Optional[str]:
+        """Return the contact email, if available.
+
+        :returns: The resource's contact email address, if it is available.
+
+        >>> import bioregistry
+        >>> bioregistry.get_resource("bioregistry").get_email()  # from bioregistry curation
+        'cthoyt@gmail.com'
+        >>> bioregistry.get_resource("chebi").get_email()
+        'amalik@ebi.ac.uk'
+        """
+        rv = self.get_prefix_key("contact", ("obofoundry", "ols"))
+        if rv and not EMAIL_RE.match(rv):
+            logger.warning("[%s] invalid email address listed: %s", self.name, rv)
+            return None
+        return rv
+
+    def get_example(self) -> Optional[str]:
+        """Get an example identifier, if it's available."""
+        example = self.example
+        if example is not None:
+            return example
+        miriam_example = self.get_external("miriam").get("sampleId")
+        if miriam_example is not None:
+            return miriam_example
+        example = self.get_external("ncbi").get("example")
+        if example is not None:
+            return example
+        return None
+
+    def is_deprecated(self) -> bool:
+        """Return if the given prefix corresponds to a deprecated resource.
+
+        :returns: If the prefix has been explicitly marked as deprecated either by
+            the Bioregistry, OBO Foundry, OLS, or MIRIAM. If no marks are present,
+            assumed not to be deprecated.
+
+        >>> import bioregistry
+        >>> assert bioregistry.get_resource("imr").is_deprecated()  # marked by OBO
+        >>> assert bioregistry.get_resource("iro").is_deprecated() # marked by Bioregistry
+        >>> assert bioregistry.get_resource("miriam.collection").is_deprecated() # marked by MIRIAM
+        """
+        if self.deprecated:
+            return True
+        for key in ("obofoundry", "ols", "miriam"):
+            external = self.get_external(key)
+            if external.get("deprecated"):
+                return True
+        return False
 
 
 class Registry(BaseModel):
@@ -193,12 +368,21 @@ class Registry(BaseModel):
     #: An optional contact email
     contact: Optional[str]
 
-    def get_provider(self, metaidentifier: str) -> Optional[str]:
-        """Get the provider string."""
+    def get_provider(self, prefix: str) -> Optional[str]:
+        """Get the provider string.
+
+        :param prefix: The prefix used in the metaregistry
+        :return: The URL in the registry for the prefix, if it's able to provide one
+
+        >>> import bioregistry
+        >>> registry = bioregistry.get_registry("fairsharing")
+        >>> registry.get_provider("FAIRsharing.62qk8w")
+        'https://fairsharing.org/FAIRsharing.62qk8w'
+        """
         provider_url = self.provider_url
         if provider_url is None:
             return None
-        return provider_url.replace("$1", metaidentifier)
+        return provider_url.replace("$1", prefix)
 
     def add_triples(self, graph: rdflib.Graph) -> Node:
         """Add triples to an RDF graph for this registry."""

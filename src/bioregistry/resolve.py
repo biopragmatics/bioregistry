@@ -6,11 +6,11 @@ import logging
 import re
 import warnings
 from functools import lru_cache
-from typing import Any, Dict, Mapping, Optional, Sequence, Set, Tuple, Union
+from typing import Any, Dict, Mapping, Optional, Set, Tuple, Union
 
 from .constants import LICENSES
 from .schema import Resource
-from .utils import read_metaregistry, read_registry
+from .utils import read_registry
 
 __all__ = [
     "get_resource",
@@ -41,9 +41,6 @@ __all__ = [
 
 logger = logging.getLogger(__name__)
 
-# not a perfect email regex, but close enough
-EMAIL_RE = re.compile(r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,5}$")
-
 
 def get_resource(prefix: str) -> Optional[Resource]:
     """Get the Bioregistry entry for the given prefix.
@@ -67,14 +64,18 @@ def get(prefix: str) -> Optional[Resource]:
 
 def get_name(prefix: str) -> Optional[str]:
     """Get the name for the given prefix, it it's available."""
-    return _get_prefix_key(
-        prefix, "name", ("obofoundry", "ols", "wikidata", "go", "ncbi", "bioportal", "miriam")
-    )
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_name()
 
 
 def get_description(prefix: str) -> Optional[str]:
     """Get the description for the given prefix, if available."""
-    return _get_prefix_key(prefix, "description", ("miriam", "ols", "obofoundry", "wikidata"))
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_description()
 
 
 def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
@@ -82,22 +83,7 @@ def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
     entry = get_resource(prefix)
     if entry is None:
         return None
-    rv: Dict[str, str] = {}
-    rv.update(entry.mappings or {})  # This will be the replacement later
-    for metaprefix in read_metaregistry():
-        external = get_external(prefix, metaprefix)
-        if not external:
-            continue
-        if metaprefix == "wikidata":
-            value = external.get("prefix")
-            if value is not None:
-                rv["wikidata"] = value
-        elif metaprefix == "obofoundry":
-            rv[metaprefix] = external.get("preferredPrefix", external["prefix"].upper())
-        else:
-            rv[metaprefix] = external["prefix"]
-
-    return rv
+    return entry.get_mappings()
 
 
 def get_synonyms(prefix: str) -> Optional[Set[str]]:
@@ -105,17 +91,7 @@ def get_synonyms(prefix: str) -> Optional[Set[str]]:
     entry = get_resource(prefix)
     if entry is None:
         return None
-    # TODO aggregate even more from xrefs
-    return set(entry.synonyms or {})
-
-
-def _get_prefix_key(prefix: str, key: str, metaprefixes: Sequence[str]):
-    # This function doesn't have a type annotation since there are different
-    # kinds of values that might come out (str or bool)
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_prefix_key(key, metaprefixes)
+    return entry.get_synonyms()
 
 
 def get_pattern(prefix: str) -> Optional[str]:
@@ -128,7 +104,10 @@ def get_pattern(prefix: str) -> Optional[str]:
         2. MIRIAM
         3. Wikidata
     """
-    return _get_prefix_key(prefix, "pattern", ("miriam", "wikidata"))
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_pattern()
 
 
 @lru_cache()
@@ -142,7 +121,10 @@ def get_pattern_re(prefix: str):
 
 def namespace_in_lui(prefix: str) -> Optional[bool]:
     """Check if the namespace should appear in the LUI."""
-    return _get_prefix_key(prefix, "namespaceEmbeddedInLui", ("miriam",))
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.namespace_in_lui()
 
 
 def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
@@ -252,15 +234,11 @@ def get_banana(prefix: str) -> Optional[str]:
     entry = get_resource(prefix)
     if entry is None:
         return None
-    if entry.banana is not None:
-        return entry.banana
-    if entry.obofoundry and "preferredPrefix" in entry.obofoundry:
-        return entry.obofoundry["preferredPrefix"]
-    return None
+    return entry.get_banana()
 
 
 def get_default_format(prefix: str) -> Optional[str]:
-    """Get the bioregistry URI prefix.
+    """Get the default, first-party URI prefix.
 
     :param prefix: The prefix to lookup.
     :returns: The first-party URI prefix string, if available.
@@ -275,18 +253,7 @@ def get_default_format(prefix: str) -> Optional[str]:
     entry = get_resource(prefix)
     if entry is None:
         return None
-    if entry.url:
-        return entry.url
-    rv = get_external(prefix, "miriam").get("provider_url")
-    if rv is not None:
-        return rv
-    rv = get_external(prefix, "prefixcommons").get("formatter")
-    if rv is not None:
-        return rv
-    rv = get_external(prefix, "wikidata").get("format")
-    if rv is not None:
-        return rv
-    return None
+    return entry.get_default_format()
 
 
 def get_miriam_url_prefix(prefix: str) -> Optional[str]:
@@ -423,16 +390,7 @@ def get_example(prefix: str) -> Optional[str]:
     entry = get_resource(prefix)
     if entry is None:
         return None
-    example = entry.example
-    if example is not None:
-        return example
-    miriam_example = get_external(prefix, "miriam").get("sampleId")
-    if miriam_example is not None:
-        return miriam_example
-    example = get_external(prefix, "ncbi").get("example")
-    if example is not None:
-        return example
-    return None
+    return entry.get_example()
 
 
 def has_no_terms(prefix: str) -> bool:
@@ -459,13 +417,7 @@ def is_deprecated(prefix: str) -> bool:
     entry = get_resource(prefix)
     if entry is None:
         return False
-    if entry.deprecated:
-        return True
-    for key in ("obofoundry", "ols", "miriam"):
-        external = entry.get_external(key)
-        if external.get("deprecated"):
-            return True
-    return False
+    return entry.is_deprecated()
 
 
 def get_email(prefix: str) -> Optional[str]:
@@ -481,20 +433,18 @@ def get_email(prefix: str) -> Optional[str]:
     'amalik@ebi.ac.uk'
     >>> assert bioregistry.get_email('pass2') is None  # dead resource
     """
-    rv = _get_prefix_key(prefix, "contact", ("obofoundry", "ols"))
-    if rv and not EMAIL_RE.match(rv):
-        logger.warning("[%s] invalid email address listed: %s", prefix, rv)
+    entry = get_resource(prefix)
+    if entry is None:
         return None
-    return rv
+    return entry.get_email()
 
 
 def get_homepage(prefix: str) -> Optional[str]:
     """Return the homepage, if available."""
-    return _get_prefix_key(
-        prefix,
-        "homepage",
-        ("obofoundry", "ols", "miriam", "n2t", "wikidata", "go", "ncbi", "cellosaurus"),
-    )
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_homepage()
 
 
 def get_obo_download(prefix: str) -> Optional[str]:
@@ -659,8 +609,10 @@ def normalize_parsed_curie(
     norm_prefix = normalize_prefix(prefix)
     if not norm_prefix:
         return None, None
-
-    banana = get_banana(prefix)
+    resource = get_resource(prefix)
+    if resource is None:
+        return None, None  # though, this should never happen
+    banana = resource.get_banana()
     if banana is not None and identifier.startswith(f"{banana}:"):
         identifier = identifier[len(banana) + 1 :]
     # remove redundant prefix
