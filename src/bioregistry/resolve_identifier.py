@@ -378,9 +378,9 @@ def get_iri(
     A custom context can be supplied in combanation with a priority list
     >>> context = {"chebi": "https://example.org/chebi/"}
     >>> priority = ["obofoundry", "custom", "default", "bioregistry"]
-    >>> get_iri("chebi:24867", context=context)
-    'https://example.org/chebi/24867'
-    >>> get_iri("fbbt:1234", context=context)
+    >>> get_iri("chebi:24867", context=context, priority=priority)
+    'http://purl.obolibrary.org/obo/CHEBI_24867'
+    >>> get_iri("fbbt:1234", context=context, priority=priority)
     'http://purl.obolibrary.org/obo/FBbt_1234'
     """
     if identifier is None:
