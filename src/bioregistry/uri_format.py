@@ -8,46 +8,21 @@
     the prefix should go, which makes them more general than URI prefix strings.
 """
 
-import logging
-from typing import Callable, List, Mapping, Optional, Sequence, Tuple
+from typing import List, Mapping, Optional, Sequence, Tuple
 
 from .resolve import (
-    get_default_format,
-    get_miriam_format,
-    get_obofoundry_formatter,
-    get_ols_format,
-    get_prefixcommons_format,
     get_resource,
     get_synonyms,
 )
 from .utils import read_registry
 
 __all__ = [
-    "DEFAULT_URI_FORMATTER_PRIORITY",
-    "URI_FORMATTERS",
     "get_format",
     "get_format_url",
     "get_format_urls",
     "prepare_prefix_list",
     "get_default_prefix_list",
 ]
-
-#: The default priority for generating URIs
-DEFAULT_URI_FORMATTER_PRIORITY = (
-    "bioregistry",
-    "obofoundry",
-    "prefixcommons",
-    "miriam",
-    "ols",
-)
-
-URI_FORMATTERS: Mapping[str, Callable[[str], Optional[str]]] = {
-    "bioregistry": get_default_format,
-    "obofoundry": get_obofoundry_formatter,
-    "prefixcommons": get_prefixcommons_format,
-    "miriam": get_miriam_format,
-    "ols": get_ols_format,
-}
 
 
 def get_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Optional[str]:
@@ -57,7 +32,7 @@ def get_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Optiona
     :param priority: The priority order of metaresources to use for format URL lookup.
         The default is:
 
-        1. Bioregistry
+        1. Default first party (from bioregistry, prefix commons, or miriam)
         2. OBO Foundry
         3. Prefix Commons
         4. Identifiers.org / MIRIAM
@@ -81,12 +56,7 @@ def get_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Optiona
     entry = get_resource(prefix)
     if entry is None:
         return None
-    for metaprefix in priority or DEFAULT_URI_FORMATTER_PRIORITY:
-        formatter = URI_FORMATTERS[metaprefix]
-        rv = formatter(prefix)
-        if rv is not None:
-            return rv
-    return None
+    return entry.get_format(priority=priority)
 
 
 def get_format_url(prefix: str, priority: Optional[Sequence[str]] = None) -> Optional[str]:
@@ -101,21 +71,10 @@ def get_format_url(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
     >>> bioregistry.get_format_url('chebi')
     'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:'
     """
-    fmt = get_format(prefix, priority=priority)
-    if fmt is None:
-        logging.debug("term missing formatter: %s", prefix)
+    entry = get_resource(prefix)
+    if entry is None:
         return None
-    count = fmt.count("$1")
-    if 0 == count:
-        logging.debug("formatter missing $1: %s", prefix)
-        return None
-    if fmt.count("$1") != 1:
-        logging.debug("formatter has multiple $1: %s", prefix)
-        return None
-    if not fmt.endswith("$1"):
-        logging.debug("formatter does not end with $1: %s", prefix)
-        return None
-    return fmt[: -len("$1")]
+    return entry.get_format_url(priority=priority)
 
 
 def get_format_urls(
@@ -133,8 +92,8 @@ def get_format_urls(
     :return: A mapping from prefixes to prefix URLs.
     """
     rv = {}
-    for prefix in read_registry():
-        prefix_url = get_format_url(prefix, priority=priority)
+    for prefix, resource in read_registry().items():
+        prefix_url = resource.get_format_url(priority=priority)
         if prefix_url is None:
             continue
         rv[prefix] = prefix_url

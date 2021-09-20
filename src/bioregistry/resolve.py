@@ -140,34 +140,70 @@ def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
     'taxonomy'
     >>> assert bioregistry.get_identifiers_org_prefix('MONDO') is None
     """
-    return _get_mapped_prefix(prefix, "miriam")
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_identifiers_org_prefix()
 
 
 def get_n2t_prefix(prefix: str) -> Optional[str]:
-    """Get the name-to-thing prefix if available."""
-    return _get_mapped_prefix(prefix, "n2t")
+    """Get the name-to-thing prefix if available.
+
+    :param prefix: The prefix to lookup.
+    :returns: The Name-to-Thing prefix corresponding to the prefix, if mappable.
+
+    >>> import bioregistry
+    >>> bioregistry.get_n2t_prefix('chebi')
+    'chebi'
+    >>> bioregistry.get_n2t_prefix('ncbitaxon')
+    'taxonomy'
+    >>> assert bioregistry.get_n2t_prefix('MONDO') is None
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_mapped_prefix("n2t")
 
 
 def get_wikidata_prefix(prefix: str) -> Optional[str]:
-    """Get the wikidata prefix if available."""
-    return _get_mapped_prefix(prefix, "wikidata")
+    """Get the wikidata prefix if available.
+
+    :param prefix: The prefix to lookup.
+    :returns: The Wikidata prefix (i.e., property identifier) corresponding to the prefix, if mappable.
+
+    >>> import bioregistry
+    >>> bioregistry.get_wikidata_prefix('chebi')
+    'P683'
+    >>> bioregistry.get_wikidata_prefix('ncbitaxon')
+    'P685'
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_mapped_prefix("wikidata")
 
 
 def get_bioportal_prefix(prefix: str) -> Optional[str]:
     """Get the Bioportal prefix if available."""
-    return _get_mapped_prefix(prefix, "bioportal")
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_mapped_prefix("bioportal")
 
 
 def get_obofoundry_prefix(prefix: str) -> Optional[str]:
     """Get the OBO Foundry prefix if available."""
-    return _get_mapped_prefix(prefix, "obofoundry")
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_obofoundry_prefix()
 
 
 def get_registry_map(metaprefix: str) -> Dict[str, str]:
     """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
     rv = {}
-    for prefix in read_registry():
-        mapped_prefix = _get_mapped_prefix(prefix, metaprefix)
+    for prefix, resource in read_registry().items():
+        mapped_prefix = resource.get_mapped_prefix(metaprefix)
         if mapped_prefix is not None:
             rv[prefix] = mapped_prefix
     return rv
@@ -186,27 +222,26 @@ def get_obofoundry_format(prefix: str) -> Optional[str]:
     'http://purl.obolibrary.org/obo/NCBITaxon_'
     >>> assert bioregistry.get_obofoundry_format('sty') is None
     """
-    obo_prefix = get_obofoundry_prefix(prefix)
-    if obo_prefix is None:
+    entry = get_resource(prefix)
+    if entry is None:
         return None
-    return f"http://purl.obolibrary.org/obo/{obo_prefix}_"
+    return entry.get_obofoundry_format()
 
 
 def get_ols_prefix(prefix: str) -> Optional[str]:
     """Get the OLS prefix if available."""
-    return _get_mapped_prefix(prefix, "ols")
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_ols_prefix()
 
 
 def get_fairsharing_prefix(prefix: str) -> Optional[str]:
     """Get the FAIRSharing prefix if available."""
-    return _get_mapped_prefix(prefix, "fairsharing")
-
-
-def _get_mapped_prefix(prefix: str, external: str) -> Optional[str]:
-    entry = get_mappings(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get(external)
+    return entry.get_mapped_prefix("fairsharing")
 
 
 def get_banana(prefix: str) -> Optional[str]:
@@ -269,14 +304,10 @@ def get_miriam_url_prefix(prefix: str) -> Optional[str]:
     'https://identifiers.org/GO:'
     >>> assert bioregistry.get_miriam_url_prefix('sty') is None
     """
-    miriam_prefix = get_identifiers_org_prefix(prefix)
-    if miriam_prefix is None:
+    resource = get_resource(prefix)
+    if resource is None:
         return None
-    if namespace_in_lui(prefix):
-        # not exact solution, some less common ones don't use capitalization
-        # align with the banana solution
-        miriam_prefix = miriam_prefix.upper()
-    return f"https://identifiers.org/{miriam_prefix}:"
+    return resource.get_miriam_url_prefix()
 
 
 def get_miriam_format(prefix: str) -> Optional[str]:
@@ -292,10 +323,10 @@ def get_miriam_format(prefix: str) -> Optional[str]:
     'https://identifiers.org/GO:$1'
     >>> assert bioregistry.get_miriam_format('sty') is None
     """
-    miriam_url_prefix = get_miriam_url_prefix(prefix)
-    if miriam_url_prefix is None:
+    resource = get_resource(prefix)
+    if resource is None:
         return None
-    return f"{miriam_url_prefix}$1"
+    return resource.get_miriam_format()
 
 
 def get_obofoundry_formatter(prefix: str) -> Optional[str]:
@@ -311,10 +342,10 @@ def get_obofoundry_formatter(prefix: str) -> Optional[str]:
     'http://purl.obolibrary.org/obo/NCBITaxon_$1'
     >>> assert bioregistry.get_obofoundry_formatter('sty') is None
     """
-    rv = get_obofoundry_format(prefix)
-    if rv is None:
+    resource = get_resource(prefix)
+    if resource is None:
         return None
-    return f"{rv}$1"
+    return resource.get_obofoundry_formatter()
 
 
 def get_ols_url_prefix(prefix: str) -> Optional[str]:
@@ -332,14 +363,10 @@ def get_ols_url_prefix(prefix: str) -> Optional[str]:
     'https://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?iri=http://purl.obolibrary.org/obo/NCBITaxon_'
     >>> assert bioregistry.get_ols_url_prefix('sty') is None
     """
-    ols_prefix = get_ols_prefix(prefix)
-    if ols_prefix is None:
+    resource = get_resource(prefix)
+    if resource is None:
         return None
-    obo_format = get_obofoundry_format(prefix)
-    if obo_format:
-        return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_format}"
-    # TODO find examples, like for EFO on when it's not based on OBO Foundry PURLs
-    return None
+    return resource.get_ols_url_prefix()
 
 
 def get_ols_format(prefix: str) -> Optional[str]:
@@ -357,10 +384,10 @@ def get_ols_format(prefix: str) -> Optional[str]:
     'https://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?iri=http://purl.obolibrary.org/obo/NCBITaxon_$1'
     >>> assert bioregistry.get_ols_format('sty') is None
     """
-    ols_url_prefix = get_ols_url_prefix(prefix)
-    if ols_url_prefix is None:
+    resource = get_resource(prefix)
+    if resource is None:
         return None
-    return f"{ols_url_prefix}$1"
+    return resource.get_ols_format()
 
 
 def get_prefixcommons_format(prefix: str) -> Optional[str]:
@@ -373,7 +400,10 @@ def get_prefixcommons_format(prefix: str) -> Optional[str]:
     >>> bioregistry.get_prefixcommons_format('hgmd')
     'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
     """
-    return get_external(prefix, "prefixcommons").get("formatter")
+    resource = get_resource(prefix)
+    if resource is None:
+        return None
+    return resource.get_prefixcommons_format()
 
 
 def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:

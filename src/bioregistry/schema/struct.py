@@ -10,7 +10,7 @@ import logging
 import pathlib
 import re
 from functools import lru_cache
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Set
+from typing import Any, Callable, ClassVar, Dict, List, Mapping, Optional, Sequence, Set
 
 import pydantic.schema
 import rdflib
@@ -135,6 +135,19 @@ class Resource(BaseModel):
         """Get an external registry."""
         return self.dict().get(metaprefix) or dict()
 
+    def get_mapped_prefix(self, metaprefix: str) -> Optional[str]:
+        """Get the prefix for the given external.
+
+        :param metaprefix: The metaprefix for the external resource
+        :returns: The prefix in the external registry, if it could be mapped
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("chebi").get_mapped_prefix("wikidata")
+        'P683'
+        """
+        # TODO is this even a good idea? is this effectively the same as get_external?
+        return (self.get_mappings() or {}).get(metaprefix)
+
     def get_prefix_key(self, key: str, metaprefixes: Sequence[str]):
         """Get a key enriched by the given external resources' data."""
         rv = self.dict().get(key)
@@ -169,9 +182,8 @@ class Resource(BaseModel):
         :param identifier: The local identifier in the nomenclature represented by this resource
         :returns: The first-party provider URL for the local identifier, if one can be constructed
 
-        >>> import bioregistry
-        >>> resource = bioregistry.get_resource("chebi")
-        >>> resource.get_default_url("24867")
+        >>> from bioregistry import get_resource
+        >>> get_resource("chebi").get_default_url("24867")
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
         """
         fmt = self._default_provider_url()
@@ -192,17 +204,17 @@ class Resource(BaseModel):
         :return: The banana, if the prefix is valid and has an associated banana.
 
         Explicitly annotated banana
-        >>> import bioregistry
-        >>> assert "GO_REF" == bioregistry.get_resource("go.ref").get_banana()
+        >>> from bioregistry import get_resource
+        >>> assert "GO_REF" == get_resource("go.ref").get_banana()
 
         Banana imported through OBO Foundry
-        >>> assert "FBbt" == bioregistry.get_resource("fbbt").get_banana()
+        >>> assert "FBbt" == get_resource("fbbt").get_banana()
 
         No banana (ChEBI does have namespace in LUI, though)
-        >>> assert bioregistry.get_resource("chebi").get_banana() is None
+        >>> assert get_resource("chebi").get_banana() is None
 
         No banana, no namespace in LUI
-        >>> assert bioregistry.get_resource("pdb").get_banana() is None
+        >>> assert get_resource("pdb").get_banana() is None
         """
         if self.banana is not None:
             return self.banana
@@ -215,10 +227,10 @@ class Resource(BaseModel):
 
         :returns: The first-party URI prefix string, if available.
 
-        >>> import bioregistry
-        >>> bioregistry.get_resource("ncbitaxon").get_default_format()
+        >>> from bioregistry import get_resource
+        >>> get_resource("ncbitaxon").get_default_format()
         'https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1'
-        >>> bioregistry.get_resource("go").get_default_format()
+        >>> get_resource("go").get_default_format()
         'http://amigo.geneontology.org/amigo/term/GO:$1'
         """
         if self.url:
@@ -296,10 +308,10 @@ class Resource(BaseModel):
 
         :returns: The resource's contact email address, if it is available.
 
-        >>> import bioregistry
-        >>> bioregistry.get_resource("bioregistry").get_email()  # from bioregistry curation
+        >>> from bioregistry import get_resource
+        >>> get_resource("bioregistry").get_email()  # from bioregistry curation
         'cthoyt@gmail.com'
-        >>> bioregistry.get_resource("chebi").get_email()
+        >>> get_resource("chebi").get_email()
         'amalik@ebi.ac.uk'
         """
         rv = self.get_prefix_key("contact", ("obofoundry", "ols"))
@@ -328,10 +340,10 @@ class Resource(BaseModel):
             the Bioregistry, OBO Foundry, OLS, or MIRIAM. If no marks are present,
             assumed not to be deprecated.
 
-        >>> import bioregistry
-        >>> assert bioregistry.get_resource("imr").is_deprecated()  # marked by OBO
-        >>> assert bioregistry.get_resource("iro").is_deprecated() # marked by Bioregistry
-        >>> assert bioregistry.get_resource("miriam.collection").is_deprecated() # marked by MIRIAM
+        >>> from bioregistry import get_resource
+        >>> assert get_resource("imr").is_deprecated()  # marked by OBO
+        >>> assert get_resource("iro").is_deprecated() # marked by Bioregistry
+        >>> assert get_resource("miriam.collection").is_deprecated() # marked by MIRIAM
         """
         if self.deprecated:
             return True
@@ -340,6 +352,242 @@ class Resource(BaseModel):
             if external.get("deprecated"):
                 return True
         return False
+
+    def get_obofoundry_prefix(self) -> Optional[str]:
+        """Get the OBO Foundry prefix if available.
+
+        :returns: The OBO prefix, if available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("go").get_obofoundry_prefix()  # standard
+        'GO'
+        >>> get_resource("ncbitaxon").get_obofoundry_prefix()  # mixed case
+        'NCBITaxon'
+        >>> assert get_resource("sty").get_obofoundry_prefix() is None
+        """
+        return self.get_mapped_prefix("obofoundry")
+
+    def get_obofoundry_format(self) -> Optional[str]:
+        """Get the URL format for an OBO Foundry entry.
+
+        :returns: The OBO PURL URL prefix corresponding to the prefix, if mappable.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("go").get_obofoundry_format()  # standard
+        'http://purl.obolibrary.org/obo/GO_'
+        >>> get_resource("ncbitaxon").get_obofoundry_format()  # mixed case
+        'http://purl.obolibrary.org/obo/NCBITaxon_'
+        >>> assert get_resource("sty").get_obofoundry_format() is None
+        """
+        obo_prefix = self.get_obofoundry_prefix()
+        if obo_prefix is None:
+            return None
+        return f"http://purl.obolibrary.org/obo/{obo_prefix}_"
+
+    def get_obofoundry_formatter(self) -> Optional[str]:
+        """Get the URL format for an OBO Foundry entry.
+
+        :returns: The OBO PURL format string, if available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("go").get_obofoundry_formatter()  # standard
+        'http://purl.obolibrary.org/obo/GO_$1'
+        >>> get_resource("ncbitaxon").get_obofoundry_formatter()  # mixed case
+        'http://purl.obolibrary.org/obo/NCBITaxon_$1'
+        >>> assert get_resource("sty").get_obofoundry_formatter() is None
+        """
+        rv = self.get_obofoundry_format()
+        if rv is None:
+            return None
+        return f"{rv}$1"
+
+    def get_prefixcommons_format(self) -> Optional[str]:
+        """Get the URL format for a Prefix Commons entry.
+
+        :returns: The Prefix Commons URL format string, if available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("hgmd").get_prefixcommons_format()
+        'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
+        """
+        return self.get_external("prefixcommons").get("formatter")
+
+    def get_identifiers_org_prefix(self) -> Optional[str]:
+        """Get the identifiers.org prefix if available.
+
+        :returns: The Identifiers.org/MIRIAM prefix corresponding to the prefix, if mappable.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource('chebi').get_identifiers_org_prefix()
+        'chebi'
+        >>> get_resource('ncbitaxon').get_identifiers_org_prefix()
+        'taxonomy'
+        >>> assert get_resource('MONDO').get_identifiers_org_prefix() is None
+        """
+        return self.get_mapped_prefix("miriam")
+
+    def get_miriam_url_prefix(self) -> Optional[str]:
+        """Get the URL format for a MIRIAM entry.
+
+        :returns: The Identifiers.org/MIRIAM URL format string, if available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource('ncbitaxon').get_miriam_url_prefix()
+        'https://identifiers.org/taxonomy:'
+        >>> get_resource('go').get_miriam_url_prefix()
+        'https://identifiers.org/GO:'
+        >>> assert get_resource('sty').get_miriam_url_prefix() is None
+        """
+        miriam_prefix = self.get_identifiers_org_prefix()
+        if miriam_prefix is None:
+            return None
+        if self.namespace_in_lui():
+            # not exact solution, some less common ones don't use capitalization
+            # align with the banana solution
+            miriam_prefix = miriam_prefix.upper()
+        return f"https://identifiers.org/{miriam_prefix}:"
+
+    def get_miriam_format(self) -> Optional[str]:
+        """Get the URL format for a MIRIAM entry.
+
+        :returns: The Identifiers.org/MIRIAM URL format string, if available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource('ncbitaxon').get_miriam_format()
+        'https://identifiers.org/taxonomy:$1'
+        >>> get_resource('go').get_miriam_format()
+        'https://identifiers.org/GO:$1'
+        >>> assert get_resource('sty').get_miriam_format() is None
+        """
+        miriam_url_prefix = self.get_miriam_url_prefix()
+        if miriam_url_prefix is None:
+            return None
+        return f"{miriam_url_prefix}$1"
+
+    def get_ols_prefix(self) -> Optional[str]:
+        """Get the OLS prefix if available."""
+        return self.get_mapped_prefix("ols")
+
+    def get_ols_url_prefix(self) -> Optional[str]:
+        """Get the URL format for an OLS entry.
+
+        :returns: The OLS format string, if available.
+
+        .. warning:: This doesn't have a normal form, so it only works for OBO Foundry at the moment.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("go").get_ols_url_prefix()  # standard
+        'https://www.ebi.ac.uk/ols/ontologies/go/terms?iri=http://purl.obolibrary.org/obo/GO_'
+        >>> get_resource("ncbitaxon").get_ols_url_prefix()  # mixed case
+        'https://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?iri=http://purl.obolibrary.org/obo/NCBITaxon_'
+        >>> assert get_resource("sty").get_ols_url_prefix() is None
+        """
+        ols_prefix = self.get_ols_prefix()
+        if ols_prefix is None:
+            return None
+        obo_format = self.get_obofoundry_format()
+        if obo_format:
+            return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_format}"
+        # TODO find examples, like for EFO on when it's not based on OBO Foundry PURLs
+        return None
+
+    def get_ols_format(self) -> Optional[str]:
+        """Get the URL format for an OLS entry.
+
+        :returns: The OLS format string, if available.
+
+        .. warning:: This doesn't have a normal form, so it only works for OBO Foundry at the moment.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("go").get_ols_format()  # standard
+        'https://www.ebi.ac.uk/ols/ontologies/go/terms?iri=http://purl.obolibrary.org/obo/GO_$1'
+        >>> get_resource("ncbitaxon").get_ols_format()  # mixed case
+        'https://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?iri=http://purl.obolibrary.org/obo/NCBITaxon_$1'
+        >>> assert get_resource("sty").get_ols_format() is None
+        """
+        ols_url_prefix = self.get_ols_url_prefix()
+        if ols_url_prefix is None:
+            return None
+        return f"{ols_url_prefix}$1"
+
+    URI_FORMATTERS: ClassVar[Mapping[str, Callable[["Resource"], Optional[str]]]] = {
+        "bioregistry": get_default_format,
+        "obofoundry": get_obofoundry_formatter,
+        "prefixcommons": get_prefixcommons_format,
+        "miriam": get_miriam_format,
+        "ols": get_ols_format,
+    }
+
+    #: The default priority for generating URIs
+    DEFAULT_URI_FORMATTER_PRIORITY: ClassVar[Sequence[str]] = (
+        "bioregistry",
+        "obofoundry",
+        "prefixcommons",
+        "miriam",
+        "ols",
+    )
+
+    def get_format(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+        """Get the URL format string for the given prefix, if it's available.
+
+        :param priority: The priority order of metaresources to use for format URL lookup.
+            The default is:
+
+            1. Default first party (from bioregistry, prefix commons, or miriam)
+            2. OBO Foundry
+            3. Prefix Commons
+            4. Identifiers.org / MIRIAM
+            5. OLS
+        :return: The best URL format string, where the ``$1`` should be replaced by the
+            identifier. ``$1`` could potentially appear multiple times.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("chebi").get_format()
+        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1'
+
+        If you want to specify a different priority order, you can do so with the ``priority`` keyword. This
+        is of particular interest to ontologists and semantic web people who might want to use ``purl.obolibrary.org``
+        URL prefixes over the URL prefixes corresponding to the first-party providers for each resource (e.g., the
+        ChEBI example above). Do so like:
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("chebi").get_format(priority=['obofoundry', 'bioregistry', 'prefixcommons', 'miriam', 'ols'])
+        'http://purl.obolibrary.org/obo/CHEBI_$1'
+        """
+        # TODO add examples in doctests for prefix commons, identifiers.org, and OLS
+        for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
+            formatter = self.URI_FORMATTERS[metaprefix]
+            rv = formatter(self)
+            if rv is not None:
+                return rv
+        return None
+
+    def get_format_url(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+        """Get a well-formed format URL for usage in a prefix map.
+
+        :param priority: The prioirty order for :func:`get_format`.
+        :return: The URL prefix. Similar to what's returned by :func:`bioregistry.get_format`, but
+            it MUST have only one ``$1`` and end with ``$1`` to use thie function.
+
+        >>> import bioregistry
+        >>> bioregistry.get_format_url('chebi')
+        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:'
+        """
+        fmt = self.get_format(priority=priority)
+        if fmt is None:
+            logging.debug("term missing formatter: %s", self.name)
+            return None
+        count = fmt.count("$1")
+        if 0 == count:
+            logging.debug("formatter missing $1: %s", self.name)
+            return None
+        if fmt.count("$1") != 1:
+            logging.debug("formatter has multiple $1: %s", self.name)
+            return None
+        if not fmt.endswith("$1"):
+            logging.debug("formatter does not end with $1: %s", self.name)
+            return None
+        return fmt[: -len("$1")]
 
 
 class Registry(BaseModel):
@@ -374,10 +622,11 @@ class Registry(BaseModel):
         :param prefix: The prefix used in the metaregistry
         :return: The URL in the registry for the prefix, if it's able to provide one
 
-        >>> import bioregistry
-        >>> registry = bioregistry.get_registry("fairsharing")
-        >>> registry.get_provider("FAIRsharing.62qk8w")
+        >>> from bioregistry import get_registry
+        >>> get_registry("fairsharing").get_provider("FAIRsharing.62qk8w")
         'https://fairsharing.org/FAIRsharing.62qk8w'
+        >>> get_registry("miriam").get_provider("go")
+        'https://registry.identifiers.org/registry/go'
         """
         provider_url = self.provider_url
         if provider_url is None:
