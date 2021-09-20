@@ -79,10 +79,14 @@ def normalize_identifier(prefix: str, identifier: str) -> str:
     >>> normalize_identifier('pdb', '00000020')
     '00000020'
     """
+    resource = get_resource(prefix)
+    if resource is None:
+        return identifier  # nothing we can do
+
     # A "banana" is an embedded prefix that isn't actually part of the identifier.
     # Usually this corresponds to the prefix itself, with some specific stylization
     # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
-    banana = get_banana(prefix)
+    banana = resource.get_banana()
     if banana:
         banana = f"{banana}:"
         if not identifier.startswith(banana):
@@ -90,7 +94,7 @@ def normalize_identifier(prefix: str, identifier: str) -> str:
     # Handle when the namespace is in the LUI, but no specific banana
     # has been given. This is most common for OBO Foundry ontologies'
     # identifiers, like CHEBI:XXXX
-    elif namespace_in_lui(prefix):
+    elif resource.namespace_in_lui():
         banana = f"{prefix.upper()}:"
         if not identifier.startswith(banana):
             return f"{banana}{identifier}"
