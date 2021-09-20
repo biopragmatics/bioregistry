@@ -56,6 +56,7 @@ from .resolve_identifier import (  # noqa:F401
     get_default_iri,
     get_identifiers_org_curie,
     get_identifiers_org_iri,
+    get_iri,
     get_link,
     get_n2t_iri,
     get_obofoundry_iri,

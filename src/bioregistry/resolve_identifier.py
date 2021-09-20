@@ -2,6 +2,7 @@
 
 """Resolvers for CURIE (e.g., pairs of prefix and identifier)."""
 
+import warnings
 from typing import Callable, Mapping, Optional, Sequence, Tuple
 
 from .constants import BIOREGISTRY_REMOTE_URL
@@ -16,6 +17,7 @@ from .resolve import (
     get_resource,
     namespace_in_lui,
     normalize_parsed_curie,
+    parse_curie,
 )
 
 __all__ = [
@@ -29,6 +31,7 @@ __all__ = [
     "get_ols_iri",
     "get_bioportal_iri",
     "get_n2t_iri",
+    "get_iri",
     "get_link",
     "normalize_identifier",
 ]
@@ -324,10 +327,47 @@ LINK_PRIORITY = [
 ]
 
 
-def get_link(prefix: str, identifier: str, use_bioregistry_io: bool = True) -> Optional[str]:
-    """Get the best link for the CURIE, if possible."""
-    providers = get_providers(prefix, identifier)
-    for key in LINK_PRIORITY:
+def get_iri(
+    prefix: str,
+    identifier: Optional[str] = None,
+    priority: Optional[Sequence[str]] = None,
+    use_bioregistry_io: bool = True,
+) -> Optional[str]:
+    """Get the best link for the CURIE, if possible.
+
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE. If identifier is given as None, then this function will
+        assume that the first argument (``prefix``) is actually a full CURIE.
+    :param priority: A user-defined priority list. In addition to the metaprefixes in the Bioregistry
+        corresponding to resources that are resolvers/lookup services, you can also use ``default``
+        to correspond to the first-party IRI. The default priority list is:
+
+        1. First-party IRI (``default``)
+        2. Identifiers.org / MIRIAM
+        3. Ontology Lookup Service
+        4. OBO PURL
+        5. Name-to-Thing
+        6. BioPortal
+    :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults to true.
+    :return: The best possible IRI that can be generated based on the priority list.
+
+    A pre-parse CURIE can be given as the first two arguments
+    >>> get_iri("chebi", "24867")
+    'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+
+    A CURIE can be given directly as a single argument
+    >>> get_iri("chebi:24867")
+    'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+    """
+    if identifier is None:
+        _prefix, _identifier = parse_curie(prefix)
+        if _prefix is None or _identifier is None:
+            return None
+    else:
+        _prefix, _identifier = prefix, identifier
+
+    providers = get_providers(_prefix, _identifier)
+    for key in priority or LINK_PRIORITY:
         if not use_bioregistry_io and key == "bioregistry":
             continue
         if key not in providers:
@@ -336,3 +376,14 @@ def get_link(prefix: str, identifier: str, use_bioregistry_io: bool = True) -> O
         if rv is not None:
             return rv
     return None
+
+
+def get_link(
+    prefix: str,
+    identifier: str,
+    priority: Optional[Sequence[str]] = None,
+    use_bioregistry_io: bool = True,
+) -> Optional[str]:
+    """Get the best link for the CURIE, if possible."""
+    warnings.warn("get_link() is deprecated. use bioregistry.get_iri() instead", DeprecationWarning)
+    return get_iri(prefix=prefix, identifier=identifier, use_bioregistry_io=use_bioregistry_io)

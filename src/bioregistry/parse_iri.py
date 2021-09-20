@@ -184,7 +184,7 @@ def _main():
         example = bioregistry.get_example(prefix)
         if example is None:
             continue
-        iri = bioregistry.get_link(prefix, example, use_bioregistry_io=False)
+        iri = bioregistry.get_iri(prefix, example, use_bioregistry_io=False)
         if iri is None:
             # print('no iri for', prefix, example)
             continue

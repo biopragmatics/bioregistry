@@ -202,7 +202,7 @@ def resolve(prefix: str, identifier: Optional[str] = None):
             404,
         )
 
-    url = bioregistry.get_link(prefix, identifier, use_bioregistry_io=False)
+    url = bioregistry.get_iri(prefix, identifier, use_bioregistry_io=False)
     if not url:
         return (
             render_template(

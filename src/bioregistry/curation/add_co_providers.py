@@ -18,7 +18,7 @@ def main():
             continue
         if resource.url:
             print(prefix, "has url", resource.url)
-            url = bioregistry.get_link(prefix, resource.example)
+            url = bioregistry.get_iri(prefix, resource.example)
             res = requests.get(url)
             print(res.text)
             print()

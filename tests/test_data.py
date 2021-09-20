@@ -271,7 +271,7 @@ class TestRegistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_identifiers_org_iri("nope", ...))
         self.assertIsNone(bioregistry.get_identifiers_org_iri("pid.pathway", ...))
         self.assertIsNone(bioregistry.get_identifiers_org_iri("gmelin", ...))
-        self.assertIsNone(bioregistry.get_link("gmelin", ...))
+        self.assertIsNone(bioregistry.get_iri("gmelin", ...))
 
     def test_get(self):
         """Test getting resources."""
@@ -284,7 +284,7 @@ class TestRegistry(unittest.TestCase):
 
         self.assertEqual(
             "https://meshb.nlm.nih.gov/record/ui?ui=D010146",
-            bioregistry.get_link("mesh", "D010146"),
+            bioregistry.get_iri("mesh", "D010146"),
         )
 
     def test_get_rdf(self):

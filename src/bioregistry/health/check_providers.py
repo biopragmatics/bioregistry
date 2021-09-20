@@ -58,7 +58,7 @@ def main():
         if example is None:
             continue
 
-        url = bioregistry.get_link(prefix, example, use_bioregistry_io=False)
+        url = bioregistry.get_iri(prefix, example, use_bioregistry_io=False)
         if url is None:
             secho(f"[{prefix}] failed to generate URL for example {example}", fg="red")
             continue

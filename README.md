@@ -198,6 +198,36 @@ assert ('chebi', '24867') == parse_iri('https://bioregistry.io/chebi:24867')
 
 ### Generating IRIs
 
+Given a pre-parse CURIE (e.g., a 2-tuple of a prefix and identifier), you
+can get the Bioregistry's preferred IRI using `get_iri()`. By default, it uses
+the following priorities:
+
+1. First-party IRI
+2. Identifiers.org / MIRIAM
+3. Ontology Lookup Service
+4. OBO PURL
+5. Name-to-Thing
+6. BioPortal
+
+```python
+import bioregistry
+
+assert bioregistry.get_iri("chebi", "24867") == 'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867' 
+```
+
+For convenience, you can also pass a regular CURIE to the first argument, and
+it will get auto-parsed and auto-normalized:
+
+```python
+import bioregistry
+
+assert bioregistry.get_iri("chebi:24867") == 'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867' 
+```
+
+It's possible to change the default priority list by passing an alternate
+sequence of metaprefixes to the `priority` keyword. Alternatively, there are
+direct functions for generating IRIs for different registries:
+
 ```python
 import bioregistry
 
@@ -225,7 +255,6 @@ assert bioregistry.get_identifiers_org_iri('chebi', '24867') == 'https://identif
 assert bioregistry.get_n2t_iri('chebi', '24867') == 'https://n2t.net/chebi:24867'
 ```
 
-If you're not sure which to choose, use `bioregistry.get_link` and it will pick the best one for you.
 Each of these functions could also return `None` if there isn't a provider available or if the prefix
 can't be mapped to the various resources.
 
