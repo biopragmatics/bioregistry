@@ -317,6 +317,7 @@ PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
 }
 
 LINK_PRIORITY = [
+    "custom",
     "default",
     "bioregistry",
     "miriam",
@@ -342,14 +343,16 @@ def get_iri(
         assume that the first argument (``prefix``) is actually a full CURIE.
     :param priority: A user-defined priority list. In addition to the metaprefixes in the Bioregistry
         corresponding to resources that are resolvers/lookup services, you can also use ``default``
-        to correspond to the first-party IRI. The default priority list is:
+        to correspond to the first-party IRI and ``custom`` to refer to the custom prefix map.
+        The default priority list is:
 
+        1. Custom context (``custom``)
         1. First-party IRI (``default``)
-        2. Identifiers.org / MIRIAM
-        3. Ontology Lookup Service
-        4. OBO PURL
-        5. Name-to-Thing
-        6. BioPortal
+        2. Identifiers.org / MIRIAM (``miriam``)
+        3. Ontology Lookup Service (``ols``)
+        4. OBO PURL (``obofoundry``)
+        5. Name-to-Thing (``n2t``)
+        6. BioPortal (``bioportal``)
     :param context: Additional context, also allows you to override stuff.
     :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults to true.
     :return: The best possible IRI that can be generated based on the priority list.
@@ -362,10 +365,23 @@ def get_iri(
     >>> get_iri("chebi:24867")
     'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
 
-    A custom context can be supplied
+    A priority list can be given
+    >>> priority = ["obofoundry", "default", "bioregistry"]
+    >>> get_iri("chebi:24867", priority=priority)
+    'http://purl.obolibrary.org/obo/CHEBI_24867'
+
+    A custom context can be supplied.
     >>> context = {"chebi": "https://example.org/chebi/"}
     >>> get_iri("chebi:24867", context=context)
     'https://example.org/chebi/24867'
+
+    A custom context can be supplied in combanation with a priority list
+    >>> context = {"chebi": "https://example.org/chebi/"}
+    >>> priority = ["obofoundry", "custom", "default", "bioregistry"]
+    >>> get_iri("chebi:24867", context=context)
+    'https://example.org/chebi/24867'
+    >>> get_iri("fbbt:1234", context=context)
+    'http://purl.obolibrary.org/obo/FBbt_1234'
     """
     if identifier is None:
         _prefix, _identifier = parse_curie(prefix)
@@ -374,10 +390,9 @@ def get_iri(
     else:
         _prefix, _identifier = prefix, identifier
 
+    providers = dict(get_providers(_prefix, _identifier))
     if context and _prefix in context:
-        return f"{context[_prefix]}{_identifier}"
-
-    providers = get_providers(_prefix, _identifier)
+        providers["custom"] = f"{context[_prefix]}{_identifier}"
     for key in priority or LINK_PRIORITY:
         if not use_bioregistry_io and key == "bioregistry":
             continue
