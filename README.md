@@ -73,7 +73,7 @@ Things that would be helpful:
 2. Adding `["homepage"]` entry for any entry that doesn't have an external reference
 
 A full list of curation to-do's is automatically generated as a web page
-[here](https://bioregistry.github.io/bioregistry/curation/). This page also has a more in-depth tutorial on how to contribute.
+[here](https://biopragmatics.github.io/bioregistry/curation/). This page also has a more in-depth tutorial on how to contribute.
 
 ## 🧹 Maintenance
 
