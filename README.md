@@ -246,8 +246,20 @@ assert bioregistry.get_iri("chebi:24867") == 'https://www.ebi.ac.uk/chebi/search
 ```
 
 It's possible to change the default priority list by passing an alternate
-sequence of metaprefixes to the `priority` keyword. Alternatively, there are
-direct functions for generating IRIs for different registries:
+sequence of metaprefixes to the `priority` keyword. For example, if you live
+in the OBO world, you should make OBO PURLs the highest priority, then
+when they aren't available, default to something else:
+
+```python
+import bioregistry
+
+priority = ['obofoundry', 'bioregistry', 'default']
+assert bioregistry.get_iri("chebi:24867", priority=priority) == 'http://purl.obolibrary.org/obo/CHEBI_24867' 
+assert bioregistry.get_iri("hgnc:1234", priority=priority) == 'https://bioregistry.io/hgnc:1234' 
+```
+
+Alternatively, there are  direct functions for generating IRIs for different
+registries:
 
 ```python
 import bioregistry
