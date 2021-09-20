@@ -330,7 +330,9 @@ LINK_PRIORITY = [
 def get_iri(
     prefix: str,
     identifier: Optional[str] = None,
+    *,
     priority: Optional[Sequence[str]] = None,
+    context: Optional[Mapping[str, str]] = None,
     use_bioregistry_io: bool = True,
 ) -> Optional[str]:
     """Get the best link for the CURIE, if possible.
@@ -348,6 +350,7 @@ def get_iri(
         4. OBO PURL
         5. Name-to-Thing
         6. BioPortal
+    :param context: Additional context, also allows you to override stuff.
     :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults to true.
     :return: The best possible IRI that can be generated based on the priority list.
 
@@ -358,6 +361,11 @@ def get_iri(
     A CURIE can be given directly as a single argument
     >>> get_iri("chebi:24867")
     'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+
+    A custom context can be supplied
+    >>> context = {"chebi": "https://example.org/chebi/"}
+    >>> get_iri("chebi:24867", context=context)
+    'https://example.org/chebi/24867'
     """
     if identifier is None:
         _prefix, _identifier = parse_curie(prefix)
@@ -365,6 +373,9 @@ def get_iri(
             return None
     else:
         _prefix, _identifier = prefix, identifier
+
+    if context and _prefix in context:
+        return f"{context[_prefix]}{_identifier}"
 
     providers = get_providers(_prefix, _identifier)
     for key in priority or LINK_PRIORITY:

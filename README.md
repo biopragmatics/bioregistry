@@ -258,6 +258,16 @@ assert bioregistry.get_iri("chebi:24867", priority=priority) == 'http://purl.obo
 assert bioregistry.get_iri("hgnc:1234", priority=priority) == 'https://bioregistry.io/hgnc:1234' 
 ```
 
+Even deeper, you can override any of the bioregistry context directly using
+the `context` keyword:
+
+```python
+from bioregistry import get_iri
+
+context = {"chebi": "https://example.org/chebi/"}
+assert get_iri("chebi:24867", context=context) == 'https://example.org/chebi/24867'
+```
+
 Alternatively, there are  direct functions for generating IRIs for different
 registries:
 
