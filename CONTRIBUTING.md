@@ -73,3 +73,11 @@ $ git remote add biopragmatics https://github.com/biopragmatics/bioregistry.git
 
 This project aims to support all versions of Python that have not passed their
 end-of-life dates. See https://endoflife.date/python for a list.
+
+### Logging
+
+Python's builtin `print()` should not be used (except when writing to files),
+it's checked by the
+[`flake8-print`](https://github.com/jbkahn/flake8-print) plugin. If you're in a
+command line setting or `main()` function for a module, you can use
+`click.echo()`.
