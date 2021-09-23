@@ -39,7 +39,7 @@ linters with `tox -e lint`.
 
 This project uses `flake8` and several plugins for additional checks of
 documentation style, security issues, good variable nomenclature, and more (
-see `tox.ini` for a list of flake8 plugins). You can check if your code
+see [`tox.ini`](tox.ini) for a list of flake8 plugins). You can check if your code
 passes `flake8` with `tox -e flake8`.
 
 Each of these checks are run on each commit using GitHub Actions as a continuous
