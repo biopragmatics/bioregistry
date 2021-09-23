@@ -75,6 +75,8 @@ Things that would be helpful:
 A full list of curation to-do's is automatically generated as a web page
 [here](https://biopragmatics.github.io/bioregistry/curation/). This page also has a more in-depth tutorial on how to contribute.
 
+For more information on contributions, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## 🧹 Maintenance
 
 ### 🫀 Health Report
