@@ -86,14 +86,16 @@ accepting a contribution.
 
 ### Syncing your fork
 
-After cloning, you should add the upstream repository with
+If other code is updated before your contribution gets merged, you might need to
+resolve conflicts against the main branch. After cloning, you should add the
+upstream repository with
 
 ```shell
 $ git remote add biopragmatics https://github.com/biopragmatics/bioregistry.git
 ```
 
-You can also use the GitHub UI to do this by following
-[this tutorial](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).
+Then, you can merge upstream code into your branch. You can also use the GitHub
+UI to do this by following [this tutorial](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).
 
 ### Python Version Compatibility
 
