@@ -156,6 +156,7 @@ def read_collections_contributions():
     return dict(rv)
 
 
+# FIXME remove this
 def updater(f):
     """Make a decorator for functions that auto-update the bioregistry."""
 
