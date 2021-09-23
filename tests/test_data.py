@@ -4,6 +4,7 @@
 
 import logging
 import unittest
+from collections import defaultdict
 
 import bioregistry
 from bioregistry.export.rdf_export import resource_to_rdf_str
@@ -291,3 +292,26 @@ class TestRegistry(unittest.TestCase):
         """Test conversion to RDF."""
         s = resource_to_rdf_str("chebi")
         self.assertIsInstance(s, str)
+
+    def test_unique_iris(self):
+        """Test that all IRIs are unique, or at least there's a mapping to which one is the preferred prefix."""
+        prefix_map = bioregistry.get_format_urls()
+        dd = defaultdict(list)
+        for prefix, iri in prefix_map.items():
+            dd[iri].append(prefix)
+
+        x = {}
+        for iri, prefixes in dd.items():
+            if 1 == len(prefixes):
+                continue
+            resources = {prefix: bioregistry.get_resource(prefix) for prefix in prefixes}
+            parts = {prefix: resource.part_of for prefix, resource in resources.items()}
+            unmapped = [
+                prefix
+                for prefix, part_of in parts.items()
+                if part_of is None
+            ]
+            if len(unmapped) <= 1:
+                continue
+            x[iri] = parts
+        self.assertEqual({}, x)
