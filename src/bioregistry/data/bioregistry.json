@@ -29210,7 +29210,8 @@
       "prefix": "ped.ensemble",
       "provider_url": "https://proteinensemble.org/$1",
       "sampleId": "PED00017e001"
-    }
+    },
+    "part_of": "ped"
   },
   "peff": {
     "deprecated": true,
@@ -39281,6 +39282,12 @@
       "prefix": "wb",
       "provider_url": "https://www.wormbase.org/get?name=$1"
     },
+    "ncbi": {
+      "example": "R13H7",
+      "homepage": "http://www.wormbase.org/",
+      "name": "Caenorhabditis elegans Genome Database",
+      "prefix": "WormBase"
+    },
     "prefixcommons": {
       "formatter": "http://identifiers.org/wb/$1",
       "is_identifiers": true,
@@ -39288,8 +39295,21 @@
       "prefix": "WB"
     },
     "synonyms": [
-      "WB_REF"
-    ]
+      "WB_REF",
+      "wormbase"
+    ],
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "formatter": "https://wormbase.org/db/seq/protein?name=%s;class=CDS",
+      "identifier": "110",
+      "link_is_explicit": "true",
+      "name": "WormBase",
+      "prefix": "WormBase"
+    },
+    "wikidata": {
+      "database": "Q3570042",
+      "prefix": "P3860"
+    }
   },
   "wb.rnai": {
     "mappings": {
@@ -39756,48 +39776,6 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "WORFDB"
-    }
-  },
-  "wormbase": {
-    "example": "C05G5/12462-12364",
-    "go": {
-      "formatter": "http://www.wormbase.org/get?name=$1",
-      "homepage": "http://www.wormbase.org/",
-      "name": "WormBase database of nematode biology",
-      "prefix": "WB_REF"
-    },
-    "homepage": "https://wormbase.org",
-    "mappings": {
-      "go": "WB_REF",
-      "ncbi": "WormBase",
-      "prefixcommons": "WormBase",
-      "uniprot": "WormBase",
-      "uniprot.database": "WormBase"
-    },
-    "name": "WormBase",
-    "ncbi": {
-      "example": "R13H7",
-      "homepage": "http://www.wormbase.org/",
-      "name": "Caenorhabditis elegans Genome Database",
-      "prefix": "WormBase"
-    },
-    "prefixcommons": {
-      "formatter": "https://www.wormbase.org/get?name=$1",
-      "is_identifiers": false,
-      "is_obo": false,
-      "prefix": "WormBase"
-    },
-    "uniprot": {
-      "category": "Organism-specific databases",
-      "formatter": "https://wormbase.org/db/seq/protein?name=%s;class=CDS",
-      "identifier": "110",
-      "link_is_explicit": "true",
-      "name": "WormBase",
-      "prefix": "WormBase"
-    },
-    "wikidata": {
-      "database": "Q3570042",
-      "prefix": "P3860"
     }
   },
   "wormpep": {
