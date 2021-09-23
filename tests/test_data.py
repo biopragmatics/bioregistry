@@ -317,5 +317,12 @@ class TestRegistry(unittest.TestCase):
             if len(unmapped) <= 1:
                 continue
 
-            x[iri] = parts
+            # Get pmaps
+            pmaptos = {prefix: resource.pmapto for prefix, resource in resources.items()}
+            canonical = [prefix for prefix, pmapto in pmaptos.items() if pmapto is None]
+            targets = list({pmapto for prefix, pmapto in pmaptos.items() if pmapto is not None})
+            if len(canonical) == 1 and len(targets) == 1 and canonical[0] == targets[0]:
+                continue
+
+            x[iri] = canonical, targets
         self.assertEqual({}, x)
