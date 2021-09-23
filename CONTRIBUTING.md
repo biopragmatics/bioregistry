@@ -58,9 +58,11 @@ comment, and we will help you.
 
 Python's builtin `print()` should not be used (except when writing to files),
 it's checked by the
-[`flake8-print`](https://github.com/jbkahn/flake8-print) plugin. If you're in a
-command line setting or `main()` function for a module, you can use
-`click.echo()`.
+[`flake8-print`](https://github.com/jbkahn/flake8-print) plugin to `flake8`. If
+you're in a command line setting or `main()` function for a module, you can use
+`click.echo()`. Otherwise, you can use the builtin `logging` module by adding
+`logger = logging.getLogger(__name__)` below the imports at the top of your
+file.
 
 ### Documentation
 
@@ -89,6 +91,9 @@ After cloning, you should add the upstream repository with
 ```shell
 $ git remote add biopragmatics https://github.com/biopragmatics/bioregistry.git
 ```
+
+You can also use the GitHub UI to do this by following
+[this tutorial](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).
 
 ### Python Version Compatibility
 
