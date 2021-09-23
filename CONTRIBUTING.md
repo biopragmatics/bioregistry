@@ -13,9 +13,9 @@ model for code contributions. Follow these steps:
    on your GitHub account (or in one of your organizations)
 2. [Clone your fork](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
    with `git clone https://github.com/<your namespace here>/bioregistry.git`
-3. Commit changes to your fork with `git commit`
+3. Make and commit changes to your fork with `git commit`
 4. Push changes to your fork with `git push`
-5. Repeat steps 3/4 as needed
+5. Repeat steps 3 and 4 as needed
 6. Submit a pull request back to the upstream repository
 
 ### Merge Model
@@ -25,7 +25,10 @@ uses [squash merges](https://docs.github.com/en/github/collaborating-with-pull-r
 to group all related commits in a given pull request into a single commit upon
 acceptance and merge into the main branch. This has several benefits:
 
-1. TODO
+1. Keeps the commit history on the main branch focused on high-level narrative
+2. Enables people to make lots of small commits without worrying about muddying
+   up the commit history
+3. Commits correspond 1-to-1 with pull requests
 
 ### Code Style
 
@@ -51,15 +54,33 @@ contribution. If you're unsure how to address the feedback from one of these
 tools, please say so either in the description of your pull request or in a
 comment, and we will help you.
 
+### Logging
+
+Python's builtin `print()` should not be used (except when writing to files),
+it's checked by the
+[`flake8-print`](https://github.com/jbkahn/flake8-print) plugin. If you're in a
+command line setting or `main()` function for a module, you can use
+`click.echo()`.
+
 ### Documentation
 
-darglint
-sphinx
+All public functions (i.e., not starting with an underscore `_`) must be
+documented using
+the [sphinx documentation format](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format).
+The [`darglint`](https://github.com/terrencepreilly/darglint) plugin to `flake8`
+reports on functions that are not fully documented.
+
+This project uses [`sphinx`](https://www.sphinx-doc.org) to automatically build
+documentation into a narrative structure. You can check that the documentation
+properly builds with `tox -e docs`.
 
 ### Testing
 
-unittests in tests/ directory
-doctests in docstrings
+Functions in this repository should be unit tested. These can either be written
+using the `unittest` framework in the `tests/` directory or as embedded
+doctests. You can check that the unit tests pass with `tox -e py` and that the
+doctests pass with `tox -e doctests`. These tests are required to pass for
+accepting a contribution.
 
 ### Syncing your fork
 
@@ -72,12 +93,9 @@ $ git remote add biopragmatics https://github.com/biopragmatics/bioregistry.git
 ### Python Version Compatibility
 
 This project aims to support all versions of Python that have not passed their
-end-of-life dates. See https://endoflife.date/python for a list.
+end-of-life dates. After end-of-life, the version will be removed from the Trove
+qualifiers in the [`setup.cfg`](setup.cfg) and from the GitHub Actions testing
+configuration.
 
-### Logging
-
-Python's builtin `print()` should not be used (except when writing to files),
-it's checked by the
-[`flake8-print`](https://github.com/jbkahn/flake8-print) plugin. If you're in a
-command line setting or `main()` function for a module, you can use
-`click.echo()`.
+See https://endoflife.date/python for a timeline of Python release and
+end-of-life dates.
