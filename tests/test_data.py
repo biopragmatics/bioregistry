@@ -296,15 +296,22 @@ class TestRegistry(unittest.TestCase):
     def test_unique_iris(self):
         """Test that all IRIs are unique, or at least there's a mapping to which one is the preferred prefix."""
         prefix_map = bioregistry.get_format_urls()
-        dd = defaultdict(list)
+        dd = defaultdict(dict)
         for prefix, iri in prefix_map.items():
-            dd[iri].append(prefix)
+            resource = bioregistry.get_resource(prefix)
+            self.assertIsNotNone(resource)
+            if resource.provides is not None:
+                # Don't consider resources that are providing, such as `ctd.gene`
+                continue
+            dd[iri][prefix] = resource
 
         x = {}
-        for iri, prefixes in dd.items():
-            if 1 == len(prefixes):
+        for iri, resources in dd.items():
+            if 1 == len(resources):
+                # This is a unique IRI, so no issues
                 continue
-            resources = {prefix: bioregistry.get_resource(prefix) for prefix in prefixes}
+
+            # Get parts
             parts = {prefix: resource.part_of for prefix, resource in resources.items()}
             unmapped = [
                 prefix
@@ -313,5 +320,6 @@ class TestRegistry(unittest.TestCase):
             ]
             if len(unmapped) <= 1:
                 continue
+
             x[iri] = parts
         self.assertEqual({}, x)
