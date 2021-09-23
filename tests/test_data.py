@@ -313,11 +313,7 @@ class TestRegistry(unittest.TestCase):
 
             # Get parts
             parts = {prefix: resource.part_of for prefix, resource in resources.items()}
-            unmapped = [
-                prefix
-                for prefix, part_of in parts.items()
-                if part_of is None
-            ]
+            unmapped = [prefix for prefix, part_of in parts.items() if part_of is None]
             if len(unmapped) <= 1:
                 continue
 
