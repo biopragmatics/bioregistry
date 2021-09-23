@@ -258,7 +258,7 @@ def _git(*args: str) -> Optional[str]:
                 stderr=devnull,
             )
         except CalledProcessError as e:
-            print("error in _git:\n", e)
+            logger.warning(f"error in _git:\n{e}")
             return None
         else:
             return ret.strip().decode("utf-8")

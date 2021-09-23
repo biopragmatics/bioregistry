@@ -178,6 +178,7 @@ def _main():
     """Run this as ``python -m bioregistry.parse_iri`` to get a list of IRIs that can be constructed, but not parsed."""
     import bioregistry
     from tabulate import tabulate
+    import click
 
     rows = []
     for prefix in bioregistry.read_registry():
@@ -191,7 +192,7 @@ def _main():
         k, v = parse_iri(iri)
         if k is None:
             rows.append((prefix, example, iri, k, v))
-    print(tabulate(rows))
+    click.echo(tabulate(rows))
 
 
 if __name__ == "__main__":

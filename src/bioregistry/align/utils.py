@@ -171,4 +171,4 @@ class Aligner(ABC):
         """Print the curation table."""
         s = self.get_curation_table(**kwargs)
         if s:
-            print(s)
+            print(s)  # noqa:T001
