@@ -25,6 +25,8 @@ uses [squash merges](https://docs.github.com/en/github/collaborating-with-pull-r
 to group all related commits in a given pull request into a single commit upon
 acceptance and merge into the main branch. This has several benefits:
 
+1. TODO
+
 ### Code Style
 
 This project encourages the use of optional static typing. It
@@ -37,16 +39,27 @@ This project uses [`black`](https://github.com/psf/black) to automatically
 enforce a consistent code style. You can apply `black` and other pre-configured
 linters with `tox -e lint`.
 
-This project uses `flake8` and several plugins for additional checks of
-documentation style, security issues, good variable nomenclature, and more (
-see [`tox.ini`](tox.ini) for a list of flake8 plugins). You can check if your code
-passes `flake8` with `tox -e flake8`.
+This project uses [`flake8`](https://flake8.pycqa.org) and several plugins for
+additional checks of documentation style, security issues, good variable
+nomenclature, and more (
+see [`tox.ini`](tox.ini) for a list of flake8 plugins). You can check if your
+code passes `flake8` with `tox -e flake8`.
 
 Each of these checks are run on each commit using GitHub Actions as a continuous
 integration service. Passing all of them is required for accepting a
 contribution. If you're unsure how to address the feedback from one of these
 tools, please say so either in the description of your pull request or in a
 comment, and we will help you.
+
+### Documentation
+
+darglint
+sphinx
+
+### Testing
+
+unittests in tests/ directory
+doctests in docstrings
 
 ### Syncing your fork
 
@@ -55,3 +68,8 @@ After cloning, you should add the upstream repository with
 ```shell
 $ git remote add biopragmatics https://github.com/biopragmatics/bioregistry.git
 ```
+
+### Python Version Compatibility
+
+This project aims to support all versions of Python that have not passed their
+end-of-life dates. See https://endoflife.date/python for a list.
