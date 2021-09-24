@@ -1,5 +1,8 @@
-# Contributor Covenant Code of Conduct
-
+---
+layout: page
+title: Contributor Covenant Code of Conduct
+permalink: /conduct/
+---
 ## Our Pledge
 
 We as members, contributors, and leaders pledge to make participation in our
