@@ -4362,6 +4362,7 @@
       "prefix": "cattleqtldb",
       "provider_url": "http://www.animalgenome.org/cgi-bin/QTLdb/BT/qdetails?QTL_ID=$1"
     },
+    "part_of": "qtldb",
     "prefixcommons": {
       "formatter": "http://identifiers.org/cattleqtldb/$1",
       "is_identifiers": true,
@@ -5449,6 +5450,7 @@
       "prefix": "chickenqtldb",
       "provider_url": "http://www.animalgenome.org/cgi-bin/QTLdb/GG/qdetails?QTL_ID=$1"
     },
+    "part_of": "qtldb",
     "prefixcommons": {
       "formatter": "http://identifiers.org/chickenqtldb/$1",
       "is_identifiers": true,
@@ -14244,6 +14246,7 @@
     }
   },
   "glycomedb": {
+    "comment": "this is exactly the same as glytoucan. Idk why there are two different ones",
     "mappings": {
       "miriam": "glycomedb",
       "n2t": "glycomedb",
@@ -14271,6 +14274,7 @@
       "prefix": "glycomedb",
       "provider_url": "https://glytoucan.org/Structures/Glycans/$1"
     },
+    "pmapto": "glytoucan",
     "prefixcommons": {
       "formatter": "http://identifiers.org/glycomedb/$1",
       "is_identifiers": true,
@@ -24094,6 +24098,13 @@
       "version": "1.0.1"
     }
   },
+  "multicellds": {
+    "description": "MultiCellDS is data standard for multicellular simulation, experimental, and clinical data. A digital cell line is a hierarchical organization of quantitative phenotype data for a single biological cell line, including the microenvironmental context of the measurements and essential metadata.",
+    "example": "MCDS_S_0000000001",
+    "homepage": "http://multicellds.org/MultiCellDB.php",
+    "name": "MultiCellDS",
+    "url": "http://multicellds.org/MultiCellDB/$1"
+  },
   "multicellds.cell_line": {
     "mappings": {
       "miriam": "multicellds.cell_line",
@@ -24122,6 +24133,7 @@
       "prefix": "multicellds.cell_line",
       "provider_url": "http://multicellds.org/MultiCellDB/$1"
     },
+    "part_of": "multicellds",
     "prefixcommons": {
       "formatter": "http://identifiers.org/multicellds.cell_line/$1",
       "is_identifiers": true,
@@ -24157,6 +24169,7 @@
       "prefix": "multicellds.collection",
       "provider_url": "http://multicellds.org/MultiCellDB/$1"
     },
+    "part_of": "multicellds",
     "prefixcommons": {
       "formatter": "http://identifiers.org/multicellds.collection/$1",
       "is_identifiers": true,
@@ -24192,6 +24205,7 @@
       "prefix": "multicellds.snapshot",
       "provider_url": "http://multicellds.org/MultiCellDB/$1"
     },
+    "part_of": "multicellds",
     "prefixcommons": {
       "formatter": "http://identifiers.org/multicellds.snapshot/$1",
       "is_identifiers": true,
@@ -30073,6 +30087,7 @@
       "prefix": "pigqtldb",
       "provider_url": "http://www.animalgenome.org/cgi-bin/QTLdb/SS/qdetails?QTL_ID=$1"
     },
+    "part_of": "qtldb",
     "prefixcommons": {
       "formatter": "http://identifiers.org/pigqtldb/$1",
       "is_identifiers": true,
@@ -34470,6 +34485,7 @@
       "prefix": "sheepqtldb",
       "provider_url": "http://www.animalgenome.org/cgi-bin/QTLdb/OA/qdetails?QTL_ID=$1"
     },
+    "part_of": "qtldb",
     "prefixcommons": {
       "formatter": "http://identifiers.org/sheepqtldb/$1",
       "is_identifiers": true,
@@ -36137,6 +36153,7 @@
     }
   },
   "tair.gene": {
+    "example": "2200934",
     "mappings": {
       "miriam": "tair.gene",
       "n2t": "tair.gene",
@@ -36164,12 +36181,14 @@
       "prefix": "tair.gene",
       "provider_url": "http://arabidopsis.org/servlets/TairObject?accession=$1"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/tair.gene/$1",
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "TAIR.GENE"
-    }
+    },
+    "url": "http://arabidopsis.org/servlets/TairObject?accession=Gene:$1"
   },
   "tair.locus": {
     "go": {
@@ -36220,6 +36239,7 @@
     }
   },
   "tair.protein": {
+    "example": "1009107926",
     "mappings": {
       "miriam": "tair.protein",
       "n2t": "tair.protein",
@@ -36247,12 +36267,14 @@
       "prefix": "tair.protein",
       "provider_url": "http://arabidopsis.org/servlets/TairObject?accession=$1"
     },
+    "pattern": "^\\d{10}$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/tair.protein/$1",
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "TAIR.PROTEIN"
-    }
+    },
+    "url": "http://arabidopsis.org/servlets/TairObject?accession=AASequence:$1"
   },
   "tao": {
     "bioportal": {
