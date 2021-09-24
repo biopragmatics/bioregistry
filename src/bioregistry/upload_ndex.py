@@ -53,6 +53,12 @@ def upload():
                 target=resource_nodes[target],
                 interaction="provides",
             )
+        if entry.has_canonical:
+            cx.add_edge(
+                source=resource_nodes[prefix],
+                target=resource_nodes[entry.has_canonical],
+                interaction="has_canonical",
+            )
 
         # Which registries does it map to?
         for metaprefix in metaregistry:
