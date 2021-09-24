@@ -116,6 +116,8 @@ class Resource(BaseModel):
     contributor: Optional[Author]
     #: Set to true if this database is proprietary. If missing, assume it's not.
     proprietary: Optional[bool]
+    #: If this shares an IRI with another entry, maps to which should be be considered as canonical
+    has_canonical: Optional[str]
 
     # Registry-specific data
     miriam: Optional[Mapping[str, Any]]

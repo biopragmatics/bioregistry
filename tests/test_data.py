@@ -4,6 +4,7 @@
 
 import logging
 import unittest
+from collections import defaultdict
 
 import bioregistry
 from bioregistry.export.rdf_export import resource_to_rdf_str
@@ -58,6 +59,7 @@ class TestRegistry(unittest.TestCase):
             "comment",
             "contributor",
             "proprietary",
+            "has_canonical",
         }
         keys.update(bioregistry.read_metaregistry())
         for prefix, entry in self.registry.items():
@@ -291,3 +293,59 @@ class TestRegistry(unittest.TestCase):
         """Test conversion to RDF."""
         s = resource_to_rdf_str("chebi")
         self.assertIsInstance(s, str)
+
+    def test_provides(self):
+        """Make sure all provides relations point to valid prefixes."""
+        for prefix, resource in self.registry.items():
+            if resource.provides is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIn(resource.provides, self.registry)
+
+    def test_has_canonical(self):
+        """Make sure all has_canonical relations point to valid prefixes."""
+        for prefix, resource in self.registry.items():
+            if resource.has_canonical is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIn(resource.has_canonical, self.registry)
+
+    def test_unique_iris(self):
+        """Test that all IRIs are unique, or at least there's a mapping to which one is the preferred prefix."""
+        prefix_map = bioregistry.get_format_urls()
+        dd = defaultdict(dict)
+        for prefix, iri in prefix_map.items():
+            resource = bioregistry.get_resource(prefix)
+            self.assertIsNotNone(resource)
+            if resource.provides is not None:
+                # Don't consider resources that are providing, such as `ctd.gene`
+                continue
+            dd[iri][prefix] = resource
+
+        x = {}
+        for iri, resources in dd.items():
+            if 1 == len(resources):
+                # This is a unique IRI, so no issues
+                continue
+
+            # Get parts
+            parts = {prefix: resource.part_of for prefix, resource in resources.items()}
+            unmapped = [prefix for prefix, part_of in parts.items() if part_of is None]
+            if len(unmapped) <= 1:
+                continue
+
+            # Get canonical
+            canonicals = {prefix: resource.has_canonical for prefix, resource in resources.items()}
+            canonical_target = [prefix for prefix, target in canonicals.items() if target is None]
+            all_targets = list(
+                {target for prefix, target in canonicals.items() if target is not None}
+            )
+            if (
+                len(canonical_target) == 1
+                and len(all_targets) == 1
+                and canonical_target[0] == all_targets[0]
+            ):
+                continue
+
+            x[iri] = parts, unmapped, canonical_target, all_targets
+        self.assertEqual({}, x)

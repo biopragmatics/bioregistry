@@ -40,6 +40,8 @@ bioregistry_schema_terms = {
     "hasMapping": "A property whose subject is a resource and object is a mapping",
     "hasRegistry": "A property whose subject is a mapping and object is a metaresource.",
     "hasMetaidentifier": "A property whose subject is a mapping and object is an identifier string.",
+    "hasCanonical": "A property connecting two prefixes that share an IRI where the subject is "
+    "the non-preferred prefix and the target is the preferred prefix",
 }
 bioregistry_collection = rdflib.namespace.Namespace("https://bioregistry.io/collection/")
 bioregistry_resource = rdflib.namespace.Namespace("https://bioregistry.io/registry/")
