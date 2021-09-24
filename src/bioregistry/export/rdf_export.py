@@ -187,6 +187,10 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
     if provides:
         graph.add((node, bioregistry_schema["providesFor"], bioregistry_resource[provides]))
 
+    canonical = data.get("has_canonical")
+    if canonical:
+        graph.add((node, bioregistry_schema["hasCanonical"], bioregistry_resource[canonical]))
+
     # TODO add contributor if it's available
 
     graph.add(
