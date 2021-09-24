@@ -294,6 +294,22 @@ class TestRegistry(unittest.TestCase):
         s = resource_to_rdf_str("chebi")
         self.assertIsInstance(s, str)
 
+    def test_provides(self):
+        """Make sure all provides relations point to valid prefixes."""
+        for prefix, resource in self.registry.items():
+            if resource.provides is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIn(resource.provides, self.registry)
+
+    def test_has_canonical(self):
+        """Make sure all has_canonical relations point to valid prefixes."""
+        for prefix, resource in self.registry.items():
+            if resource.has_canonical is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIn(resource.has_canonical, self.registry)
+
     def test_unique_iris(self):
         """Test that all IRIs are unique, or at least there's a mapping to which one is the preferred prefix."""
         prefix_map = bioregistry.get_format_urls()
