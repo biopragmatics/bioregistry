@@ -276,7 +276,8 @@
       "is_identifiers": false,
       "is_obo": true,
       "prefix": "ADW"
-    }
+    },
+    "url": "https://animaldiversity.org/accounts/$1"
   },
   "aeo": {
     "bioportal": {
@@ -5934,7 +5935,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "CLINVAR.RECORD"
-    }
+    },
+    "url": "http://www.ncbi.nlm.nih.gov/clinvar/$1"
   },
   "clinvar.submission": {
     "mappings": {
@@ -9012,7 +9014,8 @@
       "provider_url": "https://doulix.com/biomodules/$1/",
       "sampleId": "6VDC956"
     },
-    "part_of": "dlx"
+    "part_of": "dlx",
+    "url": "https://doulix.com/biomodules/$1"
   },
   "dlxc": {
     "mappings": {
@@ -9030,7 +9033,8 @@
       "provider_url": "https://doulix.com/constructs/$1/",
       "sampleId": "M77F7JM"
     },
-    "part_of": "dlx"
+    "part_of": "dlx",
+    "url": "https://doulix.com/constructs/$1"
   },
   "doi": {
     "biolink": {
@@ -10315,7 +10319,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "ECYANO.ENTITY"
-    }
+    },
+    "url": "https://www.e-cyanobacterium.org/bcs/entity/$1"
   },
   "ecyano.experiment": {
     "mappings": {
@@ -10368,7 +10373,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "ECYANO.MODEL"
-    }
+    },
+    "url": "https://e-cyanobacterium.org/models/model/$1"
   },
   "ecyano.rule": {
     "mappings": {
@@ -10404,7 +10410,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "ECYANO.RULE"
-    }
+    },
+    "url": "https://e-cyanobacterium.org/bcs/rule/$1"
   },
   "edam": {
     "bioportal": {
@@ -15034,7 +15041,8 @@
       "identifier": "38",
       "name": "Information system for G protein-coupled receptors (GPCRs)",
       "prefix": "GPCRDB"
-    }
+    },
+    "url": "https://gpcrdb.org/protein/$1"
   },
   "gpmdb": {
     "mappings": {
@@ -17177,7 +17185,8 @@
       "identifier": "49",
       "name": "Human Unidentified Gene-Encoded large proteins database",
       "prefix": "HUGE"
-    }
+    },
+    "url": "https://www.kazusa.or.jp/huge/gfpage/$1"
   },
   "iao": {
     "bioportal": {
@@ -19247,6 +19256,7 @@
     }
   },
   "jws": {
+    "example": "achcar11",
     "mappings": {
       "miriam": "jws",
       "n2t": "jws",
@@ -19279,7 +19289,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "JWS"
-    }
+    },
+    "url": "https://jjj.bio.vu.nl/models/$1"
   },
   "kaggle": {
     "mappings": {
@@ -20311,7 +20322,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "LINCS.PROTEIN"
-    }
+    },
+    "url": "https://lincs.hms.harvard.edu/db/proteins/$1"
   },
   "lincs.smallmolecule": {
     "mappings": {
@@ -29498,7 +29510,8 @@
       "prefix": "pgs",
       "provider_url": "https://www.pgscatalog.org/pgs/$1/",
       "sampleId": "PGS000018"
-    }
+    },
+    "url": "https://www.pgscatalog.org/pgs/$1"
   },
   "pgx": {
     "mappings": {
@@ -31415,6 +31428,7 @@
     }
   },
   "proteomicsdb.peptide": {
+    "comment": "The fact that this has .peptide as a subspace is a bit of a misnomer. Its original registration with MIRIAM uses a subview over the protein to point to peptides, but the identifiers in this semantic space seem to be about proteins.",
     "mappings": {
       "miriam": "proteomicsdb.peptide",
       "n2t": "proteomicsdb.peptide",
@@ -31447,7 +31461,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "PROTEOMICSDB.PEPTIDE"
-    }
+    },
+    "url": "https://www.proteomicsdb.org/#human/proteinDetails/$1"
   },
   "proteomicsdb.protein": {
     "mappings": {
@@ -33455,7 +33470,8 @@
       "identifier": "92",
       "name": "Rodent Unidentified Gene-Encoded large proteins database",
       "prefix": "Rouge"
-    }
+    },
+    "url": "https://www.kazusa.or.jp/rouge/gfpage/$1"
   },
   "rrid": {
     "mappings": {
@@ -34058,7 +34074,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "SCRETF"
-    }
+    },
+    "url": "http://stormo.wustl.edu/ScerTF/details/$1"
   },
   "sdbs": {
     "mappings": {
@@ -34577,7 +34594,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "SIDER.DRUG"
-    }
+    },
+    "url": "http://sideeffects.embl.de/drugs/$1"
   },
   "sider.effect": {
     "mappings": {
@@ -34612,7 +34630,9 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "SIDER.EFFECT"
-    }
+    },
+    "provides": "umls",
+    "url": "http://sideeffects.embl.de/se/$1"
   },
   "signaling-gateway": {
     "mappings": {
@@ -34842,23 +34862,6 @@
       "prefix": "skos"
     },
     "url": "http://www.w3.org/2004/02/skos/core#$1"
-  },
-  "slm": {
-    "mappings": {
-      "miriam": "slm"
-    },
-    "miriam": {
-      "deprecated": false,
-      "description": "SwissLipids is a curated resource that provides information about known lipids, including lipid structure, metabolism, interactions, and subcellular and tissue localization. Information is curated from peer-reviewed literature and referenced using established ontologies, and provided with full provenance and evidence codes for curated assertions.",
-      "homepage": "http://www.swisslipids.org/#/",
-      "id": "00000550",
-      "name": "SwissLipids",
-      "namespaceEmbeddedInLui": true,
-      "pattern": "^SLM:\\d+$",
-      "prefix": "slm",
-      "provider_url": "http://www.swisslipids.org/#/entity/SLM:$1/",
-      "sampleId": "000048885"
-    }
   },
   "smart": {
     "go": {
@@ -35882,9 +35885,22 @@
   "swisslipid": {
     "example": "SLM:000000341",
     "mappings": {
+      "miriam": "slm",
       "n2t": "swisslipid",
       "prefixcommons": "SWISSLIPID",
       "wikidata": "P8691"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "SwissLipids is a curated resource that provides information about known lipids, including lipid structure, metabolism, interactions, and subcellular and tissue localization. Information is curated from peer-reviewed literature and referenced using established ontologies, and provided with full provenance and evidence codes for curated assertions.",
+      "homepage": "http://www.swisslipids.org/#/",
+      "id": "00000550",
+      "name": "SwissLipids",
+      "namespaceEmbeddedInLui": true,
+      "pattern": "^SLM:\\d+$",
+      "prefix": "slm",
+      "provider_url": "http://www.swisslipids.org/#/entity/SLM:$1/",
+      "sampleId": "000048885"
     },
     "n2t": {
       "description": "SwissLipids is a curated resource that provides information about known lipids, including lipid structure, metabolism, interactions, and subcellular and tissue localization. Information is curated from peer-reviewed literature and referenced using established ontologies, and provided with full provenance and evidence codes for curated assertions.",
@@ -35903,6 +35919,9 @@
       "is_obo": false,
       "prefix": "SWISSLIPID"
     },
+    "synonyms": [
+      "slm"
+    ],
     "url": "https://www.swisslipids.org/#/entity/$1",
     "wikidata": {
       "database": "Q41165322",
