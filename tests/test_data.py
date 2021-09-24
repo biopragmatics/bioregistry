@@ -59,7 +59,7 @@ class TestRegistry(unittest.TestCase):
             "comment",
             "contributor",
             "proprietary",
-            "pmapto",
+            "has_canonical",
         }
         keys.update(bioregistry.read_metaregistry())
         for prefix, entry in self.registry.items():
@@ -318,12 +318,12 @@ class TestRegistry(unittest.TestCase):
             if len(unmapped) <= 1:
                 continue
 
-            # Get pmaps
-            pmaptos = {prefix: resource.pmapto for prefix, resource in resources.items()}
-            canonical = [prefix for prefix, pmapto in pmaptos.items() if pmapto is None]
-            targets = list({pmapto for prefix, pmapto in pmaptos.items() if pmapto is not None})
-            if len(canonical) == 1 and len(targets) == 1 and canonical[0] == targets[0]:
+            # Get canonical
+            canonicals = {prefix: resource.has_canonical for prefix, resource in resources.items()}
+            canonical_target = [prefix for prefix, target in canonicals.items() if target is None]
+            all_targets = list({target for prefix, target in canonicals.items() if target is not None})
+            if len(canonical_target) == 1 and len(all_targets) == 1 and canonical_target[0] == all_targets[0]:
                 continue
 
-            x[iri] = canonical, targets
+            x[iri] = parts, unmapped, canonical_target, all_targets
         self.assertEqual({}, x)

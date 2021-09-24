@@ -14247,6 +14247,7 @@
   },
   "glycomedb": {
     "comment": "this is exactly the same as glytoucan. Idk why there are two different ones",
+    "has_canonical": "glytoucan",
     "mappings": {
       "miriam": "glycomedb",
       "n2t": "glycomedb",
@@ -14274,7 +14275,6 @@
       "prefix": "glycomedb",
       "provider_url": "https://glytoucan.org/Structures/Glycans/$1"
     },
-    "pmapto": "glytoucan",
     "prefixcommons": {
       "formatter": "http://identifiers.org/glycomedb/$1",
       "is_identifiers": true,
@@ -18257,6 +18257,7 @@
     }
   },
   "insdc.cds": {
+    "has_canonical": "ncbiprotein",
     "mappings": {
       "miriam": "insdc.cds",
       "n2t": "insdc.cds",
@@ -18284,7 +18285,6 @@
       "prefix": "insdc.cds",
       "provider_url": "https://www.ncbi.nlm.nih.gov/protein/$1"
     },
-    "pmapto": "ncbiprotein",
     "prefixcommons": {
       "formatter": "http://identifiers.org/insdc.cds/$1",
       "is_identifiers": true,
@@ -18336,10 +18336,10 @@
     },
     "description": "An experimental run, served thrugh the ENA",
     "example": "ERR436051",
+    "has_canonical": "ena.embl",
     "homepage": "https://www.insdc.org/",
     "name": "International Nucleotide Sequence Database Collaboration (INSDC) Run",
     "pattern": "^(E|D|S)RR[0-9]{6,}$",
-    "pmapto": "ena.embl",
     "url": "https://www.ebi.ac.uk/ena/browser/view/$1"
   },
   "insdc.sra": {
@@ -28962,6 +28962,7 @@
   },
   "pdb-ccd": {
     "comment": "might be same as pdb.ligand, not sure though",
+    "has_canonical": "pdb.ligand",
     "mappings": {
       "miriam": "pdb-ccd",
       "n2t": "pdb-ccd",
@@ -28989,7 +28990,6 @@
       "prefix": "pdb-ccd",
       "provider_url": "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/$1"
     },
-    "pmapto": "pdb.ligand",
     "prefixcommons": {
       "formatter": "http://identifiers.org/pdb-ccd/$1",
       "is_identifiers": true,
@@ -32475,6 +32475,7 @@
       "name": "RefSeq",
       "prefix": "RefSeq"
     },
+    "has_canonical": "ncbiprotein",
     "mappings": {
       "go": "RefSeq",
       "miriam": "refseq",
@@ -32506,7 +32507,6 @@
       "provider_url": "https://www.ncbi.nlm.nih.gov/protein/$1"
     },
     "name": "Reference Sequence Collection",
-    "pmapto": "ncbiprotein",
     "prefixcommons": {
       "formatter": "http://www.ncbi.nlm.nih.gov/refseq/?term=$1",
       "is_identifiers": false,
