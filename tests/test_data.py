@@ -321,8 +321,14 @@ class TestRegistry(unittest.TestCase):
             # Get canonical
             canonicals = {prefix: resource.has_canonical for prefix, resource in resources.items()}
             canonical_target = [prefix for prefix, target in canonicals.items() if target is None]
-            all_targets = list({target for prefix, target in canonicals.items() if target is not None})
-            if len(canonical_target) == 1 and len(all_targets) == 1 and canonical_target[0] == all_targets[0]:
+            all_targets = list(
+                {target for prefix, target in canonicals.items() if target is not None}
+            )
+            if (
+                len(canonical_target) == 1
+                and len(all_targets) == 1
+                and canonical_target[0] == all_targets[0]
+            ):
                 continue
 
             x[iri] = parts, unmapped, canonical_target, all_targets
