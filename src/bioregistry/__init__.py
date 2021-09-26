@@ -41,7 +41,6 @@ from .resolve import (  # noqa:F401
     has_no_terms,
     is_deprecated,
     is_proprietary,
-    is_provider,
     namespace_in_lui,
     normalize_curie,
     normalize_parsed_curie,

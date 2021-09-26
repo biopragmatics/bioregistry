@@ -171,10 +171,9 @@ def get_wikidata_prefix(prefix: str) -> Optional[str]:
     :param prefix: The prefix to lookup.
     :returns: The Wikidata prefix (i.e., property identifier) corresponding to the prefix, if mappable.
 
-    >>> import bioregistry
-    >>> bioregistry.get_wikidata_prefix('chebi')
+    >>> get_wikidata_prefix('chebi')
     'P683'
-    >>> bioregistry.get_wikidata_prefix('ncbitaxon')
+    >>> get_wikidata_prefix('ncbitaxon')
     'P685'
     """
     entry = get_resource(prefix)
@@ -184,7 +183,18 @@ def get_wikidata_prefix(prefix: str) -> Optional[str]:
 
 
 def get_bioportal_prefix(prefix: str) -> Optional[str]:
-    """Get the Bioportal prefix if available."""
+    """Get the BioPortal prefix if available.
+
+    :param prefix: The prefix to lookup.
+    :returns: The BioPortal prefix corresponding to the prefix, if mappable.
+
+    >>> get_bioportal_prefix("chebi")
+    'CHEBI'
+    >>> get_bioportal_prefix("uniprot")
+    None
+    >>> get_bioportal_prefix("nope")
+    None
+    """
     entry = get_resource(prefix)
     if entry is None:
         return None
@@ -237,7 +247,14 @@ def get_ols_prefix(prefix: str) -> Optional[str]:
 
 
 def get_fairsharing_prefix(prefix: str) -> Optional[str]:
-    """Get the FAIRSharing prefix if available."""
+    """Get the FAIRSharing prefix if available.
+
+    :param prefix: The prefix to lookup.
+    :returns: The FAIRSharing prefix corresponding to the prefix, if mappable.
+
+    >>> get_fairsharing_prefix("genbank")
+    'FAIRsharing.9kahy4'
+    """
     entry = get_resource(prefix)
     if entry is None:
         return None
@@ -507,21 +524,6 @@ def get_owl_download(prefix: str) -> Optional[str]:
         or get_external(prefix, "ols").get("download")
         or get_external(prefix, "obofoundry").get("download.owl")
     )
-
-
-def is_provider(prefix: str) -> bool:
-    """Get if the prefix is a provider.
-
-    :param prefix: The prefix to look up
-    :returns: if the prefix is a provider
-
-    >>> assert not is_provider('pdb')
-    >>> assert is_provider('validatordb')
-    """
-    entry = get_resource(prefix)
-    if entry is None:
-        return False
-    return entry.type == "provider"
 
 
 def get_provides_for(prefix: str) -> Optional[str]:

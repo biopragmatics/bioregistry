@@ -6,6 +6,7 @@ Bioregistry |release| Documentation
    :name: start
 
    installation
+   schema
    cli
 
 Indices and Tables

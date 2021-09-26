@@ -15,15 +15,15 @@ from rdflib.term import Node, URIRef
 import bioregistry
 from bioregistry import read_collections, read_metaregistry, read_registry
 from bioregistry.constants import DOCS_DATA
-from bioregistry.schema import (
-    Collection,
-    Registry,
+from bioregistry.schema.constants import (
     bioregistry_collection,
     bioregistry_metaresource,
     bioregistry_resource,
     bioregistry_schema,
+    bioregistry_schema_namespace,
     orcid,
 )
+from bioregistry.schema.struct import Collection, Registry
 
 
 @click.command()
@@ -53,7 +53,7 @@ def _bind(graph: rdflib.Graph) -> None:
     graph.namespace_manager.bind("bioregistry.resource", bioregistry_resource)
     graph.namespace_manager.bind("bioregistry.metaresource", bioregistry_metaresource)
     graph.namespace_manager.bind("bioregistry.collection", bioregistry_collection)
-    graph.namespace_manager.bind("bioregistry.schema", bioregistry_schema)
+    graph.namespace_manager.bind("bioregistry.schema", bioregistry_schema_namespace)
     graph.namespace_manager.bind("orcid", orcid)
     graph.namespace_manager.bind("foaf", FOAF)
     graph.namespace_manager.bind("dc", DC)

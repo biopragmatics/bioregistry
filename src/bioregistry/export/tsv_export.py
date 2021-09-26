@@ -47,8 +47,6 @@ METAREGISTRY_HEADER = [
     "download",
     "example",
     "contact",
-    "provider",
-    "resolver",
     "provider_formatter",
     "resolver_formatter",
 ]
@@ -108,8 +106,6 @@ def get_metaregistry_rows():
                 data.download,
                 data.example,
                 data.contact,
-                data.provider,
-                data.resolver,
                 data.provider_url,
                 data.resolver_url,
             )
