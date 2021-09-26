@@ -19,7 +19,11 @@ from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS
 from rdflib.term import Node
 
 from bioregistry.schema.constants import (
-    bioregistry_class_to_id, bioregistry_collection, bioregistry_metaresource, bioregistry_resource, bioregistry_schema,
+    bioregistry_class_to_id,
+    bioregistry_collection,
+    bioregistry_metaresource,
+    bioregistry_resource,
+    bioregistry_schema,
     orcid,
 )
 from bioregistry.schema.utils import EMAIL_RE, EMAIL_RE_STR
@@ -697,13 +701,9 @@ class Registry(BaseModel):
         graph.add((node, FOAF["homepage"], Literal(self.homepage)))
         graph.add((node, bioregistry_schema["0000005"], Literal(self.example)))
         if self.provider_url:
-            graph.add(
-                (node, bioregistry_schema["0000006"], Literal(self.provider_url))
-            )
+            graph.add((node, bioregistry_schema["0000006"], Literal(self.provider_url)))
         if self.resolver_url:
-            graph.add(
-                (node, bioregistry_schema["0000007"], Literal(self.resolver_url))
-            )
+            graph.add((node, bioregistry_schema["0000007"], Literal(self.resolver_url)))
         return node
 
 
