@@ -3,8 +3,10 @@
 """Schema constants."""
 
 from collections import namedtuple
+from typing import Mapping
 
 import rdflib.namespace
+from rdflib import URIRef
 
 __all__ = [
     "bioregistry_schema_terms",
@@ -96,11 +98,13 @@ bioregistry_schema_terms = [
 bioregistry_collection = rdflib.namespace.Namespace("https://bioregistry.io/collection/")
 bioregistry_resource = rdflib.namespace.Namespace("https://bioregistry.io/registry/")
 bioregistry_metaresource = rdflib.namespace.Namespace("https://bioregistry.io/metaregistry/")
-bioregistry_schema_namespace = rdflib.namespace.ClosedNamespace(
-    "https://bioregistry.io/schema/#",
+bioregistry_schema = rdflib.namespace.ClosedNamespace(
+    uri=URIRef("https://bioregistry.io/schema/#"),
     terms=[term.identifier for term in bioregistry_schema_terms],
 )
-bioregistry_schema = {
-    term.label: bioregistry_schema_namespace[term.identifier] for term in bioregistry_schema_terms
+bioregistry_class_to_id: Mapping[str, URIRef] = {
+    term.label: bioregistry_schema[term.identifier]
+    for term in bioregistry_schema_terms
+    if term.type == "Class"
 }
 orcid = rdflib.namespace.Namespace("https://orcid.org/")
