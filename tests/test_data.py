@@ -9,7 +9,7 @@ from collections import defaultdict
 import bioregistry
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.resolve import get_external
-from bioregistry.schema.struct import EMAIL_RE
+from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.utils import is_mismatch
 
 logger = logging.getLogger(__name__)
@@ -261,7 +261,6 @@ class TestRegistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_ols_iri("nope", ...))
         self.assertIsNone(bioregistry.get_obofoundry_iri("nope", ...))
         self.assertFalse(bioregistry.is_deprecated("nope"))
-        self.assertFalse(bioregistry.is_provider("nope"))
         self.assertIsNone(bioregistry.get_provides_for("nope"))
         self.assertIsNone(bioregistry.get_version("gmelin"))
         self.assertIsNone(bioregistry.validate("nope", ...))

@@ -15,15 +15,14 @@ from rdflib.term import Node, URIRef
 import bioregistry
 from bioregistry import read_collections, read_metaregistry, read_registry
 from bioregistry.constants import DOCS_DATA
-from bioregistry.schema import (
-    Collection,
-    Registry,
+from bioregistry.schema.constants import (
     bioregistry_collection,
     bioregistry_metaresource,
     bioregistry_resource,
     bioregistry_schema,
     orcid,
 )
+from bioregistry.schema.struct import Collection, Registry
 
 
 @click.command()
@@ -32,7 +31,8 @@ def export_rdf():
     graph = get_full_rdf()
     graph.serialize(os.path.join(DOCS_DATA, "bioregistry.ttl"), format="turtle")
     graph.serialize(os.path.join(DOCS_DATA, "bioregistry.nt"), format="nt")
-    graph.serialize(os.path.join(DOCS_DATA, "bioregistry.xml"), format="xml")
+    # Currently getting an issue with not being able to shorten URIs
+    # graph.serialize(os.path.join(DOCS_DATA, "bioregistry.xml"), format="xml")
 
     context = {
         "@language": "en",
@@ -146,10 +146,10 @@ def _add_metaresource(
 
 
 RESOURCE_FUNCTIONS: List[Tuple[str, Callable[[str], Optional[str]]]] = [
-    ("hasPattern", bioregistry.get_pattern),
-    ("hasProviderFormatter", bioregistry.get_format),
-    ("hasExample", bioregistry.get_example),
-    ("hasContactEmail", bioregistry.get_email),
+    ("0000008", bioregistry.get_pattern),
+    ("0000006", bioregistry.get_format),
+    ("0000005", bioregistry.get_example),
+    ("0000009", bioregistry.get_email),
 ]
 
 
@@ -158,7 +158,7 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
         graph = _graph()
     prefix = data["prefix"]
     node = cast(URIRef, bioregistry_resource[prefix])
-    graph.add((node, RDF["type"], bioregistry_schema["Resource"]))
+    graph.add((node, RDF["type"], bioregistry_schema["0000001"]))
     graph.add((node, RDFS["label"], Literal(bioregistry.get_name(prefix))))
 
     for key, func in RESOURCE_FUNCTIONS:
@@ -176,7 +176,7 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
 
     download = data.get("download")
     if download:
-        graph.add((node, bioregistry_schema["hasDownloadURL"], Literal(download)))
+        graph.add((node, bioregistry_schema["0000010"], Literal(download)))
 
     part_of = data.get("part_of")
     if part_of:
@@ -185,18 +185,18 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
 
     provides = data.get("provides")
     if provides:
-        graph.add((node, bioregistry_schema["providesFor"], bioregistry_resource[provides]))
+        graph.add((node, bioregistry_schema["0000011"], bioregistry_resource[provides]))
 
     canonical = data.get("has_canonical")
     if canonical:
-        graph.add((node, bioregistry_schema["hasCanonical"], bioregistry_resource[canonical]))
+        graph.add((node, bioregistry_schema["0000016"], bioregistry_resource[canonical]))
 
     # TODO add contributor if it's available
 
     graph.add(
         (
             node,
-            bioregistry_schema["isDeprecated"],
+            bioregistry_schema["0000012"],
             Literal(bioregistry.is_deprecated(prefix), datatype=XSD.boolean),
         )
     )
@@ -204,12 +204,12 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
     mappings = bioregistry.get_mappings(prefix)
     for metaprefix, metaidentifier in (mappings or {}).items():
         mapping_node = BNode()
-        graph.add((node, bioregistry_schema["hasMapping"], mapping_node))
-        graph.add((mapping_node, RDF["type"], bioregistry_schema["Mapping"]))
+        graph.add((node, bioregistry_schema["0000013"], mapping_node))
+        graph.add((mapping_node, RDF["type"], bioregistry_schema["0000004"]))
         graph.add(
-            (mapping_node, bioregistry_schema["hasRegistry"], bioregistry_metaresource[metaprefix])
+            (mapping_node, bioregistry_schema["0000014"], bioregistry_metaresource[metaprefix])
         )
-        graph.add((mapping_node, bioregistry_schema["hasMetaidentifier"], Literal(metaidentifier)))
+        graph.add((mapping_node, bioregistry_schema["0000015"], Literal(metaidentifier)))
 
     return graph, node
 

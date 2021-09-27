@@ -1,62 +1,69 @@
 # -*- coding: utf-8 -*-
 
-"""Data structures.
-
-.. seealso:: https://pydantic-docs.helpmanual.io/usage/dataclasses/#convert-stdlib-dataclasses-into-pydantic-dataclasses
-"""
+"""Pydantic models for the Bioregistry."""
 
 import json
 import logging
 import pathlib
-import re
 from functools import lru_cache
 from typing import Any, Callable, ClassVar, Dict, List, Mapping, Optional, Sequence, Set
 
 import pydantic.schema
 import rdflib
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from rdflib import Literal
-from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS, XSD
+from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS
 from rdflib.term import Node
 
 from bioregistry.schema.constants import (
+    bioregistry_class_to_id,
     bioregistry_collection,
     bioregistry_metaresource,
     bioregistry_resource,
     bioregistry_schema,
     orcid,
 )
+from bioregistry.schema.utils import EMAIL_RE, EMAIL_RE_STR
+
+__all__ = [
+    "Author",
+    "Resource",
+    "Collection",
+    "Registry",
+    "get_json_schema",
+]
 
 logger = logging.getLogger(__name__)
 
 HERE = pathlib.Path(__file__).parent.resolve()
-
-# not a perfect email regex, but close enough
-EMAIL_RE = re.compile(r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,5}$")
-
-
-def sanitize_model(base_model: BaseModel) -> Mapping[str, Any]:
-    """Sanitize a single pydantic model."""
-    return {key: value for key, value in base_model.dict().items() if value is not None}
-
-
-def sanitize_mapping(mapping: Mapping[str, BaseModel]) -> Mapping[str, Mapping[str, Any]]:
-    """Sanitize a pydantic dictionary."""
-    return {key: sanitize_model(base_model) for key, base_model in mapping.items()}
+SCHEMA_PATH = HERE.joinpath("schema.json")
 
 
 class Author(BaseModel):
     """Metadata for an author."""
 
-    #: The name of the author
-    name: str
-    #: The ORCID identifier for the author
-    orcid: str
+    #: The full name of the author
+    name: str = Field(..., description="The full name of the author")
+
+    #: The open researcher and contributor identifier (ORCiD) of the author
+    orcid: str = Field(
+        ...,
+        title="Open Researcher and Contributor Identifier",
+        description="The ORCiD of the author",
+    )
+
     #: The email for the author
-    email: Optional[str]
+    email: Optional[str] = Field(
+        description="The email address specific to the author",
+        regex=EMAIL_RE_STR,
+    )
 
     def add_triples(self, graph: rdflib.Graph) -> Node:
-        """Add triples to an RDF graph for this author."""
+        """Add triples to an RDF graph for this author.
+
+        :param graph: An RDF graph
+        :returns: The RDF node representing this author using an ORCiD URI.
+        """
         node = orcid.term(self.orcid)
         graph.add((node, RDFS["label"], Literal(self.name)))
         return node
@@ -65,72 +72,176 @@ class Author(BaseModel):
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
-    #: The human-readable name of the resource
-    name: Optional[str]
+    #: The resource's name
+    name: Optional[str] = Field(
+        description="The human-readable name of the resource",
+    )
     #: A description of the resource
-    description: Optional[str]
+    description: Optional[str] = Field(
+        description="A description of the resource",
+    )
     #: The regular expression pattern for identifiers in the resource
-    pattern: Optional[str]
-    #: The format URL, which must have at least one "$1" in it
-    url: Optional[str]
-    #: The home page for the resource
-    homepage: Optional[str]
-    #: The contact email address for the resource
-    contact: Optional[str]
-    #: An example identifier for the resource
-    example: Optional[str]
-    #: Another bioregistry prefix denoting which resource this one is a part of
-    #: (e.g., chembl.compound is part of chembl)
-    part_of: Optional[str]
-    #: Another bioregistry prefix denoting that this resource provides for another
-    #: (e.g., ctd.gene provides for ncbigene)
-    provides: Optional[str]
-    #: The resource type TODO
-    type: Optional[str]
-    #: A URL to download this resource as OWL
-    download_owl: Optional[str]
-    #: A URL to download this resource as OBO
-    download_obo: Optional[str]
-    #: The redundant prefix that may appear in identifiers (e.g., "FBbt:")
-    banana: Optional[str]
-    #: A flag to note if this resource is deprecated - will override OLS, OBO Foundry, and prefixcommons notes
-    deprecated: Optional[bool]
-    #: A dictionary of metaprefixes to prefixes in external registries
-    mappings: Optional[Dict[str, str]]
-    #: A list of synonyms for the prefix of this resource
-    synonyms: Optional[List[str]]
-    #: A list of URLs to also see
-    references: Optional[List[str]]
-    #: A list of prefixes that use this resource for xrefs, provenance, etc.
-    appears_in: Optional[List[str]]
+    pattern: Optional[str] = Field(
+        description="The regular expression pattern for identifiers in the resource",
+    )
+    #: The URL format string, which must have at least one ``$1`` in it
+    url: Optional[str] = Field(
+        title="Format URL",
+        description="The URL format string, which must have at least one ``$1`` in it",
+    )
+    #: The URL for the homepage of the resource
+    homepage: Optional[str] = Field(
+        title="Format URL",
+        description="The URL for the homepage of the resource, preferably with HTTPS",
+    )
+    #: The contact email address for the individual responsible for the resource
+    contact: Optional[str] = Field(
+        description=(
+            "The contact email address for the resource. This must correspond to a specific "
+            "person and not be a listserve nor a shared email account."
+        )
+    )
+    #: An example local identifier for the resource, explicitly excluding any redundant usage of
+    #: the prefix in the identifier. For example, a GO identifier should only look like ``1234567``
+    #: and not like ``GO:1234567``
+    example: Optional[str] = Field(
+        description="An example local identifier for the resource, explicitly excluding any redundant "
+        "usage of the prefix in the identifier. For example, a GO identifier should only "
+        "look like 1234567 and not like GO:1234567",
+    )
+    #: An annotation between this prefix and a super-prefix. For example, ``chembl.compound`` is a
+    #: part of ``chembl``.
+    part_of: Optional[str] = Field(
+        description=(
+            "An annotation between this prefix and a super-prefix. For example, "
+            "``chembl.compound`` is a part of ``chembl``."
+        )
+    )
+    #: An annotation between this prefix and a prefix for which it is redundant. For example,
+    #: ``ctd.gene`` has been given a prefix by Identifiers.org, but it actually just reuses
+    #: identifies from ``ncbigene``, so ``ctd.gene`` provides ``ncbigene``.
+    provides: Optional[str] = Field(
+        description=(
+            "An annotation between this prefix and a prefix for which it is redundant. "
+            "For example, ``ctd.gene`` has been given a prefix by Identifiers.org, but it "
+            "actually just reuses identifies from ``ncbigene``, so ``ctd.gene`` provides ``ncbigene``."
+        ),
+    )
+    #: The OWL download URL, preferably an unversioned variant
+    download_owl: Optional[str] = Field(
+        title="OWL Download URL",
+        description="The OWL download URL, preferably an unversioned variant",
+    )
+    #: The OBO download URL, preferably an unversioned variant
+    download_obo: Optional[str] = Field(
+        title="OBO Download URL",
+        description="The OBO download URL, preferably an unversioned variant",
+    )
+    #: The `banana` is a generalization of the concept of the "namespace embedded in local unique identifier".
+    #: Many OBO foundry ontologies use the redundant uppercased name of the ontology in the local identifier,
+    #: such as the Gene Ontology, which makes the prefixes have a redundant usage as in ``GO:GO:1234567``.
+    #: The `banana` tag explicitly annotates the part in the local identifier that should be stripped, if found.
+    #: While the Bioregistry automatically knows how to handle all OBO Foundry ontologies' bananas because the
+    #: OBO Foundry provides the "preferredPrefix" field, the banana can be annotated on non-OBO ontologies to
+    #: more explicitly write the beginning part of the identifier that should be stripped. This allowed for
+    #: solving one of the long-standing issues with the Identifiers.org resolver (e.g., for ``oma.hog``; see
+    #: https://github.com/identifiers-org/identifiers-org.github.io/issues/155) as well as better annotate
+    #: new entries, such as SwissMap Lipids, which have the prefix ``swisslipid`` but have the redundant information
+    #: ``SLM:`` in the beginning of identifiers. Therefore, ``SLM:`` is the banana.
+    banana: Optional[str] = Field(
+        description="The redundant prefix that may appear in identifiers (e.g., `FBbt:`)",
+    )
+    #: A flag denoting if this resource is deprecated. Currently, this is a blanket term
+    #: that covers cases when the prefix is no longer maintained, when it has been rolled
+    #: into another resource, when the website related to the resource goes down, or any
+    #: other reason that it's difficult or impossible to find full metadata on the resource.
+    #: If this is set to true, please add a comment explaining why. This flag will override
+    #: annotations from the OLS, OBO Foundry, and Prefix Commons on the deprecation status,
+    #: since they often disagree and are very conservative in calling dead resources.
+    deprecated: Optional[bool] = Field(
+        description=(
+            "A flag to note if this resource is deprecated - will override OLS, "
+            "OBO Foundry, and Prefix Commons flags."
+        ),
+    )
+    #: A dictionary of metaprefixes (i.e., prefixes for registries) to prefixes in external registries.
+    #: These also correspond to the registry-specific JSON fields in this model like ``miriam`` field.
+    mappings: Optional[Dict[str, str]] = Field(
+        description="A dictionary of metaprefixes to prefixes in external registries",
+    )
+    #: A list of synonyms for the prefix of this resource. These are used in normalization of
+    #: prefixes and are a useful reference tool for prefixes that are written many ways. For
+    #: example, ``snomedct`` has many synonyms including typos like ``SNOWMEDCT``, lexical
+    #: variants like ``SNOMED_CT``, version-variants like ``SNOMEDCT_2010_1_31``, and tons
+    #: of other nonsense like ``SNOMEDCTCT``.
+    synonyms: Optional[List[str]] = Field(
+        description="A list of synonyms for the prefix of this resource",
+    )
+    #: A list of URLs to also see, such as publications describing the resource
+    references: Optional[List[str]] = Field(
+        description="A list of URLs to also see, such as publications describing the resource",
+    )
+    #: A list of prefixes whose corresponding resources use this resource for xrefs, provenance, etc.
+    appears_in: Optional[List[str]] = Field(
+        description="A list of prefixes that use this resource for xrefs, provenance, etc.",
+    )
     #: A flag denoting if the namespace is embedded in the LUI (if this is true and it is not accompanied by a banana,
-    #: assume that the banana is the prefix in all caps plus a colon, as is standard in OBO)
+    #: assume that the banana is the prefix in all caps plus a colon, as is standard in OBO). Currently this flag
+    #: is only used to override identifiers.org in the case of ``gramene.growthstage``, ``oma.hog``, and ``vario``.
     namespaceEmbeddedInLui: Optional[bool]  # noqa:N815
-    #: A flag to denote if the resource is not available as OBO TODO remove this
-    not_available_as_obo: Optional[bool]
-    #: A flag to denote if the resource does not have any identifiers itself
-    no_own_terms: Optional[bool]
-    #: Free text comment
-    comment: Optional[str]
-    #: Contributor information
-    contributor: Optional[Author]
-    #: Set to true if this database is proprietary. If missing, assume it's not.
-    proprietary: Optional[bool]
-    #: If this shares an IRI with another entry, maps to which should be be considered as canonical
-    has_canonical: Optional[str]
+    #: A flag to denote if the resource mints its own identifiers. Omission or explicit marking as false means
+    #: that the resource does have its own terms. This is most applicable to ontologies, specifically application
+    #: ontologies, which only reuse terms from others. One example is ChIRO.
+    no_own_terms: Optional[bool] = Field(
+        description="A flag to denote if the resource does not have any identifiers itself",
+    )
+    #: A field for a free text comment.
+    comment: Optional[str] = Field(
+        description="A field for a free text comment",
+    )
+    #: Contributor information, including the name, ORCiD, and optionally the email of the contributor. All entries
+    #: curated through the Bioregistry GitHub Workflow must contain this field.
+    contributor: Optional[Author] = Field(
+        description="Contributor information, including the name, ORCiD, and optionally the email of the contributor",
+    )
+    #: A flag to denote if this database is proprietary and therefore can not be included in normal quality control
+    #: checks nor can it be resolved. Omission or explicit marking as false means that the resource is not proprietary.
+    proprietary: Optional[bool] = Field(
+        description="Set to true if this database is proprietary. If missing, assume it's not.",
+    )
+    #: An annotation between this prefix and another prefix if they share the same provider IRI to denote that the
+    #: other prefix should be considered as the canonical prefix to which IRIs should be contracted as CURIEs.
+    #:
+    #: .. seealso::
+    #:
+    #:    This field was added and described in detail in https://github.com/biopragmatics/bioregistry/pull/164
+    has_canonical: Optional[str] = Field(
+        description="If this shares an IRI with another entry, maps to which should be be considered as canonical",
+    )
 
-    # Registry-specific data
+    #: External data from Identifiers.org's MIRIAM Database
     miriam: Optional[Mapping[str, Any]]
+    #: External data from the Name-to-Thing service
     n2t: Optional[Mapping[str, Any]]
+    #: External data from Prefix Commons
     prefixcommons: Optional[Mapping[str, Any]]
+    #: External data from Wikidata Properties
     wikidata: Optional[Mapping[str, Any]]
+    #: External data from the Gene Ontology's custom registry
     go: Optional[Mapping[str, Any]]
+    #: External data from the Open Biomedical Ontologies (OBO) Foundry catalog
     obofoundry: Optional[Mapping[str, Any]]
+    #: External data from the BioPortal ontology repository
     bioportal: Optional[Mapping[str, Any]]
+    #: External data from the Ontology Lookup Service
     ols: Optional[Mapping[str, Any]]
+    #: External data from the NCBI Genbank's custom registry
     ncbi: Optional[Mapping[str, Any]]
+    #: External data from UniProt's custom registry
     uniprot: Optional[Mapping[str, Any]]
+    #: External data from the BioLink Model's custom registry
     biolink: Optional[Mapping[str, Any]]
+    #: External data from the Cellosaurus custom registry
     cellosaurus: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
@@ -206,17 +317,25 @@ class Resource(BaseModel):
         :return: The banana, if the prefix is valid and has an associated banana.
 
         Explicitly annotated banana
+
         >>> from bioregistry import get_resource
-        >>> assert "GO_REF" == get_resource("go.ref").get_banana()
+        >>> get_resource("go.ref").get_banana()
+        'GO_REF'
 
         Banana imported through OBO Foundry
-        >>> assert "FBbt" == get_resource("fbbt").get_banana()
+
+        >>> get_resource("fbbt").get_banana()
+        'FBbt'
 
         No banana (ChEBI does have namespace in LUI, though)
-        >>> assert get_resource("chebi").get_banana() is None
+
+        >>> get_resource("chebi").get_banana()
+        None
 
         No banana, no namespace in LUI
-        >>> assert get_resource("pdb").get_banana() is None
+
+        >>> get_resource("pdb").get_banana()
+        None
         """
         if self.banana is not None:
             return self.banana
@@ -596,21 +715,27 @@ class Registry(BaseModel):
     """Metadata about a registry."""
 
     #: The registry's metaprefix
-    prefix: str
+    prefix: str = Field(
+        ...,
+        description=(
+            "The metaprefix for the registry itself. For example, the "
+            "metaprefix for Identifiers.org is `miriam`."
+        ),
+    )
     #: The name of the registry
-    name: str
+    name: str = Field(..., description="The human-readable label for the registry")
     #: A description of the registry
-    description: str
+    description: str = Field(..., description="A full description of the registry.")
     #: The registry's homepage
-    homepage: str
+    homepage: str = Field(..., description="The URL for the homepage of the registry.")
     #: An example prefix in the registry
-    example: str
+    example: str = Field(
+        ..., description="An example prefix (i.e., metaidentifier) inside the registry."
+    )
     #: A URL to download the registry's contents
-    download: Optional[str]
-    #: Does this registry act as a provider (for the prefixes it lists)?
-    provider: bool
-    #: Does this registry act as a resolver for its prefixes and their respective identifiers?
-    resolver: bool
+    download: Optional[str] = Field(
+        description="A download link for the data contained in the registry"
+    )
     #: A URL with a $1 for a prefix to resolve in the registry
     provider_url: Optional[str]
     #: A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry
@@ -636,50 +761,64 @@ class Registry(BaseModel):
         return provider_url.replace("$1", prefix)
 
     def add_triples(self, graph: rdflib.Graph) -> Node:
-        """Add triples to an RDF graph for this registry."""
+        """Add triples to an RDF graph for this registry.
+
+        :param graph: An RDF graph
+        :returns: The RDF node representing this registry using a Bioregistry IRI.
+        """
         node = bioregistry_metaresource.term(self.prefix)
-        graph.add((node, RDF["type"], bioregistry_schema[self.__class__.__name__]))
+        graph.add((node, RDF["type"], bioregistry_class_to_id[self.__class__.__name__]))
         graph.add((node, RDFS["label"], Literal(self.name)))
         graph.add((node, DC.description, Literal(self.description)))
         graph.add((node, FOAF["homepage"], Literal(self.homepage)))
-        graph.add((node, bioregistry_schema["hasExample"], Literal(self.example)))
-        graph.add(
-            (node, bioregistry_schema["isProvider"], Literal(self.provider, datatype=XSD.boolean))
-        )
-        graph.add(
-            (node, bioregistry_schema["isResolver"], Literal(self.resolver, datatype=XSD.boolean))
-        )
+        graph.add((node, bioregistry_schema["0000005"], Literal(self.example)))
         if self.provider_url:
-            graph.add(
-                (node, bioregistry_schema["hasProviderFormatter"], Literal(self.provider_url))
-            )
+            graph.add((node, bioregistry_schema["0000006"], Literal(self.provider_url)))
         if self.resolver_url:
-            graph.add(
-                (node, bioregistry_schema["hasResolverFormatter"], Literal(self.resolver_url))
-            )
+            graph.add((node, bioregistry_schema["0000007"], Literal(self.resolver_url)))
         return node
 
 
 class Collection(BaseModel):
     """A collection of resources."""
 
-    #: The collection's identifier, matching regex ^\d{7}$
-    identifier: str
+    #: The collection's identifier
+    identifier: str = Field(
+        ...,
+        description="The collection's identifier",
+        regex=r"^\d{7}$",
+    )
     #: The name of the collection
-    name: str
+    name: str = Field(
+        ...,
+        description="The name of the collection",
+    )
     #: A description of the collection
-    description: str
-    #: A list of the resources' prefixes appearing in the collection
-    resources: List[str]
-    #: Authors/contributors to the collection
-    authors: List[Author]
+    description: str = Field(
+        ...,
+        description="A description of the collection",
+    )
+    #: A list of prefixes of resources appearing in the collection
+    resources: List[str] = Field(
+        ...,
+        description="A list of prefixes of resources appearing in the collection",
+    )
+    #: A list of authors/contributors to the collection
+    authors: List[Author] = Field(
+        ...,
+        description="A list of authors/contributors to the collection",
+    )
     #: JSON-LD context name
     context: Optional[str]
 
     def add_triples(self, graph: rdflib.Graph) -> Node:
-        """Add triples to an RDF graph for this collection."""
+        """Add triples to an RDF graph for this collection.
+
+        :param graph: An RDF graph
+        :returns: The RDF node representing this collection using a Bioregistry IRI.
+        """
         node = bioregistry_collection.term(self.identifier)
-        graph.add((node, RDF["type"], bioregistry_schema[self.__class__.__name__]))
+        graph.add((node, RDF["type"], bioregistry_class_to_id[self.__class__.__name__]))
         graph.add((node, RDFS["label"], Literal(self.name)))
         graph.add((node, DC.description, Literal(self.description)))
 
@@ -724,7 +863,11 @@ def get_json_schema():
                 Collection,
                 Resource,
                 Registry,
-            ]
+            ],
+            title="Bioregistry JSON Schema",
+            description="The Bioregistry JSON Schema describes the shapes of the objects in"
+            " the registry, metaregistry, collections, and their other related"
+            " resources",
         )
     )
     return rv
@@ -732,7 +875,7 @@ def get_json_schema():
 
 def main():
     """Dump the JSON schemata."""
-    with HERE.joinpath("schema.json").open("w") as file:
+    with SCHEMA_PATH.open("w") as file:
         json.dump(get_json_schema(), indent=2, fp=file)
 
 

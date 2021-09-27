@@ -2,6 +2,16 @@
 
 """Extract registry information."""
 
+from .collection_api import get_collection  # noqa:F401
+from .metaresource_api import (  # noqa:F401
+    get_registry,
+    get_registry_description,
+    get_registry_example,
+    get_registry_homepage,
+    get_registry_name,
+    get_registry_resolve_url,
+    get_registry_url,
+)
 from .parse_iri import curie_from_iri, parse_iri  # noqa:F401
 from .resolve import (  # noqa:F401
     get_banana,
@@ -41,15 +51,12 @@ from .resolve import (  # noqa:F401
     has_no_terms,
     is_deprecated,
     is_proprietary,
-    is_provider,
     namespace_in_lui,
     normalize_curie,
     normalize_parsed_curie,
     normalize_prefix,
     parse_curie,
 )
-from .collection_api import get_collection  # noqa:F401
-from .uri_format import get_format, get_format_url, get_format_urls  # noqa:F401
 from .resolve_identifier import (  # noqa:F401
     get_bioportal_iri,
     get_bioregistry_iri,
@@ -65,15 +72,8 @@ from .resolve_identifier import (  # noqa:F401
     get_providers_list,
     validate,
 )
-from .metaresource_api import (  # noqa:F401
-    get_registry,
-    get_registry_description,
-    get_registry_example,
-    get_registry_homepage,
-    get_registry_name,
-    get_registry_resolve_url,
-    get_registry_url,
-)
+from .schema.struct import Author, Collection, Registry, Resource  # noqa:F401
+from .uri_format import get_format, get_format_url, get_format_urls  # noqa:F401
 from .utils import (  # noqa:F401
     read_collections,
     read_contributors,
