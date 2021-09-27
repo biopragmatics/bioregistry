@@ -46,6 +46,9 @@
         </div>
         <div class="card-body">
             {% if description %}<p>{{ description }}</p>{% endif %}
+            {% if resource.comment %}
+                <p class="text-muted"><span class="badge badge-info">Comment</span> {{ resource.comment }}</p>
+            {% endif %}
             <dl>
                 <dt>Prefix</dt>
                 <dd><code>{{ prefix }}</code></dd>
