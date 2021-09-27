@@ -22,6 +22,10 @@
                             <span class="badge badge-warning" style="display: inline-block;">
                                 Deprecated <i class="fas fa-exclamation-triangle"></i>
                             </span>
+                        {% elif resource.provides %}
+                            <span class="badge badge-danger" style="display: inline-block;">
+                                Provider <i class="fas fa-exclamation-triangle"></i>
+                            </span>
                         {% endif %}
                     </h5>
                 </div>
@@ -46,6 +50,16 @@
         </div>
         <div class="card-body">
             {% if description %}<p>{{ description }}</p>{% endif %}
+            {% if resource.provides %}
+                <p>
+                    This resource is a <span class="badge badge-danger">provider</span>. This means that
+                    while it may have its own prefix, it actually reuses the identifiers provided by the
+                    <a href="{{ url_for(".resource", prefix=resource.provides) }}"><code>{{ resource.provides }}</code></a>
+                    prefix. For <b>all</b> use cases, you should use <a
+                        href="{{ url_for(".resource", prefix=resource.provides) }}"><code>{{ resource.provides }}</code></a>
+                    instead of <code>{{ prefix }}</code>.
+                </p>
+            {% endif %}
             {% if resource.comment %}
                 <p class="text-muted"><span class="badge badge-info">Comment</span> {{ resource.comment }}</p>
             {% endif %}
