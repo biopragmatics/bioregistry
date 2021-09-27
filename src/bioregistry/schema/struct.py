@@ -47,13 +47,17 @@ class Author(BaseModel):
 
     #: The full name of the author
     name: str = Field(..., description="The full name of the author")
+
     #: The open researcher and contributor identifier (ORCiD) of the author
     orcid: str = Field(
-        ..., description="The open researcher and contributor identifier (ORCiD) of the author"
+        ...,
+        title="Open Researcher and Contributor Identifier",
+        description="The ORCiD of the author",
     )
+
     #: The email for the author
     email: Optional[str] = Field(
-        description="The email address for the author",
+        description="The email address specific to the author",
         regex=EMAIL_RE_STR,
     )
 
@@ -71,43 +75,59 @@ class Author(BaseModel):
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
+    #: The resource's name
     name: Optional[str] = Field(
-        title="Resource name",
         description="The human-readable name of the resource",
     )
+    #: A description of the resource
     description: Optional[str] = Field(
         description="A description of the resource",
     )
+    #: The regular expression pattern for identifiers in the resource
     pattern: Optional[str] = Field(
-        description="The regular expression pattern for identifiers in the resource"
+        description="The regular expression pattern for identifiers in the resource",
     )
+    #: The URL format string, which must have at least one ``$1`` in it
     url: Optional[str] = Field(
         title="Format URL",
-        description="The format URL, which must have at least one `$1` in it",
+        description="The URL format string, which must have at least one ``$1`` in it",
     )
+    #: The URL for the homepage of the resource
     homepage: Optional[str] = Field(
         title="Format URL",
-        description="The URL of the homepage for the resource",
+        description="The URL for the homepage of the resource, preferably with HTTPS",
     )
+    #: The contact email address for the individual responsible for the resource
     contact: Optional[str] = Field(
         description=(
             "The contact email address for the resource. This must correspond to a specific "
             "person and not be a listserve nor a shared email account."
         )
     )
+    #: An example local identifier for the resource, explicitly excluding any redundant usage of
+    #: the prefix in the identifier. For example, a GO identifier should only look like ``1234567``
+    #: and not like ``GO:1234567``
     example: Optional[str] = Field(
-        description="An example identifier for the resource",
+        description="An example local identifier for the resource, explicitly excluding any redundant "
+        "usage of the prefix in the identifier. For example, a GO identifier should only "
+        "look like 1234567 and not like GO:1234567",
     )
+    #: An annotation between this prefix and a super-prefix. For example, ``chembl.compound`` is a
+    #: part of ``chembl``.
     part_of: Optional[str] = Field(
         description=(
-            "Another bioregistry prefix denoting which resource this one is a part of "
-            "(e.g., `chembl.compound` is a part of `chembl`)"
+            "An annotation between this prefix and a super-prefix. For example, "
+            "``chembl.compound`` is a part of ``chembl``."
         )
     )
+    #: An annotation between this prefix and a prefix for which it is redundant. For example,
+    #: ``ctd.gene`` has been given a prefix by Identifiers.org, but it actually just reuses
+    #: identifies from ``ncbigene``, so ``ctd.gene`` provides ``ncbigene``.
     provides: Optional[str] = Field(
         description=(
-            "Another bioregistry prefix denoting that this resource provides for another "
-            "(e.g., `ctd.gene` provides for `ncbigene`)"
+            "An annotation between this prefix and a prefix for which it is redundant. "
+            "For example, ``ctd.gene`` has been given a prefix by Identifiers.org, but it "
+            "actually just reuses identifies from ``ncbigene``, so ``ctd.gene`` provides ``ncbigene``."
         ),
     )
     download_owl: Optional[str] = Field(
@@ -140,7 +160,8 @@ class Resource(BaseModel):
         description="A list of prefixes that use this resource for xrefs, provenance, etc.",
     )
     #: A flag denoting if the namespace is embedded in the LUI (if this is true and it is not accompanied by a banana,
-    #: assume that the banana is the prefix in all caps plus a colon, as is standard in OBO)
+    #: assume that the banana is the prefix in all caps plus a colon, as is standard in OBO). Currently this flag
+    #: is only used to override identifiers.org in the case of ``gramene.growthstage``, ``oma.hog``, and ``vario``.
     namespaceEmbeddedInLui: Optional[bool]  # noqa:N815
     no_own_terms: Optional[bool] = Field(
         description="A flag to denote if the resource does not have any identifiers itself",
@@ -158,18 +179,29 @@ class Resource(BaseModel):
         description="If this shares an IRI with another entry, maps to which should be be considered as canonical",
     )
 
-    # Registry-specific data
+    #: External data from Identifiers.org's MIRIAM Database
     miriam: Optional[Mapping[str, Any]]
+    #: External data from the Name-to-Thing service
     n2t: Optional[Mapping[str, Any]]
+    #: External data from Prefix Commons
     prefixcommons: Optional[Mapping[str, Any]]
+    #: External data from Wikidata Properties
     wikidata: Optional[Mapping[str, Any]]
+    #: External data from the Gene Ontology's custom registry
     go: Optional[Mapping[str, Any]]
+    #: External data from the Open Biomedical Ontologies (OBO) Foundry catalog
     obofoundry: Optional[Mapping[str, Any]]
+    #: External data from the BioPortal ontology repository
     bioportal: Optional[Mapping[str, Any]]
+    #: External data from the Ontology Lookup Service
     ols: Optional[Mapping[str, Any]]
+    #: External data from the NCBI Genbank's custom registry
     ncbi: Optional[Mapping[str, Any]]
+    #: External data from UniProt's custom registry
     uniprot: Optional[Mapping[str, Any]]
+    #: External data from the BioLink Model's custom registry
     biolink: Optional[Mapping[str, Any]]
+    #: External data from the Cellosaurus custom registry
     cellosaurus: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
@@ -791,7 +823,11 @@ def get_json_schema():
                 Collection,
                 Resource,
                 Registry,
-            ]
+            ],
+            title="Bioregistry JSON Schema",
+            description="The Bioregistry JSON Schema describes the shapes of the objects in"
+            " the registry, metaregistry, collections, and their other related"
+            " resources",
         )
     )
     return rv

@@ -1,6 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://bioregistry.io/schema.json",
+  "title": "Bioregistry JSON Schema",
+  "description": "The Bioregistry JSON Schema describes the shapes of the objects in the registry, metaregistry, collections, and their other related resources",
   "definitions": {
     "Author": {
       "title": "Author",
@@ -13,13 +15,13 @@
           "type": "string"
         },
         "orcid": {
-          "title": "Orcid",
-          "description": "The open researcher and contributor identifier (ORCiD) of the author",
+          "title": "Open Researcher and Contributor Identifier",
+          "description": "The ORCiD of the author",
           "type": "string"
         },
         "email": {
           "title": "Email",
-          "description": "The email address for the author",
+          "description": "The email address specific to the author",
           "pattern": "^(\\w|\\.|\\_|\\-)+[@](\\w|\\_|\\-|\\.)+[.]\\w{2,5}$",
           "type": "string"
         }
@@ -85,7 +87,7 @@
       "type": "object",
       "properties": {
         "name": {
-          "title": "Resource name",
+          "title": "Name",
           "description": "The human-readable name of the resource",
           "type": "string"
         },
@@ -101,12 +103,12 @@
         },
         "url": {
           "title": "Format URL",
-          "description": "The format URL, which must have at least one `$1` in it",
+          "description": "The URL format string, which must have at least one ``$1`` in it",
           "type": "string"
         },
         "homepage": {
           "title": "Format URL",
-          "description": "The URL of the homepage for the resource",
+          "description": "The URL for the homepage of the resource",
           "type": "string"
         },
         "contact": {
@@ -116,17 +118,17 @@
         },
         "example": {
           "title": "Example",
-          "description": "An example identifier for the resource",
+          "description": "An example local identifier for the resource, explicitly excluding any redundant usage of the prefix in the identifier. For example, a GO identifier should only look like 1234567 and not like GO:1234567",
           "type": "string"
         },
         "part_of": {
           "title": "Part Of",
-          "description": "Another bioregistry prefix denoting which resource this one is a part of (e.g., `chembl.compound` is a part of `chembl`)",
+          "description": "An annotation between this prefix and a super-prefix. For example, ``chembl.compound`` is a part of ``chembl``.",
           "type": "string"
         },
         "provides": {
           "title": "Provides",
-          "description": "Another bioregistry prefix denoting that this resource provides for another (e.g., `ctd.gene` provides for `ncbigene`)",
+          "description": "An annotation between this prefix and a prefix for which it is redundant. For example, ``ctd.gene`` has been given a prefix by Identifiers.org, but it actually just reuses identifies from ``ncbigene``, so ``ctd.gene`` provides ``ncbigene``.",
           "type": "string"
         },
         "download_owl": {
