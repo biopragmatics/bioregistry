@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Data structures.
-
-.. seealso:: https://pydantic-docs.helpmanual.io/usage/dataclasses/#convert-stdlib-dataclasses-into-pydantic-dataclasses
-"""
+"""Pydantic models for the Bioregistry."""
 
 import json
 import logging
