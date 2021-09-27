@@ -127,32 +127,61 @@ class Resource(BaseModel):
             "actually just reuses identifies from ``ncbigene``, so ``ctd.gene`` provides ``ncbigene``."
         ),
     )
+    #: The OWL download URL, preferably an unversioned variant
     download_owl: Optional[str] = Field(
         title="OWL Download URL",
         description="The OWL download URL, preferably an unversioned variant",
     )
+    #: The OBO download URL, preferably an unversioned variant
     download_obo: Optional[str] = Field(
         title="OBO Download URL",
         description="The OBO download URL, preferably an unversioned variant",
     )
+    #: The `banana` is a generalization of the concept of the "namespace embedded in local unique identifier".
+    #: Many OBO foundry ontologies use the redundant uppercased name of the ontology in the local identifier,
+    #: such as the Gene Ontology, which makes the prefixes have a redundant usage as in ``GO:GO:1234567``.
+    #: The `banana` tag explicitly annotates the part in the local identifier that should be stripped, if found.
+    #: While the Bioregistry automatically knows how to handle all OBO Foundry ontologies' bananas because the
+    #: OBO Foundry provides the "preferredPrefix" field, the banana can be annotated on non-OBO ontologies to
+    #: more explicitly write the beginning part of the identifier that should be stripped. This allowed for
+    #: solving one of the long-standing issues with the Identifiers.org resolver (e.g., for ``oma.hog``; see
+    #: https://github.com/identifiers-org/identifiers-org.github.io/issues/155) as well as better annotate
+    #: new entries, such as SwissMap Lipids, which have the prefix ``swisslipid`` but have the redundant information
+    #: ``SLM:`` in the beginning of identifiers. Therefore, ``SLM:`` is the banana.
     banana: Optional[str] = Field(
         description="The redundant prefix that may appear in identifiers (e.g., `FBbt:`)",
     )
+    #: A flag denoting if this resource is deprecated. Currently, this is a blanket term
+    #: that covers cases when the prefix is no longer maintained, when it has been rolled
+    #: into another resource, when the website related to the resource goes down, or any
+    #: other reason that it's difficult or impossible to find full metadata on the resource.
+    #: If this is set to true, please add a comment explaining why. This flag will override
+    #: annotations from the OLS, OBO Foundry, and Prefix Commons on the deprecation status,
+    #: since they often disagree and are very conservative in calling dead resources.
     deprecated: Optional[bool] = Field(
         description=(
             "A flag to note if this resource is deprecated - will override OLS, "
             "OBO Foundry, and Prefix Commons flags."
         ),
     )
+    #: A dictionary of metaprefixes (i.e., prefixes for registries) to prefixes in external registries.
+    #: These also correspond to the registry-specific JSON fields in this model like ``miriam`` field.
     mappings: Optional[Dict[str, str]] = Field(
         description="A dictionary of metaprefixes to prefixes in external registries",
     )
+    #: A list of synonyms for the prefix of this resource. These are used in normalization of
+    #: prefixes and are a useful reference tool for prefixes that are written many ways. For
+    #: example, ``snomedct`` has many synonyms including typos like ``SNOWMEDCT``, lexical
+    #: variants like ``SNOMED_CT``, version-variants like ``SNOMEDCT_2010_1_31``, and tons
+    #: of other nonsense like ``SNOMEDCTCT``.
     synonyms: Optional[List[str]] = Field(
         description="A list of synonyms for the prefix of this resource",
     )
+    #: A list of URLs to also see, such as publications describing the resource
     references: Optional[List[str]] = Field(
         description="A list of URLs to also see, such as publications describing the resource",
     )
+    #: A list of prefixes whose corresponding resources use this resource for xrefs, provenance, etc.
     appears_in: Optional[List[str]] = Field(
         description="A list of prefixes that use this resource for xrefs, provenance, etc.",
     )
@@ -160,18 +189,32 @@ class Resource(BaseModel):
     #: assume that the banana is the prefix in all caps plus a colon, as is standard in OBO). Currently this flag
     #: is only used to override identifiers.org in the case of ``gramene.growthstage``, ``oma.hog``, and ``vario``.
     namespaceEmbeddedInLui: Optional[bool]  # noqa:N815
+    #: A flag to denote if the resource mints its own identifiers. Omission or explicit marking as false means
+    #: that the resource does have its own terms. This is most applicable to ontologies, specifically application
+    #: ontologies, which only reuse terms from others. One example is ChIRO.
     no_own_terms: Optional[bool] = Field(
         description="A flag to denote if the resource does not have any identifiers itself",
     )
+    #: A field for a free text comment.
     comment: Optional[str] = Field(
         description="A field for a free text comment",
     )
+    #: Contributor information, including the name, ORCiD, and optionally the email of the contributor. All entries
+    #: curated through the Bioregistry GitHub Workflow must contain this field.
     contributor: Optional[Author] = Field(
         description="Contributor information, including the name, ORCiD, and optionally the email of the contributor",
     )
+    #: A flag to denote if this database is proprietary and therefore can not be included in normal quality control
+    #: checks nor can it be resolved. Omission or explicit marking as false means that the resource is not proprietary.
     proprietary: Optional[bool] = Field(
         description="Set to true if this database is proprietary. If missing, assume it's not.",
     )
+    #: An annotation between this prefix and another prefix if they share the same provider IRI to denote that the
+    #: other prefix should be considered as the canonical prefix to which IRIs should be contracted as CURIEs.
+    #:
+    #: .. seealso::
+    #:
+    #:    This field was added and described in detail in https://github.com/biopragmatics/bioregistry/pull/164
     has_canonical: Optional[str] = Field(
         description="If this shares an IRI with another entry, maps to which should be be considered as canonical",
     )

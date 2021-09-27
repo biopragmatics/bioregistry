@@ -231,3 +231,4 @@ intersphinx_mapping = {
 }
 
 autoclass_content = 'both'
+autodoc_member_order = 'bysource'
