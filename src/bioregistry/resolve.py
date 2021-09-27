@@ -4,13 +4,12 @@
 
 import logging
 import re
-import warnings
 from functools import lru_cache
 from typing import Any, Dict, Mapping, Optional, Set, Tuple, Union
 
 from .constants import LICENSES
+from .resource_manager import ResourceManager
 from .schema import Resource
-from .utils import read_registry
 
 __all__ = [
     "get_resource",
@@ -41,6 +40,8 @@ __all__ = [
 
 logger = logging.getLogger(__name__)
 
+manager = ResourceManager()
+
 
 def get_resource(prefix: str) -> Optional[Resource]:
     """Get the Bioregistry entry for the given prefix.
@@ -50,16 +51,7 @@ def get_resource(prefix: str) -> Optional[Resource]:
     :returns: The Bioregistry entry dictionary, which includes several keys cross-referencing
         other registries when available.
     """
-    norm_prefix = normalize_prefix(prefix)
-    if norm_prefix is None:
-        return None
-    return read_registry().get(norm_prefix)
-
-
-def get(prefix: str) -> Optional[Resource]:
-    """Get the Bioregistry entry for the given prefix, deprecated for :func:`get_resource`."""
-    warnings.warn("use bioregistry.get_resource", DeprecationWarning)
-    return get_resource(prefix)
+    return manager.get_resource(prefix)
 
 
 def get_name(prefix: str) -> Optional[str]:
@@ -211,12 +203,7 @@ def get_obofoundry_prefix(prefix: str) -> Optional[str]:
 
 def get_registry_map(metaprefix: str) -> Dict[str, str]:
     """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
-    rv = {}
-    for prefix, resource in read_registry().items():
-        mapped_prefix = resource.get_mapped_prefix(metaprefix)
-        if mapped_prefix is not None:
-            rv[prefix] = mapped_prefix
-    return rv
+    return manager.get_registry_map(metaprefix)
 
 
 def get_obofoundry_format(prefix: str) -> Optional[str]:
@@ -425,11 +412,7 @@ def get_prefixcommons_format(prefix: str) -> Optional[str]:
 
 def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:
     """Get the external data for the entry."""
-    norm_prefix = normalize_prefix(prefix)
-    if norm_prefix is None:
-        return {}
-    entry = read_registry()[norm_prefix]
-    return entry.get_external(metaprefix)
+    return manager.get_external(prefix, metaprefix)
 
 
 def get_example(prefix: str) -> Optional[str]:
@@ -638,20 +621,7 @@ def normalize_parsed_curie(
     :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
         prefixes or bananas, all lowercase.
     """
-    norm_prefix = normalize_prefix(prefix)
-    if not norm_prefix:
-        return None, None
-    resource = get_resource(prefix)
-    if resource is None:
-        return None, None  # though, this should never happen
-    banana = resource.get_banana()
-    if banana is not None and identifier.startswith(f"{banana}:"):
-        identifier = identifier[len(banana) + 1 :]
-    # remove redundant prefix
-    elif identifier.casefold().startswith(f"{prefix.casefold()}:"):
-        identifier = identifier[len(prefix) + 1 :]
-
-    return norm_prefix, identifier
+    return manager.normalize_parsed_curie(prefix, identifier)
 
 
 def normalize_curie(curie: str, sep: str = ":") -> Optional[str]:
@@ -725,59 +695,7 @@ def normalize_prefix(prefix: str) -> Optional[str]:
     >>> assert 'eccode' == normalize_prefix('ec-code')
     >>> assert 'eccode' == normalize_prefix('EC_CODE')
     """
-    return _synonym_to_canonical().get(prefix)
-
-
-def _norm(s: str) -> str:
-    """Normalize a string for dictionary key usage."""
-    rv = s.casefold().lower()
-    for x in " .-_./":
-        rv = rv.replace(x, "")
-    return rv
-
-
-class NormDict(dict):
-    def __setitem__(self, key: str, value: str) -> None:
-        norm_key = _norm(key)
-        if value is None:
-            raise ValueError(f"Tried to add empty value for {key}/{norm_key}")
-        if norm_key in self and self[norm_key] != value:
-            raise KeyError(
-                f"Tried to add {norm_key}/{value} when already had {norm_key}/{self[norm_key]}"
-            )
-        super().__setitem__(norm_key, value)
-
-    def __getitem__(self, item: str) -> str:
-        return super().__getitem__(_norm(item))
-
-    def __contains__(self, item) -> bool:
-        return super().__contains__(_norm(item))
-
-    def get(self, key: str, default=None) -> str:
-        return super().get(_norm(key), default)
-
-
-@lru_cache(maxsize=1)
-def _synonym_to_canonical() -> NormDict:
-    """Return a mapping from several variants of each synonym to the canonical namespace."""
-    norm_synonym_to_key = NormDict()
-
-    for bioregistry_id, entry in read_registry().items():
-        norm_synonym_to_key[bioregistry_id] = bioregistry_id
-        for synonym in entry.synonyms or []:
-            norm_synonym_to_key[synonym] = bioregistry_id
-
-        for metaprefix in ("miriam", "ols", "obofoundry", "go"):
-            external = entry.get_external(metaprefix)
-            if external is None:
-                continue
-            external_prefix = external.get("prefix")
-            if external_prefix is None:
-                continue
-            if external_prefix not in norm_synonym_to_key:
-                logger.debug(f"[{bioregistry_id}] missing potential synonym: {external_prefix}")
-
-    return norm_synonym_to_key
+    return manager.normalize_prefix(prefix)
 
 
 def get_version(prefix: str) -> Optional[str]:
@@ -791,9 +709,4 @@ def get_version(prefix: str) -> Optional[str]:
 @lru_cache(maxsize=1)
 def get_versions() -> Mapping[str, str]:
     """Get a map of prefixes to versions."""
-    rv = {}
-    for prefix in read_registry():
-        version = get_external(prefix, "ols").get("version")
-        if version is not None:
-            rv[prefix] = version
-    return rv
+    return manager.get_versions()

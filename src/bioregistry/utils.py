@@ -219,3 +219,38 @@ def extended_encoder(obj: Any) -> Any:
         return encoder(obj)
     else:  # We have exited the for loop without finding a suitable encoder
         raise TypeError(f"Object of type '{obj.__class__.__name__}' is not JSON serializable")
+
+
+class NormDict(dict):
+    """A dictionary that supports lexical normalization of keys on setting and getting."""
+
+    def __setitem__(self, key: str, value: str) -> None:
+        """Set an item from the dictionary after lexically normalizing it."""
+        norm_key = _norm(key)
+        if value is None:
+            raise ValueError(f"Tried to add empty value for {key}/{norm_key}")
+        if norm_key in self and self[norm_key] != value:
+            raise KeyError(
+                f"Tried to add {norm_key}/{value} when already had {norm_key}/{self[norm_key]}"
+            )
+        super().__setitem__(norm_key, value)
+
+    def __getitem__(self, item: str) -> str:
+        """Get an item from the dictionary after lexically normalizing it."""
+        return super().__getitem__(_norm(item))
+
+    def __contains__(self, item) -> bool:
+        """Check if an item is in the dictionary after lexically normalizing it."""
+        return super().__contains__(_norm(item))
+
+    def get(self, key: str, default=None) -> str:
+        """Get an item from the dictionary after lexically normalizing it."""
+        return super().get(_norm(key), default)
+
+
+def _norm(s: str) -> str:
+    """Normalize a string for dictionary key usage."""
+    rv = s.casefold().lower()
+    for x in " .-_./":
+        rv = rv.replace(x, "")
+    return rv
