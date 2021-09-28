@@ -51,16 +51,31 @@
                         {{ contributor.orcid }} <i class="fab fa-orcid"></i>
                     </a>
                 </dd>
+                {#
                 {% if contributor.email %}
                     <dt>Email</dt>
                     <dd><a href="mailto:{{ contributor.email }}">{{ contributor.email }}</a></dd>
                 {% endif %}
-                {% if prefixes %}
+                #}
+                {% if prefix_contributions %}
                     <dt>Prefixes Contributed</dt>
                     <dd>
                         <ul>
-                            {% for prefix in prefixes %}
+                            {% for prefix, resource in prefix_contributions %}
                                 <li><a href="{{ url_for('ui.resource', prefix=prefix) }}">{{ prefix }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                {% endif %}
+                {% if prefix_reviews %}
+                    <dt>Prefixes Reviewed</dt>
+                    <dd>
+                        <ul>
+                            {% for prefix, resource in prefix_reviews %}
+                                <li>
+                                    <a href="{{ url_for('ui.resource', prefix=prefix) }}">{{ prefix }}</a> for
+                                    <a href="{{ url_for('ui.contributor', orcid=resource.contributor.orcid) }}">{{ resource.contributor.name }}</a>
+                                </li>
                             {% endfor %}
                         </ul>
                     </dd>

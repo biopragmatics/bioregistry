@@ -245,6 +245,11 @@ def contributor(orcid: str):
         "contributor.html",
         contributor=author,
         collections=sorted(read_collections_contributions().get(author.orcid, [])),
-        prefixes=sorted(read_prefix_contributions().get(author.orcid, [])),
+        prefix_contributions=_s(read_prefix_contributions().get(author.orcid, [])),
+        prefix_reviews=_s(read_prefix_reviews().get(author.orcid, [])),
         formats=FORMATS,
     )
+
+
+def _s(prefixes):
+    return sorted((p, bioregistry.get_resource(p)) for p in prefixes)
