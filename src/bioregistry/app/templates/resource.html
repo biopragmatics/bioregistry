@@ -17,7 +17,8 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h5 style="margin: 0">{{ name }}
+                    <h5 style="margin: 0"><a href="{{ url_for("ui.resources") }}">Registry</a> <i
+                            class="fas fa-angle-right"></i> {{ name }}
                         {% if deprecated %}
                             <span class="badge badge-warning" style="display: inline-block;">
                                 Deprecated <i class="fas fa-exclamation-triangle"></i>
