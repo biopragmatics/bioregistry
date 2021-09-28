@@ -218,6 +218,7 @@ class Resource(BaseModel):
     has_canonical: Optional[str] = Field(
         description="If this shares an IRI with another entry, maps to which should be be considered as canonical",
     )
+    preferred_prefix: Optional[str]
 
     #: External data from Identifiers.org's MIRIAM Database
     miriam: Optional[Mapping[str, Any]]
@@ -371,6 +372,9 @@ class Resource(BaseModel):
         """Get synonyms."""
         # TODO aggregate even more from xrefs
         return set(self.synonyms or {})
+
+    def get_preferred_prefix(self) -> Optional[str]:
+        raise NotImplementedError
 
     def get_mappings(self) -> Optional[Mapping[str, str]]:
         """Get the mappings to external registries, if available."""

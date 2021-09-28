@@ -226,7 +226,7 @@ class NormDict(dict):
 
     def __setitem__(self, key: str, value: str) -> None:
         """Set an item from the dictionary after lexically normalizing it."""
-        norm_key = _norm(key)
+        norm_key = normalize(key)
         if value is None:
             raise ValueError(f"Tried to add empty value for {key}/{norm_key}")
         if norm_key in self and self[norm_key] != value:
@@ -237,18 +237,18 @@ class NormDict(dict):
 
     def __getitem__(self, item: str) -> str:
         """Get an item from the dictionary after lexically normalizing it."""
-        return super().__getitem__(_norm(item))
+        return super().__getitem__(normalize(item))
 
     def __contains__(self, item) -> bool:
         """Check if an item is in the dictionary after lexically normalizing it."""
-        return super().__contains__(_norm(item))
+        return super().__contains__(normalize(item))
 
     def get(self, key: str, default=None) -> str:
         """Get an item from the dictionary after lexically normalizing it."""
-        return super().get(_norm(key), default)
+        return super().get(normalize(key), default)
 
 
-def _norm(s: str) -> str:
+def normalize(s: str) -> str:
     """Normalize a string for dictionary key usage."""
     rv = s.casefold().lower()
     for x in " .-_./":

@@ -10,7 +10,7 @@ import bioregistry
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.resolve import get_external
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import is_mismatch
+from bioregistry.utils import is_mismatch, normalize
 
 logger = logging.getLogger(__name__)
 
@@ -60,6 +60,7 @@ class TestRegistry(unittest.TestCase):
             "contributor",
             "proprietary",
             "has_canonical",
+            "preferred_prefix",
         }
         keys.update(bioregistry.read_metaregistry())
         for prefix, entry in self.registry.items():
@@ -367,3 +368,12 @@ class TestRegistry(unittest.TestCase):
 
             x[iri] = parts, unmapped, canonical_target, all_targets
         self.assertEqual({}, x)
+
+    def test_preferred_prefix(self):
+        """Test the preferred prefix matches the normalized prefix."""
+        for prefix, resource in self.registry.items():
+            pp = resource.get_preferred_prefix()
+            if pp is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertEqual(prefix, normalize(pp))
