@@ -374,7 +374,12 @@ class Resource(BaseModel):
         return set(self.synonyms or {})
 
     def get_preferred_prefix(self) -> Optional[str]:
-        raise NotImplementedError
+        """Get the preferred prefix (e.g., with stylization)."""
+        if self.preferred_prefix is not None:
+            return self.preferred_prefix
+        if self.obofoundry is not None:
+            return self.obofoundry.get("preferredPrefix")
+        return None
 
     def get_mappings(self) -> Optional[Mapping[str, str]]:
         """Get the mappings to external registries, if available."""
