@@ -10,7 +10,7 @@ import bioregistry
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.resolve import get_external
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import is_mismatch, normalize
+from bioregistry.utils import _norm, is_mismatch
 
 logger = logging.getLogger(__name__)
 
@@ -376,4 +376,4 @@ class TestRegistry(unittest.TestCase):
             if pp is None:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertEqual(prefix, normalize(pp))
+                self.assertEqual(prefix, _norm(pp))
