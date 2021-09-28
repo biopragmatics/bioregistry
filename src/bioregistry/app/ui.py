@@ -244,7 +244,10 @@ def contributor(orcid: str):
     return render_template(
         "contributor.html",
         contributor=author,
-        collections=sorted(read_collections_contributions().get(author.orcid, [])),
+        collections=sorted(
+            (collection_id, bioregistry.get_collection(collection_id))
+            for collection_id in read_collections_contributions().get(author.orcid, [])
+        ),
         prefix_contributions=_s(read_prefix_contributions().get(author.orcid, [])),
         prefix_reviews=_s(read_prefix_reviews().get(author.orcid, [])),
         formats=FORMATS,

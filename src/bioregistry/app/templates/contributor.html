@@ -62,7 +62,9 @@
                     <dd>
                         <ul>
                             {% for prefix, resource in prefix_contributions %}
-                                <li><a href="{{ url_for('ui.resource', prefix=prefix) }}">{{ prefix }}</a></li>
+                                <li>
+                                    <a href="{{ url_for('ui.resource', prefix=prefix) }}"><code>{{ prefix }}</code></a>
+                                </li>
                             {% endfor %}
                         </ul>
                     </dd>
@@ -73,7 +75,8 @@
                         <ul>
                             {% for prefix, resource in prefix_reviews %}
                                 <li>
-                                    <a href="{{ url_for('ui.resource', prefix=prefix) }}">{{ prefix }}</a> for
+                                    <a href="{{ url_for('ui.resource', prefix=prefix) }}"><code>{{ prefix }}</code></a>
+                                    for
                                     <a href="{{ url_for('ui.contributor', orcid=resource.contributor.orcid) }}">{{ resource.contributor.name }}</a>
                                 </li>
                             {% endfor %}
@@ -84,10 +87,10 @@
                     <dt>Collections Contributed</dt>
                     <dd>
                         <ul>
-                            {% for collection in collections %}
+                            {% for collection, resource in collections %}
                                 <li>
                                     <a href="{{ url_for("ui.collection", identifier=collection) }}">
-                                        {{ collection }}
+                                        {{ resource.name }}
                                     </a>
                                 </li>
                             {% endfor %}
