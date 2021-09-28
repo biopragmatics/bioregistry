@@ -58,6 +58,7 @@ class TestRegistry(unittest.TestCase):
             "synonyms",
             "comment",
             "contributor",
+            "reviewer",
             "proprietary",
             "has_canonical",
         }
