@@ -292,7 +292,7 @@ def get_scholia_prefix(prefix: str) -> Optional[str]:
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get_ols_prefix()
+    return entry.get_scholia_prefix()
 
 
 def get_banana(prefix: str) -> Optional[str]:
