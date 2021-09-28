@@ -204,6 +204,12 @@ class Resource(BaseModel):
     contributor: Optional[Author] = Field(
         description="Contributor information, including the name, ORCiD, and optionally the email of the contributor",
     )
+    #: Reviewer information, including the name, ORCiD, and optionally the email of the reviewer. All entries
+    #: curated through the Bioregistry GitHub Workflow must contain this field pointing to the person who reviewed
+    #: it on GitHub.
+    reviewer: Optional[Author] = Field(
+        description="Reviewer information, including the name, ORCiD, and optionally the email of the reviewer",
+    )
     #: A flag to denote if this database is proprietary and therefore can not be included in normal quality control
     #: checks nor can it be resolved. Omission or explicit marking as false means that the resource is not proprietary.
     proprietary: Optional[bool] = Field(

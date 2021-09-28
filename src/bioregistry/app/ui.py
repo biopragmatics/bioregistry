@@ -8,7 +8,7 @@ from flask import Blueprint, abort, redirect, render_template, url_for
 
 import bioregistry
 from .utils import _get_resource_mapping_rows, _get_resource_providers, _normalize_prefix_or_404
-from ..utils import read_collections_contributions, read_prefix_contributions
+from ..utils import read_collections_contributions, read_prefix_contributions, read_prefix_reviews
 
 __all__ = [
     "ui_blueprint",
@@ -229,7 +229,8 @@ def contributors():
         "contributors.html",
         rows=bioregistry.read_contributors().values(),
         collections=read_collections_contributions(),
-        prefixes=read_prefix_contributions(),
+        prefix_contributions=read_prefix_contributions(),
+        prefix_reviews=read_prefix_reviews(),
         formats=FORMATS,
     )
 

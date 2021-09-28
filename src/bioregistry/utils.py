@@ -132,6 +132,8 @@ def read_contributors() -> Mapping[str, Author]:
     for resource in read_registry().values():
         if resource.contributor:
             rv[resource.contributor.orcid] = resource.contributor
+        if resource.reviewer:
+            rv[resource.reviewer.orcid] = resource.reviewer
     for resource in read_collections().values():
         for author in resource.authors or []:
             rv[author.orcid] = author
@@ -144,6 +146,15 @@ def read_prefix_contributions() -> Mapping[str, Set[str]]:
     for prefix, resource in read_registry().items():
         if resource.contributor:
             rv[resource.contributor.orcid].add(prefix)
+    return dict(rv)
+
+
+def read_prefix_reviews() -> Mapping[str, Set[str]]:
+    """Get a mapping from reviewer ORCID identifiers to prefixes."""
+    rv = defaultdict(set)
+    for prefix, resource in read_registry().items():
+        if resource.reviewer:
+            rv[resource.reviewer.orcid].add(prefix)
     return dict(rv)
 
 
