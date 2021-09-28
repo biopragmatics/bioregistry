@@ -377,3 +377,6 @@ class TestRegistry(unittest.TestCase):
                 continue
             with self.subTest(prefix=prefix):
                 self.assertEqual(prefix, _norm(pp))
+                # TODO consider later if preferred prefix should
+                #  explicitly not be mentioned in synonyms
+                # self.assertNotIn(pp, resource.get_synonyms())
