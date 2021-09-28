@@ -374,7 +374,23 @@ class Resource(BaseModel):
         return set(self.synonyms or {})
 
     def get_preferred_prefix(self) -> Optional[str]:
-        """Get the preferred prefix (e.g., with stylization)."""
+        """Get the preferred prefix (e.g., with stylization) if it exists.
+
+        :returns: The preferred prefix, if annotated in the Bioregistry or OBO Foundry.
+
+        No preferred prefix annotation, defaults to normalized prefix
+        >>> from bioregistry import get_resource
+        >>> get_resource("rhea").get_preferred_prefix()
+        None
+
+        Preferred prefix defined in the Bioregistry
+        >>> get_resource("wb").get_preferred_prefix()
+        'WormBase'
+
+        Preferred prefix defined in the OBO Foundry
+        >>> get_resource("fbbt").get_preferred_prefix()
+        'FBbt'
+        """
         if self.preferred_prefix is not None:
             return self.preferred_prefix
         if self.obofoundry is not None:
