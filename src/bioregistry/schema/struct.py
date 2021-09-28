@@ -627,6 +627,10 @@ class Resource(BaseModel):
             return None
         return f"{miriam_url_prefix}$1"
 
+    def get_scholia_prefix(self):
+        """Get the Scholia prefix, if available."""
+        return self.get_mapped_prefix("scholia")
+
     def get_ols_prefix(self) -> Optional[str]:
         """Get the OLS prefix if available."""
         return self.get_mapped_prefix("ols")
