@@ -218,7 +218,13 @@ class Resource(BaseModel):
     has_canonical: Optional[str] = Field(
         description="If this shares an IRI with another entry, maps to which should be be considered as canonical",
     )
-    preferred_prefix: Optional[str]
+    #: An annotation of stylization of the prefix. This appears in OBO ontologies like FBbt as well as databases
+    #: like NCBIGene. If it's not given, then assume that the normalized prefix used in the Bioregistry is canonical.
+    preferred_prefix: Optional[str] = Field(
+        description="An annotation of stylization of the prefix. This appears in OBO ontologies like"
+        " FBbt as well as databases like NCBIGene. If it's not given, then assume that"
+        " the normalized prefix used in the Bioregistry is canonical."
+    )
 
     #: External data from Identifiers.org's MIRIAM Database
     miriam: Optional[Mapping[str, Any]]
