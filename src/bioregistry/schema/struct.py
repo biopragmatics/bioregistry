@@ -390,6 +390,11 @@ class Resource(BaseModel):
         Preferred prefix defined in the OBO Foundry
         >>> get_resource("fbbt").get_preferred_prefix()
         'FBbt'
+
+        Preferred prefix from the OBO Foundry overridden by the Bioregistry
+        (see also https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1559)
+        >>> get_resource("dpo").get_preferred_prefix()
+        'DPO'
         """
         if self.preferred_prefix is not None:
             return self.preferred_prefix

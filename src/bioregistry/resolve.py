@@ -88,6 +88,11 @@ def get_preferred_prefix(prefix) -> Optional[str]:
     Preferred prefix defined in the OBO Foundry
     >>> get_preferred_prefix("fbbt")
     'FBbt'
+
+    Preferred prefix from the OBO Foundry overridden by the Bioregistry
+    (see also https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1559)
+    >>> get_preferred_prefix("dpo")
+    'DPO'
     """
     entry = get_resource(prefix)
     if entry is None:
