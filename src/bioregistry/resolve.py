@@ -15,6 +15,7 @@ __all__ = [
     "get_resource",
     "get_name",
     "get_description",
+    "get_preferred_prefix",
     "get_mappings",
     "get_synonyms",
     "get_pattern",
@@ -68,6 +69,35 @@ def get_description(prefix: str) -> Optional[str]:
     if entry is None:
         return None
     return entry.get_description()
+
+
+def get_preferred_prefix(prefix) -> Optional[str]:
+    """Get the preferred prefix (e.g., with stylization) if it exists.
+
+    :param prefix: The prefix to lookup.
+    :returns: The preferred prefix, if annotated in the Bioregistry or OBO Foundry.
+
+    No preferred prefix annotation, defaults to normalized prefix
+    >>> get_preferred_prefix("rhea")
+    None
+
+    Preferred prefix defined in the Bioregistry
+    >>> get_preferred_prefix("wb")
+    'WormBase'
+
+    Preferred prefix defined in the OBO Foundry
+    >>> get_preferred_prefix("fbbt")
+    'FBbt'
+
+    Preferred prefix from the OBO Foundry overridden by the Bioregistry
+    (see also https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1559)
+    >>> get_preferred_prefix("dpo")
+    'DPO'
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_preferred_prefix()
 
 
 def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:

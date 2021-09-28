@@ -67,6 +67,11 @@
             <dl>
                 <dt>Prefix</dt>
                 <dd><code>{{ prefix }}</code></dd>
+                {% set preferred_prefix = resource.get_preferred_prefix() %}
+                {% if preferred_prefix %}
+                    <dt>Preferred Prefix</dt>
+                    <dd><code>{{ preferred_prefix }}</code></dd>
+                {% endif %}
                 {% if synonyms %}
                     <dt>Alternative Prefixes</dt>
                     <dd>

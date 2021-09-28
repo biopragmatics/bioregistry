@@ -224,6 +224,13 @@ class Resource(BaseModel):
     has_canonical: Optional[str] = Field(
         description="If this shares an IRI with another entry, maps to which should be be considered as canonical",
     )
+    #: An annotation of stylization of the prefix. This appears in OBO ontologies like FBbt as well as databases
+    #: like NCBIGene. If it's not given, then assume that the normalized prefix used in the Bioregistry is canonical.
+    preferred_prefix: Optional[str] = Field(
+        description="An annotation of stylization of the prefix. This appears in OBO ontologies like"
+        " FBbt as well as databases like NCBIGene. If it's not given, then assume that"
+        " the normalized prefix used in the Bioregistry is canonical."
+    )
 
     #: External data from Identifiers.org's MIRIAM Database
     miriam: Optional[Mapping[str, Any]]
@@ -377,6 +384,35 @@ class Resource(BaseModel):
         """Get synonyms."""
         # TODO aggregate even more from xrefs
         return set(self.synonyms or {})
+
+    def get_preferred_prefix(self) -> Optional[str]:
+        """Get the preferred prefix (e.g., with stylization) if it exists.
+
+        :returns: The preferred prefix, if annotated in the Bioregistry or OBO Foundry.
+
+        No preferred prefix annotation, defaults to normalized prefix
+        >>> from bioregistry import get_resource
+        >>> get_resource("rhea").get_preferred_prefix()
+        None
+
+        Preferred prefix defined in the Bioregistry
+        >>> get_resource("wb").get_preferred_prefix()
+        'WormBase'
+
+        Preferred prefix defined in the OBO Foundry
+        >>> get_resource("fbbt").get_preferred_prefix()
+        'FBbt'
+
+        Preferred prefix from the OBO Foundry overridden by the Bioregistry
+        (see also https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1559)
+        >>> get_resource("dpo").get_preferred_prefix()
+        'DPO'
+        """
+        if self.preferred_prefix is not None:
+            return self.preferred_prefix
+        if self.obofoundry is not None:
+            return self.obofoundry.get("preferredPrefix")
+        return None
 
     def get_mappings(self) -> Optional[Mapping[str, str]]:
         """Get the mappings to external registries, if available."""
