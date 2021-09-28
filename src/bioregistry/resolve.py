@@ -278,6 +278,23 @@ def get_fairsharing_prefix(prefix: str) -> Optional[str]:
     return entry.get_mapped_prefix("fairsharing")
 
 
+def get_scholia_prefix(prefix: str) -> Optional[str]:
+    """Get the Scholia prefix if available.
+
+    :param prefix: The prefix to lookup.
+    :returns: The Scholia prefix corresponding to the prefix, if mappable.
+
+    >>> get_scholia_prefix("pubmed")
+    'pubmed'
+    >>> get_scholia_prefix("pdb")
+    None
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_scholia_prefix()
+
+
 def get_banana(prefix: str) -> Optional[str]:
     """Get the optional redundant prefix to go before an identifier.
 
