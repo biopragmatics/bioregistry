@@ -332,6 +332,9 @@ class TestRegistry(unittest.TestCase):
 
     def test_unique_iris(self):
         """Test that all IRIs are unique, or at least there's a mapping to which one is the preferred prefix."""
+        # TODO make sure there are also no HTTP vs HTTPS clashes,
+        #  for example if one prefix has http://example.org/foo/$1 and a different one
+        #  has https://example.org/foo/$1
         prefix_map = bioregistry.get_format_urls()
         dd = defaultdict(dict)
         for prefix, iri in prefix_map.items():
@@ -369,6 +372,17 @@ class TestRegistry(unittest.TestCase):
 
             x[iri] = parts, unmapped, canonical_target, all_targets
         self.assertEqual({}, x)
+
+    def test_parse_http_vs_https(self):
+        """Test parsing both HTTP and HTTPS, even when the provider is only set to one."""
+        prefix = "neuronames"
+        ex = bioregistry.get_example(prefix)
+        with self.subTest(protocol="http"):
+            a = f"http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID={ex}"
+            self.assertEqual((prefix, ex), bioregistry.parse_iri(a))
+        with self.subTest(protocol="https"):
+            b = f"https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID={ex}"
+            self.assertEqual((prefix, ex), bioregistry.parse_iri(b))
 
     def test_preferred_prefix(self):
         """Test the preferred prefix matches the normalized prefix."""
