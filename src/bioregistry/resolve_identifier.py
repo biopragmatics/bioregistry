@@ -408,13 +408,15 @@ def get_iri(
     'https://example.org/lipidmap/FBbt_1234'
     """
     if identifier is None:
-        prefix, identifier = parse_curie(prefix)
-        if prefix is None or identifier is None:
+        _prefix, _identifier = parse_curie(prefix)
+        if _prefix is None or _identifier is None:
             return None
+    else:
+        _prefix, _identifier = prefix, identifier
 
-    providers = dict(get_providers(prefix, identifier))
-    if prefix_map and prefix in prefix_map:
-        providers["custom"] = f"{prefix_map[prefix]}{identifier}"
+    providers = dict(get_providers(_prefix, _identifier))
+    if prefix_map and _prefix in prefix_map:
+        providers["custom"] = f"{prefix_map[_prefix]}{_identifier}"
     for key in priority or LINK_PRIORITY:
         if not use_bioregistry_io and key == "bioregistry":
             continue

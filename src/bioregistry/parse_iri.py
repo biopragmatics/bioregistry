@@ -146,13 +146,10 @@ def parse_iri(
     if iri.startswith(N2T_PREFIX):
         curie = iri[len(N2T_PREFIX) :]
         return parse_curie(curie)
-
-    # Now use everything
     prefix_list = _ensure_prefix_list(prefix_map)
     for prefix, prefix_url in prefix_list:
         if iri.startswith(prefix_url):
             return prefix, iri[len(prefix_url) :]
-
     return None, None
 
 
