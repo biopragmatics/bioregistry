@@ -2,143 +2,136 @@
 
 """Web application for the Bioregistry."""
 
+import datetime
+import platform
+
 from flasgger import Swagger
-from flask import Blueprint, Flask, abort, jsonify, redirect, url_for
+from flask import Flask, jsonify, render_template
+from flask_bootstrap import Bootstrap
 
 import bioregistry
+from bioregistry import version
+from .api import api_blueprint
+from .ui import ui_blueprint
+from ..resolve_identifier import get_bioregistry_iri
+from ..schema import bioregistry_schema_terms, get_json_schema
 
 app = Flask(__name__)
-Swagger.DEFAULT_CONFIG.update({
-    'title': 'Bioregistry API',
-    'description': 'A service for resolving CURIEs',
-    'contact': {
-        'responsibleDeveloper': 'Charles Tapley Hoyt',
-        'email': 'cthoyt@gmail.com',
-    },
-    'version': '1.0',
-})
+Swagger.DEFAULT_CONFIG.update(
+    {
+        "info": {
+            "title": "Bioregistry",
+            "description": "A service for resolving CURIEs",
+            "contact": {
+                "responsibleDeveloper": "Charles Tapley Hoyt",
+                "email": "cthoyt@gmail.com",
+            },
+            "version": "1.0",
+            "license": {
+                "name": "Code available under the MIT License",
+                "url": "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE",
+            },
+        },
+        "host": "bioregistry.io",
+        "tags": [
+            {
+                "name": "collections",
+                "externalDocs": {
+                    "url": "https://bioregistry.io/collection/",
+                },
+            },
+        ],
+    }
+)
 Swagger(app)
+Bootstrap(app)
 
-api_blueprint = Blueprint('api', __name__)
-
-
-@api_blueprint.route('/registry/')
-def get_entries():
-    """List the entire Bioregistry."""
-    return jsonify(bioregistry.read_bioregistry())
+app.register_blueprint(api_blueprint)
+app.register_blueprint(ui_blueprint)
 
 
-@api_blueprint.route('/registry/<prefix>')
-def get_entry(prefix: str):
-    """Get an entry.
-
-    ---
-    parameters:
-    - name: prefix
-      in: path
-      description: The prefix for the entry
-      required: true
-      type: string
-      example: doid
-    """  # noqa:DAR101,DAR201
-    entry = bioregistry.get(prefix)
-    if entry is None:
-        return abort(404)
-    return jsonify(entry)
-
-
-def _get_identifier(prefix, identifier):
-    norm_prefix = bioregistry.normalize_prefix(prefix)
-    if norm_prefix is None:
-        return abort(404, f'invalid prefix: {prefix}')
-    if not bioregistry.validate(prefix, identifier):
-        return abort(404, f'invalid identifier: {prefix}:{identifier} for pattern {bioregistry.get_pattern(prefix)}')
-    formatter = bioregistry.get_format(prefix)
-    if formatter is None:
-        return abort(404, f'missing resolution for {prefix}')
-
-    url = formatter.replace('$1', identifier)
-    return dict(
-        query=dict(prefix=prefix, identifier=identifier),
-        url=url,
+@app.route("/")
+def home():
+    """Render the homepage."""
+    example_prefix, example_identifier = "chebi", "138488"
+    example_url = get_bioregistry_iri(example_prefix, example_identifier)
+    return render_template(
+        "home.html",
+        example_url=example_url,
+        example_prefix=example_prefix,
+        example_identifier=example_identifier,
+        registry_size=len(bioregistry.read_registry()),
+        metaregistry_size=len(bioregistry.read_metaregistry()),
+        collections_size=len(bioregistry.read_collections()),
+        contributors_size=len(bioregistry.read_contributors()),
     )
 
 
-@api_blueprint.route('/registry/<prefix>/<identifier>')
-@api_blueprint.route('/registry/<prefix>:<identifier>')
-def get_identifier(prefix: str, identifier: str):
-    """Look up information on the CURIE.
-
-    ---
-    parameters:
-    - name: prefix
-      in: path
-      description: The prefix for the entry
-      required: true
-      type: string
-      example: efo
-    - name: identifier
-      in: path
-      description: The identifier for the entry
-      required: true
-      type: string
-      example: 0000311
-    """  # noqa:DAR101,DAR201
-    return jsonify(_get_identifier(prefix, identifier))
+@app.route("/summary")
+def summary():
+    """Render the summary page."""
+    return render_template("meta/summary.html")
 
 
-def _get_best_url(d):
-    return d['url']
+@app.route("/related")
+def related():
+    """Render the related page."""
+    return render_template("meta/related.html")
 
 
-@api_blueprint.route('/resolve/<prefix>/<identifier>')
-@api_blueprint.route('/resolve/<prefix>:<identifier>')
-def resolve(prefix: str, identifier: str):
-    """Resolve the CURIE.
-
-    ---
-    parameters:
-    - name: prefix
-      in: path
-      description: The prefix for the entry
-      required: true
-      type: string
-      example: efo
-    - name: identifier
-      in: path
-      description: The identifier for the entry
-      required: true
-      type: string
-      example: 0000311
-    """  # noqa:DAR101,DAR201
-    d = _get_identifier(prefix, identifier)
-    return redirect(_get_best_url(d))
+@app.route("/download")
+def download():
+    """Render the download page."""
+    return render_template("meta/download.html")
 
 
-app.register_blueprint(api_blueprint)
+@app.route("/acknowledgements")
+def acknowledgements():
+    """Render the acknowledgements page."""
+    return render_template("meta/acknowledgements.html")
 
 
-@app.route('/')
-def home():
-    """Render the home page."""
-    example_prefix, example_id = 'chebi', '24867'
-    entries_url = url_for('api.get_entries')
-    prefix_url = url_for('api.get_entry', prefix='chebi')
-    identifier_url = url_for('api.get_identifier', prefix=example_prefix, identifier=example_id)
-    resolve_url = url_for('api.resolve', prefix=example_prefix, identifier=example_id)
-    swagger_url = url_for('flasgger.apidocs')
+_VERSION = version.get_version()
+_GIT_HASH = version.get_git_hash()
+_PLATFORM = platform.platform()
+_PLATFORM_VERSION = platform.version()
+_PYTHON_VERSION = platform.python_version()
+_DEPLOYED = datetime.datetime.now()
 
-    return f"""
-    <h1>Bioregistry Resolver</h1>
-    <ul>
-    <li><a href={swagger_url}>Swagger UI</a></li>
-    <li>Get registry <a href={entries_url}>{entries_url}</a></li>
-    <li>Get entry for ChEBI  <a href={prefix_url}>{prefix_url}</a></li>
-    <li>Get URLs for ChEBI entry  <a href={identifier_url}>{identifier_url}</a></li>
-    <li>Resolve ChEBI entry  <a href={resolve_url}>{example_prefix}:{example_id}</a></li>
-    </ul>
-    """
+app.config["bioregistry_version"] = _VERSION
 
 
-if __name__ == '__main__':
+@app.route("/sustainability")
+def sustainability():
+    """Render the sustainability page."""
+    return render_template(
+        "meta/sustainability.html",
+        software_version=_VERSION,
+        software_git_hash=_GIT_HASH,
+        platform=_PLATFORM,
+        platform_version=_PLATFORM_VERSION,
+        python_version=_PYTHON_VERSION,
+        deployed=_DEPLOYED,
+    )
+
+
+@app.route("/usage")
+def usage():
+    """Render the programmatic usage page."""
+    return render_template("meta/access.html")
+
+
+@app.route("/schema/")
+def schema():
+    """Render the Bioregistry RDF schema."""
+    return render_template("meta/schema.html", terms=bioregistry_schema_terms)
+
+
+@app.route("/schema.json")
+def json_schema():
+    """Return the JSON schema."""
+    return jsonify(get_json_schema())
+
+
+if __name__ == "__main__":
     app.run(debug=True)  # noqa

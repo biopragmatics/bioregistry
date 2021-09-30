@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Bioregistry Resolution Error{% endblock %}
+
+{% block container %}
+    <div class="card card-body">
+        <h5 class="card-title">HTTP 404 - Unknown Prefix</h5>
+        <p>
+            The prefix <code>{{ prefix }}</code> is not registered in the Bioregistry{% if identifier %}
+            so <code>{{ prefix }}:{{ identifier }}</code> could not be resolved{% endif %}. If you
+            think it should be, please contribute in one of the following ways:
+        </p>
+        <ul>
+            <li>
+                <a href="https://github.com/biopragmatics/bioregistry/issues/new?assignees=cthoyt&labels=New%2CPrefix&template=new-prefix.yml&title=%5BResource%5D%3A%20{{prefix }}">
+                    Add an issue</a> on our GitHub issue tracker with as much information about the resource as possible
+                (e.g., name, homepage, format URL pattern, example identifier, pattern).
+            </li>
+            <li>
+                Add an entry yourself by <a
+                    href="https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/bioregistry.json">
+                editing the Bioregistry</a> in GitHub through the web browser.
+            </li>
+            <li>
+                Make a pull request to <a href="https://github.com/biopragmatics/bioregistry">
+                <i class="fab fa-github"></i> biopragmatics/bioregistry</a>.
+            </li>
+        </ul>
+    </div>
+{% endblock %}

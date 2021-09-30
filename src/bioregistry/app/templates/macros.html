@@ -1,0 +1,30 @@
+{% macro render_provider_table(prefix, identifier, providers) -%}
+    {% if providers %}
+        <table class="table table-hover table-striped">
+            <thead class="table-">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Metaprefix</th>
+                <th scope="col">URL</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for provider in providers %}
+                <tr>
+                    <td>
+                        {% if provider.homepage %}
+                            <a href="{{ provider.homepage }}">{{ provider.name }}</a>
+                        {% else %}
+                            {{ provider.name }}
+                        {% endif %}
+                    </td>
+                    <td class="text-nowrap"><code>{{ provider.metaprefix }}</code></td>
+                    <td>
+                        <a href="{{ provider.url }}">{{ provider.url }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endmacro %}

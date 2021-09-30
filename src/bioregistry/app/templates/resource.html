@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% import "macros.html" as utils %}
+
+{% block title %}Bioregistry - {{ name }}{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+{% endblock %}
+
+{% block container %}
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h5 style="margin: 0"><a href="{{ url_for("ui.resources") }}">Registry</a> <i
+                            class="fas fa-angle-right"></i> {{ name }}
+                        {% if deprecated %}
+                            <span class="badge badge-warning" style="display: inline-block;">
+                                Deprecated <i class="fas fa-exclamation-triangle"></i>
+                            </span>
+                        {% elif resource.provides %}
+                            <span class="badge badge-danger" style="display: inline-block;">
+                                Provider <i class="fas fa-exclamation-triangle"></i>
+                            </span>
+                        {% endif %}
+                    </h5>
+                </div>
+                <div class="col-4 text-right">
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-dark dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            Download
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {% for label, key in formats %}
+                                <a class="dropdown-item"
+                                   href="{{ url_for("api.resource", prefix=prefix, format=key) }}">
+                                    {{ label }} <i class="fas fa-download"></i>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            {% if description %}<p>{{ description }}</p>{% endif %}
+            {% if resource.provides %}
+                <p>
+                    This resource is a <span class="badge badge-danger">provider</span>. This means that
+                    while it may have its own prefix, it actually reuses the identifiers provided by the
+                    <a href="{{ url_for(".resource", prefix=resource.provides) }}"><code>{{ resource.provides }}</code></a>
+                    prefix. For <b>all</b> use cases, you should use <a
+                        href="{{ url_for(".resource", prefix=resource.provides) }}"><code>{{ resource.provides }}</code></a>
+                    instead of <code>{{ prefix }}</code>.
+                </p>
+            {% endif %}
+            {% if resource.comment %}
+                <p class="text-muted"><span class="badge badge-info">Comment</span> {{ resource.comment }}</p>
+            {% endif %}
+            <dl>
+                <dt>Prefix</dt>
+                <dd><code>{{ prefix }}</code></dd>
+                {% set preferred_prefix = resource.get_preferred_prefix() %}
+                {% if preferred_prefix %}
+                    <dt>Preferred Prefix</dt>
+                    <dd><code>{{ preferred_prefix }}</code></dd>
+                {% endif %}
+                {% if synonyms %}
+                    <dt>Alternative Prefixes</dt>
+                    <dd>
+                        {% for synonym in synonyms %}
+                            <span class="badge badge-light">{{ synonym }}</span>
+                        {% endfor %}
+                    </dd>
+                {% endif %}
+                {% if version %}
+                    <dt>Version</dt>
+                    <dd>{{ version }}</dd>
+                {% endif %}
+                <dt>Links</dt>
+                <dd>
+                    {% if homepage %}
+                        <a class="badge badge-pill badge-light" href="{{ homepage }}">
+                            Homepage <i class="fas fa-home"></i>
+                        </a>
+                    {% else %}
+                        <span class="badge badge-pill badge-warning">Missing Homepage</span>
+                    {% endif %}
+                    {% if obo_download %}
+                        <a class="badge badge-pill badge-light" href="{{ obo_download }}">
+                            OBO <i class="fas fa-download"></i>
+                        </a>
+                    {% endif %}
+                    {% if owl_download %}
+                        <a class="badge badge-pill badge-light" href="{{ owl_download }}">
+                            OWL <i class="fas fa-download"></i>
+                        </a>
+                    {% endif %}
+                    {% if json_download %}
+                        <a class="badge badge-pill badge-light" href="{{ json_download }}">
+                            OBO JSON <i class="fas fa-download"></i>
+                        </a>
+                    {% endif %}
+                </dd>
+                <dt>Contact</dt>
+                <dd>
+                    {% if contact %}
+                        <a href="mailto:{{ contact }}">{{ contact }}</a>
+                    {% else %}
+                        <span class="badge badge-pill badge-warning">Missing Contact</span>
+                    {% endif %}
+                </dd>
+                <dt>Pattern</dt>
+                <dd>
+                    {% if pattern %}
+                        <code>{{ pattern }}</code>
+                    {% elif has_no_terms %}
+                        <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
+                    {% else %}
+                        <span class="badge badge-pill badge-warning">Missing Pattern</span>
+                    {% endif %}
+                </dd>
+                {% if pattern %}
+                    <dt>Namespace in Pattern</dt>
+                    <dd>
+                        {% if namespace_in_lui %}
+                            True (<code>{{ banana if banana else prefix.upper() }}:</code>)
+                        {% else %}
+                            False
+                        {% endif %}
+                    </dd>
+                {% endif %}
+                <dt>Example Identifier</dt>
+                <dd>
+                    {% if example %}
+                        <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example }}</a>
+                    {% elif has_no_terms %}
+                        <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
+                    {% else %}
+                        <span class="badge badge-pill badge-warning">Missing Example</span>
+                    {% endif %}
+                </dd>
+                {% if resource.references %}
+                    <dt>References</dt>
+                    <dd>
+                        <ul>
+                            {% for reference in resource.references %}
+                                <li><a href="{{ reference }}">{{ reference }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                {% endif %}
+                {% if resource.contributor %}
+                    <dt>Contributor</dt>
+                    <dd>
+                        <a href="{{ url_for('ui.contributor', orcid=resource.contributor.orcid) }}">
+                            {{ resource.contributor.name }}
+                        </a>
+                    </dd>
+                {% endif %}
+            </dl>
+        </div>
+
+    </div>
+    {% if mappings %}
+        <div class="card" style="margin-top: 20px">
+            <a id="mappings"></a>
+            <h5 class="card-header">Metaregistry</h5>
+            <div class="card-body">
+                <p>
+                    The metaregistry provides mappings between the Bioregistry and other registries. There are
+                    {{ mappings | length }} mappings to external registries for <code>{{ prefix }}</code>.
+                </p>
+            </div>
+            <table class="table table-hover table-striped">
+                <thead class="table-">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Metaprefix</th>
+                    <th scope="col">Metaidentifier</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for mapping in mappings %}
+                    <tr>
+                        <td>
+                            {% if mapping.homepage %}
+                                <a href="{{ mapping.homepage }}">{{ mapping.name }}</a>
+                            {% else %}
+                                {{ mapping.name }}
+                            {% endif %}
+                        </td>
+                        <td><code>{{ mapping.metaprefix }}</code></td>
+                        <td>
+                            {% if mapping.url %}
+                                <a href="{{ mapping.url }}">{{ mapping.xref }} <i class="fas fa-link"></i></a>
+                            {% else %}
+                                <span title="{{ mapping.name }} does not resolve metaidentifiers"
+                                      data-toggle="tooltip" data-placement="right">{{ mapping.xref }}
+                                    <i class="fas fa-info-circle"></i></span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+    {% if providers %}
+        <div class="card" style="margin-top: 20px">
+            <a id="mappings"></a>
+            <h5 class="card-header">Providers</h5>
+            <div class="card-body">
+                <p>
+                    Providers are various services that resolve CURIEs to URLs. The example CURIE
+                    <code>{{ prefix }}:{{ example }}</code> is used to demonstrate the provides available for
+                    <code>{{ prefix }}</code>. Generation of OLS and BioPortal URLs requires additional programmatic
+                    logic beyond string formatting.
+                </p>
+            </div>
+            {{ utils.render_provider_table(prefix=prefix, identifier=example, providers=providers) }}
+        </div>
+    {% endif %}
+{% endblock %}

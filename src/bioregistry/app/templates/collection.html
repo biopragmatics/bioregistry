@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% import "macros.html" as utils %}
+
+{% block title %}Bioregistry - {{ entry.name }}{% endblock %}
+
+{% block container %}
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h5 style="margin: 0"><a href="{{ url_for("ui.collections") }}">Collections</a>
+                        <i class="fas fa-angle-right"></i> {{ entry.name }}</h5>
+                </div>
+                <div class="col-4 text-right">
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-dark dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            Download
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {% for label, key in formats %}
+                                <a class="dropdown-item"
+                                   href="{{ url_for("api.collection", identifier=identifier, format=key) }}">
+                                    {{ label }} <i class="fas fa-download"></i>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>{{ entry.description }}</p>
+            <dl>
+                <dt>Identifier</dt>
+                <dd><code>{{ identifier }}</code></dd>
+                <dt>Authors</dt>
+                <dd>
+                    {% for author in entry.authors %}
+                        <a href="{{ url_for("ui.contributor", orcid=author.orcid) }}">
+                            {{ author.name }}
+                            <i class="fab fa-orcid"></i>
+                        </a>{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </dd>
+                <dt>Resources</dt>
+                <dd>
+                    <ul>
+                        {% for prefix in entry.resources %}
+                            <li><a href="{{ url_for("ui.resource", prefix=prefix) }}">{{ prefix }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    </div>
+{% endblock %}

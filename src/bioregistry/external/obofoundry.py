@@ -3,95 +3,75 @@
 """Download registry information from the OBO Foundry."""
 
 import json
-import os
-from operator import itemgetter
-from typing import Optional
 
 import click
-import pandas as pd
 import yaml
+from pystow.utils import download
 
-from .utils import list_to_map
-from ..constants import BIOREGISTRY_MODULE
+from bioregistry.data import EXTERNAL
 
 __all__ = [
-    'OBOFOUNDRY_FULL_PATH',
-    'OBOFOUNDRY_URL',
-    'get_obofoundry',
-    'get_obofoundry_df',
+    "get_obofoundry",
 ]
 
-OBOFOUNDRY_YAML_PATH = BIOREGISTRY_MODULE.get('obofoundry.yml')
-OBOFOUNDRY_FULL_PATH = BIOREGISTRY_MODULE.get('obofoundry.json')
-OBOFOUNDRY_SLIM_PATH = BIOREGISTRY_MODULE.get('obofoundry.tsv')
-OBOFOUNDRY_URL = 'https://raw.githubusercontent.com/OBOFoundry/OBOFoundry.github.io/master/registry/ontologies.yml'
+DIRECTORY = EXTERNAL / "obofoundry"
+DIRECTORY.mkdir(exist_ok=True, parents=True)
+RAW_PATH = DIRECTORY / "raw.yaml"
+PROCESSED_PATH = DIRECTORY / "processed.json"
+OBOFOUNDRY_URL = "https://raw.githubusercontent.com/OBOFoundry/OBOFoundry.github.io/master/registry/ontologies.yml"
 
 
-def get_obofoundry(
-    cache_path: Optional[str] = OBOFOUNDRY_FULL_PATH,
-    mappify: bool = False,
-    force_download: bool = False,
-    skip_deprecated: bool = False,
-):
+def get_obofoundry(force_download: bool = False):
     """Get the OBO Foundry registry."""
-    if not force_download and cache_path is not None and os.path.exists(cache_path):
-        with open(cache_path) as file:
-            entries = json.load(file)
-    else:
-        with BIOREGISTRY_MODULE.ensure(url=OBOFOUNDRY_URL).open() as file:
-            entries = yaml.full_load(file)['ontologies']
+    if PROCESSED_PATH.exists() and not force_download:
+        with PROCESSED_PATH.open() as file:
+            return json.load(file)
 
-        for entry in entries:
-            for key in ('browsers', 'usages', 'depicted_by', 'products'):
-                if key in entry:
-                    del entry[key]
+    download(url=OBOFOUNDRY_URL, path=RAW_PATH, force=True)
+    with RAW_PATH.open() as file:
+        data = yaml.full_load(file)
 
-        # maintain sorted OBO Foundry
-        entries = sorted(entries, key=itemgetter('id'))
+    rv = {record["id"]: _process(record) for record in data["ontologies"]}
+    with PROCESSED_PATH.open("w") as file:
+        json.dump(rv, file, indent=2, sort_keys=True)
 
-        if cache_path is not None:
-            with open(cache_path, 'w') as file:
-                json.dump(entries, file, indent=2)
-
-    if skip_deprecated:
-        entries = [
-            entry
-            for entry in entries
-            if not entry.get('is_obsolete', False)
-        ]
-
-    if mappify:
-        entries = list_to_map(entries, 'id')
-
-    return entries
+    return rv
 
 
-def get_obofoundry_df(**kwargs):
-    """Get the OBO Foundry registry as a pre-processed dataframe."""
-    rows = [
-        (
-            'obofoundry',
-            entry['id'],
-            entry['title'],
-            entry.get('is_obsolete', False),
-            entry.get('license', {}).get('label'),
-            entry.get('description'),
-        )
-        for entry in get_obofoundry(**kwargs)
-    ]
-    df = pd.DataFrame(rows, columns=[
-        'registry', 'prefix', 'name',
-        'redundant', 'license', 'description',
-    ])
-    df.to_csv(OBOFOUNDRY_SLIM_PATH, sep='\t', index=False)
-    return df
+def _process(record):
+    for key in ("browsers", "usages", "depicted_by", "build", "layout", "taxon"):
+        if key in record:
+            del record[key]
+
+    oid = record["id"]
+    rv = {
+        "name": record["title"],
+        "description": record.get("description"),
+        "deprecated": record.get("is_obsolete", False),
+        "homepage": record.get("homepage"),
+        "preferredPrefix": record.get("preferredPrefix"),
+        "license": record.get("license", {}).get("label"),
+        "contact": record.get("contact", {}).get("email"),
+        "contact.label": record.get("contact", {}).get("label"),
+    }
+
+    for product in record.get("products", []):
+        if product["id"] == f"{oid}.obo":
+            rv["download.obo"] = product["ontology_purl"]
+        elif product["id"] == f"{oid}.json":
+            rv["download.json"] = product["ontology_purl"]
+        elif product["id"] == f"{oid}.owl":
+            rv["download.owl"] = product["ontology_purl"]
+
+    return {k: v for k, v in rv.items() if v is not None}
 
 
 @click.command()
 def main():
     """Reload the OBO Foundry data."""
-    get_obofoundry_df(force_download=True)
+    r = get_obofoundry(force_download=True)
+    click.echo(f"Got {len(r)} records")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

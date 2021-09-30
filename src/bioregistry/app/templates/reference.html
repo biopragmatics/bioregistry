@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% import "macros.html" as utils %}
+
+{% block title %}Bioregistry - {{ prefix }}:{{ identifier }}{% endblock %}
+
+{% block container %}
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h5 style="margin: 0">
+                        <a href="{{ url_for("ui.resource", prefix=prefix) }}">{{ name }}</a>&nbsp;&nbsp;
+                        <i class="fas fa-angle-right"></i>&nbsp;&nbsp;{{ identifier }}
+                    </h5>
+                </div>
+                <div class="col-4 text-right">
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-dark dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            Download
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {% for label, key in formats %}
+                                <a class="dropdown-item"
+                                   href="{{ url_for("api.reference", prefix=prefix, identifier=identifier, format=key) }}">
+                                    {{ label }} <i class="fas fa-download"></i>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            {% if providers %}
+                <a class="btn btn-success btn-lg"
+                   href="{{ url_for("ui.resolve", prefix=prefix, identifier=identifier) }}">
+                    Resolve <code>{{ prefix }}:{{ identifier }}</code> with Default Provider&nbsp;&nbsp;
+                    <i class="fas fa-share-square"></i>
+                </a>
+            {% else %}
+                <span class="btn btn-warning btn-lg">
+                    Unable to resolve entries in <code>{{ prefix }}</code>&nbsp;&nbsp;
+                    <i class="fas fa-skull-crossbones"></i>
+                </span>
+            {% endif %}
+        </div>
+        {{ utils.render_provider_table(prefix, identifier, providers) }}
+    </div>
+{% endblock %}

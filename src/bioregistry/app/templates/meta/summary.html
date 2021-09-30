@@ -1,0 +1,266 @@
+{% extends "prose.html" %}
+
+{% block title %}Bioregistry Summary{% endblock %}
+
+{% block content %}
+    <h2>What is the Bioregistry?</h2>
+    <p>
+        The Bioregistry is a curated database and accompanying web application that act as a:
+    </p>
+    <dl class="row">
+        <dt class="col-lg-2 text-right text-nowrap">Registry</dt>
+        <dd class="col-lg-10">
+            A collection of metadata about ontologies, controlled vocabularies, and resources. Some other
+            well-known registries are the <a href="http://www.obofoundry.org/">OBO Foundry</a>,
+            <a href="https://identifiers.org">Identifiers.org</a>,
+            the <a href="https://www.ebi.ac.uk/ols/index">OLS</a>,
+            <a href="https://bioportal.bioontology.org/">BioPortal</a>,
+            and <a href="https://prefixcommons.org/">Prefix Commons</a>.
+        </dd>
+        <dt class="col-lg-2 text-right text-nowrap">Metaregistry</dt>
+        <dd class="col-lg-10">
+            A collection of metadata about registries and mappings between the resources they describe. For
+            example, <a href="https://www.ebi.ac.uk/chebi">ChEBI</a> appears in all of the example registries
+            from above. So far, the Bioregistry is the <i>only</i> metaregistry.
+        </dd>
+        <dt class="col-lg-2 text-right text-nowrap">Resolver</dt>
+        <dd class="col-lg-10">
+            A tool for mapping CURIEs of the form <code>prefix:identifier</code> to HTML and structured content
+            providers. Some other well-known resolvers are <a href="https://identifiers.org">Identifiers.org</a>
+            and <a href="https://n2t.net/">Name-To-Thing</a>.
+        </dd>
+    </dl>
+    <p>The Bioregistry is different from other registries. It is:</p>
+    <dl class="row">
+        <dt class="col-lg-2 text-right text-nowrap">Open Source</dt>
+        <dd class="col-lg-10">
+            Anyone can make updates by pull requesting against the single source of truth JSON
+            "database". There are clear contribution guidelines and several potential
+            <a href="https://github.com/orgs/bioregistry/teams/reviewers">reviewers</a>. Automated
+            testing notifies contributors of mistakes or omissions before review.
+        </dd>
+        <dt class="col-lg-2 text-right text-nowrap">Automated</dt>
+        <dd class="col-lg-10">
+            Continuous integration is used to automatically update the database nightly and align with other
+            registries. It suggests new curations to help maintain the community's semantic health.
+        </dd>
+        <dt class="col-lg-2 text-right text-nowrap">Extensible</dt>
+        <dd class="col-lg-10">
+            The underlying codebase can also be improved to add new features. It's all written in idiomatic,
+            high quality Python code.
+        </dd>
+    </dl>
+    <p>The Bioregistry is <strong>not</strong> a:</p>
+    <dl class="row">
+        <dt class="col-lg-2 text-right">Lookup Service</dt>
+        <dd class="col-lg-10">
+            A service that provides information about an entity based on its prefix/identifier pair. Some
+            well-known lookup services are the <a href="https://www.ebi.ac.uk/ols/index">OLS</a>,
+            <a href="http://aber-owl.net">AberOWL</a>,
+            <a href="http://www.ontobee.org/">OntoBee</a>, and
+            <a href="https://bioportal.bioontology.org/">BioPortal</a>.
+        </dd>
+    </dl>
+
+    <h2>Motivation</h2>
+    <p>
+        The goal of the <a href="https://cthoyt.com/2020/04/19/inspector-javerts-xref-database.html">Inspector
+        Javert's Xref Database</a> was to extract all the xrefs from OBO ontologies in the OBO Foundry. However,
+        most ontologies took a lot of creative freedom in what prefixes they used to refer to which
+        resources, and they therefore had to be normalized. Unfortunately, most did not appear in popular
+        registries like MIRIAM, so the Bioregistry was created to store this information and facilitate
+        downstream data integration. Later, the Bioregistry became a tool that enabled the investigation of the
+        discrepancies between MIRIAM, OBO Foundry, OLS, and other biological registries.
+    </p>
+    <h2>Bioregistry Coverage</h2>
+    <p>
+        This two-sided comparison shows how well the Bioregistry covers each external registry. In the case of
+        Wikidata, it's difficult to know exactly how many relevant properties there are.
+        <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/bioregistry_coverage.svg"
+             alt="Bioregistry Coverage" class="img-fluid"/>
+    </p>
+    <p>
+        Additional external registries that have been queued for alignment can be listed via the
+        <a href="https://github.com/biopragmatics/bioregistry/issues?q=is%3Aissue+is%3Aopen+label%3A%22External+Registry%22">GitHub
+            issue tracker</a>.
+    </p>
+    <h3>How Complete is the Bioregistry?</h3>
+    <p>
+        While many of the resources reported above are finite, Wikidata is a bit more difficult. Because it is a
+        general-purpose ontology (for lack of a better word), it contains many properties that are irrelevant
+        for the Bioregistry. Further, its properties that are relevant are labeled in a variety of ways. The GAS
+        service might provide a solution that enables graph traversal over the various hierarchies of properties
+        (see <a href="https://w.wiki/qMG">this</a>).
+    </p>
+    <p>
+        Biological databases, ontologies, and resource will continue to be generated as we learn about new and
+        exciting phenomena, so the medium-term plan to grow the Bioregistry is to continue to cover resources
+        that are not covered by the other resources it references. New external registries can be suggested on
+        the Bioregistry GitHub <a href="https://github.com/biopragmatics/bioregistry/issues/new">issue
+        tracker</a> using the <a href="https://github.com/biopragmatics/bioregistry/labels/External%20Registry">External
+        Registry</a> label. Further, there are <a
+            href="https://github.com/biopragmatics/bioregistry#-contributing">contribution guidelines</a> on the
+        GitHub site to help guide potential contributors towards small but meaningful first contributions. It is
+        expected that all contributors will be listed as co-authors in the eventual manuscript describing this
+        resource.
+    </p>
+    <h3>Why does the Bioregistry not completely cover some resources?</h3>
+    <p>
+        While the Bioregistry has been completely aligned with the OBO Foundry, the OLS,
+        MIRIAM, Wikidata, and Name-to-Thing, the coverage summaries show that it does not
+        completely cover other resources. This is due to the lack of or low
+        quality metadata associated with records in other resources. In many cases, there
+        is not enough information to determine what the resource is, the resource has moved
+        to a non-obvious new location, the resource has been superseded by another resource (e.g.,
+        TrEMBL is now a part of UniProt), or the resource has been decommissioned. In the case of the
+        BioPortal, records are not automatically added to the Bioregistry because of the general
+        poor quality of its ontologies that can not be automatically mapped to Bioregistry through
+        other means.
+    </p>
+    <h2>Overlap between External Registries</h2>
+    <p>
+        After normalization and integration in the Bioregistry, it's possible to investigate the overlap between
+        pairs of other registries. It can be seen that the MIRIAM and Name-to-Thing (N2T) registries are
+        effectively the same because N2T imports from MIRIAM. It can also be seen that OLS and OBO Foundry have
+        a very high overlap, where the OLS includes several ontologies that are not included in OBO Foundry.
+        Notably, this discrepancy contains the highly regarded Experimental Factor Ontology (EFO).
+    <details>
+        <summary>Pairwise Overlap Comparisons</summary>
+        <img class="img-fluid"
+             src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/external_overlap.svg"
+             alt="External Registry Overlaps"/>
+    </details>
+    </p>
+    <h3>Highly Conserved Resources</h3>
+    <p>
+        The following chart shows how often entries in the Bioregistry have few or many references to external
+        registries. A few resources appear in all external registries, such as the NCBI Taxonomy database.
+        However, the notable lack of inclusion of controlled vocabularies that aren't <i>technically</i>
+        ontologies into the OBO Foundry and OLS severely lacks their ability to cover some of the most used
+        resources like the HGNC. Entries with no references are uniquely curated in the Bioregistry.
+
+        <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/xrefs.svg"
+             alt="Reference Counts" class="img-fluid"/>
+    </p>
+    <h2>Licensing</h2>
+    <p>
+        Licenses are only directly available from OBO Foundry and the OLS. Wikidata contains some licensing
+        information, but more would need to be written to handle this.
+
+        <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/license_coverage.svg"
+             alt="License Coverage" class="img-fluid"/>
+    </p>
+    <p>
+        However, even internally, neither the OBO Foundry nor OLS use a consistent nomenclature for licenses, so
+        they were remapped using <a
+            href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/compare.py#L19">this
+        ruleset</a>. Further, some licenses that were inappropriate for data (e.g., Apache 2.0 License, GNU GPL
+        3.0 License, BSD License) appeared infrequently and were collapsed into "Other". Other uncommon and
+        infrequent licenses were likewise collapsed into "Other". After, there were still several conflicts
+        between the reported license in OBO Foundry and OLS, in which case both were added to the tally. In the
+        majority of the conflicts, OBO Foundry reported CC-BY and OLS reported CC 0.
+        <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/licenses.svg"
+             alt="License Types" class="img-fluid"/>
+    </p>
+    <h2>Other Attributes</h2>
+    <p>
+        <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/has_attribute.svg"
+             alt="Attributes Coverage" class="img-fluid"/>
+    </p>
+    <h3>Versioning</h3>
+    <p>
+        The OLS is the only registry that actually consumes the data it references, and is therefore the only
+        registry that reports version information. The OBO Foundry also references versioned data, but does not
+        consume it and therefore can not report version information. Wikidata also contains version information
+        for some databases, but is not currently viable for generally tracking version information. The other
+        registries (e.g., MIRIAM, N2T) do no report version information as their resolution services are
+        independent of the data versions. Alternatively, the <a
+            href="https://github.com/cthoyt/bioversions">Bioversions</a> project sets out to be a
+        registry-independent solution for identifying current versions of different databases, ontologies, and
+        resources.
+    </p>
+    <h3>Pattern</h3>
+    <p>
+        MIRIAM and Wikidata are only registries that report patterns, though OBO Foundry has a very consistent
+        pattern of most OBO ontologies using the <code>^&lt;prefix&gt;:\d{7}$</code> pattern. However, this
+        isn't a rule, so it can't be assumed without inspection of some terms from the ontology itself. The
+        Bioregistry also has a place to curate patterns for all the entries that do not have a reference in
+        MIRIAM.
+    </p>
+    <h3>Wikidata Database</h3>
+    <p>
+        It's typically difficult to propose new Wikidata properties to go along with databases, but anyone can
+        add entities corresponding to databases. This is one part of the Bioregistry that will require lots of
+        manual effort. Eventually, we can develop a minimum information standard for entries in the Bioregistry
+        that would be convincing enough for the Wikidata property gatekeepers and the MIRIAM registry.
+    </p>
+    <h2>Unexpected usage of CURIEs </h2>
+    <h3>Example Unresolvable CURIEs</h3>
+    <p>Some CURIEs can not be resolved in the Bioregistry. There are three typical reasons:</p>
+    <ol>
+        <li>
+            The prefix is not registered with the Bioregistry.<br/>Example:
+            <a href="{{ url_for('ui.resolve', prefix='nope', identifier='1234') }}"><code>nope:1234</code></a>.
+        </li>
+        <li>
+            The prefix has a validation pattern and the identifier does not match it.<br/>Example:
+            <a href="{{ url_for('ui.resolve', prefix='chebi', identifier='ABCD') }}"><code>chebi:ABCD</code></a>.
+        </li>
+        <li>
+            There are no providers available for the prefix.<br/>Example:
+            <a href="{{ url_for('ui.resolve', prefix='gmelin', identifier='1466') }}"><code>gmelin:1466</code></a>.
+        </li>
+    </ol>
+    <h3>Resources that Aren't Authorities</h3>
+    <p>
+        While entries in the Bioregistry are <i>supposed</i> to represent nomenclature authorities, this is not always
+        true because it imports from external sources that don't enforce this constraint.
+        For example, the Comparative Toxicogenomics Database uses
+        <a href="{{ url_for('ui.resource', prefix='ncbigene') }}">NCBI Gene</a> for naming genes and
+        <a href="{{ url_for('ui.resource', prefix='mesh') }}">MeSH</a> for naming diseases and chemicals.
+        Identifiers.org has minted 3 prefixes
+        (<a href="{{ url_for('ui.resource', prefix='ctd.gene') }}"><code>ctd.gene</code></a>,
+        <a href="{{ url_for('ui.resource', prefix='ctd.disease') }}"><code>ctd.disease</code></a>, and
+        <a href="{{ url_for('ui.resource', prefix='ctd.chemical') }}"><code>ctd.chemical</code></a>) that
+        mostly reflect the entries of the authorities for which they are providers. Another example is
+        <a href="{{ url_for('ui.resource', prefix='validatordb') }}">ValidatorDB</a>, which provides information
+        based on <a href="{{ url_for('ui.resource', prefix='pdb') }}">Protein Databank</a> records.
+    </p>
+    <p>
+        An even more exotic example are the <a href="{{ url_for('ui.resource', prefix='goa') }}">
+        Gene Ontology Annotations</a> provided by the EBI because it provides for several types of identifiers
+        including those from <a href="{{ url_for('ui.resource', prefix='uniprot') }}">UniProt</a>,
+        <a href="{{ url_for('ui.resource', prefix='rnacentral') }}">RNA Central</a>, and the
+        <a href="{{ url_for('ui.resource', prefix='complexportal') }}">ComplexPortal</a>. This is more similar to
+        providers like the OLS and OntoBee since it can accept prefix/identifier pairs instead of just identifiers
+        for the single prefix that it serves.
+    </p>
+    <p>
+        Each entry in the Bioregistry now has a slot <code>"provides"</code> that can codify these connections and we
+        may begin annotating all entries with a "type" in the future such that resources and providers, which have many
+        common aspects to their metadata schemata, can be more easily listed and curated in the same place.
+        Further discussion about this is taking place on <a href="https://github.com/biopragmatics/bioregistry/issues/32">
+        <i class="fab fa-github"></i> biopragmatics/bioregistry#32</a>.
+        The first commits to the repo related to that are available
+        <a href="https://github.com/biopragmatics/bioregistry/commit/1462f1a781cbc7078d7634de2073bad299b13205">here</a>.
+    </p>
+    <h3>Misguided Attribution</h3>
+    <p>
+        In the OBO file format, terms have a description field which allows for the specification
+        of a list of CURIEs to consider as provenance. Often, this will point to PubMed identifiers
+        or Wikipedia pages. However, many resources create their own prefix with which they identify
+        the original curator. For example, in the Gene Ontology, there is a prefix <code>GOC</code> that often
+        appears in CURIEs with the initials of the curator such as in <code>GOC:vw</code>. Unfortunately, this
+        information is hard to deconvolve because <code>GOC</code> has not been registered with Identifiers.org
+        or another resource, the identifiers are not MIRIAM compliant, and it's not obvious to whom
+        <code>vw</code> refers since there is no (obvious) resource to resolve these.
+    </p>
+    <p>
+        In the example of the Human Phenotype Ontology, whose prefix is <code>hp</code>, the prefix
+        <code>HPO</code> is used to denote curators in the provenance for descriptions. Luckily, they use
+        slightly more informative tags such as <code>HPO:skoehler</code>, which can be easily attributed to
+        Sebastian Köhler, one of its main contributors. However, it would be much more informative to use a
+        CURIE for the ORCID identifier for this author, <code>orcid:0000-0002-5316-1399</code>, which
+        immediately addresses all concerns shared across <code>GOC</code> and <code>HPO</code>.
+    </p>
+{% endblock %}

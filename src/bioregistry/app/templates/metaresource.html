@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% import "macros.html" as utils %}
+
+{% block title %}Bioregistry - {{ name }}{% endblock %}
+
+{% block container %}
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h5 style="margin: 0"><a href="{{ url_for("ui.metaresources") }}">Metaregistry</a> <i
+                            class="fas fa-angle-right"></i> {{ name }}</h5>
+                </div>
+                <div class="col-4 text-right">
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-dark dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            Download
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {% for label, key in formats %}
+                                <a class="dropdown-item"
+                                   href="{{ url_for("api.metaresource", metaprefix=metaprefix, format=key) }}">
+                                    {{ label }} <i class="fas fa-download"></i>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>{{ description }}</p>
+            <dl>
+                <dt>Metaprefix</dt>
+                <dd><code>{{ metaprefix }}</code></dd>
+                <dt>Links</dt>
+                <dd>
+                    {% if homepage %}
+                        <a class="badge badge-pill badge-light" href="{{ homepage }}">
+                            Homepage <i class="fas fa-home"></i>
+                        </a>
+                    {% else %}
+                        <span class="badge badge-pill badge-warning">Missing Homepage</span>
+                    {% endif %}
+                    {% if download %}
+                        <a class="badge badge-pill badge-light" href="{{ download }}">
+                            Download <i class="fas fa-download"></i>
+                        </a>
+                    {% else %}
+                        <span class="badge badge-pill badge-light text-muted">No Download Available</span>
+                    {% endif %}
+                </dd>
+                <dt>Capabilities</dt>
+                <dd>
+                    <span class="badge badge-pill badge-success">
+                        Registry
+                    </span>
+                    <span class="badge badge-pill badge-{% if entry.provider_url %}success{% else %}light text-muted{% endif %}">
+                        Provider
+                    </span>
+                    <span class="badge badge-pill badge-{% if entry.resolver_url %}success{% else %}light text-muted{% endif %}">
+                        Resolver
+                    </span>
+                </dd>
+                <dt>Contact</dt>
+                <dd>
+                    {% if entry.contact %}
+                        <a href="mailto:{{ entry.contact }}">{{ entry.contact }}</a>
+                    {% else %}
+                        <span class="badge badge-pill badge-warning">Missing Contact</span>
+                    {% endif %}
+                </dd>
+                <dt>Example Metaidentifier <span class="badge badge-pill badge-success">Registry</span></dt>
+                <dd>
+                    <code>{{ entry.example }}</code>
+                </dd>
+                {% if example_prefix_url %}
+                    <dt>Example Provider <span class="badge badge-pill badge-success">Provider</span></dt>
+                    <dd>
+                        <a href="{{ example_prefix_url }}"><code>{{ example_prefix_url }}</code></a>
+                    </dd>
+                {% endif %}
+                {% if example_curie_url %}
+                    <dt>Example CURIE Resolution <span class="badge badge-pill badge-success">Resolver</span></dt>
+                    <dd>
+                        {% if example_curie_url %}
+                            <a href="{{ example_curie_url }}"><code>{{ example_curie_url }}</code></a>
+                        {% else %}
+                            <span class="badge badge-pill badge-warning">Unable to generate URL
+                                for <code>{{ example_prefix }}:{{ example_identifier }}</code></span>
+                        {% endif %}
+                    </dd>
+                {% endif %}
+            </dl>
+        </div>
+    </div>
+{% endblock %}

@@ -6,6 +6,7 @@ import random
 import urllib.error
 from typing import Optional
 
+import click
 import pyobo
 import pyobo.getters
 
@@ -18,16 +19,16 @@ def main(registry):
     for prefix, entry in registry.items():
         # if 'pattern' not in entry:  # TODO remove this later
         #     continue
-        if 'example' in entry:
+        if "example" in entry:
             continue
         example = _get_example(prefix)
         if example is not None:
-            entry['example'] = example
+            entry["example"] = example
     return registry
 
 
 def _get_example(prefix: str) -> Optional[str]:
-    if prefix in {'gaz', 'bila', 'pubchem.compound'}:
+    if prefix in {"gaz", "bila", "pubchem.compound"}:
         return None
     if prefix in pyobo.getters.SKIP:
         return None
@@ -41,12 +42,12 @@ def _get_example(prefix: str) -> Optional[str]:
     try:
         rv = x[random.randint(0, len(x))]  # noqa:S311
     except IndexError:
-        print('failed', prefix, x)
+        click.echo(f"failed {prefix} {x}")
         return None
     else:
-        print('adding', prefix, rv)
+        click.echo(f"adding {prefix} {rv}")
         return rv
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

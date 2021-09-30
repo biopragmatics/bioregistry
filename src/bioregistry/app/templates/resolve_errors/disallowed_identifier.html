@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Bioregistry Resolution Error{% endblock %}
+
+{% block container %}
+    <div class="card card-body">
+        <h5 class="card-title">HTTP 404 - Disallowed Identifier</h5>
+        <p>
+            The identifier <code>{{ identifier }}</code>for
+            <a href="{{ url_for('ui.resource', prefix=prefix) }}"><code>{{ prefix }}</code></a>
+            contains illegal characters and a proper redirect could not be constructed.
+        </p>
+    </div>
+{% endblock %}

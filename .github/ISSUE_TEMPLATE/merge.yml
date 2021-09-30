@@ -1,0 +1,42 @@
+name: Merge two resources
+description: When two prefixes are redundant and shoud be merged
+title: Merge resource [X] into [Y]
+labels: [ Merge, Update ]
+assignees:
+  - cthoyt
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this prefix merge form!
+  - type: input
+    id: redundant
+    attributes:
+      label: Redundant Prefix
+      description: What is the Bioregistry prefix of the resource whose prefix is redundant?
+      placeholder: ex. chebi
+    validations:
+      required: true
+  - type: input
+    id: prefix
+    attributes:
+      label: Target Prefix
+      description:  What is the Bioregistry prefix of the resource that the redundant prefix should get merged into?
+      placeholder: ex. chebi
+    validations:
+      required: true
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Explanation
+      description: Please explain why these resources should be merged
+    validations:
+      required: true
+  - type: input
+    id: orcid
+    attributes:
+      label: Contributor ORCID
+      description: Please provide your ORCiD identifier so we can attribute this contribution to you.
+      placeholder: ex. 0000-0003-4423-4370
+    validations:
+      required: true

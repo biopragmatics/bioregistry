@@ -1,0 +1,4106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- AppResources meta begin -->
+        <meta name="paf-app-resources" content="" />
+        <!-- AppResources meta end -->
+
+        <!-- TemplateResources meta begin -->
+        <meta name="paf_template" content="StdNCol" />
+
+        <!-- TemplateResources meta end -->
+
+        <!-- Page meta begin -->
+        
+        <!-- Page meta end -->
+
+        <!-- Logger begin -->
+        <meta xmlns:ncbi-portal="http://ncbi.gov/portal/XSLT/namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="ncbi_app" content="genbank" /><meta xmlns:ncbi-portal="http://ncbi.gov/portal/XSLT/namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="ncbi_pdid" content="custom-page" />
+        <!-- Logger end -->
+
+        <title>db_xrefs</title>
+
+        <!-- PageFixtures headcontent begin -->
+        
+<meta name="cms-local-nav-url" content="https://cms.ncbi.nlm.nih.gov//genbank/_nav" />
+
+        <!-- PageFixtures headcontent end -->
+
+        <!-- AppResources external_resources begin -->
+        <script type="text/javascript" src="/core/jig/1.14.8/js/jig.min.js"></script>
+
+        <!-- AppResources external_resources end -->
+
+        <!-- Page headcontent begin -->
+        <meta name="subsite" content="genbank" />
+<meta name="path" content="genbank/collab/db_xref" />
+<meta name="modified" content="2017-11-13T23:20:57Z" /><meta xmlns:ncbi-portal="http://ncbi.gov/portal/XSLT/namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="cms-edit-aux-url" content="http://cms.ncbi.nlm.nih.gov/node//edit" />
+        <!-- Page headcontent end -->
+        <!-- PageFixtures resources begin -->
+        <link xmlns="http://www.w3.org/1999/xhtml" type="text/css" rel="stylesheet" href="//static.pubmed.gov/portal/portal3rc.fcgi/4187342/css/3881636/3579733.css" xml:base="http://127.0.0.1/sites/static/header_footer" />
+
+        <!-- PageFixtures resources end -->
+    <link rel="shortcut icon" href="//www.ncbi.nlm.nih.gov/favicon.ico" /><meta name="ncbi_phid" content="CE89632514120DF100000000088F01B8.m_5" />
+<meta name='referrer' content='origin-when-cross-origin'/><link type="text/css" rel="stylesheet" href="//static.pubmed.gov/portal/portal3rc.fcgi/4151484/css/4121862/3974050/3917732/251717/4108189/14534/45193/3534283/4128070/3407145/4005757/4062871.css" /><link type="text/css" rel="stylesheet" href="//static.pubmed.gov/portal/portal3rc.fcgi/4151484/css/3529741/3529739.css" media="print" /></head>
+    <body class=" col2  custom-page">
+        <div class="grid">
+            <div class="col twelve_col nomargin shadow">
+                <!-- System messages like service outage or JS required; this is handled by the TemplateResources portlet -->
+                <div class="sysmessages">
+                    <noscript>
+	<p class="nojs">
+	<strong>Warning:</strong>
+	The NCBI web site requires JavaScript to function. 
+	<a href="/guide/browsers/#enablejs" title="Learn how to enable JavaScript" target="_blank">more...</a>
+	</p>
+	</noscript>
+                </div>
+                <!--/.sysmessage-->
+                <div class="wrap">
+                    <div class="page">
+                        <div xmlns:xi="http://www.w3.org/2001/XInclude">
+    <div xmlns="http://www.w3.org/1999/xhtml" class="universal_header" id="universal_header" xml:base="http://127.0.0.1/sites/static/header_footer"><ul class="inline_list jig-ncbimenu ui-ncbimenu resources_list" id="navcontent"><li class="ui-ncbimenu-item-leaf ui-ncbimenu-item-first ui-helper-reset ui-ncbimenu-item-no-hlt"><a class="ui-ncbimenu-link-first" href="/" role="banner" title="NCBI Home" id="ncbihome" accesskey="1"><span class="offscreen_noflow">NCBI</span><img src="//static.pubmed.gov/portal/portal3rc.fcgi/4187342/img/28977" class="ncbi_logo" title="NCBI" alt="NCBI Logo" /></a></li><li class="offscreen_noflow ui-ncbimenu-item-skip access"><a href="#maincontent" title="Skip to the content" tabindex="0" accesskey="3">Skip to main
+                        content</a></li><li class="offscreen_noflow ui-ncbimenu-item-skip access"><a href="#navcontent" title="Skip to the navigation" tabindex="0" accesskey="4">Skip to
+                        navigation</a></li><li id="resource-menu" class="topmenu ui-helper-reset ui-ncbimenu-item-first ui-helper-reset"><a class="ui-ncbimenu-first-link-has-submenu ui-ncbimenu-link-first topanchor expandDown" href="/static/header_footer_ajax/submenu/#resources">Resources</a><ul id="resources-submenu"><li><a href="/guide/all/">All Resources</a></li><li><a href="#chemicals-bioassays">Chemicals &amp; Bioassays</a><ul class="actual-resources-submenu chemicals-bioassays"><li><a href="/biosystems/" title=" Database that groups biomedical literature, small molecules, and sequence data in terms of biological relationships. ">BioSystems</a></li><li><a href="/pcassay" title=" Contributed bioactivity data for PubChem Substances ">PubChem BioAssay</a></li><li><a href="/pccompound" title=" Unique, standardized chemical structures ">PubChem Compound</a></li><li><a href="https://pubchem.ncbi.nlm.nih.gov/search/search.cgi" title=" Searches PubChem Compound by chemical structure ">PubChem Structure Search</a></li><li><a href="/pcsubstance" title=" Provides information on the biological activities of small molecules. ">PubChem Substance</a></li><li><a href="/guide/chemicals-bioassays/">All Chemicals &amp; Bioassays Resources...</a></li></ul></li><li><a href="#dna-rna">DNA &amp; RNA</a><ul class="actual-resources-submenu dna-rna"><li><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi" title=" Tool for finding local regions of sequence similarity ">BLAST (Basic Local Alignment Search Tool)</a></li><li><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=Download" title=" BLAST programs for a local computer ">BLAST (Stand-alone)</a></li><li><a href="/books/NBK25501/ " title=" URL application programming interface for searching, linking and downloading data within NCBI's Entrez system ">E-Utilities</a></li><li><a href="/genbank/" title=" DNA and RNA sequences submitted to NCBI ">GenBank</a></li><li><a href="/WebSub/?tool=genbank" title=" Web tool for simple submissions of nucleotide sequences ">GenBank: BankIt</a></li><li><a href="/projects/Sequin/" title=" Software tool for complex submissions of nucleotide sequences ">GenBank: Sequin</a></li><li><a href="/genbank/tbl2asn2/" title=" Command-line program for submitting sequence data ">GenBank: tbl2asn</a></li><li><a href="/tools/gbench/" title=" Stand-alone application for analyzing sequence data ">Genome Workbench</a></li><li><a href="/genomes/FLU/" title=" Data from the NIAID Influenza Genome Sequencing Project ">Influenza Virus</a></li><li><a href="/nuccore" title=" Nucleotide sequence data in GenBank and RefSeq ">Nucleotide Database</a></li><li><a href="/popset" title=" Sets of nucleotide sequences representing a population ">PopSet</a></li><li><a href="/tools/primer-blast/" title=" Designs PCR primers and analyzes them for target specificity using BLAST. ">Primer-BLAST</a></li><li><a href="/sutils/static/prosplign/prosplign.html" title=" Tool for aligning proteins to genomic DNA ">ProSplign</a></li><li><a href="/refseq/" title=" Curated nucleotide and protein sequences produced by NCBI ">Reference Sequence (RefSeq)</a></li><li><a href="/refseq/rsg/" title=" RefSeqGene reference standards for genomic sequences of well-characterized genes ">RefSeqGene</a></li><li><a href="/Traces/sra/sra.cgi?" title=" Database of sequences reads from next generation sequencing technologies ">Sequence Read Archive (SRA)</a></li><li><a href="/sutils/splign/" title=" Tool for aligning transcripts to genomic DNA ">Splign</a></li><li><a href="/Traces/trace.cgi" title=" DNA chromatograms, base calls, and quality estimates for single-pass reads. ">Trace Archive</a></li><li><a href="/guide/dna-rna/">All DNA &amp; RNA Resources...</a></li></ul></li><li><a href="#data-software">Data &amp; Software</a><ul class="actual-resources-submenu data-software"><li><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi" title=" Tool for finding local regions of sequence similarity ">BLAST (Basic Local Alignment Search Tool)</a></li><li><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=Download" title=" BLAST programs for a local computer ">BLAST (Stand-alone)</a></li><li><a href="/Structure/CN3D/cn3d.shtml" title=" Program for viewing 3D structures and alignments ">Cn3D</a></li><li><a href="/Structure/cdd/wrpsb.cgi" title=" Locates conserved domains within a protein sequence ">Conserved Domain Search Service (CD Search)</a></li><li><a href="/books/NBK25501/ " title=" URL application programming interface for searching, linking and downloading data within NCBI's Entrez system ">E-Utilities</a></li><li><a href="/WebSub/?tool=genbank" title=" Web tool for simple submissions of nucleotide sequences ">GenBank: BankIt</a></li><li><a href="/projects/Sequin/" title=" Software tool for complex submissions of nucleotide sequences ">GenBank: Sequin</a></li><li><a href="/genbank/tbl2asn2/" title=" Command-line program for submitting sequence data ">GenBank: tbl2asn</a></li><li><a href="/sutils/protmap.cgi" title=" Maps proteins from a COG/VOG back to its genome ">Genome ProtMap</a></li><li><a href="/tools/gbench/" title=" Stand-alone application for analyzing sequence data ">Genome Workbench</a></li><li><a href="/tools/primer-blast/" title=" Designs PCR primers and analyzes them for target specificity using BLAST. ">Primer-BLAST</a></li><li><a href="/sutils/static/prosplign/prosplign.html" title=" Tool for aligning proteins to genomic DNA ">ProSplign</a></li><li><a href="https://pubchem.ncbi.nlm.nih.gov/search/search.cgi" title=" Searches PubChem Compound by chemical structure ">PubChem Structure Search</a></li><li><a href="/projects/SNP/" title=" The SNP database tools page provides links to the general submission guidelines and to the submission handle request. ">SNP Submission Tool</a></li><li><a href="/sutils/splign/" title=" Tool for aligning transcripts to genomic DNA ">Splign</a></li><li><a href="/Structure/VAST/vast.html" title=" Tool that generates 3D structural alignments ">Vector Alignment Search Tool (VAST)</a></li><li><a href="/guide/data-software/">All Data &amp; Software Resources...</a></li></ul></li><li><a href="#domains-structures">Domains &amp; Structures</a><ul class="actual-resources-submenu domains-structures"><li><a href="/biosystems/" title=" Database that groups biomedical literature, small molecules, and sequence data in terms of biological relationships. ">BioSystems</a></li><li><a href="/Structure/CN3D/cn3d.shtml" title=" Program for viewing 3D structures and alignments ">Cn3D</a></li><li><a href="/cdd" title=" Database of conserved protein domains represented by multiple sequence alignments ">Conserved Domain Database (CDD)</a></li><li><a href="/Structure/cdd/wrpsb.cgi" title=" Locates conserved domains within a protein sequence ">Conserved Domain Search Service (CD Search)</a></li><li><a href="/structure/" title=" Database of 3D macromolecular structures derived from PDB ">Structure (Molecular Modeling Database)</a></li><li><a href="/Structure/VAST/vast.html" title=" Tool that generates 3D structural alignments ">Vector Alignment Search Tool (VAST)</a></li><li><a href="/guide/domains-structures/">All Domains &amp; Structures Resources...</a></li></ul></li><li><a href="#genes-expression">Genes &amp; Expression</a><ul class="actual-resources-submenu genes-expression"><li><a href="/biosystems/" title=" Database that groups biomedical literature, small molecules, and sequence data in terms of biological relationships. ">BioSystems</a></li><li><a href="/gap" title=" Genotype/Phenotype association studies ">Database of Genotypes and Phenotypes (dbGaP)</a></li><li><a href="/books/NBK25501/ " title=" URL application programming interface for searching, linking and downloading data within NCBI's Entrez system ">E-Utilities</a></li><li><a href="/gene" title=" Database of gene loci and associated transcripts and proteins ">Gene</a></li><li><a href="/geo/" title=" Gene Expression Omnibus (GEO) Database ">Gene Expression Omnibus (GEO) Database </a></li><li><a href="/gds" title=" Curated collections of gene expression data sets ">Gene Expression Omnibus (GEO) Datasets</a></li><li><a href="/geoprofiles/" title=" Database of gene expression Profiles for individual sequences ">Gene Expression Omnibus (GEO) Profiles</a></li><li><a href="/tools/gbench/" title=" Stand-alone application for analyzing sequence data ">Genome Workbench</a></li><li><a href="/homologene" title=" Sets of homologous eukaryotic genes ">HomoloGene</a></li><li><a href="/omim" title=" Database of human genes and genetic disorders ">Online Mendelian Inheritance in Man (OMIM)</a></li><li><a href="/refseq/rsg/" title=" RefSeqGene reference standards for genomic sequences of well-characterized genes ">RefSeqGene</a></li><li><a href="/guide/genes-expression/">All Genes &amp; Expression Resources...</a></li></ul></li><li><a href="#genetics-medicine">Genetics &amp; Medicine</a><ul class="actual-resources-submenu genetics-medicine"><li><a href="/books" title=" Online biomedical books ">Bookshelf</a></li><li><a href="/gap" title=" Genotype/Phenotype association studies ">Database of Genotypes and Phenotypes (dbGaP)</a></li><li><a href="/gtr/" title=" Detailed information about genetic tests and labs ">Genetic Testing Registry</a></li><li><a href="/genomes/FLU/" title=" Data from the NIAID Influenza Genome Sequencing Project ">Influenza Virus</a></li><li><a href="/omim" title=" Database of human genes and genetic disorders ">Online Mendelian Inheritance in Man (OMIM)</a></li><li><a href="/pubmed" title=" Biomedical literature abstracts ">PubMed</a></li><li><a href="/pmc/" title=" Free, full-text articles ">PubMed Central (PMC)</a></li><li><a href="/pubmed/clinical " title=" Directory of PubMed queries about clinical topics ">PubMed Clinical Queries</a></li><li><a href="/refseq/rsg/" title=" RefSeqGene reference standards for genomic sequences of well-characterized genes ">RefSeqGene</a></li><li><a href="/guide/genetics-medicine/">All Genetics &amp; Medicine Resources...</a></li></ul></li><li><a href="#genomes-maps">Genomes &amp; Maps</a><ul class="actual-resources-submenu genomes-maps"><li><a href="/dbvar" title=" A database of genomic structural variation ">Database of Genomic Structural Variation (dbVar)</a></li><li><a href="/genbank/tbl2asn2/" title=" Command-line program for submitting sequence data ">GenBank: tbl2asn</a></li><li><a href="/sites/genome" title=" Curated genomic DNA sequences ">Genome</a></li><li><a href="/bioproject/" title=" Central status pages for genome sequencing projects ">Genome Project</a></li><li><a href="/genome/gdv/" title="GDV is a genome browser supporting the exploration and analysis of eukaryotic RefSeq Genome assemblies. ">Genome Data Viewer (GDV)</a></li><li><a href="/sutils/protmap.cgi" title=" Maps proteins from a COG/VOG back to its genome ">Genome ProtMap</a></li><li><a href="/tools/gbench/" title=" Stand-alone application for analyzing sequence data ">Genome Workbench</a></li><li><a href="/genomes/FLU/" title=" Data from the NIAID Influenza Genome Sequencing Project ">Influenza Virus</a></li><li><a href="/nuccore" title=" Nucleotide sequence data in GenBank and RefSeq ">Nucleotide Database</a></li><li><a href="/popset" title=" Sets of nucleotide sequences representing a population ">PopSet</a></li><li><a href="/sutils/static/prosplign/prosplign.html" title=" Tool for aligning proteins to genomic DNA ">ProSplign</a></li><li><a href="/Traces/sra/sra.cgi?" title=" Database of sequences reads from next generation sequencing technologies ">Sequence Read Archive (SRA)</a></li><li><a href="/sutils/splign/" title=" Tool for aligning transcripts to genomic DNA ">Splign</a></li><li><a href="/Traces/trace.cgi" title=" DNA chromatograms, base calls, and quality estimates for single-pass reads. ">Trace Archive</a></li><li><a href="/guide/genomes-maps/">All Genomes &amp; Maps Resources...</a></li></ul></li><li><a href="#homology">Homology</a><ul class="actual-resources-submenu homology"><li><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi" title=" Tool for finding local regions of sequence similarity ">BLAST (Basic Local Alignment Search Tool)</a></li><li><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=Download" title=" BLAST programs for a local computer ">BLAST (Stand-alone)</a></li><li><a href="/sutils/blink.cgi?mode=query" title=" Pre-computed reports showing proteins with similar sequences ">BLAST Link (BLink)</a></li><li><a href="/cdd" title=" Database of conserved protein domains represented by multiple sequence alignments ">Conserved Domain Database (CDD)</a></li><li><a href="/Structure/cdd/wrpsb.cgi" title=" Locates conserved domains within a protein sequence ">Conserved Domain Search Service (CD Search)</a></li><li><a href="/sutils/protmap.cgi" title=" Maps proteins from a COG/VOG back to its genome ">Genome ProtMap</a></li><li><a href="/homologene" title=" Sets of homologous eukaryotic genes ">HomoloGene</a></li><li><a href="/proteinclusters" title=" Clusters of related proteins from prokaryotes and organelles ">Protein Clusters</a></li><li><a href="/guide/homology/">All Homology Resources...</a></li></ul></li><li><a href="#literature">Literature</a><ul class="actual-resources-submenu literature"><li><a href="/books" title=" Online biomedical books ">Bookshelf</a></li><li><a href="/books/NBK25501/ " title=" URL application programming interface for searching, linking and downloading data within NCBI's Entrez system ">E-Utilities</a></li><li><a href="/nlmcatalog/journals" title=" Information on journals cited by NCBI records ">Journals in NCBI Databases</a></li><li><a href="/mesh" title=" Controlled vocabulary for MEDLINE ">MeSH Database</a></li><li><a href="/books/NBK143764/" title=" Introductory articles about NCBI resources ">NCBI Handbook</a></li><li><a href="/books/NBK3831/" title=" Online, searchable help documentation ">NCBI Help Manual</a></li><li><a href="https://ncbiinsights.ncbi.nlm.nih.gov" title=" NCBI's monthly newsletter ">NCBI News &amp; Blog</a></li><li><a href="/pubmed" title=" Biomedical literature abstracts ">PubMed</a></li><li><a href="/pmc/" title=" Free, full-text articles ">PubMed Central (PMC)</a></li><li><a href="/pubmed/clinical " title=" Directory of PubMed queries about clinical topics ">PubMed Clinical Queries</a></li><li><a href="/guide/literature/">All Literature Resources...</a></li></ul></li><li><a href="#proteins">Proteins</a><ul class="actual-resources-submenu proteins"><li><a href="/biosystems/" title=" Database that groups biomedical literature, small molecules, and sequence data in terms of biological relationships. ">BioSystems</a></li><li><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi" title=" Tool for finding local regions of sequence similarity ">BLAST (Basic Local Alignment Search Tool)</a></li><li><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=Download" title=" BLAST programs for a local computer ">BLAST (Stand-alone)</a></li><li><a href="/sutils/blink.cgi?mode=query" title=" Pre-computed reports showing proteins with similar sequences ">BLAST Link (BLink)</a></li><li><a href="/cdd" title=" Database of conserved protein domains represented by multiple sequence alignments ">Conserved Domain Database (CDD)</a></li><li><a href="/Structure/cdd/wrpsb.cgi" title=" Locates conserved domains within a protein sequence ">Conserved Domain Search Service (CD Search)</a></li><li><a href="/books/NBK25501/ " title=" URL application programming interface for searching, linking and downloading data within NCBI's Entrez system ">E-Utilities</a></li><li><a href="/sutils/static/prosplign/prosplign.html" title=" Tool for aligning proteins to genomic DNA ">ProSplign</a></li><li><a href="/proteinclusters" title=" Clusters of related proteins from prokaryotes and organelles ">Protein Clusters</a></li><li><a href="/protein" title=" Protein sequence data ">Protein Database</a></li><li><a href="/refseq/" title=" Curated nucleotide and protein sequences produced by NCBI ">Reference Sequence (RefSeq)</a></li><li><a href="/guide/proteins/">All Proteins Resources...</a></li></ul></li><li><a href="#sequence-analysis">Sequence Analysis</a><ul class="actual-resources-submenu sequence-analysis"><li><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi" title=" Tool for finding local regions of sequence similarity ">BLAST (Basic Local Alignment Search Tool)</a></li><li><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=Download" title=" BLAST programs for a local computer ">BLAST (Stand-alone)</a></li><li><a href="/sutils/blink.cgi?mode=query" title=" Pre-computed reports showing proteins with similar sequences ">BLAST Link (BLink)</a></li><li><a href="/Structure/cdd/wrpsb.cgi" title=" Locates conserved domains within a protein sequence ">Conserved Domain Search Service (CD Search)</a></li><li><a href="/sutils/protmap.cgi" title=" Maps proteins from a COG/VOG back to its genome ">Genome ProtMap</a></li><li><a href="/tools/gbench/" title=" Stand-alone application for analyzing sequence data ">Genome Workbench</a></li><li><a href="/genomes/FLU/" title=" Data from the NIAID Influenza Genome Sequencing Project ">Influenza Virus</a></li><li><a href="/tools/primer-blast/" title=" Designs PCR primers and analyzes them for target specificity using BLAST. ">Primer-BLAST</a></li><li><a href="/sutils/static/prosplign/prosplign.html" title=" Tool for aligning proteins to genomic DNA ">ProSplign</a></li><li><a href="/sutils/splign/" title=" Tool for aligning transcripts to genomic DNA ">Splign</a></li><li><a href="/guide/sequence-analysis/">All Sequence Analysis Resources...</a></li></ul></li><li><a href="#taxonomy">Taxonomy</a><ul class="actual-resources-submenu taxonomy"><li><a href="/taxonomy" title=" The NCBI taxonomy tree in Entrez ">Taxonomy</a></li><li><a href="/Taxonomy/Browser/wwwtax.cgi?mode=Root" title=" Displays and links Entrez data to each taxonomic node ">Taxonomy Browser</a></li><li><a href="/Taxonomy/CommonTree/wwwcmt.cgi" title=" Creates custom taxonomic trees ">Taxonomy Common Tree</a></li><li><a href="/guide/taxonomy/">All Taxonomy Resources...</a></li></ul></li><li><a href="#training-tutorials">Training &amp; Tutorials</a><ul class="actual-resources-submenu training-tutorials"><li><a href="/education/" title=" Central page providing links to tutorials and training materials ">NCBI Education Page</a></li><li><a href="/books/NBK143764/" title=" Introductory articles about NCBI resources ">NCBI Handbook</a></li><li><a href="/books/NBK3831/" title=" Online, searchable help documentation ">NCBI Help Manual</a></li><li><a href="https://ncbiinsights.ncbi.nlm.nih.gov" title=" NCBI's monthly newsletter ">NCBI News &amp; Blog</a></li><li><a href="/guide/training-tutorials/">All Training &amp; Tutorials Resources...</a></li></ul></li><li><a href="#variation">Variation</a><ul class="actual-resources-submenu variation"><li><a href="/dbvar" title=" A database of genomic structural variation ">Database of Genomic Structural Variation (dbVar)</a></li><li><a href="/gap" title=" Genotype/Phenotype association studies ">Database of Genotypes and Phenotypes (dbGaP)</a></li><li><a href="/snp" title=" Database of nucleotide sequence polymorphisms ">Database of Single Nucleotide Polymorphisms (dbSNP)</a></li><li><a href="/projects/SNP/" title=" The SNP database tools page provides links to the general submission guidelines and to the submission handle request. ">SNP Submission Tool</a></li><li><a href="/guide/variation/">All Variation Resources...</a></li></ul></li></ul></li><li id="all-howtos-menu" class="topmenu ui-helper-reset ui-ncbimenu-item-first"><a class="ui-ncbimenu-first-link-has-submenu ui-ncbimenu-link-first topanchor expandDown" href="/static/header_footer_ajax/submenu/#howto">How To</a><ul id="howto-submenu"><li><a href="/guide/all/#howtos">All How To</a></li><li><a href="/guide/chemicals-bioassays/#howtos">Chemicals &amp; Bioassays</a></li><li><a href="/guide/dna-rna/#howtos">DNA &amp; RNA</a></li><li><a href="/guide/data-software/#howtos">Data &amp; Software</a></li><li><a href="/guide/domains-structures/#howtos">Domains &amp; Structures</a></li><li><a href="/guide/genes-expression/#howtos">Genes &amp; Expression</a></li><li><a href="/guide/genetics-medicine/#howtos">Genetics &amp; Medicine</a></li><li><a href="/guide/genomes-maps/#howtos">Genomes &amp; Maps</a></li><li><a href="/guide/homology/#howtos">Homology</a></li><li><a href="/guide/literature/#howtos">Literature</a></li><li><a href="/guide/proteins/#howtos">Proteins</a></li><li><a href="/guide/sequence-analysis/#howtos">Sequence Analysis</a></li><li><a href="/guide/taxonomy/#howtos">Taxonomy</a></li><li><a href="/guide/training-tutorials/#howtos">Training &amp; Tutorials</a></li><li><a href="/guide/variation/#howtos">Variation</a></li></ul></li><li class="offscreen_noflow ui-ncbimenu-item-skip access"><a href="/guide/browsers/#accesskeys" title="About My NCBI Accesskeys" tabindex="0" accesskey="0">About NCBI Accesskeys</a></li></ul><div class="myncbi"><span id="myncbiusername" style="display:none"><a href="/account/settings/" id="mnu" title="Edit account settings"></a></span><a accesskey="2" href="/myncbi/" id="myncbi" style="display:none">My NCBI</a><a href="/account/" id="sign_in">Sign in to NCBI</a><a href="/account/signout/" id="sign_out" style="display:none">Sign Out</a></div></div>
+</div>    
+                        <!--/.header-->
+                        <div class="header">
+                            <div class="res_logo"><h1 class="res_name"><a href="/genbank/" title="GenBank home">GenBank</a></h1><h2 class="res_tagline">Public nucleic acid sequence repository</h2></div>
+                            <div class="search"><form method="get" action="/nuccore/"><div class="search_form"><label for="database" class="offscreen_noflow">Search database</label><select id="database"><optgroup label="Recent"><option value="nuccore" selected="selected" class="last">Nucleotide</option></optgroup><optgroup label="All"><option value="gquery">All Databases</option><option value="assembly">Assembly</option><option value="biocollections">Biocollections</option><option value="bioproject">BioProject</option><option value="biosample">BioSample</option><option value="biosystems">BioSystems</option><option value="books">Books</option><option value="clinvar">ClinVar</option><option value="cdd">Conserved Domains</option><option value="gap">dbGaP</option><option value="dbvar">dbVar</option><option value="gene">Gene</option><option value="genome">Genome</option><option value="gds">GEO DataSets</option><option value="geoprofiles">GEO Profiles</option><option value="gtr">GTR</option><option value="homologene">HomoloGene</option><option value="ipg">Identical Protein Groups</option><option value="medgen">MedGen</option><option value="mesh">MeSH</option><option value="ncbisearch">NCBI Web Site</option><option value="nlmcatalog">NLM Catalog</option><option value="nuccore">Nucleotide</option><option value="omim">OMIM</option><option value="pmc">PMC</option><option value="popset">PopSet</option><option value="protein">Protein</option><option value="proteinclusters">Protein Clusters</option><option value="protfam">Protein Family Models</option><option value="pcassay">PubChem BioAssay</option><option value="pccompound">PubChem Compound</option><option value="pcsubstance">PubChem Substance</option><option value="pubmed">PubMed</option><option value="snp">SNP</option><option value="sra">SRA</option><option value="structure">Structure</option><option value="taxonomy">Taxonomy</option><option value="toolkit">ToolKit</option><option value="toolkitall">ToolKitAll</option><option value="toolkitbookgh">ToolKitBookgh</option></optgroup></select><div class="nowrap"><label for="term" class="offscreen_noflow" accesskey="/">Search term</label><div class="nowrap"><input type="text" name="term" id="term" title="Search Nucleotide" value="" class="jig-ncbiclearbutton jig-ncbiautocomplete" data-jigconfig="isEnabled:false,disableUrl:'NcbiSearchBarAutoComplCtrl'" autocomplete="off" data-sbconfig="ds:'no',pjs:'no',afs:'yes'" /></div><button id="search" type="submit" class="button_search nowrap" cmd="go">Search</button></div></div></form></div>
+                            
+                        </div>
+                        <div class="nav_and_browser">
+    <div class="localnav"><ul class="jig-ncbilocalnav">
+<li><a href="#">GenBank</a><ul>
+<li><a href="/genbank/">About GenBank</a></li>
+<li><a href="/genbank/submit_types">Submission Types</a></li>
+<li><a href="/genbank/submit">Submission Tools</a></li>
+<li><a href="/genbank/update">Update GenBank Records</a></li>
+<li><a href="/nuccore/">Search</a></li>
+<li><a href="/BLAST/Blast.cgi?CMD=Web&amp;PAGETYPE=BLASTHome">BLAST</a></li>
+<li><a href="/genbank/statistics">Statistics</a></li>
+<li><a href="/genbank/samplerecord/">Sample Record</a></li>
+<li><a href="/genbank/sequencerevisionhistory/">Revision History</a></li>
+<li><a href="/genbank/sequenceids/">Sequence IDs</a></li>
+</ul>
+</li>
+<li><a href="#">Submit</a><ul>
+<li><a href="/genbank/submit">Submission Tools</a></li>
+<li><a href="/genbank/submit_types">Submission Types</a></li>
+<li><a href="/books/NBK51157/">Handbook</a></li>
+<li><a href="/WebSub/?tool=genbank">BankIt</a></li>
+<li><a href="/genbank/tbl2asn2">tbl2asn</a></li>
+</ul>
+</li>
+<li><a href="#">Genomes</a><ul>
+<li><a href="/genbank/genomesubmit">Complete Genome Submission Guide</a></li>
+<li><a href="/genbank/genomesubmit_annotation">Prokaryotic Genome Annotation Guide</a></li>
+<li><a href="/genbank/eukaryotic_genome_submission_annotation">Eukaryotic Genome Annotation Guide</a></li>
+<li><a href="/genbank/examples.wgs">Annotation Examples</a></li>
+</ul>
+</li>
+<li><a title="Whole Genome Shotgun sequences and submissions" href="#">WGS</a><ul>
+<li><a href="/genbank/wgs">About WGS</a></li>
+<li><a href="/Traces/wgs">WGS Project List</a></li>
+<li><a href="/genbank/wgs.submit">WGS Submission Guide</a></li>
+<li><a href="/genbank/wgsfaq/">FAQ</a></li>
+<li><a href="https://submit.ncbi.nlm.nih.gov/subs/wgs/">WGS Submission Portal</a></li>
+<li><a href="/genbank/eukaryotic_genome_submission_annotation">Eukaryotic Annotation Guide</a></li>
+<li><a href="/genbank/genomesubmit_annotation">Prokaryotic Annotation Guide</a></li>
+<li><a href="/genbank/asndisc">Discrepancy Report</a></li>
+<li><a href="/assembly/agp/AGP_Specification/">AGP format</a></li>
+</ul>
+</li>
+<li><a href="#">Metagenomes</a><ul>
+<li><a href="/genbank/metagenome">About Metagenomes</a></li>
+<li><a href="/genbank/structuredcomment">Structured Comment</a></li>
+</ul>
+</li>
+<li><a href="#">TPA</a><ul>
+<li><a href="/genbank/TPA">About TPA</a></li>
+<li><a href="/genbank/tpafaq">FAQ</a></li>
+<li><a href="/genbank/TPA-Exp">TPA-Exp</a></li>
+<li><a href="/genbank/TPA-Inf">TPA-Inf</a></li>
+</ul>
+</li>
+<li><a href="#">TSA</a><ul>
+<li><a href="/genbank/TSA">About TSA</a></li>
+<li><a href="/genbank/TSAguide">TSA Submission Guide</a></li>
+<li><a href="/genbank/TSAfaq">FAQ</a></li>
+</ul>
+</li>
+<li><a href="#">INSDC</a><ul>
+<li><a href="/genbank/collab">About INSDC</a></li>
+<li><a href="/genbank/collab/country">Country List</a></li>
+<li><a href="/genbank/collab/db_xref">db_xref List</a></li>
+<li><a href="http://www.insdc.org/documents/feature_table.html">Feature Table</a></li>
+</ul>
+</li>
+<li><a href="#">Other</a><ul>
+<li><a href="/genbank/htgs">About HTGs</a></li>
+<li><a href="/genbank/dbest">About EST</a></li>
+<li><a href="/genbank/dbgss">About GSS</a></li>
+<li><a href="/genbank/tls">About TLS</a></li>
+<li><a href="/genbank/tlsguide">Submit TLS</a></li>
+</ul>
+</li>
+</ul></div>
+</div>
+                        
+                        <!-- was itemctrl -->
+                        <div class="container">
+                            <div id="maincontent" class="content col twelve_col last">
+                                <div class="col1">
+                                    <h1 id="db_xrefs">db_xrefs</h1>
+
+
+<p>The <code>/db_xref</code> qualifier serves as a vehicle for linking DNA sequence records to other external databases.</p>
+
+
+<p>The text below outlines the format and the present list of allowed database cross references. Inquiries about the addition of other database types should be made to one of the collaborating databases.</p>
+
+
+<pre>
+<b>Qualifier:</b>       /db_xref="<i>database</i>:<i>identifier</i>"
+<b>Definition:</b>      database cross-reference: pointer to related information
+                 in another database
+<b>Scope:</b>           all feature keys
+<b>Value format:</b>    "<i>database</i>:<i>identifier</i>" where <i>database</i> is the name of the
+                 database containing related information, and
+                 <i>identifier</i> is the internal identifier of the related
+                 information according to the naming conventions of the
+                 cross-referenced database.
+
+<b>Examples:</b>
+
+cross reference to GDB identifier:            /db_xref="GDB:39999"
+cross reference to Swiss-Prot entry:          /db_xref="Swiss-Prot:P12345"
+
+</pre>
+
+
+<p>For all <em>databases</em> types 'Case' is important. All member databases of the International Collaboration (DDBJ, ENA/EBI and GenBank/NCBI) may make recommendations for additions or removal of databases to this list at their convenience, and need not rely on the release cycle of the Feature Table documentation.</p>
+
+
+<hr />
+
+
+<p><strong>Database:</strong> Description of database, and type with example(s).</p>
+
+
+<hr />
+
+
+<p><strong>Presently the list includes:</strong></p>
+
+
+<p><table cellpadding="0" cellspacing="0">
+<caption>
+db_xref List</caption>
+<tbody>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="/IEB/Research/Acembly/">AceView/WormGenes</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+AceView Worm Genome</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="AceView/WormGenes:vha-6"</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+AFTOL</td>
+<td valign="top">
+ </td>
+<td valign="top">
+Assembling the Fungal Tree of Life</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="AFTOL:959"</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://www.antweb.org">AntWeb</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+Ant Database</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="AntWeb:CASENT0058943-D01"</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://www.aphidbase.com">APHIDBASE</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+Aphid Genome Database</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="APHIDBASE:ACYPI007424"</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://eupathdb.org/eupathdb/">ApiDB</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+Apicomplexan Database Resources</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="ApiDB:cgd1_1090"</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://cryptodb.org/cryptodb/">ApiDB_CryptoDB</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+Cryptosporidium Genome Resources</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="ApiDB_CryptoDB:cgd7_20"</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://www.plasmodb.org/plasmo/home.jsp">ApiDB_PlasmoDB</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+Plasmodium Genome Resources</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="ApiDB_PlasmoDB:PF11_0344"</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://www.toxodb.org/toxo/home.jsp">ApiDB_ToxoDB</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+Toxoplasma Genome Resources</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="ApiDB_ToxoDB:49.m00014"</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="https://www.araport.org/">Araport</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+Arabidopsis Information Portal</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="Araport:AT1G01010"</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="https://asap.genetics.wisc.edu/asap/logon.php">ASAP</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+A Systematic Annotation Package for Community Analysis of Genomes</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="ASAP:ABE-0000006"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.atcc.org/">ATCC</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+American Type Culture Collection database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="ATCC:123456"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.atcc.org/">ATCC(in host)</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+American Type Culture Collection database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="ATCC(in host):123456"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.atcc.org/">ATCC(dna)</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+American Type Culture Collection database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="ATCC(dna):123456”</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<a href="http://www.dkfz-heidelberg.de/molecular_embryology/axeldb.htm">Axeldb</a></td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p>
+A Xenopus laevis database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p>
+/db_xref="Axeldb:32B3.1"</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.fruitfly.org/EST/index.shtml">BDGP_EST</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Berkeley Drosophila Genome Project EST database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="BDGP_EST:123456"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p>
+<a href="http://www.fruitfly.org/">BDGP_INS</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p>
+Berkeley Drosophila Genome Project -- Insertion</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p>
+/db_xref="BDGP_INS:123456"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p>
+<a href="http://hymenopteragenome.org/beebase/?q=home">BEEBASE</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p>
+BeeBase</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p>
+/db_xref="BEEBASE:GB55480"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p>
+<a href="http://www.beetlebase.org/">BEETLEBASE</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p>
+Tribolium Genome Database -- Insertion</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p>
+/db_xref="BEETLEBASE:TC030551"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p>
+<a href="https://www.beiresources.org/">BEI</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p>
+BEI Resources</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p>
+/db_xref="BEI:NR-50065"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://bovinegenome.org/genepages/btau40/">BGD</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Bovine Genome Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="BGD:BT10004"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.barcodinglife.com">BOLD</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Barcode of Life database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="Bold:EPAF263"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+CABRI</p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Common Access to Biological Resources and Information Project</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="CABRI:ACC 424"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<a href="http://www.ccap.ac.uk/">CCAP</a></td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p>
+Culture Collection of Algae and Protozoa</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p>
+/db_xref="CCAP:1460/15"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<a href="https://www.ncbi.nlm.nih.gov/Structure/cdd/cdd.shtml">CDD</a></td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p>
+Conserved Domain Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p>
+/db_xref="CDD:02194"</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<a href="http://www.candidagenome.org/">CGD</a></td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p>
+Candida Genome Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p>
+/db_xref="CGD:CAL0005934"</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="/genbank/dbest">dbEST</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+EST database maintained at the NCBI.</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="dbEST:123456"</p>
+<p>
+/db_xref="dbEST:BP535535"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="https://www.ncbi.nlm.nih.gov/sites/entrez?db=probe">dbProbe</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+NCBI Probe database Public registry of nucleic acid reagents</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="dbProbe:38"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="https://www.ncbi.nlm.nih.gov/snp">dbSNP</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Variation database maintained at the NCBI.</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="dbSNP:4647"</p>
+<p>
+/db_xref="dbSNP:rs133073"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+dbSTS</p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+STS database maintained at the NCBI.</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="dbSTS:456789"</p>
+<p>
+/db_xref="dbSTS:BV210161"</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://dictybase.org/">dictyBase</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+Dictyostelium genome database</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="dictyBase:DDB0191090"</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="https://ecocyc.org/">ECOCYC</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+E. coli database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="ECOCYC:sroC"</p>
+<p>
+/db_xref="ECOCYC:C0343"</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://ecogene.org">EcoGene</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+Database of <i>Escherichia coli</i> Sequence and Function</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="EcoGene:EG11277"</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://useast.ensembl.org/index.html">ENSEMBL</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Database of automatically annotated genomic data</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="ENSEMBL:HUMAN-Clone-AC005612"</p>
+<p>
+/db_xref="ENSEMBL:HUMAN-Gene-ENSG00000007102"</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://ensemblgenomes.org">EnsemblGenomes</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Extending Ensembl across taxonomic space</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="EnsemblGenomes:AAC73116"</p>
+<p>
+/db_xref="EnsemblGenomes:b0005"</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://ensemblgenomes.org">EnsemblGenomes-Gn</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+EnsemblGenomes Gene</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="EnsemblGenomes-Gn"</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://ensemblgenomes.org">EnsemblGenomes-Tr</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+EnsemblGenomes Transcript</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="EnsemblGenomes-Tr:MAPG_00606T0"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://epd.vital-it.ch/">EPD</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Eukaryotic Promoter Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="EPD:EP00576"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+ERIC</td>
+<td valign="top">
+ </td>
+<td valign="top">
+Enteropathogen Resource Integration Center</td>
+<td valign="top">
+ </td>
+<td valign="top">
+db_xref="ERIC:ABY-0246137"</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+ESTLIB</p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+EBI's EST library identifier</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="ESTLIB:1200"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://fantom.gsc.riken.go.jp/">FANTOM_DB</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Database of Functional Annotation of Mouse</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="FANTOM_DB:0610005A07"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.fungalbarcoding.org/">FBOL</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+International Fungal Working Group Fungal Barcoding.</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="FBOL:2224"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.flybase.org/">FLYBASE</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Database of Genetic and molecular data of Drosophila.</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="FLYBASE:FBgn0000024"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.indexfungorum.org">Fungorum</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Index Fungorum</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="Fungorum:ID550186"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.gabipd.org/information/about.shtml">GABI</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Network of Different Plant Genomic Research Projects</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="GABI:HA05J18"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+GDB</p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Human Genome Database accession numbers</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="GDB:G00-128-600"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.genedb.org/">GeneDB</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Curated gene database for Leishmania major and Trypanosoma brucei</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="GeneDB:SPCC285.16c"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="https://www.ncbi.nlm.nih.gov/gene">GeneID</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Entrez Gene Database (replaces NCBI Locus Link)</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="GeneID:3054987"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+GI</p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+GenInfo identifier, used as a unique sequence identifier for nucleotide and proteins</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="GI:1234567890"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://amigo.geneontology.org/">GO</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Gene Ontology Database identifier</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="GO:123"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.ebi.ac.uk/GOA/">GOA</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Gene Ontology Annotation Database Identifier</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref=" GOA :P01100"</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://greengenes.lbl.gov/">Greengenes</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+16S rRNA gene database</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="Greengenes:269185"</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://www.ars-grin.gov/">GRIN</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+Germplasm Resources Information Network</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="GRIN:1005973"</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<a href="http://www.genenames.org/cgi-bin/search">HGNC</a></p>
+</td>
+<td valign="top">
+ </td>
+<td valign="top">
+<p>
+Human Gene Nomenclature Database</p>
+</td>
+<td valign="top">
+ </td>
+<td valign="top">
+<p>
+/db_xref="HGNC:HGNC:2041"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.h-invitational.jp">H-InvDB</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+H-Invitational Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="H-InvDB:HIT000000001"</p>
+<p>
+/db_xref="H-InvDB:HIX0000001”</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.hmpdacc.org/">HMP</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Human Microbiome Project</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="HMP:0536"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.homd.org/">HOMD</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Human Oral Microbiome Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="HOMD:tax_078"</p>
+<p>
+/db_xref="HOMD:seq_1603”</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.humanproteomemap.org/">HPM</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Human Proteome Map</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="HPM:8106"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p>
+HSSP</p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p>
+Database of homology-derived secondary structure of proteins</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p>
+/db_xref="HSSP:12GS</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p>
+<a href="https://i5k.nal.usda.gov/">I5KNAL</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p>
+i5k Workspace</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p>
+/db_xref="I5KNAL:OFAS008986"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p>
+<a href="http://www.knockoutmouse.org/">IKMC</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p>
+International Knockout Mouse Consortium</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p>
+/db_xref="IKMC:66303"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.imgt.org/genedb/">IMGT/GENE-DB</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Immunogenetics database, immunoglobulin and T-cell receptor genes</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="IMGT/GENE-DB:IGKC"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.imgt.org/IMGTinformation/LIGM.html">IMGT/LIGM</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Immunogenetics database, immunoglobulins and T-cell receptors</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="IMGT/LIGM:U03895"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.ebi.ac.uk/imgt/hla/">IMGT/HLA</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Immunogenetics database, human MHC</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="IMGT/HLA:HLA00031"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.ebi.ac.uk/interpro/">InterPro</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+InterPro protein sequence database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="InterPro:IPR002928"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://server1.intrepidbio.com/">IntrepidBio</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Intrepid BioInformatics</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="IntrepidBio:5259707746"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.fludb.org/">IRD</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Influenza Research Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="IRD:CEIRS-CIP045-123456.2"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www-is.biotoul.fr/">ISFinder</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Insertion sequence elements database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="ISFinder:ISA1083-2"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://its.mycologylab.org/DefaultSlideUD.aspx?Page=Home">ISHAM-ITS</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+ITS reference database for pathogenic fungi</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="ISHAM-ITS:MITS310"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.jcm.riken.go.jp/">JCM</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Japan Collection of Microorganisms</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="JCM:1339"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p>
+<a href="http://genome.jgi-psf.org/">JGIDB</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p>
+JGI Genome Portal</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p>
+/db_xref="JGIDB:Chluvu1_81011"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+LocusID</p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+NCBI LocusLink ID **Discontinued March 2005</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="LocusID:51199"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.maizegdb.org/">MaizeGDB</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Maize Genome Database unique identifiers</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="MaizeGDB:635633 "</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://marchantia.info/">MarpolBase</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Genome Database for Marchantia polymorpha</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="MarpolBase:Mp1g00010.1 "</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="https://www.ncbi.nlm.nih.gov/medgen">MedGen</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Human Medical Genetics</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="MedGen:C0010674"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.informatics.jax.org/">MGI</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Mouse Genome Informatics</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="MGI:MGI:1894891"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="https://www.ncbi.nlm.nih.gov/omim">MIM</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Mendelian Inheritance in Man numbers</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="MIM:123456"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.mirbase.org/">miRBase</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+miRNA Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="miRBase:MI0000681"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.mycobank.org">MycoBank</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Fungal Nomenclature and Species Bank</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="MycoBank:8284"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.nbrc.nite.go.jp/e/catalog-e.html">NBRC</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+NITE Biological Resource Center</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="NBRC:3189"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://nematode.lab.nig.ac.jp/">NextDB</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Nematode Expression Pattern DataBase</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="NextDB:CELK01662"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://esbank.nia.nih.gov/">niaEST</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+NIA Mouse cDNA Project</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="niaEST:L0304H12-3"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://www.nmpdr.org">NMPDR</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+National Microbial Pathogen Data Resource</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="NMPDR:fig|306254.1.peg.183"</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://www.mgi-nibm.my/nrestdb/">NRESTdb</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+Natural Rubber EST database</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="NRESTdb:Y01A01"</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://orthomcl.org/orthomcl">OrthoMCL</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+Ortholog Groups of Protein Sequences</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="OrthoMCL:OG5_130679"</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://rice.plantbiology.msu.edu/">Osa1</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+Rice Genome Annotation Project</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="Osa1:LOC_Os01g12345"</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://pathema.jcvi.org/">Pathema</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+Pathema Genome Resource</td>
+<td valign="top">
+ </td>
+<td valign="top">
+<p>
+/db_xref="Pathema:BA_4405"</p>
+<p>
+/db_xref="Pathema:191218"</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://www.idmshanghai.cn/PBmice/">PBmice</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+PiggyBac Mutagenesis Information Center</td>
+<td valign="top">
+ </td>
+<td valign="top">
+<p>
+/db_xref="PBmice:38"</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p>
+<a href="http://www.rcsb.org/pdb/">PDB</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p>
+Biological macromolecule three dimensional structure database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p>
+/dbxref="PDB:12GS"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://pfam.xfam.org/">PFAM</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+Collection of protein families</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="PFAM:PF00003</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+PGN</p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Plant Genome Network</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="PGN:aam01-1ms3-a05"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://phytozome.jgi.doe.gov/pz/portal.html">JGI Phytozome</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Plant Genome Network</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="Phytozome:Glyma0021s00410"</p>
+<p>
+/db_xref="Phytozome:ppb016588m_2_1.p"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://pir.georgetown.edu/">PIR</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Protein Information Resource accession numbers</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="PIR:S12345"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.pombase.org/">PomBase</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Database of Structural and Functional Data for Schizosaccaromyces pombe</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="PomBase:SPBC11B10.09"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+PSEUDO</p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+EMBL pseudo protein identifier</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="PSEUDO:CAC44644.1"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.pseudomonas.com/">PseudoCAP</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Pseudomonas Genome Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="PseudoCap:PA0001"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://rapdb.dna.affrc.go.jp/">RAP-DB</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Rice Annotation Project Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="RAP-DB:Os01g1234567"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+RATMAP</p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Rat Genome Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="RATMAP:5"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://elmer.rbge.org.uk/bgbase/livcol/bgbaselivcol.php">RBGE_garden</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Royal Botanic Garden Edinburgh Living Collections</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="RBGE_garden:20021433"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://elmer.rbge.org.uk/bgbase/vherb/bgbasevherb.php">RBGE_herbarium</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Royal Botanic Garden Edinburgh Herbarium</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="RBGE_herbarium:E00217291"</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://www.sanger.ac.uk/Software/Rfam/">RFAM</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+RNA families database of alignments and CMs</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="RFAM:RF00230"</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://rgd.mcw.edu/rgdweb/search/search.html">RGD</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Rat Genome Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="RGD:620528"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.gramene.org/">RiceGenes</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Rice database accession numbers</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="RiceGenes:AA231856"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://rnacentral.org">RNAcentral</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Noncoding RNA Sequence Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="RNAcentral:URS00001B9622_9606"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.gate2biotech.com/rzpd-german-science-centre-for-genome/">RZPD</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Resource Centre Primary Database Clone Identifiers</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="RZPD:IMAGp998I142450Q6"</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+<a href="http://www.theseed.org">SEED</a></td>
+<td valign="top">
+ </td>
+<td valign="top">
+The SEED Database</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="SEED:fig|83331.1.peg.1"</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.yeastgenome.org/">SGD</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Saccharomyces Genome Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="SGD:L0000470"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.sgn.cornell.edu">SGN</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+SOL Genomics Network</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="SGN:E553090"</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+<td valign="top">
+ </td>
+</tr>
+<tr>
+<td valign="top">
+SK-FST</td>
+<td valign="top">
+ </td>
+<td valign="top">
+Saskatoon Arabidopsis T-DNA mutant population - SK Collection</td>
+<td valign="top">
+ </td>
+<td valign="top">
+/db_xref="SK-FST: FST:SK32219"</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://soybase.org">SoyBase</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Glycine max Genome Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="SoyBase:Satt005"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href=" http://bio.lundberg.gu.se/dbs/SRPDB/SRPDB.html">SRPDB</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Signal Recognition Particle Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="SRPDB:Arth.aure._CP000474"</p>
+</td>
+</tr>
+<tr>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://genolist.pasteur.fr/SubtiList/">SubtiList</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Bacillus subtilis genome sequencing project</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="SubtiList:BG10001"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.arabidopsis.org/servlets/Search?type=gene&amp;action=new_search">TAIR</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Arabidopsis IR</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="TAIR:AT1F51370"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy">taxon</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+NCBI's taxonomic identifier</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="taxon:4932"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.tigr.org/TIGRFAMs/index.shtml">TIGRFAM</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+TIGR protein families</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="TIGRFAM:TIGR00094"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://tuberculist.epfl.ch/">TubercuList</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+TubercuList knowledge base</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="TubercuList:Rv3322c"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+UNILIB</p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Unified Library Database, a library-level view of the EST and SAGE libraries present in dbEST, UniGene and SAGEmap</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="UNILIB:1002"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.uniprot.org">UniProtKB/Swiss-Prot</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+section of the UniProt Knowledgebase, containing annotated records, which include curator-evaluated computational analysis, as well as, information extracted from the literature</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="UniProtKB/Swiss-Prot:P12345"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.uniprot.org">UniProtKB/TrEMBL</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+section of the UniProt Knowledgebase, containing computationally analysed records waiting for full manual annotation</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref=" UniProtKB/TrEMBL:Q00177"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+UniSTS</p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Database of Sequence Tagged Sites</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref=" UniSTS:486599"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://unite.ut.ee/index.php">UNITE</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Molecular database for the identification of fungi</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref=" UNITE:UDB000157"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.vbase2.org/">VBASE2</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Integrative database of germ-line V genes from the immunoglobulin loci of human and mouse</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="VBASE2:humIGKV165"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.viprbrc.org/brc/home.do?decorator=vipr">ViPR</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Virus Pathogen Resource</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="ViPR:HRV-A34_p1058_sR263_2008"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://enhancer.lbl.gov/">VISTA</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Vista Enhancer Browser</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+db_xref="VISTA:hs123"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.vectorbase.org/index.php">VectorBase</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Bioinformatics Resource Center for Invertebrate Vectors of Human Pathogens</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+db_xref="VectorBase:ENSANGG00000007825"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://vertebrate.genenames.org/data/gene-symbol-report/#!/">VGNC</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Vertebrate Gene Nomenclature Committee</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+db_xref="VGNC:VGNC:4927"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://worfdb.dfci.harvard.edu/">WorfDB</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+C. elegans ORFeome cloning project</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="WorfDB:pos-1"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.wormbase.org/">WormBase</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Caenorhabditis elegans Genome Database</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="WormBase:R13H7"</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://www.xenbase.org/common/">Xenbase</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Xenopus laevis and tropicalis biology and genomics resource</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref=Xenbase:XB-GENE-1019547</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+ </td>
+</tr>
+<tr>
+<td valign="top" width="199">
+<p class="style1">
+<a href="http://zfin.org">ZFIN</a></p>
+</td>
+<td valign="top" width="199">
+ </td>
+<td valign="top" width="240">
+<p class="style1">
+Zebrafish Information Network</p>
+</td>
+<td valign="top" width="240">
+ </td>
+<td valign="top" width="367">
+<p class="style1">
+/db_xref="ZFIN:ZDB-GENE-011205-17"</p>
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+
+
+                                </div>
+                                <!--/.col1-->
+                                <div class="col2">
+                                    <h2 id="insdc-members">INSDC Members</h2><h3 id="ddbj"><a href="http://www.ddbj.nig.ac.jp/">DDBJ</a></h3><ul>
+<li><a href="http://www.ddbj.nig.ac.jp/submission_general-e.html">Submission</a></li>
+<li><a href="http://getentry.ddbj.nig.ac.jp/">Sequence Retrieval</a></li>
+</ul><h3 id="ena"><a href="http://www.ebi.ac.uk/">ENA</a></h3><ul>
+<li><a href="http://www.ebi.ac.uk/embl/Submission/index.html">Submission</a></li>
+<li><a href="http://www.ebi.ac.uk/embl/index.html">Sequence Retrieval</a></li>
+</ul><h3 id="genbank"><a href="/genbank/">GenBank</a></h3><ul>
+<li><a href="/genbank/submit">Submission</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/sites/entrez?db=nucleotide">Sequence Retrival</a></li>
+</ul>
+                                </div>
+                                <!--/.col2-->
+                                <div class="col3">
+                                    
+                                </div>
+                                <!--/.col3-->
+                                <div class="col4">
+                                    
+                                </div>
+                                <!--/.col4-->
+                                <div class="col5">
+                                    
+                                </div>
+                                <div class="col6">
+                                    
+                                </div>
+                                <div class="col7">
+                                    
+                                </div>
+                                <div class="col8">
+                                    
+                                </div>
+                                <div class="col9">
+                                    
+                                </div>
+                            </div><!--/.content-->
+                        </div><!--/.container-->
+                        <div id="NCBIFooter_dynamic">
+    <div class="breadcrumbs">You are here: 
+            <span id="breadcrumb_text"><a href="/guide/">NCBI</a></span></div>
+    <a id="help-desk-link" class="help_desk" href="https://support.ncbi.nlm.nih.gov/ics/support/default.asp?Time=2021-09-14T20:48:12-04:00&amp;Snapshot=%2Fprojects%2Fstaticsites%2Fgenbank%2Fgenbank@2.19&amp;Host=portal102&amp;ncbi_phid=CE89632514120DF100000000088F01B8&amp;ncbi_session=CE89632514142CC1_2191SID&amp;from=https%3A%2F%2Fwww.ncbi.nlm.nih.gov%2Fgenbank%2Fcollab%2Fdb_xref%2F&amp;Ncbi_App=genbank&amp;Page=custom-page&amp;style=classic&amp;deptID=28049" target="_blank">Support Center</a>
+    <noscript><img alt="" src="/stat?jsdisabled=true&amp;ncbi_app=genbank&amp;ncbi_db=&amp;ncbi_pdid=custom-page&amp;ncbi_phid=CE89632514120DF100000000088F01B8" /></noscript>
+</div>
+
+
+<div xmlns:xi="http://www.w3.org/2001/XInclude">
+    <div xmlns="http://www.w3.org/1999/xhtml" class="footer" id="footer" xml:base="http://127.0.0.1/sites/static/header_footer">
+    <!--    <div class="breadcrumbs">You are here: <span id="breadcrumb_text"><a href="#">NCBI</a></span></div>
+        <a id="help-desk-link" class="help_desk" target="_blank">Help Desk</a>-->
+    <div class="subfooter">
+        <h2 class="offscreen_noflow">Simple NCBI Directory</h2>
+        <ul class="foot_list" id="getting_started">
+            <li><h3>Getting Started</h3></li>
+            <!-- removed; hp-250           <li><a href="/guide/all/">Site Map</a></li>-->
+            <li><a href="/home/learn.shtml">NCBI Education</a></li>
+            <li><a href="/books/NBK3831/">NCBI Help Manual</a></li>
+            <li><a href="/books/NBK143764/">NCBI Handbook</a></li>
+            <li><a href="/home/learn.shtml">Training &amp; Tutorials</a></li>
+            <li><a href="/home/submit.shtml">Submit Data</a></li>
+        </ul>
+        <!-- this section is re-written by an XSLT before output -->
+        <ul class="foot_list" id="resources">
+            <li><h3>Resources</h3></li>
+            <!-- fill this in with categories -->
+        <li><a href="/guide/chemicals-bioassays/">Chemicals &amp; Bioassays</a></li><li><a href="/guide/data-software/">Data &amp; Software</a></li><li><a href="/guide/dna-rna/">DNA &amp; RNA</a></li><li><a href="/guide/domains-structures/">Domains &amp; Structures</a></li><li><a href="/guide/genes-expression/">Genes &amp; Expression</a></li><li><a href="/guide/genetics-medicine/">Genetics &amp; Medicine</a></li><li><a href="/guide/genomes-maps/">Genomes &amp; Maps</a></li><li><a href="/guide/homology/">Homology</a></li><li><a href="/guide/literature/">Literature</a></li><li><a href="/guide/proteins/">Proteins</a></li><li><a href="/guide/sequence-analysis/">Sequence Analysis</a></li><li><a href="/guide/taxonomy/">Taxonomy</a></li><li><a href="/guide/variation/">Variation</a></li></ul>
+        
+        <ul class="foot_list" id="popular">
+            <li><h3>Popular</h3></li>
+            <li><a href="/pubmed/">PubMed</a></li>
+            <li><a href="/books/">Bookshelf</a></li>
+            <li><a href="/pmc/">PubMed Central</a></li>
+            <li><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi" class="newdomain">BLAST</a></li>            
+            <li><a href="/nucleotide/">Nucleotide</a></li>
+            <li><a href="/genome/">Genome</a></li>
+            <li><a href="/snp/">SNP</a></li>
+            <li><a href="/gene/">Gene</a></li>
+            <li><a href="/protein/">Protein</a></li>
+            <li><a href="https://pubchem.ncbi.nlm.nih.gov/" class="newdomain">PubChem</a></li>
+        </ul>
+        <ul class="foot_list" id="featured">
+            <li><h3>Featured</h3></li>
+            <li><a href="/gtr/">Genetic Testing Registry</a></li>
+            <li><a href="/genbank/">GenBank</a></li>
+            <li><a href="/refseq/">Reference Sequences</a></li>
+            <li><a href="/geo/">Gene Expression Omnibus</a></li>
+            <li><a href="/genome/gdv/">Genome Data Viewer</a></li>
+            <li><a href="/genome/guide/human/">Human Genome</a></li>
+            <li><a href="/genome/guide/mouse/">Mouse Genome</a></li>
+            <li><a href="/genomes/FLU/">Influenza Virus</a></li>
+            <li><a href="/tools/primer-blast/">Primer-BLAST</a></li>
+            <li><a href="/Traces/sra/">Sequence Read Archive</a></li>
+        </ul>
+        <ul class="foot_list" id="info">
+            <li><h3>NCBI Information</h3></li>
+            <li><a href="/home/about/">About NCBI</a></li>
+            <li><a href="/research/">Research at NCBI</a></li>
+            <li><a href="https://ncbiinsights.ncbi.nlm.nih.gov">NCBI News &amp; Blog</a></li>
+            <li><a href="https://ftp.ncbi.nlm.nih.gov/">NCBI FTP Site</a></li>
+            <li><a class="external" href="https://www.facebook.com/ncbi.nlm">NCBI on Facebook</a></li>
+            <li><a class="external" href="https://twitter.com/ncbi">NCBI on Twitter</a></li>
+            <li><a class="external" href="https://www.youtube.com/ncbinlm">NCBI on YouTube</a></li>
+            <li><a href="https://www.nlm.nih.gov/privacy.html">Privacy Policy</a></li>
+        </ul>
+    </div>
+    <div id="external-disclaimer" class="offscreen_noflow">
+        External link. Please review our <a href="https://www.nlm.nih.gov/privacy.html">privacy policy</a>.
+    </div>    
+    <div id="ncbifooter" class="contact_info">      
+        <div id="footer-contents-right">
+            <div id="nlm_thumb_logo">
+                <a href="https://www.nlm.nih.gov" title="NLM">NLM</a>
+            </div>
+            <div id="nih_thumb_logo">
+                <a href="https://www.nih.gov" title="NIH">NIH</a>
+            </div>
+            <div id="hhs_thumb_logo">
+                <a href="https://www.hhs.gov" title="DHHS">DHHS</a>
+            </div>
+            <div id="usagov_thumb_logo">
+                <a href="https://www.usa.gov" title="USA.gov">USA.gov</a>
+            </div>         
+        </div>
+        
+        <div id="footer-contents-left">
+            <p class="address vcard">
+                <span class="url">
+                    <a class="fn url newdomain" href="https://www.ncbi.nlm.nih.gov">National Center for
+                        Biotechnology Information</a>,
+                </span> <span class="org url newdomain"><a href="https://www.nlm.nih.gov/">U.S. National Library of Medicine</a></span>
+                <span class="adr">
+                    <span class="street-address">8600 Rockville Pike</span>, <span class="locality">Bethesda</span>
+                    <span class="region">MD</span>, <span class="postal-code">20894</span>
+                    <span class="country-name">USA</span>
+                </span>
+            </p>
+            
+            <a href="/home/about/policies.shtml">Policies and Guidelines</a> | <a href="/home/about/contact.shtml">Contact</a>
+        </div>
+    </div>
+    <script type="text/javascript" src="/portal/portal3rc.fcgi/rlib/js/InstrumentOmnitureBaseJS/InstrumentNCBIConfigJS/InstrumentNCBIBaseJS/InstrumentPageStarterJS.js?v=1"> </script>    
+    <script type="text/javascript" src="/portal/portal3rc.fcgi/static/js/hfjs2.js"> </script>
+</div>
+</div>
+                        <!--/.footer-->
+                        <p class="last-updated small">Last updated: 2017-11-13T23:20:57Z</p>
+                    </div>
+                    <!--/.page-->
+                </div>
+                <!--/.wrap-->
+                <span class="PAFAppResources"></span>
+                
+                
+            </div><!-- /.twelve_col -->
+        </div>
+        <!-- /.grid -->
+
+        
+        
+        <!-- usually for JS scripts at page bottom -->
+        <span class="pagefixtures"></span>
+    
+
+<!-- CE89632514142CC1_2191SID /projects/staticsites/genbank/genbank@2.19 portal102 v4.1.r635708 Mon, Aug 09 2021 01:08:56 -->
+<span id="portal-csrf-token" style="display:none" data-token="CE89632514142CC1_2191SID"></span>
+
+<script type="text/javascript" src="//static.pubmed.gov/portal/portal3rc.fcgi/4151484/js/3879255/4121861/1490097/4087685.js" snapshot="genbank"></script></body>
+</html>
+

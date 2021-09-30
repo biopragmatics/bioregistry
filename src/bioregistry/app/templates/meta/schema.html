@@ -1,0 +1,32 @@
+{% extends "prose.html" %}
+
+{% block title %}Bioregistry Schema{% endblock %}
+
+{% block content %}
+    <h2>Bioregistry JSON Schema</h2>
+    <p>
+        This section describes the JSON schema used Bioregistry. It can be accessed
+        <a href="{{ url_for('.json_schema') }}">here</a>.
+    </p>
+    <h2>Bioregistry RDF Schema</h2>
+    <p>
+        This section describes the schema used in the RDF dumps of the Bioregistry used with prefix
+        <code>bioregistry.schema</code> and URL <code>https://bioregistry.io/schema/#</code>
+    </p>
+    <div class="list-group">
+        {% for identifier, type, label, description in terms %}
+            <a name="{{ identifier }}" href="#{{ identifier }}" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                        <span class="badge badge-pill badge-info">
+                        {% if type == "Class" %}C{% elif type == "Property" %}P{% endif %}
+                        </span>
+                        {{ label }}
+                    </h5>
+                    <small>bioregistry.schema:{{ identifier }}</small>
+                </div>
+                <p class="mb-1">{{ description }}</p>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

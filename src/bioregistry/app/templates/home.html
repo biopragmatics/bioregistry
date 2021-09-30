@@ -1,0 +1,358 @@
+{% extends "base.html" %}
+
+{% block title %}Bioregistry{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+        $(".basicAutoComplete").autoComplete({
+            resolverSettings: {
+                url: "{{ url_for('api.search') }}"
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block containerattr %}class="col-md-10 col-lg-10"{% endblock %}
+
+{% block container %}
+    <div class="card card-body bg-light">
+        <h1 class="display-3">Bioregistry</h1>
+        <p class="lead">
+            The Bioregistry is an open source, community curated registry, meta-registry, and compact
+            identifier resolver. Here's what that means:
+        </p>
+        <dl class="row">
+            <dt class="col-lg-2 text-right text-nowrap">Registry</dt>
+            <dd class="col-lg-10">
+                A collection of metadata about ontologies, controlled vocabularies, and resources. Some other
+                well-known registries are the <a href="http://www.obofoundry.org/">OBO Foundry</a>,
+                <a href="https://identifiers.org">Identifiers.org</a>, and the
+                the <a href="https://www.ebi.ac.uk/ols/index">OLS</a>.
+            </dd>
+            <dt class="col-lg-2 text-right text-nowrap">Metaregistry</dt>
+            <dd class="col-lg-10">
+                A collection of metadata about registries and mappings between the resources they describe. For
+                example, <a href="https://www.ebi.ac.uk/chebi">ChEBI</a> appears in all of the example registries
+                from above. So far, the Bioregistry is the <i>only</i> metaregistry.
+            </dd>
+            <dt class="col-lg-2 text-right text-nowrap">Resolver</dt>
+            <dd class="col-lg-10">
+                A tool for mapping compact identifiers of the form <code>prefix:identifier</code> to HTML and structured
+                content providers. Some other well-known resolvers are
+                <a href="https://identifiers.org">Identifiers.org</a> and <a href="https://n2t.net/">Name-To-Thing</a>.
+            </dd>
+            <dt class="col-lg-2 text-right text-nowrap">Open Source</dt>
+            <dd class="col-lg-10">
+                Anyone can suggest or make pull requests to update the underlying database, which is stored in
+                <a href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/bioregistry.json">
+                    JSON</a> on GitHub where the community can engage in an open review process.
+            </dd>
+        </dl>
+
+        {# This is a Vue template which also uses {{ value }} syntax, use raw to avoid mixups. #}
+        {% raw %}
+        <div id="vue-app">
+            <h5 class="card-title">Prefix and Compact Identifier Search</h5>
+            <div class="input-group mb-3">
+                <input type="text"
+                       v-model="user_input"
+                       class="form-control"
+                       @input="getPrefix"
+                       @keyup.enter="followLink"
+                       placeholder="Search for a prefix or compact identifier"
+                       aria-label="Search for a prefix or compact identifier"
+                       aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <input class="btn btn-outline-secondary"
+                           @click="followLink"
+                           type="submit"
+                           value="Go">
+                </div>
+                <div v-if="error_message" class="error-msg">
+                    <i>{{ error_message }}</i>
+                </div>
+                <div v-if="current_result" class="patrick-dropdown">
+                    <div v-if="result_url" class="option-line">
+                        <i class="far fa-check-circle" style="color: green;"></i>
+                        <a :href="result_url" target="_blank">{{ user_input }}</a>
+                    </div>
+                    <div v-if="validation_failed" class="option-line">
+                        <i class="far fa-times-circle" style="color: red;"></i> Does not match pattern <kbd>{{
+                        current_result.pattern }}</kbd>
+                    </div>
+                    <div v-if="result_has_options && options_are_worth_showing" class="option-box">
+                        <div v-for="option in result_options"
+                             class="option-line"
+                             @click="setUserInput">
+                            {{ option }}
+                        </div>
+                    </div>
+                    <div v-else-if="options_are_worth_showing" class="option-line">
+                        <i class="fas fa-exclamation-circle" style="color: goldenrod"></i> No results
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endraw %}
+
+        <p>Here's how to get started with the Bioregistry site:</p>
+        <div class="list-group">
+            <a href="{{ example_url }}" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><i class="fas fa-share-square"></i> Resolve</h5>
+                </div>
+                <p class="mb-1">A compact identifier like <span class="badge badge-light">{{ example_url }}</span>.</p>
+            </a>
+            <a href="{{ url_for('ui.resources') }}"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><i class="fas fa-list"></i> View Registry</h5>
+                    <small class="text-muted">{{ registry_size }} entries</small>
+                </div>
+                <p class="mb-1">The integrative registry of biological databases, ontologies, and resources.</p>
+            </a>
+            <a href="{{ url_for('ui.metaresources') }}"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><i class="fas fa-atom"></i> View Metaregistry</h5>
+                    <small class="text-muted">{{ metaregistry_size }} registries</small>
+                </div>
+                <p class="mb-1">The registry of registries.</p>
+            </a>
+            <a href="{{ url_for('ui.collections') }}"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><i class="fas fa-layer-group"></i> View Collections</h5>
+                    <small class="text-muted">{{ collections_size }} collections</small>
+                </div>
+                <p class="mb-1">Manually curated subsets of the registry.</p>
+            </a>
+            <a href="{{ url_for('ui.contributors') }}"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><i class="fas fa-users"></i> View Contributors</h5>
+                    <small class="text-muted">{{ contributors_size }} contributors</small>
+                </div>
+                <p class="mb-1">Contributors to the Bioregistry</p>
+            </a>
+            <a href="{{ url_for('summary') }}"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><i class="fas fa-book"></i> Learn</h5>
+                </div>
+                <p class="mb-1">About the motivation for constructing the Bioregistry and insights gathered from the
+                    meta-registry.</p>
+                {# <small class="text-muted">Donec id elit non mi porta.</small> #}
+            </a>
+            <a href="{{ url_for('download') }}"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><i class="fas fa-download"></i> Download</h5>
+                </div>
+                <p class="mb-1">All of the data in the Bioregistry (version {{ config.bioregistry_version }}).</p>
+                <small class="text-muted">Available under the CC0 1.0 Universal License.</small>
+            </a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        .patrick-dropdown {
+            position: absolute;
+            display: block;
+            top: 40px;
+            width: 100%;
+            left: auto;
+            background-color: white;
+            z-index: 1000;
+            border-width: 2px;
+            border-color: black;
+        }
+
+        .error-msg {
+            color: red;
+        }
+
+        .option-box {
+            max-height: 200px;
+            overflow-y: scroll;
+            width: 100%;
+        }
+
+        .option-line {
+            padding: 0.76em;
+            padding-top: 0.2em;
+            padding-bottom: 0.2em;
+        }
+
+        .option-line:hover {
+            background-color: #f5f5f5;
+            color: darkblue;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        const SEARCHED_PREFIX = "searched prefix";
+        const MATCHED_PREFIX = "matched prefix";
+        const FAILED_VALIDATION = "failed validation";
+        const PASSED_VALIDATION = "passed validation";
+        var app = new Vue({
+            el: '#vue-app',
+            data: {
+                user_input: null,
+                current_result: null,
+                last_yielding_result: null,
+                error_message: null,
+                autocomplete_url: "{{ url_for('api.autocomplete') }}"
+            },
+            methods: {
+                /// Get the data to suggest auto-completes to the prefix.
+                getPrefix: async function () {
+                    // Reset the error message
+                    this.error_message = null;
+
+                    // If we are adding more text to a result query that returns nothing, it will
+                    // continue to return nothing.
+                    if (this.user_input
+                        && this.last_yielding_result
+                        && this.user_input.length > this.last_yielding_result.length
+                        && !this.result_has_options) {
+                        return
+                    }
+
+                    // If the user_input has been emptied, clear out the display field.
+                    if (this.user_input === "") {
+                        this.current_result = null;
+                        return
+                    }
+
+                    // Get the suggestions from the server.
+                    console.log(`Getting autocomplete options for: "${this.user_input}".`);
+                    const resp = await fetch(`${this.autocomplete_url}?q=${this.user_input}`);
+                    if (resp.status !== 200) {
+                        console.log(`ERROR: ${resp.status}: ${resp.statusText}`);
+                        this.error_message = "Unsuccessful response from the survey."
+                    }
+                    const resp_json = await resp.json();
+                    console.log(resp_json);
+
+                    // Populate the results.
+                    this.current_result = resp_json;
+
+                    // Check the response
+                    if (this.current_result.query !== this.user_input) {
+                        console.log("DEBUG: Query returned does not match content sent.")
+                    }
+
+                    // If this result yielded something, remember it.
+                    if (this.current_result.results) {
+                        if (this.current_result.results.length) {
+                            this.last_yielding_result = this.user_input;
+                        }
+                    } else if (this.current_result.reason !== SEARCHED_PREFIX) {
+                        this.last_yielding_result = null;
+                    }
+                },
+
+                setUserInput: function (event) {
+                    this.user_input = event.target.innerText;
+                    this.getPrefix();
+                },
+
+                followLink: function () {
+                    this.error_message = null;
+                    if (this.result_url) {
+                        window.open(this.result_url, "_blank");
+                    } else {
+                        switch (this.result_reason) {
+                            case null:
+                                this.error_message = "Please enter text first.";
+                                break;
+                            case SEARCHED_PREFIX:
+                                this.error_message = "Please select prefix before searching.";
+                                break;
+                            case MATCHED_PREFIX:
+                                this.error_message = `No URL available for prefix ${this.user_input}.`;
+                                break;
+                            case FAILED_VALIDATION:
+                                this.error_message = "Please enter valid identifier.";
+                                break;
+                            case PASSED_VALIDATION:
+                                this.error_message = `No URL available for identifier ${this.user_input}.`;
+                                break;
+                            default:
+                                this.error_message = "Unexpected state does not permit link-outs.";
+                        }
+                        window.setTimeout(() => {
+                            this.error_message = null
+                        }, 3000);
+                    }
+                }
+            },
+
+            computed: {
+                result_url: function () {
+                    if (this.current_result)
+                        return this.current_result.url;
+                    return null;
+                },
+
+                result_reason: function () {
+                    if (this.current_result)
+                        return this.current_result.reason;
+                    return null;
+                },
+
+                result_reason_icon: function () {
+                    switch (this.result_reason) {
+                        case null:
+                            return null;
+                        case SEARCHED_PREFIX:
+                            return '';
+                        case MATCHED_PREFIX:
+                            return '<i class="far fa-check-circle" style="color: green;"></i>';
+                        case FAILED_VALIDATION:
+                            return '<i class="far fa-times-circle" style="color: red;"></i>';
+                        case PASSED_VALIDATION:
+                            return '<i class="far fa-check-circle" style="color: green;"></i>';
+                        default:
+                            return this.current_result.result;
+                    }
+                },
+
+                result_options: function () {
+                    if (this.current_result)
+                        return this.current_result.results;
+                    return null
+                },
+
+                result_has_options: function () {
+                    if (this.current_result)
+                        if (this.current_result.results)
+                            return this.current_result.results.length > 0;
+                    return false;
+                },
+
+                options_are_worth_showing: function () {
+                    if (!this.current_result)
+                        return false;
+                    if (this.current_result.reason === SEARCHED_PREFIX)
+                        return true;
+                    if (this.current_result.reason === MATCHED_PREFIX)
+                        if (this.current_result.results.length > 1)
+                            return true;
+                    return false;
+                },
+
+                validation_failed: function () {
+                    if (!this.current_result)
+                        return false;
+                    return this.current_result.reason === FAILED_VALIDATION
+                }
+            }
+        })
+    </script>
+{% endblock %}
+

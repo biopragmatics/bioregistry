@@ -10,14 +10,14 @@ import os
 import click
 import yaml
 
-from bioregistry import get_name, get_pattern, read_bioregistry
+import bioregistry
 from bioregistry.constants import DOCS_DATA
 
 __all__ = [
-    'warnings',
+    "warnings",
 ]
 
-items = sorted(read_bioregistry().items())
+items = sorted(bioregistry.read_registry().items())
 
 
 @click.command()
@@ -26,48 +26,50 @@ def warnings():
     miriam_pattern_wrong = [
         dict(
             prefix=prefix,
-            name=get_name(prefix),
-            correct=entry['pattern'],
-            miriam=entry['miriam']['pattern'],
+            name=bioregistry.get_name(prefix),
+            correct=entry["pattern"],
+            miriam=entry["miriam"]["pattern"],
         )
         for prefix, entry in items
-        if 'miriam' in entry and 'pattern' in entry and entry['pattern'] != entry['miriam']['pattern']
+        if "miriam" in entry
+        and "pattern" in entry
+        and entry["pattern"] != entry["miriam"]["pattern"]
     ]
 
     miriam_embedding_rewrites = [
         dict(
             prefix=prefix,
-            name=get_name(prefix),
-            pattern=get_pattern(prefix),
-            correct=entry['namespace.embedded'],
-            miriam=entry['miriam']['namespaceEmbeddedInLui'],
+            name=bioregistry.get_name(prefix),
+            pattern=bioregistry.get_pattern(prefix),
+            correct=entry["namespace.embedded"],
+            miriam=entry["miriam"]["namespaceEmbeddedInLui"],
         )
         for prefix, entry in items
-        if 'namespace.embedded' in entry
+        if "namespace.embedded" in entry
     ]
 
     # When are namespace rewrites required?
     miriam_prefix_rewrites = [
         dict(
             prefix=prefix,
-            name=get_name(prefix),
-            pattern=get_pattern(prefix),
-            correct=entry['namespace.rewrite'],
+            name=bioregistry.get_name(prefix),
+            pattern=bioregistry.get_pattern(prefix),
+            correct=entry["namespace.rewrite"],
         )
         for prefix, entry in items
-        if 'namespace.rewrite' in entry
+        if "namespace.rewrite" in entry
     ]
 
-    with open(os.path.join(DOCS_DATA, 'warnings.yml'), 'w') as file:
+    with open(os.path.join(DOCS_DATA, "warnings.yml"), "w") as file:
         yaml.safe_dump(
             {
-                'wrong_patterns': miriam_pattern_wrong,
-                'embedding_rewrites': miriam_embedding_rewrites,
-                'prefix_rewrites': miriam_prefix_rewrites,
+                "wrong_patterns": miriam_pattern_wrong,
+                "embedding_rewrites": miriam_embedding_rewrites,
+                "prefix_rewrites": miriam_prefix_rewrites,
             },
             file,
         )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     warnings()

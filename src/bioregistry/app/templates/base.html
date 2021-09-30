@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% block head %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {% block styles %}
+            <!-- Bootstrap CSS -->
+            {{ bootstrap.load_css() }}
+            <style>
+                html, body {
+                    height: 100%;
+                }
+
+                body {
+                    display: flex;
+                    flex-flow: column;
+                }
+
+                .footer {
+                    margin-top: auto;
+                    padding-top: 1em;
+                    background-color: #f5f5f5;
+                }
+            </style>
+        {% endblock %}
+
+        <script src="https://kit.fontawesome.com/4c86883252.js" crossorigin="anonymous"></script>
+        <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+</head>
+<body {% block bodyattr %}{% endblock %}>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ url_for("home") }}">
+        <img src="{{ url_for('static', filename='logo.svg') }}" width="30" height="30" alt="">
+        Bioregistry
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for("ui.resources") }}">Registry</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for("ui.metaresources") }}">Metaregistry</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for("ui.collections") }}">Collections</a>
+            </li>
+
+
+            <li class="nav-item active dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    About
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ url_for("summary") }}">Summary</a>
+                    <a class="dropdown-item" href="{{ url_for("usage") }}">Programmatic Usage</a>
+                    <a class="dropdown-item" href="{{ url_for("schema") }}">JSON and RDF Schemata</a>
+                    <a class="dropdown-item" href="{{ url_for("sustainability") }}">Deployment and Sustainability</a>
+                    <a class="dropdown-item" href="{{ url_for("related") }}">Related</a>
+                    <a class="dropdown-item" href="{{ url_for("ui.contributors") }}">Contributors</a>
+                    <a class="dropdown-item" href="{{ url_for("acknowledgements") }}">How to Cite and Acknowledge</a>
+                    <!--<div class="dropdown-divider"></div>-->
+                </div>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('download') }}">Downloads</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('flasgger.apidocs') }}">API</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav my-2 my-lg-0">
+            <li class="nav-item active">
+                <span class="text-muted">
+                    Version {{ config.bioregistry_version }}
+                </span>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+{% block main %}
+    <div class="container" style="margin-top: 50px; margin-bottom: 50px">
+        <div class="row justify-content-center">
+            <div {% block containerattr %}class="col-md-10 col-lg-10"{% endblock %}>
+                {% block container %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+<footer class="footer">
+    <p class="small text-center text-muted">
+        Developed with ❤️ in 🇩🇪 and 🇺🇸 by the <a href="https://indralab.github.io">INDRA Lab</a> in the
+        <a href="https://hits.harvard.edu">Harvard Program in Therapeutic Science (HiTS)</a>.<br/>
+        Funded by the DARPA Young Faculty Award W911NF2010255 (PI: Benjamin M. Gyori).<br/>
+        Point of contact: <a href="https://github.com/cthoyt">@cthoyt</a>.
+        (<a href="https://github.com/biopragmatics/bioregistry">Source code</a>)
+    </p>
+</footer>
+
+{% block scripts %}
+    <!-- Optional JavaScript -->
+    {{ bootstrap.load_js() }}
+    <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.7/dist/latest/bootstrap-autocomplete.min.js"></script>
+{% endblock %}
+</body>
+</html>

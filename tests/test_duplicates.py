@@ -15,7 +15,7 @@ class TestDuplicates(unittest.TestCase):
 
     def test_unique_keys(self):
         """Test that all prefixes are norm-unique."""
-        registry = bioregistry.read_bioregistry()
+        registry = bioregistry.read_registry()
 
         for a, b in pairwise(sorted(registry, key=norm)):
             with self.subTest(a=a, b=b):
@@ -23,10 +23,10 @@ class TestDuplicates(unittest.TestCase):
 
     def test_synonyms(self):
         """Test that there are no synonyms that conflict with keys."""
-        registry = bioregistry.read_bioregistry()
+        registry = bioregistry.read_registry()
         norm_prefixes = {norm(prefix) for prefix in registry}
 
         for key, entry in registry.items():
-            for synonym in entry.get('synonyms', []):
+            for synonym in entry.synonyms or []:
                 with self.subTest(key=key, synonym=synonym):
                     self.assertNotIn(synonym, norm_prefixes - {norm(key)})

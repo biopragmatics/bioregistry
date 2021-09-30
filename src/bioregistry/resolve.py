@@ -2,57 +2,118 @@
 
 """Utilities for normalizing prefixes."""
 
-import datetime
 import logging
 import re
 from functools import lru_cache
-from typing import Any, Mapping, Optional
+from typing import Any, Dict, Mapping, Optional, Set, Tuple, Union
 
-from .utils import read_bioregistry
+from .constants import LICENSES
+from .resource_manager import ResourceManager
+from .schema import Resource
 
 __all__ = [
-    'get',
-    'get_name',
-    'get_pattern',
-    'get_pattern_re',
-    'namespace_in_lui',
-    'validate',
-    'get_format',
-    'get_example',
-    'is_deprecated',
-    'get_email',
-    'normalize_prefix',
-    'get_version',
-    'get_versions',
+    "get_resource",
+    "get_name",
+    "get_description",
+    "get_preferred_prefix",
+    "get_mappings",
+    "get_synonyms",
+    "get_pattern",
+    "get_pattern_re",
+    "namespace_in_lui",
+    "get_example",
+    "has_no_terms",
+    "is_deprecated",
+    "is_proprietary",
+    "get_email",
+    "get_homepage",
+    "get_obo_download",
+    "get_json_download",
+    "get_owl_download",
+    "get_version",
+    "get_versions",
+    # CURIE handling
+    "normalize_prefix",
+    "parse_curie",
+    "normalize_parsed_curie",
+    "normalize_curie",
 ]
 
 logger = logging.getLogger(__name__)
 
+manager = ResourceManager()
 
-def get(prefix: str) -> Optional[Mapping[str, Any]]:
-    """Get the entry for the given prefix.
+
+def get_resource(prefix: str) -> Optional[Resource]:
+    """Get the Bioregistry entry for the given prefix.
 
     :param prefix: The prefix to look up, which is normalized with :func:`normalize_prefix`
         before lookup in the Bioregistry
     :returns: The Bioregistry entry dictionary, which includes several keys cross-referencing
         other registries when available.
     """
-    return read_bioregistry().get(normalize_prefix(prefix))
+    return manager.get_resource(prefix)
 
 
 def get_name(prefix: str) -> Optional[str]:
-    """Get the name for the given prefix, it it's availble."""
-    entry = get(prefix)
+    """Get the name for the given prefix, it it's available."""
+    entry = get_resource(prefix)
     if entry is None:
         return None
-    name = entry.get('name')
-    if name is not None:
-        return name
-    for key in ('miriam', 'ols', 'obofoundry', 'wikidata'):
-        name = entry.get(key, {}).get('name')
-        if name is not None:
-            return name
-    return None
+    return entry.get_name()
+
+
+def get_description(prefix: str) -> Optional[str]:
+    """Get the description for the given prefix, if available."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_description()
+
+
+def get_preferred_prefix(prefix) -> Optional[str]:
+    """Get the preferred prefix (e.g., with stylization) if it exists.
+
+    :param prefix: The prefix to lookup.
+    :returns: The preferred prefix, if annotated in the Bioregistry or OBO Foundry.
+
+    No preferred prefix annotation, defaults to normalized prefix
+    >>> get_preferred_prefix("rhea")
+    None
+
+    Preferred prefix defined in the Bioregistry
+    >>> get_preferred_prefix("wb")
+    'WormBase'
+
+    Preferred prefix defined in the OBO Foundry
+    >>> get_preferred_prefix("fbbt")
+    'FBbt'
+
+    Preferred prefix from the OBO Foundry overridden by the Bioregistry
+    (see also https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1559)
+    >>> get_preferred_prefix("dpo")
+    'DPO'
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_preferred_prefix()
+
+
+def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
+    """Get the mappings to external registries, if available."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_mappings()
+
+
+def get_synonyms(prefix: str) -> Optional[Set[str]]:
+    """Get the synonyms for a given prefix, if available."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_synonyms()
 
 
 def get_pattern(prefix: str) -> Optional[str]:
@@ -65,14 +126,10 @@ def get_pattern(prefix: str) -> Optional[str]:
         2. MIRIAM
         3. Wikidata
     """
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
-    return (
-        entry.get('pattern')
-        or entry.get('miriam', {}).get('pattern')
-        or entry.get('wikidata', {}).get('pattern')
-    )
+    return entry.get_pattern()
 
 
 @lru_cache()
@@ -86,87 +143,581 @@ def get_pattern_re(prefix: str):
 
 def namespace_in_lui(prefix: str) -> Optional[bool]:
     """Check if the namespace should appear in the LUI."""
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
-    rv = entry.get('namespace.embedded')  # TODO is this the best tag name?
-    if rv is not None:
-        return rv
-    return entry.get('miriam', {}).get('namespaceEmbeddedInLui')
+    return entry.namespace_in_lui()
 
 
-def validate(prefix: str, identifier: str) -> Optional[bool]:
-    """Validate the identifier against the prefix's pattern, if it exists."""
-    pattern = get_pattern_re(prefix)
-    if pattern is None:
-        return None
+def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
+    """Get the identifiers.org prefix if available.
 
-    if namespace_in_lui(prefix) and not identifier.startswith(f'{prefix.upper()}:'):
-        # Some cases do not use uppercase
-        identifier = f'{prefix.upper()}:{identifier}'
+    :param prefix: The prefix to lookup.
+    :returns: The Identifiers.org/MIRIAM prefix corresponding to the prefix, if mappable.
 
-    return bool(pattern.match(identifier))
-
-
-def get_format(prefix: str) -> Optional[str]:
-    """Get the URL format string for the given prefix, if it's available."""
-    entry = get(prefix)
+    >>> import bioregistry
+    >>> bioregistry.get_identifiers_org_prefix('chebi')
+    'chebi'
+    >>> bioregistry.get_identifiers_org_prefix('ncbitaxon')
+    'taxonomy'
+    >>> assert bioregistry.get_identifiers_org_prefix('MONDO') is None
+    """
+    entry = get_resource(prefix)
     if entry is None:
         return None
-    url = entry.get('url')
-    if url is not None:
-        return url
-    miriam_id = entry.get('miriam', {}).get('prefix')
-    if miriam_id is not None:
-        if namespace_in_lui(prefix):
-            miriam_id = miriam_id.upper()  # not exact solution, some less common ones don't use capitalization
-        return f'https://identifiers.org/{miriam_id}:$1'
-    ols_id = entry.get('ols', {}).get('prefix')
-    if ols_id is not None:
-        purl = f'http://purl.obolibrary.org/obo/{ols_id.upper()}_$1'
-        return f'https://www.ebi.ac.uk/ols/ontologies/{ols_id}/terms?iri={purl}'
-    return None
+    return entry.get_identifiers_org_prefix()
+
+
+def get_n2t_prefix(prefix: str) -> Optional[str]:
+    """Get the name-to-thing prefix if available.
+
+    :param prefix: The prefix to lookup.
+    :returns: The Name-to-Thing prefix corresponding to the prefix, if mappable.
+
+    >>> import bioregistry
+    >>> bioregistry.get_n2t_prefix('chebi')
+    'chebi'
+    >>> bioregistry.get_n2t_prefix('ncbitaxon')
+    'taxonomy'
+    >>> assert bioregistry.get_n2t_prefix('MONDO') is None
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_mapped_prefix("n2t")
+
+
+def get_wikidata_prefix(prefix: str) -> Optional[str]:
+    """Get the wikidata prefix if available.
+
+    :param prefix: The prefix to lookup.
+    :returns: The Wikidata prefix (i.e., property identifier) corresponding to the prefix, if mappable.
+
+    >>> get_wikidata_prefix('chebi')
+    'P683'
+    >>> get_wikidata_prefix('ncbitaxon')
+    'P685'
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_mapped_prefix("wikidata")
+
+
+def get_bioportal_prefix(prefix: str) -> Optional[str]:
+    """Get the BioPortal prefix if available.
+
+    :param prefix: The prefix to lookup.
+    :returns: The BioPortal prefix corresponding to the prefix, if mappable.
+
+    >>> get_bioportal_prefix("chebi")
+    'CHEBI'
+    >>> get_bioportal_prefix("uniprot")
+    None
+    >>> get_bioportal_prefix("nope")
+    None
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_mapped_prefix("bioportal")
+
+
+def get_obofoundry_prefix(prefix: str) -> Optional[str]:
+    """Get the OBO Foundry prefix if available."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_obofoundry_prefix()
+
+
+def get_registry_map(metaprefix: str) -> Dict[str, str]:
+    """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
+    return manager.get_registry_map(metaprefix)
+
+
+def get_obofoundry_format(prefix: str) -> Optional[str]:
+    """Get the URL format for an OBO Foundry entry.
+
+    :param prefix: The prefix to lookup.
+    :returns: The OBO PURL URL prefix corresponding to the prefix, if mappable.
+
+    >>> import bioregistry
+    >>> bioregistry.get_obofoundry_format('go')  # standard
+    'http://purl.obolibrary.org/obo/GO_'
+    >>> bioregistry.get_obofoundry_format('ncbitaxon')  # mixed case
+    'http://purl.obolibrary.org/obo/NCBITaxon_'
+    >>> assert bioregistry.get_obofoundry_format('sty') is None
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_obofoundry_format()
+
+
+def get_ols_prefix(prefix: str) -> Optional[str]:
+    """Get the OLS prefix if available."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_ols_prefix()
+
+
+def get_fairsharing_prefix(prefix: str) -> Optional[str]:
+    """Get the FAIRSharing prefix if available.
+
+    :param prefix: The prefix to lookup.
+    :returns: The FAIRSharing prefix corresponding to the prefix, if mappable.
+
+    >>> get_fairsharing_prefix("genbank")
+    'FAIRsharing.9kahy4'
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_mapped_prefix("fairsharing")
+
+
+def get_scholia_prefix(prefix: str) -> Optional[str]:
+    """Get the Scholia prefix if available.
+
+    :param prefix: The prefix to lookup.
+    :returns: The Scholia prefix corresponding to the prefix, if mappable.
+
+    >>> get_scholia_prefix("pubmed")
+    'pubmed'
+    >>> get_scholia_prefix("pdb")
+    None
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_scholia_prefix()
+
+
+def get_banana(prefix: str) -> Optional[str]:
+    """Get the optional redundant prefix to go before an identifier.
+
+    A "banana" is an embedded prefix that isn't actually part of the identifier.
+    Usually this corresponds to the prefix itself, with some specific stylization
+    such as in the case of FBbt. The banana does NOT include a colon ":" at the end
+
+    :param prefix: The name of the prefix (possibly unnormalized)
+    :return: The banana, if the prefix is valid and has an associated banana.
+
+    Explicitly annotated banana
+    >>> assert "GO_REF" == get_banana('go.ref')
+
+    Banana imported through OBO Foundry
+    >>> assert "FBbt" == get_banana('fbbt')
+
+    No banana (ChEBI does have namespace in LUI, though)
+    >>> assert get_banana('chebi') is None
+
+    No banana, no namespace in LUI
+    >>> assert get_banana('pdb') is None
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_banana()
+
+
+def get_default_format(prefix: str) -> Optional[str]:
+    """Get the default, first-party URI prefix.
+
+    :param prefix: The prefix to lookup.
+    :returns: The first-party URI prefix string, if available.
+
+    >>> import bioregistry
+    >>> bioregistry.get_default_format('ncbitaxon')
+    'https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1'
+    >>> bioregistry.get_default_format('go')
+    'http://amigo.geneontology.org/amigo/term/GO:$1'
+    >>> assert bioregistry.get_default_format('nope') is None
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_default_format()
+
+
+def get_miriam_url_prefix(prefix: str) -> Optional[str]:
+    """Get the URL format for a MIRIAM entry.
+
+    :param prefix: The prefix to lookup.
+    :returns: The Identifiers.org/MIRIAM URL format string, if available.
+
+    >>> import bioregistry
+    >>> bioregistry.get_miriam_url_prefix('ncbitaxon')
+    'https://identifiers.org/taxonomy:'
+    >>> bioregistry.get_miriam_url_prefix('go')
+    'https://identifiers.org/GO:'
+    >>> assert bioregistry.get_miriam_url_prefix('sty') is None
+    """
+    resource = get_resource(prefix)
+    if resource is None:
+        return None
+    return resource.get_miriam_url_prefix()
+
+
+def get_miriam_format(prefix: str) -> Optional[str]:
+    """Get the URL format for a MIRIAM entry.
+
+    :param prefix: The prefix to lookup.
+    :returns: The Identifiers.org/MIRIAM URL format string, if available.
+
+    >>> import bioregistry
+    >>> bioregistry.get_miriam_format('ncbitaxon')
+    'https://identifiers.org/taxonomy:$1'
+    >>> bioregistry.get_miriam_format('go')
+    'https://identifiers.org/GO:$1'
+    >>> assert bioregistry.get_miriam_format('sty') is None
+    """
+    resource = get_resource(prefix)
+    if resource is None:
+        return None
+    return resource.get_miriam_format()
+
+
+def get_obofoundry_formatter(prefix: str) -> Optional[str]:
+    """Get the URL format for an OBO Foundry entry.
+
+    :param prefix: The prefix to lookup.
+    :returns: The OBO PURL format string, if available.
+
+    >>> import bioregistry
+    >>> bioregistry.get_obofoundry_formatter('go')  # standard
+    'http://purl.obolibrary.org/obo/GO_$1'
+    >>> bioregistry.get_obofoundry_formatter('ncbitaxon')  # mixed case
+    'http://purl.obolibrary.org/obo/NCBITaxon_$1'
+    >>> assert bioregistry.get_obofoundry_formatter('sty') is None
+    """
+    resource = get_resource(prefix)
+    if resource is None:
+        return None
+    return resource.get_obofoundry_formatter()
+
+
+def get_ols_url_prefix(prefix: str) -> Optional[str]:
+    """Get the URL format for an OLS entry.
+
+    :param prefix: The prefix to lookup.
+    :returns: The OLS format string, if available.
+
+    .. warning:: This doesn't have a normal form, so it only works for OBO Foundry at the moment.
+
+    >>> import bioregistry
+    >>> bioregistry.get_ols_url_prefix('go')  # standard
+    'https://www.ebi.ac.uk/ols/ontologies/go/terms?iri=http://purl.obolibrary.org/obo/GO_'
+    >>> bioregistry.get_ols_url_prefix('ncbitaxon')  # mixed case
+    'https://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?iri=http://purl.obolibrary.org/obo/NCBITaxon_'
+    >>> assert bioregistry.get_ols_url_prefix('sty') is None
+    """
+    resource = get_resource(prefix)
+    if resource is None:
+        return None
+    return resource.get_ols_url_prefix()
+
+
+def get_ols_format(prefix: str) -> Optional[str]:
+    """Get the URL format for an OLS entry.
+
+    :param prefix: The prefix to lookup.
+    :returns: The OLS format string, if available.
+
+    .. warning:: This doesn't have a normal form, so it only works for OBO Foundry at the moment.
+
+    >>> import bioregistry
+    >>> bioregistry.get_ols_format('go')  # standard
+    'https://www.ebi.ac.uk/ols/ontologies/go/terms?iri=http://purl.obolibrary.org/obo/GO_$1'
+    >>> bioregistry.get_ols_format('ncbitaxon')  # mixed case
+    'https://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?iri=http://purl.obolibrary.org/obo/NCBITaxon_$1'
+    >>> assert bioregistry.get_ols_format('sty') is None
+    """
+    resource = get_resource(prefix)
+    if resource is None:
+        return None
+    return resource.get_ols_format()
+
+
+def get_prefixcommons_format(prefix: str) -> Optional[str]:
+    """Get the URL format for a Prefix Commons entry.
+
+    :param prefix: The prefix to lookup.
+    :returns: The Prefix Commons URL format string, if available.
+
+    >>> import bioregistry
+    >>> bioregistry.get_prefixcommons_format('hgmd')
+    'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
+    """
+    resource = get_resource(prefix)
+    if resource is None:
+        return None
+    return resource.get_prefixcommons_format()
+
+
+def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:
+    """Get the external data for the entry."""
+    return manager.get_external(prefix, metaprefix)
 
 
 def get_example(prefix: str) -> Optional[str]:
     """Get an example identifier, if it's available."""
-    entry = get(prefix)
+    entry = get_resource(prefix)
     if entry is None:
         return None
-    example = entry.get('example')
-    if example is not None:
-        return example
-    miriam_example = entry.get('miriam', {}).get('sampleId')
-    if miriam_example is not None:
-        return miriam_example
-    return None
+    return entry.get_example()
+
+
+def has_no_terms(prefix: str) -> bool:
+    """Check if the prefix is specifically noted to not have terms."""
+    entry = get_resource(prefix)
+    if entry is None or entry.no_own_terms is None:
+        return False
+    return entry.no_own_terms
 
 
 def is_deprecated(prefix: str) -> bool:
-    """Return if the given prefix corresponds to a deprecated resource."""
-    entry = get(prefix)
+    """Return if the given prefix corresponds to a deprecated resource.
+
+    :param prefix: The prefix to lookup
+    :returns: If the prefix has been explicitly marked as deprecated either by
+        the Bioregistry, OBO Foundry, OLS, or MIRIAM. If no marks are present,
+        assumed not to be deprecated.
+
+    >>> import bioregistry
+    >>> assert bioregistry.is_deprecated('imr')  # marked by OBO
+    >>> assert bioregistry.is_deprecated('iro') # marked by Bioregistry
+    >>> assert bioregistry.is_deprecated('miriam.collection') # marked by MIRIAM
+    """
+    entry = get_resource(prefix)
     if entry is None:
         return False
-    if 'deprecated' in entry:
-        return entry['deprecated']
-    for key in ('obofoundry', 'ols', 'miriam'):
-        if key in entry and 'deprecated' in entry[key]:
-            return entry[key]['deprecated']
-    return False
+    return entry.is_deprecated()
 
 
 def get_email(prefix: str) -> Optional[str]:
-    """Return the contact email, if available."""
-    entry = get(prefix)
+    """Return the contact email, if available.
+
+    :param prefix: The prefix to lookup
+    :returns: The resource's contact email address, if it is available.
+
+    >>> import bioregistry
+    >>> bioregistry.get_email('bioregistry')  # from bioregistry curation
+    'cthoyt@gmail.com'
+    >>> bioregistry.get_email('chebi')
+    'amalik@ebi.ac.uk'
+    >>> assert bioregistry.get_email('pass2') is None  # dead resource
+    """
+    entry = get_resource(prefix)
     if entry is None:
         return None
+    return entry.get_email()
 
-    for key in ('obofoundry', 'ols'):
-        obo_email = entry.get(key, {}).get('contact')
-        if obo_email:
-            return obo_email
 
+def get_homepage(prefix: str) -> Optional[str]:
+    """Return the homepage, if available."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_homepage()
+
+
+def get_obo_download(prefix: str) -> Optional[str]:
+    """Get the download link for the latest OBO file."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    if entry.download_obo:
+        return entry.download_obo
+    return get_external(prefix, "obofoundry").get("download.obo")
+
+
+def get_json_download(prefix: str) -> Optional[str]:
+    """Get the download link for the latest OBOGraph JSON file."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return get_external(prefix, "obofoundry").get("download.json")
+
+
+def get_owl_download(prefix: str) -> Optional[str]:
+    """Get the download link for the latest OWL file."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    if entry.download_owl:
+        return entry.download_owl
+    return (
+        get_external(prefix, "ols").get("version.iri")
+        or get_external(prefix, "ols").get("download")
+        or get_external(prefix, "obofoundry").get("download.owl")
+    )
+
+
+def get_provides_for(prefix: str) -> Optional[str]:
+    """Get the resource that the given prefix provides for, or return none if not a provider.
+
+    :param prefix: The prefix to look up
+    :returns: The prefix of the resource that the given prefix provides for, if it's a provider
+
+    >>> assert get_provides_for('pdb') is None
+    >>> assert 'pdb' == get_provides_for('validatordb')
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.provides
+
+
+def get_license(prefix: str) -> Optional[str]:
+    """Get the license for the resource.
+
+    :param prefix: The prefix to look up
+    :returns: The license of the resource (normalized) if available
+
+    >>> assert get_provides_for('pdb') is None
+    >>> assert 'pdb' == get_provides_for('validatordb')
+    """
+    for metaprefix in ("obofoundry", "ols"):
+        license_value = _remap_license(get_external(prefix, metaprefix).get("license"))
+        if license_value is not None:
+            return license_value
     return None
+
+
+def _remap_license(k: Optional[str]) -> Optional[str]:
+    if k is None:
+        return None
+    return LICENSES.get(k, k)
+
+
+def is_proprietary(prefix: str) -> Optional[bool]:
+    """Get if the prefix is proprietary.
+
+    :param prefix: The prefix to look up
+    :returns: If the prefix corresponds to a proprietary resource. Assume false if not annotated explicitly
+
+    >>> assert is_proprietary('eurofir')
+    >>> assert not is_proprietary('chebi')
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    if entry.proprietary is None:
+        return False
+    return entry.proprietary
+
+
+def parse_curie(curie: str, sep: str = ":") -> Union[Tuple[str, str], Tuple[None, None]]:
+    """Parse a CURIE, normalizing the prefix and identifier if necessary.
+
+    :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
+    :param sep: The separator for the CURIE. Defaults to the colon ":" however the slash
+        "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
+    :returns: A tuple of the prefix, identifier. If not parsable, returns a tuple of None, None
+
+    The algorithm for parsing a CURIE is very simple: it splits the string on the leftmost occurrence
+    of the separator (usually a colon ":" unless specified otherwise). The left part is the prefix,
+    and the right part is the identifier.
+
+    >>> parse_curie('pdb:1234')
+    ('pdb', '1234')
+
+    Address banana problem
+    >>> parse_curie('go:GO:1234')
+    ('go', '1234')
+    >>> parse_curie('go:go:1234')
+    ('go', '1234')
+    >>> parse_curie('go:1234')
+    ('go', '1234')
+
+    Address banana problem with OBO banana
+    >>> parse_curie('fbbt:FBbt:1234')
+    ('fbbt', '1234')
+    >>> parse_curie('fbbt:fbbt:1234')
+    ('fbbt', '1234')
+    >>> parse_curie('fbbt:1234')
+    ('fbbt', '1234')
+
+    Address banana problem with explit banana
+    >>> parse_curie('go.ref:GO_REF:1234')
+    ('go.ref', '1234')
+    >>> parse_curie('go.ref:1234')
+    ('go.ref', '1234')
+
+    Parse OBO PURL curies
+    >>> parse_curie('GO_1234', sep="_")
+    ('go', '1234')
+    """
+    try:
+        prefix, identifier = curie.split(sep, 1)
+    except ValueError:
+        return None, None
+    return normalize_parsed_curie(prefix, identifier)
+
+
+def normalize_parsed_curie(
+    prefix: str, identifier: str
+) -> Union[Tuple[str, str], Tuple[None, None]]:
+    """Normalize a prefix/identifier pair.
+
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE
+    :return: A normalized prefix/identifier pair, conforming to Bioregistry standards. This means no redundant
+        prefixes or bananas, all lowercase.
+    """
+    return manager.normalize_parsed_curie(prefix, identifier)
+
+
+def normalize_curie(curie: str, sep: str = ":") -> Optional[str]:
+    """Normalize a CURIE.
+
+    :param curie: A compact URI (CURIE) in the form of <prefix:identifier>
+    :param sep: The separator for the CURIE. Defaults to the colon ":" however the slash
+        "/" is sometimes used in Identifiers.org and the underscore "_" is used for OBO PURLs.
+    :return: A normalized CURIE, if possible using the colon as a separator
+
+    >>> normalize_curie('pdb:1234')
+    'pdb:1234'
+
+    Fix commonly mistaken prefix
+    >>> normalize_curie('pubchem:1234')
+    'pubchem.compound:1234'
+
+    Address banana problem
+    >>> normalize_curie('GO:GO:1234')
+    'go:1234'
+    >>> normalize_curie('go:GO:1234')
+    'go:1234'
+    >>> normalize_curie('go:go:1234')
+    'go:1234'
+    >>> normalize_curie('go:1234')
+    'go:1234'
+
+    Address banana problem with OBO banana
+    >>> normalize_curie('fbbt:FBbt:1234')
+    'fbbt:1234'
+    >>> normalize_curie('fbbt:fbbt:1234')
+    'fbbt:1234'
+    >>> normalize_curie('fbbt:1234')
+    'fbbt:1234'
+
+    Address banana problem with explit banana
+    >>> normalize_curie('go.ref:GO_REF:1234')
+    'go.ref:1234'
+    >>> normalize_curie('go.ref:1234')
+    'go.ref:1234'
+
+    Parse OBO PURL curies
+    >>> normalize_curie('GO_1234', sep="_")
+    'go:1234'
+    """
+    prefix, identifier = parse_curie(curie, sep=sep)
+    if prefix is None:
+        return None
+    return f"{prefix}:{identifier}"
 
 
 def normalize_prefix(prefix: str) -> Optional[str]:
@@ -184,56 +735,14 @@ def normalize_prefix(prefix: str) -> Optional[str]:
 
     This works for common mistaken prefixes, like:
 
-    >>> assert 'chembl.compound' == normalize_prefix('chembl')
+    >>> assert 'pubchem.compound' == normalize_prefix('pubchem')
 
     This works for prefixes that are often written many ways, like:
 
     >>> assert 'eccode' == normalize_prefix('ec-code')
     >>> assert 'eccode' == normalize_prefix('EC_CODE')
     """
-    return _synonym_to_canonical().get(prefix)
-
-
-def _norm(s: str) -> str:
-    """Normalize a string for dictionary key usage."""
-    rv = s.casefold().lower()
-    for x in ' .-_./':
-        rv = rv.replace(x, '')
-    return rv
-
-
-class NormDict(dict):
-    def __setitem__(self, key: str, value: str) -> None:
-        norm_key = _norm(key)
-        if value is None:
-            raise ValueError(f'Tried to add empty value for {key}/{norm_key}')
-        if norm_key in self and self[norm_key] != value:
-            raise KeyError(f'Tried to add {norm_key}/{value} when already had {norm_key}/{self[norm_key]}')
-        super().__setitem__(norm_key, value)
-
-    def __getitem__(self, item: str) -> str:
-        return super().__getitem__(_norm(item))
-
-    def get(self, key: str, default=None) -> str:
-        return super().get(_norm(key), default)
-
-
-@lru_cache(maxsize=1)
-def _synonym_to_canonical() -> NormDict:
-    """Return a mapping from several variants of each synonym to the canonical namespace."""
-    norm_synonym_to_key = NormDict()
-
-    for bioregistry_id, entry in read_bioregistry().items():
-        norm_synonym_to_key[bioregistry_id] = bioregistry_id
-
-        for external in ('miriam', 'ols', 'wikidata', 'obofoundry', 'go'):
-            if external in entry and 'prefix' in entry[external]:
-                norm_synonym_to_key[entry[external]['prefix']] = bioregistry_id
-
-        for synonym in entry.get('synonyms', []):
-            norm_synonym_to_key[synonym] = bioregistry_id
-
-    return norm_synonym_to_key
+    return manager.normalize_prefix(prefix)
 
 
 def get_version(prefix: str) -> Optional[str]:
@@ -247,69 +756,4 @@ def get_version(prefix: str) -> Optional[str]:
 @lru_cache(maxsize=1)
 def get_versions() -> Mapping[str, str]:
     """Get a map of prefixes to versions."""
-    rv = {}
-
-    for bioregistry_id, bioregistry_entry in read_bioregistry().items():
-        if 'ols' not in bioregistry_entry:
-            continue
-        version = bioregistry_entry['ols'].get('version')
-        if version is None:
-            logger.warning('[%s] missing version. Contact: %s', bioregistry_id, get_email(bioregistry_id))
-            continue
-
-        version = _clean_version(bioregistry_id, version, bioregistry_entry=bioregistry_entry)
-        version_type = bioregistry_entry.get('ols_version_type')
-        version_date_fmt = bioregistry_entry.get('ols_version_date_format')
-
-        if version_date_fmt:
-            if version_date_fmt in {"%Y-%d-%m"}:
-                logger.warning(
-                    '[%s] confusing date format: %s. Contact: %s', bioregistry_id, version_date_fmt,
-                    get_email(bioregistry_id),
-                )
-            try:
-                version = datetime.datetime.strptime(version, version_date_fmt)
-            except ValueError:
-                logger.warning('[%s] wrong format for version %s', bioregistry_id, version)
-        elif not version_type:
-            logger.warning('[%s] no type for version %s', bioregistry_id, version)
-
-        rv[bioregistry_id] = version
-
-    return rv
-
-
-def _clean_version(
-    bioregistry_id: str,
-    version: str,
-    *,
-    bioregistry_entry: Optional[Mapping[str, Any]] = None,
-) -> str:
-    if bioregistry_entry is None:
-        bioregistry_entry = get(bioregistry_id)
-    if bioregistry_entry is None:
-        raise ValueError
-
-    if version != version.strip():
-        logger.warning(
-            '[%s] extra whitespace in version: %s. Contact: %s',
-            bioregistry_id, version, get_email(bioregistry_id),
-        )
-        version = version.strip()
-
-    version_prefix = bioregistry_entry.get('ols_version_prefix')
-    if version_prefix:
-        if not version.startswith(version_prefix):
-            raise ValueError(f'[{bioregistry_id}] version {version} does not start with prefix {version_prefix}')
-        version = version[len(version_prefix):]
-
-    if bioregistry_entry.get('ols_version_suffix_split'):
-        version = version.split()[0]
-
-    version_suffix = bioregistry_entry.get('ols_version_suffix')
-    if version_suffix:
-        if not version.endswith(version_suffix):
-            raise ValueError(f'[{bioregistry_id}] version {version} does not end with prefix {version_suffix}')
-        version = version[:-len(version_suffix)]
-
-    return version
+    return manager.get_versions()

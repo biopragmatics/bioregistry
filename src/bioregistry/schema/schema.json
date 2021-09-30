@@ -1,0 +1,326 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bioregistry.io/schema.json",
+  "title": "Bioregistry JSON Schema",
+  "description": "The Bioregistry JSON Schema describes the shapes of the objects in the registry, metaregistry, collections, and their other related resources",
+  "definitions": {
+    "Author": {
+      "title": "Author",
+      "description": "Metadata for an author.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "description": "The full name of the author",
+          "type": "string"
+        },
+        "orcid": {
+          "title": "Open Researcher and Contributor Identifier",
+          "description": "The ORCiD of the author",
+          "type": "string"
+        },
+        "email": {
+          "title": "Email",
+          "description": "The email address specific to the author",
+          "pattern": "^(\\w|\\.|\\_|\\-)+[@](\\w|\\_|\\-|\\.)+[.]\\w{2,5}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "orcid"
+      ]
+    },
+    "Collection": {
+      "title": "Collection",
+      "description": "A collection of resources.",
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "title": "Identifier",
+          "description": "The collection's identifier",
+          "pattern": "^\\d{7}$",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "description": "The name of the collection",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "description": "A description of the collection",
+          "type": "string"
+        },
+        "resources": {
+          "title": "Resources",
+          "description": "A list of prefixes of resources appearing in the collection",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "authors": {
+          "title": "Authors",
+          "description": "A list of authors/contributors to the collection",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Author"
+          }
+        },
+        "context": {
+          "title": "Context",
+          "type": "string"
+        }
+      },
+      "required": [
+        "identifier",
+        "name",
+        "description",
+        "resources",
+        "authors"
+      ]
+    },
+    "Resource": {
+      "title": "Resource",
+      "description": "Metadata about an ontology, database, or other resource.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "description": "The human-readable name of the resource",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "description": "A description of the resource",
+          "type": "string"
+        },
+        "pattern": {
+          "title": "Pattern",
+          "description": "The regular expression pattern for identifiers in the resource",
+          "type": "string"
+        },
+        "url": {
+          "title": "Format URL",
+          "description": "The URL format string, which must have at least one ``$1`` in it",
+          "type": "string"
+        },
+        "homepage": {
+          "title": "Format URL",
+          "description": "The URL for the homepage of the resource",
+          "type": "string"
+        },
+        "contact": {
+          "title": "Contact",
+          "description": "The contact email address for the resource. This must correspond to a specific person and not be a listserve nor a shared email account.",
+          "type": "string"
+        },
+        "example": {
+          "title": "Example",
+          "description": "An example local identifier for the resource, explicitly excluding any redundant usage of the prefix in the identifier. For example, a GO identifier should only look like 1234567 and not like GO:1234567",
+          "type": "string"
+        },
+        "part_of": {
+          "title": "Part Of",
+          "description": "An annotation between this prefix and a super-prefix. For example, ``chembl.compound`` is a part of ``chembl``.",
+          "type": "string"
+        },
+        "provides": {
+          "title": "Provides",
+          "description": "An annotation between this prefix and a prefix for which it is redundant. For example, ``ctd.gene`` has been given a prefix by Identifiers.org, but it actually just reuses identifies from ``ncbigene``, so ``ctd.gene`` provides ``ncbigene``.",
+          "type": "string"
+        },
+        "download_owl": {
+          "title": "OWL Download URL",
+          "description": "The OWL download URL, preferably an unversioned variant",
+          "type": "string"
+        },
+        "download_obo": {
+          "title": "OBO Download URL",
+          "description": "The OBO download URL, preferably an unversioned variant",
+          "type": "string"
+        },
+        "banana": {
+          "title": "Banana",
+          "description": "The redundant prefix that may appear in identifiers (e.g., `FBbt:`)",
+          "type": "string"
+        },
+        "deprecated": {
+          "title": "Deprecated",
+          "description": "A flag to note if this resource is deprecated - will override OLS, OBO Foundry, and Prefix Commons flags.",
+          "type": "boolean"
+        },
+        "mappings": {
+          "title": "Mappings",
+          "description": "A dictionary of metaprefixes to prefixes in external registries",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "synonyms": {
+          "title": "Synonyms",
+          "description": "A list of synonyms for the prefix of this resource",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "references": {
+          "title": "References",
+          "description": "A list of URLs to also see, such as publications describing the resource",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "appears_in": {
+          "title": "Appears In",
+          "description": "A list of prefixes that use this resource for xrefs, provenance, etc.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "namespaceEmbeddedInLui": {
+          "title": "Namespaceembeddedinlui",
+          "type": "boolean"
+        },
+        "no_own_terms": {
+          "title": "No Own Terms",
+          "description": "A flag to denote if the resource does not have any identifiers itself",
+          "type": "boolean"
+        },
+        "comment": {
+          "title": "Comment",
+          "description": "A field for a free text comment",
+          "type": "string"
+        },
+        "contributor": {
+          "title": "Contributor",
+          "description": "Contributor information, including the name, ORCiD, and optionally the email of the contributor",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Author"
+            }
+          ]
+        },
+        "proprietary": {
+          "title": "Proprietary",
+          "description": "Set to true if this database is proprietary. If missing, assume it's not.",
+          "type": "boolean"
+        },
+        "has_canonical": {
+          "title": "Has Canonical",
+          "description": "If this shares an IRI with another entry, maps to which should be be considered as canonical",
+          "type": "string"
+        },
+        "miriam": {
+          "title": "Miriam",
+          "type": "object"
+        },
+        "n2t": {
+          "title": "N2T",
+          "type": "object"
+        },
+        "prefixcommons": {
+          "title": "Prefixcommons",
+          "type": "object"
+        },
+        "wikidata": {
+          "title": "Wikidata",
+          "type": "object"
+        },
+        "go": {
+          "title": "Go",
+          "type": "object"
+        },
+        "obofoundry": {
+          "title": "Obofoundry",
+          "type": "object"
+        },
+        "bioportal": {
+          "title": "Bioportal",
+          "type": "object"
+        },
+        "ols": {
+          "title": "Ols",
+          "type": "object"
+        },
+        "ncbi": {
+          "title": "Ncbi",
+          "type": "object"
+        },
+        "uniprot": {
+          "title": "Uniprot",
+          "type": "object"
+        },
+        "biolink": {
+          "title": "Biolink",
+          "type": "object"
+        },
+        "cellosaurus": {
+          "title": "Cellosaurus",
+          "type": "object"
+        }
+      }
+    },
+    "Registry": {
+      "title": "Registry",
+      "description": "Metadata about a registry.",
+      "type": "object",
+      "properties": {
+        "prefix": {
+          "title": "Prefix",
+          "description": "The metaprefix for the registry itself. For example, the metaprefix for Identifiers.org is `miriam`.",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "description": "The human-readable label for the registry",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "description": "A full description of the registry.",
+          "type": "string"
+        },
+        "homepage": {
+          "title": "Homepage",
+          "description": "The URL for the homepage of the registry.",
+          "type": "string"
+        },
+        "example": {
+          "title": "Example",
+          "description": "An example prefix (i.e., metaidentifier) inside the registry.",
+          "type": "string"
+        },
+        "download": {
+          "title": "Download",
+          "description": "A download link for the data contained in the registry",
+          "type": "string"
+        },
+        "provider_url": {
+          "title": "Provider Url",
+          "type": "string"
+        },
+        "resolver_url": {
+          "title": "Resolver Url",
+          "type": "string"
+        },
+        "contact": {
+          "title": "Contact",
+          "type": "string"
+        }
+      },
+      "required": [
+        "prefix",
+        "name",
+        "description",
+        "homepage",
+        "example"
+      ]
+    }
+  }
+}

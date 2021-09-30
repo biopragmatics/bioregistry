@@ -1,28 +1,3 @@
-embedding_rewrites:
-- correct: true
-  miriam: false
-  name: Ontology for Biomedical Investigations
-  pattern: (^OBI:\d{7}$)|(^OBI_\d{7}$)
-  prefix: obi
-prefix_rewrites:
-- correct: GRO
-  name: Gramene Growth Stage Ontology
-  pattern: ^GRO\:\d+$
-  prefix: gramene.growthstage
-- correct: HOG
-  name: OMA HOGs
-  pattern: ^HOG:[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
-  prefix: oma.hog
-- correct: VariO
-  name: VariO
-  pattern: ^VariO:\d+$
-  prefix: vario
-wrong_patterns:
-- correct: ^\d{1,2}(\.\d{0,3}){0,3}$
-  miriam: ^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$
-  name: Enzyme Nomenclature
-  prefix: eccode
-- correct: ^\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b$
-  miriam: ^\w+$
-  name: 'NCI Pathway Interaction Database: Pathway'
-  prefix: pid.pathway
+embedding_rewrites: []
+prefix_rewrites: []
+wrong_patterns: []

@@ -7,53 +7,44 @@ import click
 from .biolink import BiolinkAligner
 from .bioportal import BioPortalAligner
 from .go import GoAligner
-from .miriam import align_miriam
-from .n2t import align_n2t
+from .miriam import MiriamAligner
+from .n2t import N2TAligner
 from .ncbi import NcbiAligner
-from .obofoundry import align_obofoundry
-from .ols import align_ols
+from .obofoundry import OBOFoundryAligner
+from .ols import OLSAligner
 from .prefix_commons import PrefixCommonsAligner
-from .wikidata import align_wikidata
+from .uniprot import UniProtAligner
+from .wikidata import WikidataAligner
 from ..utils import secho
 
 __all__ = [
-    'align',
+    "align",
 ]
 
 
 @click.command()
-def align():
+@click.option("--quiet", is_flag=True)
+def align(quiet: bool):
     """Align all external registries."""
-    secho('Aligning MIRIAM')
-    align_miriam()
-
-    secho('Aligning N2T')
-    align_n2t()
-
-    secho('Aligning NCBI')
-    NcbiAligner.align()
-
-    secho('Aligning OBO Foundry')
-    align_obofoundry()
-
-    secho('Aligning OLS')
-    align_ols()
-
-    secho('Aligning Wikidata')
-    align_wikidata()
-
-    secho('Aligning GO')
-    GoAligner.align()
-
-    secho('Aligning BioPortal')
-    BioPortalAligner.align()
-
-    secho('Aligning Prefix Commons')
-    PrefixCommonsAligner.align()
-
-    secho('Aligning Biolink')
-    BiolinkAligner.align()
+    for aligner_cls in [
+        MiriamAligner,
+        N2TAligner,
+        NcbiAligner,
+        OBOFoundryAligner,
+        OLSAligner,
+        WikidataAligner,
+        GoAligner,
+        BioPortalAligner,
+        PrefixCommonsAligner,
+        BiolinkAligner,
+        UniProtAligner,
+    ]:
+        secho(f"Aligning {aligner_cls.key}")
+        try:
+            aligner_cls.align(quiet=quiet)
+        except IOError:
+            secho(f"Failed to align {aligner_cls.key}", fg="red")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     align()

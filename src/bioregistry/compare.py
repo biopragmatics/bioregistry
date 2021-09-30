@@ -4,269 +4,174 @@
 
 import datetime
 import itertools as itt
+import logging
 import math
-import os
+import random
 import sys
 from collections import Counter
 from typing import Collection, Set
 
 import click
 
-from bioregistry import get_email, get_example, get_format, get_pattern, get_version, read_bioregistry
+from bioregistry import (
+    get_description,
+    get_email,
+    get_example,
+    get_format,
+    get_homepage,
+    get_json_download,
+    get_license,
+    get_name,
+    get_obo_download,
+    get_owl_download,
+    get_pattern,
+    get_version,
+    is_deprecated,
+    read_registry,
+)
 from bioregistry.constants import DOCS_IMG
-from bioregistry.external import (
-    get_biolink, get_bioportal, get_go, get_miriam, get_n2t, get_ncbi, get_obofoundry, get_ols, get_prefix_commons,
-    get_wikidata_registry,
+from bioregistry.external import GETTERS
+from bioregistry.resolve import _remap_license, get_external
+
+logger = logging.getLogger(__name__)
+
+# see named colors https://matplotlib.org/stable/gallery/color/named_colors.html
+BIOREGISTRY_COLOR = "silver"
+
+
+def _get_has(func, yes: str = "Yes", no: str = "No") -> Counter:
+    return Counter(
+        no if func(prefix) is None else yes
+        for prefix in read_registry()
+        if not is_deprecated(prefix)
+    )
+
+
+HAS_WIKIDATA_DATABASE = Counter(
+    "No" if key is None else "Yes"
+    for key in read_registry()
+    if not is_deprecated(key) and "database" in get_external(key, "wikidata")
 )
 
-bioregistry = read_bioregistry()
 
-LICENSES = {
-    'None': None,
-    'license': None,
-    'unspecified': None,
-    # CC-BY (4.0)
-    'CC-BY 4.0': 'CC-BY',
-    'CC BY 4.0': 'CC-BY',
-    'https://creativecommons.org/licenses/by/4.0/': 'CC-BY',
-    'http://creativecommons.org/licenses/by/4.0/': 'CC-BY',
-    'http://creativecommons.org/licenses/by/4.0': 'CC-BY',
-    'https://creativecommons.org/licenses/by/3.0/': 'CC-BY',
-    'url: http://creativecommons.org/licenses/by/4.0/': 'CC-BY',
-    'SWO is provided under a Creative Commons Attribution 4.0 International'
-    ' (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/).': 'CC-BY',
-    # CC-BY (3.0)
-    'CC-BY 3.0 https://creativecommons.org/licenses/by/3.0/': 'CC-BY',
-    'http://creativecommons.org/licenses/by/3.0/': 'CC-BY',
-    'CC-BY 3.0': 'CC-BY',
-    'CC BY 3.0': 'CC-BY',
-    'CC-BY version 3.0': 'CC-BY',
-    # CC-BY (2.0)
-    'CC-BY 2.0': 'CC-BY',
-    # CC-BY (unversioned)
-    'CC-BY': 'CC-BY',
-    'creative-commons-attribution-license': 'CC-BY',
-    # CC-BY-SA
-    'CC-BY-SA': 'CC-BY-SA',
-    'https://creativecommons.org/licenses/by-sa/4.0/': 'CC-BY-SA',
-    # CC-BY-NC-SA
-    'http://creativecommons.org/licenses/by-nc-sa/2.0/': 'CC-BY-NC-SA',
-    # CC 0
-    'CC-0': 'CC-0',
-    'CC0 1.0 Universal': 'CC-0',
-    'CC0': 'CC-0',
-    'http://creativecommons.org/publicdomain/zero/1.0/': 'CC-0',
-    'https://creativecommons.org/publicdomain/zero/1.0/': 'CC-0',
-    # Apache 2.0
-    'Apache 2.0 License': 'Other',
-    'LICENSE-2.0': 'Other',
-    'www.apache.org/licenses/LICENSE-2.0': 'Other',
-    # Other
-    'GNU GPL 3.0': 'Other',
-    'hpo': 'Other',
-    'Artistic License 2.0': 'Other',
-    'New BSD license': 'Other',
-}
-
-
-def _remap_license(k):
-    return k and LICENSES.get(k, k)
+def _get_has_present(func) -> Counter:
+    return Counter(x for x in (func(prefix) for prefix in read_registry()) if x)
 
 
 SINGLE_FIG = (8, 3.5)
-TODAY = datetime.datetime.today().strftime('%Y-%m-%d')
-WATERMARK_TEXT = f'https://github.com/cthoyt/bioregistry ({TODAY})'
+TODAY = datetime.datetime.today().strftime("%Y-%m-%d")
+WATERMARK_TEXT = f"https://github.com/biopragmatics/bioregistry ({TODAY})"
 
 
-@click.command()
-def compare():  # noqa:C901
-    """Compare the registries."""
-    try:
-        import matplotlib.pyplot as plt
-        import seaborn as sns
-        from matplotlib_venn import venn2
-    except ImportError:
-        click.secho(
-            'Could not import matplotlib dependencies.'
-            ' Install bioregistry again with `pip install bioregistry[charts]`.',
-            fg='red',
-        )
-        return sys.exit(1)
+def _save(fig, name: str, *, svg: bool = True, png: bool = False) -> None:
+    import matplotlib.pyplot as plt
 
-    watermark = True
-    sns.set_style('whitegrid')
-
-    ###############################################
-    # What kinds of licenses are resources using? #
-    ###############################################
-    licenses, conflicts, obo_has_license, ols_has_license = _get_license_and_conflicts()
-
-    # How many times does the license appear in OLS / OBO Foundry
-    fig, ax = plt.subplots(figsize=SINGLE_FIG)
-    venn2(
-        subsets=(obo_has_license, ols_has_license),
-        set_labels=('OBO', 'OLS'),
-        set_colors=('red', 'green'),
-        ax=ax,
-    )
-    if watermark:
-        ax.text(
-            0.5, -0.1, WATERMARK_TEXT, transform=plt.gca().transAxes,
-            fontsize=10, color='gray', alpha=0.5,
-            ha='center', va='bottom',
-        )
-
-    path = os.path.join(DOCS_IMG, 'license_coverage.svg')
-    click.echo(f'output to {path}')
+    path = DOCS_IMG.joinpath(name).with_suffix(".svg")
+    click.echo(f"output to {path}")
     fig.tight_layout()
-    fig.savefig(path, dpi=300)
+    if svg:
+        fig.savefig(path)
+    if png:
+        fig.savefig(DOCS_IMG.joinpath(name).with_suffix(".png"), dpi=300)
     plt.close(fig)
 
-    fig, ax = plt.subplots(figsize=SINGLE_FIG)
-    sns.countplot(x=licenses, ax=ax)
-    ax.set_xlabel('License')
-    ax.set_ylabel('Count')
-    ax.set_yscale('log')
-    if watermark:
-        fig.text(
-            1.0, 0.5, WATERMARK_TEXT,
-            fontsize=8, color='gray', alpha=0.5,
-            ha='right', va='center', rotation=90,
-        )
 
-    path = os.path.join(DOCS_IMG, 'licenses.svg')
-    click.echo(f'output to {path}')
-    fig.tight_layout()
-    fig.savefig(path, dpi=300)
-    plt.close(fig)
+def _plot_attribute_pies(*, measurements, watermark, ncols: int = 4, keep_ontology: bool = True):
+    import matplotlib.pyplot as plt
 
-    ##############################################
-    # How many entries have version information? #
-    ##############################################
-    has_version = {key for key in bioregistry if get_version(key)}
-    has_pattern = {key for key in bioregistry if get_pattern(key)}
-    has_wikidata_database = {
-        key
-        for key, entry in bioregistry.items()
-        if 'database' in entry.get('wikidata', {})
-    }
-    has_formatter = {key for key in bioregistry if get_format(key)}
-    has_example = {key for key in bioregistry if get_example(key)}
-    has_email = {key for key in bioregistry if get_email(key)}
-    measurements = [
-        ('Pattern', has_pattern),
-        ('Version', has_version),
-        ('Wikidata Database', has_wikidata_database),
-        ('Format URL', has_formatter),
-        ('Example', has_example),
-        ('Contact Email', has_email),
-    ]
+    if not keep_ontology:
+        measurements = [
+            (label, counter)
+            for label, counter in measurements
+            if label not in {"OWL", "JSON", "OBO"}
+        ]
 
-    ncols = 2
-    nrows = (1 + len(measurements)) // 2
-    fig, axes = plt.subplots(ncols=ncols, nrows=nrows)
-    for measurement, ax in itt.zip_longest(measurements, axes.ravel()):
-        if measurement is None:
-            ax.axis('off')
+    nrows = int(math.ceil(len(measurements) / ncols))
+    figsize = (2.75 * ncols, 2.0 * nrows)
+    fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
+    for (label, counter), ax in itt.zip_longest(measurements, axes.ravel(), fillvalue=(None, None)):
+        if label is None:
+            ax.axis("off")
             continue
-        label, prefixes = measurement
+        if label == "License Type":
+            labels, sizes = zip(*counter.most_common())
+            explode = None
+        else:
+            labels = ("Yes", "No")
+            n_yes = counter.get("Yes")
+            sizes = (n_yes, len(read_registry()) - n_yes)
+            explode = [0.1, 0]
         ax.pie(
-            (len(prefixes), len(bioregistry) - len(prefixes)),
-            labels=('Yes', 'No'),
-            autopct='%1.f%%',
+            sizes,
+            labels=labels,
+            autopct="%1.f%%",
             startangle=30,
-            explode=[0.1, 0],
+            explode=explode,
         )
-        ax.set_title(f'Has {label}')
+        ax.set_title(label)
     if watermark:
         fig.text(
-            0.5, 0, WATERMARK_TEXT,
-            fontsize=8, color='gray', alpha=0.5,
-            ha='center', va='bottom',
+            0.5,
+            0,
+            WATERMARK_TEXT,
+            fontsize=8,
+            color="gray",
+            alpha=0.5,
+            ha="center",
+            va="bottom",
         )
+    return fig, axes
 
-    path = os.path.join(DOCS_IMG, 'has_attribute.svg')
-    click.echo(f'output to {path}')
-    fig.tight_layout()
-    fig.savefig(path, dpi=300)
-    plt.close(fig)
 
-    # -------------------------------------------------------------------- #
+def _plot_coverage(*, keys, watermark, ncols: int = 3):
+    import matplotlib.pyplot as plt
+    from matplotlib_venn import venn2
 
-    miriam_prefixes = set(get_miriam(skip_deprecated=True, mappify=True))
-    ols_prefixes = set(get_ols(mappify=True))
-    obofoundry_prefixes = set(get_obofoundry(skip_deprecated=True, mappify=True))
-    wikidata_prefixes = set(get_wikidata_registry())
-    n2t_prefixes = set(get_n2t())
-    go_prefixes = set(get_go(mappify=True))
-    bioportal_prefixes = set(get_bioportal(mappify=True))
-    prefixcommons_prefixes = set(get_prefix_commons())
-    biolink_prefixes = set(get_biolink())
-    ncbi_prefixes = set(get_ncbi())
-
-    keys = [
-        ('obofoundry', 'OBO Foundry', 'red', obofoundry_prefixes),
-        ('ols', 'OLS', 'green', ols_prefixes),
-        ('miriam', 'MIRIAM', 'blue', miriam_prefixes),
-        ('wikidata', 'Wikidata', 'purple', wikidata_prefixes),
-        ('n2t', 'Name-to-Thing', 'orange', n2t_prefixes),
-        ('go', 'GO', 'yellow', go_prefixes),
-        ('bioportal', 'BioPortal', 'cyan', bioportal_prefixes),
-        ('prefixcommons', 'Prefix Commons', 'magenta', prefixcommons_prefixes),
-        ('biolink', 'Biolink Model', 'pink', biolink_prefixes),
-        ('ncbi', 'NCBI', 'green', ncbi_prefixes),
-    ]
-
-    ############################################################
-    # How well does the Bioregistry cover the other resources? #
-    ############################################################
-
-    ncols = 3
     nrows = int(math.ceil(len(keys) / ncols))
     figsize = (3.25 * ncols, 2.0 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
     for key, ax in itt.zip_longest(keys, axes.ravel()):
         if key is None:
-            ax.axis('off')
+            ax.axis("off")
             continue
         key, label, color, prefixes = key
         # Remap bioregistry prefixes to match the external
         #  vocabulary, when possible
         bioregistry_remapped = {
-            br_entry.get(key, {}).get('prefix', br_key)
-            for br_key, br_entry in bioregistry.items()
+            get_external(br_key, key).get("prefix", br_key)
+            for br_key, br_entry in read_registry().items()
         }
         venn2(
             subsets=(bioregistry_remapped, prefixes),
-            set_labels=('Bioregistry', label),
-            set_colors=('grey', color),
+            set_labels=("Bioregistry", label),
+            set_colors=(BIOREGISTRY_COLOR, color),
             ax=ax,
         )
     if watermark:
         fig.text(
-            0.5, 0, WATERMARK_TEXT,
-            fontsize=8, color='gray', alpha=0.5,
-            ha='center', va='bottom',
+            0.5,
+            0,
+            WATERMARK_TEXT,
+            fontsize=8,
+            color="gray",
+            alpha=0.5,
+            ha="center",
+            va="bottom",
         )
+    return fig, axes
 
-    path = os.path.join(DOCS_IMG, 'bioregistry_coverage.svg')
-    click.echo(f'output to {path}')
-    fig.tight_layout()
-    fig.savefig(path, dpi=300)
-    plt.close(fig)
 
-    ######################################################
-    # What's the overlap between each pair of resources? #
-    ######################################################
+def _plot_external_overlap(*, keys, watermark, ncols: int = 4):
+    import matplotlib.pyplot as plt
+    from matplotlib_venn import venn2
 
     pairs = list(itt.combinations(keys, r=2))
-    ncols = 4
     nrows = int(math.ceil(len(pairs) / ncols))
     figsize = (3 * ncols, 2.5 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
     for pair, ax in itt.zip_longest(pairs, axes.ravel()):
         if pair is None:
-            ax.axis('off')
+            ax.axis("off")
             continue
         (l_key, l_label, l_color, l_prefixes), (r_key, r_label, r_color, r_prefixes) = pair
         # Remap external vocabularies to bioregistry
@@ -281,61 +186,185 @@ def compare():  # noqa:C901
         )
     if watermark:
         fig.text(
-            0.5, 0, WATERMARK_TEXT,  # transform=plt.gca().transAxes,
-            fontsize=14, color='gray', alpha=0.5,
-            ha='center', va='bottom',
+            0.5,
+            0,
+            WATERMARK_TEXT,  # transform=plt.gca().transAxes,
+            fontsize=14,
+            color="gray",
+            alpha=0.5,
+            ha="center",
+            va="bottom",
         )
+    return fig, axes
 
-    path = os.path.join(DOCS_IMG, 'external_overlap.svg')
-    click.echo(f'output to {path}')
-    fig.tight_layout()
-    fig.savefig(path, dpi=300)
-    plt.close(fig)
+
+@click.command()
+@click.option("--png", is_flag=True)
+def compare(png: bool):  # noqa:C901
+    """Compare the registries."""
+    random.seed(0)
+    try:
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        from matplotlib_venn import venn2
+    except ImportError:
+        click.secho(
+            "Could not import matplotlib dependencies."
+            " Install bioregistry again with `pip install bioregistry[charts]`.",
+            fg="red",
+        )
+        return sys.exit(1)
+
+    # This should make SVG output deterministic
+    # See https://matplotlib.org/3.1.0/users/prev_whats_new/whats_new_2.0.0.html#added-svg-hashsalt-key-to-rcparams
+    plt.rcParams["svg.hashsalt"] = "saltyregistry"
+
+    watermark = True
+    sns.set_style("whitegrid")
+
+    ###############################################
+    # What kinds of licenses are resources using? #
+    ###############################################
+    licenses, conflicts, obo_has_license, ols_has_license = _get_license_and_conflicts()
+
+    # How many times does the license appear in OLS / OBO Foundry
+    fig, ax = plt.subplots(figsize=SINGLE_FIG)
+    venn2(
+        subsets=(obo_has_license, ols_has_license),
+        set_labels=("OBO", "OLS"),
+        set_colors=("red", "green"),
+        ax=ax,
+    )
+    if watermark:
+        ax.text(
+            0.5,
+            -0.1,
+            WATERMARK_TEXT,
+            transform=plt.gca().transAxes,
+            fontsize=10,
+            color="gray",
+            alpha=0.5,
+            ha="center",
+            va="bottom",
+        )
+    _save(fig, name="license_coverage", png=png)
+
+    fig, ax = plt.subplots(figsize=SINGLE_FIG)
+    sns.countplot(x=licenses, ax=ax)
+    ax.set_xlabel("License")
+    ax.set_ylabel("Count")
+    ax.set_yscale("log")
+    if watermark:
+        fig.text(
+            1.0,
+            0.5,
+            WATERMARK_TEXT,
+            fontsize=8,
+            color="gray",
+            alpha=0.5,
+            ha="right",
+            va="center",
+            rotation=90,
+        )
+    _save(fig, name="licenses", png=png)
+
+    ##############################################
+    # How many entries have version information? #
+    ##############################################
+    measurements = [
+        ("Name", _get_has(get_name)),
+        ("Homepage", _get_has(get_homepage)),
+        ("Description", _get_has(get_description)),
+        ("Example", _get_has(get_example)),
+        ("Pattern", _get_has(get_pattern)),
+        ("Provider", _get_has(get_format)),
+        ("License", _get_has(get_license)),
+        ("License Type", _get_has_present(get_license)),
+        ("Version", _get_has(get_version)),
+        ("Contact Email", _get_has(get_email)),
+        ("Wikidata Database", HAS_WIKIDATA_DATABASE),
+        ("OBO", _get_has(get_obo_download)),
+        ("OWL", _get_has(get_owl_download)),
+        ("JSON", _get_has(get_json_download)),
+    ]
+
+    fig, axes = _plot_attribute_pies(measurements=measurements, watermark=watermark)
+    _save(fig, "has_attribute", png=png)
+
+    # Slightly reorganized for the paper
+    if png:
+        fig, axes = _plot_attribute_pies(
+            measurements=measurements, watermark=watermark, keep_ontology=False
+        )
+        _save(fig, "paper_figure_3", png=True, svg=False)
+
+    # -------------------------------------------------------------------- #
+    palette = sns.color_palette("Paired", len(GETTERS))
+    keys = [
+        (metaprefix, label, color, set(func()))
+        for (metaprefix, label, func), color in zip(GETTERS, palette)
+    ]
+
+    ############################################################
+    # How well does the Bioregistry cover the other resources? #
+    ############################################################
+    fig, axes = _plot_coverage(keys=keys, watermark=watermark)
+    _save(fig, name="bioregistry_coverage", png=png)
+
+    # Slightly reorganized for the paper
+    if png:
+        fig, axes = _plot_coverage(keys=keys, watermark=watermark, ncols=4)
+        _save(fig, name="paper_figure_2", png=png, svg=False)
+
+    ######################################################
+    # What's the overlap between each pair of resources? #
+    ######################################################
+    fig, axes = _plot_external_overlap(keys=keys, watermark=watermark)
+    _save(fig, name="external_overlap", png=png)
 
     ##############################################
     # Histogram of how many xrefs each entry has #
     ##############################################
     xref_counts = [
-        sum(
-            key in entry
-            for key, *_ in keys
-        )
-        for entry in bioregistry.values()
+        sum(0 < len(entry.get_external(key)) for key, *_ in keys)
+        for entry in read_registry().values()
     ]
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
-    sns.barplot(data=sorted(Counter(xref_counts).items()), ci=None, color='blue', alpha=0.4, ax=ax)
-    ax.set_xlabel('Number External References')
-    ax.set_ylabel('Count')
-    ax.set_yscale('log')
+    sns.barplot(data=sorted(Counter(xref_counts).items()), ci=None, color="blue", alpha=0.4, ax=ax)
+    ax.set_xlabel("Number External References")
+    ax.set_ylabel("Count")
+    ax.set_yscale("log")
     if watermark:
         fig.text(
-            1.0, 0.5, WATERMARK_TEXT,
-            fontsize=8, color='gray', alpha=0.5,
-            ha='right', va='center', rotation=90,
+            1.0,
+            0.5,
+            WATERMARK_TEXT,
+            fontsize=8,
+            color="gray",
+            alpha=0.5,
+            ha="right",
+            va="center",
+            rotation=90,
         )
 
-    path = os.path.join(DOCS_IMG, 'xrefs.svg')
-    click.echo(f'output to {path}')
-    fig.tight_layout()
-    fig.savefig(path, dpi=300)
-    plt.close(fig)
+    _save(fig, name="xrefs", png=png)
 
 
 def _get_license_and_conflicts():
     licenses = []
     conflicts = set()
     obo_has_license, ols_has_license = set(), set()
-    for key, entry in bioregistry.items():
-        obo_license = _remap_license(entry.get('obofoundry', {}).get('license'))
+    for key in read_registry():
+        obo_license = _remap_license(get_external(key, "obofoundry").get("license"))
         if obo_license:
             obo_has_license.add(key)
 
-        ols_license = _remap_license(entry.get('ols', {}).get('license'))
+        ols_license = _remap_license(get_external(key, "ols").get("license"))
         if ols_license:
             ols_has_license.add(key)
 
         if not obo_license and not ols_license:
-            licenses.append('None')
+            licenses.append("None")
         if obo_license and not ols_license:
             licenses.append(obo_license)
         elif not obo_license and ols_license:
@@ -346,22 +375,20 @@ def _get_license_and_conflicts():
             licenses.append(ols_license)
             licenses.append(obo_license)
             conflicts.add(key)
-            print(f'[{key}] Conflicting licenses- {obo_license} and {ols_license}')
+            logger.warning(f"[{key}] Conflicting licenses- {obo_license} and {ols_license}")
             continue
     return licenses, conflicts, obo_has_license, ols_has_license
 
 
 def _remap(*, key: str, prefixes: Collection[str]) -> Set[str]:
-    br_external_to = {
-        br_entry[key]['prefix']: br_id
-        for br_id, br_entry in bioregistry.items()
-        if key in br_entry and 'prefix' in br_entry[key]
-    }
-    return {
-        br_external_to.get(prefix, prefix)
-        for prefix in prefixes
-    }
+    br_external_to = {}
+    for br_id, resource in read_registry().items():
+        _k = (resource.dict().get(key) or {}).get("prefix")
+        if _k:
+            br_external_to[_k] = br_id
+
+    return {br_external_to.get(prefix, prefix) for prefix in prefixes}
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     compare()
