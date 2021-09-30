@@ -262,11 +262,11 @@ you're working with OBO ontologies, you might want to make OBO PURLs the highest
 priority and when OBO PURLs can't be generated, default to something else:
 
 ```python
-import bioregistry
+from bioregistry import get_iri
 
 priority = ["obofoundry", "default", "miriam", "ols", "n2t", "bioportal"]
-assert bioregistry.get_iri("chebi:24867", priority=priority) == 'http://purl.obolibrary.org/obo/CHEBI_24867' 
-assert bioregistry.get_iri("hgnc:1234", priority=priority) == 'https://bioregistry.io/hgnc:1234' 
+assert get_iri("chebi:24867", priority=priority) == 'http://purl.obolibrary.org/obo/CHEBI_24867' 
+assert get_iri("hgnc:1234", priority=priority) == 'https://bioregistry.io/hgnc:1234' 
 ```
 
 Even deeper, you can add (or override) any of the bioregistry's custom prefix map by using
