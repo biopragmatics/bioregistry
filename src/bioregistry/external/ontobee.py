@@ -5,9 +5,14 @@
 import json
 
 from bs4 import BeautifulSoup
+from pystow.utils import download
 
-from bioregistry.constants import BIOREGISTRY_MODULE
-from bioregistry.data.external import ONTOBEE_PATH
+from bioregistry.data import EXTERNAL
+
+DIRECTORY = EXTERNAL / "ontobee"
+DIRECTORY.mkdir(exist_ok=True, parents=True)
+RAW_PATH = DIRECTORY / "raw.json"
+PROCESSED_PATH = DIRECTORY / "processed.json"
 
 URL = 'http://www.ontobee.org/'
 LEGEND = {
@@ -18,12 +23,12 @@ LEGEND = {
 
 
 def get_ontobee(force: bool = False):
-    if ONTOBEE_PATH.exists() and not force:
-        with ONTOBEE_PATH.open() as file:
+    if PROCESSED_PATH.exists() and not force:
+        with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    source_path = BIOREGISTRY_MODULE.ensure(url=URL, name='ontobee.html', force=force)
-    with open(source_path) as f:
+    download(url=URL, path=RAW_PATH, name="ontobee.html", force=True)
+    with RAW_PATH.open() as f:
         soup = BeautifulSoup(f, 'html.parser')
 
     rv = {}
@@ -36,7 +41,7 @@ def get_ontobee(force: bool = False):
             'url': cells[1].find('a').attrs['href'],
         }
 
-    with ONTOBEE_PATH.open('w') as file:
+    with PROCESSED_PATH.open('w') as file:
         json.dump(rv, file, indent=2, sort_keys=True)
 
     return rv
