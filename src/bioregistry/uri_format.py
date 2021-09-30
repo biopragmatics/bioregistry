@@ -8,20 +8,18 @@
     the prefix should go, which makes them more general than URI prefix strings.
 """
 
+import warnings
 from typing import List, Mapping, Optional, Sequence, Tuple
 
-from .resolve import (
-    get_resource,
-    get_synonyms,
-)
-from .utils import read_registry
+from .resolve import get_resource, manager
 
 __all__ = [
     "get_format",
     "get_format_url",
     "get_format_urls",
     "prepare_prefix_list",
-    "get_default_prefix_list",
+    "get_prefix_map",
+    "get_prefix_list",
 ]
 
 
@@ -77,11 +75,12 @@ def get_format_url(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
     return entry.get_format_url(priority=priority)
 
 
-def get_format_urls(
+def get_prefix_map(
     *,
     priority: Optional[Sequence[str]] = None,
     include_synonyms: bool = False,
     remapping: Optional[Mapping[str, str]] = None,
+    use_preferred: bool = False,
 ) -> Mapping[str, str]:
     """Get a mapping from Bioregistry prefixes to their prefix URLs via :func:`get_format_url`.
 
@@ -89,20 +88,21 @@ def get_format_urls(
     :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
         the same URL prefix?
     :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
+    :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
     :return: A mapping from prefixes to prefix URLs.
     """
-    rv = {}
-    for prefix, resource in read_registry().items():
-        prefix_url = resource.get_format_url(priority=priority)
-        if prefix_url is None:
-            continue
-        rv[prefix] = prefix_url
-        if include_synonyms:
-            for synonym in get_synonyms(prefix) or []:
-                rv[synonym] = prefix_url
-    if remapping:
-        return {remapping.get(prefix, prefix): prefix_url for prefix, prefix_url in rv.items()}
-    return rv
+    return manager.get_prefix_map(
+        priority=priority,
+        include_synonyms=include_synonyms,
+        remapping=remapping,
+        use_preferred=use_preferred,
+    )
+
+
+def get_format_urls(**kwargs) -> Mapping[str, str]:
+    """Get a mapping from Bioregistry prefixes to their prefix URLs via :func:`get_format_url`."""
+    warnings.warn("deprecated", DeprecationWarning)
+    return get_prefix_map(**kwargs)
 
 
 def _sort_key(kv: Tuple[str, str]) -> int:
@@ -115,8 +115,8 @@ def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
     return sorted(prefix_map.items(), key=_sort_key)
 
 
-def get_default_prefix_list() -> List[Tuple[str, str]]:
+def get_prefix_list(**kwargs) -> List[Tuple[str, str]]:
     """Get the default priority prefix list."""
     #: A prefix map in reverse sorted order based on length of the URL
     #: in order to avoid conflicts of sub-URIs (thanks to Nico Matentzoglu for the idea)
-    return prepare_prefix_list(get_format_urls())
+    return prepare_prefix_list(get_prefix_map(**kwargs))

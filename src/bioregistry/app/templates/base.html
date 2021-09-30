@@ -42,7 +42,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for("ui.resources") }}">Registry</a>
             </li>
@@ -74,6 +74,13 @@
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('flasgger.apidocs') }}">API</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav my-2 my-lg-0">
+            <li class="nav-item active">
+                <span class="text-muted">
+                    Version {{ config.bioregistry_version }}
+                </span>
             </li>
         </ul>
     </div>

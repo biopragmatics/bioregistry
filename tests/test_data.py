@@ -335,7 +335,7 @@ class TestRegistry(unittest.TestCase):
         # TODO make sure there are also no HTTP vs HTTPS clashes,
         #  for example if one prefix has http://example.org/foo/$1 and a different one
         #  has https://example.org/foo/$1
-        prefix_map = bioregistry.get_format_urls()
+        prefix_map = bioregistry.get_prefix_map()
         dd = defaultdict(dict)
         for prefix, iri in prefix_map.items():
             resource = bioregistry.get_resource(prefix)
