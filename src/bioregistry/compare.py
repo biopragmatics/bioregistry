@@ -4,6 +4,7 @@
 
 import datetime
 import itertools as itt
+import logging
 import math
 import random
 import sys
@@ -31,6 +32,8 @@ from bioregistry import (
 from bioregistry.constants import DOCS_IMG
 from bioregistry.external import GETTERS
 from bioregistry.resolve import _remap_license, get_external
+
+logger = logging.getLogger(__name__)
 
 # see named colors https://matplotlib.org/stable/gallery/color/named_colors.html
 BIOREGISTRY_COLOR = "silver"
@@ -372,7 +375,7 @@ def _get_license_and_conflicts():
             licenses.append(ols_license)
             licenses.append(obo_license)
             conflicts.add(key)
-            print(f"[{key}] Conflicting licenses- {obo_license} and {ols_license}")
+            logger.warning(f"[{key}] Conflicting licenses- {obo_license} and {ols_license}")
             continue
     return licenses, conflicts, obo_has_license, ols_has_license
 

@@ -15,6 +15,7 @@ from .resolve import (
     get_ols_prefix,
     get_pattern_re,
     get_resource,
+    get_scholia_prefix,
     namespace_in_lui,
     normalize_parsed_curie,
     parse_curie,
@@ -267,6 +268,25 @@ def get_ols_iri(prefix: str, identifier: str) -> Optional[str]:
     return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_iri}"
 
 
+def get_scholia_iri(prefix: str, identifier: str) -> Optional[str]:
+    """Get a Scholia IRI, if possible.
+
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE
+    :return: A link to the Scholia page
+
+    >>> get_scholia_iri("pubmed", "1234")
+    'https://scholia.toolforge.org/pubmed/1234'
+
+    >>> get_scholia_iri("pdb", "1234")
+    None
+    """
+    scholia_prefix = get_scholia_prefix(prefix)
+    if scholia_prefix is None:
+        return None
+    return f"https://scholia.toolforge.org/{prefix}/{identifier}"
+
+
 def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
     """Get the bioregistry link.
 
@@ -314,6 +334,7 @@ PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
     "ols": get_ols_iri,
     "n2t": get_n2t_iri,
     "bioportal": get_bioportal_iri,
+    "scholia": get_scholia_iri,
 }
 
 LINK_PRIORITY = [
@@ -325,6 +346,7 @@ LINK_PRIORITY = [
     "obofoundry",
     "n2t",
     "bioportal",
+    "scholia",
 ]
 
 

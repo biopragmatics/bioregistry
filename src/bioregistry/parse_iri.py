@@ -6,7 +6,7 @@ import collections.abc
 from typing import Mapping, Optional, Sequence, Tuple, Union
 
 from .resolve import parse_curie
-from .uri_format import get_default_prefix_list, prepare_prefix_list
+from .uri_format import get_prefix_list, prepare_prefix_list
 
 __all__ = [
     "curie_from_iri",
@@ -144,7 +144,7 @@ def parse_iri(
     if iri.startswith(N2T_PREFIX):
         curie = iri[len(N2T_PREFIX) :]
         return parse_curie(curie)
-    for prefix, prefix_url in prefix_map or get_default_prefix_list():
+    for prefix, prefix_url in prefix_map or get_prefix_list():
         if iri.startswith(prefix_url):
             return prefix, iri[len(prefix_url) :]
     return None, None
@@ -178,6 +178,7 @@ def _main():
     """Run this as ``python -m bioregistry.parse_iri`` to get a list of IRIs that can be constructed, but not parsed."""
     import bioregistry
     from tabulate import tabulate
+    import click
 
     rows = []
     for prefix in bioregistry.read_registry():
@@ -191,7 +192,7 @@ def _main():
         k, v = parse_iri(iri)
         if k is None:
             rows.append((prefix, example, iri, k, v))
-    print(tabulate(rows))
+    click.echo(tabulate(rows))
 
 
 if __name__ == "__main__":

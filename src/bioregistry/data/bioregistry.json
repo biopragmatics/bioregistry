@@ -276,7 +276,8 @@
       "is_identifiers": false,
       "is_obo": true,
       "prefix": "ADW"
-    }
+    },
+    "url": "https://animaldiversity.org/accounts/$1"
   },
   "aeo": {
     "bioportal": {
@@ -500,7 +501,6 @@
       "ols": "agro",
       "prefixcommons": "AGRO"
     },
-    "not_available_as_obo": true,
     "obofoundry": {
       "contact": "m.a.laporte@cgiar.org",
       "contact.label": "Marie-Angélique Laporte",
@@ -1010,8 +1010,7 @@
       "is_obo": false,
       "prefix": "APID.INTERACTIONS"
     },
-    "provides": "uniprot",
-    "type": "provider"
+    "provides": "uniprot"
   },
   "apo": {
     "bioportal": {
@@ -1383,7 +1382,8 @@
     "mappings": {
       "miriam": "arxiv",
       "n2t": "arxiv",
-      "prefixcommons": "ARXIV"
+      "prefixcommons": "ARXIV",
+      "scholia": "arxiv"
     },
     "miriam": {
       "deprecated": false,
@@ -3293,7 +3293,8 @@
     },
     "homepage": "https://biorxiv.org",
     "mappings": {
-      "go": "bioRxiv"
+      "go": "bioRxiv",
+      "scholia": "biorxiv"
     },
     "name": "bioRxiv"
   },
@@ -4149,7 +4150,6 @@
       "ols": "caro",
       "prefixcommons": "CARO"
     },
-    "not_available_as_obo": true,
     "obofoundry": {
       "contact": "haendel@ohsu.edu",
       "contact.label": "Melissa Haendel",
@@ -4188,7 +4188,8 @@
       "go": "CAS",
       "miriam": "cas",
       "n2t": "cas",
-      "prefixcommons": "CAS"
+      "prefixcommons": "CAS",
+      "scholia": "cas"
     },
     "miriam": {
       "deprecated": false,
@@ -4326,6 +4327,7 @@
       "prefix": "cath.superfamily",
       "provider_url": "http://www.cathdb.info/cathnode/$1"
     },
+    "part_of": "cath",
     "prefixcommons": {
       "formatter": "http://identifiers.org/cath.superfamily/$1",
       "is_identifiers": true,
@@ -4361,6 +4363,7 @@
       "prefix": "cattleqtldb",
       "provider_url": "http://www.animalgenome.org/cgi-bin/QTLdb/BT/qdetails?QTL_ID=$1"
     },
+    "part_of": "qtldb",
     "prefixcommons": {
       "formatter": "http://identifiers.org/cattleqtldb/$1",
       "is_identifiers": true,
@@ -5343,7 +5346,6 @@
       "prefixcommons": "CHEMINF"
     },
     "name": "Chemical Information Ontology",
-    "not_available_as_obo": true,
     "obofoundry": {
       "contact": "egon.willighagen@gmail.com",
       "contact.label": "Egon Willighagen",
@@ -5448,6 +5450,7 @@
       "prefix": "chickenqtldb",
       "provider_url": "http://www.animalgenome.org/cgi-bin/QTLdb/GG/qdetails?QTL_ID=$1"
     },
+    "part_of": "qtldb",
     "prefixcommons": {
       "formatter": "http://identifiers.org/chickenqtldb/$1",
       "is_identifiers": true,
@@ -5931,7 +5934,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "CLINVAR.RECORD"
-    }
+    },
+    "url": "http://www.ncbi.nlm.nih.gov/clinvar/$1"
   },
   "clinvar.submission": {
     "mappings": {
@@ -6005,7 +6009,6 @@
       "ols": "clo",
       "prefixcommons": "CLO"
     },
-    "not_available_as_obo": true,
     "obofoundry": {
       "contact": "siiraa@umich.edu",
       "contact.label": "Sirarat Sarntivijai",
@@ -9009,7 +9012,8 @@
       "provider_url": "https://doulix.com/biomodules/$1/",
       "sampleId": "6VDC956"
     },
-    "part_of": "dlx"
+    "part_of": "dlx",
+    "url": "https://doulix.com/biomodules/$1"
   },
   "dlxc": {
     "mappings": {
@@ -9027,7 +9031,8 @@
       "provider_url": "https://doulix.com/constructs/$1/",
       "sampleId": "M77F7JM"
     },
-    "part_of": "dlx"
+    "part_of": "dlx",
+    "url": "https://doulix.com/constructs/$1"
   },
   "doi": {
     "biolink": {
@@ -9055,7 +9060,8 @@
       "go": "DOI",
       "miriam": "doi",
       "n2t": "doi",
-      "prefixcommons": "DOI"
+      "prefixcommons": "DOI",
+      "scholia": "doi"
     },
     "miriam": {
       "deprecated": false,
@@ -9346,7 +9352,9 @@
       "prefix": "dpo",
       "version": "2021-09-02",
       "version.iri": "http://purl.obolibrary.org/obo/dpo/releases/2021-09-02/dpo.owl"
-    }
+    },
+    "part_of": "fbcv",
+    "preferred_prefix": "DPO"
   },
   "dpv": {
     "mappings": {
@@ -9385,6 +9393,8 @@
     }
   },
   "dragondb.allele": {
+    "comment": "Deprecated because the website is dead",
+    "deprecated": true,
     "mappings": {
       "miriam": "dragondb.allele",
       "n2t": "dragondb.allele",
@@ -9421,6 +9431,8 @@
     }
   },
   "dragondb.dna": {
+    "comment": "Deprecated because the website is dead",
+    "deprecated": true,
     "mappings": {
       "miriam": "dragondb.dna",
       "n2t": "dragondb.dna",
@@ -9457,6 +9469,8 @@
     }
   },
   "dragondb.locus": {
+    "comment": "Deprecated because the website is dead",
+    "deprecated": true,
     "mappings": {
       "miriam": "dragondb.locus",
       "n2t": "dragondb.locus",
@@ -9493,6 +9507,8 @@
     }
   },
   "dragondb.protein": {
+    "comment": "Deprecated because the website is dead",
+    "deprecated": true,
     "mappings": {
       "miriam": "dragondb.protein",
       "n2t": "dragondb.protein",
@@ -9546,7 +9562,7 @@
       "deprecated": false,
       "description": "An ontology to support comparative effectiveness researchers studying claims data.",
       "download.owl": "http://purl.obolibrary.org/obo/dron.owl",
-      "homepage": "https://bitbucket.org/uamsdbmi/dron.git",
+      "homepage": "https://github.com/ufbmi/dron",
       "license": "CC-BY",
       "name": "The Drug Ontology",
       "prefix": "dron"
@@ -9785,7 +9801,6 @@
       "ols": "duo",
       "prefixcommons": "DUO"
     },
-    "not_available_as_obo": true,
     "obofoundry": {
       "contact": "mcourtot@gmail.com",
       "contact.label": "Melanie Courtot",
@@ -10303,7 +10318,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "ECYANO.ENTITY"
-    }
+    },
+    "url": "https://www.e-cyanobacterium.org/bcs/entity/$1"
   },
   "ecyano.experiment": {
     "mappings": {
@@ -10356,7 +10372,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "ECYANO.MODEL"
-    }
+    },
+    "url": "https://e-cyanobacterium.org/models/model/$1"
   },
   "ecyano.rule": {
     "mappings": {
@@ -10392,7 +10409,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "ECYANO.RULE"
-    }
+    },
+    "url": "https://e-cyanobacterium.org/bcs/rule/$1"
   },
   "edam": {
     "bioportal": {
@@ -11556,7 +11574,6 @@
       "ols": "ero",
       "prefixcommons": "ERO"
     },
-    "not_available_as_obo": true,
     "obofoundry": {
       "contact": "Marc_Ciriello@hms.harvard.edu",
       "contact.label": "Marc Ciriello",
@@ -12562,6 +12579,7 @@
       "name": "Database of Genetic and molecular data of Drosophila.",
       "prefix": "FLYBASE"
     },
+    "preferred_prefix": "FlyBase",
     "prefixcommons": {
       "formatter": "http://flybase.org/reports/$1",
       "is_identifiers": false,
@@ -13141,6 +13159,12 @@
     ]
   },
   "fypo": {
+    "biolink": {
+      "formatter": "http://purl.obolibrary.org/obo/FYPO_$1",
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "FYPO"
+    },
     "bioportal": {
       "name": "Fission Yeast Phenotype Ontology",
       "prefix": "FYPO"
@@ -13153,6 +13177,7 @@
       "prefix": "FYPO"
     },
     "mappings": {
+      "biolink": "FYPO",
       "bioportal": "FYPO",
       "go": "FYPO",
       "obofoundry": "fypo",
@@ -14039,7 +14064,6 @@
       "provider_url": "http://purl.obolibrary.org/obo/$1",
       "sampleId": "GEO_000000021"
     },
-    "not_available_as_obo": true,
     "obofoundry": {
       "contact": "hoganwr@gmail.com",
       "contact.label": "Bill Hogan",
@@ -14065,7 +14089,8 @@
       "is_identifiers": false,
       "is_obo": true,
       "prefix": "GEO"
-    }
+    },
+    "url": "http://purl.obolibrary.org/obo/GEO_$1"
   },
   "gexo": {
     "bioportal": {
@@ -14234,6 +14259,8 @@
     }
   },
   "glycomedb": {
+    "comment": "this is exactly the same as glytoucan. Idk why there are two different ones",
+    "has_canonical": "glytoucan",
     "mappings": {
       "miriam": "glycomedb",
       "n2t": "glycomedb",
@@ -15012,7 +15039,8 @@
       "identifier": "38",
       "name": "Information system for G protein-coupled receptors (GPCRs)",
       "prefix": "GPCRDB"
-    }
+    },
+    "url": "https://gpcrdb.org/protein/$1"
   },
   "gpmdb": {
     "mappings": {
@@ -17155,7 +17183,8 @@
       "identifier": "49",
       "name": "Human Unidentified Gene-Encoded large proteins database",
       "prefix": "HUGE"
-    }
+    },
+    "url": "https://www.kazusa.or.jp/huge/gfpage/$1"
   },
   "iao": {
     "bioportal": {
@@ -18122,7 +18151,8 @@
     "mappings": {
       "miriam": "inchikey",
       "n2t": "inchikey",
-      "prefixcommons": "INCHIKEY"
+      "prefixcommons": "INCHIKEY",
+      "scholia": "inchikey"
     },
     "miriam": {
       "deprecated": false,
@@ -18243,6 +18273,7 @@
     }
   },
   "insdc.cds": {
+    "has_canonical": "ncbiprotein",
     "mappings": {
       "miriam": "insdc.cds",
       "n2t": "insdc.cds",
@@ -18321,9 +18352,15 @@
     },
     "description": "An experimental run, served thrugh the ENA",
     "example": "ERR436051",
+    "has_canonical": "ena.embl",
     "homepage": "https://www.insdc.org/",
     "name": "International Nucleotide Sequence Database Collaboration (INSDC) Run",
     "pattern": "^(E|D|S)RR[0-9]{6,}$",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "url": "https://www.ebi.ac.uk/ena/browser/view/$1"
   },
   "insdc.sra": {
@@ -19223,6 +19260,7 @@
     }
   },
   "jws": {
+    "example": "achcar11",
     "mappings": {
       "miriam": "jws",
       "n2t": "jws",
@@ -19255,7 +19293,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "JWS"
-    }
+    },
+    "url": "https://jjj.bio.vu.nl/models/$1"
   },
   "kaggle": {
     "mappings": {
@@ -20287,7 +20326,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "LINCS.PROTEIN"
-    }
+    },
+    "url": "https://lincs.hms.harvard.edu/db/proteins/$1"
   },
   "lincs.smallmolecule": {
     "mappings": {
@@ -20366,7 +20406,8 @@
     "mappings": {
       "miriam": "lipidmaps",
       "n2t": "lipidmaps",
-      "prefixcommons": "LIPIDMAPS"
+      "prefixcommons": "LIPIDMAPS",
+      "scholia": "lipidmaps"
     },
     "miriam": {
       "deprecated": false,
@@ -21331,7 +21372,8 @@
       "go": "MeSH",
       "miriam": "mesh",
       "n2t": "mesh",
-      "prefixcommons": "MESH"
+      "prefixcommons": "MESH",
+      "scholia": "mesh"
     },
     "miriam": {
       "deprecated": false,
@@ -24082,6 +24124,13 @@
       "version": "1.0.1"
     }
   },
+  "multicellds": {
+    "description": "MultiCellDS is data standard for multicellular simulation, experimental, and clinical data. A digital cell line is a hierarchical organization of quantitative phenotype data for a single biological cell line, including the microenvironmental context of the measurements and essential metadata.",
+    "example": "MCDS_S_0000000001",
+    "homepage": "http://multicellds.org/MultiCellDB.php",
+    "name": "MultiCellDS",
+    "url": "http://multicellds.org/MultiCellDB/$1"
+  },
   "multicellds.cell_line": {
     "mappings": {
       "miriam": "multicellds.cell_line",
@@ -24110,6 +24159,7 @@
       "prefix": "multicellds.cell_line",
       "provider_url": "http://multicellds.org/MultiCellDB/$1"
     },
+    "part_of": "multicellds",
     "prefixcommons": {
       "formatter": "http://identifiers.org/multicellds.cell_line/$1",
       "is_identifiers": true,
@@ -24145,6 +24195,7 @@
       "prefix": "multicellds.collection",
       "provider_url": "http://multicellds.org/MultiCellDB/$1"
     },
+    "part_of": "multicellds",
     "prefixcommons": {
       "formatter": "http://identifiers.org/multicellds.collection/$1",
       "is_identifiers": true,
@@ -24180,6 +24231,7 @@
       "prefix": "multicellds.snapshot",
       "provider_url": "http://multicellds.org/MultiCellDB/$1"
     },
+    "part_of": "multicellds",
     "prefixcommons": {
       "formatter": "http://identifiers.org/multicellds.snapshot/$1",
       "is_identifiers": true,
@@ -24777,6 +24829,7 @@
       "n2t": "ncbigene",
       "ncbi": "GeneID",
       "prefixcommons": "NCBIGene",
+      "scholia": "ncbi-gene",
       "wikidata": "P351"
     },
     "miriam": {
@@ -24807,6 +24860,7 @@
       "name": "Entrez Gene Database (replaces NCBI Locus Link)",
       "prefix": "GeneID"
     },
+    "preferred_prefix": "NCBIGene",
     "prefixcommons": {
       "formatter": "http://www.ncbi.nlm.nih.gov/gene/$1",
       "is_identifiers": false,
@@ -24864,6 +24918,7 @@
       "prefix": "ncbiprotein",
       "provider_url": "https://www.ncbi.nlm.nih.gov/protein/$1"
     },
+    "preferred_prefix": "NCBIProtein",
     "prefixcommons": {
       "formatter": "http://www.ncbi.nlm.nih.gov/protein/$1",
       "is_identifiers": false,
@@ -24905,6 +24960,7 @@
       "obofoundry": "ncbitaxon",
       "ols": "ncbitaxon",
       "prefixcommons": "NCBITaxon",
+      "scholia": "ncbi-taxon",
       "wikidata": "P685"
     },
     "miriam": {
@@ -25758,6 +25814,11 @@
     },
     "name": "National Microbiome Data Collaborative",
     "pattern": "^[\\w\\-.]{3,}$",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "url": "https://drs.microbiomedata.org/objects/$1",
     "wikidata": {
       "database": "Q107698738"
@@ -26364,18 +26425,22 @@
   "oboinowl": {
     "description": "This meta-ontology is self-describing. OBO metamodel properties are described using OBO metamodel properties",
     "download_obo": "https://github.com/geneontology/go-ontology/raw/master/contrib/oboInOwl.obo",
-    "example": "DbXref",
+    "example": "hasDbXref",
     "homepage": "https://github.com/geneontology/go-ontology/tree/master/contrib",
     "mappings": {
       "prefixcommons": "oboInOwl"
     },
     "name": "OBO in OWL",
+    "preferred_prefix": "oboInOwl",
     "prefixcommons": {
       "formatter": "http://www.geneontology.org/formats/oboInOwl#$1",
       "is_identifiers": false,
       "is_obo": false,
       "prefix": "oboInOwl"
     },
+    "synonyms": [
+      "oio"
+    ],
     "url": "http://www.geneontology.org/formats/oboInOwl#$1"
   },
   "occ": {
@@ -26667,7 +26732,6 @@
       "ols": "ogms",
       "prefixcommons": "OGMS"
     },
-    "not_available_as_obo": true,
     "obofoundry": {
       "contact": "baeverma@jcvi.org",
       "contact.label": "Brian Aevermann",
@@ -27614,7 +27678,8 @@
       "biolink": "ORCID",
       "miriam": "orcid",
       "n2t": "orcid",
-      "prefixcommons": "ORCID"
+      "prefixcommons": "ORCID",
+      "scholia": "orcid"
     },
     "miriam": {
       "deprecated": false,
@@ -27919,7 +27984,8 @@
     },
     "synonyms": [
       "ordo"
-    ]
+    ],
+    "url": "http://www.orpha.net/ORDO/Orphanet_$1"
   },
   "orth": {
     "bioportal": {
@@ -28695,6 +28761,23 @@
       "prefix": "PATO"
     }
   },
+  "pav": {
+    "contributor": {
+      "name": "Nico Matentzoglu",
+      "orcid": "0000-0002-7356-1779"
+    },
+    "description": "PAV is a lightweight ontology for tracking provenance, authorship, and versioning. It specializes the W3C provenance ontology PROV-O in order to describe authorship, curation and digital creation of online resources.",
+    "example": "authoredBy",
+    "homepage": "https://pav-ontology.github.io/pav/",
+    "name": "Provenance, Authoring, and Versioning Vocabulary",
+    "pattern": "^[a-z][a-zA-Z]+$",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "url": "https://pav-ontology.github.io/pav/index.html#http://purl.org/pav/$1"
+  },
   "paxdb.organism": {
     "mappings": {
       "miriam": "paxdb.organism",
@@ -28935,6 +29018,8 @@
     }
   },
   "pdb-ccd": {
+    "comment": "might be same as pdb.ligand, not sure though",
+    "has_canonical": "pdb.ligand",
     "mappings": {
       "miriam": "pdb-ccd",
       "n2t": "pdb-ccd",
@@ -29200,7 +29285,8 @@
       "prefix": "ped.ensemble",
       "provider_url": "https://proteinensemble.org/$1",
       "sampleId": "PED00017e001"
-    }
+    },
+    "part_of": "ped"
   },
   "peff": {
     "deprecated": true,
@@ -29461,7 +29547,8 @@
       "prefix": "pgs",
       "provider_url": "https://www.pgscatalog.org/pgs/$1/",
       "sampleId": "PGS000018"
-    }
+    },
+    "url": "https://www.pgscatalog.org/pgs/$1"
   },
   "pgx": {
     "mappings": {
@@ -30060,6 +30147,7 @@
       "prefix": "pigqtldb",
       "provider_url": "http://www.animalgenome.org/cgi-bin/QTLdb/SS/qdetails?QTL_ID=$1"
     },
+    "part_of": "qtldb",
     "prefixcommons": {
       "formatter": "http://identifiers.org/pigqtldb/$1",
       "is_identifiers": true,
@@ -31377,6 +31465,7 @@
     }
   },
   "proteomicsdb.peptide": {
+    "comment": "The fact that this has .peptide as a subspace is a bit of a misnomer. Its original registration with MIRIAM uses a subview over the protein to point to peptides, but the identifiers in this semantic space seem to be about proteins.",
     "mappings": {
       "miriam": "proteomicsdb.peptide",
       "n2t": "proteomicsdb.peptide",
@@ -31409,7 +31498,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "PROTEOMICSDB.PEPTIDE"
-    }
+    },
+    "url": "https://www.proteomicsdb.org/#human/proteinDetails/$1"
   },
   "proteomicsdb.protein": {
     "mappings": {
@@ -31812,6 +31902,7 @@
       "miriam": "pubchem.compound",
       "n2t": "pubchem.compound",
       "prefixcommons": "CID",
+      "scholia": "pubchem",
       "wikidata": "P662"
     },
     "miriam": {
@@ -31956,7 +32047,8 @@
       "go": "PMID",
       "miriam": "pubmed",
       "n2t": "pubmed",
-      "prefixcommons": "PMID"
+      "prefixcommons": "PMID",
+      "scholia": "pubmed"
     },
     "miriam": {
       "deprecated": false,
@@ -32445,6 +32537,7 @@
       "name": "RefSeq",
       "prefix": "RefSeq"
     },
+    "has_canonical": "ncbiprotein",
     "mappings": {
       "go": "RefSeq",
       "miriam": "refseq",
@@ -33416,7 +33509,8 @@
       "identifier": "92",
       "name": "Rodent Unidentified Gene-Encoded large proteins database",
       "prefix": "Rouge"
-    }
+    },
+    "url": "https://www.kazusa.or.jp/rouge/gfpage/$1"
   },
   "rrid": {
     "mappings": {
@@ -34019,7 +34113,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "SCRETF"
-    }
+    },
+    "url": "http://stormo.wustl.edu/ScerTF/details/$1"
   },
   "sdbs": {
     "mappings": {
@@ -34456,6 +34551,7 @@
       "prefix": "sheepqtldb",
       "provider_url": "http://www.animalgenome.org/cgi-bin/QTLdb/OA/qdetails?QTL_ID=$1"
     },
+    "part_of": "qtldb",
     "prefixcommons": {
       "formatter": "http://identifiers.org/sheepqtldb/$1",
       "is_identifiers": true,
@@ -34537,7 +34633,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "SIDER.DRUG"
-    }
+    },
+    "url": "http://sideeffects.embl.de/drugs/$1"
   },
   "sider.effect": {
     "mappings": {
@@ -34572,7 +34669,9 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "SIDER.EFFECT"
-    }
+    },
+    "provides": "umls",
+    "url": "http://sideeffects.embl.de/se/$1"
   },
   "signaling-gateway": {
     "mappings": {
@@ -34643,12 +34742,22 @@
   },
   "signor.relation": {
     "comment": "Currently, you can put a SIGNOR relation ID into the main page search box and it will resolve, but there is not currently a way to resolve them via a URL pattern",
+    "contributor": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
     "description": "Identifiers for relationships between proteins and complexes, along with their type and provenance",
     "example": "SIGNOR-252737",
     "homepage": "https://signor.uniroma2.it",
     "name": "SIGNOR Relation",
     "part_of": "signor",
-    "pattern": "^SIGNOR-\\d+$"
+    "pattern": "^SIGNOR-\\d+$",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    }
   },
   "sio": {
     "biolink": {
@@ -34803,23 +34912,6 @@
     },
     "url": "http://www.w3.org/2004/02/skos/core#$1"
   },
-  "slm": {
-    "mappings": {
-      "miriam": "slm"
-    },
-    "miriam": {
-      "deprecated": false,
-      "description": "SwissLipids is a curated resource that provides information about known lipids, including lipid structure, metabolism, interactions, and subcellular and tissue localization. Information is curated from peer-reviewed literature and referenced using established ontologies, and provided with full provenance and evidence codes for curated assertions.",
-      "homepage": "http://www.swisslipids.org/#/",
-      "id": "00000550",
-      "name": "SwissLipids",
-      "namespaceEmbeddedInLui": true,
-      "pattern": "^SLM:\\d+$",
-      "prefix": "slm",
-      "provider_url": "http://www.swisslipids.org/#/entity/SLM:$1/",
-      "sampleId": "000048885"
-    }
-  },
   "smart": {
     "go": {
       "formatter": "http://smart.embl-heidelberg.de/smart/do_annotation.pl?BLAST=DUMMY&DOMAIN=$1",
@@ -34945,11 +35037,18 @@
     "name": "Snapshot"
   },
   "snomedct": {
+    "biolink": {
+      "formatter": "http://www.snomedbrowser.com/Codes/Details/$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "SNOMEDCT"
+    },
     "bioportal": {
       "name": "SNOMED CT",
       "prefix": "SNOMEDCT"
     },
     "mappings": {
+      "biolink": "SNOMEDCT",
       "bioportal": "SNOMEDCT",
       "miriam": "snomedct",
       "n2t": "snomedct",
@@ -35049,7 +35148,8 @@
       "provider_url": "https://ccg.epfl.ch/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=$1",
       "sampleId": "rs11603840"
     },
-    "name": "SNP to Transcription Factor Binding Sites"
+    "name": "SNP to Transcription Factor Binding Sites",
+    "provides": "dbsnp"
   },
   "so": {
     "bioportal": {
@@ -35834,9 +35934,22 @@
   "swisslipid": {
     "example": "SLM:000000341",
     "mappings": {
+      "miriam": "slm",
       "n2t": "swisslipid",
       "prefixcommons": "SWISSLIPID",
       "wikidata": "P8691"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "SwissLipids is a curated resource that provides information about known lipids, including lipid structure, metabolism, interactions, and subcellular and tissue localization. Information is curated from peer-reviewed literature and referenced using established ontologies, and provided with full provenance and evidence codes for curated assertions.",
+      "homepage": "http://www.swisslipids.org/#/",
+      "id": "00000550",
+      "name": "SwissLipids",
+      "namespaceEmbeddedInLui": true,
+      "pattern": "^SLM:\\d+$",
+      "prefix": "slm",
+      "provider_url": "http://www.swisslipids.org/#/entity/SLM:$1/",
+      "sampleId": "000048885"
     },
     "n2t": {
       "description": "SwissLipids is a curated resource that provides information about known lipids, including lipid structure, metabolism, interactions, and subcellular and tissue localization. Information is curated from peer-reviewed literature and referenced using established ontologies, and provided with full provenance and evidence codes for curated assertions.",
@@ -35855,6 +35968,9 @@
       "is_obo": false,
       "prefix": "SWISSLIPID"
     },
+    "synonyms": [
+      "slm"
+    ],
     "url": "https://www.swisslipids.org/#/entity/$1",
     "wikidata": {
       "database": "Q41165322",
@@ -36115,6 +36231,7 @@
     }
   },
   "tair.gene": {
+    "example": "2200934",
     "mappings": {
       "miriam": "tair.gene",
       "n2t": "tair.gene",
@@ -36142,12 +36259,14 @@
       "prefix": "tair.gene",
       "provider_url": "http://arabidopsis.org/servlets/TairObject?accession=$1"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/tair.gene/$1",
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "TAIR.GENE"
-    }
+    },
+    "url": "http://arabidopsis.org/servlets/TairObject?accession=Gene:$1"
   },
   "tair.locus": {
     "go": {
@@ -36198,6 +36317,7 @@
     }
   },
   "tair.protein": {
+    "example": "1009107926",
     "mappings": {
       "miriam": "tair.protein",
       "n2t": "tair.protein",
@@ -36225,12 +36345,14 @@
       "prefix": "tair.protein",
       "provider_url": "http://arabidopsis.org/servlets/TairObject?accession=$1"
     },
+    "pattern": "^\\d{10}$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/tair.protein/$1",
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "TAIR.PROTEIN"
-    }
+    },
+    "url": "http://arabidopsis.org/servlets/TairObject?accession=AASequence:$1"
   },
   "tao": {
     "bioportal": {
@@ -36623,7 +36745,7 @@
       "contact": "jaiswalp@science.oregonstate.edu",
       "contact.label": "Pankaj Jaiswal",
       "deprecated": false,
-      "description": "A controlled vocabulary of describe phenotypic traits in plants.",
+      "description": "A controlled vocabulary to describe phenotypic traits in plants.",
       "download.obo": "http://purl.obolibrary.org/obo/to.obo",
       "download.owl": "http://purl.obolibrary.org/obo/to.owl",
       "homepage": "http://browser.planteome.org/amigo",
@@ -37822,6 +37944,7 @@
       "n2t": "uniprot",
       "ncbi": "UniProt",
       "prefixcommons": "UniProtKB",
+      "scholia": "uniprot",
       "wikidata": "P352"
     },
     "miriam": {
@@ -38351,7 +38474,6 @@
       "prefix": "VALIDATORDB"
     },
     "provides": "pdb",
-    "type": "provider",
     "url": "https://webchem.ncbr.muni.cz/Platform/ValidatorDb/ByStructure/$1"
   },
   "vandf": {
@@ -38760,7 +38882,8 @@
   "viaf": {
     "mappings": {
       "miriam": "viaf",
-      "n2t": "viaf"
+      "n2t": "viaf",
+      "scholia": "viaf"
     },
     "miriam": {
       "deprecated": false,
@@ -39053,7 +39176,7 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "Vaccine Ontology",
       "prefix": "vo",
-      "version": "1.1.165"
+      "version": "1.1.171"
     },
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/VO_$1",
@@ -39220,58 +39343,6 @@
     "wikidata": {
       "database": "Q15674507"
     }
-  },
-  "wb": {
-    "biolink": {
-      "formatter": "http://bio2rdf.org/wormbase_vocabulary$1",
-      "is_identifiers": false,
-      "is_obo": false,
-      "prefix": "WBVocab"
-    },
-    "go": {
-      "formatter": "http://www.wormbase.org/get?name=$1",
-      "homepage": "http://www.wormbase.org/",
-      "name": "WormBase database of nematode biology",
-      "prefix": "WB_REF"
-    },
-    "mappings": {
-      "biolink": "WBVocab",
-      "go": "WB_REF",
-      "miriam": "wb",
-      "n2t": "wb",
-      "prefixcommons": "WB"
-    },
-    "miriam": {
-      "deprecated": false,
-      "description": "WormBase is an online bioinformatics database of the biology and genome of the model organism Caenorhabditis elegans and other nematodes. It is used by the C. elegans research community both as an information resource and as a mode to publish and distribute their results. This collection references WormBase-accessioned entities.",
-      "homepage": "https://www.wormbase.org/",
-      "id": "00000027",
-      "name": "WormBase",
-      "namespaceEmbeddedInLui": false,
-      "pattern": "^WB[A-Z][a-z]+\\d+$",
-      "prefix": "wb",
-      "provider_url": "https://www.wormbase.org/get?name=$1",
-      "sampleId": "WBGene00000001"
-    },
-    "n2t": {
-      "description": "WormBase is an online bioinformatics database of the biology and genome of the model organism Caenorhabditis elegans and other nematodes. It is used by the C. elegans research community both as an information resource and as a mode to publish and distribute their results. This collection references WormBase-accessioned entities.",
-      "example": "WBGene00000001",
-      "homepage": "https://www.wormbase.org/",
-      "name": "WormBase",
-      "namespaceEmbeddedInLui": false,
-      "pattern": "^WB[A-Z][a-z]+\\d+$",
-      "prefix": "wb",
-      "provider_url": "https://www.wormbase.org/get?name=$1"
-    },
-    "prefixcommons": {
-      "formatter": "http://identifiers.org/wb/$1",
-      "is_identifiers": true,
-      "is_obo": false,
-      "prefix": "WB"
-    },
-    "synonyms": [
-      "WB_REF"
-    ]
   },
   "wb.rnai": {
     "mappings": {
@@ -39610,6 +39681,7 @@
       "miriam": "wikipathways",
       "n2t": "wikipathways",
       "prefixcommons": "WIKIPATHWAYS",
+      "scholia": "wikipathways",
       "wikidata": "P2410"
     },
     "miriam": {
@@ -39741,34 +39813,67 @@
     }
   },
   "wormbase": {
-    "example": "C05G5/12462-12364",
+    "biolink": {
+      "formatter": "http://bio2rdf.org/wormbase_vocabulary$1",
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "WBVocab"
+    },
     "go": {
       "formatter": "http://www.wormbase.org/get?name=$1",
       "homepage": "http://www.wormbase.org/",
       "name": "WormBase database of nematode biology",
       "prefix": "WB_REF"
     },
-    "homepage": "https://wormbase.org",
     "mappings": {
+      "biolink": "WBVocab",
       "go": "WB_REF",
+      "miriam": "wb",
+      "n2t": "wb",
       "ncbi": "WormBase",
       "prefixcommons": "WormBase",
-      "uniprot": "WormBase",
-      "uniprot.database": "WormBase"
+      "uniprot": "WormBase"
     },
-    "name": "WormBase",
+    "miriam": {
+      "deprecated": false,
+      "description": "WormBase is an online bioinformatics database of the biology and genome of the model organism Caenorhabditis elegans and other nematodes. It is used by the C. elegans research community both as an information resource and as a mode to publish and distribute their results. This collection references WormBase-accessioned entities.",
+      "homepage": "https://www.wormbase.org/",
+      "id": "00000027",
+      "name": "WormBase",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^WB[A-Z][a-z]+\\d+$",
+      "prefix": "wb",
+      "provider_url": "https://www.wormbase.org/get?name=$1",
+      "sampleId": "WBGene00000001"
+    },
+    "n2t": {
+      "description": "WormBase is an online bioinformatics database of the biology and genome of the model organism Caenorhabditis elegans and other nematodes. It is used by the C. elegans research community both as an information resource and as a mode to publish and distribute their results. This collection references WormBase-accessioned entities.",
+      "example": "WBGene00000001",
+      "homepage": "https://www.wormbase.org/",
+      "name": "WormBase",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^WB[A-Z][a-z]+\\d+$",
+      "prefix": "wb",
+      "provider_url": "https://www.wormbase.org/get?name=$1"
+    },
     "ncbi": {
       "example": "R13H7",
       "homepage": "http://www.wormbase.org/",
       "name": "Caenorhabditis elegans Genome Database",
       "prefix": "WormBase"
     },
+    "preferred_prefix": "WormBase",
     "prefixcommons": {
       "formatter": "https://www.wormbase.org/get?name=$1",
       "is_identifiers": false,
       "is_obo": false,
       "prefix": "WormBase"
     },
+    "synonyms": [
+      "WB_REF",
+      "wormbase",
+      "wb"
+    ],
     "uniprot": {
       "category": "Organism-specific databases",
       "formatter": "https://wormbase.org/db/seq/protein?name=%s;class=CDS",
@@ -39864,6 +39969,11 @@
     "homepage": "https://www.worldwildlife.org/biomes",
     "name": "World Wildlife Fund Ecoregion",
     "pattern": "^AT\\d+$",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "url": "https://www.worldwildlife.org/ecoregions/$1",
     "wikidata": {
       "database": "Q929975",

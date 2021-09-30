@@ -47,8 +47,6 @@ METAREGISTRY_HEADER = [
     "download",
     "example",
     "contact",
-    "provider",
-    "resolver",
     "provider_formatter",
     "resolver_formatter",
 ]
@@ -73,6 +71,7 @@ REGISTRY_HEADER = [
     *METAPREFIXES,
     "part_of",
     "provides",
+    "has_canonical",
     # 'type',
 ]
 
@@ -107,8 +106,6 @@ def get_metaregistry_rows():
                 data.download,
                 data.example,
                 data.contact,
-                data.provider,
-                data.resolver,
                 data.provider_url,
                 data.resolver_url,
             )
@@ -139,6 +136,7 @@ def get_registry_rows():
                 # '|'.join(data.get('appears_in', [])),
                 data.part_of,
                 data.provides,
+                data.has_canonical,
                 # data.get('type'),
                 # TODO could add more, especially mappings
             )

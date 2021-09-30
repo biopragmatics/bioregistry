@@ -2,6 +2,7 @@
 
 """Add descriptions from a google curation sheet."""
 
+import click
 import pandas as pd
 
 import bioregistry
@@ -12,6 +13,7 @@ URL = (
 )
 
 
+@click.command()
 def main():
     """Add descriptions from a google curation sheet."""
     df = pd.read_csv(URL, sep="\t")
@@ -19,7 +21,7 @@ def main():
     df = df[df.description.notna()]
     df = df[df["prefix"].map(lambda p: bioregistry.get_description(p) is None)]
     df = df[df["prefix"].map(lambda p: bioregistry.get_obofoundry_prefix(p) is None)]
-    print(df.to_markdown())
+    click.echo(df.to_markdown())
     r = dict(bioregistry.read_registry())
     for prefix, description in df[["prefix", "description"]].values:
         r[prefix].description = description

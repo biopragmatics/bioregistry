@@ -33,7 +33,7 @@ def get_registry_homepage(metaprefix: str) -> Optional[str]:
     :return: The URL for the registry, if available, otherwise ``None``.
 
     >>> get_registry_homepage('biolink')
-    'https://raw.githubusercontent.com/biolink/biolink-model'
+    'https://github.com/biolink/biolink-model'
 
     ``None`` is returned on missing values.
 

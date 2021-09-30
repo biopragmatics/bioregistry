@@ -8,7 +8,7 @@ from more_click import verbose_option
 from ndex2 import NiceCXBuilder
 
 import bioregistry
-import bioregistry.resolve
+import bioregistry.version
 
 NDEX_UUID = "aa78a43f-9c4d-11eb-9e72-0ac135e8bacf"
 
@@ -18,6 +18,7 @@ NDEX_UUID = "aa78a43f-9c4d-11eb-9e72-0ac135e8bacf"
 def main():
     """Upload the Bioregistry KG to NDEx."""
     upload()
+    click.echo(f"see https://bioregistry.io/ndex:{NDEX_UUID}")
 
 
 def upload():
@@ -28,9 +29,11 @@ def upload():
         "description",
         "An integrative meta-registry of biological databases, ontologies, and nomenclatures",
     )
-    cx.add_network_attribute("author", "Charles Tapley Hoyt")
+    cx.add_network_attribute("hash", bioregistry.version.get_git_hash())
+    cx.add_network_attribute("version", bioregistry.version.get_version())
     cx.set_context(
         {
+            "bioregistry.collection": "https://bioregistry.io/collection/",
             "bioregistry.registry": "https://bioregistry.io/metaregistry/",
             "bioregistry": "https://bioregistry.io/registry/",
         }
@@ -44,7 +47,7 @@ def upload():
 
     for prefix, entry in registry.items():
         # Who does it provide for?
-        provides = bioregistry.resolve.get_provides_for(prefix)
+        provides = bioregistry.get_provides_for(prefix)
         if isinstance(provides, str):
             provides = [provides]
         for target in provides or []:
@@ -52,6 +55,18 @@ def upload():
                 source=resource_nodes[prefix],
                 target=resource_nodes[target],
                 interaction="provides",
+            )
+        if entry.part_of and entry.part_of in resource_nodes:
+            cx.add_edge(
+                source=resource_nodes[prefix],
+                target=resource_nodes[entry.part_of],
+                interaction="part_of",
+            )
+        if entry.has_canonical:
+            cx.add_edge(
+                source=resource_nodes[prefix],
+                target=resource_nodes[entry.has_canonical],
+                interaction="has_canonical",
             )
 
         # Which registries does it map to?
@@ -62,6 +77,20 @@ def upload():
                 source=resource_nodes[prefix],
                 target=registry_nodes[metaprefix],
                 interaction="listed",
+            )
+
+    for collection_id, collection in bioregistry.read_collections().items():
+        source = cx.add_node(
+            name=collection.name,
+            represents=f"bioregistry.collection:{collection_id}",
+        )
+        if collection.description:
+            cx.add_node_attribute(source, "description", collection.description)
+        for prefix in collection.resources:
+            cx.add_edge(
+                source=source,
+                target=resource_nodes[prefix],
+                interaction="has_prefix",
             )
 
     nice_cx = cx.get_nice_cx()
@@ -92,7 +121,7 @@ def make_resource_node(cx: NiceCXBuilder, prefix: str) -> int:
     """Generate a CX node for a resource."""
     node = cx.add_node(
         name=bioregistry.get_name(prefix),
-        represents=f"bioregistry.resource:{prefix}",
+        represents=f"bioregistry:{prefix}",
     )
     homepage = bioregistry.get_homepage(prefix)
     if homepage:

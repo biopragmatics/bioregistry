@@ -1,15 +1,14 @@
 {
   "metaregistry": [
     {
+      "contact": "ali.syed@kaust.edu.sa",
       "description": "AberOWL is a framework for ontology-based access to biological data. It consists of a repository of bio-ontologies, a set of webservices which provide access to OWL(-EL) reasoning over the ontologies, and several frontends which utilise the ontology repository and reasoning services to provide access to specific biological datasets.",
       "download": "http://aber-owl.net/api/ontology/?format=json",
       "example": "CHEBI",
       "homepage": "http://aber-owl.net",
       "name": "AberOWL",
       "prefix": "aberowl",
-      "provider": true,
-      "provider_url": "http://aber-owl.net/ontology/$1",
-      "resolver": false
+      "provider_url": "http://aber-owl.net/ontology/$1"
     },
     {
       "description": "A vocabulary and ontology repository for agronomy and related domains.",
@@ -17,19 +16,15 @@
       "homepage": "http://agroportal.lirmm.fr",
       "name": "AgroPortal",
       "prefix": "agroportal",
-      "provider": true,
-      "provider_url": "http://agroportal.lirmm.fr/ontologies/$1",
-      "resolver": false
+      "provider_url": "http://agroportal.lirmm.fr/ontologies/$1"
     },
     {
       "description": "A modeling paradigm-specific registry of prefixes and their URL expansions",
       "download": "https://raw.githubusercontent.com/biolink/biolink-model/master/biolink-model.yaml",
       "example": "doi",
-      "homepage": "https://raw.githubusercontent.com/biolink/biolink-model",
+      "homepage": "https://github.com/biolink/biolink-model",
       "name": "Biolink Model Registry",
-      "prefix": "biolink",
-      "provider": false,
-      "resolver": false
+      "prefix": "biolink"
     },
     {
       "description": "The BioPortal is a less stringent registry of biomedical ontologies than the OBO Foundry",
@@ -37,41 +32,36 @@
       "homepage": "https://bioportal.bioontology.org/",
       "name": "BioPortal Prefixes",
       "prefix": "bioportal",
-      "provider": true,
-      "provider_url": "https://bioportal.bioontology.org/ontologies/$1",
-      "resolver": false
+      "provider_url": "https://bioportal.bioontology.org/ontologies/$1"
     },
     {
+      "contact": "cthoyt@gmail.com",
       "description": "The Bioregistry is integrative meta-registry of biological databases, ontologies, and nomenclatures that is backed by an open database.",
       "download": "https://bioregistry.io/api/registry/",
       "example": "chebi",
       "homepage": "https://bioregistry.io",
       "name": "Bioregistry",
       "prefix": "bioregistry",
-      "provider": true,
       "provider_url": "https://bioregistry.io/registry/$1",
-      "resolver": true,
       "resolver_url": "https://bioregistry.io/$1:$2"
     },
     {
+      "contact": "Amos.Bairoch@sib.swiss",
       "description": "The set of prefixes used in the Cellosaurus resource",
       "example": "4DN",
       "homepage": "https://web.expasy.org/cellosaurus/",
       "name": "Cellosaurus Registry",
-      "prefix": "cellosaurus",
-      "provider": false,
-      "resolver": false
+      "prefix": "cellosaurus"
     },
     {
+      "contact": "helpdesk@cropontology-curationtool.org",
       "description": "The Crop Ontology (CO) current objective is to compile validated concepts along with their inter-relationships on anatomy, structure and phenotype of Crops, on trait measurement and methods as well as on Germplasm with the multi-crop passport terms",
       "download": "https://github.com/bioversity/Crop-Ontology/blob/master/public/dump.json",
       "example": "CO_010",
       "homepage": "https://www.cropontology.org",
       "name": "Crop Ontology Curation Tool",
       "prefix": "cropoct",
-      "provider": true,
-      "provider_url": "https://www.cropontology.org/ontology/$1",
-      "resolver": false
+      "provider_url": "https://www.cropontology.org/ontology/$1"
     },
     {
       "description": "The LifeWatch ERIC repository of semantic resources for the ecological domain.",
@@ -79,9 +69,7 @@
       "homepage": "http://ecoportal.lifewatchitaly.eu",
       "name": "EcoPortal",
       "prefix": "ecoportal",
-      "provider": true,
-      "provider_url": "http://ecoportal.lifewatchitaly.eu/ontologies/$1",
-      "resolver": false
+      "provider_url": "http://ecoportal.lifewatchitaly.eu/ontologies/$1"
     },
     {
       "description": "A curated, informative and educational resource on data and metadata standards, inter-related to databases and data policies.",
@@ -89,9 +77,7 @@
       "homepage": "https://fairsharing.org/",
       "name": "FAIRSharing",
       "prefix": "fairsharing",
-      "provider": true,
-      "provider_url": "https://fairsharing.org/$1",
-      "resolver": false
+      "provider_url": "https://fairsharing.org/$1"
     },
     {
       "description": "A database-specific registry supporting curation in the Gene Ontology",
@@ -99,9 +85,7 @@
       "example": "CHEBI",
       "homepage": "http://geneontology.org/",
       "name": "Gene Ontology Registry",
-      "prefix": "go",
-      "provider": false,
-      "resolver": false
+      "prefix": "go"
     },
     {
       "contact": "hhe@ebi.ac.uk",
@@ -111,20 +95,17 @@
       "homepage": "https://identifiers.org",
       "name": "Identifiers.org",
       "prefix": "miriam",
-      "provider": true,
       "provider_url": "https://registry.identifiers.org/registry/$1",
-      "resolver": true,
       "resolver_url": "https://identifiers.org/$1:$2"
     },
     {
+      "contact": "cdl@www.cdlib.org",
       "description": "An ARK resolver as well as resolver built with common prefixes as in Identifiers.org",
       "download": "https://n2t.net/e/n2t_full_prefixes.yaml",
       "example": "chebi",
       "homepage": "https://n2t.net",
       "name": "Name-to-Thing",
       "prefix": "n2t",
-      "provider": false,
-      "resolver": true,
       "resolver_url": "https://n2t.net/$1:$2"
     },
     {
@@ -132,9 +113,7 @@
       "example": "ECOCYC",
       "homepage": "https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/",
       "name": "National Center for Biotechnology Information Registry",
-      "prefix": "ncbi",
-      "provider": false,
-      "resolver": false
+      "prefix": "ncbi"
     },
     {
       "description": "The mission of the OBO Foundry is to develop a family of interoperable ontologies that are both logically well-formed and scientifically accurate.",
@@ -143,9 +122,7 @@
       "homepage": "http://www.obofoundry.org/",
       "name": "OBO Foundry",
       "prefix": "obofoundry",
-      "provider": false,
-      "provider_url": "http://www.obofoundry.org/ontology/$1",
-      "resolver": false
+      "provider_url": "http://www.obofoundry.org/ontology/$1"
     },
     {
       "description": "The Ontology Lookup Service (OLS) is a repository for biomedical ontologies that aims to provide a single point of access to the latest ontology versions. ",
@@ -153,9 +130,7 @@
       "homepage": "https://www.ebi.ac.uk/ols",
       "name": "Ontology Lookup Service",
       "prefix": "ols",
-      "provider": true,
-      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/$1",
-      "resolver": false
+      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/$1"
     },
     {
       "description": "A registry of commonly used prefixes in the life sciences and linked data",
@@ -164,9 +139,16 @@
       "homepage": "https://prefixcommons.org",
       "name": "Prefix Commons",
       "prefix": "prefixcommons",
-      "provider": true,
-      "provider_url": "https://prefixcommons.org/?q=id:$1",
-      "resolver": false
+      "provider_url": "https://prefixcommons.org/?q=id:$1"
+    },
+    {
+      "contact": "faan@dtu.dk",
+      "description": "A frontend to Wikidata",
+      "example": "doi",
+      "homepage": "https://scholia.toolforge.org/",
+      "name": "Scholia",
+      "prefix": "scholia",
+      "resolver_url": "https://scholia.toolforge.org/$1/$2"
     },
     {
       "description": "The cross-references section of UniProtKB entries displays explicit and implicit links to databases such as nucleotide sequence databases, model organism databases and genomics and proteomics resources.",
@@ -175,9 +157,7 @@
       "homepage": "https://www.uniprot.org/database/",
       "name": "UniProt Cross-ref database",
       "prefix": "uniprot",
-      "provider": true,
-      "provider_url": "https://www.uniprot.org/database/DB-$1",
-      "resolver": false
+      "provider_url": "https://www.uniprot.org/database/DB-$1"
     },
     {
       "description": "An open, community-curated knowledgebase that contains several properties corresponding to resources listed in other biomedical registries.",
@@ -185,9 +165,7 @@
       "homepage": "https://www.wikidata.org",
       "name": "Wikidata Property",
       "prefix": "wikidata",
-      "provider": true,
-      "provider_url": "https://www.wikidata.org/wiki/Property:$1",
-      "resolver": false
+      "provider_url": "https://www.wikidata.org/wiki/Property:$1"
     }
   ]
 }

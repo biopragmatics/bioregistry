@@ -10,7 +10,7 @@ from typing import Mapping
 import click
 
 import bioregistry
-from bioregistry import get_format_urls
+from bioregistry import get_prefix_map
 from bioregistry.constants import DOCS_DATA
 from bioregistry.schema import Collection
 
@@ -66,7 +66,7 @@ def collection_to_context_jsonlds(collection: Collection) -> str:
 
 OBO_PRIORITY = (
     "obofoundry",
-    "bioregistry",
+    "default",
     "prefixcommons",
     "miriam",
     "ols",
@@ -87,8 +87,11 @@ def get_obofoundry_prefix_map(include_synonyms: bool = False) -> Mapping[str, st
     """
     remapping = bioregistry.get_registry_map("obofoundry")
     remapping.update(OBO_REMAPPING)
-    return get_format_urls(
-        remapping=remapping, priority=OBO_PRIORITY, include_synonyms=include_synonyms
+    return get_prefix_map(
+        remapping=remapping,
+        priority=OBO_PRIORITY,
+        include_synonyms=include_synonyms,
+        use_preferred=True,
     )
 
 

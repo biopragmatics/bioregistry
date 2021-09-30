@@ -265,6 +265,7 @@ adw:
     is_identifiers: false
     is_obo: true
     prefix: ADW
+  url: https://animaldiversity.org/accounts/$1
 aeo:
   bioportal:
     name: Anatomical Entity Ontology
@@ -4367,6 +4368,7 @@ cath.superfamily:
     pattern: ^\d+(\.\d+(\.\d+(\.\d+)?)?)?$
     prefix: cath.superfamily
     provider_url: http://www.cathdb.info/cathnode/$1
+  part_of: cath
   prefixcommons:
     formatter: http://identifiers.org/cath.superfamily/$1
     is_identifiers: true
@@ -4403,6 +4405,7 @@ cattleqtldb:
     pattern: ^\d+$
     prefix: cattleqtldb
     provider_url: http://www.animalgenome.org/cgi-bin/QTLdb/BT/qdetails?QTL_ID=$1
+  part_of: qtldb
   prefixcommons:
     formatter: http://identifiers.org/cattleqtldb/$1
     is_identifiers: true
@@ -5471,6 +5474,7 @@ chickenqtldb:
     pattern: ^\d+$
     prefix: chickenqtldb
     provider_url: http://www.animalgenome.org/cgi-bin/QTLdb/GG/qdetails?QTL_ID=$1
+  part_of: qtldb
   prefixcommons:
     formatter: http://identifiers.org/chickenqtldb/$1
     is_identifiers: true
@@ -5963,6 +5967,7 @@ clinvar.record:
     is_identifiers: true
     is_obo: false
     prefix: CLINVAR.RECORD
+  url: http://www.ncbi.nlm.nih.gov/clinvar/$1
 clinvar.submission:
   mappings:
     miriam: clinvar.submission
@@ -8958,6 +8963,7 @@ dlxb:
     provider_url: https://doulix.com/biomodules/$1/
     sampleId: 6VDC956
   part_of: dlx
+  url: https://doulix.com/biomodules/$1
 dlxc:
   mappings:
     miriam: dlxc
@@ -8974,6 +8980,7 @@ dlxc:
     provider_url: https://doulix.com/constructs/$1/
     sampleId: M77F7JM
   part_of: dlx
+  url: https://doulix.com/constructs/$1
 doi:
   biolink:
     formatter: https://doi.org/$1
@@ -9287,6 +9294,7 @@ dpo:
     prefix: dpo
     version: '2021-09-02'
     version.iri: http://purl.obolibrary.org/obo/dpo/releases/2021-09-02/dpo.owl
+  part_of: fbcv
 dpv:
   mappings:
     miriam: dpv
@@ -9329,6 +9337,8 @@ dpv:
     is_obo: false
     prefix: DPV
 dragondb.allele:
+  comment: Deprecated because the website is dead
+  deprecated: true
   mappings:
     miriam: dragondb.allele
     n2t: dragondb.allele
@@ -9362,6 +9372,8 @@ dragondb.allele:
     is_obo: false
     prefix: DRAGONDB.ALLELE
 dragondb.dna:
+  comment: Deprecated because the website is dead
+  deprecated: true
   mappings:
     miriam: dragondb.dna
     n2t: dragondb.dna
@@ -9395,6 +9407,8 @@ dragondb.dna:
     is_obo: false
     prefix: DRAGONDB.DNA
 dragondb.locus:
+  comment: Deprecated because the website is dead
+  deprecated: true
   mappings:
     miriam: dragondb.locus
     n2t: dragondb.locus
@@ -9428,6 +9442,8 @@ dragondb.locus:
     is_obo: false
     prefix: DRAGONDB.LOCUS
 dragondb.protein:
+  comment: Deprecated because the website is dead
+  deprecated: true
   mappings:
     miriam: dragondb.protein
     n2t: dragondb.protein
@@ -9477,7 +9493,7 @@ dron:
     description: An ontology to support comparative effectiveness researchers studying
       claims data.
     download.owl: http://purl.obolibrary.org/obo/dron.owl
-    homepage: https://bitbucket.org/uamsdbmi/dron.git
+    homepage: https://github.com/ufbmi/dron
     license: CC-BY
     name: The Drug Ontology
     prefix: dron
@@ -10211,6 +10227,7 @@ ecyano.entity:
     is_identifiers: true
     is_obo: false
     prefix: ECYANO.ENTITY
+  url: https://www.e-cyanobacterium.org/bcs/entity/$1
 ecyano.experiment:
   mappings:
     miriam: ecyano.experiment
@@ -10273,6 +10290,7 @@ ecyano.model:
     is_identifiers: true
     is_obo: false
     prefix: ECYANO.MODEL
+  url: https://e-cyanobacterium.org/models/model/$1
 ecyano.rule:
   mappings:
     miriam: ecyano.rule
@@ -10318,6 +10336,7 @@ ecyano.rule:
     is_identifiers: true
     is_obo: false
     prefix: ECYANO.RULE
+  url: https://e-cyanobacterium.org/bcs/rule/$1
 edam:
   bioportal:
     name: EDAM - Bioscientific data analysis ontology
@@ -13079,6 +13098,11 @@ fyler:
   - https://github.com/obophenotype/human-phenotype-ontology/issues/2568
   - https://github.com/obophenotype/human-phenotype-ontology/issues/2511
 fypo:
+  biolink:
+    formatter: http://purl.obolibrary.org/obo/FYPO_$1
+    is_identifiers: false
+    is_obo: true
+    prefix: FYPO
   bioportal:
     name: Fission Yeast Phenotype Ontology
     prefix: FYPO
@@ -13089,6 +13113,7 @@ fypo:
     name: Fission Yeast Phenotype Ontology
     prefix: FYPO
   mappings:
+    biolink: FYPO
     bioportal: FYPO
     go: FYPO
     obofoundry: fypo
@@ -13951,6 +13976,7 @@ geogeo:
     is_identifiers: false
     is_obo: true
     prefix: GEO
+  url: http://purl.obolibrary.org/obo/GEO_$1
 gexo:
   bioportal:
     name: Gene Expression Ontology
@@ -14125,6 +14151,9 @@ glycoepitope:
     is_obo: false
     prefix: GLYCOEPITOPE
 glycomedb:
+  comment: this is exactly the same as glytoucan. Idk why there are two different
+    ones
+  has_canonical: glytoucan
   mappings:
     miriam: glycomedb
     n2t: glycomedb
@@ -14924,6 +14953,7 @@ gpcrdb:
     identifier: '38'
     name: Information system for G protein-coupled receptors (GPCRs)
     prefix: GPCRDB
+  url: https://gpcrdb.org/protein/$1
 gpmdb:
   mappings:
     miriam: gpmdb
@@ -17135,6 +17165,7 @@ huge:
     identifier: '49'
     name: Human Unidentified Gene-Encoded large proteins database
     prefix: HUGE
+  url: https://www.kazusa.or.jp/huge/gfpage/$1
 iao:
   bioportal:
     name: Information Artifact Ontology
@@ -18196,6 +18227,7 @@ insdc:
     is_obo: false
     prefix: INSDC
 insdc.cds:
+  has_canonical: ncbiprotein
   mappings:
     miriam: insdc.cds
     n2t: insdc.cds
@@ -18270,6 +18302,7 @@ insdc.run:
     orcid: 0000-0002-6601-2165
   description: An experimental run, served thrugh the ENA
   example: ERR436051
+  has_canonical: ena.embl
   homepage: https://www.insdc.org/
   name: International Nucleotide Sequence Database Collaboration (INSDC) Run
   pattern: ^(E|D|S)RR[0-9]{6,}$
@@ -19175,6 +19208,7 @@ jstor:
     is_obo: false
     prefix: JSTOR
 jws:
+  example: achcar11
   mappings:
     miriam: jws
     n2t: jws
@@ -19208,6 +19242,7 @@ jws:
     is_identifiers: true
     is_obo: false
     prefix: JWS
+  url: https://jjj.bio.vu.nl/models/$1
 kaggle:
   mappings:
     miriam: kaggle
@@ -20246,6 +20281,7 @@ lincs.protein:
     is_identifiers: true
     is_obo: false
     prefix: LINCS.PROTEIN
+  url: https://lincs.hms.harvard.edu/db/proteins/$1
 lincs.smallmolecule:
   mappings:
     miriam: lincs.smallmolecule
@@ -23983,6 +24019,15 @@ msio:
     name: Metabolomics Standards Initiative Ontology (MSIO)
     prefix: msio
     version: 1.0.1
+multicellds:
+  description: MultiCellDS is data standard for multicellular simulation, experimental,
+    and clinical data. A digital cell line is a hierarchical organization of quantitative
+    phenotype data for a single biological cell line, including the microenvironmental
+    context of the measurements and essential metadata.
+  example: MCDS_S_0000000001
+  homepage: http://multicellds.org/MultiCellDB.php
+  name: MultiCellDS
+  url: http://multicellds.org/MultiCellDB/$1
 multicellds.cell_line:
   mappings:
     miriam: multicellds.cell_line
@@ -24014,6 +24059,7 @@ multicellds.cell_line:
     pattern: ^MCDS_L_[a-zA-Z0-9]{1,10}$
     prefix: multicellds.cell_line
     provider_url: http://multicellds.org/MultiCellDB/$1
+  part_of: multicellds
   prefixcommons:
     formatter: http://identifiers.org/multicellds.cell_line/$1
     is_identifiers: true
@@ -24052,6 +24098,7 @@ multicellds.collection:
     pattern: ^MCDS_C_[a-zA-Z0-9]{1,10}$
     prefix: multicellds.collection
     provider_url: http://multicellds.org/MultiCellDB/$1
+  part_of: multicellds
   prefixcommons:
     formatter: http://identifiers.org/multicellds.collection/$1
     is_identifiers: true
@@ -24088,6 +24135,7 @@ multicellds.snapshot:
     pattern: ^MCDS_S_[a-zA-Z0-9]{1,10}$
     prefix: multicellds.snapshot
     provider_url: http://multicellds.org/MultiCellDB/$1
+  part_of: multicellds
   prefixcommons:
     formatter: http://identifiers.org/multicellds.snapshot/$1
     is_identifiers: true
@@ -28917,6 +28965,8 @@ pdb:
     pattern: '[0-9][0-9A-Za-z]{3}'
     prefix: P638
 pdb-ccd:
+  comment: might be same as pdb.ligand, not sure though
+  has_canonical: pdb.ligand
   mappings:
     miriam: pdb-ccd
     n2t: pdb-ccd
@@ -29175,6 +29225,7 @@ ped.ensemble:
     prefix: ped.ensemble
     provider_url: https://proteinensemble.org/$1
     sampleId: PED00017e001
+  part_of: ped
 peff:
   deprecated: true
   download_obo: https://github.com/HUPO-PSI/PEFF/raw/master/CV/psi-peff-OBSOLETE-DO_NOT_USE.obo
@@ -29415,6 +29466,7 @@ pgs:
     prefix: pgs
     provider_url: https://www.pgscatalog.org/pgs/$1/
     sampleId: PGS000018
+  url: https://www.pgscatalog.org/pgs/$1
 pgx:
   mappings:
     miriam: pgx
@@ -30043,6 +30095,7 @@ pigqtldb:
     pattern: ^\d+$
     prefix: pigqtldb
     provider_url: http://www.animalgenome.org/cgi-bin/QTLdb/SS/qdetails?QTL_ID=$1
+  part_of: qtldb
   prefixcommons:
     formatter: http://identifiers.org/pigqtldb/$1
     is_identifiers: true
@@ -31353,6 +31406,9 @@ protclustdb:
     is_obo: false
     prefix: PROTCLUSTDB
 proteomicsdb.peptide:
+  comment: The fact that this has .peptide as a subspace is a bit of a misnomer. Its
+    original registration with MIRIAM uses a subview over the protein to point to
+    peptides, but the identifiers in this semantic space seem to be about proteins.
   mappings:
     miriam: proteomicsdb.peptide
     n2t: proteomicsdb.peptide
@@ -31396,6 +31452,7 @@ proteomicsdb.peptide:
     is_identifiers: true
     is_obo: false
     prefix: PROTEOMICSDB.PEPTIDE
+  url: https://www.proteomicsdb.org/#human/proteinDetails/$1
 proteomicsdb.protein:
   mappings:
     miriam: proteomicsdb.protein
@@ -32383,6 +32440,7 @@ refseq:
     homepage: http://www.ncbi.nlm.nih.gov/RefSeq/
     name: RefSeq
     prefix: RefSeq
+  has_canonical: ncbiprotein
   mappings:
     go: RefSeq
     miriam: refseq
@@ -33341,6 +33399,7 @@ rouge:
     identifier: '92'
     name: Rodent Unidentified Gene-Encoded large proteins database
     prefix: Rouge
+  url: https://www.kazusa.or.jp/rouge/gfpage/$1
 rrid:
   mappings:
     miriam: rrid
@@ -33955,6 +34014,7 @@ scretf:
     is_identifiers: true
     is_obo: false
     prefix: SCRETF
+  url: http://stormo.wustl.edu/ScerTF/details/$1
 sdbs:
   mappings:
     miriam: sdbs
@@ -34388,6 +34448,7 @@ sheepqtldb:
     pattern: ^\d+$
     prefix: sheepqtldb
     provider_url: http://www.animalgenome.org/cgi-bin/QTLdb/OA/qdetails?QTL_ID=$1
+  part_of: qtldb
   prefixcommons:
     formatter: http://identifiers.org/sheepqtldb/$1
     is_identifiers: true
@@ -34462,6 +34523,7 @@ sider.drug:
     is_identifiers: true
     is_obo: false
     prefix: SIDER.DRUG
+  url: http://sideeffects.embl.de/drugs/$1
 sider.effect:
   mappings:
     miriam: sider.effect
@@ -34498,6 +34560,8 @@ sider.effect:
     is_identifiers: true
     is_obo: false
     prefix: SIDER.EFFECT
+  provides: umls
+  url: http://sideeffects.embl.de/se/$1
 signaling-gateway:
   mappings:
     miriam: signaling-gateway
@@ -34726,24 +34790,6 @@ skos:
     is_obo: false
     prefix: skos
   url: http://www.w3.org/2004/02/skos/core#$1
-slm:
-  mappings:
-    miriam: slm
-  miriam:
-    deprecated: false
-    description: SwissLipids is a curated resource that provides information about
-      known lipids, including lipid structure, metabolism, interactions, and subcellular
-      and tissue localization. Information is curated from peer-reviewed literature
-      and referenced using established ontologies, and provided with full provenance
-      and evidence codes for curated assertions.
-    homepage: http://www.swisslipids.org/#/
-    id: '00000550'
-    name: SwissLipids
-    namespaceEmbeddedInLui: true
-    pattern: ^SLM:\d+$
-    prefix: slm
-    provider_url: http://www.swisslipids.org/#/entity/SLM:$1/
-    sampleId: 000048885
 smart:
   go:
     formatter: http://smart.embl-heidelberg.de/smart/do_annotation.pl?BLAST=DUMMY&DOMAIN=$1
@@ -34869,10 +34915,16 @@ snap:
   homepage: http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf
   name: Snapshot
 snomedct:
+  biolink:
+    formatter: http://www.snomedbrowser.com/Codes/Details/$1
+    is_identifiers: false
+    is_obo: false
+    prefix: SNOMEDCT
   bioportal:
     name: SNOMED CT
     prefix: SNOMEDCT
   mappings:
+    biolink: SNOMEDCT
     bioportal: SNOMEDCT
     miriam: snomedct
     n2t: snomedct
@@ -34975,6 +35027,7 @@ snp2tfbs:
     provider_url: https://ccg.epfl.ch/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=$1
     sampleId: rs11603840
   name: SNP to Transcription Factor Binding Sites
+  provides: dbsnp
 so:
   bioportal:
     name: Sequence Types and Features Ontology
@@ -35779,9 +35832,25 @@ swiss-model:
 swisslipid:
   example: SLM:000000341
   mappings:
+    miriam: slm
     n2t: swisslipid
     prefixcommons: SWISSLIPID
     wikidata: P8691
+  miriam:
+    deprecated: false
+    description: SwissLipids is a curated resource that provides information about
+      known lipids, including lipid structure, metabolism, interactions, and subcellular
+      and tissue localization. Information is curated from peer-reviewed literature
+      and referenced using established ontologies, and provided with full provenance
+      and evidence codes for curated assertions.
+    homepage: http://www.swisslipids.org/#/
+    id: '00000550'
+    name: SwissLipids
+    namespaceEmbeddedInLui: true
+    pattern: ^SLM:\d+$
+    prefix: slm
+    provider_url: http://www.swisslipids.org/#/entity/SLM:$1/
+    sampleId: 000048885
   n2t:
     description: SwissLipids is a curated resource that provides information about
       known lipids, including lipid structure, metabolism, interactions, and subcellular
@@ -35801,6 +35870,8 @@ swisslipid:
     is_identifiers: true
     is_obo: false
     prefix: SWISSLIPID
+  synonyms:
+  - slm
   url: https://www.swisslipids.org/#/entity/$1
   wikidata:
     database: Q41165322
@@ -36035,6 +36106,7 @@ tahh:
     is_obo: true
     prefix: TAHH
 tair.gene:
+  example: '2200934'
   mappings:
     miriam: tair.gene
     n2t: tair.gene
@@ -36063,11 +36135,13 @@ tair.gene:
     pattern: ^Gene:\d{7}$
     prefix: tair.gene
     provider_url: http://arabidopsis.org/servlets/TairObject?accession=$1
+  pattern: ^\d{7}$
   prefixcommons:
     formatter: http://identifiers.org/tair.gene/$1
     is_identifiers: true
     is_obo: false
     prefix: TAIR.GENE
+  url: http://arabidopsis.org/servlets/TairObject?accession=Gene:$1
 tair.locus:
   go:
     homepage: http://www.arabidopsis.org/
@@ -36114,6 +36188,7 @@ tair.locus:
     is_obo: false
     prefix: TAIR.LOCUS
 tair.protein:
+  example: '1009107926'
   mappings:
     miriam: tair.protein
     n2t: tair.protein
@@ -36144,11 +36219,13 @@ tair.protein:
     pattern: ^AASequence:\d{10}$
     prefix: tair.protein
     provider_url: http://arabidopsis.org/servlets/TairObject?accession=$1
+  pattern: ^\d{10}$
   prefixcommons:
     formatter: http://identifiers.org/tair.protein/$1
     is_identifiers: true
     is_obo: false
     prefix: TAIR.PROTEIN
+  url: http://arabidopsis.org/servlets/TairObject?accession=AASequence:$1
 tao:
   bioportal:
     name: Teleost Anatomy Ontology
@@ -36511,7 +36588,7 @@ to:
     contact: jaiswalp@science.oregonstate.edu
     contact.label: Pankaj Jaiswal
     deprecated: false
-    description: A controlled vocabulary of describe phenotypic traits in plants.
+    description: A controlled vocabulary to describe phenotypic traits in plants.
     download.obo: http://purl.obolibrary.org/obo/to.obo
     download.owl: http://purl.obolibrary.org/obo/to.owl
     homepage: http://browser.planteome.org/amigo
@@ -39001,7 +39078,7 @@ vo:
     license: http://creativecommons.org/licenses/by/4.0/
     name: Vaccine Ontology
     prefix: vo
-    version: 1.1.165
+    version: 1.1.171
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/VO_$1
     is_identifiers: false
@@ -39154,7 +39231,9 @@ wb:
     go: WB_REF
     miriam: wb
     n2t: wb
-    prefixcommons: WB
+    ncbi: WormBase
+    prefixcommons: WormBase
+    uniprot: WormBase
   miriam:
     deprecated: false
     description: WormBase is an online bioinformatics database of the biology and
@@ -39183,13 +39262,29 @@ wb:
     pattern: ^WB[A-Z][a-z]+\d+$
     prefix: wb
     provider_url: https://www.wormbase.org/get?name=$1
+  ncbi:
+    example: R13H7
+    homepage: http://www.wormbase.org/
+    name: Caenorhabditis elegans Genome Database
+    prefix: WormBase
   prefixcommons:
-    formatter: http://identifiers.org/wb/$1
-    is_identifiers: true
+    formatter: https://www.wormbase.org/get?name=$1
+    is_identifiers: false
     is_obo: false
-    prefix: WB
+    prefix: WormBase
   synonyms:
   - WB_REF
+  - wormbase
+  uniprot:
+    category: Organism-specific databases
+    formatter: https://wormbase.org/db/seq/protein?name=%s;class=CDS
+    identifier: '110'
+    link_is_explicit: 'true'
+    name: WormBase
+    prefix: WormBase
+  wikidata:
+    database: Q3570042
+    prefix: P3860
 wb.rnai:
   mappings:
     miriam: wb.rnai
@@ -39632,41 +39727,6 @@ worfdb:
     is_identifiers: true
     is_obo: false
     prefix: WORFDB
-wormbase:
-  example: C05G5/12462-12364
-  go:
-    formatter: http://www.wormbase.org/get?name=$1
-    homepage: http://www.wormbase.org/
-    name: WormBase database of nematode biology
-    prefix: WB_REF
-  homepage: https://wormbase.org
-  mappings:
-    go: WB_REF
-    ncbi: WormBase
-    prefixcommons: WormBase
-    uniprot: WormBase
-    uniprot.database: WormBase
-  name: WormBase
-  ncbi:
-    example: R13H7
-    homepage: http://www.wormbase.org/
-    name: Caenorhabditis elegans Genome Database
-    prefix: WormBase
-  prefixcommons:
-    formatter: https://www.wormbase.org/get?name=$1
-    is_identifiers: false
-    is_obo: false
-    prefix: WormBase
-  uniprot:
-    category: Organism-specific databases
-    formatter: https://wormbase.org/db/seq/protein?name=%s;class=CDS
-    identifier: '110'
-    link_is_explicit: 'true'
-    name: WormBase
-    prefix: WormBase
-  wikidata:
-    database: Q3570042
-    prefix: P3860
 wormpep:
   mappings:
     miriam: wormpep
