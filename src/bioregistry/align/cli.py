@@ -23,40 +23,27 @@ __all__ = [
 
 
 @click.command()
-def align():
+@click.option("--quiet", is_flag=True)
+def align(quiet: bool):
     """Align all external registries."""
-    secho("Aligning MIRIAM")
-    MiriamAligner.align()
-
-    secho("Aligning N2T")
-    N2TAligner.align()
-
-    secho("Aligning NCBI")
-    NcbiAligner.align()
-
-    secho("Aligning OBO Foundry")
-    OBOFoundryAligner.align()
-
-    secho("Aligning OLS")
-    OLSAligner.align()
-
-    secho("Aligning Wikidata")
-    WikidataAligner.align()
-
-    secho("Aligning GO")
-    GoAligner.align()
-
-    secho("Aligning BioPortal")
-    BioPortalAligner.align()
-
-    secho("Aligning Prefix Commons")
-    PrefixCommonsAligner.align()
-
-    secho("Aligning Biolink")
-    BiolinkAligner.align()
-
-    secho("Aligning UniProt")
-    UniProtAligner.align()
+    for aligner_cls in [
+        MiriamAligner,
+        N2TAligner,
+        NcbiAligner,
+        OBOFoundryAligner,
+        OLSAligner,
+        WikidataAligner,
+        GoAligner,
+        BioPortalAligner,
+        PrefixCommonsAligner,
+        BiolinkAligner,
+        UniProtAligner,
+    ]:
+        secho(f"Aligning {aligner_cls.key}")
+        try:
+            aligner_cls.align(quiet=quiet)
+        except IOError:
+            secho(f"Failed to align {aligner_cls.key}", fg="red")
 
 
 if __name__ == "__main__":

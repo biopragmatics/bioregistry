@@ -16,9 +16,9 @@ from more_click import verbose_option
 
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_PATH
-from bioregistry.schema import Resource
+from bioregistry.gh import github_client
+from bioregistry.schema import Author, Resource
 from bioregistry.utils import add_resource
-from . import github_client
 
 logger = logging.getLogger(__name__)
 
@@ -34,7 +34,12 @@ MAPPING = {
     "Provider Format URL": "url",
     "Contact": "contact",
     "Additional Comments": "comment",
+    "Contributor ORCiD": "contributor_orcid",
+    "Contributor Name": "contributor_name",
 }
+
+ORCID_HTTP_PREFIX = "http://orcid.org/"
+ORCID_HTTPS_PREFIX = "https://orcid.org/"
 
 
 def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Tuple[str, Resource]]:
@@ -58,19 +63,32 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Tuple[str
     rv = {}
     for issue_id, resource_data in data.items():
         prefix = resource_data.pop("prefix")
+        contributor = Author(
+            name=resource_data.pop("contributor_name"),
+            orcid=_pop_orcid(resource_data),
+        )
         # Remove redundant prefix from identifier if given as a CURIE
         if "example" in resource_data and resource_data["example"].startswith(f"{prefix}:"):
             resource_data["example"] = resource_data["example"][len(prefix) + 1 :]
         if bioregistry.get_resource(prefix) is not None:
             # TODO close issue
             logger.warning(
-                "Issue is for duplicate prefix %s in https://github.com/bioregistry/bioregistry/issues/%s",
+                "Issue is for duplicate prefix %s in https://github.com/biopragmatics/bioregistry/issues/%s",
                 prefix,
                 issue_id,
             )
             continue
-        rv[issue_id] = prefix, Resource(**resource_data)
+        rv[issue_id] = prefix, Resource(contributor=contributor, **resource_data)
     return rv
+
+
+def _pop_orcid(d) -> str:
+    orcid = d.pop("contributor_orcid")
+    if orcid.startswith(ORCID_HTTP_PREFIX):
+        orcid = orcid[len(ORCID_HTTP_PREFIX) :]
+    elif orcid.startswith(ORCID_HTTPS_PREFIX):
+        orcid = orcid[len(ORCID_HTTPS_PREFIX) :]
+    return orcid
 
 
 def _join(x: Iterable[int], sep=", ") -> str:

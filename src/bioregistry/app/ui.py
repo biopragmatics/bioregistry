@@ -8,6 +8,7 @@ from flask import Blueprint, abort, redirect, render_template, url_for
 
 import bioregistry
 from .utils import _get_resource_mapping_rows, _get_resource_providers, _normalize_prefix_or_404
+from ..utils import read_collections_contributions, read_prefix_contributions, read_prefix_reviews
 
 __all__ = [
     "ui_blueprint",
@@ -75,6 +76,7 @@ def resource(prefix: str):
     return render_template(
         "resource.html",
         prefix=prefix,
+        resource=bioregistry.get_resource(prefix),
         name=bioregistry.get_name(prefix),
         example=example,
         mappings=_get_resource_mapping_rows(prefix),
@@ -85,6 +87,7 @@ def resource(prefix: str):
         has_no_terms=bioregistry.has_no_terms(prefix),
         obo_download=bioregistry.get_obo_download(prefix),
         owl_download=bioregistry.get_owl_download(prefix),
+        json_download=bioregistry.get_json_download(prefix),
         namespace_in_lui=bioregistry.namespace_in_lui(prefix),
         deprecated=bioregistry.is_deprecated(prefix),
         contact=bioregistry.get_email(prefix),
@@ -199,7 +202,7 @@ def resolve(prefix: str, identifier: Optional[str] = None):
             404,
         )
 
-    url = bioregistry.get_link(prefix, identifier, use_bioregistry_io=False)
+    url = bioregistry.get_iri(prefix, identifier, use_bioregistry_io=False)
     if not url:
         return (
             render_template(
@@ -217,3 +220,39 @@ def resolve(prefix: str, identifier: Optional[str] = None):
             ),
             404,
         )
+
+
+@ui_blueprint.route("/contributors/")
+def contributors():
+    """Serve the Bioregistry contributors page."""
+    return render_template(
+        "contributors.html",
+        rows=bioregistry.read_contributors().values(),
+        collections=read_collections_contributions(),
+        prefix_contributions=read_prefix_contributions(),
+        prefix_reviews=read_prefix_reviews(),
+        formats=FORMATS,
+    )
+
+
+@ui_blueprint.route("/contributor/<orcid>")
+def contributor(orcid: str):
+    """Serve the a Bioregistry contributor page."""
+    author = bioregistry.read_contributors().get(orcid)
+    if author is None:
+        abort(404)
+    return render_template(
+        "contributor.html",
+        contributor=author,
+        collections=sorted(
+            (collection_id, bioregistry.get_collection(collection_id))
+            for collection_id in read_collections_contributions().get(author.orcid, [])
+        ),
+        prefix_contributions=_s(read_prefix_contributions().get(author.orcid, [])),
+        prefix_reviews=_s(read_prefix_reviews().get(author.orcid, [])),
+        formats=FORMATS,
+    )
+
+
+def _s(prefixes):
+    return sorted((p, bioregistry.get_resource(p)) for p in prefixes)

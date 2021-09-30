@@ -2,7 +2,7 @@
 
 """Align the Prefix Commons with the Bioregistry."""
 
-from typing import Any, Dict, Sequence
+from typing import Any, Dict, Mapping, Sequence
 
 from bioregistry.align.utils import Aligner
 from bioregistry.external.prefix_commons import get_prefix_commons
@@ -18,6 +18,12 @@ class PrefixCommonsAligner(Aligner):
     key = "prefixcommons"
     getter = get_prefix_commons
     curation_header = ["formatter", "identifiers", "purl"]
+
+    def get_skip(self) -> Mapping[str, str]:
+        """Get entries for prefix commons that should be skipped."""
+        return {
+            "fbql": "not a real resource, as far as I can tell",
+        }
 
     def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
         """Prepare Prefix Commons data to be added to the Prefix Commons for each BioPortal registry entry."""

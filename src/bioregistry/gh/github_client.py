@@ -12,8 +12,6 @@ import more_itertools
 import pystow
 import requests
 
-from bioregistry.gh.new_prefix import main
-
 logger = logging.getLogger(__name__)
 HERE = os.path.dirname(os.path.abspath(__file__))
 MAIN_BRANCH = "main"
@@ -258,11 +256,7 @@ def _git(*args: str) -> Optional[str]:
                 stderr=devnull,
             )
         except CalledProcessError as e:
-            print("error in _git:\n", e)
+            logger.warning(f"error in _git:\n{e}")
             return None
         else:
             return ret.strip().decode("utf-8")
-
-
-if __name__ == "__main__":
-    main()

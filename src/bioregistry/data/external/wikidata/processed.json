@@ -623,14 +623,6 @@
     "pattern": "[1-9]\\d{1,3}",
     "prefix": "P3594"
   },
-  "P3606": {
-    "database": "Q16934719",
-    "database.homepage": "http://www.barcodinglife.org/",
-    "database.label": "Barcode of Life Data Systems",
-    "format": "http://www.boldsystems.org/index.php/TaxBrowser_TaxonPage?taxid=$1",
-    "name": "BOLD Systems taxon ID",
-    "prefix": "P3606"
-  },
   "P3717": {
     "database": "Q25712",
     "database.homepage": "http://merops.sanger.ac.uk/",
@@ -1284,6 +1276,7 @@
   },
   "P6036": {
     "database": "Q57669159",
+    "database.homepage": "http://www.wildherps.com",
     "database.label": "Wild Herps",
     "format": "http://www.wildherps.com/species/$1.html",
     "homepage": "http://www.wildherps.com/index.html",
@@ -1960,7 +1953,7 @@
     "database.miriam": "paleodb",
     "format": "http://fossilworks.org/?a=referenceInfo&reference_no=$1",
     "homepage": "http://fossilworks.org",
-    "name": "Fossilworks ID for journal article",
+    "name": "Fossilworks ID for this journal article",
     "pattern": "\\d+",
     "prefix": "P7720"
   },
@@ -2033,7 +2026,7 @@
     "database.miriam": "paleodb",
     "format": "http://fossilworks.org/bridge.pl?a=taxonInfo&taxon_no=$1",
     "homepage": "http://fossilworks.org",
-    "name": "Fossilworks taxon ID",
+    "name": "Fossilworks ID for this taxon",
     "pattern": "([1-9]\\d{0,5})",
     "prefix": "P842"
   },
@@ -2195,5 +2188,45 @@
     "homepage": "https://pladias.cz/",
     "name": "Pladias ID",
     "prefix": "P9741"
+  },
+  "P9824": {
+    "database": "Q1142422",
+    "database.homepage": "https://www.crystallography.net/cod",
+    "database.label": "Crystallography Open Database",
+    "format": "https://www.crystallography.net/cod/$1.html",
+    "homepage": "https://www.crystallography.net/cod",
+    "name": "COD ID",
+    "pattern": "[1-9][0-9]{6}",
+    "prefix": "P9824"
+  },
+  "P9839": {
+    "database": "Q108340093",
+    "database.homepage": "https://www.izeltlabuak.hu/",
+    "database.label": "Izeltlabuak.hu",
+    "format": "https://www.izeltlabuak.hu/faj/id/$1",
+    "homepage": "https://www.izeltlabuak.hu/",
+    "name": "izeltlabuak.hu ID",
+    "pattern": "\\d+",
+    "prefix": "P9839"
+  },
+  "P9876": {
+    "database": "Q108392349",
+    "database.homepage": "https://endemia.nc/",
+    "database.label": "Endemia.nc",
+    "format": "https://endemia.nc/faune/fiche$1",
+    "homepage": "https://endemia.nc/",
+    "name": "Endemia.nc animal taxon ID",
+    "pattern": "[1-9]\\d*",
+    "prefix": "P9876"
+  },
+  "P9889": {
+    "database": "Q108424413",
+    "database.homepage": "https://nztcs.org.nz/",
+    "database.label": "New Zealand Threat Classification System Database",
+    "format": "https://nztcs.org.nz/nztcs-species/$1",
+    "homepage": "https://nztcs.org.nz/",
+    "name": "NZTCS ID",
+    "pattern": "[1-9]\\d{3,7}",
+    "prefix": "P9889"
   }
 }

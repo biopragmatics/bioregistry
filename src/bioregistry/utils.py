@@ -5,10 +5,11 @@
 import json
 import logging
 import warnings
+from collections import defaultdict
 from dataclasses import asdict, is_dataclass
 from datetime import datetime
 from functools import lru_cache, wraps
-from typing import Any, List, Mapping
+from typing import Any, List, Mapping, Set
 
 import click
 import requests
@@ -16,7 +17,7 @@ from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
 
 from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH, MISMATCH_PATH
-from .schema import Collection, Registry, Resource
+from .schema import Author, Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
@@ -37,13 +38,7 @@ def read_registry() -> Mapping[str, Resource]:
     """Read the Bioregistry as JSON."""
     with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
         data = json.load(file)
-    return {
-        # Why bother doing this? Because now, Pydantic does all sorts of nice schema
-        # checks for us. Later, we'll switch over to using first-class Resource instances
-        # in the rest of the code.
-        key: Resource(**value)
-        for key, value in data.items()
-    }
+    return {key: Resource(**value) for key, value in data.items()}
 
 
 def add_resource(prefix: str, resource: Resource) -> None:
@@ -131,6 +126,48 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
         )
 
 
+def read_contributors() -> Mapping[str, Author]:
+    """Get a mapping from contributor ORCID identifiers to author objects."""
+    rv = {}
+    for resource in read_registry().values():
+        if resource.contributor:
+            rv[resource.contributor.orcid] = resource.contributor
+        if resource.reviewer:
+            rv[resource.reviewer.orcid] = resource.reviewer
+    for resource in read_collections().values():
+        for author in resource.authors or []:
+            rv[author.orcid] = author
+    return rv
+
+
+def read_prefix_contributions() -> Mapping[str, Set[str]]:
+    """Get a mapping from contributor ORCID identifiers to prefixes."""
+    rv = defaultdict(set)
+    for prefix, resource in read_registry().items():
+        if resource.contributor:
+            rv[resource.contributor.orcid].add(prefix)
+    return dict(rv)
+
+
+def read_prefix_reviews() -> Mapping[str, Set[str]]:
+    """Get a mapping from reviewer ORCID identifiers to prefixes."""
+    rv = defaultdict(set)
+    for prefix, resource in read_registry().items():
+        if resource.reviewer:
+            rv[resource.reviewer.orcid].add(prefix)
+    return dict(rv)
+
+
+def read_collections_contributions():
+    """Get a mapping from contributor ORCID identifiers to collections."""
+    rv = defaultdict(set)
+    for collection_id, resource in read_collections().items():
+        for author in resource.authors or []:
+            rv[author.orcid].add(collection_id)
+    return dict(rv)
+
+
+# FIXME remove this
 def updater(f):
     """Make a decorator for functions that auto-update the bioregistry."""
 
@@ -193,3 +230,38 @@ def extended_encoder(obj: Any) -> Any:
         return encoder(obj)
     else:  # We have exited the for loop without finding a suitable encoder
         raise TypeError(f"Object of type '{obj.__class__.__name__}' is not JSON serializable")
+
+
+class NormDict(dict):
+    """A dictionary that supports lexical normalization of keys on setting and getting."""
+
+    def __setitem__(self, key: str, value: str) -> None:
+        """Set an item from the dictionary after lexically normalizing it."""
+        norm_key = _norm(key)
+        if value is None:
+            raise ValueError(f"Tried to add empty value for {key}/{norm_key}")
+        if norm_key in self and self[norm_key] != value:
+            raise KeyError(
+                f"Tried to add {norm_key}/{value} when already had {norm_key}/{self[norm_key]}"
+            )
+        super().__setitem__(norm_key, value)
+
+    def __getitem__(self, item: str) -> str:
+        """Get an item from the dictionary after lexically normalizing it."""
+        return super().__getitem__(_norm(item))
+
+    def __contains__(self, item) -> bool:
+        """Check if an item is in the dictionary after lexically normalizing it."""
+        return super().__contains__(_norm(item))
+
+    def get(self, key: str, default=None) -> str:
+        """Get an item from the dictionary after lexically normalizing it."""
+        return super().get(_norm(key), default)
+
+
+def _norm(s: str) -> str:
+    """Normalize a string for dictionary key usage."""
+    rv = s.casefold().lower()
+    for x in " .-_./":
+        rv = rv.replace(x, "")
+    return rv

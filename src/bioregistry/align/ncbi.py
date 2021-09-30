@@ -16,6 +16,7 @@ class NcbiAligner(Aligner):
 
     key = "ncbi"
     getter = get_ncbi
+    getter_kwargs = dict(force_download=False)
     curation_header = ("name", "homepage", "example")
 
     def get_curation_row(self, external_id, external_entry) -> List[str]:

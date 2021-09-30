@@ -38,7 +38,7 @@
                 <dt>Authors</dt>
                 <dd>
                     {% for author in entry.authors %}
-                        <a href="{{ url_for("ui.resolve", prefix="orcid", identifier=author.orcid) }}">
+                        <a href="{{ url_for("ui.contributor", orcid=author.orcid) }}">
                             {{ author.name }}
                             <i class="fab fa-orcid"></i>
                         </a>{% if not loop.last %}, {% endif %}

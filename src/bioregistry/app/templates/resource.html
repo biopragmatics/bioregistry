@@ -17,10 +17,15 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h5 style="margin: 0">{{ name }}
+                    <h5 style="margin: 0"><a href="{{ url_for("ui.resources") }}">Registry</a> <i
+                            class="fas fa-angle-right"></i> {{ name }}
                         {% if deprecated %}
                             <span class="badge badge-warning" style="display: inline-block;">
                                 Deprecated <i class="fas fa-exclamation-triangle"></i>
+                            </span>
+                        {% elif resource.provides %}
+                            <span class="badge badge-danger" style="display: inline-block;">
+                                Provider <i class="fas fa-exclamation-triangle"></i>
                             </span>
                         {% endif %}
                     </h5>
@@ -46,9 +51,27 @@
         </div>
         <div class="card-body">
             {% if description %}<p>{{ description }}</p>{% endif %}
+            {% if resource.provides %}
+                <p>
+                    This resource is a <span class="badge badge-danger">provider</span>. This means that
+                    while it may have its own prefix, it actually reuses the identifiers provided by the
+                    <a href="{{ url_for(".resource", prefix=resource.provides) }}"><code>{{ resource.provides }}</code></a>
+                    prefix. For <b>all</b> use cases, you should use <a
+                        href="{{ url_for(".resource", prefix=resource.provides) }}"><code>{{ resource.provides }}</code></a>
+                    instead of <code>{{ prefix }}</code>.
+                </p>
+            {% endif %}
+            {% if resource.comment %}
+                <p class="text-muted"><span class="badge badge-info">Comment</span> {{ resource.comment }}</p>
+            {% endif %}
             <dl>
                 <dt>Prefix</dt>
                 <dd><code>{{ prefix }}</code></dd>
+                {% set preferred_prefix = resource.get_preferred_prefix() %}
+                {% if preferred_prefix %}
+                    <dt>Preferred Prefix</dt>
+                    <dd><code>{{ preferred_prefix }}</code></dd>
+                {% endif %}
                 {% if synonyms %}
                     <dt>Alternative Prefixes</dt>
                     <dd>
@@ -78,6 +101,11 @@
                     {% if owl_download %}
                         <a class="badge badge-pill badge-light" href="{{ owl_download }}">
                             OWL <i class="fas fa-download"></i>
+                        </a>
+                    {% endif %}
+                    {% if json_download %}
+                        <a class="badge badge-pill badge-light" href="{{ json_download }}">
+                            OBO JSON <i class="fas fa-download"></i>
                         </a>
                     {% endif %}
                 </dd>
@@ -119,6 +147,24 @@
                         <span class="badge badge-pill badge-warning">Missing Example</span>
                     {% endif %}
                 </dd>
+                {% if resource.references %}
+                    <dt>References</dt>
+                    <dd>
+                        <ul>
+                            {% for reference in resource.references %}
+                                <li><a href="{{ reference }}">{{ reference }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                {% endif %}
+                {% if resource.contributor %}
+                    <dt>Contributor</dt>
+                    <dd>
+                        <a href="{{ url_for('ui.contributor', orcid=resource.contributor.orcid) }}">
+                            {{ resource.contributor.name }}
+                        </a>
+                    </dd>
+                {% endif %}
             </dl>
         </div>
 

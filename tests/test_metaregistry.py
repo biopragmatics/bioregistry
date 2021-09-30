@@ -23,17 +23,13 @@ class TestMetaregistry(unittest.TestCase):
                 self.assertIn("example", data)
                 self.assertIn("description", data)
 
-                # When a registry is a provider, it means it
-                # provides for its entries
-                self.assertIn("provider", data)
-                if data["provider"]:
+                if registry_pydantic.provider_url:
                     self.assertIn("provider_url", data)
                     self.assertIn("$1", data["provider_url"])
 
                 # When a registry is a resolver, it means it
                 # can resolve entries (prefixes) + identifiers
-                self.assertIn("resolver", data)
-                if data["resolver"]:
+                if registry_pydantic.resolver_url:
                     self.assertIn("resolver_url", data)
                     self.assertIn("$1", data["resolver_url"])
                     self.assertIn("$2", data["resolver_url"])
@@ -44,8 +40,6 @@ class TestMetaregistry(unittest.TestCase):
                         "name",
                         "homepage",
                         "download",
-                        "provider",
-                        "resolver",
                         "description",
                         "provider_url",
                         "example",

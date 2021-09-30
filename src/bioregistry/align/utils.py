@@ -115,12 +115,13 @@ class Aligner(ABC):
         return external_entry
 
     @classmethod
-    def align(cls, dry: bool = False):
+    def align(cls, dry: bool = False, quiet: bool = False):
         """Align and output the curation sheet."""
         instance = cls()
         if not dry:
             write_registry(instance.internal_registry)
-        instance.print_uncurated()
+        if not quiet:
+            instance.print_uncurated()
 
     @abstractmethod
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
@@ -170,4 +171,4 @@ class Aligner(ABC):
         """Print the curation table."""
         s = self.get_curation_table(**kwargs)
         if s:
-            print(s)
+            print(s)  # noqa:T001

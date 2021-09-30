@@ -48,6 +48,7 @@ def _process(record):
         "name": record["title"],
         "description": record.get("description"),
         "deprecated": record.get("is_obsolete", False),
+        "inactive": _parse_activity_status(record),
         "homepage": record.get("homepage"),
         "preferredPrefix": record.get("preferredPrefix"),
         "license": record.get("license", {}).get("label"),
@@ -64,6 +65,18 @@ def _process(record):
             rv["download.owl"] = product["ontology_purl"]
 
     return {k: v for k, v in rv.items() if v is not None}
+
+
+def _parse_activity_status(record) -> bool:
+    status = record["activity_status"]
+    if status == "inactive":
+        return True
+    elif status == "active":
+        return False
+    elif status == "orphaned":
+        return True
+    else:
+        raise ValueError(f"unexpected activity value: {status}")
 
 
 @click.command()

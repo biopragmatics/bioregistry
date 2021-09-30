@@ -5,7 +5,7 @@
 import itertools as itt
 import json
 from io import StringIO
-from typing import Any, Callable, List, Mapping, Optional, Sequence, Tuple
+from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
 
 import yaml
 from flask import abort, current_app, redirect, render_template, request, url_for
@@ -17,9 +17,11 @@ from bioregistry.schema import sanitize_model
 from bioregistry.utils import extended_encoder
 
 
-def _get_resource_providers(prefix: str, identifier: str):
+def _get_resource_providers(
+    prefix: str, identifier: Optional[str]
+) -> Optional[List[Dict[str, Any]]]:
     if identifier is None:
-        return
+        return None
     rv = []
     for metaprefix, url in bioregistry.get_providers_list(prefix, identifier):
         if metaprefix == "default":
@@ -40,7 +42,7 @@ def _get_resource_providers(prefix: str, identifier: str):
     return rv
 
 
-def _get_resource_mapping_rows(prefix: str):
+def _get_resource_mapping_rows(prefix: str) -> Optional[List[Mapping[str, Any]]]:
     mappings = bioregistry.get_mappings(prefix)
     if mappings is None:
         return None
@@ -131,11 +133,11 @@ def _autocomplete(q: str) -> Mapping[str, Any]:
     if pattern is None:
         success = True
         reason = "no pattern"
-        url = bioregistry.resolve_identifier._get_bioregistry_link(prefix, identifier)
+        url = bioregistry.get_bioregistry_iri(prefix, identifier)
     elif bioregistry.validate(prefix, identifier):
         success = True
         reason = "passed validation"
-        url = bioregistry.resolve_identifier._get_bioregistry_link(prefix, identifier)
+        url = bioregistry.get_bioregistry_iri(prefix, identifier)
     else:
         success = False
         reason = "failed validation"

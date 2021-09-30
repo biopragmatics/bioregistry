@@ -3,6 +3,7 @@
 """Download registry information from NCBI."""
 
 import json
+import logging
 import re
 from typing import Dict
 from urllib.parse import urlsplit, urlunsplit
@@ -16,6 +17,8 @@ from bioregistry.data import EXTERNAL
 __all__ = [
     "get_ncbi",
 ]
+
+logger = logging.getLogger(__name__)
 
 DIRECTORY = EXTERNAL / "ncbi"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
@@ -72,7 +75,7 @@ def get_ncbi(force_download: bool = False) -> Dict[str, Dict[str, str]]:
         prefix = REWRITES.get(prefix, prefix)
 
         if prefix in REDUNDANT:
-            print("skipping", prefix)
+            logger.warning(f"skipping {prefix}")
             continue
 
         name = cells[2].text.strip()

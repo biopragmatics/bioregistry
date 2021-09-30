@@ -4,6 +4,7 @@
 
 import datetime
 import itertools as itt
+import logging
 import math
 import random
 import sys
@@ -25,24 +26,31 @@ from bioregistry import (
     get_owl_download,
     get_pattern,
     get_version,
+    is_deprecated,
     read_registry,
 )
 from bioregistry.constants import DOCS_IMG
 from bioregistry.external import GETTERS
 from bioregistry.resolve import _remap_license, get_external
 
+logger = logging.getLogger(__name__)
+
 # see named colors https://matplotlib.org/stable/gallery/color/named_colors.html
 BIOREGISTRY_COLOR = "silver"
 
 
 def _get_has(func, yes: str = "Yes", no: str = "No") -> Counter:
-    return Counter(no if func(prefix) is None else yes for prefix in read_registry())
+    return Counter(
+        no if func(prefix) is None else yes
+        for prefix in read_registry()
+        if not is_deprecated(prefix)
+    )
 
 
 HAS_WIKIDATA_DATABASE = Counter(
     "No" if key is None else "Yes"
     for key in read_registry()
-    if "database" in get_external(key, "wikidata")
+    if not is_deprecated(key) and "database" in get_external(key, "wikidata")
 )
 
 
@@ -52,7 +60,7 @@ def _get_has_present(func) -> Counter:
 
 SINGLE_FIG = (8, 3.5)
 TODAY = datetime.datetime.today().strftime("%Y-%m-%d")
-WATERMARK_TEXT = f"https://github.com/bioregistry/bioregistry ({TODAY})"
+WATERMARK_TEXT = f"https://github.com/biopragmatics/bioregistry ({TODAY})"
 
 
 def _save(fig, name: str, *, svg: bool = True, png: bool = False) -> None:
@@ -367,7 +375,7 @@ def _get_license_and_conflicts():
             licenses.append(ols_license)
             licenses.append(obo_license)
             conflicts.add(key)
-            print(f"[{key}] Conflicting licenses- {obo_license} and {ols_license}")
+            logger.warning(f"[{key}] Conflicting licenses- {obo_license} and {ols_license}")
             continue
     return licenses, conflicts, obo_has_license, ols_has_license
 

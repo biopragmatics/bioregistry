@@ -4,11 +4,13 @@
 
 import logging
 import unittest
+from collections import defaultdict
 
 import bioregistry
 from bioregistry.export.rdf_export import resource_to_rdf_str
-from bioregistry.resolve import EMAIL_RE, _get_prefix_key, get_external
-from bioregistry.utils import is_mismatch
+from bioregistry.resolve import get_external
+from bioregistry.schema.utils import EMAIL_RE
+from bioregistry.utils import _norm, is_mismatch
 
 logger = logging.getLogger(__name__)
 
@@ -55,6 +57,11 @@ class TestRegistry(unittest.TestCase):
             "references",
             "synonyms",
             "comment",
+            "contributor",
+            "reviewer",
+            "proprietary",
+            "has_canonical",
+            "preferred_prefix",
         }
         keys.update(bioregistry.read_metaregistry())
         for prefix, entry in self.registry.items():
@@ -125,7 +132,9 @@ class TestRegistry(unittest.TestCase):
                 # FIXME these are known problematic, and there's a PR on
                 #  https://github.com/OBOFoundry/OBOFoundry.github.io/pull/1534
                 continue
-            email = _get_prefix_key(prefix, "contact", ("obofoundry", "ols"))
+            resource = bioregistry.get_resource(prefix)
+            self.assertIsNotNone(resource)
+            email = resource.get_prefix_key("contact", ("obofoundry", "ols"))
             if email is None or EMAIL_RE.match(email):
                 continue
             with self.subTest(prefix=prefix):
@@ -197,12 +206,17 @@ class TestRegistry(unittest.TestCase):
                 bioregistry.has_no_terms(prefix)
                 or bioregistry.is_deprecated(prefix)
                 or bioregistry.get_provides_for(prefix)
+                or bioregistry.is_proprietary(prefix)
             ):
                 continue
-            if not bioregistry.get_pattern(prefix) and not entry.ols:
+            if prefix in {
+                "obo",
+                "pspub",
+                "unpd",
+                "span",
+            }:  # FIXME the minting of this prefix for PyOBO needs to be reinvestigated
                 continue
-
-            with self.subTest(prefix=prefix):
+            with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
                 msg = f"{prefix} is missing an example local identifier"
                 if entry.ols:
                     msg += (
@@ -222,7 +236,7 @@ class TestRegistry(unittest.TestCase):
             if bioregistry.validate(prefix, example):
                 continue
             with self.subTest(prefix=prefix):
-                self.assertRegex(example, pattern)
+                self.assertRegex(example, pattern, msg=f"Failed on prefix={prefix}")
 
     def test_is_mismatch(self):
         """Check for mismatches."""
@@ -254,22 +268,21 @@ class TestRegistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_obofoundry_format("nope"))
         self.assertIsNone(bioregistry.get_obo_download("nope"))
         self.assertIsNone(bioregistry.get_owl_download("nope"))
-        self.assertIsNone(bioregistry.get_ols_link("nope", ...))
-        self.assertIsNone(bioregistry.get_obofoundry_link("nope", ...))
+        self.assertIsNone(bioregistry.get_ols_iri("nope", ...))
+        self.assertIsNone(bioregistry.get_obofoundry_iri("nope", ...))
         self.assertFalse(bioregistry.is_deprecated("nope"))
-        self.assertFalse(bioregistry.is_provider("nope"))
         self.assertIsNone(bioregistry.get_provides_for("nope"))
         self.assertIsNone(bioregistry.get_version("gmelin"))
         self.assertIsNone(bioregistry.validate("nope", ...))
-        self.assertIsNone(bioregistry.get_default_url("nope", ...))
-        self.assertIsNone(bioregistry.get_identifiers_org_url("nope", ...))
-        self.assertIsNone(bioregistry.get_n2t_url("nope", ...))
-        self.assertIsNone(bioregistry.get_bioportal_url("nope", ...))
-        self.assertIsNone(bioregistry.get_bioportal_url("gmelin", ...))
-        self.assertIsNone(bioregistry.get_identifiers_org_url("nope", ...))
-        self.assertIsNone(bioregistry.get_identifiers_org_url("pid.pathway", ...))
-        self.assertIsNone(bioregistry.get_identifiers_org_url("gmelin", ...))
-        self.assertIsNone(bioregistry.get_link("gmelin", ...))
+        self.assertIsNone(bioregistry.get_default_iri("nope", ...))
+        self.assertIsNone(bioregistry.get_identifiers_org_iri("nope", ...))
+        self.assertIsNone(bioregistry.get_n2t_iri("nope", ...))
+        self.assertIsNone(bioregistry.get_bioportal_iri("nope", ...))
+        self.assertIsNone(bioregistry.get_bioportal_iri("gmelin", ...))
+        self.assertIsNone(bioregistry.get_identifiers_org_iri("nope", ...))
+        self.assertIsNone(bioregistry.get_identifiers_org_iri("pid.pathway", ...))
+        self.assertIsNone(bioregistry.get_identifiers_org_iri("gmelin", ...))
+        self.assertIsNone(bioregistry.get_iri("gmelin", ...))
 
     def test_get(self):
         """Test getting resources."""
@@ -282,10 +295,97 @@ class TestRegistry(unittest.TestCase):
 
         self.assertEqual(
             "https://meshb.nlm.nih.gov/record/ui?ui=D010146",
-            bioregistry.get_link("mesh", "D010146"),
+            bioregistry.get_iri("mesh", "D010146"),
         )
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
         s = resource_to_rdf_str("chebi")
         self.assertIsInstance(s, str)
+
+    @unittest.skip(
+        """\
+        Not sure if this test makes sense - some of the resources, like
+        datanator_gene and datanator_metabolite are part of a larger resources,
+        but have their own well-defined endpoints.
+        """
+    )
+    def test_parts(self):
+        """Make sure all part of relations point to valid prefixes."""
+        for prefix, resource in self.registry.items():
+            if bioregistry.is_deprecated(prefix) or bioregistry.get_provides_for(prefix):
+                continue
+            if resource.part_of is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIn(
+                    resource.part_of, self.registry, msg="super-resource is not a valid prefix"
+                )
+
+    def test_provides(self):
+        """Make sure all provides relations point to valid prefixes."""
+        for prefix, resource in self.registry.items():
+            if resource.provides is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIn(resource.provides, self.registry)
+
+    def test_has_canonical(self):
+        """Make sure all has_canonical relations point to valid prefixes."""
+        for prefix, resource in self.registry.items():
+            if resource.has_canonical is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIn(resource.has_canonical, self.registry)
+
+    def test_unique_iris(self):
+        """Test that all IRIs are unique, or at least there's a mapping to which one is the preferred prefix."""
+        prefix_map = bioregistry.get_prefix_map()
+        dd = defaultdict(dict)
+        for prefix, iri in prefix_map.items():
+            resource = bioregistry.get_resource(prefix)
+            self.assertIsNotNone(resource)
+            if resource.provides is not None:
+                # Don't consider resources that are providing, such as `ctd.gene`
+                continue
+            dd[iri][prefix] = resource
+
+        x = {}
+        for iri, resources in dd.items():
+            if 1 == len(resources):
+                # This is a unique IRI, so no issues
+                continue
+
+            # Get parts
+            parts = {prefix: resource.part_of for prefix, resource in resources.items()}
+            unmapped = [prefix for prefix, part_of in parts.items() if part_of is None]
+            if len(unmapped) <= 1:
+                continue
+
+            # Get canonical
+            canonicals = {prefix: resource.has_canonical for prefix, resource in resources.items()}
+            canonical_target = [prefix for prefix, target in canonicals.items() if target is None]
+            all_targets = list(
+                {target for prefix, target in canonicals.items() if target is not None}
+            )
+            if (
+                len(canonical_target) == 1
+                and len(all_targets) == 1
+                and canonical_target[0] == all_targets[0]
+            ):
+                continue
+
+            x[iri] = parts, unmapped, canonical_target, all_targets
+        self.assertEqual({}, x)
+
+    def test_preferred_prefix(self):
+        """Test the preferred prefix matches the normalized prefix."""
+        for prefix, resource in self.registry.items():
+            pp = resource.get_preferred_prefix()
+            if pp is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertEqual(prefix, _norm(pp))
+                # TODO consider later if preferred prefix should
+                #  explicitly not be mentioned in synonyms
+                # self.assertNotIn(pp, resource.get_synonyms())
