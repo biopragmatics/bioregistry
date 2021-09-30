@@ -141,14 +141,12 @@ class ResourceManager:
         :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
         :return: A mapping from prefixes to prefix URLs.
         """
-        rv = dict(
-            self._iter_prefix_map(
-                priority=priority, include_synonyms=include_synonyms, use_preferred=use_preferred
-            )
+        it = self._iter_prefix_map(
+            priority=priority, include_synonyms=include_synonyms, use_preferred=use_preferred
         )
         if not remapping:
-            return rv
-        return {remapping.get(prefix, prefix): prefix_url for prefix, prefix_url in rv.items()}
+            return dict(it)
+        return {remapping.get(prefix, prefix): prefix_url for prefix, prefix_url in it}
 
     def _iter_prefix_map(
         self,
