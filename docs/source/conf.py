@@ -65,7 +65,8 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx_autodoc_typehints',
     'sphinx_click.ext',
-    # 'sphinx_automodapi.automodapi',
+    'sphinx_automodapi.automodapi',
+    'sphinx_automodapi.smart_resolver',
     # 'texext',
 ]
 
@@ -226,6 +227,8 @@ texinfo_documents = [
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
     'https://docs.python.org/3/': None,
+    'rdflib': ("https://rdflib.readthedocs.io/en/stable/", None),
 }
 
 autoclass_content = 'both'
+autodoc_member_order = 'bysource'

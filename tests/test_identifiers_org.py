@@ -8,7 +8,7 @@ from textwrap import dedent, fill
 import requests
 
 import bioregistry
-from bioregistry import get_identifiers_org_curie, get_identifiers_org_url
+from bioregistry import get_identifiers_org_curie, get_identifiers_org_iri
 from bioregistry.constants import IDOT_BROKEN
 from bioregistry.version import VERSION
 
@@ -50,34 +50,29 @@ class TestIdentifiersOrg(unittest.TestCase):
             ):
                 identifier = bioregistry.get_example(prefix)
                 self.assertIsNotNone(identifier)
-                url = bioregistry.resolve_identifier.get_identifiers_org_url(prefix, identifier)
+                url = bioregistry.resolve_identifier.get_identifiers_org_iri(prefix, identifier)
                 res = self.session.get(url, allow_redirects=False)
                 self.assertEqual(302, res.status_code, msg=f"failed with URL: {url}")
 
+    @unittest.skip
     def test_url_auto(self):
         """Test formatting URLs."""
-        for prefix, entry in bioregistry.read_registry().items():
-            if prefix in IDOT_BROKEN:
-                continue
-            identifier = bioregistry.get_example(prefix)
-            if identifier is None:
-                continue
-            if "example" not in entry and "banana" not in entry and "pattern" not in entry:
+        for prefix in bioregistry.read_registry():
+            miriam_prefix = bioregistry.get_identifiers_org_prefix(prefix)
+            if miriam_prefix is None or prefix in IDOT_BROKEN:
                 continue
 
-            url = get_identifiers_org_url(prefix, identifier)
-            if url is None:
-                continue
+            identifier = bioregistry.get_example(prefix)
 
             with self.subTest(prefix=prefix, identifier=identifier):
-                # FIXME
-                # The following tests don't work because the CURIE generation often throws away the prefix.
-                # miriam_prefix = bioregistry.get_identifiers_org_prefix(prefix)
-                # self.assertIsNotNone(miriam_prefix)
-                # self.assertTrue(
-                #     url.startswith(f'https://identifiers.org/{miriam_prefix}:'),
-                #     msg=f"bad prefix for {prefix}. Expected {miriam_prefix} in {url}",
-                # )
+                self.assertIsNotNone(identifier, msg="All MIRIAM entries should have an example")
+
+                url = get_identifiers_org_iri(prefix, identifier)
+                self.assertIsNotNone(url, msg="All MIRIAM entries should be formattable")
+                self.assertTrue(
+                    url.startswith(f"https://identifiers.org/{miriam_prefix}:"),
+                    msg=f"bad prefix for {prefix}. Expected {miriam_prefix} in {url}",
+                )
                 res = self.session.get(url, allow_redirects=False)
                 self.assertEqual(
                     302,
@@ -116,7 +111,7 @@ class TestIdentifiersOrg(unittest.TestCase):
                 curie = get_identifiers_org_curie(prefix, identifier)
                 self.assertEqual(expected, curie, msg="wrong CURIE")
 
-                url = get_identifiers_org_url(prefix, identifier)
+                url = get_identifiers_org_iri(prefix, identifier)
                 self.assertEqual(f"https://identifiers.org/{curie}", url, msg="wrong URL")
 
                 # Check that the URL resolves

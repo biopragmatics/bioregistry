@@ -149,8 +149,14 @@ def _aggregate(prop, records):
     return records[0]
 
 
-if __name__ == "__main__":
+def _main():
+    import click
+
     # from tabulate import tabulate
     # print(list(iter_wikidata()))
     r = get_wikidata(force_download=True)
-    print(f"Got {len(r)} records")
+    click.echo(f"Got {len(r)} records")
+
+
+if __name__ == "__main__":
+    _main()

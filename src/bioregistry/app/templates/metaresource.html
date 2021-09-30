@@ -54,13 +54,13 @@
                 </dd>
                 <dt>Capabilities</dt>
                 <dd>
-                    <span class="badge badge-pill badge-{% if entry.registry %}success{% else %}light text-muted{% endif %}">
+                    <span class="badge badge-pill badge-success">
                         Registry
                     </span>
-                    <span class="badge badge-pill badge-{% if entry.provider %}success{% else %}light text-muted{% endif %}">
+                    <span class="badge badge-pill badge-{% if entry.provider_url %}success{% else %}light text-muted{% endif %}">
                         Provider
                     </span>
-                    <span class="badge badge-pill badge-{% if entry.resolver %}success{% else %}light text-muted{% endif %}">
+                    <span class="badge badge-pill badge-{% if entry.resolver_url %}success{% else %}light text-muted{% endif %}">
                         Resolver
                     </span>
                 </dd>
@@ -76,17 +76,13 @@
                 <dd>
                     <code>{{ entry.example }}</code>
                 </dd>
-                {% if entry.provider %}
+                {% if example_prefix_url %}
                     <dt>Example Provider <span class="badge badge-pill badge-success">Provider</span></dt>
                     <dd>
-                        {% if example_prefix_url %}
-                            <a href="{{ example_prefix_url }}"><code>{{ example_prefix_url }}</code></a>
-                        {% else %}
-                            <span class="badge badge-pill badge-warning">Does not provide specific page for each resource</span>
-                        {% endif %}
+                        <a href="{{ example_prefix_url }}"><code>{{ example_prefix_url }}</code></a>
                     </dd>
                 {% endif %}
-                {% if entry.resolver %}
+                {% if example_curie_url %}
                     <dt>Example CURIE Resolution <span class="badge badge-pill badge-success">Resolver</span></dt>
                     <dd>
                         {% if example_curie_url %}

@@ -5,7 +5,7 @@ license: https://creativecommons.org/publicdomain/zero/1.0/
 
 # Version should be kept in sync with primary Git repository release tag
 
-version: 2.2.0
+version: 2.2.5
 
 ## ------------
 ## PREFIXES
@@ -34,7 +34,9 @@ prefixes:
   chembio: 'http://translator.ncats.nih.gov/chembio_'
   CHEMBL.MECHANISM: 'https://www.ebi.ac.uk/chembl/mechanism/inspect/'
   CID: 'http://pubchem.ncbi.nlm.nih.gov/compound/'
+  CLINVAR: 'http://identifiers.org/clinvar'
   COAR_RESOURCE: 'http://purl.org/coar/resource_type/'
+  COG: 'https://www.ncbi.nlm.nih.gov/research/cog-project/'
   CPT: 'https://www.ama-assn.org/practice-management/cpt/'
   CTD: 'http://translator.ncats.nih.gov/CTD_'
   DGIdb: 'https://www.dgidb.org/interaction_types'
@@ -52,6 +54,7 @@ prefixes:
   fabio: 'http://purl.org/spar/fabio/'
   foaf: 'http://xmlns.com/foaf/0.1/'
   foodb.compound: 'http://foodb.ca/compounds/'
+  FYPO: 'http://purl.obolibrary.org/obo/FYPO_'  # Fission Yeast Phenotype Ontology
   GAMMA: 'http://translator.renci.org/GAMMA_'
   gff3: 'https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md#'
   GOREL: 'http://purl.obolibrary.org/obo/GOREL_'
@@ -80,9 +83,12 @@ prefixes:
   KEGG.GENE: 'http://www.kegg.jp/entry/'
   KEGG.RCLASS: 'http://www.kegg.jp/entry/'
   LOINC: 'http://loinc.org/rdf/'
+  MAXO: 'http://purl.obolibrary.org/obo/MAXO_'
   medgen: 'https://www.ncbi.nlm.nih.gov/medgen/'
   MetaCyc: 'http://translator.ncats.nih.gov/MetaCyc_'
+  MESH: 'http://id.nlm.nih.gov/mesh/'
   MI: 'http://purl.obolibrary.org/obo/MI_'
+  mirbase: 'http://identifiers.org/mirbase'
   MSigDB: 'https://www.gsea-msigdb.org/gsea/msigdb/'
   NCBIGene: 'http://identifiers.org/ncbigene/'
   NDDF: 'http://purl.bioontology.org/ontology/NDDF/'
@@ -93,6 +99,7 @@ prefixes:
   ORCID: 'https://orcid.org/'
   ORPHA: 'http://www.orpha.net/ORDO/Orphanet_'
   os: 'https://github.com/cmungall/owlstar/blob/master/owlstar.ttl'
+  PANTHER.FAMILY: 'http://www.pantherdb.org/panther/family.do?clsAccession='
   PathWhiz: 'http://smpdb.ca/pathways/#'  # See also https://smpdb.ca/pathwhiz/
   PATO-PROPERTY: 'http://purl.obolibrary.org/obo/pato#'  # Phenotypic Quality Ontology properties, not core terms
   pav: 'http://purl.org/pav/'
@@ -110,14 +117,15 @@ prefixes:
   ScopusID: 'https://www.scopus.com/authid/detail.uri?authorId='
   SEMMEDDB: 'https://skr3.nlm.nih.gov/SemMedDB'
   SIO: 'http://semanticscience.org/resource/SIO_'
+  SNOMED: 'http://www.snomedbrowser.com/Codes/Details/'
+  SNOMEDCT: 'http://www.snomedbrowser.com/Codes/Details/'
   SNPEFF: 'http://translator.ncats.nih.gov/SNPEFF_'
   UBERGRAPH: 'http://translator.renci.org/ubergraph-axioms.ofn#'
   UBERON_CORE: 'http://purl.obolibrary.org/obo/uberon/core#'
   # The UMLS Semantic types and groups namespaces don't have a directly
   # resolvable Base URI, but we point to a pair of sensible web documents
-  UMLSSC: 'https://metamap.nlm.nih.gov/Docs/SemanticTypes_2018AB.txt/code#'
+  STY: 'http://purl.bioontology.org/ontology/STY/'
   UMLSSG: 'https://metamap.nlm.nih.gov/Docs/SemGroups_2018.txt/group#'
-  UMLSST: 'https://metamap.nlm.nih.gov/Docs/SemanticTypes_2018AB.txt/type#'
   VANDF: 'https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/VANDF/'
   # The "Variation Modelling Collaboration" (VMC) is not (yet) a conventional namespace so we point to its Github repo
   # See also: https://www.ga4gh.org/work_stream/genomic-knowledge-standards/#existing-standards and
@@ -128,6 +136,7 @@ prefixes:
   WIKIDATA_PROPERTY: 'https://www.wikidata.org/wiki/Property:'  # Wikidata Property - not a conventional namespace prefix
   wgs: 'http://www.w3.org/2003/01/geo/wgs84_pos'
   XPO: 'http://purl.obolibrary.org/obo/XPO_'  # Xenopus Phenotype Ontology
+  Xenbase: 'http://www.xenbase.org/gene/showgene.do?method=display&geneId='
 
 default_prefix: biolink
 default_range: string
@@ -148,6 +157,7 @@ emit_prefixes:
   - skos
   - OIO
   - BIOGRID
+  - SO
 
 ## ------------
 ## SUBSETS
@@ -203,6 +213,18 @@ enums:
         description: nucleic acid
       "AA":
         description: amino acid
+
+  predicate_qualifier_enum:
+    description: >-
+      constrained list of qualifying terms that soften or expand the definition of the predicate used.
+      can be used to constrain or qualify any predicate (any child of related_to).
+    permissible_values:
+      "predicted":
+      "possibly":
+      "hypothesized":
+      "validated":
+      "supported by real-world evidence":
+      "supported by clinical evidence":
 
   drug_availability_enum:
     description: >-
@@ -298,7 +320,7 @@ enums:
           For more information https://www.fda.gov/patients/fast-track-breakthrough-therapy-accelerated-approval-priority-review/priority-review
       "regular approval":
       "post-approval withdrawal":
-        
+
 subsets:
 
   model_organism_database:
@@ -625,16 +647,20 @@ slots:
     is_a: type
     domain: entity
     range: category type
+    designates_type: true
     description: >-
-      Name of the high level ontology class in which this entity is categorized. Corresponds to the label for the biolink entity type class.
+      Name of the high level ontology class in which this entity is categorized. Corresponds to the label for the
+      biolink entity type class.
        * In a neo4j database this MAY correspond to the neo4j label tag.
        * In an RDF database it should be a biolink model class URI.
-      This field is multi-valued. It should include values for ancestors of the biolink class; for example, a protein such as Shh would have
-      category values `biolink:Protein`, `biolink:GeneProduct`, `biolink:MolecularEntity`, ...
+      This field is multi-valued. It should include values for ancestors of the biolink class; for example,
+      a protein such as Shh would have category values `biolink:Protein`, `biolink:GeneProduct`, `biolink:MolecularEntity`, ...
 
-      In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific biolink class, or potentially to a class
-      more specific than something in biolink. For example, a sequence feature `f` may have a rdf:type assertion to a SO class such as TF_binding_site,
-      which is more specific than anything in biolink. Here we would have categories {biolink:GenomicEntity, biolink:MolecularEntity, biolink:NamedThing}
+      In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific biolink
+      class, or potentially to a class more specific than something in biolink. For example, a sequence feature `f`
+      may have a rdf:type assertion to a SO class such as TF_binding_site,
+      which is more specific than anything in biolink. Here we would have categories {biolink:GenomicEntity,
+      biolink:MolecularEntity, biolink:NamedThing}
     is_class_field: true
     multivalued: true
     in_subset:
@@ -667,12 +693,6 @@ slots:
     range: label type
     in_subset:
       - translator_minimal
-
-  filler:
-    is_a: node property
-    range: named thing
-    description: >-
-      The value in a property-value tuple
 
   stoichiometry:
     description: >-
@@ -1208,6 +1228,22 @@ slots:
     multivalued: true
     range: drug_availability_enum
 
+  is toxic:
+    description: >-
+    is_a: node property
+    multivalued: false
+    range: boolean
+
+  max tolerated dose:
+    description: >-
+      The highest dose of a drug or treatment that does not cause unacceptable side effects.
+      The maximum tolerated dose is determined in clinical trials by testing increasing doses
+      on different groups of people until the highest dose with acceptable side effects is
+      found. Also called MTD.
+    is_a: node property
+    multivalued: false
+    range: string
+
   animal model available from:
     description: >-
     is_a: node property
@@ -1550,6 +1586,18 @@ slots:
       - https://doi.org/10.1101/108977
       - https://github.com/biolink/biolink-model/issues/657
 
+  has real world evidence of association with:
+    is_a: related to
+    description: >-
+      this means that the assertion was derived by applying statistical and machine learning models to
+      clinical data such as EHR data, survey data, etc
+    in_subset:
+      - translator_minimal
+    symmetric: true
+    annotations:
+      tag: biolink:canonical_predicate
+      value: true
+
   active in:
     is_a: related to
     domain: gene or gene product
@@ -1781,7 +1829,6 @@ slots:
       - translator_minimal
     symmetric: true
 
-
   molecularly interacts with:
     is_a: physically interacts with
     domain: molecular entity
@@ -1810,6 +1857,9 @@ slots:
     range: gene
     in_subset:
       - translator_minimal
+    annotations:
+      tag: biolink:canonical_predicate
+      value: true
     symmetric: true
     exact_mappings:
       - RO:0002435
@@ -1873,6 +1923,20 @@ slots:
       another existing entity.
     inverse: affects
 
+  increases amount or activity of:
+    is_a: related to
+    mixin: true
+    description: >-
+      A grouping mixin to help with searching for all the predicates that increase the amount
+      or activity of the object.
+
+  decreases amount or activity of:
+    is_a: related to
+    mixin: true
+    description: >-
+      A grouping mixin to help with searching for all the predicates that decrease the amount
+      or activity of the object.
+
   ## role mixins for use in tagging corresponding role predicates
 
   chemical role mixin:
@@ -1898,7 +1962,6 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
-
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -1906,7 +1969,7 @@ slots:
       - CTD:affects_abundance_of
 
   abundance affected by:
-    is_a: affects
+    is_a: affected by
     inverse: affects abundance of
     domain: chemical entity
     range: chemical entity
@@ -1917,6 +1980,8 @@ slots:
     is_a: affects abundance of
     in_subset:
       - translator_minimal
+    mixins:
+      - increases amount or activity of
     domain: chemical entity
     range: chemical entity
     annotations:
@@ -1928,7 +1993,7 @@ slots:
       - CTD:increases_abundance_of
 
   abundance increased by:
-    is_a: affects abundance of
+    is_a: abundance affected by
     inverse: increases abundance of
     domain: chemical entity
     range: chemical entity
@@ -1941,6 +2006,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - decreases amount or activity of
     annotations:
       - tag: biolink:canonical_predicate
         value: true
@@ -1950,42 +2017,10 @@ slots:
       - CTD:decreases_abundance_of
 
   abundance decreased by:
-    is_a: affects abundance of
+    is_a: abundance affected by
     inverse: decreases abundance of
     domain: chemical entity
     range: chemical entity
-
-  affects activity of:
-    description: >-
-      holds between two chemical entities where the action or effect of one changes the activity of the 
-      other within a system of interest
-    is_a: affects
-    in_subset:
-      - translator_minimal
-    domain: chemical entity
-    range: chemical entity
-    exact_mappings:
-      - CTD:affects_activity_of
-    narrow_mappings:
-      - GAMMA:allosteric_modulator
-      - GAMMA:modulator
-      - GAMMA:regulator
-      - DGIdb:modulator
-      - DGIdb:allosteric_modulator
-
-  activity affected by:
-    description: >-
-      holds between two chemical entities where the action or effect of one is changed by the
-      activity of the other within a system of interest
-    is_a: affects
-    domain: chemical entity
-    range: chemical entity
-
-  activity affects:
-    is_a: affects
-    domain: chemical entity
-    range: chemical entity
-    inverse: activity affected by
 
   increases activity of:
     description: >-
@@ -1995,6 +2030,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - increases amount or activity of
     related_mappings:
       - GAMMA:ec50
       - GAMMA:ac50
@@ -2021,8 +2058,38 @@ slots:
       - DGIdb:positive_allosteric_modulator
       - DGIdb:stimulator
 
+  affects activity of:
+    description: >-
+      holds between two chemical entities where the action or effect of one changes the activity of the
+      other within a system of interest
+    is_a: affects
+    annotations:
+      tag: biolink:canonical_predicate
+      value: true
+    in_subset:
+      - translator_minimal
+    domain: chemical entity
+    range: chemical entity
+    exact_mappings:
+      - CTD:affects_activity_of
+    narrow_mappings:
+      - GAMMA:allosteric_modulator
+      - GAMMA:modulator
+      - GAMMA:regulator
+      - DGIdb:modulator
+      - DGIdb:allosteric_modulator
+
+  activity affected by:
+    description: >-
+      holds between two chemical entities where the action or effect of one is changed by the
+      activity of the other within a system of interest
+    is_a: affected by
+    domain: chemical entity
+    range: chemical entity
+    inverse: affects activity of
+
   activity increased by:
-    is_a: affects activity of
+    is_a: activity affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2038,6 +2105,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - decreases amount or activity of
     related_mappings:
       - GAMMA:ic50
       - GAMMA:ki
@@ -2075,7 +2144,7 @@ slots:
       - DGIdb:inverse_agonist
 
   activity decreased by:
-    is_a: affects activity of
+    is_a: activity affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2096,7 +2165,7 @@ slots:
       - CTD:affects_expression_of
 
   expression affected by:
-    is_a: affects
+    is_a: affected by
     in_subset:
       - translator_minimal
     domain: nucleic acid entity
@@ -2112,6 +2181,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: nucleic acid entity
+    mixins:
+      - increases amount or activity of
     close_mappings:
       # Agent of the action or effect, not the relationship itself
       - CHEMBL.MECHANISM:releasing_agent
@@ -2136,6 +2207,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: nucleic acid entity
+    mixins:
+      - decreases amount or activity of
     related_mappings:
       - DGIdb:antisense
       - DGIdb:antisense_oligonucleotide
@@ -2169,7 +2242,7 @@ slots:
       - CTD:affects_folding_of
 
   folding affected by:
-    is_a: affects
+    is_a: affected by
     inverse: affects folding of
     domain: nucleic acid entity
     range: chemical entity
@@ -2183,6 +2256,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: nucleic acid entity
+    mixins:
+      - increases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2190,7 +2265,7 @@ slots:
       - CTD:increases_folding_of
 
   folding increased by:
-    is_a: affects folding of
+    is_a: folding affected by
     inverse: increases folding of
     domain: nucleic acid entity
     range: chemical entity
@@ -2204,6 +2279,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: nucleic acid entity
+    mixins:
+      - decreases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2211,7 +2288,7 @@ slots:
       - CTD:decreases_folding_of
 
   folding decreased by:
-    is_a: affects folding of
+    is_a: folding affected by
     inverse: decreases folding of
     domain: nucleic acid entity
     range: chemical entity
@@ -2235,7 +2312,7 @@ slots:
       - GOREL:0002003
 
   localization affected by:
-    is_a: affects
+    is_a: affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2251,6 +2328,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - increases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2258,7 +2337,7 @@ slots:
       - CTD:increases_localization_of
 
   localization increased by:
-    is_a: affects localization of
+    is_a: localization affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2273,6 +2352,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - decreases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2280,7 +2361,7 @@ slots:
       - CTD:decreases_localization_of
 
   localization decreased by:
-    is_a: affects localization of
+    is_a: localization affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2305,7 +2386,7 @@ slots:
       - CTD:affects_metabolic_processing_of
 
   metabolic processing affected by:
-    is_a: affects
+    is_a: affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2321,6 +2402,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - increases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2330,7 +2413,7 @@ slots:
       - NCIT:enzyme_metabolizes_chemical_or_drug
 
   metabolic processing increased by:
-    is_a: affects metabolic processing of
+    is_a: metabolic processing affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2346,6 +2429,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - decreases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2353,7 +2438,7 @@ slots:
       - CTD:decreases_metabolic_processing_of
 
   metabolic processing decreased by:
-    is_a: affects metabolic processing of
+    is_a: metabolic processing affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2409,7 +2494,7 @@ slots:
       - CTD:affects_carboxylation
 
   molecular modification affected by:
-    is_a: affects
+    is_a: affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2426,6 +2511,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - increases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2467,7 +2554,7 @@ slots:
       - GAMMA:oxidizer
 
   molecular modification increased by:
-    is_a: affects molecular modification of
+    is_a: molecular modification affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2484,6 +2571,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - decreases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2524,7 +2613,7 @@ slots:
       - GAMMA:deoxidizer
 
   molecular modification decreased by:
-    is_a: affects molecular modification of
+    is_a: molecular modification affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2546,8 +2635,8 @@ slots:
     exact_mappings:
       - CTD:affects_synthesis_of
 
-  sythesis affected by:
-    is_a: affects
+  synthesis affected by:
+    is_a: affected by
     domain: chemical entity
     range: chemical entity
     inverse: affects synthesis of
@@ -2563,6 +2652,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - increases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2570,7 +2661,7 @@ slots:
       - CTD:increases_synthesis_of
 
   synthesis increased by:
-    is_a: affects synthesis of
+    is_a: synthesis affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2584,6 +2675,8 @@ slots:
     is_a: affects synthesis of
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - decreases amount or activity of
     in_subset:
       - translator_minimal
     annotations:
@@ -2594,7 +2687,7 @@ slots:
       - GAMMA:inhibition_of_synthesis
 
   synthesis decreased by:
-    is_a: affects synthesis of
+    is_a: synthesis affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2623,7 +2716,7 @@ slots:
       - CTD:affects_hydrolysis
 
   degradation affected by:
-    is_a: affects
+    is_a: affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2639,6 +2732,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - decreases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2662,7 +2757,7 @@ slots:
       - GOREL:0002004
 
   degradation increased by:
-    is_a: affects degradation of
+    is_a: degradation affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2678,6 +2773,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - increases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2688,7 +2785,7 @@ slots:
       - CTD:decreases_hydrolysis
 
   degradation decreased by:
-    is_a: affects degradation of
+    is_a: degradation affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2715,7 +2812,7 @@ slots:
       - CTD:affects_mutation_rate_of
 
   mutation rate affected by:
-    is_a: affects
+    is_a: affected by
     in_subset:
       - translator_minimal
     domain: nucleic acid entity
@@ -2731,6 +2828,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: nucleic acid entity
+    mixins:
+      - increases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2741,6 +2840,7 @@ slots:
       - CTD:increases_mutagenesis
 
   mutation rate increased by:
+    is_a: mutation rate affected by
     in_subset:
       - translator_minimal
     domain: nucleic acid entity
@@ -2756,6 +2856,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: nucleic acid entity
+    mixins:
+      - decreases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2766,7 +2868,7 @@ slots:
       - CTD:decreases_mutagenesis
 
   mutation rate decreased by:
-    is_a: affects mutation rate of
+    is_a: mutation rate affected by
     in_subset:
       - translator_minimal
     domain: nucleic acid entity
@@ -2791,7 +2893,7 @@ slots:
       - CTD:affects_response_to
 
   response affected by:
-    is_a: affects
+    is_a: affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2809,6 +2911,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - increases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2816,7 +2920,7 @@ slots:
       - CTD:increases_response_to
 
   response increased by:
-    is_a: affects response to
+    is_a: response affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2834,6 +2938,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - decreases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2844,7 +2950,7 @@ slots:
       - GAMMA:desensitize_the_target
 
   response decreased by:
-    is_a: affects response to
+    is_a: response affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2869,7 +2975,7 @@ slots:
       - CTD:affects_splicing_of
 
   splicing affected by:
-    is_a: affects
+    is_a: affected by
     in_subset:
       - translator_minimal
     domain: transcript
@@ -2885,6 +2991,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: transcript
+    mixins:
+      - increases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2894,7 +3002,7 @@ slots:
       - CTD:increases_splicing_of
 
   splicing increased by:
-    is_a: affects splicing of
+    is_a: splicing affected by
     in_subset:
       - translator_minimal
     domain: transcript
@@ -2910,6 +3018,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: transcript
+    mixins:
+      - decreases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2919,7 +3029,7 @@ slots:
       - CTD:decreases_splicing_of
 
   splicing decreased by:
-    is_a: affects splicing of
+    is_a: splicing affected by
     in_subset:
       - translator_minimal
     domain: transcript
@@ -2944,7 +3054,7 @@ slots:
       - CTD:affects_stability_of
 
   stability affected by:
-    is_a: affects
+    is_a: affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2960,6 +3070,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - increases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -2970,7 +3082,7 @@ slots:
       - CTD:increases_stability_of
 
   stability increased by:
-    is_a: affects stability of
+    is_a: stability affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -2984,6 +3096,8 @@ slots:
     is_a: affects stability of
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - decreases amount or activity of
     in_subset:
       - translator_minimal
     annotations:
@@ -2993,7 +3107,7 @@ slots:
       - CTD:decreases_stability_of
 
   stability decreased by:
-    is_a: affects stability of
+    is_a: stability affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -3020,7 +3134,7 @@ slots:
       - RO:0002345
 
   transport affected by:
-    is_a: affects
+    is_a: affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -3036,6 +3150,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - increases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -3046,7 +3162,7 @@ slots:
       - CTD:increases_transport_of
 
   transport increased by:
-    is_a: affects transport of
+    is_a: transport affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -3062,6 +3178,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - decreases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -3069,7 +3187,7 @@ slots:
       - CTD:decreases_transport_of
 
   transport decreased by:
-    is_a: affects transport of
+    is_a: transport affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -3095,7 +3213,7 @@ slots:
       - CTD:affects_export
 
   secretion affected by:
-    is_a: affects
+    is_a: affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -3111,6 +3229,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - increases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -3121,7 +3241,7 @@ slots:
       - CTD:increases_export
 
   secretion increased by:
-    is_a: affects secretion of
+    is_a: secretion affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -3137,6 +3257,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - decreases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -3147,7 +3269,7 @@ slots:
       - CTD:decreases_export
 
   secretion decreased by:
-    is_a: affects secretion of
+    is_a: secretion affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -3173,7 +3295,7 @@ slots:
       - CTD:affects_import
 
   uptake affected by:
-    is_a: affects
+    is_a: affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -3189,6 +3311,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - increases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -3199,7 +3323,7 @@ slots:
       - CTD:increases_import
 
   uptake increased by:
-    is_a: affects uptake of
+    is_a: uptake affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -3215,6 +3339,8 @@ slots:
       - translator_minimal
     domain: chemical entity
     range: chemical entity
+    mixins:
+      - decreases amount or activity of
     annotations:
       tag: biolink:canonical_predicate
       value: true
@@ -3225,7 +3351,7 @@ slots:
       - CTD:decreases_import
 
   uptake decreased by:
-    is_a: affects uptake of
+    is_a: uptake affected by
     in_subset:
       - translator_minimal
     domain: chemical entity
@@ -3901,7 +4027,8 @@ slots:
   gene associated with condition:
     is_a: genetic association
     description: >-
-      holds between a gene and a disease or phenotypic feature that the gene or its alleles/products may influence, contribute to, or correlate with
+      holds between a gene and a disease or phenotypic feature that the gene or its alleles/products may influence,
+      contribute to, or correlate with
     domain: gene
     range: disease or phenotypic feature
     annotations:
@@ -3967,7 +4094,8 @@ slots:
   contributes to:
     is_a: related to
     description: >-
-      holds between two entities where the occurrence, existence, or activity of one causes or contributes to the occurrence or generation of the other
+      holds between two entities where the occurrence, existence, or activity of one causes or contributes to the
+      occurrence or generation of the other
     in_subset:
       - translator_minimal
     annotations:
@@ -4007,6 +4135,7 @@ slots:
       - SEMMEDDB:causes
       - WIKIDATA_PROPERTY:P1542
       - SNOMED:cause_of
+      - RO:0003303
     broad_mappings:
       - RO:0002410
       - RO:0002506
@@ -4234,7 +4363,7 @@ slots:
       - RO:0002599
   
   prevented by:
-    is_a: related to
+    is_a: risk affected by
     description: >-
       holds between a potential outcome of which the likelihood
       was reduced by the application or use of an entity.
@@ -4476,6 +4605,10 @@ slots:
       - SNOMED:has_direct_procedure_site
       - SNOMED:has_direct_site
       - SNOMED:has_procedure_site
+
+  contains process:
+    is_a: related to
+    inverse: occurs in
 
   located in:
     is_a: related to
@@ -4810,7 +4943,7 @@ slots:
       - SNOMED:uses_substance
 
   is input of:
-    is_a: has participant
+    is_a: participates in
     domain: biological process or activity
     range: occurrent
     inverse: has input
@@ -4847,7 +4980,7 @@ slots:
       - RO:0004008
 
   is output of:
-    is_a: has participant
+    is_a: participates in
     range: occurrent
     domain: biological process or activity
     inverse: has output
@@ -4894,15 +5027,15 @@ slots:
       - SNOMED:has_recipient_category
 
   catalyzes:
-    is_a: has participant
+    is_a: participates in
     # domain: nucleic acid entity
     # range: molecular activity
     annotations:
       tag: biolink:canonical_predicate
       value: true
 
-  is catalyst of:
-    is_a: participates in
+  has catalyst:
+    is_a: has participant
     inverse: catalyzes
 
   has substrate:
@@ -4920,7 +5053,8 @@ slots:
   participates in:
     is_a: related to
     description: >-
-      holds between a continuant and a process, where the continuant is somehow involved in the process
+      holds between a continuant and a process, where the continuant is somehow involved
+      in the process
     range: occurrent
     inverse: has participant
     in_subset:
@@ -4976,7 +5110,7 @@ slots:
       - RO:0002503
 
   actively involves:
-    is_a: participates in
+    is_a: has participant
     domain: occurrent
     range: molecular activity
     inverse: actively involved in
@@ -5002,6 +5136,10 @@ slots:
     narrow_mappings:
       - NCIT:R52
       - RO:0002500
+
+  capability of:
+    is_a: actively involves
+    inverse: capable of
 
   enables:
     is_a: participates in
@@ -5278,6 +5416,7 @@ slots:
       - RO:0004009
 
   consumed by:
+    is_a: is input of
     inverse: consumes
 
   temporally related to:
@@ -5474,7 +5613,7 @@ slots:
       - SNPEFF:structural_interaction_variant
 
   has missense variant:
-    is_a: is sequence variant of
+    is_a: has sequence variant
     domain: gene
     range: sequence variant
     inverse: is missense variant of
@@ -5496,7 +5635,7 @@ slots:
       - SNPEFF:stop_retained_variant
 
   has synonymous variant:
-    is_a: is sequence variant of
+    is_a: has sequence variant
     domain: gene
     range: sequence variant
     inverse: is synonymous variant of
@@ -5518,7 +5657,7 @@ slots:
       - SO:0002054
 
   has nonsense variant:
-    is_a: is sequence variant of
+    is_a: has sequence variant
     domain: gene
     range: sequence variant
     inverse: is nonsense variant of
@@ -5542,7 +5681,7 @@ slots:
       - SNPEFF:stop_lost
 
   has frameshift variant:
-    is_a: is sequence variant of
+    is_a: has sequence variant
     inverse: is frameshift variant of
     domain: gene
     range: sequence variant
@@ -5565,7 +5704,7 @@ slots:
       - SNPEFF:splice_donor_variant
 
   has splice site variant:
-    is_a: is sequence variant of
+    is_a: has sequence variant
     domain: gene
     range: sequence variant
     inverse: is splice site variant of
@@ -5587,7 +5726,7 @@ slots:
       - SNPEFF:upstream_gene_variant
 
   has nearby variant:
-    is_a: is sequence variant of
+    is_a: has sequence variant
     domain: gene
     range: sequence variant
     inverse: is nearby variant of
@@ -5612,7 +5751,7 @@ slots:
       - SNPEFF:intron_variant
 
   has non coding variant:
-    is_a: is sequence variant of
+    is_a: has sequence variant
     domain: gene
     range: sequence variant
     inverse: is non coding variant of
@@ -5712,6 +5851,8 @@ slots:
     annotations:
       tag: biolink:canonical_predicate
       value: true
+    mixins:
+      - decreases amount or activity of
     exact_mappings:
       - CTD:decreases_molecular_interaction_with
 
@@ -5726,6 +5867,8 @@ slots:
     annotations:
       tag: biolink:canonical_predicate
       value: true
+    mixins:
+      - increases amount or activity of
     exact_mappings:
       - CTD:increases_molecular_interaction_with
 
@@ -5821,19 +5964,21 @@ slots:
       of entities can be taxonomically classified; see 'thing with taxon'
     in_subset:
       - translator_minimal
-    related_mappings:
-      # RO term 'never in taxon' is a negation of this biolink term
-      - RO:0002162
     close_mappings:
       # RTX contributed term is an inverse mapping
       - NCIT:is_organism_source_of_gene_product
       - NCIT:organism_has_gene
     exact_mappings:
+      - RO:0002162
       - WIKIDATA_PROPERTY:P703
     narrow_mappings:
       - NCIT:gene_found_in_organism
       - NCIT:gene_product_has_organism_source
       - RO:0002160
+
+  taxon of:
+    is_a: related to
+    inverse: in taxon
 
   has molecular consequence:
     is_a: related to
@@ -5948,18 +6093,7 @@ slots:
       - os:LogicalInterpretation
 
   relation:
-    is_a: association slot
-    description: >-
-      The relation which describes an association between a subject and
-      an object in a more granular manner. Usually this is a term from
-      Relation Ontology, but it can be any edge CURIE.
-    domain: association
-    range: uriorcurie
-    required: true
-    id_prefixes:
-      - RO
-      - BSPO
-      - SIO
+    deprecated: true
 
   negated:
     is_a: association slot
@@ -6446,7 +6580,6 @@ classes:
   chemical or drug or treatment:
     mixin: true
 
-
   ## ------
   ## THINGS
   ## ------
@@ -6479,8 +6612,7 @@ classes:
       # UMLS Semantic Group "Objects"
       - UMLSSG:OBJC
       # Entity
-      - UMLSSC:T071
-      - UMLSST:enty
+      - STY:T071
 
   relationship type:
     is_a: ontology class
@@ -6536,49 +6668,7 @@ classes:
       - NCBITaxon
     exact_mappings:
       - WIKIDATA:Q16521
-    narrow_mappings:
-      # Virus
-      - UMLSSC:T005
-      - UMLSST:virs
-      # Bacterium
-      - UMLSSC:T007
-      - UMLSST:bact
-      # Archaeon
-      - UMLSSC:T194
-      - UMLSST:arch
-      # Eukaryote
-      - UMLSSC:T204
-      - UMLSST:euka
-      # Plant
-      - UMLSSC:T002
-      - UMLSST:plnt
-      # Fungus
-      - UMLSSC:T004
-      - UMLSST:fngs
-      # Animal
-      - UMLSSC:T008
-      - UMLSST:anim
-      # Vertebrate
-      - UMLSSC:T010
-      - UMLSST:vtbt
-      # Amphibian
-      - UMLSSC:T011
-      - UMLSST:amph
-      # Bird
-      - UMLSSC:T012
-      - UMLSST:bird
-      # Fish
-      - UMLSSC:T013
-      - UMLSST:fish
-      # Reptile
-      - UMLSSC:T014
-      - UMLSST:rept
-      # Mammal
-      - UMLSSC:T015
-      - UMLSST:mamm
-      # Human
-      - UMLSSC:T016
-      - UMLSST:humn
+      - STY:T001
     id_prefixes:
       - NCBITaxon
       - MESH
@@ -6594,8 +6684,7 @@ classes:
     exact_mappings:
       - NCIT:C25499
       # UMLS "Event"
-      - UMLSSC:T051
-      - UMLSST:evnt
+      - STY:T051
 
   ## Administrative Entities
 
@@ -6618,20 +6707,15 @@ classes:
     narrow_mappings:
       # Organization
       - UMLSSG:ORGA
-      - UMLSSC:T092
-      - UMLSST:orgt
+      - STY:T092
       # Health Care Related Organization
-      - UMLSSC:T093
-      - UMLSST:hcro
+      - STY:T093
       # Professional Society
-      - UMLSSC:T094
-      - UMLSST:pros
+      - STY:T094
       # Self-help or Relief Organization
-      - UMLSSC:T095
-      - UMLSST:shro
+      - STY:T095
       # Group
-      - UMLSSC:T096
-      - UMLSST:grup
+      - STY:T096
     slot_usage:
       id:
         required: true
@@ -6688,38 +6772,27 @@ classes:
       # UMLS Semantic Group "Concepts & Ideas"
       - UMLSSG:CONC
       # Conceptual Entity
-      - UMLSSC:T077
-      - UMLSST:cnce
+      - STY:T077
       # Idea or Concept
-      - UMLSSC:T078
-      - UMLSST:idcn
+      - STY:T078
       # Temporal Concept
-      - UMLSSC:T079
-      - UMLSST:tmco
+      - STY:T079
       # Qualitative Concept
-      - UMLSSC:T080
-      - UMLSST:qlco
+      - STY:T080
       # Quantitative Concept
-      - UMLSSC:T081
-      - UMLSST:qnco
+      - STY:T081
       # Spatial Concept
-      - UMLSSC:T082
-      - UMLSST:spco
+      - STY:T082
       # Regulation or Law
-      - UMLSSC:T089
-      - UMLSST:rnlw
+      - STY:T089
       # Group Attribute
-      - UMLSSC:T102
-      - UMLSST:grpa
+      - STY:T102
       # Functional Concept
-      - UMLSSC:T169
-      - UMLSST:ftcn
+      - STY:T169
       # Language
-      - UMLSSC:T171
-      - UMLSST:lang
+      - STY:T171
       # Classification
-      - UMLSSC:T185
-      - UMLSST:clas
+      - STY:T185
 
   dataset:
     description: >-
@@ -6862,8 +6935,7 @@ classes:
     narrow_mappings:
       - IAO:0000013
       # UMLS Semantic Type "Intellectual Product"
-      - UMLSSC:T170
-      - UMLSST:inpr
+      - STY:T170
     id_prefixes:
       - NLMID
     in_subset:
@@ -6973,12 +7045,10 @@ classes:
       An entity that has material reality (a.k.a. physical essence).
     exact_mappings:
       # Physical Object
-      - UMLSSC:T072
-      - UMLSST:phob
+      - STY:T072
     narrow_mappings:
       # Manufactured Object
-      - UMLSSC:T073
-      - UMLSST:mnob
+      - STY:T073
 
   occurrent:
     description: >-
@@ -7012,30 +7082,22 @@ classes:
       - prov:Activity
       - NCIT:C43431
       # Activity
-      - UMLSSC:T052
-      - UMLSST:acty
+      - STY:T052
     narrow_mappings:
       # Daily or Recreational Activity
-      - UMLSSC:T056
-      - UMLSST:dora
+      - STY:T056
       # Occupational Activity
-      - UMLSSC:T057
-      - UMLSST:ocac
+      - STY:T057
       # Governmental or Regulatory Activity
-      - UMLSSC:T064
-      - UMLSST:gora
+      - STY:T064
       # Machine Activity
-      - UMLSSC:T066
-      - UMLSST:mcha
+      - STY:T066
       # Research Activity
-      - UMLSSC:T062
-      - UMLSST:resa
+      - STY:T062
       # Educational Activity
-      - UMLSSC:T065
-      - UMLSST:edac
+      - STY:T065
       # Health Care Activity
-      - UMLSSC:T058
-      - UMLSST:hlca
+      - STY:T058
 
   procedure:
     is_a: named thing
@@ -7048,17 +7110,13 @@ classes:
       - UMLSSG:PROC
     narrow_mappings:
       # Laboratory Procedure
-      - UMLSSC:T059
-      - UMLSST:lbpr
+      - STY:T059
       # Diagnostic Procedure
-      - UMLSSC:T060
-      - UMLSST:diap
+      - STY:T060
       # Therapeutic or Preventive Procedure
-      - UMLSSC:T061
-      - UMLSST:topp
+      - STY:T061
       # Molecular Biology Research Technique
-      - UMLSSC:T063
-      - UMLSST:mbrt
+      - STY:T063
 
   phenomenon:
     is_a: named thing
@@ -7071,27 +7129,21 @@ classes:
       # the inclusion of 'process' in the definition of these
       # terms broadens them, relative to 'phenomenon'
       # Phenomenon or Process
-      - UMLSSC:T067
-      - UMLSST:phpr
+      - STY:T067
       # Human-caused Phenomenon or Process
-      - UMLSSC:T068
-      - UMLSST:hcpp
+      - STY:T068
       # Natural Phenomenon or Process
-      - UMLSSC:T070
-      - UMLSST:npop
+      - STY:T070
     exact_mappings:
       # Phenomena
       - UMLSSG:PHEN
     narrow_mappings:
       # Laboratory or Test Result
-      - UMLSSC:T034
-      - UMLSST:lbtr
+      - STY:T034
       # Biologic Function
-      - UMLSSC:T038
-      - UMLSST:biof
+      - STY:T038
       # Environmental Effect of Humans
-      - UMLSSC:T069
-      - UMLSST:eehu
+      - STY:T069
 
   device:
     is_a: named thing
@@ -7102,17 +7154,13 @@ classes:
       # Devices
       - UMLSSG:DEVI
       # Medical Device
-      - UMLSSC:T074
-      - UMLSST:medd
+      - STY:T074
       # Research Device
-      - UMLSSC:T075
-      - UMLSST:resd
+      - STY:T075
       # Drug Delivery Device
-      - UMLSSC:T203
-      - UMLSST:drdd
+      - STY:T203
       # Biomedical or Dental Material
-      - UMLSSC:T122
-      - UMLSST:bodm
+      - STY:T122
 
   ## Scientific Studies
 
@@ -7174,8 +7222,7 @@ classes:
       # Geographic Areas
       - UMLSSG:GEOG
       # Geographic Area
-      - UMLSST:geoa
-      - UMLSSC:T083
+      - STY:T083
 
   geographic location at time:
     is_a: geographic location
@@ -7193,8 +7240,7 @@ classes:
     narrow_mappings:
       - WIKIDATA:Q28845870
       # UMLS Semantic Type "Experimental Model of Disease"
-      - UMLSSC:T050
-      - UMLSST:emod
+      - STY:T050
       # SIO term is 'biological entity' but less inclusive than the Biolink scope
       - SIO:010046
 
@@ -7215,7 +7261,7 @@ classes:
     in_subset:
       - translator_minimal
     narrow_mappings:
-      - UMLSSC:T028   # Gene or Genome
+      - STY:T028   # Gene or Genome
       - GENO:0000897  # Genomic Entity
 
   molecular entity:
@@ -7226,8 +7272,8 @@ classes:
     slots:
       - is metabolite
     narrow_mappings:
-      - UMLSSC:T088 # Carbohydrate
-      - UMLSSC:T085 # Molecular Sequence
+      - STY:T088 # Carbohydrate
+      - STY:T085 # Molecular Sequence
     in_subset:
       - translator_minimal
     id_prefixes:
@@ -7268,24 +7314,15 @@ classes:
     slots:
       - trade name
       - available from
+      - max tolerated dose
+      - is toxic
     exact_mappings:
       - CHEBI:24431
       - SIO:010004 # Chemical entity
       - WIKIDATA:Q79529 # Chemical substance
+      - STY:T103 # Chemical
     narrow_mappings:
       - WIKIDATA:Q43460564
-      - UMLSSC:T103 # Chemical
-      - UMLSSC:T120 # Chemical Viewed Functionally
-      - UMLSSC:T104 # Chemical Viewed Structurally
-      - UMLSSC:T197 # Inorganic Chemical
-      - UMLSSC:T109 # Organic Chemical
-      - UMLSSC:T125 # Hormone
-      - UMLSSC:T123 # Biologically Active Substance
-      - UMLSSC:T129 # Immunologic Factor
-      - UMLSSC:T131 # Hazardous or Poisonous Substance
-      # - UMLSSC:T130 # Indicator, Reagent, or Diagnostic Aid
-    broad_mappings:
-      - UMLSSC:T167 # Substance
     in_subset:
       - translator_minimal
     id_prefixes:
@@ -7307,7 +7344,7 @@ classes:
         convenience of representation, any valid chemical representation is
         included, even if it is not strictly molecular (e.g., sodium ion).
     narrow_mappings:
-      - UMLSSC:T196 # Element, Ion, or Isotope
+      - STY:T196 # Element, Ion, or Isotope
     id_prefixes:
       - PUBCHEM.COMPOUND
       - CHEMBL.COMPOUND
@@ -7332,6 +7369,7 @@ classes:
       - KEGG.DRUG    ## D number
       - KEGG.DGROUP  ## DG number
       - KEGG.ENVIRON ## E number
+      - BIGG.METABOLITE
     slot_usage:
       id:
         examples:
@@ -7391,8 +7429,8 @@ classes:
     exact_mappings:
       - SO:0000110
     narrow_mappings:
-      - UMLSSC:T086   # Nucleotide Sequence
-      - UMLSSC:T114   # Nucleic Acid, Nucleoside, or Nucleotide
+      - STY:T086   # Nucleotide Sequence
+      - STY:T114   # Nucleic Acid, Nucleoside, or Nucleotide
     in_subset:
       - model_organism_database
       - translator_minimal
@@ -7526,8 +7564,7 @@ classes:
     exact_mappings:
       - GO:0003674
       # UMLS Semantic Type "Molecular Function"
-      - UMLSSC:T044
-      - UMLSST:moft
+      - STY:T044
     id_prefixes:
       - GO
       - REACT
@@ -7538,6 +7575,8 @@ classes:
       - KEGG.REACTION  ## R number
       - KEGG.RCLASS    ## RC number
       - KEGG.ENZYME    ## EC number
+      - UMLS
+      - BIGG.REACTION
 
   biological process:
     is_a: biological process or activity
@@ -7587,22 +7626,17 @@ classes:
     close_mappings:
     exact_mappings:
       # Physiologic Function
-      - UMLSSC:T039
-      - UMLSST:phsf
+      - STY:T039
       - WIKIDATA:Q30892994
     narrow_mappings:
       # Organism Function
-      - UMLSSC:T040
-      - UMLSST:orgf
+      - STY:T040
       # Organ or Tissue Function
-      - UMLSSC:T042
-      - UMLSST:ortf
+      - STY:T042
       # Cell Function
-      - UMLSSC:T043
-      - UMLSST:celf
+      - STY:T043
       # Genetic Function
-      - UMLSSC:T045
-      - UMLSST:genf
+      - STY:T045
     id_prefixes:
       - GO
       - REACT
@@ -7615,23 +7649,14 @@ classes:
     exact_mappings:
       - GO:0007610
       # Behavior
-      - UMLSSC:T053
-      - UMLSST:bhvr
+      - STY:T053
     narrow_mappings:
       # Mental Process
-      - UMLSSC:T041
-      - UMLSST:menp
+      - STY:T041
       # Social Behavior
-      - UMLSSC:T054
-      - UMLSST:socb
+      - STY:T054
       # Individual Behavior
-      - UMLSSC:T055
-      - UMLSST:inbe
-
-  death:
-    is_a: biological process
-    exact_mappings:
-      - GO:0016265
+      - STY:T055
 
   ## (Bio)chemistry
 
@@ -7657,18 +7682,15 @@ classes:
     broad_mappings:
       # Pharmacologic Substance: Any natural, endogenously-derived,
       # synthetic or semi-synthetic compound with pharmacologic activity.
-      - UMLSSC:T121
-      - UMLSST:phsu
+      - STY:T121
     exact_mappings:
       - WIKIDATA:Q12140
       - CHEBI:23888
       # UMLS Semantic Type "Clinical Drug"
-      - UMLSSC:T200
-      - UMLSST:clnd
+      - STY:T200
     narrow_mappings:
       # Antibiotic
-      - UMLSSC:T195
-      - UMLSST:antb
+      - STY:T195
     id_prefixes:
       - RXCUI
       - NDC
@@ -7717,8 +7739,7 @@ classes:
       # substance role
       - CHEBI:33229
       # Vitamin
-      - UMLSSC:T127
-      - UMLSST:vita
+      - STY:T127
 
   food:
     is_a: chemical mixture
@@ -7728,8 +7749,7 @@ classes:
       - foodb.compound
     exact_mappings:
       # Food
-      - UMLSSC:T168
-      - UMLSST:food
+      - STY:T168
 
   ## Biology and Biomedical Sciences
 
@@ -7741,8 +7761,7 @@ classes:
       describes a characteristic of an organismal entity.
     exact_mappings:
       # Organism Attribute
-      - UMLSSC:T032
-      - UMLSST:orga
+      - STY:T032
 
   phenotypic quality:
     aliases: ['phenotypic properties']
@@ -7808,8 +7827,7 @@ classes:
     exact_mappings:
       - SIO:010000
       # Organism
-      - UMLSSC:T001
-      - UMLSST:orgm
+      - STY:T001
     narrow_mappings:
       # Wikidata considers its definition of 'individual' to be constrained to human persons?
       - WIKIDATA:Q795052
@@ -7833,8 +7851,7 @@ classes:
       - PCO:0000001
       - SIO:001061
       # UMLS Semantic Type "Population Group"
-      - UMLSSC:T098
-      - UMLSST:popg
+      - STY:T098
       - OBI:0000181
     id_prefixes:
       - HANCESTRO
@@ -7855,8 +7872,7 @@ classes:
       - phenotypic feature
     narrow_mappings:
       # UMLS Semantic Type "Finding" - more specialized use of 'disease or phenotypic feature'
-      - UMLSSC:T033
-      - UMLSST:fndg
+      - STY:T033
 
   disease:
     aliases: ['condition', 'disorder', 'medical condition']
@@ -7870,33 +7886,24 @@ classes:
       # UMLS Semantic Group "Disorders"
       - UMLSSG:DISO
       # Disease or Syndrome
-      - UMLSSC:T047
-      - UMLSST:dsyn
+      - STY:T047
     narrow_mappings:
       # Congenital Abnormality
-      - UMLSSC:T019
-      - UMLSST:cgab
+      - STY:T019
       # Acquired Abnormality
-      - UMLSSC:T020
-      - UMLSST:acab
+      - STY:T020
       # Injury or Poisoning
-      - UMLSSC:T037
-      - UMLSST:inpo
+      - STY:T037
       # Pathologic Function
-      - UMLSSC:T046
-      - UMLSST:patf
+      - STY:T046
       # Mental or Behavioral Dysfunction
-      - UMLSSC:T048
-      - UMLSST:mobd
+      - STY:T048
       # Cell or Molecular Dysfunction
-      - UMLSSC:T049
-      - UMLSST:comd
+      - STY:T049
       # Anatomical Abnormality
-      - UMLSSC:T190
-      - UMLSST:anab
+      - STY:T190
       # Neoplastic Process
-      - UMLSSC:T191
-      - UMLSST:neop
+      - STY:T191
     id_prefixes:
       - MONDO
       - DOID
@@ -7927,8 +7934,7 @@ classes:
       - WIKIDATA:Q104053
     narrow_mappings:
       # Sign or Symptom
-      - UMLSSC:T184
-      - UMLSST:sosy
+      - STY:T184
       - WIKIDATA:Q169872
       # presentation of a disease in clinical medicine
       - WIKIDATA:Q25203551
@@ -7947,6 +7953,7 @@ classes:
       - SNOMEDCT
       - MESH
       - XPO
+      - FYPO
     in_subset:
       - model_organism_database
 
@@ -7969,19 +7976,8 @@ classes:
       - WIKIDATA:Q4936952
       # UMLS Semantic Group "Anatomy"
       - UMLSSG:ANAT
-    narrow_mappings:
-      # Body System
-      - UMLSSC:T022
-      - UMLSST:bdsy
-      # Body Location or Region
-      - UMLSSC:T029
-      - UMLSST:blor
-      # Body Space or Junction
-      - UMLSSC:T030
-      - UMLSST:bsoj
-      # Body Substance
-      - UMLSSC:T031
-      - UMLSST:bdsu
+      # UMLS Semantic Type "Anatomical Structure"
+      - STY:T017
     id_prefixes:
       - UBERON
       - GO
@@ -7993,6 +7989,9 @@ classes:
       - model_organism_database
 
   cellular component:
+    aliases:
+      - cell component
+      - cell part
     is_a: anatomical entity
     description: >-
       A location in or around a cell
@@ -8001,8 +8000,7 @@ classes:
       - SIO:001400
       - WIKIDATA:Q5058355
       # Cell Component
-      - UMLSSC:T026
-      - UMLSST:celc
+      - STY:T026
     broad_mappings:
       - WIKIDATA:P681
     id_prefixes:
@@ -8022,8 +8020,7 @@ classes:
       - SIO:010001
       - WIKIDATA:Q7868
       # UMLS Semantic Type "Cell"
-      - UMLSSC:T025
-      - UMLSST:cell
+      - STY:T025
     id_prefixes:
       - CL
       - PO
@@ -8046,22 +8043,13 @@ classes:
     exact_mappings:
       - UBERON:0010000
       - WIKIDATA:Q4936952
-      # UMLS Semantic Type "Anatomical Structure"
-      - UMLSSC:T017
-      - UMLSST:anst
-      # UMLS Semantic Type "Fully Formed Anatomical Structure"
-      - UMLSSC:T021
-      - UMLSST:ffas
     narrow_mappings:
       # UMLS Semantic Type "Body Part, Organ, or Organ Component"
-      - UMLSSC:T023
-      - UMLSST:bpoc
+      - STY:T023
       # UMLS Semantic Type "Tissue"
-      - UMLSSC:T024
-      - UMLSST:tisu
+      - STY:T024
       # Embryonic Structure
-      - UMLSSC:T018
-      - UMLSST:emst
+      - STY:T018
     id_prefixes:
       - UBERON
       - UMLS
@@ -8274,11 +8262,9 @@ classes:
     narrow_mappings:
       - SO:0000104 # polypeptide definde in SO conflates protein and polypeptide
       # Amino Acid, Peptide, or Protein
-      - UMLSSC:T116
-      - UMLSST:aapp
+      - STY:T116
       # Amino Acid Sequence
-      - UMLSSC:T087
-      - UMLSST:amas
+      - STY:T087
 
   protein:
     description: >-
@@ -8294,17 +8280,16 @@ classes:
       - ENSEMBL # ENSEMBL:ENSP*
       - FB      # FlyBase FBpp*
       - UMLS
+      - MESH
     exact_mappings:
       - PR:000000001
       - SIO:010043
       - WIKIDATA:Q8054
     narrow_mappings:
       # Enzyme
-      - UMLSSC:T126
-      - UMLSST:enzy
+      - STY:T126
       # Receptor
-      - UMLSSC:T192
-      - UMLSST:rcpt      
+      - STY:T192
 
   protein isoform:
     aliases: ['proteoform']
@@ -8430,6 +8415,7 @@ classes:
       - RFAM ## RNAs only
       - KEGG.ORTHOLOGY ## aka KEGG.KO: K number
       - EGGNOG
+      - COG
     in_subset:
       - model_organism_database
 
@@ -8443,7 +8429,6 @@ classes:
     mixins:
       - physical essence
       - genomic entity
-      - physical essence
       - ontology class
     description: >-
       An information content entity that describes a genome by specifying the
@@ -8509,7 +8494,6 @@ classes:
       - ClinVarVariant
       - WIKIDATA
       # - CIViC needs IRI mapping
-      - DBSNP
       - DBSNP
       # - MYVARIANT_HG19 needs IRI mapping
       # - MYVARIANT_HG38 needs IRI mapping
@@ -8582,8 +8566,7 @@ classes:
       Attributes relating to a clinical manifestation
     exact_mappings:
       # Clinical Attribute
-      - UMLSSC:T201
-      - UMLSST:clna
+      - STY:T201
 
   clinical measurement:
     is_a: clinical attribute
@@ -8698,17 +8681,13 @@ classes:
       - WIKIDATA:Q1303415
     narrow_mappings:
       # Professional or Occupational Group
-      - UMLSSC:T097
-      - UMLSST:prog
+      - STY:T097
       # Family Group
-      - UMLSSC:T099
-      - UMLSST:famg
+      - STY:T099
       # Age Group
-      - UMLSSC:T100
-      - UMLSST:aggp
+      - STY:T100
       # Patient or Disabled Group
-      - UMLSSC:T101
-      - UMLSST:podg
+      - STY:T101
 
   ## Exposures
 
@@ -8854,6 +8833,8 @@ classes:
     exact_mappings:
       - OGMS:0000090
       - SIO:001398
+    broad_mappings:
+      - MAXO:0000058
 
   biotic exposure:
     aliases: ['viral exposure','bacterial exposure']

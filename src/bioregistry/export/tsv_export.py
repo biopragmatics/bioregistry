@@ -7,10 +7,9 @@ import os
 
 import click
 
-from bioregistry import read_collections, read_metaregistry
-from .. import resolve
 from ..constants import DOCS_DATA
-from ..utils import read_registry
+from ..uri_format import get_format
+from ..utils import read_collections, read_metaregistry, read_registry
 
 
 @click.command()
@@ -48,8 +47,6 @@ METAREGISTRY_HEADER = [
     "download",
     "example",
     "contact",
-    "provider",
-    "resolver",
     "provider_formatter",
     "resolver_formatter",
 ]
@@ -74,6 +71,7 @@ REGISTRY_HEADER = [
     *METAPREFIXES,
     "part_of",
     "provides",
+    "has_canonical",
     # 'type',
 ]
 
@@ -108,8 +106,6 @@ def get_metaregistry_rows():
                 data.download,
                 data.example,
                 data.contact,
-                data.provider,
-                data.resolver,
                 data.provider_url,
                 data.resolver_url,
             )
@@ -121,25 +117,26 @@ def get_registry_rows():
     """Get a dataframe of all resources."""
     rows = []
     for prefix, data in read_registry().items():
-        mappings = resolve.get_mappings(prefix) or {}
+        mappings = data.get_mappings() or {}
         rows.append(
             (
                 prefix,
-                resolve.get_name(prefix),
-                resolve.get_homepage(prefix),
-                resolve.get_description(prefix),
-                resolve.get_pattern(prefix),
-                resolve.get_example(prefix),
-                resolve.get_email(prefix),
-                resolve.get_format(prefix),
+                data.get_name(),
+                data.get_homepage(),
+                data.get_description(),
+                data.get_pattern(),
+                data.get_example(),
+                data.get_email(),
+                get_format(prefix),
                 data.download_owl,
                 data.download_obo,
-                "|".join(data.synonyms or []),
-                resolve.is_deprecated(prefix),
+                "|".join(sorted(data.get_synonyms())),
+                data.is_deprecated(),
                 *[mappings.get(metaprefix) for metaprefix in METAPREFIXES],
                 # '|'.join(data.get('appears_in', [])),
                 data.part_of,
                 data.provides,
+                data.has_canonical,
                 # data.get('type'),
                 # TODO could add more, especially mappings
             )

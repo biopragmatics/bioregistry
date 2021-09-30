@@ -17,7 +17,7 @@
     <h2>API Usage</h2>
     <p>
         The Bioregistry web application is built on <a href="https://flask.palletsprojects.com">Flask</a>
-        as a thin wrapper around the <a href="https://github.com/bioregistry/bioregistry"><code>bioregistry</code></a>
+        as a thin wrapper around the <a href="https://github.com/biopragmatics/bioregistry"><code>bioregistry</code></a>
         Python package. It exposes several endpoints for accessing the registry, metaregistry, collections, and search
         functionality for which <a href="https://swagger.io/">Swagger</a> API documentation is automatically generated
         by <a href="https://github.com/flasgger/flasgger">Flasgger</a>.
@@ -41,7 +41,7 @@ res = requests.get('https://bioregistry.io/api/registry/chebi').json()</code></p
         Get metadata about ChEBI entry 138488 (alsterpaullone):
     </p>
     <pre><code
-            class="language-python">res = requests.get('https://bioregistry.io/api/registry/chebi:138488').json()</code></pre>
+            class="language-python">res = requests.get('https://bioregistry.io/api/reference/chebi:138488').json()</code></pre>
     <p>
         Search prefixes containing <code>che</code>:
     </p>
@@ -58,9 +58,9 @@ res = requests.get('https://bioregistry.io/api/registry/chebi').json()</code></p
     <h2>Python Package Usage</h2>
     <p>
         The Python source code can be found at
-        <a href="https://github.com/bioregistry/bioregistry"><i class="fab fa-github"></i> bioregistry/bioregistry</a>.
+        <a href="https://github.com/biopragmatics/bioregistry"><i class="fab fa-github"></i> biopragmatics/bioregistry</a>.
         It can be installed with <code>pip install bioregistry</code> or in development mode by following
-        <a href="https://github.com/bioregistry/bioregistry#-installation">these instructions</a>.
+        <a href="https://github.com/biopragmatics/bioregistry#-installation">these instructions</a>.
     </p>
     <p>
         The Bioregistry can be used to normalize prefixes across MIRIAM and all the (very plentiful) variants that pop
@@ -104,16 +104,16 @@ assert bioregistry.normalize_prefix('not a real key') is None</code></pre>
 $ bioregistry web</code></pre>
     <p>You can also download the source code, install in development mode, and run the Bioregistry app from the shell:
     </p>
-    <pre><code class="language-shell">$ git clone https://github.com/bioregistry/bioregistry.git
+    <pre><code class="language-shell">$ git clone https://github.com/biopragmatics/bioregistry.git
 $ cd bioregistry
 $ pip install --editable .[web]
 $ bioregistry web</code></pre>
     <h4>Docker</h4>
     <p>You can deploy your own instance of the Bioregistry with:</p>
-    <pre><code class="language-shell">$ docker run -id -p 8766:8766 bioregistry/bioregistry:latest</code></pre>
+    <pre><code class="language-shell">$ docker run -id -p 8766:8766 biopragmatics/bioregistry:latest</code></pre>
     <p>
         If you want to mix using a custom version of the Bioregistry with a Docker-based deployment, please
-        see the dockerfile in <a href="https://github.com/bioregistry/bioregistry-docker">
-        <i class="fab fa-github"></i> bioregistry/bioregistry-docker</a> for inspiration.
+        see the dockerfile in <a href="https://github.com/biopragmatics/bioregistry-docker">
+        <i class="fab fa-github"></i> biopragmatics/bioregistry-docker</a> for inspiration.
     </p>
 {% endblock %}

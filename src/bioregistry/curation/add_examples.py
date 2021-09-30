@@ -6,6 +6,7 @@ import random
 import urllib.error
 from typing import Optional
 
+import click
 import pyobo
 import pyobo.getters
 
@@ -41,10 +42,10 @@ def _get_example(prefix: str) -> Optional[str]:
     try:
         rv = x[random.randint(0, len(x))]  # noqa:S311
     except IndexError:
-        print("failed", prefix, x)
+        click.echo(f"failed {prefix} {x}")
         return None
     else:
-        print("adding", prefix, rv)
+        click.echo(f"adding {prefix} {rv}")
         return rv
 
 

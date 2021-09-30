@@ -8,7 +8,7 @@ from flask import Blueprint, abort, redirect, render_template, url_for
 
 import bioregistry
 from .utils import _get_resource_mapping_rows, _get_resource_providers, _normalize_prefix_or_404
-from ..utils import read_collections_contributions, read_prefix_contributions
+from ..utils import read_collections_contributions, read_prefix_contributions, read_prefix_reviews
 
 __all__ = [
     "ui_blueprint",
@@ -202,7 +202,7 @@ def resolve(prefix: str, identifier: Optional[str] = None):
             404,
         )
 
-    url = bioregistry.get_link(prefix, identifier, use_bioregistry_io=False)
+    url = bioregistry.get_iri(prefix, identifier, use_bioregistry_io=False)
     if not url:
         return (
             render_template(
@@ -229,7 +229,8 @@ def contributors():
         "contributors.html",
         rows=bioregistry.read_contributors().values(),
         collections=read_collections_contributions(),
-        prefixes=read_prefix_contributions(),
+        prefix_contributions=read_prefix_contributions(),
+        prefix_reviews=read_prefix_reviews(),
         formats=FORMATS,
     )
 
@@ -243,7 +244,15 @@ def contributor(orcid: str):
     return render_template(
         "contributor.html",
         contributor=author,
-        collections=sorted(read_collections_contributions().get(author.orcid, [])),
-        prefixes=sorted(read_prefix_contributions().get(author.orcid, [])),
+        collections=sorted(
+            (collection_id, bioregistry.get_collection(collection_id))
+            for collection_id in read_collections_contributions().get(author.orcid, [])
+        ),
+        prefix_contributions=_s(read_prefix_contributions().get(author.orcid, [])),
+        prefix_reviews=_s(read_prefix_reviews().get(author.orcid, [])),
         formats=FORMATS,
     )
+
+
+def _s(prefixes):
+    return sorted((p, bioregistry.get_resource(p)) for p in prefixes)
