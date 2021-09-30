@@ -678,7 +678,7 @@ class Resource(BaseModel):
         return f"{ols_url_prefix}$1"
 
     URI_FORMATTERS: ClassVar[Mapping[str, Callable[["Resource"], Optional[str]]]] = {
-        "bioregistry": get_default_format,
+        "default": get_default_format,
         "obofoundry": get_obofoundry_formatter,
         "prefixcommons": get_prefixcommons_format,
         "miriam": get_miriam_format,
@@ -687,7 +687,7 @@ class Resource(BaseModel):
 
     #: The default priority for generating URIs
     DEFAULT_URI_FORMATTER_PRIORITY: ClassVar[Sequence[str]] = (
-        "bioregistry",
+        "default",
         "obofoundry",
         "prefixcommons",
         "miriam",
