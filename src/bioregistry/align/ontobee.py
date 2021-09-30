@@ -5,13 +5,13 @@
 import textwrap
 from typing import List
 
-from bioregistry.align.utils import NewAligner
+from bioregistry.align.utils import Aligner
 from bioregistry.external.ontobee import get_ontobee
 
 __all__ = ['OntobeeAligner']
 
 
-class OntobeeAligner(NewAligner):
+class OntobeeAligner(Aligner):
     """Aligner for OntoBee xref registry."""
 
     key = 'ontobee'

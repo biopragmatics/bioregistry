@@ -256,6 +256,9 @@ class Resource(BaseModel):
     biolink: Optional[Mapping[str, Any]]
     #: External data from the Cellosaurus custom registry
     cellosaurus: Optional[Mapping[str, Any]]
+    #: External data from the OntoBee
+    ontobee: Optional[Mapping[str, Any]]
+
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
