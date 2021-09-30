@@ -227,7 +227,7 @@ You can add your own custom context on top of the Bioregistry's with the
 
 ```python
 from bioregistry import curie_from_iri, parse_iri
-prefix_map = {"chebi", "https://example.org/chebi:"}
+prefix_map = {"chebi": "https://example.org/chebi:"}
 assert ('chebi', '1234') == parse_iri("https://example.org/chebi:1234", prefix_map=prefix_map)
 assert 'chebi:24867' == curie_from_iri("https://example.org/chebi:1234", prefix_map=prefix_map)
 ```
@@ -281,6 +281,20 @@ from bioregistry import get_iri
 
 prefix_map = {"chebi": "https://example.org/chebi/"}
 assert get_iri("chebi:24867", prefix_map=prefix_map) == 'https://example.org/chebi/24867'
+```
+
+A custom prefix map can be supplied in combination with a priority list, using
+the `"custom"` key for changing the priority of the custom prefix map.
+
+```python
+from bioregistry import get_iri
+
+prefix_map = {"lipidmaps": "https://example.org/lipidmaps/"}
+priority = ["obofoundry", "custom", "default", "bioregistry"]
+assert get_iri("chebi:24867", prefix_map=prefix_map, priority=priority) == \
+    'http://purl.obolibrary.org/obo/CHEBI_24867'
+assert get_iri("lipidmaps:1234", prefix_map=prefix_map, priority=priority) == \
+    'https://example.org/lipidmaps/1234'
 ```
 
 Alternatively, there are  direct functions for generating IRIs for different

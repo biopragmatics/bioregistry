@@ -121,9 +121,9 @@ def parse_iri(
     ('aop.relationships', '5')
 
     Provide your own prefix map:
-    >>> prefix_map = {"chebi", "https://example.org/chebi:"}
+    >>> prefix_map = {"chebi": "https://example.org/chebi:"}
     >>> parse_iri("https://example.org/chebi:1234", prefix_map=prefix_map)
-    ('chebi', 1234')
+    ('chebi', '1234')
 
     .. todo:: IRI with weird embedding, like ones that end in .html
     """

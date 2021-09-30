@@ -400,12 +400,12 @@ def get_iri(
     'http://purl.obolibrary.org/obo/FBbt_1234'
 
     A custom prefix map can be supplied in combination with a priority list
-    >>> prefix_map = {"lipidmap": "https://example.org/lipidmap/"}
+    >>> prefix_map = {"lipidmaps": "https://example.org/lipidmaps/"}
     >>> priority = ["obofoundry", "custom", "default", "bioregistry"]
     >>> get_iri("chebi:24867", prefix_map=prefix_map, priority=priority)
     'http://purl.obolibrary.org/obo/CHEBI_24867'
-    >>> get_iri("lipidmap:1234", prefix_map=prefix_map, priority=priority)
-    'https://example.org/lipidmap/FBbt_1234'
+    >>> get_iri("lipidmaps:1234", prefix_map=prefix_map, priority=priority)
+    'https://example.org/lipidmaps/1234'
     """
     if identifier is None:
         _prefix, _identifier = parse_curie(prefix)
