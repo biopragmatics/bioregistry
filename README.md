@@ -269,8 +269,8 @@ assert get_iri("chebi:24867", priority=priority) == 'http://purl.obolibrary.org/
 assert get_iri("hgnc:1234", priority=priority) == 'https://bioregistry.io/hgnc:1234' 
 ```
 
-Even deeper, you can add (or override) any of the bioregistry's custom prefix map by using
-the `prefix_map` keyword:
+Even deeper, you can add (or override) any of the Bioregistry's default prefix
+map with the `prefix_map` keyword:
 
 ```python
 from bioregistry import get_iri
