@@ -88,7 +88,10 @@ def get_obofoundry_prefix_map(include_synonyms: bool = False) -> Mapping[str, st
     remapping = bioregistry.get_registry_map("obofoundry")
     remapping.update(OBO_REMAPPING)
     return get_prefix_map(
-        remapping=remapping, priority=OBO_PRIORITY, include_synonyms=include_synonyms
+        remapping=remapping,
+        priority=OBO_PRIORITY,
+        include_synonyms=include_synonyms,
+        use_preferred=True,
     )
 
 
