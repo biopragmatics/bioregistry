@@ -222,6 +222,16 @@ assert ('chebi', '24867') == parse_iri('http://identifiers.org/CHEBI/24867')
 assert ('chebi', '24867') == parse_iri('https://bioregistry.io/chebi:24867')
 ```
 
+You can add your own custom context on top of the Bioregistry's with the
+`prefix_map` keyword:
+
+```python
+from bioregistry import curie_from_iri, parse_iri
+prefix_map = {"chebi", "https://example.org/chebi:"}
+assert ('chebi', '1234') == parse_iri("https://example.org/chebi:1234", prefix_map=prefix_map)
+assert 'chebi:24867' == curie_from_iri("https://example.org/chebi:1234", prefix_map=prefix_map)
+```
+
 ### Generating IRIs
 
 Given a pre-parse CURIE (e.g., a 2-tuple of a prefix and identifier), you
@@ -263,14 +273,14 @@ assert bioregistry.get_iri("chebi:24867", priority=priority) == 'http://purl.obo
 assert bioregistry.get_iri("hgnc:1234", priority=priority) == 'https://bioregistry.io/hgnc:1234' 
 ```
 
-Even deeper, you can override any of the bioregistry context directly using
-the `context` keyword:
+Even deeper, you can override any of the bioregistry's custom prefix map by using
+the `prefix_map` keyword:
 
 ```python
 from bioregistry import get_iri
 
-context = {"chebi": "https://example.org/chebi/"}
-assert get_iri("chebi:24867", context=context) == 'https://example.org/chebi/24867'
+prefix_map = {"chebi": "https://example.org/chebi/"}
+assert get_iri("chebi:24867", prefix_map=prefix_map) == 'https://example.org/chebi/24867'
 ```
 
 Alternatively, there are  direct functions for generating IRIs for different

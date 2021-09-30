@@ -20,7 +20,7 @@ IDOT_HTTP_PREFIX = "http://identifiers.org/"
 N2T_PREFIX = "https://n2t.net/"
 
 
-def curie_from_iri(iri: str, prefix_map: Optional[Mapping[str, str]] = None) -> Optional[str]:
+def curie_from_iri(iri: str, *, prefix_map: Optional[Mapping[str, str]] = None) -> Optional[str]:
     """Parse a compact identifier from an IRI using :func:`parse_iri` and reconstitute it.
 
     :param iri: A valid IRI
@@ -71,7 +71,7 @@ def curie_from_iri(iri: str, prefix_map: Optional[Mapping[str, str]] = None) -> 
 
 
 def parse_iri(
-    iri: str, prefix_map: Optional[Mapping[str, str]] = None
+    iri: str, *, prefix_map: Optional[Mapping[str, str]] = None
 ) -> Union[Tuple[str, str], Tuple[None, None]]:
     """Parse a compact identifier from an IRI.
 
