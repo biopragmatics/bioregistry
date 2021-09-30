@@ -3,7 +3,7 @@
 """A class-based client to a metaregistry."""
 
 import logging
-from typing import Any, Dict, Mapping, Optional, Tuple, Union
+from typing import Any, Dict, Iterable, Mapping, Optional, Sequence, Tuple, Union
 
 from .schema import Resource
 from .utils import NormDict, read_registry
@@ -123,3 +123,49 @@ class ResourceManager:
             if version is not None:
                 rv[prefix] = version
         return rv
+
+    def get_prefix_map(
+        self,
+        *,
+        priority: Optional[Sequence[str]] = None,
+        include_synonyms: bool = False,
+        remapping: Optional[Mapping[str, str]] = None,
+        use_preferred: bool = False,
+    ) -> Mapping[str, str]:
+        """Get a mapping from Bioregistry prefixes to their prefix URLs via :func:`get_format_url`.
+
+        :param priority: A priority list for how to generate prefix URLs.
+        :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
+            the same URL prefix?
+        :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
+        :param use_preferred: Should preferred prefixes be used?
+        :return: A mapping from prefixes to prefix URLs.
+        """
+        rv = dict(
+            self._iter_prefix_map(
+                priority=priority, include_synonyms=include_synonyms, use_preferred=use_preferred
+            )
+        )
+        if not remapping:
+            return rv
+        return {remapping.get(prefix, prefix): prefix_url for prefix, prefix_url in rv.items()}
+
+    def _iter_prefix_map(
+        self,
+        *,
+        priority: Optional[Sequence[str]] = None,
+        include_synonyms: bool = False,
+        use_preferred: bool = False,
+    ) -> Iterable[Tuple[str, str]]:
+        for prefix, resource in self.registry.items():
+            prefix_url = resource.get_format_url(priority=priority)
+            if prefix_url is None:
+                continue
+            if use_preferred:
+                preferred_prefix = resource.get_preferred_prefix()
+                if preferred_prefix is not None:
+                    prefix = preferred_prefix
+            yield prefix, prefix_url
+            if include_synonyms:
+                for synonym in resource.get_synonyms():
+                    yield synonym, prefix_url

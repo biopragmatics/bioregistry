@@ -10,11 +10,7 @@
 
 from typing import List, Mapping, Optional, Sequence, Tuple
 
-from .resolve import (
-    get_resource,
-    get_synonyms,
-)
-from .utils import read_registry
+from .resolve import get_resource, manager
 
 __all__ = [
     "get_format",
@@ -91,18 +87,11 @@ def get_format_urls(
     :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
     :return: A mapping from prefixes to prefix URLs.
     """
-    rv = {}
-    for prefix, resource in read_registry().items():
-        prefix_url = resource.get_format_url(priority=priority)
-        if prefix_url is None:
-            continue
-        rv[prefix] = prefix_url
-        if include_synonyms:
-            for synonym in get_synonyms(prefix) or []:
-                rv[synonym] = prefix_url
-    if remapping:
-        return {remapping.get(prefix, prefix): prefix_url for prefix, prefix_url in rv.items()}
-    return rv
+    return manager.get_prefix_map(
+        priority=priority,
+        include_synonyms=include_synonyms,
+        remapping=remapping,
+    )
 
 
 def _sort_key(kv: Tuple[str, str]) -> int:
