@@ -338,6 +338,7 @@ PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
 }
 
 LINK_PRIORITY = [
+    "custom",
     "default",
     "bioregistry",
     "miriam",
@@ -352,7 +353,9 @@ LINK_PRIORITY = [
 def get_iri(
     prefix: str,
     identifier: Optional[str] = None,
+    *,
     priority: Optional[Sequence[str]] = None,
+    prefix_map: Optional[Mapping[str, str]] = None,
     use_bioregistry_io: bool = True,
 ) -> Optional[str]:
     """Get the best link for the CURIE, if possible.
@@ -362,14 +365,17 @@ def get_iri(
         assume that the first argument (``prefix``) is actually a full CURIE.
     :param priority: A user-defined priority list. In addition to the metaprefixes in the Bioregistry
         corresponding to resources that are resolvers/lookup services, you can also use ``default``
-        to correspond to the first-party IRI. The default priority list is:
+        to correspond to the first-party IRI and ``custom`` to refer to the custom prefix map.
+        The default priority list is:
 
+        1. Custom prefix map (``custom``)
         1. First-party IRI (``default``)
-        2. Identifiers.org / MIRIAM
-        3. Ontology Lookup Service
-        4. OBO PURL
-        5. Name-to-Thing
-        6. BioPortal
+        2. Identifiers.org / MIRIAM (``miriam``)
+        3. Ontology Lookup Service (``ols``)
+        4. OBO PURL (``obofoundry``)
+        5. Name-to-Thing (``n2t``)
+        6. BioPortal (``bioportal``)
+    :param prefix_map: A custom prefix map to go with the ``custom`` key in the priority list
     :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults to true.
     :return: The best possible IRI that can be generated based on the priority list.
 
@@ -380,6 +386,26 @@ def get_iri(
     A CURIE can be given directly as a single argument
     >>> get_iri("chebi:24867")
     'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+
+    A priority list can be given
+    >>> priority = ["obofoundry", "default", "bioregistry"]
+    >>> get_iri("chebi:24867", priority=priority)
+    'http://purl.obolibrary.org/obo/CHEBI_24867'
+
+    A custom prefix map can be supplied.
+    >>> prefix_map = {"chebi": "https://example.org/chebi/"}
+    >>> get_iri("chebi:24867", prefix_map=prefix_map)
+    'https://example.org/chebi/24867'
+    >>> get_iri("fbbt:1234")
+    'http://purl.obolibrary.org/obo/FBbt_1234'
+
+    A custom prefix map can be supplied in combination with a priority list
+    >>> prefix_map = {"lipidmaps": "https://example.org/lipidmaps/"}
+    >>> priority = ["obofoundry", "custom", "default", "bioregistry"]
+    >>> get_iri("chebi:24867", prefix_map=prefix_map, priority=priority)
+    'http://purl.obolibrary.org/obo/CHEBI_24867'
+    >>> get_iri("lipidmaps:1234", prefix_map=prefix_map, priority=priority)
+    'https://example.org/lipidmaps/1234'
     """
     if identifier is None:
         _prefix, _identifier = parse_curie(prefix)
@@ -388,7 +414,9 @@ def get_iri(
     else:
         _prefix, _identifier = prefix, identifier
 
-    providers = get_providers(_prefix, _identifier)
+    providers = dict(get_providers(_prefix, _identifier))
+    if prefix_map and _prefix in prefix_map:
+        providers["custom"] = f"{prefix_map[_prefix]}{_identifier}"
     for key in priority or LINK_PRIORITY:
         if not use_bioregistry_io and key == "bioregistry":
             continue
