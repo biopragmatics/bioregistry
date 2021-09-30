@@ -78,6 +78,7 @@ def get_format_urls(
     priority: Optional[Sequence[str]] = None,
     include_synonyms: bool = False,
     remapping: Optional[Mapping[str, str]] = None,
+    use_preferred: bool = False,
 ) -> Mapping[str, str]:
     """Get a mapping from Bioregistry prefixes to their prefix URLs via :func:`get_format_url`.
 
@@ -85,12 +86,14 @@ def get_format_urls(
     :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
         the same URL prefix?
     :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
+    :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
     :return: A mapping from prefixes to prefix URLs.
     """
     return manager.get_prefix_map(
         priority=priority,
         include_synonyms=include_synonyms,
         remapping=remapping,
+        use_preferred=use_preferred,
     )
 
 

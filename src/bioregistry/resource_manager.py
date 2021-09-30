@@ -138,7 +138,7 @@ class ResourceManager:
         :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
             the same URL prefix?
         :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
-        :param use_preferred: Should preferred prefixes be used?
+        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
         :return: A mapping from prefixes to prefix URLs.
         """
         rv = dict(
