@@ -14,11 +14,11 @@ DIRECTORY.mkdir(exist_ok=True, parents=True)
 RAW_PATH = DIRECTORY / "raw.html"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 
-URL = 'http://www.ontobee.org/'
+URL = "http://www.ontobee.org/"
 LEGEND = {
-    'F': 'Foundry',
-    'L': 'Library',
-    'N': 'Not Specified/No',
+    "F": "Foundry",
+    "L": "Library",
+    "N": "Not Specified/No",
 }
 
 
@@ -30,23 +30,23 @@ def get_ontobee(force_download: bool = False):
 
     download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as f:
-        soup = BeautifulSoup(f, 'html.parser')
+        soup = BeautifulSoup(f, "html.parser")
 
     rv = {}
-    for row in soup.find(id='ontologyList').find('tbody').find_all('tr'):
-        cells = row.find_all('td')
+    for row in soup.find(id="ontologyList").find("tbody").find_all("tr"):
+        cells = row.find_all("td")
         prefix = cells[1].text
         rv[prefix] = {
-            'name': cells[2].text,
-            'library': LEGEND[cells[3].text],
-            'url': cells[1].find('a').attrs['href'],
+            "name": cells[2].text,
+            "library": LEGEND[cells[3].text],
+            "url": cells[1].find("a").attrs["href"],
         }
 
-    with PROCESSED_PATH.open('w') as file:
+    with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, indent=2, sort_keys=True)
 
     return rv
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     get_ontobee()

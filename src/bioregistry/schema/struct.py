@@ -259,7 +259,6 @@ class Resource(BaseModel):
     #: External data from the OntoBee
     ontobee: Optional[Mapping[str, Any]]
 
-
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
         return self.dict().get(metaprefix) or dict()
