@@ -11,6 +11,7 @@ from .n2t import get_n2t  # noqa:F401
 from .ncbi import get_ncbi  # noqa:F401
 from .obofoundry import get_obofoundry  # noqa:F401
 from .ols import get_ols  # noqa:F401
+from .ontobee import get_ontobee  # noqa:F401
 from .prefix_commons import get_prefix_commons  # noqa:F401
 from .uniprot import get_uniprot  # noqa:F401
 from .wikidata import get_wikidata  # noqa:F401
@@ -28,4 +29,5 @@ GETTERS = [
     ("ncbi", "NCBI", get_ncbi),
     ("uniprot", "UniProt", get_uniprot),
     ("cellosaurus", "Cellosaurus", get_cellosaurus),
+    ("ontobee", "OntoBee", get_ontobee),
 ]
