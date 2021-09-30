@@ -8,6 +8,7 @@
     the prefix should go, which makes them more general than URI prefix strings.
 """
 
+import warnings
 from typing import List, Mapping, Optional, Sequence, Tuple
 
 from .resolve import get_resource, manager
@@ -17,7 +18,8 @@ __all__ = [
     "get_format_url",
     "get_format_urls",
     "prepare_prefix_list",
-    "get_default_prefix_list",
+    "get_prefix_map",
+    "get_prefix_list",
 ]
 
 
@@ -73,7 +75,7 @@ def get_format_url(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
     return entry.get_format_url(priority=priority)
 
 
-def get_format_urls(
+def get_prefix_map(
     *,
     priority: Optional[Sequence[str]] = None,
     include_synonyms: bool = False,
@@ -97,6 +99,12 @@ def get_format_urls(
     )
 
 
+def get_format_urls(**kwargs) -> Mapping[str, str]:
+    """Get a mapping from Bioregistry prefixes to their prefix URLs via :func:`get_format_url`."""
+    warnings.warn("deprecated", DeprecationWarning)
+    return get_prefix_map(**kwargs)
+
+
 def _sort_key(kv: Tuple[str, str]) -> int:
     """Return a value appropriate for sorting a pair of prefix/IRI."""
     return -len(kv[0])
@@ -107,8 +115,8 @@ def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
     return sorted(prefix_map.items(), key=_sort_key)
 
 
-def get_default_prefix_list() -> List[Tuple[str, str]]:
+def get_prefix_list(**kwargs) -> List[Tuple[str, str]]:
     """Get the default priority prefix list."""
     #: A prefix map in reverse sorted order based on length of the URL
     #: in order to avoid conflicts of sub-URIs (thanks to Nico Matentzoglu for the idea)
-    return prepare_prefix_list(get_format_urls())
+    return prepare_prefix_list(get_prefix_map(**kwargs))

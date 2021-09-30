@@ -24,7 +24,7 @@ class TestResourceManager(unittest.TestCase):
         self.assertNotIn("fbbt", prefix_map)
         self.assertIn("FBbt", prefix_map)
 
-        prefix_map = bioregistry.get_format_urls(
+        prefix_map = bioregistry.get_prefix_map(
             priority=["obofoundry", "default"],
             use_preferred=True,
         )

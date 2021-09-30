@@ -332,7 +332,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_unique_iris(self):
         """Test that all IRIs are unique, or at least there's a mapping to which one is the preferred prefix."""
-        prefix_map = bioregistry.get_format_urls()
+        prefix_map = bioregistry.get_prefix_map()
         dd = defaultdict(dict)
         for prefix, iri in prefix_map.items():
             resource = bioregistry.get_resource(prefix)
