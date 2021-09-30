@@ -2,7 +2,7 @@
 
 """Functionality for parsing IRIs."""
 
-from typing import List, Mapping, Optional, Sequence, Tuple, Union
+from typing import List, Mapping, Optional, Tuple, Union
 
 from .resolve import parse_curie
 from .uri_format import get_prefix_map, prepare_prefix_list
@@ -20,9 +20,7 @@ IDOT_HTTP_PREFIX = "http://identifiers.org/"
 N2T_PREFIX = "https://n2t.net/"
 
 
-def curie_from_iri(
-    iri: str, prefix_map: Union[None, Mapping[str, str], Sequence[Tuple[str, str]]] = None
-) -> Optional[str]:
+def curie_from_iri(iri: str, prefix_map: Optional[Mapping[str, str]] = None) -> Optional[str]:
     """Parse a compact identifier from an IRI using :func:`parse_iri` and reconstitute it.
 
     :param iri: A valid IRI

@@ -393,14 +393,14 @@ def get_iri(
     'http://purl.obolibrary.org/obo/CHEBI_24867'
 
     A custom prefix map can be supplied.
-    >>> context = {"chebi": "https://example.org/chebi/"}
+    >>> prefix_map = {"chebi": "https://example.org/chebi/"}
     >>> get_iri("chebi:24867", prefix_map=prefix_map)
     'https://example.org/chebi/24867'
     >>> get_iri("fbbt:1234")
     'http://purl.obolibrary.org/obo/FBbt_1234'
 
-    A custom context can be supplied in combination with a priority list
-    >>> context = {"lipidmap": "https://example.org/lipidmap/"}
+    A custom prefix map can be supplied in combination with a priority list
+    >>> prefix_map = {"lipidmap": "https://example.org/lipidmap/"}
     >>> priority = ["obofoundry", "custom", "default", "bioregistry"]
     >>> get_iri("chebi:24867", prefix_map=prefix_map, priority=priority)
     'http://purl.obolibrary.org/obo/CHEBI_24867'
