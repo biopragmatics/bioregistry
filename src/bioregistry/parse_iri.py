@@ -2,11 +2,10 @@
 
 """Functionality for parsing IRIs."""
 
-import collections.abc
-from typing import Mapping, Optional, Sequence, Tuple, Union
+from typing import List, Mapping, Optional, Sequence, Tuple, Union
 
 from .resolve import parse_curie
-from .uri_format import get_prefix_list, prepare_prefix_list
+from .uri_format import get_prefix_map, prepare_prefix_list
 
 __all__ = [
     "curie_from_iri",
@@ -74,7 +73,7 @@ def curie_from_iri(
 
 
 def parse_iri(
-    iri: str, prefix_map: Union[None, Mapping[str, str], Sequence[Tuple[str, str]]] = None
+    iri: str, prefix_map: Optional[Mapping[str, str]] = None
 ) -> Union[Tuple[str, str], Tuple[None, None]]:
     """Parse a compact identifier from an IRI.
 
@@ -123,10 +122,13 @@ def parse_iri(
     >>> parse_iri("https://n2t.net/aop.relationships:5")
     ('aop.relationships', '5')
 
+    Provide your own prefix map:
+    >>> prefix_map = {"chebi", "https://example.org/chebi:"}
+    >>> parse_iri("https://example.org/chebi:1234", prefix_map=prefix_map)
+    ('chebi', 1234')
+
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
-    if isinstance(prefix_map, collections.abc.Mapping):
-        prefix_map = prepare_prefix_list(prefix_map)
     if iri.startswith(BIOREGISTRY_PREFIX):
         curie = iri[len(BIOREGISTRY_PREFIX) :]
         return parse_curie(curie)
@@ -144,10 +146,22 @@ def parse_iri(
     if iri.startswith(N2T_PREFIX):
         curie = iri[len(N2T_PREFIX) :]
         return parse_curie(curie)
-    for prefix, prefix_url in prefix_map or get_prefix_list():
+
+    # Now use everything
+    prefix_list = _ensure_prefix_list(prefix_map)
+    for prefix, prefix_url in prefix_list:
         if iri.startswith(prefix_url):
             return prefix, iri[len(prefix_url) :]
+
     return None, None
+
+
+def _ensure_prefix_list(prefix_map: Optional[Mapping[str, str]], **kwargs) -> List[Tuple[str, str]]:
+    """Ensure a prefix list, using the given merge strategy with default."""
+    _prefix_map = dict(get_prefix_map(**kwargs))
+    if prefix_map:
+        _prefix_map.update(prefix_map)
+    return prepare_prefix_list(_prefix_map)
 
 
 def _safe_parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
