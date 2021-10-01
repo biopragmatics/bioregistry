@@ -64,6 +64,7 @@ class TestRegistry(unittest.TestCase):
             "proprietary",
             "has_canonical",
             "preferred_prefix",
+            "providers",
         }
         keys.update(bioregistry.read_metaregistry())
         for prefix, entry in self.registry.items():
