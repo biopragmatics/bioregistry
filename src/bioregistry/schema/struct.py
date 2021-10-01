@@ -293,9 +293,6 @@ class Resource(BaseModel):
                 return rv
         return None
 
-    def _default_provider_url(self) -> Optional[str]:
-        return self.get_default_format()
-
     def get_default_url(self, identifier: str) -> Optional[str]:
         """Return the default URL for the identifier.
 
