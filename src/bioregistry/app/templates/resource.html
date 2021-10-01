@@ -182,7 +182,7 @@
             <table class="table table-hover table-striped">
                 <thead class="table-">
                 <tr>
-                    <th scope="col">Name</th>
+                    <th scope="col">Registry Name</th>
                     <th scope="col">Metaprefix</th>
                     <th scope="col">Metaidentifier</th>
                 </tr>
@@ -200,10 +200,10 @@
                         <td><code>{{ mapping.metaprefix }}</code></td>
                         <td>
                             {% if mapping.url %}
-                                <a href="{{ mapping.url }}">{{ mapping.xref }} <i class="fas fa-link"></i></a>
+                                <a href="{{ mapping.url }}"><code>{{ mapping.xref }}</code> <i class="fas fa-link"></i></a>
                             {% else %}
                                 <span title="{{ mapping.name }} does not resolve metaidentifiers"
-                                      data-toggle="tooltip" data-placement="right">{{ mapping.xref }}
+                                      data-toggle="tooltip" data-placement="right"><code>{{ mapping.xref }}</code>
                                     <i class="fas fa-info-circle"></i></span>
                             {% endif %}
                         </td>
