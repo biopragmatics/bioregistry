@@ -38,6 +38,9 @@ logger = logging.getLogger(__name__)
 HERE = pathlib.Path(__file__).parent.resolve()
 SCHEMA_PATH = HERE.joinpath("schema.json")
 
+#: Search string for skipping formatters containing this
+IDOT_SKIP = "identifiers.org"
+
 
 class Author(BaseModel):
     """Metadata for an author."""
@@ -291,18 +294,7 @@ class Resource(BaseModel):
         return None
 
     def _default_provider_url(self) -> Optional[str]:
-        if self.url is not None:
-            return self.url
-        if self.miriam is not None and "provider_url" in self.miriam:
-            return self.miriam["provider_url"]
-        if self.n2t is not None:
-            return self.n2t["provider_url"]
-        if (
-            self.prefixcommons is not None
-            and "identifiers.org" not in self.prefixcommons["formatter"]
-        ):
-            return self.prefixcommons["formatter"]
-        return None
+        return self.get_default_format()
 
     def get_default_url(self, identifier: str) -> Optional[str]:
         """Return the default URL for the identifier.
@@ -314,7 +306,7 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_default_url("24867")
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
         """
-        fmt = self._default_provider_url()
+        fmt = self.get_default_format()
         if fmt is None:
             return None
         return fmt.replace("$1", identifier)
@@ -369,17 +361,18 @@ class Resource(BaseModel):
         >>> get_resource("go").get_default_format()
         'http://amigo.geneontology.org/amigo/term/GO:$1'
         """
-        if self.url:
+        if self.url is not None:
             return self.url
-        rv = self.get_external("miriam").get("provider_url")
-        if rv is not None:
-            return rv
-        rv = self.get_external("prefixcommons").get("formatter")
-        if rv is not None:
-            return rv
-        rv = self.get_external("wikidata").get("format")
-        if rv is not None:
-            return rv
+        for metaprefix, key in [
+            ("miriam", "provider_url"),
+            ("n2t", "provider_url"),
+            ("go", "formatter"),
+            ("prefixcommons", "formatter"),
+            ("wikidata", "format"),
+        ]:
+            rv = self.get_external(metaprefix).get(key)
+            if rv is not None and "identifiers.org" not in rv:
+                return rv
         return None
 
     def get_synonyms(self) -> Set[str]:
