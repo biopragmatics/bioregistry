@@ -9,7 +9,7 @@ from tabulate import tabulate
 
 from ..resolve import normalize_prefix
 from ..schema import Resource
-from ..utils import is_mismatch, read_metaregistry, read_registry, write_registry
+from ..utils import is_mismatch, read_metaregistry, read_registry_helper, write_registry
 
 __all__ = [
     "Aligner",
@@ -43,7 +43,7 @@ class Aligner(ABC):
         if self.key not in read_metaregistry():
             raise TypeError(f"invalid metaprefix for aligner: {self.key}")
 
-        self.internal_registry = dict(read_registry())
+        self.internal_registry = dict(read_registry_helper())
 
         kwargs = self.getter_kwargs or {}
         kwargs.setdefault("force_download", True)

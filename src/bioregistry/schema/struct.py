@@ -27,6 +27,7 @@ from bioregistry.schema.utils import EMAIL_RE, EMAIL_RE_STR
 
 __all__ = [
     "Author",
+    "Provider",
     "Resource",
     "Collection",
     "Registry",
@@ -37,6 +38,9 @@ logger = logging.getLogger(__name__)
 
 HERE = pathlib.Path(__file__).parent.resolve()
 SCHEMA_PATH = HERE.joinpath("schema.json")
+
+#: Search string for skipping formatters containing this
+IDOT_SKIP = "identifiers.org"
 
 
 class Author(BaseModel):
@@ -69,6 +73,22 @@ class Author(BaseModel):
         return node
 
 
+class Provider(BaseModel):
+    """A provider."""
+
+    code: str = Field(..., description="A locally unique code within the prefix for the provider")
+    name: str = Field(..., description="Name of the provider")
+    description: str = Field(..., description="Description of the provider")
+    homepage: str = Field(..., description="Homepage of the provider")
+    url: str = Field(
+        ..., description="The URL format string, which must have at least one ``$1`` in it"
+    )
+
+    def resolve(self, identifier: str) -> str:
+        """Resolve the identifier into a URL."""
+        return self.url.replace("$1", identifier)
+
+
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
@@ -88,6 +108,10 @@ class Resource(BaseModel):
     url: Optional[str] = Field(
         title="Format URL",
         description="The URL format string, which must have at least one ``$1`` in it",
+    )
+    #: Additional non-default providers for the given resource
+    providers: Optional[List[Provider]] = Field(
+        description="Additional, non-default providers for the resource",
     )
     #: The URL for the homepage of the resource
     homepage: Optional[str] = Field(
@@ -290,20 +314,6 @@ class Resource(BaseModel):
                 return rv
         return None
 
-    def _default_provider_url(self) -> Optional[str]:
-        if self.url is not None:
-            return self.url
-        if self.miriam is not None and "provider_url" in self.miriam:
-            return self.miriam["provider_url"]
-        if self.n2t is not None:
-            return self.n2t["provider_url"]
-        if (
-            self.prefixcommons is not None
-            and "identifiers.org" not in self.prefixcommons["formatter"]
-        ):
-            return self.prefixcommons["formatter"]
-        return None
-
     def get_default_url(self, identifier: str) -> Optional[str]:
         """Return the default URL for the identifier.
 
@@ -314,7 +324,7 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_default_url("24867")
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
         """
-        fmt = self._default_provider_url()
+        fmt = self.get_default_format()
         if fmt is None:
             return None
         return fmt.replace("$1", identifier)
@@ -369,17 +379,18 @@ class Resource(BaseModel):
         >>> get_resource("go").get_default_format()
         'http://amigo.geneontology.org/amigo/term/GO:$1'
         """
-        if self.url:
+        if self.url is not None:
             return self.url
-        rv = self.get_external("miriam").get("provider_url")
-        if rv is not None:
-            return rv
-        rv = self.get_external("prefixcommons").get("formatter")
-        if rv is not None:
-            return rv
-        rv = self.get_external("wikidata").get("format")
-        if rv is not None:
-            return rv
+        for metaprefix, key in [
+            ("miriam", "provider_url"),
+            ("n2t", "provider_url"),
+            ("go", "formatter"),
+            ("prefixcommons", "formatter"),
+            ("wikidata", "format"),
+        ]:
+            rv = self.get_external(metaprefix).get(key)
+            if rv is not None and "identifiers.org" not in rv:
+                return rv
         return None
 
     def get_synonyms(self) -> Set[str]:
@@ -758,6 +769,16 @@ class Resource(BaseModel):
             return None
         return fmt[: -len("$1")]
 
+    def get_extra_providers(self) -> List[Provider]:
+        """Get a list of all extra providers."""
+        rv = []
+        if self.providers is not None:
+            rv.extend(self.providers)
+        if self.miriam:
+            for p in self.miriam.get("providers", []):
+                rv.append(Provider(**p))
+        return rv
+
 
 class Registry(BaseModel):
     """Metadata about a registry."""
@@ -909,6 +930,7 @@ def get_json_schema():
             [
                 Author,
                 Collection,
+                Provider,
                 Resource,
                 Registry,
             ],

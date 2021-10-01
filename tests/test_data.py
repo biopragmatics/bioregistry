@@ -5,8 +5,10 @@
 import logging
 import unittest
 from collections import defaultdict
+from typing import Mapping
 
 import bioregistry
+from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.resolve import get_external
 from bioregistry.schema.utils import EMAIL_RE
@@ -62,6 +64,7 @@ class TestRegistry(unittest.TestCase):
             "proprietary",
             "has_canonical",
             "preferred_prefix",
+            "providers",
         }
         keys.update(bioregistry.read_metaregistry())
         for prefix, entry in self.registry.items():
@@ -369,6 +372,25 @@ class TestRegistry(unittest.TestCase):
 
             x[iri] = parts, unmapped, canonical_target, all_targets
         self.assertEqual({}, x)
+
+    def test_default_prefix_map_no_miriam(self):
+        """Test no identifiers.org URI prefixes get put in the prefix map."""
+        self.assert_no_idot(bioregistry.get_prefix_map())
+        # self.assert_no_idot(bioregistry.get_prefix_map(include_synonyms=True))
+
+    def test_obo_prefix_map_no_miriam(self):
+        """Test no identifiers.org URI prefixes get put in the OBO prefix map."""
+        self.assert_no_idot(get_obofoundry_prefix_map())
+        # self.assert_no_idot(get_obofoundry_prefix_map(include_synonyms=True))
+
+    def assert_no_idot(self, prefix_map: Mapping[str, str]) -> None:
+        """Assert none of the URI prefixes have identifiers.org in them."""
+        for prefix, uri_prefix in prefix_map.items():
+            if prefix in {"idoo", "miriam.collection", "mir", "identifiers.namespace"}:
+                # allow identifiers.org namespaces since this actually should be here
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertNotIn("identifiers.org", uri_prefix, msg=uri_prefix)
 
     def test_preferred_prefix(self):
         """Test the preferred prefix matches the normalized prefix."""
