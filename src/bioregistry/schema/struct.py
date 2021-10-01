@@ -81,6 +81,10 @@ class Provider(BaseModel):
         ..., description="The URL format string, which must have at least one ``$1`` in it"
     )
 
+    def resolve(self, identifier: str) -> str:
+        """Resolve the identifier into a URL."""
+        return self.url.replace("$1", identifier)
+
 
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
@@ -774,6 +778,14 @@ class Resource(BaseModel):
             logging.debug("formatter does not end with $1: %s", self.name)
             return None
         return fmt[: -len("$1")]
+
+    def get_extra_providers(self) -> List[Provider]:
+        """Get a list of all extra providers."""
+        # TODO include identifiers.org import
+        rv = []
+        if self.providers is not None:
+            rv.extend(self.providers)
+        return rv
 
 
 class Registry(BaseModel):
