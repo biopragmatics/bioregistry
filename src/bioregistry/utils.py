@@ -36,6 +36,11 @@ def read_metaregistry() -> Mapping[str, Registry]:
 @lru_cache(maxsize=1)
 def read_registry() -> Mapping[str, Resource]:
     """Read the Bioregistry as JSON."""
+    return read_registry_helper()
+
+
+def read_registry_helper() -> Mapping[str, Resource]:
+    """Read the Bioregistry as JSON, but don't cache."""
     with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
         data = json.load(file)
     return {key: Resource(**value) for key, value in data.items()}
