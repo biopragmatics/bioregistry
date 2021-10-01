@@ -160,7 +160,7 @@ assert ('chebi', '1234') == parse_curie('chebi:1234')
 assert ('pubchem.compound', '1234') == parse_curie('pubchem:1234')
 
 # Normalize mixed case prefixes
-assert ('fbbt', '1234') == parse_curie('FBbt:1234')
+assert ('fbbt', '00007294') == parse_curie('FBbt:00007294')
 
 # Remove the redundant prefix and normalize
 assert ('go', '1234') == parse_curie('GO:GO:1234')

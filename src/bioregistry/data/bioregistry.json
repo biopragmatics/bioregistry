@@ -12626,6 +12626,7 @@
       "is_obo": true,
       "prefix": "FBbt"
     },
+    "url": "https://flybase.org/cgi-bin/cvreport.pl?id=FBbt:$1",
     "synonyms": [
       "FBbt_root",
       "FBbt"
@@ -16811,6 +16812,7 @@
   },
   "hgnc.genefamily": {
     "example": "2029",
+    "has_canonical": "hgnc.genegroup",
     "homepage": "http://www.genenames.org",
     "mappings": {
       "miriam": "hgnc.family",
@@ -23970,31 +23972,10 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "MMMP:BIOMAPS"
-    }
-  },
-  "mmmp:biomaps": {
-    "mappings": {
-      "miriam": "mmmp:biomaps",
-      "prefixcommons": "MMMP:BIOMAPS"
     },
-    "miriam": {
-      "deprecated": false,
-      "description": "A collection of molecular interaction maps and pathways involved in cancer development and progression with a focus on melanoma.",
-      "homepage": "http://www.mmmp.org/MMMP/public/biomap/listBiomap.mmmp",
-      "id": "00000075",
-      "name": "Melanoma Molecular Map Project Biomaps",
-      "namespaceEmbeddedInLui": false,
-      "pattern": "^\\d+$",
-      "prefix": "mmmp:biomaps",
-      "provider_url": "http://www.mmmp.org/MMMP/public/biomap/viewBiomap.mmmp?id=$1",
-      "sampleId": "37"
-    },
-    "prefixcommons": {
-      "formatter": "http://identifiers.org/mmmp:biomaps/$1",
-      "is_identifiers": true,
-      "is_obo": false,
-      "prefix": "MMMP:BIOMAPS"
-    }
+    "synonyms": [
+      "mmmp:biomaps"
+    ]
   },
   "mmo": {
     "bioportal": {
@@ -31937,7 +31918,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "PMP"
-    }
+    },
+    "provides": "uniprot"
   },
   "po": {
     "bioportal": {
@@ -39847,6 +39829,7 @@
       "name": "Unipathway",
       "prefix": "UPA"
     },
+    "deprecated": true,
     "download_obo": "https://raw.githubusercontent.com/geneontology/unipathway/master/upa.obo",
     "example": "UCR00513",
     "go": {
@@ -41086,6 +41069,7 @@
       "prefix": "WBLS",
       "url": "http://www.ontobee.org/ontology/WBLS"
     },
+    "part_of": "wormbase",
     "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/WBLS_$1",
@@ -41147,6 +41131,7 @@
       "prefix": "WBPhenotype",
       "url": "http://www.ontobee.org/ontology/WBPhenotype"
     },
+    "part_of": "wormbase",
     "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/WBPhenotype_$1",

@@ -308,12 +308,12 @@ def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
 
     Redundant prefix (banana; OBO)
 
-    >>> get_bioregistry_iri('fbbt', 'FBbt:1234')
-    'https://bioregistry.io/fbbt:1234'
-    >>> get_bioregistry_iri('fbbt', 'fbbt:1234')
-    'https://bioregistry.io/fbbt:1234'
-    >>> get_bioregistry_iri('fbbt', '1234')
-    'https://bioregistry.io/fbbt:1234'
+    >>> get_bioregistry_iri('fbbt', 'fbbt:00007294')
+    'https://bioregistry.io/fbbt:00007294'
+    >>> get_bioregistry_iri('fbbt', 'fbbt:00007294')
+    'https://bioregistry.io/fbbt:00007294'
+    >>> get_bioregistry_iri('fbbt', '00007294')
+    'https://bioregistry.io/fbbt:00007294'
 
     Redundant prefix (banana; explicit)
     >>> get_bioregistry_iri('go.ref', 'GO_REF:1234')
@@ -396,8 +396,8 @@ def get_iri(
     >>> prefix_map = {"chebi": "https://example.org/chebi/"}
     >>> get_iri("chebi:24867", prefix_map=prefix_map)
     'https://example.org/chebi/24867'
-    >>> get_iri("fbbt:1234")
-    'http://purl.obolibrary.org/obo/FBbt_1234'
+    >>> get_iri("fbbt:00007294")
+    'https://flybase.org/cgi-bin/cvreport.pl?id=FBbt:00007294'
 
     A custom prefix map can be supplied in combination with a priority list
     >>> prefix_map = {"lipidmaps": "https://example.org/lipidmaps/"}
