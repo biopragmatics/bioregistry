@@ -81,6 +81,45 @@
         "authors"
       ]
     },
+    "Provider": {
+      "title": "Provider",
+      "description": "A provider.",
+      "type": "object",
+      "properties": {
+        "code": {
+          "title": "Code",
+          "description": "A locally unique code within the prefix for the provider",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "description": "Name of the provider",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "description": "Description of the provider",
+          "type": "string"
+        },
+        "homepage": {
+          "title": "Homepage",
+          "description": "Homepage of the provider",
+          "type": "string"
+        },
+        "url": {
+          "title": "Url",
+          "description": "The URL format string, which must have at least one ``$1`` in it",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "name",
+        "description",
+        "homepage",
+        "url"
+      ]
+    },
     "Resource": {
       "title": "Resource",
       "description": "Metadata about an ontology, database, or other resource.",
@@ -105,6 +144,14 @@
           "title": "Format URL",
           "description": "The URL format string, which must have at least one ``$1`` in it",
           "type": "string"
+        },
+        "providers": {
+          "title": "Providers",
+          "description": "Additional, non-default providers for the resource",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Provider"
+          }
         },
         "homepage": {
           "title": "Format URL",
