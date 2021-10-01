@@ -47,24 +47,50 @@ def _process(record):
         "description": record["description"],
         "pattern": record["pattern"],
     }
-    resources = record.get("resources", [])
+    resources = [
+        _preprocess_resource(resource)
+        for resource in record.get("resources", [])
+        if not resource.get("deprecated")
+    ]
+    if not resources:
+        return rv
+
     has_official = any(resource["official"] for resource in resources)
     if has_official:
-        for resource in resources:
-            if not resource["official"]:
-                continue
-            rv["homepage"] = resource["resourceHomeUrl"]
-            rv["provider_url"] = resource["urlPattern"].replace("{$id}", "$1")
-            break
+        primary = next(resource for resource in resources if resource["official"])
+        rest = [resource for resource in resources if not resource["official"]]
     else:
-        for resource in resources:
-            homepage = resource.get("resourceHomeUrl")
-            if homepage:
-                rv["homepage"] = homepage
-            url = resource.get("urlPattern")
-            if url:
-                rv["provider_url"] = url.replace("{$id}", "$1")
+        primary, *rest = resources
+    rv["homepage"] = primary["homepage"]
+    rv["provider_url"] = primary["url"]
+
+    extras = []
+    for provider in rest:
+        if provider["code"] in SKIP_PROVIDERS:
+            continue
+        del provider["official"]
+        extras.append(provider)
+    if extras:
+        rv["providers"] = extras
     return rv
+
+
+#: These provider codes are handled by the Bioregistry's metaregistry
+SKIP_PROVIDERS = {
+    "ols",
+    "bptl",
+}
+
+
+def _preprocess_resource(resource):
+    return {
+        "official": resource["official"],
+        "homepage": resource["resourceHomeUrl"],
+        "code": resource["providerCode"],
+        "url": resource["urlPattern"].replace("{$id}", "$1"),
+        "name": resource["name"],
+        "description": resource["description"],
+    }
 
 
 @click.command()

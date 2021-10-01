@@ -378,6 +378,15 @@
       "pattern": "\\d{4,}((_[asx])?_at)?",
       "prefix": "affy.probeset",
       "provider_url": "https://www.affymetrix.com/LinkServlet?probeset=$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Bio2RDF",
+          "homepage": "http://cu.affymetrix.bio2rdf.org/fct/",
+          "name": "Bio2RDF",
+          "url": "http://cu.affymetrix.bio2rdf.org/describe/?url=http://bio2rdf.org/affymetrix:$1"
+        }
+      ],
       "sampleId": "243002_at"
     },
     "n2t": {
@@ -1348,6 +1357,15 @@
       "pattern": "^[AEP]-\\w{4}-\\d+$",
       "prefix": "arrayexpress",
       "provider_url": "https://www.ebi.ac.uk/arrayexpress/experiments/$1",
+      "providers": [
+        {
+          "code": "omicsdi",
+          "description": "ArrayExpress through OmicsDI",
+          "homepage": "https://www.omicsdi.org/",
+          "name": "ArrayExpress through OmicsDI",
+          "url": "https://www.omicsdi.org/dataset/arrayexpress-repository/$1"
+        }
+      ],
       "sampleId": "E-MEXP-1712"
     },
     "n2t": {
@@ -2065,13 +2083,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The BioAssay Ontology (BAO) describes chemical biology screening assays and their results including high-throughput screening (HTS) data for the purpose of categorizing assays and data analysis.",
-      "homepage": "https://bioportal.bioontology.org/ontologies/BAO/",
+      "homepage": "http://bioportal.bioontology.org/ontologies/BAO/",
       "id": "00000597",
       "name": "BioAssay Ontology",
       "namespaceEmbeddedInLui": false,
       "pattern": "^\\d{7}$",
       "prefix": "bao",
-      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/bao/terms?obo_id=BAO:$1",
+      "provider_url": "http://bioportal.bioontology.org/ontologies/BAO/bao:BAO_$1",
       "sampleId": "0002989"
     },
     "n2t": {
@@ -3068,6 +3086,22 @@
       "pattern": "^((BIOMD|MODEL)\\d{10})|(BMID\\d{12})$",
       "prefix": "biomodels.db",
       "provider_url": "https://www.ebi.ac.uk/biomodels/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Caltech mirror",
+          "homepage": "http://biomodels.caltech.edu/",
+          "name": "Caltech mirror",
+          "url": "http://biomodels.caltech.edu/$1"
+        },
+        {
+          "code": "omicsdi",
+          "description": "BioModels through OmicsDI",
+          "homepage": "https://www.omicsdi.org/",
+          "name": "BioModels through OmicsDI",
+          "url": "https://www.omicsdi.org/dataset/biomodels/$1"
+        }
+      ],
       "sampleId": "BIOMD0000000048"
     },
     "n2t": {
@@ -3107,13 +3141,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The Kinetic Simulation Algorithm Ontology (KiSAO) is an ontology that describes simulation algorithms and methods used for biological kinetic models, and the relationships between them. This provides a means to unambiguously refer to simulation algorithms when describing a simulation experiment.",
-      "homepage": "https://www.ebi.ac.uk/ols/ontologies/kisao",
+      "homepage": "http://bioportal.bioontology.org/ontologies/KISAO",
       "id": "00000108",
       "name": "KiSAO",
       "namespaceEmbeddedInLui": false,
       "pattern": "^KISAO_\\d+$",
       "prefix": "biomodels.kisao",
-      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/kisao/terms?short_form=$1",
+      "provider_url": "http://purl.bioontology.org/ontology/KISAO/kisao:$1",
       "sampleId": "KISAO_0000057"
     },
     "n2t": {
@@ -3177,13 +3211,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The Terminology for Description of Dynamics (TEDDY) is an ontology for dynamical behaviours, observable dynamical phenomena, and control elements of bio-models and biological systems in Systems Biology and Synthetic Biology.",
-      "homepage": "https://www.ebi.ac.uk/ols/ontologies/teddy",
+      "homepage": "http://teddyontology.sourceforge.net/",
       "id": "00000107",
       "name": "TEDDY",
       "namespaceEmbeddedInLui": false,
       "pattern": "^TEDDY_\\d{7}$",
       "prefix": "biomodels.teddy",
-      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/teddy/terms?short_form=$1",
+      "provider_url": "http://purl.bioontology.org/ontology/TEDDY/$1",
       "sampleId": "TEDDY_0000066"
     },
     "n2t": {
@@ -3328,13 +3362,29 @@
     "miriam": {
       "deprecated": false,
       "description": "BioProject provides an organizational framework to access metadata about research projects and the data from the projects that are deposited into different databases. It provides information about a project’s scope, material, objectives, funding source and general relevance categories.",
-      "homepage": "https://www.ebi.ac.uk/ena/",
+      "homepage": "http://trace.ddbj.nig.ac.jp/bioproject/",
       "id": "00000349",
       "name": "BioProject",
       "namespaceEmbeddedInLui": false,
       "pattern": "^PRJ[DEN][A-Z]\\d+$",
       "prefix": "bioproject",
-      "provider_url": "https://www.ebi.ac.uk/ena/browser/view/$1",
+      "provider_url": "http://trace.ddbj.nig.ac.jp/BPSearch/bioproject?acc=$1",
+      "providers": [
+        {
+          "code": "ncbi",
+          "description": "BioProject at NCBI",
+          "homepage": "https://www.ncbi.nlm.nih.gov/bioproject",
+          "name": "BioProject at NCBI",
+          "url": "https://www.ncbi.nlm.nih.gov/bioproject?term=$1"
+        },
+        {
+          "code": "ebi",
+          "description": "BioProject at European Nucleotide Archive (ENA)",
+          "homepage": "https://www.ebi.ac.uk/ena/",
+          "name": "BioProject at European Nucleotide Archive (ENA)",
+          "url": "https://www.ebi.ac.uk/ena/browser/view/$1"
+        }
+      ],
       "sampleId": "PRJDB3"
     },
     "n2t": {
@@ -3415,6 +3465,22 @@
       "pattern": "^SAM[NED](\\w)?\\d+$",
       "prefix": "biosample",
       "provider_url": "https://www.ebi.ac.uk/biosamples/sample/$1",
+      "providers": [
+        {
+          "code": "ncbi",
+          "description": "BioSample at NCBI",
+          "homepage": "http://www.ncbi.nlm.nih.gov/biosample",
+          "name": "BioSample at NCBI",
+          "url": "http://www.ncbi.nlm.nih.gov/biosample?term=$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "BioSample at DNA Data Bank of Japan",
+          "homepage": "http://trace.ddbj.nig.ac.jp/biosample/",
+          "name": "BioSample at DNA Data Bank of Japan",
+          "url": "http://trace.ddbj.nig.ac.jp/BSSearch/biosample?acc=$1"
+        }
+      ],
       "sampleId": "SAMEA2397676"
     },
     "n2t": {
@@ -3918,13 +3984,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The Brenda tissue ontology is a structured controlled vocabulary eastablished to identify the source of an enzyme cited in the Brenda enzyme database. It comprises terms of tissues, cell lines, cell types and cell cultures from uni- and multicellular organisms.",
-      "homepage": "http://bioportal.bioontology.org/ontologies/BTO",
+      "homepage": "https://www.ebi.ac.uk/ols/ontologies/bto",
       "id": "00000111",
       "name": "Brenda Tissue Ontology",
       "namespaceEmbeddedInLui": true,
       "pattern": "^BTO:\\d{7}$",
       "prefix": "bto",
-      "provider_url": "http://purl.bioontology.org/ontology/BTO/BTO:$1",
+      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/bto/terms?obo_id=BTO:$1",
       "sampleId": "0000146"
     },
     "n2t": {
@@ -4109,6 +4175,15 @@
       "pattern": "^([A-Za-z]+)?(\\_)?([A-Za-z-]+)\\:([A-Za-z0-9 ]+)$",
       "prefix": "cabri",
       "provider_url": "http://www.cabri.org/CABRI/srs-bin/wgetz?-e+-page+EntryPage+[$1]",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "CABRI Cell Lines catalogue in Brussels (SRS)",
+          "homepage": "http://www.be.cabri.org/",
+          "name": "CABRI Cell Lines catalogue in Brussels (SRS)",
+          "url": "http://www.be.cabri.org/CABRI/srs-bin/wgetz?-e+-page+EntryPage+[$1]"
+        }
+      ],
       "sampleId": "dsmz_mutz-id:ACC 291"
     },
     "n2t": {
@@ -4320,6 +4395,15 @@
       "pattern": "^\\d{1,7}\\-\\d{2}\\-\\d$",
       "prefix": "cas",
       "provider_url": "https://commonchemistry.cas.org/detail?ref=$1",
+      "providers": [
+        {
+          "code": "scholia",
+          "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+          "homepage": "https://scholia.toolforge.org/",
+          "name": "Scholia",
+          "url": "https://scholia.toolforge.org/cas/$1"
+        }
+      ],
       "sampleId": "50-00-0"
     },
     "n2t": {
@@ -5358,6 +5442,22 @@
       "pattern": "^CHEMBL\\d+$",
       "prefix": "chembl.compound",
       "provider_url": "https://www.ebi.ac.uk/chembl/compound/inspect/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "ChEMBL compound RDF",
+          "homepage": "https://github.com/egonw/chembl.rdf",
+          "name": "ChEMBL compound RDF",
+          "url": "http://linkedchemistry.info/chembl/chemblid/$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "ChEMBL compound RDF through EBI RDF Platform",
+          "homepage": "https://www.ebi.ac.uk/rdf/services/chembl/",
+          "name": "ChEMBL compound RDF through EBI RDF Platform",
+          "url": "https://rdf.ebi.ac.uk/resource/chembl/molecule/$1"
+        }
+      ],
       "sampleId": "CHEMBL308052"
     },
     "n2t": {
@@ -5407,6 +5507,22 @@
       "pattern": "^CHEMBL\\d+$",
       "prefix": "chembl.target",
       "provider_url": "https://www.ebi.ac.uk/chembl/target/inspect/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "ChEMBL target RDF",
+          "homepage": "https://github.com/egonw/chembl.rdf",
+          "name": "ChEMBL target RDF",
+          "url": "http://linkedchemistry.info/chembl/chemblid/$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "ChEMBL target RDF through EBI RDF Platform",
+          "homepage": "https://rdf.ebi.ac.uk/resource/chembl/",
+          "name": "ChEMBL target RDF through EBI RDF Platform",
+          "url": "https://rdf.ebi.ac.uk/resource/chembl/target/$1"
+        }
+      ],
       "sampleId": "CHEMBL3467"
     },
     "n2t": {
@@ -5891,13 +6007,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The Cell Ontology is designed as a structured controlled vocabulary for cell types. The ontology was constructed for use by the model organism and other bioinformatics databases, incorporating cell types from prokaryotes to mammals, and includes plants and fungi.",
-      "homepage": "http://bioportal.bioontology.org/ontologies/CL",
+      "homepage": "https://www.ebi.ac.uk/ols/ontologies/cl",
       "id": "00000110",
       "name": "Cell Type Ontology",
       "namespaceEmbeddedInLui": true,
       "pattern": "^CL:\\d{7}$",
       "prefix": "cl",
-      "provider_url": "http://purl.bioontology.org/ontology/CL/CL:$1",
+      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/cl/terms?obo_id=CL:$1",
       "sampleId": "0000232"
     },
     "n2t": {
@@ -8419,13 +8535,29 @@
     "miriam": {
       "deprecated": false,
       "description": "The dbEST contains sequence data and other information on \"single-pass\" cDNA sequences, or \"Expressed Sequence Tags\", from a number of organisms.",
-      "homepage": "http://www.ddbj.nig.ac.jp/",
+      "homepage": "https://www.ncbi.nlm.nih.gov/nucest",
       "id": "00000159",
       "name": "dbEST",
       "namespaceEmbeddedInLui": false,
       "pattern": "^([A-Z]+)?\\d+(\\.\\d+)?$",
       "prefix": "dbest",
-      "provider_url": "http://getentry.ddbj.nig.ac.jp/getentry/na/$1",
+      "provider_url": "https://www.ncbi.nlm.nih.gov/nucest/$1",
+      "providers": [
+        {
+          "code": "ebi",
+          "description": "dbEST through European Nucleotide Archive (ENA)",
+          "homepage": "https://www.ebi.ac.uk/ena",
+          "name": "dbEST through European Nucleotide Archive (ENA)",
+          "url": "https://www.ebi.ac.uk/ena/data/view/$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "dbEST through DNA Data Bank of Japan (DDBJ)",
+          "homepage": "http://www.ddbj.nig.ac.jp/",
+          "name": "dbEST through DNA Data Bank of Japan (DDBJ)",
+          "url": "http://getentry.ddbj.nig.ac.jp/getentry/na/$1"
+        }
+      ],
       "sampleId": "BP100000"
     },
     "n2t": {
@@ -8608,13 +8740,22 @@
     "miriam": {
       "deprecated": false,
       "description": "The dbSNP database is a repository for both single base nucleotide subsitutions and short deletion and insertion polymorphisms.",
-      "homepage": "https://ccg.epfl.ch/snp2tfbs/",
+      "homepage": "https://www.ncbi.nlm.nih.gov/snp/",
       "id": "00000161",
       "name": "dbSNP",
       "namespaceEmbeddedInLui": false,
       "pattern": "^rs\\d+$",
       "prefix": "dbsnp",
-      "provider_url": "https://ccg.epfl.ch/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=$1",
+      "provider_url": "https://www.ncbi.nlm.nih.gov/snp/$1",
+      "providers": [
+        {
+          "code": "sib",
+          "description": "SNP2TFBS",
+          "homepage": "https://ccg.epfl.ch/snp2tfbs/",
+          "name": "SNP2TFBS",
+          "url": "https://ccg.epfl.ch/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=$1"
+        }
+      ],
       "sampleId": "rs121909098"
     },
     "n2t": {
@@ -9524,6 +9665,15 @@
       "pattern": "^(doi\\:)?\\d{2}\\.\\d{4}.*$",
       "prefix": "doi",
       "provider_url": "https://doi.org/$1",
+      "providers": [
+        {
+          "code": "scholia",
+          "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+          "homepage": "https://scholia.toolforge.org/",
+          "name": "Scholia",
+          "url": "https://scholia.toolforge.org/doi/$1"
+        }
+      ],
       "sampleId": "10.1038/nbt1156"
     },
     "n2t": {
@@ -9570,6 +9720,15 @@
       "pattern": "^DOID:\\d+$",
       "prefix": "doid",
       "provider_url": "https://www.ebi.ac.uk/ols/ontologies/doid/terms?obo_id=DOID:$1",
+      "providers": [
+        {
+          "code": "hdo",
+          "description": "Human Disease Ontology at Northwestern University",
+          "homepage": "http://disease-ontology.org/",
+          "name": "Human Disease Ontology at Northwestern University",
+          "url": "http://disease-ontology.org/term/DOID:$1"
+        }
+      ],
       "sampleId": "11337"
     },
     "n2t": {
@@ -10392,13 +10551,43 @@
     "miriam": {
       "deprecated": false,
       "description": "The Enzyme Classification contains the recommendations of the Nomenclature Committee of the International Union of Biochemistry and Molecular Biology on the nomenclature and classification of enzyme-catalysed reactions.",
-      "homepage": "https://enzyme.expasy.org/",
+      "homepage": "https://www.ebi.ac.uk/intenz/",
       "id": "00000004",
       "name": "Enzyme Nomenclature",
       "namespaceEmbeddedInLui": false,
       "pattern": "^\\d+\\.-\\.-\\.-|\\d+\\.\\d+\\.-\\.-|\\d+\\.\\d+\\.\\d+\\.-|\\d+\\.\\d+\\.\\d+\\.(n)?\\d+$",
       "prefix": "ec-code",
-      "provider_url": "https://enzyme.expasy.org/EC/$1",
+      "provider_url": "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "KEGG Ligand Database for Enzyme Nomenclature",
+          "homepage": "https://www.genome.jp/dbget-bin/www_bfind?enzyme",
+          "name": "KEGG Ligand Database for Enzyme Nomenclature",
+          "url": "https://www.genome.jp/dbget-bin/www_bget?ec:$1"
+        },
+        {
+          "code": "expenz",
+          "description": "ExploreEnz at Trinity College",
+          "homepage": "http://www.enzyme-database.org/",
+          "name": "ExploreEnz at Trinity College",
+          "url": "http://www.enzyme-database.org/query.php?ec=$1"
+        },
+        {
+          "code": "enzymeportal",
+          "description": "Enzyme Portal through EMBL-EBI",
+          "homepage": "https://www.ebi.ac.uk/enzymeportal",
+          "name": "Enzyme Portal through EMBL-EBI",
+          "url": "https://www.ebi.ac.uk/enzymeportal/ec/$1"
+        },
+        {
+          "code": "expasy",
+          "description": "Enzyme nomenclature database, ExPASy (Expert Protein Analysis System)",
+          "homepage": "https://enzyme.expasy.org/",
+          "name": "Enzyme nomenclature database, ExPASy (Expert Protein Analysis System)",
+          "url": "https://enzyme.expasy.org/EC/$1"
+        }
+      ],
       "sampleId": "1.1.1.1"
     },
     "n2t": {
@@ -10538,13 +10727,13 @@
     "miriam": {
       "deprecated": false,
       "description": "Evidence codes can be used to specify the type of supporting evidence for a piece of knowledge. This allows inference of a 'level of support' between an entity and an annotation made to an entity.",
-      "homepage": "http://bioportal.bioontology.org/ontologies/ECO",
+      "homepage": "https://www.ebi.ac.uk/ols/ontologies/eco",
       "id": "00000055",
       "name": "Evidence Code Ontology",
       "namespaceEmbeddedInLui": true,
       "pattern": "ECO:\\d{7}$",
       "prefix": "eco",
-      "provider_url": "http://purl.bioontology.org/ontology/ECO/ECO:$1",
+      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/eco/terms?obo_id=ECO:$1",
       "sampleId": "0000006"
     },
     "n2t": {
@@ -10943,13 +11132,13 @@
     "miriam": {
       "deprecated": false,
       "description": "EDAM is an ontology of general bioinformatics concepts, including topics, data types, formats, identifiers and operations. EDAM provides a controlled vocabulary for the description, in semantic terms, of things such as: web services (e.g. WSDL files), applications, tool collections and packages, work-benches and workflow software, databases and ontologies, XSD data schema and data objects, data syntax and file formats, web portals and pages, resource catalogues and documents (such as scientific publications).",
-      "homepage": "https://www.ebi.ac.uk/ols/ontologies/edam",
+      "homepage": "http://bioportal.bioontology.org/ontologies/EDAM",
       "id": "00000189",
       "name": "EDAM Ontology",
       "namespaceEmbeddedInLui": false,
       "pattern": "^(data|topic|operation|format)\\_\\d{4}$",
       "prefix": "edam",
-      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/edam/terms?short_form=$1",
+      "provider_url": "http://purl.bioontology.org/ontology/EDAM/$1",
       "sampleId": "data_1664"
     },
     "n2t": {
@@ -11017,13 +11206,22 @@
     "miriam": {
       "deprecated": false,
       "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases. It combines parts of several biological ontologies, such as anatomy, disease and chemical compounds. The scope of EFO is to support the annotation, analysis and visualization of data handled by the EBI Functional Genomics Team.",
-      "homepage": "https://www.ebi.ac.uk/efo/",
+      "homepage": "https://www.ebi.ac.uk/ols/ontologies/efo",
       "id": "00000391",
       "name": "Experimental Factor Ontology",
       "namespaceEmbeddedInLui": false,
       "pattern": "^\\d{7}$",
       "prefix": "efo",
-      "provider_url": "https://www.ebi.ac.uk/efo/EFO_$1",
+      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/efo/terms?obo_id=EFO:$1",
+      "providers": [
+        {
+          "code": "ebi",
+          "description": "EFO through Functional Genomics Group (EBI)",
+          "homepage": "https://www.ebi.ac.uk/efo/",
+          "name": "EFO through Functional Genomics Group (EBI)",
+          "url": "https://www.ebi.ac.uk/efo/EFO_$1"
+        }
+      ],
       "sampleId": "0004859"
     },
     "n2t": {
@@ -11081,6 +11279,15 @@
       "pattern": "^EGAD\\d{11}$",
       "prefix": "ega.dataset",
       "provider_url": "https://www.ebi.ac.uk/ega/datasets/$1",
+      "providers": [
+        {
+          "code": "omicsdi",
+          "description": "EGA Dataset through OmicsDI",
+          "homepage": "https://www.omicsdi.org/",
+          "name": "EGA Dataset through OmicsDI",
+          "url": "https://www.omicsdi.org/dataset/ega/$1"
+        }
+      ],
       "sampleId": "EGAD00000000001"
     },
     "n2t": {
@@ -11116,6 +11323,15 @@
       "pattern": "^EGAS\\d{11}$",
       "prefix": "ega.study",
       "provider_url": "https://www.ebi.ac.uk/ega/studies/$1",
+      "providers": [
+        {
+          "code": "omicsdi",
+          "description": "EGA Study through OmicsDI",
+          "homepage": "https://www.omicsdi.org/",
+          "name": "EGA Study through OmicsDI",
+          "url": "https://www.omicsdi.org/dataset/ega/$1"
+        }
+      ],
       "sampleId": "EGAS00000000001"
     },
     "n2t": {
@@ -11497,6 +11713,15 @@
       "pattern": "^[A-Z]+[0-9]+(\\.\\d+)?$",
       "prefix": "ena.embl",
       "provider_url": "https://www.ebi.ac.uk/ena/browser/view/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "ENA through GenBank",
+          "homepage": "https://www.ncbi.nlm.nih.gov/Genbank/",
+          "name": "ENA through GenBank",
+          "url": "https://www.ncbi.nlm.nih.gov/nuccore/$1"
+        }
+      ],
       "sampleId": "BN000065"
     },
     "n2t": {
@@ -11614,6 +11839,29 @@
       "pattern": "^((ENS[FPTG]\\\\d{11}(\\\\.\\\\d+)?)|(FB\\\\w{2}\\\\d{7})|(Y[A-Z]{2}\\\\d{3}[a-zA-Z](\\\\-[A-Z])?)|([A-Z_a-z0-9]+(\\\\.)?(t)?(\\\\d+)?([a-z])?))$",
       "prefix": "ensembl",
       "provider_url": "https://www.ensembl.org/id/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Ensembl US West mirror",
+          "homepage": "http://uswest.ensembl.org/",
+          "name": "Ensembl US West mirror",
+          "url": "http://uswest.ensembl.org/id/$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Ensembl US East mirror",
+          "homepage": "http://useast.ensembl.org/",
+          "name": "Ensembl US East mirror",
+          "url": "http://useast.ensembl.org/id/$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Ensembl Asia mirror",
+          "homepage": "http://asia.ensembl.org/",
+          "name": "Ensembl Asia mirror",
+          "url": "http://asia.ensembl.org/id/$1"
+        }
+      ],
       "sampleId": "ENSG00000139618"
     },
     "n2t": {
@@ -11929,13 +12177,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The Environment Ontology is a resource and research target for the semantically controlled description of environmental entities. The ontology's initial aim was the representation of the biomes, environmental features, and environmental materials pertinent to genomic and microbiome-related investigations.",
-      "homepage": "http://purl.bioontology.org/ontology/ENVO/",
+      "homepage": "https://www.ebi.ac.uk/ols/ontologies/envo",
       "id": "00000591",
       "name": "Environment Ontology",
       "namespaceEmbeddedInLui": true,
       "pattern": "^ENVO:\\d{7,8}$",
       "prefix": "envo",
-      "provider_url": "http://purl.bioontology.org/ontology/ENVO/ENVO:$1",
+      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/envo/terms?obo_id=ENVO:$1",
       "sampleId": "09200010"
     },
     "n2t": {
@@ -13210,13 +13458,29 @@
     "miriam": {
       "deprecated": false,
       "description": "FlyBase is the database of the Drosophila Genome Projects and of associated literature.",
-      "homepage": "https://www.alliancegenome.org",
+      "homepage": "http://flybase.org/",
       "id": "00000030",
       "name": "FlyBase",
       "namespaceEmbeddedInLui": false,
       "pattern": "^FB\\w{2}\\d{7}$",
       "prefix": "fb",
-      "provider_url": "https://www.alliancegenome.org/gene/FB:$1",
+      "provider_url": "http://flybase.org/reports/$1.html",
+      "providers": [
+        {
+          "code": "bioentitylink",
+          "description": "FlyBase through BioEntity Link",
+          "homepage": "https://bioentity.link/",
+          "name": "FlyBase through BioEntity Link",
+          "url": "https://bioentity.link/#/lexicon/public/$1"
+        },
+        {
+          "code": "agr",
+          "description": "FlyBase through the Alliance of Genome Resources",
+          "homepage": "https://www.alliancegenome.org",
+          "name": "FlyBase through the Alliance of Genome Resources",
+          "url": "https://www.alliancegenome.org/gene/FB:$1"
+        }
+      ],
       "sampleId": "FBgn0011293"
     },
     "n2t": {
@@ -13290,13 +13554,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The Foundational Model of Anatomy Ontology (FMA) is a biomedical informatics ontology. It is concerned with the representation of classes or types and relationships necessary for the symbolic representation of the phenotypic structure of the human body.  Specifically, the FMA is a domain ontology that represents a coherent body of explicit declarative knowledge about human anatomy.",
-      "homepage": "http://bioportal.bioontology.org/ontologies/FMA",
+      "homepage": "https://www.ebi.ac.uk/ols/ontologies/fma/",
       "id": "00000067",
       "name": "FMA",
       "namespaceEmbeddedInLui": true,
       "pattern": "^FMA:\\d+$",
       "prefix": "fma",
-      "provider_url": "http://purl.bioontology.org/ontology/FMA_subset/FMA:$1",
+      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/fma/terms?obo_id=FMA:$1",
       "sampleId": "67112"
     },
     "n2t": {
@@ -15450,6 +15714,29 @@
       "pattern": "^GO:\\d{7}$",
       "prefix": "go",
       "provider_url": "http://amigo.geneontology.org/amigo/term/GO:$1",
+      "providers": [
+        {
+          "code": "quickgo",
+          "description": "QuickGO (Gene Ontology browser)",
+          "homepage": "https://www.ebi.ac.uk/QuickGO/",
+          "name": "QuickGO (Gene Ontology browser)",
+          "url": "https://www.ebi.ac.uk/QuickGO/GTerm?id=GO:$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "GO Browser",
+          "homepage": "http://www.informatics.jax.org/searches/GO_form.shtml",
+          "name": "GO Browser",
+          "url": "http://www.informatics.jax.org/searches/GO.cgi?id=GO:$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "GO through PANTHER",
+          "homepage": "http://www.pantherdb.org/",
+          "name": "GO through PANTHER",
+          "url": "http://www.pantherdb.org/panther/category.do?categoryAcc=GO:$1"
+        }
+      ],
       "sampleId": "0006915"
     },
     "n2t": {
@@ -15860,6 +16147,15 @@
       "pattern": "^GPM\\d+$",
       "prefix": "gpmdb",
       "provider_url": "http://gpmdb.thegpm.org/~/dblist_gpmnum/gpmnum=$1",
+      "providers": [
+        {
+          "code": "omicsdi",
+          "description": "GPMDB through OmicsDI",
+          "homepage": "https://www.omicsdi.org/",
+          "name": "GPMDB through OmicsDI",
+          "url": "https://www.omicsdi.org/dataset/gpmdb/$1"
+        }
+      ],
       "sampleId": "GPM32310002988"
     },
     "n2t": {
@@ -16570,6 +16866,15 @@
       "pattern": "^[AEP]-\\w{4}-\\d+$",
       "prefix": "gxa.expt",
       "provider_url": "https://www.ebi.ac.uk/gxa/experiments/$1",
+      "providers": [
+        {
+          "code": "omicsdi",
+          "description": "GXA Expt through OmicsDI",
+          "homepage": "https://www.omicsdi.org/",
+          "name": "GXA Expt through OmicsDI",
+          "url": "https://www.omicsdi.org/dataset/atlas-experiments/$1"
+        }
+      ],
       "sampleId": "E-MTAB-2037"
     },
     "n2t": {
@@ -17027,13 +17332,11 @@
     "miriam": {
       "deprecated": true,
       "description": "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene. All approved symbols are stored in the HGNC database, and each symbol is unique. In addition, HGNC also provides symbols for both structural and functional gene families. This collection refers to records using the HGNC family symbol.",
-      "homepage": "https://www.genenames.org/",
       "id": "00000520",
       "name": "HGNC Family",
       "namespaceEmbeddedInLui": false,
       "pattern": "^[A-Z0-9-]+(#[A-Z0-9-]+)?$",
       "prefix": "hgnc.family",
-      "provider_url": "https://registry.identifiers.org/deprecation/resources/MIR:00100671/$1",
       "sampleId": "PADI"
     },
     "n2t": {
@@ -17460,6 +17763,15 @@
       "pattern": "^\\d+$",
       "prefix": "homologene",
       "provider_url": "https://www.ncbi.nlm.nih.gov/homologene/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Bio2RDF",
+          "homepage": "http://homologene.bio2rdf.org/fct",
+          "name": "Bio2RDF",
+          "url": "http://homologene.bio2rdf.org/describe/?url=http://bio2rdf.org/homologene:$1"
+        }
+      ],
       "sampleId": "1000"
     },
     "n2t": {
@@ -17939,13 +18251,22 @@
     "miriam": {
       "deprecated": false,
       "description": "HSSP (homology-derived structures of proteins) is a derived database merging structural (2-D and 3-D) and sequence information (1-D). For each protein of known 3D structure from the Protein Data Bank, the database has a file with all sequence homologues, properly aligned to the PDB protein.",
-      "homepage": "ftp://ftp.cmbi.ru.nl/pub/molbio/data/hssp/",
+      "homepage": "http://swift.cmbi.kun.nl/swift/hssp/",
       "id": "00000215",
       "name": "HSSP",
       "namespaceEmbeddedInLui": false,
       "pattern": "^\\w{4}$",
       "prefix": "hssp",
-      "provider_url": "ftp://ftp.cmbi.ru.nl/pub/molbio/data/hssp/$1.hssp.bz2",
+      "provider_url": "ftp://ftp.embl-heidelberg.de/pub/databases/protein_extras/hssp/$1.hssp.bz2",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "HSSP at CMBI",
+          "homepage": "ftp://ftp.cmbi.ru.nl/pub/molbio/data/hssp/",
+          "name": "HSSP at CMBI",
+          "url": "ftp://ftp.cmbi.ru.nl/pub/molbio/data/hssp/$1.hssp.bz2"
+        }
+      ],
       "sampleId": "102l"
     },
     "n2t": {
@@ -18836,13 +19157,22 @@
     "miriam": {
       "deprecated": false,
       "description": "The International Molecular Exchange (IMEx) is a consortium of molecular interaction databases which collaborate to share manual curation efforts and provide accessibility to multiple information sources.",
-      "homepage": "https://www.ebi.ac.uk/intact/",
+      "homepage": "https://www.imexconsortium.org/",
       "id": "00000122",
       "name": "IMEx",
       "namespaceEmbeddedInLui": false,
       "pattern": "^IM-\\d+(-?)(\\d+?)$",
       "prefix": "imex",
-      "provider_url": "https://imexcentral.org/icentral/imex/rec/$1",
+      "provider_url": "https://www.ebi.ac.uk/intact/imex/main.xhtml?query=$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "IMEx Consortium though Intact",
+          "homepage": "https://www.ebi.ac.uk/intact/",
+          "name": "IMEx Consortium though Intact",
+          "url": "https://imexcentral.org/icentral/imex/rec/$1"
+        }
+      ],
       "sampleId": "IM-19210-3"
     },
     "n2t": {
@@ -19016,6 +19346,15 @@
       "pattern": "^M\\d+$",
       "prefix": "imgt.ligm",
       "provider_url": "http://www.imgt.org/ligmdb/view?id=$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "IMGT LIGM through DKFZ (SRS)",
+          "homepage": "http://genius.embnet.dkfz-heidelberg.de/",
+          "name": "IMGT LIGM through DKFZ (SRS)",
+          "url": "http://genius.embnet.dkfz-heidelberg.de/menu/cgi-bin/srs7.1.3.1/wgetz?-id+4ktAl1fNMTA+-e+[IMGT:'$1']"
+        }
+      ],
       "sampleId": "M94112"
     },
     "n2t": {
@@ -19071,13 +19410,36 @@
     "miriam": {
       "deprecated": false,
       "description": "The IUPAC International Chemical Identifier (InChI) is a non-proprietary identifier for chemical substances that can be used in printed and electronic data sources. It is derived solely from a structural representation of that substance, such that a single compound always yields the same identifier.",
-      "homepage": "http://rdf.openmolecules.net/",
+      "homepage": "http://www.chemspider.com/",
       "id": "00000383",
       "name": "InChI",
       "namespaceEmbeddedInLui": false,
       "pattern": "^InChI\\=1S?\\/[A-Za-z0-9\\.]+(\\+[0-9]+)?(\\/[cnpqbtmsih][A-Za-z0-9\\-\\+\\(\\)\\,\\/\\?\\;\\.]+)*$",
       "prefix": "inchi",
-      "provider_url": "http://rdf.openmolecules.net/?$1",
+      "provider_url": "http://www.chemspider.com/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "InChI through NIST",
+          "homepage": "http://webbook.nist.gov/chemistry",
+          "name": "InChI through NIST",
+          "url": "http://webbook.nist.gov/cgi/cbook.cgi?$1"
+        },
+        {
+          "code": "ebi",
+          "description": "InChI through ChEBI",
+          "homepage": "https://www.ebi.ac.uk/chebi/",
+          "name": "InChI through ChEBI",
+          "url": "https://www.ebi.ac.uk/chebi/advancedSearchFT.do?searchString=$1"
+        },
+        {
+          "code": "um",
+          "description": "InChI through RDF Open Molecules",
+          "homepage": "http://rdf.openmolecules.net/",
+          "name": "InChI through RDF Open Molecules",
+          "url": "http://rdf.openmolecules.net/?$1"
+        }
+      ],
       "sampleId": "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3"
     },
     "n2t": {
@@ -19117,6 +19479,15 @@
       "pattern": "^[A-Z]{14}\\-[A-Z]{10}(\\-[A-Z])?",
       "prefix": "inchikey",
       "provider_url": "http://www.chemspider.com/inchikey=$1",
+      "providers": [
+        {
+          "code": "scholia",
+          "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+          "homepage": "https://scholia.toolforge.org/",
+          "name": "Scholia",
+          "url": "https://scholia.toolforge.org/inchikey/$1"
+        }
+      ],
       "sampleId": "RYYVLZVUVIJVGH-UHFFFAOYSA-N"
     },
     "n2t": {
@@ -19207,13 +19578,36 @@
     "miriam": {
       "deprecated": false,
       "description": "The International Nucleotide Sequence Database Collaboration (INSDC) consists of a joint effort to collect and disseminate databases containing DNA and RNA sequences.",
-      "homepage": "https://www.ncbi.nlm.nih.gov/nuccore/",
+      "homepage": "https://www.ncbi.nlm.nih.gov/Genbank/",
       "id": "00000029",
       "name": "Nucleotide Sequence Database",
       "namespaceEmbeddedInLui": false,
       "pattern": "^([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4}\\d{8}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$",
       "prefix": "insdc",
       "provider_url": "https://www.ncbi.nlm.nih.gov/nuccore/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "INSDC through DDBJ",
+          "homepage": "http://www.ddbj.nig.ac.jp/",
+          "name": "INSDC through DDBJ",
+          "url": "http://getentry.ddbj.nig.ac.jp/getentry?database=ddbj&accession_number=$1"
+        },
+        {
+          "code": "ebi",
+          "description": "INSDC through European Nucleotide Archive (ENA)",
+          "homepage": "https://www.ebi.ac.uk/ena/",
+          "name": "INSDC through European Nucleotide Archive (ENA)",
+          "url": "https://www.ebi.ac.uk/ena/data/view/$1"
+        },
+        {
+          "code": "ncbi",
+          "description": "INSDC through Nucleotide database at NCBI",
+          "homepage": "https://www.ncbi.nlm.nih.gov/nuccore/",
+          "name": "INSDC through Nucleotide database at NCBI",
+          "url": "https://www.ncbi.nlm.nih.gov/nuccore/$1"
+        }
+      ],
       "sampleId": "X58356"
     },
     "n2t": {
@@ -19243,13 +19637,29 @@
     "miriam": {
       "deprecated": false,
       "description": "The coding sequence or protein identifiers as maintained in INSDC.",
-      "homepage": "https://www.ncbi.nlm.nih.gov/protein/",
+      "homepage": "http://getentry.ddbj.nig.ac.jp",
       "id": "00000606",
       "name": "INSDC CDS",
       "namespaceEmbeddedInLui": false,
       "pattern": "^([A-Z]\\d{5}|[A-Z]{2}\\d{6}|[A-Z]{4}\\d{8}|[A-J][A-Z]{2}\\d{5})(\\.\\d+)?$",
       "prefix": "insdc.cds",
-      "provider_url": "https://www.ncbi.nlm.nih.gov/protein/$1",
+      "provider_url": "http://getentry.ddbj.nig.ac.jp/getentry/dad/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "INSDC CDS through ENA",
+          "homepage": "https://www.ebi.ac.uk/ena",
+          "name": "INSDC CDS through ENA",
+          "url": "https://www.ebi.ac.uk/ena/data/view/$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "INSDC CDS through NCBI",
+          "homepage": "https://www.ncbi.nlm.nih.gov/protein/",
+          "name": "INSDC CDS through NCBI",
+          "url": "https://www.ncbi.nlm.nih.gov/protein/$1"
+        }
+      ],
       "sampleId": "AAA35559"
     },
     "n2t": {
@@ -19278,13 +19688,22 @@
     "miriam": {
       "deprecated": false,
       "description": "The genome assembly database contains detailed information about genome assemblies for eukaryota, bacteria and archaea. The scope of the genome collections database does not extend to viruses, viroids and bacteriophage.",
-      "homepage": "https://www.ncbi.nlm.nih.gov/assembly/",
+      "homepage": "https://www.ebi.ac.uk/ena/browse/genome-assembly-database",
       "id": "00000607",
       "name": "Genome assembly database",
       "namespaceEmbeddedInLui": false,
       "pattern": "^GC[AF]_[0-9]{9}\\.[0-9]+$",
       "prefix": "insdc.gca",
-      "provider_url": "https://www.ncbi.nlm.nih.gov/assembly/$1",
+      "provider_url": "https://www.ebi.ac.uk/ena/data/view/$1",
+      "providers": [
+        {
+          "code": "ncbi",
+          "description": "Genome assembly database NCBI",
+          "homepage": "https://www.ncbi.nlm.nih.gov/assembly/",
+          "name": "Genome assembly database NCBI",
+          "url": "https://www.ncbi.nlm.nih.gov/assembly/$1"
+        }
+      ],
       "sampleId": "GCA_000155495.1"
     },
     "n2t": {
@@ -19334,13 +19753,29 @@
     "miriam": {
       "deprecated": false,
       "description": "The Sequence Read Archive (SRA) stores raw sequencing data from the next generation of sequencing platforms Data submitted to SRA. It is organized using a metadata model consisting of six objects: study, sample, experiment, run, analysis and submission. The SRA study contains high-level information including goals of the study and literature references, and may be linked to the INSDC BioProject database.",
-      "homepage": "http://trace.ddbj.nig.ac.jp/dra/",
+      "homepage": "https://www.ncbi.nlm.nih.gov/sra",
       "id": "00000243",
       "name": "Sequence Read Archive",
       "namespaceEmbeddedInLui": false,
       "pattern": "^[SED]R[APRSXZ]\\d+$",
       "prefix": "insdc.sra",
-      "provider_url": "http://trace.ddbj.nig.ac.jp/DRASearch/experiment?acc=$1",
+      "provider_url": "https://www.ncbi.nlm.nih.gov/sra/$1",
+      "providers": [
+        {
+          "code": "ebi",
+          "description": "European Nucleotide Archive (ENA)",
+          "homepage": "https://www.ebi.ac.uk/ena",
+          "name": "European Nucleotide Archive (ENA)",
+          "url": "https://www.ebi.ac.uk/ena/data/view/$1"
+        },
+        {
+          "code": "ddbj",
+          "description": "DDBJ Sequence Read Archive (DRA)",
+          "homepage": "http://trace.ddbj.nig.ac.jp/dra/",
+          "name": "DDBJ Sequence Read Archive (DRA)",
+          "url": "http://trace.ddbj.nig.ac.jp/DRASearch/experiment?acc=$1"
+        }
+      ],
       "sampleId": "SRX000007"
     },
     "n2t": {
@@ -19509,6 +19944,15 @@
       "pattern": "^IPR\\d{6}$",
       "prefix": "interpro",
       "provider_url": "https://www.ebi.ac.uk/interpro/entry/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Bio2RDF",
+          "homepage": "http://interpro.bio2rdf.org/fct/",
+          "name": "Bio2RDF",
+          "url": "http://interpro.bio2rdf.org/describe/?url=http://bio2rdf.org/interpro:$1"
+        }
+      ],
       "sampleId": "IPR000100"
     },
     "n2t": {
@@ -19677,13 +20121,22 @@
     "miriam": {
       "deprecated": false,
       "description": "The International Standard Book Number (ISBN) is for identifying printed books.",
-      "homepage": "http://www.worldcat.org/",
+      "homepage": "http://isbndb.com/",
       "id": "00000064",
       "name": "ISBN",
       "namespaceEmbeddedInLui": false,
       "pattern": "^(ISBN)?(-13|-10)?[:]?[ ]?(\\d{2,3}[ -]?)?\\d{1,5}[ -]?\\d{1,7}[ -]?\\d{1,6}[ -]?(\\d|X)$",
       "prefix": "isbn",
-      "provider_url": "http://www.worldcat.org/isbn/$1",
+      "provider_url": "http://isbndb.com/search-all.html?kw=$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "ISBN database at WorldCat",
+          "homepage": "http://www.worldcat.org/",
+          "name": "ISBN database at WorldCat",
+          "url": "http://www.worldcat.org/isbn/$1"
+        }
+      ],
       "sampleId": "9781584885658"
     },
     "n2t": {
@@ -19813,6 +20266,15 @@
       "pattern": "^\\d{4}-\\d{3}[\\dX]$",
       "prefix": "issn",
       "provider_url": "https://portal.issn.org/resource/ISSN/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "ISSN at Library of Congress",
+          "homepage": "http://catalog.loc.gov/webvoy.htm",
+          "name": "ISSN at Library of Congress",
+          "url": "https://catalog.loc.gov/vwebv/search?searchCode=STNO&searchArg=$1&searchType=1&recCount=25"
+        }
+      ],
       "sampleId": "0745-4570"
     },
     "n2t": {
@@ -20231,13 +20693,29 @@
     "miriam": {
       "deprecated": false,
       "description": "JWS Online is a repository of curated biochemical pathway models, and additionally provides the ability to run simulations of these models in a web browser.",
-      "homepage": "http://jjj.bio.vu.nl/models/",
+      "homepage": "http://jjj.biochem.sun.ac.za/models/",
       "id": "00000130",
       "name": "JWS Online",
       "namespaceEmbeddedInLui": false,
       "pattern": "^\\w+$",
       "prefix": "jws",
-      "provider_url": "http://jjj.bio.vu.nl/models/$1/",
+      "provider_url": "http://jjj.biochem.sun.ac.za/models/$1/",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "JWS Online Model Repository at Manchester",
+          "homepage": "http://jjj.mib.ac.uk/index.html",
+          "name": "JWS Online Model Repository at Manchester",
+          "url": "http://jjj.mib.ac.uk/models/$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "JWS Online Model Repository at Amsterdam",
+          "homepage": "http://jjj.bio.vu.nl/models/",
+          "name": "JWS Online Model Repository at Amsterdam",
+          "url": "http://jjj.bio.vu.nl/models/$1/"
+        }
+      ],
       "sampleId": "curien"
     },
     "n2t": {
@@ -21184,13 +21662,22 @@
     "miriam": {
       "deprecated": false,
       "description": "Ligand Expo is a data resource for finding information about small molecules bound to proteins and nucleic acids.",
-      "homepage": "http://ligand-expo.rcsb.org/",
+      "homepage": "http://ligand-depot.rutgers.edu/index.html",
       "id": "00000062",
       "name": "Ligand Expo",
       "namespaceEmbeddedInLui": false,
       "pattern": "^(\\w){3}$",
       "prefix": "ligandexpo",
-      "provider_url": "http://ligand-expo.rcsb.org/pyapps/ldHandler.py?formid=cc-index-search&target=$1&operation=ccid",
+      "provider_url": "http://ligand-depot.rutgers.edu/pyapps/ldHandler.py?formid=cc-index-search&target=$1&operation=ccid",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Ligand Expo at Rutgers",
+          "homepage": "http://ligand-expo.rcsb.org/",
+          "name": "Ligand Expo at Rutgers",
+          "url": "http://ligand-expo.rcsb.org/pyapps/ldHandler.py?formid=cc-index-search&target=$1&operation=ccid"
+        }
+      ],
       "sampleId": "ABC"
     },
     "n2t": {
@@ -21261,6 +21748,15 @@
       "pattern": "^[EL]D[SG]-\\d+$",
       "prefix": "lincs.data",
       "provider_url": "http://lincsportal.ccs.miami.edu/datasets/#/view/$1",
+      "providers": [
+        {
+          "code": "omicsdi",
+          "description": "Lincs through OmicsDI",
+          "homepage": "https://www.omicsdi.org/",
+          "name": "Lincs through OmicsDI",
+          "url": "https://www.omicsdi.org/dataset/lincs/$1"
+        }
+      ],
       "sampleId": "LDS-1110"
     },
     "n2t": {
@@ -21423,6 +21919,15 @@
       "pattern": "^LM(FA|GL|GP|SP|ST|PR|SL|PK)[0-9]{4}([0-9a-zA-Z]{4,6})?$",
       "prefix": "lipidmaps",
       "provider_url": "http://www.lipidmaps.org/data/LMSDRecord.php?LMID=$1",
+      "providers": [
+        {
+          "code": "scholia",
+          "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+          "homepage": "https://scholia.toolforge.org/",
+          "name": "Scholia",
+          "url": "https://scholia.toolforge.org/lipidmaps/$1"
+        }
+      ],
       "sampleId": "LMPR0102010012"
     },
     "n2t": {
@@ -21540,6 +22045,36 @@
       "pattern": "^LRG_\\d+$",
       "prefix": "lrg",
       "provider_url": "ftp://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Locus Reference Genomic through Ensembl",
+          "homepage": "http://www.ensembl.org/",
+          "name": "Locus Reference Genomic through Ensembl",
+          "url": "http://www.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Locus Reference Genomic through Ensembl mirror (asia)",
+          "homepage": "http://asia.ensembl.org/",
+          "name": "Locus Reference Genomic through Ensembl mirror (asia)",
+          "url": "http://asia.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Locus Reference Genomic through Ensembl mirror (US west)",
+          "homepage": "http://uswest.ensembl.org/",
+          "name": "Locus Reference Genomic through Ensembl mirror (US west)",
+          "url": "http://uswest.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Locus Reference Genomic through Ensembl mirror (US east)",
+          "homepage": "http://useast.ensembl.org/",
+          "name": "Locus Reference Genomic through Ensembl mirror (US east)",
+          "url": "http://useast.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1"
+        }
+      ],
       "sampleId": "LRG_1"
     },
     "n2t": {
@@ -21741,13 +22276,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The Mathematical Modelling Ontology (MAMO) is a classification of the types of mathematical models used mostly in the life sciences, their variables, relationships and other relevant features.",
-      "homepage": "https://www.ebi.ac.uk/ols/ontologies/mamo",
+      "homepage": "http://bioportal.bioontology.org/ontologies/MAMO",
       "id": "00000517",
       "name": "Mathematical Modelling Ontology",
       "namespaceEmbeddedInLui": false,
       "pattern": "^MAMO_\\d{7}$",
       "prefix": "mamo",
-      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/mamo/terms?short_form=$1",
+      "provider_url": "http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/$1",
       "sampleId": "MAMO_0000026"
     },
     "n2t": {
@@ -21830,6 +22365,15 @@
       "pattern": "^[A-Z]{2}[A-Z0-9][0-9]{5}$",
       "prefix": "massbank",
       "provider_url": "http://www.massbank.jp/RecordDisplay?id=$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "MassBank in Europe",
+          "homepage": "https://massbank.eu/",
+          "name": "MassBank in Europe",
+          "url": "https://massbank.eu/MassBank/RecordDisplay?id=$1"
+        }
+      ],
       "sampleId": "PB000166"
     },
     "n2t": {
@@ -21865,13 +22409,22 @@
     "miriam": {
       "deprecated": false,
       "description": "MassIVE is a community resource developed by the NIH-funded Center for Computational Mass Spectrometry to promote the global, free exchange of mass spectrometry data.",
-      "homepage": "https://www.omicsdi.org/",
+      "homepage": "https://massive.ucsd.edu/ProteoSAFe/static/massive.jsp",
       "id": "00000650",
       "name": "MassIVE",
       "namespaceEmbeddedInLui": false,
       "pattern": "^MSV\\d+$",
       "prefix": "massive",
-      "provider_url": "https://www.omicsdi.org/dataset/massive/$1",
+      "provider_url": "https://massive.ucsd.edu/ProteoSAFe/QueryMSV?id=$1",
+      "providers": [
+        {
+          "code": "omicsdi",
+          "description": "MassIVE through OmicsDI",
+          "homepage": "https://www.omicsdi.org/",
+          "name": "MassIVE through OmicsDI",
+          "url": "https://www.omicsdi.org/dataset/massive/$1"
+        }
+      ],
       "sampleId": "MSV000082131"
     },
     "n2t": {
@@ -22561,6 +23114,15 @@
       "pattern": "^MTBLS\\d+$",
       "prefix": "metabolights",
       "provider_url": "https://www.ebi.ac.uk/metabolights/$1",
+      "providers": [
+        {
+          "code": "omicsdi",
+          "description": "MataboLights through OmicsDI",
+          "homepage": "https://www.omicsdi.org/",
+          "name": "MataboLights through OmicsDI",
+          "url": "https://www.omicsdi.org/dataset/metabolights_dataset/$1"
+        }
+      ],
       "sampleId": "MTBLS1"
     },
     "n2t": {
@@ -22836,6 +23398,15 @@
       "pattern": "^\\d+$",
       "prefix": "mex",
       "provider_url": "https://www.metabolome-express.org/datasetview.php?datasetid=$1",
+      "providers": [
+        {
+          "code": "omicsdi",
+          "description": "Metabolome Express through OmicsDI",
+          "homepage": "https://www.omicsdi.org/",
+          "name": "Metabolome Express through OmicsDI",
+          "url": "https://www.omicsdi.org/dataset/metabolome_express/MEX$1"
+        }
+      ],
       "sampleId": "36"
     },
     "n2t": {
@@ -23135,6 +23706,22 @@
       "pattern": "^MGI:\\d+$",
       "prefix": "mgi",
       "provider_url": "http://www.informatics.jax.org/accession/MGI:$1",
+      "providers": [
+        {
+          "code": "bioentitylink",
+          "description": "MGD through BioEntity Link",
+          "homepage": "https://bioentity.link/",
+          "name": "MGD through BioEntity Link",
+          "url": "https://bioentity.link/#/lexicon/public/MGI:$1"
+        },
+        {
+          "code": "agr",
+          "description": "MGI through the Alliance of Genome Resources",
+          "homepage": "https://www.alliancegenome.org",
+          "name": "MGI through the Alliance of Genome Resources",
+          "url": "https://www.alliancegenome.org/gene/MGI:$1"
+        }
+      ],
       "sampleId": "2442292"
     },
     "n2t": {
@@ -23526,6 +24113,15 @@
       "pattern": "^[*#+%^]?\\d{6}$",
       "prefix": "mim",
       "provider_url": "https://omim.org/entry/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "OMIM mirror at John Hopkins",
+          "homepage": "http://mirror.omim.org/",
+          "name": "OMIM mirror at John Hopkins",
+          "url": "http://mirror.omim.org/entry/$1"
+        }
+      ],
       "sampleId": "603903"
     },
     "n2t": {
@@ -23681,13 +24277,22 @@
     "miriam": {
       "deprecated": false,
       "description": "The Molecular INTeraction database (MINT) stores, in a structured format, information about molecular interactions by extracting experimental details from work published in peer-reviewed journals.",
-      "homepage": "https://www.ebi.ac.uk/intact/",
+      "homepage": "http://mint.bio.uniroma2.it/mint/",
       "id": "00000042",
       "name": "MINT",
       "namespaceEmbeddedInLui": false,
       "pattern": "^MINT\\-\\d{1,7}$",
       "prefix": "mint",
-      "provider_url": "https://www.ebi.ac.uk/intact/query/interaction_id:$1",
+      "provider_url": "http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=$1",
+      "providers": [
+        {
+          "code": "ebi",
+          "description": "MINT subset through IntAct",
+          "homepage": "https://www.ebi.ac.uk/intact/",
+          "name": "MINT subset through IntAct",
+          "url": "https://www.ebi.ac.uk/intact/query/interaction_id:$1"
+        }
+      ],
       "sampleId": "MINT-10000"
     },
     "n2t": {
@@ -23958,13 +24563,11 @@
     "miriam": {
       "deprecated": true,
       "description": "MIRIAM Registry is an online resource created to catalogue collections (Gene Ontology, Taxonomy or PubMed are some examples) and the corresponding resources (physical locations) providing access to those data collections. The Registry provides unique and perennial URIs for each entity of those data collections.",
-      "homepage": "https://www.ebi.ac.uk/miriam/",
       "id": "00000008",
       "name": "MIRIAM Registry collection",
       "namespaceEmbeddedInLui": false,
       "pattern": "^MIR:000\\d{5}$",
       "prefix": "miriam.collection",
-      "provider_url": "https://registry.identifiers.org/deprecation/resources/MIR:00100005/$1",
       "sampleId": "MIR:00000008"
     },
     "n2t": {
@@ -24562,13 +25165,22 @@
     "miriam": {
       "deprecated": false,
       "description": "The MGED Ontology (MO) provides terms for annotating all aspects of a microarray experiment from the design of the experiment and array layout, through to the preparation of the biological sample and the protocols used to hybridize the RNA and analyze the data.",
-      "homepage": "https://mged.sourceforge.net/ontologies/MGEDontology.php",
+      "homepage": "http://bioportal.bioontology.org/",
       "id": "00000303",
       "name": "MGED Ontology",
       "namespaceEmbeddedInLui": false,
       "pattern": "^\\w+$",
       "prefix": "mo",
-      "provider_url": "https://mged.sourceforge.net/ontologies/MGEDontology.php#$1",
+      "provider_url": "http://purl.bioontology.org/ontology/MO/$1",
+      "providers": [
+        {
+          "code": "ebi",
+          "description": "MGED Ontology at SourceForge",
+          "homepage": "https://mged.sourceforge.net/ontologies/MGEDontology.php",
+          "name": "MGED Ontology at SourceForge",
+          "url": "https://mged.sourceforge.net/ontologies/MGEDontology.php#$1"
+        }
+      ],
       "sampleId": "ArrayGroup"
     },
     "n2t": {
@@ -24671,13 +25283,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The Proteomics Standards Initiative modification ontology (PSI-MOD)  aims to define a concensus nomenclature and ontology reconciling, in a hierarchical representation, the complementary descriptions of residue modifications.",
-      "homepage": "http://bioportal.bioontology.org/ontologies/PSIMOD",
+      "homepage": "https://www.ebi.ac.uk/ols/ontologies/mod",
       "id": "00000056",
       "name": "Protein Modification Ontology",
       "namespaceEmbeddedInLui": true,
       "pattern": "^MOD:\\d{5}",
       "prefix": "mod",
-      "provider_url": "http://bioportal.bioontology.org/ontologies/1041?p=terms&conceptid=MOD:$1",
+      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/mod/terms?obo_id=MOD:$1",
       "sampleId": "00001"
     },
     "n2t": {
@@ -24962,13 +25574,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The Mammalian Phenotype Ontology (MP) classifies and organises phenotypic information related to the mouse and other mammalian species. This ontology has been applied to mouse phenotype descriptions in various databases allowing comparisons of data from diverse mammalian sources. It can facilitate in the identification of appropriate experimental disease models, and aid in the discovery of candidate disease genes and molecular signaling pathways.",
-      "homepage": "https://bioportal.bioontology.org/ontologies/MP",
+      "homepage": "http://www.informatics.jax.org/",
       "id": "00000580",
       "name": "Mammalian Phenotype Ontology",
       "namespaceEmbeddedInLui": true,
       "pattern": "^MP:\\d{7}$",
       "prefix": "mp",
-      "provider_url": "https://bioportal.bioontology.org/ontologies/MP/MP:$1",
+      "provider_url": "http://www.informatics.jax.org/searches/Phat.cgi?id=MP:$1",
       "sampleId": "0005452"
     },
     "n2t": {
@@ -25079,13 +25691,22 @@
     "miriam": {
       "deprecated": false,
       "description": "The microbial protein interaction database (MPIDB) provides physical microbial interaction data. The interactions are manually curated from the literature or imported from other databases, and are linked to supporting experimental evidence, as well as evidences based on interaction conservation, protein complex membership, and 3D domain contacts.",
-      "homepage": "https://www.ebi.ac.uk/intact/",
+      "homepage": "http://www.jcvi.org/mpidb/about.php",
       "id": "00000124",
       "name": "Microbial Protein Interaction Database",
       "namespaceEmbeddedInLui": false,
       "pattern": "^\\d+$",
       "prefix": "mpid",
-      "provider_url": "https://www.ebi.ac.uk/intact/query/interaction_id:MPIDB-INT-$1",
+      "provider_url": "http://www.jcvi.org/mpidb/experiment.php?interaction_id=$1",
+      "providers": [
+        {
+          "code": "ebi",
+          "description": "Microbial Protein Interaction Database subset through IntAct",
+          "homepage": "https://www.ebi.ac.uk/intact/",
+          "name": "Microbial Protein Interaction Database subset through IntAct",
+          "url": "https://www.ebi.ac.uk/intact/query/interaction_id:MPIDB-INT-$1"
+        }
+      ],
       "sampleId": "172"
     },
     "n2t": {
@@ -25218,13 +25839,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The PSI-Mass Spectrometry (MS) CV contains all the terms used in the PSI MS-related data standards. The CV contains a logical hierarchical structure to ensure ease of maintenance and the development of software that makes use of complex semantics. The CV contains terms required for a complete description of an MS analysis pipeline used in proteomics, including sample labeling, digestion enzymes, instrumentation parts and parameters, software used for identification and quantification of peptides/proteins and the parameters and scores used to determine their significance.",
-      "homepage": "https://bioportal.bioontology.org/ontologies/MS",
+      "homepage": "https://www.ebi.ac.uk/ols/ontologies/ms",
       "id": "00000590",
       "name": "Mass Spectrometry Controlled Vocabulary",
       "namespaceEmbeddedInLui": true,
       "pattern": "^MS:\\d{7}$",
       "prefix": "ms",
-      "provider_url": "http://purl.bioontology.org/ontology/MS/MS:$1",
+      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/ms/terms?obo_id=MS:$1",
       "sampleId": "1000001"
     },
     "n2t": {
@@ -25475,6 +26096,15 @@
       "pattern": "^ST[0-9]{6}$",
       "prefix": "mw.study",
       "provider_url": "http://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Study&StudyID=$1",
+      "providers": [
+        {
+          "code": "omicsdi",
+          "description": "Metabolomics Workbench Study through OmicsDI",
+          "homepage": "https://www.omicsdi.org/",
+          "name": "Metabolomics Workbench Study through OmicsDI",
+          "url": "https://www.omicsdi.org/dataset/metabolomics_workbench/$1"
+        }
+      ],
       "sampleId": "ST000900"
     },
     "n2t": {
@@ -25693,6 +26323,15 @@
       "pattern": "^mzspec:.+$",
       "prefix": "mzspec",
       "provider_url": "http://proteomecentral.proteomexchange.org/usi/?usi=mzspec:$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Universal Spectrum Identifier through Peptide Atlas",
+          "homepage": "https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/ShowObservedSpectrum",
+          "name": "Universal Spectrum Identifier through Peptide Atlas",
+          "url": "https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/ShowObservedSpectrum?usi=mzspec:$1"
+        }
+      ],
       "sampleId": "PXD002255::ES_XP_Ubi_97H_HCD_349:scan:9617:LAEIYVNSSFYK/2"
     },
     "n2t": {
@@ -26036,6 +26675,15 @@
       "pattern": "^\\d+$",
       "prefix": "ncbigene",
       "provider_url": "https://www.ncbi.nlm.nih.gov/gene/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Bio2RDF",
+          "homepage": "http://ncbigene.bio2rdf.org/fct",
+          "name": "Bio2RDF",
+          "url": "http://ncbigene.bio2rdf.org/describe/?url=http://bio2rdf.org/ncbigene:$1"
+        }
+      ],
       "sampleId": "100010"
     },
     "n2t": {
@@ -26168,6 +26816,29 @@
       "pattern": "^\\d+$",
       "prefix": "taxonomy",
       "provider_url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Taxonomy through UniProt PURL",
+          "homepage": "https://www.uniprot.org/taxonomy/",
+          "name": "Taxonomy through UniProt PURL",
+          "url": "https://purl.uniprot.org/taxonomy/$1"
+        },
+        {
+          "code": "ebi",
+          "description": "European Nucleotide Archive (ENA)",
+          "homepage": "https://www.ebi.ac.uk/ena/",
+          "name": "European Nucleotide Archive (ENA)",
+          "url": "https://www.ebi.ac.uk/ena/data/view/Taxon:$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Bio2RDF",
+          "homepage": "https://bio2rdf.org/",
+          "name": "Bio2RDF",
+          "url": "https://bio2rdf.org/taxonomy:$1"
+        }
+      ],
       "sampleId": "9606"
     },
     "n2t": {
@@ -26308,13 +26979,13 @@
     "miriam": {
       "deprecated": false,
       "description": "NCI Thesaurus (NCIt) provides reference terminology covering vocabulary for clinical care, translational and basic research, and public information and administrative activities, providing a stable and unique identification code.",
-      "homepage": "https://www.ebi.ac.uk/ols/ontologies/ncit",
+      "homepage": "http://ncit.nci.nih.gov/",
       "id": "00000139",
       "name": "NCIt",
       "namespaceEmbeddedInLui": false,
       "pattern": "^C\\d+$",
       "prefix": "ncit",
-      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/ncit/terms?short_form=NCIT_$1",
+      "provider_url": "http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1",
       "sampleId": "C80519"
     },
     "n2t": {
@@ -26441,6 +27112,15 @@
       "pattern": "^\\d+\\-\\d+\\-\\d+",
       "prefix": "ndc",
       "provider_url": "http://www.hipaaspace.com/Medical_Billing/Coding/National.Drug.Codes/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Bio2RDF",
+          "homepage": "http://ndc.bio2rdf.org/fct",
+          "name": "Bio2RDF",
+          "url": "http://ndc.bio2rdf.org/describe/?url=http://bio2rdf.org/ndc:$1"
+        }
+      ],
       "sampleId": "0002-1975-61"
     },
     "n2t": {
@@ -29325,6 +30005,15 @@
       "pattern": "^\\d+$",
       "prefix": "orphanet",
       "provider_url": "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=EN&Expert=$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Bio2RDF",
+          "homepage": "http://orphanet.bio2rdf.org/fct",
+          "name": "Bio2RDF",
+          "url": "http://orphanet.bio2rdf.org/describe/?url=http://bio2rdf.org/orphanet:$1"
+        }
+      ],
       "sampleId": "85163"
     },
     "n2t": {
@@ -30167,13 +30856,13 @@
     "miriam": {
       "deprecated": false,
       "description": "PATO is an ontology of phenotypic qualities, intended for use in a number of applications, primarily defining composite phenotypes and phenotype  annotation.",
-      "homepage": "http://bioportal.bioontology.org/ontologies/PATO",
+      "homepage": "https://www.ebi.ac.uk/ols/ontologies/pato",
       "id": "00000112",
       "name": "PATO",
       "namespaceEmbeddedInLui": true,
       "pattern": "^PATO:\\d{7}$",
       "prefix": "pato",
-      "provider_url": "http://purl.bioontology.org/ontology/PATO/PATO:$1",
+      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/pato/terms?obo_id=PATO:$1",
       "sampleId": "0001998"
     },
     "n2t": {
@@ -30463,6 +31152,22 @@
       "pattern": "^[0-9][A-Za-z0-9]{3}$",
       "prefix": "pdb",
       "provider_url": "https://www.rcsb.org/structure/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Proteopedia",
+          "homepage": "http://www.proteopedia.org/",
+          "name": "Proteopedia",
+          "url": "http://proteopedia.org/wiki/index.php/$1"
+        },
+        {
+          "code": "ebi",
+          "description": "Protein Databank through PDBsum",
+          "homepage": "https://www.ebi.ac.uk/pdbsum/",
+          "name": "Protein Databank through PDBsum",
+          "url": "https://www.ebi.ac.uk/pdbsum/$1"
+        }
+      ],
       "sampleId": "2gc4"
     },
     "n2t": {
@@ -30559,13 +31264,22 @@
     "miriam": {
       "deprecated": false,
       "description": "The Protein Data Bank is the single worldwide archive of structural data of biological macromolecules. This collection references ligands.",
-      "homepage": "https://www.pdbe.org/",
+      "homepage": "http://www.pdb.org/",
       "id": "00000490",
       "name": "Protein Data Bank Ligand",
       "namespaceEmbeddedInLui": false,
       "pattern": "^[A-Za-z0-9]+$",
       "prefix": "pdb.ligand",
-      "provider_url": "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/$1",
+      "provider_url": "http://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId=$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "PDB Ligand at Protein Databank in Europe (PDBe)",
+          "homepage": "https://www.pdbe.org/",
+          "name": "PDB Ligand at Protein Databank in Europe (PDBe)",
+          "url": "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/$1"
+        }
+      ],
       "sampleId": "TRQ"
     },
     "n2t": {
@@ -30712,13 +31426,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The Plant Environment Ontology is a set of standardized controlled vocabularies to describe various types of treatments given to an individual plant / a population or a cultured tissue and/or cell type sample to evaluate the response on its exposure. It also includes the study types, where the terms can be used to identify the growth study facility. Each growth facility such as field study, growth chamber, green house etc is a environment on its own it may also involve instances of biotic and abiotic environments as supplemental treatments used in these studies.",
-      "homepage": "https://www.ebi.ac.uk/ols/ontologies/eo",
+      "homepage": "http://archive.gramene.org/db/ontology/search_term?id=EO:0007359",
       "id": "00000518",
       "name": "Plant Environment Ontology",
       "namespaceEmbeddedInLui": true,
       "pattern": "^(P)?EO\\:\\d{7}$",
       "prefix": "eo",
-      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/eo/terms?obo_id=EO:$1",
+      "provider_url": "http://archive.gramene.org/db/ontology/search?query=EO:$1",
       "sampleId": "0007404"
     },
     "n2t": {
@@ -32117,6 +32831,15 @@
       "pattern": "PMC\\d+",
       "prefix": "pmc",
       "provider_url": "http://europepmc.org/articles/$1",
+      "providers": [
+        {
+          "code": "ncbi",
+          "description": "PubMed Central",
+          "homepage": "https://www.ncbi.nlm.nih.gov/pmc/",
+          "name": "PubMed Central",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/$1/?tool=pubmed"
+        }
+      ],
       "sampleId": "PMC3084216"
     },
     "n2t": {
@@ -32187,13 +32910,11 @@
     "miriam": {
       "deprecated": false,
       "description": "The number of known protein sequences exceeds those of experimentally solved protein structures. Homology (or comparative) modeling methods make use of experimental protein structures to build models for evolutionary related proteins. The Protein Model Portal (PMP) provides a single portal to access these models, which are accessed through their UniProt identifiers.",
-      "homepage": "http://www.proteinmodelportal.org/",
       "id": "00000227",
       "name": "PMP",
       "namespaceEmbeddedInLui": false,
       "pattern": "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])$",
       "prefix": "pmp",
-      "provider_url": "https://registry.identifiers.org/deprecation/resources/MIR:00100286/$1",
       "sampleId": "Q0VCA6"
     },
     "n2t": {
@@ -32255,13 +32976,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The Plant Ontology is a structured vocabulary and database resource that links plant anatomy, morphology and growth and development to plant genomics data.",
-      "homepage": "https://www.ebi.ac.uk/ols/ontologies/po",
+      "homepage": "http://www.plantontology.org/",
       "id": "00000307",
       "name": "Plant Ontology",
       "namespaceEmbeddedInLui": true,
       "pattern": "^PO:\\d+$",
       "prefix": "po",
-      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/po/terms?obo_id=PO:$1",
+      "provider_url": "http://www.plantontology.org/amigo/go.cgi?view=details&query=PO:$1",
       "sampleId": "0009089"
     },
     "n2t": {
@@ -32592,13 +33313,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The PRotein Ontology (PRO) has been designed to describe the relationships of proteins and protein evolutionary classes, to delineate the multiple protein forms of a gene locus (ontology for protein forms), and to interconnect existing ontologies.",
-      "homepage": "https://www.ebi.ac.uk/ols/ontologies/pr",
+      "homepage": "https://proconsortium.org/",
       "id": "00000141",
       "name": "Protein Ontology",
       "namespaceEmbeddedInLui": true,
       "pattern": "^PR:P?\\d+$",
       "prefix": "pr",
-      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/pr/terms?obo_id=PR:$1",
+      "provider_url": "https://proconsortium.org/app/entry/PR:$1",
       "sampleId": "000000024"
     },
     "n2t": {
@@ -32747,6 +33468,15 @@
       "pattern": "^P(X|R)D\\d{6}$",
       "prefix": "pride.project",
       "provider_url": "https://www.ebi.ac.uk/pride/archive/projects/$1",
+      "providers": [
+        {
+          "code": "omicsdi",
+          "description": "PRIDE Project through OmicsDI",
+          "homepage": "https://www.omicsdi.org/",
+          "name": "PRIDE Project through OmicsDI",
+          "url": "https://www.omicsdi.org/dataset/pride/$1"
+        }
+      ],
       "sampleId": "PXD000440"
     },
     "n2t": {
@@ -33524,6 +34254,15 @@
       "pattern": "^\\d+$",
       "prefix": "pubchem.compound",
       "provider_url": "https://pubchem.ncbi.nlm.nih.gov/compound/$1",
+      "providers": [
+        {
+          "code": "scholia",
+          "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+          "homepage": "https://scholia.toolforge.org/",
+          "name": "Scholia",
+          "url": "https://scholia.toolforge.org/pubchem/$1"
+        }
+      ],
       "sampleId": "100101"
     },
     "n2t": {
@@ -33669,6 +34408,36 @@
       "pattern": "^\\d+$",
       "prefix": "pubmed",
       "provider_url": "https://www.ncbi.nlm.nih.gov/pubmed/$1",
+      "providers": [
+        {
+          "code": "hubmed",
+          "description": "HubMed",
+          "homepage": "http://www.hubmed.org/",
+          "name": "HubMed",
+          "url": "http://www.hubmed.org/display.cgi?uids=$1"
+        },
+        {
+          "code": "epmc",
+          "description": "Europe PMC",
+          "homepage": "http://europepmc.org/",
+          "name": "Europe PMC",
+          "url": "http://europepmc.org/abstract/MED/$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "PubMed through Linkedlife data",
+          "homepage": "http://linkedlifedata.com/",
+          "name": "PubMed through Linkedlife data",
+          "url": "http://linkedlifedata.com/resource/pubmed/id/$1"
+        },
+        {
+          "code": "scholia",
+          "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+          "homepage": "https://scholia.toolforge.org/",
+          "name": "Scholia",
+          "url": "https://scholia.toolforge.org/pubmed/$1"
+        }
+      ],
       "sampleId": "16333295"
     },
     "n2t": {
@@ -33715,13 +34484,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The Pathway Ontology captures information on biological networks, the relationships between netweorks and the alterations or malfunctioning of such networks within a hierarchical structure. The five main branches of the ontology are: classic metabolic pathways, regulatory, signaling, drug, and disease pathwaysfor complex human conditions.",
-      "homepage": "http://bioportal.bioontology.org/ontologies/PW",
+      "homepage": "http://rgd.mcw.edu/rgdweb/ontology/search.html",
       "id": "00000242",
       "name": "Pathway Ontology",
       "namespaceEmbeddedInLui": true,
       "pattern": "^PW:\\d{7}$",
       "prefix": "pw",
-      "provider_url": "http://purl.bioontology.org/ontology/PW/PW:$1",
+      "provider_url": "http://rgd.mcw.edu/rgdweb/ontology/annot.html?acc_id=PW:$1",
       "sampleId": "0000208"
     },
     "n2t": {
@@ -34533,6 +35302,15 @@
       "pattern": "^\\d{4,}$",
       "prefix": "rgd",
       "provider_url": "http://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1",
+      "providers": [
+        {
+          "code": "agr",
+          "description": "RGD through the Alliance of Genome Resources",
+          "homepage": "https://www.alliancegenome.org",
+          "name": "RGD through the Alliance of Genome Resources",
+          "url": "https://www.alliancegenome.org/gene/RGD:$1"
+        }
+      ],
       "sampleId": "2018"
     },
     "n2t": {
@@ -34671,7 +35449,7 @@
       "namespaceEmbeddedInLui": false,
       "pattern": "^\\d{5}$",
       "prefix": "rhea",
-      "provider_url": "https://registry.identifiers.org/deprecation/resources/MIR:00100113/$1",
+      "provider_url": "https://www.rhea-db.org/rhea/$1",
       "sampleId": "12345"
     },
     "n2t": {
@@ -35091,13 +35869,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The OBO Relation Ontology provides consistent and unambiguous formal definitions of the relational expressions used in biomedical ontologies.",
-      "homepage": "https://www.ebi.ac.uk/ols/ontologies/ro",
+      "homepage": "http://obofoundry.org/ontology/ro.html",
       "id": "00000120",
       "name": "Relation Ontology",
       "namespaceEmbeddedInLui": false,
       "pattern": "^RO_\\d{7}$",
       "prefix": "ro",
-      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/ro/terms?short_form=$1",
+      "provider_url": "http://purl.obolibrary.org/obo/$1",
       "sampleId": "RO_0002533"
     },
     "n2t": {
@@ -35756,13 +36534,22 @@
     "miriam": {
       "deprecated": false,
       "description": "The SCOP (Structural Classification of Protein) database is a comprehensive ordering of all proteins of known structure according to their evolutionary, functional and structural relationships. The basic classification unit is the protein domain. Domains are hierarchically classified into species, proteins, families, superfamilies, folds, and classes.",
-      "homepage": "http://scop.berkeley.edu/",
+      "homepage": "http://scop.mrc-lmb.cam.ac.uk/scop/",
       "id": "00000371",
       "name": "SCOP",
       "namespaceEmbeddedInLui": false,
       "pattern": "^\\d+$",
       "prefix": "scop",
-      "provider_url": "http://scop.berkeley.edu/sunid=$1",
+      "provider_url": "http://scop.mrc-lmb.cam.ac.uk/scop/search.cgi?sunid=$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "SCOP at Berkeley",
+          "homepage": "http://scop.berkeley.edu/",
+          "name": "SCOP at Berkeley",
+          "url": "http://scop.berkeley.edu/sunid=$1"
+        }
+      ],
       "sampleId": "47419"
     },
     "n2t": {
@@ -35950,13 +36737,11 @@
     "miriam": {
       "deprecated": false,
       "description": "This cooperative effort, which includes Fellowship for Interpretation of Genomes (FIG), Argonne National Laboratory, and the University of Chicago, focuses on the development of the comparative genomics environment called the SEED. It is a framework to support comparative analysis and annotation of genomes, and the development of curated genomic data (annotation). Curation is performed at the level of subsystems by an expert annotator, across many genomes, and not on a gene by gene basis. This collection references subsystems.",
-      "homepage": "http://seed-viewer.theseed.org/seedviewer.cgi",
       "id": "00000552",
       "name": "SEED Subsystem",
       "namespaceEmbeddedInLui": false,
       "pattern": "^\\w+$",
       "prefix": "seed",
-      "provider_url": "https://registry.identifiers.org/deprecation/resources/MIR:00100729/$1",
       "sampleId": "Biotin_biosynthesis"
     },
     "n2t": {
@@ -36160,6 +36945,29 @@
       "pattern": "^((S\\d+$)|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?))$",
       "prefix": "sgd",
       "provider_url": "https://www.yeastgenome.org/locus/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Bio2RDF",
+          "homepage": "http://sgd.bio2rdf.org/fct",
+          "name": "Bio2RDF",
+          "url": "http://sgd.bio2rdf.org/describe/?url=http://bio2rdf.org/sgd:$1"
+        },
+        {
+          "code": "bioentitylink",
+          "description": "SGD through BioEntity Link",
+          "homepage": "https://bioentity.link/",
+          "name": "SGD through BioEntity Link",
+          "url": "https://bioentity.link/#/lexicon/public/$1"
+        },
+        {
+          "code": "agr",
+          "description": "SGD through the Alliance of Genome Resources",
+          "homepage": "https://www.alliancegenome.org",
+          "name": "SGD through the Alliance of Genome Resources",
+          "url": "https://www.alliancegenome.org/gene/SGD:$1"
+        }
+      ],
       "sampleId": "S000003909"
     },
     "n2t": {
@@ -36959,13 +37767,13 @@
     "miriam": {
       "deprecated": false,
       "description": "The Sequence Ontology (SO) is a structured controlled vocabulary for the parts of a genomic annotation. It provides a common set of terms and definitions to facilitate the exchange, analysis and management of genomic data.",
-      "homepage": "https://www.ebi.ac.uk/ols/ontologies/so",
+      "homepage": "http://www.sequenceontology.org/",
       "id": "00000081",
       "name": "Sequence Ontology",
       "namespaceEmbeddedInLui": true,
       "pattern": "^SO:\\d{7}$",
       "prefix": "so",
-      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/so/terms?obo_id=SO:$1",
+      "provider_url": "http://www.sequenceontology.org/miso/current_release/term/SO:$1",
       "sampleId": "0000704"
     },
     "n2t": {
@@ -37453,13 +38261,22 @@
     "miriam": {
       "deprecated": false,
       "description": "STRING (Search Tool for Retrieval of Interacting Genes/Proteins) is a database of known and predicted protein interactions.\r\nThe interactions include direct (physical) and indirect (functional) associations; they are derived from four sources:Genomic Context, High-throughput Experiments,(Conserved) Coexpression, Previous Knowledge. STRING quantitatively integrates interaction data from these sources for a large number of organisms, and transfers information between these organisms where applicable.",
-      "homepage": "http://string-db.org/",
+      "homepage": "http://string.embl.de/",
       "id": "00000265",
       "name": "STRING",
       "namespaceEmbeddedInLui": false,
       "pattern": "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])|([0-9][A-Za-z0-9]{3})$",
       "prefix": "string",
-      "provider_url": "http://string-db.org/interactions/$1",
+      "provider_url": "http://string.embl.de/interactions/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "STRING Mirror at Heidelberg",
+          "homepage": "http://string-db.org/",
+          "name": "STRING Mirror at Heidelberg",
+          "url": "http://string-db.org/interactions/$1"
+        }
+      ],
       "sampleId": "P53350"
     },
     "n2t": {
@@ -39188,13 +40005,13 @@
     "miriam": {
       "deprecated": false,
       "description": "Uberon is an integrated cross-species anatomy ontology representing a variety of entities classified according to traditional anatomical criteria such as structure, function and developmental lineage. The ontology includes comprehensive relationships to taxon-specific anatomical ontologies, allowing integration of functional, phenotype and expression data.",
-      "homepage": "https://www.ebi.ac.uk/ols/ontologies/uberon",
+      "homepage": "http://bioportal.bioontology.org/ontologies/UBERON",
       "id": "00000446",
       "name": "UBERON",
       "namespaceEmbeddedInLui": true,
       "pattern": "^UBERON:\\d+$",
       "prefix": "uberon",
-      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/uberon/terms?obo_id=UBERON:$1",
+      "provider_url": "http://purl.bioontology.org/ontology/UBERON/UBERON:$1",
       "sampleId": "0008203"
     },
     "n2t": {
@@ -39727,13 +40544,22 @@
     "miriam": {
       "deprecated": false,
       "description": "The UniProt Archive (UniParc) is a  database containing non-redundant protein sequence information from many sources. Each unique sequence is given a stable and unique identifier (UPI) making it possible to identify the same protein from different source databases.",
-      "homepage": "http://www.uniprot.org/uniparc/",
+      "homepage": "https://www.ebi.ac.uk/uniparc/",
       "id": "00000041",
       "name": "UniParc",
       "namespaceEmbeddedInLui": false,
       "pattern": "^UPI[A-F0-9]{10}$",
       "prefix": "uniparc",
-      "provider_url": "https://www.uniprot.org/uniparc/$1",
+      "provider_url": "https://www.ebi.ac.uk/cgi-bin/dbfetch?db=uniparc&id=$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "UniParc through UniProt",
+          "homepage": "http://www.uniprot.org/uniparc/",
+          "name": "UniParc through UniProt",
+          "url": "https://www.uniprot.org/uniparc/$1"
+        }
+      ],
       "sampleId": "UPI000000000A"
     },
     "n2t": {
@@ -39762,13 +40588,11 @@
     "miriam": {
       "deprecated": false,
       "description": "UniPathway is a manually curated resource of enzyme-catalyzed and spontaneous chemical reactions. It provides a hierarchical representation of metabolic pathways and a controlled vocabulary for pathway annotation in UniProtKB. UniPathway data are cross-linked to existing metabolic resources such as ChEBI/Rhea, KEGG and MetaCyc. This collection references compounds.",
-      "homepage": "http://www.grenoble.prabi.fr/obiwarehouse/unipathway",
       "id": "00000551",
       "name": "UniPathway Compound",
       "namespaceEmbeddedInLui": false,
       "pattern": "^UPC\\d{5}$",
       "prefix": "unipathway.compound",
-      "provider_url": "http://www.grenoble.prabi.fr/obiwarehouse/unipathway/upc?upid=$1",
       "sampleId": "UPC04349"
     },
     "n2t": {
@@ -39797,13 +40621,11 @@
     "miriam": {
       "deprecated": false,
       "description": "UniPathway is a manually curated resource of enzyme-catalyzed and spontaneous chemical reactions. It provides a hierarchical representation of metabolic pathways and a controlled vocabulary for pathway annotation in UniProtKB. UniPathway data are cross-linked to existing metabolic resources such as ChEBI/Rhea, KEGG and MetaCyc. This collection references individual reactions.",
-      "homepage": "http://www.grenoble.prabi.fr/obiwarehouse/unipathway",
       "id": "00000570",
       "name": "UniPathway Reaction",
       "namespaceEmbeddedInLui": false,
       "pattern": "^UCR\\d{5}$",
       "prefix": "unipathway.reaction",
-      "provider_url": "http://www.grenoble.prabi.fr/obiwarehouse/unipathway/ucr?upid=$1",
       "sampleId": "UCR00226"
     },
     "n2t": {
@@ -39858,6 +40680,15 @@
       "pattern": "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$",
       "prefix": "uniprot",
       "provider_url": "http://purl.uniprot.org/uniprot/$1",
+      "providers": [
+        {
+          "code": "ncbi",
+          "description": "UniProt through NCBI",
+          "homepage": "https://www.ncbi.nlm.nih.gov/protein/",
+          "name": "UniProt through NCBI",
+          "url": "https://www.ncbi.nlm.nih.gov/protein/$1"
+        }
+      ],
       "sampleId": "P0DP23"
     },
     "n2t": {
@@ -39940,13 +40771,29 @@
     "miriam": {
       "deprecated": false,
       "description": "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. This collection is a subset of UniProtKB, and provides a means to reference isoform information.",
-      "homepage": "http://www.uniprot.org/uniparc/",
+      "homepage": "http://www.uniprot.org/",
       "id": "00000388",
       "name": "UniProt Isoform",
       "namespaceEmbeddedInLui": false,
       "pattern": "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\-\\d+)$",
       "prefix": "uniprot.isoform",
-      "provider_url": "http://www.uniprot.org/uniparc/?query=$1",
+      "provider_url": "http://www.uniprot.org/uniprot/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "UniProt Isoform through Universal Protein Resource using Persistent URL system",
+          "homepage": "http://purl.uniprot.org/",
+          "name": "UniProt Isoform through Universal Protein Resource using Persistent URL system",
+          "url": "http://purl.uniprot.org/uniprot/$1"
+        },
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "UniProt Isoform through UniParc",
+          "homepage": "http://www.uniprot.org/uniparc/",
+          "name": "UniProt Isoform through UniParc",
+          "url": "http://www.uniprot.org/uniparc/?query=$1"
+        }
+      ],
       "sampleId": "Q5BJF6-3"
     },
     "n2t": {
@@ -40168,13 +41015,13 @@
     "miriam": {
       "deprecated": false,
       "description": "Ontology of standardized units",
-      "homepage": "http://bioportal.bioontology.org/ontologies/UO",
+      "homepage": "https://www.ebi.ac.uk/ols/ontologies/uo",
       "id": "00000136",
       "name": "Unit Ontology",
       "namespaceEmbeddedInLui": true,
       "pattern": "^UO:\\d{7}?",
       "prefix": "uo",
-      "provider_url": "http://purl.bioontology.org/ontology/UO/UO:$1",
+      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/uo/terms?obo_id=UO:$1",
       "sampleId": "0000080"
     },
     "n2t": {
@@ -40460,13 +41307,22 @@
     "miriam": {
       "deprecated": false,
       "description": "The Variation Ontology (VariO) is an ontology for the standardized, systematic description of effects, consequences and mechanisms of variations. It describes the effects of variations at the DNA, RNA and/or protein level.",
-      "homepage": "http://www.variationontology.org/",
+      "homepage": "http://bioportal.bioontology.org/ontologies/VARIO",
       "id": "00000406",
       "name": "VariO",
       "namespaceEmbeddedInLui": true,
       "pattern": "^VariO:\\d+$",
       "prefix": "vario",
-      "provider_url": "http://www.ontobee.org/search?ontology=VariO&keywords=VariO_$1&submit=Search+terms",
+      "provider_url": "http://purl.bioontology.org/ontology/VARIO/VariO:$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "VariO at Lund University",
+          "homepage": "http://www.variationontology.org/",
+          "name": "VariO at Lund University",
+          "url": "http://www.ontobee.org/search?ontology=VariO&keywords=VariO_$1&submit=Search+terms"
+        }
+      ],
       "sampleId": "0294"
     },
     "n2t": {
@@ -41697,6 +42553,15 @@
       "pattern": "WP\\d{1,5}(\\_r\\d+)?$",
       "prefix": "wikipathways",
       "provider_url": "http://www.wikipathways.org/instance/$1",
+      "providers": [
+        {
+          "code": "scholia",
+          "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.\n",
+          "homepage": "https://scholia.toolforge.org/",
+          "name": "Scholia",
+          "url": "https://scholia.toolforge.org/wikipathways/$1"
+        }
+      ],
       "sampleId": "WP100"
     },
     "n2t": {
@@ -41743,13 +42608,22 @@
     "miriam": {
       "deprecated": false,
       "description": "Wikipedia is a multilingual, web-based, free-content encyclopedia project based on an openly editable model. It is written collaboratively by largely anonymous Internet volunteers who write without pay.",
-      "homepage": "http://wiki.dbpedia.org/",
+      "homepage": "http://en.wikipedia.org/wiki/Main_Page",
       "id": "00000384",
       "name": "Wikipedia (En)",
       "namespaceEmbeddedInLui": false,
       "pattern": "^[A-Za-z-0-9_]+$",
       "prefix": "wikipedia.en",
-      "provider_url": "http://dbpedia.org/page/$1",
+      "provider_url": "http://en.wikipedia.org/wiki/$1",
+      "providers": [
+        {
+          "code": "CURATOR_REVIEW",
+          "description": "Wikipedia structured content through DBpedia",
+          "homepage": "http://wiki.dbpedia.org/",
+          "name": "Wikipedia structured content through DBpedia",
+          "url": "http://dbpedia.org/page/$1"
+        }
+      ],
       "sampleId": "SM_UB-81"
     },
     "n2t": {
@@ -41847,6 +42721,22 @@
       "pattern": "^WB[A-Z][a-z]+\\d+$",
       "prefix": "wb",
       "provider_url": "https://www.wormbase.org/get?name=$1",
+      "providers": [
+        {
+          "code": "bioentitylink",
+          "description": "WormBase through BioEntity Link",
+          "homepage": "https://bioentity.link/",
+          "name": "WormBase through BioEntity Link",
+          "url": "https://bioentity.link/#/lexicon/public/$1"
+        },
+        {
+          "code": "agr",
+          "description": "WormBase through the Alliance of Genome Resources",
+          "homepage": "https://www.alliancegenome.org",
+          "name": "WormBase through the Alliance of Genome Resources",
+          "url": "https://www.alliancegenome.org/gene/WB:$1"
+        }
+      ],
       "sampleId": "WBGene00000001"
     },
     "n2t": {
@@ -42617,6 +43507,22 @@
       "pattern": "^ZDB\\-\\w+\\-\\d+\\-\\d+$",
       "prefix": "zfin",
       "provider_url": "http://zfin.org/$1",
+      "providers": [
+        {
+          "code": "bioentitylink",
+          "description": "ZFIN through BioEntity Link",
+          "homepage": "https://bioentity.link/",
+          "name": "ZFIN through BioEntity Link",
+          "url": "https://bioentity.link/#/lexicon/public/$1"
+        },
+        {
+          "code": "agr",
+          "description": "ZFIN through the Alliance of Genome Resources",
+          "homepage": "https://www.alliancegenome.org",
+          "name": "ZFIN through the Alliance of Genome Resources",
+          "url": "https://test.alliancegenome.org/gene/ZFIN:$1"
+        }
+      ],
       "sampleId": "ZDB-GENE-041118-11"
     },
     "n2t": {
