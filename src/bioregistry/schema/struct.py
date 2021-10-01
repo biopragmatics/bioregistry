@@ -781,10 +781,12 @@ class Resource(BaseModel):
 
     def get_extra_providers(self) -> List[Provider]:
         """Get a list of all extra providers."""
-        # TODO include identifiers.org import
         rv = []
         if self.providers is not None:
             rv.extend(self.providers)
+        if self.miriam:
+            for p in self.miriam.get('providers', []):
+                rv.append(Provider(**p))
         return rv
 
 
