@@ -108,7 +108,7 @@
         },
         "homepage": {
           "title": "Format URL",
-          "description": "The URL for the homepage of the resource",
+          "description": "The URL for the homepage of the resource, preferably with HTTPS",
           "type": "string"
         },
         "contact": {
@@ -206,6 +206,15 @@
             }
           ]
         },
+        "reviewer": {
+          "title": "Reviewer",
+          "description": "Reviewer information, including the name, ORCiD, and optionally the email of the reviewer",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Author"
+            }
+          ]
+        },
         "proprietary": {
           "title": "Proprietary",
           "description": "Set to true if this database is proprietary. If missing, assume it's not.",
@@ -214,6 +223,11 @@
         "has_canonical": {
           "title": "Has Canonical",
           "description": "If this shares an IRI with another entry, maps to which should be be considered as canonical",
+          "type": "string"
+        },
+        "preferred_prefix": {
+          "title": "Preferred Prefix",
+          "description": "An annotation of stylization of the prefix. This appears in OBO ontologies like FBbt as well as databases like NCBIGene. If it's not given, then assume that the normalized prefix used in the Bioregistry is canonical.",
           "type": "string"
         },
         "miriam": {
@@ -262,6 +276,10 @@
         },
         "cellosaurus": {
           "title": "Cellosaurus",
+          "type": "object"
+        },
+        "ontobee": {
+          "title": "Ontobee",
           "type": "object"
         }
       }
