@@ -42481,11 +42481,15 @@
       "is_obo": false,
       "prefix": "WD_Entity"
     },
-    "scholia": {
-      "formatter": "https://scholia.toolforge.org/$1",
-      "pattern": "^(Q|P)\\d+$",
-      "prefix": "wikidata"
-    },
+    "providers": [
+      {
+        "code": "scholia",
+        "description": "Scholia can generally resolve many Wikidata entries in the biomedical and bibliometric domains",
+        "homepage": "https://scholia.toolforge.org",
+        "name": "Scholia",
+        "url": "https://scholia.toolforge.org/$1"
+      }
+    ],
     "synonyms": [
       "wd",
       "WD_Entity"
