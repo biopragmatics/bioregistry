@@ -353,12 +353,11 @@ def compare(png: bool):  # noqa:C901
     ##################################################
     # Histogram of how many providers each entry has #
     ##################################################
-    provider_counts = [
-        _count_providers(resource)
-        for resource in read_registry().values()
-    ]
+    provider_counts = [_count_providers(resource) for resource in read_registry().values()]
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
-    sns.barplot(data=sorted(Counter(provider_counts).items()), ci=None, color="blue", alpha=0.4, ax=ax)
+    sns.barplot(
+        data=sorted(Counter(provider_counts).items()), ci=None, color="blue", alpha=0.4, ax=ax
+    )
     ax.set_xlabel("Number Providers")
     ax.set_ylabel("Count")
     ax.set_yscale("log")
