@@ -4982,6 +4982,23 @@
       "prefix": "P3289"
     }
   },
+  "cellrepo": {
+    "mappings": {
+      "miriam": "cellrepo"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "The Cell Version Control Repository is the single worldwide version control repository for engineered and natural cell lines",
+      "homepage": "https://cellrepo.ico2s.org/",
+      "id": "00000829",
+      "name": "Cell Version Control Repository",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[0-9]+$",
+      "prefix": "cellrepo",
+      "provider_url": "https://cellrepo.ico2s.org/repositories/$1",
+      "sampleId": "82"
+    }
+  },
   "ceph": {
     "bioportal": {
       "name": "Cephalopod Ontology",
@@ -5813,6 +5830,40 @@
       "CTX"
     ],
     "url": "https://europepmc.org/article/CTX/$1"
+  },
+  "civic.aid": {
+    "mappings": {
+      "miriam": "civic.aid"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "A CIViC assertion classifies the clinical significance of a variant-disease relationship under recognized guidelines. The CIViC Assertion (AID) summarizes a collection of Evidence Items (EIDs) that covers predictive/therapeutic, diagnostic, prognostic or predisposing clinical information for a variant in a specific cancer context. CIViC currently has two main types of Assertions: those based on variants of primarily somatic origin (predictive/therapeutic, prognostic, and diagnostic) and those based on variants of primarily germline origin (predisposing). When the number and quality of Predictive, Prognostic, Diagnostic or Predisposing Evidence Items (EIDs) in CIViC sufficiently cover what is known for a particular variant and cancer type, then a corresponding assertion be created in CIViC.",
+      "homepage": "https://civicdb.org/",
+      "id": "00000835",
+      "name": "CIViC Assertion",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[0-9]+$",
+      "prefix": "civic.aid",
+      "provider_url": "https://civicdb.org/links/assertions/$1",
+      "sampleId": "3"
+    }
+  },
+  "civic.eid": {
+    "mappings": {
+      "miriam": "civic.eid"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "Evidence Items are the central building block of the Clinical Interpretation of Variants in Cancer (CIViC) knowledgebase. The clinical Evidence Item is a piece of information that has been manually curated from trustable medical literature about a Variant or genomic ‘event’ that has implications in cancer Predisposition, Diagnosis (aka molecular classification), Prognosis, Predictive response to therapy, Oncogenicity or protein Function. For example, an Evidence Item might describe a line of evidence supporting the notion that tumors with a somatic BRAF V600 mutation generally respond well to the drug dabrafenib. A Variant may be a single nucleotide substitution, a small insertion or deletion, an RNA gene fusion, a chromosomal rearrangement, an RNA expression pattern (e.g. over-expression), etc. Each clinical Evidence statement corresponds to a single citable Source (a publication or conference abstract).",
+      "homepage": "https://civicdb.org/",
+      "id": "00000839",
+      "name": "CIViC Evidence",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[0-9]+$",
+      "prefix": "civic.eid",
+      "provider_url": "https://civicdb.org/links/evidence/$1",
+      "sampleId": "1199"
+    }
   },
   "cl": {
     "bioportal": {
@@ -7269,6 +7320,23 @@
       "prefix": "Coriell"
     }
   },
+  "corrdb": {
+    "mappings": {
+      "miriam": "corrdb"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "A genetic correlation is the proportion of shared variance between two traits that is due to genetic causes; a phenotypic correlation is the degree to which two traits co-vary among individuals in a population. In the genomics era, while gene expression, genetic association, and network analysis provide unprecedented means to decode the genetic basis of complex phenotypes, it is important to recognize the possible effects genetic progress in one trait can have on other traits. This database is designed to collect all published livestock genetic/phenotypic trait correlation data, aimed at facilitating genetic network analysis or systems biology studies.",
+      "homepage": "https://www.animalgenome.org",
+      "id": "00000831",
+      "name": "CorrDB",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[0-9]+$",
+      "prefix": "corrdb",
+      "provider_url": "https://www.animalgenome.org/CorrDB/q/?id=CorrID:$1",
+      "sampleId": "37232"
+    }
+  },
   "corum": {
     "go": {
       "formatter": "https://mips.helmholtz-muenchen.de/corum/?id=$1",
@@ -8250,6 +8318,23 @@
     },
     "part_of": "datanator"
   },
+  "datanator.reaction": {
+    "mappings": {
+      "miriam": "datanator.reaction"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "\tDatanator is an integrated database of genomic and biochemical data designed to help investigators find data about specific molecules and reactions in specific organisms and specific environments for meta-analyses and mechanistic models. Datanator currently includes metabolite concentrations, RNA modifications and half-lives, protein abundances and modifications, and reaction kinetics integrated from several databases and numerous publications. The Datanator website and REST API provide tools for extracting clouds of data about specific molecules and reactions in specific organisms and specific environments, as well as data about similar molecules and reactions in taxonomically similar organisms.",
+      "homepage": "https://icahn.mssm.edu/",
+      "id": "00000855",
+      "name": "Datanator Reaction",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^.*?--%3E.*?$",
+      "prefix": "datanator.reaction",
+      "provider_url": "https://datanator.info/reaction/$1",
+      "sampleId": "XLYOFNOQVPJJNP-UHFFFAOYSA-N,NBSCHQHZLSJFNQ-GASJEMHNSA-N--%3ENBIIXXVUZAFLBC-UHFFFAOYSA-N,WQZGKKKJIJFFOK-GASJEMHNSA-N"
+    }
+  },
   "datf": {
     "deprecated": true,
     "mappings": {
@@ -8930,6 +9015,74 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "DEV.GA4GHDOS"
+    }
+  },
+  "dg.4503": {
+    "mappings": {
+      "miriam": "dg.4503"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "Full implementation of the DRS 1.1 standard with support for persistent identifiers. Open source DRS server that follows the Gen3 implementation. Gen3 is a GA4GH compliant open source platform for developing framework services and data commons. Data commons accelerate and democratize the process of scientific discovery, especially over large or complex datasets. Gen3 is maintained by the Center for Translational Data Science at the University of Chicago. https://gen3.org",
+      "homepage": "https://gen3.biodatacatalyst.nhlbi.nih.gov",
+      "id": "00000869",
+      "name": "BioData Catalyst",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}",
+      "prefix": "dg.4503",
+      "provider_url": "https://gen3.biodatacatalyst.nhlbi.nih.gov/ga4gh/drs/v1/objects/$1",
+      "sampleId": "0000ffeb-36e0-4a29-b21d-84423bda979d"
+    }
+  },
+  "dg.4dfc": {
+    "mappings": {
+      "miriam": "dg.4dfc"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "DRS server that follows the Gen3 implementation. Gen3 is a GA4GH compliant open source platform for developing framework services and data commons. Data commons accelerate and democratize the process of scientific discovery, especially over large or complex datasets. Gen3 is maintained by the Center for Translational Data Science at the University of Chicago. https://gen3.org",
+      "homepage": "https://nci-crdc.datacommons.io/",
+      "id": "00000857",
+      "name": "NCI Data Commons Framework Services",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}",
+      "prefix": "dg.4dfc",
+      "provider_url": "https://nci-crdc.datacommons.io/ga4gh/drs/v1/objects/$1",
+      "sampleId": "81944ba1-81d0-436e-8552-33d77a27834b"
+    }
+  },
+  "dg.6vts": {
+    "mappings": {
+      "miriam": "dg.6vts"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "Full implementation of the DRS 1.1 standard with support for persistent identifiers. Open source DRS server that follows the Gen3 implementation. Gen3 is a GA4GH compliant open source platform for developing framework services and data commons. Data commons accelerate and democratize the process of scientific discovery, especially over large or complex datasets. Gen3 is maintained by the Center for Translational Data Science at the University of Chicago. https://gen3.org",
+      "homepage": "https://jcoin.datacommons.io",
+      "id": "00000876",
+      "name": "JCOIN",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}",
+      "prefix": "dg.6vts",
+      "provider_url": "https://jcoin.datacommons.io/ga4gh/drs/v1/objects/$1",
+      "sampleId": "2afacf00-9a1d-4d80-8c32-69d3923d3913"
+    }
+  },
+  "dg.anv0": {
+    "mappings": {
+      "miriam": "dg.anv0"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "DRS server that follows the Gen3 implementation. Gen3 is a GA4GH compliant open source platform for developing framework services and data commons. Data commons accelerate and democratize the process of scientific discovery, especially over large or complex datasets. Gen3 is maintained by the Center for Translational Data Science at the University of Chicago. https://gen3.org",
+      "homepage": "https://gen3.theanvil.io",
+      "id": "00000871",
+      "name": "Anvil",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}",
+      "prefix": "dg.anv0",
+      "provider_url": "https://gen3.theanvil.io/ga4gh/drs/v1/objects/$1",
+      "sampleId": "00077f1c-c45a-47ba-8e6c-1bf6b6b43fce"
     }
   },
   "dicom": {
@@ -13646,6 +13799,23 @@
       "prefix": "FUNCBASE.YEAST"
     }
   },
+  "funderregistry": {
+    "mappings": {
+      "miriam": "funderregistry"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "The Funder Registry is an open registry of persistent identifiers for grant-giving organizations around the world.",
+      "homepage": "https://www.crossref.org/",
+      "id": "00000847",
+      "name": "FunderRegistry",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^\\d{9,9}$",
+      "prefix": "funderregistry",
+      "provider_url": "http://data.crossref.org/fundingdata/funder/10.13039/$1",
+      "sampleId": "100000001"
+    }
+  },
   "fungidb": {
     "mappings": {
       "miriam": "fungidb",
@@ -14734,6 +14904,23 @@
       "prefix": "GIARDIADB"
     }
   },
+  "github": {
+    "mappings": {
+      "miriam": "github"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "GitHub is an online host of Git source code repositories.",
+      "homepage": "https://github.com/",
+      "id": "00000853",
+      "name": "github",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[a-zA-Z0-9-_]+/[a-zA-Z0-9-_]+$",
+      "prefix": "github",
+      "provider_url": "https://github.com/$1",
+      "sampleId": "identifiers-org/registry"
+    }
+  },
   "glida.gpcr": {
     "mappings": {
       "miriam": "glida.gpcr",
@@ -14874,6 +15061,23 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "GLYCOMEDB"
+    }
+  },
+  "glyconavi": {
+    "mappings": {
+      "miriam": "glyconavi"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "GlycoNAVI is a website for carbohydrate research. It consists of the \"GlycoNAVI Database\" that provides information such as existence ratios and names of glycans, 3D structures of glycans and complex glycoconjugates, and the \"GlycoNAVI tools\" such as editing of 2D structures of glycans, glycan structure viewers, and conversion tools.",
+      "homepage": "https://www.noguchi.or.jp/",
+      "id": "00000830",
+      "name": "GlycoNAVI",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^GN_[A-Za-z0-9]+$",
+      "prefix": "glyconavi",
+      "provider_url": "https://glyconavi.org/hub/?id=$1",
+      "sampleId": "GN_G03681DA"
     }
   },
   "glycopost": {
@@ -18277,6 +18481,23 @@
       "prefix": "IDEAL"
     }
   },
+  "identifiers.namespace": {
+    "mappings": {
+      "miriam": "identifiers.namespace"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "Identifiers.org is an established resolving system that enables the referencing of data for the scientific community, with a current focus on the Life Sciences domain.",
+      "homepage": "https://www.ebi.ac.uk",
+      "id": "00000859",
+      "name": "Identifiers.org namespace",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[a-z_\\.]+$",
+      "prefix": "identifiers.namespace",
+      "provider_url": "https://registry.identifiers.org/registry/$1",
+      "sampleId": "pubmed"
+    }
+  },
   "ido": {
     "bioportal": {
       "name": "Infectious Disease Ontology",
@@ -18516,6 +18737,24 @@
       "provider_url": "https://idr.openmicroscopy.org/search/?query=Name:idr$1",
       "sampleId": "0001"
     }
+  },
+  "iedb": {
+    "mappings": {
+      "miriam": "iedb"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "The Immune Epitope Database (IEDB) is a freely available resource funded by NIAID. It catalogs experimental data on antibody and T cell epitopes studied in humans, non-human primates, and other animal species in the context of infectious disease, allergy, autoimmunity and transplantation. The IEDB also hosts tools to assist in the prediction and analysis of epitopes.",
+      "homepage": "https://www.lji.org/",
+      "id": "00000865",
+      "name": "Immune Epitope Database (IEDB)",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[0-9]+$",
+      "prefix": "iedb",
+      "provider_url": "https://www.iedb.org/reference/$1",
+      "sampleId": "1038233"
+    },
+    "name": "Immune Epitope Database"
   },
   "iev": {
     "mappings": {
@@ -20785,6 +21024,23 @@
       "provider_url": "https://www.gleif.org/lei/$1"
     }
   },
+  "lgai.cede": {
+    "mappings": {
+      "miriam": "lgai.cede"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "LG Chemical Entity Detection Dataset (LGCEDe) is only available open-dataset with molecular instance level annotations (i.e. atom-bond level position annotations within an image) for molecular structure images. This dataset was designed to encourage research on detection-based pipelines for Optical Chemical Structure Recognition (OCSR).",
+      "homepage": "https://www.lgresearch.ai",
+      "id": "00000867",
+      "name": "LG Chemical Entity Detection Dataset (LGCEDe)",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^LGCEDe-S-\\d{9}$",
+      "prefix": "lgai.cede",
+      "provider_url": "https://s3.us-east-2.amazonaws.com/lg.cede/$1",
+      "sampleId": "LGCEDe-S-000002244"
+    }
+  },
   "lgic": {
     "mappings": {
       "miriam": "lgic",
@@ -21096,6 +21352,23 @@
     "synonyms": [
       "lincs"
     ]
+  },
+  "linguist": {
+    "mappings": {
+      "miriam": "linguist"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "Registry of programming languages for the Linguist program for detecting and highlighting programming languages.",
+      "homepage": "https://github.com/",
+      "id": "00000849",
+      "name": "Linguist",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[a-zA-Z0-9 +#'*]+$",
+      "prefix": "linguist",
+      "provider_url": "https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml#$1",
+      "sampleId": "Python"
+    }
   },
   "lipidbank": {
     "mappings": {
@@ -23906,6 +24179,23 @@
     "homepage": "http://www.russelllab.org/miRNAs/",
     "name": "miRNA Target Prediction at EMBL"
   },
+  "mlc": {
+    "mappings": {
+      "miriam": "mlc"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "MLCommons Association artifacts, including benchmark results, datasets, and saved models.",
+      "homepage": "https://mlcommons.org/en/",
+      "id": "00000828",
+      "name": "MLCommons Association",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[0-9a-zA-Z\\.\\-\\_]+$",
+      "prefix": "mlc",
+      "provider_url": "https://www.mlcommons.org/mlc-id/$1",
+      "sampleId": "0.7-123"
+    }
+  },
   "mmdb": {
     "mappings": {
       "miriam": "mmdb",
@@ -23950,11 +24240,13 @@
     "miriam": {
       "deprecated": false,
       "description": "A collection of molecular interaction maps and pathways involved in cancer development and progression with a focus on melanoma.",
+      "homepage": "http://www.mmmp.org/MMMP/public/biomap/listBiomap.mmmp",
       "id": "00000075",
       "name": "Melanoma Molecular Map Project Biomaps",
       "namespaceEmbeddedInLui": false,
       "pattern": "^\\d+$",
       "prefix": "mmmp:biomaps",
+      "provider_url": "http://www.mmmp.org/MMMP/public/biomap/viewBiomap.mmmp?id=$1",
       "sampleId": "37"
     },
     "n2t": {
@@ -31922,6 +32214,23 @@
     },
     "provides": "uniprot"
   },
+  "pmr": {
+    "mappings": {
+      "miriam": "pmr"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "Resource for the community to store, retrieve, search, reference, and reuse CellML models.",
+      "homepage": "https://www.auckland.ac.nz/en.html",
+      "id": "00000845",
+      "name": "Physiome Model Repository",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[a-z0-9]{32,32}$",
+      "prefix": "pmr",
+      "provider_url": "https://models.physiomeproject.org/exposure/$1",
+      "sampleId": "ebf69ca24298b28b2361e7d43eb52d6c"
+    }
+  },
   "po": {
     "bioportal": {
       "name": "Plant Ontology",
@@ -33498,6 +33807,23 @@
       "prefix": "PX"
     }
   },
+  "pypi": {
+    "mappings": {
+      "miriam": "pypi"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "The Python Package Index (PyPI) is a repository for Python packages.",
+      "homepage": "https://www.python.org/psf/",
+      "id": "00000863",
+      "name": "PyPI",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[a-zA-Z_][a-zA-Z0-9\\-_]+$",
+      "prefix": "pypi",
+      "provider_url": "https://pypi.org/project/$1/",
+      "sampleId": "numpy"
+    }
+  },
   "qtldb": {
     "mappings": {
       "miriam": "qtldb"
@@ -33703,6 +34029,23 @@
     },
     "name": "RGD Disease_Ontology",
     "pattern": "^\\d{7}$"
+  },
+  "re3data": {
+    "mappings": {
+      "miriam": "re3data"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "Re3data is a global registry of research data repositories that covers research data repositories from different academic disciplines.",
+      "homepage": "https://datacite.org",
+      "id": "00000861",
+      "name": "re3data",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^r3d\\d{9,9}$",
+      "prefix": "re3data",
+      "provider_url": "https://www.re3data.org/repository/$1",
+      "sampleId": "r3d100010772"
+    }
   },
   "reactome": {
     "example": "R-BTA-418592",
@@ -35552,6 +35895,40 @@
     "homepage": "https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets",
     "name": "Selventa iseasess",
     "pattern": "^D\\d{4}$"
+  },
+  "sedml.format": {
+    "mappings": {
+      "miriam": "sedml.format"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "Data format that can be used in conjunction with the Simulation Experimental Description Markup Language (SED-ML).",
+      "homepage": "http://sed-ml.org/",
+      "id": "00000841",
+      "name": "SED-ML data format",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[a-z]+(\\..*?)?$",
+      "prefix": "sedml.format",
+      "provider_url": "https://sed-ml.org/urns.html#format:$1",
+      "sampleId": "csv"
+    }
+  },
+  "sedml.language": {
+    "mappings": {
+      "miriam": "sedml.language"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "Model format that can be used in conjunction with the Simulation Experimental Description Markup Language (SED-ML).",
+      "homepage": "http://sed-ml.org/",
+      "id": "00000843",
+      "name": "SED-ML model format",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[a-z]+(\\..*?)?$",
+      "prefix": "sedml.language",
+      "provider_url": "https://sed-ml.org/urns.html#language:$1",
+      "sampleId": "sbml.level-3.version-2"
+    }
   },
   "seed": {
     "go": {
@@ -39644,6 +40021,23 @@
       "UniProtKB_VAR"
     ],
     "url": "https://web.expasy.org/variant_pages/$1.html"
+  },
+  "uniref": {
+    "mappings": {
+      "miriam": "uniref"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "The UniProt Reference Clusters (UniRef) provide clustered sets of sequences from the UniProt Knowledgebase (including isoforms) and selected UniParc records in order to obtain complete coverage of the sequence space at several resolutions while hiding redundant sequences (but not their descriptions) from view.",
+      "homepage": "https://www.uniprot.org/",
+      "id": "00000878",
+      "name": "UniRef",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^UniRef(100|90|50)_([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}|UPI[A-F0-9]{10})$",
+      "prefix": "uniref",
+      "provider_url": "https://www.uniprot.org/uniref/$1",
+      "sampleId": "UniRef90_P00750"
+    }
   },
   "unirule": {
     "description": "Rules are devised and tested by experienced curators using experimental data from manually annotated entries as templates. UniRule rules can annotate protein properties such as the protein name, function, catalytic activity, pathway membership, and subcellular location, along with sequence specific information, such as the positions of post-translational modifications and active sites.",

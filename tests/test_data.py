@@ -385,7 +385,7 @@ class TestRegistry(unittest.TestCase):
     def assert_no_idot(self, prefix_map: Mapping[str, str]) -> None:
         """Assert none of the URI prefixes have identifiers.org in them."""
         for prefix, uri_prefix in prefix_map.items():
-            if prefix in {"idoo", "miriam.collection", "mir"}:
+            if prefix in {"idoo", "miriam.collection", "mir", "identifiers.namespace"}:
                 # allow identifiers.org namespaces since this actually should be here
                 continue
             with self.subTest(prefix=prefix):
