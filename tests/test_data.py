@@ -386,10 +386,9 @@ class TestRegistry(unittest.TestCase):
         """Assert none of the URI prefixes have identifiers.org in them."""
         for prefix, uri_prefix in prefix_map.items():
             if prefix in {"idoo", "miriam.collection", "mir"}:
+                # allow identifiers.org namespaces since this actually should be here
                 continue
             with self.subTest(prefix=prefix):
-                # self.assertFalse(uri_prefix.startswith("https://identifiers.org/"), msg=uri_prefix)
-                # self.assertFalse(uri_prefix.startswith("http://identifiers.org/"), msg=uri_prefix)
                 self.assertNotIn("identifiers.org", uri_prefix, msg=uri_prefix)
 
     def test_preferred_prefix(self):
