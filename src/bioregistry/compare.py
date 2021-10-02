@@ -302,7 +302,7 @@ def compare(png: bool):  # noqa:C901
     # -------------------------------------------------------------------- #
     palette = sns.color_palette("Paired", len(GETTERS))
     keys = [
-        (metaprefix, label, color, set(func()))
+        (metaprefix, label, color, set(func(force_download=False)))
         for (metaprefix, label, func), color in zip(GETTERS, palette)
     ]
 
@@ -409,7 +409,7 @@ def _get_license_and_conflicts():
             licenses.append(ols_license)
             licenses.append(obo_license)
             conflicts.add(key)
-            logger.warning(f"[{key}] Conflicting licenses- {obo_license} and {ols_license}")
+            # logger.warning(f"[{key}] Conflicting licenses- {obo_license} and {ols_license}")
             continue
     return licenses, conflicts, obo_has_license, ols_has_license
 
