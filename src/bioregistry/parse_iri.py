@@ -125,6 +125,12 @@ def parse_iri(
     >>> parse_iri("https://example.org/chebi:1234", prefix_map=prefix_map)
     ('chebi', '1234')
 
+    Handle either HTTP or HTTPS:
+    >>> parse_iri("http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
+    ('neuronames', '268')
+    >>> parse_iri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
+    ('neuronames', '268')
+
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
     if iri.startswith(BIOREGISTRY_PREFIX):

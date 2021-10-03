@@ -222,6 +222,16 @@ assert ('chebi', '24867') == parse_iri('http://identifiers.org/CHEBI/24867')
 assert ('chebi', '24867') == parse_iri('https://bioregistry.io/chebi:24867')
 ```
 
+In general, the Bioregistry knows how to parse both the http and https variants
+of any given URI:
+
+```python
+from bioregistry import parse_iri
+
+assert ('neuronames', '268') == parse_iri("http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
+assert ('neuronames', '268') == parse_iri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
+```
+
 You can add to (or override) the default prefix map from the Bioregistry by
 passing a dictionary with the `prefix_map` keyword:
 
