@@ -313,6 +313,11 @@ def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
     return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{norm_prefix}:{norm_identifier}"
 
 
+def get_indra_iri(prefix: str, identifier: str) -> Optional[str]:
+    """Get an INDRA IRI, if possible."""
+    return get_formatted_iri("indra", prefix, identifier)
+
+
 PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
     "default": get_default_iri,
     "miriam": get_identifiers_org_iri,
@@ -321,6 +326,7 @@ PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
     "n2t": get_n2t_iri,
     "bioportal": get_bioportal_iri,
     "scholia": get_scholia_iri,
+    "indra": get_indra_iri,
 }
 
 LINK_PRIORITY = [
@@ -333,6 +339,7 @@ LINK_PRIORITY = [
     "n2t",
     "bioportal",
     "scholia",
+    "indra",
 ]
 
 
