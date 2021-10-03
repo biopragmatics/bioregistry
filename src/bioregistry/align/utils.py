@@ -8,9 +8,9 @@ from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, S
 from tabulate import tabulate
 
 from ..data import EXTERNAL
-from ..resolve import normalize_prefix
+from ..resource_manager import ResourceManager
 from ..schema import Resource
-from ..utils import is_mismatch, read_metaregistry, read_registry_helper, write_registry
+from ..utils import is_mismatch, read_metaregistry
 
 __all__ = [
     "Aligner",
@@ -23,15 +23,15 @@ class Aligner(ABC):
     #: The key for the external registry
     key: ClassVar[str]
 
+    #: Header to put on the curation table, corresponding to ``get_curation_row()``
+    curation_header: ClassVar[Sequence[str]]
+
     #: The function that gets the external registry as a dictionary from the string identifier to
     #: the entries (could be anything, but a dictionary is probably best)
     getter: ClassVar[Callable[..., Mapping[str, Any]]]
 
     #: Keyword arguments to pass to the getter function on call
     getter_kwargs: ClassVar[Optional[Mapping[str, Any]]] = None
-
-    #: Optional header to put on the curation table
-    curation_header: ClassVar[Optional[Sequence[str]]] = None
 
     #: Should new entries be included automatically? Only set this true for aligners of
     #: very high confidence (e.g., OBO Foundry but not BioPortal)
@@ -44,7 +44,8 @@ class Aligner(ABC):
         if self.key not in read_metaregistry():
             raise TypeError(f"invalid metaprefix for aligner: {self.key}")
 
-        self.internal_registry = dict(read_registry_helper())
+        self.manager = ResourceManager()
+        self.internal_registry = self.manager.registry
 
         kwargs = self.getter_kwargs or {}
         kwargs.setdefault("force_download", True)
@@ -52,17 +53,10 @@ class Aligner(ABC):
         self.skip_external = self.get_skip()
 
         # Get all of the pre-curated mappings from the Bioregistry
-        self.external_id_to_bioregistry_id = self._prepopulate(self.internal_registry)
+        self.external_id_to_bioregistry_id = self.manager.get_registry_invmap(self.key)
 
         # Run lexical alignment
         self._align()
-
-    def _prepopulate(self, registry):
-        return {
-            bioregistry_entry[self.key][self.subkey]: bioregistry_id
-            for bioregistry_id, bioregistry_entry in registry.items()
-            if self.key in bioregistry_entry and self.subkey in bioregistry_entry[self.key]
-        }
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the mapping prefixes that should be skipped to their reasons (strings)."""
@@ -78,7 +72,7 @@ class Aligner(ABC):
 
             # try to lookup with lexical match
             if bioregistry_id is None:
-                bioregistry_id = normalize_prefix(external_id)
+                bioregistry_id = self.manager.normalize_prefix(external_id)
 
             # add the identifier from an external resource if it's been marked as high quality
             if bioregistry_id is None and self.include_new:
@@ -115,12 +109,16 @@ class Aligner(ABC):
         """
         return external_entry
 
+    def write_registry(self) -> None:
+        """Write the internal registry."""
+        self.manager.write_registry()
+
     @classmethod
     def align(cls, dry: bool = False, quiet: bool = False):
         """Align and output the curation sheet."""
         instance = cls()
         if not dry:
-            write_registry(instance.internal_registry)
+            instance.write_registry()
         instance.write_curation_table()
 
     @abstractmethod
@@ -132,8 +130,6 @@ class Aligner(ABC):
         :return: A sequence of cells to add to the curation table.
 
         .. note:: You don't need to pass the external ID. this will automatically be the first element.
-
-        .. note:: set the ``curation_header`` on the class to get a nice header automatically.
         """  # noqa:DAR202
 
     def _iter_curation_rows(self) -> Iterable[Sequence[str]]:
@@ -159,21 +155,14 @@ class Aligner(ABC):
         directory = EXTERNAL / self.key
         directory.mkdir(parents=True, exist_ok=True)
         with (directory / "curation.tsv").open("w") as file:
-            if self.curation_header:
-                print(self.subkey, *self.curation_header, sep="\t", file=file)  # noqa:T001
-            else:
-                raise ValueError(f"missing curation header: {self.key}")
+            print(self.subkey, *self.curation_header, sep="\t", file=file)  # noqa:T001
             for row in rows:
                 print(*row, sep="\t", file=file)  # noqa:T001
 
     def get_curation_table(self, **kwargs) -> Optional[str]:
         """Get the curation table as a string, built by :mod:`tabulate`."""
         kwargs.setdefault("tablefmt", "rst")
-        if self.curation_header:
-            headers = (self.subkey, *self.curation_header)
-        else:
-            headers = ()
-
+        headers = (self.subkey, *self.curation_header)
         rows = list(self._iter_curation_rows())
         if not rows:
             return None

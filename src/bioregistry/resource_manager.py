@@ -6,7 +6,7 @@ import logging
 from typing import Any, Dict, Iterable, Mapping, Optional, Sequence, Tuple, Union
 
 from .schema import Resource
-from .utils import NormDict, read_registry
+from .utils import NormDict, read_registry, write_registry
 
 __all__ = [
     "ResourceManager",
@@ -49,6 +49,10 @@ class ResourceManager:
             registry = read_registry()
         self.registry = registry
         self.synonyms = _synonym_to_canonical(registry)
+
+    def write_registry(self):
+        """Write the registry."""
+        write_registry(self.registry)
 
     def normalize_prefix(self, prefix: str) -> Optional[str]:
         """Get the normalized prefix, or return None if not registered.
@@ -101,12 +105,17 @@ class ResourceManager:
 
     def get_registry_map(self, metaprefix: str) -> Dict[str, str]:
         """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
-        rv = {}
+        return dict(self._iter_registry_map(metaprefix))
+
+    def get_registry_invmap(self, metaprefix: str) -> Dict[str, str]:
+        """Get a mapping from prefixes in another registry to Bioregistry prefixes."""
+        return {metaprefix: prefix for prefix, metaprefix in self._iter_registry_map(metaprefix)}
+
+    def _iter_registry_map(self, metaprefix: str) -> Iterable[Tuple[str, str]]:
         for prefix, resource in self.registry.items():
             mapped_prefix = resource.get_mapped_prefix(metaprefix)
             if mapped_prefix is not None:
-                rv[prefix] = mapped_prefix
-        return rv
+                yield prefix, mapped_prefix
 
     def get_external(self, prefix: str, metaprefix: str) -> Mapping[str, Any]:
         """Get the external data for the entry."""
