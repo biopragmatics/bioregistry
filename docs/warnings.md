@@ -27,8 +27,8 @@ The following entries have an incorrect value in the `pattern` field.
       <tr>
          <td><code>{{ entry.prefix }}</code></td>
          <td><a href="{{ entry.homepage }}">{{ entry.name }}</a></td>
-         <td>{{ entry.miriam }}</td>
-         <td>{{ entry.correct }}</td>
+         <td><code>{{ entry.miriam }}</code></td>
+         <td><code>{{ entry.correct }}</code></td>
       </tr>
    {% endfor %}
    </tbody>
@@ -81,7 +81,7 @@ case.
          <td><code>{{ entry.prefix }}</code></td>
          <td><a href="{{ entry.homepage }}">{{ entry.name }}</a></td>
          <td><code>{{ entry.pattern }}</code></td>
-         <td>{{ entry.correct }}</td>
+         <td><code>{{ entry.correct }}</code></td>
       </tr>
    {% endfor %}
    </tbody>
