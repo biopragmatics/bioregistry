@@ -7,7 +7,6 @@ from more_click import make_web_command
 
 from .align.cli import align
 from .compare import compare
-from .curation.wikidata_curation import main as wikidata_curation
 from .export.cli import export
 from .external.cli import download
 from .generate_warnings_file import warnings
@@ -52,7 +51,6 @@ def update(ctx: click.Context):
     ctx.invoke(lint)
     ctx.invoke(export)
     ctx.invoke(compare)
-    ctx.invoke(wikidata_curation)
     ctx.invoke(warnings)
 
 
