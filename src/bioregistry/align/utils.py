@@ -7,6 +7,7 @@ from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, S
 
 from tabulate import tabulate
 
+from ..data import EXTERNAL
 from ..resolve import normalize_prefix
 from ..schema import Resource
 from ..utils import is_mismatch, read_metaregistry, read_registry_helper, write_registry
@@ -120,8 +121,7 @@ class Aligner(ABC):
         instance = cls()
         if not dry:
             write_registry(instance.internal_registry)
-        if not quiet:
-            instance.print_uncurated()
+        instance.write_curation_table()
 
     @abstractmethod
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
@@ -149,6 +149,22 @@ class Aligner(ABC):
                     external_id,
                     *self.get_curation_row(external_id, external_entry),
                 )
+
+    def write_curation_table(self) -> None:
+        """Write the curation table to a TSV."""
+        rows = list(self._iter_curation_rows())
+        if not rows:
+            return
+
+        directory = EXTERNAL / self.key
+        directory.mkdir(parents=True, exist_ok=True)
+        with (directory / "curation.tsv").open("w") as file:
+            if self.curation_header:
+                print(self.subkey, *self.curation_header, sep="\t", file=file)  # noqa:T001
+            else:
+                raise ValueError(f"missing curation header: {self.key}")
+            for row in rows:
+                print(*row, sep="\t", file=file)  # noqa:T001
 
     def get_curation_table(self, **kwargs) -> Optional[str]:
         """Get the curation table as a string, built by :mod:`tabulate`."""
