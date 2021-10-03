@@ -55,13 +55,13 @@ class GoAligner(Aligner):
             )
         ]
         if len(homepages) > 1:
-            logger.warning(f"{external_id} multiple homepages {homepages}")
+            logger.info(f"{external_id} multiple homepages {homepages}")
         if homepages:
             rv["homepage"] = homepages[0]
 
         entity_types = external_entry.get("entity_types", [])
         if len(entity_types) > 1:
-            logger.warning(f"{external_id} multiple entity types")
+            logger.info(f"{external_id} multiple entity types")
             # TODO handle
         elif len(entity_types) == 1:
             entity_type = entity_types[0]
