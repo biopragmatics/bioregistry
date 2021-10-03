@@ -182,7 +182,7 @@
             <table class="table table-hover table-striped">
                 <thead class="table-">
                 <tr>
-                    <th scope="col">Name</th>
+                    <th scope="col">Registry Name</th>
                     <th scope="col">Metaprefix</th>
                     <th scope="col">Metaidentifier</th>
                 </tr>
@@ -200,10 +200,10 @@
                         <td><code>{{ mapping.metaprefix }}</code></td>
                         <td>
                             {% if mapping.url %}
-                                <a href="{{ mapping.url }}">{{ mapping.xref }} <i class="fas fa-link"></i></a>
+                                <a href="{{ mapping.url }}"><code>{{ mapping.xref }}</code> <i class="fas fa-link"></i></a>
                             {% else %}
                                 <span title="{{ mapping.name }} does not resolve metaidentifiers"
-                                      data-toggle="tooltip" data-placement="right">{{ mapping.xref }}
+                                      data-toggle="tooltip" data-placement="right"><code>{{ mapping.xref }}</code>
                                     <i class="fas fa-info-circle"></i></span>
                             {% endif %}
                         </td>
@@ -226,6 +226,37 @@
                 </p>
             </div>
             {{ utils.render_provider_table(prefix=prefix, identifier=example, providers=providers) }}
+        </div>
+    {% endif %}
+    {% set extra_providers = resource.get_extra_providers() %}
+    {% if extra_providers %}
+        <div class="card" style="margin-top: 20px">
+            <a id="mappings"></a>
+            <h5 class="card-header">Extra Providers</h5>
+            <div class="card-body">
+                <p>
+                    Additional providers curated in the Bioregistry are listed here.
+                </p>
+            </div>
+            <table class="table table-hover table-striped">
+                <thead class="table-">
+                <tr>
+                    <th scope="col">Code</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">URL</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for provider in extra_providers %}
+                    <tr>
+                        <td>{{ provider.code }}</td>
+                        <td>{{ provider.name }}</td>
+                        {% set url = provider.resolve(example) %}
+                        <td><a href="{{ url }}">{{ url }}</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     {% endif %}
 {% endblock %}

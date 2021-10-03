@@ -129,20 +129,20 @@ The Bioregistry can be used to normalize prefixes across MIRIAM and all the (ver
 ontologies in OBO Foundry and the OLS with the `normalize_prefix()` function.
 
 ```python
-import bioregistry
+from bioregistry import normalize_prefix
 
 # This works for synonym prefixes, like:
-assert 'ncbitaxon' == bioregistry.normalize_prefix('taxonomy')
+assert 'ncbitaxon' == normalize_prefix('taxonomy')
 
 # This works for common mistaken prefixes, like:
-assert 'pubchem.compound' == bioregistry.normalize_prefix('pubchem')
+assert 'pubchem.compound' == normalize_prefix('pubchem')
 
 # This works for prefixes that are often written many ways, like:
-assert 'eccode' == bioregistry.normalize_prefix('ec-code')
-assert 'eccode' == bioregistry.normalize_prefix('EC_CODE')
+assert 'eccode' == normalize_prefix('ec-code')
+assert 'eccode' == normalize_prefix('EC_CODE')
 
 # If a prefix is not registered, it gives back `None`
-assert bioregistry.normalize_prefix('not a real key') is None
+assert normalize_prefix('not a real key') is None
 ```
 
 ### Parsing CURIEs
@@ -160,7 +160,7 @@ assert ('chebi', '1234') == parse_curie('chebi:1234')
 assert ('pubchem.compound', '1234') == parse_curie('pubchem:1234')
 
 # Normalize mixed case prefixes
-assert ('fbbt', '1234') == parse_curie('FBbt:1234')
+assert ('fbbt', '00007294') == parse_curie('FBbt:00007294')
 
 # Remove the redundant prefix and normalize
 assert ('go', '1234') == parse_curie('GO:GO:1234')
@@ -222,75 +222,109 @@ assert ('chebi', '24867') == parse_iri('http://identifiers.org/CHEBI/24867')
 assert ('chebi', '24867') == parse_iri('https://bioregistry.io/chebi:24867')
 ```
 
-### Generating IRIs
-
-Given a pre-parse CURIE (e.g., a 2-tuple of a prefix and identifier), you
-can get the Bioregistry's preferred IRI using `get_iri()`. By default, it uses
-the following priorities:
-
-1. First-party IRI
-2. Identifiers.org / MIRIAM
-3. Ontology Lookup Service
-4. OBO PURL
-5. Name-to-Thing
-6. BioPortal
+You can add to (or override) the default prefix map from the Bioregistry by
+passing a dictionary with the `prefix_map` keyword:
 
 ```python
-import bioregistry
+from bioregistry import curie_from_iri, parse_iri
 
-assert bioregistry.get_iri("chebi", "24867") == 'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867' 
+prefix_map = {
+   "myprefix": "https://example.org/myprefix/"
+}
+assert ('myprefix', '1234') == parse_iri("https://example.org/myprefix/1234", prefix_map=prefix_map)
+assert 'myprefix:24867' == curie_from_iri("https://example.org/myprefix/1234", prefix_map=prefix_map)
 ```
 
-For convenience, you can also pass a regular CURIE to the first argument, and
-it will get auto-parsed and auto-normalized:
+### Generating IRIs
+
+You can generate an IRI from either a CURIE or a pre-parsed CURIE
+(i.e., a 2-tuple of a prefix and identifier) with the `get_iri()` function.
+By default, it uses the following priorities:
+
+1. Custom prefix map (`custom`)
+2. First-party IRI (`default`)
+3. Identifiers.org / MIRIAM (`miriam`)
+4. Ontology Lookup Service (`ols`)
+5. OBO PURL (`obofoundry`)
+6. Name-to-Thing (`n2t`)
+7. BioPortal (`bioportal`)
 
 ```python
-import bioregistry
+from bioregistry import get_iri
 
-assert bioregistry.get_iri("chebi:24867") == 'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867' 
+assert get_iri("chebi", "24867") == 'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+assert get_iri("chebi:24867") == 'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
 ```
 
 It's possible to change the default priority list by passing an alternate
-sequence of metaprefixes to the `priority` keyword. For example, if you live
-in the OBO world, you should make OBO PURLs the highest priority, then
-when they aren't available, default to something else:
+sequence of metaprefixes to the `priority` keyword (see above). For example, if
+you're working with OBO ontologies, you might want to make OBO PURLs the highest
+priority and when OBO PURLs can't be generated, default to something else:
 
 ```python
-import bioregistry
+from bioregistry import get_iri
 
-priority = ['obofoundry', 'bioregistry', 'default']
-assert bioregistry.get_iri("chebi:24867", priority=priority) == 'http://purl.obolibrary.org/obo/CHEBI_24867' 
-assert bioregistry.get_iri("hgnc:1234", priority=priority) == 'https://bioregistry.io/hgnc:1234' 
+priority = ["obofoundry", "default", "miriam", "ols", "n2t", "bioportal"]
+assert get_iri("chebi:24867", priority=priority) == 'http://purl.obolibrary.org/obo/CHEBI_24867' 
+assert get_iri("hgnc:1234", priority=priority) == 'https://bioregistry.io/hgnc:1234' 
+```
+
+Even deeper, you can add (or override) any of the Bioregistry's default prefix
+map with the `prefix_map` keyword:
+
+```python
+from bioregistry import get_iri
+
+prefix_map = {
+   "myprefix": "https://example.org/myprefix/",
+   "chebi": "https://example.org/chebi/",
+}
+assert get_iri("chebi:24867", prefix_map=prefix_map) == 'https://example.org/chebi/24867'
+assert get_iri("myprefix:1234", prefix_map=prefix_map) == 'https://example.org/myprefix/1234'
+```
+
+A custom prefix map can be supplied in combination with a priority list, using
+the `"custom"` key for changing the priority of the custom prefix map.
+
+```python
+from bioregistry import get_iri
+
+prefix_map = {"lipidmaps": "https://example.org/lipidmaps/"}
+priority = ["obofoundry", "custom", "default", "bioregistry"]
+assert get_iri("chebi:24867", prefix_map=prefix_map, priority=priority) == \
+    'http://purl.obolibrary.org/obo/CHEBI_24867'
+assert get_iri("lipidmaps:1234", prefix_map=prefix_map, priority=priority) == \
+    'https://example.org/lipidmaps/1234'
 ```
 
 Alternatively, there are  direct functions for generating IRIs for different
 registries:
 
 ```python
-import bioregistry
+import bioregistry as br
 
 # Bioregistry IRI
-assert bioregistry.get_bioregistry_iri('chebi', '24867') == 'https://bioregistry.io/chebi:24867'
+assert br.get_bioregistry_iri('chebi', '24867') == 'https://bioregistry.io/chebi:24867'
 
 # Default Provider
-assert bioregistry.get_default_iri('chebi', '24867') == 'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+assert br.get_default_iri('chebi', '24867') == 'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
 
 # OBO Library
-assert bioregistry.get_obofoundry_iri('chebi', '24867') == 'http://purl.obolibrary.org/obo/CHEBI_24867'
+assert br.get_obofoundry_iri('chebi', '24867') == 'http://purl.obolibrary.org/obo/CHEBI_24867'
 
 # OLS IRI
-assert bioregistry.get_ols_iri('chebi', '24867') == \
-        'https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867'
+assert br.get_ols_iri('chebi', '24867') == \
+    'https://www.ebi.ac.uk/ols/ontologies/chebi/terms?iri=http://purl.obolibrary.org/obo/CHEBI_24867'
 
 # Bioportal IRI
-assert bioregistry.get_bioportal_iri('chebi', '24867') == \
-        'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24867'
+assert br.get_bioportal_iri('chebi', '24867') == \
+    'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24867'
 
 # Identifiers.org IRI
-assert bioregistry.get_identifiers_org_iri('chebi', '24867') == 'https://identifiers.org/CHEBI:24867'
+assert br.get_identifiers_org_iri('chebi', '24867') == 'https://identifiers.org/CHEBI:24867'
 
 # Name-to-Thing IRI
-assert bioregistry.get_n2t_iri('chebi', '24867') == 'https://n2t.net/chebi:24867'
+assert br.get_n2t_iri('chebi', '24867') == 'https://n2t.net/chebi:24867'
 ```
 
 Each of these functions could also return `None` if there isn't a provider available or if the prefix

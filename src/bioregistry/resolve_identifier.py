@@ -10,12 +10,10 @@ from .resolve import (
     get_banana,
     get_bioportal_prefix,
     get_identifiers_org_prefix,
-    get_n2t_prefix,
     get_obofoundry_format,
     get_ols_prefix,
     get_pattern_re,
     get_resource,
-    get_scholia_prefix,
     namespace_in_lui,
     normalize_parsed_curie,
     parse_curie,
@@ -170,9 +168,6 @@ def get_identifiers_org_iri(prefix: str, identifier: str) -> Optional[str]:
     return f"{IDENTIFIERS_ORG_URL_PREFIX}{curie}"
 
 
-N2T_URL_PREFIX = "https://n2t.net/"
-
-
 def get_n2t_iri(prefix: str, identifier: str) -> Optional[str]:
     """Get the name-to-thing URL for the given CURIE.
 
@@ -184,10 +179,7 @@ def get_n2t_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_n2t_iri('chebi', '24867')
     'https://n2t.net/chebi:24867'
     """
-    n2t_prefix = get_n2t_prefix(prefix)
-    if n2t_prefix is None:
-        return None
-    return f"{N2T_URL_PREFIX}{n2t_prefix}:{identifier}"
+    return get_formatted_iri("n2t", prefix, identifier)
 
 
 def get_bioportal_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -253,10 +245,7 @@ def get_obofoundry_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_obofoundry_iri('fbbt', '00007294')
     'http://purl.obolibrary.org/obo/FBbt_00007294'
     """
-    fmt = get_obofoundry_format(prefix)
-    if fmt is None:
-        return None
-    return f"{fmt}{identifier}"
+    return get_formatted_iri("obofoundry", prefix, identifier)
 
 
 def get_ols_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -281,10 +270,7 @@ def get_scholia_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_scholia_iri("pdb", "1234")
     None
     """
-    scholia_prefix = get_scholia_prefix(prefix)
-    if scholia_prefix is None:
-        return None
-    return f"https://scholia.toolforge.org/{prefix}/{identifier}"
+    return get_formatted_iri("scholia", prefix, identifier)
 
 
 def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -308,12 +294,12 @@ def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
 
     Redundant prefix (banana; OBO)
 
-    >>> get_bioregistry_iri('fbbt', 'FBbt:1234')
-    'https://bioregistry.io/fbbt:1234'
-    >>> get_bioregistry_iri('fbbt', 'fbbt:1234')
-    'https://bioregistry.io/fbbt:1234'
-    >>> get_bioregistry_iri('fbbt', '1234')
-    'https://bioregistry.io/fbbt:1234'
+    >>> get_bioregistry_iri('fbbt', 'fbbt:00007294')
+    'https://bioregistry.io/fbbt:00007294'
+    >>> get_bioregistry_iri('fbbt', 'fbbt:00007294')
+    'https://bioregistry.io/fbbt:00007294'
+    >>> get_bioregistry_iri('fbbt', '00007294')
+    'https://bioregistry.io/fbbt:00007294'
 
     Redundant prefix (banana; explicit)
     >>> get_bioregistry_iri('go.ref', 'GO_REF:1234')
@@ -338,6 +324,7 @@ PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
 }
 
 LINK_PRIORITY = [
+    "custom",
     "default",
     "bioregistry",
     "miriam",
@@ -352,7 +339,9 @@ LINK_PRIORITY = [
 def get_iri(
     prefix: str,
     identifier: Optional[str] = None,
+    *,
     priority: Optional[Sequence[str]] = None,
+    prefix_map: Optional[Mapping[str, str]] = None,
     use_bioregistry_io: bool = True,
 ) -> Optional[str]:
     """Get the best link for the CURIE, if possible.
@@ -362,14 +351,17 @@ def get_iri(
         assume that the first argument (``prefix``) is actually a full CURIE.
     :param priority: A user-defined priority list. In addition to the metaprefixes in the Bioregistry
         corresponding to resources that are resolvers/lookup services, you can also use ``default``
-        to correspond to the first-party IRI. The default priority list is:
+        to correspond to the first-party IRI and ``custom`` to refer to the custom prefix map.
+        The default priority list is:
 
+        1. Custom prefix map (``custom``)
         1. First-party IRI (``default``)
-        2. Identifiers.org / MIRIAM
-        3. Ontology Lookup Service
-        4. OBO PURL
-        5. Name-to-Thing
-        6. BioPortal
+        2. Identifiers.org / MIRIAM (``miriam``)
+        3. Ontology Lookup Service (``ols``)
+        4. OBO PURL (``obofoundry``)
+        5. Name-to-Thing (``n2t``)
+        6. BioPortal (``bioportal``)
+    :param prefix_map: A custom prefix map to go with the ``custom`` key in the priority list
     :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults to true.
     :return: The best possible IRI that can be generated based on the priority list.
 
@@ -380,6 +372,26 @@ def get_iri(
     A CURIE can be given directly as a single argument
     >>> get_iri("chebi:24867")
     'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+
+    A priority list can be given
+    >>> priority = ["obofoundry", "default", "bioregistry"]
+    >>> get_iri("chebi:24867", priority=priority)
+    'http://purl.obolibrary.org/obo/CHEBI_24867'
+
+    A custom prefix map can be supplied.
+    >>> prefix_map = {"chebi": "https://example.org/chebi/"}
+    >>> get_iri("chebi:24867", prefix_map=prefix_map)
+    'https://example.org/chebi/24867'
+    >>> get_iri("fbbt:00007294")
+    'https://flybase.org/cgi-bin/cvreport.pl?id=FBbt:00007294'
+
+    A custom prefix map can be supplied in combination with a priority list
+    >>> prefix_map = {"lipidmaps": "https://example.org/lipidmaps/"}
+    >>> priority = ["obofoundry", "custom", "default", "bioregistry"]
+    >>> get_iri("chebi:24867", prefix_map=prefix_map, priority=priority)
+    'http://purl.obolibrary.org/obo/CHEBI_24867'
+    >>> get_iri("lipidmaps:1234", prefix_map=prefix_map, priority=priority)
+    'https://example.org/lipidmaps/1234'
     """
     if identifier is None:
         _prefix, _identifier = parse_curie(prefix)
@@ -388,7 +400,9 @@ def get_iri(
     else:
         _prefix, _identifier = prefix, identifier
 
-    providers = get_providers(_prefix, _identifier)
+    providers = dict(get_providers(_prefix, _identifier))
+    if prefix_map and _prefix in prefix_map:
+        providers["custom"] = f"{prefix_map[_prefix]}{_identifier}"
     for key in priority or LINK_PRIORITY:
         if not use_bioregistry_io and key == "bioregistry":
             continue
@@ -409,3 +423,35 @@ def get_link(
     """Get the best link for the CURIE, if possible."""
     warnings.warn("get_link() is deprecated. use bioregistry.get_iri() instead", DeprecationWarning)
     return get_iri(prefix=prefix, identifier=identifier, use_bioregistry_io=use_bioregistry_io)
+
+
+def get_formatted_iri(metaprefix: str, prefix: str, identifier: str) -> Optional[str]:
+    """Get an IRI using the format in the metaregistry.
+
+    :param metaprefix: The metaprefix of the registry in the metaregistry
+    :param prefix: A bioregistry prefix (will be mapped to the external one automatically)
+    :param identifier: The identifier for the entity
+    :returns: An IRI generated from the ``resolver_url`` format string of the registry, if it
+        exists.
+
+    >>> get_formatted_iri("miriam", "hgnc", "16793")
+    'https://identifiers.org/hgnc:16793'
+    >>> get_formatted_iri("n2t", "hgnc", "16793")
+    'https://n2t.net/hgnc:16793'
+    >>> get_formatted_iri("obofoundry", "fbbt", "00007294")
+    'http://purl.obolibrary.org/obo/FBbt_00007294'
+    >>> get_formatted_iri("scholia", "lipidmaps", "00000052")
+    'https://scholia.toolforge.org/lipidmaps/00000052'
+    """
+    from .metaresource_api import get_registry
+
+    resource = get_resource(prefix)
+    if resource is None:
+        return None
+    mapped_prefix = resource.get_mapped_prefix(metaprefix)
+    if mapped_prefix is None:
+        return None
+    registry = get_registry(metaprefix)
+    if registry is None:
+        return None
+    return registry.resolve(mapped_prefix, identifier)

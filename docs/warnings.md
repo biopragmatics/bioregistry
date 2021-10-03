@@ -25,10 +25,10 @@ The following entries have an incorrect value in the `pattern` field.
    <tbody>
    {% for entry in site.data.warnings["wrong_patterns"] %}
       <tr>
-         <td>{{ entry.prefix }}</td>
-         <td>{{ entry.name }}</td>
-         <td>{{ entry.miriam }}</td>
-         <td>{{ entry.correct }}</td>
+         <td><code>{{ entry.prefix }}</code></td>
+         <td><a href="{{ entry.homepage }}">{{ entry.name }}</a></td>
+         <td><code>{{ entry.miriam }}</code></td>
+         <td><code>{{ entry.correct }}</code></td>
       </tr>
    {% endfor %}
    </tbody>
@@ -51,8 +51,8 @@ The following entries have an incorrect value in the `namespaceEmbeddedInLui` fi
    <tbody>
    {% for entry in site.data.warnings["embedding_rewrites"] %}
       <tr>
-         <td>{{ entry.prefix }}</td>
-         <td>{{ entry.name }}</td>
+         <td><code>{{ entry.prefix }}</code></td>
+         <td><a href="{{ entry.homepage }}">{{ entry.name }}</a></td>
          <td>{{ entry.pattern }}</td>
          <td>{{ entry.miriam }}</td>
          <td>{{ entry.correct }}</td>
@@ -78,10 +78,10 @@ case.
    <tbody>
    {% for entry in site.data.warnings["prefix_rewrites"] %}
       <tr>
-         <td>{{ entry.prefix }}</td>
-         <td>{{ entry.name }}</td>
-         <td>{{ entry.pattern }}</td>
-         <td>{{ entry.correct }}</td>
+         <td><code>{{ entry.prefix }}</code></td>
+         <td><a href="{{ entry.homepage }}">{{ entry.name }}</a></td>
+         <td><code>{{ entry.pattern }}</code></td>
+         <td><code>{{ entry.correct }}</code></td>
       </tr>
    {% endfor %}
    </tbody>

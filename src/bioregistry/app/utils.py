@@ -2,7 +2,6 @@
 
 """Utility functions for the Bioregistry :mod:`flask` app."""
 
-import itertools as itt
 import json
 from io import StringIO
 from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
@@ -13,7 +12,7 @@ from pydantic import BaseModel
 
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL
-from bioregistry.schema import sanitize_model
+from bioregistry.schema import Resource, sanitize_model
 from bioregistry.utils import extended_encoder
 
 
@@ -42,8 +41,8 @@ def _get_resource_providers(
     return rv
 
 
-def _get_resource_mapping_rows(prefix: str) -> Optional[List[Mapping[str, Any]]]:
-    mappings = bioregistry.get_mappings(prefix)
+def _get_resource_mapping_rows(resource: Resource) -> Optional[List[Mapping[str, Any]]]:
+    mappings = resource.get_mappings()
     if mappings is None:
         return None
     return [
@@ -54,10 +53,7 @@ def _get_resource_mapping_rows(prefix: str) -> Optional[List[Mapping[str, Any]]]
             name=bioregistry.get_registry_name(metaprefix),
             url=bioregistry.get_registry_url(metaprefix, xref),
         )
-        for metaprefix, xref in itt.chain(
-            [("bioregistry", prefix)],
-            mappings.items(),
-        )
+        for metaprefix, xref in mappings.items()
     ]
 
 

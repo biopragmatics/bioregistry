@@ -72,14 +72,17 @@ def resource(prefix: str):
     prefix = _normalize_prefix_or_404(prefix, "." + resource.__name__)
     if not isinstance(prefix, str):
         return prefix
-    example = bioregistry.get_example(prefix)
+    _resource = bioregistry.get_resource(prefix)
+    if _resource is None:
+        raise RuntimeError
+    example = _resource.get_example()
     return render_template(
         "resource.html",
         prefix=prefix,
-        resource=bioregistry.get_resource(prefix),
+        resource=_resource,
         name=bioregistry.get_name(prefix),
         example=example,
-        mappings=_get_resource_mapping_rows(prefix),
+        mappings=_get_resource_mapping_rows(_resource),
         synonyms=bioregistry.get_synonyms(prefix),
         homepage=bioregistry.get_homepage(prefix),
         pattern=bioregistry.get_pattern(prefix),
