@@ -829,6 +829,12 @@ class Registry(BaseModel):
             return None
         return provider_url.replace("$1", prefix)
 
+    def resolve(self, prefix: str, identifier: str) -> Optional[str]:
+        """Resolve the registry-specific prefix and identifier."""
+        if self.resolver_url is None:
+            return None
+        return self.resolver_url.replace("$1", prefix).replace("$2", identifier)
+
     def add_triples(self, graph: rdflib.Graph) -> Node:
         """Add triples to an RDF graph for this registry.
 
