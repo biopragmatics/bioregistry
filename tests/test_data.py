@@ -23,6 +23,7 @@ class TestRegistry(unittest.TestCase):
     def setUp(self) -> None:
         """Set up the test case."""
         self.registry = bioregistry.read_registry()
+        self.metaregistry = bioregistry.read_metaregistry()
 
     def test_keys(self):
         """Check the required metadata is there."""
@@ -403,3 +404,12 @@ class TestRegistry(unittest.TestCase):
                 # TODO consider later if preferred prefix should
                 #  explicitly not be mentioned in synonyms
                 # self.assertNotIn(pp, resource.get_synonyms())
+
+    def test_mappings(self):
+        """Make sure all mapping keys are valid metaprefixes."""
+        for prefix, resource in self.registry.items():
+            if not resource.mappings:
+                continue
+            with self.subTest(prefix=prefix):
+                for metaprefix in resource.mappings:
+                    self.assertIn(metaprefix, self.metaregistry)
