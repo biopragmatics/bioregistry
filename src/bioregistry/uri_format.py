@@ -112,7 +112,14 @@ def _sort_key(kv: Tuple[str, str]) -> int:
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
     """Prepare a priority prefix list from a prefix map."""
-    return sorted(prefix_map.items(), key=_sort_key)
+    rv = []
+    for prefix, url in sorted(prefix_map.items(), key=_sort_key):
+        rv.append((prefix, url))
+        if url.startswith('https://'):
+            rv.append((prefix, 'http://' + url[len('https://'):]))
+        elif url.startswith('http://'):
+            rv.append((prefix, 'https://' + url[len('http://'):]))
+    return rv
 
 
 def get_prefix_list(**kwargs) -> List[Tuple[str, str]]:
