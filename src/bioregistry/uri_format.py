@@ -116,9 +116,9 @@ def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
     for prefix, url in sorted(prefix_map.items(), key=_sort_key):
         rv.append((prefix, url))
         if url.startswith('https://'):
-            rv.append((prefix, 'http://' + url[len('https://'):]))
+            rv.append((prefix, 'http://' + url[8:]))
         elif url.startswith('http://'):
-            rv.append((prefix, 'https://' + url[len('http://'):]))
+            rv.append((prefix, 'https://' + url[7:]))
     return rv
 
 
