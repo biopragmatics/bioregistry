@@ -393,10 +393,13 @@ class TestRegistry(unittest.TestCase):
         self.assert_no_idot(bioregistry.get_prefix_map())
         # self.assert_no_idot(bioregistry.get_prefix_map(include_synonyms=True))
 
-    def test_obo_prefix_map_no_miriam(self):
-        """Test no identifiers.org URI prefixes get put in the OBO prefix map."""
-        self.assert_no_idot(get_obofoundry_prefix_map())
-        # self.assert_no_idot(get_obofoundry_prefix_map(include_synonyms=True))
+    def test_obo_prefix_map(self):
+        """Test the integrity of the OBO prefix map."""
+        obofoundry_prefix_map = get_obofoundry_prefix_map()
+        self.assert_no_idot(obofoundry_prefix_map)
+        self.assertIn('FlyBase', set(obofoundry_prefix_map))
+
+        self.assert_no_idot(get_obofoundry_prefix_map(include_synonyms=True))
 
     def assert_no_idot(self, prefix_map: Mapping[str, str]) -> None:
         """Assert none of the URI prefixes have identifiers.org in them."""

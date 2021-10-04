@@ -4659,7 +4659,8 @@
       "pattern": "^[a-z0-9\\_]+$",
       "prefix": "cbioportal",
       "provider_url": "http://www.cbioportal.org/study?id=$1#summary"
-    }
+    },
+    "url": "https://www.cbioportal.org/study/summary?id=$1"
   },
   "ccdc": {
     "mappings": {
@@ -8128,6 +8129,8 @@
     }
   },
   "cubedb": {
+    "comment": "website down as of 2021-10-04",
+    "deprecated": true,
     "mappings": {
       "miriam": "cubedb",
       "n2t": "cubedb",
@@ -13020,6 +13023,7 @@
       "prefix": "FBBT",
       "url": "http://www.ontobee.org/ontology/FBBT"
     },
+    "part_of": "flybase",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/FBbt_$1",
       "is_identifiers": false,
@@ -13077,6 +13081,7 @@
       "prefix": "FBCV",
       "url": "http://www.ontobee.org/ontology/FBCV"
     },
+    "part_of": "flybase",
     "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/FBcv_$1",
@@ -13190,6 +13195,7 @@
     "example": "0187632",
     "homepage": "https://flybase.org",
     "name": "FlyBase Reference Report",
+    "part_of": "flybase",
     "url": "https://flybase.org/reports/FBrf$1"
   },
   "fbsp": {
@@ -13213,6 +13219,7 @@
       "name": "Fly taxonomy",
       "prefix": "fbsp"
     },
+    "part_of": "flybase",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/FBSP_$1",
       "is_identifiers": false,
@@ -13224,7 +13231,8 @@
     "example": "0000190",
     "homepage": "https://flybase.org",
     "name": "Flybase Cell Line",
-    "url": "https://flybase.org/reports/FBtc$1.html"
+    "part_of": "flybase",
+    "url": "https://flybase.org/reports/FBtc$1"
   },
   "fideo": {
     "bioportal": {
@@ -13516,6 +13524,7 @@
       "name": "Drosophila genome database",
       "prefix": "FlyBase"
     },
+    "url": "https://flybase.org/reports/$1",
     "wikidata": {
       "database": "Q3074571",
       "database.homepage": "http://flybase.org/",
@@ -29144,6 +29153,8 @@
     }
   },
   "omia": {
+    "comment": "website is down as of 2021-10-04",
+    "deprecated": true,
     "mappings": {
       "miriam": "omia",
       "n2t": "omia",
@@ -34601,7 +34612,8 @@
       "prefix": "pypi",
       "provider_url": "https://pypi.org/project/$1/",
       "sampleId": "numpy"
-    }
+    },
+    "url": "https://pypi.org/project/$1"
   },
   "qtldb": {
     "mappings": {
@@ -41509,7 +41521,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "VECTORBASE"
-    }
+    },
+    "url": "https://vectorbase.org/vectorbase/app/record/gene/$1"
   },
   "vega": {
     "description": "A repository for high-quality gene models produced by the manual annotation of vertebrate genomes.",
@@ -42564,7 +42577,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "WIKIGENES"
-    }
+    },
+    "provides": "ncbigene"
   },
   "wikipathways": {
     "bioportal": {
