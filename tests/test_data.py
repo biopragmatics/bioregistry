@@ -427,3 +427,14 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 for metaprefix in resource.mappings:
                     self.assertIn(metaprefix, self.metaregistry)
+
+    def test_provider_codes(self):
+        """Make sure provider codes are unique."""
+        for prefix, resource in self.registry.items():
+            if not resource.providers:
+                continue
+            with self.subTest(prefix=prefix):
+                for provider in resource.providers:
+                    self.assertNotEqual(provider.code, prefix)
+                    self.assertNotIn(provider.code, resource.get_mappings())
+                    self.assertNotIn(provider.code, {"custom", "default"})
