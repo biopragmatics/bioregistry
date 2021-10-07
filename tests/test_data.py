@@ -83,7 +83,8 @@ class TestRegistry(unittest.TestCase):
                     entry.name is None
                     and "name" not in get_external(prefix, "miriam")
                     and "name" not in get_external(prefix, "ols")
-                    and "name" not in get_external(prefix, "obofoundry"),
+                    and "name" not in get_external(prefix, "obofoundry")
+                    and "name" not in get_external(prefix, "bioportal"),
                     msg=f"{prefix} is missing a name",
                 )
 
