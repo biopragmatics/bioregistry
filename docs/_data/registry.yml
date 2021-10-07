@@ -575,7 +575,6 @@ allergome:
     n2t: allergome
     prefixcommons: ALLERGOME
     uniprot: Allergome
-    uniprot.database: Allergome
   miriam:
     deprecated: false
     description: Allergome is a repository of data related to all IgE-binding compounds.
@@ -1107,7 +1106,6 @@ arachnoserver:
     n2t: arachnoserver
     prefixcommons: ARACHNOSERVER
     uniprot: ArachnoServer
-    uniprot.database: ArachnoServer
   miriam:
     deprecated: false
     description: ArachnoServer (www.arachnoserver.org) is a manually curated database
@@ -1153,7 +1151,6 @@ araport:
   mappings:
     ncbi: Araport
     uniprot: Araport
-    uniprot.database: Araport
   name: Arabidopsis Information Portal
   ncbi:
     example: AT1G01010
@@ -2791,7 +2788,6 @@ bindingdb:
     n2t: bindingdb
     prefixcommons: BINDINGDB
     uniprot: BindingDB
-    uniprot.database: BindingDB
   miriam:
     deprecated: false
     description: BindingDB is the first public database of protein-small molecule
@@ -2915,7 +2911,6 @@ biocyc:
     n2t: biocyc
     prefixcommons: BIOCYC
     uniprot: BioCyc
-    uniprot.database: BioCyc
   miriam:
     deprecated: false
     description: BioCyc is a collection of Pathway/Genome Databases (PGDBs) which
@@ -2958,7 +2953,6 @@ biogrid:
     n2t: biogrid
     prefixcommons: BIOGRID
     uniprot: BioGRID
-    uniprot.database: BioGRID
   miriam:
     deprecated: false
     description: BioGRID is a database of physical and genetic interactions in Saccharomyces
@@ -3684,7 +3678,6 @@ bmrb:
     fairsharing: FAIRsharing.p06nme
     miriam: bmrb
     uniprot: BMRB
-    uniprot.database: BMRB
   miriam:
     deprecated: false
     description: BMRB collects, annotates, archives, and disseminates (worldwide in
@@ -3796,7 +3789,6 @@ brenda:
     n2t: brenda
     prefixcommons: BRENDA
     uniprot: BRENDA
-    uniprot.database: BRENDA
   miriam:
     deprecated: false
     description: BRENDA is a collection of enzyme functional data available to the
@@ -4593,7 +4585,6 @@ cazy:
     n2t: cazy
     prefixcommons: CAZY
     uniprot: CAZy
-    uniprot.database: CAZy
   miriam:
     deprecated: false
     description: The Carbohydrate-Active Enzyme (CAZy) database is a resource specialized
@@ -4668,6 +4659,7 @@ cbioportal:
     pattern: ^[a-z0-9\_]+$
     prefix: cbioportal
     provider_url: http://www.cbioportal.org/study?id=$1#summary
+  url: https://www.cbioportal.org/study/summary?id=$1
 ccdc:
   mappings:
     miriam: ccdc
@@ -4691,7 +4683,6 @@ ccds:
     n2t: ccds
     prefixcommons: CCDS
     uniprot: CCDS
-    uniprot.database: CCDS
   miriam:
     deprecated: false
     description: The Consensus CDS (CCDS) project is a collaborative effort to identify
@@ -4866,7 +4857,6 @@ cdd:
     ncbi: CDD
     prefixcommons: CDD
     uniprot: CDD
-    uniprot.database: CDD
   miriam:
     deprecated: false
     description: The Conserved Domain Database (CDD) is a collection of multiple sequence
@@ -5147,7 +5137,6 @@ cgd:
     ncbi: CGD
     prefixcommons: CGD
     uniprot: CGD
-    uniprot.database: CGD
   miriam:
     deprecated: false
     description: The Candida Genome Database (CGD) provides access to genomic sequence
@@ -5478,7 +5467,6 @@ chembl.target:
     miriam: chembl.target
     n2t: chembl.target
     prefixcommons: CHEMBL.TARGET
-    uniprot.database: ChEMBL
   miriam:
     deprecated: false
     description: ChEMBL is a database of bioactive compounds, their quantitative properties
@@ -6218,6 +6206,7 @@ clinvar:
     miriam: clinvar
     n2t: clinvar
     prefixcommons: ClinVar
+    wikidata: P1929
   miriam:
     deprecated: false
     description: ClinVar archives reports of relationships among medically important
@@ -6257,6 +6246,14 @@ clinvar:
     is_identifiers: false
     is_obo: false
     prefix: ClinVar
+  wikidata:
+    database: Q20023123
+    database.homepage: http://www.ncbi.nlm.nih.gov/clinvar/
+    database.label: ClinVar
+    format: http://www.ncbi.nlm.nih.gov/clinvar/variation/$1/
+    homepage: http://www.ncbi.nlm.nih.gov/clinvar/
+    name: ClinVar Variation ID
+    prefix: P1929
 clinvar.record:
   mappings:
     miriam: clinvar.record
@@ -7116,7 +7113,6 @@ complexportal:
     n2t: complexportal
     prefixcommons: COMPLEXPORTAL
     uniprot: ComplexPortal
-    uniprot.database: ComplexPortal
     wikidata: P7718
   miriam:
     deprecated: false
@@ -7244,7 +7240,6 @@ conoserver:
     n2t: conoserver
     prefixcommons: CONOSERVER
     uniprot: ConoServer
-    uniprot.database: ConoServer
   miriam:
     deprecated: false
     description: ConoServer is a database specialized in the sequence and structures
@@ -7379,7 +7374,6 @@ corum:
     n2t: corum
     prefixcommons: CORUM
     uniprot: CORUM
-    uniprot.database: CORUM
   miriam:
     deprecated: false
     description: The CORUM database provides a resource of manually annotated protein
@@ -7755,6 +7749,7 @@ csd:
     sampleId: PELNAW
 csp:
   bioportal:
+    name: Computer Retrieval of Information on Scientific Projects Thesaurus
     prefix: CRISP
   deprecated: true
   example: 2004-2820
@@ -8055,6 +8050,8 @@ cto:
     prefix: CTO
     url: http://www.ontobee.org/ontology/CTO
 cubedb:
+  comment: website down as of 2021-10-04
+  deprecated: true
   mappings:
     miriam: cubedb
     n2t: cubedb
@@ -8708,7 +8705,6 @@ dbsnp:
     ncbi: dbSNP
     prefixcommons: dbSNP
     uniprot: dbSNP
-    uniprot.database: dbSNP
   miriam:
     deprecated: false
     description: The dbSNP database is a repository for both single base nucleotide
@@ -9004,7 +9000,6 @@ depod:
     n2t: depod
     prefixcommons: DEPOD
     uniprot: DEPOD
-    uniprot.database: DEPOD
   miriam:
     deprecated: false
     description: The human DEPhOsphorylation Database (DEPOD) contains information
@@ -9195,7 +9190,6 @@ dictybase:
     ncbi: dictyBase
     prefixcommons: dictyBase
     uniprot: dictyBase
-    uniprot.database: dictyBase
   name: dictyBase
   ncbi:
     example: DDB0191090
@@ -9395,7 +9389,6 @@ dip:
     n2t: dip
     prefixcommons: DIP
     uniprot: DIP
-    uniprot.database: DIP
   miriam:
     deprecated: false
     description: The database of interacting protein (DIP) database stores experimentally
@@ -9445,7 +9438,6 @@ disprot:
     n2t: disprot
     prefixcommons: DISPROT
     uniprot: DisProt
-    uniprot.database: DisProt
   miriam:
     deprecated: false
     description: DisProt is a database of intrinsically disordered proteins and protein
@@ -10154,7 +10146,6 @@ drugbank:
     n2t: drugbank
     prefixcommons: DrugBank
     uniprot: DrugBank
-    uniprot.database: DrugBank
   miriam:
     deprecated: false
     description: The DrugBank database is a bioinformatics and chemoinformatics resource
@@ -10266,7 +10257,6 @@ drugcentral:
   mappings:
     biolink: DrugCentral
     uniprot: DrugCentral
-    uniprot.database: DrugCentral
   name: Drug Central
   synonyms:
   - Drug_Central
@@ -10492,7 +10482,6 @@ echobase:
     n2t: echobase
     prefixcommons: ECHOBASE
     uniprot: EchoBASE
-    uniprot.database: EchoBASE
   miriam:
     deprecated: false
     description: EchoBASE is a database designed to contain and manipulate information
@@ -10815,8 +10804,8 @@ ecto:
     license: https://creativecommons.org/publicdomain/zero/1.0/
     name: Environment Exposure Ontology
     prefix: ecto
-    version: '2021-03-17'
-    version.iri: http://purl.obolibrary.org/obo/ecto/releases/2021-03-17/ecto.owl
+    version: '2021-08-25'
+    version.iri: http://purl.obolibrary.org/obo/ecto/releases/2021-08-25/ecto.owl
   ontobee:
     library: Library
     name: Environmental conditions, treatments and exposures ontology
@@ -11233,7 +11222,6 @@ eggnog:
     n2t: eggnog
     prefixcommons: EGGNOG
     uniprot: eggNOG
-    uniprot.database: eggNOG
   miriam:
     deprecated: false
     description: 'eggNOG (evolutionary genealogy of genes: Non-supervised Orthologous
@@ -11369,7 +11357,6 @@ elm:
     n2t: elm
     prefixcommons: ELM
     uniprot: ELM
-    uniprot.database: ELM
   miriam:
     deprecated: false
     description: Linear motifs are short, evolutionarily plastic components of regulatory
@@ -11681,7 +11668,6 @@ ensembl:
     ncbi: ENSEMBL
     prefixcommons: ENSEMBL
     uniprot: Ensembl
-    uniprot.database: Ensembl
     wikidata: P594
   miriam:
     deprecated: false
@@ -11733,6 +11719,21 @@ ensembl:
     is_identifiers: false
     is_obo: false
     prefix: ENSEMBL
+  providers:
+  - code: bgee
+    description: Gene expression in various tissues
+    homepage: https://bgee.org
+    name: Bgee
+    url: https://bgee.org/?page=gene&gene_id=$1
+  - code: gnomad
+    description: The Genome Aggregation Database (gnomAD) is a resource developed
+      by an international coalition of investigators, with the goal of aggregating
+      and harmonizing both exome and genome sequencing data from a wide variety of
+      large-scale sequencing projects, and making summary data available for the wider
+      scientific community.
+    homepage: https://gnomad.broadinstitute.org
+    name: Genome Aggregation database
+    url: https://gnomad.broadinstitute.org/gene/$1
   synonyms:
   - Ensembl
   uniprot:
@@ -11758,7 +11759,6 @@ ensembl.bacteria:
     n2t: ensembl.bacteria
     prefixcommons: ENSEMBL.BACTERIA
     uniprot: EnsemblBacteria
-    uniprot.database: EnsemblBacteria
   miriam:
     deprecated: false
     description: Ensembl Genomes consists of five sub-portals (for bacteria, protists,
@@ -11810,7 +11810,6 @@ ensembl.fungi:
     n2t: ensembl.fungi
     prefixcommons: ENSEMBL.FUNGI
     uniprot: EnsemblFungi
-    uniprot.database: EnsemblFungi
   miriam:
     deprecated: false
     description: Ensembl Genomes consists of five sub-portals (for bacteria, protists,
@@ -11860,7 +11859,6 @@ ensembl.metazoa:
     n2t: ensembl.metazoa
     prefixcommons: ENSEMBL.METAZOA
     uniprot: EnsemblMetazoa
-    uniprot.database: EnsemblMetazoa
   miriam:
     deprecated: false
     description: Ensembl Genomes consists of five sub-portals (for bacteria, protists,
@@ -12103,7 +12101,6 @@ epd:
     ncbi: EPD
     prefixcommons: EPD
     uniprot: EPD
-    uniprot.database: EPD
   miriam:
     deprecated: false
     description: The Eukaryotic Promoter Database (EPD) is an annotated non-redundant
@@ -12875,6 +12872,7 @@ fbbt:
     name: Drosophila gross anatomy
     prefix: FBBT
     url: http://www.ontobee.org/ontology/FBBT
+  part_of: flybase
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/FBbt_$1
     is_identifiers: false
@@ -12926,6 +12924,7 @@ fbcv:
     name: FlyBase Controlled Vocabulary
     prefix: FBCV
     url: http://www.ontobee.org/ontology/FBCV
+  part_of: flybase
   pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/FBcv_$1
@@ -13029,6 +13028,7 @@ fbrf:
   example: 0187632
   homepage: https://flybase.org
   name: FlyBase Reference Report
+  part_of: flybase
   url: https://flybase.org/reports/FBrf$1
 fbsp:
   bioportal:
@@ -13049,6 +13049,7 @@ fbsp:
     inactive: true
     name: Fly taxonomy
     prefix: fbsp
+  part_of: flybase
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/FBSP_$1
     is_identifiers: false
@@ -13058,7 +13059,8 @@ fbtc:
   example: 0000190
   homepage: https://flybase.org
   name: Flybase Cell Line
-  url: https://flybase.org/reports/FBtc$1.html
+  part_of: flybase
+  url: https://flybase.org/reports/FBtc$1
 fideo:
   bioportal:
     name: Food Interactions with Drugs Evidence Ontology
@@ -13262,7 +13264,6 @@ flybase:
     ncbi: FLYBASE
     prefixcommons: FlyBase
     uniprot: FlyBase
-    uniprot.database: FlyBase
     wikidata: P3852
   miriam:
     deprecated: false
@@ -13319,6 +13320,7 @@ flybase:
     link_is_explicit: 'true'
     name: Drosophila genome database
     prefix: FlyBase
+  url: https://flybase.org/reports/$1
   wikidata:
     database: Q3074571
     database.homepage: http://flybase.org/
@@ -14328,7 +14330,6 @@ genatlas:
     n2t: genatlas
     prefixcommons: GENATLAS
     uniprot: GenAtlas
-    uniprot.database: GenAtlas
   miriam:
     deprecated: false
     description: GenAtlas is a database containing information on human genes, markers
@@ -14380,7 +14381,6 @@ genbank:
     go: GenBank
     prefixcommons: GenBank
     uniprot: GenBank
-    uniprot.database: GenBank
   name: GenBank
   prefixcommons:
     formatter: http://www.ncbi.nlm.nih.gov/nuccore/$1
@@ -14400,7 +14400,6 @@ genecards:
     n2t: genecards
     prefixcommons: GENECARDS
     uniprot: GeneCards
-    uniprot.database: GeneCards
   miriam:
     deprecated: false
     description: The GeneCards human gene database stores gene related transcriptomic,
@@ -14452,7 +14451,7 @@ genedb:
     ncbi: GeneDB
     prefixcommons: GENEDB
     uniprot: GeneDB
-    uniprot.database: GeneDB
+    wikidata: P3382
   miriam:
     deprecated: false
     description: GeneDB is a genome database for prokaryotic and eukaryotic organisms
@@ -14496,6 +14495,14 @@ genedb:
     link_is_explicit: 'true'
     name: GeneDB pathogen genome database from Sanger Institute
     prefix: GeneDB
+  wikidata:
+    database: Q5531047
+    database.homepage: http://www.genedb.org/
+    database.label: GeneDB
+    format: https://www.genedb.org/gene/$1
+    homepage: http://www.genedb.org/
+    name: GeneDB ID
+    prefix: P3382
 genefarm:
   mappings:
     miriam: genefarm
@@ -14573,7 +14580,6 @@ genetree:
     n2t: genetree
     prefixcommons: GENETREE
     uniprot: GeneTree
-    uniprot.database: GeneTree
   miriam:
     deprecated: false
     description: Genetree displays the maximum likelihood phylogenetic (protein) trees
@@ -14616,7 +14622,6 @@ genewiki:
     n2t: genewiki
     prefixcommons: GENEWIKI
     uniprot: GeneWiki
-    uniprot.database: GeneWiki
   miriam:
     deprecated: false
     description: The Gene Wiki is project which seeks to provide detailed information
@@ -15144,7 +15149,6 @@ glygen:
   homepage: https://glygen.org/glycan/
   mappings:
     uniprot: GlyGen
-    uniprot.database: GlyGen
   name: 'GlyGen: Computational and Informatics Resources for Glycoscience'
   uniprot:
     category: PTM databases
@@ -15490,7 +15494,6 @@ go:
     ontobee: GO
     prefixcommons: GO
     uniprot: GO
-    uniprot.database: GO
   miriam:
     deprecated: false
     description: The Gene Ontology project provides a controlled vocabulary to describe
@@ -15875,7 +15878,6 @@ gpcrdb:
     n2t: gpcrdb
     prefixcommons: GPCRDB
     uniprot: GPCRDB
-    uniprot.database: GPCRDB
   miriam:
     deprecated: false
     description: The G protein-coupled receptor database (GPCRDB) collects, large
@@ -16786,7 +16788,6 @@ hamap:
     n2t: hamap
     prefixcommons: HAMAP
     uniprot: HAMAP
-    uniprot.database: HAMAP
   miriam:
     deprecated: false
     description: HAMAP is a system that identifies and semi-automatically annotates
@@ -17089,7 +17090,6 @@ hgnc:
     ncbi: HGNC
     prefixcommons: HGNC
     uniprot: HGNC
-    uniprot.database: HGNC
   miriam:
     deprecated: false
     description: The HGNC (HUGO Gene Nomenclature Committee) provides an approved
@@ -17234,6 +17234,22 @@ hgnc.symbol:
     is_identifiers: true
     is_obo: false
     prefix: HGNC.SYMBOL
+  providers:
+  - code: depmap
+    description: DepMap summary of the given gene
+    homepage: https://depmap.org
+    name: DepMap Gene Summary
+    url: https://depmap.org/portal/gene/$1
+  - code: pathwaycommons
+    description: Interactions between a given gene and other molecular entities
+    homepage: https://www.pathwaycommons.org/
+    name: Pathway Commons Gene Interations
+    url: https://apps.pathwaycommons.org/interactions?source=$1
+  - code: oncomx
+    description: Mutation profiles for a gene
+    homepage: https://oncomx.org
+    name: OncoMX
+    url: https://oncomx.org/searchview/?gene=$1
 hinv.locus:
   mappings:
     miriam: hinv.locus
@@ -17431,7 +17447,6 @@ hogenom:
     n2t: hogenom
     prefixcommons: HOGENOM
     uniprot: HOGENOM
-    uniprot.database: HOGENOM
   miriam:
     deprecated: false
     description: HOGENOM is a database of homologous genes from fully sequenced organisms
@@ -17770,7 +17785,6 @@ hpa:
     n2t: hpa
     prefixcommons: HPA
     uniprot: HPA
-    uniprot.database: HPA
   miriam:
     deprecated: false
     description: The Human Protein Atlas (HPA) is a publicly available database with
@@ -18170,7 +18184,6 @@ huge:
     n2t: huge
     prefixcommons: HUGE
     uniprot: HUGE
-    uniprot.database: HUGE
   miriam:
     deprecated: false
     description: The Human Unidentified Gene-Encoded (HUGE) protein database contains  results
@@ -18577,7 +18590,6 @@ ideal:
     n2t: ideal
     prefixcommons: IDEAL
     uniprot: IDEAL
-    uniprot.database: IDEAL
   miriam:
     deprecated: false
     description: IDEAL provides a collection of knowledge on experimentally verified
@@ -19571,7 +19583,6 @@ intact:
     n2t: intact
     prefixcommons: INTACT
     uniprot: IntAct
-    uniprot.database: IntAct
   miriam:
     deprecated: false
     description: IntAct provides a freely available, open source database system and
@@ -19692,7 +19703,6 @@ interpro:
     obofoundry: ipr
     prefixcommons: INTERPRO
     uniprot: InterPro
-    uniprot.database: InterPro
   miriam:
     deprecated: false
     description: InterPro is a database of protein families, domains and functional
@@ -20524,7 +20534,6 @@ kegg:
     n2t: kegg
     prefixcommons: KEGG
     uniprot: KEGG
-    uniprot.database: KEGG
   miriam:
     deprecated: false
     description: Kyoto Encyclopedia of Genes and Genomes (KEGG) is a database resource
@@ -22117,7 +22126,6 @@ massive:
     n2t: massive
     prefixcommons: MASSIVE
     uniprot: MassIVE
-    uniprot.database: MassIVE
   miriam:
     deprecated: false
     description: MassIVE is a community resource developed by the NIH-funded Center
@@ -22528,7 +22536,6 @@ merops:
     n2t: merops
     prefixcommons: MEROPS
     uniprot: MEROPS
-    uniprot.database: MEROPS
   miriam:
     deprecated: false
     description: The MEROPS database is an information resource for peptidases (also
@@ -23400,7 +23407,6 @@ mgi:
     ncbi: MGI
     prefixcommons: MGI
     uniprot: MGI
-    uniprot.database: MGI
   miriam:
     deprecated: false
     description: The Mouse Genome Database (MGD) project includes data on gene characterization,
@@ -23804,7 +23810,6 @@ mim:
     ncbi: MIM
     prefixcommons: OMIM
     uniprot: MIM
-    uniprot.database: MIM
     wikidata: P492
   miriam:
     deprecated: false
@@ -23964,7 +23969,6 @@ mint:
     n2t: mint
     prefixcommons: MINT
     uniprot: MINT
-    uniprot.database: MINT
   miriam:
     deprecated: false
     description: The Molecular INTeraction database (MINT) stores, in a structured
@@ -24867,7 +24871,6 @@ mobidb:
     n2t: mobidb
     prefixcommons: MOBIDB
     uniprot: MobiDB
-    uniprot.database: MobiDB
   miriam:
     deprecated: false
     description: MobiDB is a database of protein disorder and mobility annotations.
@@ -26350,6 +26353,12 @@ ncbigene:
     is_identifiers: false
     is_obo: false
     prefix: NCBIGene
+  providers:
+  - code: marrvel
+    description: Helps browse potential orthologs in model organisms for a given gene
+    homepage: http://marrvel.org
+    name: Model organism Aggregated Resources for Rare Variant ExpLoration
+    url: http://marrvel.org/model/gene/$1
   synonyms:
   - entrez
   - NCBIGene
@@ -26891,10 +26900,16 @@ neuronames:
     it.
   example: '268'
   homepage: http://braininfo.rprc.washington.edu/
+  mappings:
+    wikidata: P4394
   name: NeuroNames
   references:
   - https://en.wikipedia.org/wiki/NeuroNames
+  synonyms:
+  - neuroname
   url: https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=$1
+  wikidata:
+    prefix: P4394
 neurondb:
   mappings:
     miriam: neurondb
@@ -27047,7 +27062,6 @@ nextprot:
     n2t: nextprot
     prefixcommons: NEXTPROT
     uniprot: neXtProt
-    uniprot.database: neXtProt
   miriam:
     deprecated: false
     description: "neXtProt is a resource on human proteins, and includes information\
@@ -28752,6 +28766,8 @@ oma.protein:
     is_obo: false
     prefix: OMA.PROTEIN
 omia:
+  comment: website is down as of 2021-10-04
+  deprecated: true
   mappings:
     miriam: omia
     n2t: omia
@@ -29584,7 +29600,6 @@ orphanet:
     n2t: orphanet
     prefixcommons: Orphanet
     uniprot: Orphanet
-    uniprot.database: Orphanet
     wikidata: P1550
   miriam:
     deprecated: false
@@ -29759,7 +29774,6 @@ orthodb:
     n2t: orthodb
     prefixcommons: ORTHODB
     uniprot: OrthoDB
-    uniprot.database: OrthoDB
   miriam:
     deprecated: false
     description: OrthoDB presents a catalog of eukaryotic orthologous protein-coding
@@ -30454,7 +30468,6 @@ pathwaycommons:
     n2t: pathwaycommons
     prefixcommons: PATHWAYCOMMONS
     uniprot: PathwayCommons
-    uniprot.database: PathwayCommons
   miriam:
     deprecated: false
     description: Pathway Commons is a convenient point of access to biological pathway
@@ -30802,7 +30815,6 @@ pdb:
     ncbi: PDB
     prefixcommons: PDB
     uniprot: PDB
-    uniprot.database: PDB
   miriam:
     deprecated: false
     description: The Protein Data Bank is the single worldwide archive of structural
@@ -31165,7 +31177,6 @@ peptideatlas:
     n2t: peptideatlas
     prefixcommons: PEPTIDEATLAS
     uniprot: PeptideAtlas
-    uniprot.database: PeptideAtlas
   miriam:
     deprecated: false
     description: The PeptideAtlas Project provides a publicly accessible database
@@ -31234,7 +31245,6 @@ peroxibase:
     n2t: peroxibase
     prefixcommons: PEROXIBASE
     uniprot: PeroxiBase
-    uniprot.database: PeroxiBase
   miriam:
     deprecated: false
     description: Peroxibase provides access to peroxidase sequences from all kingdoms
@@ -31293,7 +31303,6 @@ pfam:
     ncbi: PFAM
     prefixcommons: PFAM
     uniprot: Pfam
-    uniprot.database: Pfam
     wikidata: P3519
   miriam:
     deprecated: false
@@ -31867,7 +31876,6 @@ phylomedb:
     n2t: phylomedb
     prefixcommons: PHYLOMEDB
     uniprot: PhylomeDB
-    uniprot.database: PhylomeDB
   miriam:
     deprecated: false
     description: PhylomeDB is a database of complete phylomes derived for different
@@ -32131,7 +32139,6 @@ pirsf:
     n2t: pirsf
     prefixcommons: PIRSF
     uniprot: PIRSF
-    uniprot.database: PIRSF
   miriam:
     deprecated: false
     description: The PIR SuperFamily concept is being used as a guiding principle
@@ -32210,14 +32217,15 @@ plana:
     name: planaria-ontology
     prefix: plana
   ols:
-    description: PLANA, the planarian anatomy ontology, encompasses the anatomy and
-      life cycle stages for both __Schmidtea mediterranea__ biotypes.
+    description: PLANA, the PLANarian Anatomy Ontology, encompasses the anatomy of
+      developmental stages and adult biotypes of Schmidtea mediterranea.
     download: http://purl.obolibrary.org/obo/plana.owl
     homepage: https://github.com/obophenotype/planaria-ontology
-    name: planaria-ontology
+    license: https://creativecommons.org/licenses/by/3.0/
+    name: Planarian Anatomy Ontology (PLANA)
     prefix: plana
-    version: '2021-04-05'
-    version.iri: http://purl.obolibrary.org/obo/plana/releases/2021-04-05
+    version: '2021-09-29'
+    version.iri: http://purl.obolibrary.org/obo/plana/releases/2021-09-29
   ontobee:
     library: Library
     name: planaria-ontology
@@ -32584,7 +32592,11 @@ pmp:
     prefix: PMP
   provides: uniprot
 pmr:
+  bioportal:
+    name: Physical Medicine and Rehabilitation
+    prefix: PMR
   mappings:
+    bioportal: PMR
     miriam: pmr
   miriam:
     deprecated: false
@@ -32758,7 +32770,6 @@ pombase:
     ncbi: PomBase
     prefixcommons: PomBase
     uniprot: PomBase
-    uniprot.database: PomBase
     wikidata: P6245
   miriam:
     deprecated: false
@@ -32937,7 +32948,6 @@ pr:
     ontobee: PR
     prefixcommons: PR
     uniprot: PRO
-    uniprot.database: PRO
     wikidata: P4926
   miriam:
     deprecated: false
@@ -33030,7 +33040,6 @@ pride:
     ols: pride
     prefixcommons: PRIDE
     uniprot: PRIDE
-    uniprot.database: PRIDE
   miriam:
     deprecated: false
     description: The PRIDE PRoteomics IDEntifications database is a centralized, standards
@@ -33130,7 +33139,6 @@ prints:
     n2t: prints
     prefixcommons: PRINTS
     uniprot: PRINTS
-    uniprot.database: PRINTS
   miriam:
     deprecated: false
     description: PRINTS is a compendium of protein fingerprints. A fingerprint is
@@ -33330,7 +33338,6 @@ prosite:
     n2t: prosite
     prefixcommons: PROSITE
     uniprot: PROSITE
-    uniprot.database: PROSITE
     wikidata: P4355
   miriam:
     deprecated: false
@@ -34190,6 +34197,7 @@ pypi:
     prefix: pypi
     provider_url: https://pypi.org/project/$1/
     sampleId: numpy
+  url: https://pypi.org/project/$1
 qtldb:
   mappings:
     miriam: qtldb
@@ -34415,7 +34423,6 @@ reactome:
     n2t: reactome
     prefixcommons: REACT
     uniprot: Reactome
-    uniprot.database: Reactome
     wikidata: P3937
   miriam:
     deprecated: false
@@ -34444,6 +34451,12 @@ reactome:
     is_identifiers: false
     is_obo: false
     prefix: REACT
+  providers:
+  - code: pathwaycommons
+    description: Pathway diagram drawn with Cytoscape
+    homepage: https://www.pathwaycommons.org
+    name: Pathway Commons
+    url: https://apps.pathwaycommons.org/pathways?uri=http%3A%2F%2Fidentifiers.org%2Freactome%2F$1
   synonyms:
   - RE
   - REACT
@@ -34484,7 +34497,6 @@ rebase:
     n2t: rebase
     prefixcommons: REBASE
     uniprot: REBASE
-    uniprot.database: REBASE
   miriam:
     deprecated: false
     description: REBASE is a comprehensive database of information about restriction
@@ -34542,7 +34554,6 @@ refseq:
     n2t: refseq
     prefixcommons: RefSeq
     uniprot: RefSeq
-    uniprot.database: RefSeq
   miriam:
     deprecated: false
     description: The Reference Sequence (RefSeq) collection aims to provide a comprehensive,
@@ -34846,7 +34857,6 @@ rgd:
     ncbi: RGD
     prefixcommons: RGD
     uniprot: RGD
-    uniprot.database: RGD
     wikidata: P3853
   miriam:
     deprecated: false
@@ -35488,7 +35498,6 @@ rouge:
     n2t: rouge
     prefixcommons: ROUGE
     uniprot: Rouge
-    uniprot.database: Rouge
   miriam:
     deprecated: false
     description: The Rouge protein database contains results from sequence analysis
@@ -35787,6 +35796,11 @@ sabiork.ec:
     prefix: SABIORK.EC
 sabiork.kineticrecord:
   go:
+    description: The SABIO-RK (System for the Analysis of Biochemical Pathways - Reaction
+      Kinetics) is a web-based application based on the SABIO relational database
+      that contains information about biochemical reactions, their kinetic equations
+      with their parameters, and the experimental conditions under which these parameters
+      were measured.
     formatter: http://sabio.villa-bosch.de/reacdetails.jsp?reactid=$1
     homepage: http://sabio.villa-bosch.de/
     name: SABIO Reaction Kinetics
@@ -35912,7 +35926,6 @@ sasbdb:
     n2t: sasbdb
     prefixcommons: SASBDB
     uniprot: SASBDB
-    uniprot.database: SASBDB
   miriam:
     deprecated: false
     description: Small Angle Scattering Biological Data Bank (SASBDB) is a curated
@@ -36485,7 +36498,6 @@ sgd:
     ncbi: SGD
     prefixcommons: SGD
     uniprot: SGD
-    uniprot.database: SGD
     wikidata: P3406
   miriam:
     deprecated: false
@@ -36823,7 +36835,6 @@ signor:
   mappings:
     miriam: signor
     uniprot: SIGNOR
-    uniprot.database: SIGNOR
   miriam:
     deprecated: false
     description: SIGNOR, the SIGnaling Network Open Resource, organizes and stores
@@ -37040,7 +37051,6 @@ smart:
     n2t: smart
     prefixcommons: SMART
     uniprot: SMART
-    uniprot.database: SMART
   miriam:
     deprecated: false
     description: The Simple Modular Architecture Research Tool (SMART) is an online
@@ -37790,7 +37800,6 @@ string:
     n2t: string
     prefixcommons: STRING
     uniprot: STRING
-    uniprot.database: STRING
   miriam:
     deprecated: false
     description: "STRING (Search Tool for Retrieval of Interacting Genes/Proteins)\
@@ -37992,7 +38001,6 @@ supfam:
     n2t: supfam
     prefixcommons: SUPFAM
     uniprot: SUPFAM
-    uniprot.database: SUPFAM
   miriam:
     deprecated: false
     description: SUPERFAMILY provides structural, functional and evolutionary information
@@ -38642,7 +38650,6 @@ tcdb:
     n2t: tcdb
     prefixcommons: TCDB
     uniprot: TCDB
-    uniprot.database: TCDB
     wikidata: P7260
   miriam:
     deprecated: false
@@ -39206,7 +39213,6 @@ treefam:
     n2t: treefam
     prefixcommons: TREEFAM
     uniprot: TreeFam
-    uniprot.database: TreeFam
   miriam:
     deprecated: false
     description: TreeFam is a database of phylogenetic trees of gene families found
@@ -39646,7 +39652,6 @@ ucsc:
   mappings:
     prefixcommons: UCSC
     uniprot: UCSC
-    uniprot.database: UCSC
   name: UCSC Genome Browser
   prefixcommons:
     formatter: ftp://hgdownload.cse.ucsc.edu/goldenPath/$1
@@ -40278,6 +40283,17 @@ uniprot:
     is_identifiers: true
     is_obo: false
     prefix: UniProtKB
+  providers:
+  - code: omnipath
+    description: Molecular interations endpoint from OmniPathDB
+    homepage: https://omnipathdb.org/
+    name: OmniPathDB
+    url: https://omnipathdb.org/interactions/?fields=sources,references&partners=$1
+  - code: iptmnet
+    description: Protein post translational modification information
+    homepage: https://research.bioinformatics.udel.edu/iptmnet
+    name: iPTMnet
+    url: https://research.bioinformatics.udel.edu/iptmnet/entry/$1
   synonyms:
   - UniProt
   - UniProtKB
@@ -40632,7 +40648,6 @@ upa:
     ontobee: UPA
     prefixcommons: UNIPATHWAY
     uniprot: UniPathway
-    uniprot.database: UniPathway
   obofoundry:
     contact: Anne.Morgat@sib.swiss
     contact.label: Anne Morgat
@@ -41022,6 +41037,7 @@ vectorbase:
     is_identifiers: true
     is_obo: false
     prefix: VECTORBASE
+  url: https://vectorbase.org/vectorbase/app/record/gene/$1
 vega:
   description: A repository for high-quality gene models produced by the manual annotation
     of vertebrate genomes.
@@ -41153,7 +41169,6 @@ vgnc:
     miriam: vgnc
     ncbi: VGNC
     uniprot: VGNC
-    uniprot.database: VGNC
   miriam:
     deprecated: false
     description: The Vertebrate Gene Nomenclature Committee (VGNC) is an extension
@@ -42005,6 +42020,7 @@ wikigenes:
     is_identifiers: true
     is_obo: false
     prefix: WIKIGENES
+  provides: ncbigene
 wikipathways:
   bioportal:
     name: WikiPathways
@@ -42437,7 +42453,6 @@ xenbase:
     ncbi: Xenbase
     prefixcommons: Xenbase
     uniprot: Xenbase
-    uniprot.database: Xenbase
   miriam:
     deprecated: false
     description: Xenbase is the model organism database for Xenopus laevis and X.
@@ -42927,7 +42942,6 @@ zfin:
     ncbi: ZFIN
     prefixcommons: ZFIN
     uniprot: ZFIN
-    uniprot.database: ZFIN
     wikidata: P3870
   miriam:
     deprecated: false
