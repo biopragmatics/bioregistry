@@ -5,6 +5,7 @@
 from abc import ABC, abstractmethod
 from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, Sequence
 
+import click
 from tabulate import tabulate
 
 from ..data import EXTERNAL
@@ -114,12 +115,26 @@ class Aligner(ABC):
         self.manager.write_registry()
 
     @classmethod
-    def align(cls, dry: bool = False, quiet: bool = False):
+    def align(cls, dry: bool = False, show: bool = False):
         """Align and output the curation sheet."""
         instance = cls()
         if not dry:
             instance.write_registry()
+        if show:
+            instance.print_curation_table()
         instance.write_curation_table()
+
+    @classmethod
+    def cli(cls):
+        """Construct a CLI for the aligner."""
+
+        @click.command()
+        @click.option("--dry", is_flag=True)
+        @click.option("--show", is_flag=True)
+        def _main(dry: bool, show: bool):
+            cls.align(dry=dry, show=show)
+
+        _main()
 
     @abstractmethod
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
@@ -172,7 +187,7 @@ class Aligner(ABC):
             **kwargs,
         )
 
-    def print_uncurated(self, **kwargs) -> None:
+    def print_curation_table(self, **kwargs) -> None:
         """Print the curation table."""
         s = self.get_curation_table(**kwargs)
         if s:

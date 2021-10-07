@@ -35,4 +35,4 @@ class OBOFoundryAligner(Aligner):
 
 
 if __name__ == "__main__":
-    OBOFoundryAligner.align()
+    OBOFoundryAligner.cli()
