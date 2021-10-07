@@ -82,6 +82,7 @@
       "obofoundry": "aao",
       "prefixcommons": "AAO"
     },
+    "no_own_terms": true,
     "obofoundry": {
       "contact": "david.c.blackburn@gmail.com",
       "contact.label": "David Blackburn",
@@ -338,6 +339,7 @@
       "name": "Adverse Event Reporting Ontology",
       "prefix": "AERO"
     },
+    "example": "0000125",
     "mappings": {
       "bioportal": "AERO",
       "obofoundry": "aero",
@@ -1094,6 +1096,7 @@
       "url": "http://www.ontobee.org/ontology/APO"
     },
     "pattern": "^\\d{7}$",
+    "preferred_prefix": "APO",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/YPO_$1",
       "is_identifiers": false,
@@ -1105,7 +1108,7 @@
     ],
     "url": "https://www.yeastgenome.org/observable/APO:$1"
   },
-  "apollo_sv": {
+  "apollosv": {
     "bioportal": {
       "name": "Apollo Structured Vocabulary",
       "prefix": "APOLLO-SV"
@@ -11233,9 +11236,6 @@
       "prefix": "efo",
       "provider_url": "http://purl.bioontology.org/ontology/EFO/efo:EFO_$1"
     },
-    "obofoundry": {
-      "prefix": "efo"
-    },
     "ols": {
       "contact": "efo-users@lists.sourceforge.net",
       "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases, and for external projects such as the NHGRI GWAS catalogue. It combines parts of several biological ontologies, such as anatomy, disease and chemical compounds. The scope of EFO is to support the annotation, analysis and visualization of data handled by many groups at the EBI and as the core ontology for OpenTargets.org",
@@ -13156,6 +13156,8 @@
     ]
   },
   "fbol": {
+    "comment": "Website down, checked on 2021-10-07",
+    "deprecated": true,
     "mappings": {
       "miriam": "fbol",
       "n2t": "fbol",
@@ -17778,7 +17780,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "HOMD.TAXON"
-    }
+    },
+    "url": "www.homd.org/modules.php?op=modload&name=HOMD&view=dynamic&oraltaxonid=$1"
   },
   "homologene": {
     "mappings": {
@@ -20008,6 +20011,7 @@
       "name": "Protein Domains",
       "prefix": "ipr"
     },
+    "preferred_prefix": "interpro",
     "prefixcommons": {
       "formatter": "http://identifiers.org/interpro/$1",
       "is_identifiers": true,
@@ -35880,6 +35884,12 @@
       "prefix": "RNAO"
     }
   },
+  "radiomics": {
+    "bioportal": {
+      "name": "Radiomics Ontology",
+      "prefix": "RO"
+    }
+  },
   "ro": {
     "biolink": {
       "formatter": "http://purl.obolibrary.org/obo/RO_$1",
@@ -35888,8 +35898,7 @@
       "prefix": "RO"
     },
     "bioportal": {
-      "name": "Radiomics Ontology",
-      "prefix": "RO"
+      "prefix": "OBOREL"
     },
     "download_obo": "https://github.com/oborel/obo-relations/raw/master/ro.obo",
     "go": {
@@ -35899,7 +35908,7 @@
     },
     "mappings": {
       "biolink": "RO",
-      "bioportal": "RO",
+      "bioportal": "OBOREL",
       "go": "RO",
       "miriam": "ro",
       "n2t": "ro",
@@ -41337,7 +41346,6 @@
     ]
   },
   "vario": {
-    "banana": "VariO",
     "bioportal": {
       "name": "Variation Ontology",
       "prefix": "VARIO"
@@ -41412,6 +41420,7 @@
       "prefix": "VariO",
       "url": "http://www.ontobee.org/ontology/VariO"
     },
+    "preferred_prefix": "VariO",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/VARIO_$1",
       "is_identifiers": false,
