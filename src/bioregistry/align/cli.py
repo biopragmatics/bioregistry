@@ -29,8 +29,7 @@ def _get_hexdigest(alg: str = "sha256") -> str:
 
 
 @click.command()
-@click.option("--quiet", is_flag=True)
-def align(quiet: bool):
+def align():
     """Align all external registries."""
     pre_sha256 = _get_hexdigest()
 
@@ -49,7 +48,7 @@ def align(quiet: bool):
     ]:
         secho(f"Aligning {aligner_cls.key}")
         try:
-            aligner_cls.align(quiet=quiet)
+            aligner_cls.align()
         except IOError:
             secho(f"Failed to align {aligner_cls.key}", fg="red")
 
