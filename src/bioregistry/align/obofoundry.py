@@ -24,6 +24,7 @@ class OBOFoundryAligner(Aligner):
         """Get the prefixes in the OBO Foundry that should be skipped."""
         return {
             "bila": "website is not longer active",
+            "obo_rel": "replaced",
         }
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
