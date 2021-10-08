@@ -141,6 +141,10 @@
                 <dd>
                     {% if example %}
                         <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example }}</a>
+                        {% if providers %}
+                        &nbsp;
+                        <a class="badge badge-pill badge-info" href="{{ url_for("ui.resolve", prefix=prefix, identifier=example) }}"><i class="fas fa-share-square"></i> Resolve</a>
+                        {% endif %}
                     {% elif has_no_terms %}
                         <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
                     {% else %}
