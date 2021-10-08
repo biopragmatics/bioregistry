@@ -36,7 +36,19 @@ __all__ = [
 
 
 def validate(prefix: str, identifier: str) -> Optional[bool]:
-    """Validate the identifier against the prefix's pattern, if it exists."""
+    """Validate the identifier against the prefix's pattern, if it exists.
+
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE
+    :return: Whether this identifier passes validation, after normalization
+
+    >>> validate("chebi", "1234")
+    True
+    >>> validate("chebi", "CHEBI:12345")
+    True
+    >>> validate("chebi", "CHEBI:ABCD")
+    False
+    """
     resource = get_resource(prefix)
     if resource is None:
         return None
