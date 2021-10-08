@@ -10,7 +10,6 @@ from typing import Mapping
 import bioregistry
 from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
-from bioregistry.resolve import get_external
 from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.utils import _norm, is_mismatch
 
@@ -79,14 +78,7 @@ class TestRegistry(unittest.TestCase):
         """Test that all entries have a name."""
         for prefix, entry in self.registry.items():
             with self.subTest(prefix=prefix):
-                self.assertFalse(
-                    entry.name is None
-                    and "name" not in get_external(prefix, "miriam")
-                    and "name" not in get_external(prefix, "ols")
-                    and "name" not in get_external(prefix, "obofoundry")
-                    and "name" not in get_external(prefix, "bioportal"),
-                    msg=f"{prefix} is missing a name",
-                )
+                self.assertIsNotNone(entry.get_name(), msg=f"{prefix} is missing a name")
 
     def test_name_expansions(self):
         """Test that default names are not capital acronyms."""
