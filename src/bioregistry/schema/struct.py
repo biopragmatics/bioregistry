@@ -791,6 +791,51 @@ class Resource(BaseModel):
                 rv.append(Provider(**p))
         return rv
 
+    def normalize_identifier(self, identifier: str) -> str:
+        """Normalize the identifier with the appropriate banana.
+
+        :param identifier: The identifier in the CURIE
+        :return: A normalize identifier, possibly with banana/redundant prefix added
+
+        Examples with explicitly annotated bananas:
+
+        >>> normalize_identifier('vario', '0376')
+        'VariO:0376'
+        >>> normalize_identifier('vario', 'VariO:0376')
+        'VariO:0376'
+
+        Examples with bananas from OBO:
+        >>> normalize_identifier('fbbt', '00007294')
+        'FBbt:00007294'
+        >>> normalize_identifier('fbbt', 'FBbt:00007294')
+        'FBbt:00007294'
+
+        Examples from OBO Foundry:
+        >>> normalize_identifier('chebi', '1234')
+        'CHEBI:1234'
+        >>> normalize_identifier('chebi', 'CHEBI:1234')
+        'CHEBI:1234'
+
+        Standard:
+
+        >>> assert get_banana('pdb') is None
+        >>> assert not namespace_in_lui('pdb')
+        >>> normalize_identifier('pdb', '00000020')
+        '00000020'
+        """
+        # A "banana" is an embedded prefix that isn't actually part of the identifier.
+        # Usually this corresponds to the prefix itself, with some specific stylization
+        # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
+        banana = resource.get_banana()
+        if banana:
+            banana = f"{banana}:"
+            if not identifier.startswith(banana):
+                return f"{banana}{identifier}"
+        # TODO Unnecessary redundant prefix?
+        # elif identifier.lower().startswith(f'{prefix}:'):
+        #
+        return identifier
+
 
 class Registry(BaseModel):
     """Metadata about a registry."""

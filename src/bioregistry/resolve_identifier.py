@@ -82,28 +82,7 @@ def normalize_identifier(prefix: str, identifier: str) -> str:
     resource = get_resource(prefix)
     if resource is None:
         return identifier  # nothing we can do
-
-    # A "banana" is an embedded prefix that isn't actually part of the identifier.
-    # Usually this corresponds to the prefix itself, with some specific stylization
-    # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
-    banana = resource.get_banana()
-    if banana:
-        banana = f"{banana}:"
-        if not identifier.startswith(banana):
-            return f"{banana}{identifier}"
-    # Handle when the namespace is in the LUI, but no specific banana
-    # has been given. This is most common for OBO Foundry ontologies'
-    # identifiers, like CHEBI:XXXX
-    elif resource.namespace_in_lui():
-        banana = f"{prefix.upper()}:"
-        if not identifier.startswith(banana):
-            return f"{banana}{identifier}"
-
-    # TODO Unnecessary redundant prefix?
-    # elif identifier.lower().startswith(f'{prefix}:'):
-    #
-
-    return identifier
+    return resource.normalize_identifier(identifier)
 
 
 def get_default_iri(prefix: str, identifier: str) -> Optional[str]:
