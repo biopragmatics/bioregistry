@@ -806,29 +806,26 @@ class Resource(BaseModel):
         :return: A normalize identifier, possibly with banana/redundant prefix added
 
         Examples with explicitly annotated bananas:
-
-        >>> normalize_identifier('vario', '0376')
+        >>> from bioregistry import get_resource
+        >>> get_resource("vario").normalize_identifier('0376')
         'VariO:0376'
-        >>> normalize_identifier('vario', 'VariO:0376')
+        >>> get_resource("vario").normalize_identifier('VariO:0376')
         'VariO:0376'
 
         Examples with bananas from OBO:
-        >>> normalize_identifier('fbbt', '00007294')
+        >>> get_resource("fbbt").normalize_identifier('00007294')
         'FBbt:00007294'
-        >>> normalize_identifier('fbbt', 'FBbt:00007294')
+        >>> get_resource("fbbt").normalize_identifier('FBbt:00007294')
         'FBbt:00007294'
 
         Examples from OBO Foundry:
-        >>> normalize_identifier('chebi', '1234')
+        >>> get_resource("chebi").normalize_identifier('1234')
         'CHEBI:1234'
-        >>> normalize_identifier('chebi', 'CHEBI:1234')
+        >>> get_resource("chebi").normalize_identifier('CHEBI:1234')
         'CHEBI:1234'
 
         Standard:
-
-        >>> assert get_banana('pdb') is None
-        >>> assert not namespace_in_lui('pdb')
-        >>> normalize_identifier('pdb', '00000020')
+        >>> get_resource("pdb").normalize_identifier('00000020')
         '00000020'
         """
         # A "banana" is an embedded prefix that isn't actually part of the identifier.
