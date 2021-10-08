@@ -67,8 +67,6 @@ def normalize_identifier(prefix: str, identifier: str) -> str:
     'FBbt:00007294'
 
     Examples from OBO Foundry:
-
-    >>> assert get_banana('chebi') is None
     >>> normalize_identifier('chebi', '1234')
     'CHEBI:1234'
     >>> normalize_identifier('chebi', 'CHEBI:1234')

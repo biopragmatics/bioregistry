@@ -311,8 +311,9 @@ def get_banana(prefix: str) -> Optional[str]:
     Banana imported through OBO Foundry
     >>> assert "FBbt" == get_banana('fbbt')
 
-    No banana (ChEBI does have namespace in LUI, though)
-    >>> assert get_banana('chebi') is None
+    Banana inferred for OBO Foundry ontology
+    >>> get_banana('chebi')
+    'CHEBI'
 
     No banana, no namespace in LUI
     >>> assert get_banana('pdb') is None
