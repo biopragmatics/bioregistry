@@ -177,14 +177,14 @@ def updater(f):
     """Make a decorator for functions that auto-update the bioregistry."""
 
     @wraps(f)
-    def wrapped():
+    def _wrapped():
         registry = read_registry()
         rv = f(registry)
         if rv is not None:
             write_registry(registry)
         return rv
 
-    return wrapped
+    return _wrapped
 
 
 def norm(s: str) -> str:
