@@ -444,3 +444,19 @@ class TestRegistry(unittest.TestCase):
                     self.assertNotEqual(provider.code, prefix)
                     self.assertNotIn(provider.code, resource.get_mappings())
                     self.assertNotIn(provider.code, {"custom", "default"})
+
+    def test_namespace_in_lui(self):
+        """Test having the namespace in LUI requires a banana annotation.
+
+        This is required because the annotation from MIRIAM is simply not granular enough
+        to support actual use cases.
+        """
+        for prefix, resource in self.registry.items():
+            if not resource.namespace_in_lui():
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    resource.get_banana(),
+                    msg=f"If there is a namespace in LUI annotation,"
+                    f" then there must be a banana\nregex: {resource.get_pattern()}",
+                )

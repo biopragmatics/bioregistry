@@ -364,9 +364,11 @@ class Resource(BaseModel):
         """
         if self.banana is not None:
             return self.banana
-        preferred_prefix = self.get_preferred_prefix()
-        if preferred_prefix is not None:
-            return preferred_prefix
+        obo_preferred_prefix = self.get_obo_preferred_prefix()
+        if obo_preferred_prefix is not None:
+            return obo_preferred_prefix
+        # TODO consider reinstating all preferred prefixes should
+        #  be considered as secondary bananas
         return None
 
     def get_default_format(self) -> Optional[str]:
@@ -424,11 +426,18 @@ class Resource(BaseModel):
         """
         if self.preferred_prefix is not None:
             return self.preferred_prefix
-        if self.obofoundry is not None:
-            # if explicitly annotated, use it. Otherwise, the capitalized version
-            # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
-            return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
+        obo_preferred_prefix = self.get_obo_preferred_prefix()
+        if obo_preferred_prefix is not None:
+            return obo_preferred_prefix
         return None
+
+    def get_obo_preferred_prefix(self) -> Optional[str]:
+        """Get the OBO preferred prefix, if this resource is mapped to the OBO Foundry."""
+        if self.obofoundry is None:
+            return None
+        # if explicitly annotated, use it. Otherwise, the capitalized version
+        # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
+        return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
 
     def get_mappings(self) -> Optional[Mapping[str, str]]:
         """Get the mappings to external registries, if available."""
