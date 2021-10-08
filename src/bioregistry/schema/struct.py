@@ -355,7 +355,7 @@ class Resource(BaseModel):
         Banana inferred for OBO Foundry ontology
 
         >>> get_resource("chebi").get_banana()
-        'CHEBI''
+        'CHEBI'
 
         No banana, no namespace in LUI
 
