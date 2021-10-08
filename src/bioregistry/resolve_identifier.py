@@ -12,7 +12,6 @@ from .resolve import (
     get_identifiers_org_prefix,
     get_obofoundry_format,
     get_ols_prefix,
-    get_pattern_re,
     get_resource,
     namespace_in_lui,
     normalize_parsed_curie,
@@ -37,11 +36,23 @@ __all__ = [
 
 
 def validate(prefix: str, identifier: str) -> Optional[bool]:
-    """Validate the identifier against the prefix's pattern, if it exists."""
-    pattern = get_pattern_re(prefix)
-    if pattern is None:
+    """Validate the identifier against the prefix's pattern, if it exists.
+
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE
+    :return: Whether this identifier passes validation, after normalization
+
+    >>> validate("chebi", "1234")
+    True
+    >>> validate("chebi", "CHEBI:12345")
+    True
+    >>> validate("chebi", "CHEBI:ABCD")
+    False
+    """
+    resource = get_resource(prefix)
+    if resource is None:
         return None
-    return bool(pattern.match(normalize_identifier(prefix, identifier)))
+    return resource.validate_identifier(identifier)
 
 
 def normalize_identifier(prefix: str, identifier: str) -> str:
@@ -72,6 +83,17 @@ def normalize_identifier(prefix: str, identifier: str) -> str:
     >>> normalize_identifier('chebi', 'CHEBI:1234')
     'CHEBI:1234'
 
+     Examples outside of OBO:
+    >>> normalize_identifier('mgi', '6017782')
+    'MGI:6017782'
+    >>> normalize_identifier('mgi', 'MGI:6017782')
+    'MGI:6017782'
+
+    >>> normalize_identifier('swisslipid', '000000341')
+    'SLM:000000341'
+    >>> normalize_identifier('swisslipid', 'SLM:000000341')
+    'SLM:000000341'
+
     Standard:
 
     >>> assert get_banana('pdb') is None
@@ -82,28 +104,7 @@ def normalize_identifier(prefix: str, identifier: str) -> str:
     resource = get_resource(prefix)
     if resource is None:
         return identifier  # nothing we can do
-
-    # A "banana" is an embedded prefix that isn't actually part of the identifier.
-    # Usually this corresponds to the prefix itself, with some specific stylization
-    # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
-    banana = resource.get_banana()
-    if banana:
-        banana = f"{banana}:"
-        if not identifier.startswith(banana):
-            return f"{banana}{identifier}"
-    # Handle when the namespace is in the LUI, but no specific banana
-    # has been given. This is most common for OBO Foundry ontologies'
-    # identifiers, like CHEBI:XXXX
-    elif resource.namespace_in_lui():
-        banana = f"{prefix.upper()}:"
-        if not identifier.startswith(banana):
-            return f"{banana}{identifier}"
-
-    # TODO Unnecessary redundant prefix?
-    # elif identifier.lower().startswith(f'{prefix}:'):
-    #
-
-    return identifier
+    return resource.normalize_identifier(identifier)
 
 
 def get_default_iri(prefix: str, identifier: str) -> Optional[str]:

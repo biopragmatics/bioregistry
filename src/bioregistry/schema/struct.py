@@ -5,6 +5,7 @@
 import json
 import logging
 import pathlib
+import re
 from functools import lru_cache
 from typing import Any, Callable, ClassVar, Dict, List, Mapping, Optional, Sequence, Set
 
@@ -480,6 +481,13 @@ class Resource(BaseModel):
         """
         return self.get_prefix_key("pattern", ("miriam", "wikidata"))
 
+    def get_pattern_re(self):
+        """Get the compiled pattern for the given prefix, if it's available."""
+        pattern = self.get_pattern()
+        if pattern is None:
+            return None
+        return re.compile(pattern)
+
     def namespace_in_lui(self) -> Optional[bool]:
         """Check if the namespace should appear in the LUI."""
         return self.get_prefix_key("namespaceEmbeddedInLui", ("miriam",))
@@ -790,6 +798,55 @@ class Resource(BaseModel):
             for p in self.miriam.get("providers", []):
                 rv.append(Provider(**p))
         return rv
+
+    def normalize_identifier(self, identifier: str) -> str:
+        """Normalize the identifier with the appropriate banana.
+
+        :param identifier: The identifier in the CURIE
+        :return: A normalize identifier, possibly with banana/redundant prefix added
+
+        Examples with explicitly annotated bananas:
+        >>> from bioregistry import get_resource
+        >>> get_resource("vario").normalize_identifier('0376')
+        'VariO:0376'
+        >>> get_resource("vario").normalize_identifier('VariO:0376')
+        'VariO:0376'
+
+        Examples with bananas from OBO:
+        >>> get_resource("fbbt").normalize_identifier('00007294')
+        'FBbt:00007294'
+        >>> get_resource("fbbt").normalize_identifier('FBbt:00007294')
+        'FBbt:00007294'
+
+        Examples from OBO Foundry:
+        >>> get_resource("chebi").normalize_identifier('1234')
+        'CHEBI:1234'
+        >>> get_resource("chebi").normalize_identifier('CHEBI:1234')
+        'CHEBI:1234'
+
+        Standard:
+        >>> get_resource("pdb").normalize_identifier('00000020')
+        '00000020'
+        """
+        # A "banana" is an embedded prefix that isn't actually part of the identifier.
+        # Usually this corresponds to the prefix itself, with some specific stylization
+        # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
+        banana = self.get_banana()
+        if banana:
+            banana = f"{banana}:"
+            if not identifier.startswith(banana):
+                return f"{banana}{identifier}"
+        # TODO Unnecessary redundant prefix?
+        # elif identifier.lower().startswith(f'{prefix}:'):
+        #
+        return identifier
+
+    def validate_identifier(self, identifier: str) -> Optional[bool]:
+        """Validate the identifier against the prefix's pattern, if it exists."""
+        pattern = self.get_pattern_re()
+        if pattern is None:
+            return None
+        return bool(pattern.match(self.normalize_identifier(identifier)))
 
 
 class Registry(BaseModel):

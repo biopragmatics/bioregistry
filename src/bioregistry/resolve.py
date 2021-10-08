@@ -3,7 +3,6 @@
 """Utilities for normalizing prefixes."""
 
 import logging
-import re
 from functools import lru_cache
 from typing import Any, Dict, Mapping, Optional, Set, Tuple, Union
 
@@ -19,7 +18,6 @@ __all__ = [
     "get_mappings",
     "get_synonyms",
     "get_pattern",
-    "get_pattern_re",
     "namespace_in_lui",
     "get_example",
     "has_no_terms",
@@ -130,15 +128,6 @@ def get_pattern(prefix: str) -> Optional[str]:
     if entry is None:
         return None
     return entry.get_pattern()
-
-
-@lru_cache()
-def get_pattern_re(prefix: str):
-    """Get the compiled pattern for the given prefix, if it's available."""
-    pattern = get_pattern(prefix)
-    if pattern is None:
-        return None
-    return re.compile(pattern)
 
 
 def namespace_in_lui(prefix: str) -> Optional[bool]:
