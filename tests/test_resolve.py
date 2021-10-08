@@ -73,11 +73,12 @@ class TestResolve(unittest.TestCase):
             if banana is None or bioregistry.has_no_terms(prefix):
                 continue
             example = bioregistry.get_example(prefix)
-            self.assertIsNotNone(
-                example, msg=f"{prefix} has a banana {banana} but is missing an example"
-            )
-            tests.append(("prefix", example))
-            tests.append(("prefix", f"{banana}:{example}"))
+            with self.subTest(prefix=prefix):
+                if example is None:
+                    self.fail(msg=f"{prefix} has a banana {banana} but is missing an example")
+                else:
+                    tests.append(("prefix", example))
+                    tests.append(("prefix", f"{banana}:{example}"))
         self.assert_validate(tests)
 
     def assert_validate(self, examples: Iterable[Tuple[str, str]]) -> None:
