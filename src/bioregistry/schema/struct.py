@@ -464,7 +464,8 @@ class Resource(BaseModel):
     def get_name(self) -> Optional[str]:
         """Get the name for the given prefix, it it's available."""
         return self.get_prefix_key(
-            "name", ("obofoundry", "ols", "wikidata", "go", "ncbi", "bioportal", "miriam")
+            "name",
+            ("obofoundry", "ols", "wikidata", "go", "ncbi", "bioportal", "miriam", "cellosaurus"),
         )
 
     def get_description(self) -> Optional[str]:
