@@ -82,6 +82,7 @@
       "obofoundry": "aao",
       "prefixcommons": "AAO"
     },
+    "no_own_terms": true,
     "obofoundry": {
       "contact": "david.c.blackburn@gmail.com",
       "contact.label": "David Blackburn",
@@ -338,6 +339,7 @@
       "name": "Adverse Event Reporting Ontology",
       "prefix": "AERO"
     },
+    "example": "0000125",
     "mappings": {
       "bioportal": "AERO",
       "obofoundry": "aero",
@@ -1094,6 +1096,7 @@
       "url": "http://www.ontobee.org/ontology/APO"
     },
     "pattern": "^\\d{7}$",
+    "preferred_prefix": "APO",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/YPO_$1",
       "is_identifiers": false,
@@ -1105,7 +1108,7 @@
     ],
     "url": "https://www.yeastgenome.org/observable/APO:$1"
   },
-  "apollo_sv": {
+  "apollosv": {
     "bioportal": {
       "name": "Apollo Structured Vocabulary",
       "prefix": "APOLLO-SV"
@@ -1250,6 +1253,7 @@
     }
   },
   "ark": {
+    "banana": "ark",
     "mappings": {
       "miriam": "ark",
       "n2t": "ark",
@@ -3180,6 +3184,7 @@
       "prefix": "KISAO",
       "url": "http://www.ontobee.org/ontology/KISAO"
     },
+    "preferred_prefix": "biomodels.kisao",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/KISAO_$1",
       "is_identifiers": false,
@@ -4744,6 +4749,7 @@
     "url": "https://www.cbioportal.org/patient?studyId=ccle_broad_2019&caseId=$1"
   },
   "cco": {
+    "banana": "CCO",
     "bioportal": {
       "name": "Cell Cycle Ontology",
       "prefix": "CCO"
@@ -11233,9 +11239,6 @@
       "prefix": "efo",
       "provider_url": "http://purl.bioontology.org/ontology/EFO/efo:EFO_$1"
     },
-    "obofoundry": {
-      "prefix": "efo"
-    },
     "ols": {
       "contact": "efo-users@lists.sourceforge.net",
       "description": "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases, and for external projects such as the NHGRI GWAS catalogue. It combines parts of several biological ontologies, such as anatomy, disease and chemical compounds. The scope of EFO is to support the annotation, analysis and visualization of data handled by many groups at the EBI and as the core ontology for OpenTargets.org",
@@ -13156,6 +13159,8 @@
     ]
   },
   "fbol": {
+    "comment": "Website down, checked on 2021-10-07",
+    "deprecated": true,
     "mappings": {
       "miriam": "fbol",
       "n2t": "fbol",
@@ -15078,6 +15083,7 @@
       "name": "Geographical Entity Ontology",
       "prefix": "GEO"
     },
+    "example": "000000021",
     "mappings": {
       "bioportal": "GEO",
       "miriam": "geogeo",
@@ -15117,6 +15123,8 @@
       "prefix": "geo",
       "version": "2016-03-26"
     },
+    "pattern": "^\\d{9}$",
+    "preferred_prefix": "GEOGEO",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/GEO_$1",
       "is_identifiers": false,
@@ -17778,7 +17786,8 @@
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "HOMD.TAXON"
-    }
+    },
+    "url": "www.homd.org/modules.php?op=modload&name=HOMD&view=dynamic&oraltaxonid=$1"
   },
   "homologene": {
     "mappings": {
@@ -20008,6 +20017,7 @@
       "name": "Protein Domains",
       "prefix": "ipr"
     },
+    "preferred_prefix": "interpro",
     "prefixcommons": {
       "formatter": "http://identifiers.org/interpro/$1",
       "is_identifiers": true,
@@ -23699,6 +23709,7 @@
     }
   },
   "mgi": {
+    "banana": "MGI",
     "cellosaurus": {
       "category": "Organism-specific databases",
       "homepage": "http://www.informatics.jax.org",
@@ -23765,6 +23776,7 @@
       "name": "Mouse Genome Informatics",
       "prefix": "MGI"
     },
+    "preferred_prefix": "MGI",
     "prefixcommons": {
       "formatter": "http://www.informatics.jax.org/accession/MGI:$1",
       "is_identifiers": false,
@@ -24380,6 +24392,7 @@
     }
   },
   "mir": {
+    "banana": "MIR",
     "mappings": {
       "miriam": "mir",
       "n2t": "mir",
@@ -31513,6 +31526,8 @@
       "prefix": "PECO",
       "url": "http://www.ontobee.org/ontology/PECO"
     },
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "PECO",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/PECO_$1",
       "is_identifiers": false,
@@ -34668,6 +34683,14 @@
     "name": "Quantities, Units, Dimensions, and Types Ontology",
     "url": "http://qudt.org/schema/qudt#$1"
   },
+  "radiomics": {
+    "bioportal": {
+      "name": "Radiomics Ontology",
+      "prefix": "RO"
+    },
+    "example": "LK99",
+    "homepage": "http://www.radiomics.org/RO"
+  },
   "rapdb.locus": {
     "mappings": {
       "miriam": "rapdb.locus"
@@ -35888,8 +35911,7 @@
       "prefix": "RO"
     },
     "bioportal": {
-      "name": "Radiomics Ontology",
-      "prefix": "RO"
+      "prefix": "OBOREL"
     },
     "download_obo": "https://github.com/oborel/obo-relations/raw/master/ro.obo",
     "go": {
@@ -35899,11 +35921,11 @@
     },
     "mappings": {
       "biolink": "RO",
-      "bioportal": "RO",
+      "bioportal": "OBOREL",
       "go": "RO",
       "miriam": "ro",
       "n2t": "ro",
-      "obofoundry": "obo_rel",
+      "obofoundry": "ro",
       "ols": "ro",
       "ontobee": "RO",
       "prefixcommons": "OBO_REL"
@@ -35934,11 +35956,16 @@
     "obofoundry": {
       "contact": "cjmungall@lbl.gov",
       "contact.label": "Chris Mungall",
-      "deprecated": true,
-      "homepage": "http://www.obofoundry.org/ro",
-      "inactive": true,
-      "name": "OBO relationship types (legacy)",
-      "prefix": "obo_rel"
+      "deprecated": false,
+      "description": "Relationship types shared across multiple ontologies",
+      "download.json": "http://purl.obolibrary.org/obo/ro.json",
+      "download.obo": "http://purl.obolibrary.org/obo/ro.obo",
+      "download.owl": "http://purl.obolibrary.org/obo/ro.owl",
+      "homepage": "https://oborel.github.io/",
+      "inactive": false,
+      "license": "CC-0",
+      "name": "Relation Ontology",
+      "prefix": "ro"
     },
     "ols": {
       "description": "The OBO Relations Ontology (RO) is a collection of OWL relations (ObjectProperties) intended for use across a wide variety of biological ontologies.",
@@ -35964,7 +35991,8 @@
     },
     "synonyms": [
       "obo_rel",
-      "RO_proposed_relation"
+      "RO_proposed_relation",
+      "oborel"
     ],
     "url": "http://purl.obolibrary.org/obo/RO_$1",
     "wikidata": {
@@ -36017,6 +36045,7 @@
     "url": "https://www.kazusa.or.jp/rouge/gfpage/$1"
   },
   "rrid": {
+    "banana": "RRID",
     "mappings": {
       "miriam": "rrid",
       "n2t": "rrid",
@@ -38593,7 +38622,8 @@
     }
   },
   "swisslipid": {
-    "example": "SLM:000000341",
+    "banana": "SLM",
+    "example": "000000341",
     "mappings": {
       "miriam": "slm",
       "n2t": "swisslipid",
@@ -41412,6 +41442,7 @@
       "prefix": "VariO",
       "url": "http://www.ontobee.org/ontology/VariO"
     },
+    "preferred_prefix": "VariO",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/VARIO_$1",
       "is_identifiers": false,

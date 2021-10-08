@@ -83,7 +83,8 @@ class TestRegistry(unittest.TestCase):
                     entry.name is None
                     and "name" not in get_external(prefix, "miriam")
                     and "name" not in get_external(prefix, "ols")
-                    and "name" not in get_external(prefix, "obofoundry"),
+                    and "name" not in get_external(prefix, "obofoundry")
+                    and "name" not in get_external(prefix, "bioportal"),
                     msg=f"{prefix} is missing a name",
                 )
 
@@ -413,11 +414,13 @@ class TestRegistry(unittest.TestCase):
     def test_preferred_prefix(self):
         """Test the preferred prefix matches the normalized prefix."""
         for prefix, resource in self.registry.items():
+            if bioregistry.is_deprecated(prefix):
+                continue
             pp = resource.get_preferred_prefix()
             if pp is None:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertEqual(prefix, _norm(pp))
+                self.assertEqual(prefix.replace(".", ""), _norm(pp))
                 # TODO consider later if preferred prefix should
                 #  explicitly not be mentioned in synonyms
                 # self.assertNotIn(pp, resource.get_synonyms())
@@ -441,3 +444,19 @@ class TestRegistry(unittest.TestCase):
                     self.assertNotEqual(provider.code, prefix)
                     self.assertNotIn(provider.code, resource.get_mappings())
                     self.assertNotIn(provider.code, {"custom", "default"})
+
+    def test_namespace_in_lui(self):
+        """Test having the namespace in LUI requires a banana annotation.
+
+        This is required because the annotation from MIRIAM is simply not granular enough
+        to support actual use cases.
+        """
+        for prefix, resource in self.registry.items():
+            if not resource.namespace_in_lui():
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    resource.get_banana(),
+                    msg=f"If there is a namespace in LUI annotation,"
+                    f" then there must be a banana\nregex: {resource.get_pattern()}",
+                )

@@ -267,6 +267,6 @@ class NormDict(dict):
 def _norm(s: str) -> str:
     """Normalize a string for dictionary key usage."""
     rv = s.casefold().lower()
-    for x in " .-_./":
+    for x in " -_./":
         rv = rv.replace(x, "")
     return rv
