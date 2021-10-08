@@ -5,6 +5,7 @@
 import json
 import logging
 import pathlib
+import re
 from functools import lru_cache
 from typing import Any, Callable, ClassVar, Dict, List, Mapping, Optional, Sequence, Set
 
@@ -480,6 +481,13 @@ class Resource(BaseModel):
         """
         return self.get_prefix_key("pattern", ("miriam", "wikidata"))
 
+    def get_pattern_re(self):
+        """Get the compiled pattern for the given prefix, if it's available."""
+        pattern = self.get_pattern()
+        if pattern is None:
+            return None
+        return re.compile(pattern)
+
     def namespace_in_lui(self) -> Optional[bool]:
         """Check if the namespace should appear in the LUI."""
         return self.get_prefix_key("namespaceEmbeddedInLui", ("miriam",))
@@ -826,7 +834,7 @@ class Resource(BaseModel):
         # A "banana" is an embedded prefix that isn't actually part of the identifier.
         # Usually this corresponds to the prefix itself, with some specific stylization
         # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
-        banana = resource.get_banana()
+        banana = self.get_banana()
         if banana:
             banana = f"{banana}:"
             if not identifier.startswith(banana):
@@ -835,6 +843,13 @@ class Resource(BaseModel):
         # elif identifier.lower().startswith(f'{prefix}:'):
         #
         return identifier
+
+    def validate(self, identifier: str) -> Optional[bool]:
+        """Validate the identifier against the prefix's pattern, if it exists."""
+        pattern = self.get_pattern_re()
+        if pattern is None:
+            return None
+        return bool(pattern.match(self.normalize_identifier(identifier)))
 
 
 class Registry(BaseModel):

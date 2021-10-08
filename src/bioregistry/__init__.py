@@ -39,7 +39,6 @@ from .resolve import (  # noqa:F401
     get_ols_url_prefix,
     get_owl_download,
     get_pattern,
-    get_pattern_re,
     get_preferred_prefix,
     get_prefixcommons_format,
     get_provides_for,

@@ -223,9 +223,9 @@ class TestRegistry(unittest.TestCase):
 
     def test_examples_pass_patterns(self):
         """Test that all examples pass the patterns."""
-        for prefix in self.registry:
-            pattern = bioregistry.get_pattern_re(prefix)
-            example = bioregistry.get_example(prefix)
+        for prefix, resource in self.registry.items():
+            pattern = resource.get_pattern_re()
+            example = resource.get_example()
             if pattern is None or example is None:
                 continue
             if prefix == "ark":

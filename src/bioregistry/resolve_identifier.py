@@ -12,7 +12,6 @@ from .resolve import (
     get_identifiers_org_prefix,
     get_obofoundry_format,
     get_ols_prefix,
-    get_pattern_re,
     get_resource,
     namespace_in_lui,
     normalize_parsed_curie,
@@ -38,10 +37,10 @@ __all__ = [
 
 def validate(prefix: str, identifier: str) -> Optional[bool]:
     """Validate the identifier against the prefix's pattern, if it exists."""
-    pattern = get_pattern_re(prefix)
-    if pattern is None:
+    resource = get_resource(prefix)
+    if resource is None:
         return None
-    return bool(pattern.match(normalize_identifier(prefix, identifier)))
+    return resource.validate(identifier)
 
 
 def normalize_identifier(prefix: str, identifier: str) -> str:
@@ -71,6 +70,17 @@ def normalize_identifier(prefix: str, identifier: str) -> str:
     'CHEBI:1234'
     >>> normalize_identifier('chebi', 'CHEBI:1234')
     'CHEBI:1234'
+
+     Examples outside of OBO:
+    >>> normalize_identifier('mgi', '6017782')
+    'MGI:6017782'
+    >>> normalize_identifier('mgi', 'MGI:6017782')
+    'MGI:6017782'
+
+    >>> normalize_identifier('swisslipid', '000000341')
+    'SLM:000000341'
+    >>> normalize_identifier('swisslipid', 'SLM:000000341')
+    'SLM:000000341'
 
     Standard:
 
