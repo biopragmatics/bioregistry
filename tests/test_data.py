@@ -398,7 +398,7 @@ class TestRegistry(unittest.TestCase):
         """Test the integrity of the OBO prefix map."""
         obofoundry_prefix_map = get_obofoundry_prefix_map()
         self.assert_no_idot(obofoundry_prefix_map)
-        self.assertIn('FlyBase', set(obofoundry_prefix_map))
+        self.assertIn("FlyBase", set(obofoundry_prefix_map))
 
         self.assert_no_idot(get_obofoundry_prefix_map(include_synonyms=True))
 
