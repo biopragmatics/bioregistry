@@ -5,6 +5,7 @@
 import json
 import logging
 import pathlib
+import re
 from functools import lru_cache
 from typing import Any, Callable, ClassVar, Dict, List, Mapping, Optional, Sequence, Set
 
@@ -27,6 +28,7 @@ from bioregistry.schema.utils import EMAIL_RE, EMAIL_RE_STR
 
 __all__ = [
     "Author",
+    "Provider",
     "Resource",
     "Collection",
     "Registry",
@@ -37,6 +39,9 @@ logger = logging.getLogger(__name__)
 
 HERE = pathlib.Path(__file__).parent.resolve()
 SCHEMA_PATH = HERE.joinpath("schema.json")
+
+#: Search string for skipping formatters containing this
+IDOT_SKIP = "identifiers.org"
 
 
 class Author(BaseModel):
@@ -69,6 +74,22 @@ class Author(BaseModel):
         return node
 
 
+class Provider(BaseModel):
+    """A provider."""
+
+    code: str = Field(..., description="A locally unique code within the prefix for the provider")
+    name: str = Field(..., description="Name of the provider")
+    description: str = Field(..., description="Description of the provider")
+    homepage: str = Field(..., description="Homepage of the provider")
+    url: str = Field(
+        ..., description="The URL format string, which must have at least one ``$1`` in it"
+    )
+
+    def resolve(self, identifier: str) -> str:
+        """Resolve the identifier into a URL."""
+        return self.url.replace("$1", identifier)
+
+
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
@@ -88,6 +109,10 @@ class Resource(BaseModel):
     url: Optional[str] = Field(
         title="Format URL",
         description="The URL format string, which must have at least one ``$1`` in it",
+    )
+    #: Additional non-default providers for the given resource
+    providers: Optional[List[Provider]] = Field(
+        description="Additional, non-default providers for the resource",
     )
     #: The URL for the homepage of the resource
     homepage: Optional[str] = Field(
@@ -290,20 +315,6 @@ class Resource(BaseModel):
                 return rv
         return None
 
-    def _default_provider_url(self) -> Optional[str]:
-        if self.url is not None:
-            return self.url
-        if self.miriam is not None and "provider_url" in self.miriam:
-            return self.miriam["provider_url"]
-        if self.n2t is not None:
-            return self.n2t["provider_url"]
-        if (
-            self.prefixcommons is not None
-            and "identifiers.org" not in self.prefixcommons["formatter"]
-        ):
-            return self.prefixcommons["formatter"]
-        return None
-
     def get_default_url(self, identifier: str) -> Optional[str]:
         """Return the default URL for the identifier.
 
@@ -314,7 +325,7 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_default_url("24867")
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
         """
-        fmt = self._default_provider_url()
+        fmt = self.get_default_format()
         if fmt is None:
             return None
         return fmt.replace("$1", identifier)
@@ -342,10 +353,10 @@ class Resource(BaseModel):
         >>> get_resource("fbbt").get_banana()
         'FBbt'
 
-        No banana (ChEBI does have namespace in LUI, though)
+        Banana inferred for OBO Foundry ontology
 
         >>> get_resource("chebi").get_banana()
-        None
+        'CHEBI'
 
         No banana, no namespace in LUI
 
@@ -354,8 +365,11 @@ class Resource(BaseModel):
         """
         if self.banana is not None:
             return self.banana
-        if self.obofoundry and "preferredPrefix" in self.obofoundry:
-            return self.obofoundry["preferredPrefix"]
+        obo_preferred_prefix = self.get_obo_preferred_prefix()
+        if obo_preferred_prefix is not None:
+            return obo_preferred_prefix
+        # TODO consider reinstating all preferred prefixes should
+        #  be considered as secondary bananas
         return None
 
     def get_default_format(self) -> Optional[str]:
@@ -369,17 +383,18 @@ class Resource(BaseModel):
         >>> get_resource("go").get_default_format()
         'http://amigo.geneontology.org/amigo/term/GO:$1'
         """
-        if self.url:
+        if self.url is not None:
             return self.url
-        rv = self.get_external("miriam").get("provider_url")
-        if rv is not None:
-            return rv
-        rv = self.get_external("prefixcommons").get("formatter")
-        if rv is not None:
-            return rv
-        rv = self.get_external("wikidata").get("format")
-        if rv is not None:
-            return rv
+        for metaprefix, key in [
+            ("miriam", "provider_url"),
+            ("n2t", "provider_url"),
+            ("go", "formatter"),
+            ("prefixcommons", "formatter"),
+            ("wikidata", "format"),
+        ]:
+            rv = self.get_external(metaprefix).get(key)
+            if rv is not None and "identifiers.org" not in rv:
+                return rv
         return None
 
     def get_synonyms(self) -> Set[str]:
@@ -412,9 +427,18 @@ class Resource(BaseModel):
         """
         if self.preferred_prefix is not None:
             return self.preferred_prefix
-        if self.obofoundry is not None:
-            return self.obofoundry.get("preferredPrefix")
+        obo_preferred_prefix = self.get_obo_preferred_prefix()
+        if obo_preferred_prefix is not None:
+            return obo_preferred_prefix
         return None
+
+    def get_obo_preferred_prefix(self) -> Optional[str]:
+        """Get the OBO preferred prefix, if this resource is mapped to the OBO Foundry."""
+        if self.obofoundry is None:
+            return None
+        # if explicitly annotated, use it. Otherwise, the capitalized version
+        # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
+        return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
 
     def get_mappings(self) -> Optional[Mapping[str, str]]:
         """Get the mappings to external registries, if available."""
@@ -456,6 +480,13 @@ class Resource(BaseModel):
             3. Wikidata
         """
         return self.get_prefix_key("pattern", ("miriam", "wikidata"))
+
+    def get_pattern_re(self):
+        """Get the compiled pattern for the given prefix, if it's available."""
+        pattern = self.get_pattern()
+        if pattern is None:
+            return None
+        return re.compile(pattern)
 
     def namespace_in_lui(self) -> Optional[bool]:
         """Check if the namespace should appear in the LUI."""
@@ -758,6 +789,65 @@ class Resource(BaseModel):
             return None
         return fmt[: -len("$1")]
 
+    def get_extra_providers(self) -> List[Provider]:
+        """Get a list of all extra providers."""
+        rv = []
+        if self.providers is not None:
+            rv.extend(self.providers)
+        if self.miriam:
+            for p in self.miriam.get("providers", []):
+                rv.append(Provider(**p))
+        return rv
+
+    def normalize_identifier(self, identifier: str) -> str:
+        """Normalize the identifier with the appropriate banana.
+
+        :param identifier: The identifier in the CURIE
+        :return: A normalize identifier, possibly with banana/redundant prefix added
+
+        Examples with explicitly annotated bananas:
+        >>> from bioregistry import get_resource
+        >>> get_resource("vario").normalize_identifier('0376')
+        'VariO:0376'
+        >>> get_resource("vario").normalize_identifier('VariO:0376')
+        'VariO:0376'
+
+        Examples with bananas from OBO:
+        >>> get_resource("fbbt").normalize_identifier('00007294')
+        'FBbt:00007294'
+        >>> get_resource("fbbt").normalize_identifier('FBbt:00007294')
+        'FBbt:00007294'
+
+        Examples from OBO Foundry:
+        >>> get_resource("chebi").normalize_identifier('1234')
+        'CHEBI:1234'
+        >>> get_resource("chebi").normalize_identifier('CHEBI:1234')
+        'CHEBI:1234'
+
+        Standard:
+        >>> get_resource("pdb").normalize_identifier('00000020')
+        '00000020'
+        """
+        # A "banana" is an embedded prefix that isn't actually part of the identifier.
+        # Usually this corresponds to the prefix itself, with some specific stylization
+        # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
+        banana = self.get_banana()
+        if banana:
+            banana = f"{banana}:"
+            if not identifier.startswith(banana):
+                return f"{banana}{identifier}"
+        # TODO Unnecessary redundant prefix?
+        # elif identifier.lower().startswith(f'{prefix}:'):
+        #
+        return identifier
+
+    def validate_identifier(self, identifier: str) -> Optional[bool]:
+        """Validate the identifier against the prefix's pattern, if it exists."""
+        pattern = self.get_pattern_re()
+        if pattern is None:
+            return None
+        return bool(pattern.match(self.normalize_identifier(identifier)))
+
 
 class Registry(BaseModel):
     """Metadata about a registry."""
@@ -807,6 +897,12 @@ class Registry(BaseModel):
         if provider_url is None:
             return None
         return provider_url.replace("$1", prefix)
+
+    def resolve(self, prefix: str, identifier: str) -> Optional[str]:
+        """Resolve the registry-specific prefix and identifier."""
+        if self.resolver_url is None:
+            return None
+        return self.resolver_url.replace("$1", prefix).replace("$2", identifier)
 
     def add_triples(self, graph: rdflib.Graph) -> Node:
         """Add triples to an RDF graph for this registry.
@@ -909,6 +1005,7 @@ def get_json_schema():
             [
                 Author,
                 Collection,
+                Provider,
                 Resource,
                 Registry,
             ],

@@ -65,26 +65,14 @@
                 <td>Description</td>
             </tr>
             </thead>
-            {% for row in rows %}
+            {% for prefix, resource in registry.items() %}
                 <tr>
-                    <td><a href="{{ url_for('ui.resource', prefix=row.prefix) }}">{{ row.name }}</a></td>
-                    <td class="text-nowrap"><code>{{ row.prefix }}</code></td>
-                    <td>{% if row.description %}<small>{{ row.description }}</small>{% endif %}</td>
+                    <td><a href="{{ url_for('ui.resource', prefix=prefix) }}">{{ resource.get_name() }}</a></td>
+                    <td class="text-nowrap"><code>{{ prefix }}</code></td>
+                    {% set description = resource.get_description() %}
+                    <td>{% if description %}<small>{{ description }}</small>{% endif %}</td>
                 </tr>
             {% endfor %}
         </table>
     </div>
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-

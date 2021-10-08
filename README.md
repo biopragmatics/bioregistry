@@ -160,7 +160,7 @@ assert ('chebi', '1234') == parse_curie('chebi:1234')
 assert ('pubchem.compound', '1234') == parse_curie('pubchem:1234')
 
 # Normalize mixed case prefixes
-assert ('fbbt', '1234') == parse_curie('FBbt:1234')
+assert ('fbbt', '00007294') == parse_curie('FBbt:00007294')
 
 # Remove the redundant prefix and normalize
 assert ('go', '1234') == parse_curie('GO:GO:1234')
@@ -220,6 +220,16 @@ assert ('chebi', '24867') == parse_iri('http://identifiers.org/CHEBI/24867')
 
 # Bioregistry IRI
 assert ('chebi', '24867') == parse_iri('https://bioregistry.io/chebi:24867')
+```
+
+In general, the Bioregistry knows how to parse both the http and https variants
+of any given URI:
+
+```python
+from bioregistry import parse_iri
+
+assert ('neuronames', '268') == parse_iri("http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
+assert ('neuronames', '268') == parse_iri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
 ```
 
 You can add to (or override) the default prefix map from the Bioregistry by

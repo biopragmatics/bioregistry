@@ -63,7 +63,7 @@ annotated.
    {% for entry in site.data.curation["wikidata"] %}
       <tr>
          <td>{{ entry.prefix }}</td>
-         <td>{{ entry.name }}</td>
+         <td><a href="{{ entry.homepage }}">{{ entry.name }}</a></td>
       </tr>
    {% endfor %}
    </tbody>
@@ -89,7 +89,7 @@ describing the local identifiers for this namespace.
    {% for entry in site.data.curation["pattern"] %}
       <tr>
          <td>{{ entry.prefix }}</td>
-         <td>{{ entry.name }}</td>
+         <td><a href="{{ entry.homepage }}">{{ entry.name }}</a></td>
       </tr>
    {% endfor %}
    </tbody>
@@ -127,7 +127,7 @@ character where the local identifier gets put.
    {% for entry in site.data.curation["formatter"] %}
       <tr>
          <td>{{ entry.prefix }}</td>
-         <td>{{ entry.name }}</td>
+         <td><a href="{{ entry.homepage }}">{{ entry.name }}</a></td>
       </tr>
    {% endfor %}
    </tbody>
@@ -165,7 +165,7 @@ entries need a `["example"]` entry.
    {% for entry in site.data.curation["example"] %}
       <tr>
          <td>{{ entry.prefix }}</td>
-         <td>{{ entry.name }}</td>
+         <td><a href="{{ entry.homepage }}">{{ entry.name }}</a></td>
       </tr>
    {% endfor %}
    </tbody>

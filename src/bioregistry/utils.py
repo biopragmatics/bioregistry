@@ -36,6 +36,11 @@ def read_metaregistry() -> Mapping[str, Registry]:
 @lru_cache(maxsize=1)
 def read_registry() -> Mapping[str, Resource]:
     """Read the Bioregistry as JSON."""
+    return read_registry_helper()
+
+
+def read_registry_helper() -> Mapping[str, Resource]:
+    """Read the Bioregistry as JSON, but don't cache."""
     with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
         data = json.load(file)
     return {key: Resource(**value) for key, value in data.items()}
@@ -172,14 +177,14 @@ def updater(f):
     """Make a decorator for functions that auto-update the bioregistry."""
 
     @wraps(f)
-    def wrapped():
+    def _wrapped():
         registry = read_registry()
         rv = f(registry)
         if rv is not None:
             write_registry(registry)
         return rv
 
-    return wrapped
+    return _wrapped
 
 
 def norm(s: str) -> str:
@@ -262,6 +267,6 @@ class NormDict(dict):
 def _norm(s: str) -> str:
     """Normalize a string for dictionary key usage."""
     rv = s.casefold().lower()
-    for x in " .-_./":
+    for x in " -_./":
         rv = rv.replace(x, "")
     return rv

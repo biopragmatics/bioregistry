@@ -39,7 +39,6 @@ from .resolve import (  # noqa:F401
     get_ols_url_prefix,
     get_owl_download,
     get_pattern,
-    get_pattern_re,
     get_preferred_prefix,
     get_prefixcommons_format,
     get_provides_for,
@@ -73,7 +72,7 @@ from .resolve_identifier import (  # noqa:F401
     get_providers_list,
     validate,
 )
-from .schema.struct import Author, Collection, Registry, Resource  # noqa:F401
+from .schema.struct import Author, Collection, Provider, Registry, Resource  # noqa:F401
 from .uri_format import get_format, get_format_url, get_format_urls, get_prefix_map  # noqa:F401
 from .utils import (  # noqa:F401
     read_collections,

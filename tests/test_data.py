@@ -5,8 +5,10 @@
 import logging
 import unittest
 from collections import defaultdict
+from typing import Mapping
 
 import bioregistry
+from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.resolve import get_external
 from bioregistry.schema.utils import EMAIL_RE
@@ -21,6 +23,7 @@ class TestRegistry(unittest.TestCase):
     def setUp(self) -> None:
         """Set up the test case."""
         self.registry = bioregistry.read_registry()
+        self.metaregistry = bioregistry.read_metaregistry()
 
     def test_keys(self):
         """Check the required metadata is there."""
@@ -62,6 +65,7 @@ class TestRegistry(unittest.TestCase):
             "proprietary",
             "has_canonical",
             "preferred_prefix",
+            "providers",
         }
         keys.update(bioregistry.read_metaregistry())
         for prefix, entry in self.registry.items():
@@ -79,7 +83,8 @@ class TestRegistry(unittest.TestCase):
                     entry.name is None
                     and "name" not in get_external(prefix, "miriam")
                     and "name" not in get_external(prefix, "ols")
-                    and "name" not in get_external(prefix, "obofoundry"),
+                    and "name" not in get_external(prefix, "obofoundry")
+                    and "name" not in get_external(prefix, "bioportal"),
                     msg=f"{prefix} is missing a name",
                 )
 
@@ -226,9 +231,9 @@ class TestRegistry(unittest.TestCase):
 
     def test_examples_pass_patterns(self):
         """Test that all examples pass the patterns."""
-        for prefix in self.registry:
-            pattern = bioregistry.get_pattern_re(prefix)
-            example = bioregistry.get_example(prefix)
+        for prefix, resource in self.registry.items():
+            pattern = resource.get_pattern_re()
+            example = resource.get_example()
             if pattern is None or example is None:
                 continue
             if prefix == "ark":
@@ -340,6 +345,9 @@ class TestRegistry(unittest.TestCase):
 
     def test_unique_iris(self):
         """Test that all IRIs are unique, or at least there's a mapping to which one is the preferred prefix."""
+        # TODO make sure there are also no HTTP vs HTTPS clashes,
+        #  for example if one prefix has http://example.org/foo/$1 and a different one
+        #  has https://example.org/foo/$1
         prefix_map = bioregistry.get_prefix_map()
         dd = defaultdict(dict)
         for prefix, iri in prefix_map.items():
@@ -378,14 +386,85 @@ class TestRegistry(unittest.TestCase):
             x[iri] = parts, unmapped, canonical_target, all_targets
         self.assertEqual({}, x)
 
+    def test_parse_http_vs_https(self):
+        """Test parsing both HTTP and HTTPS, even when the provider is only set to one."""
+        prefix = "neuronames"
+        ex = bioregistry.get_example(prefix)
+        with self.subTest(protocol="http"):
+            a = f"http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID={ex}"
+            self.assertEqual((prefix, ex), bioregistry.parse_iri(a))
+        with self.subTest(protocol="https"):
+            b = f"https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID={ex}"
+            self.assertEqual((prefix, ex), bioregistry.parse_iri(b))
+
+    def test_default_prefix_map_no_miriam(self):
+        """Test no identifiers.org URI prefixes get put in the prefix map."""
+        self.assert_no_idot(bioregistry.get_prefix_map())
+        # self.assert_no_idot(bioregistry.get_prefix_map(include_synonyms=True))
+
+    def test_obo_prefix_map(self):
+        """Test the integrity of the OBO prefix map."""
+        obofoundry_prefix_map = get_obofoundry_prefix_map()
+        self.assert_no_idot(obofoundry_prefix_map)
+        self.assertIn("FlyBase", set(obofoundry_prefix_map))
+
+        self.assert_no_idot(get_obofoundry_prefix_map(include_synonyms=True))
+
+    def assert_no_idot(self, prefix_map: Mapping[str, str]) -> None:
+        """Assert none of the URI prefixes have identifiers.org in them."""
+        for prefix, uri_prefix in prefix_map.items():
+            if prefix in {"idoo", "miriam.collection", "mir", "identifiers.namespace"}:
+                # allow identifiers.org namespaces since this actually should be here
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertNotIn("identifiers.org", uri_prefix, msg=uri_prefix)
+
     def test_preferred_prefix(self):
         """Test the preferred prefix matches the normalized prefix."""
         for prefix, resource in self.registry.items():
+            if bioregistry.is_deprecated(prefix):
+                continue
             pp = resource.get_preferred_prefix()
             if pp is None:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertEqual(prefix, _norm(pp))
+                self.assertEqual(prefix.replace(".", ""), _norm(pp))
                 # TODO consider later if preferred prefix should
                 #  explicitly not be mentioned in synonyms
                 # self.assertNotIn(pp, resource.get_synonyms())
+
+    def test_mappings(self):
+        """Make sure all mapping keys are valid metaprefixes."""
+        for prefix, resource in self.registry.items():
+            if not resource.mappings:
+                continue
+            with self.subTest(prefix=prefix):
+                for metaprefix in resource.mappings:
+                    self.assertIn(metaprefix, self.metaregistry)
+
+    def test_provider_codes(self):
+        """Make sure provider codes are unique."""
+        for prefix, resource in self.registry.items():
+            if not resource.providers:
+                continue
+            with self.subTest(prefix=prefix):
+                for provider in resource.providers:
+                    self.assertNotEqual(provider.code, prefix)
+                    self.assertNotIn(provider.code, resource.get_mappings())
+                    self.assertNotIn(provider.code, {"custom", "default"})
+
+    def test_namespace_in_lui(self):
+        """Test having the namespace in LUI requires a banana annotation.
+
+        This is required because the annotation from MIRIAM is simply not granular enough
+        to support actual use cases.
+        """
+        for prefix, resource in self.registry.items():
+            if not resource.namespace_in_lui():
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    resource.get_banana(),
+                    msg=f"If there is a namespace in LUI annotation,"
+                    f" then there must be a banana\nregex: {resource.get_pattern()}",
+                )

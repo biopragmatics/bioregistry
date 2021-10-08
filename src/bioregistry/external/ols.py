@@ -73,25 +73,23 @@ def _process(ols_entry):
     if email:
         name, email = parseaddr(email)
         if email.startswith("//"):
-            logger.warning("[%s] invalid email address: %s", ols_id, config["mailingList"])
+            logger.debug("[%s] invalid email address: %s", ols_id, config["mailingList"])
         else:
             rv["contact"] = email
 
     license_value = config["annotations"].get("license", [None])[0]
     if license_value in {"Unspecified", "Unspecified"}:
         license_value = None
-    # if license_value:
-    #     logger.warning('[%s] missing license in OLS. Contact: %s', ols_id, email)
+    if not license_value:
+        logger.info("[%s] missing license in OLS. Contact: %s", ols_id, email)
     rv["license"] = license_value
 
     version = config.get("version")
     if version is None:
-        logger.warning("[%s] missing version in OLS. Contact: %s", ols_id, email)
+        logger.info("[%s] missing version in OLS. Contact: %s", ols_id, email)
     else:
         if version != version.strip():
-            logger.warning(
-                "[%s] extra whitespace in version: %s. Contact: %s", ols_id, version, email
-            )
+            logger.info("[%s] extra whitespace in version: %s. Contact: %s", ols_id, version, email)
             version = version.strip()
 
         version_prefix = processing.version_prefix
@@ -120,7 +118,7 @@ def _process(ols_entry):
         version_date_fmt = processing.version_date_format
         if version_date_fmt:
             if version_date_fmt in {"%Y-%d-%m"}:
-                logger.warning(
+                logger.info(
                     "[%s] confusing date format: %s. Contact: %s",
                     ols_id,
                     version_date_fmt,
@@ -129,9 +127,9 @@ def _process(ols_entry):
             try:
                 version = datetime.datetime.strptime(version, version_date_fmt).strftime("%Y-%m-%d")
             except ValueError:
-                logger.warning("[%s] wrong format for version %s", ols_id, version)
+                logger.info("[%s] wrong format for version %s", ols_id, version)
         elif not version_type:
-            logger.warning("[%s] no type for version %s", ols_id, version)
+            logger.info("[%s] no type for version %s", ols_id, version)
 
     rv["version"] = version
 

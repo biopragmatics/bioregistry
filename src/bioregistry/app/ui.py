@@ -25,24 +25,10 @@ FORMATS = [
 @ui_blueprint.route("/registry/")
 def resources():
     """Serve the Bioregistry page."""
-    rows = [
-        dict(
-            prefix=prefix,
-            name=bioregistry.get_name(prefix),
-            example=bioregistry.get_example(prefix),
-            homepage=bioregistry.get_homepage(prefix),
-            pattern=bioregistry.get_pattern(prefix),
-            namespace_in_lui=bioregistry.namespace_in_lui(prefix),
-            banana=bioregistry.get_banana(prefix),
-            description=bioregistry.get_description(prefix),
-        )
-        for prefix in bioregistry.read_registry()
-    ]
-
     return render_template(
         "resources.html",
-        rows=rows,
         formats=FORMATS,
+        registry=bioregistry.read_registry(),
     )
 
 
@@ -72,14 +58,17 @@ def resource(prefix: str):
     prefix = _normalize_prefix_or_404(prefix, "." + resource.__name__)
     if not isinstance(prefix, str):
         return prefix
-    example = bioregistry.get_example(prefix)
+    _resource = bioregistry.get_resource(prefix)
+    if _resource is None:
+        raise RuntimeError
+    example = _resource.get_example()
     return render_template(
         "resource.html",
         prefix=prefix,
-        resource=bioregistry.get_resource(prefix),
+        resource=_resource,
         name=bioregistry.get_name(prefix),
         example=example,
-        mappings=_get_resource_mapping_rows(prefix),
+        mappings=_get_resource_mapping_rows(_resource),
         synonyms=bioregistry.get_synonyms(prefix),
         homepage=bioregistry.get_homepage(prefix),
         pattern=bioregistry.get_pattern(prefix),

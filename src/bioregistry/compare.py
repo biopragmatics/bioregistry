@@ -32,6 +32,7 @@ from bioregistry import (
 from bioregistry.constants import DOCS_IMG
 from bioregistry.external import GETTERS
 from bioregistry.resolve import _remap_license, get_external
+from bioregistry.schema import Resource
 
 logger = logging.getLogger(__name__)
 
@@ -301,7 +302,7 @@ def compare(png: bool):  # noqa:C901
     # -------------------------------------------------------------------- #
     palette = sns.color_palette("Paired", len(GETTERS))
     keys = [
-        (metaprefix, label, color, set(func()))
+        (metaprefix, label, color, set(func(force_download=False)))
         for (metaprefix, label, func), color in zip(GETTERS, palette)
     ]
 
@@ -349,6 +350,39 @@ def compare(png: bool):  # noqa:C901
 
     _save(fig, name="xrefs", png=png)
 
+    ##################################################
+    # Histogram of how many providers each entry has #
+    ##################################################
+    provider_counts = [_count_providers(resource) for resource in read_registry().values()]
+    fig, ax = plt.subplots(figsize=SINGLE_FIG)
+    sns.barplot(
+        data=sorted(Counter(provider_counts).items()), ci=None, color="blue", alpha=0.4, ax=ax
+    )
+    ax.set_xlabel("Number Providers")
+    ax.set_ylabel("Count")
+    ax.set_yscale("log")
+    if watermark:
+        fig.text(
+            1.0,
+            0.5,
+            WATERMARK_TEXT,
+            fontsize=8,
+            color="gray",
+            alpha=0.5,
+            ha="right",
+            va="center",
+            rotation=90,
+        )
+    _save(fig, name="providers", png=png)
+
+
+def _count_providers(resource: Resource) -> int:
+    rv = 0
+    if resource.get_format_url():
+        rv += 1
+    rv += len(resource.get_extra_providers())
+    return rv
+
 
 def _get_license_and_conflicts():
     licenses = []
@@ -375,7 +409,7 @@ def _get_license_and_conflicts():
             licenses.append(ols_license)
             licenses.append(obo_license)
             conflicts.add(key)
-            logger.warning(f"[{key}] Conflicting licenses- {obo_license} and {ols_license}")
+            # logger.warning(f"[{key}] Conflicting licenses- {obo_license} and {ols_license}")
             continue
     return licenses, conflicts, obo_has_license, ols_has_license
 

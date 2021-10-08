@@ -1,3 +1,58 @@
 embedding_rewrites: []
 prefix_rewrites: []
-wrong_patterns: []
+wrong_patterns:
+- correct: ^([A-Z]+-)?\d+$
+  homepage: https://www.lgcstandards-atcc.org
+  miriam: ^\d+$
+  name: American Type Culture Collection
+  prefix: atcc
+- correct: ^\d{1,2}(\.\d{0,3}){0,3}$
+  homepage: https://www.ebi.ac.uk/intenz/
+  miriam: ^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$
+  name: Enzyme Nomenclature
+  prefix: eccode
+- correct: ^\d{7}$
+  homepage: http://www.gramene.org/
+  miriam: ^GRO\:\d+$
+  name: Gramene Growth Stage Ontology
+  prefix: gramene.growthstage
+- correct: ^\d+$
+  homepage: https://omim.org/
+  miriam: ^[*#+%^]?\d{6}$
+  name: OMIM ID
+  prefix: mim
+- correct: ^[\w\-.]{3,}$
+  homepage: https://microbiomedata.org/
+  miriam: ^[A-Za-z0-9._~\-\:]+$
+  name: National Microbiome Data Collaborative
+  prefix: nmdc
+- correct: ^\d{7}$
+  homepage: http://obi-ontology.org
+  miriam: (^OBI:\d{7}$)|(^OBI_\d{7}$)
+  name: Ontology for Biomedical Investigations
+  prefix: obi
+- correct: ^[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
+  homepage: https://omabrowser.org
+  miriam: ^HOG:[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
+  name: OMA HOGs
+  prefix: oma.hog
+- correct: ^\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b$
+  homepage: http://pid.nci.nih.gov/
+  miriam: ^\w+$
+  name: 'NCI Pathway Interaction Database: Pathway'
+  prefix: pid.pathway
+- correct: ^\d{6}$
+  homepage: https://github.com/micheldumontier/semanticscience
+  miriam: ^SIO_\d{6,6}$
+  name: Semanticscience Integrated Ontology
+  prefix: sio
+- correct: ^\d{7}$
+  homepage: http://arabidopsis.org/index.jsp
+  miriam: ^Gene:\d{7}$
+  name: TAIR Gene
+  prefix: tair.gene
+- correct: ^\d{10}$
+  homepage: http://arabidopsis.org/index.jsp
+  miriam: ^AASequence:\d{10}$
+  name: TAIR Protein
+  prefix: tair.protein
