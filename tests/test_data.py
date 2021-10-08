@@ -414,6 +414,8 @@ class TestRegistry(unittest.TestCase):
     def test_preferred_prefix(self):
         """Test the preferred prefix matches the normalized prefix."""
         for prefix, resource in self.registry.items():
+            if bioregistry.is_deprecated(prefix):
+                continue
             pp = resource.get_preferred_prefix()
             if pp is None:
                 continue

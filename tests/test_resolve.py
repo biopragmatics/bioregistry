@@ -69,6 +69,8 @@ class TestResolve(unittest.TestCase):
             ("fbbt", "FBbt:1234"),
         ]
         for prefix in bioregistry.read_registry():
+            if bioregistry.is_deprecated(prefix):
+                continue
             banana = bioregistry.get_banana(prefix)
             if banana is None or bioregistry.has_no_terms(prefix):
                 continue
