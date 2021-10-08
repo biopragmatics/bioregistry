@@ -364,8 +364,9 @@ class Resource(BaseModel):
         """
         if self.banana is not None:
             return self.banana
-        if self.obofoundry and "preferredPrefix" in self.obofoundry:
-            return self.obofoundry["preferredPrefix"]
+        preferred_prefix = self.get_preferred_prefix()
+        if preferred_prefix is not None:
+            return preferred_prefix
         return None
 
     def get_default_format(self) -> Optional[str]:
@@ -424,7 +425,9 @@ class Resource(BaseModel):
         if self.preferred_prefix is not None:
             return self.preferred_prefix
         if self.obofoundry is not None:
-            return self.obofoundry.get("preferredPrefix")
+            # if explicitly annotated, use it. Otherwise, the capitalized version
+            # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
+            return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
         return None
 
     def get_mappings(self) -> Optional[Mapping[str, str]]:
