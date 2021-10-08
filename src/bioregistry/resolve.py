@@ -3,7 +3,6 @@
 """Utilities for normalizing prefixes."""
 
 import logging
-import re
 from functools import lru_cache
 from typing import Any, Dict, Mapping, Optional, Set, Tuple, Union
 
