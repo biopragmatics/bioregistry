@@ -841,7 +841,7 @@ class Resource(BaseModel):
         #
         return identifier
 
-    def validate(self, identifier: str) -> Optional[bool]:
+    def validate_identifier(self, identifier: str) -> Optional[bool]:
         """Validate the identifier against the prefix's pattern, if it exists."""
         pattern = self.get_pattern_re()
         if pattern is None:

@@ -40,7 +40,7 @@ def validate(prefix: str, identifier: str) -> Optional[bool]:
     resource = get_resource(prefix)
     if resource is None:
         return None
-    return resource.validate(identifier)
+    return resource.validate_identifier(identifier)
 
 
 def normalize_identifier(prefix: str, identifier: str) -> str:
