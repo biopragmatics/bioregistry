@@ -25,24 +25,10 @@ FORMATS = [
 @ui_blueprint.route("/registry/")
 def resources():
     """Serve the Bioregistry page."""
-    rows = [
-        dict(
-            prefix=prefix,
-            name=bioregistry.get_name(prefix),
-            example=bioregistry.get_example(prefix),
-            homepage=bioregistry.get_homepage(prefix),
-            pattern=bioregistry.get_pattern(prefix),
-            namespace_in_lui=bioregistry.namespace_in_lui(prefix),
-            banana=bioregistry.get_banana(prefix),
-            description=bioregistry.get_description(prefix),
-        )
-        for prefix in bioregistry.read_registry()
-    ]
-
     return render_template(
         "resources.html",
-        rows=rows,
         formats=FORMATS,
+        registry=bioregistry.read_registry(),
     )
 
 
