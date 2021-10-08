@@ -34,6 +34,7 @@ class WikidataAligner(Aligner):
         ]
 
     def prepare_external(self, external_id, external_entry):  # noqa:D102
+        """Prepare the external Wikidata data dictionary for alignment."""
         # If it's already aligned, we don't need these extra MIRIAM annotations
         external_entry.pop("miriam", None)
         external_entry.pop("database.miriam", None)

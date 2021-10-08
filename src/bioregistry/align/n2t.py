@@ -15,7 +15,8 @@ class N2TAligner(Aligner):
     getter = get_n2t
     curation_header = ("name", "homepage", "description")
 
-    def get_skip(self) -> Mapping[str, str]:  # noqa:D102
+    def get_skip(self) -> Mapping[str, str]:
+        """Get the prefixes in N2T that should be skipped."""
         return {
             "zzztestprefix": "test prefix should not be considered",
         }
