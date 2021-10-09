@@ -11,6 +11,11 @@ wrong_patterns:
   miriam: ^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$
   name: Enzyme Nomenclature
   prefix: eccode
+- correct: ^\d{9}$
+  homepage: https://github.com/ufbmi/geographical-entity-ontology/wiki
+  miriam: ^GEO_[0-9]{9}$
+  name: Geographical Entity Ontology
+  prefix: geogeo
 - correct: ^\d{7}$
   homepage: http://www.gramene.org/
   miriam: ^GRO\:\d+$
@@ -36,6 +41,11 @@ wrong_patterns:
   miriam: ^HOG:[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
   name: OMA HOGs
   prefix: oma.hog
+- correct: ^\d{7}$
+  homepage: http://planteome.org/
+  miriam: ^(P)?EO\:\d{7}$
+  name: Plant Environment Ontology
+  prefix: peco
 - correct: ^\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b$
   homepage: http://pid.nci.nih.gov/
   miriam: ^\w+$

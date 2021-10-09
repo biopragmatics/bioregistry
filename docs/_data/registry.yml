@@ -66,14 +66,20 @@
   - 4DN
   url: https://data.4dnucleome.org/biosources/$1
 4dn.replicate:
+  description: Database portal containing replicate experiments of different assays
+    and samples
   example: 4DNESWX1J3QU
   homepage: https://data.4dnucleome.org/experiment-set-replicates/
   name: 4D Nucleome Data Portal Experiment Replicate
   url: https://data.4dnucleome.org/experiment-set-replicates/$1
 aao:
+  deprecated: true
+  description: A structured controlled vocabulary of the anatomy of Amphibians. Note
+    that AAO is currently being integrated into Uberon.
   mappings:
     obofoundry: aao
     prefixcommons: AAO
+  no_own_terms: true
   obofoundry:
     contact: david.c.blackburn@gmail.com
     contact.label: David Blackburn
@@ -318,6 +324,7 @@ aero:
   bioportal:
     name: Adverse Event Reporting Ontology
     prefix: AERO
+  example: '0000125'
   mappings:
     bioportal: AERO
     obofoundry: aero
@@ -1053,6 +1060,7 @@ apo:
     prefix: APO
     url: http://www.ontobee.org/ontology/APO
   pattern: ^\d{7}$
+  preferred_prefix: APO
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/YPO_$1
     is_identifiers: false
@@ -1061,7 +1069,7 @@ apo:
   synonyms:
   - YPO
   url: https://www.yeastgenome.org/observable/APO:$1
-apollo_sv:
+apollosv:
   bioportal:
     name: Apollo Structured Vocabulary
     prefix: APOLLO-SV
@@ -1206,6 +1214,7 @@ ardb:
     is_obo: false
     prefix: ARDB
 ark:
+  banana: ark
   mappings:
     miriam: ark
     n2t: ark
@@ -3166,6 +3175,7 @@ biomodels.kisao:
     name: Kinetic Simulation Algorithm Ontology
     prefix: KISAO
     url: http://www.ontobee.org/ontology/KISAO
+  preferred_prefix: biomodels.kisao
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/KISAO_$1
     is_identifiers: false
@@ -3584,6 +3594,9 @@ birnlex:
     name: Biomedical Informatics Research Network Project Lexicon
     prefix: BIRNLEX
   comment: Part of the NeuroLex namespace now
+  description: The BIRN Project lexicon will provide entities for data and database
+    annotation for the BIRN project, covering anatomy, disease, data collection, project
+    management and experimental design.
   example: birnlex_2023
   homepage: https://bioportal.bioontology.org/ontologies/BIRNLEX
   mappings:
@@ -3878,6 +3891,9 @@ broad:
 bs:
   comment: An alernative vocabulary that has been aligned and integrated in Sequence
     Ontology (SO).
+  description: SO is a collaborative ontology project for the definition of sequence
+    features used in biological sequence annotation. It is part of the Open Biomedical
+    Ontologies library.
   download_obo: https://raw.githubusercontent.com/The-Sequence-Ontology/SO-Ontologies/master/Ontology_Files/subsets/biosapiens.obo
   example: '00042'
   homepage: https://github.com/The-Sequence-Ontology/SO-Ontologies
@@ -4214,6 +4230,11 @@ cadsr:
     prefix: cadsr
     provider_url: https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement[@publicId=$1]
 caloha:
+  description: This is a code repository for the SIB - Swiss Institute of Bioinformatics
+    CALIPHO group neXtProt project, which is a comprehensive human-centric discovery
+    platform, that offers a integration of and navigation through protein-related
+    data. CALIPHO is an interdisciplinary team which aims to use a variety of methodologies
+    to help uncover the function of uncharacterized human proteins.
   download_obo: ftp://ftp.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo
   example: '0001'
   homepage: https://github.com/calipho-sib/controlled-vocabulary
@@ -4622,15 +4643,11 @@ cazy:
     name: Carbohydrate-Active enZymes
     prefix: CAZy
 cba:
-  cellosaurus:
-    category: Cell line collections
-    homepage: http://www.cellbankaustralia.com/cellbank-australia-exclusive-lines/
-    name: CellBank Australia
-    prefix: CBA
-    url: http://www.cellbankaustralia.com/$1
+  description: 'CBA: http://www.cba.ac.cn/ and the Shanghai Institutes for Biological
+    Sciences (SIBS at http://www.sibs.ac.cn/) provide EBI with citation data not available
+    in MEDLINE.'
   example: '375364'
-  mappings:
-    cellosaurus: CBA
+  homepage: http://www.cba.ac.cn
   name: Chinese Biological Abstracts
   url: https://europepmc.org/article/CBA/$1
 cbioportal:
@@ -4741,6 +4758,7 @@ ccle:
   - ccle.cell
   url: https://www.cbioportal.org/patient?studyId=ccle_broad_2019&caseId=$1
 cco:
+  banana: CCO
   bioportal:
     name: Cell Cycle Ontology
     prefix: CCO
@@ -4969,6 +4987,20 @@ cdpd:
     is_identifiers: true
     is_obo: false
     prefix: CDPD
+cellbank.australia:
+  cellosaurus:
+    category: Cell line collections
+    homepage: http://www.cellbankaustralia.com/cellbank-australia-exclusive-lines/
+    name: CellBank Australia
+    prefix: CBA
+    url: http://www.cellbankaustralia.com/$1
+  description: CellBank Australia collects novel cell lines, developed by Australian
+    researchers, submits these cell lines to rigorous testing to confirm their integrity,
+    and then distributes the cell lines to researchers throughout the world.
+  example: ab-1-ha
+  mappings:
+    cellosaurus: CBA
+  url: https://www.cellbankaustralia.com/$1.html
 cellimage:
   mappings:
     fairsharing: FAIRsharing.8t18te
@@ -5892,14 +5924,13 @@ cio:
     is_obo: true
     prefix: CIO
 citexplore:
-  bioportal:
-    name: Cerebrotendinous Xanthomatosis Ontology
-    prefix: CTX
+  description: One of the precursors to the EuropePMC project. Now EuropePMC is able
+    to resolve CiteXplore codes.
   example: C6155
   homepage: https://www.ebi.ac.uk/citexplore/
-  mappings:
-    bioportal: CTX
   name: CiteXplore
+  references:
+  - https://www.embl.de/aboutus/communication_outreach/media_relations/2006/061127_hinxton/
   synonyms:
   - CTX
   url: https://europepmc.org/article/CTX/$1
@@ -6458,6 +6489,8 @@ clyh:
     url: http://www.ontobee.org/ontology/CLYH
 cmf:
   deprecated: true
+  description: This ontology represents the clinical findings and procedures used
+    in the oral and maxillo-facial surgical domain
   mappings:
     obofoundry: cmf
     prefixcommons: CMF
@@ -7033,6 +7066,9 @@ cog.category:
   url: https://www.ncbi.nlm.nih.gov/research/cog/cogcategory/$1
 cog.pathway:
   contact: cogs@ncbi.nlm.nih.gov
+  description: Database of Clusters of Orthologous Genes grouped by pathways and functional
+    systems. It includes the complete genomes of 1,187 bacteria and 122 archaea that
+    map into 1,234 genera.
   example: NAD%20biosynthesis
   go:
     formatter: http://www.ncbi.nlm.nih.gov/COG/new/release/coglist.cgi?pathw=$1
@@ -8818,6 +8854,9 @@ dcterms:
   bioportal:
     name: 'DCMI Metadata Terms: properties in /terms/ namespace'
     prefix: DCTERMS
+  description: This document is an up-to-date specification of all metadata terms
+    maintained by the Dublin Core Metadata Initiative, including properties, vocabulary
+    encoding schemes, syntax encoding schemes, and classes.
   example: title
   homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
   mappings:
@@ -9050,6 +9089,9 @@ dermo:
   bioportal:
     name: Human Dermatological Disease Ontology
     prefix: DERMO
+  description: DermO is an ontology with broad coverage of the domain of dermatologic
+    disease and we demonstrate here its utility for text mining and investigation
+    of phenotypic relationships between dermatologic disorders
   example: '0000000'
   homepage: https://jbiomedsem.biomedcentral.com/articles/10.1186/s13326-016-0085-x
   mappings:
@@ -9426,6 +9468,12 @@ dip:
     name: Database of interacting proteins
     prefix: DIP
 diseasesdb:
+  description: 'The Diseases Database is a cross-referenced index of human disease,
+    medications, symptoms, signs, abnormal investigation findings etc. This site provides
+    a medical textbook-like index and search portal covering areas including: internal
+    medical disorders, symptoms and signs, congenital and inherited disorders, infectious
+    diseases and organisms, drugs and medications, common haematology and biochemistry
+    investigation abnormalities.'
   example: '1784'
   homepage: http://www.diseasesdatabase.com/
   name: Diseases Database
@@ -10190,6 +10238,8 @@ drugbank:
   wikidata:
     prefix: P715
 drugbank.salt:
+  description: DrugBank is a web-enabled database containing comprehensive molecular
+    information about drugs, their mechanisms, their interactions and their targets.
   example: DBSALT001211
   homepage: http://www.drugbank.ca
   mappings:
@@ -10269,6 +10319,10 @@ drugcentral:
     prefix: DrugCentral
   url: http://drugcentral.org/drugcard/$1
 dsmz:
+  description: The Leibniz Institute DSMZ is the most diverse biological resource
+    center in the world and one of the largest collections of microorganisms and cell
+    cultures worldwide (bacteria, archaea, protists, yeasts, fungi, bacteriophages,
+    plant viruses, genomic bacterial DNA as well as human and animal cell lines).
   example: ACC-1
   homepage: https://www.dsmz.de
   name: Deutsche Sammlung von Mikroorganismen und Zellkulturen
@@ -10328,6 +10382,8 @@ duo:
     is_obo: true
     prefix: DUO
 eaglei:
+  description: Discovery tool for biomedical research resources available at institutions
+    throughout the U.S.
   example: 0000012b-5661-2f63-2f73-b43980000000
   homepage: https://hawaii.eagle-i.net
   name: eagle-i
@@ -10462,6 +10518,9 @@ ecg:
   bioportal:
     name: Electrocardiography Ontology
     prefix: ECG
+  description: The Electrocardiography (ECG) Ontology is a Driving Biological Project
+    of the NCBO. The ECG Ontology will contain terms for describing electrocardiograms,
+    their capture method(s) and their waveforms.
   example: 000000159
   homepage: https://bioportal.bioontology.org/ontologies/ECG
   mappings:
@@ -10523,6 +10582,14 @@ echobase:
     name: EchoBASE - an integrated post-genomic database for E. coli
     prefix: EchoBASE
 ecmdb:
+  description: "The ECMDB is an expertly curated database containing extensive metabolomic\
+    \ data and metabolic pathway diagrams about Escherichia coli (strain K12, MG1655).\
+    \ This database includes significant quantities of \u201Coriginal\u201D data compiled\
+    \ by members of the Wishart laboratory as well as additional material derived\
+    \ from hundreds of textbooks, scientific journals, metabolic reconstructions and\
+    \ other electronic databases. Each metabolite is linked to more than 100 data\
+    \ fields describing the compound, its ontology, physical properties, reactions,\
+    \ pathways, references, external links and associated proteins or enzymes."
   example: ECMDB00005
   homepage: https://ecmdb.ca
   name: E. coli Metabolite Database
@@ -11091,8 +11158,6 @@ efo:
     pattern: ^\d{7}$
     prefix: efo
     provider_url: http://purl.bioontology.org/ontology/EFO/efo:EFO_$1
-  obofoundry:
-    prefix: efo
   ols:
     contact: efo-users@lists.sourceforge.net
     description: The Experimental Factor Ontology (EFO) provides a systematic description
@@ -12089,6 +12154,7 @@ eol:
     prefix: eol
     version: '2018-09-13'
 epcc:
+  description: Collection of European paediatric cardiac coding files
   homepage: https://www.aepc.org/european-paediatric-cardiac-coding
   name: European Paediatric Cardiac Codes
   proprietary: true
@@ -12982,6 +13048,8 @@ fbdv:
   synonyms:
   - FBdv
 fbol:
+  comment: Website down, checked on 2021-10-07
+  deprecated: true
   mappings:
     miriam: fbol
     n2t: fbol
@@ -13056,6 +13124,7 @@ fbsp:
     is_obo: true
     prefix: FBSP
 fbtc:
+  description: The cell line vocabulary inside FlyBase
   example: 0000190
   homepage: https://flybase.org
   name: Flybase Cell Line
@@ -13100,6 +13169,10 @@ fideo:
     prefix: FIDEO
     url: http://www.ontobee.org/ontology/FIDEO
 fishbase.species:
+  description: 'Global biodiversity database on finfishes. It offers a wide range
+    of information on all species currently known in the world: taxonomy, biology,
+    trophic ecology, life history, and uses, as well as historical data reaching back
+    to 250 years.'
   example: '6472'
   homepage: http://fishbase.org
   name: FishBase
@@ -13418,6 +13491,13 @@ foaf:
   bioportal:
     name: Friend of a Friend Vocabulary
     prefix: FOAF
+  description: 'FOAF is a project devoted to linking people and information using
+    the Web. Regardless of whether information is in people''s heads, in physical
+    or digital documents, or in the form of factual data, it can be linked. FOAF integrates
+    three kinds of network: social networks of human collaboration, friendship and
+    association; representational networks that describe a simplified view of a cartoon
+    universe in factual terms, and information networks that use Web-based linking
+    to share independently published descriptions of this inter-connected world.'
   example: familyName
   homepage: http://xmlns.com/foaf/spec/
   mappings:
@@ -14099,6 +14179,8 @@ galen:
     bioportal: GALEN
   name: Galen Ontology
 gard:
+  description: Database of rare diseases and related terms, including symptoms, healthcare
+    resources, and organizations supporting research of the disease.
   example: '6038'
   homepage: https://rarediseases.info.nih.gov/diseases
   name: Genetic and Rare Diseases Information Center
@@ -14171,6 +14253,10 @@ gaz:
   wikidata:
     prefix: P6778
 gbif:
+  description: "Database of living organisms, taxonomic. \n The GBIF\u2014the Global\
+    \ Biodiversity Information Facility\u2014is international network and data infrastructure\
+    \ funded by the world's governments and aimed at providing anyone, anywhere, open\
+    \ access to data about all types of life on Earth."
   example: '4238'
   homepage: https://www.gbif.org/species
   name: Global Biodiversity Information Facility
@@ -14179,6 +14265,8 @@ gbif:
     prefix: P846
 gc:
   comment: 'see comment here: https://github.com/obophenotype/ncbitaxon/issues/47'
+  description: Genetic code, mitochontrial genetic code, and other linked information
+    to NCBI taxonomy entries.
   example: '11'
   homepage: https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html
   name: Genetic Code
@@ -14836,6 +14924,7 @@ geogeo:
   bioportal:
     name: Geographical Entity Ontology
     prefix: GEO
+  example: '000000021'
   mappings:
     bioportal: GEO
     miriam: geogeo
@@ -14875,6 +14964,8 @@ geogeo:
     name: Geographical Entity Ontology
     prefix: geo
     version: '2016-03-26'
+  pattern: ^\d{9}$
+  preferred_prefix: GEOGEO
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/GEO_$1
     is_identifiers: false
@@ -14898,6 +14989,9 @@ gexo:
     prefix: gexo
     version: '2019-09-18'
 ghr:
+  description: MedlinePlus Genetics contains detailed information about the effects
+    of genetic variation on human health, covering more than 1,300 genetic conditions
+    and 1,400 genes, all of the human chromosomes, and mitochondrial DNA (mtDNA).
   example: saddan
   homepage: https://medlineplus.gov/genetics/condition
   name: Genetics Home Reference
@@ -15387,10 +15481,16 @@ gmd.ref:
     is_obo: false
     prefix: GMD.REF
 gmelin:
+  description: The Gmelin database is a large database of organometallic and inorganic
+    compounds updated quarterly. It is based on the German publication Gmelins Handbuch
+    der anorganischen Chemie which was originally published by Leopold Gmelin in 1817;
+    the last print edition, the 8th, appeared in the 1990s.
   example: '1466'
   homepage: https://link.springer.com/bookseries/562
   name: Gmelins Handbuch der anorganischen Chemie
   pattern: ^[1-9][0-9]{3,6}$
+  references:
+  - https://en.wikipedia.org/wiki/Gmelin_database
   wikidata:
     prefix: P1578
 gno:
@@ -15850,6 +15950,10 @@ google.scholar:
     is_identifiers: false
     is_obo: false
     prefix: GSID
+  description: 'Google Scholar provides a simple way to broadly search for scholarly
+    literature. You can search across many disciplines and sources: articles, theses,
+    books, abstracts and court opinions, from academic publishers, professional societies,
+    online repositories, universities and other web sites.'
   example: PjrpzUIAAAAJ
   homepage: https://scholar.google.com/
   mappings:
@@ -15861,6 +15965,8 @@ gorel:
     is_identifiers: false
     is_obo: true
     prefix: GOREL
+  description: Documentation of GO that provides a description of some of the commonly
+    used relationships and conventions in GO.
   download_owl: ftp://ftp.geneontology.org/pub/go/ontology/extensions/gorel.owl
   example: '0002005'
   go:
@@ -16935,6 +17041,9 @@ hcpcs:
   bioportal:
     name: Healthcare Common Procedure Coding System
     prefix: HCPCS
+  description: HCPCS is a collection of standardized codes that represent medical
+    procedures, supplies, products and services. The codes are used to facilitate
+    the processing of health insurance claims by Medicare and other insurers.
   example: G8944
   homepage: https://www.cms.gov/Medicare/Coding/MedHCPCSGenInfo
   mappings:
@@ -17429,6 +17538,9 @@ hmdb:
     pattern: HMDB\d+
     prefix: P2057
 hms.lincs.compound:
+  description: Database contains all publicly available HMS LINCS datasets and information
+    for each dataset about experimental reagents (small molecule perturbagens, cells,
+    antibodies, and proteins) and experimental and data analysis protocols.
   example: 10001-101
   homepage: https://lincs.hms.harvard.edu/db/sm/
   name: HMS LINCS Compound
@@ -17437,6 +17549,8 @@ hms.lincs.compound:
   - hmsl_id
   url: https://lincs.hms.harvard.edu/db/sm/$1
 hog:
+  description: Documentation of HOGS (Homologous Organs Groups). Contains links to
+    HOGs download, HOGs onthology, HOGs creation, composition, etc.
   download_obo: ftp://ftp.bgee.org/general/ontologies/HOG.obo
   example: '0000255'
   homepage: https://bgee.org/bgee/bgee?page=documentation#sectionHomologyRelationships
@@ -17604,6 +17718,7 @@ homd.taxon:
     is_identifiers: true
     is_obo: false
     prefix: HOMD.TAXON
+  url: www.homd.org/modules.php?op=modload&name=HOMD&view=dynamic&oraltaxonid=$1
 homologene:
   mappings:
     miriam: homologene
@@ -18049,6 +18164,10 @@ hsapdv:
   synonyms:
   - HsapDv
 hsdb:
+  description: The Hazardous Substances Data Bank (HSDB) is a toxicology database
+    that focuses on the toxicology of potentially hazardous chemicals. It provides
+    information on human exposure, industrial hygiene, emergency handling procedures,
+    environmental fate, regulatory requirements, nanomaterials, and related areas.
   example: '5621'
   homepage: https://pubchem.ncbi.nlm.nih.gov/source/hsdb
   name: Hazardous Substances Data Bank
@@ -18349,6 +18468,11 @@ icd10:
   wikidata:
     prefix: P4229
 icd11:
+  description: Diagnostic tool for epidemiology, health management and clinical purposes,
+    maintained by the World Health Organization (WHO). It provides a system of diagnostic
+    codes for classifying diseases, including nuanced classifications of a wide variety
+    of signs, symptoms, abnormal findings, complaints, social circumstances, and external
+    causes of injury or disease.
   example: RA01.0
   homepage: https://icd.who.int/
   name: International Classification of Diseases 11th Revision
@@ -18365,6 +18489,8 @@ icd9:
   bioportal:
     name: International Classification of Diseases, Version 9 - Clinical Modification
     prefix: ICD9CM
+  description: ICD-9-CM is the official system of assigning codes to diagnoses and
+    procedures associated with hospital utilization in the United States.
   example: '277.9'
   homepage: https://www.cdc.gov/nchs/icd/icd9cm.htm
   mappings:
@@ -18405,6 +18531,7 @@ icdo:
   bioportal:
     name: International Classification of Diseases Ontology
     prefix: ICDO
+  description: An ontologied version of ICD
   example: M9861/3
   homepage: https://www.who.int/classifications/icd/adaptations/oncology/en/
   mappings:
@@ -18741,6 +18868,7 @@ idoden:
   bioportal:
     name: Dengue Fever Ontology
     prefix: IDODEN
+  description: An ontology for dengue fever.
   example: '0003463'
   homepage: https://bioportal.bioontology.org/ontologies/IDODEN
   mappings:
@@ -19317,6 +19445,8 @@ inchikey:
     prefix: P235
 inn:
   comment: can not find a place to resolve to
+  description: Documentation of GO that provides a description of some of the commonly
+    used relationships and conventions in GO.
   example: fluticasone
   homepage: https://www.who.int/teams/health-product-and-policy-standards/inn
   name: International Nonproprietary Names
@@ -19745,6 +19875,7 @@ interpro:
     homepage: http://www.ebi.ac.uk/interpro/index.html
     name: Protein Domains
     prefix: ipr
+  preferred_prefix: interpro
   prefixcommons:
     formatter: http://identifiers.org/interpro/$1
     is_identifiers: true
@@ -20062,6 +20193,8 @@ issn:
     is_obo: false
     prefix: ISSN
 itis:
+  description: Information system with taxonomic data on plants, animals, fungi, and
+    microbes of North America and the world.
   example: '589462'
   homepage: https://www.itis.gov/
   name: Integrated Taxonomic Information System
@@ -20250,6 +20383,8 @@ iuphar.receptor:
     pattern: '[1-9]\d{0,3}'
     prefix: P5458
 jax:
+  description: Information about the C57BL/6J. Includes genetic background and disease
+    data.
   example: '004435'
   homepage: https://www.jax.org/strain
   mappings:
@@ -21132,6 +21267,8 @@ knapsack:
 kupo:
   appears_in:
   - cl
+  comment: Website is down, now it redirects to something else that is not related
+  deprecated: true
   example: 0001009
   homepage: http://www.kupkb.org/
   name: Kidney and Urinary Pathway Ontology
@@ -21833,6 +21970,8 @@ lrg:
     is_obo: false
     prefix: LRG
 lspci:
+  description: Internal identifiers form the LSP for ChEBML compound classes (e.g.,
+    combining various salts and ions)
   example: '1'
   homepage: https://labsyspharm.github.io/lspci/
   name: Laboratory of Systems Pharmacology Compound ID
@@ -23388,6 +23527,7 @@ mge:
     prefix: mge
     provider_url: http://aclame.ulb.ac.be/perl/Aclame/Genomes/mge_view.cgi?view=info&id=mge:$1
 mgi:
+  banana: MGI
   cellosaurus:
     category: Organism-specific databases
     homepage: http://www.informatics.jax.org
@@ -23447,6 +23587,7 @@ mgi:
     homepage: http://www.informatics.jax.org/
     name: Mouse Genome Informatics
     prefix: MGI
+  preferred_prefix: MGI
   prefixcommons:
     formatter: http://www.informatics.jax.org/accession/MGI:$1
     is_identifiers: false
@@ -24047,6 +24188,7 @@ mipmod:
     is_obo: false
     prefix: MIPMOD
 mir:
+  banana: MIR
   mappings:
     miriam: mir
     n2t: mir
@@ -24756,6 +24898,11 @@ mmrrc:
     is_obo: false
     prefix: MMRRC
 mmsl:
+  description: The Lexicon is a foundational database with comprehensive drug product
+    and disease nomenclature information. It includes drug names, drug product information,
+    disease names, coding systems such as ICD-9-CM and NDC, generic names, brand names
+    and common abbreviations. A comprehensive list of standard or customized disease
+    names and ICD-9 codes is also included.
   example: '3355'
   homepage: https://www.nlm.nih.gov/research/umls/rxnorm/sourcereleasedocs/mmsl.html
   name: Multum MediSource Lexicon
@@ -26771,6 +26918,9 @@ nddf:
   bioportal:
     name: National Drug Data File
     prefix: NDDF
+  description: FDB MedKnowledge encompasses medications approved by the U.S. Food
+    and Drug Administration, and information on commonly-used over-the-counter and
+    alternative therapy agents such as herbals, nutraceuticals and dietary supplements.
   example: 002678
   homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDDF
   mappings:
@@ -26789,6 +26939,12 @@ ndfrt:
   bioportal:
     name: National Drug File - Reference Terminology
     prefix: NDFRT
+  description: 'NDF-RT combines the NDF hierarchical drug classification with a multi-category
+    reference model. The categories are: Cellular or Molecular Interactions [MoA];
+    Chemical Ingredients [Chemical/Ingredient]; Clinical Kinetics [PK]; Diseases,
+    Manifestations or Physiologic States [Disease/Finding]Dose Forms [Dose Form];
+    Pharmaceutical Preparations; Physiological Effects [PE]; Therapeutic Categories
+    [TC]; and VA Drug Interactions [VA Drug Interaction].'
   example: N0000001662
   homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT
   mappings:
@@ -27103,6 +27259,9 @@ nextprot:
   wikidata:
     database: Q6983890
 nextprot.family:
+  description: "NeXtProt is a comprehensive human-centric discovery platform, offering\
+    \ its users a seamless integration of and navigation through protein-related data.\
+    \ \n(Developed by the SIB Swiss Institute of Bioinformatics)"
   example: '01406'
   homepage: https://www.nextprot.org/
   name: neXtProt family
@@ -27251,6 +27410,11 @@ nist:
     email: cthoyt@gmail.com
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
+  description: The NIST Chemistry WebBook provides users with easy access to chemical
+    and physical property data for chemical species through the internet. The data
+    provided in the site are from collections maintained by the NIST Standard Reference
+    Data Program and outside contributors. Data in the WebBook system are organized
+    by chemical species.
   homepage: https://webbook.nist.gov/chemistry/
   name: NIST Chemistry WebBook
   no_own_terms: true
@@ -27263,6 +27427,8 @@ nlm:
     is_identifiers: false
     is_obo: false
     prefix: NLMID
+  description: Bibliographic data for all the journals, books, audiovisuals, computer
+    software, electronic resources and other materials that are in the library's holdings.
   example: '101775319'
   homepage: https://www.ncbi.nlm.nih.gov/nlmcatalog
   mappings:
@@ -27270,6 +27436,10 @@ nlm:
   name: National Library of Medicine (NLM) Catalog
   url: https://www.ncbi.nlm.nih.gov/nlmcatalog/$1
 nlxanat:
+  description: The InterLex project - a core component of SciCrunch and supported
+    by projects such as the Neuroscience Information Framework project (NIF), the
+    NIDDK Information Network (dkNET), and the Open Data Commons for Spinal Cord Injury
+    - is a dynamic lexicon of biomedical terms.
   example: 090201
   homepage: https://scicrunch.org/scicrunch/interlex/dashboard
   name: NeuroLex Anatomy
@@ -27278,6 +27448,10 @@ nlxanat:
 nlxdys:
   appears_in:
   - mondo
+  description: The InterLex project - a core component of SciCrunch and supported
+    by projects such as the Neuroscience Information Framework project (NIF), the
+    NIDDK Information Network (dkNET), and the Open Data Commons for Spinal Cord Injury
+    - is a dynamic lexicon of biomedical terms.
   example: '20090303'
   homepage: https://scicrunch.org/scicrunch/interlex/dashboard
   name: NeuroLex Dysfunction
@@ -27611,6 +27785,11 @@ norine:
     is_obo: false
     prefix: NORINE
 npass:
+  description: 'Database for integrating species source of natural products & connecting
+    natural products to biological targets via  experimental-derived quantitative
+    activity data.
+
+    '
   example: NPC139585
   homepage: http://bidd.group/NPASS/
   name: Natural Product Activity and Species Source Database
@@ -27979,6 +28158,8 @@ obib:
     is_obo: true
     prefix: OBIB
 obo:
+  description: Community development of interoperable ontologies for the biological
+    sciences
   homepage: http://www.obofoundry.org/
   mappings:
     prefixcommons: OBO
@@ -30086,6 +30267,8 @@ ovae:
     is_obo: true
     prefix: OVAE
 owl:
+  description: 'Overview of the Web Ontology Language (OWL) which provides an introduction
+    to OWL by informally describing the features of each of the sublanguages. '
   example: Ontology
   homepage: https://www.w3.org/TR/owl-features/
   mappings:
@@ -31127,6 +31310,8 @@ peco:
     name: Plant Experimental Conditions Ontology
     prefix: PECO
     url: http://www.ontobee.org/ontology/PECO
+  pattern: ^\d{7}$
+  preferred_prefix: PECO
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/PECO_$1
     is_identifiers: false
@@ -31364,6 +31549,8 @@ pfam.clan:
   pattern: ^CL\d+$
   url: https://pfam.xfam.org/clan/$1
 pfr:
+  description: Database that provides a central location for scientists to browse
+    uniquely observed proteoforms and to contribute their own datasets.
   example: '1001'
   homepage: http://repository.topdownproteomics.org/proteoforms
   name: Proteoform Atlas
@@ -31449,16 +31636,25 @@ pgx:
 pharmacodb.cell:
   cellosaurus:
     prefix: PharmacoDB
+  description: Web-application assembling the largest in vitro drug screens in a single
+    database, and allowing users to easily query the union of studies released to
+    date. Query by cell line.
   example: 22RV1_12_2019
   homepage: https://pharmacodb.ca/cell_lines
   name: PharmacoDB Cells
   url: https://pharmacodb.ca/cell_lines/$1
 pharmacodb.dataset:
+  description: Web-application assembling the largest in vitro drug screens in a single
+    database, and allowing users to easily query the union of studies released to
+    date. Query by dataset.
   example: '1'
   homepage: https://pharmacodb.ca/datasets
   name: PharmacoDB Datasets
   url: https://pharmacodb.ca/datasets/$1
 pharmacodb.tissue:
+  description: Web-application assembling the largest in vitro drug screens in a single
+    database, and allowing users to easily query the union of studies released to
+    date. Query by tissue.
   example: '13'
   homepage: https://pharmacodb.ca/tissues
   name: PharmacoDB Tissues
@@ -33808,6 +34004,7 @@ pso:
     prefix: PSO
     url: http://www.ontobee.org/ontology/PSO
 pspub:
+  description: Documentation of the Phenoscape Curation Workflow
   homepage: https://wiki.phenoscape.org/wiki/Curation_workflow
   name: Phenoscape Publication
 pubchem.bioassay:
@@ -33989,6 +34186,8 @@ publons.researcher:
     is_identifiers: false
     is_obo: false
     prefix: ResearchID
+  description: Database of researchers to track publications, citation metrics, peer
+    reviews, and journal editing work.
   example: '1981638'
   homepage: https://publons.com/researcher
   mappings:
@@ -34223,6 +34422,8 @@ qudt:
   bioportal:
     name: Quantities, Units, Dimensions, and Types Ontology
     prefix: QUDT
+  description: Ontologies that aim to provide semantic specifications for units of
+    measure, quantity kind, dimensions and data types.
   example: baseDimensionEnumeration
   homepage: https://qudt.org
   mappings:
@@ -34230,6 +34431,24 @@ qudt:
     bioportal: QUDT
   name: Quantities, Units, Dimensions, and Types Ontology
   url: http://qudt.org/schema/qudt#$1
+radiomics:
+  bioportal:
+    name: Radiomics Ontology
+    prefix: RO
+  description: The Radiomics Ontology aims to cover the radiomics feature domain with
+    a strong focus on first order, shape, textural radiomics features. In addition,
+    in the original version. it includes classes about segmentation algorithms and
+    imaging filters. Due to a recent collaboration with the IBSI (International Biomarkers
+    Standardization Initiative), the ontology has been expanded (v 1.6) and it includes
+    all the entities presented in the IBSI document. Therefore, a broad coverage of
+    not only radiomics features, but also every entity (e.g. software properties,
+    filter properties, features extraction parameters) involved into radiomics computation
+    has been added. In the latest version (v2.0), the ontology URIs have been updated
+    to reflect the codes avaialble in the IBSI latest manual. [bioportal]
+  example: LK99
+  homepage: http://www.radiomics.org/RO
+  mappings:
+    bioportal: RO
 rapdb.locus:
   mappings:
     miriam: rapdb.locus
@@ -34346,12 +34565,16 @@ rbo:
     prefix: RBO
     url: http://www.ontobee.org/ontology/RBO
 rcb:
+  description: Collection of many cell lines derived from human and other various
+    animals, preserved by the RIKEN BioResource Research Center.
   example: RCB0002
   homepage: https://cell.brc.riken.jp/en/rcb
   name: RIKEN Bioresource Center Cell Bank
   pattern: ^RCB\d+$
   url: https://cellbank.brc.riken.jp/cell_bank/CellInfo/?cellNo=$1
 rdf:
+  description: This is the RDF Schema for the RDF vocabulary terms in the RDF Namespace,
+    defined in RDF 1.1 Concepts
   example: RDF
   homepage: http://www.w3.org/1999/02/22-rdf-syntax-ns
   mappings:
@@ -34385,6 +34608,8 @@ rdo:
   bioportal:
     name: Reusable Biodiversity Ontology
     prefix: RDO
+  description: Ontologies of diseases that integrates many types of data for Rattus
+    Norvegicus, Homo Sapiens, Mus Musculus and other organisms.
   download_obo: https://ratmine.mcw.edu/ontology/disease/RDO.obo
   example: '9002859'
   homepage: https://ratmine.mcw.edu/ontology/disease/
@@ -34477,6 +34702,12 @@ reactome:
     name: Reactome ID
     prefix: P3937
 reaxys:
+  description: Reaxys is a web-based tool for the retrieval of chemistry information
+    and data from published literature, including journals and patents. The information
+    includes chemical compounds, chemical reactions, chemical properties, related
+    bibliographic data, substance data with synthesis planning information, as well
+    as experimental procedures from selected journals and patents. It is licensed
+    by Elsevier.
   example: '1257009'
   homepage: https://www.reaxys.com
   name: Reaxys
@@ -34538,6 +34769,8 @@ rebase:
     name: Restriction enzymes and methylases database
     prefix: REBASE
 receptome.family:
+  description: The human receptor families involved in signaling (with the exception
+    of channels) are presented in the Human Plasma Membrane Receptome database.
   example: '5.1'
   homepage: http://www.receptome.org
   name: Human Plasma Membrane Receptome Families
@@ -35317,6 +35550,8 @@ rnacentral:
   synonyms:
   - LNCRNADB
 rnamod:
+  description: A comprehensive listing of post-transcriptionally modified nucleosides
+    from RNA -
   example: '051'
   homepage: http://rna.rega.kuleuven.be/rnamods/
   name: The RNA Modification Database
@@ -35418,8 +35653,7 @@ ro:
     is_obo: true
     prefix: RO
   bioportal:
-    name: Radiomics Ontology
-    prefix: RO
+    prefix: OBOREL
   download_obo: https://github.com/oborel/obo-relations/raw/master/ro.obo
   go:
     description: A collection of relations used across OBO ontologies
@@ -35427,11 +35661,11 @@ ro:
     prefix: RO
   mappings:
     biolink: RO
-    bioportal: RO
+    bioportal: OBOREL
     go: RO
     miriam: ro
     n2t: ro
-    obofoundry: obo_rel
+    obofoundry: ro
     ols: ro
     ontobee: RO
     prefixcommons: OBO_REL
@@ -35461,11 +35695,16 @@ ro:
   obofoundry:
     contact: cjmungall@lbl.gov
     contact.label: Chris Mungall
-    deprecated: true
-    homepage: http://www.obofoundry.org/ro
-    inactive: true
-    name: OBO relationship types (legacy)
-    prefix: obo_rel
+    deprecated: false
+    description: Relationship types shared across multiple ontologies
+    download.json: http://purl.obolibrary.org/obo/ro.json
+    download.obo: http://purl.obolibrary.org/obo/ro.obo
+    download.owl: http://purl.obolibrary.org/obo/ro.owl
+    homepage: https://oborel.github.io/
+    inactive: false
+    license: CC-0
+    name: Relation Ontology
+    prefix: ro
   ols:
     description: The OBO Relations Ontology (RO) is a collection of OWL relations
       (ObjectProperties) intended for use across a wide variety of biological ontologies.
@@ -35489,6 +35728,7 @@ ro:
   synonyms:
   - obo_rel
   - RO_proposed_relation
+  - oborel
   url: http://purl.obolibrary.org/obo/RO_$1
   wikidata:
     prefix: P3590
@@ -35534,6 +35774,7 @@ rouge:
     prefix: Rouge
   url: https://www.kazusa.or.jp/rouge/gfpage/$1
 rrid:
+  banana: RRID
   mappings:
     miriam: rrid
     n2t: rrid
@@ -35703,6 +35944,11 @@ rxnorm:
   bioportal:
     name: RxNORM
     prefix: RXNORM
+  description: RxNorm provides normalized names for clinical drugs and links its names
+    to many of the drug vocabularies commonly used in pharmacy management and drug
+    interaction software, including those of First Databank, Micromedex, and Gold
+    Standard Drug Database. By providing links between these vocabularies, RxNorm
+    can mediate messages between systems not using the same software and vocabulary.
   example: '221058'
   homepage: https://www.nlm.nih.gov/research/umls/rxnorm/
   mappings:
@@ -35892,6 +36138,8 @@ salk:
   appears_in:
   - efo
   comment: spider stuff!
+  description: Scientific research institute for neuroscience, genetics, immunology,
+    plant biology and more.
   example: '037727'
   homepage: https://www.salk.edu/
   name: Salk Institute for Biological Studies Accession
@@ -36142,6 +36390,11 @@ scopus:
     is_identifiers: false
     is_obo: false
     prefix: ScopusID
+  description: "Scopus is the largest abstract and citation database of peer-reviewed\
+    \ literature: scientific journals, books and conference proceedings. \nDelivering\
+    \ a comprehensive overview of the world's research output in  the fields of science,\
+    \ technology, medicine, social sciences, and arts \nand humanities, Scopus features\
+    \ smart tools to track, analyze and  visualize research."
   example: '56305849200'
   homepage: https://www.scopus.com
   mappings:
@@ -37028,6 +37281,10 @@ skip:
   name: Stemcell Knowledge and Information Portal
   url: https://skip.stemcellinformatics.org/SKIPSearch/cell_line_detail?accession=$1
 skos:
+  description: SKOS is an area of work developing specifications and standards to
+    support the use of knowledge organization systems (KOS) such as thesauri, classification
+    schemes, subject heading lists and taxonomies within the framework of the Semantic
+    Web
   example: prefLabel
   homepage: https://www.w3.org/2004/02/skos/
   mappings:
@@ -37099,6 +37356,9 @@ smid:
   - SMID-DB
   url: https://smid-db.org/smid/$1
 smiles:
+  description: Documentation of SMILES (Simplified Molecular Input Line Entry System),
+    a line notation (a typographical method using printable characters) for entering
+    and representing molecules and reactions.
   example: COc1ccc2c(c1)OC[C@H]1[C@@H]2C2=C(OC1(C)C)C1=C(C(=O)C2=O)[C@H]2c3ccc(OC)cc3OC[C@H]2C(C)(C)O1
   homepage: https://www.daylight.com/dayhtml/doc/theory/theory.smiles.html
   name: Simplified molecular-input line-entry system
@@ -37159,6 +37419,9 @@ smpdb:
   - SMP
   url: https://smpdb.ca/view/$1
 snap:
+  description: Theoretical explanation of a purely spatial ontology supporting snapshot
+    views of the world at successive instants of time, as part of a modular ontology
+    of the dynamic features of reality.
   example: Quality
   homepage: http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf
   name: Snapshot
@@ -37413,6 +37676,8 @@ soybase:
 span:
   comment: see also snap. This ontology only exists in description in the paper and
     does not have an associated web resource
+  description: Theoretical explanation of to a purely spatiotemporal ontology of change
+    and process, as part of a modular ontology of the dynamic features of reality.
   homepage: http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf
   name: Span
 spd:
@@ -37616,6 +37881,13 @@ srao:
     prefix: srao
     version.iri: http://www.fairsharing.org/ontology/subject/SRAO.owl/0.2.2
 ssbd.dataset:
+  description: Systems Science of Biological Dynamics database (SSBD:database) is
+    an added-value database for biological dynamics. It provides a rich set of open
+    resources for analyzing quantitative data and microscopy images of biological
+    objects, such as single-molecule, cell, tissue, individual, etc., and software
+    tools for analysis. Quantitative biological data and microscopy images are collected
+    from a variety of species, sources, and methods. These include data obtained from
+    both experiments and computational simulations.
   example: '1'
   homepage: https://ssbd.riken.jp
   mappings:
@@ -37623,6 +37895,13 @@ ssbd.dataset:
   name: System Science of Biological Dynamics dataset
   url: https://ssbd.riken.jp/database/dataset/$1
 ssbd.project:
+  description: Systems Science of Biological Dynamics database (SSBD:database) is
+    an added-value database for biological dynamics. It provides a rich set of open
+    resources for analyzing quantitative data and microscopy images of biological
+    objects, such as single-molecule, cell, tissue, individual, etc., and software
+    tools for analysis. Quantitative biological data and microscopy images are collected
+    from a variety of species, sources, and methods. These include data obtained from
+    both experiments and computational simulations.
   example: '1'
   homepage: https://ssbd.riken.jp
   name: System Science of Biological Dynamics project
@@ -38104,7 +38383,8 @@ swiss-model:
     is_obo: false
     prefix: SWISS-MODEL
 swisslipid:
-  example: SLM:000000341
+  banana: SLM
+  example: '000000341'
   mappings:
     miriam: slm
     n2t: swisslipid
@@ -38155,7 +38435,7 @@ swisslipid:
     link_is_explicit: 'true'
     name: SwissLipids knowledge resource for lipid biology
     prefix: SwissLipids
-  url: https://www.swisslipids.org/#/entity/$1
+  url: https://www.swisslipids.org/#/entity/SLM:$1
   wikidata:
     database: Q41165322
     database.homepage: http://www.swisslipids.org/
@@ -38701,12 +38981,25 @@ tcdb:
     pattern: \d|(\d\.[A-Z](\.(\d{1,3}){0,3}))
     prefix: P7260
 te:
+  description: The Terminologia Embryologica (TE) is a standardized list of words
+    used in the description of human embryologic and fetal structures. It was produced
+    by the Federative International Committee on Anatomical Terminology on behalf
+    of the International Federation of Associations of Anatomists and posted on the
+    Internet since 2010. [wikipedia]
   example: E5.11.2.0.0.0.4
   homepage: https://ifaa.unifr.ch/
   name: Terminologia Embryologica
+  references:
+  - https://en.wikipedia.org/wiki/Terminologia_Embryologica
   wikidata:
     prefix: P1693
 tfclass:
+  description: TFClass is a classification of eukaryotic transcription factors based
+    on the characteristics of their DNA-binding domains. It comprises four general
+    levels (superclass, class, family, subfamily) and two levels of instantiation
+    (genus and molecular species). Two of them (subfamily and factor species) are
+    optional. More detailed explanations about the classification scheme and its criteria
+    are given here..
   example: 2.1.1
   go:
     formatter: http://tfclass.bioinf.med.uni-goettingen.de/?tfclass=$1
@@ -38809,9 +39102,14 @@ tgma:
     is_obo: true
     prefix: TGMA
 th:
+  description: The Terminologia Histologica (TH) is the controlled vocabulary for
+    use in cytology and histology. It was intended to replace Nomina Histologica.
+    [wikipedia]
   example: H3.03.00.0.00007
   homepage: https://ifaa.unifr.ch/
   name: Terminologia Histologica
+  references:
+  - https://en.wikipedia.org/wiki/Terminologia_Histologica
 tigrfam:
   mappings:
     miriam: tigrfam
@@ -38889,6 +39187,9 @@ tissuelist:
     is_obo: false
     prefix: TISSUELIST
 tkg:
+  description: Collection of cell lines by Tohoku University. This includes transplantable
+    animal cell lines, such as Yoshida sarcoma and rat ascites hepatoma (AH series)
+    cell lines as well as human, murine cell lines and hybridoma cells.
   example: '0221'
   homepage: http://www2.idac.tohoku.ac.jp/dep/ccr/
   name: Tohoku University cell line catalog
@@ -39647,6 +39948,11 @@ ubprop:
   deprecated: true
   name: Uberon Property
 ucsc:
+  description: The UCSC Genome Browser is an on-line, and downloadable, genome browser
+    hosted by the University of California, Santa Cruz (UCSC).[2][3][4] It is an interactive
+    website offering access to genome sequence data from a variety of vertebrate and
+    invertebrate species and major model organisms, integrated with a large collection
+    of aligned annotations.
   example: uc001rvw.5
   homepage: https://genome.ucsc.edu/
   mappings:
@@ -40428,6 +40734,10 @@ uniprot.location:
   - UniProtKB-SubCell
   url: https://www.uniprot.org/locations/SL-$1
 uniprot.var:
+  description: 'The purpose of the UniProtKB/Swiss-Prot variant pages is: to display
+    the variant related information extracted from UniProtKB/Swiss-Prot, and to provide
+    useful additional information such as the conservation of the modified residues
+    across orthologous species.'
   example: VAR_068078
   homepage: https://web.expasy.org/variant_pages
   name: UniProt Variants
@@ -40558,6 +40868,8 @@ unite:
     prefix: UNITE
 unpd:
   comment: The website is dead, there are no places to get the source information
+    except inside https://oolonek.github.io/ISDB/.
+  deprecated: true
   homepage: http://pkuxxj.pku.edu.cn/UNPD/
   name: Universal Natural Products Database
   references:
@@ -40565,6 +40877,7 @@ unpd:
   - https://pharmacognosy.in/the-universal-natural-products-database-unpd/
   - https://pubs.acs.org/doi/abs/10.1021/acs.jnatprod.6b01093
   - https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0062839
+  - https://oolonek.github.io/ISDB/
 uo:
   bioportal:
     name: Units of Measurement Ontology
@@ -40818,6 +41131,12 @@ vandf:
   bioportal:
     name: Veterans Health Administration National Drug File
     prefix: VANDF
+  description: 'The National Drug File (NDF) is produced by the U.S. Department of
+    Veterans Affairs, Veterans Health Administration (VHA). NDF is a centrally maintained
+    electronic drug list used by the VHA hospitals and clinics. Facilities use the
+    NDF to check drug interactions, to manage orders, and to send outpatient prescriptions
+    to regional automated mail-out pharmacies. NDF includes information on clinical
+    drugs, drug classes, ingredients and National Drug Code (NDC) Directory codes. '
   example: '4019477'
   homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/VANDF
   mappings:
@@ -40898,6 +41217,7 @@ vario:
     name: Variation Ontology
     prefix: VariO
     url: http://www.ontobee.org/ontology/VariO
+  preferred_prefix: VariO
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/VARIO_$1
     is_identifiers: false
@@ -41531,6 +41851,13 @@ vo:
     is_obo: true
     prefix: VO
 void:
+  description: The Vocabulary of Interlinked Datasets (VoID) is an RDF Schema vocabulary
+    for expressing metadata about RDF datasets. It is intended as a bridge between
+    the publishers and users of RDF data, with applications ranging from data discovery
+    to cataloging and archiving of datasets. This document provides a formal definition
+    of the new RDF classes and properties introduced for VoID. It is a companion to
+    the main specification document for VoID, Describing Linked Datasets with the
+    VoID Vocabulary.
   example: feature
   homepage: http://vocab.deri.ie/void
   mappings:
@@ -41569,6 +41896,14 @@ vsao:
   synonyms:
   - VSAO_RETIRED
 vsdb:
+  description: Veterinary pharmaceuticals are biologically active and potentially
+    persistent substances which are recognised as a continuing threat to environmental
+    quality. Whilst the environmental risk of agricultural pesticides has had considerable
+    attention in recent decades, risks assessments for veterinary pharmaceuticals
+    have only relatively recently began to be addressed. Risk assessments and risk
+    modelling tend to be inherently data hungry processes and one of the main obstacles
+    to consistent, accurate and efficient assessments is the need for a reliable,
+    quality and comprehensive data source.
   example: '1868'
   homepage: https://sitem.herts.ac.uk/aeru/vsdb
   name: Veterinary Substances DataBase
@@ -41658,12 +41993,20 @@ vto:
     prefix: VTO
 vuid:
   comment: The example corresponds to acetaminophen
+  description: "The Veterans Health Administration is America\u2019s largest integrated\
+    \ health care system, providing care at 1,293 health care facilities, including\
+    \ 171 medical centers and 1,112 outpatient sites of care of varying complexity\
+    \ (VHA outpatient clinics), serving 9 million enrolled Veterans each year."
   example: '4007166'
   homepage: https://www.va.gov/health
   name: Veterans Health Administration (VHA) unique identifier
   references:
   - https://academic.oup.com/jamia/article/17/4/432/866953
 vz:
+  description: ViralZone is a SIB Swiss Institute of Bioinformatics web-resource for
+    all viral genus and families, providing general molecular and epidemiological
+    information, along with virion and genome figures. Each virus or family page gives
+    an easy access to UniProtKB/Swiss-Prot viral protein entries.
   example: '886'
   go:
     formatter: http://viralzone.expasy.org/all_by_protein/$1.html
@@ -41887,6 +42230,8 @@ wgs84:
     is_identifiers: false
     is_obo: false
     prefix: wgs
+  description: A vocabulary for representing latitude, longitude and altitude information
+    in the WGS84 geodetic reference datum
   example: latitude
   homepage: https://www.w3.org/2003/01/geo/wgs84_pos
   mappings:
@@ -41962,6 +42307,11 @@ wikidata.property:
     is_identifiers: false
     is_obo: false
     prefix: WIKIDATA_PROPERTY
+  description: 'Wikidata is a free and open knowledge base that can be read and edited
+    by both humans and machines.
+
+    Wikidata acts as central storage for the structured data of its Wikimedia sister
+    projects including Wikipedia, Wikivoyage, Wiktionary, Wikisource, and others. '
   example: P4355
   homepage: https://www.wikidata.org
   mappings:
@@ -42593,6 +42943,9 @@ xpo:
     url: http://www.ontobee.org/ontology/XPO
   pattern: ^\d+$
 xsd:
+  description: This document describes the XML Schema namespace. It also contains
+    a directory of links to these related resources, using Resource Directory Description
+    Language.
   example: decimal
   homepage: http://www.w3.org/2001/XMLSchema
   mappings:
