@@ -825,6 +825,13 @@ class Resource(BaseModel):
         >>> get_resource("chebi").normalize_identifier('CHEBI:1234')
         'CHEBI:1234'
 
+        Examples from OBO Foundry that should not have a redundant
+        prefix added:
+        >>> get_resource("ncit").normalize_identifier("C73192")
+        'C73192'
+        >>> get_resource("ncbitaxon").normalize_identifier("9606")
+        '9606'
+
         Standard:
         >>> get_resource("pdb").normalize_identifier('00000020')
         '00000020'
