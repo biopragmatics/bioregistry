@@ -362,6 +362,13 @@ class Resource(BaseModel):
 
         >>> get_resource("pdb").get_banana()
         None
+
+        Banana is not inferred for OBO Foundry ontologies
+        that were imported:
+        >>> get_resource("ncit").get_banana()
+        None
+        >>> get_resource("ncbitaxon").get_banana()
+        None
         """
         if self.banana is not None:
             return self.banana
