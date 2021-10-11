@@ -1283,6 +1283,7 @@
       "provider_url": "n2t.net/ark:$1"
     },
     "name": "Archival Resource Key",
+    "pattern": "^/*[0-9A-Za-z]+(?:/[\\w/.=*+@\\$-]*)?(?:\\?.*)?$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/ark/$1",
       "is_identifiers": true,
@@ -4035,6 +4036,7 @@
       "prefix": "BTO",
       "url": "http://www.ontobee.org/ontology/BTO"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/BTO_$1",
       "is_identifiers": false,
@@ -4790,6 +4792,7 @@
       "prefix": "cco",
       "version": "2016-03-23"
     },
+    "pattern": "^\\w+$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/cco/$1",
       "is_identifiers": true,
@@ -5376,6 +5379,7 @@
       "prefix": "CHEBI",
       "url": "http://www.ontobee.org/ontology/CHEBI"
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/CHEBI_$1",
       "is_identifiers": false,
@@ -9793,6 +9797,7 @@
       "prefix": "DOID",
       "url": "http://www.ontobee.org/ontology/DOID"
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/DOID_$1",
       "is_identifiers": false,
@@ -12258,6 +12263,7 @@
       "prefix": "ENVO",
       "url": "http://www.ontobee.org/ontology/ENVO"
     },
+    "pattern": "^\\d{7,8}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/ENVO_$1",
       "is_identifiers": false,
@@ -13642,6 +13648,7 @@
       "prefix": "FMA",
       "url": "http://www.ontobee.org/ontology/FMA"
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/FMA_$1",
       "is_identifiers": false,
@@ -13832,6 +13839,7 @@
       "prefix": "FOODON",
       "url": "http://www.ontobee.org/ontology/FOODON"
     },
+    "pattern": "^\\d{8}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/FOODON_$1",
       "is_identifiers": false,
@@ -15840,6 +15848,7 @@
       "prefix": "GO",
       "url": "http://www.ontobee.org/ontology/GO"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/GO_$1",
       "is_identifiers": false,
@@ -41482,6 +41491,7 @@
       "ontobee": "VariO",
       "prefixcommons": "VARIO"
     },
+    "pattern": "^\\d+$",
     "miriam": {
       "deprecated": false,
       "description": "The Variation Ontology (VariO) is an ontology for the standardized, systematic description of effects, consequences and mechanisms of variations. It describes the effects of variations at the DNA, RNA and/or protein level.",
@@ -41514,7 +41524,6 @@
       "provider_url": "http://purl.bioontology.org/ontology/VARIO/VariO:$1"
     },
     "name": "Variation Ontology",
-    "namespaceEmbeddedInLui": false,
     "obofoundry": {
       "contact": "mauno.vihinen@med.lu.se",
       "contact.label": "Mauno Vihinen",
