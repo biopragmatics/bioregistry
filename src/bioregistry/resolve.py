@@ -641,11 +641,7 @@ def parse_curie(curie: str, sep: str = ":") -> Union[Tuple[str, str], Tuple[None
     >>> parse_curie('GO_1234', sep="_")
     ('go', '1234')
     """
-    try:
-        prefix, identifier = curie.split(sep, 1)
-    except ValueError:
-        return None, None
-    return normalize_parsed_curie(prefix, identifier)
+    return manager.parse_curie(curie, sep=sep)
 
 
 def normalize_parsed_curie(
@@ -704,10 +700,7 @@ def normalize_curie(curie: str, sep: str = ":") -> Optional[str]:
     >>> normalize_curie('GO_1234', sep="_")
     'go:1234'
     """
-    prefix, identifier = parse_curie(curie, sep=sep)
-    if prefix is None:
-        return None
-    return f"{prefix}:{identifier}"
+    return manager.normalize_curie(curie, sep=sep)
 
 
 def normalize_prefix(prefix: str) -> Optional[str]:
