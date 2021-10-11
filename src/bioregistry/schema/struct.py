@@ -800,6 +800,54 @@ class Resource(BaseModel):
                 rv.append(Provider(**p))
         return rv
 
+    def clean_identifier(self, identifier: str, prefix: Optional[str] = None) -> str:
+        """Normalize the identifier to not have a redundant prefix or banana.
+
+        :param identifier: The identifier in the CURIE
+        :param prefix: If an optional prefix is passed, checks that this isn't also used as a caseolded banana
+            like in ``go:go:1234567``, which shouldn't techinncally be right becauase the banana for gene ontology
+            is ``GO``.
+        :return: A normalized identifier, possibly with banana/redundant prefix removed
+
+        Examples with explicitly annotated bananas:
+        >>> from bioregistry import get_resource
+        >>> get_resource("vario").clean_identifier('0376')
+        '0376'
+        >>> get_resource("vario").clean_identifier('VariO:0376')
+        '0376'
+        >>> get_resource("swisslipid").clean_identifier('000000001')
+        '000000001'
+        >>> get_resource("swisslipid").clean_identifier('SLM:000000001')
+        '000000001'
+
+        Examples with bananas from OBO:
+        >>> get_resource("fbbt").clean_identifier('00007294')
+        '00007294'
+        >>> get_resource("fbbt").clean_identifier('FBbt:00007294')
+        '00007294'
+        >>> get_resource("chebi").clean_identifier('1234')
+        '1234'
+        >>> get_resource("chebi").clean_identifier('CHEBI:1234')
+        '1234'
+
+        Examples from OBO Foundry that should not have a redundant
+        prefix added:
+        >>> get_resource("ncit").clean_identifier("C73192")
+        'C73192'
+        >>> get_resource("ncbitaxon").clean_identifier("9606")
+        '9606'
+
+        Standard:
+        >>> get_resource("pdb").clean_identifier('00000020')
+        '00000020'
+        """
+        banana = self.get_banana()
+        if banana and identifier.startswith(f"{banana}:"):
+            return identifier[len(banana) + 1 :]
+        elif prefix is not None and identifier.casefold().startswith(f"{prefix.casefold()}:"):
+            return identifier[len(prefix) + 1 :]
+        return identifier
+
     def normalize_identifier(self, identifier: str) -> str:
         """Normalize the identifier with the appropriate banana.
 

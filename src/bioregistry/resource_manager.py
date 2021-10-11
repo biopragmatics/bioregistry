@@ -94,14 +94,8 @@ class ResourceManager:
         resource = self.get_resource(prefix)
         if resource is None:
             return None, None  # though, this should never happen
-        banana = resource.get_banana()
-        if banana is not None and identifier.startswith(f"{banana}:"):
-            identifier = identifier[len(banana) + 1 :]
-        # remove redundant prefix
-        elif identifier.casefold().startswith(f"{prefix.casefold()}:"):
-            identifier = identifier[len(prefix) + 1 :]
-
-        return norm_prefix, identifier
+        norm_identifier = resource.clean_identifier(identifier, prefix=prefix)
+        return norm_prefix, norm_identifier
 
     def get_registry_map(self, metaprefix: str) -> Dict[str, str]:
         """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
