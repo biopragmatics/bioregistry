@@ -197,7 +197,16 @@ class TestRegistry(unittest.TestCase):
                 #         self.assertEqual(pattern, external_pattern, msg=f'{prefix}: {key} pattern not same')
 
     def test_examples(self):
-        """Test that all entries have examples."""
+        """Test examples for the required conditions.
+
+        1. All resources must have an example, with the following exceptions:
+           - deprecated resources
+           - resources that are marked as not having their own terms (e.g., ChIRO)
+           - resources that are providers for other resources (e.g., CTD Gene)
+           - proprietary resources (e.g., Eurofir)
+        2. Examples are stored in normal form (i.e., no redundant prefixes)
+        3. Examples pass the regular expression pattern for the resource, if available
+        """
         for prefix, entry in self.registry.items():
             if (
                 bioregistry.has_no_terms(prefix)
@@ -219,21 +228,15 @@ class TestRegistry(unittest.TestCase):
                     msg += (
                         f'\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry.ols["prefix"]}/terms'
                     )
-                self.assertIsNotNone(bioregistry.get_example(prefix), msg=msg)
+                example = entry.get_example()
+                self.assertIsNotNone(example, msg=msg)
+                self.assertEqual(entry.clean_identifier(example), example)
 
-    def test_examples_pass_patterns(self):
-        """Test that all examples pass the patterns."""
-        for prefix, resource in self.registry.items():
-            pattern = resource.get_pattern_re()
-            example = resource.get_example()
-            if pattern is None or example is None:
-                continue
-            if prefix == "ark":
-                continue  # FIXME
-            if bioregistry.validate(prefix, example):
-                continue
-            with self.subTest(prefix=prefix):
-                self.assertRegex(example, pattern, msg=f"Failed on prefix={prefix}")
+                pattern = entry.get_pattern_re()
+                if pattern is not None:
+                    # TODO update all regexes to actually match LOCAL identifiers, not CURIEs
+                    if not bioregistry.validate(prefix, example):
+                        self.assertRegex(example, pattern, msg=f"Failed on prefix={prefix}")
 
     def test_is_mismatch(self):
         """Check for mismatches."""
