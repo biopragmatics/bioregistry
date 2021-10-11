@@ -18,6 +18,7 @@ __all__ = [
     "get_mappings",
     "get_synonyms",
     "get_pattern",
+    "get_curie_pattern",
     "namespace_in_lui",
     "get_example",
     "has_no_terms",
@@ -740,3 +741,19 @@ def get_version(prefix: str) -> Optional[str]:
 def get_versions() -> Mapping[str, str]:
     """Get a map of prefixes to versions."""
     return manager.get_versions()
+
+
+def get_curie_pattern(prefix: str) -> Optional[str]:
+    """Get the CURIE pattern for this resource.
+
+    >>> get_curie_pattern("doid")
+    '^DOID:\\d+$'
+    """
+    resource = get_resource(prefix)
+    if resource is None:
+        return None
+    pattern = resource.get_pattern()
+    if pattern is None:
+        return None
+    p = resource.get_preferred_prefix() or prefix
+    return f"^{p}:{pattern.lstrip('^')}"
