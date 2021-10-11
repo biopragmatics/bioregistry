@@ -192,7 +192,8 @@ class TestRegistry(unittest.TestCase):
                 # TODO after it's time for curation, activate this test
                 # self.assertFalse(
                 #     pattern.casefold().startswith(f"^{prefix.casefold()}"),
-                #     msg=f"pattern should represent a local identifier, not a CURIE\nprefix: {prefix}\npattern: {pattern}",
+                #     msg=f"pattern should represent a local identifier,
+                #     not a CURIE\nprefix: {prefix}\npattern: {pattern}",
                 # )
 
     def test_examples(self):
