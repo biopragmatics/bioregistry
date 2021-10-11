@@ -93,12 +93,12 @@ def _autocomplete(q: str) -> Mapping[str, Any]:
     Not matching the pattern:
 
     >>> _autocomplete('chebi:NOPE')
-    {'query': 'chebi:NOPE', 'prefix': 'chebi', 'pattern': '^CHEBI:\\d+$', 'identifier': 'NOPE', 'success': False, 'reason': 'failed validation', 'url': None}
+    {'query': 'chebi:NOPE', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': 'NOPE', 'success': False, 'reason': 'failed validation', 'url': None}
 
     Matching the pattern:
 
     >>> _autocomplete('chebi:1234')
-    {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^CHEBI:\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': 'https://bioregistry.io/chebi:1234'}
+    {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': 'https://bioregistry.io/chebi:1234'}
     """  # noqa: E501
     if ":" not in q:
         url: Optional[str]
