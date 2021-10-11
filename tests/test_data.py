@@ -234,9 +234,7 @@ class TestRegistry(unittest.TestCase):
 
                 pattern = entry.get_pattern_re()
                 if pattern is not None:
-                    # TODO update all regexes to actually match LOCAL identifiers, not CURIEs
-                    if not bioregistry.validate(prefix, example):
-                        self.assertRegex(example, pattern, msg=f"Failed on prefix={prefix}")
+                    self.assertRegex(example, pattern, msg=f"Failed on prefix={prefix}")
 
     def test_is_mismatch(self):
         """Check for mismatches."""

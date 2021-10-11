@@ -895,7 +895,7 @@ class Resource(BaseModel):
         pattern = self.get_pattern_re()
         if pattern is None:
             return None
-        return bool(pattern.match(self.normalize_identifier(identifier)))
+        return bool(pattern.match(self.clean_identifier(identifier)))
 
 
 class Registry(BaseModel):
