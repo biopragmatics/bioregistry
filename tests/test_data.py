@@ -189,10 +189,10 @@ class TestRegistry(unittest.TestCase):
                 self.assertTrue(
                     pattern.endswith("$"), msg=f"{prefix} pattern {pattern} should end with $"
                 )
-                # TODO after it's time for curation, activate this test
                 self.assertFalse(
                     pattern.casefold().startswith(f"^{prefix.casefold()}:"),
-                    msg=f"pattern should represent a local identifier, not a CURIE\nprefix: {prefix}\npattern: {pattern}",
+                    msg=f"pattern should represent a local identifier, not a CURIE\n"
+                    f"prefix: {prefix}\npattern: {pattern}",
                 )
 
     def test_examples(self):
