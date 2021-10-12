@@ -480,7 +480,12 @@ class Resource(BaseModel):
             2. MIRIAM
             3. Wikidata
         """
-        return self.get_prefix_key("pattern", ("miriam", "wikidata"))
+        if self.pattern is not None:
+            return self.pattern
+        rv = self.get_prefix_key("pattern", ("miriam", "wikidata"))
+        if rv is None:
+            return None
+        return clean_pattern(rv)
 
     def get_pattern_re(self):
         """Get the compiled pattern for the given prefix, if it's available."""
@@ -1040,6 +1045,16 @@ class Collection(BaseModel):
             if fmt is not None:
                 rv[prefix] = fmt
         return rv
+
+
+def clean_pattern(rv: str) -> str:
+    """Clean a regular expression string."""
+    rv = rv.rstrip("?")
+    if not rv.startswith("^"):
+        rv = f"^{rv}"
+    if not rv.endswith("$"):
+        rv = f"{rv}$"
+    return rv
 
 
 @lru_cache(maxsize=1)

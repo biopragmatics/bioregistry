@@ -179,7 +179,7 @@ class TestRegistry(unittest.TestCase):
     def test_patterns(self):
         """Test that all prefixes are norm-unique."""
         for prefix, entry in self.registry.items():
-            pattern = entry.pattern
+            pattern = entry.get_pattern()
             if pattern is None:
                 continue
             with self.subTest(prefix=prefix):
@@ -189,12 +189,12 @@ class TestRegistry(unittest.TestCase):
                 self.assertTrue(
                     pattern.endswith("$"), msg=f"{prefix} pattern {pattern} should end with $"
                 )
-
-                # Check that it's the same as external definitions
-                # for key in ('miriam', 'wikidata'):
-                #     external_pattern = get_external(prefix, key).get('pattern')
-                #     if external_pattern:
-                #         self.assertEqual(pattern, external_pattern, msg=f'{prefix}: {key} pattern not same')
+                # TODO after it's time for curation, activate this test
+                # self.assertFalse(
+                #     pattern.casefold().startswith(f"^{prefix.casefold()}"),
+                #     msg=f"pattern should represent a local identifier,
+                #     not a CURIE\nprefix: {prefix}\npattern: {pattern}",
+                # )
 
     def test_examples(self):
         """Test examples for the required conditions.
