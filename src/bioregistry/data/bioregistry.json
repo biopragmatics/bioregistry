@@ -13859,7 +13859,7 @@
       "prefix": "FOODON",
       "url": "http://www.ontobee.org/ontology/FOODON"
     },
-    "pattern": "^\\d{8}$",
+    "pattern": "^[0-9]{8}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/FOODON_$1",
       "is_identifiers": false,
@@ -38714,7 +38714,7 @@
       "prefix": "swh",
       "provider_url": "https://archive.softwareheritage.org/browse/swh:$1"
     },
-    "pattern": "^[1-9]:[a-z][a-z][a-z]:[a-f0-9]+$",
+    "pattern": "^[1-9]:(cnt|dir|rel|rev|snp):[0-9a-f]+(;(origin|visit|anchor|path|lines)=\\S+)*$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/swh/$1",
       "is_identifiers": true,
