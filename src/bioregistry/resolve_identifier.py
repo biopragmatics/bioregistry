@@ -10,10 +10,10 @@ from .resolve import (
     get_banana,
     get_bioportal_prefix,
     get_identifiers_org_prefix,
+    get_namespace_in_lui,
     get_obofoundry_format,
     get_ols_prefix,
     get_resource,
-    namespace_in_lui,
     normalize_parsed_curie,
     parse_curie,
 )
@@ -97,7 +97,7 @@ def normalize_identifier(prefix: str, identifier: str) -> str:
     Standard:
 
     >>> assert get_banana('pdb') is None
-    >>> assert not namespace_in_lui('pdb')
+    >>> assert not get_namespace_in_lui('pdb')
     >>> normalize_identifier('pdb', '00000020')
     '00000020'
     """
@@ -220,7 +220,7 @@ def get_identifiers_org_curie(prefix: str, identifier: str) -> Optional[str]:
             return identifier
         else:
             return f"{banana}:{identifier}"
-    elif namespace_in_lui(prefix):
+    elif get_namespace_in_lui(prefix):
         if identifier.startswith(prefix.upper()):
             return identifier
         else:

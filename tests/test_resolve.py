@@ -110,7 +110,7 @@ class TestResolve(unittest.TestCase):
         - https://github.com/identifiers-org/identifiers-org.github.io/issues/151
         """
         for prefix in bioregistry.read_registry():
-            if not bioregistry.namespace_in_lui(prefix):
+            if not bioregistry.get_namespace_in_lui(prefix):
                 continue
             if bioregistry.get_banana(prefix):
                 continue  # rewrite rules are applied to prefixes with bananas

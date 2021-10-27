@@ -251,6 +251,21 @@ class TestRegistry(unittest.TestCase):
             bioregistry.has_no_terms("nope"), msg="Missing prefix should be false by definition"
         )
 
+    def test_banana(self):
+        """Tests for bananas."""
+        # Simple scenario
+        self.assertIsNone(bioregistry.get_banana("pdb"))
+
+        # OBO Foundry scenario where there should not be a banana
+        self.assertIsNone(
+            bioregistry.get_banana("ncit"),
+            msg="Even though this is OBO foundry, it should not have a banana.",
+        )
+        self.assertIsNone(
+            bioregistry.get_banana("ncbitaxon"),
+            msg="Even though this is OBO foundry, it should not have a banana.",
+        )
+
     def test_get_nope(self):
         """Test when functions don't return."""
         self.assertIsNone(bioregistry.get_banana("nope"))
@@ -455,7 +470,7 @@ class TestRegistry(unittest.TestCase):
         to support actual use cases.
         """
         for prefix, resource in self.registry.items():
-            if not resource.namespace_in_lui():
+            if not resource.get_namespace_in_lui():
                 continue
             with self.subTest(prefix=prefix):
                 self.assertIsNotNone(

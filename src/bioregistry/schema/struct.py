@@ -256,6 +256,10 @@ class Resource(BaseModel):
         " FBbt as well as databases like NCBIGene. If it's not given, then assume that"
         " the normalized prefix used in the Bioregistry is canonical."
     )
+    #: An override for MIRIAM's namespaceEmbeddedInLUI
+    namespace_in_lui: Optional[bool] = Field(
+        description="An override for MIRIAM's namespaceEmbeddedInLUI",
+    )
 
     #: External data from Identifiers.org's MIRIAM Database
     miriam: Optional[Mapping[str, Any]]
@@ -494,8 +498,10 @@ class Resource(BaseModel):
             return None
         return re.compile(pattern)
 
-    def namespace_in_lui(self) -> Optional[bool]:
+    def get_namespace_in_lui(self) -> Optional[bool]:
         """Check if the namespace should appear in the LUI."""
+        if self.namespace_in_lui is not None:
+            return self.namespace_in_lui
         return self.get_prefix_key("namespaceEmbeddedInLui", ("miriam",))
 
     def get_homepage(self) -> Optional[str]:
@@ -643,7 +649,7 @@ class Resource(BaseModel):
         miriam_prefix = self.get_identifiers_org_prefix()
         if miriam_prefix is None:
             return None
-        if self.namespace_in_lui():
+        if self.get_namespace_in_lui():
             # not exact solution, some less common ones don't use capitalization
             # align with the banana solution
             miriam_prefix = miriam_prefix.upper()

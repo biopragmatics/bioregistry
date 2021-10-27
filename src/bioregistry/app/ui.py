@@ -86,7 +86,7 @@ def resource(prefix: str):
         obo_download=bioregistry.get_obo_download(prefix),
         owl_download=bioregistry.get_owl_download(prefix),
         json_download=bioregistry.get_json_download(prefix),
-        namespace_in_lui=bioregistry.namespace_in_lui(prefix),
+        namespace_in_lui=bioregistry.get_namespace_in_lui(prefix),
         deprecated=bioregistry.is_deprecated(prefix),
         contact=bioregistry.get_email(prefix),
         banana=bioregistry.get_banana(prefix),
