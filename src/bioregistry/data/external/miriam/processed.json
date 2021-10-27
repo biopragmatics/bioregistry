@@ -401,6 +401,18 @@
     "provider_url": "http://www.aspergillusgenome.org/cgi-bin/protein/proteinPage.pl?dbid=$1",
     "sampleId": "ASPL0000349247"
   },
+  "assembly": {
+    "deprecated": false,
+    "description": "A database providing information on the structure of assembled genomes, assembly names and other meta-data, statistical reports, and links to genomic sequence data.",
+    "homepage": "https://www.ncbi.nlm.nih.gov/",
+    "id": "00000884",
+    "name": "Assembly",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[a-zA-Z0-9_\\.]+$",
+    "prefix": "assembly",
+    "provider_url": "https://www.ncbi.nlm.nih.gov/assembly/$1",
+    "sampleId": "GCF_000005845.2"
+  },
   "atc": {
     "deprecated": false,
     "description": "The Anatomical Therapeutic Chemical (ATC) classification system, divides active substances into different groups according to the organ or system on which they act and their therapeutic, pharmacological and chemical properties. Drugs are classified in groups at five different levels;  Drugs are divided into fourteen main groups (1st level), with pharmacological/therapeutic subgroups (2nd level).  The 3rd and 4th levels are chemical/pharmacological/therapeutic subgroups and the 5th level is the chemical substance. The Anatomical Therapeutic Chemical (ATC) classification system and the Defined Daily Dose (DDD) is a tool for exchanging and comparing data on drug use at international, national or local levels.",
@@ -892,6 +904,18 @@
       }
     ],
     "sampleId": "SAMEA2397676"
+  },
+  "biosimulations": {
+    "deprecated": false,
+    "description": "BioSimulations is an open repository of simulation projects, including simulation experiments, their results, and data visualizations of their results. BioSimulations supports a broad range of model languages, modeling frameworks, simulation algorithms, and simulation software tools.",
+    "homepage": "https://icahn.mssm.edu/",
+    "id": "00000880",
+    "name": "biosimulations",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[a-zA-Z0-9_-]{3,}$",
+    "prefix": "biosimulations",
+    "provider_url": "https://biosimulations.org/projects/$1",
+    "sampleId": "Yeast-cell-cycle-Irons-J-Theor-Biol-2009"
   },
   "biosimulators": {
     "deprecated": false,
@@ -1874,7 +1898,7 @@
     "id": "00000786",
     "name": "DANDI: Distributed Archives for Neurophysiology Data Integration",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^\\d{6}(/\\d+\\.\\d+\\.\\d+)?$",
+    "pattern": "^\\d{6}(\\/\\d+\\.\\d+\\.\\d+)?$",
     "prefix": "dandi",
     "provider_url": "https://dandiarchive.org/dandiset/$1",
     "sampleId": "000017"
@@ -6668,6 +6692,18 @@
     "provider_url": "http://www.receptors.org/nucleardb/proteins/$1",
     "sampleId": "prgr_human"
   },
+  "nucleotide": {
+    "deprecated": false,
+    "description": "The Nucleotide database is a collection of sequences from several sources, including GenBank, RefSeq, TPA and PDB. Genome, gene and transcript sequence data provide the foundation for biomedical research and discovery.",
+    "homepage": "https://www.ncbi.nlm.nih.gov/",
+    "id": "00000882",
+    "name": "Nucleotide",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[a-zA-Z0-9_\\.]+$",
+    "prefix": "nucleotide",
+    "provider_url": "https://www.ncbi.nlm.nih.gov/nuccore/$1",
+    "sampleId": "880798137"
+  },
   "obi": {
     "deprecated": false,
     "description": "The Ontology for Biomedical Investigations (OBI) project is developing an integrated ontology for the description of biological and clinical investigations. The ontology will represent the design of an investigation, the protocols and instrumentation used, the material used, the data generated and the type analysis performed on it. Currently OBI is being built under the Basic Formal Ontology (BFO).",
@@ -6707,13 +6743,13 @@
   "ocid": {
     "deprecated": false,
     "description": "'ocid' stands for \"Ontology Concept Identifiers\" and are 12 digit long integers covering IDs in topical ontologies from anatomy up to toxicology.",
-    "homepage": "https://www.sciwalker.com",
+    "homepage": "https://ontochem.com/",
     "id": "00000738",
     "name": "Ontology Concept Identifiers",
     "namespaceEmbeddedInLui": true,
     "pattern": "ocid:[0-9]{12}",
     "prefix": "ocid",
-    "provider_url": "https://www.sciwalker.com/sciwalker/faces/ociddata.xhtml?ocid=$1",
+    "provider_url": "https://ocid.ontochem.com/prefname?ocid=$1",
     "sampleId": "190000021540"
   },
   "oclc": {

@@ -78,6 +78,21 @@ class ResourceManager:
             return None
         return self.registry.get(norm_prefix)
 
+    def parse_curie(self, curie: str, sep: str = ":") -> Union[Tuple[str, str], Tuple[None, None]]:
+        """Parse a CURIE and normalize its prefix and identifier."""
+        try:
+            prefix, identifier = curie.split(sep, 1)
+        except ValueError:
+            return None, None
+        return self.normalize_parsed_curie(prefix, identifier)
+
+    def normalize_curie(self, curie: str, sep: str = ":") -> Optional[str]:
+        """Normalize the prefix and identifier in the CURIE."""
+        prefix, identifier = self.parse_curie(curie, sep=sep)
+        if prefix is None:
+            return None
+        return f"{prefix}:{identifier}"
+
     def normalize_parsed_curie(
         self, prefix: str, identifier: str
     ) -> Union[Tuple[str, str], Tuple[None, None]]:
@@ -94,14 +109,8 @@ class ResourceManager:
         resource = self.get_resource(prefix)
         if resource is None:
             return None, None  # though, this should never happen
-        banana = resource.get_banana()
-        if banana is not None and identifier.startswith(f"{banana}:"):
-            identifier = identifier[len(banana) + 1 :]
-        # remove redundant prefix
-        elif identifier.casefold().startswith(f"{prefix.casefold()}:"):
-            identifier = identifier[len(prefix) + 1 :]
-
-        return norm_prefix, identifier
+        norm_identifier = resource.clean_identifier(identifier, prefix=prefix)
+        return norm_prefix, norm_identifier
 
     def get_registry_map(self, metaprefix: str) -> Dict[str, str]:
         """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
