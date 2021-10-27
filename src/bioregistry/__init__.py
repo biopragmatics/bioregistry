@@ -73,7 +73,12 @@ from .resolve_identifier import (  # noqa:F401
     validate,
 )
 from .schema.struct import Author, Collection, Provider, Registry, Resource  # noqa:F401
-from .uri_format import get_format, get_format_url, get_format_urls, get_prefix_map  # noqa:F401
+from .uri_format import (  # noqa:F401
+    get_format,
+    get_format_url,
+    get_format_urls,
+    get_prefix_map,
+)
 from .utils import (  # noqa:F401
     read_collections,
     read_contributors,

@@ -7,8 +7,17 @@ from typing import Optional
 from flask import Blueprint, abort, redirect, render_template, url_for
 
 import bioregistry
-from .utils import _get_resource_mapping_rows, _get_resource_providers, _normalize_prefix_or_404
-from ..utils import read_collections_contributions, read_prefix_contributions, read_prefix_reviews
+
+from .utils import (
+    _get_resource_mapping_rows,
+    _get_resource_providers,
+    _normalize_prefix_or_404,
+)
+from ..utils import (
+    read_collections_contributions,
+    read_prefix_contributions,
+    read_prefix_reviews,
+)
 
 __all__ = [
     "ui_blueprint",

@@ -190,9 +190,10 @@ def parse_obolibrary_purl(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]
 
 def _main():
     """Run this as ``python -m bioregistry.parse_iri`` to get a list of IRIs that can be constructed, but not parsed."""
-    import bioregistry
-    from tabulate import tabulate
     import click
+    from tabulate import tabulate
+
+    import bioregistry
 
     rows = []
     for prefix in bioregistry.read_registry():
