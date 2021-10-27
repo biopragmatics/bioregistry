@@ -76,12 +76,12 @@
     <p>
         This two-sided comparison shows how well the Bioregistry covers each external registry. In the case of
         Wikidata, it's difficult to know exactly how many relevant properties there are.
-        <img src="https://raw.githubusercontent.com/bioregistry/bioregistry/main/docs/img/bioregistry_coverage.svg"
+        <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/bioregistry_coverage.svg"
              alt="Bioregistry Coverage" class="img-fluid"/>
     </p>
     <p>
         Additional external registries that have been queued for alignment can be listed via the
-        <a href="https://github.com/bioregistry/bioregistry/issues?q=is%3Aissue+is%3Aopen+label%3A%22External+Registry%22">GitHub
+        <a href="https://github.com/biopragmatics/bioregistry/issues?q=is%3Aissue+is%3Aopen+label%3A%22External+Registry%22">GitHub
             issue tracker</a>.
     </p>
     <h3>How Complete is the Bioregistry?</h3>
@@ -96,10 +96,10 @@
         Biological databases, ontologies, and resource will continue to be generated as we learn about new and
         exciting phenomena, so the medium-term plan to grow the Bioregistry is to continue to cover resources
         that are not covered by the other resources it references. New external registries can be suggested on
-        the Bioregistry GitHub <a href="https://github.com/bioregistry/bioregistry/issues/new">issue
-        tracker</a> using the <a href="https://github.com/bioregistry/bioregistry/labels/External%20Registry">External
+        the Bioregistry GitHub <a href="https://github.com/biopragmatics/bioregistry/issues/new">issue
+        tracker</a> using the <a href="https://github.com/biopragmatics/bioregistry/labels/External%20Registry">External
         Registry</a> label. Further, there are <a
-            href="https://github.com/bioregistry/bioregistry#-contributing">contribution guidelines</a> on the
+            href="https://github.com/biopragmatics/bioregistry#-contributing">contribution guidelines</a> on the
         GitHub site to help guide potential contributors towards small but meaningful first contributions. It is
         expected that all contributors will be listed as co-authors in the eventual manuscript describing this
         resource.
@@ -127,7 +127,7 @@
     <details>
         <summary>Pairwise Overlap Comparisons</summary>
         <img class="img-fluid"
-             src="https://raw.githubusercontent.com/bioregistry/bioregistry/main/docs/img/external_overlap.svg"
+             src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/external_overlap.svg"
              alt="External Registry Overlaps"/>
     </details>
     </p>
@@ -139,7 +139,7 @@
         ontologies into the OBO Foundry and OLS severely lacks their ability to cover some of the most used
         resources like the HGNC. Entries with no references are uniquely curated in the Bioregistry.
 
-        <img src="https://raw.githubusercontent.com/bioregistry/bioregistry/main/docs/img/xrefs.svg"
+        <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/xrefs.svg"
              alt="Reference Counts" class="img-fluid"/>
     </p>
     <h2>Licensing</h2>
@@ -147,24 +147,35 @@
         Licenses are only directly available from OBO Foundry and the OLS. Wikidata contains some licensing
         information, but more would need to be written to handle this.
 
-        <img src="https://raw.githubusercontent.com/bioregistry/bioregistry/main/docs/img/license_coverage.svg"
+        <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/license_coverage.svg"
              alt="License Coverage" class="img-fluid"/>
     </p>
     <p>
         However, even internally, neither the OBO Foundry nor OLS use a consistent nomenclature for licenses, so
         they were remapped using <a
-            href="https://github.com/bioregistry/bioregistry/blob/main/src/bioregistry/compare.py#L19">this
+            href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/compare.py#L19">this
         ruleset</a>. Further, some licenses that were inappropriate for data (e.g., Apache 2.0 License, GNU GPL
         3.0 License, BSD License) appeared infrequently and were collapsed into "Other". Other uncommon and
         infrequent licenses were likewise collapsed into "Other". After, there were still several conflicts
         between the reported license in OBO Foundry and OLS, in which case both were added to the tally. In the
         majority of the conflicts, OBO Foundry reported CC-BY and OLS reported CC 0.
-        <img src="https://raw.githubusercontent.com/bioregistry/bioregistry/main/docs/img/licenses.svg"
+        <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/licenses.svg"
              alt="License Types" class="img-fluid"/>
+    </p>
+    <h2>Providers</h2>
+    <p>
+        One of the original goals of using IRIs as identifiers for biomedical entities was that they could
+        be resolved in the browser. This isn't strictly enforced, and even worse it's the case that many
+        resources don't have any IRIs associated with them at all. The following chart shows roughly
+        the distribution of how many providers are available for each resource. Luckily, most have one or
+        more, but some don't have any.
+
+        <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/providers.svg"
+             alt="Provider Coverage" class="img-fluid"/>
     </p>
     <h2>Other Attributes</h2>
     <p>
-        <img src="https://raw.githubusercontent.com/bioregistry/bioregistry/main/docs/img/has_attribute.svg"
+        <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/has_attribute.svg"
              alt="Attributes Coverage" class="img-fluid"/>
     </p>
     <h3>Versioning</h3>
@@ -239,10 +250,10 @@
         Each entry in the Bioregistry now has a slot <code>"provides"</code> that can codify these connections and we
         may begin annotating all entries with a "type" in the future such that resources and providers, which have many
         common aspects to their metadata schemata, can be more easily listed and curated in the same place.
-        Further discussion about this is taking place on <a href="https://github.com/bioregistry/bioregistry/issues/32">
-        <i class="fab fa-github"></i> bioregistry/bioregistry#32</a>.
+        Further discussion about this is taking place on <a href="https://github.com/biopragmatics/bioregistry/issues/32">
+        <i class="fab fa-github"></i> biopragmatics/bioregistry#32</a>.
         The first commits to the repo related to that are available
-        <a href="https://github.com/bioregistry/bioregistry/commit/1462f1a781cbc7078d7634de2073bad299b13205">here</a>.
+        <a href="https://github.com/biopragmatics/bioregistry/commit/1462f1a781cbc7078d7634de2073bad299b13205">here</a>.
     </p>
     <h3>Misguided Attribution</h3>
     <p>

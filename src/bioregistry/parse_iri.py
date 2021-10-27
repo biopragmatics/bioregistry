@@ -2,23 +2,15 @@
 
 """Functionality for parsing IRIs."""
 
-import collections.abc
-from typing import Mapping, Sequence, Tuple, Union
+from typing import List, Mapping, Optional, Tuple, Union
 
-from .resolve import get_format_urls, parse_curie
+from .resolve import parse_curie
+from .uri_format import get_prefix_map, prepare_prefix_list
 
 __all__ = [
+    "curie_from_iri",
     "parse_iri",
 ]
-
-
-def _sort_key(kv):
-    return -len(kv[0])
-
-
-#: A prefix map in reverse sorted order based on length of the URL
-#: in order to avoid conflicts of sub-URIs (thanks to Nico Matentzoglu for the idea)
-PREFIX_MAP = sorted(get_format_urls().items(), key=_sort_key)
 
 OLS_URL_PREFIX = "https://www.ebi.ac.uk/ols/ontologies/"
 BIOREGISTRY_PREFIX = "https://bioregistry.io"
@@ -28,8 +20,58 @@ IDOT_HTTP_PREFIX = "http://identifiers.org/"
 N2T_PREFIX = "https://n2t.net/"
 
 
+def curie_from_iri(iri: str, *, prefix_map: Optional[Mapping[str, str]] = None) -> Optional[str]:
+    """Parse a compact identifier from an IRI using :func:`parse_iri` and reconstitute it.
+
+    :param iri: A valid IRI
+    :param prefix_map: See :func:`parse_iri`
+    :return: A CURIE string, if the IRI can be parsed by :func:`parse_iri`.
+
+    IRI from an OBO PURL:
+
+    >>> curie_from_iri("http://purl.obolibrary.org/obo/DRON_00023232")
+    'dron:00023232'
+
+    IRI from the OLS:
+
+    >>> curie_from_iri("https://www.ebi.ac.uk/ols/ontologies/ecao/terms?iri=http://purl.obolibrary.org/obo/ECAO_1")
+    'ecao:1'
+
+    .. todo:: IRI from bioportal
+
+    IRI from native provider
+
+    >>> curie_from_iri("https://www.alzforum.org/mutations/1234")
+    'alzforum.mutation:1234'
+
+    Dog food:
+
+    >>> curie_from_iri("https://bioregistry.io/DRON:00023232")
+    'dron:00023232'
+
+    IRIs from Identifiers.org (https and http, colon and slash):
+
+    >>> curie_from_iri("https://identifiers.org/aop.relationships:5")
+    'aop.relationships:5'
+    >>> curie_from_iri("http://identifiers.org/aop.relationships:5")
+    'aop.relationships:5'
+    >>> curie_from_iri("https://identifiers.org/aop.relationships/5")
+    'aop.relationships:5'
+    >>> curie_from_iri("http://identifiers.org/aop.relationships/5")
+    'aop.relationships:5'
+
+    IRI from N2T
+    >>> curie_from_iri("https://n2t.net/aop.relationships:5")
+    'aop.relationships:5'
+    """
+    prefix, identifier = parse_iri(iri=iri, prefix_map=prefix_map)
+    if prefix is None:
+        return None
+    return f"{prefix}:{identifier}"
+
+
 def parse_iri(
-    iri: str, prefix_map: Union[None, Mapping[str, str], Sequence[Tuple[str, str]]] = None
+    iri: str, *, prefix_map: Optional[Mapping[str, str]] = None
 ) -> Union[Tuple[str, str], Tuple[None, None]]:
     """Parse a compact identifier from an IRI.
 
@@ -78,10 +120,19 @@ def parse_iri(
     >>> parse_iri("https://n2t.net/aop.relationships:5")
     ('aop.relationships', '5')
 
+    Provide your own prefix map:
+    >>> prefix_map = {"chebi": "https://example.org/chebi:"}
+    >>> parse_iri("https://example.org/chebi:1234", prefix_map=prefix_map)
+    ('chebi', '1234')
+
+    Handle either HTTP or HTTPS:
+    >>> parse_iri("http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
+    ('neuronames', '268')
+    >>> parse_iri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
+    ('neuronames', '268')
+
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
-    if isinstance(prefix_map, collections.abc.Mapping):
-        prefix_map = sorted(prefix_map.items(), key=_sort_key)
     if iri.startswith(BIOREGISTRY_PREFIX):
         curie = iri[len(BIOREGISTRY_PREFIX) :]
         return parse_curie(curie)
@@ -99,10 +150,18 @@ def parse_iri(
     if iri.startswith(N2T_PREFIX):
         curie = iri[len(N2T_PREFIX) :]
         return parse_curie(curie)
-    for prefix, prefix_url in prefix_map or PREFIX_MAP:
+    for prefix, prefix_url in _ensure_prefix_list(prefix_map):
         if iri.startswith(prefix_url):
             return prefix, iri[len(prefix_url) :]
     return None, None
+
+
+def _ensure_prefix_list(prefix_map: Optional[Mapping[str, str]], **kwargs) -> List[Tuple[str, str]]:
+    """Ensure a prefix list, using the given merge strategy with default."""
+    _prefix_map = dict(get_prefix_map(**kwargs))
+    if prefix_map:
+        _prefix_map.update(prefix_map)
+    return prepare_prefix_list(_prefix_map)
 
 
 def _safe_parse_curie(curie: str) -> Union[Tuple[str, str], Tuple[None, None]]:
@@ -133,20 +192,21 @@ def _main():
     """Run this as ``python -m bioregistry.parse_iri`` to get a list of IRIs that can be constructed, but not parsed."""
     import bioregistry
     from tabulate import tabulate
+    import click
 
     rows = []
     for prefix in bioregistry.read_registry():
         example = bioregistry.get_example(prefix)
         if example is None:
             continue
-        iri = bioregistry.get_link(prefix, example, use_bioregistry_io=False)
+        iri = bioregistry.get_iri(prefix, example, use_bioregistry_io=False)
         if iri is None:
             # print('no iri for', prefix, example)
             continue
         k, v = parse_iri(iri)
         if k is None:
             rows.append((prefix, example, iri, k, v))
-    print(tabulate(rows))
+    click.echo(tabulate(rows))
 
 
 if __name__ == "__main__":

@@ -3,6 +3,7 @@
 """Align the GO with the Bioregistry."""
 
 import json
+import logging
 from typing import Any, Dict, Mapping
 
 from bioregistry.align.utils import Aligner
@@ -12,6 +13,8 @@ from bioregistry.external import get_go
 __all__ = [
     "GoAligner",
 ]
+
+logger = logging.getLogger(__name__)
 
 PROCESSING_GO_PATH = DATA_DIRECTORY / "processing_go.json"
 
@@ -52,13 +55,13 @@ class GoAligner(Aligner):
             )
         ]
         if len(homepages) > 1:
-            print(external_id, "multiple homepages", homepages)
+            logger.info(f"{external_id} multiple homepages {homepages}")
         if homepages:
             rv["homepage"] = homepages[0]
 
         entity_types = external_entry.get("entity_types", [])
         if len(entity_types) > 1:
-            print(external_id, "multiple entity types")
+            logger.info(f"{external_id} multiple entity types")
             # TODO handle
         elif len(entity_types) == 1:
             entity_type = entity_types[0]

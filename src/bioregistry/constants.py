@@ -39,6 +39,7 @@ IDOT_BROKEN = {
     "gramene.growthstage",
     "oma.hog",
     "obi",
+    "mir",  # Added on 2021-10-08
 }
 
 LICENSES = {

@@ -8,7 +8,7 @@ from flask import Blueprint, abort, redirect, render_template, url_for
 
 import bioregistry
 from .utils import _get_resource_mapping_rows, _get_resource_providers, _normalize_prefix_or_404
-from ..utils import read_collections_contributions, read_prefix_contributions
+from ..utils import read_collections_contributions, read_prefix_contributions, read_prefix_reviews
 
 __all__ = [
     "ui_blueprint",
@@ -25,24 +25,10 @@ FORMATS = [
 @ui_blueprint.route("/registry/")
 def resources():
     """Serve the Bioregistry page."""
-    rows = [
-        dict(
-            prefix=prefix,
-            name=bioregistry.get_name(prefix),
-            example=bioregistry.get_example(prefix),
-            homepage=bioregistry.get_homepage(prefix),
-            pattern=bioregistry.get_pattern(prefix),
-            namespace_in_lui=bioregistry.namespace_in_lui(prefix),
-            banana=bioregistry.get_banana(prefix),
-            description=bioregistry.get_description(prefix),
-        )
-        for prefix in bioregistry.read_registry()
-    ]
-
     return render_template(
         "resources.html",
-        rows=rows,
         formats=FORMATS,
+        registry=bioregistry.read_registry(),
     )
 
 
@@ -72,14 +58,17 @@ def resource(prefix: str):
     prefix = _normalize_prefix_or_404(prefix, "." + resource.__name__)
     if not isinstance(prefix, str):
         return prefix
-    example = bioregistry.get_example(prefix)
+    _resource = bioregistry.get_resource(prefix)
+    if _resource is None:
+        raise RuntimeError
+    example = _resource.get_example()
     return render_template(
         "resource.html",
         prefix=prefix,
-        resource=bioregistry.get_resource(prefix),
+        resource=_resource,
         name=bioregistry.get_name(prefix),
         example=example,
-        mappings=_get_resource_mapping_rows(prefix),
+        mappings=_get_resource_mapping_rows(_resource),
         synonyms=bioregistry.get_synonyms(prefix),
         homepage=bioregistry.get_homepage(prefix),
         pattern=bioregistry.get_pattern(prefix),
@@ -202,7 +191,7 @@ def resolve(prefix: str, identifier: Optional[str] = None):
             404,
         )
 
-    url = bioregistry.get_link(prefix, identifier, use_bioregistry_io=False)
+    url = bioregistry.get_iri(prefix, identifier, use_bioregistry_io=False)
     if not url:
         return (
             render_template(
@@ -229,7 +218,8 @@ def contributors():
         "contributors.html",
         rows=bioregistry.read_contributors().values(),
         collections=read_collections_contributions(),
-        prefixes=read_prefix_contributions(),
+        prefix_contributions=read_prefix_contributions(),
+        prefix_reviews=read_prefix_reviews(),
         formats=FORMATS,
     )
 
@@ -243,7 +233,15 @@ def contributor(orcid: str):
     return render_template(
         "contributor.html",
         contributor=author,
-        collections=sorted(read_collections_contributions().get(author.orcid, [])),
-        prefixes=sorted(read_prefix_contributions().get(author.orcid, [])),
+        collections=sorted(
+            (collection_id, bioregistry.get_collection(collection_id))
+            for collection_id in read_collections_contributions().get(author.orcid, [])
+        ),
+        prefix_contributions=_s(read_prefix_contributions().get(author.orcid, [])),
+        prefix_reviews=_s(read_prefix_reviews().get(author.orcid, [])),
         formats=FORMATS,
     )
+
+
+def _s(prefixes):
+    return sorted((p, bioregistry.get_resource(p)) for p in prefixes)

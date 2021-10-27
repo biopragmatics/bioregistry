@@ -11,9 +11,14 @@ from .utils import _autocomplete, _get_identifier, _normalize_prefix_or_404, _se
 from .. import normalize_prefix
 from ..export.prefix_maps import collection_to_context_jsonlds
 from ..export.rdf_export import collection_to_rdf_str, metaresource_to_rdf_str, resource_to_rdf_str
-from ..resolve import get_format_url
 from ..schema import sanitize_mapping
-from ..utils import read_collections_contributions, read_contributors, read_prefix_contributions
+from ..uri_format import get_format_url
+from ..utils import (
+    read_collections_contributions,
+    read_contributors,
+    read_prefix_contributions,
+    read_prefix_reviews,
+)
 
 __all__ = [
     "api_blueprint",
@@ -66,7 +71,7 @@ def resource(prefix: str):
         enum: [json, yaml, turtle, jsonld]
     """  # noqa:DAR101,DAR201
     prefix = _normalize_prefix_or_404(prefix)
-    data = dict(prefix=prefix, **bioregistry.get_resource(prefix))  # type:ignore
+    data = dict(prefix=prefix, **bioregistry.get_resource(prefix).dict())  # type:ignore
     return serialize(
         data,
         serializers=[
@@ -269,7 +274,8 @@ def contributor(orcid: str):
     return serialize(
         {
             **author.dict(),
-            "prefixes": sorted(read_prefix_contributions().get(orcid, [])),
+            "prefix_contributions": sorted(read_prefix_contributions().get(orcid, [])),
+            "prefix_reviews": sorted(read_prefix_reviews().get(orcid, [])),
             "collections": sorted(read_collections_contributions().get(orcid, [])),
         }
     )

@@ -56,7 +56,7 @@ def get_bioportal(force_download: bool = False):
     with RAW_PATH.open("w") as file:
         json.dump(records, file, indent=2, sort_keys=True)
 
-    records = thread_map(_process, records)
+    records = thread_map(_process, records, disable=True)
     rv = {result["prefix"]: result for result in records}
 
     with PROCESSED_PATH.open("w") as file:

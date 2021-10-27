@@ -29,7 +29,7 @@ Swagger.DEFAULT_CONFIG.update(
             "version": "1.0",
             "license": {
                 "name": "Code available under the MIT License",
-                "url": "https://github.com/bioregistry/bioregistry/blob/main/LICENSE",
+                "url": "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE",
             },
         },
         "host": "bioregistry.io",
@@ -85,12 +85,20 @@ def download():
     return render_template("meta/download.html")
 
 
+@app.route("/acknowledgements")
+def acknowledgements():
+    """Render the acknowledgements page."""
+    return render_template("meta/acknowledgements.html")
+
+
 _VERSION = version.get_version()
 _GIT_HASH = version.get_git_hash()
 _PLATFORM = platform.platform()
 _PLATFORM_VERSION = platform.version()
 _PYTHON_VERSION = platform.python_version()
 _DEPLOYED = datetime.datetime.now()
+
+app.config["bioregistry_version"] = _VERSION
 
 
 @app.route("/sustainability")

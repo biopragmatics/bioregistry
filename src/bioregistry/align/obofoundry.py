@@ -20,9 +20,11 @@ class OBOFoundryAligner(Aligner):
     curation_header = ("name", "description")
     include_new = True
 
-    def get_skip(self) -> Mapping[str, str]:  # noqa:D102
+    def get_skip(self) -> Mapping[str, str]:
+        """Get the prefixes in the OBO Foundry that should be skipped."""
         return {
             "bila": "website is not longer active",
+            "obo_rel": "replaced",
         }
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
@@ -35,4 +37,4 @@ class OBOFoundryAligner(Aligner):
 
 
 if __name__ == "__main__":
-    OBOFoundryAligner.align()
+    OBOFoundryAligner.cli()

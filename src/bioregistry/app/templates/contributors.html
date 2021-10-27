@@ -19,7 +19,7 @@
     <script>
         $(document).ready(function () {
             $("#contributor-entries").DataTable({
-                "order": [[1, "asc"]]
+                "order": [[0, "asc"]]
             });
             $("#contributor-entries_wrapper").children(":first-child").addClass("card-body");
             $("#contributor-entries_wrapper").children(":last-child").addClass("card-body");
@@ -61,8 +61,9 @@
             <tr>
                 <td>Name</td>
                 <td>ORCID</td>
-                <td>Email</td>
+                {# <td>Email</td> #}
                 <td>Prefixes</td>
+                <td>Reviews</td>
                 <td>Collections</td>
             </tr>
             </thead>
@@ -70,12 +71,15 @@
                 <tr>
                     <td><a href="{{ url_for('ui.contributor', orcid=row.orcid) }}">{{ row.name }}</a></td>
                     <td class="text-nowrap"><a href="https://orcid.org/{{ row.orcid }}">{{ row.orcid }}</a></td>
+                    {#
                     <td class="text-nowrap">
                         {% if row.email %}
                             <a href="mailto:{{ row.email }}">{{ row.email }}</a>
                         {% endif %}
                     </td>
-                    <td style="text-align: right;">{{ prefixes.get(row.orcid, []) | length }}</td>
+                    #}
+                    <td style="text-align: right;">{{ prefix_contributions.get(row.orcid, []) | length }}</td>
+                    <td style="text-align: right;">{{ prefix_reviews.get(row.orcid, []) | length }}</td>
                     <td style="text-align: right;">{{ collections.get(row.orcid, []) | length }}</td>
                 </tr>
             {% endfor %}

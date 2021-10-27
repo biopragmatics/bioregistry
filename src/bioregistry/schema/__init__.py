@@ -16,6 +16,5 @@ from .struct import (  # noqa:F401
     Registry,
     Resource,
     get_json_schema,
-    sanitize_mapping,
-    sanitize_model,
 )
+from .utils import sanitize_mapping, sanitize_model  # noqa:F401

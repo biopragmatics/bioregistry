@@ -15,18 +15,34 @@ jobs:
         with:
           python-version: 3.9
       - name: Create local changes
+        id: update
         run: |
           pip install -e .[charts]
           bioregistry update
         env:
           BIOPORTAL_API_KEY: ${{ secrets.BIOPORTAL_API_KEY }}
+      - name: Check environment
+        run: echo ${{ steps.update.outputs.BR_UPDATED }}
       - name: Commit files
+        if: steps.update.outputs.BR_UPDATED == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "📮 Automatically update" -a
+          git commit --all -m "📮 Automatically update"
+      - name: Release to PyPI
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        run: |
+          pip install tox
+          tox -e bumpversion-release
+          tox -e release
+          tox -e bumpversion patch
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       - name: Push changes
+        if: steps.update.outputs.BR_UPDATED == 'true'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+          tags: true

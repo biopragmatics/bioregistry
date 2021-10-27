@@ -7,6 +7,7 @@ import json
 import logging
 from email.utils import parseaddr
 from textwrap import dedent
+from typing import Any, Mapping, Optional
 
 import click
 from pystow.utils import download
@@ -43,23 +44,24 @@ def get_ols(force_download: bool = False):
             "Need to implement paging since there are more entries than fit into one page"
         )
 
-    processed = {
-        ontology["ontologyId"]: _process(ontology) for ontology in data["_embedded"]["ontologies"]
-    }
+    processed = {}
+    for ontology in data["_embedded"]["ontologies"]:
+        ols_id = ontology["ontologyId"]
+        # TODO better docs on how to maintain this file
+        config = _PROCESSING.get(ols_id)
+        if config is None:
+            logger.warning("need to curate processing file for OLS prefix %s", ols_id)
+            continue
+        processed[ols_id] = _process(ontology, config)
+
     with PROCESSED_PATH.open("w") as file:
         json.dump(processed, file, indent=2, sort_keys=True)
     return processed
 
 
-def _process(ols_entry):
+def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Optional[Mapping[str, str]]:
     ols_id = ols_entry["ontologyId"]
     config = ols_entry["config"]
-
-    # will throw a key error anytime the data is updated. This is on purpose -
-    # it's worth maintaining this mapping very carefully. TODO better docs on how
-    # to maintain this file
-    processing: OLSConfig = _PROCESSING[ols_id]
-
     rv = {
         "prefix": ols_id,
         "name": config["title"],
@@ -73,25 +75,23 @@ def _process(ols_entry):
     if email:
         name, email = parseaddr(email)
         if email.startswith("//"):
-            logger.warning("[%s] invalid email address: %s", ols_id, config["mailingList"])
+            logger.debug("[%s] invalid email address: %s", ols_id, config["mailingList"])
         else:
             rv["contact"] = email
 
     license_value = config["annotations"].get("license", [None])[0]
     if license_value in {"Unspecified", "Unspecified"}:
         license_value = None
-    # if license_value:
-    #     logger.warning('[%s] missing license in OLS. Contact: %s', ols_id, email)
+    if not license_value:
+        logger.info("[%s] missing license in OLS. Contact: %s", ols_id, email)
     rv["license"] = license_value
 
     version = config.get("version")
     if version is None:
-        logger.warning("[%s] missing version in OLS. Contact: %s", ols_id, email)
+        logger.info("[%s] missing version in OLS. Contact: %s", ols_id, email)
     else:
         if version != version.strip():
-            logger.warning(
-                "[%s] extra whitespace in version: %s. Contact: %s", ols_id, version, email
-            )
+            logger.info("[%s] extra whitespace in version: %s. Contact: %s", ols_id, version, email)
             version = version.strip()
 
         version_prefix = processing.version_prefix
@@ -120,7 +120,7 @@ def _process(ols_entry):
         version_date_fmt = processing.version_date_format
         if version_date_fmt:
             if version_date_fmt in {"%Y-%d-%m"}:
-                logger.warning(
+                logger.info(
                     "[%s] confusing date format: %s. Contact: %s",
                     ols_id,
                     version_date_fmt,
@@ -129,9 +129,9 @@ def _process(ols_entry):
             try:
                 version = datetime.datetime.strptime(version, version_date_fmt).strftime("%Y-%m-%d")
             except ValueError:
-                logger.warning("[%s] wrong format for version %s", ols_id, version)
+                logger.info("[%s] wrong format for version %s", ols_id, version)
         elif not version_type:
-            logger.warning("[%s] no type for version %s", ols_id, version)
+            logger.info("[%s] no type for version %s", ols_id, version)
 
     rv["version"] = version
 
