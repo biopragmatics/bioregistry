@@ -307,7 +307,7 @@ assert get_iri("lipidmaps:1234", prefix_map=prefix_map, priority=priority) == \
     'https://example.org/lipidmaps/1234'
 ```
 
-Alternatively, there are  direct functions for generating IRIs for different
+Alternatively, there are direct functions for generating IRIs for different
 registries:
 
 ```python
@@ -339,6 +339,27 @@ assert br.get_n2t_iri('chebi', '24867') == 'https://n2t.net/chebi:24867'
 
 Each of these functions could also return `None` if there isn't a provider available or if the prefix
 can't be mapped to the various resources.
+
+### Prefix Map
+
+The Bioregistry can be used to generate prefix maps with various flavors
+depending on your context. Prioritization works the same way as when generating
+IRIs.
+
+```python
+from bioregistry import get_prefix_map
+
+# Standard
+prefix_map = get_prefix_map()
+
+# Prioritize OBO prefixes over bioregistry
+priority = ["obofoundry", "default", "miriam", "ols", "n2t", "bioportal"]
+prefix_map = get_prefix_map(priority=priority)
+
+# Provide custom remapping that doesn't have prioritization logic
+remapping = {"chebi": "CHEBI"}
+prefix_map = get_prefix_map(remapping=remapping)
+```
 
 ### Getting Metadata
 
