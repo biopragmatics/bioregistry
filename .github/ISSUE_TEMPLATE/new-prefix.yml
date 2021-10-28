@@ -51,15 +51,15 @@ body:
   - type: input
     id: example
     attributes:
-      label: Example Identifier
-      description: Please provide an example identifier from the nomenclature authority. While this field isn't required, it's HIGHLY suggested.
+      label: Example Local Unique Identifier
+      description: Please provide an example local unique identifier from the nomenclature authority. This should NOT be written as a CURIE nor include the prefix.
       placeholder: ex. 1234
     validations:
       required: true
   - type: input
     id: pattern
     attributes:
-      label: Regular Expression Pattern
+      label: Regular Expression Pattern for Local Unique Identifier
       description: |
         The regular expression (regex) that matches all of the identifiers in the nomenclature authority. If you're not sure how to write a regex, please make sure you've included an example identifier and we'll be happy to help you out!
 
@@ -81,8 +81,8 @@ body:
   - type: input
     id: url
     attributes:
-      label: Provider Format URL
-      description: A URL that can be used in combination with the identifier to make a webpage for the identifier. It should contain a `$1` that gets replaced with the identifier
+      label: URI Format String
+      description: A URI format string is a URI with a placeholder (`$1`) for the local unique identifier that can be used in combination with a given local unique identifier to make a webpage for the local unique identifier.
       placeholder: ex. `https://www.ebi.ac.uk/chebi/searchId.do?chebiId=$1`
     validations:
       required: false
