@@ -368,6 +368,8 @@ class Resource(BaseModel):
         """
         if self.banana is not None:
             return self.banana
+        if self.namespace_in_lui is False:
+            return None  # override for a few situations
         obo_preferred_prefix = self.get_obo_preferred_prefix()
         if obo_preferred_prefix is not None:
             return obo_preferred_prefix
