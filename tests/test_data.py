@@ -42,7 +42,7 @@ class TestRegistry(unittest.TestCase):
             # Only there if true
             "no_own_terms",
             "not_available_as_obo",
-            "namespaceEmbeddedInLui",
+            "namespace_in_lui",
             # Only there if false
             # Lists
             "appears_in",
