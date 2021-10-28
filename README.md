@@ -131,6 +131,15 @@ ontologies in OBO Foundry and the OLS with the `normalize_prefix()` function.
 ```python
 from bioregistry import normalize_prefix
 
+# Doesn't affect canonical prefixes
+assert 'ncbitaxon' == normalize_prefix('ncbitaxon')
+
+# This works for uppercased prefixes, like:
+assert 'chebi' == normalize_prefix("CHEBI")
+
+# This works for mixed case prefies like
+assert 'fbbt' == normalize_prefix("FBbt")
+
 # This works for synonym prefixes, like:
 assert 'ncbitaxon' == normalize_prefix('taxonomy')
 
@@ -156,15 +165,18 @@ from bioregistry import parse_curie
 # Obvious for canonical CURIEs
 assert ('chebi', '1234') == parse_curie('chebi:1234')
 
-# Normalize common mistaken prefixes
-assert ('pubchem.compound', '1234') == parse_curie('pubchem:1234')
-
 # Normalize mixed case prefixes
 assert ('fbbt', '00007294') == parse_curie('FBbt:00007294')
+
+# Normalize common mistaken prefixes
+assert ('pubchem.compound', '1234') == parse_curie('pubchem:1234')
 
 # Remove the redundant prefix and normalize
 assert ('go', '1234') == parse_curie('GO:GO:1234')
 ```
+
+This will also apply the same normalization rules for prefixes from the previous
+section on normalizing prefixes for the remaining examples.
 
 ### Normalizing CURIEs
 
