@@ -72,7 +72,7 @@ class TestRegistry(unittest.TestCase):
             if not extra:
                 continue
             with self.subTest(prefix=prefix):
-                self.fail(f"had extra keys: {extra}")
+                self.fail(f"{prefix} had extra keys: {extra}")
 
     def test_names(self):
         """Test that all entries have a name."""

@@ -213,7 +213,10 @@ class Resource(BaseModel):
     #: A flag denoting if the namespace is embedded in the LUI (if this is true and it is not accompanied by a banana,
     #: assume that the banana is the prefix in all caps plus a colon, as is standard in OBO). Currently this flag
     #: is only used to override identifiers.org in the case of ``gramene.growthstage``, ``oma.hog``, and ``vario``.
-    namespaceEmbeddedInLui: Optional[bool]  # noqa:N815
+    namespace_in_lui: Optional[bool] = Field(
+        title="Namespace Embedded in Local Unique Identifier",
+        description="A way to override MIRIAM's namespaceEmbeddedInLui",
+    )
     #: A flag to denote if the resource mints its own identifiers. Omission or explicit marking as false means
     #: that the resource does have its own terms. This is most applicable to ontologies, specifically application
     #: ontologies, which only reuse terms from others. One example is ChIRO.
@@ -255,10 +258,6 @@ class Resource(BaseModel):
         description="An annotation of stylization of the prefix. This appears in OBO ontologies like"
         " FBbt as well as databases like NCBIGene. If it's not given, then assume that"
         " the normalized prefix used in the Bioregistry is canonical."
-    )
-    #: An override for MIRIAM's namespaceEmbeddedInLUI
-    namespace_in_lui: Optional[bool] = Field(
-        description="An override for MIRIAM's namespaceEmbeddedInLUI",
     )
 
     #: External data from Identifiers.org's MIRIAM Database
