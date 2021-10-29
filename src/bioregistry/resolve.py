@@ -225,11 +225,11 @@ def get_registry_map(metaprefix: str) -> Dict[str, str]:
     return manager.get_registry_map(metaprefix)
 
 
-def get_obofoundry_format(prefix: str) -> Optional[str]:
-    """Get the URL format for an OBO Foundry entry.
+def get_obofoundry_uri_prefix(prefix: str) -> Optional[str]:
+    """Get the URI prefix for an OBO Foundry entry.
 
     :param prefix: The prefix to lookup.
-    :returns: The OBO PURL URL prefix corresponding to the prefix, if mappable.
+    :returns: The OBO PURL URI prefix corresponding to the prefix, if mappable.
 
     >>> import bioregistry
     >>> bioregistry.get_obofoundry_uri_prefix('go')  # standard
@@ -332,11 +332,11 @@ def get_default_format(prefix: str) -> Optional[str]:
     return entry.get_default_format()
 
 
-def get_miriam_url_prefix(prefix: str) -> Optional[str]:
-    """Get the URL format for a MIRIAM entry.
+def get_miriam_uri_prefix(prefix: str) -> Optional[str]:
+    """Get the URI prefix for a MIRIAM entry.
 
     :param prefix: The prefix to lookup.
-    :returns: The Identifiers.org/MIRIAM URL format string, if available.
+    :returns: The Identifiers.org/MIRIAM URI prefix, if available.
 
     >>> import bioregistry
     >>> bioregistry.get_miriam_uri_prefix('ncbitaxon')
@@ -351,11 +351,11 @@ def get_miriam_url_prefix(prefix: str) -> Optional[str]:
     return resource.get_miriam_uri_prefix()
 
 
-def get_miriam_format(prefix: str) -> Optional[str]:
-    """Get the URL format for a MIRIAM entry.
+def get_miriam_uri_format(prefix: str) -> Optional[str]:
+    """Get the URI format for a MIRIAM entry.
 
     :param prefix: The prefix to lookup.
-    :returns: The Identifiers.org/MIRIAM URL format string, if available.
+    :returns: The Identifiers.org/MIRIAM URI format string, if available.
 
     >>> import bioregistry
     >>> bioregistry.get_miriam_uri_format('ncbitaxon')
@@ -370,8 +370,8 @@ def get_miriam_format(prefix: str) -> Optional[str]:
     return resource.get_miriam_uri_format()
 
 
-def get_obofoundry_formatter(prefix: str) -> Optional[str]:
-    """Get the URL format for an OBO Foundry entry.
+def get_obofoundry_uri_format(prefix: str) -> Optional[str]:
+    """Get the OBO Foundry URI format for this entry, if possible.
 
     :param prefix: The prefix to lookup.
     :returns: The OBO PURL format string, if available.
@@ -389,8 +389,8 @@ def get_obofoundry_formatter(prefix: str) -> Optional[str]:
     return resource.get_obofoundry_uri_format()
 
 
-def get_ols_url_prefix(prefix: str) -> Optional[str]:
-    """Get the URL format for an OLS entry.
+def get_ols_uri_prefix(prefix: str) -> Optional[str]:
+    """Get the URI format for an OLS entry.
 
     :param prefix: The prefix to lookup.
     :returns: The OLS format string, if available.
@@ -410,8 +410,8 @@ def get_ols_url_prefix(prefix: str) -> Optional[str]:
     return resource.get_ols_uri_prefix()
 
 
-def get_ols_format(prefix: str) -> Optional[str]:
-    """Get the URL format for an OLS entry.
+def get_ols_uri_format(prefix: str) -> Optional[str]:
+    """Get the URI format for an OLS entry.
 
     :param prefix: The prefix to lookup.
     :returns: The OLS format string, if available.
@@ -431,11 +431,11 @@ def get_ols_format(prefix: str) -> Optional[str]:
     return resource.get_ols_uri_format()
 
 
-def get_prefixcommons_format(prefix: str) -> Optional[str]:
-    """Get the URL format for a Prefix Commons entry.
+def get_prefixcommons_uri_format(prefix: str) -> Optional[str]:
+    """Get the URI format for a Prefix Commons entry.
 
     :param prefix: The prefix to lookup.
-    :returns: The Prefix Commons URL format string, if available.
+    :returns: The Prefix Commons URI format string, if available.
 
     >>> import bioregistry
     >>> bioregistry.get_prefixcommons_uri_format('hgmd')

@@ -280,7 +280,7 @@ class TestRegistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_mappings("nope"))
         self.assertIsNone(bioregistry.get_fairsharing_prefix("nope"))
         self.assertIsNone(bioregistry.get_obofoundry_prefix("nope"))
-        self.assertIsNone(bioregistry.get_obofoundry_format("nope"))
+        self.assertIsNone(bioregistry.get_obofoundry_uri_prefix("nope"))
         self.assertIsNone(bioregistry.get_obo_download("nope"))
         self.assertIsNone(bioregistry.get_owl_download("nope"))
         self.assertIsNone(bioregistry.get_ols_iri("nope", ...))
@@ -304,7 +304,7 @@ class TestRegistry(unittest.TestCase):
         self.assertIsInstance(bioregistry.get_description("chebi"), str)
 
         # No OBO Foundry format for dbSNP b/c not in OBO Foundry (and probably never will be)
-        self.assertIsNone(bioregistry.get_obofoundry_format("dbsnp"))
+        self.assertIsNone(bioregistry.get_obofoundry_uri_prefix("dbsnp"))
 
         self.assertEqual("FAIRsharing.mya1ff", bioregistry.get_fairsharing_prefix("ega.dataset"))
 
