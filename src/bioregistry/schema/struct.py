@@ -213,7 +213,10 @@ class Resource(BaseModel):
     #: A flag denoting if the namespace is embedded in the LUI (if this is true and it is not accompanied by a banana,
     #: assume that the banana is the prefix in all caps plus a colon, as is standard in OBO). Currently this flag
     #: is only used to override identifiers.org in the case of ``gramene.growthstage``, ``oma.hog``, and ``vario``.
-    namespaceEmbeddedInLui: Optional[bool]  # noqa:N815
+    namespace_in_lui: Optional[bool] = Field(
+        title="Namespace Embedded in Local Unique Identifier",
+        description="A way to override MIRIAM's namespaceEmbeddedInLui",
+    )
     #: A flag to denote if the resource mints its own identifiers. Omission or explicit marking as false means
     #: that the resource does have its own terms. This is most applicable to ontologies, specifically application
     #: ontologies, which only reuse terms from others. One example is ChIRO.
@@ -365,6 +368,8 @@ class Resource(BaseModel):
         """
         if self.banana is not None:
             return self.banana
+        if self.namespace_in_lui is False:
+            return None  # override for a few situations
         obo_preferred_prefix = self.get_obo_preferred_prefix()
         if obo_preferred_prefix is not None:
             return obo_preferred_prefix
@@ -494,8 +499,10 @@ class Resource(BaseModel):
             return None
         return re.compile(pattern)
 
-    def namespace_in_lui(self) -> Optional[bool]:
+    def get_namespace_in_lui(self) -> Optional[bool]:
         """Check if the namespace should appear in the LUI."""
+        if self.namespace_in_lui is not None:
+            return self.namespace_in_lui
         return self.get_prefix_key("namespaceEmbeddedInLui", ("miriam",))
 
     def get_homepage(self) -> Optional[str]:
@@ -643,7 +650,7 @@ class Resource(BaseModel):
         miriam_prefix = self.get_identifiers_org_prefix()
         if miriam_prefix is None:
             return None
-        if self.namespace_in_lui():
+        if self.get_namespace_in_lui():
             # not exact solution, some less common ones don't use capitalization
             # align with the banana solution
             miriam_prefix = miriam_prefix.upper()

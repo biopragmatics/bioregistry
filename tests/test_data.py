@@ -42,7 +42,7 @@ class TestRegistry(unittest.TestCase):
             # Only there if true
             "no_own_terms",
             "not_available_as_obo",
-            "namespaceEmbeddedInLui",
+            "namespace_in_lui",
             # Only there if false
             # Lists
             "appears_in",
@@ -72,7 +72,7 @@ class TestRegistry(unittest.TestCase):
             if not extra:
                 continue
             with self.subTest(prefix=prefix):
-                self.fail(f"had extra keys: {extra}")
+                self.fail(f"{prefix} had extra keys: {extra}")
 
     def test_names(self):
         """Test that all entries have a name."""
@@ -249,6 +249,21 @@ class TestRegistry(unittest.TestCase):
         self.assertTrue(bioregistry.has_no_terms("chiro"), msg="CHIRO has no terms")
         self.assertFalse(
             bioregistry.has_no_terms("nope"), msg="Missing prefix should be false by definition"
+        )
+
+    def test_banana(self):
+        """Tests for bananas."""
+        # Simple scenario
+        self.assertIsNone(bioregistry.get_banana("pdb"))
+
+        # OBO Foundry scenario where there should not be a banana
+        self.assertIsNone(
+            bioregistry.get_banana("ncit"),
+            msg="Even though this is OBO foundry, it should not have a banana.",
+        )
+        self.assertIsNone(
+            bioregistry.get_banana("ncbitaxon"),
+            msg="Even though this is OBO foundry, it should not have a banana.",
         )
 
     def test_get_nope(self):
@@ -455,7 +470,7 @@ class TestRegistry(unittest.TestCase):
         to support actual use cases.
         """
         for prefix, resource in self.registry.items():
-            if not resource.namespace_in_lui():
+            if not resource.get_namespace_in_lui():
                 continue
             with self.subTest(prefix=prefix):
                 self.assertIsNotNone(

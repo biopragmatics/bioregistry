@@ -18,7 +18,7 @@ __all__ = [
     "get_mappings",
     "get_synonyms",
     "get_pattern",
-    "namespace_in_lui",
+    "get_namespace_in_lui",
     "get_example",
     "has_no_terms",
     "is_deprecated",
@@ -130,12 +130,12 @@ def get_pattern(prefix: str) -> Optional[str]:
     return entry.get_pattern()
 
 
-def namespace_in_lui(prefix: str) -> Optional[bool]:
+def get_namespace_in_lui(prefix: str) -> Optional[bool]:
     """Check if the namespace should appear in the LUI."""
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.namespace_in_lui()
+    return entry.get_namespace_in_lui()
 
 
 def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
