@@ -120,7 +120,7 @@ def get_default_iri(prefix: str, identifier: str) -> Optional[str]:
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get_default_url(identifier)
+    return entry.get_default_uri(identifier)
 
 
 def get_providers(prefix: str, identifier: str) -> Mapping[str, str]:

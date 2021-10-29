@@ -164,21 +164,21 @@ class ResourceManager:
         remapping: Optional[Mapping[str, str]] = None,
         use_preferred: bool = False,
     ) -> Mapping[str, str]:
-        """Get a mapping from Bioregistry prefixes to their prefix URLs via :func:`get_format_url`.
+        """Get a mapping from Bioregistry prefixes to their URI prefixes .
 
-        :param priority: A priority list for how to generate prefix URLs.
+        :param priority: A priority list for how to generate URI prefixes.
         :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
-            the same URL prefix?
-        :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
+            the same URI prefix?
+        :param remapping: A mapping from Bioregistry prefixes to preferred prefixes.
         :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
-        :return: A mapping from prefixes to prefix URLs.
+        :return: A mapping from prefixes to URI prefixes.
         """
         it = self._iter_prefix_map(
             priority=priority, include_synonyms=include_synonyms, use_preferred=use_preferred
         )
         if not remapping:
             return dict(it)
-        return {remapping.get(prefix, prefix): prefix_url for prefix, prefix_url in it}
+        return {remapping.get(prefix, prefix): uri_prefix for prefix, uri_prefix in it}
 
     def _iter_prefix_map(
         self,
@@ -188,17 +188,17 @@ class ResourceManager:
         use_preferred: bool = False,
     ) -> Iterable[Tuple[str, str]]:
         for prefix, resource in self.registry.items():
-            prefix_url = resource.get_uri_prefix(priority=priority)
-            if prefix_url is None:
+            uri_prefix = resource.get_uri_prefix(priority=priority)
+            if uri_prefix is None:
                 continue
             if use_preferred:
                 preferred_prefix = resource.get_preferred_prefix()
                 if preferred_prefix is not None:
                     prefix = preferred_prefix
-            yield prefix, prefix_url
+            yield prefix, uri_prefix
             if include_synonyms:
                 for synonym in resource.get_synonyms():
-                    yield synonym, prefix_url
+                    yield synonym, uri_prefix
 
     def get_prefix_list(self, **kwargs) -> List[Tuple[str, str]]:
         """Get the default priority prefix list."""
