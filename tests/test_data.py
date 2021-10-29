@@ -5,7 +5,6 @@
 import logging
 import unittest
 from collections import defaultdict
-from itertools import permutations
 from typing import Mapping
 
 import bioregistry

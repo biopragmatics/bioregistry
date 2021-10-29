@@ -232,16 +232,16 @@ def get_obofoundry_format(prefix: str) -> Optional[str]:
     :returns: The OBO PURL URL prefix corresponding to the prefix, if mappable.
 
     >>> import bioregistry
-    >>> bioregistry.get_obofoundry_format('go')  # standard
+    >>> bioregistry.get_obofoundry_uri_prefix('go')  # standard
     'http://purl.obolibrary.org/obo/GO_'
-    >>> bioregistry.get_obofoundry_format('ncbitaxon')  # mixed case
+    >>> bioregistry.get_obofoundry_uri_prefix('ncbitaxon')  # mixed case
     'http://purl.obolibrary.org/obo/NCBITaxon_'
-    >>> assert bioregistry.get_obofoundry_format('sty') is None
+    >>> assert bioregistry.get_obofoundry_uri_prefix('sty') is None
     """
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get_obofoundry_format()
+    return entry.get_obofoundry_uri_prefix()
 
 
 def get_ols_prefix(prefix: str) -> Optional[str]:
@@ -377,16 +377,16 @@ def get_obofoundry_formatter(prefix: str) -> Optional[str]:
     :returns: The OBO PURL format string, if available.
 
     >>> import bioregistry
-    >>> bioregistry.get_obofoundry_formatter('go')  # standard
+    >>> bioregistry.get_obofoundry_uri_format('go')  # standard
     'http://purl.obolibrary.org/obo/GO_$1'
-    >>> bioregistry.get_obofoundry_formatter('ncbitaxon')  # mixed case
+    >>> bioregistry.get_obofoundry_uri_format('ncbitaxon')  # mixed case
     'http://purl.obolibrary.org/obo/NCBITaxon_$1'
-    >>> assert bioregistry.get_obofoundry_formatter('sty') is None
+    >>> assert bioregistry.get_obofoundry_uri_format('sty') is None
     """
     resource = get_resource(prefix)
     if resource is None:
         return None
-    return resource.get_obofoundry_formatter()
+    return resource.get_obofoundry_uri_format()
 
 
 def get_ols_url_prefix(prefix: str) -> Optional[str]:
@@ -438,13 +438,13 @@ def get_prefixcommons_format(prefix: str) -> Optional[str]:
     :returns: The Prefix Commons URL format string, if available.
 
     >>> import bioregistry
-    >>> bioregistry.get_prefixcommons_format('hgmd')
+    >>> bioregistry.get_prefixcommons_uri_format('hgmd')
     'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
     """
     resource = get_resource(prefix)
     if resource is None:
         return None
-    return resource.get_prefixcommons_format()
+    return resource.get_prefixcommons_uri_format()
 
 
 def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:

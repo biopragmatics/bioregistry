@@ -11,23 +11,22 @@
 import warnings
 from typing import List, Mapping, Optional, Sequence, Tuple
 
-from .resolve import get_resource, manager
+from .resolve import manager
 
 __all__ = [
     "get_uri_format",
-    "get_format_url",
+    "get_uri_prefix",
     "get_format_urls",
-    "prepare_prefix_list",
     "get_prefix_map",
     "get_prefix_list",
 ]
 
 
 def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Optional[str]:
-    """Get the URL format string for the given prefix, if it's available.
+    """Get the URI format string for the given prefix, if it's available.
 
     :param prefix: The name of the prefix (possibly unnormalized)
-    :param priority: The priority order of metaresources to use for format URL lookup.
+    :param priority: The priority order of metaresources to use for URI format string lookup.
         The default is:
 
         1. Default first party (from bioregistry, prefix commons, or miriam)
@@ -35,7 +34,7 @@ def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
         3. Prefix Commons
         4. Identifiers.org / MIRIAM
         5. OLS
-    :return: The best URL format string, where the ``$1`` should be replaced by the
+    :return: The best URI format string, where the ``$1`` should be replaced by the
         identifier. ``$1`` could potentially appear multiple times.
 
     >>> import bioregistry
@@ -44,7 +43,7 @@ def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
 
     If you want to specify a different priority order, you can do so with the ``priority`` keyword. This
     is of particular interest to ontologists and semantic web people who might want to use ``purl.obolibrary.org``
-    URL prefixes over the URL prefixes corresponding to the first-party providers for each resource (e.g., the
+    URI prefixes over the URI prefixes corresponding to the first-party providers for each resource (e.g., the
     ChEBI example above). Do so like:
 
     >>> import bioregistry
@@ -54,22 +53,19 @@ def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
     return manager.get_uri_format(prefix=prefix, priority=priority)
 
 
-def get_format_url(prefix: str, priority: Optional[Sequence[str]] = None) -> Optional[str]:
-    """Get a well-formed format URL for usage in a prefix map.
+def get_uri_prefix(prefix: str, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+    """Get a well-formed URI prefix for usage in a prefix map.
 
     :param prefix: The prefix to lookup.
     :param priority: The prioirty order for :func:`get_format`.
-    :return: The URL prefix. Similar to what's returned by :func:`bioregistry.get_format`, but
+    :return: The URI prefix. Similar to what's returned by :func:`bioregistry.get_format`, but
         it MUST have only one ``$1`` and end with ``$1`` to use thie function.
 
     >>> import bioregistry
-    >>> bioregistry.get_format_url('chebi')
+    >>> bioregistry.get_uri_prefix('chebi')
     'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:'
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_format_url(priority=priority)
+    return manager.get_uri_prefix(prefix=prefix, priority=priority)
 
 
 def get_prefix_map(
@@ -79,14 +75,14 @@ def get_prefix_map(
     remapping: Optional[Mapping[str, str]] = None,
     use_preferred: bool = False,
 ) -> Mapping[str, str]:
-    """Get a mapping from Bioregistry prefixes to their prefix URLs via :func:`get_format_url`.
+    """Get a mapping from Bioregistry prefixes to their URI prefixes.
 
-    :param priority: A priority list for how to generate prefix URLs.
+    :param priority: A priority list for how to generate URI prefix.
     :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
-        the same URL prefix?
+        the same URI prefix?
     :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
     :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
-    :return: A mapping from prefixes to prefix URLs.
+    :return: A mapping from prefixes to URI prefixes.
     """
     return manager.get_prefix_map(
         priority=priority,
@@ -97,30 +93,11 @@ def get_prefix_map(
 
 
 def get_format_urls(**kwargs) -> Mapping[str, str]:
-    """Get a mapping from Bioregistry prefixes to their prefix URLs via :func:`get_format_url`."""
+    """Get a mapping from Bioregistry prefixes to their URI prefixes."""
     warnings.warn("deprecated", DeprecationWarning)
     return get_prefix_map(**kwargs)
 
 
-def _sort_key(kv: Tuple[str, str]) -> int:
-    """Return a value appropriate for sorting a pair of prefix/IRI."""
-    return -len(kv[0])
-
-
-def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
-    """Prepare a priority prefix list from a prefix map."""
-    rv = []
-    for prefix, url in sorted(prefix_map.items(), key=_sort_key):
-        rv.append((prefix, url))
-        if url.startswith("https://"):
-            rv.append((prefix, "http://" + url[8:]))
-        elif url.startswith("http://"):
-            rv.append((prefix, "https://" + url[7:]))
-    return rv
-
-
 def get_prefix_list(**kwargs) -> List[Tuple[str, str]]:
     """Get the default priority prefix list."""
-    #: A prefix map in reverse sorted order based on length of the URL
-    #: in order to avoid conflicts of sub-URIs (thanks to Nico Matentzoglu for the idea)
-    return prepare_prefix_list(get_prefix_map(**kwargs))
+    return manager.get_prefix_list(**kwargs)

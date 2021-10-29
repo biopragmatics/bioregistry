@@ -576,47 +576,47 @@ class Resource(BaseModel):
         """
         return self.get_mapped_prefix("obofoundry")
 
-    def get_obofoundry_format(self) -> Optional[str]:
+    def get_obofoundry_uri_prefix(self) -> Optional[str]:
         """Get the URL format for an OBO Foundry entry.
 
-        :returns: The OBO PURL URL prefix corresponding to the prefix, if mappable.
+        :returns: The OBO PURL URI prefix corresponding to the prefix, if mappable.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("go").get_obofoundry_format()  # standard
+        >>> get_resource("go").get_obofoundry_uri_prefix()  # standard
         'http://purl.obolibrary.org/obo/GO_'
-        >>> get_resource("ncbitaxon").get_obofoundry_format()  # mixed case
+        >>> get_resource("ncbitaxon").get_obofoundry_uri_prefix()  # mixed case
         'http://purl.obolibrary.org/obo/NCBITaxon_'
-        >>> assert get_resource("sty").get_obofoundry_format() is None
+        >>> assert get_resource("sty").get_obofoundry_uri_prefix() is None
         """
         obo_prefix = self.get_obofoundry_prefix()
         if obo_prefix is None:
             return None
         return f"http://purl.obolibrary.org/obo/{obo_prefix}_"
 
-    def get_obofoundry_formatter(self) -> Optional[str]:
+    def get_obofoundry_uri_format(self) -> Optional[str]:
         """Get the URL format for an OBO Foundry entry.
 
         :returns: The OBO PURL format string, if available.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("go").get_obofoundry_formatter()  # standard
+        >>> get_resource("go").get_obofoundry_uri_format()  # standard
         'http://purl.obolibrary.org/obo/GO_$1'
-        >>> get_resource("ncbitaxon").get_obofoundry_formatter()  # mixed case
+        >>> get_resource("ncbitaxon").get_obofoundry_uri_format()  # mixed case
         'http://purl.obolibrary.org/obo/NCBITaxon_$1'
-        >>> assert get_resource("sty").get_obofoundry_formatter() is None
+        >>> assert get_resource("sty").get_obofoundry_uri_format() is None
         """
-        rv = self.get_obofoundry_format()
+        rv = self.get_obofoundry_uri_prefix()
         if rv is None:
             return None
         return f"{rv}$1"
 
-    def get_prefixcommons_format(self) -> Optional[str]:
-        """Get the URL format for a Prefix Commons entry.
+    def get_prefixcommons_uri_format(self) -> Optional[str]:
+        """Get the Prefix Commons URI format string for this entry, if available.
 
-        :returns: The Prefix Commons URL format string, if available.
+        :returns: The Prefix Commons URI format string, if available.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("hgmd").get_prefixcommons_format()
+        >>> get_resource("hgmd").get_prefixcommons_uri_format()
         'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
         """
         return self.get_external("prefixcommons").get("formatter")
@@ -674,16 +674,14 @@ class Resource(BaseModel):
         return f"{miriam_url_prefix}$1"
 
     def get_nt2_uri_prefix(self) -> Optional[str]:
-        """Get the URL format for a N2T entry.
-
-        :returns: The N2T URI prefix, if available.
-        """
+        """Get the Name-to-Thing URI prefix for this entry, if possible."""
         n2t_prefix = self.get_mapped_prefix("n2t")
         if n2t_prefix is None:
             return None
         return f"https://n2t.net/{n2t_prefix}:"
 
-    def get_n2t_format(self):
+    def get_n2t_uri_format(self):
+        """Get the Name-to-Thing URI format string, if available."""
         n2t_uri_prefix = self.get_nt2_uri_prefix()
         if n2t_uri_prefix is None:
             return None
@@ -714,7 +712,7 @@ class Resource(BaseModel):
         ols_prefix = self.get_ols_prefix()
         if ols_prefix is None:
             return None
-        obo_format = self.get_obofoundry_format()
+        obo_format = self.get_obofoundry_uri_prefix()
         if obo_format:
             return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_format}"
         # TODO find examples, like for EFO on when it's not based on OBO Foundry PURLs
@@ -741,10 +739,10 @@ class Resource(BaseModel):
 
     URI_FORMATTERS: ClassVar[Mapping[str, Callable[["Resource"], Optional[str]]]] = {
         "default": get_default_format,
-        "obofoundry": get_obofoundry_formatter,
-        "prefixcommons": get_prefixcommons_format,
+        "obofoundry": get_obofoundry_uri_format,
+        "prefixcommons": get_prefixcommons_uri_format,
         "miriam": get_miriam_format,
-        "n2t": get_n2t_format,
+        "n2t": get_n2t_uri_format,
         "ols": get_ols_format,
         # "bioportal": lambda x: ...,
     }
@@ -802,15 +800,15 @@ class Resource(BaseModel):
                 return rv
         return None
 
-    def get_format_url(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
-        """Get a well-formed format URL for usage in a prefix map.
+    def get_uri_prefix(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+        """Get a well-formed URI prefix, if available.
 
         :param priority: The prioirty order for :func:`get_format`.
         :return: The URL prefix. Similar to what's returned by :func:`bioregistry.get_format`, but
             it MUST have only one ``$1`` and end with ``$1`` to use thie function.
 
         >>> import bioregistry
-        >>> bioregistry.get_format_url('chebi')
+        >>> bioregistry.get_uri_prefix('chebi')
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:'
         """
         fmt = self.get_uri_format(priority=priority)
@@ -1071,11 +1069,11 @@ class Collection(BaseModel):
 
     def as_prefix_map(self) -> Mapping[str, str]:
         """Get the prefix map for a given collection."""
-        from ..uri_format import get_format_url
+        from ..uri_format import get_uri_prefix
 
         rv = {}
         for prefix in self.resources:
-            fmt = get_format_url(prefix)
+            fmt = get_uri_prefix(prefix)
             if fmt is not None:
                 rv[prefix] = fmt
         return rv

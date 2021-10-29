@@ -5,7 +5,8 @@
 from typing import List, Mapping, Optional, Tuple, Union
 
 from .resolve import parse_curie
-from .uri_format import get_prefix_map, prepare_prefix_list
+from .resource_manager import prepare_prefix_list
+from .uri_format import get_prefix_map
 
 __all__ = [
     "curie_from_iri",

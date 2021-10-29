@@ -3,7 +3,7 @@
 """A class-based client to a metaregistry."""
 
 import logging
-from typing import Any, Dict, Iterable, Mapping, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple, Union
 
 from .schema import Resource
 from .utils import NormDict, read_registry, write_registry
@@ -142,11 +142,19 @@ class ResourceManager:
                 rv[prefix] = version
         return rv
 
-    def get_uri_format(self, prefix, priority=None):
+    def get_uri_format(self, prefix, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+        """Get the URI format string for the given prefix, if it's available."""
         entry = self.get_resource(prefix)
         if entry is None:
             return None
         return entry.get_uri_format(priority=priority)
+
+    def get_uri_prefix(self, prefix, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+        """Get a well-formed URI prefix, if available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_uri_prefix(priority=priority)
 
     def get_prefix_map(
         self,
@@ -180,7 +188,7 @@ class ResourceManager:
         use_preferred: bool = False,
     ) -> Iterable[Tuple[str, str]]:
         for prefix, resource in self.registry.items():
-            prefix_url = resource.get_format_url(priority=priority)
+            prefix_url = resource.get_uri_prefix(priority=priority)
             if prefix_url is None:
                 continue
             if use_preferred:
@@ -191,3 +199,26 @@ class ResourceManager:
             if include_synonyms:
                 for synonym in resource.get_synonyms():
                     yield synonym, prefix_url
+
+    def get_prefix_list(self, **kwargs) -> List[Tuple[str, str]]:
+        """Get the default priority prefix list."""
+        #: A prefix map in reverse sorted order based on length of the URI prefix
+        #: in order to avoid conflicts of sub-URIs (thanks to Nico Matentzoglu for the idea)
+        return prepare_prefix_list(self.get_prefix_map(**kwargs))
+
+
+def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
+    """Prepare a priority prefix list from a prefix map."""
+    rv = []
+    for prefix, uri_prefix in sorted(prefix_map.items(), key=_sort_key):
+        rv.append((prefix, uri_prefix))
+        if uri_prefix.startswith("https://"):
+            rv.append((prefix, "http://" + uri_prefix[8:]))
+        elif uri_prefix.startswith("http://"):
+            rv.append((prefix, "https://" + uri_prefix[7:]))
+    return rv
+
+
+def _sort_key(kv: Tuple[str, str]) -> int:
+    """Return a value appropriate for sorting a pair of prefix/IRI."""
+    return -len(kv[0])
