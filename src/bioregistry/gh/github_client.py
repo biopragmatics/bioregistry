@@ -28,7 +28,7 @@ def get_issues_with_pr(issue_ids: Iterable[int], token: Optional[str] = None) ->
     return {
         issue_id
         for pull, issue_id in itt.product(pulls, issue_ids)
-        if f"Closes #{issue_id}" in pull["body"]
+        if f"Closes #{issue_id}" in pull.get("body", "")
     }
 
 
