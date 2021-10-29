@@ -638,7 +638,7 @@ class Resource(BaseModel):
     def get_miriam_url_prefix(self) -> Optional[str]:
         """Get the URL format for a MIRIAM entry.
 
-        :returns: The Identifiers.org/MIRIAM URL format string, if available.
+        :returns: The Identifiers.org/MIRIAM URI prefix, if available.
 
         >>> from bioregistry import get_resource
         >>> get_resource('ncbitaxon').get_miriam_url_prefix()
@@ -672,6 +672,22 @@ class Resource(BaseModel):
         if miriam_url_prefix is None:
             return None
         return f"{miriam_url_prefix}$1"
+
+    def get_nt2_uri_prefix(self) -> Optional[str]:
+        """Get the URL format for a N2T entry.
+
+        :returns: The N2T URI prefix, if available.
+        """
+        n2t_prefix = self.get_mapped_prefix("n2t")
+        if n2t_prefix is None:
+            return None
+        return f"https://n2t.net/{n2t_prefix}:"
+
+    def get_n2t_format(self):
+        n2t_uri_prefix = self.get_nt2_uri_prefix()
+        if n2t_uri_prefix is None:
+            return None
+        return f"{n2t_uri_prefix}$1"
 
     def get_scholia_prefix(self):
         """Get the Scholia prefix, if available."""
@@ -728,7 +744,9 @@ class Resource(BaseModel):
         "obofoundry": get_obofoundry_formatter,
         "prefixcommons": get_prefixcommons_format,
         "miriam": get_miriam_format,
+        "n2t": get_n2t_format,
         "ols": get_ols_format,
+        # "bioportal": lambda x: ...,
     }
 
     #: The default priority for generating URIs
@@ -737,25 +755,30 @@ class Resource(BaseModel):
         "obofoundry",
         "prefixcommons",
         "miriam",
+        "n2t",
         "ols",
+        # "bioportal",
     )
 
-    def get_format(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
-        """Get the URL format string for the given prefix, if it's available.
+    def get_uri_format(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+        """Get the URI format string for the given prefix, if it's available.
 
-        :param priority: The priority order of metaresources to use for format URL lookup.
+        :param priority: The priority order of metaresources to use for format URI lookup.
             The default is:
 
             1. Default first party (from bioregistry, prefix commons, or miriam)
             2. OBO Foundry
             3. Prefix Commons
-            4. Identifiers.org / MIRIAM
-            5. OLS
-        :return: The best URL format string, where the ``$1`` should be replaced by the
-            identifier. ``$1`` could potentially appear multiple times.
+            4. Identifiers.org
+            5. N2T
+            6. OLS
+            7. BioPortal
+
+        :return: The best URI format string, where the ``$1`` should be replaced by a
+            local unique identifier. ``$1`` could potentially appear multiple times.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("chebi").get_format()
+        >>> get_resource("chebi").get_uri_format()
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1'
 
         If you want to specify a different priority order, you can do so with the ``priority`` keyword. This
@@ -764,12 +787,16 @@ class Resource(BaseModel):
         ChEBI example above). Do so like:
 
         >>> from bioregistry import get_resource
-        >>> get_resource("chebi").get_format(priority=['obofoundry', 'bioregistry', 'prefixcommons', 'miriam', 'ols'])
+        >>> priority = ['obofoundry', 'bioregistry', 'prefixcommons', 'miriam', 'ols']
+        >>> get_resource("chebi").get_uri_format(priority=priority)
         'http://purl.obolibrary.org/obo/CHEBI_$1'
         """
         # TODO add examples in doctests for prefix commons, identifiers.org, and OLS
         for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
-            formatter = self.URI_FORMATTERS[metaprefix]
+            formatter = self.URI_FORMATTERS.get(metaprefix)
+            if formatter is None:
+                logger.warning("count not get formatter for %s", metaprefix)
+                continue
             rv = formatter(self)
             if rv is not None:
                 return rv
@@ -786,7 +813,7 @@ class Resource(BaseModel):
         >>> bioregistry.get_format_url('chebi')
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:'
         """
-        fmt = self.get_format(priority=priority)
+        fmt = self.get_uri_format(priority=priority)
         if fmt is None:
             logging.debug("term missing formatter: %s", self.name)
             return None

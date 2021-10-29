@@ -14,7 +14,7 @@ from typing import List, Mapping, Optional, Sequence, Tuple
 from .resolve import get_resource, manager
 
 __all__ = [
-    "get_format",
+    "get_uri_format",
     "get_format_url",
     "get_format_urls",
     "prepare_prefix_list",
@@ -23,7 +23,7 @@ __all__ = [
 ]
 
 
-def get_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Optional[str]:
     """Get the URL format string for the given prefix, if it's available.
 
     :param prefix: The name of the prefix (possibly unnormalized)
@@ -39,7 +39,7 @@ def get_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Optiona
         identifier. ``$1`` could potentially appear multiple times.
 
     >>> import bioregistry
-    >>> bioregistry.get_format('chebi')
+    >>> bioregistry.get_uri_format('chebi')
     'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1'
 
     If you want to specify a different priority order, you can do so with the ``priority`` keyword. This
@@ -48,13 +48,10 @@ def get_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Optiona
     ChEBI example above). Do so like:
 
     >>> import bioregistry
-    >>> bioregistry.get_format('chebi', priority=['obofoundry', 'bioregistry', 'prefixcommons', 'miriam', 'ols'])
+    >>> bioregistry.get_uri_format('chebi', priority=['obofoundry', 'bioregistry', 'prefixcommons', 'miriam', 'ols'])
     'http://purl.obolibrary.org/obo/CHEBI_$1'
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_format(priority=priority)
+    return manager.get_uri_format(prefix=prefix, priority=priority)
 
 
 def get_format_url(prefix: str, priority: Optional[Sequence[str]] = None) -> Optional[str]:

@@ -142,6 +142,12 @@ class ResourceManager:
                 rv[prefix] = version
         return rv
 
+    def get_uri_format(self, prefix, priority=None):
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_uri_format(priority=priority)
+
     def get_prefix_map(
         self,
         *,

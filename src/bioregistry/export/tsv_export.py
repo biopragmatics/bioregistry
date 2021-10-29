@@ -8,7 +8,7 @@ import os
 import click
 
 from ..constants import DOCS_DATA
-from ..uri_format import get_format
+from ..uri_format import get_uri_format
 from ..utils import read_collections, read_metaregistry, read_registry
 
 
@@ -127,7 +127,7 @@ def get_registry_rows():
                 data.get_pattern(),
                 data.get_example(),
                 data.get_email(),
-                get_format(prefix),
+                get_uri_format(prefix),
                 data.download_owl,
                 data.download_obo,
                 "|".join(sorted(data.get_synonyms())),
