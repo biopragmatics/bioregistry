@@ -7164,6 +7164,28 @@ cob:
     name: Core Ontology for Biology and Biomedicine
     prefix: COB
     url: http://www.ontobee.org/ontology/COB
+coconut:
+  comment: '@mSorok is the dev of the resource, hope I got it right!'
+  contributor:
+    email: null
+    name: Adriano Rutz
+    orcid: 0000-0003-0443-9902
+  description: COCONUT (COlleCtion of Open Natural ProdUcTs) Online is an open source
+    project for Natural Products (NPs) storage, search and analysis. It gathers data
+    from over 50 open NP resources and is available free of charge and without any
+    restriction. Each entry corresponds to a "flat" NP structure, and is associated,
+    when available, to their known stereochemical forms, literature, organisms that
+    produce them, natural geographical presence and diverse pre-computed molecular
+    properties.
+  example: CNP0171505
+  homepage: https://coconut.naturalproducts.net
+  name: COlleCtion of Open Natural ProdUcTs
+  pattern: ^CNP\d{7}$
+  reviewer:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  url: https://coconut.naturalproducts.net/compound/coconut_id/$1
 cog:
   biolink:
     formatter: https://www.ncbi.nlm.nih.gov/research/cog-project/$1
@@ -15902,8 +15924,8 @@ go:
     license: http://creativecommons.org/licenses/by/4.0/
     name: Gene Ontology
     prefix: go
-    version: '2021-09-01'
-    version.iri: http://purl.obolibrary.org/obo/go/releases/2021-09-01/go.owl
+    version: '2021-10-26'
+    version.iri: http://purl.obolibrary.org/obo/go/releases/2021-10-26/go.owl
   ontobee:
     library: Foundry
     name: Gene Ontology
@@ -16400,7 +16422,7 @@ gramene.growthstage:
     prefix: gramene.growthstage
     provider_url: http://www.gramene.org/db/ontology/search?id=GRO:$1
   name: Gramene Growth Stage Ontology
-  namespaceEmbeddedInLui: false
+  namespace_in_lui: false
   pattern: ^\d{7}$
   prefixcommons:
     formatter: http://identifiers.org/gramene.growthstage/$1
@@ -22211,6 +22233,29 @@ loinc:
     bioportal: LOINC
   name: Logical Observation Identifiers Names and Codes
   url: https://loinc.org/$1
+lotus:
+  comment: IDs are actually leading to the structural part of LOTUS only, which might
+    change in the future. Will adapt the regexp in case.
+  contact: adriano.rutz@ik.me
+  contributor:
+    email: null
+    name: Adriano Rutz
+    orcid: 0000-0003-0443-9902
+  description: "LOTUS, actually, represents the most exhaustive resource of documented\
+    \ structure-organism pairs. Within the frame of current computational approaches\
+    \ in Natural Produts\u2019s research and related fields, these documented structure-organism\
+    \ pairs should allow a more complete understanding of organisms and their chemistry."
+  example: LTS0004651
+  homepage: https://lotus.naturalproducts.net
+  name: LOTUS Initiative for Open Natural Products Research
+  pattern: ^LTS\d{7}$
+  reviewer:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  url: https://lotus.naturalproducts.net/compound/lotus_id/$1
+  wikidata:
+    database: Q104225190
 lrg:
   mappings:
     miriam: lrg
@@ -25769,7 +25814,7 @@ mp:
     name: The Mammalian Phenotype Ontology
     prefix: mp
     version: '2019-11-11'
-    version.iri: http://purl.obolibrary.org/obo/mp/releases/2021-10-15
+    version.iri: http://purl.obolibrary.org/obo/mp/releases/2021-10-26
   ontobee:
     library: Library
     name: Mammalian Phenotype Ontology
@@ -27005,6 +27050,7 @@ ncbitaxon:
     pattern: ^\d+$
     prefix: taxonomy
     provider_url: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1
+  namespace_in_lui: false
   ncbi:
     example: '4932'
     homepage: https://www.ncbi.nlm.nih.gov/taxonomy
@@ -27150,6 +27196,7 @@ ncit:
     prefix: ncit
     provider_url: http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1
   name: NCI Thesaurus
+  namespace_in_lui: false
   obofoundry:
     contact: haendel@ohsu.edu
     contact.label: Melissa Haendel
@@ -29269,7 +29316,7 @@ om:
     license: https://creativecommons.org/licenses/by/4.0/
     name: Ontology of units of Measure (OM)
     prefix: om
-    version: 2.0.31
+    version: 2.0.34
 oma.grp:
   mappings:
     miriam: oma.grp
@@ -29329,7 +29376,7 @@ oma.hog:
     prefix: oma.hog
     provider_url: https://omabrowser.org/oma/hog/resolve/HOG:$1/
     sampleId: HOG:0459895
-  namespaceEmbeddedInLui: false
+  namespace_in_lui: false
   pattern: ^[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
   url: https://omabrowser.org/oma/hog/HOG:$1
 oma.protein:
@@ -36230,8 +36277,8 @@ ro:
     license: https://creativecommons.org/publicdomain/zero/1.0/
     name: OBO Relations Ontology
     prefix: ro
-    version: '2021-08-31'
-    version.iri: http://purl.obolibrary.org/obo/ro/releases/2021-08-31/ro.owl
+    version: '2021-10-27'
+    version.iri: http://purl.obolibrary.org/obo/ro/releases/2021-10-27/ro.owl
   ontobee:
     library: Library
     name: Relation Ontology
@@ -41803,7 +41850,6 @@ vario:
     prefix: vario
     provider_url: http://purl.bioontology.org/ontology/VARIO/VariO:$1
   name: Variation Ontology
-  namespaceEmbeddedInLui: false
   obofoundry:
     contact: mauno.vihinen@med.lu.se
     contact.label: Mauno Vihinen
