@@ -154,16 +154,6 @@
                         <span class="badge badge-pill badge-warning">Missing Example Local Unique Identifier</span>
                     {% endif %}
                 </dd>
-                <dt>Example CURIE</dt>
-                <dd>
-                    {% if example_curie %}
-                        <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example_curie }}</a>
-                    {% elif has_no_terms %}
-                        <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
-                    {% else %}
-                        <span class="badge badge-pill badge-warning">Missing Example Local Unique Identifier</span>
-                    {% endif %}
-                </dd>
                 <dt>Pattern for CURIES</dt>
                 <dd>
                     {% if curie_pattern %}
@@ -177,6 +167,17 @@
                         <span class="badge badge-pill badge-warning">Could not construct CURIE oattern</span>
                     {% endif %}
                 </dd>
+                <dt>Example CURIE</dt>
+                <dd>
+                    {% if example_curie %}
+                        <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example_curie }}</a>
+                    {% elif has_no_terms %}
+                        <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
+                    {% else %}
+                        <span class="badge badge-pill badge-warning">Missing Example Local Unique Identifier</span>
+                    {% endif %}
+                </dd>
+
                 {% if resource.references %}
                     <dt>References</dt>
                     <dd>
