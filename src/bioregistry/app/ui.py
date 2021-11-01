@@ -110,13 +110,12 @@ def metaresource(metaprefix: str):
     example_identifier = bioregistry.get_example(entry.example)
     return render_template(
         "metaresource.html",
-        registry=entry,
+        entry=entry,
         metaprefix=metaprefix,
         name=bioregistry.get_registry_name(metaprefix),
         description=bioregistry.get_registry_description(metaprefix),
         homepage=bioregistry.get_registry_homepage(metaprefix),
         download=entry.download,
-        provider_url=entry.provider_url,
         example_prefix=entry.example,
         example_prefix_url=entry.get_provider(entry.example),
         example_identifier=example_identifier,
@@ -125,7 +124,6 @@ def metaresource(metaprefix: str):
             if example_identifier
             else None
         ),
-        entry=entry,
         formats=[
             *FORMATS,
             ("RDF (turtle)", "turtle"),

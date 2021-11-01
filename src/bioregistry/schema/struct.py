@@ -953,9 +953,7 @@ class Registry(BaseModel):
     #: The registry's homepage
     homepage: str = Field(..., description="The URL for the homepage of the registry.")
     #: An example prefix in the registry
-    example: str = Field(
-        ..., description="An example prefix (i.e., metaidentifier) inside the registry."
-    )
+    example: str = Field(..., description="An example prefix inside the registry.")
     #: A URL to download the registry's contents
     download: Optional[str] = Field(
         description="A download link for the data contained in the registry"
@@ -964,6 +962,8 @@ class Registry(BaseModel):
     provider_url: Optional[str]
     #: A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry
     resolver_url: Optional[str]
+    #: An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)
+    resolver_type: Optional[str]
     #: An optional contact email
     contact: Optional[str]
 
