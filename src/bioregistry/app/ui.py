@@ -73,7 +73,9 @@ def resource(prefix: str):
         raise RuntimeError
     example = _resource.get_example()
     # TODO move into manager
-    example_curie = curie_to_str(_resource.get_preferred_prefix() or prefix, example) if example else None
+    example_curie = (
+        curie_to_str(_resource.get_preferred_prefix() or prefix, example) if example else None
+    )
     return render_template(
         "resource.html",
         prefix=prefix,
