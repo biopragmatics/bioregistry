@@ -922,9 +922,9 @@ class Resource(BaseModel):
 
         Examples from OBO Foundry that should not have a redundant
         prefix added:
-        >>> get_resource("ncit").normalize_identifier("C73192")
+        >>> get_resource("ncit").miriam_standardize_identifier("C73192")
         'C73192'
-        >>> get_resource("ncbitaxon").normalize_identifier("9606")
+        >>> get_resource("ncbitaxon").miriam_standardize_identifier("9606")
         '9606'
 
         Standard:
