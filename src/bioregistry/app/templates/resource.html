@@ -122,16 +122,12 @@
                     {% if pattern %}
                         <p>
                             Local identifiers in {{ name }} should match this
-                            regular expression:<br/><code>{{ pattern }}</code>
-                        </p>
-                        <p>
-                            Compact URIs (CURIEs) constructed from {{ name }} should match
-                            this regular expression :<br/><code>{{ curie_pattern }}</code>
+                            regular expression:<br/><kbd>{{ pattern }}</kbd>
                         </p>
                     {% elif has_no_terms %}
-                        <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
+                        <span class="badge badge-pill badge-secondary">No terms in {{ prefix }}</span>
                     {% else %}
-                        <span class="badge badge-pill badge-warning">Missing Pattern</span>
+                        <span class="badge badge-pill badge-warning">Missing LUI pattern</span>
                     {% endif %}
                 </dd>
                 {% if pattern %}
@@ -166,6 +162,19 @@
                         <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Example Local Unique Identifier</span>
+                    {% endif %}
+                </dd>
+                <dt>Pattern for CURIES</dt>
+                <dd>
+                    {% if curie_pattern %}
+                        <p>
+                            Compact URIs (CURIEs) constructed from {{ name }} should match
+                            this regular expression:<br/><kbd>{{ curie_pattern }}</kbd>
+                        </p>
+                    {% elif has_no_terms %}
+                        <span class="badge badge-pill badge-secondary">No terms in {{ prefix }}</span>
+                    {% else %}
+                        <span class="badge badge-pill badge-warning">Could not construct CURIE oattern</span>
                     {% endif %}
                 </dd>
                 {% if resource.references %}
