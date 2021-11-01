@@ -19,7 +19,7 @@ from .resolve import (
 )
 
 __all__ = [
-    "validate",
+    "is_known_identifier",
     "get_providers",
     "get_providers_list",
     "get_identifiers_org_iri",
@@ -31,31 +31,31 @@ __all__ = [
     "get_n2t_iri",
     "get_iri",
     "get_link",
-    "normalize_identifier",
+    "miriam_standardize_identifier",
 ]
 
 
-def validate(prefix: str, identifier: str) -> Optional[bool]:
-    """Validate the identifier against the prefix's pattern, if it exists.
+def is_known_identifier(prefix: str, identifier: str) -> Optional[bool]:
+    """Check that an identifier can be normalized and also matches a prefix's local unique identifier pattern.
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
     :return: Whether this identifier passes validation, after normalization
 
-    >>> validate("chebi", "1234")
+    >>> is_known_identifier("chebi", "1234")
     True
-    >>> validate("chebi", "CHEBI:12345")
+    >>> is_known_identifier("chebi", "CHEBI:12345")
     True
-    >>> validate("chebi", "CHEBI:ABCD")
+    >>> is_known_identifier("chebi", "CHEBI:ABCD")
     False
     """
     resource = get_resource(prefix)
     if resource is None:
         return None
-    return resource.validate_identifier(identifier)
+    return resource.is_known_identifier(identifier)
 
 
-def normalize_identifier(prefix: str, identifier: str) -> str:
+def miriam_standardize_identifier(prefix: str, identifier: str) -> str:
     """Normalize the identifier with the appropriate banana.
 
     :param prefix: The prefix in the CURIE
@@ -65,46 +65,46 @@ def normalize_identifier(prefix: str, identifier: str) -> str:
     Examples with explicitly annotated bananas:
 
     >>> assert "VariO" == get_banana('vario')
-    >>> normalize_identifier('vario', '0376')
+    >>> miriam_standardize_identifier('vario', '0376')
     'VariO:0376'
-    >>> normalize_identifier('vario', 'VariO:0376')
+    >>> miriam_standardize_identifier('vario', 'VariO:0376')
     'VariO:0376'
 
     Examples with bananas from OBO:
     >>> assert "FBbt" == get_banana('fbbt')
-    >>> normalize_identifier('fbbt', '00007294')
+    >>> miriam_standardize_identifier('fbbt', '00007294')
     'FBbt:00007294'
-    >>> normalize_identifier('fbbt', 'FBbt:00007294')
+    >>> miriam_standardize_identifier('fbbt', 'FBbt:00007294')
     'FBbt:00007294'
 
     Examples from OBO Foundry:
-    >>> normalize_identifier('chebi', '1234')
+    >>> miriam_standardize_identifier('chebi', '1234')
     'CHEBI:1234'
-    >>> normalize_identifier('chebi', 'CHEBI:1234')
+    >>> miriam_standardize_identifier('chebi', 'CHEBI:1234')
     'CHEBI:1234'
 
      Examples outside of OBO:
-    >>> normalize_identifier('mgi', '6017782')
+    >>> miriam_standardize_identifier('mgi', '6017782')
     'MGI:6017782'
-    >>> normalize_identifier('mgi', 'MGI:6017782')
+    >>> miriam_standardize_identifier('mgi', 'MGI:6017782')
     'MGI:6017782'
 
-    >>> normalize_identifier('swisslipid', '000000341')
+    >>> miriam_standardize_identifier('swisslipid', '000000341')
     'SLM:000000341'
-    >>> normalize_identifier('swisslipid', 'SLM:000000341')
+    >>> miriam_standardize_identifier('swisslipid', 'SLM:000000341')
     'SLM:000000341'
 
     Standard:
 
     >>> assert get_banana('pdb') is None
     >>> assert not get_namespace_in_lui('pdb')
-    >>> normalize_identifier('pdb', '00000020')
+    >>> miriam_standardize_identifier('pdb', '00000020')
     '00000020'
     """
     resource = get_resource(prefix)
     if resource is None:
         return identifier  # nothing we can do
-    return resource.normalize_identifier(identifier)
+    return resource.miriam_standardize_identifier(identifier)
 
 
 def get_default_iri(prefix: str, identifier: str) -> Optional[str]:

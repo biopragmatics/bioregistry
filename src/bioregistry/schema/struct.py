@@ -837,7 +837,7 @@ class Resource(BaseModel):
                 rv.append(Provider(**p))
         return rv
 
-    def clean_identifier(self, identifier: str, prefix: Optional[str] = None) -> str:
+    def standardize_identifier(self, identifier: str, prefix: Optional[str] = None) -> str:
         """Normalize the identifier to not have a redundant prefix or banana.
 
         :param identifier: The identifier in the CURIE
@@ -848,34 +848,34 @@ class Resource(BaseModel):
 
         Examples with explicitly annotated bananas:
         >>> from bioregistry import get_resource
-        >>> get_resource("vario").clean_identifier('0376')
+        >>> get_resource("vario").standardize_identifier('0376')
         '0376'
-        >>> get_resource("vario").clean_identifier('VariO:0376')
+        >>> get_resource("vario").standardize_identifier('VariO:0376')
         '0376'
-        >>> get_resource("swisslipid").clean_identifier('000000001')
+        >>> get_resource("swisslipid").standardize_identifier('000000001')
         '000000001'
-        >>> get_resource("swisslipid").clean_identifier('SLM:000000001')
+        >>> get_resource("swisslipid").standardize_identifier('SLM:000000001')
         '000000001'
 
         Examples with bananas from OBO:
-        >>> get_resource("fbbt").clean_identifier('00007294')
+        >>> get_resource("fbbt").standardize_identifier('00007294')
         '00007294'
-        >>> get_resource("fbbt").clean_identifier('FBbt:00007294')
+        >>> get_resource("fbbt").standardize_identifier('FBbt:00007294')
         '00007294'
-        >>> get_resource("chebi").clean_identifier('1234')
+        >>> get_resource("chebi").standardize_identifier('1234')
         '1234'
-        >>> get_resource("chebi").clean_identifier('CHEBI:1234')
+        >>> get_resource("chebi").standardize_identifier('CHEBI:1234')
         '1234'
 
         Examples from OBO Foundry that should not have a redundant
         prefix added:
-        >>> get_resource("ncit").clean_identifier("C73192")
+        >>> get_resource("ncit").standardize_identifier("C73192")
         'C73192'
-        >>> get_resource("ncbitaxon").clean_identifier("9606")
+        >>> get_resource("ncbitaxon").standardize_identifier("9606")
         '9606'
 
         Standard:
-        >>> get_resource("pdb").clean_identifier('00000020')
+        >>> get_resource("pdb").standardize_identifier('00000020')
         '00000020'
         """
         banana = self.get_banana()
@@ -885,33 +885,36 @@ class Resource(BaseModel):
             return identifier[len(prefix) + 1 :]
         return identifier
 
-    def normalize_identifier(self, identifier: str) -> str:
-        """Normalize the identifier with the appropriate banana.
+    def miriam_standardize_identifier(self, identifier: str) -> str:
+        """Normalize the identifier for legacy usage with MIRIAM using the appropriate banana.
 
         :param identifier: The identifier in the CURIE
         :return: A normalize identifier, possibly with banana/redundant prefix added
 
+        Because identifiers.org used to have URIs in the form of https://identifiers.org/<prefix>/<prefix>:<identifier>
+        for entries annotated with ``namespaceEmbeddedInLui`` as ``true``
+
         Examples with explicitly annotated bananas:
         >>> from bioregistry import get_resource
-        >>> get_resource("vario").normalize_identifier('0376')
+        >>> get_resource("vario").miriam_standardize_identifier('0376')
         'VariO:0376'
-        >>> get_resource("vario").normalize_identifier('VariO:0376')
+        >>> get_resource("vario").miriam_standardize_identifier('VariO:0376')
         'VariO:0376'
 
         Examples with bananas from OBO:
-        >>> get_resource("fbbt").normalize_identifier('00007294')
+        >>> get_resource("fbbt").miriam_standardize_identifier('00007294')
         'FBbt:00007294'
-        >>> get_resource("fbbt").normalize_identifier('FBbt:00007294')
+        >>> get_resource("fbbt").miriam_standardize_identifier('FBbt:00007294')
         'FBbt:00007294'
 
         Examples from OBO Foundry:
-        >>> get_resource("chebi").normalize_identifier('1234')
+        >>> get_resource("chebi").miriam_standardize_identifier('1234')
         'CHEBI:1234'
-        >>> get_resource("chebi").normalize_identifier('CHEBI:1234')
+        >>> get_resource("chebi").miriam_standardize_identifier('CHEBI:1234')
         'CHEBI:1234'
 
         Standard:
-        >>> get_resource("pdb").normalize_identifier('00000020')
+        >>> get_resource("pdb").miriam_standardize_identifier('00000020')
         '00000020'
         """
         # A "banana" is an embedded prefix that isn't actually part of the identifier.
@@ -927,12 +930,16 @@ class Resource(BaseModel):
         #
         return identifier
 
-    def validate_identifier(self, identifier: str) -> Optional[bool]:
-        """Validate the identifier against the prefix's pattern, if it exists."""
+    def is_canonical_identifier(self, identifier: str) -> Optional[bool]:
+        """Check that a local unique identifier is canonical, meaning no bananas."""
         pattern = self.get_pattern_re()
         if pattern is None:
             return None
-        return bool(pattern.match(self.clean_identifier(identifier)))
+        return bool(pattern.match(identifier))
+
+    def is_known_identifier(self, identifier: str) -> Optional[bool]:
+        """Check that a local unique identifier can be normalized and also matches a prefix's pattern."""
+        return self.is_canonical_identifier(self.standardize_identifier(identifier))
 
 
 class Registry(BaseModel):

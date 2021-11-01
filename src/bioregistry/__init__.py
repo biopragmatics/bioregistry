@@ -70,7 +70,7 @@ from .resolve_identifier import (  # noqa:F401
     get_ols_iri,
     get_providers,
     get_providers_list,
-    validate,
+    is_known_identifier,
 )
 from .schema.struct import Author, Collection, Provider, Registry, Resource  # noqa:F401
 from .uri_format import (  # noqa:F401

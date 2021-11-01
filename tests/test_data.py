@@ -229,11 +229,13 @@ class TestRegistry(unittest.TestCase):
                     )
                 example = entry.get_example()
                 self.assertIsNotNone(example, msg=msg)
-                self.assertEqual(entry.clean_identifier(example), example)
+                self.assertEqual(entry.standardize_identifier(example), example)
 
                 pattern = entry.get_pattern_re()
                 if pattern is not None:
-                    self.assertRegex(example, pattern, msg=f"Failed on prefix={prefix}")
+                    self.assertTrue(
+                        entry.is_canonical_identifier(example), msg=f"Failed on prefix={prefix}"
+                    )
 
     def test_is_mismatch(self):
         """Check for mismatches."""
@@ -285,7 +287,7 @@ class TestRegistry(unittest.TestCase):
         self.assertFalse(bioregistry.is_deprecated("nope"))
         self.assertIsNone(bioregistry.get_provides_for("nope"))
         self.assertIsNone(bioregistry.get_version("gmelin"))
-        self.assertIsNone(bioregistry.validate("nope", ...))
+        self.assertIsNone(bioregistry.is_known_identifier("nope", ...))
         self.assertIsNone(bioregistry.get_default_iri("nope", ...))
         self.assertIsNone(bioregistry.get_identifiers_org_iri("nope", ...))
         self.assertIsNone(bioregistry.get_n2t_iri("nope", ...))

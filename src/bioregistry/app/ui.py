@@ -196,7 +196,7 @@ def resolve(prefix: str, identifier: Optional[str] = None):
         return redirect(url_for("." + resource.__name__, prefix=norm_prefix))
 
     pattern = bioregistry.get_pattern(prefix)
-    if pattern and not bioregistry.validate(prefix, identifier):
+    if pattern and not bioregistry.is_known_identifier(prefix, identifier):
         return (
             render_template(
                 "resolve_errors/invalid_identifier.html",
