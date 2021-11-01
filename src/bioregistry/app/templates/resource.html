@@ -151,6 +151,16 @@
                         <span class="badge badge-pill badge-warning">Missing Example Local Unique Identifier</span>
                     {% endif %}
                 </dd>
+                <dt>Example CURIE</dt>
+                <dd>
+                    {% if example_curie %}
+                        <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example_curie }}</a>
+                    {% elif has_no_terms %}
+                        <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
+                    {% else %}
+                        <span class="badge badge-pill badge-warning">Missing Example Local Unique Identifier</span>
+                    {% endif %}
+                </dd>
                 {% if resource.references %}
                     <dt>References</dt>
                     <dd>
@@ -188,7 +198,7 @@
                 <tr>
                     <th scope="col">Registry Name</th>
                     <th scope="col">Metaprefix</th>
-                    <th scope="col">Metaidentifier</th>
+                    <th scope="col">External Prefix</th>
                 </tr>
                 </thead>
                 <tbody>

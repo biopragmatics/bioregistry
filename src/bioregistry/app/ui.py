@@ -14,6 +14,7 @@ from .utils import (
     _normalize_prefix_or_404,
 )
 from ..utils import (
+    curie_to_str,
     read_collections_contributions,
     read_prefix_contributions,
     read_prefix_reviews,
@@ -71,12 +72,15 @@ def resource(prefix: str):
     if _resource is None:
         raise RuntimeError
     example = _resource.get_example()
+    # TODO move into manager
+    example_curie = curie_to_str(_resource.get_preferred_prefix() or prefix, example)
     return render_template(
         "resource.html",
         prefix=prefix,
         resource=_resource,
         name=bioregistry.get_name(prefix),
         example=example,
+        example_curie=example_curie,
         mappings=_get_resource_mapping_rows(_resource),
         synonyms=bioregistry.get_synonyms(prefix),
         homepage=bioregistry.get_homepage(prefix),
@@ -119,6 +123,7 @@ def metaresource(metaprefix: str):
         example_prefix=entry.example,
         example_prefix_url=entry.get_provider(entry.example),
         example_identifier=example_identifier,
+        example_curie=curie_to_str(entry.example, example_identifier),
         example_curie_url=(
             bioregistry.get_registry_resolve_url(metaprefix, entry.example, example_identifier)
             if example_identifier
