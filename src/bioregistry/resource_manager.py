@@ -106,9 +106,7 @@ class ResourceManager:
         norm_prefix = self.normalize_prefix(prefix)
         if not norm_prefix:
             return None, None
-        resource = self.get_resource(prefix)
-        if resource is None:
-            return None, None  # though, this should never happen
+        resource = self.registry[norm_prefix]
         norm_identifier = resource.clean_identifier(identifier, prefix=prefix)
         return norm_prefix, norm_identifier
 
