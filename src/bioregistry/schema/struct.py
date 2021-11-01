@@ -560,8 +560,8 @@ class Resource(BaseModel):
         >>> assert get_resource("iro").is_deprecated() # marked by Bioregistry
         >>> assert get_resource("miriam.collection").is_deprecated() # marked by MIRIAM
         """
-        if self.deprecated:
-            return True
+        if self.deprecated is not None:
+            return self.deprecated
         for key in ("obofoundry", "ols", "miriam"):
             external = self.get_external(key)
             if external.get("deprecated"):
