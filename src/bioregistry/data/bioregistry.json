@@ -1303,6 +1303,7 @@
       "provider_url": "n2t.net/ark:$1"
     },
     "name": "Archival Resource Key",
+    "pattern": "^/*[0-9A-Za-z]+(?:/[\\w/.=*+@\\$-]*)?(?:\\?.*)?$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/ark/$1",
       "is_identifiers": true,
@@ -4145,6 +4146,7 @@
       "prefix": "BTO",
       "url": "http://www.ontobee.org/ontology/BTO"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/BTO_$1",
       "is_identifiers": false,
@@ -4911,6 +4913,7 @@
       "prefix": "cco",
       "version": "2016-03-23"
     },
+    "pattern": "^\\w+$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/cco/$1",
       "is_identifiers": true,
@@ -5505,6 +5508,7 @@
       "prefix": "CHEBI",
       "url": "http://www.ontobee.org/ontology/CHEBI"
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/CHEBI_$1",
       "is_identifiers": false,
@@ -6208,6 +6212,7 @@
       "prefix": "CL",
       "url": "http://www.ontobee.org/ontology/CL"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/CL_$1",
       "is_identifiers": false,
@@ -9630,7 +9635,8 @@
       "prefix": "did",
       "provider_url": "https://uniresolver.io/#did:$1"
     },
-    "name": "Decentralized Identifier"
+    "name": "Decentralized Identifier",
+    "pattern": "^[a-z0-9]+:[A-Za-z0-9.\\-:]+$"
   },
   "dideo": {
     "bioportal": {
@@ -10008,6 +10014,7 @@
       "prefix": "DOID",
       "url": "http://www.ontobee.org/ontology/DOID"
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/DOID_$1",
       "is_identifiers": false,
@@ -11034,6 +11041,7 @@
       "prefix": "ECO",
       "url": "http://www.ontobee.org/ontology/ECO"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/ECO_$1",
       "is_identifiers": false,
@@ -12503,6 +12511,7 @@
       "prefix": "ENVO",
       "url": "http://www.ontobee.org/ontology/ENVO"
     },
+    "pattern": "^\\d{7,8}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/ENVO_$1",
       "is_identifiers": false,
@@ -13917,6 +13926,7 @@
       "prefix": "FMA",
       "url": "http://www.ontobee.org/ontology/FMA"
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/FMA_$1",
       "is_identifiers": false,
@@ -14111,6 +14121,7 @@
       "prefix": "FOODON",
       "url": "http://www.ontobee.org/ontology/FOODON"
     },
+    "pattern": "^[0-9]{8}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/FOODON_$1",
       "is_identifiers": false,
@@ -16141,6 +16152,7 @@
       "prefix": "GO",
       "url": "http://www.ontobee.org/ontology/GO"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/GO_$1",
       "is_identifiers": false,
@@ -16217,6 +16229,7 @@
       "prefix": "go.ref",
       "provider_url": "http://www.geneontology.org/cgi-bin/references.cgi#$1"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://www.geneontology.org/cgi-bin/references.cgi#GO_REF:$1",
       "is_identifiers": false,
@@ -17030,7 +17043,8 @@
       "name": "Gender, Sex, and Sexual Orientation (GSSO) ontology",
       "prefix": "GSSO",
       "url": "http://www.ontobee.org/ontology/GSSO"
-    }
+    },
+    "pattern": "^\\d{6}$"
   },
   "gtex": {
     "biolink": {
@@ -18329,6 +18343,7 @@
       "prefix": "HP",
       "url": "http://www.ontobee.org/ontology/HP"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/HP_$1",
       "is_identifiers": false,
@@ -22665,6 +22680,7 @@
       "prefix": "MA",
       "url": "http://www.ontobee.org/ontology/MA"
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/MA_$1",
       "is_identifiers": false,
@@ -24179,7 +24195,8 @@
       "pattern": "^mge:\\d+$",
       "prefix": "mge",
       "provider_url": "http://aclame.ulb.ac.be/perl/Aclame/Genomes/mge_view.cgi?view=info&id=mge:$1"
-    }
+    },
+    "pattern": "^\\d+$"
   },
   "mgi": {
     "banana": "MGI",
@@ -24249,6 +24266,7 @@
       "name": "Mouse Genome Informatics",
       "prefix": "MGI"
     },
+    "pattern": "^\\d+$",
     "preferred_prefix": "MGI",
     "prefixcommons": {
       "formatter": "http://www.informatics.jax.org/accession/MGI:$1",
@@ -24425,6 +24443,7 @@
       "prefix": "MI",
       "url": "http://www.ontobee.org/ontology/MI"
     },
+    "pattern": "^\\d{4}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/MI_$1",
       "is_identifiers": false,
@@ -24911,6 +24930,7 @@
       "prefix": "mir",
       "provider_url": "https://identifiers.org/registry?query=\"MIR:$1\""
     },
+    "pattern": "^\\d{8}$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/mir/$1",
       "is_identifiers": true,
@@ -25874,6 +25894,7 @@
       "prefix": "MOD",
       "url": "http://www.ontobee.org/ontology/MOD"
     },
+    "pattern": "^\\d{5}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/MOD_$1",
       "is_identifiers": false,
@@ -26175,6 +26196,7 @@
       "prefix": "MP",
       "url": "http://www.ontobee.org/ontology/MP"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/MP_$1",
       "is_identifiers": false,
@@ -26443,6 +26465,7 @@
       "prefix": "MS",
       "url": "http://www.ontobee.org/ontology/MS"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/MS_$1",
       "is_identifiers": false,
@@ -26905,6 +26928,7 @@
       "prefix": "mzspec",
       "provider_url": "https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/ShowObservedSpectrum?usi=mzspec:$1"
     },
+    "pattern": "^.+$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/mzspec/$1",
       "is_identifiers": true,
@@ -28410,6 +28434,7 @@
       "prefix": "nmrcv",
       "version": "1.1.0"
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/NMR_$1",
       "is_identifiers": false,
@@ -29143,7 +29168,8 @@
       "prefix": "ocid",
       "provider_url": "https://ocid.ontochem.com/prefname?ocid=$1",
       "sampleId": "190000021540"
-    }
+    },
+    "pattern": "^[0-9]{12}$"
   },
   "oclc": {
     "mappings": {
@@ -31594,6 +31620,7 @@
       "prefix": "PATO",
       "url": "http://www.ontobee.org/ontology/PATO"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/PATO_$1",
       "is_identifiers": false,
@@ -33759,6 +33786,7 @@
       "prefix": "PO",
       "url": "http://www.ontobee.org/ontology/PO"
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/PO_$1",
       "is_identifiers": false,
@@ -34108,6 +34136,7 @@
       "prefix": "PR",
       "url": "http://www.ontobee.org/ontology/PR"
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/PR_$1",
       "is_identifiers": false,
@@ -35285,6 +35314,7 @@
       "prefix": "PW",
       "url": "http://www.ontobee.org/ontology/PW"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/PW_$1",
       "is_identifiers": false,
@@ -36805,6 +36835,7 @@
       "provider_url": "https://scicrunch.org/resolver/RRID:$1"
     },
     "name": "Research Resource Identification",
+    "pattern": "^[a-zA-Z]+.+$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/rrid/$1",
       "is_identifiers": true,
@@ -37279,6 +37310,7 @@
       "prefix": "SBO",
       "url": "http://www.ontobee.org/ontology/SBO"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/SBO_$1",
       "is_identifiers": false,
@@ -38676,6 +38708,7 @@
       "prefix": "SO",
       "url": "http://www.ontobee.org/ontology/SO"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/SO_$1",
       "is_identifiers": false,
@@ -39097,6 +39130,8 @@
       "n2t": "storedb",
       "prefixcommons": "STOREDB"
     },
+    "pattern": "^(STUDY|FILE|DATASET)\\d+$",
+    "banana": "STOREDB",
     "miriam": {
       "deprecated": false,
       "description": "STOREDB database is a repository for data used by the international radiobiology community, archiving and sharing primary data outputs from research on low dose radiation. It also provides a directory of bioresources and databases for radiobiology projects containing information and materials that investigators are willing to share. STORE supports the creation of a low dose radiation research commons.",
@@ -39109,6 +39144,7 @@
       "provider_url": "https://www.storedb.org/?$1",
       "sampleId": "STOREDB:STUDY1040"
     },
+    "example": "STUDY1040",
     "n2t": {
       "description": "STOREDB database is a repository for data used by the international radiobiology community, archiving and sharing primary data outputs from research on low dose radiation. It also provides a directory of bioresources and databases for radiobiology projects containing information and materials that investigators are willing to share. STORE supports the creation of a low dose radiation research commons.",
       "example": "STOREDB:STUDY1040",
@@ -39389,6 +39425,7 @@
       "prefix": "swh",
       "provider_url": "https://archive.softwareheritage.org/browse/swh:$1"
     },
+    "pattern": "^[1-9]:(cnt|dir|rel|rev|snp):[0-9a-f]+(;(origin|visit|anchor|path|lines)=\\S+)*$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/swh/$1",
       "is_identifiers": true,
@@ -39464,6 +39501,7 @@
       "provider_url": "http://www.swisslipids.org/#/entity/SLM:$1/"
     },
     "name": "SwissLipid",
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "formatter": "http://identifiers.org/swisslipid/$1",
       "is_identifiers": true,
@@ -40960,6 +40998,7 @@
       "prefix": "UBERON",
       "url": "http://www.ontobee.org/ontology/UBERON"
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/UBERON_$1",
       "is_identifiers": false,
@@ -42008,6 +42047,7 @@
       "prefix": "UO",
       "url": "http://www.ontobee.org/ontology/UO"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/UO_$1",
       "is_identifiers": false,
@@ -42312,6 +42352,7 @@
       "prefix": "VariO",
       "url": "http://www.ontobee.org/ontology/VariO"
     },
+    "pattern": "^\\d+$",
     "preferred_prefix": "VariO",
     "prefixcommons": {
       "formatter": "http://purl.obolibrary.org/obo/VARIO_$1",

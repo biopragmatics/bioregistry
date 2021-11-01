@@ -40,6 +40,7 @@ IDOT_BROKEN = {
     "oma.hog",
     "obi",
     "mir",  # Added on 2021-10-08
+    "storedb",  # Added on 2021-10-12
 }
 
 LICENSES = {

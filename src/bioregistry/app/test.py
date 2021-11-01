@@ -43,7 +43,7 @@ def main(url: str, local: bool):
             continue
         elif "/" in identifier or SLASH_URL_ENCODED in identifier:
             log("contains slash 🎩 🎸", fg="red")
-        elif not bioregistry.validate(prefix, identifier):
+        elif not bioregistry.is_known_identifier(prefix, identifier):
             pattern = bioregistry.get_pattern(prefix)
             if bioregistry.get_banana(prefix):
                 log(f"banana {pattern} 🍌", fg="red")
