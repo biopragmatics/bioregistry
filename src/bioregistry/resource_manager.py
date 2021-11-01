@@ -6,7 +6,7 @@ import logging
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple, Union
 
 from .schema import Resource
-from .utils import NormDict, read_registry, write_registry
+from .utils import NormDict, curie_to_str, read_registry, write_registry
 
 __all__ = [
     "ResourceManager",
@@ -89,9 +89,9 @@ class ResourceManager:
     def normalize_curie(self, curie: str, sep: str = ":") -> Optional[str]:
         """Normalize the prefix and identifier in the CURIE."""
         prefix, identifier = self.parse_curie(curie, sep=sep)
-        if prefix is None:
+        if prefix is None or identifier is None:
             return None
-        return f"{prefix}:{identifier}"
+        return curie_to_str(prefix, identifier)
 
     def normalize_parsed_curie(
         self, prefix: str, identifier: str
@@ -106,9 +106,7 @@ class ResourceManager:
         norm_prefix = self.normalize_prefix(prefix)
         if not norm_prefix:
             return None, None
-        resource = self.get_resource(prefix)
-        if resource is None:
-            return None, None  # though, this should never happen
+        resource = self.registry[norm_prefix]
         norm_identifier = resource.clean_identifier(identifier, prefix=prefix)
         return norm_prefix, norm_identifier
 

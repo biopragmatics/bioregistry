@@ -85,10 +85,10 @@
                         <a href="{{ example_prefix_url }}"><code>{{ example_prefix_url }}</code></a>
                     </dd>
                 {% endif %}
-                {% if example_identifier %}
+                {% if example_curie %}
                     <dt>Example CURIE</dt>
                     <dd>
-                        <code>{{ entry.example }}:{{ example_identifier }}</code>
+                        <code>{{ example_curie }}</code>
                     </dd>
                 {% endif %}
                 {% if entry.resolver_url %}
@@ -105,7 +105,7 @@
                             <a href="{{ example_resolution }}"><code>{{ example_resolution }}</code></a>
                         {% else %}
                             <span class="badge badge-pill badge-warning">Unable to generate URL
-                                for <code>{{ example_prefix }}:{{ example_identifier }}</code></span>
+                                for <code>{{ example_curie }}</code></span>
                         {% endif %}
                     </dd>
                 {% endif %}

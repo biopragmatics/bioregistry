@@ -275,3 +275,8 @@ def _norm(s: str) -> str:
     for x in " -_./":
         rv = rv.replace(x, "")
     return rv
+
+
+def curie_to_str(prefix: str, identifier: str) -> str:
+    """Combine a prefix and identifier into a CURIE string."""
+    return f"{prefix}:{identifier}"
