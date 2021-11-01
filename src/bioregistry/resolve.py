@@ -18,6 +18,7 @@ __all__ = [
     "get_mappings",
     "get_synonyms",
     "get_pattern",
+    "get_curie_pattern",
     "get_namespace_in_lui",
     "get_example",
     "has_no_terms",
@@ -740,3 +741,12 @@ def get_version(prefix: str) -> Optional[str]:
 def get_versions() -> Mapping[str, str]:
     """Get a map of prefixes to versions."""
     return manager.get_versions()
+
+
+def get_curie_pattern(prefix: str) -> Optional[str]:
+    """Get the CURIE pattern for this resource.
+
+    :param prefix: The prefix to to look up
+    :return: The regular expression pattern to match CURIEs against
+    """
+    return manager.get_curie_pattern(prefix)

@@ -87,6 +87,7 @@ def resource(prefix: str):
         synonyms=bioregistry.get_synonyms(prefix),
         homepage=bioregistry.get_homepage(prefix),
         pattern=bioregistry.get_pattern(prefix),
+        curie_pattern=bioregistry.get_curie_pattern(prefix),
         version=bioregistry.get_version(prefix),
         has_no_terms=bioregistry.has_no_terms(prefix),
         obo_download=bioregistry.get_obo_download(prefix),

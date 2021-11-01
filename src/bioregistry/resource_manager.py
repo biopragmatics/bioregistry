@@ -204,6 +204,21 @@ class ResourceManager:
         #: in order to avoid conflicts of sub-URIs (thanks to Nico Matentzoglu for the idea)
         return prepare_prefix_list(self.get_prefix_map(**kwargs))
 
+    def get_curie_pattern(self, prefix: str) -> Optional[str]:
+        """Get the CURIE pattern for this resource.
+
+        :param prefix: The prefix to to look up
+        :return: The regular expression pattern to match CURIEs against
+        """
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        pattern = resource.get_pattern()
+        if pattern is None:
+            return None
+        p = resource.get_preferred_prefix() or prefix
+        return f"^{p}:{pattern.lstrip('^')}"
+
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
     """Prepare a priority prefix list from a prefix map."""

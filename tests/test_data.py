@@ -5,13 +5,14 @@
 import logging
 import unittest
 from collections import defaultdict
+from textwrap import dedent
 from typing import Mapping
 
 import bioregistry
 from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import _norm, is_mismatch
+from bioregistry.utils import _norm, curie_to_str, is_mismatch
 
 logger = logging.getLogger(__name__)
 
@@ -193,6 +194,31 @@ class TestRegistry(unittest.TestCase):
                     pattern.casefold().startswith(f"^{prefix.casefold()}:"),
                     msg=f"pattern should represent a local identifier, not a CURIE\n"
                     f"prefix: {prefix}\npattern: {pattern}",
+                )
+
+    def test_curie_patterns(self):
+        """Test that all examples can validate against the CURIE pattern."""
+        for prefix, entry in self.registry.items():
+            curie_pattern = bioregistry.get_curie_pattern(prefix)
+            lui_example = entry.get_example()
+            if curie_pattern is None or lui_example is None:
+                continue
+            pp = bioregistry.get_preferred_prefix(prefix)
+            curie_example = curie_to_str(pp or prefix, lui_example)
+            with self.subTest(prefix=prefix):
+                self.assertRegex(
+                    curie_example,
+                    curie_pattern,
+                    msg=dedent(
+                        f"""
+                prefix: {prefix}
+                preferred prefix: {pp}
+                example LUI: {lui_example}
+                example CURIE: {curie_example}
+                pattern for LUI: {bioregistry.get_pattern(prefix)}
+                pattern for CURIE: {curie_pattern}
+                """
+                    ),
                 )
 
     def test_examples(self):
