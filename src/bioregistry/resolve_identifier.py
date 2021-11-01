@@ -10,10 +10,10 @@ from .resolve import (
     get_banana,
     get_bioportal_prefix,
     get_identifiers_org_prefix,
-    get_obofoundry_format,
+    get_namespace_in_lui,
+    get_obofoundry_uri_prefix,
     get_ols_prefix,
     get_resource,
-    namespace_in_lui,
     normalize_parsed_curie,
     parse_curie,
 )
@@ -24,7 +24,7 @@ __all__ = [
     "get_providers_list",
     "get_identifiers_org_iri",
     "get_identifiers_org_curie",
-    "get_obofoundry_format",
+    "get_obofoundry_uri_prefix",
     "get_obofoundry_iri",
     "get_ols_iri",
     "get_bioportal_iri",
@@ -97,7 +97,7 @@ def normalize_identifier(prefix: str, identifier: str) -> str:
     Standard:
 
     >>> assert get_banana('pdb') is None
-    >>> assert not namespace_in_lui('pdb')
+    >>> assert not get_namespace_in_lui('pdb')
     >>> normalize_identifier('pdb', '00000020')
     '00000020'
     """
@@ -120,7 +120,7 @@ def get_default_iri(prefix: str, identifier: str) -> Optional[str]:
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get_default_url(identifier)
+    return entry.get_default_uri(identifier)
 
 
 def get_providers(prefix: str, identifier: str) -> Mapping[str, str]:
@@ -220,7 +220,7 @@ def get_identifiers_org_curie(prefix: str, identifier: str) -> Optional[str]:
             return identifier
         else:
             return f"{banana}:{identifier}"
-    elif namespace_in_lui(prefix):
+    elif get_namespace_in_lui(prefix):
         if identifier.startswith(prefix.upper()):
             return identifier
         else:

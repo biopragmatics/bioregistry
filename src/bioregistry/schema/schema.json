@@ -108,7 +108,7 @@
         },
         "url": {
           "title": "Url",
-          "description": "The URL format string, which must have at least one ``$1`` in it",
+          "description": "The URI format string, which must have at least one ``$1`` in it",
           "type": "string"
         }
       },
@@ -141,8 +141,8 @@
           "type": "string"
         },
         "url": {
-          "title": "Format URL",
-          "description": "The URL format string, which must have at least one ``$1`` in it",
+          "title": "Format URI",
+          "description": "The URI format string, which must have at least one ``$1`` in it",
           "type": "string"
         },
         "providers": {
@@ -154,7 +154,7 @@
           }
         },
         "homepage": {
-          "title": "Format URL",
+          "title": "Homepage",
           "description": "The URL for the homepage of the resource, preferably with HTTPS",
           "type": "string"
         },
@@ -230,8 +230,9 @@
             "type": "string"
           }
         },
-        "namespaceEmbeddedInLui": {
-          "title": "Namespaceembeddedinlui",
+        "namespace_in_lui": {
+          "title": "Namespace Embedded in Local Unique Identifier",
+          "description": "A way to override MIRIAM's namespaceEmbeddedInLui",
           "type": "boolean"
         },
         "no_own_terms": {
@@ -358,7 +359,7 @@
         },
         "example": {
           "title": "Example",
-          "description": "An example prefix (i.e., metaidentifier) inside the registry.",
+          "description": "An example prefix inside the registry.",
           "type": "string"
         },
         "download": {
@@ -372,6 +373,10 @@
         },
         "resolver_url": {
           "title": "Resolver Url",
+          "type": "string"
+        },
+        "lookup_url": {
+          "title": "Lookup Url",
           "type": "string"
         },
         "contact": {

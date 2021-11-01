@@ -16,7 +16,12 @@ import requests
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
 
-from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH, MISMATCH_PATH
+from .constants import (
+    BIOREGISTRY_PATH,
+    COLLECTIONS_PATH,
+    METAREGISTRY_PATH,
+    MISMATCH_PATH,
+)
 from .schema import Author, Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
@@ -270,3 +275,8 @@ def _norm(s: str) -> str:
     for x in " -_./":
         rv = rv.replace(x, "")
     return rv
+
+
+def curie_to_str(prefix: str, identifier: str) -> str:
+    """Combine a prefix and identifier into a CURIE string."""
+    return f"{prefix}:{identifier}"

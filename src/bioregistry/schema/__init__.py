@@ -10,11 +10,5 @@ from .constants import (  # noqa:F401
     bioregistry_schema_terms,
     orcid,
 )
-from .struct import (  # noqa:F401
-    Author,
-    Collection,
-    Registry,
-    Resource,
-    get_json_schema,
-)
+from .struct import Author, Collection, Registry, Resource, get_json_schema  # noqa:F401
 from .utils import sanitize_mapping, sanitize_model  # noqa:F401
