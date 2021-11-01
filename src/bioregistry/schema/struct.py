@@ -364,6 +364,13 @@ class Resource(BaseModel):
 
         >>> get_resource("pdb").get_banana()
         None
+
+        Banana is not inferred for OBO Foundry ontologies
+        that were imported:
+        >>> get_resource("ncit").get_banana()
+        None
+        >>> get_resource("ncbitaxon").get_banana()
+        None
         """
         if self.banana is not None:
             return self.banana
@@ -912,6 +919,13 @@ class Resource(BaseModel):
         'CHEBI:1234'
         >>> get_resource("chebi").miriam_standardize_identifier('CHEBI:1234')
         'CHEBI:1234'
+
+        Examples from OBO Foundry that should not have a redundant
+        prefix added:
+        >>> get_resource("ncit").miriam_standardize_identifier("C73192")
+        'C73192'
+        >>> get_resource("ncbitaxon").miriam_standardize_identifier("9606")
+        '9606'
 
         Standard:
         >>> get_resource("pdb").miriam_standardize_identifier('00000020')
