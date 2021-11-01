@@ -107,7 +107,7 @@ class ResourceManager:
         if not norm_prefix:
             return None, None
         resource = self.registry[norm_prefix]
-        norm_identifier = resource.clean_identifier(identifier, prefix=prefix)
+        norm_identifier = resource.standardize_identifier(identifier, prefix=prefix)
         return norm_prefix, norm_identifier
 
     def get_registry_map(self, metaprefix: str) -> Dict[str, str]:

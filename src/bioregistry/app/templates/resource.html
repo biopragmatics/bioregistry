@@ -130,16 +130,6 @@
                         <span class="badge badge-pill badge-warning">Missing LUI pattern</span>
                     {% endif %}
                 </dd>
-                {% if pattern %}
-                    <dt>Namespace in Pattern</dt>
-                    <dd>
-                        {% if namespace_in_lui %}
-                            True (<code>{{ banana if banana else prefix.upper() }}:</code>)
-                        {% else %}
-                            False
-                        {% endif %}
-                    </dd>
-                {% endif %}
                 <dt>Example Local Unique Identifier</dt>
                 <dd>
                     {% if example %}
@@ -177,6 +167,17 @@
                         <span class="badge badge-pill badge-warning">Missing Example Local Unique Identifier</span>
                     {% endif %}
                 </dd>
+                {% if namespace_in_lui %}
+                    <dt>MIRIAM Namespace Embedded in LUI</dt>
+                    <dd>
+                        The legacy MIRIAM standard for generating CURIEs with this resource
+                        includes the <code>namespaceEmbeddedInLUI</code> as true. The actual
+                        part that gets prefixed before the local unique identifier regex,
+                        otherwise known as the banana, is <code>{{ banana if banana else prefix.upper() }}:</code>.
+                        Therefore, you might see local unique identifiers written out as CURIEs.
+                    </dd>
+                {% endif %}
+
                 {% if resource.references %}
                     <dt>References</dt>
                     <dd>
