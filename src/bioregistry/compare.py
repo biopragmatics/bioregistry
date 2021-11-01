@@ -17,7 +17,6 @@ from bioregistry import (
     get_description,
     get_email,
     get_example,
-    get_format,
     get_homepage,
     get_json_download,
     get_license,
@@ -25,6 +24,7 @@ from bioregistry import (
     get_obo_download,
     get_owl_download,
     get_pattern,
+    get_uri_format,
     get_version,
     is_deprecated,
     read_registry,
@@ -278,7 +278,7 @@ def compare(png: bool):  # noqa:C901
         ("Description", _get_has(get_description)),
         ("Example", _get_has(get_example)),
         ("Pattern", _get_has(get_pattern)),
-        ("Provider", _get_has(get_format)),
+        ("Provider", _get_has(get_uri_format)),
         ("License", _get_has(get_license)),
         ("License Type", _get_has_present(get_license)),
         ("Version", _get_has(get_version)),
@@ -378,7 +378,7 @@ def compare(png: bool):  # noqa:C901
 
 def _count_providers(resource: Resource) -> int:
     rv = 0
-    if resource.get_format_url():
+    if resource.get_uri_prefix():
         rv += 1
     rv += len(resource.get_extra_providers())
     return rv

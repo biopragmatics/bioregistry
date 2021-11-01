@@ -11,7 +11,7 @@ from .resolve import (
     get_bioportal_prefix,
     get_identifiers_org_prefix,
     get_namespace_in_lui,
-    get_obofoundry_format,
+    get_obofoundry_uri_prefix,
     get_ols_prefix,
     get_resource,
     normalize_parsed_curie,
@@ -24,7 +24,7 @@ __all__ = [
     "get_providers_list",
     "get_identifiers_org_iri",
     "get_identifiers_org_curie",
-    "get_obofoundry_format",
+    "get_obofoundry_uri_prefix",
     "get_obofoundry_iri",
     "get_ols_iri",
     "get_bioportal_iri",
@@ -120,7 +120,7 @@ def get_default_iri(prefix: str, identifier: str) -> Optional[str]:
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get_default_url(identifier)
+    return entry.get_default_uri(identifier)
 
 
 def get_providers(prefix: str, identifier: str) -> Mapping[str, str]:

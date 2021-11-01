@@ -271,8 +271,8 @@ class TestRegistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_banana("nope"))
         self.assertIsNone(bioregistry.get_description("nope"))
         self.assertIsNone(bioregistry.get_homepage("nope"))
-        self.assertIsNone(bioregistry.get_format("gmelin"))  # no URL
-        self.assertIsNone(bioregistry.get_format("nope"))
+        self.assertIsNone(bioregistry.get_uri_format("gmelin"))  # no URL
+        self.assertIsNone(bioregistry.get_uri_format("nope"))
         self.assertIsNone(bioregistry.get_version("nope"))
         self.assertIsNone(bioregistry.get_name("nope"))
         self.assertIsNone(bioregistry.get_example("nope"))
@@ -280,7 +280,7 @@ class TestRegistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_mappings("nope"))
         self.assertIsNone(bioregistry.get_fairsharing_prefix("nope"))
         self.assertIsNone(bioregistry.get_obofoundry_prefix("nope"))
-        self.assertIsNone(bioregistry.get_obofoundry_format("nope"))
+        self.assertIsNone(bioregistry.get_obofoundry_uri_prefix("nope"))
         self.assertIsNone(bioregistry.get_obo_download("nope"))
         self.assertIsNone(bioregistry.get_owl_download("nope"))
         self.assertIsNone(bioregistry.get_ols_iri("nope", ...))
@@ -304,7 +304,7 @@ class TestRegistry(unittest.TestCase):
         self.assertIsInstance(bioregistry.get_description("chebi"), str)
 
         # No OBO Foundry format for dbSNP b/c not in OBO Foundry (and probably never will be)
-        self.assertIsNone(bioregistry.get_obofoundry_format("dbsnp"))
+        self.assertIsNone(bioregistry.get_obofoundry_uri_prefix("dbsnp"))
 
         self.assertEqual("FAIRsharing.mya1ff", bioregistry.get_fairsharing_prefix("ega.dataset"))
 
@@ -406,6 +406,23 @@ class TestRegistry(unittest.TestCase):
         with self.subTest(protocol="https"):
             b = f"https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID={ex}"
             self.assertEqual((prefix, ex), bioregistry.parse_iri(b))
+
+    def test_prefix_map_priorities(self):
+        """Test that different lead priorities all work for prefix map generation."""
+        priorities = [
+            "default",
+            "miriam",
+            "ols",
+            "obofoundry",
+            "n2t",
+            "prefixcommons",
+            # "bioportal",
+        ]
+        for lead in priorities:
+            priority = [lead, *(x for x in priorities if x != lead)]
+            with self.subTest(priority=",".join(priority)):
+                prefix_map = bioregistry.get_prefix_map(priority=priority)
+                self.assertIsNotNone(prefix_map)
 
     def test_default_prefix_map_no_miriam(self):
         """Test no identifiers.org URI prefixes get put in the prefix map."""

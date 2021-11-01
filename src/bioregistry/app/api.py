@@ -23,7 +23,7 @@ from ..export.rdf_export import (
     resource_to_rdf_str,
 )
 from ..schema import sanitize_mapping
-from ..uri_format import get_format_url
+from ..uri_format import get_uri_prefix
 from ..utils import (
     read_collections_contributions,
     read_contributors,
@@ -353,10 +353,10 @@ def generate_context_json_ld():
             prefix = normalize_prefix(prefix.strip())
             if prefix is None:
                 continue
-            fmt = get_format_url(prefix)
-            if fmt is None:
+            uri_prefix = get_uri_prefix(prefix)
+            if uri_prefix is None:
                 continue
-            prefix_map[prefix] = fmt
+            prefix_map[prefix] = uri_prefix
 
     return jsonify(
         {
