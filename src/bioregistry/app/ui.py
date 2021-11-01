@@ -73,7 +73,7 @@ def resource(prefix: str):
         raise RuntimeError
     example = _resource.get_example()
     # TODO move into manager
-    example_curie = curie_to_str(_resource.get_preferred_prefix() or prefix, example)
+    example_curie = curie_to_str(_resource.get_preferred_prefix() or prefix, example) if example else None
     return render_template(
         "resource.html",
         prefix=prefix,
@@ -112,6 +112,8 @@ def metaresource(metaprefix: str):
         abort(404, f"Invalid metaprefix: {metaprefix}")
 
     example_identifier = bioregistry.get_example(entry.example)
+    if example_identifier is None:
+        abort(500, f"Missing example for {metaprefix}")
     return render_template(
         "metaresource.html",
         entry=entry,

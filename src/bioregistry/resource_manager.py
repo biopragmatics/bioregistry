@@ -89,7 +89,7 @@ class ResourceManager:
     def normalize_curie(self, curie: str, sep: str = ":") -> Optional[str]:
         """Normalize the prefix and identifier in the CURIE."""
         prefix, identifier = self.parse_curie(curie, sep=sep)
-        if prefix is None:
+        if prefix is None or identifier is None:
             return None
         return curie_to_str(prefix, identifier)
 
