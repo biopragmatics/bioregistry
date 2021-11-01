@@ -56,23 +56,29 @@ class TestIdentifiersOrg(unittest.TestCase):
 
     @unittest.skip
     def test_url_auto(self):
-        """Test formatting URLs."""
-        for prefix in bioregistry.read_registry():
-            miriam_prefix = bioregistry.get_identifiers_org_prefix(prefix)
+        """Test generating and resolving Identifiers.org URIs.
+
+        .. warning::
+
+            This test takes up to 5 minutes since it makes a lot of web requests, and
+            is therefore skipped by default.
+        """
+        for prefix, entry in bioregistry.read_registry().items():
+            miriam_prefix = entry.get_identifiers_org_prefix()
             if miriam_prefix is None or prefix in IDOT_BROKEN:
                 continue
 
-            identifier = bioregistry.get_example(prefix)
-
+            identifier = entry.get_example()
             with self.subTest(prefix=prefix, identifier=identifier):
                 self.assertIsNotNone(identifier, msg="All MIRIAM entries should have an example")
 
                 url = get_identifiers_org_iri(prefix, identifier)
                 self.assertIsNotNone(url, msg="All MIRIAM entries should be formattable")
-                self.assertTrue(
-                    url.startswith(f"https://identifiers.org/{miriam_prefix}:"),
-                    msg=f"bad prefix for {prefix}. Expected {miriam_prefix} in {url}",
-                )
+                # this test is skipped because there's additional logic for constructing MIRIAM CURIEs
+                # self.assertTrue(
+                #     url.startswith(f"https://identifiers.org/{miriam_prefix}:"),
+                #     msg=f"bad prefix for {prefix}. Expected {miriam_prefix} in {url}",
+                # )
                 res = self.session.get(url, allow_redirects=False)
                 self.assertEqual(
                     302,
@@ -80,9 +86,9 @@ class TestIdentifiersOrg(unittest.TestCase):
                     msg="\n"
                     + dedent(
                         f"""\
-                Prefix: {prefix}
+                Prefix:     {prefix}
                 Identifier: {identifier}
-                URL: {url}
+                URL:        {url}
                 Text: """
                     )
                     + fill(res.text, 70, subsequent_indent="      "),
