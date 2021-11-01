@@ -44,7 +44,7 @@ def warnings():
         lambda prefix: get_external(prefix, "wikidata").get("database") is None
     )
     missing_pattern = _g(lambda prefix: bioregistry.get_pattern(prefix) is None)
-    missing_format_url = _g(lambda prefix: bioregistry.get_format(prefix) is None)
+    missing_format_url = _g(lambda prefix: bioregistry.get_uri_format(prefix) is None)
     missing_example = _g(lambda prefix: bioregistry.get_example(prefix) is None)
 
     with open(os.path.join(DOCS_DATA, "curation.yml"), "w") as file:

@@ -38,10 +38,6 @@ class TestResolve(unittest.TestCase):
         self.assertIsNotNone(get_external("ncbitaxon", "ols"))
         self.assertIsNotNone(get_external("ncbitaxon", "wikidata"))
 
-    def test_validate_none(self):
-        """Test validation of identifiers for a prefix that does not exist."""
-        self.assertIsNone(bioregistry.validate("lol", "lol:nope"))
-
     def test_validate_true(self):
         """Test that validation returns true."""
         tests = [
@@ -81,16 +77,16 @@ class TestResolve(unittest.TestCase):
                 else:
                     tests.append(("prefix", example))
                     tests.append(("prefix", f"{banana}:{example}"))
-        self.assert_validate(tests)
+        self.assert_known_identifiers(tests)
 
-    def assert_validate(self, examples: Iterable[Tuple[str, str]]) -> None:
+    def assert_known_identifiers(self, examples: Iterable[Tuple[str, str]]) -> None:
         """Validate the examples."""
         for prefix, identifier in examples:
-            is_valid = bioregistry.validate(prefix, identifier)
-            if is_valid is False:
+            is_known = bioregistry.is_known_identifier(prefix, identifier)
+            if is_known is False:
                 with self.subTest(prefix=prefix, identifier=identifier):
                     self.fail(
-                        msg=f"CURIE {prefix}:{identifier} does not match {bioregistry.get_pattern(prefix)}"
+                        msg=f"CURIE {prefix}:{identifier} does not loosely match {bioregistry.get_pattern(prefix)}"
                     )
 
     def test_validate_false(self):
@@ -100,7 +96,7 @@ class TestResolve(unittest.TestCase):
             ("chebi", "chebi:1234"),
         ]:
             with self.subTest(prefix=prefix, identifier=identifier):
-                self.assertFalse(bioregistry.validate(prefix, identifier))
+                self.assertFalse(bioregistry.is_known_identifier(prefix, identifier))
 
     def test_lui(self):
         """Test the LUI makes sense (spoilers, they don't).
@@ -110,7 +106,7 @@ class TestResolve(unittest.TestCase):
         - https://github.com/identifiers-org/identifiers-org.github.io/issues/151
         """
         for prefix in bioregistry.read_registry():
-            if not bioregistry.namespace_in_lui(prefix):
+            if not bioregistry.get_namespace_in_lui(prefix):
                 continue
             if bioregistry.get_banana(prefix):
                 continue  # rewrite rules are applied to prefixes with bananas

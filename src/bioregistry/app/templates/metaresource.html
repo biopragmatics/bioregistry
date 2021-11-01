@@ -44,8 +44,8 @@
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Homepage</span>
                     {% endif %}
-                    {% if download %}
-                        <a class="badge badge-pill badge-light" href="{{ download }}">
+                    {% if entry.download %}
+                        <a class="badge badge-pill badge-light" href="{{ entry.download }}">
                             Download <i class="fas fa-download"></i>
                         </a>
                     {% else %}
@@ -60,8 +60,11 @@
                     <span class="badge badge-pill badge-{% if entry.provider_url %}success{% else %}light text-muted{% endif %}">
                         Provider
                     </span>
-                    <span class="badge badge-pill badge-{% if entry.resolver_url %}success{% else %}light text-muted{% endif %}">
+                    <span class="badge badge-pill badge-{% if entry.resolver_url and entry.resolver_type == "resolver" %}success{% else %}light text-muted{% endif %}">
                         Resolver
+                    </span>
+                    <span class="badge badge-pill badge-{% if entry.resolver_url and entry.resolver_type == "lookup" %}success{% else %}light text-muted{% endif %}">
+                        Lookup
                     </span>
                 </dd>
                 <dt>Contact</dt>
@@ -72,24 +75,37 @@
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}
                 </dd>
-                <dt>Example Metaidentifier <span class="badge badge-pill badge-success">Registry</span></dt>
+                <dt>Example Prefix</dt>
                 <dd>
                     <code>{{ entry.example }}</code>
                 </dd>
-                {% if example_prefix_url %}
-                    <dt>Example Provider <span class="badge badge-pill badge-success">Provider</span></dt>
+                {% if entry.provider_url %}
+                    <dt>Example Prefix Page</dt>
                     <dd>
                         <a href="{{ example_prefix_url }}"><code>{{ example_prefix_url }}</code></a>
                     </dd>
                 {% endif %}
-                {% if example_curie_url %}
-                    <dt>Example CURIE Resolution <span class="badge badge-pill badge-success">Resolver</span></dt>
+                {% if example_curie %}
+                    <dt>Example CURIE</dt>
                     <dd>
-                        {% if example_curie_url %}
-                            <a href="{{ example_curie_url }}"><code>{{ example_curie_url }}</code></a>
+                        <code>{{ example_curie }}</code>
+                    </dd>
+                {% endif %}
+                {% if entry.resolver_url %}
+                    {% set example_resolution = entry.resolve(entry.example, example_identifier) %}
+                    <dt>
+                        {% if entry.resolver_type == "lookup" %}
+                            Example CURIE Page
+                        {% elif entry.resolver_type == "resolver" %}
+                            Example CURIE Link
+                        {% endif %}
+                    </dt>
+                    <dd>
+                        {% if example_resolution %}
+                            <a href="{{ example_resolution }}"><code>{{ example_resolution }}</code></a>
                         {% else %}
                             <span class="badge badge-pill badge-warning">Unable to generate URL
-                                for <code>{{ example_prefix }}:{{ example_identifier }}</code></span>
+                                for <code>{{ example_curie }}</code></span>
                         {% endif %}
                     </dd>
                 {% endif %}

@@ -93,12 +93,12 @@ def _autocomplete(q: str) -> Mapping[str, Any]:
     Not matching the pattern:
 
     >>> _autocomplete('chebi:NOPE')
-    {'query': 'chebi:NOPE', 'prefix': 'chebi', 'pattern': '^CHEBI:\\d+$', 'identifier': 'NOPE', 'success': False, 'reason': 'failed validation', 'url': None}
+    {'query': 'chebi:NOPE', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': 'NOPE', 'success': False, 'reason': 'failed validation', 'url': None}
 
     Matching the pattern:
 
     >>> _autocomplete('chebi:1234')
-    {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^CHEBI:\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': 'https://bioregistry.io/chebi:1234'}
+    {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': 'https://bioregistry.io/chebi:1234'}
     """  # noqa: E501
     if ":" not in q:
         url: Optional[str]
@@ -130,7 +130,7 @@ def _autocomplete(q: str) -> Mapping[str, Any]:
         success = True
         reason = "no pattern"
         url = bioregistry.get_bioregistry_iri(prefix, identifier)
-    elif bioregistry.validate(prefix, identifier):
+    elif bioregistry.is_known_identifier(prefix, identifier):
         success = True
         reason = "passed validation"
         url = bioregistry.get_bioregistry_iri(prefix, identifier)
@@ -151,7 +151,7 @@ def _autocomplete(q: str) -> Mapping[str, Any]:
 
 def _get_identifier(prefix: str, identifier: str) -> Mapping[str, Any]:
     prefix = _normalize_prefix_or_404(prefix)
-    if not bioregistry.validate(prefix, identifier):
+    if not bioregistry.is_known_identifier(prefix, identifier):
         return abort(
             404,
             f"invalid identifier: {prefix}:{identifier} for pattern {bioregistry.get_pattern(prefix)}",

@@ -33,6 +33,10 @@ class TestMetaregistry(unittest.TestCase):
                     self.assertIn("resolver_url", data)
                     self.assertIn("$1", data["resolver_url"])
                     self.assertIn("$2", data["resolver_url"])
+                    self.assertIsNotNone(registry_pydantic.resolver_type)
+                    self.assertIn(data["resolver_type"], {"lookup", "resolver"})
+                else:
+                    self.assertIsNone(registry_pydantic.resolver_type)
 
                 invalid_keys = set(data).difference(
                     {
@@ -44,6 +48,7 @@ class TestMetaregistry(unittest.TestCase):
                         "provider_url",
                         "example",
                         "resolver_url",
+                        "resolver_type",
                         "contact",
                     }
                 )
@@ -57,9 +62,6 @@ class TestMetaregistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_registry_url("nope", ...))
         self.assertIsNone(bioregistry.get_registry_example("nope"))
         self.assertIsNone(bioregistry.get_registry_description("nope"))
-        self.assertIsNone(
-            bioregistry.get_registry_url("n2t", ...)
-        )  # no provider available for N2T registry
 
         metaprefix = "uniprot"
         registry = bioregistry.get_registry(metaprefix)

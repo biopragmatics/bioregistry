@@ -11,6 +11,7 @@ from flask_bootstrap import Bootstrap
 
 import bioregistry
 from bioregistry import version
+
 from .api import api_blueprint
 from .ui import ui_blueprint
 from ..resolve_identifier import get_bioregistry_iri

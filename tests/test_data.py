@@ -5,13 +5,14 @@
 import logging
 import unittest
 from collections import defaultdict
+from textwrap import dedent
 from typing import Mapping
 
 import bioregistry
 from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import _norm, is_mismatch
+from bioregistry.utils import _norm, curie_to_str, is_mismatch
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +43,7 @@ class TestRegistry(unittest.TestCase):
             # Only there if true
             "no_own_terms",
             "not_available_as_obo",
-            "namespaceEmbeddedInLui",
+            "namespace_in_lui",
             # Only there if false
             # Lists
             "appears_in",
@@ -72,7 +73,7 @@ class TestRegistry(unittest.TestCase):
             if not extra:
                 continue
             with self.subTest(prefix=prefix):
-                self.fail(f"had extra keys: {extra}")
+                self.fail(f"{prefix} had extra keys: {extra}")
 
     def test_names(self):
         """Test that all entries have a name."""
@@ -179,7 +180,7 @@ class TestRegistry(unittest.TestCase):
     def test_patterns(self):
         """Test that all prefixes are norm-unique."""
         for prefix, entry in self.registry.items():
-            pattern = entry.pattern
+            pattern = entry.get_pattern()
             if pattern is None:
                 continue
             with self.subTest(prefix=prefix):
@@ -189,15 +190,48 @@ class TestRegistry(unittest.TestCase):
                 self.assertTrue(
                     pattern.endswith("$"), msg=f"{prefix} pattern {pattern} should end with $"
                 )
+                self.assertFalse(
+                    pattern.casefold().startswith(f"^{prefix.casefold()}:"),
+                    msg=f"pattern should represent a local identifier, not a CURIE\n"
+                    f"prefix: {prefix}\npattern: {pattern}",
+                )
 
-                # Check that it's the same as external definitions
-                # for key in ('miriam', 'wikidata'):
-                #     external_pattern = get_external(prefix, key).get('pattern')
-                #     if external_pattern:
-                #         self.assertEqual(pattern, external_pattern, msg=f'{prefix}: {key} pattern not same')
+    def test_curie_patterns(self):
+        """Test that all examples can validate against the CURIE pattern."""
+        for prefix, entry in self.registry.items():
+            curie_pattern = bioregistry.get_curie_pattern(prefix)
+            lui_example = entry.get_example()
+            if curie_pattern is None or lui_example is None:
+                continue
+            pp = bioregistry.get_preferred_prefix(prefix)
+            curie_example = curie_to_str(pp or prefix, lui_example)
+            with self.subTest(prefix=prefix):
+                self.assertRegex(
+                    curie_example,
+                    curie_pattern,
+                    msg=dedent(
+                        f"""
+                prefix: {prefix}
+                preferred prefix: {pp}
+                example LUI: {lui_example}
+                example CURIE: {curie_example}
+                pattern for LUI: {bioregistry.get_pattern(prefix)}
+                pattern for CURIE: {curie_pattern}
+                """
+                    ),
+                )
 
     def test_examples(self):
-        """Test that all entries have examples."""
+        """Test examples for the required conditions.
+
+        1. All resources must have an example, with the following exceptions:
+           - deprecated resources
+           - resources that are marked as not having their own terms (e.g., ChIRO)
+           - resources that are providers for other resources (e.g., CTD Gene)
+           - proprietary resources (e.g., Eurofir)
+        2. Examples are stored in normal form (i.e., no redundant prefixes)
+        3. Examples pass the regular expression pattern for the resource, if available
+        """
         for prefix, entry in self.registry.items():
             if (
                 bioregistry.has_no_terms(prefix)
@@ -219,21 +253,15 @@ class TestRegistry(unittest.TestCase):
                     msg += (
                         f'\nSee: https://www.ebi.ac.uk/ols/ontologies/{entry.ols["prefix"]}/terms'
                     )
-                self.assertIsNotNone(bioregistry.get_example(prefix), msg=msg)
+                example = entry.get_example()
+                self.assertIsNotNone(example, msg=msg)
+                self.assertEqual(entry.standardize_identifier(example), example)
 
-    def test_examples_pass_patterns(self):
-        """Test that all examples pass the patterns."""
-        for prefix, resource in self.registry.items():
-            pattern = resource.get_pattern_re()
-            example = resource.get_example()
-            if pattern is None or example is None:
-                continue
-            if prefix == "ark":
-                continue  # FIXME
-            if bioregistry.validate(prefix, example):
-                continue
-            with self.subTest(prefix=prefix):
-                self.assertRegex(example, pattern, msg=f"Failed on prefix={prefix}")
+                pattern = entry.get_pattern_re()
+                if pattern is not None:
+                    self.assertTrue(
+                        entry.is_canonical_identifier(example), msg=f"Failed on prefix={prefix}"
+                    )
 
     def test_is_mismatch(self):
         """Check for mismatches."""
@@ -248,13 +276,28 @@ class TestRegistry(unittest.TestCase):
             bioregistry.has_no_terms("nope"), msg="Missing prefix should be false by definition"
         )
 
+    def test_banana(self):
+        """Tests for bananas."""
+        # Simple scenario
+        self.assertIsNone(bioregistry.get_banana("pdb"))
+
+        # OBO Foundry scenario where there should not be a banana
+        self.assertIsNone(
+            bioregistry.get_banana("ncit"),
+            msg="Even though this is OBO foundry, it should not have a banana.",
+        )
+        self.assertIsNone(
+            bioregistry.get_banana("ncbitaxon"),
+            msg="Even though this is OBO foundry, it should not have a banana.",
+        )
+
     def test_get_nope(self):
         """Test when functions don't return."""
         self.assertIsNone(bioregistry.get_banana("nope"))
         self.assertIsNone(bioregistry.get_description("nope"))
         self.assertIsNone(bioregistry.get_homepage("nope"))
-        self.assertIsNone(bioregistry.get_format("gmelin"))  # no URL
-        self.assertIsNone(bioregistry.get_format("nope"))
+        self.assertIsNone(bioregistry.get_uri_format("gmelin"))  # no URL
+        self.assertIsNone(bioregistry.get_uri_format("nope"))
         self.assertIsNone(bioregistry.get_version("nope"))
         self.assertIsNone(bioregistry.get_name("nope"))
         self.assertIsNone(bioregistry.get_example("nope"))
@@ -262,7 +305,7 @@ class TestRegistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_mappings("nope"))
         self.assertIsNone(bioregistry.get_fairsharing_prefix("nope"))
         self.assertIsNone(bioregistry.get_obofoundry_prefix("nope"))
-        self.assertIsNone(bioregistry.get_obofoundry_format("nope"))
+        self.assertIsNone(bioregistry.get_obofoundry_uri_prefix("nope"))
         self.assertIsNone(bioregistry.get_obo_download("nope"))
         self.assertIsNone(bioregistry.get_owl_download("nope"))
         self.assertIsNone(bioregistry.get_ols_iri("nope", ...))
@@ -270,7 +313,7 @@ class TestRegistry(unittest.TestCase):
         self.assertFalse(bioregistry.is_deprecated("nope"))
         self.assertIsNone(bioregistry.get_provides_for("nope"))
         self.assertIsNone(bioregistry.get_version("gmelin"))
-        self.assertIsNone(bioregistry.validate("nope", ...))
+        self.assertIsNone(bioregistry.is_known_identifier("nope", ...))
         self.assertIsNone(bioregistry.get_default_iri("nope", ...))
         self.assertIsNone(bioregistry.get_identifiers_org_iri("nope", ...))
         self.assertIsNone(bioregistry.get_n2t_iri("nope", ...))
@@ -286,7 +329,7 @@ class TestRegistry(unittest.TestCase):
         self.assertIsInstance(bioregistry.get_description("chebi"), str)
 
         # No OBO Foundry format for dbSNP b/c not in OBO Foundry (and probably never will be)
-        self.assertIsNone(bioregistry.get_obofoundry_format("dbsnp"))
+        self.assertIsNone(bioregistry.get_obofoundry_uri_prefix("dbsnp"))
 
         self.assertEqual("FAIRsharing.mya1ff", bioregistry.get_fairsharing_prefix("ega.dataset"))
 
@@ -389,6 +432,23 @@ class TestRegistry(unittest.TestCase):
             b = f"https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID={ex}"
             self.assertEqual((prefix, ex), bioregistry.parse_iri(b))
 
+    def test_prefix_map_priorities(self):
+        """Test that different lead priorities all work for prefix map generation."""
+        priorities = [
+            "default",
+            "miriam",
+            "ols",
+            "obofoundry",
+            "n2t",
+            "prefixcommons",
+            # "bioportal",
+        ]
+        for lead in priorities:
+            priority = [lead, *(x for x in priorities if x != lead)]
+            with self.subTest(priority=",".join(priority)):
+                prefix_map = bioregistry.get_prefix_map(priority=priority)
+                self.assertIsNotNone(prefix_map)
+
     def test_default_prefix_map_no_miriam(self):
         """Test no identifiers.org URI prefixes get put in the prefix map."""
         self.assert_no_idot(bioregistry.get_prefix_map())
@@ -452,7 +512,7 @@ class TestRegistry(unittest.TestCase):
         to support actual use cases.
         """
         for prefix, resource in self.registry.items():
-            if not resource.namespace_in_lui():
+            if not resource.get_namespace_in_lui():
                 continue
             with self.subTest(prefix=prefix):
                 self.assertIsNotNone(

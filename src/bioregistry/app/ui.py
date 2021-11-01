@@ -7,8 +7,18 @@ from typing import Optional
 from flask import Blueprint, abort, redirect, render_template, url_for
 
 import bioregistry
-from .utils import _get_resource_mapping_rows, _get_resource_providers, _normalize_prefix_or_404
-from ..utils import read_collections_contributions, read_prefix_contributions, read_prefix_reviews
+
+from .utils import (
+    _get_resource_mapping_rows,
+    _get_resource_providers,
+    _normalize_prefix_or_404,
+)
+from ..utils import (
+    curie_to_str,
+    read_collections_contributions,
+    read_prefix_contributions,
+    read_prefix_reviews,
+)
 
 __all__ = [
     "ui_blueprint",
@@ -62,22 +72,28 @@ def resource(prefix: str):
     if _resource is None:
         raise RuntimeError
     example = _resource.get_example()
+    # TODO move into manager
+    example_curie = (
+        curie_to_str(_resource.get_preferred_prefix() or prefix, example) if example else None
+    )
     return render_template(
         "resource.html",
         prefix=prefix,
         resource=_resource,
         name=bioregistry.get_name(prefix),
         example=example,
+        example_curie=example_curie,
         mappings=_get_resource_mapping_rows(_resource),
         synonyms=bioregistry.get_synonyms(prefix),
         homepage=bioregistry.get_homepage(prefix),
         pattern=bioregistry.get_pattern(prefix),
+        curie_pattern=bioregistry.get_curie_pattern(prefix),
         version=bioregistry.get_version(prefix),
         has_no_terms=bioregistry.has_no_terms(prefix),
         obo_download=bioregistry.get_obo_download(prefix),
         owl_download=bioregistry.get_owl_download(prefix),
         json_download=bioregistry.get_json_download(prefix),
-        namespace_in_lui=bioregistry.namespace_in_lui(prefix),
+        namespace_in_lui=bioregistry.get_namespace_in_lui(prefix),
         deprecated=bioregistry.is_deprecated(prefix),
         contact=bioregistry.get_email(prefix),
         banana=bioregistry.get_banana(prefix),
@@ -99,24 +115,25 @@ def metaresource(metaprefix: str):
         abort(404, f"Invalid metaprefix: {metaprefix}")
 
     example_identifier = bioregistry.get_example(entry.example)
+    if example_identifier is None:
+        abort(500, f"Missing example for {metaprefix}")
     return render_template(
         "metaresource.html",
-        registry=entry,
+        entry=entry,
         metaprefix=metaprefix,
         name=bioregistry.get_registry_name(metaprefix),
         description=bioregistry.get_registry_description(metaprefix),
         homepage=bioregistry.get_registry_homepage(metaprefix),
         download=entry.download,
-        provider_url=entry.provider_url,
         example_prefix=entry.example,
         example_prefix_url=entry.get_provider(entry.example),
         example_identifier=example_identifier,
+        example_curie=curie_to_str(entry.example, example_identifier),
         example_curie_url=(
             bioregistry.get_registry_resolve_url(metaprefix, entry.example, example_identifier)
             if example_identifier
             else None
         ),
-        entry=entry,
         formats=[
             *FORMATS,
             ("RDF (turtle)", "turtle"),
@@ -180,7 +197,7 @@ def resolve(prefix: str, identifier: Optional[str] = None):
         return redirect(url_for("." + resource.__name__, prefix=norm_prefix))
 
     pattern = bioregistry.get_pattern(prefix)
-    if pattern and not bioregistry.validate(prefix, identifier):
+    if pattern and not bioregistry.is_known_identifier(prefix, identifier):
         return (
             render_template(
                 "resolve_errors/invalid_identifier.html",

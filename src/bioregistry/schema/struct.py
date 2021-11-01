@@ -82,11 +82,11 @@ class Provider(BaseModel):
     description: str = Field(..., description="Description of the provider")
     homepage: str = Field(..., description="Homepage of the provider")
     url: str = Field(
-        ..., description="The URL format string, which must have at least one ``$1`` in it"
+        ..., description="The URI format string, which must have at least one ``$1`` in it"
     )
 
     def resolve(self, identifier: str) -> str:
-        """Resolve the identifier into a URL."""
+        """Resolve the identifier into a URI."""
         return self.url.replace("$1", identifier)
 
 
@@ -105,10 +105,10 @@ class Resource(BaseModel):
     pattern: Optional[str] = Field(
         description="The regular expression pattern for identifiers in the resource",
     )
-    #: The URL format string, which must have at least one ``$1`` in it
+    #: The URI format string, which must have at least one ``$1`` in it
     url: Optional[str] = Field(
-        title="Format URL",
-        description="The URL format string, which must have at least one ``$1`` in it",
+        title="Format URI",
+        description="The URI format string, which must have at least one ``$1`` in it",
     )
     #: Additional non-default providers for the given resource
     providers: Optional[List[Provider]] = Field(
@@ -116,7 +116,6 @@ class Resource(BaseModel):
     )
     #: The URL for the homepage of the resource
     homepage: Optional[str] = Field(
-        title="Format URL",
         description="The URL for the homepage of the resource, preferably with HTTPS",
     )
     #: The contact email address for the individual responsible for the resource
@@ -213,7 +212,10 @@ class Resource(BaseModel):
     #: A flag denoting if the namespace is embedded in the LUI (if this is true and it is not accompanied by a banana,
     #: assume that the banana is the prefix in all caps plus a colon, as is standard in OBO). Currently this flag
     #: is only used to override identifiers.org in the case of ``gramene.growthstage``, ``oma.hog``, and ``vario``.
-    namespaceEmbeddedInLui: Optional[bool]  # noqa:N815
+    namespace_in_lui: Optional[bool] = Field(
+        title="Namespace Embedded in Local Unique Identifier",
+        description="A way to override MIRIAM's namespaceEmbeddedInLui",
+    )
     #: A flag to denote if the resource mints its own identifiers. Omission or explicit marking as false means
     #: that the resource does have its own terms. This is most applicable to ontologies, specifically application
     #: ontologies, which only reuse terms from others. One example is ChIRO.
@@ -315,14 +317,14 @@ class Resource(BaseModel):
                 return rv
         return None
 
-    def get_default_url(self, identifier: str) -> Optional[str]:
-        """Return the default URL for the identifier.
+    def get_default_uri(self, identifier: str) -> Optional[str]:
+        """Return the default URI for the identifier.
 
         :param identifier: The local identifier in the nomenclature represented by this resource
-        :returns: The first-party provider URL for the local identifier, if one can be constructed
+        :returns: The first-party provider URI for the local identifier, if one can be constructed
 
         >>> from bioregistry import get_resource
-        >>> get_resource("chebi").get_default_url("24867")
+        >>> get_resource("chebi").get_default_uri("24867")
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
         """
         fmt = self.get_default_format()
@@ -372,6 +374,8 @@ class Resource(BaseModel):
         """
         if self.banana is not None:
             return self.banana
+        if self.namespace_in_lui is False:
+            return None  # override for a few situations
         obo_preferred_prefix = self.get_obo_preferred_prefix()
         if obo_preferred_prefix is not None:
             return obo_preferred_prefix
@@ -487,7 +491,12 @@ class Resource(BaseModel):
             2. MIRIAM
             3. Wikidata
         """
-        return self.get_prefix_key("pattern", ("miriam", "wikidata"))
+        if self.pattern is not None:
+            return self.pattern
+        rv = self.get_prefix_key("pattern", ("miriam", "wikidata"))
+        if rv is None:
+            return None
+        return clean_pattern(rv)
 
     def get_pattern_re(self):
         """Get the compiled pattern for the given prefix, if it's available."""
@@ -496,8 +505,10 @@ class Resource(BaseModel):
             return None
         return re.compile(pattern)
 
-    def namespace_in_lui(self) -> Optional[bool]:
+    def get_namespace_in_lui(self) -> Optional[bool]:
         """Check if the namespace should appear in the LUI."""
+        if self.namespace_in_lui is not None:
+            return self.namespace_in_lui
         return self.get_prefix_key("namespaceEmbeddedInLui", ("miriam",))
 
     def get_homepage(self) -> Optional[str]:
@@ -571,47 +582,47 @@ class Resource(BaseModel):
         """
         return self.get_mapped_prefix("obofoundry")
 
-    def get_obofoundry_format(self) -> Optional[str]:
-        """Get the URL format for an OBO Foundry entry.
+    def get_obofoundry_uri_prefix(self) -> Optional[str]:
+        """Get the OBO Foundry URI prefix for this entry, if possible.
 
-        :returns: The OBO PURL URL prefix corresponding to the prefix, if mappable.
+        :returns: The OBO PURL URI prefix corresponding to the prefix, if mappable.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("go").get_obofoundry_format()  # standard
+        >>> get_resource("go").get_obofoundry_uri_prefix()  # standard
         'http://purl.obolibrary.org/obo/GO_'
-        >>> get_resource("ncbitaxon").get_obofoundry_format()  # mixed case
+        >>> get_resource("ncbitaxon").get_obofoundry_uri_prefix()  # mixed case
         'http://purl.obolibrary.org/obo/NCBITaxon_'
-        >>> assert get_resource("sty").get_obofoundry_format() is None
+        >>> assert get_resource("sty").get_obofoundry_uri_prefix() is None
         """
         obo_prefix = self.get_obofoundry_prefix()
         if obo_prefix is None:
             return None
         return f"http://purl.obolibrary.org/obo/{obo_prefix}_"
 
-    def get_obofoundry_formatter(self) -> Optional[str]:
-        """Get the URL format for an OBO Foundry entry.
+    def get_obofoundry_uri_format(self) -> Optional[str]:
+        """Get the OBO Foundry URI format string for this entry, if possible.
 
         :returns: The OBO PURL format string, if available.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("go").get_obofoundry_formatter()  # standard
+        >>> get_resource("go").get_obofoundry_uri_format()  # standard
         'http://purl.obolibrary.org/obo/GO_$1'
-        >>> get_resource("ncbitaxon").get_obofoundry_formatter()  # mixed case
+        >>> get_resource("ncbitaxon").get_obofoundry_uri_format()  # mixed case
         'http://purl.obolibrary.org/obo/NCBITaxon_$1'
-        >>> assert get_resource("sty").get_obofoundry_formatter() is None
+        >>> assert get_resource("sty").get_obofoundry_uri_format() is None
         """
-        rv = self.get_obofoundry_format()
+        rv = self.get_obofoundry_uri_prefix()
         if rv is None:
             return None
         return f"{rv}$1"
 
-    def get_prefixcommons_format(self) -> Optional[str]:
-        """Get the URL format for a Prefix Commons entry.
+    def get_prefixcommons_uri_format(self) -> Optional[str]:
+        """Get the Prefix Commons URI format string for this entry, if available.
 
-        :returns: The Prefix Commons URL format string, if available.
+        :returns: The Prefix Commons URI format string, if available.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("hgmd").get_prefixcommons_format()
+        >>> get_resource("hgmd").get_prefixcommons_uri_format()
         'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
         """
         return self.get_external("prefixcommons").get("formatter")
@@ -630,43 +641,57 @@ class Resource(BaseModel):
         """
         return self.get_mapped_prefix("miriam")
 
-    def get_miriam_url_prefix(self) -> Optional[str]:
-        """Get the URL format for a MIRIAM entry.
+    def get_miriam_uri_prefix(self) -> Optional[str]:
+        """Get the Identifiers.org URI prefix for this entry, if possible.
 
-        :returns: The Identifiers.org/MIRIAM URL format string, if available.
+        :returns: The Identifiers.org/MIRIAM URI prefix, if available.
 
         >>> from bioregistry import get_resource
-        >>> get_resource('ncbitaxon').get_miriam_url_prefix()
+        >>> get_resource('ncbitaxon').get_miriam_uri_prefix()
         'https://identifiers.org/taxonomy:'
-        >>> get_resource('go').get_miriam_url_prefix()
+        >>> get_resource('go').get_miriam_uri_prefix()
         'https://identifiers.org/GO:'
-        >>> assert get_resource('sty').get_miriam_url_prefix() is None
+        >>> assert get_resource('sty').get_miriam_uri_prefix() is None
         """
         miriam_prefix = self.get_identifiers_org_prefix()
         if miriam_prefix is None:
             return None
-        if self.namespace_in_lui():
+        if self.get_namespace_in_lui():
             # not exact solution, some less common ones don't use capitalization
             # align with the banana solution
             miriam_prefix = miriam_prefix.upper()
         return f"https://identifiers.org/{miriam_prefix}:"
 
-    def get_miriam_format(self) -> Optional[str]:
-        """Get the URL format for a MIRIAM entry.
+    def get_miriam_uri_format(self) -> Optional[str]:
+        """Get the Identifiers.org URI format string for this entry, if possible.
 
         :returns: The Identifiers.org/MIRIAM URL format string, if available.
 
         >>> from bioregistry import get_resource
-        >>> get_resource('ncbitaxon').get_miriam_format()
+        >>> get_resource('ncbitaxon').get_miriam_uri_format()
         'https://identifiers.org/taxonomy:$1'
-        >>> get_resource('go').get_miriam_format()
+        >>> get_resource('go').get_miriam_uri_format()
         'https://identifiers.org/GO:$1'
-        >>> assert get_resource('sty').get_miriam_format() is None
+        >>> assert get_resource('sty').get_miriam_uri_format() is None
         """
-        miriam_url_prefix = self.get_miriam_url_prefix()
+        miriam_url_prefix = self.get_miriam_uri_prefix()
         if miriam_url_prefix is None:
             return None
         return f"{miriam_url_prefix}$1"
+
+    def get_nt2_uri_prefix(self) -> Optional[str]:
+        """Get the Name-to-Thing URI prefix for this entry, if possible."""
+        n2t_prefix = self.get_mapped_prefix("n2t")
+        if n2t_prefix is None:
+            return None
+        return f"https://n2t.net/{n2t_prefix}:"
+
+    def get_n2t_uri_format(self):
+        """Get the Name-to-Thing URI format string, if available."""
+        n2t_uri_prefix = self.get_nt2_uri_prefix()
+        if n2t_uri_prefix is None:
+            return None
+        return f"{n2t_uri_prefix}$1"
 
     def get_scholia_prefix(self):
         """Get the Scholia prefix, if available."""
@@ -676,54 +701,56 @@ class Resource(BaseModel):
         """Get the OLS prefix if available."""
         return self.get_mapped_prefix("ols")
 
-    def get_ols_url_prefix(self) -> Optional[str]:
-        """Get the URL format for an OLS entry.
+    def get_ols_uri_prefix(self) -> Optional[str]:
+        """Get the OLS URI prefix for this entry, if possible.
 
-        :returns: The OLS format string, if available.
+        :returns: The OLS URI prefix, if available.
 
         .. warning:: This doesn't have a normal form, so it only works for OBO Foundry at the moment.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("go").get_ols_url_prefix()  # standard
+        >>> get_resource("go").get_ols_uri_prefix()  # standard
         'https://www.ebi.ac.uk/ols/ontologies/go/terms?iri=http://purl.obolibrary.org/obo/GO_'
-        >>> get_resource("ncbitaxon").get_ols_url_prefix()  # mixed case
+        >>> get_resource("ncbitaxon").get_ols_uri_prefix()  # mixed case
         'https://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?iri=http://purl.obolibrary.org/obo/NCBITaxon_'
-        >>> assert get_resource("sty").get_ols_url_prefix() is None
+        >>> assert get_resource("sty").get_ols_uri_prefix() is None
         """
         ols_prefix = self.get_ols_prefix()
         if ols_prefix is None:
             return None
-        obo_format = self.get_obofoundry_format()
+        obo_format = self.get_obofoundry_uri_prefix()
         if obo_format:
             return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_format}"
         # TODO find examples, like for EFO on when it's not based on OBO Foundry PURLs
         return None
 
-    def get_ols_format(self) -> Optional[str]:
-        """Get the URL format for an OLS entry.
+    def get_ols_uri_format(self) -> Optional[str]:
+        """Get the OLS URI format string for this entry, if possible.
 
         :returns: The OLS format string, if available.
 
         .. warning:: This doesn't have a normal form, so it only works for OBO Foundry at the moment.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("go").get_ols_format()  # standard
+        >>> get_resource("go").get_ols_uri_format()  # standard
         'https://www.ebi.ac.uk/ols/ontologies/go/terms?iri=http://purl.obolibrary.org/obo/GO_$1'
-        >>> get_resource("ncbitaxon").get_ols_format()  # mixed case
+        >>> get_resource("ncbitaxon").get_ols_uri_format()  # mixed case
         'https://www.ebi.ac.uk/ols/ontologies/ncbitaxon/terms?iri=http://purl.obolibrary.org/obo/NCBITaxon_$1'
-        >>> assert get_resource("sty").get_ols_format() is None
+        >>> assert get_resource("sty").get_ols_uri_format() is None
         """
-        ols_url_prefix = self.get_ols_url_prefix()
+        ols_url_prefix = self.get_ols_uri_prefix()
         if ols_url_prefix is None:
             return None
         return f"{ols_url_prefix}$1"
 
     URI_FORMATTERS: ClassVar[Mapping[str, Callable[["Resource"], Optional[str]]]] = {
         "default": get_default_format,
-        "obofoundry": get_obofoundry_formatter,
-        "prefixcommons": get_prefixcommons_format,
-        "miriam": get_miriam_format,
-        "ols": get_ols_format,
+        "obofoundry": get_obofoundry_uri_format,
+        "prefixcommons": get_prefixcommons_uri_format,
+        "miriam": get_miriam_uri_format,
+        "n2t": get_n2t_uri_format,
+        "ols": get_ols_uri_format,
+        # "bioportal": lambda x: ...,
     }
 
     #: The default priority for generating URIs
@@ -732,25 +759,30 @@ class Resource(BaseModel):
         "obofoundry",
         "prefixcommons",
         "miriam",
+        "n2t",
         "ols",
+        # "bioportal",
     )
 
-    def get_format(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
-        """Get the URL format string for the given prefix, if it's available.
+    def get_uri_format(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+        """Get the URI format string for the given prefix, if it's available.
 
-        :param priority: The priority order of metaresources to use for format URL lookup.
+        :param priority: The priority order of metaresources to use for format URI lookup.
             The default is:
 
             1. Default first party (from bioregistry, prefix commons, or miriam)
             2. OBO Foundry
             3. Prefix Commons
-            4. Identifiers.org / MIRIAM
-            5. OLS
-        :return: The best URL format string, where the ``$1`` should be replaced by the
-            identifier. ``$1`` could potentially appear multiple times.
+            4. Identifiers.org
+            5. N2T
+            6. OLS
+            7. BioPortal
+
+        :return: The best URI format string, where the ``$1`` should be replaced by a
+            local unique identifier. ``$1`` could potentially appear multiple times.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("chebi").get_format()
+        >>> get_resource("chebi").get_uri_format()
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1'
 
         If you want to specify a different priority order, you can do so with the ``priority`` keyword. This
@@ -759,29 +791,34 @@ class Resource(BaseModel):
         ChEBI example above). Do so like:
 
         >>> from bioregistry import get_resource
-        >>> get_resource("chebi").get_format(priority=['obofoundry', 'bioregistry', 'prefixcommons', 'miriam', 'ols'])
+        >>> priority = ['obofoundry', 'bioregistry', 'prefixcommons', 'miriam', 'ols']
+        >>> get_resource("chebi").get_uri_format(priority=priority)
         'http://purl.obolibrary.org/obo/CHEBI_$1'
         """
         # TODO add examples in doctests for prefix commons, identifiers.org, and OLS
         for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
-            formatter = self.URI_FORMATTERS[metaprefix]
+            formatter = self.URI_FORMATTERS.get(metaprefix)
+            if formatter is None:
+                logger.warning("count not get formatter for %s", metaprefix)
+                continue
             rv = formatter(self)
             if rv is not None:
                 return rv
         return None
 
-    def get_format_url(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
-        """Get a well-formed format URL for usage in a prefix map.
+    def get_uri_prefix(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
+        """Get a well-formed URI prefix, if available.
 
         :param priority: The prioirty order for :func:`get_format`.
-        :return: The URL prefix. Similar to what's returned by :func:`bioregistry.get_format`, but
+        :return: The URI prefix. Similar to what's returned by :func:`get_uri_format`, but
             it MUST have only one ``$1`` and end with ``$1`` to use thie function.
 
         >>> import bioregistry
-        >>> bioregistry.get_format_url('chebi')
+        >>> bioregistry.get_uri_prefix('chebi')
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:'
         """
-        fmt = self.get_format(priority=priority)
+        # TODO shorten this with similar logic to get_uri_format
+        fmt = self.get_uri_format(priority=priority)
         if fmt is None:
             logging.debug("term missing formatter: %s", self.name)
             return None
@@ -807,29 +844,80 @@ class Resource(BaseModel):
                 rv.append(Provider(**p))
         return rv
 
-    def normalize_identifier(self, identifier: str) -> str:
-        """Normalize the identifier with the appropriate banana.
+    def standardize_identifier(self, identifier: str, prefix: Optional[str] = None) -> str:
+        """Normalize the identifier to not have a redundant prefix or banana.
+
+        :param identifier: The identifier in the CURIE
+        :param prefix: If an optional prefix is passed, checks that this isn't also used as a caseolded banana
+            like in ``go:go:1234567``, which shouldn't techinncally be right becauase the banana for gene ontology
+            is ``GO``.
+        :return: A normalized identifier, possibly with banana/redundant prefix removed
+
+        Examples with explicitly annotated bananas:
+        >>> from bioregistry import get_resource
+        >>> get_resource("vario").standardize_identifier('0376')
+        '0376'
+        >>> get_resource("vario").standardize_identifier('VariO:0376')
+        '0376'
+        >>> get_resource("swisslipid").standardize_identifier('000000001')
+        '000000001'
+        >>> get_resource("swisslipid").standardize_identifier('SLM:000000001')
+        '000000001'
+
+        Examples with bananas from OBO:
+        >>> get_resource("fbbt").standardize_identifier('00007294')
+        '00007294'
+        >>> get_resource("fbbt").standardize_identifier('FBbt:00007294')
+        '00007294'
+        >>> get_resource("chebi").standardize_identifier('1234')
+        '1234'
+        >>> get_resource("chebi").standardize_identifier('CHEBI:1234')
+        '1234'
+
+        Examples from OBO Foundry that should not have a redundant
+        prefix added:
+        >>> get_resource("ncit").standardize_identifier("C73192")
+        'C73192'
+        >>> get_resource("ncbitaxon").standardize_identifier("9606")
+        '9606'
+
+        Standard:
+        >>> get_resource("pdb").standardize_identifier('00000020')
+        '00000020'
+        """
+        banana = self.get_banana()
+        if banana and identifier.startswith(f"{banana}:"):
+            return identifier[len(banana) + 1 :]
+        elif prefix is not None and identifier.casefold().startswith(f"{prefix.casefold()}:"):
+            return identifier[len(prefix) + 1 :]
+        return identifier
+
+    def miriam_standardize_identifier(self, identifier: str) -> str:
+        """Normalize the identifier for legacy usage with MIRIAM using the appropriate banana.
 
         :param identifier: The identifier in the CURIE
         :return: A normalize identifier, possibly with banana/redundant prefix added
 
+        Because identifiers.org used to have URIs in the form of https://identifiers.org/<prefix>/<prefix>:<identifier>
+        for entries annotated with ``namespaceEmbeddedInLui`` as ``true``
+
         Examples with explicitly annotated bananas:
         >>> from bioregistry import get_resource
-        >>> get_resource("vario").normalize_identifier('0376')
+        >>> get_resource("vario").miriam_standardize_identifier('0376')
         'VariO:0376'
-        >>> get_resource("vario").normalize_identifier('VariO:0376')
+        >>> get_resource("vario").miriam_standardize_identifier('VariO:0376')
         'VariO:0376'
 
         Examples with bananas from OBO:
-        >>> get_resource("fbbt").normalize_identifier('00007294')
+        >>> get_resource("fbbt").miriam_standardize_identifier('00007294')
         'FBbt:00007294'
-        >>> get_resource("fbbt").normalize_identifier('FBbt:00007294')
+        >>> get_resource("fbbt").miriam_standardize_identifier('FBbt:00007294')
         'FBbt:00007294'
 
         Examples from OBO Foundry:
-        >>> get_resource("chebi").normalize_identifier('1234')
+        >>> get_resource("chebi").miriam_standardize_identifier('1234')
         'CHEBI:1234'
-        >>> get_resource("chebi").normalize_identifier('CHEBI:1234')
+        >>> get_resource("chebi").miriam_standardize_identifier('CHEBI:1234')
         'CHEBI:1234'
 
         Examples from OBO Foundry that should not have a redundant
@@ -840,7 +928,7 @@ class Resource(BaseModel):
         '9606'
 
         Standard:
-        >>> get_resource("pdb").normalize_identifier('00000020')
+        >>> get_resource("pdb").miriam_standardize_identifier('00000020')
         '00000020'
         """
         # A "banana" is an embedded prefix that isn't actually part of the identifier.
@@ -856,12 +944,16 @@ class Resource(BaseModel):
         #
         return identifier
 
-    def validate_identifier(self, identifier: str) -> Optional[bool]:
-        """Validate the identifier against the prefix's pattern, if it exists."""
+    def is_canonical_identifier(self, identifier: str) -> Optional[bool]:
+        """Check that a local unique identifier is canonical, meaning no bananas."""
         pattern = self.get_pattern_re()
         if pattern is None:
             return None
-        return bool(pattern.match(self.normalize_identifier(identifier)))
+        return bool(pattern.match(identifier))
+
+    def is_known_identifier(self, identifier: str) -> Optional[bool]:
+        """Check that a local unique identifier can be normalized and also matches a prefix's pattern."""
+        return self.is_canonical_identifier(self.standardize_identifier(identifier))
 
 
 class Registry(BaseModel):
@@ -882,9 +974,7 @@ class Registry(BaseModel):
     #: The registry's homepage
     homepage: str = Field(..., description="The URL for the homepage of the registry.")
     #: An example prefix in the registry
-    example: str = Field(
-        ..., description="An example prefix (i.e., metaidentifier) inside the registry."
-    )
+    example: str = Field(..., description="An example prefix inside the registry.")
     #: A URL to download the registry's contents
     download: Optional[str] = Field(
         description="A download link for the data contained in the registry"
@@ -893,6 +983,8 @@ class Registry(BaseModel):
     provider_url: Optional[str]
     #: A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry
     resolver_url: Optional[str]
+    #: An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)
+    resolver_type: Optional[str]
     #: An optional contact email
     contact: Optional[str]
 
@@ -998,14 +1090,24 @@ class Collection(BaseModel):
 
     def as_prefix_map(self) -> Mapping[str, str]:
         """Get the prefix map for a given collection."""
-        from ..uri_format import get_format_url
+        from ..uri_format import get_uri_prefix
 
         rv = {}
         for prefix in self.resources:
-            fmt = get_format_url(prefix)
+            fmt = get_uri_prefix(prefix)
             if fmt is not None:
                 rv[prefix] = fmt
         return rv
+
+
+def clean_pattern(rv: str) -> str:
+    """Clean a regular expression string."""
+    rv = rv.rstrip("?")
+    if not rv.startswith("^"):
+        rv = f"^{rv}"
+    if not rv.endswith("$"):
+        rv = f"{rv}$"
+    return rv
 
 
 @lru_cache(maxsize=1)
