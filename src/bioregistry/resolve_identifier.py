@@ -160,6 +160,8 @@ def get_identifiers_org_iri(prefix: str, identifier: str) -> Optional[str]:
 
     >>> get_identifiers_org_iri('chebi', '24867')
     'https://identifiers.org/CHEBI:24867'
+    >>> get_identifiers_org_iri("interpro", "IPR016380")
+    'https://identifiers.org/interpro:IPR016380'
     """
     curie = get_identifiers_org_curie(prefix, identifier)
     if curie is None:
