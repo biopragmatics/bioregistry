@@ -66,6 +66,10 @@
   - 4DN
   url: https://data.4dnucleome.org/biosources/$1
 4dn.replicate:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Database portal containing replicate experiments of different assays
     and samples
   example: 4DNESWX1J3QU
@@ -152,6 +156,10 @@ abs:
     is_obo: false
     prefix: ABS
 ac:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Activity Streams is an open format specification for activity stream
     protocols, which are used to syndicate activities taken in social web applications
     and services, similar to those in Facebook's, Instagram's, and Twitter's. The
@@ -297,6 +305,7 @@ aeo:
     inactive: false
     license: CC-BY 4.0
     name: Anatomical Entity Ontology
+    preferredPrefix: AEO
     prefix: aeo
   ols:
     description: AEO is an ontology of anatomical structures that expands CARO, the
@@ -510,8 +519,9 @@ agro:
     download.owl: http://purl.obolibrary.org/obo/agro.owl
     homepage: https://github.com/AgriculturalSemantics/agro
     inactive: false
-    license: CC-BY
+    license: CC-BY 4.0
     name: Agronomy Ontology
+    preferredPrefix: AGRO
     prefix: agro
   ols:
     description: Ontology of agronomic practices, agronomic techniques, and agronomic
@@ -558,6 +568,7 @@ aism:
     inactive: false
     license: CC-BY
     name: Ontology for the Anatomy of the Insect SkeletoMuscular system (AISM)
+    preferredPrefix: AISM
     prefix: aism
   ols:
     description: The ontology for the Anatomy of the Insect SkeletoMuscular system
@@ -619,6 +630,10 @@ allergome:
     name: Allergome; a platform for allergen knowledge
     prefix: Allergome
 alzforum.mutation:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Alzforum mutations is a repository of genes and rare variants associated
     with Alzheimer's disease.
   example: app-d678n-tottori
@@ -691,6 +706,7 @@ amphx:
     inactive: false
     license: CC-BY
     name: The Amphioxus Development and Anatomy Ontology
+    preferredPrefix: AMPHX
     prefix: amphx
   ols:
     description: An ontology for the development and anatomy of Amphioxus (Branchiostoma
@@ -1052,8 +1068,8 @@ apo:
     license: http://creativecommons.org/licenses/by/4.0/
     name: Ascomycete Phenotype Ontology (APO)
     prefix: apo
-    version: '2021-09-07'
-    version.iri: http://purl.obolibrary.org/obo/apo/releases/2021-09-07/apo.owl
+    version: '2021-10-07'
+    version.iri: http://purl.obolibrary.org/obo/apo/releases/2021-10-07/apo.owl
   ontobee:
     library: Library
     name: Ascomycete phenotype ontology
@@ -1091,6 +1107,7 @@ apollosv:
     inactive: false
     license: CC-BY 3.0
     name: Apollo Structured Vocabulary
+    preferredPrefix: APOLLO_SV
     prefix: apollo_sv
   ols:
     description: Defines terms and relations necessary for interoperation between
@@ -1266,6 +1283,7 @@ aro:
     inactive: false
     license: CC-BY
     name: Antibiotic Resistance Ontology
+    preferredPrefix: ARO
     prefix: aro
   ols:
     description: Antibiotic resistance genes and mutations
@@ -1654,11 +1672,31 @@ aspgd.protein:
     is_obo: false
     prefix: ASPGD.PROTEIN
 asrp:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Arabidopsis Small RNA Project is a repository of data on Arabidopsis
     small RNA genes.
   example: ASRP1423
   homepage: https://asrp.danforthcenter.org/
   name: Arabidopsis Small RNA Project
+assembly:
+  mappings:
+    miriam: assembly
+  miriam:
+    deprecated: false
+    description: A database providing information on the structure of assembled genomes,
+      assembly names and other meta-data, statistical reports, and links to genomic
+      sequence data.
+    homepage: https://www.ncbi.nlm.nih.gov/
+    id: 00000884
+    name: Assembly
+    namespaceEmbeddedInLui: false
+    pattern: ^[a-zA-Z0-9_\.]+$
+    prefix: assembly
+    provider_url: https://www.ncbi.nlm.nih.gov/assembly/$1
+    sampleId: GCF_000005845.2
 atc:
   bioportal:
     name: Anatomical Therapeutic Chemical Classification
@@ -2061,6 +2099,10 @@ bacmap.map:
     is_obo: false
     prefix: BACMAP.MAP
 bactibase:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Bactibase is a database describing the physical and chemical properties
     of bacteriocins from gram-negative and gram-positive bacteria.
   example: BAC045
@@ -2068,6 +2110,10 @@ bactibase:
   name: 'Bactibase: a database dedicated to bacteriocins'
   url: http://bactibase.hammamilab.org/$1
 bams:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   deprecated: true
   description: 'BAMS (Brain Architectural Management System) describes vertebrate
     neuroinformatics data at four levels of organization: expressed molecules, neuron
@@ -2226,6 +2272,7 @@ bco:
     inactive: false
     license: CC-0
     name: Biological Collections Ontology
+    preferredPrefix: BCO
     prefix: bco
   ols:
     description: An ontology to support the interoperability of biodiversity data,
@@ -2427,6 +2474,10 @@ begdb:
     prefix: BEGDB
 bel:
   comment: INDRA uses bel as a catch-all for scomp/sfam
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The Biological Expression Language is a domain-specific language for
     describing causal, correlative, and associative relationships between a variety
     of biological agents.
@@ -2461,6 +2512,7 @@ bfo:
     inactive: false
     license: CC-BY
     name: Basic Formal Ontology
+    preferredPrefix: BFO
     prefix: bfo
   ols:
     description: The upper level ontology upon which OBO Foundry ontologies are built.
@@ -3000,6 +3052,10 @@ biogrid:
     prefix: BioGRID
 biogrid.interaction:
   contact: biogridadmin@gmail.com
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: BioGRID is a database of physical and genetic interactions in Saccharomyces
     cerevisiae, Caenorhabditis elegans, Drosophila melanogaster, Homo sapiens, and
     Schizosaccharomyces pombe.
@@ -3162,6 +3218,7 @@ biomodels.kisao:
     inactive: false
     license: Artistic License 2.0
     name: Kinetic Simulation Algorithm Ontology
+    preferredPrefix: KISAO
     prefix: kisao
   ols:
     description: A classification of algorithms for simulating biology and their outputs
@@ -3169,7 +3226,7 @@ biomodels.kisao:
     homepage: http://co.mbine.org/standards/kisao
     name: Kinetic Simulation Algorithm Ontology
     prefix: kisao
-    version: '2.14'
+    version: '2.30'
   ontobee:
     library: Library
     name: Kinetic Simulation Algorithm Ontology
@@ -3383,6 +3440,10 @@ bioproject:
   url: https://www.ncbi.nlm.nih.gov/bioproject/?term=$1
 bioregistry:
   contact: cthoyt@gmail.com
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The Bioregistry is integrative meta-registry of biological databases,
     ontologies, and nomenclatures that is backed by an open database.
   example: bioregistry
@@ -3391,6 +3452,10 @@ bioregistry:
   url: https://bioregistry.io/registry/$1
 bioregistry.collection:
   contact: cthoyt@gmail.com
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Manually curated collections of resources stored in the bioregistry
   example: '0000001'
   homepage: https://bioregistry.io/collection
@@ -3732,6 +3797,10 @@ bmrb:
     name: Biological Magnetic Resonance Data Bank
     prefix: BMRB
 bmrb.restraint:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The NMR Restraints Grid contains the original NMR data as collected
     for over 2500 protein and nucleic acid structures with corresponding PDB entries.
     In addition to the original restraints, most of the distance, dihedral angle and
@@ -3802,6 +3871,10 @@ bootstrep:
     is_obo: true
     prefix: BOOTSTREP
 bpdb:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: 'Database of biopesticides maintained by the University of Hertfordshire '
   example: '2404'
   homepage: https://sitem.herts.ac.uk/aeru/bpdb/index.htm
@@ -3908,6 +3981,10 @@ broad:
 bs:
   comment: An alernative vocabulary that has been aligned and integrated in Sequence
     Ontology (SO).
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: SO is a collaborative ontology project for the definition of sequence
     features used in biological sequence annotation. It is part of the Open Biomedical
     Ontologies library.
@@ -3940,6 +4017,7 @@ bspo:
     inactive: false
     license: CC-BY
     name: Biological Spatial Ontology
+    preferredPrefix: BSPO
     prefix: bspo
   ols:
     description: An ontology for respresenting spatial concepts, anatomical axes,
@@ -3952,8 +4030,8 @@ bspo:
     license: https://creativecommons.org/licenses/by/3.0/
     name: Biological Spatial Ontology
     prefix: bspo
-    version: '2021-09-22'
-    version.iri: http://purl.obolibrary.org/obo/bspo/releases/2021-09-22/bspo.owl
+    version: '2021-10-13'
+    version.iri: http://purl.obolibrary.org/obo/bspo/releases/2021-10-13/bspo.owl
   ontobee:
     library: Library
     name: Biological Spatial Ontology
@@ -4031,6 +4109,7 @@ bto:
     inactive: false
     license: CC BY 4.0
     name: BRENDA tissue / enzyme source
+    preferredPrefix: BTO
     prefix: bto
   ols:
     description: A structured controlled vocabulary for the source of an enzyme comprising
@@ -4040,8 +4119,8 @@ bto:
     license: https://creativecommons.org/licenses/by/4.0/
     name: The BRENDA Tissue Ontology (BTO)
     prefix: bto
-    version: '2021-04-27'
-    version.iri: http://purl.obolibrary.org/obo/bto/releases/2021-04-27/bto.owl
+    version: '2021-10-26'
+    version.iri: http://purl.obolibrary.org/obo/bto/releases/2021-10-26/bto.owl
   ontobee:
     library: Library
     name: BRENDA tissue / enzyme source
@@ -4247,6 +4326,10 @@ cadsr:
     prefix: cadsr
     provider_url: https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement[@publicId=$1]
 caloha:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: This is a code repository for the SIB - Swiss Institute of Bioinformatics
     CALIPHO group neXtProt project, which is a comprehensive human-centric discovery
     platform, that offers a integration of and navigation through protein-related
@@ -4372,6 +4455,7 @@ caro:
     inactive: false
     license: CC-BY 3.0
     name: Common Anatomy Reference Ontology
+    preferredPrefix: CARO
     prefix: caro
   ols:
     description: An upper level ontology to facilitate interoperability between existing
@@ -4660,6 +4744,10 @@ cazy:
     name: Carbohydrate-Active enZymes
     prefix: CAZy
 cba:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: 'CBA: http://www.cba.ac.cn/ and the Shanghai Institutes for Biological
     Sciences (SIBS at http://www.sibs.ac.cn/) provide EBI with citation data not available
     in MEDLINE.'
@@ -4844,6 +4932,7 @@ cdao:
     inactive: false
     license: CC0 1.0 Universal
     name: Comparative Data Analysis Ontology
+    preferredPrefix: CDAO
     prefix: cdao
   ols:
     description: The Comparative Data Analysis Ontology (CDAO) provides a framework
@@ -4951,6 +5040,7 @@ cdno:
     inactive: false
     license: CC-BY
     name: Compositional Dietary Nutrition Ontology
+    preferredPrefix: CDNO
     prefix: cdno
   ols:
     description: None
@@ -4959,8 +5049,8 @@ cdno:
     license: unspecified
     name: Compositional Dietary Nutrition Ontology
     prefix: cdno
-    version: '2021-09-09'
-    version.iri: http://purl.obolibrary.org/obo/cdno/releases/2021-09-09/cdno.owl
+    version: '2021-10-20'
+    version.iri: http://purl.obolibrary.org/obo/cdno/releases/2021-10-20/cdno.owl
   ontobee:
     library: Library
     name: Compositional Dietary Nutrition Ontology
@@ -5232,6 +5322,10 @@ cgd:
     name: Candida Genome Database
     prefix: CGD
 cgnc:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Nomenclature Consortium around Chicken genes (analogous to the HGNC
     for humans)
   example: '10087'
@@ -5383,6 +5477,7 @@ chebi:
     inactive: false
     license: CC-BY 4.0
     name: Chemical Entities of Biological Interest
+    preferredPrefix: CHEBI
     prefix: chebi
   ols:
     description: A structured classification of molecular entities of biological interest
@@ -5391,7 +5486,7 @@ chebi:
     homepage: http://www.ebi.ac.uk/chebi
     name: Chemical Entities of Biological Interest
     prefix: chebi
-    version.iri: http://purl.obolibrary.org/obo/chebi/203/chebi.owl
+    version.iri: http://purl.obolibrary.org/obo/chebi/204/chebi.owl
   ontobee:
     library: Foundry
     name: Chemical Entities of Biological Interest
@@ -5655,6 +5750,7 @@ cheminf:
     inactive: false
     license: CC BY 4.0
     name: Chemical Information Ontology
+    preferredPrefix: CHEMINF
     prefix: cheminf
   ols:
     description: Includes terms for the descriptors commonly used in cheminformatics
@@ -5788,6 +5884,7 @@ chiro:
     inactive: false
     license: CC-0
     name: CHEBI Integrated Role Ontology
+    preferredPrefix: CHIRO
     prefix: chiro
   ols:
     description: CHEBI provides a distinct role hierarchy. Chemicals in the structural
@@ -5828,6 +5925,7 @@ chmo:
     inactive: false
     license: CC-BY
     name: Chemical Methods Ontology
+    preferredPrefix: CHMO
     prefix: chmo
   ols:
     contact: chemistry-ontologies@googlegroups.com
@@ -5879,6 +5977,7 @@ cido:
     inactive: false
     license: CC-BY
     name: Coronavirus Infectious Disease Ontology
+    preferredPrefix: CIDO
     prefix: cido
   ols:
     contact: cido-discuss@googlegroups.com
@@ -5920,6 +6019,7 @@ cio:
     inactive: false
     license: CC0
     name: Confidence Information Ontology
+    preferredPrefix: CIO
     prefix: cio
   ols:
     description: An ontology to capture confidence information about annotations.
@@ -5941,6 +6041,10 @@ cio:
     is_obo: true
     prefix: CIO
 citexplore:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: One of the precursors to the EuropePMC project. Now EuropePMC is able
     to resolve CiteXplore codes.
   example: C6155
@@ -6056,6 +6160,7 @@ cl:
     inactive: false
     license: CC-BY
     name: Cell Ontology
+    preferredPrefix: CL
     prefix: cl
   ols:
     description: An ontology of cell types.
@@ -6106,6 +6211,7 @@ clao:
     inactive: false
     license: CC-0
     name: Collembola Anatomy Ontology
+    preferredPrefix: CLAO
     prefix: clao
   ols:
     description: 'CLAO is an ontology of anatomical terms employed in morphological
@@ -6441,6 +6547,7 @@ clo:
     inactive: false
     license: CC-BY
     name: Cell Line Ontology
+    preferredPrefix: CLO
     prefix: clo
   ols:
     description: The Cell Line Ontology (CLO) is a community-based ontology of cell
@@ -6489,6 +6596,7 @@ clyh:
     inactive: false
     license: CC-BY
     name: Clytia hemisphaerica Development and Anatomy Ontology
+    preferredPrefix: CLYH
     prefix: clyh
   ols:
     description: Anatomy, development and life cycle stages - planula, polyp, medusa/jellyfish
@@ -6547,6 +6655,7 @@ cmo:
     inactive: false
     license: CC-0
     name: Clinical measurement ontology
+    preferredPrefix: CMO
     prefix: cmo
   ols:
     description: Morphological and physiological measurement records generated from
@@ -6596,8 +6705,8 @@ co_320:
     description: Rice Trait Dictionary in template v 5.0 - IRRI - March 2016 - Based
       on SES, RD, UPOV variables and on variables used by CIAT, FLAR and the GRISP
       Phenotyping Network variables
-    download: http://www.cropontology.org/ontology/CO_320/Rice/owl
-    homepage: http://www.cropontology.org/ontology/CO_320/Rice
+    download: http://127.0.0.1:5900/ontology/CO_320/Rice/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_320/Rice
     name: Rice ontology
     prefix: co_320
     version: '2019-10-09'
@@ -6608,9 +6717,9 @@ co_321:
     ols: co_321
   ols:
     contact: helpdesk@cropontology-curationtool.org
-    description: Sept 2020
-    download: http://www.cropontology.org/ontology/CO_321/Wheat/owl
-    homepage: http://www.cropontology.org/ontology/CO_321/Wheat
+    description: July 2018
+    download: http://127.0.0.1:5900/ontology/CO_321/Wheat/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_321/Wheat
     name: Wheat ontology
     prefix: co_321
     version: '2019-10-09'
@@ -6622,8 +6731,8 @@ co_322:
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: Maize Trait Dictionary in template 5 - CIMMYT- September 2016
-    download: http://www.cropontology.org/ontology/CO_322/Maize/owl
-    homepage: http://www.cropontology.org/ontology/CO_322/Maize
+    download: http://127.0.0.1:5900/ontology/CO_322/Maize/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_322/Maize
     name: Maize ontology
     prefix: co_322
     version: '2019-10-09'
@@ -6635,8 +6744,8 @@ co_323:
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: ICARDA - TDv5 - Sept 2018
-    download: http://www.cropontology.org/ontology/CO_323/Barley/owl
-    homepage: http://www.cropontology.org/ontology/CO_323/Barley
+    download: http://127.0.0.1:5900/ontology/CO_323/Barley/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_323/Barley
     name: Barley ontology
     prefix: co_323
     version: '2019-11-20'
@@ -6647,9 +6756,9 @@ co_324:
     ols: co_324
   ols:
     contact: helpdesk@cropontology-curationtool.org
-    description: Sorghum TDv5 March 2021
-    download: http://www.cropontology.org/ontology/CO_324/Sorghum/owl
-    homepage: http://www.cropontology.org/ontology/CO_324/Sorghum
+    description: Sorghum TDv5 - Oct 2019
+    download: http://127.0.0.1:5900/ontology/CO_324/Sorghum/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_324/Sorghum
     name: Sorghum ontology
     prefix: co_324
     version: '2019-10-09'
@@ -6662,12 +6771,23 @@ co_325:
     contact: helpdesk@cropontology-curationtool.org
     description: Banana Trait Dictionary in template 5 - Bioversity & IITA - April
       2019
-    download: http://www.cropontology.org/ontology/CO_325/Banana/owl
-    homepage: http://www.cropontology.org/ontology/CO_325/Banana
+    download: http://127.0.0.1:5900/ontology/CO_325/Banana/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_325/Banana
     name: Banana ontology
     prefix: co_325
     version: '2019-10-09'
   url: https://www.cropontology.org/rdf/CO_325:$1
+co_326:
+  example: '0000254'
+  mappings:
+    ols: co_326
+  ols:
+    contact: helpdesk@cropontology-curationtool.org
+    description: Draft version
+    download: http://127.0.0.1:5900/ontology/CO_326/Coconut/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_326/Coconut
+    name: Coconut ontology
+    prefix: co_326
 co_327:
   example: 0000095
   mappings:
@@ -6688,9 +6808,9 @@ co_330:
     ols: co_330
   ols:
     contact: helpdesk@cropontology-curationtool.org
-    description: CIP - potato ontology - november 2020
-    download: http://www.cropontology.org/ontology/CO_330/Potato/owl
-    homepage: http://www.cropontology.org/ontology/CO_330/Potato
+    description: CIP - potato ontology - december 2018
+    download: http://127.0.0.1:5900/ontology/CO_330/Potato/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_330/Potato
     name: Potato ontology
     prefix: co_330
     version: '2019-10-09'
@@ -6733,8 +6853,8 @@ co_334:
     contact: helpdesk@cropontology-curationtool.org
     description: Cassava Trait Dictionary in template 5 - IITA - July 2015, updated
       in February 2016
-    download: http://www.cropontology.org/ontology/CO_334/Cassava/owl
-    homepage: http://www.cropontology.org/ontology/CO_334/Cassava
+    download: http://127.0.0.1:5900/ontology/CO_334/Cassava/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_334/Cassava
     name: Cassava ontology
     prefix: co_334
     version: '2019-10-09'
@@ -6759,8 +6879,8 @@ co_336:
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: Soybean Trait Dictionary in template v5 - IITA - July 2015
-    download: http://www.cropontology.org/ontology/CO_336/Soybean/owl
-    homepage: http://www.cropontology.org/ontology/CO_336/Soybean
+    download: http://127.0.0.1:5900/ontology/CO_336/Soybean/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_336/Soybean
     name: Soybean ontology
     prefix: co_336
   url: https://www.cropontology.org/rdf/CO_336:$1
@@ -6770,10 +6890,10 @@ co_337:
     ols: co_337
   ols:
     contact: helpdesk@cropontology-curationtool.org
-    description: Groundnut Trait Dictionary in template v5 - ICRISAT/ISRA/DARS/USDA-ARS
-      - Sept 2019
-    download: http://www.cropontology.org/ontology/CO_337/Groundnut/owl
-    homepage: http://www.cropontology.org/ontology/CO_337/Groundnut
+    description: Groundnut Trait Dictionary in template v5 - ICRISAT/ISRA/DARS - Sept
+      2015
+    download: http://127.0.0.1:5900/ontology/CO_337/Groundnut/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_337/Groundnut
     name: Groundnut ontology
     prefix: co_337
     version: '2019-10-09'
@@ -6785,8 +6905,8 @@ co_338:
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: Chickpea Trait Dictionary in template v5 - ICRISAT - July 2015
-    download: http://www.cropontology.org/ontology/CO_338/Chickpea/owl
-    homepage: http://www.cropontology.org/ontology/CO_338/Chickpea
+    download: http://127.0.0.1:5900/ontology/CO_338/Chickpea/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_338/Chickpea
     name: Chickpea ontology
     prefix: co_338
     version: '2019-10-09'
@@ -6798,8 +6918,8 @@ co_339:
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: Lentil Trait Dictionary in template v5 - ICARDA - July 2015
-    download: http://www.cropontology.org/ontology/CO_339/Lentil/owl
-    homepage: http://www.cropontology.org/ontology/CO_339/Lentil
+    download: http://127.0.0.1:5900/ontology/CO_339/Lentil/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_339/Lentil
     name: Lentil ontology
     prefix: co_339
     version: '2019-10-09'
@@ -6811,8 +6931,8 @@ co_340:
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: Cowpea Trait Dictionary in template v5 - IITA - August 2015
-    download: http://www.cropontology.org/ontology/CO_340/Cowpea/owl
-    homepage: http://www.cropontology.org/ontology/CO_340/Cowpea
+    download: http://127.0.0.1:5900/ontology/CO_340/Cowpea/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_340/Cowpea
     name: Cowpea ontology
     prefix: co_340
     version: '2019-10-09'
@@ -6824,8 +6944,8 @@ co_341:
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: Pigeonpea Trait Dictionary in template v5 - ICRISAT - July 2015
-    download: http://www.cropontology.org/ontology/CO_341/Pigeonpea/owl
-    homepage: http://www.cropontology.org/ontology/CO_341/Pigeonpea
+    download: http://127.0.0.1:5900/ontology/CO_341/Pigeonpea/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_341/Pigeonpea
     name: Pigeonpea ontology
     prefix: co_341
     version: '2019-11-18'
@@ -6837,8 +6957,8 @@ co_343:
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: version 2019 - pvs
-    download: http://www.cropontology.org/ontology/CO_343/Yam/owl
-    homepage: http://www.cropontology.org/ontology/CO_343/Yam
+    download: http://127.0.0.1:5900/ontology/CO_343/Yam/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_343/Yam
     name: Yam ontology
     prefix: co_343
     version: '2019-10-09'
@@ -6850,8 +6970,8 @@ co_345:
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: Brachiaria (forages) ontology TD v5 - Version Oct 2016
-    download: http://www.cropontology.org/ontology/CO_345/Brachiaria/owl
-    homepage: http://www.cropontology.org/ontology/CO_345/Brachiaria
+    download: http://127.0.0.1:5900/ontology/CO_345/Brachiaria/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_345/Brachiaria
     name: Brachiaria ontology
     prefix: co_345
     version: '2019-10-09'
@@ -6863,8 +6983,8 @@ co_346:
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: oct 2016
-    download: http://www.cropontology.org/ontology/CO_346/Mungbean/owl
-    homepage: http://www.cropontology.org/ontology/CO_346/Mungbean
+    download: http://127.0.0.1:5900/ontology/CO_346/Mungbean/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_346/Mungbean
     name: Mungbean ontology
     prefix: co_346
     version: '2019-10-09'
@@ -6892,8 +7012,8 @@ co_348:
       brassica crop data. Terms are collected from various projects including OREGIN,
       RIPR (UK) and Rapsodyn (France). BRATO development is conducted by Earlham Institute
       (UK), Southern Cross University (Australia) and INRA (France).
-    download: http://www.cropontology.org/ontology/CO_348/Brassica/owl
-    homepage: http://www.cropontology.org/ontology/CO_348/Brassica
+    download: http://127.0.0.1:5900/ontology/CO_348/Brassica/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_348/Brassica
     name: Brassica ontology
     prefix: co_348
     version: '2019-11-29'
@@ -6906,8 +7026,8 @@ co_350:
     contact: helpdesk@cropontology-curationtool.org
     description: Oat trait dictionary started by Oat Global (http://oatglobal.org/)
       and improved by NIAB and PepsiCo
-    download: http://www.cropontology.org/ontology/CO_350/Oat/owl
-    homepage: http://www.cropontology.org/ontology/CO_350/Oat
+    download: http://127.0.0.1:5900/ontology/CO_350/Oat/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_350/Oat
     name: Oat ontology
     prefix: co_350
     version: '2019-10-09'
@@ -6918,10 +7038,10 @@ co_356:
     ols: co_356
   ols:
     contact: helpdesk@cropontology-curationtool.org
-    description: Grape Ontology including OIV and bioversity descriptors. INRAE Jan
-      2021
-    download: http://www.cropontology.org/ontology/CO_356/Vitis/owl
-    homepage: http://www.cropontology.org/ontology/CO_356/Vitis
+    description: Grape Ontology including OIV and bioversity descriptors. INRA July
+      2017
+    download: http://127.0.0.1:5900/ontology/CO_356/Vitis/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_356/Vitis
     name: Vitis ontology
     prefix: co_356
     version: '2019-11-29'
@@ -6949,8 +7069,8 @@ co_358:
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: Cotton ontology from CottonGen database - June 2019
-    download: http://www.cropontology.org/ontology/CO_358/Cotton/owl
-    homepage: http://www.cropontology.org/ontology/CO_358/Cotton
+    download: http://127.0.0.1:5900/ontology/CO_358/Cotton/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_358/Cotton
     name: Cotton ontology
     prefix: co_358
     version: '2020-01-03'
@@ -6962,8 +7082,8 @@ co_359:
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: December 2019
-    download: http://www.cropontology.org/ontology/CO_359/Sunflower/owl
-    homepage: http://www.cropontology.org/ontology/CO_359/Sunflower
+    download: http://127.0.0.1:5900/ontology/CO_359/Sunflower/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_359/Sunflower
     name: Sunflower ontology
     prefix: co_359
   url: https://www.cropontology.org/rdf/CO_359:$1
@@ -6987,8 +7107,8 @@ co_365:
   ols:
     contact: helpdesk@cropontology-curationtool.org
     description: developed by ICARDA - Dec 2018
-    download: http://www.cropontology.org/ontology/CO_365/Fababean/owl
-    homepage: http://www.cropontology.org/ontology/CO_365/Fababean
+    download: http://127.0.0.1:5900/ontology/CO_365/Fababean/owl
+    homepage: http://127.0.0.1:5900/ontology/CO_365/Fababean
     name: Fababean ontology
     prefix: co_365
     version: '2019-10-15'
@@ -7027,6 +7147,7 @@ cob:
     inactive: false
     license: CC0
     name: Core Ontology for Biology and Biomedicine
+    preferredPrefix: COB
     prefix: cob
   ols:
     description: COB brings together key terms from a wide range of OBO projects to
@@ -7043,6 +7164,28 @@ cob:
     name: Core Ontology for Biology and Biomedicine
     prefix: COB
     url: http://www.ontobee.org/ontology/COB
+coconut:
+  comment: '@mSorok is the dev of the resource, hope I got it right!'
+  contributor:
+    email: null
+    name: Adriano Rutz
+    orcid: 0000-0003-0443-9902
+  description: COCONUT (COlleCtion of Open Natural ProdUcTs) Online is an open source
+    project for Natural Products (NPs) storage, search and analysis. It gathers data
+    from over 50 open NP resources and is available free of charge and without any
+    restriction. Each entry corresponds to a "flat" NP structure, and is associated,
+    when available, to their known stereochemical forms, literature, organisms that
+    produce them, natural geographical presence and diverse pre-computed molecular
+    properties.
+  example: CNP0171505
+  homepage: https://coconut.naturalproducts.net
+  name: COlleCtion of Open Natural ProdUcTs
+  pattern: ^CNP\d{7}$
+  reviewer:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  url: https://coconut.naturalproducts.net/compound/coconut_id/$1
 cog:
   biolink:
     formatter: https://www.ncbi.nlm.nih.gov/research/cog-project/$1
@@ -7075,6 +7218,10 @@ cog:
   url: https://www.ncbi.nlm.nih.gov/research/cog/cog/$1
 cog.category:
   contact: cogs@ncbi.nlm.nih.gov
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Higher-level classifications of COG Pathways
   example: K
   homepage: https://www.ncbi.nlm.nih.gov/research/cog/
@@ -7101,6 +7248,10 @@ cog.pathway:
 cohd:
   comment: not really sure where the source is. this also links to a system called
     athena. I was not able to figure out what COHD stands for.
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: MIMIC-III is a dataset comprising health-related data associated with
     over 40,000 patients who stayed in critical care units of the Beth Israel Deaconess
     Medical Center between 2001 and 2012
@@ -7146,6 +7297,10 @@ combine.specifications:
     is_obo: false
     prefix: COMBINE.SPECIFICATIONS
 come:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: COMe (Co-Ordination of Metals) at the EBI represents an ontology for
     bioinorganic and other small molecule centres in complex proteins, using a classification
     system based on the concept of a bioinorganic motif.
@@ -7329,6 +7484,10 @@ conoserver:
     name: 'ConoServer: Cone snail toxin database'
     prefix: ConoServer
 conso:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: An ontology describing phenomena encountered in the literature surrounding
     neurodegenerative diseases such as Alzheimer's disease, Parkinson's disease, Huntington's
     disease, tauopathies, and related protein aggregation diseases.
@@ -7511,6 +7670,10 @@ cosmic:
     is_obo: false
     prefix: COSMIC
 cosmic.cell:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: COSMIC, the Catalogue Of Somatic Mutations In Cancer, is the world's
     largest and most comprehensive resource for exploring the impact of somatic mutations
     in human cancer
@@ -7556,6 +7719,10 @@ cp:
   appears_in:
   - cl
   comment: Part of cell ontology but deprecated, see https://github.com/obophenotype/cell-ontology/issues/572
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   deprecated: true
   name: Cellular Phenotypes
 cpc:
@@ -7663,6 +7830,7 @@ cro:
     inactive: false
     license: CC-BY
     name: Contributor Role Ontology
+    preferredPrefix: CRO
     prefix: cro
   ols:
     description: A classification of the diverse roles performed in the work leading
@@ -8040,6 +8208,7 @@ cteno:
     inactive: false
     license: CC-BY
     name: Ctenophore Ontology
+    preferredPrefix: CTENO
     prefix: cteno
   ols:
     description: An anatomical and developmental ontology for ctenophores (Comb Jellies)
@@ -8084,6 +8253,7 @@ cto:
     inactive: false
     license: CC-BY
     name: 'CTO: Core Ontology of Clinical Trials'
+    preferredPrefix: CTO
     prefix: cto
   ols:
     description: The core Ontology of Clinical Trials (CTO) will serve as a structured
@@ -8163,6 +8333,7 @@ cvdo:
     inactive: false
     license: CC BY 4.0
     name: Cardiovascular Disease Ontology
+    preferredPrefix: CVDO
     prefix: cvdo
   ols:
     description: An ontology to describe entities related to cardiovascular diseases
@@ -8277,7 +8448,7 @@ dandi:
     id: 00000786
     name: 'DANDI: Distributed Archives for Neurophysiology Data Integration'
     namespaceEmbeddedInLui: false
-    pattern: ^\d{6}(/\d+\.\d+\.\d+)?$
+    pattern: ^\d{6}(\/\d+\.\d+\.\d+)?$
     prefix: dandi
     provider_url: https://dandiarchive.org/dandiset/$1
     sampleId: '000017'
@@ -8932,6 +9103,7 @@ ddanat:
     inactive: false
     license: CC0 1.0 Universal
     name: Dictyostelium discoideum anatomy
+    preferredPrefix: DDANAT
     prefix: ddanat
   ols:
     description: A structured controlled vocabulary of the anatomy of the slime-mold
@@ -8977,6 +9149,7 @@ ddpheno:
     inactive: false
     license: CC-0
     name: Dictyostelium discoideum phenotype ontology
+    preferredPrefix: DDPHENO
     prefix: ddpheno
   ols:
     description: A structured controlled vocabulary of phenotypes of the slime-mould
@@ -9397,6 +9570,7 @@ dideo:
     inactive: false
     license: CC-BY 4.0
     name: Drug-drug Interaction and Drug-drug Interaction Evidence Ontology
+    preferredPrefix: DIDEO
     prefix: dideo
   ols:
     description: The Potential Drug-drug Interaction and Potential Drug-drug Interaction
@@ -9706,6 +9880,7 @@ doid:
     inactive: false
     license: CC0 1.0 Universal
     name: Human Disease Ontology
+    preferredPrefix: DOID
     prefix: doid
   ols:
     description: The Disease Ontology has been developed as a standardized ontology
@@ -9717,8 +9892,8 @@ doid:
     license: https://creativecommons.org/publicdomain/zero/1.0/
     name: Human Disease Ontology
     prefix: doid
-    version: '2021-08-17'
-    version.iri: http://purl.obolibrary.org/obo/doid/releases/2021-08-17/doid.owl
+    version: '2021-10-12'
+    version.iri: http://purl.obolibrary.org/obo/doid/releases/2021-10-12/doid.owl
   ontobee:
     library: Foundry
     name: Human Disease Ontology
@@ -9922,8 +10097,8 @@ dpo:
     license: https://creativecommons.org/licenses/by/3.0/
     name: Drosophila Phenotype Ontology (DPO)
     prefix: dpo
-    version: '2021-09-02'
-    version.iri: http://purl.obolibrary.org/obo/dpo/releases/2021-09-02/dpo.owl
+    version: '2021-10-15'
+    version.iri: http://purl.obolibrary.org/obo/dpo/releases/2021-10-15/dpo.owl
   ontobee:
     library: Library
     name: Drosophila Phenotype Ontology
@@ -10134,6 +10309,7 @@ dron:
     inactive: false
     license: CC-BY
     name: The Drug Ontology
+    preferredPrefix: DRON
     prefix: dron
   ols:
     description: We built this ontology primarily to support comparative effectiveness
@@ -10145,8 +10321,8 @@ dron:
     license: https://creativecommons.org/licenses/by/3.0/
     name: The Drug Ontology
     prefix: dron
-    version: '2021-08-12'
-    version.iri: http://purl.obolibrary.org/obo/dron/releases/2021-08-12/dron.owl
+    version: '2021-10-20'
+    version.iri: http://purl.obolibrary.org/obo/dron/releases/2021-10-20/dron.owl
   ontobee:
     library: Library
     name: The Drug Ontology
@@ -10336,6 +10512,10 @@ drugcentral:
     prefix: DrugCentral
   url: http://drugcentral.org/drugcard/$1
 dsmz:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The Leibniz Institute DSMZ is the most diverse biological resource
     center in the world and one of the largest collections of microorganisms and cell
     cultures worldwide (bacteria, archaea, protists, yeasts, fungi, bacteriophages,
@@ -10378,6 +10558,7 @@ duo:
     inactive: false
     license: CC-BY
     name: Data Use Ontology
+    preferredPrefix: DUO
     prefix: duo
   ols:
     description: DUO is an ontology which represent data use conditions.
@@ -10399,6 +10580,10 @@ duo:
     is_obo: true
     prefix: DUO
 eaglei:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Discovery tool for biomedical research resources available at institutions
     throughout the U.S.
   example: 0000012b-5661-2f63-2f73-b43980000000
@@ -10444,6 +10629,7 @@ ecao:
     inactive: false
     license: CC-BY
     name: The Echinoderm Anatomy and Development Ontology
+    preferredPrefix: ECAO
     prefix: ecao
   ols:
     description: None
@@ -10599,6 +10785,10 @@ echobase:
     name: EchoBASE - an integrated post-genomic database for E. coli
     prefix: EchoBASE
 ecmdb:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: "The ECMDB is an expertly curated database containing extensive metabolomic\
     \ data and metabolic pathway diagrams about Escherichia coli (strain K12, MG1655).\
     \ This database includes significant quantities of \u201Coriginal\u201D data compiled\
@@ -10670,6 +10860,7 @@ eco:
     inactive: false
     license: CC0 1.0 Universal
     name: Evidence ontology
+    preferredPrefix: ECO
     prefix: eco
   ols:
     description: The Evidence & Conclusion Ontology (ECO) describes types of scientific
@@ -10680,8 +10871,8 @@ eco:
     license: https://creativecommons.org/publicdomain/zero/1.0/
     name: Evidence & Conclusion Ontology (ECO)
     prefix: eco
-    version: '2021-09-14'
-    version.iri: http://purl.obolibrary.org/obo/eco/releases/2021-09-14/eco.owl
+    version: '2021-10-20'
+    version.iri: http://purl.obolibrary.org/obo/eco/releases/2021-10-20/eco.owl
   ontobee:
     library: Library
     name: Evidence ontology
@@ -10715,6 +10906,7 @@ ecocore:
     inactive: false
     license: CC-BY
     name: An ontology of core ecological entities
+    preferredPrefix: ECOCORE
     prefix: ecocore
   ols:
     description: Ecocore is a community ontology for the concise and controlled description
@@ -10872,6 +11064,7 @@ ecto:
     inactive: false
     license: CC0
     name: Environmental conditions, treatments and exposures ontology
+    preferredPrefix: ECTO
     prefix: ecto
   ols:
     description: ECTO describes exposures to experimental treatments of plants and
@@ -11188,18 +11381,20 @@ efo:
     license: www.apache.org/licenses/LICENSE-2.0
     name: Experimental Factor Ontology
     prefix: efo
-    version: 3.34.0
-    version.iri: http://www.ebi.ac.uk/efo/releases/v3.34.0/efo.owl
+    version: 3.35.0
+    version.iri: http://www.ebi.ac.uk/efo/releases/v3.35.0/efo.owl
   ontobee:
     library: Not Specified/No
     name: Experimental Factor Ontology
     prefix: EFO
     url: http://www.ontobee.org/ontology/EFO
+  preferred_prefix: EFO
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/EFO_$1
     is_identifiers: false
     is_obo: true
     prefix: EFO
+  url: http://www.ebi.ac.uk/efo/EFO_$1
 ega.dataset:
   homepage: https://ega-archive.org/
   mappings:
@@ -11531,6 +11726,7 @@ emapa:
     inactive: false
     license: CC-BY 4.0
     name: Mouse Developmental Anatomy Ontology
+    preferredPrefix: EMAPA
     prefix: emapa
   ols:
     description: An ontology for mouse anatomy covering embryonic development and
@@ -11596,6 +11792,10 @@ emdb:
     is_obo: false
     prefix: EMDB
 emolecules:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Catalog of purchasable reagents and building blocks
   example: '491187'
   homepage: https://reaxys.emolecules.com
@@ -12130,6 +12330,7 @@ envo:
     inactive: false
     license: CC-BY
     name: Environment Ontology
+    preferredPrefix: ENVO
     prefix: envo
   ols:
     description: ENVO is an ontology which represents knowledge about environments,environmental
@@ -12171,6 +12372,10 @@ eol:
     prefix: eol
     version: '2018-09-13'
 epcc:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Collection of European paediatric cardiac coding files
   homepage: https://www.aepc.org/european-paediatric-cardiac-coding
   name: European Paediatric Cardiac Codes
@@ -12476,6 +12681,7 @@ eupath:
     inactive: false
     license: CC-BY
     name: VEuPathDB ontology
+    preferredPrefix: EUPATH
     prefix: eupath
   ols:
     description: The VEuPathDB ontology is an application ontology developed to encode
@@ -12507,6 +12713,10 @@ eupath:
     is_obo: true
     prefix: EUPATH
 eurofir:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: EuroFir (European Food Information Resource Network), the world-leading
     European Network of Excellence on Food Composition Databank systems, is a partnership
     between 48 universities, research institutes and small-to-medium sized enterprises
@@ -12536,6 +12746,10 @@ ev:
   references:
   - https://twitter.com/Bgeedb/status/1350124337815281664
 evm:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   deprecated: true
   name: eVOC mouse development stage
   references:
@@ -12844,6 +13058,7 @@ fao:
     inactive: false
     license: CC-0
     name: Fungal gross anatomy
+    preferredPrefix: FAO
     prefix: fao
   ols:
     description: A structured controlled vocabulary for the anatomy of fungi.
@@ -13000,8 +13215,8 @@ fbcv:
     license: https://creativecommons.org/licenses/by/3.0/
     name: FlyBase Controlled Vocabulary (FBcv)
     prefix: fbcv
-    version: '2021-09-02'
-    version.iri: http://purl.obolibrary.org/obo/fbcv/releases/2021-09-02/fbcv.owl
+    version: '2021-10-18'
+    version.iri: http://purl.obolibrary.org/obo/fbcv/releases/2021-10-18/fbcv.owl
   ontobee:
     library: Library
     name: FlyBase Controlled Vocabulary
@@ -13049,8 +13264,8 @@ fbdv:
     license: https://creativecommons.org/licenses/by/3.0/
     name: FlyBase Developmental Ontology (FBdv)
     prefix: fbdv
-    version: '2021-09-01'
-    version.iri: http://purl.obolibrary.org/obo/fbdv/releases/2021-09-01/fbdv.owl
+    version: '2021-10-13'
+    version.iri: http://purl.obolibrary.org/obo/fbdv/releases/2021-10-13/fbdv.owl
   ontobee:
     library: Library
     name: Drosophila development
@@ -13109,6 +13324,10 @@ fbol:
     is_obo: false
     prefix: FBOL
 fbrf:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: FlyBase internal citation identifiers
   example: 0187632
   homepage: https://flybase.org
@@ -13141,6 +13360,10 @@ fbsp:
     is_obo: true
     prefix: FBSP
 fbtc:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The cell line vocabulary inside FlyBase
   example: 0000190
   homepage: https://flybase.org
@@ -13167,6 +13390,7 @@ fideo:
     inactive: false
     license: CC0
     name: Food Interactions with Drugs Evidence Ontology
+    preferredPrefix: FIDEO
     prefix: fideo
   ols:
     description: "The Food Interactions with Drugs Evidence Ontology (FIDEO) represents\
@@ -13260,6 +13484,7 @@ flopo:
     inactive: false
     license: CC-0
     name: Flora Phenotype Ontology
+    preferredPrefix: FLOPO
     prefix: flopo
   ols:
     description: Traits and phenotypes of flowering plants occurring in digitized
@@ -13477,6 +13702,7 @@ fma:
     inactive: false
     license: CC-BY 3.0
     name: Foundational Model of Anatomy Ontology (subset)
+    preferredPrefix: FMA
     prefix: fma
   ols:
     description: This is currently a slimmed down version of FMA
@@ -13547,14 +13773,17 @@ fobi:
     description: FOBI (Food-Biomarker Ontology) is an ontology to represent food intake
       data and associate it with metabolomic data
     download.owl: http://purl.obolibrary.org/obo/fobi.owl
+    homepage: https://github.com/pcastellanoescuder/FoodBiomarkerOntology
     inactive: false
     license: CC-BY
     name: FOBI
+    preferredPrefix: FOBI
     prefix: fobi
   ols:
     description: FOBI (Food-Biomarker Ontology) is an ontology to represent food intake
       data and associate it with metabolomic data
     download: http://purl.obolibrary.org/obo/fobi.owl
+    homepage: https://github.com/pcastellanoescuder/FoodBiomarkerOntology
     license: http://creativecommons.org/licenses/by/4.0/
     name: FOBI
     prefix: fobi
@@ -13666,6 +13895,7 @@ foodon:
     inactive: false
     license: CC-BY
     name: FOODON
+    preferredPrefix: FOODON
     prefix: foodon
   ols:
     description: FoodOn (http://foodon.org) is a consortium-driven project to build
@@ -13714,6 +13944,7 @@ fovt:
     inactive: false
     license: CC0
     name: FuTRES Ontology of Vertebrate Traits
+    preferredPrefix: FOVT
     prefix: fovt
   ols:
     description: None
@@ -14047,6 +14278,10 @@ fungidb:
     is_obo: false
     prefix: FUNGIDB
 fyler:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: 'A hierarchical classification of congenital heart disease '
   example: '4447'
   homepage: https://www.elsevier.com/books/nadas-pediatric-cardiology/9781416023906
@@ -14090,6 +14325,7 @@ fypo:
     inactive: false
     license: CC-BY
     name: Fission Yeast Phenotype Ontology
+    preferredPrefix: FYPO
     prefix: fypo
   ols:
     description: A formal ontology of phenotypes observed in fission yeast.
@@ -14098,8 +14334,8 @@ fypo:
     license: https://creativecommons.org/licenses/by/4.0/
     name: Fission Yeast Phenotype Ontology (FYPO)
     prefix: fypo
-    version: '2021-09-28'
-    version.iri: http://purl.obolibrary.org/obo/fypo/releases/2021-09-28/fypo.owl
+    version: '2021-10-05'
+    version.iri: http://purl.obolibrary.org/obo/fypo/releases/2021-10-05/fypo.owl
   ontobee:
     library: Library
     name: Fission Yeast Phenotype Ontology
@@ -14282,6 +14518,10 @@ gbif:
     prefix: P846
 gc:
   comment: 'see comment here: https://github.com/obophenotype/ncbitaxon/issues/47'
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Genetic code, mitochontrial genetic code, and other linked information
     to NCBI taxonomy entries.
   example: '11'
@@ -14414,6 +14654,7 @@ gecko:
     inactive: false
     license: CC-BY 4.0
     name: Genomics Cohorts Knowledge Ontology
+    preferredPrefix: GECKO
     prefix: gecko
   ols:
     description: An ontology to represent genomics cohort attributes.
@@ -14658,6 +14899,7 @@ genepio:
     inactive: false
     license: CC-BY
     name: Genomic Epidemiology Ontology
+    preferredPrefix: GENEPIO
     prefix: genepio
   ols:
     description: The Genomic Epidemiology Ontology (GenEpiO) covers vocabulary necessary
@@ -14788,6 +15030,7 @@ geno:
     inactive: false
     license: CC-BY-SA
     name: Genotype Ontology
+    preferredPrefix: GENO
     prefix: geno
   ols:
     description: "GENO is an OWL model of genotypes, their more fundamental sequence\
@@ -15006,6 +15249,10 @@ gexo:
     prefix: gexo
     version: '2019-09-18'
 ghr:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: MedlinePlus Genetics contains detailed information about the effects
     of genetic variation on human health, covering more than 1,300 genetic conditions
     and 1,400 genes, all of the human chromosomes, and mitochondrial DNA (mtDNA).
@@ -15537,6 +15784,7 @@ gno:
     inactive: false
     license: CC-BY 4.0
     name: Glycan Naming and Subsumption Ontology (GNOme)
+    preferredPrefix: GNO
     prefix: gno
   ols:
     description: An ontology for glycans based on GlyTouCan, but organized by subsumption.
@@ -15666,6 +15914,7 @@ go:
     inactive: false
     license: CC BY 4.0
     name: Gene Ontology
+    preferredPrefix: GO
     prefix: go
   ols:
     description: The Gene Ontology (GO) provides a framework and set of concepts for
@@ -15675,8 +15924,8 @@ go:
     license: http://creativecommons.org/licenses/by/4.0/
     name: Gene Ontology
     prefix: go
-    version: '2021-09-01'
-    version.iri: http://purl.obolibrary.org/obo/go/releases/2021-09-01/go.owl
+    version: '2021-10-26'
+    version.iri: http://purl.obolibrary.org/obo/go/releases/2021-10-26/go.owl
   ontobee:
     library: Foundry
     name: Gene Ontology
@@ -15812,6 +16061,10 @@ goa:
     is_obo: false
     prefix: GOA
 goeco:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: A GO annotation is a statement about the function of a particular gene.
     Each annotation includes an evidence code to indicate how the annotation to a
     particular term is supported.
@@ -16169,7 +16422,7 @@ gramene.growthstage:
     prefix: gramene.growthstage
     provider_url: http://www.gramene.org/db/ontology/search?id=GRO:$1
   name: Gramene Growth Stage Ontology
-  namespaceEmbeddedInLui: false
+  namespace_in_lui: false
   pattern: ^\d{7}$
   prefixcommons:
     formatter: http://identifiers.org/gramene.growthstage/$1
@@ -16501,6 +16754,10 @@ grsdb:
     is_obo: false
     prefix: GRSDB
 gsfa:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The "Codex General Standard for Food Additives" (GSFA, Codex STAN 192-1995)
     sets forth the conditions under which permitted food additives may be used in
     all foods, whether or not they have previously been standardized by Codex. The
@@ -16552,6 +16809,7 @@ gsso:
     inactive: false
     license: Apache 2.0 License
     name: Gender, Sex, and Sexual Orientation (GSSO) ontology
+    preferredPrefix: GSSO
     prefix: gsso
   ols:
     description: GSSO is the Gender, Sex, and Sex Orientation ontology, including
@@ -16614,6 +16872,10 @@ gtr:
   - mondo
   comment: Identifiers appearing in MONDO don't match any of the resources apparent
     endpoints
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: "The Genetic Testing Registry (GTR\xAE) provides a central location\
     \ for voluntary submission of genetic test information by providers. The scope\
     \ includes the test's purpose, methodology, validity, evidence of the test's usefulness,\
@@ -16977,6 +17239,7 @@ hancestro:
     inactive: false
     license: CC-BY 4.0
     name: Human Ancestry Ontology
+    preferredPrefix: HANCESTRO
     prefix: hancestro
   ols:
     description: Human ancestry ontology for the NHGRI GWAS Catalog
@@ -17015,6 +17278,7 @@ hao:
     inactive: false
     license: CC-0
     name: Hymenoptera Anatomy Ontology
+    preferredPrefix: HAO
     prefix: hao
   ols:
     description: A structured controlled vocabulary of the anatomy of the Hymenoptera
@@ -17047,8 +17311,8 @@ hcao:
     download: https://raw.githubusercontent.com/ebi-ait/ontology/master/hcao.owl
     name: Human Cell Atlas Ontology
     prefix: hcao
-    version: '2021-09-16'
-    version.iri: http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2021-09-16/hcao.owl
+    version: '2021-10-19'
+    version.iri: http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2021-10-19/hcao.owl
 hcpcs:
   biolink:
     formatter: http://purl.bioontology.org/ontology/HCPCS/$1
@@ -17555,6 +17819,10 @@ hmdb:
     pattern: HMDB\d+
     prefix: P2057
 hms.lincs.compound:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Database contains all publicly available HMS LINCS datasets and information
     for each dataset about experimental reagents (small molecule perturbagens, cells,
     antibodies, and proteins) and experimental and data analysis protocols.
@@ -17566,6 +17834,10 @@ hms.lincs.compound:
   - hmsl_id
   url: https://lincs.hms.harvard.edu/db/sm/$1
 hog:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Documentation of HOGS (Homologous Organs Groups). Contains links to
     HOGs download, HOGs onthology, HOGs creation, composition, etc.
   download_obo: ftp://ftp.bgee.org/general/ontologies/HOG.obo
@@ -17639,6 +17911,7 @@ hom:
     inactive: false
     license: CC0
     name: Homology Ontology
+    preferredPrefix: HOM
     prefix: hom
   ols:
     description: This ontology represents concepts related to homology, as well as
@@ -17875,6 +18148,7 @@ hp:
     inactive: false
     license: hpo
     name: Human Phenotype Ontology
+    preferredPrefix: HP
     prefix: hp
   ols:
     description: The Human Phenotype Ontology (HPO) provides a standardized vocabulary
@@ -17884,8 +18158,8 @@ hp:
     license: license
     name: Human Phenotype Ontology
     prefix: hp
-    version: '2021-08-02'
-    version.iri: http://purl.obolibrary.org/obo/hp/releases/2021-08-02/hp.owl
+    version: '2021-10-10'
+    version.iri: http://purl.obolibrary.org/obo/hp/releases/2021-10-10/hp.owl
   ontobee:
     library: Library
     name: Human Phenotype Ontology
@@ -18214,6 +18488,7 @@ hso:
     inactive: false
     license: CC-BY
     name: Health Surveillance Ontology
+    preferredPrefix: HSO
     prefix: hso
   ols:
     description: The health Surveillance Ontology (HSO) focuses on "surveillance system
@@ -18300,6 +18575,7 @@ htn:
     inactive: false
     license: CC-BY 4.0
     name: Hypertension Ontology
+    preferredPrefix: HTN
     prefix: htn
   ols:
     description: An ontology for representing clinical data about hypertension, intended
@@ -18408,6 +18684,7 @@ iao:
     inactive: false
     license: CC-BY
     name: Information Artifact Ontology
+    preferredPrefix: IAO
     prefix: iao
   ols:
     description: The Information Artifact Ontology (IAO) is an ontology of information
@@ -18670,6 +18947,7 @@ iceo:
     inactive: false
     license: CC-BY
     name: Integrative and Conjugative Element Ontology
+    preferredPrefix: ICEO
     prefix: iceo
   ols:
     description: A biological ontology to standardize and integrate Integrative and
@@ -18706,6 +18984,7 @@ ico:
     inactive: false
     license: CC-BY
     name: Informed Consent Ontology
+    preferredPrefix: ICO
     prefix: ico
   ols:
     description: The Informed Consent Ontology (ICO) is an ontology for the informed
@@ -18836,6 +19115,7 @@ ido:
     inactive: false
     license: CC-BY 3.0
     name: Infectious Disease Ontology
+    preferredPrefix: IDO
     prefix: ido
   ols:
     description: A set of interoperable ontologies that will together provide coverage
@@ -19092,6 +19372,10 @@ ihw:
   name: International Histocompatibility Workshop cell lines
   pattern: ^IHW\d+$
 imdrf:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The International Medical Device Regulators Forum (IMDRF) is a forum
     of voluntary medical device regulators from around the world who have come together
     to build on the strong foundational work of the Global Harmonization Task Force
@@ -19498,6 +19782,7 @@ ino:
     inactive: false
     license: CC-BY
     name: Interaction Network Ontology
+    preferredPrefix: INO
     prefix: ino
   ols:
     description: he Interaction Network Ontology (INO) is an ontology in the domain
@@ -20002,6 +20287,10 @@ irefweb:
     is_obo: false
     prefix: IREFWEB
 iro:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   deprecated: true
   example: 0000008
   name: Insect Resistance Ontology
@@ -21143,6 +21432,11 @@ kegg.orthology:
     is_obo: false
     prefix: KEGG.ORTHOLOGY
 kegg.pathway:
+  biolink:
+    formatter: https://www.kegg.jp/entry/$1
+    is_identifiers: false
+    is_obo: false
+    prefix: KEGG.PATHWAY
   example: rsk00410
   go:
     formatter: http://www.genome.jp/dbget-bin/www_bget?path:$1
@@ -21150,6 +21444,7 @@ kegg.pathway:
     name: KEGG Pathways Database
     prefix: KEGG_PATHWAY
   mappings:
+    biolink: KEGG.PATHWAY
     go: KEGG_PATHWAY
     miriam: kegg.pathway
     n2t: kegg.pathway
@@ -21285,6 +21580,10 @@ kupo:
   appears_in:
   - cl
   comment: Website is down, now it redirects to something else that is not related
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   deprecated: true
   example: 0001009
   homepage: http://www.kupkb.org/
@@ -21312,6 +21611,7 @@ labo:
     inactive: false
     license: CC BY 4.0
     name: clinical LABoratory Ontology
+    preferredPrefix: LABO
     prefix: labo
   ols:
     description: LABO is an ontology of informational entities formalizing clinical
@@ -21890,6 +22190,10 @@ lipro:
     is_obo: true
     prefix: LIPRO
 lncipedia:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: A comprehensive compendium of human long non-coding RNAs
   example: SNHG3
   homepage: https://lncipedia.org
@@ -21929,6 +22233,29 @@ loinc:
     bioportal: LOINC
   name: Logical Observation Identifiers Names and Codes
   url: https://loinc.org/$1
+lotus:
+  comment: IDs are actually leading to the structural part of LOTUS only, which might
+    change in the future. Will adapt the regexp in case.
+  contact: adriano.rutz@ik.me
+  contributor:
+    email: null
+    name: Adriano Rutz
+    orcid: 0000-0003-0443-9902
+  description: "LOTUS, actually, represents the most exhaustive resource of documented\
+    \ structure-organism pairs. Within the frame of current computational approaches\
+    \ in Natural Produts\u2019s research and related fields, these documented structure-organism\
+    \ pairs should allow a more complete understanding of organisms and their chemistry."
+  example: LTS0004651
+  homepage: https://lotus.naturalproducts.net
+  name: LOTUS Initiative for Open Natural Products Research
+  pattern: ^LTS\d{7}$
+  reviewer:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  url: https://lotus.naturalproducts.net/compound/lotus_id/$1
+  wikidata:
+    database: Q104225190
 lrg:
   mappings:
     miriam: lrg
@@ -21987,6 +22314,10 @@ lrg:
     is_obo: false
     prefix: LRG
 lspci:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Internal identifiers form the LSP for ChEBML compound classes (e.g.,
     combining various salts and ions)
   example: '1'
@@ -22047,6 +22378,7 @@ ma:
     inactive: false
     license: CC-BY 4.0
     name: Mouse adult gross anatomy
+    preferredPrefix: MA
     prefix: ma
   ols:
     description: A structured controlled vocabulary of the adult anatomy of the mouse
@@ -22195,6 +22527,7 @@ mamo:
     inactive: false
     license: Artistic License 2.0
     name: Mathematical modeling ontology
+    preferredPrefix: MAMO
     prefix: mamo
   ols:
     description: The Mathematical Modelling Ontology (MAMO) is a classification of
@@ -22348,6 +22681,10 @@ mat:
 matrixdb:
   appears_in:
   - complexportal
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: MatrixDB is a freely available database focused on interactions established
     by extracellular matrix proteins, proteoglycans and polysaccharides
   example: MULT_4_VAR1_bovine
@@ -22421,6 +22758,7 @@ maxo:
     inactive: false
     license: CC-BY
     name: Medical Action Ontology
+    preferredPrefix: MAXO
     prefix: maxo
   ols:
     description: An ontology to represent medically relevant actions, procedures,
@@ -22466,6 +22804,7 @@ mco:
     inactive: false
     license: CC-BY
     name: Microbial Conditions Ontology
+    preferredPrefix: MCO
     prefix: mco
   ols:
     description: Microbial Conditions Ontology is an ontology...
@@ -23201,7 +23540,13 @@ metanetx.compartment:
     is_obo: false
     prefix: METANETX.COMPARTMENT
 metanetx.reaction:
+  biolink:
+    formatter: https://www.metanetx.org/equa_info/$1
+    is_identifiers: false
+    is_obo: false
+    prefix: METANETX.REACTION
   mappings:
+    biolink: METANETX.REACTION
     miriam: metanetx.reaction
     n2t: metanetx.reaction
     prefixcommons: METANETX.REACTION
@@ -23340,6 +23685,7 @@ mf:
     inactive: false
     license: CC-BY
     name: Mental Functioning Ontology
+    preferredPrefix: MF
     prefix: mf
   ols:
     description: The Mental Functioning Ontology is an overarching ontology for all
@@ -23384,6 +23730,7 @@ mfmo:
     inactive: false
     license: CC-BY
     name: Mammalian Feeding Muscle Ontology
+    preferredPrefix: MFMO
     prefix: mfmo
   ols:
     description: The Mammalian Feeding Muscle Ontology is an antomy ontology for the
@@ -23450,6 +23797,7 @@ mfoem:
     inactive: false
     license: CC-BY
     name: Emotion Ontology
+    preferredPrefix: MFOEM
     prefix: mfoem
   ols:
     description: An ontology of affective phenomena such as emotions, moods, appraisals
@@ -23493,6 +23841,7 @@ mfomd:
     inactive: false
     license: CC-BY
     name: Mental Disease Ontology
+    preferredPrefix: MFOMD
     prefix: mfomd
   ols:
     description: The Mental Disease Ontology is developed to facilitate representation
@@ -23625,6 +23974,10 @@ mgi:
     database: Q1951035
     prefix: P671
 mgnify.analysis:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Analyses of microbiome data within MGnify
   example: MGYA00002270
   homepage: https://www.ebi.ac.uk/metagenomics/
@@ -23763,6 +24116,7 @@ mi:
     inactive: false
     license: CC BY 4.0
     name: Molecular Interactions Controlled Vocabulary
+    preferredPrefix: MI
     prefix: mi
   ols:
     description: A structured controlled vocabulary for the annotation of experiments
@@ -23787,6 +24141,10 @@ mi:
   - PSI-MI
 miaa:
   comment: same as MAT
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   deprecated: true
   name: Minimal Information About Anatomy ontology
   references:
@@ -23812,6 +24170,7 @@ miapa:
     inactive: false
     license: CC-0
     name: MIAPA Ontology
+    preferredPrefix: MIAPA
     prefix: miapa
   ols:
     description: 'The MIAPA ontology is intended to be an application ontology for
@@ -23860,6 +24219,7 @@ micro:
     inactive: false
     license: CC-BY 2.0
     name: Ontology of Prokaryotic Phenotypic and Metabolic Characters
+    preferredPrefix: MICRO
     prefix: micro
   ols:
     description: An ontology of prokaryotic phenotypic and metabolic characters
@@ -24026,6 +24386,10 @@ mim:
     pattern: \d{6}
     prefix: P492
 mim.ps:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: A Phenotypic Series is a tabular view of genetic heterogeneity of similar
     phenotypes across the genome.
   example: PS214100
@@ -24307,6 +24671,10 @@ mirbase:
     pattern: MI\d{7}
     prefix: P2870
 mirbase.family:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The miRBase database is a searchable database of published miRNA sequences
     and annotation. Each entry in the miRBase Sequence database represents a predicted
     hairpin portion of a miRNA transcript (termed mir in the database), with information
@@ -24626,6 +24994,10 @@ mirtarbase:
     is_obo: false
     prefix: MIRTARBASE
 mirte:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: This website provides access to our 2003 and 2005 miRNA-Target predictions
     for Drosophila miRNAs
   example: miR-1
@@ -24741,6 +25113,7 @@ mmo:
     inactive: false
     license: CC-0
     name: Measurement method ontology
+    preferredPrefix: MMO
     prefix: mmo
   ols:
     description: 'A representation of the variety of methods used to make clinical
@@ -24915,6 +25288,10 @@ mmrrc:
     is_obo: false
     prefix: MMRRC
 mmsl:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The Lexicon is a foundational database with comprehensive drug product
     and disease nomenclature information. It includes drug names, drug product information,
     disease names, coding systems such as ICD-9-CM and NDC, generic names, brand names
@@ -25122,6 +25499,7 @@ mod:
     inactive: false
     license: CC-BY 4.0
     name: Protein modification
+    preferredPrefix: MOD
     prefix: mod
   ols:
     description: PSI-MOD is an ontology consisting of terms that describe protein
@@ -25213,6 +25591,10 @@ molbase:
     is_obo: false
     prefix: MOLBASE
 molbase.sheffield:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   deprecated: true
   description: An online database of inorganic compounds, MolBase was constructed
     by Dr Mark Winter of the University of Sheffield with input from undergraduate
@@ -25263,6 +25645,7 @@ mondo:
     inactive: false
     license: CC BY 4.0
     name: Mondo Disease Ontology
+    preferredPrefix: MONDO
     prefix: mondo
   ols:
     description: A semi-automatically constructed ontology that merges in multiple
@@ -25310,6 +25693,7 @@ mop:
     inactive: false
     license: CC-BY 4.0
     name: Molecular Process Ontology
+    preferredPrefix: MOP
     prefix: mop
   ols:
     contact: chemistry-ontologies@googlegroups.com
@@ -25407,6 +25791,7 @@ mp:
     inactive: false
     license: CC-BY 4.0
     name: Mammalian Phenotype Ontology
+    preferredPrefix: MP
     prefix: mp
   ols:
     description: The Mammalian Phenotype Ontology is being developed by Cynthia L.
@@ -25429,7 +25814,7 @@ mp:
     name: The Mammalian Phenotype Ontology
     prefix: mp
     version: '2019-11-11'
-    version.iri: http://purl.obolibrary.org/obo/mp/releases/2021-09-23
+    version.iri: http://purl.obolibrary.org/obo/mp/releases/2021-10-26
   ontobee:
     library: Library
     name: Mammalian Phenotype Ontology
@@ -25463,6 +25848,7 @@ mpath:
     inactive: false
     license: CC-BY
     name: Mouse pathology ontology
+    preferredPrefix: MPATH
     prefix: mpath
   ols:
     description: A structured controlled vocabulary of mutant and transgenic mouse
@@ -25552,6 +25938,7 @@ mpio:
     inactive: false
     license: CC-BY
     name: Minimum PDDI Information Ontology
+    preferredPrefix: MPIO
     prefix: mpio
   ols:
     description: An ontology of minimum information regarding potential drug-drug
@@ -25594,6 +25981,7 @@ mro:
     inactive: false
     license: CC-BY
     name: MHC Restriction Ontology
+    preferredPrefix: MRO
     prefix: mro
   ols:
     description: The MHC Restriction Ontology is an application ontology capturing
@@ -25605,8 +25993,8 @@ mro:
     license: http://creativecommons.org/licenses/by/3.0/
     name: MHC Restriction Ontology
     prefix: mro
-    version: '2021-09-24'
-    version.iri: http://purl.obolibrary.org/obo/mro/2021-09-24/mro.owl
+    version: '2021-10-15'
+    version.iri: http://purl.obolibrary.org/obo/mro/2021-10-15/mro.owl
   ontobee:
     library: Library
     name: MHC Restriction Ontology
@@ -25676,6 +26064,7 @@ ms:
     inactive: false
     license: CC-BY
     name: Mass spectrometry ontology
+    preferredPrefix: MS
     prefix: ms
   ols:
     contact: psidev-ms-vocab@lists.sourceforge.net
@@ -25686,7 +26075,7 @@ ms:
     name: Mass spectrometry ontology
     prefix: ms
     version: '2019-11-21'
-    version.iri: http://purl.obolibrary.org/obo/ms/4.1.35/ms.owl
+    version.iri: http://purl.obolibrary.org/obo/ms/4.1.62/ms.owl
   ontobee:
     library: Library
     name: Mass spectrometry ontology
@@ -25729,6 +26118,10 @@ msio:
     prefix: msio
     version: 1.0.1
 multicellds:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: MultiCellDS is data standard for multicellular simulation, experimental,
     and clinical data. A digital cell line is a hierarchical organization of quantitative
     phenotype data for a single biological cell line, including the microenvironmental
@@ -26158,6 +26551,10 @@ mzspec:
     is_obo: false
     prefix: MZSPEC
 namerxn:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The nomenclature used for named reactions in text mining software from
     NextMove. While it's proprietary, there are a few publications listing parts.
     487/1,855 have mappings to the Reaction Ontology (RXNO).
@@ -26375,6 +26772,7 @@ nbo:
     inactive: false
     license: CC-BY
     name: Neuro Behavior Ontology
+    preferredPrefix: NBO
     prefix: nbo
   ols:
     description: An ontology of human and animal behaviours and behavioural phenotypes
@@ -26442,6 +26840,10 @@ nbrc:
     is_obo: false
     prefix: NBRC
 ncats.drug:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: 'The National Center for Advancing Translational Sciences (NCATS) has
     developed Inxight: Drugs as a comprehensive portal for drug development information.
     NCATS Inxight: Drugs  contains information on ingredients in medicinal products,
@@ -26648,6 +27050,7 @@ ncbitaxon:
     pattern: ^\d+$
     prefix: taxonomy
     provider_url: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1
+  namespace_in_lui: false
   ncbi:
     example: '4932'
     homepage: https://www.ncbi.nlm.nih.gov/taxonomy
@@ -26793,6 +27196,7 @@ ncit:
     prefix: ncit
     provider_url: http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1
   name: NCI Thesaurus
+  namespace_in_lui: false
   obofoundry:
     contact: haendel@ohsu.edu
     contact.label: Melissa Haendel
@@ -26808,6 +27212,7 @@ ncit:
     inactive: false
     license: CC-BY 4.0
     name: NCI Thesaurus OBO Edition
+    preferredPrefix: NCIT
     prefix: ncit
   ols:
     description: NCI Thesaurus (NCIt)is a reference terminology that includes broad
@@ -26864,6 +27269,7 @@ ncro:
     inactive: false
     license: CC-BY 4.0
     name: Non-Coding RNA Ontology
+    preferredPrefix: NCRO
     prefix: ncro
   ols:
     contact: ncro-devel@googlegroups.com
@@ -26945,6 +27351,10 @@ nddf:
     bioportal: NDDF
   name: National Drug Data File
 ndex:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The Network Data Exchange (NDEx) is an open-source framework where
     scientists and organizations can store, share, manipulate, and publish biological
     network knowledge.
@@ -27276,6 +27686,10 @@ nextprot:
   wikidata:
     database: Q6983890
 nextprot.family:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: "NeXtProt is a comprehensive human-centric discovery platform, offering\
     \ its users a seamless integration of and navigation through protein-related data.\
     \ \n(Developed by the SIB Swiss Institute of Bioinformatics)"
@@ -27453,6 +27867,10 @@ nlm:
   name: National Library of Medicine (NLM) Catalog
   url: https://www.ncbi.nlm.nih.gov/nlmcatalog/$1
 nlxanat:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The InterLex project - a core component of SciCrunch and supported
     by projects such as the Neuroscience Information Framework project (NIF), the
     NIDDK Information Network (dkNET), and the Open Data Commons for Spinal Cord Injury
@@ -27465,6 +27883,10 @@ nlxanat:
 nlxdys:
   appears_in:
   - mondo
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The InterLex project - a core component of SciCrunch and supported
     by projects such as the Neuroscience Information Framework project (NIF), the
     NIDDK Information Network (dkNET), and the Open Data Commons for Spinal Cord Injury
@@ -27628,6 +28050,7 @@ nomen:
     inactive: false
     license: CC-0
     name: NOMEN - A nomenclatural ontology for biological names
+    preferredPrefix: NOMEN
     prefix: nomen
   ols:
     description: NOMEN is a nomenclatural ontology for biological names (not concepts).  It
@@ -27802,6 +28225,10 @@ norine:
     is_obo: false
     prefix: NORINE
 npass:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: 'Database for integrating species source of natural products & connecting
     natural products to biological targets via  experimental-derived quantitative
     activity data.
@@ -27844,6 +28271,23 @@ nuclearbd:
     is_identifiers: true
     is_obo: false
     prefix: NUCLEARBD
+nucleotide:
+  has_canonical: insdc
+  mappings:
+    miriam: nucleotide
+  miriam:
+    deprecated: false
+    description: The Nucleotide database is a collection of sequences from several
+      sources, including GenBank, RefSeq, TPA and PDB. Genome, gene and transcript
+      sequence data provide the foundation for biomedical research and discovery.
+    homepage: https://www.ncbi.nlm.nih.gov/
+    id: 00000882
+    name: Nucleotide
+    namespaceEmbeddedInLui: false
+    pattern: ^[a-zA-Z0-9_\.]+$
+    prefix: nucleotide
+    provider_url: https://www.ncbi.nlm.nih.gov/nuccore/$1
+    sampleId: '880798137'
 oa:
   bioportal:
     name: Web Annotation Ontology
@@ -27883,6 +28327,7 @@ oae:
     inactive: false
     license: CC-BY
     name: Ontology of Adverse Events
+    preferredPrefix: OAE
     prefix: oae
   ols:
     description: The Ontology of Adverse Eventsy (OAE) is a biomedical ontology in
@@ -27929,6 +28374,7 @@ oarcs:
     inactive: false
     license: CC BY 3.0
     name: Ontology of Arthropod Circulatory Systems
+    preferredPrefix: OARCS
     prefix: oarcs
   ols:
     description: OArCS is an ontology describing the Arthropod ciruclatory system.
@@ -27971,6 +28417,7 @@ oba:
     inactive: false
     license: CC-0
     name: Ontology of Biological Attributes
+    preferredPrefix: OBA
     prefix: oba
   ols:
     description: A collection of biological attributes (traits) covering all kingdoms
@@ -28012,6 +28459,7 @@ obcs:
     inactive: false
     license: CC-BY
     name: Ontology of Biological and Clinical Statistics
+    preferredPrefix: OBCS
     prefix: obcs
   ols:
     description: 'OBCS stands for the Ontology of Biological and Clinical Statistics.
@@ -28097,6 +28545,7 @@ obi:
     inactive: false
     license: CC-BY 4.0
     name: Ontology for Biomedical Investigations
+    preferredPrefix: OBI
     prefix: obi
   ols:
     description: The Ontology for Biomedical Investigations (OBI) is build in a collaborative,
@@ -28147,6 +28596,7 @@ obib:
     inactive: false
     license: CC-BY
     name: Ontology for Biobanking
+    preferredPrefix: OBIB
     prefix: obib
   ols:
     description: The Ontology for Biobanking (OBIB) is an ontology for the annotation
@@ -28303,13 +28753,13 @@ ocid:
     deprecated: false
     description: '''ocid'' stands for "Ontology Concept Identifiers" and are 12 digit
       long integers covering IDs in topical ontologies from anatomy up to toxicology.'
-    homepage: https://www.sciwalker.com
+    homepage: https://ontochem.com/
     id: 00000738
     name: Ontology Concept Identifiers
     namespaceEmbeddedInLui: true
     pattern: ocid:[0-9]{12}
     prefix: ocid
-    provider_url: https://www.sciwalker.com/sciwalker/faces/ociddata.xhtml?ocid=$1
+    provider_url: https://ocid.ontochem.com/prefname?ocid=$1
     sampleId: '190000021540'
 oclc:
   mappings:
@@ -28452,6 +28902,7 @@ ogg:
     inactive: false
     license: CC-BY
     name: The Ontology of Genes and Genomes
+    preferredPrefix: OGG
     prefix: ogg
   ols:
     description: 'OGG is a biological ontology in the area of genes and genomes. OGG
@@ -28552,6 +29003,7 @@ ogms:
     inactive: false
     license: CC-BY
     name: Ontology for General Medical Science
+    preferredPrefix: OGMS
     prefix: ogms
   ols:
     description: 'The Ontology for General Medical Science (OGMS) is an ontology of
@@ -28612,6 +29064,7 @@ ogsf:
     inactive: false
     license: CC-BY 3.0
     name: Ontology of Genetic Susceptibility Factor
+    preferredPrefix: OGSF
     prefix: ogsf
   ols:
     description: An application ontology to represent genetic susceptibility to a
@@ -28654,6 +29107,7 @@ ohd:
     inactive: false
     license: CC-BY
     name: The Oral Health and Disease Ontology
+    preferredPrefix: OHD
     prefix: ohd
   ols:
     description: The Oral Health and Disease Ontology was created, initially, to represent
@@ -28698,6 +29152,7 @@ ohmi:
     inactive: false
     license: CC-BY
     name: Ontology of Host-Microbiome Interactions
+    preferredPrefix: OHMI
     prefix: ohmi
   ols:
     description: OHMI is a biomedical ontology that represents the entities and relations
@@ -28742,6 +29197,7 @@ ohpi:
     inactive: false
     license: CC-BY
     name: Ontology of Host Pathogen Interactions
+    preferredPrefix: OHPI
     prefix: ohpi
   ols:
     description: OHPI is a biomedical ontology in the area of host-pathogen interactions.
@@ -28860,7 +29316,7 @@ om:
     license: https://creativecommons.org/licenses/by/4.0/
     name: Ontology of units of Measure (OM)
     prefix: om
-    version: 2.0.31
+    version: 2.0.34
 oma.grp:
   mappings:
     miriam: oma.grp
@@ -28920,7 +29376,7 @@ oma.hog:
     prefix: oma.hog
     provider_url: https://omabrowser.org/oma/hog/resolve/HOG:$1/
     sampleId: HOG:0459895
-  namespaceEmbeddedInLui: false
+  namespace_in_lui: false
   pattern: ^[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
   url: https://omabrowser.org/oma/hog/HOG:$1
 oma.protein:
@@ -29095,6 +29551,7 @@ omit:
     inactive: false
     license: CC-BY 3.0
     name: Ontology for MIRNA Target
+    preferredPrefix: OMIT
     prefix: omit
   ols:
     description: Ontology to establish data exchange standards and common data elements
@@ -29141,6 +29598,7 @@ omo:
     inactive: false
     license: CC0
     name: OBO Metadata Ontology
+    preferredPrefix: OMO
     prefix: omo
   ols:
     description: An ontology specifies terms that are used to annotate ontology terms
@@ -29158,6 +29616,10 @@ omo:
     prefix: OMO
     url: http://www.ontobee.org/ontology/OMO
 omop:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The OMOP Common Data Model allows for the systematic analysis of disparate
     observational databases. The concept behind this approach is to transform data
     contained within those databases into a common format (data model) as well as
@@ -29191,6 +29653,7 @@ omp:
     inactive: false
     license: CC-BY
     name: Ontology of Microbial Phenotypes
+    preferredPrefix: OMP
     prefix: omp
   ols:
     description: An ontology of phenotypes covering microbes
@@ -29237,6 +29700,7 @@ omrse:
     inactive: false
     license: CC-BY 4.0
     name: Ontology of Medically Related Social Entities
+    preferredPrefix: OMRSE
     prefix: omrse
   ols:
     description: This ontology covers the domain of social entities that are related
@@ -29261,6 +29725,10 @@ omrse:
 oncotree:
   appears_in:
   - efo
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: OncoTree is a dynamic and flexible community-driven cancer classification
     platform encompassing rare and common cancers that provides clinically relevant
     and appropriately granular cancer classification for clinical decision support
@@ -29290,6 +29758,7 @@ one:
     inactive: false
     license: CC-BY
     name: Ontology for Nutritional Epidemiology
+    preferredPrefix: ONE
     prefix: one
   ols:
     description: An ontology to standardize research output of nutritional epidemiologic
@@ -29324,6 +29793,7 @@ ons:
     inactive: false
     license: CC-BY
     name: Ontology for Nutritional Studies
+    preferredPrefix: ONS
     prefix: ons
   ols:
     description: The Ontology for Nutritional Studies (ONS) has been developed as
@@ -29364,6 +29834,7 @@ ontoneo:
     inactive: false
     license: CC-BY
     name: Obstetric and Neonatal Ontology
+    preferredPrefix: ONTONEO
     prefix: ontoneo
   ols:
     description: The Obstetric and Neonatal Ontology is a structured controlled vocabulary
@@ -29407,6 +29878,7 @@ oostt:
     inactive: false
     license: CC-BY
     name: Ontology of Organizational Structures of Trauma centers and Trauma systems
+    preferredPrefix: OOSTT
     prefix: oostt
   ols:
     description: An ontology built for representating the organizational components
@@ -29491,6 +29963,7 @@ opl:
     inactive: false
     license: CC-BY 4.0
     name: Ontology for Parasite LifeCycle
+    preferredPrefix: OPL
     prefix: opl
   ols:
     description: The Ontology for Parasite Lifecycle (OPL) models the life cycle stage
@@ -29575,6 +30048,7 @@ opmi:
     inactive: false
     license: CC-BY
     name: Ontology of Precision Medicine and Investigation
+    preferredPrefix: OPMI
     prefix: opmi
   ols:
     description: OPMI is a biomedical ontology in the area of precision medicine and
@@ -29777,6 +30251,7 @@ ornaseq:
     inactive: false
     license: CC-BY
     name: Ontology of RNA Sequencing
+    preferredPrefix: ORNASEQ
     prefix: ornaseq
   ols:
     description: An application ontology designed to annotate next-generation sequencing
@@ -30264,6 +30739,7 @@ ovae:
     inactive: false
     license: CC-BY
     name: Ontology of Vaccine Adverse Events
+    preferredPrefix: OVAE
     prefix: ovae
   ols:
     description: 'OVAE is a biomedical ontology in the area of vaccine adverse events.
@@ -30654,6 +31130,10 @@ pass2:
     is_obo: false
     prefix: PASS2
 pathbank:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: PathBank is an interactive, visual database containing more than 100
     000 machine-readable pathways found in model organisms such as humans, mice, E.
     coli, yeast, and Arabidopsis thaliana.
@@ -30759,6 +31239,7 @@ pato:
     inactive: false
     license: CC-BY
     name: Phenotype And Trait Ontology
+    preferredPrefix: PATO
     prefix: pato
   ols:
     description: An ontology of phenotypic qualities (properties, attributes or characteristics).
@@ -30957,6 +31438,7 @@ pco:
     inactive: false
     license: CC-0
     name: Population and Community Ontology
+    preferredPrefix: PCO
     prefix: pco
   ols:
     description: The Population and Community Ontology (PCO) describes material entities,
@@ -31186,6 +31668,7 @@ pdro:
     inactive: false
     license: CC BY 4.0
     name: The Prescription of Drugs Ontology
+    preferredPrefix: PDRO
     prefix: pdro
   ols:
     description: An ontology to describe entities related to prescription of drugs
@@ -31368,6 +31851,10 @@ ped.ensemble:
     sampleId: PED00017e001
   part_of: ped
 peff:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   deprecated: true
   download_obo: https://github.com/HUPO-PSI/PEFF/raw/master/CV/psi-peff-OBSOLETE-DO_NOT_USE.obo
   example: '0001011'
@@ -31484,6 +31971,10 @@ peroxibase:
     name: PeroxiBase, a peroxidase database
     prefix: PeroxiBase
 pesticides:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: "The Alan Wood\u2019s Pesticides is a compendium of pesticides which\
     \ contain nomenclature data sheets for more than 1700 different active ingredients."
   example: derivatives%2Fthiocyclam%20hydrochloride
@@ -31559,6 +32050,10 @@ pfam:
     pattern: (PF\d{5}|CL\d{4})
     prefix: P3519
 pfam.clan:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Higher order grouping of Pfam families
   example: CL0192
   homepage: https://pfam.xfam.org
@@ -31566,6 +32061,10 @@ pfam.clan:
   pattern: ^CL\d+$
   url: https://pfam.xfam.org/clan/$1
 pfr:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Database that provides a central location for scientists to browse
     uniquely observed proteoforms and to contribute their own datasets.
   example: '1001'
@@ -31661,6 +32160,10 @@ pharmacodb.cell:
   name: PharmacoDB Cells
   url: https://pharmacodb.ca/cell_lines/$1
 pharmacodb.dataset:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Web-application assembling the largest in vitro drug screens in a single
     database, and allowing users to easily query the union of studies released to
     date. Query by dataset.
@@ -31669,6 +32172,10 @@ pharmacodb.dataset:
   name: PharmacoDB Datasets
   url: https://pharmacodb.ca/datasets/$1
 pharmacodb.tissue:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Web-application assembling the largest in vitro drug screens in a single
     database, and allowing users to easily query the union of studies released to
     date. Query by tissue.
@@ -31920,6 +32427,7 @@ phipo:
     inactive: false
     license: CC-BY
     name: Pathogen Host Interaction Phenotype Ontology
+    preferredPrefix: PHIPO
     prefix: phipo
   ols:
     description: Ontology of species-neutral phenotypes observed in pathogen-host
@@ -32174,6 +32682,10 @@ phytozome.locus:
   synonyms:
   - JGI Phytozome
 pictar:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   deprecated: true
   example: hsa-let-7a
   homepage: https://pictar.mdc-berlin.de/
@@ -32428,6 +32940,7 @@ plana:
     inactive: false
     license: CC-BY
     name: planaria-ontology
+    preferredPrefix: PLANA
     prefix: plana
   ols:
     description: PLANA, the PLANarian Anatomy Ontology, encompasses the anatomy of
@@ -32437,8 +32950,8 @@ plana:
     license: https://creativecommons.org/licenses/by/3.0/
     name: Planarian Anatomy Ontology (PLANA)
     prefix: plana
-    version: '2021-09-29'
-    version.iri: http://purl.obolibrary.org/obo/plana/releases/2021-09-29
+    version: '2021-10-21'
+    version.iri: http://purl.obolibrary.org/obo/plana/releases/2021-10-21
   ontobee:
     library: Library
     name: planaria-ontology
@@ -32472,6 +32985,7 @@ planp:
     inactive: false
     license: CC-BY
     name: Planarian Phenotype Ontology
+    preferredPrefix: PLANP
     prefix: planp
   ols:
     description: Planarian Phenotype Ontology is an ontology of phenotypes observed
@@ -32877,6 +33391,7 @@ po:
     inactive: false
     license: CC-BY 4.0
     name: Plant Ontology
+    preferredPrefix: PO
     prefix: po
   ols:
     description: The Plant Ontology is a structured vocabulary and database resource
@@ -33059,6 +33574,7 @@ poro:
     inactive: false
     license: CC-BY
     name: Porifera Ontology
+    preferredPrefix: PORO
     prefix: poro
   ols:
     description: An ontology describing the anatomical structures and characteristics
@@ -33081,6 +33597,10 @@ poro:
     is_obo: true
     prefix: PORO
 ppdb:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: 'PPDB is a comprehensive source of data on pesticide chemical, physical
     and biological properties. '
   example: '1484'
@@ -33110,6 +33630,7 @@ ppo:
     inactive: false
     license: CC-BY
     name: Plant Phenology Ontology
+    preferredPrefix: PPO
     prefix: ppo
   ols:
     contact: ppo-discuss@googlegroups.com
@@ -33133,6 +33654,10 @@ ppo:
     is_obo: true
     prefix: PPO
 ppr:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Preprints are articles which have not been peer-reviewed from various
     preprint servers and open research platforms such as bioRxiv, ChemRxiv, PeerJ
     Preprints and F1000.
@@ -33200,6 +33725,7 @@ pr:
     inactive: false
     license: CC-BY
     name: PRotein Ontology (PRO)
+    preferredPrefix: PR
     prefix: pr
   ols:
     description: An ontological representation of protein-related entities
@@ -33872,6 +34398,7 @@ psdo:
     inactive: false
     license: CC-BY
     name: Performance Summary Display Ontology
+    preferredPrefix: PSDO
     prefix: psdo
   ols:
     description: Performance Summary Display Ontology (PSDO) (pronounced "pseudo"
@@ -34006,6 +34533,7 @@ pso:
     inactive: false
     license: CC-BY
     name: Plant Stress Ontology
+    preferredPrefix: PSO
     prefix: pso
   ols:
     description: The Plant Stress Ontology describes...
@@ -34021,6 +34549,10 @@ pso:
     prefix: PSO
     url: http://www.ontobee.org/ontology/PSO
 pspub:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Documentation of the Phenoscape Curation Workflow
   homepage: https://wiki.phenoscape.org/wiki/Curation_workflow
   name: Phenoscape Publication
@@ -34343,6 +34875,7 @@ pw:
     inactive: false
     license: CC-BY
     name: Pathway ontology
+    preferredPrefix: PW
     prefix: pw
   ols:
     description: A controlled vocabulary for annotating gene products to pathways.
@@ -34565,6 +35098,7 @@ rbo:
     inactive: false
     license: CC-BY
     name: Radiation Biology Ontology
+    preferredPrefix: RBO
     prefix: rbo
   ols:
     description: RBO is an ontology for the effects of radiation on biota in terrestrial
@@ -34582,6 +35116,10 @@ rbo:
     prefix: RBO
     url: http://www.ontobee.org/ontology/RBO
 rcb:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Collection of many cell lines derived from human and other various
     animals, preserved by the RIKEN BioResource Research Center.
   example: RCB0002
@@ -34786,6 +35324,10 @@ rebase:
     name: Restriction enzymes and methylases database
     prefix: REBASE
 receptome.family:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The human receptor families involved in signaling (with the exception
     of channels) are presented in the Human Plasma Membrane Receptome database.
   example: '5.1'
@@ -35567,6 +36109,10 @@ rnacentral:
   synonyms:
   - LNCRNADB
 rnamod:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: A comprehensive listing of post-transcriptionally modified nucleosides
     from RNA -
   example: '051'
@@ -35721,6 +36267,7 @@ ro:
     inactive: false
     license: CC-0
     name: Relation Ontology
+    preferredPrefix: RO
     prefix: ro
   ols:
     description: The OBO Relations Ontology (RO) is a collection of OWL relations
@@ -35730,8 +36277,8 @@ ro:
     license: https://creativecommons.org/publicdomain/zero/1.0/
     name: OBO Relations Ontology
     prefix: ro
-    version: '2021-08-31'
-    version.iri: http://purl.obolibrary.org/obo/ro/releases/2021-08-31/ro.owl
+    version: '2021-10-27'
+    version.iri: http://purl.obolibrary.org/obo/ro/releases/2021-10-27/ro.owl
   ontobee:
     library: Library
     name: Relation Ontology
@@ -35864,6 +36411,7 @@ rs:
     inactive: false
     license: CC-BY 4.0
     name: Rat Strain Ontology
+    preferredPrefix: RS
     prefix: rs
   ols:
     description: Ontology of rat strains
@@ -35927,6 +36475,7 @@ rxno:
     inactive: false
     license: CC-BY 4.0
     name: Name Reaction Ontology
+    preferredPrefix: RXNO
     prefix: rxno
   ols:
     contact: chemistry-ontologies@googlegroups.com
@@ -36147,6 +36696,10 @@ sabiork.reaction:
     is_obo: false
     prefix: SABIORK.REACTION
 sael:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   deprecated: true
   name: Standards and Ontologies for Functional Genomics (SOFG) Anatomy Entry List
   references:
@@ -36155,6 +36708,10 @@ salk:
   appears_in:
   - efo
   comment: spider stuff!
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Scientific research institute for neuroscience, genetics, immunology,
     plant biology and more.
   example: '037727'
@@ -36286,6 +36843,7 @@ sbo:
     inactive: false
     license: Artistic License 2.0
     name: Systems Biology Ontology
+    preferredPrefix: SBO
     prefix: sbo
   ols:
     description: Terms commonly used in Systems Biology, and in particular in computational
@@ -36327,6 +36885,7 @@ scdo:
     inactive: false
     license: GPL-3.0
     name: Sickle Cell Disease Ontology
+    preferredPrefix: SCDO
     prefix: scdo
   ols:
     description: An ontology for the standardization of terminology and integration
@@ -36343,6 +36902,10 @@ scdo:
     prefix: SCDO
     url: http://www.ontobee.org/ontology/SCDO
 schem:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Selventa legacy chemical namespace used with the Biological Expression
     Language
   example: A0001
@@ -36350,6 +36913,10 @@ schem:
   name: Selventa Chemicals
   pattern: ^A\d{4}$
 scomp:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Selventa legacy complex namespace used with the Biological Expression
     Language
   example: C0001
@@ -36513,6 +37080,10 @@ sdgio:
     prefix: SDGIO
     url: http://www.ontobee.org/ontology/SDGIO
 sdis:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Selventa legacy disease namespace used with the Biological Expression
     Language
   example: D0001
@@ -36646,7 +37217,13 @@ seed.compound:
     is_obo: false
     prefix: SEED.COMPOUND
 seed.reaction:
+  biolink:
+    formatter: https://modelseed.org/biochem/reactions/$1
+    is_identifiers: false
+    is_obo: false
+    prefix: SEED.REACTION
   mappings:
+    biolink: SEED.REACTION
     miriam: seed.reaction
     n2t: seed.reaction
   miriam:
@@ -36725,6 +37302,7 @@ sepio:
     inactive: false
     license: CC-BY
     name: Scientific Evidence and Provenance Information Ontology
+    preferredPrefix: SEPIO
     prefix: sepio
   ols:
     description: An ontology for representing the provenance of scientific claims
@@ -36746,6 +37324,10 @@ sepio:
     is_obo: true
     prefix: SEPIO
 sfam:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Selventa legacy protein family namespace used with the Biological Expression
     Language
   example: F0001
@@ -37362,6 +37944,10 @@ smart:
     name: Simple Modular Architecture Research Tool; a protein domain database
     prefix: SMART
 smid:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: 'SMIDs (Small Molecule Identifiers) represent gene-style identifiers
     for small molecules newly identified in C. elegans and other nematodes. SMIDs
     aim to make life easier for describing biogenic small molecules in metabolomic
@@ -37436,6 +38022,10 @@ smpdb:
   - SMP
   url: https://smpdb.ca/view/$1
 snap:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Theoretical explanation of a purely spatial ontology supporting snapshot
     views of the world at successive instants of time, as part of a modular ontology
     of the dynamic features of reality.
@@ -37530,6 +38120,10 @@ snomedct:
     pattern: ^[0-9]*$
     prefix: P5806
 snornabase:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: 'A comprehensive database of
 
 
@@ -37611,6 +38205,7 @@ so:
     inactive: false
     license: CC-BY 4.0
     name: Sequence types and features ontology
+    preferredPrefix: SO
     prefix: so
   ols:
     description: A structured controlled vocabulary for sequence annotation, for the
@@ -37693,6 +38288,10 @@ soybase:
 span:
   comment: see also snap. This ontology only exists in description in the paper and
     does not have an associated web resource
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Theoretical explanation of to a purely spatiotemporal ontology of change
     and process, as part of a modular ontology of the dynamic features of reality.
   homepage: http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf
@@ -37720,6 +38319,7 @@ spd:
     inactive: false
     license: CC-BY 3.0
     name: Spider Ontology
+    preferredPrefix: SPD
     prefix: spd
   ols:
     description: An ontology for spider comparative biology including anatomical parts
@@ -37912,6 +38512,10 @@ ssbd.dataset:
   name: System Science of Biological Dynamics dataset
   url: https://ssbd.riken.jp/database/dataset/$1
 ssbd.project:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Systems Science of Biological Dynamics database (SSBD:database) is
     an added-value database for biological dynamics. It provides a rich set of open
     resources for analyzing quantitative data and microscopy images of biological
@@ -37991,6 +38595,7 @@ stato:
     inactive: false
     license: CC-BY
     name: The Statistical Methods Ontology
+    preferredPrefix: STATO
     prefix: stato
   ols:
     contact: stat-ontology@googlegroups.com
@@ -38520,6 +39125,7 @@ swo:
     inactive: false
     license: CC BY 4.0
     name: Software ontology
+    preferredPrefix: SWO
     prefix: swo
   ols:
     description: The Software Ontology (SWO) is a resource for describing software
@@ -38569,6 +39175,7 @@ symp:
     inactive: false
     license: CC0
     name: Symptom Ontology
+    preferredPrefix: SYMP
     prefix: symp
   ols:
     description: The Symptom Ontology has been developed as a standardized ontology
@@ -38596,6 +39203,10 @@ symp:
   wikidata:
     prefix: P8656
 syoid:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   deprecated: true
   name: Gemina Symptom Ontology Identifier
   references:
@@ -38914,6 +39525,7 @@ taxrank:
     inactive: false
     license: CC-0
     name: Taxonomic rank vocabulary
+    preferredPrefix: TAXRANK
     prefix: taxrank
   ols:
     description: A vocabulary of taxonomic ranks (species, family, phylum, etc)
@@ -39119,6 +39731,10 @@ tgma:
     is_obo: true
     prefix: TGMA
 th:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The Terminologia Histologica (TH) is the controlled vocabulary for
     use in cytology and histology. It was intended to replace Nomina Histologica.
     [wikipedia]
@@ -39204,6 +39820,10 @@ tissuelist:
     is_obo: false
     prefix: TISSUELIST
 tkg:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Collection of cell lines by Tohoku University. This includes transplantable
     animal cell lines, such as Yoshida sarcoma and rat ascites hepatoma (AH series)
     cell lines as well as human, murine cell lines and hybridoma cells.
@@ -39234,6 +39854,7 @@ to:
     inactive: false
     license: CC-BY 4.0
     name: Plant Trait Ontology
+    preferredPrefix: TO
     prefix: to
   ols:
     description: A controlled vocabulary to describe phenotypic traits in plants.
@@ -39445,6 +40066,7 @@ trans:
     inactive: false
     license: CC0
     name: Pathogen Transmission Ontology
+    preferredPrefix: TRANS
     prefix: trans
   ols:
     description: The Pathogen Transmission Ontology describes the tranmission methods
@@ -39759,6 +40381,7 @@ tto:
     inactive: false
     license: CC-0
     name: Teleost taxonomy ontology
+    preferredPrefix: TTO
     prefix: tto
   ols:
     description: An ontology covering the taxonomy of teleosts (bony fish)
@@ -39801,8 +40424,9 @@ txpo:
     download.owl: http://purl.obolibrary.org/obo/txpo.owl
     homepage: https://toxpilot.nibiohn.go.jp/
     inactive: false
-    license: CC-BY version 3.0
+    license: CC-BY 3.0
     name: Toxic Process Ontology
+    preferredPrefix: TXPO
     prefix: txpo
   ols:
     description: 'Elucidating the mechanism of toxicity is crucial in drug safety
@@ -39894,6 +40518,7 @@ uberon:
     inactive: false
     license: CC-BY
     name: Uberon multi-species anatomy ontology
+    preferredPrefix: UBERON
     prefix: uberon
   ols:
     description: Uberon is an integrated cross-species anatomy ontology representing
@@ -39906,8 +40531,8 @@ uberon:
     license: http://creativecommons.org/licenses/by/3.0/
     name: Uber-anatomy ontology
     prefix: uberon
-    version: '2021-07-27'
-    version.iri: http://purl.obolibrary.org/obo/uberon/releases/2021-07-27/uberon.owl
+    version: '2021-10-01'
+    version.iri: http://purl.obolibrary.org/obo/uberon/releases/2021-10-01/uberon.owl
   ontobee:
     library: Library
     name: Uberon multi-species anatomy ontology
@@ -39962,6 +40587,10 @@ ubio.namebank:
     prefix: UBIO.NAMEBANK
 ubprop:
   comment: All of these are typedefs in uberon now
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   deprecated: true
   name: Uberon Property
 ucsc:
@@ -40651,6 +41280,10 @@ uniprot.chain:
   synonyms:
   - UPPRO
 uniprot.disease:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The human diseases in which proteins are involved are described in
     UniProtKB entries with a controlled vocabulary.
   example: '04240'
@@ -40751,6 +41384,10 @@ uniprot.location:
   - UniProtKB-SubCell
   url: https://www.uniprot.org/locations/SL-$1
 uniprot.var:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: 'The purpose of the UniProtKB/Swiss-Prot variant pages is: to display
     the variant related information extracted from UniProtKB/Swiss-Prot, and to provide
     useful additional information such as the conservation of the modified residues
@@ -40886,6 +41523,10 @@ unite:
 unpd:
   comment: The website is dead, there are no places to get the source information
     except inside https://oolonek.github.io/ISDB/.
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   deprecated: true
   homepage: http://pkuxxj.pku.edu.cn/UNPD/
   name: Universal Natural Products Database
@@ -40937,6 +41578,7 @@ uo:
     inactive: false
     license: CC-BY
     name: Units of measurement ontology
+    preferredPrefix: UO
     prefix: uo
   ols:
     description: Metrical units for use in conjunction with PATO
@@ -41048,6 +41690,7 @@ upheno:
     inactive: false
     license: CC0
     name: Unified phenotype ontology (uPheno)
+    preferredPrefix: UPHENO
     prefix: upheno
   ols:
     description: The uPheno ontology integrates multiple phenotype ontologies into
@@ -41207,7 +41850,6 @@ vario:
     prefix: vario
     provider_url: http://purl.bioontology.org/ontology/VARIO/VariO:$1
   name: Variation Ontology
-  namespaceEmbeddedInLui: false
   obofoundry:
     contact: mauno.vihinen@med.lu.se
     contact.label: Mauno Vihinen
@@ -41219,6 +41861,7 @@ vario:
     homepage: http://variationontology.org
     inactive: true
     name: Variation Ontology
+    preferredPrefix: VariO
     prefix: vario
   ols:
     description: Variation Ontology, VariO, is an ontology for standardized, systematic
@@ -41376,6 +42019,10 @@ vectorbase:
     prefix: VECTORBASE
   url: https://vectorbase.org/vectorbase/app/record/gene/$1
 vega:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: A repository for high-quality gene models produced by the manual annotation
     of vertebrate genomes.
   example: OTTHUMG00000169812
@@ -41844,6 +42491,7 @@ vo:
     inactive: false
     license: CC-BY
     name: Vaccine Ontology
+    preferredPrefix: VO
     prefix: vo
   ols:
     description: The Vaccine Ontology (VO) is a biomedical ontology in the domain
@@ -41913,6 +42561,10 @@ vsao:
   synonyms:
   - VSAO_RETIRED
 vsdb:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Veterinary pharmaceuticals are biologically active and potentially
     persistent substances which are recognised as a continuing threat to environmental
     quality. Whilst the environmental risk of agricultural pesticides has had considerable
@@ -41946,6 +42598,7 @@ vt:
     inactive: false
     license: CC BY 4.0
     name: Vertebrate trait ontology
+    preferredPrefix: VT
     prefix: vt
   ols:
     description: An ontology of traits covering vertebrates
@@ -41987,6 +42640,7 @@ vto:
     inactive: false
     license: CC-0
     name: Vertebrate Taxonomy Ontology
+    preferredPrefix: VTO
     prefix: vto
   ols:
     description: Comprehensive hierarchy of extinct and extant vertebrate taxa.
@@ -42010,6 +42664,10 @@ vto:
     prefix: VTO
 vuid:
   comment: The example corresponds to acetaminophen
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: "The Veterans Health Administration is America\u2019s largest integrated\
     \ health care system, providing care at 1,293 health care facilities, including\
     \ 171 medical centers and 1,112 outpatient sites of care of varying complexity\
@@ -42218,8 +42876,8 @@ wbphenotype:
     license: http://creativecommons.org/licenses/by/4.0/
     name: C elegans Phenotype Ontology
     prefix: wbphenotype
-    version: '2021-09-27'
-    version.iri: http://purl.obolibrary.org/obo/wbphenotype/releases/2021-09-27/wbphenotype.owl
+    version: '2021-10-25'
+    version.iri: http://purl.obolibrary.org/obo/wbphenotype/releases/2021-10-25/wbphenotype.owl
   ontobee:
     library: Library
     name: C. elegans phenotype
@@ -42235,6 +42893,10 @@ wbphenotype:
   synonyms:
   - WBPhenotype
 webelements:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Browser for the periodic table of the elements
   example: chromium
   homepage: https://www.webelements.com/
@@ -42734,6 +43396,7 @@ xao:
     inactive: false
     license: CC-BY
     name: Xenopus Anatomy Ontology
+    preferredPrefix: XAO
     prefix: xao
   ols:
     description: XAO represents the anatomy and development of the African frogs Xenopus
@@ -42781,6 +43444,7 @@ xco:
     inactive: false
     license: CC-0
     name: Experimental condition ontology
+    preferredPrefix: XCO
     prefix: xco
   ols:
     description: Conditions under which physiological and morphological measurements
@@ -42902,6 +43566,7 @@ xlmod:
     inactive: false
     license: CC-BY
     name: HUPO-PSI cross-linking and derivatization reagents controlled vocabulary
+    preferredPrefix: XLMOD
     prefix: xlmod
   ols:
     contact: psidev-ms-vocab@lists.sourceforge.net
@@ -42941,6 +43606,7 @@ xpo:
     inactive: false
     license: CC-BY
     name: Xenopus Phenotype Ontology
+    preferredPrefix: XPO
     prefix: xpo
   ols:
     description: XPO represents anatomical, cellular, and gene function phenotypes
@@ -42977,6 +43643,10 @@ xsd:
 xuo:
   appears_in:
   - hsapdv
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   deprecated: true
   name: XUO
 ydpm:
@@ -43139,6 +43809,10 @@ yid:
     is_obo: false
     prefix: YID
 ymdb:
+  contributor:
+    email: cthoyt@gmail.com
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: "The Yeast Metabolome Database (YMDB) is a manually curated database\
     \ of small molecule metabolites found in or produced by Saccharomyces cerevisiae\
     \ (also known as Baker\u2019s yeast and Brewer\u2019s yeast)."
@@ -43232,6 +43906,7 @@ zeco:
     inactive: false
     license: CC-BY
     name: Zebrafish Experimental Conditions Ontology
+    preferredPrefix: ZECO
     prefix: zeco
   ols:
     description: Ontology of Zebrafish Experimental Conditions
@@ -43276,6 +43951,7 @@ zfa:
     inactive: false
     license: CC-BY
     name: Zebrafish anatomy and development ontology
+    preferredPrefix: ZFA
     prefix: zfa
   ols:
     description: A structured controlled vocabulary of the anatomy and development
@@ -43395,6 +44071,7 @@ zfs:
     inactive: false
     license: CC-BY 3.0
     name: Zebrafish developmental stages ontology
+    preferredPrefix: ZFS
     prefix: zfs
   ols:
     description: Developmental stages of the Zebrafish
@@ -43479,6 +44156,7 @@ zp:
     inactive: false
     license: CC-BY
     name: Zebrafish Phenotype Ontology
+    preferredPrefix: ZP
     prefix: zp
   ols:
     description: The Zebrafish Phenotype Ontology formally defines all phenotypes

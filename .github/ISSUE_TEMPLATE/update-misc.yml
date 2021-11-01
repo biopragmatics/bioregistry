@@ -1,28 +1,26 @@
-name: Add provider for resource
-description: Add a URL for resolving identifiers in a given resource
-title: Add provider for [X]
-labels: [ Provider, New ]
+name: Update resource
+description: Use this to request an update to a prefix that does not fit in one of the other templates.
+labels: [ Update ]
 assignees:
   - cthoyt
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out the new provider form!
+        Thanks for taking the time to fill out the resource update form!
   - type: input
     id: prefix
     attributes:
       label: Prefix
-      description: What is the Bioregistry prefix of the resource?
+      description: What is the Bioregistry prefix of the resource whose regex should be updated?
       placeholder: ex. chebi
     validations:
       required: true
-  - type: input
-    id: uri_format
+  - type: textarea
+    id: explanation
     attributes:
-      label: URI Format String
-      description: A URI where any occurrence of `$1` gets replaced with the identifier
-      placeholder: ex. `https://www.ebi.ac.uk/chebi/searchId.do?chebiId=$1`
+      label: Explanation
+      description: Please explain what should be updated and why
     validations:
       required: true
   - type: input

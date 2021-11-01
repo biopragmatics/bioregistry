@@ -16,7 +16,12 @@ import requests
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
 
-from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH, MISMATCH_PATH
+from .constants import (
+    BIOREGISTRY_PATH,
+    COLLECTIONS_PATH,
+    METAREGISTRY_PATH,
+    MISMATCH_PATH,
+)
 from .schema import Author, Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)

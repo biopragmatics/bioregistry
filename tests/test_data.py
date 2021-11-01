@@ -42,7 +42,7 @@ class TestRegistry(unittest.TestCase):
             # Only there if true
             "no_own_terms",
             "not_available_as_obo",
-            "namespaceEmbeddedInLui",
+            "namespace_in_lui",
             # Only there if false
             # Lists
             "appears_in",
@@ -72,7 +72,7 @@ class TestRegistry(unittest.TestCase):
             if not extra:
                 continue
             with self.subTest(prefix=prefix):
-                self.fail(f"had extra keys: {extra}")
+                self.fail(f"{prefix} had extra keys: {extra}")
 
     def test_names(self):
         """Test that all entries have a name."""
@@ -248,13 +248,28 @@ class TestRegistry(unittest.TestCase):
             bioregistry.has_no_terms("nope"), msg="Missing prefix should be false by definition"
         )
 
+    def test_banana(self):
+        """Tests for bananas."""
+        # Simple scenario
+        self.assertIsNone(bioregistry.get_banana("pdb"))
+
+        # OBO Foundry scenario where there should not be a banana
+        self.assertIsNone(
+            bioregistry.get_banana("ncit"),
+            msg="Even though this is OBO foundry, it should not have a banana.",
+        )
+        self.assertIsNone(
+            bioregistry.get_banana("ncbitaxon"),
+            msg="Even though this is OBO foundry, it should not have a banana.",
+        )
+
     def test_get_nope(self):
         """Test when functions don't return."""
         self.assertIsNone(bioregistry.get_banana("nope"))
         self.assertIsNone(bioregistry.get_description("nope"))
         self.assertIsNone(bioregistry.get_homepage("nope"))
-        self.assertIsNone(bioregistry.get_format("gmelin"))  # no URL
-        self.assertIsNone(bioregistry.get_format("nope"))
+        self.assertIsNone(bioregistry.get_uri_format("gmelin"))  # no URL
+        self.assertIsNone(bioregistry.get_uri_format("nope"))
         self.assertIsNone(bioregistry.get_version("nope"))
         self.assertIsNone(bioregistry.get_name("nope"))
         self.assertIsNone(bioregistry.get_example("nope"))
@@ -262,7 +277,7 @@ class TestRegistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_mappings("nope"))
         self.assertIsNone(bioregistry.get_fairsharing_prefix("nope"))
         self.assertIsNone(bioregistry.get_obofoundry_prefix("nope"))
-        self.assertIsNone(bioregistry.get_obofoundry_format("nope"))
+        self.assertIsNone(bioregistry.get_obofoundry_uri_prefix("nope"))
         self.assertIsNone(bioregistry.get_obo_download("nope"))
         self.assertIsNone(bioregistry.get_owl_download("nope"))
         self.assertIsNone(bioregistry.get_ols_iri("nope", ...))
@@ -286,7 +301,7 @@ class TestRegistry(unittest.TestCase):
         self.assertIsInstance(bioregistry.get_description("chebi"), str)
 
         # No OBO Foundry format for dbSNP b/c not in OBO Foundry (and probably never will be)
-        self.assertIsNone(bioregistry.get_obofoundry_format("dbsnp"))
+        self.assertIsNone(bioregistry.get_obofoundry_uri_prefix("dbsnp"))
 
         self.assertEqual("FAIRsharing.mya1ff", bioregistry.get_fairsharing_prefix("ega.dataset"))
 
@@ -389,6 +404,23 @@ class TestRegistry(unittest.TestCase):
             b = f"https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID={ex}"
             self.assertEqual((prefix, ex), bioregistry.parse_iri(b))
 
+    def test_prefix_map_priorities(self):
+        """Test that different lead priorities all work for prefix map generation."""
+        priorities = [
+            "default",
+            "miriam",
+            "ols",
+            "obofoundry",
+            "n2t",
+            "prefixcommons",
+            # "bioportal",
+        ]
+        for lead in priorities:
+            priority = [lead, *(x for x in priorities if x != lead)]
+            with self.subTest(priority=",".join(priority)):
+                prefix_map = bioregistry.get_prefix_map(priority=priority)
+                self.assertIsNotNone(prefix_map)
+
     def test_default_prefix_map_no_miriam(self):
         """Test no identifiers.org URI prefixes get put in the prefix map."""
         self.assert_no_idot(bioregistry.get_prefix_map())
@@ -452,7 +484,7 @@ class TestRegistry(unittest.TestCase):
         to support actual use cases.
         """
         for prefix, resource in self.registry.items():
-            if not resource.namespace_in_lui():
+            if not resource.get_namespace_in_lui():
                 continue
             with self.subTest(prefix=prefix):
                 self.assertIsNotNone(

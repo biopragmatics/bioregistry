@@ -7,8 +7,17 @@ from typing import Optional
 from flask import Blueprint, abort, redirect, render_template, url_for
 
 import bioregistry
-from .utils import _get_resource_mapping_rows, _get_resource_providers, _normalize_prefix_or_404
-from ..utils import read_collections_contributions, read_prefix_contributions, read_prefix_reviews
+
+from .utils import (
+    _get_resource_mapping_rows,
+    _get_resource_providers,
+    _normalize_prefix_or_404,
+)
+from ..utils import (
+    read_collections_contributions,
+    read_prefix_contributions,
+    read_prefix_reviews,
+)
 
 __all__ = [
     "ui_blueprint",
@@ -77,7 +86,7 @@ def resource(prefix: str):
         obo_download=bioregistry.get_obo_download(prefix),
         owl_download=bioregistry.get_owl_download(prefix),
         json_download=bioregistry.get_json_download(prefix),
-        namespace_in_lui=bioregistry.namespace_in_lui(prefix),
+        namespace_in_lui=bioregistry.get_namespace_in_lui(prefix),
         deprecated=bioregistry.is_deprecated(prefix),
         contact=bioregistry.get_email(prefix),
         banana=bioregistry.get_banana(prefix),
@@ -101,13 +110,12 @@ def metaresource(metaprefix: str):
     example_identifier = bioregistry.get_example(entry.example)
     return render_template(
         "metaresource.html",
-        registry=entry,
+        entry=entry,
         metaprefix=metaprefix,
         name=bioregistry.get_registry_name(metaprefix),
         description=bioregistry.get_registry_description(metaprefix),
         homepage=bioregistry.get_registry_homepage(metaprefix),
         download=entry.download,
-        provider_url=entry.provider_url,
         example_prefix=entry.example,
         example_prefix_url=entry.get_provider(entry.example),
         example_identifier=example_identifier,
@@ -116,7 +124,6 @@ def metaresource(metaprefix: str):
             if example_identifier
             else None
         ),
-        entry=entry,
         formats=[
             *FORMATS,
             ("RDF (turtle)", "turtle"),
