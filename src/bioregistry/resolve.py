@@ -746,14 +746,7 @@ def get_versions() -> Mapping[str, str]:
 def get_curie_pattern(prefix: str) -> Optional[str]:
     """Get the CURIE pattern for this resource.
 
-    >>> get_curie_pattern("doid")
-    '^DOID:\\d+$'
+    :param prefix: The prefix to to look up
+    :return: The regular expression pattern to match CURIEs against
     """
-    resource = get_resource(prefix)
-    if resource is None:
-        return None
-    pattern = resource.get_pattern()
-    if pattern is None:
-        return None
-    p = resource.get_preferred_prefix() or prefix
-    return f"^{p}:{pattern.lstrip('^')}"
+    return manager.get_curie_pattern(prefix)
