@@ -628,7 +628,7 @@ class Resource(BaseModel):
         >>> get_resource("hgmd").get_prefixcommons_uri_format()
         'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
         """
-        return self.get_external("prefixcommons").get("formatter")
+        return self.get_external("prefixcommons").get(URI_FORMAT_KEY)
 
     def get_identifiers_org_prefix(self) -> Optional[str]:
         """Get the identifiers.org prefix if available.
