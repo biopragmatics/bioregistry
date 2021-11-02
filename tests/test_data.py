@@ -10,12 +10,11 @@ from textwrap import dedent
 from typing import Mapping
 
 import bioregistry
-from bioregistry.constants import BIOREGISTRY_PATH
+from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.utils import _norm, curie_to_str, is_mismatch, read_metaregistry
-from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 
 logger = logging.getLogger(__name__)
 
