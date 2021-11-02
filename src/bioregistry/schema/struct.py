@@ -16,6 +16,7 @@ from rdflib import Literal
 from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS
 from rdflib.term import Node
 
+from bioregistry.constants import LICENSES
 from bioregistry.schema.constants import (
     bioregistry_class_to_id,
     bioregistry_collection,
@@ -954,6 +955,44 @@ class Resource(BaseModel):
     def is_known_identifier(self, identifier: str) -> Optional[bool]:
         """Check that a local unique identifier can be normalized and also matches a prefix's pattern."""
         return self.is_canonical_identifier(self.standardize_identifier(identifier))
+
+    def get_download_obo(self) -> Optional[str]:
+        """Get the download link for the latest OBO file."""
+        if self.download_obo:
+            return self.download_obo
+        return self.get_external("obofoundry").get("download.obo")
+
+    def get_download_obograph(self) -> Optional[str]:
+        """Get the download link for the latest OBOGraph JSON file."""
+        return self.get_external("obofoundry").get("download.json")
+
+    def get_download_owl(self) -> Optional[str]:
+        """Get the download link for the latest OWL file."""
+        if self.download_owl:
+            return self.download_owl
+        return (
+            self.get_external("ols").get("version.iri")
+            or self.get_external("ols").get("download")
+            or self.get_external("obofoundry").get("download.owl")
+        )
+
+    def get_license(self) -> Optional[str]:
+        """Get the license for the resource."""
+        for metaprefix in ("obofoundry", "ols"):
+            license_value = _remap_license(self.get_external(metaprefix).get("license"))
+            if license_value is not None:
+                return license_value
+        return None
+
+    def get_version(self) -> Optional[str]:
+        """Get the version for the resource."""
+        return self.get_external("ols").get("version")
+
+
+def _remap_license(k: Optional[str]) -> Optional[str]:
+    if k is None:
+        return None
+    return LICENSES.get(k, k)
 
 
 class Registry(BaseModel):

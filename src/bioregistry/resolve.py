@@ -6,7 +6,6 @@ import logging
 from functools import lru_cache
 from typing import Any, Dict, Mapping, Optional, Set, Tuple, Union
 
-from .constants import LICENSES
 from .resource_manager import ResourceManager
 from .schema import Resource
 
@@ -520,9 +519,7 @@ def get_obo_download(prefix: str) -> Optional[str]:
     entry = get_resource(prefix)
     if entry is None:
         return None
-    if entry.download_obo:
-        return entry.download_obo
-    return get_external(prefix, "obofoundry").get("download.obo")
+    return entry.get_download_obo()
 
 
 def get_json_download(prefix: str) -> Optional[str]:
@@ -530,7 +527,7 @@ def get_json_download(prefix: str) -> Optional[str]:
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return get_external(prefix, "obofoundry").get("download.json")
+    return entry.get_download_obograph()
 
 
 def get_owl_download(prefix: str) -> Optional[str]:
@@ -538,13 +535,7 @@ def get_owl_download(prefix: str) -> Optional[str]:
     entry = get_resource(prefix)
     if entry is None:
         return None
-    if entry.download_owl:
-        return entry.download_owl
-    return (
-        get_external(prefix, "ols").get("version.iri")
-        or get_external(prefix, "ols").get("download")
-        or get_external(prefix, "obofoundry").get("download.owl")
-    )
+    return entry.get_download_owl()
 
 
 def get_provides_for(prefix: str) -> Optional[str]:
@@ -567,21 +558,11 @@ def get_license(prefix: str) -> Optional[str]:
 
     :param prefix: The prefix to look up
     :returns: The license of the resource (normalized) if available
-
-    >>> assert get_provides_for('pdb') is None
-    >>> assert 'pdb' == get_provides_for('validatordb')
     """
-    for metaprefix in ("obofoundry", "ols"):
-        license_value = _remap_license(get_external(prefix, metaprefix).get("license"))
-        if license_value is not None:
-            return license_value
-    return None
-
-
-def _remap_license(k: Optional[str]) -> Optional[str]:
-    if k is None:
+    entry = get_resource(prefix)
+    if entry is None:
         return None
-    return LICENSES.get(k, k)
+    return entry.get_license()
 
 
 def is_proprietary(prefix: str) -> Optional[bool]:

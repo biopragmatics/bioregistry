@@ -5,7 +5,7 @@
 import logging
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple, Union
 
-from .schema import Resource
+from .schema import Resource, sanitize_dict
 from .utils import NormDict, curie_to_str, read_registry, write_registry
 
 __all__ = [
@@ -134,8 +134,8 @@ class ResourceManager:
     def get_versions(self) -> Mapping[str, str]:
         """Get a map of prefixes to versions."""
         rv = {}
-        for prefix in self.registry:
-            version = self.get_external(prefix, "ols").get("version")
+        for prefix, resource in self.registry.items():
+            version = resource.get_version()
             if version is not None:
                 rv[prefix] = version
         return rv
@@ -218,6 +218,49 @@ class ResourceManager:
             return None
         p = resource.get_preferred_prefix() or prefix
         return f"^{p}:{pattern.lstrip('^')}"
+
+    def rasterize(self):
+        """Build a dictionary representing the fully constituted registry."""
+        return {
+            prefix: self._rasterize_resource(prefix, resource)
+            for prefix, resource in self.registry.items()
+        }
+
+    @staticmethod
+    def _rasterize_resource(prefix: str, resource: Resource):
+        return sanitize_dict(
+            dict(
+                preferred_prefix=resource.get_preferred_prefix() or prefix,
+                name=resource.get_name(),
+                description=resource.get_description(),
+                pattern=resource.get_pattern(),
+                url=resource.get_uri_format(),
+                homepage=resource.get_homepage(),
+                license=resource.get_license(),
+                version=resource.get_version(),
+                contact=resource.get_email(),
+                example=resource.get_example(),
+                synonyms=sorted(resource.get_synonyms()),
+                comment=resource.comment,
+                mappings=resource.get_mappings(),
+                providers=[p.dict() for p in resource.get_extra_providers()],
+                references=resource.references,
+                # MIRIAM compatibility
+                banana=resource.get_banana(),
+                namespace_in_lui=resource.get_namespace_in_lui(),
+                # Provenance
+                contributor=resource.contributor and resource.contributor.dict(),
+                reviewer=resource.reviewer and resource.reviewer.dict(),
+                # Ontology Relations
+                part_of=resource.part_of,
+                provides=resource.provides,
+                has_canonical=resource.has_canonical,
+                # Ontology Properties
+                deprecated=resource.is_deprecated(),
+                no_own_terms=resource.no_own_terms,
+                proprietary=resource.proprietary,
+            )
+        )
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:

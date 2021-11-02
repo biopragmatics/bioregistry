@@ -2,7 +2,6 @@
 
 """Export the Bioregistry to RDF."""
 
-import os
 from io import BytesIO
 from typing import Callable, List, Optional, Tuple, Union, cast
 
@@ -14,7 +13,7 @@ from rdflib.term import Node, URIRef
 
 import bioregistry
 from bioregistry import read_collections, read_metaregistry, read_registry
-from bioregistry.constants import DOCS_DATA
+from bioregistry.constants import RDF_JSONLD_PATH, RDF_NT_PATH, RDF_TURTLE_PATH
 from bioregistry.schema.constants import (
     bioregistry_collection,
     bioregistry_metaresource,
@@ -29,8 +28,8 @@ from bioregistry.schema.struct import Collection, Registry
 def export_rdf():
     """Export RDF."""
     graph = get_full_rdf()
-    graph.serialize(os.path.join(DOCS_DATA, "bioregistry.ttl"), format="turtle")
-    graph.serialize(os.path.join(DOCS_DATA, "bioregistry.nt"), format="nt")
+    graph.serialize(RDF_TURTLE_PATH.as_posix(), format="turtle")
+    graph.serialize(RDF_NT_PATH.as_posix(), format="nt")
     # Currently getting an issue with not being able to shorten URIs
     # graph.serialize(os.path.join(DOCS_DATA, "bioregistry.xml"), format="xml")
 
@@ -38,9 +37,7 @@ def export_rdf():
         "@language": "en",
         **dict(graph.namespaces()),
     }
-    graph.serialize(
-        os.path.join(DOCS_DATA, "bioregistry.jsonld"), format="json-ld", context=context
-    )
+    graph.serialize(RDF_JSONLD_PATH.as_posix(), format="json-ld", context=context)
 
 
 def _graph() -> rdflib.Graph:
