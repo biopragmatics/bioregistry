@@ -27,11 +27,18 @@ MISMATCH_PATH = DATA_DIRECTORY / "mismatch.json"
 
 BIOREGISTRY_MODULE = pystow.module("bioregistry")
 
-DOCS = HERE.parent.parent.joinpath("docs").resolve()
+ROOT = HERE.parent.parent.resolve()
+DOCS = ROOT.joinpath("docs")
 DOCS_DATA = DOCS.joinpath("_data")
 DOCS_IMG = DOCS.joinpath("img")
 
-EXPORT_DIRECTORY = DOCS.joinpath("_data")
+
+EXPORT_DIRECTORY = ROOT.joinpath("exports")
+
+EXPORT_CONTEXTS = EXPORT_DIRECTORY / "contexts"
+CONTEXT_OBO_PATH = EXPORT_CONTEXTS / "obo.context.jsonld"
+CONTEXT_OBO_SYNONYMS_PATH = EXPORT_CONTEXTS / "obo_synonyms.context.jsonld"
+
 EXPORT_RDF = EXPORT_DIRECTORY.joinpath("rdf")
 RDF_TURTLE_PATH = EXPORT_RDF / "bioregistry.ttl"
 RDF_NT_PATH = EXPORT_RDF / "bioregistry.nt"

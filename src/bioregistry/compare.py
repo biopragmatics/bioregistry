@@ -31,8 +31,9 @@ from bioregistry import (
 )
 from bioregistry.constants import DOCS_IMG
 from bioregistry.external import GETTERS
-from bioregistry.resolve import _remap_license, get_external
+from bioregistry.resolve import get_external
 from bioregistry.schema import Resource
+from bioregistry.schema.struct import _remap_license
 
 logger = logging.getLogger(__name__)
 
