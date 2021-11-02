@@ -11,6 +11,8 @@ aberowl:
   name: AberOWL
   prefix: aberowl
   provider_url: http://aber-owl.net/ontology/$1
+  resolver_type: lookup
+  resolver_url: http://aber-owl.net/ontology/$1/#/Browse/<http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F$1_$2>
 agroportal:
   description: A vocabulary and ontology repository for agronomy and related domains.
   example: ENVO
@@ -43,6 +45,7 @@ bioregistry:
   name: Bioregistry
   prefix: bioregistry
   provider_url: https://bioregistry.io/registry/$1
+  resolver_type: resolver
   resolver_url: https://bioregistry.io/$1:$2
 cellosaurus:
   contact: Amos.Bairoch@sib.swiss
@@ -97,6 +100,7 @@ miriam:
   name: Identifiers.org
   prefix: miriam
   provider_url: https://registry.identifiers.org/registry/$1
+  resolver_type: resolver
   resolver_url: https://identifiers.org/$1:$2
 n2t:
   contact: cdl@www.cdlib.org
@@ -107,6 +111,8 @@ n2t:
   homepage: https://n2t.net
   name: Name-to-Thing
   prefix: n2t
+  provider_url: 'https://n2t.net/$1:'
+  resolver_type: resolver
   resolver_url: https://n2t.net/$1:$2
 ncbi:
   description: A database-specific registry supporting curation in the NCBI GenBank
@@ -124,6 +130,7 @@ obofoundry:
   name: OBO Foundry
   prefix: obofoundry
   provider_url: http://www.obofoundry.org/ontology/$1
+  resolver_type: resolver
   resolver_url: http://purl.obolibrary.org/obo/$1_$2
 ols:
   description: 'The Ontology Lookup Service (OLS) is a repository for biomedical ontologies
@@ -149,7 +156,7 @@ prefixcommons:
   homepage: https://prefixcommons.org
   name: Prefix Commons
   prefix: prefixcommons
-  provider_url: https://prefixcommons.org/?q=id:$1
+  provider_url: https://prefixcommons.org/?q=$1
 scholia:
   contact: faan@dtu.dk
   description: A frontend to Wikidata
@@ -157,6 +164,7 @@ scholia:
   homepage: https://scholia.toolforge.org/
   name: Scholia
   prefix: scholia
+  resolver_type: lookup
   resolver_url: https://scholia.toolforge.org/$1/$2
 uniprot:
   description: The cross-references section of UniProtKB entries displays explicit

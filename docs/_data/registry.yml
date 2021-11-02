@@ -77,7 +77,6 @@
   name: 4D Nucleome Data Portal Experiment Replicate
   url: https://data.4dnucleome.org/experiment-set-replicates/$1
 aao:
-  deprecated: true
   description: A structured controlled vocabulary of the anatomy of Amphibians. Note
     that AAO is currently being integrated into Uberon.
   mappings:
@@ -1257,6 +1256,7 @@ ark:
     prefix: ark
     provider_url: n2t.net/ark:$1
   name: Archival Resource Key
+  pattern: ^/*[0-9A-Za-z]+(?:/[\w/.=*+@\$-]*)?(?:\?.*)?$
   prefixcommons:
     formatter: http://identifiers.org/ark/$1
     is_identifiers: true
@@ -3065,6 +3065,12 @@ biogrid.interaction:
   part_of: biogrid
   pattern: ^\d+$
   url: https://thebiogrid.org/interaction/$1
+biolegend:
+  description: BioLegend is a life sciences supply vendor.
+  example: '3403'
+  homepage: https://www.biolegend.com
+  name: BioLegend
+  url: https://www.biolegend.com/Default.aspx?ID=6664&productid=$1
 biolink:
   biolink:
     formatter: https://w3id.org/biolink/vocab/$1
@@ -3671,6 +3677,12 @@ biotools:
     is_identifiers: true
     is_obo: false
     prefix: BIOTOOLS
+biozil:
+  description: Redistributor of bilogics and biomedical supplies
+  example: ls-c35719-120
+  homepage: https://www.biozol.de/en
+  name: BIOZIL
+  url: https://www.biozol.de/en/product/$1
 birnlex:
   bioportal:
     name: Biomedical Informatics Research Network Project Lexicon
@@ -4126,6 +4138,7 @@ bto:
     name: BRENDA tissue / enzyme source
     prefix: BTO
     url: http://www.ontobee.org/ontology/BTO
+  pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/BTO_$1
     is_identifiers: false
@@ -4905,6 +4918,7 @@ cco:
     name: Cell Cycle Ontology
     prefix: cco
     version: '2016-03-23'
+  pattern: ^\w+$
   prefixcommons:
     formatter: http://identifiers.org/cco/$1
     is_identifiers: true
@@ -5492,6 +5506,7 @@ chebi:
     name: Chemical Entities of Biological Interest
     prefix: CHEBI
     url: http://www.ontobee.org/ontology/CHEBI
+  pattern: ^\d+$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/CHEBI_$1
     is_identifiers: false
@@ -6176,6 +6191,7 @@ cl:
     name: Cell Ontology
     prefix: CL
     url: http://www.ontobee.org/ontology/CL
+  pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/CL_$1
     is_identifiers: false
@@ -9391,6 +9407,25 @@ dg.anv0:
     prefix: dg.anv0
     provider_url: https://gen3.theanvil.io/ga4gh/drs/v1/objects/$1
     sampleId: 00077f1c-c45a-47ba-8e6c-1bf6b6b43fce
+dg.f82a1a:
+  mappings:
+    miriam: dg.f82a1a
+  miriam:
+    deprecated: false
+    description: Full implementation of the DRS 1.1 standard with support for persistent
+      identifiers. Open source DRS server that follows the Gen3 implementation. Gen3
+      is a GA4GH compliant open source platform for developing framework services
+      and data commons. Data commons accelerate and democratize the process of scientific
+      discovery, especially over large or complex datasets. Gen3 is maintained by
+      the Center for Translational Data Science at the University of Chicago. https://gen3.org
+    homepage: https://kidsfirstdrc.org
+    id: 00000887
+    name: Kids First
+    namespaceEmbeddedInLui: false
+    pattern: '[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}'
+    prefix: dg.f82a1a
+    provider_url: https://data.kidsfirstdrc.org/ga4gh/drs/v1/objects/$1
+    sampleId: 00026f50-858a-446b-8ed9-b0e3ecd7b20e
 dicom:
   bioportal:
     name: DICOM Controlled Terminology
@@ -9406,7 +9441,7 @@ dicom:
     homepage: http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_D.html
     name: DICOM Controlled Terminology
     prefix: dicom
-    version: 2021a_20210130
+    version: 2021d_20210910
 dictybase:
   description: A resource for Dictyostelid discoideum (a soil-dwelling amoeba) genomics
   go:
@@ -9548,6 +9583,7 @@ did:
     prefix: did
     provider_url: https://uniresolver.io/#did:$1
   name: Decentralized Identifier
+  pattern: ^[a-z0-9]+:[A-Za-z0-9.\-:]+$
 dideo:
   bioportal:
     name: Drug Interaction and Evidence Ontology
@@ -9899,6 +9935,7 @@ doid:
     name: Human Disease Ontology
     prefix: DOID
     url: http://www.ontobee.org/ontology/DOID
+  pattern: ^\d+$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/DOID_$1
     is_identifiers: false
@@ -10878,6 +10915,7 @@ eco:
     name: Evidence ontology
     prefix: ECO
     url: http://www.ontobee.org/ontology/ECO
+  pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/ECO_$1
     is_identifiers: false
@@ -12347,11 +12385,20 @@ envo:
     name: Environment Ontology
     prefix: ENVO
     url: http://www.ontobee.org/ontology/ENVO
+  pattern: ^\d{7,8}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/ENVO_$1
     is_identifiers: false
     is_obo: true
     prefix: ENVO
+enzo:
+  description: Enzo Life Sciences is an antibody vendor.
+  example: ALX-210-175
+  homepage: https://www.enzolifesciences.com
+  name: Enzo Life Sciences
+  synonyms:
+  - Enzo Life Sciences
+  url: https://www.enzolifesciences.com/$1
 eol:
   bioportal:
     name: Environment Ontology for Livestock
@@ -13163,8 +13210,8 @@ fbbt:
     license: https://creativecommons.org/licenses/by/3.0/
     name: Drosophila Anatomy Ontology (DAO)
     prefix: fbbt
-    version: '2021-07-09'
-    version.iri: http://purl.obolibrary.org/obo/fbbt/releases/2021-07-09/fbbt.owl
+    version: '2021-10-14'
+    version.iri: http://purl.obolibrary.org/obo/fbbt/releases/2021-10-14/fbbt.owl
   ontobee:
     library: Library
     name: Drosophila gross anatomy
@@ -13717,6 +13764,7 @@ fma:
     name: Foundational Model of Anatomy Ontology (subset)
     prefix: FMA
     url: http://www.ontobee.org/ontology/FMA
+  pattern: ^\d+$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/FMA_$1
     is_identifiers: false
@@ -13914,6 +13962,7 @@ foodon:
     name: FOODON
     prefix: FOODON
     url: http://www.ontobee.org/ontology/FOODON
+  pattern: ^[0-9]{8}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/FOODON_$1
     is_identifiers: false
@@ -13953,8 +14002,8 @@ fovt:
     license: http://creativecommons.org/publicdomain/zero/1.0/
     name: FuTRES Ontology of Vertebrate Traits
     prefix: fovt
-    version: '2021-06-02'
-    version.iri: http://purl.obolibrary.org/obo/fovt/releases/2021-06-02/fovt.owl
+    version: '2021-10-29'
+    version.iri: http://purl.obolibrary.org/obo/fovt/releases/2021-10-29/fovt.owl
   ontobee:
     library: Library
     name: FuTRES Ontology of Vertebrate Traits
@@ -15931,6 +15980,7 @@ go:
     name: Gene Ontology
     prefix: GO
     url: http://www.ontobee.org/ontology/GO
+  pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/GO_$1
     is_identifiers: false
@@ -16009,6 +16059,7 @@ go.ref:
     pattern: ^GO_REF:\d{7}$
     prefix: go.ref
     provider_url: http://www.geneontology.org/cgi-bin/references.cgi#$1
+  pattern: ^\d{7}$
   prefixcommons:
     formatter: http://www.geneontology.org/cgi-bin/references.cgi#GO_REF:$1
     is_identifiers: false
@@ -16570,6 +16621,20 @@ gramene.taxonomy:
     is_identifiers: true
     is_obo: false
     prefix: GRAMENE.TAXONOMY
+grassbase:
+  contributor:
+    email: null
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4379
+  description: GrassBase provides an interactive guide to nomenclature for the whole
+    grass family. It provides lists of over 60,000 names for any given genus, geographical
+    region or genus within a geographical region, helps find the accepted name, synonyms
+    and distribution for any given name, and gives a desription for each species.
+  example: imp10873
+  homepage: https://www.kew.org/data/grasses-syn/index.htm
+  name: GrassBase
+  pattern: ^(imp|gen)\d{5}$
+  url: https://www.kew.org/data/grasses-db/www/$1
 greengenes:
   mappings:
     miriam: greengenes
@@ -16826,6 +16891,7 @@ gsso:
     name: Gender, Sex, and Sexual Orientation (GSSO) ontology
     prefix: GSSO
     url: http://www.ontobee.org/ontology/GSSO
+  pattern: ^\d{6}$
 gtex:
   biolink:
     formatter: https://www.gtexportal.org/home/gene/$1
@@ -18165,6 +18231,7 @@ hp:
     name: Human Phenotype Ontology
     prefix: HP
     url: http://www.ontobee.org/ontology/HP
+  pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/HP_$1
     is_identifiers: false
@@ -20117,6 +20184,7 @@ interpro:
     is_identifiers: false
     is_obo: false
     prefix: interpro
+  deprecated: false
   example: IPR016380
   go:
     formatter: http://www.ebi.ac.uk/interpro/entry/$1
@@ -20133,7 +20201,7 @@ interpro:
     n2t: interpro
     ncbi: InterPro
     obofoundry: ipr
-    prefixcommons: INTERPRO
+    prefixcommons: IPR
     uniprot: InterPro
   miriam:
     deprecated: false
@@ -20165,6 +20233,8 @@ interpro:
     pattern: ^IPR\d{6}$
     prefix: interpro
     provider_url: https://www.ebi.ac.uk/interpro/entry/$1
+  name: InterPro
+  namespace_in_lui: false
   ncbi:
     example: IPR002928
     homepage: http://www.ebi.ac.uk/interpro/
@@ -20175,17 +20245,19 @@ interpro:
     contact.label: InterPro Help
     deprecated: true
     homepage: http://www.ebi.ac.uk/interpro/index.html
+    inactive: true
     name: Protein Domains
     prefix: ipr
   preferred_prefix: interpro
   prefixcommons:
-    formatter: http://identifiers.org/interpro/$1
-    is_identifiers: true
-    is_obo: false
-    prefix: INTERPRO
+    formatter: http://purl.obolibrary.org/obo/IPR_$1
+    is_identifiers: false
+    is_obo: true
+    prefix: IPR
   synonyms:
   - InterPro
   - IP
+  - IPR
   uniprot:
     category: Family and domain databases
     formatter: https://www.ebi.ac.uk/interpro/entry/%s
@@ -20195,23 +20267,6 @@ interpro:
     prefix: InterPro
   wikidata:
     prefix: P2926
-ipr:
-  mappings:
-    obofoundry: ipr
-    prefixcommons: IPR
-  obofoundry:
-    contact: interhelp@ebi.ac.uk
-    contact.label: InterPro Help
-    deprecated: true
-    homepage: http://www.ebi.ac.uk/interpro/index.html
-    inactive: true
-    name: Protein Domains
-    prefix: ipr
-  prefixcommons:
-    formatter: http://purl.obolibrary.org/obo/IPR_$1
-    is_identifiers: false
-    is_obo: true
-    prefix: IPR
 ird.segment:
   mappings:
     miriam: ird.segment
@@ -21620,8 +21675,8 @@ labo:
     homepage: https://github.com/OpenLHS/LABO
     name: clinical LABoratory Ontology
     prefix: labo
-    version: '2019-08-29'
-    version.iri: http://purl.obolibrary.org/obo/labo/2019-08-29/labo.owl
+    version: '2021-06-08'
+    version.iri: http://purl.obolibrary.org/obo/labo/2021-06-08/labo.owl
   ontobee:
     library: Library
     name: clinical LABoratory Ontology
@@ -21698,6 +21753,8 @@ lgai.cede:
     provider_url: https://s3.us-east-2.amazonaws.com/lg.cede/$1
     sampleId: LGCEDe-S-000002244
 lgic:
+  comment: Website is gone
+  deprecated: true
   mappings:
     miriam: lgic
     n2t: lgic
@@ -21934,6 +21991,7 @@ lincs.cell:
     pattern: (^LCL-\d+$)|(^LDC-\d+$)|(^ES-\d+$)|(^LSC-\d+$)|(^LPC-\d+$)
     prefix: lincs.cell
     provider_url: http://lincsportal.ccs.miami.edu/cells/#/view/$1
+  pattern: ^(LCL|LDC|ES|LSC|LPC)-\d+$
   prefixcommons:
     formatter: http://identifiers.org/lincs.cell/$1
     is_identifiers: true
@@ -22394,6 +22452,7 @@ ma:
     name: Mouse adult gross anatomy
     prefix: MA
     url: http://www.ontobee.org/ontology/MA
+  pattern: ^\d+$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/MA_$1
     is_identifiers: false
@@ -23892,6 +23951,7 @@ mge:
     pattern: ^mge:\d+$
     prefix: mge
     provider_url: http://aclame.ulb.ac.be/perl/Aclame/Genomes/mge_view.cgi?view=info&id=mge:$1
+  pattern: ^\d+$
 mgi:
   banana: MGI
   cellosaurus:
@@ -23953,6 +24013,7 @@ mgi:
     homepage: http://www.informatics.jax.org/
     name: Mouse Genome Informatics
     prefix: MGI
+  pattern: ^\d+$
   preferred_prefix: MGI
   prefixcommons:
     formatter: http://www.informatics.jax.org/accession/MGI:$1
@@ -24132,6 +24193,7 @@ mi:
     name: Molecular Interactions Controlled Vocabulary
     prefix: MI
     url: http://www.ontobee.org/ontology/MI
+  pattern: ^\d{4}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/MI_$1
     is_identifiers: false
@@ -24602,6 +24664,7 @@ mir:
     pattern: ^MIR:\d{8}$
     prefix: mir
     provider_url: https://identifiers.org/registry?query="MIR:$1"
+  pattern: ^\d{8}$
   prefixcommons:
     formatter: http://identifiers.org/mir/$1
     is_identifiers: true
@@ -25515,6 +25578,7 @@ mod:
     name: Protein modification
     prefix: MOD
     url: http://www.ontobee.org/ontology/MOD
+  pattern: ^\d{5}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/MOD_$1
     is_identifiers: false
@@ -25820,6 +25884,7 @@ mp:
     name: Mammalian Phenotype Ontology
     prefix: MP
     url: http://www.ontobee.org/ontology/MP
+  pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/MP_$1
     is_identifiers: false
@@ -26081,6 +26146,7 @@ ms:
     name: Mass spectrometry ontology
     prefix: MS
     url: http://www.ontobee.org/ontology/MS
+  pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/MS_$1
     is_identifiers: false
@@ -26545,6 +26611,7 @@ mzspec:
     pattern: ^mzspec:.+$
     prefix: mzspec
     provider_url: https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/ShowObservedSpectrum?usi=mzspec:$1
+  pattern: ^.+$
   prefixcommons:
     formatter: http://identifiers.org/mzspec/$1
     is_identifiers: true
@@ -28006,6 +28073,7 @@ nmr:
     name: nuclear magnetic resonance CV
     prefix: nmrcv
     version: 1.1.0
+  pattern: ^\d+$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/NMR_$1
     is_identifiers: false
@@ -28224,6 +28292,13 @@ norine:
     is_identifiers: true
     is_obo: false
     prefix: NORINE
+novus:
+  contact: info.de@bio-techne.com
+  description: A vendor of antibodies and other biologics
+  example: nb100-56351
+  homepage: https://www.novusbio.com
+  name: Novus Biologicals
+  url: https://www.novusbio.com/products/$1
 npass:
   contributor:
     email: cthoyt@gmail.com
@@ -28761,6 +28836,7 @@ ocid:
     prefix: ocid
     provider_url: https://ocid.ontochem.com/prefname?ocid=$1
     sampleId: '190000021540'
+  pattern: ^[0-9]{12}$
 oclc:
   mappings:
     miriam: oclc
@@ -29025,11 +29101,11 @@ ogms:
       Formal Ontology.'
     download: http://purl.obolibrary.org/obo/ogms.owl
     homepage: https://github.com/OGMS/ogms
-    license: 'url: http://creativecommons.org/licenses/by/4.0/'
+    license: http://creativecommons.org/licenses/by/4.0/
     name: Ontology for General Medical Science
     prefix: ogms
-    version: '2021-04-20'
-    version.iri: https://github.com/OGMS/ogms/releases/tag/2021-04-20
+    version: '2021-08-19'
+    version.iri: http://purl.obolibrary.org/obo/ogms/2021-08-19/ogms.owl
   ontobee:
     library: Library
     name: Ontology for General Medical Science
@@ -29711,7 +29787,8 @@ omrse:
     license: https://creativecommons.org/licenses/by/4.0/
     name: Ontology of Medically Related Social Entities
     prefix: omrse
-    version: '2020-10-27'
+    version: '2021-08-30'
+    version.iri: http://purl.obolibrary.org/obo/omrse/releases/2021-08-30/omrse.owl
   ontobee:
     library: Library
     name: Ontology of Medically Related Social Entities
@@ -29842,10 +29919,11 @@ ontoneo:
       involved in the care of the pregnant woman, and of her baby.
     download: http://purl.obolibrary.org/obo/ontoneo.owl
     homepage: https://ontoneo.com/
+    license: http://creativecommons.org/licenses/by/4.0/
     name: Obstetric and Neonatal Ontology
     prefix: ontoneo
-    version: '2017-03-04'
-    version.iri: http://purl.obolibrary.org/obo/ontoneo/releases/2017-03-04/ontoneo.owl
+    version: v1.6
+    version.iri: http://purl.obolibrary.org/obo/ontoneo/releases/2021-04-29/ontoneo.owl
   ontobee:
     library: Library
     name: Obstetric and Neonatal Ontology
@@ -31255,6 +31333,7 @@ pato:
     name: Phenotype And Trait Ontology
     prefix: PATO
     url: http://www.ontobee.org/ontology/PATO
+  pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/PATO_$1
     is_identifiers: false
@@ -33408,6 +33487,7 @@ po:
     name: Plant Ontology
     prefix: PO
     url: http://www.ontobee.org/ontology/PO
+  pattern: ^\d+$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/PO_$1
     is_identifiers: false
@@ -33740,6 +33820,7 @@ pr:
     name: PRotein Ontology (PRO)
     prefix: PR
     url: http://www.ontobee.org/ontology/PR
+  pattern: ^\d+$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/PR_$1
     is_identifiers: false
@@ -34890,6 +34971,7 @@ pw:
     name: Pathway ontology
     prefix: PW
     url: http://www.ontobee.org/ontology/PW
+  pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/PW_$1
     is_identifiers: false
@@ -35226,6 +35308,7 @@ reactome:
     pattern: (^R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?$)|(^REACT_\d+(\.\d+)?$)
     prefix: reactome
     provider_url: https://reactome.org/content/detail/$1
+  pattern: ^R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?$
   prefixcommons:
     formatter: http://www.reactome.org/PathwayBrowser/#/$1
     is_identifiers: false
@@ -36384,6 +36467,7 @@ rrid:
     prefix: rrid
     provider_url: https://scicrunch.org/resolver/RRID:$1
   name: Research Resource Identification
+  pattern: ^[a-zA-Z]+.+$
   prefixcommons:
     formatter: http://identifiers.org/rrid/$1
     is_identifiers: true
@@ -36858,6 +36942,7 @@ sbo:
     name: Systems Biology Ontology
     prefix: SBO
     url: http://www.ontobee.org/ontology/SBO
+  pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/SBO_$1
     is_identifiers: false
@@ -37650,6 +37735,12 @@ sider.effect:
     prefix: SIDER.EFFECT
   provides: umls
   url: http://sideeffects.embl.de/se/$1
+sigmaaldirch:
+  description: Sigma Aldrich is a life sciences supply vendor.
+  example: HPA000698
+  homepage: https://www.sigmaaldrich.com
+  name: Sigma Aldrich
+  url: https://www.sigmaaldrich.com/US/en/product/sigma/$1
 signaling-gateway:
   mappings:
     miriam: signaling-gateway
@@ -38221,6 +38312,7 @@ so:
     name: Sequence types and features ontology
     prefix: SO
     url: http://www.ontobee.org/ontology/SO
+  pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/SO_$1
     is_identifiers: false
@@ -38655,6 +38747,8 @@ stitch:
     is_obo: false
     prefix: STITCH
 storedb:
+  banana: STOREDB
+  example: STUDY1040
   mappings:
     miriam: storedb
     n2t: storedb
@@ -38690,6 +38784,7 @@ storedb:
     prefix: storedb
     provider_url: https://www.storedb.org/?$1
   name: Store DB
+  pattern: ^(STUDY|FILE|DATASET)\d+$
   prefixcommons:
     formatter: http://identifiers.org/storedb/$1
     is_identifiers: true
@@ -38965,6 +39060,7 @@ swh:
     pattern: ^swh:[1-9]:[a-z][a-z][a-z]:[a-f0-9]+$
     prefix: swh
     provider_url: https://archive.softwareheritage.org/browse/swh:$1
+  pattern: ^[1-9]:(cnt|dir|rel|rev|snp):[0-9a-f]+(;(origin|visit|anchor|path|lines)=\S+)*$
   prefixcommons:
     formatter: http://identifiers.org/swh/$1
     is_identifiers: true
@@ -39042,6 +39138,7 @@ swisslipid:
     prefix: swisslipid
     provider_url: http://www.swisslipids.org/#/entity/SLM:$1/
   name: SwissLipid
+  pattern: ^\d+$
   prefixcommons:
     formatter: http://identifiers.org/swisslipid/$1
     is_identifiers: true
@@ -39743,6 +39840,12 @@ th:
   name: Terminologia Histologica
   references:
   - https://en.wikipedia.org/wiki/Terminologia_Histologica
+thermofisher:
+  description: ThermoFisher is a life sciences supply vendor.
+  example: OSR00185W
+  homepage: https://www.thermofisher.com
+  name: Thermo Fisher Scientific
+  url: https://www.thermofisher.com/antibody/product/$1
 tigrfam:
   mappings:
     miriam: tigrfam
@@ -39785,40 +39888,6 @@ tigrfam:
     is_identifiers: true
     is_obo: false
     prefix: TIGRFAM
-tissuelist:
-  mappings:
-    miriam: tissuelist
-    n2t: tissuelist
-    prefixcommons: TISSUELIST
-  miriam:
-    deprecated: false
-    description: The UniProt Tissue List is a controlled vocabulary of terms used
-      to annotate biological tissues. It also contains cross-references to other ontologies
-      where tissue types are specified.
-    homepage: https://www.uniprot.org/docs/tisslist.txt
-    id: '00000360'
-    name: Tissue List
-    namespaceEmbeddedInLui: false
-    pattern: ^TS-\d{4}$
-    prefix: tissuelist
-    provider_url: https://www.uniprot.org/tissues/$1
-    sampleId: TS-0285
-  n2t:
-    description: The UniProt Tissue List is a controlled vocabulary of terms used
-      to annotate biological tissues. It also contains cross-references to other ontologies
-      where tissue types are specified.
-    example: TS-0285
-    homepage: https://www.uniprot.org/docs/tisslist.txt
-    name: Tissue List at Swiss Institute of Bioinformatics
-    namespaceEmbeddedInLui: false
-    pattern: ^TS-\d{4}$
-    prefix: tissuelist
-    provider_url: https://www.uniprot.org/tissues/$1
-  prefixcommons:
-    formatter: http://identifiers.org/tissuelist/$1
-    is_identifiers: true
-    is_obo: false
-    prefix: TISSUELIST
 tkg:
   contributor:
     email: cthoyt@gmail.com
@@ -40538,6 +40607,7 @@ uberon:
     name: Uberon multi-species anatomy ontology
     prefix: UBERON
     url: http://www.ontobee.org/ontology/UBERON
+  pattern: ^\d+$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/UBERON_$1
     is_identifiers: false
@@ -41383,6 +41453,40 @@ uniprot.location:
   - UPLOC
   - UniProtKB-SubCell
   url: https://www.uniprot.org/locations/SL-$1
+uniprot.tissue:
+  mappings:
+    miriam: tissuelist
+    n2t: tissuelist
+    prefixcommons: TISSUELIST
+  miriam:
+    deprecated: false
+    description: The UniProt Tissue List is a controlled vocabulary of terms used
+      to annotate biological tissues. It also contains cross-references to other ontologies
+      where tissue types are specified.
+    homepage: https://www.uniprot.org/docs/tisslist.txt
+    id: '00000360'
+    name: Tissue List
+    namespaceEmbeddedInLui: false
+    pattern: ^TS-\d{4}$
+    prefix: tissuelist
+    provider_url: https://www.uniprot.org/tissues/$1
+    sampleId: TS-0285
+  n2t:
+    description: The UniProt Tissue List is a controlled vocabulary of terms used
+      to annotate biological tissues. It also contains cross-references to other ontologies
+      where tissue types are specified.
+    example: TS-0285
+    homepage: https://www.uniprot.org/docs/tisslist.txt
+    name: Tissue List at Swiss Institute of Bioinformatics
+    namespaceEmbeddedInLui: false
+    pattern: ^TS-\d{4}$
+    prefix: tissuelist
+    provider_url: https://www.uniprot.org/tissues/$1
+  prefixcommons:
+    formatter: http://identifiers.org/tissuelist/$1
+    is_identifiers: true
+    is_obo: false
+    prefix: TISSUELIST
 uniprot.var:
   contributor:
     email: cthoyt@gmail.com
@@ -41593,6 +41697,7 @@ uo:
     name: Units of measurement ontology
     prefix: UO
     url: http://www.ontobee.org/ontology/UO
+  pattern: ^\d{7}$
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/UO_$1
     is_identifiers: false
@@ -41877,6 +41982,7 @@ vario:
     name: Variation Ontology
     prefix: VariO
     url: http://www.ontobee.org/ontology/VariO
+  pattern: ^\d+$
   preferred_prefix: VariO
   prefixcommons:
     formatter: http://purl.obolibrary.org/obo/VARIO_$1
