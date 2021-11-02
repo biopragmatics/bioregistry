@@ -109,8 +109,8 @@ class Resource(BaseModel):
         description="The regular expression pattern for identifiers in the resource",
     )
     #: The URI format string, which must have at least one ``$1`` in it
-    url: Optional[str] = Field(
-        title="Format URI",
+    uri_format: Optional[str] = Field(
+        title="URI Format",
         description="The URI format string, which must have at least one ``$1`` in it",
     )
     #: Additional non-default providers for the given resource
@@ -397,8 +397,8 @@ class Resource(BaseModel):
         >>> get_resource("go").get_default_format()
         'http://amigo.geneontology.org/amigo/term/GO:$1'
         """
-        if self.url is not None:
-            return self.url
+        if self.uri_format is not None:
+            return self.uri_format
         for metaprefix, key in [
             ("miriam", URI_FORMAT_KEY),
             ("n2t", URI_FORMAT_KEY),
