@@ -15,7 +15,8 @@ from bioregistry import version
 from .api import api_blueprint
 from .ui import ui_blueprint
 from ..resolve_identifier import get_bioregistry_iri
-from ..schema import bioregistry_schema_terms, get_json_schema
+from ..schema.constants import bioregistry_schema_terms
+from ..schema.struct import get_json_schema
 
 app = Flask(__name__)
 Swagger.DEFAULT_CONFIG.update(
