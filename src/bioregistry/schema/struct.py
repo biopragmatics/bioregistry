@@ -400,7 +400,7 @@ class Resource(BaseModel):
         for metaprefix, key in [
             ("miriam", URI_FORMAT_KEY),
             ("n2t", URI_FORMAT_KEY),
-            # ("go", "formatter"), # FIXME
+            ("go", URI_FORMAT_KEY),
             ("prefixcommons", URI_FORMAT_KEY),
             ("wikidata", URI_FORMAT_KEY),
             ("uniprot", URI_FORMAT_KEY),
