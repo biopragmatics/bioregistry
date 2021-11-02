@@ -6,6 +6,7 @@ This lists any sorts of things that should be fixed upstream, but are instead ma
 """
 
 import os
+from tqdm import tqdm
 from typing import Callable
 
 import click
@@ -37,9 +38,26 @@ def _g(predicate: Callable[[str], bool]):
     ]
 
 
+def get_unparsable_uris():
+    """Get a list of IRIs that can be constructed, but not parsed."""
+    rows = []
+    for prefix in tqdm(bioregistry.read_registry(), desc="Checking URIs"):
+        example = bioregistry.get_example(prefix)
+        if example is None:
+            continue
+        uri = bioregistry.get_iri(prefix, example, use_bioregistry_io=False)
+        if uri is None:
+            continue
+        k, v = bioregistry.parse_iri(uri)
+        if k is None:
+            rows.append((prefix, example, uri, k, v))
+    return rows
+
+
 @click.command()
 def warnings():
     """Make warnings list."""
+    # unparsable = get_unparsable_uris()
     missing_wikidata_database = _g(
         lambda prefix: get_external(prefix, "wikidata").get("database") is None
     )
@@ -54,6 +72,7 @@ def warnings():
                 "pattern": missing_pattern,
                 "formatter": missing_format_url,
                 "example": missing_example,
+                # "unparsable": unparsable,
             },
             file,
         )

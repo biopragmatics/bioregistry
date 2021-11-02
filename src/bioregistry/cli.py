@@ -30,21 +30,6 @@ main.add_command(make_web_command("bioregistry.app.wsgi:app"))
 
 
 @main.command()
-def versions():
-    """Print the versions."""
-    from tabulate import tabulate
-
-    from .resolve import get_versions
-
-    click.echo(
-        tabulate(
-            sorted(get_versions().items()),
-            headers=["Prefix", "Version"],
-        )
-    )
-
-
-@main.command()
 @click.pass_context
 def update(ctx: click.Context):
     """Update the Bioregistry."""

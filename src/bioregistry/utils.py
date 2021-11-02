@@ -8,7 +8,7 @@ import warnings
 from collections import defaultdict
 from dataclasses import asdict, is_dataclass
 from datetime import datetime
-from functools import lru_cache, wraps
+from functools import lru_cache
 from typing import Any, List, Mapping, Set
 
 import click
@@ -175,21 +175,6 @@ def read_collections_contributions():
         for author in resource.authors or []:
             rv[author.orcid].add(collection_id)
     return dict(rv)
-
-
-# FIXME remove this
-def updater(f):
-    """Make a decorator for functions that auto-update the bioregistry."""
-
-    @wraps(f)
-    def _wrapped():
-        registry = read_registry()
-        rv = f(registry)
-        if rv is not None:
-            write_registry(registry)
-        return rv
-
-    return _wrapped
 
 
 def norm(s: str) -> str:
