@@ -7,7 +7,7 @@ import logging
 from typing import Any, Dict, Mapping
 
 from bioregistry.align.utils import Aligner
-from bioregistry.constants import DATA_DIRECTORY
+from bioregistry.constants import DATA_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external import get_go
 
 __all__ = [
@@ -65,16 +65,16 @@ class GoAligner(Aligner):
             # TODO handle
         elif len(entity_types) == 1:
             entity_type = entity_types[0]
-            formatter = entity_type.get("url_syntax")
-            if formatter and not any(
-                formatter.startswith(formatter_prefix)
+            uri_format = entity_type.get("url_syntax")
+            if uri_format and not any(
+                uri_format.startswith(formatter_prefix)
                 for formatter_prefix in [
                     "http://purl.obolibrary.org",
                     "https://purl.obolibrary.org",
                 ]
             ):
-                formatter = formatter.replace("[example_id]", "$1")
-                rv["formatter"] = formatter
+                uri_format = uri_format.replace("[example_id]", "$1")
+                rv[URI_FORMAT_KEY] = uri_format
 
         if "synonyms" in external_entry:
             rv["synonyms"] = external_entry["synonyms"]

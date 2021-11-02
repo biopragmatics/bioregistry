@@ -10,7 +10,7 @@ from textwrap import dedent
 from typing import Mapping
 
 import bioregistry
-from bioregistry.constants import BIOREGISTRY_PATH
+from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.schema.utils import EMAIL_RE
@@ -41,7 +41,7 @@ class TestRegistry(unittest.TestCase):
             "example",
             "pattern",
             "type",
-            "url",
+            URI_FORMAT_KEY,
             # Only there if true
             "no_own_terms",
             "not_available_as_obo",
@@ -167,11 +167,11 @@ class TestRegistry(unittest.TestCase):
     def test_format_urls(self):
         """Test that entries with a format URL are formatted right (yo dawg)."""
         for prefix, entry in self.registry.items():
-            url = entry.url
-            if not url:
+            uri_format = entry.uri_format
+            if not uri_format:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertIn("$1", url, msg=f"{prefix} format does not have a $1")
+                self.assertIn("$1", uri_format, msg=f"{prefix} format does not have a $1")
 
     def test_own_terms_conflict(self):
         """Test there is no conflict between no own terms and having an example."""
@@ -179,7 +179,7 @@ class TestRegistry(unittest.TestCase):
             if bioregistry.has_no_terms(prefix):
                 with self.subTest(prefix=prefix):
                     self.assertIsNone(bioregistry.get_example(prefix))
-                    self.assertIsNone(resource.url)
+                    self.assertIsNone(resource.uri_format)
 
     def test_patterns(self):
         """Test that all prefixes are norm-unique."""

@@ -7,6 +7,7 @@ import json
 import click
 from pystow.utils import download
 
+from bioregistry.constants import URI_FORMAT_KEY
 from bioregistry.data import EXTERNAL
 
 __all__ = [
@@ -62,7 +63,7 @@ def _process(record):
     else:
         primary, *rest = resources
     rv["homepage"] = primary["homepage"]
-    rv["provider_url"] = primary["url"]
+    rv[URI_FORMAT_KEY] = primary[URI_FORMAT_KEY]
 
     extras = []
     for provider in rest:
@@ -87,7 +88,7 @@ def _preprocess_resource(resource):
         "official": resource["official"],
         "homepage": resource["resourceHomeUrl"],
         "code": resource["providerCode"],
-        "url": resource["urlPattern"].replace("{$id}", "$1"),
+        URI_FORMAT_KEY: resource["urlPattern"].replace("{$id}", "$1"),
         "name": resource["name"],
         "description": resource["description"],
     }

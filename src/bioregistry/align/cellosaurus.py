@@ -5,6 +5,7 @@
 from typing import Mapping, Sequence
 
 from bioregistry.align.utils import Aligner
+from bioregistry.constants import URI_FORMAT_KEY
 from bioregistry.external import get_cellosaurus
 
 __all__ = [
@@ -17,7 +18,7 @@ class CellosaurusAligner(Aligner):
 
     key = "cellosaurus"
     getter = get_cellosaurus
-    curation_header = ("name", "homepage", "category", "url")
+    curation_header = ("name", "homepage", "category", URI_FORMAT_KEY)
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the skipped Cellosaurus identifiers."""
@@ -34,7 +35,7 @@ class CellosaurusAligner(Aligner):
             external_entry["name"],
             external_entry["homepage"],
             external_entry["category"],
-            external_entry.get("url", ""),
+            external_entry.get(URI_FORMAT_KEY, ""),
         ]
 
 

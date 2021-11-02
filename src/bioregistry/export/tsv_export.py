@@ -6,7 +6,12 @@ import csv
 
 import click
 
-from ..constants import COLLECTIONS_TSV_PATH, METAREGISTRY_TSV_PATH, REGISTRY_TSV_PATH
+from ..constants import (
+    COLLECTIONS_TSV_PATH,
+    METAREGISTRY_TSV_PATH,
+    REGISTRY_TSV_PATH,
+    URI_FORMAT_KEY,
+)
 from ..uri_format import get_uri_format
 from ..utils import read_collections, read_metaregistry, read_registry
 
@@ -63,7 +68,7 @@ REGISTRY_HEADER = [
     "pattern",
     "example",
     "email",
-    "formatter",
+    URI_FORMAT_KEY,
     "download.owl",
     "download.obo",
     "synonyms",

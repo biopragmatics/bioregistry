@@ -39,7 +39,7 @@ def get_ontobee(force_download: bool = False):
         rv[prefix] = {
             "name": cells[2].text,
             "library": LEGEND[cells[3].text],
-            "url": cells[1].find("a").attrs["href"],
+            # "link": cells[1].find("a").attrs["href"],
         }
 
     with PROCESSED_PATH.open("w") as file:

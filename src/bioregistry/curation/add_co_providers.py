@@ -18,14 +18,14 @@ def main():
         if not resource.example:
             click.echo(f"{prefix} missing example")
             continue
-        if resource.url:
-            click.echo(f"{prefix} has url {resource.url}")
+        if resource.uri_format:
+            click.echo(f"{prefix} has url {resource.uri_format}")
             url = bioregistry.get_iri(prefix, resource.example)
             res = requests.get(url)
             click.echo(res.text)
             click.echo("")
             continue
-        resource.url = f"https://www.cropontology.org/rdf/{prefix.upper()}:$1"
+        resource.uri_format = f"https://www.cropontology.org/rdf/{prefix.upper()}:$1"
     bioregistry.write_registry(r)
 
 
