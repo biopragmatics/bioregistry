@@ -2,6 +2,7 @@
 
 """Tests for data integrity."""
 
+import json
 import logging
 import unittest
 from collections import defaultdict
@@ -9,6 +10,7 @@ from textwrap import dedent
 from typing import Mapping
 
 import bioregistry
+from bioregistry.constants import BIOREGISTRY_PATH
 from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.schema.utils import EMAIL_RE
@@ -68,8 +70,10 @@ class TestRegistry(unittest.TestCase):
             "providers",
         }
         keys.update(bioregistry.read_metaregistry())
-        for prefix, entry in self.registry.items():
-            extra = {k for k in set(entry.dict()) - keys if not k.startswith("_")}
+        with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
+            data = json.load(file)
+        for prefix, entry in data.items():
+            extra = {k for k in set(entry) - keys if not k.startswith("_")}
             if not extra:
                 continue
             with self.subTest(prefix=prefix):
