@@ -3,27 +3,24 @@
 """Export the Bioregistry as a JSON-LD context."""
 
 import json
-import logging
-from pathlib import Path
 from typing import Mapping
 
 import click
 
 import bioregistry
 from bioregistry import get_prefix_map
-from bioregistry.constants import DOCS_DATA
+from bioregistry.constants import (
+    CONTEXT_OBO_PATH,
+    CONTEXT_OBO_SYNONYMS_PATH,
+    EXPORT_CONTEXTS,
+)
 from bioregistry.schema import Collection
-
-logger = logging.getLogger(__name__)
 
 
 @click.command()
 def generate_context_json_ld():
     """Generate various JSON-LD context files."""
-    contexts_directory = Path(DOCS_DATA) / "contexts"
-    contexts_directory.mkdir(parents=True, exist_ok=True)
-
-    with contexts_directory.joinpath("obo.context.jsonld").open("w") as file:
+    with CONTEXT_OBO_PATH.open("w") as file:
         json.dump(
             fp=file,
             indent=4,
@@ -33,7 +30,7 @@ def generate_context_json_ld():
             },
         )
 
-    with contexts_directory.joinpath("obo_synonyms.context.jsonld").open("w") as file:
+    with CONTEXT_OBO_SYNONYMS_PATH.open("w") as file:
         json.dump(
             fp=file,
             indent=4,
@@ -47,7 +44,7 @@ def generate_context_json_ld():
         name = collection.context
         if name is None:
             continue
-        with contexts_directory.joinpath(name).with_suffix(".context.jsonld").open("w") as file:
+        with EXPORT_CONTEXTS.joinpath(name).with_suffix(".context.jsonld").open("w") as file:
             json.dump(fp=file, indent=4, sort_keys=True, obj=get_collection_jsonld(key))
 
 

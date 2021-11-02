@@ -10,6 +10,7 @@ from pydantic import BaseModel
 __all__ = [
     "EMAIL_RE_STR",
     "EMAIL_RE",
+    "sanitize_dict",
     "sanitize_model",
     "sanitize_mapping",
 ]
@@ -19,9 +20,14 @@ EMAIL_RE_STR = r"^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,5}$"
 EMAIL_RE = re.compile(EMAIL_RE_STR)
 
 
+def sanitize_dict(d):
+    """Remove all keys that have none values from a dict."""
+    return {key: value for key, value in d.items() if value}
+
+
 def sanitize_model(base_model: BaseModel) -> Mapping[str, Any]:
     """Sanitize a single Pydantic model."""
-    return {key: value for key, value in base_model.dict().items() if value is not None}
+    return sanitize_dict(base_model.dict())
 
 
 def sanitize_mapping(mapping: Mapping[str, BaseModel]) -> Mapping[str, Mapping[str, Any]]:
