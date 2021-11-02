@@ -7,28 +7,13 @@ import logging
 import pathlib
 import re
 from functools import lru_cache
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Callable,
-    ClassVar,
-    Dict,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
-    Set,
-)
+from typing import Any, Callable, ClassVar, Dict, List, Mapping, Optional, Sequence, Set
 
 import pydantic.schema
 from pydantic import BaseModel, Field
 
 from bioregistry.constants import LICENSES, URI_FORMAT_KEY
 from bioregistry.schema.utils import EMAIL_RE, EMAIL_RE_STR
-
-if TYPE_CHECKING:
-    import rdflib
-    import rdflib.term
 
 __all__ = [
     "Author",
@@ -67,10 +52,11 @@ class Author(BaseModel):
         regex=EMAIL_RE_STR,
     )
 
-    def add_triples(self, graph: "rdflib.Graph") -> "rdflib.term.Node":
+    def add_triples(self, graph):
         """Add triples to an RDF graph for this author.
 
-        :param graph: An RDF graph
+        :param rdflib.Graph graph: An RDF graph
+        :rtype: rdflib.term.Node
         :returns: The RDF node representing this author using an ORCiD URI.
         """
         from rdflib import Literal
@@ -1062,10 +1048,11 @@ class Registry(BaseModel):
             return None
         return self.resolver_uri_format.replace("$1", prefix).replace("$2", identifier)
 
-    def add_triples(self, graph: "rdflib.Graph") -> "rdflib.term.Node":
+    def add_triples(self, graph):
         """Add triples to an RDF graph for this registry.
 
-        :param graph: An RDF graph
+        :param rdflib.Graph graph: An RDF graph
+        :rtype: rdflib.term.Node
         :returns: The RDF node representing this registry using a Bioregistry IRI.
         """
         from rdflib import Literal
@@ -1122,10 +1109,11 @@ class Collection(BaseModel):
     #: JSON-LD context name
     context: Optional[str]
 
-    def add_triples(self, graph: "rdflib.Graph") -> "rdflib.term.Node":
+    def add_triples(self, graph):
         """Add triples to an RDF graph for this collection.
 
-        :param graph: An RDF graph
+        :param rdflib.Graph graph: An RDF graph
+        :rtype: rdflib.term.Node
         :returns: The RDF node representing this collection using a Bioregistry IRI.
         """
         from rdflib import Literal
