@@ -115,8 +115,6 @@ def metaresource(metaprefix: str):
         abort(404, f"Invalid metaprefix: {metaprefix}")
 
     example_identifier = bioregistry.get_example(entry.example)
-    if example_identifier is None:
-        abort(500, f"Missing example for {metaprefix}")
     return render_template(
         "metaresource.html",
         entry=entry,
@@ -128,7 +126,9 @@ def metaresource(metaprefix: str):
         example_prefix=entry.example,
         example_prefix_url=entry.get_provider_uri_format(entry.example),
         example_identifier=example_identifier,
-        example_curie=curie_to_str(entry.example, example_identifier),
+        example_curie=(
+            curie_to_str(entry.example, example_identifier) if example_identifier else None
+        ),
         example_curie_url=(
             bioregistry.get_registry_uri(metaprefix, entry.example, example_identifier)
             if example_identifier
