@@ -82,13 +82,13 @@ class Provider(BaseModel):
     name: str = Field(..., description="Name of the provider")
     description: str = Field(..., description="Description of the provider")
     homepage: str = Field(..., description="Homepage of the provider")
-    url: str = Field(
+    uri_format: str = Field(
         ..., description="The URI format string, which must have at least one ``$1`` in it"
     )
 
     def resolve(self, identifier: str) -> str:
         """Resolve the identifier into a URI."""
-        return self.url.replace("$1", identifier)
+        return self.uri_format.replace("$1", identifier)
 
 
 class Resource(BaseModel):
