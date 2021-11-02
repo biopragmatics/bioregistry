@@ -5,8 +5,8 @@
 from typing import Mapping, Sequence
 
 from bioregistry.align.utils import Aligner
-from bioregistry.external import get_cellosaurus
 from bioregistry.constants import URI_FORMAT_KEY
+from bioregistry.external import get_cellosaurus
 
 __all__ = [
     "CellosaurusAligner",

@@ -5,8 +5,8 @@
 from typing import Sequence
 
 from bioregistry.align.utils import Aligner
-from bioregistry.external import get_uniprot
 from bioregistry.constants import URI_FORMAT_KEY
+from bioregistry.external import get_uniprot
 
 __all__ = [
     "UniProtAligner",
