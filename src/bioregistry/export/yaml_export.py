@@ -3,6 +3,7 @@
 """Export components of the bioregistry to YAML."""
 
 import click
+import json
 import yaml
 
 from ..constants import DOCS_DATA
@@ -11,6 +12,7 @@ from ..schema import sanitize_mapping
 from ..utils import read_collections, read_metaregistry
 
 REGISTRY_YAML_PATH = DOCS_DATA / "registry.yml"
+REGISTRY_JSON_PATH = DOCS_DATA / "registry.json"
 METAREGISTRY_YAML_PATH = DOCS_DATA / "metaregistry.yml"
 COLLECTIONS_YAML_PATH = DOCS_DATA / "collections.yml"
 
@@ -24,6 +26,9 @@ def export_yaml():
 
     with REGISTRY_YAML_PATH.open("w") as file:
         yaml.safe_dump(stream=file, data=registry)
+    with REGISTRY_JSON_PATH.open("w") as file:
+        json.dump(registry, file, indent=2, sort_keys=True, ensure_ascii=False)
+
     with METAREGISTRY_YAML_PATH.open("w") as file:
         yaml.safe_dump(stream=file, data=metaregistry)
     with COLLECTIONS_YAML_PATH.open("w") as file:
