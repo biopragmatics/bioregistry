@@ -2,6 +2,14 @@
 
 This directory contains derived files from the registry.
 
+While the reference file can be accessed
+[here](https://github.com/biopragmatics/bioregistry/raw/update-exports/src/bioregistry/data/metaregistry.json),
+it does not constitute a consensus view. This is because the registry file is
+set up to contain only novel manual curation, imports from external registries,
+and manual overrides. The logic for accessing the data is inside the associated
+Python code. However, the logic is applied to create the following derived
+consensus files.
+
 ### [`registry.json`](registry.json)
 
 This is a consensus view over the registry in the JSON format. It combines all

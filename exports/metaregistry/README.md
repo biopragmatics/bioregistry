@@ -1,6 +1,8 @@
 # Metaregistry Exports
 
 This directory contains derived files from the metaregistry.
+The reference file can be accessed
+[here](https://github.com/biopragmatics/bioregistry/raw/update-exports/src/bioregistry/data/metaregistry.json).
 
 ### [`metaregistry.yml`](metaregistry.yml)
 

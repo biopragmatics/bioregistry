@@ -1,6 +1,8 @@
 # Collections Exports
 
 This directory contains derived files from the collections.
+The reference file can be accessed
+[here](https://github.com/biopragmatics/bioregistry/raw/update-exports/src/bioregistry/data/collections.json).
 
 ### [`collections.yml`](collections.yml)
 
