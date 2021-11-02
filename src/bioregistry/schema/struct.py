@@ -55,7 +55,8 @@ class Author(BaseModel):
     def add_triples(self, graph):
         """Add triples to an RDF graph for this author.
 
-        :param rdflib.Graph graph: An RDF graph
+        :param graph: An RDF graph
+        :type graph: rdflib.Graph
         :rtype: rdflib.term.Node
         :returns: The RDF node representing this author using an ORCiD URI.
         """
@@ -1051,7 +1052,8 @@ class Registry(BaseModel):
     def add_triples(self, graph):
         """Add triples to an RDF graph for this registry.
 
-        :param rdflib.Graph graph: An RDF graph
+        :param graph: An RDF graph
+        :type graph: rdflib.Graph
         :rtype: rdflib.term.Node
         :returns: The RDF node representing this registry using a Bioregistry IRI.
         """
@@ -1112,7 +1114,8 @@ class Collection(BaseModel):
     def add_triples(self, graph):
         """Add triples to an RDF graph for this collection.
 
-        :param rdflib.Graph graph: An RDF graph
+        :param graph: An RDF graph
+        :type graph: rdflib.Graph
         :rtype: rdflib.term.Node
         :returns: The RDF node representing this collection using a Bioregistry IRI.
         """

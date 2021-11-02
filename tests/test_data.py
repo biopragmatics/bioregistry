@@ -12,6 +12,7 @@ from typing import Mapping
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
+from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.utils import _norm, curie_to_str, is_mismatch
 
@@ -343,8 +344,6 @@ class TestRegistry(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        from bioregistry.export.rdf_export import resource_to_rdf_str
-
         s = resource_to_rdf_str("chebi")
         self.assertIsInstance(s, str)
 

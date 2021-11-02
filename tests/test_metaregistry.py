@@ -5,6 +5,7 @@
 import unittest
 
 import bioregistry
+from bioregistry.export.rdf_export import metaresource_to_rdf_str
 from bioregistry.schema import Registry
 
 
@@ -96,7 +97,5 @@ class TestMetaregistry(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        from bioregistry.export.rdf_export import metaresource_to_rdf_str
-
         s = metaresource_to_rdf_str("uniprot")
         self.assertIsInstance(s, str)
