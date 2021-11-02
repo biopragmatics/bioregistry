@@ -13,7 +13,7 @@ from pydantic import BaseModel
 HERE = pathlib.Path(__file__).parent.resolve()
 
 EXTERNAL = HERE / "external"
-OLS_PROCESSING = HERE / "ols_processing.json"
+OLS_PROCESSING = HERE / "processing_ols.json"
 
 
 class VersionType(str, enum.Enum):
