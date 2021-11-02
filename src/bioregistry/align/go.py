@@ -8,7 +8,7 @@ from typing import Any, Dict, Mapping
 
 from bioregistry.align.utils import Aligner
 from bioregistry.constants import DATA_DIRECTORY, URI_FORMAT_KEY
-from bioregistry.external import get_go
+from bioregistry.external.go import get_go
 
 __all__ = [
     "GoAligner",

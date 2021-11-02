@@ -5,7 +5,7 @@
 from typing import Mapping, Sequence
 
 from bioregistry.align.utils import Aligner
-from bioregistry.external import get_ols
+from bioregistry.external.ols import get_ols
 
 __all__ = [
     "OLSAligner",

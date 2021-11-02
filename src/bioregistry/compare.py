@@ -30,7 +30,6 @@ from bioregistry import (
     read_registry,
 )
 from bioregistry.constants import DOCS_IMG
-from bioregistry.external import GETTERS
 from bioregistry.resolve import get_external
 from bioregistry.schema import Resource
 from bioregistry.schema.struct import _remap_license
@@ -213,6 +212,16 @@ def compare(png: bool):  # noqa:C901
         click.secho(
             "Could not import matplotlib dependencies."
             " Install bioregistry again with `pip install bioregistry[charts]`.",
+            fg="red",
+        )
+        return sys.exit(1)
+
+    try:
+        from bioregistry.external.getters import GETTERS
+    except ImportError:
+        click.secho(
+            "Could not import alignment dependencies."
+            " Install bioregistry again with `pip install bioregistry[align]`.",
             fg="red",
         )
         return sys.exit(1)

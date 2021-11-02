@@ -5,7 +5,7 @@
 from typing import Mapping, Sequence
 
 from bioregistry.align.utils import Aligner
-from bioregistry.external import get_n2t
+from bioregistry.external.n2t import get_n2t
 
 
 class N2TAligner(Aligner):

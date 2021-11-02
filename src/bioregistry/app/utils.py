@@ -3,7 +3,6 @@
 """Utility functions for the Bioregistry :mod:`flask` app."""
 
 import json
-from io import StringIO
 from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
 
 import yaml
@@ -179,11 +178,8 @@ def yamlify(data):
     if isinstance(data, BaseModel):
         data = sanitize_model(data)
 
-    sio = StringIO()
-    yaml.safe_dump(data=data, stream=sio)
-    sio.seek(0)
     return current_app.response_class(
-        sio.getvalue(),
+        yaml.safe_dump(data=data),
         mimetype="text/plain",
     )
 
