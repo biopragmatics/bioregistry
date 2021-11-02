@@ -118,3 +118,5 @@ LICENSES = {
     "hpo": "Other",
     "Artistic License 2.0": "Other",
 }
+
+URI_FORMAT_KEY = "uri_format"

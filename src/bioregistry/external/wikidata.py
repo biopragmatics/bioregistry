@@ -7,6 +7,7 @@ import logging
 from collections import defaultdict
 from textwrap import dedent
 
+from bioregistry.constants import URI_FORMAT_KEY
 from bioregistry.data import EXTERNAL
 from bioregistry.utils import query_wikidata
 
@@ -30,7 +31,7 @@ HEADER = {
     "propLabel": "name",
     "propMiriam": "miriam",
     "propHomepage": "homepage",
-    "propFormat": "format",
+    "propFormat": URI_FORMAT_KEY,
     "propFormatRDF": "format.rdf",
     "propPattern": "pattern",
 }

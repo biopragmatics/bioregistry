@@ -16,7 +16,7 @@ from rdflib import Literal
 from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS
 from rdflib.term import Node
 
-from bioregistry.constants import LICENSES
+from bioregistry.constants import LICENSES, URI_FORMAT_KEY
 from bioregistry.schema.constants import (
     bioregistry_class_to_id,
     bioregistry_collection,
@@ -398,11 +398,13 @@ class Resource(BaseModel):
         if self.url is not None:
             return self.url
         for metaprefix, key in [
-            ("miriam", "provider_url"),
-            ("n2t", "provider_url"),
-            ("go", "formatter"),
-            ("prefixcommons", "formatter"),
-            ("wikidata", "format"),
+            ("miriam", URI_FORMAT_KEY),
+            ("n2t", URI_FORMAT_KEY),
+            # ("go", "formatter"), # FIXME
+            ("prefixcommons", URI_FORMAT_KEY),
+            ("wikidata", URI_FORMAT_KEY),
+            ("uniprot", URI_FORMAT_KEY),
+            ("cellosaurus", URI_FORMAT_KEY),
         ]:
             rv = self.get_external(metaprefix).get(key)
             if rv is not None and "identifiers.org" not in rv:
