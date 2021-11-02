@@ -198,7 +198,7 @@ affy.probeset:
     description: Bio2RDF
     homepage: http://cu.affymetrix.bio2rdf.org/fct/
     name: Bio2RDF
-    url: http://cu.affymetrix.bio2rdf.org/describe/?url=http://bio2rdf.org/affymetrix:$1
+    uri_format: http://cu.affymetrix.bio2rdf.org/describe/?url=http://bio2rdf.org/affymetrix:$1
   url: https://www.affymetrix.com/LinkServlet?probeset=$1
 afo:
   description: Allotrope Merged Ontology Suite
@@ -610,7 +610,7 @@ arrayexpress:
     description: ArrayExpress through OmicsDI
     homepage: https://www.omicsdi.org/
     name: ArrayExpress through OmicsDI
-    url: https://www.omicsdi.org/dataset/arrayexpress-repository/$1
+    uri_format: https://www.omicsdi.org/dataset/arrayexpress-repository/$1
   url: https://www.ebi.ac.uk/arrayexpress/experiments/$1
 arrayexpress.platform:
   description: ArrayExpress is a public repository for microarray data, which is aimed
@@ -1415,12 +1415,12 @@ biomodels.db:
     description: Caltech mirror
     homepage: http://biomodels.caltech.edu/
     name: Caltech mirror
-    url: http://biomodels.caltech.edu/$1
+    uri_format: http://biomodels.caltech.edu/$1
   - code: omicsdi
     description: BioModels through OmicsDI
     homepage: https://www.omicsdi.org/
     name: BioModels through OmicsDI
-    url: https://www.omicsdi.org/dataset/biomodels/$1
+    uri_format: https://www.omicsdi.org/dataset/biomodels/$1
   synonyms:
   - BIOMD
   url: https://www.ebi.ac.uk/biomodels/$1
@@ -1528,12 +1528,12 @@ bioproject:
     description: BioProject at NCBI
     homepage: https://www.ncbi.nlm.nih.gov/bioproject
     name: BioProject at NCBI
-    url: https://www.ncbi.nlm.nih.gov/bioproject?term=$1
+    uri_format: https://www.ncbi.nlm.nih.gov/bioproject?term=$1
   - code: ebi
     description: BioProject at European Nucleotide Archive (ENA)
     homepage: https://www.ebi.ac.uk/ena/
     name: BioProject at European Nucleotide Archive (ENA)
-    url: https://www.ebi.ac.uk/ena/browser/view/$1
+    uri_format: https://www.ebi.ac.uk/ena/browser/view/$1
   url: https://www.ncbi.nlm.nih.gov/bioproject/?term=$1
 bioregistry:
   contact: cthoyt@gmail.com
@@ -1606,12 +1606,12 @@ biosample:
     description: BioSample at NCBI
     homepage: http://www.ncbi.nlm.nih.gov/biosample
     name: BioSample at NCBI
-    url: http://www.ncbi.nlm.nih.gov/biosample?term=$1
+    uri_format: http://www.ncbi.nlm.nih.gov/biosample?term=$1
   - code: CURATOR_REVIEW
     description: BioSample at DNA Data Bank of Japan
     homepage: http://trace.ddbj.nig.ac.jp/biosample/
     name: BioSample at DNA Data Bank of Japan
-    url: http://trace.ddbj.nig.ac.jp/BSSearch/biosample?acc=$1
+    uri_format: http://trace.ddbj.nig.ac.jp/BSSearch/biosample?acc=$1
   url: https://www.ebi.ac.uk/biosamples/sample/$1
 biosimulations:
   description: BioSimulations is an open repository of simulation projects, including
@@ -1978,7 +1978,7 @@ cabri:
     description: CABRI Cell Lines catalogue in Brussels (SRS)
     homepage: http://www.be.cabri.org/
     name: CABRI Cell Lines catalogue in Brussels (SRS)
-    url: http://www.be.cabri.org/CABRI/srs-bin/wgetz?-e+-page+EntryPage+[$1]
+    uri_format: http://www.be.cabri.org/CABRI/srs-bin/wgetz?-e+-page+EntryPage+[$1]
   url: http://www.cabri.org/CABRI/srs-bin/wgetz?-e+-page+EntryPage+[$1]
 cadsr:
   description: The US National Cancer Institute (NCI) maintains and administers data
@@ -2085,7 +2085,7 @@ cas:
       information in Wikidata.
     homepage: https://scholia.toolforge.org/
     name: Scholia
-    url: https://scholia.toolforge.org/cas/$1
+    uri_format: https://scholia.toolforge.org/cas/$1
   synonyms:
   - CASID
   - CAS_RN
@@ -2512,7 +2512,7 @@ chebi:
     description: Image server from chebi
     homepage: https://www.ebi.ac.uk/chebi/
     name: ChEBI
-    url: https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=$1
+    uri_format: https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=$1
   synonyms:
   - CHEBI
   - CHEBIID
@@ -2555,12 +2555,12 @@ chembl.compound:
     description: ChEMBL compound RDF
     homepage: https://github.com/egonw/chembl.rdf
     name: ChEMBL compound RDF
-    url: http://linkedchemistry.info/chembl/chemblid/$1
+    uri_format: http://linkedchemistry.info/chembl/chemblid/$1
   - code: CURATOR_REVIEW
     description: ChEMBL compound RDF through EBI RDF Platform
     homepage: https://www.ebi.ac.uk/rdf/services/chembl/
     name: ChEMBL compound RDF through EBI RDF Platform
-    url: https://rdf.ebi.ac.uk/resource/chembl/molecule/$1
+    uri_format: https://rdf.ebi.ac.uk/resource/chembl/molecule/$1
   url: https://www.ebi.ac.uk/chembl/compound/inspect/$1
 chembl.target:
   description: ChEMBL is a database of bioactive compounds, their quantitative properties
@@ -2581,12 +2581,12 @@ chembl.target:
     description: ChEMBL target RDF
     homepage: https://github.com/egonw/chembl.rdf
     name: ChEMBL target RDF
-    url: http://linkedchemistry.info/chembl/chemblid/$1
+    uri_format: http://linkedchemistry.info/chembl/chemblid/$1
   - code: CURATOR_REVIEW
     description: ChEMBL target RDF through EBI RDF Platform
     homepage: https://rdf.ebi.ac.uk/resource/chembl/
     name: ChEMBL target RDF through EBI RDF Platform
-    url: https://rdf.ebi.ac.uk/resource/chembl/target/$1
+    uri_format: https://rdf.ebi.ac.uk/resource/chembl/target/$1
   url: https://www.ebi.ac.uk/chembl/target/inspect/$1
 chemdb:
   description: ChemDB is a chemical database containing commercially available small
@@ -4273,12 +4273,12 @@ dbest:
     description: dbEST through European Nucleotide Archive (ENA)
     homepage: https://www.ebi.ac.uk/ena
     name: dbEST through European Nucleotide Archive (ENA)
-    url: https://www.ebi.ac.uk/ena/data/view/$1
+    uri_format: https://www.ebi.ac.uk/ena/data/view/$1
   - code: CURATOR_REVIEW
     description: dbEST through DNA Data Bank of Japan (DDBJ)
     homepage: http://www.ddbj.nig.ac.jp/
     name: dbEST through DNA Data Bank of Japan (DDBJ)
-    url: http://getentry.ddbj.nig.ac.jp/getentry/na/$1
+    uri_format: http://getentry.ddbj.nig.ac.jp/getentry/na/$1
   url: https://www.ncbi.nlm.nih.gov/nucest/$1
 dbg2introns:
   description: The Database for Bacterial Group II Introns  provides a catalogue of
@@ -4353,7 +4353,7 @@ dbsnp:
     description: SNP2TFBS
     homepage: https://ccg.epfl.ch/snp2tfbs/
     name: SNP2TFBS
-    url: https://ccg.epfl.ch/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=$1
+    uri_format: https://ccg.epfl.ch/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=$1
   url: https://www.ncbi.nlm.nih.gov/snp/$1
 dc:
   deprecated: true
@@ -4796,7 +4796,7 @@ doi:
       information in Wikidata.
     homepage: https://scholia.toolforge.org/
     name: Scholia
-    url: https://scholia.toolforge.org/doi/$1
+    uri_format: https://scholia.toolforge.org/doi/$1
   url: https://doi.org/$1
 doid:
   banana: DOID
@@ -4826,7 +4826,7 @@ doid:
     description: Human Disease Ontology at Northwestern University
     homepage: http://disease-ontology.org/
     name: Human Disease Ontology at Northwestern University
-    url: http://disease-ontology.org/term/DOID:$1
+    uri_format: http://disease-ontology.org/term/DOID:$1
   synonyms:
   - do
   url: https://www.ebi.ac.uk/ols/ontologies/doid/terms?obo_id=DOID:$1
@@ -5192,22 +5192,22 @@ eccode:
     description: KEGG Ligand Database for Enzyme Nomenclature
     homepage: https://www.genome.jp/dbget-bin/www_bfind?enzyme
     name: KEGG Ligand Database for Enzyme Nomenclature
-    url: https://www.genome.jp/dbget-bin/www_bget?ec:$1
+    uri_format: https://www.genome.jp/dbget-bin/www_bget?ec:$1
   - code: expenz
     description: ExploreEnz at Trinity College
     homepage: http://www.enzyme-database.org/
     name: ExploreEnz at Trinity College
-    url: http://www.enzyme-database.org/query.php?ec=$1
+    uri_format: http://www.enzyme-database.org/query.php?ec=$1
   - code: enzymeportal
     description: Enzyme Portal through EMBL-EBI
     homepage: https://www.ebi.ac.uk/enzymeportal
     name: Enzyme Portal through EMBL-EBI
-    url: https://www.ebi.ac.uk/enzymeportal/ec/$1
+    uri_format: https://www.ebi.ac.uk/enzymeportal/ec/$1
   - code: expasy
     description: Enzyme nomenclature database, ExPASy (Expert Protein Analysis System)
     homepage: https://enzyme.expasy.org/
     name: Enzyme nomenclature database, ExPASy (Expert Protein Analysis System)
-    url: https://enzyme.expasy.org/EC/$1
+    uri_format: https://enzyme.expasy.org/EC/$1
   synonyms:
   - EC
   - EC-CODE
@@ -5502,7 +5502,7 @@ efo:
     description: EFO through Functional Genomics Group (EBI)
     homepage: https://www.ebi.ac.uk/efo/
     name: EFO through Functional Genomics Group (EBI)
-    url: https://www.ebi.ac.uk/efo/EFO_$1
+    uri_format: https://www.ebi.ac.uk/efo/EFO_$1
   url: http://www.ebi.ac.uk/efo/EFO_$1
   version: 3.35.0
 ega.dataset:
@@ -5527,7 +5527,7 @@ ega.dataset:
     description: EGA Dataset through OmicsDI
     homepage: https://www.omicsdi.org/
     name: EGA Dataset through OmicsDI
-    url: https://www.omicsdi.org/dataset/ega/$1
+    uri_format: https://www.omicsdi.org/dataset/ega/$1
   url: https://www.ebi.ac.uk/ega/datasets/$1
 ega.study:
   description: The EGA is a service for permanent archiving and sharing of all types
@@ -5552,7 +5552,7 @@ ega.study:
     description: EGA Study through OmicsDI
     homepage: https://www.omicsdi.org/
     name: EGA Study through OmicsDI
-    url: https://www.omicsdi.org/dataset/ega/$1
+    uri_format: https://www.omicsdi.org/dataset/ega/$1
   url: https://www.ebi.ac.uk/ega/studies/$1
 eggnog:
   description: 'eggNOG (evolutionary genealogy of genes: Non-supervised Orthologous
@@ -5730,7 +5730,7 @@ ena.embl:
     description: ENA through GenBank
     homepage: https://www.ncbi.nlm.nih.gov/Genbank/
     name: ENA through GenBank
-    url: https://www.ncbi.nlm.nih.gov/nuccore/$1
+    uri_format: https://www.ncbi.nlm.nih.gov/nuccore/$1
   synonyms:
   - ena
   url: https://www.ebi.ac.uk/ena/browser/view/$1
@@ -5787,7 +5787,7 @@ ensembl:
     description: Gene expression in various tissues
     homepage: https://bgee.org
     name: Bgee
-    url: https://bgee.org/?page=gene&gene_id=$1
+    uri_format: https://bgee.org/?page=gene&gene_id=$1
   - code: gnomad
     description: The Genome Aggregation Database (gnomAD) is a resource developed
       by an international coalition of investigators, with the goal of aggregating
@@ -5796,22 +5796,22 @@ ensembl:
       scientific community.
     homepage: https://gnomad.broadinstitute.org
     name: Genome Aggregation database
-    url: https://gnomad.broadinstitute.org/gene/$1
+    uri_format: https://gnomad.broadinstitute.org/gene/$1
   - code: CURATOR_REVIEW
     description: Ensembl US West mirror
     homepage: http://uswest.ensembl.org/
     name: Ensembl US West mirror
-    url: http://uswest.ensembl.org/id/$1
+    uri_format: http://uswest.ensembl.org/id/$1
   - code: CURATOR_REVIEW
     description: Ensembl US East mirror
     homepage: http://useast.ensembl.org/
     name: Ensembl US East mirror
-    url: http://useast.ensembl.org/id/$1
+    uri_format: http://useast.ensembl.org/id/$1
   - code: CURATOR_REVIEW
     description: Ensembl Asia mirror
     homepage: http://asia.ensembl.org/
     name: Ensembl Asia mirror
-    url: http://asia.ensembl.org/id/$1
+    uri_format: http://asia.ensembl.org/id/$1
   synonyms:
   - Ensembl
   url: https://www.ensembl.org/id/$1
@@ -6556,12 +6556,12 @@ flybase:
     description: FlyBase through BioEntity Link
     homepage: https://bioentity.link/
     name: FlyBase through BioEntity Link
-    url: https://bioentity.link/#/lexicon/public/$1
+    uri_format: https://bioentity.link/#/lexicon/public/$1
   - code: agr
     description: FlyBase through the Alliance of Genome Resources
     homepage: https://www.alliancegenome.org
     name: FlyBase through the Alliance of Genome Resources
-    url: https://www.alliancegenome.org/gene/FB:$1
+    uri_format: https://www.alliancegenome.org/gene/FB:$1
   synonyms:
   - FB
   - FlyBase
@@ -7570,17 +7570,17 @@ go:
     description: QuickGO (Gene Ontology browser)
     homepage: https://www.ebi.ac.uk/QuickGO/
     name: QuickGO (Gene Ontology browser)
-    url: https://www.ebi.ac.uk/QuickGO/GTerm?id=GO:$1
+    uri_format: https://www.ebi.ac.uk/QuickGO/GTerm?id=GO:$1
   - code: CURATOR_REVIEW
     description: GO Browser
     homepage: http://www.informatics.jax.org/searches/GO_form.shtml
     name: GO Browser
-    url: http://www.informatics.jax.org/searches/GO.cgi?id=GO:$1
+    uri_format: http://www.informatics.jax.org/searches/GO.cgi?id=GO:$1
   - code: CURATOR_REVIEW
     description: GO through PANTHER
     homepage: http://www.pantherdb.org/
     name: GO through PANTHER
-    url: http://www.pantherdb.org/panther/category.do?categoryAcc=GO:$1
+    uri_format: http://www.pantherdb.org/panther/category.do?categoryAcc=GO:$1
   synonyms:
   - gobp
   - gobpid
@@ -7777,7 +7777,7 @@ gpmdb:
     description: GPMDB through OmicsDI
     homepage: https://www.omicsdi.org/
     name: GPMDB through OmicsDI
-    url: https://www.omicsdi.org/dataset/gpmdb/$1
+    uri_format: https://www.omicsdi.org/dataset/gpmdb/$1
   url: http://gpmdb.thegpm.org/~/dblist_gpmnum/gpmnum=$1
 gramene.gene:
   description: Gramene is a comparative genome mapping database for grasses and crop
@@ -7878,7 +7878,7 @@ grassbase:
   contributor:
     email: null
     name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4379
+    orcid: 0000-0003-4423-4370
   description: GrassBase provides an interactive guide to nomenclature for the whole
     grass family. It provides lists of over 60,000 names for any given genus, geographical
     region or genus within a geographical region, helps find the accepted name, synonyms
@@ -8120,7 +8120,7 @@ gxa.expt:
     description: GXA Expt through OmicsDI
     homepage: https://www.omicsdi.org/
     name: GXA Expt through OmicsDI
-    url: https://www.omicsdi.org/dataset/atlas-experiments/$1
+    uri_format: https://www.omicsdi.org/dataset/atlas-experiments/$1
   url: https://www.ebi.ac.uk/gxa/experiments/$1
 gxa.gene:
   description: The Gene Expression Atlas (GXA) is a semantically enriched database
@@ -8350,17 +8350,17 @@ hgnc.symbol:
     description: DepMap summary of the given gene
     homepage: https://depmap.org
     name: DepMap Gene Summary
-    url: https://depmap.org/portal/gene/$1
+    uri_format: https://depmap.org/portal/gene/$1
   - code: pathwaycommons
     description: Interactions between a given gene and other molecular entities
     homepage: https://www.pathwaycommons.org/
     name: Pathway Commons Gene Interations
-    url: https://apps.pathwaycommons.org/interactions?source=$1
+    uri_format: https://apps.pathwaycommons.org/interactions?source=$1
   - code: oncomx
     description: Mutation profiles for a gene
     homepage: https://oncomx.org
     name: OncoMX
-    url: https://oncomx.org/searchview/?gene=$1
+    uri_format: https://oncomx.org/searchview/?gene=$1
   url: https://www.genenames.org/cgi-bin/gene_symbol_report?match=$1
 hinv.locus:
   description: H-Invitational Database (H-InvDB) is an integrated database of human
@@ -8547,7 +8547,7 @@ homologene:
     description: Bio2RDF
     homepage: http://homologene.bio2rdf.org/fct
     name: Bio2RDF
-    url: http://homologene.bio2rdf.org/describe/?url=http://bio2rdf.org/homologene:$1
+    uri_format: http://homologene.bio2rdf.org/describe/?url=http://bio2rdf.org/homologene:$1
   url: https://www.ncbi.nlm.nih.gov/homologene/$1
 hovergen:
   description: HOVERGEN is a database of homologous vertebrate genes that allows one
@@ -8756,7 +8756,7 @@ hssp:
     description: HSSP at CMBI
     homepage: ftp://ftp.cmbi.ru.nl/pub/molbio/data/hssp/
     name: HSSP at CMBI
-    url: ftp://ftp.cmbi.ru.nl/pub/molbio/data/hssp/$1.hssp.bz2
+    uri_format: ftp://ftp.cmbi.ru.nl/pub/molbio/data/hssp/$1.hssp.bz2
   url: ftp://ftp.embl-heidelberg.de/pub/databases/protein_extras/hssp/$1.hssp.bz2
 htn:
   banana: HTN
@@ -9186,7 +9186,7 @@ imex:
     description: IMEx Consortium though Intact
     homepage: https://www.ebi.ac.uk/intact/
     name: IMEx Consortium though Intact
-    url: https://imexcentral.org/icentral/imex/rec/$1
+    uri_format: https://imexcentral.org/icentral/imex/rec/$1
   url: https://www.ebi.ac.uk/intact/imex/main.xhtml?query=$1
 img.gene:
   description: The integrated microbial genomes (IMG) system is a data management,
@@ -9264,7 +9264,7 @@ imgt.ligm:
     description: IMGT LIGM through DKFZ (SRS)
     homepage: http://genius.embnet.dkfz-heidelberg.de/
     name: IMGT LIGM through DKFZ (SRS)
-    url: http://genius.embnet.dkfz-heidelberg.de/menu/cgi-bin/srs7.1.3.1/wgetz?-id+4ktAl1fNMTA+-e+[IMGT:'$1']
+    uri_format: http://genius.embnet.dkfz-heidelberg.de/menu/cgi-bin/srs7.1.3.1/wgetz?-id+4ktAl1fNMTA+-e+[IMGT:'$1']
   url: http://www.imgt.org/ligmdb/view?id=$1
 imr:
   banana: IMR
@@ -9297,17 +9297,17 @@ inchi:
     description: InChI through NIST
     homepage: http://webbook.nist.gov/chemistry
     name: InChI through NIST
-    url: http://webbook.nist.gov/cgi/cbook.cgi?$1
+    uri_format: http://webbook.nist.gov/cgi/cbook.cgi?$1
   - code: ebi
     description: InChI through ChEBI
     homepage: https://www.ebi.ac.uk/chebi/
     name: InChI through ChEBI
-    url: https://www.ebi.ac.uk/chebi/advancedSearchFT.do?searchString=$1
+    uri_format: https://www.ebi.ac.uk/chebi/advancedSearchFT.do?searchString=$1
   - code: um
     description: InChI through RDF Open Molecules
     homepage: http://rdf.openmolecules.net/
     name: InChI through RDF Open Molecules
-    url: http://rdf.openmolecules.net/?$1
+    uri_format: http://rdf.openmolecules.net/?$1
   url: http://www.chemspider.com/$1
 inchikey:
   description: The IUPAC International Chemical Identifier (InChI, see MIR:00000383)
@@ -9334,7 +9334,7 @@ inchikey:
       information in Wikidata.
     homepage: https://scholia.toolforge.org/
     name: Scholia
-    url: https://scholia.toolforge.org/inchikey/$1
+    uri_format: https://scholia.toolforge.org/inchikey/$1
   url: http://www.chemspider.com/inchikey=$1
 inn:
   comment: can not find a place to resolve to
@@ -9388,17 +9388,17 @@ insdc:
     description: INSDC through DDBJ
     homepage: http://www.ddbj.nig.ac.jp/
     name: INSDC through DDBJ
-    url: http://getentry.ddbj.nig.ac.jp/getentry?database=ddbj&accession_number=$1
+    uri_format: http://getentry.ddbj.nig.ac.jp/getentry?database=ddbj&accession_number=$1
   - code: ebi
     description: INSDC through European Nucleotide Archive (ENA)
     homepage: https://www.ebi.ac.uk/ena/
     name: INSDC through European Nucleotide Archive (ENA)
-    url: https://www.ebi.ac.uk/ena/data/view/$1
+    uri_format: https://www.ebi.ac.uk/ena/data/view/$1
   - code: ncbi
     description: INSDC through Nucleotide database at NCBI
     homepage: https://www.ncbi.nlm.nih.gov/nuccore/
     name: INSDC through Nucleotide database at NCBI
-    url: https://www.ncbi.nlm.nih.gov/nuccore/$1
+    uri_format: https://www.ncbi.nlm.nih.gov/nuccore/$1
   url: https://www.ncbi.nlm.nih.gov/nuccore/$1
 insdc.cds:
   description: The coding sequence or protein identifiers as maintained in INSDC.
@@ -9417,12 +9417,12 @@ insdc.cds:
     description: INSDC CDS through ENA
     homepage: https://www.ebi.ac.uk/ena
     name: INSDC CDS through ENA
-    url: https://www.ebi.ac.uk/ena/data/view/$1
+    uri_format: https://www.ebi.ac.uk/ena/data/view/$1
   - code: CURATOR_REVIEW
     description: INSDC CDS through NCBI
     homepage: https://www.ncbi.nlm.nih.gov/protein/
     name: INSDC CDS through NCBI
-    url: https://www.ncbi.nlm.nih.gov/protein/$1
+    uri_format: https://www.ncbi.nlm.nih.gov/protein/$1
   url: http://getentry.ddbj.nig.ac.jp/getentry/dad/$1
 insdc.gca:
   description: The genome assembly database contains detailed information about genome
@@ -9442,7 +9442,7 @@ insdc.gca:
     description: Genome assembly database NCBI
     homepage: https://www.ncbi.nlm.nih.gov/assembly/
     name: Genome assembly database NCBI
-    url: https://www.ncbi.nlm.nih.gov/assembly/$1
+    uri_format: https://www.ncbi.nlm.nih.gov/assembly/$1
   url: https://www.ebi.ac.uk/ena/data/view/$1
 insdc.run:
   comment: 'https://www.insdc.org/ is the authoritative source for INSDC. However,
@@ -9487,12 +9487,12 @@ insdc.sra:
     description: European Nucleotide Archive (ENA)
     homepage: https://www.ebi.ac.uk/ena
     name: European Nucleotide Archive (ENA)
-    url: https://www.ebi.ac.uk/ena/data/view/$1
+    uri_format: https://www.ebi.ac.uk/ena/data/view/$1
   - code: ddbj
     description: DDBJ Sequence Read Archive (DRA)
     homepage: http://trace.ddbj.nig.ac.jp/dra/
     name: DDBJ Sequence Read Archive (DRA)
-    url: http://trace.ddbj.nig.ac.jp/DRASearch/experiment?acc=$1
+    uri_format: http://trace.ddbj.nig.ac.jp/DRASearch/experiment?acc=$1
   url: https://www.ncbi.nlm.nih.gov/sra/$1
 intact:
   description: IntAct provides a freely available, open source database system and
@@ -9571,7 +9571,7 @@ interpro:
     description: Bio2RDF
     homepage: http://interpro.bio2rdf.org/fct/
     name: Bio2RDF
-    url: http://interpro.bio2rdf.org/describe/?url=http://bio2rdf.org/interpro:$1
+    uri_format: http://interpro.bio2rdf.org/describe/?url=http://bio2rdf.org/interpro:$1
   synonyms:
   - IP
   - IPR
@@ -9638,7 +9638,7 @@ isbn:
     description: ISBN database at WorldCat
     homepage: http://www.worldcat.org/
     name: ISBN database at WorldCat
-    url: http://www.worldcat.org/isbn/$1
+    uri_format: http://www.worldcat.org/isbn/$1
   synonyms:
   - ISBN-10
   - ISBN-13
@@ -9703,7 +9703,7 @@ issn:
     description: ISSN at Library of Congress
     homepage: http://catalog.loc.gov/webvoy.htm
     name: ISSN at Library of Congress
-    url: https://catalog.loc.gov/vwebv/search?searchCode=STNO&searchArg=$1&searchType=1&recCount=25
+    uri_format: https://catalog.loc.gov/vwebv/search?searchCode=STNO&searchArg=$1&searchType=1&recCount=25
   url: https://portal.issn.org/resource/ISSN/$1
 itis:
   description: Information system with taxonomic data on plants, animals, fungi, and
@@ -9893,12 +9893,12 @@ jws:
     description: JWS Online Model Repository at Manchester
     homepage: http://jjj.mib.ac.uk/index.html
     name: JWS Online Model Repository at Manchester
-    url: http://jjj.mib.ac.uk/models/$1
+    uri_format: http://jjj.mib.ac.uk/models/$1
   - code: CURATOR_REVIEW
     description: JWS Online Model Repository at Amsterdam
     homepage: http://jjj.bio.vu.nl/models/
     name: JWS Online Model Repository at Amsterdam
-    url: http://jjj.bio.vu.nl/models/$1/
+    uri_format: http://jjj.bio.vu.nl/models/$1/
   url: https://jjj.bio.vu.nl/models/$1
 kaggle:
   description: Kaggle is a platform for sharing data, performing reproducible analyses,
@@ -10337,7 +10337,7 @@ ligandexpo:
     description: Ligand Expo at Rutgers
     homepage: http://ligand-expo.rcsb.org/
     name: Ligand Expo at Rutgers
-    url: http://ligand-expo.rcsb.org/pyapps/ldHandler.py?formid=cc-index-search&target=$1&operation=ccid
+    uri_format: http://ligand-expo.rcsb.org/pyapps/ldHandler.py?formid=cc-index-search&target=$1&operation=ccid
   url: http://ligand-depot.rutgers.edu/pyapps/ldHandler.py?formid=cc-index-search&target=$1&operation=ccid
 lincs.cell:
   description: 'The Library of Network-Based Cellular Signatures (LINCS) Program aims
@@ -10381,7 +10381,7 @@ lincs.data:
     description: Lincs through OmicsDI
     homepage: https://www.omicsdi.org/
     name: Lincs through OmicsDI
-    url: https://www.omicsdi.org/dataset/lincs/$1
+    uri_format: https://www.omicsdi.org/dataset/lincs/$1
   url: http://lincsportal.ccs.miami.edu/datasets/#/view/$1
 lincs.protein:
   description: The HMS LINCS Database currently contains information on experimental
@@ -10466,7 +10466,7 @@ lipidmaps:
       information in Wikidata.
     homepage: https://scholia.toolforge.org/
     name: Scholia
-    url: https://scholia.toolforge.org/lipidmaps/$1
+    uri_format: https://scholia.toolforge.org/lipidmaps/$1
   synonyms:
   - LIPID MAPS
   - LIPID_MAPS_class
@@ -10557,22 +10557,22 @@ lrg:
     description: Locus Reference Genomic through Ensembl
     homepage: http://www.ensembl.org/
     name: Locus Reference Genomic through Ensembl
-    url: http://www.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1
+    uri_format: http://www.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1
   - code: CURATOR_REVIEW
     description: Locus Reference Genomic through Ensembl mirror (asia)
     homepage: http://asia.ensembl.org/
     name: Locus Reference Genomic through Ensembl mirror (asia)
-    url: http://asia.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1
+    uri_format: http://asia.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1
   - code: CURATOR_REVIEW
     description: Locus Reference Genomic through Ensembl mirror (US west)
     homepage: http://uswest.ensembl.org/
     name: Locus Reference Genomic through Ensembl mirror (US west)
-    url: http://uswest.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1
+    uri_format: http://uswest.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1
   - code: CURATOR_REVIEW
     description: Locus Reference Genomic through Ensembl mirror (US east)
     homepage: http://useast.ensembl.org/
     name: Locus Reference Genomic through Ensembl mirror (US east)
-    url: http://useast.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1
+    uri_format: http://useast.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1
   url: ftp://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml
 lspci:
   contributor:
@@ -10692,7 +10692,7 @@ massbank:
     description: MassBank in Europe
     homepage: https://massbank.eu/
     name: MassBank in Europe
-    url: https://massbank.eu/MassBank/RecordDisplay?id=$1
+    uri_format: https://massbank.eu/MassBank/RecordDisplay?id=$1
   url: http://www.massbank.jp/RecordDisplay?id=$1
 massive:
   description: MassIVE is a community resource developed by the NIH-funded Center
@@ -10714,7 +10714,7 @@ massive:
     description: MassIVE through OmicsDI
     homepage: https://www.omicsdi.org/
     name: MassIVE through OmicsDI
-    url: https://www.omicsdi.org/dataset/massive/$1
+    uri_format: https://www.omicsdi.org/dataset/massive/$1
   url: https://massive.ucsd.edu/ProteoSAFe/QueryMSV?id=$1
 mat:
   banana: MAT
@@ -11012,7 +11012,7 @@ metabolights:
     description: MataboLights through OmicsDI
     homepage: https://www.omicsdi.org/
     name: MataboLights through OmicsDI
-    url: https://www.omicsdi.org/dataset/metabolights_dataset/$1
+    uri_format: https://www.omicsdi.org/dataset/metabolights_dataset/$1
   url: https://www.ebi.ac.uk/metabolights/$1
 metacyc.compound:
   description: MetaCyc is a curated database of experimentally elucidated metabolic
@@ -11134,7 +11134,7 @@ mex:
     description: Metabolome Express through OmicsDI
     homepage: https://www.omicsdi.org/
     name: Metabolome Express through OmicsDI
-    url: https://www.omicsdi.org/dataset/metabolome_express/MEX$1
+    uri_format: https://www.omicsdi.org/dataset/metabolome_express/MEX$1
   url: https://www.metabolome-express.org/datasetview.php?datasetid=$1
 mf:
   banana: MF
@@ -11263,12 +11263,12 @@ mgi:
     description: MGD through BioEntity Link
     homepage: https://bioentity.link/
     name: MGD through BioEntity Link
-    url: https://bioentity.link/#/lexicon/public/MGI:$1
+    uri_format: https://bioentity.link/#/lexicon/public/MGI:$1
   - code: agr
     description: MGI through the Alliance of Genome Resources
     homepage: https://www.alliancegenome.org
     name: MGI through the Alliance of Genome Resources
-    url: https://www.alliancegenome.org/gene/MGI:$1
+    uri_format: https://www.alliancegenome.org/gene/MGI:$1
   synonyms:
   - MGD
   - MGI
@@ -11455,7 +11455,7 @@ mim:
     description: OMIM mirror at John Hopkins
     homepage: http://mirror.omim.org/
     name: OMIM mirror at John Hopkins
-    url: http://mirror.omim.org/entry/$1
+    uri_format: http://mirror.omim.org/entry/$1
   synonyms:
   - OMIM
   url: https://omim.org/entry/$1
@@ -11534,7 +11534,7 @@ mint:
     description: MINT subset through IntAct
     homepage: https://www.ebi.ac.uk/intact/
     name: MINT subset through IntAct
-    url: https://www.ebi.ac.uk/intact/query/interaction_id:$1
+    uri_format: https://www.ebi.ac.uk/intact/query/interaction_id:$1
   url: http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=$1
 mipmod:
   description: MIPModDb is a database of comparative protein structure models of MIP
@@ -11930,7 +11930,7 @@ mo:
     description: MGED Ontology at SourceForge
     homepage: https://mged.sourceforge.net/ontologies/MGEDontology.php
     name: MGED Ontology at SourceForge
-    url: https://mged.sourceforge.net/ontologies/MGEDontology.php#$1
+    uri_format: https://mged.sourceforge.net/ontologies/MGEDontology.php#$1
   url: http://purl.bioontology.org/ontology/MO/$1
 mobidb:
   description: MobiDB is a database of protein disorder and mobility annotations.
@@ -12146,7 +12146,7 @@ mpid:
     description: Microbial Protein Interaction Database subset through IntAct
     homepage: https://www.ebi.ac.uk/intact/
     name: Microbial Protein Interaction Database subset through IntAct
-    url: https://www.ebi.ac.uk/intact/query/interaction_id:MPIDB-INT-$1
+    uri_format: https://www.ebi.ac.uk/intact/query/interaction_id:MPIDB-INT-$1
   url: http://www.jcvi.org/mpidb/experiment.php?interaction_id=$1
 mpio:
   banana: MPIO
@@ -12331,7 +12331,7 @@ mw.study:
     description: Metabolomics Workbench Study through OmicsDI
     homepage: https://www.omicsdi.org/
     name: Metabolomics Workbench Study through OmicsDI
-    url: https://www.omicsdi.org/dataset/metabolomics_workbench/$1
+    uri_format: https://www.omicsdi.org/dataset/metabolomics_workbench/$1
   url: http://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Study&StudyID=$1
 myco.lepra:
   description: Mycobrowser is a resource that provides both in silico generated and
@@ -12428,7 +12428,7 @@ mzspec:
     description: Universal Spectrum Identifier through Peptide Atlas
     homepage: https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/ShowObservedSpectrum
     name: Universal Spectrum Identifier through Peptide Atlas
-    url: https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/ShowObservedSpectrum?usi=mzspec:$1
+    uri_format: https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/ShowObservedSpectrum?usi=mzspec:$1
   url: http://proteomecentral.proteomexchange.org/usi/?usi=mzspec:$1
 namerxn:
   contributor:
@@ -12595,12 +12595,12 @@ ncbigene:
     description: Helps browse potential orthologs in model organisms for a given gene
     homepage: http://marrvel.org
     name: Model organism Aggregated Resources for Rare Variant ExpLoration
-    url: http://marrvel.org/model/gene/$1
+    uri_format: http://marrvel.org/model/gene/$1
   - code: CURATOR_REVIEW
     description: Bio2RDF
     homepage: http://ncbigene.bio2rdf.org/fct
     name: Bio2RDF
-    url: http://ncbigene.bio2rdf.org/describe/?url=http://bio2rdf.org/ncbigene:$1
+    uri_format: http://ncbigene.bio2rdf.org/describe/?url=http://bio2rdf.org/ncbigene:$1
   synonyms:
   - EGID
   - NCBIGene
@@ -12650,17 +12650,17 @@ ncbitaxon:
     description: Taxonomy through UniProt PURL
     homepage: https://www.uniprot.org/taxonomy/
     name: Taxonomy through UniProt PURL
-    url: https://purl.uniprot.org/taxonomy/$1
+    uri_format: https://purl.uniprot.org/taxonomy/$1
   - code: ebi
     description: European Nucleotide Archive (ENA)
     homepage: https://www.ebi.ac.uk/ena/
     name: European Nucleotide Archive (ENA)
-    url: https://www.ebi.ac.uk/ena/data/view/Taxon:$1
+    uri_format: https://www.ebi.ac.uk/ena/data/view/Taxon:$1
   - code: CURATOR_REVIEW
     description: Bio2RDF
     homepage: https://bio2rdf.org/
     name: Bio2RDF
-    url: https://bio2rdf.org/taxonomy:$1
+    uri_format: https://bio2rdf.org/taxonomy:$1
   synonyms:
   - NCBITaxon
   - NCBI_Taxon_ID
@@ -12757,7 +12757,7 @@ ndc:
     description: Bio2RDF
     homepage: http://ndc.bio2rdf.org/fct
     name: Bio2RDF
-    url: http://ndc.bio2rdf.org/describe/?url=http://bio2rdf.org/ndc:$1
+    uri_format: http://ndc.bio2rdf.org/describe/?url=http://bio2rdf.org/ndc:$1
   url: http://www.hipaaspace.com/Medical_Billing/Coding/National.Drug.Codes/$1
 nddf:
   description: FDB MedKnowledge encompasses medications approved by the U.S. Food
@@ -14200,7 +14200,7 @@ orphanet:
     description: Bio2RDF
     homepage: http://orphanet.bio2rdf.org/fct
     name: Bio2RDF
-    url: http://orphanet.bio2rdf.org/describe/?url=http://bio2rdf.org/orphanet:$1
+    uri_format: http://orphanet.bio2rdf.org/describe/?url=http://bio2rdf.org/orphanet:$1
   url: http://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=EN&Expert=$1
 orphanet.ordo:
   description: "The Orphanet Rare Disease ontology (ORDO) is a structured vocabulary\
@@ -14739,12 +14739,12 @@ pdb:
     description: Proteopedia
     homepage: http://www.proteopedia.org/
     name: Proteopedia
-    url: http://proteopedia.org/wiki/index.php/$1
+    uri_format: http://proteopedia.org/wiki/index.php/$1
   - code: ebi
     description: Protein Databank through PDBsum
     homepage: https://www.ebi.ac.uk/pdbsum/
     name: Protein Databank through PDBsum
-    url: https://www.ebi.ac.uk/pdbsum/$1
+    uri_format: https://www.ebi.ac.uk/pdbsum/$1
   synonyms:
   - pdbe
   - wwpdb
@@ -14789,7 +14789,7 @@ pdb.ligand:
     description: PDB Ligand at Protein Databank in Europe (PDBe)
     homepage: https://www.pdbe.org/
     name: PDB Ligand at Protein Databank in Europe (PDBe)
-    url: https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/$1
+    uri_format: https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/$1
   synonyms:
   - PDB_CHEM_ID
   url: http://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId=$1
@@ -15522,7 +15522,7 @@ pmc:
     description: PubMed Central
     homepage: https://www.ncbi.nlm.nih.gov/pmc/
     name: PubMed Central
-    url: https://www.ncbi.nlm.nih.gov/pmc/articles/$1/?tool=pubmed
+    uri_format: https://www.ncbi.nlm.nih.gov/pmc/articles/$1/?tool=pubmed
   synonyms:
   - PMC
   - PMCID
@@ -15774,7 +15774,7 @@ pride.project:
     description: PRIDE Project through OmicsDI
     homepage: https://www.omicsdi.org/
     name: PRIDE Project through OmicsDI
-    url: https://www.omicsdi.org/dataset/pride/$1
+    uri_format: https://www.omicsdi.org/dataset/pride/$1
   url: https://www.ebi.ac.uk/pride/archive/projects/$1
 prints:
   description: PRINTS is a compendium of protein fingerprints. A fingerprint is a
@@ -16115,7 +16115,7 @@ pubchem.compound:
       information in Wikidata.
     homepage: https://scholia.toolforge.org/
     name: Scholia
-    url: https://scholia.toolforge.org/pubchem/$1
+    uri_format: https://scholia.toolforge.org/pubchem/$1
   synonyms:
   - CID
   - DSSTox_CID
@@ -16174,24 +16174,24 @@ pubmed:
     description: HubMed
     homepage: http://www.hubmed.org/
     name: HubMed
-    url: http://www.hubmed.org/display.cgi?uids=$1
+    uri_format: http://www.hubmed.org/display.cgi?uids=$1
   - code: epmc
     description: Europe PMC
     homepage: http://europepmc.org/
     name: Europe PMC
-    url: http://europepmc.org/abstract/MED/$1
+    uri_format: http://europepmc.org/abstract/MED/$1
   - code: CURATOR_REVIEW
     description: PubMed through Linkedlife data
     homepage: http://linkedlifedata.com/
     name: PubMed through Linkedlife data
-    url: http://linkedlifedata.com/resource/pubmed/id/$1
+    uri_format: http://linkedlifedata.com/resource/pubmed/id/$1
   - code: scholia
     description: Scholia is a service that creates visual scholarly profiles for topic,
       people, organizations, species, chemicals, etc using bibliographic and other
       information in Wikidata.
     homepage: https://scholia.toolforge.org/
     name: Scholia
-    url: https://scholia.toolforge.org/pubmed/$1
+    uri_format: https://scholia.toolforge.org/pubmed/$1
   synonyms:
   - MEDLINE
   - PMID
@@ -16426,7 +16426,7 @@ reactome:
     description: Pathway diagram drawn with Cytoscape
     homepage: https://www.pathwaycommons.org
     name: Pathway Commons
-    url: https://apps.pathwaycommons.org/pathways?uri=http%3A%2F%2Fidentifiers.org%2Freactome%2F$1
+    uri_format: https://apps.pathwaycommons.org/pathways?uri=http%3A%2F%2Fidentifiers.org%2Freactome%2F$1
   synonyms:
   - RE
   - REACT
@@ -16644,7 +16644,7 @@ rgd:
     description: RGD through the Alliance of Genome Resources
     homepage: https://www.alliancegenome.org
     name: RGD through the Alliance of Genome Resources
-    url: https://www.alliancegenome.org/gene/RGD:$1
+    uri_format: https://www.alliancegenome.org/gene/RGD:$1
   synonyms:
   - RGD
   url: http://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1
@@ -17204,7 +17204,7 @@ scop:
     description: SCOP at Berkeley
     homepage: http://scop.berkeley.edu/
     name: SCOP at Berkeley
-    url: http://scop.berkeley.edu/sunid=$1
+    uri_format: http://scop.berkeley.edu/sunid=$1
   url: http://scop.mrc-lmb.cam.ac.uk/scop/search.cgi?sunid=$1
 scopus:
   description: "Scopus is the largest abstract and citation database of peer-reviewed\
@@ -17414,17 +17414,17 @@ sgd:
     description: Bio2RDF
     homepage: http://sgd.bio2rdf.org/fct
     name: Bio2RDF
-    url: http://sgd.bio2rdf.org/describe/?url=http://bio2rdf.org/sgd:$1
+    uri_format: http://sgd.bio2rdf.org/describe/?url=http://bio2rdf.org/sgd:$1
   - code: bioentitylink
     description: SGD through BioEntity Link
     homepage: https://bioentity.link/
     name: SGD through BioEntity Link
-    url: https://bioentity.link/#/lexicon/public/$1
+    uri_format: https://bioentity.link/#/lexicon/public/$1
   - code: agr
     description: SGD through the Alliance of Genome Resources
     homepage: https://www.alliancegenome.org
     name: SGD through the Alliance of Genome Resources
-    url: https://www.alliancegenome.org/gene/SGD:$1
+    uri_format: https://www.alliancegenome.org/gene/SGD:$1
   url: https://www.yeastgenome.org/locus/$1
 sgd.pathways:
   description: Curated biochemical pathways for Saccharomyces cerevisiae at Saccharomyces
@@ -18074,7 +18074,7 @@ string:
     description: STRING Mirror at Heidelberg
     homepage: http://string-db.org/
     name: STRING Mirror at Heidelberg
-    url: http://string-db.org/interactions/$1
+    uri_format: http://string-db.org/interactions/$1
   url: http://string.embl.de/interactions/$1
 sty:
   description: UMLS Semantic Network The Semantic Network consists of (1) a set of
@@ -19090,7 +19090,7 @@ uniparc:
     description: UniParc through UniProt
     homepage: http://www.uniprot.org/uniparc/
     name: UniParc through UniProt
-    url: https://www.uniprot.org/uniparc/$1
+    uri_format: https://www.uniprot.org/uniparc/$1
   url: https://www.ebi.ac.uk/cgi-bin/dbfetch?db=uniparc&id=$1
 unipathway.compound:
   description: UniPathway is a manually curated resource of enzyme-catalyzed and spontaneous
@@ -19149,17 +19149,17 @@ uniprot:
     description: Molecular interations endpoint from OmniPathDB
     homepage: https://omnipathdb.org/
     name: OmniPathDB
-    url: https://omnipathdb.org/interactions/?fields=sources,references&partners=$1
+    uri_format: https://omnipathdb.org/interactions/?fields=sources,references&partners=$1
   - code: iptmnet
     description: Protein post translational modification information
     homepage: https://research.bioinformatics.udel.edu/iptmnet
     name: iPTMnet
-    url: https://research.bioinformatics.udel.edu/iptmnet/entry/$1
+    uri_format: https://research.bioinformatics.udel.edu/iptmnet/entry/$1
   - code: ncbi
     description: UniProt through NCBI
     homepage: https://www.ncbi.nlm.nih.gov/protein/
     name: UniProt through NCBI
-    url: https://www.ncbi.nlm.nih.gov/protein/$1
+    uri_format: https://www.ncbi.nlm.nih.gov/protein/$1
   synonyms:
   - SwissProt
   - UP
@@ -19216,12 +19216,12 @@ uniprot.isoform:
     homepage: http://purl.uniprot.org/
     name: UniProt Isoform through Universal Protein Resource using Persistent URL
       system
-    url: http://purl.uniprot.org/uniprot/$1
+    uri_format: http://purl.uniprot.org/uniprot/$1
   - code: CURATOR_REVIEW
     description: UniProt Isoform through UniParc
     homepage: http://www.uniprot.org/uniparc/
     name: UniProt Isoform through UniParc
-    url: http://www.uniprot.org/uniparc/?query=$1
+    uri_format: http://www.uniprot.org/uniparc/?query=$1
   synonyms:
   - UPISO
   url: http://www.uniprot.org/uniprot/$1
@@ -19493,7 +19493,7 @@ vario:
     description: VariO at Lund University
     homepage: http://www.variationontology.org/
     name: VariO at Lund University
-    url: http://www.ontobee.org/search?ontology=VariO&keywords=VariO_$1&submit=Search+terms
+    uri_format: http://www.ontobee.org/search?ontology=VariO&keywords=VariO_$1&submit=Search+terms
   url: http://purl.bioontology.org/ontology/VARIO/VariO:$1
   version: '2018-11-09'
 vbase2:
@@ -20032,7 +20032,7 @@ wikidata:
       and bibliometric domains
     homepage: https://scholia.toolforge.org
     name: Scholia
-    url: https://scholia.toolforge.org/$1
+    uri_format: https://scholia.toolforge.org/$1
   synonyms:
   - WD_Entity
   - wd
@@ -20056,7 +20056,7 @@ wikidata.property:
       and bibliometric domains
     homepage: https://scholia.toolforge.org
     name: Scholia
-    url: https://scholia.toolforge.org/$1
+    uri_format: https://scholia.toolforge.org/$1
   url: https://www.wikidata.org/wiki/Property:$1
 wikigenes:
   description: WikiGenes is a collaborative knowledge resource for the life sciences,
@@ -20101,7 +20101,7 @@ wikipathways:
       '
     homepage: https://scholia.toolforge.org/
     name: Scholia
-    url: https://scholia.toolforge.org/wikipathways/$1
+    uri_format: https://scholia.toolforge.org/wikipathways/$1
   url: http://www.wikipathways.org/instance/$1
 wikipedia.en:
   description: Wikipedia is a multilingual, web-based, free-content encyclopedia project
@@ -20122,7 +20122,7 @@ wikipedia.en:
     description: Wikipedia structured content through DBpedia
     homepage: http://wiki.dbpedia.org/
     name: Wikipedia structured content through DBpedia
-    url: http://dbpedia.org/page/$1
+    uri_format: http://dbpedia.org/page/$1
   synonyms:
   - wikipedia
   url: http://en.wikipedia.org/wiki/$1
@@ -20167,12 +20167,12 @@ wormbase:
     description: WormBase through BioEntity Link
     homepage: https://bioentity.link/
     name: WormBase through BioEntity Link
-    url: https://bioentity.link/#/lexicon/public/$1
+    uri_format: https://bioentity.link/#/lexicon/public/$1
   - code: agr
     description: WormBase through the Alliance of Genome Resources
     homepage: https://www.alliancegenome.org
     name: WormBase through the Alliance of Genome Resources
-    url: https://www.alliancegenome.org/gene/WB:$1
+    uri_format: https://www.alliancegenome.org/gene/WB:$1
   synonyms:
   - WB_REF
   - wb
@@ -20517,12 +20517,12 @@ zfin:
     description: ZFIN through BioEntity Link
     homepage: https://bioentity.link/
     name: ZFIN through BioEntity Link
-    url: https://bioentity.link/#/lexicon/public/$1
+    uri_format: https://bioentity.link/#/lexicon/public/$1
   - code: agr
     description: ZFIN through the Alliance of Genome Resources
     homepage: https://www.alliancegenome.org
     name: ZFIN through the Alliance of Genome Resources
-    url: https://test.alliancegenome.org/gene/ZFIN:$1
+    uri_format: https://test.alliancegenome.org/gene/ZFIN:$1
   synonyms:
   - ZFIN
   url: http://zfin.org/$1
