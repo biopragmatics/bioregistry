@@ -28,18 +28,27 @@ registry, are built on a nightly basis and can be downloaded via the
 [`exports/`](https://github.com/biopragmatics/bioregistry/tree/main/exports)
 directory.
 
+### [`metaregistry.json`](metaregistry.json)
+
+The metaregistry contains information about external registries.
+
 ### [`collections.json`](collections.json)
 
-### [`metaregistry.json`](metaregistry.json)
+This file contains manually curated collections of prefixes/resources
+for various purposes.
 
 ### [`mismatch.json`](metaregistry.json)
 
+This file contains the mismatch dictionary, so the alignment algorithm doesn't
+accidentally create resources that are chimera of two different ones. Its
+keys correspond to bioregistry prefixes and its values are dictionaries mapping
+from metaprefixes to wrong external prefixes to avoid.
+
 ## Processing Help Files
 
-### [`processing_biolink.json`](processing_biolink.json)
-
-### [`processing_go.json`](processing_go.json)
-
-### [`processing_ols.json`](processing_ols.json)
-
-### [`processing_wikidata.json`](processing_wikidata.json)
+| File Name                                              | Description                                                              |
+|--------------------------------------------------------|--------------------------------------------------------------------------|
+| [`processing_biolink.json`](processing_biolink.json)   | Contains which prefixes from BioLink should be skipped during alignment  |
+| [`processing_go.json`](processing_go.json)             | Contains which prefixes from GO should be skipped during alignment       |
+| [`processing_ols.json`](processing_ols.json)           | Contains version type and date format information for entries in the OLS |
+| [`processing_wikidata.json`](processing_wikidata.json) | Contains misc. data for WikiData processing                              |
