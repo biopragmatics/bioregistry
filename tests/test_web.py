@@ -27,5 +27,7 @@ class TestWeb(unittest.TestCase):
     def test_download_resource(self):
         """Test downloading a resource as YAML."""
         with app.test_client() as client:
-            res = client.get("/api/registry/3dmet?format=yaml")
-            self.assertEqual(200, res.status_code)
+            for fmt in ("json", "yaml", "turtle", "jsonld"):
+                with self.subTest(fmt=fmt):
+                    res = client.get(f"/api/registry/3dmet?format={fmt}")
+                    self.assertEqual(200, res.status_code)
