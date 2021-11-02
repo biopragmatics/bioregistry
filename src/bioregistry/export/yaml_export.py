@@ -2,25 +2,32 @@
 
 """Export components of the bioregistry to YAML."""
 
-import os
-
 import click
 import yaml
 
 from ..constants import DOCS_DATA
+from ..resolve import manager
 from ..schema import sanitize_mapping
-from ..utils import read_collections, read_metaregistry, read_registry
+from ..utils import read_collections, read_metaregistry
+
+REGISTRY_YAML_PATH = DOCS_DATA / "registry.yml"
+METAREGISTRY_YAML_PATH = DOCS_DATA / "metaregistry.yml"
+COLLECTIONS_YAML_PATH = DOCS_DATA / "collections.yml"
 
 
 @click.command()
 def export_yaml():
     """Export the registry as YAML."""
-    with open(os.path.join(DOCS_DATA, "registry.yml"), "w") as file:
-        yaml.dump(stream=file, data=sanitize_mapping(read_registry()))
-    with open(os.path.join(DOCS_DATA, "metaregistry.yml"), "w") as file:
-        yaml.dump(stream=file, data=sanitize_mapping(read_metaregistry()))
-    with open(os.path.join(DOCS_DATA, "collections.yml"), "w") as file:
-        yaml.dump(stream=file, data=sanitize_mapping(read_collections()))
+    registry = manager.rasterize()
+    metaregistry = sanitize_mapping(read_metaregistry())
+    collections = sanitize_mapping(read_collections())
+
+    with REGISTRY_YAML_PATH.open("w") as file:
+        yaml.safe_dump(stream=file, data=registry)
+    with METAREGISTRY_YAML_PATH.open("w") as file:
+        yaml.safe_dump(stream=file, data=metaregistry)
+    with COLLECTIONS_YAML_PATH.open("w") as file:
+        yaml.safe_dump(stream=file, data=collections)
 
 
 if __name__ == "__main__":
