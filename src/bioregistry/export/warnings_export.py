@@ -17,7 +17,7 @@ from bioregistry.constants import DOCS_DATA
 from bioregistry.resolve import get_external
 
 __all__ = [
-    "warnings",
+    "export_warnings",
 ]
 
 ENTRIES = sorted(
@@ -55,7 +55,7 @@ def get_unparsable_uris():
 
 
 @click.command()
-def warnings():
+def export_warnings():
     """Make warnings list."""
     # unparsable = get_unparsable_uris()
     missing_wikidata_database = _g(
@@ -129,4 +129,4 @@ def warnings():
 
 
 if __name__ == "__main__":
-    warnings()
+    export_warnings()
