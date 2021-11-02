@@ -83,7 +83,9 @@ class Provider(BaseModel):
     description: str = Field(..., description="Description of the provider")
     homepage: str = Field(..., description="Homepage of the provider")
     uri_format: str = Field(
-        ..., description="The URI format string, which must have at least one ``$1`` in it"
+        ...,
+        title="URI Format",
+        description="The URI format string, which must have at least one ``$1`` in it",
     )
 
     def resolve(self, identifier: str) -> str:
