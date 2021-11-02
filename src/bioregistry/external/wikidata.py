@@ -153,8 +153,6 @@ def _aggregate(prop, records):
 def _main():
     import click
 
-    # from tabulate import tabulate
-    # print(list(iter_wikidata()))
     r = get_wikidata(force_download=True)
     click.echo(f"Got {len(r)} records")
 
