@@ -126,11 +126,11 @@ def metaresource(metaprefix: str):
         homepage=bioregistry.get_registry_homepage(metaprefix),
         download=entry.download,
         example_prefix=entry.example,
-        example_prefix_url=entry.get_provider(entry.example),
+        example_prefix_url=entry.get_provider_uri_format(entry.example),
         example_identifier=example_identifier,
         example_curie=curie_to_str(entry.example, example_identifier),
         example_curie_url=(
-            bioregistry.get_registry_resolve_url(metaprefix, entry.example, example_identifier)
+            bioregistry.get_registry_uri(metaprefix, entry.example, example_identifier)
             if example_identifier
             else None
         ),

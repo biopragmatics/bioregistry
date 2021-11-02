@@ -23,16 +23,16 @@ class TestMetaregistry(unittest.TestCase):
                 self.assertIn("example", data)
                 self.assertIn("description", data)
 
-                if registry_pydantic.provider_url:
-                    self.assertIn("provider_url", data)
-                    self.assertIn("$1", data["provider_url"])
+                if registry_pydantic.provider_uri_format:
+                    self.assertIn("provider_uri_format", data)
+                    self.assertIn("$1", data["provider_uri_format"])
 
                 # When a registry is a resolver, it means it
                 # can resolve entries (prefixes) + identifiers
-                if registry_pydantic.resolver_url:
-                    self.assertIn("resolver_url", data)
-                    self.assertIn("$1", data["resolver_url"])
-                    self.assertIn("$2", data["resolver_url"])
+                if registry_pydantic.resolver_uri_format:
+                    self.assertIn("resolver_uri_format", data)
+                    self.assertIn("$1", data["resolver_uri_format"])
+                    self.assertIn("$2", data["resolver_uri_format"])
                     self.assertIsNotNone(registry_pydantic.resolver_type)
                     self.assertIn(data["resolver_type"], {"lookup", "resolver"})
                 else:
@@ -45,9 +45,9 @@ class TestMetaregistry(unittest.TestCase):
                         "homepage",
                         "download",
                         "description",
-                        "provider_url",
+                        "provider_uri_format",
                         "example",
-                        "resolver_url",
+                        "resolver_uri_format",
                         "resolver_type",
                         "contact",
                     }
@@ -59,7 +59,7 @@ class TestMetaregistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_registry("nope"))
         self.assertIsNone(bioregistry.get_registry_name("nope"))
         self.assertIsNone(bioregistry.get_registry_homepage("nope"))
-        self.assertIsNone(bioregistry.get_registry_url("nope", ...))
+        self.assertIsNone(bioregistry.get_registry_provider_uri_format("nope", ...))
         self.assertIsNone(bioregistry.get_registry_example("nope"))
         self.assertIsNone(bioregistry.get_registry_description("nope"))
 
@@ -82,17 +82,17 @@ class TestMetaregistry(unittest.TestCase):
         self.assertEqual(example, registry.example)
         self.assertEqual(example, bioregistry.get_registry_example(metaprefix))
 
-        url = bioregistry.get_registry_url(metaprefix, example)
+        url = bioregistry.get_registry_provider_uri_format(metaprefix, example)
         self.assertEqual("https://www.uniprot.org/database/DB-0174", url)
 
     def test_resolver(self):
         """Test generating resolver URLs."""
         # Can't resolve since nope isn't a valid registry
-        self.assertIsNone(bioregistry.get_registry_resolve_url("nope", "chebi", "1234"))
+        self.assertIsNone(bioregistry.get_registry_uri("nope", "chebi", "1234"))
         # Can't resolve since GO isn't a resolver
-        self.assertIsNone(bioregistry.get_registry_resolve_url("go", "chebi", "1234"))
+        self.assertIsNone(bioregistry.get_registry_uri("go", "chebi", "1234"))
 
-        url = bioregistry.get_registry_resolve_url("bioregistry", "chebi", "1234")
+        url = bioregistry.get_registry_uri("bioregistry", "chebi", "1234")
         self.assertEqual("https://bioregistry.io/chebi:1234", url)
 
     def test_get_rdf(self):

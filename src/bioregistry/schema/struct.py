@@ -1019,36 +1019,36 @@ class Registry(BaseModel):
         description="A download link for the data contained in the registry"
     )
     #: A URL with a $1 for a prefix to resolve in the registry
-    provider_url: Optional[str]
+    provider_uri_format: Optional[str]
     #: A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry
-    resolver_url: Optional[str]
+    resolver_uri_format: Optional[str]
     #: An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)
     resolver_type: Optional[str]
     #: An optional contact email
     contact: Optional[str]
 
-    def get_provider(self, prefix: str) -> Optional[str]:
+    def get_provider_uri_format(self, prefix: str) -> Optional[str]:
         """Get the provider string.
 
         :param prefix: The prefix used in the metaregistry
         :return: The URL in the registry for the prefix, if it's able to provide one
 
         >>> from bioregistry import get_registry
-        >>> get_registry("fairsharing").get_provider("FAIRsharing.62qk8w")
+        >>> get_registry("fairsharing").get_provider_uri_format("FAIRsharing.62qk8w")
         'https://fairsharing.org/FAIRsharing.62qk8w'
-        >>> get_registry("miriam").get_provider("go")
+        >>> get_registry("miriam").get_provider_uri_format("go")
         'https://registry.identifiers.org/registry/go'
         """
-        provider_url = self.provider_url
+        provider_url = self.provider_uri_format
         if provider_url is None:
             return None
         return provider_url.replace("$1", prefix)
 
     def resolve(self, prefix: str, identifier: str) -> Optional[str]:
         """Resolve the registry-specific prefix and identifier."""
-        if self.resolver_url is None:
+        if self.resolver_uri_format is None:
             return None
-        return self.resolver_url.replace("$1", prefix).replace("$2", identifier)
+        return self.resolver_uri_format.replace("$1", prefix).replace("$2", identifier)
 
     def add_triples(self, graph: rdflib.Graph) -> Node:
         """Add triples to an RDF graph for this registry.
@@ -1062,10 +1062,10 @@ class Registry(BaseModel):
         graph.add((node, DC.description, Literal(self.description)))
         graph.add((node, FOAF["homepage"], Literal(self.homepage)))
         graph.add((node, bioregistry_schema["0000005"], Literal(self.example)))
-        if self.provider_url:
-            graph.add((node, bioregistry_schema["0000006"], Literal(self.provider_url)))
-        if self.resolver_url:
-            graph.add((node, bioregistry_schema["0000007"], Literal(self.resolver_url)))
+        if self.provider_uri_format:
+            graph.add((node, bioregistry_schema["0000006"], Literal(self.provider_uri_format)))
+        if self.resolver_uri_format:
+            graph.add((node, bioregistry_schema["0000007"], Literal(self.resolver_uri_format)))
         return node
 
 

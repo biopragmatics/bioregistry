@@ -57,13 +57,13 @@
                     <span class="badge badge-pill badge-success">
                         Registry
                     </span>
-                    <span class="badge badge-pill badge-{% if entry.provider_url %}success{% else %}light text-muted{% endif %}">
+                    <span class="badge badge-pill badge-{% if entry.provider_uri_format %}success{% else %}light text-muted{% endif %}">
                         Provider
                     </span>
-                    <span class="badge badge-pill badge-{% if entry.resolver_url and entry.resolver_type == "resolver" %}success{% else %}light text-muted{% endif %}">
+                    <span class="badge badge-pill badge-{% if entry.resolver_uri_format and entry.resolver_type == "resolver" %}success{% else %}light text-muted{% endif %}">
                         Resolver
                     </span>
-                    <span class="badge badge-pill badge-{% if entry.resolver_url and entry.resolver_type == "lookup" %}success{% else %}light text-muted{% endif %}">
+                    <span class="badge badge-pill badge-{% if entry.resolver_uri_format and entry.resolver_type == "lookup" %}success{% else %}light text-muted{% endif %}">
                         Lookup
                     </span>
                 </dd>
@@ -79,7 +79,7 @@
                 <dd>
                     <code>{{ entry.example }}</code>
                 </dd>
-                {% if entry.provider_url %}
+                {% if entry.provider_uri_format %}
                     <dt>Example Prefix Page</dt>
                     <dd>
                         <a href="{{ example_prefix_url }}"><code>{{ example_prefix_url }}</code></a>
@@ -91,7 +91,7 @@
                         <code>{{ example_curie }}</code>
                     </dd>
                 {% endif %}
-                {% if entry.resolver_url %}
+                {% if entry.resolver_uri_format %}
                     {% set example_resolution = entry.resolve(entry.example, example_identifier) %}
                     <dt>
                         {% if entry.resolver_type == "lookup" %}

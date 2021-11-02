@@ -9,7 +9,7 @@ from .schema import Registry
 from .utils import read_metaregistry
 
 __all__ = [
-    "get_registry_resolve_url",
+    "get_registry_uri",
 ]
 
 
@@ -72,15 +72,15 @@ def get_registry_example(metaprefix: str) -> Optional[str]:
     return registry.example
 
 
-def get_registry_url(metaprefix: str, prefix: str) -> Optional[str]:
+def get_registry_provider_uri_format(metaprefix: str, prefix: str) -> Optional[str]:
     """Get the URL for the resource inside registry, if available."""
     entry = get_registry(metaprefix)
     if entry is None:
         return None
-    return entry.get_provider(prefix)
+    return entry.get_provider_uri_format(prefix)
 
 
-def get_registry_resolve_url(metaprefix: str, prefix: str, identifier: str) -> Optional[str]:
+def get_registry_uri(metaprefix: str, prefix: str, identifier: str) -> Optional[str]:
     """Get the URL to resolve the given prefix/identifier pair with the given resolver."""
     providers = get_providers(prefix, identifier)
     if not providers:

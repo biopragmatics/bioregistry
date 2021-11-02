@@ -46,8 +46,9 @@ METAREGISTRY_HEADER = [
     "download",
     "example",
     "contact",
-    "provider_formatter",
-    "resolver_formatter",
+    "provider_uri_format",
+    "resolver_uri_format",
+    "resolver_type",
 ]
 METAPREFIXES = [
     k
@@ -105,8 +106,9 @@ def get_metaregistry_rows():
                 data.download,
                 data.example,
                 data.contact,
-                data.provider_url,
-                data.resolver_url,
+                data.provider_uri_format,
+                data.resolver_uri_format,
+                data.resolver_type,
             )
         )
     return rows

@@ -22,7 +22,7 @@ def _get_resource_providers(
     if identifier is None:
         return None
     rv = []
-    for metaprefix, url in bioregistry.get_providers_list(prefix, identifier):
+    for metaprefix, uri in bioregistry.get_providers_list(prefix, identifier):
         if metaprefix == "default":
             metaprefix = prefix
             name = bioregistry.get_name(prefix)
@@ -35,7 +35,7 @@ def _get_resource_providers(
                 metaprefix=metaprefix,
                 homepage=homepage,
                 name=name,
-                url=url,
+                uri=uri,
             )
         )
     return rv
@@ -51,7 +51,7 @@ def _get_resource_mapping_rows(resource: Resource) -> Optional[List[Mapping[str,
             xref=xref,
             homepage=bioregistry.get_registry_homepage(metaprefix),
             name=bioregistry.get_registry_name(metaprefix),
-            url=bioregistry.get_registry_url(metaprefix, xref),
+            uri=bioregistry.get_registry_provider_uri_format(metaprefix, xref),
         )
         for metaprefix, xref in mappings.items()
     ]

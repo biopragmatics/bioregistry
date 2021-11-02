@@ -230,8 +230,8 @@
                         </td>
                         <td><code>{{ mapping.metaprefix }}</code></td>
                         <td>
-                            {% if mapping.url %}
-                                <a href="{{ mapping.url }}"><code>{{ mapping.xref }}</code> <i class="fas fa-link"></i></a>
+                            {% if mapping.uri %}
+                                <a href="{{ mapping.uri }}"><code>{{ mapping.xref }}</code> <i class="fas fa-link"></i></a>
                             {% else %}
                                 <span title="{{ mapping.name }} does not resolve metaidentifiers"
                                       data-toggle="tooltip" data-placement="right"><code>{{ mapping.xref }}</code>
