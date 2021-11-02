@@ -6,11 +6,11 @@ This lists any sorts of things that should be fixed upstream, but are instead ma
 """
 
 import os
-from tqdm import tqdm
 from typing import Callable
 
 import click
 import yaml
+from tqdm import tqdm
 
 import bioregistry
 from bioregistry.constants import DOCS_DATA
