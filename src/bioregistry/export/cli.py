@@ -7,6 +7,7 @@ import click
 from .prefix_maps import generate_context_json_ld
 from .rdf_export import export_rdf
 from .tsv_export import export_tsv
+from .warnings_export import export_warnings
 from .yaml_export import export_yaml
 
 
@@ -14,6 +15,7 @@ from .yaml_export import export_yaml
 @click.pass_context
 def export(ctx: click.Context):
     """Export the Bioregistry."""
+    ctx.invoke(export_warnings)
     ctx.invoke(export_rdf)
     ctx.invoke(export_tsv)
     ctx.invoke(export_yaml)
