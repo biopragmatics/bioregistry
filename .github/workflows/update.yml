@@ -17,7 +17,7 @@ jobs:
       - name: Create local changes
         id: update
         run: |
-          pip install -e .[update]
+          pip install -e .[align,charts]
           bioregistry update
         env:
           BIOPORTAL_API_KEY: ${{ secrets.BIOPORTAL_API_KEY }}
