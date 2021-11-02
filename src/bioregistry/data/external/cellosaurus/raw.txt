@@ -4,8 +4,8 @@
 ----------------------------------------------------------------------------
 
  Description: Cellosaurus: cross-referencing to external resources
- Version: 38.0
- Last update: 20-May-2021
+ Version: 39.0
+ Last update: 23-September-2021
 
 ----------------------------------------------------------------------------
 
@@ -23,11 +23,11 @@ link out from the following DR line:
 you should use the information on the "Db_URL" line of the ATCC entry in
 this document which currently indicates:
 
- https://www.atcc.org/Products/All/%s.aspx
+ https://www.atcc.org/Products/%s
 
 thus your corresponding web link should go to:
 
- https://www.atcc.org/Products/All/HTB-30.aspx
+ https://www.atcc.org/Products/HTB-30
 
 b) For historical and reference purposes we keep in the Cellosaurus cross-
 references to catalog entries corresponding to cell lines that are no longer
@@ -58,7 +58,7 @@ here:
 1) DR lines
 
 Format: DR   Resource_abbrev; %s
-Where : Resource_abbrev is one of: 4DN|ABCD|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BTO|BioSample|BioSamples|CBA|CCLE|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbMHC|DepMap|DGRC|DiscoverX|DSMZ|eagle-i|EBiSC|ECACC|EFO|ENCODE|ESTDAB|FCDI|FCS-free|FlyBase|GDSC|GEO|HipSci|Horizon_Discovery|hPSCreg|IARC_TP53|IBRC|ICLC|IGRhCellID|IGSR|IHW|Imanis|IPD-IMGT/HLA|ISCR|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DTP|NHCDR |NISES|NIH-ARP|PerkinElmer|PharmacoDB|PRIDE|Progenetix|RCB|RSCB|SKIP|SKY/M-FISH/CGH|TCB|TKG|TNGB|TOKU-E|WiCell|Wikidata|Ximbio
+Where : Resource_abbrev is one of: 4DN|ABCD|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BTO|BioSample|BioSamples|CBA|CCLE|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbMHC|DepMap|DGRC|DiscoverX|DSMZ|eagle-i|EBiSC|ECACC|EFO|ENCODE|ESTDAB|FCDI|FCS-free|FlyBase|GDSC|GEO|HipSci|HIVReagentProgram|Horizon_Discovery|hPSCreg|IARC_TP53|IBRC|ICLC|IGRhCellID|IGSR|IHW|Imanis|IPD-IMGT/HLA|ISCR|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DTP|NHCDR |NISES|PerkinElmer|PharmacoDB|PRIDE|Progenetix|RCB|RSCB|SKIP|SKY/M-FISH/CGH|SLKBase|TCB|TKG|TNGB|TOKU-E|WiCell|Wikidata|Ximbio
 
 2) RX lines
 
@@ -130,10 +130,7 @@ Cat   : Biological sample resources
 Abbrev: ABM
 Name  : Applied Biological Materials cell line products
 Server: https://www.abmgood.com/Cell-Biology.html
-Db_URL: https://www.abmgood.com/IHC/ihcCells-dispOne.php?&catanumber=%s
-        Note:
-        For cell lines of the category (CA) "Cancer cell line" use:
-        https://www.abmgood.com/prodTumorCells/prodTumorCells-dispOne.php?catno=%s
+Db_URL: https://www.abmgood.com/catalogsearch/result/?cat=&q=%s
 Cat   : Cell line collections
 //
 Abbrev: AddexBio
@@ -153,7 +150,7 @@ Cat   : Gene expression databases
 Abbrev: ATCC
 Name  : American Type Culture Collection
 Server: https://www.atcc.org/
-Db_URL: https://www.atcc.org/Products/All/%s.aspx
+Db_URL: https://www.atcc.org/Products/%s
 Cat   : Cell line collections
 //
 Abbrev: BCGO
@@ -301,8 +298,8 @@ Cat   : Cell line collections
 //
 Abbrev: ColonAtlas
 Name  : Colorectal Cancer Atlas
-Server: http://colonatlas.org
-Db_URL: http://colonatlas.org/search_cell_line?cell_line=%s
+Server: http://www.coloncanceratlas.org
+Db_URL: http://www.coloncanceratlas.org/search_cell_line?cell_line=%s
 Cat   : Cell line databases/resources
 //
 Abbrev: Coriell
@@ -459,6 +456,12 @@ Name  : Human Induced Pluripotent Stem Cells Initiative
 Server: http://www.hipsci.org
 Db_URL: http://www.hipsci.org/lines/#/lines/%s
 Cat   : Cell line databases/resources
+//
+Abbrev: HIVReagentProgram
+Name  : NIH HIV Reagent Program
+Server: https://www.hivreagentprogram.org/Home.aspx
+Db_URL: https://www.hivreagentprogram.org/Catalog/HRPCellLines/%s.aspx
+Cat   : Cell line collections
 //
 Abbrev: Horizon_Discovery
 Name  : Horizon Discovery cell line collection
@@ -658,14 +661,6 @@ Server: https://stemcells.nindsgenetics.org
 Db_URL: https://stemcells.nindsgenetics.org?line=%s
 Cat   : Cell line collections
 //
-Abbrev: NIH-ARP
-Name  : NIH AIDS Reagent Program
-Server: https://www.aidsreagent.org
-Db_URL: https://www.aidsreagent.org/reagentdetail.cfm?t=cell_lines&id=%s
-        Note: %s is the value after the dash in the DR line.
-        Example: for "DR   NIH-ARP; 11411-223": %s=223
-Cat   : Cell line collections
-//
 Abbrev: NISES
 Name  : National Institute of Sericultural and Entomological Science Cell Database
 Server: https://web.archive.org/web/20160709065305/https://www.gene.affrc.go.jp/ex-nises/NISESCells/CellindexE1.html
@@ -748,6 +743,12 @@ Abbrev: SKY/M-FISH/CGH
 Name  : SKY/M-FISH and CGH database
 Server: https://www.ncbi.nlm.nih.gov/dbvar/studies/nstd136/
 Db_URL: None
+Cat   : Cell line databases/resources
+//
+Abbrev: SLKBase
+Name  : SUM Breast Cancer Cell Line Knowledge Base
+Server: https://sumlineknowledgebase.com/
+Db_URL: https://sumlineknowledgebase.com/?page_id=%s
 Cat   : Cell line databases/resources
 //
 Abbrev: TCB

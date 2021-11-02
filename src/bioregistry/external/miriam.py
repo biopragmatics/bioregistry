@@ -62,13 +62,14 @@ def _process(record):
     else:
         primary, *rest = resources
     rv["homepage"] = primary["homepage"]
-    rv["provider_url"] = primary["url"]
+    rv["uri_format"] = primary["uri_format"]
 
     extras = []
     for provider in rest:
         if provider["code"] in SKIP_PROVIDERS:
             continue
         del provider["official"]
+        # provider["uri_format"] = provider.pop("uri_format")
         extras.append(provider)
     if extras:
         rv["providers"] = extras
@@ -87,7 +88,7 @@ def _preprocess_resource(resource):
         "official": resource["official"],
         "homepage": resource["resourceHomeUrl"],
         "code": resource["providerCode"],
-        "url": resource["urlPattern"].replace("{$id}", "$1"),
+        "uri_format": resource["urlPattern"].replace("{$id}", "$1"),
         "name": resource["name"],
         "description": resource["description"],
     }

@@ -30,7 +30,7 @@ def get_biolink(force_download: bool = False):
     download(url=URL, path=RAW_PATH, force=True)
     with RAW_PATH.open() as file:
         data = yaml.safe_load(file)
-    rv = {prefix: {"formatter": f"{url}$1"} for prefix, url in data["prefixes"].items()}
+    rv = {prefix: {"uri_format": f"{uri_prefix}$1"} for prefix, uri_prefix in data["prefixes"].items()}
     with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, indent=2, sort_keys=True)
     return rv

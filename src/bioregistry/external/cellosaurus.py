@@ -19,7 +19,7 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 KEYMAP = {
     "Abbrev": "prefix",
     "Cat": "category",
-    "Db_URL": "url",
+    "Db_URL": "uri_format",
     "Name": "name",
     "Server": "homepage",
 }
@@ -50,7 +50,7 @@ def get_cellosaurus(force_download: bool = False):
                 continue
             key, value = (s.strip() for s in line.split(":", 1))
             key = KEYMAP[key]
-            if key == "url":
+            if key == "uri_format":
                 value = _process_db_url(value)
                 if value is None:
                     continue
