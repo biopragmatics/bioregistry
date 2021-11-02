@@ -17,7 +17,7 @@ goals:
 3. Enable overriding of metadata from external registries when they are wrong
 
 All edits to the registry should be made through this file. However, you'll
-notice that for some entries, there are not top-level fields like "name". This
+notice that for some entries, there are no top-level fields like "name". This
 is because the associated Python package for the Bioregistry has logic baked in
 for accessing metadata through the mapped registries. This reduces the curation
 burden and enables the Bioregistry to benefit from upstream changes in external
