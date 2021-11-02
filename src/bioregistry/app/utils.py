@@ -3,7 +3,6 @@
 """Utility functions for the Bioregistry :mod:`flask` app."""
 
 import json
-from io import StringIO
 from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
 
 import yaml
