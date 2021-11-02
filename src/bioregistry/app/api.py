@@ -55,7 +55,7 @@ def resources():
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    return serialize(bioregistry.read_registry())
+    return serialize(sanitize_mapping(bioregistry.read_registry()))
 
 
 @api_blueprint.route("/registry/<prefix>")

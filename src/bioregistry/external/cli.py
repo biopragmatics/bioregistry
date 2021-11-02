@@ -2,8 +2,9 @@
 
 """Command line interface for the bioregistry."""
 
-import click
 import sys
+
+import click
 
 from ..utils import secho
 
