@@ -22,7 +22,8 @@ please make an issue.
 
 ### [`registry.yml`](registry.yml)
 
-This is exactly the same as `registry.json` but dumped as a YAML file.
+This is exactly the same as the consensus `registry.json` but dumped as a YAML
+file.
 
 ### [`registry.tsv`](registry.tsv)
 

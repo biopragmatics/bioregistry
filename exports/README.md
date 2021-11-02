@@ -1,7 +1,7 @@
 # Bioregistry Exports
 
 The source files of the Bioregistry can be accessed through
-https://github.com/biopragmatics/bioregistry/tree/update-exports/src/bioregistry/data.
+[this directory via GitHub](https://github.com/biopragmatics/bioregistry/tree/update-exports/src/bioregistry/data).
 Notably, the [source file for the registry](https://github.com/biopragmatics/bioregistry/raw/update-exports/src/bioregistry/data/bioregistry.json)
 does not contain a consensus view, and therefore it's usually nicer to access
 the Bioregistry's registry through the derived files below.
