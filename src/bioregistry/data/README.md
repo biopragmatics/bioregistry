@@ -34,17 +34,20 @@ The metaregistry contains information about external registries.
 
 ### [`collections.json`](collections.json)
 
-This file contains manually curated collections of prefixes/resources
-for various purposes.
+This file contains manually curated collections of prefixes/resources for
+various purposes.
 
 ### [`mismatch.json`](metaregistry.json)
 
 This file contains the mismatch dictionary, so the alignment algorithm doesn't
-accidentally create resources that are chimera of two different ones. Its
-keys correspond to bioregistry prefixes and its values are dictionaries mapping
-from metaprefixes to wrong external prefixes to avoid.
+accidentally create resources that are chimera of two different ones. Its keys
+correspond to bioregistry prefixes and its values are dictionaries mapping from
+metaprefixes to wrong external prefixes to avoid.
 
 ## Processing Help Files
+
+This directory also houses several *ad hoc* files containing curated information
+for helping process and align external resources.
 
 | File Name                                              | Description                                                              |
 |--------------------------------------------------------|--------------------------------------------------------------------------|
