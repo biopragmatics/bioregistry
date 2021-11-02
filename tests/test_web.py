@@ -2,6 +2,7 @@
 
 """Test for web."""
 
+import sys
 import unittest
 
 from bioregistry.app.wsgi import app
@@ -26,8 +27,11 @@ class TestWeb(unittest.TestCase):
 
     def test_download_resource(self):
         """Test downloading a resource as YAML."""
+        fmts = ["json", "yaml", "turtle"]
+        if sys.version_info[1] >= 7:
+            fmts.append("jsonld")
         with app.test_client() as client:
-            for fmt in ("json", "yaml", "turtle", "jsonld"):
+            for fmt in fmts:
                 with self.subTest(fmt=fmt):
                     res = client.get(f"/api/registry/3dmet?format={fmt}")
                     self.assertEqual(200, res.status_code)
