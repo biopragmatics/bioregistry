@@ -44,8 +44,10 @@ https://bioregistry.io.
 ### 📥 Download
 
 The underlying data of the Bioregistry can be downloaded directly
-from [here](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/bioregistry.json).
-Several exports to YAML, TSV, and RDF can be downloaded via https://bioregistry.io/download.
+from [here](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/).
+Several exports to YAML, TSV, and RDF, including consensus views over the
+registry, can be downloaded via the
+[`exports/`](https://github.com/biopragmatics/bioregistry/tree/main/exports) directory.
 
 The manually curated portions of these data are available under the
 [CC0 1.0 Universal License](https://creativecommons.org/publicdomain/zero/1.0/).
