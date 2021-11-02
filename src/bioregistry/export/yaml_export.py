@@ -2,19 +2,20 @@
 
 """Export components of the bioregistry to YAML."""
 
-import click
 import json
+
+import click
 import yaml
 
-from ..constants import DOCS_DATA
+from ..constants import (
+    COLLECTIONS_YAML_PATH,
+    METAREGISTRY_YAML_PATH,
+    REGISTRY_JSON_PATH,
+    REGISTRY_YAML_PATH,
+)
 from ..resolve import manager
 from ..schema import sanitize_mapping
 from ..utils import read_collections, read_metaregistry
-
-REGISTRY_YAML_PATH = DOCS_DATA / "registry.yml"
-REGISTRY_JSON_PATH = DOCS_DATA / "registry.json"
-METAREGISTRY_YAML_PATH = DOCS_DATA / "metaregistry.yml"
-COLLECTIONS_YAML_PATH = DOCS_DATA / "collections.yml"
 
 
 @click.command()

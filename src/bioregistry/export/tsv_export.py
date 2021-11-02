@@ -3,11 +3,10 @@
 """Export components of the bioregistry to TSV."""
 
 import csv
-import os
 
 import click
 
-from ..constants import DOCS_DATA
+from ..constants import COLLECTIONS_TSV_PATH, METAREGISTRY_TSV_PATH, REGISTRY_TSV_PATH
 from ..uri_format import get_uri_format
 from ..utils import read_collections, read_metaregistry, read_registry
 
@@ -15,17 +14,17 @@ from ..utils import read_collections, read_metaregistry, read_registry
 @click.command()
 def export_tsv():
     """Export TSV."""
-    with open(os.path.join(DOCS_DATA, "collections.tsv"), "w") as file:
+    with COLLECTIONS_TSV_PATH.open("w") as file:
         writer = csv.writer(file, delimiter="\t")
         writer.writerow(COLLECTIONS_HEADER)
         writer.writerows(get_collections_rows())
 
-    with open(os.path.join(DOCS_DATA, "metaregistry.tsv"), "w") as file:
+    with METAREGISTRY_TSV_PATH.open("w") as file:
         writer = csv.writer(file, delimiter="\t")
         writer.writerow(METAREGISTRY_HEADER)
         writer.writerows(get_metaregistry_rows())
 
-    with open(os.path.join(DOCS_DATA, "registry.tsv"), "w") as file:
+    with REGISTRY_TSV_PATH.open("w") as file:
         writer = csv.writer(file, delimiter="\t")
         writer.writerow(REGISTRY_HEADER)
         writer.writerows(get_registry_rows())
