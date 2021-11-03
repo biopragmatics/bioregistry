@@ -6,7 +6,7 @@ Could be extended later for non-permissive information as well as using
 vocabularies like SPDX for storing synonyms.
 """
 
-from typing import Dict, List, Mapping, Optional
+from typing import List, Mapping, Optional
 
 __all__ = [
     "standardize_license",
@@ -122,23 +122,37 @@ REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
         "https://creativecommons.org/licenses/by-nc-sa/2.0",
         "http://creativecommons.org/licenses/by-nc-sa/2.0",
     ],
+    "Artistic License 2.0": [
+        "Artistic License 2.0",
+        "http://opensource.org/licenses/Artistic-2.0",
+        "https://opensource.org/licenses/Artistic-2.0",
+        "http://opensource.org/licenses/Artistic-2.0/",
+        "https://opensource.org/licenses/Artistic-2.0/",
+    ],
+    "hpo": [
+        "HPO",
+        "hpo",
+        "https://hpo.jax.org/app/license",
+    ],
+    "Apache 2.0 License": [
+        "Apache 2.0 License",
+        "LICENSE-2.0",
+        "www.apache.org/licenses/LICENSE-2.0",
+        "http://www.apache.org/licenses/LICENSE-2.0",
+        "https://www.apache.org/licenses/LICENSE-2.0",
+        "http://www.apache.org/licenses/LICENSE-2.0/",
+        "https://www.apache.org/licenses/LICENSE-2.0/",
+    ],
+    "GPL-3.0": [
+        "GPL-3.0",
+        "GPL 3.0",
+        "GNU GPL 3.0",
+        "https://www.gnu.org/licenses/gpl-3.0.en.html",
+        "https://www.gnu.org/licenses/gpl-3.0.en",
+        "https://www.gnu.org/licenses/gpl-3.0",
+    ],
 }
 
-LICENSES: Dict[str, Optional[str]] = {
-    # Apache 2.0
-    "Apache 2.0 License": "Other",
-    "LICENSE-2.0": "Other",
-    "www.apache.org/licenses/LICENSE-2.0": "Other",
-    # GPL
-    "GNU GPL 3.0": "Other",
-    "GPL-3.0": "Other",
-    # BSD
-    "New BSD license": "Other",
-    # Other
-    "hpo": "Other",
-    "Artistic License 2.0": "Other",
+LICENSES: Mapping[str, Optional[str]] = {
+    _v: _k for _k, _vs in REVERSE_LICENSES.items() for _v in _vs
 }
-
-for _k, _vs in REVERSE_LICENSES.items():
-    for _v in _vs:
-        LICENSES[_v] = _k

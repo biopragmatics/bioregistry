@@ -52,8 +52,11 @@ def _process(record):
         "homepage": record.get("homepage"),
         "preferredPrefix": record.get("preferredPrefix"),
         "license": record.get("license", {}).get("label"),
+        "license.url": record.get("license", {}).get("url"),
         "contact": record.get("contact", {}).get("email"),
         "contact.label": record.get("contact", {}).get("label"),
+        "contact.github": record.get("contact", {}).get("github"),
+        "repository": record.get("repository"),
     }
 
     for product in record.get("products", []):
