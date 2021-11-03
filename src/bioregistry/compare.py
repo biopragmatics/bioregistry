@@ -30,9 +30,9 @@ from bioregistry import (
     read_registry,
 )
 from bioregistry.constants import DOCS_IMG
+from bioregistry.license_standardizer import standardize_license
 from bioregistry.resolve import get_external
 from bioregistry.schema import Resource
-from bioregistry.schema.struct import _remap_license
 
 logger = logging.getLogger(__name__)
 
@@ -399,11 +399,11 @@ def _get_license_and_conflicts():
     conflicts = set()
     obo_has_license, ols_has_license = set(), set()
     for key in read_registry():
-        obo_license = _remap_license(get_external(key, "obofoundry").get("license"))
+        obo_license = standardize_license(get_external(key, "obofoundry").get("license"))
         if obo_license:
             obo_has_license.add(key)
 
-        ols_license = _remap_license(get_external(key, "ols").get("license"))
+        ols_license = standardize_license(get_external(key, "ols").get("license"))
         if ols_license:
             ols_has_license.add(key)
 

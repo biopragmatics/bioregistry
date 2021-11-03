@@ -13,6 +13,7 @@ import bioregistry
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
+from bioregistry.license_standardizer import REVERSE_LICENSES
 from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.utils import _norm, curie_to_str, is_mismatch
 
@@ -524,3 +525,9 @@ class TestRegistry(unittest.TestCase):
                     msg=f"If there is a namespace in LUI annotation,"
                     f" then there must be a banana\nregex: {resource.get_pattern()}",
                 )
+
+    def test_licenses(self):
+        """Check license keys don't end with trailing slashes."""
+        for key, values in REVERSE_LICENSES.items():
+            with self.subTest(key=key):
+                self.assertEqual(len(values), len(set(values)), msg=f"duplicates in {key}")

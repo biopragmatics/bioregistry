@@ -14,7 +14,7 @@ from tqdm import tqdm
 
 import bioregistry
 from bioregistry.constants import DOCS_DATA
-from bioregistry.resolve import get_external
+from bioregistry.resolve import get_external, manager
 
 __all__ = [
     "export_warnings",
@@ -123,6 +123,10 @@ def export_warnings():
                 "wrong_patterns": miriam_pattern_wrong,
                 "embedding_rewrites": miriam_embedding_rewrites,
                 "prefix_rewrites": miriam_prefix_rewrites,
+                "license_conflict": [
+                    dict(prefix=prefix, obo=obo, ols=ols)
+                    for prefix, _override, obo, ols in manager.get_license_conflicts()
+                ],
             },
             file,
         )

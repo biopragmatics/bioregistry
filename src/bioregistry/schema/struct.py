@@ -12,7 +12,8 @@ from typing import Any, Callable, ClassVar, Dict, List, Mapping, Optional, Seque
 import pydantic.schema
 from pydantic import BaseModel, Field
 
-from bioregistry.constants import LICENSES, URI_FORMAT_KEY
+from bioregistry.constants import URI_FORMAT_KEY
+from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE, EMAIL_RE_STR
 
 __all__ = [
@@ -988,7 +989,7 @@ class Resource(BaseModel):
         if self.license:
             return self.license
         for metaprefix in ("obofoundry", "ols"):
-            license_value = _remap_license(self.get_external(metaprefix).get("license"))
+            license_value = standardize_license(self.get_external(metaprefix).get("license"))
             if license_value is not None:
                 return license_value
         return None
@@ -998,12 +999,6 @@ class Resource(BaseModel):
         if self.version:
             return self.version
         return self.get_external("ols").get("version")
-
-
-def _remap_license(k: Optional[str]) -> Optional[str]:
-    if k is None:
-        return None
-    return LICENSES.get(k, k)
 
 
 class Registry(BaseModel):

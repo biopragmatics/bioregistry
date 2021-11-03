@@ -5,6 +5,7 @@
 import logging
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple, Union
 
+from .license_standardizer import standardize_license
 from .schema import Resource, sanitize_model
 from .utils import NormDict, curie_to_str, read_registry, write_registry
 
@@ -261,6 +262,26 @@ class ResourceManager:
                 proprietary=resource.proprietary,
             )
         )
+
+    def get_license_conflicts(self):
+        """Get license conflicts."""
+        conflicts = []
+        for prefix, entry in self.registry.items():
+            override = entry.license
+            obo_license = entry.get_external("obofoundry").get("license")
+            ols_license = entry.get_external("ols").get("license")
+            if 2 > sum(license_ is not None for license_ in (override, obo_license, ols_license)):
+                continue  # can't be a conflict if all none or only 1 is available
+            obo_norm = standardize_license(obo_license)
+            ols_norm = standardize_license(ols_license)
+            first, *rest = [
+                norm_license
+                for norm_license in (override, obo_norm, ols_norm)
+                if norm_license is not None
+            ]
+            if any(first != element for element in rest):
+                conflicts.append((prefix, override, obo_license, ols_license))
+        return conflicts
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
