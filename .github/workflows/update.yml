@@ -17,6 +17,7 @@ jobs:
       - name: Create local changes
         id: update
         run: |
+          pip install --upgrade pip setuptools wheel
           pip install -e .[align,export,charts]
           bioregistry update
         env:
