@@ -53,6 +53,7 @@ from .resolve import (  # noqa:F401
     has_no_terms,
     is_deprecated,
     is_proprietary,
+    manager,
     normalize_curie,
     normalize_parsed_curie,
     normalize_prefix,
