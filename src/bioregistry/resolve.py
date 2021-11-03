@@ -23,7 +23,7 @@ __all__ = [
     "has_no_terms",
     "is_deprecated",
     "is_proprietary",
-    "get_email",
+    "get_contact",
     "get_homepage",
     "get_obo_download",
     "get_json_download",
@@ -487,7 +487,7 @@ def is_deprecated(prefix: str) -> bool:
     return entry.is_deprecated()
 
 
-def get_email(prefix: str) -> Optional[str]:
+def get_contact(prefix: str) -> Optional[str]:
     """Return the contact email, if available.
 
     :param prefix: The prefix to lookup

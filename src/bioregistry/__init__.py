@@ -16,10 +16,10 @@ from .parse_iri import curie_from_iri, parse_iri  # noqa:F401
 from .resolve import (  # noqa:F401
     get_banana,
     get_bioportal_prefix,
+    get_contact,
     get_curie_pattern,
     get_default_format,
     get_description,
-    get_email,
     get_example,
     get_fairsharing_prefix,
     get_homepage,
