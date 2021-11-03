@@ -39,7 +39,7 @@ CC_BY_SA_UNSPECIFIED = "CC BY-SA"
 ##########################
 
 #: https://creativecommons.org/publicdomain/zero/1.0/
-CC_0 = "CC-0"
+CC_0 = "CC0 1.0"
 
 ###################
 # LEGACY LICENSES #
@@ -51,6 +51,10 @@ CC_BY_3 = "CC BY 3.0"
 CC_BY_2 = "CC BY 2.0"
 #: https://creativecommons.org/licenses/by-nc-sa/2.0/
 CC_BY_NC_SA_2 = "CC BY-NC-SA 2.0"
+
+#: https://creativecommons.org/licenses/by-sa/2.0/
+CC_BY_SA_2 = "CC BY-SA 2.0"
+
 #: https://creativecommons.org/licenses/by/1.0/
 CC_BY_1 = "CC BY 1.0"
 
@@ -121,6 +125,9 @@ REVERSE_LICENSES: Mapping[Optional[str], List[str]] = {
         "CC BY NC SA 2.0",
         "https://creativecommons.org/licenses/by-nc-sa/2.0",
         "http://creativecommons.org/licenses/by-nc-sa/2.0",
+    ],
+    CC_BY_SA_2: [
+        "https://creativecommons.org/licenses/by-sa/2.0/",
     ],
     "Artistic License 2.0": [
         "Artistic License 2.0",
