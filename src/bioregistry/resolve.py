@@ -494,16 +494,16 @@ def get_email(prefix: str) -> Optional[str]:
     :returns: The resource's contact email address, if it is available.
 
     >>> import bioregistry
-    >>> bioregistry.get_email('bioregistry')  # from bioregistry curation
+    >>> bioregistry.get_contact('bioregistry')  # from bioregistry curation
     'cthoyt@gmail.com'
-    >>> bioregistry.get_email('chebi')
+    >>> bioregistry.get_contact('chebi')
     'amalik@ebi.ac.uk'
-    >>> assert bioregistry.get_email('pass2') is None  # dead resource
+    >>> assert bioregistry.get_contact('pass2') is None  # dead resource
     """
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get_email()
+    return entry.get_contact()
 
 
 def get_homepage(prefix: str) -> Optional[str]:

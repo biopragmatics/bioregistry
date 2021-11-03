@@ -5,7 +5,7 @@
 import logging
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple, Union
 
-from .schema import Resource, sanitize_dict
+from .schema import Resource, sanitize_dict, sanitize_model
 from .utils import NormDict, curie_to_str, read_registry, write_registry
 
 __all__ = [
@@ -228,29 +228,29 @@ class ResourceManager:
 
     @staticmethod
     def _rasterize_resource(prefix: str, resource: Resource):
-        return sanitize_dict(
-            dict(
+        return sanitize_model(
+            Resource(
                 preferred_prefix=resource.get_preferred_prefix() or prefix,
                 name=resource.get_name(),
                 description=resource.get_description(),
                 pattern=resource.get_pattern(),
-                url=resource.get_uri_format(),
+                uri_format=resource.get_uri_format(),
                 homepage=resource.get_homepage(),
                 license=resource.get_license(),
                 version=resource.get_version(),
-                contact=resource.get_email(),
+                contact=resource.get_contact(),
                 example=resource.get_example(),
-                synonyms=sorted(resource.get_synonyms()),
+                synonyms=resource.get_synonyms(),
                 comment=resource.comment,
                 mappings=resource.get_mappings(),
-                providers=[p.dict() for p in resource.get_extra_providers()],
+                providers=resource.get_extra_providers(),
                 references=resource.references,
                 # MIRIAM compatibility
                 banana=resource.get_banana(),
                 namespace_in_lui=resource.get_namespace_in_lui(),
                 # Provenance
-                contributor=resource.contributor and resource.contributor.dict(),
-                reviewer=resource.reviewer and resource.reviewer.dict(),
+                contributor=resource.contributor,
+                reviewer=resource.reviewer,
                 # Ontology Relations
                 part_of=resource.part_of,
                 provides=resource.provides,
