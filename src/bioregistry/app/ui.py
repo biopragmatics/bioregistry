@@ -95,7 +95,7 @@ def resource(prefix: str):
         json_download=bioregistry.get_json_download(prefix),
         namespace_in_lui=bioregistry.get_namespace_in_lui(prefix),
         deprecated=bioregistry.is_deprecated(prefix),
-        contact=bioregistry.get_email(prefix),
+        contact=bioregistry.get_contact(prefix),
         banana=bioregistry.get_banana(prefix),
         description=bioregistry.get_description(prefix),
         providers=None if example is None else _get_resource_providers(prefix, example),

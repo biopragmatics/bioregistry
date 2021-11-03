@@ -305,7 +305,7 @@ class TestRegistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_version("nope"))
         self.assertIsNone(bioregistry.get_name("nope"))
         self.assertIsNone(bioregistry.get_example("nope"))
-        self.assertIsNone(bioregistry.get_email("nope"))
+        self.assertIsNone(bioregistry.get_contact("nope"))
         self.assertIsNone(bioregistry.get_mappings("nope"))
         self.assertIsNone(bioregistry.get_fairsharing_prefix("nope"))
         self.assertIsNone(bioregistry.get_obofoundry_prefix("nope"))

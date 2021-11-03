@@ -107,7 +107,7 @@
           "type": "string"
         },
         "uri_format": {
-          "title": "Uri Format",
+          "title": "URI Format",
           "description": "The URI format string, which must have at least one ``$1`` in it",
           "type": "string"
         }
@@ -140,8 +140,8 @@
           "description": "The regular expression pattern for identifiers in the resource",
           "type": "string"
         },
-        "url": {
-          "title": "Format URI",
+        "uri_format": {
+          "title": "URI Format",
           "description": "The URI format string, which must have at least one ``$1`` in it",
           "type": "string"
         },
@@ -166,6 +166,16 @@
         "example": {
           "title": "Example",
           "description": "An example local identifier for the resource, explicitly excluding any redundant usage of the prefix in the identifier. For example, a GO identifier should only look like 1234567 and not like GO:1234567",
+          "type": "string"
+        },
+        "license": {
+          "title": "License",
+          "description": "The license for the resource",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "description": "The version for the resource",
           "type": "string"
         },
         "part_of": {

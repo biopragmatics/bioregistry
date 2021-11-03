@@ -131,6 +131,14 @@ class Resource(BaseModel):
         "usage of the prefix in the identifier. For example, a GO identifier should only "
         "look like 1234567 and not like GO:1234567",
     )
+    #: The license for the resource
+    license: Optional[str] = Field(
+        description="The license for the resource",
+    )
+    #: The version for the resource
+    version: Optional[str] = Field(
+        description="The version for the resource",
+    )
     #: An annotation between this prefix and a super-prefix. For example, ``chembl.compound`` is a
     #: part of ``chembl``.
     part_of: Optional[str] = Field(
@@ -518,15 +526,15 @@ class Resource(BaseModel):
             ("obofoundry", "ols", "miriam", "n2t", "wikidata", "go", "ncbi", "cellosaurus"),
         )
 
-    def get_email(self) -> Optional[str]:
+    def get_contact(self) -> Optional[str]:
         """Return the contact email, if available.
 
         :returns: The resource's contact email address, if it is available.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("bioregistry").get_email()  # from bioregistry curation
+        >>> get_resource("bioregistry").get_contact()  # from bioregistry curation
         'cthoyt@gmail.com'
-        >>> get_resource("chebi").get_email()
+        >>> get_resource("chebi").get_contact()
         'amalik@ebi.ac.uk'
         """
         rv = self.get_prefix_key("contact", ("obofoundry", "ols"))
@@ -977,6 +985,8 @@ class Resource(BaseModel):
 
     def get_license(self) -> Optional[str]:
         """Get the license for the resource."""
+        if self.license:
+            return self.license
         for metaprefix in ("obofoundry", "ols"):
             license_value = _remap_license(self.get_external(metaprefix).get("license"))
             if license_value is not None:
@@ -985,6 +995,8 @@ class Resource(BaseModel):
 
     def get_version(self) -> Optional[str]:
         """Get the version for the resource."""
+        if self.version:
+            return self.version
         return self.get_external("ols").get("version")
 
 
