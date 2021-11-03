@@ -949,7 +949,10 @@ class Resource(BaseModel):
         pattern = self.get_pattern_re()
         if pattern is None:
             return None
-        return bool(pattern.match(identifier))
+        match = pattern.match(identifier)
+        if not match:
+            return False
+        return match.group(0) == identifier
 
     def is_known_identifier(self, identifier: str) -> Optional[bool]:
         """Check that a local unique identifier can be normalized and also matches a prefix's pattern."""
