@@ -5,7 +5,7 @@
 import logging
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple, Union
 
-from .schema import Resource, sanitize_dict, sanitize_model
+from .schema import Resource, sanitize_model
 from .utils import NormDict, curie_to_str, read_registry, write_registry
 
 __all__ = [
