@@ -13,7 +13,7 @@ from ..constants import (
     REGISTRY_JSON_PATH,
     REGISTRY_YAML_PATH,
 )
-from ..resolve import manager
+from ..resource_manager import manager
 from ..schema import sanitize_mapping
 from ..utils import read_collections, read_metaregistry
 

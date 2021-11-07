@@ -11,7 +11,7 @@
 import warnings
 from typing import List, Mapping, Optional, Sequence, Tuple
 
-from .resolve import manager
+from .resource_manager import manager
 
 __all__ = [
     "get_uri_format",
