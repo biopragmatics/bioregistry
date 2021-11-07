@@ -72,7 +72,7 @@ class Manager:
 
     @classmethod
     def from_path(cls, path: Union[str, Path]) -> "Manager":
-        """Load a manager from the given path"""
+        """Load a manager from the given path."""
         return cls(_registry_from_path(path))
 
     def write_registry(self):
