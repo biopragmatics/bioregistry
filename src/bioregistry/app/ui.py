@@ -112,7 +112,7 @@ def metaresource(metaprefix: str):
     """Serve the a Bioregistry registry page."""
     entry = bioregistry.get_registry(metaprefix)
     if entry is None:
-        abort(404, f"Invalid metaprefix: {metaprefix}")
+        return abort(404, f"Invalid metaprefix: {metaprefix}")
 
     example_identifier = bioregistry.get_example(entry.example)
     return render_template(
@@ -246,7 +246,7 @@ def contributor(orcid: str):
     """Serve the a Bioregistry contributor page."""
     author = bioregistry.read_contributors().get(orcid)
     if author is None:
-        abort(404)
+        return abort(404)
     return render_template(
         "contributor.html",
         contributor=author,
