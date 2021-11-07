@@ -798,10 +798,10 @@
     "pattern": "^([A-Z]+-)?\\d+$",
     "preferred_prefix": "atcc",
     "synonyms": [
-      "ATCC number",
-      "ATCC(in host)",
       "ATCC",
-      "ATCC(dna)"
+      "ATCC number",
+      "ATCC(dna)",
+      "ATCC(in host)"
     ],
     "uri_format": "https://www.atcc.org/products/$1"
   },
@@ -2047,10 +2047,10 @@
       }
     ],
     "synonyms": [
-      "SECONDARY_CAS_RN",
+      "CASID",
       "CAS_RN",
-      "cas_id",
-      "CASID"
+      "SECONDARY_CAS_RN",
+      "cas_id"
     ],
     "uri_format": "https://commonchemistry.cas.org/detail?ref=$1"
   },
@@ -2454,8 +2454,8 @@
       }
     ],
     "synonyms": [
-      "CHEBIID",
       "CHEBI",
+      "CHEBIID",
       "ChEBI"
     ],
     "uri_format": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1"
@@ -2472,8 +2472,8 @@
     "pattern": "^CHEMBL\\d+$",
     "preferred_prefix": "chembl",
     "synonyms": [
-      "ChEMBL_ID",
       "ChEMBL",
+      "ChEMBL_ID",
       "chembl"
     ],
     "uri_format": "https://www.ebi.ac.uk/chembl/entity/$1"
@@ -4936,8 +4936,8 @@
     "pattern": "^DB\\d{5}$",
     "preferred_prefix": "drugbank",
     "synonyms": [
-      "DrugBank",
-      "DRUGBANK_ID"
+      "DRUGBANK_ID",
+      "DrugBank"
     ],
     "uri_format": "http://www.drugbank.ca/drugs/$1"
   },
@@ -5116,12 +5116,12 @@
       }
     ],
     "synonyms": [
+      "EC",
+      "EC-CODE",
+      "ECCODE",
       "EC_CODE",
       "ec-code",
-      "ECCODE",
-      "intenz",
-      "EC-CODE",
-      "EC"
+      "intenz"
     ],
     "uri_format": "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$1"
   },
@@ -5493,8 +5493,8 @@
     "preferred_prefix": "EHDAA2",
     "synonyms": [
       "EHDAA2_RETIRED",
-      "RETIRED_EHDAA2",
-      "HDAA2"
+      "HDAA2",
+      "RETIRED_EHDAA2"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/EHDAA2_$1",
     "version": "2013-07-04"
@@ -6199,8 +6199,8 @@
     "part_of": "flybase",
     "preferred_prefix": "FBbt",
     "synonyms": [
-      "FBbt_root",
-      "FBbt"
+      "FBbt",
+      "FBbt_root"
     ],
     "uri_format": "https://flybase.org/cgi-bin/cvreport.pl?id=FBbt:$1",
     "version": "2021-10-14"
@@ -6442,8 +6442,8 @@
       }
     ],
     "synonyms": [
-      "FlyBase",
-      "FB"
+      "FB",
+      "FlyBase"
     ],
     "uri_format": "https://flybase.org/reports/$1"
   },
@@ -6766,8 +6766,8 @@
     "name": "Genetic and Rare Diseases Information Center",
     "preferred_prefix": "gard",
     "synonyms": [
-      "Genetic and Rare Diseases Information Center",
-      "GARD"
+      "GARD",
+      "Genetic and Rare Diseases Information Center"
     ]
   },
   "gateway": {
@@ -7428,12 +7428,12 @@
       }
     ],
     "synonyms": [
-      "gobpid",
-      "goccid",
-      "gomfid",
-      "gomf",
       "gobp",
-      "gocc"
+      "gobpid",
+      "gocc",
+      "goccid",
+      "gomf",
+      "gomfid"
     ],
     "uri_format": "http://amigo.geneontology.org/amigo/term/GO:$1",
     "version": "2021-10-26"
@@ -8098,9 +8098,9 @@
     "pattern": "^[A-Z0-9-]+(#[A-Z0-9-]+)?$",
     "preferred_prefix": "hgnc.genefamily",
     "synonyms": [
-      "hgnc.family",
       "GFAM",
-      "HGNC_GROUP"
+      "HGNC_GROUP",
+      "hgnc.family"
     ],
     "uri_format": "https://www.genenames.org/cgi-bin/genefamilies/set/$1"
   },
@@ -8600,8 +8600,8 @@
     "synonyms": [
       "ICD",
       "ICD-10",
-      "ICD10CM",
-      "ICD10"
+      "ICD10",
+      "ICD10CM"
     ],
     "uri_format": "http://apps.who.int/classifications/icd10/browse/2010/en#/$1"
   },
@@ -8630,14 +8630,14 @@
     "name": "International Classification of Diseases 9th Revision",
     "preferred_prefix": "icd9",
     "synonyms": [
+      "IC9CM",
       "ICD9",
+      "ICD9CM",
       "ICD9CM_2005",
       "ICD9CM_2006",
       "ICD9_2005",
-      "ICD9CM",
-      "MTHICD9_2006",
-      "IC9CM",
-      "ICDCM_2005"
+      "ICDCM_2005",
+      "MTHICD9_2006"
     ]
   },
   "icdc": {
@@ -9358,8 +9358,8 @@
       }
     ],
     "synonyms": [
-      "IPR",
       "IP",
+      "IPR",
       "InterPro"
     ],
     "uri_format": "https://www.ebi.ac.uk/interpro/entry/$1"
@@ -9564,8 +9564,8 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "iuphar.receptor",
     "synonyms": [
-      "IUPHARobj",
-      "IUPHAR_GPCR"
+      "IUPHAR_GPCR",
+      "IUPHARobj"
     ],
     "uri_format": "http://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=$1"
   },
@@ -9731,8 +9731,8 @@
     "pattern": "^C\\d+$",
     "preferred_prefix": "kegg.compound",
     "synonyms": [
-      "KEGG.COMPOUND",
-      "KEGG COMPOUND"
+      "KEGG COMPOUND",
+      "KEGG.COMPOUND"
     ],
     "uri_format": "https://www.kegg.jp/entry/$1"
   },
@@ -9766,8 +9766,8 @@
     "pattern": "^D\\d+$",
     "preferred_prefix": "kegg.drug",
     "synonyms": [
-      "KEGG.DRUG",
-      "KEGG DRUG"
+      "KEGG DRUG",
+      "KEGG.DRUG"
     ],
     "uri_format": "https://www.kegg.jp/entry/$1"
   },
@@ -9831,8 +9831,8 @@
     "pattern": "^(T0\\d+|\\w{3,5})$",
     "preferred_prefix": "kegg.genome",
     "synonyms": [
-      "kegg_genomes",
-      "kegg_genome"
+      "kegg_genome",
+      "kegg_genomes"
     ],
     "uri_format": "http://www.kegg.jp/entry/$1"
   },
@@ -10235,9 +10235,9 @@
       }
     ],
     "synonyms": [
-      "LIPID_MAPS_instance",
+      "LIPID MAPS",
       "LIPID_MAPS_class",
-      "LIPID MAPS"
+      "LIPID_MAPS_instance"
     ],
     "uri_format": "http://www.lipidmaps.org/data/LMSDRecord.php?LMID=$1"
   },
@@ -10624,8 +10624,8 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "meddra",
     "synonyms": [
-      "MeDRA",
       "MEDRA",
+      "MeDRA",
       "MedDRA",
       "Medical Dictionary for Regulatory Activities"
     ],
@@ -10725,15 +10725,15 @@
     "pattern": "^(C|D)\\d{6,9}$",
     "preferred_prefix": "mesh",
     "synonyms": [
-      "MESHD",
       "MESH",
-      "MSH",
       "MESHA",
+      "MESHC",
+      "MESHCS",
+      "MESHD",
       "MESHPP",
       "MESH_DESCRIPTOR_UI",
       "MESH_SUPPLEMENTAL_RECORD_UI",
-      "MESHCS",
-      "MESHC"
+      "MSH"
     ],
     "uri_format": "https://meshb.nlm.nih.gov/record/ui?ui=$1"
   },
@@ -11238,8 +11238,8 @@
     "name": "OMIM Phenotypic Series",
     "preferred_prefix": "mim.ps",
     "synonyms": [
-      "PS",
-      "OMIMPS"
+      "OMIMPS",
+      "PS"
     ],
     "uri_format": "https://omim.org/phenotypicSeries/$1"
   },
@@ -12370,8 +12370,8 @@
     "synonyms": [
       "EGID",
       "NCBIGene",
-      "entrez gene/locuslink",
-      "entrez"
+      "entrez",
+      "entrez gene/locuslink"
     ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/gene/$1"
   },
@@ -12437,14 +12437,14 @@
       }
     ],
     "synonyms": [
-      "NCBI_taxid",
       "NCBITaxon",
-      "TaxonomyID",
       "NCBI_Taxon_ID",
+      "NCBI_taxid",
       "TAX",
+      "TaxonomyID",
       "taxid",
-      "taxonomy",
-      "taxon"
+      "taxon",
+      "taxonomy"
     ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1",
     "version": "2021-06-10"
@@ -12484,15 +12484,15 @@
     "pattern": "^C\\d+$",
     "preferred_prefix": "NCIT",
     "synonyms": [
-      "NCI_Thesaurus",
-      "NCITm",
+      "NCI",
       "NCI2004_11_17",
       "NCIT",
-      "NCITt",
       "NCIT_Thesaurus",
-      "NCI",
-      "ncithesaurus",
-      "NCIt"
+      "NCITm",
+      "NCITt",
+      "NCI_Thesaurus",
+      "NCIt",
+      "ncithesaurus"
     ],
     "uri_format": "http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1",
     "version": "21.05d"
@@ -13816,8 +13816,8 @@
     "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$",
     "preferred_prefix": "orcid",
     "synonyms": [
-      "ORCiD",
-      "ORCID"
+      "ORCID",
+      "ORCiD"
     ],
     "uri_format": "https://orcid.org/$1"
   },
@@ -14394,8 +14394,8 @@
       }
     ],
     "synonyms": [
-      "wwpdb",
-      "pdbe"
+      "pdbe",
+      "wwpdb"
     ],
     "uri_format": "https://www.rcsb.org/structure/$1"
   },
@@ -15735,12 +15735,12 @@
       }
     ],
     "synonyms": [
-      "pubchem_id",
-      "Pubchem",
-      "PUBCHEM_CID",
-      "DSSTox_CID",
       "CID",
-      "PubChem_Compound_CID"
+      "DSSTox_CID",
+      "PUBCHEM_CID",
+      "PubChem_Compound_CID",
+      "Pubchem",
+      "pubchem_id"
     ],
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/compound/$1"
   },
@@ -15821,9 +15821,9 @@
       }
     ],
     "synonyms": [
-      "pmid",
+      "MEDLINE",
       "PMID",
-      "MEDLINE"
+      "pmid"
     ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/pubmed/$1"
   },
@@ -16489,9 +16489,9 @@
     "pattern": "^RO_\\d{7}$",
     "preferred_prefix": "RO",
     "synonyms": [
-      "oborel",
+      "RO_proposed_relation",
       "obo_rel",
-      "RO_proposed_relation"
+      "oborel"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/RO_$1",
     "version": "2021-10-27"
@@ -17334,27 +17334,27 @@
     "pattern": "^(\\w+)?\\d+$",
     "preferred_prefix": "snomedct",
     "synonyms": [
-      "SNOMEDCT_US_2019_09_01",
-      "SCTID_2010_1_31",
-      "SNOMEDCT_US_2020_03_01",
-      "SNOMEDCT_US_2019_03_01",
-      "SNOMEDCTCT_2018_03_01",
       "SCTID",
+      "SCTID_2010_1_31",
       "SNOMECT",
-      "SNOMED_CT",
-      "SNOMEDCT_US",
-      "SNOMEDCT_US_2018_09_01",
-      "SNOWMEDCT_US",
-      "SNOMEDCT_2010_1_31",
-      "SNOMED_CT_US_2018_03_01",
-      "SNOMEDCTCT",
-      "SNOMEDCT_US_2018_03_01",
-      "SNOWMEDCT_US_2018_03_01",
-      "SNOMEDCT",
-      "SNOMEDCT_US_2020_09_01",
-      "SNOMEDCTCT_2019_03_01",
       "SNOMED",
-      "SNOWMEDCT"
+      "SNOMEDCT",
+      "SNOMEDCTCT",
+      "SNOMEDCTCT_2018_03_01",
+      "SNOMEDCTCT_2019_03_01",
+      "SNOMEDCT_2010_1_31",
+      "SNOMEDCT_US",
+      "SNOMEDCT_US_2018_03_01",
+      "SNOMEDCT_US_2018_09_01",
+      "SNOMEDCT_US_2019_03_01",
+      "SNOMEDCT_US_2019_09_01",
+      "SNOMEDCT_US_2020_03_01",
+      "SNOMEDCT_US_2020_09_01",
+      "SNOMED_CT",
+      "SNOMED_CT_US_2018_03_01",
+      "SNOWMEDCT",
+      "SNOWMEDCT_US",
+      "SNOWMEDCT_US_2018_03_01"
     ],
     "uri_format": "http://www.snomedbrowser.com/Codes/Details/$1"
   },
@@ -17761,8 +17761,8 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "swisslipid",
     "synonyms": [
-      "swisslipids",
-      "slm"
+      "slm",
+      "swisslipids"
     ],
     "uri_format": "https://www.swisslipids.org/#/entity/SLM:$1"
   },
@@ -18378,9 +18378,9 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "UBERON",
     "synonyms": [
+      "UBERON",
       "Uber-anatomy ontology",
-      "Uberon",
-      "UBERON"
+      "Uberon"
     ],
     "uri_format": "http://purl.bioontology.org/ontology/UBERON/UBERON:$1",
     "version": "2021-10-01"
@@ -18672,11 +18672,11 @@
       }
     ],
     "synonyms": [
+      "SwissProt",
+      "UP",
       "UniProt",
       "UniProtKB",
-      "uniprot/swiss-prot",
-      "UP",
-      "SwissProt"
+      "uniprot/swiss-prot"
     ],
     "uri_format": "http://purl.uniprot.org/uniprot/$1"
   },
@@ -19694,8 +19694,8 @@
       }
     ],
     "synonyms": [
-      "wb",
       "WB_REF",
+      "wb",
       "wormbase"
     ],
     "uri_format": "https://www.wormbase.org/get?name=$1"

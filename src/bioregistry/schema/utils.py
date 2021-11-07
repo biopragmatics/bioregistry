@@ -22,7 +22,14 @@ EMAIL_RE = re.compile(EMAIL_RE_STR)
 
 def sanitize_dict(d):
     """Remove all keys that have none values from a dict."""
-    return {key: value for key, value in d.items() if value}
+    rv = {}
+    for key, value in d.items():
+        if not value:
+            continue
+        if key == "synonyms":
+            value = sorted(value)
+        rv[key] = value
+    return rv
 
 
 def sanitize_model(base_model: BaseModel) -> Mapping[str, Any]:
