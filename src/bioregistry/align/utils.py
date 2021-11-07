@@ -9,7 +9,7 @@ import click
 from tabulate import tabulate
 
 from ..data import EXTERNAL
-from ..resource_manager import ResourceManager
+from ..resource_manager import Manager
 from ..schema import Resource
 from ..utils import is_mismatch, read_metaregistry
 
@@ -45,7 +45,7 @@ class Aligner(ABC):
         if self.key not in read_metaregistry():
             raise TypeError(f"invalid metaprefix for aligner: {self.key}")
 
-        self.manager = ResourceManager()
+        self.manager = Manager()
         self.internal_registry = self.manager.registry
 
         kwargs = self.getter_kwargs or {}

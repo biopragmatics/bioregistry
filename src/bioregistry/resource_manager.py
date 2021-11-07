@@ -10,7 +10,8 @@ from .schema import Resource, sanitize_model
 from .utils import NormDict, curie_to_str, read_registry, write_registry
 
 __all__ = [
-    "ResourceManager",
+    "Manager",
+    "manager",
 ]
 
 logger = logging.getLogger(__name__)
@@ -38,7 +39,7 @@ def _synonym_to_canonical(registry: Mapping[str, Resource]) -> NormDict:
     return norm_synonym_to_key
 
 
-class ResourceManager:
+class Manager:
     """A manager for functionality related to a metaregistry."""
 
     def __init__(self, registry: Optional[Mapping[str, Resource]] = None):
@@ -299,3 +300,7 @@ def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
 def _sort_key(kv: Tuple[str, str]) -> int:
     """Return a value appropriate for sorting a pair of prefix/IRI."""
     return -len(kv[0])
+
+
+#: The default manager for the Bioregistry
+manager = Manager()

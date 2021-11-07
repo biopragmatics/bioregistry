@@ -6,7 +6,7 @@ import logging
 from functools import lru_cache
 from typing import Any, Dict, Mapping, Optional, Set, Tuple, Union
 
-from .resource_manager import ResourceManager
+from .resource_manager import manager
 from .schema import Resource
 
 __all__ = [
@@ -38,8 +38,6 @@ __all__ = [
 ]
 
 logger = logging.getLogger(__name__)
-
-manager = ResourceManager()
 
 
 def get_resource(prefix: str) -> Optional[Resource]:
@@ -731,3 +729,8 @@ def get_curie_pattern(prefix: str) -> Optional[str]:
     :return: The regular expression pattern to match CURIEs against
     """
     return manager.get_curie_pattern(prefix)
+
+
+def get_license_conflicts():
+    """Get license conflicts."""
+    return manager.get_license_conflicts()

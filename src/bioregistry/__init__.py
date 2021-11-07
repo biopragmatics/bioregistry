@@ -26,6 +26,7 @@ from .resolve import (  # noqa:F401
     get_identifiers_org_prefix,
     get_json_download,
     get_license,
+    get_license_conflicts,
     get_mappings,
     get_miriam_uri_format,
     get_miriam_uri_prefix,
@@ -53,7 +54,6 @@ from .resolve import (  # noqa:F401
     has_no_terms,
     is_deprecated,
     is_proprietary,
-    manager,
     normalize_curie,
     normalize_parsed_curie,
     normalize_prefix,
@@ -74,6 +74,7 @@ from .resolve_identifier import (  # noqa:F401
     get_providers_list,
     is_known_identifier,
 )
+from .resource_manager import Manager, manager
 from .schema.struct import Author, Collection, Provider, Registry, Resource  # noqa:F401
 from .uri_format import (  # noqa:F401
     get_format_urls,

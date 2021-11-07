@@ -5,7 +5,6 @@
 import unittest
 
 import bioregistry
-from bioregistry.resource_manager import ResourceManager
 
 
 class TestResourceManager(unittest.TestCase):
@@ -13,7 +12,7 @@ class TestResourceManager(unittest.TestCase):
 
     def setUp(self) -> None:
         """Set up the test case with a resource manager."""
-        self.manager = ResourceManager()
+        self.manager = bioregistry.Manager()
 
     def test_prefix_map_preferred(self):
         """Test using preferred prefixes in the prefix map."""
