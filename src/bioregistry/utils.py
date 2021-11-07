@@ -9,7 +9,8 @@ from collections import defaultdict
 from dataclasses import asdict, is_dataclass
 from datetime import datetime
 from functools import lru_cache
-from typing import Any, List, Mapping, Set
+from pathlib import Path
+from typing import Any, List, Mapping, Set, Union
 
 import click
 import requests
@@ -41,12 +42,11 @@ def read_metaregistry() -> Mapping[str, Registry]:
 @lru_cache(maxsize=1)
 def read_registry() -> Mapping[str, Resource]:
     """Read the Bioregistry as JSON."""
-    return read_registry_helper()
+    return _registry_from_path(BIOREGISTRY_PATH)
 
 
-def read_registry_helper() -> Mapping[str, Resource]:
-    """Read the Bioregistry as JSON, but don't cache."""
-    with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
+def _registry_from_path(path: Union[str, Path]) -> Mapping[str, Resource]:
+    with open(path, encoding="utf-8") as file:
         data = json.load(file)
     return {key: Resource(**value) for key, value in data.items()}
 

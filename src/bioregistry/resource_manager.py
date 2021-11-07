@@ -3,6 +3,7 @@
 """A class-based client to a metaregistry."""
 
 import logging
+from pathlib import Path
 from typing import (
     Any,
     Dict,
@@ -18,7 +19,13 @@ from typing import (
 
 from .license_standardizer import standardize_license
 from .schema import Resource, sanitize_model
-from .utils import NormDict, curie_to_str, read_registry, write_registry
+from .utils import (
+    NormDict,
+    _registry_from_path,
+    curie_to_str,
+    read_registry,
+    write_registry,
+)
 
 __all__ = [
     "Manager",
@@ -62,6 +69,11 @@ class Manager:
             registry = read_registry()
         self.registry = registry
         self.synonyms = _synonym_to_canonical(registry)
+
+    @classmethod
+    def from_path(cls, path: Union[str, Path]) -> "Manager":
+        """Load a manager from the given path"""
+        return cls(_registry_from_path(path))
 
     def write_registry(self):
         """Write the registry."""
