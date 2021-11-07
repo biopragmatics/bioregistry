@@ -805,10 +805,10 @@ atcc:
   pattern: ^([A-Z]+-)?\d+$
   preferred_prefix: atcc
   synonyms:
-  - ATCC number
-  - ATCC(in host)
   - ATCC
+  - ATCC number
   - ATCC(dna)
+  - ATCC(in host)
   uri_format: https://www.atcc.org/products/$1
 atcvet:
   description: The ATCvet system for the classification of veterinary medicines is
@@ -2087,10 +2087,10 @@ cas:
     name: Scholia
     uri_format: https://scholia.toolforge.org/cas/$1
   synonyms:
-  - SECONDARY_CAS_RN
-  - CAS_RN
-  - cas_id
   - CASID
+  - CAS_RN
+  - SECONDARY_CAS_RN
+  - cas_id
   uri_format: https://commonchemistry.cas.org/detail?ref=$1
 cath:
   description: CATH is a classification of protein structural domains. We group protein
@@ -2514,8 +2514,8 @@ chebi:
     name: ChEBI
     uri_format: https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=$1
   synonyms:
-  - CHEBIID
   - CHEBI
+  - CHEBIID
   - ChEBI
   uri_format: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1
 chembl:
@@ -2531,8 +2531,8 @@ chembl:
   pattern: ^CHEMBL\d+$
   preferred_prefix: chembl
   synonyms:
-  - ChEMBL_ID
   - ChEMBL
+  - ChEMBL_ID
   - chembl
   uri_format: https://www.ebi.ac.uk/chembl/entity/$1
 chembl.compound:
@@ -5046,8 +5046,8 @@ drugbank:
   pattern: ^DB\d{5}$
   preferred_prefix: drugbank
   synonyms:
-  - DrugBank
   - DRUGBANK_ID
+  - DrugBank
   uri_format: http://www.drugbank.ca/drugs/$1
 drugbank.salt:
   description: DrugBank is a web-enabled database containing comprehensive molecular
@@ -5209,12 +5209,12 @@ eccode:
     name: Enzyme nomenclature database, ExPASy (Expert Protein Analysis System)
     uri_format: https://enzyme.expasy.org/EC/$1
   synonyms:
+  - EC
+  - EC-CODE
+  - ECCODE
   - EC_CODE
   - ec-code
-  - ECCODE
   - intenz
-  - EC-CODE
-  - EC
   uri_format: https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$1
 ecg:
   description: The Electrocardiography (ECG) Ontology is a Driving Biological Project
@@ -5613,8 +5613,8 @@ ehdaa2:
   preferred_prefix: EHDAA2
   synonyms:
   - EHDAA2_RETIRED
-  - RETIRED_EHDAA2
   - HDAA2
+  - RETIRED_EHDAA2
   uri_format: http://purl.obolibrary.org/obo/EHDAA2_$1
   version: '2013-07-04'
 elm:
@@ -6337,8 +6337,8 @@ fbbt:
   part_of: flybase
   preferred_prefix: FBbt
   synonyms:
-  - FBbt_root
   - FBbt
+  - FBbt_root
   uri_format: https://flybase.org/cgi-bin/cvreport.pl?id=FBbt:$1
   version: '2021-10-14'
 fbcv:
@@ -6563,8 +6563,8 @@ flybase:
     name: FlyBase through the Alliance of Genome Resources
     uri_format: https://www.alliancegenome.org/gene/FB:$1
   synonyms:
-  - FlyBase
   - FB
+  - FlyBase
   uri_format: https://flybase.org/reports/$1
 fma:
   banana: FMA
@@ -6908,8 +6908,8 @@ gard:
   name: Genetic and Rare Diseases Information Center
   preferred_prefix: gard
   synonyms:
-  - Genetic and Rare Diseases Information Center
   - GARD
+  - Genetic and Rare Diseases Information Center
 gateway:
   description: The Health Data Research Innovation Gateway (the 'Gateway') provides
     a common entry point to discover and enquire about access to UK health datasets
@@ -7582,12 +7582,12 @@ go:
     name: GO through PANTHER
     uri_format: http://www.pantherdb.org/panther/category.do?categoryAcc=GO:$1
   synonyms:
-  - gobpid
-  - goccid
-  - gomfid
-  - gomf
   - gobp
+  - gobpid
   - gocc
+  - goccid
+  - gomf
+  - gomfid
   uri_format: http://amigo.geneontology.org/amigo/term/GO:$1
   version: '2021-10-26'
 go.model:
@@ -8313,9 +8313,9 @@ hgnc.genefamily:
   pattern: ^[A-Z0-9-]+(#[A-Z0-9-]+)?$
   preferred_prefix: hgnc.genefamily
   synonyms:
-  - hgnc.family
   - GFAM
   - HGNC_GROUP
+  - hgnc.family
   uri_format: https://www.genenames.org/cgi-bin/genefamilies/set/$1
 hgnc.genegroup:
   description: The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene
@@ -8832,8 +8832,8 @@ icd10:
   synonyms:
   - ICD
   - ICD-10
-  - ICD10CM
   - ICD10
+  - ICD10CM
   uri_format: http://apps.who.int/classifications/icd10/browse/2010/en#/$1
 icd11:
   description: Diagnostic tool for epidemiology, health management and clinical purposes,
@@ -8861,14 +8861,14 @@ icd9:
   name: International Classification of Diseases 9th Revision
   preferred_prefix: icd9
   synonyms:
+  - IC9CM
   - ICD9
+  - ICD9CM
   - ICD9CM_2005
   - ICD9CM_2006
   - ICD9_2005
-  - ICD9CM
-  - MTHICD9_2006
-  - IC9CM
   - ICDCM_2005
+  - MTHICD9_2006
 icdc:
   description: The Integrated Canine Data Commons is one of several repositories within
     the NCI Cancer Research Data Commons (CRDC), a cloud-based data science infrastructure
@@ -9573,8 +9573,8 @@ interpro:
     name: Bio2RDF
     uri_format: http://interpro.bio2rdf.org/describe/?url=http://bio2rdf.org/interpro:$1
   synonyms:
-  - IPR
   - IP
+  - IPR
   - InterPro
   uri_format: https://www.ebi.ac.uk/interpro/entry/$1
 ird.segment:
@@ -9789,8 +9789,8 @@ iuphar.receptor:
   pattern: ^\d+$
   preferred_prefix: iuphar.receptor
   synonyms:
-  - IUPHARobj
   - IUPHAR_GPCR
+  - IUPHARobj
   uri_format: http://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=$1
 jax:
   description: Information about the C57BL/6J. Includes genetic background and disease
@@ -9949,8 +9949,8 @@ kegg.compound:
   pattern: ^C\d+$
   preferred_prefix: kegg.compound
   synonyms:
-  - KEGG.COMPOUND
   - KEGG COMPOUND
+  - KEGG.COMPOUND
   uri_format: https://www.kegg.jp/entry/$1
 kegg.disease:
   description: The KEGG DISEASE database is a collection of disease entries capturing
@@ -9984,8 +9984,8 @@ kegg.drug:
   pattern: ^D\d+$
   preferred_prefix: kegg.drug
   synonyms:
-  - KEGG.DRUG
   - KEGG DRUG
+  - KEGG.DRUG
   uri_format: https://www.kegg.jp/entry/$1
 kegg.environ:
   description: KEGG ENVIRON (renamed from EDRUG) is a collection of crude drugs, essential
@@ -10051,8 +10051,8 @@ kegg.genome:
   pattern: ^(T0\d+|\w{3,5})$
   preferred_prefix: kegg.genome
   synonyms:
-  - kegg_genomes
   - kegg_genome
+  - kegg_genomes
   uri_format: http://www.kegg.jp/entry/$1
 kegg.glycan:
   description: KEGG GLYCAN, a part of the KEGG LIGAND database, is a collection of
@@ -10468,9 +10468,9 @@ lipidmaps:
     name: Scholia
     uri_format: https://scholia.toolforge.org/lipidmaps/$1
   synonyms:
-  - LIPID_MAPS_instance
-  - LIPID_MAPS_class
   - LIPID MAPS
+  - LIPID_MAPS_class
+  - LIPID_MAPS_instance
   uri_format: http://www.lipidmaps.org/data/LMSDRecord.php?LMID=$1
 lipro:
   banana: LIPRO
@@ -10837,8 +10837,8 @@ meddra:
   pattern: ^\d+$
   preferred_prefix: meddra
   synonyms:
-  - MeDRA
   - MEDRA
+  - MeDRA
   - MedDRA
   - Medical Dictionary for Regulatory Activities
   uri_format: http://purl.bioontology.org/ontology/MEDDRA/$1
@@ -10946,15 +10946,15 @@ mesh:
   pattern: ^(C|D)\d{6,9}$
   preferred_prefix: mesh
   synonyms:
-  - MESHD
   - MESH
-  - MSH
   - MESHA
+  - MESHC
+  - MESHCS
+  - MESHD
   - MESHPP
   - MESH_DESCRIPTOR_UI
   - MESH_SUPPLEMENTAL_RECORD_UI
-  - MESHCS
-  - MESHC
+  - MSH
   uri_format: https://meshb.nlm.nih.gov/record/ui?ui=$1
 mesh.2012:
   description: MeSH (Medical Subject Headings) is the National Library of Medicine's
@@ -11471,8 +11471,8 @@ mim.ps:
   name: OMIM Phenotypic Series
   preferred_prefix: mim.ps
   synonyms:
-  - PS
   - OMIMPS
+  - PS
   uri_format: https://omim.org/phenotypicSeries/$1
 mimodb:
   description: MimoDB is a database collecting peptides that have been selected from
@@ -12604,8 +12604,8 @@ ncbigene:
   synonyms:
   - EGID
   - NCBIGene
-  - entrez gene/locuslink
   - entrez
+  - entrez gene/locuslink
   uri_format: https://www.ncbi.nlm.nih.gov/gene/$1
 ncbiprotein:
   description: The Protein database is a collection of sequences from several sources,
@@ -12662,14 +12662,14 @@ ncbitaxon:
     name: Bio2RDF
     uri_format: https://bio2rdf.org/taxonomy:$1
   synonyms:
-  - NCBI_taxid
   - NCBITaxon
-  - TaxonomyID
   - NCBI_Taxon_ID
+  - NCBI_taxid
   - TAX
+  - TaxonomyID
   - taxid
-  - taxonomy
   - taxon
+  - taxonomy
   uri_format: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1
   version: '2021-06-10'
 ncim:
@@ -12710,15 +12710,15 @@ ncit:
   pattern: ^C\d+$
   preferred_prefix: NCIT
   synonyms:
-  - NCI_Thesaurus
-  - NCITm
+  - NCI
   - NCI2004_11_17
   - NCIT
-  - NCITt
   - NCIT_Thesaurus
-  - NCI
-  - ncithesaurus
+  - NCITm
+  - NCITt
+  - NCI_Thesaurus
   - NCIt
+  - ncithesaurus
   uri_format: http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1
   version: 21.05d
 ncro:
@@ -14114,8 +14114,8 @@ orcid:
   pattern: ^\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$
   preferred_prefix: orcid
   synonyms:
-  - ORCiD
   - ORCID
+  - ORCiD
   uri_format: https://orcid.org/$1
 ordb:
   description: The Olfactory Receptor Database (ORDB) is a repository of genomics
@@ -14746,8 +14746,8 @@ pdb:
     name: Protein Databank through PDBsum
     uri_format: https://www.ebi.ac.uk/pdbsum/$1
   synonyms:
-  - wwpdb
   - pdbe
+  - wwpdb
   uri_format: https://www.rcsb.org/structure/$1
 pdb-ccd:
   comment: might be same as pdb.ligand, not sure though
@@ -16117,12 +16117,12 @@ pubchem.compound:
     name: Scholia
     uri_format: https://scholia.toolforge.org/pubchem/$1
   synonyms:
-  - pubchem_id
-  - Pubchem
-  - PUBCHEM_CID
-  - DSSTox_CID
   - CID
+  - DSSTox_CID
+  - PUBCHEM_CID
   - PubChem_Compound_CID
+  - Pubchem
+  - pubchem_id
   uri_format: https://pubchem.ncbi.nlm.nih.gov/compound/$1
 pubchem.substance:
   description: PubChem provides information on the biological activities of small
@@ -16193,9 +16193,9 @@ pubmed:
     name: Scholia
     uri_format: https://scholia.toolforge.org/pubmed/$1
   synonyms:
-  - pmid
-  - PMID
   - MEDLINE
+  - PMID
+  - pmid
   uri_format: https://www.ncbi.nlm.nih.gov/pubmed/$1
 pw:
   banana: PW
@@ -16883,9 +16883,9 @@ ro:
   pattern: ^RO_\d{7}$
   preferred_prefix: RO
   synonyms:
-  - oborel
-  - obo_rel
   - RO_proposed_relation
+  - obo_rel
+  - oborel
   uri_format: http://purl.obolibrary.org/obo/RO_$1
   version: '2021-10-27'
 rouge:
@@ -17743,27 +17743,27 @@ snomedct:
   pattern: ^(\w+)?\d+$
   preferred_prefix: snomedct
   synonyms:
-  - SNOMEDCT_US_2019_09_01
-  - SCTID_2010_1_31
-  - SNOMEDCT_US_2020_03_01
-  - SNOMEDCT_US_2019_03_01
-  - SNOMEDCTCT_2018_03_01
   - SCTID
+  - SCTID_2010_1_31
   - SNOMECT
-  - SNOMED_CT
-  - SNOMEDCT_US
-  - SNOMEDCT_US_2018_09_01
-  - SNOWMEDCT_US
-  - SNOMEDCT_2010_1_31
-  - SNOMED_CT_US_2018_03_01
-  - SNOMEDCTCT
-  - SNOMEDCT_US_2018_03_01
-  - SNOWMEDCT_US_2018_03_01
-  - SNOMEDCT
-  - SNOMEDCT_US_2020_09_01
-  - SNOMEDCTCT_2019_03_01
   - SNOMED
+  - SNOMEDCT
+  - SNOMEDCTCT
+  - SNOMEDCTCT_2018_03_01
+  - SNOMEDCTCT_2019_03_01
+  - SNOMEDCT_2010_1_31
+  - SNOMEDCT_US
+  - SNOMEDCT_US_2018_03_01
+  - SNOMEDCT_US_2018_09_01
+  - SNOMEDCT_US_2019_03_01
+  - SNOMEDCT_US_2019_09_01
+  - SNOMEDCT_US_2020_03_01
+  - SNOMEDCT_US_2020_09_01
+  - SNOMED_CT
+  - SNOMED_CT_US_2018_03_01
   - SNOWMEDCT
+  - SNOWMEDCT_US
+  - SNOWMEDCT_US_2018_03_01
   uri_format: http://www.snomedbrowser.com/Codes/Details/$1
 snornabase:
   contributor:
@@ -18203,8 +18203,8 @@ swisslipid:
   pattern: ^\d+$
   preferred_prefix: swisslipid
   synonyms:
-  - swisslipids
   - slm
+  - swisslipids
   uri_format: https://www.swisslipids.org/#/entity/SLM:$1
 swissregulon:
   description: A database of genome-wide annotations of regulatory sites. It contains
@@ -18852,9 +18852,9 @@ uberon:
   pattern: ^\d+$
   preferred_prefix: UBERON
   synonyms:
+  - UBERON
   - Uber-anatomy ontology
   - Uberon
-  - UBERON
   uri_format: http://purl.bioontology.org/ontology/UBERON/UBERON:$1
   version: '2021-10-01'
 ubio.namebank:
@@ -19161,11 +19161,11 @@ uniprot:
     name: UniProt through NCBI
     uri_format: https://www.ncbi.nlm.nih.gov/protein/$1
   synonyms:
+  - SwissProt
+  - UP
   - UniProt
   - UniProtKB
   - uniprot/swiss-prot
-  - UP
-  - SwissProt
   uri_format: http://purl.uniprot.org/uniprot/$1
 uniprot.chain:
   description: This collection is a subset of UniProtKB that provides a means to reference
@@ -20174,8 +20174,8 @@ wormbase:
     name: WormBase through the Alliance of Genome Resources
     uri_format: https://www.alliancegenome.org/gene/WB:$1
   synonyms:
-  - wb
   - WB_REF
+  - wb
   - wormbase
   uri_format: https://www.wormbase.org/get?name=$1
 wormpep:
