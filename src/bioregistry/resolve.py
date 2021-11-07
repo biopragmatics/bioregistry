@@ -53,10 +53,7 @@ def get_resource(prefix: str) -> Optional[Resource]:
 
 def get_name(prefix: str) -> Optional[str]:
     """Get the name for the given prefix, it it's available."""
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_name()
+    return manager.get_name(prefix)
 
 
 def get_description(prefix: str) -> Optional[str]:
@@ -67,7 +64,7 @@ def get_description(prefix: str) -> Optional[str]:
     return entry.get_description()
 
 
-def get_preferred_prefix(prefix) -> Optional[str]:
+def get_preferred_prefix(prefix: str) -> Optional[str]:
     """Get the preferred prefix (e.g., with stylization) if it exists.
 
     :param prefix: The prefix to lookup.
@@ -90,10 +87,7 @@ def get_preferred_prefix(prefix) -> Optional[str]:
     >>> get_preferred_prefix("dpo")
     'DPO'
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_preferred_prefix()
+    return manager.get_preferred_prefix(prefix)
 
 
 def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
@@ -106,10 +100,7 @@ def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
 
 def get_synonyms(prefix: str) -> Optional[Set[str]]:
     """Get the synonyms for a given prefix, if available."""
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_synonyms()
+    return manager.get_synonyms(prefix)
 
 
 def get_pattern(prefix: str) -> Optional[str]:
@@ -122,10 +113,7 @@ def get_pattern(prefix: str) -> Optional[str]:
         2. MIRIAM
         3. Wikidata
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_pattern()
+    return manager.get_pattern(prefix)
 
 
 def get_namespace_in_lui(prefix: str) -> Optional[bool]:
@@ -452,10 +440,7 @@ def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:
 
 def get_example(prefix: str) -> Optional[str]:
     """Get an example identifier, if it's available."""
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_example()
+    return manager.get_example(prefix)
 
 
 def has_no_terms(prefix: str) -> bool:
@@ -479,10 +464,7 @@ def is_deprecated(prefix: str) -> bool:
     >>> assert bioregistry.is_deprecated('iro') # marked by Bioregistry
     >>> assert bioregistry.is_deprecated('miriam.collection') # marked by MIRIAM
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return False
-    return entry.is_deprecated()
+    return manager.is_deprecated(prefix)
 
 
 def get_contact(prefix: str) -> Optional[str]:

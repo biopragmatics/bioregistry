@@ -3,7 +3,18 @@
 """A class-based client to a metaregistry."""
 
 import logging
-from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple, Union
+from typing import (
+    Any,
+    Dict,
+    Iterable,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    Set,
+    Tuple,
+    Union,
+)
 
 from .license_standardizer import standardize_license
 from .schema import Resource, sanitize_model
@@ -156,6 +167,48 @@ class Manager:
             return None
         return entry.get_uri_prefix(priority=priority)
 
+    def get_name(self, prefix: str) -> Optional[str]:
+        """Get the name for the given prefix, it it's available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_name()
+
+    def get_preferred_prefix(self, prefix: str) -> Optional[str]:
+        """Get the preferred prefix (e.g., with stylization) if it exists."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_preferred_prefix()
+
+    def get_pattern(self, prefix: str) -> Optional[str]:
+        """Get the pattern for the given prefix, if it's available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_pattern()
+
+    def get_synonyms(self, prefix: str) -> Optional[Set[str]]:
+        """Get the synonyms for a given prefix, if available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_synonyms()
+
+    def get_example(self, prefix: str) -> Optional[str]:
+        """Get an example identifier, if it's available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_example()
+
+    def is_deprecated(self, prefix: str) -> bool:
+        """Return if the given prefix corresponds to a deprecated resource."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return False
+        return entry.is_deprecated()
+
     def get_prefix_map(
         self,
         *,
@@ -224,44 +277,48 @@ class Manager:
     def rasterize(self):
         """Build a dictionary representing the fully constituted registry."""
         return {
-            prefix: self._rasterize_resource(prefix, resource)
+            prefix: sanitize_model(resource)
+            for prefix, resource in self._rasterized_registry().items()
+        }
+
+    def _rasterized_registry(self) -> Mapping[str, Resource]:
+        return {
+            prefix: self._rasterized_resource(prefix, resource)
             for prefix, resource in self.registry.items()
         }
 
     @staticmethod
-    def _rasterize_resource(prefix: str, resource: Resource):
-        return sanitize_model(
-            Resource(
-                preferred_prefix=resource.get_preferred_prefix() or prefix,
-                name=resource.get_name(),
-                description=resource.get_description(),
-                pattern=resource.get_pattern(),
-                uri_format=resource.get_uri_format(),
-                homepage=resource.get_homepage(),
-                license=resource.get_license(),
-                version=resource.get_version(),
-                contact=resource.get_contact(),
-                example=resource.get_example(),
-                synonyms=resource.get_synonyms(),
-                comment=resource.comment,
-                mappings=resource.get_mappings(),
-                providers=resource.get_extra_providers(),
-                references=resource.references,
-                # MIRIAM compatibility
-                banana=resource.get_banana(),
-                namespace_in_lui=resource.get_namespace_in_lui(),
-                # Provenance
-                contributor=resource.contributor,
-                reviewer=resource.reviewer,
-                # Ontology Relations
-                part_of=resource.part_of,
-                provides=resource.provides,
-                has_canonical=resource.has_canonical,
-                # Ontology Properties
-                deprecated=resource.is_deprecated(),
-                no_own_terms=resource.no_own_terms,
-                proprietary=resource.proprietary,
-            )
+    def _rasterized_resource(prefix: str, resource: Resource) -> Resource:
+        return Resource(
+            preferred_prefix=resource.get_preferred_prefix() or prefix,
+            name=resource.get_name(),
+            description=resource.get_description(),
+            pattern=resource.get_pattern(),
+            uri_format=resource.get_uri_format(),
+            homepage=resource.get_homepage(),
+            license=resource.get_license(),
+            version=resource.get_version(),
+            contact=resource.get_contact(),
+            example=resource.get_example(),
+            synonyms=resource.get_synonyms(),
+            comment=resource.comment,
+            mappings=resource.get_mappings(),
+            providers=resource.get_extra_providers(),
+            references=resource.references,
+            # MIRIAM compatibility
+            banana=resource.get_banana(),
+            namespace_in_lui=resource.get_namespace_in_lui(),
+            # Provenance
+            contributor=resource.contributor,
+            reviewer=resource.reviewer,
+            # Ontology Relations
+            part_of=resource.part_of,
+            provides=resource.provides,
+            has_canonical=resource.has_canonical,
+            # Ontology Properties
+            deprecated=resource.is_deprecated(),
+            no_own_terms=resource.no_own_terms,
+            proprietary=resource.proprietary,
         )
 
     def get_license_conflicts(self):
