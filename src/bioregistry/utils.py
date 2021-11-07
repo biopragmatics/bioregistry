@@ -144,8 +144,8 @@ def read_contributors() -> Mapping[str, Author]:
             rv[resource.contributor.orcid] = resource.contributor
         if resource.reviewer:
             rv[resource.reviewer.orcid] = resource.reviewer
-    for resource in read_collections().values():
-        for author in resource.authors or []:
+    for collection in read_collections().values():
+        for author in collection.authors or []:
             rv[author.orcid] = author
     return rv
 
