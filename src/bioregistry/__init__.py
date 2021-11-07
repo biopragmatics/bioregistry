@@ -74,7 +74,7 @@ from .resolve_identifier import (  # noqa:F401
     get_providers_list,
     is_known_identifier,
 )
-from .resource_manager import Manager, manager
+from .resource_manager import Manager, manager  # noqa:F401
 from .schema.struct import Author, Collection, Provider, Registry, Resource  # noqa:F401
 from .uri_format import (  # noqa:F401
     get_format_urls,
