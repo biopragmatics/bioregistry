@@ -1447,7 +1447,7 @@ biomodels.kisao:
   preferred_prefix: biomodels.kisao
   synonyms:
   - kisao
-  uri_format: http://purl.bioontology.org/ontology/KISAO/kisao:$1
+  uri_format: http://purl.obolibrary.org/obo/KISAO_$1
   version: '2.30'
 biomodels.teddy:
   description: The Terminology for Description of Dynamics (TEDDY) is an ontology
@@ -1466,7 +1466,7 @@ biomodels.teddy:
   preferred_prefix: biomodels.teddy
   synonyms:
   - teddy
-  uri_format: http://purl.bioontology.org/ontology/TEDDY/$1
+  uri_format: https://www.ebi.ac.uk/ols/ontologies/teddy/terms?iri=http://identifiers.org/teddy/TEDDY_$1
   version: '2014-04-24'
 biomodels.vocabulary:
   description: Vocabulary used in the RDF representation of SBML models.
@@ -5473,7 +5473,7 @@ edam:
   name: Bioinformatics operations, data types, formats, identifiers and topics
   pattern: ^(data|topic|operation|format)\_\d{4}$
   preferred_prefix: edam
-  uri_format: http://purl.bioontology.org/ontology/EDAM/$1
+  uri_format: https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1
   version: '2019-07-17'
 efo:
   contact: efo-users@lists.sourceforge.net
@@ -8994,7 +8994,7 @@ identifiers.namespace:
   name: Identifiers.org namespace
   pattern: ^[a-z_\.]+$
   preferred_prefix: identifiers.namespace
-  uri_format: https://identifiers.org/identifiers.namespace:$1
+  uri_format: https://registry.identifiers.org/registry/$1
 ido:
   banana: IDO
   contact: Lindsay.Cowell@utsouthwestern.edu
@@ -9072,7 +9072,7 @@ idoo:
   name: Identifiers.org Ontology
   pattern: ^[0-9a-zA-Z]+$
   preferred_prefix: idoo
-  uri_format: https://identifiers.org/idoo:$1
+  uri_format: http://registry.api.hq.identifiers.org/semanticApi/getRegistryOntology#$1
 idot:
   description: Identifiers.org Terms (idot) is an RDF vocabulary providing useful
     terms for describing datasets.
@@ -10646,7 +10646,7 @@ mamo:
   description: The Mathematical Modelling Ontology (MAMO) is a classification of the
     types of mathematical models used mostly in the life sciences, their variables,
     relationships and other relevant features.
-  example: MAMO_0000026
+  example: '0000026'
   homepage: http://sourceforge.net/p/mamo-ontology/wiki/Home/
   license: Artistic License 2.0
   mappings:
@@ -10658,9 +10658,9 @@ mamo:
     ontobee: MAMO
     prefixcommons: MAMO
   name: Mathematical modeling ontology
-  pattern: ^MAMO_\d{7}$
+  pattern: ^\d{7}$
   preferred_prefix: MAMO
-  uri_format: http://purl.obolibrary.org/obo/MAMO_$1
+  uri_format: http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_$1
   version: '2020-08-24'
 mao:
   banana: MAO
@@ -11567,7 +11567,7 @@ mir:
   namespace_in_lui: true
   pattern: ^\d{8}$
   preferred_prefix: mir
-  uri_format: http://identifiers.org/mir/$1
+  uri_format: https://registry.identifiers.org/registry?query="MIR:$1"
 mirbase:
   description: The miRBase Sequence Database is a searchable database of published
     miRNA sequences and annotation. The data were previously provided by the miRNA
@@ -11931,7 +11931,7 @@ mo:
     homepage: https://mged.sourceforge.net/ontologies/MGEDontology.php
     name: MGED Ontology at SourceForge
     uri_format: https://mged.sourceforge.net/ontologies/MGEDontology.php#$1
-  uri_format: http://purl.bioontology.org/ontology/MO/$1
+  uri_format: http://purl.obolibrary.org/obo/MO_$1
 mobidb:
   description: MobiDB is a database of protein disorder and mobility annotations.
   example: P10636
@@ -14030,7 +14030,7 @@ opb:
     scales (multiscale atoms to organisms) and multiple physical domains (multidomain
     fluid dynamics, chemical kinetics, particle diffusion, etc.) that are encountered
     in the study and analysis of biological organisms.
-  example: OPB_00573
+  example: '00573'
   homepage: http://bioportal.bioontology.org/ontologies/OPB
   mappings:
     bioportal: OPB
@@ -14038,9 +14038,9 @@ opb:
     n2t: opb
     prefixcommons: OPB
   name: Ontology of Physics for Biology
-  pattern: ^OPB_\d+$
+  pattern: ^\d+$
   preferred_prefix: opb
-  uri_format: http://purl.bioontology.org/ontology/OPB?conceptid=http%3A%2F%2Fbhi.washington.edu%2FOPB%23$1
+  uri_format: http://purl.bioontology.org/ontology/OPB?conceptid=http%3A%2F%2Fbhi.washington.edu%2FOPB%23OPB_$1
 opl:
   banana: OPL
   contact: preets79@gmail.com
@@ -18855,7 +18855,7 @@ uberon:
   - UBERON
   - Uber-anatomy ontology
   - Uberon
-  uri_format: http://purl.bioontology.org/ontology/UBERON/UBERON:$1
+  uri_format: http://purl.obolibrary.org/obo/UBERON_$1
   version: '2021-10-01'
 ubio.namebank:
   description: NameBank is a "biological name server" focused on storing names and
@@ -19494,7 +19494,7 @@ vario:
     homepage: http://www.variationontology.org/
     name: VariO at Lund University
     uri_format: http://www.ontobee.org/search?ontology=VariO&keywords=VariO_$1&submit=Search+terms
-  uri_format: http://purl.bioontology.org/ontology/VARIO/VariO:$1
+  uri_format: http://purl.obolibrary.org/obo/VARIO_$1
   version: '2018-11-09'
 vbase2:
   description: The database VBASE2 provides germ-line sequences of human and mouse

@@ -1179,7 +1179,12 @@ def clean_pattern(rv: str) -> str:
 
 def _allowed_uri_format(rv: str) -> bool:
     """Check that a URI format doesn't have another resolver in it."""
-    return "identifiers.org" not in rv and "purl.bioontology.org" not in rv and "n2t.net" not in rv
+    return (
+        not rv.startswith("https://identifiers.org")
+        and not rv.startswith("http://identifiers.org")
+        and "n2t.net" not in rv
+        and "purl.bioontology.org" not in rv
+    )
 
 
 @lru_cache(maxsize=1)
