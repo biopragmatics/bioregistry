@@ -413,7 +413,7 @@ class Resource(BaseModel):
             ("cellosaurus", URI_FORMAT_KEY),
         ]:
             rv = self.get_external(metaprefix).get(key)
-            if rv is not None and "identifiers.org" not in rv:
+            if rv is not None and _allowed_uri_format(rv):
                 return rv
         return None
 
@@ -1175,6 +1175,16 @@ def clean_pattern(rv: str) -> str:
     if not rv.endswith("$"):
         rv = f"{rv}$"
     return rv
+
+
+def _allowed_uri_format(rv: str) -> bool:
+    """Check that a URI format doesn't have another resolver in it."""
+    return (
+        not rv.startswith("https://identifiers.org")
+        and not rv.startswith("http://identifiers.org")
+        and "n2t.net" not in rv
+        and "purl.bioontology.org" not in rv
+    )
 
 
 @lru_cache(maxsize=1)

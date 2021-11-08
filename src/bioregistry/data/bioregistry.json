@@ -1320,7 +1320,8 @@
       "is_obo": false,
       "prefix": "ARK",
       "uri_format": "http://identifiers.org/ark/$1"
-    }
+    },
+    "uri_format": "http://n2t.net/ark:$1"
   },
   "aro": {
     "bioportal": {
@@ -3302,6 +3303,7 @@
       "name": "Terminology for the Description of Dynamics",
       "prefix": "TEDDY"
     },
+    "example": "0000066",
     "mappings": {
       "bioportal": "TEDDY",
       "miriam": "biomodels.teddy",
@@ -3339,6 +3341,7 @@
       "version": "2014-04-24",
       "version.iri": "http://identifiers.org/combine.specifications/teddy.rel-2014-04-24"
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "is_identifiers": true,
       "is_obo": false,
@@ -3347,7 +3350,8 @@
     },
     "synonyms": [
       "teddy"
-    ]
+    ],
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/teddy/terms?iri=http://identifiers.org/teddy/TEDDY_$1"
   },
   "biomodels.vocabulary": {
     "mappings": {
@@ -11623,7 +11627,8 @@
       "is_obo": false,
       "prefix": "EDAM",
       "uri_format": "http://identifiers.org/edam/$1"
-    }
+    },
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1"
   },
   "efo": {
     "biolink": {
@@ -23034,6 +23039,7 @@
       "name": "Mathematical Modelling Ontology",
       "prefix": "MAMO"
     },
+    "example": "0000026",
     "mappings": {
       "bioportal": "MAMO",
       "miriam": "mamo",
@@ -23093,12 +23099,14 @@
       "prefix": "MAMO",
       "url": "http://www.ontobee.org/ontology/MAMO"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "is_identifiers": false,
       "is_obo": true,
       "prefix": "MAMO",
       "uri_format": "http://purl.obolibrary.org/obo/MAMO_$1"
-    }
+    },
+    "uri_format": "http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_$1"
   },
   "mao": {
     "mappings": {
@@ -30711,6 +30719,7 @@
       "name": "Ontology of Physics for Biology",
       "prefix": "OPB"
     },
+    "example": "00573",
     "mappings": {
       "bioportal": "OPB",
       "miriam": "opb",
@@ -30739,12 +30748,14 @@
       "prefix": "opb",
       "uri_format": "http://purl.bioontology.org/ontology/OPB?conceptid=http%3A%2F%2Fbhi.washington.edu%2FOPB%23$1"
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "OPB",
       "uri_format": "http://identifiers.org/opb/$1"
-    }
+    },
+    "uri_format": "http://purl.bioontology.org/ontology/OPB?conceptid=http%3A%2F%2Fbhi.washington.edu%2FOPB%23OPB_$1"
   },
   "opl": {
     "bioportal": {

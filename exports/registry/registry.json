@@ -1423,12 +1423,12 @@
     "synonyms": [
       "kisao"
     ],
-    "uri_format": "http://purl.bioontology.org/ontology/KISAO/kisao:$1",
+    "uri_format": "http://purl.obolibrary.org/obo/KISAO_$1",
     "version": "2.30"
   },
   "biomodels.teddy": {
     "description": "The Terminology for Description of Dynamics (TEDDY) is an ontology for dynamical behaviours, observable dynamical phenomena, and control elements of bio-models and biological systems in Systems Biology and Synthetic Biology.",
-    "example": "TEDDY_0000066",
+    "example": "0000066",
     "homepage": "http://teddyontology.sourceforge.net/",
     "mappings": {
       "bioportal": "TEDDY",
@@ -1438,12 +1438,12 @@
       "prefixcommons": "BIOMODELS.TEDDY"
     },
     "name": "Terminology for Description of Dynamics",
-    "pattern": "^TEDDY_\\d{7}$",
+    "pattern": "^\\d+$",
     "preferred_prefix": "biomodels.teddy",
     "synonyms": [
       "teddy"
     ],
-    "uri_format": "http://purl.bioontology.org/ontology/TEDDY/$1",
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/teddy/terms?iri=http://identifiers.org/teddy/TEDDY_$1",
     "version": "2014-04-24"
   },
   "biomodels.vocabulary": {
@@ -5351,7 +5351,7 @@
     "name": "Bioinformatics operations, data types, formats, identifiers and topics",
     "pattern": "^(data|topic|operation|format)\\_\\d{4}$",
     "preferred_prefix": "edam",
-    "uri_format": "http://purl.bioontology.org/ontology/EDAM/$1",
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1",
     "version": "2019-07-17"
   },
   "efo": {
@@ -8758,7 +8758,7 @@
     "name": "Identifiers.org namespace",
     "pattern": "^[a-z_\\.]+$",
     "preferred_prefix": "identifiers.namespace",
-    "uri_format": "https://identifiers.org/identifiers.namespace:$1"
+    "uri_format": "https://registry.identifiers.org/registry/$1"
   },
   "ido": {
     "banana": "IDO",
@@ -8840,7 +8840,7 @@
     "name": "Identifiers.org Ontology",
     "pattern": "^[0-9a-zA-Z]+$",
     "preferred_prefix": "idoo",
-    "uri_format": "https://identifiers.org/idoo:$1"
+    "uri_format": "http://registry.api.hq.identifiers.org/semanticApi/getRegistryOntology#$1"
   },
   "idot": {
     "description": "Identifiers.org Terms (idot) is an RDF vocabulary providing useful terms for describing datasets.",
@@ -10428,7 +10428,7 @@
     "banana": "MAMO",
     "contact": "n.lenovere@gmail.com",
     "description": "The Mathematical Modelling Ontology (MAMO) is a classification of the types of mathematical models used mostly in the life sciences, their variables, relationships and other relevant features.",
-    "example": "MAMO_0000026",
+    "example": "0000026",
     "homepage": "http://sourceforge.net/p/mamo-ontology/wiki/Home/",
     "license": "Artistic License 2.0",
     "mappings": {
@@ -10441,9 +10441,9 @@
       "prefixcommons": "MAMO"
     },
     "name": "Mathematical modeling ontology",
-    "pattern": "^MAMO_\\d{7}$",
+    "pattern": "^\\d{7}$",
     "preferred_prefix": "MAMO",
-    "uri_format": "http://purl.obolibrary.org/obo/MAMO_$1",
+    "uri_format": "http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_$1",
     "version": "2020-08-24"
   },
   "mao": {
@@ -11335,7 +11335,7 @@
     "namespace_in_lui": true,
     "pattern": "^\\d{8}$",
     "preferred_prefix": "mir",
-    "uri_format": "http://identifiers.org/mir/$1"
+    "uri_format": "https://registry.identifiers.org/registry?query=\"MIR:$1\""
   },
   "mirbase": {
     "description": "The miRBase Sequence Database is a searchable database of published miRNA sequences and annotation. The data were previously provided by the miRNA Registry. Each entry in the miRBase Sequence database represents a predicted hairpin portion of a miRNA transcript (termed mir in the database), with information on the location and sequence of the mature miRNA sequence (termed miR).",
@@ -11704,7 +11704,7 @@
         "uri_format": "https://mged.sourceforge.net/ontologies/MGEDontology.php#$1"
       }
     ],
-    "uri_format": "http://purl.bioontology.org/ontology/MO/$1"
+    "uri_format": "http://purl.obolibrary.org/obo/MO_$1"
   },
   "mobidb": {
     "description": "MobiDB is a database of protein disorder and mobility annotations.",
@@ -13736,7 +13736,7 @@
   },
   "opb": {
     "description": "The OPB is a reference ontology of classical physics as applied to the dynamics of biological systems. It is designed to encompass the multiple structural scales (multiscale atoms to organisms) and multiple physical domains (multidomain fluid dynamics, chemical kinetics, particle diffusion, etc.) that are encountered in the study and analysis of biological organisms.",
-    "example": "OPB_00573",
+    "example": "00573",
     "homepage": "http://bioportal.bioontology.org/ontologies/OPB",
     "mappings": {
       "bioportal": "OPB",
@@ -13745,9 +13745,9 @@
       "prefixcommons": "OPB"
     },
     "name": "Ontology of Physics for Biology",
-    "pattern": "^OPB_\\d+$",
+    "pattern": "^\\d+$",
     "preferred_prefix": "opb",
-    "uri_format": "http://purl.bioontology.org/ontology/OPB?conceptid=http%3A%2F%2Fbhi.washington.edu%2FOPB%23$1"
+    "uri_format": "http://purl.bioontology.org/ontology/OPB?conceptid=http%3A%2F%2Fbhi.washington.edu%2FOPB%23OPB_$1"
   },
   "opl": {
     "banana": "OPL",
@@ -18382,7 +18382,7 @@
       "Uber-anatomy ontology",
       "Uberon"
     ],
-    "uri_format": "http://purl.bioontology.org/ontology/UBERON/UBERON:$1",
+    "uri_format": "http://purl.obolibrary.org/obo/UBERON_$1",
     "version": "2021-10-01"
   },
   "ubio.namebank": {
@@ -19017,7 +19017,7 @@
         "uri_format": "http://www.ontobee.org/search?ontology=VariO&keywords=VariO_$1&submit=Search+terms"
       }
     ],
-    "uri_format": "http://purl.bioontology.org/ontology/VARIO/VariO:$1",
+    "uri_format": "http://purl.obolibrary.org/obo/VARIO_$1",
     "version": "2018-11-09"
   },
   "vbase2": {

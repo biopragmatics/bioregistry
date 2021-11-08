@@ -474,7 +474,8 @@ class TestRegistry(unittest.TestCase):
                 # allow identifiers.org namespaces since this actually should be here
                 continue
             with self.subTest(prefix=prefix):
-                self.assertNotIn("identifiers.org", uri_prefix, msg=uri_prefix)
+                self.assertFalse(uri_prefix.startswith("https://identifiers.org"), msg=uri_prefix)
+                self.assertFalse(uri_prefix.startswith("http://identifiers.org"), msg=uri_prefix)
 
     def test_preferred_prefix(self):
         """Test the preferred prefix matches the normalized prefix."""
