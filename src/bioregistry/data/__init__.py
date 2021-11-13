@@ -36,6 +36,8 @@ class OLSConfig(BaseModel):
     version_prefix: Optional[str]
     version_suffix: Optional[str]
     version_suffix_split: Optional[str]
+    version_iri_prefix: Optional[str]
+    version_iri_suffix: Optional[str]
 
 
 @lru_cache(maxsize=1)

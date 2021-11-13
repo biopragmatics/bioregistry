@@ -15,7 +15,7 @@
       "prefix": "snomed",
       "version_type": "date",
       "version_date_format": "%Y%m%d",
-      "version_prefix": "http://snomed.info/sct/900000000000207008/version/"
+      "version_iri_prefix": "http://snomed.info/sct/900000000000207008/version/"
     },
     {
       "prefix": "agro",
@@ -118,8 +118,10 @@
     },
     {
       "prefix": "chebi",
-      "version_type": "date",
-      "version_date_format": "%d-%m-%Y"
+      "version_type": "sequential",
+      "version_date_format": "%d-%m-%Y",
+      "version_iri_prefix": "http://purl.obolibrary.org/obo/chebi/",
+      "version_iri_suffix": "/chebi.owl"
     },
     {
       "prefix": "cheminf",
@@ -592,7 +594,9 @@
     },
     {
       "prefix": "gsso",
-      "version_type": "missing"
+      "version_type": "semver",
+      "version_iri_prefix": "http://purl.obolibrary.org/obo/gsso/releases/",
+      "version_iri_suffix": "/gsso.owl"
     },
     {
       "prefix": "hancestro",
@@ -1030,7 +1034,9 @@
     {
       "prefix": "pr",
       "version_type": "date",
-      "version_date_format": "%d-%m-%Y"
+      "version_date_format": "%d-%m-%Y",
+      "version_iri_prefix": "http://purl.obolibrary.org/obo/pr/",
+      "version_iri_suffix": "/pr.owl"
     },
     {
       "prefix": "pride",
@@ -1145,7 +1151,8 @@
     },
     {
       "prefix": "srao",
-      "version_type": "missing"
+      "version_type": "semver",
+      "version_iri_prefix": "http://www.fairsharing.org/ontology/subject/SRAO.owl/"
     },
     {
       "prefix": "stato",
