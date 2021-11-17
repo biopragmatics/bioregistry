@@ -35,6 +35,7 @@ DOCS_IMG = DOCS.joinpath("img")
 EXPORT_DIRECTORY = ROOT.joinpath("exports")
 
 EXPORT_CONTEXTS = EXPORT_DIRECTORY / "contexts"
+CONTEXT_BIOREGISTRY_PATH = EXPORT_CONTEXTS / "bioregistry.context.jsonld"
 CONTEXT_OBO_PATH = EXPORT_CONTEXTS / "obo.context.jsonld"
 CONTEXT_OBO_SYNONYMS_PATH = EXPORT_CONTEXTS / "obo_synonyms.context.jsonld"
 
