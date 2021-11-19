@@ -30,6 +30,18 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit --all -m "📮 Automatically update"
+      - name: Push changes
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true
+      - name: Run tests, don't push to PyPI unless passing
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        run: |
+          pip install tox
+          tox -e py
       - name: Release to PyPI
         if: steps.update.outputs.BR_UPDATED == 'true'
         run: |
