@@ -49,7 +49,7 @@ def _process(record):
         "description": record.get("description"),
         "deprecated": record.get("is_obsolete", False),
         "inactive": _parse_activity_status(record),
-        "homepage": record.get("homepage"),
+        "homepage": record.get("homepage") or record.get("repository"),
         "preferredPrefix": record.get("preferredPrefix"),
         "license": record.get("license", {}).get("label"),
         "license.url": record.get("license", {}).get("url"),
