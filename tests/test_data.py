@@ -28,6 +28,12 @@ class TestRegistry(unittest.TestCase):
         self.registry = bioregistry.read_registry()
         self.metaregistry = bioregistry.read_metaregistry()
 
+    def test_prefixes(self):
+        """Check all prefixes are lowercased."""
+        for prefix in self.registry:
+            with self.subTest(prefix=prefix):
+                self.assertEqual(prefix.lower(), prefix, msg="prefix is not lowercased")
+
     def test_keys(self):
         """Check the required metadata is there."""
         keys = {
