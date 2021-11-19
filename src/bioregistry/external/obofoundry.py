@@ -43,7 +43,7 @@ def _process(record):
         if key in record:
             del record[key]
 
-    oid = record["id"]
+    oid = record["id"].lower()
     rv = {
         "name": record["title"],
         "description": record.get("description"),
