@@ -83,30 +83,6 @@
     "name": "4D Nucleome Data Portal Experiment Replicate",
     "uri_format": "https://data.4dnucleome.org/experiment-set-replicates/$1"
   },
-  "EPSO": {
-    "bioportal": {
-      "name": "Epilepsy and Seizure Ontology",
-      "prefix": "EPSO"
-    },
-    "mappings": {
-      "bioportal": "EPSO",
-      "obofoundry": "EPSO"
-    },
-    "obofoundry": {
-      "contact": "alpha.tom.kodamullil@scai.fraunhofer.de",
-      "contact.github": "akodamullil",
-      "contact.label": "Alpha Tom Kodamullil",
-      "deprecated": false,
-      "description": "A application driven Epilepsy Ontology sith official terms from the ILAE.",
-      "inactive": false,
-      "license": "CC BY 4.0",
-      "license.url": "http://creativecommons.org/licenses/by/4.0/",
-      "name": "Epilepsy Ontology",
-      "preferredPrefix": "EPSO",
-      "prefix": "EPSO",
-      "repository": "https://github.com/phwegner/Epilepsyontology"
-    }
-  },
   "aao": {
     "description": "A structured controlled vocabulary of the anatomy of Amphibians. Note that AAO is currently being integrated into Uberon.",
     "mappings": {
@@ -9982,6 +9958,7 @@
     }
   },
   "disdriv": {
+    "example": "0000000",
     "mappings": {
       "obofoundry": "disdriv"
     },
@@ -10000,7 +9977,8 @@
       "preferredPrefix": "DISDRIV",
       "prefix": "disdriv",
       "repository": "https://github.com/DiseaseOntology/DiseaseDriversOntology/"
-    }
+    },
+    "pattern": "^\\d+$"
   },
   "diseasesdb": {
     "description": "The Diseases Database is a cross-referenced index of human disease, medications, symptoms, signs, abnormal investigation findings etc. This site provides a medical textbook-like index and search portal covering areas including: internal medical disorders, symptoms and signs, congenital and inherited disorders, infectious diseases and organisms, drugs and medications, common haematology and biochemistry investigation abnormalities.",
@@ -12920,6 +12898,33 @@
       "prefix": "EPO",
       "uri_format": "http://purl.obolibrary.org/obo/EPO_$1"
     }
+  },
+  "epso": {
+    "bioportal": {
+      "name": "Epilepsy and Seizure Ontology",
+      "prefix": "EPSO"
+    },
+    "example": "0000400",
+    "homepage": "https://github.com/phwegner/Epilepsyontology",
+    "mappings": {
+      "bioportal": "EPSO",
+      "obofoundry": "epso"
+    },
+    "obofoundry": {
+      "contact": "alpha.tom.kodamullil@scai.fraunhofer.de",
+      "contact.github": "akodamullil",
+      "contact.label": "Alpha Tom Kodamullil",
+      "deprecated": false,
+      "description": "A application driven Epilepsy Ontology sith official terms from the ILAE.",
+      "inactive": false,
+      "license": "CC BY 4.0",
+      "license.url": "http://creativecommons.org/licenses/by/4.0/",
+      "name": "Epilepsy Ontology",
+      "preferredPrefix": "EPSO",
+      "prefix": "EPSO",
+      "repository": "https://github.com/phwegner/Epilepsyontology"
+    },
+    "uri_format": "https://bio.scai.fraunhofer.de/ontology/$1"
   },
   "erm": {
     "mappings": {
