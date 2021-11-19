@@ -1,7 +1,4 @@
 {
-  "Aeolus": {
-    "uri_format": "http://translator.ncats.nih.gov/Aeolus_$1"
-  },
   "CAID": {
     "uri_format": "http://reg.clinicalgenome.org/redmine/projects/registry/genboree_registry/by_caid?caid=$1"
   },
@@ -27,7 +24,16 @@
     "uri_format": "https://www.ama-assn.org/practice-management/cpt/$1"
   },
   "CTD": {
-    "uri_format": "http://translator.ncats.nih.gov/CTD_$1"
+    "uri_format": "http://ctdbase.org/$1"
+  },
+  "CTD.CHEMICAL": {
+    "uri_format": "http://ctdbase.org/detail.go?type=chem&acc=$1"
+  },
+  "CTD.DISEASE": {
+    "uri_format": "http://ctdbase.org/detail.go?type=disease&db=MESH&acc=$1"
+  },
+  "CTD.GENE": {
+    "uri_format": "http://ctdbase.org/detail.go?type=gene&acc=$1"
   },
   "ChemBank": {
     "uri_format": "http://chembank.broadinstitute.org/chemistry/viewMolecule.htm?cbid=$1"
@@ -39,7 +45,7 @@
     "uri_format": "http://purl.obolibrary.org/obo/doid#$1"
   },
   "DrugCentral": {
-    "uri_format": "http://translator.ncats.nih.gov/DrugCentral_$1"
+    "uri_format": "http://drugcentral.org/drugcard/$1"
   },
   "ECTO": {
     "uri_format": "http://purl.obolibrary.org/obo/ECTO_$1"
@@ -92,11 +98,8 @@
   "HsapDv": {
     "uri_format": "http://purl.obolibrary.org/obo/HsapDv_$1"
   },
-  "ICD0": {
-    "uri_format": "http://translator.ncats.nih.gov/ICD0_$1"
-  },
   "ICD10": {
-    "uri_format": "http://translator.ncats.nih.gov/ICD10_$1"
+    "uri_format": "https://icd.codes/icd9cm/$1"
   },
   "ICD9": {
     "uri_format": "http://translator.ncats.nih.gov/ICD9_$1"
@@ -140,9 +143,6 @@
   "MSigDB": {
     "uri_format": "https://www.gsea-msigdb.org/gsea/msigdb/$1"
   },
-  "MetaCyc": {
-    "uri_format": "http://translator.ncats.nih.gov/MetaCyc_$1"
-  },
   "NBO-PROPERTY": {
     "uri_format": "http://purl.obolibrary.org/obo/nbo#$1"
   },
@@ -173,9 +173,6 @@
   "PANTHER.FAMILY": {
     "uri_format": "http://www.pantherdb.org/panther/family.do?clsAccession=$1"
   },
-  "PDQ": {
-    "uri_format": "https://www.cancer.gov/publications/pdq#$1"
-  },
   "PHAROS": {
     "uri_format": "http://pharos.nih.gov$1"
   },
@@ -187,9 +184,6 @@
   },
   "RO": {
     "uri_format": "http://purl.obolibrary.org/obo/RO_$1"
-  },
-  "RTXKG1": {
-    "uri_format": "http://kg1endpoint.rtx.ai/$1"
   },
   "RXCUI": {
     "uri_format": "https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=$1"
@@ -214,9 +208,6 @@
   },
   "SNOMEDCT": {
     "uri_format": "http://www.snomedbrowser.com/Codes/Details/$1"
-  },
-  "SNPEFF": {
-    "uri_format": "http://translator.ncats.nih.gov/SNPEFF_$1"
   },
   "STY": {
     "uri_format": "http://purl.bioontology.org/ontology/STY/$1"
@@ -272,11 +263,11 @@
   "bioschemas": {
     "uri_format": "https://bioschemas.org/$1"
   },
-  "chembio": {
-    "uri_format": "http://translator.ncats.nih.gov/chembio_$1"
-  },
   "dcat": {
     "uri_format": "http://www.w3.org/ns/dcat#$1"
+  },
+  "dcid": {
+    "uri_format": "https://datacommons.org/browser/$1"
   },
   "dct": {
     "uri_format": "http://purl.org/dc/terms/$1"
@@ -302,9 +293,6 @@
   "gtpo": {
     "uri_format": "https://rdf.guidetopharmacology.org/ns/gtpo#$1"
   },
-  "hetio": {
-    "uri_format": "http://translator.ncats.nih.gov/hetio_$1"
-  },
   "interpro": {
     "uri_format": "https://www.ebi.ac.uk/interpro/entry/$1"
   },
@@ -322,6 +310,9 @@
   },
   "medgen": {
     "uri_format": "https://www.ncbi.nlm.nih.gov/medgen/$1"
+  },
+  "metacyc.reaction": {
+    "uri_format": "https://identifiers.org/metacyc.reaction:$1"
   },
   "mirbase": {
     "uri_format": "http://identifiers.org/mirbase$1"

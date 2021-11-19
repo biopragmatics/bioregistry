@@ -83,6 +83,30 @@
     "name": "4D Nucleome Data Portal Experiment Replicate",
     "uri_format": "https://data.4dnucleome.org/experiment-set-replicates/$1"
   },
+  "EPSO": {
+    "bioportal": {
+      "name": "Epilepsy and Seizure Ontology",
+      "prefix": "EPSO"
+    },
+    "mappings": {
+      "bioportal": "EPSO",
+      "obofoundry": "EPSO"
+    },
+    "obofoundry": {
+      "contact": "alpha.tom.kodamullil@scai.fraunhofer.de",
+      "contact.github": "akodamullil",
+      "contact.label": "Alpha Tom Kodamullil",
+      "deprecated": false,
+      "description": "A application driven Epilepsy Ontology sith official terms from the ILAE.",
+      "inactive": false,
+      "license": "CC BY 4.0",
+      "license.url": "http://creativecommons.org/licenses/by/4.0/",
+      "name": "Epilepsy Ontology",
+      "preferredPrefix": "EPSO",
+      "prefix": "EPSO",
+      "repository": "https://github.com/phwegner/Epilepsyontology"
+    }
+  },
   "aao": {
     "description": "A structured controlled vocabulary of the anatomy of Amphibians. Note that AAO is currently being integrated into Uberon.",
     "mappings": {
@@ -1338,9 +1362,9 @@
       "prefixcommons": "ARO"
     },
     "obofoundry": {
-      "contact": "card@mcmaster.ca",
-      "contact.github": "raphenya",
-      "contact.label": "CARD",
+      "contact": "mcarthua@mcmaster.ca",
+      "contact.github": "agmcarthur",
+      "contact.label": "Andrew G. McArthur",
       "deprecated": false,
       "description": "Antibiotic resistance genes and mutations",
       "download.owl": "http://purl.obolibrary.org/obo/aro.owl",
@@ -3260,8 +3284,9 @@
       "uri_format": "http://purl.bioontology.org/ontology/KISAO/kisao:$1"
     },
     "obofoundry": {
-      "contact": "sed-ml-editors@googlegroups.com",
-      "contact.label": "SED-ML Editors",
+      "contact": "karr@mssm.edu",
+      "contact.github": "jonrkarr",
+      "contact.label": "Jonathan Karr",
       "deprecated": false,
       "description": "A classification of algorithms for simulating biology and their outputs",
       "download.owl": "http://purl.obolibrary.org/obo/kisao.owl",
@@ -8299,7 +8324,14 @@
     }
   },
   "ctd.chemical": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "CTD.CHEMICAL",
+      "uri_format": "http://ctdbase.org/detail.go?type=chem&acc=$1"
+    },
     "mappings": {
+      "biolink": "CTD.CHEMICAL",
       "miriam": "ctd.chemical",
       "n2t": "ctd.chemical",
       "prefixcommons": "CTD.CHEMICAL"
@@ -8336,7 +8368,14 @@
     "provides": "mesh"
   },
   "ctd.disease": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "CTD.DISEASE",
+      "uri_format": "http://ctdbase.org/detail.go?type=disease&db=MESH&acc=$1"
+    },
     "mappings": {
+      "biolink": "CTD.DISEASE",
       "miriam": "ctd.disease",
       "n2t": "ctd.disease",
       "prefixcommons": "CTD.DISEASE"
@@ -8373,7 +8412,14 @@
     "provides": "mesh"
   },
   "ctd.gene": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "CTD.GENE",
+      "uri_format": "http://ctdbase.org/detail.go?type=gene&acc=$1"
+    },
     "mappings": {
+      "biolink": "CTD.GENE",
       "miriam": "ctd.gene",
       "n2t": "ctd.gene",
       "prefixcommons": "CTD.GENE"
@@ -10204,8 +10250,8 @@
       "license": "https://creativecommons.org/publicdomain/zero/1.0/",
       "name": "Human Disease Ontology",
       "prefix": "doid",
-      "version": "2021-11-16",
-      "version.iri": "http://purl.obolibrary.org/obo/doid/releases/2021-11-16/doid.owl"
+      "version": "2021-11-17",
+      "version.iri": "http://purl.obolibrary.org/obo/doid/releases/2021-11-17/doid.owl"
     },
     "ontobee": {
       "library": "Foundry",
@@ -10826,7 +10872,7 @@
       "is_identifiers": false,
       "is_obo": false,
       "prefix": "DrugCentral",
-      "uri_format": "http://translator.ncats.nih.gov/DrugCentral_$1"
+      "uri_format": "http://drugcentral.org/drugcard/$1"
     },
     "description": "DrugCentral  provides information on active ingredients chemical entities, pharmaceutical products, drug mode of action, indications, pharmacologic action.",
     "example": "307",
@@ -14378,8 +14424,8 @@
       "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "Food Ontology",
       "prefix": "foodon",
-      "version": "2021-09-15",
-      "version.iri": "http://purl.obolibrary.org/obo/foodon/releases/2021-09-15/foodon.owl"
+      "version": "2021-11-17",
+      "version.iri": "http://purl.obolibrary.org/obo/foodon/releases/2021-11-17/foodon.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -19195,7 +19241,7 @@
       "is_identifiers": false,
       "is_obo": false,
       "prefix": "ICD10",
-      "uri_format": "http://translator.ncats.nih.gov/ICD10_$1"
+      "uri_format": "https://icd.codes/icd9cm/$1"
     },
     "bioportal": {
       "name": "International Classification of Diseases, Version 10",
@@ -24030,7 +24076,14 @@
     ]
   },
   "metacyc.reaction": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "metacyc.reaction",
+      "uri_format": "https://identifiers.org/metacyc.reaction:$1"
+    },
     "mappings": {
+      "biolink": "metacyc.reaction",
       "miriam": "metacyc.reaction",
       "n2t": "metacyc.reaction",
       "prefixcommons": "METACYC.REACTION"
@@ -24292,8 +24345,8 @@
       "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "Mental Functioning Ontology",
       "prefix": "mf",
-      "version": "2021-09-21",
-      "version.iri": "http://purl.obolibrary.org/obo/MF/2021-09-21/MF.owl"
+      "version": "2021-11-17",
+      "version.iri": "http://purl.obolibrary.org/obo/MF/2021-11-17/MF.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -24422,8 +24475,8 @@
       "license": "https://creativecommons.org/licenses/by/3.0/",
       "name": "Emotion Ontology",
       "prefix": "mfoem",
-      "version": "2021-09-21",
-      "version.iri": "http://purl.obolibrary.org/obo/MFOEM/2021-09-21/MFOEM.owl"
+      "version": "2021-11-17",
+      "version.iri": "http://purl.obolibrary.org/obo/MFOEM/2021-11-17/MFOEM.owl"
     },
     "ontobee": {
       "library": "Library",

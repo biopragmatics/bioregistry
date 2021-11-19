@@ -41,6 +41,18 @@
   name: 4D Nucleome Data Portal Experiment Replicate
   preferred_prefix: 4dn.replicate
   uri_format: https://data.4dnucleome.org/experiment-set-replicates/$1
+EPSO:
+  banana: EPSO
+  contact: alpha.tom.kodamullil@scai.fraunhofer.de
+  description: A application driven Epilepsy Ontology sith official terms from the
+    ILAE.
+  license: CC BY 4.0
+  mappings:
+    bioportal: EPSO
+    obofoundry: EPSO
+  name: Epilepsy Ontology
+  preferred_prefix: EPSO
+  uri_format: http://purl.obolibrary.org/obo/EPSO_$1
 aao:
   banana: AAO
   contact: david.c.blackburn@gmail.com
@@ -575,7 +587,7 @@ ark:
   uri_format: http://n2t.net/ark:$1
 aro:
   banana: ARO
-  contact: card@mcmaster.ca
+  contact: mcarthua@mcmaster.ca
   description: Antibiotic resistance genes and mutations
   example: '1000001'
   homepage: https://github.com/arpcard/aro
@@ -1426,7 +1438,7 @@ biomodels.db:
   uri_format: https://www.ebi.ac.uk/biomodels/$1
 biomodels.kisao:
   banana: KISAO
-  contact: sed-ml-editors@googlegroups.com
+  contact: karr@mssm.edu
   description: The Kinetic Simulation Algorithm Ontology (KiSAO) is an ontology that
     describes simulation algorithms and methods used for biological kinetic models,
     and the relationships between them. This provides a means to unambiguously refer
@@ -3947,6 +3959,7 @@ ctd.chemical:
   example: D001151
   homepage: http://ctdbase.org/
   mappings:
+    biolink: CTD.CHEMICAL
     miriam: ctd.chemical
     n2t: ctd.chemical
     prefixcommons: CTD.CHEMICAL
@@ -3966,6 +3979,7 @@ ctd.disease:
   example: D053716
   homepage: http://ctdbase.org/
   mappings:
+    biolink: CTD.DISEASE
     miriam: ctd.disease
     n2t: ctd.disease
     prefixcommons: CTD.DISEASE
@@ -3985,6 +3999,7 @@ ctd.gene:
   example: '101'
   homepage: http://ctdbase.org/
   mappings:
+    biolink: CTD.GENE
     miriam: ctd.gene
     n2t: ctd.gene
     prefixcommons: CTD.GENE
@@ -4852,7 +4867,7 @@ doid:
   synonyms:
   - do
   uri_format: https://www.ebi.ac.uk/ols/ontologies/doid/terms?obo_id=DOID:$1
-  version: '2021-11-16'
+  version: '2021-11-17'
 dommino:
   description: DOMMINO is a database of macromolecular interactions that includes
     the interactions between protein domains, interdomain linkers, N- and C-terminal
@@ -6694,7 +6709,7 @@ foodon:
   pattern: ^[0-9]{8}$
   preferred_prefix: FOODON
   uri_format: https://www.ebi.ac.uk/ols/ontologies/foodon/terms?obo_id=FOODON:$1
-  version: '2021-09-15'
+  version: '2021-11-17'
 fovt:
   banana: FOVT
   contact: rlwalls2008@gmail.com
@@ -11068,6 +11083,7 @@ metacyc.reaction:
   example: RXN-14904
   homepage: https://metacyc.org
   mappings:
+    biolink: metacyc.reaction
     miriam: metacyc.reaction
     n2t: metacyc.reaction
     prefixcommons: METACYC.REACTION
@@ -11176,7 +11192,7 @@ mf:
   name: Mental Functioning Ontology
   preferred_prefix: MF
   uri_format: http://purl.obolibrary.org/obo/MF_$1
-  version: '2021-09-21'
+  version: '2021-11-17'
 mfmo:
   banana: MFMO
   contact: druzinsk@uic.edu
@@ -11226,7 +11242,7 @@ mfoem:
   name: Emotion Ontology
   preferred_prefix: MFOEM
   uri_format: http://purl.obolibrary.org/obo/MFOEM_$1
-  version: '2021-09-21'
+  version: '2021-11-17'
 mfomd:
   banana: MFOMD
   contact: janna.hastings@gmail.com
