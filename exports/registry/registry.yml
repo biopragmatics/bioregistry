@@ -41,18 +41,6 @@
   name: 4D Nucleome Data Portal Experiment Replicate
   preferred_prefix: 4dn.replicate
   uri_format: https://data.4dnucleome.org/experiment-set-replicates/$1
-EPSO:
-  banana: EPSO
-  contact: alpha.tom.kodamullil@scai.fraunhofer.de
-  description: A application driven Epilepsy Ontology sith official terms from the
-    ILAE.
-  license: CC BY 4.0
-  mappings:
-    bioportal: EPSO
-    obofoundry: EPSO
-  name: Epilepsy Ontology
-  preferred_prefix: EPSO
-  uri_format: http://purl.obolibrary.org/obo/EPSO_$1
 aao:
   banana: AAO
   contact: david.c.blackburn@gmail.com
@@ -4741,11 +4729,13 @@ disdriv:
   description: Ontology for drivers and triggers of human diseases, built to classify
     ExO ontology exposure stressors. An application ontology. Built in collaboration
     with EnvO, ExO, ECTO and ChEBI.
+  example: '0000000'
   homepage: http://www.disease-ontology.org
   license: CC0 1.0
   mappings:
     obofoundry: DISDRIV
   name: Disease Drivers Ontology
+  pattern: ^\d+$
   preferred_prefix: DISDRIV
   uri_format: http://purl.obolibrary.org/obo/DISDRIV_$1
 diseasesdb:
@@ -6047,6 +6037,20 @@ epo:
   name: Epidemiology Ontology
   preferred_prefix: EPO
   uri_format: http://purl.obolibrary.org/obo/EPO_$1
+epso:
+  banana: EPSO
+  contact: alpha.tom.kodamullil@scai.fraunhofer.de
+  description: A application driven Epilepsy Ontology sith official terms from the
+    ILAE.
+  example: '0000400'
+  homepage: https://github.com/phwegner/Epilepsyontology
+  license: CC BY 4.0
+  mappings:
+    bioportal: EPSO
+    obofoundry: EPSO
+  name: Epilepsy Ontology
+  preferred_prefix: EPSO
+  uri_format: https://bio.scai.fraunhofer.de/ontology/$1
 erm:
   description: The European Registry of Materials is a simple registry with the sole
     purpose to mint material identifiers to be used by research projects throughout
@@ -6897,7 +6901,7 @@ fypo:
   pattern: ^\d{7}$
   preferred_prefix: FYPO
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2021-11-16'
+  version: '2021-11-18'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -17991,7 +17995,7 @@ srao:
     ols: srao
   name: FAIRsharing Subject Ontology
   preferred_prefix: srao
-  version: 0.2.2
+  version: 0.3.0
 ssbd.dataset:
   description: Systems Science of Biological Dynamics database (SSBD:database) is
     an added-value database for biological dynamics. It provides a rich set of open
