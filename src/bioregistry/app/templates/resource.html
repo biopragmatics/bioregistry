@@ -112,7 +112,14 @@
                 <dt>Contact</dt>
                 <dd>
                     {% if contact %}
-                        <a href="mailto:{{ contact }}">{{ contact }}</a>
+                        <a href="mailto:{{ contact }}">
+                            {% set contact_label = resource.get_contact_name() %}
+                            {% if contact_label %}
+                                {{ contact_label }} &lt;{{ contact }}&gt;
+                            {% else %}
+                                {{ contact }}
+                            {% endif %}
+                        </a>
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}

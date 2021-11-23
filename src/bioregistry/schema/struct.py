@@ -124,6 +124,9 @@ class Resource(BaseModel):
             "person and not be a listserve nor a shared email account."
         )
     )
+    #: The contact name for the individual responsible for the resource
+    contact_label: Optional[str] = Field(description="The contact name")
+
     #: An example local identifier for the resource, explicitly excluding any redundant usage of
     #: the prefix in the identifier. For example, a GO identifier should only look like ``1234567``
     #: and not like ``GO:1234567``
@@ -543,6 +546,23 @@ class Resource(BaseModel):
             logger.warning("[%s] invalid email address listed: %s", self.name, rv)
             return None
         return rv
+
+    def get_contact_name(self) -> Optional[str]:
+        """Return the contact name, if available.
+
+        :returns: The resource's contact name, if it is available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("bioregistry").get_contact_name()  # from bioregistry curation
+        'Charles Tapley Hoyt'
+        >>> get_resource("chebi").get_contact_name()
+        'Adnan Malik'
+        """
+        if self.contact_label:
+            return self.contact_label
+        if self.obofoundry and "contact.label" in self.obofoundry:
+            return self.obofoundry["contact.label"]
+        return None
 
     def get_example(self) -> Optional[str]:
         """Get an example identifier, if it's available."""

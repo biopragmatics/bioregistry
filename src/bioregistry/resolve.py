@@ -24,6 +24,7 @@ __all__ = [
     "is_deprecated",
     "is_proprietary",
     "get_contact",
+    "get_contact_name",
     "get_homepage",
     "get_obo_download",
     "get_json_download",
@@ -484,6 +485,25 @@ def get_contact(prefix: str) -> Optional[str]:
     if entry is None:
         return None
     return entry.get_contact()
+
+
+def get_contact_name(prefix: str) -> Optional[str]:
+    """Return the contact name, if available.
+
+    :param prefix: The prefix to lookup
+    :returns: The resource's contact name, if it is available.
+
+    >>> import bioregistry
+    >>> bioregistry.get_contact('bioregistry')  # from bioregistry curation
+    'Charles Tapley Hoyt'
+    >>> bioregistry.get_contact('chebi')
+    'Adnan Malik'
+    >>> assert bioregistry.get_contact('pass2') is None  # dead resource
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_contact_name()
 
 
 def get_homepage(prefix: str) -> Optional[str]:
