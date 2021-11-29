@@ -37,7 +37,7 @@ def get_cheminf(force_download: bool = False):
     res = requests.get(BASE_URL).json()
     rv = {}
     for term in res["_embedded"]["terms"]:
-        identifier = term["obo_id"][len("CHEMINF:"):]
+        identifier = term["obo_id"][len("CHEMINF:") :]
         description = term.get("description")
         rv[identifier] = {
             "name": _clean(term["label"]),
@@ -51,7 +51,7 @@ def get_cheminf(force_download: bool = False):
 
 def _clean(s: str) -> str:
     if s.endswith("identifier"):
-        s = s[:-len("identifier")].strip()
+        s = s[: -len("identifier")].strip()
     return s
 
 
