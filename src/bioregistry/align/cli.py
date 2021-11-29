@@ -22,6 +22,7 @@ def align():
     """Align all external registries."""
     from .biolink import BiolinkAligner
     from .bioportal import BioPortalAligner
+    from .cheminf import ChemInfAligner
     from .go import GoAligner
     from .miriam import MiriamAligner
     from .n2t import N2TAligner
@@ -46,6 +47,7 @@ def align():
         PrefixCommonsAligner,
         BiolinkAligner,
         UniProtAligner,
+        ChemInfAligner,
     ]:
         secho(f"Aligning {aligner_cls.key}")
         try:
