@@ -17,6 +17,7 @@ from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE, EMAIL_RE_STR
 
 __all__ = [
+    "Attributable",
     "Author",
     "Provider",
     "Resource",
@@ -34,15 +35,14 @@ SCHEMA_PATH = HERE.joinpath("schema.json")
 IDOT_SKIP = "identifiers.org"
 
 
-class Author(BaseModel):
-    """Metadata for an author."""
+class Attributable(BaseModel):
+    """An upper-level metadata for a person."""
 
     #: The full name of the author
-    name: str = Field(..., description="The full name of the author")
+    name: str = Field(description="The full name of the author")
 
     #: The open researcher and contributor identifier (ORCiD) of the author
-    orcid: str = Field(
-        ...,
+    orcid: Optional[str] = Field(
         title="Open Researcher and Contributor Identifier",
         description="The ORCiD of the author",
     )
@@ -51,6 +51,21 @@ class Author(BaseModel):
     email: Optional[str] = Field(
         description="The email address specific to the author",
         regex=EMAIL_RE_STR,
+    )
+
+    #: The GitHub handle for the author
+    github: Optional[str] = Field(description="The GitHub handle for the author")
+
+
+class Author(Attributable):
+    """Metadata for an author."""
+
+    #: The open researcher and contributor identifier (ORCiD) of the author.
+    #: This is overwritten in the child class to enforce it is not none.
+    orcid: str = Field(
+        ...,
+        title="Open Researcher and Contributor Identifier",
+        description="The ORCiD of the author",
     )
 
     def add_triples(self, graph):
@@ -118,14 +133,12 @@ class Resource(BaseModel):
         description="The URL for the homepage of the resource, preferably with HTTPS",
     )
     #: The contact email address for the individual responsible for the resource
-    contact: Optional[str] = Field(
+    contact: Optional[Attributable] = Field(
         description=(
             "The contact email address for the resource. This must correspond to a specific "
             "person and not be a listserve nor a shared email account."
         )
     )
-    #: The contact name for the individual responsible for the resource
-    contact_label: Optional[str] = Field(description="The contact name")
 
     #: An example local identifier for the resource, explicitly excluding any redundant usage of
     #: the prefix in the identifier. For example, a GO identifier should only look like ``1234567``
@@ -541,6 +554,8 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_contact()
         'amalik@ebi.ac.uk'
         """
+        if self.contact and self.contact.email:
+            return self.contact.email
         rv = self.get_prefix_key("contact", ("obofoundry", "ols"))
         if rv and not EMAIL_RE.match(rv):
             logger.warning("[%s] invalid email address listed: %s", self.name, rv)
@@ -558,10 +573,40 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_contact_name()
         'Adnan Malik'
         """
-        if self.contact_label:
-            return self.contact_label
+        if self.contact and self.contact.name:
+            return self.contact.name
         if self.obofoundry and "contact.label" in self.obofoundry:
             return self.obofoundry["contact.label"]
+        return None
+
+    def get_contact_github(self) -> Optional[str]:
+        """Return the contact GitHub handle, if available.
+
+        :returns: The resource's contact GitHub handle, if it is available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("bioregistry").get_contact_github()  # from bioregistry curation
+        'cthoyt'
+        >>> get_resource("agro").get_contact_github()  # from OBO Foundry
+        'marieALaporte'
+        """
+        if self.contact and self.contact.github:
+            return self.contact.github
+        if self.obofoundry and "contact.github" in self.obofoundry:
+            return self.obofoundry["contact.github"]
+        return None
+
+    def get_contact_orcid(self) -> Optional[str]:
+        """Return the contact ORCiD, if available.
+
+        :returns: The resource's contact ORCiD, if it is available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("bioregistry").get_contact_orcid()  # from bioregistry curation
+        '0000-0003-4423-4370'
+        """
+        if self.contact and self.contact.orcid:
+            return self.contact.orcid
         return None
 
     def get_example(self) -> Optional[str]:

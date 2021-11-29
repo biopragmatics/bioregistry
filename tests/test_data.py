@@ -43,7 +43,6 @@ class TestRegistry(unittest.TestCase):
             "name",
             # Recommended
             "contact",
-            "contact_label",
             "download_obo",
             "download_owl",
             "example",
@@ -144,7 +143,7 @@ class TestRegistry(unittest.TestCase):
                 continue
             resource = bioregistry.get_resource(prefix)
             self.assertIsNotNone(resource)
-            email = resource.get_prefix_key("contact", ("obofoundry", "ols"))
+            email = resource.get_contact()
             if email is None or EMAIL_RE.match(email):
                 continue
             with self.subTest(prefix=prefix):

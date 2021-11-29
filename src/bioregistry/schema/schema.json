@@ -24,6 +24,11 @@
           "description": "The email address specific to the author",
           "pattern": "^(\\w|\\.|\\_|\\-)+[@](\\w|\\_|\\-|\\.)+[.]\\w{2,5}$",
           "type": "string"
+        },
+        "github": {
+          "title": "Github",
+          "description": "The GitHub handle for the author",
+          "type": "string"
         }
       },
       "required": [
@@ -120,6 +125,37 @@
         "uri_format"
       ]
     },
+    "Attributable": {
+      "title": "Attributable",
+      "description": "An upper-level metadata for a person.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "description": "The full name of the author",
+          "type": "string"
+        },
+        "orcid": {
+          "title": "Open Researcher and Contributor Identifier",
+          "description": "The ORCiD of the author",
+          "type": "string"
+        },
+        "email": {
+          "title": "Email",
+          "description": "The email address specific to the author",
+          "pattern": "^(\\w|\\.|\\_|\\-)+[@](\\w|\\_|\\-|\\.)+[.]\\w{2,5}$",
+          "type": "string"
+        },
+        "github": {
+          "title": "Github",
+          "description": "The GitHub handle for the author",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
     "Resource": {
       "title": "Resource",
       "description": "Metadata about an ontology, database, or other resource.",
@@ -161,12 +197,11 @@
         "contact": {
           "title": "Contact",
           "description": "The contact email address for the resource. This must correspond to a specific person and not be a listserve nor a shared email account.",
-          "type": "string"
-        },
-        "contact_label": {
-          "title": "Contact Label",
-          "description": "The contact name",
-          "type": "string"
+          "allOf": [
+            {
+              "$ref": "#/definitions/Attributable"
+            }
+          ]
         },
         "example": {
           "title": "Example",
