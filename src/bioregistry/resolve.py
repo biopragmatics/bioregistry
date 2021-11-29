@@ -494,11 +494,11 @@ def get_contact_name(prefix: str) -> Optional[str]:
     :returns: The resource's contact name, if it is available.
 
     >>> import bioregistry
-    >>> bioregistry.get_contact('bioregistry')  # from bioregistry curation
+    >>> bioregistry.get_contact_name('bioregistry')  # from bioregistry curation
     'Charles Tapley Hoyt'
-    >>> bioregistry.get_contact('chebi')
+    >>> bioregistry.get_contact_name('chebi')
     'Adnan Malik'
-    >>> assert bioregistry.get_contact('pass2') is None  # dead resource
+    >>> assert bioregistry.get_contact_name('pass2') is None  # dead resource
     """
     entry = get_resource(prefix)
     if entry is None:
