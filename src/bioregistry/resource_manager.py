@@ -18,7 +18,7 @@ from typing import (
 )
 
 from .license_standardizer import standardize_license
-from .schema import Attributable, Resource, sanitize_model
+from .schema import Resource, sanitize_model
 from .utils import (
     NormDict,
     _registry_from_path,
