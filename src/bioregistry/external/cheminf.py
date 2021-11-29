@@ -13,6 +13,8 @@ See the OBO Foundry workflow for preparing a docker container that has ROBOT ava
 
 import json
 
+import requests
+
 from bioregistry.data import EXTERNAL
 
 __all__ = [
@@ -23,40 +25,34 @@ DIRECTORY = EXTERNAL / "cheminf"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 PROCESSED_PATH = DIRECTORY / "processed.json"
 
+EXTERNAL_IRI = "http%253A%252F%252Fsemanticscience.org%252Fresource%252FCHEMINF_000464"
+BASE_URL = f"https://www.ebi.ac.uk/ols/api/ontologies/cheminf/terms/{EXTERNAL_IRI}/descendants"
+
 
 def get_cheminf(force_download: bool = False):
     """Get the the Chemical Information Ontology registry."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
-
-    import rdflib
-    from rdflib import DC, RDFS
-
-    graph = rdflib.Graph()
-    graph.load("/Users/cthoyt/.data/pyobo/raw/cheminf/2.0/cheminf.owl")
-    graph.bind("rdfs", RDFS)
-    graph.bind("dc", DC)
-    sparql = """\
-        SELECT ?x ?label ?desc
-        WHERE {
-            ?x rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_000464> .
-            ?x rdfs:label ?label .
-            ?x dc:description ?desc
-        }
-    """
-    rows = graph.query(sparql)
-    for uri, label, desc in rows:
-        identifier = uri.toPython().split("-")[-1]
-        label = label.toPython()
-        desc = desc.toPython()
-        print(identifier, label, desc)
+    res = requests.get(BASE_URL).json()
     rv = {}
-    # TODO provide implementation
-
+    for term in res["_embedded"]["terms"]:
+        identifier = term["obo_id"][len("CHEMINF:"):]
+        description = term.get("description")
+        rv[identifier] = {
+            "name": _clean(term["label"]),
+            "description": description and description[0],
+            "obsolete": term.get("is_obsolete", False),
+        }
     with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, indent=2, sort_keys=True)
     return rv
+
+
+def _clean(s: str) -> str:
+    if s.endswith("identifier"):
+        s = s[:-len("identifier")].strip()
+    return s
 
 
 if __name__ == "__main__":

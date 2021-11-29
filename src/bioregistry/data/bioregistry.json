@@ -4566,6 +4566,12 @@
     }
   },
   "cas": {
+    "cheminf": {
+      "description": "Identifier used by the Chemical Abstracts Service database.",
+      "name": "CAS registry number",
+      "obsolete": false,
+      "prefix": "000446"
+    },
     "go": {
       "description": "CAS REGISTRY is the most authoritative collection of disclosed chemical substance information, containing more than 54 million organic and inorganic substances and 62 million sequences. CAS REGISTRY covers substances identified from the scientific literature from 1957 to the present, with additional substances going back to the early 1900s.",
       "homepage": "http://www.cas.org/expertise/cascontent/registry/index.html",
@@ -5515,6 +5521,12 @@
       "prefix": "ChEBI",
       "uri_format": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=$1"
     },
+    "cheminf": {
+      "description": "Database identifier used by ChEBI.",
+      "name": "ChEBI",
+      "obsolete": false,
+      "prefix": "000407"
+    },
     "example": "24867",
     "go": {
       "homepage": "http://www.ebi.ac.uk/chebi/",
@@ -5627,6 +5639,12 @@
     }
   },
   "chembl": {
+    "cheminf": {
+      "description": "Identifier used by the ChEMBL database for compounds, assays, target, etc.",
+      "name": "ChEMBL",
+      "obsolete": false,
+      "prefix": "000412"
+    },
     "homepage": "https://www.ebi.ac.uk/chembl",
     "mappings": {
       "cheminf": "000412",
@@ -5902,6 +5920,12 @@
     }
   },
   "chemspider": {
+    "cheminf": {
+      "description": "Database identifier used by ChemSpider.",
+      "name": "ChemSpider",
+      "obsolete": false,
+      "prefix": "000405"
+    },
     "mappings": {
       "cheminf": "000405",
       "miriam": "chemspider",
@@ -10736,6 +10760,12 @@
       "name": "DrugBank database",
       "prefix": "DrugBank",
       "uri_format": "https://go.drugbank.com/drugs/$1"
+    },
+    "cheminf": {
+      "description": "Database identifier used by DrugBank.",
+      "name": "DrugBank",
+      "obsolete": false,
+      "prefix": "000406"
     },
     "example": "DB14938",
     "homepage": "http://www.drugbank.ca",
@@ -18266,6 +18296,12 @@
     }
   },
   "hmdb": {
+    "cheminf": {
+      "description": "Database identifier used by Human Metabolome Database.",
+      "name": "HMDB",
+      "obsolete": false,
+      "prefix": "000408"
+    },
     "mappings": {
       "cheminf": "000408",
       "miriam": "hmdb",
@@ -21550,6 +21586,12 @@
     }
   },
   "kegg": {
+    "cheminf": {
+      "description": "Database identifier used by KEGG.",
+      "name": "KEGG",
+      "obsolete": false,
+      "prefix": "000409"
+    },
     "comment": "KEGG prefix has been split into several others",
     "deprecated": true,
     "go": {
@@ -21558,6 +21600,7 @@
       "prefix": "KEGG"
     },
     "mappings": {
+      "cheminf": "000409",
       "go": "KEGG",
       "miriam": "kegg",
       "n2t": "kegg",
@@ -22706,7 +22749,14 @@
     }
   },
   "lipidmaps": {
+    "cheminf": {
+      "description": "Identifier used by the LipidMaps database, http://www.lipidmaps.org/.",
+      "name": "LipidMaps",
+      "obsolete": false,
+      "prefix": "000564"
+    },
     "mappings": {
+      "cheminf": "000564",
       "miriam": "lipidmaps",
       "n2t": "lipidmaps",
       "prefixcommons": "LIPIDMAPS",
@@ -35491,6 +35541,12 @@
       "prefix": "PubChem",
       "uri_format": "https://pubchem.ncbi.nlm.nih.gov/compound/$1"
     },
+    "cheminf": {
+      "description": null,
+      "name": "PubChem compound identifier (CID)",
+      "obsolete": false,
+      "prefix": "000140"
+    },
     "go": {
       "homepage": "https://pubchem.ncbi.nlm.nih.gov",
       "name": "NCBI PubChem database of chemical structures",
@@ -35500,6 +35556,7 @@
     "mappings": {
       "biolink": "CID",
       "cellosaurus": "PubChem",
+      "cheminf": "000140",
       "go": "PubChem_Compound",
       "miriam": "pubchem.compound",
       "n2t": "pubchem.compound",
@@ -35565,6 +35622,12 @@
     }
   },
   "pubchem.substance": {
+    "cheminf": {
+      "description": null,
+      "name": "PubChem substance identifier (SID)",
+      "obsolete": false,
+      "prefix": "000141"
+    },
     "go": {
       "homepage": "https://pubchem.ncbi.nlm.nih.gov",
       "name": "NCBI PubChem database of chemical substances",
@@ -35572,6 +35635,7 @@
       "uri_format": "https://pubchem.ncbi.nlm.nih.gov/substance/$1"
     },
     "mappings": {
+      "cheminf": "000141",
       "go": "PubChem_Substance",
       "miriam": "pubchem.substance",
       "n2t": "pubchem.substance",
@@ -35645,6 +35709,12 @@
       "prefix": "PubMed",
       "uri_format": "https://www.ncbi.nlm.nih.gov/pubmed/$1"
     },
+    "cheminf": {
+      "description": null,
+      "name": "PubMed Identifier",
+      "obsolete": false,
+      "prefix": "000302"
+    },
     "go": {
       "homepage": "https://www.ncbi.nlm.nih.gov/pubmed",
       "name": "PubMed",
@@ -35656,6 +35726,7 @@
     },
     "mappings": {
       "cellosaurus": "PubMed",
+      "cheminf": "000302",
       "go": "PMID",
       "miriam": "pubmed",
       "n2t": "pubmed",
@@ -36120,6 +36191,12 @@
     }
   },
   "reactome": {
+    "cheminf": {
+      "description": "Database identifier used by Reactome.",
+      "name": "Reactome",
+      "obsolete": false,
+      "prefix": "000411"
+    },
     "example": "R-BTA-418592",
     "go": {
       "homepage": "https://www.reactome.org/",
@@ -36132,6 +36209,7 @@
       "uri_format": "https://www.reactome.org/content/detail/$1"
     },
     "mappings": {
+      "cheminf": "000411",
       "go": "Reactome",
       "miriam": "reactome",
       "n2t": "reactome",
@@ -41906,7 +41984,14 @@
     }
   },
   "unii": {
+    "cheminf": {
+      "description": "Identifier used by the USA Food and Drug Administration.",
+      "name": "Unique Ingredient Identifier",
+      "obsolete": false,
+      "prefix": "000563"
+    },
     "mappings": {
+      "cheminf": "000563",
       "miriam": "unii",
       "n2t": "unii",
       "prefixcommons": "UNII"
