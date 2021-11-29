@@ -31,19 +31,20 @@ def get_cheminf(force_download: bool = False):
             return json.load(file)
 
     import rdflib
-    from rdflib import RDFS, DC
+    from rdflib import DC, RDFS
+
     graph = rdflib.Graph()
     graph.load("/Users/cthoyt/.data/pyobo/raw/cheminf/2.0/cheminf.owl")
     graph.bind("rdfs", RDFS)
     graph.bind("dc", DC)
-    sparql = '''\
+    sparql = """\
         SELECT ?x ?label ?desc
         WHERE {
             ?x rdfs:subClassOf <http://semanticscience.org/resource/CHEMINF_000464> .
             ?x rdfs:label ?label .
             ?x dc:description ?desc
         }
-    '''
+    """
     rows = graph.query(sparql)
     for uri, label, desc in rows:
         identifier = uri.toPython().split("-")[-1]
@@ -58,5 +59,5 @@ def get_cheminf(force_download: bool = False):
     return rv
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     get_cheminf(force_download=True)
