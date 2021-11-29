@@ -43,6 +43,7 @@ class TestRegistry(unittest.TestCase):
             "name",
             # Recommended
             "contact",
+            "contact_label",
             "download_obo",
             "download_owl",
             "example",
