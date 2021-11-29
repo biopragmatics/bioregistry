@@ -2837,7 +2837,7 @@ cl:
   pattern: ^\d{7}$
   preferred_prefix: CL
   uri_format: https://www.ebi.ac.uk/ols/ontologies/cl/terms?obo_id=CL:$1
-  version: '2021-11-23'
+  version: '2021-11-25'
 clao:
   banana: CLAO
   contact: lagonzalezmo@unal.edu.co
@@ -5130,6 +5130,8 @@ dsmz:
     plant viruses, genomic bacterial DNA as well as human and animal cell lines).
   example: ACC-1
   homepage: https://www.dsmz.de
+  mappings:
+    cellosaurus: DSMZ
   name: Deutsche Sammlung von Mikroorganismen und Zellkulturen
   preferred_prefix: dsmz
   uri_format: https://www.dsmz.de/collection/catalogue/details/culture/$1
@@ -5168,6 +5170,8 @@ eaglei:
     throughout the U.S.
   example: 0000012b-5661-2f63-2f73-b43980000000
   homepage: https://hawaii.eagle-i.net
+  mappings:
+    cellosaurus: eagle-i
   name: eagle-i
   preferred_prefix: eaglei
   uri_format: http://hawaii.eagle-i.net/i/$1
@@ -6713,7 +6717,7 @@ foodon:
   pattern: ^[0-9]{8}$
   preferred_prefix: FOODON
   uri_format: https://www.ebi.ac.uk/ols/ontologies/foodon/terms?obo_id=FOODON:$1
-  version: '2021-11-17'
+  version: '2021-11-25'
 fovt:
   banana: FOVT
   contact: rlwalls2008@gmail.com
@@ -11439,6 +11443,7 @@ micro:
   mappings:
     obofoundry: MICRO
     ols: micro
+    ontobee: MicrO
     prefixcommons: MICRO
   name: Ontology of Prokaryotic Phenotypic and Metabolic Characters
   preferred_prefix: MICRO
@@ -16407,6 +16412,8 @@ rcb:
     animals, preserved by the RIKEN BioResource Research Center.
   example: RCB0002
   homepage: https://cell.brc.riken.jp/en/rcb
+  mappings:
+    cellosaurus: RCB
   name: RIKEN Bioresource Center Cell Bank
   pattern: ^RCB\d+$
   preferred_prefix: rcb
@@ -18597,6 +18604,8 @@ tkg:
     cell lines as well as human, murine cell lines and hybridoma cells.
   example: '0221'
   homepage: http://www2.idac.tohoku.ac.jp/dep/ccr/
+  mappings:
+    cellosaurus: TKG
   name: Tohoku University cell line catalog
   pattern: ^\d+$
   preferred_prefix: tkg
