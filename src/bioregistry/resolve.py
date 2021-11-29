@@ -7,7 +7,7 @@ from functools import lru_cache
 from typing import Any, Dict, Mapping, Optional, Set, Tuple, Union
 
 from .resource_manager import manager
-from .schema import Resource
+from .schema import Attributable, Resource
 
 __all__ = [
     "get_resource",
@@ -24,6 +24,8 @@ __all__ = [
     "is_deprecated",
     "is_proprietary",
     "get_contact",
+    "get_contact_email",
+    "get_contact_name",
     "get_homepage",
     "get_obo_download",
     "get_json_download",
@@ -467,23 +469,54 @@ def is_deprecated(prefix: str) -> bool:
     return manager.is_deprecated(prefix)
 
 
-def get_contact(prefix: str) -> Optional[str]:
+def get_contact(prefix: str) -> Optional[Attributable]:
+    """Return the contact, if available.
+
+    :param prefix: The prefix to lookup
+    :returns: The resource's contact, if it is available.
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_contact()
+
+
+def get_contact_email(prefix: str) -> Optional[str]:
     """Return the contact email, if available.
 
     :param prefix: The prefix to lookup
     :returns: The resource's contact email address, if it is available.
 
     >>> import bioregistry
-    >>> bioregistry.get_contact('bioregistry')  # from bioregistry curation
+    >>> bioregistry.get_contact_email('bioregistry')  # from bioregistry curation
     'cthoyt@gmail.com'
-    >>> bioregistry.get_contact('chebi')
+    >>> bioregistry.get_contact_email('chebi')
     'amalik@ebi.ac.uk'
-    >>> assert bioregistry.get_contact('pass2') is None  # dead resource
+    >>> assert bioregistry.get_contact_email('pass2') is None  # dead resource
     """
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get_contact()
+    return entry.get_contact_email()
+
+
+def get_contact_name(prefix: str) -> Optional[str]:
+    """Return the contact name, if available.
+
+    :param prefix: The prefix to lookup
+    :returns: The resource's contact name, if it is available.
+
+    >>> import bioregistry
+    >>> bioregistry.get_contact_name('bioregistry')  # from bioregistry curation
+    'Charles Tapley Hoyt'
+    >>> bioregistry.get_contact_name('chebi')
+    'Adnan Malik'
+    >>> assert bioregistry.get_contact_name('pass2') is None  # dead resource
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_contact_name()
 
 
 def get_homepage(prefix: str) -> Optional[str]:

@@ -14,7 +14,7 @@ from typing import Collection, Set
 import click
 
 from bioregistry import (
-    get_contact,
+    get_contact_email,
     get_description,
     get_example,
     get_homepage,
@@ -292,7 +292,7 @@ def compare(png: bool):  # noqa:C901
         ("License", _get_has(get_license)),
         ("License Type", _get_has_present(get_license)),
         ("Version", _get_has(get_version)),
-        ("Contact Email", _get_has(get_contact)),
+        ("Contact Email", _get_has(get_contact_email)),
         ("Wikidata Database", HAS_WIKIDATA_DATABASE),
         ("OBO", _get_has(get_obo_download)),
         ("OWL", _get_has(get_owl_download)),

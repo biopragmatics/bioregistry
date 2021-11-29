@@ -2,5 +2,12 @@
 
 """Data structures."""
 
-from .struct import Author, Collection, Registry, Resource, get_json_schema  # noqa:F401
+from .struct import (  # noqa:F401
+    Attributable,
+    Author,
+    Collection,
+    Registry,
+    Resource,
+    get_json_schema,
+)
 from .utils import sanitize_mapping, sanitize_model  # noqa:F401

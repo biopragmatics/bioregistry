@@ -112,7 +112,7 @@
                 <dt>Contact</dt>
                 <dd>
                     {% if contact %}
-                        <a href="mailto:{{ contact }}">{{ contact }}</a>
+                        {{ utils.render_author(contact, link=none) }}
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}
@@ -191,9 +191,13 @@
                 {% if resource.contributor %}
                     <dt>Contributor</dt>
                     <dd>
-                        <a href="{{ url_for('ui.contributor', orcid=resource.contributor.orcid) }}">
-                            {{ resource.contributor.name }}
-                        </a>
+                        {{ utils.render_author(resource.contributor, link=url_for('ui.contributor', orcid=resource.contributor.orcid)) }}
+                    </dd>
+                {% endif %}
+                {% if resource.reviewer %}
+                    <dt>Reviewer</dt>
+                    <dd>
+                        {{ utils.render_author(resource.reviewer, link=url_for('ui.contributor', orcid=resource.reviewer.orcid)) }}
                     </dd>
                 {% endif %}
             </dl>

@@ -146,7 +146,7 @@ RESOURCE_FUNCTIONS: List[Tuple[str, Callable[[str], Optional[str]]]] = [
     ("0000008", bioregistry.get_pattern),
     ("0000006", bioregistry.get_uri_format),
     ("0000005", bioregistry.get_example),
-    ("0000009", bioregistry.get_contact),
+    ("0000009", bioregistry.get_contact_email),
 ]
 
 
