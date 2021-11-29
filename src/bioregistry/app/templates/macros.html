@@ -43,4 +43,22 @@
             {{ author.name }}
         {% endif %}
     {% endif %}
+    {% if author.orcid %}
+        &nbsp;
+        <small>
+            <i class="fab fa-orcid"></i>
+            <a href="https://orcid.org/{{ author.orcid }}">
+                {{ author.orcid }}
+            </a>
+        </small>
+    {% endif %}
+    {% if author.github %}
+        &nbsp;
+        <small>
+            <i class="fab fa-github"></i>
+            <a href="https://github.com/{{ author.github }}">
+                {{ author.github }}
+            </a>
+        </small>
+    {% endif %}
 {% endmacro %}
