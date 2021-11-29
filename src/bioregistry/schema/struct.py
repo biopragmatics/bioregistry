@@ -543,15 +543,15 @@ class Resource(BaseModel):
             ("obofoundry", "ols", "miriam", "n2t", "wikidata", "go", "ncbi", "cellosaurus"),
         )
 
-    def get_contact(self) -> Optional[str]:
+    def get_contact_email(self) -> Optional[str]:
         """Return the contact email, if available.
 
         :returns: The resource's contact email address, if it is available.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("bioregistry").get_contact()  # from bioregistry curation
+        >>> get_resource("bioregistry").get_contact_email()  # from bioregistry curation
         'cthoyt@gmail.com'
-        >>> get_resource("chebi").get_contact()
+        >>> get_resource("chebi").get_contact_email()
         'amalik@ebi.ac.uk'
         """
         if self.contact and self.contact.email:

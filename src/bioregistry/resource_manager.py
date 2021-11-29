@@ -306,7 +306,7 @@ class Manager:
             return None
         return Attributable(
             name=name,
-            email=resource.get_contact(),
+            email=resource.get_contact_email(),
             orcid=resource.get_contact_orcid(),
             github=resource.get_contact_github(),
         )
