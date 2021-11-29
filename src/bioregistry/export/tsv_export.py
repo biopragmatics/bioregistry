@@ -132,7 +132,7 @@ def get_registry_rows():
                 data.get_description(),
                 data.get_pattern(),
                 data.get_example(),
-                data.get_contact(),
+                data.get_contact_email(),
                 get_uri_format(prefix),
                 data.download_owl,
                 data.download_obo,

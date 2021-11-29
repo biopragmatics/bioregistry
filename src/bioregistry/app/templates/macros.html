@@ -28,3 +28,37 @@
         </table>
     {% endif %}
 {% endmacro %}
+
+{% macro render_author(author, link) -%}
+    {% if link or author.email %}
+        <a href="{% if link %}{{ link }}{% else %}mailto:{{ author.email }}{% endif %}">
+            {% if author.name %}
+                {{ author.name }}
+            {% else %}
+                {{ author.email }}
+            {% endif %}
+        </a>
+    {% else %}
+        {% if author.name %}
+            {{ author.name }}
+        {% endif %}
+    {% endif %}
+    {% if author.orcid %}
+        &nbsp;
+        <small>
+            <i class="fab fa-orcid"></i>
+            <a href="https://orcid.org/{{ author.orcid }}">
+                {{ author.orcid }}
+            </a>
+        </small>
+    {% endif %}
+    {% if author.github %}
+        &nbsp;
+        <small>
+            <i class="fab fa-github"></i>
+            <a href="https://github.com/{{ author.github }}">
+                {{ author.github }}
+            </a>
+        </small>
+    {% endif %}
+{% endmacro %}

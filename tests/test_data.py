@@ -143,7 +143,7 @@ class TestRegistry(unittest.TestCase):
                 continue
             resource = bioregistry.get_resource(prefix)
             self.assertIsNotNone(resource)
-            email = resource.get_prefix_key("contact", ("obofoundry", "ols"))
+            email = resource.get_contact_email()
             if email is None or EMAIL_RE.match(email):
                 continue
             with self.subTest(prefix=prefix):
@@ -312,7 +312,7 @@ class TestRegistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_version("nope"))
         self.assertIsNone(bioregistry.get_name("nope"))
         self.assertIsNone(bioregistry.get_example("nope"))
-        self.assertIsNone(bioregistry.get_contact("nope"))
+        self.assertIsNone(bioregistry.get_contact_email("nope"))
         self.assertIsNone(bioregistry.get_mappings("nope"))
         self.assertIsNone(bioregistry.get_fairsharing_prefix("nope"))
         self.assertIsNone(bioregistry.get_obofoundry_prefix("nope"))

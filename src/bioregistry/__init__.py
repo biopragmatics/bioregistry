@@ -17,6 +17,8 @@ from .resolve import (  # noqa:F401
     get_banana,
     get_bioportal_prefix,
     get_contact,
+    get_contact_email,
+    get_contact_name,
     get_curie_pattern,
     get_default_format,
     get_description,
