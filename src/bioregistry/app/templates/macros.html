@@ -28,3 +28,19 @@
         </table>
     {% endif %}
 {% endmacro %}
+
+{% macro render_author(author, link) -%}
+    {% if link or author.email %}
+        <a href="{% if link %}{{ link }}{% else %}mailto:{{ author.email }}{% endif %}">
+            {% if author.name %}
+                {{ author.name }}
+            {% else %}
+                {{ author.email }}
+            {% endif %}
+        </a>
+    {% else %}
+        {% if author.name %}
+            {{ author.name }}
+        {% endif %}
+    {% endif %}
+{% endmacro %}

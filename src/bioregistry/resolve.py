@@ -7,7 +7,7 @@ from functools import lru_cache
 from typing import Any, Dict, Mapping, Optional, Set, Tuple, Union
 
 from .resource_manager import manager
-from .schema import Resource
+from .schema import Attributable, Resource
 
 __all__ = [
     "get_resource",
@@ -23,6 +23,7 @@ __all__ = [
     "has_no_terms",
     "is_deprecated",
     "is_proprietary",
+    "get_contact",
     "get_contact_email",
     "get_contact_name",
     "get_homepage",
@@ -466,6 +467,18 @@ def is_deprecated(prefix: str) -> bool:
     >>> assert bioregistry.is_deprecated('miriam.collection') # marked by MIRIAM
     """
     return manager.is_deprecated(prefix)
+
+
+def get_contact(prefix: str) -> Optional[Attributable]:
+    """Return the contact, if available.
+
+    :param prefix: The prefix to lookup
+    :returns: The resource's contact, if it is available.
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_contact()
 
 
 def get_contact_email(prefix: str) -> Optional[str]:
