@@ -543,6 +543,18 @@ class Resource(BaseModel):
             ("obofoundry", "ols", "miriam", "n2t", "wikidata", "go", "ncbi", "cellosaurus"),
         )
 
+    def get_contact(self) -> Optional[Attributable]:
+        """Get the contact, if available."""
+        name = self.get_contact_name()
+        if name is None:
+            return None
+        return Attributable(
+            name=name,
+            email=self.get_contact_email(),
+            orcid=self.get_contact_orcid(),
+            github=self.get_contact_github(),
+        )
+
     def get_contact_email(self) -> Optional[str]:
         """Return the contact email, if available.
 

@@ -300,19 +300,7 @@ class Manager:
         }
 
     @staticmethod
-    def _rasterize_contact(resource: Resource) -> Optional[Attributable]:
-        name = resource.get_contact_name()
-        if name is None:
-            return None
-        return Attributable(
-            name=name,
-            email=resource.get_contact_email(),
-            orcid=resource.get_contact_orcid(),
-            github=resource.get_contact_github(),
-        )
-
-    @classmethod
-    def _rasterized_resource(cls, prefix: str, resource: Resource) -> Resource:
+    def _rasterized_resource(prefix: str, resource: Resource) -> Resource:
         return Resource(
             preferred_prefix=resource.get_preferred_prefix() or prefix,
             name=resource.get_name(),
@@ -322,7 +310,7 @@ class Manager:
             homepage=resource.get_homepage(),
             license=resource.get_license(),
             version=resource.get_version(),
-            contact=cls._rasterize_contact(resource),
+            contact=resource.get_contact(),
             example=resource.get_example(),
             synonyms=resource.get_synonyms(),
             comment=resource.comment,
