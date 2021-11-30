@@ -63,8 +63,8 @@
     {% endif %}
 {% endmacro %}
 
-{% macro code_example(prefix, func, text) -%}
+{% macro code_example(prefix, func, text, quote=True) -%}
 <pre><code class="language-python">&gt;&gt;&gt; import bioregistry
 &gt;&gt;&gt; bioregistry.{{ func }}("{{ prefix }}")
-'{{ text }}'</code></pre>
+{% if quote %}'{{ text }}'{% else %}{{ text }}{% endif %}</code></pre>
 {% endmacro %}

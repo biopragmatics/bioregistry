@@ -80,7 +80,12 @@
                     <dd><code>{{ preferred_prefix }}</code></dd>
                 {% endif %}
                 {% if synonyms %}
-                    <dt>Alternative Prefixes</dt>
+                    <dt>
+                        Alternative Prefixes
+                        <a type="button" data-toggle="modal" data-target="#synonyms-modal">
+                            <i class="far fa-question-circle"></i>
+                        </a>
+                    </dt>
                     <dd>
                         {% for synonym in synonyms %}
                             <span class="badge badge-light">{{ synonym }}</span>
@@ -312,6 +317,31 @@
                 </tbody>
             </table>
         </div>
+    {% endif %}
+
+    {% if synonyms %}
+    <div class="modal fade" id="synonyms-modal" tabindex="-1" role="dialog" aria-labelledby="synonymsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="synonymsModalLabel">Programmatic Access to Synonyms</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Normalize prefixes. This can be any capitalization or punctuation
+                        variant of the synonyms listed below.
+                    </p>
+                    <pre><code class="language-python">&gt;&gt;&gt; import bioregistry
+&gt;&gt;&gt; assert "{{ prefix }}" == bioregistry.normalize_prefix("{{ synonyms|first }}")</code></pre>
+                    <p>Get all synonyms:</p>
+                    {{ utils.code_example(prefix, "get_synonyms", synonyms, quote=False) }}
+                </div>
+            </div>
+        </div>
+    </div>
     {% endif %}
 
     {% if version %}
