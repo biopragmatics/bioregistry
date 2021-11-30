@@ -62,3 +62,9 @@
         </small>
     {% endif %}
 {% endmacro %}
+
+{% macro code_example(prefix, func, text) -%}
+<pre><code class="language-python">&gt;&gt;&gt; import bioregistry
+&gt;&gt;&gt; bioregistry.{{ func }}("{{ prefix }}")
+'{{ text }}'</code></pre>
+{% endmacro %}

@@ -3,6 +3,11 @@
 
 {% block title %}Bioregistry - {{ name }}{% endblock %}
 
+{% block styles %}
+{{ super() }}
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css" rel="stylesheet"/>
+{% endblock %}
+
 {% block scripts %}
     {{ super() }}
     <script type="text/javascript">
@@ -10,6 +15,8 @@
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
 {% endblock %}
 
 {% block container %}
@@ -81,10 +88,22 @@
                     </dd>
                 {% endif %}
                 {% if version %}
-                    <dt>Version</dt>
+                    <dt>
+                        Version
+                        <a type="button" data-toggle="modal" data-target="#version-modal">
+                            <i class="far fa-question-circle"></i>
+                        </a>
+                    </dt>
                     <dd>{{ version }}</dd>
                 {% endif %}
-                <dt>Links</dt>
+                <dt>
+                    Links
+                    {% if homepage or obo_download or owl_download or json_download %}
+                    <a type="button" data-toggle="modal" data-target="#links-modal">
+                        <i class="far fa-question-circle"></i>
+                    </a>
+                    {% endif %}
+                </dt>
                 <dd>
                     {% if homepage %}
                         <a class="badge badge-pill badge-light" href="{{ homepage }}">
@@ -294,4 +313,54 @@
             </table>
         </div>
     {% endif %}
+
+    {% if version %}
+    <div class="modal fade" id="version-modal" tabindex="-1" role="dialog" aria-labelledby="versionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="versionModalLabel">Programmatic Access to Version</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Get the version:</p>
+                    {{ utils.code_example(prefix, "get_version", version) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="modal fade" id="links-modal" tabindex="-1" role="dialog" aria-labelledby="linkModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="linkModalLabel">Programmatic Access to Links</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% if homepage %}
+                        <p>Get the homepage:</p>
+                        {{ utils.code_example(prefix, "get_homepage", homepage) }}
+                    {% endif %}
+                    {% if obo_download %}
+                        <p>Get the OBO download link:</p>
+                        {{ utils.code_example(prefix, "get_obo_download", obo_download) }}
+                    {% endif %}
+                    {% if owl_download %}
+                        <p>Get the OWL download link:</p>
+                        {{ utils.code_example(prefix, "get_owl_download", owl_download) }}
+                    {% endif %}
+                    {% if json_download %}
+                        <p>Get the JSON download link:</p>
+                        {{ utils.code_example(prefix, "get_json_download", json_download) }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
