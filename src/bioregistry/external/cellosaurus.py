@@ -56,6 +56,8 @@ def get_cellosaurus(force_download: bool = False):
                 if value is None:
                     continue
             d[key] = value
+        if URI_FORMAT_KEY not in d:
+            continue
         rv[d.pop("prefix")] = d
 
     with PROCESSED_PATH.open("w") as file:
