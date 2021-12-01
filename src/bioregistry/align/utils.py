@@ -11,7 +11,7 @@ from tabulate import tabulate
 from ..data import EXTERNAL
 from ..resource_manager import Manager
 from ..schema import Resource
-from ..utils import is_mismatch, read_metaregistry
+from ..utils import is_mismatch, norm, read_metaregistry
 
 __all__ = [
     "Aligner",
@@ -77,7 +77,7 @@ class Aligner(ABC):
 
             # add the identifier from an external resource if it's been marked as high quality
             if bioregistry_id is None and self.include_new:
-                bioregistry_id = external_id
+                bioregistry_id = norm(external_id)
                 self.internal_registry[bioregistry_id] = Resource()
 
             if bioregistry_id is not None:  # a match was found
