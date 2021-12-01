@@ -1058,9 +1058,9 @@ class Resource(BaseModel):
         if self.download_owl:
             return self.download_owl
         return (
-            self.get_external("ols").get("version.iri")
+            self.get_external("obofoundry").get("download.owl")
+            or self.get_external("ols").get("version.iri")
             or self.get_external("ols").get("download")
-            or self.get_external("obofoundry").get("download.owl")
         )
 
     def get_license(self) -> Optional[str]:
