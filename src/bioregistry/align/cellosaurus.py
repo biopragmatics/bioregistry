@@ -23,9 +23,6 @@ class CellosaurusAligner(Aligner):
     def get_skip(self) -> Mapping[str, str]:
         """Get the skipped Cellosaurus identifiers."""
         return {
-            "Biosample": "",
-            "Biosamples": "",
-            "CCRID": "not in english",
             "CCTCC": "dead site",
             "CCLV": "stub website, URL dead",
         }
