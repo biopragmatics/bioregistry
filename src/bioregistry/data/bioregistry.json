@@ -1961,6 +1961,7 @@
       "name": "Animal Trait Ontology for Livestock",
       "prefix": "ATOL"
     },
+    "download_owl": "https://sicpa-web.cati.inrae.fr/ontologies/visualisation/ontologie/atol/creation_fichier_owl.php?filename=atol.owl",
     "example": "0002233",
     "mappings": {
       "bioportal": "ATOL",
@@ -2240,6 +2241,7 @@
       "name": "Brain-Computer Interaction (BCI) Ontology",
       "prefix": "BCI-O"
     },
+    "download_owl": "http://humanbehaviourchange.org/ontology/bcio.owl",
     "example": "040000",
     "mappings": {
       "bioportal": "BCI-O",
@@ -4428,7 +4430,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "This is a code repository for the SIB - Swiss Institute of Bioinformatics CALIPHO group neXtProt project, which is a comprehensive human-centric discovery platform, that offers a integration of and navigation through protein-related data. CALIPHO is an interdisciplinary team which aims to use a variety of methodologies to help uncover the function of uncharacterized human proteins.",
-    "download_obo": "ftp://ftp.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo",
+    "download_obo": "https://download.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo",
     "example": "0001",
     "homepage": "https://github.com/calipho-sib/controlled-vocabulary",
     "name": "CALIPHO Group Ontology of Human Anatomy",
@@ -5001,6 +5003,12 @@
       "uri_format": "http://identifiers.org/cco/$1"
     }
   },
+  "ccrid": {
+    "example": "4201PAT-CCTCC00348",
+    "homepage": "http://www.cellresource.cn",
+    "name": "National Experimental Cell Resource Sharing Platform",
+    "uri_format": "http://www.cellresource.cn/cellsearch.aspx?sc=1&where=$1"
+  },
   "cdao": {
     "bioportal": {
       "name": "Comparative Data Analysis Ontology",
@@ -5234,6 +5242,13 @@
       "prefix": "CELLIMAGE",
       "uri_format": "http://identifiers.org/cellimage/$1"
     }
+  },
+  "cellopub": {
+    "description": "Cellosaurus identifeirs for publications, like Pubmed",
+    "example": "CLPUB00496",
+    "homepage": "https://web.expasy.org/cellosaurus/",
+    "name": "Cellosaurus Publication",
+    "uri_format": "https://web.expasy.org/cellosaurus/cellopub/$1"
   },
   "cellosaurus": {
     "download_obo": "https://ftp.expasy.org/databases/cellosaurus/cellosaurus.obo",
@@ -5676,6 +5691,14 @@
       "prefix": "ChEMBL",
       "uri_format": "https://www.ebi.ac.uk/chembldb/target/inspect/$1"
     }
+  },
+  "chembl.cell": {
+    "example": "CHEMBL3307800",
+    "part_of": "chembl",
+    "synonyms": [
+      "ChEMBL-Cells"
+    ],
+    "uri_format": "https://www.ebi.ac.uk/chembl/cell_line_report_card/$1"
   },
   "chembl.compound": {
     "example": "CHEMBL465070",
@@ -13837,6 +13860,12 @@
       "uri_format": "http://identifiers.org/fbol/$1"
     }
   },
+  "fbql": {
+    "deprecated": true,
+    "example": "00005254",
+    "name": "FlyBase Qualifiers",
+    "pattern": "^\\d+$"
+  },
   "fbrf": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -21434,6 +21463,12 @@
       "uri_format": "http://identifiers.org/jcm/$1"
     }
   },
+  "jcrb": {
+    "example": "JCRB1355",
+    "homepage": "https://cellbank.nibiohn.go.jp",
+    "name": "JRBC Cell Bank",
+    "uri_format": "https://cellbank.nibiohn.go.jp/~cellbank/en/search_res_det.cgi?RNO=$1"
+  },
   "jcsd": {
     "mappings": {
       "miriam": "jcsd",
@@ -21591,6 +21626,12 @@
       "prefix": "kaggle",
       "uri_format": "https://www.kaggle.com/$1"
     }
+  },
+  "kclb": {
+    "example": "10020.2",
+    "homepage": "https://cellbank.snu.ac.kr/english",
+    "name": "Korean Cell Line Bank",
+    "uri_format": "https://cellbank.snu.ac.kr/english/sub/catalog.php?s_cellid=464&page=detail_info&CatNo=59&strQ=$1"
   },
   "kegg": {
     "cheminf": {
@@ -44733,6 +44774,12 @@
       "prefix": "Xenbase",
       "uri_format": "https://www.xenbase.org/gene/showgene.do?method=display&geneId=$1"
     }
+  },
+  "ximbio": {
+    "example": "151022",
+    "homepage": "https://ximbio.com",
+    "name": "Ximbio",
+    "uri_format": "https://ximbio.com/reagent/$1"
   },
   "xl": {
     "deprecated": true,
