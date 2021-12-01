@@ -24,6 +24,7 @@ class CellosaurusAligner(Aligner):
         """Get the skipped Cellosaurus identifiers."""
         return {
             "Biosample": "",
+            "Biosamples": "",
             "CCRID": "not in english",
             "CCTCC": "dead site",
             "CCLV": "stub website, URL dead",
