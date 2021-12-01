@@ -66,9 +66,9 @@ def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Optional[Ma
     rv = {
         "prefix": ols_id,
         "name": config["title"],
-        "download": config["fileLocation"],
-        "version.iri": version_iri,
-        "description": _clean_url(config["description"]),
+        "download": _clean_url(config["fileLocation"]),
+        "version.iri": _clean_url(version_iri),
+        "description": config["description"],
         "homepage": _clean_url(config["homepage"]),
     }
 
