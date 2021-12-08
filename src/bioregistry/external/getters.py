@@ -2,6 +2,8 @@
 
 """List of getters."""
 
+from typing import Callable, List, Tuple
+
 from .biolink import get_biolink  # noqa:F401
 from .bioportal import get_bioportal  # noqa:F401
 from .cellosaurus import get_cellosaurus  # noqa:F401
@@ -21,7 +23,7 @@ __all__ = [
     "GETTERS",
 ]
 
-GETTERS = [
+GETTERS: List[Tuple[str, str, Callable]] = [
     ("obofoundry", "OBO", get_obofoundry),
     ("ols", "OLS", get_ols),
     ("miriam", "MIRIAM", get_miriam),
