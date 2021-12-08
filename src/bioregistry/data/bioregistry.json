@@ -9977,6 +9977,7 @@
       "prefix": "DGRC",
       "uri_format": "https://dgrc.bio.indiana.edu/product/View?product=$1"
     },
+    "example": "215",
     "mappings": {
       "cellosaurus": "DGRC"
     }
@@ -12057,7 +12058,8 @@
   "edda": {
     "bioportal": {
       "prefix": "EDDA"
-    }
+    },
+    "example": "health_care_quality_assessment"
   },
   "efo": {
     "biolink": {
@@ -18751,6 +18753,7 @@
       "prefix": "HipSci",
       "uri_format": "http://www.hipsci.org/lines/#/lines/$1"
     },
+    "example": "HPSI0114i-bezi_1",
     "mappings": {
       "cellosaurus": "HipSci"
     }
@@ -19080,6 +19083,7 @@
       "prefix": "Horizon_Discovery",
       "uri_format": "https://horizondiscovery.com/en/search?searchterm=$1"
     },
+    "example": "HD+118-001",
     "mappings": {
       "cellosaurus": "Horizon_Discovery"
     }
@@ -20019,6 +20023,7 @@
       "prefix": "ICLC",
       "uri_format": "http://www.iclc.it/details/det_list.php?line_id=$1"
     },
+    "example": "ATL98012",
     "mappings": {
       "cellosaurus": "ICLC"
     }
@@ -20426,6 +20431,7 @@
       "prefix": "IGRhCellID",
       "uri_format": "http://igrcid.ibms.sinica.edu.tw/cgi-bin/cell_line_view.cgi?cl_name=$1"
     },
+    "example": "ACHN",
     "mappings": {
       "cellosaurus": "IGRhCellID"
     }
@@ -20464,6 +20470,7 @@
       "prefix": "IGSR",
       "uri_format": "https://www.internationalgenome.org/data-portal/sample/$1"
     },
+    "example": "NA06985",
     "mappings": {
       "cellosaurus": "IGSR"
     }
@@ -20492,6 +20499,7 @@
       "prefix": "Imanis",
       "uri_format": "https://www.imanislife.com/?s=$1"
     },
+    "example": "CL070",
     "mappings": {
       "cellosaurus": "Imanis"
     }
@@ -22786,6 +22794,7 @@
       "prefix": "Kerafast",
       "uri_format": "https://www.kerafast.com/Search?SearchTerm=&quot;$1&quot;"
     },
+    "example": "EJH014",
     "mappings": {
       "cellosaurus": "Kerafast"
     }
@@ -23171,6 +23180,7 @@
       "prefix": "LIMORE",
       "uri_format": "https://www.picb.ac.cn/limore/cellLines/single?para=$1"
     },
+    "example": "Li7",
     "mappings": {
       "cellosaurus": "LIMORE"
     }
@@ -29315,6 +29325,7 @@
       "prefix": "NHCDR",
       "uri_format": "https://stemcells.nindsgenetics.org?line=$1"
     },
+    "example": "ND50028",
     "mappings": {
       "cellosaurus": "NHCDR"
     }
@@ -33807,7 +33818,15 @@
     "uri_format": "https://www.pgscatalog.org/pgs/$1"
   },
   "pgx": {
+    "cellosaurus": {
+      "category": "Polymorphism and mutation databases",
+      "homepage": "https://progenetix.org/",
+      "name": "Cancer genome data @ progenetix.org",
+      "prefix": "Progenetix",
+      "uri_format": "https://progenetix.org/biosamples/by-curie/cellosaurus:$1"
+    },
     "mappings": {
+      "cellosaurus": "Progenetix",
       "miriam": "pgx",
       "n2t": "pgx",
       "prefixcommons": "PGX"
@@ -33839,7 +33858,10 @@
       "is_obo": false,
       "prefix": "PGX",
       "uri_format": "http://identifiers.org/pgx/$1"
-    }
+    },
+    "synonyms": [
+      "Progenetix"
+    ]
   },
   "pharmacodb.cell": {
     "cellosaurus": {
@@ -35723,18 +35745,6 @@
       "is_obo": false,
       "prefix": "PRODOM",
       "uri_format": "http://identifiers.org/prodom/$1"
-    }
-  },
-  "progenetix": {
-    "cellosaurus": {
-      "category": "Polymorphism and mutation databases",
-      "homepage": "https://progenetix.org/",
-      "name": "Cancer genome data @ progenetix.org",
-      "prefix": "Progenetix",
-      "uri_format": "https://progenetix.org/biosamples/by-curie/cellosaurus:$1"
-    },
-    "mappings": {
-      "cellosaurus": "Progenetix"
     }
   },
   "proglyc": {
@@ -39815,6 +39825,7 @@
       "prefix": "SLKBase",
       "uri_format": "https://sumlineknowledgebase.com/?page_id=$1"
     },
+    "example": "3618",
     "mappings": {
       "cellosaurus": "SLKBase"
     }
@@ -40843,8 +40854,13 @@
     }
   },
   "sweetrealm": {
+    "bioportal": {
+      "prefix": "SWEET"
+    },
+    "description": "The Semantic Web for Earth and Environmental Terminology is a mature foundational ontology that contains over 6000 concepts organized in 200 ontologies represented in OWL. Top level concepts include Representation (math, space, science, time, data), Realm (Ocean, Land Surface, Terrestrial Hydroshere, Atmosphere, etc.), Phenomena (macro-scale ecological and physical), Processes (micro-scale physical, biological, chemical, and mathematical), Human Activities (Decision, Commerce, Jurisdiction, Environmental, Research).",
     "download_obo": "https://github.com/EnvironmentOntology/envo/blob/master/src/envo/sources/sweetrealm.obo",
-    "name": "SWEET Ontology"
+    "example": "ANOVA",
+    "name": "Semantic Web for Earth and Environment Technology Ontology"
   },
   "swh": {
     "banana": "swh",
@@ -41519,6 +41535,7 @@
       "prefix": "TCB",
       "uri_format": "https://www.pirbright.ac.uk/node/$1"
     },
+    "example": "2966",
     "mappings": {
       "cellosaurus": "TCB"
     }
@@ -41818,6 +41835,7 @@
       "prefix": "TNGB",
       "uri_format": "http://biobanknetwork.telethon.it/Sample/View?sampleId=$1"
     },
+    "example": "67035",
     "mappings": {
       "cellosaurus": "TNGB"
     }
@@ -44612,9 +44630,11 @@
       "name": "Vital Sign Ontology",
       "prefix": "VSO"
     },
+    "example": "0000041",
     "mappings": {
       "bioportal": "VSO"
-    }
+    },
+    "uri_format": "https://bioportal.bioontology.org/ontologies/VSO/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FVSO_$1"
   },
   "vt": {
     "bioportal": {
@@ -45010,6 +45030,7 @@
       "prefix": "WiCell",
       "uri_format": "https://www.wicell.org/home/stem-cells/catalog-of-stem-cell-lines/$1.cmsx?closable=true"
     },
+    "example": "ai10e-kctd13b",
     "mappings": {
       "cellosaurus": "WiCell"
     }
