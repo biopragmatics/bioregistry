@@ -132,6 +132,19 @@
     },
     "uri_format": "https://web.expasy.org/abcd/ABCD_$1"
   },
+  "abm": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://www.abmgood.com/Cell-Biology.html",
+      "name": "Applied Biological Materials cell line products",
+      "prefix": "ABM",
+      "uri_format": "https://www.abmgood.com/catalogsearch/result/?cat=&q=$1"
+    },
+    "example": "T0599",
+    "mappings": {
+      "cellosaurus": "ABM"
+    }
+  },
   "abs": {
     "mappings": {
       "miriam": "abs",
@@ -213,6 +226,19 @@
       "is_obo": false,
       "prefix": "ACEVIEW.WORM",
       "uri_format": "http://identifiers.org/aceview.worm/$1"
+    }
+  },
+  "addexbio": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://www.addexbio.com/productshow?id=4",
+      "name": "AddexBio cell line products",
+      "prefix": "AddexBio",
+      "uri_format": "https://www.addexbio.com/productdetail?pid=$1"
+    },
+    "example": "C0020004/4992",
+    "mappings": {
+      "cellosaurus": "AddexBio"
     }
   },
   "addgene": {
@@ -977,6 +1003,19 @@
       "prefix": "AOP.STRESSOR",
       "uri_format": "http://identifiers.org/aop.stressor/$1"
     }
+  },
+  "apaonto": {
+    "bioportal": {
+      "name": "Psychology Ontology",
+      "prefix": "APAONTO"
+    },
+    "description": "Ontology from the APA",
+    "example": "Abdomen",
+    "homepage": "https://bioportal.bioontology.org/ontologies/APAONTO",
+    "mappings": {
+      "bioportal": "APAONTO"
+    },
+    "uri_format": "http://ontology.apa.org/apaonto/termsonlyOUT%20(5).owl#$1"
   },
   "apd": {
     "mappings": {
@@ -1961,6 +2000,7 @@
       "name": "Animal Trait Ontology for Livestock",
       "prefix": "ATOL"
     },
+    "download_owl": "https://sicpa-web.cati.inrae.fr/ontologies/visualisation/ontologie/atol/creation_fichier_owl.php?filename=atol.owl",
     "example": "0002233",
     "mappings": {
       "bioportal": "ATOL",
@@ -2240,6 +2280,7 @@
       "name": "Brain-Computer Interaction (BCI) Ontology",
       "prefix": "BCI-O"
     },
+    "download_owl": "http://humanbehaviourchange.org/ontology/bcio.owl",
     "example": "040000",
     "mappings": {
       "bioportal": "BCI-O",
@@ -2304,6 +2345,41 @@
       "is_obo": true,
       "prefix": "BCO",
       "uri_format": "http://purl.obolibrary.org/obo/BCO_$1"
+    }
+  },
+  "bcrc": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://catalog.bcrc.firdi.org.tw/",
+      "name": "Taiwan Bioresource Collection and Research Center",
+      "prefix": "BCRC",
+      "uri_format": "https://catalog.bcrc.firdi.org.tw/BcrcContent?bid=$1"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "example": "60316",
+    "homepage": "https://catalog.bcrc.firdi.org.tw",
+    "mappings": {
+      "cellosaurus": "BCRC"
+    },
+    "name": "BCRC Strain Collection Catalog",
+    "uri_format": "https://catalog.bcrc.firdi.org.tw/BcrcContent?bid=$1"
+  },
+  "bcrj": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "http://bcrj.org.br/celula/bcrj",
+      "name": "Banco de Celulas do Rio de Janeiro",
+      "prefix": "BCRJ",
+      "uri_format": "http://bcrj.org.br/celula/$1"
+    },
+    "example": "0278",
+    "mappings": {
+      "cellosaurus": "BCRJ"
     }
   },
   "bdgp.est": {
@@ -2488,6 +2564,31 @@
       "prefix": "BEGDB",
       "uri_format": "http://identifiers.org/begdb/$1"
     }
+  },
+  "beiresources": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://www.beiresources.org/Home.aspx",
+      "name": "BEI Resources",
+      "prefix": "BEI_Resources",
+      "uri_format": "https://www.beiresources.org/Catalog/cellBanks/$1.aspx"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "example": "MRA-253",
+    "homepage": "https://www.beiresources.org",
+    "mappings": {
+      "cellosaurus": "BEI_Resources"
+    },
+    "name": "BEI Resources",
+    "synonyms": [
+      "BEI_Resources"
+    ],
+    "uri_format": "https://www.beiresources.org/Catalog/cellBanks/$1.aspx"
   },
   "bel": {
     "comment": "INDRA uses bel as a catch-all for scomp/sfam",
@@ -3087,6 +3188,12 @@
     "uri_format": "https://thebiogrid.org/interaction/$1"
   },
   "biolegend": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "description": "BioLegend is a life sciences supply vendor.",
     "example": "3403",
     "homepage": "https://www.biolegend.com",
@@ -3638,7 +3745,10 @@
       "is_obo": false,
       "prefix": "BIOSAMPLE",
       "uri_format": "http://identifiers.org/biosample/$1"
-    }
+    },
+    "synonyms": [
+      "biosamples"
+    ]
   },
   "biosimulations": {
     "mappings": {
@@ -3775,6 +3885,12 @@
     }
   },
   "biozil": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "description": "Redistributor of bilogics and biomedical supplies",
     "example": "ls-c35719-120",
     "homepage": "https://www.biozol.de/en",
@@ -4428,7 +4544,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "This is a code repository for the SIB - Swiss Institute of Bioinformatics CALIPHO group neXtProt project, which is a comprehensive human-centric discovery platform, that offers a integration of and navigation through protein-related data. CALIPHO is an interdisciplinary team which aims to use a variety of methodologies to help uncover the function of uncharacterized human proteins.",
-    "download_obo": "ftp://ftp.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo",
+    "download_obo": "https://download.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo",
     "example": "0001",
     "homepage": "https://github.com/calipho-sib/controlled-vocabulary",
     "name": "CALIPHO Group Ontology of Human Anatomy",
@@ -5001,6 +5117,28 @@
       "uri_format": "http://identifiers.org/cco/$1"
     }
   },
+  "ccrid": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "http://cellresource.cn/",
+      "name": "Chinese Cell Resource Information Database",
+      "prefix": "CCRID",
+      "uri_format": "http://www.cellresource.cn/cellsearch.aspx?sc=1&where=$1"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "example": "4201PAT-CCTCC00348",
+    "homepage": "http://www.cellresource.cn",
+    "mappings": {
+      "cellosaurus": "CCRID"
+    },
+    "name": "National Experimental Cell Resource Sharing Platform",
+    "uri_format": "http://www.cellresource.cn/cellsearch.aspx?sc=1&where=$1"
+  },
   "cdao": {
     "bioportal": {
       "name": "Comparative Data Analysis Ontology",
@@ -5184,6 +5322,32 @@
       "uri_format": "http://identifiers.org/cdpd/$1"
     }
   },
+  "cell_biolabs": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://www.cellbiolabs.com",
+      "name": "Cell Biolabs cell line products",
+      "prefix": "Cell_Biolabs",
+      "uri_format": "https://www.cellbiolabs.com/search?keywords=$1"
+    },
+    "example": "AKR-270",
+    "mappings": {
+      "cellosaurus": "Cell_Biolabs"
+    }
+  },
+  "cell_model_passport": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "https://cellmodelpassports.sanger.ac.uk/",
+      "name": "Sanger Cell Model Passports",
+      "prefix": "Cell_Model_Passport",
+      "uri_format": "https://cellmodelpassports.sanger.ac.uk/passports/$1"
+    },
+    "example": "SIDM01262",
+    "mappings": {
+      "cellosaurus": "Cell_Model_Passport"
+    }
+  },
   "cellbank.australia": {
     "cellosaurus": {
       "category": "Cell line collections",
@@ -5234,6 +5398,29 @@
       "prefix": "CELLIMAGE",
       "uri_format": "http://identifiers.org/cellimage/$1"
     }
+  },
+  "cellopub": {
+    "cellosaurus": {
+      "category": "Reference resources",
+      "homepage": "https://web.expasy.org/cellosaurus/",
+      "name": "Cellosaurus Publication",
+      "prefix": "CelloPub",
+      "uri_format": "https://web.expasy.org/cellosaurus/cellopub/$1"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Cellosaurus identifeirs for publications, like Pubmed",
+    "example": "CLPUB00496",
+    "homepage": "https://web.expasy.org/cellosaurus/",
+    "mappings": {
+      "cellosaurus": "CelloPub"
+    },
+    "name": "Cellosaurus Publication",
+    "uri_format": "https://web.expasy.org/cellosaurus/cellopub/$1"
   },
   "cellosaurus": {
     "download_obo": "https://ftp.expasy.org/databases/cellosaurus/cellosaurus.obo",
@@ -5414,6 +5601,19 @@
       "name": "Candida Genome Database",
       "prefix": "CGD",
       "uri_format": "http://www.candidagenome.org/cgi-bin/locus.pl?dbid=$1"
+    }
+  },
+  "cghdb": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "http://www.cghtmd.jp/CGHDatabase/index_e.jsp",
+      "name": "CGH Data Base",
+      "prefix": "CGH-DB",
+      "uri_format": "http://www.cghtmd.jp/CGHDatabase/mapViewer?hid=$1&aid=%t&lang=en"
+    },
+    "example": "300165/p13898_2106T",
+    "mappings": {
+      "cellosaurus": "CGH-DB"
     }
   },
   "cgnc": {
@@ -5677,6 +5877,30 @@
       "uri_format": "https://www.ebi.ac.uk/chembldb/target/inspect/$1"
     }
   },
+  "chembl.cell": {
+    "cellosaurus": {
+      "category": "Chemistry resources",
+      "homepage": "https://www.ebi.ac.uk/chembldb",
+      "name": "ChEMBL database of bioactive drug-like small molecules - Cell lines section",
+      "prefix": "ChEMBL-Cells",
+      "uri_format": "https://www.ebi.ac.uk/chembldb/cell/inspect/$1"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "example": "CHEMBL3307800",
+    "mappings": {
+      "cellosaurus": "ChEMBL-Cells"
+    },
+    "part_of": "chembl",
+    "synonyms": [
+      "ChEMBL-Cells"
+    ],
+    "uri_format": "https://www.ebi.ac.uk/chembl/cell_line_report_card/$1"
+  },
   "chembl.compound": {
     "example": "CHEMBL465070",
     "mappings": {
@@ -5744,7 +5968,15 @@
     }
   },
   "chembl.target": {
+    "cellosaurus": {
+      "category": "Chemistry resources",
+      "homepage": "https://www.ebi.ac.uk/chembldb",
+      "name": "ChEMBL database of bioactive drug-like small molecules - Targets section",
+      "prefix": "ChEMBL-Targets",
+      "uri_format": "https://www.ebi.ac.uk/chembldb/target/inspect/$1"
+    },
     "mappings": {
+      "cellosaurus": "ChEMBL-Targets",
       "miriam": "chembl.target",
       "n2t": "chembl.target",
       "prefixcommons": "CHEMBL.TARGET"
@@ -5793,7 +6025,10 @@
       "is_obo": false,
       "prefix": "CHEMBL.TARGET",
       "uri_format": "http://identifiers.org/chembl.target/$1"
-    }
+    },
+    "synonyms": [
+      "ChEMBL-Targets"
+    ]
   },
   "chemdb": {
     "mappings": {
@@ -6718,6 +6953,19 @@
       "prefix": "P2158"
     }
   },
+  "cls": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://www.clsgmbh.de",
+      "name": "Cell Lines Service",
+      "prefix": "CLS",
+      "uri_format": "https://www.clsgmbh.de/$1.html"
+    },
+    "example": "300108/p3934_A-172",
+    "mappings": {
+      "cellosaurus": "CLS"
+    }
+  },
   "clyh": {
     "bioportal": {
       "name": "Clytia hemisphaerica Development and Anatomy Ontology",
@@ -6761,6 +7009,22 @@
       "name": "Clytia hemisphaerica Development and Anatomy Ontology",
       "prefix": "CLYH"
     }
+  },
+  "cmecs": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Use this database to browse the CMECS classification and to get definitions for individual CMECS Units. This database contains the units that were published in the Coastal and Marine Ecological Classification Standard.",
+    "example": "595",
+    "homepage": "https://cmecscatalog.org/cmecs",
+    "name": "Costal and Marine Ecological Classification Standard",
+    "references": [
+      "http://www.natureserve.org/sites/default/files/publications/files/cmecs_version_06-2012_final.pdf"
+    ],
+    "uri_format": "https://cmecscatalog.org/cmecs/classification/unit/$1.html"
   },
   "cmf": {
     "deprecated": true,
@@ -7519,6 +7783,19 @@
     "name": "MIMIC III Database",
     "no_own_terms": true
   },
+  "colonatlas": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "http://www.coloncanceratlas.org",
+      "name": "Colorectal Cancer Atlas",
+      "prefix": "ColonAtlas",
+      "uri_format": "http://www.coloncanceratlas.org/search_cell_line?cell_line=$1"
+    },
+    "example": "ALA",
+    "mappings": {
+      "cellosaurus": "ColonAtlas"
+    }
+  },
   "combine.specifications": {
     "mappings": {
       "miriam": "combine.specifications",
@@ -7924,6 +8201,13 @@
     }
   },
   "cosmic.cell": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "https://cancer.sanger.ac.uk/cell_lines",
+      "name": "COSMIC Cell lines Project",
+      "prefix": "Cosmic-CLP",
+      "uri_format": "https://cancer.sanger.ac.uk/cell_lines/sample/overview?id=$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "name": "Charles Tapley Hoyt",
@@ -7932,6 +8216,9 @@
     "description": "COSMIC, the Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer",
     "example": "906801",
     "homepage": "https://cancer.sanger.ac.uk/cell_lines/",
+    "mappings": {
+      "cellosaurus": "Cosmic-CLP"
+    },
     "name": "COSMIC Cell Lines",
     "uri_format": "https://cancer.sanger.ac.uk/cell_lines/sample/overview?id=$1"
   },
@@ -8041,6 +8328,18 @@
       "name": "Cereal Plant Gross Anatomy",
       "prefix": "gro"
     }
+  },
+  "credit": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "CRediT (Contributor Roles Taxonomy) is high-level taxonomy, including 14 roles, that can be used to represent the roles typically played by contributors to scientific scholarly output. The roles describe each contributor’s specific contribution to the scholarly output.",
+    "example": "Software",
+    "homepage": "https://casrai.org/credit/",
+    "name": "CASRAI Contributor Roles Taxonomy"
   },
   "crisprdb": {
     "mappings": {
@@ -8254,7 +8553,8 @@
     "synonyms": [
       "CRISP Thesaurus, 2006",
       "CRISP Thesaurus",
-      "CSP2005"
+      "CSP2005",
+      "CRISP"
     ]
   },
   "cst": {
@@ -9690,6 +9990,19 @@
       "uri_format": "https://data.kidsfirstdrc.org/ga4gh/drs/v1/objects/$1"
     }
   },
+  "dgrc": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://dgrc.bio.indiana.edu/cells/Catalog",
+      "name": "Drosophila Genomics Resource Center",
+      "prefix": "DGRC",
+      "uri_format": "https://dgrc.bio.indiana.edu/product/View?product=$1"
+    },
+    "example": "215",
+    "mappings": {
+      "cellosaurus": "DGRC"
+    }
+  },
   "dicom": {
     "bioportal": {
       "name": "DICOM Controlled Terminology",
@@ -9982,6 +10295,19 @@
       "name": "Database of interacting proteins",
       "prefix": "DIP",
       "uri_format": "https://dip.doe-mbi.ucla.edu/dip/Browse.cgi?ID=$1"
+    }
+  },
+  "discoverx": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://www.discoverx.com/products-applications/cell-lines",
+      "name": "DiscoverX cell line products",
+      "prefix": "DiscoverX",
+      "uri_format": "https://www.discoverx.com/searchproduct?searchtext=$1&searchmode=exact"
+    },
+    "example": "95-0166C6",
+    "mappings": {
+      "cellosaurus": "DiscoverX"
     }
   },
   "disdriv": {
@@ -11016,6 +11342,19 @@
     "name": "eagle-i",
     "uri_format": "http://hawaii.eagle-i.net/i/$1"
   },
+  "ebisc": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://www.ebisc.org",
+      "name": "European Bank for induced pluripotent Stem Cells",
+      "prefix": "EBiSC",
+      "uri_format": "https://cells.ebisc.org/$1"
+    },
+    "example": "ESi007-A",
+    "mappings": {
+      "cellosaurus": "EBiSC"
+    }
+  },
   "ecacc": {
     "cellosaurus": {
       "category": "Cell line collections",
@@ -11450,6 +11789,19 @@
       "uri_format": "http://ecogene.org/gene/$1"
     }
   },
+  "ecolexicon": {
+    "comment": "No resolution - everything is in a single page app",
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "EcoLexicon represents the conceptual structure of the specialized domain of the Environment in the form of a visual thesaurus. This thesaurus has been elaborated according to the theoretical premises of Frame-Based Terminology.",
+    "example": "canal",
+    "homepage": "http://ecolexicon.ugr.es/en/index.htm",
+    "name": "EcoLexicon"
+  },
   "ecoliwiki": {
     "go": {
       "description": "EcoliHub\\'s subsystem for community annotation of E. coli K-12",
@@ -11730,6 +12082,18 @@
       "uri_format": "http://identifiers.org/edam/$1"
     },
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1"
+  },
+  "edda": {
+    "bioportal": {
+      "name": "EDDA Study Designs Taxonomy",
+      "prefix": "EDDA"
+    },
+    "description": "Coverage of the terminology appearing in JMLA was extended with terms from MeSH, NCI Thesaurus (NCI), Emtree, the HTA Database Canadian Repository [international repository for health technology assessment], and Robert Sandieson's synonym ring for research synthesis. Collected terms were enriched with terms from the NCI Metathesaurus. Variants include synonyms for preferred terms, singular and plural forms, and American and British spellings. Definitions, if they exist, are mainly from MeSH, NCI, Emtree, and medical dictionaries.",
+    "example": "health_care_quality_assessment",
+    "homepage": "https://bioportal.bioontology.org/ontologies/EDDA",
+    "mappings": {
+      "bioportal": "EDDA"
+    }
   },
   "efo": {
     "biolink": {
@@ -12814,6 +13178,12 @@
     }
   },
   "enzo": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "description": "Enzo Life Sciences is an antibody vendor.",
     "example": "ALX-210-175",
     "homepage": "https://www.enzolifesciences.com",
@@ -12828,6 +13198,7 @@
       "name": "Environment Ontology for Livestock",
       "prefix": "EOL"
     },
+    "download_owl": "https://sicpa-web.cati.inrae.fr/ontologies/visualisation/ontologie/atol/creation_fichier_owl.php?filename=eol.owl",
     "example": "0001927",
     "mappings": {
       "bioportal": "EOL",
@@ -12913,6 +13284,7 @@
       "name": "Early Pregnancy Ontology",
       "prefix": "EPO"
     },
+    "download_owl": "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/epidemiology-ontology/epo.owl",
     "mappings": {
       "bioportal": "EPO",
       "obofoundry": "epo",
@@ -13077,6 +13449,22 @@
       "prefix": "ERV",
       "uri_format": "http://identifiers.org/erv/$1"
     }
+  },
+  "estdab": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "https://www.ebi.ac.uk/ipd/estdab/",
+      "name": "European Searchable Tumour Line Database",
+      "prefix": "ESTDAB",
+      "uri_format": "https://www.ebi.ac.uk/cgi-bin/ipd/estdab/print_cell.cgi?$1"
+    },
+    "comment": "Website is dead",
+    "deprecated": true,
+    "example": "046",
+    "mappings": {
+      "cellosaurus": "ESTDAB"
+    },
+    "uri_format": "https://www.ebi.ac.uk/cgi-bin/ipd/estdab/print_cell.cgi?ESTDAB-$1"
   },
   "eu89h": {
     "mappings": {
@@ -13416,6 +13804,19 @@
     "synonyms": [
       "ExO"
     ]
+  },
+  "fabio": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The FRBR-aligned Bibliographic Ontology (FaBiO) is an ontology for describing entities that are published or potentially publishable (e.g., journal articles, conference papers, books), and that contain or are referred to by bibliographic references.",
+    "example": "d4e2515",
+    "homepage": "https://github.com/sparontologies/fabio",
+    "name": "FaBiO, the FRBR-aligned Bibliographic Ontology",
+    "uri_format": "https://sparontologies.github.io/fabio/current/fabio.html#$1"
   },
   "facebase": {
     "mappings": {
@@ -13837,6 +14238,18 @@
       "uri_format": "http://identifiers.org/fbol/$1"
     }
   },
+  "fbql": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "deprecated": true,
+    "example": "00005254",
+    "name": "FlyBase Qualifiers",
+    "pattern": "^\\d+$"
+  },
   "fbrf": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -13892,6 +14305,28 @@
     "name": "Flybase Cell Line",
     "part_of": "flybase",
     "uri_format": "https://flybase.org/reports/FBtc$1"
+  },
+  "fcsfree": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "https://fcs-free.org/",
+      "name": "Fetal Calf Serum-Free Database",
+      "prefix": "FCS-free",
+      "uri_format": "https://fcs-free.org/fcs-database?$1"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "example": "240-17-488-3-4-12",
+    "homepage": "https://fcs-free.org",
+    "mappings": {
+      "cellosaurus": "FCS-free"
+    },
+    "name": "Fetal Calf Serum-Free Database",
+    "uri_format": "https://fcs-free.org/fcs-database?$1"
   },
   "fideo": {
     "bioportal": {
@@ -14200,6 +14635,19 @@
       "prefix": "P3852",
       "uri_format": "http://flybase.org/reports/$1"
     }
+  },
+  "flybrain.ndb": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A database of fly neurons and pathways with an associated 3D viewer.",
+    "example": "10531",
+    "homepage": "https://flybrain-ndb.virtualflybrain.org",
+    "name": "FlyBrain Neuron Database",
+    "uri_format": "https://flybrain-ndb.virtualflybrain.org/fmi/xsl/browserecord.xsl@-lay=NDB&Accession+number.op=eq&Accession+number=$1&-find=-find.html"
   },
   "fma": {
     "bioportal": {
@@ -14609,6 +15057,23 @@
       "prefix": "FSNP",
       "uri_format": "http://identifiers.org/fsnp/$1"
     }
+  },
+  "ftt": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Types of named geographic features. Applicable also to many unnamed features but reflects the level of detail traditionally shown on maps, so some feature types specified in scientific studies may not be well represented here. Not highly specific.",
+    "example": "273",
+    "homepage": "https://apps.usgs.gov/thesaurus/thesaurus-full.php?thcode=3",
+    "name": "Feature Type Thesaurus",
+    "references": [
+      "https://obo-communitygroup.slack.com/archives/C023P0Z304T/p1638380238036200",
+      "https://github.com/EnvironmentOntology/envo/issues/1130"
+    ],
+    "uri_format": "https://apps.usgs.gov/thesaurus/term-simple.php?thcode=3&code=$1"
   },
   "funcbase.fly": {
     "mappings": {
@@ -15234,6 +15699,19 @@
       "prefix": "GECKO"
     }
   },
+  "gemet": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The European Environment Information and Observation Network (Eionet) is a partnership network of the European Environment Agency (EEA) and its 38 member and cooperating countries. The EEA is responsible for developing Eionet and coordinating its activities together with National Focal Points (NFPs) in the countries. This terminology supports those efforts.",
+    "example": "627",
+    "homepage": "https://www.eionet.europa.eu/gemet/en/themes/",
+    "name": "General Multilingual Environmental Thesaurus",
+    "uri_format": "https://www.eionet.europa.eu/gemet/en/concept/$1"
+  },
   "genatlas": {
     "mappings": {
       "miriam": "genatlas",
@@ -15832,6 +16310,23 @@
       "uri_format": "http://purl.obolibrary.org/obo/GEO_$1"
     },
     "uri_format": "http://purl.obolibrary.org/obo/GEO_$1"
+  },
+  "geonames": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The GeoNames geographical database covers all countries and contains over eleven million placenames that are available for download free of charge.",
+    "example": "ADM1",
+    "homepage": "https://www.geonames.org",
+    "name": "GeoNames",
+    "synonyms": [
+      "Geomames",
+      "Geonamaes"
+    ],
+    "uri_format": "https://www.geonames.org/recent-changes/featurecode/$1/"
   },
   "gexo": {
     "bioportal": {
@@ -16649,6 +17144,29 @@
       "prefix": "GOA",
       "uri_format": "http://identifiers.org/goa/$1"
     }
+  },
+  "goche": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Represent chemical entities having particular CHEBI roles",
+    "download_owl": "https://raw.githubusercontent.com/geneontology/go-ontology/master/src/ontology/imports/chebi_roles.owl",
+    "example": "25512",
+    "homepage": "https://github.com/geneontology/go-ontology/",
+    "name": "GO Chemicals",
+    "preferred_prefix": "GOCHE",
+    "references": [
+      "https://obo-communitygroup.slack.com/archives/C023P0Z304T/p1638472847049400",
+      "https://github.com/geneontology/go-ontology/issues/19535"
+    ],
+    "synonyms": [
+      "go.chemicals",
+      "go.chebi",
+      "go.chemical"
+    ]
   },
   "goeco": {
     "contributor": {
@@ -18302,6 +18820,32 @@
       "uri_format": "http://identifiers.org/hinv.transcript/$1"
     }
   },
+  "hipsci": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "http://www.hipsci.org",
+      "name": "Human Induced Pluripotent Stem Cells Initiative",
+      "prefix": "HipSci",
+      "uri_format": "http://www.hipsci.org/lines/#/lines/$1"
+    },
+    "example": "HPSI0114i-bezi_1",
+    "mappings": {
+      "cellosaurus": "HipSci"
+    }
+  },
+  "hivreagentprogram": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://www.hivreagentprogram.org/Home.aspx",
+      "name": "NIH HIV Reagent Program",
+      "prefix": "HIVReagentProgram",
+      "uri_format": "https://www.hivreagentprogram.org/Catalog/HRPCellLines/$1.aspx"
+    },
+    "example": "ARP-1513",
+    "mappings": {
+      "cellosaurus": "HIVReagentProgram"
+    }
+  },
   "hmdb": {
     "cheminf": {
       "description": "Database identifier used by Human Metabolome Database.",
@@ -18607,6 +19151,19 @@
       "uri_format": "https://www.ncbi.nlm.nih.gov/homologene?term=$1"
     }
   },
+  "horizon_discovery": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://horizondiscovery.com/",
+      "name": "Horizon Discovery cell line collection",
+      "prefix": "Horizon_Discovery",
+      "uri_format": "https://horizondiscovery.com/en/search?searchterm=$1"
+    },
+    "example": "HD+118-001",
+    "mappings": {
+      "cellosaurus": "Horizon_Discovery"
+    }
+  },
   "hovergen": {
     "homepage": "https://pbil.univ-lyon1.fr/databases/hovergen.php",
     "mappings": {
@@ -18796,7 +19353,10 @@
       "name": "Histopathology Ontology",
       "prefix": "hpath",
       "version": "2019-07-05"
-    }
+    },
+    "synonyms": [
+      "MC"
+    ]
   },
   "hpm.peptide": {
     "mappings": {
@@ -19531,6 +20091,19 @@
       "prefix": "ICEO"
     }
   },
+  "iclc": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "http://www.iclc.it",
+      "name": "Interlab Cell Line Collection",
+      "prefix": "ICLC",
+      "uri_format": "http://www.iclc.it/details/det_list.php?line_id=$1"
+    },
+    "example": "ATL98012",
+    "mappings": {
+      "cellosaurus": "ICLC"
+    }
+  },
   "ico": {
     "bioportal": {
       "name": "Informed Consent Ontology",
@@ -19926,6 +20499,19 @@
       "uri_format": "http://purl.obolibrary.org/obo/IEV_$1"
     }
   },
+  "igrhcellid": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "http://igrcid.ibms.sinica.edu.tw/cgi-bin/index.cgi",
+      "name": "Integrated Genomic Resources of human Cell Lines for Identification",
+      "prefix": "IGRhCellID",
+      "uri_format": "http://igrcid.ibms.sinica.edu.tw/cgi-bin/cell_line_view.cgi?cl_name=$1"
+    },
+    "example": "ACHN",
+    "mappings": {
+      "cellosaurus": "IGRhCellID"
+    }
+  },
   "igsn": {
     "mappings": {
       "miriam": "igsn",
@@ -19952,6 +20538,19 @@
       "uri_format": "hdl.handle.net/10273/$1"
     }
   },
+  "igsr": {
+    "cellosaurus": {
+      "category": "Biological sample resources",
+      "homepage": "https://www.internationalgenome.org/",
+      "name": "International Genome Sample Resource",
+      "prefix": "IGSR",
+      "uri_format": "https://www.internationalgenome.org/data-portal/sample/$1"
+    },
+    "example": "NA06985",
+    "mappings": {
+      "cellosaurus": "IGSR"
+    }
+  },
   "ihw": {
     "cellosaurus": {
       "category": "Cell line databases/resources",
@@ -19967,6 +20566,19 @@
     },
     "name": "International Histocompatibility Workshop cell lines",
     "pattern": "^IHW\\d+$"
+  },
+  "imanis": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://www.imanislife.com/collections/cell-lines/",
+      "name": "Imanis Life Sciences cell line products",
+      "prefix": "Imanis",
+      "uri_format": "https://www.imanislife.com/?s=$1"
+    },
+    "example": "CL070",
+    "mappings": {
+      "cellosaurus": "Imanis"
+    }
   },
   "imdrf": {
     "contributor": {
@@ -20343,6 +20955,19 @@
     "wikidata": {
       "prefix": "P235"
     }
+  },
+  "inhand": {
+    "comment": "This nomenclature is available via email. Truly a disgrace.",
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The standard reference for nomenclature and diagnostic criteria in toxicologic pathology.",
+    "homepage": "https://www.goreni.org/gr3_nomenclature.php",
+    "name": "The International Harmonization of Nomenclature and Diagnostic criteria",
+    "proprietary": true
   },
   "inn": {
     "comment": "can not find a place to resolve to",
@@ -21434,6 +22059,28 @@
       "uri_format": "http://identifiers.org/jcm/$1"
     }
   },
+  "jcrb": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "http://cellbank.nibiohn.go.jp/english/",
+      "name": "Japanese Collection of Research Bioresources Cell Bank",
+      "prefix": "JCRB",
+      "uri_format": "http://cellbank.nibiohn.go.jp//~cellbank/en/search_res_det.cgi?RNO=$1"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "example": "JCRB1355",
+    "homepage": "https://cellbank.nibiohn.go.jp",
+    "mappings": {
+      "cellosaurus": "JCRB"
+    },
+    "name": "JRBC Cell Bank",
+    "uri_format": "https://cellbank.nibiohn.go.jp/~cellbank/en/search_res_det.cgi?RNO=$1"
+  },
   "jcsd": {
     "mappings": {
       "miriam": "jcsd",
@@ -21591,6 +22238,28 @@
       "prefix": "kaggle",
       "uri_format": "https://www.kaggle.com/$1"
     }
+  },
+  "kclb": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://cellbank.snu.ac.kr/main/index.html",
+      "name": "Korean Cell Line Bank",
+      "prefix": "KCLB",
+      "uri_format": "https://cellbank.snu.ac.kr/english/sub/catalog.php?page=detail&CatNo=59&strQ=$1&submit1=Find+it"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "example": "10020.2",
+    "homepage": "https://cellbank.snu.ac.kr/english",
+    "mappings": {
+      "cellosaurus": "KCLB"
+    },
+    "name": "Korean Cell Line Bank",
+    "uri_format": "https://cellbank.snu.ac.kr/english/sub/catalog.php?s_cellid=464&page=detail_info&CatNo=59&strQ=$1"
   },
   "kegg": {
     "cheminf": {
@@ -22200,6 +22869,19 @@
       "uri_format": "https://www.kegg.jp/entry/$1"
     }
   },
+  "kerafast": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://www.kerafast.com/",
+      "name": "Kerafast cell lines",
+      "prefix": "Kerafast",
+      "uri_format": "https://www.kerafast.com/Search?SearchTerm=&quot;$1&quot;"
+    },
+    "example": "EJH014",
+    "mappings": {
+      "cellosaurus": "Kerafast"
+    }
+  },
   "knapsack": {
     "mappings": {
       "miriam": "knapsack",
@@ -22262,6 +22944,19 @@
     "references": [
       "https://jbiomedsem.biomedcentral.com/articles/10.1186/2041-1480-2-S2-S7"
     ]
+  },
+  "kyinno": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://www.kyinno.com/",
+      "name": "KYinno cell lines",
+      "prefix": "KYinno",
+      "uri_format": "https://innopedia.kyinno.com/DataBase/CellLine.aspx?file=$1.pdf"
+    },
+    "example": "KC-0979",
+    "mappings": {
+      "cellosaurus": "KYinno"
+    }
   },
   "labo": {
     "bioportal": {
@@ -22549,8 +23244,43 @@
       "uri_format": "http://identifiers.org/ligandexpo/$1"
     }
   },
-  "lincs.cell": {
+  "ligea": {
+    "cellosaurus": {
+      "category": "Polymorphism and mutation databases",
+      "homepage": "http://hpc-bioinformatics.cineca.it/fusion/main",
+      "name": "Cancer cell LInes GEne fusions portAl",
+      "prefix": "LiGeA",
+      "uri_format": "http://hpc-bioinformatics.cineca.it/fusion/cell_line/$1"
+    },
+    "comment": "This might just be a provider for CCLE",
+    "example": "CCLE_867",
     "mappings": {
+      "cellosaurus": "LiGeA"
+    }
+  },
+  "limore": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "https://www.picb.ac.cn/limore/home",
+      "name": "Liver Cancer Model Repository",
+      "prefix": "LIMORE",
+      "uri_format": "https://www.picb.ac.cn/limore/cellLines/single?para=$1"
+    },
+    "example": "Li7",
+    "mappings": {
+      "cellosaurus": "LIMORE"
+    }
+  },
+  "lincs.cell": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "http://lincsportal.ccs.miami.edu/cells/",
+      "name": "LINCS Data Portal",
+      "prefix": "LINCS_LDP",
+      "uri_format": "http://lincsportal.ccs.miami.edu/cells/#/view/$1"
+    },
+    "mappings": {
+      "cellosaurus": "LINCS_LDP",
       "miriam": "lincs.cell",
       "n2t": "lincs.cell",
       "prefixcommons": "LINCS.CELL"
@@ -22583,7 +23313,10 @@
       "is_obo": false,
       "prefix": "LINCS.CELL",
       "uri_format": "http://identifiers.org/lincs.cell/$1"
-    }
+    },
+    "synonyms": [
+      "LINCS_LDP"
+    ]
   },
   "lincs.data": {
     "mappings": {
@@ -22892,7 +23625,33 @@
       "bioportal": "LOINC"
     },
     "name": "Logical Observation Identifiers Names and Codes",
+    "synonyms": [
+      "LNC"
+    ],
     "uri_format": "https://loinc.org/$1"
+  },
+  "lonza": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "https://knowledge.lonza.com",
+      "name": "Lonza Cell and Transfection Database",
+      "prefix": "Lonza",
+      "uri_format": "https://knowledge.lonza.com/cell?id=$1"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Contains information about cells and data sheets related to transfection.",
+    "example": "968",
+    "homepage": "https://knowledge.lonza.com",
+    "mappings": {
+      "cellosaurus": "Lonza"
+    },
+    "name": "Lonza",
+    "uri_format": "https://knowledge.lonza.com/cell?id=$1"
   },
   "lotus": {
     "comment": "IDs are actually leading to the structural part of LOTUS only, which might change in the future. Will adapt the regexp in case.",
@@ -22998,6 +23757,19 @@
     "name": "Laboratory of Systems Pharmacology Compound ID",
     "pattern": "^\\d+$",
     "uri_format": "https://labsyspharm.github.io/lspci/$1"
+  },
+  "lter": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Ecological terms",
+    "example": "182",
+    "homepage": "https://vocab.lternet.edu/vocab/vocab/index.php",
+    "name": "Long Term Ecological Research Controlled Vocabulary",
+    "uri_format": "https://vocab.lternet.edu/vocab/vocab/index.php?tema=$1"
   },
   "ma": {
     "bioportal": {
@@ -23159,7 +23931,10 @@
       "is_obo": false,
       "prefix": "MAIZEGDB.LOCUS",
       "uri_format": "http://identifiers.org/maizegdb.locus/$1"
-    }
+    },
+    "synonyms": [
+      "MaizeGDB"
+    ]
   },
   "mamo": {
     "bioportal": {
@@ -25044,6 +25819,19 @@
       "is_obo": false,
       "prefix": "MICROSPORIDIA",
       "uri_format": "http://identifiers.org/microsporidia/$1"
+    }
+  },
+  "millipore": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://www.merckmillipore.com/",
+      "name": "Merck Millipore (EMD Millipore)",
+      "prefix": "Millipore",
+      "uri_format": "https://www.merckmillipore.com/catalogue/item/$1"
+    },
+    "example": "SCC111",
+    "mappings": {
+      "cellosaurus": "Millipore"
     }
   },
   "mim": {
@@ -27286,7 +28074,10 @@
       "is_obo": false,
       "prefix": "MYCO.TUBER",
       "uri_format": "http://identifiers.org/myco.tuber/$1"
-    }
+    },
+    "synonyms": [
+      "TubercuList"
+    ]
   },
   "mycobank": {
     "mappings": {
@@ -27677,6 +28468,19 @@
     "homepage": "https://drugs.ncats.io/",
     "name": "NCATS Drugs",
     "uri_format": "https://drugs.ncats.io/drug/$1"
+  },
+  "ncbibook": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The NCBI Bookshelf provides free online access to books and documents in life science and healthcare. Search, read, and discover. ",
+    "example": "NBK331",
+    "homepage": "https://www.ncbi.nlm.nih.gov/books",
+    "name": "NCBI Bookshelf",
+    "uri_format": "https://www.ncbi.nlm.nih.gov/books/$1"
   },
   "ncbigene": {
     "biolink": {
@@ -28111,6 +28915,8 @@
       "name": "Non-coding RNA Ontology",
       "prefix": "NCRO"
     },
+    "download_obo": "https://raw.githubusercontent.com/OmniSearch/ncro/master/src/ontology/ncro.obo",
+    "download_owl": "http://purl.obolibrary.org/obo/ncro.owl",
     "example": "0002927",
     "mappings": {
       "bioportal": "NCRO",
@@ -28618,6 +29424,19 @@
       "uri_format": "http://identifiers.org/ngl/$1"
     }
   },
+  "nhcdr": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://stemcells.nindsgenetics.org",
+      "name": "NINDS Human Cell and Data Repository",
+      "prefix": "NHCDR",
+      "uri_format": "https://stemcells.nindsgenetics.org?line=$1"
+    },
+    "example": "ND50028",
+    "mappings": {
+      "cellosaurus": "NHCDR"
+    }
+  },
   "niaest": {
     "mappings": {
       "miriam": "niaest",
@@ -29097,6 +29916,12 @@
     }
   },
   "novus": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "description": "A vendor of antibodies and other biologics",
     "example": "nb100-56351",
     "homepage": "https://www.novusbio.com",
@@ -29114,6 +29939,23 @@
     "homepage": "http://bidd.group/NPASS/",
     "name": "Natural Product Activity and Species Source Database",
     "pattern": "^NPC\\d+$"
+  },
+  "npo": {
+    "bioportal": {
+      "name": "NanoParticle Ontology",
+      "prefix": "NPO"
+    },
+    "contact": {
+      "email": "nathan.baker@pnl.gov",
+      "name": "Nathan Baker"
+    },
+    "description": "An ontology that represents the basic knowledge of physical, chemical and functional characteristics of nanotechnology as used in cancer diagnosis and therapy.",
+    "example": "1731",
+    "homepage": "https://bioportal.bioontology.org/ontologies/NPO",
+    "mappings": {
+      "bioportal": "NPO"
+    },
+    "name": "NanoParticle Ontology"
   },
   "nuclearbd": {
     "mappings": {
@@ -29539,6 +30381,19 @@
       "uri_format": "http://purl.obolibrary.org/obo/$1"
     }
   },
+  "oboformat": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Related to the OBO in OWL meta-model",
+    "example": "alt_id",
+    "homepage": "https://github.com/geneontology/go-ontology/tree/master/contrib",
+    "name": "OBO Format",
+    "preferred_prefix": "oboFormat"
+  },
   "oboinowl": {
     "description": "This meta-ontology is self-describing. OBO metamodel properties are described using OBO metamodel properties",
     "download_obo": "https://github.com/geneontology/go-ontology/raw/master/contrib/oboInOwl.obo",
@@ -29818,7 +30673,9 @@
       "name": "Ontology for Genetic Interval",
       "prefix": "OGI"
     },
+    "deprecated": true,
     "example": "0000019",
+    "homepage": "https://code.google.com/archive/p/ontology-for-genetic-interval/",
     "mappings": {
       "bioportal": "OGI",
       "obofoundry": "ogi",
@@ -29853,7 +30710,10 @@
       "is_obo": true,
       "prefix": "OGI",
       "uri_format": "http://purl.obolibrary.org/obo/OGI_$1"
-    }
+    },
+    "synonyms": [
+      "OGI.owl"
+    ]
   },
   "ogms": {
     "bioportal": {
@@ -30726,6 +31586,7 @@
     }
   },
   "ontoavida": {
+    "example": "00000001",
     "mappings": {
       "obofoundry": "ontoavida"
     },
@@ -31307,6 +32168,7 @@
       "prefix": "ORDO",
       "uri_format": "https://www.ebi.ac.uk/ols/ontologies/ordo/terms?iri=http://www.orpha.net/ORDO/$1"
     },
+    "download_owl": "http://www.orphadata.org/data/ORDO/ordo_orphanet.owl",
     "mappings": {
       "biolink": "ORPHA",
       "bioportal": "ORDO",
@@ -31363,7 +32225,9 @@
       "name": "Orthology Ontology",
       "prefix": "ORTH"
     },
+    "download_owl": "https://github.com/qfo/OrthologyOntology/raw/master/orthOntology_RC_v2_A.owl",
     "example": "HomologyRelation",
+    "homepage": "https://github.com/qfo/OrthologyOntology",
     "mappings": {
       "bioportal": "ORTH",
       "ols": "orth"
@@ -32861,6 +33725,19 @@
       "uri_format": "http://www.peptideatlas.org/PASS/$1"
     }
   },
+  "perkinelmer": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://www.perkinelmer.com/",
+      "name": "PerkinElmer cell line collection",
+      "prefix": "PerkinElmer",
+      "uri_format": "https://www.perkinelmer.com/searchresult?searchName=$1"
+    },
+    "example": "SCC111",
+    "mappings": {
+      "cellosaurus": "PerkinElmer"
+    }
+  },
   "peroxibase": {
     "mappings": {
       "miriam": "peroxibase",
@@ -33059,7 +33936,15 @@
     "uri_format": "https://www.pgscatalog.org/pgs/$1"
   },
   "pgx": {
+    "cellosaurus": {
+      "category": "Polymorphism and mutation databases",
+      "homepage": "https://progenetix.org/",
+      "name": "Cancer genome data @ progenetix.org",
+      "prefix": "Progenetix",
+      "uri_format": "https://progenetix.org/biosamples/by-curie/cellosaurus:$1"
+    },
     "mappings": {
+      "cellosaurus": "Progenetix",
       "miriam": "pgx",
       "n2t": "pgx",
       "prefixcommons": "PGX"
@@ -33091,7 +33976,10 @@
       "is_obo": false,
       "prefix": "PGX",
       "uri_format": "http://identifiers.org/pgx/$1"
-    }
+    },
+    "synonyms": [
+      "Progenetix"
+    ]
   },
   "pharmacodb.cell": {
     "cellosaurus": {
@@ -33332,6 +34220,20 @@
       "prefix": "PHENOLEXPLORER",
       "uri_format": "http://identifiers.org/phenolexplorer/$1"
     }
+  },
+  "phenx": {
+    "bioportal": {
+      "name": "PhenX Phenotypic Terms",
+      "prefix": "PHENX"
+    },
+    "description": "A Web-based catalog of recommended measurement protocols",
+    "example": "130502",
+    "homepage": "https://www.phenxtoolkit.org/",
+    "mappings": {
+      "bioportal": "PHENX"
+    },
+    "name": "PhenX Toolkit",
+    "uri_format": "https://www.phenxtoolkit.org/protocols/view/$1"
   },
   "phipo": {
     "bioportal": {
@@ -35836,7 +36738,7 @@
       "name": "Pathway Ontology",
       "prefix": "PW"
     },
-    "download_obo": "ftp://ftp.rgd.mcw.edu/pub/data_release/ontology_obo_files/pathway/pathway.obo",
+    "download_obo": "https://download.rgd.mcw.edu/pub/data_release/ontology_obo_files/pathway/pathway.obo",
     "example": "0000423",
     "mappings": {
       "bioportal": "PW",
@@ -36195,7 +37097,8 @@
       "prefix": "RDO"
     },
     "description": "Ontologies of diseases that integrates many types of data for Rattus Norvegicus, Homo Sapiens, Mus Musculus and other organisms.",
-    "download_obo": "https://ratmine.mcw.edu/ontology/disease/RDO.obo",
+    "download_obo": "https://download.rgd.mcw.edu/pub/data_release/ontology_obo_files/disease/RDO.obo",
+    "download_owl": "https://download.rgd.mcw.edu/pub/data_release/ontology_obo_files/disease/RDO.owl",
     "example": "9002859",
     "homepage": "https://ratmine.mcw.edu/ontology/disease/",
     "mappings": {
@@ -36439,6 +37342,30 @@
       "prefix": "RefSeq",
       "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1"
     }
+  },
+  "reo": {
+    "comment": "From James O.: It was an ontology for \"reagents\" developed by @Matthew Brush. Since OBI was interested in reagents, Matt developed it in coordination with OBI and had plans to submit it to OBO. I believe that REO was once included in Ontobee, and OBI even started using some REO terms. But REO was never submitted to OBO. I believe it was abandoned.",
+    "contact": {
+      "email": "matt@tislab.org",
+      "github": "mbrush",
+      "name": "Matthew Brush"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Reagent Ontology (ReO) adheres to OBO Foundry principles (obofoundry.org) to model the domain of biomedical research reagents, considered broadly to include materials applied “chemically” in scientific techniques to facilitate generation of data and research materials. ReO is a modular ontology that re-uses existing ontologies to facilitate cross-domain interoperability. It consists of reagents and their properties, linking diverse biological and experimental entities to which they are related. ReO supports community use cases by providing a flexible, extensible, and deeply integrated framework that can be adapted and extended with more specific modeling to meet application needs.",
+    "download_owl": "https://github.com/tis-lab/reagent-ontology/raw/master/reo/ontology_files/reo_pre-merged_or_reasoned_files/reo_reasoned_9-6-12.owl",
+    "example": "0000079",
+    "homepage": "https://github.com/tis-lab/reagent-ontology",
+    "name": "Reagent Ontology",
+    "references": [
+      "https://github.com/obi-ontology/obi/issues/1015",
+      "https://code.google.com/archive/p/reagent-ontology/",
+      "https://github.com/obi-ontology/obi/issues/1135"
+    ]
   },
   "repeatsdb.protein": {
     "mappings": {
@@ -37455,6 +38382,8 @@
       "name": "Rat Strain Ontology",
       "prefix": "RS"
     },
+    "download_obo": "https://download.rgd.mcw.edu/pub/data_release/ontology_obo_files/rat_strain/rat_strain.obo",
+    "download_owl": "https://download.rgd.mcw.edu/pub/data_release/ontology_obo_files/rat_strain/rat_strain.owl",
     "example": "0001807",
     "mappings": {
       "bioportal": "RS",
@@ -37673,7 +38602,8 @@
       "is_obo": false,
       "prefix": "SABIORK.EC",
       "uri_format": "http://identifiers.org/sabiork.ec/$1"
-    }
+    },
+    "provides": "eccode"
   },
   "sabiork.kineticrecord": {
     "go": {
@@ -37751,7 +38681,11 @@
       "is_obo": false,
       "prefix": "SABIORK.REACTION",
       "uri_format": "http://identifiers.org/sabiork.reaction/$1"
-    }
+    },
+    "synonyms": [
+      "SABIO-RK"
+    ],
+    "uri_format": "http://sabiork.h-its.org/reacdetails.jsp?reactid=$1"
   },
   "sael": {
     "contributor": {
@@ -38129,6 +39063,7 @@
     }
   },
   "sdgio": {
+    "download_owl": "https://github.com/SDG-InterfaceOntology/sdgio/raw/master/sdgio.owl",
     "example": "00020134",
     "mappings": {
       "ols": "sdgio",
@@ -38147,7 +39082,10 @@
       "library": "Not Specified/No",
       "name": "Sustainable Development Goals Interface Ontology",
       "prefix": "SDGIO"
-    }
+    },
+    "references": [
+      "https://github.com/SDG-InterfaceOntology/sdgio/issues/233"
+    ]
   },
   "sdis": {
     "contributor": {
@@ -38748,6 +39686,12 @@
     "uri_format": "http://sideeffects.embl.de/se/$1"
   },
   "sigmaaldirch": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "description": "Sigma Aldrich is a life sciences supply vendor.",
     "example": "HPA000698",
     "homepage": "https://www.sigmaaldrich.com",
@@ -38999,6 +39943,19 @@
     },
     "uri_format": "http://www.w3.org/2004/02/skos/core#$1"
   },
+  "slkbase": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "https://sumlineknowledgebase.com/",
+      "name": "SUM Breast Cancer Cell Line Knowledge Base",
+      "prefix": "SLKBase",
+      "uri_format": "https://sumlineknowledgebase.com/?page_id=$1"
+    },
+    "example": "3618",
+    "mappings": {
+      "cellosaurus": "SLKBase"
+    }
+  },
   "smart": {
     "go": {
       "homepage": "http://smart.embl-heidelberg.de/",
@@ -39210,7 +40167,9 @@
       "SNOMEDCTCT_2019_03_01",
       "SNOMEDCT_US_2019_09_01",
       "SNOMEDCT_US_2020_03_01",
-      "SNOMEDCT_US_2020_09_01"
+      "SNOMEDCT_US_2020_09_01",
+      "SNOMEDCT_US_2021_03_01",
+      "SNOMEDCT_US_2021_09_01"
     ],
     "wikidata": {
       "database": "Q1753883",
@@ -40020,6 +40979,20 @@
       "uri_format": "https://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid=$1"
     }
   },
+  "sweetrealm": {
+    "bioportal": {
+      "name": "Semantic Web for Earth and Environment Technology Ontology",
+      "prefix": "SWEET"
+    },
+    "description": "The Semantic Web for Earth and Environmental Terminology is a mature foundational ontology that contains over 6000 concepts organized in 200 ontologies represented in OWL. Top level concepts include Representation (math, space, science, time, data), Realm (Ocean, Land Surface, Terrestrial Hydroshere, Atmosphere, etc.), Phenomena (macro-scale ecological and physical), Processes (micro-scale physical, biological, chemical, and mathematical), Human Activities (Decision, Commerce, Jurisdiction, Environmental, Research).",
+    "download_obo": "https://github.com/EnvironmentOntology/envo/blob/master/src/envo/sources/sweetrealm.obo",
+    "example": "ANOVA",
+    "homepage": "https://bioportal.bioontology.org/ontologies/SWEET",
+    "mappings": {
+      "bioportal": "SWEET"
+    },
+    "name": "Semantic Web for Earth and Environment Technology Ontology"
+  },
   "swh": {
     "banana": "swh",
     "mappings": {
@@ -40685,6 +41658,19 @@
       "uri_format": "http://purl.obolibrary.org/obo/TAXRANK_$1"
     }
   },
+  "tcb": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://www.pirbright.ac.uk/tick-cell-lines-views-page",
+      "name": "Tick Cell Biobank",
+      "prefix": "TCB",
+      "uri_format": "https://www.pirbright.ac.uk/node/$1"
+    },
+    "example": "2966",
+    "mappings": {
+      "cellosaurus": "TCB"
+    }
+  },
   "tcdb": {
     "go": {
       "homepage": "http://www.tcdb.org/",
@@ -40874,6 +41860,22 @@
       "uri_format": "http://purl.obolibrary.org/obo/TGMA_$1"
     }
   },
+  "tgn": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "deprecated": true,
+    "example": "1023371",
+    "homepage": "https://www.getty.edu/research/tools/vocabularies/tgn/",
+    "name": "Getty Thesaurus of Geographic Names",
+    "references": [
+      "https://obo-communitygroup.slack.com/archives/C023P0Z304T/p1638380238036200"
+    ],
+    "uri_format": "http://vocab.getty.edu/page/tgn/$1"
+  },
   "th": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -40889,6 +41891,12 @@
     ]
   },
   "thermofisher": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "description": "ThermoFisher is a life sciences supply vendor.",
     "example": "OSR00185W",
     "homepage": "https://www.thermofisher.com",
@@ -40960,6 +41968,19 @@
     "pattern": "^\\d+$",
     "uri_format": "http://www2.idac.tohoku.ac.jp/dep/ccr/TKGdate/TKGvol08/$1.html"
   },
+  "tngb": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "http://biobanknetwork.telethon.it/",
+      "name": "Telethon Network of Genetic Biobanks",
+      "prefix": "TNGB",
+      "uri_format": "http://biobanknetwork.telethon.it/Sample/View?sampleId=$1"
+    },
+    "example": "67035",
+    "mappings": {
+      "cellosaurus": "TNGB"
+    }
+  },
   "to": {
     "bioportal": {
       "name": "Plant Trait Ontology",
@@ -41009,6 +42030,19 @@
       "is_obo": true,
       "prefix": "TO",
       "uri_format": "http://purl.obolibrary.org/obo/TO_$1"
+    }
+  },
+  "tokue": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "http://cell-lines.toku-e.com",
+      "name": "TOKU-E Cell-culture Database",
+      "prefix": "TOKU-E",
+      "uri_format": "http://cell-lines.toku-e.com/Cell-Lines_$1.html"
+    },
+    "deprecated": true,
+    "mappings": {
+      "cellosaurus": "TOKU-E"
     }
   },
   "tol": {
@@ -43726,6 +44760,19 @@
     "name": "Veterinary Substances DataBase",
     "uri_format": "https://sitem.herts.ac.uk/aeru/vsdb/Reports/$1.htm"
   },
+  "vso": {
+    "bioportal": {
+      "name": "Vital Sign Ontology",
+      "prefix": "VSO"
+    },
+    "description": "The Vital Sign Ontology (VSO) is an extension of the Ontology for General Medical Science (OGMS). VSO covers the four consensus human vital signs: blood pressure, body temperature, respiration rate, pulse rate. VSO provides also a controlled structured vocabulary for describing vital signs measurement data, the various processes of measuring vital signs, and the various devices and anatomical entities participating in such measurements. ",
+    "example": "0000041",
+    "homepage": "https://bioportal.bioontology.org/ontologies/VSO",
+    "mappings": {
+      "bioportal": "VSO"
+    },
+    "uri_format": "https://bioportal.bioontology.org/ontologies/VSO/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FVSO_$1"
+  },
   "vt": {
     "bioportal": {
       "name": "Vertebrate Trait Ontology",
@@ -44111,6 +45158,19 @@
     },
     "name": "WGS84 Geo Positioning",
     "uri_format": "http://www.w3.org/2003/01/geo/wgs84_pos#$1"
+  },
+  "wicell": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://www.wicell.org",
+      "name": "WiCell Research Institute Cell Collection",
+      "prefix": "WiCell",
+      "uri_format": "https://www.wicell.org/home/stem-cells/catalog-of-stem-cell-lines/$1.cmsx?closable=true"
+    },
+    "example": "ai10e-kctd13b",
+    "mappings": {
+      "cellosaurus": "WiCell"
+    }
   },
   "wikidata": {
     "biolink": {
@@ -44581,6 +45641,9 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "synonyms": [
+      "WWF"
+    ],
     "uri_format": "https://www.worldwildlife.org/ecoregions/$1",
     "wikidata": {
       "database": "Q929975",
@@ -44757,6 +45820,28 @@
       "prefix": "Xenbase",
       "uri_format": "https://www.xenbase.org/gene/showgene.do?method=display&geneId=$1"
     }
+  },
+  "ximbio": {
+    "cellosaurus": {
+      "category": "Cell line collections",
+      "homepage": "https://ximbio.com",
+      "name": "Ximbio reagents online portal",
+      "prefix": "Ximbio",
+      "uri_format": "https://ximbio.com/reagent/$1"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "example": "151022",
+    "homepage": "https://ximbio.com",
+    "mappings": {
+      "cellosaurus": "Ximbio"
+    },
+    "name": "Ximbio",
+    "uri_format": "https://ximbio.com/reagent/$1"
   },
   "xl": {
     "deprecated": true,

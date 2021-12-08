@@ -508,7 +508,12 @@ class Resource(BaseModel):
 
     def get_description(self) -> Optional[str]:
         """Get the description for the given prefix, if available."""
-        return self.get_prefix_key("description", ("miriam", "ols", "obofoundry", "wikidata"))
+        rv = self.get_prefix_key("description", ("miriam", "ols", "obofoundry", "wikidata"))
+        if rv is not None:
+            return rv
+        if self.cellosaurus and "category" in self.cellosaurus:
+            return self.cellosaurus["category"]
+        return None
 
     def get_pattern(self) -> Optional[str]:
         """Get the pattern for the given prefix, if it's available.
