@@ -3691,13 +3691,13 @@
   "biosample": {
     "cellosaurus": {
       "category": "Biological sample resources",
-      "homepage": "https://www.ncbi.nlm.nih.gov/biosample",
-      "name": "BioSample database",
-      "prefix": "BioSample",
-      "uri_format": "https://www.ncbi.nlm.nih.gov/biosample/?term=$1"
+      "homepage": "https://www.ebi.ac.uk/biosamples/",
+      "name": "BioSamples database",
+      "prefix": "BioSamples",
+      "uri_format": "https://www.ebi.ac.uk/biosamples/samples/$1"
     },
     "mappings": {
-      "cellosaurus": "BioSample",
+      "cellosaurus": "BioSamples",
       "miriam": "biosample",
       "n2t": "biosample",
       "prefixcommons": "BIOSAMPLE"
@@ -6561,8 +6561,8 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "Cell Ontology",
       "prefix": "cl",
-      "version": "2021-11-25",
-      "version.iri": "http://purl.obolibrary.org/obo/cl/releases/2021-11-25/cl.owl"
+      "version": "2021-12-07",
+      "version.iri": "http://purl.obolibrary.org/obo/cl/releases/2021-12-07/cl.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -13806,6 +13806,12 @@
     ]
   },
   "fabio": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "fabio",
+      "uri_format": "http://purl.org/spar/fabio/$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -13815,6 +13821,9 @@
     "description": "The FRBR-aligned Bibliographic Ontology (FaBiO) is an ontology for describing entities that are published or potentially publishable (e.g., journal articles, conference papers, books), and that contain or are referred to by bibliographic references.",
     "example": "d4e2515",
     "homepage": "https://github.com/sparontologies/fabio",
+    "mappings": {
+      "biolink": "fabio"
+    },
     "name": "FaBiO, the FRBR-aligned Bibliographic Ontology",
     "uri_format": "https://sparontologies.github.io/fabio/current/fabio.html#$1"
   },
@@ -15335,8 +15344,8 @@
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "name": "Fission Yeast Phenotype Ontology (FYPO)",
       "prefix": "fypo",
-      "version": "2021-12-06",
-      "version.iri": "http://purl.obolibrary.org/obo/fypo/releases/2021-12-06/fypo.owl"
+      "version": "2021-12-07",
+      "version.iri": "http://purl.obolibrary.org/obo/fypo/releases/2021-12-07/fypo.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -23901,7 +23910,9 @@
       "go": "MaizeGDB_Locus",
       "miriam": "maizegdb.locus",
       "n2t": "maizegdb.locus",
-      "prefixcommons": "MAIZEGDB.LOCUS"
+      "ncbi": "MaizeGDB",
+      "prefixcommons": "MAIZEGDB.LOCUS",
+      "uniprot": "MaizeGDB"
     },
     "miriam": {
       "deprecated": false,
@@ -23926,6 +23937,12 @@
       "uri_format": "http://www.maizegdb.org/cgi-bin/displaylocusrecord.cgi?id=$1"
     },
     "name": "MaizeGDB Locus",
+    "ncbi": {
+      "example": "635633",
+      "homepage": "http://www.maizegdb.org/",
+      "name": "Maize Genome Database unique identifiers",
+      "prefix": "MaizeGDB"
+    },
     "prefixcommons": {
       "is_identifiers": true,
       "is_obo": false,
@@ -23934,7 +23951,16 @@
     },
     "synonyms": [
       "MaizeGDB"
-    ]
+    ],
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "comment": "Replacement for MaizeDB",
+      "identifier": "58",
+      "link_is_explicit": "true",
+      "name": "Maize Genetics and Genomics Database",
+      "prefix": "MaizeGDB",
+      "uri_format": "https://www.maizegdb.org/data_center/gene_product?id=$1"
+    }
   },
   "mamo": {
     "bioportal": {
@@ -28045,7 +28071,9 @@
     "mappings": {
       "miriam": "myco.tuber",
       "n2t": "myco.tuber",
-      "prefixcommons": "MYCO.TUBER"
+      "ncbi": "TubercuList",
+      "prefixcommons": "MYCO.TUBER",
+      "uniprot": "TubercuList"
     },
     "miriam": {
       "deprecated": false,
@@ -28069,6 +28097,12 @@
       "prefix": "myco.tuber",
       "uri_format": "http://tuberculist.epfl.ch/quicksearch.php?gene+name=$1"
     },
+    "ncbi": {
+      "example": "Rv3322c",
+      "homepage": "http://tuberculist.epfl.ch/",
+      "name": "TubercuList knowledge base",
+      "prefix": "TubercuList"
+    },
     "prefixcommons": {
       "is_identifiers": true,
       "is_obo": false,
@@ -28077,7 +28111,15 @@
     },
     "synonyms": [
       "TubercuList"
-    ]
+    ],
+    "uniprot": {
+      "category": "Organism-specific databases",
+      "identifier": "106",
+      "link_is_explicit": "true",
+      "name": "Mycobacterium tuberculosis strain H37Rv genome database",
+      "prefix": "TubercuList",
+      "uri_format": "https://mycobrowser.epfl.ch/genes/$1"
+    }
   },
   "mycobank": {
     "mappings": {
@@ -30382,6 +30424,12 @@
     }
   },
   "oboformat": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "oboformat",
+      "uri_format": "http://www.geneontology.org/formats/oboInOwl#$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -30391,6 +30439,9 @@
     "description": "Related to the OBO in OWL meta-model",
     "example": "alt_id",
     "homepage": "https://github.com/geneontology/go-ontology/tree/master/contrib",
+    "mappings": {
+      "biolink": "oboformat"
+    },
     "name": "OBO Format",
     "preferred_prefix": "oboFormat"
   },
@@ -38486,8 +38537,8 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "RXNO",
       "prefix": "rxno",
-      "version": "2021-01-21",
-      "version.iri": "http://purl.obolibrary.org/obo/rxno.obo/2021-01-21/rxno.obo.owl"
+      "version": "2021-12-06",
+      "version.iri": "http://purl.obolibrary.org/obo/rxno.obo/2021-12-06/rxno.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -38652,7 +38703,8 @@
     "mappings": {
       "miriam": "sabiork.reaction",
       "n2t": "sabiork.reaction",
-      "prefixcommons": "SABIORK.REACTION"
+      "prefixcommons": "SABIORK.REACTION",
+      "uniprot": "SABIO-RK"
     },
     "miriam": {
       "deprecated": false,
@@ -38685,6 +38737,14 @@
     "synonyms": [
       "SABIO-RK"
     ],
+    "uniprot": {
+      "category": "Enzyme and pathway databases",
+      "identifier": "177",
+      "link_is_explicit": "true",
+      "name": "SABIO-RK: Biochemical Reaction Kinetics Database",
+      "prefix": "SABIO-RK",
+      "uri_format": "http://sabiork.h-its.org/newSearch?q=UniProtKB_AC:$1"
+    },
     "uri_format": "http://sabiork.h-its.org/reacdetails.jsp?reactid=$1"
   },
   "sael": {

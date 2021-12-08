@@ -71,6 +71,15 @@ abcd:
   name: AntiBodies Chemically Defined database
   preferred_prefix: abcd
   uri_format: https://web.expasy.org/abcd/ABCD_$1
+abm:
+  description: Cell line collections
+  example: T0599
+  homepage: https://www.abmgood.com/Cell-Biology.html
+  mappings:
+    cellosaurus: ABM
+  name: Applied Biological Materials cell line products
+  preferred_prefix: abm
+  uri_format: https://www.abmgood.com/catalogsearch/result/?cat=&q=$1
 abs:
   description: The database of Annotated regulatory Binding Sites (from orthologous
     promoters), ABS, is a public database of known binding sites identified in promoters
@@ -117,6 +126,15 @@ aceview.worm:
   pattern: ^[a-z0-9-]+$
   preferred_prefix: aceview.worm
   uri_format: https://www.ncbi.nlm.nih.gov/IEB/Research/Acembly/av.cgi?db=worm&c=Gene&l=$1
+addexbio:
+  description: Cell line collections
+  example: C0020004/4992
+  homepage: https://www.addexbio.com/productshow?id=4
+  mappings:
+    cellosaurus: AddexBio
+  name: AddexBio cell line products
+  preferred_prefix: addexbio
+  uri_format: https://www.addexbio.com/productdetail?pid=$1
 addgene:
   description: Addgene is a non-profit plasmid repository. Addgene facilitates the
     exchange of genetic material between laboratories by offering plasmids and their
@@ -456,6 +474,15 @@ aop.stressor:
   pattern: ^\d+$
   preferred_prefix: aop.stressor
   uri_format: https://aopwiki.org/stressors/$1
+apaonto:
+  description: Ontology from the APA
+  example: Abdomen
+  homepage: https://bioportal.bioontology.org/ontologies/APAONTO
+  mappings:
+    bioportal: APAONTO
+  name: Psychology Ontology
+  preferred_prefix: apaonto
+  uri_format: http://ontology.apa.org/apaonto/termsonlyOUT%20(5).owl#$1
 apd:
   description: The antimicrobial peptide database (APD) provides information on anticancer,
     antiviral, antifungal and antibacterial peptides.
@@ -1094,6 +1121,29 @@ bco:
   preferred_prefix: BCO
   uri_format: http://purl.obolibrary.org/obo/BCO_$1
   version: '2021-11-14'
+bcrc:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Cell line collections
+  example: '60316'
+  homepage: https://catalog.bcrc.firdi.org.tw
+  mappings:
+    cellosaurus: BCRC
+  name: BCRC Strain Collection Catalog
+  preferred_prefix: bcrc
+  uri_format: https://catalog.bcrc.firdi.org.tw/BcrcContent?bid=$1
+bcrj:
+  description: Cell line collections
+  example: 0278
+  homepage: http://bcrj.org.br/celula/bcrj
+  mappings:
+    cellosaurus: BCRJ
+  name: Banco de Celulas do Rio de Janeiro
+  preferred_prefix: bcrj
+  uri_format: http://bcrj.org.br/celula/$1
 bdgp.est:
   description: The BDGP EST database collects the expressed sequence tags (ESTs) derived
     from a variety of tissues and developmental stages for Drosophila melanogaster.
@@ -1165,6 +1215,22 @@ begdb:
   pattern: ^[0-9]+$
   preferred_prefix: begdb
   uri_format: http://www.begdb.com/index.php?action=oneMolecule&state=show&id=$1
+beiresources:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Cell line collections
+  example: MRA-253
+  homepage: https://www.beiresources.org
+  mappings:
+    cellosaurus: BEI_Resources
+  name: BEI Resources
+  preferred_prefix: beiresources
+  synonyms:
+  - BEI_Resources
+  uri_format: https://www.beiresources.org/Catalog/cellBanks/$1.aspx
 bel:
   comment: INDRA uses bel as a catch-all for scomp/sfam
   contributor:
@@ -1434,6 +1500,11 @@ biogrid.interaction:
   preferred_prefix: biogrid.interaction
   uri_format: https://thebiogrid.org/interaction/$1
 biolegend:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: BioLegend is a life sciences supply vendor.
   example: '3403'
   homepage: https://www.biolegend.com
@@ -1680,7 +1751,7 @@ biosample:
   example: SAMEA2397676
   homepage: https://www.ebi.ac.uk/biosamples/
   mappings:
-    cellosaurus: BioSample
+    cellosaurus: BioSamples
     miriam: biosample
     n2t: biosample
     prefixcommons: BIOSAMPLE
@@ -1698,6 +1769,8 @@ biosample:
     homepage: http://trace.ddbj.nig.ac.jp/biosample/
     name: BioSample at DNA Data Bank of Japan
     uri_format: http://trace.ddbj.nig.ac.jp/BSSearch/biosample?acc=$1
+  synonyms:
+  - biosamples
   uri_format: https://www.ebi.ac.uk/biosamples/sample/$1
 biosimulations:
   description: BioSimulations is an open repository of simulation projects, including
@@ -1771,6 +1844,11 @@ biotools:
   preferred_prefix: biotools
   uri_format: https://bio.tools/$1
 biozil:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Redistributor of bilogics and biomedical supplies
   example: ls-c35719-120
   homepage: https://www.biozol.de/en
@@ -2369,6 +2447,20 @@ cco:
   preferred_prefix: cco
   uri_format: https://www.ebi.ac.uk/ols/ontologies/cco/terms?obo_id=CCO:$1
   version: '2016-03-23'
+ccrid:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Cell line databases/resources
+  example: 4201PAT-CCTCC00348
+  homepage: http://www.cellresource.cn
+  mappings:
+    cellosaurus: CCRID
+  name: National Experimental Cell Resource Sharing Platform
+  preferred_prefix: ccrid
+  uri_format: http://www.cellresource.cn/cellsearch.aspx?sc=1&where=$1
 cdao:
   banana: CDAO
   contact:
@@ -2457,6 +2549,24 @@ cdpd:
   pattern: ^\d+$
   preferred_prefix: cdpd
   uri_format: http://webprod3.hc-sc.gc.ca/dpd-bdpp/info.do?lang=eng&code=$1
+cell_biolabs:
+  description: Cell line collections
+  example: AKR-270
+  homepage: https://www.cellbiolabs.com
+  mappings:
+    cellosaurus: Cell_Biolabs
+  name: Cell Biolabs cell line products
+  preferred_prefix: cell_biolabs
+  uri_format: https://www.cellbiolabs.com/search?keywords=$1
+cell_model_passport:
+  description: Cell line databases/resources
+  example: SIDM01262
+  homepage: https://cellmodelpassports.sanger.ac.uk/
+  mappings:
+    cellosaurus: Cell_Model_Passport
+  name: Sanger Cell Model Passports
+  preferred_prefix: cell_model_passport
+  uri_format: https://cellmodelpassports.sanger.ac.uk/passports/$1
 cellbank.australia:
   description: CellBank Australia collects novel cell lines, developed by Australian
     researchers, submits these cell lines to rigorous testing to confirm their integrity,
@@ -2484,6 +2594,20 @@ cellimage:
   pattern: ^\d+$
   preferred_prefix: cellimage
   uri_format: http://cellimagelibrary.org/images/$1
+cellopub:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Cellosaurus identifeirs for publications, like Pubmed
+  example: CLPUB00496
+  homepage: https://web.expasy.org/cellosaurus/
+  mappings:
+    cellosaurus: CelloPub
+  name: Cellosaurus Publication
+  preferred_prefix: cellopub
+  uri_format: https://web.expasy.org/cellosaurus/cellopub/$1
 cellosaurus:
   description: 'The Cellosaurus is a knowledge resource on cell lines. It attempts
     to describe all cell lines used in biomedical research. Its scope includes: Immortalized
@@ -2557,6 +2681,15 @@ cgd:
   pattern: ^CAL\d{7}$
   preferred_prefix: cgd
   uri_format: http://www.candidagenome.org/cgi-bin/locus.pl?dbid=$1
+cghdb:
+  description: Cell line databases/resources
+  example: 300165/p13898_2106T
+  homepage: http://www.cghtmd.jp/CGHDatabase/index_e.jsp
+  mappings:
+    cellosaurus: CGH-DB
+  name: CGH Data Base
+  preferred_prefix: cghdb
+  uri_format: http://www.cghtmd.jp/CGHDatabase/mapViewer?hid=$1&aid=%t&lang=en
 cgnc:
   contributor:
     email: cthoyt@gmail.com
@@ -2662,6 +2795,23 @@ chembl:
   - ChEMBL_ID
   - chembl
   uri_format: https://www.ebi.ac.uk/chembl/entity/$1
+chembl.cell:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Chemistry resources
+  example: CHEMBL3307800
+  homepage: https://www.ebi.ac.uk/chembldb
+  mappings:
+    cellosaurus: ChEMBL-Cells
+  name: ChEMBL database of bioactive drug-like small molecules - Cell lines section
+  part_of: chembl
+  preferred_prefix: chembl.cell
+  synonyms:
+  - ChEMBL-Cells
+  uri_format: https://www.ebi.ac.uk/chembl/cell_line_report_card/$1
 chembl.compound:
   description: ChEMBL is a database of bioactive compounds, their quantitative properties
     and bioactivities (binding constants, pharmacology and ADMET, etc). The data is
@@ -2696,6 +2846,7 @@ chembl.target:
   example: CHEMBL3467
   homepage: https://www.ebi.ac.uk/chembldb/
   mappings:
+    cellosaurus: ChEMBL-Targets
     miriam: chembl.target
     n2t: chembl.target
     prefixcommons: CHEMBL.TARGET
@@ -2714,6 +2865,8 @@ chembl.target:
     homepage: https://rdf.ebi.ac.uk/resource/chembl/
     name: ChEMBL target RDF through EBI RDF Platform
     uri_format: https://rdf.ebi.ac.uk/resource/chembl/target/$1
+  synonyms:
+  - ChEMBL-Targets
   uri_format: https://www.ebi.ac.uk/chembl/target/inspect/$1
 chemdb:
   description: ChemDB is a chemical database containing commercially available small
@@ -2989,7 +3142,7 @@ cl:
   pattern: ^\d{7}$
   preferred_prefix: CL
   uri_format: https://www.ebi.ac.uk/ols/ontologies/cl/terms?obo_id=CL:$1
-  version: '2021-11-25'
+  version: '2021-12-07'
 clao:
   banana: CLAO
   contact:
@@ -3173,6 +3326,15 @@ clo:
   - CLO
   uri_format: http://purl.obolibrary.org/obo/CLO_$1
   version: 2.1.162
+cls:
+  description: Cell line collections
+  example: 300108/p3934_A-172
+  homepage: https://www.clsgmbh.de
+  mappings:
+    cellosaurus: CLS
+  name: Cell Lines Service
+  preferred_prefix: cls
+  uri_format: https://www.clsgmbh.de/$1.html
 clyh:
   banana: CLYH
   contact:
@@ -3194,6 +3356,22 @@ clyh:
   preferred_prefix: CLYH
   uri_format: http://purl.obolibrary.org/obo/CLYH_$1
   version: '2020-05-29'
+cmecs:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Use this database to browse the CMECS classification and to get definitions
+    for individual CMECS Units. This database contains the units that were published
+    in the Coastal and Marine Ecological Classification Standard.
+  example: '595'
+  homepage: https://cmecscatalog.org/cmecs
+  name: Costal and Marine Ecological Classification Standard
+  preferred_prefix: cmecs
+  references:
+  - http://www.natureserve.org/sites/default/files/publications/files/cmecs_version_06-2012_final.pdf
+  uri_format: https://cmecscatalog.org/cmecs/classification/unit/$1.html
 cmf:
   banana: CMF
   contact:
@@ -3708,6 +3886,15 @@ cohd:
   name: MIMIC III Database
   no_own_terms: true
   preferred_prefix: cohd
+colonatlas:
+  description: Cell line databases/resources
+  example: ALA
+  homepage: http://www.coloncanceratlas.org
+  mappings:
+    cellosaurus: ColonAtlas
+  name: Colorectal Cancer Atlas
+  preferred_prefix: colonatlas
+  uri_format: http://www.coloncanceratlas.org/search_cell_line?cell_line=$1
 combine.specifications:
   description: The 'COmputational Modeling in BIology' NEtwork (COMBINE) is an initiative
     to coordinate the development of the various community standards and formats for
@@ -3897,6 +4084,8 @@ cosmic.cell:
     in human cancer
   example: '906801'
   homepage: https://cancer.sanger.ac.uk/cell_lines/
+  mappings:
+    cellosaurus: Cosmic-CLP
   name: COSMIC Cell Lines
   preferred_prefix: cosmic.cell
   uri_format: https://cancer.sanger.ac.uk/cell_lines/sample/overview?id=$1
@@ -3968,6 +4157,20 @@ cpga:
   name: Cereal Plant Gross Anatomy
   preferred_prefix: GRO
   uri_format: http://purl.obolibrary.org/obo/GRO_$1
+credit:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: "CRediT (Contributor Roles Taxonomy) is high-level taxonomy, including\
+    \ 14 roles, that can be used to represent the roles typically played by contributors\
+    \ to scientific scholarly output. The roles describe each contributor\u2019s specific\
+    \ contribution to the scholarly output."
+  example: Software
+  homepage: https://casrai.org/credit/
+  name: CASRAI Contributor Roles Taxonomy
+  preferred_prefix: credit
 crisprdb:
   description: Repeated CRISPR ("clustered regularly interspaced short palindromic
     repeats") elements found in archaebacteria and eubacteria are believed to defend
@@ -4075,6 +4278,7 @@ csp:
   name: Computer Retrieval of Information on Science Projects (CRISP) Thesaurus
   preferred_prefix: csp
   synonyms:
+  - CRISP
   - CRISP Thesaurus
   - CRISP Thesaurus, 2006
   - CSP2005
@@ -4504,6 +4708,7 @@ dbgap:
   uri_format: https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=$1
 dbmhc:
   deprecated: true
+  description: Cell line databases/resources
   example: '48439'
   homepage: https://www.ncbi.nlm.nih.gov/gv/mhc/
   mappings:
@@ -4799,6 +5004,15 @@ dg.f82a1a:
   pattern: ^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$
   preferred_prefix: dg.f82a1a
   uri_format: https://data.kidsfirstdrc.org/ga4gh/drs/v1/objects/$1
+dgrc:
+  description: Cell line collections
+  example: '215'
+  homepage: https://dgrc.bio.indiana.edu/cells/Catalog
+  mappings:
+    cellosaurus: DGRC
+  name: Drosophila Genomics Resource Center
+  preferred_prefix: dgrc
+  uri_format: https://dgrc.bio.indiana.edu/product/View?product=$1
 dicom:
   description: DICOM Controlled Terminology
   example: '109082'
@@ -4924,6 +5138,15 @@ dip:
   pattern: ^DIP(\:)?\-\d{1,}[ENXS]$
   preferred_prefix: dip
   uri_format: https://dip.doe-mbi.ucla.edu/dip/DIPview.cgi?ID=$1
+discoverx:
+  description: Cell line collections
+  example: 95-0166C6
+  homepage: https://www.discoverx.com/products-applications/cell-lines
+  mappings:
+    cellosaurus: DiscoverX
+  name: DiscoverX cell line products
+  preferred_prefix: discoverx
+  uri_format: https://www.discoverx.com/searchproduct?searchtext=$1&searchmode=exact
 disdriv:
   banana: DISDRIV
   contact:
@@ -5399,6 +5622,15 @@ eaglei:
   name: eagle-i
   preferred_prefix: eaglei
   uri_format: http://hawaii.eagle-i.net/i/$1
+ebisc:
+  description: Cell line collections
+  example: ESi007-A
+  homepage: https://www.ebisc.org
+  mappings:
+    cellosaurus: EBiSC
+  name: European Bank for induced pluripotent Stem Cells
+  preferred_prefix: ebisc
+  uri_format: https://cells.ebisc.org/$1
 ecacc:
   description: The European Collection of Authenticated Cell Cultures (ECACC) is one
     of four Culture Collections of Public Health England. We supply authenticated
@@ -5606,6 +5838,20 @@ ecogene:
   pattern: ^EG\d+$
   preferred_prefix: ecogene
   uri_format: http://www.ecogene.org/gene/$1
+ecolexicon:
+  comment: No resolution - everything is in a single page app
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: EcoLexicon represents the conceptual structure of the specialized domain
+    of the Environment in the form of a visual thesaurus. This thesaurus has been
+    elaborated according to the theoretical premises of Frame-Based Terminology.
+  example: canal
+  homepage: http://ecolexicon.ugr.es/en/index.htm
+  name: EcoLexicon
+  preferred_prefix: ecolexicon
 ecoliwiki:
   description: EcoliWiki is a wiki-based resource to store information related to
     non-pathogenic E. coli, its phages, plasmids, and mobile genetic elements. This
@@ -5746,6 +5992,20 @@ edam:
   preferred_prefix: edam
   uri_format: https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1
   version: '2019-07-17'
+edda:
+  description: Coverage of the terminology appearing in JMLA was extended with terms
+    from MeSH, NCI Thesaurus (NCI), Emtree, the HTA Database Canadian Repository [international
+    repository for health technology assessment], and Robert Sandieson's synonym ring
+    for research synthesis. Collected terms were enriched with terms from the NCI
+    Metathesaurus. Variants include synonyms for preferred terms, singular and plural
+    forms, and American and British spellings. Definitions, if they exist, are mainly
+    from MeSH, NCI, Emtree, and medical dictionaries.
+  example: health_care_quality_assessment
+  homepage: https://bioportal.bioontology.org/ontologies/EDDA
+  mappings:
+    bioportal: EDDA
+  name: EDDA Study Designs Taxonomy
+  preferred_prefix: edda
 efo:
   description: The Experimental Factor Ontology (EFO) provides a systematic description
     of many experimental variables available in EBI databases. It combines parts of
@@ -6236,6 +6496,11 @@ envo:
   uri_format: https://www.ebi.ac.uk/ols/ontologies/envo/terms?obo_id=ENVO:$1
   version: '2021-05-14'
 enzo:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Enzo Life Sciences is an antibody vendor.
   example: ALX-210-175
   homepage: https://www.enzolifesciences.com
@@ -6378,6 +6643,17 @@ erv:
   pattern: ^[A-Za-z0-9\-\_]+$
   preferred_prefix: erv
   uri_format: https://herv.img.cas.cz/s/$1
+estdab:
+  comment: Website is dead
+  deprecated: true
+  description: Cell line databases/resources
+  example: '046'
+  homepage: https://www.ebi.ac.uk/ipd/estdab/
+  mappings:
+    cellosaurus: ESTDAB
+  name: European Searchable Tumour Line Database
+  preferred_prefix: estdab
+  uri_format: https://www.ebi.ac.uk/cgi-bin/ipd/estdab/print_cell.cgi?ESTDAB-$1
 eu89h:
   description: The JRC Data Catalogue gives access to the multidisciplinary data produced
     and maintained by the Joint Research Centre, the European Commission's in-house
@@ -6564,6 +6840,23 @@ exo:
   - ExO
   uri_format: http://purl.obolibrary.org/obo/EXO_$1
   version: '2020-03-10'
+fabio:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The FRBR-aligned Bibliographic Ontology (FaBiO) is an ontology for
+    describing entities that are published or potentially publishable (e.g., journal
+    articles, conference papers, books), and that contain or are referred to by bibliographic
+    references.
+  example: d4e2515
+  homepage: https://github.com/sparontologies/fabio
+  mappings:
+    biolink: fabio
+  name: FaBiO, the FRBR-aligned Bibliographic Ontology
+  preferred_prefix: fabio
+  uri_format: https://sparontologies.github.io/fabio/current/fabio.html#$1
 facebase:
   description: FaceBase is a collaborative NIDCR-funded consortium to generate data
     in support of advancing research into craniofacial development and malformation.
@@ -6752,6 +7045,17 @@ fbol:
   pattern: ^\d+$
   preferred_prefix: fbol
   uri_format: http://www.fungalbarcoding.org/BioloMICS.aspx?Table=Fungal barcodes&Rec=$1&Fields=All&ExactMatch=T
+fbql:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  deprecated: true
+  example: '00005254'
+  name: FlyBase Qualifiers
+  pattern: ^\d+$
+  preferred_prefix: fbql
 fbrf:
   contributor:
     email: cthoyt@gmail.com
@@ -6797,6 +7101,20 @@ fbtc:
   part_of: flybase
   preferred_prefix: fbtc
   uri_format: https://flybase.org/reports/FBtc$1
+fcsfree:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Cell line databases/resources
+  example: 240-17-488-3-4-12
+  homepage: https://fcs-free.org
+  mappings:
+    cellosaurus: FCS-free
+  name: Fetal Calf Serum-Free Database
+  preferred_prefix: fcsfree
+  uri_format: https://fcs-free.org/fcs-database?$1
 fideo:
   banana: FIDEO
   contact:
@@ -6940,6 +7258,18 @@ flybase:
   - FB
   - FlyBase
   uri_format: https://flybase.org/reports/$1
+flybrain.ndb:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A database of fly neurons and pathways with an associated 3D viewer.
+  example: '10531'
+  homepage: https://flybrain-ndb.virtualflybrain.org
+  name: FlyBrain Neuron Database
+  preferred_prefix: flybrain.ndb
+  uri_format: https://flybrain-ndb.virtualflybrain.org/fmi/xsl/browserecord.xsl@-lay=NDB&Accession+number.op=eq&Accession+number=$1&-find=-find.html
 fma:
   banana: FMA
   contact:
@@ -7114,6 +7444,24 @@ fsnp:
   pattern: ^rs\d+$
   preferred_prefix: fsnp
   uri_format: http://compbio.cs.queensu.ca/cgi-bin/compbio/search/main.cgi?search_mode=id&amp;id_type=snp_id&amp;id_val=$1
+ftt:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Types of named geographic features. Applicable also to many unnamed
+    features but reflects the level of detail traditionally shown on maps, so some
+    feature types specified in scientific studies may not be well represented here.
+    Not highly specific.
+  example: '273'
+  homepage: https://apps.usgs.gov/thesaurus/thesaurus-full.php?thcode=3
+  name: Feature Type Thesaurus
+  preferred_prefix: ftt
+  references:
+  - https://obo-communitygroup.slack.com/archives/C023P0Z304T/p1638380238036200
+  - https://github.com/EnvironmentOntology/envo/issues/1130
+  uri_format: https://apps.usgs.gov/thesaurus/term-simple.php?thcode=3&code=$1
 funcbase.fly:
   description: Computational gene function prediction can serve to focus experimental
     resources on high-priority experimental tasks. FuncBase is a web resource for
@@ -7255,7 +7603,7 @@ fypo:
   pattern: ^\d{7}$
   preferred_prefix: FYPO
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2021-12-06'
+  version: '2021-12-07'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -7435,6 +7783,22 @@ gecko:
   preferred_prefix: GECKO
   uri_format: http://purl.obolibrary.org/obo/GECKO_$1
   version: '2021-01-18'
+gemet:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The European Environment Information and Observation Network (Eionet)
+    is a partnership network of the European Environment Agency (EEA) and its 38 member
+    and cooperating countries. The EEA is responsible for developing Eionet and coordinating
+    its activities together with National Focal Points (NFPs) in the countries. This
+    terminology supports those efforts.
+  example: '627'
+  homepage: https://www.eionet.europa.eu/gemet/en/themes/
+  name: General Multilingual Environmental Thesaurus
+  preferred_prefix: gemet
+  uri_format: https://www.eionet.europa.eu/gemet/en/concept/$1
 genatlas:
   description: GenAtlas is a database containing information on human genes, markers
     and phenotypes.
@@ -7664,6 +8028,22 @@ geogeo:
   preferred_prefix: GEOGEO
   uri_format: http://purl.obolibrary.org/obo/GEO_$1
   version: '2016-03-26'
+geonames:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The GeoNames geographical database covers all countries and contains
+    over eleven million placenames that are available for download free of charge.
+  example: ADM1
+  homepage: https://www.geonames.org
+  name: GeoNames
+  preferred_prefix: geonames
+  synonyms:
+  - Geomames
+  - Geonamaes
+  uri_format: https://www.geonames.org/recent-changes/featurecode/$1/
 gexo:
   description: Gene Expression Ontology
   homepage: http://www.semantic-systems-biology.org/apo
@@ -8066,6 +8446,24 @@ goa:
     0-9][A-Z, 0-9][0-9]))|(URS[0-9A-F]{10}(_[0-9]+){0,1})|(EBI-[0-9]+)$
   preferred_prefix: goa
   uri_format: https://www.ebi.ac.uk/QuickGO/GProtein?ac=$1
+goche:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Represent chemical entities having particular CHEBI roles
+  example: '25512'
+  homepage: https://github.com/geneontology/go-ontology/
+  name: GO Chemicals
+  preferred_prefix: GOCHE
+  references:
+  - https://obo-communitygroup.slack.com/archives/C023P0Z304T/p1638472847049400
+  - https://github.com/geneontology/go-ontology/issues/19535
+  synonyms:
+  - go.chebi
+  - go.chemical
+  - go.chemicals
 goeco:
   contributor:
     email: cthoyt@gmail.com
@@ -8865,6 +9263,24 @@ hinv.transcript:
   pattern: ^HIT\d{9}(\.\d+)?$
   preferred_prefix: hinv.transcript
   uri_format: http://h-invitational.jp/hinv/spsoup/transcript_view?hit_id=$1
+hipsci:
+  description: Cell line databases/resources
+  example: HPSI0114i-bezi_1
+  homepage: http://www.hipsci.org
+  mappings:
+    cellosaurus: HipSci
+  name: Human Induced Pluripotent Stem Cells Initiative
+  preferred_prefix: hipsci
+  uri_format: http://www.hipsci.org/lines/#/lines/$1
+hivreagentprogram:
+  description: Cell line collections
+  example: ARP-1513
+  homepage: https://www.hivreagentprogram.org/Home.aspx
+  mappings:
+    cellosaurus: HIVReagentProgram
+  name: NIH HIV Reagent Program
+  preferred_prefix: hivreagentprogram
+  uri_format: https://www.hivreagentprogram.org/Catalog/HRPCellLines/$1.aspx
 hmdb:
   description: The Human Metabolome Database (HMDB) is a database containing detailed
     information about small molecule metabolites found in the human body.It contains
@@ -9002,6 +9418,15 @@ homologene:
     name: Bio2RDF
     uri_format: http://homologene.bio2rdf.org/describe/?url=http://bio2rdf.org/homologene:$1
   uri_format: https://www.ncbi.nlm.nih.gov/homologene/$1
+horizon_discovery:
+  description: Cell line collections
+  example: HD+118-001
+  homepage: https://horizondiscovery.com/
+  mappings:
+    cellosaurus: Horizon_Discovery
+  name: Horizon Discovery cell line collection
+  preferred_prefix: horizon_discovery
+  uri_format: https://horizondiscovery.com/en/search?searchterm=$1
 hovergen:
   description: HOVERGEN is a database of homologous vertebrate genes that allows one
     to select sets of homologous genes among vertebrate species, and to visualize
@@ -9073,6 +9498,8 @@ hpath:
     ols: hpath
   name: Histopathology Ontology
   preferred_prefix: hpath
+  synonyms:
+  - MC
   version: '2019-07-05'
 hpm.peptide:
   description: The Human Proteome Map (HPM) portal integrates the peptide sequencing
@@ -9426,6 +9853,15 @@ iceo:
   preferred_prefix: ICEO
   uri_format: http://purl.obolibrary.org/obo/ICEO_$1
   version: '2.1'
+iclc:
+  description: Cell line collections
+  example: ATL98012
+  homepage: http://www.iclc.it
+  mappings:
+    cellosaurus: ICLC
+  name: Interlab Cell Line Collection
+  preferred_prefix: iclc
+  uri_format: http://www.iclc.it/details/det_list.php?line_id=$1
 ico:
   banana: ICO
   contact:
@@ -9615,6 +10051,15 @@ iev:
   name: Event (INOH pathway ontology)
   preferred_prefix: IEV
   uri_format: http://purl.obolibrary.org/obo/IEV_$1
+igrhcellid:
+  description: Cell line databases/resources
+  example: ACHN
+  homepage: http://igrcid.ibms.sinica.edu.tw/cgi-bin/index.cgi
+  mappings:
+    cellosaurus: IGRhCellID
+  name: Integrated Genomic Resources of human Cell Lines for Identification
+  preferred_prefix: igrhcellid
+  uri_format: http://igrcid.ibms.sinica.edu.tw/cgi-bin/cell_line_view.cgi?cl_name=$1
 igsn:
   description: IGSN is a globally unique and persistent identifier for material samples
     and specimens.  IGSNs are obtained from IGSN e.V. Agents.
@@ -9627,6 +10072,15 @@ igsn:
   pattern: ^[A-Za-z]{2,4}[A-Za-z0-9.-]{1,71}$
   preferred_prefix: igsn
   uri_format: http://igsn.org/$1
+igsr:
+  description: Biological sample resources
+  example: NA06985
+  homepage: https://www.internationalgenome.org/
+  mappings:
+    cellosaurus: IGSR
+  name: International Genome Sample Resource
+  preferred_prefix: igsr
+  uri_format: https://www.internationalgenome.org/data-portal/sample/$1
 ihw:
   description: The International Histocompatibility Working Group provides a comprehensive
     inventory of HLA reference genes to support worldwide research in immunogenetics.
@@ -9640,6 +10094,15 @@ ihw:
   name: International Histocompatibility Workshop cell lines
   pattern: ^IHW\d+$
   preferred_prefix: ihw
+imanis:
+  description: Cell line collections
+  example: CL070
+  homepage: https://www.imanislife.com/collections/cell-lines/
+  mappings:
+    cellosaurus: Imanis
+  name: Imanis Life Sciences cell line products
+  preferred_prefix: imanis
+  uri_format: https://www.imanislife.com/?s=$1
 imdrf:
   contributor:
     email: cthoyt@gmail.com
@@ -9829,6 +10292,19 @@ inchikey:
     name: Scholia
     uri_format: https://scholia.toolforge.org/inchikey/$1
   uri_format: http://www.chemspider.com/inchikey=$1
+inhand:
+  comment: This nomenclature is available via email. Truly a disgrace.
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The standard reference for nomenclature and diagnostic criteria in
+    toxicologic pathology.
+  homepage: https://www.goreni.org/gr3_nomenclature.php
+  name: The International Harmonization of Nomenclature and Diagnostic criteria
+  preferred_prefix: inhand
+  proprietary: true
 inn:
   comment: can not find a place to resolve to
   description: Documentation of GO that provides a description of some of the commonly
@@ -10350,6 +10826,20 @@ jcm:
   pattern: ^\d+$
   preferred_prefix: jcm
   uri_format: http://www.jcm.riken.go.jp/cgi-bin/jcm/jcm_number?JCM=$1
+jcrb:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Cell line collections
+  example: JCRB1355
+  homepage: https://cellbank.nibiohn.go.jp
+  mappings:
+    cellosaurus: JCRB
+  name: JRBC Cell Bank
+  preferred_prefix: jcrb
+  uri_format: https://cellbank.nibiohn.go.jp/~cellbank/en/search_res_det.cgi?RNO=$1
 jcsd:
   description: The Japan Chemical Substance Dictionary is an organic compound dictionary
     database prepared by the Japan Science and Technology Agency (JST).
@@ -10416,6 +10906,20 @@ kaggle:
   pattern: ^[0-9a-zA-Z\-]+\/[0-9a-zA-Z\-]+$
   preferred_prefix: kaggle
   uri_format: https://www.kaggle.com/$1
+kclb:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Cell line collections
+  example: '10020.2'
+  homepage: https://cellbank.snu.ac.kr/english
+  mappings:
+    cellosaurus: KCLB
+  name: Korean Cell Line Bank
+  preferred_prefix: kclb
+  uri_format: https://cellbank.snu.ac.kr/english/sub/catalog.php?s_cellid=464&page=detail_info&CatNo=59&strQ=$1
 kegg:
   comment: KEGG prefix has been split into several others
   deprecated: true
@@ -10669,6 +11173,15 @@ kegg.reaction:
   synonyms:
   - KEGG_REACTION
   uri_format: https://www.kegg.jp/entry/$1
+kerafast:
+  description: Cell line collections
+  example: EJH014
+  homepage: https://www.kerafast.com/
+  mappings:
+    cellosaurus: Kerafast
+  name: Kerafast cell lines
+  preferred_prefix: kerafast
+  uri_format: https://www.kerafast.com/Search?SearchTerm=&quot;$1&quot;
 knapsack:
   description: 'KNApSAcK provides information on metabolites and the
 
@@ -10698,6 +11211,15 @@ kupo:
   preferred_prefix: kupo
   references:
   - https://jbiomedsem.biomedcentral.com/articles/10.1186/2041-1480-2-S2-S7
+kyinno:
+  description: Cell line collections
+  example: KC-0979
+  homepage: https://www.kyinno.com/
+  mappings:
+    cellosaurus: KYinno
+  name: KYinno cell lines
+  preferred_prefix: kyinno
+  uri_format: https://innopedia.kyinno.com/DataBase/CellLine.aspx?file=$1.pdf
 labo:
   banana: LABO
   contact:
@@ -10848,6 +11370,25 @@ ligandexpo:
     name: Ligand Expo at Rutgers
     uri_format: http://ligand-expo.rcsb.org/pyapps/ldHandler.py?formid=cc-index-search&target=$1&operation=ccid
   uri_format: http://ligand-depot.rutgers.edu/pyapps/ldHandler.py?formid=cc-index-search&target=$1&operation=ccid
+ligea:
+  comment: This might just be a provider for CCLE
+  description: Polymorphism and mutation databases
+  example: CCLE_867
+  homepage: http://hpc-bioinformatics.cineca.it/fusion/main
+  mappings:
+    cellosaurus: LiGeA
+  name: Cancer cell LInes GEne fusions portAl
+  preferred_prefix: ligea
+  uri_format: http://hpc-bioinformatics.cineca.it/fusion/cell_line/$1
+limore:
+  description: Cell line databases/resources
+  example: Li7
+  homepage: https://www.picb.ac.cn/limore/home
+  mappings:
+    cellosaurus: LIMORE
+  name: Liver Cancer Model Repository
+  preferred_prefix: limore
+  uri_format: https://www.picb.ac.cn/limore/cellLines/single?para=$1
 lincs.cell:
   description: 'The Library of Network-Based Cellular Signatures (LINCS) Program aims
     to  create a network-based understanding of biology by cataloging changes in gene
@@ -10861,12 +11402,15 @@ lincs.cell:
   example: LCL-2085
   homepage: http://lincsportal.ccs.miami.edu/cells/
   mappings:
+    cellosaurus: LINCS_LDP
     miriam: lincs.cell
     n2t: lincs.cell
     prefixcommons: LINCS.CELL
   name: LINCS Cell
   pattern: ^(LCL|LDC|ES|LSC|LPC)-\d+$
   preferred_prefix: lincs.cell
+  synonyms:
+  - LINCS_LDP
   uri_format: http://lincsportal.ccs.miami.edu/cells/#/view/$1
 lincs.data:
   description: The Library of Network-Based Cellular Signatures (LINCS) Program aims
@@ -11034,7 +11578,23 @@ loinc:
     bioportal: LOINC
   name: Logical Observation Identifiers Names and Codes
   preferred_prefix: loinc
+  synonyms:
+  - LNC
   uri_format: https://loinc.org/$1
+lonza:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Contains information about cells and data sheets related to transfection.
+  example: '968'
+  homepage: https://knowledge.lonza.com
+  mappings:
+    cellosaurus: Lonza
+  name: Lonza
+  preferred_prefix: lonza
+  uri_format: https://knowledge.lonza.com/cell?id=$1
 lotus:
   comment: IDs are actually leading to the structural part of LOTUS only, which might
     change in the future. Will adapt the regexp in case.
@@ -11113,6 +11673,18 @@ lspci:
   pattern: ^\d+$
   preferred_prefix: lspci
   uri_format: https://labsyspharm.github.io/lspci/$1
+lter:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Ecological terms
+  example: '182'
+  homepage: https://vocab.lternet.edu/vocab/vocab/index.php
+  name: Long Term Ecological Research Controlled Vocabulary
+  preferred_prefix: lter
+  uri_format: https://vocab.lternet.edu/vocab/vocab/index.php?tema=$1
 ma:
   banana: MA
   contact:
@@ -11165,10 +11737,14 @@ maizegdb.locus:
     go: MaizeGDB_Locus
     miriam: maizegdb.locus
     n2t: maizegdb.locus
+    ncbi: MaizeGDB
     prefixcommons: MAIZEGDB.LOCUS
+    uniprot: MaizeGDB
   name: MaizeGDB Locus
   pattern: ^\d+$
   preferred_prefix: maizegdb.locus
+  synonyms:
+  - MaizeGDB
   uri_format: http://www.maizegdb.org/cgi-bin/displaylocusrecord.cgi?id=$1
 mamo:
   banana: MAMO
@@ -12020,6 +12596,15 @@ microsporidia:
   pattern: ^\w+$
   preferred_prefix: microsporidia
   uri_format: http://microsporidiadb.org/micro/showRecord.do?name=GeneRecordClasses.GeneRecordClass&source_id=$1
+millipore:
+  description: Cell line collections
+  example: SCC111
+  homepage: https://www.merckmillipore.com/
+  mappings:
+    cellosaurus: Millipore
+  name: Merck Millipore (EMD Millipore)
+  preferred_prefix: millipore
+  uri_format: https://www.merckmillipore.com/catalogue/item/$1
 mim:
   description: Online Mendelian Inheritance in Man is a catalog of human genes and
     genetic disorders.
@@ -13034,10 +13619,14 @@ myco.tuber:
   mappings:
     miriam: myco.tuber
     n2t: myco.tuber
+    ncbi: TubercuList
     prefixcommons: MYCO.TUBER
-  name: MycoBrowser tuberculosis
+    uniprot: TubercuList
+  name: TubercuList knowledge base
   pattern: ^Rv\d{4}(A|B|c)?$
   preferred_prefix: myco.tuber
+  synonyms:
+  - TubercuList
   uri_format: http://tuberculist.epfl.ch/quicksearch.php?gene+name=$1
 mycobank:
   description: MycoBank is an online database, documenting new mycological names and
@@ -13223,6 +13812,19 @@ ncats.drug:
   name: NCATS Drugs
   preferred_prefix: ncats.drug
   uri_format: https://drugs.ncats.io/drug/$1
+ncbibook:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'The NCBI Bookshelf provides free online access to books and documents
+    in life science and healthcare. Search, read, and discover. '
+  example: NBK331
+  homepage: https://www.ncbi.nlm.nih.gov/books
+  name: NCBI Bookshelf
+  preferred_prefix: ncbibook
+  uri_format: https://www.ncbi.nlm.nih.gov/books/$1
 ncbigene:
   description: Entrez Gene is the NCBI's database for gene-specific information, focusing
     on completely sequenced genomes, those with an active research community to contribute
@@ -13629,6 +14231,15 @@ ngl:
   pattern: ^GLDS-\d+$
   preferred_prefix: ngl
   uri_format: https://genelab-data.ndc.nasa.gov/genelab/accession/$1
+nhcdr:
+  description: Cell line collections
+  example: ND50028
+  homepage: https://stemcells.nindsgenetics.org
+  mappings:
+    cellosaurus: NHCDR
+  name: NINDS Human Cell and Data Repository
+  preferred_prefix: nhcdr
+  uri_format: https://stemcells.nindsgenetics.org?line=$1
 niaest:
   description: A catalog of mouse genes expressed in early embryos, embryonic and
     adult stem cells, including 250000 ESTs, was assembled by the NIA (National Institute
@@ -13907,6 +14518,11 @@ norine:
   preferred_prefix: norine
   uri_format: http://bioinfo.lifl.fr/norine/result.jsp?ID=$1
 novus:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: A vendor of antibodies and other biologics
   example: nb100-56351
   homepage: https://www.novusbio.com
@@ -13929,6 +14545,21 @@ npass:
   name: Natural Product Activity and Species Source Database
   pattern: ^NPC\d+$
   preferred_prefix: npass
+npo:
+  contact:
+    email: nathan.baker@pnl.gov
+    github: null
+    name: Nathan Baker
+    orcid: null
+  description: An ontology that represents the basic knowledge of physical, chemical
+    and functional characteristics of nanotechnology as used in cancer diagnosis and
+    therapy.
+  example: '1731'
+  homepage: https://bioportal.bioontology.org/ontologies/NPO
+  mappings:
+    bioportal: NPO
+  name: NanoParticle Ontology
+  preferred_prefix: npo
 nuclearbd:
   description: NucleaRDB is an information system that stores heterogenous data on
     Nuclear Hormone Receptors (NHRs). It contains data on sequences, ligand binding
@@ -14132,6 +14763,19 @@ obo:
   name: Internal OBO and PyOBO Relations
   preferred_prefix: obo
   uri_format: http://purl.obolibrary.org/obo/$1
+oboformat:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Related to the OBO in OWL meta-model
+  example: alt_id
+  homepage: https://github.com/geneontology/go-ontology/tree/master/contrib
+  mappings:
+    biolink: oboformat
+  name: OBO Format
+  preferred_prefix: oboFormat
 oboinowl:
   description: This meta-ontology is self-describing. OBO metamodel properties are
     described using OBO metamodel properties
@@ -14293,6 +14937,7 @@ ogg:
   version: 1.0.59
 ogi:
   banana: OGI
+  deprecated: true
   description: "OGI formalized the genomic element by defining an upper class 'genetic\
     \ interval'.\n\nThe definition of 'genetic interval' is \"the spatial continuous\
     \ physical entity which contains ordered genomic sets(DNA, RNA, Allele, Marker,etc.)\
@@ -14310,7 +14955,7 @@ ogi:
     \ Meeting, Tokyo, Feb. 28th- Mar. 1st, 2010. (http://philpapers.org/rec/LINDSF)\n\
     \n\n"
   example: 0000019
-  homepage: https://code.google.com/p/ontology-for-genetic-interval/
+  homepage: https://code.google.com/archive/p/ontology-for-genetic-interval/
   mappings:
     bioportal: OGI
     obofoundry: OGI
@@ -14319,6 +14964,8 @@ ogi:
     prefixcommons: OGI
   name: Ontology for genetic interval
   preferred_prefix: OGI
+  synonyms:
+  - OGI.owl
   uri_format: http://purl.obolibrary.org/obo/OGI_$1
   version: '2.0'
 ogms:
@@ -14777,6 +15424,7 @@ ontoavida:
     the most widely-used computational approach for studying evolution using digital
     organisms (i.e., self-replicating computer programs that evolve within a user-defined
     computational environment).
+  example: '00000001'
   homepage: https://gitlab.com/fortunalab/ontoavida
   license: CC BY 4.0
   mappings:
@@ -15060,7 +15708,7 @@ orth:
     pertinents to represent the information from various orthology databases in a
     homogeneous way.'
   example: HomologyRelation
-  homepage: http://purl.org/net/orth
+  homepage: https://github.com/qfo/OrthologyOntology
   mappings:
     bioportal: ORTH
     ols: orth
@@ -15774,6 +16422,15 @@ peptideatlas.dataset:
   pattern: ^PASS\d{5}$
   preferred_prefix: peptideatlas.dataset
   uri_format: http://www.peptideatlas.org/PASS/$1
+perkinelmer:
+  description: Cell line collections
+  example: SCC111
+  homepage: https://www.perkinelmer.com/
+  mappings:
+    cellosaurus: PerkinElmer
+  name: PerkinElmer cell line collection
+  preferred_prefix: perkinelmer
+  uri_format: https://www.perkinelmer.com/searchresult?searchName=$1
 peroxibase:
   description: Peroxibase provides access to peroxidase sequences from all kingdoms
     of life, and provides a series of bioinformatics tools and facilities suitable
@@ -15888,12 +16545,15 @@ pgx:
   example: pgxbs-kftva5zv
   homepage: https://progenetix.org/
   mappings:
+    cellosaurus: Progenetix
     miriam: pgx
     n2t: pgx
     prefixcommons: PGX
   name: Progenetix
   pattern: ^\w{3,15}[-_]\w[\w.-]{3,128}$
   preferred_prefix: pgx
+  synonyms:
+  - Progenetix
   uri_format: https://progenetix.org/services/ids/$1
 pharmacodb.cell:
   description: Web-application assembling the largest in vitro drug screens in a single
@@ -16027,6 +16687,15 @@ phenolexplorer:
   pattern: ^\d+$
   preferred_prefix: phenolexplorer
   uri_format: http://phenol-explorer.eu/foods/$1
+phenx:
+  description: A Web-based catalog of recommended measurement protocols
+  example: '130502'
+  homepage: https://www.phenxtoolkit.org/
+  mappings:
+    bioportal: PHENX
+  name: PhenX Toolkit
+  preferred_prefix: phenx
+  uri_format: https://www.phenxtoolkit.org/protocols/view/$1
 phipo:
   banana: PHIPO
   contact:
@@ -17422,6 +18091,39 @@ refseq:
   synonyms:
   - REFSEQ_PROT
   uri_format: https://www.ncbi.nlm.nih.gov/protein/$1
+reo:
+  comment: 'From James O.: It was an ontology for "reagents" developed by @Matthew
+    Brush. Since OBI was interested in reagents, Matt developed it in coordination
+    with OBI and had plans to submit it to OBO. I believe that REO was once included
+    in Ontobee, and OBI even started using some REO terms. But REO was never submitted
+    to OBO. I believe it was abandoned.'
+  contact:
+    email: matt@tislab.org
+    github: mbrush
+    name: Matthew Brush
+    orcid: null
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: "The Reagent Ontology (ReO) adheres to OBO Foundry principles (obofoundry.org)\
+    \ to model the domain of biomedical research reagents, considered broadly to include\
+    \ materials applied \u201Cchemically\u201D in scientific techniques to facilitate\
+    \ generation of data and research materials. ReO is a modular ontology that re-uses\
+    \ existing ontologies to facilitate cross-domain interoperability. It consists\
+    \ of reagents and their properties, linking diverse biological and experimental\
+    \ entities to which they are related. ReO supports community use cases by providing\
+    \ a flexible, extensible, and deeply integrated framework that can be adapted\
+    \ and extended with more specific modeling to meet application needs."
+  example: 0000079
+  homepage: https://github.com/tis-lab/reagent-ontology
+  name: Reagent Ontology
+  preferred_prefix: reo
+  references:
+  - https://github.com/obi-ontology/obi/issues/1015
+  - https://code.google.com/archive/p/reagent-ontology/
+  - https://github.com/obi-ontology/obi/issues/1135
 repeatsdb.protein:
   description: RepeatsDB is a database of annotated tandem repeat protein structures.
     This collection references protein entries in the database.
@@ -17922,7 +18624,7 @@ rxno:
   pattern: ^\d{7}$
   preferred_prefix: RXNO
   uri_format: http://purl.obolibrary.org/obo/RXNO_$1
-  version: '2021-01-21'
+  version: '2021-12-06'
 rxnorm:
   description: RxNorm provides normalized names for clinical drugs and links its names
     to many of the drug vocabularies commonly used in pharmacy management and drug
@@ -17973,6 +18675,7 @@ sabiork.ec:
   name: SABIO-RK EC Record
   pattern: ^((\d+)|(\d+\.\d+)|(\d+\.\d+\.\d+)|(\d+\.\d+\.\d+\.\d+))$
   preferred_prefix: sabiork.ec
+  provides: eccode
   uri_format: http://sabiork.h-its.org/newSearch?q=ecnumber:$1
 sabiork.kineticrecord:
   description: SABIO-RK is a relational database system that contains information
@@ -18003,10 +18706,13 @@ sabiork.reaction:
     miriam: sabiork.reaction
     n2t: sabiork.reaction
     prefixcommons: SABIORK.REACTION
+    uniprot: SABIO-RK
   name: SABIO-RK Reaction
   pattern: ^\d+$
   preferred_prefix: sabiork.reaction
-  uri_format: http://sabiork.h-its.org/newSearch?q=sabioreactionid:$1
+  synonyms:
+  - SABIO-RK
+  uri_format: http://sabiork.h-its.org/reacdetails.jsp?reactid=$1
 sael:
   contributor:
     email: cthoyt@gmail.com
@@ -18220,6 +18926,8 @@ sdgio:
     ontobee: SDGIO
   name: Sustainable Development Goals Interface Ontology
   preferred_prefix: sdgio
+  references:
+  - https://github.com/SDG-InterfaceOntology/sdgio/issues/233
   version: '2018-08-10'
 sdis:
   contributor:
@@ -18494,6 +19202,11 @@ sider.effect:
   provides: umls
   uri_format: http://sideeffects.embl.de/se/$1
 sigmaaldirch:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: Sigma Aldrich is a life sciences supply vendor.
   example: HPA000698
   homepage: https://www.sigmaaldrich.com
@@ -18625,6 +19338,15 @@ skos:
   name: Simple Knowledge Organization System
   preferred_prefix: skos
   uri_format: http://www.w3.org/2004/02/skos/core#$1
+slkbase:
+  description: Cell line databases/resources
+  example: '3618'
+  homepage: https://sumlineknowledgebase.com/
+  mappings:
+    cellosaurus: SLKBase
+  name: SUM Breast Cancer Cell Line Knowledge Base
+  preferred_prefix: slkbase
+  uri_format: https://sumlineknowledgebase.com/?page_id=$1
 smart:
   description: The Simple Modular Architecture Research Tool (SMART) is an online
     tool for the identification and annotation of protein domains, and the analysis
@@ -18736,6 +19458,8 @@ snomedct:
   - SNOMEDCT_US_2019_09_01
   - SNOMEDCT_US_2020_03_01
   - SNOMEDCT_US_2020_09_01
+  - SNOMEDCT_US_2021_03_01
+  - SNOMEDCT_US_2021_09_01
   - SNOMED_CT
   - SNOMED_CT_US_2018_03_01
   - SNOWMEDCT
@@ -19152,6 +19876,20 @@ supfam:
   pattern: ^\w+$
   preferred_prefix: supfam
   uri_format: http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid=$1
+sweetrealm:
+  description: The Semantic Web for Earth and Environmental Terminology is a mature
+    foundational ontology that contains over 6000 concepts organized in 200 ontologies
+    represented in OWL. Top level concepts include Representation (math, space, science,
+    time, data), Realm (Ocean, Land Surface, Terrestrial Hydroshere, Atmosphere, etc.),
+    Phenomena (macro-scale ecological and physical), Processes (micro-scale physical,
+    biological, chemical, and mathematical), Human Activities (Decision, Commerce,
+    Jurisdiction, Environmental, Research).
+  example: ANOVA
+  homepage: https://bioportal.bioontology.org/ontologies/SWEET
+  mappings:
+    bioportal: SWEET
+  name: Semantic Web for Earth and Environment Technology Ontology
+  preferred_prefix: sweetrealm
 swh:
   banana: swh
   description: Software Heritage is the universal archive of software source code.
@@ -19445,6 +20183,15 @@ taxrank:
   preferred_prefix: TAXRANK
   uri_format: http://purl.obolibrary.org/obo/TAXRANK_$1
   version: '2016-04-15'
+tcb:
+  description: Cell line collections
+  example: '2966'
+  homepage: https://www.pirbright.ac.uk/tick-cell-lines-views-page
+  mappings:
+    cellosaurus: TCB
+  name: Tick Cell Biobank
+  preferred_prefix: tcb
+  uri_format: https://www.pirbright.ac.uk/node/$1
 tcdb:
   description: The database details a comprehensive  IUBMB approved classification
     system for membrane transport proteins known as the Transporter Classification
@@ -19532,6 +20279,20 @@ tgma:
   preferred_prefix: TGMA
   uri_format: http://purl.obolibrary.org/obo/TGMA_$1
   version: '2013-06-03'
+tgn:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  deprecated: true
+  example: '1023371'
+  homepage: https://www.getty.edu/research/tools/vocabularies/tgn/
+  name: Getty Thesaurus of Geographic Names
+  preferred_prefix: tgn
+  references:
+  - https://obo-communitygroup.slack.com/archives/C023P0Z304T/p1638380238036200
+  uri_format: http://vocab.getty.edu/page/tgn/$1
 th:
   contributor:
     email: cthoyt@gmail.com
@@ -19548,6 +20309,11 @@ th:
   references:
   - https://en.wikipedia.org/wiki/Terminologia_Histologica
 thermofisher:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: ThermoFisher is a life sciences supply vendor.
   example: OSR00185W
   homepage: https://www.thermofisher.com
@@ -19586,6 +20352,15 @@ tkg:
   pattern: ^\d+$
   preferred_prefix: tkg
   uri_format: http://www2.idac.tohoku.ac.jp/dep/ccr/TKGdate/TKGvol08/$1.html
+tngb:
+  description: Cell line collections
+  example: '67035'
+  homepage: http://biobanknetwork.telethon.it/
+  mappings:
+    cellosaurus: TNGB
+  name: Telethon Network of Genetic Biobanks
+  preferred_prefix: tngb
+  uri_format: http://biobanknetwork.telethon.it/Sample/View?sampleId=$1
 to:
   banana: TO
   contact:
@@ -19608,6 +20383,15 @@ to:
   preferred_prefix: TO
   uri_format: http://purl.obolibrary.org/obo/TO_$1
   version: '2021-04-06'
+tokue:
+  deprecated: true
+  description: Cell line databases/resources
+  homepage: http://cell-lines.toku-e.com
+  mappings:
+    cellosaurus: TOKU-E
+  name: TOKU-E Cell-culture Database
+  preferred_prefix: tokue
+  uri_format: http://cell-lines.toku-e.com/Cell-Lines_$1.html
 tol:
   description: "The Tree of Life Web Project (ToL) is a collaborative effort of biologists\
     \ and nature enthusiasts from around the world. On more than 10,000 World Wide\
@@ -20925,6 +21709,20 @@ vsdb:
   name: Veterinary Substances DataBase
   preferred_prefix: vsdb
   uri_format: https://sitem.herts.ac.uk/aeru/vsdb/Reports/$1.htm
+vso:
+  description: 'The Vital Sign Ontology (VSO) is an extension of the Ontology for
+    General Medical Science (OGMS). VSO covers the four consensus human vital signs:
+    blood pressure, body temperature, respiration rate, pulse rate. VSO provides also
+    a controlled structured vocabulary for describing vital signs measurement data,
+    the various processes of measuring vital signs, and the various devices and anatomical
+    entities participating in such measurements. '
+  example: '0000041'
+  homepage: https://bioportal.bioontology.org/ontologies/VSO
+  mappings:
+    bioportal: VSO
+  name: Vital Sign Ontology
+  preferred_prefix: vso
+  uri_format: https://bioportal.bioontology.org/ontologies/VSO/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FVSO_$1
 vt:
   banana: VT
   contact:
@@ -21114,6 +21912,15 @@ wgs84:
   name: WGS84 Geo Positioning
   preferred_prefix: wgs84
   uri_format: http://www.w3.org/2003/01/geo/wgs84_pos#$1
+wicell:
+  description: Cell line collections
+  example: ai10e-kctd13b
+  homepage: https://www.wicell.org
+  mappings:
+    cellosaurus: WiCell
+  name: WiCell Research Institute Cell Collection
+  preferred_prefix: wicell
+  uri_format: https://www.wicell.org/home/stem-cells/catalog-of-stem-cell-lines/$1.cmsx?closable=true
 wikidata:
   description: Wikidata is a collaboratively edited knowledge base operated by the
     Wikimedia Foundation. It is intended to provide a common source of certain types
@@ -21333,6 +22140,8 @@ wwf.ecoregion:
     github: null
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
+  synonyms:
+  - WWF
   uri_format: https://www.worldwildlife.org/ecoregions/$1
 xao:
   banana: XAO
@@ -21400,6 +22209,20 @@ xenbase:
   pattern: ^XB\-\w+\-\d+$
   preferred_prefix: xenbase
   uri_format: https://www.xenbase.org/common/xsearch.do?exactSearch=true&searchIn=7&searchValue=$1
+ximbio:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Cell line collections
+  example: '151022'
+  homepage: https://ximbio.com
+  mappings:
+    cellosaurus: Ximbio
+  name: Ximbio
+  preferred_prefix: ximbio
+  uri_format: https://ximbio.com/reagent/$1
 xl:
   deprecated: true
   description: A structured controlled vocabulary for cross-linking reagents used
