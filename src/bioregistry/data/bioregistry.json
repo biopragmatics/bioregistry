@@ -16942,21 +16942,6 @@
       "prefix": "P686"
     }
   },
-  "go.chemical": {
-    "description": "Represent chemical entities having particular CHEBI roles",
-    "download_owl": "https://raw.githubusercontent.com/geneontology/go-ontology/master/src/ontology/imports/chebi_roles.owl",
-    "example": "25512",
-    "name": "GO Chemicals",
-    "references": [
-      "https://obo-communitygroup.slack.com/archives/C023P0Z304T/p1638472847049400",
-      "https://github.com/geneontology/go-ontology/issues/19535"
-    ],
-    "synonyms": [
-      "go.chemicals",
-      "go.chebi",
-      "goche"
-    ]
-  },
   "go.model": {
     "description": "GO-Causal Activity Models (GO-CAMs) use a defined “grammar” for linking multiple GO annotations into larger models of biological function (such as “pathways”) in a semantically structured manner. GO-CAMs are created by expert biocurators from the GO Consortium, using the Noctua Curation Platform.",
     "example": "5fce9b7300001250",
@@ -17056,6 +17041,22 @@
       "prefix": "GOA",
       "uri_format": "http://identifiers.org/goa/$1"
     }
+  },
+  "goche": {
+    "description": "Represent chemical entities having particular CHEBI roles",
+    "download_owl": "https://raw.githubusercontent.com/geneontology/go-ontology/master/src/ontology/imports/chebi_roles.owl",
+    "example": "25512",
+    "name": "GO Chemicals",
+    "preferred_prefix": "GOCHE",
+    "references": [
+      "https://obo-communitygroup.slack.com/archives/C023P0Z304T/p1638472847049400",
+      "https://github.com/geneontology/go-ontology/issues/19535"
+    ],
+    "synonyms": [
+      "go.chemicals",
+      "go.chebi",
+      "go.chemical"
+    ]
   },
   "goeco": {
     "contributor": {
@@ -23790,7 +23791,10 @@
       "is_obo": false,
       "prefix": "MAIZEGDB.LOCUS",
       "uri_format": "http://identifiers.org/maizegdb.locus/$1"
-    }
+    },
+    "synonyms": [
+      "MaizeGDB"
+    ]
   },
   "mamo": {
     "bioportal": {
@@ -30219,6 +30223,11 @@
       "uri_format": "http://purl.obolibrary.org/obo/$1"
     }
   },
+  "oboformat": {
+    "description": "Related to the OBO in OWL meta-model",
+    "name": "OBO Format",
+    "preferred_prefix": "oboFormat"
+  },
   "oboinowl": {
     "description": "This meta-ontology is self-describing. OBO metamodel properties are described using OBO metamodel properties",
     "download_obo": "https://github.com/geneontology/go-ontology/raw/master/contrib/oboInOwl.obo",
@@ -30498,7 +30507,9 @@
       "name": "Ontology for Genetic Interval",
       "prefix": "OGI"
     },
+    "deprecated": true,
     "example": "0000019",
+    "homepage": "https://code.google.com/archive/p/ontology-for-genetic-interval/",
     "mappings": {
       "bioportal": "OGI",
       "obofoundry": "ogi",
@@ -30533,7 +30544,10 @@
       "is_obo": true,
       "prefix": "OGI",
       "uri_format": "http://purl.obolibrary.org/obo/OGI_$1"
-    }
+    },
+    "synonyms": [
+      "OGI.owl"
+    ]
   },
   "ogms": {
     "bioportal": {
@@ -31965,6 +31979,7 @@
       "prefix": "ORDO",
       "uri_format": "https://www.ebi.ac.uk/ols/ontologies/ordo/terms?iri=http://www.orpha.net/ORDO/$1"
     },
+    "download_owl": "http://www.orphadata.org/data/ORDO/ordo_orphanet.owl",
     "mappings": {
       "biolink": "ORPHA",
       "bioportal": "ORDO",
@@ -32021,7 +32036,9 @@
       "name": "Orthology Ontology",
       "prefix": "ORTH"
     },
+    "download_owl": "https://github.com/qfo/OrthologyOntology/raw/master/orthOntology_RC_v2_A.owl",
     "example": "HomologyRelation",
+    "homepage": "https://github.com/qfo/OrthologyOntology",
     "mappings": {
       "bioportal": "ORTH",
       "ols": "orth"
@@ -36518,7 +36535,7 @@
       "name": "Pathway Ontology",
       "prefix": "PW"
     },
-    "download_obo": "ftp://ftp.rgd.mcw.edu/pub/data_release/ontology_obo_files/pathway/pathway.obo",
+    "download_obo": "https://download.rgd.mcw.edu/pub/data_release/ontology_obo_files/pathway/pathway.obo",
     "example": "0000423",
     "mappings": {
       "bioportal": "PW",
@@ -42272,6 +42289,12 @@
     "wikidata": {
       "database": "Q81661821"
     }
+  },
+  "tuberculist": {
+    "example": "Rv2879c",
+    "homepage": "http://genolist.pasteur.fr/TubercuList",
+    "name": "TubercuList",
+    "uri_format": "http://genolist.pasteur.fr/TubercuList/genome.cgi?external_query+$1"
   },
   "txpo": {
     "bioportal": {
