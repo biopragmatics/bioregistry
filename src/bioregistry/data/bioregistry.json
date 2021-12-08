@@ -1009,6 +1009,7 @@
       "name": "Psychology Ontology",
       "prefix": "APAONTO"
     },
+    "description": "Ontology from the APA",
     "example": "Abdomen",
     "homepage": "https://bioportal.bioontology.org/ontologies/APAONTO",
     "mappings": {
@@ -7010,9 +7011,13 @@
     }
   },
   "cmecs": {
+    "description": "Use this database to browse the CMECS classification and to get definitions for individual CMECS Units. This database contains the units that were published in the Coastal and Marine Ecological Classification Standard.",
     "example": "595",
     "homepage": "https://cmecscatalog.org/cmecs",
     "name": "Costal and Marine Ecological Classification Standard",
+    "references": [
+      "http://www.natureserve.org/sites/default/files/publications/files/cmecs_version_06-2012_final.pdf"
+    ],
     "uri_format": "https://cmecscatalog.org/cmecs/classification/unit/$1.html"
   },
   "cmf": {
@@ -8319,6 +8324,7 @@
     }
   },
   "credit": {
+    "description": "CRediT (Contributor Roles Taxonomy) is high-level taxonomy, including 14 roles, that can be used to represent the roles typically played by contributors to scientific scholarly output. The roles describe each contributor’s specific contribution to the scholarly output.",
     "example": "Software",
     "homepage": "https://casrai.org/credit/",
     "name": "CASRAI Contributor Roles Taxonomy"
@@ -11773,6 +11779,7 @@
   },
   "ecolexicon": {
     "comment": "No resolution - everything is in a single page app",
+    "description": "EcoLexicon represents the conceptual structure of the specialized domain of the Environment in the form of a visual thesaurus. This thesaurus has been elaborated according to the theoretical premises of Frame-Based Terminology.",
     "example": "canal",
     "homepage": "http://ecolexicon.ugr.es/en/index.htm",
     "name": "EcoLexicon"
@@ -12063,6 +12070,7 @@
       "name": "EDDA Study Designs Taxonomy",
       "prefix": "EDDA"
     },
+    "description": "Coverage of the terminology appearing in JMLA was extended with terms from MeSH, NCI Thesaurus (NCI), Emtree, the HTA Database Canadian Repository [international repository for health technology assessment], and Robert Sandieson's synonym ring for research synthesis. Collected terms were enriched with terms from the NCI Metathesaurus. Variants include synonyms for preferred terms, singular and plural forms, and American and British spellings. Definitions, if they exist, are mainly from MeSH, NCI, Emtree, and medical dictionaries.",
     "example": "health_care_quality_assessment",
     "homepage": "https://bioportal.bioontology.org/ontologies/EDDA",
     "mappings": {
@@ -13780,6 +13788,7 @@
     ]
   },
   "fabio": {
+    "description": "The FRBR-aligned Bibliographic Ontology (FaBiO) is an ontology for describing entities that are published or potentially publishable (e.g., journal articles, conference papers, books), and that contain or are referred to by bibliographic references.",
     "example": "d4e2515",
     "homepage": "https://github.com/sparontologies/fabio",
     "name": "FaBiO, the FRBR-aligned Bibliographic Ontology",
@@ -14604,6 +14613,7 @@
     }
   },
   "flybrain.ndb": {
+    "description": "A database of fly neurons and pathways with an associated 3D viewer.",
     "example": "10531",
     "homepage": "https://flybrain-ndb.virtualflybrain.org",
     "name": "FlyBrain Neuron Database",
@@ -15019,6 +15029,7 @@
     }
   },
   "ftt": {
+    "description": "Types of named geographic features. Applicable also to many unnamed features but reflects the level of detail traditionally shown on maps, so some feature types specified in scientific studies may not be well represented here. Not highly specific.",
     "example": "273",
     "homepage": "https://apps.usgs.gov/thesaurus/thesaurus-full.php?thcode=3",
     "name": "Feature Type Thesaurus",
@@ -15653,6 +15664,7 @@
     }
   },
   "gemet": {
+    "description": "The European Environment Information and Observation Network (Eionet) is a partnership network of the European Environment Agency (EEA) and its 38 member and cooperating countries. The EEA is responsible for developing Eionet and coordinating its activities together with National Focal Points (NFPs) in the countries. This terminology supports those efforts.",
     "example": "627",
     "homepage": "https://www.eionet.europa.eu/gemet/en/themes/",
     "name": "General Multilingual Environmental Thesaurus",
@@ -20892,6 +20904,7 @@
   },
   "inhand": {
     "comment": "This nomenclature is available via email. Truly a disgrace.",
+    "description": "The standard reference for nomenclature and diagnostic criteria in toxicologic pathology.",
     "homepage": "https://www.goreni.org/gr3_nomenclature.php",
     "name": "The International Harmonization of Nomenclature and Diagnostic criteria",
     "proprietary": true
@@ -23571,6 +23584,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "description": "Contains information about cells and data sheets related to transfection.",
     "example": "968",
     "homepage": "https://knowledge.lonza.com",
     "mappings": {
@@ -23685,6 +23699,7 @@
     "uri_format": "https://labsyspharm.github.io/lspci/$1"
   },
   "lter": {
+    "description": "Ecological terms",
     "example": "182",
     "homepage": "https://vocab.lternet.edu/vocab/vocab/index.php",
     "name": "Long Term Ecological Research Controlled Vocabulary",
@@ -27993,7 +28008,10 @@
       "is_obo": false,
       "prefix": "MYCO.TUBER",
       "uri_format": "http://identifiers.org/myco.tuber/$1"
-    }
+    },
+    "synonyms": [
+      "TubercuList"
+    ]
   },
   "mycobank": {
     "mappings": {
@@ -29859,6 +29877,7 @@
       "email": "nathan.baker@pnl.gov",
       "name": "Nathan Baker"
     },
+    "description": "An ontology that represents the basic knowledge of physical, chemical and functional characteristics of nanotechnology as used in cancer diagnosis and therapy.",
     "example": "1731",
     "homepage": "https://bioportal.bioontology.org/ontologies/NPO",
     "mappings": {
@@ -37253,6 +37272,8 @@
       "github": "mbrush",
       "name": "Matthew Brush"
     },
+    "description": "The Reagent Ontology (ReO) adheres to OBO Foundry principles (obofoundry.org) to model the domain of biomedical research reagents, considered broadly to include materials applied “chemically” in scientific techniques to facilitate generation of data and research materials. ReO is a modular ontology that re-uses existing ontologies to facilitate cross-domain interoperability. It consists of reagents and their properties, linking diverse biological and experimental entities to which they are related. ReO supports community use cases by providing a flexible, extensible, and deeply integrated framework that can be adapted and extended with more specific modeling to meet application needs.",
+    "download_owl": "https://github.com/tis-lab/reagent-ontology/raw/master/reo/ontology_files/reo_pre-merged_or_reasoned_files/reo_reasoned_9-6-12.owl",
     "example": "0000079",
     "homepage": "https://github.com/tis-lab/reagent-ontology",
     "name": "Reagent Ontology",
@@ -42420,12 +42441,6 @@
       "database": "Q81661821"
     }
   },
-  "tuberculist": {
-    "example": "Rv2879c",
-    "homepage": "http://genolist.pasteur.fr/TubercuList",
-    "name": "TubercuList",
-    "uri_format": "http://genolist.pasteur.fr/TubercuList/genome.cgi?external_query+$1"
-  },
   "txpo": {
     "bioportal": {
       "name": "Toxic Process Ontology",
@@ -44660,6 +44675,7 @@
       "name": "Vital Sign Ontology",
       "prefix": "VSO"
     },
+    "description": "The Vital Sign Ontology (VSO) is an extension of the Ontology for General Medical Science (OGMS). VSO covers the four consensus human vital signs: blood pressure, body temperature, respiration rate, pulse rate. VSO provides also a controlled structured vocabulary for describing vital signs measurement data, the various processes of measuring vital signs, and the various devices and anatomical entities participating in such measurements. ",
     "example": "0000041",
     "homepage": "https://bioportal.bioontology.org/ontologies/VSO",
     "mappings": {
