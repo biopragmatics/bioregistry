@@ -719,6 +719,11 @@ def normalize_prefix(prefix: str) -> Optional[str]:
 
     >>> assert 'eccode' == normalize_prefix('ec-code')
     >>> assert 'eccode' == normalize_prefix('EC_CODE')
+
+    This automatically upgrades "provider" prefixes, like:
+
+    >>> normalize_prefix("ctd.gene")
+    'mesh'
     """
     return manager.normalize_prefix(prefix)
 

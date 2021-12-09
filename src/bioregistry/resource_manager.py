@@ -88,7 +88,13 @@ class Manager:
             will usually take precedence: MIRIAM, OBO Foundry / OLS, Custom except
             in a few cases, such as NCBITaxon.
         """
-        return self.synonyms.get(prefix)
+        canonical = self.synonyms.get(prefix)
+        if canonical is None:
+            return None
+        resource = self.registry[canonical]
+        if resource.provides:
+            return resource.provides
+        return canonical
 
     def get_resource(self, prefix: str) -> Optional[Resource]:
         """Get the Bioregistry entry for the given prefix.
