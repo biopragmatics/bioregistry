@@ -26,6 +26,8 @@ __all__ = [
     "get_contact",
     "get_contact_email",
     "get_contact_name",
+    "get_contact_github",
+    "get_contact_orcid",
     "get_homepage",
     "get_obo_download",
     "get_json_download",
@@ -498,6 +500,30 @@ def get_contact_email(prefix: str) -> Optional[str]:
     if entry is None:
         return None
     return entry.get_contact_email()
+
+
+def get_contact_github(prefix: str) -> Optional[str]:
+    """Return the contact GitHub, if available.
+
+    :param prefix: The prefix to lookup
+    :returns: The resource's contact GitHub handle, if it is available.
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_contact_github()
+
+
+def get_contact_orcid(prefix: str) -> Optional[str]:
+    """Return the contact ORCiD, if available.
+
+    :param prefix: The prefix to lookup
+    :returns: The resource's contact ORCiD, if it is available.
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_contact_orcid()
 
 
 def get_contact_name(prefix: str) -> Optional[str]:

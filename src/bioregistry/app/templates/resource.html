@@ -133,7 +133,14 @@
                         </a>
                     {% endif %}
                 </dd>
-                <dt>Contact</dt>
+                <dt>
+                    Contact
+                    {% if contact %}
+                    <a type="button" data-toggle="modal" data-target="#contact-modal">
+                        <i class="far fa-question-circle"></i>
+                    </a>
+                    {% endif %}
+                </dt>
                 <dd>
                     {% if contact %}
                         {{ utils.render_author(contact, link=none) }}
@@ -334,8 +341,9 @@
                         Normalize prefixes. This can be any capitalization or punctuation
                         variant of the synonyms listed below.
                     </p>
-                    <pre><code class="language-python">&gt;&gt;&gt; import bioregistry
-&gt;&gt;&gt; assert "{{ prefix }}" == bioregistry.normalize_prefix("{{ synonyms|first }}")</code></pre>
+                    <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+&gt;&gt;&gt; br.normalize_prefix("{{ synonyms|first }}")
+'{{ prefix }}'</code></pre>
                     <p>Get all synonyms:</p>
                     {{ utils.code_example(prefix, "get_synonyms", synonyms, quote=False) }}
                 </div>
@@ -393,4 +401,8 @@
             </div>
         </div>
     </div>
+
+    {% if contact %}
+        {{ utils.render_author_modal(prefix, contact, "contact") }}
+    {% endif %}
 {% endblock %}
