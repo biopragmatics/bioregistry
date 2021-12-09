@@ -66,10 +66,10 @@ def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Optional[Ma
     rv = {
         "prefix": ols_id,
         "name": config["title"],
-        "download": config["fileLocation"],
-        "version.iri": version_iri,
+        "download": _clean_url(config["fileLocation"]),
+        "version.iri": _clean_url(version_iri),
         "description": config["description"],
-        "homepage": config["homepage"],
+        "homepage": _clean_url(config["homepage"]),
     }
 
     email = config.get("mailingList")
@@ -156,6 +156,14 @@ def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Optional[Ma
 
     rv = {k: v for k, v in rv.items() if v}
     return rv
+
+
+def _clean_url(url: Optional[str]) -> Optional[str]:
+    if url is None:
+        return url
+    if "CO_" in url and url.startswith("http://127.0.0.1:5900"):
+        return "https://cropontology.org" + url[len("http://127.0.0.1:5900") :]
+    return url
 
 
 @click.command()

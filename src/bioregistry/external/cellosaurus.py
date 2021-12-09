@@ -26,7 +26,7 @@ KEYMAP = {
 }
 
 
-def get_cellosaurus(force_download: bool = False):
+def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True):
     """Get the Cellosaurus registry."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
@@ -56,6 +56,8 @@ def get_cellosaurus(force_download: bool = False):
                 if value is None:
                     continue
             d[key] = value
+        if not keep_missing_uri and URI_FORMAT_KEY not in d:
+            continue
         rv[d.pop("prefix")] = d
 
     with PROCESSED_PATH.open("w") as file:
