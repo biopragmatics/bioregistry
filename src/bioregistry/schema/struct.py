@@ -1116,6 +1116,7 @@ class Registry(BaseModel):
     resolver_type: Optional[str]
     #: An optional contact email
     contact: Optional[str]
+    bioregistry_prefix: Optional[str]
 
     def get_provider_uri_format(self, prefix: str) -> Optional[str]:
         """Get the provider string.
