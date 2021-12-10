@@ -1096,7 +1096,7 @@ class Resource(BaseModel):
         return self.get_external("ols").get("version")
 
 
-SchemaStatus = Literal["required", "present", "missing", "irrelevant"]
+SchemaStatus = Literal["required", "present", "present*", "missing", "irrelevant"]
 
 
 class RegistrySchema(BaseModel):
@@ -1137,8 +1137,8 @@ class Registry(BaseModel):
     homepage: str = Field(..., description="The URL for the homepage of the registry.")
     #: An example prefix in the registry
     example: str = Field(..., description="An example prefix inside the registry.")
-    availability: RegistrySchema = Field(
-        ..., description="A structured description of the metadata that the registry collects"
+    availability: Optional[RegistrySchema] = Field(
+        description="A structured description of the metadata that the registry collects"
     )
     #: A URL to download the registry's contents
     download: Optional[str] = Field(
