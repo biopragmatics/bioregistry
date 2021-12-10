@@ -8445,6 +8445,7 @@ goa:
   pattern: ^(([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z,
     0-9][A-Z, 0-9][0-9]))|(URS[0-9A-F]{10}(_[0-9]+){0,1})|(EBI-[0-9]+)$
   preferred_prefix: goa
+  provides: uniprot
   uri_format: https://www.ebi.ac.uk/QuickGO/GProtein?ac=$1
 goche:
   contributor:
@@ -18525,7 +18526,7 @@ ro:
   - obo_rel
   - oborel
   uri_format: http://purl.obolibrary.org/obo/RO_$1
-  version: '2021-10-27'
+  version: '2021-12-06'
 rouge:
   description: The Rouge protein database contains results from sequence analysis
     of novel large (>4 kb) cDNAs identified in the Kazusa cDNA sequencing project.
@@ -19796,6 +19797,7 @@ string:
     homepage: http://string-db.org/
     name: STRING Mirror at Heidelberg
     uri_format: http://string-db.org/interactions/$1
+  provides: uniprot
   uri_format: http://string.embl.de/interactions/$1
 sty:
   description: UMLS Semantic Network The Semantic Network consists of (1) a set of
@@ -21862,7 +21864,7 @@ wbls:
   synonyms:
   - WBls
   uri_format: http://www.wormbase.org/get?name=$1
-  version: '2021-07-06'
+  version: '2021-12-08'
 wbphenotype:
   banana: WBPhenotype
   contact:
