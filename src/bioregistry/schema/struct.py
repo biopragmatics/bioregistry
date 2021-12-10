@@ -1109,6 +1109,7 @@ class RegistrySchema(BaseModel):
     license: SchemaStatus
     version: SchemaStatus
     contact: SchemaStatus
+    search: bool = Field(..., description="Does this resource have a search functionality for prefixes")
 
 
 class Registry(BaseModel):
