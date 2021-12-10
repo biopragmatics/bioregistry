@@ -26,7 +26,7 @@ def _get_curie_map():
         if metaprefix in bioregistry.read_registry() and not metaresource.bioregistry_prefix:
             print("issue with overlap", metaprefix)
             continue
-        rv[metaprefix] = metaresource.provider_uri_format
+        rv[metaprefix] = metaresource.provider_uri_format.rstrip("$1")
     return rv
 
 
