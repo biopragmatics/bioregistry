@@ -44,6 +44,9 @@ RDF_TURTLE_PATH = EXPORT_RDF / "bioregistry.ttl"
 RDF_NT_PATH = EXPORT_RDF / "bioregistry.nt"
 RDF_JSONLD_PATH = EXPORT_RDF / "bioregistry.jsonld"
 
+EXPORT_SSSOM = EXPORT_DIRECTORY.joinpath("sssom")
+SSSOM_PATH = EXPORT_SSSOM / "sssom.tsv"
+
 EXPORT_REGISTRY = EXPORT_DIRECTORY.joinpath("registry")
 REGISTRY_YAML_PATH = EXPORT_REGISTRY / "registry.yml"
 REGISTRY_JSON_PATH = EXPORT_REGISTRY / "registry.json"
