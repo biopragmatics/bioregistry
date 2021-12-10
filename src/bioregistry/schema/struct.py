@@ -2,13 +2,23 @@
 
 """Pydantic models for the Bioregistry."""
 
-import enum
 import json
 import logging
 import pathlib
 import re
 from functools import lru_cache
-from typing import Any, Callable, ClassVar, Dict, List, Mapping, Optional, Sequence, Set
+from typing import (
+    Any,
+    Callable,
+    ClassVar,
+    Dict,
+    List,
+    Literal,
+    Mapping,
+    Optional,
+    Sequence,
+    Set,
+)
 
 import pydantic.schema
 from pydantic import BaseModel, Field
@@ -1086,14 +1096,8 @@ class Resource(BaseModel):
         return self.get_external("ols").get("version")
 
 
+SchemaStatus = Literal["required", "present", "missing", "irrelevant"]
 
-class SchemaStatus(enum.Enum):
-    """Status entries for schemata."""
-
-    required = enum.auto()
-    present = enum.auto()
-    missing = enum.auto()
-    irrelevant = enum.auto()
 
 class RegistrySchema(BaseModel):
     """Metadata about a registry's schema."""
@@ -1109,7 +1113,9 @@ class RegistrySchema(BaseModel):
     license: SchemaStatus
     version: SchemaStatus
     contact: SchemaStatus
-    search: bool = Field(..., description="Does this resource have a search functionality for prefixes")
+    search: bool = Field(
+        ..., description="Does this resource have a search functionality for prefixes"
+    )
 
 
 class Registry(BaseModel):
@@ -1131,7 +1137,7 @@ class Registry(BaseModel):
     homepage: str = Field(..., description="The URL for the homepage of the registry.")
     #: An example prefix in the registry
     example: str = Field(..., description="An example prefix inside the registry.")
-    schema: RegistrySchema = Field(
+    availability: RegistrySchema = Field(
         ..., description="A structured description of the metadata that the registry collects"
     )
     #: A URL to download the registry's contents
