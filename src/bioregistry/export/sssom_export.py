@@ -30,6 +30,8 @@ def _get_curie_map():
             # FIXME enforce all entries have corresponding bioregistry entry
             logger.debug("issue with overlap", metaprefix)
             continue
+        if not metaresource.provider_uri_format.endswith("$1"):
+            continue  # sorry, N2T
         rv[metaprefix] = metaresource.provider_uri_format.rstrip("$1")
     return rv
 
