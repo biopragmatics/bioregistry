@@ -3,6 +3,7 @@
 """Export the Bioregistry to SSSOM."""
 
 import csv
+import logging
 from collections import namedtuple
 
 import click
@@ -15,6 +16,8 @@ __all__ = [
     "export_sssom",
 ]
 
+logger = logging.getLogger(__name__)
+
 Row = namedtuple("Row", "subject_id predicate_id object_id match_type")
 
 
@@ -24,11 +27,15 @@ def _get_curie_map():
         if not metaresource.provider_uri_format:
             continue
         if metaprefix in bioregistry.read_registry() and not metaresource.bioregistry_prefix:
-            print("issue with overlap", metaprefix)
+            # FIXME enforce all entries have corresponding bioregistry entry
+            logger.debug("issue with overlap", metaprefix)
             continue
         rv[metaprefix] = metaresource.provider_uri_format.rstrip("$1")
     return rv
 
+
+CURIE_MAP = _get_curie_map()
+del _get_curie_map
 
 METADATA = {
     "license": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -36,7 +43,7 @@ METADATA = {
     "mapping_set_group": "bioregistry",
     "mapping_set_id": "bioregistry",
     "mapping_set_title": "Biomappings",
-    "curie_map": _get_curie_map(),
+    "curie_map": CURIE_MAP,
 }
 
 
@@ -47,6 +54,8 @@ def export_sssom():
     for prefix, resource in bioregistry.read_registry().items():
         mappings = resource.get_mappings()
         for metaprefix, metaidentifier in mappings.items():
+            if metaprefix not in CURIE_MAP:
+                continue
             rows.append(_make_row("bioregistry", prefix, metaprefix, metaidentifier))
     with SSSOM_PATH.open("w") as file:
         writer = csv.writer(file, delimiter="\t")
