@@ -2,6 +2,7 @@
 
 """Pydantic models for the Bioregistry."""
 
+import enum
 import json
 import logging
 import pathlib
@@ -1085,6 +1086,31 @@ class Resource(BaseModel):
         return self.get_external("ols").get("version")
 
 
+
+class SchemaStatus(enum.Enum):
+    """Status entries for schemata."""
+
+    required = enum.auto()
+    present = enum.auto()
+    missing = enum.auto()
+    irrelevant = enum.auto()
+
+class RegistrySchema(BaseModel):
+    """Metadata about a registry's schema."""
+
+    name: SchemaStatus
+    homepage: SchemaStatus
+    description: SchemaStatus
+    example: SchemaStatus
+    pattern: SchemaStatus
+    provider: SchemaStatus
+    alternate_providers: SchemaStatus
+    synonyms: SchemaStatus
+    license: SchemaStatus
+    version: SchemaStatus
+    contact: SchemaStatus
+
+
 class Registry(BaseModel):
     """Metadata about a registry."""
 
@@ -1104,6 +1130,9 @@ class Registry(BaseModel):
     homepage: str = Field(..., description="The URL for the homepage of the registry.")
     #: An example prefix in the registry
     example: str = Field(..., description="An example prefix inside the registry.")
+    schema: RegistrySchema = Field(
+        ..., description="A structured description of the metadata that the registry collects"
+    )
     #: A URL to download the registry's contents
     download: Optional[str] = Field(
         description="A download link for the data contained in the registry"
@@ -1286,6 +1315,8 @@ def get_json_schema():
                 Provider,
                 Resource,
                 Registry,
+                RegistrySchema,
+                SchemaStatus,
             ],
             title="Bioregistry JSON Schema",
             description="The Bioregistry JSON Schema describes the shapes of the objects in"
