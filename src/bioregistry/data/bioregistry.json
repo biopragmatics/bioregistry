@@ -10108,10 +10108,18 @@
     },
     "description": "DCAT is an RDF vocabulary designed to facilitate interoperability between data catalogs published on the Web",
     "example": "Dataset",
+    "fairsharing": {
+      "abbreviation": "DCAT",
+      "description": "An RDF vocabulary designed to facilitate interoperability between data catalogs published on the Web. By using DCAT to describe datasets in data catalogs, publishers increase discoverability and enable applications easily to consume metadata from multiple catalogs. It further enables decentralized publishing of catalogs and facilitates federated dataset search across sites. Aggregated DCAT metadata can serve as a manifest file to facilitate digital preservation.",
+      "id": "747",
+      "name": "Data Catalog Vocabulary",
+      "prefix": "FAIRsharing.h4j3qm"
+    },
     "homepage": "https://www.w3.org/ns/dcat",
     "mappings": {
       "biolink": "dcat",
       "bioportal": "DCAT",
+      "fairsharing": "FAIRsharing.h4j3qm",
       "prefixcommons": "dcat"
     },
     "name": "Data Catalog",
@@ -10136,10 +10144,18 @@
     },
     "description": "This document is an up-to-date specification of all metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes.",
     "example": "title",
+    "fairsharing": {
+      "abbreviation": "DCTERMS",
+      "description": "This document is an up-to-date, authoritative specification of all metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes. Included are the fifteen terms of the Dublin Core Metadata Element Set, which have also been published as a separate specification.",
+      "id": "905",
+      "name": "Dublin Core Metadata Initiative (DCMI) Metadata Terms",
+      "prefix": "FAIRsharing.9vtwjs"
+    },
     "homepage": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/",
     "mappings": {
       "biolink": "dct",
       "bioportal": "DCTERMS",
+      "fairsharing": "FAIRsharing.9vtwjs",
       "prefixcommons": "dcterms"
     },
     "name": "Dublin Core Metadata Vocabulary",
@@ -10176,6 +10192,13 @@
       "prefix": "DDANAT"
     },
     "example": "0000006",
+    "fairsharing": {
+      "abbreviation": "DDANAT",
+      "description": "The Dictyostelium Anatomy Ontology ontology describes the anatomy of the slime mold. It defines the structural makeup of Dictyostelium and its composing parts including the different cell types, throughout its life cycle. It has two main goals: (1) promote the consistent annotation of Dictyostelium-specific events, such as phenotypes and gene expression information; and (2) encourage researchers to use the same terms with the same intended meaning.",
+      "id": "928",
+      "name": "Dictyostelium Anatomy Ontology",
+      "prefix": "FAIRsharing.z656ab"
+    },
     "go": {
       "homepage": "http://dictybase.org/Dicty_Info/dicty_anatomy_ontology.html",
       "name": "Dictyostelium discoideum anatomy",
@@ -10183,6 +10206,7 @@
     },
     "mappings": {
       "bioportal": "DDANAT",
+      "fairsharing": "FAIRsharing.z656ab",
       "go": "DDANAT",
       "obofoundry": "ddanat",
       "ols": "ddanat",
@@ -10235,8 +10259,16 @@
     },
     "download_obo": "https://raw.githubusercontent.com/obophenotype/dicty-phenotype-ontology/master/ddpheno.obo",
     "example": "0001417",
+    "fairsharing": {
+      "abbreviation": "DDPHENO",
+      "description": "A structured controlled vocabulary of phenotypes of the social amoeba Dictyostelium discoideum. The Dicty Phenotype Ontology is a hierarchical controlled vocabulary used for annotating strains with phenotypes. Terms from the Dicty Phenotype Ontology are required when annotating phenotypes within dictyBase. The phenotype ontology consists of two composite terms: (1) the anatomical part or the biological process changed in the mutant, and (2) a quality describing that modification. For example, a ‘delayed aggregation’ phenotype qualifies the ‘aggregation’ (biological process) as being ‘delayed’, or the ‘decreased spore size’ qualifies the ‘spore’ to be of ‘decreased size’.",
+      "id": "867",
+      "name": "Dictyostelium Phenotype Ontology",
+      "prefix": "FAIRsharing.9c1p18"
+    },
     "mappings": {
       "bioportal": "DDPHENO",
+      "fairsharing": "FAIRsharing.9c1p18",
       "obofoundry": "ddpheno",
       "ols": "ddpheno",
       "ontobee": "DDPHENO",
@@ -10548,6 +10580,13 @@
   },
   "dictybase": {
     "description": "A resource for Dictyostelid discoideum (a soil-dwelling amoeba) genomics",
+    "fairsharing": {
+      "abbreviation": "dictyBase",
+      "description": "dictyBase is a single-access database for the complete genome sequence and expression data of four Dictyostelid species providing information on research, genome and annotations. There is also a repository of plasmids and strains held at the Dicty Stock Centre. Relevant literature is integrated into the database, and gene models and functional annotation are manually curated from experimental results and comparative multigenome analyses.",
+      "id": "2293",
+      "name": "dictyBase",
+      "prefix": "FAIRsharing.4shj9c"
+    },
     "go": {
       "homepage": "http://dictybase.org",
       "name": "dictyBase",
@@ -10559,6 +10598,7 @@
       "uri_format": "http://dictybase.org/gene/$1"
     },
     "mappings": {
+      "fairsharing": "FAIRsharing.4shj9c",
       "go": "dictyBase",
       "ncbi": "dictyBase",
       "prefixcommons": "dictyBase",
@@ -10700,8 +10740,16 @@
       "prefix": "DIDEO"
     },
     "example": "00000180",
+    "fairsharing": {
+      "abbreviation": "DIDEO",
+      "description": "A domain ontology for potential drug-drug interactions (PDDIs) that covers the material entities and processes in the domain of discourse for PDDI evidence and knowledge claims. The representation enables the integration of drug interaction mechanisms, effects, risk factors, severity, and management options with the chemical and pharmacological properties (e.g., chemical structure, function, pharmacokinetic and pharmacodynamic properties) of the interacting drugs. It also has a rich and detailed set evidence entities related to pharmacology.  See below for publications about DIDEO. A description of the goals of the project can be found in the following workshop paper located in the docs/DIDEO-discussion-ICBO-Brochhausen-2014.pdf: Brochhausen, M., Schneider, J., Malone, D., Empey, PE., Hogan WR., and Boyce, RD. Towards a foundational representation of potential drug-drug interaction knowledge. The 1st International Drug-Drug Interaction Knowledge Representation Workshop (DIKR 2014). Collocated with the 2014 International Conference on Biomedical Ontology (ICBO 2014). October 6th, Houston, Texas. United States.",
+      "id": "295",
+      "name": "The Potential Drug-drug Interaction and Potential Drug-drug Interaction Evidence Ontology",
+      "prefix": "FAIRsharing.9y8f0n"
+    },
     "mappings": {
       "bioportal": "DIDEO",
+      "fairsharing": "FAIRsharing.9y8f0n",
       "obofoundry": "dideo",
       "ols": "dideo",
       "ontobee": "DIDEO",
@@ -10867,7 +10915,15 @@
     }
   },
   "disprot": {
+    "fairsharing": {
+      "abbreviation": "DisProt",
+      "description": "The Database of Protein Disorder (DisProt) is a curated database that provides information about intrinsically disordered proteins that lack fixed 3D structure in their putatively native states, either in their entirety or in part. Disordered regions are manually curated from literature. DisProt annotations cover both structural and functional aspects of disorder detected by specific experimental methods.",
+      "id": "1904",
+      "name": "Database of Protein Disorder",
+      "prefix": "FAIRsharing.dt9z89"
+    },
     "mappings": {
+      "fairsharing": "FAIRsharing.dt9z89",
       "miriam": "disprot",
       "n2t": "disprot",
       "prefixcommons": "DISPROT",
@@ -10979,6 +11035,13 @@
       "prefix": "DOI",
       "uri_format": "https://dx.doi.org/$1"
     },
+    "fairsharing": {
+      "abbreviation": "DOI",
+      "description": "The digital object identifier (DOI) system originated in a joint initiative of three trade associations in the publishing industry (International Publishers Association; International Association of Scientific, Technical and Medical Publishers; Association of American Publishers). The system was announced at the Frankfurt Book Fair 1997. The International DOI® Foundation (IDF) was created to develop and manage the DOI system, also in 1997. The DOI system was adopted as International Standard ISO 26324 in 2012. The DOI system implements the Handle System and adds a number of new features. The DOI system provides an infrastructure for persistent unique identification of objects of any type. The DOI system is designed to work over the Internet. A DOI name is permanently assigned to an object to provide a resolvable persistent network link to current information about that object, including where the object, or information about it, can be found on the Internet. While information about an object can change over time, its DOI name will not change. A DOI name can be resolved within the DOI system to values of one or more types of data relating to the object identified by that DOI name, such as a URL, an e-mail address, other identifiers and descriptive metadata. The DOI system enables the construction of automated services and transactions. Applications of the DOI system include but are not limited to managing information and documentation location and access; managing metadata; facilitating electronic transactions; persistent unique identification of any form of any data; and commercial and non-commercial transactions. The content of an object associated with a DOI name is described unambiguously by DOI metadata, based on a structured extensible data model that enables the object to be associated with metadata of any desired degree of precision and granularity to support description and services. The data model supports interoperability between DOI applications. The scope of the DOI system is not defined by reference to the type of content (format, etc.) of the referent, but by reference to the functionalities it provides and the context of use. The DOI system provides, within networks of DOI applications, for unique identification, persistence, resolution, metadata and semantic interoperability.",
+      "id": "1332",
+      "name": "Digital Object Identifier",
+      "prefix": "FAIRsharing.hFLKCn"
+    },
     "go": {
       "homepage": "http://dx.doi.org/",
       "name": "Digital Object Identifier",
@@ -10988,6 +11051,7 @@
     "mappings": {
       "biolink": "doi",
       "cellosaurus": "DOI",
+      "fairsharing": "FAIRsharing.hFLKCn",
       "go": "DOI",
       "miriam": "doi",
       "n2t": "doi",
@@ -11039,8 +11103,16 @@
     },
     "download_obo": "https://github.com/DiseaseOntology/HumanDiseaseOntology/raw/main/src/ontology/doid.obo",
     "example": "0110974",
+    "fairsharing": {
+      "abbreviation": "DOID",
+      "description": "The Disease Ontology has been developed as a standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts.",
+      "id": "870",
+      "name": "Disease Ontology",
+      "prefix": "FAIRsharing.8b6wfq"
+    },
     "mappings": {
       "bioportal": "DOID",
+      "fairsharing": "FAIRsharing.8b6wfq",
       "miriam": "doid",
       "n2t": "doid",
       "obofoundry": "doid",
@@ -11521,8 +11593,16 @@
       "prefix": "DRON"
     },
     "example": "00023232",
+    "fairsharing": {
+      "abbreviation": "DrOn",
+      "description": "An ontology of drug products and packaged drug products.",
+      "id": "641",
+      "name": "The Drug Ontology",
+      "prefix": "FAIRsharing.w5ntfd"
+    },
     "mappings": {
       "bioportal": "DRON",
+      "fairsharing": "FAIRsharing.w5ntfd",
       "obofoundry": "dron",
       "ols": "dron",
       "ontobee": "DRON",
@@ -11617,10 +11697,18 @@
       "prefix": "000406"
     },
     "example": "DB14938",
+    "fairsharing": {
+      "abbreviation": "DrugBank",
+      "description": "The DrugBank database is a freely available bioinformatics and chemoinformatics resource that combines detailed drug (i.e. chemical, pharmacological and pharmaceutical) data with comprehensive drug target (i.e. sequence, structure, and pathway) information.",
+      "id": "1844",
+      "name": "DrugBank",
+      "prefix": "FAIRsharing.353yat"
+    },
     "homepage": "http://www.drugbank.ca",
     "mappings": {
       "cellosaurus": "DrugBank",
       "cheminf": "000406",
+      "fairsharing": "FAIRsharing.353yat",
       "miriam": "drugbank",
       "n2t": "drugbank",
       "prefixcommons": "DrugBank",
@@ -11736,9 +11824,17 @@
     },
     "description": "DrugCentral  provides information on active ingredients chemical entities, pharmaceutical products, drug mode of action, indications, pharmacologic action.",
     "example": "307",
+    "fairsharing": {
+      "abbreviation": "DrugCentral",
+      "description": "DrugCentral is online drug information that provides information on active ingredients, chemical entities, pharmaceutical products, drug mode of action, indications, and pharmacologic mode of action. DrugCentral monitors FDA, EMA, and PMDA for new drug approval on regular basis to ensure currency of the resource. This resource was created and is maintained by the Division of Translational Informatics at the University of New Mexico School of Medicine.",
+      "id": "2363",
+      "name": "DrugCentral",
+      "prefix": "FAIRsharing.3me82d"
+    },
     "homepage": "http://drugcentral.org",
     "mappings": {
       "biolink": "DrugCentral",
+      "fairsharing": "FAIRsharing.3me82d",
       "uniprot": "DrugCentral"
     },
     "name": "Drug Central",
@@ -11787,9 +11883,17 @@
     },
     "description": "DTO integrates and harmonizes knowledge of the most important druggable protein families: kinases, GPCRs, ion channels and nuclear hormone receptors.",
     "example": "90000018",
+    "fairsharing": {
+      "abbreviation": "DTO",
+      "description": "Drug Target Ontology (DTO) is developed as a reference for drug targets with the longer-term goal to create a community standard that will facilitate the integration of diverse drug discovery information from numerous heterogeneous resources. The first version of the DTO consists of asserted class hierarchies of the four IDG protein families, GPCRs, kinases, ion channels, and nuclear hormone receptors. Protein classes are linked to tissue and disease via different levels of confidence. DTO also contains drug target development classifications, a large collection of cell lines from the LINCS project and relevant cell-disease and cell-tissue relations. DTO is modeled in OWL2-DL to enable further classification by inference reasoning and SPARQL queries. DTO is implemented following a modularization approach. DTO will serve as the organizational framework for drug targets in the IDG PHAROS User Interface Portal (https://pharos.nih.gov).",
+      "id": "1469",
+      "name": "Drug Target Ontology",
+      "prefix": "FAIRsharing.tke3y2"
+    },
     "homepage": "https://github.com/DrugTargetOntology/DTO",
     "mappings": {
-      "bioportal": "DTO"
+      "bioportal": "DTO",
+      "fairsharing": "FAIRsharing.tke3y2"
     },
     "name": "Drug Target Ontology"
   },
@@ -11799,8 +11903,16 @@
       "prefix": "DUO"
     },
     "example": "0000046",
+    "fairsharing": {
+      "abbreviation": "DUO",
+      "description": "The Data Use Ontology (DUO) describes data use requirements and limitations. DUO allows to semantically tag datasets with restriction about their usage, making them discoverable automatically based on the authorization level of users, or intended usage. This resource is based on the OBO Foundry principles, and developed using the W3C Web Ontology Language. It is used in production by the European Genome-phenome Archive (EGA) at EMBL-EBI and CRG as well as the Broad Institute for the Data Use Oversight System (DUOS).",
+      "id": "256",
+      "name": "The Data Use Ontology",
+      "prefix": "FAIRsharing.5dnjs2"
+    },
     "mappings": {
       "bioportal": "DUO",
+      "fairsharing": "FAIRsharing.5dnjs2",
       "obofoundry": "duo",
       "ols": "duo",
       "ontobee": "DUO",
