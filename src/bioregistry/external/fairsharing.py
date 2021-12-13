@@ -47,9 +47,6 @@ def get_fairsharing(force_download: bool = False):
     return rv
 
 
-Record = Mapping[str, Any]
-
-
 class FairsharingClient:
     """A client for programmatic access to the FAIRsharing private API."""
 

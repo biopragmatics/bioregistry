@@ -51,6 +51,7 @@ registry, are built on a nightly basis and can be downloaded via the
 
 The manually curated portions of these data are available under the
 [CC0 1.0 Universal License](https://creativecommons.org/publicdomain/zero/1.0/).
+Aggregated data are redistributed under their original licenses.
 
 ## 🙏 Contributing
 
@@ -431,8 +432,6 @@ https://bioregistry.io.
 
 The code in this repository is licensed under the
 [MIT License](https://github.com/biopragmatics/bioregistry/blob/main/LICENSE).
-
-FAIRsharing data is redistributed under the CC BY 4.0 license.
 
 ### 📛 Badge
 
