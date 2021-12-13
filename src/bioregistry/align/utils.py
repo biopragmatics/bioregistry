@@ -38,6 +38,9 @@ class Aligner(ABC):
     #: very high confidence (e.g., OBO Foundry but not BioPortal)
     include_new: ClassVar[bool] = False
 
+    #: Set this if there's another part of the data besides the ID that should be matched
+    alt_key_match: ClassVar[Optional[str]] = None
+
     subkey: ClassVar[str] = "prefix"
 
     def __init__(self):
@@ -73,7 +76,12 @@ class Aligner(ABC):
 
             # try to lookup with lexical match
             if bioregistry_id is None:
-                bioregistry_id = self.manager.normalize_prefix(external_id)
+                if not self.alt_key_match:
+                    bioregistry_id = self.manager.normalize_prefix(external_id)
+                else:
+                    alt_match = external_entry.get(self.alt_key_match)
+                    if alt_match:
+                        bioregistry_id = self.manager.normalize_prefix(alt_match)
 
             # add the identifier from an external resource if it's been marked as high quality
             if bioregistry_id is None and self.include_new:

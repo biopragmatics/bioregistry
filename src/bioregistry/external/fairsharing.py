@@ -20,7 +20,6 @@ __all__ = [
 
 DIRECTORY = EXTERNAL / "fairsharing"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
-RAW_PATH = DIRECTORY / "raw.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 
 BASE_URL = "https://api.fairsharing.org"
@@ -30,22 +29,19 @@ RECORDS_URL = f"{BASE_URL}/fairsharing_records"
 
 def get_fairsharing(force_download: bool = False):
     """Get the FAIRsharing registry."""
-    # if PROCESSED_PATH.exists() and not force_download:
-    #     with PROCESSED_PATH.open() as file:
-    #         return json.load(file)
+    if PROCESSED_PATH.exists() and not force_download:
+        with PROCESSED_PATH.open() as file:
+            return json.load(file)
 
     client = FairsharingClient()
     # As of 2021-12-13, there are a bit less than 4k records that take about 3 minutes to download
-    rv = list(
-        tqdm(client.iter_records(), unit_scale=True, unit="record", desc="Downloading FAIRsharing")
-    )
-    with RAW_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, ensure_ascii=False)
+    rv = {
+        row.pop("prefix"): row
+        for row in tqdm(client.iter_records(), unit_scale=True, unit="record", desc="Downloading FAIRsharing")
+    }
+    with PROCESSED_PATH.open("w") as file:
+        json.dump(rv, file, indent=2, ensure_ascii=False, sort_keys=True)
 
-    # TODO processing
-
-    # with PROCESSED_PATH.open("w") as file:
-    #    json.dump(rv, file, indent=2, sort_keys=True)
     return rv
 
 

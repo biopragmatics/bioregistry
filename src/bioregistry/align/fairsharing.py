@@ -16,6 +16,7 @@ class FairsharingAligner(Aligner):
     """Aligner for the FAIRsharing."""
 
     key = "fairsharing"
+    alt_key_match = "abbreviation"
     getter = get_fairsharing
     curation_header = ("abbreviation", "name", "description")
 

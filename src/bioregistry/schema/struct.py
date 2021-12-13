@@ -310,6 +310,8 @@ class Resource(BaseModel):
     ontobee: Optional[Mapping[str, Any]]
     #: External data from ChemInf
     cheminf: Optional[Mapping[str, Any]]
+    #: External data from FAIRsharing
+    fairsharing: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
