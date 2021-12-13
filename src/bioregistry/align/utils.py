@@ -41,6 +41,9 @@ class Aligner(ABC):
     #: Set this if there's another part of the data besides the ID that should be matched
     alt_key_match: ClassVar[Optional[str]] = None
 
+    #: Set to true if you don't want to align to deprecated resources
+    skip_deprecated: ClassVar[bool] = False
+
     subkey: ClassVar[str] = "prefix"
 
     def __init__(self):
@@ -88,8 +91,14 @@ class Aligner(ABC):
                 bioregistry_id = norm(external_id)
                 self.internal_registry[bioregistry_id] = Resource()
 
-            if bioregistry_id is not None:  # a match was found
+            if self._do_align_action(bioregistry_id):
                 self._align_action(bioregistry_id, external_id, external_entry)
+
+    def _do_align_action(self, prefix: Optional[str]) -> bool:
+        # a match was found if the prefix is not None
+        return prefix is not None and (
+            not self.skip_deprecated or not self.manager.is_deprecated(prefix)
+        )
 
     def _align_action(self, bioregistry_id, external_id, external_entry):
         # skip mismatches
