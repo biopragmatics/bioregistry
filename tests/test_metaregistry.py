@@ -50,9 +50,12 @@ class TestMetaregistry(unittest.TestCase):
                         "resolver_uri_format",
                         "resolver_type",
                         "contact",
+                        "availability",
                     }
                 )
                 self.assertEqual(set(), invalid_keys, msg="invalid metadata")
+                if not registry_pydantic.availability.fair:
+                    self.assertIsNotNone(registry_pydantic.availability.fair_note, msg="All non-FAIR resources require an explanation")
 
     def test_get_registry(self):
         """Test getting a registry."""

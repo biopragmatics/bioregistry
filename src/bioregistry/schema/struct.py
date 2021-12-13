@@ -1096,7 +1096,18 @@ class Resource(BaseModel):
         return self.get_external("ols").get("version")
 
 
-SchemaStatus = Literal["required", "present", "present*", "missing", "irrelevant"]
+SchemaStatus = Literal[
+    "required", "required*", "present", "present*", "missing", "irrelevant", "irrelevant*"
+]
+schema_status_map = {
+    "required": "✓",
+    "required*": "✓*",
+    "present": "●",
+    "present*": "●*",
+    "missing": "✗",
+    "irrelevant": "-",
+    "irrelevant*": "-*",
+}
 
 
 class RegistrySchema(BaseModel):
@@ -1115,6 +1126,13 @@ class RegistrySchema(BaseModel):
     contact: SchemaStatus
     search: bool = Field(
         ..., description="Does this resource have a search functionality for prefixes"
+    )
+    fair: bool = Field(
+        ...,
+        description="Does this resource provide a structured dump of the data is easily findable, accessible, and in a structured format in bulk",
+    )
+    fair_note: Optional[str] = Field(
+        description="Explanation for why data isn't FAIR",
     )
 
 
@@ -1204,6 +1222,31 @@ class Registry(BaseModel):
         if self.resolver_uri_format:
             graph.add((node, bioregistry_schema["0000007"], Literal(self.resolver_uri_format)))
         return node
+
+    def get_rows(self) -> Sequence[str]:
+        middle = (
+            self.availability.name,
+            self.availability.homepage,
+            self.availability.description,
+            self.availability.example,
+            self.availability.pattern,
+            self.availability.provider,
+            self.availability.alternate_providers,
+            self.availability.synonyms,
+            self.availability.license,
+            self.availability.version,
+            self.availability.contact,
+
+        )
+        return (
+            self.name,
+            *(schema_status_map[x] for x in middle),
+            self.availability.fair,
+            self.availability.search,
+            self.provider_uri_format is not None,
+            self.resolver_uri_format is not None and self.resolver_type == "redirect",
+            self.resolver_uri_format is not None and self.resolver_type == "lookup",
+        )
 
 
 class Collection(BaseModel):

@@ -4,6 +4,7 @@
 
 import datetime
 import platform
+from operator import attrgetter
 
 from flasgger import Swagger
 from flask import Flask, jsonify, render_template
@@ -78,7 +79,12 @@ def summary():
 @app.route("/related")
 def related():
     """Render the related page."""
-    return render_template("meta/related.html")
+    rows = [
+        registry.get_rows()
+        for registry in sorted(bioregistry.read_metaregistry().values(), key=attrgetter("name"))
+        if registry.availability
+    ]
+    return render_template("meta/related.html", comparison_rows=rows)
 
 
 @app.route("/download")
