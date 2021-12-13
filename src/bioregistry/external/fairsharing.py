@@ -37,7 +37,9 @@ def get_fairsharing(force_download: bool = False):
     # As of 2021-12-13, there are a bit less than 4k records that take about 3 minutes to download
     rv = {
         row.pop("prefix"): row
-        for row in tqdm(client.iter_records(), unit_scale=True, unit="record", desc="Downloading FAIRsharing")
+        for row in tqdm(
+            client.iter_records(), unit_scale=True, unit="record", desc="Downloading FAIRsharing"
+        )
     }
     with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, indent=2, ensure_ascii=False, sort_keys=True)
