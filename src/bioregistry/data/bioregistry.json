@@ -604,6 +604,7 @@
     }
   },
   "agrovoc": {
+    "description": "AGROVOC is a multilingual and controlled vocabulary designed to cover concepts and terminology under FAO's areas of interest. It is the largest Linked Open Data set about agriculture available for public use and its greatest impact is through providing the access and visibility of data across domains and languages.",
     "example": "2842",
     "homepage": "https://data.apps.fao.org/catalog/organization/agrovoc",
     "name": "Agronomy Vocabulary",
@@ -9541,21 +9542,18 @@
     }
   },
   "dc": {
-    "appears_in": [
-      "efo"
-    ],
     "bioportal": {
       "name": "Dublin Core",
       "prefix": "DC"
     },
-    "deprecated": true,
-    "download_obo": "https://github.com/obophenotype/human-disease-ontology/raw/master/src/experimental/missing-omc.obo",
-    "example": "0000598",
+    "description": "Metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes.",
+    "example": "contributor",
+    "homepage": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/",
     "mappings": {
       "bioportal": "DC",
       "prefixcommons": "dc"
     },
-    "name": "Disease Class",
+    "name": "Dublin Core",
     "prefixcommons": {
       "is_identifiers": false,
       "is_obo": false,
@@ -10344,6 +10342,16 @@
       "repository": "https://github.com/DiseaseOntology/DiseaseDriversOntology/"
     },
     "pattern": "^\\d+$"
+  },
+  "diseaseclass": {
+    "appears_in": [
+      "efo"
+    ],
+    "deprecated": true,
+    "description": "Legacy disease classes that later became MONDO",
+    "download_obo": "https://github.com/obophenotype/human-disease-ontology/raw/master/src/experimental/missing-omc.obo",
+    "example": "0000598",
+    "name": "Disease Class"
   },
   "diseasesdb": {
     "description": "The Diseases Database is a cross-referenced index of human disease, medications, symptoms, signs, abnormal investigation findings etc. This site provides a medical textbook-like index and search portal covering areas including: internal medical disorders, symptoms and signs, congenital and inherited disorders, infectious diseases and organisms, drugs and medications, common haematology and biochemistry investigation abnormalities.",
