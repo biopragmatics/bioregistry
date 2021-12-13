@@ -24,6 +24,7 @@ def align():
     from .bioportal import BioPortalAligner
     from .cellosaurus import CellosaurusAligner
     from .cheminf import ChemInfAligner
+    from .fairsharing import FairsharingAligner
     from .go import GoAligner
     from .miriam import MiriamAligner
     from .n2t import N2TAligner
@@ -52,6 +53,7 @@ def align():
         OntobeeAligner,
         CellosaurusAligner,
         ChemInfAligner,
+        FairsharingAligner,
     ]:
         secho(f"Aligning {aligner_cls.key}")
         try:
