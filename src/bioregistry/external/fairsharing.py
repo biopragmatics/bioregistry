@@ -6,18 +6,22 @@
 """
 
 import json
-import requests
-from tqdm import tqdm
-from typing import Optional
+from typing import Any, Iterable, Mapping, Optional
 
 import pystow
+import requests
+from tqdm import tqdm
+
 from bioregistry.data import EXTERNAL
 
-DIRECTORY = EXTERNAL / "miriam"
+__all__ = [
+    "get_fairsharing",
+]
+
+DIRECTORY = EXTERNAL / "fairsharing"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 RAW_PATH = DIRECTORY / "raw.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
-MIRIAM_URL = "https://registry.api.identifiers.org/resolutionApi/getResolverDataset"
 
 BASE_URL = "https://api.fairsharing.org"
 SIGNIN_URL = f"{BASE_URL}/users/sign_in"
@@ -31,15 +35,32 @@ def get_fairsharing(force_download: bool = False):
             return json.load(file)
 
     client = FairsharingClient()
-    rv = list(tqdm(client.iter_records(), unit_scale=True, unit="record", desc="Downloading FAIRsharing"))
+    # As of 2021-12-13, there are about 21.2k records that take about 3 minutes to download
+    rv = list(
+        tqdm(client.iter_records(), unit_scale=True, unit="record", desc="Downloading FAIRsharing")
+    )
+    with RAW_PATH.open("w") as file:
+        json.dump(rv, file, indent=2)
+
+    # TODO processing
 
     with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, indent=2, sort_keys=True)
     return rv
 
 
+Record = Mapping[str, Any]
+
+
 class FairsharingClient:
+    """A client for programmatic access to the FAIRsharing private API."""
+
     def __init__(self, user: Optional[str] = None, password: Optional[str] = None):
+        """Instantiate the client and get an appropriate JWT token.
+
+        :param user: FAIRsharing username
+        :param password: Corresponding FAIRsharing password
+        """
         self.username = pystow.get_config(
             "fairsharing", "login", passthrough=user, raise_on_missing=True
         )
@@ -67,14 +88,12 @@ class FairsharingClient:
         res = requests.post(SIGNIN_URL, json=payload).json()
         return res["jwt"]
 
-    def get(self, *args, **kwargs) -> requests.Response:
-        return self.session.get(*args, **kwargs)
-
-    def iter_records(self):
+    def iter_records(self) -> Iterable[Record]:
+        """Iterate over all FAIRsharing records."""
         yield from self._iter_records_helper(RECORDS_URL)
 
-    def _iter_records_helper(self, url: str):
-        res = self.get(url).json()
+    def _iter_records_helper(self, url: str) -> Iterable[Record]:
+        res = self.session.get(url).json()
         yield from res["data"]
         next_url = res["links"].get("next")
         if next_url:
