@@ -6,7 +6,7 @@
 """
 
 import json
-from typing import Any, Iterable, Mapping, Optional
+from typing import Any, Iterable, Mapping, MutableMapping, Optional
 
 import pystow
 import requests
@@ -44,7 +44,7 @@ def get_fairsharing(force_download: bool = False):
 
     # TODO processing
 
-    #with PROCESSED_PATH.open("w") as file:
+    # with PROCESSED_PATH.open("w") as file:
     #    json.dump(rv, file, indent=2, sort_keys=True)
     return rv
 
@@ -88,40 +88,70 @@ class FairsharingClient:
         res = requests.post(SIGNIN_URL, json=payload).json()
         return res["jwt"]
 
-    def iter_records(self) -> Iterable[Record]:
+    def iter_records(self) -> Iterable[Mapping[str, Any]]:
         """Iterate over all FAIRsharing records."""
         yield from self._iter_records_helper(RECORDS_URL)
 
-    def _preprocess_record(self, record):
+    def _preprocess_record(
+        self, record: MutableMapping[str, Any]
+    ) -> Optional[MutableMapping[str, Any]]:
         if "type" in record:
             del record["type"]
         record = {"id": record["id"], **record["attributes"]}
 
+        doi = record.get("doi")
+        if doi is None:
+            # tqdm.write(f"{record['id']} has no DOI: {record['url']}")
+            # these records are not possible to resolve
+            return None
+        if doi.startswith("10.25504/"):
+            record["prefix"] = record.pop("doi")[len("10.25504/") :]
+        else:
+            tqdm.write(f"DOI has unexpected prefix: {record['doi']}")
+
+        record["description"] = _removeprefix(
+            record.get("description"), "This FAIRsharing record describes: "
+        )
+        record["name"] = _removeprefix(record.get("name"), "FAIRsharing record for: ")
+
         for key in [
             "created-at",
             "domains",  # maybe use later
-            "legacy-ids" "fairsharing-licence",  # redundant across all records
+            "subjects",  # maybe use later
+            "legacy-ids",
+            "fairsharing-licence",  # redundant across all records
             "licence-links",
             "publications",
             "taxonomies",
             "updated-at",
             "url-for-logo",
             "user-defined-tags",
+            "countries",
+            "fairsharing-registry",
+            "record-type",
+            "url",  # redundant of doi
         ]:
             if key in record:
                 del record[key]
         return record
 
-    def _iter_records_helper(self, url: str) -> Iterable[Record]:
+    def _iter_records_helper(self, url: str) -> Iterable[Mapping[str, Any]]:
         res = self.session.get(url).json()
         for record in res["data"]:
             yv = self._preprocess_record(record)
             if yv:
                 yield yv
-
         next_url = res["links"].get("next")
         if next_url:
             yield from self._iter_records_helper(next_url)
+
+
+def _removeprefix(s: Optional[str], prefix) -> Optional[str]:
+    if s is None:
+        return None
+    if s.startswith(prefix):
+        return s[len(prefix) :]
+    return s
 
 
 if __name__ == "__main__":
