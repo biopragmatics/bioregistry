@@ -30,22 +30,22 @@ RECORDS_URL = f"{BASE_URL}/fairsharing_records"
 
 def get_fairsharing(force_download: bool = False):
     """Get the FAIRsharing registry."""
-    if PROCESSED_PATH.exists() and not force_download:
-        with PROCESSED_PATH.open() as file:
-            return json.load(file)
+    # if PROCESSED_PATH.exists() and not force_download:
+    #     with PROCESSED_PATH.open() as file:
+    #         return json.load(file)
 
     client = FairsharingClient()
-    # As of 2021-12-13, there are about 21.2k records that take about 3 minutes to download
+    # As of 2021-12-13, there are a bit less than 4k records that take about 3 minutes to download
     rv = list(
         tqdm(client.iter_records(), unit_scale=True, unit="record", desc="Downloading FAIRsharing")
     )
     with RAW_PATH.open("w") as file:
-        json.dump(rv, file, indent=2)
+        json.dump(rv, file, indent=2, ensure_ascii=False)
 
     # TODO processing
 
-    with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+    #with PROCESSED_PATH.open("w") as file:
+    #    json.dump(rv, file, indent=2, sort_keys=True)
     return rv
 
 
@@ -92,9 +92,33 @@ class FairsharingClient:
         """Iterate over all FAIRsharing records."""
         yield from self._iter_records_helper(RECORDS_URL)
 
+    def _preprocess_record(self, record):
+        if "type" in record:
+            del record["type"]
+        record = {"id": record["id"], **record["attributes"]}
+
+        for key in [
+            "created-at",
+            "domains",  # maybe use later
+            "legacy-ids" "fairsharing-licence",  # redundant across all records
+            "licence-links",
+            "publications",
+            "taxonomies",
+            "updated-at",
+            "url-for-logo",
+            "user-defined-tags",
+        ]:
+            if key in record:
+                del record[key]
+        return record
+
     def _iter_records_helper(self, url: str) -> Iterable[Record]:
         res = self.session.get(url).json()
-        yield from res["data"]
+        for record in res["data"]:
+            yv = self._preprocess_record(record)
+            if yv:
+                yield yv
+
         next_url = res["links"].get("next")
         if next_url:
             yield from self._iter_records_helper(next_url)

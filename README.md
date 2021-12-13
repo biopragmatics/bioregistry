@@ -432,6 +432,8 @@ https://bioregistry.io.
 The code in this repository is licensed under the
 [MIT License](https://github.com/biopragmatics/bioregistry/blob/main/LICENSE).
 
+FAIRsharing data is redistributed under the CC BY 4.0 license.
+
 ### 📛 Badge
 
 If you use the Bioregistry in your code, support us by including our
