@@ -48,7 +48,7 @@ METADATA = {
     "mapping_provider": "https://github.com/biopragmatics/bioregistry",
     "mapping_set_group": "bioregistry",
     "mapping_set_id": "bioregistry",
-    "mapping_set_title": "Biomappings",
+    "mapping_set_title": "Bioregistry",
     "curie_map": CURIE_MAP,
 }
 
