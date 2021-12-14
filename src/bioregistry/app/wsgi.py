@@ -17,7 +17,7 @@ from .api import api_blueprint
 from .ui import ui_blueprint
 from ..resolve_identifier import get_bioregistry_iri
 from ..schema.constants import bioregistry_schema_terms
-from ..schema.struct import get_json_schema
+from ..schema.struct import get_json_schema, schema_status_map
 
 app = Flask(__name__)
 Swagger.DEFAULT_CONFIG.update(
@@ -79,12 +79,11 @@ def summary():
 @app.route("/related")
 def related():
     """Render the related page."""
-    rows = [
-        registry.get_rows()
-        for registry in sorted(bioregistry.read_metaregistry().values(), key=attrgetter("name"))
-        if registry.availability
-    ]
-    return render_template("meta/related.html", comparison_rows=rows)
+    return render_template(
+        "meta/related.html",
+        registries=sorted(bioregistry.read_metaregistry().values(), key=attrgetter("name")),
+        schema_status_map=schema_status_map,
+    )
 
 
 @app.route("/download")

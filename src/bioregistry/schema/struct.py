@@ -1102,13 +1102,24 @@ SchemaStatus = Literal[
     "required", "required*", "present", "present*", "missing", "irrelevant", "irrelevant*"
 ]
 schema_status_map = {
-    "required": "✓",
-    "required*": "✓*",
-    "present": "●",
-    "present*": "●*",
-    "missing": "✗",
-    "irrelevant": "-",
-    "irrelevant*": "-*",
+    True: "🟢",
+    False: "🔴",
+    "required": "🟢",
+    "required*": "🟢*",
+    "present": "🟡",
+    "present*": "🟡*",
+    "missing": "🔴",
+    "irrelevant": "⚪",
+    "irrelevant*": "⚪*",
+}
+schema_score_map = {
+    "required": 3,
+    "required*": 3,
+    "present": 1,
+    "present*": 2,
+    "missing": -1,
+    "irrelevant": 0,
+    "irrelevant*": 0,
 }
 
 
@@ -1136,6 +1147,25 @@ class RegistrySchema(BaseModel):
     fair_note: Optional[str] = Field(
         description="Explanation for why data isn't FAIR",
     )
+
+    def score(self) -> int:
+        """Calculate a score for the metadata availability in the registry."""
+        return (self.search + 2 * self.fair) + sum(
+            schema_score_map[x]
+            for x in [
+                self.name,
+                self.homepage,
+                self.description,
+                self.example,
+                self.pattern,
+                self.provider,
+                self.alternate_providers,
+                self.synonyms,
+                self.license,
+                self.version,
+                self.contact,
+            ]
+        )
 
 
 class Registry(BaseModel):
@@ -1173,6 +1203,15 @@ class Registry(BaseModel):
     resolver_type: Optional[str]
     #: An optional contact email
     contact: Optional[str]
+
+    def score(self) -> int:
+        """Calculate a metadata score/goodness for this registry."""
+        return (
+            int(self.provider_uri_format is not None)
+            + int(self.resolver_uri_format is not None)
+            + int(self.download is not None)
+            + int(self.contact is not None)
+        ) + self.availability.score()
 
     def get_provider_uri_format(self, prefix: str) -> Optional[str]:
         """Get the provider string.
@@ -1225,31 +1264,6 @@ class Registry(BaseModel):
         if self.resolver_uri_format:
             graph.add((node, bioregistry_schema["0000007"], Literal(self.resolver_uri_format)))
         return node
-
-    def get_rows(self) -> Sequence[str]:
-        middle = (
-            self.availability.name,
-            self.availability.homepage,
-            self.availability.description,
-            self.availability.example,
-            self.availability.pattern,
-            self.availability.provider,
-            self.availability.alternate_providers,
-            self.availability.synonyms,
-            self.availability.license,
-            self.availability.version,
-            self.availability.contact,
-
-        )
-        return (
-            self.name,
-            *(schema_status_map[x] for x in middle),
-            self.availability.fair,
-            self.availability.search,
-            self.provider_uri_format is not None,
-            self.resolver_uri_format is not None and self.resolver_type == "redirect",
-            self.resolver_uri_format is not None and self.resolver_type == "lookup",
-        )
 
 
 class Collection(BaseModel):
