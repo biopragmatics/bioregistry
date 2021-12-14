@@ -17,7 +17,7 @@ from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE, EMAIL_RE_STR
 
 try:
-    from typing import Literal
+    from typing import Literal  # type:ignore
 except ImportError:
     from typing_extensions import Literal
 
@@ -1120,17 +1120,17 @@ schema_score_map = {
 class RegistrySchema(BaseModel):
     """Metadata about a registry's schema."""
 
-    name: SchemaStatus
-    homepage: SchemaStatus
-    description: SchemaStatus
-    example: SchemaStatus
-    pattern: SchemaStatus
-    provider: SchemaStatus
-    alternate_providers: SchemaStatus
-    synonyms: SchemaStatus
-    license: SchemaStatus
-    version: SchemaStatus
-    contact: SchemaStatus
+    name: SchemaStatus  # type:ignore
+    homepage: SchemaStatus  # type:ignore
+    description: SchemaStatus  # type:ignore
+    example: SchemaStatus  # type:ignore
+    pattern: SchemaStatus  # type:ignore
+    provider: SchemaStatus  # type:ignore
+    alternate_providers: SchemaStatus  # type:ignore
+    synonyms: SchemaStatus  # type:ignore
+    license: SchemaStatus  # type:ignore
+    version: SchemaStatus  # type:ignore
+    contact: SchemaStatus  # type:ignore
     search: bool = Field(
         ..., description="Does this resource have a search functionality for prefixes"
     )
