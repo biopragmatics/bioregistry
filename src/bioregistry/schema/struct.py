@@ -7,18 +7,7 @@ import logging
 import pathlib
 import re
 from functools import lru_cache
-from typing import (
-    Any,
-    Callable,
-    ClassVar,
-    Dict,
-    List,
-    Literal,
-    Mapping,
-    Optional,
-    Sequence,
-    Set,
-)
+from typing import Any, Callable, ClassVar, Dict, List, Mapping, Optional, Sequence, Set
 
 import pydantic.schema
 from pydantic import BaseModel, Field
@@ -26,6 +15,11 @@ from pydantic import BaseModel, Field
 from bioregistry.constants import URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE, EMAIL_RE_STR
+
+try:
+    from typing import Literal
+except ImportError:
+    from typing_extensions import Literal
 
 __all__ = [
     "Attributable",
@@ -1142,7 +1136,8 @@ class RegistrySchema(BaseModel):
     )
     fair: bool = Field(
         ...,
-        description="Does this resource provide a structured dump of the data is easily findable, accessible, and in a structured format in bulk",
+        description="Does this resource provide a structured dump of the data is easily findable,"
+        " accessible, and in a structured format in bulk",
     )
     fair_note: Optional[str] = Field(
         description="Explanation for why data isn't FAIR",
