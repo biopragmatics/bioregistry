@@ -38,6 +38,12 @@ class Aligner(ABC):
     #: very high confidence (e.g., OBO Foundry but not BioPortal)
     include_new: ClassVar[bool] = False
 
+    #: Set this if there's another part of the data besides the ID that should be matched
+    alt_key_match: ClassVar[Optional[str]] = None
+
+    #: Set to true if you don't want to align to deprecated resources
+    skip_deprecated: ClassVar[bool] = False
+
     subkey: ClassVar[str] = "prefix"
 
     def __init__(self):
@@ -73,15 +79,26 @@ class Aligner(ABC):
 
             # try to lookup with lexical match
             if bioregistry_id is None:
-                bioregistry_id = self.manager.normalize_prefix(external_id)
+                if not self.alt_key_match:
+                    bioregistry_id = self.manager.normalize_prefix(external_id)
+                else:
+                    alt_match = external_entry.get(self.alt_key_match)
+                    if alt_match:
+                        bioregistry_id = self.manager.normalize_prefix(alt_match)
 
             # add the identifier from an external resource if it's been marked as high quality
             if bioregistry_id is None and self.include_new:
                 bioregistry_id = norm(external_id)
                 self.internal_registry[bioregistry_id] = Resource()
 
-            if bioregistry_id is not None:  # a match was found
+            if self._do_align_action(bioregistry_id):
                 self._align_action(bioregistry_id, external_id, external_entry)
+
+    def _do_align_action(self, prefix: Optional[str]) -> bool:
+        # a match was found if the prefix is not None
+        return prefix is not None and (
+            not self.skip_deprecated or not self.manager.is_deprecated(prefix)
+        )
 
     def _align_action(self, bioregistry_id, external_id, external_entry):
         # skip mismatches
