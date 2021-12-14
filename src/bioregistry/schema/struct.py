@@ -19,7 +19,7 @@ from bioregistry.schema.utils import EMAIL_RE, EMAIL_RE_STR
 try:
     from typing import Literal  # type:ignore
 except ImportError:
-    from typing_extensions import Literal
+    from typing_extensions import Literal  # type:ignore
 
 __all__ = [
     "Attributable",
