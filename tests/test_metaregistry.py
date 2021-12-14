@@ -27,6 +27,12 @@ class TestMetaregistry(unittest.TestCase):
                     self.assertIn("provider_uri_format", data)
                     self.assertIn("$1", data["provider_uri_format"])
 
+                if (
+                    metaprefix in bioregistry.read_registry()
+                    and registry_pydantic.resolver_uri_format
+                ):
+                    self.assertIsNotNone(registry_pydantic.bioregistry_prefix)
+
                 # When a registry is a resolver, it means it
                 # can resolve entries (prefixes) + identifiers
                 if registry_pydantic.resolver_uri_format:
@@ -51,6 +57,7 @@ class TestMetaregistry(unittest.TestCase):
                         "resolver_type",
                         "contact",
                         "availability",
+                        "bioregistry_prefix",
                     }
                 )
                 self.assertEqual(set(), invalid_keys, msg="invalid metadata")

@@ -24,15 +24,19 @@ Row = namedtuple("Row", "subject_id predicate_id object_id match_type")
 def _get_curie_map():
     rv = {}
     for metaprefix, metaresource in bioregistry.read_metaregistry().items():
-        if not metaresource.provider_uri_format:
+        if not metaresource.provider_uri_format or not metaresource.provider_uri_format.endswith(
+            "$1"
+        ):
             continue
-        if metaprefix in bioregistry.read_registry() and not metaresource.bioregistry_prefix:
+        uri_prefix = metaresource.provider_uri_format.rstrip("$1")
+        if metaresource.bioregistry_prefix:
+            rv[metaresource.bioregistry_prefix] = uri_prefix
+        elif metaprefix in bioregistry.read_registry() and not metaresource.bioregistry_prefix:
             # FIXME enforce all entries have corresponding bioregistry entry
             logger.debug("issue with overlap", metaprefix)
             continue
-        if not metaresource.provider_uri_format.endswith("$1"):
-            continue  # sorry, N2T
-        rv[metaprefix] = metaresource.provider_uri_format.rstrip("$1")
+        else:
+            rv[metaprefix] = uri_prefix
     return rv
 
 
