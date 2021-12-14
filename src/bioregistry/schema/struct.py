@@ -1198,6 +1198,7 @@ class Registry(BaseModel):
     resolver_type: Optional[str]
     #: An optional contact email
     contact: Optional[str]
+    bioregistry_prefix: Optional[str]
 
     def score(self) -> int:
         """Calculate a metadata score/goodness for this registry."""
