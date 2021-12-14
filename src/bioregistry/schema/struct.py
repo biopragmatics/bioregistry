@@ -1157,7 +1157,8 @@ class Registry(BaseModel):
     homepage: str = Field(..., description="The URL for the homepage of the registry.")
     #: An example prefix in the registry
     example: str = Field(..., description="An example prefix inside the registry.")
-    availability: Optional[RegistrySchema] = Field(
+    #: A structured description of the metadata the registry collects
+    availability: RegistrySchema = Field(
         description="A structured description of the metadata that the registry collects"
     )
     #: A URL to download the registry's contents
@@ -1368,7 +1369,6 @@ def get_json_schema():
                 Resource,
                 Registry,
                 RegistrySchema,
-                SchemaStatus,
             ],
             title="Bioregistry JSON Schema",
             description="The Bioregistry JSON Schema describes the shapes of the objects in"
