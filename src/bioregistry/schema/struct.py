@@ -16,6 +16,11 @@ from bioregistry.constants import URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE, EMAIL_RE_STR
 
+try:
+    from typing import Literal  # type:ignore
+except ImportError:
+    from typing_extensions import Literal  # type:ignore
+
 __all__ = [
     "Attributable",
     "Author",
@@ -1087,6 +1092,77 @@ class Resource(BaseModel):
         return self.get_external("ols").get("version")
 
 
+SchemaStatus = Literal[
+    "required", "required*", "present", "present*", "missing", "irrelevant", "irrelevant*"
+]
+schema_status_map = {
+    True: "🟢",
+    False: "🔴",
+    "required": "🟢",
+    "required*": "🟢*",
+    "present": "🟡",
+    "present*": "🟡*",
+    "missing": "🔴",
+    "irrelevant": "⚪",
+    "irrelevant*": "⚪*",
+}
+schema_score_map = {
+    "required": 3,
+    "required*": 3,
+    "present": 1,
+    "present*": 2,
+    "missing": -1,
+    "irrelevant": 0,
+    "irrelevant*": 0,
+}
+
+
+class RegistrySchema(BaseModel):
+    """Metadata about a registry's schema."""
+
+    name: SchemaStatus  # type:ignore
+    homepage: SchemaStatus  # type:ignore
+    description: SchemaStatus  # type:ignore
+    example: SchemaStatus  # type:ignore
+    pattern: SchemaStatus  # type:ignore
+    provider: SchemaStatus  # type:ignore
+    alternate_providers: SchemaStatus  # type:ignore
+    synonyms: SchemaStatus  # type:ignore
+    license: SchemaStatus  # type:ignore
+    version: SchemaStatus  # type:ignore
+    contact: SchemaStatus  # type:ignore
+    search: bool = Field(
+        ..., description="Does this resource have a search functionality for prefixes"
+    )
+    fair: bool = Field(
+        ...,
+        description="Does this resource provide a structured dump of the data is easily findable,"
+        " accessible, and in a structured format in bulk",
+    )
+    fair_note: Optional[str] = Field(
+        description="Explanation for why data isn't FAIR",
+    )
+
+    def score(self) -> int:
+        """Calculate a score for the metadata availability in the registry."""
+        return (self.search + 2 * self.fair) + sum(
+            schema_score_map[x]
+            for x in [
+                self.name,
+                self.homepage,
+                self.description,
+                self.example,
+                self.pattern,
+                self.provider,
+                self.alternate_providers,
+                self.synonyms,
+                self.license,
+                self.version,
+                self.contact,
+            ]
+        )
+
+
 class Registry(BaseModel):
     """Metadata about a registry."""
 
@@ -1106,6 +1182,10 @@ class Registry(BaseModel):
     homepage: str = Field(..., description="The URL for the homepage of the registry.")
     #: An example prefix in the registry
     example: str = Field(..., description="An example prefix inside the registry.")
+    #: A structured description of the metadata the registry collects
+    availability: RegistrySchema = Field(
+        description="A structured description of the metadata that the registry collects"
+    )
     #: A URL to download the registry's contents
     download: Optional[str] = Field(
         description="A download link for the data contained in the registry"
@@ -1118,6 +1198,15 @@ class Registry(BaseModel):
     resolver_type: Optional[str]
     #: An optional contact email
     contact: Optional[str]
+
+    def score(self) -> int:
+        """Calculate a metadata score/goodness for this registry."""
+        return (
+            int(self.provider_uri_format is not None)
+            + int(self.resolver_uri_format is not None)
+            + int(self.download is not None)
+            + int(self.contact is not None)
+        ) + self.availability.score()
 
     def get_provider_uri_format(self, prefix: str) -> Optional[str]:
         """Get the provider string.
@@ -1288,6 +1377,7 @@ def get_json_schema():
                 Provider,
                 Resource,
                 Registry,
+                RegistrySchema,
             ],
             title="Bioregistry JSON Schema",
             description="The Bioregistry JSON Schema describes the shapes of the objects in"
