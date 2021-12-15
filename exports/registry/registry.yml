@@ -353,7 +353,7 @@ aism:
   name: Ontology for the Anatomy of the Insect SkeletoMuscular system
   preferred_prefix: AISM
   uri_format: http://purl.obolibrary.org/obo/AISM_$1
-  version: '2021-11-19'
+  version: '2021-12-13'
 allergome:
   description: Allergome is a repository of data related to all IgE-binding compounds.
     Its purpose is to collect a list of allergenic sources and molecules by using
@@ -7199,7 +7199,7 @@ fbcv:
   synonyms:
   - FBcv
   uri_format: http://purl.obolibrary.org/obo/FBcv_$1
-  version: '2021-10-18'
+  version: '2021-12-13'
 fbdv:
   banana: FBdv
   contact:
@@ -7770,6 +7770,34 @@ fungidb:
   pattern: ^[A-Za-z_0-9]+$
   preferred_prefix: fungidb
   uri_format: https://fungidb.org/fungidb/app/record/gene/$1
+fyeco:
+  comment: Rather than admitting FYECO to the OBO foundry, we secure the prefix here
+    at bioregistry. The FYECO namespace shows up in a lot of ingests (basically anywhere
+    you ingest PomBase gene-phenotype data). Future work includes mapping FYECO to
+    other OBO ontologies, but this is way ahead in the future.
+  contact:
+    email: vw253@cam.ac.uk
+    github: ValWood
+    name: Val Wood
+    orcid: 0000-0001-6330-7526
+  contributor:
+    email: vw253@cam.ac.uk
+    github: ValWood
+    name: Val Wood
+    orcid: 0000-0001-6330-7526
+  description: PomBase manages gene and phenotype data related to Fission Yeast. FYECO
+    contains experimental conditions relevant to fission yeast biology. The FYECO
+    namespace shows up in data ingests from PomBase.
+  example: '0000003'
+  homepage: https://github.com/pombase/fypo
+  name: Fission Yeast Experimental Conditions Ontology
+  pattern: ^\d{7}$
+  preferred_prefix: FYECO
+  reviewer:
+    email: cthoyt@gmail.com
+    github: null
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
 fyler:
   contributor:
     email: cthoyt@gmail.com
@@ -9875,7 +9903,7 @@ hso:
   name: Health Surveillance Ontology
   preferred_prefix: HSO
   uri_format: http://purl.obolibrary.org/obo/HSO_$1
-  version: '2020-11-28'
+  version: '2021-12-13'
 hssp:
   description: HSSP (homology-derived structures of proteins) is a derived database
     merging structural (2-D and 3-D) and sequence information (1-D). For each protein
@@ -14258,7 +14286,7 @@ ncbitaxon:
   - taxon
   - taxonomy
   uri_format: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1
-  version: '2021-06-10'
+  version: '2021-12-13'
 ncim:
   description: NCI Metathesaurus (NCIm) is a wide-ranging biomedical terminology database
     that covers most terminologies used by NCI for clinical care, translational and
@@ -16062,7 +16090,7 @@ orphanet.ordo:
   synonyms:
   - ordo
   uri_format: http://www.orpha.net/ORDO/Orphanet_$1
-  version: '3.2'
+  version: '3.3'
 orth:
   description: 'The need of a common ontology for describing orthology information
     in biological research communities has led to the creation of the Orthology Ontology

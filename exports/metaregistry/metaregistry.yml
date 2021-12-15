@@ -1,4 +1,19 @@
 aberowl:
+  availability:
+    alternate_providers: irrelevant
+    contact: missing
+    description: required
+    example: irrelevant
+    fair: true
+    fair_note: null
+    homepage: required
+    license: missing
+    name: required
+    pattern: missing
+    provider: irrelevant
+    search: true
+    synonyms: missing
+    version: present
   contact: ali.syed@kaust.edu.sa
   description: AberOWL is a framework for ontology-based access to biological data.
     It consists of a repository of bio-ontologies, a set of webservices which provide
@@ -14,6 +29,21 @@ aberowl:
   resolver_type: lookup
   resolver_uri_format: http://aber-owl.net/ontology/$1/#/Browse/<http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F$1_$2>
 agroportal:
+  availability:
+    alternate_providers: irrelevant
+    contact: present
+    description: required
+    example: irrelevant
+    fair: false
+    fair_note: The API for AgroPortal requires authentication
+    homepage: required
+    license: present
+    name: required
+    pattern: missing
+    provider: irrelevant
+    search: false
+    synonyms: missing
+    version: present
   description: A vocabulary and ontology repository for agronomy and related domains.
   example: ENVO
   homepage: http://agroportal.lirmm.fr
@@ -21,6 +51,22 @@ agroportal:
   prefix: agroportal
   provider_uri_format: http://agroportal.lirmm.fr/ontologies/$1
 biolink:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: missing
+    example: missing
+    fair: true
+    fair_note: null
+    homepage: missing
+    license: present
+    name: required
+    pattern: missing
+    provider: required
+    search: false
+    synonyms: missing
+    version: missing
+  bioregistry_prefix: biolink
   description: A modeling paradigm-specific registry of prefixes and their URL expansions
   download: https://raw.githubusercontent.com/biolink/biolink-model/master/biolink-model.yaml
   example: doi
@@ -28,6 +74,22 @@ biolink:
   name: Biolink Model Registry
   prefix: biolink
 bioportal:
+  availability:
+    alternate_providers: irrelevant
+    contact: present
+    description: required
+    example: irrelevant
+    fair: false
+    fair_note: The API for BioPortal requires authentication
+    homepage: required
+    license: missing
+    name: required
+    pattern: missing
+    provider: irrelevant
+    search: false
+    synonyms: missing
+    version: required
+  bioregistry_prefix: bioportal
   description: The BioPortal is a less stringent registry of biomedical ontologies
     than the OBO Foundry
   example: CHEBI
@@ -36,6 +98,22 @@ bioportal:
   prefix: bioportal
   provider_uri_format: https://bioportal.bioontology.org/ontologies/$1
 bioregistry:
+  availability:
+    alternate_providers: present
+    contact: present
+    description: required
+    example: required
+    fair: true
+    fair_note: null
+    homepage: required
+    license: present
+    name: required
+    pattern: present
+    provider: present
+    search: false
+    synonyms: present
+    version: present
+  bioregistry_prefix: bioregistry
   contact: cthoyt@gmail.com
   description: The Bioregistry is integrative meta-registry of biological databases,
     ontologies, and nomenclatures that is backed by an open database.
@@ -48,6 +126,21 @@ bioregistry:
   resolver_type: resolver
   resolver_uri_format: https://bioregistry.io/$1:$2
 cellosaurus:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: missing
+    example: missing
+    fair: true
+    fair_note: Data is available but requires custom parser
+    homepage: required
+    license: missing
+    name: required
+    pattern: missing
+    provider: required
+    search: false
+    synonyms: missing
+    version: missing
   contact: Amos.Bairoch@sib.swiss
   description: The set of prefixes used in the Cellosaurus resource
   example: 4DN
@@ -55,6 +148,22 @@ cellosaurus:
   name: Cellosaurus Registry
   prefix: cellosaurus
 cheminf:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: missing
+    example: missing
+    fair: false
+    fair_note: No additional metadata included besides name in ontology
+    homepage: missing
+    license: missing
+    name: required
+    pattern: missing
+    provider: missing
+    search: false
+    synonyms: missing
+    version: missing
+  bioregistry_prefix: cheminf
   description: Contains entries for various database identifiers
   example: '000140'
   homepage: https://github.com/semanticchemistry/semanticchemistry
@@ -62,6 +171,21 @@ cheminf:
   prefix: cheminf
   provider_uri_format: https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_$1
 cropoct:
+  availability:
+    alternate_providers: irrelevant
+    contact: missing
+    description: missing
+    example: irrelevant
+    fair: true
+    fair_note: null
+    homepage: irrelevant*
+    license: missing
+    name: required
+    pattern: missing
+    provider: irrelevant
+    search: true
+    synonyms: missing
+    version: missing
   contact: helpdesk@cropontology-curationtool.org
   description: The Crop Ontology (CO) current objective is to compile validated concepts
     along with their inter-relationships on anatomy, structure and phenotype of Crops,
@@ -74,6 +198,21 @@ cropoct:
   prefix: cropoct
   provider_uri_format: https://www.cropontology.org/ontology/$1
 ecoportal:
+  availability:
+    alternate_providers: irrelevant
+    contact: present
+    description: required
+    example: irrelevant
+    fair: false
+    fair_note: The API for EcoPortal requires authentication
+    homepage: present
+    license: present
+    name: required
+    pattern: missing
+    provider: irrelevant
+    search: false
+    synonyms: missing
+    version: present
   description: The LifeWatch ERIC repository of semantic resources for the ecological
     domain.
   example: ALIENSPECIES
@@ -82,6 +221,22 @@ ecoportal:
   prefix: ecoportal
   provider_uri_format: http://ecoportal.lifewatchitaly.eu/ontologies/$1
 fairsharing:
+  availability:
+    alternate_providers: missing
+    contact: required
+    description: required
+    example: missing
+    fair: false
+    fair_note: The API for FAIRsharing requires authentication
+    homepage: required
+    license: missing
+    name: required
+    pattern: missing
+    provider: missing
+    search: true
+    synonyms: missing
+    version: missing
+  bioregistry_prefix: fairsharing
   description: A curated, informative and educational resource on data and metadata
     standards, inter-related to databases and data policies.
   example: FAIRsharing.62qk8w
@@ -90,6 +245,21 @@ fairsharing:
   prefix: fairsharing
   provider_uri_format: https://fairsharing.org/$1
 go:
+  availability:
+    alternate_providers: present
+    contact: missing
+    description: present
+    example: present
+    fair: true
+    fair_note: null
+    homepage: present
+    license: missing
+    name: required
+    pattern: present
+    provider: present
+    search: false
+    synonyms: missing
+    version: missing
   description: A database-specific registry supporting curation in the Gene Ontology
   download: https://raw.githubusercontent.com/geneontology/go-site/master/metadata/db-xrefs.yaml
   example: CHEBI
@@ -97,6 +267,22 @@ go:
   name: Gene Ontology Registry
   prefix: go
 miriam:
+  availability:
+    alternate_providers: present
+    contact: missing
+    description: required
+    example: required
+    fair: true
+    fair_note: null
+    homepage: required
+    license: missing
+    name: required
+    pattern: required
+    provider: required
+    search: true
+    synonyms: missing
+    version: missing
+  bioregistry_prefix: identifiers.namespace
   contact: hhe@ebi.ac.uk
   description: The Identifiers.org Resolution Service provides consistent access to
     life science data using Compact Identifiers. Compact Identifiers consist of an
@@ -110,6 +296,21 @@ miriam:
   resolver_type: resolver
   resolver_uri_format: https://identifiers.org/$1:$2
 n2t:
+  availability:
+    alternate_providers: present
+    contact: missing
+    description: required
+    example: required
+    fair: true
+    fair_note: null
+    homepage: required
+    license: missing
+    name: required
+    pattern: required
+    provider: required
+    search: false
+    synonyms: present
+    version: missing
   contact: cdl@www.cdlib.org
   description: An ARK resolver as well as resolver built with common prefixes as in
     Identifiers.org
@@ -122,6 +323,21 @@ n2t:
   resolver_type: resolver
   resolver_uri_format: https://n2t.net/$1:$2
 ncbi:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: missing
+    example: required
+    fair: false
+    fair_note: Requires web scraping
+    homepage: required
+    license: missing
+    name: required
+    pattern: missing
+    provider: missing
+    search: false
+    synonyms: missing
+    version: missing
   description: A database-specific registry supporting curation in the NCBI GenBank
     and related NCBI resources
   example: ECOCYC
@@ -129,6 +345,21 @@ ncbi:
   name: National Center for Biotechnology Information Registry
   prefix: ncbi
 obofoundry:
+  availability:
+    alternate_providers: missing
+    contact: required
+    description: required
+    example: missing
+    fair: true
+    fair_note: null
+    homepage: required
+    license: required
+    name: required
+    pattern: missing
+    provider: missing
+    search: false
+    synonyms: missing
+    version: missing
   description: The mission of the OBO Foundry is to develop a family of interoperable
     ontologies that are both logically well-formed and scientifically accurate.
   download: http://www.obofoundry.org/registry/ontologies.yml
@@ -140,6 +371,21 @@ obofoundry:
   resolver_type: resolver
   resolver_uri_format: http://purl.obolibrary.org/obo/$1_$2
 ols:
+  availability:
+    alternate_providers: irrelevant
+    contact: present
+    description: required
+    example: irrelevant
+    fair: true
+    fair_note: null
+    homepage: present
+    license: required
+    name: required
+    pattern: missing
+    provider: irrelevant
+    search: true
+    synonyms: missing
+    version: present
   description: 'The Ontology Lookup Service (OLS) is a repository for biomedical ontologies
     that aims to provide a single point of access to the latest ontology versions. '
   example: chebi
@@ -148,6 +394,21 @@ ols:
   prefix: ols
   provider_uri_format: https://www.ebi.ac.uk/ols/ontologies/$1
 ontobee:
+  availability:
+    alternate_providers: irrelevant
+    contact: required
+    description: required
+    example: irrelevant
+    fair: false
+    fair_note: No API available, data download requires web scraping
+    homepage: required
+    license: missing
+    name: required
+    pattern: missing
+    provider: irrelevant
+    search: false
+    synonyms: missing
+    version: missing
   description: ' Ontobee is aimed to facilitate ontology data sharing, visualization,
     query, integration, and analysis.'
   example: AGRO
@@ -157,7 +418,46 @@ ontobee:
   provider_uri_format: http://www.ontobee.org/ontology/$1
   resolver_type: lookup
   resolver_uri_format: http://www.ontobee.org/ontology/$1?iri=http://purl.obolibrary.org/obo/$1_$2
+prefixcc:
+  availability:
+    alternate_providers: present
+    contact: missing
+    description: missing
+    example: missing
+    fair: true
+    fair_note: null
+    homepage: missing
+    license: missing
+    name: missing
+    pattern: missing
+    provider: required
+    search: false
+    synonyms: missing
+    version: missing
+  contact: richard@cyganiak.de
+  description: A web-developer centric archive of prefixes and URI prefixes
+  download: https://prefix.cc/context.jsonld
+  example: foaf
+  homepage: https://prefix.cc/
+  name: Prefix.cc
+  prefix: prefixcc
+  provider_uri_format: https://prefix.cc/$1
 prefixcommons:
+  availability:
+    alternate_providers: required
+    contact: missing
+    description: present
+    example: present
+    fair: true
+    fair_note: null
+    homepage: present
+    license: missing
+    name: required
+    pattern: present
+    provider: present
+    search: true
+    synonyms: present
+    version: missing
   description: A registry of commonly used prefixes in the life sciences and linked
     data
   download: https://raw.githubusercontent.com/prefixcommons/biocontext/master/registry/commons_context.jsonld
@@ -167,6 +467,22 @@ prefixcommons:
   prefix: prefixcommons
   provider_uri_format: https://prefixcommons.org/?q=$1
 scholia:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: missing
+    example: missing
+    fair: false
+    fair_note: There is not a structured resource that lists what prefixes are covered
+      by Scholia
+    homepage: missing
+    license: missing
+    name: missing
+    pattern: missing
+    provider: missing
+    search: false
+    synonyms: missing
+    version: missing
   contact: faan@dtu.dk
   description: A frontend to Wikidata
   example: doi
@@ -176,6 +492,21 @@ scholia:
   resolver_type: lookup
   resolver_uri_format: https://scholia.toolforge.org/$1/$2
 uniprot:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: missing
+    example: missing
+    fair: true
+    fair_note: null
+    homepage: required
+    license: missing
+    name: required
+    pattern: missing
+    provider: required
+    search: true
+    synonyms: missing
+    version: missing
   description: The cross-references section of UniProtKB entries displays explicit
     and implicit links to databases such as nucleotide sequence databases, model organism
     databases and genomics and proteomics resources.
@@ -186,6 +517,22 @@ uniprot:
   prefix: uniprot
   provider_uri_format: https://www.uniprot.org/database/DB-$1
 wikidata:
+  availability:
+    alternate_providers: present
+    contact: present*
+    description: required
+    example: present
+    fair: true
+    fair_note: null
+    homepage: present
+    license: present*
+    name: required
+    pattern: present
+    provider: present
+    search: true
+    synonyms: missing
+    version: present*
+  bioregistry_prefix: wikidata
   description: An open, community-curated knowledgebase that contains several properties
     corresponding to resources listed in other biomedical registries.
   example: P683
