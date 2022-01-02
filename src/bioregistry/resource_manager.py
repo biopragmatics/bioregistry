@@ -141,7 +141,10 @@ class Manager:
 
     def get_registry_invmap(self, metaprefix: str) -> Dict[str, str]:
         """Get a mapping from prefixes in another registry to Bioregistry prefixes."""
-        return {metaprefix: prefix for prefix, metaprefix in self._iter_registry_map(metaprefix)}
+        return {
+            external_prefix: prefix
+            for prefix, external_prefix in self._iter_registry_map(metaprefix)
+        }
 
     def _iter_registry_map(self, metaprefix: str) -> Iterable[Tuple[str, str]]:
         for prefix, resource in self.registry.items():

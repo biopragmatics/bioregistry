@@ -34,6 +34,8 @@ __all__ = [
     "get_owl_download",
     "get_version",
     "get_versions",
+    "get_registry_map",
+    "get_registry_invmap",
     # CURIE handling
     "normalize_prefix",
     "parse_curie",
@@ -213,6 +215,11 @@ def get_obofoundry_prefix(prefix: str) -> Optional[str]:
 def get_registry_map(metaprefix: str) -> Dict[str, str]:
     """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
     return manager.get_registry_map(metaprefix)
+
+
+def get_registry_invmap(metaprefix: str) -> Dict[str, str]:
+    """Get a mapping from the external registry prefixes to Bioregistry prefixes."""
+    return manager.get_registry_invmap(metaprefix)
 
 
 def get_obofoundry_uri_prefix(prefix: str) -> Optional[str]:
