@@ -2686,6 +2686,7 @@
     "example": "CVCL_0440",
     "homepage": "https://web.expasy.org/cellosaurus/",
     "mappings": {
+      "cellosaurus": "Cellosaurus",
       "fairsharing": "FAIRsharing.hkk309",
       "miriam": "cellosaurus",
       "n2t": "cellosaurus",
@@ -3223,6 +3224,7 @@
     "license": "CC BY 4.0",
     "mappings": {
       "bioportal": "CL",
+      "cellosaurus": "CL",
       "fairsharing": "FAIRsharing.j9y503",
       "go": "CL",
       "miriam": "cl",
@@ -3467,6 +3469,7 @@
     "homepage": "https://code.google.com/p/craniomaxillofacial-ontology/",
     "mappings": {
       "obofoundry": "CMF",
+      "ontobee": "CMF",
       "prefixcommons": "CMF"
     },
     "name": "CranioMaxilloFacial ontology",
@@ -4045,16 +4048,19 @@
       "name": "Jennifer C. Giron",
       "orcid": null
     },
-    "description": "The Coleoptera Anatomy Ontology contains terms used for describing the anatomy and phenotype of beetles in biodiversity research. It has been built using the Ontology Develoment Kit, with the Ontology for the Anatomy of the Insect Skeleto-Muscular system (AISM) as a backbone.",
+    "description": "The Coleoptera Anatomy Ontology contains terms used for describing the anatomy and phenotype of beetles in biodiversity research.",
+    "example": "0000000",
     "homepage": "https://github.com/insect-morphology/colao",
     "license": "CC BY 4.0",
     "mappings": {
       "bioportal": "COLAO",
-      "obofoundry": "COLAO"
+      "obofoundry": "COLAO",
+      "ols": "colao"
     },
-    "name": "Coleoptera Anatomy Ontology (COLAO)",
+    "name": "Coleoptera Anatomy Ontology",
     "preferred_prefix": "COLAO",
-    "uri_format": "http://purl.obolibrary.org/obo/COLAO_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/COLAO_$1",
+    "version": "2021-12-14"
   },
   "colonatlas": {
     "description": "Cell line databases/resources",
@@ -5268,6 +5274,7 @@
     "mappings": {
       "bioportal": "DINTO",
       "obofoundry": "DINTO",
+      "ontobee": "DINTO",
       "prefixcommons": "DINTO"
     },
     "name": "The Drug-Drug Interactions Ontology",
@@ -5680,7 +5687,7 @@
       "uniprot": "DrugBank",
       "wikidata": "P715"
     },
-    "name": "DrugBank",
+    "name": "DrugBank ID",
     "pattern": "^DB\\d{5}$",
     "preferred_prefix": "drugbank",
     "synonyms": [
@@ -6761,6 +6768,26 @@
     "preferred_prefix": "epd",
     "uri_format": "http://epd.vital-it.ch/cgi-bin/query_result.pl?out_format=NICE&Entry_0=$1"
   },
+  "epio": {
+    "banana": "EPIO",
+    "contact": {
+      "email": "alpha.tom.kodamullil@scai.fraunhofer.de",
+      "github": "akodamullil",
+      "name": "Alpha Tom Kodamullil",
+      "orcid": null
+    },
+    "description": "A application driven Epilepsy Ontology with official terms from the ILAE.",
+    "homepage": "https://github.com/SCAI-BIO/EpilepsyOntology",
+    "license": "CC BY 4.0",
+    "mappings": {
+      "bioportal": "EPIO",
+      "obofoundry": "EPIO",
+      "ontobee": "EPIO"
+    },
+    "name": "Epilepsy Ontology",
+    "preferred_prefix": "EPIO",
+    "uri_format": "http://purl.obolibrary.org/obo/EPIO_$1"
+  },
   "epo": {
     "banana": "EPO",
     "deprecated": true,
@@ -7603,7 +7630,7 @@
     "banana": "FOODON",
     "contact": {
       "email": "damion_dooley@sfu.ca",
-      "github": "Public-Health-Bioinformatics",
+      "github": "ddooley",
       "name": "Damion Dooley",
       "orcid": null
     },
@@ -9295,7 +9322,7 @@
     "name": "Human Cell Atlas Ontology",
     "no_own_terms": true,
     "preferred_prefix": "hcao",
-    "version": "2021-11-16"
+    "version": "2021-12-16"
   },
   "hcpcs": {
     "description": "HCPCS is a collection of standardized codes that represent medical procedures, supplies, products and services. The codes are used to facilitate the processing of health insurance claims by Medicare and other insurers.",
@@ -11586,15 +11613,18 @@
       "name": "Luis A. Gonzalez-Montana",
       "orcid": null
     },
-    "description": "The Lepidoptera Anatomy Ontology contains terms used for describing the anatomy and phenotype of moths and butterflies in biodiversity research. LEPAO is developed in part by BIOfid (The Specialised Information Service Biodiversity Research).",
+    "description": "The Lepidoptera Anatomy Ontology contains terms used for describing the anatomy and phenotype of moths and butterflies in biodiversity research.",
+    "example": "0000005",
     "homepage": "https://github.com/insect-morphology/lepao",
     "license": "CC BY 4.0",
     "mappings": {
-      "obofoundry": "LEPAO"
+      "obofoundry": "LEPAO",
+      "ols": "lepao"
     },
     "name": "Lepidoptera Anatomy Ontology",
     "preferred_prefix": "LEPAO",
-    "uri_format": "http://purl.obolibrary.org/obo/LEPAO_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/LEPAO_$1",
+    "version": "2021-11-20"
   },
   "lgai.cede": {
     "description": "LG Chemical Entity Detection Dataset (LGCEDe) is only available open-dataset with molecular instance level annotations (i.e. atom-bond level position annotations within an image) for molecular structure images. This dataset was designed to encourage research on detection-based pipelines for Optical Chemical Structure Recognition (OCSR).",
@@ -13811,7 +13841,7 @@
     "name": "MHC Restriction Ontology",
     "preferred_prefix": "MRO",
     "uri_format": "http://purl.obolibrary.org/obo/MRO_$1",
-    "version": "2021-11-29"
+    "version": "2021-12-15"
   },
   "ms": {
     "banana": "MS",
@@ -15571,7 +15601,7 @@
     },
     "name": "Ontology of units of Measure",
     "preferred_prefix": "om",
-    "version": "2.0.34"
+    "version": "2.0.35"
   },
   "oma.grp": {
     "description": "OMA (Orthologous MAtrix) is a database that identifies orthologs among publicly available, complete genome sequences. It identifies orthologous relationships which can be accessed either group-wise, where all group members are orthologous to all other group members, or on a sequence-centric basis, where for a given protein all its orthologs in all other species are displayed. This collection references groupings of orthologs.",
@@ -15846,16 +15876,18 @@
       "name": "Miguel A. Fortuna",
       "orcid": null
     },
-    "description": "OntoAvida develops an integrated vocabulary for the description of the most widely-used computational approach for studying evolution using digital organisms (i.e., self-replicating computer programs that evolve within a user-defined computational environment).",
+    "description": "The Ontology for Avida (OntoAvida) project aims to develop an integrated vocabulary for the description of the most widely used computational approach for performing experimental evolution using digital organisms (i.e., self-replicating computer programs that evolve within a user-defined computational environment).\n\nThe lack of a clearly defined vocabulary makes biologists feel reluctant to embrace the field of digital evolution. This unique ontology has the potential to change this picture overnight.\n\nOntoAvida was initially developed by https://fortunalab.org, the computational biology lab at the Doñana Biological Station (a research institute of the Spanish National Research Council based at Seville, Spain). Contributors to OntoAvida are expected to include members of the Digital Evolution Laboratory (https://devolab.org/) at Michigan State University (USA).\n\nMore information can be found at https://obofoundry.org/ontology/ontoavida.html",
     "example": "00000001",
     "homepage": "https://gitlab.com/fortunalab/ontoavida",
     "license": "CC BY 4.0",
     "mappings": {
-      "obofoundry": "ONTOAVIDA"
+      "obofoundry": "ONTOAVIDA",
+      "ols": "ontoavida"
     },
     "name": "OntoAvida: ontology for Avida digital evolution platform",
     "preferred_prefix": "ONTOAVIDA",
-    "uri_format": "http://purl.obolibrary.org/obo/ONTOAVIDA_$1"
+    "uri_format": "http://purl.obolibrary.org/obo/ONTOAVIDA_$1",
+    "version": "2021-09-01"
   },
   "ontoneo": {
     "banana": "ONTONEO",
@@ -18546,6 +18578,9 @@
     "description": "The Reagent Ontology (ReO) adheres to OBO Foundry principles (obofoundry.org) to model the domain of biomedical research reagents, considered broadly to include materials applied “chemically” in scientific techniques to facilitate generation of data and research materials. ReO is a modular ontology that re-uses existing ontologies to facilitate cross-domain interoperability. It consists of reagents and their properties, linking diverse biological and experimental entities to which they are related. ReO supports community use cases by providing a flexible, extensible, and deeply integrated framework that can be adapted and extended with more specific modeling to meet application needs.",
     "example": "0000079",
     "homepage": "https://github.com/tis-lab/reagent-ontology",
+    "mappings": {
+      "ontobee": "REO"
+    },
     "name": "Reagent Ontology",
     "preferred_prefix": "reo",
     "references": [
@@ -19048,7 +19083,7 @@
     "pattern": "^\\d{7}$",
     "preferred_prefix": "RXNO",
     "uri_format": "http://purl.obolibrary.org/obo/RXNO_$1",
-    "version": "2021-12-06"
+    "version": "2021-12-16"
   },
   "rxnorm": {
     "description": "RxNorm provides normalized names for clinical drugs and links its names to many of the drug vocabularies commonly used in pharmacy management and drug interaction software, including those of First Databank, Micromedex, and Gold Standard Drug Database. By providing links between these vocabularies, RxNorm can mediate messages between systems not using the same software and vocabulary.",
@@ -19202,7 +19237,7 @@
     "banana": "SBO",
     "contact": {
       "email": "sheriff@ebi.ac.uk",
-      "github": null,
+      "github": "rsmsheriff",
       "name": "Rahuman Sheriff",
       "orcid": null
     },
@@ -21111,6 +21146,7 @@
     "license": "CC BY 3.0",
     "mappings": {
       "bioportal": "UBERON",
+      "cellosaurus": "UBERON",
       "fairsharing": "FAIRsharing.4c0b6b",
       "go": "UBERON",
       "miriam": "uberon",
@@ -22713,6 +22749,7 @@
     "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
     "mappings": {
       "ols": "xl",
+      "ontobee": "XL",
       "prefixcommons": "XL"
     },
     "name": "Cross-linker reagents ontology",
@@ -22734,7 +22771,8 @@
     "mappings": {
       "bioportal": "XLMOD",
       "obofoundry": "XLMOD",
-      "ols": "xlmod"
+      "ols": "xlmod",
+      "ontobee": "XLMOD"
     },
     "name": "HUPO-PSI cross-linking and derivatization reagents controlled vocabulary",
     "pattern": "^\\d{5}$",

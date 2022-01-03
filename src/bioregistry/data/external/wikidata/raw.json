@@ -37,7 +37,7 @@
     "propFormat": "https://ebird.org/species/$1",
     "propHomepage": "http://ebird.org",
     "propLabel": "eBird taxon ID",
-    "propPattern": "[a-z-]{2,6}\\d{0,2}|y00\\d{3}"
+    "propPattern": "[a-z-]{2,6}\\d{0,2}|[xy]00\\d{3}"
   },
   {
     "database": "Q5322614",
@@ -1739,6 +1739,20 @@
     "propLabel": "sequenced genome URL"
   },
   {
+    "database": "Q3108952",
+    "databaseHomepage": "https://gisaid.org/",
+    "databaseLabel": "GISAID",
+    "prop": "P10193",
+    "propLabel": "GISAID identifier"
+  },
+  {
+    "database": "Q3108952",
+    "databaseHomepage": "https://platform.gisaid.org",
+    "databaseLabel": "GISAID",
+    "prop": "P10193",
+    "propLabel": "GISAID identifier"
+  },
+  {
     "database": "Q58011838",
     "databaseHomepage": "https://www.hemiptera-databases.org/flow/?db=flow&page=home&lang=en",
     "databaseLabel": "Fulgoromorpha Lists On the Web",
@@ -1769,18 +1783,6 @@
     "propHomepage": "http://fossilworks.org",
     "propLabel": "Fossilworks ID for this journal article",
     "propPattern": "\\d+"
-  },
-  {
-    "database": "Q3074571",
-    "databaseHomepage": "http://flybase.org/",
-    "databaseLabel": "FlyBase",
-    "databaseMiriam": "flybase",
-    "prop": "P3852",
-    "propFormat": "http://flybase.org/reports/$1",
-    "propHomepage": "http://flybase.org/",
-    "propLabel": "FlyBase Gene ID",
-    "propMiriam": "fb",
-    "propPattern": "FBgn\\d{7}"
   },
   {
     "database": "Q3074571",
@@ -2085,6 +2087,17 @@
     "propHomepage": "https://www.dutchcaribbeanspecies.org/",
     "propLabel": "Dutch Caribbean Species Register ID",
     "propPattern": "[1-9]\\d*"
+  },
+  {
+    "database": "Q1122544",
+    "databaseHomepage": "http://www.drugbank.ca/",
+    "databaseLabel": "DrugBank",
+    "databaseMiriam": "drugbank",
+    "prop": "P715",
+    "propFormat": "https://go.drugbank.com/drugs/DB$1",
+    "propHomepage": "https://www.drugbank.ca",
+    "propLabel": "DrugBank ID",
+    "propPattern": "(SALT\\d{1}|CAT\\d{1})?\\d{5}"
   },
   {
     "database": "Q3036834",
@@ -2715,7 +2728,7 @@
     "propFormat": "https://biodiversity.org.au/afd/taxa/$1",
     "propHomepage": "https://biodiversity.org.au/afd/search/names",
     "propLabel": "Australian Faunal Directory ID",
-    "propPattern": "[a-zA-Z]*([;_ +][a-zA-Z]*)*|\\d*"
+    "propPattern": "[a-zA-Z]*([-_;]([(]?)[a-zA-Z]*([)]?))*"
   },
   {
     "database": "Q2784883",

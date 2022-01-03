@@ -2493,7 +2493,7 @@
       "prefix": "BCGO"
     },
     "cellosaurus": {
-      "category": "Ontologies",
+      "category": "Anatomy/cell type resources",
       "homepage": "https://github.com/obi-bcgo/bcgo",
       "name": "Beta Cell Genomics Ontology",
       "prefix": "BCGO",
@@ -4673,7 +4673,7 @@
       "prefix": "BTO"
     },
     "cellosaurus": {
-      "category": "Ontologies",
+      "category": "Anatomy/cell type resources",
       "homepage": "https://bioportal.bioontology.org/ontologies/BTO",
       "name": "BRENDA Tissue Ontology",
       "prefix": "BTO",
@@ -5952,6 +5952,13 @@
     "uri_format": "https://web.expasy.org/cellosaurus/cellopub/$1"
   },
   "cellosaurus": {
+    "cellosaurus": {
+      "category": "Cell line databases/resources",
+      "homepage": "https://web.expasy.org/cellosaurus/",
+      "name": "Cellosaurus - a knowledge resource on cell lines",
+      "prefix": "Cellosaurus",
+      "uri_format": "https://web.expasy.org/cellosaurus/$1"
+    },
     "download_obo": "https://ftp.expasy.org/databases/cellosaurus/cellosaurus.obo",
     "example": "CVCL_0440",
     "fairsharing": {
@@ -5962,6 +5969,7 @@
       "prefix": "FAIRsharing.hkk309"
     },
     "mappings": {
+      "cellosaurus": "Cellosaurus",
       "fairsharing": "FAIRsharing.hkk309",
       "miriam": "cellosaurus",
       "n2t": "cellosaurus",
@@ -7141,6 +7149,13 @@
       "name": "Cell Ontology",
       "prefix": "CL"
     },
+    "cellosaurus": {
+      "category": "Anatomy/cell type resources",
+      "homepage": "https://obophenotype.github.io/cell-ontology/",
+      "name": "Cell Ontology",
+      "prefix": "CL",
+      "uri_format": "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/$1"
+    },
     "download_obo": "https://raw.githubusercontent.com/obophenotype/cell-ontology/master/cl-full.obo",
     "example": "0000062",
     "fairsharing": {
@@ -7157,6 +7172,7 @@
     },
     "mappings": {
       "bioportal": "CL",
+      "cellosaurus": "CL",
       "fairsharing": "FAIRsharing.j9y503",
       "go": "CL",
       "miriam": "cl",
@@ -7556,7 +7572,7 @@
       "prefix": "CLO"
     },
     "cellosaurus": {
-      "category": "Ontologies",
+      "category": "Cell line databases/resources",
       "homepage": "http://www.clo-ontology.org",
       "name": "Cell Line Ontology",
       "prefix": "CLO",
@@ -7698,6 +7714,7 @@
     "description": "This ontology represents the clinical findings and procedures used in the oral and maxillo-facial surgical domain",
     "mappings": {
       "obofoundry": "cmf",
+      "ontobee": "CMF",
       "prefixcommons": "CMF"
     },
     "obofoundry": {
@@ -7708,6 +7725,11 @@
       "inactive": true,
       "name": "CranioMaxilloFacial ontology",
       "prefix": "cmf"
+    },
+    "ontobee": {
+      "library": "Library",
+      "name": "CranioMaxilloFacial ontology",
+      "prefix": "CMF"
     },
     "prefixcommons": {
       "is_identifiers": false,
@@ -8610,7 +8632,8 @@
     "example": "0000000",
     "mappings": {
       "bioportal": "COLAO",
-      "obofoundry": "colao"
+      "obofoundry": "colao",
+      "ols": "colao"
     },
     "name": "Coleoptera Anatomy Ontology",
     "obofoundry": {
@@ -8629,6 +8652,16 @@
       "preferredPrefix": "COLAO",
       "prefix": "colao",
       "repository": "https://github.com/insect-morphology/colao"
+    },
+    "ols": {
+      "description": "The Coleoptera Anatomy Ontology contains terms used for describing the anatomy and phenotype of beetles in biodiversity research.",
+      "download": "http://purl.obolibrary.org/obo/colao.owl",
+      "homepage": "https://github.com/insect-morphology/colao",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "name": "Coleoptera Anatomy Ontology",
+      "prefix": "colao",
+      "version": "2021-12-14",
+      "version.iri": "http://purl.obolibrary.org/obo/colao/releases/2021-12-14/colao.owl"
     }
   },
   "colonatlas": {
@@ -11299,6 +11332,7 @@
     "mappings": {
       "bioportal": "DINTO",
       "obofoundry": "dinto",
+      "ontobee": "DINTO",
       "prefixcommons": "DINTO"
     },
     "obofoundry": {
@@ -11314,6 +11348,11 @@
       "name": "The Drug-Drug Interactions Ontology",
       "prefix": "dinto",
       "repository": "https://github.com/labda/DINTO"
+    },
+    "ontobee": {
+      "library": "Library",
+      "name": "The Drug-Drug Interactions Ontology",
+      "prefix": "DINTO"
     },
     "prefixcommons": {
       "is_identifiers": false,
@@ -11406,7 +11445,7 @@
       "name": "Disease Drivers Ontology",
       "preferredPrefix": "DISDRIV",
       "prefix": "disdriv",
-      "repository": "https://github.com/DiseaseOntology/DiseaseDriversOntology/"
+      "repository": "https://github.com/DiseaseOntology/DiseaseDriversOntology"
     },
     "pattern": "^\\d+$"
   },
@@ -12138,7 +12177,7 @@
       "name": "The Drug Ontology",
       "preferredPrefix": "DRON",
       "prefix": "dron",
-      "repository": "https://github.com/ufbmi/dron/"
+      "repository": "https://github.com/ufbmi/dron"
     },
     "ols": {
       "description": "We built this ontology primarily to support comparative effectiveness researchers studying claims data. They need to be able to query U.S. National Drug Codes (NDCs) by ingredient, mechanism of action (beta-adrenergic blockade), physiological effect (diuresis), and therapeutic intent (anti-hypertensive).",
@@ -12228,7 +12267,8 @@
       "miriam": "drugbank",
       "n2t": "drugbank",
       "prefixcommons": "DrugBank",
-      "uniprot": "DrugBank"
+      "uniprot": "DrugBank",
+      "wikidata": "P715"
     },
     "miriam": {
       "deprecated": false,
@@ -12271,7 +12311,14 @@
       "uri_format": "https://www.drugbank.ca/drugs/$1"
     },
     "wikidata": {
-      "prefix": "P715"
+      "database": "Q1122544",
+      "database.homepage": "http://www.drugbank.ca/",
+      "database.label": "DrugBank",
+      "homepage": "https://www.drugbank.ca",
+      "name": "DrugBank ID",
+      "pattern": "(SALT\\d{1}|CAT\\d{1})?\\d{5}",
+      "prefix": "P715",
+      "uri_format": "https://go.drugbank.com/drugs/DB$1"
     }
   },
   "drugbank.salt": {
@@ -13322,7 +13369,7 @@
       "prefix": "EFO"
     },
     "cellosaurus": {
-      "category": "Ontologies",
+      "category": "Experimental variables resources",
       "homepage": "https://www.ebi.ac.uk/efo/",
       "name": "Experimental Factor Ontology",
       "prefix": "EFO",
@@ -14634,6 +14681,38 @@
       "name": "Encyclopedia of Proteome Dynamics",
       "prefix": "EPD",
       "uri_format": "https://www.peptracker.com/epd/analytics/?protein_id=$1"
+    }
+  },
+  "epio": {
+    "bioportal": {
+      "name": "EpilepsyOntology",
+      "prefix": "EPIO"
+    },
+    "mappings": {
+      "bioportal": "EPIO",
+      "obofoundry": "epio",
+      "ontobee": "EPIO"
+    },
+    "obofoundry": {
+      "contact": "alpha.tom.kodamullil@scai.fraunhofer.de",
+      "contact.github": "akodamullil",
+      "contact.label": "Alpha Tom Kodamullil",
+      "deprecated": false,
+      "description": "A application driven Epilepsy Ontology with official terms from the ILAE.",
+      "download.owl": "http://purl.obolibrary.org/obo/epio.owl",
+      "homepage": "https://github.com/SCAI-BIO/EpilepsyOntology",
+      "inactive": false,
+      "license": "CC BY 4.0",
+      "license.url": "http://creativecommons.org/licenses/by/4.0/",
+      "name": "Epilepsy Ontology",
+      "preferredPrefix": "EPIO",
+      "prefix": "epio",
+      "repository": "https://github.com/SCAI-BIO/EpilepsyOntology"
+    },
+    "ontobee": {
+      "library": "Library",
+      "name": "Epilepsy Ontology",
+      "prefix": "EPIO"
     }
   },
   "epo": {
@@ -16127,7 +16206,7 @@
     "uri_format": "https://flybase.org/reports/$1",
     "wikidata": {
       "database": "Q3074571",
-      "database.homepage": "http://flybase.org/",
+      "database.homepage": "https://flybase.org/",
       "database.label": "FlyBase",
       "homepage": "http://flybase.org/",
       "name": "FlyBase Gene ID",
@@ -16407,16 +16486,16 @@
     "name": "The Food Ontology",
     "obofoundry": {
       "contact": "damion_dooley@sfu.ca",
-      "contact.github": "Public-Health-Bioinformatics",
+      "contact.github": "ddooley",
       "contact.label": "Damion Dooley",
       "deprecated": false,
-      "description": "A broadly scoped ontology representing entities which bear a “food role”.  It encompasses materials in natural ecosystems and food webs as well as human-centric categorization and handling of food.",
+      "description": "A broadly scoped ontology representing entities which bear a “food role”. It encompasses materials in natural ecosystems and agriculture that are consumed by humans and domesticated animals. This includes any generic (unbranded) raw or processed food material found in processing plants, markets, stores or food distribution points. FoodOn also imports nutritional component and dietary pattern terms from other OBO Foundry ontologies to support interoperability in diet and nutrition research",
       "download.owl": "http://purl.obolibrary.org/obo/foodon.owl",
       "homepage": "https://foodon.org/",
       "inactive": false,
       "license": "CC BY 3.0",
       "license.url": "http://creativecommons.org/licenses/by/3.0/",
-      "name": "FOODON",
+      "name": "Food Ontology",
       "preferredPrefix": "FOODON",
       "prefix": "foodon",
       "repository": "https://github.com/FoodOntology/foodon"
@@ -20190,8 +20269,8 @@
       "download": "https://raw.githubusercontent.com/ebi-ait/ontology/master/hcao.owl",
       "name": "Human Cell Atlas Ontology",
       "prefix": "hcao",
-      "version": "2021-11-16",
-      "version.iri": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2021-11-16/hcao.owl"
+      "version": "2021-12-16",
+      "version.iri": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2021-12-16/hcao.owl"
     }
   },
   "hcpcs": {
@@ -25167,7 +25246,8 @@
   "lepao": {
     "example": "0000005",
     "mappings": {
-      "obofoundry": "lepao"
+      "obofoundry": "lepao",
+      "ols": "lepao"
     },
     "obofoundry": {
       "contact": "lagonzalezmo@unal.edu.co",
@@ -25185,6 +25265,16 @@
       "preferredPrefix": "LEPAO",
       "prefix": "lepao",
       "repository": "https://github.com/insect-morphology/lepao"
+    },
+    "ols": {
+      "description": "The Lepidoptera Anatomy Ontology contains terms used for describing the anatomy and phenotype of moths and butterflies in biodiversity research.",
+      "download": "http://purl.obolibrary.org/obo/lepao.owl",
+      "homepage": "https://github.com/insect-morphology/lepao",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "name": "Lepidoptera Anatomy Ontology",
+      "prefix": "lepao",
+      "version": "2021-11-20",
+      "version.iri": "http://purl.obolibrary.org/obo/lepao/releases/2021-11-20/lepao.owl"
     }
   },
   "lgai.cede": {
@@ -26915,7 +27005,7 @@
       "prefix": "MESH"
     },
     "cellosaurus": {
-      "category": "Ontologies",
+      "category": "Medical resources",
       "homepage": "https://www.ncbi.nlm.nih.gov/mesh",
       "name": "Medical Subject Headings",
       "prefix": "MeSH",
@@ -30129,8 +30219,8 @@
       "license": "http://creativecommons.org/licenses/by/3.0/",
       "name": "MHC Restriction Ontology",
       "prefix": "mro",
-      "version": "2021-11-29",
-      "version.iri": "http://purl.obolibrary.org/obo/mro/2021-11-29/mro.owl"
+      "version": "2021-12-15",
+      "version.iri": "http://purl.obolibrary.org/obo/mro/2021-12-15/mro.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -31432,7 +31522,7 @@
       "prefix": "NCIT"
     },
     "cellosaurus": {
-      "category": "Ontologies",
+      "category": "Medical resources",
       "homepage": "https://ncit.nci.nih.gov/ncitbrowser",
       "name": "NCI thesaurus",
       "prefix": "NCIt",
@@ -33906,7 +33996,7 @@
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "name": "Ontology of units of Measure (OM)",
       "prefix": "om",
-      "version": "2.0.34"
+      "version": "2.0.35"
     }
   },
   "oma.grp": {
@@ -34472,7 +34562,8 @@
   "ontoavida": {
     "example": "00000001",
     "mappings": {
-      "obofoundry": "ontoavida"
+      "obofoundry": "ontoavida",
+      "ols": "ontoavida"
     },
     "obofoundry": {
       "contact": "fortuna@ebd.csic.es",
@@ -34490,6 +34581,16 @@
       "preferredPrefix": "ONTOAVIDA",
       "prefix": "ontoavida",
       "repository": "https://gitlab.com/fortunalab/ontoavida"
+    },
+    "ols": {
+      "description": "The Ontology for Avida (OntoAvida) project aims to develop an integrated vocabulary for the description of the most widely used computational approach for performing experimental evolution using digital organisms (i.e., self-replicating computer programs that evolve within a user-defined computational environment).\n\nThe lack of a clearly defined vocabulary makes biologists feel reluctant to embrace the field of digital evolution. This unique ontology has the potential to change this picture overnight.\n\nOntoAvida was initially developed by https://fortunalab.org, the computational biology lab at the Doñana Biological Station (a research institute of the Spanish National Research Council based at Seville, Spain). Contributors to OntoAvida are expected to include members of the Digital Evolution Laboratory (https://devolab.org/) at Michigan State University (USA).\n\nMore information can be found at https://obofoundry.org/ontology/ontoavida.html",
+      "download": "http://purl.obolibrary.org/obo/ontoavida.owl",
+      "homepage": "https://gitlab.com/fortunalab/ontoavida",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "name": "OntoAvida: ontology for Avida digital evolution platform.",
+      "prefix": "ontoavida",
+      "version": "2021-09-01",
+      "version.iri": "http://purl.obolibrary.org/obo/ontoavida/2021-09-01/ontoavida.owl"
     }
   },
   "ontoneo": {
@@ -35094,7 +35195,7 @@
       "prefix": "ORDO"
     },
     "cellosaurus": {
-      "category": "Ontologies",
+      "category": "Medical resources",
       "homepage": "https://www.ebi.ac.uk/ols/ontologies/ordo",
       "name": "Orphanet Rare Disease Ontology",
       "prefix": "ORDO",
@@ -36005,7 +36106,7 @@
       "name": "Phenotype And Trait Ontology",
       "preferredPrefix": "PATO",
       "prefix": "pato",
-      "repository": "https://github.com/pato-ontology/pato/"
+      "repository": "https://github.com/pato-ontology/pato"
     },
     "ols": {
       "description": "An ontology of phenotypic qualities (properties, attributes or characteristics).",
@@ -40743,7 +40844,15 @@
     "download_owl": "https://github.com/tis-lab/reagent-ontology/raw/master/reo/ontology_files/reo_pre-merged_or_reasoned_files/reo_reasoned_9-6-12.owl",
     "example": "0000079",
     "homepage": "https://github.com/tis-lab/reagent-ontology",
+    "mappings": {
+      "ontobee": "REO"
+    },
     "name": "Reagent Ontology",
+    "ontobee": {
+      "library": "Not Specified/No",
+      "name": "Reagent Ontology",
+      "prefix": "REO"
+    },
     "references": [
       "https://github.com/obi-ontology/obi/issues/1015",
       "https://code.google.com/archive/p/reagent-ontology/",
@@ -41033,7 +41142,7 @@
       "homepage": "https://rgd.mcw.edu",
       "name": "Rat Genome Database",
       "prefix": "RGD",
-      "uri_format": "http://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1"
+      "uri_format": "https://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1"
     },
     "example": "7499841",
     "fairsharing": {
@@ -41973,8 +42082,8 @@
       "license": "http://creativecommons.org/licenses/by/4.0/",
       "name": "RXNO",
       "prefix": "rxno",
-      "version": "2021-12-06",
-      "version.iri": "http://purl.obolibrary.org/obo/rxno.obo/2021-12-06/rxno.owl"
+      "version": "2021-12-16",
+      "version.iri": "http://purl.obolibrary.org/obo/rxno/releases/2021-12-16/rxno.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -42357,6 +42466,7 @@
     },
     "obofoundry": {
       "contact": "sheriff@ebi.ac.uk",
+      "contact.github": "rsmsheriff",
       "contact.label": "Rahuman Sheriff",
       "deprecated": false,
       "description": "Terms commonly used in Systems Biology, and in particular in computational modeling.",
@@ -42367,7 +42477,8 @@
       "license.url": "http://opensource.org/licenses/Artistic-2.0",
       "name": "Systems Biology Ontology",
       "preferredPrefix": "SBO",
-      "prefix": "sbo"
+      "prefix": "sbo",
+      "repository": "https://github.com/EBI-BioModels/SBO"
     },
     "ols": {
       "description": "Terms commonly used in Systems Biology, and in particular in computational modeling.",
@@ -46480,6 +46591,13 @@
       "name": "Uber Anatomy Ontology",
       "prefix": "UBERON"
     },
+    "cellosaurus": {
+      "category": "Anatomy/cell type resources",
+      "homepage": "https://uberon.github.io/",
+      "name": "Uber-anatomy ontology",
+      "prefix": "UBERON",
+      "uri_format": "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/$1"
+    },
     "download_obo": "http://purl.obolibrary.org/obo/uberon/basic.obo",
     "example": "2005080",
     "fairsharing": {
@@ -46497,6 +46615,7 @@
     },
     "mappings": {
       "bioportal": "UBERON",
+      "cellosaurus": "UBERON",
       "fairsharing": "FAIRsharing.4c0b6b",
       "go": "UBERON",
       "miriam": "uberon",
@@ -49274,7 +49393,7 @@
       "uri_format": "https://www.wikidata.org/wiki/$1"
     },
     "cellosaurus": {
-      "category": "Other",
+      "category": "Encyclopedic resources",
       "homepage": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
       "name": "Wikidata",
       "prefix": "Wikidata",
@@ -49997,6 +50116,7 @@
     "deprecated": true,
     "mappings": {
       "ols": "xl",
+      "ontobee": "XL",
       "prefixcommons": "XL"
     },
     "ols": {
@@ -50006,6 +50126,11 @@
       "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
       "name": "Cross-linker reagents ontology",
       "prefix": "xl"
+    },
+    "ontobee": {
+      "library": "Library",
+      "name": "Cross-linker reagents ontology",
+      "prefix": "XL"
     },
     "prefixcommons": {
       "is_identifiers": false,
@@ -50024,7 +50149,8 @@
     "mappings": {
       "bioportal": "XLMOD",
       "obofoundry": "xlmod",
-      "ols": "xlmod"
+      "ols": "xlmod",
+      "ontobee": "XLMOD"
     },
     "obofoundry": {
       "contact": "gerhard.mayer@rub.de",
@@ -50048,6 +50174,11 @@
       "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
       "name": "HUPO-PSI cross-linking and derivatization reagents controlled vocabulary",
       "prefix": "xlmod"
+    },
+    "ontobee": {
+      "library": "Library",
+      "name": "HUPO-PSI cross-linking and derivatization reagents controlled vocabulary",
+      "prefix": "XLMOD"
     },
     "pattern": "^\\d{5}$"
   },
