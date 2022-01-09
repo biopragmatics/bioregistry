@@ -771,10 +771,18 @@ def get_versions() -> Mapping[str, str]:
 
 
 def get_curie_pattern(prefix: str) -> Optional[str]:
-    """Get the CURIE pattern for this resource.
+    r"""Get the CURIE pattern for this resource.
 
-    :param prefix: The prefix to to look up
+    :param prefix: The prefix to look up
     :return: The regular expression pattern to match CURIEs against
+
+    Get standard pattern:
+    >>> get_curie_pattern("chebi")
+    '^\d+$'
+
+    Special characters in the prefix are properly escaped:
+    >>> get_curie_pattern("chembl.compound")
+    '^chembl\.compound:CHEMBL\d+$'
     """
     return manager.get_curie_pattern(prefix)
 
