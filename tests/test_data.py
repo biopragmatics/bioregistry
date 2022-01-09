@@ -86,11 +86,44 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.fail(f"{prefix} had extra keys: {extra}")
 
+    @staticmethod
+    def _construct_substrings(x):
+        return (
+            f"({x.casefold()})",
+            f"{x.casefold()}: ",
+            f"{x.casefold()}- ",
+            f"{x.casefold()} - ",
+            # f"{x.casefold()} ontology",
+        )
+
     def test_names(self):
         """Test that all entries have a name."""
         for prefix, entry in self.registry.items():
             with self.subTest(prefix=prefix):
-                self.assertIsNotNone(entry.get_name(), msg=f"{prefix} is missing a name")
+                name = entry.get_name()
+                self.assertIsNotNone(name, msg=f"{prefix} is missing a name")
+
+                for ss in self._construct_substrings(prefix):
+                    self.assertNotIn(
+                        ss,
+                        name.casefold(),
+                        msg="Redundant prefix appears in name",
+                    )
+                preferred_prefix = entry.get_preferred_prefix()
+                if preferred_prefix is not None:
+                    for ss in self._construct_substrings(preferred_prefix):
+                        self.assertNotIn(
+                            ss,
+                            name.casefold(),
+                            msg="Redundant preferred prefix appears in name",
+                        )
+                for alt_prefix in entry.get_synonyms():
+                    for ss in self._construct_substrings(alt_prefix):
+                        self.assertNotIn(
+                            ss,
+                            name.casefold(),
+                            msg=f"Redundant alt prefix {alt_prefix} appears in name",
+                        )
 
     def test_name_expansions(self):
         """Test that default names are not capital acronyms."""
