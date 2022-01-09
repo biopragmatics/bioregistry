@@ -515,7 +515,9 @@ class Resource(BaseModel):
 
     def get_description(self) -> Optional[str]:
         """Get the description for the given prefix, if available."""
-        rv = self.get_prefix_key("description", ("miriam", "ols", "obofoundry", "wikidata"))
+        rv = self.get_prefix_key(
+            "description", ("miriam", "ols", "obofoundry", "wikidata", "fairsharing")
+        )
         if rv is not None:
             return rv
         if self.cellosaurus and "category" in self.cellosaurus:
