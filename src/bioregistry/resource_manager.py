@@ -277,7 +277,7 @@ class Manager:
     def get_curie_pattern(self, prefix: str) -> Optional[str]:
         """Get the CURIE pattern for this resource.
 
-        :param prefix: The prefix to to look up
+        :param prefix: The prefix to look up
         :return: The regular expression pattern to match CURIEs against
         """
         resource = self.get_resource(prefix)
@@ -287,6 +287,7 @@ class Manager:
         if pattern is None:
             return None
         p = resource.get_preferred_prefix() or prefix
+        p = p.replace(".", "\\.")
         return f"^{p}:{pattern.lstrip('^')}"
 
     def rasterize(self):
