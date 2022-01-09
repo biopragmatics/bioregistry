@@ -90,7 +90,26 @@ class TestRegistry(unittest.TestCase):
         """Test that all entries have a name."""
         for prefix, entry in self.registry.items():
             with self.subTest(prefix=prefix):
-                self.assertIsNotNone(entry.get_name(), msg=f"{prefix} is missing a name")
+                name = entry.get_name()
+                self.assertIsNotNone(name, msg=f"{prefix} is missing a name")
+                self.assertNotIn(
+                    f"({prefix.casefold()})",
+                    name.casefold(),
+                    msg="Redundant prefix appears in name",
+                )
+                preferred_prefix = entry.get_preferred_prefix()
+                if preferred_prefix is not None:
+                    self.assertNotIn(
+                        f"({preferred_prefix.casefold()})",
+                        name.casefold(),
+                        msg="Redundant preferred prefix appears in name",
+                    )
+                for alt_prefix in entry.get_synonyms():
+                    self.assertNotIn(
+                        f"({alt_prefix.casefold()})",
+                        name.casefold(),
+                        msg=f"Redundant alt prefix {alt_prefix} appears in name",
+                    )
 
     def test_name_expansions(self):
         """Test that default names are not capital acronyms."""
