@@ -126,6 +126,10 @@ class TestResolve(unittest.TestCase):
 
         .. seealso:: https://github.com/biopragmatics/bioregistry/issues/245
         """
+        self.assertEqual("^CHEBI:\\d+$", bioregistry.get_curie_pattern("chebi"))
+        self.assertEqual(
+            "^chembl\\.compound:CHEMBL\\d+$", bioregistry.get_curie_pattern("chembl.compound")
+        )
         pattern = bioregistry.get_curie_pattern("panther.pthcmp")
         self.assertRegexpMatches("panther.pthcmp:P00266", pattern)
         self.assertNotRegexpMatches("pantherXpthcmp:P00266", pattern)
