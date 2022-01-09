@@ -287,6 +287,7 @@ class Manager:
         if pattern is None:
             return None
         p = resource.get_preferred_prefix() or prefix
+        p = p.replace(".", "\\.")
         return f"^{p}:{pattern.lstrip('^')}"
 
     def rasterize(self):
