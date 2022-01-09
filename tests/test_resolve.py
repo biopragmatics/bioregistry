@@ -2,7 +2,6 @@
 
 """Tests for the bioregistry client."""
 
-import re
 import unittest
 from typing import Iterable, Tuple
 
