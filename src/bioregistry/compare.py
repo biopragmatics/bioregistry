@@ -8,6 +8,7 @@ import logging
 import math
 import random
 import sys
+import typing
 from collections import Counter
 from typing import Collection, Set
 
@@ -261,7 +262,7 @@ def compare(png: bool):  # noqa:C901
     _save(fig, name="license_coverage", png=png)
 
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
-    licenses_counter = Counter(licenses)
+    licenses_counter: typing.Counter[str] = Counter(licenses)
     licenses_mapped = [
         "None" if license_ is None else license_ if licenses_counter[license_] > 3 else "Other"
         for license_ in licenses
