@@ -9,7 +9,6 @@ import math
 import random
 import sys
 from collections import Counter
-from operator import itemgetter
 from typing import Collection, Set
 
 import click
@@ -264,7 +263,8 @@ def compare(png: bool):  # noqa:C901
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
     licenses_counter = Counter(licenses)
     licenses_mapped = [
-        "None" if l is None else l if licenses_counter[l] > 3 else "Other" for l in licenses
+        "None" if license_ is None else license_ if licenses_counter[license_] > 3 else "Other"
+        for license_ in licenses
     ]
     licenses_mapped_counter = Counter(licenses_mapped)
     licenses_mapped_order = [l for l, _ in licenses_mapped_counter.most_common()]
