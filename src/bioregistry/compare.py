@@ -9,6 +9,7 @@ import math
 import random
 import sys
 from collections import Counter
+from operator import itemgetter
 from typing import Collection, Set
 
 import click
@@ -261,7 +262,13 @@ def compare(png: bool):  # noqa:C901
     _save(fig, name="license_coverage", png=png)
 
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
-    sns.countplot(x=licenses, ax=ax)
+    licenses_counter = Counter(licenses)
+    licenses_mapped = [
+        "None" if l is None else l if licenses_counter[l] > 3 else "Other" for l in licenses
+    ]
+    licenses_mapped_counter = Counter(licenses_mapped)
+    licenses_mapped_order = [l for l, _ in licenses_mapped_counter.most_common()]
+    sns.countplot(licenses_mapped, ax=ax, order=licenses_mapped_order)
     ax.set_xlabel("License")
     ax.set_ylabel("Count")
     ax.set_yscale("log")
