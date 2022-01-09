@@ -2,6 +2,7 @@
 
 """Tests for the bioregistry client."""
 
+import re
 import unittest
 from typing import Iterable, Tuple
 
@@ -120,3 +121,12 @@ class TestResolve(unittest.TestCase):
                     or re_pattern.startswith(miriam_prefix.upper()),
                     msg=f"{prefix} pattern: {re_pattern}",
                 )
+
+    def test_curie_pattern(self):
+        """Test CURIE pattern.
+
+        .. seealso:: https://github.com/biopragmatics/bioregistry/issues/245
+        """
+        pattern = bioregistry.get_curie_pattern("panther.pthcmp")
+        self.assertRegexpMatches("panther.pthcmp:P00266", pattern)
+        self.assertNotRegexpMatches("pantherXpthcmp:P00266", pattern)
