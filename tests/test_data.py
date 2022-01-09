@@ -93,7 +93,7 @@ class TestRegistry(unittest.TestCase):
             f"{x.casefold()}: ",
             f"{x.casefold()}- ",
             f"{x.casefold()} - ",
-            f"{x.casefold()} ontology",
+            # f"{x.casefold()} ontology",
         )
 
     def test_names(self):
