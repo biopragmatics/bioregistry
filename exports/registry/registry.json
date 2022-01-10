@@ -611,7 +611,7 @@
       "YPO"
     ],
     "uri_format": "https://www.yeastgenome.org/observable/APO:$1",
-    "version": "2021-10-07"
+    "version": "2022-01-03"
   },
   "apollosv": {
     "banana": "APOLLO_SV",
@@ -970,6 +970,7 @@
       "orcid": null
     },
     "deprecated": true,
+    "description": "Amphibian Taxonomy Ontology is an ontology of Amphibian species and genres. It is being integrated into UBERON resource",
     "homepage": "http://www.amphibanat.org",
     "mappings": {
       "bioportal": "ATO",
@@ -1063,7 +1064,7 @@
     "mappings": {
       "fairsharing": "FAIRsharing.5f5mfm"
     },
-    "name": "Bactibase: a database dedicated to bacteriocins",
+    "name": "Bactibase",
     "preferred_prefix": "bactibase",
     "uri_format": "http://bactibase.hammamilab.org/$1"
   },
@@ -1104,6 +1105,18 @@
     ],
     "uri_format": "http://bioportal.bioontology.org/ontologies/BAO/bao:BAO_$1",
     "version": "2.7.2"
+  },
+  "bbtp": {
+    "description": "Input data and analysis results for the paper \"Topology of synaptic connectivity constrains neuronal stimulus representation, predicting two complementary coding strategies (https://www.biorxiv.org/content/10.1101/2020.11.02.363929v2 ).",
+    "example": "f0ba2f3e-aa6f-4264-8d18-8ee65cf6f61a",
+    "homepage": "https://portal.bluebrain.epfl.ch",
+    "mappings": {
+      "miriam": "bbtp"
+    },
+    "name": "Blue Brain Project Topological sampling Knowledge Graph",
+    "pattern": "^\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b$",
+    "preferred_prefix": "bbtp",
+    "uri_format": "https://bbp.epfl.ch/nexus/web/studios/public/topological-sampling/studios/data:$1"
   },
   "bcgo": {
     "banana": "BCGO",
@@ -1446,6 +1459,7 @@
   "bila": {
     "banana": "BILA",
     "deprecated": true,
+    "description": "This is a record of the Bilateria anatomy terminology and ontology. We have been unable to find any further information about this resource.",
     "mappings": {
       "fairsharing": "FAIRsharing.eqgjeq",
       "obofoundry": "BILA",
@@ -1956,6 +1970,18 @@
     },
     "name": "Biomedical Informatics Research Network Lexicon",
     "preferred_prefix": "birnlex"
+  },
+  "bitbucket": {
+    "description": "Bitbucket is a Git-based source code repository hosting service owned by Atlassian.",
+    "example": "andreadega/systems-biology-compiler",
+    "homepage": "https://www.atlassian.com/",
+    "mappings": {
+      "miriam": "bitbucket"
+    },
+    "name": "Bitbucket",
+    "pattern": "^[0-9A-Za-z-_\\.]+/[0-9A-Za-z-_\\.]+$",
+    "preferred_prefix": "bitbucket",
+    "uri_format": "https://bitbucket.org/$1"
   },
   "bitterdb.cpd": {
     "description": "BitterDB is a database of compounds reported to taste bitter to humans. The compounds can be searched by name, chemical structure, similarity to other bitter compounds, association with a particular human bitter taste receptor, and so on. The database also contains information on mutations in bitter taste receptors that were shown to influence receptor activation by bitter compounds. The aim of BitterDB is to facilitate studying the chemical features associated with bitterness. This collection references compounds.",
@@ -2493,7 +2519,7 @@
     "mappings": {
       "cellosaurus": "CCLE"
     },
-    "name": "Cancer Cell Line Encyclopedia (CCLE) Cells",
+    "name": "Cancer Cell Line Encyclopedia Cells",
     "preferred_prefix": "ccle",
     "synonyms": [
       "ccle.cell"
@@ -3240,7 +3266,7 @@
     "pattern": "^\\d{7}$",
     "preferred_prefix": "CL",
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/cl/terms?obo_id=CL:$1",
-    "version": "2021-12-07"
+    "version": "2022-01-05"
   },
   "clao": {
     "banana": "CLAO",
@@ -4222,7 +4248,7 @@
       "prefixcommons": "CORUM",
       "uniprot": "CORUM"
     },
-    "name": "CORUM - the Comprehensive Resource of Mammalian protein complexes",
+    "name": "Comprehensive Resource of Mammalian protein complexes",
     "pattern": "^\\d+$",
     "preferred_prefix": "corum",
     "uri_format": "https://mips.helmholtz-muenchen.de/corum/?id=$1"
@@ -4446,7 +4472,7 @@
     "mappings": {
       "bioportal": "CRISP"
     },
-    "name": "Computer Retrieval of Information on Science Projects (CRISP) Thesaurus",
+    "name": "Computer Retrieval of Information on Science Projects Thesaurus",
     "preferred_prefix": "csp",
     "synonyms": [
       "CRISP",
@@ -4581,7 +4607,7 @@
       "ols": "cto",
       "ontobee": "CTO"
     },
-    "name": "CTO: Core Ontology of Clinical Trials",
+    "name": "Clinical Trials Ontology",
     "preferred_prefix": "CTO",
     "uri_format": "http://purl.obolibrary.org/obo/CTO_$1",
     "version": "1.0.0"
@@ -4662,7 +4688,7 @@
     "mappings": {
       "miriam": "dandi"
     },
-    "name": "DANDI: Distributed Archives for Neurophysiology Data Integration",
+    "name": "Distributed Archives for Neurophysiology Data Integration",
     "pattern": "^\\d{6}(\\/\\d+\\.\\d+\\.\\d+)?$",
     "preferred_prefix": "dandi",
     "uri_format": "https://dandiarchive.org/dandiset/$1"
@@ -5146,6 +5172,18 @@
     "pattern": "^[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}$",
     "preferred_prefix": "dg.f82a1a",
     "uri_format": "https://data.kidsfirstdrc.org/ga4gh/drs/v1/objects/$1"
+  },
+  "dg5b0d": {
+    "description": "The Blood Profiling Atlas in Cancer (BloodPAC) supports the management, analysis and sharing of liquid biopsy data for the oncology research community and aims to accelerate discovery and development of therapies, diagnostic tests, and other technologies for cancer treatment and prevention. The data commons supports cross-project analyses by harmonizing data from different projects through the collaborative development of a data dictionary, providing an API for data queries and download, and providing a cloud-based analysis workspace with rich tools and resources.",
+    "example": "00000d53-99bc-4d3e-8ed7-6dc358baccb7",
+    "homepage": "https://data.bloodpac.org/.",
+    "mappings": {
+      "miriam": "dg.5b0d"
+    },
+    "name": "BloodPAC",
+    "pattern": "^[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}$",
+    "preferred_prefix": "dg5b0d",
+    "uri_format": "https://data.bloodpac.org/ga4gh/drs/v1/objects/$1"
   },
   "dgrc": {
     "description": "Cell line collections",
@@ -6217,7 +6255,7 @@
       }
     ],
     "uri_format": "http://www.ebi.ac.uk/efo/EFO_$1",
-    "version": "3.36.0"
+    "version": "3.37.0"
   },
   "ega.dataset": {
     "description": "The EGA is a service for permanent archiving and sharing of all types of personally identifiable genetic and phenotypic data resulting from biomedical research projects. The EGA contains exclusive data collected from individuals whose consent agreements authorize data release only for specific research use or to bona fide researchers. Strict protocols govern how information is managed, stored and distributed by the EGA project. This collection references 'Datasets'.",
@@ -6496,7 +6534,7 @@
       "n2t": "encode",
       "prefixcommons": "ENCODE"
     },
-    "name": "ENCODE: Encyclopedia of DNA Elements",
+    "name": "Encyclopedia of DNA Elements",
     "pattern": "^ENC[A-Za-z]{2}[0-9]{3}[A-Za-z]{3}$",
     "preferred_prefix": "encode",
     "uri_format": "https://www.encodeproject.org/$1"
@@ -6777,6 +6815,7 @@
       "orcid": null
     },
     "description": "A application driven Epilepsy Ontology with official terms from the ILAE.",
+    "example": "0000011",
     "homepage": "https://github.com/SCAI-BIO/EpilepsyOntology",
     "license": "CC BY 4.0",
     "mappings": {
@@ -6804,26 +6843,16 @@
     "uri_format": "http://purl.obolibrary.org/obo/EPO_$1"
   },
   "epso": {
-    "banana": "EPSO",
-    "contact": {
-      "email": "alpha.tom.kodamullil@scai.fraunhofer.de",
-      "github": "akodamullil",
-      "name": "Alpha Tom Kodamullil",
-      "orcid": null
-    },
-    "description": "A application driven Epilepsy Ontology sith official terms from the ILAE.",
+    "description": "The Epilepsy and Seizure Ontology (EpSO) is an application ontology developed to support epilepsy focused informatics tools for patient care and clinical research. ",
     "example": "0000400",
-    "homepage": "https://github.com/phwegner/Epilepsyontology",
-    "license": "CC BY 4.0",
+    "homepage": "http://prism.case.edu/prism/index.php/EpilepsyOntology",
     "mappings": {
       "bioportal": "EPSO",
       "fairsharing": "FAIRsharing.ttprgy",
-      "obofoundry": "EPSO",
       "ontobee": "EPSO"
     },
-    "name": "Epilepsy Ontology",
-    "preferred_prefix": "EPSO",
-    "uri_format": "https://bio.scai.fraunhofer.de/ontology/$1"
+    "name": "Epilepsy and Seizure Ontology",
+    "preferred_prefix": "epso"
   },
   "erm": {
     "description": "The European Registry of Materials is a simple registry with the sole purpose to mint material identifiers to be used by research projects throughout the life cycle of their project.",
@@ -7348,6 +7377,18 @@
     "part_of": "flybase",
     "preferred_prefix": "fbtc",
     "uri_format": "https://flybase.org/reports/FBtc$1"
+  },
+  "fcb": {
+    "description": "Created by researchers and data managers professionals, the FAIR Cookbook is an online resource for the Life Sciences with recipes that help you to make and keep data Findable, Accessible, Interoperable, and Reusable (FAIR).\n\n",
+    "example": "FCB005",
+    "homepage": "https://w3id.org",
+    "mappings": {
+      "miriam": "fcb"
+    },
+    "name": "the FAIR Cookbook",
+    "pattern": "^FCB\\d{3}$",
+    "preferred_prefix": "fcb",
+    "uri_format": "https://w3id.org/faircookbook/$1"
   },
   "fcsfree": {
     "contributor": {
@@ -7914,13 +7955,14 @@
     "uri_format": "http://www.gabipd.org/database/cgi-bin/GreenCards.pl.cgi?BioObjectId=$1&Mode=ShowBioObject"
   },
   "galen": {
+    "comment": "I really tried, but could not figure out what GALEN stands for",
     "deprecated": true,
     "example": "MagnitudeValueType",
     "homepage": "https://www.opengalen.org",
     "mappings": {
       "bioportal": "GALEN"
     },
-    "name": "Galen Ontology",
+    "name": "GALEN",
     "preferred_prefix": "galen"
   },
   "gard": {
@@ -8396,6 +8438,18 @@
     "preferred_prefix": "github",
     "uri_format": "https://github.com/$1"
   },
+  "gitlab": {
+    "description": "GitLab is The DevOps platform that empowers organizations to maximize the overall return on software development by delivering software faster and efficiently, while strengthening security and compliance. With GitLab, every team in your organization can collaboratively plan, build, secure, and deploy software to drive business outcomes faster with complete transparency, consistency and traceability.",
+    "example": "morpheus.lab/morpheus",
+    "homepage": "https://gitlab.com/",
+    "mappings": {
+      "miriam": "gitlab"
+    },
+    "name": "GitLab",
+    "pattern": "^.*/.*$",
+    "preferred_prefix": "gitlab",
+    "uri_format": "https://gitlab.com/$1"
+  },
   "glida.gpcr": {
     "description": "The GPCR-LIgand DAtabase (GLIDA) is a GPCR-related chemical genomic database that is primarily focused on the correlation of information between GPCRs and their ligands. It provides correlation data between GPCRs and their ligands, along with chemical information on the ligands. This collection references G-protein coupled receptors.",
     "example": "ACM1_HUMAN",
@@ -8489,7 +8543,7 @@
       "fairsharing": "FAIRsharing.aI1J5W",
       "uniprot": "GlyGen"
     },
-    "name": "GlyGen: Computational and Informatics Resources for Glycoscience",
+    "name": "Computational and Informatics Resources for Glycoscience",
     "preferred_prefix": "glygen",
     "uri_format": "https://glygen.org/glycan/$1"
   },
@@ -8693,7 +8747,7 @@
       "gomfid"
     ],
     "uri_format": "http://amigo.geneontology.org/amigo/term/GO:$1",
-    "version": "2021-11-16"
+    "version": "2021-12-15"
   },
   "go.model": {
     "description": "GO-Causal Activity Models (GO-CAMs) use a defined “grammar” for linking multiple GO annotations into larger models of biological function (such as “pathways”) in a semantically structured manner. GO-CAMs are created by expert biocurators from the GO Consortium, using the Noctua Curation Platform.",
@@ -9072,7 +9126,7 @@
     "description": "The \"Codex General Standard for Food Additives\" (GSFA, Codex STAN 192-1995) sets forth the conditions under which permitted food additives may be used in all foods, whether or not they have previously been standardized by Codex. The Preamble of the GSFA contains additional information for interpreting the data. Users are encouraged to consult the Preamble when using this database.",
     "example": "174",
     "homepage": "http://www.fao.org/gsfaonline",
-    "name": "General Standard for Food Additives (GSFA) Online Database",
+    "name": "General Standard for Food Additives Online Database",
     "preferred_prefix": "gsfa",
     "synonyms": [
       "FAO/WHO_standards"
@@ -10354,7 +10408,7 @@
     "uri_format": "http://igsn.org/$1"
   },
   "igsr": {
-    "description": "Biological sample resources",
+    "description": "The International Genome Sample Resource (IGSR) was established to ensure the ongoing usability of data generated by the 1000 Genomes Project and to extend the data set. The 1000 Genomes Project ran between 2008 and 2015, creating the largest public catalogue of human variation and genotype data. As the project ended, the Data Coordination Centre at EMBL-EBI has received continued funding from the Wellcome Trust to maintain and expand the resource. IGSR was set up to do this and has the following aims: ensure the future access to and usability of the 1000 Genomes reference data; incorporate additional published genomic data on the 1000 Genomes samples; and expand the data collection to include new populations not represented in the 1000 Genomes Project.",
     "example": "NA06985",
     "homepage": "https://www.internationalgenome.org/",
     "mappings": {
@@ -12926,7 +12980,7 @@
       "ontobee": "MIAPA",
       "prefixcommons": "MIAPA"
     },
-    "name": "MIAPA Ontology",
+    "name": "Minimum Anformation About a Phylogenetic Analysis Ontology",
     "preferred_prefix": "MIAPA",
     "uri_format": "http://purl.obolibrary.org/obo/MIAPA_$1",
     "version": "2017-05-09"
@@ -13673,7 +13727,7 @@
     "pattern": "^\\d{7}$",
     "preferred_prefix": "MONDO",
     "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
-    "version": "2021-12-01"
+    "version": "2021-12-30"
   },
   "mop": {
     "banana": "MOP",
@@ -14805,7 +14859,7 @@
     "mappings": {
       "biolink": "NLMID"
     },
-    "name": "National Library of Medicine (NLM) Catalog",
+    "name": "National Library of Medicine Catalog",
     "preferred_prefix": "nlm",
     "uri_format": "https://www.ncbi.nlm.nih.gov/nlmcatalog/$1"
   },
@@ -14930,7 +14984,7 @@
       "ols": "nomen",
       "ontobee": "NOMEN"
     },
-    "name": "NOMEN - A nomenclatural ontology for biological names",
+    "name": "A nomenclatural ontology for biological names",
     "preferred_prefix": "NOMEN",
     "uri_format": "http://purl.obolibrary.org/obo/NOMEN_$1",
     "version": "2019-04-17"
@@ -15322,7 +15376,7 @@
       "n2t": "oclc",
       "prefixcommons": "OCLC"
     },
-    "name": "Online Computer Library Center (OCLC) WorldCat",
+    "name": "Online Computer Library Center WorldCat",
     "pattern": "^[0-9]+$",
     "preferred_prefix": "oclc",
     "uri_format": "https://www.worldcat.org/oclc/$1"
@@ -15884,10 +15938,10 @@
       "obofoundry": "ONTOAVIDA",
       "ols": "ontoavida"
     },
-    "name": "OntoAvida: ontology for Avida digital evolution platform",
+    "name": "Ontology for Avida digital evolution platform",
     "preferred_prefix": "ONTOAVIDA",
     "uri_format": "http://purl.obolibrary.org/obo/ONTOAVIDA_$1",
-    "version": "2021-09-01"
+    "version": "2021-12-20"
   },
   "ontoneo": {
     "banana": "ONTONEO",
@@ -16300,7 +16354,7 @@
       "fairsharing": "FAIRsharing.atygwy",
       "prefixcommons": "owl"
     },
-    "name": "OWL Ontology",
+    "name": "Web Ontology Language",
     "preferred_prefix": "owl",
     "uri_format": "http://www.w3.org/2002/07/owl#$1"
   },
@@ -17763,7 +17817,7 @@
       "PRO"
     ],
     "uri_format": "https://proconsortium.org/app/entry/PR:$1",
-    "version": "64.0"
+    "version": "65.0"
   },
   "pride": {
     "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence. This collection references experiments and assays.",
@@ -21867,6 +21921,18 @@
     "preferred_prefix": "vbrc",
     "uri_format": "http://vbrc.org/gene_detail.asp?gene_id=$1"
   },
+  "vcell": {
+    "description": "Models developed with the Virtual Cell (VCell) software prorgam.",
+    "example": "201022999",
+    "homepage": "https://health.uconn.edu/",
+    "mappings": {
+      "miriam": "vcell"
+    },
+    "name": "VCell Published Models",
+    "pattern": "^\\d{5,}$",
+    "preferred_prefix": "vcell",
+    "uri_format": "https://vcell.org/biomodel-$1"
+  },
   "vectorbase": {
     "description": "VectorBase is an NIAID-funded Bioinformatic Resource Center focused on invertebrate vectors of human pathogens. VectorBase annotates and curates vector genomes providing a web accessible integrated resource for the research community. Currently, VectorBase contains genome information for three mosquito species: Aedes aegypti, Anopheles gambiae and Culex quinquefasciatus, a body louse Pediculus humanus and a tick species Ixodes scapularis.",
     "example": "ISCW007415",
@@ -22381,7 +22447,7 @@
       "WBPhenotype"
     ],
     "uri_format": "http://www.wormbase.org/get?name=$1",
-    "version": "2021-12-12"
+    "version": "2021-12-20"
   },
   "webelements": {
     "contributor": {

@@ -104,6 +104,12 @@ wrong_patterns:
   miriam: ^GEO_[0-9]{9}$
   name: Geographical Entity Ontology
   prefix: geogeo
+- correct: ^.*/.*$
+  homepage: https://gitlab.com/
+  miriam: ^[0-9A-Za-z\u00A9-\u1f9ff_][0-9A-Za-z\p{Pd}\u00A9-\u1f9ff_()\. ]*/[0-9A-Za-z\u00A9-\u1f9ff_][0-9A-Za-z\p{Pd}\u00A9-\u1f9ff_\.
+    ]*$
+  name: GitLab
+  prefix: gitlab
 - correct: ^\d{7}$
   homepage: http://geneontology.org/
   miriam: ^GO:\d{7}$
