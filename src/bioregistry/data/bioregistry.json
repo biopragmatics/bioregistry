@@ -2487,6 +2487,23 @@
       "BAO"
     ]
   },
+  "bbkg": {
+    "mappings": {
+      "miriam": "bbkg"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "Blue Brain Project's published data as knowledge graphs and Web Studios.",
+      "homepage": "https://portal.bluebrain.epfl.ch",
+      "id": "00000903",
+      "name": "Blue Brain Project Knowledge Graph",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[-\\w]+(?:\\/[-\\w]+)(?:\\/\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b)$",
+      "prefix": "bbkg",
+      "sampleId": "topological-sampling/studios/f0ba2f3e-aa6f-4264-8d18-8ee65cf6f61a",
+      "uri_format": "https://bbp.epfl.ch/nexus/web/studios/public/$1"
+    }
+  },
   "bbtp": {
     "mappings": {
       "miriam": "bbtp"
@@ -3548,9 +3565,14 @@
       "prefix": "biolink",
       "uri_format": "https://w3id.org/biolink/vocab/$1"
     },
+    "bioportal": {
+      "name": "Biolink Model",
+      "prefix": "BIOLINK"
+    },
     "homepage": "https://biolink.github.io/biolink-model/",
     "mappings": {
       "biolink": "biolink",
+      "bioportal": "BIOLINK",
       "miriam": "biolink"
     },
     "miriam": {
@@ -5804,8 +5826,13 @@
     }
   },
   "cdno": {
+    "bioportal": {
+      "name": "Compositional Dietary Nutrition Ontology",
+      "prefix": "CDNO"
+    },
     "example": "0000013",
     "mappings": {
+      "bioportal": "CDNO",
       "obofoundry": "cdno",
       "ols": "cdno",
       "ontobee": "CDNO"
@@ -11481,8 +11508,13 @@
     }
   },
   "disdriv": {
+    "bioportal": {
+      "name": "Disease Drivers Ontology",
+      "prefix": "DISDRIV"
+    },
     "example": "0000000",
     "mappings": {
+      "bioportal": "DISDRIV",
       "obofoundry": "disdriv"
     },
     "obofoundry": {

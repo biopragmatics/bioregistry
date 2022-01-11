@@ -1106,6 +1106,18 @@
     "uri_format": "http://bioportal.bioontology.org/ontologies/BAO/bao:BAO_$1",
     "version": "2.7.2"
   },
+  "bbkg": {
+    "description": "Blue Brain Project's published data as knowledge graphs and Web Studios.",
+    "example": "topological-sampling/studios/f0ba2f3e-aa6f-4264-8d18-8ee65cf6f61a",
+    "homepage": "https://portal.bluebrain.epfl.ch",
+    "mappings": {
+      "miriam": "bbkg"
+    },
+    "name": "Blue Brain Project Knowledge Graph",
+    "pattern": "^[-\\w]+(?:\\/[-\\w]+)(?:\\/\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b)$",
+    "preferred_prefix": "bbkg",
+    "uri_format": "https://bbp.epfl.ch/nexus/web/studios/public/$1"
+  },
   "bbtp": {
     "description": "Input data and analysis results for the paper \"Topology of synaptic connectivity constrains neuronal stimulus representation, predicting two complementary coding strategies (https://www.biorxiv.org/content/10.1101/2020.11.02.363929v2 ).",
     "example": "f0ba2f3e-aa6f-4264-8d18-8ee65cf6f61a",
@@ -1587,9 +1599,10 @@
     "homepage": "https://biolink.github.io/biolink-model/",
     "mappings": {
       "biolink": "biolink",
+      "bioportal": "BIOLINK",
       "miriam": "biolink"
     },
-    "name": "BioLink Model",
+    "name": "Biolink Model",
     "pattern": "^\\S+$",
     "preferred_prefix": "biolink",
     "uri_format": "https://w3id.org/biolink/vocab/$1"
@@ -2619,6 +2632,7 @@
     "homepage": "https://github.com/Southern-Cross-Plant-Science/cdno",
     "license": "CC BY 3.0",
     "mappings": {
+      "bioportal": "CDNO",
       "obofoundry": "CDNO",
       "ols": "cdno",
       "ontobee": "CDNO"
@@ -5359,6 +5373,7 @@
     "homepage": "http://www.disease-ontology.org",
     "license": "CC0 1.0",
     "mappings": {
+      "bioportal": "DISDRIV",
       "obofoundry": "DISDRIV"
     },
     "name": "Disease Drivers Ontology",
