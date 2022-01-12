@@ -432,10 +432,6 @@ class Manager:
         :param metaidentifier: The prefix in the external registry
         :param normalize: Should external prefixes be normalized during lookup (e.g., lowercased)
         :return: The bioregistry prefix (if it can be mapped)
-
-        >>> from bioregistry import manager
-        >>> manager.lookup_from("fairsharing", "FAIRsharing.62qk8w")
-        'chebi'
         """
         external_id_to_bioregistry_id = self.get_registry_invmap(metaprefix)
         if normalize:
