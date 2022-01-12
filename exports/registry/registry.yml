@@ -178,6 +178,8 @@ adw:
   preferred_prefix: ADW
   uri_format: https://animaldiversity.org/accounts/$1
 aeo:
+  appears_in:
+  - ehdaa2
   banana: AEO
   contact:
     email: J.Bard@ed.ac.uk
@@ -299,6 +301,20 @@ agro:
     github: marieALaporte
     name: "Marie-Ang\xE9lique Laporte"
     orcid: null
+  depends_on:
+  - bfo
+  - envo
+  - foodon
+  - go
+  - iao
+  - ncbitaxon
+  - obi
+  - pato
+  - po
+  - ro
+  - to
+  - uo
+  - xco
   description: AgrO is an ontlogy for representing agronomic practices, techniques,
     variables and related entities
   example: '00020007'
@@ -333,12 +349,22 @@ agrovoc:
   - https://en.wikipedia.org/wiki/AGROVOC
   uri_format: http://aims.fao.org/aos/agrovoc/c_$1
 aism:
+  appears_in:
+  - colao
+  - lepao
   banana: AISM
   contact:
     email: entiminae@gmail.com
     github: null
     name: "Jennifer C. Gir\xF3n"
     orcid: null
+  depends_on:
+  - bfo
+  - bspo
+  - caro
+  - pato
+  - ro
+  - uberon
   description: The ontology for the Anatomy of the Insect SkeletoMuscular system (AISM)
     contains terms used to describe the cuticle - as a single anatomical structure
     - and the skeletal muscle system, to be used in insect biodiversity research.
@@ -411,6 +437,8 @@ amphx:
     github: null
     name: Hector Escriva
     orcid: null
+  depends_on:
+  - uberon
   description: An ontology for the development and anatomy of Amphioxus (Branchiostoma
     lanceolatum).
   example: '1000160'
@@ -594,6 +622,8 @@ apo:
   uri_format: https://www.yeastgenome.org/observable/APO:$1
   version: '2022-01-03'
 apollosv:
+  appears_in:
+  - scdo
   banana: APOLLO_SV
   contact:
     email: MBrochhausen@uams.edu
@@ -675,6 +705,8 @@ ark:
   preferred_prefix: ark
   uri_format: http://n2t.net/ark:$1
 aro:
+  appears_in:
+  - scdo
   banana: ARO
   contact:
     email: mcarthua@mcmaster.ca
@@ -1171,6 +1203,8 @@ bcio:
   preferred_prefix: bcio
   version: '2020-12-15'
 bco:
+  appears_in:
+  - fovt
   banana: BCO
   contact:
     email: rlwalls2008@gmail.com
@@ -1323,6 +1357,24 @@ bel:
   name: Biological Expression Language
   preferred_prefix: bel
 bfo:
+  appears_in:
+  - agro
+  - aism
+  - cdno
+  - colao
+  - duo
+  - ecocore
+  - foodon
+  - fovt
+  - hso
+  - lepao
+  - mco
+  - ons
+  - pco
+  - psdo
+  - rbo
+  - xpo
+  - zp
   banana: BFO
   contact:
     email: phismith@buffalo.edu
@@ -2138,6 +2190,12 @@ bs:
   pattern: ^\d+$
   preferred_prefix: bs
 bspo:
+  appears_in:
+  - aism
+  - colao
+  - fovt
+  - lepao
+  - zp
   banana: BSPO
   contact:
     email: cjmungall@lbl.gov
@@ -2334,6 +2392,12 @@ caps:
   preferred_prefix: caps
   uri_format: http://www.bioinsilico.org/cgi-bin/CAPSDB/getCAPScluster?nidcl=$1
 caro:
+  appears_in:
+  - aism
+  - colao
+  - ehdaa2
+  - lepao
+  - pco
   banana: CARO
   contact:
     email: haendel@ohsu.edu
@@ -2639,6 +2703,12 @@ cdno:
     github: LilyAndres
     name: Liliana Andres Hernandez
     orcid: null
+  depends_on:
+  - bfo
+  - chebi
+  - envo
+  - pato
+  - ro
   description: None
   example: '0000013'
   homepage: https://github.com/Southern-Cross-Plant-Science/cdno
@@ -2862,6 +2932,22 @@ charprot:
   preferred_prefix: charprot
   uri_format: http://www.jcvi.org/charprotdb/index.cgi/view/$1
 chebi:
+  appears_in:
+  - cdno
+  - chiro
+  - cl
+  - ecocore
+  - ecto
+  - envo
+  - fobi
+  - foodon
+  - genepio
+  - maxo
+  - mco
+  - ons
+  - scdo
+  - uberon
+  - xpo
   banana: CHEBI
   contact:
     email: amalik@ebi.ac.uk
@@ -3094,6 +3180,14 @@ chiro:
     github: nicolevasilevsky
     name: Nicole Vasilevsky
     orcid: null
+  depends_on:
+  - chebi
+  - go
+  - hp
+  - mp
+  - ncbitaxon
+  - pr
+  - uberon
   description: CHEBI provides a distinct role hierarchy. Chemicals in the structural
     hierarchy are connected via a 'has role' relation. CHIRO provides links from these
     roles to useful other classes in other ontologies. This will allow direct connection
@@ -3113,6 +3207,9 @@ chiro:
   uri_format: http://purl.obolibrary.org/obo/CHIRO_$1
   version: '2015-11-23'
 chmo:
+  appears_in:
+  - rbo
+  - scdo
   banana: CHMO
   contact:
     email: batchelorc@rsc.org
@@ -3249,12 +3346,26 @@ civic.eid:
   preferred_prefix: civic.eid
   uri_format: https://civicdb.org/links/evidence/$1
 cl:
+  appears_in:
+  - clo
+  - ecao
+  - ehdaa2
+  - go
+  - mco
+  - uberon
+  - xpo
   banana: CL
   contact:
     email: addiehl@buffalo.edu
     github: addiehl
     name: Alexander Diehl
     orcid: null
+  depends_on:
+  - chebi
+  - go
+  - pato
+  - ro
+  - uberon
   description: The Cell Ontology is designed as a structured controlled vocabulary
     for cell types. The ontology was constructed for use by the model organism and
     other bioinformatics databases, incorporating cell types from prokaryotes to mammals,
@@ -3287,6 +3398,8 @@ clao:
     github: luis-gonzalez-m
     name: "Luis Gonz\xE1lez-Monta\xF1a"
     orcid: null
+  depends_on:
+  - ro
   description: 'CLAO is an ontology of anatomical terms employed in morphological
     descriptions for the Class Collembola (Arthropoda: Hexapoda).'
   example: 0000088
@@ -3437,12 +3550,19 @@ clinvar.submitter:
   preferred_prefix: clinvar.submitter
   uri_format: https://www.ncbi.nlm.nih.gov/clinvar/submitters/$1
 clo:
+  appears_in:
+  - mco
   banana: CLO
   contact:
     email: siiraa@umich.edu
     github: null
     name: Sirarat Sarntivijai
     orcid: null
+  depends_on:
+  - cl
+  - doid
+  - ncbitaxon
+  - uberon
   description: The Cell Line Ontology (CLO) is a community-based ontology of cell
     lines. The CLO is developed to unify publicly available cell line entry data from
     multiple sources to a standardized logically defined format based on consensus
@@ -3481,6 +3601,10 @@ clyh:
     github: L-Leclere
     name: Lucas Leclere
     orcid: null
+  depends_on:
+  - iao
+  - ro
+  - uberon
   description: Anatomy, development and life cycle stages - planula, polyp, medusa/jellyfish
     - of the cnidarian hydrozoan species, Clytia hemiphaerica.
   example: '1000100'
@@ -3530,6 +3654,8 @@ cmf:
   preferred_prefix: CMF
   uri_format: http://purl.obolibrary.org/obo/CMF_$1
 cmo:
+  appears_in:
+  - scdo
   banana: CMO
   contact:
     email: shimoyama@mcw.edu
@@ -4052,6 +4178,14 @@ colao:
     github: JCGiron
     name: Jennifer C. Giron
     orcid: null
+  depends_on:
+  - aism
+  - bfo
+  - bspo
+  - caro
+  - pato
+  - ro
+  - uberon
   description: The Coleoptera Anatomy Ontology contains terms used for describing
     the anatomy and phenotype of beetles in biodiversity research.
   example: '0000000'
@@ -4298,6 +4432,8 @@ covoc:
   preferred_prefix: covoc
   version: '2020-08-28'
 cp:
+  appears_in:
+  - cl
   comment: Part of cell ontology but deprecated, see https://github.com/obophenotype/cell-ontology/issues/572
   contributor:
     email: cthoyt@gmail.com
@@ -4567,6 +4703,9 @@ cteno:
     github: cmungall
     name: Chris Mungall
     orcid: null
+  depends_on:
+  - ro
+  - uberon
   description: An anatomical and developmental ontology for ctenophores (Comb Jellies)
   example: '0000047'
   homepage: https://github.com/obophenotype/ctenophore-ontology
@@ -4903,6 +5042,8 @@ dbgap:
   preferred_prefix: dbgap
   uri_format: https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=$1
 dbmhc:
+  appears_in:
+  - cellosaurus
   deprecated: true
   description: Cell line databases/resources
   example: '48439'
@@ -5396,6 +5537,8 @@ disdriv:
   preferred_prefix: DISDRIV
   uri_format: http://purl.obolibrary.org/obo/DISDRIV_$1
 diseaseclass:
+  appears_in:
+  - efo
   deprecated: true
   description: Legacy disease classes that later became MONDO
   example: 0000598
@@ -5491,6 +5634,9 @@ doi:
     uri_format: https://scholia.toolforge.org/doi/$1
   uri_format: https://doi.org/$1
 doid:
+  appears_in:
+  - clo
+  - scdo
   banana: DOID
   contact:
     email: lynn.schriml@gmail.com
@@ -5694,6 +5840,8 @@ dragondb.protein:
   preferred_prefix: dragondb.protein
   uri_format: http://antirrhinum.net/cgi-bin/ace/generic/tree/DragonDB?name=$1;class=Peptide
 dron:
+  appears_in:
+  - scdo
   banana: DRON
   contact:
     email: hoganwr@gmail.com
@@ -5819,6 +5967,8 @@ dsmz:
   preferred_prefix: dsmz
   uri_format: https://www.dsmz.de/collection/catalogue/details/culture/$1
 dto:
+  appears_in:
+  - pr
   description: 'DTO integrates and harmonizes knowledge of the most important druggable
     protein families: kinases, GPCRs, ion channels and nuclear hormone receptors.'
   example: '90000018'
@@ -5829,12 +5979,17 @@ dto:
   name: Drug Target Ontology
   preferred_prefix: dto
 duo:
+  appears_in:
+  - scdo
   banana: DUO
   contact:
     email: mcourtot@gmail.com
     github: mcourtot
     name: Melanie Courtot
     orcid: null
+  depends_on:
+  - bfo
+  - iao
   description: DUO is an ontology which represent data use conditions.
   example: '0000046'
   homepage: https://github.com/EBISPOT/DUO
@@ -5893,6 +6048,10 @@ ecao:
     github: ettensohn
     name: Charles Ettensohn
     orcid: null
+  depends_on:
+  - cl
+  - ro
+  - uberon
   description: None
   example: 0107180
   homepage: https://github.com/echinoderm-ontology/ecao_ontology
@@ -6041,6 +6200,17 @@ ecocore:
     github: pbuttigieg
     name: Pier Luigi Buttigieg
     orcid: null
+  depends_on:
+  - bfo
+  - chebi
+  - envo
+  - go
+  - iao
+  - pato
+  - pco
+  - po
+  - ro
+  - uberon
   description: Ecocore is a community ontology for the concise and controlled description
     of ecological traits of organisms.
   example: '00000001'
@@ -6123,6 +6293,20 @@ ecto:
     github: diatomsRcool
     name: Anne Thessen
     orcid: null
+  depends_on:
+  - chebi
+  - envo
+  - exo
+  - go
+  - iao
+  - maxo
+  - nbo
+  - ncbitaxon
+  - ncit
+  - pato
+  - ro
+  - uberon
+  - xco
   description: ECTO describes exposures to experimental treatments of plants and model
     organisms (e.g. exposures to modification of diet, lighting levels, temperature);
     exposures of humans or any other organisms to stressors through a variety of routes,
@@ -6392,6 +6576,10 @@ ehdaa2:
     github: null
     name: Jonathan Bard
     orcid: null
+  depends_on:
+  - aeo
+  - caro
+  - cl
   description: A structured controlled vocabulary of stage-specific anatomical structures
     of the developing human.
   example: '0000000'
@@ -6732,12 +6920,31 @@ envipath:
   preferred_prefix: envipath
   uri_format: https://envipath.org/package/$1
 envo:
+  appears_in:
+  - agro
+  - cdno
+  - ecocore
+  - ecto
+  - foodon
+  - ons
+  - pco
+  - rbo
+  - scdo
   banana: ENVO
   contact:
     email: p.buttigieg@gmail.com
     github: pbuttigieg
     name: Pier Luigi Buttigieg
     orcid: null
+  depends_on:
+  - chebi
+  - foodon
+  - go
+  - ncbitaxon
+  - pco
+  - po
+  - ro
+  - uberon
   description: The Environment Ontology is a resource and research target for the
     semantically controlled description of environmental entities. The ontology's
     initial aim was the representation of the biomes, environmental features, and
@@ -6830,6 +7037,8 @@ epio:
     github: akodamullil
     name: Alpha Tom Kodamullil
     orcid: null
+  depends_on:
+  - bfo
   description: A application driven Epilepsy Ontology with official terms from the
     ILAE.
   example: '0000011'
@@ -6968,6 +7177,8 @@ euclinicaltrials:
   preferred_prefix: euclinicaltrials
   uri_format: https://www.clinicaltrialsregister.eu/ctr-search/search?query=$1
 eupath:
+  appears_in:
+  - scdo
   banana: EUPATH
   contact:
     email: stoeckrt@pennmedicine.upenn.edu
@@ -7014,6 +7225,8 @@ eurofir:
   preferred_prefix: eurofir
   proprietary: true
 ev:
+  appears_in:
+  - cl
   banana: EV
   contact:
     email: evoc@sanbi.ac.za
@@ -7096,6 +7309,9 @@ exac.variant:
   preferred_prefix: exac.variant
   uri_format: http://exac.broadinstitute.org/variant/$1
 exo:
+  appears_in:
+  - ecto
+  - scdo
   banana: ExO
   contact:
     email: cjgrondin@ncsu.edu
@@ -7267,6 +7483,8 @@ fbbt:
   uri_format: https://flybase.org/cgi-bin/cvreport.pl?id=FBbt:$1
   version: '2021-10-14'
 fbcv:
+  appears_in:
+  - ontoavida
   banana: FBcv
   contact:
     email: cp390@cam.ac.uk
@@ -7638,6 +7856,9 @@ fobi:
     github: pcastellanoescuder
     name: Pol Castellano Escuder
     orcid: null
+  depends_on:
+  - chebi
+  - foodon
   description: FOBI (Food-Biomarker Ontology) is an ontology to represent food intake
     data and associate it with metabolomic data
   example: 030719
@@ -7672,12 +7893,28 @@ foodb.compound:
   - foodb
   uri_format: http://foodb.ca/compounds/$1
 foodon:
+  appears_in:
+  - agro
+  - envo
+  - fobi
+  - maxo
+  - one
+  - ons
   banana: FOODON
   contact:
     email: damion_dooley@sfu.ca
     github: ddooley
     name: Damion Dooley
     orcid: null
+  depends_on:
+  - bfo
+  - chebi
+  - envo
+  - ncbitaxon
+  - obi
+  - peco
+  - ro
+  - uberon
   description: FoodOn is a comprehensive and easily accessible global farm-to-fork
     ontology about food that accurately and consistently describes foods commonly
     known in cultures from around the world. It is a consortium-driven project built
@@ -7708,6 +7945,15 @@ fovt:
     github: https://github.com/futres/fovt
     name: FuTRES Ontology of Vertebrate Traits
     orcid: null
+  depends_on:
+  - bco
+  - bfo
+  - bspo
+  - iao
+  - oba
+  - pato
+  - ro
+  - uberon
   description: None
   example: 0000009
   homepage: https://github.com/futres/fovt
@@ -8011,6 +8257,8 @@ gateway:
   preferred_prefix: gateway
   uri_format: https://web.www.healthdatagateway.org/dataset/$1
 gaz:
+  appears_in:
+  - scdo
   banana: GAZ
   contact:
     email: lschriml@som.umaryland.edu
@@ -8231,6 +8479,12 @@ genepio:
     github: null
     name: Damion Dooley
     orcid: null
+  depends_on:
+  - chebi
+  - ncbitaxon
+  - po
+  - ro
+  - uberon
   description: The Genomic Epidemiology Ontology (GenEpiO) covers vocabulary necessary
     to identify, document and research foodborne pathogens and associated outbreaks.
   example: 0001885
@@ -8719,12 +8973,30 @@ gnpis:
   preferred_prefix: gnpis
   uri_format: https://urgi.versailles.inra.fr/gnpis/#result/term=$1
 go:
+  appears_in:
+  - agro
+  - chiro
+  - cl
+  - ecocore
+  - ecto
+  - envo
+  - maxo
+  - pco
+  - planp
+  - uberon
+  - xpo
+  - zp
   banana: GO
   contact:
     email: suzia@stanford.edu
     github: null
     name: Suzi Aleksander
     orcid: null
+  depends_on:
+  - cl
+  - ncbitaxon
+  - ro
+  - uberon
   description: The Gene Ontology project provides a controlled vocabulary to describe
     gene and gene product attributes in any organism.
   example: '0032571'
@@ -9183,6 +9455,9 @@ gsfa:
   - FAO/WHO_standards
   uri_format: http://www.fao.org/gsfaonline/additives/details.html?id=$1
 gsso:
+  appears_in:
+  - ontoavida
+  - scdo
   banana: GSSO
   contact:
     email: kronkcj@mail.uc.edu
@@ -9225,6 +9500,8 @@ gtex:
   preferred_prefix: gtex
   uri_format: https://www.gtexportal.org/home/gene/$1
 gtr:
+  appears_in:
+  - mondo
   comment: Identifiers appearing in MONDO don't match any of the resources apparent
     endpoints
   contributor:
@@ -9836,6 +10113,9 @@ hovergen:
   preferred_prefix: hovergen
   uri_format: http://pbil.univ-lyon1.fr/cgi-bin/view-tree.pl?query=$1&db=HOVERGEN
 hp:
+  appears_in:
+  - chiro
+  - scdo
   banana: HP
   contact:
     email: dr.sebastian.koehler@gmail.com
@@ -9967,6 +10247,8 @@ hpscreg:
   preferred_prefix: hpscreg
   uri_format: https://hpscreg.eu/cell-line/$1
 hsapdv:
+  appears_in:
+  - scdo
   banana: HsapDv
   contact:
     email: frederic.bastian@unil.ch
@@ -10011,6 +10293,12 @@ hso:
     github: nandadorea
     name: Fernanda Dorea
     orcid: null
+  depends_on:
+  - bfo
+  - ncbitaxon
+  - obi
+  - ro
+  - uberon
   description: The health Surveillance Ontology (HSO) focuses on "surveillance system
     level data", that is, data outputs from surveillance activities, such as number
     of samples collected, cases observed, etc. It aims to support One-Health surveillance,
@@ -10087,6 +10375,18 @@ huge:
   preferred_prefix: huge
   uri_format: https://www.kazusa.or.jp/huge/gfpage/$1
 iao:
+  appears_in:
+  - agro
+  - clyh
+  - duo
+  - ecocore
+  - ecto
+  - fovt
+  - labo
+  - maxo
+  - pco
+  - psdo
+  - xpo
   banana: IAO
   contact:
     email: jiezheng@pennmedicine.upenn.edu
@@ -10266,6 +10566,8 @@ iclc:
   preferred_prefix: iclc
   uri_format: http://www.iclc.it/details/det_list.php?line_id=$1
 ico:
+  appears_in:
+  - scdo
   banana: ICO
   contact:
     email: yongqunh@med.umich.edu
@@ -10318,6 +10620,8 @@ identifiers.namespace:
   preferred_prefix: identifiers.namespace
   uri_format: https://registry.identifiers.org/registry/$1
 ido:
+  appears_in:
+  - scdo
   banana: IDO
   contact:
     email: Lindsay.Cowell@utsouthwestern.edu
@@ -10371,6 +10675,8 @@ idoden:
   references:
   - https://journals.plos.org/plosntds/article?id=10.1371/journal.pntd.0003479
 idomal:
+  appears_in:
+  - scdo
   banana: IDOMAL
   contact:
     email: topalis@imbb.forth.gr
@@ -11631,6 +11937,8 @@ knapsack:
   preferred_prefix: knapsack
   uri_format: http://www.knapsackfamily.com/knapsack_core/information.php?word=$1
 kupo:
+  appears_in:
+  - cl
   comment: Website is down, now it redirects to something else that is not related
   contributor:
     email: cthoyt@gmail.com
@@ -11660,6 +11968,13 @@ labo:
     github: null
     name: Paul Fabry
     orcid: null
+  depends_on:
+  - iao
+  - obi
+  - ogms
+  - omiabis
+  - omrse
+  - opmi
   description: LABO is an ontology of informational entities formalizing clinical
     laboratory tests prescriptions and reporting documents.
   example: '0000124'
@@ -11709,12 +12024,21 @@ lepao:
     github: luis-gonzalez-m
     name: Luis A. Gonzalez-Montana
     orcid: null
+  depends_on:
+  - aism
+  - bfo
+  - bspo
+  - caro
+  - pato
+  - ro
+  - uberon
   description: The Lepidoptera Anatomy Ontology contains terms used for describing
     the anatomy and phenotype of moths and butterflies in biodiversity research.
   example: '0000005'
   homepage: https://github.com/insect-morphology/lepao
   license: CC BY 4.0
   mappings:
+    bioportal: LEPAO
     obofoundry: LEPAO
     ols: lepao
   name: Lepidoptera Anatomy Ontology
@@ -12309,6 +12633,8 @@ mat:
   preferred_prefix: MAT
   uri_format: http://purl.obolibrary.org/obo/MAT_$1
 matrixdb:
+  appears_in:
+  - complexportal
   contributor:
     email: cthoyt@gmail.com
     github: null
@@ -12339,12 +12665,21 @@ matrixdb.association:
   preferred_prefix: matrixdb.association
   uri_format: http://matrixdb.univ-lyon1.fr//cgi-bin/current/newPort?type=association&value=$1&class=Association
 maxo:
+  appears_in:
+  - ecto
   banana: MAXO
   contact:
     email: Leigh.Carmody@jax.org
     github: LCCarmody
     name: Leigh Carmody
     orcid: null
+  depends_on:
+  - chebi
+  - foodon
+  - go
+  - iao
+  - ro
+  - uberon
   description: An ontology to represent medically relevant actions, procedures, therapies,
     interventions, and recommendations.
   example: 0000008
@@ -12373,6 +12708,20 @@ mco:
     github: null
     name: "Citlalli Mej\xEDa-Almonte"
     orcid: null
+  depends_on:
+  - bfo
+  - chebi
+  - cl
+  - clo
+  - micro
+  - ncbitaxon
+  - ncit
+  - obi
+  - omit
+  - omp
+  - pato
+  - uberon
+  - zeco
   description: Microbial Conditions Ontology is an ontology...
   example: 0000858
   homepage: https://github.com/microbial-conditions-ontology/microbial-conditions-ontology
@@ -12765,6 +13114,8 @@ mfmo:
     github: RDruzinsky
     name: Robert Druzinsky
     orcid: null
+  depends_on:
+  - uberon
   description: The Mammalian Feeding Muscle Ontology is an antomy ontology for the
     muscles of the head and neck that participate in feeding, swallowing, and other
     oral-pharyngeal behaviors.
@@ -13022,6 +13373,8 @@ miapa:
   uri_format: http://purl.obolibrary.org/obo/MIAPA_$1
   version: '2017-05-09'
 micro:
+  appears_in:
+  - mco
   banana: MICRO
   contact:
     email: carrine.blank@umontana.edu
@@ -13784,6 +14137,9 @@ morpheus:
   preferred_prefix: morpheus
   uri_format: https://morpheus.gitlab.io/models/$1
 mp:
+  appears_in:
+  - chiro
+  - scdo
   banana: MP
   contact:
     email: pheno@jax.org
@@ -13916,6 +14272,9 @@ ms:
     github: null
     name: Gerhard Mayer
     orcid: null
+  depends_on:
+  - pato
+  - uo
   description: The PSI-Mass Spectrometry (MS) CV contains all the terms used in the
     PSI MS-related data standards. The CV contains a logical hierarchical structure
     to ensure ease of maintenance and the development of software that makes use of
@@ -14263,6 +14622,9 @@ nbn:
   preferred_prefix: nbn
   uri_format: http://nbn-resolving.org/resolver?identifier=$1&verb=redirect
 nbo:
+  appears_in:
+  - ecto
+  - scdo
   banana: NBO
   contact:
     email: g.gkoutos@bham.ac.uk
@@ -14384,6 +14746,18 @@ ncbiprotein:
   preferred_prefix: NCBIProtein
   uri_format: https://www.ncbi.nlm.nih.gov/protein/$1
 ncbitaxon:
+  appears_in:
+  - agro
+  - chiro
+  - clo
+  - ecto
+  - envo
+  - foodon
+  - genepio
+  - go
+  - hso
+  - mco
+  - ons
   contact:
     email: frederic.bastian@unil.ch
     github: fbastian
@@ -14455,6 +14829,11 @@ ncim:
   preferred_prefix: ncim
   uri_format: http://ncim.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=$1
 ncit:
+  appears_in:
+  - ecto
+  - mco
+  - ontoavida
+  - scdo
   contact:
     email: haendel@ohsu.edu
     github: mellybelly
@@ -14867,6 +15246,8 @@ nlxanat:
   preferred_prefix: nlxanat
   uri_format: http://uri.neuinfo.org/nif/nifstd/nlx_anat_$1
 nlxdys:
+  appears_in:
+  - mondo
   contributor:
     email: cthoyt@gmail.com
     github: null
@@ -15171,6 +15552,8 @@ oarcs:
   uri_format: http://purl.obolibrary.org/obo/OARCS_$1
   version: '2019-04-18'
 oba:
+  appears_in:
+  - fovt
   banana: OBA
   contact:
     email: cjmungall@lbl.gov
@@ -15223,6 +15606,16 @@ obcs:
   uri_format: http://purl.obolibrary.org/obo/OBCS_$1
   version: '101'
 obi:
+  appears_in:
+  - agro
+  - foodon
+  - hso
+  - labo
+  - mco
+  - one
+  - ons
+  - rbo
+  - scdo
   banana: OBI
   contact:
     email: bpeters@lji.org
@@ -15500,6 +15893,9 @@ ogi:
   uri_format: http://purl.obolibrary.org/obo/OGI_$1
   version: '2.0'
 ogms:
+  appears_in:
+  - labo
+  - scdo
   banana: OGMS
   contact:
     email: baeverma@jcvi.org
@@ -15754,6 +16150,8 @@ omia:
   preferred_prefix: omia
   uri_format: http://omia.angis.org.au/$1/
 omiabis:
+  appears_in:
+  - labo
   banana: OMIABIS
   contact:
     email: mbrochhausen@gmail.com
@@ -15777,6 +16175,8 @@ omiabis:
   uri_format: http://purl.obolibrary.org/obo/OMIABIS_$1
   version: '2014-05-28'
 omit:
+  appears_in:
+  - mco
   banana: OMIT
   contact:
     email: huang@southalabama.edu
@@ -15850,6 +16250,8 @@ omop:
   references:
   - https://github.com/callahantiff/OMOP2OBO
 omp:
+  appears_in:
+  - mco
   banana: OMP
   contact:
     email: jimhu@tamu.edu
@@ -15873,6 +16275,8 @@ omp:
   uri_format: http://purl.obolibrary.org/obo/OMP_$1
   version: '2022-01-07'
 omrse:
+  appears_in:
+  - labo
   banana: OMRSE
   contact:
     email: hoganwr@gmail.com
@@ -15897,6 +16301,8 @@ omrse:
   uri_format: http://purl.obolibrary.org/obo/OMRSE_$1
   version: '2021-08-30'
 oncotree:
+  appears_in:
+  - efo
   contributor:
     email: cthoyt@gmail.com
     github: null
@@ -15918,6 +16324,10 @@ one:
     github: cyang0128
     name: Chen Yang
     orcid: null
+  depends_on:
+  - foodon
+  - obi
+  - ons
   description: An ontology to standardize research output of nutritional epidemiologic
     studies.
   example: '0001021'
@@ -15933,12 +16343,23 @@ one:
   preferred_prefix: ONE
   uri_format: http://purl.obolibrary.org/obo/ONE_$1
 ons:
+  appears_in:
+  - one
   banana: ONS
   contact:
     email: francesco.vitali@ibba.cnr.it
     github: FrancescoVit
     name: Francesco Vitali
     orcid: null
+  depends_on:
+  - bfo
+  - chebi
+  - envo
+  - foodon
+  - ncbitaxon
+  - obi
+  - ro
+  - uberon
   description: The Ontology for Nutritional Studies (ONS) has been developed as part
     of the ENPADASI European project (http://www.enpadasi.eu/) with the aim to define
     a common language and building ontologies for nutritional studies.
@@ -15962,6 +16383,12 @@ ontoavida:
     github: miguelfortuna
     name: Miguel A. Fortuna
     orcid: null
+  depends_on:
+  - fbcv
+  - gsso
+  - ncit
+  - ro
+  - stato
   description: "The Ontology for Avida (OntoAvida) project aims to develop an integrated\
     \ vocabulary for the description of the most widely used computational approach\
     \ for performing experimental evolution using digital organisms (i.e., self-replicating\
@@ -15978,6 +16405,7 @@ ontoavida:
   homepage: https://gitlab.com/fortunalab/ontoavida
   license: CC BY 4.0
   mappings:
+    bioportal: ONTOAVIDA
     obofoundry: ONTOAVIDA
     ols: ontoavida
   name: Ontology for Avida digital evolution platform
@@ -16049,6 +16477,30 @@ opb:
   pattern: ^\d+$
   preferred_prefix: opb
   uri_format: http://purl.bioontology.org/ontology/OPB?conceptid=http%3A%2F%2Fbhi.washington.edu%2FOPB%23OPB_$1
+openalex:
+  contact:
+    email: hpiwowar@gmail.com
+    github: hpiwowar
+    name: Heather Piwowar
+    orcid: 0000-0003-1613-5981
+  contributor:
+    email: null
+    github: dhimmel
+    name: Daniel Himmelstein
+    orcid: 0000-0002-3012-7446
+  description: OpenAlex is a fully open catalog of the global research system that
+    describes scholarly entities and how those entities are connected to each other.
+  example: W2741809807
+  homepage: https://openalex.org/
+  name: OpenAlex
+  pattern: ^[WAICV]\d{2,}$
+  preferred_prefix: openalex
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://openalex.org/$1
 opl:
   banana: OPL
   contact:
@@ -16092,6 +16544,9 @@ opm:
   preferred_prefix: opm
   uri_format: http://opm.phar.umich.edu/protein.php?pdbid=$1
 opmi:
+  appears_in:
+  - labo
+  - scdo
   banana: OPMI
   contact:
     email: yongqunh@med.umich.edu
@@ -16626,6 +17081,24 @@ pathwaycommons:
   preferred_prefix: pathwaycommons
   uri_format: http://www.pathwaycommons.org/pc/record2.do?id=$1
 pato:
+  appears_in:
+  - agro
+  - aism
+  - cdno
+  - cl
+  - colao
+  - ecocore
+  - ecto
+  - fovt
+  - lepao
+  - mco
+  - ms
+  - pco
+  - phipo
+  - planp
+  - rbo
+  - xpo
+  - zp
   banana: PATO
   contact:
     email: g.gkoutos@gmail.com
@@ -16732,12 +17205,24 @@ pazar:
   preferred_prefix: pazar
   uri_format: http://www.pazar.info/cgi-bin/tf_search.cgi?geneID=$1
 pco:
+  appears_in:
+  - ecocore
+  - envo
   banana: PCO
   contact:
     email: rlwalls2008@gmail.com
     github: ramonawalls
     name: Ramona Walls
     orcid: null
+  depends_on:
+  - bfo
+  - caro
+  - envo
+  - go
+  - iao
+  - ncbitaxon
+  - pato
+  - ro
   description: The Population and Community Ontology (PCO) describes material entities,
     qualities, and processes related to collections of interacting organisms such
     as populations and communities. It is taxon neutral, and can be used for any species,
@@ -16899,6 +17384,8 @@ pdumdv:
   uri_format: http://purl.obolibrary.org/obo/PDUMDV_$1
   version: '2020-03-10'
 peco:
+  appears_in:
+  - foodon
   banana: EO
   contact:
     email: jaiswalp@science.oregonstate.edu
@@ -17282,6 +17769,8 @@ phipo:
     github: null
     name: Alayne Cuzick
     orcid: null
+  depends_on:
+  - pato
   description: Ontology of species-neutral phenotypes observed in pathogen-host interactions.
   example: '0000001'
   homepage: https://github.com/PHI-base/phipo
@@ -17506,12 +17995,17 @@ pkdb:
   preferred_prefix: pkdb
   uri_format: https://pk-db.com/data/$1
 plana:
+  appears_in:
+  - planp
   banana: PLANA
   contact:
     email: smr@stowers.org
     github: srobb1
     name: Sofia Robb
     orcid: null
+  depends_on:
+  - ro
+  - uberon
   description: PLANA, the PLANarian Anatomy Ontology, encompasses the anatomy of developmental
     stages and adult biotypes of Schmidtea mediterranea.
   example: '0000001'
@@ -17536,6 +18030,11 @@ planp:
     github: srobb1
     name: Sofia Robb
     orcid: null
+  depends_on:
+  - go
+  - pato
+  - plana
+  - ro
   description: Planarian Phenotype Ontology is an ontology of phenotypes observed
     in the planarian Schmidtea mediterranea.
   example: '0000001'
@@ -17710,6 +18209,11 @@ pmr:
   preferred_prefix: pmr
   uri_format: https://models.physiomeproject.org/exposure/$1
 po:
+  appears_in:
+  - agro
+  - ecocore
+  - envo
+  - genepio
   banana: PO
   contact:
     email: jaiswalp@science.oregonstate.edu
@@ -17799,6 +18303,9 @@ poro:
     github: null
     name: Bob Thacker
     orcid: null
+  depends_on:
+  - ro
+  - uberon
   description: An ontology describing the anatomical structures and characteristics
     of Porifera (sponges)
   example: '0000550'
@@ -17869,6 +18376,10 @@ ppr:
   preferred_prefix: ppr
   uri_format: https://europepmc.org/article/ppr/$1
 pr:
+  appears_in:
+  - chiro
+  - scdo
+  - uberon
   banana: PR
   contact:
     email: dan5@georgetown.edu
@@ -18166,6 +18677,11 @@ psdo:
     github: zachll
     name: Zach Landis-Lewis
     orcid: null
+  depends_on:
+  - bfo
+  - iao
+  - ro
+  - stato
   description: Performance Summary Display Ontology (PSDO) (pronounced "pseudo" or
     "sudo") is an application ontology about charts, tables, and graphs that are used
     to communicate performance information to employees and teams in organizations.
@@ -18236,6 +18752,8 @@ pso:
     github: null
     name: Laurel Cooper
     orcid: null
+  depends_on:
+  - ro
   description: The Plant Stress Ontology describes...
   example: '0000013'
   homepage: https://github.com/Planteome/plant-stress-ontology
@@ -18537,6 +19055,14 @@ rbo:
     github: DanBerrios
     name: Daniel C. Berrios
     orcid: null
+  depends_on:
+  - bfo
+  - chmo
+  - envo
+  - obi
+  - pato
+  - ro
+  - uo
   description: RBO is an ontology for the effects of radiation on biota in terrestrial
     and space environments.
   example: '00000105'
@@ -19119,6 +19645,38 @@ rnao:
   uri_format: http://purl.obolibrary.org/obo/RNAO_$1
   version: '2019-04-15'
 ro:
+  appears_in:
+  - agro
+  - aism
+  - cdno
+  - cl
+  - clao
+  - clyh
+  - colao
+  - cteno
+  - ecao
+  - ecocore
+  - ecto
+  - envo
+  - foodon
+  - fovt
+  - genepio
+  - go
+  - hso
+  - lepao
+  - maxo
+  - ons
+  - ontoavida
+  - pco
+  - plana
+  - planp
+  - poro
+  - psdo
+  - pso
+  - rbo
+  - upa
+  - xpo
+  - zp
   banana: RO
   contact:
     email: cjmungall@lbl.gov
@@ -19356,6 +19914,8 @@ sael:
   references:
   - https://pubmed.ncbi.nlm.nih.gov/18629134/
 salk:
+  appears_in:
+  - efo
   comment: spider stuff!
   contributor:
     email: cthoyt@gmail.com
@@ -19408,6 +19968,8 @@ sasbdb:
   preferred_prefix: sasbdb
   uri_format: http://www.sasbdb.org/data/$1
 sbo:
+  appears_in:
+  - scdo
   banana: SBO
   contact:
     email: sheriff@ebi.ac.uk
@@ -19443,6 +20005,38 @@ scdo:
     github: JadeHotchkiss
     name: Jade Hotchkiss
     orcid: null
+  depends_on:
+  - apollosv
+  - aro
+  - chebi
+  - chmo
+  - cmo
+  - doid
+  - dron
+  - duo
+  - envo
+  - eupath
+  - exo
+  - gaz
+  - gsso
+  - hp
+  - hsapdv
+  - ico
+  - ido
+  - idomal
+  - mp
+  - nbo
+  - ncit
+  - obi
+  - ogms
+  - opmi
+  - pr
+  - sbo
+  - stato
+  - symp
+  - uo
+  - vo
+  - vt
   description: An ontology for the standardization of terminology and integration
     of knowledge about Sickle Cell Disease.
   example: 0000728
@@ -20368,6 +20962,10 @@ stap:
   preferred_prefix: stap
   uri_format: http://psb.kobic.re.kr/STAP/refinement1/result.php?search=$1
 stato:
+  appears_in:
+  - ontoavida
+  - psdo
+  - scdo
   banana: STATO
   contact:
     email: alejandra.gonzalez.beltran@gmail.com
@@ -20645,6 +21243,8 @@ swo:
   uri_format: http://purl.obolibrary.org/obo/SWO_$1
   version: '1.7'
 symp:
+  appears_in:
+  - scdo
   banana: SYMP
   contact:
     email: lynn.schriml@gmail.com
@@ -21034,6 +21634,8 @@ tngb:
   preferred_prefix: tngb
   uri_format: http://biobanknetwork.telethon.it/Sample/View?sampleId=$1
 to:
+  appears_in:
+  - agro
   banana: TO
   contact:
     email: jaiswalp@science.oregonstate.edu
@@ -21340,12 +21942,43 @@ txpo:
   uri_format: http://purl.obolibrary.org/obo/TXPO_$1
   version: '2020-07-09'
 uberon:
+  appears_in:
+  - aism
+  - amphx
+  - chiro
+  - cl
+  - clo
+  - clyh
+  - colao
+  - cteno
+  - ecao
+  - ecocore
+  - ecto
+  - envo
+  - foodon
+  - fovt
+  - genepio
+  - go
+  - hso
+  - lepao
+  - maxo
+  - mco
+  - mfmo
+  - ons
+  - plana
+  - poro
+  - zp
   banana: UBERON
   contact:
     email: cjmungall@lbl.gov
     github: cmungall
     name: Chris Mungall
     orcid: null
+  depends_on:
+  - chebi
+  - cl
+  - go
+  - pr
   description: Uberon is an integrated cross-species anatomy ontology representing
     a variety of entities classified according to traditional anatomical criteria
     such as structure, function and developmental lineage. The ontology includes comprehensive
@@ -21887,6 +22520,11 @@ unpd:
   - https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0062839
   - https://oolonek.github.io/ISDB/
 uo:
+  appears_in:
+  - agro
+  - ms
+  - rbo
+  - scdo
   banana: UO
   contact:
     email: g.gkoutos@gmail.com
@@ -21919,6 +22557,8 @@ upa:
     github: amorgat
     name: Anne Morgat
     orcid: null
+  depends_on:
+  - ro
   deprecated: true
   description: A manually curated resource for the representation and annotation of
     metabolic pathways
@@ -22340,6 +22980,8 @@ vmhreaction:
   preferred_prefix: vmhreaction
   uri_format: https://www.vmh.life/#reaction/$1
 vo:
+  appears_in:
+  - scdo
   banana: VO
   contact:
     email: yongqunh@med.umich.edu
@@ -22434,6 +23076,8 @@ vso:
   preferred_prefix: vso
   uri_format: https://bioportal.bioontology.org/ontologies/VSO/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FVSO_$1
 vt:
+  appears_in:
+  - scdo
   banana: VT
   contact:
     email: caripark@iastate.edu
@@ -22863,6 +23507,8 @@ wwf.ecoregion:
   - WWF
   uri_format: https://www.worldwildlife.org/ecoregions/$1
 xao:
+  appears_in:
+  - xpo
   banana: XAO
   contact:
     email: esegerd3@gmail.com
@@ -22888,6 +23534,9 @@ xao:
   uri_format: http://purl.obolibrary.org/obo/XAO_$1
   version: '2021-03-04'
 xco:
+  appears_in:
+  - agro
+  - ecto
   banana: XCO
   contact:
     email: jrsmith@mcw.edu
@@ -22985,6 +23634,15 @@ xpo:
     github: seger
     name: Erik Segerdell
     orcid: null
+  depends_on:
+  - bfo
+  - chebi
+  - cl
+  - go
+  - iao
+  - pato
+  - ro
+  - xao
   description: XPO represents anatomical, cellular, and gene function phenotypes occurring
     throughout the development of the African frogs Xenopus laevis and tropicalis.
   example: '0100002'
@@ -23013,6 +23671,8 @@ xsd:
   preferred_prefix: xsd
   uri_format: http://www.w3.org/2001/XMLSchema#$1
 xuo:
+  appears_in:
+  - hsapdv
   contributor:
     email: cthoyt@gmail.com
     github: null
@@ -23137,6 +23797,8 @@ zea:
   preferred_prefix: ZEA
   uri_format: http://purl.obolibrary.org/obo/ZEA_$1
 zeco:
+  appears_in:
+  - mco
   banana: ZECO
   contact:
     email: ybradford@zfin.org
@@ -23160,6 +23822,8 @@ zeco:
   uri_format: http://purl.obolibrary.org/obo/ZECO_$1
   version: '2021-06-04'
 zfa:
+  appears_in:
+  - zp
   banana: ZFA
   contact:
     email: van_slyke@zfin.org
@@ -23263,6 +23927,14 @@ zp:
     github: ybradford
     name: Yvonne Bradford
     orcid: null
+  depends_on:
+  - bfo
+  - bspo
+  - go
+  - pato
+  - ro
+  - uberon
+  - zfa
   description: The Zebrafish Phenotype Ontology formally defines all phenotypes of
     the Zebrafish model organism.
   example: 0019030
