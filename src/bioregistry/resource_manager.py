@@ -322,8 +322,7 @@ class Manager:
             for prefix, resource in self.registry.items()
         }
 
-    @staticmethod
-    def _rasterized_resource(prefix: str, resource: Resource) -> Resource:
+    def _rasterized_resource(self, prefix: str, resource: Resource) -> Resource:
         return Resource(
             preferred_prefix=resource.get_preferred_prefix() or prefix,
             name=resource.get_name(),
@@ -350,6 +349,8 @@ class Manager:
             part_of=resource.part_of,
             provides=resource.provides,
             has_canonical=resource.has_canonical,
+            appears_in=self.get_appears_in(prefix),
+            depends_on=self.get_depends_on(prefix),
             # Ontology Properties
             deprecated=resource.is_deprecated(),
             no_own_terms=resource.no_own_terms,

@@ -686,7 +686,7 @@ def get_provided_by(prefix: str) -> Optional[List[str]]:
     :returns: The prefixes of the resources that provide for the given prefix. This
         is the inverse of :func:`get_provides_for`.
 
-    >>> assert 'validatordb' in get_provides_for('validatordb')
+    >>> assert 'validatordb' in get_provides_for('pdb')
     """
     return manager.get_provided_by(prefix)
 
