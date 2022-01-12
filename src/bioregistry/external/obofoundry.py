@@ -32,6 +32,12 @@ def get_obofoundry(force_download: bool = False):
         data = yaml.full_load(file)
 
     rv = {record["id"]: _process(record) for record in data["ontologies"]}
+    for key, record in rv.items():
+        for depends_on in record.get("depends_on", []):
+            if depends_on not in rv:
+                logger.warning("issue with %s: invalid dependency: %s", key, depends_on)
+            else:
+                rv[depends_on].setdefault("appears_in", []).append(key)
     with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, indent=2, sort_keys=True, ensure_ascii=False)
 
@@ -58,6 +64,10 @@ def _process(record):
         "contact.github": record.get("contact", {}).get("github"),
         "repository": record.get("repository"),
     }
+
+    dependencies = record.get("dependencies")
+    if dependencies:
+        rv["depends_on"] = sorted(dependency["id"] for dependency in record.get("dependencies", []))
 
     for product in record.get("products", []):
         if product["id"] == f"{oid}.obo":
