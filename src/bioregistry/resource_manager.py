@@ -420,7 +420,7 @@ class Manager:
         for obo_prefix in resource.get_external("obofoundry").get(key, []):
             depends_prefix = self.lookup_from("obofoundry", obo_prefix, normalize=True)
             if depends_prefix is None:
-                logger.warning("could not map OBO %s of %s: %s", key, prefix, obo_prefix)
+                logger.warning("could not map OBO %s: %s", key, obo_prefix)
             else:
                 rv.append(depends_prefix)
         return rv
@@ -445,42 +445,42 @@ class Manager:
         return external_id_to_bioregistry_id.get(_norm(metaidentifier))
 
     def get_has_canonical(self, prefix: str) -> Optional[str]:
-        """"""
+        """Get the canonical prefix."""
         resource = self.get_resource(prefix)
         if resource is None:
             return None
         return resource.has_canonical
 
     def get_canonical_for(self, prefix: str) -> Optional[List[str]]:
-        """"""
+        """Get the prefixes for which this is annotated as canonical."""
         norm_prefix = self.normalize_prefix(prefix)
         if norm_prefix is None:
             return None
         return self.canonical_for.get(norm_prefix, [])
 
-    def get_provides(self, prefix: str) -> Optional[str]:
-        """"""
+    def get_provides_for(self, prefix: str) -> Optional[str]:
+        """Get the resource that the given prefix provides for, or return none if not a provider."""
         resource = self.get_resource(prefix)
         if resource is None:
             return None
         return resource.provides
 
     def get_provided_by(self, prefix: str) -> Optional[List[str]]:
-        """"""
+        """Get the resources that provide for the given prefix, or return none if the prefix can't be looked up."""
         norm_prefix = self.normalize_prefix(prefix)
         if norm_prefix is None:
             return None
         return self.provided_by.get(norm_prefix, [])
 
     def get_part_of(self, prefix: str) -> Optional[str]:
-        """"""
+        """Get the parent resource, if annotated."""
         resource = self.get_resource(prefix)
         if resource is None:
             return None
         return resource.part_of
 
     def get_has_parts(self, prefix: str) -> Optional[List[str]]:
-        """"""
+        """Get the children resources, if annotated."""
         norm_prefix = self.normalize_prefix(prefix)
         if norm_prefix is None:
             return None

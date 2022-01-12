@@ -176,12 +176,39 @@ def get_depends_on(prefix: str) -> Optional[List[str]]:
 
 
 def get_has_canonical(prefix: str) -> Optional[str]:
-    """"""
+    """Get the canonical prefix.
+
+    If two (or more) stand-alone resources both provide for the same
+    semantic space, but none of them have a first-party claim to the
+    semantic space, then the ``has_canonical`` relationship is used
+    to choose a preferred prefix. This is different than the
+    ``provides``, relationship, which is appropriate when it's obvious
+    that one resource has a full claim to the semantic space.
+
+    :param prefix: The prefix to lookup.
+    :returns: The canonical prefix for this one, if one is annotated.
+        This is the inverse of :func:`get_canonical_for`.
+
+    >>> get_has_canonical("refseq")
+    'ncbiprotein'
+    >>> get_has_canonical("chebi")
+    None
+    """
     return manager.get_has_canonical(prefix)
 
 
 def get_canonical_for(prefix: str) -> Optional[List[str]]:
-    """"""
+    """Get the prefixes for which this is annotated as canonical.
+
+    :param prefix: The prefix to lookup.
+    :returns: The prefixes for which this is annotated as canonical.
+        This is the inverse of :func:`get_has_canonical`.
+
+    >>> "refseq" in get_canonical_for("ncbiprotein")
+    True
+    >>> get_canonical_for("chebi")
+    []
+    """
     return manager.get_canonical_for(prefix)
 
 
@@ -643,18 +670,21 @@ def get_provides_for(prefix: str) -> Optional[str]:
     """Get the resource that the given prefix provides for, or return none if not a provider.
 
     :param prefix: The prefix to look up
-    :returns: The prefix of the resource that the given prefix provides for, if it's a provider
+    :returns: The prefix of the resource that the given prefix provides for, if it's a provider.
+        This is the inverse of :func:`get_provided_by`.
 
     >>> assert get_provides_for('pdb') is None
     >>> assert 'pdb' == get_provides_for('validatordb')
     """
-    return manager.get_provides(prefix)
+    return manager.get_provides_for(prefix)
 
 
 def get_provided_by(prefix: str) -> Optional[List[str]]:
-    """
+    """Get the resources that provide for the given prefix, or return none if the prefix can't be looked up.
 
     :param prefix: The prefix to look up
+    :returns: The prefixes of the resources that provide for the given prefix. This
+        is the inverse of :func:`get_provides_for`.
 
     >>> assert 'validatordb' in get_provides_for('validatordb')
     """
@@ -662,10 +692,26 @@ def get_provided_by(prefix: str) -> Optional[List[str]]:
 
 
 def get_part_of(prefix: str) -> Optional[str]:
+    """Get the parent resource.
+
+    :param prefix: The prefix to look up
+    :returns: The prefixes of the parent resource for this prefix, if one is annotated. This
+        is the inverse of :func:`get_has_parts`.
+
+    >>> assert 'chembl' in get_part_of('chembl.compound')
+    """
     return manager.get_part_of(prefix)
 
 
 def get_has_parts(prefix: str) -> Optional[List[str]]:
+    """Get children resources.
+
+    :param prefix: The prefix to look up
+    :returns: The prefixes of resource for which this prefix is the parent. This
+        is the inverse of :func:`get_has_parts`.
+
+    >>> assert 'chembl.compound' in get_has_parts('chembl')
+    """
     return manager.get_has_parts(prefix)
 
 

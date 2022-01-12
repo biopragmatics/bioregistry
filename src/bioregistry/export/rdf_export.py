@@ -177,10 +177,10 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
 
     # Ontological relationships
 
-    for depends_on in bioregistry.get_depends_on(prefix):
+    for depends_on in bioregistry.get_depends_on(prefix) or []:
         graph.add((node, bioregistry_schema["0000017"], bioregistry_resource[depends_on]))
 
-    for appears_in in bioregistry.get_appears_in(prefix):
+    for appears_in in bioregistry.get_appears_in(prefix) or []:
         graph.add((node, bioregistry_schema["0000018"], bioregistry_resource[appears_in]))
 
     part_of = bioregistry.get_part_of(prefix)
