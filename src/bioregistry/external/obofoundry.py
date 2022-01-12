@@ -33,7 +33,7 @@ def get_obofoundry(force_download: bool = False):
 
     rv = {record["id"]: _process(record) for record in data["ontologies"]}
     with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+        json.dump(rv, file, indent=2, sort_keys=True, ensure_ascii=False)
 
     return rv
 
