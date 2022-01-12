@@ -131,10 +131,38 @@ def get_namespace_in_lui(prefix: str) -> Optional[bool]:
 
 
 def get_appears_in(prefix: str) -> Optional[List[str]]:
+    """Return a list of resources that this resources (has been annotated to) depends on.
+
+    This is complementary to :func:`get_depends_on`.
+
+    :param prefix: The prefix to look up
+    :returns: The list of resources this prefix has been annotated to appear in. This
+        list could be incomplete, since curation of these fields can easily get out
+        of sync with curation of the resource itself. However, false positives should
+        be pretty rare.
+
+    >>> import bioregistry
+    >>> assert "bfo" in bioregistry.get_appears_in("foodon")
+    >>> assert "fobi" not in bioregistry.get_appears_in("foodon")
+    """
     return manager.get_appears_in(prefix)
 
 
 def get_depends_on(prefix: str) -> Optional[List[str]]:
+    """Return a list of resources that this resources (has been annotated to) depends on.
+
+    This is complementary to :func:`get_appears_in`.
+
+    :param prefix: The prefix to look up
+    :returns: The list of resources this prefix has been annotated to depend on. This
+        list could be incomplete, since curation of these fields can easily get out
+        of sync with curation of the resource itself. However, false positives should
+        be pretty rare.
+
+    >>> import bioregistry
+    >>> assert "bfo" not in bioregistry.get_depends_on("foodon")
+    >>> assert "fobi" in bioregistry.get_depends_on("foodon")
+    """
     return manager.get_depends_on(prefix)
 
 

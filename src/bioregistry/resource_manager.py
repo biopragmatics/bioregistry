@@ -362,7 +362,16 @@ class Manager:
         return conflicts
 
     def get_appears_in(self, prefix: str) -> Optional[List[str]]:
-        """Return a list of resources that this resources (has been annotated to) depends on."""
+        """Return a list of resources that this resources (has been annotated to) depends on.
+
+        This is complementary to :func:`get_depends_on`.
+
+        :param prefix: The prefix to look up
+        :returns: The list of resources this prefix has been annotated to appear in. This
+            list could be incomplete, since curation of these fields can easily get out
+            of sync with curation of the resource itself. However, false positives should
+            be pretty rare.
+        """
         resource = self.get_resource(prefix)
         if resource is None:
             return None
@@ -372,6 +381,8 @@ class Manager:
 
     def get_depends_on(self, prefix: str) -> Optional[List[str]]:
         """Return a list of resources that this resources (has been annotated to) depends on.
+
+        This is complementary to :func:`get_appears_in`.
 
         :param prefix: The prefix to look up
         :returns: The list of resources this prefix has been annotated to depend on. This
