@@ -130,6 +130,14 @@ def get_namespace_in_lui(prefix: str) -> Optional[bool]:
     return entry.get_namespace_in_lui()
 
 
+def get_appears_in(prefix: str) -> List[str]:
+    return manager.get_appears_in(prefix)
+
+
+def get_depends_on(prefix: str) -> List[str]:
+    return manager.get_depends_on(prefix)
+
+
 def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
     """Get the identifiers.org prefix if available.
 

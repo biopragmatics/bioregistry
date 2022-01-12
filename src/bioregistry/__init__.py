@@ -14,6 +14,7 @@ from .metaresource_api import (  # noqa:F401
 )
 from .parse_iri import curie_from_iri, parse_iri  # noqa:F401
 from .resolve import (  # noqa:F401
+    get_appears_in,
     get_banana,
     get_bioportal_prefix,
     get_contact,
@@ -23,6 +24,7 @@ from .resolve import (  # noqa:F401
     get_contact_orcid,
     get_curie_pattern,
     get_default_format,
+    get_depends_on,
     get_description,
     get_example,
     get_fairsharing_prefix,

@@ -357,6 +357,23 @@ class Manager:
                 conflicts.append((prefix, override, obo_license, ols_license))
         return conflicts
 
+    def get_appears_in(self, prefix: str) -> Optional[List[str]]:
+        """Return a list of resources that this resources (has been annotated to) depends on."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.appears_in
+
+    def get_depends_on(self, prefix: str) -> Optional[List[str]]:
+        """Return a list of resources that this resources (has been annotated to) depends on."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        rv = list(resource.depends_on or [])
+        for obo_prefix in resource.get_external("obofoundry").get("depends_on", []):
+            depends_prefix = ...
+        raise NotImplementedError
+
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
     """Prepare a priority prefix list from a prefix map."""
