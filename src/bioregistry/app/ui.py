@@ -86,6 +86,7 @@ def resource(prefix: str):
         mappings=_get_resource_mapping_rows(_resource),
         synonyms=bioregistry.get_synonyms(prefix),
         homepage=bioregistry.get_homepage(prefix),
+        repository=_resource.get_repository(),
         pattern=bioregistry.get_pattern(prefix),
         curie_pattern=bioregistry.get_curie_pattern(prefix),
         version=bioregistry.get_version(prefix),

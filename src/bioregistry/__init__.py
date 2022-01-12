@@ -51,6 +51,7 @@ from .resolve import (  # noqa:F401
     get_provides_for,
     get_registry_invmap,
     get_registry_map,
+    get_repository,
     get_resource,
     get_synonyms,
     get_version,

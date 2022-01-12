@@ -29,6 +29,7 @@ __all__ = [
     "get_contact_github",
     "get_contact_orcid",
     "get_homepage",
+    "get_repository",
     "get_obo_download",
     "get_json_download",
     "get_owl_download",
@@ -558,6 +559,14 @@ def get_homepage(prefix: str) -> Optional[str]:
     if entry is None:
         return None
     return entry.get_homepage()
+
+
+def get_repository(prefix: str) -> Optional[str]:
+    """Return the repository, if available."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_repository()
 
 
 def get_obo_download(prefix: str) -> Optional[str]:

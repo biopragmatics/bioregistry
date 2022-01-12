@@ -7,7 +7,18 @@ import logging
 import pathlib
 import re
 from functools import lru_cache
-from typing import Any, Callable, ClassVar, Dict, List, Mapping, Optional, Sequence, Set
+from typing import (
+    Any,
+    Callable,
+    ClassVar,
+    Dict,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    Set,
+    Union,
+)
 
 import pydantic.schema
 from pydantic import BaseModel, Field
@@ -335,11 +346,13 @@ class Resource(BaseModel):
         # TODO is this even a good idea? is this effectively the same as get_external?
         return (self.get_mappings() or {}).get(metaprefix)
 
-    def get_prefix_key(self, key: str, metaprefixes: Sequence[str]):
+    def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]):
         """Get a key enriched by the given external resources' data."""
         rv = self.dict().get(key)
         if rv is not None:
             return rv
+        if isinstance(metaprefixes, str):
+            metaprefixes = [metaprefixes]
         for metaprefix in metaprefixes:
             external = self.get_external(metaprefix)
             if external is None:
@@ -550,7 +563,7 @@ class Resource(BaseModel):
         """Check if the namespace should appear in the LUI."""
         if self.namespace_in_lui is not None:
             return self.namespace_in_lui
-        return self.get_prefix_key("namespaceEmbeddedInLui", ("miriam",))
+        return self.get_prefix_key("namespaceEmbeddedInLui", "miriam")
 
     def get_homepage(self) -> Optional[str]:
         """Return the homepage, if available."""
@@ -558,6 +571,10 @@ class Resource(BaseModel):
             "homepage",
             ("obofoundry", "ols", "miriam", "n2t", "wikidata", "go", "ncbi", "cellosaurus"),
         )
+
+    def get_repository(self) -> Optional[str]:
+        """Return the repository, if available."""
+        return self.get_prefix_key("repository", "obofoundry")
 
     def get_contact(self) -> Optional[Attributable]:
         """Get the contact, if available."""
