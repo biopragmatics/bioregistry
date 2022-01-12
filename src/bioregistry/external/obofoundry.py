@@ -3,6 +3,7 @@
 """Download registry information from the OBO Foundry."""
 
 import json
+import logging
 
 import click
 import yaml
@@ -13,6 +14,8 @@ from bioregistry.data import EXTERNAL
 __all__ = [
     "get_obofoundry",
 ]
+
+logger = logging.getLogger(__name__)
 
 DIRECTORY = EXTERNAL / "obofoundry"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
@@ -35,7 +38,7 @@ def get_obofoundry(force_download: bool = False):
     for key, record in rv.items():
         for depends_on in record.get("depends_on", []):
             if depends_on not in rv:
-                logger.warning("issue with %s: invalid dependency: %s", key, depends_on)
+                logger.warning("issue in %s: invalid dependency: %s", key, depends_on)
             else:
                 rv[depends_on].setdefault("appears_in", []).append(key)
     with PROCESSED_PATH.open("w") as file:

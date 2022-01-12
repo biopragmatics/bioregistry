@@ -148,6 +148,34 @@
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}
                 </dd>
+                {% if depends_on %}
+                    <dt>
+                        Depends On
+                    </dt>
+                    <dd>
+                        {% for depends_on_prefix in depends_on %}
+                            <a href="{{ url_for("ui.resource", prefix=depends_on_prefix) }}"
+                               class="badge badge-pill badge-light" data-toggle="tooltip"
+                               title="{{ bioregistry.get_name(depends_on_prefix) }}">
+                                {{ bioregistry.get_preferred_prefix(depends_on_prefix) }}
+                            </a>
+                        {% endfor %}
+                    </dd>
+                {% endif %}
+                {% if appears_in %}
+                    <dt>
+                        Appears In
+                    </dt>
+                    <dd>
+                        {% for appears_in_prefix in appears_in %}
+                            <a href="{{ url_for("ui.resource", prefix=appears_in_prefix) }}"
+                               class="badge badge-pill badge-light" data-toggle="tooltip"
+                               title="{{ bioregistry.get_name(appears_in_prefix) }}">
+                                {{ bioregistry.get_preferred_prefix(appears_in_prefix) }}
+                            </a>
+                        {% endfor %}
+                    </dd>
+                {% endif %}
                 <dt>Pattern for Local Unique Identifiers</dt>
                 <dd>
                     {% if pattern %}

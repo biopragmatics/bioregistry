@@ -78,6 +78,7 @@ def resource(prefix: str):
     )
     return render_template(
         "resource.html",
+        bioregistry=bioregistry,
         prefix=prefix,
         resource=_resource,
         name=bioregistry.get_name(prefix),
@@ -98,6 +99,8 @@ def resource(prefix: str):
         contact=bioregistry.get_contact(prefix),
         banana=bioregistry.get_banana(prefix),
         description=bioregistry.get_description(prefix),
+        appears_in=bioregistry.get_appears_in(prefix),
+        depends_on=bioregistry.get_depends_on(prefix),
         providers=None if example is None else _get_resource_providers(prefix, example),
         formats=[
             *FORMATS,

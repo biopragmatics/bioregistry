@@ -4,7 +4,7 @@
 
 import logging
 from functools import lru_cache
-from typing import Any, Dict, Mapping, Optional, Set, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Set, Tuple, Union
 
 from .resource_manager import manager
 from .schema import Attributable, Resource
@@ -130,11 +130,11 @@ def get_namespace_in_lui(prefix: str) -> Optional[bool]:
     return entry.get_namespace_in_lui()
 
 
-def get_appears_in(prefix: str) -> List[str]:
+def get_appears_in(prefix: str) -> Optional[List[str]]:
     return manager.get_appears_in(prefix)
 
 
-def get_depends_on(prefix: str) -> List[str]:
+def get_depends_on(prefix: str) -> Optional[List[str]]:
     return manager.get_depends_on(prefix)
 
 

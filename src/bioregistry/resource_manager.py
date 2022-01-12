@@ -3,6 +3,7 @@
 """A class-based client to a metaregistry."""
 
 import logging
+from functools import lru_cache
 from pathlib import Path
 from typing import (
     Any,
@@ -21,6 +22,7 @@ from .license_standardizer import standardize_license
 from .schema import Resource, sanitize_model
 from .utils import (
     NormDict,
+    _norm,
     _registry_from_path,
     curie_to_str,
     read_registry,
@@ -135,10 +137,12 @@ class Manager:
         norm_identifier = resource.standardize_identifier(identifier, prefix=prefix)
         return norm_prefix, norm_identifier
 
+    @lru_cache(maxsize=None)
     def get_registry_map(self, metaprefix: str) -> Dict[str, str]:
         """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
         return dict(self._iter_registry_map(metaprefix))
 
+    @lru_cache(maxsize=None)
     def get_registry_invmap(self, metaprefix: str) -> Dict[str, str]:
         """Get a mapping from prefixes in another registry to Bioregistry prefixes."""
         return {
@@ -362,17 +366,57 @@ class Manager:
         resource = self.get_resource(prefix)
         if resource is None:
             return None
-        return resource.appears_in
+        rv = list(resource.appears_in or [])
+        rv.extend(self._get_obo_list(resource=resource, key="appears_in"))
+        return sorted(set(rv))
 
     def get_depends_on(self, prefix: str) -> Optional[List[str]]:
-        """Return a list of resources that this resources (has been annotated to) depends on."""
+        """Return a list of resources that this resources (has been annotated to) depends on.
+
+        :param prefix: The prefix to look up
+        :returns: The list of resources this prefix has been annotated to depend on. This
+            list could be incomplete, since curation of these fields can easily get out
+            of sync with curation of the resource itself. However, false positives should
+            be pretty rare.
+
+        >>> from bioregistry import manager
+        >>> assert "bfo" in manager.get_depends_on("foodon")
+        """
         resource = self.get_resource(prefix)
         if resource is None:
             return None
         rv = list(resource.depends_on or [])
-        for obo_prefix in resource.get_external("obofoundry").get("depends_on", []):
-            depends_prefix = ...
-        raise NotImplementedError
+        rv.extend(self._get_obo_list(resource=resource, key="depends_on"))
+        return sorted(set(rv))
+
+    def _get_obo_list(self, *, resource: Resource, key: str) -> List[str]:
+        rv = []
+        for obo_prefix in resource.get_external("obofoundry").get(key, []):
+            depends_prefix = self.lookup_from("obofoundry", obo_prefix, normalize=True)
+            if depends_prefix is None:
+                logger.warning("could not map OBO %s of %s: %s", key, prefix, obo_prefix)
+            else:
+                rv.append(depends_prefix)
+        return rv
+
+    def lookup_from(self, metaprefix, metaidentifier, normalize: bool = False) -> Optional[str]:
+        """Get the bioregistry prefix from an external prefix.
+
+        :param metaprefix: The key for the external registry
+        :param metaidentifier: The prefix in the external registry
+        :param normalize: Should external prefixes be normalized during lookup (e.g., lowercased)
+        :return: The bioregistry prefix (if it can be mapped)
+
+        >>> from bioregistry import manager
+        >>> manager.lookup_from("fairsharing", "FAIRsharing.62qk8w")
+        'chebi'
+        """
+        external_id_to_bioregistry_id = self.get_registry_invmap(metaprefix)
+        if normalize:
+            external_id_to_bioregistry_id = {
+                _norm(k): v for k, v in external_id_to_bioregistry_id.items()
+            }
+        return external_id_to_bioregistry_id.get(_norm(metaidentifier))
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
