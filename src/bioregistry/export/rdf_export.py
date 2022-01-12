@@ -175,10 +175,19 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
     if download:
         graph.add((node, bioregistry_schema["0000010"], Literal(download)))
 
+    # Ontological relationships
+
+    for depends_on in bioregistry.get_depends_on(prefix):
+        graph.add((node, bioregistry_schema["0000017"], bioregistry_resource[depends_on]))
+
+    for appears_in in bioregistry.get_appears_in(prefix):
+        graph.add((node, bioregistry_schema["0000018"], bioregistry_resource[appears_in]))
+
     part_of = data.get("part_of")
     if part_of:
         graph.add((node, DCTERMS.isPartOf, bioregistry_resource[part_of]))
         graph.add((bioregistry_resource[part_of], DCTERMS.hasPart, node))
+        graph.add((node, DCTERMS.isPartOf, bioregistry_resource[part_of]))
 
     provides = data.get("provides")
     if provides:
