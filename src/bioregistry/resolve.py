@@ -151,8 +151,8 @@ def get_appears_in(prefix: str) -> Optional[List[str]]:
         be pretty rare.
 
     >>> import bioregistry
-    >>> assert "bfo" in bioregistry.get_appears_in("foodon")
-    >>> assert "fobi" not in bioregistry.get_appears_in("foodon")
+    >>> assert "bfo" not in bioregistry.get_appears_in("foodon")
+    >>> assert "fobi" in bioregistry.get_appears_in("foodon")
     """
     return manager.get_appears_in(prefix)
 
@@ -169,8 +169,8 @@ def get_depends_on(prefix: str) -> Optional[List[str]]:
         be pretty rare.
 
     >>> import bioregistry
-    >>> assert "bfo" not in bioregistry.get_depends_on("foodon")
-    >>> assert "fobi" in bioregistry.get_depends_on("foodon")
+    >>> assert "bfo" in bioregistry.get_depends_on("foodon")
+    >>> assert "fobi" not in bioregistry.get_depends_on("foodon")
     """
     return manager.get_depends_on(prefix)
 
@@ -686,7 +686,8 @@ def get_provided_by(prefix: str) -> Optional[List[str]]:
     :returns: The prefixes of the resources that provide for the given prefix. This
         is the inverse of :func:`get_provides_for`.
 
-    >>> assert 'validatordb' in get_provides_for('pdb')
+    >>> get_provides_for("validatordb")
+    'pdb'
     """
     return manager.get_provided_by(prefix)
 
