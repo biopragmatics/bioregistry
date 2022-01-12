@@ -36,6 +36,15 @@ __all__ = [
     "get_versions",
     "get_registry_map",
     "get_registry_invmap",
+    # Ontology
+    "get_provided_by",
+    "get_provides_for",
+    "get_part_of",
+    "get_has_parts",
+    "get_has_canonical",
+    "get_canonical_for",
+    "get_appears_in",
+    "get_depends_on",
     # CURIE handling
     "normalize_prefix",
     "parse_curie",
@@ -164,6 +173,16 @@ def get_depends_on(prefix: str) -> Optional[List[str]]:
     >>> assert "fobi" in bioregistry.get_depends_on("foodon")
     """
     return manager.get_depends_on(prefix)
+
+
+def get_has_canonical(prefix: str) -> Optional[str]:
+    """"""
+    return manager.get_has_canonical(prefix)
+
+
+def get_canonical_for(prefix: str) -> Optional[List[str]]:
+    """"""
+    return manager.get_canonical_for(prefix)
 
 
 def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
@@ -629,10 +648,25 @@ def get_provides_for(prefix: str) -> Optional[str]:
     >>> assert get_provides_for('pdb') is None
     >>> assert 'pdb' == get_provides_for('validatordb')
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.provides
+    return manager.get_provides(prefix)
+
+
+def get_provided_by(prefix: str) -> Optional[List[str]]:
+    """
+
+    :param prefix: The prefix to look up
+
+    >>> assert 'validatordb' in get_provides_for('validatordb')
+    """
+    return manager.get_provided_by(prefix)
+
+
+def get_part_of(prefix: str) -> Optional[str]:
+    return manager.get_part_of(prefix)
+
+
+def get_has_parts(prefix: str) -> Optional[List[str]]:
+    return manager.get_has_parts(prefix)
 
 
 def get_license(prefix: str) -> Optional[str]:

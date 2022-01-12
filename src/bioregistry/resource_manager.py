@@ -3,6 +3,7 @@
 """A class-based client to a metaregistry."""
 
 import logging
+from collections import defaultdict
 from functools import lru_cache
 from pathlib import Path
 from typing import (
@@ -71,6 +72,20 @@ class Manager:
             registry = read_registry()
         self.registry = registry
         self.synonyms = _synonym_to_canonical(registry)
+
+        canonical_for = defaultdict(list)
+        provided_by = defaultdict(list)
+        has_parts = defaultdict(list)
+        for prefix, resource in self.registry.items():
+            if resource.has_canonical:
+                canonical_for[resource.has_canonical].append(prefix)
+            if resource.provides:
+                provided_by[resource.provides].append(prefix)
+            if resource.part_of:
+                has_parts[resource.part_of].append(prefix)
+        self.canonical_for = dict(canonical_for)
+        self.provided_by = dict(provided_by)
+        self.has_parts = dict(has_parts)
 
     @classmethod
     def from_path(cls, path: Union[str, Path]) -> "Manager":
@@ -428,6 +443,48 @@ class Manager:
                 _norm(k): v for k, v in external_id_to_bioregistry_id.items()
             }
         return external_id_to_bioregistry_id.get(_norm(metaidentifier))
+
+    def get_has_canonical(self, prefix: str) -> Optional[str]:
+        """"""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.has_canonical
+
+    def get_canonical_for(self, prefix: str) -> Optional[List[str]]:
+        """"""
+        norm_prefix = self.normalize_prefix(prefix)
+        if norm_prefix is None:
+            return None
+        return self.canonical_for.get(norm_prefix, [])
+
+    def get_provides(self, prefix: str) -> Optional[str]:
+        """"""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.provides
+
+    def get_provided_by(self, prefix: str) -> Optional[List[str]]:
+        """"""
+        norm_prefix = self.normalize_prefix(prefix)
+        if norm_prefix is None:
+            return None
+        return self.provided_by.get(norm_prefix, [])
+
+    def get_part_of(self, prefix: str) -> Optional[str]:
+        """"""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.part_of
+
+    def get_has_parts(self, prefix: str) -> Optional[List[str]]:
+        """"""
+        norm_prefix = self.normalize_prefix(prefix)
+        if norm_prefix is None:
+            return None
+        return self.has_parts.get(norm_prefix, [])
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
