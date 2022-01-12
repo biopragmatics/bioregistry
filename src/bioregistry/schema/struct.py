@@ -237,6 +237,10 @@ class Resource(BaseModel):
     appears_in: Optional[List[str]] = Field(
         description="A list of prefixes that use this resource for xrefs, provenance, etc.",
     )
+    #: A list of prefixes that use this resource depends on, e.g., ontologies that import each other.
+    depends_on: Optional[List[str]] = Field(
+        description="A list of prefixes that use this resource depends on, e.g., ontologies that import each other.",
+    )
     #: A flag denoting if the namespace is embedded in the LUI (if this is true and it is not accompanied by a banana,
     #: assume that the banana is the prefix in all caps plus a colon, as is standard in OBO). Currently this flag
     #: is only used to override identifiers.org in the case of ``gramene.growthstage``, ``oma.hog``, and ``vario``.
