@@ -30,7 +30,7 @@
                             <span class="badge badge-warning" style="display: inline-block;">
                                 Deprecated <i class="fas fa-exclamation-triangle"></i>
                             </span>
-                        {% elif resource.provides %}
+                        {% elif provides %}
                             <span class="badge badge-danger" style="display: inline-block;">
                                 Provider <i class="fas fa-exclamation-triangle"></i>
                             </span>
@@ -58,13 +58,13 @@
         </div>
         <div class="card-body">
             {% if description %}<p>{{ description }}</p>{% endif %}
-            {% if resource.provides %}
+            {% if provides %}
                 <p>
                     This resource is a <span class="badge badge-danger">provider</span>. This means that
                     while it may have its own prefix, it actually reuses the identifiers provided by the
-                    <a href="{{ url_for(".resource", prefix=resource.provides) }}"><code>{{ resource.provides }}</code></a>
+                    <a href="{{ url_for(".resource", prefix=provides) }}"><code>{{ provides }}</code></a>
                     prefix. For <b>all</b> use cases, you should use <a
-                        href="{{ url_for(".resource", prefix=resource.provides) }}"><code>{{ resource.provides }}</code></a>
+                        href="{{ url_for(".resource", prefix=provides) }}"><code>{{ provides }}</code></a>
                     instead of <code>{{ prefix }}</code>.
                 </p>
             {% endif %}
@@ -240,6 +240,124 @@
         </div>
 
     </div>
+
+    {% if provides or provided_by or part_of or has_parts or has_canonical or canonical_for or depends_on or appears_in %}
+    <div class="card" style="margin-top: 20px">
+        <a id="ontology"></a>
+        <h5 class="card-header">Ontology</h5>
+        <div class="card-body">
+            <dl>
+                {% if provides %}
+                    <dt>
+                        Provides
+                    </dt>
+                    <dd>
+                        <a href="{{ url_for("ui.resource", prefix=provides) }}"
+                           class="badge badge-pill badge-light" data-toggle="tooltip"
+                           title="{{ bioregistry.get_name(provides) }}">
+                            {{ bioregistry.get_preferred_prefix(provides) or provides }}
+                        </a>
+                    </dd>
+                {% endif %}
+                {% if provided_by %}
+                    <dt>
+                        Provided By
+                    </dt>
+                    <dd>
+                        {% for rel_prefix in provided_by %}
+                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                               class="badge badge-pill badge-light" data-toggle="tooltip"
+                               title="{{ bioregistry.get_name(rel_prefix) }}">
+                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                            </a>
+                        {% endfor %}
+                    </dd>
+                {% endif %}
+                {% if part_of %}
+                    <dt>
+                        Part Of
+                    </dt>
+                    <dd>
+                        <a href="{{ url_for("ui.resource", prefix=part_of) }}"
+                           class="badge badge-pill badge-light" data-toggle="tooltip"
+                           title="{{ bioregistry.get_name(part_of) }}">
+                            {{ bioregistry.get_preferred_prefix(part_of) or part_of }}
+                        </a>
+                    </dd>
+                {% endif %}
+                {% if has_parts %}
+                    <dt>
+                        Has Part
+                    </dt>
+                    <dd>
+                        {% for rel_prefix in has_parts %}
+                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                               class="badge badge-pill badge-light" data-toggle="tooltip"
+                               title="{{ bioregistry.get_name(rel_prefix) }}">
+                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                            </a>
+                        {% endfor %}
+                    </dd>
+                {% endif %}
+                {% if has_canonical %}
+                    <dt>
+                        Has Canonical
+                    </dt>
+                    <dd>
+                        <a href="{{ url_for("ui.resource", prefix=has_canonical) }}"
+                           class="badge badge-pill badge-light" data-toggle="tooltip"
+                           title="{{ bioregistry.get_name(has_canonical) }}">
+                            {{ bioregistry.get_preferred_prefix(has_canonical) or has_canonical }}
+                        </a>
+                    </dd>
+                {% endif %}
+                {% if canonical_for %}
+                    <dt>
+                        Canonical For
+                    </dt>
+                    <dd>
+                        {% for rel_prefix in canonical_for %}
+                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                               class="badge badge-pill badge-light" data-toggle="tooltip"
+                               title="{{ bioregistry.get_name(rel_prefix) }}">
+                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                            </a>
+                        {% endfor %}
+                    </dd>
+                {% endif %}
+                {% if depends_on %}
+                    <dt>
+                        Depends On
+                    </dt>
+                    <dd>
+                        {% for rel_prefix in depends_on %}
+                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                               class="badge badge-pill badge-light" data-toggle="tooltip"
+                               title="{{ bioregistry.get_name(rel_prefix) }}">
+                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                            </a>
+                        {% endfor %}
+                    </dd>
+                {% endif %}
+                {% if appears_in %}
+                    <dt>
+                        Appears In
+                    </dt>
+                    <dd>
+                        {% for rel_prefix in appears_in %}
+                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                               class="badge badge-pill badge-light" data-toggle="tooltip"
+                               title="{{ bioregistry.get_name(rel_prefix) }}">
+                                {{ bioregistry.get_preferred_prefix(rel_prefix) }}
+                            </a>
+                        {% endfor %}
+                    </dd>
+                {% endif %}
+            </dl>
+        </div>
+    </div>
+    {% endif %}
+
     {% if mappings %}
         <div class="card" style="margin-top: 20px">
             <a id="mappings"></a>

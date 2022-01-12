@@ -6,6 +6,7 @@ import unittest
 from typing import Iterable, Tuple
 
 import bioregistry
+from bioregistry import manager
 from bioregistry.resolve import get_external
 
 
@@ -133,3 +134,22 @@ class TestResolve(unittest.TestCase):
         pattern = bioregistry.get_curie_pattern("panther.pthcmp")
         self.assertRegexpMatches("panther.pthcmp:P00266", pattern)
         self.assertNotRegexpMatches("pantherXpthcmp:P00266", pattern)
+
+    def test_depends_on(self):
+        """Test getting dependencies."""
+        test_prefix = "foodon"
+        test_target = "bfo"
+        resource = bioregistry.get_resource(test_prefix)
+        self.assertIsNotNone(resource)
+
+        obofoundry = resource.get_external("obofoundry")
+        self.assertIsNotNone(obofoundry)
+        self.assertIn("depends_on", obofoundry)
+
+        fobi_dependencies = manager.get_depends_on(test_prefix)
+        self.assertIsNotNone(fobi_dependencies)
+        self.assertIn(test_target, fobi_dependencies)
+
+        fobi_dependencies = bioregistry.get_depends_on(test_prefix)
+        self.assertIsNotNone(fobi_dependencies)
+        self.assertIn(test_target, fobi_dependencies)

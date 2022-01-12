@@ -3,6 +3,8 @@
 """A class-based client to a metaregistry."""
 
 import logging
+from collections import defaultdict
+from functools import lru_cache
 from pathlib import Path
 from typing import (
     Any,
@@ -21,6 +23,7 @@ from .license_standardizer import standardize_license
 from .schema import Resource, sanitize_model
 from .utils import (
     NormDict,
+    _norm,
     _registry_from_path,
     curie_to_str,
     read_registry,
@@ -69,6 +72,20 @@ class Manager:
             registry = read_registry()
         self.registry = registry
         self.synonyms = _synonym_to_canonical(registry)
+
+        canonical_for = defaultdict(list)
+        provided_by = defaultdict(list)
+        has_parts = defaultdict(list)
+        for prefix, resource in self.registry.items():
+            if resource.has_canonical:
+                canonical_for[resource.has_canonical].append(prefix)
+            if resource.provides:
+                provided_by[resource.provides].append(prefix)
+            if resource.part_of:
+                has_parts[resource.part_of].append(prefix)
+        self.canonical_for = dict(canonical_for)
+        self.provided_by = dict(provided_by)
+        self.has_parts = dict(has_parts)
 
     @classmethod
     def from_path(cls, path: Union[str, Path]) -> "Manager":
@@ -135,10 +152,12 @@ class Manager:
         norm_identifier = resource.standardize_identifier(identifier, prefix=prefix)
         return norm_prefix, norm_identifier
 
+    @lru_cache(maxsize=None)
     def get_registry_map(self, metaprefix: str) -> Dict[str, str]:
         """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
         return dict(self._iter_registry_map(metaprefix))
 
+    @lru_cache(maxsize=None)
     def get_registry_invmap(self, metaprefix: str) -> Dict[str, str]:
         """Get a mapping from prefixes in another registry to Bioregistry prefixes."""
         return {
@@ -303,8 +322,7 @@ class Manager:
             for prefix, resource in self.registry.items()
         }
 
-    @staticmethod
-    def _rasterized_resource(prefix: str, resource: Resource) -> Resource:
+    def _rasterized_resource(self, prefix: str, resource: Resource) -> Resource:
         return Resource(
             preferred_prefix=resource.get_preferred_prefix() or prefix,
             name=resource.get_name(),
@@ -331,6 +349,8 @@ class Manager:
             part_of=resource.part_of,
             provides=resource.provides,
             has_canonical=resource.has_canonical,
+            appears_in=self.get_appears_in(prefix),
+            depends_on=self.get_depends_on(prefix),
             # Ontology Properties
             deprecated=resource.is_deprecated(),
             no_own_terms=resource.no_own_terms,
@@ -356,6 +376,112 @@ class Manager:
             if any(first != element for element in rest):
                 conflicts.append((prefix, override, obo_license, ols_license))
         return conflicts
+
+    def get_appears_in(self, prefix: str) -> Optional[List[str]]:
+        """Return a list of resources that this resources (has been annotated to) depends on.
+
+        This is complementary to :func:`get_depends_on`.
+
+        :param prefix: The prefix to look up
+        :returns: The list of resources this prefix has been annotated to appear in. This
+            list could be incomplete, since curation of these fields can easily get out
+            of sync with curation of the resource itself. However, false positives should
+            be pretty rare.
+        """
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        rv = list(resource.appears_in or [])
+        rv.extend(self._get_obo_list(resource=resource, key="appears_in"))
+        return sorted(set(rv))
+
+    def get_depends_on(self, prefix: str) -> Optional[List[str]]:
+        """Return a list of resources that this resources (has been annotated to) depends on.
+
+        This is complementary to :func:`get_appears_in`.
+
+        :param prefix: The prefix to look up
+        :returns: The list of resources this prefix has been annotated to depend on. This
+            list could be incomplete, since curation of these fields can easily get out
+            of sync with curation of the resource itself. However, false positives should
+            be pretty rare.
+
+        >>> from bioregistry import manager
+        >>> assert "bfo" in manager.get_depends_on("foodon")
+        """
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        rv = list(resource.depends_on or [])
+        rv.extend(self._get_obo_list(resource=resource, key="depends_on"))
+        return sorted(set(rv))
+
+    def _get_obo_list(self, *, resource: Resource, key: str) -> List[str]:
+        rv = []
+        for obo_prefix in resource.get_external("obofoundry").get(key, []):
+            depends_prefix = self.lookup_from("obofoundry", obo_prefix, normalize=True)
+            if depends_prefix is None:
+                logger.warning("could not map OBO %s: %s", key, obo_prefix)
+            else:
+                rv.append(depends_prefix)
+        return rv
+
+    def lookup_from(self, metaprefix, metaidentifier, normalize: bool = False) -> Optional[str]:
+        """Get the bioregistry prefix from an external prefix.
+
+        :param metaprefix: The key for the external registry
+        :param metaidentifier: The prefix in the external registry
+        :param normalize: Should external prefixes be normalized during lookup (e.g., lowercased)
+        :return: The bioregistry prefix (if it can be mapped)
+        """
+        external_id_to_bioregistry_id = self.get_registry_invmap(metaprefix)
+        if normalize:
+            external_id_to_bioregistry_id = {
+                _norm(k): v for k, v in external_id_to_bioregistry_id.items()
+            }
+        return external_id_to_bioregistry_id.get(_norm(metaidentifier))
+
+    def get_has_canonical(self, prefix: str) -> Optional[str]:
+        """Get the canonical prefix."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.has_canonical
+
+    def get_canonical_for(self, prefix: str) -> Optional[List[str]]:
+        """Get the prefixes for which this is annotated as canonical."""
+        norm_prefix = self.normalize_prefix(prefix)
+        if norm_prefix is None:
+            return None
+        return self.canonical_for.get(norm_prefix, [])
+
+    def get_provides_for(self, prefix: str) -> Optional[str]:
+        """Get the resource that the given prefix provides for, or return none if not a provider."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.provides
+
+    def get_provided_by(self, prefix: str) -> Optional[List[str]]:
+        """Get the resources that provide for the given prefix, or return none if the prefix can't be looked up."""
+        norm_prefix = self.normalize_prefix(prefix)
+        if norm_prefix is None:
+            return None
+        return self.provided_by.get(norm_prefix, [])
+
+    def get_part_of(self, prefix: str) -> Optional[str]:
+        """Get the parent resource, if annotated."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.part_of
+
+    def get_has_parts(self, prefix: str) -> Optional[List[str]]:
+        """Get the children resources, if annotated."""
+        norm_prefix = self.normalize_prefix(prefix)
+        if norm_prefix is None:
+            return None
+        return self.has_parts.get(norm_prefix, [])
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:

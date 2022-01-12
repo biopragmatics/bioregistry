@@ -175,16 +175,25 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
     if download:
         graph.add((node, bioregistry_schema["0000010"], Literal(download)))
 
-    part_of = data.get("part_of")
+    # Ontological relationships
+
+    for depends_on in bioregistry.get_depends_on(prefix) or []:
+        graph.add((node, bioregistry_schema["0000017"], bioregistry_resource[depends_on]))
+
+    for appears_in in bioregistry.get_appears_in(prefix) or []:
+        graph.add((node, bioregistry_schema["0000018"], bioregistry_resource[appears_in]))
+
+    part_of = bioregistry.get_part_of(prefix)
     if part_of:
         graph.add((node, DCTERMS.isPartOf, bioregistry_resource[part_of]))
         graph.add((bioregistry_resource[part_of], DCTERMS.hasPart, node))
+        graph.add((node, DCTERMS.isPartOf, bioregistry_resource[part_of]))
 
-    provides = data.get("provides")
+    provides = bioregistry.get_provides_for(prefix)
     if provides:
         graph.add((node, bioregistry_schema["0000011"], bioregistry_resource[provides]))
 
-    canonical = data.get("has_canonical")
+    canonical = bioregistry.get_has_canonical(prefix)
     if canonical:
         graph.add((node, bioregistry_schema["0000016"], bioregistry_resource[canonical]))
 
