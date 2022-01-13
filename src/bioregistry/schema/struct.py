@@ -1220,7 +1220,7 @@ class Registry(BaseModel):
     #: An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)
     resolver_type: Optional[str]
     #: An optional contact email
-    contact: Optional[str]
+    contact: Optional[Attributable]
     bioregistry_prefix: Optional[str]
 
     def score(self) -> int:
