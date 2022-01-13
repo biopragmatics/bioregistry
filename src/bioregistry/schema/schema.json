@@ -856,7 +856,12 @@
         },
         "contact": {
           "title": "Contact",
-          "type": "string"
+          "description": "The contact for the registry.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Attributable"
+            }
+          ]
         },
         "bioregistry_prefix": {
           "title": "Bioregistry Prefix",
@@ -869,7 +874,8 @@
         "description",
         "homepage",
         "example",
-        "availability"
+        "availability",
+        "contact"
       ]
     }
   }

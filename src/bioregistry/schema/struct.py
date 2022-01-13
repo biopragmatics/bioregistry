@@ -1219,8 +1219,8 @@ class Registry(BaseModel):
     resolver_uri_format: Optional[str]
     #: An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)
     resolver_type: Optional[str]
-    #: An optional contact email
-    contact: Optional[Attributable]
+    #: The contact for the registry
+    contact: Attributable = Field(..., description="The contact for the registry.")
     bioregistry_prefix: Optional[str]
 
     def score(self) -> int:
