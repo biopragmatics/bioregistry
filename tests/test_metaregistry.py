@@ -22,6 +22,7 @@ class TestMetaregistry(unittest.TestCase):
                 self.assertIn("homepage", data)
                 self.assertIn("example", data)
                 self.assertIn("description", data)
+                self.assertIsNotNone(registry_pydantic.contact)
 
                 if registry_pydantic.provider_uri_format:
                     self.assertIn("provider_uri_format", data)
