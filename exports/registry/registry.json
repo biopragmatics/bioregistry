@@ -2085,6 +2085,37 @@
     "preferred_prefix": "bitterdb.rec",
     "uri_format": "http://bitterdb.agri.huji.ac.il/Receptor.php?id=$1"
   },
+  "bko": {
+    "comment": "This resource also uses SBO terms and resolves them, e.g., http://www.sbgnbricks.org/BKO/full/entry/all/SBO:0000177/.",
+    "contact": {
+      "email": "adrienrougny@gmail.com",
+      "github": "adrienrougny",
+      "name": "Adrien Rougny",
+      "orcid": "0000-0002-2118-035X"
+    },
+    "contributor": {
+      "email": null,
+      "github": "bgyori",
+      "name": "Benjamin Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "SBGN bricks represent biomolecular or biological concepts. BKO formally associates bricks with the concepts they represent. BKO includes terms that describe concepts, the template bricks representing these concepts, and categories that gather bricks in a broader way.",
+    "example": "0000204",
+    "homepage": "http://www.sbgnbricks.org/",
+    "mappings": {
+      "bioportal": "BKO"
+    },
+    "name": "SBGN Bricks data and ontology",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "bko",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.sbgnbricks.org/BKO/full/entry/all/BKO:$1"
+  },
   "bmrb": {
     "description": "BMRB collects, annotates, archives, and disseminates (worldwide in the public domain) the important spectral and quantitative data derived from NMR spectroscopic investigations of biological macromolecules and metabolites. The goal is to empower scientists in their analysis of the structure, dynamics, and chemistry of biological systems and to support further development of the field of biomolecular NMR spectroscopy.",
     "example": "15000",
@@ -19693,7 +19724,7 @@
       "orcid": null
     },
     "description": "The OBO Relation Ontology provides consistent and unambiguous formal definitions of the relational expressions used in biomedical ontologies.",
-    "example": "RO_0002533",
+    "example": "0002533",
     "homepage": "https://oborel.github.io/",
     "license": "CC0 1.0",
     "mappings": {
@@ -19710,7 +19741,7 @@
       "wikidata": "P3590"
     },
     "name": "Relation Ontology",
-    "pattern": "^RO_\\d{7}$",
+    "pattern": "^\\d{7}$",
     "preferred_prefix": "RO",
     "synonyms": [
       "RO_proposed_relation",
