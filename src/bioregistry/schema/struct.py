@@ -72,6 +72,26 @@ class Attributable(BaseModel):
     #: The GitHub handle for the author
     github: Optional[str] = Field(description="The GitHub handle for the author")
 
+    def add_triples(self, graph):
+        """Add triples to an RDF graph for this author.
+
+        :param graph: An RDF graph
+        :type graph: rdflib.Graph
+        :rtype: rdflib.term.Node
+        :returns: The RDF node representing this author using an ORCiD URI.
+        """
+        from rdflib import BNode, Literal
+        from rdflib.namespace import RDFS
+
+        if not self.orcid:
+            node = BNode()
+        else:
+            from .constants import orcid
+
+            node = orcid.term(self.orcid)
+        graph.add((node, RDFS["label"], Literal(self.name)))
+        return node
+
 
 class Author(Attributable):
     """Metadata for an author."""
@@ -83,23 +103,6 @@ class Author(Attributable):
         title="Open Researcher and Contributor Identifier",
         description="The ORCiD of the author",
     )
-
-    def add_triples(self, graph):
-        """Add triples to an RDF graph for this author.
-
-        :param graph: An RDF graph
-        :type graph: rdflib.Graph
-        :rtype: rdflib.term.Node
-        :returns: The RDF node representing this author using an ORCiD URI.
-        """
-        from rdflib import Literal
-        from rdflib.namespace import RDFS
-
-        from .constants import orcid
-
-        node = orcid.term(self.orcid)
-        graph.add((node, RDFS["label"], Literal(self.name)))
-        return node
 
 
 class Provider(BaseModel):
@@ -1219,8 +1222,8 @@ class Registry(BaseModel):
     resolver_uri_format: Optional[str]
     #: An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)
     resolver_type: Optional[str]
-    #: An optional contact email
-    contact: Optional[str]
+    #: The contact for the registry
+    contact: Attributable = Field(..., description="The contact for the registry.")
     bioregistry_prefix: Optional[str]
 
     def score(self) -> int:
@@ -1282,6 +1285,7 @@ class Registry(BaseModel):
             graph.add((node, bioregistry_schema["0000006"], Literal(self.provider_uri_format)))
         if self.resolver_uri_format:
             graph.add((node, bioregistry_schema["0000007"], Literal(self.resolver_uri_format)))
+        graph.add((node, bioregistry_schema["0000019"], self.contact.add_triples(graph)))
         return node
 
 

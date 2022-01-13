@@ -107,6 +107,12 @@ bioregistry_schema_terms = [
         "appearsIn",
         "Terms from the source appear in the target resource",
     ),
+    Term(
+        "0000019",
+        "Property",
+        "hasResponsible",
+        "Connect an entity to its responsible person",
+    ),
 ]
 bioregistry_collection = rdflib.namespace.Namespace("https://bioregistry.io/collection/")
 bioregistry_resource = rdflib.namespace.Namespace("https://bioregistry.io/registry/")
