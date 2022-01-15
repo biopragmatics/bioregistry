@@ -5,7 +5,7 @@
 from typing import Any, Dict, Sequence
 
 from bioregistry.align.utils import Aligner
-from bioregistry.external import get_bioportal
+from bioregistry.external.bioportal import get_bioportal
 
 __all__ = [
     "BioPortalAligner",

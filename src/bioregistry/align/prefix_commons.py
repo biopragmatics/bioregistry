@@ -5,6 +5,7 @@
 from typing import Any, Dict, Mapping, Sequence
 
 from bioregistry.align.utils import Aligner
+from bioregistry.constants import URI_FORMAT_KEY
 from bioregistry.external.prefix_commons import get_prefix_commons
 
 __all__ = [
@@ -17,7 +18,7 @@ class PrefixCommonsAligner(Aligner):
 
     key = "prefixcommons"
     getter = get_prefix_commons
-    curation_header = ["formatter", "identifiers", "purl"]
+    curation_header = [URI_FORMAT_KEY, "identifiers", "purl"]
 
     def get_skip(self) -> Mapping[str, str]:
         """Get entries for prefix commons that should be skipped."""
@@ -27,16 +28,16 @@ class PrefixCommonsAligner(Aligner):
 
     def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
         """Prepare Prefix Commons data to be added to the Prefix Commons for each BioPortal registry entry."""
-        formatter = external_entry["formatter"].strip()
+        uri_format = external_entry[URI_FORMAT_KEY].strip()
         return {
-            "formatter": formatter,
-            "is_identifiers": formatter.startswith("http://identifiers.org"),
-            "is_obo": formatter.startswith("http://purl.obolibrary.org"),
+            URI_FORMAT_KEY: uri_format,
+            "is_identifiers": uri_format.startswith("http://identifiers.org"),
+            "is_obo": uri_format.startswith("http://purl.obolibrary.org"),
         }
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Prepare curation rows for unaligned Prefix Commons registry entries."""
-        formatter = external_entry["formatter"].strip()
+        formatter = external_entry[URI_FORMAT_KEY]
         return [
             formatter,
             formatter.startswith("http://identifiers.org"),

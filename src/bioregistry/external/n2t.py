@@ -8,6 +8,7 @@ import click
 import yaml
 from pystow.utils import download
 
+from bioregistry.constants import URI_FORMAT_KEY
 from bioregistry.data import EXTERNAL
 
 URL = "https://n2t.net/e/n2t_full_prefixes.yaml"
@@ -42,7 +43,7 @@ def get_n2t(force_download: bool = False):
 def _process(record):
     rv = {
         "name": record.get("name"),
-        "provider_url": record["redirect"].replace("$id", "$1") if "redirect" in record else None,
+        URI_FORMAT_KEY: record["redirect"].replace("$id", "$1") if "redirect" in record else None,
         "description": record.get("description"),
         "homepage": record.get("more"),
         "pattern": record.get("pattern"),

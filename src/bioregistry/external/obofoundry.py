@@ -3,6 +3,7 @@
 """Download registry information from the OBO Foundry."""
 
 import json
+import logging
 
 import click
 import yaml
@@ -13,6 +14,8 @@ from bioregistry.data import EXTERNAL
 __all__ = [
     "get_obofoundry",
 ]
+
+logger = logging.getLogger(__name__)
 
 DIRECTORY = EXTERNAL / "obofoundry"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
@@ -32,8 +35,14 @@ def get_obofoundry(force_download: bool = False):
         data = yaml.full_load(file)
 
     rv = {record["id"]: _process(record) for record in data["ontologies"]}
+    for key, record in rv.items():
+        for depends_on in record.get("depends_on", []):
+            if depends_on not in rv:
+                logger.warning("issue in %s: invalid dependency: %s", key, depends_on)
+            else:
+                rv[depends_on].setdefault("appears_in", []).append(key)
     with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2, sort_keys=True)
+        json.dump(rv, file, indent=2, sort_keys=True, ensure_ascii=False)
 
     return rv
 
@@ -43,18 +52,25 @@ def _process(record):
         if key in record:
             del record[key]
 
-    oid = record["id"]
+    oid = record["id"].lower()
     rv = {
         "name": record["title"],
         "description": record.get("description"),
         "deprecated": record.get("is_obsolete", False),
         "inactive": _parse_activity_status(record),
-        "homepage": record.get("homepage"),
+        "homepage": record.get("homepage") or record.get("repository"),
         "preferredPrefix": record.get("preferredPrefix"),
         "license": record.get("license", {}).get("label"),
+        "license.url": record.get("license", {}).get("url"),
         "contact": record.get("contact", {}).get("email"),
         "contact.label": record.get("contact", {}).get("label"),
+        "contact.github": record.get("contact", {}).get("github"),
+        "repository": record.get("repository"),
     }
+
+    dependencies = record.get("dependencies")
+    if dependencies:
+        rv["depends_on"] = sorted(dependency["id"] for dependency in record.get("dependencies", []))
 
     for product in record.get("products", []):
         if product["id"] == f"{oid}.obo":

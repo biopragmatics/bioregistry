@@ -9,7 +9,6 @@ from .align.cli import align
 from .compare import compare
 from .export.cli import export
 from .external.cli import download
-from .generate_warnings_file import warnings
 from .lint import lint
 from .version import VERSION
 
@@ -22,25 +21,10 @@ def main():
 
 main.add_command(lint)
 main.add_command(compare)
-main.add_command(warnings)
 main.add_command(export)
 main.add_command(download)
 main.add_command(align)
 main.add_command(make_web_command("bioregistry.app.wsgi:app"))
-
-
-@main.command()
-def versions():
-    """Print the versions."""
-    from .resolve import get_versions
-    from tabulate import tabulate
-
-    click.echo(
-        tabulate(
-            sorted(get_versions().items()),
-            headers=["Prefix", "Version"],
-        )
-    )
 
 
 @main.command()
@@ -51,7 +35,6 @@ def update(ctx: click.Context):
     ctx.invoke(lint)
     ctx.invoke(export)
     ctx.invoke(compare)
-    ctx.invoke(warnings)
 
 
 if __name__ == "__main__":

@@ -7,22 +7,17 @@ import click
 from bioregistry.utils import (
     read_collections,
     read_metaregistry,
-    updater,
+    read_registry,
     write_collections,
     write_metaregistry,
+    write_registry,
 )
-
-
-@updater
-def sort_registry(registry):
-    """Sort the registry."""
-    return registry
 
 
 @click.command()
 def lint():
     """Run the lint commands."""
-    sort_registry()
+    write_registry(read_registry())
     write_collections(read_collections())
     write_metaregistry(read_metaregistry())
 

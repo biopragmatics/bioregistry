@@ -3,29 +3,33 @@
 """Export components of the bioregistry to TSV."""
 
 import csv
-import os
 
 import click
 
-from ..constants import DOCS_DATA
-from ..uri_format import get_format
+from ..constants import (
+    COLLECTIONS_TSV_PATH,
+    METAREGISTRY_TSV_PATH,
+    REGISTRY_TSV_PATH,
+    URI_FORMAT_KEY,
+)
+from ..uri_format import get_uri_format
 from ..utils import read_collections, read_metaregistry, read_registry
 
 
 @click.command()
 def export_tsv():
     """Export TSV."""
-    with open(os.path.join(DOCS_DATA, "collections.tsv"), "w") as file:
+    with COLLECTIONS_TSV_PATH.open("w") as file:
         writer = csv.writer(file, delimiter="\t")
         writer.writerow(COLLECTIONS_HEADER)
         writer.writerows(get_collections_rows())
 
-    with open(os.path.join(DOCS_DATA, "metaregistry.tsv"), "w") as file:
+    with METAREGISTRY_TSV_PATH.open("w") as file:
         writer = csv.writer(file, delimiter="\t")
         writer.writerow(METAREGISTRY_HEADER)
         writer.writerows(get_metaregistry_rows())
 
-    with open(os.path.join(DOCS_DATA, "registry.tsv"), "w") as file:
+    with REGISTRY_TSV_PATH.open("w") as file:
         writer = csv.writer(file, delimiter="\t")
         writer.writerow(REGISTRY_HEADER)
         writer.writerows(get_registry_rows())
@@ -46,9 +50,12 @@ METAREGISTRY_HEADER = [
     "description",
     "download",
     "example",
-    "contact",
-    "provider_formatter",
-    "resolver_formatter",
+    "contact.name",
+    "contact.email",
+    "contact.github",
+    "provider_uri_format",
+    "resolver_uri_format",
+    "resolver_type",
 ]
 METAPREFIXES = [
     k
@@ -63,7 +70,7 @@ REGISTRY_HEADER = [
     "pattern",
     "example",
     "email",
-    "formatter",
+    URI_FORMAT_KEY,
     "download.owl",
     "download.obo",
     "synonyms",
@@ -105,9 +112,12 @@ def get_metaregistry_rows():
                 data.description,
                 data.download,
                 data.example,
-                data.contact,
-                data.provider_url,
-                data.resolver_url,
+                data.contact.name,
+                data.contact.email,
+                data.contact.github,
+                data.provider_uri_format,
+                data.resolver_uri_format,
+                data.resolver_type,
             )
         )
     return rows
@@ -126,8 +136,8 @@ def get_registry_rows():
                 data.get_description(),
                 data.get_pattern(),
                 data.get_example(),
-                data.get_email(),
-                get_format(prefix),
+                data.get_contact_email(),
+                get_uri_format(prefix),
                 data.download_owl,
                 data.download_obo,
                 "|".join(sorted(data.get_synonyms())),

@@ -1,6 +1,6 @@
 name: Tests
 
-on: [ push ]
+on: [ push, pull_request ]
 
 jobs:
   lint:
@@ -16,7 +16,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
-        run: pip install tox
+        run: |
+          pip install --upgrade pip setuptools wheel
+          pip install tox
       - name: Check manifest
         run: tox -e manifest
       - name: Check code quality with flake8
@@ -38,7 +40,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
-        run: pip install tox
+        run: |
+          pip install --upgrade pip setuptools wheel
+          pip install tox
       - name: Check RST conformity with doc8
         run: tox -e doc8
       - name: Check docstring coverage
@@ -59,7 +63,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
-        run: pip install tox
+        run: |
+          pip install --upgrade pip setuptools wheel
+          pip install tox
       - name: Test with pytest
         run:
           tox -e py

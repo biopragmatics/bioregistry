@@ -15,7 +15,7 @@ import click
 from more_click import verbose_option
 
 import bioregistry
-from bioregistry.constants import BIOREGISTRY_PATH
+from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.gh import github_client
 from bioregistry.schema import Author, Resource
 from bioregistry.utils import add_resource
@@ -28,10 +28,13 @@ MAPPING = {
     "Name": "name",
     "Homepage": "homepage",
     "Description": "description",
-    "Example Identifier": "example",
-    "Regular Expression Pattern": "pattern",
+    "Example Identifier": "example",  # old
+    "Example Local Unique Identifier": "example",
+    "Regular Expression Pattern": "pattern",  # old
+    "Regular Expression Pattern for Local Unique Identifier": "pattern",
     "Redundant Prefix in Regular Expression Pattern": "banana",
-    "Provider Format URL": "url",
+    "Provider Format URL": URI_FORMAT_KEY,  # old
+    "URI Format String": URI_FORMAT_KEY,
     "Contact": "contact",
     "Additional Comments": "comment",
     "Contributor ORCiD": "contributor_orcid",

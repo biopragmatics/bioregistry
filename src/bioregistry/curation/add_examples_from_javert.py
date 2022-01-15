@@ -7,13 +7,14 @@ import gzip
 from pyobo.xrefdb.xrefs_pipeline import MAPPINGS_DB_TSV_CACHE
 from tqdm import tqdm
 
+import bioregistry
 from bioregistry import get_example
-from bioregistry.utils import updater
+from bioregistry.utils import write_registry
 
 
-@updater
-def main(registry):
+def main():
     """Add examples to the bioregistry from Inspector Javert's Xref Database."""
+    registry = bioregistry.read_registry()
     missing = {key for key in registry if get_example(key) is None}
     with gzip.open(MAPPINGS_DB_TSV_CACHE, "rt") as file:
         for line in tqdm(file):
@@ -26,7 +27,7 @@ def main(registry):
                 registry[target_ns]["example"] = target_id
                 tqdm.write(f"added example {target_ns} {target_id}")
                 missing.remove(target_ns)
-    return registry
+    write_registry(registry)
 
 
 if __name__ == "__main__":

@@ -5,7 +5,8 @@
 from typing import List, Mapping, Optional, Tuple, Union
 
 from .resolve import parse_curie
-from .uri_format import get_prefix_map, prepare_prefix_list
+from .resource_manager import prepare_prefix_list
+from .uri_format import get_prefix_map
 
 __all__ = [
     "curie_from_iri",
@@ -186,28 +187,3 @@ def parse_obolibrary_purl(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]
     """
     curie = iri[len("http://purl.obolibrary.org/obo/") :]
     return parse_curie(curie, sep="_")
-
-
-def _main():
-    """Run this as ``python -m bioregistry.parse_iri`` to get a list of IRIs that can be constructed, but not parsed."""
-    import bioregistry
-    from tabulate import tabulate
-    import click
-
-    rows = []
-    for prefix in bioregistry.read_registry():
-        example = bioregistry.get_example(prefix)
-        if example is None:
-            continue
-        iri = bioregistry.get_iri(prefix, example, use_bioregistry_io=False)
-        if iri is None:
-            # print('no iri for', prefix, example)
-            continue
-        k, v = parse_iri(iri)
-        if k is None:
-            rows.append((prefix, example, iri, k, v))
-    click.echo(tabulate(rows))
-
-
-if __name__ == "__main__":
-    _main()

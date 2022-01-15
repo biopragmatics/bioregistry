@@ -10,13 +10,14 @@ from typing import Callable
 
 import click
 import yaml
+from tqdm import tqdm
 
 import bioregistry
 from bioregistry.constants import DOCS_DATA
 from bioregistry.resolve import get_external
 
 __all__ = [
-    "warnings",
+    "export_warnings",
 ]
 
 ENTRIES = sorted(
@@ -37,14 +38,31 @@ def _g(predicate: Callable[[str], bool]):
     ]
 
 
+def get_unparsable_uris():
+    """Get a list of IRIs that can be constructed, but not parsed."""
+    rows = []
+    for prefix in tqdm(bioregistry.read_registry(), desc="Checking URIs"):
+        example = bioregistry.get_example(prefix)
+        if example is None:
+            continue
+        uri = bioregistry.get_iri(prefix, example, use_bioregistry_io=False)
+        if uri is None:
+            continue
+        k, v = bioregistry.parse_iri(uri)
+        if k is None:
+            rows.append((prefix, example, uri, k, v))
+    return rows
+
+
 @click.command()
-def warnings():
+def export_warnings():
     """Make warnings list."""
+    # unparsable = get_unparsable_uris()
     missing_wikidata_database = _g(
         lambda prefix: get_external(prefix, "wikidata").get("database") is None
     )
     missing_pattern = _g(lambda prefix: bioregistry.get_pattern(prefix) is None)
-    missing_format_url = _g(lambda prefix: bioregistry.get_format(prefix) is None)
+    missing_format_url = _g(lambda prefix: bioregistry.get_uri_format(prefix) is None)
     missing_example = _g(lambda prefix: bioregistry.get_example(prefix) is None)
 
     with open(os.path.join(DOCS_DATA, "curation.yml"), "w") as file:
@@ -54,6 +72,7 @@ def warnings():
                 "pattern": missing_pattern,
                 "formatter": missing_format_url,
                 "example": missing_example,
+                # "unparsable": unparsable,
             },
             file,
         )
@@ -104,10 +123,14 @@ def warnings():
                 "wrong_patterns": miriam_pattern_wrong,
                 "embedding_rewrites": miriam_embedding_rewrites,
                 "prefix_rewrites": miriam_prefix_rewrites,
+                "license_conflict": [
+                    dict(prefix=prefix, obo=obo, ols=ols)
+                    for prefix, _override, obo, ols in bioregistry.get_license_conflicts()
+                ],
             },
             file,
         )
 
 
 if __name__ == "__main__":
-    warnings()
+    export_warnings()

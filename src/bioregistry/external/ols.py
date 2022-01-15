@@ -62,13 +62,14 @@ def get_ols(force_download: bool = False):
 def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Optional[Mapping[str, str]]:
     ols_id = ols_entry["ontologyId"]
     config = ols_entry["config"]
+    version_iri = config["versionIri"]
     rv = {
         "prefix": ols_id,
         "name": config["title"],
-        "download": config["fileLocation"],
-        "version.iri": config["versionIri"],
+        "download": _clean_url(config["fileLocation"]),
+        "version.iri": _clean_url(version_iri),
         "description": config["description"],
-        "homepage": config["homepage"],
+        "homepage": _clean_url(config["homepage"]),
     }
 
     email = config.get("mailingList")
@@ -83,15 +84,33 @@ def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Optional[Ma
     if license_value in {"Unspecified", "Unspecified"}:
         license_value = None
     if not license_value:
-        logger.info("[%s] missing license in OLS. Contact: %s", ols_id, email)
+        logger.info("[%s] missing license in OLS. Contact: %s", ols_id, config["mailingList"])
     rv["license"] = license_value
 
     version = config.get("version")
+    if version is None and processing.version_iri_prefix:
+        if not version_iri.startswith(processing.version_iri_prefix):
+            logger.info("[%s] version IRI does not start with appropriate prefix", ols_id)
+        else:
+            version = version_iri[len(processing.version_iri_prefix) :]
+            if processing.version_iri_suffix:
+                version = version[: -len(processing.version_iri_suffix)]
+
     if version is None:
-        logger.info("[%s] missing version in OLS. Contact: %s", ols_id, email)
+        logger.info(
+            "[%s] missing version in OLS. Contact: %s, consider version.iri %s",
+            ols_id,
+            config["mailingList"],
+            version_iri,
+        )
     else:
         if version != version.strip():
-            logger.info("[%s] extra whitespace in version: %s. Contact: %s", ols_id, version, email)
+            logger.info(
+                "[%s] extra whitespace in version: %s. Contact: %s",
+                ols_id,
+                version,
+                config["mailingList"],
+            )
             version = version.strip()
 
         version_prefix = processing.version_prefix
@@ -124,7 +143,7 @@ def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Optional[Ma
                     "[%s] confusing date format: %s. Contact: %s",
                     ols_id,
                     version_date_fmt,
-                    email,
+                    config["mailingList"],
                 )
             try:
                 version = datetime.datetime.strptime(version, version_date_fmt).strftime("%Y-%m-%d")
@@ -137,6 +156,14 @@ def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Optional[Ma
 
     rv = {k: v for k, v in rv.items() if v}
     return rv
+
+
+def _clean_url(url: Optional[str]) -> Optional[str]:
+    if url is None:
+        return url
+    if "CO_" in url and url.startswith("http://127.0.0.1:5900"):
+        return "https://cropontology.org" + url[len("http://127.0.0.1:5900") :]
+    return url
 
 
 @click.command()

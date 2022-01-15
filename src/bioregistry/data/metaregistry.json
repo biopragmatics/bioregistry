@@ -1,24 +1,90 @@
 {
   "metaregistry": [
     {
-      "contact": "ali.syed@kaust.edu.sa",
+      "availability": {
+        "alternate_providers": "irrelevant",
+        "contact": "missing",
+        "description": "required",
+        "example": "irrelevant",
+        "fair": true,
+        "homepage": "required",
+        "license": "missing",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "irrelevant",
+        "search": true,
+        "synonyms": "missing",
+        "version": "present"
+      },
+      "contact": {
+        "email": "ali.syed@kaust.edu.sa",
+        "github": "aliraza995",
+        "name": "Ali Syed",
+        "orcid": "0000-0002-5103-9058"
+      },
       "description": "AberOWL is a framework for ontology-based access to biological data. It consists of a repository of bio-ontologies, a set of webservices which provide access to OWL(-EL) reasoning over the ontologies, and several frontends which utilise the ontology repository and reasoning services to provide access to specific biological datasets.",
       "download": "http://aber-owl.net/api/ontology/?format=json",
       "example": "CHEBI",
       "homepage": "http://aber-owl.net",
       "name": "AberOWL",
       "prefix": "aberowl",
-      "provider_url": "http://aber-owl.net/ontology/$1"
+      "provider_uri_format": "http://aber-owl.net/ontology/$1",
+      "resolver_type": "lookup",
+      "resolver_uri_format": "http://aber-owl.net/ontology/$1/#/Browse/<http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F$1_$2>"
     },
     {
+      "availability": {
+        "alternate_providers": "irrelevant",
+        "contact": "present",
+        "description": "required",
+        "example": "irrelevant",
+        "fair": false,
+        "fair_note": "The API for AgroPortal requires authentication",
+        "homepage": "required",
+        "license": "present",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "irrelevant",
+        "search": false,
+        "synonyms": "missing",
+        "version": "present"
+      },
+      "contact": {
+        "email": "clement.jonquet@inrae.fr",
+        "github": "jonquet",
+        "name": "Clement Jonquet",
+        "orcid": "0000-0002-2404-1582"
+      },
       "description": "A vocabulary and ontology repository for agronomy and related domains.",
       "example": "ENVO",
       "homepage": "http://agroportal.lirmm.fr",
       "name": "AgroPortal",
       "prefix": "agroportal",
-      "provider_url": "http://agroportal.lirmm.fr/ontologies/$1"
+      "provider_uri_format": "http://agroportal.lirmm.fr/ontologies/$1"
     },
     {
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "missing",
+        "description": "missing",
+        "example": "missing",
+        "fair": true,
+        "homepage": "missing",
+        "license": "present",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "required",
+        "search": false,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "bioregistry_prefix": "biolink",
+      "contact": {
+        "email": "deepak.unni3@lbl.gov",
+        "github": "deepakunni3",
+        "name": "Deepak Unni",
+        "orcid": "0000-0002-3583-7340"
+      },
       "description": "A modeling paradigm-specific registry of prefixes and their URL expansions",
       "download": "https://raw.githubusercontent.com/biolink/biolink-model/master/biolink-model.yaml",
       "example": "doi",
@@ -27,26 +93,92 @@
       "prefix": "biolink"
     },
     {
+      "availability": {
+        "alternate_providers": "irrelevant",
+        "contact": "present",
+        "description": "required",
+        "example": "irrelevant",
+        "fair": false,
+        "fair_note": "The API for BioPortal requires authentication",
+        "homepage": "required",
+        "license": "missing",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "irrelevant",
+        "search": false,
+        "synonyms": "missing",
+        "version": "required"
+      },
+      "bioregistry_prefix": "bioportal",
+      "contact": {
+        "email": "jgraybeal@stanford.edu",
+        "github": "graybeal",
+        "name": "John Graybeal",
+        "orcid": "0000-0001-6875-5360"
+      },
       "description": "The BioPortal is a less stringent registry of biomedical ontologies than the OBO Foundry",
       "example": "CHEBI",
       "homepage": "https://bioportal.bioontology.org/",
       "name": "BioPortal Prefixes",
       "prefix": "bioportal",
-      "provider_url": "https://bioportal.bioontology.org/ontologies/$1"
+      "provider_uri_format": "https://bioportal.bioontology.org/ontologies/$1"
     },
     {
-      "contact": "cthoyt@gmail.com",
+      "availability": {
+        "alternate_providers": "present",
+        "contact": "present",
+        "description": "required",
+        "example": "required",
+        "fair": true,
+        "homepage": "required",
+        "license": "present",
+        "name": "required",
+        "pattern": "present",
+        "provider": "present",
+        "search": false,
+        "synonyms": "present",
+        "version": "present"
+      },
+      "bioregistry_prefix": "bioregistry",
+      "contact": {
+        "email": "cthoyt@gmail.com",
+        "github": "cthoyt",
+        "name": "Charles Tapley Hoyt",
+        "orcid": "0000-0003-4423-4370"
+      },
       "description": "The Bioregistry is integrative meta-registry of biological databases, ontologies, and nomenclatures that is backed by an open database.",
       "download": "https://bioregistry.io/api/registry/",
       "example": "chebi",
       "homepage": "https://bioregistry.io",
       "name": "Bioregistry",
       "prefix": "bioregistry",
-      "provider_url": "https://bioregistry.io/registry/$1",
-      "resolver_url": "https://bioregistry.io/$1:$2"
+      "provider_uri_format": "https://bioregistry.io/registry/$1",
+      "resolver_type": "resolver",
+      "resolver_uri_format": "https://bioregistry.io/$1:$2"
     },
     {
-      "contact": "Amos.Bairoch@sib.swiss",
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "missing",
+        "description": "missing",
+        "example": "missing",
+        "fair": true,
+        "fair_note": "Data is available but requires custom parser",
+        "homepage": "required",
+        "license": "missing",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "required",
+        "search": false,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "contact": {
+        "email": "Amos.Bairoch@sib.swiss",
+        "github": "AmosBairoch",
+        "name": "Amos Bairoch",
+        "orcid": "0000-0003-2826-6444"
+      },
       "description": "The set of prefixes used in the Cellosaurus resource",
       "example": "4DN",
       "homepage": "https://web.expasy.org/cellosaurus/",
@@ -54,32 +186,145 @@
       "prefix": "cellosaurus"
     },
     {
-      "contact": "helpdesk@cropontology-curationtool.org",
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "missing",
+        "description": "missing",
+        "example": "missing",
+        "fair": false,
+        "fair_note": "No additional metadata included besides name in ontology",
+        "homepage": "missing",
+        "license": "missing",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "missing",
+        "search": false,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "bioregistry_prefix": "cheminf",
+      "contact": {
+        "email": "egon.willighagen@gmail.com",
+        "github": "egonw",
+        "name": "Egon Willighagen",
+        "orcid": "0000-0001-7542-0286"
+      },
+      "description": "Contains entries for various database identifiers",
+      "example": "000140",
+      "homepage": "https://github.com/semanticchemistry/semanticchemistry",
+      "name": "Chemical Information Ontology",
+      "prefix": "cheminf",
+      "provider_uri_format": "https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_$1"
+    },
+    {
+      "availability": {
+        "alternate_providers": "irrelevant",
+        "contact": "missing",
+        "description": "missing",
+        "example": "irrelevant",
+        "fair": true,
+        "homepage": "irrelevant*",
+        "license": "missing",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "irrelevant",
+        "search": true,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "contact": {
+        "email": "helpdesk@cropontology-curationtool.org",
+        "name": "Crop Ontology Support"
+      },
       "description": "The Crop Ontology (CO) current objective is to compile validated concepts along with their inter-relationships on anatomy, structure and phenotype of Crops, on trait measurement and methods as well as on Germplasm with the multi-crop passport terms",
       "download": "https://github.com/bioversity/Crop-Ontology/blob/master/public/dump.json",
       "example": "CO_010",
       "homepage": "https://www.cropontology.org",
       "name": "Crop Ontology Curation Tool",
       "prefix": "cropoct",
-      "provider_url": "https://www.cropontology.org/ontology/$1"
+      "provider_uri_format": "https://www.cropontology.org/ontology/$1"
     },
     {
+      "availability": {
+        "alternate_providers": "irrelevant",
+        "contact": "present",
+        "description": "required",
+        "example": "irrelevant",
+        "fair": false,
+        "fair_note": "The API for EcoPortal requires authentication",
+        "homepage": "present",
+        "license": "present",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "irrelevant",
+        "search": false,
+        "synonyms": "missing",
+        "version": "present"
+      },
+      "contact": {
+        "email": "service.centre@lifewatch.eu",
+        "name": "EcoPortal Support"
+      },
       "description": "The LifeWatch ERIC repository of semantic resources for the ecological domain.",
       "example": "ALIENSPECIES",
       "homepage": "http://ecoportal.lifewatchitaly.eu",
       "name": "EcoPortal",
       "prefix": "ecoportal",
-      "provider_url": "http://ecoportal.lifewatchitaly.eu/ontologies/$1"
+      "provider_uri_format": "http://ecoportal.lifewatchitaly.eu/ontologies/$1"
     },
     {
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "required",
+        "description": "required",
+        "example": "missing",
+        "fair": false,
+        "fair_note": "The API for FAIRsharing requires authentication",
+        "homepage": "required",
+        "license": "missing",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "missing",
+        "search": true,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "bioregistry_prefix": "fairsharing",
+      "contact": {
+        "email": "allyson.lister@oerc.ox.ac.uk",
+        "github": "allysonlister",
+        "name": "Allyson Lister",
+        "orcid": "0000-0002-7702-4495"
+      },
       "description": "A curated, informative and educational resource on data and metadata standards, inter-related to databases and data policies.",
       "example": "FAIRsharing.62qk8w",
       "homepage": "https://fairsharing.org/",
       "name": "FAIRSharing",
       "prefix": "fairsharing",
-      "provider_url": "https://fairsharing.org/$1"
+      "provider_uri_format": "https://fairsharing.org/$1"
     },
     {
+      "availability": {
+        "alternate_providers": "present",
+        "contact": "missing",
+        "description": "present",
+        "example": "present",
+        "fair": true,
+        "homepage": "present",
+        "license": "missing",
+        "name": "required",
+        "pattern": "present",
+        "provider": "present",
+        "search": false,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "contact": {
+        "email": "cjmungall@lbl.gov",
+        "github": "cmungall",
+        "name": "Chris Mungall",
+        "orcid": "0000-0002-6601-2165"
+      },
       "description": "A database-specific registry supporting curation in the Gene Ontology",
       "download": "https://raw.githubusercontent.com/geneontology/go-site/master/metadata/db-xrefs.yaml",
       "example": "CHEBI",
@@ -88,27 +333,89 @@
       "prefix": "go"
     },
     {
-      "contact": "hhe@ebi.ac.uk",
+      "availability": {
+        "alternate_providers": "present",
+        "contact": "missing",
+        "description": "required",
+        "example": "required",
+        "fair": true,
+        "homepage": "required",
+        "license": "missing",
+        "name": "required",
+        "pattern": "required",
+        "provider": "required",
+        "search": true,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "bioregistry_prefix": "identifiers.namespace",
+      "contact": {
+        "email": "hhe@ebi.ac.uk",
+        "github": "hHermjakob",
+        "name": "Henning Hermjakob",
+        "orcid": "0000-0001-8479-0262"
+      },
       "description": "The Identifiers.org Resolution Service provides consistent access to life science data using Compact Identifiers. Compact Identifiers consist of an assigned unique prefix and a local provider designated accession number (prefix:accession).",
       "download": "https://registry.api.identifiers.org/resolutionApi/getResolverDataset",
       "example": "chebi",
       "homepage": "https://identifiers.org",
       "name": "Identifiers.org",
       "prefix": "miriam",
-      "provider_url": "https://registry.identifiers.org/registry/$1",
-      "resolver_url": "https://identifiers.org/$1:$2"
+      "provider_uri_format": "https://registry.identifiers.org/registry/$1",
+      "resolver_type": "resolver",
+      "resolver_uri_format": "https://identifiers.org/$1:$2"
     },
     {
-      "contact": "cdl@www.cdlib.org",
+      "availability": {
+        "alternate_providers": "present",
+        "contact": "missing",
+        "description": "required",
+        "example": "required",
+        "fair": true,
+        "homepage": "required",
+        "license": "missing",
+        "name": "required",
+        "pattern": "required",
+        "provider": "required",
+        "search": false,
+        "synonyms": "present",
+        "version": "missing"
+      },
+      "contact": {
+        "email": "cdl@www.cdlib.org",
+        "name": "California Digital Library Support"
+      },
       "description": "An ARK resolver as well as resolver built with common prefixes as in Identifiers.org",
       "download": "https://n2t.net/e/n2t_full_prefixes.yaml",
       "example": "chebi",
       "homepage": "https://n2t.net",
       "name": "Name-to-Thing",
       "prefix": "n2t",
-      "resolver_url": "https://n2t.net/$1:$2"
+      "provider_uri_format": "https://n2t.net/$1:",
+      "resolver_type": "resolver",
+      "resolver_uri_format": "https://n2t.net/$1:$2"
     },
     {
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "missing",
+        "description": "missing",
+        "example": "required",
+        "fair": false,
+        "fair_note": "Requires web scraping",
+        "homepage": "required",
+        "license": "missing",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "missing",
+        "search": false,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "contact": {
+        "email": "gb-admin@ncbi.nlm.nih.gov",
+        "name": "GenBank Support"
+      },
       "description": "A database-specific registry supporting curation in the NCBI GenBank and related NCBI resources",
       "example": "ECOCYC",
       "homepage": "https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/",
@@ -116,65 +423,246 @@
       "prefix": "ncbi"
     },
     {
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "required",
+        "description": "required",
+        "example": "missing",
+        "fair": true,
+        "homepage": "required",
+        "license": "required",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "missing",
+        "search": false,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "contact": {
+        "email": "cjmungall@lbl.gov",
+        "github": "cmungall",
+        "name": "Chris Mungall",
+        "orcid": "0000-0002-6601-2165"
+      },
       "description": "The mission of the OBO Foundry is to develop a family of interoperable ontologies that are both logically well-formed and scientifically accurate.",
       "download": "http://www.obofoundry.org/registry/ontologies.yml",
       "example": "chebi",
       "homepage": "http://www.obofoundry.org/",
       "name": "OBO Foundry",
       "prefix": "obofoundry",
-      "provider_url": "http://www.obofoundry.org/ontology/$1",
-      "resolver_url": "http://purl.obolibrary.org/obo/$1_$2"
+      "provider_uri_format": "http://www.obofoundry.org/ontology/$1",
+      "resolver_type": "resolver",
+      "resolver_uri_format": "http://purl.obolibrary.org/obo/$1_$2"
     },
     {
+      "availability": {
+        "alternate_providers": "irrelevant",
+        "contact": "present",
+        "description": "required",
+        "example": "irrelevant",
+        "fair": true,
+        "homepage": "present",
+        "license": "required",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "irrelevant",
+        "search": true,
+        "synonyms": "missing",
+        "version": "present"
+      },
+      "contact": {
+        "email": "henriette007@ebi.ac.uk",
+        "github": "henrietteharmse",
+        "name": "Henriette Harmse",
+        "orcid": "0000-0001-7251-9504"
+      },
       "description": "The Ontology Lookup Service (OLS) is a repository for biomedical ontologies that aims to provide a single point of access to the latest ontology versions. ",
       "example": "chebi",
       "homepage": "https://www.ebi.ac.uk/ols",
       "name": "Ontology Lookup Service",
       "prefix": "ols",
-      "provider_url": "https://www.ebi.ac.uk/ols/ontologies/$1"
+      "provider_uri_format": "https://www.ebi.ac.uk/ols/ontologies/$1"
     },
     {
+      "availability": {
+        "alternate_providers": "irrelevant",
+        "contact": "required",
+        "description": "required",
+        "example": "irrelevant",
+        "fair": false,
+        "fair_note": "No API available, data download requires web scraping",
+        "homepage": "required",
+        "license": "missing",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "irrelevant",
+        "search": false,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "contact": {
+        "email": "yongqunh@med.umich.edu",
+        "github": "yongqunh",
+        "name": "Yongqun Oliver He",
+        "orcid": "0000-0001-9189-9661"
+      },
       "description": " Ontobee is aimed to facilitate ontology data sharing, visualization, query, integration, and analysis.",
       "example": "AGRO",
       "homepage": "http://www.ontobee.org/",
       "name": "OntoBee",
       "prefix": "ontobee",
-      "provider_url": "http://www.ontobee.org/ontology/$1"
+      "provider_uri_format": "http://www.ontobee.org/ontology/$1",
+      "resolver_type": "lookup",
+      "resolver_uri_format": "http://www.ontobee.org/ontology/$1?iri=http://purl.obolibrary.org/obo/$1_$2"
     },
     {
+      "availability": {
+        "alternate_providers": "present",
+        "contact": "missing",
+        "description": "missing",
+        "example": "missing",
+        "fair": true,
+        "homepage": "missing",
+        "license": "missing",
+        "name": "missing",
+        "pattern": "missing",
+        "provider": "required",
+        "search": false,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "contact": {
+        "email": "richard@cyganiak.de",
+        "github": "cygri",
+        "name": "Richard Cyganiak",
+        "orcid": "0000-0001-9950-5209"
+      },
+      "description": "A web-developer centric archive of prefixes and URI prefixes",
+      "download": "https://prefix.cc/context.jsonld",
+      "example": "foaf",
+      "homepage": "https://prefix.cc/",
+      "name": "Prefix.cc",
+      "prefix": "prefixcc",
+      "provider_uri_format": "https://prefix.cc/$1"
+    },
+    {
+      "availability": {
+        "alternate_providers": "required",
+        "contact": "missing",
+        "description": "present",
+        "example": "present",
+        "fair": true,
+        "homepage": "present",
+        "license": "missing",
+        "name": "required",
+        "pattern": "present",
+        "provider": "present",
+        "search": true,
+        "synonyms": "present",
+        "version": "missing"
+      },
+      "contact": {
+        "email": "michel.dumontier@gmail.com",
+        "github": "micheldumontier",
+        "name": "Michel Dumontier",
+        "orcid": "0000-0003-4727-9435"
+      },
       "description": "A registry of commonly used prefixes in the life sciences and linked data",
       "download": "https://raw.githubusercontent.com/prefixcommons/biocontext/master/registry/commons_context.jsonld",
       "example": "CHEBI",
       "homepage": "https://prefixcommons.org",
       "name": "Prefix Commons",
       "prefix": "prefixcommons",
-      "provider_url": "https://prefixcommons.org/?q=id:$1"
+      "provider_uri_format": "https://prefixcommons.org/?q=$1"
     },
     {
-      "contact": "faan@dtu.dk",
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "missing",
+        "description": "missing",
+        "example": "missing",
+        "fair": false,
+        "fair_note": "There is not a structured resource that lists what prefixes are covered by Scholia",
+        "homepage": "missing",
+        "license": "missing",
+        "name": "missing",
+        "pattern": "missing",
+        "provider": "missing",
+        "search": false,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "contact": {
+        "email": "faan@dtu.dk",
+        "github": "fnielsen",
+        "name": "Finn Årup Nielsen",
+        "orcid": "0000-0001-6128-3356"
+      },
       "description": "A frontend to Wikidata",
       "example": "doi",
       "homepage": "https://scholia.toolforge.org/",
       "name": "Scholia",
       "prefix": "scholia",
-      "resolver_url": "https://scholia.toolforge.org/$1/$2"
+      "resolver_type": "lookup",
+      "resolver_uri_format": "https://scholia.toolforge.org/$1/$2"
     },
     {
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "missing",
+        "description": "missing",
+        "example": "missing",
+        "fair": true,
+        "homepage": "required",
+        "license": "missing",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "required",
+        "search": true,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "contact": {
+        "email": "agb@ebi.ac.uk",
+        "github": "bateman-research",
+        "name": "Alex Bateman",
+        "orcid": "0000-0002-6982-4660"
+      },
       "description": "The cross-references section of UniProtKB entries displays explicit and implicit links to databases such as nucleotide sequence databases, model organism databases and genomics and proteomics resources.",
       "download": "https://www.uniprot.org/database/?format=rdf",
       "example": "0174",
       "homepage": "https://www.uniprot.org/database/",
       "name": "UniProt Cross-ref database",
       "prefix": "uniprot",
-      "provider_url": "https://www.uniprot.org/database/DB-$1"
+      "provider_uri_format": "https://www.uniprot.org/database/DB-$1"
     },
     {
+      "availability": {
+        "alternate_providers": "present",
+        "contact": "present*",
+        "description": "required",
+        "example": "present",
+        "fair": true,
+        "homepage": "present",
+        "license": "present*",
+        "name": "required",
+        "pattern": "present",
+        "provider": "present",
+        "search": true,
+        "synonyms": "missing",
+        "version": "present*"
+      },
+      "bioregistry_prefix": "wikidata",
+      "contact": {
+        "email": "info@wikidata.org",
+        "name": "WikiData Support"
+      },
       "description": "An open, community-curated knowledgebase that contains several properties corresponding to resources listed in other biomedical registries.",
       "example": "P683",
       "homepage": "https://www.wikidata.org",
       "name": "Wikidata Property",
       "prefix": "wikidata",
-      "provider_url": "https://www.wikidata.org/wiki/Property:$1"
+      "provider_uri_format": "https://www.wikidata.org/wiki/Property:$1"
     }
   ]
 }

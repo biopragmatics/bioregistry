@@ -5,7 +5,7 @@
 from typing import Mapping, Sequence
 
 from bioregistry.align.utils import Aligner
-from bioregistry.external import get_obofoundry
+from bioregistry.external.obofoundry import get_obofoundry
 
 __all__ = [
     "OBOFoundryAligner",

@@ -9,6 +9,7 @@ from typing import Mapping
 from defusedxml import ElementTree
 from pystow.utils import download
 
+from bioregistry.constants import URI_FORMAT_KEY
 from bioregistry.data import EXTERNAL
 
 __all__ = [
@@ -33,7 +34,7 @@ kz = {
     "category": "{http://purl.uniprot.org/core/}category",
     "link_is_explicit": "{http://purl.uniprot.org/core/}linkIsExplicit",
     "see_also": "{http://www.w3.org/2000/01/rdf-schema#}seeAlso",
-    "formatter": "{http://purl.uniprot.org/core/}urlTemplate",
+    URI_FORMAT_KEY: "{http://purl.uniprot.org/core/}urlTemplate",
     "citation": "{http://purl.uniprot.org/core/}citation",
     "exact_match": "{http://www.w3.org/2004/02/skos/core#}exactMatch",
     "comment": "{http://www.w3.org/2000/01/rdf-schema#}comment",
@@ -57,6 +58,11 @@ def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
             value = element.findtext(path)
             if not value:
                 continue
+            if key == URI_FORMAT_KEY:
+                if "%s" in value and "%u" in value:
+                    pass  # FIXME
+                else:
+                    value = value.replace("%s", "$1").replace("%u", "$1")
             entry[key] = value
         prefix = entry.get("prefix")
         if prefix is not None:

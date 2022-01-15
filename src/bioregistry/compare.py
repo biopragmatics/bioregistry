@@ -8,16 +8,16 @@ import logging
 import math
 import random
 import sys
+import typing
 from collections import Counter
 from typing import Collection, Set
 
 import click
 
 from bioregistry import (
+    get_contact_email,
     get_description,
-    get_email,
     get_example,
-    get_format,
     get_homepage,
     get_json_download,
     get_license,
@@ -25,13 +25,14 @@ from bioregistry import (
     get_obo_download,
     get_owl_download,
     get_pattern,
+    get_uri_format,
     get_version,
     is_deprecated,
     read_registry,
 )
 from bioregistry.constants import DOCS_IMG
-from bioregistry.external import GETTERS
-from bioregistry.resolve import _remap_license, get_external
+from bioregistry.license_standardizer import standardize_license
+from bioregistry.resolve import get_external
 from bioregistry.schema import Resource
 
 logger = logging.getLogger(__name__)
@@ -216,6 +217,16 @@ def compare(png: bool):  # noqa:C901
         )
         return sys.exit(1)
 
+    try:
+        from bioregistry.external.getters import GETTERS
+    except ImportError:
+        click.secho(
+            "Could not import alignment dependencies."
+            " Install bioregistry again with `pip install bioregistry[align]`.",
+            fg="red",
+        )
+        return sys.exit(1)
+
     # This should make SVG output deterministic
     # See https://matplotlib.org/3.1.0/users/prev_whats_new/whats_new_2.0.0.html#added-svg-hashsalt-key-to-rcparams
     plt.rcParams["svg.hashsalt"] = "saltyregistry"
@@ -251,7 +262,14 @@ def compare(png: bool):  # noqa:C901
     _save(fig, name="license_coverage", png=png)
 
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
-    sns.countplot(x=licenses, ax=ax)
+    licenses_counter: typing.Counter[str] = Counter(licenses)
+    licenses_mapped = [
+        "None" if license_ is None else license_ if licenses_counter[license_] > 3 else "Other"
+        for license_ in licenses
+    ]
+    licenses_mapped_counter = Counter(licenses_mapped)
+    licenses_mapped_order = [license_ for license_, _ in licenses_mapped_counter.most_common()]
+    sns.countplot(licenses_mapped, ax=ax, order=licenses_mapped_order)
     ax.set_xlabel("License")
     ax.set_ylabel("Count")
     ax.set_yscale("log")
@@ -278,11 +296,11 @@ def compare(png: bool):  # noqa:C901
         ("Description", _get_has(get_description)),
         ("Example", _get_has(get_example)),
         ("Pattern", _get_has(get_pattern)),
-        ("Provider", _get_has(get_format)),
+        ("Provider", _get_has(get_uri_format)),
         ("License", _get_has(get_license)),
         ("License Type", _get_has_present(get_license)),
         ("Version", _get_has(get_version)),
-        ("Contact Email", _get_has(get_email)),
+        ("Contact Email", _get_has(get_contact_email)),
         ("Wikidata Database", HAS_WIKIDATA_DATABASE),
         ("OBO", _get_has(get_obo_download)),
         ("OWL", _get_has(get_owl_download)),
@@ -378,7 +396,7 @@ def compare(png: bool):  # noqa:C901
 
 def _count_providers(resource: Resource) -> int:
     rv = 0
-    if resource.get_format_url():
+    if resource.get_uri_prefix():
         rv += 1
     rv += len(resource.get_extra_providers())
     return rv
@@ -389,11 +407,11 @@ def _get_license_and_conflicts():
     conflicts = set()
     obo_has_license, ols_has_license = set(), set()
     for key in read_registry():
-        obo_license = _remap_license(get_external(key, "obofoundry").get("license"))
+        obo_license = standardize_license(get_external(key, "obofoundry").get("license"))
         if obo_license:
             obo_has_license.add(key)
 
-        ols_license = _remap_license(get_external(key, "ols").get("license"))
+        ols_license = standardize_license(get_external(key, "ols").get("license"))
         if ols_license:
             ols_has_license.add(key)
 

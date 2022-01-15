@@ -1,0 +1,33 @@
+name: Update resource
+description: Use this to request an update to a prefix that does not fit in one of the other templates.
+labels: [ Update ]
+assignees:
+  - cthoyt
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out the resource update form!
+  - type: input
+    id: prefix
+    attributes:
+      label: Prefix
+      description: What is the Bioregistry prefix of the resource whose regex should be updated?
+      placeholder: ex. chebi
+    validations:
+      required: true
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Explanation
+      description: Please explain what should be updated and why
+    validations:
+      required: true
+  - type: input
+    id: orcid
+    attributes:
+      label: Contributor ORCID
+      description: Please provide your ORCiD identifier so we can attribute this contribution to you.
+      placeholder: ex. 0000-0003-4423-4370
+    validations:
+      required: true

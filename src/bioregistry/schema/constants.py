@@ -94,6 +94,25 @@ bioregistry_schema_terms = [
         "A property connecting two prefixes that share an IRI where the subject is "
         "the non-preferred prefix and the target is the preferred prefix",
     ),
+    Term(
+        "0000017",
+        "Property",
+        "dependsOn",
+        "The data in resource denoted by the subject prefix depends on the data "
+        "in the resources denoted by the object prefix",
+    ),
+    Term(
+        "0000018",
+        "Property",
+        "appearsIn",
+        "Terms from the source appear in the target resource",
+    ),
+    Term(
+        "0000019",
+        "Property",
+        "hasResponsible",
+        "Connect an entity to its responsible person",
+    ),
 ]
 bioregistry_collection = rdflib.namespace.Namespace("https://bioregistry.io/collection/")
 bioregistry_resource = rdflib.namespace.Namespace("https://bioregistry.io/registry/")

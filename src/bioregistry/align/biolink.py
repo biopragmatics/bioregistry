@@ -6,7 +6,7 @@ import json
 from typing import Any, Dict, Mapping, Sequence
 
 from bioregistry.align.utils import Aligner
-from bioregistry.constants import DATA_DIRECTORY
+from bioregistry.constants import DATA_DIRECTORY, URI_FORMAT_KEY
 from bioregistry.external.biolink import get_biolink
 
 __all__ = [
@@ -21,7 +21,7 @@ class BiolinkAligner(Aligner):
 
     key = "biolink"
     getter = get_biolink
-    curation_header = ["formatter", "identifiers", "purl"]
+    curation_header = [URI_FORMAT_KEY, "identifiers", "purl"]
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the skipped Biolink identifiers."""
@@ -31,20 +31,20 @@ class BiolinkAligner(Aligner):
 
     def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
         """Prepare Biolink data to be added to the Biolink for each BioPortal registry entry."""
-        formatter = external_entry["formatter"].strip()
+        uri_format = external_entry[URI_FORMAT_KEY]
         return {
-            "formatter": formatter,
-            "is_identifiers": formatter.startswith("http://identifiers.org"),
-            "is_obo": formatter.startswith("http://purl.obolibrary.org"),
+            URI_FORMAT_KEY: uri_format,
+            "is_identifiers": uri_format.startswith("http://identifiers.org"),
+            "is_obo": uri_format.startswith("http://purl.obolibrary.org"),
         }
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Prepare curation rows for unaligned Biolink registry entries."""
-        formatter = external_entry["formatter"].strip()
+        uri_format = external_entry[URI_FORMAT_KEY]
         return [
-            formatter,
-            formatter.startswith("http://identifiers.org"),
-            formatter.startswith("http://purl.obolibrary.org"),
+            uri_format,
+            uri_format.startswith("http://identifiers.org"),
+            uri_format.startswith("http://purl.obolibrary.org"),
         ]
 
 

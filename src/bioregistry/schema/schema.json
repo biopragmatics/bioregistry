@@ -24,6 +24,11 @@
           "description": "The email address specific to the author",
           "pattern": "^(\\w|\\.|\\_|\\-)+[@](\\w|\\_|\\-|\\.)+[.]\\w{2,5}$",
           "type": "string"
+        },
+        "github": {
+          "title": "Github",
+          "description": "The GitHub handle for the author",
+          "type": "string"
         }
       },
       "required": [
@@ -106,9 +111,9 @@
           "description": "Homepage of the provider",
           "type": "string"
         },
-        "url": {
-          "title": "Url",
-          "description": "The URL format string, which must have at least one ``$1`` in it",
+        "uri_format": {
+          "title": "URI Format",
+          "description": "The URI format string, which must have at least one ``$1`` in it",
           "type": "string"
         }
       },
@@ -117,7 +122,38 @@
         "name",
         "description",
         "homepage",
-        "url"
+        "uri_format"
+      ]
+    },
+    "Attributable": {
+      "title": "Attributable",
+      "description": "An upper-level metadata for a person.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "description": "The full name of the author",
+          "type": "string"
+        },
+        "orcid": {
+          "title": "Open Researcher and Contributor Identifier",
+          "description": "The ORCiD of the author",
+          "type": "string"
+        },
+        "email": {
+          "title": "Email",
+          "description": "The email address specific to the author",
+          "pattern": "^(\\w|\\.|\\_|\\-)+[@](\\w|\\_|\\-|\\.)+[.]\\w{2,5}$",
+          "type": "string"
+        },
+        "github": {
+          "title": "Github",
+          "description": "The GitHub handle for the author",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
       ]
     },
     "Resource": {
@@ -140,9 +176,9 @@
           "description": "The regular expression pattern for identifiers in the resource",
           "type": "string"
         },
-        "url": {
-          "title": "Format URL",
-          "description": "The URL format string, which must have at least one ``$1`` in it",
+        "uri_format": {
+          "title": "URI Format",
+          "description": "The URI format string, which must have at least one ``$1`` in it",
           "type": "string"
         },
         "providers": {
@@ -154,18 +190,32 @@
           }
         },
         "homepage": {
-          "title": "Format URL",
+          "title": "Homepage",
           "description": "The URL for the homepage of the resource, preferably with HTTPS",
           "type": "string"
         },
         "contact": {
           "title": "Contact",
           "description": "The contact email address for the resource. This must correspond to a specific person and not be a listserve nor a shared email account.",
-          "type": "string"
+          "allOf": [
+            {
+              "$ref": "#/definitions/Attributable"
+            }
+          ]
         },
         "example": {
           "title": "Example",
           "description": "An example local identifier for the resource, explicitly excluding any redundant usage of the prefix in the identifier. For example, a GO identifier should only look like 1234567 and not like GO:1234567",
+          "type": "string"
+        },
+        "license": {
+          "title": "License",
+          "description": "The license for the resource",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "description": "The version for the resource",
           "type": "string"
         },
         "part_of": {
@@ -230,8 +280,17 @@
             "type": "string"
           }
         },
-        "namespaceEmbeddedInLui": {
-          "title": "Namespaceembeddedinlui",
+        "depends_on": {
+          "title": "Depends On",
+          "description": "A list of prefixes that use this resource depends on, e.g., ontologies that import each other.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "namespace_in_lui": {
+          "title": "Namespace Embedded in Local Unique Identifier",
+          "description": "A way to override MIRIAM's namespaceEmbeddedInLui",
           "type": "boolean"
         },
         "no_own_terms": {
@@ -328,8 +387,416 @@
         "ontobee": {
           "title": "Ontobee",
           "type": "object"
+        },
+        "cheminf": {
+          "title": "Cheminf",
+          "type": "object"
+        },
+        "fairsharing": {
+          "title": "Fairsharing",
+          "type": "object"
         }
       }
+    },
+    "RegistrySchema": {
+      "title": "RegistrySchema",
+      "description": "Metadata about a registry's schema.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "anyOf": [
+            {
+              "const": "required",
+              "type": "string"
+            },
+            {
+              "const": "required*",
+              "type": "string"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "const": "present*",
+              "type": "string"
+            },
+            {
+              "const": "missing",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant*",
+              "type": "string"
+            }
+          ]
+        },
+        "homepage": {
+          "title": "Homepage",
+          "anyOf": [
+            {
+              "const": "required",
+              "type": "string"
+            },
+            {
+              "const": "required*",
+              "type": "string"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "const": "present*",
+              "type": "string"
+            },
+            {
+              "const": "missing",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant*",
+              "type": "string"
+            }
+          ]
+        },
+        "description": {
+          "title": "Description",
+          "anyOf": [
+            {
+              "const": "required",
+              "type": "string"
+            },
+            {
+              "const": "required*",
+              "type": "string"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "const": "present*",
+              "type": "string"
+            },
+            {
+              "const": "missing",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant*",
+              "type": "string"
+            }
+          ]
+        },
+        "example": {
+          "title": "Example",
+          "anyOf": [
+            {
+              "const": "required",
+              "type": "string"
+            },
+            {
+              "const": "required*",
+              "type": "string"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "const": "present*",
+              "type": "string"
+            },
+            {
+              "const": "missing",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant*",
+              "type": "string"
+            }
+          ]
+        },
+        "pattern": {
+          "title": "Pattern",
+          "anyOf": [
+            {
+              "const": "required",
+              "type": "string"
+            },
+            {
+              "const": "required*",
+              "type": "string"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "const": "present*",
+              "type": "string"
+            },
+            {
+              "const": "missing",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant*",
+              "type": "string"
+            }
+          ]
+        },
+        "provider": {
+          "title": "Provider",
+          "anyOf": [
+            {
+              "const": "required",
+              "type": "string"
+            },
+            {
+              "const": "required*",
+              "type": "string"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "const": "present*",
+              "type": "string"
+            },
+            {
+              "const": "missing",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant*",
+              "type": "string"
+            }
+          ]
+        },
+        "alternate_providers": {
+          "title": "Alternate Providers",
+          "anyOf": [
+            {
+              "const": "required",
+              "type": "string"
+            },
+            {
+              "const": "required*",
+              "type": "string"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "const": "present*",
+              "type": "string"
+            },
+            {
+              "const": "missing",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant*",
+              "type": "string"
+            }
+          ]
+        },
+        "synonyms": {
+          "title": "Synonyms",
+          "anyOf": [
+            {
+              "const": "required",
+              "type": "string"
+            },
+            {
+              "const": "required*",
+              "type": "string"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "const": "present*",
+              "type": "string"
+            },
+            {
+              "const": "missing",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant*",
+              "type": "string"
+            }
+          ]
+        },
+        "license": {
+          "title": "License",
+          "anyOf": [
+            {
+              "const": "required",
+              "type": "string"
+            },
+            {
+              "const": "required*",
+              "type": "string"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "const": "present*",
+              "type": "string"
+            },
+            {
+              "const": "missing",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant*",
+              "type": "string"
+            }
+          ]
+        },
+        "version": {
+          "title": "Version",
+          "anyOf": [
+            {
+              "const": "required",
+              "type": "string"
+            },
+            {
+              "const": "required*",
+              "type": "string"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "const": "present*",
+              "type": "string"
+            },
+            {
+              "const": "missing",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant*",
+              "type": "string"
+            }
+          ]
+        },
+        "contact": {
+          "title": "Contact",
+          "anyOf": [
+            {
+              "const": "required",
+              "type": "string"
+            },
+            {
+              "const": "required*",
+              "type": "string"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "const": "present*",
+              "type": "string"
+            },
+            {
+              "const": "missing",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant",
+              "type": "string"
+            },
+            {
+              "const": "irrelevant*",
+              "type": "string"
+            }
+          ]
+        },
+        "search": {
+          "title": "Search",
+          "description": "Does this resource have a search functionality for prefixes",
+          "type": "boolean"
+        },
+        "fair": {
+          "title": "Fair",
+          "description": "Does this resource provide a structured dump of the data is easily findable, accessible, and in a structured format in bulk",
+          "type": "boolean"
+        },
+        "fair_note": {
+          "title": "Fair Note",
+          "description": "Explanation for why data isn't FAIR",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "homepage",
+        "description",
+        "example",
+        "pattern",
+        "provider",
+        "alternate_providers",
+        "synonyms",
+        "license",
+        "version",
+        "contact",
+        "search",
+        "fair"
+      ]
     },
     "Registry": {
       "title": "Registry",
@@ -358,24 +825,46 @@
         },
         "example": {
           "title": "Example",
-          "description": "An example prefix (i.e., metaidentifier) inside the registry.",
+          "description": "An example prefix inside the registry.",
           "type": "string"
+        },
+        "availability": {
+          "title": "Availability",
+          "description": "A structured description of the metadata that the registry collects",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RegistrySchema"
+            }
+          ]
         },
         "download": {
           "title": "Download",
           "description": "A download link for the data contained in the registry",
           "type": "string"
         },
-        "provider_url": {
-          "title": "Provider Url",
+        "provider_uri_format": {
+          "title": "Provider Uri Format",
           "type": "string"
         },
-        "resolver_url": {
-          "title": "Resolver Url",
+        "resolver_uri_format": {
+          "title": "Resolver Uri Format",
+          "type": "string"
+        },
+        "resolver_type": {
+          "title": "Resolver Type",
           "type": "string"
         },
         "contact": {
           "title": "Contact",
+          "description": "The contact for the registry.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Attributable"
+            }
+          ]
+        },
+        "bioregistry_prefix": {
+          "title": "Bioregistry Prefix",
           "type": "string"
         }
       },
@@ -384,7 +873,9 @@
         "name",
         "description",
         "homepage",
-        "example"
+        "example",
+        "availability",
+        "contact"
       ]
     }
   }

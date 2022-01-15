@@ -8,15 +8,21 @@ import warnings
 from collections import defaultdict
 from dataclasses import asdict, is_dataclass
 from datetime import datetime
-from functools import lru_cache, wraps
-from typing import Any, List, Mapping, Set
+from functools import lru_cache
+from pathlib import Path
+from typing import Any, List, Mapping, Set, Union
 
 import click
 import requests
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
 
-from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH, MISMATCH_PATH
+from .constants import (
+    BIOREGISTRY_PATH,
+    COLLECTIONS_PATH,
+    METAREGISTRY_PATH,
+    MISMATCH_PATH,
+)
 from .schema import Author, Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
@@ -36,12 +42,11 @@ def read_metaregistry() -> Mapping[str, Registry]:
 @lru_cache(maxsize=1)
 def read_registry() -> Mapping[str, Resource]:
     """Read the Bioregistry as JSON."""
-    return read_registry_helper()
+    return _registry_from_path(BIOREGISTRY_PATH)
 
 
-def read_registry_helper() -> Mapping[str, Resource]:
-    """Read the Bioregistry as JSON, but don't cache."""
-    with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
+def _registry_from_path(path: Union[str, Path]) -> Mapping[str, Resource]:
+    with open(path, encoding="utf-8") as file:
         data = json.load(file)
     return {key: Resource(**value) for key, value in data.items()}
 
@@ -139,8 +144,8 @@ def read_contributors() -> Mapping[str, Author]:
             rv[resource.contributor.orcid] = resource.contributor
         if resource.reviewer:
             rv[resource.reviewer.orcid] = resource.reviewer
-    for resource in read_collections().values():
-        for author in resource.authors or []:
+    for collection in read_collections().values():
+        for author in collection.authors or []:
             rv[author.orcid] = author
     return rv
 
@@ -170,21 +175,6 @@ def read_collections_contributions():
         for author in resource.authors or []:
             rv[author.orcid].add(collection_id)
     return dict(rv)
-
-
-# FIXME remove this
-def updater(f):
-    """Make a decorator for functions that auto-update the bioregistry."""
-
-    @wraps(f)
-    def _wrapped():
-        registry = read_registry()
-        rv = f(registry)
-        if rv is not None:
-            write_registry(registry)
-        return rv
-
-    return _wrapped
 
 
 def norm(s: str) -> str:
@@ -270,3 +260,8 @@ def _norm(s: str) -> str:
     for x in " -_./":
         rv = rv.replace(x, "")
     return rv
+
+
+def curie_to_str(prefix: str, identifier: str) -> str:
+    """Combine a prefix and identifier into a CURIE string."""
+    return f"{prefix}:{identifier}"

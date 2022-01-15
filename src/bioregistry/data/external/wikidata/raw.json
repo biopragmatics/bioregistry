@@ -37,7 +37,7 @@
     "propFormat": "https://ebird.org/species/$1",
     "propHomepage": "http://ebird.org",
     "propLabel": "eBird taxon ID",
-    "propPattern": "[a-z-]{2,6}\\d{0,2}|y00\\d{3}"
+    "propPattern": "[a-z-]{2,6}\\d{0,2}|[xy]00\\d{3}"
   },
   {
     "database": "Q5322614",
@@ -192,26 +192,6 @@
     "propPattern": "[a-z]+(_[a-z]+)*"
   },
   {
-    "database": "Q59848752",
-    "databaseHomepage": "http://www.omafra.gov.on.ca/english/crops/insects/weeds.html",
-    "databaseLabel": "Weeds in Ontario",
-    "prop": "P6285",
-    "propFormat": "http://www.omafra.gov.on.ca/french/crops/facts/ontweeds/$1.htm",
-    "propHomepage": "http://www.omafra.gov.on.ca/english/crops/facts/ontweeds/weedgalfam.htm",
-    "propLabel": "Weeds in Ontario ID",
-    "propPattern": "[a-z]+(_[a-z]+)*"
-  },
-  {
-    "database": "Q59848752",
-    "databaseHomepage": "http://www.omafra.gov.on.ca/french/crops/insects/weeds.html",
-    "databaseLabel": "Weeds in Ontario",
-    "prop": "P6285",
-    "propFormat": "http://www.omafra.gov.on.ca/french/crops/facts/ontweeds/$1.htm",
-    "propHomepage": "http://www.omafra.gov.on.ca/english/crops/facts/ontweeds/weedgalfam.htm",
-    "propLabel": "Weeds in Ontario ID",
-    "propPattern": "[a-z]+(_[a-z]+)*"
-  },
-  {
     "database": "Q24053150",
     "databaseHomepage": "https://www.vlinderstichting.nl/vlinders",
     "databaseLabel": "Vlinderstichting vlinders",
@@ -276,7 +256,32 @@
   },
   {
     "database": "Q905695",
+    "databaseHomepage": "http://www.uniprot.org/",
+    "databaseLabel": "UniProt",
+    "databaseMiriam": "uniprot",
+    "prop": "P352",
+    "propFormat": "https://www.uniprot.org/uniprot/$1",
+    "propFormatRDF": "http://purl.uniprot.org/uniprot/$1",
+    "propHomepage": "http://mygene.info",
+    "propLabel": "UniProt protein ID",
+    "propMiriam": "uniprot",
+    "propPattern": "([OPQ][0-9][A-Z0-9]|[A-NR-Z][0-9][A-Z])[A-Z0-9][A-Z0-9][0-9]([A-Z][A-Z0-9][A-Z0-9][0-9])?"
+  },
+  {
+    "database": "Q905695",
     "databaseHomepage": "https://www.uniprot.org/",
+    "databaseLabel": "UniProt",
+    "databaseMiriam": "uniprot",
+    "prop": "P4616",
+    "propFormat": "https://www.uniprot.org/journals/$1",
+    "propFormatRDF": "http://purl.uniprot.org/journals/$1",
+    "propHomepage": "https://www.uniprot.org/journals",
+    "propLabel": "UniProt journal ID",
+    "propPattern": "\\d{4}"
+  },
+  {
+    "database": "Q905695",
+    "databaseHomepage": "http://www.uniprot.org/",
     "databaseLabel": "UniProt",
     "databaseMiriam": "uniprot",
     "prop": "P4616",
@@ -404,16 +409,6 @@
     "propHomepage": "http://www.nhm.ac.uk/jdsml/research-curation/research/projects/lepindex",
     "propLabel": "LepIndex ID",
     "propPattern": "[1-9]\\d{0,6}"
-  },
-  {
-    "database": "Q58255160",
-    "databaseHomepage": "http://db.plantentuinmeise.be/RESEARCH/DATABASES/FOCA/index.php?la=en",
-    "databaseLabel": "The Digital Flora of Central Africa",
-    "prop": "P6115",
-    "propFormat": "http://db.plantentuinmeise.be/RESEARCH/DATABASES/FOCA/speciesdetails.php?refid=$1",
-    "propHomepage": "http://db.plantentuinmeise.be/RESEARCH/DATABASES/FOCA/searchnamefoca.php",
-    "propLabel": "Digital Flora of Central Africa ID",
-    "propPattern": "[1-9]\\d{5}"
   },
   {
     "database": "Q3519804",
@@ -597,7 +592,7 @@
     "databaseLabel": "Rfam",
     "databaseMiriam": "rfam",
     "prop": "P3523",
-    "propFormat": "http://rfam.xfam.org/family/$1",
+    "propFormat": "https://rfam.xfam.org/family/$1",
     "propHomepage": "https://rfam.xfam.org/",
     "propLabel": "Rfam ID",
     "propMiriam": "rfam",
@@ -612,6 +607,15 @@
     "propHomepage": "https://www.indianreptiles.org/species-pages-history",
     "propLabel": "Reptiles of India ID",
     "propPattern": "^[0-9]+$"
+  },
+  {
+    "database": "Q1644501",
+    "databaseHomepage": "http://reptile-database.reptarium.cz",
+    "databaseLabel": "Reptile Database",
+    "prop": "P5473",
+    "propFormat": "https://wikidata-externalid-url.toolforge.org/?url_prefix=https%3A%2F%2Freptile-database.reptarium.cz%2Fspecies%3F&id=$1",
+    "propHomepage": "https://reptile-database.reptarium.cz/",
+    "propLabel": "The Reptile Database ID"
   },
   {
     "database": "Q7307074",
@@ -662,6 +666,16 @@
     "propHomepage": "http://redlist.sanbi.org/index.php",
     "propLabel": "Red List of South African Plants ID",
     "propPattern": "[1-9]\\d*-[1-9]\\d*"
+  },
+  {
+    "database": "Q2134522",
+    "databaseHomepage": "http://www.reactome.org/",
+    "databaseLabel": "Reactome",
+    "databaseMiriam": "reactome",
+    "prop": "P3937",
+    "propFormat": "http://identifiers.org/reactome:$1",
+    "propHomepage": "http://www.reactome.org/",
+    "propLabel": "Reactome ID"
   },
   {
     "database": "Q2134522",
@@ -777,7 +791,7 @@
   },
   {
     "database": "Q25304673",
-    "databaseHomepage": "https://www.pombase.org",
+    "databaseHomepage": "https://www.pombase.org/",
     "databaseLabel": "PomBase",
     "databaseMiriam": "pombase",
     "prop": "P6245",
@@ -923,7 +937,7 @@
   },
   {
     "database": "Q1515833",
-    "databaseHomepage": "https://www.orpha.net",
+    "databaseHomepage": "http://www.orpha.net/consor/cgi-bin/index.php",
     "databaseLabel": "Orphanet",
     "databaseMiriam": "orphanet",
     "prop": "P1550",
@@ -935,6 +949,39 @@
   {
     "database": "Q1515833",
     "databaseHomepage": "https://www.orpha.net",
+    "databaseLabel": "Orphanet",
+    "databaseMiriam": "orphanet",
+    "prop": "P1550",
+    "propFormat": "https://www.orpha.net/consor/cgi-bin//OC_Exp.php?lng=EN&Expert=$1",
+    "propHomepage": "https://www.orpha.net",
+    "propLabel": "Orphanet ID",
+    "propPattern": "[1-9]\\d{0,5}"
+  },
+  {
+    "database": "Q1515833",
+    "databaseHomepage": "http://www.orpha.net/consor/cgi-bin/index.php",
+    "databaseLabel": "Orphanet",
+    "databaseMiriam": "orphanet",
+    "prop": "P1550",
+    "propFormat": "https://www.orpha.net/consor/cgi-bin//OC_Exp.php?lng=EN&Expert=$1",
+    "propHomepage": "https://www.orpha.net",
+    "propLabel": "Orphanet ID",
+    "propPattern": "[1-9]\\d{0,5}"
+  },
+  {
+    "database": "Q1515833",
+    "databaseHomepage": "https://www.orpha.net",
+    "databaseLabel": "Orphanet",
+    "databaseMiriam": "orphanet",
+    "prop": "P1550",
+    "propFormat": "https://www.orpha.net/consor/cgi-bin//OC_Exp.php?lng=EN&Expert=$1",
+    "propHomepage": "https://www.orpha.net",
+    "propLabel": "Orphanet ID",
+    "propPattern": "[1-9]\\d{0,5}"
+  },
+  {
+    "database": "Q1515833",
+    "databaseHomepage": "http://www.orpha.net/consor/cgi-bin/index.php",
     "databaseLabel": "Orphanet",
     "databaseMiriam": "orphanet",
     "prop": "P1550",
@@ -1055,15 +1102,6 @@
     "databaseLabel": "National Commission for the Knowledge and Use of Biodiversity",
     "prop": "P4902",
     "propLabel": "CONABIO ID"
-  },
-  {
-    "database": "Q82494",
-    "databaseHomepage": "https://www.ncbi.nlm.nih.gov/",
-    "databaseLabel": "National Center for Biotechnology Information",
-    "prop": "P2393",
-    "propFormat": "https://www.ncbi.nlm.nih.gov/gene/?term=$1",
-    "propLabel": "NCBI locus tag",
-    "propPattern": "[0-9A-Za-z_.\\-()]{2,18}"
   },
   {
     "database": "Q6970988",
@@ -1227,7 +1265,7 @@
   },
   {
     "database": "Q24174701",
-    "databaseHomepage": "http://www.ebi.ac.uk/metabolights/",
+    "databaseHomepage": "http://www.ebi.ac.uk/metabolights",
     "databaseLabel": "MetaboLights",
     "databaseMiriam": "metabolights",
     "prop": "P3890",
@@ -1267,20 +1305,20 @@
     "database": "Q106677021",
     "databaseHomepage": "https://www.mybis.gov.my/",
     "databaseLabel": "Malaysia Biodiversity Information System",
-    "prop": "P9552",
-    "propFormat": "https://www.mybis.gov.my/pa/$1",
-    "propHomepage": "https://www.mybis.gov.my/one/pamaps.php",
-    "propLabel": "MyBIS protected area ID",
+    "prop": "P9503",
+    "propFormat": "https://www.mybis.gov.my/sp/$1",
+    "propHomepage": "https://www.mybis.gov.my/one/",
+    "propLabel": "MyBIS species ID",
     "propPattern": "[1-9]\\d*"
   },
   {
     "database": "Q106677021",
     "databaseHomepage": "https://www.mybis.gov.my/",
     "databaseLabel": "Malaysia Biodiversity Information System",
-    "prop": "P9503",
-    "propFormat": "https://www.mybis.gov.my/sp/$1",
-    "propHomepage": "https://www.mybis.gov.my/one/",
-    "propLabel": "MyBIS species ID",
+    "prop": "P9552",
+    "propFormat": "https://www.mybis.gov.my/pa/$1",
+    "propHomepage": "https://www.mybis.gov.my/one/pamaps.php",
+    "propLabel": "MyBIS protected area ID",
     "propPattern": "[1-9]\\d*"
   },
   {
@@ -1346,72 +1384,6 @@
     "propPattern": "[1-9]\\d*"
   },
   {
-    "database": "Q48268",
-    "databaseHomepage": "https://www.iucn.org",
-    "databaseLabel": "International Union for Conservation of Nature",
-    "prop": "P141",
-    "propLabel": "IUCN conservation status"
-  },
-  {
-    "database": "Q48268",
-    "databaseHomepage": "https://www.iucn.org",
-    "databaseLabel": "International Union for Conservation of Nature",
-    "prop": "P141",
-    "propLabel": "IUCN conservation status"
-  },
-  {
-    "database": "Q48268",
-    "databaseHomepage": "https://www.iucn.org",
-    "databaseLabel": "International Union for Conservation of Nature",
-    "prop": "P627",
-    "propFormat": "https://apiv3.iucnredlist.org/api/v3/taxonredirect/$1",
-    "propLabel": "IUCN taxon ID",
-    "propPattern": "[1-9]\\d{0,8}"
-  },
-  {
-    "database": "Q48268",
-    "databaseHomepage": "https://www.iucn.org",
-    "databaseLabel": "International Union for Conservation of Nature",
-    "prop": "P627",
-    "propFormat": "https://www.iucnredlist.org/details/$1/0",
-    "propLabel": "IUCN taxon ID",
-    "propPattern": "[1-9]\\d{0,8}"
-  },
-  {
-    "database": "Q48268",
-    "databaseHomepage": "https://www.iucn.org",
-    "databaseLabel": "International Union for Conservation of Nature",
-    "prop": "P627",
-    "propFormat": "https://apiv3.iucnredlist.org/api/v3/taxonredirect/$1",
-    "propLabel": "IUCN taxon ID",
-    "propPattern": "[1-9]\\d{0,8}"
-  },
-  {
-    "database": "Q48268",
-    "databaseHomepage": "https://www.iucn.org",
-    "databaseLabel": "International Union for Conservation of Nature",
-    "prop": "P627",
-    "propFormat": "https://www.iucnredlist.org/details/$1/0",
-    "propLabel": "IUCN taxon ID",
-    "propPattern": "[1-9]\\d{0,8}"
-  },
-  {
-    "database": "Q48268",
-    "databaseHomepage": "https://www.iucn.org",
-    "databaseLabel": "International Union for Conservation of Nature",
-    "prop": "P814",
-    "propHomepage": "https://en.wikipedia.org/wiki/Category:Protected_areas_by_World_Conservation_Union_category",
-    "propLabel": "IUCN protected areas category"
-  },
-  {
-    "database": "Q48268",
-    "databaseHomepage": "https://www.iucn.org",
-    "databaseLabel": "International Union for Conservation of Nature",
-    "prop": "P814",
-    "propHomepage": "https://en.wikipedia.org/wiki/Category:Protected_areas_by_World_Conservation_Union_category",
-    "propLabel": "IUCN protected areas category"
-  },
-  {
     "database": "Q58006102",
     "databaseHomepage": "https://www.infoflora.ch/fr/",
     "databaseLabel": "Info Flora",
@@ -1453,7 +1425,7 @@
   },
   {
     "database": "Q17091219",
-    "databaseHomepage": "http://www.guidetopharmacology.org/",
+    "databaseHomepage": "http://www.guidetopharmacology.org",
     "databaseLabel": "IUPHAR/BPS Guide to PHARMACOLOGY",
     "prop": "P595",
     "propFormat": "https://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=$1",
@@ -1463,7 +1435,7 @@
   },
   {
     "database": "Q17091219",
-    "databaseHomepage": "http://www.guidetopharmacology.org/",
+    "databaseHomepage": "http://www.guidetopharmacology.org",
     "databaseLabel": "IUPHAR/BPS Guide to PHARMACOLOGY",
     "prop": "P595",
     "propFormat": "https://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=$1",
@@ -1473,7 +1445,7 @@
   },
   {
     "database": "Q17091219",
-    "databaseHomepage": "http://www.guidetopharmacology.org/",
+    "databaseHomepage": "http://www.guidetopharmacology.org",
     "databaseLabel": "IUPHAR/BPS Guide to PHARMACOLOGY",
     "prop": "P595",
     "propFormat": "https://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=$1",
@@ -1483,7 +1455,7 @@
   },
   {
     "database": "Q17091219",
-    "databaseHomepage": "http://www.guidetopharmacology.org/",
+    "databaseHomepage": "http://www.guidetopharmacology.org",
     "databaseLabel": "IUPHAR/BPS Guide to PHARMACOLOGY",
     "prop": "P5458",
     "propFormat": "http://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=$1",
@@ -1622,7 +1594,7 @@
     "databaseHomepage": "https://www.kew.org/data/grasses-db.html",
     "databaseLabel": "GrassBase",
     "prop": "P1832",
-    "propFormat": "http://www.kew.org/data/grasses-db/www/$1.htm",
+    "propFormat": "http://www.kew.org/data/grasses-db/www/$1",
     "propHomepage": "http://www.kew.org/data/grasses-syn/index.htm",
     "propLabel": "GrassBase ID",
     "propPattern": "(imp|gen){1}\\d{5}"
@@ -1701,6 +1673,20 @@
     "propLabel": "sequenced genome URL"
   },
   {
+    "database": "Q3108952",
+    "databaseHomepage": "https://gisaid.org/",
+    "databaseLabel": "GISAID",
+    "prop": "P10193",
+    "propLabel": "GISAID identifier"
+  },
+  {
+    "database": "Q3108952",
+    "databaseHomepage": "https://platform.gisaid.org",
+    "databaseLabel": "GISAID",
+    "prop": "P10193",
+    "propLabel": "GISAID identifier"
+  },
+  {
     "database": "Q58011838",
     "databaseHomepage": "https://www.hemiptera-databases.org/flow/?db=flow&page=home&lang=en",
     "databaseLabel": "Fulgoromorpha Lists On the Web",
@@ -1712,18 +1698,18 @@
   },
   {
     "database": "Q796451",
-    "databaseHomepage": "http://fossilworks.org",
+    "databaseHomepage": "http://www.fossilworks.org",
     "databaseLabel": "Fossilworks",
     "databaseMiriam": "paleodb",
     "prop": "P842",
-    "propFormat": "http://fossilworks.org/bridge.pl?a=taxonInfo&taxon_no=$1",
-    "propHomepage": "http://fossilworks.org",
+    "propFormat": "http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1",
+    "propHomepage": "http://www.fossilworks.org",
     "propLabel": "Fossilworks ID for this taxon",
     "propPattern": "([1-9]\\d{0,5})"
   },
   {
     "database": "Q796451",
-    "databaseHomepage": "http://fossilworks.org",
+    "databaseHomepage": "http://www.fossilworks.org",
     "databaseLabel": "Fossilworks",
     "databaseMiriam": "paleodb",
     "prop": "P7720",
@@ -1734,7 +1720,7 @@
   },
   {
     "database": "Q3074571",
-    "databaseHomepage": "http://flybase.org/",
+    "databaseHomepage": "https://flybase.org/",
     "databaseLabel": "FlyBase",
     "databaseMiriam": "flybase",
     "prop": "P3852",
@@ -2037,6 +2023,17 @@
     "propPattern": "[1-9]\\d*"
   },
   {
+    "database": "Q1122544",
+    "databaseHomepage": "http://www.drugbank.ca/",
+    "databaseLabel": "DrugBank",
+    "databaseMiriam": "drugbank",
+    "prop": "P715",
+    "propFormat": "https://go.drugbank.com/drugs/DB$1",
+    "propHomepage": "https://www.drugbank.ca",
+    "propLabel": "DrugBank ID",
+    "propPattern": "(SALT\\d{1}|CAT\\d{1})?\\d{5}"
+  },
+  {
     "database": "Q3036834",
     "databaseHomepage": "http://doris.ffessm.fr/accueil.asp",
     "databaseLabel": "Donn\u00e9es d'observations pour la reconnaissance et l'identification de la faune et de la flore subaquatiques",
@@ -2162,8 +2159,19 @@
     "propPattern": "CHEMBL\\d+"
   },
   {
+    "database": "Q6120337",
+    "databaseHomepage": "http://www.ebi.ac.uk/chembl",
+    "databaseLabel": "ChEMBL",
+    "prop": "P592",
+    "propFormat": "https://www.ebi.ac.uk/chembl/compound_report_card/$1/",
+    "propFormatRDF": "http://rdf.ebi.ac.uk/resource/chembl/molecule/$1",
+    "propHomepage": "https://www.ebi.ac.uk/chembl",
+    "propLabel": "ChEMBL ID",
+    "propPattern": "CHEMBL\\d+"
+  },
+  {
     "database": "Q902623",
-    "databaseHomepage": "http://www.ebi.ac.uk/chebi/",
+    "databaseHomepage": "http://www.ebi.ac.uk/chebi",
     "databaseLabel": "ChEBI",
     "databaseMiriam": "chebi",
     "prop": "P683",
@@ -2173,6 +2181,16 @@
     "propLabel": "ChEBI ID",
     "propMiriam": "chebi",
     "propPattern": "\\d+"
+  },
+  {
+    "database": "Q58255160",
+    "databaseHomepage": "http://projects.biodiversity.be/brcap/",
+    "databaseLabel": "Central African Plants",
+    "prop": "P6115",
+    "propFormat": "http://projects.biodiversity.be/brcap/pages/species_show/$1",
+    "propHomepage": "http://projects.biodiversity.be/brcap/pages/list",
+    "propLabel": "Central African Plants ID",
+    "propPattern": "[1-9]\\d*"
   },
   {
     "database": "Q3196675",
@@ -2527,7 +2545,7 @@
     "databaseHomepage": "https://www.biodiversitylibrary.org/",
     "databaseLabel": "Biodiversity Heritage Library",
     "prop": "P4081",
-    "propFormat": "http://www.biodiversitylibrary.org/creator/$1",
+    "propFormat": "https://www.biodiversitylibrary.org/creator/$1",
     "propHomepage": "http://www.biodiversitylibrary.org/",
     "propLabel": "BHL creator ID",
     "propPattern": "[1-9]\\d*"
@@ -2537,7 +2555,7 @@
     "databaseHomepage": "https://www.biodiversitylibrary.org/",
     "databaseLabel": "Biodiversity Heritage Library",
     "prop": "P4327",
-    "propFormat": "http://www.biodiversitylibrary.org/bibliography/$1",
+    "propFormat": "https://www.biodiversitylibrary.org/bibliography/$1",
     "propLabel": "BHL bibliography ID",
     "propPattern": "[1-9]\\d*"
   },
@@ -2582,6 +2600,15 @@
   {
     "database": "Q25349390",
     "databaseHomepage": "http://bacdive.dsmz.de/",
+    "databaseLabel": "BacDive",
+    "prop": "P2946",
+    "propFormat": "https://bacdive.dsmz.de/index.php?rd=$1",
+    "propLabel": "BacDive ID",
+    "propPattern": "\\d{1,6}"
+  },
+  {
+    "database": "Q25349390",
+    "databaseHomepage": "https://bacdive.dsmz.de/",
     "databaseLabel": "BacDive",
     "prop": "P2946",
     "propFormat": "https://bacdive.dsmz.de/index.php?rd=$1",
@@ -2635,7 +2662,7 @@
     "propFormat": "https://biodiversity.org.au/afd/taxa/$1",
     "propHomepage": "https://biodiversity.org.au/afd/search/names",
     "propLabel": "Australian Faunal Directory ID",
-    "propPattern": "[a-zA-Z]*([;_ +][a-zA-Z]*)*|\\d*"
+    "propPattern": "[a-zA-Z]*([-_;]([(]?)[a-zA-Z]*([)]?))*"
   },
   {
     "database": "Q2784883",

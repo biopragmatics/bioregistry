@@ -13,7 +13,7 @@ from pydantic import BaseModel
 HERE = pathlib.Path(__file__).parent.resolve()
 
 EXTERNAL = HERE / "external"
-OLS_PROCESSING = HERE / "ols_processing.json"
+OLS_PROCESSING = HERE / "processing_ols.json"
 
 
 class VersionType(str, enum.Enum):
@@ -36,6 +36,8 @@ class OLSConfig(BaseModel):
     version_prefix: Optional[str]
     version_suffix: Optional[str]
     version_suffix_split: Optional[str]
+    version_iri_prefix: Optional[str]
+    version_iri_suffix: Optional[str]
 
 
 @lru_cache(maxsize=1)

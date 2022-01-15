@@ -2,16 +2,20 @@
 
 """Tests for data integrity."""
 
+import json
 import logging
 import unittest
 from collections import defaultdict
+from textwrap import dedent
 from typing import Mapping
 
 import bioregistry
+from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
+from bioregistry.license_standardizer import REVERSE_LICENSES
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import _norm, is_mismatch
+from bioregistry.utils import _norm, curie_to_str, is_mismatch
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +27,12 @@ class TestRegistry(unittest.TestCase):
         """Set up the test case."""
         self.registry = bioregistry.read_registry()
         self.metaregistry = bioregistry.read_metaregistry()
+
+    def test_prefixes(self):
+        """Check all prefixes are lowercased."""
+        for prefix in self.registry:
+            with self.subTest(prefix=prefix):
+                self.assertEqual(prefix.lower(), prefix, msg="prefix is not lowercased")
 
     def test_keys(self):
         """Check the required metadata is there."""
@@ -38,11 +48,11 @@ class TestRegistry(unittest.TestCase):
             "example",
             "pattern",
             "type",
-            "url",
+            URI_FORMAT_KEY,
             # Only there if true
             "no_own_terms",
             "not_available_as_obo",
-            "namespaceEmbeddedInLui",
+            "namespace_in_lui",
             # Only there if false
             # Lists
             "appears_in",
@@ -67,18 +77,53 @@ class TestRegistry(unittest.TestCase):
             "providers",
         }
         keys.update(bioregistry.read_metaregistry())
-        for prefix, entry in self.registry.items():
-            extra = {k for k in set(entry.dict()) - keys if not k.startswith("_")}
+        with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
+            data = json.load(file)
+        for prefix, entry in data.items():
+            extra = {k for k in set(entry) - keys if not k.startswith("_")}
             if not extra:
                 continue
             with self.subTest(prefix=prefix):
-                self.fail(f"had extra keys: {extra}")
+                self.fail(f"{prefix} had extra keys: {extra}")
+
+    @staticmethod
+    def _construct_substrings(x):
+        return (
+            f"({x.casefold()})",
+            f"{x.casefold()}: ",
+            f"{x.casefold()}- ",
+            f"{x.casefold()} - ",
+            # f"{x.casefold()} ontology",
+        )
 
     def test_names(self):
         """Test that all entries have a name."""
         for prefix, entry in self.registry.items():
             with self.subTest(prefix=prefix):
-                self.assertIsNotNone(entry.get_name(), msg=f"{prefix} is missing a name")
+                name = entry.get_name()
+                self.assertIsNotNone(name, msg=f"{prefix} is missing a name")
+
+                for ss in self._construct_substrings(prefix):
+                    self.assertNotIn(
+                        ss,
+                        name.casefold(),
+                        msg="Redundant prefix appears in name",
+                    )
+                preferred_prefix = entry.get_preferred_prefix()
+                if preferred_prefix is not None:
+                    for ss in self._construct_substrings(preferred_prefix):
+                        self.assertNotIn(
+                            ss,
+                            name.casefold(),
+                            msg="Redundant preferred prefix appears in name",
+                        )
+                for alt_prefix in entry.get_synonyms():
+                    for ss in self._construct_substrings(alt_prefix):
+                        self.assertNotIn(
+                            ss,
+                            name.casefold(),
+                            msg=f"Redundant alt prefix {alt_prefix} appears in name",
+                        )
 
     def test_name_expansions(self):
         """Test that default names are not capital acronyms."""
@@ -131,7 +176,7 @@ class TestRegistry(unittest.TestCase):
                 continue
             resource = bioregistry.get_resource(prefix)
             self.assertIsNotNone(resource)
-            email = resource.get_prefix_key("contact", ("obofoundry", "ols"))
+            email = resource.get_contact_email()
             if email is None or EMAIL_RE.match(email):
                 continue
             with self.subTest(prefix=prefix):
@@ -162,11 +207,11 @@ class TestRegistry(unittest.TestCase):
     def test_format_urls(self):
         """Test that entries with a format URL are formatted right (yo dawg)."""
         for prefix, entry in self.registry.items():
-            url = entry.url
-            if not url:
+            uri_format = entry.uri_format
+            if not uri_format:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertIn("$1", url, msg=f"{prefix} format does not have a $1")
+                self.assertIn("$1", uri_format, msg=f"{prefix} format does not have a $1")
 
     def test_own_terms_conflict(self):
         """Test there is no conflict between no own terms and having an example."""
@@ -174,7 +219,7 @@ class TestRegistry(unittest.TestCase):
             if bioregistry.has_no_terms(prefix):
                 with self.subTest(prefix=prefix):
                     self.assertIsNone(bioregistry.get_example(prefix))
-                    self.assertIsNone(resource.url)
+                    self.assertIsNone(resource.uri_format)
 
     def test_patterns(self):
         """Test that all prefixes are norm-unique."""
@@ -189,12 +234,36 @@ class TestRegistry(unittest.TestCase):
                 self.assertTrue(
                     pattern.endswith("$"), msg=f"{prefix} pattern {pattern} should end with $"
                 )
-                # TODO after it's time for curation, activate this test
-                # self.assertFalse(
-                #     pattern.casefold().startswith(f"^{prefix.casefold()}"),
-                #     msg=f"pattern should represent a local identifier,
-                #     not a CURIE\nprefix: {prefix}\npattern: {pattern}",
-                # )
+                self.assertFalse(
+                    pattern.casefold().startswith(f"^{prefix.casefold()}:"),
+                    msg=f"pattern should represent a local identifier, not a CURIE\n"
+                    f"prefix: {prefix}\npattern: {pattern}",
+                )
+
+    def test_curie_patterns(self):
+        """Test that all examples can validate against the CURIE pattern."""
+        for prefix, entry in self.registry.items():
+            curie_pattern = bioregistry.get_curie_pattern(prefix)
+            lui_example = entry.get_example()
+            if curie_pattern is None or lui_example is None:
+                continue
+            pp = bioregistry.get_preferred_prefix(prefix)
+            curie_example = curie_to_str(pp or prefix, lui_example)
+            with self.subTest(prefix=prefix):
+                self.assertRegex(
+                    curie_example,
+                    curie_pattern,
+                    msg=dedent(
+                        f"""
+                prefix: {prefix}
+                preferred prefix: {pp}
+                example LUI: {lui_example}
+                example CURIE: {curie_example}
+                pattern for LUI: {bioregistry.get_pattern(prefix)}
+                pattern for CURIE: {curie_pattern}
+                """
+                    ),
+                )
 
     def test_examples(self):
         """Test examples for the required conditions.
@@ -230,13 +299,13 @@ class TestRegistry(unittest.TestCase):
                     )
                 example = entry.get_example()
                 self.assertIsNotNone(example, msg=msg)
-                self.assertEqual(entry.clean_identifier(example), example)
+                self.assertEqual(entry.standardize_identifier(example), example)
 
                 pattern = entry.get_pattern_re()
                 if pattern is not None:
-                    # TODO update all regexes to actually match LOCAL identifiers, not CURIEs
-                    if not bioregistry.validate(prefix, example):
-                        self.assertRegex(example, pattern, msg=f"Failed on prefix={prefix}")
+                    self.assertTrue(
+                        entry.is_canonical_identifier(example), msg=f"Failed on prefix={prefix}"
+                    )
 
     def test_is_mismatch(self):
         """Check for mismatches."""
@@ -251,21 +320,36 @@ class TestRegistry(unittest.TestCase):
             bioregistry.has_no_terms("nope"), msg="Missing prefix should be false by definition"
         )
 
+    def test_banana(self):
+        """Tests for bananas."""
+        # Simple scenario
+        self.assertIsNone(bioregistry.get_banana("pdb"))
+
+        # OBO Foundry scenario where there should not be a banana
+        self.assertIsNone(
+            bioregistry.get_banana("ncit"),
+            msg="Even though this is OBO foundry, it should not have a banana.",
+        )
+        self.assertIsNone(
+            bioregistry.get_banana("ncbitaxon"),
+            msg="Even though this is OBO foundry, it should not have a banana.",
+        )
+
     def test_get_nope(self):
         """Test when functions don't return."""
         self.assertIsNone(bioregistry.get_banana("nope"))
         self.assertIsNone(bioregistry.get_description("nope"))
         self.assertIsNone(bioregistry.get_homepage("nope"))
-        self.assertIsNone(bioregistry.get_format("gmelin"))  # no URL
-        self.assertIsNone(bioregistry.get_format("nope"))
+        self.assertIsNone(bioregistry.get_uri_format("gmelin"))  # no URL
+        self.assertIsNone(bioregistry.get_uri_format("nope"))
         self.assertIsNone(bioregistry.get_version("nope"))
         self.assertIsNone(bioregistry.get_name("nope"))
         self.assertIsNone(bioregistry.get_example("nope"))
-        self.assertIsNone(bioregistry.get_email("nope"))
+        self.assertIsNone(bioregistry.get_contact_email("nope"))
         self.assertIsNone(bioregistry.get_mappings("nope"))
         self.assertIsNone(bioregistry.get_fairsharing_prefix("nope"))
         self.assertIsNone(bioregistry.get_obofoundry_prefix("nope"))
-        self.assertIsNone(bioregistry.get_obofoundry_format("nope"))
+        self.assertIsNone(bioregistry.get_obofoundry_uri_prefix("nope"))
         self.assertIsNone(bioregistry.get_obo_download("nope"))
         self.assertIsNone(bioregistry.get_owl_download("nope"))
         self.assertIsNone(bioregistry.get_ols_iri("nope", ...))
@@ -273,7 +357,7 @@ class TestRegistry(unittest.TestCase):
         self.assertFalse(bioregistry.is_deprecated("nope"))
         self.assertIsNone(bioregistry.get_provides_for("nope"))
         self.assertIsNone(bioregistry.get_version("gmelin"))
-        self.assertIsNone(bioregistry.validate("nope", ...))
+        self.assertIsNone(bioregistry.is_known_identifier("nope", ...))
         self.assertIsNone(bioregistry.get_default_iri("nope", ...))
         self.assertIsNone(bioregistry.get_identifiers_org_iri("nope", ...))
         self.assertIsNone(bioregistry.get_n2t_iri("nope", ...))
@@ -289,7 +373,7 @@ class TestRegistry(unittest.TestCase):
         self.assertIsInstance(bioregistry.get_description("chebi"), str)
 
         # No OBO Foundry format for dbSNP b/c not in OBO Foundry (and probably never will be)
-        self.assertIsNone(bioregistry.get_obofoundry_format("dbsnp"))
+        self.assertIsNone(bioregistry.get_obofoundry_uri_prefix("dbsnp"))
 
         self.assertEqual("FAIRsharing.mya1ff", bioregistry.get_fairsharing_prefix("ega.dataset"))
 
@@ -392,6 +476,23 @@ class TestRegistry(unittest.TestCase):
             b = f"https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID={ex}"
             self.assertEqual((prefix, ex), bioregistry.parse_iri(b))
 
+    def test_prefix_map_priorities(self):
+        """Test that different lead priorities all work for prefix map generation."""
+        priorities = [
+            "default",
+            "miriam",
+            "ols",
+            "obofoundry",
+            "n2t",
+            "prefixcommons",
+            # "bioportal",
+        ]
+        for lead in priorities:
+            priority = [lead, *(x for x in priorities if x != lead)]
+            with self.subTest(priority=",".join(priority)):
+                prefix_map = bioregistry.get_prefix_map(priority=priority)
+                self.assertIsNotNone(prefix_map)
+
     def test_default_prefix_map_no_miriam(self):
         """Test no identifiers.org URI prefixes get put in the prefix map."""
         self.assert_no_idot(bioregistry.get_prefix_map())
@@ -412,7 +513,8 @@ class TestRegistry(unittest.TestCase):
                 # allow identifiers.org namespaces since this actually should be here
                 continue
             with self.subTest(prefix=prefix):
-                self.assertNotIn("identifiers.org", uri_prefix, msg=uri_prefix)
+                self.assertFalse(uri_prefix.startswith("https://identifiers.org"), msg=uri_prefix)
+                self.assertFalse(uri_prefix.startswith("http://identifiers.org"), msg=uri_prefix)
 
     def test_preferred_prefix(self):
         """Test the preferred prefix matches the normalized prefix."""
@@ -455,7 +557,7 @@ class TestRegistry(unittest.TestCase):
         to support actual use cases.
         """
         for prefix, resource in self.registry.items():
-            if not resource.namespace_in_lui():
+            if not resource.get_namespace_in_lui():
                 continue
             with self.subTest(prefix=prefix):
                 self.assertIsNotNone(
@@ -463,3 +565,9 @@ class TestRegistry(unittest.TestCase):
                     msg=f"If there is a namespace in LUI annotation,"
                     f" then there must be a banana\nregex: {resource.get_pattern()}",
                 )
+
+    def test_licenses(self):
+        """Check license keys don't end with trailing slashes."""
+        for key, values in REVERSE_LICENSES.items():
+            with self.subTest(key=key):
+                self.assertEqual(len(values), len(set(values)), msg=f"duplicates in {key}")

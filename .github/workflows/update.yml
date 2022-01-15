@@ -17,10 +17,13 @@ jobs:
       - name: Create local changes
         id: update
         run: |
-          pip install -e .[charts]
+          pip install --upgrade pip setuptools wheel
+          pip install -e .[align,export,charts]
           bioregistry update
         env:
           BIOPORTAL_API_KEY: ${{ secrets.BIOPORTAL_API_KEY }}
+          FAIRSHARING_LOGIN: ${{ secrets.FAIRSHARING_LOGIN }}
+          FAIRSHARING_PASSWORD: ${{ secrets.FAIRSHARING_PASSWORD }}
       - name: Check environment
         run: echo ${{ steps.update.outputs.BR_UPDATED }}
       - name: Commit files

@@ -2,7 +2,6 @@
 
 """Export the Bioregistry to RDF."""
 
-import os
 from io import BytesIO
 from typing import Callable, List, Optional, Tuple, Union, cast
 
@@ -14,7 +13,7 @@ from rdflib.term import Node, URIRef
 
 import bioregistry
 from bioregistry import read_collections, read_metaregistry, read_registry
-from bioregistry.constants import DOCS_DATA
+from bioregistry.constants import RDF_JSONLD_PATH, RDF_NT_PATH, RDF_TURTLE_PATH
 from bioregistry.schema.constants import (
     bioregistry_collection,
     bioregistry_metaresource,
@@ -29,8 +28,8 @@ from bioregistry.schema.struct import Collection, Registry
 def export_rdf():
     """Export RDF."""
     graph = get_full_rdf()
-    graph.serialize(os.path.join(DOCS_DATA, "bioregistry.ttl"), format="turtle")
-    graph.serialize(os.path.join(DOCS_DATA, "bioregistry.nt"), format="nt")
+    graph.serialize(RDF_TURTLE_PATH.as_posix(), format="turtle")
+    graph.serialize(RDF_NT_PATH.as_posix(), format="nt")
     # Currently getting an issue with not being able to shorten URIs
     # graph.serialize(os.path.join(DOCS_DATA, "bioregistry.xml"), format="xml")
 
@@ -38,9 +37,7 @@ def export_rdf():
         "@language": "en",
         **dict(graph.namespaces()),
     }
-    graph.serialize(
-        os.path.join(DOCS_DATA, "bioregistry.jsonld"), format="json-ld", context=context
-    )
+    graph.serialize(RDF_JSONLD_PATH.as_posix(), format="json-ld", context=context)
 
 
 def _graph() -> rdflib.Graph:
@@ -147,9 +144,9 @@ def _add_metaresource(
 
 RESOURCE_FUNCTIONS: List[Tuple[str, Callable[[str], Optional[str]]]] = [
     ("0000008", bioregistry.get_pattern),
-    ("0000006", bioregistry.get_format),
+    ("0000006", bioregistry.get_uri_format),
     ("0000005", bioregistry.get_example),
-    ("0000009", bioregistry.get_email),
+    ("0000009", bioregistry.get_contact_email),
 ]
 
 
@@ -178,16 +175,25 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
     if download:
         graph.add((node, bioregistry_schema["0000010"], Literal(download)))
 
-    part_of = data.get("part_of")
+    # Ontological relationships
+
+    for depends_on in bioregistry.get_depends_on(prefix) or []:
+        graph.add((node, bioregistry_schema["0000017"], bioregistry_resource[depends_on]))
+
+    for appears_in in bioregistry.get_appears_in(prefix) or []:
+        graph.add((node, bioregistry_schema["0000018"], bioregistry_resource[appears_in]))
+
+    part_of = bioregistry.get_part_of(prefix)
     if part_of:
         graph.add((node, DCTERMS.isPartOf, bioregistry_resource[part_of]))
         graph.add((bioregistry_resource[part_of], DCTERMS.hasPart, node))
+        graph.add((node, DCTERMS.isPartOf, bioregistry_resource[part_of]))
 
-    provides = data.get("provides")
+    provides = bioregistry.get_provides_for(prefix)
     if provides:
         graph.add((node, bioregistry_schema["0000011"], bioregistry_resource[provides]))
 
-    canonical = data.get("has_canonical")
+    canonical = bioregistry.get_has_canonical(prefix)
     if canonical:
         graph.add((node, bioregistry_schema["0000016"], bioregistry_resource[canonical]))
 
