@@ -16,8 +16,10 @@ from .utils import (
 from ..utils import (
     curie_to_str,
     read_collections_contributions,
+    read_prefix_contacts,
     read_prefix_contributions,
     read_prefix_reviews,
+    read_registry_contributions,
 )
 
 __all__ = [
@@ -247,6 +249,8 @@ def contributors():
         collections=read_collections_contributions(),
         prefix_contributions=read_prefix_contributions(),
         prefix_reviews=read_prefix_reviews(),
+        prefix_contacts=read_prefix_contacts(),
+        registries=read_registry_contributions(),
         formats=FORMATS,
     )
 
@@ -259,13 +263,16 @@ def contributor(orcid: str):
         return abort(404)
     return render_template(
         "contributor.html",
+        bioregistry=bioregistry,
         contributor=author,
         collections=sorted(
             (collection_id, bioregistry.get_collection(collection_id))
             for collection_id in read_collections_contributions().get(author.orcid, [])
         ),
         prefix_contributions=_s(read_prefix_contributions().get(author.orcid, [])),
+        prefix_contacts=_s(read_prefix_contacts().get(author.orcid, [])),
         prefix_reviews=_s(read_prefix_reviews().get(author.orcid, [])),
+        registries=_s(read_registry_contributions().get(author.orcid, [])),
         formats=FORMATS,
     )
 
