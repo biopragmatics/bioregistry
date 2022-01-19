@@ -10,7 +10,7 @@ from dataclasses import asdict, is_dataclass
 from datetime import datetime
 from functools import lru_cache
 from pathlib import Path
-from typing import Any, List, Mapping, Set, Union
+from typing import Any, Dict, List, Mapping, Set, Union
 
 import click
 import requests
@@ -23,7 +23,7 @@ from .constants import (
     METAREGISTRY_PATH,
     MISMATCH_PATH,
 )
-from .schema import Author, Collection, Registry, Resource
+from .schema import Attributable, Author, Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
@@ -136,9 +136,9 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
         )
 
 
-def read_contributors() -> Mapping[str, Author]:
+def read_contributors() -> Mapping[str, Attributable]:
     """Get a mapping from contributor ORCID identifiers to author objects."""
-    rv = {}
+    rv: Dict[str, Attributable] = {}
     for resource in read_registry().values():
         if resource.contributor and resource.contributor.orcid:
             rv[resource.contributor.orcid] = resource.contributor

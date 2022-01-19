@@ -257,9 +257,9 @@ def contributors():
 
 @ui_blueprint.route("/contributor/<orcid>")
 def contributor(orcid: str):
-    """Serve the a Bioregistry contributor page."""
+    """Serve a Bioregistry contributor page."""
     author = bioregistry.read_contributors().get(orcid)
-    if author is None:
+    if author is None or author.orcid is None:
         return abort(404)
     return render_template(
         "contributor.html",
