@@ -5654,6 +5654,21 @@ doi:
   pattern: ^(doi\:)?\d{2}\.\d{4}.*$
   preferred_prefix: doi
   providers:
+  - code: dx_doi_https
+    description: An alternate provider from the DOI website using HTTPS
+    homepage: https://www.doi.org
+    name: Digital Object Identifier
+    uri_format: https://dx.doi.org/$1
+  - code: doi_https
+    description: An alternate provider from the DOI website
+    homepage: https://www.doi.org
+    name: Digital Object Identifier
+    uri_format: https://doi.org/$1
+  - code: doi_http
+    description: An alternate provider from the DOI website
+    homepage: https://www.doi.org
+    name: Digital Object Identifier
+    uri_format: http://doi.org/$1
   - code: scholia
     description: Scholia is a service that creates visual scholarly profiles for topic,
       people, organizations, species, chemicals, etc using bibliographic and other
@@ -5661,7 +5676,7 @@ doi:
     homepage: https://scholia.toolforge.org/
     name: Scholia
     uri_format: https://scholia.toolforge.org/doi/$1
-  uri_format: https://doi.org/$1
+  uri_format: http://dx.doi.org/$1
 doid:
   appears_in:
   - clo
@@ -14755,6 +14770,7 @@ ncbigene:
     uri_format: http://ncbigene.bio2rdf.org/describe/?url=http://bio2rdf.org/ncbigene:$1
   synonyms:
   - EGID
+  - EntrezGene
   - NCBIGene
   - entrez
   - entrez gene/locuslink
@@ -16349,7 +16365,7 @@ oncotree:
 one:
   banana: ONE
   contact:
-    email: chen.yang@ugent.be
+    email: chenyangnutrition@gmail.com
     github: cyang0128
     name: Chen Yang
     orcid: null
@@ -16534,9 +16550,9 @@ openalex:
 opl:
   banana: OPL
   contact:
-    email: preets79@gmail.com
-    github: null
-    name: Priti Parikh
+    email: jiezheng@pennmedicine.upenn.edu
+    github: zhengj2007
+    name: Jie Zheng
     orcid: null
   description: The Ontology for Parasite Lifecycle (OPL) models the life cycle stage
     details of various parasites, including Trypanosoma sp., Leishmania major, and
@@ -21939,7 +21955,7 @@ tto:
 txpo:
   banana: TXPO
   contact:
-    email: y-yamagata@nibiohn.go.jp
+    email: yuki.yamagata@riken.jp
     github: yuki-yamagata
     name: Yuki Yamagata
     orcid: null
