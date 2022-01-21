@@ -74,3 +74,24 @@ IDOT_BROKEN = {
 }
 
 URI_FORMAT_KEY = "uri_format"
+
+#: MIRIAM definitions that don't make any sense
+MIRIAM_BLACKLIST = {
+    # this one uses the names instead of IDs, and points to a dead resource.
+    # See https://github.com/identifiers-org/identifiers-org.github.io/issues/139
+    "pid.pathway",
+}
+IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
+
+#: The priority list
+LINK_PRIORITY = [
+    "custom",
+    "default",
+    "bioregistry",
+    "miriam",
+    "ols",
+    "obofoundry",
+    "n2t",
+    "bioportal",
+    "scholia",
+]
