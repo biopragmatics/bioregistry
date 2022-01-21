@@ -794,7 +794,7 @@ class Manager:
         providers = self.get_providers(_prefix, _identifier)
         if provider is not None:
             if provider not in providers:
-                raise KeyError
+                return None
             return providers[provider]
         if prefix_map and _prefix in prefix_map:
             providers["custom"] = f"{prefix_map[_prefix]}{_identifier}"
