@@ -43,6 +43,7 @@ from .resolve import (  # noqa:F401
     get_name,
     get_namespace_in_lui,
     get_obo_download,
+    get_obo_health_url,
     get_obofoundry_prefix,
     get_obofoundry_uri_format,
     get_obofoundry_uri_prefix,
