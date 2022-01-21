@@ -690,6 +690,13 @@ class Manager:
             link = get_url(prefix, identifier)
             if link is not None:
                 rv.append((provider, link))
+
+        resource = self.get_resource(prefix)
+        if resource is None:
+            raise KeyError
+        for provider in resource.get_extra_providers():
+            rv.append((provider.code, provider.resolve(identifier)))
+
         if not rv:
             return rv
 
@@ -702,7 +709,15 @@ class Manager:
         return rv
 
     def get_providers(self, prefix: str, identifier: str) -> Dict[str, str]:
-        """Get all providers for the CURIE."""
+        """Get all providers for the CURIE.
+
+        :param prefix: the prefix in the CURIE
+        :param identifier: the identifier in the CURIE
+        :returns: A dictionary of IRIs associated with the CURIE
+
+        >>> from bioregistry import manager
+        >>> assert "chebi-img" in manager.get_providers("chebi", "24867")
+        """
         return dict(self.get_providers_list(prefix, identifier))
 
     def get_iri(
