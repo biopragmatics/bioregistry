@@ -37,6 +37,7 @@ __all__ = [
     "get_versions",
     "get_registry_map",
     "get_registry_invmap",
+    "get_banana",
     # Ontology
     "get_provided_by",
     "get_provides_for",

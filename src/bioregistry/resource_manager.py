@@ -8,6 +8,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import (
     Any,
+    Callable,
     Dict,
     Iterable,
     List,
@@ -668,6 +669,36 @@ class Manager:
         None
         """
         return self.get_formatted_iri("scholia", prefix, identifier)
+
+    def get_provider_functions(self) -> Mapping[str, Callable[[str, str], Optional[str]]]:
+        """Return a mapping of provider functions."""
+        return {
+            "default": self.get_default_iri,
+            "miriam": self.get_miriam_iri,
+            "obofoundry": self.get_obofoundry_iri,
+            "ols": self.get_ols_iri,
+            "n2t": self.get_n2t_iri,
+            "bioportal": self.get_bioportal_iri,
+            "scholia": self.get_scholia_iri,
+        }
+
+    def get_providers_list(self, prefix: str, identifier: str) -> Sequence[Tuple[str, str]]:
+        """Get all providers for the CURIE."""
+        rv = []
+        for provider, get_url in self.get_provider_functions().items():
+            link = get_url(prefix, identifier)
+            if link is not None:
+                rv.append((provider, link))
+        if not rv:
+            return rv
+
+        bioregistry_link = self.get_bioregistry_iri(prefix, identifier)
+        if not bioregistry_link:
+            return rv
+
+        # if a default URL is available, it goes first. otherwise the bioregistry URL goes first.
+        rv.insert(1 if rv[0][0] == "default" else 0, ("bioregistry", bioregistry_link))
+        return rv
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:

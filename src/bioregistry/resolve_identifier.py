@@ -5,7 +5,8 @@
 import warnings
 from typing import Callable, Mapping, Optional, Sequence, Tuple
 
-from .resolve import get_resource, manager
+from .resolve import get_resource
+from .resource_manager import Manager, manager
 
 __all__ = [
     "is_known_identifier",
@@ -52,14 +53,16 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str:
 
     Examples with explicitly annotated bananas:
 
-    >>> assert "VariO" == get_banana('vario')
+    >>> import bioregistry as br
+    >>> assert "VariO" == br.get_banana('vario')
     >>> miriam_standardize_identifier('vario', '0376')
     'VariO:0376'
     >>> miriam_standardize_identifier('vario', 'VariO:0376')
     'VariO:0376'
 
     Examples with bananas from OBO:
-    >>> assert "FBbt" == get_banana('fbbt')
+    >>> import bioregistry as br
+    >>> assert "FBbt" == br.get_banana('fbbt')
     >>> miriam_standardize_identifier('fbbt', '00007294')
     'FBbt:00007294'
     >>> miriam_standardize_identifier('fbbt', 'FBbt:00007294')
@@ -111,26 +114,12 @@ def get_default_iri(prefix: str, identifier: str) -> Optional[str]:
 
 def get_providers(prefix: str, identifier: str) -> Mapping[str, str]:
     """Get all providers for the CURIE."""
-    return dict(get_providers_list(prefix, identifier))
+    return dict(manager.get_providers_list(prefix, identifier))
 
 
 def get_providers_list(prefix: str, identifier: str) -> Sequence[Tuple[str, str]]:
     """Get all providers for the CURIE."""
-    rv = []
-    for provider, get_url in PROVIDER_FUNCTIONS.items():
-        link = get_url(prefix, identifier)
-        if link is not None:
-            rv.append((provider, link))
-    if not rv:
-        return rv
-
-    bioregistry_link = get_bioregistry_iri(prefix, identifier)
-    if not bioregistry_link:
-        return rv
-
-    # if a default URL is available, it goes first. otherwise the bioregistry URL goes first.
-    rv.insert(1 if rv[0][0] == "default" else 0, ("bioregistry", bioregistry_link))
-    return rv
+    return manager.get_providers_list(prefix, identifier)
 
 
 def get_identifiers_org_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -256,16 +245,6 @@ def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
     """
     return manager.get_bioregistry_iri(prefix=prefix, identifier=identifier)
 
-
-PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
-    "default": manager.get_default_iri,
-    "miriam": manager.get_miriam_iri,
-    "obofoundry": get_obofoundry_iri,
-    "ols": get_ols_iri,
-    "n2t": manager.get_n2t_iri,
-    "bioportal": manager.get_bioportal_iri,
-    "scholia": manager.get_scholia_iri,
-}
 
 LINK_PRIORITY = [
     "custom",
