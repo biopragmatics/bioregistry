@@ -3,10 +3,10 @@
 """Resolvers for CURIE (e.g., pairs of prefix and identifier)."""
 
 import warnings
-from typing import Callable, Mapping, Optional, Sequence, Tuple
+from typing import Mapping, Optional, Sequence, Tuple
 
 from .resolve import get_resource
-from .resource_manager import Manager, manager
+from .resource_manager import manager
 
 __all__ = [
     "is_known_identifier",
@@ -114,7 +114,7 @@ def get_default_iri(prefix: str, identifier: str) -> Optional[str]:
 
 def get_providers(prefix: str, identifier: str) -> Mapping[str, str]:
     """Get all providers for the CURIE."""
-    return dict(manager.get_providers_list(prefix, identifier))
+    return manager.get_providers(prefix, identifier)
 
 
 def get_providers_list(prefix: str, identifier: str) -> Sequence[Tuple[str, str]]:
@@ -246,19 +246,6 @@ def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
     return manager.get_bioregistry_iri(prefix=prefix, identifier=identifier)
 
 
-LINK_PRIORITY = [
-    "custom",
-    "default",
-    "bioregistry",
-    "miriam",
-    "ols",
-    "obofoundry",
-    "n2t",
-    "bioportal",
-    "scholia",
-]
-
-
 def get_iri(
     prefix: str,
     identifier: Optional[str] = None,
@@ -316,25 +303,13 @@ def get_iri(
     >>> get_iri("lipidmaps:1234", prefix_map=prefix_map, priority=priority)
     'https://example.org/lipidmaps/1234'
     """
-    if identifier is None:
-        _prefix, _identifier = manager.parse_curie(prefix)
-        if _prefix is None or _identifier is None:
-            return None
-    else:
-        _prefix, _identifier = prefix, identifier
-
-    providers = dict(get_providers(_prefix, _identifier))
-    if prefix_map and _prefix in prefix_map:
-        providers["custom"] = f"{prefix_map[_prefix]}{_identifier}"
-    for key in priority or LINK_PRIORITY:
-        if not use_bioregistry_io and key == "bioregistry":
-            continue
-        if key not in providers:
-            continue
-        rv = providers[key]
-        if rv is not None:
-            return rv
-    return None
+    return manager.get_iri(
+        prefix=prefix,
+        identifier=identifier,
+        priority=priority,
+        prefix_map=prefix_map,
+        use_bioregistry_io=use_bioregistry_io,
+    )
 
 
 def get_link(

@@ -23,6 +23,7 @@ from typing import (
 from .constants import (
     BIOREGISTRY_REMOTE_URL,
     IDENTIFIERS_ORG_URL_PREFIX,
+    LINK_PRIORITY,
     MIRIAM_BLACKLIST,
 )
 from .license_standardizer import standardize_license
@@ -699,6 +700,89 @@ class Manager:
         # if a default URL is available, it goes first. otherwise the bioregistry URL goes first.
         rv.insert(1 if rv[0][0] == "default" else 0, ("bioregistry", bioregistry_link))
         return rv
+
+    def get_providers(self, prefix: str, identifier: str) -> Dict[str, str]:
+        """Get all providers for the CURIE."""
+        return dict(self.get_providers_list(prefix, identifier))
+
+    def get_iri(
+        self,
+        prefix: str,
+        identifier: Optional[str] = None,
+        *,
+        priority: Optional[Sequence[str]] = None,
+        prefix_map: Optional[Mapping[str, str]] = None,
+        use_bioregistry_io: bool = True,
+    ) -> Optional[str]:
+        """Get the best link for the CURIE, if possible.
+
+        :param prefix: The prefix in the CURIE
+        :param identifier: The identifier in the CURIE. If identifier is given as None, then this function will
+            assume that the first argument (``prefix``) is actually a full CURIE.
+        :param priority: A user-defined priority list. In addition to the metaprefixes in the Bioregistry
+            corresponding to resources that are resolvers/lookup services, you can also use ``default``
+            to correspond to the first-party IRI and ``custom`` to refer to the custom prefix map.
+            The default priority list is:
+
+            1. Custom prefix map (``custom``)
+            1. First-party IRI (``default``)
+            2. Identifiers.org / MIRIAM (``miriam``)
+            3. Ontology Lookup Service (``ols``)
+            4. OBO PURL (``obofoundry``)
+            5. Name-to-Thing (``n2t``)
+            6. BioPortal (``bioportal``)
+        :param prefix_map: A custom prefix map to go with the ``custom`` key in the priority list
+        :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults to true.
+        :return: The best possible IRI that can be generated based on the priority list.
+
+        A pre-parse CURIE can be given as the first two arguments
+        >>> from bioregistry import manager
+        >>> manager.get_iri("chebi", "24867")
+        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+
+        A CURIE can be given directly as a single argument
+        >>> manager.get_iri("chebi:24867")
+        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+
+        A priority list can be given
+        >>> priority = ["obofoundry", "default", "bioregistry"]
+        >>> manager.get_iri("chebi:24867", priority=priority)
+        'http://purl.obolibrary.org/obo/CHEBI_24867'
+
+        A custom prefix map can be supplied.
+        >>> prefix_map = {"chebi": "https://example.org/chebi/"}
+        >>> manager.get_iri("chebi:24867", prefix_map=prefix_map)
+        'https://example.org/chebi/24867'
+        >>> manager.get_iri("fbbt:00007294")
+        'https://flybase.org/cgi-bin/cvreport.pl?id=FBbt:00007294'
+
+        A custom prefix map can be supplied in combination with a priority list
+        >>> prefix_map = {"lipidmaps": "https://example.org/lipidmaps/"}
+        >>> priority = ["obofoundry", "custom", "default", "bioregistry"]
+        >>> manager.get_iri("chebi:24867", prefix_map=prefix_map, priority=priority)
+        'http://purl.obolibrary.org/obo/CHEBI_24867'
+        >>> manager.get_iri("lipidmaps:1234", prefix_map=prefix_map, priority=priority)
+        'https://example.org/lipidmaps/1234'
+        """
+        if identifier is None:
+            _prefix, _identifier = self.parse_curie(prefix)
+            if _prefix is None or _identifier is None:
+                return None
+        else:
+            _prefix, _identifier = prefix, identifier
+
+        providers = self.get_providers(_prefix, _identifier)
+        if prefix_map and _prefix in prefix_map:
+            providers["custom"] = f"{prefix_map[_prefix]}{_identifier}"
+        for key in priority or LINK_PRIORITY:
+            if not use_bioregistry_io and key == "bioregistry":
+                continue
+            if key not in providers:
+                continue
+            rv = providers[key]
+            if rv is not None:
+                return rv
+        return None
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:

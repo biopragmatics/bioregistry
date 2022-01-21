@@ -82,3 +82,16 @@ MIRIAM_BLACKLIST = {
     "pid.pathway",
 }
 IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
+
+#: The priority list
+LINK_PRIORITY = [
+    "custom",
+    "default",
+    "bioregistry",
+    "miriam",
+    "ols",
+    "obofoundry",
+    "n2t",
+    "bioportal",
+    "scholia",
+]
