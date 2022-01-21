@@ -23,7 +23,7 @@ from .constants import (
     METAREGISTRY_PATH,
     MISMATCH_PATH,
 )
-from .schema import Attributable, Author, Collection, Registry, Resource
+from .schema import Attributable, Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
