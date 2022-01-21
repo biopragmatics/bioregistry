@@ -38,6 +38,7 @@ __all__ = [
     "get_registry_map",
     "get_registry_invmap",
     "get_banana",
+    "get_obo_health_url",
     # Ontology
     "get_provided_by",
     "get_provides_for",
@@ -897,3 +898,18 @@ def get_curie_pattern(prefix: str) -> Optional[str]:
 def get_license_conflicts():
     """Get license conflicts."""
     return manager.get_license_conflicts()
+
+
+SHIELDS_BASE = "https://img.shields.io/badge/dynamic"
+CH_BASE = "https://cthoyt.com/obo-community-health"
+HEALTH_BASE = "https://github.com/cthoyt/obo-community-health/raw/main/data/data.json"
+EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
+
+
+def get_obo_health_url(prefix: str) -> Optional[str]:
+    """Get the OBO community health badge."""
+    obo_prefix = manager.get_mapped_prefix(prefix, "obofoundry")
+    if obo_prefix is None:
+        return None
+    obo_pp = manager.get_preferred_prefix(prefix)
+    return f"{SHIELDS_BASE}/json?url={HEALTH_BASE}&query=$.{obo_prefix.lower()}.score&label={obo_pp}{EXTRAS}"

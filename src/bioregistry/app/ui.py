@@ -154,6 +154,15 @@ def metaresource(metaprefix: str):
     )
 
 
+@ui_blueprint.route("/health/<prefix>")
+def obo_health(prefix: str):
+    """Serve a redirect to OBO Foundry community health image."""
+    url = bioregistry.get_obo_health_url(prefix)
+    if url is None:
+        abort(404, f"Missing OBO prefix {prefix}")
+    return redirect(url)
+
+
 @ui_blueprint.route("/collection/<identifier>")
 def collection(identifier: str):
     """Serve the a Bioregistry registry page."""
