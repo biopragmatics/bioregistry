@@ -25,12 +25,13 @@ from .constants import (
     MIRIAM_BLACKLIST,
 )
 from .license_standardizer import standardize_license
-from .schema import Resource, sanitize_model
+from .schema import Registry, Resource, sanitize_model
 from .utils import (
     NormDict,
     _norm,
     _registry_from_path,
     curie_to_str,
+    read_metaregistry,
     read_registry,
     write_registry,
 )
@@ -68,15 +69,24 @@ def _synonym_to_canonical(registry: Mapping[str, Resource]) -> NormDict:
 class Manager:
     """A manager for functionality related to a metaregistry."""
 
-    def __init__(self, registry: Optional[Mapping[str, Resource]] = None):
+    def __init__(
+        self,
+        registry: Optional[Mapping[str, Resource]] = None,
+        metaregistry: Optional[Mapping[str, Registry]] = None,
+    ):
         """Instantiate a registry manager.
 
         :param registry: A custom registry. If none given, defaults to the Bioregistry.
+        :param metaregistry: A custom metaregistry. If none, defaults to the Bioregistry's metaregistry.
         """
         if registry is None:
             registry = read_registry()
         self.registry = registry
         self.synonyms = _synonym_to_canonical(registry)
+
+        if metaregistry is None:
+            metaregistry = read_metaregistry()
+        self.metaregistry = metaregistry
 
         canonical_for = defaultdict(list)
         provided_by = defaultdict(list)
@@ -516,24 +526,13 @@ class Manager:
             return None
         return entry.get_default_uri(identifier)
 
-    def get_identifiers_org_prefix(self, prefix: str) -> Optional[str]:
-        """Get the identifiers.org prefix, if available.
-
-        :param prefix: The prefix to lookup.
-        :returns: The Identifiers.org/MIRIAM prefix corresponding to the prefix, if mappable.
-        """
-        entry = self.get_resource(prefix)
-        if entry is None:
-            return None
-        return entry.get_identifiers_org_prefix()
-
-    def get_identifiers_org_curie(self, prefix: str, identifier: str) -> Optional[str]:
+    def get_miriam_curie(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the identifiers.org CURIE for the given CURIE."""
-        miriam_prefix = self.get_identifiers_org_prefix(prefix)
-        if miriam_prefix is None or miriam_prefix in MIRIAM_BLACKLIST:
-            return None
         resource = self.get_resource(prefix)
         if resource is None:
+            return None
+        miriam_prefix = resource.get_mapped_prefix("miriam")
+        if miriam_prefix is None or miriam_prefix in MIRIAM_BLACKLIST:
             return None
         banana = resource.get_banana()
         if banana:
@@ -549,7 +548,7 @@ class Manager:
         else:
             return f"{miriam_prefix}:{identifier}"
 
-    def get_identifiers_org_iri(self, prefix: str, identifier: str) -> Optional[str]:
+    def get_miriam_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the identifiers.org URL for the given CURIE.
 
         :param prefix: The prefix in the CURIE
@@ -557,10 +556,40 @@ class Manager:
         :return: A IRI string corresponding to the Identifiers.org, if the prefix exists and is
             mapped to MIRIAM.
         """
-        curie = self.get_identifiers_org_curie(prefix, identifier)
+        curie = self.get_miriam_curie(prefix, identifier)
         if curie is None:
             return None
         return f"{IDENTIFIERS_ORG_URL_PREFIX}{curie}"
+
+    def get_formatted_iri(self, metaprefix: str, prefix: str, identifier: str) -> Optional[str]:
+        """Get an IRI using the format in the metaregistry.
+
+        :param metaprefix: The metaprefix of the registry in the metaregistry
+        :param prefix: A bioregistry prefix (will be mapped to the external one automatically)
+        :param identifier: The identifier for the entity
+        :returns: An IRI generated from the ``resolver_url`` format string of the registry, if it
+            exists.
+
+        >>> from bioregistry import manager
+        >>> manager.get_formatted_iri("miriam", "hgnc", "16793")
+        'https://identifiers.org/hgnc:16793'
+        >>> manager.get_formatted_iri("n2t", "hgnc", "16793")
+        'https://n2t.net/hgnc:16793'
+        >>> manager.get_formatted_iri("obofoundry", "fbbt", "00007294")
+        'http://purl.obolibrary.org/obo/FBbt_00007294'
+        >>> manager.get_formatted_iri("scholia", "lipidmaps", "00000052")
+        'https://scholia.toolforge.org/lipidmaps/00000052'
+        """
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        mapped_prefix = resource.get_mapped_prefix(metaprefix)
+        if mapped_prefix is None:
+            return None
+        registry = self.metaregistry.get(metaprefix)
+        if registry is None:
+            return None
+        return registry.resolve(mapped_prefix, identifier)
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:

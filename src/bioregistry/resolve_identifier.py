@@ -6,9 +6,7 @@ import warnings
 from typing import Callable, Mapping, Optional, Sequence, Tuple
 
 from .resolve import (
-    get_banana,
     get_bioportal_prefix,
-    get_namespace_in_lui,
     get_obofoundry_uri_prefix,
     get_ols_prefix,
     get_resource,
@@ -93,8 +91,9 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str:
 
     Standard:
 
-    >>> assert get_banana('pdb') is None
-    >>> assert not get_namespace_in_lui('pdb')
+    >>> import bioregistry as br
+    >>> assert br.get_banana('pdb') is None
+    >>> assert not br.get_namespace_in_lui('pdb')
     >>> miriam_standardize_identifier('pdb', '00000020')
     '00000020'
     """
@@ -154,7 +153,7 @@ def get_identifiers_org_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_identifiers_org_iri("interpro", "IPR016380")
     'https://identifiers.org/interpro:IPR016380'
     """
-    return manager.get_identifiers_org_iri(prefix, identifier)
+    return manager.get_miriam_iri(prefix, identifier)
 
 
 def get_n2t_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -168,7 +167,7 @@ def get_n2t_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_n2t_iri('chebi', '24867')
     'https://n2t.net/chebi:24867'
     """
-    return get_formatted_iri("n2t", prefix, identifier)
+    return manager.get_formatted_iri("n2t", prefix, identifier)
 
 
 def get_bioportal_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -193,7 +192,7 @@ def get_bioportal_iri(prefix: str, identifier: str) -> Optional[str]:
 
 def get_identifiers_org_curie(prefix: str, identifier: str) -> Optional[str]:
     """Get the identifiers.org CURIE for the given CURIE."""
-    return manager.get_identifiers_org_curie(prefix, identifier)
+    return manager.get_miriam_curie(prefix, identifier)
 
 
 def get_obofoundry_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -211,7 +210,7 @@ def get_obofoundry_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_obofoundry_iri('fbbt', '00007294')
     'http://purl.obolibrary.org/obo/FBbt_00007294'
     """
-    return get_formatted_iri("obofoundry", prefix, identifier)
+    return manager.get_formatted_iri("obofoundry", prefix, identifier)
 
 
 def get_ols_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -277,8 +276,8 @@ def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
 
 
 PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
-    "default": get_default_iri,
-    "miriam": get_identifiers_org_iri,
+    "default": manager.get_default_iri,
+    "miriam": manager.get_miriam_iri,
     "obofoundry": get_obofoundry_iri,
     "ols": get_ols_iri,
     "n2t": get_n2t_iri,
@@ -406,15 +405,4 @@ def get_formatted_iri(metaprefix: str, prefix: str, identifier: str) -> Optional
     >>> get_formatted_iri("scholia", "lipidmaps", "00000052")
     'https://scholia.toolforge.org/lipidmaps/00000052'
     """
-    from .metaresource_api import get_registry
-
-    resource = get_resource(prefix)
-    if resource is None:
-        return None
-    mapped_prefix = resource.get_mapped_prefix(metaprefix)
-    if mapped_prefix is None:
-        return None
-    registry = get_registry(metaprefix)
-    if registry is None:
-        return None
-    return registry.resolve(mapped_prefix, identifier)
+    return manager.get_formatted_iri(metaprefix=metaprefix, prefix=prefix, identifier=identifier)
