@@ -19,6 +19,11 @@ from typing import (
     Union,
 )
 
+from .constants import (
+    BIOREGISTRY_REMOTE_URL,
+    IDENTIFIERS_ORG_URL_PREFIX,
+    MIRIAM_BLACKLIST,
+)
 from .license_standardizer import standardize_license
 from .schema import Resource, sanitize_model
 from .utils import (
@@ -482,6 +487,80 @@ class Manager:
         if norm_prefix is None:
             return None
         return self.has_parts.get(norm_prefix, [])
+
+    def get_bioregistry_iri(self, prefix: str, identifier: str) -> Optional[str]:
+        """Get a Bioregistry link.
+
+        :param prefix: The prefix in the CURIE
+        :param identifier: The identifier in the CURIE
+        :return: A link to the Bioregistry resolver
+        """
+        norm_prefix, norm_identifier = self.normalize_parsed_curie(prefix, identifier)
+        if norm_prefix is None:
+            return None
+        return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{norm_prefix}:{norm_identifier}"
+
+    def get_default_iri(self, prefix: str, identifier: str) -> Optional[str]:
+        """Get the default URL for the given CURIE.
+
+        :param prefix: The prefix in the CURIE
+        :param identifier: The identifier in the CURIE
+        :return: A IRI string corresponding to the default provider, if available.
+
+        >>> from bioregistry import manager
+        >>> manager.get_default_iri('chebi', '24867')
+        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+        """
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_default_uri(identifier)
+
+    def get_identifiers_org_prefix(self, prefix: str) -> Optional[str]:
+        """Get the identifiers.org prefix, if available.
+
+        :param prefix: The prefix to lookup.
+        :returns: The Identifiers.org/MIRIAM prefix corresponding to the prefix, if mappable.
+        """
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_identifiers_org_prefix()
+
+    def get_identifiers_org_curie(self, prefix: str, identifier: str) -> Optional[str]:
+        """Get the identifiers.org CURIE for the given CURIE."""
+        miriam_prefix = self.get_identifiers_org_prefix(prefix)
+        if miriam_prefix is None or miriam_prefix in MIRIAM_BLACKLIST:
+            return None
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        banana = resource.get_banana()
+        if banana:
+            if identifier.startswith(f"{banana}:"):
+                return identifier
+            else:
+                return f"{banana}:{identifier}"
+        elif resource.get_namespace_in_lui():
+            if identifier.startswith(prefix.upper()):
+                return identifier
+            else:
+                return f"{prefix.upper()}:{identifier}"
+        else:
+            return f"{miriam_prefix}:{identifier}"
+
+    def get_identifiers_org_iri(self, prefix: str, identifier: str) -> Optional[str]:
+        """Get the identifiers.org URL for the given CURIE.
+
+        :param prefix: The prefix in the CURIE
+        :param identifier: The identifier in the CURIE
+        :return: A IRI string corresponding to the Identifiers.org, if the prefix exists and is
+            mapped to MIRIAM.
+        """
+        curie = self.get_identifiers_org_curie(prefix, identifier)
+        if curie is None:
+            return None
+        return f"{IDENTIFIERS_ORG_URL_PREFIX}{curie}"
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:

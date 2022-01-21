@@ -5,17 +5,14 @@
 import warnings
 from typing import Callable, Mapping, Optional, Sequence, Tuple
 
-from .constants import BIOREGISTRY_REMOTE_URL
 from .resolve import (
     get_banana,
     get_bioportal_prefix,
-    get_identifiers_org_prefix,
     get_namespace_in_lui,
     get_obofoundry_uri_prefix,
     get_ols_prefix,
     get_resource,
-    normalize_parsed_curie,
-    parse_curie,
+    manager,
 )
 
 __all__ = [
@@ -117,10 +114,7 @@ def get_default_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_default_iri('chebi', '24867')
     'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_default_uri(identifier)
+    return manager.get_default_iri(prefix, identifier)
 
 
 def get_providers(prefix: str, identifier: str) -> Mapping[str, str]:
@@ -147,9 +141,6 @@ def get_providers_list(prefix: str, identifier: str) -> Sequence[Tuple[str, str]
     return rv
 
 
-IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
-
-
 def get_identifiers_org_iri(prefix: str, identifier: str) -> Optional[str]:
     """Get the identifiers.org URL for the given CURIE.
 
@@ -163,10 +154,7 @@ def get_identifiers_org_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_identifiers_org_iri("interpro", "IPR016380")
     'https://identifiers.org/interpro:IPR016380'
     """
-    curie = get_identifiers_org_curie(prefix, identifier)
-    if curie is None:
-        return None
-    return f"{IDENTIFIERS_ORG_URL_PREFIX}{curie}"
+    return manager.get_identifiers_org_iri(prefix, identifier)
 
 
 def get_n2t_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -203,32 +191,9 @@ def get_bioportal_iri(prefix: str, identifier: str) -> Optional[str]:
     return None
 
 
-# MIRIAM definitions that don't make any sense
-MIRIAM_BLACKLIST = {
-    # this one uses the names instead of IDs, and points to a dead resource.
-    # See https://github.com/identifiers-org/identifiers-org.github.io/issues/139
-    "pid.pathway",
-}
-
-
 def get_identifiers_org_curie(prefix: str, identifier: str) -> Optional[str]:
     """Get the identifiers.org CURIE for the given CURIE."""
-    miriam_prefix = get_identifiers_org_prefix(prefix)
-    if miriam_prefix is None or miriam_prefix in MIRIAM_BLACKLIST:
-        return None
-    banana = get_banana(prefix)
-    if banana:
-        if identifier.startswith(f"{banana}:"):
-            return identifier
-        else:
-            return f"{banana}:{identifier}"
-    elif get_namespace_in_lui(prefix):
-        if identifier.startswith(prefix.upper()):
-            return identifier
-        else:
-            return f"{prefix.upper()}:{identifier}"
-    else:
-        return f"{miriam_prefix}:{identifier}"
+    return manager.get_identifiers_org_curie(prefix, identifier)
 
 
 def get_obofoundry_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -308,10 +273,7 @@ def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_bioregistry_iri('go.ref', '1234')
     'https://bioregistry.io/go.ref:1234'
     """
-    norm_prefix, norm_identifier = normalize_parsed_curie(prefix, identifier)
-    if norm_prefix is None:
-        return None
-    return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{norm_prefix}:{norm_identifier}"
+    return manager.get_bioregistry_iri(prefix=prefix, identifier=identifier)
 
 
 PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
@@ -395,7 +357,7 @@ def get_iri(
     'https://example.org/lipidmaps/1234'
     """
     if identifier is None:
-        _prefix, _identifier = parse_curie(prefix)
+        _prefix, _identifier = manager.parse_curie(prefix)
         if _prefix is None or _identifier is None:
             return None
     else:

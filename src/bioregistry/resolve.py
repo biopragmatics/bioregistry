@@ -226,10 +226,7 @@ def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
     'taxonomy'
     >>> assert bioregistry.get_identifiers_org_prefix('MONDO') is None
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_identifiers_org_prefix()
+    return manager.get_identifiers_org_prefix(prefix)
 
 
 def get_n2t_prefix(prefix: str) -> Optional[str]:
