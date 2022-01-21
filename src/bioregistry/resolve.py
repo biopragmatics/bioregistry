@@ -902,12 +902,12 @@ def get_license_conflicts():
 
 SHIELDS_BASE = "https://img.shields.io/badge/dynamic"
 CH_BASE = "https://cthoyt.com/obo-community-health"
-HEALTH_BASE = f"https://github.com/cthoyt/obo-community-health/raw/main/data/data.json"
+HEALTH_BASE = "https://github.com/cthoyt/obo-community-health/raw/main/data/data.json"
 EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
 
 
 def get_obo_health_url(prefix: str) -> Optional[str]:
-    """Get the OBO community health badge"""
+    """Get the OBO community health badge."""
     obo_prefix = manager.get_mapped_prefix(prefix, "obofoundry")
     if obo_prefix is None:
         return None
