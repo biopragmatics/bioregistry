@@ -4,7 +4,7 @@
 
 from typing import Optional
 
-from flask import Blueprint, abort, redirect, render_template, url_for
+from flask import Blueprint, abort, redirect, render_template, request, url_for
 
 import bioregistry
 
@@ -218,7 +218,12 @@ def resolve(prefix: str, identifier: Optional[str] = None):
             404,
         )
 
-    url = bioregistry.get_iri(prefix, identifier, use_bioregistry_io=False)
+    url = bioregistry.get_iri(
+        prefix,
+        identifier,
+        use_bioregistry_io=False,
+        provider=request.args.get("provider"),
+    )
     if not url:
         return (
             render_template(

@@ -125,6 +125,7 @@ def get_default_iri(prefix: str, identifier: str) -> Optional[str]:
 
 def get_providers(prefix: str, identifier: str) -> Mapping[str, str]:
     """Get all providers for the CURIE."""
+    # TODO replace with call to manager
     return dict(get_providers_list(prefix, identifier))
 
 
@@ -344,6 +345,7 @@ def get_iri(
     priority: Optional[Sequence[str]] = None,
     prefix_map: Optional[Mapping[str, str]] = None,
     use_bioregistry_io: bool = True,
+    provider: Optional[str] = None,
 ) -> Optional[str]:
     """Get the best link for the CURIE, if possible.
 
@@ -393,6 +395,10 @@ def get_iri(
     'http://purl.obolibrary.org/obo/CHEBI_24867'
     >>> get_iri("lipidmaps:1234", prefix_map=prefix_map, priority=priority)
     'https://example.org/lipidmaps/1234'
+
+    A custom provider is given, which makes the Bioregistry very extensible
+    >>> get_iri("chebi:24867", provider="chebi-img")
+    'https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=24867'
     """
     if identifier is None:
         _prefix, _identifier = parse_curie(prefix)
@@ -402,6 +408,10 @@ def get_iri(
         _prefix, _identifier = prefix, identifier
 
     providers = dict(get_providers(_prefix, _identifier))
+    if provider is not None:
+        if provider not in providers:
+            raise KeyError
+        return providers[provider]
     if prefix_map and _prefix in prefix_map:
         providers["custom"] = f"{prefix_map[_prefix]}{_identifier}"
     for key in priority or LINK_PRIORITY:
