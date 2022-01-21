@@ -3,20 +3,10 @@
 """Resolvers for CURIE (e.g., pairs of prefix and identifier)."""
 
 import warnings
-from typing import Callable, Mapping, Optional, Sequence, Tuple
+from typing import Mapping, Optional, Sequence, Tuple
 
-from .constants import BIOREGISTRY_REMOTE_URL
-from .resolve import (
-    get_banana,
-    get_bioportal_prefix,
-    get_identifiers_org_prefix,
-    get_namespace_in_lui,
-    get_obofoundry_uri_prefix,
-    get_ols_prefix,
-    get_resource,
-    normalize_parsed_curie,
-    parse_curie,
-)
+from .resolve import get_resource
+from .resource_manager import manager
 
 __all__ = [
     "is_known_identifier",
@@ -24,7 +14,6 @@ __all__ = [
     "get_providers_list",
     "get_identifiers_org_iri",
     "get_identifiers_org_curie",
-    "get_obofoundry_uri_prefix",
     "get_obofoundry_iri",
     "get_ols_iri",
     "get_bioportal_iri",
@@ -64,14 +53,16 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str:
 
     Examples with explicitly annotated bananas:
 
-    >>> assert "VariO" == get_banana('vario')
+    >>> import bioregistry as br
+    >>> assert "VariO" == br.get_banana('vario')
     >>> miriam_standardize_identifier('vario', '0376')
     'VariO:0376'
     >>> miriam_standardize_identifier('vario', 'VariO:0376')
     'VariO:0376'
 
     Examples with bananas from OBO:
-    >>> assert "FBbt" == get_banana('fbbt')
+    >>> import bioregistry as br
+    >>> assert "FBbt" == br.get_banana('fbbt')
     >>> miriam_standardize_identifier('fbbt', '00007294')
     'FBbt:00007294'
     >>> miriam_standardize_identifier('fbbt', 'FBbt:00007294')
@@ -96,8 +87,9 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str:
 
     Standard:
 
-    >>> assert get_banana('pdb') is None
-    >>> assert not get_namespace_in_lui('pdb')
+    >>> import bioregistry as br
+    >>> assert br.get_banana('pdb') is None
+    >>> assert not br.get_namespace_in_lui('pdb')
     >>> miriam_standardize_identifier('pdb', '00000020')
     '00000020'
     """
@@ -117,38 +109,17 @@ def get_default_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_default_iri('chebi', '24867')
     'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_default_uri(identifier)
+    return manager.get_default_iri(prefix, identifier)
 
 
 def get_providers(prefix: str, identifier: str) -> Mapping[str, str]:
     """Get all providers for the CURIE."""
-    # TODO replace with call to manager
-    return dict(get_providers_list(prefix, identifier))
+    return manager.get_providers(prefix, identifier)
 
 
 def get_providers_list(prefix: str, identifier: str) -> Sequence[Tuple[str, str]]:
     """Get all providers for the CURIE."""
-    rv = []
-    for provider, get_url in PROVIDER_FUNCTIONS.items():
-        link = get_url(prefix, identifier)
-        if link is not None:
-            rv.append((provider, link))
-    if not rv:
-        return rv
-
-    bioregistry_link = get_bioregistry_iri(prefix, identifier)
-    if not bioregistry_link:
-        return rv
-
-    # if a default URL is available, it goes first. otherwise the bioregistry URL goes first.
-    rv.insert(1 if rv[0][0] == "default" else 0, ("bioregistry", bioregistry_link))
-    return rv
-
-
-IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
+    return manager.get_providers_list(prefix, identifier)
 
 
 def get_identifiers_org_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -164,10 +135,7 @@ def get_identifiers_org_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_identifiers_org_iri("interpro", "IPR016380")
     'https://identifiers.org/interpro:IPR016380'
     """
-    curie = get_identifiers_org_curie(prefix, identifier)
-    if curie is None:
-        return None
-    return f"{IDENTIFIERS_ORG_URL_PREFIX}{curie}"
+    return manager.get_miriam_iri(prefix, identifier)
 
 
 def get_n2t_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -181,7 +149,7 @@ def get_n2t_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_n2t_iri('chebi', '24867')
     'https://n2t.net/chebi:24867'
     """
-    return get_formatted_iri("n2t", prefix, identifier)
+    return manager.get_n2t_iri(prefix, identifier)
 
 
 def get_bioportal_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -194,42 +162,12 @@ def get_bioportal_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_bioportal_iri('chebi', '24431')
     'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24431'
     """
-    bioportal_prefix = get_bioportal_prefix(prefix)
-    if bioportal_prefix is None:
-        return None
-    obo_link = get_obofoundry_iri(prefix, identifier)
-    if obo_link is not None:
-        return f"https://bioportal.bioontology.org/ontologies/{bioportal_prefix}/?p=classes&conceptid={obo_link}"
-    # TODO there must be other rules?
-    return None
-
-
-# MIRIAM definitions that don't make any sense
-MIRIAM_BLACKLIST = {
-    # this one uses the names instead of IDs, and points to a dead resource.
-    # See https://github.com/identifiers-org/identifiers-org.github.io/issues/139
-    "pid.pathway",
-}
+    return manager.get_bioportal_iri(prefix, identifier)
 
 
 def get_identifiers_org_curie(prefix: str, identifier: str) -> Optional[str]:
     """Get the identifiers.org CURIE for the given CURIE."""
-    miriam_prefix = get_identifiers_org_prefix(prefix)
-    if miriam_prefix is None or miriam_prefix in MIRIAM_BLACKLIST:
-        return None
-    banana = get_banana(prefix)
-    if banana:
-        if identifier.startswith(f"{banana}:"):
-            return identifier
-        else:
-            return f"{banana}:{identifier}"
-    elif get_namespace_in_lui(prefix):
-        if identifier.startswith(prefix.upper()):
-            return identifier
-        else:
-            return f"{prefix.upper()}:{identifier}"
-    else:
-        return f"{miriam_prefix}:{identifier}"
+    return manager.get_miriam_curie(prefix, identifier)
 
 
 def get_obofoundry_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -247,16 +185,12 @@ def get_obofoundry_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_obofoundry_iri('fbbt', '00007294')
     'http://purl.obolibrary.org/obo/FBbt_00007294'
     """
-    return get_formatted_iri("obofoundry", prefix, identifier)
+    return manager.get_obofoundry_iri(prefix, identifier)
 
 
 def get_ols_iri(prefix: str, identifier: str) -> Optional[str]:
     """Get the OLS URL if possible."""
-    ols_prefix = get_ols_prefix(prefix)
-    obo_iri = get_obofoundry_iri(prefix, identifier)
-    if ols_prefix is None or obo_iri is None:
-        return None
-    return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_iri}"
+    return manager.get_ols_iri(prefix, identifier)
 
 
 def get_scholia_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -272,7 +206,7 @@ def get_scholia_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_scholia_iri("pdb", "1234")
     None
     """
-    return get_formatted_iri("scholia", prefix, identifier)
+    return manager.get_scholia_iri(prefix, identifier)
 
 
 def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -309,33 +243,7 @@ def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_bioregistry_iri('go.ref', '1234')
     'https://bioregistry.io/go.ref:1234'
     """
-    norm_prefix, norm_identifier = normalize_parsed_curie(prefix, identifier)
-    if norm_prefix is None:
-        return None
-    return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{norm_prefix}:{norm_identifier}"
-
-
-PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
-    "default": get_default_iri,
-    "miriam": get_identifiers_org_iri,
-    "obofoundry": get_obofoundry_iri,
-    "ols": get_ols_iri,
-    "n2t": get_n2t_iri,
-    "bioportal": get_bioportal_iri,
-    "scholia": get_scholia_iri,
-}
-
-LINK_PRIORITY = [
-    "custom",
-    "default",
-    "bioregistry",
-    "miriam",
-    "ols",
-    "obofoundry",
-    "n2t",
-    "bioportal",
-    "scholia",
-]
+    return manager.get_bioregistry_iri(prefix=prefix, identifier=identifier)
 
 
 def get_iri(
@@ -400,29 +308,13 @@ def get_iri(
     >>> get_iri("chebi:24867", provider="chebi-img")
     'https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=24867'
     """
-    if identifier is None:
-        _prefix, _identifier = parse_curie(prefix)
-        if _prefix is None or _identifier is None:
-            return None
-    else:
-        _prefix, _identifier = prefix, identifier
-
-    providers = dict(get_providers(_prefix, _identifier))
-    if provider is not None:
-        if provider not in providers:
-            raise KeyError
-        return providers[provider]
-    if prefix_map and _prefix in prefix_map:
-        providers["custom"] = f"{prefix_map[_prefix]}{_identifier}"
-    for key in priority or LINK_PRIORITY:
-        if not use_bioregistry_io and key == "bioregistry":
-            continue
-        if key not in providers:
-            continue
-        rv = providers[key]
-        if rv is not None:
-            return rv
-    return None
+    return manager.get_iri(
+        prefix=prefix,
+        identifier=identifier,
+        priority=priority,
+        prefix_map=prefix_map,
+        use_bioregistry_io=use_bioregistry_io,
+    )
 
 
 def get_link(
@@ -454,15 +346,4 @@ def get_formatted_iri(metaprefix: str, prefix: str, identifier: str) -> Optional
     >>> get_formatted_iri("scholia", "lipidmaps", "00000052")
     'https://scholia.toolforge.org/lipidmaps/00000052'
     """
-    from .metaresource_api import get_registry
-
-    resource = get_resource(prefix)
-    if resource is None:
-        return None
-    mapped_prefix = resource.get_mapped_prefix(metaprefix)
-    if mapped_prefix is None:
-        return None
-    registry = get_registry(metaprefix)
-    if registry is None:
-        return None
-    return registry.resolve(mapped_prefix, identifier)
+    return manager.get_formatted_iri(metaprefix=metaprefix, prefix=prefix, identifier=identifier)
