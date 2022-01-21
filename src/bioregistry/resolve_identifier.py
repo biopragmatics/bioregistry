@@ -5,13 +5,7 @@
 import warnings
 from typing import Callable, Mapping, Optional, Sequence, Tuple
 
-from .resolve import (
-    get_bioportal_prefix,
-    get_obofoundry_uri_prefix,
-    get_ols_prefix,
-    get_resource,
-    manager,
-)
+from .resolve import get_resource, manager
 
 __all__ = [
     "is_known_identifier",
@@ -19,7 +13,6 @@ __all__ = [
     "get_providers_list",
     "get_identifiers_org_iri",
     "get_identifiers_org_curie",
-    "get_obofoundry_uri_prefix",
     "get_obofoundry_iri",
     "get_ols_iri",
     "get_bioportal_iri",
@@ -167,7 +160,7 @@ def get_n2t_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_n2t_iri('chebi', '24867')
     'https://n2t.net/chebi:24867'
     """
-    return manager.get_formatted_iri("n2t", prefix, identifier)
+    return manager.get_n2t_iri(prefix, identifier)
 
 
 def get_bioportal_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -180,14 +173,7 @@ def get_bioportal_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_bioportal_iri('chebi', '24431')
     'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24431'
     """
-    bioportal_prefix = get_bioportal_prefix(prefix)
-    if bioportal_prefix is None:
-        return None
-    obo_link = get_obofoundry_iri(prefix, identifier)
-    if obo_link is not None:
-        return f"https://bioportal.bioontology.org/ontologies/{bioportal_prefix}/?p=classes&conceptid={obo_link}"
-    # TODO there must be other rules?
-    return None
+    return manager.get_bioportal_iri(prefix, identifier)
 
 
 def get_identifiers_org_curie(prefix: str, identifier: str) -> Optional[str]:
@@ -210,16 +196,12 @@ def get_obofoundry_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_obofoundry_iri('fbbt', '00007294')
     'http://purl.obolibrary.org/obo/FBbt_00007294'
     """
-    return manager.get_formatted_iri("obofoundry", prefix, identifier)
+    return manager.get_obofoundry_iri(prefix, identifier)
 
 
 def get_ols_iri(prefix: str, identifier: str) -> Optional[str]:
     """Get the OLS URL if possible."""
-    ols_prefix = get_ols_prefix(prefix)
-    obo_iri = get_obofoundry_iri(prefix, identifier)
-    if ols_prefix is None or obo_iri is None:
-        return None
-    return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_iri}"
+    return manager.get_ols_iri(prefix, identifier)
 
 
 def get_scholia_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -235,7 +217,7 @@ def get_scholia_iri(prefix: str, identifier: str) -> Optional[str]:
     >>> get_scholia_iri("pdb", "1234")
     None
     """
-    return get_formatted_iri("scholia", prefix, identifier)
+    return manager.get_scholia_iri(prefix, identifier)
 
 
 def get_bioregistry_iri(prefix: str, identifier: str) -> Optional[str]:
@@ -280,9 +262,9 @@ PROVIDER_FUNCTIONS: Mapping[str, Callable[[str, str], Optional[str]]] = {
     "miriam": manager.get_miriam_iri,
     "obofoundry": get_obofoundry_iri,
     "ols": get_ols_iri,
-    "n2t": get_n2t_iri,
-    "bioportal": get_bioportal_iri,
-    "scholia": get_scholia_iri,
+    "n2t": manager.get_n2t_iri,
+    "bioportal": manager.get_bioportal_iri,
+    "scholia": manager.get_scholia_iri,
 }
 
 LINK_PRIORITY = [

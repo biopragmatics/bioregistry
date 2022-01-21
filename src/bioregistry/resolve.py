@@ -245,10 +245,7 @@ def get_n2t_prefix(prefix: str) -> Optional[str]:
     'taxonomy'
     >>> assert bioregistry.get_n2t_prefix('MONDO') is None
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_mapped_prefix("n2t")
+    return manager.get_mapped_prefix(prefix, "n2t")
 
 
 def get_wikidata_prefix(prefix: str) -> Optional[str]:
@@ -262,10 +259,7 @@ def get_wikidata_prefix(prefix: str) -> Optional[str]:
     >>> get_wikidata_prefix('ncbitaxon')
     'P685'
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_mapped_prefix("wikidata")
+    return manager.get_mapped_prefix(prefix, "wikidata")
 
 
 def get_bioportal_prefix(prefix: str) -> Optional[str]:
@@ -281,10 +275,7 @@ def get_bioportal_prefix(prefix: str) -> Optional[str]:
     >>> get_bioportal_prefix("nope")
     None
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_mapped_prefix("bioportal")
+    return manager.get_mapped_prefix(prefix, "bioportal")
 
 
 def get_obofoundry_prefix(prefix: str) -> Optional[str]:
@@ -341,10 +332,7 @@ def get_fairsharing_prefix(prefix: str) -> Optional[str]:
     >>> get_fairsharing_prefix("genbank")
     'FAIRsharing.9kahy4'
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_mapped_prefix("fairsharing")
+    return manager.get_mapped_prefix(prefix, "fairsharing")
 
 
 def get_scholia_prefix(prefix: str) -> Optional[str]:
