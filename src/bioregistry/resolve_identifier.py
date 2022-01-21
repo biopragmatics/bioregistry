@@ -314,6 +314,7 @@ def get_iri(
         priority=priority,
         prefix_map=prefix_map,
         use_bioregistry_io=use_bioregistry_io,
+        provider=provider,
     )
 
 
