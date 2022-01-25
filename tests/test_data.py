@@ -75,6 +75,7 @@ class TestRegistry(unittest.TestCase):
             "has_canonical",
             "preferred_prefix",
             "providers",
+            "example_extras",
         }
         keys.update(bioregistry.read_metaregistry())
         with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
