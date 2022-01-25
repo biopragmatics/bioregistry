@@ -304,9 +304,28 @@ class TestRegistry(unittest.TestCase):
 
                 pattern = entry.get_pattern_re()
                 if pattern is not None:
-                    self.assertTrue(
-                        entry.is_canonical_identifier(example), msg=f"Failed on prefix={prefix}"
-                    )
+                    self.assert_canonical(prefix, example)
+
+    def assert_canonical(self, prefix: str, example: str) -> None:
+        """Assert the identifier is canonical."""
+        entry = self.registry[prefix]
+        canonical = entry.is_canonical_identifier(example)
+        self.assertTrue(canonical is None or canonical, msg=f"Failed on prefix={prefix}")
+
+    def test_extra_examples(self):
+        """Test extra examples."""
+        for prefix, entry in self.registry.items():
+            if not entry.example_extras:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    entry.get_example(), msg="entry has extra examples but not primary example"
+                )
+
+            for example in entry.example_extras:
+                with self.subTest(prefix=prefix, identifier=example):
+                    self.assertEqual(entry.standardize_identifier(example), example)
+                    self.assert_canonical(prefix, example)
 
     def test_is_mismatch(self):
         """Check for mismatches."""
