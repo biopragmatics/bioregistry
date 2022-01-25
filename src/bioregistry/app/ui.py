@@ -78,14 +78,22 @@ def resource(prefix: str):
     example_curie = (
         curie_to_str(_resource.get_preferred_prefix() or prefix, example) if example else None
     )
+    example_extras = _resource.example_extras or []
+    example_curie_extras = [
+        curie_to_str(_resource.get_preferred_prefix() or prefix, example_extra)
+        for example_extra in example_extras
+    ]
     return render_template(
         "resource.html",
+        zip=zip,
         bioregistry=bioregistry,
         prefix=prefix,
         resource=_resource,
         name=bioregistry.get_name(prefix),
         example=example,
+        example_extras=example_extras,
         example_curie=example_curie,
+        example_curie_extras=example_curie_extras,
         mappings=_get_resource_mapping_rows(_resource),
         synonyms=bioregistry.get_synonyms(prefix),
         homepage=bioregistry.get_homepage(prefix),
