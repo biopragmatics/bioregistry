@@ -167,6 +167,10 @@ class Resource(BaseModel):
         "usage of the prefix in the identifier. For example, a GO identifier should only "
         "look like 1234567 and not like GO:1234567",
     )
+    #: Extra example identifiers
+    example_extras: Optional[List[str]] = Field(
+        description="Extra example identifiers",
+    )
     #: The license for the resource
     license: Optional[str] = Field(
         description="The license for the resource",

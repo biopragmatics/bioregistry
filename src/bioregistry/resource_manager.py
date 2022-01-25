@@ -358,6 +358,7 @@ class Manager:
             version=resource.get_version(),
             contact=resource.get_contact(),
             example=resource.get_example(),
+            example_extras=resource.example_extras,
             synonyms=resource.get_synonyms(),
             comment=resource.comment,
             mappings=resource.get_mappings(),

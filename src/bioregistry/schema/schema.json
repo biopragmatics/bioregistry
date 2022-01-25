@@ -208,6 +208,14 @@
           "description": "An example local identifier for the resource, explicitly excluding any redundant usage of the prefix in the identifier. For example, a GO identifier should only look like 1234567 and not like GO:1234567",
           "type": "string"
         },
+        "example_extras": {
+          "title": "Example Extras",
+          "description": "Extra example identifiers",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "license": {
           "title": "License",
           "description": "The license for the resource",
@@ -405,366 +413,146 @@
       "properties": {
         "name": {
           "title": "Name",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "homepage": {
           "title": "Homepage",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "description": {
           "title": "Description",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "example": {
           "title": "Example",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "pattern": {
           "title": "Pattern",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "provider": {
           "title": "Provider",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "alternate_providers": {
           "title": "Alternate Providers",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "synonyms": {
           "title": "Synonyms",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "license": {
           "title": "License",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "version": {
           "title": "Version",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "contact": {
           "title": "Contact",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "search": {
           "title": "Search",
