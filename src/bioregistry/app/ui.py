@@ -261,7 +261,13 @@ def resolve(prefix: str, identifier: Optional[str] = None):
 @ui_blueprint.route("/metaregistry/<metaprefix>/<metaidentifier>")
 @ui_blueprint.route("/metaregistry/<metaprefix>/<metaidentifier>:<path:identifier>")
 def metaresolve(metaprefix: str, metaidentifier: str, identifier: Optional[str] = None):
-    """Redirect to a prefix page or meta-resolve the CURIE."""
+    """Redirect to a prefix page or meta-resolve the CURIE.
+
+    Test this function locally with:
+
+    - http://localhost:5000/metaregistry/obofoundry/GO
+    - http://localhost:5000/metaregistry/obofoundry/GO:0032571
+    """  # noqa:DAR101,DAR201
     if metaprefix not in manager.metaregistry:
         return abort(404, f"invalid metaprefix: {metaprefix}")
     prefix = manager.lookup_from(metaprefix, metaidentifier, normalize=True)
@@ -272,10 +278,7 @@ def metaresolve(metaprefix: str, metaidentifier: str, identifier: Optional[str] 
             f" The Bioregistry contains mappings for the following:"
             f" {list(manager.get_registry_invmap(metaprefix))}",
         )
-    if identifier is None:
-        return redirect(url_for(f".{resource.__name__}", prefix=prefix))
-    else:
-        return redirect(url_for(f".{resolve.__name__}", prefix=prefix, identifier=identifier))
+    return redirect(url_for(f".{resolve.__name__}", prefix=prefix, identifier=identifier))
 
 
 @ui_blueprint.route("/contributors/")
