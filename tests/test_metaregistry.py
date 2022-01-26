@@ -33,8 +33,15 @@ class TestMetaregistry(unittest.TestCase):
                     self.assertIn("$1", data["provider_uri_format"])
 
                 if (
-                    metaprefix in bioregistry.read_registry()
-                    and registry_pydantic.resolver_uri_format
+                    # Missing URI format string
+                    not registry_pydantic.provider_uri_format
+                    # Unresolved overlap in Bioregistry
+                    or metaprefix in bioregistry.read_registry()
+                    # Has URI format string, but not in proper form
+                    or (
+                        registry_pydantic.provider_uri_format
+                        and not registry_pydantic.provider_uri_format.endswith("$1")
+                    )
                 ):
                     self.assertIsNotNone(registry_pydantic.bioregistry_prefix)
 

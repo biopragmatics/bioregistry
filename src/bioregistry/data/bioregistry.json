@@ -22755,23 +22755,6 @@
       "uri_format": "http://idp1.force.cs.is.nagoya-u.ac.jp/IDEAL/ideal.php?id=$1"
     }
   },
-  "identifiers.namespace": {
-    "mappings": {
-      "miriam": "identifiers.namespace"
-    },
-    "miriam": {
-      "deprecated": false,
-      "description": "Identifiers.org is an established resolving system that enables the referencing of data for the scientific community, with a current focus on the Life Sciences domain.",
-      "homepage": "https://www.ebi.ac.uk",
-      "id": "00000859",
-      "name": "Identifiers.org namespace",
-      "namespaceEmbeddedInLui": false,
-      "pattern": "^[a-z_\\.]+$",
-      "prefix": "identifiers.namespace",
-      "sampleId": "pubmed",
-      "uri_format": "https://registry.identifiers.org/registry/$1"
-    }
-  },
   "ido": {
     "bioportal": {
       "name": "Infectious Disease Ontology",
@@ -29415,6 +29398,23 @@
       "uri_format": "http://identifiers.org/mirex/$1"
     }
   },
+  "miriam": {
+    "mappings": {
+      "miriam": "identifiers.namespace"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "Identifiers.org is an established resolving system that enables the referencing of data for the scientific community, with a current focus on the Life Sciences domain.",
+      "homepage": "https://www.ebi.ac.uk",
+      "id": "00000859",
+      "name": "Identifiers.org namespace",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[a-z_\\.]+$",
+      "prefix": "identifiers.namespace",
+      "sampleId": "pubmed",
+      "uri_format": "https://registry.identifiers.org/registry/$1"
+    }
+  },
   "miriam.collection": {
     "mappings": {
       "miriam": "miriam.collection",
@@ -31422,6 +31422,13 @@
       "prefix": "MZSPEC",
       "uri_format": "http://identifiers.org/mzspec/$1"
     }
+  },
+  "n2t": {
+    "description": "An ARK resolver as well as resolver built with common prefixes as in Identifiers.org",
+    "example": "chebi",
+    "homepage": "https://n2t.net",
+    "name": "Name-to-Thing",
+    "uri_format": "https://n2t.net/$1:"
   },
   "namerxn": {
     "contributor": {
@@ -48505,6 +48512,13 @@
       "UniProtKB-SubCell"
     ],
     "uri_format": "https://www.uniprot.org/locations/SL-$1"
+  },
+  "uniprot.resource": {
+    "description": "The cross-references section of UniProtKB entries displays explicit and implicit links to databases such as nucleotide sequence databases, model organism databases and genomics and proteomics resources.",
+    "example": "0174",
+    "homepage": "https://www.uniprot.org/database/",
+    "name": "UniProt Resource",
+    "uri_format": "https://www.uniprot.org/database/DB-$1"
   },
   "uniprot.tissue": {
     "mappings": {
