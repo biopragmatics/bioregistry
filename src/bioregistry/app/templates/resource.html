@@ -3,6 +3,11 @@
 
 {% block title %}Bioregistry - {{ name }}{% endblock %}
 
+{% block styles %}
+{{ super() }}
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css" rel="stylesheet"/>
+{% endblock %}
+
 {% block scripts %}
     {{ super() }}
     <script type="text/javascript">
@@ -10,6 +15,8 @@
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
 {% endblock %}
 
 {% block container %}
@@ -23,7 +30,7 @@
                             <span class="badge badge-warning" style="display: inline-block;">
                                 Deprecated <i class="fas fa-exclamation-triangle"></i>
                             </span>
-                        {% elif resource.provides %}
+                        {% elif provides %}
                             <span class="badge badge-danger" style="display: inline-block;">
                                 Provider <i class="fas fa-exclamation-triangle"></i>
                             </span>
@@ -51,13 +58,13 @@
         </div>
         <div class="card-body">
             {% if description %}<p>{{ description }}</p>{% endif %}
-            {% if resource.provides %}
+            {% if provides %}
                 <p>
                     This resource is a <span class="badge badge-danger">provider</span>. This means that
                     while it may have its own prefix, it actually reuses the identifiers provided by the
-                    <a href="{{ url_for(".resource", prefix=resource.provides) }}"><code>{{ resource.provides }}</code></a>
+                    <a href="{{ url_for(".resource", prefix=provides) }}"><code>{{ provides }}</code></a>
                     prefix. For <b>all</b> use cases, you should use <a
-                        href="{{ url_for(".resource", prefix=resource.provides) }}"><code>{{ resource.provides }}</code></a>
+                        href="{{ url_for(".resource", prefix=provides) }}"><code>{{ provides }}</code></a>
                     instead of <code>{{ prefix }}</code>.
                 </p>
             {% endif %}
@@ -73,7 +80,12 @@
                     <dd><code>{{ preferred_prefix }}</code></dd>
                 {% endif %}
                 {% if synonyms %}
-                    <dt>Alternative Prefixes</dt>
+                    <dt>
+                        Alternative Prefixes
+                        <a type="button" data-toggle="modal" data-target="#synonyms-modal">
+                            <i class="far fa-question-circle"></i>
+                        </a>
+                    </dt>
                     <dd>
                         {% for synonym in synonyms %}
                             <span class="badge badge-light">{{ synonym }}</span>
@@ -81,10 +93,22 @@
                     </dd>
                 {% endif %}
                 {% if version %}
-                    <dt>Version</dt>
+                    <dt>
+                        Version
+                        <a type="button" data-toggle="modal" data-target="#version-modal">
+                            <i class="far fa-question-circle"></i>
+                        </a>
+                    </dt>
                     <dd>{{ version }}</dd>
                 {% endif %}
-                <dt>Links</dt>
+                <dt>
+                    Links
+                    {% if homepage or obo_download or owl_download or json_download %}
+                    <a type="button" data-toggle="modal" data-target="#links-modal">
+                        <i class="far fa-question-circle"></i>
+                    </a>
+                    {% endif %}
+                </dt>
                 <dd>
                     {% if homepage %}
                         <a class="badge badge-pill badge-light" href="{{ homepage }}">
@@ -92,6 +116,11 @@
                         </a>
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Homepage</span>
+                    {% endif %}
+                    {% if repository %}
+                        <a class="badge badge-pill badge-light" href="{{ repository }}">
+                            Repository <i class="fab fa-github"></i>
+                        </a>
                     {% endif %}
                     {% if obo_download %}
                         <a class="badge badge-pill badge-light" href="{{ obo_download }}">
@@ -109,10 +138,17 @@
                         </a>
                     {% endif %}
                 </dd>
-                <dt>Contact</dt>
+                <dt>
+                    Contact
+                    {% if contact %}
+                    <a type="button" data-toggle="modal" data-target="#contact-modal">
+                        <i class="far fa-question-circle"></i>
+                    </a>
+                    {% endif %}
+                </dt>
                 <dd>
                     {% if contact %}
-                        <a href="mailto:{{ contact }}">{{ contact }}</a>
+                        {{ utils.render_author(contact, link=none) }}
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}
@@ -130,7 +166,7 @@
                         <span class="badge badge-pill badge-warning">Missing LUI pattern</span>
                     {% endif %}
                 </dd>
-                <dt>Example Local Unique Identifier</dt>
+                <dt>Example Local Unique Identifier{% if resource.example_extras %}s{% endif %}</dt>
                 <dd>
                     {% if example %}
                         <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example }}</a>
@@ -138,6 +174,14 @@
                         &nbsp;
                         <a class="badge badge-pill badge-info" href="{{ url_for("ui.resolve", prefix=prefix, identifier=example) }}"><i class="fas fa-share-square"></i> Resolve</a>
                         {% endif %}
+                        {% for extra_example in example_extras %}
+                            <br />
+                            <a href="{{ url_for("ui.reference", prefix=prefix, identifier=extra_example) }}">{{ extra_example }}</a>
+                            {% if providers %}
+                                &nbsp;
+                                <a class="badge badge-pill badge-info" href="{{ url_for("ui.resolve", prefix=prefix, identifier=extra_example) }}"><i class="fas fa-share-square"></i> Resolve</a>
+                            {% endif %}
+                        {% endfor %}
                     {% elif has_no_terms %}
                         <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
                     {% else %}
@@ -157,10 +201,14 @@
                         <span class="badge badge-pill badge-warning">Could not construct CURIE pattern</span>
                     {% endif %}
                 </dd>
-                <dt>Example CURIE</dt>
+                <dt>Example CURIE{% if resource.example_extras %}s{% endif %}</dt>
                 <dd>
                     {% if example_curie %}
                         <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example_curie }}</a>
+                        {% for example_curie_extra, example_extra in zip(example_curie_extras, example_extras) %}
+                            <br />
+                            <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example_extra) }}">{{ example_curie_extra }}</a>
+                        {% endfor %}
                     {% elif has_no_terms %}
                         <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
                     {% else %}
@@ -191,15 +239,137 @@
                 {% if resource.contributor %}
                     <dt>Contributor</dt>
                     <dd>
-                        <a href="{{ url_for('ui.contributor', orcid=resource.contributor.orcid) }}">
-                            {{ resource.contributor.name }}
-                        </a>
+                        {{ utils.render_author(resource.contributor, link=url_for('ui.contributor', orcid=resource.contributor.orcid)) }}
+                    </dd>
+                {% endif %}
+                {% if resource.reviewer %}
+                    <dt>Reviewer</dt>
+                    <dd>
+                        {{ utils.render_author(resource.reviewer, link=url_for('ui.contributor', orcid=resource.reviewer.orcid)) }}
                     </dd>
                 {% endif %}
             </dl>
         </div>
 
     </div>
+
+    {% if provides or provided_by or part_of or has_parts or has_canonical or canonical_for or depends_on or appears_in %}
+    <div class="card" style="margin-top: 20px">
+        <a id="ontology"></a>
+        <h5 class="card-header">Ontology</h5>
+        <div class="card-body">
+            <dl>
+                {% if provides %}
+                    <dt>
+                        Provides
+                    </dt>
+                    <dd>
+                        <a href="{{ url_for("ui.resource", prefix=provides) }}"
+                           class="badge badge-pill badge-light" data-toggle="tooltip"
+                           title="{{ bioregistry.get_name(provides) }}">
+                            {{ bioregistry.get_preferred_prefix(provides) or provides }}
+                        </a>
+                    </dd>
+                {% endif %}
+                {% if provided_by %}
+                    <dt>
+                        Provided By
+                    </dt>
+                    <dd>
+                        {% for rel_prefix in provided_by %}
+                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                               class="badge badge-pill badge-light" data-toggle="tooltip"
+                               title="{{ bioregistry.get_name(rel_prefix) }}">
+                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                            </a>
+                        {% endfor %}
+                    </dd>
+                {% endif %}
+                {% if part_of %}
+                    <dt>
+                        Part Of
+                    </dt>
+                    <dd>
+                        <a href="{{ url_for("ui.resource", prefix=part_of) }}"
+                           class="badge badge-pill badge-light" data-toggle="tooltip"
+                           title="{{ bioregistry.get_name(part_of) }}">
+                            {{ bioregistry.get_preferred_prefix(part_of) or part_of }}
+                        </a>
+                    </dd>
+                {% endif %}
+                {% if has_parts %}
+                    <dt>
+                        Has Part
+                    </dt>
+                    <dd>
+                        {% for rel_prefix in has_parts %}
+                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                               class="badge badge-pill badge-light" data-toggle="tooltip"
+                               title="{{ bioregistry.get_name(rel_prefix) }}">
+                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                            </a>
+                        {% endfor %}
+                    </dd>
+                {% endif %}
+                {% if has_canonical %}
+                    <dt>
+                        Has Canonical
+                    </dt>
+                    <dd>
+                        <a href="{{ url_for("ui.resource", prefix=has_canonical) }}"
+                           class="badge badge-pill badge-light" data-toggle="tooltip"
+                           title="{{ bioregistry.get_name(has_canonical) }}">
+                            {{ bioregistry.get_preferred_prefix(has_canonical) or has_canonical }}
+                        </a>
+                    </dd>
+                {% endif %}
+                {% if canonical_for %}
+                    <dt>
+                        Canonical For
+                    </dt>
+                    <dd>
+                        {% for rel_prefix in canonical_for %}
+                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                               class="badge badge-pill badge-light" data-toggle="tooltip"
+                               title="{{ bioregistry.get_name(rel_prefix) }}">
+                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                            </a>
+                        {% endfor %}
+                    </dd>
+                {% endif %}
+                {% if depends_on %}
+                    <dt>
+                        Depends On
+                    </dt>
+                    <dd>
+                        {% for rel_prefix in depends_on %}
+                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                               class="badge badge-pill badge-light" data-toggle="tooltip"
+                               title="{{ bioregistry.get_name(rel_prefix) }}">
+                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                            </a>
+                        {% endfor %}
+                    </dd>
+                {% endif %}
+                {% if appears_in %}
+                    <dt>
+                        Appears In
+                    </dt>
+                    <dd>
+                        {% for rel_prefix in appears_in %}
+                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                               class="badge badge-pill badge-light" data-toggle="tooltip"
+                               title="{{ bioregistry.get_name(rel_prefix) }}">
+                                {{ bioregistry.get_preferred_prefix(rel_prefix) }}
+                            </a>
+                        {% endfor %}
+                    </dd>
+                {% endif %}
+            </dl>
+        </div>
+    </div>
+    {% endif %}
+
     {% if mappings %}
         <div class="card" style="margin-top: 20px">
             <a id="mappings"></a>
@@ -289,5 +459,89 @@
                 </tbody>
             </table>
         </div>
+    {% endif %}
+
+    {% if synonyms %}
+    <div class="modal fade" id="synonyms-modal" tabindex="-1" role="dialog" aria-labelledby="synonymsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="synonymsModalLabel">Programmatic Access to Synonyms</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Normalize prefixes. This can be any capitalization or punctuation
+                        variant of the synonyms listed below.
+                    </p>
+                    <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+&gt;&gt;&gt; br.normalize_prefix("{{ synonyms|first }}")
+'{{ prefix }}'</code></pre>
+                    <p>Get all synonyms:</p>
+                    {{ utils.code_example(prefix, "get_synonyms", synonyms, quote=False) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if version %}
+    <div class="modal fade" id="version-modal" tabindex="-1" role="dialog" aria-labelledby="versionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="versionModalLabel">Programmatic Access to Version</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Get the version:</p>
+                    {{ utils.code_example(prefix, "get_version", version) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="modal fade" id="links-modal" tabindex="-1" role="dialog" aria-labelledby="linkModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="linkModalLabel">Programmatic Access to Links</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% if homepage %}
+                        <p>Get the homepage:</p>
+                        {{ utils.code_example(prefix, "get_homepage", homepage) }}
+                    {% endif %}
+                    {% if repository %}
+                        <p>Get the repository:</p>
+                        {{ utils.code_example(prefix, "get_repository", repository) }}
+                    {% endif %}
+                    {% if obo_download %}
+                        <p>Get the OBO download link:</p>
+                        {{ utils.code_example(prefix, "get_obo_download", obo_download) }}
+                    {% endif %}
+                    {% if owl_download %}
+                        <p>Get the OWL download link:</p>
+                        {{ utils.code_example(prefix, "get_owl_download", owl_download) }}
+                    {% endif %}
+                    {% if json_download %}
+                        <p>Get the JSON download link:</p>
+                        {{ utils.code_example(prefix, "get_json_download", json_download) }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if contact %}
+        {{ utils.render_author_modal(prefix, contact, "contact") }}
     {% endif %}
 {% endblock %}

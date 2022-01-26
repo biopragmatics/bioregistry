@@ -22,10 +22,42 @@ class TestMetaregistry(unittest.TestCase):
                 self.assertIn("homepage", data)
                 self.assertIn("example", data)
                 self.assertIn("description", data)
+                self.assertIsNotNone(registry_pydantic.contact)
+                self.assertNotEqual("FIXME", registry_pydantic.contact.name)
+                if "support" not in registry_pydantic.contact.name.lower():
+                    self.assertIsNotNone(registry_pydantic.contact.orcid)
+                    self.assertIsNotNone(registry_pydantic.contact.github)
 
                 if registry_pydantic.provider_uri_format:
                     self.assertIn("provider_uri_format", data)
                     self.assertIn("$1", data["provider_uri_format"])
+
+                if (
+                    # Missing URI format string
+                    not registry_pydantic.provider_uri_format
+                    # Unresolved overlap in Bioregistry
+                    or metaprefix in bioregistry.read_registry()
+                    # Has URI format string, but not in proper form
+                    or (
+                        registry_pydantic.provider_uri_format
+                        and not registry_pydantic.provider_uri_format.endswith("$1")
+                    )
+                ):
+                    self.assertIsNotNone(registry_pydantic.bioregistry_prefix)
+
+                if registry_pydantic.bioregistry_prefix:
+                    self.assertEqual(
+                        bioregistry.normalize_prefix(registry_pydantic.bioregistry_prefix),
+                        registry_pydantic.bioregistry_prefix,
+                        msg="link from metaregistry to bioregistry must use canonical prefix",
+                    )
+                    resource = bioregistry.get_resource(registry_pydantic.bioregistry_prefix)
+                    self.assertIsNotNone(resource)
+                    self.assertIsNotNone(
+                        resource.get_uri_format(),
+                        msg=f"corresponding registry entry ({registry_pydantic.bioregistry_prefix})"
+                        f" is missing a uri_format",
+                    )
 
                 # When a registry is a resolver, it means it
                 # can resolve entries (prefixes) + identifiers
@@ -50,9 +82,20 @@ class TestMetaregistry(unittest.TestCase):
                         "resolver_uri_format",
                         "resolver_type",
                         "contact",
+                        "availability",
+                        "bioregistry_prefix",
                     }
                 )
                 self.assertEqual(set(), invalid_keys, msg="invalid metadata")
+                if not registry_pydantic.availability.fair:
+                    self.assertIsNone(
+                        registry_pydantic.download,
+                        msg="If bulk download available, resource should be annotated as FAIR",
+                    )
+                    self.assertIsNotNone(
+                        registry_pydantic.availability.fair_note,
+                        msg="All non-FAIR resources require an explanation",
+                    )
 
     def test_get_registry(self):
         """Test getting a registry."""

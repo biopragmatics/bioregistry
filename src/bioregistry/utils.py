@@ -10,7 +10,7 @@ from dataclasses import asdict, is_dataclass
 from datetime import datetime
 from functools import lru_cache
 from pathlib import Path
-from typing import Any, List, Mapping, Set, Union
+from typing import Any, Dict, List, Mapping, Set, Union
 
 import click
 import requests
@@ -23,7 +23,7 @@ from .constants import (
     METAREGISTRY_PATH,
     MISMATCH_PATH,
 )
-from .schema import Author, Collection, Registry, Resource
+from .schema import Attributable, Collection, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
@@ -136,17 +136,23 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
         )
 
 
-def read_contributors() -> Mapping[str, Author]:
+def read_contributors() -> Mapping[str, Attributable]:
     """Get a mapping from contributor ORCID identifiers to author objects."""
-    rv = {}
+    rv: Dict[str, Attributable] = {}
     for resource in read_registry().values():
-        if resource.contributor:
+        if resource.contributor and resource.contributor.orcid:
             rv[resource.contributor.orcid] = resource.contributor
-        if resource.reviewer:
+        if resource.reviewer and resource.reviewer.orcid:
             rv[resource.reviewer.orcid] = resource.reviewer
+        if resource.contact and resource.contact.orcid:
+            rv[resource.contact.orcid] = resource.contact
+    for metaresource in read_metaregistry().values():
+        if metaresource.contact.orcid:
+            rv[metaresource.contact.orcid] = metaresource.contact
     for collection in read_collections().values():
         for author in collection.authors or []:
-            rv[author.orcid] = author
+            if author.orcid:
+                rv[author.orcid] = author
     return rv
 
 
@@ -154,7 +160,7 @@ def read_prefix_contributions() -> Mapping[str, Set[str]]:
     """Get a mapping from contributor ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in read_registry().items():
-        if resource.contributor:
+        if resource.contributor and resource.contributor.orcid:
             rv[resource.contributor.orcid].add(prefix)
     return dict(rv)
 
@@ -163,17 +169,35 @@ def read_prefix_reviews() -> Mapping[str, Set[str]]:
     """Get a mapping from reviewer ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in read_registry().items():
-        if resource.reviewer:
+        if resource.reviewer and resource.reviewer.orcid:
             rv[resource.reviewer.orcid].add(prefix)
     return dict(rv)
 
 
-def read_collections_contributions():
+def read_prefix_contacts() -> Mapping[str, Set[str]]:
+    """Get a mapping from contact ORCID identifiers to prefixes."""
+    rv = defaultdict(set)
+    for prefix, resource in read_registry().items():
+        if resource.contact and resource.contact.orcid:
+            rv[resource.contact.orcid].add(prefix)
+    return dict(rv)
+
+
+def read_collections_contributions() -> Mapping[str, Set[str]]:
     """Get a mapping from contributor ORCID identifiers to collections."""
     rv = defaultdict(set)
     for collection_id, resource in read_collections().items():
         for author in resource.authors or []:
             rv[author.orcid].add(collection_id)
+    return dict(rv)
+
+
+def read_registry_contributions() -> Mapping[str, Set[str]]:
+    """Get a mapping from contributor ORCID identifiers to collections."""
+    rv = defaultdict(set)
+    for metaprefix, resource in read_metaregistry().items():
+        if resource.contact and resource.contact.orcid:
+            rv[resource.contact.orcid].add(metaprefix)
     return dict(rv)
 
 

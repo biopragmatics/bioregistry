@@ -13,11 +13,14 @@ from .utils import (
     _get_resource_providers,
     _normalize_prefix_or_404,
 )
+from .. import manager
 from ..utils import (
     curie_to_str,
     read_collections_contributions,
+    read_prefix_contacts,
     read_prefix_contributions,
     read_prefix_reviews,
+    read_registry_contributions,
 )
 
 __all__ = [
@@ -76,16 +79,26 @@ def resource(prefix: str):
     example_curie = (
         curie_to_str(_resource.get_preferred_prefix() or prefix, example) if example else None
     )
+    example_extras = _resource.example_extras or []
+    example_curie_extras = [
+        curie_to_str(_resource.get_preferred_prefix() or prefix, example_extra)
+        for example_extra in example_extras
+    ]
     return render_template(
         "resource.html",
+        zip=zip,
+        bioregistry=bioregistry,
         prefix=prefix,
         resource=_resource,
         name=bioregistry.get_name(prefix),
         example=example,
+        example_extras=example_extras,
         example_curie=example_curie,
+        example_curie_extras=example_curie_extras,
         mappings=_get_resource_mapping_rows(_resource),
         synonyms=bioregistry.get_synonyms(prefix),
         homepage=bioregistry.get_homepage(prefix),
+        repository=_resource.get_repository(),
         pattern=bioregistry.get_pattern(prefix),
         curie_pattern=bioregistry.get_curie_pattern(prefix),
         version=bioregistry.get_version(prefix),
@@ -98,6 +111,14 @@ def resource(prefix: str):
         contact=bioregistry.get_contact(prefix),
         banana=bioregistry.get_banana(prefix),
         description=bioregistry.get_description(prefix),
+        appears_in=bioregistry.get_appears_in(prefix),
+        depends_on=bioregistry.get_depends_on(prefix),
+        has_canonical=bioregistry.get_has_canonical(prefix),
+        canonical_for=bioregistry.get_canonical_for(prefix),
+        provides=bioregistry.get_provides_for(prefix),
+        provided_by=bioregistry.get_provided_by(prefix),
+        part_of=bioregistry.get_part_of(prefix),
+        has_parts=bioregistry.get_has_parts(prefix),
         providers=None if example is None else _get_resource_providers(prefix, example),
         formats=[
             *FORMATS,
@@ -140,6 +161,15 @@ def metaresource(metaprefix: str):
             ("RDF (JSON-LD)", "jsonld"),
         ],
     )
+
+
+@ui_blueprint.route("/health/<prefix>")
+def obo_health(prefix: str):
+    """Serve a redirect to OBO Foundry community health image."""
+    url = bioregistry.get_obo_health_url(prefix)
+    if url is None:
+        abort(404, f"Missing OBO prefix {prefix}")
+    return redirect(url)
 
 
 @ui_blueprint.route("/collection/<identifier>")
@@ -228,6 +258,29 @@ def resolve(prefix: str, identifier: Optional[str] = None):
         )
 
 
+@ui_blueprint.route("/metaregistry/<metaprefix>/<metaidentifier>")
+@ui_blueprint.route("/metaregistry/<metaprefix>/<metaidentifier>:<path:identifier>")
+def metaresolve(metaprefix: str, metaidentifier: str, identifier: Optional[str] = None):
+    """Redirect to a prefix page or meta-resolve the CURIE.
+
+    Test this function locally with:
+
+    - http://localhost:5000/metaregistry/obofoundry/GO
+    - http://localhost:5000/metaregistry/obofoundry/GO:0032571
+    """  # noqa:DAR101,DAR201
+    if metaprefix not in manager.metaregistry:
+        return abort(404, f"invalid metaprefix: {metaprefix}")
+    prefix = manager.lookup_from(metaprefix, metaidentifier, normalize=True)
+    if prefix is None:
+        return abort(
+            404,
+            f"Could not map {metaidentifier} in {metaprefix} to a Bioregistry prefix."
+            f" The Bioregistry contains mappings for the following:"
+            f" {list(manager.get_registry_invmap(metaprefix))}",
+        )
+    return redirect(url_for(f".{resolve.__name__}", prefix=prefix, identifier=identifier))
+
+
 @ui_blueprint.route("/contributors/")
 def contributors():
     """Serve the Bioregistry contributors page."""
@@ -237,25 +290,30 @@ def contributors():
         collections=read_collections_contributions(),
         prefix_contributions=read_prefix_contributions(),
         prefix_reviews=read_prefix_reviews(),
+        prefix_contacts=read_prefix_contacts(),
+        registries=read_registry_contributions(),
         formats=FORMATS,
     )
 
 
 @ui_blueprint.route("/contributor/<orcid>")
 def contributor(orcid: str):
-    """Serve the a Bioregistry contributor page."""
+    """Serve a Bioregistry contributor page."""
     author = bioregistry.read_contributors().get(orcid)
-    if author is None:
+    if author is None or author.orcid is None:
         return abort(404)
     return render_template(
         "contributor.html",
+        bioregistry=bioregistry,
         contributor=author,
         collections=sorted(
             (collection_id, bioregistry.get_collection(collection_id))
             for collection_id in read_collections_contributions().get(author.orcid, [])
         ),
         prefix_contributions=_s(read_prefix_contributions().get(author.orcid, [])),
+        prefix_contacts=_s(read_prefix_contacts().get(author.orcid, [])),
         prefix_reviews=_s(read_prefix_reviews().get(author.orcid, [])),
+        registries=_s(read_registry_contributions().get(author.orcid, [])),
         formats=FORMATS,
     )
 

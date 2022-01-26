@@ -5,7 +5,7 @@ license: https://creativecommons.org/publicdomain/zero/1.0/
 
 # Version should be kept in sync with primary Git repository release tag
 
-version: 2.2.10
+version: 2.2.13
 
 ## ------------
 ## PREFIXES
@@ -1310,8 +1310,6 @@ slots:
       - RO:0002093
       - RO:0002092
       - RO:0002084
-      - GOREL:0002005
-      - GOREL:0012006
       - HCPCS:mapped_to
       # RTX contributed terms, perhaps belong somewhere else with more precise semantics?
       - HMDB:disease
@@ -1698,7 +1696,7 @@ slots:
       tag: biolink:canonical_predicate
       value: true
     exact_mappings:
-      - RO:0004032
+      - RO:0002264
 
   has upstream or within actor:
     is_a: has upstream actor
@@ -1714,7 +1712,7 @@ slots:
       tag: biolink:canonical_predicate
       value: true
     exact_mappings:
-      - RO:0002264
+      - RO:0004032
 
   has positive upstream or within actor:
     is_a: has upstream or within actor
@@ -2019,6 +2017,8 @@ slots:
   is diagnosed by:
     is_a: related to at instance level
     inverse: diagnoses
+    range: chemical or drug or treatment
+    domain: disease or phenotypic feature
 
   increases amount or activity of:
     is_a: related to at instance level
@@ -2121,6 +2121,9 @@ slots:
     is_a: affects activity of
     in_subset:
       - translator_minimal
+    annotations:
+      tag: biolink:canonical_predicate
+      value: true
     domain: chemical entity or gene or gene product
     range: chemical entity or gene or gene product
     mixins:
@@ -2194,6 +2197,9 @@ slots:
       - translator_minimal
     domain: chemical entity or gene or gene product
     range: chemical entity or gene or gene product
+    annotations:
+      tag: biolink:canonical_predicate
+      value: true
     mixins:
       - decreases amount or activity of
     related_mappings:
@@ -6608,10 +6614,6 @@ classes:
         multivalued: false
         mappings:
           - WIKIDATA:P105
-      subclass of:
-        description: >-
-          subclass of holds between two taxa, e.g. human subclass of mammal
-        range: organism taxon
     values_from:
       - NCBITaxon
     exact_mappings:
@@ -7317,7 +7319,6 @@ classes:
       - HMDB
       - KEGG.COMPOUND
       - ChemBank
-      - Aeolus
       - PUBCHEM.SUBSTANCE
       - SIDER.DRUG
       - INCHI
@@ -7363,7 +7364,6 @@ classes:
       - HMDB
       - KEGG.COMPOUND
       - ChemBank
-      - Aeolus
       - PUBCHEM.SUBSTANCE
       - SIDER.DRUG
       - INCHI
@@ -7409,7 +7409,6 @@ classes:
       - HMDB
       - KEGG.COMPOUND
       - ChemBank
-      - Aeolus
       - PUBCHEM.SUBSTANCE
       - INCHI
       - INCHIKEY
@@ -7438,7 +7437,6 @@ classes:
       - HMDB
       - KEGG.COMPOUND
       - ChemBank
-      - Aeolus
       - PUBCHEM.SUBSTANCE
       - SIDER.DRUG
       - INCHI
@@ -7471,7 +7469,6 @@ classes:
       - HMDB
       - KEGG.COMPOUND
       - ChemBank
-      - Aeolus
       - PUBCHEM.SUBSTANCE
       - SIDER.DRUG
       - INCHI
@@ -7865,6 +7862,8 @@ classes:
       - STY:T190
       # Neoplastic Process
       - STY:T191
+      # disease susceptibility
+      - MONDO:0042489
     id_prefixes:
       - MONDO
       - DOID
@@ -9178,10 +9177,10 @@ classes:
       predicate:
         subproperty_of: interacts with
         symmetric: true
-      relation:
-        values_from:
-          - ro
-          - mi
+      # relation:
+      #  values_from:
+      #    - ro
+      #    - mi
         description: "interaction relationship type"
     narrow_mappings:
       - dcid:ProteinProteinInteraction
@@ -9211,10 +9210,10 @@ classes:
           - BioGRID
       predicate:
         subproperty_of: molecularly interacts with
-      relation:
-        values_from:
-          - ro
-          - mi
+      # relation:
+       # values_from:
+        #  - ro
+        #  - mi
         description: "interaction relationship type"
         examples:
           - value: RO:0002447
@@ -9562,13 +9561,8 @@ classes:
     defining_slots:
       - object
     slot_usage:
-      description:
-        description: >-
-          A description of specific aspects of this phenotype, not otherwise
-          covered by the phenotype ontology class
       object:
         range: phenotypic feature
-        description: "phenotypic class"
         values_from: ['upheno', 'hp', 'mp', 'wbphenotype']
         examples:
           - value: HP:0002487
@@ -10095,9 +10089,9 @@ classes:
     slot_usage:
       subject:
         range: individual organism
-      relation:
-        values_from:
-          - ro
+      # relation:
+      #  values_from:
+      #    - ro
       object:
         range: individual organism
         description: >-
@@ -10112,9 +10106,9 @@ classes:
     slot_usage:
       subject:
         range: organism taxon
-      relation:
-        values_from:
-          - ro
+      # relation:
+      #  values_from:
+      #    - ro
       object:
         range: organism taxon
         description: >-

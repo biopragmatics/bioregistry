@@ -521,6 +521,30 @@
     "sampleId": "0002989",
     "uri_format": "http://bioportal.bioontology.org/ontologies/BAO/bao:BAO_$1"
   },
+  "bbkg": {
+    "deprecated": false,
+    "description": "Blue Brain Project's published data as knowledge graphs and Web Studios.",
+    "homepage": "https://portal.bluebrain.epfl.ch",
+    "id": "00000903",
+    "name": "Blue Brain Project Knowledge Graph",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[-\\w]+(?:\\/[-\\w]+)(?:\\/\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b)$",
+    "prefix": "bbkg",
+    "sampleId": "topological-sampling/studios/f0ba2f3e-aa6f-4264-8d18-8ee65cf6f61a",
+    "uri_format": "https://bbp.epfl.ch/nexus/web/studios/public/$1"
+  },
+  "bbtp": {
+    "deprecated": false,
+    "description": "Input data and analysis results for the paper \"Topology of synaptic connectivity constrains neuronal stimulus representation, predicting two complementary coding strategies (https://www.biorxiv.org/content/10.1101/2020.11.02.363929v2 ).",
+    "homepage": "https://portal.bluebrain.epfl.ch",
+    "id": "00000889",
+    "name": "Blue Brain Project Topological sampling Knowledge Graph",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b",
+    "prefix": "bbtp",
+    "sampleId": "f0ba2f3e-aa6f-4264-8d18-8ee65cf6f61a",
+    "uri_format": "https://bbp.epfl.ch/nexus/web/studios/public/topological-sampling/studios/data:$1"
+  },
   "bdgp.est": {
     "deprecated": false,
     "description": "The BDGP EST database collects the expressed sequence tags (ESTs) derived from a variety of tissues and developmental stages for Drosophila melanogaster. All BDGP ESTs are available at dbEST (NCBI).",
@@ -964,6 +988,18 @@
     "prefix": "biotools",
     "sampleId": "uniprotkb",
     "uri_format": "https://bio.tools/$1"
+  },
+  "bitbucket": {
+    "deprecated": false,
+    "description": "Bitbucket is a Git-based source code repository hosting service owned by Atlassian.",
+    "homepage": "https://www.atlassian.com/",
+    "id": "00000899",
+    "name": "Bitbucket",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9A-Za-z-_\\.]+/[0-9A-Za-z-_\\.]+$",
+    "prefix": "bitbucket",
+    "sampleId": "andreadega/systems-biology-compiler",
+    "uri_format": "https://bitbucket.org/$1"
   },
   "bitterdb.cpd": {
     "deprecated": false,
@@ -2144,6 +2180,18 @@
     "sampleId": "81944ba1-81d0-436e-8552-33d77a27834b",
     "uri_format": "https://nci-crdc.datacommons.io/ga4gh/drs/v1/objects/$1"
   },
+  "dg.5b0d": {
+    "deprecated": false,
+    "description": "The Blood Profiling Atlas in Cancer (BloodPAC) supports the management, analysis and sharing of liquid biopsy data for the oncology research community and aims to accelerate discovery and development of therapies, diagnostic tests, and other technologies for cancer treatment and prevention. The data commons supports cross-project analyses by harmonizing data from different projects through the collaborative development of a data dictionary, providing an API for data queries and download, and providing a cloud-based analysis workspace with rich tools and resources.",
+    "homepage": "https://data.bloodpac.org/.",
+    "id": "00000895",
+    "name": "BloodPAC",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}",
+    "prefix": "dg.5b0d",
+    "sampleId": "00000d53-99bc-4d3e-8ed7-6dc358baccb7",
+    "uri_format": "https://data.bloodpac.org/ga4gh/drs/v1/objects/$1"
+  },
   "dg.6vts": {
     "deprecated": false,
     "description": "Full implementation of the DRS 1.1 standard with support for persistent identifiers. Open source DRS server that follows the Gen3 implementation. Gen3 is a GA4GH compliant open source platform for developing framework services and data commons. Data commons accelerate and democratize the process of scientific discovery, especially over large or complex datasets. Gen3 is maintained by the Center for Translational Data Science at the University of Chicago. https://gen3.org",
@@ -3035,6 +3083,18 @@
     "sampleId": "2224",
     "uri_format": "http://www.fungalbarcoding.org/BioloMICS.aspx?Table=Fungal barcodes&Rec=$1&Fields=All&ExactMatch=T"
   },
+  "fcb": {
+    "deprecated": false,
+    "description": "Created by researchers and data managers professionals, the FAIR Cookbook is an online resource for the Life Sciences with recipes that help you to make and keep data Findable, Accessible, Interoperable, and Reusable (FAIR).\n\n",
+    "homepage": "https://w3id.org",
+    "id": "00000891",
+    "name": "the FAIR Cookbook",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^FCB\\d{3}",
+    "prefix": "fcb",
+    "sampleId": "FCB005",
+    "uri_format": "https://w3id.org/faircookbook/$1"
+  },
   "flowrepository": {
     "deprecated": false,
     "description": "FlowRepository is a database of flow cytometry experiments where you can query and download data collected and annotated according to the MIFlowCyt standard. It is primarily used as a data deposition place for experimental findings published in peer-reviewed journals in the flow cytometry field.",
@@ -3394,6 +3454,18 @@
     "prefix": "github",
     "sampleId": "identifiers-org/registry",
     "uri_format": "https://github.com/$1"
+  },
+  "gitlab": {
+    "deprecated": false,
+    "description": "GitLab is The DevOps platform that empowers organizations to maximize the overall return on software development by delivering software faster and efficiently, while strengthening security and compliance. With GitLab, every team in your organization can collaboratively plan, build, secure, and deploy software to drive business outcomes faster with complete transparency, consistency and traceability.",
+    "homepage": "https://gitlab.com/",
+    "id": "00000901",
+    "name": "GitLab",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9A-Za-z\\u00A9-\\u1f9ff_][0-9A-Za-z\\p{Pd}\\u00A9-\\u1f9ff_()\\. ]*/[0-9A-Za-z\\u00A9-\\u1f9ff_][0-9A-Za-z\\p{Pd}\\u00A9-\\u1f9ff_\\. ]*$",
+    "prefix": "gitlab",
+    "sampleId": "morpheus.lab/morpheus",
+    "uri_format": "https://gitlab.com/$1"
   },
   "glida.gpcr": {
     "deprecated": false,
@@ -9650,6 +9722,18 @@
     "prefix": "vbrc",
     "sampleId": "35742",
     "uri_format": "http://vbrc.org/gene_detail.asp?gene_id=$1"
+  },
+  "vcell": {
+    "deprecated": false,
+    "description": "Models developed with the Virtual Cell (VCell) software prorgam.",
+    "homepage": "https://health.uconn.edu/",
+    "id": "00000893",
+    "name": "VCell Published Models",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^\\d{5,}$",
+    "prefix": "vcell",
+    "sampleId": "201022999",
+    "uri_format": "https://vcell.org/biomodel-$1"
   },
   "vectorbase": {
     "deprecated": false,

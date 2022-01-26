@@ -24,6 +24,11 @@
           "description": "The email address specific to the author",
           "pattern": "^(\\w|\\.|\\_|\\-)+[@](\\w|\\_|\\-|\\.)+[.]\\w{2,5}$",
           "type": "string"
+        },
+        "github": {
+          "title": "Github",
+          "description": "The GitHub handle for the author",
+          "type": "string"
         }
       },
       "required": [
@@ -120,6 +125,37 @@
         "uri_format"
       ]
     },
+    "Attributable": {
+      "title": "Attributable",
+      "description": "An upper-level metadata for a person.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "description": "The full name of the author",
+          "type": "string"
+        },
+        "orcid": {
+          "title": "Open Researcher and Contributor Identifier",
+          "description": "The ORCiD of the author",
+          "type": "string"
+        },
+        "email": {
+          "title": "Email",
+          "description": "The email address specific to the author",
+          "pattern": "^(\\w|\\.|\\_|\\-)+[@](\\w|\\_|\\-|\\.)+[.]\\w{2,5}$",
+          "type": "string"
+        },
+        "github": {
+          "title": "Github",
+          "description": "The GitHub handle for the author",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
     "Resource": {
       "title": "Resource",
       "description": "Metadata about an ontology, database, or other resource.",
@@ -161,12 +197,24 @@
         "contact": {
           "title": "Contact",
           "description": "The contact email address for the resource. This must correspond to a specific person and not be a listserve nor a shared email account.",
-          "type": "string"
+          "allOf": [
+            {
+              "$ref": "#/definitions/Attributable"
+            }
+          ]
         },
         "example": {
           "title": "Example",
           "description": "An example local identifier for the resource, explicitly excluding any redundant usage of the prefix in the identifier. For example, a GO identifier should only look like 1234567 and not like GO:1234567",
           "type": "string"
+        },
+        "example_extras": {
+          "title": "Example Extras",
+          "description": "Extra example identifiers",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "license": {
           "title": "License",
@@ -235,6 +283,14 @@
         "appears_in": {
           "title": "Appears In",
           "description": "A list of prefixes that use this resource for xrefs, provenance, etc.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "depends_on": {
+          "title": "Depends On",
+          "description": "A list of prefixes that use this resource depends on, e.g., ontologies that import each other.",
           "type": "array",
           "items": {
             "type": "string"
@@ -339,8 +395,196 @@
         "ontobee": {
           "title": "Ontobee",
           "type": "object"
+        },
+        "cheminf": {
+          "title": "Cheminf",
+          "type": "object"
+        },
+        "fairsharing": {
+          "title": "Fairsharing",
+          "type": "object"
         }
       }
+    },
+    "RegistrySchema": {
+      "title": "RegistrySchema",
+      "description": "Metadata about a registry's schema.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
+        },
+        "homepage": {
+          "title": "Homepage",
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
+        },
+        "example": {
+          "title": "Example",
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
+        },
+        "pattern": {
+          "title": "Pattern",
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
+        },
+        "alternate_providers": {
+          "title": "Alternate Providers",
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
+        },
+        "synonyms": {
+          "title": "Synonyms",
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
+        },
+        "license": {
+          "title": "License",
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
+        },
+        "contact": {
+          "title": "Contact",
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
+        },
+        "search": {
+          "title": "Search",
+          "description": "Does this resource have a search functionality for prefixes",
+          "type": "boolean"
+        },
+        "fair": {
+          "title": "Fair",
+          "description": "Does this resource provide a structured dump of the data is easily findable, accessible, and in a structured format in bulk",
+          "type": "boolean"
+        },
+        "fair_note": {
+          "title": "Fair Note",
+          "description": "Explanation for why data isn't FAIR",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "homepage",
+        "description",
+        "example",
+        "pattern",
+        "provider",
+        "alternate_providers",
+        "synonyms",
+        "license",
+        "version",
+        "contact",
+        "search",
+        "fair"
+      ]
     },
     "Registry": {
       "title": "Registry",
@@ -372,6 +616,15 @@
           "description": "An example prefix inside the registry.",
           "type": "string"
         },
+        "availability": {
+          "title": "Availability",
+          "description": "A structured description of the metadata that the registry collects",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RegistrySchema"
+            }
+          ]
+        },
         "download": {
           "title": "Download",
           "description": "A download link for the data contained in the registry",
@@ -391,6 +644,15 @@
         },
         "contact": {
           "title": "Contact",
+          "description": "The contact for the registry.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Attributable"
+            }
+          ]
+        },
+        "bioregistry_prefix": {
+          "title": "Bioregistry Prefix",
           "type": "string"
         }
       },
@@ -399,7 +661,9 @@
         "name",
         "description",
         "homepage",
-        "example"
+        "example",
+        "availability",
+        "contact"
       ]
     }
   }

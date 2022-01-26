@@ -40,9 +40,18 @@ CONTEXT_OBO_PATH = EXPORT_CONTEXTS / "obo.context.jsonld"
 CONTEXT_OBO_SYNONYMS_PATH = EXPORT_CONTEXTS / "obo_synonyms.context.jsonld"
 
 EXPORT_RDF = EXPORT_DIRECTORY.joinpath("rdf")
+SCHEMA_SVG_PATH = EXPORT_RDF / "schema.svg"
+SCHEMA_PDF_PATH = EXPORT_RDF / "schema.pdf"
+SCHEMA_TURTLE_PATH = EXPORT_RDF / "schema.ttl"
+SCHEMA_NT_PATH = EXPORT_RDF / "schema.nt"
+SCHEMA_JSONLD_PATH = EXPORT_RDF / "schema.jsonld"
 RDF_TURTLE_PATH = EXPORT_RDF / "bioregistry.ttl"
 RDF_NT_PATH = EXPORT_RDF / "bioregistry.nt"
 RDF_JSONLD_PATH = EXPORT_RDF / "bioregistry.jsonld"
+
+EXPORT_SSSOM = EXPORT_DIRECTORY.joinpath("sssom")
+SSSOM_PATH = EXPORT_SSSOM / "bioregistry.sssom.tsv"
+SSSOM_METADATA_PATH = EXPORT_SSSOM / "bioregistry.sssom.yml"
 
 EXPORT_REGISTRY = EXPORT_DIRECTORY.joinpath("registry")
 REGISTRY_YAML_PATH = EXPORT_REGISTRY / "registry.yml"
@@ -70,3 +79,24 @@ IDOT_BROKEN = {
 }
 
 URI_FORMAT_KEY = "uri_format"
+
+#: MIRIAM definitions that don't make any sense
+MIRIAM_BLACKLIST = {
+    # this one uses the names instead of IDs, and points to a dead resource.
+    # See https://github.com/identifiers-org/identifiers-org.github.io/issues/139
+    "pid.pathway",
+}
+IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
+
+#: The priority list
+LINK_PRIORITY = [
+    "custom",
+    "default",
+    "bioregistry",
+    "miriam",
+    "ols",
+    "obofoundry",
+    "n2t",
+    "bioportal",
+    "scholia",
+]

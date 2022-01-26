@@ -3,9 +3,12 @@
 """A class-based client to a metaregistry."""
 
 import logging
+from collections import defaultdict
+from functools import lru_cache
 from pathlib import Path
 from typing import (
     Any,
+    Callable,
     Dict,
     Iterable,
     List,
@@ -15,14 +18,23 @@ from typing import (
     Set,
     Tuple,
     Union,
+    cast,
 )
 
+from .constants import (
+    BIOREGISTRY_REMOTE_URL,
+    IDENTIFIERS_ORG_URL_PREFIX,
+    LINK_PRIORITY,
+    MIRIAM_BLACKLIST,
+)
 from .license_standardizer import standardize_license
-from .schema import Resource, sanitize_model
+from .schema import Registry, Resource, sanitize_model
 from .utils import (
     NormDict,
+    _norm,
     _registry_from_path,
     curie_to_str,
+    read_metaregistry,
     read_registry,
     write_registry,
 )
@@ -60,15 +72,38 @@ def _synonym_to_canonical(registry: Mapping[str, Resource]) -> NormDict:
 class Manager:
     """A manager for functionality related to a metaregistry."""
 
-    def __init__(self, registry: Optional[Mapping[str, Resource]] = None):
+    def __init__(
+        self,
+        registry: Optional[Mapping[str, Resource]] = None,
+        metaregistry: Optional[Mapping[str, Registry]] = None,
+    ):
         """Instantiate a registry manager.
 
         :param registry: A custom registry. If none given, defaults to the Bioregistry.
+        :param metaregistry: A custom metaregistry. If none, defaults to the Bioregistry's metaregistry.
         """
         if registry is None:
             registry = read_registry()
         self.registry = registry
         self.synonyms = _synonym_to_canonical(registry)
+
+        if metaregistry is None:
+            metaregistry = read_metaregistry()
+        self.metaregistry = metaregistry
+
+        canonical_for = defaultdict(list)
+        provided_by = defaultdict(list)
+        has_parts = defaultdict(list)
+        for prefix, resource in self.registry.items():
+            if resource.has_canonical:
+                canonical_for[resource.has_canonical].append(prefix)
+            if resource.provides:
+                provided_by[resource.provides].append(prefix)
+            if resource.part_of:
+                has_parts[resource.part_of].append(prefix)
+        self.canonical_for = dict(canonical_for)
+        self.provided_by = dict(provided_by)
+        self.has_parts = dict(has_parts)
 
     @classmethod
     def from_path(cls, path: Union[str, Path]) -> "Manager":
@@ -135,19 +170,36 @@ class Manager:
         norm_identifier = resource.standardize_identifier(identifier, prefix=prefix)
         return norm_prefix, norm_identifier
 
+    @lru_cache(maxsize=None)
     def get_registry_map(self, metaprefix: str) -> Dict[str, str]:
         """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
         return dict(self._iter_registry_map(metaprefix))
 
-    def get_registry_invmap(self, metaprefix: str) -> Dict[str, str]:
+    @lru_cache(maxsize=None)
+    def get_registry_invmap(self, metaprefix: str, normalize: bool = False) -> Dict[str, str]:
         """Get a mapping from prefixes in another registry to Bioregistry prefixes."""
-        return {metaprefix: prefix for prefix, metaprefix in self._iter_registry_map(metaprefix)}
+        if normalize:
+            return {
+                _norm(external_prefix): prefix
+                for prefix, external_prefix in self._iter_registry_map(metaprefix)
+            }
+        return {
+            external_prefix: prefix
+            for prefix, external_prefix in self._iter_registry_map(metaprefix)
+        }
 
     def _iter_registry_map(self, metaprefix: str) -> Iterable[Tuple[str, str]]:
         for prefix, resource in self.registry.items():
             mapped_prefix = resource.get_mapped_prefix(metaprefix)
             if mapped_prefix is not None:
                 yield prefix, mapped_prefix
+
+    def get_mapped_prefix(self, prefix: str, metaprefix: str) -> Optional[str]:
+        """Get the prefix mapped into another registry."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.get_mapped_prefix(metaprefix)
 
     def get_external(self, prefix: str, metaprefix: str) -> Mapping[str, Any]:
         """Get the external data for the entry."""
@@ -274,7 +326,7 @@ class Manager:
     def get_curie_pattern(self, prefix: str) -> Optional[str]:
         """Get the CURIE pattern for this resource.
 
-        :param prefix: The prefix to to look up
+        :param prefix: The prefix to look up
         :return: The regular expression pattern to match CURIEs against
         """
         resource = self.get_resource(prefix)
@@ -284,6 +336,7 @@ class Manager:
         if pattern is None:
             return None
         p = resource.get_preferred_prefix() or prefix
+        p = p.replace(".", "\\.")
         return f"^{p}:{pattern.lstrip('^')}"
 
     def rasterize(self):
@@ -299,8 +352,7 @@ class Manager:
             for prefix, resource in self.registry.items()
         }
 
-    @staticmethod
-    def _rasterized_resource(prefix: str, resource: Resource) -> Resource:
+    def _rasterized_resource(self, prefix: str, resource: Resource) -> Resource:
         return Resource(
             preferred_prefix=resource.get_preferred_prefix() or prefix,
             name=resource.get_name(),
@@ -312,6 +364,7 @@ class Manager:
             version=resource.get_version(),
             contact=resource.get_contact(),
             example=resource.get_example(),
+            example_extras=resource.example_extras,
             synonyms=resource.get_synonyms(),
             comment=resource.comment,
             mappings=resource.get_mappings(),
@@ -327,6 +380,8 @@ class Manager:
             part_of=resource.part_of,
             provides=resource.provides,
             has_canonical=resource.has_canonical,
+            appears_in=self.get_appears_in(prefix),
+            depends_on=self.get_depends_on(prefix),
             # Ontology Properties
             deprecated=resource.is_deprecated(),
             no_own_terms=resource.no_own_terms,
@@ -352,6 +407,411 @@ class Manager:
             if any(first != element for element in rest):
                 conflicts.append((prefix, override, obo_license, ols_license))
         return conflicts
+
+    def get_appears_in(self, prefix: str) -> Optional[List[str]]:
+        """Return a list of resources that this resources (has been annotated to) depends on.
+
+        This is complementary to :func:`get_depends_on`.
+
+        :param prefix: The prefix to look up
+        :returns: The list of resources this prefix has been annotated to appear in. This
+            list could be incomplete, since curation of these fields can easily get out
+            of sync with curation of the resource itself. However, false positives should
+            be pretty rare.
+        """
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        rv = list(resource.appears_in or [])
+        rv.extend(self._get_obo_list(prefix=prefix, resource=resource, key="appears_in"))
+        return sorted(set(rv))
+
+    def get_depends_on(self, prefix: str) -> Optional[List[str]]:
+        """Return a list of resources that this resources (has been annotated to) depends on.
+
+        This is complementary to :func:`get_appears_in`.
+
+        :param prefix: The prefix to look up
+        :returns: The list of resources this prefix has been annotated to depend on. This
+            list could be incomplete, since curation of these fields can easily get out
+            of sync with curation of the resource itself. However, false positives should
+            be pretty rare.
+
+        >>> from bioregistry import manager
+        >>> assert "bfo" in manager.get_depends_on("foodon")
+        """
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        rv = list(resource.depends_on or [])
+        rv.extend(self._get_obo_list(prefix=prefix, resource=resource, key="depends_on"))
+        return sorted(set(rv))
+
+    def _get_obo_list(self, *, prefix: str, resource: Resource, key: str) -> List[str]:
+        rv = []
+        for obo_prefix in resource.get_external("obofoundry").get(key, []):
+            canonical_prefix = self.lookup_from("obofoundry", obo_prefix, normalize=True)
+            if canonical_prefix is None:
+                logger.warning("[%s] could not map OBO %s: %s", prefix, key, obo_prefix)
+            else:
+                rv.append(canonical_prefix)
+        return rv
+
+    def lookup_from(
+        self, metaprefix: str, metaidentifier: str, normalize: bool = False
+    ) -> Optional[str]:
+        """Get the bioregistry prefix from an external prefix.
+
+        :param metaprefix: The key for the external registry
+        :param metaidentifier: The prefix in the external registry
+        :param normalize: Should external prefixes be normalized during lookup (e.g., lowercased)
+        :return: The bioregistry prefix (if it can be mapped)
+
+        >>> from bioregistry import manager
+        >>> manager.lookup_from("obofoundry", "GO")
+        'go'
+        >>> manager.lookup_from("obofoundry", "go")
+        None
+        >>> manager.lookup_from("obofoundry", "go", normalize=True)
+        'go'
+        """
+        external_id_to_bioregistry_id = self.get_registry_invmap(metaprefix, normalize=normalize)
+        return external_id_to_bioregistry_id.get(
+            _norm(metaidentifier) if normalize else metaidentifier
+        )
+
+    def get_has_canonical(self, prefix: str) -> Optional[str]:
+        """Get the canonical prefix."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.has_canonical
+
+    def get_canonical_for(self, prefix: str) -> Optional[List[str]]:
+        """Get the prefixes for which this is annotated as canonical."""
+        norm_prefix = self.normalize_prefix(prefix)
+        if norm_prefix is None:
+            return None
+        return self.canonical_for.get(norm_prefix, [])
+
+    def get_provides_for(self, prefix: str) -> Optional[str]:
+        """Get the resource that the given prefix provides for, or return none if not a provider."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.provides
+
+    def get_provided_by(self, prefix: str) -> Optional[List[str]]:
+        """Get the resources that provide for the given prefix, or return none if the prefix can't be looked up."""
+        norm_prefix = self.normalize_prefix(prefix)
+        if norm_prefix is None:
+            return None
+        return self.provided_by.get(norm_prefix, [])
+
+    def get_part_of(self, prefix: str) -> Optional[str]:
+        """Get the parent resource, if annotated."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.part_of
+
+    def get_has_parts(self, prefix: str) -> Optional[List[str]]:
+        """Get the children resources, if annotated."""
+        norm_prefix = self.normalize_prefix(prefix)
+        if norm_prefix is None:
+            return None
+        return self.has_parts.get(norm_prefix, [])
+
+    def get_bioregistry_iri(self, prefix: str, identifier: str) -> Optional[str]:
+        """Get a Bioregistry link.
+
+        :param prefix: The prefix in the CURIE
+        :param identifier: The identifier in the CURIE
+        :return: A link to the Bioregistry resolver
+        """
+        norm_prefix, norm_identifier = self.normalize_parsed_curie(prefix, identifier)
+        if norm_prefix is None:
+            return None
+        return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{norm_prefix}:{norm_identifier}"
+
+    def get_default_iri(self, prefix: str, identifier: str) -> Optional[str]:
+        """Get the default URL for the given CURIE.
+
+        :param prefix: The prefix in the CURIE
+        :param identifier: The identifier in the CURIE
+        :return: A IRI string corresponding to the default provider, if available.
+
+        >>> from bioregistry import manager
+        >>> manager.get_default_iri('chebi', '24867')
+        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+        """
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_default_uri(identifier)
+
+    def get_miriam_curie(self, prefix: str, identifier: str) -> Optional[str]:
+        """Get the identifiers.org CURIE for the given CURIE."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        miriam_prefix = self.get_mapped_prefix(prefix, "miriam")
+        if miriam_prefix is None or miriam_prefix in MIRIAM_BLACKLIST:
+            return None
+        banana = resource.get_banana()
+        if banana:
+            if identifier.startswith(f"{banana}:"):
+                return identifier
+            else:
+                return f"{banana}:{identifier}"
+        elif resource.get_namespace_in_lui():
+            if identifier.startswith(prefix.upper()):
+                return identifier
+            else:
+                return f"{prefix.upper()}:{identifier}"
+        else:
+            return f"{miriam_prefix}:{identifier}"
+
+    def get_miriam_iri(self, prefix: str, identifier: str) -> Optional[str]:
+        """Get the identifiers.org URL for the given CURIE.
+
+        :param prefix: The prefix in the CURIE
+        :param identifier: The identifier in the CURIE
+        :return: A IRI string corresponding to the Identifiers.org, if the prefix exists and is
+            mapped to MIRIAM.
+        """
+        curie = self.get_miriam_curie(prefix, identifier)
+        if curie is None:
+            return None
+        return f"{IDENTIFIERS_ORG_URL_PREFIX}{curie}"
+
+    def get_bioportal_iri(self, prefix: str, identifier: str) -> Optional[str]:
+        """Get the Bioportal URL for the given CURIE.
+
+        :param prefix: The prefix in the CURIE
+        :param identifier: The identifier in the CURIE
+        :return: A link to the Bioportal page
+
+        >>> from bioregistry import manager
+        >>> manager.get_bioportal_iri('chebi', '24431')
+        'https://bioportal.bioontology.org/ontologies/CHEBI/?p=classes&conceptid=http://purl.obolibrary.org/obo/CHEBI_24431'
+        """
+        bioportal_prefix = self.get_mapped_prefix(prefix, "bioportal")
+        if bioportal_prefix is None:
+            return None
+        obo_link = self.get_obofoundry_iri(prefix, identifier)
+        if obo_link is not None:
+            return f"https://bioportal.bioontology.org/ontologies/{bioportal_prefix}/?p=classes&conceptid={obo_link}"
+        # TODO there must be other rules?
+        return None
+
+    def get_ols_iri(self, prefix: str, identifier: str) -> Optional[str]:
+        """Get the OLS URL if possible."""
+        ols_prefix = self.get_mapped_prefix(prefix, "ols")
+        obo_iri = self.get_obofoundry_iri(prefix, identifier)
+        if ols_prefix is None or obo_iri is None:
+            return None
+        return f"https://www.ebi.ac.uk/ols/ontologies/{ols_prefix}/terms?iri={obo_iri}"
+
+    def get_formatted_iri(self, metaprefix: str, prefix: str, identifier: str) -> Optional[str]:
+        """Get an IRI using the format in the metaregistry.
+
+        :param metaprefix: The metaprefix of the registry in the metaregistry
+        :param prefix: A bioregistry prefix (will be mapped to the external one automatically)
+        :param identifier: The identifier for the entity
+        :returns: An IRI generated from the ``resolver_url`` format string of the registry, if it
+            exists.
+
+        >>> from bioregistry import manager
+        >>> manager.get_formatted_iri("miriam", "hgnc", "16793")
+        'https://identifiers.org/hgnc:16793'
+        >>> manager.get_formatted_iri("n2t", "hgnc", "16793")
+        'https://n2t.net/hgnc:16793'
+        >>> manager.get_formatted_iri("obofoundry", "fbbt", "00007294")
+        'http://purl.obolibrary.org/obo/FBbt_00007294'
+        >>> manager.get_formatted_iri("scholia", "lipidmaps", "00000052")
+        'https://scholia.toolforge.org/lipidmaps/00000052'
+        """
+        mapped_prefix = self.get_mapped_prefix(prefix, metaprefix)
+        registry = self.metaregistry.get(metaprefix)
+        if registry is None or mapped_prefix is None:
+            return None
+        return registry.resolve(mapped_prefix, identifier)
+
+    def get_obofoundry_iri(self, prefix: str, identifier: str) -> Optional[str]:
+        """Get the OBO Foundry URL if possible.
+
+        :param prefix: The prefix
+        :param identifier: The identifier
+        :return: The OBO Foundry URL if the prefix can be mapped to an OBO Foundry entry
+
+        >>> from bioregistry import manager
+        >>> manager.get_obofoundry_iri('chebi', '24431')
+        'http://purl.obolibrary.org/obo/CHEBI_24431'
+
+        For entries where there's a preferred prefix, it is respected.
+
+        >>> manager.get_obofoundry_iri('fbbt', '00007294')
+        'http://purl.obolibrary.org/obo/FBbt_00007294'
+        """
+        return self.get_formatted_iri("obofoundry", prefix, identifier)
+
+    def get_n2t_iri(self, prefix: str, identifier: str) -> Optional[str]:
+        """Get the name-to-thing URL for the given CURIE.
+
+        :param prefix: The prefix in the CURIE
+        :param identifier: The identifier in the CURIE
+        :return: A IRI string corresponding to the N2T resolve, if the prefix exists and is
+            mapped to N2T.
+
+        >>> from bioregistry import manager
+        >>> manager.get_n2t_iri("chebi", "24867")
+        'https://n2t.net/chebi:24867'
+        """
+        return self.get_formatted_iri("n2t", prefix, identifier)
+
+    def get_scholia_iri(self, prefix: str, identifier: str) -> Optional[str]:
+        """Get a Scholia IRI, if possible.
+
+        :param prefix: The prefix in the CURIE
+        :param identifier: The identifier in the CURIE
+        :return: A link to the Scholia page
+
+        >>> from bioregistry import manager
+        >>> manager.get_scholia_iri("pubmed", "1234")
+        'https://scholia.toolforge.org/pubmed/1234'
+
+        >>> manager.get_scholia_iri("pdb", "1234")
+        None
+        """
+        return self.get_formatted_iri("scholia", prefix, identifier)
+
+    def get_provider_functions(self) -> Mapping[str, Callable[[str, str], Optional[str]]]:
+        """Return a mapping of provider functions."""
+        return {
+            "default": self.get_default_iri,
+            "miriam": self.get_miriam_iri,
+            "obofoundry": self.get_obofoundry_iri,
+            "ols": self.get_ols_iri,
+            "n2t": self.get_n2t_iri,
+            "bioportal": self.get_bioportal_iri,
+            "scholia": self.get_scholia_iri,
+        }
+
+    def get_providers_list(self, prefix: str, identifier: str) -> Sequence[Tuple[str, str]]:
+        """Get all providers for the CURIE."""
+        rv = []
+        for provider, get_url in self.get_provider_functions().items():
+            link = get_url(prefix, identifier)
+            if link is not None:
+                rv.append((provider, link))
+        if not rv:
+            return rv
+
+        bioregistry_link = self.get_bioregistry_iri(prefix, identifier)
+        if not bioregistry_link:
+            return rv
+
+        # if a default URL is available, it goes first. otherwise the bioregistry URL goes first.
+        rv.insert(1 if rv[0][0] == "default" else 0, ("bioregistry", bioregistry_link))
+        return rv
+
+    def get_providers(self, prefix: str, identifier: str) -> Dict[str, str]:
+        """Get all providers for the CURIE."""
+        return dict(self.get_providers_list(prefix, identifier))
+
+    def get_iri(
+        self,
+        prefix: str,
+        identifier: Optional[str] = None,
+        *,
+        priority: Optional[Sequence[str]] = None,
+        prefix_map: Optional[Mapping[str, str]] = None,
+        use_bioregistry_io: bool = True,
+    ) -> Optional[str]:
+        """Get the best link for the CURIE, if possible.
+
+        :param prefix: The prefix in the CURIE
+        :param identifier: The identifier in the CURIE. If identifier is given as None, then this function will
+            assume that the first argument (``prefix``) is actually a full CURIE.
+        :param priority: A user-defined priority list. In addition to the metaprefixes in the Bioregistry
+            corresponding to resources that are resolvers/lookup services, you can also use ``default``
+            to correspond to the first-party IRI and ``custom`` to refer to the custom prefix map.
+            The default priority list is:
+
+            1. Custom prefix map (``custom``)
+            1. First-party IRI (``default``)
+            2. Identifiers.org / MIRIAM (``miriam``)
+            3. Ontology Lookup Service (``ols``)
+            4. OBO PURL (``obofoundry``)
+            5. Name-to-Thing (``n2t``)
+            6. BioPortal (``bioportal``)
+        :param prefix_map: A custom prefix map to go with the ``custom`` key in the priority list
+        :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults to true.
+        :return: The best possible IRI that can be generated based on the priority list.
+
+        A pre-parse CURIE can be given as the first two arguments
+        >>> from bioregistry import manager
+        >>> manager.get_iri("chebi", "24867")
+        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+
+        A CURIE can be given directly as a single argument
+        >>> manager.get_iri("chebi:24867")
+        'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24867'
+
+        A priority list can be given
+        >>> priority = ["obofoundry", "default", "bioregistry"]
+        >>> manager.get_iri("chebi:24867", priority=priority)
+        'http://purl.obolibrary.org/obo/CHEBI_24867'
+
+        A custom prefix map can be supplied.
+        >>> prefix_map = {"chebi": "https://example.org/chebi/"}
+        >>> manager.get_iri("chebi:24867", prefix_map=prefix_map)
+        'https://example.org/chebi/24867'
+        >>> manager.get_iri("fbbt:00007294")
+        'https://flybase.org/cgi-bin/cvreport.pl?id=FBbt:00007294'
+
+        A custom prefix map can be supplied in combination with a priority list
+        >>> prefix_map = {"lipidmaps": "https://example.org/lipidmaps/"}
+        >>> priority = ["obofoundry", "custom", "default", "bioregistry"]
+        >>> manager.get_iri("chebi:24867", prefix_map=prefix_map, priority=priority)
+        'http://purl.obolibrary.org/obo/CHEBI_24867'
+        >>> manager.get_iri("lipidmaps:1234", prefix_map=prefix_map, priority=priority)
+        'https://example.org/lipidmaps/1234'
+        """
+        if identifier is None:
+            _prefix, _identifier = self.parse_curie(prefix)
+            if _prefix is None or _identifier is None:
+                return None
+        else:
+            _prefix, _identifier = prefix, identifier
+
+        providers = self.get_providers(_prefix, _identifier)
+        if prefix_map and _prefix in prefix_map:
+            providers["custom"] = f"{prefix_map[_prefix]}{_identifier}"
+        for key in priority or LINK_PRIORITY:
+            if not use_bioregistry_io and key == "bioregistry":
+                continue
+            if key not in providers:
+                continue
+            rv = providers[key]
+            if rv is not None:
+                return rv
+        return None
+
+    def get_internal_prefix_map(self) -> Mapping[str, str]:
+        """Get an internal prefix map for RDF and SSSOM dumps."""
+        default_prefixes = {"bioregistry.schema", "bfo"}
+        rv = cast(
+            Dict[str, str], {prefix: self.get_uri_prefix(prefix) for prefix in default_prefixes}
+        )
+        for metaprefix, metaresource in self.metaregistry.items():
+            uri_prefix = metaresource.get_provider_uri_prefix()
+            if metaresource.bioregistry_prefix:
+                rv[metaresource.bioregistry_prefix] = uri_prefix
+            else:
+                rv[metaprefix] = uri_prefix
+        return rv
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:

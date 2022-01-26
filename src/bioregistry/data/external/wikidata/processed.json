@@ -8,6 +8,23 @@
     "prefix": "P10007",
     "uri_format": "https://birdata.birdlife.org.au/explore#map=-25.3994322_134.0571276_4&species_id=$1"
   },
+  "P10193": {
+    "database": "Q3108952",
+    "database.homepage": "https://gisaid.org/",
+    "database.label": "GISAID",
+    "name": "GISAID identifier",
+    "prefix": "P10193"
+  },
+  "P10243": {
+    "database": "Q107171828",
+    "database.homepage": "https://explorer.natureserve.org/",
+    "database.label": "NatureServe Explorer",
+    "homepage": "https://explorer.natureserve.org/",
+    "name": "NatureServe Explorer ID",
+    "pattern": "\\d{1,2}\\.\\d{1,7}",
+    "prefix": "P10243",
+    "uri_format": "https://explorer.natureserve.org/Taxon/ELEMENT_GLOBAL.$1/"
+  },
   "P1070": {
     "database": "Q625817",
     "database.homepage": "http://www.theplantlist.org",
@@ -26,13 +43,6 @@
     "pattern": "[1-9]\\d{0,5}|",
     "prefix": "P1391",
     "uri_format": "http://www.indexfungorum.org/names/NamesRecord.asp?RecordID=$1"
-  },
-  "P141": {
-    "database": "Q48268",
-    "database.homepage": "https://www.iucn.org",
-    "database.label": "International Union for Conservation of Nature",
-    "name": "IUCN conservation status",
-    "prefix": "P141"
   },
   "P1550": {
     "database": "Q1515833",
@@ -240,15 +250,6 @@
     "homepage": "http://omim.org",
     "name": "genetic association",
     "prefix": "P2293"
-  },
-  "P2393": {
-    "database": "Q82494",
-    "database.homepage": "https://www.ncbi.nlm.nih.gov/",
-    "database.label": "National Center for Biotechnology Information",
-    "name": "NCBI locus tag",
-    "pattern": "[0-9A-Za-z_.\\-()]{2,18}",
-    "prefix": "P2393",
-    "uri_format": "https://www.ncbi.nlm.nih.gov/gene/?term=$1"
   },
   "P2394": {
     "database": "Q1951035",
@@ -562,7 +563,7 @@
     "database.label": "eBird",
     "homepage": "http://ebird.org",
     "name": "eBird taxon ID",
-    "pattern": "[a-z-]{2,6}\\d{0,2}|y00\\d{3}",
+    "pattern": "[a-z-]{2,6}\\d{0,2}|[xy]00\\d{3}",
     "prefix": "P3444",
     "uri_format": "https://ebird.org/species/$1"
   },
@@ -612,7 +613,7 @@
     "name": "Rfam ID",
     "pattern": "RF\\d{5}",
     "prefix": "P3523",
-    "uri_format": "http://rfam.xfam.org/family/$1"
+    "uri_format": "https://rfam.xfam.org/family/$1"
   },
   "P3524": {
     "database": "Q12746855",
@@ -664,7 +665,7 @@
   },
   "P3852": {
     "database": "Q3074571",
-    "database.homepage": "http://flybase.org/",
+    "database.homepage": "https://flybase.org/",
     "database.label": "FlyBase",
     "database.miriam": "flybase",
     "homepage": "http://flybase.org/",
@@ -740,7 +741,7 @@
     "name": "BHL creator ID",
     "pattern": "[1-9]\\d*",
     "prefix": "P4081",
-    "uri_format": "http://www.biodiversitylibrary.org/creator/$1"
+    "uri_format": "https://www.biodiversitylibrary.org/creator/$1"
   },
   "P4122": {
     "database": "Q59786289",
@@ -798,7 +799,7 @@
     "name": "BHL bibliography ID",
     "pattern": "[1-9]\\d*",
     "prefix": "P4327",
-    "uri_format": "http://www.biodiversitylibrary.org/bibliography/$1"
+    "uri_format": "https://www.biodiversitylibrary.org/bibliography/$1"
   },
   "P4355": {
     "database": "Q899676",
@@ -851,6 +852,7 @@
   },
   "P4664": {
     "database": "Q45892814",
+    "database.homepage": "https://www.wikiaves.com.br/",
     "database.label": "Wiki Aves",
     "homepage": "http://www.wikiaves.com.br/",
     "name": "Wiki Aves bird ID",
@@ -1104,6 +1106,15 @@
     "prefix": "P5458",
     "uri_format": "http://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=$1"
   },
+  "P5473": {
+    "database": "Q1644501",
+    "database.homepage": "http://reptile-database.reptarium.cz",
+    "database.label": "Reptile Database",
+    "homepage": "https://reptile-database.reptarium.cz/",
+    "name": "The Reptile Database ID",
+    "prefix": "P5473",
+    "uri_format": "https://wikidata-externalid-url.toolforge.org/?url_prefix=https%3A%2F%2Freptile-database.reptarium.cz%2Fspecies%3F&id=$1"
+  },
   "P5501": {
     "database": "Q4836352",
     "database.label": "BRENDA tissue ontology",
@@ -1298,7 +1309,7 @@
     "database.label": "Australian Faunal Directory",
     "homepage": "https://biodiversity.org.au/afd/search/names",
     "name": "Australian Faunal Directory ID",
-    "pattern": "[a-zA-Z]*([;_ +][a-zA-Z]*)*|\\d*",
+    "pattern": "[a-zA-Z]*([-_;]([(]?)[a-zA-Z]*([)]?))*(\\.)?",
     "prefix": "P6039",
     "uri_format": "https://biodiversity.org.au/afd/taxa/$1"
   },
@@ -1650,7 +1661,7 @@
   },
   "P6245": {
     "database": "Q25304673",
-    "database.homepage": "https://www.pombase.org",
+    "database.homepage": "https://www.pombase.org/",
     "database.label": "PomBase",
     "database.miriam": "pombase",
     "name": "PomBase systematic ID",
@@ -1658,9 +1669,9 @@
     "uri_format": "https://www.pombase.org/gene/$1"
   },
   "P627": {
-    "database": "Q48268",
-    "database.homepage": "https://www.iucn.org",
-    "database.label": "International Union for Conservation of Nature",
+    "database": "Q32059",
+    "database.homepage": "https://www.iucnredlist.org/",
+    "database.label": "IUCN Red List",
     "name": "IUCN taxon ID",
     "pattern": "[1-9]\\d{0,8}",
     "prefix": "P627",
@@ -1816,7 +1827,7 @@
     "database": "Q172266",
     "database.homepage": "https://www.biodiversitylibrary.org/",
     "database.label": "Biodiversity Heritage Library",
-    "name": "BHL Page ID",
+    "name": "BHL page ID",
     "pattern": "[1-9]\\d*",
     "prefix": "P687",
     "uri_format": "https://biodiversitylibrary.org/page/$1"
@@ -1862,6 +1873,17 @@
     "pattern": "(ENS(MNE|MUS|RNO|DAR)?(P|G)\\d{11})|(Y[A-P][LR]\\d{3}[CW](-[A-G])?)|FBpp\\d{7}|Q\\d{4}|((([0-9]?[A-Z]{1,4}\\d{1,3})[A-Z0-9]?)|(cTel\\d{2}X)|([0-9]RSSE)|(Y[0-9]{1,3}[A-Z]\\d{1,2}[A-C][A-Z]))*(\\.\\d{1,2}[a-z]?)+",
     "prefix": "P705",
     "uri_format": "http://identifiers.org/ensembl/$1"
+  },
+  "P715": {
+    "database": "Q1122544",
+    "database.homepage": "http://www.drugbank.ca/",
+    "database.label": "DrugBank",
+    "database.miriam": "drugbank",
+    "homepage": "https://www.drugbank.ca",
+    "name": "DrugBank ID",
+    "pattern": "(SALT\\d{1}|CAT\\d{1})?\\d{5}",
+    "prefix": "P715",
+    "uri_format": "https://go.drugbank.com/drugs/DB$1"
   },
   "P7202": {
     "database": "Q64007131",
@@ -1957,7 +1979,7 @@
   },
   "P7720": {
     "database": "Q796451",
-    "database.homepage": "http://fossilworks.org",
+    "database.homepage": "http://www.fossilworks.org",
     "database.label": "Fossilworks",
     "database.miriam": "paleodb",
     "homepage": "http://fossilworks.org",
@@ -1983,14 +2005,6 @@
     "name": "AnimalBase ID",
     "prefix": "P7905",
     "uri_format": "http://www.animalbase.uni-goettingen.de/zooweb/servlet/AnimalBase/home/speciestaxon?id=$1"
-  },
-  "P814": {
-    "database": "Q48268",
-    "database.homepage": "https://www.iucn.org",
-    "database.label": "International Union for Conservation of Nature",
-    "homepage": "https://en.wikipedia.org/wiki/Category:Protected_areas_by_World_Conservation_Union_category",
-    "name": "IUCN protected areas category",
-    "prefix": "P814"
   },
   "P8145": {
     "database": "Q89384967",
@@ -2030,14 +2044,14 @@
   },
   "P842": {
     "database": "Q796451",
-    "database.homepage": "http://fossilworks.org",
+    "database.homepage": "http://www.fossilworks.org",
     "database.label": "Fossilworks",
     "database.miriam": "paleodb",
-    "homepage": "http://fossilworks.org",
+    "homepage": "http://www.fossilworks.org",
     "name": "Fossilworks ID for this taxon",
     "pattern": "([1-9]\\d{0,5})",
     "prefix": "P842",
-    "uri_format": "http://fossilworks.org/bridge.pl?a=taxonInfo&taxon_no=$1"
+    "uri_format": "http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1"
   },
   "P8660": {
     "database": "Q97323972",

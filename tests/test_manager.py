@@ -68,3 +68,35 @@ class TestResourceManager(unittest.TestCase):
                     self.manager.get_synonyms(prefix),
                     rast_manager.get_synonyms(prefix),
                 )
+                self.assertEqual(
+                    self.manager.get_depends_on(prefix),
+                    rast_manager.get_depends_on(prefix),
+                )
+                self.assertEqual(
+                    self.manager.get_appears_in(prefix),
+                    rast_manager.get_appears_in(prefix),
+                )
+                self.assertEqual(
+                    self.manager.get_provides_for(prefix),
+                    rast_manager.get_provides_for(prefix),
+                )
+                self.assertEqual(
+                    self.manager.get_provided_by(prefix),
+                    rast_manager.get_provided_by(prefix),
+                )
+                self.assertEqual(
+                    self.manager.get_has_canonical(prefix),
+                    rast_manager.get_has_canonical(prefix),
+                )
+                self.assertEqual(
+                    self.manager.get_canonical_for(prefix),
+                    rast_manager.get_canonical_for(prefix),
+                )
+                self.assertEqual(
+                    self.manager.get_part_of(prefix),
+                    rast_manager.get_part_of(prefix),
+                )
+                self.assertEqual(
+                    self.manager.get_has_parts(prefix),
+                    rast_manager.get_has_parts(prefix),
+                )

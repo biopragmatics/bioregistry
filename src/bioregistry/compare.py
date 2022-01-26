@@ -8,13 +8,14 @@ import logging
 import math
 import random
 import sys
+import typing
 from collections import Counter
 from typing import Collection, Set
 
 import click
 
 from bioregistry import (
-    get_contact,
+    get_contact_email,
     get_description,
     get_example,
     get_homepage,
@@ -261,7 +262,14 @@ def compare(png: bool):  # noqa:C901
     _save(fig, name="license_coverage", png=png)
 
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
-    sns.countplot(x=licenses, ax=ax)
+    licenses_counter: typing.Counter[str] = Counter(licenses)
+    licenses_mapped = [
+        "None" if license_ is None else license_ if licenses_counter[license_] > 3 else "Other"
+        for license_ in licenses
+    ]
+    licenses_mapped_counter = Counter(licenses_mapped)
+    licenses_mapped_order = [license_ for license_, _ in licenses_mapped_counter.most_common()]
+    sns.countplot(licenses_mapped, ax=ax, order=licenses_mapped_order)
     ax.set_xlabel("License")
     ax.set_ylabel("Count")
     ax.set_yscale("log")
@@ -292,7 +300,7 @@ def compare(png: bool):  # noqa:C901
         ("License", _get_has(get_license)),
         ("License Type", _get_has_present(get_license)),
         ("Version", _get_has(get_version)),
-        ("Contact Email", _get_has(get_contact)),
+        ("Contact Email", _get_has(get_contact_email)),
         ("Wikidata Database", HAS_WIKIDATA_DATABASE),
         ("OBO", _get_has(get_obo_download)),
         ("OWL", _get_has(get_owl_download)),

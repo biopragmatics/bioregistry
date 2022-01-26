@@ -27,8 +27,10 @@ from ..uri_format import get_uri_prefix
 from ..utils import (
     read_collections_contributions,
     read_contributors,
+    read_prefix_contacts,
     read_prefix_contributions,
     read_prefix_reviews,
+    read_registry_contributions,
 )
 
 __all__ = [
@@ -287,6 +289,8 @@ def contributor(orcid: str):
             **author.dict(),
             "prefix_contributions": sorted(read_prefix_contributions().get(orcid, [])),
             "prefix_reviews": sorted(read_prefix_reviews().get(orcid, [])),
+            "prefix_contacts": sorted(read_prefix_contacts().get(orcid, [])),
+            "registries": sorted(read_registry_contributions().get(orcid, [])),
             "collections": sorted(read_collections_contributions().get(orcid, [])),
         }
     )

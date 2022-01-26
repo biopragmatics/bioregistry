@@ -75,6 +75,7 @@ class TestRegistry(unittest.TestCase):
             "has_canonical",
             "preferred_prefix",
             "providers",
+            "example_extras",
         }
         keys.update(bioregistry.read_metaregistry())
         with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
@@ -86,11 +87,44 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.fail(f"{prefix} had extra keys: {extra}")
 
+    @staticmethod
+    def _construct_substrings(x):
+        return (
+            f"({x.casefold()})",
+            f"{x.casefold()}: ",
+            f"{x.casefold()}- ",
+            f"{x.casefold()} - ",
+            # f"{x.casefold()} ontology",
+        )
+
     def test_names(self):
         """Test that all entries have a name."""
         for prefix, entry in self.registry.items():
             with self.subTest(prefix=prefix):
-                self.assertIsNotNone(entry.get_name(), msg=f"{prefix} is missing a name")
+                name = entry.get_name()
+                self.assertIsNotNone(name, msg=f"{prefix} is missing a name")
+
+                for ss in self._construct_substrings(prefix):
+                    self.assertNotIn(
+                        ss,
+                        name.casefold(),
+                        msg="Redundant prefix appears in name",
+                    )
+                preferred_prefix = entry.get_preferred_prefix()
+                if preferred_prefix is not None:
+                    for ss in self._construct_substrings(preferred_prefix):
+                        self.assertNotIn(
+                            ss,
+                            name.casefold(),
+                            msg="Redundant preferred prefix appears in name",
+                        )
+                for alt_prefix in entry.get_synonyms():
+                    for ss in self._construct_substrings(alt_prefix):
+                        self.assertNotIn(
+                            ss,
+                            name.casefold(),
+                            msg=f"Redundant alt prefix {alt_prefix} appears in name",
+                        )
 
     def test_name_expansions(self):
         """Test that default names are not capital acronyms."""
@@ -143,7 +177,7 @@ class TestRegistry(unittest.TestCase):
                 continue
             resource = bioregistry.get_resource(prefix)
             self.assertIsNotNone(resource)
-            email = resource.get_prefix_key("contact", ("obofoundry", "ols"))
+            email = resource.get_contact_email()
             if email is None or EMAIL_RE.match(email):
                 continue
             with self.subTest(prefix=prefix):
@@ -270,9 +304,28 @@ class TestRegistry(unittest.TestCase):
 
                 pattern = entry.get_pattern_re()
                 if pattern is not None:
-                    self.assertTrue(
-                        entry.is_canonical_identifier(example), msg=f"Failed on prefix={prefix}"
-                    )
+                    self.assert_canonical(prefix, example)
+
+    def assert_canonical(self, prefix: str, example: str) -> None:
+        """Assert the identifier is canonical."""
+        entry = self.registry[prefix]
+        canonical = entry.is_canonical_identifier(example)
+        self.assertTrue(canonical is None or canonical, msg=f"Failed on prefix={prefix}")
+
+    def test_extra_examples(self):
+        """Test extra examples."""
+        for prefix, entry in self.registry.items():
+            if not entry.example_extras:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(
+                    entry.get_example(), msg="entry has extra examples but not primary example"
+                )
+
+            for example in entry.example_extras:
+                with self.subTest(prefix=prefix, identifier=example):
+                    self.assertEqual(entry.standardize_identifier(example), example)
+                    self.assert_canonical(prefix, example)
 
     def test_is_mismatch(self):
         """Check for mismatches."""
@@ -312,7 +365,7 @@ class TestRegistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_version("nope"))
         self.assertIsNone(bioregistry.get_name("nope"))
         self.assertIsNone(bioregistry.get_example("nope"))
-        self.assertIsNone(bioregistry.get_contact("nope"))
+        self.assertIsNone(bioregistry.get_contact_email("nope"))
         self.assertIsNone(bioregistry.get_mappings("nope"))
         self.assertIsNone(bioregistry.get_fairsharing_prefix("nope"))
         self.assertIsNone(bioregistry.get_obofoundry_prefix("nope"))

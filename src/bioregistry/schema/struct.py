@@ -7,16 +7,33 @@ import logging
 import pathlib
 import re
 from functools import lru_cache
-from typing import Any, Callable, ClassVar, Dict, List, Mapping, Optional, Sequence, Set
+from typing import (
+    Any,
+    Callable,
+    ClassVar,
+    Dict,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    Set,
+    Union,
+)
 
 import pydantic.schema
 from pydantic import BaseModel, Field
 
-from bioregistry.constants import URI_FORMAT_KEY
+from bioregistry.constants import BIOREGISTRY_REMOTE_URL, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE, EMAIL_RE_STR
 
+try:
+    from typing import Literal  # type:ignore
+except ImportError:
+    from typing_extensions import Literal  # type:ignore
+
 __all__ = [
+    "Attributable",
     "Author",
     "Provider",
     "Resource",
@@ -34,15 +51,14 @@ SCHEMA_PATH = HERE.joinpath("schema.json")
 IDOT_SKIP = "identifiers.org"
 
 
-class Author(BaseModel):
-    """Metadata for an author."""
+class Attributable(BaseModel):
+    """An upper-level metadata for a person."""
 
     #: The full name of the author
-    name: str = Field(..., description="The full name of the author")
+    name: str = Field(description="The full name of the author")
 
     #: The open researcher and contributor identifier (ORCiD) of the author
-    orcid: str = Field(
-        ...,
+    orcid: Optional[str] = Field(
         title="Open Researcher and Contributor Identifier",
         description="The ORCiD of the author",
     )
@@ -53,6 +69,9 @@ class Author(BaseModel):
         regex=EMAIL_RE_STR,
     )
 
+    #: The GitHub handle for the author
+    github: Optional[str] = Field(description="The GitHub handle for the author")
+
     def add_triples(self, graph):
         """Add triples to an RDF graph for this author.
 
@@ -61,14 +80,29 @@ class Author(BaseModel):
         :rtype: rdflib.term.Node
         :returns: The RDF node representing this author using an ORCiD URI.
         """
-        from rdflib import Literal
+        from rdflib import BNode, Literal
         from rdflib.namespace import RDFS
 
-        from .constants import orcid
+        if not self.orcid:
+            node = BNode()
+        else:
+            from .constants import orcid
 
-        node = orcid.term(self.orcid)
+            node = orcid.term(self.orcid)
         graph.add((node, RDFS["label"], Literal(self.name)))
         return node
+
+
+class Author(Attributable):
+    """Metadata for an author."""
+
+    #: The open researcher and contributor identifier (ORCiD) of the author.
+    #: This is overwritten in the child class to enforce it is not none.
+    orcid: str = Field(
+        ...,
+        title="Open Researcher and Contributor Identifier",
+        description="The ORCiD of the author",
+    )
 
 
 class Provider(BaseModel):
@@ -118,12 +152,13 @@ class Resource(BaseModel):
         description="The URL for the homepage of the resource, preferably with HTTPS",
     )
     #: The contact email address for the individual responsible for the resource
-    contact: Optional[str] = Field(
+    contact: Optional[Attributable] = Field(
         description=(
             "The contact email address for the resource. This must correspond to a specific "
             "person and not be a listserve nor a shared email account."
         )
     )
+
     #: An example local identifier for the resource, explicitly excluding any redundant usage of
     #: the prefix in the identifier. For example, a GO identifier should only look like ``1234567``
     #: and not like ``GO:1234567``
@@ -131,6 +166,10 @@ class Resource(BaseModel):
         description="An example local identifier for the resource, explicitly excluding any redundant "
         "usage of the prefix in the identifier. For example, a GO identifier should only "
         "look like 1234567 and not like GO:1234567",
+    )
+    #: Extra example identifiers
+    example_extras: Optional[List[str]] = Field(
+        description="Extra example identifiers",
     )
     #: The license for the resource
     license: Optional[str] = Field(
@@ -216,6 +255,10 @@ class Resource(BaseModel):
     appears_in: Optional[List[str]] = Field(
         description="A list of prefixes that use this resource for xrefs, provenance, etc.",
     )
+    #: A list of prefixes that use this resource depends on, e.g., ontologies that import each other.
+    depends_on: Optional[List[str]] = Field(
+        description="A list of prefixes that use this resource depends on, e.g., ontologies that import each other.",
+    )
     #: A flag denoting if the namespace is embedded in the LUI (if this is true and it is not accompanied by a banana,
     #: assume that the banana is the prefix in all caps plus a colon, as is standard in OBO). Currently this flag
     #: is only used to override identifiers.org in the case of ``gramene.growthstage``, ``oma.hog``, and ``vario``.
@@ -292,6 +335,10 @@ class Resource(BaseModel):
     cellosaurus: Optional[Mapping[str, Any]]
     #: External data from the OntoBee
     ontobee: Optional[Mapping[str, Any]]
+    #: External data from ChemInf
+    cheminf: Optional[Mapping[str, Any]]
+    #: External data from FAIRsharing
+    fairsharing: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
@@ -310,11 +357,13 @@ class Resource(BaseModel):
         # TODO is this even a good idea? is this effectively the same as get_external?
         return (self.get_mappings() or {}).get(metaprefix)
 
-    def get_prefix_key(self, key: str, metaprefixes: Sequence[str]):
+    def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]):
         """Get a key enriched by the given external resources' data."""
         rv = self.dict().get(key)
         if rv is not None:
             return rv
+        if isinstance(metaprefixes, str):
+            metaprefixes = [metaprefixes]
         for metaprefix in metaprefixes:
             external = self.get_external(metaprefix)
             if external is None:
@@ -490,7 +539,14 @@ class Resource(BaseModel):
 
     def get_description(self) -> Optional[str]:
         """Get the description for the given prefix, if available."""
-        return self.get_prefix_key("description", ("miriam", "ols", "obofoundry", "wikidata"))
+        rv = self.get_prefix_key(
+            "description", ("miriam", "ols", "obofoundry", "wikidata", "fairsharing")
+        )
+        if rv is not None:
+            return rv
+        if self.cellosaurus and "category" in self.cellosaurus:
+            return self.cellosaurus["category"]
+        return None
 
     def get_pattern(self) -> Optional[str]:
         """Get the pattern for the given prefix, if it's available.
@@ -518,7 +574,7 @@ class Resource(BaseModel):
         """Check if the namespace should appear in the LUI."""
         if self.namespace_in_lui is not None:
             return self.namespace_in_lui
-        return self.get_prefix_key("namespaceEmbeddedInLui", ("miriam",))
+        return self.get_prefix_key("namespaceEmbeddedInLui", "miriam")
 
     def get_homepage(self) -> Optional[str]:
         """Return the homepage, if available."""
@@ -527,22 +583,87 @@ class Resource(BaseModel):
             ("obofoundry", "ols", "miriam", "n2t", "wikidata", "go", "ncbi", "cellosaurus"),
         )
 
-    def get_contact(self) -> Optional[str]:
+    def get_repository(self) -> Optional[str]:
+        """Return the repository, if available."""
+        return self.get_prefix_key("repository", "obofoundry")
+
+    def get_contact(self) -> Optional[Attributable]:
+        """Get the contact, if available."""
+        name = self.get_contact_name()
+        if name is None:
+            return None
+        return Attributable(
+            name=name,
+            email=self.get_contact_email(),
+            orcid=self.get_contact_orcid(),
+            github=self.get_contact_github(),
+        )
+
+    def get_contact_email(self) -> Optional[str]:
         """Return the contact email, if available.
 
         :returns: The resource's contact email address, if it is available.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("bioregistry").get_contact()  # from bioregistry curation
+        >>> get_resource("bioregistry").get_contact_email()  # from bioregistry curation
         'cthoyt@gmail.com'
-        >>> get_resource("chebi").get_contact()
+        >>> get_resource("chebi").get_contact_email()
         'amalik@ebi.ac.uk'
         """
+        if self.contact and self.contact.email:
+            return self.contact.email
         rv = self.get_prefix_key("contact", ("obofoundry", "ols"))
         if rv and not EMAIL_RE.match(rv):
             logger.warning("[%s] invalid email address listed: %s", self.name, rv)
             return None
         return rv
+
+    def get_contact_name(self) -> Optional[str]:
+        """Return the contact name, if available.
+
+        :returns: The resource's contact name, if it is available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("bioregistry").get_contact_name()  # from bioregistry curation
+        'Charles Tapley Hoyt'
+        >>> get_resource("chebi").get_contact_name()
+        'Adnan Malik'
+        """
+        if self.contact and self.contact.name:
+            return self.contact.name
+        if self.obofoundry and "contact.label" in self.obofoundry:
+            return self.obofoundry["contact.label"]
+        return None
+
+    def get_contact_github(self) -> Optional[str]:
+        """Return the contact GitHub handle, if available.
+
+        :returns: The resource's contact GitHub handle, if it is available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("bioregistry").get_contact_github()  # from bioregistry curation
+        'cthoyt'
+        >>> get_resource("agro").get_contact_github()  # from OBO Foundry
+        'marieALaporte'
+        """
+        if self.contact and self.contact.github:
+            return self.contact.github
+        if self.obofoundry and "contact.github" in self.obofoundry:
+            return self.obofoundry["contact.github"]
+        return None
+
+    def get_contact_orcid(self) -> Optional[str]:
+        """Return the contact ORCiD, if available.
+
+        :returns: The resource's contact ORCiD, if it is available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("bioregistry").get_contact_orcid()  # from bioregistry curation
+        '0000-0003-4423-4370'
+        """
+        if self.contact and self.contact.orcid:
+            return self.contact.orcid
+        return None
 
     def get_example(self) -> Optional[str]:
         """Get an example identifier, if it's available."""
@@ -979,9 +1100,9 @@ class Resource(BaseModel):
         if self.download_owl:
             return self.download_owl
         return (
-            self.get_external("ols").get("version.iri")
+            self.get_external("obofoundry").get("download.owl")
+            or self.get_external("ols").get("version.iri")
             or self.get_external("ols").get("download")
-            or self.get_external("obofoundry").get("download.owl")
         )
 
     def get_license(self) -> Optional[str]:
@@ -999,6 +1120,77 @@ class Resource(BaseModel):
         if self.version:
             return self.version
         return self.get_external("ols").get("version")
+
+
+SchemaStatus = Literal[
+    "required", "required*", "present", "present*", "missing", "irrelevant", "irrelevant*"
+]
+schema_status_map = {
+    True: "🟢",
+    False: "🔴",
+    "required": "🟢",
+    "required*": "🟢*",
+    "present": "🟡",
+    "present*": "🟡*",
+    "missing": "🔴",
+    "irrelevant": "⚪",
+    "irrelevant*": "⚪*",
+}
+schema_score_map = {
+    "required": 3,
+    "required*": 3,
+    "present": 1,
+    "present*": 2,
+    "missing": -1,
+    "irrelevant": 0,
+    "irrelevant*": 0,
+}
+
+
+class RegistrySchema(BaseModel):
+    """Metadata about a registry's schema."""
+
+    name: SchemaStatus  # type:ignore
+    homepage: SchemaStatus  # type:ignore
+    description: SchemaStatus  # type:ignore
+    example: SchemaStatus  # type:ignore
+    pattern: SchemaStatus  # type:ignore
+    provider: SchemaStatus  # type:ignore
+    alternate_providers: SchemaStatus  # type:ignore
+    synonyms: SchemaStatus  # type:ignore
+    license: SchemaStatus  # type:ignore
+    version: SchemaStatus  # type:ignore
+    contact: SchemaStatus  # type:ignore
+    search: bool = Field(
+        ..., description="Does this resource have a search functionality for prefixes"
+    )
+    fair: bool = Field(
+        ...,
+        description="Does this resource provide a structured dump of the data is easily findable,"
+        " accessible, and in a structured format in bulk",
+    )
+    fair_note: Optional[str] = Field(
+        description="Explanation for why data isn't FAIR",
+    )
+
+    def score(self) -> int:
+        """Calculate a score for the metadata availability in the registry."""
+        return (self.search + 2 * self.fair) + sum(
+            schema_score_map[x]
+            for x in [
+                self.name,
+                self.homepage,
+                self.description,
+                self.example,
+                self.pattern,
+                self.provider,
+                self.alternate_providers,
+                self.synonyms,
+                self.license,
+                self.version,
+                self.contact,
+            ]
+        )
 
 
 class Registry(BaseModel):
@@ -1020,6 +1212,10 @@ class Registry(BaseModel):
     homepage: str = Field(..., description="The URL for the homepage of the registry.")
     #: An example prefix in the registry
     example: str = Field(..., description="An example prefix inside the registry.")
+    #: A structured description of the metadata the registry collects
+    availability: RegistrySchema = Field(
+        description="A structured description of the metadata that the registry collects"
+    )
     #: A URL to download the registry's contents
     download: Optional[str] = Field(
         description="A download link for the data contained in the registry"
@@ -1030,8 +1226,35 @@ class Registry(BaseModel):
     resolver_uri_format: Optional[str]
     #: An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)
     resolver_type: Optional[str]
-    #: An optional contact email
-    contact: Optional[str]
+    #: The contact for the registry
+    contact: Attributable = Field(..., description="The contact for the registry.")
+    bioregistry_prefix: Optional[str]
+
+    def score(self) -> int:
+        """Calculate a metadata score/goodness for this registry."""
+        return (
+            int(self.provider_uri_format is not None)
+            + int(self.resolver_uri_format is not None)
+            + int(self.download is not None)
+            + int(self.contact is not None)
+        ) + self.availability.score()
+
+    def get_provider_uri_prefix(self) -> str:
+        """Get provider URI prefix.
+
+        :returns: The URI prefix for the provider for prefixes in this registry.
+
+        >>> from bioregistry import get_registry
+        >>> get_registry("fairsharing").get_provider_uri_prefix()
+        'https://fairsharing.org/'
+        >>> get_registry("miriam").get_provider_uri_prefix()
+        'https://registry.identifiers.org/registry/'
+        >>> get_registry("n2t").get_provider_uri_prefix()
+        'https://bioregistry.io/metaregistry/n2t/'
+        """
+        if self.provider_uri_format is None or not self.provider_uri_format.endswith("$1"):
+            return f"{BIOREGISTRY_REMOTE_URL}/metaregistry/{self.prefix}/"
+        return self.provider_uri_format.replace("$1", "")
 
     def get_provider_uri_format(self, prefix: str) -> Optional[str]:
         """Get the provider string.
@@ -1044,17 +1267,44 @@ class Registry(BaseModel):
         'https://fairsharing.org/FAIRsharing.62qk8w'
         >>> get_registry("miriam").get_provider_uri_format("go")
         'https://registry.identifiers.org/registry/go'
+        >>> get_registry("n2t").get_provider_uri_format("go")
+        'https://bioregistry.io/metaregistry/n2t/go'
         """
-        provider_url = self.provider_uri_format
-        if provider_url is None:
-            return None
-        return provider_url.replace("$1", prefix)
+        return self.get_provider_uri_prefix() + prefix
+
+    def get_resolver_uri_format(self, prefix: str) -> str:
+        """Generate a provider URI string based on mapping through this registry's vocabulary.
+
+        :param prefix: The prefix used in the metaregistry
+        :return: The URI format string to be used for identifiers in the semantic space
+            based on this resolver or the Bioregistry's meta-resolver.
+
+        >>> from bioregistry import get_registry
+        >>> get_registry("miriam").get_resolver_uri_format("go")
+        'https://identifiers.org/go:$1'
+        >>> get_registry("cellosaurus").get_resolver_uri_format("go")
+        'https://bioregistry.io/metaregistry/cellosaurus/go:$1'
+        >>> get_registry("n2t").get_resolver_uri_format("go")
+        'https://n2t.net/go:$1'
+        """
+        if self.resolver_uri_format is None:
+            return f"{BIOREGISTRY_REMOTE_URL}/metaregistry/{self.prefix}/{prefix}:$1"
+        return self.resolver_uri_format.replace("$1", prefix).replace("$2", "$1")
 
     def resolve(self, prefix: str, identifier: str) -> Optional[str]:
-        """Resolve the registry-specific prefix and identifier."""
-        if self.resolver_uri_format is None:
-            return None
-        return self.resolver_uri_format.replace("$1", prefix).replace("$2", identifier)
+        """Resolve the registry-specific prefix and identifier.
+
+        :param prefix: The prefix used in the metaregistry
+        :param identifier: The identifier in the semantic space
+        :return: The URI format string for the given CURIE.
+
+        >>> from bioregistry import get_registry
+        >>> get_registry("miriam").resolve("go", "0032571")
+        'https://identifiers.org/go:0032571'
+        >>> get_registry("cellosaurus").resolve("go", "0032571")
+        'https://bioregistry.io/metaregistry/cellosaurus/go:0032571'
+        """
+        return self.get_resolver_uri_format(prefix).replace("$1", identifier)
 
     def add_triples(self, graph):
         """Add triples to an RDF graph for this registry.
@@ -1083,6 +1333,7 @@ class Registry(BaseModel):
             graph.add((node, bioregistry_schema["0000006"], Literal(self.provider_uri_format)))
         if self.resolver_uri_format:
             graph.add((node, bioregistry_schema["0000007"], Literal(self.resolver_uri_format)))
+        graph.add((node, bioregistry_schema["0000019"], self.contact.add_triples(graph)))
         return node
 
 
@@ -1202,6 +1453,7 @@ def get_json_schema():
                 Provider,
                 Resource,
                 Registry,
+                RegistrySchema,
             ],
             title="Bioregistry JSON Schema",
             description="The Bioregistry JSON Schema describes the shapes of the objects in"

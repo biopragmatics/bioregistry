@@ -22,6 +22,8 @@ jobs:
           bioregistry update
         env:
           BIOPORTAL_API_KEY: ${{ secrets.BIOPORTAL_API_KEY }}
+          FAIRSHARING_LOGIN: ${{ secrets.FAIRSHARING_LOGIN }}
+          FAIRSHARING_PASSWORD: ${{ secrets.FAIRSHARING_PASSWORD }}
       - name: Check environment
         run: echo ${{ steps.update.outputs.BR_UPDATED }}
       - name: Commit files

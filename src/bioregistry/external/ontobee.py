@@ -38,7 +38,7 @@ def get_ontobee(force_download: bool = False):
         prefix = cells[1].text
         rv[prefix] = {
             "name": cells[2].text,
-            "library": LEGEND[cells[3].text],
+            "library": LEGEND[cells[3].text.upper()],
             # "link": cells[1].find("a").attrs["href"],
         }
 
