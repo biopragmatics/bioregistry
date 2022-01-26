@@ -13,6 +13,7 @@ from .utils import (
     _get_resource_providers,
     _normalize_prefix_or_404,
 )
+from .. import manager
 from ..utils import (
     curie_to_str,
     read_collections_contributions,
@@ -255,6 +256,26 @@ def resolve(prefix: str, identifier: Optional[str] = None):
             ),
             404,
         )
+
+
+@ui_blueprint.route("/metaregistry/<metaprefix>/<metaidentifier>")
+@ui_blueprint.route("/metaregistry/<metaprefix>/<metaidentifier>:<path:identifier>")
+def metaresolve(metaprefix: str, metaidentifier: str, identifier: Optional[str] = None):
+    """Redirect to a prefix page or meta-resolve the CURIE."""
+    if metaprefix not in manager.metaregistry:
+        return abort(404, f"invalid metaprefix: {metaprefix}")
+    prefix = manager.lookup_from(metaprefix, metaidentifier, normalize=True)
+    if prefix is None:
+        return abort(
+            404,
+            f"Could not map {metaidentifier} in {metaprefix} to a Bioregistry prefix."
+            f" The Bioregistry contains mappings for the following:"
+            f" {list(manager.get_registry_invmap(metaprefix))}",
+        )
+    if identifier is None:
+        return redirect(url_for(f".{resource.__name__}", prefix=prefix))
+    else:
+        return redirect(url_for(f".{resolve.__name__}", prefix=prefix, identifier=identifier))
 
 
 @ui_blueprint.route("/contributors/")

@@ -175,8 +175,13 @@ class Manager:
         return dict(self._iter_registry_map(metaprefix))
 
     @lru_cache(maxsize=None)
-    def get_registry_invmap(self, metaprefix: str) -> Dict[str, str]:
+    def get_registry_invmap(self, metaprefix: str, normalize: bool = False) -> Dict[str, str]:
         """Get a mapping from prefixes in another registry to Bioregistry prefixes."""
+        if normalize:
+            return {
+                _norm(external_prefix): prefix
+                for prefix, external_prefix in self._iter_registry_map(metaprefix)
+            }
         return {
             external_prefix: prefix
             for prefix, external_prefix in self._iter_registry_map(metaprefix)
@@ -451,20 +456,28 @@ class Manager:
                 rv.append(depends_prefix)
         return rv
 
-    def lookup_from(self, metaprefix, metaidentifier, normalize: bool = False) -> Optional[str]:
+    def lookup_from(
+        self, metaprefix: str, metaidentifier: str, normalize: bool = False
+    ) -> Optional[str]:
         """Get the bioregistry prefix from an external prefix.
 
         :param metaprefix: The key for the external registry
         :param metaidentifier: The prefix in the external registry
         :param normalize: Should external prefixes be normalized during lookup (e.g., lowercased)
         :return: The bioregistry prefix (if it can be mapped)
+
+        >>> from bioregistry import manager
+        >>> manager.lookup_from("obofoundry", "GO")
+        'go'
+        >>> manager.lookup_from("obofoundry", "go")
+        None
+        >>> manager.lookup_from("obofoundry", "go", normalize=True)
+        'go'
         """
-        external_id_to_bioregistry_id = self.get_registry_invmap(metaprefix)
-        if normalize:
-            external_id_to_bioregistry_id = {
-                _norm(k): v for k, v in external_id_to_bioregistry_id.items()
-            }
-        return external_id_to_bioregistry_id.get(_norm(metaidentifier))
+        external_id_to_bioregistry_id = self.get_registry_invmap(metaprefix, normalize=normalize)
+        return external_id_to_bioregistry_id.get(
+            _norm(metaidentifier) if normalize else metaidentifier
+        )
 
     def get_has_canonical(self, prefix: str) -> Optional[str]:
         """Get the canonical prefix."""
