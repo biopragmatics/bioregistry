@@ -1252,10 +1252,9 @@ class Registry(BaseModel):
         >>> get_registry("n2t").get_provider_uri_prefix()
         'https://bioregistry.io/metaregistry/n2t/'
         """
-        provider_url = self.provider_uri_format
         if self.provider_uri_format is None or not self.provider_uri_format.endswith("$1"):
             return f"{BIOREGISTRY_REMOTE_URL}/metaregistry/{self.prefix}/"
-        return provider_url.replace("$1", "")
+        return self.provider_uri_format.replace("$1", "")
 
     def get_provider_uri_format(self, prefix: str) -> Optional[str]:
         """Get the provider string.
