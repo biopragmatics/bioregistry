@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+"""Tests for downloading external data."""
+
 import unittest
 
 from bioregistry.external.obofoundry import get_obofoundry_example
