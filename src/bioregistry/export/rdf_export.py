@@ -195,7 +195,8 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
     prefix = data["prefix"]
     resource = bioregistry.get_resource(prefix)
     if resource is None:
-        raise ValueError
+        logger.warning("Could not look up prefix: %s", prefix)
+        return
     node = cast(URIRef, bioregistry_resource[prefix])
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(bioregistry.get_name(prefix))))
