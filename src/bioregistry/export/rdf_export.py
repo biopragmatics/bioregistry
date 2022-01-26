@@ -37,7 +37,13 @@ def export_rdf():
         "@language": "en",
         **dict(graph.namespaces()),
     }
-    graph.serialize(RDF_JSONLD_PATH.as_posix(), format="json-ld", context=context)
+    graph.serialize(
+        RDF_JSONLD_PATH.as_posix(),
+        format="json-ld",
+        context=context,
+        sort_keys=True,
+        ensure_ascii=False,
+    )
 
 
 def _graph() -> rdflib.Graph:
