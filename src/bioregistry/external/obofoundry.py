@@ -4,8 +4,10 @@
 
 import json
 import logging
+from typing import Optional
 
 import click
+import requests
 import yaml
 from pystow.utils import download
 
@@ -13,6 +15,7 @@ from bioregistry.data import EXTERNAL
 
 __all__ = [
     "get_obofoundry",
+    "get_obofoundry_example",
 ]
 
 logger = logging.getLogger(__name__)
@@ -93,6 +96,16 @@ def _parse_activity_status(record) -> bool:
         return True
     else:
         raise ValueError(f"unexpected activity value: {status}")
+
+
+def get_obofoundry_example(prefix: str) -> Optional[str]:
+    """Get an example identifier from the OBO Library PURL configuration."""
+    url = f"https://raw.githubusercontent.com/OBOFoundry/purl.obolibrary.org/master/config/{prefix}.yml"
+    data = yaml.safe_load(requests.get(url).content)
+    examples = data.get("example_terms")
+    if not examples:
+        return None
+    return examples[0].rsplit("_")[-1]
 
 
 @click.command()
