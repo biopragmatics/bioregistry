@@ -2,6 +2,7 @@
 
 """Export the Bioregistry to RDF."""
 
+import logging
 from io import BytesIO
 from typing import Callable, List, Optional, Tuple, Union, cast
 
@@ -24,6 +25,8 @@ from bioregistry.schema.constants import (
     orcid,
 )
 from bioregistry.schema.struct import Collection, Registry
+
+logger = logging.getLogger(__name__)
 
 NAMESPACES = {_ns: Namespace(_uri) for _ns, _uri in CURIE_MAP.items()}
 NAMESPACE_WARNINGS = set()
@@ -58,7 +61,7 @@ def _graph() -> rdflib.Graph:
 
 
 def _bind(graph: rdflib.Graph) -> None:
-    graph.namespace_manager.bind("bioregistry.resource", bioregistry_resource)
+    graph.namespace_manager.bind("bioregistry", bioregistry_resource)
     graph.namespace_manager.bind("bioregistry.metaresource", bioregistry_metaresource)
     graph.namespace_manager.bind("bioregistry.collection", bioregistry_collection)
     graph.namespace_manager.bind("bioregistry.schema", bioregistry_schema)
@@ -66,6 +69,8 @@ def _bind(graph: rdflib.Graph) -> None:
     graph.namespace_manager.bind("foaf", FOAF)
     graph.namespace_manager.bind("dc", DC)
     graph.namespace_manager.bind("dcterms", DCTERMS)
+    for key, value in CURIE_MAP.items():
+        graph.namespace_manager.bind(key, value)
 
 
 def get_full_rdf() -> rdflib.Graph:
@@ -218,9 +223,12 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
 
     mappings = bioregistry.get_mappings(prefix)
     for metaprefix, metaidentifier in (mappings or {}).items():
+        metaresource = bioregistry.get_registry(metaprefix)
+        if metaprefix not in NAMESPACES and metaresource.bioregistry_prefix in NAMESPACES:
+            metaprefix = metaresource.bioregistry_prefix
         if metaprefix not in NAMESPACES:
             if metaprefix not in NAMESPACE_WARNINGS:
-                click.secho(f"can not find prefix-uri pair for {metaprefix}", fg="red")
+                logger.warning(f"can not find prefix-uri pair for {metaprefix}")
                 NAMESPACE_WARNINGS.add(metaprefix)
             continue
         graph.add((node, SKOS.exactMatch, NAMESPACES[metaprefix][metaidentifier]))
