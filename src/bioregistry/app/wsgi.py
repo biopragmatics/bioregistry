@@ -8,7 +8,7 @@ from operator import attrgetter
 
 from flasgger import Swagger
 from flask import Flask, jsonify, render_template
-from flask_bootstrap import Bootstrap
+from flask_bootstrap import Bootstrap4
 
 import bioregistry
 from bioregistry import version
@@ -47,7 +47,7 @@ Swagger.DEFAULT_CONFIG.update(
     }
 )
 Swagger(app)
-Bootstrap(app)
+Bootstrap4(app)
 
 app.register_blueprint(api_blueprint)
 app.register_blueprint(ui_blueprint)
