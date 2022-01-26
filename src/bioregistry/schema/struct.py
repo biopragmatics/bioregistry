@@ -23,7 +23,7 @@ from typing import (
 import pydantic.schema
 from pydantic import BaseModel, Field
 
-from bioregistry.constants import URI_FORMAT_KEY
+from bioregistry.constants import BIOREGISTRY_REMOTE_URL, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE, EMAIL_RE_STR
 
@@ -1239,6 +1239,22 @@ class Registry(BaseModel):
             + int(self.contact is not None)
         ) + self.availability.score()
 
+    def get_provider_uri_prefix(self) -> str:
+        """Get provider URI prefix.
+
+        >>> from bioregistry import get_registry
+        >>> get_registry("fairsharing").get_provider_uri_prefix()
+        'https://fairsharing.org/'
+        >>> get_registry("miriam").get_provider_uri_prefix()
+        'https://registry.identifiers.org/registry/'
+        >>> get_registry("n2t").get_provider_uri_prefix()
+        'https://bioregistry.io/metaregistry/n2t/'
+        """
+        provider_url = self.provider_uri_format
+        if self.provider_uri_format is None or not self.provider_uri_format.endswith("$1"):
+            return f"{BIOREGISTRY_REMOTE_URL}/metaregistry/{self.prefix}/"
+        return provider_url.replace("$1", "")
+
     def get_provider_uri_format(self, prefix: str) -> Optional[str]:
         """Get the provider string.
 
@@ -1250,17 +1266,44 @@ class Registry(BaseModel):
         'https://fairsharing.org/FAIRsharing.62qk8w'
         >>> get_registry("miriam").get_provider_uri_format("go")
         'https://registry.identifiers.org/registry/go'
+        >>> get_registry("n2t").get_provider_uri_format("go")
+        'https://bioregistry.io/metaregistry/n2t/go'
         """
-        provider_url = self.provider_uri_format
-        if provider_url is None:
-            return None
-        return provider_url.replace("$1", prefix)
+        return self.get_provider_uri_prefix() + prefix
+
+    def get_resolver_uri_format(self, prefix: str) -> str:
+        """Generate a provider URI string based on mapping through this registry's vocabulary.
+
+        :param prefix: The prefix used in the metaregistry
+        :return: The URI format string to be used for identifiers in the semantic space
+            based on this resolver or the Bioregistry's meta-resolver.
+
+        >>> from bioregistry import get_registry
+        >>> get_registry("miriam").get_resolver_uri_format("go")
+        'https://identifiers.org/go:$1'
+        >>> get_registry("cellosaurus").get_resolver_uri_format("go")
+        'https://bioregistry.io/metaregistry/cellosaurus/go:$1'
+        >>> get_registry("n2t").get_resolver_uri_format("go")
+        'https://n2t.net/go:$1'
+        """
+        if self.resolver_uri_format is None:
+            return f"{BIOREGISTRY_REMOTE_URL}/metaregistry/{self.prefix}/{prefix}:$1"
+        return self.resolver_uri_format.replace("$1", prefix).replace("$2", "$1")
 
     def resolve(self, prefix: str, identifier: str) -> Optional[str]:
-        """Resolve the registry-specific prefix and identifier."""
-        if self.resolver_uri_format is None:
-            return None
-        return self.resolver_uri_format.replace("$1", prefix).replace("$2", identifier)
+        """Resolve the registry-specific prefix and identifier.
+
+        :param prefix: The prefix used in the metaregistry
+        :param identifier: The identifier in the semantic space
+        :return: The URI format string for the given CURIE.
+
+        >>> from bioregistry import get_registry
+        >>> get_registry("miriam").resolve("go", "0032571")
+        'https://identifiers.org/go:0032571'
+        >>> get_registry("cellosaurus").resolve("go", "0032571")
+        'https://bioregistry.io/metaregistry/cellosaurus/go:0032571'
+        """
+        return self.get_resolver_uri_format(prefix).replace("$1", identifier)
 
     def add_triples(self, graph):
         """Add triples to an RDF graph for this registry.
