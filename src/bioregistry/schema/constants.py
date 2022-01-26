@@ -239,9 +239,9 @@ def get_schema_rdf() -> rdflib.Graph:
     graph.bind("bioregistry", bioregistry_resource)
     for term in bioregistry_schema_terms:
         node = bioregistry_schema[term.identifier]
-        if term.type == "Class":
+        if isinstance(term, ClassTerm):
             graph.add((node, RDF.type, RDFS.Class))
-        elif term.type == "Property":
+        elif isinstance(term, PropertyTerm):
             graph.add((node, RDF.type, RDF.Property))
             for property_node, object_node in (
                 (RDFS.domain, term.domain),
@@ -254,7 +254,7 @@ def get_schema_rdf() -> rdflib.Graph:
                 else:
                     raise TypeError(term)
         else:
-            raise ValueError(node)
+            raise TypeError(term)
         graph.add((node, RDFS.label, Literal(term.label)))
         graph.add((node, DCTERMS.description, Literal(term.description)))
     return graph
@@ -276,7 +276,7 @@ def get_schema_nx():
         if range and domain:
             graph.add_edge(domain, range, label=term.label)
 
-    for s, p, p_label, o in bioregistry_schema_extras:
+    for s, _p, p_label, o in bioregistry_schema_extras:
         graph.add_edge(s, o, label=p_label)
 
     for node in list(graph):

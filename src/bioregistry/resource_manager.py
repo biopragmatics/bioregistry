@@ -18,6 +18,7 @@ from typing import (
     Set,
     Tuple,
     Union,
+    cast,
 )
 
 from .constants import (
@@ -801,7 +802,9 @@ class Manager:
     def get_internal_prefix_map(self) -> Mapping[str, str]:
         """Get an internal prefix map for RDF and SSSOM dumps."""
         default_prefixes = {"bioregistry.schema", "bfo"}
-        rv = {prefix: self.get_uri_prefix(prefix) for prefix in default_prefixes}
+        rv = cast(
+            Dict[str, str], {prefix: self.get_uri_prefix(prefix) for prefix in default_prefixes}
+        )
         for metaprefix, metaresource in self.metaregistry.items():
             uri_prefix = metaresource.get_provider_uri_prefix()
             if metaresource.bioregistry_prefix:

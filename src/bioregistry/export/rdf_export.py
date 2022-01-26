@@ -4,7 +4,7 @@
 
 import logging
 from io import BytesIO
-from typing import Callable, List, Optional, Tuple, Union, cast
+from typing import Any, Callable, List, Optional, Tuple, Union, cast
 
 import click
 import rdflib
@@ -13,7 +13,7 @@ from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS, SKOS, XSD
 from rdflib.term import Node, URIRef
 
 import bioregistry
-from bioregistry import read_collections, read_metaregistry, read_registry
+from bioregistry import manager, read_collections, read_metaregistry, read_registry
 from bioregistry.constants import (
     RDF_JSONLD_PATH,
     RDF_NT_PATH,
@@ -179,7 +179,7 @@ def _add_metaresource(
     return graph, node
 
 
-RESOURCE_FUNCTIONS: List[Tuple[str, Callable[[str], Optional[str]], URIRef]] = [
+RESOURCE_FUNCTIONS: List[Tuple[Union[str, URIRef], Callable[[str], Any], URIRef]] = [
     ("0000008", bioregistry.get_pattern, XSD.string),
     ("0000006", bioregistry.get_uri_format, XSD.string),
     ("0000005", bioregistry.get_example, XSD.string),
@@ -193,7 +193,9 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
     if graph is None:
         graph = _graph()
     prefix = data["prefix"]
-
+    resource = bioregistry.get_resource(prefix)
+    if resource is None:
+        raise ValueError
     node = cast(URIRef, bioregistry_resource[prefix])
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(bioregistry.get_name(prefix))))
@@ -232,21 +234,20 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
     if canonical:
         graph.add((node, bioregistry_schema["0000016"], bioregistry_resource[canonical]))
 
-    resource = bioregistry.get_resource(prefix)
     contact = bioregistry.get_contact(prefix)
-    if contact:
+    if contact is not None:
         contact_node = contact.add_triples(graph)
         graph.add((node, bioregistry_schema["0000019"], contact_node))
-    if resource.reviewer and resource.reviewer.orcid:
+    if resource.reviewer is not None and resource.reviewer.orcid:
         reviewer_node = resource.reviewer.add_triples(graph)
         graph.add((node, bioregistry_schema["0000021"], reviewer_node))
-    if resource.contributor and resource.contributor.orcid:
+    if resource.contributor is not None and resource.contributor.orcid:
         contributor_node = resource.contributor.add_triples(graph)
         graph.add((contributor_node, DCTERMS.contributor, node))
 
     mappings = bioregistry.get_mappings(prefix)
     for metaprefix, metaidentifier in (mappings or {}).items():
-        metaresource = bioregistry.get_registry(metaprefix)
+        metaresource = manager.metaregistry[metaprefix]
         if metaprefix not in NAMESPACES and metaresource.bioregistry_prefix in NAMESPACES:
             metaprefix = metaresource.bioregistry_prefix
         if metaprefix not in NAMESPACES:
