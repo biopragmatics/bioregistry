@@ -27,7 +27,7 @@ SIGNIN_URL = f"{BASE_URL}/users/sign_in"
 RECORDS_URL = f"{BASE_URL}/fairsharing_records"
 
 
-def get_fairsharing(force_download: bool = False):
+def get_fairsharing(force_download: bool = False, use_tqdm: bool = False):
     """Get the FAIRsharing registry."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
@@ -38,7 +38,11 @@ def get_fairsharing(force_download: bool = False):
     rv = {
         row.pop("prefix"): row
         for row in tqdm(
-            client.iter_records(), unit_scale=True, unit="record", desc="Downloading FAIRsharing"
+            client.iter_records(),
+            unit_scale=True,
+            unit="record",
+            desc="Downloading FAIRsharing",
+            disable=not use_tqdm,
         )
     }
     with PROCESSED_PATH.open("w") as file:
