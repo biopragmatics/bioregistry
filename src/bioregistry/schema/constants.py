@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import Mapping, Optional, Union
 
 import rdflib.namespace
-from rdflib import DCTERMS, FOAF, Literal, OWL, RDF, RDFS, URIRef, XSD
+from rdflib import DCTERMS, FOAF, RDF, RDFS, SKOS, XSD, Literal, URIRef
 from rdflib.term import Node
 
 __all__ = [
@@ -42,9 +42,13 @@ class PropertyTerm(Term):
 
 
 bioregistry_schema_terms = [
-    ClassTerm("0000001", "Class", "Resource Record", "A type for entries in the Bioregistry's registry."),
-    ClassTerm("0000002", "Class", "Registry Record", "A type for entries in the Bioregistry's metaregistry."),
-    ClassTerm("0000003", "Class", "Collection", "A type for entries in the Bioregistry's collections"),
+    ClassTerm("0000001", "Class", "Resource", "A type for entries in the Bioregistry's registry."),
+    ClassTerm(
+        "0000002", "Class", "Registry", "A type for entries in the Bioregistry's metaregistry."
+    ),
+    ClassTerm(
+        "0000003", "Class", "Collection", "A type for entries in the Bioregistry's collections"
+    ),
     # ClassTerm(
     #     "0000004",
     #     "Class",
@@ -210,7 +214,7 @@ bioregistry_schema_extras = [
     ("0000003", DCTERMS.contributor, "contributor", "0000020"),  # author creator of collection
     ("0000001", DCTERMS.creator, "creator", "0000020"),  # author creator of resource
     ("0000001", DCTERMS.contributor, "contributor", "0000020"),  # author creator of resource
-    ("0000001", OWL.equivalentClass, "equivalent", "0000001"),  # resource equivalence
+    ("0000001", SKOS.exactMatch, "equivalent", "0000001"),  # resource equivalence
 ]
 bioregistry_collection = rdflib.namespace.Namespace("https://bioregistry.io/collection/")
 bioregistry_resource = rdflib.namespace.Namespace("https://bioregistry.io/registry/")
@@ -227,7 +231,7 @@ bioregistry_class_to_id: Mapping[str, URIRef] = {
 orcid = rdflib.namespace.Namespace("https://orcid.org/")
 
 
-def get_schema() -> rdflib.Graph:
+def get_schema_rdf() -> rdflib.Graph:
     """Get the Bioregistry schema as an RDF graph."""
     graph = rdflib.Graph()
     graph.bind("bioregistry.schema", bioregistry_schema)
@@ -296,23 +300,21 @@ def get_schema_nx():
         if node not in graph[node]:
             continue
         labels = {data["label"] for data in graph[node][node].values()}
-        graph.remove_edges_from([
-            (node, node, k)
-            for k in graph[node][node]
-        ])
+        graph.remove_edges_from([(node, node, k) for k in graph[node][node]])
         graph.add_edge(node, node, label=",\n".join(labels))
 
     return graph
 
 
 def _main():
-    rdf_graph = get_schema()
+    rdf_graph = get_schema_rdf()
     rdf_graph.serialize("schema.ttl")
 
     nx_graph = get_schema_nx()
     from networkx.drawing.nx_agraph import to_agraph
+
     to_agraph(nx_graph).draw("schema.pdf", prog="dot")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     _main()
