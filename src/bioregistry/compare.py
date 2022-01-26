@@ -269,7 +269,7 @@ def compare(png: bool):  # noqa:C901
     ]
     licenses_mapped_counter = Counter(licenses_mapped)
     licenses_mapped_order = [license_ for license_, _ in licenses_mapped_counter.most_common()]
-    sns.countplot(licenses_mapped, ax=ax, order=licenses_mapped_order)
+    sns.countplot(x=licenses_mapped, ax=ax, order=licenses_mapped_order)
     ax.set_xlabel("License")
     ax.set_ylabel("Count")
     ax.set_yscale("log")

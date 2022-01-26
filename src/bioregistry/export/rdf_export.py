@@ -44,7 +44,7 @@ def export_rdf():
     """Export RDF."""
     schema_rdf = get_schema_rdf()
     schema_rdf.serialize(SCHEMA_TURTLE_PATH.as_posix(), format="turtle")
-    schema_rdf.serialize(SCHEMA_NT_PATH.as_posix(), format="nt")
+    schema_rdf.serialize(SCHEMA_NT_PATH.as_posix(), format="nt", encoding="utf-8")
     schema_rdf.serialize(
         SCHEMA_JSONLD_PATH.as_posix(),
         format="json-ld",
@@ -58,7 +58,7 @@ def export_rdf():
 
     graph = get_full_rdf() + schema_rdf
     graph.serialize(RDF_TURTLE_PATH.as_posix(), format="turtle")
-    graph.serialize(RDF_NT_PATH.as_posix(), format="nt")
+    graph.serialize(RDF_NT_PATH.as_posix(), format="nt", encoding="utf-8")
     # Currently getting an issue with not being able to shorten URIs
     # graph.serialize(os.path.join(DOCS_DATA, "bioregistry.xml"), format="xml")
 
