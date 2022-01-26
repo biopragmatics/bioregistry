@@ -18,18 +18,18 @@
              src="https://github.com/biopragmatics/bioregistry/raw/main/exports/rdf/schema.svg" height="300"/>
     </p>
     <div class="list-group">
-        {% for identifier, type, label, description in terms %}
-            <a name="{{ identifier }}" href="#{{ identifier }}" class="list-group-item list-group-item-action">
+        {% for term in terms %}
+            <a name="{{ term.identifier }}" href="#{{ term.identifier }}" class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">
                         <span class="badge badge-pill badge-info">
-                        {% if type == "Class" %}C{% elif type == "Property" %}P{% endif %}
+                        {% if term.type == "Class" %}C{% elif term.type == "Property" %}P{% endif %}
                         </span>
-                        {{ label }}
+                        {{ term.label }}
                     </h5>
-                    <small>bioregistry.schema:{{ identifier }}</small>
+                    <small>bioregistry.schema:{{ term.identifier }}</small>
                 </div>
-                <p class="mb-1">{{ description }}</p>
+                <p class="mb-1">{{ term.description }}</p>
             </a>
         {% endfor %}
     </div>
