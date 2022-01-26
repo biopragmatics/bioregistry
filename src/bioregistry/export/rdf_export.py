@@ -272,7 +272,7 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph
             )
         )
 
-    return graph, node
+    return graph
 
 
 if __name__ == "__main__":
