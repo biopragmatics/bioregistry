@@ -423,7 +423,7 @@ class Manager:
         if resource is None:
             return None
         rv = list(resource.appears_in or [])
-        rv.extend(self._get_obo_list(resource=resource, key="appears_in"))
+        rv.extend(self._get_obo_list(prefix=prefix, resource=resource, key="appears_in"))
         return sorted(set(rv))
 
     def get_depends_on(self, prefix: str) -> Optional[List[str]]:
@@ -444,17 +444,17 @@ class Manager:
         if resource is None:
             return None
         rv = list(resource.depends_on or [])
-        rv.extend(self._get_obo_list(resource=resource, key="depends_on"))
+        rv.extend(self._get_obo_list(prefix=prefix, resource=resource, key="depends_on"))
         return sorted(set(rv))
 
-    def _get_obo_list(self, *, resource: Resource, key: str) -> List[str]:
+    def _get_obo_list(self, *, prefix: str, resource: Resource, key: str) -> List[str]:
         rv = []
         for obo_prefix in resource.get_external("obofoundry").get(key, []):
-            depends_prefix = self.lookup_from("obofoundry", obo_prefix, normalize=True)
-            if depends_prefix is None:
-                logger.warning("could not map OBO %s: %s", key, obo_prefix)
+            canonical_prefix = self.lookup_from("obofoundry", obo_prefix, normalize=True)
+            if canonical_prefix is None:
+                logger.warning("[%s] could not map OBO %s: %s", prefix, key, obo_prefix)
             else:
-                rv.append(depends_prefix)
+                rv.append(canonical_prefix)
         return rv
 
     def lookup_from(
