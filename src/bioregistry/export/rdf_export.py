@@ -20,8 +20,6 @@ from bioregistry.constants import (
     RDF_TURTLE_PATH,
     SCHEMA_JSONLD_PATH,
     SCHEMA_NT_PATH,
-    SCHEMA_PDF_PATH,
-    SCHEMA_SVG_PATH,
     SCHEMA_TURTLE_PATH,
 )
 from bioregistry.export.sssom_export import CURIE_MAP
@@ -30,7 +28,6 @@ from bioregistry.schema.constants import (
     bioregistry_metaresource,
     bioregistry_resource,
     bioregistry_schema,
-    get_schema_nx,
     get_schema_rdf,
     orcid,
 )
@@ -76,13 +73,6 @@ def export_rdf():
         sort_keys=True,
         ensure_ascii=False,
     )
-
-    from networkx.drawing.nx_agraph import to_agraph
-
-    agraph = to_agraph(get_schema_nx())
-    agraph.layout(prog="dot")
-    agraph.draw(SCHEMA_SVG_PATH)
-    agraph.draw(SCHEMA_PDF_PATH)
 
 
 def _graph() -> rdflib.Graph:
