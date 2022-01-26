@@ -6205,6 +6205,13 @@
       "uri_format": "https://web.expasy.org/cellosaurus/$1"
     }
   },
+  "cellosaurus.resource": {
+    "description": "The set of prefixes used in the Cellosaurus resource",
+    "example": "4DN",
+    "homepage": "https://web.expasy.org/cellosaurus/",
+    "name": "Cellosaurus Registry",
+    "uri_format": "https://bioregistry.io/metaregistry/cellosaurus/$1"
+  },
   "cellrepo": {
     "mappings": {
       "miriam": "cellrepo"
@@ -19403,6 +19410,13 @@
       "uri_format": "http://www.geneontology.org/cgi-bin/references.cgi#GO_REF:$1"
     }
   },
+  "go.resource": {
+    "description": "A database-specific registry supporting curation in the Gene Ontology",
+    "example": "CHEBI",
+    "homepage": "http://geneontology.org/",
+    "name": "Gene Ontology Registry",
+    "uri_format": "https://bioregistry.io/metaregistry/go/$1"
+  },
   "goa": {
     "fairsharing": {
       "abbreviation": "GOA",
@@ -22753,23 +22767,6 @@
       "name": "Intrinsically Disordered proteins with Extensive Annotations and Literature",
       "prefix": "IDEAL",
       "uri_format": "http://idp1.force.cs.is.nagoya-u.ac.jp/IDEAL/ideal.php?id=$1"
-    }
-  },
-  "identifiers.namespace": {
-    "mappings": {
-      "miriam": "identifiers.namespace"
-    },
-    "miriam": {
-      "deprecated": false,
-      "description": "Identifiers.org is an established resolving system that enables the referencing of data for the scientific community, with a current focus on the Life Sciences domain.",
-      "homepage": "https://www.ebi.ac.uk",
-      "id": "00000859",
-      "name": "Identifiers.org namespace",
-      "namespaceEmbeddedInLui": false,
-      "pattern": "^[a-z_\\.]+$",
-      "prefix": "identifiers.namespace",
-      "sampleId": "pubmed",
-      "uri_format": "https://registry.identifiers.org/registry/$1"
     }
   },
   "ido": {
@@ -29415,6 +29412,26 @@
       "uri_format": "http://identifiers.org/mirex/$1"
     }
   },
+  "miriam": {
+    "mappings": {
+      "miriam": "identifiers.namespace"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "Identifiers.org is an established resolving system that enables the referencing of data for the scientific community, with a current focus on the Life Sciences domain.",
+      "homepage": "https://www.ebi.ac.uk",
+      "id": "00000859",
+      "name": "Identifiers.org namespace",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[a-z_\\.]+$",
+      "prefix": "identifiers.namespace",
+      "sampleId": "pubmed",
+      "uri_format": "https://registry.identifiers.org/registry/$1"
+    },
+    "synonyms": [
+      "identifiers.namespace"
+    ]
+  },
   "miriam.collection": {
     "mappings": {
       "miriam": "miriam.collection",
@@ -31423,6 +31440,13 @@
       "uri_format": "http://identifiers.org/mzspec/$1"
     }
   },
+  "n2t": {
+    "description": "An ARK resolver as well as resolver built with common prefixes as in Identifiers.org",
+    "example": "chebi",
+    "homepage": "https://n2t.net",
+    "name": "Name-to-Thing",
+    "uri_format": "https://n2t.net/$1:"
+  },
   "namerxn": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -31776,6 +31800,13 @@
     "homepage": "https://drugs.ncats.io/",
     "name": "NCATS Drugs",
     "uri_format": "https://drugs.ncats.io/drug/$1"
+  },
+  "ncbi.resource": {
+    "description": "A database-specific registry supporting curation in the NCBI GenBank and related NCBI resources",
+    "example": "ECOCYC",
+    "homepage": "https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/",
+    "name": "NCBI Registry",
+    "uri_format": "https://bioregistry.io/metaregistry/ncbi/$1"
   },
   "ncbibook": {
     "contributor": {
@@ -43475,6 +43506,13 @@
     "name": "Selventa Chemicals",
     "pattern": "^A\\d{4}$"
   },
+  "scholia.resource": {
+    "description": "A frontend to Wikidata",
+    "example": "doi",
+    "homepage": "https://scholia.toolforge.org/",
+    "name": "Scholia Registry",
+    "uri_format": "https://bioregistry.io/metaregistry/scholia/$1"
+  },
   "scomp": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -48505,6 +48543,13 @@
       "UniProtKB-SubCell"
     ],
     "uri_format": "https://www.uniprot.org/locations/SL-$1"
+  },
+  "uniprot.resource": {
+    "description": "The cross-references section of UniProtKB entries displays explicit and implicit links to databases such as nucleotide sequence databases, model organism databases and genomics and proteomics resources.",
+    "example": "0174",
+    "homepage": "https://www.uniprot.org/database/",
+    "name": "UniProt Resource",
+    "uri_format": "https://www.uniprot.org/database/DB-$1"
   },
   "uniprot.tissue": {
     "mappings": {
