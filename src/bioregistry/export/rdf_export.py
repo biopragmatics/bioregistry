@@ -127,7 +127,7 @@ def resource_to_rdf_str(data, fmt: Optional[str] = None) -> str:
     """Get a collection as an RDF string."""
     if isinstance(data, str):
         data = {"prefix": data, **bioregistry.get_resource(data).dict()}  # type: ignore
-    graph, _ = _add_resource(data)
+    graph = _add_resource(data)
     return _graph_str(graph, fmt=fmt)
 
 
@@ -189,13 +189,14 @@ RESOURCE_FUNCTIONS: List[Tuple[Union[str, URIRef], Callable[[str], Any], URIRef]
 ]
 
 
-def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib.Graph, Node]:
+def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
     if graph is None:
         graph = _graph()
     prefix = data["prefix"]
     resource = bioregistry.get_resource(prefix)
     if resource is None:
-        raise ValueError
+        logger.warning("Could not look up prefix: %s", prefix)
+        return graph
     node = cast(URIRef, bioregistry_resource[prefix])
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(bioregistry.get_name(prefix))))
@@ -271,7 +272,7 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
             )
         )
 
-    return graph, node
+    return graph
 
 
 if __name__ == "__main__":
