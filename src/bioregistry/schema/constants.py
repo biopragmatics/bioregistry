@@ -214,7 +214,7 @@ bioregistry_schema_extras = [
     ("0000003", DCTERMS.contributor, "contributor", "0000020"),  # author creator of collection
     ("0000001", DCTERMS.creator, "creator", "0000020"),  # author creator of resource
     ("0000001", DCTERMS.contributor, "contributor", "0000020"),  # author creator of resource
-    ("0000001", SKOS.exactMatch, "equivalent", "0000001"),  # resource equivalence
+    ("0000001", SKOS.exactMatch, "exact match", "0000001"),  # resource equivalence
 ]
 bioregistry_collection = rdflib.namespace.Namespace("https://bioregistry.io/collection/")
 bioregistry_resource = rdflib.namespace.Namespace("https://bioregistry.io/registry/")
@@ -264,37 +264,20 @@ def get_schema_nx():
     import networkx as nx
 
     graph = nx.MultiDiGraph()
-    c = 0
-    prop_to_range = {}
-    prop_to_domain = {}
     for term in bioregistry_schema_terms:
-        if isinstance(term, PropertyTerm):
-            # if isinstance(term.range, URIRef):
-            #     graph.add_node(c, label=urldefrag(term.range)[1])
-            #     prop_to_range[term.identifier] = c
-            #     c += 1
-            # if isinstance(term.domain, URIRef):
-            #     graph.add_node(c, label=urldefrag(term.domain)[1])
-            #     prop_to_domain[term.identifier] = c
-            #     c += 1
-            pass
-        else:
+        if isinstance(term, ClassTerm):
             graph.add_node(term.identifier, label=term.label)
 
     for term in bioregistry_schema_terms:
         if not isinstance(term, PropertyTerm):
             continue
         range = None if isinstance(term.range, URIRef) else term.range
-        # range = prop_to_range[term.identifier] if isinstance(term.range, URIRef) else term.range
         domain = None if isinstance(term.domain, URIRef) else term.domain
-        # domain = prop_to_domain[term.identifier] if isinstance(term.domain, URIRef) else term.domain
         if range and domain:
             graph.add_edge(domain, range, label=term.label)
 
     for s, p, p_label, o in bioregistry_schema_extras:
         graph.add_edge(s, o, label=p_label)
-
-    # TODO collapse labels on self-loops to use commas or new lines
 
     for node in list(graph):
         if node not in graph[node]:

@@ -803,25 +803,9 @@ class Manager:
         default_prefixes = {"bioregistry.schema", "bfo"}
         rv = {prefix: self.get_uri_prefix(prefix) for prefix in default_prefixes}
         for metaprefix, metaresource in self.metaregistry.items():
-            if not metaresource.provider_uri_format:
-                logger.warning("Missing provider_uri_format for %s", metaprefix)
-                continue
-            if not metaresource.provider_uri_format.endswith("$1"):
-                logger.warning(
-                    "Invalid provider_uri_format for %s: %s",
-                    metaprefix,
-                    metaresource.provider_uri_format,
-                )
-                continue
-            uri_prefix = metaresource.provider_uri_format.rstrip("$1")
+            uri_prefix = metaresource.get_provider_uri_prefix()
             if metaresource.bioregistry_prefix:
                 rv[metaresource.bioregistry_prefix] = uri_prefix
-            elif metaprefix in self.registry and not metaresource.bioregistry_prefix:
-                # FIXME enforce all entries have corresponding bioregistry entry
-                logger.warning(
-                    "Both registry and metaregistry have prefix: %s (skipping)", metaprefix
-                )
-                continue
             else:
                 rv[metaprefix] = uri_prefix
         return rv

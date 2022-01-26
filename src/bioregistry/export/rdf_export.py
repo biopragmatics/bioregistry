@@ -8,19 +8,29 @@ from typing import Callable, List, Optional, Tuple, Union, cast
 
 import click
 import rdflib
-from rdflib import BNode, Literal, Namespace
+from rdflib import Literal, Namespace
 from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS, SKOS, XSD
 from rdflib.term import Node, URIRef
 
 import bioregistry
 from bioregistry import read_collections, read_metaregistry, read_registry
-from bioregistry.constants import RDF_JSONLD_PATH, RDF_NT_PATH, RDF_TURTLE_PATH
+from bioregistry.constants import (
+    RDF_JSONLD_PATH,
+    RDF_NT_PATH,
+    RDF_TURTLE_PATH,
+    SCHEMA_JSONLD_PATH,
+    SCHEMA_NT_PATH,
+    SCHEMA_PDF_PATH,
+    SCHEMA_SVG_PATH,
+    SCHEMA_TURTLE_PATH,
+)
 from bioregistry.export.sssom_export import CURIE_MAP
 from bioregistry.schema.constants import (
     bioregistry_collection,
     bioregistry_metaresource,
     bioregistry_resource,
     bioregistry_schema,
+    get_schema_nx,
     get_schema_rdf,
     orcid,
 )
@@ -35,7 +45,21 @@ NAMESPACE_WARNINGS = set()
 @click.command()
 def export_rdf():
     """Export RDF."""
-    graph = get_full_rdf() + get_schema_rdf()
+    schema_rdf = get_schema_rdf()
+    schema_rdf.serialize(SCHEMA_TURTLE_PATH.as_posix(), format="turtle")
+    schema_rdf.serialize(SCHEMA_NT_PATH.as_posix(), format="nt")
+    schema_rdf.serialize(
+        SCHEMA_JSONLD_PATH.as_posix(),
+        format="json-ld",
+        context={
+            "@language": "en",
+            **dict(schema_rdf.namespaces()),
+        },
+        sort_keys=True,
+        ensure_ascii=False,
+    )
+
+    graph = get_full_rdf() + schema_rdf
     graph.serialize(RDF_TURTLE_PATH.as_posix(), format="turtle")
     graph.serialize(RDF_NT_PATH.as_posix(), format="nt")
     # Currently getting an issue with not being able to shorten URIs
@@ -52,6 +76,13 @@ def export_rdf():
         sort_keys=True,
         ensure_ascii=False,
     )
+
+    from networkx.drawing.nx_agraph import to_agraph
+
+    agraph = to_agraph(get_schema_nx())
+    agraph.layout(prog="dot")
+    agraph.draw(SCHEMA_SVG_PATH)
+    agraph.draw(SCHEMA_PDF_PATH)
 
 
 def _graph() -> rdflib.Graph:
@@ -176,6 +207,8 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
     node = cast(URIRef, bioregistry_resource[prefix])
     graph.add((node, RDF.type, bioregistry_schema["0000001"]))
     graph.add((node, RDFS.label, Literal(bioregistry.get_name(prefix))))
+    graph.add((node, DCTERMS.isPartOf, bioregistry_metaresource["bioregistry"]))
+    graph.add((bioregistry_metaresource["bioregistry"], DCTERMS.hasPart, node))
 
     for predicate, func, datatype in RESOURCE_FUNCTIONS:
         value = func(prefix)
@@ -232,6 +265,20 @@ def _add_resource(data, *, graph: Optional[rdflib.Graph] = None) -> Tuple[rdflib
                 NAMESPACE_WARNINGS.add(metaprefix)
             continue
         graph.add((node, SKOS.exactMatch, NAMESPACES[metaprefix][metaidentifier]))
+        graph.add(
+            (
+                NAMESPACES[metaprefix][metaidentifier],
+                DCTERMS.isPartOf,
+                bioregistry_metaresource[metaresource.prefix],
+            )
+        )
+        graph.add(
+            (
+                bioregistry_metaresource[metaresource.prefix],
+                DCTERMS.hasPart,
+                NAMESPACES[metaprefix][metaidentifier],
+            )
+        )
 
     return graph, node
 
