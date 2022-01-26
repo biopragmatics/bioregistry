@@ -45,6 +45,20 @@ class TestMetaregistry(unittest.TestCase):
                 ):
                     self.assertIsNotNone(registry_pydantic.bioregistry_prefix)
 
+                if registry_pydantic.bioregistry_prefix:
+                    self.assertEqual(
+                        bioregistry.normalize_prefix(registry_pydantic.bioregistry_prefix),
+                        registry_pydantic.bioregistry_prefix,
+                        msg="link from metaregistry to bioregistry must use canonical prefix",
+                    )
+                    resource = bioregistry.get_resource(registry_pydantic.bioregistry_prefix)
+                    self.assertIsNotNone(resource)
+                    self.assertIsNotNone(
+                        resource.get_uri_format(),
+                        msg=f"corresponding registry entry ({registry_pydantic.bioregistry_prefix})"
+                        f" is missing a uri_format",
+                    )
+
                 # When a registry is a resolver, it means it
                 # can resolve entries (prefixes) + identifiers
                 if registry_pydantic.resolver_uri_format:
