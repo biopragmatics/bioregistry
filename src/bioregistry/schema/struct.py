@@ -1242,6 +1242,8 @@ class Registry(BaseModel):
     def get_provider_uri_prefix(self) -> str:
         """Get provider URI prefix.
 
+        :returns: The URI prefix for the provider for prefixes in this registry.
+
         >>> from bioregistry import get_registry
         >>> get_registry("fairsharing").get_provider_uri_prefix()
         'https://fairsharing.org/'
