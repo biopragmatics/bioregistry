@@ -55,7 +55,7 @@ jobs:
       ##################
       - name: bump2version release
         if: steps.update.outputs.BR_UPDATED == 'true'
-        run |
+        run: |
           tox -e bumpversion-release
 
       ##########
@@ -102,7 +102,7 @@ jobs:
       #############
       - name: bump2version patch
         if: steps.update.outputs.BR_UPDATED == 'true'
-        run |
+        run: |
           tox -e bumpversion patch
       - name: Push changes
         if: steps.update.outputs.BR_UPDATED == 'true'
