@@ -132,8 +132,8 @@ class TestResolve(unittest.TestCase):
             "^chembl\\.compound:CHEMBL\\d+$", bioregistry.get_curie_pattern("chembl.compound")
         )
         pattern = bioregistry.get_curie_pattern("panther.pthcmp")
-        self.assertRegexpMatches("panther.pthcmp:P00266", pattern)
-        self.assertNotRegexpMatches("pantherXpthcmp:P00266", pattern)
+        self.assertRegex("panther.pthcmp:P00266", pattern)
+        self.assertNotRegex("pantherXpthcmp:P00266", pattern)
 
     def test_depends_on(self):
         """Test getting dependencies."""
