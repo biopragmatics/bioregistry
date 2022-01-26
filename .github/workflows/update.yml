@@ -14,12 +14,13 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.9
+      - name: Install dependencies
+        run: |
+          pip install tox
       - name: Create local changes
         id: update
         run: |
-          pip install --upgrade pip setuptools wheel
-          pip install -e .[align,export,charts]
-          bioregistry update
+          tox -e update
         env:
           BIOPORTAL_API_KEY: ${{ secrets.BIOPORTAL_API_KEY }}
           FAIRSHARING_LOGIN: ${{ secrets.FAIRSHARING_LOGIN }}
@@ -43,12 +44,10 @@ jobs:
       - name: Run tests, don't push to PyPI unless passing
         if: steps.update.outputs.BR_UPDATED == 'true'
         run: |
-          pip install tox
           tox -e py
       - name: Release to PyPI
         if: steps.update.outputs.BR_UPDATED == 'true'
         run: |
-          pip install tox
           tox -e bumpversion-release
           tox -e release
           tox -e bumpversion patch
