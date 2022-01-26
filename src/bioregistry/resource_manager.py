@@ -266,6 +266,13 @@ class Manager:
             return None
         return entry.get_example()
 
+    def has_no_terms(self, prefix: str) -> bool:
+        """Get if the entry has been annotated to not have own terms."""
+        entry = self.get_resource(prefix)
+        if entry is None or entry.no_own_terms is None:
+            return False
+        return entry.no_own_terms
+
     def is_deprecated(self, prefix: str) -> bool:
         """Return if the given prefix corresponds to a deprecated resource."""
         entry = self.get_resource(prefix)

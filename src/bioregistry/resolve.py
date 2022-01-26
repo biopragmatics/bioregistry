@@ -529,10 +529,7 @@ def get_example(prefix: str) -> Optional[str]:
 
 def has_no_terms(prefix: str) -> bool:
     """Check if the prefix is specifically noted to not have terms."""
-    entry = get_resource(prefix)
-    if entry is None or entry.no_own_terms is None:
-        return False
-    return entry.no_own_terms
+    return manager.has_no_terms(prefix)
 
 
 def is_deprecated(prefix: str) -> bool:
