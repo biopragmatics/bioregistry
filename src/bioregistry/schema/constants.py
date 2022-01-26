@@ -32,11 +32,15 @@ class Term:
 
 @dataclass
 class ClassTerm(Term):
+    """A term for a class."""
+
     xref: Optional[URIRef] = None
 
 
 @dataclass
 class PropertyTerm(Term):
+    """A term for a property."""
+
     domain: Union[str, Node]
     range: Union[str, Node]
 
@@ -261,6 +265,7 @@ def get_schema_rdf() -> rdflib.Graph:
 
 
 def get_schema_nx():
+    """Get the schema as a networkx multidigraph."""
     import networkx as nx
 
     graph = nx.MultiDiGraph()
@@ -287,17 +292,3 @@ def get_schema_nx():
         graph.add_edge(node, node, label=",\n".join(labels))
 
     return graph
-
-
-def _main():
-    rdf_graph = get_schema_rdf()
-    rdf_graph.serialize("schema.ttl")
-
-    nx_graph = get_schema_nx()
-    from networkx.drawing.nx_agraph import to_agraph
-
-    to_agraph(nx_graph).draw("schema.pdf", prog="dot")
-
-
-if __name__ == "__main__":
-    _main()
