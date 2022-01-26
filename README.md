@@ -102,11 +102,14 @@ and the last run can be seen [here](https://github.com/biopragmatics/bioregistry
 Further, a [changelog](https://github.com/biopragmatics/bioregistry/commits?author=actions-user) can be recapitulated from the
 commits of the GitHub Actions bot.
 
-If you want to manually update the database after installing in development mode, run the following:
+If you want to manually update the database, run the following:
 
 ```shell
-$ bioregistry update
+$ tox -e update
 ```
+
+Make sure that you have valid environment variables or `pystow` configurations 
+for `BIOPORTAL_API_KEY`, `FAIRSHARING_LOGIN`, and `FAIRSHARING_PASSWORD`.
 
 ## 🚀 Installation
 
