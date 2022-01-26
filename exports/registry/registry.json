@@ -1010,6 +1010,7 @@
     },
     "deprecated": true,
     "description": "Amphibian Taxonomy Ontology is an ontology of Amphibian species and genres. It is being integrated into UBERON resource",
+    "example": "0000000",
     "homepage": "http://www.amphibanat.org",
     "mappings": {
       "bioportal": "ATO",
@@ -1385,6 +1386,7 @@
       "lepao",
       "mco",
       "ons",
+      "pcl",
       "pco",
       "psdo",
       "rbo",
@@ -2860,6 +2862,14 @@
     ],
     "uri_format": "https://web.expasy.org/cellosaurus/$1"
   },
+  "cellosaurus.resource": {
+    "description": "The set of prefixes used in the Cellosaurus resource",
+    "example": "4DN",
+    "homepage": "https://web.expasy.org/cellosaurus/",
+    "name": "Cellosaurus Registry",
+    "preferred_prefix": "cellosaurus.resource",
+    "uri_format": "https://bioregistry.io/metaregistry/cellosaurus/$1"
+  },
   "cellrepo": {
     "description": "The Cell Version Control Repository is the single worldwide version control repository for engineered and natural cell lines",
     "example": "82",
@@ -2989,6 +2999,7 @@
       "maxo",
       "mco",
       "ons",
+      "pcl",
       "scdo",
       "uberon",
       "xpo"
@@ -3406,6 +3417,7 @@
       "ehdaa2",
       "go",
       "mco",
+      "pcl",
       "uberon",
       "xpo"
     ],
@@ -5159,6 +5171,7 @@
       "orcid": null
     },
     "deprecated": true,
+    "example": "0000003",
     "homepage": "http://www.dukeontologygroup.org/Projects.html",
     "mappings": {
       "obofoundry": "DC_CL",
@@ -6621,6 +6634,7 @@
       "orcid": null
     },
     "deprecated": true,
+    "example": "1",
     "homepage": "http://genex.hgu.mrc.ac.uk/",
     "mappings": {
       "bioportal": "EHDA",
@@ -6640,6 +6654,7 @@
       "orcid": null
     },
     "deprecated": true,
+    "example": "1",
     "mappings": {
       "bioportal": "EHDAA",
       "obofoundry": "EHDAA",
@@ -6711,6 +6726,7 @@
     },
     "deprecated": true,
     "description": "A structured controlled vocabulary of stage-specific anatomical structures of the mouse (Mus).",
+    "example": "1",
     "homepage": "http://emouseatlas.org",
     "mappings": {
       "bioportal": "EMAP",
@@ -7686,6 +7702,7 @@
     },
     "deprecated": true,
     "description": "The taxonomy of the family <i>Drosophilidae</i> (largely after Baechli) and of other taxa referred to in FlyBase.",
+    "example": "00000000",
     "homepage": "http://www.flybase.org/",
     "mappings": {
       "bioportal": "FB-SP",
@@ -7850,6 +7867,7 @@
       "orcid": null
     },
     "deprecated": true,
+    "example": "0000404",
     "homepage": "http://purl.obolibrary.org/obo/flu/",
     "mappings": {
       "bioportal": "FLU",
@@ -9070,6 +9088,7 @@
       "ecto",
       "envo",
       "maxo",
+      "pcl",
       "pco",
       "planp",
       "uberon",
@@ -9172,6 +9191,14 @@
     "pattern": "^\\d{7}$",
     "preferred_prefix": "go.ref",
     "uri_format": "https://github.com/geneontology/go-site/blob/master/metadata/gorefs/goref-$1.md"
+  },
+  "go.resource": {
+    "description": "A database-specific registry supporting curation in the Gene Ontology",
+    "example": "CHEBI",
+    "homepage": "http://geneontology.org/",
+    "name": "Gene Ontology Registry",
+    "preferred_prefix": "go.resource",
+    "uri_format": "https://bioregistry.io/metaregistry/go/$1"
   },
   "goa": {
     "description": "The GOA (Gene Ontology Annotation) project provides high-quality Gene Ontology (GO) annotations to proteins in the UniProt Knowledgebase (UniProtKB) and International Protein Index (IPI). This involves electronic annotation and the integration of high-quality manual GO annotation from all GO Consortium model organism groups and specialist groups.",
@@ -10657,18 +10684,6 @@
     "preferred_prefix": "ideal",
     "uri_format": "http://idp1.force.cs.is.nagoya-u.ac.jp/IDEAL/ideal.php?id=$1"
   },
-  "identifiers.namespace": {
-    "description": "Identifiers.org is an established resolving system that enables the referencing of data for the scientific community, with a current focus on the Life Sciences domain.",
-    "example": "pubmed",
-    "homepage": "https://www.ebi.ac.uk",
-    "mappings": {
-      "miriam": "identifiers.namespace"
-    },
-    "name": "Identifiers.org namespace",
-    "pattern": "^[a-z_\\.]+$",
-    "preferred_prefix": "identifiers.namespace",
-    "uri_format": "https://registry.identifiers.org/registry/$1"
-  },
   "ido": {
     "appears_in": [
       "scdo"
@@ -10812,6 +10827,7 @@
   "iev": {
     "banana": "IEV",
     "deprecated": true,
+    "example": "0000000",
     "homepage": "http://www.inoh.org",
     "mappings": {
       "obofoundry": "IEV",
@@ -11002,6 +11018,7 @@
       "orcid": null
     },
     "deprecated": true,
+    "example": "0000001",
     "homepage": "http://www.inoh.org",
     "mappings": {
       "obofoundry": "IMR",
@@ -12743,6 +12760,7 @@
       "orcid": null
     },
     "deprecated": true,
+    "example": "0000000",
     "mappings": {
       "bioportal": "MAT",
       "obofoundry": "MAT",
@@ -13761,6 +13779,22 @@
     "preferred_prefix": "mirex",
     "uri_format": "http://comgen.pl/mirex1/?page=results/record&name=$1&exref=pp2a&limit=yes"
   },
+  "miriam": {
+    "description": "Identifiers.org is an established resolving system that enables the referencing of data for the scientific community, with a current focus on the Life Sciences domain.",
+    "example": "pubmed",
+    "homepage": "https://www.ebi.ac.uk",
+    "mappings": {
+      "fairsharing": "FAIRsharing.ap169a",
+      "miriam": "identifiers.namespace"
+    },
+    "name": "Identifiers.org namespace",
+    "pattern": "^[a-z_\\.]+$",
+    "preferred_prefix": "miriam",
+    "synonyms": [
+      "identifiers.namespace"
+    ],
+    "uri_format": "https://registry.identifiers.org/registry/$1"
+  },
   "miriam.collection": {
     "deprecated": true,
     "description": "MIRIAM Registry is an online resource created to catalogue collections (Gene Ontology, Taxonomy or PubMed are some examples) and the corresponding resources (physical locations) providing access to those data collections. The Registry provides unique and perennial URIs for each entity of those data collections.",
@@ -14656,6 +14690,14 @@
     ],
     "uri_format": "http://proteomecentral.proteomexchange.org/usi/?usi=mzspec:$1"
   },
+  "n2t": {
+    "description": "An ARK resolver as well as resolver built with common prefixes as in Identifiers.org",
+    "example": "chebi",
+    "homepage": "https://n2t.net",
+    "name": "Name-to-Thing",
+    "preferred_prefix": "n2t",
+    "uri_format": "https://n2t.net/$1:"
+  },
   "namerxn": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -14753,6 +14795,7 @@
   "nbo": {
     "appears_in": [
       "ecto",
+      "pcl",
       "scdo"
     ],
     "banana": "NBO",
@@ -14809,6 +14852,14 @@
     "name": "NCATS Drugs",
     "preferred_prefix": "ncats.drug",
     "uri_format": "https://drugs.ncats.io/drug/$1"
+  },
+  "ncbi.resource": {
+    "description": "A database-specific registry supporting curation in the NCBI GenBank and related NCBI resources",
+    "example": "ECOCYC",
+    "homepage": "https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/",
+    "name": "NCBI Registry",
+    "preferred_prefix": "ncbi.resource",
+    "uri_format": "https://bioregistry.io/metaregistry/ncbi/$1"
   },
   "ncbibook": {
     "contributor": {
@@ -14894,7 +14945,8 @@
       "go",
       "hso",
       "mco",
-      "ons"
+      "ons",
+      "pcl"
     ],
     "contact": {
       "email": "frederic.bastian@unil.ch",
@@ -16329,6 +16381,9 @@
     "version": "2019-06-07"
   },
   "omo": {
+    "appears_in": [
+      "pcl"
+    ],
     "banana": "OMO",
     "contact": {
       "email": "cjmungall@lbl.gov",
@@ -17172,6 +17227,7 @@
       "lepao",
       "mco",
       "ms",
+      "pcl",
       "pco",
       "phipo",
       "planp",
@@ -17277,6 +17333,26 @@
     "pattern": "^TF\\w+$",
     "preferred_prefix": "pazar",
     "uri_format": "http://www.pazar.info/cgi-bin/tf_search.cgi?geneID=$1"
+  },
+  "pcl": {
+    "banana": "PCL",
+    "contact": {
+      "email": "davidos@ebi.ac.uk",
+      "github": "dosumis",
+      "name": "David Osumi-Sutherland",
+      "orcid": null
+    },
+    "description": "Cell types that are provisionally defined by experimental techniques such as single cell or single nucleus transcriptomics rather than a straightforward & coherent set of properties.",
+    "example": "0011124",
+    "homepage": "https://github.com/obophenotype/provisional_cell_ontology",
+    "license": "CC BY 4.0",
+    "mappings": {
+      "bioportal": "PCL",
+      "obofoundry": "PCL"
+    },
+    "name": "Provisional Cell Ontology",
+    "preferred_prefix": "PCL",
+    "uri_format": "http://purl.obolibrary.org/obo/PCL_$1"
   },
   "pco": {
     "appears_in": [
@@ -18472,6 +18548,7 @@
   "pr": {
     "appears_in": [
       "chiro",
+      "pcl",
       "scdo",
       "uberon"
     ],
@@ -19737,6 +19814,7 @@
       "maxo",
       "ons",
       "ontoavida",
+      "pcl",
       "pco",
       "plana",
       "planp",
@@ -20135,6 +20213,14 @@
     "pattern": "^A\\d{4}$",
     "preferred_prefix": "schem"
   },
+  "scholia.resource": {
+    "description": "A frontend to Wikidata",
+    "example": "doi",
+    "homepage": "https://scholia.toolforge.org/",
+    "name": "Scholia Registry",
+    "preferred_prefix": "scholia.resource",
+    "uri_format": "https://bioregistry.io/metaregistry/scholia/$1"
+  },
   "scomp": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -20319,6 +20405,7 @@
     },
     "deprecated": true,
     "description": "A structured controlled vocabulary for the annotation of sample processing and separation techniques in scientific experiments.",
+    "example": "00073",
     "homepage": "https://psidev.info/sepcv",
     "mappings": {
       "bioportal": "SEP",
@@ -20809,6 +20896,9 @@
     "uri_format": "https://ccg.epfl.ch/cgi-bin/snp2tfbs/snpviewer_form_parser.cgi?snpid=$1"
   },
   "so": {
+    "appears_in": [
+      "pcl"
+    ],
     "banana": "SO",
     "contact": {
       "email": "keilbeck@genetics.utah.edu",
@@ -22002,6 +22092,7 @@
       "mco",
       "mfmo",
       "ons",
+      "pcl",
       "plana",
       "poro",
       "zp"
@@ -22441,6 +22532,14 @@
       "UniProtKB-SubCell"
     ],
     "uri_format": "https://www.uniprot.org/locations/SL-$1"
+  },
+  "uniprot.resource": {
+    "description": "The cross-references section of UniProtKB entries displays explicit and implicit links to databases such as nucleotide sequence databases, model organism databases and genomics and proteomics resources.",
+    "example": "0174",
+    "homepage": "https://www.uniprot.org/database/",
+    "name": "UniProt Resource",
+    "preferred_prefix": "uniprot.resource",
+    "uri_format": "https://www.uniprot.org/database/DB-$1"
   },
   "uniprot.tissue": {
     "description": "The UniProt Tissue List is a controlled vocabulary of terms used to annotate biological tissues. It also contains cross-references to other ontologies where tissue types are specified.",

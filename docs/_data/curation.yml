@@ -5,9 +5,6 @@ example:
 - homepage: https://www.allotrope.org/
   name: Allotrope Merged Ontology Suite
   prefix: afo
-- homepage: http://www.amphibanat.org
-  name: Amphibian taxonomy
-  prefix: ato
 - homepage: https://bams1.org
   name: Brain Architecture Knowledge Management System Neuroanatomical Ontology
   prefix: bams
@@ -35,24 +32,12 @@ example:
 - homepage: http://www.gramene.org/plant_ontology/
   name: Cereal Plant Gross Anatomy
   prefix: cpga
-- homepage: http://www.dukeontologygroup.org/Projects.html
-  name: Dendritic cell
-  prefix: dc_cl
 - homepage: http://labda.inf.uc3m.es/doku.php?id=es:labda_dinto
   name: The Drug-Drug Interactions Ontology
   prefix: dinto
 - homepage: http://purl.obolibrary.org/obo/fbcv
   name: Drosophila Phenotype Ontology
   prefix: dpo
-- homepage: http://genex.hgu.mrc.ac.uk/
-  name: Human developmental anatomy, timed version
-  prefix: ehda
-- homepage: null
-  name: Human developmental anatomy, abstract version
-  prefix: ehdaa
-- homepage: http://emouseatlas.org
-  name: Mouse gross anatomy and development, timed
-  prefix: emap
 - homepage: https://www.aepc.org/european-paediatric-cardiac-coding
   name: European Paediatric Cardiac Codes
   prefix: epcc
@@ -68,12 +53,6 @@ example:
 - homepage: null
   name: eVOC mouse development stage
   prefix: evm
-- homepage: http://www.flybase.org/
-  name: Fly taxonomy
-  prefix: fbsp
-- homepage: http://purl.obolibrary.org/obo/flu/
-  name: Influenza Ontology
-  prefix: flu
 - homepage: http://www.semantic-systems-biology.org/apo
   name: Gene Expression Ontology
   prefix: gexo
@@ -86,15 +65,9 @@ example:
 - homepage: https://www.humancellatlas.org
   name: Human Cell Atlas Ontology
   prefix: hcao
-- homepage: http://www.inoh.org
-  name: Event (INOH pathway ontology)
-  prefix: iev
 - homepage: http://www.imdrf.org/
   name: International Medical Device Regulators Forum
   prefix: imdrf
-- homepage: http://www.inoh.org
-  name: Molecule role (INOH Protein name/family name ontology)
-  prefix: imr
 - homepage: https://www.goreni.org/gr3_nomenclature.php
   name: The International Harmonization of Nomenclature and Diagnostic criteria
   prefix: inhand
@@ -113,9 +86,6 @@ example:
 - homepage: http://www-igbmc.u-strasbg.fr/BioInfo/MAO/mao.html
   name: Multiple alignment
   prefix: mao
-- homepage: null
-  name: Minimal Anatomical Terminology
-  prefix: mat
 - homepage: null
   name: Cell Line Ontology [derivative]
   prefix: mcc
@@ -152,6 +122,9 @@ example:
 - homepage: http://www.plantontology.org
   name: Plant Anatomy Ontology
   prefix: pao
+- homepage: null
+  name: null
+  prefix: pcl
 - homepage: http://4dx.embl.de/platy
   name: Platynereis stage ontology
   prefix: pd_st
@@ -179,9 +152,6 @@ example:
 - homepage: http://ccdb.ucsd.edu/CCDBWebSite/sao.html
   name: Subcellular Anatomy Ontology
   prefix: sao
-- homepage: https://psidev.info/sepcv
-  name: Sample processing and separation techniques
-  prefix: sep
 - homepage: http://www.loria.fr/~coulet/sopharm2.0_description.php
   name: Suggested Ontology for Pharmacogenomics
   prefix: sopharm
@@ -462,6 +432,9 @@ formatter:
 - homepage: https://github.com/qfo/OrthologyOntology
   name: Orthology Ontology
   prefix: orth
+- homepage: null
+  name: null
+  prefix: pcl
 - homepage: https://www.psidev.info/peff
   name: PSI Extended File Format
   prefix: peff
@@ -706,6 +679,9 @@ pattern:
 - homepage: https://web.expasy.org/cellosaurus/
   name: Cellosaurus Publication
   prefix: cellopub
+- homepage: https://web.expasy.org/cellosaurus/
+  name: Cellosaurus Registry
+  prefix: cellosaurus.resource
 - homepage: http://www.cghtmd.jp/CGHDatabase/index_e.jsp
   name: CGH Data Base
   prefix: cghdb
@@ -1117,6 +1093,9 @@ pattern:
 - homepage: http://www.geneontology.org/gocam
   name: Gene Ontology Causal Assembly Model
   prefix: go.model
+- homepage: http://geneontology.org/
+  name: Gene Ontology Registry
+  prefix: go.resource
 - homepage: https://github.com/geneontology/go-ontology/
   name: GO Chemicals
   prefix: goche
@@ -1363,12 +1342,18 @@ pattern:
 - homepage: http://multicellds.org/MultiCellDB.php
   name: MultiCellDS
   prefix: multicellds
+- homepage: https://n2t.net
+  name: Name-to-Thing
+  prefix: n2t
 - homepage: https://www.nextmovesoftware.com/namerxn.html
   name: NameRXN
   prefix: namerxn
 - homepage: https://drugs.ncats.io/
   name: NCATS Drugs
   prefix: ncats.drug
+- homepage: https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/
+  name: NCBI Registry
+  prefix: ncbi.resource
 - homepage: https://www.ncbi.nlm.nih.gov/books
   name: NCBI Bookshelf
   prefix: ncbibook
@@ -1522,6 +1507,9 @@ pattern:
 - homepage: http://www.plantontology.org
   name: Plant Anatomy Ontology
   prefix: pao
+- homepage: null
+  name: null
+  prefix: pcl
 - homepage: http://4dx.embl.de/platy
   name: Platynereis stage ontology
   prefix: pd_st
@@ -1639,6 +1627,9 @@ pattern:
 - homepage: https://scdontology.h3abionet.org/
   name: Sickle Cell Disease Ontology
   prefix: scdo
+- homepage: https://scholia.toolforge.org/
+  name: Scholia Registry
+  prefix: scholia.resource
 - homepage: https://github.com/SDG-InterfaceOntology/sdgio
   name: Sustainable Development Goals Interface Ontology
   prefix: sdgio
@@ -1744,6 +1735,9 @@ pattern:
 - homepage: http://www.uniprot.org/keywords/
   name: UniProt Keywords
   prefix: uniprot.keyword
+- homepage: https://www.uniprot.org/database/
+  name: UniProt Resource
+  prefix: uniprot.resource
 - homepage: https://www.uniprot.org/unirule/
   name: UniRule
   prefix: unirule
@@ -2297,6 +2291,9 @@ wikidata:
 - homepage: https://web.expasy.org/cellosaurus/
   name: Cellosaurus Publication
   prefix: cellopub
+- homepage: https://web.expasy.org/cellosaurus/
+  name: Cellosaurus Registry
+  prefix: cellosaurus.resource
 - homepage: https://cellrepo.ico2s.org/
   name: Cell Version Control Repository
   prefix: cellrepo
@@ -3300,6 +3297,9 @@ wikidata:
 - homepage: http://www.geneontology.org/cgi-bin/references.cgi
   name: Gene Ontology Database references
   prefix: go.ref
+- homepage: http://geneontology.org/
+  name: Gene Ontology Registry
+  prefix: go.resource
 - homepage: https://www.ebi.ac.uk/GOA/
   name: Gene Ontology Annotation Database Identifier
   prefix: goa
@@ -3546,9 +3546,6 @@ wikidata:
 - homepage: https://www.ideal-db.org
   name: Intrinsically Disordered proteins with Extensive Annotations and Literature
   prefix: ideal
-- homepage: https://www.ebi.ac.uk
-  name: Identifiers.org namespace
-  prefix: identifiers.namespace
 - homepage: http://www.bioontology.org/wiki/index.php/Infectious_Disease_Ontology
   name: Infectious Disease Ontology
   prefix: ido
@@ -4002,6 +3999,9 @@ wikidata:
 - homepage: http://comgen.pl/mirex/?page=home
   name: mirEX
   prefix: mirex
+- homepage: https://www.ebi.ac.uk
+  name: Identifiers.org namespace
+  prefix: miriam
 - homepage: https://www.ebi.ac.uk/miriam/
   name: MIRIAM Registry collection
   prefix: miriam.collection
@@ -4146,6 +4146,9 @@ wikidata:
 - homepage: http://proteomecentral.proteomexchange.org/
   name: Universal Spectrum Identifier
   prefix: mzspec
+- homepage: https://n2t.net
+  name: Name-to-Thing
+  prefix: n2t
 - homepage: https://www.nextmovesoftware.com/namerxn.html
   name: NameRXN
   prefix: namerxn
@@ -4173,6 +4176,9 @@ wikidata:
 - homepage: https://drugs.ncats.io/
   name: NCATS Drugs
   prefix: ncats.drug
+- homepage: https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/
+  name: NCBI Registry
+  prefix: ncbi.resource
 - homepage: https://www.ncbi.nlm.nih.gov/books
   name: NCBI Bookshelf
   prefix: ncbibook
@@ -4524,6 +4530,9 @@ wikidata:
 - homepage: http://www.pazar.info/
   name: Pazar Transcription Factor
   prefix: pazar
+- homepage: null
+  name: null
+  prefix: pcl
 - homepage: https://github.com/PopulationAndCommunityOntology/pco
   name: Population and Community Ontology
   prefix: pco
@@ -4941,6 +4950,9 @@ wikidata:
 - homepage: https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets
   name: Selventa Chemicals
   prefix: schem
+- homepage: https://scholia.toolforge.org/
+  name: Scholia Registry
+  prefix: scholia.resource
 - homepage: https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets
   name: Selventa Complexes
   prefix: scomp
@@ -5310,6 +5322,9 @@ wikidata:
 - homepage: https://www.uniprot.org/locations/
   name: UniProt Subcellular Locations
   prefix: uniprot.location
+- homepage: https://www.uniprot.org/database/
+  name: UniProt Resource
+  prefix: uniprot.resource
 - homepage: https://www.uniprot.org/docs/tisslist.txt
   name: Tissue List
   prefix: uniprot.tissue
