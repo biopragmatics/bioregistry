@@ -151,6 +151,10 @@ class Resource(BaseModel):
     homepage: Optional[str] = Field(
         description="The URL for the homepage of the resource, preferably with HTTPS",
     )
+    #: The URL for the repository of the resource
+    repository: Optional[str] = Field(
+        description="The URL for the repository of the resource",
+    )
     #: The contact email address for the individual responsible for the resource
     contact: Optional[Attributable] = Field(
         description=(
@@ -206,6 +210,11 @@ class Resource(BaseModel):
     download_obo: Optional[str] = Field(
         title="OBO Download URL",
         description="The OBO download URL, preferably an unversioned variant",
+    )
+    #: The OBOGraph JSON download URL, preferably an unversioned variant
+    download_json: Optional[str] = Field(
+        title="OBO Graph JSON Download URL",
+        description="The OBO Graph JSON download URL, preferably an unversioned variant",
     )
     #: The `banana` is a generalization of the concept of the "namespace embedded in local unique identifier".
     #: Many OBO foundry ontologies use the redundant uppercased name of the ontology in the local identifier,
@@ -585,6 +594,8 @@ class Resource(BaseModel):
 
     def get_repository(self) -> Optional[str]:
         """Return the repository, if available."""
+        if self.repository:
+            return self.repository
         return self.get_prefix_key("repository", "obofoundry")
 
     def get_contact(self) -> Optional[Attributable]:
@@ -1093,6 +1104,8 @@ class Resource(BaseModel):
 
     def get_download_obograph(self) -> Optional[str]:
         """Get the download link for the latest OBOGraph JSON file."""
+        if self.download_json:
+            return self.downloadjson
         return self.get_external("obofoundry").get("download.json")
 
     def get_download_owl(self) -> Optional[str]:
