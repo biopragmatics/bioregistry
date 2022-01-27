@@ -7,6 +7,7 @@ import logging
 import pathlib
 import re
 from functools import lru_cache
+from textwrap import dedent
 from typing import (
     Any,
     Callable,
@@ -52,25 +53,31 @@ IDOT_SKIP = "identifiers.org"
 
 
 class Attributable(BaseModel):
-    """An upper-level metadata for a person."""
+    """An upper-level metadata for a researcher."""
 
-    #: The full name of the author
-    name: str = Field(description="The full name of the author")
+    name: str = Field(description="The full name of the researcher")
 
-    #: The open researcher and contributor identifier (ORCiD) of the author
     orcid: Optional[str] = Field(
         title="Open Researcher and Contributor Identifier",
-        description="The ORCiD of the author",
+        description="The Open Researcher and Contributor Identifier (ORCiD) provides"
+        " researchers with an open, unambiguous identifier for connecting"
+        " various digital assets (e.g., publications, reviews) across the"
+        " semantic web. An account can be made in seconds at https://orcid.org.",
     )
 
-    #: The email for the author
     email: Optional[str] = Field(
-        description="The email address specific to the author",
-        regex=EMAIL_RE_STR,
+        title="Email address",
+        description="The email address specific to the researcher.",
+        # regex=EMAIL_RE_STR,
     )
 
     #: The GitHub handle for the author
-    github: Optional[str] = Field(description="The GitHub handle for the author")
+    github: Optional[str] = Field(
+        title="GitHub handle",
+        description="The GitHub handle enables contacting the researcher on GitHub:"
+        " the *de facto* version control in the computer sciences "
+        "and life sciences.",
+    )
 
     def add_triples(self, graph):
         """Add triples to an RDF graph for this author.
@@ -96,13 +103,9 @@ class Attributable(BaseModel):
 class Author(Attributable):
     """Metadata for an author."""
 
-    #: The open researcher and contributor identifier (ORCiD) of the author.
-    #: This is overwritten in the child class to enforce it is not none.
-    orcid: str = Field(
-        ...,
-        title="Open Researcher and Contributor Identifier",
-        description="The ORCiD of the author",
-    )
+    #: This field is redefined on top of :class:`Attributable` to make
+    #: it required. Otherwise, it has the same semantics.
+    orcid: str = Field(...)
 
 
 class Provider(BaseModel):
@@ -126,74 +129,54 @@ class Provider(BaseModel):
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
-    #: The resource's name
     name: Optional[str] = Field(
-        description="The human-readable name of the resource",
+        description="The name of the resource",
     )
-    #: A description of the resource
     description: Optional[str] = Field(
         description="A description of the resource",
     )
-    #: The regular expression pattern for identifiers in the resource
     pattern: Optional[str] = Field(
-        description="The regular expression pattern for identifiers in the resource",
+        description="The regular expression pattern for local unique identifiers in the resource",
     )
-    #: The URI format string, which must have at least one ``$1`` in it
     uri_format: Optional[str] = Field(
-        title="URI Format",
+        title="URI format string",
         description="The URI format string, which must have at least one ``$1`` in it",
     )
-    #: Additional non-default providers for the given resource
     providers: Optional[List[Provider]] = Field(
         description="Additional, non-default providers for the resource",
     )
-    #: The URL for the homepage of the resource
     homepage: Optional[str] = Field(
-        description="The URL for the homepage of the resource, preferably with HTTPS",
+        description="The URL for the homepage of the resource, preferably using HTTPS",
     )
-    #: The URL for the repository of the resource
     repository: Optional[str] = Field(
         description="The URL for the repository of the resource",
     )
-    #: The contact email address for the individual responsible for the resource
     contact: Optional[Attributable] = Field(
         description=(
             "The contact email address for the resource. This must correspond to a specific "
             "person and not be a listserve nor a shared email account."
         )
     )
-
-    #: An example local identifier for the resource, explicitly excluding any redundant usage of
-    #: the prefix in the identifier. For example, a GO identifier should only look like ``1234567``
-    #: and not like ``GO:1234567``
     example: Optional[str] = Field(
         description="An example local identifier for the resource, explicitly excluding any redundant "
         "usage of the prefix in the identifier. For example, a GO identifier should only "
-        "look like 1234567 and not like GO:1234567",
+        "look like ``1234567`` and not like ``GO:1234567``",
     )
-    #: Extra example identifiers
     example_extras: Optional[List[str]] = Field(
         description="Extra example identifiers",
     )
-    #: The license for the resource
     license: Optional[str] = Field(
         description="The license for the resource",
     )
-    #: The version for the resource
     version: Optional[str] = Field(
         description="The version for the resource",
     )
-    #: An annotation between this prefix and a super-prefix. For example, ``chembl.compound`` is a
-    #: part of ``chembl``.
     part_of: Optional[str] = Field(
         description=(
             "An annotation between this prefix and a super-prefix. For example, "
             "``chembl.compound`` is a part of ``chembl``."
         )
     )
-    #: An annotation between this prefix and a prefix for which it is redundant. For example,
-    #: ``ctd.gene`` has been given a prefix by Identifiers.org, but it actually just reuses
-    #: identifies from ``ncbigene``, so ``ctd.gene`` provides ``ncbigene``.
     provides: Optional[str] = Field(
         description=(
             "An annotation between this prefix and a prefix for which it is redundant. "
@@ -201,85 +184,95 @@ class Resource(BaseModel):
             "actually just reuses identifies from ``ncbigene``, so ``ctd.gene`` provides ``ncbigene``."
         ),
     )
-    #: The OWL download URL, preferably an unversioned variant
     download_owl: Optional[str] = Field(
         title="OWL Download URL",
         description="The OWL download URL, preferably an unversioned variant",
     )
-    #: The OBO download URL, preferably an unversioned variant
     download_obo: Optional[str] = Field(
         title="OBO Download URL",
         description="The OBO download URL, preferably an unversioned variant",
     )
-    #: The OBOGraph JSON download URL, preferably an unversioned variant
     download_json: Optional[str] = Field(
         title="OBO Graph JSON Download URL",
         description="The OBO Graph JSON download URL, preferably an unversioned variant",
     )
-    #: The `banana` is a generalization of the concept of the "namespace embedded in local unique identifier".
-    #: Many OBO foundry ontologies use the redundant uppercased name of the ontology in the local identifier,
-    #: such as the Gene Ontology, which makes the prefixes have a redundant usage as in ``GO:GO:1234567``.
-    #: The `banana` tag explicitly annotates the part in the local identifier that should be stripped, if found.
-    #: While the Bioregistry automatically knows how to handle all OBO Foundry ontologies' bananas because the
-    #: OBO Foundry provides the "preferredPrefix" field, the banana can be annotated on non-OBO ontologies to
-    #: more explicitly write the beginning part of the identifier that should be stripped. This allowed for
-    #: solving one of the long-standing issues with the Identifiers.org resolver (e.g., for ``oma.hog``; see
-    #: https://github.com/identifiers-org/identifiers-org.github.io/issues/155) as well as better annotate
-    #: new entries, such as SwissMap Lipids, which have the prefix ``swisslipid`` but have the redundant information
-    #: ``SLM:`` in the beginning of identifiers. Therefore, ``SLM:`` is the banana.
     banana: Optional[str] = Field(
-        description="The redundant prefix that may appear in identifiers (e.g., `FBbt:`)",
-    )
-    #: A flag denoting if this resource is deprecated. Currently, this is a blanket term
-    #: that covers cases when the prefix is no longer maintained, when it has been rolled
-    #: into another resource, when the website related to the resource goes down, or any
-    #: other reason that it's difficult or impossible to find full metadata on the resource.
-    #: If this is set to true, please add a comment explaining why. This flag will override
-    #: annotations from the OLS, OBO Foundry, and Prefix Commons on the deprecation status,
-    #: since they often disagree and are very conservative in calling dead resources.
-    deprecated: Optional[bool] = Field(
-        description=(
-            "A flag to note if this resource is deprecated - will override OLS, "
-            "OBO Foundry, and Prefix Commons flags."
+        description=dedent(
+            """\
+    The `banana` is a generalization of the concept of the "namespace embedded in local unique identifier".
+    Many OBO foundry ontologies use the redundant uppercased name of the ontology in the local identifier,
+    such as the Gene Ontology, which makes the prefixes have a redundant usage as in ``GO:GO:1234567``.
+    The `banana` tag explicitly annotates the part in the local identifier that should be stripped, if found.
+    While the Bioregistry automatically knows how to handle all OBO Foundry ontologies' bananas because the
+    OBO Foundry provides the "preferredPrefix" field, the banana can be annotated on non-OBO ontologies to
+    more explicitly write the beginning part of the identifier that should be stripped. This allowed for
+    solving one of the long-standing issues with the Identifiers.org resolver (e.g., for ``oma.hog``; see
+    https://github.com/identifiers-org/identifiers-org.github.io/issues/155) as well as better annotate
+    new entries, such as SwissMap Lipids, which have the prefix ``swisslipid`` but have the redundant information
+    ``SLM:`` in the beginning of identifiers. Therefore, ``SLM:`` is the banana.
+    """
         ),
     )
-    #: A dictionary of metaprefixes (i.e., prefixes for registries) to prefixes in external registries.
-    #: These also correspond to the registry-specific JSON fields in this model like ``miriam`` field.
+    deprecated: Optional[bool] = Field(
+        description=dedent(
+            """\
+    A flag denoting if this resource is deprecated. Currently, this is a blanket term
+    that covers cases when the prefix is no longer maintained, when it has been rolled
+    into another resource, when the website related to the resource goes down, or any
+    other reason that it's difficult or impossible to find full metadata on the resource.
+    If this is set to true, please add a comment explaining why. This flag will override
+    annotations from the OLS, OBO Foundry, and Prefix Commons on the deprecation status,
+    since they often disagree and are very conservative in calling dead resources.
+    """
+        ),
+    )
     mappings: Optional[Dict[str, str]] = Field(
-        description="A dictionary of metaprefixes to prefixes in external registries",
+        description=dedent(
+            """\
+    A dictionary of metaprefixes (i.e., prefixes for registries) to prefixes in external registries.
+    These also correspond to the registry-specific JSON fields in this model like ``miriam`` field.
+    """
+        ),
     )
-    #: A list of synonyms for the prefix of this resource. These are used in normalization of
-    #: prefixes and are a useful reference tool for prefixes that are written many ways. For
-    #: example, ``snomedct`` has many synonyms including typos like ``SNOWMEDCT``, lexical
-    #: variants like ``SNOMED_CT``, version-variants like ``SNOMEDCT_2010_1_31``, and tons
-    #: of other nonsense like ``SNOMEDCTCT``.
     synonyms: Optional[List[str]] = Field(
-        description="A list of synonyms for the prefix of this resource",
+        description=dedent(
+            """\
+    A list of synonyms for the prefix of this resource. These are used in normalization of
+    prefixes and are a useful reference tool for prefixes that are written many ways. For
+    example, ``snomedct`` has many synonyms including typos like ``SNOWMEDCT``, lexical
+    variants like ``SNOMED_CT``, version-variants like ``SNOMEDCT_2010_1_31``, and tons
+    of other nonsense like ``SNOMEDCTCT``.
+    """
+        )
     )
-    #: A list of URLs to also see, such as publications describing the resource
     references: Optional[List[str]] = Field(
         description="A list of URLs to also see, such as publications describing the resource",
     )
-    #: A list of prefixes whose corresponding resources use this resource for xrefs, provenance, etc.
     appears_in: Optional[List[str]] = Field(
         description="A list of prefixes that use this resource for xrefs, provenance, etc.",
     )
-    #: A list of prefixes that use this resource depends on, e.g., ontologies that import each other.
     depends_on: Optional[List[str]] = Field(
         description="A list of prefixes that use this resource depends on, e.g., ontologies that import each other.",
     )
-    #: A flag denoting if the namespace is embedded in the LUI (if this is true and it is not accompanied by a banana,
-    #: assume that the banana is the prefix in all caps plus a colon, as is standard in OBO). Currently this flag
-    #: is only used to override identifiers.org in the case of ``gramene.growthstage``, ``oma.hog``, and ``vario``.
+
     namespace_in_lui: Optional[bool] = Field(
         title="Namespace Embedded in Local Unique Identifier",
-        description="A way to override MIRIAM's namespaceEmbeddedInLui",
+        description=dedent(
+            """\
+    A flag denoting if the namespace is embedded in the LUI (if this is true and it is not accompanied by a banana,
+    assume that the banana is the prefix in all caps plus a colon, as is standard in OBO). Currently this flag
+    is only used to override identifiers.org in the case of ``gramene.growthstage``, ``oma.hog``, and ``vario``.
+    """
+        ),
     )
-    #: A flag to denote if the resource mints its own identifiers. Omission or explicit marking as false means
-    #: that the resource does have its own terms. This is most applicable to ontologies, specifically application
-    #: ontologies, which only reuse terms from others. One example is ChIRO.
     no_own_terms: Optional[bool] = Field(
-        description="A flag to denote if the resource does not have any identifiers itself",
+        description=dedent(
+            """\
+    A flag denoting if the resource mints its own identifiers. Omission or explicit marking as false means
+    that the resource does have its own terms. This is most applicable to ontologies, specifically application
+    ontologies, which only reuse terms from others. One example is ChIRO.
+    """
+        ),
     )
     #: A field for a free text comment.
     comment: Optional[str] = Field(
@@ -296,10 +289,14 @@ class Resource(BaseModel):
     reviewer: Optional[Author] = Field(
         description="Reviewer information, including the name, ORCiD, and optionally the email of the reviewer",
     )
-    #: A flag to denote if this database is proprietary and therefore can not be included in normal quality control
-    #: checks nor can it be resolved. Omission or explicit marking as false means that the resource is not proprietary.
+
     proprietary: Optional[bool] = Field(
-        description="Set to true if this database is proprietary. If missing, assume it's not.",
+        description=dedent(
+            """\
+    A flag to denote if this database is proprietary and therefore can not be included in normal quality control
+    checks nor can it be resolved. Omission or explicit marking as false means that the resource is not proprietary.
+    """
+        ),
     )
     #: An annotation between this prefix and another prefix if they share the same provider IRI to denote that the
     #: other prefix should be considered as the canonical prefix to which IRIs should be contracted as CURIEs.
@@ -894,7 +891,6 @@ class Resource(BaseModel):
         # "bioportal": lambda x: ...,
     }
 
-    #: The default priority for generating URIs
     DEFAULT_URI_FORMATTER_PRIORITY: ClassVar[Sequence[str]] = (
         "default",
         "obofoundry",
