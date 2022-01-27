@@ -138,7 +138,11 @@ class Provider(BaseModel):
     )
 
     def resolve(self, identifier: str) -> str:
-        """Resolve the identifier into a URI."""
+        """Resolve the identifier into a URI.
+
+        :param identifier: The identifier in the semantic space
+        :return: The URI for the identifier
+        """
         return self.uri_format.replace("$1", identifier)
 
 
@@ -1142,7 +1146,7 @@ class Resource(BaseModel):
     def get_download_obograph(self) -> Optional[str]:
         """Get the download link for the latest OBOGraph JSON file."""
         if self.download_json:
-            return self.downloadjson
+            return self.download_json
         return self.get_external("obofoundry").get("download.json")
 
     def get_download_owl(self) -> Optional[str]:
