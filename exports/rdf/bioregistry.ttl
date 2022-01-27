@@ -8698,20 +8698,6 @@ bioregistry:omia a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 true .
 
-bioregistry:omo a bioregistry.schema:0000001 ;
-    rdfs:label "OBO Metadata Ontology" ;
-    dc:description "An ontology specifies terms that are used to annotate ontology terms for all OBO ontologies. The ontology was developed as part of Information Artifact Ontology (IAO)."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:OMO,
-        ontobee:OMO,
-        bioportal:OMO,
-        ols:omo ;
-    foaf:homepage "https://github.com/information-artifact-ontology/ontology-metadata"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OMO_$1"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:pcl ;
-    bioregistry.schema:0000019 [ rdfs:label "Chris Mungall" ] .
-
 bioregistry:ontoneo a bioregistry.schema:0000001 ;
     rdfs:label "Obstetric and Neonatal Ontology" ;
     dc:description "The Obstetric and Neonatal Ontology is a structured controlled vocabulary to provide a representation of the data from electronic health records (EHRs) involved in the care of the pregnant woman, and of her baby."^^xsd:string ;
@@ -11052,27 +11038,6 @@ bioregistry:snp2tfbs a bioregistry.schema:0000001 ;
     bioregistry.schema:0000011 bioregistry:dbsnp ;
     bioregistry.schema:0000012 false .
 
-bioregistry:so a bioregistry.schema:0000001 ;
-    rdfs:label "Sequence types and features ontology" ;
-    dc:description "The Sequence Ontology (SO) is a structured controlled vocabulary for the parts of a genomic annotation. It provides a common set of terms and definitions to facilitate the exchange, analysis and management of genomic data."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:SO,
-        ontobee:SO,
-        bioportal:SO,
-        go.resource:SO,
-        n2t:so,
-        fairsharing:FAIRsharing.6bc7h9,
-        prefixcommons:SO,
-        miriam:so,
-        ols:so ;
-    foaf:homepage "https://github.com/The-Sequence-Ontology/SO-Ontologies"^^xsd:string ;
-    bioregistry.schema:0000005 "0001157"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.sequenceontology.org/miso/current_release/term/SO:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:pcl ;
-    bioregistry.schema:0000019 [ rdfs:label "Karen Eilbeck" ] .
-
 bioregistry:sopharm a bioregistry.schema:0000001 ;
     rdfs:label "Suggested Ontology for Pharmacogenomics" ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
@@ -13212,6 +13177,8 @@ obofoundry:PAO dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 obofoundry:PATO dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
+obofoundry:PCL dcterms:isPartOf bioregistry.metaresource:obofoundry .
+
 obofoundry:PCO dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 obofoundry:PDRO dcterms:isPartOf bioregistry.metaresource:obofoundry .
@@ -14211,6 +14178,8 @@ bioportal:OVAE dcterms:isPartOf bioregistry.metaresource:bioportal .
 bioportal:PATO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:PAV dcterms:isPartOf bioregistry.metaresource:bioportal .
+
+bioportal:PCL dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:PCO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -16725,6 +16694,16 @@ bioregistry:bioregistry.collection a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-4423-4370 .
 
+bioregistry:bioregistry.registry a bioregistry.schema:0000001 ;
+    rdfs:label "Bioregistry Metaregistry" ;
+    dc:description "The Bioregistry's meta-registry"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://bioregistry.io/metaregistry/"^^xsd:string ;
+    bioregistry.schema:0000005 "miriam"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bioregistry.io/metaregistry/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-4423-4370 .
+
 bioregistry:bioregistry.schema a bioregistry.schema:0000001 ;
     rdfs:label "Bioregistry Schema" ;
     dc:description "Schema for the export of the Bioregistry as RDF"^^xsd:string ;
@@ -18768,6 +18747,20 @@ bioregistry:omit a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:mco ;
     bioregistry.schema:0000019 [ rdfs:label "Jingshan Huang" ] .
 
+bioregistry:omo a bioregistry.schema:0000001 ;
+    rdfs:label "OBO Metadata Ontology" ;
+    dc:description "An ontology specifies terms that are used to annotate ontology terms for all OBO ontologies. The ontology was developed as part of Information Artifact Ontology (IAO)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch obofoundry:OMO,
+        ontobee:OMO,
+        bioportal:OMO,
+        ols:omo ;
+    foaf:homepage "https://github.com/information-artifact-ontology/ontology-metadata"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OMO_$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:pcl ;
+    bioregistry.schema:0000019 [ rdfs:label "Chris Mungall" ] .
+
 bioregistry:omop a bioregistry.schema:0000001 ;
     rdfs:label "Observational Medical Outcomes Partnership" ;
     dc:description "The OMOP Common Data Model allows for the systematic analysis of disparate observational databases. The concept behind this approach is to transform data contained within those databases into a common format (data model) as well as a common representation (terminologies, vocabularies, coding schemes), and then perform systematic analyses using a library of standard analytic routines that have been written based on the common format."^^xsd:string ;
@@ -19345,6 +19338,27 @@ human H/ACA and C/D box snoRNAs."""^^xsd:string ;
     foaf:homepage "https://www-snorna.biotoul.fr/"^^xsd:string ;
     bioregistry.schema:0000005 "SR0000178"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:so a bioregistry.schema:0000001 ;
+    rdfs:label "Sequence types and features ontology" ;
+    dc:description "The Sequence Ontology (SO) is a structured controlled vocabulary for the parts of a genomic annotation. It provides a common set of terms and definitions to facilitate the exchange, analysis and management of genomic data."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch obofoundry:SO,
+        ontobee:SO,
+        bioportal:SO,
+        go.resource:SO,
+        n2t:so,
+        fairsharing:FAIRsharing.6bc7h9,
+        prefixcommons:SO,
+        miriam:so,
+        ols:so ;
+    foaf:homepage "https://github.com/The-Sequence-Ontology/SO-Ontologies"^^xsd:string ;
+    bioregistry.schema:0000005 "0001157"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.sequenceontology.org/miso/current_release/term/SO:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:pcl ;
+    bioregistry.schema:0000019 [ rdfs:label "Karen Eilbeck" ] .
 
 bioregistry:span a bioregistry.schema:0000001 ;
     rdfs:label "Span" ;
@@ -25310,26 +25324,6 @@ bioregistry:ms a bioregistry.schema:0000001 ;
         bioregistry:uo ;
     bioregistry.schema:0000019 [ rdfs:label "Gerhard Mayer" ] .
 
-bioregistry:nbo a bioregistry.schema:0000001 ;
-    rdfs:label "Neuro Behavior Ontology" ;
-    dc:description "An ontology of human and animal behaviours and behavioural phenotypes"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:NBO,
-        ontobee:NBO,
-        bioportal:NBO,
-        fairsharing:FAIRsharing.pktgc6,
-        prefixcommons:NBO,
-        ols:nbo ;
-    foaf:homepage "https://github.com/obo-behavior/behavior-ontology/"^^xsd:string ;
-    bioregistry.schema:0000005 "0000564"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NBO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:ecto,
-        bioregistry:pcl,
-        bioregistry:scdo ;
-    bioregistry.schema:0000019 [ rdfs:label "George Gkoutos" ] .
-
 bioregistry:ncbigene a bioregistry.schema:0000001 ;
     rdfs:label "Entrez Gene ID" ;
     dc:description "Entrez Gene is the NCBI's database for gene-specific information, focusing on completely sequenced genomes, those with an active research community to contribute gene-specific information, or those that are scheduled for intense sequence analysis."^^xsd:string ;
@@ -25711,6 +25705,26 @@ bioregistry:fbcv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:ontoavida ;
     bioregistry.schema:0000019 [ rdfs:label "Clare Pilgrim" ] .
 
+bioregistry:nbo a bioregistry.schema:0000001 ;
+    rdfs:label "Neuro Behavior Ontology" ;
+    dc:description "An ontology of human and animal behaviours and behavioural phenotypes"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch obofoundry:NBO,
+        ontobee:NBO,
+        bioportal:NBO,
+        fairsharing:FAIRsharing.pktgc6,
+        prefixcommons:NBO,
+        ols:nbo ;
+    foaf:homepage "https://github.com/obo-behavior/behavior-ontology/"^^xsd:string ;
+    bioregistry.schema:0000005 "0000564"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NBO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:ecto,
+        bioregistry:pcl,
+        bioregistry:scdo ;
+    bioregistry.schema:0000019 [ rdfs:label "George Gkoutos" ] .
+
 bioregistry:one a bioregistry.schema:0000001 ;
     rdfs:label "Ontology for Nutritional Epidemiology" ;
     dc:description "An ontology to standardize research output of nutritional epidemiologic studies."^^xsd:string ;
@@ -25866,32 +25880,6 @@ bioregistry:po a bioregistry.schema:0000001 ;
         bioregistry:envo,
         bioregistry:genepio ;
     bioregistry.schema:0000019 [ rdfs:label "Pankaj Jaiswal" ] .
-
-bioregistry:pr a bioregistry.schema:0000001 ;
-    rdfs:label "Protein Ontology" ;
-    dc:description "The PRotein Ontology (PRO) has been designed to describe the relationships of proteins and protein evolutionary classes, to delineate the multiple protein forms of a gene locus (ontology for protein forms), and to interconnect existing ontologies."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:PR,
-        ontobee:PR,
-        bioportal:PR,
-        go.resource:PR,
-        n2t:pr,
-        fairsharing:FAIRsharing.4ndncv,
-        prefixcommons:PR,
-        miriam:pr,
-        ols:pr,
-        uniprot.resource:PRO,
-        wikidata:P4926 ;
-    foaf:homepage "http://proconsortium.org"^^xsd:string ;
-    bioregistry.schema:0000005 "000000024"^^xsd:string ;
-    bioregistry.schema:0000006 "https://proconsortium.org/app/entry/PR:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:chiro,
-        bioregistry:pcl,
-        bioregistry:scdo,
-        bioregistry:uberon ;
-    bioregistry.schema:0000019 [ rdfs:label "Darren Natale" ] .
 
 bioregistry:psdo a bioregistry.schema:0000001 ;
     rdfs:label "Performance Summary Display Ontology" ;
@@ -26143,6 +26131,32 @@ More information can be found at https://obofoundry.org/ontology/ontoavida.html"
         bioregistry:ro,
         bioregistry:stato ;
     bioregistry.schema:0000019 [ rdfs:label "Miguel A. Fortuna" ] .
+
+bioregistry:pr a bioregistry.schema:0000001 ;
+    rdfs:label "Protein Ontology" ;
+    dc:description "The PRotein Ontology (PRO) has been designed to describe the relationships of proteins and protein evolutionary classes, to delineate the multiple protein forms of a gene locus (ontology for protein forms), and to interconnect existing ontologies."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch obofoundry:PR,
+        ontobee:PR,
+        bioportal:PR,
+        go.resource:PR,
+        n2t:pr,
+        fairsharing:FAIRsharing.4ndncv,
+        prefixcommons:PR,
+        miriam:pr,
+        ols:pr,
+        uniprot.resource:PRO,
+        wikidata:P4926 ;
+    foaf:homepage "http://proconsortium.org"^^xsd:string ;
+    bioregistry.schema:0000005 "000000024"^^xsd:string ;
+    bioregistry.schema:0000006 "https://proconsortium.org/app/entry/PR:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:chiro,
+        bioregistry:pcl,
+        bioregistry:scdo,
+        bioregistry:uberon ;
+    bioregistry.schema:0000019 [ rdfs:label "Darren Natale" ] .
 
 bioregistry:labo a bioregistry.schema:0000001 ;
     rdfs:label "clinical LABoratory Ontology" ;
@@ -26497,41 +26511,29 @@ bioregistry:iao a bioregistry.schema:0000001 ;
         bioregistry:xpo ;
     bioregistry.schema:0000019 [ rdfs:label "Jie Zheng" ] .
 
-bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
-    rdfs:label "NCBI organismal classification" ;
-    dc:description "The taxonomy contains the relationships between all living forms for which nucleic acid or protein sequence have been determined."^^xsd:string ;
+bioregistry:pcl a bioregistry.schema:0000001 ;
+    rdfs:label "Provisional Cell Ontology" ;
+    dc:description "Cell types that are provisionally defined by experimental techniques such as single cell or single nucleus transcriptomics rather than a straightforward & coherent set of properties."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:NCBITaxon,
-        ontobee:NCBITaxon,
-        bioportal:NCBITAXON,
-        cellosaurus.resource:NCBI_TaxID,
-        go.resource:taxon,
-        n2t:taxonomy,
-        ncbi.resource:taxon,
-        scholia.resource:ncbi-taxon,
-        fairsharing:FAIRsharing.fj07xj,
-        prefixcommons:NCBITaxon,
-        miriam:taxonomy,
-        ols:ncbitaxon,
-        wikidata:P685 ;
-    foaf:homepage "https://github.com/obophenotype/ncbitaxon"^^xsd:string ;
-    bioregistry.schema:0000005 "2170610"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    skos:exactMatch obofoundry:PCL,
+        bioportal:PCL ;
+    foaf:homepage "https://github.com/obophenotype/provisional_cell_ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "0011124"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PCL_$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:agro,
-        bioregistry:chiro,
-        bioregistry:clo,
-        bioregistry:ecto,
-        bioregistry:envo,
-        bioregistry:foodon,
-        bioregistry:genepio,
+    bioregistry.schema:0000017 bioregistry:bfo,
+        bioregistry:chebi,
+        bioregistry:cl,
         bioregistry:go,
-        bioregistry:hso,
-        bioregistry:mco,
-        bioregistry:ons,
-        bioregistry:pcl ;
-    bioregistry.schema:0000019 [ rdfs:label "Frederic Bastian" ] .
+        bioregistry:nbo,
+        bioregistry:ncbitaxon,
+        bioregistry:omo,
+        bioregistry:pato,
+        bioregistry:pr,
+        bioregistry:ro,
+        bioregistry:so,
+        bioregistry:uberon ;
+    bioregistry.schema:0000019 [ rdfs:label "David Osumi-Sutherland" ] .
 
 bioregistry:agro a bioregistry.schema:0000001 ;
     rdfs:label "Agronomy Ontology" ;
@@ -26618,6 +26620,42 @@ bioregistry:mco a bioregistry.schema:0000001 ;
         bioregistry:uberon,
         bioregistry:zeco ;
     bioregistry.schema:0000019 [ rdfs:label "Citlalli Mejía-Almonte" ] .
+
+bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
+    rdfs:label "NCBI organismal classification" ;
+    dc:description "The taxonomy contains the relationships between all living forms for which nucleic acid or protein sequence have been determined."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch obofoundry:NCBITaxon,
+        ontobee:NCBITaxon,
+        bioportal:NCBITAXON,
+        cellosaurus.resource:NCBI_TaxID,
+        go.resource:taxon,
+        n2t:taxonomy,
+        ncbi.resource:taxon,
+        scholia.resource:ncbi-taxon,
+        fairsharing:FAIRsharing.fj07xj,
+        prefixcommons:NCBITaxon,
+        miriam:taxonomy,
+        ols:ncbitaxon,
+        wikidata:P685 ;
+    foaf:homepage "https://github.com/obophenotype/ncbitaxon"^^xsd:string ;
+    bioregistry.schema:0000005 "2170610"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:agro,
+        bioregistry:chiro,
+        bioregistry:clo,
+        bioregistry:ecto,
+        bioregistry:envo,
+        bioregistry:foodon,
+        bioregistry:genepio,
+        bioregistry:go,
+        bioregistry:hso,
+        bioregistry:mco,
+        bioregistry:ons,
+        bioregistry:pcl ;
+    bioregistry.schema:0000019 [ rdfs:label "Frederic Bastian" ] .
 
 bioregistry.metaresource:cheminf a bioregistry.schema:0000002 ;
     rdfs:label "Chemical Information Ontology" ;
@@ -26763,6 +26801,42 @@ bioregistry:cl a bioregistry.schema:0000001 ;
         bioregistry:xpo ;
     bioregistry.schema:0000019 [ rdfs:label "Alexander Diehl" ] .
 
+bioregistry:envo a bioregistry.schema:0000001 ;
+    rdfs:label "Environment Ontology" ;
+    dc:description "The Environment Ontology is a resource and research target for the semantically controlled description of environmental entities. The ontology's initial aim was the representation of the biomes, environmental features, and environmental materials pertinent to genomic and microbiome-related investigations."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch obofoundry:ENVO,
+        ontobee:ENVO,
+        bioportal:ENVO,
+        n2t:envo,
+        fairsharing:FAIRsharing.azqskx,
+        prefixcommons:ENVO,
+        miriam:envo,
+        ols:envo ;
+    foaf:homepage "http://environmentontology.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "09200010"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/envo/terms?obo_id=ENVO:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7,8}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000017 bioregistry:chebi,
+        bioregistry:foodon,
+        bioregistry:go,
+        bioregistry:ncbitaxon,
+        bioregistry:pco,
+        bioregistry:po,
+        bioregistry:ro,
+        bioregistry:uberon ;
+    bioregistry.schema:0000018 bioregistry:agro,
+        bioregistry:cdno,
+        bioregistry:ecocore,
+        bioregistry:ecto,
+        bioregistry:foodon,
+        bioregistry:ons,
+        bioregistry:pco,
+        bioregistry:rbo,
+        bioregistry:scdo ;
+    bioregistry.schema:0000019 [ rdfs:label "Pier Luigi Buttigieg" ] .
+
 bioregistry:go a bioregistry.schema:0000001 ;
     rdfs:label "Gene Ontology" ;
     dc:description "The Gene Ontology project provides a controlled vocabulary to describe gene and gene product attributes in any organism."^^xsd:string ;
@@ -26817,6 +26891,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:biolegend,
         bioregistry:bioregistry,
         bioregistry:bioregistry.collection,
+        bioregistry:bioregistry.registry,
         bioregistry:bioregistry.schema,
         bioregistry:biozil,
         bioregistry:bmrb.restraint,
@@ -26940,42 +27015,6 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ximbio,
         bioregistry:xuo,
         bioregistry:ymdb .
-
-bioregistry:envo a bioregistry.schema:0000001 ;
-    rdfs:label "Environment Ontology" ;
-    dc:description "The Environment Ontology is a resource and research target for the semantically controlled description of environmental entities. The ontology's initial aim was the representation of the biomes, environmental features, and environmental materials pertinent to genomic and microbiome-related investigations."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:ENVO,
-        ontobee:ENVO,
-        bioportal:ENVO,
-        n2t:envo,
-        fairsharing:FAIRsharing.azqskx,
-        prefixcommons:ENVO,
-        miriam:envo,
-        ols:envo ;
-    foaf:homepage "http://environmentontology.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "09200010"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/envo/terms?obo_id=ENVO:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7,8}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000017 bioregistry:chebi,
-        bioregistry:foodon,
-        bioregistry:go,
-        bioregistry:ncbitaxon,
-        bioregistry:pco,
-        bioregistry:po,
-        bioregistry:ro,
-        bioregistry:uberon ;
-    bioregistry.schema:0000018 bioregistry:agro,
-        bioregistry:cdno,
-        bioregistry:ecocore,
-        bioregistry:ecto,
-        bioregistry:foodon,
-        bioregistry:ons,
-        bioregistry:pco,
-        bioregistry:rbo,
-        bioregistry:scdo ;
-    bioregistry.schema:0000019 [ rdfs:label "Pier Luigi Buttigieg" ] .
 
 bioregistry:pato a bioregistry.schema:0000001 ;
     rdfs:label "Phenotype And Trait Ontology" ;
@@ -27144,6 +27183,52 @@ bioregistry:uberon a bioregistry.schema:0000001 ;
         bioregistry:zp ;
     bioregistry.schema:0000019 [ rdfs:label "Chris Mungall" ] .
 
+bioregistry:scdo a bioregistry.schema:0000001 ;
+    rdfs:label "Sickle Cell Disease Ontology" ;
+    dc:description "An ontology for the standardization of terminology and integration of knowledge about Sickle Cell Disease."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch obofoundry:SCDO,
+        ontobee:SCDO,
+        bioportal:SCDO,
+        fairsharing:FAIRsharing.kkq6pw,
+        ols:scdo ;
+    foaf:homepage "https://scdontology.h3abionet.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "0000728"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/SCDO_$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000017 bioregistry:apollosv,
+        bioregistry:aro,
+        bioregistry:chebi,
+        bioregistry:chmo,
+        bioregistry:cmo,
+        bioregistry:doid,
+        bioregistry:dron,
+        bioregistry:duo,
+        bioregistry:envo,
+        bioregistry:eupath,
+        bioregistry:exo,
+        bioregistry:gaz,
+        bioregistry:gsso,
+        bioregistry:hp,
+        bioregistry:hsapdv,
+        bioregistry:ico,
+        bioregistry:ido,
+        bioregistry:idomal,
+        bioregistry:mp,
+        bioregistry:nbo,
+        bioregistry:ncit,
+        bioregistry:obi,
+        bioregistry:ogms,
+        bioregistry:opmi,
+        bioregistry:pr,
+        bioregistry:sbo,
+        bioregistry:stato,
+        bioregistry:symp,
+        bioregistry:uo,
+        bioregistry:vo,
+        bioregistry:vt ;
+    bioregistry.schema:0000019 [ rdfs:label "Jade Hotchkiss" ] .
+
 bioregistry:ro a bioregistry.schema:0000001 ;
     rdfs:label "Relation Ontology" ;
     dc:description "The OBO Relation Ontology provides consistent and unambiguous formal definitions of the relational expressions used in biomedical ontologies."^^xsd:string ;
@@ -27197,52 +27282,6 @@ bioregistry:ro a bioregistry.schema:0000001 ;
         bioregistry:xpo,
         bioregistry:zp ;
     bioregistry.schema:0000019 [ rdfs:label "Chris Mungall" ] .
-
-bioregistry:scdo a bioregistry.schema:0000001 ;
-    rdfs:label "Sickle Cell Disease Ontology" ;
-    dc:description "An ontology for the standardization of terminology and integration of knowledge about Sickle Cell Disease."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:SCDO,
-        ontobee:SCDO,
-        bioportal:SCDO,
-        fairsharing:FAIRsharing.kkq6pw,
-        ols:scdo ;
-    foaf:homepage "https://scdontology.h3abionet.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "0000728"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/SCDO_$1"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000017 bioregistry:apollosv,
-        bioregistry:aro,
-        bioregistry:chebi,
-        bioregistry:chmo,
-        bioregistry:cmo,
-        bioregistry:doid,
-        bioregistry:dron,
-        bioregistry:duo,
-        bioregistry:envo,
-        bioregistry:eupath,
-        bioregistry:exo,
-        bioregistry:gaz,
-        bioregistry:gsso,
-        bioregistry:hp,
-        bioregistry:hsapdv,
-        bioregistry:ico,
-        bioregistry:ido,
-        bioregistry:idomal,
-        bioregistry:mp,
-        bioregistry:nbo,
-        bioregistry:ncit,
-        bioregistry:obi,
-        bioregistry:ogms,
-        bioregistry:opmi,
-        bioregistry:pr,
-        bioregistry:sbo,
-        bioregistry:stato,
-        bioregistry:symp,
-        bioregistry:uo,
-        bioregistry:vo,
-        bioregistry:vt ;
-    bioregistry.schema:0000019 [ rdfs:label "Jade Hotchkiss" ] .
 
 bioregistry.metaresource:ncbi a bioregistry.schema:0000002 ;
     rdfs:label "National Center for Biotechnology Information Registry" ;
@@ -28261,6 +28300,7 @@ bioregistry.metaresource:obofoundry a bioregistry.schema:0000002 ;
         obofoundry:OlatDv,
         obofoundry:PAO,
         obofoundry:PATO,
+        obofoundry:PCL,
         obofoundry:PCO,
         obofoundry:PDRO,
         obofoundry:PD_ST,
@@ -28835,6 +28875,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:OVAE,
         bioportal:PATO,
         bioportal:PAV,
+        bioportal:PCL,
         bioportal:PCO,
         bioportal:PDRO,
         bioportal:PDUMDV,
@@ -31849,6 +31890,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:bioproject,
         bioregistry:bioregistry,
         bioregistry:bioregistry.collection,
+        bioregistry:bioregistry.registry,
         bioregistry:bioregistry.schema,
         bioregistry:biorxiv,
         bioregistry:biosample,
@@ -32691,6 +32733,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:paxdb.organism,
         bioregistry:paxdb.protein,
         bioregistry:pazar,
+        bioregistry:pcl,
         bioregistry:pco,
         bioregistry:pd_st,
         bioregistry:pdb,
