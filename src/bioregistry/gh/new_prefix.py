@@ -8,7 +8,7 @@ Run with: ``python -m bioregistry.gh.new_prefix``
 import logging
 import sys
 import time
-from typing import Iterable, Mapping, Optional, Sequence, Tuple
+from typing import Dict, Iterable, Mapping, Optional, Sequence
 from uuid import uuid4
 
 import click
@@ -45,7 +45,7 @@ ORCID_HTTP_PREFIX = "http://orcid.org/"
 ORCID_HTTPS_PREFIX = "https://orcid.org/"
 
 
-def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Tuple[str, Resource]]:
+def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]:
     """Get Bioregistry prefix issues from the GitHub API.
 
     This is done by filtering on issues containing the "New" and "Prefix" labels.
@@ -63,7 +63,7 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Tuple[str
     data = github_client.get_bioregistry_form_data(
         ["New", "Prefix"], remapping=MAPPING, token=token
     )
-    rv = {}
+    rv: Dict[int, Resource] = {}
     for issue_id, resource_data in data.items():
         prefix = resource_data.pop("prefix")
         contributor = Author(
@@ -81,7 +81,7 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Tuple[str
                 issue_id,
             )
             continue
-        rv[issue_id] = prefix, Resource(contributor=contributor, **resource_data)
+        rv[issue_id] = Resource(prefix=prefix, contributor=contributor, **resource_data)
     return rv
 
 
@@ -149,11 +149,11 @@ def main(dry: bool, github: bool, force: bool):
 
     # Add resources
     # TODO what happens if two issues have the same prefix?
-    for prefix, resource in issue_to_resource.values():
-        click.echo(f"Adding resource {prefix}")
-        add_resource(prefix, resource)
+    for resource in issue_to_resource.values():
+        click.echo(f"Adding resource {resource.prefix}")
+        add_resource(resource)
 
-    title = make_title(sorted(prefix for prefix, _ in issue_to_resource.values()))
+    title = make_title(sorted(resource.prefix for resource in issue_to_resource.values()))
     body = ", ".join(f"Closes #{issue}" for issue in issue_to_resource)
     message = f"{title}\n\n{body}"
     branch_name = str(uuid4())[:8]

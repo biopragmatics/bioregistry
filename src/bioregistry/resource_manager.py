@@ -72,6 +72,9 @@ def _synonym_to_canonical(registry: Mapping[str, Resource]) -> NormDict:
 class Manager:
     """A manager for functionality related to a metaregistry."""
 
+    registry: Dict[str, Resource]
+    metaregistry: Dict[str, Registry]
+
     def __init__(
         self,
         registry: Optional[Mapping[str, Resource]] = None,
@@ -82,14 +85,10 @@ class Manager:
         :param registry: A custom registry. If none given, defaults to the Bioregistry.
         :param metaregistry: A custom metaregistry. If none, defaults to the Bioregistry's metaregistry.
         """
-        if registry is None:
-            registry = read_registry()
-        self.registry = registry
-        self.synonyms = _synonym_to_canonical(registry)
+        self.registry = dict(read_registry() if registry is None else registry)
+        self.synonyms = _synonym_to_canonical(self.registry)
 
-        if metaregistry is None:
-            metaregistry = read_metaregistry()
-        self.metaregistry = metaregistry
+        self.metaregistry = dict(read_metaregistry() if metaregistry is None else metaregistry)
 
         canonical_for = defaultdict(list)
         provided_by = defaultdict(list)

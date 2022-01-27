@@ -52,7 +52,6 @@ class Aligner(ABC):
             raise TypeError(f"invalid metaprefix for aligner: {self.key}")
 
         self.manager = Manager()
-        self.internal_registry = self.manager.registry
 
         kwargs = self.getter_kwargs or {}
         kwargs.setdefault("force_download", True)
@@ -64,6 +63,11 @@ class Aligner(ABC):
 
         # Run lexical alignment
         self._align()
+
+    @property
+    def internal_registry(self) -> Dict[str, Resource]:
+        """Get the internal registry."""
+        return self.manager.registry
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the mapping prefixes that should be skipped to their reasons (strings)."""
@@ -89,7 +93,7 @@ class Aligner(ABC):
             # add the identifier from an external resource if it's been marked as high quality
             if bioregistry_id is None and self.include_new:
                 bioregistry_id = norm(external_id)
-                self.internal_registry[bioregistry_id] = Resource()
+                self.internal_registry[bioregistry_id] = Resource(prefix=bioregistry_id)
 
             if self._do_align_action(bioregistry_id):
                 self._align_action(bioregistry_id, external_id, external_entry)

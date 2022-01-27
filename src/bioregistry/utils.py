@@ -55,17 +55,16 @@ def _registry_from_path(path: Union[str, Path]) -> Mapping[str, Resource]:
     return {prefix: Resource(prefix=prefix, **value) for prefix, value in data.items()}
 
 
-def add_resource(prefix: str, resource: Resource) -> None:
+def add_resource(resource: Resource) -> None:
     """Add a resource to the registry.
 
-    :param prefix: A prefix.
     :param resource: A resource object to write
     :raises KeyError: if the prefix is already present in the registry
     """
     registry = dict(read_registry())
-    if prefix in registry:
+    if resource.prefix in registry:
         raise KeyError("Tried to add duplicate entry to the registry")
-    registry[prefix] = resource
+    registry[resource.prefix] = resource
     # Clear the cache
     read_registry.cache_clear()
     write_registry(registry)
