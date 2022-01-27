@@ -11,23 +11,22 @@
       "properties": {
         "name": {
           "title": "Name",
-          "description": "The full name of the author",
+          "description": "The full name of the researcher",
           "type": "string"
         },
         "orcid": {
           "title": "Open Researcher and Contributor Identifier",
-          "description": "The ORCiD of the author",
+          "description": "The Open Researcher and Contributor Identifier (ORCiD) provides researchers with an open, unambiguous identifier for connecting various digital assets (e.g., publications, reviews) across the semantic web. An account can be made in seconds at https://orcid.org.",
           "type": "string"
         },
         "email": {
-          "title": "Email",
-          "description": "The email address specific to the author",
-          "pattern": "^(\\w|\\.|\\_|\\-)+[@](\\w|\\_|\\-|\\.)+[.]\\w{2,5}$",
+          "title": "Email address",
+          "description": "The email address specific to the researcher.",
           "type": "string"
         },
         "github": {
-          "title": "Github",
-          "description": "The GitHub handle for the author",
+          "title": "GitHub handle",
+          "description": "The GitHub handle enables contacting the researcher on GitHub: the *de facto* version control in the computer sciences and life sciences.",
           "type": "string"
         }
       },
@@ -127,28 +126,27 @@
     },
     "Attributable": {
       "title": "Attributable",
-      "description": "An upper-level metadata for a person.",
+      "description": "An upper-level metadata for a researcher.",
       "type": "object",
       "properties": {
         "name": {
           "title": "Name",
-          "description": "The full name of the author",
+          "description": "The full name of the researcher",
           "type": "string"
         },
         "orcid": {
           "title": "Open Researcher and Contributor Identifier",
-          "description": "The ORCiD of the author",
+          "description": "The Open Researcher and Contributor Identifier (ORCiD) provides researchers with an open, unambiguous identifier for connecting various digital assets (e.g., publications, reviews) across the semantic web. An account can be made in seconds at https://orcid.org.",
           "type": "string"
         },
         "email": {
-          "title": "Email",
-          "description": "The email address specific to the author",
-          "pattern": "^(\\w|\\.|\\_|\\-)+[@](\\w|\\_|\\-|\\.)+[.]\\w{2,5}$",
+          "title": "Email address",
+          "description": "The email address specific to the researcher.",
           "type": "string"
         },
         "github": {
-          "title": "Github",
-          "description": "The GitHub handle for the author",
+          "title": "GitHub handle",
+          "description": "The GitHub handle enables contacting the researcher on GitHub: the *de facto* version control in the computer sciences and life sciences.",
           "type": "string"
         }
       },
@@ -161,9 +159,14 @@
       "description": "Metadata about an ontology, database, or other resource.",
       "type": "object",
       "properties": {
+        "prefix": {
+          "title": "Prefix",
+          "description": "The prefix for this resource",
+          "type": "string"
+        },
         "name": {
           "title": "Name",
-          "description": "The human-readable name of the resource",
+          "description": "The name of the resource",
           "type": "string"
         },
         "description": {
@@ -173,11 +176,11 @@
         },
         "pattern": {
           "title": "Pattern",
-          "description": "The regular expression pattern for identifiers in the resource",
+          "description": "The regular expression pattern for local unique identifiers in the resource",
           "type": "string"
         },
         "uri_format": {
-          "title": "URI Format",
+          "title": "URI format string",
           "description": "The URI format string, which must have at least one ``$1`` in it",
           "type": "string"
         },
@@ -191,7 +194,12 @@
         },
         "homepage": {
           "title": "Homepage",
-          "description": "The URL for the homepage of the resource, preferably with HTTPS",
+          "description": "The URL for the homepage of the resource, preferably using HTTPS",
+          "type": "string"
+        },
+        "repository": {
+          "title": "Repository",
+          "description": "The URL for the repository of the resource",
           "type": "string"
         },
         "contact": {
@@ -205,7 +213,7 @@
         },
         "example": {
           "title": "Example",
-          "description": "An example local identifier for the resource, explicitly excluding any redundant usage of the prefix in the identifier. For example, a GO identifier should only look like 1234567 and not like GO:1234567",
+          "description": "An example local identifier for the resource, explicitly excluding any redundant usage of the prefix in the identifier. For example, a GO identifier should only look like ``1234567`` and not like ``GO:1234567``",
           "type": "string"
         },
         "example_extras": {
@@ -238,27 +246,32 @@
         },
         "download_owl": {
           "title": "OWL Download URL",
-          "description": "The OWL download URL, preferably an unversioned variant",
+          "description": "The URL to download the resource as an ontology encoded in the OWL format. More information about this format can be found at https://www.w3.org/TR/owl2-syntax/.",
           "type": "string"
         },
         "download_obo": {
           "title": "OBO Download URL",
-          "description": "The OBO download URL, preferably an unversioned variant",
+          "description": "The URL to download the resource as an ontology encoded in the OBO format. More information about this format can be found at https://owlcollab.github.io/oboformat/doc/obo-syntax.html.",
+          "type": "string"
+        },
+        "download_json": {
+          "title": "OBO Graph JSON Download URL",
+          "description": "The URL to download the resource as an ontology encoded in the OBO Graph JSON format. More information about this format can be found at https://github.com/geneontology/obographs.",
           "type": "string"
         },
         "banana": {
           "title": "Banana",
-          "description": "The redundant prefix that may appear in identifiers (e.g., `FBbt:`)",
+          "description": "The `banana` is a generalization of the concept of the \"namespace embedded in local unique identifier\". Many OBO foundry ontologies use the redundant uppercased name of the ontology in the local identifier, such as the Gene Ontology, which makes the prefixes have a redundant usage as in ``GO:GO:1234567``. The `banana` tag explicitly annotates the part in the local identifier that should be stripped, if found. While the Bioregistry automatically knows how to handle all OBO Foundry ontologies' bananas because the OBO Foundry provides the \"preferredPrefix\" field, the banana can be annotated on non-OBO ontologies to more explicitly write the beginning part of the identifier that should be stripped. This allowed for solving one of the long-standing issues with the Identifiers.org resolver (e.g., for ``oma.hog``; see https://github.com/identifiers-org/identifiers-org.github.io/issues/155) as well as better annotate new entries, such as SwissMap Lipids, which have the prefix ``swisslipid`` but have the redundant information ``SLM:`` in the beginning of identifiers. Therefore, ``SLM:`` is the banana.",
           "type": "string"
         },
         "deprecated": {
           "title": "Deprecated",
-          "description": "A flag to note if this resource is deprecated - will override OLS, OBO Foundry, and Prefix Commons flags.",
+          "description": "A flag denoting if this resource is deprecated. Currently, this is a blanket term that covers cases when the prefix is no longer maintained, when it has been rolled into another resource, when the website related to the resource goes down, or any other reason that it's difficult or impossible to find full metadata on the resource. If this is set to true, please add a comment explaining why. This flag will override annotations from the OLS, OBO Foundry, and Prefix Commons on the deprecation status, since they often disagree and are very conservative in calling dead resources.",
           "type": "boolean"
         },
         "mappings": {
           "title": "Mappings",
-          "description": "A dictionary of metaprefixes to prefixes in external registries",
+          "description": "A dictionary of metaprefixes (i.e., prefixes for registries) to prefixes in external registries. These also correspond to the registry-specific JSON fields in this model like ``miriam`` field.",
           "type": "object",
           "additionalProperties": {
             "type": "string"
@@ -266,7 +279,7 @@
         },
         "synonyms": {
           "title": "Synonyms",
-          "description": "A list of synonyms for the prefix of this resource",
+          "description": "A list of synonyms for the prefix of this resource. These are used in normalization of prefixes and are a useful reference tool for prefixes that are written many ways. For example, ``snomedct`` has many synonyms including typos like ``SNOWMEDCT``, lexical variants like ``SNOMED_CT``, version-variants like ``SNOMEDCT_2010_1_31``, and tons of other nonsense like ``SNOMEDCTCT``.",
           "type": "array",
           "items": {
             "type": "string"
@@ -298,12 +311,12 @@
         },
         "namespace_in_lui": {
           "title": "Namespace Embedded in Local Unique Identifier",
-          "description": "A way to override MIRIAM's namespaceEmbeddedInLui",
+          "description": "A flag denoting if the namespace is embedded in the LUI (if this is true and it is not accompanied by a banana, assume that the banana is the prefix in all caps plus a colon, as is standard in OBO). Currently this flag is only used to override identifiers.org in the case of ``gramene.growthstage``, ``oma.hog``, and ``vario``.",
           "type": "boolean"
         },
         "no_own_terms": {
           "title": "No Own Terms",
-          "description": "A flag to denote if the resource does not have any identifiers itself",
+          "description": "A flag denoting if the resource mints its own identifiers. Omission or explicit marking as false means that the resource does have its own terms. This is most applicable to ontologies, specifically application ontologies, which only reuse terms from others. One example is ChIRO.",
           "type": "boolean"
         },
         "comment": {
@@ -313,7 +326,7 @@
         },
         "contributor": {
           "title": "Contributor",
-          "description": "Contributor information, including the name, ORCiD, and optionally the email of the contributor",
+          "description": "The contributor of the prefix to the Bioregistry, including at a minimum their name and ORCiD and optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub Workflow must contain this field.",
           "allOf": [
             {
               "$ref": "#/definitions/Author"
@@ -322,7 +335,7 @@
         },
         "reviewer": {
           "title": "Reviewer",
-          "description": "Reviewer information, including the name, ORCiD, and optionally the email of the reviewer",
+          "description": "The reviewer of the prefix to the Bioregistry, including at a minimum their name and ORCiD and optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub Workflow should contain this field pointing to the person who reviewed it on GitHub.",
           "allOf": [
             {
               "$ref": "#/definitions/Author"
@@ -331,7 +344,7 @@
         },
         "proprietary": {
           "title": "Proprietary",
-          "description": "Set to true if this database is proprietary. If missing, assume it's not.",
+          "description": "A flag to denote if this database is proprietary and therefore can not be included in normal quality control checks nor can it be resolved. Omission or explicit marking as false means that the resource is not proprietary.",
           "type": "boolean"
         },
         "has_canonical": {
@@ -404,7 +417,10 @@
           "title": "Fairsharing",
           "type": "object"
         }
-      }
+      },
+      "required": [
+        "prefix"
+      ]
     },
     "RegistrySchema": {
       "title": "RegistrySchema",
@@ -632,14 +648,17 @@
         },
         "provider_uri_format": {
           "title": "Provider Uri Format",
+          "description": "A URL with a $1 for a prefix to resolve in the registry",
           "type": "string"
         },
         "resolver_uri_format": {
           "title": "Resolver Uri Format",
+          "description": "A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry",
           "type": "string"
         },
         "resolver_type": {
           "title": "Resolver Type",
+          "description": "An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)",
           "type": "string"
         },
         "contact": {
@@ -653,6 +672,7 @@
         },
         "bioregistry_prefix": {
           "title": "Bioregistry Prefix",
+          "description": "The prefix for this registry in the Bioregistry",
           "type": "string"
         }
       },

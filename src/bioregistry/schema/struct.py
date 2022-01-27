@@ -6,8 +6,8 @@ import json
 import logging
 import pathlib
 import re
+import textwrap
 from functools import lru_cache
-from textwrap import dedent
 from typing import (
     Any,
     Callable,
@@ -26,7 +26,7 @@ from pydantic import BaseModel, Field
 
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
-from bioregistry.schema.utils import EMAIL_RE, EMAIL_RE_STR
+from bioregistry.schema.utils import EMAIL_RE
 
 try:
     from typing import Literal  # type:ignore
@@ -52,6 +52,20 @@ SCHEMA_PATH = HERE.joinpath("schema.json")
 IDOT_SKIP = "identifiers.org"
 
 
+def _dedent(s: str) -> str:
+    return textwrap.dedent(s).replace("\n", " ").replace("  ", " ").strip()
+
+
+ORCID_DESCRIPTION = _dedent(
+    """\
+The Open Researcher and Contributor Identifier (ORCiD) provides
+researchers with an open, unambiguous identifier for connecting
+various digital assets (e.g., publications, reviews) across the
+semantic web. An account can be made in seconds at https://orcid.org.
+"""
+)
+
+
 class Attributable(BaseModel):
     """An upper-level metadata for a researcher."""
 
@@ -59,10 +73,7 @@ class Attributable(BaseModel):
 
     orcid: Optional[str] = Field(
         title="Open Researcher and Contributor Identifier",
-        description="The Open Researcher and Contributor Identifier (ORCiD) provides"
-        " researchers with an open, unambiguous identifier for connecting"
-        " various digital assets (e.g., publications, reviews) across the"
-        " semantic web. An account can be made in seconds at https://orcid.org.",
+        description=ORCID_DESCRIPTION,
     )
 
     email: Optional[str] = Field(
@@ -74,9 +85,12 @@ class Attributable(BaseModel):
     #: The GitHub handle for the author
     github: Optional[str] = Field(
         title="GitHub handle",
-        description="The GitHub handle enables contacting the researcher on GitHub:"
-        " the *de facto* version control in the computer sciences "
-        "and life sciences.",
+        description=_dedent(
+            """\
+    The GitHub handle enables contacting the researcher on GitHub:
+    the *de facto* version control in the computer sciences and life sciences.
+    """
+        ),
     )
 
     def add_triples(self, graph):
@@ -105,7 +119,9 @@ class Author(Attributable):
 
     #: This field is redefined on top of :class:`Attributable` to make
     #: it required. Otherwise, it has the same semantics.
-    orcid: str = Field(...)
+    orcid: str = Field(
+        ..., title="Open Researcher and Contributor Identifier", description=ORCID_DESCRIPTION
+    )
 
 
 class Provider(BaseModel):
@@ -187,18 +203,33 @@ class Resource(BaseModel):
     )
     download_owl: Optional[str] = Field(
         title="OWL Download URL",
-        description="The OWL download URL, preferably an unversioned variant",
+        description=_dedent(
+            """\
+    The URL to download the resource as an ontology encoded in the OWL format.
+    More information about this format can be found at https://www.w3.org/TR/owl2-syntax/.
+    """
+        ),
     )
     download_obo: Optional[str] = Field(
         title="OBO Download URL",
-        description="The OBO download URL, preferably an unversioned variant",
+        description=_dedent(
+            """\
+    The URL to download the resource as an ontology encoded in the OBO format.
+    More information about this format can be found at https://owlcollab.github.io/oboformat/doc/obo-syntax.html.
+    """
+        ),
     )
     download_json: Optional[str] = Field(
         title="OBO Graph JSON Download URL",
-        description="The OBO Graph JSON download URL, preferably an unversioned variant",
+        description=_dedent(
+            """
+    The URL to download the resource as an ontology encoded in the OBO Graph JSON format.
+    More information about this format can be found at https://github.com/geneontology/obographs.
+    """
+        ),
     )
     banana: Optional[str] = Field(
-        description=dedent(
+        description=_dedent(
             """\
     The `banana` is a generalization of the concept of the "namespace embedded in local unique identifier".
     Many OBO foundry ontologies use the redundant uppercased name of the ontology in the local identifier,
@@ -215,7 +246,7 @@ class Resource(BaseModel):
         ),
     )
     deprecated: Optional[bool] = Field(
-        description=dedent(
+        description=_dedent(
             """\
     A flag denoting if this resource is deprecated. Currently, this is a blanket term
     that covers cases when the prefix is no longer maintained, when it has been rolled
@@ -228,7 +259,7 @@ class Resource(BaseModel):
         ),
     )
     mappings: Optional[Dict[str, str]] = Field(
-        description=dedent(
+        description=_dedent(
             """\
     A dictionary of metaprefixes (i.e., prefixes for registries) to prefixes in external registries.
     These also correspond to the registry-specific JSON fields in this model like ``miriam`` field.
@@ -236,7 +267,7 @@ class Resource(BaseModel):
         ),
     )
     synonyms: Optional[List[str]] = Field(
-        description=dedent(
+        description=_dedent(
             """\
     A list of synonyms for the prefix of this resource. These are used in normalization of
     prefixes and are a useful reference tool for prefixes that are written many ways. For
@@ -244,7 +275,7 @@ class Resource(BaseModel):
     variants like ``SNOMED_CT``, version-variants like ``SNOMEDCT_2010_1_31``, and tons
     of other nonsense like ``SNOMEDCTCT``.
     """
-        )
+        ),
     )
     references: Optional[List[str]] = Field(
         description="A list of URLs to also see, such as publications describing the resource",
@@ -258,7 +289,7 @@ class Resource(BaseModel):
 
     namespace_in_lui: Optional[bool] = Field(
         title="Namespace Embedded in Local Unique Identifier",
-        description=dedent(
+        description=_dedent(
             """\
     A flag denoting if the namespace is embedded in the LUI (if this is true and it is not accompanied by a banana,
     assume that the banana is the prefix in all caps plus a colon, as is standard in OBO). Currently this flag
@@ -267,7 +298,7 @@ class Resource(BaseModel):
         ),
     )
     no_own_terms: Optional[bool] = Field(
-        description=dedent(
+        description=_dedent(
             """\
     A flag denoting if the resource mints its own identifiers. Omission or explicit marking as false means
     that the resource does have its own terms. This is most applicable to ontologies, specifically application
@@ -279,20 +310,28 @@ class Resource(BaseModel):
     comment: Optional[str] = Field(
         description="A field for a free text comment",
     )
-    #: Contributor information, including the name, ORCiD, and optionally the email of the contributor. All entries
-    #: curated through the Bioregistry GitHub Workflow must contain this field.
+
     contributor: Optional[Author] = Field(
-        description="Contributor information, including the name, ORCiD, and optionally the email of the contributor",
-    )
-    #: Reviewer information, including the name, ORCiD, and optionally the email of the reviewer. All entries
-    #: curated through the Bioregistry GitHub Workflow must contain this field pointing to the person who reviewed
-    #: it on GitHub.
-    reviewer: Optional[Author] = Field(
-        description="Reviewer information, including the name, ORCiD, and optionally the email of the reviewer",
+        description=_dedent(
+            """\
+    The contributor of the prefix to the Bioregistry, including at a minimum their name and ORCiD and
+    optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub
+    Workflow must contain this field.
+    """
+        ),
     )
 
+    reviewer: Optional[Author] = Field(
+        description=_dedent(
+            """\
+    The reviewer of the prefix to the Bioregistry, including at a minimum their name and ORCiD and
+    optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub
+    Workflow should contain this field pointing to the person who reviewed it on GitHub.
+    """
+        )
+    )
     proprietary: Optional[bool] = Field(
-        description=dedent(
+        description=_dedent(
             """\
     A flag to denote if this database is proprietary and therefore can not be included in normal quality control
     checks nor can it be resolved. Omission or explicit marking as false means that the resource is not proprietary.
@@ -308,14 +347,15 @@ class Resource(BaseModel):
     has_canonical: Optional[str] = Field(
         description="If this shares an IRI with another entry, maps to which should be be considered as canonical",
     )
-    #: An annotation of stylization of the prefix. This appears in OBO ontologies like FBbt as well as databases
-    #: like NCBIGene. If it's not given, then assume that the normalized prefix used in the Bioregistry is canonical.
     preferred_prefix: Optional[str] = Field(
-        description="An annotation of stylization of the prefix. This appears in OBO ontologies like"
-        " FBbt as well as databases like NCBIGene. If it's not given, then assume that"
-        " the normalized prefix used in the Bioregistry is canonical."
+        description=_dedent(
+            """\
+    An annotation of stylization of the prefix. This appears in OBO ontologies like
+    FBbt as well as databases like NCBIGene. If it's not given, then assume that
+    the normalized prefix used in the Bioregistry is canonical.
+    """
+        ),
     )
-
     #: External data from Identifiers.org's MIRIAM Database
     miriam: Optional[Mapping[str, Any]]
     #: External data from the Name-to-Thing service
@@ -568,7 +608,7 @@ class Resource(BaseModel):
         rv = self.get_prefix_key("pattern", ("miriam", "wikidata"))
         if rv is None:
             return None
-        return clean_pattern(rv)
+        return _clean_pattern(rv)
 
     def get_pattern_re(self):
         """Get the compiled pattern for the given prefix, if it's available."""
@@ -1206,7 +1246,6 @@ class RegistrySchema(BaseModel):
 class Registry(BaseModel):
     """Metadata about a registry."""
 
-    #: The registry's metaprefix
     prefix: str = Field(
         ...,
         description=(
@@ -1214,31 +1253,29 @@ class Registry(BaseModel):
             "metaprefix for Identifiers.org is `miriam`."
         ),
     )
-    #: The name of the registry
     name: str = Field(..., description="The human-readable label for the registry")
-    #: A description of the registry
     description: str = Field(..., description="A full description of the registry.")
-    #: The registry's homepage
     homepage: str = Field(..., description="The URL for the homepage of the registry.")
-    #: An example prefix in the registry
     example: str = Field(..., description="An example prefix inside the registry.")
-    #: A structured description of the metadata the registry collects
     availability: RegistrySchema = Field(
-        description="A structured description of the metadata that the registry collects"
+        ..., description="A structured description of the metadata that the registry collects"
     )
-    #: A URL to download the registry's contents
     download: Optional[str] = Field(
         description="A download link for the data contained in the registry"
     )
-    #: A URL with a $1 for a prefix to resolve in the registry
-    provider_uri_format: Optional[str]
-    #: A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry
-    resolver_uri_format: Optional[str]
-    #: An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)
-    resolver_type: Optional[str]
-    #: The contact for the registry
+    provider_uri_format: Optional[str] = Field(
+        description="A URL with a $1 for a prefix to resolve in the registry"
+    )
+    resolver_uri_format: Optional[str] = Field(
+        description="A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry"
+    )
+    resolver_type: Optional[str] = Field(
+        description="An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)"
+    )
     contact: Attributable = Field(..., description="The contact for the registry.")
-    bioregistry_prefix: Optional[str]
+    bioregistry_prefix: Optional[str] = Field(
+        description="The prefix for this registry in the Bioregistry"
+    )
 
     def score(self) -> int:
         """Calculate a metadata score/goodness for this registry."""
@@ -1350,28 +1387,23 @@ class Registry(BaseModel):
 class Collection(BaseModel):
     """A collection of resources."""
 
-    #: The collection's identifier
     identifier: str = Field(
         ...,
         description="The collection's identifier",
         regex=r"^\d{7}$",
     )
-    #: The name of the collection
     name: str = Field(
         ...,
         description="The name of the collection",
     )
-    #: A description of the collection
     description: str = Field(
         ...,
         description="A description of the collection",
     )
-    #: A list of prefixes of resources appearing in the collection
     resources: List[str] = Field(
         ...,
         description="A list of prefixes of resources appearing in the collection",
     )
-    #: A list of authors/contributors to the collection
     authors: List[Author] = Field(
         ...,
         description="A list of authors/contributors to the collection",
@@ -1428,7 +1460,7 @@ class Collection(BaseModel):
         return rv
 
 
-def clean_pattern(rv: str) -> str:
+def _clean_pattern(rv: str) -> str:
     """Clean a regular expression string."""
     rv = rv.rstrip("?")
     if not rv.startswith("^"):
