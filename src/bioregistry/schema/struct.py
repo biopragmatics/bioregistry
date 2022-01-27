@@ -129,6 +129,7 @@ class Provider(BaseModel):
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
+    prefix: str = Field(..., description="The prefix for this resource", exclude=True)
     name: Optional[str] = Field(
         description="The name of the resource",
     )

@@ -30,14 +30,16 @@ class TestRegistry(unittest.TestCase):
 
     def test_prefixes(self):
         """Check all prefixes are lowercased."""
-        for prefix in self.registry:
+        for prefix, resource in self.registry.items():
             with self.subTest(prefix=prefix):
+                self.assertEqual(prefix, resource.prefix)
                 self.assertEqual(prefix.lower(), prefix, msg="prefix is not lowercased")
 
     def test_keys(self):
         """Check the required metadata is there."""
         keys = {
             # Required
+            "prefix",
             "description",
             "homepage",
             "name",
@@ -128,7 +130,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_name_expansions(self):
         """Test that default names are not capital acronyms."""
-        for prefix in bioregistry.read_registry():
+        for prefix in self.registry:
             if bioregistry.is_deprecated(prefix):
                 continue
             entry = bioregistry.get_resource(prefix)
@@ -145,7 +147,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_has_description(self):
         """Test that all non-deprecated entries have a description."""
-        for prefix in bioregistry.read_registry():
+        for prefix in self.registry:
             if bioregistry.is_deprecated(prefix):
                 continue
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
@@ -153,7 +155,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_has_homepage(self):
         """Test that all non-deprecated entries have a homepage."""
-        for prefix in bioregistry.read_registry():
+        for prefix in self.registry:
             if bioregistry.is_deprecated(prefix):
                 continue
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
@@ -161,7 +163,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_homepage_http(self):
         """Test that all homepages start with http."""
-        for prefix in bioregistry.read_registry():
+        for prefix in self.registry:
             homepage = bioregistry.get_homepage(prefix)
             if homepage is None or homepage.startswith("http") or homepage.startswith("ftp"):
                 continue
@@ -170,11 +172,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_email(self):
         """Test that the email getter returns valid email addresses."""
-        for prefix in bioregistry.read_registry():
-            if prefix in {"ato", "bootstrep", "dc_cl"}:
-                # FIXME these are known problematic, and there's a PR on
-                #  https://github.com/OBOFoundry/OBOFoundry.github.io/pull/1534
-                continue
+        for prefix in self.registry:
             resource = bioregistry.get_resource(prefix)
             self.assertIsNotNone(resource)
             email = resource.get_contact_email()
@@ -189,7 +187,7 @@ class TestRegistry(unittest.TestCase):
         For example, "Amazon Standard Identification Number (ASIN)" is a problematic
         name for prefix "asin".
         """
-        for prefix in bioregistry.read_registry():
+        for prefix in self.registry:
             if bioregistry.is_deprecated(prefix):
                 continue
             entry = bioregistry.get_resource(prefix)

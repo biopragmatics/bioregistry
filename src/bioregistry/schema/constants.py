@@ -214,9 +214,7 @@ bioregistry_schema_terms = [
 bioregistry_schema_extras = [
     ("0000001", DCTERMS.isPartOf, "part of", "0000002"),  # resource part of registry
     ("0000001", DCTERMS.isPartOf, "part of", "0000003"),  # resource part of collection
-    ("0000003", DCTERMS.creator, "creator", "0000020"),  # author creator of collection
     ("0000003", DCTERMS.contributor, "contributor", "0000020"),  # author creator of collection
-    ("0000001", DCTERMS.creator, "creator", "0000020"),  # author creator of resource
     ("0000001", DCTERMS.contributor, "contributor", "0000020"),  # author creator of resource
     ("0000001", SKOS.exactMatch, "exact match", "0000001"),  # resource equivalence
 ]
