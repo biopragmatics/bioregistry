@@ -67,6 +67,7 @@ extensions = [
     "sphinx_click.ext",
     "sphinx_automodapi.automodapi",
     "sphinx_automodapi.smart_resolver",
+    "sphinxcontrib.autodoc_pydantic",
     # 'texext',
 ]
 

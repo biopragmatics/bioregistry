@@ -366,22 +366,28 @@ class Manager:
             name=resource.get_name(),
             description=resource.get_description(),
             pattern=resource.get_pattern(),
-            uri_format=resource.get_uri_format(),
             homepage=resource.get_homepage(),
             license=resource.get_license(),
             version=resource.get_version(),
-            contact=resource.get_contact(),
+            synonyms=resource.get_synonyms(),
+            repository=resource.get_repository(),
+            # Downloads
+            download_obo=resource.get_download_obo(),
+            download_json=resource.get_download_obograph(),
+            download_owl=resource.get_download_owl(),
+            # Registry properties
             example=resource.get_example(),
             example_extras=resource.example_extras,
-            synonyms=resource.get_synonyms(),
-            comment=resource.comment,
-            mappings=resource.get_mappings(),
+            uri_format=resource.get_uri_format(),
             providers=resource.get_extra_providers(),
+            # Comments
+            comment=resource.comment,
             references=resource.references,
             # MIRIAM compatibility
             banana=resource.get_banana(),
             namespace_in_lui=resource.get_namespace_in_lui(),
             # Provenance
+            contact=resource.get_contact(),
             contributor=resource.contributor,
             reviewer=resource.reviewer,
             # Ontology Relations
@@ -390,6 +396,7 @@ class Manager:
             has_canonical=resource.has_canonical,
             appears_in=self.get_appears_in(prefix),
             depends_on=self.get_depends_on(prefix),
+            mappings=resource.get_mappings(),
             # Ontology Properties
             deprecated=resource.is_deprecated(),
             no_own_terms=resource.no_own_terms,
