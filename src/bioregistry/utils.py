@@ -52,7 +52,7 @@ def read_registry() -> Mapping[str, Resource]:
 def _registry_from_path(path: Union[str, Path]) -> Mapping[str, Resource]:
     with open(path, encoding="utf-8") as file:
         data = json.load(file)
-    return {key: Resource(**value) for key, value in data.items()}
+    return {prefix: Resource(prefix=prefix, **value) for prefix, value in data.items()}
 
 
 def add_resource(prefix: str, resource: Resource) -> None:

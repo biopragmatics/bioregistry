@@ -361,6 +361,7 @@ class Manager:
 
     def _rasterized_resource(self, prefix: str, resource: Resource) -> Resource:
         return Resource(
+            prefix=resource.prefix,
             preferred_prefix=resource.get_preferred_prefix() or prefix,
             name=resource.get_name(),
             description=resource.get_description(),

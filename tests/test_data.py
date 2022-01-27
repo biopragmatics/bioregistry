@@ -30,14 +30,16 @@ class TestRegistry(unittest.TestCase):
 
     def test_prefixes(self):
         """Check all prefixes are lowercased."""
-        for prefix in self.registry:
+        for prefix, resource in self.registry.items():
             with self.subTest(prefix=prefix):
+                self.assertEqual(prefix, resource.prefix)
                 self.assertEqual(prefix.lower(), prefix, msg="prefix is not lowercased")
 
     def test_keys(self):
         """Check the required metadata is there."""
         keys = {
             # Required
+            "prefix",
             "description",
             "homepage",
             "name",
