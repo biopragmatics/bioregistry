@@ -3,18 +3,12 @@
 """CLI for alignment."""
 
 import click
-from pystow.utils import get_hashes
 
-from ..utils import BIOREGISTRY_PATH, secho
+from ..utils import get_hexdigests, secho
 
 __all__ = [
     "align",
 ]
-
-
-def _get_hexdigest(alg: str = "sha256") -> str:
-    hashes = get_hashes(BIOREGISTRY_PATH, [alg])
-    return hashes[alg].hexdigest()
 
 
 @click.command()
@@ -36,7 +30,7 @@ def align():
     from .uniprot import UniProtAligner
     from .wikidata import WikidataAligner
 
-    pre_sha256 = _get_hexdigest()
+    pre_digests = get_hexdigests()
 
     for aligner_cls in [
         MiriamAligner,
@@ -61,7 +55,7 @@ def align():
         except IOError:
             secho(f"Failed to align {aligner_cls.key}", fg="red")
 
-    if pre_sha256 != _get_hexdigest():
+    if pre_digests != get_hexdigests():
         click.echo("::set-output name=BR_UPDATED::true")
 
 

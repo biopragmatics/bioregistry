@@ -16,12 +16,16 @@ import click
 import requests
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
+from pystow.utils import get_hashes
 
 from .constants import (
     BIOREGISTRY_PATH,
     COLLECTIONS_PATH,
+    COLLECTIONS_YAML_PATH,
     METAREGISTRY_PATH,
+    METAREGISTRY_YAML_PATH,
     MISMATCH_PATH,
+    REGISTRY_YAML_PATH,
 )
 from .schema import Attributable, Collection, Registry, Resource
 
@@ -289,3 +293,21 @@ def _norm(s: str) -> str:
 def curie_to_str(prefix: str, identifier: str) -> str:
     """Combine a prefix and identifier into a CURIE string."""
     return f"{prefix}:{identifier}"
+
+
+def get_hexdigests(alg: str = "sha256") -> Mapping[str, str]:
+    """Get hex digests."""
+    return {
+        path.as_posix(): _get_hexdigest(path, alg=alg)
+        for path in (
+            BIOREGISTRY_PATH,
+            REGISTRY_YAML_PATH,
+            METAREGISTRY_YAML_PATH,
+            COLLECTIONS_YAML_PATH,
+        )
+    }
+
+
+def _get_hexdigest(path: Union[str, Path], alg: str = "sha256") -> str:
+    hashes = get_hashes(path, [alg])
+    return hashes[alg].hexdigest()
