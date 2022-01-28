@@ -26427,6 +26427,32 @@ bioregistry:ons a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:one ;
     bioregistry.schema:0000019 [ rdfs:label "Francesco Vitali" ] .
 
+bioregistry:ecocore a bioregistry.schema:0000001 ;
+    rdfs:label "An ontology of core ecological entities" ;
+    dc:description "Ecocore is a community ontology for the concise and controlled description of ecological traits of organisms."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch obofoundry:ECOCORE,
+        ontobee:ECOCORE,
+        bioportal:ECOCORE,
+        prefixcommons:ECOCORE,
+        ols:ecocore ;
+    foaf:homepage "https://github.com/EcologicalSemantics/ecocore"^^xsd:string ;
+    bioregistry.schema:0000005 "00000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ECOCORE_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000017 bioregistry:bfo,
+        bioregistry:chebi,
+        bioregistry:envo,
+        bioregistry:go,
+        bioregistry:iao,
+        bioregistry:pato,
+        bioregistry:pco,
+        bioregistry:po,
+        bioregistry:ro,
+        bioregistry:uberon ;
+    bioregistry.schema:0000019 [ rdfs:label "Pier Luigi Buttigieg" ] .
+
 bioregistry:pco a bioregistry.schema:0000001 ;
     rdfs:label "Population and Community Ontology" ;
     dc:description "The Population and Community Ontology (PCO) describes material entities, qualities, and processes related to collections of interacting organisms such as populations and communities. It is taxon neutral, and can be used for any species, including humans. The classes in the PCO are useful for describing evolutionary processes, organismal interactions, and ecological experiments. Practical applications of the PCO include community health care, plant pathology, behavioral studies, sociology, and ecology."^^xsd:string ;
@@ -26453,32 +26479,6 @@ bioregistry:pco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:ecocore,
         bioregistry:envo ;
     bioregistry.schema:0000019 [ rdfs:label "Ramona Walls" ] .
-
-bioregistry:ecocore a bioregistry.schema:0000001 ;
-    rdfs:label "An ontology of core ecological entities" ;
-    dc:description "Ecocore is a community ontology for the concise and controlled description of ecological traits of organisms."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:ECOCORE,
-        ontobee:ECOCORE,
-        bioportal:ECOCORE,
-        prefixcommons:ECOCORE,
-        ols:ecocore ;
-    foaf:homepage "https://github.com/EcologicalSemantics/ecocore"^^xsd:string ;
-    bioregistry.schema:0000005 "00000001"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ECOCORE_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000017 bioregistry:bfo,
-        bioregistry:chebi,
-        bioregistry:envo,
-        bioregistry:go,
-        bioregistry:iao,
-        bioregistry:pato,
-        bioregistry:pco,
-        bioregistry:po,
-        bioregistry:ro,
-        bioregistry:uberon ;
-    bioregistry.schema:0000019 [ rdfs:label "Pier Luigi Buttigieg" ] .
 
 bioregistry:iao a bioregistry.schema:0000001 ;
     rdfs:label "Information Artifact Ontology" ;
@@ -26654,7 +26654,8 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
         bioregistry:hso,
         bioregistry:mco,
         bioregistry:ons,
-        bioregistry:pcl ;
+        bioregistry:pcl,
+        bioregistry:pco ;
     bioregistry.schema:0000019 [ rdfs:label "Frederic Bastian" ] .
 
 bioregistry.metaresource:cheminf a bioregistry.schema:0000002 ;
