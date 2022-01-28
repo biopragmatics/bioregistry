@@ -80,19 +80,21 @@
         seconds.
     </p>
     <pre><code class="language-bash">#!/bin/bash
+# /data/services/restart_bioregistry.sh
 
-# store the bioregistry id
-BIOREGISTRY_CONTAINER_ID=$(docker ps --filter "name=bioregistry" -q)
+# Store the container's hash
+BIOREGISTRY_CONTAINER_ID=$(docker ps --filter "name=bioregistry" -aq)
 
-# Stop and remove the old container taking advantage
-#   of the fact that it's named specifically
-docker stop $BIOREGISTRY_CONTAINER_ID
-docker rm $BIOREGISTRY_CONTAINER_ID
+# Stop and remove the old container, taking advantage of the fact that it's named specifically
+if [ -n "BIOREGISTRY_CONTAINER_ID" ]; then
+  docker stop $BIOREGISTRY_CONTAINER_ID
+  docker rm $BIOREGISTRY_CONTAINER_ID
+fi
 
 # Pull the latest
 docker pull biopragmatics/bioregistry:latest
 
-# Run the start script
+# Run the start script, remove -d to run interactively
 docker run -id --name bioregistry -p 8766:8766 biopragmatics/bioregistry:latest</code></pre>
     <p>This script can be put on the EC2 instance and run via SSH with:</p>
     <pre><code class="language-bash">#!/bin/bash
