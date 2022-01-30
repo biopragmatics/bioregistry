@@ -1555,6 +1555,30 @@
     "sampleId": "1199",
     "uri_format": "https://civicdb.org/links/evidence/$1"
   },
+  "civic.gid": {
+    "deprecated": false,
+    "description": "A CIViC Gene Summary is created to provide a high-level overview of clinical relevance of cancer variants for the gene. Gene Summaries in CIViC focus on emphasizing the clinical relevance from a molecular perspective rather than describing the biological function of the gene unless necessary to contextualize its clinical relevance in cancer. Gene Summaries include relevant cancer subtypes, specific treatments for the gene\u2019s associated variants, pathway interactions, functional alterations caused by the variants in the gene, and normal/abnormal functions of the gene with associated roles in oncogenesis",
+    "homepage": "https://civicdb.org/",
+    "id": "00000907",
+    "name": "CIViC Gene",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+$",
+    "prefix": "civic.gid",
+    "sampleId": "272",
+    "uri_format": "https://civicdb.org/links/gene/$1"
+  },
+  "civic.vid": {
+    "deprecated": false,
+    "description": "CIViC variants are usually genomic alterations, including single nucleotide variants (SNVs), insertion/deletion events (indels), copy number alterations (CNV\u2019s such as amplification or deletion), structural variants (SVs such as translocations and inversions), and other events that differ from the \u201cnormal\u201d genome. In some cases a CIViC variant may represent events of the transcriptome or proteome. For example, \u2018expression\u2019 or \u2018over-expression\u2019 is a valid variant. Regardless of the variant, it must have a Predictive, Prognostic, Predisposing, Diagnostic, Oncogenic, or Functional relevance that is clinical in nature to be entered in CIViC. i.e. There must be some rationale for why curation of this variant could ultimately aid clinical decision making.",
+    "homepage": "https://civicdb.org/",
+    "id": "00000909",
+    "name": "CIViC Variant",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+$",
+    "prefix": "civic.vid",
+    "sampleId": "12",
+    "uri_format": "https://civicdb.org/links/variant/$1"
+  },
   "cl": {
     "deprecated": false,
     "description": "The Cell Ontology is designed as a structured controlled vocabulary for cell types. The ontology was constructed for use by the model organism and other bioinformatics databases, incorporating cell types from prokaryotes to mammals, and includes plants and fungi.",
@@ -3462,7 +3486,7 @@
     "id": "00000901",
     "name": "GitLab",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^[0-9A-Za-z\\u00A9-\\u1f9ff_][0-9A-Za-z\\p{Pd}\\u00A9-\\u1f9ff_()\\. ]*/[0-9A-Za-z\\u00A9-\\u1f9ff_][0-9A-Za-z\\p{Pd}\\u00A9-\\u1f9ff_\\. ]*$",
+    "pattern": "^[0-9A-Za-z_][0-9A-Za-z-_()\\. ]*/[0-9A-Za-z_][0-9A-Za-z-_\\. ]*$",
     "prefix": "gitlab",
     "sampleId": "morpheus.lab/morpheus",
     "uri_format": "https://gitlab.com/$1"
@@ -4335,9 +4359,9 @@
     "id": "00000812",
     "name": "Integrated Canine Data Commons",
     "namespaceEmbeddedInLui": false,
-    "pattern": "^ICDC[0-9][0-9][0-9][0-9][0-9][0-9]$",
+    "pattern": "^ICDC\\d{6}$",
     "prefix": "icdc",
-    "sampleId": "ICDC000101",
+    "sampleId": "ICDC000009",
     "uri_format": "https://caninecommons.cancer.gov/#/study/$1"
   },
   "iceberg.element": {
@@ -6178,6 +6202,18 @@
     "prefix": "modeldb",
     "sampleId": "45539",
     "uri_format": "http://senselab.med.yale.edu/ModelDB/ShowModel.asp?model=$1"
+  },
+  "modeldb.concept": {
+    "deprecated": false,
+    "description": "Concept used by ModelDB, an accessible location for storing and efficiently retrieving computational neuroscience models.",
+    "homepage": "https://www.yale.edu",
+    "id": "00000905",
+    "name": "ModelDB concept",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "\\d+",
+    "prefix": "modeldb.concept",
+    "sampleId": "3639",
+    "uri_format": "https://senselab.med.yale.edu/ModelDB/ModelList?id=$1"
   },
   "molbase": {
     "deprecated": false,
@@ -8421,6 +8457,18 @@
     "prefix": "ricenetdb.reaction",
     "sampleId": "OSR0818",
     "uri_format": "http://bis.zju.edu.cn/ricenetdb/reactiondetails.php?ID=$1"
+  },
+  "rism": {
+    "deprecated": false,
+    "description": "RISM Online is a new service that will publish the bibliographic and authority data from the catalogue of the R\u00e9pertoire Internationale des Sources Musicales project.",
+    "homepage": "https://rism.digital/",
+    "id": "00000911",
+    "name": "RISM Online",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[a-z]+/[0-9]+$",
+    "prefix": "rism",
+    "sampleId": "people/11035",
+    "uri_format": "https://rism.online/$1"
   },
   "rnacentral": {
     "deprecated": false,
