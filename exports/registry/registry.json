@@ -3125,7 +3125,7 @@
       "ChEBI"
     ],
     "uri_format": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1",
-    "version": "207"
+    "version": "208"
   },
   "chembl": {
     "description": "ChEMBL is a database of bioactive compounds, their quantitative properties and bioactivities (binding constants, pharmacology and ADMET, etc). The data is abstracted and curated from the primary scientific literature.",
@@ -8308,7 +8308,7 @@
     "preferred_prefix": "FOODON",
     "repository": "https://github.com/FoodOntology/foodon",
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/foodon/terms?obo_id=FOODON:$1",
-    "version": "2021-11-25"
+    "version": "2022-02-01"
   },
   "fovt": {
     "banana": "FOVT",
@@ -17897,7 +17897,7 @@
   "pdb": {
     "description": "The Protein Data Bank is the single worldwide archive of structural data of biological macromolecules.",
     "example": "2gc4",
-    "homepage": "https://www.rcsb.org/",
+    "homepage": "https://www.wwpdb.org/",
     "mappings": {
       "fairsharing": "FAIRsharing.mckkb4",
       "go": "PDB",
@@ -17927,18 +17927,32 @@
         "uri_format": "https://www.ebi.ac.uk/pdbsum/$1"
       },
       {
-        "code": "wwpdb",
-        "description": "The Worldwide PDB (wwPDB) organization manages the PDB archive and ensures that the PDB is freely and publicly available to the global community.",
-        "homepage": "https://www.wwpdb.org/",
-        "name": "Worldwide Protein Data Bank",
-        "uri_format": "https://www.wwpdb.org/pdb?id=$1"
+        "code": "rcsb",
+        "description": "RCSB PDB",
+        "homepage": "https://www.rcsb.org/",
+        "name": "RCSB PDB",
+        "uri_format": "https://www.rcsb.org/structure/$1"
+      },
+      {
+        "code": "pdbj",
+        "description": "Protein Data Bank Japan (PDBj)",
+        "homepage": "http://www.pdbj.org/",
+        "name": "Protein Data Bank Japan (PDBj)",
+        "uri_format": "https://pdbj.org/mine/summary/$1"
+      },
+      {
+        "code": "pdbe",
+        "description": "Protein Databank in Europe (PDBe)",
+        "homepage": "http://www.pdbe.org/",
+        "name": "Protein Databank in Europe (PDBe)",
+        "uri_format": "https://www.ebi.ac.uk/pdbe/entry/pdb/$1"
       }
     ],
     "synonyms": [
       "pdbe",
       "wwpdb"
     ],
-    "uri_format": "https://www.rcsb.org/structure/$1"
+    "uri_format": "https://www.wwpdb.org/pdb?id=$1"
   },
   "pdb-ccd": {
     "comment": "might be same as pdb.ligand, not sure though",
