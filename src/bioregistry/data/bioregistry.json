@@ -2,7 +2,7 @@
   "3dmet": {
     "fairsharing": {
       "abbreviation": "3DMET",
-      "description": "3DMET is a database of three-dimensional structures of natural metabolites. This resource has been marked as Uncertain because its project home can no longer be found. Please get in touch if you have any information about this resource.",
+      "description": "3DMET is a database of three-dimensional structures of natural metabolites.",
       "id": "1999",
       "name": "Three-Dimensional Structure Database of Natural Metabolites",
       "prefix": "FAIRsharing.5ab0n7"
@@ -4173,7 +4173,7 @@
     },
     "name": "bioRxiv",
     "pattern": "^(\\d{4}\\.\\d{2}\\.\\d{2}\\.)?\\d{6,8}(v\\d{1,3})?$",
-    "uri_format": "https://www.biorxiv.org/content/$1"
+    "uri_format": "https://www.biorxiv.org/content/10.1101/$1"
   },
   "biosample": {
     "cellosaurus": {
@@ -10867,6 +10867,7 @@
       "name": "Dublin Core Metadata Element Set",
       "prefix": "FAIRsharing.3nx7t"
     },
+    "has_canonical": "dcterms",
     "homepage": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/",
     "mappings": {
       "bioportal": "DC",
@@ -10879,7 +10880,8 @@
       "is_obo": false,
       "prefix": "dc",
       "uri_format": "http://purl.org/dc/elements/1.1/$1"
-    }
+    },
+    "uri_format": "http://purl.org/dc/terms/$1"
   },
   "dc_cl": {
     "example": "0000003",
@@ -10976,7 +10978,7 @@
     "synonyms": [
       "dc.terms"
     ],
-    "uri_format": "https://dublincore.org/specifications/dublin-core/dcmi-terms/#$1"
+    "uri_format": "http://purl.org/dc/terms/$1"
   },
   "dctypes": {
     "description": "This document is an up-to-date specification of all metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes.",
@@ -29646,14 +29648,14 @@
     "example": "40000617",
     "fairsharing": {
       "abbreviation": "MIRO",
-      "description": "The MIRO guidelines are a community-validated set of recommendations on what should be reported about an ontology and its development, most importantly in the context of ontology description papers intended for publishing in scientific journals or conferences. The purpose of the community-reviewed MIRO guidelines is to significantly improve the quality of ontology description reports and other documentation, in particular by increasing consistent reporting of important ontology features that are otherwise often neglected.",
-      "id": "555",
-      "name": "The Minimal Information for Reporting an Ontology Guidelines",
-      "prefix": "FAIRsharing.0Csgcz"
+      "description": "Monitoring of insect vector populations with respect to their susceptibility to one or more insecticides is a crucial element of the strategies used for the control of arthropod-borne diseases. This management task can nowadays be achieved more efficiently when assisted by IT (Information Technology) tools, ranging from modern integrated databases to GIS (Geographic Information System). MIRO is an application ontology that can be used for the purpose of controlling mosquitoes and, thus, the diseases that they transmit.",
+      "id": "720",
+      "name": "Mosquito Insecticide Resistance Ontology",
+      "prefix": "FAIRsharing.sjf113"
     },
     "mappings": {
       "bioportal": "MIRO",
-      "fairsharing": "FAIRsharing.0Csgcz",
+      "fairsharing": "FAIRsharing.sjf113",
       "obofoundry": "miro",
       "ols": "miro",
       "ontobee": "MIRO",
@@ -32659,7 +32661,7 @@
     "synonyms": [
       "neuroname"
     ],
-    "uri_format": "https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=$1",
+    "uri_format": "http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=$1",
     "wikidata": {
       "prefix": "P4394"
     }
@@ -37041,7 +37043,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "uri_format": "https://pav-ontology.github.io/pav/index.html#http://purl.org/pav/$1"
+    "uri_format": "http://purl.org/pav/$1"
   },
   "paxdb.organism": {
     "mappings": {
@@ -40581,7 +40583,7 @@
       "prefix": "prov",
       "uri_format": "http://www.w3.org/ns/prov#$1"
     },
-    "uri_format": "https://www.w3.org/ns/prov#$1"
+    "uri_format": "http://www.w3.org/ns/prov#$1"
   },
   "pscdb": {
     "fairsharing": {
@@ -40974,6 +40976,19 @@
       "prefix": "P662",
       "uri_format": "https://pubchem.ncbi.nlm.nih.gov/compound/$1"
     }
+  },
+  "pubchem.element": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "PubChem Element gives information on chemical elements like Hydrogen, with the local identifier corresponding to the atomic number.",
+    "example": "1",
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov/periodic-table",
+    "name": "PubChem Element",
+    "uri_format": "https://pubchem.ncbi.nlm.nih.gov/element/$1"
   },
   "pubchem.substance": {
     "cheminf": {

@@ -212,6 +212,29 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.assertIn("$1", uri_format, msg=f"{prefix} format does not have a $1")
 
+    def test_uri_format_uniqueness(self):
+        """Test URI format uniqueness."""
+        dd = defaultdict(set)
+        for prefix, entry in self.registry.items():
+            if not entry.uri_format:
+                continue
+            dd[entry.uri_format].add(prefix)
+        for uri_format, prefixes in dd.items():
+            with self.subTest(uri_format=uri_format):
+                if len(prefixes) == 1:
+                    continue
+                self.assertEqual(
+                    len(prefixes) - 1,
+                    sum(
+                        bioregistry.get_part_of(prefix) in prefixes
+                        or bioregistry.get_has_canonical(prefix) in prefixes
+                        for prefix in prefixes
+                    ),
+                    msg="All prefix clusters of size n with duplicated URI format"
+                    " strings should have n-1 of their entries pointing towards"
+                    " other entries either via the part_of or has_canonical relations",
+                )
+
     def test_own_terms_conflict(self):
         """Test there is no conflict between no own terms and having an example."""
         for prefix, resource in self.registry.items():
