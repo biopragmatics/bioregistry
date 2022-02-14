@@ -5,6 +5,7 @@
 from typing import Optional
 
 from flask import Blueprint, abort, redirect, render_template, url_for
+from markdown import markdown
 
 import bioregistry
 
@@ -84,6 +85,7 @@ def resource(prefix: str):
         curie_to_str(_resource.get_preferred_prefix() or prefix, example_extra)
         for example_extra in example_extras
     ]
+    description = bioregistry.get_description(prefix)
     return render_template(
         "resource.html",
         zip=zip,
@@ -110,7 +112,7 @@ def resource(prefix: str):
         deprecated=bioregistry.is_deprecated(prefix),
         contact=bioregistry.get_contact(prefix),
         banana=bioregistry.get_banana(prefix),
-        description=bioregistry.get_description(prefix),
+        description=markdown(description) if description else None,
         appears_in=bioregistry.get_appears_in(prefix),
         depends_on=bioregistry.get_depends_on(prefix),
         has_canonical=bioregistry.get_has_canonical(prefix),

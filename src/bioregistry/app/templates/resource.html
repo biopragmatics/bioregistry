@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="card-body">
-            {% if description %}<p>{{ description }}</p>{% endif %}
+            {% if description %}<p>{{ description|safe }}</p>{% endif %}
             {% if provides %}
                 <p>
                     This resource is a <span class="badge badge-danger">provider</span>. This means that
