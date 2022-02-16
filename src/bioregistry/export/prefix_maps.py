@@ -121,3 +121,4 @@ def get_obofoundry_prefix_map(include_synonyms: bool = False) -> Mapping[str, st
 
 if __name__ == "__main__":
     generate_context_json_ld()
+    generate_shacl_prefixes()
