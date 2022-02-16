@@ -49,6 +49,9 @@ RDF_TURTLE_PATH = EXPORT_RDF / "bioregistry.ttl"
 RDF_NT_PATH = EXPORT_RDF / "bioregistry.nt"
 RDF_JSONLD_PATH = EXPORT_RDF / "bioregistry.jsonld"
 
+EXPORT_SHACL = EXPORT_DIRECTORY.joinpath("shacl")
+SHACL_TURTLE_PATH = EXPORT_SHACL / "bioregistry.ttl"
+
 EXPORT_SSSOM = EXPORT_DIRECTORY.joinpath("sssom")
 SSSOM_PATH = EXPORT_SSSOM / "bioregistry.sssom.tsv"
 SSSOM_METADATA_PATH = EXPORT_SSSOM / "bioregistry.sssom.yml"
