@@ -15,6 +15,8 @@ from bioregistry.constants import (
     CONTEXT_OBO_PATH,
     CONTEXT_OBO_SYNONYMS_PATH,
     EXPORT_CONTEXTS,
+    SHACL_OBO_SYNONYMS_TURTLE_PATH,
+    SHACL_OBO_TURTLE_PATH,
     SHACL_TURTLE_PATH,
 )
 from bioregistry.schema import Collection
@@ -22,13 +24,18 @@ from bioregistry.schema import Collection
 
 @click.command()
 def generate_contexts():
-    """Generate various JSON-LD context files."""
+    """Generate various context files."""
     prefix_map = get_prefix_map()
     _write_prefix_map(CONTEXT_BIOREGISTRY_PATH, prefix_map)
-    _write_shacl(..., prefix_map)
+    _write_shacl(SHACL_TURTLE_PATH, prefix_map)
 
-    _write_prefix_map(CONTEXT_OBO_PATH, get_obofoundry_prefix_map())
-    _write_prefix_map(CONTEXT_OBO_SYNONYMS_PATH, get_obofoundry_prefix_map(include_synonyms=True))
+    obo_prefix_map = get_obofoundry_prefix_map()
+    _write_prefix_map(CONTEXT_OBO_PATH, obo_prefix_map)
+    _write_shacl(SHACL_OBO_TURTLE_PATH, obo_prefix_map)
+
+    obo_synonyms_prefix_map = get_obofoundry_prefix_map(include_synonyms=True)
+    _write_prefix_map(CONTEXT_OBO_SYNONYMS_PATH, obo_synonyms_prefix_map)
+    _write_shacl(SHACL_OBO_SYNONYMS_TURTLE_PATH, obo_synonyms_prefix_map)
 
     for key, collection in bioregistry.read_collections().items():
         name = collection.context
