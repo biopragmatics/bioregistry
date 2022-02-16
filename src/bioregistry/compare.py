@@ -450,7 +450,7 @@ def _remap(*, key: str, prefixes: Collection[str]) -> Set[str]:
     return {br_external_to.get(prefix, prefix) for prefix in prefixes}
 
 
-def get_regex_complexities() -> Collection[str]:
+def get_regex_complexities() -> Collection[float]:
     """Get a list of regular expression complexities."""
     rows = []
     for prefix in manager.registry:
