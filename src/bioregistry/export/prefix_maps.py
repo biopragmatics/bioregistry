@@ -58,8 +58,8 @@ def _write_shacl(path: Path, prefix_map: Mapping[str, str]) -> None:
     # Todo: Should we really uppercase prefixes?
     path.parent.mkdir(parents=True, exist_ok=True)
     entries = ",\n".join(
-        f'    [ sh:prefix "{prefix}" ; sh:namespace "{url}" ]'
-        for prefix, url in prefix_map.items()
+        f'    [ sh:prefix "{prefix}" ; sh:namespace "{uri_prefix}" ]'
+        for prefix, uri_prefix in prefix_map.items()
     )
     with path.open("w") as file:
         file.write(text.format(entries=entries))
