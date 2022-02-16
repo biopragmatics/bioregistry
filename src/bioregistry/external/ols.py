@@ -80,7 +80,7 @@ def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Optional[Ma
         else:
             rv["contact"] = email
 
-    license_value = config["annotations"].get("license", [None])[0]
+    license_value = config.get("annotations", {}).get("license", [None])[0]
     if license_value in {"Unspecified", "Unspecified"}:
         license_value = None
     if not license_value:
