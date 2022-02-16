@@ -15,6 +15,7 @@ from bioregistry.constants import (
     CONTEXT_OBO_PATH,
     CONTEXT_OBO_SYNONYMS_PATH,
     EXPORT_CONTEXTS,
+    SHACL_TURTLE_PATH,
 )
 from bioregistry.schema import Collection
 
@@ -32,6 +33,34 @@ def generate_context_json_ld():
             continue
         with EXPORT_CONTEXTS.joinpath(name).with_suffix(".context.jsonld").open("w") as file:
             json.dump(fp=file, indent=4, sort_keys=True, obj=get_collection_jsonld(key))
+
+
+@click.command()
+def generate_shacl_prefixes():
+    """Generate a SHACL prefixes file."""
+    # Todo: Where should this be stored?
+    _write_shacl(SHACL_TURTLE_PATH, get_prefix_map())
+
+
+def _write_shacl(path: Path, prefix_map: Mapping[str, str]) -> None:
+    # repeat what's done in generate_context_json_ld, _write_prefix_map
+    # Follow code here for the shacl prefixes
+    # https://github.com/cthoyt/OBOFoundry.github.io/blob/update-shacl-generator/util/make-shacl-prefixes.py
+    text = """@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+[
+    sh:declare
+{entries}
+]"""
+    # Todo:
+    #  1. Use URL from prefix_map or point to the OBO Foundry URL?
+    #  2. Capitalize prefixes?
+    entries = ",\n".join(
+        f'    [ sh:prefix "{prefix.upper()}" ; sh:namespace "{url}" ]'
+        for prefix, url in prefix_map.items()
+    )
+    with path.open("w") as file:
+        file.write(text.format(entries=entries))
 
 
 def _write_prefix_map(path: Path, prefix_map: Mapping[str, str]) -> None:
