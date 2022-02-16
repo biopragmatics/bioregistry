@@ -21,7 +21,7 @@ from bioregistry.schema import Collection
 
 
 @click.command()
-def generate_context_json_ld():
+def generate_contexts():
     """Generate various JSON-LD context files."""
     _write_prefix_map(CONTEXT_BIOREGISTRY_PATH, get_prefix_map())
     _write_prefix_map(CONTEXT_OBO_PATH, get_obofoundry_prefix_map())
@@ -116,5 +116,5 @@ def get_obofoundry_prefix_map(include_synonyms: bool = False) -> Mapping[str, st
 
 
 if __name__ == "__main__":
-    generate_context_json_ld()
+    generate_contexts()
     generate_shacl_prefixes()
