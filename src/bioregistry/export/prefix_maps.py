@@ -40,6 +40,7 @@ def generate_shacl_prefixes():
     """Generate a SHACL prefixes file."""
     # TODO: store in context folder
     # TODO put this inside :func:`generate_contexts`
+    # TODO generate several variants corresponding to each prefix map in the above function
     _write_shacl(SHACL_TURTLE_PATH, get_prefix_map())
 
 
