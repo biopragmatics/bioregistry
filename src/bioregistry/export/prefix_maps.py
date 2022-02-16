@@ -42,17 +42,11 @@ def generate_contexts():
         if name is None:
             continue
         context_path_stub = EXPORT_CONTEXTS.joinpath(name)
+        # Dump jsonld
         with context_path_stub.with_suffix(".context.jsonld").open("w") as file:
             json.dump(fp=file, indent=4, sort_keys=True, obj=get_collection_jsonld(key))
-
-
-@click.command()
-def generate_shacl_prefixes():
-    """Generate a SHACL prefixes file."""
-    # TODO: store in context folder
-    # TODO put this inside :func:`generate_contexts`
-    # TODO generate several variants corresponding to each prefix map in the above function
-    _write_shacl(SHACL_TURTLE_PATH, get_prefix_map())
+        # Dump shacl
+        _write_shacl(context_path_stub.with_suffix(".context.ttl"), prefix_map)
 
 
 def _write_shacl(path: Path, prefix_map: Mapping[str, str]) -> None:
@@ -62,14 +56,11 @@ def _write_shacl(path: Path, prefix_map: Mapping[str, str]) -> None:
     sh:declare
 {entries}
 ] ."""
-    # Todo: Should we really uppercase prefixes?
-    path.parent.mkdir(parents=True, exist_ok=True)
     entries = ",\n".join(
         f'    [ sh:prefix "{prefix}" ; sh:namespace "{uri_prefix}" ]'
         for prefix, uri_prefix in prefix_map.items()
     )
-    with path.open("w") as file:
-        file.write(text.format(entries=entries))
+    path.write_text(text.format(entries=entries))
 
 
 def _write_prefix_map(path: Path, prefix_map: Mapping[str, str]) -> None:
@@ -130,4 +121,3 @@ def get_obofoundry_prefix_map(include_synonyms: bool = False) -> Mapping[str, st
 
 if __name__ == "__main__":
     generate_contexts()
-    generate_shacl_prefixes()  # TODO delete
