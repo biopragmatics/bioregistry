@@ -43,9 +43,6 @@ def generate_shacl_prefixes():
 
 
 def _write_shacl(path: Path, prefix_map: Mapping[str, str]) -> None:
-    # repeat what's done in generate_context_json_ld, _write_prefix_map
-    # Follow code here for the shacl prefixes
-    # https://github.com/cthoyt/OBOFoundry.github.io/blob/update-shacl-generator/util/make-shacl-prefixes.py
     text = """@prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 [
