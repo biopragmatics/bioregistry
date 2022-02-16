@@ -23,7 +23,10 @@ from bioregistry.schema import Collection
 @click.command()
 def generate_contexts():
     """Generate various JSON-LD context files."""
-    _write_prefix_map(CONTEXT_BIOREGISTRY_PATH, get_prefix_map())
+    prefix_map = get_prefix_map()
+    _write_prefix_map(CONTEXT_BIOREGISTRY_PATH, prefix_map)
+    _write_shacl(..., prefix_map)
+
     _write_prefix_map(CONTEXT_OBO_PATH, get_obofoundry_prefix_map())
     _write_prefix_map(CONTEXT_OBO_SYNONYMS_PATH, get_obofoundry_prefix_map(include_synonyms=True))
 
@@ -31,7 +34,8 @@ def generate_contexts():
         name = collection.context
         if name is None:
             continue
-        with EXPORT_CONTEXTS.joinpath(name).with_suffix(".context.jsonld").open("w") as file:
+        context_path_stub = EXPORT_CONTEXTS.joinpath(name)
+        with context_path_stub.with_suffix(".context.jsonld").open("w") as file:
             json.dump(fp=file, indent=4, sort_keys=True, obj=get_collection_jsonld(key))
 
 
