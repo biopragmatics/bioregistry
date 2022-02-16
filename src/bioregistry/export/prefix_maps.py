@@ -52,9 +52,7 @@ def _write_shacl(path: Path, prefix_map: Mapping[str, str]) -> None:
     sh:declare
 {entries}
 ] ."""
-    # Todo:
-    #  1. Use URL from prefix_map or point to the OBO Foundry URL?
-    #  2. Capitalize prefixes?
+    # Todo: Should we really uppercase prefixes?
     path.parent.mkdir(parents=True, exist_ok=True)
     entries = ",\n".join(
         f'    [ sh:prefix "{prefix.upper()}" ; sh:namespace "{url}" ]'
