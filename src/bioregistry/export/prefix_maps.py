@@ -4,6 +4,7 @@
 
 import json
 from pathlib import Path
+from textwrap import dedent
 from typing import Mapping
 
 import click
@@ -50,12 +51,16 @@ def generate_contexts():
 
 
 def _write_shacl(path: Path, prefix_map: Mapping[str, str]) -> None:
-    text = """@prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-[
-    sh:declare
-{entries}
-] ."""
+    text = dedent(
+        """\
+        @prefix sh: <http://www.w3.org/ns/shacl#> .
+
+        [
+          sh:declare
+        {entries}
+        ] .
+        """
+    )
     entries = ",\n".join(
         f'    [ sh:prefix "{prefix}" ; sh:namespace "{uri_prefix}" ]'
         for prefix, uri_prefix in prefix_map.items()
