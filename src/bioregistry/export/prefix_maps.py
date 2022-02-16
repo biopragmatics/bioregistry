@@ -4,6 +4,7 @@
 
 import json
 from pathlib import Path
+from textwrap import dedent
 from typing import Mapping
 
 import click
@@ -15,23 +16,56 @@ from bioregistry.constants import (
     CONTEXT_OBO_PATH,
     CONTEXT_OBO_SYNONYMS_PATH,
     EXPORT_CONTEXTS,
+    SHACL_OBO_SYNONYMS_TURTLE_PATH,
+    SHACL_OBO_TURTLE_PATH,
+    SHACL_TURTLE_PATH,
 )
 from bioregistry.schema import Collection
 
 
 @click.command()
-def generate_context_json_ld():
-    """Generate various JSON-LD context files."""
-    _write_prefix_map(CONTEXT_BIOREGISTRY_PATH, get_prefix_map())
-    _write_prefix_map(CONTEXT_OBO_PATH, get_obofoundry_prefix_map())
-    _write_prefix_map(CONTEXT_OBO_SYNONYMS_PATH, get_obofoundry_prefix_map(include_synonyms=True))
+def generate_contexts():
+    """Generate various context files."""
+    prefix_map = get_prefix_map()
+    _write_prefix_map(CONTEXT_BIOREGISTRY_PATH, prefix_map)
+    _write_shacl(SHACL_TURTLE_PATH, prefix_map)
+
+    obo_prefix_map = get_obofoundry_prefix_map()
+    _write_prefix_map(CONTEXT_OBO_PATH, obo_prefix_map)
+    _write_shacl(SHACL_OBO_TURTLE_PATH, obo_prefix_map)
+
+    obo_synonyms_prefix_map = get_obofoundry_prefix_map(include_synonyms=True)
+    _write_prefix_map(CONTEXT_OBO_SYNONYMS_PATH, obo_synonyms_prefix_map)
+    _write_shacl(SHACL_OBO_SYNONYMS_TURTLE_PATH, obo_synonyms_prefix_map)
 
     for key, collection in bioregistry.read_collections().items():
         name = collection.context
         if name is None:
             continue
-        with EXPORT_CONTEXTS.joinpath(name).with_suffix(".context.jsonld").open("w") as file:
+        context_path_stub = EXPORT_CONTEXTS.joinpath(name)
+        # Dump jsonld
+        with context_path_stub.with_suffix(".context.jsonld").open("w") as file:
             json.dump(fp=file, indent=4, sort_keys=True, obj=get_collection_jsonld(key))
+        # Dump shacl
+        _write_shacl(context_path_stub.with_suffix(".context.ttl"), prefix_map)
+
+
+def _write_shacl(path: Path, prefix_map: Mapping[str, str]) -> None:
+    text = dedent(
+        """\
+        @prefix sh: <http://www.w3.org/ns/shacl#> .
+
+        [
+          sh:declare
+        {entries}
+        ] .
+        """
+    )
+    entries = ",\n".join(
+        f'    [ sh:prefix "{prefix}" ; sh:namespace "{uri_prefix}" ]'
+        for prefix, uri_prefix in prefix_map.items()
+    )
+    path.write_text(text.format(entries=entries))
 
 
 def _write_prefix_map(path: Path, prefix_map: Mapping[str, str]) -> None:
@@ -91,4 +125,4 @@ def get_obofoundry_prefix_map(include_synonyms: bool = False) -> Mapping[str, st
 
 
 if __name__ == "__main__":
-    generate_context_json_ld()
+    generate_contexts()
