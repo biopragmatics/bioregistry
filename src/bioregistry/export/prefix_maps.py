@@ -38,7 +38,8 @@ def generate_contexts():
 @click.command()
 def generate_shacl_prefixes():
     """Generate a SHACL prefixes file."""
-    # Todo: Where should this be stored?
+    # TODO: store in context folder
+    # TODO put this inside :func:`generate_contexts`
     _write_shacl(SHACL_TURTLE_PATH, get_prefix_map())
 
 
@@ -117,4 +118,4 @@ def get_obofoundry_prefix_map(include_synonyms: bool = False) -> Mapping[str, st
 
 if __name__ == "__main__":
     generate_contexts()
-    generate_shacl_prefixes()
+    generate_shacl_prefixes()  # TODO delete
