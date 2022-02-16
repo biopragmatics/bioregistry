@@ -38,6 +38,7 @@ EXPORT_CONTEXTS = EXPORT_DIRECTORY / "contexts"
 CONTEXT_BIOREGISTRY_PATH = EXPORT_CONTEXTS / "bioregistry.context.jsonld"
 CONTEXT_OBO_PATH = EXPORT_CONTEXTS / "obo.context.jsonld"
 CONTEXT_OBO_SYNONYMS_PATH = EXPORT_CONTEXTS / "obo_synonyms.context.jsonld"
+SHACL_TURTLE_PATH = EXPORT_CONTEXTS / "bioregistry.ttl"
 
 EXPORT_RDF = EXPORT_DIRECTORY.joinpath("rdf")
 SCHEMA_SVG_PATH = EXPORT_RDF / "schema.svg"
@@ -48,9 +49,6 @@ SCHEMA_JSONLD_PATH = EXPORT_RDF / "schema.jsonld"
 RDF_TURTLE_PATH = EXPORT_RDF / "bioregistry.ttl"
 RDF_NT_PATH = EXPORT_RDF / "bioregistry.nt"
 RDF_JSONLD_PATH = EXPORT_RDF / "bioregistry.jsonld"
-
-EXPORT_SHACL = EXPORT_DIRECTORY.joinpath("shacl")
-SHACL_TURTLE_PATH = EXPORT_SHACL / "bioregistry.ttl"
 
 EXPORT_SSSOM = EXPORT_DIRECTORY.joinpath("sssom")
 SSSOM_PATH = EXPORT_SSSOM / "bioregistry.sssom.tsv"
