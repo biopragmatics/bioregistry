@@ -63,6 +63,7 @@ def collections():
         "collections.html",
         rows=bioregistry.read_collections().items(),
         formats=FORMATS,
+        markdown=markdown,
     )
 
 
@@ -184,6 +185,7 @@ def collection(identifier: str):
         "collection.html",
         identifier=identifier,
         entry=entry,
+        markdown=markdown,
         formats=[
             *FORMATS,
             ("RDF (turtle)", "turtle"),
