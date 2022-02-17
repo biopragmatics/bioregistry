@@ -42,6 +42,7 @@ def resources():
     return render_template(
         "resources.html",
         formats=FORMATS,
+        markdown=markdown,
         registry=bioregistry.read_registry(),
     )
 
@@ -62,8 +63,8 @@ def collections():
     return render_template(
         "collections.html",
         rows=bioregistry.read_collections().items(),
-        formats=FORMATS,
         markdown=markdown,
+        formats=FORMATS,
     )
 
 
@@ -86,7 +87,6 @@ def resource(prefix: str):
         curie_to_str(_resource.get_preferred_prefix() or prefix, example_extra)
         for example_extra in example_extras
     ]
-    description = bioregistry.get_description(prefix)
     return render_template(
         "resource.html",
         zip=zip,
@@ -113,7 +113,7 @@ def resource(prefix: str):
         deprecated=bioregistry.is_deprecated(prefix),
         contact=bioregistry.get_contact(prefix),
         banana=bioregistry.get_banana(prefix),
-        description=markdown(description) if description else None,
+        description=bioregistry.get_description(prefix, use_markdown=True),
         appears_in=bioregistry.get_appears_in(prefix),
         depends_on=bioregistry.get_depends_on(prefix),
         has_canonical=bioregistry.get_has_canonical(prefix),

@@ -75,7 +75,7 @@
                 <tr>
                     <td><a href="{{ url_for('ui.resource', prefix=prefix) }}">{{ resource.get_name() }}</a></td>
                     <td class="text-nowrap"><code>{{ prefix }}</code></td>
-                    {% set description = resource.get_description() %}
+                    {% set description = resource.get_description(use_markdown=True) %}
                     <td>{% if description %}<small>{{ description }}</small>{% endif %}</td>
                 </tr>
             {% endfor %}

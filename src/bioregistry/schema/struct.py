@@ -588,8 +588,13 @@ class Resource(BaseModel):
             ("obofoundry", "ols", "wikidata", "go", "ncbi", "bioportal", "miriam", "cellosaurus"),
         )
 
-    def get_description(self) -> Optional[str]:
+    def get_description(self, use_markdown: bool = False) -> Optional[str]:
         """Get the description for the given prefix, if available."""
+        if self.description and use_markdown:
+            import markupsafe
+            from markdown import markdown
+
+            return markupsafe.Markup(markdown(self.description))
         rv = self.get_prefix_key(
             "description", ("miriam", "ols", "obofoundry", "wikidata", "fairsharing")
         )
