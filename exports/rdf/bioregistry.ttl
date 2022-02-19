@@ -957,7 +957,8 @@ bioregistry:bao a bioregistry.schema:0000001 ;
     rdfs:label "BioAssay Ontology" ;
     dc:description "The BioAssay Ontology (BAO) describes chemical biology screening assays and their results including high-throughput screening (HTS) data for the purpose of categorizing assays and data analysis."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:BAO,
+    skos:exactMatch ontobee:BAO,
+        bioportal:BAO,
         n2t:bao,
         fairsharing:FAIRsharing.mye76w,
         prefixcommons:BAO,
@@ -10784,6 +10785,7 @@ bioregistry:sep a bioregistry.schema:0000001 ;
     dc:description "A structured controlled vocabulary for the annotation of sample processing and separation techniques in scientific experiments."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch obofoundry:SEP,
+        ontobee:SEP,
         bioportal:SEP,
         prefixcommons:SEP ;
     foaf:homepage "https://psidev.info/sepcv"^^xsd:string ;
@@ -12661,7 +12663,7 @@ bioregistry:xlmod a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/XLMOD_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{5}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Gerhard Mayer" ] .
+    bioregistry.schema:0000019 [ rdfs:label "Lutz Fischer" ] .
 
 bioregistry:ydpm a bioregistry.schema:0000001 ;
     rdfs:label "Yeast Deletion and the Mitochondrial Proteomics Project" ;
@@ -13341,6 +13343,8 @@ ontobee:APOLLO_SV dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:ARO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
+ontobee:BAO dcterms:isPartOf bioregistry.metaresource:ontobee .
+
 ontobee:BCGO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:BCO dcterms:isPartOf bioregistry.metaresource:ontobee .
@@ -13676,6 +13680,8 @@ ontobee:SBO dcterms:isPartOf bioregistry.metaresource:ontobee .
 ontobee:SCDO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:SDGIO dcterms:isPartOf bioregistry.metaresource:ontobee .
+
+ontobee:SEP dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:SEPIO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
@@ -28023,6 +28029,7 @@ bioregistry.metaresource:ontobee a bioregistry.schema:0000002 ;
         ontobee:APO,
         ontobee:APOLLO_SV,
         ontobee:ARO,
+        ontobee:BAO,
         ontobee:BCGO,
         ontobee:BCO,
         ontobee:BFO,
@@ -28191,6 +28198,7 @@ bioregistry.metaresource:ontobee a bioregistry.schema:0000002 ;
         ontobee:SBO,
         ontobee:SCDO,
         ontobee:SDGIO,
+        ontobee:SEP,
         ontobee:SEPIO,
         ontobee:SIBO,
         ontobee:SIO,
