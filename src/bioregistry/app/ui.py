@@ -91,6 +91,7 @@ def resource(prefix: str):
         "resource.html",
         zip=zip,
         bioregistry=bioregistry,
+        markdown=markdown,
         prefix=prefix,
         resource=_resource,
         name=bioregistry.get_name(prefix),

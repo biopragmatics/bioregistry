@@ -68,10 +68,12 @@
                     instead of <code>{{ prefix }}</code>.
                 </p>
             {% endif %}
-            {% if resource.comment %}
-                <p class="text-muted"><span class="badge badge-info">Comment</span> {{ resource.comment }}</p>
-            {% endif %}
+
             <dl>
+                {% if resource.comment %}
+                    <dt>Comment</dt>
+                    <dd>{{ markdown(resource.comment) | safe }}</dd>
+                {% endif %}
                 <dt>Prefix</dt>
                 <dd><code>{{ prefix }}</code></dd>
                 {% set preferred_prefix = resource.get_preferred_prefix() %}
