@@ -9822,6 +9822,7 @@
   "coconut": {
     "comment": "@mSorok is the dev of the resource, hope I got it right!",
     "contributor": {
+      "github": "adafede",
       "name": "Adriano Rutz",
       "orcid": "0000-0003-0443-9902"
     },
@@ -13316,6 +13317,7 @@
       "prefix": "DOI",
       "uri_format": "https://dx.doi.org/$1"
     },
+    "comment": "The [DOI resolution factsheet](https://www.doi.org/factsheets/DOIProxy.html) specifies that `https://doi.org/DOI` is the preferred format:\n\n> Users may resolve DOI names that are structured to use the DOI system Proxy Server (https://doi.org (preferred)). The resolution of the DOI name in this case depends on the use of URL syntax: the example DOI name doi:10.10.123/456 would be resolved from the address: \"https://doi.org/10.123/456\". Any standard browser encountering a DOI name in this form will be able to resolve it. The proxy service (both doi.org and the **earlier but no longer preferred** dx.doi.org) is accessible over IPv6, and supports DNSSEC. The proxy servers respond to HTTPS (**preferred**) as well as HTTP requests.",
     "contributor_extras": [
       {
         "email": "cjmungall@lbl.gov",
@@ -13406,6 +13408,13 @@
     },
     "providers": [
       {
+        "code": "dx_doi_http",
+        "description": "An alternate provider from the DOI website using HTTP",
+        "homepage": "https://www.doi.org",
+        "name": "Digital Object Identifier",
+        "uri_format": "http://dx.doi.org/$1"
+      },
+      {
         "code": "dx_doi_https",
         "description": "An alternate provider from the DOI website using HTTPS",
         "homepage": "https://www.doi.org",
@@ -13413,21 +13422,18 @@
         "uri_format": "https://dx.doi.org/$1"
       },
       {
-        "code": "doi_https",
-        "description": "An alternate provider from the DOI website",
-        "homepage": "https://www.doi.org",
-        "name": "Digital Object Identifier",
-        "uri_format": "https://doi.org/$1"
-      },
-      {
         "code": "doi_http",
-        "description": "An alternate provider from the DOI website",
+        "description": "An alternate provider from the DOI website using HTTP",
         "homepage": "https://www.doi.org",
         "name": "Digital Object Identifier",
         "uri_format": "http://doi.org/$1"
       }
     ],
-    "uri_format": "http://dx.doi.org/$1"
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/287",
+      "https://github.com/biopragmatics/bioregistry/pull/316"
+    ],
+    "uri_format": "https://doi.org/$1"
   },
   "doid": {
     "bioportal": {
@@ -26520,6 +26526,7 @@
     "comment": "https://www.insdc.org/ is the authoritative source for INSDC. However, confusingly, they don't mention runs in this table. I think we should ask them to include. ENA is a partner and they have documentation here: https://ena-docs.readthedocs.io/en/latest/submit/general-guide/accessions.html Runs | (E\\|D\\|S)RR[0-9]{6,} | ERR123456 -- | -- | --",
     "contributor": {
       "email": "cjmungall@lbl.gov",
+      "github": "cmungall",
       "name": "Chris Mungall",
       "orcid": "0000-0002-6601-2165"
     },
@@ -29397,6 +29404,7 @@
       "orcid": "0000-0003-0443-9902"
     },
     "contributor": {
+      "github": "adafede",
       "name": "Adriano Rutz",
       "orcid": "0000-0003-0443-9902"
     },
@@ -35172,7 +35180,7 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "The National Center for Advancing Translational Sciences (NCATS) has developed Inxight: Drugs as a comprehensive portal for drug development information. NCATS Inxight: Drugs  contains information on ingredients in medicinal products, including:",
+    "description": "The [National Center for Advancing Translational Sciences (NCATS)](https://ncats.nih.gov/) has developed Inxight: Drugs as a comprehensive portal for drug development information. NCATS Inxight: Drugs  contains information on ingredients in medicinal products, including:",
     "example": "44259",
     "homepage": "https://drugs.ncats.io/",
     "name": "NCATS Drugs",
@@ -36620,11 +36628,13 @@
   "nmdc": {
     "contact": {
       "email": "donny@polyneme.xyz",
+      "github": "dwinston",
       "name": "Donny Winston",
       "orcid": "0000-0002-8424-0604"
     },
     "contributor": {
       "email": "donny@polyneme.xyz",
+      "github": "dwinston",
       "name": "Donny Winston",
       "orcid": "0000-0002-8424-0604"
     },
@@ -40790,6 +40800,7 @@
       "prefix": "PAV"
     },
     "contributor": {
+      "github": "matentzn",
       "name": "Nico Matentzoglu",
       "orcid": "0000-0002-7356-1779"
     },
@@ -49005,6 +49016,7 @@
     "comment": "Currently, you can put a SIGNOR relation ID into the main page search box and it will resolve, but there is not currently a way to resolve them via a URL pattern",
     "contributor": {
       "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
       "name": "Benjamin M. Gyori",
       "orcid": "0000-0001-9439-5346"
     },
@@ -56301,6 +56313,7 @@
     "comment": "ENVO includes xrefs to this resource. See EnvironmentOntology/envo#658",
     "contributor": {
       "email": "cjmungall@lbl.gov",
+      "github": "cmungall",
       "name": "Chris Mungall",
       "orcid": "0000-0002-6601-2165"
     },
