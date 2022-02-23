@@ -36,8 +36,11 @@ EXPORT_DIRECTORY = ROOT.joinpath("exports")
 
 EXPORT_CONTEXTS = EXPORT_DIRECTORY / "contexts"
 CONTEXT_BIOREGISTRY_PATH = EXPORT_CONTEXTS / "bioregistry.context.jsonld"
+SHACL_TURTLE_PATH = EXPORT_CONTEXTS / "bioregistry.context.ttl"
 CONTEXT_OBO_PATH = EXPORT_CONTEXTS / "obo.context.jsonld"
+SHACL_OBO_TURTLE_PATH = EXPORT_CONTEXTS / "obo.context.ttl"
 CONTEXT_OBO_SYNONYMS_PATH = EXPORT_CONTEXTS / "obo_synonyms.context.jsonld"
+SHACL_OBO_SYNONYMS_TURTLE_PATH = EXPORT_CONTEXTS / "obo_synonyms.context.ttl"
 
 EXPORT_RDF = EXPORT_DIRECTORY.joinpath("rdf")
 SCHEMA_SVG_PATH = EXPORT_RDF / "schema.svg"
