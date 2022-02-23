@@ -639,3 +639,12 @@ class TestRegistry(unittest.TestCase):
                 self.assertIsNotNone(resource.reviewer.name)
                 self.assertIsNotNone(resource.reviewer.orcid)
                 self.assertIsNotNone(resource.reviewer.github)
+
+    def test_contacts(self):
+        """Check contacts have minimal metadata."""
+        for prefix, resource in self.registry.items():
+            if not resource.contact:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(resource.contact.name)
+                self.assertIsNotNone(resource.contact.email)
