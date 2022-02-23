@@ -613,3 +613,29 @@ class TestRegistry(unittest.TestCase):
         for key, values in REVERSE_LICENSES.items():
             with self.subTest(key=key):
                 self.assertEqual(len(values), len(set(values)), msg=f"duplicates in {key}")
+
+    def test_contributors(self):
+        """Check contributors have minimal metadata."""
+        for prefix, resource in self.registry.items():
+            with self.subTest(prefix=prefix):
+                if not resource.contributor and not resource.contributor_extras:
+                    self.assertNotEqual(0, len(resource.get_mappings()))
+                    continue
+                if resource.contributor is not None:
+                    self.assertIsNotNone(resource.contributor.name)
+                    self.assertIsNotNone(resource.contributor.orcid)
+                    self.assertIsNotNone(resource.contributor.github)
+                for contributor in resource.contributor_extras or []:
+                    self.assertIsNotNone(contributor.name)
+                    self.assertIsNotNone(contributor.orcid)
+                    self.assertIsNotNone(contributor.github)
+
+    def test_reviewers(self):
+        """Check reviewers have minimal metadata."""
+        for prefix, resource in self.registry.items():
+            if not resource.reviewer:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(resource.reviewer.name)
+                self.assertIsNotNone(resource.reviewer.orcid)
+                self.assertIsNotNone(resource.reviewer.github)
