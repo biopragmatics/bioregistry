@@ -324,6 +324,9 @@ class Resource(BaseModel):
     """
         ),
     )
+    contributor_extras: Optional[List[Author]] = Field(
+        description="Additional contributors besides the original submitter.",
+    )
 
     reviewer: Optional[Author] = Field(
         description=_dedent(

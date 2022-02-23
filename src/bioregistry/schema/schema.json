@@ -333,6 +333,14 @@
             }
           ]
         },
+        "contributor_extras": {
+          "title": "Contributor Extras",
+          "description": "Additional contributors besides the original submitter.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Author"
+          }
+        },
         "reviewer": {
           "title": "Reviewer",
           "description": "The reviewer of the prefix to the Bioregistry, including at a minimum their name and ORCiD and optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub Workflow should contain this field pointing to the person who reviewed it on GitHub.",
