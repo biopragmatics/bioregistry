@@ -46,7 +46,7 @@ bioregistry.schema:0000020 a rdfs:Class ;
 bioregistry.collection:0000001 a bioregistry.schema:0000003 ;
     rdfs:label "Resources mentioned in \"Sharing biological data: why, when, and how\"" ;
     dc:creator orcid:0000-0003-4423-4370 ;
-    dc:description "These resources were listed in \"Sharing biological data: why, when, and how\", which prompted further novel curation of the Bioregistry which included the addition of GenBank, Panorama Public, EMPIAR, and SSBD. It also prompted the curation of mappings to FAIRSharing when possible." ;
+    dc:description "These resources were listed in [Sharing biological data: why, when, and how](https://doi.org/10.1002/1873-3468.14067), which prompted further novel curation of the Bioregistry which included the addition of GenBank, Panorama Public, EMPIAR, and SSBD. It also prompted the curation of mappings to FAIRSharing when possible." ;
     dcterms:hasPart bioregistry:biostudies,
         bioregistry:bmrb,
         bioregistry:cellimage,
@@ -69,7 +69,7 @@ bioregistry.collection:0000001 a bioregistry.schema:0000003 ;
 bioregistry.collection:0000002 a bioregistry.schema:0000003 ;
     rdfs:label "Semantic Web Context" ;
     dc:creator orcid:0000-0003-4423-4370 ;
-    dc:description "Resources used in the semantic web, based on https://github.com/prefixcommons/biocontext/blob/master/registry/semweb_context.yaml." ;
+    dc:description "Resources used in the semantic web, inspired by [this list](https://github.com/prefixcommons/biocontext/blob/master/registry/semweb_context.yaml) in Prefix Commons." ;
     dcterms:hasPart bioregistry:ac,
         bioregistry:dc,
         bioregistry:dcat,
@@ -91,7 +91,7 @@ bioregistry.collection:0000002 a bioregistry.schema:0000003 ;
 bioregistry.collection:0000003 a bioregistry.schema:0000003 ;
     rdfs:label "ChEBI Data Sources" ;
     dc:creator orcid:0000-0003-4423-4370 ;
-    dc:description "The data sources used in xrefs in the ChEBI ontology. More information in the \"Data Sources\" section of https://docs.google.com/document/d/13_FqP_8qkDdw5RFv5qMYo7xRyfY4xUiuVtLn845A6Io/edit#heading=h.dkfn7xf53tpx." ;
+    dc:description "The data sources used in xrefs in the ChEBI ontology. More information in the \"Data Sources\" section of [this document](https://docs.google.com/document/d/13_FqP_8qkDdw5RFv5qMYo7xRyfY4xUiuVtLn845A6Io/edit#heading=h.dkfn7xf53tpx)." ;
     dcterms:hasPart bioregistry:chebi,
         bioregistry:chemidplus,
         bioregistry:come,
@@ -408,6 +408,7 @@ bioregistry:afo a bioregistry.schema:0000001 ;
     dc:description "Allotrope Merged Ontology Suite"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch bioportal:AFO,
+        fairsharing:FAIRsharing.595710,
         ols:afo ;
     foaf:homepage "https://www.allotrope.org/"^^xsd:string ;
     bioregistry.schema:0000012 false .
@@ -956,7 +957,8 @@ bioregistry:bao a bioregistry.schema:0000001 ;
     rdfs:label "BioAssay Ontology" ;
     dc:description "The BioAssay Ontology (BAO) describes chemical biology screening assays and their results including high-throughput screening (HTS) data for the purpose of categorizing assays and data analysis."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:BAO,
+    skos:exactMatch ontobee:BAO,
+        bioportal:BAO,
         n2t:bao,
         fairsharing:FAIRsharing.mye76w,
         prefixcommons:BAO,
@@ -1269,6 +1271,7 @@ bioregistry:biolink a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch bioportal:BIOLINK,
         biolink:biolink,
+        fairsharing:FAIRsharing.ad9d85,
         miriam:biolink ;
     foaf:homepage "https://biolink.github.io/biolink-model/"^^xsd:string ;
     bioregistry.schema:0000005 "Gene"^^xsd:string ;
@@ -1461,6 +1464,7 @@ bioregistry:biotools a bioregistry.schema:0000001 ;
     dc:description "BioTools is a registry of databases and software with tools, services, and workflows for biological and biomedical research."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch n2t:biotools,
+        fairsharing:FAIRsharing.63520c,
         prefixcommons:BIOTOOLS,
         miriam:biotools ;
     foaf:homepage "https://bio.tools/"^^xsd:string ;
@@ -1483,7 +1487,8 @@ bioregistry:bitbucket a bioregistry.schema:0000001 ;
     rdfs:label "Bitbucket" ;
     dc:description "Bitbucket is a Git-based source code repository hosting service owned by Atlassian."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:bitbucket ;
+    skos:exactMatch fairsharing:FAIRsharing.fc3431,
+        miriam:bitbucket ;
     foaf:homepage "https://www.atlassian.com/"^^xsd:string ;
     bioregistry.schema:0000005 "andreadega/systems-biology-compiler"^^xsd:string ;
     bioregistry.schema:0000006 "https://bitbucket.org/$1"^^xsd:string ;
@@ -1820,7 +1825,7 @@ bioregistry:cdd a bioregistry.schema:0000001 ;
     skos:exactMatch go.resource:CDD,
         n2t:cdd,
         ncbi.resource:CDD,
-        fairsharing:FAIRsharing.b9st5p,
+        fairsharing:FAIRsharing.ea287c,
         prefixcommons:CDD,
         miriam:cdd,
         uniprot.resource:CDD ;
@@ -1871,15 +1876,6 @@ bioregistry:cellbank.australia a bioregistry.schema:0000001 ;
     foaf:homepage "http://www.cellbankaustralia.com/cellbank-australia-exclusive-lines/"^^xsd:string ;
     bioregistry.schema:0000005 "ab-1-ha"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cellbankaustralia.com/$1.html"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:cellosaurus.resource a bioregistry.schema:0000001 ;
-    rdfs:label "Cellosaurus Registry" ;
-    dc:description "The set of prefixes used in the Cellosaurus resource"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    foaf:homepage "https://web.expasy.org/cellosaurus/"^^xsd:string ;
-    bioregistry.schema:0000005 "4DN"^^xsd:string ;
-    bioregistry.schema:0000006 "https://bioregistry.io/metaregistry/cellosaurus/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:cellrepo a bioregistry.schema:0000001 ;
@@ -2237,7 +2233,8 @@ bioregistry:co_323 a bioregistry.schema:0000001 ;
     rdfs:label "Barley ontology" ;
     dc:description "ICARDA - TDv5 - Sept 2018"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_323 ;
+    skos:exactMatch fairsharing:FAIRsharing.f69084,
+        ols:co_323 ;
     foaf:homepage "https://cropontology.org/ontology/CO_323/Barley"^^xsd:string ;
     bioregistry.schema:0000005 "0000252"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cropontology.org/rdf/CO_323:$1"^^xsd:string ;
@@ -2289,7 +2286,8 @@ bioregistry:co_330 a bioregistry.schema:0000001 ;
     rdfs:label "Potato ontology" ;
     dc:description "CIP - potato ontology - december 2018"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_330 ;
+    skos:exactMatch fairsharing:FAIRsharing.4fa657,
+        ols:co_330 ;
     foaf:homepage "https://cropontology.org/ontology/CO_330/Potato"^^xsd:string ;
     bioregistry.schema:0000005 "0000106"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cropontology.org/rdf/CO_330:$1"^^xsd:string ;
@@ -2310,7 +2308,8 @@ bioregistry:co_333 a bioregistry.schema:0000001 ;
     rdfs:label "Beet Ontology ontology" ;
     dc:description "This ontology was built as part of the AKER project. It describes variables used in beet phenotyping (experimental properties and measurement scale) for each institution (INRAE, Geves, ITB) and breeding companies (Florimond Desprez). Curator: Dorothee Charruaud (ADRINORD - URGI) Daphne Verdelet (Florimond Desprez) - First submission in November 2017."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_333 ;
+    skos:exactMatch fairsharing:FAIRsharing.af5655,
+        ols:co_333 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_333/Beet%20Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "3000045"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cropontology.org/rdf/CO_333:$1"^^xsd:string ;
@@ -2331,7 +2330,8 @@ bioregistry:co_335 a bioregistry.schema:0000001 ;
     rdfs:label "Common Bean ontology" ;
     dc:description "CIAT Common bean trait dictionary - version August 2014"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_335 ;
+    skos:exactMatch fairsharing:FAIRsharing.a14123,
+        ols:co_335 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_335/Common%20Bean"^^xsd:string ;
     bioregistry.schema:0000005 "0000189"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cropontology.org/rdf/CO_335:$1"^^xsd:string ;
@@ -2407,7 +2407,8 @@ bioregistry:co_343 a bioregistry.schema:0000001 ;
     rdfs:label "Yam ontology" ;
     dc:description "version 2019 - pvs"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_343 ;
+    skos:exactMatch fairsharing:FAIRsharing.7e9cff,
+        ols:co_343 ;
     foaf:homepage "https://cropontology.org/ontology/CO_343/Yam"^^xsd:string ;
     bioregistry.schema:0000005 "0100010"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cropontology.org/rdf/CO_343:$1"^^xsd:string ;
@@ -2417,7 +2418,8 @@ bioregistry:co_345 a bioregistry.schema:0000001 ;
     rdfs:label "Brachiaria ontology" ;
     dc:description "Brachiaria (forages) ontology TD v5 - Version Oct 2016"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_345 ;
+    skos:exactMatch fairsharing:FAIRsharing.9e9683,
+        ols:co_345 ;
     foaf:homepage "https://cropontology.org/ontology/CO_345/Brachiaria"^^xsd:string ;
     bioregistry.schema:0000005 "0000127"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cropontology.org/rdf/CO_345:$1"^^xsd:string ;
@@ -2449,7 +2451,8 @@ bioregistry:co_348 a bioregistry.schema:0000001 ;
     rdfs:label "Brassica ontology" ;
     dc:description "Brassica Trait Ontology (BRaTO) hosts trait information to describe brassica crop data. Terms are collected from various projects including OREGIN, RIPR (UK) and Rapsodyn (France). BRATO development is conducted by Earlham Institute (UK), Southern Cross University (Australia) and INRA (France)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_348 ;
+    skos:exactMatch fairsharing:FAIRsharing.af7a2d,
+        ols:co_348 ;
     foaf:homepage "https://cropontology.org/ontology/CO_348/Brassica"^^xsd:string ;
     bioregistry.schema:0000005 "1100107"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cropontology.org/rdf/CO_348:$1"^^xsd:string ;
@@ -2459,7 +2462,8 @@ bioregistry:co_350 a bioregistry.schema:0000001 ;
     rdfs:label "Oat ontology" ;
     dc:description "Oat trait dictionary started by Oat Global (http://oatglobal.org/) and improved by NIAB and PepsiCo"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_350 ;
+    skos:exactMatch fairsharing:FAIRsharing.35e1c3,
+        ols:co_350 ;
     foaf:homepage "https://cropontology.org/ontology/CO_350/Oat"^^xsd:string ;
     bioregistry.schema:0000005 "0000215"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cropontology.org/rdf/CO_350:$1"^^xsd:string ;
@@ -2469,7 +2473,8 @@ bioregistry:co_356 a bioregistry.schema:0000001 ;
     rdfs:label "Vitis ontology" ;
     dc:description "Grape Ontology including OIV and bioversity descriptors. INRA July 2017"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_356 ;
+    skos:exactMatch fairsharing:FAIRsharing.c7f4d7,
+        ols:co_356 ;
     foaf:homepage "https://cropontology.org/ontology/CO_356/Vitis"^^xsd:string ;
     bioregistry.schema:0000005 "4000027"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cropontology.org/rdf/CO_356:$1"^^xsd:string ;
@@ -2479,7 +2484,8 @@ bioregistry:co_357 a bioregistry.schema:0000001 ;
     rdfs:label "Woody Plant Ontology ontology" ;
     dc:description "This ontology lists all variables used for woody plant observations. Terms are collected from various sources (past and ongoing projects at national and international levels). Curators: Celia Michotey (INRAE) & Ines Chaves (IBET) - Version 2 submitted on Jun 2020 by INRAE."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_357 ;
+    skos:exactMatch fairsharing:FAIRsharing.2b04ae,
+        ols:co_357 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_357/Woody%20Plant%20Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "1000290"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cropontology.org/rdf/CO_357:$1"^^xsd:string ;
@@ -2509,7 +2515,8 @@ bioregistry:co_360 a bioregistry.schema:0000001 ;
     rdfs:label "Sugar Kelp trait ontology" ;
     dc:description "Sugar Kelp trait ontology"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_360 ;
+    skos:exactMatch fairsharing:FAIRsharing.1c1738,
+        ols:co_360 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_360/Sugar%20Kelp%20trait"^^xsd:string ;
     bioregistry.schema:0000005 "0000071"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cropontology.org/rdf/CO_360:$1"^^xsd:string ;
@@ -2698,6 +2705,7 @@ bioregistry:cpc a bioregistry.schema:0000001 ;
     dc:description "The Cooperative Patent Classification (CPC) is a patent classification system, developed jointly by the European Patent Office (EPO) and the United States Patent and Trademark Office (USPTO). It is based on the previous European classification system (ECLA), which itself was a version of the International Patent Classification (IPC) system. The CPC patent classification system has been used by EPO and USPTO since 1st January, 2013."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch n2t:cpc,
+        fairsharing:FAIRsharing.e08886,
         prefixcommons:CPC,
         miriam:cpc ;
     foaf:homepage "https://worldwide.espacenet.com/classification"^^xsd:string ;
@@ -3320,14 +3328,6 @@ bioregistry:disdriv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Lynn Schriml" ] .
 
-bioregistry:diseaseclass a bioregistry.schema:0000001 ;
-    rdfs:label "Disease Class" ;
-    dc:description "Legacy disease classes that later became MONDO"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    bioregistry.schema:0000005 "0000598"^^xsd:string ;
-    bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000018 bioregistry:efo .
-
 bioregistry:diseasesdb a bioregistry.schema:0000001 ;
     rdfs:label "Diseases Database" ;
     dc:description "The Diseases Database is a cross-referenced index of human disease, medications, symptoms, signs, abnormal investigation findings etc. This site provides a medical textbook-like index and search portal covering areas including: internal medical disorders, symptoms and signs, congenital and inherited disorders, infectious diseases and organisms, drugs and medications, common haematology and biochemistry investigation abnormalities."^^xsd:string ;
@@ -3377,7 +3377,7 @@ bioregistry:doi a bioregistry.schema:0000001 ;
         miriam:doi ;
     foaf:homepage "https://www.doi.org/"^^xsd:string ;
     bioregistry.schema:0000005 "10.1038/nbt1156"^^xsd:string ;
-    bioregistry.schema:0000006 "http://dx.doi.org/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://doi.org/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^(doi\\:)?\\d{2}\\.\\d{4}.*$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -4457,6 +4457,7 @@ bioregistry:gecko a bioregistry.schema:0000001 ;
     skos:exactMatch obofoundry:GECKO,
         ontobee:GECKO,
         bioportal:GECKO,
+        fairsharing:FAIRsharing.3da56b,
         ols:gecko ;
     foaf:homepage "https://github.com/IHCC-cohorts/GECKO"^^xsd:string ;
     bioregistry.schema:0000005 "0000044"^^xsd:string ;
@@ -4645,7 +4646,8 @@ bioregistry:github a bioregistry.schema:0000001 ;
     rdfs:label "github" ;
     dc:description "GitHub is an online host of Git source code repositories."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:github ;
+    skos:exactMatch fairsharing:FAIRsharing.c55d5e,
+        miriam:github ;
     foaf:homepage "https://github.com/"^^xsd:string ;
     bioregistry.schema:0000005 "identifiers-org/registry"^^xsd:string ;
     bioregistry.schema:0000006 "https://github.com/$1"^^xsd:string ;
@@ -4656,7 +4658,8 @@ bioregistry:gitlab a bioregistry.schema:0000001 ;
     rdfs:label "GitLab" ;
     dc:description "GitLab is The DevOps platform that empowers organizations to maximize the overall return on software development by delivering software faster and efficiently, while strengthening security and compliance. With GitLab, every team in your organization can collaboratively plan, build, secure, and deploy software to drive business outcomes faster with complete transparency, consistency and traceability."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:gitlab ;
+    skos:exactMatch fairsharing:FAIRsharing.530e61,
+        miriam:gitlab ;
     foaf:homepage "https://gitlab.com/"^^xsd:string ;
     bioregistry.schema:0000005 "morpheus.lab/morpheus"^^xsd:string ;
     bioregistry.schema:0000006 "https://gitlab.com/$1"^^xsd:string ;
@@ -4879,15 +4882,6 @@ bioregistry:go.ref a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000041"^^xsd:string ;
     bioregistry.schema:0000006 "https://github.com/geneontology/go-site/blob/master/metadata/gorefs/goref-$1.md"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:go.resource a bioregistry.schema:0000001 ;
-    rdfs:label "Gene Ontology Registry" ;
-    dc:description "A database-specific registry supporting curation in the Gene Ontology"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    foaf:homepage "http://geneontology.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "CHEBI"^^xsd:string ;
-    bioregistry.schema:0000006 "https://bioregistry.io/metaregistry/go/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:goa a bioregistry.schema:0000001 ;
@@ -5148,6 +5142,7 @@ bioregistry:gudmap a bioregistry.schema:0000001 ;
     dc:description "The GenitoUrinary Development Molecular Anatomy Project (GUDMAP) is a consortium of laboratories working to provide the scientific and medical community with tools to facilitate research on the GenitoUrinary (GU) tract."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch n2t:gudmap,
+        fairsharing:FAIRsharing.910c39,
         prefixcommons:GUDMAP,
         miriam:gudmap ;
     foaf:homepage "http://www.gudmap.org/"^^xsd:string ;
@@ -5680,7 +5675,8 @@ bioregistry:icd11 a bioregistry.schema:0000001 ;
     rdfs:label "International Classification of Diseases 11th Revision" ;
     dc:description "Diagnostic tool for epidemiology, health management and clinical purposes, maintained by the World Health Organization (WHO). It provides a system of diagnostic codes for classifying diseases, including nuanced classifications of a wide variety of signs, symptoms, abnormal findings, complaints, social circumstances, and external causes of injury or disease."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch wikidata:P7807 ;
+    skos:exactMatch fairsharing:FAIRsharing.97805c,
+        wikidata:P7807 ;
     foaf:homepage "https://icd.who.int/"^^xsd:string ;
     bioregistry.schema:0000005 "RA01.0"^^xsd:string ;
     bioregistry.schema:0000012 false .
@@ -5701,7 +5697,8 @@ bioregistry:icdc a bioregistry.schema:0000001 ;
     rdfs:label "Integrated Canine Data Commons" ;
     dc:description "The Integrated Canine Data Commons is one of several repositories within the NCI Cancer Research Data Commons (CRDC), a cloud-based data science infrastructure that provides secure access to a large, comprehensive, and expanding collection of cancer research data. The ICDC was established to further research on human cancers by enabling comparative analysis with canine cancer."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:icdc ;
+    skos:exactMatch fairsharing:FAIRsharing.d95034,
+        miriam:icdc ;
     foaf:homepage "https://caninecommons.cancer.gov/#/"^^xsd:string ;
     bioregistry.schema:0000005 "ICDC000009"^^xsd:string ;
     bioregistry.schema:0000006 "https://caninecommons.cancer.gov/#/study/$1"^^xsd:string ;
@@ -7827,15 +7824,6 @@ bioregistry:mzspec a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^.+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:n2t a bioregistry.schema:0000001 ;
-    rdfs:label "Name-to-Thing" ;
-    dc:description "An ARK resolver as well as resolver built with common prefixes as in Identifiers.org"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    foaf:homepage "https://n2t.net"^^xsd:string ;
-    bioregistry.schema:0000005 "chebi"^^xsd:string ;
-    bioregistry.schema:0000006 "https://n2t.net/$1:"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:napdi a bioregistry.schema:0000001 ;
     rdfs:label "Natural Product-Drug Interaction Research Data Repository" ;
     dc:description "The Natural Product-Drug Interaction Research Data Repository, a publicly accessible database where researchers can access scientific results, raw data, and recommended approaches to optimally assess the clinical significance of pharmacokinetic natural product-drug interactions (PK-NPDIs)."^^xsd:string ;
@@ -7918,15 +7906,6 @@ bioregistry:nbrc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "00001234"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.nbrc.nite.go.jp/NBRC2/NBRCCatalogueDetailServlet?ID=NBRC&CAT=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:ncbi.resource a bioregistry.schema:0000001 ;
-    rdfs:label "NCBI Registry" ;
-    dc:description "A database-specific registry supporting curation in the NCBI GenBank and related NCBI resources"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    foaf:homepage "https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/"^^xsd:string ;
-    bioregistry.schema:0000005 "ECOCYC"^^xsd:string ;
-    bioregistry.schema:0000006 "https://bioregistry.io/metaregistry/ncbi/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:ncim a bioregistry.schema:0000001 ;
@@ -8035,6 +8014,7 @@ bioregistry:neurondb a bioregistry.schema:0000001 ;
     dc:description "NeuronDB provides a dynamically searchable database of three types of neuronal properties: voltage gated conductances, neurotransmitter receptors, and neurotransmitter substances. It contains tools that provide for integration of these properties in a given type of neuron and compartment, and for comparison of properties across different types of neurons and compartments."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch n2t:neurondb,
+        fairsharing:FAIRsharing.45a10e,
         prefixcommons:NEURONDB,
         miriam:neurondb ;
     foaf:homepage "http://senselab.med.yale.edu/NeuronDB/"^^xsd:string ;
@@ -8379,7 +8359,8 @@ bioregistry:obo a bioregistry.schema:0000001 ;
     rdfs:label "Internal OBO and PyOBO Relations" ;
     dc:description "Community development of interoperable ontologies for the biological sciences"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch prefixcommons:OBO ;
+    skos:exactMatch fairsharing:FAIRsharing.847069,
+        prefixcommons:OBO ;
     foaf:homepage "http://www.obofoundry.org/"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
@@ -8544,7 +8525,7 @@ bioregistry:ogsf a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 [ rdfs:label "Asiyah Yu Lin" ] .
 
 bioregistry:ohd a bioregistry.schema:0000001 ;
-    rdfs:label "The Oral Health and Disease Ontology" ;
+    rdfs:label "Oral Health and Disease Ontology" ;
     dc:description "The Oral Health and Disease Ontology was created, initially, to represent the content of dental practice health records."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch obofoundry:OHD,
@@ -8557,7 +8538,7 @@ bioregistry:ohd a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000006"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OHD_$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Alan Ruttenberg" ] .
+    bioregistry.schema:0000019 [ rdfs:label "Bill Duncan" ] .
 
 bioregistry:ohmi a bioregistry.schema:0000001 ;
     rdfs:label "Ontology of Host-Microbiome Interactions" ;
@@ -8747,6 +8728,7 @@ bioregistry:opm a bioregistry.schema:0000001 ;
     dc:description "The Orientations of Proteins in Membranes (OPM) database provides spatial positions of membrane-bound peptides and proteins of known three-dimensional structure in the lipid bilayer, together with their structural classification, topology and intracellular localization."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch n2t:opm,
+        fairsharing:FAIRsharing.7c683b,
         prefixcommons:OPM,
         miriam:opm ;
     foaf:homepage "http://opm.phar.umich.edu/"^^xsd:string ;
@@ -9546,10 +9528,10 @@ bioregistry:planttfdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:plasmodb a bioregistry.schema:0000001 ;
-    rdfs:label "PlasmoDB Plasmodium Genome Resource" ;
+    rdfs:label "PlasmoDB" ;
     dc:description "AmoebaDB is one of the databases that can be accessed through the EuPathDB (http://EuPathDB.org; formerly ApiDB) portal, covering eukaryotic pathogens of the genera Cryptosporidium, Giardia, Leishmania, Neospora, Plasmodium, Toxoplasma, Trichomonas and Trypanosoma. While each of these groups is supported by a taxon-specific database built upon the same infrastructure, the EuPathDB portal offers an entry point to all these resources, and the opportunity to leverage orthology for searches across genera."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch go.resource:ApiDB_PlasmoDB,
+    skos:exactMatch go.resource:PlasmoDB,
         n2t:plasmodb,
         ncbi.resource:ApiDB_PlasmoDB,
         fairsharing:FAIRsharing.g4n8sw,
@@ -10101,6 +10083,7 @@ bioregistry:rbk a bioregistry.schema:0000001 ;
     dc:description "(Re)Building a Kidney is an NIDDK-funded consortium of research projects working to optimize approaches for the isolation, expansion, and differentiation of appropriate kidney cell types and their integration into complex structures that replicate human kidney function."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch n2t:rbk,
+        fairsharing:FAIRsharing.78d3ad,
         prefixcommons:RBK,
         miriam:rbk ;
     foaf:homepage "https://www.rebuildingakidney.org/"^^xsd:string ;
@@ -10617,15 +10600,6 @@ bioregistry:sasbdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[Ss][Aa][Ss][A-Za-z0-9]{3}[0-9]$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:scholia.resource a bioregistry.schema:0000001 ;
-    rdfs:label "Scholia Registry" ;
-    dc:description "A frontend to Wikidata"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    foaf:homepage "https://scholia.toolforge.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "doi"^^xsd:string ;
-    bioregistry.schema:0000006 "https://bioregistry.io/metaregistry/scholia/$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:scop a bioregistry.schema:0000001 ;
     rdfs:label "Structural Classification of Protein" ;
     dc:description "The SCOP (Structural Classification of Protein) database is a comprehensive ordering of all proteins of known structure according to their evolutionary, functional and structural relationships. The basic classification unit is the protein domain. Domains are hierarchically classified into species, proteins, families, superfamilies, folds, and classes."^^xsd:string ;
@@ -10646,7 +10620,8 @@ bioregistry:scopus a bioregistry.schema:0000001 ;
 Delivering a comprehensive overview of the world's research output in  the fields of science, technology, medicine, social sciences, and arts 
 and humanities, Scopus features smart tools to track, analyze and  visualize research."""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biolink:ScopusID ;
+    skos:exactMatch biolink:ScopusID,
+        fairsharing:FAIRsharing.0a674c ;
     foaf:homepage "https://www.scopus.com"^^xsd:string ;
     bioregistry.schema:0000005 "56305849200"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
@@ -10683,6 +10658,7 @@ bioregistry:sdgio a bioregistry.schema:0000001 ;
     dc:description "An OBO-compliant ontology representing the entities referenced by the SDGs, their targets, and indicators."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch ontobee:SDGIO,
+        fairsharing:FAIRsharing.d5ff6e,
         ols:sdgio ;
     foaf:homepage "https://github.com/SDG-InterfaceOntology/sdgio"^^xsd:string ;
     bioregistry.schema:0000005 "00020134"^^xsd:string ;
@@ -10756,6 +10732,7 @@ bioregistry:sep a bioregistry.schema:0000001 ;
     dc:description "A structured controlled vocabulary for the annotation of sample processing and separation techniques in scientific experiments."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch obofoundry:SEP,
+        ontobee:SEP,
         bioportal:SEP,
         prefixcommons:SEP ;
     foaf:homepage "https://psidev.info/sepcv"^^xsd:string ;
@@ -11710,7 +11687,8 @@ bioregistry:tritrypdb a bioregistry.schema:0000001 ;
     rdfs:label "TriTrypDB" ;
     dc:description "TriTrypDB is one of the databases that can be accessed through the EuPathDB (http://EuPathDB.org; formerly ApiDB) portal, covering eukaryotic pathogens of the genera Cryptosporidium, Giardia, Leishmania, Neospora, Plasmodium, Toxoplasma, Trichomonas and Trypanosoma. While each of these groups is supported by a taxon-specific database built upon the same infrastructure, the EuPathDB portal offers an entry point to all these resources, and the opportunity to leverage orthology for searches across genera."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch n2t:tritrypdb,
+    skos:exactMatch go.resource:TriTrypDB,
+        n2t:tritrypdb,
         fairsharing:FAIRsharing.fs1z27,
         prefixcommons:TRITRYPDB,
         miriam:tritrypdb ;
@@ -11989,15 +11967,6 @@ bioregistry:uniprot.location a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0002"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.uniprot.org/locations/SL-$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:uniprot.resource a bioregistry.schema:0000001 ;
-    rdfs:label "UniProt Resource" ;
-    dc:description "The cross-references section of UniProtKB entries displays explicit and implicit links to databases such as nucleotide sequence databases, model organism databases and genomics and proteomics resources."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    foaf:homepage "https://www.uniprot.org/database/"^^xsd:string ;
-    bioregistry.schema:0000005 "0174"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.uniprot.org/database/DB-$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:uniprot.tissue a bioregistry.schema:0000001 ;
@@ -12632,7 +12601,7 @@ bioregistry:xlmod a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/XLMOD_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{5}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Gerhard Mayer" ] .
+    bioregistry.schema:0000019 [ rdfs:label "Lutz Fischer" ] .
 
 bioregistry:ydpm a bioregistry.schema:0000001 ;
     rdfs:label "Yeast Deletion and the Mitochondrial Proteomics Project" ;
@@ -13312,6 +13281,8 @@ ontobee:APOLLO_SV dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:ARO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
+ontobee:BAO dcterms:isPartOf bioregistry.metaresource:ontobee .
+
 ontobee:BCGO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:BCO dcterms:isPartOf bioregistry.metaresource:ontobee .
@@ -13647,6 +13618,8 @@ ontobee:SBO dcterms:isPartOf bioregistry.metaresource:ontobee .
 ontobee:SCDO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:SDGIO dcterms:isPartOf bioregistry.metaresource:ontobee .
+
+ontobee:SEP dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:SEPIO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
@@ -14682,8 +14655,6 @@ go.resource:AGRICOLA_ID dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:ASAP dcterms:isPartOf bioregistry.metaresource:go .
 
-go.resource:ApiDB_PlasmoDB dcterms:isPartOf bioregistry.metaresource:go .
-
 go.resource:AspGD_LOCUS dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:BFO dcterms:isPartOf bioregistry.metaresource:go .
@@ -14854,6 +14825,8 @@ go.resource:Pfam dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:PharmGKB dcterms:isPartOf bioregistry.metaresource:go .
 
+go.resource:PlasmoDB dcterms:isPartOf bioregistry.metaresource:go .
+
 go.resource:PomBase dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:Prosite dcterms:isPartOf bioregistry.metaresource:go .
@@ -14903,6 +14876,8 @@ go.resource:TC dcterms:isPartOf bioregistry.metaresource:go .
 go.resource:TFClass dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:TGD dcterms:isPartOf bioregistry.metaresource:go .
+
+go.resource:TriTrypDB dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:UBERON dcterms:isPartOf bioregistry.metaresource:go .
 
@@ -16884,6 +16859,15 @@ bioregistry:cellosaurus a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^CVCL_[A-Z0-9]{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:cellosaurus.resource a bioregistry.schema:0000001 ;
+    rdfs:label "Cellosaurus Registry" ;
+    dc:description "The set of prefixes used in the Cellosaurus resource"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://web.expasy.org/cellosaurus/"^^xsd:string ;
+    bioregistry.schema:0000005 "4DN"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bioregistry.io/metaregistry/cellosaurus/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:cgnc a bioregistry.schema:0000001 ;
     rdfs:label "Chicken Gene Nomenclature Consortium" ;
     dc:description "Nomenclature Consortium around Chicken genes (analogous to the HGNC for humans)"^^xsd:string ;
@@ -17255,6 +17239,14 @@ bioregistry:dictybase.gene a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^DDB_G\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:diseaseclass a bioregistry.schema:0000001 ;
+    rdfs:label "Disease Class" ;
+    dc:description "Legacy disease classes that later became MONDO"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    bioregistry.schema:0000005 "0000598"^^xsd:string ;
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000018 bioregistry:efo .
+
 bioregistry:dlx dcterms:hasPart bioregistry:dlxb,
         bioregistry:dlxc .
 
@@ -17549,7 +17541,7 @@ bioregistry:empiar a bioregistry.schema:0000001 ;
     rdfs:label "Electron Microscopy Public Image Archive" ;
     dc:description "EMPIAR, the Electron Microscopy Public Image Archive, is a public resource for raw, 2D electron microscopy images. Here, you can browse, upload and download the raw images used to build a 3D structure"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:biodbcore-001140 ;
+    skos:exactMatch fairsharing:FAIRsharing.dff3ef ;
     foaf:homepage "https://www.ebi.ac.uk/pdbe/emdb"^^xsd:string ;
     bioregistry.schema:0000005 "10595"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/pdbe/emdb/empiar/entry/$1"^^xsd:string ;
@@ -17845,6 +17837,15 @@ bioregistry:glytoucan a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "G00054MO"^^xsd:string ;
     bioregistry.schema:0000006 "https://glytoucan.org/Structures/Glycans/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^G[0-9]{5}[A-Z]{2}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:go.resource a bioregistry.schema:0000001 ;
+    rdfs:label "Gene Ontology Registry" ;
+    dc:description "A database-specific registry supporting curation in the Gene Ontology"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "http://geneontology.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "CHEBI"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bioregistry.io/metaregistry/go/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:goche a bioregistry.schema:0000001 ;
@@ -18335,6 +18336,7 @@ bioregistry:lncipedia a bioregistry.schema:0000001 ;
     rdfs:label "LNCipedia" ;
     dc:description "A comprehensive compendium of human long non-coding RNAs"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.84c1a7 ;
     foaf:homepage "https://lncipedia.org"^^xsd:string ;
     bioregistry.schema:0000005 "SNHG3"^^xsd:string ;
     bioregistry.schema:0000012 false .
@@ -18558,6 +18560,15 @@ bioregistry:multicellds.snapshot a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^MCDS_S_[a-zA-Z0-9]{1,10}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:n2t a bioregistry.schema:0000001 ;
+    rdfs:label "Name-to-Thing" ;
+    dc:description "An ARK resolver as well as resolver built with common prefixes as in Identifiers.org"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://n2t.net"^^xsd:string ;
+    bioregistry.schema:0000005 "chebi"^^xsd:string ;
+    bioregistry.schema:0000006 "https://n2t.net/$1:"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:namerxn a bioregistry.schema:0000001 ;
     rdfs:label "NameRXN" ;
     dc:description "The nomenclature used for named reactions in text mining software from NextMove. While it's proprietary, there are a few publications listing parts. 487/1,855 have mappings to the Reaction Ontology (RXNO)."^^xsd:string ;
@@ -18568,11 +18579,20 @@ bioregistry:namerxn a bioregistry.schema:0000001 ;
 
 bioregistry:ncats.drug a bioregistry.schema:0000001 ;
     rdfs:label "NCATS Drugs" ;
-    dc:description "The National Center for Advancing Translational Sciences (NCATS) has developed Inxight: Drugs as a comprehensive portal for drug development information. NCATS Inxight: Drugs  contains information on ingredients in medicinal products, including:"^^xsd:string ;
+    dc:description "The [National Center for Advancing Translational Sciences (NCATS)](https://ncats.nih.gov/) has developed Inxight: Drugs as a comprehensive portal for drug development information. NCATS Inxight: Drugs  contains information on ingredients in medicinal products, including:"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://drugs.ncats.io/"^^xsd:string ;
     bioregistry.schema:0000005 "44259"^^xsd:string ;
     bioregistry.schema:0000006 "https://drugs.ncats.io/drug/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:ncbi.resource a bioregistry.schema:0000001 ;
+    rdfs:label "NCBI Registry" ;
+    dc:description "A database-specific registry supporting curation in the NCBI GenBank and related NCBI resources"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/"^^xsd:string ;
+    bioregistry.schema:0000005 "ECOCYC"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bioregistry.io/metaregistry/ncbi/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:ncbibook a bioregistry.schema:0000001 ;
@@ -18907,7 +18927,8 @@ bioregistry:ped a bioregistry.schema:0000001 ;
     dc:description "The Protein Ensemble Database is an open access database for the deposition of structural ensembles, including intrinsically disordered proteins."^^xsd:string ;
     dcterms:hasPart bioregistry:ped.ensemble ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:ped ;
+    skos:exactMatch fairsharing:FAIRsharing.31385c,
+        miriam:ped ;
     foaf:homepage "https://proteinensemble.org/"^^xsd:string ;
     bioregistry.schema:0000005 "PED00037"^^xsd:string ;
     bioregistry.schema:0000006 "https://proteinensemble.org/$1"^^xsd:string ;
@@ -19092,6 +19113,15 @@ bioregistry:pspub a bioregistry.schema:0000001 ;
     foaf:homepage "https://wiki.phenoscape.org/wiki/Curation_workflow"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:pubchem.element a bioregistry.schema:0000001 ;
+    rdfs:label "PubChem Element" ;
+    dc:description "PubChem Element gives information on chemical elements like Hydrogen, with the local identifier corresponding to the atomic number."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://pubchem.ncbi.nlm.nih.gov/periodic-table"^^xsd:string ;
+    bioregistry.schema:0000005 "1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/element/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:rcb a bioregistry.schema:0000001 ;
     rdfs:label "RIKEN Bioresource Center Cell Bank" ;
     dc:description "Collection of many cell lines derived from human and other various animals, preserved by the RIKEN BioResource Research Center."^^xsd:string ;
@@ -19228,6 +19258,15 @@ bioregistry:schem a bioregistry.schema:0000001 ;
     foaf:homepage "https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets"^^xsd:string ;
     bioregistry.schema:0000005 "A0001"^^xsd:string ;
     bioregistry.schema:0000008 "^A\\d{4}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:scholia.resource a bioregistry.schema:0000001 ;
+    rdfs:label "Scholia Registry" ;
+    dc:description "A frontend to Wikidata"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://scholia.toolforge.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "doi"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bioregistry.io/metaregistry/scholia/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:scomp a bioregistry.schema:0000001 ;
@@ -19480,6 +19519,15 @@ bioregistry:uniprot.disease a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.uniprot.org/diseases/DI-$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:uniprot.resource a bioregistry.schema:0000001 ;
+    rdfs:label "UniProt Resource" ;
+    dc:description "The cross-references section of UniProtKB entries displays explicit and implicit links to databases such as nucleotide sequence databases, model organism databases and genomics and proteomics resources."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.uniprot.org/database/"^^xsd:string ;
+    bioregistry.schema:0000005 "0174"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.uniprot.org/database/DB-$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:uniprot.var a bioregistry.schema:0000001 ;
     rdfs:label "UniProt Variants" ;
     dc:description "The purpose of the UniProtKB/Swiss-Prot variant pages is: to display the variant related information extracted from UniProtKB/Swiss-Prot, and to provide useful additional information such as the conservation of the modified residues across orthologous species."^^xsd:string ;
@@ -19701,7 +19749,7 @@ bioregistry:zeco a bioregistry.schema:0000001 ;
 
 bioregistry:zfa a bioregistry.schema:0000001 ;
     rdfs:label "Zebrafish anatomy and development ontology" ;
-    dc:description "A structured controlled vocabulary of the anatomy and development of the Zebrafish"^^xsd:string ;
+    dc:description "ZFA description."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch obofoundry:ZFA,
         ontobee:ZFA,
@@ -19717,6 +19765,8 @@ bioregistry:zfa a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:zp ;
     bioregistry.schema:0000019 [ rdfs:label "Ceri Van Slyke" ] .
 
+fairsharing:FAIRsharing.0a674c dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.0pUMYW dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.10gr18 dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -19728,6 +19778,8 @@ fairsharing:FAIRsharing.1414v8 dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.17zapb dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.1a27h8 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.1c1738 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.1fbc5y dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -19748,6 +19800,8 @@ fairsharing:FAIRsharing.29we0s dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.2abjs5 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.2ajtcf dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.2b04ae dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.2basyz dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -19779,11 +19833,15 @@ fairsharing:FAIRsharing.2y1KMt dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.309v57 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.31385c dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.31apg2 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.33yggg dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.353yat dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.35e1c3 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.36pf8q dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -19792,6 +19850,8 @@ fairsharing:FAIRsharing.3J6NYn dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.3b36hk dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.3d4jx0 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.3da56b dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.3e0sn4 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -19817,6 +19877,8 @@ fairsharing:FAIRsharing.3zqvaf dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.40j2vd dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.45a10e dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.46s4nt dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.4877h0 dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -19832,6 +19894,8 @@ fairsharing:FAIRsharing.4cvwxa dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.4dvtcz dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.4e3qh9 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.4fa657 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.4g5qcw dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -19849,11 +19913,15 @@ fairsharing:FAIRsharing.4shj9c dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.4vr0ys dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.530e61 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.56a0Uj dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.5701h1 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.5949vn dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.595710 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.5a4y1y dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -19882,6 +19950,8 @@ fairsharing:FAIRsharing.61c2x6 dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.62evqh dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.62qk8w dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.63520c dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.6375zh dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -19921,7 +19991,13 @@ fairsharing:FAIRsharing.6xq0ee dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.778n2k dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.78d3ad dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.7C0aVE dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.7c683b dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.7e9cff dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.7fnx38 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -19945,6 +20021,10 @@ fairsharing:FAIRsharing.7zffgc dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.7zxrs6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.847069 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.84c1a7 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.88v2k0 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.8b6wfq dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -19967,6 +20047,8 @@ fairsharing:FAIRsharing.8zqzm9 dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.901nkj dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.910c39 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.91yrz6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.93ee19 dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -19975,6 +20057,8 @@ fairsharing:FAIRsharing.93g1th dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.96f3gm dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.97805c dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.9b7wvk dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.9c1p18 dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -19982,6 +20066,8 @@ fairsharing:FAIRsharing.9c1p18 dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.9d5f5r dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.9dpd18 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.9e9683 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.9gqfpm dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -20031,6 +20117,8 @@ fairsharing:FAIRsharing.Z8OKi5 dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.a0k4cd dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.a14123 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.a5sv8m dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.a6r7zs dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -20048,6 +20136,12 @@ fairsharing:FAIRsharing.aa0eat dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.aae3v6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.ad3137 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.ad9d85 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.af5655 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.af7a2d dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.agvc7y dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -20083,8 +20177,6 @@ fairsharing:FAIRsharing.b4sa0w dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.b7z8by dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
-fairsharing:FAIRsharing.b9st5p dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
 fairsharing:FAIRsharing.b9znd5 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.bc8ayj dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -20113,7 +20205,11 @@ fairsharing:FAIRsharing.c23cqq dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.c54ywe dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.c55d5e dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.c6vhm3 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.c7f4d7 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.c7w81a dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -20145,11 +20241,17 @@ fairsharing:FAIRsharing.d064y6 dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.d3pqw7 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.d5ff6e dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.d88s6e dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.d95034 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.da493y dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.ddk9t9 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.dff3ef dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.dg1f0e dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -20187,6 +20289,8 @@ fairsharing:FAIRsharing.dyqz3y dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.dzxae dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.e08886 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.e1byny dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.e28v7g dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -20198,6 +20302,8 @@ fairsharing:FAIRsharing.e4n3an dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.e7skwg dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.eBP3tb dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.ea287c dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.edxb58 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -20225,7 +20331,11 @@ fairsharing:FAIRsharing.f0bxfg dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.f63h4k dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.f69084 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.f73xhd dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.fc3431 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.fcwyhz dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -20720,8 +20830,6 @@ fairsharing:FAIRsharing.zwtww5 dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.zx1td8 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.zx2ztd dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
-fairsharing:biodbcore-001140 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
     dcterms:contributor bioregistry:insdc.run,
@@ -25988,7 +26096,7 @@ bioregistry:bspo a bioregistry.schema:0000001 ;
 
 bioregistry:caro a bioregistry.schema:0000001 ;
     rdfs:label "Common Anatomy Reference Ontology" ;
-    dc:description "An upper level ontology to facilitate interoperability between existing anatomy ontologies for different species"^^xsd:string ;
+    dc:description "None"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch obofoundry:CARO,
         ontobee:CARO,
@@ -26909,6 +27017,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cba,
         bioregistry:ccrid,
         bioregistry:cellopub,
+        bioregistry:cellosaurus.resource,
         bioregistry:cgnc,
         bioregistry:chembl.cell,
         bioregistry:citexplore,
@@ -26920,6 +27029,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cosmic.cell,
         bioregistry:cp,
         bioregistry:credit,
+        bioregistry:diseaseclass,
         bioregistry:dsmz,
         bioregistry:eaglei,
         bioregistry:ecmdb,
@@ -26941,6 +27051,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:gemet,
         bioregistry:geonames,
         bioregistry:ghr,
+        bioregistry:go.resource,
         bioregistry:goche,
         bioregistry:goeco,
         bioregistry:grassbase,
@@ -26967,8 +27078,10 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:mmsl,
         bioregistry:molbase.sheffield,
         bioregistry:multicellds,
+        bioregistry:n2t,
         bioregistry:namerxn,
         bioregistry:ncats.drug,
+        bioregistry:ncbi.resource,
         bioregistry:ncbibook,
         bioregistry:ndex,
         bioregistry:nextprot.family,
@@ -26991,6 +27104,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ppdb,
         bioregistry:ppr,
         bioregistry:pspub,
+        bioregistry:pubchem.element,
         bioregistry:rcb,
         bioregistry:receptome.family,
         bioregistry:reo,
@@ -26998,6 +27112,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:sael,
         bioregistry:salk,
         bioregistry:schem,
+        bioregistry:scholia.resource,
         bioregistry:scomp,
         bioregistry:sdis,
         bioregistry:sfam,
@@ -27014,6 +27129,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:tkg,
         bioregistry:ubprop,
         bioregistry:uniprot.disease,
+        bioregistry:uniprot.resource,
         bioregistry:uniprot.var,
         bioregistry:unpd,
         bioregistry:vega,
@@ -27770,7 +27886,6 @@ bioregistry.metaresource:go a bioregistry.schema:0000002 ;
     dc:description "A database-specific registry supporting curation in the Gene Ontology" ;
     dcterms:hasPart go.resource:AGRICOLA_ID,
         go.resource:ASAP,
-        go.resource:ApiDB_PlasmoDB,
         go.resource:AspGD_LOCUS,
         go.resource:BFO,
         go.resource:BIOMD,
@@ -27856,6 +27971,7 @@ bioregistry.metaresource:go a bioregistry.schema:0000002 ;
         go.resource:PSI-MOD,
         go.resource:Pfam,
         go.resource:PharmGKB,
+        go.resource:PlasmoDB,
         go.resource:PomBase,
         go.resource:Prosite,
         go.resource:PubChem_BioAssay,
@@ -27881,6 +27997,7 @@ bioregistry.metaresource:go a bioregistry.schema:0000002 ;
         go.resource:TC,
         go.resource:TFClass,
         go.resource:TGD,
+        go.resource:TriTrypDB,
         go.resource:UBERON,
         go.resource:UM-BBD_enzymeID,
         go.resource:UM-BBD_pathwayID,
@@ -27919,6 +28036,7 @@ bioregistry.metaresource:ontobee a bioregistry.schema:0000002 ;
         ontobee:APO,
         ontobee:APOLLO_SV,
         ontobee:ARO,
+        ontobee:BAO,
         ontobee:BCGO,
         ontobee:BCO,
         ontobee:BFO,
@@ -28087,6 +28205,7 @@ bioregistry.metaresource:ontobee a bioregistry.schema:0000002 ;
         ontobee:SBO,
         ontobee:SCDO,
         ontobee:SDGIO,
+        ontobee:SEP,
         ontobee:SEPIO,
         ontobee:SIBO,
         ontobee:SIO,
@@ -28978,12 +29097,14 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
 bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
     rdfs:label "FAIRSharing" ;
     dc:description "A curated, informative and educational resource on data and metadata standards, inter-related to databases and data policies." ;
-    dcterms:hasPart fairsharing:FAIRsharing.0pUMYW,
+    dcterms:hasPart fairsharing:FAIRsharing.0a674c,
+        fairsharing:FAIRsharing.0pUMYW,
         fairsharing:FAIRsharing.10gr18,
         fairsharing:FAIRsharing.10zsxb,
         fairsharing:FAIRsharing.1414v8,
         fairsharing:FAIRsharing.17zapb,
         fairsharing:FAIRsharing.1a27h8,
+        fairsharing:FAIRsharing.1c1738,
         fairsharing:FAIRsharing.1fbc5y,
         fairsharing:FAIRsharing.1gr4tz,
         fairsharing:FAIRsharing.1rj558,
@@ -28994,6 +29115,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.29we0s,
         fairsharing:FAIRsharing.2abjs5,
         fairsharing:FAIRsharing.2ajtcf,
+        fairsharing:FAIRsharing.2b04ae,
         fairsharing:FAIRsharing.2basyz,
         fairsharing:FAIRsharing.2bdvmk,
         fairsharing:FAIRsharing.2ck3st,
@@ -29009,13 +29131,16 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.2sqcxs,
         fairsharing:FAIRsharing.2y1KMt,
         fairsharing:FAIRsharing.309v57,
+        fairsharing:FAIRsharing.31385c,
         fairsharing:FAIRsharing.31apg2,
         fairsharing:FAIRsharing.33yggg,
         fairsharing:FAIRsharing.353yat,
+        fairsharing:FAIRsharing.35e1c3,
         fairsharing:FAIRsharing.36pf8q,
         fairsharing:FAIRsharing.3J6NYn,
         fairsharing:FAIRsharing.3b36hk,
         fairsharing:FAIRsharing.3d4jx0,
+        fairsharing:FAIRsharing.3da56b,
         fairsharing:FAIRsharing.3e0sn4,
         fairsharing:FAIRsharing.3etvdn,
         fairsharing:FAIRsharing.3kcgmr,
@@ -29028,6 +29153,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.3xwMon,
         fairsharing:FAIRsharing.3zqvaf,
         fairsharing:FAIRsharing.40j2vd,
+        fairsharing:FAIRsharing.45a10e,
         fairsharing:FAIRsharing.46s4nt,
         fairsharing:FAIRsharing.4877h0,
         fairsharing:FAIRsharing.493qns,
@@ -29036,6 +29162,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.4cvwxa,
         fairsharing:FAIRsharing.4dvtcz,
         fairsharing:FAIRsharing.4e3qh9,
+        fairsharing:FAIRsharing.4fa657,
         fairsharing:FAIRsharing.4g5qcw,
         fairsharing:FAIRsharing.4gm9gt,
         fairsharing:FAIRsharing.4jg0qw,
@@ -29044,9 +29171,11 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.4qyf0f,
         fairsharing:FAIRsharing.4shj9c,
         fairsharing:FAIRsharing.4vr0ys,
+        fairsharing:FAIRsharing.530e61,
         fairsharing:FAIRsharing.56a0Uj,
         fairsharing:FAIRsharing.5701h1,
         fairsharing:FAIRsharing.5949vn,
+        fairsharing:FAIRsharing.595710,
         fairsharing:FAIRsharing.5a4y1y,
         fairsharing:FAIRsharing.5ab0n7,
         fairsharing:FAIRsharing.5dnjs2,
@@ -29061,6 +29190,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.61c2x6,
         fairsharing:FAIRsharing.62evqh,
         fairsharing:FAIRsharing.62qk8w,
+        fairsharing:FAIRsharing.63520c,
         fairsharing:FAIRsharing.6375zh,
         fairsharing:FAIRsharing.63m4ss,
         fairsharing:FAIRsharing.651n9j,
@@ -29080,7 +29210,10 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.6wf1zw,
         fairsharing:FAIRsharing.6xq0ee,
         fairsharing:FAIRsharing.778n2k,
+        fairsharing:FAIRsharing.78d3ad,
         fairsharing:FAIRsharing.7C0aVE,
+        fairsharing:FAIRsharing.7c683b,
+        fairsharing:FAIRsharing.7e9cff,
         fairsharing:FAIRsharing.7fnx38,
         fairsharing:FAIRsharing.7g1bzj,
         fairsharing:FAIRsharing.7hxxc4,
@@ -29092,6 +29225,8 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.7ykpy5,
         fairsharing:FAIRsharing.7zffgc,
         fairsharing:FAIRsharing.7zxrs6,
+        fairsharing:FAIRsharing.847069,
+        fairsharing:FAIRsharing.84c1a7,
         fairsharing:FAIRsharing.88v2k0,
         fairsharing:FAIRsharing.8b6wfq,
         fairsharing:FAIRsharing.8hcczk,
@@ -29103,14 +29238,17 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.8wm364,
         fairsharing:FAIRsharing.8zqzm9,
         fairsharing:FAIRsharing.901nkj,
+        fairsharing:FAIRsharing.910c39,
         fairsharing:FAIRsharing.91yrz6,
         fairsharing:FAIRsharing.93ee19,
         fairsharing:FAIRsharing.93g1th,
         fairsharing:FAIRsharing.96f3gm,
+        fairsharing:FAIRsharing.97805c,
         fairsharing:FAIRsharing.9b7wvk,
         fairsharing:FAIRsharing.9c1p18,
         fairsharing:FAIRsharing.9d5f5r,
         fairsharing:FAIRsharing.9dpd18,
+        fairsharing:FAIRsharing.9e9683,
         fairsharing:FAIRsharing.9gqfpm,
         fairsharing:FAIRsharing.9j4wh2,
         fairsharing:FAIRsharing.9kahy4,
@@ -29135,6 +29273,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.Yvc76F,
         fairsharing:FAIRsharing.Z8OKi5,
         fairsharing:FAIRsharing.a0k4cd,
+        fairsharing:FAIRsharing.a14123,
         fairsharing:FAIRsharing.a5sv8m,
         fairsharing:FAIRsharing.a6r7zs,
         fairsharing:FAIRsharing.a8z6gz,
@@ -29144,6 +29283,9 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.aa0eat,
         fairsharing:FAIRsharing.aae3v6,
         fairsharing:FAIRsharing.ad3137,
+        fairsharing:FAIRsharing.ad9d85,
+        fairsharing:FAIRsharing.af5655,
+        fairsharing:FAIRsharing.af7a2d,
         fairsharing:FAIRsharing.agvc7y,
         fairsharing:FAIRsharing.akmeb9,
         fairsharing:FAIRsharing.anpa6,
@@ -29161,7 +29303,6 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.b2979t,
         fairsharing:FAIRsharing.b4sa0w,
         fairsharing:FAIRsharing.b7z8by,
-        fairsharing:FAIRsharing.b9st5p,
         fairsharing:FAIRsharing.b9znd5,
         fairsharing:FAIRsharing.bc8ayj,
         fairsharing:FAIRsharing.bcjrnq,
@@ -29176,7 +29317,9 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.bxc508,
         fairsharing:FAIRsharing.c23cqq,
         fairsharing:FAIRsharing.c54ywe,
+        fairsharing:FAIRsharing.c55d5e,
         fairsharing:FAIRsharing.c6vhm3,
+        fairsharing:FAIRsharing.c7f4d7,
         fairsharing:FAIRsharing.c7w81a,
         fairsharing:FAIRsharing.c86z66,
         fairsharing:FAIRsharing.c886cd,
@@ -29192,9 +29335,12 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.d05nwx,
         fairsharing:FAIRsharing.d064y6,
         fairsharing:FAIRsharing.d3pqw7,
+        fairsharing:FAIRsharing.d5ff6e,
         fairsharing:FAIRsharing.d88s6e,
+        fairsharing:FAIRsharing.d95034,
         fairsharing:FAIRsharing.da493y,
         fairsharing:FAIRsharing.ddk9t9,
+        fairsharing:FAIRsharing.dff3ef,
         fairsharing:FAIRsharing.dg1f0e,
         fairsharing:FAIRsharing.dj8nt8,
         fairsharing:FAIRsharing.djsbw2,
@@ -29213,12 +29359,14 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.dyj433,
         fairsharing:FAIRsharing.dyqz3y,
         fairsharing:FAIRsharing.dzxae,
+        fairsharing:FAIRsharing.e08886,
         fairsharing:FAIRsharing.e1byny,
         fairsharing:FAIRsharing.e28v7g,
         fairsharing:FAIRsharing.e3t0yw,
         fairsharing:FAIRsharing.e4n3an,
         fairsharing:FAIRsharing.e7skwg,
         fairsharing:FAIRsharing.eBP3tb,
+        fairsharing:FAIRsharing.ea287c,
         fairsharing:FAIRsharing.edxb58,
         fairsharing:FAIRsharing.eeyne8,
         fairsharing:FAIRsharing.efv7gw,
@@ -29232,7 +29380,9 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.ezwdhz,
         fairsharing:FAIRsharing.f0bxfg,
         fairsharing:FAIRsharing.f63h4k,
+        fairsharing:FAIRsharing.f69084,
         fairsharing:FAIRsharing.f73xhd,
+        fairsharing:FAIRsharing.fc3431,
         fairsharing:FAIRsharing.fcwyhz,
         fairsharing:FAIRsharing.fex4c8,
         fairsharing:FAIRsharing.fgd5gq,
@@ -29479,8 +29629,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.zv11j3,
         fairsharing:FAIRsharing.zwtww5,
         fairsharing:FAIRsharing.zx1td8,
-        fairsharing:FAIRsharing.zx2ztd,
-        fairsharing:biodbcore-001140 ;
+        fairsharing:FAIRsharing.zx2ztd ;
     foaf:homepage "https://fairsharing.org/" ;
     bioregistry.schema:0000005 "FAIRsharing.62qk8w" ;
     bioregistry.schema:0000006 "https://fairsharing.org/$1" ;
@@ -32831,6 +32980,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:pspub,
         bioregistry:pubchem.bioassay,
         bioregistry:pubchem.compound,
+        bioregistry:pubchem.element,
         bioregistry:pubchem.substance,
         bioregistry:publons.researcher,
         bioregistry:pubmed,

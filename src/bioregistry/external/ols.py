@@ -28,6 +28,13 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 
 _PROCESSING = get_ols_processing()
 
+OLS_SKIP = {
+    "co_321:root": "this is a mistake in the way OLS imports CO",
+    "phi": "this is low quality and has no associated metadata",
+    "epso": "can't figure out / not sure if still exists",
+    "epio": "can't figure out / not sure if still exists",
+}
+
 
 def get_ols(force_download: bool = False):
     """Get the OLS registry."""
@@ -50,7 +57,8 @@ def get_ols(force_download: bool = False):
         # TODO better docs on how to maintain this file
         config = _PROCESSING.get(ols_id)
         if config is None:
-            logger.warning("need to curate processing file for OLS prefix %s", ols_id)
+            if ols_id not in OLS_SKIP:
+                logger.warning("need to curate processing file for OLS prefix %s", ols_id)
             continue
         processed[ols_id] = _process(ontology, config)
 
@@ -80,7 +88,7 @@ def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Optional[Ma
         else:
             rv["contact"] = email
 
-    license_value = config["annotations"].get("license", [None])[0]
+    license_value = config.get("annotations", {}).get("license", [None])[0]
     if license_value in {"Unspecified", "Unspecified"}:
         license_value = None
     if not license_value:

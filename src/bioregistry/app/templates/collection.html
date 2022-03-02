@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="card-body">
-            <p>{{ entry.description }}</p>
+            <p>{{ markdown(entry.description) | safe }}</p>
             <dl>
                 <dt>Identifier</dt>
                 <dd><code>{{ identifier }}</code></dd>

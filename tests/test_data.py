@@ -29,11 +29,13 @@ class TestRegistry(unittest.TestCase):
         self.metaregistry = bioregistry.read_metaregistry()
 
     def test_prefixes(self):
-        """Check all prefixes are lowercased."""
+        """Check prefixes aren't malformed."""
         for prefix, resource in self.registry.items():
             with self.subTest(prefix=prefix):
                 self.assertEqual(prefix, resource.prefix)
                 self.assertEqual(prefix.lower(), prefix, msg="prefix is not lowercased")
+                self.assertFalse(prefix.startswith("_"))
+                self.assertFalse(prefix.endswith("_"))
 
     def test_keys(self):
         """Check the required metadata is there."""
@@ -78,6 +80,7 @@ class TestRegistry(unittest.TestCase):
             "preferred_prefix",
             "providers",
             "example_extras",
+            "contributor_extras",
         }
         keys.update(bioregistry.read_metaregistry())
         with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
@@ -612,3 +615,38 @@ class TestRegistry(unittest.TestCase):
         for key, values in REVERSE_LICENSES.items():
             with self.subTest(key=key):
                 self.assertEqual(len(values), len(set(values)), msg=f"duplicates in {key}")
+
+    def test_contributors(self):
+        """Check contributors have minimal metadata."""
+        for prefix, resource in self.registry.items():
+            with self.subTest(prefix=prefix):
+                if not resource.contributor and not resource.contributor_extras:
+                    self.assertNotEqual(0, len(resource.get_mappings()))
+                    continue
+                if resource.contributor is not None:
+                    self.assertIsNotNone(resource.contributor.name)
+                    self.assertIsNotNone(resource.contributor.orcid)
+                    self.assertIsNotNone(resource.contributor.github)
+                for contributor in resource.contributor_extras or []:
+                    self.assertIsNotNone(contributor.name)
+                    self.assertIsNotNone(contributor.orcid)
+                    self.assertIsNotNone(contributor.github)
+
+    def test_reviewers(self):
+        """Check reviewers have minimal metadata."""
+        for prefix, resource in self.registry.items():
+            if not resource.reviewer:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(resource.reviewer.name)
+                self.assertIsNotNone(resource.reviewer.orcid)
+                self.assertIsNotNone(resource.reviewer.github)
+
+    def test_contacts(self):
+        """Check contacts have minimal metadata."""
+        for prefix, resource in self.registry.items():
+            if not resource.contact:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(resource.contact.name)
+                self.assertIsNotNone(resource.contact.email)

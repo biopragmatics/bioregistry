@@ -324,6 +324,9 @@ class Resource(BaseModel):
     """
         ),
     )
+    contributor_extras: Optional[List[Author]] = Field(
+        description="Additional contributors besides the original submitter.",
+    )
 
     reviewer: Optional[Author] = Field(
         description=_dedent(
@@ -588,8 +591,13 @@ class Resource(BaseModel):
             ("obofoundry", "ols", "wikidata", "go", "ncbi", "bioportal", "miriam", "cellosaurus"),
         )
 
-    def get_description(self) -> Optional[str]:
+    def get_description(self, use_markdown: bool = False) -> Optional[str]:
         """Get the description for the given prefix, if available."""
+        if self.description and use_markdown:
+            import markupsafe
+            from markdown import markdown
+
+            return markupsafe.Markup(markdown(self.description))
         rv = self.get_prefix_key(
             "description", ("miriam", "ols", "obofoundry", "wikidata", "fairsharing")
         )
@@ -713,9 +721,13 @@ class Resource(BaseModel):
         >>> from bioregistry import get_resource
         >>> get_resource("bioregistry").get_contact_orcid()  # from bioregistry curation
         '0000-0003-4423-4370'
+        >>> get_resource("aero").get_contact_orcid()
+        '0000-0002-9551-6370'
         """
         if self.contact and self.contact.orcid:
             return self.contact.orcid
+        if self.obofoundry and "contact.orcid" in self.obofoundry:
+            return self.obofoundry["contact.orcid"]
         return None
 
     def get_example(self) -> Optional[str]:

@@ -68,10 +68,12 @@
                     instead of <code>{{ prefix }}</code>.
                 </p>
             {% endif %}
-            {% if resource.comment %}
-                <p class="text-muted"><span class="badge badge-info">Comment</span> {{ resource.comment }}</p>
-            {% endif %}
+
             <dl>
+                {% if resource.comment %}
+                    <dt>Comment</dt>
+                    <dd>{{ markdown(resource.comment) | safe }}</dd>
+                {% endif %}
                 <dt>Prefix</dt>
                 <dd><code>{{ prefix }}</code></dd>
                 {% set preferred_prefix = resource.get_preferred_prefix() %}
@@ -236,10 +238,21 @@
                         </ul>
                     </dd>
                 {% endif %}
-                {% if resource.contributor %}
-                    <dt>Contributor</dt>
+                {% if resource.contributor or resource.contributor_extras %}
+                    <dt>Contributors</dt>
                     <dd>
-                        {{ utils.render_author(resource.contributor, link=url_for('ui.contributor', orcid=resource.contributor.orcid)) }}
+                        <ul>
+                            {% if resource.contributor %}
+                                <li>
+                                    <span class="badge badge-info">submitter</span> {{ utils.render_author(resource.contributor, link=url_for('ui.contributor', orcid=resource.contributor.orcid)) }}
+                                </li>
+                            {% endif %}
+                            {% for contributor in resource.contributor_extras or [] %}
+                                <li>
+                                    <span class="badge badge-info">contributor</span> {{ utils.render_author(contributor, link=url_for('ui.contributor', orcid=contributor.orcid)) }}
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </dd>
                 {% endif %}
                 {% if resource.reviewer %}

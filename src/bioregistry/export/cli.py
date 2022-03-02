@@ -9,7 +9,7 @@ import click
 @click.pass_context
 def export(ctx: click.Context):
     """Export the Bioregistry."""
-    from .prefix_maps import generate_context_json_ld
+    from .prefix_maps import generate_contexts
     from .rdf_export import export_rdf
     from .sssom_export import export_sssom
     from .tsv_export import export_tsv
@@ -21,7 +21,7 @@ def export(ctx: click.Context):
     ctx.invoke(export_tsv)
     ctx.invoke(export_yaml)
     ctx.invoke(export_sssom)
-    ctx.invoke(generate_context_json_ld)
+    ctx.invoke(generate_contexts)
 
 
 if __name__ == "__main__":

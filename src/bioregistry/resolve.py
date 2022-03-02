@@ -74,12 +74,18 @@ def get_name(prefix: str) -> Optional[str]:
     return manager.get_name(prefix)
 
 
-def get_description(prefix: str) -> Optional[str]:
-    """Get the description for the given prefix, if available."""
+def get_description(prefix: str, use_markdown: bool = False) -> Optional[str]:
+    """Get the description for the given prefix, if available.
+
+    :param prefix: The prefix to lookup.
+    :param use_markdown: Should :mod:`markupsafe` and :mod:`markdown` wrap the description
+        string
+    :returns: The description, if available.
+    """
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get_description()
+    return entry.get_description(use_markdown=use_markdown)
 
 
 def get_preferred_prefix(prefix: str) -> Optional[str]:

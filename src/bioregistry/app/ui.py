@@ -5,6 +5,7 @@
 from typing import Optional
 
 from flask import Blueprint, abort, redirect, render_template, url_for
+from markdown import markdown
 
 import bioregistry
 
@@ -41,6 +42,7 @@ def resources():
     return render_template(
         "resources.html",
         formats=FORMATS,
+        markdown=markdown,
         registry=bioregistry.read_registry(),
     )
 
@@ -61,6 +63,7 @@ def collections():
     return render_template(
         "collections.html",
         rows=bioregistry.read_collections().items(),
+        markdown=markdown,
         formats=FORMATS,
     )
 
@@ -88,6 +91,7 @@ def resource(prefix: str):
         "resource.html",
         zip=zip,
         bioregistry=bioregistry,
+        markdown=markdown,
         prefix=prefix,
         resource=_resource,
         name=bioregistry.get_name(prefix),
@@ -110,7 +114,7 @@ def resource(prefix: str):
         deprecated=bioregistry.is_deprecated(prefix),
         contact=bioregistry.get_contact(prefix),
         banana=bioregistry.get_banana(prefix),
-        description=bioregistry.get_description(prefix),
+        description=bioregistry.get_description(prefix, use_markdown=True),
         appears_in=bioregistry.get_appears_in(prefix),
         depends_on=bioregistry.get_depends_on(prefix),
         has_canonical=bioregistry.get_has_canonical(prefix),
@@ -182,6 +186,7 @@ def collection(identifier: str):
         "collection.html",
         identifier=identifier,
         entry=entry,
+        markdown=markdown,
         formats=[
             *FORMATS,
             ("RDF (turtle)", "turtle"),

@@ -28,6 +28,7 @@ from bioregistry import (
     get_uri_format,
     get_version,
     is_deprecated,
+    manager,
     read_registry,
 )
 from bioregistry.constants import DOCS_IMG
@@ -393,6 +394,13 @@ def compare(png: bool):  # noqa:C901
         )
     _save(fig, name="providers", png=png)
 
+    ########################################
+    # Regular expression complexity report #
+    ########################################
+    g = sns.displot(x=get_regex_complexities(), log_scale=2, height=3, aspect=4 / 3)
+    g.set(xlabel="Regular Expression Complexity")
+    _save(g.figure, name="regex_report", png=png)
+
 
 def _count_providers(resource: Resource) -> int:
     rv = 0
@@ -440,6 +448,18 @@ def _remap(*, key: str, prefixes: Collection[str]) -> Set[str]:
             br_external_to[_k] = br_id
 
     return {br_external_to.get(prefix, prefix) for prefix in prefixes}
+
+
+def get_regex_complexities() -> Collection[float]:
+    """Get a list of regular expression complexities."""
+    rows = []
+    for prefix in manager.registry:
+        pattern = manager.get_pattern(prefix)
+        if pattern is None:
+            continue
+        # Consider alternate complexity estimates
+        rows.append(float(len(pattern)))
+    return sorted(rows)
 
 
 if __name__ == "__main__":

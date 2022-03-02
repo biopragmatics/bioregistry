@@ -68,6 +68,7 @@ def _process(record):
         "contact": record.get("contact", {}).get("email"),
         "contact.label": record.get("contact", {}).get("label"),
         "contact.github": record.get("contact", {}).get("github"),
+        "contact.orcid": record.get("contact", {}).get("orcid"),
         "repository": record.get("repository"),
     }
 
