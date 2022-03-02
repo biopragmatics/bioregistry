@@ -101,6 +101,11 @@ wrong_patterns:
   miriam: ^ENVO:\d{7,8}$
   name: Environment Ontology
   prefix: envo
+- correct: ^\d{7}$
+  homepage: http://planteome.org/
+  miriam: ^(P)?EO\:\d{7}$
+  name: Plant Environment Ontology
+  prefix: eo
 - correct: ^\d+$
   homepage: http://si.washington.edu/projects/fma
   miriam: ^FMA:\d+$
@@ -246,11 +251,6 @@ wrong_patterns:
   miriam: ^PATO:\d{7}$
   name: Phenotype And Trait Ontology
   prefix: pato
-- correct: ^\d{7}$
-  homepage: http://planteome.org/
-  miriam: ^(P)?EO\:\d{7}$
-  name: Plant Environment Ontology
-  prefix: peco
 - correct: ^\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b$
   homepage: http://pid.nci.nih.gov/
   miriam: ^\w+$
