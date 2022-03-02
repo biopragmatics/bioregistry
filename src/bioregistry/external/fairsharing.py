@@ -51,6 +51,16 @@ def get_fairsharing(force_download: bool = False, use_tqdm: bool = False):
     return rv
 
 
+KEEP = {
+    "abbreviation",
+    "description",
+    "id",
+    "name",
+    "prefix",
+    "subjects",
+}
+
+
 class FairsharingClient:
     """A client for programmatic access to the FAIRsharing private API."""
 
@@ -112,27 +122,24 @@ class FairsharingClient:
             record.get("description"), "This FAIRsharing record describes: "
         )
         record["name"] = _removeprefix(record.get("name"), "FAIRsharing record for: ")
-
-        for key in [
-            "created-at",
-            "domains",  # maybe use later
-            "subjects",  # maybe use later
-            "legacy-ids",
-            "fairsharing-licence",  # redundant across all records
-            "licence-links",
-            "publications",
-            "taxonomies",
-            "updated-at",
-            "url-for-logo",
-            "user-defined-tags",
-            "countries",
-            "fairsharing-registry",
-            "record-type",
-            "url",  # redundant of doi
-        ]:
-            if key in record:
-                del record[key]
-        return record
+        # for key in [
+        #     "created-at",
+        #     "domains",  # maybe use later
+        #     "subjects",  # maybe use later
+        #     "legacy-ids",
+        #     "fairsharing-licence",  # redundant across all records
+        #     "licence-links",
+        #     "publications",
+        #     "taxonomies",
+        #     "updated-at",
+        #     "url-for-logo",
+        #     "user-defined-tags",
+        #     "countries",
+        #     "fairsharing-registry",
+        #     "record-type",
+        #     "url",  # redundant of doi
+        # ]
+        return {key: value for key, value in record.items() if key in KEEP}
 
     def _iter_records_helper(self, url: str) -> Iterable[Mapping[str, Any]]:
         res = self.session.get(url).json()
