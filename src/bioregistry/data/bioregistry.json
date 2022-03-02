@@ -16858,6 +16858,63 @@
     ],
     "uri_format": "https://www.enzolifesciences.com/$1"
   },
+  "eo": {
+    "banana": "EO",
+    "mappings": {
+      "miriam": "eo",
+      "n2t": "eo",
+      "obofoundry": "eo",
+      "prefixcommons": "EO"
+    },
+    "pattern": "^\\d{7}$",
+    "miriam": {
+      "deprecated": false,
+      "description": "The Plant Environment Ontology is a set of standardized controlled vocabularies to describe various types of treatments given to an individual plant / a population or a cultured tissue and/or cell type sample to evaluate the response on its exposure. It also includes the study types, where the terms can be used to identify the growth study facility. Each growth facility such as field study, growth chamber, green house etc is a environment on its own it may also involve instances of biotic and abiotic environments as supplemental treatments used in these studies.",
+      "homepage": "http://archive.gramene.org/db/ontology/search_term?id=EO:0007359",
+      "id": "00000518",
+      "name": "Plant Environment Ontology",
+      "namespaceEmbeddedInLui": true,
+      "pattern": "^(P)?EO\\:\\d{7}$",
+      "prefix": "eo",
+      "sampleId": "0007404",
+      "uri_format": "http://archive.gramene.org/db/ontology/search?query=EO:$1"
+    },
+    "n2t": {
+      "description": "The Plant Environment Ontology is a set of standardized controlled vocabularies to describe various types of treatments given to an individual plant / a population or a cultured tissue and/or cell type sample to evaluate the response on its exposure. It also includes the study types, where the terms can be used to identify the growth study facility. Each growth facility such as field study, growth chamber, green house etc is a environment on its own it may also involve instances of biotic and abiotic environments as supplemental treatments used in these studies.",
+      "example": "0007404",
+      "homepage": "http://bioportal.bioontology.org/ontologies/PECO",
+      "name": "Plant Environment Ontology through BioPortal",
+      "namespaceEmbeddedInLui": true,
+      "pattern": "^(P)?EO\\:\\d{7}$",
+      "prefix": "eo",
+      "uri_format": "http://purl.bioontology.org/ontology/PECO/EO:$1"
+    },
+    "obofoundry": {
+      "appears_in": [
+        "foodon"
+      ],
+      "contact": "jaiswalp@science.oregonstate.edu",
+      "contact.github": "jaiswalp",
+      "contact.label": "Pankaj Jaiswal",
+      "deprecated": true,
+      "description": "A structured, controlled vocabulary which describes the treatments, growing conditions, and/or study types used in plant biology experiments.",
+      "download.obo": "http://purl.obolibrary.org/obo/eo.obo",
+      "download.owl": "http://purl.obolibrary.org/obo/eo.owl",
+      "homepage": "http://planteome.org/",
+      "inactive": true,
+      "license": "CC BY 4.0",
+      "license.url": "https://creativecommons.org/licenses/by/4.0/",
+      "name": "Plant Environment Ontology",
+      "prefix": "eo",
+      "repository": "https://github.com/Planteome/plant-environment-ontology"
+    },
+    "prefixcommons": {
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "EO",
+      "uri_format": "http://purl.obolibrary.org/obo/EO_$1"
+    }
+  },
   "eol": {
     "bioportal": {
       "name": "Environment Ontology for Livestock",
@@ -41461,62 +41518,49 @@
     ]
   },
   "peco": {
-    "banana": "EO",
     "bioportal": {
       "name": "Plant Experimental Conditions Ontology",
       "prefix": "PECO"
     },
     "download_obo": "https://raw.githubusercontent.com/Planteome/plant-experimental-conditions-ontology/master/peco.obo",
     "example": "0007114",
+    "fairsharing": {
+      "abbreviation": "PECO",
+      "description": "PECO is a structured, controlled vocabulary for the representation of plant experimental conditions. It describes the treatments, growing conditions, and/or study types used in various types of plant biology experiments.",
+      "id": "1184",
+      "linked-records": [],
+      "linking-records": [],
+      "name": "Plant Experimental Condition Ontology",
+      "prefix": "FAIRsharing.6yNXYK"
+    },
     "mappings": {
       "bioportal": "PECO",
-      "miriam": "eo",
-      "n2t": "eo",
-      "obofoundry": "eo",
+      "fairsharing": "FAIRsharing.6yNXYK",
+      "obofoundry": "peco",
       "ols": "peco",
       "ontobee": "PECO",
       "prefixcommons": "PECO"
     },
-    "miriam": {
-      "deprecated": false,
-      "description": "The Plant Environment Ontology is a set of standardized controlled vocabularies to describe various types of treatments given to an individual plant / a population or a cultured tissue and/or cell type sample to evaluate the response on its exposure. It also includes the study types, where the terms can be used to identify the growth study facility. Each growth facility such as field study, growth chamber, green house etc is a environment on its own it may also involve instances of biotic and abiotic environments as supplemental treatments used in these studies.",
-      "homepage": "http://archive.gramene.org/db/ontology/search_term?id=EO:0007359",
-      "id": "00000518",
-      "name": "Plant Environment Ontology",
-      "namespaceEmbeddedInLui": true,
-      "pattern": "^(P)?EO\\:\\d{7}$",
-      "prefix": "eo",
-      "sampleId": "0007404",
-      "uri_format": "http://archive.gramene.org/db/ontology/search?query=EO:$1"
-    },
-    "n2t": {
-      "description": "The Plant Environment Ontology is a set of standardized controlled vocabularies to describe various types of treatments given to an individual plant / a population or a cultured tissue and/or cell type sample to evaluate the response on its exposure. It also includes the study types, where the terms can be used to identify the growth study facility. Each growth facility such as field study, growth chamber, green house etc is a environment on its own it may also involve instances of biotic and abiotic environments as supplemental treatments used in these studies.",
-      "example": "0007404",
-      "homepage": "http://bioportal.bioontology.org/ontologies/PECO",
-      "name": "Plant Environment Ontology through BioPortal",
-      "namespaceEmbeddedInLui": true,
-      "pattern": "^(P)?EO\\:\\d{7}$",
-      "prefix": "eo",
-      "uri_format": "http://purl.bioontology.org/ontology/PECO/EO:$1"
-    },
     "obofoundry": {
       "appears_in": [
-        "foodon"
+        "agro",
+        "mco"
       ],
       "contact": "jaiswalp@science.oregonstate.edu",
       "contact.github": "jaiswalp",
       "contact.label": "Pankaj Jaiswal",
-      "deprecated": true,
+      "deprecated": false,
       "description": "A structured, controlled vocabulary which describes the treatments, growing conditions, and/or study types used in plant biology experiments.",
-      "download.obo": "http://purl.obolibrary.org/obo/eo.obo",
-      "download.owl": "http://purl.obolibrary.org/obo/eo.owl",
+      "download.obo": "http://purl.obolibrary.org/obo/peco.obo",
+      "download.owl": "http://purl.obolibrary.org/obo/peco.owl",
       "homepage": "http://planteome.org/",
-      "inactive": true,
+      "inactive": false,
       "license": "CC BY 4.0",
       "license.url": "https://creativecommons.org/licenses/by/4.0/",
-      "name": "Plant Environment Ontology",
-      "prefix": "eo",
-      "repository": "https://github.com/Planteome/plant-environment-ontology"
+      "name": "Plant Experimental Conditions Ontology",
+      "preferredPrefix": "PECO",
+      "prefix": "peco",
+      "repository": "https://github.com/Planteome/plant-experimental-conditions-ontology"
     },
     "ols": {
       "description": "A structured, controlled vocabulary which describes the treatments, growing conditions, and/or study types used in plant biology experiments.",
@@ -41539,10 +41583,7 @@
       "is_obo": true,
       "prefix": "PECO",
       "uri_format": "http://purl.obolibrary.org/obo/PECO_$1"
-    },
-    "synonyms": [
-      "eo"
-    ]
+    }
   },
   "ped": {
     "fairsharing": {
