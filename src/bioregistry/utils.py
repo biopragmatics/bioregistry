@@ -147,8 +147,9 @@ def read_contributors() -> Mapping[str, Attributable]:
             rv[resource.contributor.orcid] = resource.contributor
         if resource.reviewer and resource.reviewer.orcid:
             rv[resource.reviewer.orcid] = resource.reviewer
-        if resource.contact and resource.contact.orcid:
-            rv[resource.contact.orcid] = resource.contact
+        contact = resource.get_contact()
+        if contact and contact.orcid:
+            rv[contact.orcid] = contact
     for metaresource in read_metaregistry().values():
         if metaresource.contact.orcid:
             rv[metaresource.contact.orcid] = metaresource.contact
@@ -181,8 +182,9 @@ def read_prefix_contacts() -> Mapping[str, Set[str]]:
     """Get a mapping from contact ORCID identifiers to prefixes."""
     rv = defaultdict(set)
     for prefix, resource in read_registry().items():
-        if resource.contact and resource.contact.orcid:
-            rv[resource.contact.orcid].add(prefix)
+        contact_orcid = resource.get_contact_orcid()
+        if contact_orcid:
+            rv[contact_orcid].add(prefix)
     return dict(rv)
 
 

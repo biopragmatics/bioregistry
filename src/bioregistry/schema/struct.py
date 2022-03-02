@@ -721,9 +721,13 @@ class Resource(BaseModel):
         >>> from bioregistry import get_resource
         >>> get_resource("bioregistry").get_contact_orcid()  # from bioregistry curation
         '0000-0003-4423-4370'
+        >>> get_resource("aero").get_contact_orcid()
+        '0000-0002-9551-6370'
         """
         if self.contact and self.contact.orcid:
             return self.contact.orcid
+        if self.obofoundry and "contact.orcid" in self.obofoundry:
+            return self.obofoundry["contact.orcid"]
         return None
 
     def get_example(self) -> Optional[str]:
