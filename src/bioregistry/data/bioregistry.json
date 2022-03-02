@@ -24948,12 +24948,18 @@
     "synonyms": [
       "ICD",
       "ICD10",
-      "ICD-10",
-      "ICD10CM"
+      "ICD-10"
     ],
     "wikidata": {
       "prefix": "P4229"
     }
+  },
+  "icd10cm": {
+    "example": "F4521",
+    "synonyms": [
+      "ICD10CM"
+    ],
+    "uri_format": "https://icd.codes/icd10cm/$1"
   },
   "icd11": {
     "description": "Diagnostic tool for epidemiology, health management and clinical purposes, maintained by the World Health Organization (WHO). It provides a system of diagnostic codes for classifying diseases, including nuanced classifications of a wide variety of signs, symptoms, abnormal findings, complaints, social circumstances, and external causes of injury or disease.",
@@ -25005,12 +25011,29 @@
       "prefix": "ICD9",
       "uri_format": "http://translator.ncats.nih.gov/ICD9_$1"
     },
+    "description": "The International Classification of Diseases (ICD) is designed to promote international comparability in the collection, processing, classification, and presentation of mortality statistics.",
+    "example": "277.9",
+    "homepage": "https://www.cdc.gov/nchs/icd/icd9.htm",
+    "mappings": {
+      "biolink": "ICD9"
+    },
+    "name": "International Classification of Diseases 9th Revision",
+    "synonyms": [
+      "ICD9",
+      "ICD9_2005",
+      "MTHICD9_2006"
+    ],
+    "wikidata": {
+      "prefix": "P493"
+    }
+  },
+  "icd9cm": {
     "bioportal": {
       "name": "International Classification of Diseases, Version 9 - Clinical Modification",
       "prefix": "ICD9CM"
     },
     "description": "ICD-9-CM is the official system of assigning codes to diagnoses and procedures associated with hospital utilization in the United States.",
-    "example": "277.9",
+    "example": "3007",
     "fairsharing": {
       "abbreviation": "ICD-9-CM",
       "description": "The ICD is the international standard diagnostic classification for all general epidemiological, many health management purposes and clinical use. The International Classification of Diseases, Ninth Revision, Clinical Modification (ICD-9-CM) is an adaption created by the U.S. National Center for Health Statistics (NCHS) and used in assigning diagnostic and procedure codes associated with inpatient, outpatient, and physician office utilization in the United States. The ICD-9-CM is based on the ICD-9 but provides for additional morbidity detail.",
@@ -25035,25 +25058,18 @@
     },
     "homepage": "https://www.cdc.gov/nchs/icd/icd9cm.htm",
     "mappings": {
-      "biolink": "ICD9",
       "bioportal": "ICD9CM",
       "fairsharing": "FAIRsharing.10zsxb"
     },
-    "name": "International Classification of Diseases 9th Revision",
     "synonyms": [
-      "ICD9",
       "IC9CM",
       "ICD9CM_2005",
       "ICDCM_2005",
-      "ICD9_2005",
       "ICD9CM_2006",
       "ICD9CM",
-      "ICD9CM_2005",
-      "MTHICD9_2006"
+      "ICD9CM_2005"
     ],
-    "wikidata": {
-      "prefix": "P493"
-    }
+    "uri_format": "https://icd.codes/icd9cm/$1"
   },
   "icdc": {
     "fairsharing": {
