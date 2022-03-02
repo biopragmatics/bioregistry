@@ -16866,7 +16866,6 @@
       "obofoundry": "eo",
       "prefixcommons": "EO"
     },
-    "pattern": "^\\d{7}$",
     "miriam": {
       "deprecated": false,
       "description": "The Plant Environment Ontology is a set of standardized controlled vocabularies to describe various types of treatments given to an individual plant / a population or a cultured tissue and/or cell type sample to evaluate the response on its exposure. It also includes the study types, where the terms can be used to identify the growth study facility. Each growth facility such as field study, growth chamber, green house etc is a environment on its own it may also involve instances of biotic and abiotic environments as supplemental treatments used in these studies.",
@@ -16908,6 +16907,7 @@
       "prefix": "eo",
       "repository": "https://github.com/Planteome/plant-environment-ontology"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "is_identifiers": false,
       "is_obo": true,
@@ -25002,14 +25002,39 @@
       "prefix": "ICD",
       "uri_format": "http://identifiers.org/icd/$1"
     },
+    "references": [
+      "https://icdcodelookup.com/icd-10/codes/A01.1"
+    ],
     "synonyms": [
       "ICD",
       "ICD10",
-      "ICD-10",
-      "ICD10CM"
+      "ICD-10"
     ],
     "wikidata": {
+      "prefix": "P494"
+    }
+  },
+  "icd10cm": {
+    "description": "ICD-10-CM is the official system of assigning codes to diagnoses and procedures associated with hospital utilization in the United States.",
+    "example": "F4521",
+    "homepage": "https://www.icd10data.com/ICD10CM",
+    "name": "International Classification of Diseases, 10th Revision, Clinical Modification",
+    "synonyms": [
+      "ICD10CM"
+    ],
+    "uri_format": "https://icd.codes/icd10cm/$1",
+    "wikidata": {
       "prefix": "P4229"
+    }
+  },
+  "icd10pcs": {
+    "description": "ICD-10-PCS is being developed as the successor to Volume 3 of the International Classification of Diseases, Ninth Revision, Clinical Modification (ICD-9-CM). For more information about ICD-9-CM, see the ICD-9-CM source synopsis.\n\nICD-10-PCS will be the official system of assigning codes to procedures associated with hospital utilization in the United States. ICD-10-PCS codes will support data collection, payment and electronic health records.",
+    "example": "01N50ZZ",
+    "homepage": "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/ICD10PCS",
+    "name": "International Classification of Diseases, 10th revision, Procedure Coding System",
+    "uri_format": "https://www.findacode.com/code.php?set=ICD10PCS&c=$1",
+    "wikidata": {
+      "prefix": "P1690"
     }
   },
   "icd11": {
@@ -25051,6 +25076,7 @@
     "synonyms": [
       "ICD-11"
     ],
+    "uri_format": "https://icd.who.int/browse11/l-m/en#/http://id.who.int/icd/entity/$1",
     "wikidata": {
       "prefix": "P7807"
     }
@@ -25062,12 +25088,30 @@
       "prefix": "ICD9",
       "uri_format": "http://translator.ncats.nih.gov/ICD9_$1"
     },
+    "description": "The International Classification of Diseases (ICD) is designed to promote international comparability in the collection, processing, classification, and presentation of mortality statistics.",
+    "example": "277.9",
+    "homepage": "https://www.cdc.gov/nchs/icd/icd9.htm",
+    "mappings": {
+      "biolink": "ICD9"
+    },
+    "name": "International Classification of Diseases 9th Revision",
+    "synonyms": [
+      "ICD9",
+      "ICD9_2005",
+      "MTHICD9_2006"
+    ],
+    "uri_format": "http://www.icd9data.com/getICD9Code.ashx?icd9=$1",
+    "wikidata": {
+      "prefix": "P493"
+    }
+  },
+  "icd9cm": {
     "bioportal": {
       "name": "International Classification of Diseases, Version 9 - Clinical Modification",
       "prefix": "ICD9CM"
     },
     "description": "ICD-9-CM is the official system of assigning codes to diagnoses and procedures associated with hospital utilization in the United States.",
-    "example": "277.9",
+    "example": "784",
     "fairsharing": {
       "abbreviation": "ICD-9-CM",
       "description": "The ICD is the international standard diagnostic classification for all general epidemiological, many health management purposes and clinical use. The International Classification of Diseases, Ninth Revision, Clinical Modification (ICD-9-CM) is an adaption created by the U.S. National Center for Health Statistics (NCHS) and used in assigning diagnostic and procedure codes associated with inpatient, outpatient, and physician office utilization in the United States. The ICD-9-CM is based on the ICD-9 but provides for additional morbidity detail.",
@@ -25092,24 +25136,21 @@
     },
     "homepage": "https://www.cdc.gov/nchs/icd/icd9cm.htm",
     "mappings": {
-      "biolink": "ICD9",
       "bioportal": "ICD9CM",
       "fairsharing": "FAIRsharing.10zsxb"
     },
-    "name": "International Classification of Diseases 9th Revision",
+    "pattern": "^([\\dA-Z]\\d{2}(\\.\\d{1,3}|))|(\\d{2}(\\.\\d{1,2}|))$",
     "synonyms": [
-      "ICD9",
       "IC9CM",
       "ICD9CM_2005",
       "ICDCM_2005",
-      "ICD9_2005",
       "ICD9CM_2006",
       "ICD9CM",
-      "ICD9CM_2005",
-      "MTHICD9_2006"
+      "ICD9CM_2005"
     ],
+    "uri_format": "http://icd9cm.chrisendres.com/index.php?action=search&srchtext=$1",
     "wikidata": {
-      "prefix": "P493"
+      "prefix": "P1692"
     }
   },
   "icdc": {
@@ -25140,27 +25181,16 @@
     }
   },
   "icdo": {
-    "bioportal": {
-      "name": "International Classification of Diseases Ontology",
-      "prefix": "ICDO"
-    },
-    "description": "An ontologied version of ICD",
-    "example": "M9861/3",
+    "description": "The International Classification of Diseases for Oncology (ICD-O) is a domain-specific extension of the International Statistical Classification of Diseases and Related Health Problems for tumor diseases",
+    "example": "9861/3",
     "homepage": "https://www.who.int/classifications/icd/adaptations/oncology/en/",
-    "mappings": {
-      "bioportal": "ICDO",
-      "ontobee": "ICDO"
-    },
     "name": "The International Classification of Diseases for Oncology",
-    "ontobee": {
-      "library": "Not Specified/No",
-      "name": "International Classification of Disease Ontology",
-      "prefix": "ICDO"
-    },
+    "pattern": "^[8-9]\\d{3}(/[0-3])?$",
     "synonyms": [
       "ICD-O",
       "ICDO"
     ],
+    "uri_format": "http://codes.iarc.fr/search.php?cx=009987501641899931167%3A2_7lsevqpdm&cof=FORID%3A9&ie=UTF-8&ie=ISO-8859-1&oe=ISO-8859-1&sa=&q=$1",
     "wikidata": {
       "prefix": "P563"
     }
