@@ -17,7 +17,7 @@ OLS_PROCESSING = HERE / "processing_ols.json"
 
 
 class VersionType(str, enum.Enum):
-    """Types for OLS ontology versions"""
+    """Types for OLS ontology versions."""
 
     date = "date"
     semver = "semver"
