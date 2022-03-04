@@ -3317,10 +3317,11 @@ bioregistry:discoverx a bioregistry.schema:0000001 ;
 
 bioregistry:disdriv a bioregistry.schema:0000001 ;
     rdfs:label "Disease Drivers Ontology" ;
-    dc:description "Ontology for drivers and triggers of human diseases, built to classify ExO ontology exposure stressors. An application ontology. Built in collaboration with EnvO, ExO, ECTO and ChEBI."^^xsd:string ;
+    dc:description "Drivers of human diseases including environmental, maternal and social exposures."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch obofoundry:DISDRIV,
-        bioportal:DISDRIV ;
+        bioportal:DISDRIV,
+        ols:disdriv ;
     foaf:homepage "http://www.disease-ontology.org"^^xsd:string ;
     bioregistry.schema:0000005 "0000000"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/DISDRIV_$1"^^xsd:string ;
@@ -24442,6 +24443,8 @@ ols:dicom dcterms:isPartOf bioregistry.metaresource:ols .
 
 ols:dideo dcterms:isPartOf bioregistry.metaresource:ols .
 
+ols:disdriv dcterms:isPartOf bioregistry.metaresource:ols .
+
 ols:doid dcterms:isPartOf bioregistry.metaresource:ols .
 
 ols:dpo dcterms:isPartOf bioregistry.metaresource:ols .
@@ -28888,6 +28891,7 @@ bioregistry.metaresource:ols a bioregistry.schema:0000002 ;
         ols:ddpheno,
         ols:dicom,
         ols:dideo,
+        ols:disdriv,
         ols:doid,
         ols:dpo,
         ols:dron,
