@@ -31,6 +31,9 @@
             </div>
         </div>
         <div class="card-body">
+            {% if entry.logo_url %}
+                <img style="max-height: 100px;" src="{{ entry.logo_url }}" />
+            {% endif %}
             <p>{{ description }}</p>
             <dl>
                 <dt>Metaprefix</dt>

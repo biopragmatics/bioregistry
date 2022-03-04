@@ -1292,6 +1292,9 @@ class Registry(BaseModel):
     bioregistry_prefix: Optional[str] = Field(
         description="The prefix for this registry in the Bioregistry"
     )
+    logo_url: Optional[str] = Field(
+        description="The URL for the logo of the resource",
+    )
 
     def score(self) -> int:
         """Calculate a metadata score/goodness for this registry."""
