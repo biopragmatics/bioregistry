@@ -650,3 +650,21 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.assertIsNotNone(resource.contact.name)
                 self.assertIsNotNone(resource.contact.email)
+
+    def test_wikidata(self):
+        """Check wikidata prefixes are written properly."""
+        for prefix, resource in self.registry.items():
+            if not resource.wikidata:
+                continue
+            with self.subTest(prefix=prefix):
+                database = resource.wikidata.get("database")
+                self.assertTrue(
+                    database is None or database.startswith("Q"),
+                    msg=f"Wikidata database for {prefix} is malformed: {database}",
+                )
+
+                wikidata_property = resource.wikidata.get("prefix")
+                self.assertTrue(
+                    wikidata_property is None or wikidata_property.startswith("P"),
+                    msg=f"Wikidata property for {prefix} is malformed: {wikidata_property}",
+                )
