@@ -32,7 +32,7 @@
         </div>
         <div class="card-body">
             {% if entry.logo_url %}
-                <img style="max-height: 100px;" src="{{ entry.logo_url }}" />
+                <img style="max-height: 100px;" src="{{ entry.logo_url }}"/>
             {% endif %}
             <p>{{ description }}</p>
             <dl>
@@ -78,6 +78,12 @@
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}
                 </dd>
+                {% if entry.license %}
+                    <dt>License</dt>
+                    <dd>
+                        {{ entry.license }}
+                    </dd>
+                {% endif %}
                 <dt>Example Prefix</dt>
                 <dd>
                     <code>{{ entry.example }}</code>
