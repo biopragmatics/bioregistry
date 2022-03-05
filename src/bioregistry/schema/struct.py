@@ -27,6 +27,7 @@ from pydantic import BaseModel, Field
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE
+from bioregistry import constants as brc
 
 try:
     from typing import Literal  # type:ignore
@@ -1402,6 +1403,12 @@ class Registry(BaseModel):
         graph.add((node, bioregistry_schema["0000019"], self.contact.add_triples(graph)))
         return node
 
+    def get_code_link(self) -> Optional[str]:
+        """Get a link to the code on github that downloads this resource."""
+        path = brc.HERE.joinpath("external", self.prefix).with_suffix(".py")
+        if not path.exists():
+            return None
+        return f"https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/external/{self.prefix}.py"
 
 class Collection(BaseModel):
     """A collection of resources."""
