@@ -10,8 +10,9 @@
     <dl class="row">
         <dt class="col-lg-2 text-right text-nowrap">Registry</dt>
         <dd class="col-lg-10">
-            A collection of metadata about ontologies, controlled vocabularies, and resources. Some other
-            well-known registries are the <a href="http://www.obofoundry.org/">OBO Foundry</a>,
+            A collection of prefixes and metadata for ontologies, controlled vocabularies, and other semantic spaces.
+            Some other well-known registries for prefixes are the
+            <a href="http://www.obofoundry.org/">OBO Foundry</a>,
             <a href="https://identifiers.org">Identifiers.org</a>,
             the <a href="https://www.ebi.ac.uk/ols/index">OLS</a>,
             <a href="https://bioportal.bioontology.org/">BioPortal</a>,
@@ -19,14 +20,14 @@
         </dd>
         <dt class="col-lg-2 text-right text-nowrap">Metaregistry</dt>
         <dd class="col-lg-10">
-            A collection of metadata about registries and mappings between the resources they describe. For
-            example, <a href="https://www.ebi.ac.uk/chebi">ChEBI</a> appears in all of the example registries
+            A collection of metadata about registries and mappings between their constituent prefixes.
+            For example, <a href="https://www.ebi.ac.uk/chebi">ChEBI</a> appears in all of the example registries
             from above. So far, the Bioregistry is the <i>only</i> metaregistry.
         </dd>
         <dt class="col-lg-2 text-right text-nowrap">Resolver</dt>
         <dd class="col-lg-10">
-            A tool for mapping CURIEs of the form <code>prefix:identifier</code> to HTML and structured content
-            providers. Some other well-known resolvers are <a href="https://identifiers.org">Identifiers.org</a>
+            A tool for mapping compact URIs (CURIEs) of the form <code>prefix:identifier</code> to HTML and structured
+            content providers. Some other well-known resolvers are <a href="https://identifiers.org">Identifiers.org</a>
             and <a href="https://n2t.net/">Name-To-Thing</a>.
         </dd>
     </dl>
@@ -250,7 +251,8 @@
         Each entry in the Bioregistry now has a slot <code>"provides"</code> that can codify these connections and we
         may begin annotating all entries with a "type" in the future such that resources and providers, which have many
         common aspects to their metadata schemata, can be more easily listed and curated in the same place.
-        Further discussion about this is taking place on <a href="https://github.com/biopragmatics/bioregistry/issues/32">
+        Further discussion about this is taking place on <a
+            href="https://github.com/biopragmatics/bioregistry/issues/32">
         <i class="fab fa-github"></i> biopragmatics/bioregistry#32</a>.
         The first commits to the repo related to that are available
         <a href="https://github.com/biopragmatics/bioregistry/commit/1462f1a781cbc7078d7634de2073bad299b13205">here</a>.
