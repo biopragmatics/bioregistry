@@ -1296,6 +1296,9 @@ class Registry(BaseModel):
     logo_url: Optional[str] = Field(
         description="The URL for the logo of the resource",
     )
+    license: Optional[str] = Field(
+        description="The license under which the resource is redistributed",
+    )
 
     def score(self) -> int:
         """Calculate a metadata score/goodness for this registry."""
