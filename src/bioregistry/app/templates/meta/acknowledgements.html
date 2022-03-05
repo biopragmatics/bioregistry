@@ -65,7 +65,9 @@
                     This resource was ingested with the following <a href="{{ code_link }}">code</a> available on
                     GitHub.
                 {% endif %}
-                {% if registry.license %}
+                {% if registry.license and registry.license == "missing" %}
+                    Licensing information could not be located for this resource.
+                {% elif registry.license %}
                     Data from this resource is redistributed under the {{ registry.license }} license.
                 {% endif %}
             </p>
