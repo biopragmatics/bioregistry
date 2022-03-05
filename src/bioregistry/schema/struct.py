@@ -24,10 +24,10 @@ from typing import (
 import pydantic.schema
 from pydantic import BaseModel, Field
 
+from bioregistry import constants as brc
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry import constants as brc
 
 try:
     from typing import Literal  # type:ignore
@@ -1412,6 +1412,7 @@ class Registry(BaseModel):
         if not path.exists():
             return None
         return f"https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/external/{self.prefix}.py"
+
 
 class Collection(BaseModel):
     """A collection of resources."""
