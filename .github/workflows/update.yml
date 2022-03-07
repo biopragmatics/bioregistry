@@ -69,6 +69,22 @@ jobs:
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      - name: bump2version patch
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        run: |
+          tox -e bumpversion patch
+      - name: Push changes
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true
+
+      - name: Sleep to avoid race conditions
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        run: |
+          sleep 300
 
       ############
       #  DOCKER  #
@@ -97,18 +113,3 @@ jobs:
       - name: Image digest
         if: steps.update.outputs.BR_UPDATED == 'true'
         run: echo ${{ steps.docker_build.outputs.digest }}
-
-      #############
-      #  CLEANUP  #
-      #############
-      - name: bump2version patch
-        if: steps.update.outputs.BR_UPDATED == 'true'
-        run: |
-          tox -e bumpversion patch
-      - name: Push changes
-        if: steps.update.outputs.BR_UPDATED == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-          tags: true
