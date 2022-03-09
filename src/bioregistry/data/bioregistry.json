@@ -7939,11 +7939,11 @@
     "wikidata": {
       "database": "Q55118285",
       "database.label": "Cell Ontology",
-      "format": "http://purl.obolibrary.org/obo/$1",
       "homepage": "http://www.ontobee.org/ontology/CL",
       "name": "Cell Ontology ID",
       "pattern": "CL_[0-9]{7}",
-      "prefix": "P7963"
+      "prefix": "P7963",
+      "uri_format": "http://purl.obolibrary.org/obo/$1"
     }
   },
   "clao": {
@@ -24262,7 +24262,7 @@
       "name": "Informed Consent Ontology",
       "prefix": "ICO"
     },
-    "example": "ICODEV_0000066",
+    "example": "0000066",
     "fairsharing": {
       "abbreviation": "ICO",
       "description": "Informed Consent Ontology (ICO) represents the documentations and processes involved in informed consent. ICO aims to support informed consent data integration and reasoning in the clinical research space. The core terms of ICO covers informed consent forms, the component inside the informed consent form, and various informed consent processes.",
@@ -24318,6 +24318,7 @@
       "name": "Informed Consent Ontology",
       "prefix": "ICO"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "is_identifiers": false,
       "is_obo": true,
@@ -29477,11 +29478,11 @@
     "wikidata": {
       "database": "Q199897",
       "database.label": "Medical Subject Headings",
-      "format": "http://id.nlm.nih.gov/mesh/$1",
       "homepage": "https://www.wikidata.org/wiki/Q6589563",
       "name": "MeSH descriptor ID",
       "pattern": "^[CD]\\w{6}(\\w{3}|)$",
-      "prefix": "P486"
+      "prefix": "P486",
+      "uri_format": "http://id.nlm.nih.gov/mesh/$1"
     }
   },
   "mesh.2012": {
@@ -32749,15 +32750,17 @@
     "example": "0000634",
     "fairsharing": {
       "abbreviation": "MRO",
-      "description": "It is an ontology for Military concepts",
-      "id": "716",
-      "name": "Defen",
-      "prefix": "FAIRsharing.778n2k",
-      "subjects": []
+      "description": "MHC molecules form a highly diverse family of proteins that play a key role in cellular immune recognition. No consistent nomenclature exists across different vertebrate species. To correctly represent MHC related data in The Immune Epitope Database (IEDB), we built upon a previously established MHC ontology (MaHCO) and created MRO to represent MHC molecules as they relate to immunological experiments. MRO models MHC protein chains from 16 species, deals with different approaches used to identify MHC, such as direct sequencing verses serotyping, relates engineered MHC molecules to naturally occurring ones, connects genetic loci, alleles, protein chains and multichain proteins, and establishes evidence codes for MHC restriction.",
+      "id": "849",
+      "name": "MHC Restriction Ontology",
+      "prefix": "FAIRsharing.k893xa",
+      "subjects": [
+        "Immunology"
+      ]
     },
     "mappings": {
       "bioportal": "MRO",
-      "fairsharing": "FAIRsharing.778n2k",
+      "fairsharing": "FAIRsharing.k893xa",
       "obofoundry": "mro",
       "ols": "mro",
       "ontobee": "MRO",
@@ -33782,9 +33785,9 @@
         "orcid": "0000-0002-6601-2165"
       },
       {
-        "github": "0000-0002-5970-6660",
+        "github": "vdancik",
         "name": "Vlado Dancik",
-        "orcid": "0000-0002-6601-2165"
+        "orcid": "0000-0002-5970-6660"
       }
     ],
     "description": "The [National Center for Advancing Translational Sciences (NCATS)](https://ncats.nih.gov/) has developed Inxight: Drugs as a comprehensive portal for drug development information. NCATS Inxight: Drugs  contains information on ingredients in medicinal products, including:",
@@ -37964,11 +37967,11 @@
     "wikidata": {
       "database": "Q51044",
       "database.label": "ORCID iD",
-      "format": "https://orcid.org/$1",
       "homepage": "https://orcid.org/",
       "name": "ORCID iD",
       "pattern": "0000-000(1-[5-9]|2-[0-9]|3-[0-4])\\d{3}-\\d{3}[\\dX]",
-      "prefix": "P496"
+      "prefix": "P496",
+      "uri_format": "https://orcid.org/$1"
     }
   },
   "ordb": {
@@ -39681,11 +39684,11 @@
     "wikidata": {
       "database": "Q766195",
       "database.label": "Protein Data Bank",
-      "format": "https://rdf.wwpdb.org/pdb/$1",
       "homepage": "https://www.rcsb.org/",
       "name": "PDB structure ID",
       "pattern": "[0-9][0-9A-Za-z]{3}",
-      "prefix": "P638"
+      "prefix": "P638",
+      "uri_format": "https://rdf.wwpdb.org/pdb/$1"
     }
   },
   "pdb-ccd": {
@@ -46443,7 +46446,7 @@
     "description": "Selventa legacy disease namespace used with the Biological Expression Language",
     "example": "D0001",
     "homepage": "https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets",
-    "name": "Selventa iseasess",
+    "name": "Selventa Diseases",
     "pattern": "^D\\d{4}$"
   },
   "sedml.format": {
@@ -47673,11 +47676,11 @@
     "wikidata": {
       "database": "Q1753883",
       "database.label": "SNOMED CT",
-      "format": "http://snomed.info/id/$1",
       "homepage": "http://snomed.info/",
       "name": "SNOMED CT identifier",
       "pattern": "^[0-9]*$",
-      "prefix": "P5806"
+      "prefix": "P5806",
+      "uri_format": "http://snomed.info/id/$1"
     }
   },
   "snornabase": {

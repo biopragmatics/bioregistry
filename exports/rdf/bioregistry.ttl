@@ -148,7 +148,7 @@ bioregistry.metaresource:ecoportal a bioregistry.schema:0000002 ;
     foaf:homepage "http://ecoportal.lifewatchitaly.eu" ;
     bioregistry.schema:0000005 "ALIENSPECIES" ;
     bioregistry.schema:0000006 "http://ecoportal.lifewatchitaly.eu/ontologies/$1" ;
-    bioregistry.schema:0000019 [ rdfs:label "EcoPortal Support" ] .
+    bioregistry.schema:0000019 orcid:0000-0003-4494-839X .
 
 bioregistry.metaresource:prefixcc a bioregistry.schema:0000002 ;
     rdfs:label "Prefix.cc" ;
@@ -7729,7 +7729,7 @@ bioregistry:mro a bioregistry.schema:0000001 ;
     skos:exactMatch obofoundry:MRO,
         ontobee:MRO,
         bioportal:MRO,
-        fairsharing:FAIRsharing.778n2k,
+        fairsharing:FAIRsharing.k893xa,
         prefixcommons:MRO,
         ols:mro ;
     foaf:homepage "https://github.com/IEDB/MRO"^^xsd:string ;
@@ -12791,6 +12791,8 @@ orcid:0000-0001-7251-9504 rdfs:label "Henriette Harmse" .
 
 orcid:0000-0001-7577-5028 rdfs:label "Hector Escriva" .
 
+orcid:0000-0001-7604-8041 rdfs:label "John Kunze" .
+
 orcid:0000-0001-7628-5565 rdfs:label "Michelle Giglio" .
 
 orcid:0000-0001-7941-2961 rdfs:label "Leigh Carmody" .
@@ -12943,6 +12945,8 @@ orcid:0000-0003-3499-8262 rdfs:label "Alejandra Gonzalez-Beltran" .
 orcid:0000-0003-3781-6962 rdfs:label "Meng LIU" .
 
 orcid:0000-0003-4312-9552 rdfs:label "Daniel C. Berrios" .
+
+orcid:0000-0003-4494-839X rdfs:label "Xeni Kechagioglou" .
 
 orcid:0000-0003-4606-0597 rdfs:label "Sue Bello" .
 
@@ -18935,8 +18939,7 @@ bioregistry:omit a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.mf91p5,
         prefixcommons:OMIT,
         miriam:omit,
-        ols:omit,
-        wikidata:Q55118529 ;
+        ols:omit ;
     foaf:homepage "http://omit.cis.usouthal.edu/"^^xsd:string ;
     bioregistry.schema:0000005 "0000069"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/omit/terms?short_form=OMIT_$1"^^xsd:string ;
@@ -19455,7 +19458,7 @@ bioregistry:scomp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:sdis a bioregistry.schema:0000001 ;
-    rdfs:label "Selventa iseasess" ;
+    rdfs:label "Selventa Diseases" ;
     dc:description "Selventa legacy disease namespace used with the Biological Expression Language"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets"^^xsd:string ;
@@ -20167,8 +20170,6 @@ fairsharing:FAIRsharing.6xq0ee dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.6yNXYK dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
-fairsharing:FAIRsharing.778n2k dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
 fairsharing:FAIRsharing.78d3ad dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.7C0aVE dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -20620,6 +20621,8 @@ fairsharing:FAIRsharing.jykmkw dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.k008w7 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.k5k0yh dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.k893xa dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.karvzj dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -25217,8 +25220,6 @@ wikidata:P932 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P938 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
-wikidata:Q55118529 dcterms:isPartOf bioregistry.metaresource:wikidata .
-
 obofoundry:FBcv dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 bioregistry:ac a bioregistry.schema:0000001 ;
@@ -28182,8 +28183,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P8656,
         wikidata:P8691,
         wikidata:P932,
-        wikidata:P938,
-        wikidata:Q55118529 ;
+        wikidata:P938 ;
     foaf:homepage "https://www.wikidata.org" ;
     bioregistry.schema:0000005 "P683" ;
     bioregistry.schema:0000006 "https://www.wikidata.org/wiki/Property:$1" ;
@@ -29521,7 +29521,6 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.6wf1zw,
         fairsharing:FAIRsharing.6xq0ee,
         fairsharing:FAIRsharing.6yNXYK,
-        fairsharing:FAIRsharing.778n2k,
         fairsharing:FAIRsharing.78d3ad,
         fairsharing:FAIRsharing.7C0aVE,
         fairsharing:FAIRsharing.7c683b,
@@ -29748,6 +29747,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.jykmkw,
         fairsharing:FAIRsharing.k008w7,
         fairsharing:FAIRsharing.k5k0yh,
+        fairsharing:FAIRsharing.k893xa,
         fairsharing:FAIRsharing.karvzj,
         fairsharing:FAIRsharing.kay31r,
         fairsharing:FAIRsharing.kbtt7f,
@@ -30632,7 +30632,7 @@ bioregistry.metaresource:n2t a bioregistry.schema:0000002 ;
     bioregistry.schema:0000005 "chebi" ;
     bioregistry.schema:0000006 "https://n2t.net/$1:" ;
     bioregistry.schema:0000007 "https://n2t.net/$1:$2" ;
-    bioregistry.schema:0000019 [ rdfs:label "California Digital Library Support" ] .
+    bioregistry.schema:0000019 orcid:0000-0001-7604-8041 .
 
 bioregistry.metaresource:miriam a bioregistry.schema:0000002 ;
     rdfs:label "Identifiers.org" ;

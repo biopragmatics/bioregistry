@@ -84,6 +84,8 @@ class TestMetaregistry(unittest.TestCase):
                         "contact",
                         "availability",
                         "bioregistry_prefix",
+                        "license",
+                        "logo_url",
                     }
                 )
                 self.assertEqual(set(), invalid_keys, msg="invalid metadata")

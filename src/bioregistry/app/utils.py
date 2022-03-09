@@ -47,6 +47,7 @@ def _get_resource_mapping_rows(resource: Resource) -> Optional[List[Mapping[str,
     return [
         dict(
             metaprefix=metaprefix,
+            metaresource=bioregistry.get_registry(metaprefix),
             xref=xref,
             homepage=bioregistry.get_registry_homepage(metaprefix),
             name=bioregistry.get_registry_name(metaprefix),
