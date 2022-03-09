@@ -653,10 +653,26 @@ class TestRegistry(unittest.TestCase):
 
     def test_wikidata(self):
         """Check wikidata prefixes are written properly."""
+        allowed = {
+            "database",
+            "prefix",
+            "pattern",
+            "paper",
+            "homepage",
+            "name",
+            "uri_format",
+            "database.label",
+            "format.rdf",
+            "database.homepage",
+        }
         for prefix, resource in self.registry.items():
             if not resource.wikidata:
                 continue
             with self.subTest(prefix=prefix):
+                unexpected_keys = set(resource.wikidata) - allowed
+                self.assertFalse(
+                    unexpected_keys, msg=f"Unexpected keys in wikidata entry: {unexpected_keys}"
+                )
                 database = resource.wikidata.get("database")
                 self.assertTrue(
                     database is None or database.startswith("Q"),
