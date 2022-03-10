@@ -117,6 +117,18 @@ bioregistry.collection:0000003 a bioregistry.schema:0000003 ;
         bioregistry:webelements,
         bioregistry:ymdb .
 
+bioregistry.collection:0000004 a bioregistry.schema:0000003 ;
+    rdfs:label "International Classifications of Diseases" ;
+    dc:creator orcid:0000-0003-4423-4370 ;
+    dc:description "This collection contains the many prefixes for the different repackaging of the International Classification of Diseases (ICD) throughout its major revisions." ;
+    dcterms:hasPart bioregistry:icd10,
+        bioregistry:icd10cm,
+        bioregistry:icd10pcs,
+        bioregistry:icd11,
+        bioregistry:icd9,
+        bioregistry:icd9cm,
+        bioregistry:icdo .
+
 bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
     rdfs:label "AberOWL" ;
     dc:description "AberOWL is a framework for ontology-based access to biological data. It consists of a repository of bio-ontologies, a set of webservices which provide access to OWL(-EL) reasoning over the ontologies, and several frontends which utilise the ontology repository and reasoning services to provide access to specific biological datasets." ;
@@ -4650,9 +4662,9 @@ bioregistry:github a bioregistry.schema:0000001 ;
     skos:exactMatch fairsharing:FAIRsharing.c55d5e,
         miriam:github ;
     foaf:homepage "https://github.com/"^^xsd:string ;
-    bioregistry.schema:0000005 "identifiers-org/registry"^^xsd:string ;
+    bioregistry.schema:0000005 "biopragmatics/bioregistry"^^xsd:string ;
     bioregistry.schema:0000006 "https://github.com/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[a-zA-Z0-9-_]+/[a-zA-Z0-9-_]+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^[a-zA-Z0-9-_]+(/[a-zA-Z0-9-_]+)?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:gitlab a bioregistry.schema:0000001 ;
@@ -5655,84 +5667,6 @@ bioregistry:huge a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^KIAA\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:icd10 a bioregistry.schema:0000001 ;
-    rdfs:label "International Classification of Diseases" ;
-    dc:description "The International Classification of Diseases is the international standard diagnostic classification for all general epidemiological and many health management purposes."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:ICD10,
-        biolink:ICD10,
-        n2t:icd,
-        fairsharing:FAIRsharing.nj16g,
-        prefixcommons:ICD,
-        miriam:icd,
-        wikidata:P494 ;
-    foaf:homepage "https://icd.who.int/browse10"^^xsd:string ;
-    bioregistry.schema:0000005 "C34"^^xsd:string ;
-    bioregistry.schema:0000006 "http://apps.who.int/classifications/icd10/browse/2010/en#/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[A-Z]\\d+(\\.[-\\d+])?$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:icd10cm a bioregistry.schema:0000001 ;
-    rdfs:label "International Classification of Diseases, 10th Revision, Clinical Modification" ;
-    dc:description "ICD-10-CM is the official system of assigning codes to diagnoses and procedures associated with hospital utilization in the United States."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:ICD10CM,
-        fairsharing:FAIRsharing.hpvbxb,
-        wikidata:P4229 ;
-    foaf:homepage "https://www.icd10data.com/ICD10CM"^^xsd:string ;
-    bioregistry.schema:0000005 "F4521"^^xsd:string ;
-    bioregistry.schema:0000006 "https://icd.codes/icd10cm/$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:icd10pcs a bioregistry.schema:0000001 ;
-    rdfs:label "International Classification of Diseases, 10th revision, Procedure Coding System" ;
-    dc:description """ICD-10-PCS is being developed as the successor to Volume 3 of the International Classification of Diseases, Ninth Revision, Clinical Modification (ICD-9-CM). For more information about ICD-9-CM, see the ICD-9-CM source synopsis.
-
-ICD-10-PCS will be the official system of assigning codes to procedures associated with hospital utilization in the United States. ICD-10-PCS codes will support data collection, payment and electronic health records."""^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:ICD10PCS,
-        fairsharing:FAIRsharing.85k1jm,
-        wikidata:P1690 ;
-    foaf:homepage "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/ICD10PCS"^^xsd:string ;
-    bioregistry.schema:0000005 "01N50ZZ"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.findacode.com/code.php?set=ICD10PCS&c=$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:icd11 a bioregistry.schema:0000001 ;
-    rdfs:label "International Classification of Diseases 11th Revision" ;
-    dc:description "Diagnostic tool for epidemiology, health management and clinical purposes, maintained by the World Health Organization (WHO). It provides a system of diagnostic codes for classifying diseases, including nuanced classifications of a wide variety of signs, symptoms, abnormal findings, complaints, social circumstances, and external causes of injury or disease."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.97805c,
-        wikidata:P7807 ;
-    foaf:homepage "https://icd.who.int/"^^xsd:string ;
-    bioregistry.schema:0000005 "RA01.0"^^xsd:string ;
-    bioregistry.schema:0000006 "https://icd.who.int/browse11/l-m/en#/http://id.who.int/icd/entity/$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:icd9 a bioregistry.schema:0000001 ;
-    rdfs:label "International Classification of Diseases 9th Revision" ;
-    dc:description "The International Classification of Diseases (ICD) is designed to promote international comparability in the collection, processing, classification, and presentation of mortality statistics."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biolink:ICD9,
-        wikidata:P493 ;
-    foaf:homepage "https://www.cdc.gov/nchs/icd/icd9.htm"^^xsd:string ;
-    bioregistry.schema:0000005 "277.9"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.icd9data.com/getICD9Code.ashx?icd9=$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:icd9cm a bioregistry.schema:0000001 ;
-    rdfs:label "International Classification of Diseases, Version 9 - Clinical Modification" ;
-    dc:description "ICD-9-CM is the official system of assigning codes to diagnoses and procedures associated with hospital utilization in the United States."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:ICD9CM,
-        fairsharing:FAIRsharing.10zsxb,
-        wikidata:P1692 ;
-    foaf:homepage "https://www.cdc.gov/nchs/icd/icd9cm.htm"^^xsd:string ;
-    bioregistry.schema:0000005 "784"^^xsd:string ;
-    bioregistry.schema:0000006 "http://icd9cm.chrisendres.com/index.php?action=search&srchtext=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^([\\dA-Z]\\d{2}(\\.\\d{1,3}|))|(\\d{2}(\\.\\d{1,2}|))$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:icdc a bioregistry.schema:0000001 ;
     rdfs:label "Integrated Canine Data Commons" ;
     dc:description "The Integrated Canine Data Commons is one of several repositories within the NCI Cancer Research Data Commons (CRDC), a cloud-based data science infrastructure that provides secure access to a large, comprehensive, and expanding collection of cancer research data. The ICDC was established to further research on human cancers by enabling comparative analysis with canine cancer."^^xsd:string ;
@@ -5743,17 +5677,6 @@ bioregistry:icdc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "ICDC000009"^^xsd:string ;
     bioregistry.schema:0000006 "https://caninecommons.cancer.gov/#/study/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^ICDC\\d{6}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:icdo a bioregistry.schema:0000001 ;
-    rdfs:label "The International Classification of Diseases for Oncology" ;
-    dc:description "The International Classification of Diseases for Oncology (ICD-O) is a domain-specific extension of the International Statistical Classification of Diseases and Related Health Problems for tumor diseases"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch wikidata:P563 ;
-    foaf:homepage "https://www.who.int/classifications/icd/adaptations/oncology/en/"^^xsd:string ;
-    bioregistry.schema:0000005 "9861/3"^^xsd:string ;
-    bioregistry.schema:0000006 "http://codes.iarc.fr/search.php?cx=009987501641899931167%3A2_7lsevqpdm&cof=FORID%3A9&ie=UTF-8&ie=ISO-8859-1&oe=ISO-8859-1&sa=&q=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[8-9]\\d{3}(/[0-3])?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:iceberg.element a bioregistry.schema:0000001 ;
@@ -5793,6 +5716,7 @@ bioregistry:iceo a bioregistry.schema:0000001 ;
     foaf:homepage "https://github.com/ontoice/ICEO"^^xsd:string ;
     bioregistry.schema:0000005 "0000712_1"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ICEO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}(_\\d)?$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-3781-6962 .
 
@@ -18158,6 +18082,95 @@ bioregistry:hog a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000255"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:icd10 a bioregistry.schema:0000001 ;
+    rdfs:label "International Classification of Diseases, 10th Revision" ;
+    dc:description "The International Classification of Diseases is the international standard diagnostic classification for all general epidemiological and many health management purposes."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch bioportal:ICD10,
+        biolink:ICD10,
+        n2t:icd,
+        fairsharing:FAIRsharing.nj16g,
+        prefixcommons:ICD,
+        miriam:icd,
+        wikidata:P494 ;
+    foaf:homepage "https://icd.who.int/browse10"^^xsd:string ;
+    bioregistry.schema:0000005 "C34"^^xsd:string ;
+    bioregistry.schema:0000006 "http://apps.who.int/classifications/icd10/browse/2010/en#/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Z]\\d+(\\.[-\\d+])?$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:icd10cm a bioregistry.schema:0000001 ;
+    rdfs:label "International Classification of Diseases, 10th Revision, Clinical Modification" ;
+    dc:description "ICD-10-CM is the official system of assigning codes to diagnoses and procedures associated with hospital utilization in the United States."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch bioportal:ICD10CM,
+        fairsharing:FAIRsharing.hpvbxb,
+        wikidata:P4229 ;
+    foaf:homepage "https://www.icd10data.com/ICD10CM"^^xsd:string ;
+    bioregistry.schema:0000005 "F4521"^^xsd:string ;
+    bioregistry.schema:0000006 "https://icd.codes/icd10cm/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:icd10pcs a bioregistry.schema:0000001 ;
+    rdfs:label "International Classification of Diseases, 10th Revision, Procedure Coding System" ;
+    dc:description """ICD-10-PCS is being developed as the successor to Volume 3 of the International Classification of Diseases, Ninth Revision, Clinical Modification (ICD-9-CM). For more information about ICD-9-CM, see the ICD-9-CM source synopsis.
+
+ICD-10-PCS will be the official system of assigning codes to procedures associated with hospital utilization in the United States. ICD-10-PCS codes will support data collection, payment and electronic health records."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch bioportal:ICD10PCS,
+        fairsharing:FAIRsharing.85k1jm,
+        wikidata:P1690 ;
+    foaf:homepage "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/ICD10PCS"^^xsd:string ;
+    bioregistry.schema:0000005 "01N50ZZ"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.findacode.com/code.php?set=ICD10PCS&c=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:icd11 a bioregistry.schema:0000001 ;
+    rdfs:label "International Classification of Diseases, 11th Revision" ;
+    dc:description "Diagnostic tool for epidemiology, health management and clinical purposes, maintained by the World Health Organization (WHO). It provides a system of diagnostic codes for classifying diseases, including nuanced classifications of a wide variety of signs, symptoms, abnormal findings, complaints, social circumstances, and external causes of injury or disease."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.97805c,
+        wikidata:P7807 ;
+    foaf:homepage "https://icd.who.int/"^^xsd:string ;
+    bioregistry.schema:0000005 "RA01.0"^^xsd:string ;
+    bioregistry.schema:0000006 "https://icd.who.int/browse11/l-m/en#/http://id.who.int/icd/entity/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:icd9 a bioregistry.schema:0000001 ;
+    rdfs:label "International Classification of Diseases, 9th Revision" ;
+    dc:description "The International Classification of Diseases (ICD) is designed to promote international comparability in the collection, processing, classification, and presentation of mortality statistics."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biolink:ICD9,
+        wikidata:P493 ;
+    foaf:homepage "https://www.cdc.gov/nchs/icd/icd9.htm"^^xsd:string ;
+    bioregistry.schema:0000005 "277.9"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.icd9data.com/getICD9Code.ashx?icd9=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:icd9cm a bioregistry.schema:0000001 ;
+    rdfs:label "International Classification of Diseases, 9th Revision, Clinical Modification" ;
+    dc:description "ICD-9-CM is the official system of assigning codes to diagnoses and procedures associated with hospital utilization in the United States."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch bioportal:ICD9CM,
+        fairsharing:FAIRsharing.10zsxb,
+        wikidata:P1692 ;
+    foaf:homepage "https://www.cdc.gov/nchs/icd/icd9cm.htm"^^xsd:string ;
+    bioregistry.schema:0000005 "784"^^xsd:string ;
+    bioregistry.schema:0000006 "http://icd9cm.chrisendres.com/index.php?action=search&srchtext=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^([\\dA-Z]\\d{2}(\\.\\d{1,3}|))|(\\d{2}(\\.\\d{1,2}|))$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:icdo a bioregistry.schema:0000001 ;
+    rdfs:label "International Classification of Diseases for Oncology" ;
+    dc:description "The International Classification of Diseases for Oncology (ICD-O) is a domain-specific extension of the International Statistical Classification of Diseases and Related Health Problems for tumor diseases"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P563 ;
+    foaf:homepage "https://www.who.int/classifications/icd/adaptations/oncology/en/"^^xsd:string ;
+    bioregistry.schema:0000005 "9861/3"^^xsd:string ;
+    bioregistry.schema:0000006 "http://codes.iarc.fr/search.php?cx=009987501641899931167%3A2_7lsevqpdm&cof=FORID%3A9&ie=UTF-8&ie=ISO-8859-1&oe=ISO-8859-1&sa=&q=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[8-9]\\d{3}(/[0-3])?$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:ico a bioregistry.schema:0000001 ;
     rdfs:label "Informed Consent Ontology" ;
     dc:description "The Informed Consent Ontology (ICO) is an ontology for the informed consent and informed consent process in the medical field."^^xsd:string ;
@@ -27298,6 +27311,44 @@ bioregistry:go a bioregistry.schema:0000001 ;
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0001-6787-2901 .
 
+bioregistry:pato a bioregistry.schema:0000001 ;
+    rdfs:label "Phenotype And Trait Ontology" ;
+    dc:description "PATO is an ontology of phenotypic qualities, intended for use in a number of applications, primarily defining composite phenotypes and phenotype  annotation."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch obofoundry:PATO,
+        ontobee:PATO,
+        bioportal:PATO,
+        go.resource:PATO,
+        n2t:pato,
+        fairsharing:FAIRsharing.ezwdhz,
+        prefixcommons:PATO,
+        miriam:pato,
+        ols:pato ;
+    foaf:homepage "https://github.com/pato-ontology/pato/"^^xsd:string ;
+    bioregistry.schema:0000005 "0001998"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/pato/terms?obo_id=PATO:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:agro,
+        bioregistry:aism,
+        bioregistry:cdno,
+        bioregistry:cl,
+        bioregistry:colao,
+        bioregistry:ecocore,
+        bioregistry:ecto,
+        bioregistry:fovt,
+        bioregistry:lepao,
+        bioregistry:mco,
+        bioregistry:ms,
+        bioregistry:pcl,
+        bioregistry:pco,
+        bioregistry:phipo,
+        bioregistry:planp,
+        bioregistry:rbo,
+        bioregistry:xpo,
+        bioregistry:zp ;
+    bioregistry.schema:0000019 orcid:0000-0002-2061-091X .
+
 orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
     dcterms:contributor bioregistry:4dn.replicate,
         bioregistry:ac,
@@ -27444,44 +27495,6 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ximbio,
         bioregistry:xuo,
         bioregistry:ymdb .
-
-bioregistry:pato a bioregistry.schema:0000001 ;
-    rdfs:label "Phenotype And Trait Ontology" ;
-    dc:description "PATO is an ontology of phenotypic qualities, intended for use in a number of applications, primarily defining composite phenotypes and phenotype  annotation."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:PATO,
-        ontobee:PATO,
-        bioportal:PATO,
-        go.resource:PATO,
-        n2t:pato,
-        fairsharing:FAIRsharing.ezwdhz,
-        prefixcommons:PATO,
-        miriam:pato,
-        ols:pato ;
-    foaf:homepage "https://github.com/pato-ontology/pato/"^^xsd:string ;
-    bioregistry.schema:0000005 "0001998"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/pato/terms?obo_id=PATO:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:agro,
-        bioregistry:aism,
-        bioregistry:cdno,
-        bioregistry:cl,
-        bioregistry:colao,
-        bioregistry:ecocore,
-        bioregistry:ecto,
-        bioregistry:fovt,
-        bioregistry:lepao,
-        bioregistry:mco,
-        bioregistry:ms,
-        bioregistry:pcl,
-        bioregistry:pco,
-        bioregistry:phipo,
-        bioregistry:planp,
-        bioregistry:rbo,
-        bioregistry:xpo,
-        bioregistry:zp ;
-    bioregistry.schema:0000019 orcid:0000-0002-2061-091X .
 
 bioregistry:bfo a bioregistry.schema:0000001 ;
     rdfs:label "Basic Formal Ontology" ;
