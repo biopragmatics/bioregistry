@@ -22,7 +22,7 @@ class TestMetaregistry(unittest.TestCase):
                 self.assertIsNotNone(registry.example)
                 self.assertIsNotNone(registry.description)
                 self.assertIsNotNone(registry.contact)
-                # self.assertIsNotNone(registry.license, msg=f"Contact: {registry.contact}")
+                self.assertIsNotNone(registry.license, msg=f"Contact: {registry.contact}")
                 self.assertNotEqual("FIXME", registry.contact.name)
                 if "support" not in registry.contact.name.lower():
                     self.assertIsNotNone(registry.contact.orcid)
