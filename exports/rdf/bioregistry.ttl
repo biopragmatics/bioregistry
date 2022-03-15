@@ -3866,20 +3866,6 @@ bioregistry:epd a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[A-Z-_0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:epio a bioregistry.schema:0000001 ;
-    rdfs:label "Epilepsy Ontology" ;
-    dc:description "A application driven Epilepsy Ontology with official terms from the ILAE."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:EPIO,
-        ontobee:EPIO,
-        bioportal:EPIO ;
-    foaf:homepage "https://github.com/SCAI-BIO/EpilepsyOntology"^^xsd:string ;
-    bioregistry.schema:0000005 "0000011"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/EPIO_$1"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000017 bioregistry:bfo ;
-    bioregistry.schema:0000019 orcid:0000-0001-9896-3531 .
-
 bioregistry:epo a bioregistry.schema:0000001 ;
     rdfs:label "Epidemiology Ontology" ;
     dc:description "An ontology designed to support the semantic annotation of epidemiology resources"^^xsd:string ;
@@ -9899,7 +9885,7 @@ bioregistry:pubchem.compound a bioregistry.schema:0000001 ;
         go.resource:PubChem_Compound,
         n2t:pubchem.compound,
         scholia.resource:pubchem,
-        fairsharing:FAIRsharing.qt3w7z,
+        fairsharing:FAIRsharing.g63c77,
         prefixcommons:CID,
         miriam:pubchem.compound,
         cheminf:000140,
@@ -17697,6 +17683,20 @@ bioregistry:epcc a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.aepc.org/european-paediatric-cardiac-coding"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:epio a bioregistry.schema:0000001 ;
+    rdfs:label "Epilepsy Ontology" ;
+    dc:description "A application driven Epilepsy Ontology with official terms from the ILAE."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch obofoundry:EPIO,
+        ontobee:EPIO,
+        bioportal:EPIO ;
+    foaf:homepage "https://github.com/SCAI-BIO/EpilepsyOntology"^^xsd:string ;
+    bioregistry.schema:0000005 "0000011"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/EPIO_$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000017 bioregistry:bfo ;
+    bioregistry.schema:0000019 orcid:0000-0001-9896-3531 .
+
 bioregistry:eupath a bioregistry.schema:0000001 ;
     rdfs:label "VEuPathDB ontology" ;
     dc:description "The VEuPathDB ontology is an application ontology developed to encode our understanding of what data is about in the public resources developed and maintained by the Eukaryotic Pathogen, Host and Vector Genomics Resource (VEuPathDB; https://veupathdb.org). The VEuPathDB ontology was previously named the EuPathDB ontology prior to EuPathDB joining with VectorBase.The ontology was built based on the Ontology of Biomedical Investigations (OBI) with integration of other OBO ontologies such as PATO, OGMS, DO, etc. as needed for coverage. Currently the VEuPath ontology is primarily intended to be used for support of the VEuPathDB sites. Terms with VEuPathDB ontology IDs that are not specific to VEuPathDB will be submitted to OBO Foundry ontologies for subsequent import and replacement of those terms when they are available."^^xsd:string ;
@@ -20553,6 +20553,8 @@ fairsharing:FAIRsharing.g1qrqs dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.g4n8sw dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.g63c77 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.g7jbvn dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.g7t2hv dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -20786,8 +20788,6 @@ fairsharing:FAIRsharing.qp211a dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.qr6pqk dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.qrrvyk dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
-fairsharing:FAIRsharing.qt3w7z dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.qv4b3c dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -27522,6 +27522,7 @@ bioregistry:bfo a bioregistry.schema:0000001 ;
         bioregistry:colao,
         bioregistry:duo,
         bioregistry:ecocore,
+        bioregistry:epio,
         bioregistry:foodon,
         bioregistry:fovt,
         bioregistry:hso,
@@ -29723,6 +29724,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.g0c5qn,
         fairsharing:FAIRsharing.g1qrqs,
         fairsharing:FAIRsharing.g4n8sw,
+        fairsharing:FAIRsharing.g63c77,
         fairsharing:FAIRsharing.g7jbvn,
         fairsharing:FAIRsharing.g7t2hv,
         fairsharing:FAIRsharing.gdszhh,
@@ -29840,7 +29842,6 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.qp211a,
         fairsharing:FAIRsharing.qr6pqk,
         fairsharing:FAIRsharing.qrrvyk,
-        fairsharing:FAIRsharing.qt3w7z,
         fairsharing:FAIRsharing.qv4b3c,
         fairsharing:FAIRsharing.qvxhb1,
         fairsharing:FAIRsharing.qx2rvz,
