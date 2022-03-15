@@ -1392,6 +1392,7 @@ bfo:
   - colao
   - duo
   - ecocore
+  - epio
   - foodon
   - fovt
   - hso
@@ -7655,17 +7656,17 @@ exo:
   - scdo
   banana: ExO
   contact:
-    email: cjgrondin@ncsu.edu
-    github: cjgrondin
-    name: Cynthia Grondin
-    orcid: 0000-0002-4642-1738
+    email: annethessen@gmail.com
+    github: diatomsRcool
+    name: Anne Thessen
+    orcid: 0000-0002-2908-3327
   description: ExO is intended to bridge the gap between exposure science and diverse
     environmental health disciplines including toxicology, epidemiology, disease surveillance,
     and epigenetics.
   download_obo: http://purl.obolibrary.org/obo/exo.obo
   download_owl: http://purl.obolibrary.org/obo/exo.owl
   example: 0000078
-  homepage: http://ctdbase.org/help/exposureHelp.jsp
+  homepage: https://github.com/CTDbase/exposure-ontology
   license: CC BY 4.0
   mappings:
     biolink: ExO
@@ -9092,13 +9093,16 @@ giardiadb:
   uri_format: https://giardiadb.org/giardiadb/app/record/gene/$1
 github:
   description: GitHub is an online host of Git source code repositories.
-  example: identifiers-org/registry
+  example: biopragmatics/bioregistry
+  example_extras:
+  - biopragmatics
+  - cthoyt
   homepage: https://github.com/
   mappings:
     fairsharing: FAIRsharing.c55d5e
     miriam: github
   name: github
-  pattern: ^[a-zA-Z0-9-_]+/[a-zA-Z0-9-_]+$
+  pattern: ^[a-zA-Z0-9-_]+(/[a-zA-Z0-9-_]+)?$
   preferred_prefix: github
   uri_format: https://github.com/$1
 gitlab:
@@ -9944,6 +9948,9 @@ gtr:
   homepage: https://www.ncbi.nlm.nih.gov/gtr/
   name: Genetic Testing Registry
   preferred_prefix: gtr
+  synonyms:
+  - medgen.gtr
+  uri_format: https://www.ncbi.nlm.nih.gov/gtr/conditions/$1
 gudmap:
   description: The GenitoUrinary Development Molecular Anatomy Project (GUDMAP) is
     a consortium of laboratories working to provide the scientific and medical community
@@ -10882,7 +10889,7 @@ icd10:
     n2t: icd
     prefixcommons: ICD
     wikidata: P494
-  name: International Classification of Diseases
+  name: International Classification of Diseases, 10th Revision
   pattern: ^[A-Z]\d+(\.[-\d+])?$
   preferred_prefix: icd10
   references:
@@ -10921,7 +10928,7 @@ icd10pcs:
     bioportal: ICD10PCS
     fairsharing: FAIRsharing.85k1jm
     wikidata: P1690
-  name: International Classification of Diseases, 10th revision, Procedure Coding
+  name: International Classification of Diseases, 10th Revision, Procedure Coding
     System
   preferred_prefix: icd10pcs
   uri_format: https://www.findacode.com/code.php?set=ICD10PCS&c=$1
@@ -10936,7 +10943,7 @@ icd11:
   mappings:
     fairsharing: FAIRsharing.97805c
     wikidata: P7807
-  name: International Classification of Diseases 11th Revision
+  name: International Classification of Diseases, 11th Revision
   preferred_prefix: icd11
   synonyms:
   - ICD-11
@@ -10950,7 +10957,7 @@ icd9:
   mappings:
     biolink: ICD9
     wikidata: P493
-  name: International Classification of Diseases 9th Revision
+  name: International Classification of Diseases, 9th Revision
   preferred_prefix: icd9
   synonyms:
   - ICD9
@@ -10966,7 +10973,7 @@ icd9cm:
     bioportal: ICD9CM
     fairsharing: FAIRsharing.10zsxb
     wikidata: P1692
-  name: International Classification of Diseases, Version 9 - Clinical Modification
+  name: International Classification of Diseases, 9th Revision, Clinical Modification
   pattern: ^([\dA-Z]\d{2}(\.\d{1,3}|))|(\d{2}(\.\d{1,2}|))$
   preferred_prefix: icd9cm
   synonyms:
@@ -10999,7 +11006,7 @@ icdo:
   homepage: https://www.who.int/classifications/icd/adaptations/oncology/en/
   mappings:
     wikidata: P563
-  name: The International Classification of Diseases for Oncology
+  name: International Classification of Diseases for Oncology
   pattern: ^[8-9]\d{3}(/[0-3])?$
   preferred_prefix: icdo
   synonyms:
@@ -11053,6 +11060,8 @@ iceo:
     Conjugative Element (ICE) information and to support computer-assisted reasoning.
   download_owl: http://purl.obolibrary.org/obo/iceo.owl
   example: '0000712_1'
+  example_extras:
+  - '0000712'
   homepage: https://github.com/ontoice/ICEO
   license: CC BY 4.0
   mappings:
@@ -11061,6 +11070,7 @@ iceo:
     ols: iceo
     ontobee: ICEO
   name: Integrative and Conjugative Element Ontology
+  pattern: ^\d{7}(_\d)?$
   preferred_prefix: ICEO
   repository: https://github.com/ontoice/ICEO
   uri_format: http://purl.obolibrary.org/obo/ICEO_$1
@@ -11086,7 +11096,7 @@ ico:
   description: The Informed Consent Ontology (ICO) is an ontology for the informed
     consent and informed consent process in the medical field.
   download_owl: http://purl.obolibrary.org/obo/ico.owl
-  example: ICODEV_0000066
+  example: '0000066'
   homepage: https://github.com/ICO-ontology/ICO
   license: CC BY 3.0
   mappings:
@@ -11097,6 +11107,7 @@ ico:
     ontobee: ICO
     prefixcommons: ICO
   name: Informed Consent Ontology
+  pattern: ^\d{7}$
   preferred_prefix: ICO
   repository: https://github.com/ICO-ontology/ICO
   uri_format: http://purl.obolibrary.org/obo/ICO_$1
@@ -13986,9 +13997,9 @@ millipore:
 mim:
   contact:
     email: ahamosh@jhmi.edu
-    github: null
+    github: ahamosh
     name: Ada Hamosh
-    orcid: null
+    orcid: 0000-0002-1780-5230
   description: Online Mendelian Inheritance in Man is a catalog of human genes and
     genetic disorders.
   example: '603903'
@@ -14016,6 +14027,11 @@ mim:
   - OMIM
   uri_format: https://omim.org/entry/$1
 mim.ps:
+  contact:
+    email: ahamosh@jhmi.edu
+    github: ahamosh
+    name: Ada Hamosh
+    orcid: 0000-0002-1780-5230
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -19620,7 +19636,7 @@ pubchem.compound:
     biolink: CID
     cellosaurus: PubChem
     cheminf: '000140'
-    fairsharing: FAIRsharing.qt3w7z
+    fairsharing: FAIRsharing.g63c77
     go: PubChem_Compound
     miriam: pubchem.compound
     n2t: pubchem.compound
@@ -21638,7 +21654,7 @@ so:
   download_obo: https://github.com/The-Sequence-Ontology/SO-Ontologies/raw/master/Ontology_Files/so.obo
   download_owl: http://purl.obolibrary.org/obo/so.owl
   example: '0001157'
-  homepage: https://github.com/The-Sequence-Ontology/SO-Ontologies
+  homepage: http://www.sequenceontology.org/
   license: CC BY 4.0
   mappings:
     bioportal: SO

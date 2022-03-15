@@ -181,11 +181,12 @@ def collection(identifier: str):
     """Serve the a Bioregistry registry page."""
     entry = bioregistry.get_collection(identifier)
     if entry is None:
-        abort(404, f"Invalid collection: {identifier}")
+        return abort(404, f"Invalid collection: {identifier}")
     return render_template(
         "collection.html",
         identifier=identifier,
         entry=entry,
+        resources={prefix: bioregistry.get_resource(prefix) for prefix in entry.resources},
         markdown=markdown,
         formats=[
             *FORMATS,

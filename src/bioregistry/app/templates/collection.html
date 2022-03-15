@@ -31,11 +31,11 @@
             </div>
         </div>
         <div class="card-body">
-            <p>{{ markdown(entry.description) | safe }}</p>
+            {{ markdown(entry.description) | safe }}
             <dl>
                 <dt>Identifier</dt>
                 <dd><code>{{ identifier }}</code></dd>
-                <dt>Authors</dt>
+                <dt>Contributors</dt>
                 <dd>
                     {% for author in entry.authors %}
                         <a href="{{ url_for("ui.contributor", orcid=author.orcid) }}">
@@ -48,7 +48,11 @@
                 <dd>
                     <ul>
                         {% for prefix in entry.resources %}
-                            <li><a href="{{ url_for("ui.resource", prefix=prefix) }}">{{ prefix }}</a></li>
+                            <li>
+                                <a href="{{ url_for("ui.resource", prefix=prefix) }}">
+                                    {{ resources[prefix].get_name() }} (<code>{{ prefix }}</code>)
+                                </a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </dd>

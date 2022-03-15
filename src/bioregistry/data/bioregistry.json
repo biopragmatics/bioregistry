@@ -223,7 +223,10 @@
       "pattern": "^A\\d+$",
       "prefix": "abs",
       "sampleId": "A0014",
-      "uri_format": "http://genome.crg.es/datasets/abs2005/entries/$1.html"
+      "uri_format": "http://genome.crg.es/datasets/abs2005/entries/$1.html",
+      "wikidata": {
+        "database": "Q111134507"
+      }
     },
     "n2t": {
       "description": "The database of Annotated regulatory Binding Sites (from orthologous promoters), ABS, is a public database of known binding sites identified in promoters of orthologous vertebrate genes that have been manually curated from bibliography.",
@@ -3150,10 +3153,10 @@
     },
     "example": "0000001",
     "fairsharing": {
-      "abbreviation": "BFO",
-      "description": "The Basic Formal Ontology (BFO) is a small, upper level ontology that is designed for use in supporting information retrieval, analysis and integration in scientific and other domains. BFO is a genuine upper ontology. Thus it does not contain physical, chemical, biological or other terms which would properly fall within the coverage domains of the special sciences. BFO is used by more than 250 ontology-driven endeavors throughout the world.",
+      "abbreviation": "ISO/IEC 21838-2:2021 BFO",
+      "description": "ISO/IEC 21838-2:2021 describes Basic Formal Ontology (BFO), which is an ontology that is conformant to the requirements specified for top-level ontologies in ISO/IEC 21838‑1.",
       "id": "1248",
-      "name": "Basic Formal Ontology",
+      "name": "ISO/IEC 21838-2:2021 Information technology — Top-level ontologies (TLO) — Part 2: Basic Formal Ontology (BFO)",
       "prefix": "FAIRsharing.wcpd6f",
       "subjects": [
         "Subject Agnostic"
@@ -3181,6 +3184,7 @@
         "colao",
         "duo",
         "ecocore",
+        "epio",
         "foodon",
         "fovt",
         "hso",
@@ -16191,7 +16195,7 @@
       "contact.label": "Alpha Tom Kodamullil",
       "contact.orcid": "0000-0001-9896-3531",
       "depends_on": [
-        "BFO"
+        "bfo"
       ],
       "deprecated": false,
       "description": "A application driven Epilepsy Ontology with official terms from the ILAE.",
@@ -16743,15 +16747,15 @@
         "ecto",
         "scdo"
       ],
-      "contact": "cjgrondin@ncsu.edu",
-      "contact.github": "cjgrondin",
-      "contact.label": "Cynthia Grondin",
-      "contact.orcid": "0000-0002-4642-1738",
+      "contact": "annethessen@gmail.com",
+      "contact.github": "diatomsRcool",
+      "contact.label": "Anne Thessen",
+      "contact.orcid": "0000-0002-2908-3327",
       "deprecated": false,
       "description": "Vocabularies for describing exposure data to inform understanding of environmental health.",
       "download.obo": "http://purl.obolibrary.org/obo/exo.obo",
       "download.owl": "http://purl.obolibrary.org/obo/exo.owl",
-      "homepage": "http://ctdbase.org/help/exposureHelp.jsp",
+      "homepage": "https://github.com/CTDbase/exposure-ontology",
       "inactive": false,
       "license": "CC BY 4.0",
       "license.url": "https://creativecommons.org/licenses/by/4.0/",
@@ -19900,6 +19904,11 @@
     }
   },
   "github": {
+    "example": "biopragmatics/bioregistry",
+    "example_extras": [
+      "biopragmatics",
+      "cthoyt"
+    ],
     "fairsharing": {
       "abbreviation": "GitHub",
       "description": "GitHub Inc. is a Git-based software repository that provides version control. It offers all of the distributed version control and source code management (SCM) functionality of Git as well as adding its own features. It provides access control and several collaboration features such as bug tracking, feature requests, task management, and wikis for each project. It provides a number of different access levels, from free through to paid services.",
@@ -19927,7 +19936,8 @@
       "prefix": "github",
       "sampleId": "identifiers-org/registry",
       "uri_format": "https://github.com/$1"
-    }
+    },
+    "pattern": "^[a-zA-Z0-9-_]+(/[a-zA-Z0-9-_]+)?$"
   },
   "gitlab": {
     "fairsharing": {
@@ -20640,7 +20650,6 @@
       "contact.orcid": "0000-0001-6787-2901",
       "depends_on": [
         "cl",
-        "go/extensions/go-bridge-to-nifstd.owl",
         "ncbitaxon",
         "ro",
         "uberon"
@@ -21730,7 +21739,11 @@
     "description": "The Genetic Testing Registry (GTR®) provides a central location for voluntary submission of genetic test information by providers. The scope includes the test's purpose, methodology, validity, evidence of the test's usefulness, and laboratory contacts and credentials. The overarching goal of the GTR is to advance the public health and research into the genetic basis of health and disease",
     "example": "AN0097748",
     "homepage": "https://www.ncbi.nlm.nih.gov/gtr/",
-    "name": "Genetic Testing Registry"
+    "name": "Genetic Testing Registry",
+    "synonyms": [
+      "medgen.gtr"
+    ],
+    "uri_format": "https://www.ncbi.nlm.nih.gov/gtr/conditions/$1"
   },
   "gudmap": {
     "fairsharing": {
@@ -23907,7 +23920,7 @@
       "prefix": "icd",
       "uri_format": "http://apps.who.int/classifications/icd10/browse/2010/en#/$1"
     },
-    "name": "International Classification of Diseases",
+    "name": "International Classification of Diseases, 10th Revision",
     "prefixcommons": {
       "is_identifiers": true,
       "is_obo": false,
@@ -23983,7 +23996,7 @@
       "bioportal": "ICD10PCS",
       "fairsharing": "FAIRsharing.85k1jm"
     },
-    "name": "International Classification of Diseases, 10th revision, Procedure Coding System",
+    "name": "International Classification of Diseases, 10th Revision, Procedure Coding System",
     "uri_format": "https://www.findacode.com/code.php?set=ICD10PCS&c=$1",
     "wikidata": {
       "prefix": "P1690"
@@ -24009,7 +24022,7 @@
     "mappings": {
       "fairsharing": "FAIRsharing.97805c"
     },
-    "name": "International Classification of Diseases 11th Revision",
+    "name": "International Classification of Diseases, 11th Revision",
     "synonyms": [
       "ICD-11"
     ],
@@ -24031,7 +24044,7 @@
     "mappings": {
       "biolink": "ICD9"
     },
-    "name": "International Classification of Diseases 9th Revision",
+    "name": "International Classification of Diseases, 9th Revision",
     "synonyms": [
       "ICD9",
       "ICD9_2005",
@@ -24068,6 +24081,7 @@
       "bioportal": "ICD9CM",
       "fairsharing": "FAIRsharing.10zsxb"
     },
+    "name": "International Classification of Diseases, 9th Revision, Clinical Modification",
     "pattern": "^([\\dA-Z]\\d{2}(\\.\\d{1,3}|))|(\\d{2}(\\.\\d{1,2}|))$",
     "synonyms": [
       "IC9CM",
@@ -24119,7 +24133,7 @@
     "description": "The International Classification of Diseases for Oncology (ICD-O) is a domain-specific extension of the International Statistical Classification of Diseases and Related Health Problems for tumor diseases",
     "example": "9861/3",
     "homepage": "https://www.who.int/classifications/icd/adaptations/oncology/en/",
-    "name": "The International Classification of Diseases for Oncology",
+    "name": "International Classification of Diseases for Oncology",
     "pattern": "^[8-9]\\d{3}(/[0-3])?$",
     "synonyms": [
       "ICD-O",
@@ -24206,6 +24220,9 @@
       "prefix": "ICEO"
     },
     "example": "0000712_1",
+    "example_extras": [
+      "0000712"
+    ],
     "mappings": {
       "bioportal": "ICEO",
       "obofoundry": "iceo",
@@ -24242,7 +24259,8 @@
       "library": "Library",
       "name": "Integrative and Conjugative Element Ontology",
       "prefix": "ICEO"
-    }
+    },
+    "pattern": "^\\d{7}(_\\d)?$"
   },
   "iclc": {
     "cellosaurus": {
@@ -30738,7 +30756,9 @@
     },
     "contact": {
       "email": "ahamosh@jhmi.edu",
-      "name": "Ada Hamosh"
+      "github": "ahamosh",
+      "name": "Ada Hamosh",
+      "orcid": "0000-0002-1780-5230"
     },
     "fairsharing": {
       "abbreviation": "OMIM",
@@ -30836,6 +30856,12 @@
     }
   },
   "mim.ps": {
+    "contact": {
+      "email": "ahamosh@jhmi.edu",
+      "github": "ahamosh",
+      "name": "Ada Hamosh",
+      "orcid": "0000-0002-1780-5230"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -43333,15 +43359,13 @@
       "prefix": "000140"
     },
     "fairsharing": {
-      "abbreviation": "PubChem",
-      "description": "PubChem is organized as three linked databases within the NCBI's Entrez information retrieval system. These are PubChem Substance, PubChem Compound, and PubChem BioAssay. PubChem also provides a fast chemical structure similarity search tool. More information about using each component database may be found using the links in the homepage.",
-      "id": "1989",
-      "name": "PubChem",
-      "prefix": "FAIRsharing.qt3w7z",
+      "abbreviation": "CID",
+      "description": "In addition to data used in on-going collaborations, this database host images from France Bio Imaging microscopy facility with public access either associated to publications, either that make interest from an image processing point of view (such as challenges for developpers or for use in metrology). This resource requires a log in account, however some projects are available with a guest account.",
+      "id": "2306",
+      "name": "Curie Image Database",
+      "prefix": "FAIRsharing.g63c77",
       "subjects": [
-        "Virology",
-        "Life Science",
-        "Epidemiology"
+        "Life Science"
       ]
     },
     "go": {
@@ -43354,7 +43378,7 @@
       "biolink": "CID",
       "cellosaurus": "PubChem",
       "cheminf": "000140",
-      "fairsharing": "FAIRsharing.qt3w7z",
+      "fairsharing": "FAIRsharing.g63c77",
       "go": "PubChem_Compound",
       "miriam": "pubchem.compound",
       "n2t": "pubchem.compound",
@@ -47786,7 +47810,7 @@
       "description": "A structured controlled vocabulary for sequence annotation, for the exchange of annotation data and for the description of sequence objects in databases.",
       "download.obo": "http://purl.obolibrary.org/obo/so.obo",
       "download.owl": "http://purl.obolibrary.org/obo/so.owl",
-      "homepage": "https://github.com/The-Sequence-Ontology/SO-Ontologies",
+      "homepage": "http://www.sequenceontology.org/",
       "inactive": false,
       "license": "CC BY 4.0",
       "license.url": "https://creativecommons.org/licenses/by/4.0/",
