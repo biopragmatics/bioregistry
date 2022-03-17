@@ -33,7 +33,7 @@ class TestRegistry(unittest.TestCase):
 
         .. seealso:: https://github.com/biopragmatics/bioregistry/issues/180
         """
-        text = BIOREGISTRY_PATH.read_text()
+        text = BIOREGISTRY_PATH.read_text(encoding="utf8")
         linted_text = json.dumps(
             json.loads(text), indent=2, sort_keys=True, ensure_ascii=False, default=extended_encoder
         )
