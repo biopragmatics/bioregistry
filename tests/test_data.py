@@ -41,9 +41,9 @@ class TestRegistry(unittest.TestCase):
             linted_text,
             text,
             msg="""
-            
+
     There are formatting errors in one of the Bioregistry's JSON data files.
-    Please lint these files using the following commands in the console: 
+    Please lint these files using the following commands in the console:
 
     $ pip install tox
     $ tox -e bioregistry-lint
