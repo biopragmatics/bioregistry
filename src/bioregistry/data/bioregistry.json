@@ -104,11 +104,34 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "contributor_extras": [
+      {
+        "email": "laylamichan@ciencias.unam.mx",
+        "github": "lmichan",
+        "name": "Layla Michán Aguirre",
+        "orcid": "0000-0002-5798-662X"
+      },
+      {
+        "email": "mineromero2901@ciencias.unam.mx",
+        "github": "MinRo60",
+        "name": "Minerva María Romero Pérez",
+        "orcid": "0000-0002-6240-9325"
+      },
+      {
+        "email": "victorinolavida@ciencias.unam.mx",
+        "github": "Victorinolavida",
+        "name": "José Victorino Ruiz Lavida",
+        "orcid": "0000-0001-5130-7705"
+      }
+    ],
     "description": "Database portal containing replicate experiments of different assays and samples",
     "example": "4DNESWX1J3QU",
     "homepage": "https://data.4dnucleome.org/experiment-set-replicates/",
     "name": "4D Nucleome Data Portal Experiment Replicate",
-    "uri_format": "https://data.4dnucleome.org/experiment-set-replicates/$1"
+    "uri_format": "https://data.4dnucleome.org/experiment-set-replicates/$1",
+    "wikidata": {
+      "database": "Q110613797"
+    }
   },
   "aao": {
     "description": "A structured controlled vocabulary of the anatomy of Amphibians. Note that AAO is currently being integrated into Uberon.",
@@ -621,6 +644,15 @@
     }
   },
   "aftol.taxonomy": {
+    "contributor_extras": [
+      {
+        "email": "laylamichan@ciencias.unam.mx",
+        "github": "lmichan",
+        "name": "Layla Michán Aguirre",
+        "orcid": "0000-0002-5798-662X"
+      }
+    ],
+    "homepage": "https://aftol.umn.edu",
     "mappings": {
       "miriam": "aftol.taxonomy",
       "n2t": "aftol.taxonomy",
@@ -3177,10 +3209,10 @@
     },
     "example": "0000001",
     "fairsharing": {
-      "abbreviation": "BFO",
-      "description": "The Basic Formal Ontology (BFO) is a small, upper level ontology that is designed for use in supporting information retrieval, analysis and integration in scientific and other domains. BFO is a genuine upper ontology. Thus it does not contain physical, chemical, biological or other terms which would properly fall within the coverage domains of the special sciences. BFO is used by more than 250 ontology-driven endeavors throughout the world.",
+      "abbreviation": "ISO/IEC 21838-2:2021 BFO",
+      "description": "ISO/IEC 21838-2:2021 describes Basic Formal Ontology (BFO), which is an ontology that is conformant to the requirements specified for top-level ontologies in ISO/IEC 21838‑1.",
       "id": "1248",
-      "name": "Basic Formal Ontology",
+      "name": "ISO/IEC 21838-2:2021 Information technology — Top-level ontologies (TLO) — Part 2: Basic Formal Ontology (BFO)",
       "prefix": "FAIRsharing.wcpd6f",
       "subjects": [
         "Subject Agnostic"
@@ -3208,6 +3240,7 @@
         "colao",
         "duo",
         "ecocore",
+        "epio",
         "foodon",
         "fovt",
         "hso",
@@ -5596,7 +5629,6 @@
       "name": "Common Anatomy Reference Ontology",
       "prefix": "CARO"
     },
-    "download_owl": "https://github.com/obophenotype/caro/raw/master/src/ontology/caro.owl",
     "example": "0000000",
     "fairsharing": {
       "abbreviation": "CARO",
@@ -16218,7 +16250,7 @@
       "contact.label": "Alpha Tom Kodamullil",
       "contact.orcid": "0000-0001-9896-3531",
       "depends_on": [
-        "BFO"
+        "bfo"
       ],
       "deprecated": false,
       "description": "A application driven Epilepsy Ontology with official terms from the ILAE.",
@@ -43382,15 +43414,13 @@
       "prefix": "000140"
     },
     "fairsharing": {
-      "abbreviation": "PubChem",
-      "description": "PubChem is organized as three linked databases within the NCBI's Entrez information retrieval system. These are PubChem Substance, PubChem Compound, and PubChem BioAssay. PubChem also provides a fast chemical structure similarity search tool. More information about using each component database may be found using the links in the homepage.",
-      "id": "1989",
-      "name": "PubChem",
-      "prefix": "FAIRsharing.qt3w7z",
+      "abbreviation": "CID",
+      "description": "In addition to data used in on-going collaborations, this database host images from France Bio Imaging microscopy facility with public access either associated to publications, either that make interest from an image processing point of view (such as challenges for developpers or for use in metrology). This resource requires a log in account, however some projects are available with a guest account.",
+      "id": "2306",
+      "name": "Curie Image Database",
+      "prefix": "FAIRsharing.g63c77",
       "subjects": [
-        "Virology",
-        "Life Science",
-        "Epidemiology"
+        "Life Science"
       ]
     },
     "go": {
@@ -43403,7 +43433,7 @@
       "biolink": "CID",
       "cellosaurus": "PubChem",
       "cheminf": "000140",
-      "fairsharing": "FAIRsharing.qt3w7z",
+      "fairsharing": "FAIRsharing.g63c77",
       "go": "PubChem_Compound",
       "miriam": "pubchem.compound",
       "n2t": "pubchem.compound",
@@ -47709,6 +47739,8 @@
       "SNOMEDCT_US",
       "SCTID_2010_1_31",
       "SNOMEDCT_2010_1_31",
+      "SNOMEDCT_US_2015_03_01",
+      "SNOMEDCT_US_2016_03_01",
       "SNOWMEDCT_US_2018_03_01",
       "SNOMEDCT_US_2018_03_01",
       "SNOMED_CT_US_2018_03_01",
@@ -47720,6 +47752,7 @@
       "SNOMEDCT_US_2020_03_01",
       "SNOMEDCT_US_2020_09_01",
       "SNOMEDCT_US_2021_03_01",
+      "SNOMEDCT_US_2021_07_31",
       "SNOMEDCT_US_2021_09_01"
     ],
     "wikidata": {
@@ -50824,6 +50857,7 @@
       "prefix": "umbbd.compound",
       "uri_format": "http://umbbd.ethz.ch/servlets/pageservlet?ptype=c&compID=$1"
     },
+    "part_of": "umbbd",
     "prefixcommons": {
       "is_identifiers": true,
       "is_obo": false,
@@ -50873,6 +50907,7 @@
       "prefix": "umbbd.enzyme",
       "uri_format": "http://umbbd.ethz.ch/servlets/pageservlet?ptype=ep&enzymeID=$1"
     },
+    "part_of": "umbbd",
     "prefixcommons": {
       "is_identifiers": true,
       "is_obo": false,
@@ -50919,6 +50954,7 @@
       "prefix": "umbbd.pathway",
       "uri_format": "http://umbbd.ethz.ch/servlets/pageservlet?ptype=p&pathway_abbr=$1"
     },
+    "part_of": "umbbd",
     "prefixcommons": {
       "is_identifiers": true,
       "is_obo": false,
@@ -50965,6 +51001,7 @@
       "prefix": "umbbd.reaction",
       "uri_format": "http://umbbd.ethz.ch/servlets/pageservlet?ptype=r&reacID=$1"
     },
+    "part_of": "umbbd",
     "prefixcommons": {
       "is_identifiers": true,
       "is_obo": false,
@@ -51014,6 +51051,7 @@
       "prefix": "umbbd.rule",
       "uri_format": "http://www.umbbd.ethz.ch/servlets/rule.jsp?rule=$1"
     },
+    "part_of": "umbbd",
     "prefixcommons": {
       "is_identifiers": true,
       "is_obo": false,
@@ -51440,6 +51478,7 @@
     ],
     "synonyms": [
       "UniProt",
+      "Uniprot ID",
       "UniProtKB",
       "uniprot/swiss-prot",
       "SwissProt",
