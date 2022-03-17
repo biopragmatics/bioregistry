@@ -15,7 +15,7 @@ from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import _norm, curie_to_str, is_mismatch
+from bioregistry.utils import _norm, curie_to_str, extended_encoder, is_mismatch
 
 logger = logging.getLogger(__name__)
 
@@ -27,6 +27,28 @@ class TestRegistry(unittest.TestCase):
         """Set up the test case."""
         self.registry = bioregistry.read_registry()
         self.metaregistry = bioregistry.read_metaregistry()
+
+    def test_lint(self):
+        """Test that the lint command was run.
+
+        .. seealso:: https://github.com/biopragmatics/bioregistry/issues/180
+        """
+        text = BIOREGISTRY_PATH.read_text()
+        linted_text = json.dumps(
+            json.loads(text), indent=2, sort_keys=True, ensure_ascii=False, default=extended_encoder
+        )
+        self.assertEqual(
+            linted_text,
+            text,
+            msg="""
+            
+    There are formatting errors in one of the Bioregistry's JSON data files.
+    Please lint these files using the following commands in the console: 
+
+    $ pip install tox
+    $ tox -e bioregistry-lint
+    """,
+        )
 
     def test_prefixes(self):
         """Check prefixes aren't malformed."""
