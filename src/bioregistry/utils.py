@@ -140,6 +140,19 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
         )
 
 
+def write_contexts(contexts: Mapping[str, Context]) -> None:
+    """Write to contexts."""
+    with open(CONTEXTS_PATH, mode="w", encoding="utf-8") as file:
+        json.dump(
+            contexts,
+            fp=file,
+            indent=2,
+            sort_keys=True,
+            ensure_ascii=False,
+            default=extended_encoder,
+        )
+
+
 def read_contributors() -> Mapping[str, Attributable]:
     """Get a mapping from contributor ORCID identifiers to author objects."""
     rv: Dict[str, Attributable] = {}

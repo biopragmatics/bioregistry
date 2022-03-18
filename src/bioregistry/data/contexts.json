@@ -1,12 +1,28 @@
 {
   "obo": {
-    "name": "Open Biomedical Ontologies Context",
+    "base_remappings": [
+      "obofoundry"
+    ],
+    "custom_prefix_map": {
+      "DOI": "https://doi.org"
+    },
     "description": "The OBO Context exists for the following reasons: ...",
-    "maintainers": [{
-      "github": "matentzn",
-      "name": "Nico Matentzoglu",
-      "orcid": "0000-0002-7356-1779"
-    }],
+    "include_synonyms": false,
+    "key": "obo",
+    "maintainers": [
+      {
+        "github": "matentzn",
+        "name": "Nico Matentzoglu",
+        "orcid": "0000-0002-7356-1779"
+      }
+    ],
+    "name": "Open Biomedical Ontologies Context",
+    "prefix_remapping": {
+      "doi": "DOI",
+      "ensembl": "ENSEMBL",
+      "snomedct": "SCTID",
+      "umls": "UMLS"
+    },
     "priority": [
       "obofoundry",
       "default",
@@ -14,20 +30,6 @@
       "miriam",
       "ols"
     ],
-    "include_synonyms": false,
-    "use_preferred": true,
-    "double_with_synonyms": true,
-    "base_remappings": [
-      "obofoundry"
-    ],
-    "prefix_remapping": {
-      "umls": "UMLS",
-      "snomedct": "SCTID",
-      "ensembl": "ENSEMBL",
-      "doi": "DOI"
-    },
-    "custom_prefix_map": {
-      "DOI": "https://doi.org"
-    }
+    "use_preferred": true
   }
 }
