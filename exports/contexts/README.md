@@ -30,8 +30,8 @@ the `bioregistry.export.prefix_maps` module.
 - Changes can only be accepted and merged with the public consent of at least
   one of the maintainers on either the issue motivating the change or pull
   request substantiating it.
-- A maintainer can not consent their own changes, i.e., in this case, a second
-  maintainer must also publicly agree.
+- A maintainer can not consent their own (suggested) changes, i.e., in this
+  case, a second maintainer must also publicly agree.
 - Maintainers for contexts do not necessarily need to be part of the
   Bioregistry's Review Team.
 - If the maintainers publicly state disagreement on a change, then they are
@@ -42,6 +42,8 @@ the `bioregistry.export.prefix_maps` module.
   respond otherwise they will be removed as a maintainer.
 - A technical solution based on CI/CD and GitHub's API will be used to randomly
   ping maintainers to check that they are still available on GitHub.
+- Maintainers may unanimously nominate additional maintainers to be added at the
+  discretion of the Bioregistry Review Team.
 - If fewer there are fewer than two maintainers listed for any context, then the
   Bioregistry Review Team automatically gains the rights as a maintainer.
 - If there are no maintainers for a given context, e.g., if all maintainers have
