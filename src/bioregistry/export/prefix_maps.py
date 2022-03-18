@@ -42,7 +42,7 @@ def generate_contexts():
         _write_shacl(context_path_stub.with_suffix(".context.ttl"), prefix_map)
 
 
-def _context_prefix_maps() -> Mapping[str, Mapping[str, str]]:
+def _context_prefix_maps():
     all_contexts = json.loads(CONTEXTS_PATH.read_text())
     for context_key, context_data in all_contexts.items():
         priority = context_data.get("priority", [])
