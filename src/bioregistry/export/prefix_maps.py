@@ -3,6 +3,7 @@
 """Export the Bioregistry as a JSON-LD context."""
 
 import json
+from collections import ChainMap
 from pathlib import Path
 from textwrap import dedent
 from typing import Mapping
@@ -13,11 +14,8 @@ import bioregistry
 from bioregistry import get_prefix_map
 from bioregistry.constants import (
     CONTEXT_BIOREGISTRY_PATH,
-    CONTEXT_OBO_PATH,
-    CONTEXT_OBO_SYNONYMS_PATH,
+    CONTEXTS_PATH,
     EXPORT_CONTEXTS,
-    SHACL_OBO_SYNONYMS_TURTLE_PATH,
-    SHACL_OBO_TURTLE_PATH,
     SHACL_TURTLE_PATH,
 )
 from bioregistry.schema import Collection
@@ -26,17 +24,11 @@ from bioregistry.schema import Collection
 @click.command()
 def generate_contexts():
     """Generate various context files."""
+    _context_prefix_maps()
+
     prefix_map = get_prefix_map()
     _write_prefix_map(CONTEXT_BIOREGISTRY_PATH, prefix_map)
     _write_shacl(SHACL_TURTLE_PATH, prefix_map)
-
-    obo_prefix_map = get_obofoundry_prefix_map()
-    _write_prefix_map(CONTEXT_OBO_PATH, obo_prefix_map)
-    _write_shacl(SHACL_OBO_TURTLE_PATH, obo_prefix_map)
-
-    obo_synonyms_prefix_map = get_obofoundry_prefix_map(include_synonyms=True)
-    _write_prefix_map(CONTEXT_OBO_SYNONYMS_PATH, obo_synonyms_prefix_map)
-    _write_shacl(SHACL_OBO_SYNONYMS_TURTLE_PATH, obo_synonyms_prefix_map)
 
     for key, collection in bioregistry.read_collections().items():
         name = collection.context
@@ -48,6 +40,43 @@ def generate_contexts():
             json.dump(fp=file, indent=4, sort_keys=True, obj=get_collection_jsonld(key))
         # Dump shacl
         _write_shacl(context_path_stub.with_suffix(".context.ttl"), prefix_map)
+
+
+def _context_prefix_maps() -> Mapping[str, Mapping[str, str]]:
+    all_contexts = json.loads(CONTEXTS_PATH.read_text())
+    for context_key, context_data in all_contexts.items():
+        priority = context_data.get("priority", [])
+        include_synonyms = context_data.get("include_synonyms", False)
+        use_preferred = context_data.get("use_preferred", False)
+        remapping = dict(
+            ChainMap(
+                *(
+                    bioregistry.get_registry_map(metaprefix)
+                    for metaprefix in context_data.get("base_remappings", [])
+                ),
+                context_data.get("prefix_remapping", {}),
+            )
+        )
+        prefix_map = get_prefix_map(
+            remapping=remapping,
+            priority=priority,
+            include_synonyms=include_synonyms,
+            use_preferred=use_preferred,
+        )
+        stub = EXPORT_CONTEXTS.joinpath(context_key)
+        _write_prefix_map(stub.with_suffix(".context.jsonld"), prefix_map)
+        _write_shacl(stub.with_suffix(".context.ttl"), prefix_map)
+
+        if not include_synonyms and context_data.get("double_with_synonyms"):
+            prefix_map = get_prefix_map(
+                remapping=remapping,
+                priority=priority,
+                include_synonyms=True,
+                use_preferred=use_preferred,
+            )
+            stub_double = EXPORT_CONTEXTS.joinpath(f"{context_key}_synonyms")
+            _write_prefix_map(stub_double.with_suffix(".context.jsonld"), prefix_map)
+            _write_shacl(stub_double.with_suffix(".context.ttl"), prefix_map)
 
 
 def _write_shacl(path: Path, prefix_map: Mapping[str, str]) -> None:
@@ -63,7 +92,7 @@ def _write_shacl(path: Path, prefix_map: Mapping[str, str]) -> None:
     )
     entries = ",\n".join(
         f'    [ sh:prefix "{prefix}" ; sh:namespace "{uri_prefix}" ]'
-        for prefix, uri_prefix in prefix_map.items()
+        for prefix, uri_prefix in sorted(prefix_map.items())
     )
     path.write_text(text.format(entries=entries))
 
@@ -114,6 +143,7 @@ def get_obofoundry_prefix_map(include_synonyms: bool = False) -> Mapping[str, st
         the same URL prefix?
     :return: A mapping from prefixes to prefix URLs.
     """
+    # FIXME delete
     remapping = bioregistry.get_registry_map("obofoundry")
     remapping.update(OBO_REMAPPING)
     return get_prefix_map(
