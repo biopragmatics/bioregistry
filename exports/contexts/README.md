@@ -35,8 +35,20 @@ responsible for the communities that each context is for. To mitigate the
 possibility of gridlock due to this bottleneck, we institute the following
 rules:
 
+#### Adding a Context
+
+- Anyone is allowed to create a context given they're prepared to follow the
+  governance models.
+- Each context needs a unique key. Similar rules to choosing a good prefix in
+  the Bioregistry apply.
+- The Bioregistry Review Team is responsible for reviewing all new context
+  requests.
+- Requests can be
 - Each context must list its maintainers along with their current GitHub, email,
   and ORCID.
+
+#### Editing a pre-existing context
+
 - Changes to contexts must always be made via pull requests.
 - Changes must pass all CI tests to be considered for acceptance. These tests
   can be updated at the discretion of the Bioregistry Core Development Team.
@@ -53,6 +65,12 @@ rules:
 - If a maintainer is pinged on the Bioregistry issue tracker regarding one of
   the contexts for which they are responsible, they have four (4) weeks to
   respond otherwise they will be removed as a maintainer.
+- Changes to the Prescriptive Context Governance must be solicited via the
+  Bioregistry's public issue tracker and approved by the Bioregistry Review
+  Team.
+
+#### Maintaining a context
+
 - A technical solution based on CI/CD and GitHub's API will be used to randomly
   ping maintainers to check that they are still available on GitHub.
 - Maintainers may unanimously nominate additional maintainers to be added at the
@@ -66,17 +84,19 @@ rules:
   Team may assign two maintainers at their discretion and then abdicate its
   responsibility as the maintainer of the context. It is advised not to
   re-assign previous maintainers who abdicated responsibility.
-- Changes to the Prescriptive Context Governance must be solicited via the
-  Bioregistry's public issue tracker and approved by the Bioregistry Review
-  Team.
+
+#### Removing a context
+
+- In general, contexts should not be deleted.
+- Contexts that are created then immediately abandoned are subject to removal
 
 ### How to Edit
 
 The `contexts.json` file can be edited in the following ways:
 
 1. Click [here](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/collections.json)
-   to edit on GitHub. This will automatically create a fork and prompt you to issue
-   a pull request - just press the green buttons.
+   to edit on GitHub. This will automatically create a fork and prompt you to
+   issue a pull request (just press the green buttons).
 2. Make a fork and issue a pull request.
 3. Open an issue.
 
