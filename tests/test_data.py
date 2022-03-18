@@ -725,7 +725,7 @@ class TestRegistry(unittest.TestCase):
                         "wikidata",
                         external,
                         msg=f"""
-                        
+
     A "wikidata" key appeared in [{prefix}] inside external metadata for "{metaprefix}".
     Please move this key to its own top-level entry within the [{prefix}] record.
                         """,
