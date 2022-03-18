@@ -22,12 +22,13 @@ from .constants import (
     BIOREGISTRY_PATH,
     COLLECTIONS_PATH,
     COLLECTIONS_YAML_PATH,
+    CONTEXTS_PATH,
     METAREGISTRY_PATH,
     METAREGISTRY_YAML_PATH,
     MISMATCH_PATH,
     REGISTRY_YAML_PATH,
 )
-from .schema import Attributable, Collection, Registry, Resource
+from .schema import Attributable, Collection, Context, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
@@ -139,6 +140,19 @@ def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
         )
 
 
+def write_contexts(contexts: Mapping[str, Context]) -> None:
+    """Write to contexts."""
+    with open(CONTEXTS_PATH, mode="w", encoding="utf-8") as file:
+        json.dump(
+            contexts,
+            fp=file,
+            indent=2,
+            sort_keys=True,
+            ensure_ascii=False,
+            default=extended_encoder,
+        )
+
+
 def read_contributors() -> Mapping[str, Attributable]:
     """Get a mapping from contributor ORCID identifiers to author objects."""
     rv: Dict[str, Attributable] = {}
@@ -210,6 +224,14 @@ def read_registry_contributions() -> Mapping[str, Set[str]]:
         if resource.contact and resource.contact.orcid:
             rv[resource.contact.orcid].add(metaprefix)
     return dict(rv)
+
+
+def read_contexts() -> Mapping[str, Context]:
+    """Get a mapping from context keys to contexts."""
+    return {
+        key: Context(**data)
+        for key, data in json.loads(CONTEXTS_PATH.read_text(encoding="utf-8")).items()
+    }
 
 
 def norm(s: str) -> str:

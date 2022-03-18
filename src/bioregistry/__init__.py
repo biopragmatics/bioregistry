@@ -2,7 +2,7 @@
 
 """Extract registry information."""
 
-from .collection_api import get_collection  # noqa:F401
+from .collection_api import get_collection, get_context  # noqa:F401
 from .metaresource_api import (  # noqa:F401
     get_registry,
     get_registry_description,
@@ -89,7 +89,14 @@ from .resolve_identifier import (  # noqa:F401
     is_known_identifier,
 )
 from .resource_manager import Manager, manager  # noqa:F401
-from .schema.struct import Author, Collection, Provider, Registry, Resource  # noqa:F401
+from .schema.struct import (  # noqa:F401
+    Author,
+    Collection,
+    Context,
+    Provider,
+    Registry,
+    Resource,
+)
 from .uri_format import (  # noqa:F401
     get_format_urls,
     get_prefix_map,
@@ -98,9 +105,11 @@ from .uri_format import (  # noqa:F401
 )
 from .utils import (  # noqa:F401
     read_collections,
+    read_contexts,
     read_contributors,
     read_metaregistry,
     read_mismatches,
     read_registry,
+    write_contexts,
     write_registry,
 )

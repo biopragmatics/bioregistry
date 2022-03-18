@@ -41,6 +41,7 @@ __all__ = [
     "Resource",
     "Collection",
     "Registry",
+    "Context",
     "get_json_schema",
 ]
 
@@ -1490,6 +1491,65 @@ class Collection(BaseModel):
         return rv
 
 
+class Context(BaseModel):
+    """A prescriptive context contains configuration for generating fit-for-purpose
+    prefix maps to serve various communities based on the standard Bioregistry
+    prefix map, custom prefix remapping rules, custom URI prefix remapping rules,
+    custom prefix maps, and other community-specific logic.
+    """  # noqa:D400,D205
+
+    name: str = Field(
+        description="The name of the context",
+    )
+    description: str = Field(
+        description="A description of the context, can include Markdown",
+    )
+    maintainers: List[Author] = Field(
+        description="A list of maintainers for the context",
+    )
+    prefix_priority: Optional[List[str]] = Field(
+        ...,
+        description=_dedent(
+            """\
+            This ordering of metaprefixes (i.e., prefixes for registries)
+            is used to determine the priority of which registry's prefixes are used.
+            By default, the canonical Bioregistry prefixes are highest priority.
+        """
+        ),
+    )
+    include_synonyms: bool = Field(
+        False,
+        description="Should synonyms be included in the prefix map?",
+    )
+    use_preferred: bool = Field(
+        False,
+        description="Should preferred prefixes (i.e., stylized prefixes) be preferred over canonicalized ones?",
+    )
+    uri_prefix_priority: Optional[List[str]] = Field(
+        ...,
+        description=_dedent(
+            """\
+            This ordering of metaprefixes (i.e., prefixes for registries)
+            is used to determine the priority of which registry's URI prefixes are used.
+            By default, the canonical Bioregistry URI prefixes are highest priority.
+         """
+        ),
+    )
+    prefix_remapping: Optional[Dict[str, str]] = Field(
+        ...,
+        description="This is a mapping from canonical Bioregistry prefixes to custom prefixes used in this context.",
+    )
+    custom_prefix_map: Optional[Dict[str, str]] = Field(
+        ...,
+        description=_dedent(
+            """\
+            This is a custom prefix map that is added after all other logic is applied.
+            Keys do not necessarily need to be Bioregistry prefixes.
+        """
+        ),
+    )
+
+
 def _clean_pattern(rv: str) -> str:
     """Clean a regular expression string."""
     rv = rv.rstrip("?")
@@ -1526,6 +1586,7 @@ def get_json_schema():
                 Resource,
                 Registry,
                 RegistrySchema,
+                Context,
             ],
             title="Bioregistry JSON Schema",
             description="The Bioregistry JSON Schema describes the shapes of the objects in"

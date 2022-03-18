@@ -3,9 +3,10 @@
 """Export the Bioregistry as a JSON-LD context."""
 
 import json
+from collections import ChainMap
 from pathlib import Path
 from textwrap import dedent
-from typing import Mapping
+from typing import Mapping, Optional
 
 import click
 
@@ -13,11 +14,7 @@ import bioregistry
 from bioregistry import get_prefix_map
 from bioregistry.constants import (
     CONTEXT_BIOREGISTRY_PATH,
-    CONTEXT_OBO_PATH,
-    CONTEXT_OBO_SYNONYMS_PATH,
     EXPORT_CONTEXTS,
-    SHACL_OBO_SYNONYMS_TURTLE_PATH,
-    SHACL_OBO_TURTLE_PATH,
     SHACL_TURTLE_PATH,
 )
 from bioregistry.schema import Collection
@@ -26,17 +23,11 @@ from bioregistry.schema import Collection
 @click.command()
 def generate_contexts():
     """Generate various context files."""
+    _context_prefix_maps()
+
     prefix_map = get_prefix_map()
     _write_prefix_map(CONTEXT_BIOREGISTRY_PATH, prefix_map)
     _write_shacl(SHACL_TURTLE_PATH, prefix_map)
-
-    obo_prefix_map = get_obofoundry_prefix_map()
-    _write_prefix_map(CONTEXT_OBO_PATH, obo_prefix_map)
-    _write_shacl(SHACL_OBO_TURTLE_PATH, obo_prefix_map)
-
-    obo_synonyms_prefix_map = get_obofoundry_prefix_map(include_synonyms=True)
-    _write_prefix_map(CONTEXT_OBO_SYNONYMS_PATH, obo_synonyms_prefix_map)
-    _write_shacl(SHACL_OBO_SYNONYMS_TURTLE_PATH, obo_synonyms_prefix_map)
 
     for key, collection in bioregistry.read_collections().items():
         name = collection.context
@@ -48,6 +39,46 @@ def generate_contexts():
             json.dump(fp=file, indent=4, sort_keys=True, obj=get_collection_jsonld(key))
         # Dump shacl
         _write_shacl(context_path_stub.with_suffix(".context.ttl"), prefix_map)
+
+
+def get_prescriptive_prefix_map(
+    key: str, include_synonyms: Optional[bool] = None
+) -> Mapping[str, str]:
+    """Get a prescriptive prefix map."""
+    context = bioregistry.get_context(key)
+    if context is None:
+        raise KeyError
+    remapping = dict(
+        ChainMap(
+            *(
+                bioregistry.get_registry_map(metaprefix)
+                for metaprefix in context.prefix_priority or []
+            ),
+            context.prefix_remapping or {},
+        )
+    )
+    return get_prefix_map(
+        remapping=remapping,
+        priority=context.uri_prefix_priority,
+        include_synonyms=include_synonyms
+        if include_synonyms is not None
+        else context.include_synonyms,
+        use_preferred=context.use_preferred,
+    )
+
+
+def _context_prefix_maps():
+    for key in bioregistry.read_contexts():
+        prefix_map = get_prescriptive_prefix_map(key)
+        stub = EXPORT_CONTEXTS.joinpath(key)
+        _write_prefix_map(stub.with_suffix(".context.jsonld"), prefix_map)
+        _write_shacl(stub.with_suffix(".context.ttl"), prefix_map)
+
+        if key == "obo":  # Special case, maybe put this in data model
+            prefix_map = get_prescriptive_prefix_map(key, include_synonyms=True)
+            stub_double = EXPORT_CONTEXTS.joinpath(f"{key}_synonyms")
+            _write_prefix_map(stub_double.with_suffix(".context.jsonld"), prefix_map)
+            _write_shacl(stub_double.with_suffix(".context.ttl"), prefix_map)
 
 
 def _write_shacl(path: Path, prefix_map: Mapping[str, str]) -> None:
@@ -93,20 +124,6 @@ def collection_to_context_jsonlds(collection: Collection) -> str:
     return json.dumps(collection.as_context_jsonld())
 
 
-OBO_PRIORITY = (
-    "obofoundry",
-    "default",
-    "prefixcommons",
-    "miriam",
-    "ols",
-)
-OBO_REMAPPING = {
-    "umls": "UMLS",
-    "snomedct": "SCTID",
-    "ensembl": "ENSEMBL",
-}
-
-
 def get_obofoundry_prefix_map(include_synonyms: bool = False) -> Mapping[str, str]:
     """Get the OBO Foundry prefix map.
 
@@ -114,14 +131,7 @@ def get_obofoundry_prefix_map(include_synonyms: bool = False) -> Mapping[str, st
         the same URL prefix?
     :return: A mapping from prefixes to prefix URLs.
     """
-    remapping = bioregistry.get_registry_map("obofoundry")
-    remapping.update(OBO_REMAPPING)
-    return get_prefix_map(
-        remapping=remapping,
-        priority=OBO_PRIORITY,
-        include_synonyms=include_synonyms,
-        use_preferred=True,
-    )
+    return get_prescriptive_prefix_map("obo")
 
 
 if __name__ == "__main__":

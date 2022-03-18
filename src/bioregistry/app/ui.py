@@ -15,6 +15,7 @@ from .utils import (
     _normalize_prefix_or_404,
 )
 from .. import manager
+from ..schema import Context
 from ..utils import (
     curie_to_str,
     read_collections_contributions,
@@ -194,6 +195,34 @@ def collection(identifier: str):
             ("RDF (JSON-LD)", "jsonld"),
             ("Context JSON-LD", "context"),
         ],
+    )
+
+
+@ui_blueprint.route("/context/")
+def contexts():
+    """Serve the Bioregistry contexts page."""
+    return render_template(
+        "contexts.html",
+        rows=bioregistry.read_contexts().items(),
+        markdown=markdown,
+        formats=FORMATS,
+        schema=Context.schema(),
+    )
+
+
+@ui_blueprint.route("/context/<identifier>")
+def context(identifier: str):
+    """Serve the a Bioregistry context page."""
+    entry = bioregistry.get_context(identifier)
+    if entry is None:
+        return abort(404, f"Invalid context: {identifier}")
+    return render_template(
+        "context.html",
+        identifier=identifier,
+        entry=entry,
+        markdown=markdown,
+        schema=Context.schema()["properties"],
+        formats=FORMATS,
     )
 
 

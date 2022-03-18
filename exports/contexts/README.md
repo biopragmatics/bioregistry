@@ -1,7 +1,7 @@
 # Contexts Exports
 
-This directory contains fit-for-purpose exports of JSON-LD contexts as
-well as [SHACL](https://github.com/biopragmatics/bioregistry/issues/305)
+This directory contains fit-for-purpose exports of JSON-LD contexts as well
+as [SHACL](https://github.com/biopragmatics/bioregistry/issues/305)
 formatted exports.
 
 ### Generated via Collections
@@ -21,3 +21,95 @@ the `bioregistry.export.prefix_maps` module.
 | [`bioregistry.context.jsonld`](bioregistry.context.jsonld) and [`bioregistry.context.ttl`](bioregistry.context.ttl)     | Contains Bioregistry-normalized prefixes (lowercase, punctuation normalized) and the best URI prefixes for each based on the Bioregistry's ruleset. |
 | [`obo.context.jsonld`](obo.context.jsonld) and [`obo.context.ttl`](obo.context.ttl)                                     | Contains prefixes and URI prefixes prioritized for the OBO Foundry and ontology contexts.                                                           |
 | [`obo_synonyms.context.jsonld`](obo_synonyms.context.jsonld) and [`obo_synonyms.context.ttl`](obo_synonyms.context.ttl) | Contains prefixes, prefix's synonyms, and URI prefixes prioritized for the OBO Foundry and ontology contexts.                                       |
+
+## Prescriptive Contexts
+
+As a follow-up to https://github.com/biopragmatics/bioregistry/issues/324, the
+Bioregistry has updated its context export to be more configurable.
+
+### Governance
+
+To ensure stability and reliability for communities that might want to rely on
+these contexts, they were suggested to be only editable by specific people
+responsible for the communities that each context is for. To mitigate the
+possibility of gridlock due to this bottleneck, we institute the following
+rules:
+
+#### Adding a Context
+
+- Anyone is allowed to create a context given they're prepared to follow the
+  governance rules.
+- A discussion for a new context can be made via the Bioregistry's issue
+  tracker, but only a pull request counts as a proposal.
+- New contexts must pass all CI tests before being considered.
+- The Bioregistry Review Team is responsible for reviewing all new context
+  requests and accepts at their discretion.
+- Each context must have a unique key. Similar rules to choosing a good prefix
+  in the Bioregistry apply.
+- Each context must list its maintainers along with their current GitHub, ORCID,
+  and optional email.
+- Each context must include a name and description
+- This README should also be updated to reflect new contexts (though this might
+  be automated in the future.)
+
+#### Editing a pre-existing context
+
+- Changes to contexts must always be made via pull requests.
+- Changes must pass all CI tests to be considered for acceptance. These tests
+  can be updated at the discretion of the Bioregistry Core Development Team.
+- Changes can only be accepted and merged with the public consent of at least
+  one of the maintainers on either the issue motivating the change or pull
+  request substantiating it.
+- A maintainer can not consent their own (suggested) changes, i.e., in this
+  case, a second maintainer must also publicly agree.
+- Maintainers for contexts do not necessarily need to be part of the
+  Bioregistry's Review Team.
+- If the maintainers publicly state disagreement on a change, then they are
+  allowed two (2) weeks for deliberation. If a consensus can not be met, then
+  the changes are dismissed.
+- If a maintainer is pinged on the Bioregistry issue tracker regarding one of
+  the contexts for which they are responsible, they have four (4) weeks to
+  respond otherwise they will be removed as a maintainer.
+- Changes to the Prescriptive Context Governance must be solicited via the
+  Bioregistry's public issue tracker and approved by the Bioregistry Review
+  Team.
+
+#### Maintaining a context
+
+- A technical solution based on CI/CD and GitHub's API will be used to randomly
+  ping maintainers to check that they are still available on GitHub.
+- Maintainers may unanimously nominate additional maintainers to be added at the
+  discretion of the Bioregistry Review Team. This discretion is to prevent
+  adding maintainers who will likely be non-responsive and/or non-engaged.
+- If there are fewer than two maintainers listed for any context, then the
+  Bioregistry Review Team automatically gains rights as an interim maintainer
+  until there are two or more maintainers.
+- If there are no maintainers for a given context, e.g., if all maintainers have
+  been unavailable and have lost maintainer rights, then the Bioregistry Review
+  Team may assign two maintainers at their discretion and then abdicate its
+  responsibility as the maintainer of the context. It is advised not to
+  re-assign previous maintainers who abdicated responsibility.
+
+#### Removing a context
+
+- In general, contexts should not be deleted.
+- Contexts that are created then immediately abandoned are subject to removal
+
+#### Bootstrapping governance
+
+Governance will go into effect either after the second maintainer is added
+to the OBO entry or when a second context is added, after which this notice
+can be removed.
+
+### How to Edit
+
+The `contexts.json` file can be edited in the following ways:
+
+1. Click [here](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/collections.json)
+   to edit on GitHub. This will automatically create a fork and prompt you to
+   issue a pull request (just press the green buttons).
+2. Make a fork and issue a pull request.
+3. Open an issue.
+
+Be sure to @ all of the maintainers listed in the context in all issues and pull
+requests.
