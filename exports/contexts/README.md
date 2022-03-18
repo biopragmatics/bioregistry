@@ -47,8 +47,9 @@ the `bioregistry.export.prefix_maps` module.
 - Maintainers may unanimously nominate additional maintainers to be added at the
   discretion of the Bioregistry Review Team. This discretion is to prevent
   adding maintainers who will likely be non-responsive and/or non-engaged.
-- If fewer there are fewer than two maintainers listed for any context, then the
-  Bioregistry Review Team automatically gains the rights as a maintainer.
+- If there are fewer than two maintainers listed for any context, then the
+  Bioregistry Review Team automatically gains rights as an interim maintainer
+  until there are two or more maintainers.
 - If there are no maintainers for a given context, e.g., if all maintainers have
   been unavailable and have lost maintainer rights, then the Bioregistry Review
   Team may assign two maintainers at their discretion and then abdicate its
