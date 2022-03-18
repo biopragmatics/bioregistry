@@ -27,9 +27,9 @@ the `bioregistry.export.prefix_maps` module.
 - Each context must list its maintainers along with their current GitHub, email,
   and ORCID.
 - Changes to contexts must always be made via pull requests.
-- Changes can only be accepted and merged with the public consent (i.e. on the
-  issue motivating the change or pull request substantiating it) of at least one
-  of the maintainers.
+- Changes can only be accepted and merged with the public consent of at least
+  one of the maintainers on either the issue motivating the change or pull
+  request substantiating it.
 - Maintainers for contexts do not necessarily need to be part of the
   Bioregistry's Review Team.
 - If the maintainers publicly state disagreement on a change, then they are
@@ -47,3 +47,6 @@ the `bioregistry.export.prefix_maps` module.
   Team may assign two maintainers at their discretion and then abdicate its
   responsibility as the maintainer of the context. It is advised not to
   re-assign previous maintainers who abdicated responsibility.
+- Changes to the Prescriptive Context Governance must be solicited via the
+  Bioregistry's public issue tracker and approved by the Bioregistry Review
+  Team.
