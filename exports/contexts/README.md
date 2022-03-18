@@ -33,11 +33,11 @@ the `bioregistry.export.prefix_maps` module.
 - Maintainers for contexts do not necessarily need to be part of the
   Bioregistry's Review Team.
 - If the maintainers publicly state disagreement on a change, then they are
-  allowed four weeks for deliberation. If a consensus can not be met, then the
-  changes are dismissed.
+  allowed two (2) weeks for deliberation. If a consensus can not be met, then
+  the changes are dismissed.
 - If a maintainer is pinged on the Bioregistry issue tracker regarding one of
-  the contexts for which they are responsible, they have four weeks to respond
-  otherwise they will be removed as a maintainer.
+  the contexts for which they are responsible, they have four (4) weeks to
+  respond otherwise they will be removed as a maintainer.
 - A technical solution based on CI/CD and GitHub's API will be used to randomly
   ping maintainers to check that they are still available on GitHub.
 - If fewer there are fewer than two maintainers listed for any context, then the
