@@ -45,23 +45,25 @@ def get_prescriptive_prefix_map(
     key: str, include_synonyms: Optional[bool] = None
 ) -> Mapping[str, str]:
     """Get a prescriptive prefix map."""
-    data = bioregistry.read_contexts()[key]
+    context = bioregistry.get_context(key)
+    if context is None:
+        raise KeyError
     remapping = dict(
         ChainMap(
             *(
                 bioregistry.get_registry_map(metaprefix)
-                for metaprefix in data.prefix_priority or []
+                for metaprefix in context.prefix_priority or []
             ),
-            data.prefix_remapping or {},
+            context.prefix_remapping or {},
         )
     )
     return get_prefix_map(
         remapping=remapping,
-        priority=data.uri_prefix_priority,
+        priority=context.uri_prefix_priority,
         include_synonyms=include_synonyms
         if include_synonyms is not None
-        else data.include_synonyms,
-        use_preferred=data.use_preferred,
+        else context.include_synonyms,
+        use_preferred=context.use_preferred,
     )
 
 

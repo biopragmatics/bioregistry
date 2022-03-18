@@ -205,6 +205,55 @@ def collection(identifier: str):
     )
 
 
+@api_blueprint.route("/contexts")
+def contexts():
+    """Get all contexts.
+
+    ---
+    tags:
+    - context
+    parameters:
+    - name: format
+      description: The file type
+      in: query
+      required: false
+      default: json
+      schema:
+        type: string
+        enum: [json, yaml]
+    """  # noqa:DAR101,DAR201
+    return serialize(sanitize_mapping(bioregistry.read_contexts()))
+
+
+@api_blueprint.route("/context/<identifier>")
+def context(identifier: str):
+    """Get a context.
+
+    ---
+    tags:
+    - context
+    parameters:
+    - name: identifier
+      in: path
+      description: The identifier of the context
+      required: true
+      type: string
+      example: obo
+    - name: format
+      description: The file type
+      in: query
+      required: false
+      default: json
+      schema:
+        type: string
+        enum: [json, yaml]
+    """
+    data = bioregistry.get_context(identifier)
+    if not data:
+        abort(404, f"Invalid context: {identifier}")
+    return serialize(data)
+
+
 @api_blueprint.route("/reference/<prefix>:<identifier>")
 def reference(prefix: str, identifier: str):
     """Look up information on the reference.

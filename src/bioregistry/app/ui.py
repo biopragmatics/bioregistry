@@ -197,6 +197,37 @@ def collection(identifier: str):
     )
 
 
+@ui_blueprint.route("/context/")
+def contexts():
+    """Serve the Bioregistry contexts page."""
+    return render_template(
+        "contexts.html",
+        rows=bioregistry.read_contexts().items(),
+        markdown=markdown,
+        formats=FORMATS,
+    )
+
+
+@ui_blueprint.route("/context/<identifier>")
+def context(identifier: str):
+    """Serve the a Bioregistry context page."""
+    entry = bioregistry.get_context(identifier)
+    if entry is None:
+        return abort(404, f"Invalid context: {identifier}")
+    return render_template(
+        "context.html",
+        identifier=identifier,
+        entry=entry,
+        markdown=markdown,
+        formats=[
+            *FORMATS,
+            ("RDF (turtle)", "turtle"),
+            ("RDF (JSON-LD)", "jsonld"),
+            ("Context JSON-LD", "context"),
+        ],
+    )
+
+
 @ui_blueprint.route("/reference/<prefix>:<path:identifier>")
 def reference(prefix: str, identifier: str):
     """Serve the a Bioregistry reference page."""
