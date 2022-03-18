@@ -16,6 +16,11 @@ class TestContexts(unittest.TestCase):
     def setUp(self) -> None:
         """Set up the test case."""
         self.contexts = bioregistry.read_contexts()
+        self.collection_keys = {
+            collection.context: key
+            for key, collection in bioregistry.read_collections().items()
+            if collection.context
+        }
         self.valid_metaprefixes = set(bioregistry.read_metaregistry()) | {"default"}
         self.valid_prefixes = set(bioregistry.read_registry())
 
@@ -33,7 +38,13 @@ class TestContexts(unittest.TestCase):
 
     def test_data(self):
         """Test the data integrity."""
-        for context in self.contexts.values():
+        for key, context in self.contexts.items():
+            self.assertNotIn(
+                key,
+                set(self.collection_keys),
+                msg=f"Context has same key as context assigned by collection {self.collection_keys.get(key)}",
+            )
+
             for maintainer in context.maintainers:
                 self.assertIsNotNone(maintainer.name)
                 # self.assertIsNotNone(maintainer.email, msg=f"{maintainer.name} is missing an email")
