@@ -39,10 +39,13 @@ rules:
 
 - Anyone is allowed to create a context given they're prepared to follow the
   governance rules.
-- Each context must have a unqiue key. Similar rules to choosing a good prefix
-  in the Bioregistry apply.
+- A discussion for a new context can be made via the Bioregistry's issue
+  tracker, but only a pull request counts as a proposal.
+- New contexts must pass all CI tests before being considered.
 - The Bioregistry Review Team is responsible for reviewing all new context
   requests and accepts at their discretion.
+- Each context must have a unique key. Similar rules to choosing a good prefix
+  in the Bioregistry apply.
 - Each context must list its maintainers along with their current GitHub, email,
   and ORCID.
 - Each context must include a name and description
