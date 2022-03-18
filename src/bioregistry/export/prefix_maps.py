@@ -6,7 +6,7 @@ import json
 from collections import ChainMap
 from pathlib import Path
 from textwrap import dedent
-from typing import Mapping
+from typing import Mapping, Optional
 
 import click
 
@@ -41,7 +41,9 @@ def generate_contexts():
         _write_shacl(context_path_stub.with_suffix(".context.ttl"), prefix_map)
 
 
-def get_prescriptive_prefix_map(key: str) -> Mapping[str, str]:
+def get_prescriptive_prefix_map(
+    key: str, include_synonyms: Optional[bool] = None
+) -> Mapping[str, str]:
     """Get a prescriptive prefix map."""
     data = bioregistry.read_contexts()[key]
     remapping = dict(
@@ -56,7 +58,9 @@ def get_prescriptive_prefix_map(key: str) -> Mapping[str, str]:
     return get_prefix_map(
         remapping=remapping,
         priority=data.uri_prefix_priority,
-        include_synonyms=data.include_synonyms,
+        include_synonyms=include_synonyms
+        if include_synonyms is not None
+        else data.include_synonyms,
         use_preferred=data.use_preferred,
     )
 
@@ -69,12 +73,7 @@ def _context_prefix_maps():
         _write_shacl(stub.with_suffix(".context.ttl"), prefix_map)
 
         if key == "obo":  # Special case, maybe put this in data model
-            prefix_map = get_prefix_map(
-                remapping=remapping,
-                priority=data.uri_prefix_priority,
-                include_synonyms=True,
-                use_preferred=data.use_preferred,
-            )
+            prefix_map = get_prescriptive_prefix_map(key, include_synonyms=True)
             stub_double = EXPORT_CONTEXTS.joinpath(f"{key}_synonyms")
             _write_prefix_map(stub_double.with_suffix(".context.jsonld"), prefix_map)
             _write_shacl(stub_double.with_suffix(".context.ttl"), prefix_map)
