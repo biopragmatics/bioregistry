@@ -66,7 +66,7 @@ def get_prescriptive_prefix_map(
 
 
 def _context_prefix_maps():
-    for key, data in bioregistry.read_contexts().items():
+    for key in bioregistry.read_contexts():
         prefix_map = get_prescriptive_prefix_map(key)
         stub = EXPORT_CONTEXTS.joinpath(key)
         _write_prefix_map(stub.with_suffix(".context.jsonld"), prefix_map)
