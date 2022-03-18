@@ -49,9 +49,6 @@ rules:
 - Each context must list its maintainers along with their current GitHub, ORCID,
   and optional email.
 - Each context must include a name and description
-- Contexts should ideally be significantly different from the Bioregistry
-  standard context. If they are not so dissimilar, then the submitters should
-  consider better aligning with the Bioregistry.
 - This README should also be updated to reflect new contexts (though this might
   be automated in the future.)
 
