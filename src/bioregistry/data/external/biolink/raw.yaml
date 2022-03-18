@@ -5,13 +5,11 @@ license: https://creativecommons.org/publicdomain/zero/1.0/
 
 # Version should be kept in sync with primary Git repository release tag
 
-version: 2.2.13
+version: 2.2.14
 
 ## ------------
 ## PREFIXES
 ## ------------
-
-#
 # CURIE namespaces (prefixes/base URI's) mappings of prefixes used in the body of the Biolink Model specification
 # are resolved using a specific precedence order, for use in the generation of the Biolink Model context.jsonld
 # mappings to namespaces. Any prefixes encountered in the Biolink Model but not resolved by the following
@@ -23,6 +21,7 @@ version: 2.2.13
 prefixes:
   alliancegenome: 'https://www.alliancegenome.org/'
   apollo: 'https://github.com/GMOD/Apollo'
+  AspGD: 'http://www.aspergillusgenome.org/cgi-bin/locus.pl?dbid='
   biolink: 'https://w3id.org/biolink/vocab/'
   bioschemas: 'https://bioschemas.org/'
   linkml: 'https://w3id.org/linkml/'
@@ -109,6 +108,7 @@ prefixes:
   PathWhiz: 'http://smpdb.ca/pathways/#'  # See also https://smpdb.ca/pathwhiz/
   pav: 'http://purl.org/pav/'
   PHAROS: 'http://pharos.nih.gov'
+  PomBase: 'https://www.pombase.org/gene/'
   prov: 'http://www.w3.org/ns/prov#'
   qud: 'http://qudt.org/1.1/schema/qudt#'
   REPODB: 'http://apps.chiragjpgroup.org/repoDB/'
@@ -8344,6 +8344,7 @@ classes:
       - WIKIDATA:Q7187
       - dcid:Gene
     id_prefixes:
+      - AspGD
       - NCBIGene
       - ENSEMBL
       - HGNC
@@ -8356,7 +8357,7 @@ classes:
       - FB  # FlyBase FBgn*
       - RGD
       - SGD
-      - POMBASE
+      - PomBase
       - OMIM
       - KEGG.GENE ## org:gene
       - UMLS

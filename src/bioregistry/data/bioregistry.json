@@ -8389,7 +8389,7 @@
   "cls": {
     "cellosaurus": {
       "category": "Cell line collections",
-      "homepage": "https://www.clsgmbh.de",
+      "homepage": "https://cls.shop/",
       "name": "Cell Lines Service",
       "prefix": "CLS",
       "uri_format": "https://www.clsgmbh.de/$1.html"
@@ -42051,6 +42051,12 @@
     }
   },
   "pombase": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "PomBase",
+      "uri_format": "https://www.pombase.org/gene/$1"
+    },
     "fairsharing": {
       "abbreviation": "PomBase",
       "description": "PomBase is a model organism database that provides organization of and access to scientific data for the fission yeast Schizosaccharomyces pombe. PomBase supports genomic sequence and features, genome-wide datasets and manual literature curation as well as providing structural and functional annotation and access to large-scale data sets.",
@@ -42068,6 +42074,7 @@
       "uri_format": "https://www.pombase.org/gene/$1"
     },
     "mappings": {
+      "biolink": "PomBase",
       "fairsharing": "FAIRsharing.8jsya3",
       "go": "PomBase",
       "miriam": "pombase",
@@ -51746,7 +51753,7 @@
   "unite": {
     "fairsharing": {
       "abbreviation": null,
-      "description": "UNITE is primarily a fungal rDNA internal transcribed spacer (ITS) sequence database, although they also welcome additional genes and genetic markers. UNITE focuses on high-quality ITS sequences generated from fruiting bodies collected and identified by experts and deposited in public herbaria.",
+      "description": "UNITE is a database and sequence management environment centered on the eukaryotic nuclear ribosomal ITS region. All eukaryotic ITS sequences from the International Nucleotide Sequence Database Collaboration are clustered to approximately the species level (distance between species in steps of 0.5%), and all such species hypotheses are given a DOI to facilitate unambiguous scientific communication and data assembly. The user can interact with these species hypotheses (e.g., SH1566366.08FU) in various ways, and third-party sequence and metadata annotation are supported. Registration is needed to access the more powerful features of the accompanying PlutoF workbench. A range of search and query options are available, and precompiled reference datasets for local sequence similarity searches and HTS pipelines are available for download. Owing to the mycological roots of UNITE, two versions of the release files are available: all eukaryotes (including fungi), and fungi only. UNITE is a community effort that relies on the scientific expertise of its users – please consider contributing by, e.g., annotating sequences of your taxa of expertise.",
       "id": "2110",
       "name": "UNITE",
       "prefix": "FAIRsharing.cnwx8c",
@@ -51755,6 +51762,7 @@
         "Genomics",
         "Bioinformatics",
         "Taxonomy",
+        "Ecology",
         "Biodiversity"
       ]
     },
