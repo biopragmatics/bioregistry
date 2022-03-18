@@ -34,13 +34,19 @@ class TestContexts(unittest.TestCase):
     def test_data(self):
         """Test the data integrity."""
         for context in self.contexts.values():
-            self.assertLessEqual(2, len(context.maintainers))
+            self.assertLessEqual(
+                2,
+                len(context.maintainers),
+                msg="\n\nPrescriptive contexts must have a minimum of two maintainers",
+            )
             for maintainer in context.maintainers:
-                self.assertIn("name", maintainer)
-                self.assertIn("github", maintainer)
-                self.assertIn("email", maintainer)
-                self.assertIn("orcid", maintainer)
-                # TODO check valid ORCID
+                self.assertIsNotNone(maintainer.name)
+                # self.assertIsNotNone(maintainer.email, msg=f"{maintainer.name} is missing an email")
+                self.assertIsNotNone(
+                    maintainer.github, msg=f"{maintainer.name} is missing a GitHub handle"
+                )
+                self.assertIsNotNone(maintainer.orcid, msg=f"{maintainer.name} is missing an ORCID")
+                self.assertRegex(maintainer.orcid, "^\\d{4}-\\d{4}-\\d{4}-\\d{3}(\\d|X)$")
 
             for metaprefix in context.uri_prefix_priority or []:
                 self.assertIn(metaprefix, self.valid_metaprefixes)
