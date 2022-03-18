@@ -50,7 +50,7 @@ def _context_prefix_maps():
                     bioregistry.get_registry_map(metaprefix)
                     for metaprefix in data.base_remappings or []
                 ),
-                data.prefix_remapping or {}
+                data.prefix_remapping or {},
             )
         )
         prefix_map = get_prefix_map(
