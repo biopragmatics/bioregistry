@@ -38,14 +38,17 @@ rules:
 #### Adding a Context
 
 - Anyone is allowed to create a context given they're prepared to follow the
-  governance models.
-- Each context needs a unique key. Similar rules to choosing a good prefix in
-  the Bioregistry apply.
+  governance rules.
+- Each context must have a unqiue key. Similar rules to choosing a good prefix
+  in the Bioregistry apply.
 - The Bioregistry Review Team is responsible for reviewing all new context
-  requests.
-- Requests can be
+  requests and accepts at their discretion.
 - Each context must list its maintainers along with their current GitHub, email,
   and ORCID.
+- Each context must include a name and description
+- Contexts should ideally be significantly different from the Bioregistry
+  standard context. If they are not so dissimilar, then the submitters should
+  consider better aligning with the Bioregistry.
 - This README should also be updated to reflect new contexts (though this might
   be automated in the future.)
 
