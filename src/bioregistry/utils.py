@@ -22,12 +22,13 @@ from .constants import (
     BIOREGISTRY_PATH,
     COLLECTIONS_PATH,
     COLLECTIONS_YAML_PATH,
+    CONTEXTS_PATH,
     METAREGISTRY_PATH,
     METAREGISTRY_YAML_PATH,
     MISMATCH_PATH,
     REGISTRY_YAML_PATH,
 )
-from .schema import Attributable, Collection, Registry, Resource
+from .schema import Attributable, Collection, Context, Registry, Resource
 
 logger = logging.getLogger(__name__)
 
@@ -210,6 +211,14 @@ def read_registry_contributions() -> Mapping[str, Set[str]]:
         if resource.contact and resource.contact.orcid:
             rv[resource.contact.orcid].add(metaprefix)
     return dict(rv)
+
+
+def read_contexts() -> Mapping[str, Context]:
+    """Get a mapping from context keys to contexts."""
+    return {
+        key: Context(key=key, **data)
+        for key, data in json.loads(CONTEXTS_PATH.read_text(encoding="utf-8")).items()
+    }
 
 
 def norm(s: str) -> str:

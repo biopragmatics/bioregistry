@@ -43,38 +43,34 @@ def generate_contexts():
 
 
 def _context_prefix_maps():
-    all_contexts = json.loads(CONTEXTS_PATH.read_text())
-    for context_key, context_data in all_contexts.items():
-        priority = context_data.get("priority", [])
-        include_synonyms = context_data.get("include_synonyms", False)
-        use_preferred = context_data.get("use_preferred", False)
+    for key, data in bioregistry.read_contexts().items():
         remapping = dict(
             ChainMap(
                 *(
                     bioregistry.get_registry_map(metaprefix)
-                    for metaprefix in context_data.get("base_remappings", [])
+                    for metaprefix in data.base_remappings or []
                 ),
-                context_data.get("prefix_remapping", {}),
+                data.prefix_remapping or {}
             )
         )
         prefix_map = get_prefix_map(
             remapping=remapping,
-            priority=priority,
-            include_synonyms=include_synonyms,
-            use_preferred=use_preferred,
+            priority=data.priority,
+            include_synonyms=data.include_synonyms,
+            use_preferred=data.use_preferred,
         )
-        stub = EXPORT_CONTEXTS.joinpath(context_key)
+        stub = EXPORT_CONTEXTS.joinpath(key)
         _write_prefix_map(stub.with_suffix(".context.jsonld"), prefix_map)
         _write_shacl(stub.with_suffix(".context.ttl"), prefix_map)
 
-        if not include_synonyms and context_data.get("double_with_synonyms"):
+        if key == "obo":  # Special case, maybe put this in data model
             prefix_map = get_prefix_map(
                 remapping=remapping,
-                priority=priority,
+                priority=data.priority,
                 include_synonyms=True,
-                use_preferred=use_preferred,
+                use_preferred=data.use_preferred,
             )
-            stub_double = EXPORT_CONTEXTS.joinpath(f"{context_key}_synonyms")
+            stub_double = EXPORT_CONTEXTS.joinpath(f"{key}_synonyms")
             _write_prefix_map(stub_double.with_suffix(".context.jsonld"), prefix_map)
             _write_shacl(stub_double.with_suffix(".context.ttl"), prefix_map)
 

@@ -1490,6 +1490,45 @@ class Collection(BaseModel):
         return rv
 
 
+class Context(BaseModel):
+    """A prescriptive context."""
+
+    key: str
+    name: str = Field(
+        description="The name of the context",
+    )
+    description: str = Field(
+        description="A description of the context, can include Markdown",
+    )
+    maintainers: List[Author] = Field(
+        description="A list of maintainers for the context",
+    )
+    base_remappings: Optional[List[str]] = Field(
+        ...,
+        description="A list of metaprefixes to use for auto-generating remappings",
+    )
+    include_synonyms: bool = Field(
+        False,
+        description="Should synonyms be included in the prefix map?",
+    )
+    use_preferred: bool = Field(
+        False,
+        description="Should preferred prefixes (i.e., stylized prefixes) be preferred over canonicalized ones?",
+    )
+    priority: Optional[List[str]] = Field(
+        ...,
+        description="A list of metaprefixes in priority order",
+    )
+    prefix_remapping: Optional[Dict[str, str]] = Field(
+        ...,
+        description="Custom prefix renames. Keys must be valid Bioregistry prefixes",
+    )
+    custom_prefix_map: Optional[Dict[str, str]] = Field(
+        ...,
+        description="A custom prefix map to include after all other logic is applied",
+    )
+
+
 def _clean_pattern(rv: str) -> str:
     """Clean a regular expression string."""
     rv = rv.rstrip("?")
@@ -1526,6 +1565,7 @@ def get_json_schema():
                 Resource,
                 Registry,
                 RegistrySchema,
+                Context,
             ],
             title="Bioregistry JSON Schema",
             description="The Bioregistry JSON Schema describes the shapes of the objects in"
