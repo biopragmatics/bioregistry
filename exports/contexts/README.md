@@ -22,14 +22,18 @@ the `bioregistry.export.prefix_maps` module.
 | [`obo.context.jsonld`](obo.context.jsonld) and [`obo.context.ttl`](obo.context.ttl)                                     | Contains prefixes and URI prefixes prioritized for the OBO Foundry and ontology contexts.                                                           |
 | [`obo_synonyms.context.jsonld`](obo_synonyms.context.jsonld) and [`obo_synonyms.context.ttl`](obo_synonyms.context.ttl) | Contains prefixes, prefix's synonyms, and URI prefixes prioritized for the OBO Foundry and ontology contexts.                                       |
 
-## Prescriptive Context Governance
+## Prescriptive Contexts
 
 As a follow-up to https://github.com/biopragmatics/bioregistry/issues/324, the
-Bioregistry has updated its context export to be more configurable. To ensure
-stability and reliability for communities that might want to rely on these
-contexts, they were suggested to be only editable by specific people responsible
-for the communities that each context is for. To mitigate the possibility of
-gridlock due to this bottleneck, we institute the following rules:
+Bioregistry has updated its context export to be more configurable.
+
+### Governance
+
+To ensure stability and reliability for communities that might want to rely on
+these contexts, they were suggested to be only editable by specific people
+responsible for the communities that each context is for. To mitigate the
+possibility of gridlock due to this bottleneck, we institute the following
+rules:
 
 - Each context must list its maintainers along with their current GitHub, email,
   and ORCID.
@@ -65,3 +69,14 @@ gridlock due to this bottleneck, we institute the following rules:
 - Changes to the Prescriptive Context Governance must be solicited via the
   Bioregistry's public issue tracker and approved by the Bioregistry Review
   Team.
+
+### How to Edit
+
+The `contexts.json` file can be edited in the following ways:
+
+1. Click [here](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/collections.json) to edit on GitHub
+2. Make a fork and issue a pull request
+3. Open an issue
+
+Be sure to @ all of the maintainers listed in the context in all issues and
+pull requests.
