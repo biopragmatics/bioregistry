@@ -45,7 +45,8 @@ the `bioregistry.export.prefix_maps` module.
 - A technical solution based on CI/CD and GitHub's API will be used to randomly
   ping maintainers to check that they are still available on GitHub.
 - Maintainers may unanimously nominate additional maintainers to be added at the
-  discretion of the Bioregistry Review Team.
+  discretion of the Bioregistry Review Team. This discretion is to prevent
+  adding maintainers who will likely be non-responsive and/or non-engaged.
 - If fewer there are fewer than two maintainers listed for any context, then the
   Bioregistry Review Team automatically gains the rights as a maintainer.
 - If there are no maintainers for a given context, e.g., if all maintainers have
