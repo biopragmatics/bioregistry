@@ -33,7 +33,7 @@ class TestContexts(unittest.TestCase):
 
     def test_data(self):
         """Test the data integrity."""
-        for key, context in self.contexts.items():
+        for context in self.contexts.values():
             self.assertLessEqual(2, len(context.maintainers))
             for maintainer in context.maintainers:
                 self.assertIn("name", maintainer)

@@ -14,7 +14,6 @@ import bioregistry
 from bioregistry import get_prefix_map
 from bioregistry.constants import (
     CONTEXT_BIOREGISTRY_PATH,
-    CONTEXTS_PATH,
     EXPORT_CONTEXTS,
     SHACL_TURTLE_PATH,
 )
