@@ -95,6 +95,12 @@ rules:
 - In general, contexts should not be deleted.
 - Contexts that are created then immediately abandoned are subject to removal
 
+#### Bootstrapping governance
+
+Governance will go into effect either after the second maintainer is added
+to the OBO entry or when a second context is added, after which this notice
+can be removed.
+
 ### How to Edit
 
 The `contexts.json` file can be edited in the following ways:
