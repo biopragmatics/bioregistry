@@ -46,8 +46,8 @@ rules:
   requests and accepts at their discretion.
 - Each context must have a unique key. Similar rules to choosing a good prefix
   in the Bioregistry apply.
-- Each context must list its maintainers along with their current GitHub, email,
-  and ORCID.
+- Each context must list its maintainers along with their current GitHub, ORCID,
+  and optional email.
 - Each context must include a name and description
 - Contexts should ideally be significantly different from the Bioregistry
   standard context. If they are not so dissimilar, then the submitters should
