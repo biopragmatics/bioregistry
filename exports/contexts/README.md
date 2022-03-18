@@ -38,6 +38,8 @@ the `bioregistry.export.prefix_maps` module.
 - If a maintainer is pinged on the Bioregistry issue tracker regarding one of
   the contexts for which they are responsible, they have four weeks to respond
   otherwise they will be removed as a maintainer.
+- A technical solution based on CI/CD and GitHub's API will be used to randomly
+  ping maintainers to check that they are still available on GitHub.
 - If fewer there are fewer than two maintainers listed for any context, then the
   Bioregistry Review Team automatically gains the rights as a maintainer.
 - If there are no maintainers for a given context, e.g., if all maintainers have
