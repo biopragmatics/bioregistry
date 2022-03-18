@@ -1,8 +1,5 @@
 {
   "obo": {
-    "base_remappings": [
-      "obofoundry"
-    ],
     "custom_prefix_map": {
       "DOI": "https://doi.org"
     },
@@ -16,13 +13,16 @@
       }
     ],
     "name": "Open Biomedical Ontologies Context",
+    "prefix_priority": [
+      "obofoundry"
+    ],
     "prefix_remapping": {
       "doi": "DOI",
       "ensembl": "ENSEMBL",
       "snomedct": "SCTID",
       "umls": "UMLS"
     },
-    "priority": [
+    "uri_prefix_priority": [
       "obofoundry",
       "default",
       "prefixcommons",

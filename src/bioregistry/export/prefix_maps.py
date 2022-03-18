@@ -14,6 +14,7 @@ import bioregistry
 from bioregistry import get_prefix_map
 from bioregistry.constants import (
     CONTEXT_BIOREGISTRY_PATH,
+    CONTEXTS_PATH,
     EXPORT_CONTEXTS,
     SHACL_TURTLE_PATH,
 )
@@ -47,14 +48,14 @@ def _context_prefix_maps():
             ChainMap(
                 *(
                     bioregistry.get_registry_map(metaprefix)
-                    for metaprefix in data.base_remappings or []
+                    for metaprefix in data.prefix_priority or []
                 ),
                 data.prefix_remapping or {},
             )
         )
         prefix_map = get_prefix_map(
             remapping=remapping,
-            priority=data.priority,
+            priority=data.uri_prefix_priority,
             include_synonyms=data.include_synonyms,
             use_preferred=data.use_preferred,
         )
@@ -65,7 +66,7 @@ def _context_prefix_maps():
         if key == "obo":  # Special case, maybe put this in data model
             prefix_map = get_prefix_map(
                 remapping=remapping,
-                priority=data.priority,
+                priority=data.uri_prefix_priority,
                 include_synonyms=True,
                 use_preferred=data.use_preferred,
             )

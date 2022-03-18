@@ -103,5 +103,6 @@ from .utils import (  # noqa:F401
     read_metaregistry,
     read_mismatches,
     read_registry,
+    write_contexts,
     write_registry,
 )

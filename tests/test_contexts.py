@@ -42,9 +42,9 @@ class TestContexts(unittest.TestCase):
                 self.assertIn("orcid", maintainer)
                 # TODO check valid ORCID
 
-            for metaprefix in context.priority or []:
+            for metaprefix in context.uri_prefix_priority or []:
                 self.assertIn(metaprefix, self.valid_metaprefixes)
-            for metaprefix in context.base_remappings or []:
+            for metaprefix in context.prefix_priority or []:
                 self.assertIn(metaprefix, self.valid_metaprefixes)
             for prefix in context.prefix_remapping or {}:
                 self.assertIn(prefix, self.valid_prefixes)

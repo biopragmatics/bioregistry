@@ -1502,9 +1502,9 @@ class Context(BaseModel):
     maintainers: List[Author] = Field(
         description="A list of maintainers for the context",
     )
-    base_remappings: Optional[List[str]] = Field(
+    prefix_priority: Optional[List[str]] = Field(
         ...,
-        description="A list of metaprefixes to use for auto-generating remappings",
+        description="A list of metaprefixes for prioritizing which prefixes get used",
     )
     include_synonyms: bool = Field(
         False,
@@ -1514,9 +1514,9 @@ class Context(BaseModel):
         False,
         description="Should preferred prefixes (i.e., stylized prefixes) be preferred over canonicalized ones?",
     )
-    priority: Optional[List[str]] = Field(
+    uri_prefix_priority: Optional[List[str]] = Field(
         ...,
-        description="A list of metaprefixes in priority order",
+        description="A list of metaprefixes for prioritizing which URI prefixes get used",
     )
     prefix_remapping: Optional[Dict[str, str]] = Field(
         ...,
