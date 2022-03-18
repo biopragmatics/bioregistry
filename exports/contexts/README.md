@@ -46,6 +46,8 @@ rules:
 - Requests can be
 - Each context must list its maintainers along with their current GitHub, email,
   and ORCID.
+- This README should also be updated to reflect new contexts (though this might
+  be automated in the future.)
 
 #### Editing a pre-existing context
 
