@@ -682,6 +682,16 @@
           "title": "Bioregistry Prefix",
           "description": "The prefix for this registry in the Bioregistry",
           "type": "string"
+        },
+        "logo_url": {
+          "title": "Logo Url",
+          "description": "The URL for the logo of the resource",
+          "type": "string"
+        },
+        "license": {
+          "title": "License",
+          "description": "The license under which the resource is redistributed",
+          "type": "string"
         }
       },
       "required": [
@@ -692,6 +702,84 @@
         "example",
         "availability",
         "contact"
+      ]
+    },
+    "Context": {
+      "title": "Context",
+      "description": "A prescriptive context.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "description": "The name of the context",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "description": "A description of the context, can include Markdown",
+          "type": "string"
+        },
+        "maintainers": {
+          "title": "Maintainers",
+          "description": "A list of maintainers for the context",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Author"
+          }
+        },
+        "base_remappings": {
+          "title": "Base Remappings",
+          "description": "A list of metaprefixes to use for auto-generating remappings",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "include_synonyms": {
+          "title": "Include Synonyms",
+          "description": "Should synonyms be included in the prefix map?",
+          "default": false,
+          "type": "boolean"
+        },
+        "use_preferred": {
+          "title": "Use Preferred",
+          "description": "Should preferred prefixes (i.e., stylized prefixes) be preferred over canonicalized ones?",
+          "default": false,
+          "type": "boolean"
+        },
+        "priority": {
+          "title": "Priority",
+          "description": "A list of metaprefixes in priority order",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "prefix_remapping": {
+          "title": "Prefix Remapping",
+          "description": "Custom prefix renames. Keys must be valid Bioregistry prefixes",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "custom_prefix_map": {
+          "title": "Custom Prefix Map",
+          "description": "A custom prefix map to include after all other logic is applied",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "maintainers",
+        "base_remappings",
+        "priority",
+        "prefix_remapping",
+        "custom_prefix_map"
       ]
     }
   }
