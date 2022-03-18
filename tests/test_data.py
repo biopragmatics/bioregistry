@@ -706,3 +706,27 @@ class TestRegistry(unittest.TestCase):
                     wikidata_property is None or wikidata_property.startswith("P"),
                     msg=f"Wikidata property for {prefix} is malformed: {wikidata_property}",
                 )
+
+    def test_wikidata_wrong_place(self):
+        """Test that wikidata annotations aren't accidentally placed in the wrong place."""
+        registry_raw = json.loads(BIOREGISTRY_PATH.read_text(encoding="utf8"))
+        metaprefixes = set(self.metaregistry)
+        for prefix, resource in registry_raw.items():
+            external_m = {
+                metaprefix: resource[metaprefix]
+                for metaprefix in metaprefixes
+                if metaprefix in resource
+            }
+            if not external_m:
+                continue
+            with self.subTest(prefix=prefix):
+                for metaprefix, external in external_m.items():
+                    self.assertNotIn(
+                        "wikidata",
+                        external,
+                        msg=f"""
+                        
+    A "wikidata" key appeared in [{prefix}] inside external metadata for "{metaprefix}".
+    Please move this key to its own top-level entry within the [{prefix}] record.
+                        """,
+                    )
