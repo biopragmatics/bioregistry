@@ -730,3 +730,12 @@ class TestRegistry(unittest.TestCase):
     Please move this key to its own top-level entry within the [{prefix}] record.
                         """,
                     )
+
+    def test_mismatches(self):
+        """Test mismatches all use canonical prefixes."""
+        for prefix in bioregistry.read_mismatches():
+            with self.subTest(prefix=prefix):
+                self.assertTrue(
+                    prefix in set(self.registry),
+                    msg=f"mismatches.json has invalid prefix: {prefix}",
+                )
