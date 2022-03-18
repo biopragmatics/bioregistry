@@ -15,6 +15,7 @@ from .utils import (
     _normalize_prefix_or_404,
 )
 from .. import manager
+from ..schema import Context
 from ..utils import (
     curie_to_str,
     read_collections_contributions,
@@ -205,6 +206,7 @@ def contexts():
         rows=bioregistry.read_contexts().items(),
         markdown=markdown,
         formats=FORMATS,
+        schema=Context.schema(),
     )
 
 
@@ -219,12 +221,8 @@ def context(identifier: str):
         identifier=identifier,
         entry=entry,
         markdown=markdown,
-        formats=[
-            *FORMATS,
-            ("RDF (turtle)", "turtle"),
-            ("RDF (JSON-LD)", "jsonld"),
-            ("Context JSON-LD", "context"),
-        ],
+        schema=Context.schema()["properties"],
+        formats=FORMATS,
     )
 
 

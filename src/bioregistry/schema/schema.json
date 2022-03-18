@@ -706,7 +706,7 @@
     },
     "Context": {
       "title": "Context",
-      "description": "A prescriptive context.",
+      "description": "A prescriptive context contains configuration for generating fit-for-purpose\nprefix maps to serve various communities based on the standard Bioregistry\nprefix map, custom prefix remapping rules, custom URI prefix remapping rules,\ncustom prefix maps, and other community-specific logic.",
       "type": "object",
       "properties": {
         "name": {
@@ -729,7 +729,7 @@
         },
         "prefix_priority": {
           "title": "Prefix Priority",
-          "description": "A list of metaprefixes to use for auto-generating remappings",
+          "description": "This ordering of metaprefixes (i.e., prefixes for registries) is used to determine the priority of which registry's prefixes are used. By default, the canonical Bioregistry prefixes are highest priority.",
           "type": "array",
           "items": {
             "type": "string"
@@ -749,7 +749,7 @@
         },
         "uri_prefix_priority": {
           "title": "Uri Prefix Priority",
-          "description": "A list of metaprefixes in priority order",
+          "description": "This ordering of metaprefixes (i.e., prefixes for registries) is used to determine the priority of which registry's URI prefixes are used. By default, the canonical Bioregistry URI prefixes are highest priority.",
           "type": "array",
           "items": {
             "type": "string"
@@ -757,7 +757,7 @@
         },
         "prefix_remapping": {
           "title": "Prefix Remapping",
-          "description": "Custom prefix renames. Keys must be valid Bioregistry prefixes",
+          "description": "This is a mapping from canonical Bioregistry prefixes to custom prefixes used in this context.",
           "type": "object",
           "additionalProperties": {
             "type": "string"
@@ -765,7 +765,7 @@
         },
         "custom_prefix_map": {
           "title": "Custom Prefix Map",
-          "description": "A custom prefix map to include after all other logic is applied",
+          "description": "This is a custom prefix map that is added after all other logic is applied. Keys do not necessarily need to be Bioregistry prefixes.",
           "type": "object",
           "additionalProperties": {
             "type": "string"

@@ -247,7 +247,7 @@ def context(identifier: str):
       schema:
         type: string
         enum: [json, yaml]
-    """
+    """  # noqa:DAR101,DAR201
     data = bioregistry.get_context(identifier)
     if not data:
         abort(404, f"Invalid context: {identifier}")

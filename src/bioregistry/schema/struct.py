@@ -41,6 +41,7 @@ __all__ = [
     "Resource",
     "Collection",
     "Registry",
+    "Context",
     "get_json_schema",
 ]
 
@@ -1491,7 +1492,11 @@ class Collection(BaseModel):
 
 
 class Context(BaseModel):
-    """A prescriptive context."""
+    """A prescriptive context contains configuration for generating fit-for-purpose
+    prefix maps to serve various communities based on the standard Bioregistry
+    prefix map, custom prefix remapping rules, custom URI prefix remapping rules,
+    custom prefix maps, and other community-specific logic.
+    """  # noqa:D400,D205
 
     name: str = Field(
         description="The name of the context",
@@ -1504,7 +1509,13 @@ class Context(BaseModel):
     )
     prefix_priority: Optional[List[str]] = Field(
         ...,
-        description="A list of metaprefixes for prioritizing which prefixes get used",
+        description=_dedent(
+            """\
+            This ordering of metaprefixes (i.e., prefixes for registries)
+            is used to determine the priority of which registry's prefixes are used.
+            By default, the canonical Bioregistry prefixes are highest priority.
+        """
+        ),
     )
     include_synonyms: bool = Field(
         False,
@@ -1516,15 +1527,26 @@ class Context(BaseModel):
     )
     uri_prefix_priority: Optional[List[str]] = Field(
         ...,
-        description="A list of metaprefixes for prioritizing which URI prefixes get used",
+        description=_dedent(
+            """\
+            This ordering of metaprefixes (i.e., prefixes for registries)
+            is used to determine the priority of which registry's URI prefixes are used.
+            By default, the canonical Bioregistry URI prefixes are highest priority.
+         """
+        ),
     )
     prefix_remapping: Optional[Dict[str, str]] = Field(
         ...,
-        description="Custom prefix renames. Keys must be valid Bioregistry prefixes",
+        description="This is a mapping from canonical Bioregistry prefixes to custom prefixes used in this context.",
     )
     custom_prefix_map: Optional[Dict[str, str]] = Field(
         ...,
-        description="A custom prefix map to include after all other logic is applied",
+        description=_dedent(
+            """\
+            This is a custom prefix map that is added after all other logic is applied.
+            Keys do not necessarily need to be Bioregistry prefixes.
+        """
+        ),
     )
 
 

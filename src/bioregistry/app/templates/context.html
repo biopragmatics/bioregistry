@@ -53,25 +53,37 @@
                 </dd>
                 <dt>Properties</dt>
                 <dd>
-                    <span class="badge badge-pill badge-{% if entry.include_synonyms %}success{% else %}light{% endif %}">Synonyms</span>
-                    <span class="badge badge-pill badge-{% if entry.use_preferred %}success{% else %}light{% endif %}">Preferred Prefixes</span>
+                    <span class="badge badge-pill badge-{% if entry.include_synonyms %}success{% else %}light{% endif %}"
+                          data-toggle="tooltip" title="{{ schema.include_synonyms.description }}">Synonyms</span>
+                    <span class="badge badge-pill badge-{% if entry.use_preferred %}success{% else %}light{% endif %}"
+                          data-toggle="tooltip" title="{{ schema.use_preferred.description }}">Preferred Prefixes</span>
                 </dd>
                 {% if entry.prefix_priority %}
                     <dt>Prefix Priority</dt>
                     <dd>
+                        <p>{{ schema.prefix_priority.description }}</p>
                         <ol>
                             {% for metaprefix in entry.prefix_priority %}
-                                <li><code>{{ metaprefix }}</code></li>
+                                <li>
+                                    <a href="{{ url_for("ui.metaresource", metaprefix=metaprefix) }}">
+                                        <code>{{ metaprefix }}</code>
+                                    </a>
+                                </li>
                             {% endfor %}
                         </ol>
                     </dd>
                 {% endif %}
-                {% if entry.prefix_priority %}
+                {% if entry.uri_prefix_priority %}
                     <dt>URI Prefix Priority</dt>
                     <dd>
+                        <p>{{ schema.uri_prefix_priority.description }}</p>
                         <ol>
                             {% for metaprefix in entry.uri_prefix_priority %}
-                                <li><code>{{ metaprefix }}</code></li>
+                                <li>
+                                    <a href="{{ url_for("ui.metaresource", metaprefix=metaprefix) }}">
+                                        <code>{{ metaprefix }}</code>
+                                    </a>
+                                </li>
                             {% endfor %}
                         </ol>
                     </dd>
@@ -79,9 +91,12 @@
                 {% if entry.prefix_remapping %}
                     <dt>Prefix Remapping</dt>
                     <dd>
+                        <p>{{ schema.prefix_remapping.description }}</p>
                         <dl class="row">
                             {% for key, value in entry.prefix_remapping.items() %}
-                                <dt class="col-sm-3 text-right">{{ key }}</dt>
+                                <dt class="col-sm-3 text-right">
+                                    <a href="{{ url_for("ui.resource", prefix=key) }}">{{ key }}</a>
+                                </dt>
                                 <dd class="col-sm-9 text-left">{{ value }}</dd>
                             {% endfor %}
                         </dl>
@@ -89,12 +104,15 @@
                 {% endif %}
                 {% if entry.custom_prefix_map %}
                     <dt>Custom Prefix Map</dt>
-                    <dl class="row">
-                        {% for key, value in entry.custom_prefix_map.items() %}
-                            <dt class="col-sm-3 text-right">{{ key }}</dt>
-                            <dd class="col-sm-9 text-left">{{ value }}</dd>
-                        {% endfor %}
-                    </dl>
+                    <dd>
+                        <p>{{ schema.custom_prefix_map.description }}</p>
+                        <dl class="row">
+                            {% for key, value in entry.custom_prefix_map.items() %}
+                                <dt class="col-sm-3 text-right">{{ key }}</dt>
+                                <dd class="col-sm-9 text-left">{{ value }}</dd>
+                            {% endfor %}
+                        </dl>
+                    </dd>
                 {% endif %}
             </dl>
         </div>
