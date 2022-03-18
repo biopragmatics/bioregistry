@@ -41,23 +41,29 @@ def generate_contexts():
         _write_shacl(context_path_stub.with_suffix(".context.ttl"), prefix_map)
 
 
+def get_prescriptive_prefix_map(key: str) -> Mapping[str, str]:
+    """Get a prescriptive prefix map."""
+    data = bioregistry.read_contexts()[key]
+    remapping = dict(
+        ChainMap(
+            *(
+                bioregistry.get_registry_map(metaprefix)
+                for metaprefix in data.prefix_priority or []
+            ),
+            data.prefix_remapping or {},
+        )
+    )
+    return get_prefix_map(
+        remapping=remapping,
+        priority=data.uri_prefix_priority,
+        include_synonyms=data.include_synonyms,
+        use_preferred=data.use_preferred,
+    )
+
+
 def _context_prefix_maps():
     for key, data in bioregistry.read_contexts().items():
-        remapping = dict(
-            ChainMap(
-                *(
-                    bioregistry.get_registry_map(metaprefix)
-                    for metaprefix in data.prefix_priority or []
-                ),
-                data.prefix_remapping or {},
-            )
-        )
-        prefix_map = get_prefix_map(
-            remapping=remapping,
-            priority=data.uri_prefix_priority,
-            include_synonyms=data.include_synonyms,
-            use_preferred=data.use_preferred,
-        )
+        prefix_map = get_prescriptive_prefix_map(key)
         stub = EXPORT_CONTEXTS.joinpath(key)
         _write_prefix_map(stub.with_suffix(".context.jsonld"), prefix_map)
         _write_shacl(stub.with_suffix(".context.ttl"), prefix_map)
@@ -117,20 +123,6 @@ def collection_to_context_jsonlds(collection: Collection) -> str:
     return json.dumps(collection.as_context_jsonld())
 
 
-OBO_PRIORITY = (
-    "obofoundry",
-    "default",
-    "prefixcommons",
-    "miriam",
-    "ols",
-)
-OBO_REMAPPING = {
-    "umls": "UMLS",
-    "snomedct": "SCTID",
-    "ensembl": "ENSEMBL",
-}
-
-
 def get_obofoundry_prefix_map(include_synonyms: bool = False) -> Mapping[str, str]:
     """Get the OBO Foundry prefix map.
 
@@ -138,15 +130,7 @@ def get_obofoundry_prefix_map(include_synonyms: bool = False) -> Mapping[str, st
         the same URL prefix?
     :return: A mapping from prefixes to prefix URLs.
     """
-    # FIXME delete
-    remapping = bioregistry.get_registry_map("obofoundry")
-    remapping.update(OBO_REMAPPING)
-    return get_prefix_map(
-        remapping=remapping,
-        priority=OBO_PRIORITY,
-        include_synonyms=include_synonyms,
-        use_preferred=True,
-    )
+    return get_prescriptive_prefix_map("obo")
 
 
 if __name__ == "__main__":
