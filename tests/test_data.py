@@ -15,7 +15,7 @@ from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import _norm, curie_to_str, is_mismatch
+from bioregistry.utils import _norm, curie_to_str, extended_encoder, is_mismatch
 
 logger = logging.getLogger(__name__)
 
@@ -27,6 +27,28 @@ class TestRegistry(unittest.TestCase):
         """Set up the test case."""
         self.registry = bioregistry.read_registry()
         self.metaregistry = bioregistry.read_metaregistry()
+
+    def test_lint(self):
+        """Test that the lint command was run.
+
+        .. seealso:: https://github.com/biopragmatics/bioregistry/issues/180
+        """
+        text = BIOREGISTRY_PATH.read_text(encoding="utf8")
+        linted_text = json.dumps(
+            json.loads(text), indent=2, sort_keys=True, ensure_ascii=False, default=extended_encoder
+        )
+        self.assertEqual(
+            linted_text,
+            text,
+            msg="""
+
+    There are formatting errors in one of the Bioregistry's JSON data files.
+    Please lint these files using the following commands in the console:
+
+    $ pip install tox
+    $ tox -e bioregistry-lint
+    """,
+        )
 
     def test_prefixes(self):
         """Check prefixes aren't malformed."""
@@ -650,3 +672,61 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 self.assertIsNotNone(resource.contact.name)
                 self.assertIsNotNone(resource.contact.email)
+
+    def test_wikidata(self):
+        """Check wikidata prefixes are written properly."""
+        allowed = {
+            "database",
+            "prefix",
+            "pattern",
+            "paper",
+            "homepage",
+            "name",
+            "uri_format",
+            "database.label",
+            "format.rdf",
+            "database.homepage",
+        }
+        for prefix, resource in self.registry.items():
+            if not resource.wikidata:
+                continue
+            with self.subTest(prefix=prefix):
+                unexpected_keys = set(resource.wikidata) - allowed
+                self.assertFalse(
+                    unexpected_keys, msg=f"Unexpected keys in wikidata entry: {unexpected_keys}"
+                )
+                database = resource.wikidata.get("database")
+                self.assertTrue(
+                    database is None or database.startswith("Q"),
+                    msg=f"Wikidata database for {prefix} is malformed: {database}",
+                )
+
+                wikidata_property = resource.wikidata.get("prefix")
+                self.assertTrue(
+                    wikidata_property is None or wikidata_property.startswith("P"),
+                    msg=f"Wikidata property for {prefix} is malformed: {wikidata_property}",
+                )
+
+    def test_wikidata_wrong_place(self):
+        """Test that wikidata annotations aren't accidentally placed in the wrong place."""
+        registry_raw = json.loads(BIOREGISTRY_PATH.read_text(encoding="utf8"))
+        metaprefixes = set(self.metaregistry)
+        for prefix, resource in registry_raw.items():
+            external_m = {
+                metaprefix: resource[metaprefix]
+                for metaprefix in metaprefixes
+                if metaprefix in resource
+            }
+            if not external_m:
+                continue
+            with self.subTest(prefix=prefix):
+                for metaprefix, external in external_m.items():
+                    self.assertNotIn(
+                        "wikidata",
+                        external,
+                        msg=f"""
+
+    A "wikidata" key appeared in [{prefix}] inside external metadata for "{metaprefix}".
+    Please move this key to its own top-level entry within the [{prefix}] record.
+                        """,
+                    )

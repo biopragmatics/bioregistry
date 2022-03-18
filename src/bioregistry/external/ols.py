@@ -26,7 +26,12 @@ URL = "https://www.ebi.ac.uk/ols/api/ontologies?size=1000"
 RAW_PATH = DIRECTORY / "raw.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 
-_PROCESSING = get_ols_processing()
+OLS_SKIP = {
+    "co_321:root": "this is a mistake in the way OLS imports CO",
+    "phi": "this is low quality and has no associated metadata",
+    "epso": "can't figure out / not sure if still exists",
+    "epio": "can't figure out / not sure if still exists",
+}
 
 
 def get_ols(force_download: bool = False):
@@ -48,9 +53,10 @@ def get_ols(force_download: bool = False):
     for ontology in data["_embedded"]["ontologies"]:
         ols_id = ontology["ontologyId"]
         # TODO better docs on how to maintain this file
-        config = _PROCESSING.get(ols_id)
+        config = get_ols_processing().get(ols_id)
         if config is None:
-            logger.warning("need to curate processing file for OLS prefix %s", ols_id)
+            if ols_id not in OLS_SKIP:
+                logger.warning("need to curate processing file for OLS prefix %s", ols_id)
             continue
         processed[ols_id] = _process(ontology, config)
 

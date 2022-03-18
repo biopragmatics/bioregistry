@@ -101,6 +101,11 @@ wrong_patterns:
   miriam: ^ENVO:\d{7,8}$
   name: Environment Ontology
   prefix: envo
+- correct: ^\d{7}$
+  homepage: http://planteome.org/
+  miriam: ^(P)?EO\:\d{7}$
+  name: Plant Environment Ontology
+  prefix: eo
 - correct: ^\d+$
   homepage: http://si.washington.edu/projects/fma
   miriam: ^FMA:\d+$
@@ -116,6 +121,11 @@ wrong_patterns:
   miriam: ^GEO_[0-9]{9}$
   name: Geographical Entity Ontology
   prefix: geogeo
+- correct: ^[a-zA-Z0-9-_]+(/[a-zA-Z0-9-_]+)?$
+  homepage: https://github.com/
+  miriam: ^[a-zA-Z0-9-_]+/[a-zA-Z0-9-_]+$
+  name: github
+  prefix: github
 - correct: ^.*/.*$
   homepage: https://gitlab.com/
   miriam: ^[0-9A-Za-z_][0-9A-Za-z-_()\. ]*/[0-9A-Za-z_][0-9A-Za-z-_\. ]*$
@@ -246,11 +256,6 @@ wrong_patterns:
   miriam: ^PATO:\d{7}$
   name: Phenotype And Trait Ontology
   prefix: pato
-- correct: ^\d{7}$
-  homepage: http://planteome.org/
-  miriam: ^(P)?EO\:\d{7}$
-  name: Plant Environment Ontology
-  prefix: peco
 - correct: ^\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b$
   homepage: http://pid.nci.nih.gov/
   miriam: ^\w+$
@@ -297,7 +302,7 @@ wrong_patterns:
   name: Semanticscience Integrated Ontology
   prefix: sio
 - correct: ^\d{7}$
-  homepage: https://github.com/The-Sequence-Ontology/SO-Ontologies
+  homepage: http://www.sequenceontology.org/
   miriam: ^SO:\d{7}$
   name: Sequence types and features ontology
   prefix: so

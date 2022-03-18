@@ -95,7 +95,10 @@ def download():
 @app.route("/acknowledgements")
 def acknowledgements():
     """Render the acknowledgements page."""
-    return render_template("meta/acknowledgements.html")
+    return render_template(
+        "meta/acknowledgements.html",
+        registries=sorted(bioregistry.read_metaregistry().values(), key=attrgetter("name")),
+    )
 
 
 _VERSION = version.get_version()

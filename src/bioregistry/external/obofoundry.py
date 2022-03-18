@@ -68,12 +68,17 @@ def _process(record):
         "contact": record.get("contact", {}).get("email"),
         "contact.label": record.get("contact", {}).get("label"),
         "contact.github": record.get("contact", {}).get("github"),
+        "contact.orcid": record.get("contact", {}).get("orcid"),
         "repository": record.get("repository"),
     }
 
     dependencies = record.get("dependencies")
     if dependencies:
-        rv["depends_on"] = sorted(dependency["id"] for dependency in record.get("dependencies", []))
+        rv["depends_on"] = sorted(
+            dependency["id"]
+            for dependency in record.get("dependencies", [])
+            if dependency.get("type") not in {"BridgeOntology"}
+        )
 
     for product in record.get("products", []):
         if product["id"] == f"{oid}.obo":

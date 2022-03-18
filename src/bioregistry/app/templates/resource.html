@@ -410,6 +410,9 @@
                             {% else %}
                                 {{ mapping.name }}
                             {% endif %}
+                            {% if mapping.metaresource.logo_url %}
+                                <img style="max-height: 1em" alt="{{ mapping.name }} logo" src="{{ mapping.metaresource.logo_url }}" />
+                            {% endif %}
                         </td>
                         <td><code>{{ mapping.metaprefix }}</code></td>
                         <td>

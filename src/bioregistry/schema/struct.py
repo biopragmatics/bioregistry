@@ -24,6 +24,7 @@ from typing import (
 import pydantic.schema
 from pydantic import BaseModel, Field
 
+from bioregistry import constants as brc
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE
@@ -721,9 +722,13 @@ class Resource(BaseModel):
         >>> from bioregistry import get_resource
         >>> get_resource("bioregistry").get_contact_orcid()  # from bioregistry curation
         '0000-0003-4423-4370'
+        >>> get_resource("aero").get_contact_orcid()
+        '0000-0002-9551-6370'
         """
         if self.contact and self.contact.orcid:
             return self.contact.orcid
+        if self.obofoundry and "contact.orcid" in self.obofoundry:
+            return self.obofoundry["contact.orcid"]
         return None
 
     def get_example(self) -> Optional[str]:
@@ -1288,6 +1293,12 @@ class Registry(BaseModel):
     bioregistry_prefix: Optional[str] = Field(
         description="The prefix for this registry in the Bioregistry"
     )
+    logo_url: Optional[str] = Field(
+        description="The URL for the logo of the resource",
+    )
+    license: Optional[str] = Field(
+        description="The license under which the resource is redistributed",
+    )
 
     def score(self) -> int:
         """Calculate a metadata score/goodness for this registry."""
@@ -1394,6 +1405,13 @@ class Registry(BaseModel):
             graph.add((node, bioregistry_schema["0000007"], Literal(self.resolver_uri_format)))
         graph.add((node, bioregistry_schema["0000019"], self.contact.add_triples(graph)))
         return node
+
+    def get_code_link(self) -> Optional[str]:
+        """Get a link to the code on github that downloads this resource."""
+        path = brc.HERE.joinpath("external", self.prefix).with_suffix(".py")
+        if not path.exists():
+            return None
+        return f"https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/external/{self.prefix}.py"
 
 
 class Collection(BaseModel):
