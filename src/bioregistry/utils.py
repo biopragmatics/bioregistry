@@ -229,7 +229,7 @@ def read_registry_contributions() -> Mapping[str, Set[str]]:
 def read_contexts() -> Mapping[str, Context]:
     """Get a mapping from context keys to contexts."""
     return {
-        key: Context(key=key, **data)
+        key: Context(**data)
         for key, data in json.loads(CONTEXTS_PATH.read_text(encoding="utf-8")).items()
     }
 

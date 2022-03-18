@@ -1493,7 +1493,6 @@ class Collection(BaseModel):
 class Context(BaseModel):
     """A prescriptive context."""
 
-    key: str
     name: str = Field(
         description="The name of the context",
     )
