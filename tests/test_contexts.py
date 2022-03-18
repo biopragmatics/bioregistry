@@ -34,11 +34,6 @@ class TestContexts(unittest.TestCase):
     def test_data(self):
         """Test the data integrity."""
         for context in self.contexts.values():
-            self.assertLessEqual(
-                2,
-                len(context.maintainers),
-                msg="\n\nPrescriptive contexts must have a minimum of two maintainers",
-            )
             for maintainer in context.maintainers:
                 self.assertIsNotNone(maintainer.name)
                 # self.assertIsNotNone(maintainer.email, msg=f"{maintainer.name} is missing an email")

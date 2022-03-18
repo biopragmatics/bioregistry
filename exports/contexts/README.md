@@ -27,6 +27,8 @@ the `bioregistry.export.prefix_maps` module.
 - Each context must list its maintainers along with their current GitHub, email,
   and ORCID.
 - Changes to contexts must always be made via pull requests.
+- Changes must pass all CI tests to be considered for acceptance. These tests
+  can be updated at the discretion of the Bioregistry Core Development Team.
 - Changes can only be accepted and merged with the public consent of at least
   one of the maintainers on either the issue motivating the change or pull
   request substantiating it.
