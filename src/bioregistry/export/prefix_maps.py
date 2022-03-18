@@ -63,7 +63,7 @@ def _write_shacl(path: Path, prefix_map: Mapping[str, str]) -> None:
     )
     entries = ",\n".join(
         f'    [ sh:prefix "{prefix}" ; sh:namespace "{uri_prefix}" ]'
-        for prefix, uri_prefix in prefix_map.items()
+        for prefix, uri_prefix in sorted(prefix_map.items())
     )
     path.write_text(text.format(entries=entries))
 
