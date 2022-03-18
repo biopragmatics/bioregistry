@@ -1,7 +1,7 @@
 # Contexts Exports
 
-This directory contains fit-for-purpose exports of JSON-LD contexts as
-well as [SHACL](https://github.com/biopragmatics/bioregistry/issues/305)
+This directory contains fit-for-purpose exports of JSON-LD contexts as well
+as [SHACL](https://github.com/biopragmatics/bioregistry/issues/305)
 formatted exports.
 
 ### Generated via Collections
@@ -21,3 +21,27 @@ the `bioregistry.export.prefix_maps` module.
 | [`bioregistry.context.jsonld`](bioregistry.context.jsonld) and [`bioregistry.context.ttl`](bioregistry.context.ttl)     | Contains Bioregistry-normalized prefixes (lowercase, punctuation normalized) and the best URI prefixes for each based on the Bioregistry's ruleset. |
 | [`obo.context.jsonld`](obo.context.jsonld) and [`obo.context.ttl`](obo.context.ttl)                                     | Contains prefixes and URI prefixes prioritized for the OBO Foundry and ontology contexts.                                                           |
 | [`obo_synonyms.context.jsonld`](obo_synonyms.context.jsonld) and [`obo_synonyms.context.ttl`](obo_synonyms.context.ttl) | Contains prefixes, prefix's synonyms, and URI prefixes prioritized for the OBO Foundry and ontology contexts.                                       |
+
+### Prescriptive Context Governance
+
+- Each context must list its maintainers along with their current GitHub, email,
+  and ORCID.
+- Changes to contexts must always be made via pull requests.
+- Changes can only be accepted and merged with the public consent (i.e. on the
+  issue motivating the change or pull request substantiating it) of at least one
+  of the maintainers.
+- Maintainers for contexts do not necessarily need to be part of the
+  Bioregistry's Review Team.
+- If the maintainers publicly state disagreement on a change, then they are
+  allowed four weeks for deliberation. If a consensus can not be met, then the
+  changes are dismissed.
+- If a maintainer is pinged on the Bioregistry issue tracker regarding one of
+  the contexts for which they are responsible, they have four weeks to respond
+  otherwise they will be removed as a maintainer.
+- If fewer there are fewer than two maintainers listed for any context, then the
+  Bioregistry Review Team automatically gains the rights as a maintainer.
+- If there are no maintainers for a given context, e.g., if all maintainers have
+  been unavailable and have lost maintainer rights, then the Bioregistry Review
+  Team may assign two maintainers at their discretion and then abdicate its
+  responsibility as the maintainer of the context. It is advised not to
+  re-assign previous maintainers who abdicated responsibility.
