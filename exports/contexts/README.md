@@ -30,6 +30,8 @@ the `bioregistry.export.prefix_maps` module.
 - Changes can only be accepted and merged with the public consent of at least
   one of the maintainers on either the issue motivating the change or pull
   request substantiating it.
+- A maintainer can not consent their own changes, i.e., in this case, a second
+  maintainer must also publicly agree.
 - Maintainers for contexts do not necessarily need to be part of the
   Bioregistry's Review Team.
 - If the maintainers publicly state disagreement on a change, then they are
