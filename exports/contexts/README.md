@@ -22,7 +22,14 @@ the `bioregistry.export.prefix_maps` module.
 | [`obo.context.jsonld`](obo.context.jsonld) and [`obo.context.ttl`](obo.context.ttl)                                     | Contains prefixes and URI prefixes prioritized for the OBO Foundry and ontology contexts.                                                           |
 | [`obo_synonyms.context.jsonld`](obo_synonyms.context.jsonld) and [`obo_synonyms.context.ttl`](obo_synonyms.context.ttl) | Contains prefixes, prefix's synonyms, and URI prefixes prioritized for the OBO Foundry and ontology contexts.                                       |
 
-### Prescriptive Context Governance
+## Prescriptive Context Governance
+
+As a follow-up to https://github.com/biopragmatics/bioregistry/issues/324, the
+Bioregistry has updated its context export to be more configurable. To ensure
+stability and reliability for communities that might want to rely on these
+contexts, they were suggested to be only editable by specific people responsible
+for the communities that each context is for. To mitigate the possibility of
+gridlock due to this bottleneck, we institute the following rules:
 
 - Each context must list its maintainers along with their current GitHub, email,
   and ORCID.
