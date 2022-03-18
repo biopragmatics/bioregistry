@@ -432,7 +432,7 @@ bioregistry:aftol.taxonomy a bioregistry.schema:0000001 ;
     skos:exactMatch n2t:aftol.taxonomy,
         prefixcommons:AFTOL.TAXONOMY,
         miriam:aftol.taxonomy ;
-    foaf:homepage "http://aftol.org/data.php"^^xsd:string ;
+    foaf:homepage "https://aftol.umn.edu"^^xsd:string ;
     bioregistry.schema:0000005 "959"^^xsd:string ;
     bioregistry.schema:0000006 "http://wasabi.lutzonilab.net/pub/displayTaxonInfo?aftol_id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
@@ -2180,7 +2180,7 @@ bioregistry:cls a bioregistry.schema:0000001 ;
     dc:description "Cell line collections"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch cellosaurus.resource:CLS ;
-    foaf:homepage "https://www.clsgmbh.de"^^xsd:string ;
+    foaf:homepage "https://cls.shop/"^^xsd:string ;
     bioregistry.schema:0000005 "300108/p3934_A-172"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.clsgmbh.de/$1.html"^^xsd:string ;
     bioregistry.schema:0000012 false .
@@ -9618,7 +9618,8 @@ bioregistry:pombase a bioregistry.schema:0000001 ;
     rdfs:label "PomBase systematic ID" ;
     dc:description "PomBase is a model organism database established to provide access to molecular data and biological information for the fission yeast Schizosaccharomyces pombe. It encompasses annotation of genomic sequence and features, comprehensive manual literature curation and genome-wide data sets."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch go.resource:PomBase,
+    skos:exactMatch biolink:PomBase,
+        go.resource:PomBase,
         n2t:pombase,
         ncbi.resource:PomBase,
         fairsharing:FAIRsharing.8jsya3,
@@ -11732,62 +11733,6 @@ bioregistry:ucsc a bioregistry.schema:0000001 ;
     foaf:homepage "https://genome.ucsc.edu/"^^xsd:string ;
     bioregistry.schema:0000005 "uc001rvw.5"^^xsd:string ;
     bioregistry.schema:0000006 "ftp://hgdownload.cse.ucsc.edu/goldenPath/$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:umbbd.enzyme a bioregistry.schema:0000001 ;
-    rdfs:label "EAWAG Biocatalysis/Biodegradation Database" ;
-    dc:description "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to enzyme information."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch go.resource:UM-BBD_enzymeID,
-        n2t:umbbd.enzyme,
-        prefixcommons:UMBBD.ENZYME,
-        miriam:umbbd.enzyme ;
-    foaf:homepage "http://umbbd.ethz.ch/"^^xsd:string ;
-    bioregistry.schema:0000005 "e0333"^^xsd:string ;
-    bioregistry.schema:0000006 "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=ep&enzymeID=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^e\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:umbbd.pathway a bioregistry.schema:0000001 ;
-    rdfs:label "EAWAG Biocatalysis/Biodegradation Database" ;
-    dc:description "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to pathway information."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch go.resource:UM-BBD_pathwayID,
-        n2t:umbbd.pathway,
-        prefixcommons:UMBBD.PATHWAY,
-        miriam:umbbd.pathway ;
-    foaf:homepage "http://umbbd.ethz.ch/"^^xsd:string ;
-    bioregistry.schema:0000005 "ala"^^xsd:string ;
-    bioregistry.schema:0000006 "http://eawag-bbd.ethz.ch/$1/$1_map.html"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:umbbd.reaction a bioregistry.schema:0000001 ;
-    rdfs:label "EAWAG Biocatalysis/Biodegradation Database" ;
-    dc:description "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to reaction information."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch go.resource:UM-BBD_reactionID,
-        n2t:umbbd.reaction,
-        prefixcommons:UMBBD.REACTION,
-        miriam:umbbd.reaction ;
-    foaf:homepage "http://umbbd.ethz.ch/"^^xsd:string ;
-    bioregistry.schema:0000005 "r0001"^^xsd:string ;
-    bioregistry.schema:0000006 "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=r&reacID=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^r\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:umbbd.rule a bioregistry.schema:0000001 ;
-    rdfs:label "EAWAG Biocatalysis/Biodegradation Database" ;
-    dc:description "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The UM-BBD Pathway Prediction System (PPS) predicts microbial catabolic reactions using substructure searching, a rule-base, and atom-to-atom mapping. The PPS recognizes organic functional groups found in a compound and predicts transformations based on biotransformation rules. These rules are based on reactions found in the UM-BBD database. This collection references those rules."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch go.resource:UM-BBD_ruleID,
-        n2t:umbbd.rule,
-        prefixcommons:UMBBD.RULE,
-        miriam:umbbd.rule ;
-    foaf:homepage "http://umbbd.ethz.ch/servlets/pageservlet?ptype=allrules"^^xsd:string ;
-    bioregistry.schema:0000005 "bt0001"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.umbbd.ethz.ch/servlets/rule.jsp?rule=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^bt\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:unigene a bioregistry.schema:0000001 ;
@@ -14473,6 +14418,8 @@ biolink:ORPHA dcterms:isPartOf bioregistry.metaresource:biolink .
 biolink:PANTHER.FAMILY dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:PathWhiz dcterms:isPartOf bioregistry.metaresource:biolink .
+
+biolink:PomBase dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:RO dcterms:isPartOf bioregistry.metaresource:biolink .
 
@@ -19672,18 +19619,64 @@ bioregistry:ubprop a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     bioregistry.schema:0000012 true .
 
-bioregistry:umbbd.compound a bioregistry.schema:0000001 ;
-    rdfs:label "UM-BBD Compound" ;
-    dc:description "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to compound information."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch n2t:umbbd.compound,
-        prefixcommons:UMBBD.COMPOUND,
-        miriam:umbbd.compound,
-        wikidata:P8121 ;
+bioregistry:umbbd.enzyme a bioregistry.schema:0000001 ;
+    rdfs:label "EAWAG Biocatalysis/Biodegradation Database" ;
+    dc:description "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to enzyme information."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:umbbd ;
+    skos:exactMatch go.resource:UM-BBD_enzymeID,
+        n2t:umbbd.enzyme,
+        prefixcommons:UMBBD.ENZYME,
+        miriam:umbbd.enzyme ;
     foaf:homepage "http://umbbd.ethz.ch/"^^xsd:string ;
-    bioregistry.schema:0000005 "c0001"^^xsd:string ;
-    bioregistry.schema:0000006 "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&compID=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^c\\d+$"^^xsd:string ;
+    bioregistry.schema:0000005 "e0333"^^xsd:string ;
+    bioregistry.schema:0000006 "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=ep&enzymeID=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^e\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:umbbd.pathway a bioregistry.schema:0000001 ;
+    rdfs:label "EAWAG Biocatalysis/Biodegradation Database" ;
+    dc:description "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to pathway information."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:umbbd ;
+    skos:exactMatch go.resource:UM-BBD_pathwayID,
+        n2t:umbbd.pathway,
+        prefixcommons:UMBBD.PATHWAY,
+        miriam:umbbd.pathway ;
+    foaf:homepage "http://umbbd.ethz.ch/"^^xsd:string ;
+    bioregistry.schema:0000005 "ala"^^xsd:string ;
+    bioregistry.schema:0000006 "http://eawag-bbd.ethz.ch/$1/$1_map.html"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:umbbd.reaction a bioregistry.schema:0000001 ;
+    rdfs:label "EAWAG Biocatalysis/Biodegradation Database" ;
+    dc:description "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to reaction information."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:umbbd ;
+    skos:exactMatch go.resource:UM-BBD_reactionID,
+        n2t:umbbd.reaction,
+        prefixcommons:UMBBD.REACTION,
+        miriam:umbbd.reaction ;
+    foaf:homepage "http://umbbd.ethz.ch/"^^xsd:string ;
+    bioregistry.schema:0000005 "r0001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=r&reacID=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^r\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:umbbd.rule a bioregistry.schema:0000001 ;
+    rdfs:label "EAWAG Biocatalysis/Biodegradation Database" ;
+    dc:description "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The UM-BBD Pathway Prediction System (PPS) predicts microbial catabolic reactions using substructure searching, a rule-base, and atom-to-atom mapping. The PPS recognizes organic functional groups found in a compound and predicts transformations based on biotransformation rules. These rules are based on reactions found in the UM-BBD database. This collection references those rules."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:umbbd ;
+    skos:exactMatch go.resource:UM-BBD_ruleID,
+        n2t:umbbd.rule,
+        prefixcommons:UMBBD.RULE,
+        miriam:umbbd.rule ;
+    foaf:homepage "http://umbbd.ethz.ch/servlets/pageservlet?ptype=allrules"^^xsd:string ;
+    bioregistry.schema:0000005 "bt0001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.umbbd.ethz.ch/servlets/rule.jsp?rule=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^bt\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:umls a bioregistry.schema:0000001 ;
@@ -25874,6 +25867,21 @@ bioregistry:ssbd.project a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://ssbd.riken.jp/database/project/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:umbbd.compound a bioregistry.schema:0000001 ;
+    rdfs:label "UM-BBD Compound" ;
+    dc:description "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to compound information."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:umbbd ;
+    skos:exactMatch n2t:umbbd.compound,
+        prefixcommons:UMBBD.COMPOUND,
+        miriam:umbbd.compound,
+        wikidata:P8121 ;
+    foaf:homepage "http://umbbd.ethz.ch/"^^xsd:string ;
+    bioregistry.schema:0000005 "c0001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&compID=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^c\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:webelements a bioregistry.schema:0000001 ;
     rdfs:label "Web Elements" ;
     dc:description "Browser for the periodic table of the elements"^^xsd:string ;
@@ -26326,6 +26334,12 @@ bioregistry:qtldb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.animalgenome.org/QTLdb/q?id=QTL_ID:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:umbbd dcterms:hasPart bioregistry:umbbd.compound,
+        bioregistry:umbbd.enzyme,
+        bioregistry:umbbd.pathway,
+        bioregistry:umbbd.reaction,
+        bioregistry:umbbd.rule .
 
 bioregistry:uniprot a bioregistry.schema:0000001 ;
     rdfs:label "UniProt protein ID" ;
@@ -27850,6 +27864,7 @@ bioregistry.metaresource:biolink a bioregistry.schema:0000002 ;
         biolink:ORPHA,
         biolink:PANTHER.FAMILY,
         biolink:PathWhiz,
+        biolink:PomBase,
         biolink:RO,
         biolink:RXCUI,
         biolink:ResearchID,
