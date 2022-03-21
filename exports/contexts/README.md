@@ -101,6 +101,15 @@ Governance will go into effect either after the second maintainer is added
 to the OBO entry or when a second context is added, after which this notice
 can be removed.
 
+#### Updating governance
+
+This governance must updated in the following way:
+
+1. Create an issue on the Bioregistry's [issue tracker](https://github.com/biopragmatics/bioregistry/issues) describing the desired change and reasoning
+2. Engage in discussion with potential stakeholders
+3. Solicit the Bioregistry Review Team for a review
+4. The Bioregistry Review Team will review 
+
 ### How to Edit
 
 The `contexts.json` file can be edited in the following ways:
