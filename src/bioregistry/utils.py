@@ -226,6 +226,15 @@ def read_registry_contributions() -> Mapping[str, Set[str]]:
     return dict(rv)
 
 
+def read_context_contributions() -> Mapping[str, Set[str]]:
+    """Get a mapping from contributor ORCID identifiers to contexts."""
+    rv = defaultdict(set)
+    for context_key, context in read_contexts().items():
+        for maintainer in context.maintainers:
+            rv[maintainer.orcid].add(context_key)
+    return dict(rv)
+
+
 def read_contexts() -> Mapping[str, Context]:
     """Get a mapping from context keys to contexts."""
     return {

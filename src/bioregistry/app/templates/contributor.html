@@ -88,6 +88,20 @@
                         </ul>
                     </dd>
                 {% endif %}
+                {% if contexts %}
+                    <dt>Contexts Maintained ({{ contexts|length }})</dt>
+                    <dd>
+                        <ul>
+                            {% for context_key, context in contexts %}
+                                <li>
+                                    <a href="{{ url_for("ui.context", identifier=context_key) }}">
+                                        {{ context.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                {% endif %}
                 {% if prefix_contacts %}
                     <dt>Prefixes Responsible ({{ prefix_contacts|length }})</dt>
                     <dd>

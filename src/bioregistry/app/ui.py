@@ -19,6 +19,7 @@ from ..schema import Context
 from ..utils import (
     curie_to_str,
     read_collections_contributions,
+    read_context_contributions,
     read_prefix_contacts,
     read_prefix_contributions,
     read_prefix_reviews,
@@ -344,6 +345,10 @@ def contributor(orcid: str):
         collections=sorted(
             (collection_id, bioregistry.get_collection(collection_id))
             for collection_id in read_collections_contributions().get(author.orcid, [])
+        ),
+        contexts=sorted(
+            (context_key, bioregistry.get_context(context_key))
+            for context_key in read_context_contributions().get(author.orcid, [])
         ),
         prefix_contributions=_s(read_prefix_contributions().get(author.orcid, [])),
         prefix_contacts=_s(read_prefix_contacts().get(author.orcid, [])),
