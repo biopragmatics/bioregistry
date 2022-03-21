@@ -324,6 +324,7 @@ def contributors():
         "contributors.html",
         rows=bioregistry.read_contributors().values(),
         collections=read_collections_contributions(),
+        contexts=read_context_contributions(),
         prefix_contributions=read_prefix_contributions(),
         prefix_reviews=read_prefix_reviews(),
         prefix_contacts=read_prefix_contacts(),

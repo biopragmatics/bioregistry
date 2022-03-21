@@ -19,7 +19,8 @@
     <script>
         $(document).ready(function () {
             $("#contributor-entries").DataTable({
-                "order": [[2, "desc"]]
+                "order": [[2, "desc"]],
+                "scrollX": true
             });
             $("#contributor-entries_wrapper").children(":first-child").addClass("card-body");
             $("#contributor-entries_wrapper").children(":last-child").addClass("card-body");
@@ -67,6 +68,7 @@
                 <td>Prefixes</td>
                 <td>Reviews</td>
                 <td>Collections</td>
+                <td>Contexts</td>
                 <td>Resource</td>
                 <td>Registry</td>
             </tr>
@@ -85,6 +87,7 @@
                     <td style="text-align: right;">{{ prefix_contributions.get(row.orcid, []) | length }}</td>
                     <td style="text-align: right;">{{ prefix_reviews.get(row.orcid, []) | length }}</td>
                     <td style="text-align: right;">{{ collections.get(row.orcid, []) | length }}</td>
+                    <td style="text-align: right;">{{ contexts.get(row.orcid, []) | length }}</td>
                     <td style="text-align: right;">{{ prefix_contacts.get(row.orcid, []) | length }}</td>
                     <td style="text-align: right;">{{ registries.get(row.orcid, []) | length }}</td>
                 </tr>
