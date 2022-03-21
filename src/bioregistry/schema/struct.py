@@ -1543,8 +1543,9 @@ class Context(BaseModel):
         ...,
         description=_dedent(
             """\
-            This is a custom prefix map that is added after all other logic is applied.
-            Keys do not necessarily need to be Bioregistry prefixes.
+            This is a custom prefix map (which contains custom URL/URI expansions) that is added after all other
+            logic is applied. Keys must either be canonical Bioregistry prefixes, prefixes used based on the
+            given prefix priority, or values in the given prefix remapping.
         """
         ),
     )
