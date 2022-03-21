@@ -169,12 +169,12 @@ class Manager:
         norm_identifier = resource.standardize_identifier(identifier, prefix=prefix)
         return norm_prefix, norm_identifier
 
-    @lru_cache(maxsize=None)
+    @lru_cache(maxsize=None)  # noqa:B019
     def get_registry_map(self, metaprefix: str) -> Dict[str, str]:
         """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
         return dict(self._iter_registry_map(metaprefix))
 
-    @lru_cache(maxsize=None)
+    @lru_cache(maxsize=None)  # noqa:B019
     def get_registry_invmap(self, metaprefix: str, normalize: bool = False) -> Dict[str, str]:
         """Get a mapping from prefixes in another registry to Bioregistry prefixes."""
         if normalize:
