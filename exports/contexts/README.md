@@ -97,26 +97,33 @@ rules:
 
 #### Bootstrapping governance
 
-Governance will go into effect either after the second maintainer is added
-to the OBO entry or when a second context is added, after which this notice
-can be removed.
+Governance will go into effect either after the second maintainer is added to
+the OBO entry or when a second context is added, after which this notice can be
+removed.
 
 #### Updating governance
 
-This governance must updated in the following way:
+This governance must updated through the following steps:
 
-1. Create an issue on the Bioregistry's [issue tracker](https://github.com/biopragmatics/bioregistry/issues) describing the desired change and reasoning
-2. Engage in discussion with potential stakeholders
+1. Create an issue on the
+   Bioregistry's [issue tracker](https://github.com/biopragmatics/bioregistry/issues)
+   describing the desired change and reasoning
+2. Engage potential stakeholders in discussion
 3. Solicit the Bioregistry Review Team for a review
-4. The Bioregistry Review Team will review 
+4. The Bioregistry Review Team will accept changes at their discretion.
+
+This procedure doesn't apply to cosmetic or ergonomics changes, which are
+allowed to be done in a more *ad-hoc* manner. The Bioregistry Review Team may
+later make explicit criteria for accepting changes to this governance.
 
 ### How to Edit
 
 The `contexts.json` file can be edited in the following ways:
 
-1. Click [here](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/collections.json)
-   to edit on GitHub. This will automatically create a fork and prompt you to
-   issue a pull request (just press the green buttons).
+1.
+Click [here](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/collections.json)
+to edit on GitHub. This will automatically create a fork and prompt you to issue
+a pull request (just press the green buttons).
 2. Make a fork and issue a pull request.
 3. Open an issue.
 
