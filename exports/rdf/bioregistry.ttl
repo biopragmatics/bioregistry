@@ -5662,7 +5662,7 @@ bioregistry:icdc a bioregistry.schema:0000001 ;
     foaf:homepage "https://caninecommons.cancer.gov/#/"^^xsd:string ;
     bioregistry.schema:0000005 "ICDC000009"^^xsd:string ;
     bioregistry.schema:0000006 "https://caninecommons.cancer.gov/#/study/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^ICDC\\d{6}$"^^xsd:string ;
+    bioregistry.schema:0000008 "^(ICDC)*\\d{6}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:iceberg.element a bioregistry.schema:0000001 ;
@@ -19972,6 +19972,8 @@ fairsharing:FAIRsharing.1rj558 dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.1tbrdz dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.1vrrdh dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.1x53qk dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.27rndz dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -20269,8 +20271,6 @@ fairsharing:FAIRsharing.9sb9qh dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.9te3ev dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.9vtwjs dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
-fairsharing:FAIRsharing.9w8ea0 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.9y8f0n dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -27700,7 +27700,7 @@ bioregistry:ro a bioregistry.schema:0000001 ;
         biolink:RO,
         go.resource:RO,
         n2t:ro,
-        fairsharing:FAIRsharing.9w8ea0,
+        fairsharing:FAIRsharing.1vrrdh,
         prefixcommons:OBO_REL,
         miriam:ro,
         ols:ro,
@@ -29452,6 +29452,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.1gr4tz,
         fairsharing:FAIRsharing.1rj558,
         fairsharing:FAIRsharing.1tbrdz,
+        fairsharing:FAIRsharing.1vrrdh,
         fairsharing:FAIRsharing.1x53qk,
         fairsharing:FAIRsharing.27rndz,
         fairsharing:FAIRsharing.284e1z,
@@ -29601,7 +29602,6 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.9sb9qh,
         fairsharing:FAIRsharing.9te3ev,
         fairsharing:FAIRsharing.9vtwjs,
-        fairsharing:FAIRsharing.9w8ea0,
         fairsharing:FAIRsharing.9y8f0n,
         fairsharing:FAIRsharing.ATwSZG,
         fairsharing:FAIRsharing.AYegqK,

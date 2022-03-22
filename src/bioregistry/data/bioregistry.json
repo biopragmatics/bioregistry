@@ -24151,7 +24151,7 @@
       "id": "00000812",
       "name": "Integrated Canine Data Commons",
       "namespaceEmbeddedInLui": false,
-      "pattern": "^ICDC\\d{6}$",
+      "pattern": "^(ICDC)*\\d{6}$",
       "prefix": "icdc",
       "sampleId": "ICDC000009",
       "uri_format": "https://caninecommons.cancer.gov/#/study/$1"
@@ -45364,14 +45364,12 @@
     },
     "example": "0002533",
     "fairsharing": {
-      "abbreviation": "RO",
-      "description": "RO is a collection of relations intended primarily for standardization across ontologies in the OBO Foundry and wider OBO library. It incorporates ROCore upper-level relations such as part of as well as biology-specific relationship types such as develops from. The predecessor of RO was OBO_REL. Many of the relations in OBO_REL have been ceded to BFO.",
-      "id": "320",
-      "name": "OBO Relations Ontology",
-      "prefix": "FAIRsharing.9w8ea0",
-      "subjects": [
-        "Life Science"
-      ]
+      "abbreviation": "OBOREL",
+      "description": "Defines core relations used in all OBO ontologies.",
+      "id": "534",
+      "name": "Open Biological and Biomedical Ontologies Relationship Types",
+      "prefix": "FAIRsharing.1vrrdh",
+      "subjects": []
     },
     "go": {
       "description": "A collection of relations used across OBO ontologies",
@@ -45381,7 +45379,7 @@
     "mappings": {
       "biolink": "RO",
       "bioportal": "OBOREL",
-      "fairsharing": "FAIRsharing.9w8ea0",
+      "fairsharing": "FAIRsharing.1vrrdh",
       "go": "RO",
       "miriam": "ro",
       "n2t": "ro",
