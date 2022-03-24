@@ -13994,61 +13994,6 @@ millipore:
   name: Merck Millipore (EMD Millipore)
   preferred_prefix: millipore
   uri_format: https://www.merckmillipore.com/catalogue/item/$1
-mim:
-  contact:
-    email: ahamosh@jhmi.edu
-    github: ahamosh
-    name: Ada Hamosh
-    orcid: 0000-0002-1780-5230
-  description: Online Mendelian Inheritance in Man is a catalog of human genes and
-    genetic disorders.
-  example: '603903'
-  homepage: https://omim.org/
-  mappings:
-    bioportal: MIM
-    fairsharing: FAIRsharing.9qkaz9
-    go: OMIM
-    miriam: mim
-    n2t: mim
-    ncbi: MIM
-    prefixcommons: OMIM
-    uniprot: MIM
-    wikidata: P492
-  name: OMIM ID
-  pattern: ^\d+$
-  preferred_prefix: mim
-  providers:
-  - code: CURATOR_REVIEW
-    description: OMIM mirror at John Hopkins
-    homepage: http://mirror.omim.org/
-    name: OMIM mirror at John Hopkins
-    uri_format: http://mirror.omim.org/entry/$1
-  synonyms:
-  - OMIM
-  uri_format: https://omim.org/entry/$1
-mim.ps:
-  contact:
-    email: ahamosh@jhmi.edu
-    github: ahamosh
-    name: Ada Hamosh
-    orcid: 0000-0002-1780-5230
-  contributor:
-    email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: A Phenotypic Series is a tabular view of genetic heterogeneity of similar
-    phenotypes across the genome.
-  example: PS214100
-  homepage: https://www.omim.org/phenotypicSeriesTitles/all
-  name: OMIM Phenotypic Series
-  part_of: mim
-  preferred_prefix: mim.ps
-  synonyms:
-  - MIMPS
-  - OMIMPS
-  - PS
-  uri_format: https://omim.org/phenotypicSeries/$1
 mimodb:
   description: MimoDB is a database collecting peptides that have been selected from
     random peptide libraries based on their ability to bind small compounds, nucleic
@@ -16876,6 +16821,66 @@ omiabis:
   repository: https://github.com/OMIABIS/omiabis-dev
   uri_format: http://purl.obolibrary.org/obo/OMIABIS_$1
   version: '2014-05-28'
+omim:
+  contact:
+    email: ahamosh@jhmi.edu
+    github: ahamosh
+    name: Ada Hamosh
+    orcid: 0000-0002-1780-5230
+  description: Online Mendelian Inheritance in Man is a catalog of human genes and
+    genetic disorders.
+  example: '603903'
+  homepage: https://omim.org/
+  mappings:
+    bioportal: OMIM
+    fairsharing: FAIRsharing.9qkaz9
+    go: OMIM
+    miriam: mim
+    n2t: mim
+    ncbi: MIM
+    prefixcommons: OMIM
+    uniprot: MIM
+    wikidata: P492
+  name: OMIM ID
+  pattern: ^\d+$
+  preferred_prefix: omim
+  providers:
+  - code: CURATOR_REVIEW
+    description: OMIM mirror at John Hopkins
+    homepage: http://mirror.omim.org/
+    name: OMIM mirror at John Hopkins
+    uri_format: http://mirror.omim.org/entry/$1
+  synonyms:
+  - OMIM
+  - mim
+  uri_format: https://omim.org/entry/$1
+omim.ps:
+  contact:
+    email: ahamosh@jhmi.edu
+    github: ahamosh
+    name: Ada Hamosh
+    orcid: 0000-0002-1780-5230
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A Phenotypic Series is a tabular view of genetic heterogeneity of similar
+    phenotypes across the genome.
+  example: PS214100
+  homepage: https://www.omim.org/phenotypicSeriesTitles/all
+  mappings:
+    biolink: OMIM.PS
+  name: OMIM Phenotypic Series
+  part_of: mim
+  pattern: ^PS\d+$
+  preferred_prefix: omim.ps
+  synonyms:
+  - MIMPS
+  - OMIMPS
+  - PS
+  - mim.ps
+  uri_format: https://omim.org/phenotypicSeries/$1
 omit:
   appears_in:
   - mco

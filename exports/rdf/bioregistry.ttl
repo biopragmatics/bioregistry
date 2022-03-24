@@ -7113,6 +7113,8 @@ bioregistry:millipore a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.merckmillipore.com/catalogue/item/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:mim dcterms:hasPart bioregistry:omim.ps .
+
 bioregistry:mimodb a bioregistry.schema:0000001 ;
     rdfs:label "MimoDB" ;
     dc:description "MimoDB is a database collecting peptides that have been selected from random peptide libraries based on their ability to bind small compounds, nucleic acids, proteins, cells, tissues and organs. It also stores other information such as the corresponding target, template, library, and structures. As of March 2016, this database was renamed Biopanning Data Bank."^^xsd:string ;
@@ -8609,6 +8611,26 @@ bioregistry:omia a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://omia.angis.org.au/$1/"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 true .
+
+bioregistry:omim a bioregistry.schema:0000001 ;
+    rdfs:label "OMIM ID" ;
+    dc:description "Online Mendelian Inheritance in Man is a catalog of human genes and genetic disorders."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch bioportal:OMIM,
+        go.resource:OMIM,
+        n2t:mim,
+        ncbi.resource:MIM,
+        fairsharing:FAIRsharing.9qkaz9,
+        prefixcommons:OMIM,
+        miriam:mim,
+        uniprot.resource:MIM,
+        wikidata:P492 ;
+    foaf:homepage "https://omim.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "603903"^^xsd:string ;
+    bioregistry.schema:0000006 "https://omim.org/entry/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1780-5230 .
 
 bioregistry:ontoneo a bioregistry.schema:0000001 ;
     rdfs:label "Obstetric and Neonatal Ontology" ;
@@ -14049,8 +14071,6 @@ bioportal:MI dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:MIAPA dcterms:isPartOf bioregistry.metaresource:bioportal .
 
-bioportal:MIM dcterms:isPartOf bioregistry.metaresource:bioportal .
-
 bioportal:MIRNAO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:MIRO dcterms:isPartOf bioregistry.metaresource:bioportal .
@@ -14132,6 +14152,8 @@ bioportal:OLATDV dcterms:isPartOf bioregistry.metaresource:bioportal .
 bioportal:OM dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:OMIABIS dcterms:isPartOf bioregistry.metaresource:bioportal .
+
+bioportal:OMIM dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:OMIT dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -14410,6 +14432,8 @@ biolink:NCBIGene dcterms:isPartOf bioregistry.metaresource:biolink .
 biolink:NDDF dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:NLMID dcterms:isPartOf bioregistry.metaresource:biolink .
+
+biolink:OMIM.PS dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:ORCID dcterms:isPartOf bioregistry.metaresource:biolink .
 
@@ -18628,27 +18652,6 @@ bioregistry:micro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:mco ;
     bioregistry.schema:0000019 orcid:0000-0002-2100-6351 .
-
-bioregistry:mim a bioregistry.schema:0000001 ;
-    rdfs:label "OMIM ID" ;
-    dc:description "Online Mendelian Inheritance in Man is a catalog of human genes and genetic disorders."^^xsd:string ;
-    dcterms:hasPart bioregistry:mim.ps ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:MIM,
-        go.resource:OMIM,
-        n2t:mim,
-        ncbi.resource:MIM,
-        fairsharing:FAIRsharing.9qkaz9,
-        prefixcommons:OMIM,
-        miriam:mim,
-        uniprot.resource:MIM,
-        wikidata:P492 ;
-    foaf:homepage "https://omim.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "603903"^^xsd:string ;
-    bioregistry.schema:0000006 "https://omim.org/entry/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-1780-5230 .
 
 bioregistry:mirbase.family a bioregistry.schema:0000001 ;
     rdfs:label "miRBase Families" ;
@@ -25607,17 +25610,6 @@ bioregistry:mesh a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^(C|D)\\d{6,9}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:mim.ps a bioregistry.schema:0000001 ;
-    rdfs:label "OMIM Phenotypic Series" ;
-    dc:description "A Phenotypic Series is a tabular view of genetic heterogeneity of similar phenotypes across the genome."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry,
-        bioregistry:mim ;
-    foaf:homepage "https://www.omim.org/phenotypicSeriesTitles/all"^^xsd:string ;
-    bioregistry.schema:0000005 "PS214100"^^xsd:string ;
-    bioregistry.schema:0000006 "https://omim.org/phenotypicSeries/$1"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-1780-5230 .
-
 bioregistry:molbase.sheffield a bioregistry.schema:0000001 ;
     rdfs:label "MolBase" ;
     dc:description "An online database of inorganic compounds, MolBase was constructed by Dr Mark Winter of the University of Sheffield with input from undergraduate students."^^xsd:string ;
@@ -25774,6 +25766,19 @@ OGMS is based on the papers Toward an Ontological Treatment of Disease and Diagn
     bioregistry.schema:0000018 bioregistry:labo,
         bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0003-1346-1327 .
+
+bioregistry:omim.ps a bioregistry.schema:0000001 ;
+    rdfs:label "OMIM Phenotypic Series" ;
+    dc:description "A Phenotypic Series is a tabular view of genetic heterogeneity of similar phenotypes across the genome."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:mim ;
+    skos:exactMatch biolink:OMIM.PS ;
+    foaf:homepage "https://www.omim.org/phenotypicSeriesTitles/all"^^xsd:string ;
+    bioregistry.schema:0000005 "PS214100"^^xsd:string ;
+    bioregistry.schema:0000006 "https://omim.org/phenotypicSeries/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PS\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1780-5230 .
 
 bioregistry:opmi a bioregistry.schema:0000001 ;
     rdfs:label "Ontology of Precision Medicine and Investigation" ;
@@ -27446,7 +27451,6 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:matrixdb,
         bioregistry:mgnify.analysis,
         bioregistry:miaa,
-        bioregistry:mim.ps,
         bioregistry:mirbase.family,
         bioregistry:mirte,
         bioregistry:mmsl,
@@ -27465,6 +27469,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:novus,
         bioregistry:npass,
         bioregistry:oboformat,
+        bioregistry:omim.ps,
         bioregistry:omop,
         bioregistry:oncotree,
         bioregistry:pathbank,
@@ -27860,6 +27865,7 @@ bioregistry.metaresource:biolink a bioregistry.schema:0000002 ;
         biolink:NCBIGene,
         biolink:NDDF,
         biolink:NLMID,
+        biolink:OMIM.PS,
         biolink:ORCID,
         biolink:ORPHA,
         biolink:PANTHER.FAMILY,
@@ -29286,7 +29292,6 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:MFOMD,
         bioportal:MI,
         bioportal:MIAPA,
-        bioportal:MIM,
         bioportal:MIRNAO,
         bioportal:MIRO,
         bioportal:MMO,
@@ -29328,6 +29333,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:OLATDV,
         bioportal:OM,
         bioportal:OMIABIS,
+        bioportal:OMIM,
         bioportal:OMIT,
         bioportal:OMO,
         bioportal:OMP,
@@ -33043,8 +33049,6 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:microscope,
         bioregistry:microsporidia,
         bioregistry:millipore,
-        bioregistry:mim,
-        bioregistry:mim.ps,
         bioregistry:mimodb,
         bioregistry:minid,
         bioregistry:minid.test,
@@ -33192,6 +33196,8 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:oma.protein,
         bioregistry:omia,
         bioregistry:omiabis,
+        bioregistry:omim,
+        bioregistry:omim.ps,
         bioregistry:omit,
         bioregistry:omo,
         bioregistry:omop,
