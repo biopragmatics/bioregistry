@@ -81,7 +81,9 @@ def _context_prefix_maps():
             _write_shacl(stub_double.with_suffix(".context.ttl"), prefix_map)
 
 
-def _write_shacl(path: Path, prefix_map: Mapping[str, str]) -> None:
+def _write_shacl(
+    path: Path, prefix_map: Mapping[str, str], pattern_map: Optional[Mapping[str, str]] = None
+) -> None:
     text = dedent(
         """\
         @prefix sh: <http://www.w3.org/ns/shacl#> .
@@ -92,8 +94,12 @@ def _write_shacl(path: Path, prefix_map: Mapping[str, str]) -> None:
         ] .
         """
     )
+    if pattern_map is None:
+        pattern_map = {}
     entries = ",\n".join(
         f'    [ sh:prefix "{prefix}" ; sh:namespace "{uri_prefix}" ]'
+        if prefix not in pattern_map
+        else f'    [ sh:prefix "{prefix}" ; sh:namespace "{uri_prefix}" ; sh:pattern "{pattern_map[prefix]}" ]'
         for prefix, uri_prefix in sorted(prefix_map.items())
     )
     path.write_text(text.format(entries=entries))
