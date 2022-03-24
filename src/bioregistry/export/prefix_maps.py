@@ -34,11 +34,9 @@ def generate_contexts():
         if name is None:
             continue
         context_path_stub = EXPORT_CONTEXTS.joinpath(name)
-        # Dump jsonld
-        with context_path_stub.with_suffix(".context.jsonld").open("w") as file:
-            json.dump(fp=file, indent=4, sort_keys=True, obj=get_collection_jsonld(key))
-        # Dump shacl
-        _write_shacl(context_path_stub.with_suffix(".context.ttl"), prefix_map)
+        collection_prefix_map = collection.as_prefix_map()
+        _write_prefix_map(context_path_stub.with_suffix(".context.jsonld"), collection_prefix_map)
+        _write_shacl(context_path_stub.with_suffix(".context.ttl"), collection_prefix_map)
 
 
 def get_prescriptive_prefix_map(
@@ -95,7 +93,11 @@ def _write_shacl(
         """
     )
     if pattern_map is None:
-        pattern_map = {}
+        pattern_map = {
+            prefix: resource.get_pattern()
+            for prefix, resource in bioregistry.read_registry().items()
+            if resource.get_pattern() is not None
+        }
     entries = ",\n".join(
         f'    [ sh:prefix "{prefix}" ; sh:namespace "{uri_prefix}" ]'
         if prefix not in pattern_map
@@ -116,13 +118,6 @@ def _write_prefix_map(path: Path, prefix_map: Mapping[str, str]) -> None:
             },
         )
 
-
-def get_collection_jsonld(identifier: str) -> Mapping[str, Mapping[str, str]]:
-    """Get the JSON-LD context based on a given collection."""
-    collection = bioregistry.get_collection(identifier)
-    if collection is None:
-        raise KeyError
-    return collection.as_context_jsonld()
 
 
 def collection_to_context_jsonlds(collection: Collection) -> str:
