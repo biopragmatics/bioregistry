@@ -255,7 +255,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/OMV",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -814,17 +824,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/CST",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -940,17 +940,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/GAMUTS",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -1130,17 +1120,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/IDO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -1258,17 +1238,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/VODANA-MI",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -1384,17 +1354,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/FB-CV",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -1711,6 +1671,69 @@
         "@type": "@id"
       }
     },
+    "@id": "https://data.bioontology.org/ontologies/HTO",
+    "@type": "http://data.bioontology.org/metadata/Ontology",
+    "acronym": "HTO",
+    "administeredBy": [
+      "https://data.bioontology.org/users/mhorridge"
+    ],
+    "flat": null,
+    "links": {
+      "@context": {
+        "analytics": "http://data.bioontology.org/metadata/Analytics",
+        "categories": "http://data.bioontology.org/metadata/Category",
+        "classes": "http://www.w3.org/2002/07/owl#Class",
+        "download": "http://data.bioontology.org/metadata/Ontology",
+        "groups": "http://data.bioontology.org/metadata/Group",
+        "instances": "http://data.bioontology.org/metadata/Instance",
+        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
+        "metrics": "http://data.bioontology.org/metadata/Metrics",
+        "notes": "http://data.bioontology.org/metadata/Note",
+        "projects": "http://data.bioontology.org/metadata/Project",
+        "properties": "http://data.bioontology.org/metadata/Property",
+        "reviews": "http://data.bioontology.org/metadata/Review",
+        "roots": "http://www.w3.org/2002/07/owl#Class",
+        "single_class": "http://www.w3.org/2002/07/owl#Class",
+        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
+        "ui": "http://data.bioontology.org/metadata/Ontology",
+        "views": "http://data.bioontology.org/metadata/Ontology"
+      },
+      "analytics": "https://data.bioontology.org/ontologies/HTO/analytics",
+      "categories": "https://data.bioontology.org/ontologies/HTO/categories",
+      "classes": "https://data.bioontology.org/ontologies/HTO/classes",
+      "download": "https://data.bioontology.org/ontologies/HTO/download",
+      "groups": "https://data.bioontology.org/ontologies/HTO/groups",
+      "instances": "https://data.bioontology.org/ontologies/HTO/instances",
+      "latest_submission": "https://data.bioontology.org/ontologies/HTO/latest_submission",
+      "metrics": "https://data.bioontology.org/ontologies/HTO/metrics",
+      "notes": "https://data.bioontology.org/ontologies/HTO/notes",
+      "projects": "https://data.bioontology.org/ontologies/HTO/projects",
+      "properties": "https://data.bioontology.org/ontologies/HTO/properties",
+      "reviews": "https://data.bioontology.org/ontologies/HTO/reviews",
+      "roots": "https://data.bioontology.org/ontologies/HTO/classes/roots",
+      "single_class": "https://data.bioontology.org/ontologies/HTO/classes/{class_id}",
+      "submissions": "https://data.bioontology.org/ontologies/HTO/submissions",
+      "ui": "http://bioportal.bioontology.org/ontologies/HTO",
+      "views": "https://data.bioontology.org/ontologies/HTO/views"
+    },
+    "name": "Horridge Test Ontology",
+    "ontologyType": "https://data.bioontology.org/ontology_types/ONTOLOGY",
+    "summaryOnly": false
+  },
+  {
+    "@context": {
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
+    },
     "@id": "https://data.bioontology.org/ontologies/ONTOAD",
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "ONTOAD",
@@ -1888,17 +1911,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/HIVO004",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -2203,7 +2216,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/CHEAR",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -2256,17 +2279,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/PW",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -3264,17 +3277,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/BIFO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -3390,17 +3393,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/PARTUMDO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -3958,17 +3951,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/OA",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -4274,7 +4257,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/BRO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -4642,7 +4635,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/SOCPRES",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -5326,17 +5329,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/BIPOM",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -6652,17 +6645,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/RB",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -6715,7 +6698,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/FAST-CHRONO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -7147,7 +7140,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/PSO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -7389,7 +7392,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/ICF",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -7696,17 +7709,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/MHCRO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -8643,17 +8646,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/TM-SIGNS-AND-SYMPTS",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -9148,7 +9141,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/ANC",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -10780,17 +10783,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/OBA",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -11221,17 +11214,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/GMM",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -11348,17 +11331,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/SITBAC",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -11917,7 +11890,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/CDAO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -12474,17 +12457,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/NLMVS",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -13545,17 +13518,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/ICNP",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -13986,17 +13949,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/BIOMODELS",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -14175,17 +14128,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/NIHSS",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -14427,17 +14370,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/ATC",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -14553,7 +14486,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/FAST-EVENT-SKOS",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -14732,17 +14675,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/ORNASEQ",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -15299,7 +15232,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/IDG_GL",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -16740,17 +16683,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/PATHLEX",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -16993,17 +16926,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/WB-PHENOTYPE",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -17309,17 +17232,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/TCO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -17498,17 +17411,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/AISM",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -18700,7 +18603,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/BPFORMS",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -19573,17 +19486,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/DC",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -19964,70 +19867,6 @@
         "@type": "@id"
       }
     },
-    "@id": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES",
-    "@type": "http://data.bioontology.org/metadata/Ontology",
-    "acronym": "ETHIOPIADISEASES",
-    "administeredBy": [
-      "https://data.bioontology.org/users/vodana",
-      "https://data.bioontology.org/users/aliya.aktau"
-    ],
-    "flat": null,
-    "links": {
-      "@context": {
-        "analytics": "http://data.bioontology.org/metadata/Analytics",
-        "categories": "http://data.bioontology.org/metadata/Category",
-        "classes": "http://www.w3.org/2002/07/owl#Class",
-        "download": "http://data.bioontology.org/metadata/Ontology",
-        "groups": "http://data.bioontology.org/metadata/Group",
-        "instances": "http://data.bioontology.org/metadata/Instance",
-        "latest_submission": "http://data.bioontology.org/metadata/OntologySubmission",
-        "metrics": "http://data.bioontology.org/metadata/Metrics",
-        "notes": "http://data.bioontology.org/metadata/Note",
-        "projects": "http://data.bioontology.org/metadata/Project",
-        "properties": "http://data.bioontology.org/metadata/Property",
-        "reviews": "http://data.bioontology.org/metadata/Review",
-        "roots": "http://www.w3.org/2002/07/owl#Class",
-        "single_class": "http://www.w3.org/2002/07/owl#Class",
-        "submissions": "http://data.bioontology.org/metadata/OntologySubmission",
-        "ui": "http://data.bioontology.org/metadata/Ontology",
-        "views": "http://data.bioontology.org/metadata/Ontology"
-      },
-      "analytics": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/analytics",
-      "categories": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/categories",
-      "classes": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/classes",
-      "download": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/download",
-      "groups": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/groups",
-      "instances": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/instances",
-      "latest_submission": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/latest_submission",
-      "metrics": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/metrics",
-      "notes": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/notes",
-      "projects": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/projects",
-      "properties": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/properties",
-      "reviews": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/reviews",
-      "roots": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/classes/roots",
-      "single_class": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/classes/{class_id}",
-      "submissions": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/submissions",
-      "ui": "http://bioportal.bioontology.org/ontologies/ETHIOPIADISEASES",
-      "views": "https://data.bioontology.org/ontologies/ETHIOPIADISEASES/views"
-    },
-    "name": "EthiopiaDiseasesList",
-    "ontologyType": "https://data.bioontology.org/ontology_types/ONTOLOGY",
-    "summaryOnly": false
-  },
-  {
-    "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
-    },
     "@id": "https://data.bioontology.org/ontologies/RDL",
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "RDL",
@@ -20142,17 +19981,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/PHARE",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -20833,17 +20662,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/FTC",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -21023,17 +20842,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/AMINO-ACID",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -21149,7 +20958,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/EBP",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -21833,7 +21652,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/CIDOC-CRM",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -21949,17 +21778,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/BP",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -22012,17 +21831,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/ITO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -22138,17 +21947,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/NCIT",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -22265,7 +22064,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/AI-RHEUM",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -22318,17 +22127,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/SEPIO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -22507,17 +22306,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/LPT",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -22759,17 +22548,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/MCO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -22948,17 +22727,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/SPO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -23201,17 +22970,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/MO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -23264,17 +23023,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/NONRCTO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -23392,17 +23141,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/OntoVIP",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -23455,17 +23194,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/TML",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -23708,17 +23437,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/PROJ",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -23771,17 +23490,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/HIVCRS",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -23834,17 +23543,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/REXO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -23897,17 +23596,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/BCTEO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -24023,17 +23712,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/IDODEN",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -24086,17 +23765,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/HOIP",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -24530,17 +24199,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/HMADO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -24847,17 +24506,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/MEPO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -24973,17 +24622,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/DISDRIV",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -25228,17 +24867,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/ZONMW-GENERIC",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -27367,17 +26996,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/OVAE",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -27619,17 +27238,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/BTO_ONTOLOGY",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -28886,7 +28495,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/HORD",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -29317,17 +28936,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/TAXRANK",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -29506,7 +29115,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/MADS-RDF",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -29685,17 +29304,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/PMDO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -30635,7 +30244,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/HSO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -30878,17 +30497,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/TRIAGE",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -30941,17 +30550,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/WIKIPATHWAYS",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -31005,17 +30604,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/ADMO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -31635,7 +31224,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/PROCCHEMICAL",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -31878,17 +31477,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/SOY",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -32259,17 +31848,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/ONTOTOX",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -32448,17 +32027,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/SWO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -32514,7 +32083,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/OBCS",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -33959,17 +33538,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/AHOL",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -34149,17 +33718,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/NLN",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -34403,17 +33962,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/ZEA",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -34466,17 +34015,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/SMASH",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -35543,7 +35082,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/MARC-LANGUAGES",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -36480,17 +36029,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/GENEVIEVE",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -36672,7 +36211,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/ROLEO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -36914,7 +36463,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/ODNAE",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -37220,17 +36779,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/PPLC",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -37346,17 +36895,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/FAST-EVENT",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -38043,17 +37582,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/FIDEO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -38619,7 +38148,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/OHMI",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -39051,7 +38590,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/ONSTR",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -40177,17 +39726,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/ABD",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -40807,17 +40346,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/SAO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -41438,17 +40967,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/APACOMPUTER",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -41942,17 +41461,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/ZP",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -42133,17 +41642,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/CCF",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -42387,17 +41886,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/KENYAANC",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -42450,7 +41939,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/HC",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -43205,17 +42704,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/MINERAL",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -44781,7 +44270,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/UBERON",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -44834,17 +44333,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/MFOEM",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -44960,17 +44449,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/CONTSONTO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -45023,7 +44502,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/NEU_FACT",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -45832,17 +45321,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/PGXO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -46717,17 +46196,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/WEAR",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -48867,7 +48336,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/KISAO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -49805,17 +49284,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/ABA-AMB",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -49994,17 +49463,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/LUNGMAP-MOUSE",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -50183,17 +49642,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/PSDO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -50498,7 +49947,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/TM-MER",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -51497,17 +50956,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/VODANAMFLCODE",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -51686,7 +51135,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/DIAGONT",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -52685,17 +52144,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/NMOSP",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -53190,17 +52639,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/EXO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -53758,17 +53197,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/CPRO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -54010,17 +53439,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/suicideo",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -55146,17 +54565,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/PATMHC",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -55650,7 +55059,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/WB-LS",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -55766,17 +55185,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/LCDGT",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -56209,7 +55618,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/ARCRC",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -56516,7 +55935,17 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://data.bioontology.org/metadata/omvacronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "name": "http://data.bioontology.org/metadata/omvname",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      }
     },
     "@id": "https://data.bioontology.org/ontologies/MEDLINEPLUS",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -56885,17 +56314,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/NCCO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -57200,17 +56619,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/GO-EXT",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -57389,17 +56798,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/ITEMAS",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -57705,17 +57104,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/APANEUROCLUSTER",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -57897,17 +57286,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/OMP",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -59098,17 +58477,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/BOF",
     "@type": "http://data.bioontology.org/metadata/Ontology",
@@ -60866,17 +60235,7 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/",
-      "acronym": "http://data.bioontology.org/metadata/omvacronym",
-      "administeredBy": {
-        "@id": "http://data.bioontology.org/metadata/User",
-        "@type": "@id"
-      },
-      "name": "http://data.bioontology.org/metadata/omvname",
-      "ontologyType": {
-        "@id": "http://data.bioontology.org/metadata/OntologyType",
-        "@type": "@id"
-      }
+      "@vocab": "http://data.bioontology.org/metadata/"
     },
     "@id": "https://data.bioontology.org/ontologies/MONDO",
     "@type": "http://data.bioontology.org/metadata/Ontology",
