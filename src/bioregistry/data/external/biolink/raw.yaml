@@ -4890,7 +4890,7 @@ slots:
   # which would have a domain of 'biological entity' and range of 'anatomical entity', to map predicates
   # which are biological which have manifestation in an anatomical site, e.g. RO:0004026, RO:0004027 and others
   expressed in:
-    is_a: related to at instance level
+    is_a: located in
     description: >-
       holds between a gene or gene product and an anatomical entity in which it is expressed
     domain: gene or gene product
@@ -4909,7 +4909,7 @@ slots:
       - NCIT:R46
 
   expresses:
-    is_a: related to at instance level
+    is_a: location of
     aliases: ['anatomy expresses gene']
     description: >-
       holds between an anatomical entity and gene or gene product that is expressed there
@@ -10711,7 +10711,7 @@ classes:
       - predicate
       - object
     description: >-
-      An association between a gene and an expression site,
+      An association between a gene and a gene expression site,
       possibly qualified by stage/timing info.
     notes:
       - "TBD: introduce subclasses for distinction between wild-type and experimental conditions?"
@@ -10722,7 +10722,9 @@ classes:
     slot_usage:
       subject:
         range: gene or gene product
-        description: "gene in which variation is correlated with the phenotypic feature"
+        description: >-
+          Gene or gene product positively within the specified
+          anatomical entity (or subclass, i.e. cellular component) location.
       object:
         range: anatomical entity
         description: "location in which the gene is expressed"
