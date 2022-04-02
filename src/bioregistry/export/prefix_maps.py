@@ -112,15 +112,9 @@ def _write_shacl(
         ] .
         """
     )
-    if not pattern_map:
-        pattern_map = {
-            prefix: resource.get_pattern()
-            for prefix, resource in bioregistry.read_registry().items()
-            if resource.get_pattern() is not None
-        }
     entries = ",\n".join(
         f'    [ sh:prefix "{prefix}" ; sh:namespace "{uri_prefix}" ]'
-        if prefix not in pattern_map
+        if not pattern_map or prefix not in pattern_map
         else f'    [ sh:prefix "{prefix}" ; sh:namespace "{uri_prefix}" ; sh:pattern "{pattern_map[prefix]}" ]'
         for prefix, uri_prefix in sorted(prefix_map.items())
     )
