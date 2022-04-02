@@ -279,6 +279,45 @@ class Manager:
             return False
         return entry.is_deprecated()
 
+    def get_pattern_map(
+        self,
+        *,
+        include_synonyms: bool = False,
+        remapping: Optional[Mapping[str, str]] = None,
+        use_preferred: bool = False,
+    ) -> Mapping[str, str]:
+        """Get a mapping from prefixes to their regular expression patterns.
+
+        :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
+            the same URI prefix?
+        :param remapping: A mapping from prefixes to preferred prefixes.
+        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+        :return: A mapping from prefixes to regular expression pattern strings.
+        """
+        it = self._iter_pattern_map(include_synonyms=include_synonyms, use_preferred=use_preferred)
+        if not remapping:
+            return dict(it)
+        return {remapping.get(prefix, prefix): uri_prefix for prefix, uri_prefix in it}
+
+    def _iter_pattern_map(
+        self,
+        *,
+        include_synonyms: bool = False,
+        use_preferred: bool = False,
+    ) -> Iterable[Tuple[str, str]]:
+        for prefix, resource in self.registry.items():
+            pattern = resource.get_pattern()
+            if pattern is None:
+                continue
+            if use_preferred:
+                preferred_prefix = resource.get_preferred_prefix()
+                if preferred_prefix is not None:
+                    prefix = preferred_prefix
+            yield prefix, pattern
+            if include_synonyms:
+                for synonym in resource.get_synonyms():
+                    yield synonym, pattern
+
     def get_prefix_map(
         self,
         *,

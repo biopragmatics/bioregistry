@@ -99,6 +99,7 @@ from .schema.struct import (  # noqa:F401
 )
 from .uri_format import (  # noqa:F401
     get_format_urls,
+    get_pattern_map,
     get_prefix_map,
     get_uri_format,
     get_uri_prefix,
