@@ -92,6 +92,27 @@ def get_prefix_map(
     )
 
 
+def get_pattern_map(
+    *,
+    include_synonyms: bool = False,
+    remapping: Optional[Mapping[str, str]] = None,
+    use_preferred: bool = False,
+) -> Mapping[str, str]:
+    """Get a mapping from Bioregistry prefixes to their regular expression patterns.
+
+    :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
+        the same URI prefix?
+    :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
+    :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+    :return: A mapping from prefixes to regular expression pattern strings.
+    """
+    return manager.get_pattern_map(
+        include_synonyms=include_synonyms,
+        remapping=remapping,
+        use_preferred=use_preferred,
+    )
+
+
 def get_format_urls(**kwargs) -> Mapping[str, str]:
     """Get a mapping from Bioregistry prefixes to their URI prefixes."""
     warnings.warn("deprecated", DeprecationWarning)
