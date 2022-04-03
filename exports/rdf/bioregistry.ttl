@@ -11841,64 +11841,6 @@ bioregistry:unipathway.reaction a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^UCR\\d{5}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:uniprot.chain a bioregistry.schema:0000001 ;
-    rdfs:label "UniProt Chain" ;
-    dc:description "This collection is a subset of UniProtKB that provides a means to reference the proteolytic cleavage products of a precursor protein."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:uniprot.chain ;
-    foaf:homepage "https://www.uniprot.org"^^xsd:string ;
-    bioregistry.schema:0000005 "PRO_0000016681"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.uniprot.org/annotation/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PRO_[0-9]{10}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:uniprot.isoform a bioregistry.schema:0000001 ;
-    rdfs:label "UniProt Isoform" ;
-    dc:description "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. This collection is a subset of UniProtKB, and provides a means to reference isoform information."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch n2t:uniprot.isoform,
-        prefixcommons:UNIPROT.ISOFORM,
-        miriam:uniprot.isoform ;
-    foaf:homepage "http://www.uniprot.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "Q5BJF6-3"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.uniprot.org/uniprot/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\-\\d+)$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:uniprot.keyword a bioregistry.schema:0000001 ;
-    rdfs:label "UniProt Keywords" ;
-    dc:description "UniProtKB entries are tagged with keywords that can be used to retrieve particular subsets of entries."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch go.resource:UniProtKB-KW ;
-    foaf:homepage "http://www.uniprot.org/keywords/"^^xsd:string ;
-    bioregistry.schema:0000005 "KW-1273"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.uniprot.org/keywords/$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:uniprot.location a bioregistry.schema:0000001 ;
-    rdfs:label "UniProt Subcellular Locations" ;
-    dc:description "The subcellular locations in which a protein is found are described in UniProtKB entries with a controlled vocabulary, which includes also membrane topology and orientation terms."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch go.resource:UniProtKB-SubCell ;
-    foaf:homepage "https://www.uniprot.org/locations/"^^xsd:string ;
-    bioregistry.schema:0000005 "0002"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.uniprot.org/locations/SL-$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:uniprot.tissue a bioregistry.schema:0000001 ;
-    rdfs:label "Tissue List" ;
-    dc:description "The UniProt Tissue List is a controlled vocabulary of terms used to annotate biological tissues. It also contains cross-references to other ontologies where tissue types are specified."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch n2t:tissuelist,
-        prefixcommons:TISSUELIST,
-        miriam:tissuelist ;
-    foaf:homepage "https://www.uniprot.org/docs/tisslist.txt"^^xsd:string ;
-    bioregistry.schema:0000005 "TS-0285"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.uniprot.org/tissues/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^TS-\\d{4}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:uniref a bioregistry.schema:0000001 ;
     rdfs:label "UniRef" ;
     dc:description "The UniProt Reference Clusters (UniRef) provide clustered sets of sequences from the UniProt Knowledgebase (including isoforms) and selected UniParc records in order to obtain complete coverage of the sequence space at several resolutions while hiding redundant sequences (but not their descriptions) from view."^^xsd:string ;
@@ -12739,6 +12681,8 @@ orcid:0000-0002-2404-1582 rdfs:label "Clement Jonquet" .
 orcid:0000-0002-2548-641X rdfs:label "Sirarat Sarntivijai" .
 
 orcid:0000-0002-2605-5080 rdfs:label "Jonathan Karr" .
+
+orcid:0000-0002-3458-4839 rdfs:label "Trish Whetzel" .
 
 orcid:0000-0002-3583-7340 rdfs:label "Deepak Unni" .
 
@@ -19683,45 +19627,90 @@ bioregistry:umbbd.rule a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:umls a bioregistry.schema:0000001 ;
-    rdfs:label "Unified Medical Language System" ;
+    rdfs:label "Unified Medical Language System Concept Unique Identifier" ;
     dc:description "The Unified Medical Language System is a repository of biomedical vocabularies. Vocabularies integrated in the UMLS Metathesaurus include the NCBI taxonomy, Gene Ontology, the Medical Subject Headings (MeSH), OMIM and the Digital Anatomist Symbolic Knowledge Base. UMLS concepts are not only inter-related, but may also be linked to external resources such as GenBank."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch n2t:umls,
         prefixcommons:UMLS,
         miriam:umls,
         wikidata:P2892 ;
-    foaf:homepage "http://linkedlifedata.com/"^^xsd:string ;
+    foaf:homepage "https://www.nlm.nih.gov/research/umls"^^xsd:string ;
     bioregistry.schema:0000005 "C2584994"^^xsd:string ;
     bioregistry.schema:0000006 "http://linkedlifedata.com/resource/umls/id/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^C\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:uniprot.disease a bioregistry.schema:0000001 ;
-    rdfs:label "UniProt Diseases" ;
-    dc:description "The human diseases in which proteins are involved are described in UniProtKB entries with a controlled vocabulary."^^xsd:string ;
+bioregistry:umls.aui a bioregistry.schema:0000001 ;
+    rdfs:label "Unified Medical Language System Atomic Unique Identifier" ;
+    dc:description "An identifier for an atom; the smallest unit of naming in a source, viz, a specific string with specific code values and identifiers from a specific source. As such, they can be thought of as representing a single meaning with a source Atoms are the units of terminology that come from sources and form the building blocks of the concepts in the Metathesaurus."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    foaf:homepage "https://www.uniprot.org/diseases/"^^xsd:string ;
-    bioregistry.schema:0000005 "04240"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.uniprot.org/diseases/DI-$1"^^xsd:string ;
+    foaf:homepage "https://www.nlm.nih.gov/research/umls"^^xsd:string ;
+    bioregistry.schema:0000005 "A0118748"^^xsd:string ;
+    bioregistry.schema:0000008 "^A\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:uniprot.resource a bioregistry.schema:0000001 ;
-    rdfs:label "UniProt Resource" ;
-    dc:description "The cross-references section of UniProtKB entries displays explicit and implicit links to databases such as nucleotide sequence databases, model organism databases and genomics and proteomics resources."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    foaf:homepage "https://www.uniprot.org/database/"^^xsd:string ;
-    bioregistry.schema:0000005 "0174"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.uniprot.org/database/DB-$1"^^xsd:string ;
+bioregistry:uniprot.chain a bioregistry.schema:0000001 ;
+    rdfs:label "UniProt Chain" ;
+    dc:description "This collection is a subset of UniProtKB that provides a means to reference the proteolytic cleavage products of a precursor protein."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:uniprot ;
+    skos:exactMatch miriam:uniprot.chain ;
+    foaf:homepage "https://www.uniprot.org"^^xsd:string ;
+    bioregistry.schema:0000005 "PRO_0000016681"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.uniprot.org/annotation/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PRO_[0-9]{10}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:uniprot.var a bioregistry.schema:0000001 ;
-    rdfs:label "UniProt Variants" ;
-    dc:description "The purpose of the UniProtKB/Swiss-Prot variant pages is: to display the variant related information extracted from UniProtKB/Swiss-Prot, and to provide useful additional information such as the conservation of the modified residues across orthologous species."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    foaf:homepage "https://web.expasy.org/variant_pages"^^xsd:string ;
-    bioregistry.schema:0000005 "VAR_068078"^^xsd:string ;
-    bioregistry.schema:0000006 "https://web.expasy.org/variant_pages/$1.html"^^xsd:string ;
-    bioregistry.schema:0000008 "^VAR_\\d+$"^^xsd:string ;
+bioregistry:uniprot.isoform a bioregistry.schema:0000001 ;
+    rdfs:label "UniProt Isoform" ;
+    dc:description "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. This collection is a subset of UniProtKB, and provides a means to reference isoform information."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:uniprot ;
+    skos:exactMatch n2t:uniprot.isoform,
+        prefixcommons:UNIPROT.ISOFORM,
+        miriam:uniprot.isoform ;
+    foaf:homepage "http://www.uniprot.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "Q5BJF6-3"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.uniprot.org/uniprot/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\-\\d+)$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:uniprot.keyword a bioregistry.schema:0000001 ;
+    rdfs:label "UniProt Keywords" ;
+    dc:description "UniProtKB entries are tagged with keywords that can be used to retrieve particular subsets of entries."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:uniprot ;
+    skos:exactMatch go.resource:UniProtKB-KW ;
+    foaf:homepage "http://www.uniprot.org/keywords/"^^xsd:string ;
+    bioregistry.schema:0000005 "1273"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.uniprot.org/keywords/KW-$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{4}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:uniprot.location a bioregistry.schema:0000001 ;
+    rdfs:label "UniProt Subcellular Locations" ;
+    dc:description "The subcellular locations in which a protein is found are described in UniProtKB entries with a controlled vocabulary, which includes also membrane topology and orientation terms."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:uniprot ;
+    skos:exactMatch go.resource:UniProtKB-SubCell ;
+    foaf:homepage "https://www.uniprot.org/locations/"^^xsd:string ;
+    bioregistry.schema:0000005 "0002"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.uniprot.org/locations/SL-$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:uniprot.tissue a bioregistry.schema:0000001 ;
+    rdfs:label "Tissue List" ;
+    dc:description "The UniProt Tissue List is a controlled vocabulary of terms used to annotate biological tissues. It also contains cross-references to other ontologies where tissue types are specified."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:uniprot ;
+    skos:exactMatch n2t:tissuelist,
+        prefixcommons:TISSUELIST,
+        miriam:tissuelist ;
+    foaf:homepage "https://www.uniprot.org/docs/tisslist.txt"^^xsd:string ;
+    bioregistry.schema:0000005 "0285"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.uniprot.org/tissues/TS-$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:unpd a bioregistry.schema:0000001 ;
@@ -25887,6 +25876,48 @@ bioregistry:umbbd.compound a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^c\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:uniprot.disease a bioregistry.schema:0000001 ;
+    rdfs:label "UniProt Diseases" ;
+    dc:description "The human diseases in which proteins are involved are described in UniProtKB entries with a controlled vocabulary."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:uniprot ;
+    foaf:homepage "https://www.uniprot.org/diseases/"^^xsd:string ;
+    bioregistry.schema:0000005 "04240"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.uniprot.org/diseases/DI-$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:uniprot.ptm a bioregistry.schema:0000001 ;
+    rdfs:label "UniProt Post-Translational Modification" ;
+    dc:description "The post-translational modifications used in the UniProt knowledgebase (Swiss-Prot and TrEMBL). The definition of the post-translational modifications usage as well as other information is provided in the following format"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:uniprot ;
+    foaf:homepage "https://www.uniprot.org/docs/ptmlist"^^xsd:string ;
+    bioregistry.schema:0000005 "0450"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{4}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:uniprot.resource a bioregistry.schema:0000001 ;
+    rdfs:label "UniProt Resource" ;
+    dc:description "The cross-references section of UniProtKB entries displays explicit and implicit links to databases such as nucleotide sequence databases, model organism databases and genomics and proteomics resources."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:uniprot ;
+    foaf:homepage "https://www.uniprot.org/database/"^^xsd:string ;
+    bioregistry.schema:0000005 "0174"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.uniprot.org/database/DB-$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:uniprot.var a bioregistry.schema:0000001 ;
+    rdfs:label "UniProt Variants" ;
+    dc:description "The purpose of the UniProtKB/Swiss-Prot variant pages is: to display the variant related information extracted from UniProtKB/Swiss-Prot, and to provide useful additional information such as the conservation of the modified residues across orthologous species."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:uniprot ;
+    foaf:homepage "https://web.expasy.org/variant_pages"^^xsd:string ;
+    bioregistry.schema:0000005 "068078"^^xsd:string ;
+    bioregistry.schema:0000006 "https://web.expasy.org/variant_pages/VAR_$1.html"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:webelements a bioregistry.schema:0000001 ;
     rdfs:label "Web Elements" ;
     dc:description "Browser for the periodic table of the elements"^^xsd:string ;
@@ -26085,7 +26116,8 @@ bioregistry:efo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0005147"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.ebi.ac.uk/efo/EFO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-3458-4839 .
 
 bioregistry:ehdaa2 a bioregistry.schema:0000001 ;
     rdfs:label "Human developmental anatomy, abstract" ;
@@ -26184,7 +26216,7 @@ bioregistry:pdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:plana a bioregistry.schema:0000001 ;
-    rdfs:label "planaria-ontology" ;
+    rdfs:label "Planarian Anatomy and Schmidtea mediterranean Developmental Stage Ontology" ;
     dc:description "PLANA, the PLANarian Anatomy Ontology, encompasses the anatomy of developmental stages and adult biotypes of Schmidtea mediterranea."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch obofoundry:PLANA,
@@ -26345,25 +26377,6 @@ bioregistry:umbbd dcterms:hasPart bioregistry:umbbd.compound,
         bioregistry:umbbd.pathway,
         bioregistry:umbbd.reaction,
         bioregistry:umbbd.rule .
-
-bioregistry:uniprot a bioregistry.schema:0000001 ;
-    rdfs:label "UniProt protein ID" ;
-    dc:description "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. Besides amino acid sequence and a description, it also provides taxonomic data and citation information."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch cellosaurus.resource:UniProtKB,
-        go.resource:UniProtKB,
-        n2t:uniprot,
-        ncbi.resource:UniProt,
-        scholia.resource:uniprot,
-        fairsharing:FAIRsharing.s1ne3g,
-        prefixcommons:UniProtKB,
-        miriam:uniprot,
-        wikidata:P352 ;
-    foaf:homepage "http://www.uniprot.org"^^xsd:string ;
-    bioregistry.schema:0000005 "P0DP23"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.uniprot.org/uniprot/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
 
 bioregistry:uo a bioregistry.schema:0000001 ;
     rdfs:label "Units of measurement ontology" ;
@@ -27055,6 +27068,34 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
         bioregistry:pco ;
     bioregistry.schema:0000019 orcid:0000-0002-9415-5104 .
 
+bioregistry:uniprot a bioregistry.schema:0000001 ;
+    rdfs:label "UniProt protein ID" ;
+    dc:description "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. Besides amino acid sequence and a description, it also provides taxonomic data and citation information."^^xsd:string ;
+    dcterms:hasPart bioregistry:uniprot.chain,
+        bioregistry:uniprot.disease,
+        bioregistry:uniprot.isoform,
+        bioregistry:uniprot.keyword,
+        bioregistry:uniprot.location,
+        bioregistry:uniprot.ptm,
+        bioregistry:uniprot.resource,
+        bioregistry:uniprot.tissue,
+        bioregistry:uniprot.var ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch cellosaurus.resource:UniProtKB,
+        go.resource:UniProtKB,
+        n2t:uniprot,
+        ncbi.resource:UniProt,
+        scholia.resource:uniprot,
+        fairsharing:FAIRsharing.s1ne3g,
+        prefixcommons:UniProtKB,
+        miriam:uniprot,
+        wikidata:P352 ;
+    foaf:homepage "http://www.uniprot.org"^^xsd:string ;
+    bioregistry.schema:0000005 "P0DP23"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.uniprot.org/uniprot/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry.metaresource:cheminf a bioregistry.schema:0000002 ;
     rdfs:label "Chemical Information Ontology" ;
     dc:description "Contains entries for various database identifiers" ;
@@ -27507,7 +27548,9 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:thermofisher,
         bioregistry:tkg,
         bioregistry:ubprop,
+        bioregistry:umls.aui,
         bioregistry:uniprot.disease,
+        bioregistry:uniprot.ptm,
         bioregistry:uniprot.resource,
         bioregistry:uniprot.var,
         bioregistry:unpd,
@@ -33521,6 +33564,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:umbbd.reaction,
         bioregistry:umbbd.rule,
         bioregistry:umls,
+        bioregistry:umls.aui,
         bioregistry:unigene,
         bioregistry:unii,
         bioregistry:unimod,
@@ -33533,6 +33577,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:uniprot.isoform,
         bioregistry:uniprot.keyword,
         bioregistry:uniprot.location,
+        bioregistry:uniprot.ptm,
         bioregistry:uniprot.resource,
         bioregistry:uniprot.tissue,
         bioregistry:uniprot.var,

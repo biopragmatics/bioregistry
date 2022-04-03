@@ -6726,6 +6726,11 @@ edda:
   name: EDDA Study Designs Taxonomy
   preferred_prefix: edda
 efo:
+  contact:
+    email: plwhetzel@gmail.com
+    github: twhetzel
+    name: Trish Whetzel
+    orcid: 0000-0002-3458-4839
   description: The Experimental Factor Ontology (EFO) provides a systematic description
     of many experimental variables available in EBI databases. It combines parts of
     several biological ontologies, such as anatomy, disease and chemical compounds.
@@ -6755,6 +6760,7 @@ efo:
     homepage: https://www.ebi.ac.uk/efo/
     name: EFO through Functional Genomics Group (EBI)
     uri_format: https://www.ebi.ac.uk/efo/EFO_$1
+  repository: https://github.com/EBISPOT/efo/
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
   version: 3.40.0
 ega.dataset:
@@ -18832,7 +18838,7 @@ plana:
     ols: plana
     ontobee: PLANA
     prefixcommons: PLANA
-  name: planaria-ontology
+  name: Planarian Anatomy and Schmidtea mediterranean Developmental Stage Ontology
   pattern: ^\d{7}$
   preferred_prefix: PLANA
   repository: https://github.com/obophenotype/planaria-ontology
@@ -23116,20 +23122,39 @@ umls:
     Symbolic Knowledge Base. UMLS concepts are not only inter-related, but may also
     be linked to external resources such as GenBank.
   example: C2584994
-  homepage: http://linkedlifedata.com/
+  homepage: https://www.nlm.nih.gov/research/umls
   mappings:
     miriam: umls
     n2t: umls
     prefixcommons: UMLS
     wikidata: P2892
-  name: Unified Medical Language System
+  name: Unified Medical Language System Concept Unique Identifier
   pattern: ^C\d+$
   preferred_prefix: umls
   synonyms:
   - UMLS
   - UMLS CUI
   - UMLS_CUI
+  - umls.cui
   uri_format: http://linkedlifedata.com/resource/umls/id/$1
+umls.aui:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An identifier for an atom; the smallest unit of naming in a source,
+    viz, a specific string with specific code values and identifiers from a specific
+    source. As such, they can be thought of as representing a single meaning with
+    a source Atoms are the units of terminology that come from sources and form the
+    building blocks of the concepts in the Metathesaurus.
+  example: A0118748
+  homepage: https://www.nlm.nih.gov/research/umls
+  name: Unified Medical Language System Atomic Unique Identifier
+  pattern: ^A\d+$
+  preferred_prefix: umls.aui
+  synonyms:
+  - UMLS_ICD9CM_2005_AUI
 unigene:
   description: A UniGene entry is a set of transcript sequences that appear to come
     from the same transcription locus (gene or expressed pseudogene), together with
@@ -23299,6 +23324,7 @@ uniprot.chain:
   mappings:
     miriam: uniprot.chain
   name: UniProt Chain
+  part_of: uniprot
   pattern: ^PRO_[0-9]{10}$
   preferred_prefix: uniprot.chain
   synonyms:
@@ -23315,9 +23341,12 @@ uniprot.disease:
   example: '04240'
   homepage: https://www.uniprot.org/diseases/
   name: UniProt Diseases
+  part_of: uniprot
+  pattern: ^\d{5}$
   preferred_prefix: uniprot.disease
   synonyms:
   - DI
+  - SP_DI
   uri_format: https://www.uniprot.org/diseases/DI-$1
 uniprot.isoform:
   description: The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for
@@ -23331,6 +23360,7 @@ uniprot.isoform:
     n2t: uniprot.isoform
     prefixcommons: UNIPROT.ISOFORM
   name: UniProt Isoform
+  part_of: uniprot
   pattern: ^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z,
     0-9][A-Z, 0-9][0-9])(\-\d+)$
   preferred_prefix: uniprot.isoform
@@ -23353,15 +23383,18 @@ uniprot.isoform:
 uniprot.keyword:
   description: UniProtKB entries are tagged with keywords that can be used to retrieve
     particular subsets of entries.
-  example: KW-1273
+  example: '1273'
   homepage: http://www.uniprot.org/keywords/
   mappings:
     go: UniProtKB-KW
   name: UniProt Keywords
+  part_of: uniprot
+  pattern: ^\d{4}$
   preferred_prefix: uniprot.keyword
   synonyms:
+  - SP_KW
   - UniProtKB-KW
-  uri_format: https://www.uniprot.org/keywords/$1
+  uri_format: https://www.uniprot.org/keywords/KW-$1
 uniprot.location:
   description: The subcellular locations in which a protein is found are described
     in UniProtKB entries with a controlled vocabulary, which includes also membrane
@@ -23371,12 +23404,34 @@ uniprot.location:
   mappings:
     go: UniProtKB-SubCell
   name: UniProt Subcellular Locations
+  part_of: uniprot
   pattern: ^\d+$
   preferred_prefix: uniprot.location
   synonyms:
+  - SP_SL
   - UPLOC
   - UniProtKB-SubCell
   uri_format: https://www.uniprot.org/locations/SL-$1
+uniprot.ptm:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The post-translational modifications used in the UniProt knowledgebase
+    (Swiss-Prot and TrEMBL). The definition of the post-translational modifications
+    usage as well as other information is provided in the following format
+  example: '0450'
+  homepage: https://www.uniprot.org/docs/ptmlist
+  name: UniProt Post-Translational Modification
+  part_of: uniprot
+  pattern: ^\d{4}$
+  preferred_prefix: uniprot.ptm
+  references:
+  - https://twitter.com/cthoyt/status/1510570256619778053
+  - https://www.uniprot.org/docs/ptmlist.txt
+  synonyms:
+  - PTM
 uniprot.resource:
   contributor:
     email: cthoyt@gmail.com
@@ -23389,22 +23444,24 @@ uniprot.resource:
   example: '0174'
   homepage: https://www.uniprot.org/database/
   name: UniProt Resource
+  part_of: uniprot
   preferred_prefix: uniprot.resource
   uri_format: https://www.uniprot.org/database/DB-$1
 uniprot.tissue:
   description: The UniProt Tissue List is a controlled vocabulary of terms used to
     annotate biological tissues. It also contains cross-references to other ontologies
     where tissue types are specified.
-  example: TS-0285
+  example: 0285
   homepage: https://www.uniprot.org/docs/tisslist.txt
   mappings:
     miriam: tissuelist
     n2t: tissuelist
     prefixcommons: TISSUELIST
   name: Tissue List
-  pattern: ^TS-\d{4}$
+  part_of: uniprot
+  pattern: ^\d{4}$
   preferred_prefix: uniprot.tissue
-  uri_format: https://www.uniprot.org/tissues/$1
+  uri_format: https://www.uniprot.org/tissues/TS-$1
 uniprot.var:
   contributor:
     email: cthoyt@gmail.com
@@ -23415,14 +23472,17 @@ uniprot.var:
     the variant related information extracted from UniProtKB/Swiss-Prot, and to provide
     useful additional information such as the conservation of the modified residues
     across orthologous species.'
-  example: VAR_068078
+  example: 068078
   homepage: https://web.expasy.org/variant_pages
   name: UniProt Variants
-  pattern: ^VAR_\d+$
+  part_of: uniprot
+  pattern: ^\d+$
   preferred_prefix: uniprot.var
   synonyms:
+  - SP_VAR
+  - UPVAR
   - UniProtKB_VAR
-  uri_format: https://web.expasy.org/variant_pages/$1.html
+  uri_format: https://web.expasy.org/variant_pages/VAR_$1.html
 uniref:
   description: The UniProt Reference Clusters (UniRef) provide clustered sets of sequences
     from the UniProt Knowledgebase (including isoforms) and selected UniParc records
