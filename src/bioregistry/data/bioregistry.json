@@ -51526,6 +51526,7 @@
       "sampleId": "PRO_0000016681",
       "uri_format": "http://purl.uniprot.org/annotation/$1"
     },
+    "part_of": "uniprot",
     "synonyms": [
       "UPPRO"
     ]
@@ -51541,8 +51542,11 @@
     "example": "04240",
     "homepage": "https://www.uniprot.org/diseases/",
     "name": "UniProt Diseases",
+    "part_of": "uniprot",
+    "pattern": "^\\d{5}$",
     "synonyms": [
-      "DI"
+      "DI",
+      "SP_DI"
     ],
     "uri_format": "https://www.uniprot.org/diseases/DI-$1"
   },
@@ -51590,6 +51594,7 @@
       "prefix": "uniprot.isoform",
       "uri_format": "http://www.uniprot.org/uniparc/?query=$1"
     },
+    "part_of": "uniprot",
     "prefixcommons": {
       "is_identifiers": true,
       "is_obo": false,
@@ -51602,7 +51607,7 @@
   },
   "uniprot.keyword": {
     "description": "UniProtKB entries are tagged with keywords that can be used to retrieve particular subsets of entries.",
-    "example": "KW-1273",
+    "example": "1273",
     "go": {
       "homepage": "http://www.uniprot.org/keywords/",
       "name": "UniProt Knowledgebase keywords",
@@ -51616,10 +51621,13 @@
       "go": "UniProtKB-KW"
     },
     "name": "UniProt Keywords",
+    "part_of": "uniprot",
+    "pattern": "^\\d{4}$",
     "synonyms": [
-      "UniProtKB-KW"
+      "UniProtKB-KW",
+      "SP_KW"
     ],
-    "uri_format": "https://www.uniprot.org/keywords/$1"
+    "uri_format": "https://www.uniprot.org/keywords/KW-$1"
   },
   "uniprot.location": {
     "description": "The subcellular locations in which a protein is found are described in UniProtKB entries with a controlled vocabulary, which includes also membrane topology and orientation terms.",
@@ -51638,12 +51646,35 @@
       "go": "UniProtKB-SubCell"
     },
     "name": "UniProt Subcellular Locations",
+    "part_of": "uniprot",
     "pattern": "^\\d+$",
     "synonyms": [
       "UPLOC",
-      "UniProtKB-SubCell"
+      "UniProtKB-SubCell",
+      "SP_SL"
     ],
     "uri_format": "https://www.uniprot.org/locations/SL-$1"
+  },
+  "uniprot.ptm": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The post-translational modifications used in the UniProt knowledgebase (Swiss-Prot and TrEMBL). The definition of the post-translational modifications usage as well as other information is provided in the following format",
+    "example": "0450",
+    "homepage": "https://www.uniprot.org/docs/ptmlist",
+    "name": "UniProt Post-Translational Modification",
+    "part_of": "uniprot",
+    "pattern": "^\\d{4}$",
+    "references": [
+      "https://twitter.com/cthoyt/status/1510570256619778053",
+      "https://www.uniprot.org/docs/ptmlist.txt"
+    ],
+    "synonyms": [
+      "PTM"
+    ]
   },
   "uniprot.resource": {
     "contributor": {
@@ -51656,9 +51687,11 @@
     "example": "0174",
     "homepage": "https://www.uniprot.org/database/",
     "name": "UniProt Resource",
+    "part_of": "uniprot",
     "uri_format": "https://www.uniprot.org/database/DB-$1"
   },
   "uniprot.tissue": {
+    "example": "0285",
     "mappings": {
       "miriam": "tissuelist",
       "n2t": "tissuelist",
@@ -51686,12 +51719,15 @@
       "prefix": "tissuelist",
       "uri_format": "https://www.uniprot.org/tissues/$1"
     },
+    "part_of": "uniprot",
+    "pattern": "^\\d{4}$",
     "prefixcommons": {
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "TISSUELIST",
       "uri_format": "http://identifiers.org/tissuelist/$1"
-    }
+    },
+    "uri_format": "https://www.uniprot.org/tissues/TS-$1"
   },
   "uniprot.var": {
     "contributor": {
@@ -51701,14 +51737,17 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The purpose of the UniProtKB/Swiss-Prot variant pages is: to display the variant related information extracted from UniProtKB/Swiss-Prot, and to provide useful additional information such as the conservation of the modified residues across orthologous species.",
-    "example": "VAR_068078",
+    "example": "068078",
     "homepage": "https://web.expasy.org/variant_pages",
     "name": "UniProt Variants",
-    "pattern": "^VAR_\\d+$",
+    "part_of": "uniprot",
+    "pattern": "^\\d+$",
     "synonyms": [
-      "UniProtKB_VAR"
+      "UniProtKB_VAR",
+      "UPVAR",
+      "SP_VAR"
     ],
-    "uri_format": "https://web.expasy.org/variant_pages/$1.html"
+    "uri_format": "https://web.expasy.org/variant_pages/VAR_$1.html"
   },
   "uniref": {
     "mappings": {
