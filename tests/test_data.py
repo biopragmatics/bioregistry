@@ -10,7 +10,8 @@ from textwrap import dedent
 from typing import Mapping
 
 import bioregistry
-from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
+from bioregistry import Resource
+from bioregistry.constants import BIOREGISTRY_PATH
 from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES
@@ -61,50 +62,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_keys(self):
         """Check the required metadata is there."""
-        keys = {
-            # Required
-            "prefix",
-            "description",
-            "homepage",
-            "name",
-            # Recommended
-            "contact",
-            "download_obo",
-            "download_owl",
-            "example",
-            "pattern",
-            "type",
-            URI_FORMAT_KEY,
-            # Only there if true
-            "no_own_terms",
-            "not_available_as_obo",
-            "namespace_in_lui",
-            # Only there if false
-            # Lists
-            "appears_in",
-            # Other
-            "deprecated",
-            "banana",
-            "mappings",
-            "ols_version_date_format",
-            "ols_version_prefix",
-            "ols_version_suffix_split",
-            "ols_version_type",
-            "part_of",
-            "provides",
-            "references",
-            "synonyms",
-            "comment",
-            "contributor",
-            "reviewer",
-            "proprietary",
-            "has_canonical",
-            "preferred_prefix",
-            "providers",
-            "example_extras",
-            "contributor_extras",
-        }
-        keys.update(bioregistry.read_metaregistry())
+        keys = set(Resource.__fields__.keys())
         with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
             data = json.load(file)
         for prefix, entry in data.items():
