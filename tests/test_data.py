@@ -628,8 +628,12 @@ class TestRegistry(unittest.TestCase):
             if not resource.contact:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertIsNotNone(resource.contact.name)
-                self.assertIsNotNone(resource.contact.email)
+                self.assertIsNotNone(
+                    resource.contact.name, msg=f"Contact for {prefix} is missing a label"
+                )
+                self.assertIsNotNone(
+                    resource.contact.email, msg=f"Contact for {prefix} is missing an email"
+                )
 
     def test_wikidata(self):
         """Check wikidata prefixes are written properly."""

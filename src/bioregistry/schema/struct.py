@@ -675,6 +675,7 @@ class Resource(BaseModel):
         """
         if self.contact and self.contact.email:
             return self.contact.email
+        # FIXME if contact is not none but email is, this will have a problem after
         rv = self.get_prefix_key("contact", ("obofoundry", "ols"))
         if rv and not EMAIL_RE.match(rv):
             logger.warning("[%s] invalid email address listed: %s", self.name, rv)
