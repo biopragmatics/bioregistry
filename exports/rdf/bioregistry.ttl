@@ -12654,6 +12654,8 @@ orcid:0000-0002-0045-7698 rdfs:label "Pierre-Alain Binz" .
 
 orcid:0000-0002-0142-5591 rdfs:label "Citlalli Mejía-Almonte" .
 
+orcid:0000-0002-0341-4888 rdfs:label "Federica Quaglia" .
+
 orcid:0000-0002-0358-0130 rdfs:label "Martin Ramirez" .
 
 orcid:0000-0002-0831-6427 rdfs:label "Karen Eilbeck" .
@@ -18155,6 +18157,16 @@ bioregistry:idot a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://biomodels.net/vocab/idot.rdf#$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Za-z]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:idpo a bioregistry.schema:0000001 ;
+    rdfs:label "Intrinsically Disordered Proteins Ontology" ;
+    dc:description "IDPO is used to describe structural aspects of an IDP/IDR, self-functions and functions directly associated with their disordered state. GO is used to describe functional aspects of an IDP/IDR."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.disprot.org/ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "00056"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.disprot.org/idpo/IDPO:$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-0341-4888 .
 
 bioregistry:idr a bioregistry.schema:0000001 ;
     rdfs:label "Image Data Resource" ;
@@ -27479,6 +27491,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:gtr,
         bioregistry:hms.lincs.compound,
         bioregistry:hog,
+        bioregistry:idpo,
         bioregistry:imdrf,
         bioregistry:inhand,
         bioregistry:iro,
@@ -32946,6 +32959,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:idomal,
         bioregistry:idoo,
         bioregistry:idot,
+        bioregistry:idpo,
         bioregistry:idr,
         bioregistry:iedb,
         bioregistry:iev,
