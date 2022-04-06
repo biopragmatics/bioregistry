@@ -7363,7 +7363,8 @@ bioregistry:mmmp.biomaps a bioregistry.schema:0000001 ;
     rdfs:label "Melanoma Molecular Map Project Biomaps" ;
     dc:description "A collection of molecular interaction maps and pathways involved in cancer development and progression with a focus on melanoma."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch n2t:biomaps,
+    skos:exactMatch biolink:mmmp.biomaps,
+        n2t:biomaps,
         <https://prefixcommons.org/?q=MMMP:BIOMAPS>,
         <https://registry.identifiers.org/registry/mmmp:biomaps> ;
     foaf:homepage "http://www.mmmp.org/MMMP/public/biomap/listBiomap.mmmp"^^xsd:string ;
@@ -14448,6 +14449,8 @@ biolink:medgen dcterms:isPartOf bioregistry.metaresource:biolink .
 biolink:metacyc.reaction dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:mirbase dcterms:isPartOf bioregistry.metaresource:biolink .
+
+biolink:mmmp.biomaps dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:oboformat dcterms:isPartOf bioregistry.metaresource:biolink .
 
@@ -27956,6 +27959,7 @@ bioregistry.metaresource:biolink a bioregistry.schema:0000002 ;
         biolink:medgen,
         biolink:metacyc.reaction,
         biolink:mirbase,
+        biolink:mmmp.biomaps,
         biolink:oboformat,
         biolink:pav,
         biolink:prov,
