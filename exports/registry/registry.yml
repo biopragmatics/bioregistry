@@ -2398,6 +2398,7 @@ bykdb:
   name: Bacterial Tyrosine Kinase Database
   pattern: ^[A-Z0-9]+$
   preferred_prefix: bykdb
+  provides: uniprot
   uri_format: https://bykdb.ibcp.fr/data/html/annotated/$1.html
 cabri:
   description: CABRI (Common Access to Biotechnological Resources and Information)
@@ -4482,6 +4483,7 @@ compulyeast:
   pattern: ^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z,
     0-9][A-Z, 0-9][0-9])$
   preferred_prefix: compulyeast
+  provides: uniprot
   uri_format: http://compluyeast2dpage.dacya.ucm.es/cgi-bin/2d/2d.cgi?ac=$1
 conoserver:
   description: ConoServer is a database specialized in the sequence and structures
@@ -14285,7 +14287,7 @@ miro:
   homepage: https://github.com/VEuPathDB-ontology/MIRO
   mappings:
     bioportal: MIRO
-    fairsharing: FAIRsharing.sjf113
+    fairsharing: FAIRsharing.0Csgcz
     obofoundry: MIRO
     ols: miro
     ontobee: MIRO
@@ -14549,6 +14551,7 @@ mobidb:
   name: MobiDB
   pattern: ^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}$
   preferred_prefix: mobidb
+  provides: uniprot
   uri_format: https://mobidb.org/$1
 mod:
   banana: MOD
@@ -17516,7 +17519,7 @@ orthodb:
     and InterPro attributes, which serve to provide general descriptive annotations
     of the orthologous groups
   example: Q9P0K8
-  homepage: http://cegg.unige.ch/orthodb4
+  homepage: https://www.orthodb.org
   mappings:
     fairsharing: FAIRsharing.x989d5
     miriam: orthodb
@@ -17526,6 +17529,7 @@ orthodb:
   name: OrthoDB
   pattern: ^\w+$
   preferred_prefix: orthodb
+  provides: uniprot
   uri_format: http://cegg.unige.ch/orthodb/results?searchtext=$1
 oryzabase.gene:
   description: Oryzabase provides a view of rice (Oryza sativa) as a model monocot
@@ -18782,7 +18786,8 @@ pina:
   pattern: ^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z,
     0-9][A-Z, 0-9][0-9])$
   preferred_prefix: pina
-  uri_format: http://cbg.garvan.unsw.edu.au/pina/interactome.oneP.do?ac=$1&showExtend=null
+  provides: uniprot
+  uri_format: http://cbg.garvan.unsw.edu.au/pina/interactome.oneP.do?showExtend=null&ac=$1
 piroplasma:
   description: PiroplasmaDB is one of the databases that can be accessed through the
     EuPathDB (http://EuPathDB.org; formerly ApiDB) portal, covering eukaryotic pathogens
@@ -20165,6 +20170,7 @@ repeatsdb.protein:
   name: RepeatsDB Protein
   pattern: ^[OPQopq][0-9][A-Za-z0-9]{3}[0-9]|[A-Na-nR-Zr-z][0-9]([A-Za-z][A-Za-z0-9]{2}[0-9]){1,2}$
   preferred_prefix: repeatsdb.protein
+  provides: uniprot
   uri_format: https://repeatsdb.org/protein/$1
 repeatsdb.structure:
   description: RepeatsDB is a database of annotated tandem repeat protein structures.
@@ -22128,6 +22134,7 @@ swiss-model:
   name: SWISS-MODEL Repository
   pattern: ^\w+$
   preferred_prefix: swiss-model
+  provides: uniprot
   uri_format: https://swissmodel.expasy.org/repository/uniprot/$1
 swisslipid:
   banana: SLM
@@ -22689,6 +22696,7 @@ topfind:
   pattern: ^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z,
     0-9][A-Z, 0-9][0-9])$
   preferred_prefix: topfind
+  provides: uniprot
   uri_format: http://clipserve.clip.ubc.ca/topfind/proteins/$1
 toxoplasma:
   description: ToxoDB is one of the databases that can be accessed through the EuPathDB

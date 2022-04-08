@@ -1646,6 +1646,7 @@ bioregistry:bykdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "A0A009E7X8"^^xsd:string ;
     bioregistry.schema:0000006 "https://bykdb.ibcp.fr/data/html/annotated/$1.html"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Z0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000011 bioregistry:uniprot ;
     bioregistry.schema:0000012 false .
 
 bioregistry:cabri a bioregistry.schema:0000001 ;
@@ -2616,6 +2617,7 @@ bioregistry:compulyeast a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "O08709"^^xsd:string ;
     bioregistry.schema:0000006 "http://compluyeast2dpage.dacya.ucm.es/cgi-bin/2d/2d.cgi?ac=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])$"^^xsd:string ;
+    bioregistry.schema:0000011 bioregistry:uniprot ;
     bioregistry.schema:0000012 false .
 
 bioregistry:conoserver a bioregistry.schema:0000001 ;
@@ -7311,7 +7313,7 @@ bioregistry:miro a bioregistry.schema:0000001 ;
     skos:exactMatch obofoundry:MIRO,
         ontobee:MIRO,
         bioportal:MIRO,
-        fairsharing:FAIRsharing.sjf113,
+        fairsharing:FAIRsharing.0Csgcz,
         prefixcommons:MIRO,
         ols:miro ;
     foaf:homepage "https://github.com/VEuPathDB-ontology/MIRO"^^xsd:string ;
@@ -7501,6 +7503,7 @@ bioregistry:mobidb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "P10636"^^xsd:string ;
     bioregistry.schema:0000006 "https://mobidb.org/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}$"^^xsd:string ;
+    bioregistry.schema:0000011 bioregistry:uniprot ;
     bioregistry.schema:0000012 false .
 
 bioregistry:mod a bioregistry.schema:0000001 ;
@@ -8835,10 +8838,11 @@ bioregistry:orthodb a bioregistry.schema:0000001 ;
         prefixcommons:ORTHODB,
         miriam:orthodb,
         uniprot.resource:OrthoDB ;
-    foaf:homepage "http://cegg.unige.ch/orthodb4"^^xsd:string ;
+    foaf:homepage "https://www.orthodb.org"^^xsd:string ;
     bioregistry.schema:0000005 "Q9P0K8"^^xsd:string ;
     bioregistry.schema:0000006 "http://cegg.unige.ch/orthodb/results?searchtext=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
+    bioregistry.schema:0000011 bioregistry:uniprot ;
     bioregistry.schema:0000012 false .
 
 bioregistry:oryzabase.gene a bioregistry.schema:0000001 ;
@@ -9441,8 +9445,9 @@ bioregistry:pina a bioregistry.schema:0000001 ;
         miriam:pina ;
     foaf:homepage "http://cbg.garvan.unsw.edu.au/pina/"^^xsd:string ;
     bioregistry.schema:0000005 "Q13485"^^xsd:string ;
-    bioregistry.schema:0000006 "http://cbg.garvan.unsw.edu.au/pina/interactome.oneP.do?ac=$1&showExtend=null"^^xsd:string ;
+    bioregistry.schema:0000006 "http://cbg.garvan.unsw.edu.au/pina/interactome.oneP.do?showExtend=null&ac=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])$"^^xsd:string ;
+    bioregistry.schema:0000011 bioregistry:uniprot ;
     bioregistry.schema:0000012 false .
 
 bioregistry:piroplasma a bioregistry.schema:0000001 ;
@@ -10155,6 +10160,7 @@ bioregistry:repeatsdb.protein a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "P29894"^^xsd:string ;
     bioregistry.schema:0000006 "https://repeatsdb.org/protein/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[OPQopq][0-9][A-Za-z0-9]{3}[0-9]|[A-Na-nR-Zr-z][0-9]([A-Za-z][A-Za-z0-9]{2}[0-9]){1,2}$"^^xsd:string ;
+    bioregistry.schema:0000011 bioregistry:uniprot ;
     bioregistry.schema:0000012 false .
 
 bioregistry:repeatsdb.structure a bioregistry.schema:0000001 ;
@@ -11238,6 +11244,7 @@ bioregistry:swiss-model a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "P23298"^^xsd:string ;
     bioregistry.schema:0000006 "https://swissmodel.expasy.org/repository/uniprot/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
+    bioregistry.schema:0000011 bioregistry:uniprot ;
     bioregistry.schema:0000012 false .
 
 bioregistry:swisslipid a bioregistry.schema:0000001 ;
@@ -11572,6 +11579,7 @@ bioregistry:topfind a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "Q9UKQ2"^^xsd:string ;
     bioregistry.schema:0000006 "http://clipserve.clip.ubc.ca/topfind/proteins/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])$"^^xsd:string ;
+    bioregistry.schema:0000011 bioregistry:uniprot ;
     bioregistry.schema:0000012 false .
 
 bioregistry:toxoplasma a bioregistry.schema:0000001 ;
@@ -19955,6 +19963,8 @@ bioregistry:zfa a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0002-2244-7917 .
 
+fairsharing:FAIRsharing.0Csgcz dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.0a674c dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.0pUMYW dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -20824,8 +20834,6 @@ fairsharing:FAIRsharing.s3r6sk dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.s5zmbp dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.s9ztmd dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
-fairsharing:FAIRsharing.sjf113 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.sjhvyy dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -27083,34 +27091,6 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
         bioregistry:pco ;
     bioregistry.schema:0000019 orcid:0000-0002-9415-5104 .
 
-bioregistry:uniprot a bioregistry.schema:0000001 ;
-    rdfs:label "UniProt protein ID" ;
-    dc:description "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. Besides amino acid sequence and a description, it also provides taxonomic data and citation information."^^xsd:string ;
-    dcterms:hasPart bioregistry:uniprot.chain,
-        bioregistry:uniprot.disease,
-        bioregistry:uniprot.isoform,
-        bioregistry:uniprot.keyword,
-        bioregistry:uniprot.location,
-        bioregistry:uniprot.ptm,
-        bioregistry:uniprot.resource,
-        bioregistry:uniprot.tissue,
-        bioregistry:uniprot.var ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch cellosaurus.resource:UniProtKB,
-        go.resource:UniProtKB,
-        n2t:uniprot,
-        ncbi.resource:UniProt,
-        scholia.resource:uniprot,
-        fairsharing:FAIRsharing.s1ne3g,
-        prefixcommons:UniProtKB,
-        miriam:uniprot,
-        wikidata:P352 ;
-    foaf:homepage "http://www.uniprot.org"^^xsd:string ;
-    bioregistry.schema:0000005 "P0DP23"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.uniprot.org/uniprot/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry.metaresource:cheminf a bioregistry.schema:0000002 ;
     rdfs:label "Chemical Information Ontology" ;
     dc:description "Contains entries for various database identifiers" ;
@@ -27655,6 +27635,34 @@ bioregistry:chebi a bioregistry.schema:0000001 ;
         bioregistry:uberon,
         bioregistry:xpo ;
     bioregistry.schema:0000019 orcid:0000-0001-8123-5351 .
+
+bioregistry:uniprot a bioregistry.schema:0000001 ;
+    rdfs:label "UniProt protein ID" ;
+    dc:description "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. Besides amino acid sequence and a description, it also provides taxonomic data and citation information."^^xsd:string ;
+    dcterms:hasPart bioregistry:uniprot.chain,
+        bioregistry:uniprot.disease,
+        bioregistry:uniprot.isoform,
+        bioregistry:uniprot.keyword,
+        bioregistry:uniprot.location,
+        bioregistry:uniprot.ptm,
+        bioregistry:uniprot.resource,
+        bioregistry:uniprot.tissue,
+        bioregistry:uniprot.var ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch cellosaurus.resource:UniProtKB,
+        go.resource:UniProtKB,
+        n2t:uniprot,
+        ncbi.resource:UniProt,
+        scholia.resource:uniprot,
+        fairsharing:FAIRsharing.s1ne3g,
+        prefixcommons:UniProtKB,
+        miriam:uniprot,
+        wikidata:P352 ;
+    foaf:homepage "http://www.uniprot.org"^^xsd:string ;
+    bioregistry.schema:0000005 "P0DP23"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.uniprot.org/uniprot/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:uberon a bioregistry.schema:0000001 ;
     rdfs:label "Uber Anatomy Ontology" ;
@@ -29506,7 +29514,8 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
 bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
     rdfs:label "FAIRSharing" ;
     dc:description "A curated, informative and educational resource on data and metadata standards, inter-related to databases and data policies." ;
-    dcterms:hasPart fairsharing:FAIRsharing.0a674c,
+    dcterms:hasPart fairsharing:FAIRsharing.0Csgcz,
+        fairsharing:FAIRsharing.0a674c,
         fairsharing:FAIRsharing.0pUMYW,
         fairsharing:FAIRsharing.10gr18,
         fairsharing:FAIRsharing.10zsxb,
@@ -29941,7 +29950,6 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.s3r6sk,
         fairsharing:FAIRsharing.s5zmbp,
         fairsharing:FAIRsharing.s9ztmd,
-        fairsharing:FAIRsharing.sjf113,
         fairsharing:FAIRsharing.sjhvyy,
         fairsharing:FAIRsharing.sm90nh,
         fairsharing:FAIRsharing.sp3szt,
