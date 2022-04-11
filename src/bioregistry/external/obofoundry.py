@@ -72,6 +72,10 @@ def _process(record):
         "repository": record.get("repository"),
     }
 
+    publications = record.get("publications")
+    if publications:
+        rv["publications"] = publications
+
     dependencies = record.get("dependencies")
     if dependencies:
         rv["depends_on"] = sorted(

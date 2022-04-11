@@ -766,6 +766,13 @@ class Resource(BaseModel):
                 return True
         return False
 
+    def get_publications(self):
+        """Get a list of publications."""
+        # TODO make a model for this
+        if self.obofoundry:
+            return self.obofoundry.get("publications", [])
+        return []
+
     def get_obofoundry_prefix(self) -> Optional[str]:
         """Get the OBO Foundry prefix if available.
 
