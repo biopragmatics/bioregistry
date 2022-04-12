@@ -365,6 +365,9 @@ class Resource(BaseModel):
     """
         ),
     )
+    twitter: Optional[str] = Field(
+        description="The twitter handle for the project"
+    )
     #: External data from Identifiers.org's MIRIAM Database
     miriam: Optional[Mapping[str, Any]]
     #: External data from the Name-to-Thing service
@@ -774,7 +777,9 @@ class Resource(BaseModel):
         return []
 
     def get_twitter(self) -> Optional[str]:
-        """Get the twitter handle for ther resource."""
+        """Get the Twitter handle for ther resource."""
+        if self.twitter:
+            return self.twitter
         if self.obofoundry:
             return self.obofoundry.get("twitter")
         return None
