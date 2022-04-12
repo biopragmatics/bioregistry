@@ -365,9 +365,7 @@ class Resource(BaseModel):
     """
         ),
     )
-    twitter: Optional[str] = Field(
-        description="The twitter handle for the project"
-    )
+    twitter: Optional[str] = Field(description="The twitter handle for the project")
     #: External data from Identifiers.org's MIRIAM Database
     miriam: Optional[Mapping[str, Any]]
     #: External data from the Name-to-Thing service
