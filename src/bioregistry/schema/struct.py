@@ -773,6 +773,12 @@ class Resource(BaseModel):
             return self.obofoundry.get("publications", [])
         return []
 
+    def get_twitter(self) -> Optional[str]:
+        """Get the twitter handle for ther resource."""
+        if self.obofoundry:
+            return self.obofoundry.get("twitter")
+        return None
+
     def get_obofoundry_prefix(self) -> Optional[str]:
         """Get the OBO Foundry prefix if available.
 
