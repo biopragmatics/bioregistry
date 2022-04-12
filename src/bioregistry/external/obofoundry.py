@@ -72,9 +72,10 @@ def _process(record):
         "repository": record.get("repository"),
     }
 
-    publications = record.get("publications")
-    if publications:
-        rv["publications"] = publications
+    for key in ("publications", "twitter"):
+        value = record.get(key)
+        if value:
+            rv[key] = value
 
     dependencies = record.get("dependencies")
     if dependencies:
