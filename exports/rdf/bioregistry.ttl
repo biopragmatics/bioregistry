@@ -8978,61 +8978,6 @@ bioregistry:paleodb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:panther.family a bioregistry.schema:0000001 ;
-    rdfs:label "Protein ANalysis THrough Evolutionary Relationships Classification System" ;
-    dc:description "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. This collection references groups of genes that have been organised as families."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biolink:PANTHER.FAMILY,
-        go.resource:PANTHER,
-        n2t:panther.family,
-        prefixcommons:PANTHER.FAMILY,
-        miriam:panther.family ;
-    foaf:homepage "http://www.pantherdb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "PTHR12345"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.pantherdb.org/panther/family.do?clsAccession=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PTHR\\d{5}(\\:SF\\d{1,3})?$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:panther.node a bioregistry.schema:0000001 ;
-    rdfs:label "PANTHER Node" ;
-    dc:description "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. PANTHER tree is a key element of the PANTHER System to represent ‘all’ of the evolutionary events in the gene family. PANTHER nodes represent the evolutionary events, either speciation or duplication, within the tree. PANTHER is maintaining stable identifier for these nodes."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch n2t:panther.node,
-        prefixcommons:PANTHER.NODE,
-        miriam:panther.node ;
-    foaf:homepage "http://pantree.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "PTN000000026"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.pantree.org/node/annotationNode.jsp?id=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PTN\\d{9}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:panther.pathway a bioregistry.schema:0000001 ;
-    rdfs:label "PANTHER Pathway" ;
-    dc:description "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. The PANTHER Pathway collection references pathway information, primarily for signaling pathways, each with subfamilies and protein sequences mapped to individual pathway components."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch n2t:panther.pathway,
-        prefixcommons:PANTHER.PATHWAY,
-        miriam:panther.pathway ;
-    foaf:homepage "http://www.pantherdb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "P00024"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^P\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:panther.pthcmp a bioregistry.schema:0000001 ;
-    rdfs:label "PANTHER Pathway Component" ;
-    dc:description """The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. The PANTHER Pathway Component collection references specific classes of molecules that play the same mechanistic role within a pathway, across species. Pathway\r
-components may be proteins, genes/DNA, RNA, or simple molecules. Where the identified component is a protein, DNA, or transcribed RNA, it is associated with protein sequences in the PANTHER protein family trees through manual curation."""^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch n2t:panther.pthcmp,
-        prefixcommons:PANTHER.PTHCMP,
-        miriam:panther.pthcmp ;
-    foaf:homepage "http://www.pantherdb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "P00266"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.pantherdb.org/pathway/pathCatDetail.do?clsAccession=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^(G|P|U|C|S)\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:pao a bioregistry.schema:0000001 ;
     rdfs:label "Plant Anatomy Ontology" ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
@@ -18975,6 +18920,65 @@ bioregistry:panorama a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://panoramaweb.org/$1.url"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:panther.family a bioregistry.schema:0000001 ;
+    rdfs:label "Protein ANalysis THrough Evolutionary Relationships Classification System" ;
+    dc:description "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. This collection references groups of genes that have been organised as families."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:panther ;
+    skos:exactMatch biolink:PANTHER.FAMILY,
+        go.resource:PANTHER,
+        n2t:panther.family,
+        prefixcommons:PANTHER.FAMILY,
+        miriam:panther.family ;
+    foaf:homepage "http://www.pantherdb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "PTHR12345"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.pantherdb.org/panther/family.do?clsAccession=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PTHR\\d{5}(\\:SF\\d{1,3})?$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:panther.node a bioregistry.schema:0000001 ;
+    rdfs:label "PANTHER Node" ;
+    dc:description "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. PANTHER tree is a key element of the PANTHER System to represent ‘all’ of the evolutionary events in the gene family. PANTHER nodes represent the evolutionary events, either speciation or duplication, within the tree. PANTHER is maintaining stable identifier for these nodes."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:panther ;
+    skos:exactMatch n2t:panther.node,
+        prefixcommons:PANTHER.NODE,
+        miriam:panther.node ;
+    foaf:homepage "http://pantree.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "PTN000000026"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.pantree.org/node/annotationNode.jsp?id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PTN\\d{9}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:panther.pathway a bioregistry.schema:0000001 ;
+    rdfs:label "PANTHER Pathway" ;
+    dc:description "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. The PANTHER Pathway collection references pathway information, primarily for signaling pathways, each with subfamilies and protein sequences mapped to individual pathway components."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:panther ;
+    skos:exactMatch n2t:panther.pathway,
+        prefixcommons:PANTHER.PATHWAY,
+        miriam:panther.pathway ;
+    foaf:homepage "http://www.pantherdb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "P00024"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^P\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:panther.pthcmp a bioregistry.schema:0000001 ;
+    rdfs:label "PANTHER Pathway Component" ;
+    dc:description """The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. The PANTHER Pathway Component collection references specific classes of molecules that play the same mechanistic role within a pathway, across species. Pathway\r
+components may be proteins, genes/DNA, RNA, or simple molecules. Where the identified component is a protein, DNA, or transcribed RNA, it is associated with protein sequences in the PANTHER protein family trees through manual curation."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:panther ;
+    skos:exactMatch n2t:panther.pthcmp,
+        prefixcommons:PANTHER.PTHCMP,
+        miriam:panther.pthcmp ;
+    foaf:homepage "http://www.pantherdb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "P00266"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.pantherdb.org/pathway/pathCatDetail.do?clsAccession=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(G|P|U|C|S)\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:pathbank a bioregistry.schema:0000001 ;
     rdfs:label "PathBank" ;
     dc:description "PathBank is an interactive, visual database containing more than 100 000 machine-readable pathways found in model organisms such as humans, mice, E. coli, yeast, and Arabidopsis thaliana."^^xsd:string ;
@@ -24969,8 +24973,6 @@ uniprot.resource:Orphanet dcterms:isPartOf bioregistry.metaresource:uniprot .
 
 uniprot.resource:OrthoDB dcterms:isPartOf bioregistry.metaresource:uniprot .
 
-uniprot.resource:PDB dcterms:isPartOf bioregistry.metaresource:uniprot .
-
 uniprot.resource:PIRSF dcterms:isPartOf bioregistry.metaresource:uniprot .
 
 uniprot.resource:PRIDE dcterms:isPartOf bioregistry.metaresource:uniprot .
@@ -24992,6 +24994,8 @@ uniprot.resource:Pfam dcterms:isPartOf bioregistry.metaresource:uniprot .
 uniprot.resource:PhylomeDB dcterms:isPartOf bioregistry.metaresource:uniprot .
 
 uniprot.resource:PomBase dcterms:isPartOf bioregistry.metaresource:uniprot .
+
+uniprot.resource:RCSB-PDB dcterms:isPartOf bioregistry.metaresource:uniprot .
 
 uniprot.resource:REBASE dcterms:isPartOf bioregistry.metaresource:uniprot .
 
@@ -26220,6 +26224,11 @@ bioregistry:one a bioregistry.schema:0000001 ;
         bioregistry:ons ;
     bioregistry.schema:0000019 orcid:0000-0001-9202-5309 .
 
+bioregistry:panther dcterms:hasPart bioregistry:panther.family,
+        bioregistry:panther.node,
+        bioregistry:panther.pathway,
+        bioregistry:panther.pthcmp .
+
 bioregistry:pdb a bioregistry.schema:0000001 ;
     rdfs:label "PDB structure ID" ;
     dc:description "The Protein Data Bank is the single worldwide archive of structural data of biological macromolecules."^^xsd:string ;
@@ -26230,7 +26239,7 @@ bioregistry:pdb a bioregistry.schema:0000001 ;
         fairsharing:FAIRsharing.mckkb4,
         prefixcommons:PDB,
         miriam:pdb,
-        uniprot.resource:PDB,
+        uniprot.resource:RCSB-PDB,
         wikidata:P638 ;
     foaf:homepage "https://www.wwpdb.org/"^^xsd:string ;
     bioregistry.schema:0000005 "2gc4"^^xsd:string ;
@@ -28037,7 +28046,6 @@ bioregistry.metaresource:uniprot a bioregistry.schema:0000002 ;
         uniprot.resource:MobiDB,
         uniprot.resource:Orphanet,
         uniprot.resource:OrthoDB,
-        uniprot.resource:PDB,
         uniprot.resource:PIRSF,
         uniprot.resource:PRIDE,
         uniprot.resource:PRINTS,
@@ -28049,6 +28057,7 @@ bioregistry.metaresource:uniprot a bioregistry.schema:0000002 ;
         uniprot.resource:Pfam,
         uniprot.resource:PhylomeDB,
         uniprot.resource:PomBase,
+        uniprot.resource:RCSB-PDB,
         uniprot.resource:REBASE,
         uniprot.resource:RGD,
         uniprot.resource:Reactome,
