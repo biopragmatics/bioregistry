@@ -19,7 +19,11 @@ from bioregistry.utils import (
 @click.command()
 def lint():
     """Run the lint commands."""
-    write_registry(read_registry())
+    registry = read_registry()
+    for resource in registry.values():
+        if resource.synonyms:
+            resource.synonyms = sorted(resource.synonyms)
+    write_registry(registry)
     write_collections(read_collections())
     write_metaregistry(read_metaregistry())
     write_contexts(read_contexts())
