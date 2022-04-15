@@ -4739,6 +4739,37 @@
     "preferred_prefix": "GRO",
     "uri_format": "http://purl.obolibrary.org/obo/GRO_$1"
   },
+  "cpt": {
+    "contributor": {
+      "email": null,
+      "github": "sierra-moxon",
+      "name": "Sierra Moxon",
+      "orcid": "0000-0002-8719-7760"
+    },
+    "description": "Current Procedural Terminology, more commonly known as CPT®, refers to a medical code set created and maintained by the American Medical Association — and used by physicians, allied health professionals, nonphysician practitioners, hospitals, outpatient facilities, and laboratories to represent the services and procedures they perform. No provider of outpatient services gets paid without reporting the proper CPT® codes. [Description taken from this site](https://www.aapc.com/codes/cpt-codes-range/)]",
+    "example": "00103",
+    "homepage": "https://www.aapc.com",
+    "mappings": {
+      "biolink": "CPT",
+      "bioportal": "CPT",
+      "fairsharing": "FAIRsharing.wpxab1"
+    },
+    "name": "Current Procedural Terminology",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "cpt",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/357",
+      "https://github.com/biopragmatics/bioregistry/pull/358",
+      "https://github.com/biolink/biolink-model/pull/993"
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://www.aapc.com/codes/cpt-codes/$1"
+  },
   "credit": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -5453,6 +5484,27 @@
     "repository": "https://github.com/obophenotype/dicty-phenotype-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/DDPHENO_$1",
     "version": "2020-06-19"
+  },
+  "decipher": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "CNV syndromes in the DECIPHER genomics database that are linked to Human Phenotype Ontology terms",
+    "example": "1",
+    "homepage": "https://www.deciphergenomics.org/",
+    "mappings": {
+      "fairsharing": "FAIRsharing.l8Sf5x",
+      "prefixcommons": "DECIPHER"
+    },
+    "name": "DECIPHER CNV Syndromes",
+    "preferred_prefix": "decipher",
+    "references": [
+      "https://www.deciphergenomics.org/redirect?to=https%3A%2F%2Fdx.doi.org%2F10.1016%2Fj.ajhg.2009.03.010"
+    ],
+    "uri_format": "https://www.deciphergenomics.org/syndrome/$1"
   },
   "degradome": {
     "description": "The Degradome Database contains information on the complete set of predicted proteases present in a a variety of mammalian species that have been subjected to whole genome sequencing. Each protease sequence is curated and, when necessary, cloned and sequenced.",
@@ -8573,6 +8625,9 @@
     "description": "PomBase manages gene and phenotype data related to Fission Yeast. FYECO contains experimental conditions relevant to fission yeast biology. The FYECO namespace shows up in data ingests from PomBase.",
     "example": "0000003",
     "homepage": "https://github.com/pombase/fypo",
+    "mappings": {
+      "biolink": "FYECO"
+    },
     "name": "Fission Yeast Experimental Conditions Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "FYECO",

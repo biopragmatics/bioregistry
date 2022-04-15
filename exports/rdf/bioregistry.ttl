@@ -259,6 +259,9 @@ orcid:0000-0002-3012-7446 rdfs:label "Daniel Himmelstein" ;
 orcid:0000-0002-7356-1779 rdfs:label "Nico Matentzoglu" ;
     dcterms:contributor bioregistry:pav .
 
+orcid:0000-0002-8719-7760 rdfs:label "Sierra Moxon" ;
+    dcterms:contributor bioregistry:cpt .
+
 bioregistry:3dmet a bioregistry.schema:0000001 ;
     rdfs:label "3D Metabolites" ;
     dc:description "3DMET is a database collecting three-dimensional structures of natural metabolites."^^xsd:string ;
@@ -13736,6 +13739,8 @@ bioportal:COLAO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:COVID-19 dcterms:isPartOf bioregistry.metaresource:bioportal .
 
+bioportal:CPT dcterms:isPartOf bioregistry.metaresource:bioportal .
+
 bioportal:CRISP dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:CRO dcterms:isPartOf bioregistry.metaresource:bioportal .
@@ -14272,6 +14277,8 @@ biolink:CLINVAR dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:COG dcterms:isPartOf bioregistry.metaresource:biolink .
 
+biolink:CPT dcterms:isPartOf bioregistry.metaresource:biolink .
+
 biolink:CTD.CHEMICAL dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:CTD.DISEASE dcterms:isPartOf bioregistry.metaresource:biolink .
@@ -14285,6 +14292,8 @@ biolink:ECTO dcterms:isPartOf bioregistry.metaresource:biolink .
 biolink:EFO dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:ExO dcterms:isPartOf bioregistry.metaresource:biolink .
+
+biolink:FYECO dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:FYPO dcterms:isPartOf bioregistry.metaresource:biolink .
 
@@ -17022,6 +17031,20 @@ bioregistry:cp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000018 bioregistry:cl .
 
+bioregistry:cpt a bioregistry.schema:0000001 ;
+    rdfs:label "Current Procedural Terminology" ;
+    dc:description "Current Procedural Terminology, more commonly known as CPT®, refers to a medical code set created and maintained by the American Medical Association — and used by physicians, allied health professionals, nonphysician practitioners, hospitals, outpatient facilities, and laboratories to represent the services and procedures they perform. No provider of outpatient services gets paid without reporting the proper CPT® codes. [Description taken from this site](https://www.aapc.com/codes/cpt-codes-range/)]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch bioportal:CPT,
+        biolink:CPT,
+        fairsharing:FAIRsharing.wpxab1 ;
+    foaf:homepage "https://www.aapc.com"^^xsd:string ;
+    bioregistry.schema:0000005 "00103"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.aapc.com/codes/cpt-codes/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:credit a bioregistry.schema:0000001 ;
     rdfs:label "CASRAI Contributor Roles Taxonomy" ;
     dc:description "CRediT (Contributor Roles Taxonomy) is high-level taxonomy, including 14 roles, that can be used to represent the roles typically played by contributors to scientific scholarly output. The roles describe each contributor’s specific contribution to the scholarly output."^^xsd:string ;
@@ -17172,6 +17195,17 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     foaf:homepage "https://dublincore.org/specifications/dublin-core/dcmi-terms/"^^xsd:string ;
     bioregistry.schema:0000005 "Collection"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:decipher a bioregistry.schema:0000001 ;
+    rdfs:label "DECIPHER CNV Syndromes" ;
+    dc:description "CNV syndromes in the DECIPHER genomics database that are linked to Human Phenotype Ontology terms"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.l8Sf5x,
+        prefixcommons:DECIPHER ;
+    foaf:homepage "https://www.deciphergenomics.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.deciphergenomics.org/syndrome/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:dictybase.est a bioregistry.schema:0000001 ;
@@ -17716,6 +17750,7 @@ bioregistry:fyeco a bioregistry.schema:0000001 ;
     rdfs:label "Fission Yeast Experimental Conditions Ontology" ;
     dc:description "PomBase manages gene and phenotype data related to Fission Yeast. FYECO contains experimental conditions relevant to fission yeast biology. The FYECO namespace shows up in data ingests from PomBase."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biolink:FYECO ;
     foaf:homepage "https://github.com/pombase/fypo"^^xsd:string ;
     bioregistry.schema:0000005 "0000003"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
@@ -20672,6 +20707,8 @@ fairsharing:FAIRsharing.kpbna7 dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.kqt2h2 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.l8Sf5x dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.m3jtpg dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.m40bhw dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -20947,6 +20984,8 @@ fairsharing:FAIRsharing.wkdjpb dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.wnk2eq dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.wpt5mp dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.wpxab1 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.wqsxtg dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -21417,6 +21456,8 @@ prefixcommons:DC_CL dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 prefixcommons:DDANAT dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:DDPHENO dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:DECIPHER dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:DEGRADOME dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -27420,6 +27461,84 @@ bioregistry:pato a bioregistry.schema:0000001 ;
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0002-2061-091X .
 
+bioregistry:bfo a bioregistry.schema:0000001 ;
+    rdfs:label "Basic Formal Ontology" ;
+    dc:description "The upper level ontology upon which OBO Foundry ontologies are built."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch obofoundry:BFO,
+        ontobee:BFO,
+        bioportal:BFO,
+        go.resource:BFO,
+        fairsharing:FAIRsharing.wcpd6f,
+        prefixcommons:BFO,
+        ols:bfo ;
+    foaf:homepage "http://ifomis.org/bfo/"^^xsd:string ;
+    bioregistry.schema:0000005 "0000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BFO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:agro,
+        bioregistry:aism,
+        bioregistry:cdno,
+        bioregistry:colao,
+        bioregistry:duo,
+        bioregistry:ecocore,
+        bioregistry:epio,
+        bioregistry:foodon,
+        bioregistry:fovt,
+        bioregistry:hso,
+        bioregistry:lepao,
+        bioregistry:mco,
+        bioregistry:ons,
+        bioregistry:pcl,
+        bioregistry:pco,
+        bioregistry:psdo,
+        bioregistry:rbo,
+        bioregistry:xpo,
+        bioregistry:zp ;
+    bioregistry.schema:0000019 orcid:0000-0003-1384-116X .
+
+bioregistry:chebi a bioregistry.schema:0000001 ;
+    rdfs:label "Chemical Entities of Biological Interest" ;
+    dc:description "Chemical Entities of Biological Interest (ChEBI) is a freely available dictionary of molecular entities focused on 'small' chemical compounds."^^xsd:string ;
+    dcterms:hasPart bioregistry:fix,
+        bioregistry:rex ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch obofoundry:CHEBI,
+        ontobee:CHEBI,
+        bioportal:CHEBI,
+        cellosaurus.resource:ChEBI,
+        go.resource:CHEBI,
+        n2t:chebi,
+        fairsharing:FAIRsharing.62qk8w,
+        prefixcommons:CHEBI,
+        miriam:chebi,
+        ols:chebi,
+        cheminf:000407,
+        wikidata:P683 ;
+    foaf:homepage "http://www.ebi.ac.uk/chebi"^^xsd:string ;
+    bioregistry.schema:0000005 "24867"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:cdno,
+        bioregistry:chiro,
+        bioregistry:cl,
+        bioregistry:ecocore,
+        bioregistry:ecto,
+        bioregistry:envo,
+        bioregistry:fobi,
+        bioregistry:foodon,
+        bioregistry:genepio,
+        bioregistry:maxo,
+        bioregistry:mco,
+        bioregistry:ons,
+        bioregistry:pcl,
+        bioregistry:scdo,
+        bioregistry:uberon,
+        bioregistry:xpo ;
+    bioregistry.schema:0000019 orcid:0000-0001-8123-5351 .
+
 orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
     dcterms:contributor bioregistry:4dn.replicate,
         bioregistry:ac,
@@ -27456,6 +27575,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cosmic.cell,
         bioregistry:cp,
         bioregistry:credit,
+        bioregistry:decipher,
         bioregistry:diseaseclass,
         bioregistry:dsmz,
         bioregistry:eaglei,
@@ -27569,84 +27689,6 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ximbio,
         bioregistry:xuo,
         bioregistry:ymdb .
-
-bioregistry:bfo a bioregistry.schema:0000001 ;
-    rdfs:label "Basic Formal Ontology" ;
-    dc:description "The upper level ontology upon which OBO Foundry ontologies are built."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:BFO,
-        ontobee:BFO,
-        bioportal:BFO,
-        go.resource:BFO,
-        fairsharing:FAIRsharing.wcpd6f,
-        prefixcommons:BFO,
-        ols:bfo ;
-    foaf:homepage "http://ifomis.org/bfo/"^^xsd:string ;
-    bioregistry.schema:0000005 "0000001"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BFO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:agro,
-        bioregistry:aism,
-        bioregistry:cdno,
-        bioregistry:colao,
-        bioregistry:duo,
-        bioregistry:ecocore,
-        bioregistry:epio,
-        bioregistry:foodon,
-        bioregistry:fovt,
-        bioregistry:hso,
-        bioregistry:lepao,
-        bioregistry:mco,
-        bioregistry:ons,
-        bioregistry:pcl,
-        bioregistry:pco,
-        bioregistry:psdo,
-        bioregistry:rbo,
-        bioregistry:xpo,
-        bioregistry:zp ;
-    bioregistry.schema:0000019 orcid:0000-0003-1384-116X .
-
-bioregistry:chebi a bioregistry.schema:0000001 ;
-    rdfs:label "Chemical Entities of Biological Interest" ;
-    dc:description "Chemical Entities of Biological Interest (ChEBI) is a freely available dictionary of molecular entities focused on 'small' chemical compounds."^^xsd:string ;
-    dcterms:hasPart bioregistry:fix,
-        bioregistry:rex ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:CHEBI,
-        ontobee:CHEBI,
-        bioportal:CHEBI,
-        cellosaurus.resource:ChEBI,
-        go.resource:CHEBI,
-        n2t:chebi,
-        fairsharing:FAIRsharing.62qk8w,
-        prefixcommons:CHEBI,
-        miriam:chebi,
-        ols:chebi,
-        cheminf:000407,
-        wikidata:P683 ;
-    foaf:homepage "http://www.ebi.ac.uk/chebi"^^xsd:string ;
-    bioregistry.schema:0000005 "24867"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:cdno,
-        bioregistry:chiro,
-        bioregistry:cl,
-        bioregistry:ecocore,
-        bioregistry:ecto,
-        bioregistry:envo,
-        bioregistry:fobi,
-        bioregistry:foodon,
-        bioregistry:genepio,
-        bioregistry:maxo,
-        bioregistry:mco,
-        bioregistry:ons,
-        bioregistry:pcl,
-        bioregistry:scdo,
-        bioregistry:uberon,
-        bioregistry:xpo ;
-    bioregistry.schema:0000019 orcid:0000-0001-8123-5351 .
 
 bioregistry:uniprot a bioregistry.schema:0000001 ;
     rdfs:label "UniProt protein ID" ;
@@ -27913,6 +27955,7 @@ bioregistry.metaresource:biolink a bioregistry.schema:0000002 ;
         biolink:CID,
         biolink:CLINVAR,
         biolink:COG,
+        biolink:CPT,
         biolink:CTD.CHEMICAL,
         biolink:CTD.DISEASE,
         biolink:CTD.GENE,
@@ -27920,6 +27963,7 @@ bioregistry.metaresource:biolink a bioregistry.schema:0000002 ;
         biolink:ECTO,
         biolink:EFO,
         biolink:ExO,
+        biolink:FYECO,
         biolink:FYPO,
         biolink:GOREL,
         biolink:GSID,
@@ -29254,6 +29298,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:COB,
         bioportal:COLAO,
         bioportal:COVID-19,
+        bioportal:CPT,
         bioportal:CRISP,
         bioportal:CRO,
         bioportal:CRYOEM,
@@ -29878,6 +29923,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.knp11s,
         fairsharing:FAIRsharing.kpbna7,
         fairsharing:FAIRsharing.kqt2h2,
+        fairsharing:FAIRsharing.l8Sf5x,
         fairsharing:FAIRsharing.m3jtpg,
         fairsharing:FAIRsharing.m40bhw,
         fairsharing:FAIRsharing.mckkb4,
@@ -30016,6 +30062,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.wkdjpb,
         fairsharing:FAIRsharing.wnk2eq,
         fairsharing:FAIRsharing.wpt5mp,
+        fairsharing:FAIRsharing.wpxab1,
         fairsharing:FAIRsharing.wqsxtg,
         fairsharing:FAIRsharing.wrvze3,
         fairsharing:FAIRsharing.wsfk5z,
@@ -31696,6 +31743,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:DC_CL,
         prefixcommons:DDANAT,
         prefixcommons:DDPHENO,
+        prefixcommons:DECIPHER,
         prefixcommons:DEGRADOME,
         prefixcommons:DEPOD,
         prefixcommons:DEV.GA4GHDOS,
@@ -32638,6 +32686,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:cp,
         bioregistry:cpc,
         bioregistry:cpga,
+        bioregistry:cpt,
         bioregistry:credit,
         bioregistry:crisprdb,
         bioregistry:cro,
@@ -32679,6 +32728,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dctypes,
         bioregistry:ddanat,
         bioregistry:ddpheno,
+        bioregistry:decipher,
         bioregistry:degradome,
         bioregistry:depmap,
         bioregistry:depod,
