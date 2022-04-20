@@ -628,10 +628,10 @@ bioregistry:apid.interactions a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:apo a bioregistry.schema:0000001 ;
-    rdfs:label "Yeast phenotypes" ;
+    rdfs:label "Ascomycete phenotype ontology" ;
     dc:description "A structured controlled vocabulary for the phenotypes of Ascomycete fungi."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:YPO,
+    skos:exactMatch obofoundry:APO,
         ontobee:APO,
         bioportal:APO,
         fairsharing:FAIRsharing.dyqz3y,
@@ -641,8 +641,8 @@ bioregistry:apo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000184"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.yeastgenome.org/observable/APO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000019 orcid:0000-0001-9163-5180 .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-5472-917X .
 
 bioregistry:arachnoserver a bioregistry.schema:0000001 ;
     rdfs:label "ArachnoServer" ;
@@ -12472,6 +12472,16 @@ bioregistry:yid a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[A-Z0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:ypo a bioregistry.schema:0000001 ;
+    rdfs:label "Yeast phenotypes" ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch obofoundry:YPO,
+        ols:ypo ;
+    foaf:homepage "http://www.yeastgenome.org/"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/YPO_$1"^^xsd:string ;
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000019 orcid:0000-0001-9163-5180 .
+
 bioregistry:yrcpdr a bioregistry.schema:0000001 ;
     rdfs:label "YRC PDR" ;
     dc:description "The Yeast Resource Center Public Data Repository (YRC PDR) serves as a single point of access for the experimental data produced from many collaborations typically studying Saccharomyces cerevisiae (baker's yeast). The experimental data include large amounts of mass spectrometry results from protein co-purification experiments, yeast two-hybrid interaction experiments, fluorescence microscopy images and protein structure predictions."^^xsd:string ;
@@ -12551,6 +12561,8 @@ orcid:0000-0001-5059-4132 rdfs:label "Marijane White" .
 orcid:0000-0001-5168-3196 rdfs:label "Nathan Edwards" .
 
 orcid:0000-0001-5256-8683 rdfs:label "Shur-Jen Wang" .
+
+orcid:0000-0001-5472-917X rdfs:label "Stacia R Engel" .
 
 orcid:0000-0001-5809-9523 rdfs:label "Darren Natale" .
 
@@ -12746,6 +12758,8 @@ obofoundry:AGRO dcterms:isPartOf bioregistry.metaresource:obofoundry .
 obofoundry:AISM dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 obofoundry:AMPHX dcterms:isPartOf bioregistry.metaresource:obofoundry .
+
+obofoundry:APO dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 obofoundry:APOLLO_SV dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
@@ -24895,6 +24909,8 @@ ols:xlmod dcterms:isPartOf bioregistry.metaresource:ols .
 
 ols:xpo dcterms:isPartOf bioregistry.metaresource:ols .
 
+ols:ypo dcterms:isPartOf bioregistry.metaresource:ols .
+
 ols:zeco dcterms:isPartOf bioregistry.metaresource:ols .
 
 ols:zfa dcterms:isPartOf bioregistry.metaresource:ols .
@@ -28727,6 +28743,7 @@ bioregistry.metaresource:obofoundry a bioregistry.schema:0000002 ;
         obofoundry:AGRO,
         obofoundry:AISM,
         obofoundry:AMPHX,
+        obofoundry:APO,
         obofoundry:APOLLO_SV,
         obofoundry:ARO,
         obofoundry:ATO,
@@ -29242,6 +29259,7 @@ bioregistry.metaresource:ols a bioregistry.schema:0000002 ;
         ols:xl,
         ols:xlmod,
         ols:xpo,
+        ols:ypo,
         ols:zeco,
         ols:zfa,
         ols:zfs,
@@ -33742,6 +33760,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:yetfasco,
         bioregistry:yid,
         bioregistry:ymdb,
+        bioregistry:ypo,
         bioregistry:yrcpdr,
         bioregistry:zea,
         bioregistry:zeco,

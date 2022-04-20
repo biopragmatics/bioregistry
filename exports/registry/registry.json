@@ -634,33 +634,31 @@
     "uri_format": "http://cicblade.dep.usal.es:8080/APID/Interactions.action?protein=$1"
   },
   "apo": {
-    "banana": "YPO",
+    "banana": "APO",
     "contact": {
-      "email": "cherry@genome.stanford.edu",
-      "github": null,
-      "name": "Mike Cherry",
-      "orcid": "0000-0001-9163-5180"
+      "email": "stacia@stanford.edu",
+      "github": "srengel",
+      "name": "Stacia R Engel",
+      "orcid": "0000-0001-5472-917X"
     },
-    "deprecated": true,
     "description": "A structured controlled vocabulary for the phenotypes of Ascomycete fungi.",
-    "download_owl": "http://purl.obolibrary.org/obo/apo/releases/2022-03-23/apo.owl",
+    "download_obo": "http://purl.obolibrary.org/obo/apo.obo",
+    "download_owl": "http://purl.obolibrary.org/obo/apo.owl",
     "example": "0000184",
     "homepage": "http://www.yeastgenome.org/",
     "license": "CC BY 4.0",
     "mappings": {
       "bioportal": "APO",
       "fairsharing": "FAIRsharing.dyqz3y",
-      "obofoundry": "YPO",
+      "obofoundry": "APO",
       "ols": "apo",
       "ontobee": "APO",
       "prefixcommons": "YPO"
     },
-    "name": "Yeast phenotypes",
+    "name": "Ascomycete phenotype ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "APO",
-    "synonyms": [
-      "YPO"
-    ],
+    "repository": "https://github.com/obophenotype/ascomycete-phenotype-ontology",
     "uri_format": "https://www.yeastgenome.org/observable/APO:$1",
     "version": "2022-03-23"
   },
@@ -24987,6 +24985,24 @@
     "pattern": "^YMDB\\d+$",
     "preferred_prefix": "ymdb",
     "uri_format": "http://www.ymdb.ca/compounds/$1"
+  },
+  "ypo": {
+    "banana": "YPO",
+    "contact": {
+      "email": "cherry@genome.stanford.edu",
+      "github": null,
+      "name": "Mike Cherry",
+      "orcid": "0000-0001-9163-5180"
+    },
+    "deprecated": true,
+    "homepage": "http://www.yeastgenome.org/",
+    "mappings": {
+      "obofoundry": "YPO",
+      "ols": "ypo"
+    },
+    "name": "Yeast phenotypes",
+    "preferred_prefix": "YPO",
+    "uri_format": "http://purl.obolibrary.org/obo/YPO_$1"
   },
   "yrcpdr": {
     "description": "The Yeast Resource Center Public Data Repository (YRC PDR) serves as a single point of access for the experimental data produced from many collaborations typically studying Saccharomyces cerevisiae (baker's yeast). The experimental data include large amounts of mass spectrometry results from protein co-purification experiments, yeast two-hybrid interaction experiments, fluorescence microscopy images and protein structure predictions.",
