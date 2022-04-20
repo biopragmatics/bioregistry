@@ -36,6 +36,13 @@ def update(ctx: click.Context):
     ctx.invoke(export)
     ctx.invoke(compare)
 
+    try:
+        from . import upload_ndex
+    except ImportError:
+        click.secho("Could not import ndex")
+    else:
+        ctx.invoke(upload_ndex.main)
+
 
 if __name__ == "__main__":
     main()

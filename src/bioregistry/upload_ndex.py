@@ -18,7 +18,7 @@ NDEX_UUID = "aa78a43f-9c4d-11eb-9e72-0ac135e8bacf"
 def main():
     """Upload the Bioregistry KG to NDEx."""
     upload()
-    click.echo(f"see https://bioregistry.io/ndex:{NDEX_UUID}")
+    click.echo(f"Uploaded to NDEx. See: https://bioregistry.io/ndex:{NDEX_UUID}")
 
 
 def upload():

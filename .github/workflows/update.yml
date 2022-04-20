@@ -30,6 +30,8 @@ jobs:
           BIOPORTAL_API_KEY: ${{ secrets.BIOPORTAL_API_KEY }}
           FAIRSHARING_LOGIN: ${{ secrets.FAIRSHARING_LOGIN }}
           FAIRSHARING_PASSWORD: ${{ secrets.FAIRSHARING_PASSWORD }}
+          NDEX_USERNAME: ${{ secrets.NDEX_USERNAME }}
+          NDEX_PASSWORD: ${{ secrets.NDEX_PASSWORD }}
       - name: Check environment
         run: echo ${{ steps.update.outputs.BR_UPDATED }}
       - name: Commit files
