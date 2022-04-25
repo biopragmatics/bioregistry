@@ -2715,7 +2715,9 @@ bioregistry:covoc a bioregistry.schema:0000001 ;
     skos:exactMatch ols:covoc ;
     foaf:homepage "https://github.com/EBISPOT/covoc"^^xsd:string ;
     bioregistry.schema:0000005 "0010034"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-4071-8397 .
 
 bioregistry:cpc a bioregistry.schema:0000001 ;
     rdfs:label "Cooperative Patent Classification" ;
@@ -3842,17 +3844,6 @@ bioregistry:envipath a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "32de3cf4-e3e6-4168-956e-32fa5ddb0ce1/compound/b545cabc-8c9e-4b20-8848-efa015b481ea"^^xsd:string ;
     bioregistry.schema:0000006 "https://envipath.org/package/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[\\w^_]{8}-[\\w^_]{4}-[\\w^_]{4}-[\\w^_]{4}-[\\w^_]{12}\\/[\\w-]+\\/[\\w^_]{8}-[\\w^_]{4}-[\\w^_]{4}-[\\w^_]{4}-[\\w^_]{12}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:eol a bioregistry.schema:0000001 ;
-    rdfs:label "Environment Ontology for Livestock" ;
-    dc:description "L'ontologie EOL décrit les conditions d'environnement des élevages d'animaux domestiques. Elle décrit plus particulièrement les modalités de l'alimentation, de l'environnement, de la structure des élevages et des systèmes d'élevage"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:EOL,
-        fairsharing:FAIRsharing.3J6NYn,
-        ols:eol ;
-    foaf:homepage "http://www.atol-ontology.com"^^xsd:string ;
-    bioregistry.schema:0000005 "0001927"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:epd a bioregistry.schema:0000001 ;
@@ -5744,7 +5735,9 @@ bioregistry:idocovid19 a bioregistry.schema:0000001 ;
         ols:idocovid19 ;
     foaf:homepage "https://github.com/infectious-disease-ontology-extensions/ido-covid-19"^^xsd:string ;
     bioregistry.schema:0000005 "0001191"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1118-1738 .
 
 bioregistry:idoden a bioregistry.schema:0000001 ;
     rdfs:label "Dengue Fever Ontology" ;
@@ -6358,7 +6351,8 @@ bioregistry:lbo a bioregistry.schema:0000001 ;
         ols:lbo ;
     foaf:homepage "http://bioportal.bioontology.org/ontologies/LBO"^^xsd:string ;
     bioregistry.schema:0000005 "0000487"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-2346-5201 .
 
 bioregistry:lei a bioregistry.schema:0000001 ;
     rdfs:label "Global LEI Index" ;
@@ -7518,6 +7512,7 @@ bioregistry:mod a bioregistry.schema:0000001 ;
         bioportal:PSIMOD,
         go.resource:PSI-MOD,
         n2t:mod,
+        fairsharing:FAIRsharing.2m4ms9,
         prefixcommons:MOD,
         miriam:mod,
         ols:mod ;
@@ -8831,7 +8826,8 @@ bioregistry:orth a bioregistry.schema:0000001 ;
         ols:orth ;
     foaf:homepage "https://github.com/qfo/OrthologyOntology"^^xsd:string ;
     bioregistry.schema:0000005 "HomologyRelation"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7558-2880 .
 
 bioregistry:orthodb a bioregistry.schema:0000001 ;
     rdfs:label "OrthoDB" ;
@@ -10065,6 +10061,7 @@ bioregistry:reaxys a bioregistry.schema:0000001 ;
     skos:exactMatch wikidata:P1579 ;
     foaf:homepage "https://www.reaxys.com"^^xsd:string ;
     bioregistry.schema:0000005 "1257009"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:rebase a bioregistry.schema:0000001 ;
@@ -12072,7 +12069,9 @@ bioregistry:vido a bioregistry.schema:0000001 ;
         ols:vido ;
     foaf:homepage "https://github.com/infectious-disease-ontology-extensions/ido-virus"^^xsd:string ;
     bioregistry.schema:0000005 "0001114"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1118-1738 .
 
 bioregistry:vipr a bioregistry.schema:0000001 ;
     rdfs:label "Virus Pathogen Resource" ;
@@ -12646,8 +12645,6 @@ orcid:0000-0002-2118-035X rdfs:label "Adrien Rougny" .
 
 orcid:0000-0002-2193-0704 rdfs:label "Jade Hotchkiss" .
 
-orcid:0000-0002-2346-5201 rdfs:label "Carissa Park" .
-
 orcid:0000-0002-2404-1582 rdfs:label "Clement Jonquet" .
 
 orcid:0000-0002-2548-641X rdfs:label "Sirarat Sarntivijai" .
@@ -12659,6 +12656,8 @@ orcid:0000-0002-3458-4839 rdfs:label "Trish Whetzel" .
 orcid:0000-0002-3583-7340 rdfs:label "Deepak Unni" .
 
 orcid:0000-0002-3625-0955 rdfs:label "Charles Ettensohn" .
+
+orcid:0000-0002-4071-8397 rdfs:label "Zoë May Pendlington" .
 
 orcid:0000-0002-5103-9058 rdfs:label "Ali Syed" .
 
@@ -12681,6 +12680,8 @@ orcid:0000-0002-6982-4660 rdfs:label "Alex Bateman" .
 orcid:0000-0002-7073-9172 rdfs:label "David Osumi-Sutherland" .
 
 orcid:0000-0002-7440-0467 rdfs:label "Lucas Leclere" .
+
+orcid:0000-0002-7558-2880 rdfs:label "Jesualdo Tomás Fernández-Breis" .
 
 orcid:0000-0002-7696-731X rdfs:label "Liliana Andres Hernandez" .
 
@@ -13956,6 +13957,8 @@ bioportal:LEPAO dcterms:isPartOf bioregistry.metaresource:bioportal .
 bioportal:LIPRO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:LOINC dcterms:isPartOf bioregistry.metaresource:bioportal .
+
+bioportal:LPT dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:MA dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -16739,8 +16742,8 @@ bioregistry:caloha a bioregistry.schema:0000001 ;
     dc:description "This is a code repository for the SIB - Swiss Institute of Bioinformatics CALIPHO group neXtProt project, which is a comprehensive human-centric discovery platform, that offers a integration of and navigation through protein-related data. CALIPHO is an interdisciplinary team which aims to use a variety of methodologies to help uncover the function of uncharacterized human proteins."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://github.com/calipho-sib/controlled-vocabulary"^^xsd:string ;
-    bioregistry.schema:0000005 "0001"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000005 "TS-0001"^^xsd:string ;
+    bioregistry.schema:0000008 "^TS-\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:cath a bioregistry.schema:0000001 ;
@@ -17598,6 +17601,30 @@ bioregistry:eo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:foodon ;
     bioregistry.schema:0000019 orcid:0000-0002-1005-8383 .
 
+bioregistry:eol a bioregistry.schema:0000001 ;
+    rdfs:label "Environment Ontology for Livestock" ;
+    dc:description "The EOL ontology describes environmental conditions of livestock farms. More specifically, it describes the feeding modalities, the environment, the structure of livestock farms and rearing systems."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch bioportal:EOL,
+        fairsharing:FAIRsharing.w7bw2y,
+        ols:eol ;
+    foaf:homepage "http://www.atol-ontology.com"^^xsd:string ;
+    bioregistry.schema:0000005 "0001927"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:eolife a bioregistry.schema:0000001 ;
+    rdfs:label "Encyclopedia of Life" ;
+    dc:description "A collaborative project intended to create an encyclopedia documenting all living species known to science"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.3J6NYn,
+        wikidata:P830 ;
+    foaf:homepage "https://eol.org"^^xsd:string ;
+    bioregistry.schema:0000005 "1044544"^^xsd:string ;
+    bioregistry.schema:0000006 "https://eol.org/pages/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:epcc a bioregistry.schema:0000001 ;
     rdfs:label "European Paediatric Cardiac Codes" ;
     dc:description "Collection of European paediatric cardiac coding files"^^xsd:string ;
@@ -18095,6 +18122,15 @@ bioregistry:icdo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[8-9]\\d{3}(/[0-3])?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:icepo a bioregistry.schema:0000001 ;
+    rdfs:label "Ion Channel Electrophysiology Ontology" ;
+    dc:description "The Ion Channel Electrophysiology Ontology supports the capture of voltage-gated ion channel electrophysiological data from the literature in a structured manner and thus enables other applications such as querying and reasoning tools. "^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://download.nextprot.org/pub/current_release/controlled_vocabularies/"^^xsd:string ;
+    bioregistry.schema:0000005 "0000002"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:ico a bioregistry.schema:0000001 ;
     rdfs:label "Informed Consent Ontology" ;
     dc:description "The Informed Consent Ontology (ICO) is an ontology for the informed consent and informed consent process in the medical field."^^xsd:string ;
@@ -18505,6 +18541,20 @@ bioregistry:lotus a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-0443-9902 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:lpt a bioregistry.schema:0000001 ;
+    rdfs:label "Livestock Product Trait Ontology" ;
+    dc:description "The Livestock Product Trait Ontology (LPT) is a controlled vocabulary for the description of traits (measurable or observable characteristics) pertaining to products produced by or obtained from the body of an agricultural animal or bird maintained for use and profit."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch bioportal:LPT,
+        fairsharing:FAIRsharing.g78mbm,
+        prefixcommons:LPT ;
+    foaf:homepage "https://github.com/AnimalGenome/livestock-product-trait-ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "0000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/LPT_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-2346-5201 .
 
 bioregistry:lspci a bioregistry.schema:0000001 ;
     rdfs:label "Laboratory of Systems Pharmacology Compound ID" ;
@@ -20071,6 +20121,8 @@ fairsharing:FAIRsharing.2gpf81 dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.2jkxp5 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.2m4ms9 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.2ma4gq dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.2mayq0 dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -20619,6 +20671,8 @@ fairsharing:FAIRsharing.g4n8sw dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.g63c77 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.g78mbm dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.g7jbvn dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.g7t2hv dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -20981,6 +21035,8 @@ fairsharing:FAIRsharing.w69t6r dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.w6cxgb dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.w7bw2y dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.w9jvbt dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.wb0txg dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -21110,6 +21166,8 @@ orcid:0000-0002-0851-6883 rdfs:label "Jennifer C. Giron",
         "Jennifer C. Girón" .
 
 orcid:0000-0002-1048-5019 rdfs:label "Matthew Brush" .
+
+orcid:0000-0002-1118-1738 rdfs:label "John Beverly" .
 
 orcid:0000-0002-1780-5230 rdfs:label "Ada Hamosh" .
 
@@ -21945,6 +22003,8 @@ prefixcommons:LIPIDMAPS dcterms:isPartOf bioregistry.metaresource:prefixcommons 
 prefixcommons:LIPRO dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:LOGGERHEAD dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:LPT dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:LRG dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -25294,6 +25354,8 @@ wikidata:P8121 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P815 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P830 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P846 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P8656 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -26075,6 +26137,8 @@ orcid:0000-0002-0956-8634 rdfs:label "Terry Hayamizu" .
 orcid:0000-0002-2061-091X rdfs:label "George Gkoutos" .
 
 orcid:0000-0002-2265-5572 rdfs:label "Michael Y Galperin" .
+
+orcid:0000-0002-2346-5201 rdfs:label "Carissa Park" .
 
 orcid:0000-0002-3336-2476 rdfs:label "Paul Fabry" .
 
@@ -27599,6 +27663,8 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ecolexicon,
         bioregistry:emolecules,
         bioregistry:enzo,
+        bioregistry:eol,
+        bioregistry:eolife,
         bioregistry:epcc,
         bioregistry:eurofir,
         bioregistry:evm,
@@ -27622,6 +27688,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:gtr,
         bioregistry:hms.lincs.compound,
         bioregistry:hog,
+        bioregistry:icepo,
         bioregistry:idpo,
         bioregistry:imdrf,
         bioregistry:inhand,
@@ -27631,6 +27698,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:kupo,
         bioregistry:lncipedia,
         bioregistry:lonza,
+        bioregistry:lpt,
         bioregistry:lspci,
         bioregistry:lter,
         bioregistry:matrixdb,
@@ -28357,6 +28425,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P7963,
         wikidata:P8121,
         wikidata:P815,
+        wikidata:P830,
         wikidata:P846,
         wikidata:P8656,
         wikidata:P8691,
@@ -29418,6 +29487,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:LEPAO,
         bioportal:LIPRO,
         bioportal:LOINC,
+        bioportal:LPT,
         bioportal:MA,
         bioportal:MAMO,
         bioportal:MAT,
@@ -29616,6 +29686,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.2ffmsb,
         fairsharing:FAIRsharing.2gpf81,
         fairsharing:FAIRsharing.2jkxp5,
+        fairsharing:FAIRsharing.2m4ms9,
         fairsharing:FAIRsharing.2ma4gq,
         fairsharing:FAIRsharing.2mayq0,
         fairsharing:FAIRsharing.2mk2zb,
@@ -29890,6 +29961,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.g1qrqs,
         fairsharing:FAIRsharing.g4n8sw,
         fairsharing:FAIRsharing.g63c77,
+        fairsharing:FAIRsharing.g78mbm,
         fairsharing:FAIRsharing.g7jbvn,
         fairsharing:FAIRsharing.g7t2hv,
         fairsharing:FAIRsharing.gdszhh,
@@ -30071,6 +30143,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.w5ntfd,
         fairsharing:FAIRsharing.w69t6r,
         fairsharing:FAIRsharing.w6cxgb,
+        fairsharing:FAIRsharing.w7bw2y,
         fairsharing:FAIRsharing.w9jvbt,
         fairsharing:FAIRsharing.wb0txg,
         fairsharing:FAIRsharing.wcpd6f,
@@ -32001,6 +32074,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:LIPIDMAPS,
         prefixcommons:LIPRO,
         prefixcommons:LOGGERHEAD,
+        prefixcommons:LPT,
         prefixcommons:LRG,
         prefixcommons:MA,
         prefixcommons:MACIE,
@@ -32845,6 +32919,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:enzo,
         bioregistry:eo,
         bioregistry:eol,
+        bioregistry:eolife,
         bioregistry:epcc,
         bioregistry:epd,
         bioregistry:epio,
@@ -33043,6 +33118,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:iceberg.element,
         bioregistry:iceberg.family,
         bioregistry:iceo,
+        bioregistry:icepo,
         bioregistry:iclc,
         bioregistry:ico,
         bioregistry:ideal,
@@ -33148,6 +33224,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:loinc,
         bioregistry:lonza,
         bioregistry:lotus,
+        bioregistry:lpt,
         bioregistry:lrg,
         bioregistry:lspci,
         bioregistry:lter,

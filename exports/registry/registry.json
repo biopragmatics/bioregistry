@@ -1202,7 +1202,7 @@
     },
     "deprecated": true,
     "description": "An application ontology built for beta cell genomics studies.",
-    "download_owl": "http://purl.obolibrary.org/obo/bcgo.owl",
+    "download_owl": "https://github.com/obi-bcgo/bcgo/raw/master/ontology/bcgo.owl",
     "homepage": "https://github.com/obi-bcgo/bcgo",
     "license": "CC BY 3.0",
     "mappings": {
@@ -1784,7 +1784,7 @@
   },
   "biomodels.teddy": {
     "description": "The Terminology for Description of Dynamics (TEDDY) is an ontology for dynamical behaviours, observable dynamical phenomena, and control elements of bio-models and biological systems in Systems Biology and Synthetic Biology.",
-    "download_owl": "http://identifiers.org/combine.specifications/teddy.rel-2014-04-24",
+    "download_owl": "http://svn.code.sf.net/p/teddyontology/code/teddy/tags/current/teddy-inferred.owl",
     "example": "0000066",
     "homepage": "http://teddyontology.sourceforge.net/",
     "mappings": {
@@ -2468,10 +2468,10 @@
     },
     "description": "This is a code repository for the SIB - Swiss Institute of Bioinformatics CALIPHO group neXtProt project, which is a comprehensive human-centric discovery platform, that offers a integration of and navigation through protein-related data. CALIPHO is an interdisciplinary team which aims to use a variety of methodologies to help uncover the function of uncharacterized human proteins.",
     "download_obo": "https://download.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo",
-    "example": "0001",
+    "example": "TS-0001",
     "homepage": "https://github.com/calipho-sib/controlled-vocabulary",
     "name": "CALIPHO Group Ontology of Human Anatomy",
-    "pattern": "^\\d+$",
+    "pattern": "^TS-\\d+$",
     "preferred_prefix": "caloha",
     "references": [
       "https://twitter.com/neXtProt_news/status/1350105997633867781"
@@ -2724,7 +2724,8 @@
   "cco": {
     "banana": "CCO",
     "description": "The Cell Cycle Ontology is an application ontology that captures and integrates detailed knowledge on the cell cycle process.",
-    "download_owl": "http://www.bio.ntnu.no/ontology/CCO/cco.owl",
+    "download_obo": "https://www.bio.ntnu.no/ontology/CCO/cco.obo",
+    "download_owl": "https://www.bio.ntnu.no/ontology/CCO/cco.owl",
     "example": "0000003",
     "homepage": "http://www.semantic-systems-biology.org/apo",
     "mappings": {
@@ -4676,6 +4677,12 @@
     "uri_format": "https://covid19.sfb.uit.no/api/records/$1"
   },
   "covoc": {
+    "contact": {
+      "email": "zmp@ebi.ac.uk",
+      "github": "zoependlington",
+      "name": "Zoë May Pendlington",
+      "orcid": "0000-0002-4071-8397"
+    },
     "description": "The COVID-19 Vocabulary (COVoc) is an ontology containing terms related to the research of the COVID-19 pandemic. This includes host organisms, pathogenicity, gene and gene products, barrier gestures, treatments and more.",
     "download_owl": "http://purl.obolibrary.org/obo/covoc/releases/2020-08-28/covoc.owl",
     "example": "0010034",
@@ -4685,6 +4692,7 @@
       "ols": "covoc"
     },
     "name": "CoVoc Coronavirus Vocabulary",
+    "pattern": "^\\d{7}$",
     "preferred_prefix": "covoc",
     "version": "2020-08-28"
   },
@@ -7421,18 +7429,44 @@
     "uri_format": "http://archive.gramene.org/db/ontology/search?query=EO:$1"
   },
   "eol": {
-    "description": "L'ontologie EOL décrit les conditions d'environnement des élevages d'animaux domestiques. Elle décrit plus particulièrement les modalités de l'alimentation, de l'environnement, de la structure des élevages et des systèmes d'élevage",
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The EOL ontology describes environmental conditions of livestock farms. More specifically, it describes the feeding modalities, the environment, the structure of livestock farms and rearing systems.",
     "download_owl": "https://sicpa-web.cati.inrae.fr/ontologies/visualisation/ontologie/atol/creation_fichier_owl.php?filename=eol.owl",
     "example": "0001927",
     "homepage": "http://www.atol-ontology.com",
     "mappings": {
       "bioportal": "EOL",
-      "fairsharing": "FAIRsharing.3J6NYn",
+      "fairsharing": "FAIRsharing.w7bw2y",
       "ols": "eol"
     },
     "name": "Environment Ontology for Livestock",
+    "pattern": "^\\d{7}$",
     "preferred_prefix": "eol",
     "version": "2018-09-13"
+  },
+  "eolife": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A collaborative project intended to create an encyclopedia documenting all living species known to science",
+    "example": "1044544",
+    "homepage": "https://eol.org",
+    "mappings": {
+      "fairsharing": "FAIRsharing.3J6NYn",
+      "wikidata": "P830"
+    },
+    "name": "Encyclopedia of Life",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "eolife",
+    "uri_format": "https://eol.org/pages/$1"
   },
   "epcc": {
     "contributor": {
@@ -9168,7 +9202,8 @@
   },
   "gexo": {
     "description": "Gene Expression Ontology",
-    "download_owl": "http://www.bio.ntnu.no/ontology/GeXO/gexo.rdf",
+    "download_obo": "https://www.bio.ntnu.no/ontology/GeXO/gexo.obo",
+    "download_owl": "https://www.bio.ntnu.no/ontology/GeXO/gexo.owl",
     "homepage": "http://www.semantic-systems-biology.org/apo",
     "mappings": {
       "bioportal": "GEXO",
@@ -11138,6 +11173,24 @@
     "uri_format": "http://purl.obolibrary.org/obo/ICEO_$1",
     "version": "2.1"
   },
+  "icepo": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Ion Channel Electrophysiology Ontology supports the capture of voltage-gated ion channel electrophysiological data from the literature in a structured manner and thus enables other applications such as querying and reasoning tools. ",
+    "download_obo": "https://download.nextprot.org/pub/current_release/controlled_vocabularies/icepo.obo",
+    "example": "0000002",
+    "homepage": "https://download.nextprot.org/pub/current_release/controlled_vocabularies/",
+    "name": "Ion Channel Electrophysiology Ontology",
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "icepo",
+    "references": [
+      "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4823818/"
+    ]
+  },
   "iclc": {
     "description": "Cell line collections",
     "example": "ATL98012",
@@ -11230,6 +11283,12 @@
     "version": "2017-11-03"
   },
   "idocovid19": {
+    "contact": {
+      "email": "johnbeverley2021@u.northwestern.edu",
+      "github": "johnbeve",
+      "name": "John Beverly",
+      "orcid": "0000-0002-1118-1738"
+    },
     "description": "The COVID-19 Infectious Disease Ontology (IDO-COVID-19) is an extension of the Infectious Disease Ontology (IDO) and the Virus Infectious Disease Ontology (VIDO). IDO-COVID-19 follows OBO Foundry guidelines, employs the Basic Formal Ontology as its starting point, and covers epidemiology, classification, pathogenesis, and treatment of terms used to represent infection by the SARS-CoV-2 virus strain, and the associated COVID-19 disease.",
     "download_owl": "http://purl.obolibrary.org/obo/2020-21-07/ido-covid-19.owl",
     "example": "0001191",
@@ -11240,6 +11299,7 @@
       "ols": "idocovid19"
     },
     "name": "The COVID-19 Infectious Disease Ontology",
+    "pattern": "^\\d{7}$",
     "preferred_prefix": "idocovid19",
     "version": "2020-07-21"
   },
@@ -12643,8 +12703,15 @@
     "version": "2021-06-08"
   },
   "lbo": {
+    "contact": {
+      "email": "caripark@iastate.edu",
+      "github": "caripark",
+      "name": "Carissa Park",
+      "orcid": "0000-0002-2346-5201"
+    },
     "description": "A vocabulary for cattle, chicken, horse, pig, and sheep breeds.",
-    "download_owl": "http://data.bioontology.org/ontologies/LBO/download?apikey=8b5b7825-538d-40e0-9e9e-5ab9274a9aeb",
+    "download_obo": "https://github.com/AnimalGenome/livestock-breed-ontology/raw/master/current_release/lbo.obo",
+    "download_owl": "https://github.com/AnimalGenome/livestock-breed-ontology/raw/master/current_release/lbo.owl",
     "example": "0000487",
     "homepage": "http://bioportal.bioontology.org/ontologies/LBO",
     "mappings": {
@@ -12653,7 +12720,8 @@
       "ols": "lbo"
     },
     "name": "Livestock Breed Ontology",
-    "preferred_prefix": "lbo"
+    "preferred_prefix": "lbo",
+    "repository": "https://github.com/AnimalGenome/livestock-breed-ontology"
   },
   "lei": {
     "description": "Established by the Financial Stability Board in June 2014, the Global Legal Entity Identifier Foundation (GLEIF) is tasked to support the implementation and use of the Legal Entity Identifier (LEI). The foundation is backed and overseen by the LEI Regulatory Oversight Committee, representing public authorities from around the globe that have come together to jointly drive forward transparency within the global financial markets. GLEIF is a supra-national not-for-profit organization headquartered in Basel, Switzerland.",
@@ -13063,6 +13131,34 @@
       "orcid": "0000-0003-4423-4370"
     },
     "uri_format": "https://lotus.naturalproducts.net/compound/lotus_id/$1"
+  },
+  "lpt": {
+    "contact": {
+      "email": "caripark@iastate.edu",
+      "github": "caripark",
+      "name": "Carissa Park",
+      "orcid": "0000-0002-2346-5201"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Livestock Product Trait Ontology (LPT) is a controlled vocabulary for the description of traits (measurable or observable characteristics) pertaining to products produced by or obtained from the body of an agricultural animal or bird maintained for use and profit.",
+    "download_obo": "https://github.com/AnimalGenome/livestock-product-trait-ontology/raw/master/current_release/lpt.obo",
+    "download_owl": "https://github.com/AnimalGenome/livestock-product-trait-ontology/raw/master/current_release/lpt.owl",
+    "example": "0000001",
+    "homepage": "https://github.com/AnimalGenome/livestock-product-trait-ontology",
+    "mappings": {
+      "bioportal": "LPT",
+      "fairsharing": "FAIRsharing.g78mbm",
+      "prefixcommons": "LPT"
+    },
+    "name": "Livestock Product Trait Ontology",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "lpt",
+    "uri_format": "http://purl.obolibrary.org/obo/LPT_$1"
   },
   "lrg": {
     "description": "A Locus Reference Genomic (LRG) is a manually curated record that contains stable genomic, transcript and protein reference sequences for reporting clinically relevant sequence variants. All LRGs are generated and maintained by the NCBI and EMBL-EBI.",
@@ -14703,6 +14799,7 @@
     "license": "CC BY 4.0",
     "mappings": {
       "bioportal": "PSIMOD",
+      "fairsharing": "FAIRsharing.2m4ms9",
       "go": "PSI-MOD",
       "miriam": "mod",
       "n2t": "mod",
@@ -14716,6 +14813,9 @@
     "pattern": "^\\d{5}$",
     "preferred_prefix": "MOD",
     "repository": "https://github.com/HUPO-PSI/psi-mod-CV",
+    "synonyms": [
+      "PSI-MOD"
+    ],
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/mod/terms?obo_id=MOD:$1"
   },
   "modeldb": {
@@ -17627,6 +17727,12 @@
     "version": "4.0"
   },
   "orth": {
+    "contact": {
+      "email": "jfernand@um.es",
+      "github": "jesualdotomasfernandezbreis",
+      "name": "Jesualdo Tomás Fernández-Breis",
+      "orcid": "0000-0002-7558-2880"
+    },
     "description": "The need of a common ontology for describing orthology information in biological research communities has led to the creation of the Orthology Ontology (ORTH). ORTH ontology is designed to describe sequence homology data available in multiple orthology databases on the Web (e.g.: OMA, OrthoDB, HieranoiDB, and etc.). By sequence homology data, we mostly mean gene region, gene and protein centric orthology, paralogy, and xenology information. Depending on the database, the homology information is structured in different ways. ORTH ontology accommodates these disparate data structures namely Hierarchical Orthologous Group (HOG), cluster of homologous sequences and homologous-pairwise relations between sequences. In addition to the specific ORTH terms, this specification includes terms of the imported ontologies (e.g. Semanticscience Integrated Ontology, SIO) which are pertinents to represent the information from various orthology databases in a homogeneous way.",
     "download_owl": "https://github.com/qfo/OrthologyOntology/raw/master/orthOntology_RC_v2_A.owl",
     "example": "HomologyRelation",
@@ -17638,6 +17744,7 @@
     },
     "name": "Orthology Ontology",
     "preferred_prefix": "orth",
+    "repository": "https://github.com/qfo/OrthologyOntology",
     "version": "This ontology is the second version of the orthology ontology first published in 2015 and available at http://purl.bioontology.org/ontology/ORTH .\n@authors T.M. de Farias, H. Chiba, J.T. Fernandez-Breis, E. Antezana, D. Kuznetsov, C. Dessimoz and F. Villiers."
   },
   "orthodb": {
@@ -20198,6 +20305,7 @@
       "wikidata": "P1579"
     },
     "name": "Reaxys",
+    "pattern": "^\\d+$",
     "preferred_prefix": "reaxys",
     "synonyms": [
       "Beilstein",
@@ -20350,7 +20458,8 @@
   },
   "reto": {
     "description": "Regulation of Transcription",
-    "download_owl": "http://www.bio.ntnu.no/ontology/ReTO/reto.rdf",
+    "download_obo": "https://www.bio.ntnu.no/ontology/ReTO/reto.obo",
+    "download_owl": "https://www.bio.ntnu.no/ontology/ReTO/reto.owl",
     "homepage": "http://www.semantic-systems-biology.org/apo",
     "mappings": {
       "bioportal": "RETO",
@@ -20384,7 +20493,8 @@
   },
   "rexo": {
     "description": "Regulation of Gene Expression",
-    "download_owl": "http://www.bio.ntnu.no/ontology/ReXO/rexo.rdf",
+    "download_obo": "https://www.bio.ntnu.no/ontology/ReXO/rexo.obo",
+    "download_owl": "https://www.bio.ntnu.no/ontology/ReXO/rexo.owl",
     "homepage": "http://www.semantic-systems-biology.org/apo",
     "mappings": {
       "bioportal": "REXO",
@@ -21966,7 +22076,7 @@
   },
   "srao": {
     "description": "The FAIRsharing Subject Ontology (SRAO) is an application ontology for the categorization of research disciplines across all research domains, from the humanities to the natural sciences. It utilizes multiple external vocabularies.",
-    "download_owl": "http://www.fairsharing.org/ontology/subject/SRAO.owl/0.3.0",
+    "download_owl": "https://raw.githubusercontent.com/FAIRsharing/subject-ontology/master/releases/SRAO.owl",
     "example": "0000400",
     "homepage": "https://github.com/FAIRsharing/subject-ontology",
     "mappings": {
@@ -24031,6 +24141,12 @@
     "uri_format": "http://viaf.org/viaf/$1"
   },
   "vido": {
+    "contact": {
+      "email": "johnbeverley2021@u.northwestern.edu",
+      "github": "johnbeve",
+      "name": "John Beverly",
+      "orcid": "0000-0002-1118-1738"
+    },
     "description": "The Virus Infectious Disease Ontology (IDO Virus) is an extension of the Infectious Disease Ontology (IDO). IDO Virus follows OBO Foundry guidelines, employs the Basic Formal Ontology as its starting point, and covers epidemiology, classification, pathogenesis, and treatment of terms used by Virologists, i.e. virus, prion, satellite, viroid, etc.",
     "download_owl": "http://purl.obolibrary.org/obo/2020-25-08/vido.owl",
     "example": "0001114",
@@ -24041,6 +24157,7 @@
       "ols": "vido"
     },
     "name": "The Virus Infectious Disease Ontology",
+    "pattern": "^\\d{7}$",
     "preferred_prefix": "vido",
     "version": "2020-08-25"
   },
@@ -24244,6 +24361,7 @@
       "orcid": "0000-0002-2346-5201"
     },
     "description": "An ontology of traits covering vertebrates",
+    "download_obo": "https://github.com/AnimalGenome/vertebrate-trait-ontology/raw/master/current_release/vt.obo",
     "download_owl": "http://purl.obolibrary.org/obo/vt.owl",
     "example": "0000685",
     "homepage": "https://github.com/AnimalGenome/vertebrate-trait-ontology",

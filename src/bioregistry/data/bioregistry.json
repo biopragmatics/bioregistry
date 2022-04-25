@@ -16383,6 +16383,18 @@
     "description": "The EOL ontology describes environmental conditions of livestock farms. More specifically, it describes the feeding modalities, the environment, the structure of livestock farms and rearing systems.",
     "download_owl": "https://sicpa-web.cati.inrae.fr/ontologies/visualisation/ontologie/atol/creation_fichier_owl.php?filename=eol.owl",
     "example": "0001927",
+    "fairsharing": {
+      "abbreviation": "EOL",
+      "description": "The EOL ontology describes environmental conditions of livestock farms. More specifically, it describes the feeding modalities, the environment, the structure of livestock farms and rearing systems.",
+      "id": "743",
+      "name": "Environment Ontology for Livestock",
+      "prefix": "FAIRsharing.w7bw2y",
+      "subjects": [
+        "Environmental Science",
+        "Animal Husbandry",
+        "Agriculture"
+      ]
+    },
     "mappings": {
       "bioportal": "EOL",
       "fairsharing": "FAIRsharing.w7bw2y",
@@ -16408,6 +16420,19 @@
     },
     "description": "A collaborative project intended to create an encyclopedia documenting all living species known to science",
     "example": "1044544",
+    "fairsharing": {
+      "abbreviation": "EOL",
+      "description": "The Encyclopedia of Life (EOL) is a collaborative encyclopedia to describe all known living species. It identifies sources of biodiversity knowledge that are legally and practically shareable; integrates them with other sources and adds metadata; provides searching and other services; and collaborates with other projects to support data sharing.",
+      "id": "2888",
+      "name": "Encyclopedia of Life",
+      "prefix": "FAIRsharing.3J6NYn",
+      "subjects": [
+        "Taxonomy",
+        "Ecology",
+        "Biodiversity",
+        "Biology"
+      ]
+    },
     "homepage": "https://eol.org",
     "mappings": {
       "fairsharing": "FAIRsharing.3J6NYn",
@@ -16415,7 +16440,17 @@
     },
     "name": "Encyclopedia of Life",
     "pattern": "^\\d+$",
-    "uri_format": "https://eol.org/pages/$1"
+    "uri_format": "https://eol.org/pages/$1",
+    "wikidata": {
+      "database": "Q82486",
+      "database.homepage": "https://eol.org",
+      "database.label": "Encyclopedia of Life",
+      "homepage": "http://eol.org/api/docs/pages",
+      "name": "Encyclopedia of Life ID",
+      "pattern": "[1-9]\\d{0,7}",
+      "prefix": "P830",
+      "uri_format": "https://eol.org/ar/pages/$1"
+    }
   },
   "epcc": {
     "contributor": {
@@ -28721,6 +28756,10 @@
     }
   },
   "lpt": {
+    "bioportal": {
+      "name": "Livestock Product Trait Ontology",
+      "prefix": "LPT"
+    },
     "contact": {
       "email": "caripark@iastate.edu",
       "github": "caripark",
@@ -28737,9 +28776,28 @@
     "download_obo": "https://github.com/AnimalGenome/livestock-product-trait-ontology/raw/master/current_release/lpt.obo",
     "download_owl": "https://github.com/AnimalGenome/livestock-product-trait-ontology/raw/master/current_release/lpt.owl",
     "example": "0000001",
+    "fairsharing": {
+      "abbreviation": "LPT",
+      "description": "The Livestock Product Trait Ontology is a controlled vocabulary for the description of traits (measurable or observable characteristics) pertaining to products produced by or obtained from the body of an agricultural animal or bird maintained for use and profit.",
+      "id": "739",
+      "name": "Livestock Product Trait Ontology",
+      "prefix": "FAIRsharing.g78mbm",
+      "subjects": []
+    },
     "homepage": "https://github.com/AnimalGenome/livestock-product-trait-ontology",
+    "mappings": {
+      "bioportal": "LPT",
+      "fairsharing": "FAIRsharing.g78mbm",
+      "prefixcommons": "LPT"
+    },
     "name": "Livestock Product Trait Ontology",
-    "pattern": "^\\d+$"
+    "pattern": "^\\d+$",
+    "prefixcommons": {
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "LPT",
+      "uri_format": "http://purl.obolibrary.org/obo/LPT_$1"
+    }
   },
   "lrg": {
     "mappings": {
@@ -32510,6 +32568,16 @@
       "prefix": "PSIMOD"
     },
     "example": "01467",
+    "fairsharing": {
+      "abbreviation": "PSI-MOD",
+      "description": "PSI-MOD is an ontology consisting of terms that describe protein chemical modifications, logically linked by an is_a relationship in such a way as to form a direct acyclic graph (DAG). The PSI-MOD ontology has more than 45 top-level nodes, and provides alternative hierarchical paths for classifying protein modifications either by the molecular structure of the modification, or by the amino acid residue that is modified.",
+      "id": "1163",
+      "name": "Protein MODification",
+      "prefix": "FAIRsharing.2m4ms9",
+      "subjects": [
+        "Life Science"
+      ]
+    },
     "go": {
       "homepage": "http://www.psidev.info/groups/protein-modifications",
       "name": "Proteomics Standards Initiative protein modification ontology",
@@ -32520,6 +32588,7 @@
     },
     "mappings": {
       "bioportal": "PSIMOD",
+      "fairsharing": "FAIRsharing.2m4ms9",
       "go": "PSI-MOD",
       "miriam": "mod",
       "n2t": "mod",
