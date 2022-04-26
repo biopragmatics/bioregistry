@@ -129,6 +129,16 @@ bioregistry.collection:0000004 a bioregistry.schema:0000003 ;
         bioregistry:icd9cm,
         bioregistry:icdo .
 
+bioregistry.collection:0000005 a bioregistry.schema:0000003 ;
+    rdfs:label "Allen Institute Ontologies" ;
+    dc:creator orcid:0000-0003-4423-4370 ;
+    dc:description "This collection contains various brain atlases from the Allen Institute." ;
+    dcterms:hasPart bioregistry:dhba,
+        bioregistry:dmba,
+        bioregistry:hba,
+        bioregistry:mba,
+        bioregistry:pba .
+
 bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
     rdfs:label "AberOWL" ;
     dc:description "AberOWL is a framework for ontology-based access to biological data. It consists of a repository of bio-ontologies, a set of webservices which provide access to OWL(-EL) reasoning over the ontologies, and several frontends which utilise the ontology repository and reasoning services to provide access to specific biological datasets." ;
@@ -251,6 +261,7 @@ bioregistry.schema:0000022 a rdf:Property ;
 orcid:0000-0001-9439-5346 rdfs:label "Benjamin Gyori",
         "Benjamin M. Gyori" ;
     dcterms:contributor bioregistry:bko,
+        bioregistry:casspc,
         bioregistry:signor.relation .
 
 orcid:0000-0002-3012-7446 rdfs:label "Daniel Himmelstein" ;
@@ -6995,7 +7006,7 @@ bioregistry:mge a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:mgi a bioregistry.schema:0000001 ;
-    rdfs:label "Mouse Genome Informatics" ;
+    rdfs:label "Mouse Genome Informatics ID" ;
     dc:description "The Mouse Genome Database (MGD) project includes data on gene characterization, nomenclature, mapping, gene homologies among mammals, sequence links, phenotypes, allelic variants and mutants, and strain data."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch cellosaurus.resource:MGI,
@@ -11314,7 +11325,7 @@ bioregistry:tair.locus a bioregistry.schema:0000001 ;
     foaf:homepage "http://arabidopsis.org/index.jsp"^^xsd:string ;
     bioregistry.schema:0000005 "2200950"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.arabidopsis.org/servlets/TairObject?accession=Locus:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:tair.protein a bioregistry.schema:0000001 ;
@@ -14660,6 +14671,8 @@ go.resource:CARO dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:CAS dcterms:isPartOf bioregistry.metaresource:go .
 
+go.resource:CASSPC dcterms:isPartOf bioregistry.metaresource:go .
+
 go.resource:CAZY dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:CDD dcterms:isPartOf bioregistry.metaresource:go .
@@ -16745,6 +16758,16 @@ bioregistry:caloha a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "TS-0001"^^xsd:string ;
     bioregistry.schema:0000008 "^TS-\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:casspc a bioregistry.schema:0000001 ;
+    rdfs:label "Eschmeyer's Catalog of Fishes" ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch go.resource:CASSPC ;
+    foaf:homepage "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatmain.asp"^^xsd:string ;
+    bioregistry.schema:0000005 "5359"^^xsd:string ;
+    bioregistry.schema:0000006 "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 true .
 
 bioregistry:cath a bioregistry.schema:0000001 ;
     rdfs:label "CATH Protein Structural Domain Superfamily" ;
@@ -25491,6 +25514,15 @@ bioregistry:dcterms a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/terms/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:dhba a bioregistry.schema:0000001 ;
+    rdfs:label "Developing Human Brain Atlas" ;
+    dc:description "A controlled vocabulary to support the study of transcription in the developing human brain"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.brainspan.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "10153"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:dictybase a bioregistry.schema:0000001 ;
     rdfs:label "dictyBase" ;
     dc:description "A resource for Dictyostelid discoideum (a soil-dwelling amoeba) genomics"^^xsd:string ;
@@ -25505,6 +25537,15 @@ bioregistry:dictybase a bioregistry.schema:0000001 ;
     foaf:homepage "http://dictybase.org"^^xsd:string ;
     bioregistry.schema:0000005 "DDB0191090"^^xsd:string ;
     bioregistry.schema:0000006 "http://dictybase.org/gene/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:dmba a bioregistry.schema:0000001 ;
+    rdfs:label "Developing Mouse Brain Atlas" ;
+    dc:description "A controlled vocabulary to support the study of transcription in the developing mouse brain"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://developingmouse.brain-map.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "688"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:doid a bioregistry.schema:0000001 ;
@@ -25640,6 +25681,15 @@ bioregistry:gsso a bioregistry.schema:0000001 ;
         bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0001-8397-8810 .
 
+bioregistry:hba a bioregistry.schema:0000001 ;
+    rdfs:label "Human Brain Atlas" ;
+    dc:description "A controlled vocabulary to support the study of transcription in the human brain"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://human.brain-map.org"^^xsd:string ;
+    bioregistry.schema:0000005 "4005"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:hp a bioregistry.schema:0000001 ;
     rdfs:label "Human Phenotype Ontology" ;
     dc:description "The Human Phenotype Ontology (HPO) aims to provide a standardized vocabulary of phenotypic abnormalities encountered in human disease. Each term in the HPO describes a phenotypic abnormality, such as atrial septal defect. The HPO is currently being developed using the medical literature, Orphanet, DECIPHER, and OMIM."^^xsd:string ;
@@ -25723,6 +25773,15 @@ bioregistry:kegg.glycan a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "G00123"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.kegg.jp/entry/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^G\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:mba a bioregistry.schema:0000001 ;
+    rdfs:label "Mouse Brain Atlas" ;
+    dc:description "A controlled vocabulary to support the study of transcription in the mouse brain"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://mouse.brain-map.org"^^xsd:string ;
+    bioregistry.schema:0000005 "688"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:mesh a bioregistry.schema:0000001 ;
@@ -25930,6 +25989,15 @@ bioregistry:opmi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:labo,
         bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0001-9189-9661 .
+
+bioregistry:pba a bioregistry.schema:0000001 ;
+    rdfs:label "Primate Brain Atlas" ;
+    dc:description "A controlled vocabulary to support the study of transcription in the primate brain"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.blueprintnhpatlas.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "128011350"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:peco a bioregistry.schema:0000001 ;
     rdfs:label "Plant Experimental Conditions Ontology" ;
@@ -27656,7 +27724,9 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cp,
         bioregistry:credit,
         bioregistry:decipher,
+        bioregistry:dhba,
         bioregistry:diseaseclass,
+        bioregistry:dmba,
         bioregistry:dsmz,
         bioregistry:eaglei,
         bioregistry:ecmdb,
@@ -27686,6 +27756,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:grassbase,
         bioregistry:gsfa,
         bioregistry:gtr,
+        bioregistry:hba,
         bioregistry:hms.lincs.compound,
         bioregistry:hog,
         bioregistry:icepo,
@@ -27702,6 +27773,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:lspci,
         bioregistry:lter,
         bioregistry:matrixdb,
+        bioregistry:mba,
         bioregistry:mgnify.analysis,
         bioregistry:miaa,
         bioregistry:mirbase.family,
@@ -27726,6 +27798,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:omop,
         bioregistry:oncotree,
         bioregistry:pathbank,
+        bioregistry:pba,
         bioregistry:peff,
         bioregistry:pesticides,
         bioregistry:pfam.clan,
@@ -28449,6 +28522,7 @@ bioregistry.metaresource:go a bioregistry.schema:0000002 ;
         go.resource:BioCyc,
         go.resource:CARO,
         go.resource:CAS,
+        go.resource:CASSPC,
         go.resource:CAZY,
         go.resource:CDD,
         go.resource:CGD,
@@ -32657,6 +32731,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:caps,
         bioregistry:caro,
         bioregistry:cas,
+        bioregistry:casspc,
         bioregistry:cath,
         bioregistry:cath.domain,
         bioregistry:cath.superfamily,
@@ -32833,6 +32908,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dg.f82a1a,
         bioregistry:dg5b0d,
         bioregistry:dgrc,
+        bioregistry:dhba,
         bioregistry:dicom,
         bioregistry:dictybase,
         bioregistry:dictybase.est,
@@ -32849,6 +32925,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:disprot.region,
         bioregistry:dlxb,
         bioregistry:dlxc,
+        bioregistry:dmba,
         bioregistry:doi,
         bioregistry:doid,
         bioregistry:dommino,
@@ -33069,6 +33146,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:hamap,
         bioregistry:hancestro,
         bioregistry:hao,
+        bioregistry:hba,
         bioregistry:hcao,
         bioregistry:hcpcs,
         bioregistry:hcvdb,
@@ -33239,6 +33317,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:matrixdb,
         bioregistry:matrixdb.association,
         bioregistry:maxo,
+        bioregistry:mba,
         bioregistry:mcc,
         bioregistry:mco,
         bioregistry:mdm,
@@ -33475,6 +33554,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:paxdb.organism,
         bioregistry:paxdb.protein,
         bioregistry:pazar,
+        bioregistry:pba,
         bioregistry:pcl,
         bioregistry:pco,
         bioregistry:pd_st,

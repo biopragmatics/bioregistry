@@ -5832,7 +5832,19 @@
     ],
     "deprecated": true,
     "example": "5359",
+    "go": {
+      "homepage": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatmain.asp",
+      "name": "Catalog of Fishes species database",
+      "prefix": "CASSPC",
+      "synonyms": [
+        "CAS_SPC"
+      ],
+      "uri_format": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=$1"
+    },
     "homepage": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatmain.asp",
+    "mappings": {
+      "go": "CASSPC"
+    },
     "name": "Eschmeyer's Catalog of Fishes",
     "pattern": "^\\d+$"
   },
@@ -30898,7 +30910,8 @@
       "n2t": "mgi",
       "ncbi": "MGI",
       "prefixcommons": "MGI",
-      "uniprot": "MGI"
+      "uniprot": "MGI",
+      "wikidata": "P671"
     },
     "miriam": {
       "deprecated": false,
@@ -30967,7 +30980,13 @@
     },
     "wikidata": {
       "database": "Q1951035",
-      "prefix": "P671"
+      "database.homepage": "http://www.informatics.jax.org/",
+      "database.label": "Mouse Genome Informatics",
+      "homepage": "http://www.informatics.jax.org/",
+      "name": "Mouse Genome Informatics ID",
+      "pattern": "MGI:\\d{1,7}",
+      "prefix": "P671",
+      "uri_format": "http://www.informatics.jax.org/accession/$1"
     }
   },
   "mgnify.analysis": {

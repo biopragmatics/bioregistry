@@ -2575,6 +2575,25 @@
     ],
     "uri_format": "https://commonchemistry.cas.org/detail?ref=$1"
   },
+  "casspc": {
+    "comment": "Jim Balhoff said that Catalog of Fishes does not publish their data in a machine readable format, but a long time ago they sent a CSV dump to help in the development of TTO and VTO. These ontologies are effectively retired and CASSPC terms are only also used in Phenoscape.",
+    "contributor": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "deprecated": true,
+    "example": "5359",
+    "homepage": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatmain.asp",
+    "mappings": {
+      "go": "CASSPC"
+    },
+    "name": "Eschmeyer's Catalog of Fishes",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "casspc",
+    "uri_format": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=$1"
+  },
   "cath": {
     "description": "CATH is a classification of protein structural domains. We group protein domains into superfamilies when there is sufficient evidence they have diverged from a common ancestor. CATH can be used to predict structural and functional information directly from protein sequence.",
     "example": "1.10.8.10",
@@ -3322,6 +3341,7 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "chemspider",
     "synonyms": [
+      "ChemSpiderID",
       "Chemspider"
     ],
     "uri_format": "http://www.chemspider.com/Chemical-Structure.$1.html"
@@ -5663,6 +5683,21 @@
     "preferred_prefix": "dgrc",
     "uri_format": "https://dgrc.bio.indiana.edu/product/View?product=$1"
   },
+  "dhba": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A controlled vocabulary to support the study of transcription in the developing human brain",
+    "download_obo": "https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-dhba.obo",
+    "example": "10153",
+    "homepage": "https://www.brainspan.org/",
+    "name": "Developing Human Brain Atlas",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "DHBA"
+  },
   "dicom": {
     "description": "DICOM Controlled Terminology",
     "download_owl": "ftp://medical.nema.org/MEDICAL/Dicom/Resources/Ontology/DCM/dcm.owl",
@@ -5922,6 +5957,21 @@
     "pattern": "^[A-Z0-9]{6,7}$",
     "preferred_prefix": "dlxc",
     "uri_format": "https://doulix.com/constructs/$1"
+  },
+  "dmba": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A controlled vocabulary to support the study of transcription in the developing mouse brain",
+    "download_obo": "https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-dmba.obo",
+    "example": "688",
+    "homepage": "https://developingmouse.brain-map.org/",
+    "name": "Developing Mouse Brain Atlas",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "DMBA"
   },
   "doi": {
     "comment": "The [DOI resolution factsheet](https://www.doi.org/factsheets/DOIProxy.html) specifies that `https://doi.org/DOI` is the preferred format:\n\n> Users may resolve DOI names that are structured to use the DOI system Proxy Server (https://doi.org (preferred)). The resolution of the DOI name in this case depends on the use of URL syntax: the example DOI name doi:10.10.123/456 would be resolved from the address: \"https://doi.org/10.123/456\". Any standard browser encountering a DOI name in this form will be able to resolve it. The proxy service (both doi.org and the **earlier but no longer preferred** dx.doi.org) is accessible over IPv6, and supports DNSSEC. The proxy servers respond to HTTPS (**preferred**) as well as HTTP requests.",
@@ -10257,6 +10307,24 @@
     "uri_format": "http://purl.obolibrary.org/obo/HAO_$1",
     "version": "2021-03-05"
   },
+  "hba": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A controlled vocabulary to support the study of transcription in the human brain",
+    "download_obo": "https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-hba.obo",
+    "example": "4005",
+    "example_extras": [
+      "265504410"
+    ],
+    "homepage": "https://human.brain-map.org",
+    "name": "Human Brain Atlas",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "HBA"
+  },
   "hcao": {
     "description": "Application ontology for human cell types, anatomy and development stages for the Human Cell Atlas.",
     "download_owl": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-03-16/hcao.owl",
@@ -13492,6 +13560,21 @@
     "uri_format": "http://purl.obolibrary.org/obo/MAXO_$1",
     "version": "2022-04-11"
   },
+  "mba": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A controlled vocabulary to support the study of transcription in the mouse brain",
+    "download_obo": "https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-mba.obo",
+    "example": "688",
+    "homepage": "https://mouse.brain-map.org",
+    "name": "Mouse Brain Atlas",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "MBA"
+  },
   "mcc": {
     "deprecated": true,
     "mappings": {
@@ -14024,7 +14107,7 @@
       "uniprot": "MGI",
       "wikidata": "P671"
     },
-    "name": "Mouse Genome Informatics",
+    "name": "Mouse Genome Informatics ID",
     "namespace_in_lui": true,
     "pattern": "^\\d+$",
     "preferred_prefix": "MGI",
@@ -18192,6 +18275,21 @@
     "preferred_prefix": "pazar",
     "uri_format": "http://www.pazar.info/cgi-bin/tf_search.cgi?geneID=$1"
   },
+  "pba": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A controlled vocabulary to support the study of transcription in the primate brain",
+    "download_obo": "https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-pba.obo",
+    "example": "128011350",
+    "homepage": "https://www.blueprintnhpatlas.org/",
+    "name": "Primate Brain Atlas",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "PBA"
+  },
   "pcl": {
     "banana": "PCL",
     "contact": {
@@ -21858,6 +21956,7 @@
       "SNOMEDCTCT",
       "SNOMEDCTCT_2018_03_01",
       "SNOMEDCTCT_2019_03_01",
+      "SNOMEDCT_2005_07_31",
       "SNOMEDCT_2010_1_31",
       "SNOMEDCT_2020_03_01",
       "SNOMEDCT_US",
@@ -22553,7 +22652,7 @@
       "prefixcommons": "TAIR.LOCUS"
     },
     "name": "The Arabidopsis Information Resource",
-    "pattern": "^\\d{7}$",
+    "pattern": "^\\d+$",
     "preferred_prefix": "tair.locus",
     "uri_format": "http://www.arabidopsis.org/servlets/TairObject?accession=Locus:$1"
   },
