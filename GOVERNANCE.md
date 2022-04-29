@@ -12,6 +12,8 @@ on https://github.com/biopragmatics/bioregistry/issues/156.
 - Manual updates to the contents of the Bioregistry (e.g., adding a new prefix,
   merging prefixes, splitting prefixes, or updating a prefix's associated
   metadata) should be done either in the form of an issue or a pull request.
+- The only updates that aren't considered manual are the ones done by the CI
+  system on a nightly basis.
 - Manual updates can be accepted if all continuous integration tests pass and a
   member of the Bioregistry Review Team approves. It's best practice that a
   member of the Review Team does not approve their own updates.
@@ -41,15 +43,45 @@ request directly if none has been given by the requester.
   using [Disapproval Voting](https://en.wikipedia.org/wiki/Disapproval_voting)
 - Members must join and participate the OBO Foundry Slack, the #prefixes
   channel, and the Review Team private chat.
-- Members should be listed alphabetically by last name in this document along
-  with their GitHub handles and ORCID identifiers.
+- Members should be listed alphabetically
+
+### Member Onboarding
+
+- Add to private channel on OBO Foundry Slack
+- Add to the
+  GitHub [review team](https://github.com/orgs/biopragmatics/teams/bioregistry-reviewers)
+- Add to membership list below in alphabetical order by last name in along with
+  their GitHub handle, ORCID identifier, and date of joining.
+
+### Removing Members
+
+- Members who unresponsive for 3 or more months can be removed
+  by another member of the Bioregistry Review Team
+- Members who do not conduct themselves according to
+  our [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md) can be suggested to be
+  removed by a member of the Bioregistry Review Team.
+
+### Member Offboarding
+
+- Remove from the private channel on OBO Foundry Slack
+- Remove from the the
+  GitHub [review team](https://github.com/orgs/biopragmatics/teams/bioregistry-reviewers)
+- Add the date of exit and move their name and information ot the previous
+  members list.
 
 ### Members
 
-- Meghan Balk (@megbalk; https://orcid.org/0000-0003-2699-3066)
-- Tiffany Callahan (@callahantiff; https://orcid.org/0000-0002-8169-9049)
+- Meghan Balk (@megbalk; https://orcid.org/0000-0003-2699-3066; joined 2022-01)
+- Tiffany Callahan (@callahantiff; https://orcid.org/0000-0002-8169-9049; joined
+  2022-01)
+- Benjamin M. Gyori (@bgyori; https://orcid.org/0000-0001-9439-5346)
 - Charles Tapley Hoyt (@cthoyt; https://orcid.org/0000-0003-4423-4370)
-- Tiago Lubiana (@lubianat; https://orcid.org/0000-0003-2473-2313)
+- Tiago Lubiana (@lubianat; https://orcid.org/0000-0003-2473-2313; joined
+  2022-01)
+
+### Previous Members
+
+We're a new team and don't have any yet!
 
 ## Core Development Team
 
@@ -79,8 +111,8 @@ as well as pass continuous integration tests before merging.
 
 ### Members
 
+- Benjamin M. Gyori (@bgyori; https://orcid.org/0000-0001-9439-5346)
 - Charles Tapley Hoyt (@cthoyt; https://orcid.org/0000-0003-4423-4370)
-- Benjamin M. Gyori (@lubianat; https://orcid.org/0000-0001-9439-5346)
 
 ## Publications / Attribution
 
