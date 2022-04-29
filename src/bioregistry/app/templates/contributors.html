@@ -55,8 +55,10 @@
         <div class="card-body">
             <p style="margin-bottom: 0">
                 The following users have made contributions to the Bioregistry either directly
-                (i.e., prefix submitter, prefix reviewer, collection submitter) or they are listed
-                as the primary responsible person for a prefix or registry.
+                (i.e., {{ unique_direct_count }} unique researchers have submitted a prefix, contributed
+                an update for a prefix, reviewed a prefix, submitted a collection, or taken responsibility
+                for a context) or indirectly (i.e., {{ unique_indirect_count }} unique researchers are
+                listed as the primary responsible person for a prefix or registry).
             </p>
         </div>
         <table id="contributor-entries" class="table table-striped table-hover">

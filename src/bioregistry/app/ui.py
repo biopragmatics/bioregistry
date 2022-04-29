@@ -2,6 +2,7 @@
 
 """User blueprint for the bioregistry web application."""
 
+import itertools as itt
 from typing import Optional
 
 from flask import Blueprint, abort, redirect, render_template, url_for
@@ -320,16 +321,28 @@ def metaresolve(metaprefix: str, metaidentifier: str, identifier: Optional[str] 
 @ui_blueprint.route("/contributors/")
 def contributors():
     """Serve the Bioregistry contributors page."""
+    collections = read_collections_contributions()
+    contexts = read_context_contributions()
+    prefix_contributions = read_prefix_contributions()
+    prefix_reviews = read_prefix_reviews()
+    prefix_contacts = read_prefix_contacts()
+    registries = read_registry_contributions()
+    unique_direct_count = len(
+        set(itt.chain(collections, contexts, prefix_contributions, prefix_reviews))
+    )
+    unique_indirect_count = len(set(itt.chain(prefix_contacts, registries)))
     return render_template(
         "contributors.html",
         rows=bioregistry.read_contributors().values(),
-        collections=read_collections_contributions(),
-        contexts=read_context_contributions(),
-        prefix_contributions=read_prefix_contributions(),
-        prefix_reviews=read_prefix_reviews(),
-        prefix_contacts=read_prefix_contacts(),
-        registries=read_registry_contributions(),
+        collections=collections,
+        contexts=contexts,
+        prefix_contributions=prefix_contributions,
+        prefix_reviews=prefix_reviews,
+        prefix_contacts=prefix_contacts,
+        registries=registries,
         formats=FORMATS,
+        unique_direct_count=unique_direct_count,
+        unique_indirect_count=unique_indirect_count,
     )
 
 
