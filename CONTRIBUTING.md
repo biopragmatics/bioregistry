@@ -101,6 +101,27 @@ collisions:
   Bioregistry, then precedence will be given to the already existing prefix and
   the contributor will be asked to choose a different prefix.
 
+It has not happened often that prefixes have even collided. One example is two
+maintained resources, Gene Expression Omnibus vs. Geographical Entity Ontology,
+collided on using `geo` when Geographical Entity Ontology was added to the OBO
+Foundry. This was resolved
+in https://github.com/biopragmatics/bioregistry/issues/67 after deciding to
+change the prefix used in Geographical Entity Ontology due to the fact that the
+Gene Expression Omnibus was both much older and more well-known. This particular
+case motivated the OBO Foundry to update its ontology registration guidelines to
+require conflicts with existing Bioregistry records
+in https://github.com/OBOFoundry/OBOFoundry.github.io/issues/1519. Another
+example is the disease class annotation (legacy classification from the hard
+fork of the Disease Ontology that later became MONDO) and Dublin Core, where one
+is subjectively more important than the other.
+
+#### Removal of Prefixes
+
+Typically, prefixes should not be removed from the Bioregistry, even if they
+correspond to subsumed, abandoned, or dead resources, because it is also a
+historical archive and reference for anyone who might run into legacy prefixes
+in legacy resources.
+
 ## Code Contribution
 
 This project uses the [GitHub Flow](https://guides.github.com/introduction/flow)
