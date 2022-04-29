@@ -66,7 +66,7 @@ TODAY = datetime.datetime.today().strftime("%Y-%m-%d")
 WATERMARK_TEXT = f"https://github.com/biopragmatics/bioregistry ({TODAY})"
 
 
-def _save(fig, name: str, *, svg: bool = True, png: bool = False) -> None:
+def _save(fig, name: str, *, svg: bool = True, png: bool = False, eps: bool = False) -> None:
     import matplotlib.pyplot as plt
 
     path = DOCS_IMG.joinpath(name).with_suffix(".svg")
@@ -74,6 +74,8 @@ def _save(fig, name: str, *, svg: bool = True, png: bool = False) -> None:
     fig.tight_layout()
     if svg:
         fig.savefig(path)
+    if eps:
+        fig.savefig(DOCS_IMG.joinpath(name).with_suffix(".eps"))
     if png:
         fig.savefig(DOCS_IMG.joinpath(name).with_suffix(".png"), dpi=300)
     plt.close(fig)
@@ -202,9 +204,10 @@ def _plot_external_overlap(*, keys, watermark, ncols: int = 4):
 
 
 @click.command()
-@click.option("--png", is_flag=True)
-def compare(png: bool):  # noqa:C901
+@click.option("--paper", is_flag=True)
+def compare(paper: bool):  # noqa:C901
     """Compare the registries."""
+    paper = True
     random.seed(0)
     try:
         import matplotlib.pyplot as plt
@@ -260,12 +263,12 @@ def compare(png: bool):  # noqa:C901
             ha="center",
             va="bottom",
         )
-    _save(fig, name="license_coverage", png=png)
+    _save(fig, name="license_coverage", eps=paper)
 
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
     licenses_counter: typing.Counter[str] = Counter(licenses)
     licenses_mapped = [
-        "None" if license_ is None else license_ if licenses_counter[license_] > 3 else "Other"
+        "None" if license_ is None else license_ if licenses_counter[license_] > 30 else "Other"
         for license_ in licenses
     ]
     licenses_mapped_counter = Counter(licenses_mapped)
@@ -286,7 +289,7 @@ def compare(png: bool):  # noqa:C901
             va="center",
             rotation=90,
         )
-    _save(fig, name="licenses", png=png)
+    _save(fig, name="licenses", eps=paper)
 
     ##############################################
     # How many entries have version information? #
@@ -309,14 +312,14 @@ def compare(png: bool):  # noqa:C901
     ]
 
     fig, axes = _plot_attribute_pies(measurements=measurements, watermark=watermark)
-    _save(fig, "has_attribute", png=png)
+    _save(fig, "has_attribute", eps=paper)
 
     # Slightly reorganized for the paper
-    if png:
+    if paper:
         fig, axes = _plot_attribute_pies(
             measurements=measurements, watermark=watermark, keep_ontology=False
         )
-        _save(fig, "paper_figure_3", png=True, svg=False)
+        _save(fig, "paper_figure_3", png=True, eps=True)
 
     # -------------------------------------------------------------------- #
     palette = sns.color_palette("Paired", len(GETTERS))
@@ -329,18 +332,18 @@ def compare(png: bool):  # noqa:C901
     # How well does the Bioregistry cover the other resources? #
     ############################################################
     fig, axes = _plot_coverage(keys=keys, watermark=watermark)
-    _save(fig, name="bioregistry_coverage", png=png)
+    _save(fig, name="bioregistry_coverage", eps=paper)
 
     # Slightly reorganized for the paper
-    if png:
+    if paper:
         fig, axes = _plot_coverage(keys=keys, watermark=watermark, ncols=4)
-        _save(fig, name="paper_figure_2", png=png, svg=False)
+        _save(fig, name="paper_figure_2", eps=True, png=True, svg=False)
 
     ######################################################
     # What's the overlap between each pair of resources? #
     ######################################################
     fig, axes = _plot_external_overlap(keys=keys, watermark=watermark)
-    _save(fig, name="external_overlap", png=png)
+    _save(fig, name="external_overlap", eps=paper)
 
     ##############################################
     # Histogram of how many xrefs each entry has #
@@ -367,7 +370,7 @@ def compare(png: bool):  # noqa:C901
             rotation=90,
         )
 
-    _save(fig, name="xrefs", png=png)
+    _save(fig, name="xrefs", eps=paper, png=paper)
 
     ##################################################
     # Histogram of how many providers each entry has #
@@ -392,14 +395,14 @@ def compare(png: bool):  # noqa:C901
             va="center",
             rotation=90,
         )
-    _save(fig, name="providers", png=png)
+    _save(fig, name="providers", eps=paper)
 
     ########################################
     # Regular expression complexity report #
     ########################################
     g = sns.displot(x=get_regex_complexities(), log_scale=2, height=3, aspect=4 / 3)
     g.set(xlabel="Regular Expression Complexity")
-    _save(g.figure, name="regex_report", png=png)
+    _save(g.figure, name="regex_report", eps=paper)
 
 
 def _count_providers(resource: Resource) -> int:
