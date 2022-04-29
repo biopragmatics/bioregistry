@@ -121,13 +121,13 @@ as well as pass continuous integration tests before merging.
 - Larger external institutional contributors should be acknowledged on the
   repository's main README.md as well as on https://bioregistry.io
 
-#### Bootstrapping governance
+## Bootstrapping governance
 
 This document's governance will go into effect after additional rounds of
 editing and community discussion. The Bioregistry Review Team will announce when
 it is officially in effect.
 
-#### Updating governance
+## Updating governance
 
 This governance must updated through the following steps:
 
