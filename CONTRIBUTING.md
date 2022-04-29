@@ -2,6 +2,105 @@
 
 Contributions to the Bioregistry are welcomed and encouraged.
 
+## Content Contribution
+
+### New Prefixes
+
+There are several ways to request a new prefix in the Bioregistry:
+
+1. Fill out the [new prefix request form](https://github.com/biopragmatics/bioregistry/issues/new?assignees=cthoyt&labels=New%2CPrefix&template=new-prefix.yml&title=%5BResource%5D%3A%20xxxxx)
+   on our GitHub issue tracker with as much information about the resource as
+   possible (e.g., name, homepage, format URL pattern, example identifier,
+   pattern). Don't worry if you don't understand everything, our Review Team
+   will guide you through the process.
+2. Add an entry yourself
+   by [editing the Bioregistry](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
+   in GitHub through the web browser. As the Bioregistry is getting bigger, this
+   is becoming more of an issue, so might not always be possible.
+3. Make a pull request directly to the upstream repository
+   [biopragmatics/bioregistry](https://github.com/biopragmatics/bioregistry).
+4. Get in touch with us informally on
+   Twitter [@bioregistry](https://twitter.com/bioregistry)
+
+#### Who can request a prefix
+
+A prefix can be requested by anyone, even if it is for a resource they do not
+themselves maintain. A main goal of the Bioregistry is to be a detailed,
+descriptive resource - expertise is welcome from anywhere. Ideally, the
+requester should provide contact information for the main responsible person for
+the resource or include them in discussion on GitHub directly. In many cases,
+it's much easier for the resource responsible person to provide certain metadata
+that's required to go with a given prefix.
+
+#### Minimum New Prefix Requirements
+
+1. New prefixes are allowed to contain letters [a-z], numbers [0-9], and a
+   single dot `.` if a subspace is requested. More discussion on subspacing
+   policy can be found https://github.com/biopragmatics/bioregistry/issues/133
+   and https://github.com/biopragmatics/bioregistry/issues/65.
+2. New prefixes must start with a letter.
+3. New prefixes must be at least two characters. Ideally, prefixes should be
+   three or more characters for legibility.
+4. Subspaces must start with a letter.
+5. Subspaces must be at least two characters. Ideally, subspaces should be three
+   or more characters for legibility.
+6. New prefixes must be lowercase. However, lexical variants can be stored as
+   synonyms for reference (e.g., FBbt).
+7. New prefixes must validate against the following regular expression:
+   ^[a-z][a-z0-9]+(\.[a-z][a-z0-9]+?)$
+8. New prefixes must pass all metadata checks, which are canonically defined by
+   the quality assurance workflow.
+
+Unfortunately, these requirements can not be applied retroactively and can not
+be trivially applied to automatically imported prefixes. In some cases,
+historical prefixes can be modified to follow these requirements. For example,
+Identifiers.org's `ec-code` was renamed to `eccode` while maintaining `ec-code`
+as a synonym.
+
+Original discussion about minimum prefix requirements can be found at
+https://github.com/biopragmatics/bioregistry/issues/158.
+
+#### Choosing a Good Prefix
+
+1. Prefixes should be chosen in a way to minimize confusion (e.g., prefixes
+   should correspond to the name of the resource they are minted for. Most
+   commonly, people use acronyms.)
+2. Multiple prefixes will not be issued for multiple versions of a resource (
+   e.g., the fact that there is a mesh.2012 and mesh.2013 prefix registered in
+   Identifiers.org was a huge mistake and causes massive confusion)
+3. Prefixes must not be too generic or common entity types like gene or
+   chemical. Reviewers will use their best judgment since it's hard to list all
+   possible generic entity types. For example, gene would be bad while hgnc.gene
+   would be better.
+4. Subspacing should not be used unnecessarily, i.e., when a nomenclature only
+   has one entity type. For example, chebi.chemical would be bad while chebi
+   would be better.
+5. Prefixes should not end in "O" for "Ontology", "T" for "Terminology" or any
+   letters denoting related words about vocabularies
+
+These policies were developed in parallel with the OBO Foundry policy on
+choosing a prefix (i.e., IDSPACE) at http://obofoundry.org/id-policy.html.
+
+#### Handling Collisions
+
+While they have proven to be rather infrequent between high quality resources,
+collisions do happen. The Bioregistry has the following policy for handling
+collisions:
+
+- New prefixes must not collide with any canonical prefixes, preferred prefixes,
+  synonyms, or normalized variants thereof.
+  See https://github.com/biopragmatics/bioregistry/issues/359 for an example of
+  a prefix request that duplicated the synonyms of an existing prefix and how it
+  was able to be resolved.
+- New prefixes should not collide with any prefixes in external registries, even
+  if they are not explicitly imported in the Bioregistry. In these cases, a
+  thoughtful discussion should take place explaining why the prefix is being
+  reused (e.g., it has been parked by an inactive or low-quality resource in
+  Bioportal).
+- If a new contributor wants to register a prefix that is already present in the
+  Bioregistry, then precedence will be given to the already existing prefix and
+  the contributor will be asked to choose a different prefix.
+
 ## Code Contribution
 
 This project uses the [GitHub Flow](https://guides.github.com/introduction/flow)
@@ -106,3 +205,4 @@ configuration.
 
 See https://endoflife.date/python for a timeline of Python release and
 end-of-life dates.
+
