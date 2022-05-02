@@ -120,12 +120,11 @@ later make explicit criteria for accepting changes to this governance.
 
 The `contexts.json` file can be edited in the following ways:
 
-1.
-Click [here](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/collections.json)
-to edit on GitHub. This will automatically create a fork and prompt you to issue
-a pull request (just press the green buttons).
+1. Click [here](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/collections.json)
+   to edit on GitHub. This will automatically create a fork and prompt you to issue
+   a pull request (just press the green buttons).
 2. Make a fork and issue a pull request.
 3. Open an issue.
 
-Be sure to @ all of the maintainers listed in the context in all issues and pull
+Be sure to tag the maintainers listed in the context in all issues and pull
 requests.

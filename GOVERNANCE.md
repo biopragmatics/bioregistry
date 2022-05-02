@@ -17,7 +17,9 @@ on https://github.com/biopragmatics/bioregistry/issues/156.
 - Manual updates can be accepted if all continuous integration tests pass and a
   member of the Bioregistry Review Team approves. It's best practice that a
   member of the Review Team does not approve their own updates.
-- New prefixes must conform to #158 and #133 and all guidelines in
+- New prefixes must conform to
+  https://github.com/biopragmatics/bioregistry/issues/158 and 
+  https://github.com/biopragmatics/bioregistry/issues/133 and all guidelines in
   [CONTRIBUTING.md](CONTRIBUTING.md).
 - Attribution information for the requester and reviewer of manual updates
   should be collected in the form of an [ORCiD identifier](https://orcid.org).
