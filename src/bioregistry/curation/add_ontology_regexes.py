@@ -48,6 +48,8 @@ def _main():
                 continue
             resource.pattern = pattern
             rows.append((prefix, example, resource.pattern))
+        else:
+            rows.append((prefix, example, "???"))
 
     click.echo(tabulate.tabulate(rows, headers=["prefix", "example", "pattern"]))
     bioregistry.write_registry(registry)
