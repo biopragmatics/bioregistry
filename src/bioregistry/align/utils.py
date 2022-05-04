@@ -191,9 +191,9 @@ class Aligner(ABC):
         directory = EXTERNAL / self.key
         directory.mkdir(parents=True, exist_ok=True)
         with (directory / "curation.tsv").open("w") as file:
-            print(self.subkey, *self.curation_header, sep="\t", file=file)  # noqa:T001
+            print(self.subkey, *self.curation_header, sep="\t", file=file)  # noqa:T201
             for row in rows:
-                print(*row, sep="\t", file=file)  # noqa:T001
+                print(*row, sep="\t", file=file)  # noqa:T201
 
     def get_curation_table(self, **kwargs) -> Optional[str]:
         """Get the curation table as a string, built by :mod:`tabulate`."""
@@ -212,4 +212,4 @@ class Aligner(ABC):
         """Print the curation table."""
         s = self.get_curation_table(**kwargs)
         if s:
-            print(s)  # noqa:T001
+            print(s)  # noqa:T201
