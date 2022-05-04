@@ -62,8 +62,8 @@ class TestResolve(unittest.TestCase):
             ("go.ref", "0000041"),
             ("go.ref", "GO_REF:0000041"),
             # bananas from OBO
-            ("fbbt", "1234"),
-            ("fbbt", "FBbt:1234"),
+            ("fbbt", "00007294"),
+            ("fbbt", "FBbt:00007294"),
         ]
         for prefix in bioregistry.read_registry():
             if bioregistry.is_deprecated(prefix):
