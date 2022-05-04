@@ -10,13 +10,15 @@ def main():
         example = resource.get_example()
         if not example:
             continue
-        obo_prefix = resource.get_obo_preferred_prefix()
-        if not obo_prefix:
-            continue
+        #obo_prefix = resource.get_obo_preferred_prefix()
+        #if not obo_prefix:
+        #    continue
         if not example.startswith("00"):
             continue
+        if len(example) > 10:
+            continue
         pattern = f"^\\d{{{len(example)}}}$"
-        print(prefix, obo_prefix, example, pattern)
+        print(prefix, example, pattern)
         resource.pattern = pattern
     bioregistry.write_registry(registry)
 
