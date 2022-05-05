@@ -1,3 +1,8 @@
+---
+layout: page
+title: Project Governance
+permalink: /governance/
+---
 # Governance
 
 The goal of the Bioregistry is to enable community-driven curation and
