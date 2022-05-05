@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Contributor Covenant Code of Conduct
+title: Code of Conduct
 permalink: /conduct/
 ---
 ## Our Pledge
