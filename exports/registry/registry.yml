@@ -641,7 +641,7 @@ apo:
   preferred_prefix: APO
   repository: https://github.com/obophenotype/ascomycete-phenotype-ontology
   uri_format: https://www.yeastgenome.org/observable/APO:$1
-  version: '2022-03-23'
+  version: '2022-04-19'
 apollosv:
   appears_in:
   - scdo
@@ -3413,7 +3413,7 @@ chmo:
   preferred_prefix: CHMO
   repository: https://github.com/rsc-ontologies/rsc-cmo
   uri_format: http://purl.obolibrary.org/obo/CHMO_$1
-  version: '2022-02-17'
+  version: '2022-04-19'
 cido:
   banana: CIDO
   contact:
@@ -4342,7 +4342,7 @@ cob:
   preferred_prefix: COB
   repository: https://github.com/OBOFoundry/COB
   uri_format: http://purl.obolibrary.org/obo/COB_$1
-  version: '2021-09-13'
+  version: '2022-05-02'
 coconut:
   comment: '@mSorok is the dev of the resource, hope I got it right!'
   contributor:
@@ -6117,7 +6117,7 @@ doid:
   synonyms:
   - do
   uri_format: https://www.ebi.ac.uk/ols/ontologies/doid/terms?obo_id=DOID:$1
-  version: '2022-03-02'
+  version: '2022-04-28'
 dommino:
   description: DOMMINO is a database of macromolecular interactions that includes
     the interactions between protein domains, interdomain linkers, N- and C-terminal
@@ -6316,7 +6316,7 @@ dron:
   preferred_prefix: DRON
   repository: https://github.com/ufbmi/dron
   uri_format: http://purl.obolibrary.org/obo/DRON_$1
-  version: '2022-01-28'
+  version: '2022-04-22'
 drsc:
   description: The DRSC (Drosophila RNAi Screening Cente) tracks both production of
     reagents for RNA interference (RNAi) screening in Drosophila cells and RNAi screen
@@ -6926,7 +6926,7 @@ efo:
     The scope of EFO is to support the annotation, analysis and visualization of data
     handled by the EBI Functional Genomics Team.
   download_obo: http://www.ebi.ac.uk/efo/efo.obo
-  download_owl: http://www.ebi.ac.uk/efo/releases/v3.40.0/efo.owl
+  download_owl: http://www.ebi.ac.uk/efo/releases/v3.41.0/efo.owl
   example: '0005147'
   homepage: http://www.ebi.ac.uk/efo
   license: Apache 2.0 License
@@ -6951,7 +6951,7 @@ efo:
     uri_format: https://www.ebi.ac.uk/efo/EFO_$1
   repository: https://github.com/EBISPOT/efo/
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.40.0
+  version: 3.41.0
 ega.dataset:
   description: The EGA is a service for permanent archiving and sharing of all types
     of personally identifiable genetic and phenotypic data resulting from biomedical
@@ -8818,7 +8818,7 @@ fypo:
   preferred_prefix: FYPO
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2022-01-27'
+  version: '2022-04-28'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -9442,12 +9442,14 @@ glyconavi:
     tools" such as editing of 2D structures of glycans, glycan structure viewers,
     and conversion tools.
   example: GN_G03681DA
+  example_extras:
+  - GN_GlyTouCan_G03681DA
   homepage: https://www.noguchi.or.jp/
   mappings:
     fairsharing: FAIRsharing.wvp1t7
     miriam: glyconavi
   name: GlycoNAVI
-  pattern: ^GN_[A-Za-z0-9]+$
+  pattern: ^GN_[A-Za-z0-9_:]+$
   preferred_prefix: glyconavi
   uri_format: https://glyconavi.org/hub/?id=$1
 glycopost:
@@ -10424,14 +10426,14 @@ hba:
 hcao:
   description: Application ontology for human cell types, anatomy and development
     stages for the Human Cell Atlas.
-  download_owl: http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-03-16/hcao.owl
+  download_owl: http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-04-19/hcao.owl
   homepage: https://www.humancellatlas.org
   mappings:
     ols: hcao
   name: Human Cell Atlas Ontology
   no_own_terms: true
   preferred_prefix: hcao
-  version: '2022-03-16'
+  version: '2022-04-19'
 hcpcs:
   description: HCPCS is a collection of standardized codes that represent medical
     procedures, supplies, products and services. The codes are used to facilitate
@@ -15042,7 +15044,7 @@ mondo:
   preferred_prefix: MONDO
   repository: https://github.com/monarch-initiative/mondo
   uri_format: http://purl.obolibrary.org/obo/MONDO_$1
-  version: '2022-04-04'
+  version: '2022-05-02'
 mop:
   banana: MOP
   contact:
@@ -17376,7 +17378,7 @@ omo:
   preferred_prefix: OMO
   repository: https://github.com/information-artifact-ontology/ontology-metadata
   uri_format: http://purl.obolibrary.org/obo/OMO_$1
-  version: '2020-06-08'
+  version: '2022-04-27'
 omop:
   contributor:
     email: cthoyt@gmail.com
@@ -18468,7 +18470,7 @@ pcl:
   preferred_prefix: PCL
   repository: https://github.com/obophenotype/provisional_cell_ontology
   uri_format: http://purl.obolibrary.org/obo/PCL_$1
-  version: '2022-03-02'
+  version: '2022-04-27'
 pco:
   appears_in:
   - ecocore
@@ -21080,7 +21082,7 @@ ro:
   - obo_rel
   - oborel
   uri_format: http://purl.obolibrary.org/obo/RO_$1
-  version: '2022-02-07'
+  version: '2022-04-25'
 rouge:
   description: The Rouge protein database contains results from sequence analysis
     of novel large (>4 kb) cDNAs identified in the Kazusa cDNA sequencing project.
@@ -23485,7 +23487,7 @@ uberon:
   - Uber-anatomy ontology
   - Uberon
   uri_format: http://purl.obolibrary.org/obo/UBERON_$1
-  version: '2022-04-05'
+  version: '2022-04-18'
 ubio.namebank:
   description: NameBank is a "biological name server" focused on storing names and
     objectively-derived nomenclatural attributes. NameBank is a repository for all
@@ -24587,7 +24589,7 @@ vo:
   preferred_prefix: VO
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
-  version: 1.1.192
+  version: 1.1.193
 void:
   description: The Vocabulary of Interlinked Datasets (VoID) is an RDF Schema vocabulary
     for expressing metadata about RDF datasets. It is intended as a bridge between
