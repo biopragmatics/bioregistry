@@ -18636,6 +18636,10 @@
     "comment": "might be same as pdb.ligand, not sure though",
     "description": "The Chemical Component Dictionary is as an external reference file describing all residue and small molecule components found in Protein Data Bank entries. It contains detailed chemical descriptions for standard and modified amino acids/nucleotides, small molecule ligands, and solvent molecules. Each chemical definition includes descriptions of chemical properties such as stereochemical assignments, aromatic bond assignments, idealized coordinates, chemical descriptors (SMILES & InChI), and systematic chemical names.",
     "example": "AB0",
+    "example_extras": [
+      "A",
+      "PI"
+    ],
     "has_canonical": "pdb.ligand",
     "homepage": "https://www.ebi.ac.uk/pdbe-srv/pdbechem/",
     "mappings": {
@@ -18644,7 +18648,7 @@
       "prefixcommons": "PDB-CCD"
     },
     "name": "Chemical Component Dictionary",
-    "pattern": "^\\w{3}$",
+    "pattern": "^\\w{1,3}$",
     "preferred_prefix": "pdb-ccd",
     "synonyms": [
       "pdbechem"
