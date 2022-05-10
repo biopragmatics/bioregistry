@@ -1,5 +1,8 @@
-# Contributing
-
+---
+layout: page
+title: Contributing
+permalink: /contributing/
+---
 Contributions to the Bioregistry are welcomed and encouraged.
 
 ## Content Contribution
