@@ -27,6 +27,14 @@ SIGNIN_URL = f"{BASE_URL}/users/sign_in"
 RECORDS_URL = f"{BASE_URL}/fairsharing_records"
 
 
+ALLOWED_TYPES = {
+    "terminology_artefact",
+    # "knowledgebase",
+    # "knowledgebase_and_repository",
+    # "repository",
+}
+
+
 def get_fairsharing(force_download: bool = False, use_tqdm: bool = False):
     """Get the FAIRsharing registry."""
     if PROCESSED_PATH.exists() and not force_download:
@@ -107,6 +115,8 @@ class FairsharingClient:
         if "type" in record:
             del record["type"]
         record = {"id": record["id"], **record["attributes"]}
+        if record.get("record_type") not in ALLOWED_TYPES:
+            return None
 
         doi = record.get("doi")
         if doi is None:
