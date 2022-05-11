@@ -5,7 +5,7 @@ license: https://creativecommons.org/publicdomain/zero/1.0/
 
 # Version should be kept in sync with primary Git repository release tag
 
-version: 2.2.16
+version: 2.3.0
 
 
 ## ------------
@@ -95,6 +95,7 @@ prefixes:
   MI: 'http://purl.obolibrary.org/obo/MI_'
   mirbase: 'http://identifiers.org/mirbase'
   mmmp.biomaps: 'https://bioregistry.io/mmmp.biomaps:'
+  MmusDv: 'http://purl.obolibrary.org/obo/MMUSDV_'
   MSigDB: 'https://www.gsea-msigdb.org/gsea/msigdb/'
   NBO-PROPERTY: 'http://purl.obolibrary.org/obo/nbo#'
   NCBIGene: 'http://identifiers.org/ncbigene/'
@@ -140,6 +141,8 @@ prefixes:
   # See also: https://www.ga4gh.org/work_stream/genomic-knowledge-standards/#existing-standards and
   # https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7153148/
   VMC: 'https://github.com/ga4gh/vr-spec/'
+  WBls: 'http://purl.obolibrary.org/obo/WBBL_'
+  WBbt: 'http://purl.obolibrary.org/obo/WBBT_'
   WBVocab: 'http://bio2rdf.org/wormbase_vocabulary'
   WIKIDATA: 'https://www.wikidata.org/wiki/'            # Wikidata Entity
   WIKIDATA_PROPERTY: 'https://www.wikidata.org/wiki/Property:'  # Wikidata Property - not a conventional namespace prefix
@@ -1003,7 +1006,7 @@ slots:
       - dct:format
       - WIKIDATA_PROPERTY:P2701
 
-  created_with:
+  created with:
     is_a: node property
     domain: dataset
     exact_mappings:
@@ -1314,6 +1317,31 @@ slots:
     aliases: ['max phase']
     description: >-
       An agglomeration of drug regulatory status worldwide. Not specific to FDA.
+    exact_mappings:
+      - NCIT:C172573
+    narrow_mappings:
+      - NCIT:R172
+      - NCIT:regimen_has_accepted_use_for_disease
+      # RTX mapped REPODB terms
+      - REPODB:clinically_tested_approved_unknown_phase
+      - REPODB:clinically_tested_suspended_phase_0
+      - REPODB:clinically_tested_suspended_phase_1
+      - REPODB:clinically_tested_suspended_phase_1_or_phase_2
+      - REPODB:clinically_tested_suspended_phase_2
+      - REPODB:clinically_tested_suspended_phase_2_or_phase_3
+      - REPODB:clinically_tested_suspended_phase_3
+      - REPODB:clinically_tested_terminated_phase_0
+      - REPODB:clinically_tested_terminated_phase_1
+      - REPODB:clinically_tested_terminated_phase_1_or_phase_2
+      - REPODB:clinically_tested_terminated_phase_2
+      - REPODB:clinically_tested_terminated_phase_2_or_phase_3
+      - REPODB:clinically_tested_terminated_phase_3
+      - REPODB:clinically_tested_withdrawn_phase_0
+      - REPODB:clinically_tested_withdrawn_phase_1
+      - REPODB:clinically_tested_withdrawn_phase_1_or_phase_2
+      - REPODB:clinically_tested_withdrawn_phase_2
+      - REPODB:clinically_tested_withdrawn_phase_2_or_phase_3
+      - REPODB:clinically_tested_withdrawn_phase_3
 
   routes of delivery:
     description: >-
@@ -1488,6 +1516,8 @@ slots:
     symmetric: true
     domain: named thing
     range: named thing
+    exact_mappings:
+      - SEMMEDDB:associated_with
     narrow_mappings:
       - RO:0004029
       - SNOMEDCT:47429007
@@ -1738,6 +1768,10 @@ slots:
     exact_mappings:
       - RO:0002432
 
+  has active component:
+    inverse: active in
+
+
   acts upstream of:
     is_a: related to at instance level
     domain: gene or gene product
@@ -1870,10 +1904,22 @@ slots:
     exact_mappings:
       - dct:contributor
 
+  has contributor:
+    inverse: contributor
+    is_a: related to at instance level
+    domain: agent
+    range: information content entity
+
   provider:
     is_a: contributor
     description: >-
       person, group, organization or project that provides a piece of information (e.g. a knowledge association).
+
+  has provider:
+    inverse: provider
+    is_a: has contributor
+    domain: agent
+    range: information content entity
 
   publisher:
     is_a: contributor
@@ -1888,6 +1934,12 @@ slots:
       - dct:publisher
       - WIKIDATA_PROPERTY:P123
 
+  has publisher:
+    is_a: has contributor
+    inverse: publisher
+    domain: agent
+    range: publication
+
   editor:
     is_a: contributor
     domain: publication
@@ -1900,6 +1952,12 @@ slots:
     exact_mappings:
       - WIKIDATA_PROPERTY:P98
 
+  has editor:
+    inverse: editor
+    is_a: has contributor
+    domain: agent
+    range: publication
+
   author:
     is_a: contributor
     domain: publication
@@ -1908,6 +1966,12 @@ slots:
     exact_mappings:
       - dct:creator
       - WIKIDATA_PROPERTY:P50
+
+  has author:
+    inverse: author
+    is_a: has contributor
+    domain: agent
+    range: publication
 
   ## end of Publication related predicates
 
@@ -1926,12 +1990,12 @@ slots:
         value: true
     exact_mappings:
       - RO:0002434
+      - SEMMEDDB:interacts_with
     narrow_mappings:
       # RO terms RTX mapped to 'biolink:related_to' but which imply a chemical interaction
       - RO:0002103
       - RO:0002120
       - RO:0002130
-      - SEMMEDDB:complicates
 
   physically interacts with:
     is_a: interacts with
@@ -1958,8 +2022,6 @@ slots:
       - DRUGBANK:target
     narrow_mappings:
       # Defined more narrowly as "substance interaction", thus specific applies to a subclass entities?
-      - SEMMEDDB:INTERACTS_WITH
-      - SEMMEDDB:interacts_with
       - DRUGBANK:drug-interaction
       - FMA:adheres_to
       - NCIT:A7
@@ -3729,9 +3791,6 @@ slots:
     is_a: regulates
     mixin: true
     annotations:
-      biolink:canonical_predicate:
-        tag: biolink:canonical_predicate
-        value: true
       biolink:opposite_of:
         tag: biolink:opposite_of
         value: biolink:negatively regulates
@@ -3746,7 +3805,6 @@ slots:
       - RO:0004032
       - RO:0004034
       - RO:0002629
-      - SEMMEDDB:augments
 
   positively regulated by:
     is_a: regulated by
@@ -3898,6 +3956,7 @@ slots:
       # action or function of a "substance interaction", where "substance" is deemed a subclass of possible entity
       - SEMMEDDB:STIMULATES
       - SEMMEDDB:stimulates
+      - SEMMEDDB:augments
 
   entity positively regulated by entity:
     is_a: entity regulated by entity
@@ -4467,8 +4526,12 @@ slots:
         tag: biolink:opposite_of
         value: biolink:prevents
     exact_mappings:
-      - SEMMEDDB:PREDISPOSES
       - SEMMEDDB:predisposes
+
+  has predisposing factor:
+    inverse: predisposes
+    in_subset:
+      - translator_minimal
 
   # TODO: inverse of predisposes
 
@@ -4595,6 +4658,12 @@ slots:
     exact_mappings:
       - RO:0003307
 
+  is ameliorated by:
+    inverse: ameliorates
+    is_a: affected by
+    domain: disease or phenotypic feature
+    range: biological entity
+
   exacerbates:
     is_a: affects
     description: >-
@@ -4611,6 +4680,16 @@ slots:
         value: true
     exact_mappings:
       - RO:0003309
+    broad_mappings:
+      - SEMMEDDB:complicates
+
+  is exacerbated by:
+    inverse: exacerbates
+    is_a: affected by
+    domain: disease or phenotypic feature
+    range: biological entity
+    in_subset:
+      - translator_minimal
 
   treats:
     aliases: ['is substance that treats', 'indicated for']
@@ -4684,6 +4763,7 @@ slots:
       - RO:0002302
 
   approved to treat:
+    deprecated: true
     description: >-
       holds between a therapeutic procedure or chemical entity
       and a disease or phenotypic feature for which it is approved
@@ -4697,31 +4777,6 @@ slots:
       biolink:canonical_predicate:
         tag: biolink:canonical_predicate
         value: true
-    exact_mappings:
-      - NCIT:C172573
-    narrow_mappings:
-      - NCIT:R172
-      - NCIT:regimen_has_accepted_use_for_disease
-      # RTX mapped REPODB terms
-      - REPODB:clinically_tested_approved_unknown_phase
-      - REPODB:clinically_tested_suspended_phase_0
-      - REPODB:clinically_tested_suspended_phase_1
-      - REPODB:clinically_tested_suspended_phase_1_or_phase_2
-      - REPODB:clinically_tested_suspended_phase_2
-      - REPODB:clinically_tested_suspended_phase_2_or_phase_3
-      - REPODB:clinically_tested_suspended_phase_3
-      - REPODB:clinically_tested_terminated_phase_0
-      - REPODB:clinically_tested_terminated_phase_1
-      - REPODB:clinically_tested_terminated_phase_1_or_phase_2
-      - REPODB:clinically_tested_terminated_phase_2
-      - REPODB:clinically_tested_terminated_phase_2_or_phase_3
-      - REPODB:clinically_tested_terminated_phase_3
-      - REPODB:clinically_tested_withdrawn_phase_0
-      - REPODB:clinically_tested_withdrawn_phase_1
-      - REPODB:clinically_tested_withdrawn_phase_1_or_phase_2
-      - REPODB:clinically_tested_withdrawn_phase_2
-      - REPODB:clinically_tested_withdrawn_phase_2_or_phase_3
-      - REPODB:clinically_tested_withdrawn_phase_3
 
   approved for treatment by:
     description: >-
@@ -5276,7 +5331,7 @@ slots:
     in_subset:
       - translator_minimal
 
-  composed_primarily_of:
+  composed primarily of:
     is_a: related to
     description: >-
       x composed_primarily_of_y if:more than half of the mass of x is made from parts of y.
@@ -5591,7 +5646,7 @@ slots:
       - NCIT:R52
       - RO:0002500
 
-  capability of:
+  has capability:
     is_a: actively involves
     inverse: capable of
 
@@ -6236,6 +6291,9 @@ slots:
       - MONDO:disease_has_basis_in_development_of
       - MONDO:disease_has_basis_in_accumulation_of
 
+  occurs in disease:
+    is_a: related to at instance level
+    inverse: disease has basis in
 
   # These may be pushable to causal relationships, but seem important for clarity
   # Also because causes adverse event tends to be very noisy and it's useful to be able
@@ -6504,19 +6562,19 @@ slots:
     description: >-
       any slot that relates an association to another entity
 
-  original_subject:
+  original subject:
     is_a: association slot
     description: >-
       used to hold the original subject of a relation (or predicate) that an external knowledge
       source uses before transformation to match the biolink-model specification.
 
-  original_object:
+  original object:
     is_a: association slot
     description: >-
       used to hold the original object of a relation (or predicate) that an external knowledge
       source uses before transformation to match the biolink-model specification.
 
-  original_predicate:
+  original predicate:
     aliases: ['original relation', 'relation']
     is_a: association slot
     description: >-
@@ -7116,6 +7174,7 @@ classes:
     description: "a databased entity or concept/class"
     slots:
       - provided by
+      - xref
     slot_usage:
       category:
         required: true
@@ -7843,6 +7902,7 @@ classes:
       - STY:T103 # Chemical
     narrow_mappings:
       - WIKIDATA:Q43460564
+      - STY:T129 # (imft, full name: Immunologic Factor
     in_subset:
       - translator_minimal
     id_prefixes:
@@ -7868,6 +7928,18 @@ classes:
       - STY:T196 # Element, Ion, or Isotope
       - CHEBI:59999
       - bioschemas:ChemicalSubstance
+      - STY:T123 #(bacs, full name: Biologically Active Substance)
+      - STY:T131 #(hops, full name: Hazardous or Poisonous Substance)
+      - STY:T125 #(horm, full name: Hormone)
+      - STY:T197 #(inch, full name: Inorganic Chemical)
+      - STY:T109 #(orch, full name: Organic Chemical)
+      - STY:T118 #(carb, full name: Carbohydrate) - note that this term is missing from newer SRDEF files (depreciated?), but is still used by the SEMMEDDB data files)
+      - STY:T111 #(eico, full name: Eicosanoid) - same note as above
+      - STY:T119 #(lipd, full name: Lipid) - same note as above
+      - STY:T124 #(nsba, full name: Neuroreactive Substance or Biogenic Amine) - same note as above
+      - STY:T115 #(opco, full name: Organophosphorus Compound) - same note as above
+      - STY:T110 #(strd, full name: Steroid) - same note as above
+      - STY:T127 # vitamin
     id_prefixes:
       - PUBCHEM.COMPOUND
       - CHEMBL.COMPOUND
@@ -7901,6 +7973,7 @@ classes:
     in_subset:
       - model_organism_database
       - translator_minimal
+
 
   chemical mixture:
     is_a: chemical entity
@@ -9572,7 +9645,6 @@ classes:
       - subject
       - predicate
       - object
-      - relation
       - negated
       - qualifiers
       - publications
@@ -9670,7 +9742,6 @@ classes:
       - object
     slot_usage:
       predicate:
-        # subproperty_of: ???
         description: >-
           the relationship type used to connect genotype to gene
       subject:
@@ -9772,10 +9843,6 @@ classes:
       predicate:
         subproperty_of: interacts with
         symmetric: true
-      # relation:
-      #  values_from:
-      #    - ro
-      #    - mi
         description: "interaction relationship type"
     narrow_mappings:
       - dcid:ProteinProteinInteraction
@@ -9805,10 +9872,6 @@ classes:
           - BioGRID
       predicate:
         subproperty_of: molecularly interacts with
-      # relation:
-       # values_from:
-        #  - ro
-        #  - mi
         description: "interaction relationship type"
         examples:
           - value: RO:0002447
@@ -10717,9 +10780,6 @@ classes:
     slot_usage:
       subject:
         range: individual organism
-      # relation:
-      #  values_from:
-      #    - ro
       object:
         range: individual organism
         description: >-
@@ -10734,9 +10794,6 @@ classes:
     slot_usage:
       subject:
         range: organism taxon
-      # relation:
-      #  values_from:
-      #    - ro
       object:
         range: organism taxon
         description: >-
@@ -11058,7 +11115,6 @@ classes:
       A regulatory relationship between two genes
     slot_usage:
       predicate:
-        # subproperty_of: ???
         description: >-
           the direction is always from regulator to regulated
       subject:
@@ -11068,8 +11124,7 @@ classes:
         range: gene or gene product
         role: regulated gene
 
-  anatomical entity to anatomical entity association:
-    # schema: gocam
+  anatomical entity to anatomical entity association: # schema: gocam
     is_a: association
     abstract: true
     defining_slots:
