@@ -1663,7 +1663,7 @@ def write_bulk_prefix_request_template():
     optional.extend(("contact_name", "contact_github", "contact_orcid", "contact_email"))
 
     with BULK_UPLOAD_FORM.open("w") as file:
-        print(
+        print(  # noqa:T201
             "request_id",
             *required,
             *(f"{c} (optional)" for c in optional),
@@ -1674,7 +1674,7 @@ def write_bulk_prefix_request_template():
         for i, prefix in enumerate(["chebi", "tkg", "mondo", "nmdc"], start=1):
             resource = bioregistry.get_resource(prefix)
             assert resource is not None
-            print(
+            print(  # noqa:T201
                 f"example_{i} (delete this row)",
                 *(_get(resource, c) for c in required),
                 *(_get(resource, c) for c in optional),
@@ -1682,7 +1682,7 @@ def write_bulk_prefix_request_template():
                 file=file,
             )
         for i in range(1, 6):
-            print(i, *["\t"] * (len(required) + len(optional)), sep="\t", file=file)
+            print(i, *["\t"] * (len(required) + len(optional)), sep="\t", file=file)  # noqa:T201
 
 
 def _get(resource, key):
@@ -1692,11 +1692,7 @@ def _get(resource, key):
     elif hasattr(resource, key):
         x = getattr(resource, key)
     elif "_" in key:
-        try:
-            k1, k2 = key.split("_")
-        except ValueError:
-            print(key)
-            raise
+        k1, k2 = key.split("_")
         x1 = getattr(resource, k1, None)
         x = getattr(x1, k2, None) if x1 is not None else None
     else:
