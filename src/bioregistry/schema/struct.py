@@ -151,25 +151,35 @@ class Provider(BaseModel):
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
-    prefix: str = Field(..., description="The prefix for this resource", exclude=True)
+    prefix: str = Field(
+        ...,
+        description="The prefix for this resource",
+        exclude=True,
+        integration_status="required",
+    )
     name: Optional[str] = Field(
         description="The name of the resource",
+        integration_status="required"
     )
     description: Optional[str] = Field(
         description="A description of the resource",
+        integration_status="required"
     )
     pattern: Optional[str] = Field(
         description="The regular expression pattern for local unique identifiers in the resource",
+        integration_status="required_for_new",
     )
     uri_format: Optional[str] = Field(
         title="URI format string",
         description="The URI format string, which must have at least one ``$1`` in it",
+        integration_status="required_for_new",
     )
     providers: Optional[List[Provider]] = Field(
         description="Additional, non-default providers for the resource",
     )
     homepage: Optional[str] = Field(
         description="The URL for the homepage of the resource, preferably using HTTPS",
+        integration_status="required"
     )
     repository: Optional[str] = Field(
         description="The URL for the repository of the resource",
@@ -178,12 +188,14 @@ class Resource(BaseModel):
         description=(
             "The contact email address for the resource. This must correspond to a specific "
             "person and not be a listserve nor a shared email account."
-        )
+        ),
+        integration_status="suggested",
     )
     example: Optional[str] = Field(
         description="An example local identifier for the resource, explicitly excluding any redundant "
         "usage of the prefix in the identifier. For example, a GO identifier should only "
         "look like ``1234567`` and not like ``GO:1234567``",
+        integration_status="required",
     )
     example_extras: Optional[List[str]] = Field(
         description="Extra example identifiers",
@@ -325,6 +337,7 @@ class Resource(BaseModel):
     Workflow must contain this field.
     """
         ),
+        integration_status="required_for_new",
     )
     contributor_extras: Optional[List[Author]] = Field(
         description="Additional contributors besides the original submitter.",
@@ -337,7 +350,8 @@ class Resource(BaseModel):
     optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub
     Workflow should contain this field pointing to the person who reviewed it on GitHub.
     """
-        )
+        ),
+        integration_status="required_for_new",
     )
     proprietary: Optional[bool] = Field(
         description=_dedent(
