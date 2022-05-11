@@ -18,7 +18,6 @@ from typing import (
     Optional,
     Sequence,
     Set,
-    Tuple,
     Union,
 )
 
@@ -1629,26 +1628,90 @@ def get_json_schema():
     return rv
 
 
-def get_bulk_upload_form_columns() -> Tuple[List[str], List[str]]:
-    return ["prefix", "name"], ["repository"]
+def write_bulk_prefix_request_template():
+    """Write a template for bulk prefix requests."""
+    import bioregistry
+
+    required = []
+    optional = []
+
+    metaprefixes = set(bioregistry.read_metaregistry())
+
+    for name, field in Resource.__fields__.items():
+        if name in {
+            "providers",
+            "example_extras",
+            "contributor_extras",
+            "mappings",
+            "reviewer",
+            "contact",
+            "contributor",
+        }:
+            continue
+        if name in metaprefixes:
+            continue
+        status = field.field_info.extra.get("integration_status", "optional")
+        if status in {"required", "required_for_new"}:
+            required.append(name)
+        elif status == "skip":
+            continue
+        else:
+            optional.append(name)
+    required.extend(
+        ("contributor_name", "contributor_github", "contributor_orcid", "contributor_email")
+    )
+    optional.extend(("contact_name", "contact_github", "contact_orcid", "contact_email"))
+
+    with BULK_UPLOAD_FORM.open("w") as file:
+        print(
+            "request_id",
+            *required,
+            *(f"{c} (optional)" for c in optional),
+            sep="\t",
+            file=file,
+        )
+        # add examples
+        for i, prefix in enumerate(["chebi", "tkg", "mondo", "nmdc"], start=1):
+            resource = bioregistry.get_resource(prefix)
+            assert resource is not None
+            print(
+                f"example_{i} (delete this row)",
+                *(_get(resource, c) for c in required),
+                *(_get(resource, c) for c in optional),
+                sep="\t",
+                file=file,
+            )
+        for i in range(1, 6):
+            print(i, *["\t"] * (len(required) + len(optional)), sep="\t", file=file)
+
+
+def _get(resource, key):
+    getter_key = f"get_{key}"
+    if hasattr(resource, getter_key):
+        x = getattr(resource, getter_key)()
+    elif hasattr(resource, key):
+        x = getattr(resource, key)
+    elif "_" in key:
+        try:
+            k1, k2 = key.split("_")
+        except ValueError:
+            print(key)
+            raise
+        x1 = getattr(resource, k1, None)
+        x = getattr(x1, k2, None) if x1 is not None else None
+    else:
+        x = None
+    if isinstance(x, (list, set)):
+        return "|".join(sorted(x))
+    return x or ""
 
 
 def main():
     """Dump the JSON schemata."""
+    write_bulk_prefix_request_template()
+
     with SCHEMA_PATH.open("w") as file:
         json.dump(get_json_schema(), indent=2, fp=file)
-
-    required_columns, optional_columns = get_bulk_upload_form_columns()
-    with BULK_UPLOAD_FORM.open("w") as file:
-        print(
-            "",
-            *required_columns,
-            *(f"{c} (optional)" for c in optional_columns),
-            sep="\t",
-            file=file,
-        )
-        for i in range(1, 5):
-            print(i, *["\t"] * (len(required_columns) + len(optional_columns)), sep="\t", file=file)
 
 
 if __name__ == "__main__":
