@@ -243,8 +243,7 @@ following [this tutorial](https://docs.github.com/en/github/collaborating-with-p
 
 This project aims to support all versions of Python that have not passed their
 end-of-life dates. After end-of-life, the version will be removed from the Trove
-qualifiers in
-the [`setup.cfg`](https://github.com/biopragmatics/bioregistry/blob/main/setup.cfg)
+qualifiers in the [`setup.cfg`](https://github.com/biopragmatics/bioregistry/blob/main/setup.cfg)
 and from the GitHub Actions testing configuration.
 
 See https://endoflife.date/python for a timeline of Python release and
