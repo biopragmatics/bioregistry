@@ -18,6 +18,7 @@ from typing import (
     Optional,
     Sequence,
     Set,
+    Tuple,
     Union,
 )
 
@@ -1628,13 +1629,26 @@ def get_json_schema():
     return rv
 
 
+def get_bulk_upload_form_columns() -> Tuple[List[str], List[str]]:
+    return ["prefix", "name"], ["repository"]
+
+
 def main():
     """Dump the JSON schemata."""
     with SCHEMA_PATH.open("w") as file:
         json.dump(get_json_schema(), indent=2, fp=file)
 
+    required_columns, optional_columns = get_bulk_upload_form_columns()
     with BULK_UPLOAD_FORM.open("w") as file:
-        pass  # TODO generate bulk prefix form
+        print(
+            "",
+            *required_columns,
+            *(f"{c} (optional)" for c in optional_columns),
+            sep="\t",
+            file=file,
+        )
+        for i in range(1, 5):
+            print(i, *["\t"] * (len(required_columns) + len(optional_columns)), sep="\t", file=file)
 
 
 if __name__ == "__main__":
