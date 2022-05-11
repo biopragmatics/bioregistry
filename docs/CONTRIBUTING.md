@@ -125,6 +125,10 @@ correspond to subsumed, abandoned, or dead resources, because it is also a
 historical archive and reference for anyone who might run into legacy prefixes
 in legacy resources.
 
+#### Bulk Contribution
+
+TODO
+
 ## Code Contribution
 
 This project uses the [GitHub Flow](https://guides.github.com/introduction/flow)
