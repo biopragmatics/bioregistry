@@ -25,7 +25,7 @@ import pydantic.schema
 from pydantic import BaseModel, Field
 
 from bioregistry import constants as brc
-from bioregistry.constants import BIOREGISTRY_REMOTE_URL, URI_FORMAT_KEY
+from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE
 
@@ -49,6 +49,7 @@ logger = logging.getLogger(__name__)
 
 HERE = pathlib.Path(__file__).parent.resolve()
 SCHEMA_PATH = HERE.joinpath("schema.json")
+BULK_UPLOAD_FORM = DOCS.joinpath("bulk_prefix_request_template.tsv")
 
 #: Search string for skipping formatters containing this
 IDOT_SKIP = "identifiers.org"
@@ -151,25 +152,33 @@ class Provider(BaseModel):
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
-    prefix: str = Field(..., description="The prefix for this resource", exclude=True)
+    prefix: str = Field(
+        ...,
+        description="The prefix for this resource",
+        exclude=True,
+        integration_status="required",
+    )
     name: Optional[str] = Field(
-        description="The name of the resource",
+        description="The name of the resource", integration_status="required"
     )
     description: Optional[str] = Field(
-        description="A description of the resource",
+        description="A description of the resource", integration_status="required"
     )
     pattern: Optional[str] = Field(
         description="The regular expression pattern for local unique identifiers in the resource",
+        integration_status="required_for_new",
     )
     uri_format: Optional[str] = Field(
         title="URI format string",
         description="The URI format string, which must have at least one ``$1`` in it",
+        integration_status="required_for_new",
     )
     providers: Optional[List[Provider]] = Field(
         description="Additional, non-default providers for the resource",
     )
     homepage: Optional[str] = Field(
         description="The URL for the homepage of the resource, preferably using HTTPS",
+        integration_status="required",
     )
     repository: Optional[str] = Field(
         description="The URL for the repository of the resource",
@@ -178,12 +187,14 @@ class Resource(BaseModel):
         description=(
             "The contact email address for the resource. This must correspond to a specific "
             "person and not be a listserve nor a shared email account."
-        )
+        ),
+        integration_status="suggested",
     )
     example: Optional[str] = Field(
         description="An example local identifier for the resource, explicitly excluding any redundant "
         "usage of the prefix in the identifier. For example, a GO identifier should only "
         "look like ``1234567`` and not like ``GO:1234567``",
+        integration_status="required",
     )
     example_extras: Optional[List[str]] = Field(
         description="Extra example identifiers",
@@ -325,6 +336,7 @@ class Resource(BaseModel):
     Workflow must contain this field.
     """
         ),
+        integration_status="required_for_new",
     )
     contributor_extras: Optional[List[Author]] = Field(
         description="Additional contributors besides the original submitter.",
@@ -337,7 +349,8 @@ class Resource(BaseModel):
     optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub
     Workflow should contain this field pointing to the person who reviewed it on GitHub.
     """
-        )
+        ),
+        integration_status="required_for_new",
     )
     proprietary: Optional[bool] = Field(
         description=_dedent(
@@ -1615,8 +1628,84 @@ def get_json_schema():
     return rv
 
 
+def write_bulk_prefix_request_template():
+    """Write a template for bulk prefix requests."""
+    import bioregistry
+
+    required = []
+    optional = []
+
+    metaprefixes = set(bioregistry.read_metaregistry())
+
+    for name, field in Resource.__fields__.items():
+        if name in {
+            "providers",
+            "example_extras",
+            "contributor_extras",
+            "mappings",
+            "reviewer",
+            "contact",
+            "contributor",
+        }:
+            continue
+        if name in metaprefixes:
+            continue
+        status = field.field_info.extra.get("integration_status", "optional")
+        if status in {"required", "required_for_new"}:
+            required.append(name)
+        elif status == "skip":
+            continue
+        else:
+            optional.append(name)
+    required.extend(
+        ("contributor_name", "contributor_github", "contributor_orcid", "contributor_email")
+    )
+    optional.extend(("contact_name", "contact_github", "contact_orcid", "contact_email"))
+
+    with BULK_UPLOAD_FORM.open("w") as file:
+        print(  # noqa:T201
+            "request_id",
+            *required,
+            *(f"{c} (optional)" for c in optional),
+            sep="\t",
+            file=file,
+        )
+        # add examples
+        for i, prefix in enumerate(["chebi", "tkg", "mondo", "nmdc"], start=1):
+            resource = bioregistry.get_resource(prefix)
+            assert resource is not None
+            print(  # noqa:T201
+                f"example_{i} (delete this row)",
+                *(_get(resource, c) for c in required),
+                *(_get(resource, c) for c in optional),
+                sep="\t",
+                file=file,
+            )
+        for i in range(1, 6):
+            print(i, *["\t"] * (len(required) + len(optional)), sep="\t", file=file)  # noqa:T201
+
+
+def _get(resource, key):
+    getter_key = f"get_{key}"
+    if hasattr(resource, getter_key):
+        x = getattr(resource, getter_key)()
+    elif hasattr(resource, key):
+        x = getattr(resource, key)
+    elif "_" in key:
+        k1, k2 = key.split("_")
+        x1 = getattr(resource, k1, None)
+        x = getattr(x1, k2, None) if x1 is not None else None
+    else:
+        x = None
+    if isinstance(x, (list, set)):
+        return "|".join(sorted(x))
+    return x or ""
+
+
 def main():
     """Dump the JSON schemata."""
+    write_bulk_prefix_request_template()
+
     with SCHEMA_PATH.open("w") as file:
         json.dump(get_json_schema(), indent=2, fp=file)
 
