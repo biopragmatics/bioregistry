@@ -158,12 +158,10 @@ class Resource(BaseModel):
         integration_status="required",
     )
     name: Optional[str] = Field(
-        description="The name of the resource",
-        integration_status="required"
+        description="The name of the resource", integration_status="required"
     )
     description: Optional[str] = Field(
-        description="A description of the resource",
-        integration_status="required"
+        description="A description of the resource", integration_status="required"
     )
     pattern: Optional[str] = Field(
         description="The regular expression pattern for local unique identifiers in the resource",
@@ -179,7 +177,7 @@ class Resource(BaseModel):
     )
     homepage: Optional[str] = Field(
         description="The URL for the homepage of the resource, preferably using HTTPS",
-        integration_status="required"
+        integration_status="required",
     )
     repository: Optional[str] = Field(
         description="The URL for the repository of the resource",
