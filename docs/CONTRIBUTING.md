@@ -127,7 +127,13 @@ in legacy resources.
 
 #### Bulk Contribution
 
-TODO
+If you would like to submit more than 5 prefixes at once, you can fill out the
+[bulk prefix request template](src/bioregistry/schema/bulk_prefix_request_template.tsv)
+spreadsheet and submit it as an issue. Ideally, only power users or individuals
+who are highly responsive on GitHub will do this as individual prefix request
+forms allow for a much more direct way of validating the input and providing
+feedback through the GitHub form. Users who submit bulk requests with many
+invalidities will be asked to use the individual prefix request form.
 
 ## Code Contribution
 
@@ -195,8 +201,9 @@ file.
 
 All public functions (i.e., not starting with an underscore `_`) must be
 documented using
-the [sphinx documentation format](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format).
-The [`darglint`](https://github.com/terrencepreilly/darglint) plugin to `flake8`
+the [sphinx documentation format](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format)
+. The [`darglint`](https://github.com/terrencepreilly/darglint) plugin
+to `flake8`
 reports on functions that are not fully documented.
 
 This project uses [`sphinx`](https://www.sphinx-doc.org) to automatically build
@@ -222,13 +229,16 @@ $ git remote add biopragmatics https://github.com/biopragmatics/bioregistry.git
 ```
 
 Then, you can merge upstream code into your branch. You can also use the GitHub
-UI to do this by following [this tutorial](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).
+UI to do this by
+following [this tutorial](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork)
+.
 
 ### Python Version Compatibility
 
 This project aims to support all versions of Python that have not passed their
 end-of-life dates. After end-of-life, the version will be removed from the Trove
-qualifiers in the [`setup.cfg`](https://github.com/biopragmatics/bioregistry/blob/main/setup.cfg)
+qualifiers in
+the [`setup.cfg`](https://github.com/biopragmatics/bioregistry/blob/main/setup.cfg)
 and from the GitHub Actions testing configuration.
 
 See https://endoflife.date/python for a timeline of Python release and
