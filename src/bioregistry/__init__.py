@@ -29,6 +29,7 @@ from .resolve import (  # noqa:F401
     get_depends_on,
     get_description,
     get_example,
+    get_external,
     get_fairsharing_prefix,
     get_has_canonical,
     get_has_parts,

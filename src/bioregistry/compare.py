@@ -10,14 +10,16 @@ import random
 import sys
 import typing
 from collections import Counter
-from typing import Collection, Set
+from typing import Collection, Mapping, Set
 
 import click
 
+import bioregistry
 from bioregistry import (
     get_contact_email,
     get_description,
     get_example,
+    get_external,
     get_homepage,
     get_json_download,
     get_license,
@@ -33,7 +35,6 @@ from bioregistry import (
 )
 from bioregistry.constants import DOCS_IMG
 from bioregistry.license_standardizer import standardize_license
-from bioregistry.resolve import get_external
 from bioregistry.schema import Resource
 
 logger = logging.getLogger(__name__)
@@ -128,6 +129,25 @@ def _plot_attribute_pies(*, measurements, watermark, ncols: int = 4, keep_ontolo
     return fig, axes
 
 
+REMAPPED_KEY = "x"
+
+
+def make_overlaps(keys) -> Mapping[str, any]:
+    rv = {}
+    for key, label, color, prefixes in keys:
+        # Remap bioregistry prefixes to match the external
+        #  vocabulary, when possible
+        bioregistry_remapped = {
+            bioregistry.get_external(br_key, key).get("prefix", br_key)
+            for br_key, br_entry in bioregistry.read_registry().items()
+        }
+        rv[key] = {
+            REMAPPED_KEY: bioregistry_remapped,
+            "y": prefixes,
+        }
+    return rv
+
+
 def _plot_coverage(*, keys, watermark, ncols: int = 3):
     import matplotlib.pyplot as plt
     from matplotlib_venn import venn2
@@ -135,17 +155,14 @@ def _plot_coverage(*, keys, watermark, ncols: int = 3):
     nrows = int(math.ceil(len(keys) / ncols))
     figsize = (3.25 * ncols, 2.0 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
+
+    xxx = make_overlaps(keys)
     for key, ax in itt.zip_longest(keys, axes.ravel()):
         if key is None:
             ax.axis("off")
             continue
         key, label, color, prefixes = key
-        # Remap bioregistry prefixes to match the external
-        #  vocabulary, when possible
-        bioregistry_remapped = {
-            get_external(br_key, key).get("prefix", br_key)
-            for br_key, br_entry in read_registry().items()
-        }
+        bioregistry_remapped = xxx[key][REMAPPED_KEY]
         venn2(
             subsets=(bioregistry_remapped, prefixes),
             set_labels=("Bioregistry", label),
@@ -203,6 +220,34 @@ def _plot_external_overlap(*, keys, watermark, ncols: int = 4):
     return fig, axes
 
 
+def get_getters():
+    try:
+        from bioregistry.external.getters import GETTERS
+    except ImportError:
+        click.secho(
+            "Could not import alignment dependencies."
+            " Install bioregistry again with `pip install bioregistry[align]`.",
+            fg="red",
+        )
+        return sys.exit(1)
+    else:
+        return GETTERS
+
+
+def get_keys():
+    getters = get_getters()
+    try:
+        import seaborn as sns
+    except ImportError:
+        raise
+    else:
+        palette = sns.color_palette("Paired", len(getters))
+    return [
+        (metaprefix, label, color, set(func(force_download=False)))
+        for (metaprefix, label, func), color in zip(getters, palette)
+    ]
+
+
 @click.command()
 @click.option("--paper", is_flag=True)
 def compare(paper: bool):  # noqa:C901
@@ -221,15 +266,7 @@ def compare(paper: bool):  # noqa:C901
         )
         return sys.exit(1)
 
-    try:
-        from bioregistry.external.getters import GETTERS
-    except ImportError:
-        click.secho(
-            "Could not import alignment dependencies."
-            " Install bioregistry again with `pip install bioregistry[align]`.",
-            fg="red",
-        )
-        return sys.exit(1)
+    getters = get_getters()
 
     # This should make SVG output deterministic
     # See https://matplotlib.org/3.1.0/users/prev_whats_new/whats_new_2.0.0.html#added-svg-hashsalt-key-to-rcparams
@@ -322,11 +359,7 @@ def compare(paper: bool):  # noqa:C901
         _save(fig, "paper_figure_3", png=True, eps=True)
 
     # -------------------------------------------------------------------- #
-    palette = sns.color_palette("Paired", len(GETTERS))
-    keys = [
-        (metaprefix, label, color, set(func(force_download=False)))
-        for (metaprefix, label, func), color in zip(GETTERS, palette)
-    ]
+    keys = get_keys()
 
     ############################################################
     # How well does the Bioregistry cover the other resources? #
