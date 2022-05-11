@@ -208,9 +208,8 @@ file.
 
 All public functions (i.e., not starting with an underscore `_`) must be
 documented using
-the [sphinx documentation format](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format)
-. The [`darglint`](https://github.com/terrencepreilly/darglint) plugin
-to `flake8`
+the [sphinx documentation format](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format).
+The [`darglint`](https://github.com/terrencepreilly/darglint) plugin to `flake8`
 reports on functions that are not fully documented.
 
 This project uses [`sphinx`](https://www.sphinx-doc.org) to automatically build
