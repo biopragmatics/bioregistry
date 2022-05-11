@@ -128,7 +128,7 @@ in legacy resources.
 #### Bulk Contribution
 
 If you would like to submit more than 5 prefixes at once, you can fill out the
-[bulk prefix request template](src/bioregistry/schema/bulk_prefix_request_template.tsv)
+[bulk prefix request template](bulk_prefix_request_template.tsv)
 spreadsheet and submit it as an issue. Ideally, only power users or individuals
 who are highly responsive on GitHub will do this as individual prefix request
 forms allow for a much more direct way of validating the input and providing

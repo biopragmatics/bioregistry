@@ -25,7 +25,7 @@ import pydantic.schema
 from pydantic import BaseModel, Field
 
 from bioregistry import constants as brc
-from bioregistry.constants import BIOREGISTRY_REMOTE_URL, URI_FORMAT_KEY
+from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE
 
@@ -49,7 +49,7 @@ logger = logging.getLogger(__name__)
 
 HERE = pathlib.Path(__file__).parent.resolve()
 SCHEMA_PATH = HERE.joinpath("schema.json")
-BULK_UPLOAD_FORM = HERE.joinpath("bulk_prefix_request_template.tsv")
+BULK_UPLOAD_FORM = DOCS.joinpath("bulk_prefix_request_template.tsv")
 
 #: Search string for skipping formatters containing this
 IDOT_SKIP = "identifiers.org"
