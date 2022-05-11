@@ -10,6 +10,7 @@ from .metaresource_api import (  # noqa:F401
     get_registry_homepage,
     get_registry_name,
     get_registry_provider_uri_format,
+    get_registry_short_name,
     get_registry_uri,
 )
 from .parse_iri import curie_from_iri, parse_iri  # noqa:F401

@@ -1330,6 +1330,9 @@ class Registry(BaseModel):
     license: Optional[str] = Field(
         description="The license under which the resource is redistributed",
     )
+    short_name: Optional[str] = Field(
+        description="A short name for the resource, e.g., for use in charts"
+    )
 
     def score(self) -> int:
         """Calculate a metadata score/goodness for this registry."""
@@ -1443,6 +1446,10 @@ class Registry(BaseModel):
         if not path.exists():
             return None
         return f"https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/external/{self.prefix}.py"
+
+    def get_short_name(self) -> str:
+        """Get the short name or full name if none annotated."""
+        return self.short_name or self.name
 
 
 class Collection(BaseModel):

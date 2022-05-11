@@ -26,6 +26,14 @@ def get_registry_name(metaprefix: str) -> Optional[str]:
     return registry.name
 
 
+def get_registry_short_name(metaprefix: str) -> Optional[str]:
+    """Get the metaregistry short name for the given prefix, if it's available."""
+    registry = get_registry(metaprefix)
+    if registry is None:
+        return None
+    return registry.get_short_name()
+
+
 def get_registry_homepage(metaprefix: str) -> Optional[str]:
     """Get the URL for the registry, if available.
 
