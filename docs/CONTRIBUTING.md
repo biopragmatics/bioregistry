@@ -129,11 +129,16 @@ in legacy resources.
 
 If you would like to submit more than 5 prefixes at once, you can fill out the
 [bulk prefix request template](bulk_prefix_request_template.tsv)
-spreadsheet and submit it as an issue. Ideally, only power users or individuals
-who are highly responsive on GitHub will do this as individual prefix request
-forms allow for a much more direct way of validating the input and providing
-feedback through the GitHub form. Users who submit bulk requests with many
-invalidities will be asked to use the individual prefix request form.
+spreadsheet and submit it as an issue. The template contains several examples -
+please review them then delete them before submission. Please number all of the
+rows in sequential order the first column (`request_id``).
+
+Anyone is welcome to submit a bulk prefix request, but ideally submitters have a
+large working knowledge of the Bioregistry, its requirements, etc. as reviewing
+issues in a bulk request is much less ergonomic and more time-consuming than in
+individual prefix requests, which each get their own discussion thread, pull
+request, and CI/CD runs. Submitters of bulk prefix requests that contain many
+issues may be asked to re-submit as individual prefix requests.
 
 ## Code Contribution
 
