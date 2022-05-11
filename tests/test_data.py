@@ -60,6 +60,21 @@ class TestRegistry(unittest.TestCase):
                 self.assertFalse(prefix.startswith("_"))
                 self.assertFalse(prefix.endswith("_"))
 
+    def test_valid_integration_annotations(self):
+        """Test that the integration keys are valid."""
+        valid = {"required", "optional", "suggested", "required_for_new"}
+        for name, field in Resource.__fields__.items():
+            with self.subTest(name=name):
+                status = field.field_info.extra.get("integration_status", None)
+                if field.required:
+                    self.assertEqual(
+                        "required",
+                        status,
+                        msg=f"required field {name} is not marked with integration_status",
+                    )
+                elif status:
+                    self.assertIn(status, valid, msg=f"invalid integration status for field {name}")
+
     def test_keys(self):
         """Check the required metadata is there."""
         keys = set(Resource.__fields__.keys())
