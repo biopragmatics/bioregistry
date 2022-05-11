@@ -49,6 +49,7 @@ logger = logging.getLogger(__name__)
 
 HERE = pathlib.Path(__file__).parent.resolve()
 SCHEMA_PATH = HERE.joinpath("schema.json")
+BULK_UPLOAD_FORM = HERE.joinpath("bulk_prefix_request_template.tsv")
 
 #: Search string for skipping formatters containing this
 IDOT_SKIP = "identifiers.org"
@@ -1631,6 +1632,9 @@ def main():
     """Dump the JSON schemata."""
     with SCHEMA_PATH.open("w") as file:
         json.dump(get_json_schema(), indent=2, fp=file)
+
+    with BULK_UPLOAD_FORM.open("w") as file:
+        pass  # TODO generate bulk prefix form
 
 
 if __name__ == "__main__":
