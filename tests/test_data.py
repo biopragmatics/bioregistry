@@ -336,15 +336,25 @@ class TestRegistry(unittest.TestCase):
         for prefix, entry in self.registry.items():
             if not entry.example_extras:
                 continue
+            primary_example = entry.get_example()
             with self.subTest(prefix=prefix):
                 self.assertIsNotNone(
-                    entry.get_example(), msg="entry has extra examples but not primary example"
+                    primary_example, msg="entry has extra examples but not primary example"
                 )
 
             for example in entry.example_extras:
                 with self.subTest(prefix=prefix, identifier=example):
                     self.assertEqual(entry.standardize_identifier(example), example)
+                    self.assertNotEqual(
+                        primary_example, example, msg="extra example matches primary example"
+                    )
                     self.assert_canonical(prefix, example)
+
+            self.assertEqual(
+                len(entry.example_extras),
+                len(set(entry.example_extras)),
+                msg="duplicate extra examples",
+            )
 
     def test_is_mismatch(self):
         """Check for mismatches."""
