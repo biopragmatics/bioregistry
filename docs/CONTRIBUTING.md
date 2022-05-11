@@ -237,9 +237,7 @@ $ git remote add biopragmatics https://github.com/biopragmatics/bioregistry.git
 ```
 
 Then, you can merge upstream code into your branch. You can also use the GitHub
-UI to do this by
-following [this tutorial](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork)
-.
+UI to do this by following [this tutorial](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).
 
 ### Python Version Compatibility
 
