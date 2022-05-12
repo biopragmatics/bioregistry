@@ -429,7 +429,7 @@ def compare(paper: bool):  # noqa:C901
     ax.text(
         x1,
         h + 1,
-        "No prefixes are available\nin all mappable external\nregistries",
+        "No prefixes are available\nin $\\it{all}$ mappable external\nregistries",
         horizontalalignment="center",
         verticalalignment="bottom",
         fontdict=dict(fontsize=12),
