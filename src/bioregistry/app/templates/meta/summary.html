@@ -149,9 +149,10 @@
     <p>
         Licenses are only directly available from OBO Foundry and the OLS. Wikidata contains some licensing
         information, but more would need to be written to handle this.
-
+        <!-- OLS doesn't report licenses anymore
         <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/license_coverage.svg"
              alt="License Coverage" class="img-fluid"/>
+        -->
     </p>
     <p>
         However, even internally, neither the OBO Foundry nor OLS use a consistent nomenclature for licenses, so
@@ -159,7 +160,8 @@
             href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/compare.py#L19">this
         ruleset</a>. Further, some licenses that were inappropriate for data (e.g., Apache 2.0 License, GNU GPL
         3.0 License, BSD License) appeared infrequently and were collapsed into "Other". Other uncommon and
-        infrequent licenses were likewise collapsed into "Other". After, there were still several conflicts
+        infrequent licenses were likewise collapsed into "Other".
+        After, there were still several conflicts
         between the reported license in OBO Foundry and OLS, in which case both were added to the tally. In the
         majority of the conflicts, OBO Foundry reported CC-BY and OLS reported CC 0.
         <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/licenses.svg"

@@ -10,7 +10,7 @@ import random
 import sys
 import typing
 from collections import Counter, defaultdict
-from typing import Collection, Mapping, Set
+from typing import Collection, List, Mapping, Set, Tuple
 
 import click
 
@@ -134,8 +134,9 @@ REMAPPED_VALUE = "y"
 
 
 def make_overlaps(keys) -> Mapping[str, any]:
+    """Make overlaps ditionary."""
     rv = {}
-    for key, label, color, prefixes in keys:
+    for key, _, _, prefixes in keys:
         # Remap bioregistry prefixes to match the external
         #  vocabulary, when possible
         bioregistry_remapped = {
@@ -221,6 +222,7 @@ def _plot_external_overlap(*, keys, watermark, ncols: int = 4):
 
 
 def get_getters():
+    """Get getter functions, which requires alignment dependencies."""
     try:
         from bioregistry.external.getters import GETTERS
     except ImportError:
@@ -234,7 +236,8 @@ def get_getters():
         return GETTERS
 
 
-def get_keys():
+def get_keys() -> List[Tuple[str, str, str, Set[str]]]:
+    """Get keys for plots."""
     getters = get_getters()
     try:
         import seaborn as sns
@@ -258,7 +261,6 @@ def compare(paper: bool):  # noqa:C901
         import matplotlib.pyplot as plt
         import pandas as pd
         import seaborn as sns
-        from matplotlib_venn import venn2
     except ImportError:
         click.secho(
             "Could not import matplotlib dependencies."
@@ -267,7 +269,6 @@ def compare(paper: bool):  # noqa:C901
         )
         return sys.exit(1)
 
-    getters = get_getters()
     keys = get_keys()
     overlaps = make_overlaps(keys)
 
@@ -284,26 +285,26 @@ def compare(paper: bool):  # noqa:C901
     licenses, conflicts, obo_has_license, ols_has_license = _get_license_and_conflicts()
 
     # How many times does the license appear in OLS / OBO Foundry
-    fig, ax = plt.subplots(figsize=SINGLE_FIG)
-    venn2(
-        subsets=(obo_has_license, ols_has_license),
-        set_labels=("OBO", "OLS"),
-        set_colors=("red", "green"),
-        ax=ax,
-    )
-    if watermark:
-        ax.text(
-            0.5,
-            -0.1,
-            WATERMARK_TEXT,
-            transform=plt.gca().transAxes,
-            fontsize=10,
-            color="gray",
-            alpha=0.5,
-            ha="center",
-            va="bottom",
-        )
-    _save(fig, name="license_coverage", eps=paper)
+    # fig, ax = plt.subplots(figsize=SINGLE_FIG)
+    # venn2(
+    #     subsets=(obo_has_license, ols_has_license),
+    #     set_labels=("OBO", "OLS"),
+    #     set_colors=("red", "green"),
+    #     ax=ax,
+    # )
+    # if watermark:
+    #     ax.text(
+    #         0.5,
+    #         -0.1,
+    #         WATERMARK_TEXT,
+    #         transform=plt.gca().transAxes,
+    #         fontsize=10,
+    #         color="gray",
+    #         alpha=0.5,
+    #         ha="center",
+    #         va="bottom",
+    #     )
+    # _save(fig, name="license_coverage", eps=paper)
 
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
     licenses_counter: typing.Counter[str] = Counter(licenses)
@@ -368,8 +369,8 @@ def compare(paper: bool):  # noqa:C901
     ############################################################
     fig, axes = _plot_coverage(keys=keys, overlaps=overlaps, watermark=watermark)
     _save(fig, name="bioregistry_coverage", eps=paper)
-    plot_coverage_1(overlaps=overlaps, paper=paper)
-    plot_coverage_3(overlaps=overlaps, paper=True)
+    plot_coverage_bar_abridged(overlaps=overlaps, paper=paper)
+    plot_coverage_bar(overlaps=overlaps, paper=True)
 
     ######################################################
     # What's the overlap between each pair of resources? #
@@ -524,9 +525,13 @@ def get_regex_complexities() -> Collection[float]:
     return sorted(rows)
 
 
-def plot_coverage_1(*, overlaps, paper: bool = False):
+def plot_coverage_bar_abridged(*, overlaps, paper: bool = False):
+    """Plot and save the abridged coverage bar chart."""
     import matplotlib.pyplot as plt
     import pandas as pd
+    import seaborn as sns
+
+    sns.set_style("white")
 
     rows = []
     for metaprefix, data in overlaps.items():
@@ -551,6 +556,7 @@ def plot_coverage_1(*, overlaps, paper: bool = False):
         ax=ax,
         width=0.85,
         fontsize=14,
+        grid=False,
     )
     # ax.set_xscale("log")
     ax.grid("off")
@@ -594,12 +600,16 @@ def plot_coverage_1(*, overlaps, paper: bool = False):
 
     ax.get_legend().remove()
     plt.tight_layout()
-    _save(fig, name="comparison_bar", eps=paper)
+    _save(fig, name="bioregistry_coverage_bar_short", eps=paper)
 
 
-def plot_coverage_3(*, overlaps, paper: bool = False):
+def plot_coverage_bar(*, overlaps, paper: bool = False):
+    """Plot and save the coverage bar chart."""
     import matplotlib.pyplot as plt
     import pandas as pd
+    import seaborn as sns
+
+    sns.set_style("white")
 
     rows_1 = []
     for metaprefix, data in overlaps.items():
@@ -628,6 +638,7 @@ def plot_coverage_3(*, overlaps, paper: bool = False):
         ax=ax,
         width=0.85,
         fontsize=14,
+        grid=False,
     )
     # ax.set_xscale("log")
     ax.set_ylabel("")
@@ -675,7 +686,7 @@ def plot_coverage_3(*, overlaps, paper: bool = False):
 
     ax.get_legend().remove()
     plt.tight_layout()
-    _save(fig, name="comparison_bar_2", eps=paper)
+    _save(fig, name="bioregistry_coverage_bar", eps=paper)
 
 
 if __name__ == "__main__":
