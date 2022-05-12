@@ -69,24 +69,7 @@ class TestMetaregistry(unittest.TestCase):
                 else:
                     self.assertIsNone(registry.resolver_type)
 
-                invalid_keys = set(registry.dict()).difference(
-                    {
-                        "prefix",
-                        "name",
-                        "homepage",
-                        "download",
-                        "description",
-                        "provider_uri_format",
-                        "example",
-                        "resolver_uri_format",
-                        "resolver_type",
-                        "contact",
-                        "availability",
-                        "bioregistry_prefix",
-                        "license",
-                        "logo_url",
-                    }
-                )
+                invalid_keys = set(registry.dict()).difference(Registry.__fields__)
                 self.assertEqual(set(), invalid_keys, msg="invalid metadata")
                 if not registry.availability.fair:
                     self.assertIsNone(
