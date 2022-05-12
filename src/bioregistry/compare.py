@@ -421,6 +421,20 @@ def compare(paper: bool):  # noqa:C901
     ax.set_yscale("log")
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
+
+    reverse_index = 4  # how many columns left from the end should it go
+    h = 15  # how high should the text go
+    x1, _y1 = ax.patches[-reverse_index].get_xy()
+    x2, _y2 = ax.patches[-1].get_xy()
+    ax.text(
+        x1,
+        h + 1,
+        "No prefixes are available\nin all mappable external\nregistries",
+        horizontalalignment="center",
+        verticalalignment="bottom",
+        fontdict=dict(fontsize=12),
+    )
+    ax.arrow(x1, h, x2 - x1, 2 - h, head_width=0.3, head_length=0.2, fc="k", ec="k")
     if watermark:
         fig.text(
             1.0,
@@ -434,6 +448,8 @@ def compare(paper: bool):  # noqa:C901
             rotation=90,
         )
 
+    offset = 0.6
+    ax.set_xlim([-offset, len(ax.patches) - (1 + offset)])
     _save(fig, name="xrefs", eps=paper, png=paper)
 
     ##################################################
