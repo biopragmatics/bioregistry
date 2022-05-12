@@ -133,7 +133,7 @@ REMAPPED_KEY = "x"
 REMAPPED_VALUE = "y"
 
 
-def make_overlaps(keys) -> Mapping[str, any]:
+def make_overlaps(keys) -> Mapping[str, Mapping[str, Set[str]]]:
     """Make overlaps ditionary."""
     rv = {}
     for key, _, _, prefixes in keys:
@@ -277,7 +277,7 @@ def compare(paper: bool):  # noqa:C901
     plt.rcParams["svg.hashsalt"] = "saltyregistry"
 
     watermark = True
-    sns.set_style("whitegrid")
+    sns.set_style("white")
 
     ###############################################
     # What kinds of licenses are resources using? #
@@ -386,10 +386,14 @@ def compare(paper: bool):  # noqa:C901
         for entry in read_registry().values()
     ]
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
-    xrefs_counter = Counter(xref_counts)
+    xrefs_counter: typing.Counter[int] = Counter(xref_counts)
 
     n_mappable_metaprefixes = len(
-        {metaprefix for entry in read_registry().values() for metaprefix in entry.get_mappings()}
+        {
+            metaprefix
+            for entry in read_registry().values()
+            for metaprefix in (entry.get_mappings() or {})
+        }
     )
     for i in range(n_mappable_metaprefixes + 1):
         if i not in xrefs_counter:
@@ -552,14 +556,12 @@ def plot_coverage_bar_abridged(*, overlaps, paper: bool = False):
     df2.plot(
         kind="barh",
         stacked=True,
-        # color=['green', 'goldenrod', 'blue'],
         ax=ax,
         width=0.85,
         fontsize=14,
         grid=False,
     )
-    # ax.set_xscale("log")
-    ax.grid("off")
+    ax.grid(False)
     ax.set_ylabel("")
     ax.set_xticks([])
     ax.spines["top"].set_visible(False)
@@ -629,21 +631,18 @@ def plot_coverage_bar(*, overlaps, paper: bool = False):
     )
     df1.set_index("metaprefix", inplace=True)
 
-    # sns.set_context("notebook", font_scale=1.5, rc={"lines.linewidth": 2.5})
-    fig, ax = plt.subplots(1, 1, figsize=(10, 5))
+    fig, ax = plt.subplots(1, 1, figsize=(10, 7))
     df1.plot(
         kind="barh",
         stacked=True,
-        # color=['green', 'goldenrod', 'blue'],
         ax=ax,
         width=0.85,
         fontsize=14,
         grid=False,
     )
-    # ax.set_xscale("log")
     ax.set_ylabel("")
     ax.set_xticks([])
-    ax.grid("off")
+    ax.grid(False)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.spines["bottom"].set_visible(False)
