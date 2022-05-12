@@ -7251,6 +7251,12 @@ ensembl:
     develop a software system which produces and maintains automatic annotation on
     selected eukaryotic genomes. This collections also references outgroup organisms.
   example: ENSG00000139618
+  example_extras:
+  - ENSG00000049246.14
+  - ENSG00000109819.9
+  - ENSG00000132326.12
+  - ENSG00000179094.16
+  - ENST00000264867.7
   homepage: https://www.ensembl.org/
   mappings:
     fairsharing: FAIRsharing.fx0mw7
@@ -7262,7 +7268,7 @@ ensembl:
     uniprot: Ensembl
     wikidata: P594
   name: Ensembl Gene
-  pattern: ^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$
+  pattern: ^((ENS[FPTG]\d{11}(\.\d+)?)|(FB\w{2}\d{7})|(Y[A-Z]{2}\d{3}[a-zA-Z](\-[A-Z])?)|([A-Z_a-z0-9]+(\.)?(t)?(\d+)?([a-z])?))$
   preferred_prefix: ensembl
   providers:
   - code: bgee
@@ -23051,7 +23057,10 @@ tigrfam:
   name: TIGR protein families
   pattern: ^TIGR\d+$
   preferred_prefix: tigrfam
-  uri_format: http://www.jcvi.org/cgi-bin/tigrfams/HmmReportPage.cgi?acc=$1
+  references:
+  - https://ftp.ncbi.nlm.nih.gov/hmm/TIGRFAMs/license_and_availability.txt
+  - https://github.com/biopragmatics/bioregistry/issues/366
+  uri_format: https://www.ncbi.nlm.nih.gov/cdd?term=$1
 tkg:
   contributor:
     email: cthoyt@gmail.com
