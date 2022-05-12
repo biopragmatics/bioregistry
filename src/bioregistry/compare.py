@@ -9,7 +9,7 @@ import math
 import random
 import sys
 import typing
-from collections import Counter
+from collections import Counter, defaultdict
 from typing import Collection, Mapping, Set
 
 import click
@@ -130,6 +130,7 @@ def _plot_attribute_pies(*, measurements, watermark, ncols: int = 4, keep_ontolo
 
 
 REMAPPED_KEY = "x"
+REMAPPED_VALUE = "y"
 
 
 def make_overlaps(keys) -> Mapping[str, any]:
@@ -143,12 +144,12 @@ def make_overlaps(keys) -> Mapping[str, any]:
         }
         rv[key] = {
             REMAPPED_KEY: bioregistry_remapped,
-            "y": prefixes,
+            REMAPPED_VALUE: prefixes,
         }
     return rv
 
 
-def _plot_coverage(*, keys, watermark, ncols: int = 3):
+def _plot_coverage(*, keys, overlaps, watermark, ncols: int = 3):
     import matplotlib.pyplot as plt
     from matplotlib_venn import venn2
 
@@ -156,13 +157,12 @@ def _plot_coverage(*, keys, watermark, ncols: int = 3):
     figsize = (3.25 * ncols, 2.0 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
 
-    xxx = make_overlaps(keys)
     for key, ax in itt.zip_longest(keys, axes.ravel()):
         if key is None:
             ax.axis("off")
             continue
         key, label, color, prefixes = key
-        bioregistry_remapped = xxx[key][REMAPPED_KEY]
+        bioregistry_remapped = overlaps[key][REMAPPED_KEY]
         venn2(
             subsets=(bioregistry_remapped, prefixes),
             set_labels=("Bioregistry", label),
@@ -256,6 +256,7 @@ def compare(paper: bool):  # noqa:C901
     random.seed(0)
     try:
         import matplotlib.pyplot as plt
+        import pandas as pd
         import seaborn as sns
         from matplotlib_venn import venn2
     except ImportError:
@@ -267,6 +268,8 @@ def compare(paper: bool):  # noqa:C901
         return sys.exit(1)
 
     getters = get_getters()
+    keys = get_keys()
+    overlaps = make_overlaps(keys)
 
     # This should make SVG output deterministic
     # See https://matplotlib.org/3.1.0/users/prev_whats_new/whats_new_2.0.0.html#added-svg-hashsalt-key-to-rcparams
@@ -359,18 +362,14 @@ def compare(paper: bool):  # noqa:C901
         _save(fig, "paper_figure_3", png=True, eps=True)
 
     # -------------------------------------------------------------------- #
-    keys = get_keys()
 
     ############################################################
     # How well does the Bioregistry cover the other resources? #
     ############################################################
-    fig, axes = _plot_coverage(keys=keys, watermark=watermark)
+    fig, axes = _plot_coverage(keys=keys, overlaps=overlaps, watermark=watermark)
     _save(fig, name="bioregistry_coverage", eps=paper)
-
-    # Slightly reorganized for the paper
-    if paper:
-        fig, axes = _plot_coverage(keys=keys, watermark=watermark, ncols=4)
-        _save(fig, name="paper_figure_2", eps=True, png=True, svg=False)
+    plot_coverage_1(overlaps=overlaps, paper=paper)
+    plot_coverage_3(overlaps=overlaps, paper=True)
 
     ######################################################
     # What's the overlap between each pair of resources? #
@@ -386,10 +385,37 @@ def compare(paper: bool):  # noqa:C901
         for entry in read_registry().values()
     ]
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
-    sns.barplot(data=sorted(Counter(xref_counts).items()), ci=None, color="blue", alpha=0.4, ax=ax)
-    ax.set_xlabel("Number External References")
-    ax.set_ylabel("Count")
+    xrefs_counter = Counter(xref_counts)
+
+    n_mappable_metaprefixes = len(
+        {metaprefix for entry in read_registry().values() for metaprefix in entry.get_mappings()}
+    )
+    for i in range(n_mappable_metaprefixes + 1):
+        if i not in xrefs_counter:
+            xrefs_counter[i] = 0
+
+    xrefs_df = pd.DataFrame(sorted(xrefs_counter.items()), columns=["frequency", "count"])
+    palette = sns.color_palette("tab10")
+    xrefs_colors = [palette[0]] + ([palette[1]] * (len(xrefs_df.index) - 1))
+    sns.barplot(
+        data=xrefs_df,
+        x="frequency",
+        y="count",
+        ci=None,
+        palette=xrefs_colors,
+        alpha=0.7,
+        ax=ax,
+    )
+    # There should only be one container here
+    _labels = xrefs_df["count"].to_list()
+    _labels[0] = f"{_labels[0]}\nNovel"
+    for i in ax.containers:
+        ax.bar_label(i, _labels)
+    ax.set_xlabel("Number Cross-Registry Mappings")
+    ax.set_ylabel("Number Prefixes")
     ax.set_yscale("log")
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
     if watermark:
         fig.text(
             1.0,
@@ -496,6 +522,160 @@ def get_regex_complexities() -> Collection[float]:
         # Consider alternate complexity estimates
         rows.append(float(len(pattern)))
     return sorted(rows)
+
+
+def plot_coverage_1(*, overlaps, paper: bool = False):
+    import matplotlib.pyplot as plt
+    import pandas as pd
+
+    rows = []
+    for metaprefix, data in overlaps.items():
+        br, external = data[REMAPPED_KEY], data[REMAPPED_VALUE]
+        rows.append(
+            (
+                bioregistry.get_registry_short_name(metaprefix),
+                len(external - br),
+                len(br.intersection(external)),
+            )
+        )
+    rows = sorted(rows, key=lambda row: sum(row[1:]), reverse=True)
+
+    df2 = pd.DataFrame(rows, columns=["metaprefix", "external_only", "intersection"])
+    df2.set_index("metaprefix", inplace=True)
+
+    fig, ax = plt.subplots(1, 1, figsize=(10, 7))
+    df2.plot(
+        kind="barh",
+        stacked=True,
+        # color=['green', 'goldenrod', 'blue'],
+        ax=ax,
+        width=0.85,
+        fontsize=14,
+    )
+    # ax.set_xscale("log")
+    ax.grid("off")
+    ax.set_ylabel("")
+    ax.set_xticks([])
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.spines["bottom"].set_visible(False)
+    ax.spines["left"].set_visible(False)
+    ax.tick_params(
+        top=False, bottom=False, left=False, right=False, labelleft=True, labelbottom=False
+    )
+
+    dd = defaultdict(list)
+    for p in ax.patches:
+        width, height = p.get_width(), p.get_height()
+        x, y = p.get_xy()
+        dd[y, height].append((width, x))
+        if width < 20:
+            continue
+        ax.text(
+            x + width / 2,
+            y + height / 2,
+            f"{int(width):,}",
+            horizontalalignment="center",
+            verticalalignment="center",
+            fontdict=dict(weight="bold", color="white", fontsize=12),
+        )
+
+    for (y, height), values in dd.items():
+        width_total = sum(int(w) for w, _ in values)
+        percentage = values[-1][0] / width_total
+        width, x = max(values, key=lambda item: item[1])
+        ax.text(
+            width + x + 20,
+            y + height / 2,
+            f"{percentage:.1%} coverage",
+            fontdict=dict(weight="normal", color="black", fontsize=12),
+            verticalalignment="center",
+        )
+
+    ax.get_legend().remove()
+    plt.tight_layout()
+    _save(fig, name="comparison_bar", eps=paper)
+
+
+def plot_coverage_3(*, overlaps, paper: bool = False):
+    import matplotlib.pyplot as plt
+    import pandas as pd
+
+    rows_1 = []
+    for metaprefix, data in overlaps.items():
+        br, external = data[REMAPPED_KEY], data[REMAPPED_VALUE]
+        rows_1.append(
+            (
+                bioregistry.get_registry_short_name(metaprefix),
+                len(external - br),
+                len(br.intersection(external)),
+                len(br - external),
+            )
+        )
+    rows_1 = sorted(rows_1, key=lambda row: sum(row[1:]), reverse=True)
+
+    df1 = pd.DataFrame(
+        rows_1, columns=["metaprefix", "external_only", "intersection", "bioregistry_only"]
+    )
+    df1.set_index("metaprefix", inplace=True)
+
+    # sns.set_context("notebook", font_scale=1.5, rc={"lines.linewidth": 2.5})
+    fig, ax = plt.subplots(1, 1, figsize=(10, 5))
+    df1.plot(
+        kind="barh",
+        stacked=True,
+        # color=['green', 'goldenrod', 'blue'],
+        ax=ax,
+        width=0.85,
+        fontsize=14,
+    )
+    # ax.set_xscale("log")
+    ax.set_ylabel("")
+    ax.set_xticks([])
+    ax.grid("off")
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.spines["bottom"].set_visible(False)
+    ax.spines["left"].set_visible(False)
+    ax.tick_params(
+        top=False, bottom=False, left=False, right=False, labelleft=True, labelbottom=False
+    )
+
+    dd = defaultdict(list)
+    for p in ax.patches:
+        width, height = p.get_width(), p.get_height()
+        x, y = p.get_xy()
+        dd[y, height].append((width, x))
+        if width < 40:
+            continue
+        ax.text(
+            x + width / 2,
+            y + height / 2,
+            f"{int(width):,}",
+            horizontalalignment="center",
+            verticalalignment="center",
+            fontdict=dict(weight="bold", color="white", fontsize=12),
+        )
+
+    for (y, height), values in dd.items():
+        width_total = sum(int(w) for w, _ in values)
+        without_br = sum(int(w) for w, _ in values[:-1])
+        increase = (width_total - without_br) / without_br
+        width, x = max(values, key=lambda item: item[1])
+        ax.text(
+            width + x + 20,
+            y + height / 2,
+            f"{int(width_total):,} (+{increase:,.0%})",
+            fontdict=dict(weight="normal", color="black", fontsize=12),
+            verticalalignment="center",
+        )
+
+    for label in ax.get_yticklabels():
+        label.set_fontweight("bold")
+
+    ax.get_legend().remove()
+    plt.tight_layout()
+    _save(fig, name="comparison_bar_2", eps=paper)
 
 
 if __name__ == "__main__":
