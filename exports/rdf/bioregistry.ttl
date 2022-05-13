@@ -4587,7 +4587,7 @@ bioregistry:genedb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "LinJ.20.0070"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.genedb.org/gene/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[\\w\\d\\.-]*$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 true .
 
 bioregistry:genefarm a bioregistry.schema:0000001 ;
     rdfs:label "GeneFarm" ;
@@ -5420,7 +5420,7 @@ bioregistry:hgnc a bioregistry.schema:0000001 ;
         go.resource:HGNC,
         n2t:hgnc,
         ncbi.resource:HGNC,
-        fairsharing:FAIRsharing.29we0s,
+        fairsharing:FAIRsharing.amcv1e,
         prefixcommons:HGNC,
         miriam:hgnc,
         uniprot.resource:HGNC,
@@ -7408,7 +7408,7 @@ bioregistry:miro a bioregistry.schema:0000001 ;
     skos:exactMatch obofoundry:MIRO,
         ontobee:MIRO,
         bioportal:MIRO,
-        fairsharing:FAIRsharing.0Csgcz,
+        fairsharing:FAIRsharing.sjf113,
         prefixcommons:MIRO,
         ols:miro ;
     foaf:homepage "https://github.com/VEuPathDB-ontology/MIRO"^^xsd:string ;
@@ -8741,7 +8741,7 @@ bioregistry:omim a bioregistry.schema:0000001 ;
         go.resource:OMIM,
         n2t:mim,
         ncbi.resource:MIM,
-        fairsharing:FAIRsharing.9qkaz9,
+        fairsharing:FAIRsharing.azq2t6,
         prefixcommons:OMIM,
         miriam:mim,
         uniprot.resource:MIM,
@@ -12166,7 +12166,7 @@ bioregistry:vgnc a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch cellosaurus.resource:VGNC,
         ncbi.resource:VGNC,
-        fairsharing:FAIRsharing.eBP3tb,
+        fairsharing:FAIRsharing.5NhJFK,
         miriam:vgnc,
         uniprot.resource:VGNC ;
     foaf:homepage "https://vertebrate.genenames.org"^^xsd:string ;
@@ -12203,7 +12203,8 @@ bioregistry:vido a bioregistry.schema:0000001 ;
     rdfs:label "The Virus Infectious Disease Ontology" ;
     dc:description "The Virus Infectious Disease Ontology (IDO Virus) is an extension of the Infectious Disease Ontology (IDO). IDO Virus follows OBO Foundry guidelines, employs the Basic Formal Ontology as its starting point, and covers epidemiology, classification, pathogenesis, and treatment of terms used by Virologists, i.e. virus, prion, satellite, viroid, etc."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:VIDO,
+    skos:exactMatch ontobee:VIDO,
+        bioportal:VIDO,
         ols:vido ;
     foaf:homepage "https://github.com/infectious-disease-ontology-extensions/ido-virus"^^xsd:string ;
     bioregistry.schema:0000005 "0001114"^^xsd:string ;
@@ -12452,7 +12453,7 @@ All content is under the Creative Commons Attribution 3.0 Unported license."""^^
     skos:exactMatch bioportal:WIKIPATHWAYS,
         n2t:wikipathways,
         scholia.resource:wikipathways,
-        fairsharing:FAIRsharing.1x53qk,
+        fairsharing:FAIRsharing.g7b4rj,
         prefixcommons:WIKIPATHWAYS,
         miriam:wikipathways,
         wikidata:P2410 ;
@@ -12810,6 +12811,8 @@ orcid:0000-0002-5159-414X rdfs:label "Edison Ong" .
 orcid:0000-0002-5316-1399 rdfs:label "Sebastian Koehler" .
 
 orcid:0000-0002-5379-5359 rdfs:label "Asiyah Yu Lin" .
+
+orcid:0000-0002-5714-991X rdfs:label "Chris Stoeckert" .
 
 orcid:0000-0002-6020-5919 rdfs:label "Elizabeth Arnaud" .
 
@@ -13773,6 +13776,8 @@ ontobee:UO dcterms:isPartOf bioregistry.metaresource:ontobee .
 ontobee:UPA dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:UPHENO dcterms:isPartOf bioregistry.metaresource:ontobee .
+
+ontobee:VIDO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:VO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
@@ -17839,7 +17844,7 @@ bioregistry:eupath a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0002-5714-991X .
+    bioregistry.schema:0000019 orcid:0000-0002-2999-0103 .
 
 bioregistry:evm a bioregistry.schema:0000001 ;
     rdfs:label "eVOC mouse development stage" ;
@@ -20281,8 +20286,6 @@ bioregistry:zfa a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0002-2244-7917 .
 
-fairsharing:FAIRsharing.0Csgcz dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
 fairsharing:FAIRsharing.0a674c dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.0pUMYW dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -20309,13 +20312,9 @@ fairsharing:FAIRsharing.1tbrdz dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.1vrrdh dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
-fairsharing:FAIRsharing.1x53qk dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
 fairsharing:FAIRsharing.27rndz dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.284e1z dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
-fairsharing:FAIRsharing.29we0s dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.2abjs5 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -20444,6 +20443,8 @@ fairsharing:FAIRsharing.5701h1 dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.5949vn dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.595710 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.5NhJFK dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.5a4y1y dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -20597,8 +20598,6 @@ fairsharing:FAIRsharing.9j4wh2 dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.9kahy4 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
-fairsharing:FAIRsharing.9qkaz9 dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
 fairsharing:FAIRsharing.9rhr9j dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.9sb9qh dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -20667,6 +20666,8 @@ fairsharing:FAIRsharing.agvc7y dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.akmeb9 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.amcv1e dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.anpa6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.anpj91 dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -20684,6 +20685,8 @@ fairsharing:FAIRsharing.atygwy dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.ay74mj dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.ayjdsm dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.azq2t6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.azqskx dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -20821,8 +20824,6 @@ fairsharing:FAIRsharing.e4n3an dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.e7skwg dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
-fairsharing:FAIRsharing.eBP3tb dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
 fairsharing:FAIRsharing.ea287c dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.edxb58 dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -20886,6 +20887,8 @@ fairsharing:FAIRsharing.g4n8sw dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.g63c77 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.g78mbm dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.g7b4rj dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.g7jbvn dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -21161,6 +21164,8 @@ fairsharing:FAIRsharing.s5zmbp dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.s9ztmd dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.sjf113 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.sjhvyy dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.sm90nh dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -21394,8 +21399,6 @@ orcid:0000-0002-3528-5267 rdfs:label "Sofia Robb" .
 orcid:0000-0002-4366-3088 rdfs:label "Pier Luigi Buttigieg" .
 
 orcid:0000-0002-4532-2703 rdfs:label "Petra Fey" .
-
-orcid:0000-0002-5714-991X rdfs:label "Chris Stoeckert" .
 
 orcid:0000-0002-7702-4495 rdfs:label "Allyson Lister" .
 
@@ -26840,8 +26843,6 @@ orcid:0000-0002-1005-8383 rdfs:label "Pankaj Jaiswal" .
 
 orcid:0000-0002-1373-1705 rdfs:label "Clare Pilgrim" .
 
-orcid:0000-0002-2999-0103 rdfs:label "Jie Zheng" .
-
 wikidata:P7001 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 bioregistry:bspo a bioregistry.schema:0000001 ;
@@ -27049,6 +27050,8 @@ bioregistry:pr a bioregistry.schema:0000001 ;
         bioregistry:scdo,
         bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0001-5809-9523 .
+
+orcid:0000-0002-2999-0103 rdfs:label "Jie Zheng" .
 
 bioregistry:labo a bioregistry.schema:0000001 ;
     rdfs:label "clinical LABoratory Ontology" ;
@@ -29080,6 +29083,7 @@ bioregistry.metaresource:ontobee a bioregistry.schema:0000002 ;
         ontobee:UO,
         ontobee:UPA,
         ontobee:UPHENO,
+        ontobee:VIDO,
         ontobee:VO,
         ontobee:VT,
         ontobee:VTO,
@@ -29960,8 +29964,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
 bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
     rdfs:label "FAIRSharing" ;
     dc:description "A curated, informative and educational resource on data and metadata standards, inter-related to databases and data policies." ;
-    dcterms:hasPart fairsharing:FAIRsharing.0Csgcz,
-        fairsharing:FAIRsharing.0a674c,
+    dcterms:hasPart fairsharing:FAIRsharing.0a674c,
         fairsharing:FAIRsharing.0pUMYW,
         fairsharing:FAIRsharing.10gr18,
         fairsharing:FAIRsharing.10zsxb,
@@ -29974,10 +29977,8 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.1rj558,
         fairsharing:FAIRsharing.1tbrdz,
         fairsharing:FAIRsharing.1vrrdh,
-        fairsharing:FAIRsharing.1x53qk,
         fairsharing:FAIRsharing.27rndz,
         fairsharing:FAIRsharing.284e1z,
-        fairsharing:FAIRsharing.29we0s,
         fairsharing:FAIRsharing.2abjs5,
         fairsharing:FAIRsharing.2ajtcf,
         fairsharing:FAIRsharing.2b04ae,
@@ -30042,6 +30043,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.5701h1,
         fairsharing:FAIRsharing.5949vn,
         fairsharing:FAIRsharing.595710,
+        fairsharing:FAIRsharing.5NhJFK,
         fairsharing:FAIRsharing.5a4y1y,
         fairsharing:FAIRsharing.5ab0n7,
         fairsharing:FAIRsharing.5dnjs2,
@@ -30118,7 +30120,6 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.9gqfpm,
         fairsharing:FAIRsharing.9j4wh2,
         fairsharing:FAIRsharing.9kahy4,
-        fairsharing:FAIRsharing.9qkaz9,
         fairsharing:FAIRsharing.9rhr9j,
         fairsharing:FAIRsharing.9sb9qh,
         fairsharing:FAIRsharing.9te3ev,
@@ -30153,6 +30154,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.af7a2d,
         fairsharing:FAIRsharing.agvc7y,
         fairsharing:FAIRsharing.akmeb9,
+        fairsharing:FAIRsharing.amcv1e,
         fairsharing:FAIRsharing.anpa6,
         fairsharing:FAIRsharing.anpj91,
         fairsharing:FAIRsharing.ap169a,
@@ -30162,6 +30164,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.atygwy,
         fairsharing:FAIRsharing.ay74mj,
         fairsharing:FAIRsharing.ayjdsm,
+        fairsharing:FAIRsharing.azq2t6,
         fairsharing:FAIRsharing.azqskx,
         fairsharing:FAIRsharing.azr389,
         fairsharing:FAIRsharing.b1xD9f,
@@ -30230,7 +30233,6 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.e3t0yw,
         fairsharing:FAIRsharing.e4n3an,
         fairsharing:FAIRsharing.e7skwg,
-        fairsharing:FAIRsharing.eBP3tb,
         fairsharing:FAIRsharing.ea287c,
         fairsharing:FAIRsharing.edxb58,
         fairsharing:FAIRsharing.eeyne8,
@@ -30263,6 +30265,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.g4n8sw,
         fairsharing:FAIRsharing.g63c77,
         fairsharing:FAIRsharing.g78mbm,
+        fairsharing:FAIRsharing.g7b4rj,
         fairsharing:FAIRsharing.g7jbvn,
         fairsharing:FAIRsharing.g7t2hv,
         fairsharing:FAIRsharing.gdszhh,
@@ -30400,6 +30403,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.s3r6sk,
         fairsharing:FAIRsharing.s5zmbp,
         fairsharing:FAIRsharing.s9ztmd,
+        fairsharing:FAIRsharing.sjf113,
         fairsharing:FAIRsharing.sjhvyy,
         fairsharing:FAIRsharing.sm90nh,
         fairsharing:FAIRsharing.sp3szt,
