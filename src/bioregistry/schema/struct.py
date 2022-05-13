@@ -1219,6 +1219,26 @@ class Resource(BaseModel):
             return self.version
         return self.get_external("ols").get("version")
 
+    def get_short_description(self, use_markdown: bool = False) -> Optional[str]:
+        """Get a short description."""
+        desc = self.get_description()
+        if not desc:
+            return None
+        ss = desc.split(". ")
+        if ss:
+            rv = ss[0].rstrip(".") + "."
+        else:
+            rv = desc.rstrip(".") + "."
+            logger.warning("could not split description: %s", desc)
+        if not use_markdown:
+            return rv
+
+        import markupsafe
+        from markdown import markdown
+
+        rv = markdown(rv).removeprefix("<p>").removesuffix("</p>")
+        return markupsafe.Markup(rv)
+
 
 SchemaStatus = Literal[
     "required", "required*", "present", "present*", "missing", "irrelevant", "irrelevant*"

@@ -149,7 +149,8 @@ class TestRegistry(unittest.TestCase):
             if bioregistry.is_deprecated(prefix):
                 continue
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
-                self.assertIsNotNone(bioregistry.get_description(prefix))
+                desc = bioregistry.get_description(prefix)
+                self.assertIsNotNone(desc)
 
     def test_has_homepage(self):
         """Test that all non-deprecated entries have a homepage."""
