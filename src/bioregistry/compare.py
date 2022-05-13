@@ -395,20 +395,22 @@ def compare(paper: bool):  # noqa:C901
             for metaprefix in (entry.get_mappings() or {})
         }
     )
-    for i in range(n_mappable_metaprefixes + 1):
+    zero_pad_count = 0  # how many columns left from the end should it go
+    for i in range(n_mappable_metaprefixes):
         if i not in xrefs_counter:
+            zero_pad_count += 1
             xrefs_counter[i] = 0
 
     xrefs_df = pd.DataFrame(sorted(xrefs_counter.items()), columns=["frequency", "count"])
     palette = sns.color_palette("tab10")
-    xrefs_colors = [palette[0]] + ([palette[1]] * (len(xrefs_df.index) - 1))
+    xrefs_colors = [palette[2]] + ([palette[1]] * (len(xrefs_df.index) - 1))
     sns.barplot(
         data=xrefs_df,
         x="frequency",
         y="count",
         ci=None,
         palette=xrefs_colors,
-        alpha=0.7,
+        alpha=1.0,
         ax=ax,
     )
     # There should only be one container here
@@ -422,9 +424,8 @@ def compare(paper: bool):  # noqa:C901
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
-    reverse_index = 4  # how many columns left from the end should it go
     h = 15  # how high should the text go
-    x1, _y1 = ax.patches[-reverse_index].get_xy()
+    x1, _y1 = ax.patches[-zero_pad_count].get_xy()
     x2, _y2 = ax.patches[-1].get_xy()
     ax.text(
         x1,
@@ -701,7 +702,7 @@ def plot_coverage_bar(*, overlaps, paper: bool = False):
 
     ax.get_legend().remove()
     plt.tight_layout()
-    _save(fig, name="bioregistry_coverage_bar", eps=paper)
+    _save(fig, name="bioregistry_coverage_bar", eps=paper, png=True)
 
 
 if __name__ == "__main__":
