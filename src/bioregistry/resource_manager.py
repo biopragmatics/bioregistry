@@ -29,15 +29,13 @@ from .constants import (
 )
 from .license_standardizer import standardize_license
 from .schema import Registry, Resource, sanitize_model
-from .utils import (
-    NormDict,
-    _norm,
+from .schema_utils import (
     _registry_from_path,
-    curie_to_str,
     read_metaregistry,
     read_registry,
     write_registry,
 )
+from .utils import NormDict, _norm, curie_to_str
 
 __all__ = [
     "Manager",
