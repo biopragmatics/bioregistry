@@ -12,8 +12,8 @@ from ..constants import (
     REGISTRY_TSV_PATH,
     URI_FORMAT_KEY,
 )
+from ..schema_utils import read_collections, read_metaregistry, read_registry
 from ..uri_format import get_uri_format
-from ..utils import read_collections, read_metaregistry, read_registry
 
 
 @click.command()

@@ -99,14 +99,8 @@ from .schema.struct import (  # noqa:F401
     Registry,
     Resource,
 )
-from .uri_format import (  # noqa:F401
-    get_format_urls,
-    get_pattern_map,
-    get_prefix_map,
-    get_uri_format,
-    get_uri_prefix,
-)
-from .utils import (  # noqa:F401
+from .schema_utils import (  # noqa:F401
+    is_mismatch,
     read_collections,
     read_contexts,
     read_contributors,
@@ -115,4 +109,10 @@ from .utils import (  # noqa:F401
     read_registry,
     write_contexts,
     write_registry,
+)
+from .uri_format import (  # noqa:F401
+    get_pattern_map,
+    get_prefix_map,
+    get_uri_format,
+    get_uri_prefix,
 )

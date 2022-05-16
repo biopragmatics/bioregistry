@@ -20,6 +20,8 @@ __all__ = [
     "get_n2t_iri",
     "get_iri",
     "get_link",
+    "get_bioregistry_iri",
+    "get_default_iri",
     "miriam_standardize_identifier",
 ]
 

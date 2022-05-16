@@ -581,7 +581,7 @@ class Resource(BaseModel):
 
     def get_mappings(self) -> Optional[Mapping[str, str]]:
         """Get the mappings to external registries, if available."""
-        from ..utils import read_metaregistry
+        from ..schema_utils import read_metaregistry
 
         rv: Dict[str, str] = {}
         rv.update(self.mappings or {})  # This will be the replacement later

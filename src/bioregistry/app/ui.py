@@ -15,10 +15,9 @@ from .utils import (
     _get_resource_providers,
     _normalize_prefix_or_404,
 )
-from .. import manager
+from ..resource_manager import manager
 from ..schema import Context
-from ..utils import (
-    curie_to_str,
+from ..schema_utils import (
     read_collections_contributions,
     read_context_contributions,
     read_prefix_contacts,
@@ -26,6 +25,7 @@ from ..utils import (
     read_prefix_reviews,
     read_registry_contributions,
 )
+from ..utils import curie_to_str
 
 __all__ = [
     "ui_blueprint",
