@@ -6,7 +6,7 @@ from typing import Optional
 
 from .resolve_identifier import get_providers
 from .schema import Registry
-from .utils import read_metaregistry
+from .schema_utils import read_metaregistry
 
 __all__ = [
     "get_registry_uri",

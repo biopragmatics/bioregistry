@@ -185,5 +185,5 @@ def parse_obolibrary_purl(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]
     >>> parse_obolibrary_purl("http://purl.obolibrary.org/obo/FBbt_0000001")
     ('fbbt', '0000001')
     """
-    curie = iri[len("http://purl.obolibrary.org/obo/") :]
+    curie = iri[len(OBO_PREFIX) :]
     return parse_curie(curie, sep="_")

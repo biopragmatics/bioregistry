@@ -18,7 +18,7 @@ import bioregistry
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.gh import github_client
 from bioregistry.schema import Author, Resource
-from bioregistry.utils import add_resource
+from bioregistry.schema_utils import add_resource
 
 logger = logging.getLogger(__name__)
 

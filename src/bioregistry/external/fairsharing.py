@@ -13,6 +13,7 @@ import requests
 from tqdm import tqdm
 
 from bioregistry.data import EXTERNAL
+from bioregistry.utils import removeprefix
 
 __all__ = [
     "get_fairsharing",
@@ -128,10 +129,10 @@ class FairsharingClient:
         else:
             tqdm.write(f"DOI has unexpected prefix: {record['doi']}")
 
-        record["description"] = _removeprefix(
+        record["description"] = removeprefix(
             record.get("description"), "This FAIRsharing record describes: "
         )
-        record["name"] = _removeprefix(record.get("name"), "FAIRsharing record for: ")
+        record["name"] = removeprefix(record.get("name"), "FAIRsharing record for: ")
         # for key in [
         #     "created-at",
         #     "domains",  # maybe use later
@@ -160,14 +161,6 @@ class FairsharingClient:
         next_url = res["links"].get("next")
         if next_url:
             yield from self._iter_records_helper(next_url)
-
-
-def _removeprefix(s: Optional[str], prefix) -> Optional[str]:
-    if s is None:
-        return None
-    if s.startswith(prefix):
-        return s[len(prefix) :]
-    return s
 
 
 if __name__ == "__main__":

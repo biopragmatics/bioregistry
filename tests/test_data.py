@@ -16,7 +16,8 @@ from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import _norm, curie_to_str, extended_encoder, is_mismatch
+from bioregistry.schema_utils import is_mismatch
+from bioregistry.utils import _norm, curie_to_str, extended_encoder
 
 logger = logging.getLogger(__name__)
 

@@ -4,7 +4,7 @@
 
 import click
 
-from bioregistry.utils import (
+from bioregistry.schema_utils import (
     read_collections,
     read_contexts,
     read_metaregistry,
