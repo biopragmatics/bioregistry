@@ -358,6 +358,17 @@ class TestRegistry(unittest.TestCase):
                 msg="duplicate extra examples",
             )
 
+    def test_example_decoys(self):
+        """Test example decoys."""
+        for prefix, entry in self.registry.items():
+            if not entry.example_decoys:
+                continue
+            with self.subTest(prefix=prefix):
+                pattern = entry.get_pattern()
+                self.assertIsNotNone(pattern)
+                for example in entry.example_decoys:
+                    self.assertNotRegex(example, pattern)
+
     def test_is_mismatch(self):
         """Check for mismatches."""
         self.assertTrue(is_mismatch("geo", "ols", "geo"))
