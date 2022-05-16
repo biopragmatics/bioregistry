@@ -118,13 +118,6 @@ example is the disease class annotation (legacy classification from the hard
 fork of the Disease Ontology that later became MONDO) and Dublin Core, where one
 is subjectively more important than the other.
 
-#### Removal of Prefixes
-
-Typically, prefixes should not be removed from the Bioregistry, even if they
-correspond to subsumed, abandoned, or dead resources, because it is also a
-historical archive and reference for anyone who might run into legacy prefixes
-in legacy resources.
-
 #### Bulk Contribution
 
 If you would like to submit more than 5 prefixes at once, you can fill out the
@@ -143,6 +136,21 @@ issues in a bulk request is much less ergonomic and more time-consuming than in
 individual prefix requests, which each get their own discussion thread, pull
 request, and CI/CD runs. Submitters of bulk prefix requests that contain many
 issues may be asked to re-submit as individual prefix requests.
+
+### Editing Existing Records
+
+### Removal of Records
+
+Typically, prefixes should not be removed from the Bioregistry, even if they
+correspond to subsumed, abandoned, or dead resources, because it is also a
+historical archive and reference for anyone who might run into legacy prefixes
+in legacy resources.
+
+### Retroactive Application of Curation Guidelines
+
+Notes:
+
+1. As new guidelines are added, old records should be brought up to speed 
 
 ## Code Contribution
 
