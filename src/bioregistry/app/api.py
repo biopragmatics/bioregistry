@@ -303,7 +303,7 @@ def contributors():
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    return serialize(read_contributors())
+    return serialize(sanitize_mapping(read_contributors()))
 
 
 @api_blueprint.route("/contributor/<orcid>")
