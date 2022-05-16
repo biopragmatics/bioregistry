@@ -27542,6 +27542,21 @@
       "prefix": "P665"
     }
   },
+  "kegg.dgroup": {
+    "description": " KEGG DGROUP contains structurally and functionally related groups of D number entries in KEGG DRUG. There are five types of drug groups.\n\n    Chemical - grouped as identical chemical structures with minor variations of salts, hydration states, etc.\n    Structure - grouped as similar chemical structures having the same skeleton, etc.\n    Target - grouped by drug targets\n    Class - drug classes often representing similar mechanisms of action\n    Metabolism - grouped by substrates, inhibitors and inducers of drug metabolizing enzymes and transporters\n\nChemical groups are often used for identifying essentially the same active ingredients of drugs in different countries.",
+    "example": "DG00301",
+    "homepage": "http://www.genome.jp/kegg/reaction/",
+    "name": "KEGG Drug Group",
+    "part_of": "kegg",
+    "pattern": "^DG\\d+$",
+    "references": [
+      "https://github.com/prefixcommons/prefixes/pull/4"
+    ],
+    "synonyms": [
+      "KEGG_DGROUP",
+      "KEGG_DRUG_GROUP"
+    ]
+  },
   "kegg.disease": {
     "mappings": {
       "miriam": "kegg.disease",
@@ -27988,33 +28003,18 @@
     }
   },
   "kegg.rclass": {
+    "description": "KEGG RCLASS contains classification of reactions based on the chemical structure transformation patterns of substrate-product pairs (reactant pairs), which are represented by the so-called RDM patterns.",
+    "example": "RC00001",
+    "homepage": "http://www.genome.jp/kegg/reaction/",
     "name": "KEGG Reaction Class",
     "part_of": "kegg",
-    "description": "KEGG RCLASS contains classification of reactions based on the chemical structure transformation patterns of substrate-product pairs (reactant pairs), which are represented by the so-called RDM patterns.",
-    "homepage": "http://www.genome.jp/kegg/reaction/",
     "pattern": "^RC\\d+$",
-    "example": "RC00001",
+    "references": [
+      "https://github.com/prefixcommons/prefixes/pull/2"
+    ],
     "synonyms": [
       "KEGG_RCLASS",
       "KEGG_REACTION_CLASS"
-    ],
-    "references": [
-      "https://github.com/prefixcommons/prefixes/pull/2"
-    ]
-  },
-  "kegg.dgroup": {
-    "name": "KEGG Drug Group",
-    "part_of": "kegg",
-    "homepage": "http://www.genome.jp/kegg/reaction/",
-    "pattern": "^DG\\d+$",
-    "description": " KEGG DGROUP contains structurally and functionally related groups of D number entries in KEGG DRUG. There are five types of drug groups.\n\n    Chemical - grouped as identical chemical structures with minor variations of salts, hydration states, etc.\n    Structure - grouped as similar chemical structures having the same skeleton, etc.\n    Target - grouped by drug targets\n    Class - drug classes often representing similar mechanisms of action\n    Metabolism - grouped by substrates, inhibitors and inducers of drug metabolizing enzymes and transporters\n\nChemical groups are often used for identifying essentially the same active ingredients of drugs in different countries.",
-    "example": "DG00301",
-    "synonyms": [
-      "KEGG_DGROUP",
-      "KEGG_DRUG_GROUP"
-    ],
-    "references": [
-      "https://github.com/prefixcommons/prefixes/pull/4"
     ]
   },
   "kegg.reaction": {
