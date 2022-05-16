@@ -41,6 +41,15 @@ def removeprefix(s: Optional[str], prefix: str) -> Optional[str]:
     return s
 
 
+def removesuffix(s: Optional[str], suffix: str) -> Optional[str]:
+    """Remove the prefix from the string."""
+    if s is None:
+        return None
+    if s.endswith(suffix):
+        return s[: -len(suffix)]
+    return s
+
+
 def query_wikidata(sparql: str) -> List[Mapping[str, Any]]:
     """Query Wikidata's sparql service.
 

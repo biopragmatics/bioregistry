@@ -19,6 +19,7 @@ from typing import (
     Sequence,
     Set,
     Union,
+    cast,
 )
 
 import pydantic.schema
@@ -28,6 +29,8 @@ from bioregistry import constants as brc
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE
+
+from ..utils import removeprefix, removesuffix
 
 try:
     from typing import Literal  # type:ignore
@@ -1236,7 +1239,7 @@ class Resource(BaseModel):
         import markupsafe
         from markdown import markdown
 
-        rv = markdown(rv).removeprefix("<p>").removesuffix("</p>")
+        rv = cast(str, removesuffix(removeprefix(markdown(rv), "<p>"), "</p>"))
         return markupsafe.Markup(rv)
 
 
