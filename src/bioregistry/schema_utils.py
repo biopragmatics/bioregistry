@@ -18,7 +18,7 @@ from .constants import (
     MISMATCH_PATH,
 )
 from .schema import Attributable, Collection, Context, Registry, Resource
-from .util_fn import extended_encoder
+from .utils import extended_encoder
 
 logger = logging.getLogger(__name__)
 
