@@ -27560,6 +27560,12 @@
     }
   },
   "kegg.dgroup": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "KEGG.DGROUP",
+      "uri_format": "http://www.kegg.jp/entry/$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -27569,6 +27575,9 @@
     "description": " KEGG DGROUP contains structurally and functionally related groups of D number entries in KEGG DRUG. There are five types of drug groups.\n\n    Chemical - grouped as identical chemical structures with minor variations of salts, hydration states, etc.\n    Structure - grouped as similar chemical structures having the same skeleton, etc.\n    Target - grouped by drug targets\n    Class - drug classes often representing similar mechanisms of action\n    Metabolism - grouped by substrates, inhibitors and inducers of drug metabolizing enzymes and transporters\n\nChemical groups are often used for identifying essentially the same active ingredients of drugs in different countries.",
     "example": "DG00301",
     "homepage": "http://www.genome.jp/kegg/reaction/",
+    "mappings": {
+      "biolink": "KEGG.DGROUP"
+    },
     "name": "KEGG Drug Group",
     "part_of": "kegg",
     "pattern": "^DG\\d+$",
@@ -28026,6 +28035,12 @@
     }
   },
   "kegg.rclass": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "KEGG.RCLASS",
+      "uri_format": "http://www.kegg.jp/entry/$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -28035,6 +28050,9 @@
     "description": "KEGG RCLASS contains classification of reactions based on the chemical structure transformation patterns of substrate-product pairs (reactant pairs), which are represented by the so-called RDM patterns.",
     "example": "RC00001",
     "homepage": "http://www.genome.jp/kegg/reaction/",
+    "mappings": {
+      "biolink": "KEGG.RCLASS"
+    },
     "name": "KEGG Reaction Class",
     "part_of": "kegg",
     "pattern": "^RC\\d+$",
