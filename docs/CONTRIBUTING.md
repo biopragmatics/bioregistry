@@ -32,7 +32,7 @@ There are several ways to request a new prefix in the Bioregistry:
 4. Get in touch with us informally on
    Twitter [@bioregistry](https://twitter.com/bioregistry)
 
-#### Who can request a prefix
+#### Who Can Request a New Prefix
 
 A prefix can be requested by anyone, even if it is for a resource they do not
 themselves maintain. A main goal of the Bioregistry is to be a detailed,
@@ -145,6 +145,22 @@ request, and CI/CD runs. Submitters of bulk prefix requests that contain many
 issues may be asked to re-submit as individual prefix requests.
 
 ### Editing Records
+
+#### How to edit an existing prefix's record
+
+There are several ways to update a prefix's record in the Bioregistry:
+
+1. Fill out one of the issue templates on our GitHub issue tracker with the
+   requested information. If no template exists for your update, feel free to
+   fill out a blank issue. We will help make the update and attribute you
+   properly.
+2. Edit an entry yourself by [editing the Bioregistry](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
+   in GitHub through the web browser. As the Bioregistry is getting bigger, this
+   is becoming more of an issue, so might not always be possible.
+3. Make a pull request directly to the upstream repository
+   [biopragmatics/bioregistry](https://github.com/biopragmatics/bioregistry).
+4. Get in touch with us informally on
+   Twitter [@bioregistry](https://twitter.com/bioregistry)
 
 #### Who can edit an existing prefix's record
 
