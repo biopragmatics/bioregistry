@@ -190,9 +190,11 @@ in legacy resources.
 
 ### Retroactive Application of Curation Guidelines
 
-Notes:
-
-1. As new guidelines are added, old records should be brought up to speed
+As the Bioregistry matures, new fields may be added and more strict curation
+guidelines may be imposed (both from a philosophical and technical perspective).
+When imposing new rules, reasonable efforts should be made to backfill existing
+records. Alternatively, existing prefixes can be "grandfathered" in to less
+strict requirements.
 
 ## Code Contribution
 
