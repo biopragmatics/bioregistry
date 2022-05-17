@@ -14,8 +14,6 @@ organized as follows:
 
 ## Content Contribution
 
-### Submitting New Prefixes
-
 There are several ways to request a new prefix in the Bioregistry:
 
 1. Fill out the [new prefix request form](https://github.com/biopragmatics/bioregistry/issues/new?assignees=cthoyt&labels=New%2CPrefix&template=new-prefix.yml&title=%5BResource%5D%3A%20xxxxx)
@@ -145,8 +143,6 @@ request, and CI/CD runs. Submitters of bulk prefix requests that contain many
 issues may be asked to re-submit as individual prefix requests.
 
 ### Editing Records
-
-#### How to edit an existing prefix's record
 
 There are several ways to update a prefix's record in the Bioregistry:
 
