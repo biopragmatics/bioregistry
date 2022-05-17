@@ -139,6 +139,29 @@ issues may be asked to re-submit as individual prefix requests.
 
 ### Editing Existing Records
 
+#### Who can edit an existing prefix's record
+
+A prefix's record can be edited by anyone, even if it is for a resource they do
+not themselves maintain. A main goal of the Bioregistry is to be a detailed,
+descriptive resource - expertise is welcome from anywhere. In many cases,
+editing an existing prefix's record is useful to override incorrect information
+from integrated repositories, such as Identifiers.org.
+
+#### Change of Prefix
+
+Typically, prefixes should not be changed since the Bioregistry acts as an
+archive of all usages, even deprecated ones. As an alternative, someone wishing
+to change a prefix can do the following:
+
+1. Mark the old prefix as deprecated
+2. Include in the `comment` field information about when and why the prefix was
+   deprecated
+3. Add a `has_canonical` relationship from the old prefix's record to the new 
+   prefix
+
+Like with all edits, these are subject to review by the Bioregistry Review team.
+Extra care should be given with this kind of edit.
+
 ### Removal of Records
 
 Typically, prefixes should not be removed from the Bioregistry, even if they
