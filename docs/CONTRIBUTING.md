@@ -3,11 +3,19 @@ layout: page
 title: Contributing
 permalink: /contributing/
 ---
-Contributions to the Bioregistry are welcomed and encouraged.
+Contributions to the Bioregistry are welcomed and encouraged. This document is
+organized as follows:
+
+1. [Content Contribution](content-contribution)
+   1. [Submitting New Prefixes](submitting-new-prefixes)
+   2. [Editing Records](editing-records)
+   3. [Removing Records](removing-records)
+2. [Code Contribution](code-contribution)
+
 
 ## Content Contribution
 
-### New Prefixes
+### Submitting New Prefixes
 
 There are several ways to request a new prefix in the Bioregistry:
 
@@ -137,7 +145,7 @@ individual prefix requests, which each get their own discussion thread, pull
 request, and CI/CD runs. Submitters of bulk prefix requests that contain many
 issues may be asked to re-submit as individual prefix requests.
 
-### Editing Existing Records
+### Editing Records
 
 #### Who can edit an existing prefix's record
 
@@ -162,7 +170,7 @@ to change a prefix can do the following:
 Like with all edits, these are subject to review by the Bioregistry Review team.
 Extra care should be given with this kind of edit.
 
-### Removal of Records
+### Removing Records
 
 Typically, prefixes should not be removed from the Bioregistry, even if they
 correspond to subsumed, abandoned, or dead resources, because it is also a
