@@ -6,12 +6,11 @@ permalink: /contributing/
 Contributions to the Bioregistry are welcomed and encouraged. This document is
 organized as follows:
 
-1. [Content Contribution](content-contribution)
-   1. [Submitting New Prefixes](submitting-new-prefixes)
-   2. [Editing Records](editing-records)
-   3. [Removing Records](removing-records)
-2. [Code Contribution](code-contribution)
-
+1. [Content Contribution](#content-contribution)
+   1. [Submitting New Prefixes](#submitting-new-prefixes)
+   2. [Editing Records](#editing-records)
+   3. [Removing Records](#removing-records)
+2. [Code Contribution](#code-contribution)
 
 ## Content Contribution
 
