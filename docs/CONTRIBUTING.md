@@ -194,7 +194,10 @@ https://github.com/biopragmatics/bioregistry/issues/359.
    removal. In the case that someone else wants to use that prefix, the fact
    that the parked prefix has not been substantiated will, by definition, result
    in no impact or confusion that would normally result from the removal of a
-   prefix.
+   prefix. It is the responsibility of the submitter/primary contact person for
+   the prefix to inform the Bioregistry Review Team of the updates and/or to
+   submit the updates to their prefix record themselves that demonstrates it has
+   been substantiated.
 4. It's not the job of the Bioregistry to support parking prefixes for semantic
    spaces that will not be public or that won't be used in other public
    resources - these can be rejected without further discussion.
