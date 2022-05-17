@@ -179,13 +179,14 @@ motivated by the difficulty of the discussion on
 https://github.com/biopragmatics/bioregistry/issues/359.
 
 1. While it's not typically under the purview of the Bioregistry Review Team to
-   judge the utility of a prefix not comment on its corresponding design
-   decisions (e.g., regular expression pattern, URI format string), submitters
-   seeking to park a prefix must both actively publicly seek out and seriously
-   consider suggestions and advice from the Bioregistry Review Team with regards
-   to these matters (e.g., in the issue corresponding to a new prefix request).
-   Submissions unable/unwilling to follow these guidelines will be dismissed and
-   asked to re-submit after their prefix has been substantiated.
+   judge the utility of a prefix nor comment on its corresponding design
+   decisions (e.g., choice of local unique identifier scheme, regular expression
+   pattern, URI format string), submitters seeking to park a prefix must both
+   actively publicly seek out and seriously consider suggestions and advice from
+   the Bioregistry Review Team with regards to these matters (e.g., in the issue
+   corresponding to a new prefix request). Submissions unable/unwilling to
+   follow these guidelines will be dismissed and asked to re-submit after their
+   prefix has been substantiated.
 2. Parked prefixes that are not substantiated within three months are subject to
    removal. In the case that someone else wants to use that prefix, the fact
    that the parked prefix has not been substantiated will, by definition, result
