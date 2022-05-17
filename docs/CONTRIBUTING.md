@@ -188,14 +188,6 @@ correspond to subsumed, abandoned, or dead resources, because it is also a
 historical archive and reference for anyone who might run into legacy prefixes
 in legacy resources.
 
-### Retroactive Application of Curation Guidelines
-
-As the Bioregistry matures, new fields may be added and more strict curation
-guidelines may be imposed (both from a philosophical and technical perspective).
-When imposing new rules, reasonable efforts should be made to backfill existing
-records. Alternatively, existing prefixes can be "grandfathered" in to less
-strict requirements.
-
 ## Code Contribution
 
 This project uses the [GitHub Flow](https://guides.github.com/introduction/flow)
@@ -300,3 +292,13 @@ and from the GitHub Actions testing configuration.
 
 See https://endoflife.date/python for a timeline of Python release and
 end-of-life dates.
+
+## Meta-contributions
+
+### Retroactive Application of Curation Guidelines
+
+As the Bioregistry matures, new fields may be added and more strict curation
+guidelines may be imposed (both from a philosophical and technical perspective).
+When imposing new rules, reasonable efforts should be made to backfill existing
+records. Alternatively, existing prefixes can be "grandfathered" in to less
+strict requirements.
