@@ -14293,6 +14293,23 @@
     "pattern": "^\\d{7}$"
   },
   "eccode": {
+    "example_decoys": [
+      "100",
+      "2.",
+      "2.n1",
+      "2.3.",
+      "2.3.n1",
+      "2.3.1.",
+      "2.3.1.n",
+      "2.3.4.1."
+    ],
+    "example_extras": [
+      "2",
+      "2.3",
+      "2.3.1",
+      "2.3.1.n12",
+      "3.1.26.n2"
+    ],
     "fairsharing": {
       "abbreviation": "IntEnz",
       "description": "IntEnz is a freely available resource focused on enzyme nomenclature. IntEnz contains the recommendations of the Nomenclature Committee of the International Union of Biochemistry and Molecular Biology (NC-IUBMB) on the nomenclature and classification of enzyme-catalysed reactions.",
@@ -14370,7 +14387,7 @@
       "uri_format": "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$1"
     },
     "name": "Enzyme Nomenclature",
-    "pattern": "^\\d{1,2}(\\.\\d{0,3}){0,3}$",
+    "pattern": "^\\d{1,2}(((\\.\\d{1,3}){1,3})|(\\.\\d+){2}\\.n\\d{1,3})?$",
     "prefixcommons": {
       "is_identifiers": false,
       "is_obo": false,
@@ -27543,6 +27560,12 @@
     }
   },
   "kegg.dgroup": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "KEGG.DGROUP",
+      "uri_format": "http://www.kegg.jp/entry/$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -27552,6 +27575,9 @@
     "description": " KEGG DGROUP contains structurally and functionally related groups of D number entries in KEGG DRUG. There are five types of drug groups.\n\n    Chemical - grouped as identical chemical structures with minor variations of salts, hydration states, etc.\n    Structure - grouped as similar chemical structures having the same skeleton, etc.\n    Target - grouped by drug targets\n    Class - drug classes often representing similar mechanisms of action\n    Metabolism - grouped by substrates, inhibitors and inducers of drug metabolizing enzymes and transporters\n\nChemical groups are often used for identifying essentially the same active ingredients of drugs in different countries.",
     "example": "DG00301",
     "homepage": "http://www.genome.jp/kegg/reaction/",
+    "mappings": {
+      "biolink": "KEGG.DGROUP"
+    },
     "name": "KEGG Drug Group",
     "part_of": "kegg",
     "pattern": "^DG\\d+$",
@@ -28009,6 +28035,12 @@
     }
   },
   "kegg.rclass": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "KEGG.RCLASS",
+      "uri_format": "http://www.kegg.jp/entry/$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -28018,6 +28050,9 @@
     "description": "KEGG RCLASS contains classification of reactions based on the chemical structure transformation patterns of substrate-product pairs (reactant pairs), which are represented by the so-called RDM patterns.",
     "example": "RC00001",
     "homepage": "http://www.genome.jp/kegg/reaction/",
+    "mappings": {
+      "biolink": "KEGG.RCLASS"
+    },
     "name": "KEGG Reaction Class",
     "part_of": "kegg",
     "pattern": "^RC\\d+$",
