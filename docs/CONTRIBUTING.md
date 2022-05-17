@@ -146,53 +146,54 @@ issues may be asked to re-submit as individual prefix requests.
 
 #### Prefix Parking
 
-Prefix parking is the concept of requesting a prefix for a resource before that
-resource actually exists. This section more carefully defines this scenario.
-
 A prefix and its corresponding semantic space are **substantiated** when it's
 provable that a semantic space exists by one or more of the following:
 
 1. There's a public place where you can get the entire list of terms.
    Ontologies (e.g., [GO](https://bioregistry.io/go)) and database
    (e.g., [HGNC](https://bioregistry.io/hgnc)) usually make this pretty
-   straightforwards
+   straightforwards by offering download links for the ontology or full
+   database.
 2. There's a working, public URI format string that either lets you get HTML,
    JSON, RDF, or some other kind of information artifact for a given local
    unique identifier. For example, [OMIM.PS](https://bioregistry.io/omim.ps)
    doesn't have a way to get a full list of terms but if you have a given local
    unique identifier, you can use it with the URI format string to retrieve some
-   information about the entity corresponding to that LUI
+   information about the entity corresponding to that LUI.
 
-A slightly less strict criteria for "substantiation" could be that references to
-a semantic space can be found in public external resources or ontologies. This
-happens quite a lot and many entries in the Bioregistry have been added based on
-this (e.g., OpenCyc references pop up quite frequently but this resource hasn't
-existed for more than a decade).
+A potential less strict third criteria for substantiation could be when
+references to entities in a semantic space (i.e., in the form of CURIEs) can be
+found in public resources or ontologies that are external to the resource in
+which the prefix/semantic space are defined. This is more common for historical
+prefixes (e.g., OpenCyc references appear quite frequently, but this resource
+was taken down more than a decade ago) and is less applicable to new prefix
+requests. Therefore, this relaxed criteria will not be considered as sufficient
+for substantiation.
 
-This can help us define **prefix parking**, which is when a prefix is registered
-for a semantic space that does not yet exist or is currently in development
-(which by definition, means it isn't yet substantiated). This issue is the
-starting point for some policies regarding prefix parking, which was in part
-motivated by the discussion on
-https://github.com/biopragmatics/bioregistry/issues/359. Here are some thoughts
-on policies for how to consider prefix parking:
+We define **prefix parking** as a special case of a prefix request in which the
+corresponding resource/semantic space for the prefix does not yet exist or is
+currently under development (and by definition, is not yet substantiated). The
+Bioregistry does not explicitly discourage prefix parking, but new prefix
+requests qualifying as prefix parking require additional guidelines, partially
+motivated by the difficulty of the discussion on
+https://github.com/biopragmatics/bioregistry/issues/359.
 
-1. While it's not typically the job of the Bioregistry Review Team to cast
-   judgement on the motivation for why a resource exists or whether it should
-   exist at all, to protect the integrity and quality of the Bioregistry, in the
-   case when a group wants to park a prefix, that group must seek out and
-   seriously consider suggestions from the Bioregistry Review Team - our
-   business is prefixes, CURIEs, URIs, etc., so we know what we're talking about
-   more than most submitters. New prefix requests from groups unwilling to
-   seriously consider suggestions will be dismissed and asked to re-submit when
-   their prefixes are substantiated.
-2. Parked prefixes that are not substantiated in a certain period of time will
-   be subject to removal (e.g., in case someone else wants to use that prefix -
-   the fact that it has not been substantiated, again, by definition, means this
-   will have zero impact)
+1. While it's not typically under the purview of the Bioregistry Review Team to
+   judge the utility of a prefix not comment on its corresponding design
+   decisions (e.g., regular expression pattern, URI format string), submitters
+   seeking to park a prefix must both actively publicly seek out and seriously
+   consider suggestions and advice from the Bioregistry Review Team with regards
+   to these matters (e.g., in the issue corresponding to a new prefix request).
+   Submissions unable/unwilling to follow these guidelines will be dismissed and
+   asked to re-submit after their prefix has been substantiated.
+2. Parked prefixes that are not substantiated within three months are subject to
+   removal. In the case that someone else wants to use that prefix, the fact
+   that the parked prefix has not been substantiated will, by definition, result
+   in no impact or confusion that would normally result from the removal of a
+   prefix.
 3. It's not the job of the Bioregistry to support parking prefixes for semantic
    spaces that will not be public or that won't be used in other public
-   resources, these can be rejected.
+   resources - these can be rejected without further discussion.
 
 Original discussion about prefix parking can be found at
 https://github.com/biopragmatics/bioregistry/issues/365.
