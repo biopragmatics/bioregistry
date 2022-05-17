@@ -12597,6 +12597,31 @@
     ],
     "uri_format": "https://www.kegg.jp/entry/$1"
   },
+  "kegg.dgroup": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": " KEGG DGROUP contains structurally and functionally related groups of D number entries in KEGG DRUG. There are five types of drug groups.\n\n    Chemical - grouped as identical chemical structures with minor variations of salts, hydration states, etc.\n    Structure - grouped as similar chemical structures having the same skeleton, etc.\n    Target - grouped by drug targets\n    Class - drug classes often representing similar mechanisms of action\n    Metabolism - grouped by substrates, inhibitors and inducers of drug metabolizing enzymes and transporters\n\nChemical groups are often used for identifying essentially the same active ingredients of drugs in different countries.",
+    "example": "DG00301",
+    "homepage": "http://www.genome.jp/kegg/reaction/",
+    "mappings": {
+      "biolink": "KEGG.DGROUP"
+    },
+    "name": "KEGG Drug Group",
+    "part_of": "kegg",
+    "pattern": "^DG\\d+$",
+    "preferred_prefix": "kegg.dgroup",
+    "references": [
+      "https://github.com/prefixcommons/prefixes/pull/4"
+    ],
+    "synonyms": [
+      "KEGG_DGROUP",
+      "KEGG_DRUG_GROUP"
+    ]
+  },
   "kegg.disease": {
     "description": "The KEGG DISEASE database is a collection of disease entries capturing knowledge on genetic and environmental perturbations. Each disease entry contains a list of known genetic factors (disease genes), environmental factors, diagnostic markers, and therapeutic drugs. Diseases are viewed as perturbed states of the molecular system, and drugs as perturbants to the molecular system.",
     "example": "H00076",
@@ -12790,6 +12815,31 @@
       "KEGG_PATHWAY"
     ],
     "uri_format": "https://www.kegg.jp/entry/$1"
+  },
+  "kegg.rclass": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "KEGG RCLASS contains classification of reactions based on the chemical structure transformation patterns of substrate-product pairs (reactant pairs), which are represented by the so-called RDM patterns.",
+    "example": "RC00001",
+    "homepage": "http://www.genome.jp/kegg/reaction/",
+    "mappings": {
+      "biolink": "KEGG.RCLASS"
+    },
+    "name": "KEGG Reaction Class",
+    "part_of": "kegg",
+    "pattern": "^RC\\d+$",
+    "preferred_prefix": "kegg.rclass",
+    "references": [
+      "https://github.com/prefixcommons/prefixes/pull/2"
+    ],
+    "synonyms": [
+      "KEGG_RCLASS",
+      "KEGG_REACTION_CLASS"
+    ]
   },
   "kegg.reaction": {
     "description": "KEGG reaction contains our knowledge on the universe of reactions that are relevant to life.",
