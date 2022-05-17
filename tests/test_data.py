@@ -331,7 +331,7 @@ class TestRegistry(unittest.TestCase):
         """Assert the identifier is canonical."""
         entry = self.registry[prefix]
         canonical = entry.is_canonical_identifier(example)
-        self.assertTrue(canonical is None or canonical, msg=f"Failed on prefix={prefix}")
+        self.assertTrue(canonical is None or canonical, msg=f"Failed on prefix={prefix}: {example}")
 
     def test_extra_examples(self):
         """Test extra examples."""
@@ -357,6 +357,17 @@ class TestRegistry(unittest.TestCase):
                 len(set(entry.example_extras)),
                 msg="duplicate extra examples",
             )
+
+    def test_example_decoys(self):
+        """Test example decoys."""
+        for prefix, entry in self.registry.items():
+            if not entry.example_decoys:
+                continue
+            with self.subTest(prefix=prefix):
+                pattern = entry.get_pattern()
+                self.assertIsNotNone(pattern)
+                for example in entry.example_decoys:
+                    self.assertNotRegex(example, pattern)
 
     def test_is_mismatch(self):
         """Check for mismatches."""

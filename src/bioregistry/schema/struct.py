@@ -29,8 +29,7 @@ from bioregistry import constants as brc
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE
-
-from ..utils import removeprefix, removesuffix
+from bioregistry.utils import removeprefix, removesuffix
 
 try:
     from typing import Literal  # type:ignore
@@ -201,6 +200,9 @@ class Resource(BaseModel):
     )
     example_extras: Optional[List[str]] = Field(
         description="Extra example identifiers",
+    )
+    example_decoys: Optional[List[str]] = Field(
+        description="Extra example identifiers that explicitly fail regex tests",
     )
     license: Optional[str] = Field(
         description="The license for the resource",
@@ -1671,6 +1673,7 @@ def write_bulk_prefix_request_template():
         if name in {
             "providers",
             "example_extras",
+            "example_decoys",
             "contributor_extras",
             "mappings",
             "reviewer",

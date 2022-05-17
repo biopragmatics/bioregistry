@@ -14293,6 +14293,23 @@
     "pattern": "^\\d{7}$"
   },
   "eccode": {
+    "example_decoys": [
+      "100",
+      "2.",
+      "2.n1",
+      "2.3.",
+      "2.3.n1",
+      "2.3.1.",
+      "2.3.1.n",
+      "2.3.4.1."
+    ],
+    "example_extras": [
+      "2",
+      "2.3",
+      "2.3.1",
+      "2.3.1.n12",
+      "3.1.26.n2"
+    ],
     "fairsharing": {
       "abbreviation": "IntEnz",
       "description": "IntEnz is a freely available resource focused on enzyme nomenclature. IntEnz contains the recommendations of the Nomenclature Committee of the International Union of Biochemistry and Molecular Biology (NC-IUBMB) on the nomenclature and classification of enzyme-catalysed reactions.",
@@ -14370,7 +14387,7 @@
       "uri_format": "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$1"
     },
     "name": "Enzyme Nomenclature",
-    "pattern": "^\\d{1,2}(\\.\\d{0,3}){0,3}$",
+    "pattern": "^\\d{1,2}(((\\.\\d{1,3}){1,3})|(\\.\\d+){2}\\.n\\d{1,3})?$",
     "prefixcommons": {
       "is_identifiers": false,
       "is_obo": false,
