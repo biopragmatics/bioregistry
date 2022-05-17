@@ -150,7 +150,7 @@ A prefix and its corresponding semantic space are **substantiated** when it's
 provable that a semantic space exists by one or more of the following:
 
 1. There's a public place where you can get the entire list of terms.
-   Ontologies (e.g., [GO](https://bioregistry.io/go)) and database
+   Ontologies (e.g., [Gene Ontology](https://bioregistry.io/go)) and databases
    (e.g., [HGNC](https://bioregistry.io/hgnc)) usually make this pretty
    straightforwards by offering download links for the ontology or full
    database.
@@ -187,12 +187,17 @@ https://github.com/biopragmatics/bioregistry/issues/359.
    corresponding to a new prefix request). Submissions unable/unwilling to
    follow these guidelines will be dismissed and asked to re-submit after their
    prefix has been substantiated.
-2. Parked prefixes that are not substantiated within three months are subject to
+2. Submissions to park a prefix must include a primary contact person for the
+   resource that is available for public discussion on GitHub. Even though this
+   is likely the same as the submitter, it is important that this person can be
+   contacted. If they are unresponsive within two weeks of contact regarding the
+   parked prefix, then the parked prefix is subject to removal.
+3. Parked prefixes that are not substantiated within three months are subject to
    removal. In the case that someone else wants to use that prefix, the fact
    that the parked prefix has not been substantiated will, by definition, result
    in no impact or confusion that would normally result from the removal of a
    prefix.
-3. It's not the job of the Bioregistry to support parking prefixes for semantic
+4. It's not the job of the Bioregistry to support parking prefixes for semantic
    spaces that will not be public or that won't be used in other public
    resources - these can be rejected without further discussion.
 
