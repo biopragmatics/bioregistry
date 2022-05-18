@@ -3,8 +3,9 @@ layout: page
 title: Contributing
 permalink: /contributing/
 ---
-Contributions to the Bioregistry are welcomed and encouraged. This document is
-organized as follows:
+Contributions to the Bioregistry are welcomed and encouraged.
+All contributors are expected to follow our [Code of Conduct](CODE_OF_CONDUCT.md).
+This document is organized as follows:
 
 1. [Content Contribution](#content-contribution)
     1. [Submitting New Prefixes](#submitting-new-prefixes)
