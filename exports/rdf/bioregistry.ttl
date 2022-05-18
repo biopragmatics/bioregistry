@@ -17859,7 +17859,8 @@ bioregistry:fabio a bioregistry.schema:0000001 ;
     rdfs:label "FaBiO, the FRBR-aligned Bibliographic Ontology" ;
     dc:description "The FRBR-aligned Bibliographic Ontology (FaBiO) is an ontology for describing entities that are published or potentially publishable (e.g., journal articles, conference papers, books), and that contain or are referred to by bibliographic references."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biolink:fabio ;
+    skos:exactMatch biolink:fabio,
+        fairsharing:FAIRsharing.2f3180 ;
     foaf:homepage "https://github.com/sparontologies/fabio"^^xsd:string ;
     bioregistry.schema:0000005 "d4e2515"^^xsd:string ;
     bioregistry.schema:0000006 "https://sparontologies.github.io/fabio/current/fabio.html#$1"^^xsd:string ;
@@ -20331,6 +20332,8 @@ fairsharing:FAIRsharing.2basyz dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.2bdvmk dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.2ck3st dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.2f3180 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.2ffmsb dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -25781,7 +25784,7 @@ bioregistry:eccode a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.ebi.ac.uk/intenz/"^^xsd:string ;
     bioregistry.schema:0000005 "1.1.1.1"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{1,2}(\\.\\d{0,3}){0,3}$"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{1,2}(((\\.\\d{1,3}){1,3})|(\\.\\d+){2}\\.n\\d{1,3})?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:ecmdb a bioregistry.schema:0000001 ;
@@ -30025,6 +30028,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.2basyz,
         fairsharing:FAIRsharing.2bdvmk,
         fairsharing:FAIRsharing.2ck3st,
+        fairsharing:FAIRsharing.2f3180,
         fairsharing:FAIRsharing.2ffmsb,
         fairsharing:FAIRsharing.2gpf81,
         fairsharing:FAIRsharing.2jkxp5,

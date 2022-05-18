@@ -6520,6 +6520,12 @@ eccode:
     Committee of the International Union of Biochemistry and Molecular Biology on
     the nomenclature and classification of enzyme-catalysed reactions.
   example: 1.1.1.1
+  example_extras:
+  - '2'
+  - '2.3'
+  - 2.3.1
+  - 2.3.1.n12
+  - 3.1.26.n2
   homepage: https://www.ebi.ac.uk/intenz/
   mappings:
     fairsharing: FAIRsharing.q1fdkc
@@ -6529,7 +6535,7 @@ eccode:
     prefixcommons: EC
     wikidata: P591
   name: Enzyme Nomenclature
-  pattern: ^\d{1,2}(\.\d{0,3}){0,3}$
+  pattern: ^\d{1,2}(((\.\d{1,3}){1,3})|(\.\d+){2}\.n\d{1,3})?$
   preferred_prefix: eccode
   providers:
   - code: CURATOR_REVIEW
@@ -6914,7 +6920,7 @@ efo:
     The scope of EFO is to support the annotation, analysis and visualization of data
     handled by the EBI Functional Genomics Team.
   download_obo: http://www.ebi.ac.uk/efo/efo.obo
-  download_owl: http://www.ebi.ac.uk/efo/releases/v3.41.0/efo.owl
+  download_owl: http://www.ebi.ac.uk/efo/releases/v3.42.0/efo.owl
   example: '0005147'
   homepage: http://www.ebi.ac.uk/efo
   mappings:
@@ -6938,7 +6944,7 @@ efo:
     uri_format: https://www.ebi.ac.uk/efo/EFO_$1
   repository: https://github.com/EBISPOT/efo/
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.41.0
+  version: 3.42.0
 ega.dataset:
   description: The EGA is a service for permanent archiving and sharing of all types
     of personally identifiable genetic and phenotypic data resulting from biomedical
@@ -7919,6 +7925,7 @@ fabio:
   homepage: https://github.com/sparontologies/fabio
   mappings:
     biolink: fabio
+    fairsharing: FAIRsharing.2f3180
   name: FaBiO, the FRBR-aligned Bibliographic Ontology
   preferred_prefix: fabio
   repository: https://github.com/sparontologies/fabio
