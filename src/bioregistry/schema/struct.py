@@ -762,6 +762,7 @@ class Resource(BaseModel):
         miriam_example = self.get_external("miriam").get("sampleId")
         if miriam_example is not None:
             return miriam_example
+        # TODO go through more external data looking for this
         example = self.get_external("ncbi").get("example")
         if example is not None:
             return example
@@ -991,11 +992,11 @@ class Resource(BaseModel):
     URI_FORMATTERS: ClassVar[Mapping[str, Callable[["Resource"], Optional[str]]]] = {
         "default": get_default_format,
         "obofoundry": get_obofoundry_uri_format,
+        "preficommons": get_prefixcommons_uri_format,
         "biocontext": get_biocontext_uri_format,
         "miriam": get_miriam_uri_format,
         "n2t": get_n2t_uri_format,
         "ols": get_ols_uri_format,
-        # "bioportal": lambda x: ...,
     }
 
     DEFAULT_URI_FORMATTER_PRIORITY: ClassVar[Sequence[str]] = (
@@ -1005,7 +1006,7 @@ class Resource(BaseModel):
         "miriam",
         "n2t",
         "ols",
-        # "bioportal",
+        "prefixcommons",
     )
 
     def get_uri_format(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
@@ -1020,7 +1021,7 @@ class Resource(BaseModel):
             4. MIRIAM/Identifiers.org
             5. N2T
             6. OLS
-            7. BioPortal
+            7. Prefix Commons
 
         :return: The best URI format string, where the ``$1`` should be replaced by a
             local unique identifier. ``$1`` could potentially appear multiple times.
