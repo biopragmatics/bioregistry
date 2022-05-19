@@ -60,8 +60,8 @@ def get_registry_description(metaprefix: str) -> Optional[str]:
     :param metaprefix: The metaprefix of the registry
     :return: The description for the registry, if available, otherwise ``None``.
 
-    >>> get_registry_description('prefixcommons')
-    'A registry of commonly used prefixes in the life sciences and linked data'
+    >>> get_registry_description('biocontext')
+    'BioContext contains modular JSON-LD contexts for bioinformatics data.'
 
     >>> get_registry_description('missing')
     None

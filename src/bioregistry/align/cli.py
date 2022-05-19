@@ -12,8 +12,10 @@ __all__ = [
 
 
 @click.command()
-def align():
+@click.option("--skip-fairsharing", is_flag=True)
+def align(skip_fairsharing: bool):
     """Align all external registries."""
+    from .biocontext import BioContextAligner
     from .biolink import BiolinkAligner
     from .bioportal import BioPortalAligner
     from .cellosaurus import CellosaurusAligner
@@ -26,13 +28,13 @@ def align():
     from .obofoundry import OBOFoundryAligner
     from .ols import OLSAligner
     from .ontobee import OntobeeAligner
-    from .prefix_commons import PrefixCommonsAligner
+    from .prefixcommons import PrefixCommonsAligner
     from .uniprot import UniProtAligner
     from .wikidata import WikidataAligner
 
     pre_digests = get_hexdigests()
 
-    for aligner_cls in [
+    aligner_classes = [
         MiriamAligner,
         N2TAligner,
         NcbiAligner,
@@ -42,13 +44,16 @@ def align():
         GoAligner,
         BioPortalAligner,
         PrefixCommonsAligner,
+        BioContextAligner,
         BiolinkAligner,
         UniProtAligner,
         OntobeeAligner,
         CellosaurusAligner,
         ChemInfAligner,
-        FairsharingAligner,
-    ]:
+    ]
+    if not skip_fairsharing:
+        aligner_classes.append(FairsharingAligner)
+    for aligner_cls in aligner_classes:
         secho(f"Aligning {aligner_cls.key}")
         try:
             aligner_cls.align()

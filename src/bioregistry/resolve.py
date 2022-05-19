@@ -507,6 +507,22 @@ def get_ols_uri_format(prefix: str) -> Optional[str]:
     return resource.get_ols_uri_format()
 
 
+def get_biocontext_uri_format(prefix: str) -> Optional[str]:
+    """Get the URI format for a BioContext entry.
+
+    :param prefix: The prefix to lookup.
+    :returns: The BioContext URI format string, if available.
+
+    >>> import bioregistry
+    >>> bioregistry.get_biocontext_uri_format('hgmd')
+    'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
+    """
+    resource = get_resource(prefix)
+    if resource is None:
+        return None
+    return resource.get_biocontext_uri_format()
+
+
 def get_prefixcommons_uri_format(prefix: str) -> Optional[str]:
     """Get the URI format for a Prefix Commons entry.
 
@@ -514,8 +530,8 @@ def get_prefixcommons_uri_format(prefix: str) -> Optional[str]:
     :returns: The Prefix Commons URI format string, if available.
 
     >>> import bioregistry
-    >>> bioregistry.get_prefixcommons_uri_format('hgmd')
-    'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
+    >>> bioregistry.get_prefixcommons_uri_format('antweb')
+    'http://www.antweb.org/specimen.do?name=$1'
     """
     resource = get_resource(prefix)
     if resource is None:

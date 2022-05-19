@@ -275,7 +275,7 @@ class Resource(BaseModel):
     into another resource, when the website related to the resource goes down, or any
     other reason that it's difficult or impossible to find full metadata on the resource.
     If this is set to true, please add a comment explaining why. This flag will override
-    annotations from the OLS, OBO Foundry, and Prefix Commons on the deprecation status,
+    annotations from the OLS, OBO Foundry, and others on the deprecation status,
     since they often disagree and are very conservative in calling dead resources.
     """
         ),
@@ -414,6 +414,8 @@ class Resource(BaseModel):
     cheminf: Optional[Mapping[str, Any]]
     #: External data from FAIRsharing
     fairsharing: Optional[Mapping[str, Any]]
+    #: External data from BioContext
+    biocontext: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
@@ -531,7 +533,7 @@ class Resource(BaseModel):
             ("miriam", URI_FORMAT_KEY),
             ("n2t", URI_FORMAT_KEY),
             ("go", URI_FORMAT_KEY),
-            ("prefixcommons", URI_FORMAT_KEY),
+            ("biocontext", URI_FORMAT_KEY),
             ("wikidata", URI_FORMAT_KEY),
             ("uniprot", URI_FORMAT_KEY),
             ("cellosaurus", URI_FORMAT_KEY),
@@ -760,6 +762,7 @@ class Resource(BaseModel):
         miriam_example = self.get_external("miriam").get("sampleId")
         if miriam_example is not None:
             return miriam_example
+        # TODO go through more external data looking for this
         example = self.get_external("ncbi").get("example")
         if example is not None:
             return example
@@ -848,14 +851,25 @@ class Resource(BaseModel):
             return None
         return f"{rv}$1"
 
+    def get_biocontext_uri_format(self) -> Optional[str]:
+        """Get the BioContext URI format string for this entry, if available.
+
+        :returns: The BioContext URI format string, if available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("hgmd").get_biocontext_uri_format()
+        'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
+        """
+        return self.get_external("biocontext").get(URI_FORMAT_KEY)
+
     def get_prefixcommons_uri_format(self) -> Optional[str]:
         """Get the Prefix Commons URI format string for this entry, if available.
 
         :returns: The Prefix Commons URI format string, if available.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("hgmd").get_prefixcommons_uri_format()
-        'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
+        >>> get_resource("antweb").get_prefixcommons_uri_format()
+        'http://www.antweb.org/specimen.do?name=$1'
         """
         return self.get_external("prefixcommons").get(URI_FORMAT_KEY)
 
@@ -979,20 +993,20 @@ class Resource(BaseModel):
         "default": get_default_format,
         "obofoundry": get_obofoundry_uri_format,
         "prefixcommons": get_prefixcommons_uri_format,
+        "biocontext": get_biocontext_uri_format,
         "miriam": get_miriam_uri_format,
         "n2t": get_n2t_uri_format,
         "ols": get_ols_uri_format,
-        # "bioportal": lambda x: ...,
     }
 
     DEFAULT_URI_FORMATTER_PRIORITY: ClassVar[Sequence[str]] = (
         "default",
         "obofoundry",
-        "prefixcommons",
+        "biocontext",
         "miriam",
         "n2t",
         "ols",
-        # "bioportal",
+        "prefixcommons",
     )
 
     def get_uri_format(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
@@ -1001,13 +1015,13 @@ class Resource(BaseModel):
         :param priority: The priority order of metaresources to use for format URI lookup.
             The default is:
 
-            1. Default first party (from bioregistry, prefix commons, or miriam)
+            1. Default first party (from the Bioregistry, BioContext, or MIRIAM)
             2. OBO Foundry
-            3. Prefix Commons
-            4. Identifiers.org
+            3. BioContext
+            4. MIRIAM/Identifiers.org
             5. N2T
             6. OLS
-            7. BioPortal
+            7. Prefix Commons
 
         :return: The best URI format string, where the ``$1`` should be replaced by a
             local unique identifier. ``$1`` could potentially appear multiple times.
@@ -1022,15 +1036,15 @@ class Resource(BaseModel):
         ChEBI example above). Do so like:
 
         >>> from bioregistry import get_resource
-        >>> priority = ['obofoundry', 'bioregistry', 'prefixcommons', 'miriam', 'ols']
+        >>> priority = ['obofoundry', 'bioregistry', 'biocontext', 'miriam', 'ols']
         >>> get_resource("chebi").get_uri_format(priority=priority)
         'http://purl.obolibrary.org/obo/CHEBI_$1'
         """
-        # TODO add examples in doctests for prefix commons, identifiers.org, and OLS
+        # TODO add examples in doctests for BioContext, MIRIAM/Identifiers.org, and OLS
         for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
             formatter = self.URI_FORMATTERS.get(metaprefix)
             if formatter is None:
-                logger.warning("count not get formatter for %s", metaprefix)
+                logger.warning("could not get formatter for %s", metaprefix)
                 continue
             rv = formatter(self)
             if rv is not None:

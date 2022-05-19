@@ -4,7 +4,6 @@
 
 import json
 import logging
-import warnings
 from collections import defaultdict
 from functools import lru_cache
 from pathlib import Path
@@ -100,12 +99,6 @@ def write_collections(collections: Mapping[str, Collection]) -> None:
             ensure_ascii=False,
             default=extended_encoder,
         )
-
-
-def write_bioregistry(registry: Mapping[str, Resource]):
-    """Write to the Bioregistry."""
-    warnings.warn("use bioregistry.write_registry", DeprecationWarning)
-    write_registry(registry)
 
 
 def write_registry(registry: Mapping[str, Resource]):
