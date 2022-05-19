@@ -992,7 +992,7 @@ class Resource(BaseModel):
     URI_FORMATTERS: ClassVar[Mapping[str, Callable[["Resource"], Optional[str]]]] = {
         "default": get_default_format,
         "obofoundry": get_obofoundry_uri_format,
-        "preficommons": get_prefixcommons_uri_format,
+        "prefixcommons": get_prefixcommons_uri_format,
         "biocontext": get_biocontext_uri_format,
         "miriam": get_miriam_uri_format,
         "n2t": get_n2t_uri_format,
