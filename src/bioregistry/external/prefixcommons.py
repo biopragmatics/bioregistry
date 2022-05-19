@@ -7,9 +7,9 @@ https://docs.google.com/spreadsheets/d/1cDGJcRteb9F5-jbw7Q7np0kk4hfWhdBHNYRIg3LX
 import json
 from typing import Mapping
 
-from bioregistry.data import EXTERNAL
-
 from pystow.utils import download
+
+from bioregistry.data import EXTERNAL
 
 __all__ = [
     "get_prefixcommons",

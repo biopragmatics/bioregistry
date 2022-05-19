@@ -523,6 +523,22 @@ def get_biocontext_uri_format(prefix: str) -> Optional[str]:
     return resource.get_biocontext_uri_format()
 
 
+def get_prefixcommons_uri_format(prefix: str) -> Optional[str]:
+    """Get the URI format for a Prefix Commons entry.
+
+    :param prefix: The prefix to lookup.
+    :returns: The Prefix Commons URI format string, if available.
+
+    >>> import bioregistry
+    >>> bioregistry.get_prefixcommons_uri_format('antweb')
+    'http://www.antweb.org/specimen.do?name=$1'
+    """
+    resource = get_resource(prefix)
+    if resource is None:
+        return None
+    return resource.get_prefixcommons_uri_format()
+
+
 def get_external(prefix: str, metaprefix: str) -> Mapping[str, Any]:
     """Get the external data for the entry."""
     return manager.get_external(prefix, metaprefix)
