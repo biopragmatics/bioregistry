@@ -28,6 +28,7 @@ def align(skip_fairsharing: bool):
     from .obofoundry import OBOFoundryAligner
     from .ols import OLSAligner
     from .ontobee import OntobeeAligner
+    from .prefixcommons import PrefixCommonsAligner
     from .uniprot import UniProtAligner
     from .wikidata import WikidataAligner
 
@@ -42,6 +43,7 @@ def align(skip_fairsharing: bool):
         WikidataAligner,
         GoAligner,
         BioPortalAligner,
+        PrefixCommonsAligner,
         BioContextAligner,
         BiolinkAligner,
         UniProtAligner,
