@@ -1,11 +1,15 @@
-"""
+# -*- coding: utf-8 -*-
 
-http://tinyurl.com/lsregistry which should expand to
-https://docs.google.com/spreadsheets/d/1cDGJcRteb9F5-jbw7Q7np0kk4hfWhdBHNYRIg3LXDrs/edit#gid=0
+"""Download registry information from the Life Science Registry (LSR), which powers Prefix Commons.
+
+.. seealso::
+
+    - http://tinyurl.com/lsregistry which should expand to
+      https://docs.google.com/spreadsheets/d/1cDGJcRteb9F5-jbw7Q7np0kk4hfWhdBHNYRIg3LXDrs/edit#gid=0
 """
 
 import json
-from typing import Mapping
+from typing import Any, Dict
 
 from pystow.utils import download
 
@@ -74,6 +78,7 @@ KEEP = {
 
 
 def get_prefixcommons(force_download: bool = False):
+    """Get the Life Science Registry."""
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
@@ -82,7 +87,7 @@ def get_prefixcommons(force_download: bool = False):
     rows = {}
     with RAW_PATH.open() as file:
         lines = iter(file)
-        _header = next(lines)
+        next(lines)  # throw away header
         for line in lines:
             prefix, data = _process_row(line)
             if prefix and data:
@@ -92,10 +97,14 @@ def get_prefixcommons(force_download: bool = False):
     return rows
 
 
-def _process_row(line: str) -> Mapping[str, str]:
+def _process_row(line: str):
     cells = line.strip().split("\t")
-    cells = [None if cell in {"N/A"} else cell for cell in cells]
-    rv = {key: value.strip() for key, value in zip(COLUMNS, cells) if key and value and key in KEEP}
+    cells_processed = [None if cell in {"N/A"} else cell for cell in cells]
+    rv: Dict[str, Any] = {
+        key: value.strip()
+        for key, value in zip(COLUMNS, cells_processed)
+        if key and value and key in KEEP
+    }
     for key in ["name", "description", "example", "pattern"]:
         if not rv.get(key):
             return None, None
@@ -121,4 +130,4 @@ def _process_row(line: str) -> Mapping[str, str]:
 
 
 if __name__ == "__main__":
-    print(len(get_prefixcommons(force_download=True)))
+    print(len(get_prefixcommons(force_download=True)))  # noqa:T201

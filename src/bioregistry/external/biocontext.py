@@ -3,6 +3,7 @@
 """Download BioContext."""
 
 import json
+from typing import Any, Mapping
 
 from pystow.utils import download
 
@@ -20,8 +21,12 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 URL = "https://raw.githubusercontent.com/prefixcommons/biocontext/master/registry/commons_context.jsonld"
 
 
-def get_biocontext(force_download: bool = False):
+def get_biocontext(force_download: bool = False) -> Mapping[str, Mapping[str, Any]]:
     """Get the BioContext context map.
+
+    :param force_download: If true, forces download. If false and the file
+        is already cached, resuses it.
+    :returns: The biocontext data dictionary
 
     .. seealso:: https://github.com/prefixcommons/biocontext
     """
@@ -41,4 +46,4 @@ def get_biocontext(force_download: bool = False):
 
 
 if __name__ == "__main__":
-    get_biocontext(force_download=True)
+    print(len(get_biocontext(force_download=True)))  # noqa:T201
