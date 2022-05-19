@@ -56,7 +56,7 @@ from .resolve import (  # noqa:F401
     get_part_of,
     get_pattern,
     get_preferred_prefix,
-    get_prefixcommons_uri_format,
+    get_biocontext_uri_format,
     get_provided_by,
     get_provides_for,
     get_registry_invmap,

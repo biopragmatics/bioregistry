@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Download Prefix Commons."""
+"""Download BioContext."""
 
 import json
 

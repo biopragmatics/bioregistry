@@ -102,12 +102,6 @@ def write_collections(collections: Mapping[str, Collection]) -> None:
         )
 
 
-def write_bioregistry(registry: Mapping[str, Resource]):
-    """Write to the Bioregistry."""
-    warnings.warn("use bioregistry.write_registry", DeprecationWarning)
-    write_registry(registry)
-
-
 def write_registry(registry: Mapping[str, Resource]):
     """Write to the Bioregistry."""
     with open(BIOREGISTRY_PATH, mode="w", encoding="utf-8") as file:
