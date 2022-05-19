@@ -1044,7 +1044,7 @@ class Resource(BaseModel):
         for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
             formatter = self.URI_FORMATTERS.get(metaprefix)
             if formatter is None:
-                logger.warning("count not get formatter for %s", metaprefix)
+                logger.warning("could not get formatter for %s", metaprefix)
                 continue
             rv = formatter(self)
             if rv is not None:
