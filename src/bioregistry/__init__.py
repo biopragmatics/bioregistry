@@ -17,6 +17,7 @@ from .parse_iri import curie_from_iri, parse_iri  # noqa:F401
 from .resolve import (  # noqa:F401
     get_appears_in,
     get_banana,
+    get_biocontext_uri_format,
     get_bioportal_prefix,
     get_canonical_for,
     get_contact,
@@ -56,7 +57,6 @@ from .resolve import (  # noqa:F401
     get_part_of,
     get_pattern,
     get_preferred_prefix,
-    get_biocontext_uri_format,
     get_provided_by,
     get_provides_for,
     get_registry_invmap,
