@@ -26,7 +26,7 @@ def align():
     from .obofoundry import OBOFoundryAligner
     from .ols import OLSAligner
     from .ontobee import OntobeeAligner
-    from .prefix_commons import PrefixCommonsAligner
+    from .biocontext import BioContextAligner
     from .uniprot import UniProtAligner
     from .wikidata import WikidataAligner
 
