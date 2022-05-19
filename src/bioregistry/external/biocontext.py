@@ -10,19 +10,21 @@ from bioregistry.constants import URI_FORMAT_KEY
 from bioregistry.data import EXTERNAL
 
 __all__ = [
-    "get_prefix_commons",
+    "get_biocontext",
 ]
 
-DIRECTORY = EXTERNAL / "prefixcommons"
+DIRECTORY = EXTERNAL / "biocontext"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 RAW_PATH = DIRECTORY / "raw.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 URL = "https://raw.githubusercontent.com/prefixcommons/biocontext/master/registry/commons_context.jsonld"
 
 
-# FIXME this isn't the real prefix commons
-def get_prefix_commons(force_download: bool = False):
-    """Get Prefix Commons."""
+def get_biocontext(force_download: bool = False):
+    """Get the BioContext context map.
+
+    .. seealso:: https://github.com/prefixcommons/biocontext
+    """
     if PROCESSED_PATH.exists() and not force_download:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
@@ -39,4 +41,4 @@ def get_prefix_commons(force_download: bool = False):
 
 
 if __name__ == "__main__":
-    get_prefix_commons(force_download=True)
+    get_biocontext(force_download=True)

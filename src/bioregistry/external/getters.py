@@ -16,7 +16,7 @@ from .ncbi import get_ncbi
 from .obofoundry import get_obofoundry
 from .ols import get_ols
 from .ontobee import get_ontobee
-from .prefix_commons import get_prefix_commons
+from .prefix_commons import get_biocontext
 from .uniprot import get_uniprot
 from .wikidata import get_wikidata
 
@@ -32,7 +32,7 @@ GETTERS: List[Tuple[str, str, Callable]] = [
     ("n2t", "N2T", get_n2t),
     ("go", "GO", get_go),
     ("bioportal", "BioPortal", get_bioportal),
-    ("prefixcommons", "Prefix Commons", get_prefix_commons),
+    ("biocontext", "BioContext", get_biocontext),
     ("biolink", "Biolink", get_biolink),
     ("ncbi", "NCBI", get_ncbi),
     ("uniprot", "UniProt", get_uniprot),
