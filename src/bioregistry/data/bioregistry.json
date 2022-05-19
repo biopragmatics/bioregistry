@@ -2478,23 +2478,6 @@
       "uri_format": "http://asrp.cgrb.oregonstate.edu/db/sRNAdisplay.html?ASRP_id=$1"
     }
   },
-  "assembly": {
-    "mappings": {
-      "miriam": "assembly"
-    },
-    "miriam": {
-      "deprecated": false,
-      "description": "A database providing information on the structure of assembled genomes, assembly names and other meta-data, statistical reports, and links to genomic sequence data.",
-      "homepage": "https://www.ncbi.nlm.nih.gov/",
-      "id": "00000884",
-      "name": "Assembly",
-      "namespaceEmbeddedInLui": false,
-      "pattern": "^[a-zA-Z0-9_\\.]+$",
-      "prefix": "assembly",
-      "sampleId": "GCF_000005845.2",
-      "uri_format": "https://www.ncbi.nlm.nih.gov/assembly/$1"
-    }
-  },
   "atc": {
     "biocontext": {
       "is_identifiers": true,
@@ -37670,6 +37653,37 @@
       "inxight-drugs"
     ],
     "uri_format": "https://drugs.ncats.io/drug/$1"
+  },
+  "ncbi.assembly": {
+    "mappings": {
+      "miriam": "assembly"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "A database providing information on the structure of assembled genomes, assembly names and other meta-data, statistical reports, and links to genomic sequence data.",
+      "homepage": "https://www.ncbi.nlm.nih.gov/",
+      "id": "00000884",
+      "name": "Assembly",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[a-zA-Z0-9_\\.]+$",
+      "prefix": "assembly",
+      "sampleId": "GCF_000005845.2",
+      "uri_format": "https://www.ncbi.nlm.nih.gov/assembly/$1"
+    }
+  },
+  "ncbi.genome": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This resource organizes information on genomes including sequences, maps, chromosomes, assemblies, and annotations.",
+    "example": "51",
+    "homepage": "https://www.ncbi.nlm.nih.gov/genome",
+    "name": "NCBI Genome",
+    "pattern": "^\\d+$",
+    "uri_format": "https://www.ncbi.nlm.nih.gov/genome/$1"
   },
   "ncbi.resource": {
     "contributor": {
