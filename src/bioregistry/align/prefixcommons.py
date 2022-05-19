@@ -17,17 +17,28 @@ class PrefixCommonsAligner(Aligner):
 
     key = "prefixcommons"
     getter = get_prefixcommons
-    curation_header = ("name", "description", "miriam", "bioportal")
+    curation_header = (
+        "name",
+        "miriam",
+        "bioportal",
+        "description",
+        "example",
+        "pattern",
+        "uri_format",
+    )
     # TODO consider updating
     include_new = False
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Prepare curation rows for unaligned Prefix Commons registry entries."""
         return [
-            external_entry["name"].strip(),
-            external_entry.get("description", ""),
+            external_entry["name"],
             external_entry.get("miriam", ""),
             external_entry.get("bioportal", ""),
+            external_entry.get("description", ""),
+            external_entry.get("example", ""),
+            external_entry.get("pattern", ""),
+            external_entry.get("uri_format", ""),
         ]
 
 
