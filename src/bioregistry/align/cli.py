@@ -50,7 +50,7 @@ def align(skip_fairsharing: bool):
         ChemInfAligner,
     ]
     if not skip_fairsharing:
-       aligner_classes.append(FairsharingAligner)
+        aligner_classes.append(FairsharingAligner)
     for aligner_cls in aligner_classes:
         secho(f"Aligning {aligner_cls.key}")
         try:

@@ -388,8 +388,8 @@ class Resource(BaseModel):
     miriam: Optional[Mapping[str, Any]]
     #: External data from the Name-to-Thing service
     n2t: Optional[Mapping[str, Any]]
-    #: External data from BioContext
-    biocontext: Optional[Mapping[str, Any]]
+    #: External data from Prefix Commons
+    prefixcommons: Optional[Mapping[str, Any]]
     #: External data from Wikidata Properties
     wikidata: Optional[Mapping[str, Any]]
     #: External data from the Gene Ontology's custom registry
@@ -414,6 +414,8 @@ class Resource(BaseModel):
     cheminf: Optional[Mapping[str, Any]]
     #: External data from FAIRsharing
     fairsharing: Optional[Mapping[str, Any]]
+    #: External data from BioContext
+    biocontext: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
