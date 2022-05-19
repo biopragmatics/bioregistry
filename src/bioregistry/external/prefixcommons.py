@@ -59,8 +59,17 @@ COLUMNS = [
     "last updated by (orcid)",
 ]
 KEEP = {
-    "prefix", "bioportal", "miriam", "name", "description", "pubmed_ids", "keywords", "homepage", "pattern", "example",
-    "uri_format"
+    "prefix",
+    "bioportal",
+    "miriam",
+    "name",
+    "description",
+    "pubmed_ids",
+    "keywords",
+    "homepage",
+    "pattern",
+    "example",
+    "uri_format",
 }
 
 
@@ -72,7 +81,9 @@ def get_prefixcommons(force_download: bool = False):
     download(url=URL, path=RAW_PATH, force=True)
     rows = {}
     with RAW_PATH.open() as file:
-        for line in file:
+        lines = iter(file)
+        _header = next(lines)
+        for line in lines:
             prefix, data = _process_row(line)
             if prefix and data:
                 rows[prefix] = data
@@ -82,16 +93,10 @@ def get_prefixcommons(force_download: bool = False):
 
 
 def _process_row(line: str) -> Mapping[str, str]:
-    cells = line.strip().split('\t')
-    cells = [
-        None if cell in {"N/A"} else cell for cell in cells
-    ]
-    rv = {
-        key: value.strip()
-        for key, value in zip(COLUMNS, cells)
-        if key and value and key in KEEP
-    }
-    for key in ["name", "desription", "example", "pattern"]:
+    cells = line.strip().split("\t")
+    cells = [None if cell in {"N/A"} else cell for cell in cells]
+    rv = {key: value.strip() for key, value in zip(COLUMNS, cells) if key and value and key in KEEP}
+    for key in ["name", "description", "example", "pattern"]:
         if not rv.get(key):
             return None, None
 
@@ -104,8 +109,16 @@ def _process_row(line: str) -> Mapping[str, str]:
     if uri_format:
         rv["uri_format"] = uri_format.replace("$id", "$1")
 
+    pattern = rv.get("pattern")
+    if pattern:
+        if not pattern.startswith("^"):
+            pattern = f"^{pattern}"
+        if not pattern.endswith("$"):
+            pattern = f"{pattern}$"
+        rv["pattern"] = pattern
+
     return cells[0], rv
 
 
 if __name__ == "__main__":
-    get_prefixcommons(force_download=True)
+    print(len(get_prefixcommons(force_download=True)))
