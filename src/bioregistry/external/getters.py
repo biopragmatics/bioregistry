@@ -4,6 +4,7 @@
 
 from typing import Callable, List, Tuple
 
+from .biocontext import get_biocontext
 from .biolink import get_biolink
 from .bioportal import get_bioportal
 from .cellosaurus import get_cellosaurus
@@ -16,7 +17,6 @@ from .ncbi import get_ncbi
 from .obofoundry import get_obofoundry
 from .ols import get_ols
 from .ontobee import get_ontobee
-from .prefix_commons import get_biocontext
 from .uniprot import get_uniprot
 from .wikidata import get_wikidata
 
