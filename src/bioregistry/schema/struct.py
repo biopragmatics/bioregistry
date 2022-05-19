@@ -868,7 +868,7 @@ class Resource(BaseModel):
         :returns: The Prefix Commons URI format string, if available.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("antweb").get_biocontext_uri_format()
+        >>> get_resource("antweb").get_prefixcommons_uri_format()
         'http://www.antweb.org/specimen.do?name=$1'
         """
         return self.get_external("prefixcommons").get(URI_FORMAT_KEY)
