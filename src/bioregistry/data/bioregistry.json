@@ -2478,23 +2478,6 @@
       "uri_format": "http://asrp.cgrb.oregonstate.edu/db/sRNAdisplay.html?ASRP_id=$1"
     }
   },
-  "assembly": {
-    "mappings": {
-      "miriam": "assembly"
-    },
-    "miriam": {
-      "deprecated": false,
-      "description": "A database providing information on the structure of assembled genomes, assembly names and other meta-data, statistical reports, and links to genomic sequence data.",
-      "homepage": "https://www.ncbi.nlm.nih.gov/",
-      "id": "00000884",
-      "name": "Assembly",
-      "namespaceEmbeddedInLui": false,
-      "pattern": "^[a-zA-Z0-9_\\.]+$",
-      "prefix": "assembly",
-      "sampleId": "GCF_000005845.2",
-      "uri_format": "https://www.ncbi.nlm.nih.gov/assembly/$1"
-    }
-  },
   "atc": {
     "biocontext": {
       "is_identifiers": true,
@@ -12894,6 +12877,38 @@
       "prefix": "dbSNP",
       "uri_format": "https://www.ncbi.nlm.nih.gov/SNP/snp_ref.cgi?type=rs&rs=$1"
     }
+  },
+  "dbvar.study": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Studies in dbVar.",
+    "example": "nstd102",
+    "homepage": "https://www.ncbi.nlm.nih.gov/dbvar",
+    "name": "Database of Genomic Structural Variation - Study",
+    "synonyms": [
+      "dbvar.studies"
+    ],
+    "uri_format": "https://www.ncbi.nlm.nih.gov/dbvar/studies/$1"
+  },
+  "dbvar.variant": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Variants in dbVar.",
+    "example": "nsv3875336",
+    "homepage": "https://www.ncbi.nlm.nih.gov/dbvar",
+    "name": "Database of Genomic Structural Variation - Variant",
+    "synonyms": [
+      "dbvar.variants"
+    ],
+    "uri_format": "https://www.ncbi.nlm.nih.gov/dbvar/variants/$1"
   },
   "dc": {
     "biocontext": {
@@ -37671,6 +37686,37 @@
     ],
     "uri_format": "https://drugs.ncats.io/drug/$1"
   },
+  "ncbi.assembly": {
+    "mappings": {
+      "miriam": "assembly"
+    },
+    "miriam": {
+      "deprecated": false,
+      "description": "A database providing information on the structure of assembled genomes, assembly names and other meta-data, statistical reports, and links to genomic sequence data.",
+      "homepage": "https://www.ncbi.nlm.nih.gov/",
+      "id": "00000884",
+      "name": "Assembly",
+      "namespaceEmbeddedInLui": false,
+      "pattern": "^[a-zA-Z0-9_\\.]+$",
+      "prefix": "assembly",
+      "sampleId": "GCF_000005845.2",
+      "uri_format": "https://www.ncbi.nlm.nih.gov/assembly/$1"
+    }
+  },
+  "ncbi.genome": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This resource organizes information on genomes including sequences, maps, chromosomes, assemblies, and annotations.",
+    "example": "51",
+    "homepage": "https://www.ncbi.nlm.nih.gov/genome",
+    "name": "NCBI Genome",
+    "pattern": "^\\d+$",
+    "uri_format": "https://www.ncbi.nlm.nih.gov/genome/$1"
+  },
   "ncbi.resource": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -61010,6 +61056,19 @@
       "prefix": "XLMOD"
     },
     "pattern": "^\\d{5}$"
+  },
+  "xml": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Extensible Markup Language (XML) is a subset of SGML that is completely described in this document. Its goal is to enable generic SGML to be served, received, and processed on the Web in the way that is now possible with HTML. XML has been designed for ease of implementation and for interoperability with both SGML and HTML.",
+    "example": "lang",
+    "homepage": "https://www.w3.org/TR/xml/",
+    "name": "Extensible Markup Language",
+    "uri_format": "http://www.w3.org/XML/1998/namespace$1"
   },
   "xpo": {
     "biolink": {
