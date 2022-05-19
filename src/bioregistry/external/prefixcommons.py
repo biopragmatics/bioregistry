@@ -91,7 +91,7 @@ def _process_row(line: str) -> Mapping[str, str]:
         for key, value in zip(COLUMNS, cells)
         if key and value and key in KEEP
     }
-    for key in ["name"]:
+    for key in ["name", "desription", "example", "pattern"]:
         if not rv.get(key):
             return None, None
 
