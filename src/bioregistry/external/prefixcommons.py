@@ -28,11 +28,11 @@ COLUMNS = [
     "Alternative Base URI",
     "MIRIAM",
     "BiodbcoreID",
-    "bioportal", "BioPortal Ontology ID",
-    "miriam", # "identifiers.org",
+    "bioportal",  # "BioPortal Ontology ID",
+    "miriam",  # "identifiers.org",
     "Abbreviation",
     "name",  # originally: Title,
-    "Description",
+    "description",  # "Description",
     "pubmed_ids",  # "PubMed ID"
     "Organization",
     "Type (warehouse, dataset or terminology)",
@@ -58,6 +58,10 @@ COLUMNS = [
     "last updated by",
     "last updated by (orcid)",
 ]
+KEEP = {
+    "prefix", "bioportal", "miriam", "name", "description", "pubmed_ids", "keywords", "homepage", "pattern", "example",
+    "uri_format"
+}
 
 
 def get_prefixcommons(force_download: bool = False):
@@ -83,9 +87,9 @@ def _process_row(line: str) -> Mapping[str, str]:
         None if cell in {"N/A"} else cell for cell in cells
     ]
     rv = {
-        k: v
-        for k, v in zip(COLUMNS, cells)
-        if k and v
+        key: value.strip()
+        for key, value in zip(COLUMNS, cells)
+        if key and value and key in KEEP
     }
     for key in ["name"]:
         if not rv.get(key):
