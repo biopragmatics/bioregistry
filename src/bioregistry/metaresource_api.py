@@ -9,6 +9,13 @@ from .schema import Registry
 from .schema_utils import read_metaregistry
 
 __all__ = [
+    "get_registry",
+    "get_registry_name",
+    "get_registry_short_name",
+    "get_registry_homepage",
+    "get_registry_description",
+    "get_registry_example",
+    "get_registry_provider_uri_format",
     "get_registry_uri",
 ]
 

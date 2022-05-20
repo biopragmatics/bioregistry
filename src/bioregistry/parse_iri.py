@@ -11,6 +11,7 @@ from .uri_format import get_prefix_map
 __all__ = [
     "curie_from_iri",
     "parse_iri",
+    "parse_obolibrary_purl",
 ]
 
 OLS_URL_PREFIX = "https://www.ebi.ac.uk/ols/ontologies/"
