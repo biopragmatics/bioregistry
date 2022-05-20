@@ -53,6 +53,7 @@ To install in development mode, use the following:
    :name: start
 
    reference
+   alignment
    cli
 
 Indices and Tables

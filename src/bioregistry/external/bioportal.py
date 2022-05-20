@@ -7,13 +7,11 @@ Get an API key by logging up, signing in, and navigating to https://bioportal.bi
 
 import json
 
-import click
 import pystow
 import requests
-from more_click import verbose_option
 from tqdm.contrib.concurrent import thread_map
 
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL
 
 __all__ = [
     "get_bioportal",
@@ -88,12 +86,5 @@ def _process(entry):
     return {k: v for k, v in rv.items() if v is not None}
 
 
-@click.command()
-@verbose_option
-def _main():
-    r = get_bioportal(force_download=True)
-    click.echo(f"Got {len(r)} records")
-
-
 if __name__ == "__main__":
-    _main()
+    print(len(get_bioportal(force_download=True)))  # noqa:T201

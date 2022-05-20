@@ -224,7 +224,7 @@ def _plot_external_overlap(*, keys, watermark, ncols: int = 4):
 def get_getters():
     """Get getter functions, which requires alignment dependencies."""
     try:
-        from bioregistry.external.getters import GETTERS
+        from bioregistry.external import GETTERS
     except ImportError:
         click.secho(
             "Could not import alignment dependencies."

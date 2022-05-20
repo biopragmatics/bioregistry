@@ -9,8 +9,7 @@ from typing import Mapping
 from defusedxml import ElementTree
 from pystow.utils import download
 
-from bioregistry.constants import URI_FORMAT_KEY
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
 
 __all__ = [
     "get_uniprot",

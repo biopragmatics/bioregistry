@@ -8,7 +8,7 @@ import click
 import yaml
 from pystow.utils import download
 
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL
 
 __all__ = [
     "get_go",
