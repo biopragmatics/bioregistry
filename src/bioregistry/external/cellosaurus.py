@@ -7,8 +7,7 @@ import json
 
 from pystow.utils import download
 
-from bioregistry.constants import URI_FORMAT_KEY
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
 
 URL = "https://ftp.expasy.org/databases/cellosaurus/cellosaurus_xrefs.txt"
 
@@ -74,4 +73,4 @@ def _process_db_url(value):
 
 
 if __name__ == "__main__":
-    print(len(get_cellosaurus(force_download=True)))
+    print(len(get_cellosaurus(force_download=True)))  # noqa:T201

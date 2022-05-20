@@ -2,6 +2,8 @@
 
 """Command line interface for the bioregistry."""
 
+import sys
+
 import click
 from more_click import make_web_command
 

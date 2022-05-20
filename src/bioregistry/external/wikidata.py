@@ -7,8 +7,7 @@ import logging
 from collections import defaultdict
 from textwrap import dedent
 
-from bioregistry.constants import URI_FORMAT_KEY
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
 from bioregistry.utils import query_wikidata
 
 __all__ = [

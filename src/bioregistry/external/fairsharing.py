@@ -12,7 +12,7 @@ import pystow
 import requests
 from tqdm import tqdm
 
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL
 from bioregistry.utils import removeprefix
 
 __all__ = [

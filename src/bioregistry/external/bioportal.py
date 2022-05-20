@@ -11,7 +11,7 @@ import pystow
 import requests
 from tqdm.contrib.concurrent import thread_map
 
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL
 
 __all__ = [
     "get_bioportal",
@@ -87,4 +87,4 @@ def _process(entry):
 
 
 if __name__ == "__main__":
-    print(len(get_bioportal(force_download=True)))
+    print(len(get_bioportal(force_download=True)))  # noqa:T201
