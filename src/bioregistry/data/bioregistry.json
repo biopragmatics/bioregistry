@@ -5541,6 +5541,34 @@
       "uri_format": "https://www.brenda-enzymes.org/enzyme.php?ecno=%s&UniProtAcc=%u&OrganismID=%d"
     }
   },
+  "brenda.ligand": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Information for ligands in the BRENDA database.",
+    "example": "278",
+    "homepage": "https://www.brenda-enzymes.de/ligand.php",
+    "name": "BRENDA Ligand",
+    "pattern": "^\\d+$",
+    "uri_format": "https://www.brenda-enzymes.de/ligand.php?brenda_ligand_id=$1"
+  },
+  "brenda.ligandgroup": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Information for ligand groups (chemical classes).",
+    "example": "18030",
+    "homepage": "https://www.brenda-enzymes.de/ligand.php",
+    "name": "BRENDA Ligand Group",
+    "pattern": "^\\d+$",
+    "uri_format": "https://www.brenda-enzymes.de/ligand.php?brenda_group_id=$1"
+  },
   "broad": {
     "biocontext": {
       "is_identifiers": true,
@@ -10836,6 +10864,9 @@
       "pattern": "^DTXSID\\d+$",
       "prefix": "comptox",
       "uri_format": "https://comptox.epa.gov/dashboard/$1"
+    },
+    "wikidata": {
+      "prefix": "P3117"
     }
   },
   "compulyeast": {
@@ -58222,7 +58253,8 @@
     },
     "synonyms": [
       "UPa",
-      "unipathway"
+      "unipathway",
+      "unipathway.pathway"
     ],
     "uniprot": {
       "category": "Enzyme and pathway databases",
@@ -61055,6 +61087,22 @@
       "prefix": "XLMOD"
     },
     "pattern": "^\\d{5}$"
+  },
+  "xmetdb": {
+    "banana": "XMETDB",
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "deprecated": true,
+    "description": "Metabolites in the Xenobiotics Metabolism Database.",
+    "example": "171",
+    "homepage": "https://xmetdb.org",
+    "name": "Xenobiotics Metabolism Database",
+    "pattern": "^\\d+$",
+    "uri_format": "http://www.xmetdb.org/xmetdb/protocol/$1"
   },
   "xml": {
     "biocontext": {
