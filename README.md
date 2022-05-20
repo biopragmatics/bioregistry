@@ -34,7 +34,7 @@
 </p>
 
 <p align="center">
-   A community-driven integrative meta-registry of biological databases, ontologies, and other resources.
+   A community-driven integrative meta-registry of life science databases, ontologies, and other resources.
    <br />More information <a href="https://bioregistry.io/summary">here</a>.
 </p>
 

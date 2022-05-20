@@ -13,7 +13,7 @@ from .metaresource_api import (  # noqa:F401
     get_registry_short_name,
     get_registry_uri,
 )
-from .parse_iri import curie_from_iri, parse_iri  # noqa:F401
+from .parse_iri import curie_from_iri, parse_iri, parse_obolibrary_purl  # noqa:F401
 from .resolve import (  # noqa:F401
     get_appears_in,
     get_banana,
