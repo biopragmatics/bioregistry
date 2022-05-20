@@ -69,12 +69,21 @@ def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Optional[Ma
     ols_id = ols_entry["ontologyId"]
     config = ols_entry["config"]
     version_iri = config["versionIri"]
+
+    title = config.get("title")
+    if not title:
+        title = config.get("localizedTitles", {}).get("en")
+
+    description = config.get("description")
+    if not description:
+        description = config.get("localizedDescriptions", {}).get("en")
+
     rv = {
         "prefix": ols_id,
-        "name": config["title"],
+        "name": title,
         "download": _clean_url(config["fileLocation"]),
         "version.iri": _clean_url(version_iri),
-        "description": config["description"],
+        "description": description,
         "homepage": _clean_url(config["homepage"]),
     }
 
