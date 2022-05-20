@@ -43,7 +43,7 @@ def download():
 def align(skip_fairsharing: bool):
     """Align all external registries."""
     try:
-        from .aligners import ALIGNERS
+        from .align import ALIGNERS
     except ImportError:
         click.secho(
             "Could not import alignment dependencies."
