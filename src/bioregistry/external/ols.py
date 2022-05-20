@@ -65,7 +65,9 @@ def get_ols(force_download: bool = False):
     return processed
 
 
-def _process(ols_entry: Mapping[str, Any], processing: OLSConfig) -> Optional[Mapping[str, str]]:
+def _process(  # noqa:C901
+    ols_entry: Mapping[str, Any], processing: OLSConfig
+) -> Optional[Mapping[str, str]]:
     ols_id = ols_entry["ontologyId"]
     config = ols_entry["config"]
     version_iri = config["versionIri"]
