@@ -5,7 +5,6 @@
 import itertools as itt
 import json
 
-import click
 from pystow.utils import download
 
 from bioregistry.constants import URI_FORMAT_KEY
@@ -74,12 +73,5 @@ def _process_db_url(value):
     return value.rstrip("/").replace("%s", "$1")
 
 
-@click.command()
-def main():
-    """Reload the Cellosaurus data."""
-    rv = get_cellosaurus(force_download=True)
-    click.echo(f"Got {len(rv)} entries from cellosaurus.")
-
-
 if __name__ == "__main__":
-    main()
+    print(len(get_cellosaurus(force_download=True)))

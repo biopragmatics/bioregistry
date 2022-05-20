@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Data in the bioregistry."""
+"""Utilities for data in the bioregistry."""
 
 import enum
 import json
@@ -9,6 +9,12 @@ from functools import lru_cache
 from typing import Mapping, Optional
 
 from pydantic import BaseModel
+
+__all__ = [
+    "VersionType",
+    "OLSConfig",
+    "get_ols_processing",
+]
 
 HERE = pathlib.Path(__file__).parent.resolve()
 
