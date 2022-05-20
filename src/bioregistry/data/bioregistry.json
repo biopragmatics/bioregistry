@@ -23778,6 +23778,23 @@
       "GR_QTL"
     ]
   },
+  "gramene.reference": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Literature references in Gramene",
+    "example": "6200",
+    "homepage": "http://www.gramene.org",
+    "name": "Gramene Reference",
+    "pattern": "^\\d+$",
+    "synonyms": [
+      "gramene.ref"
+    ],
+    "uri_format": "http://www.gramene.org/db/literature/pub_search?ref_id=$1"
+  },
   "gramene.taxonomy": {
     "biocontext": {
       "is_identifiers": true,
@@ -53895,6 +53912,20 @@
       "sampleId": "10.1621/vwN2g2HaX3",
       "uri_format": "https://www.signalingpathways.org/datasets/dataset.jsf?doi=$1"
     }
+  },
+  "sprint": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "SPRINT (Search PRINTS-S) provides an interface to the PRINTS-S database. PRINTS-S is the relational cousin of the PRINTS data bank of protein family fingerprints.",
+    "example": "PR00001",
+    "homepage": "http://130.88.97.239/dbbrowser/sprint/",
+    "name": "Search PRINTS-S",
+    "pattern": "^PR\\d{5}$",
+    "uri_format": "130.88.97.239/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1"
   },
   "srao": {
     "download_owl": "https://raw.githubusercontent.com/FAIRsharing/subject-ontology/master/releases/SRAO.owl",
