@@ -61,6 +61,35 @@ agroportal:
   name: AgroPortal
   prefix: agroportal
   provider_uri_format: http://agroportal.lirmm.fr/ontologies/$1
+biocontext:
+  availability:
+    alternate_providers: missing
+    contact: missing
+    description: missing
+    example: missing
+    fair: true
+    fair_note: null
+    homepage: missing
+    license: missing
+    name: missing
+    pattern: missing
+    provider: present
+    search: false
+    synonyms: missing
+    version: missing
+  contact:
+    email: cjmungall@lbl.gov
+    github: cmungall
+    name: Chris Mungall
+    orcid: 0000-0002-6601-2165
+  description: BioContext contains modular JSON-LD contexts for bioinformatics data.
+  download: https://raw.githubusercontent.com/prefixcommons/biocontext/master/registry/commons_context.jsonld
+  example: CHEBI
+  homepage: https://github.com/prefixcommons/biocontext
+  license: missing
+  name: BioContext
+  prefix: biocontext
+  provider_uri_format: https://bioregistry.io/metaregistry/biocontext/$1
 biolink:
   availability:
     alternate_providers: missing
@@ -575,6 +604,7 @@ prefixcommons:
     search: true
     synonyms: present
     version: missing
+  bioregistry_prefix: prefixcommons
   contact:
     email: michel.dumontier@gmail.com
     github: micheldumontier
@@ -582,7 +612,7 @@ prefixcommons:
     orcid: 0000-0003-4727-9435
   description: A registry of commonly used prefixes in the life sciences and linked
     data
-  download: https://raw.githubusercontent.com/prefixcommons/biocontext/master/registry/commons_context.jsonld
+  download: https://raw.githubusercontent.com/prefixcommons/data-ingest/master/yml/lsregistry.yml
   example: CHEBI
   homepage: https://prefixcommons.org
   license: missing
