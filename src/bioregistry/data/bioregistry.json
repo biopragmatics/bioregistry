@@ -5541,6 +5541,34 @@
       "uri_format": "https://www.brenda-enzymes.org/enzyme.php?ecno=%s&UniProtAcc=%u&OrganismID=%d"
     }
   },
+  "brenda.ligand": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Information for ligands in the BRENDA database.",
+    "example": "278",
+    "homepage": "https://www.brenda-enzymes.de/ligand.php",
+    "name": "BRENDA Ligand",
+    "pattern": "^\\d+$",
+    "uri_format": "https://www.brenda-enzymes.de/ligand.php?brenda_ligand_id=$1"
+  },
+  "brenda.ligandgroup": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Information for ligand groups (chemical classes).",
+    "example": "18030",
+    "homepage": "https://www.brenda-enzymes.de/ligand.php",
+    "name": "BRENDA Ligand Group",
+    "pattern": "^\\d+$",
+    "uri_format": "https://www.brenda-enzymes.de/ligand.php?brenda_group_id=$1"
+  },
   "broad": {
     "biocontext": {
       "is_identifiers": true,
@@ -10836,6 +10864,9 @@
       "pattern": "^DTXSID\\d+$",
       "prefix": "comptox",
       "uri_format": "https://comptox.epa.gov/dashboard/$1"
+    },
+    "wikidata": {
+      "prefix": "P3117"
     }
   },
   "compulyeast": {
@@ -23746,6 +23777,23 @@
     "synonyms": [
       "GR_QTL"
     ]
+  },
+  "gramene.reference": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Literature references in Gramene",
+    "example": "6200",
+    "homepage": "http://www.gramene.org",
+    "name": "Gramene Reference",
+    "pattern": "^\\d+$",
+    "synonyms": [
+      "gramene.ref"
+    ],
+    "uri_format": "http://www.gramene.org/db/literature/pub_search?ref_id=$1"
   },
   "gramene.taxonomy": {
     "biocontext": {
@@ -53865,6 +53913,20 @@
       "uri_format": "https://www.signalingpathways.org/datasets/dataset.jsf?doi=$1"
     }
   },
+  "sprint": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "SPRINT (Search PRINTS-S) provides an interface to the PRINTS-S database. PRINTS-S is the relational cousin of the PRINTS data bank of protein family fingerprints.",
+    "example": "PR00001",
+    "homepage": "http://130.88.97.239/dbbrowser/sprint/",
+    "name": "Search PRINTS-S",
+    "pattern": "^PR\\d{5}$",
+    "uri_format": "130.88.97.239/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1"
+  },
   "srao": {
     "download_owl": "https://raw.githubusercontent.com/FAIRsharing/subject-ontology/master/releases/SRAO.owl",
     "example": "0000400",
@@ -58222,7 +58284,8 @@
     },
     "synonyms": [
       "UPa",
-      "unipathway"
+      "unipathway",
+      "unipathway.pathway"
     ],
     "uniprot": {
       "category": "Enzyme and pathway databases",
@@ -61055,6 +61118,22 @@
       "prefix": "XLMOD"
     },
     "pattern": "^\\d{5}$"
+  },
+  "xmetdb": {
+    "banana": "XMETDB",
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "deprecated": true,
+    "description": "Metabolites in the Xenobiotics Metabolism Database.",
+    "example": "171",
+    "homepage": "https://xmetdb.org",
+    "name": "Xenobiotics Metabolism Database",
+    "pattern": "^\\d+$",
+    "uri_format": "http://www.xmetdb.org/xmetdb/protocol/$1"
   },
   "xml": {
     "biocontext": {
