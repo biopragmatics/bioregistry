@@ -51,9 +51,10 @@ class TestIdentifiersOrg(unittest.TestCase):
                 identifier = bioregistry.get_example(prefix)
                 self.assertIsNotNone(identifier)
                 url = bioregistry.resolve_identifier.get_identifiers_org_iri(prefix, identifier)
-                self.assertIsInstance(url, str)
-                res = self.session.get(url, allow_redirects=False)
-                self.assertEqual(302, res.status_code, msg=f"failed with URL: {url}")
+                if url is not None:
+                    self.assertIsInstance(url, str)
+                    res = self.session.get(url, allow_redirects=False)
+                    self.assertEqual(302, res.status_code, msg=f"failed with URL: {url}")
 
     @unittest.skip
     def test_url_auto(self):
