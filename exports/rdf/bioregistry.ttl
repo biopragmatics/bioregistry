@@ -2680,7 +2680,8 @@ bioregistry:comptox a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:COMPTOX,
         n2t:comptox,
-        miriam:comptox ;
+        miriam:comptox,
+        wikidata:P3117 ;
     foaf:homepage "https://comptox.epa.gov/dashboard"^^xsd:string ;
     bioregistry.schema:0000005 "DTXSID2021028"^^xsd:string ;
     bioregistry.schema:0000006 "https://comptox.epa.gov/dashboard/$1"^^xsd:string ;
@@ -18821,6 +18822,26 @@ bioregistry:bpdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:brenda.ligand a bioregistry.schema:0000001 ;
+    rdfs:label "BRENDA Ligand" ;
+    dc:description "Information for ligands in the BRENDA database."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.brenda-enzymes.de/ligand.php"^^xsd:string ;
+    bioregistry.schema:0000005 "278"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.brenda-enzymes.de/ligand.php?brenda_ligand_id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:brenda.ligandgroup a bioregistry.schema:0000001 ;
+    rdfs:label "BRENDA Ligand Group" ;
+    dc:description "Information for ligand groups (chemical classes)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.brenda-enzymes.de/ligand.php"^^xsd:string ;
+    bioregistry.schema:0000005 "18030"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.brenda-enzymes.de/ligand.php?brenda_group_id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:bs a bioregistry.schema:0000001 ;
     rdfs:label "Biosapiens Protein Feature Ontology" ;
     dc:description "SO is a collaborative ontology project for the definition of sequence features used in biological sequence annotation. It is part of the Open Biomedical Ontologies library."^^xsd:string ;
@@ -20101,6 +20122,16 @@ bioregistry:google.patent a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "US4145692"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.google.com/patents/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Z]{2}\\d+([A-Z])?$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:gramene.reference a bioregistry.schema:0000001 ;
+    rdfs:label "Gramene Reference" ;
+    dc:description "Literature references in Gramene"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "http://www.gramene.org"^^xsd:string ;
+    bioregistry.schema:0000005 "6200"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.gramene.org/db/literature/pub_search?ref_id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:grassbase a bioregistry.schema:0000001 ;
@@ -21821,6 +21852,17 @@ bioregistry:span a bioregistry.schema:0000001 ;
     foaf:homepage "http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:sprint a bioregistry.schema:0000001 ;
+    rdfs:label "Search PRINTS-S" ;
+    dc:description "SPRINT (Search PRINTS-S) provides an interface to the PRINTS-S database. PRINTS-S is the relational cousin of the PRINTS data bank of protein family fingerprints."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch prefixcommons:sprint ;
+    foaf:homepage "http://130.88.97.239/dbbrowser/sprint/"^^xsd:string ;
+    bioregistry.schema:0000005 "PR00001"^^xsd:string ;
+    bioregistry.schema:0000006 "130.88.97.239/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PR\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:ssbd.dataset a bioregistry.schema:0000001 ;
     rdfs:label "System Science of Biological Dynamics dataset" ;
     dc:description "Systems Science of Biological Dynamics database (SSBD:database) is an added-value database for biological dynamics. It provides a rich set of open resources for analyzing quantitative data and microscopy images of biological objects, such as single-molecule, cell, tissue, individual, etc., and software tools for analysis. Quantitative biological data and microscopy images are collected from a variety of species, sources, and methods. These include data obtained from both experiments and computational simulations."^^xsd:string ;
@@ -22249,6 +22291,16 @@ bioregistry:ximbio a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://ximbio.com/reagent/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:xmetdb a bioregistry.schema:0000001 ;
+    rdfs:label "Xenobiotics Metabolism Database" ;
+    dc:description "Metabolites in the Xenobiotics Metabolism Database."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://xmetdb.org"^^xsd:string ;
+    bioregistry.schema:0000005 "171"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.xmetdb.org/xmetdb/protocol/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 true .
 
 bioregistry:xml a bioregistry.schema:0000001 ;
     rdfs:label "Extensible Markup Language" ;
@@ -24001,6 +24053,8 @@ prefixcommons:snomedct dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 prefixcommons:so dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:spd dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:sprint dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:stitch dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -26467,6 +26521,8 @@ wikidata:P2871 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P2892 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P2926 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P3117 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3201 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -29020,6 +29076,8 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:biozil,
         bioregistry:bmrb.restraint,
         bioregistry:bpdb,
+        bioregistry:brenda.ligand,
+        bioregistry:brenda.ligandgroup,
         bioregistry:bs,
         bioregistry:caloha,
         bioregistry:cba,
@@ -29069,6 +29127,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:go.resource,
         bioregistry:goche,
         bioregistry:goeco,
+        bioregistry:gramene.reference,
         bioregistry:grassbase,
         bioregistry:gsfa,
         bioregistry:gtr,
@@ -29146,6 +29205,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:snap,
         bioregistry:snornabase,
         bioregistry:span,
+        bioregistry:sprint,
         bioregistry:ssbd.project,
         bioregistry:syoid,
         bioregistry:tgn,
@@ -29164,6 +29224,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:vuid,
         bioregistry:webelements,
         bioregistry:ximbio,
+        bioregistry:xmetdb,
         bioregistry:xml,
         bioregistry:xuo,
         bioregistry:ymdb .
@@ -29763,6 +29824,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P2871,
         wikidata:P2892,
         wikidata:P2926,
+        wikidata:P3117,
         wikidata:P3201,
         wikidata:P3289,
         wikidata:P3345,
@@ -31340,6 +31402,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:snomedct,
         prefixcommons:so,
         prefixcommons:spd,
+        prefixcommons:sprint,
         prefixcommons:stitch,
         prefixcommons:string,
         prefixcommons:subtilist,
@@ -34387,6 +34450,8 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:bootstrep,
         bioregistry:bpdb,
         bioregistry:brenda,
+        bioregistry:brenda.ligand,
+        bioregistry:brenda.ligandgroup,
         bioregistry:broad,
         bioregistry:bs,
         bioregistry:bspo,
@@ -34797,6 +34862,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:gramene.growthstage,
         bioregistry:gramene.protein,
         bioregistry:gramene.qtl,
+        bioregistry:gramene.reference,
         bioregistry:gramene.taxonomy,
         bioregistry:grassbase,
         bioregistry:greengenes,
@@ -35436,6 +35502,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:spike.map,
         bioregistry:splash,
         bioregistry:spp,
+        bioregistry:sprint,
         bioregistry:srao,
         bioregistry:ssbd.dataset,
         bioregistry:ssbd.project,
@@ -35586,6 +35653,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ximbio,
         bioregistry:xl,
         bioregistry:xlmod,
+        bioregistry:xmetdb,
         bioregistry:xml,
         bioregistry:xpo,
         bioregistry:xsd,

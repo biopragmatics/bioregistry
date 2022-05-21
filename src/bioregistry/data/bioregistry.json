@@ -53923,8 +53923,27 @@
     "description": "SPRINT (Search PRINTS-S) provides an interface to the PRINTS-S database. PRINTS-S is the relational cousin of the PRINTS data bank of protein family fingerprints.",
     "example": "PR00001",
     "homepage": "http://130.88.97.239/dbbrowser/sprint/",
+    "mappings": {
+      "prefixcommons": "sprint"
+    },
     "name": "Search PRINTS-S",
     "pattern": "^PR\\d{5}$",
+    "prefixcommons": {
+      "description": "SPRINT provides search access to the data bank of protein family fingerprints (PRINTS).",
+      "example": "PR00001",
+      "homepage": "http://www.bioinf.manchester.ac.uk/dbbrowser/sprint/",
+      "keywords": [
+        "domain",
+        "protein"
+      ],
+      "name": "SPRINT",
+      "pattern": "^PR\\d{5}$",
+      "prefix": "sprint",
+      "pubmed_ids": [
+        "10592232"
+      ],
+      "uri_format": "http://www.bioinf.manchester.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?prints_accn=$1&display_opts=Prints&category=None&queryform=false&regexpr=off"
+    },
     "uri_format": "130.88.97.239/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1"
   },
   "srao": {
