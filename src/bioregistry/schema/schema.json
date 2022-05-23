@@ -396,8 +396,8 @@
           "title": "N2T",
           "type": "object"
         },
-        "biocontext": {
-          "title": "Biocontext",
+        "prefixcommons": {
+          "title": "Prefixcommons",
           "type": "object"
         },
         "wikidata": {
@@ -446,6 +446,10 @@
         },
         "fairsharing": {
           "title": "Fairsharing",
+          "type": "object"
+        },
+        "biocontext": {
+          "title": "Biocontext",
           "type": "object"
         }
       },
@@ -633,6 +637,55 @@
         "fair"
       ]
     },
+    "RegistryGovernance": {
+      "title": "RegistryGovernance",
+      "description": "Metadata about a registry's governance.",
+      "type": "object",
+      "properties": {
+        "curation": {
+          "title": "Curation",
+          "enum": [
+            "private",
+            "import",
+            "community",
+            "opaque-review",
+            "open-review"
+          ],
+          "type": "string"
+        },
+        "comments": {
+          "title": "Comments",
+          "type": "string"
+        },
+        "accepts_external_contributions": {
+          "title": "Accepts External Contributions",
+          "description": "Does the registry (in theory) accept external contributions, either via suggestion or proactive improvement? This field does not pass judgement on the difficult of this process from the perspective of the submitter nor the responsiveness of the registry.",
+          "type": "boolean"
+        },
+        "public_version_control": {
+          "title": "Public Version Control",
+          "description": "Does the registry store its data in publicly available version control system, such as GitHub or GitLab?",
+          "type": "boolean"
+        },
+        "review_team": {
+          "title": "Review Team",
+          "description": "Are the reviewers for external contributions known? If there's a well-defined, maintained listing, then it can be marked as public. If it can be inferred, e.g., from a version control system, then it can be marked as inferrable. A closed review team, e.g., like for Identifiers.org can be marked as private. Resources that do not accept external contributions can be marked with N/A.",
+          "enum": [
+            "public",
+            "inferrable",
+            "private",
+            "n/a"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "curation",
+        "accepts_external_contributions",
+        "public_version_control",
+        "review_team"
+      ]
+    },
     "Registry": {
       "title": "Registry",
       "description": "Metadata about a registry.",
@@ -669,6 +722,15 @@
           "allOf": [
             {
               "$ref": "#/definitions/RegistrySchema"
+            }
+          ]
+        },
+        "governance": {
+          "title": "Governance",
+          "description": "A structured description of the governance for the registry",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RegistryGovernance"
             }
           ]
         },
@@ -729,6 +791,7 @@
         "homepage",
         "example",
         "availability",
+        "governance",
         "contact"
       ]
     },

@@ -1290,9 +1290,23 @@ class RegistryGovernance(BaseModel):
     """Metadata about a registry's governance."""
 
     curation: CurationType
-    accepts_external_contributions: bool
-    public_version_control: bool
     comments: Optional[str]
+    accepts_external_contributions: bool = Field(
+        description="Does the registry (in theory) accept external contributions, either via suggestion or"
+        " proactive improvement? This field does not pass judgement on the difficult of this"
+        " process from the perspective of the submitter nor the responsiveness of the registry."
+    )
+    public_version_control: bool = Field(
+        description="Does the registry store its data in publicly available version control"
+        " system, such as GitHub or GitLab?"
+    )
+    review_team: Literal["public", "inferrable", "private", "n/a"] = Field(
+        description="Are the reviewers for external contributions known? If there's a well-defined,"
+        " maintained listing, then it can be marked as public. If it can be inferred, e.g., from a"
+        " version control system, then it can be marked as inferrable. A closed review team, e.g.,"
+        " like for Identifiers.org can be marked as private. Resources that do not accept external"
+        " contributions can be marked with N/A."
+    )
 
 
 class RegistrySchema(BaseModel):
