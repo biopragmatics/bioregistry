@@ -1290,6 +1290,7 @@ class RegistryGovernance(BaseModel):
     """Metadata about a registry's governance."""
 
     curation: CurationType
+    scope: str
     comments: Optional[str]
     accepts_external_contributions: bool = Field(
         description="Does the registry (in theory) accept external contributions, either via suggestion or"

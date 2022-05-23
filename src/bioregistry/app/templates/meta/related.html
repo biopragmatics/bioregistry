@@ -111,6 +111,7 @@
             <th>Accepts Contributions</th>
             <th>Publicly Version Controlled</th>
             <th>Review Team</th>
+            <th>Scope</th>
         </tr>
         </thead>
         <tbody>
@@ -120,6 +121,7 @@
                 <td style="text-align: center;">{{ render_circle(registry.governance.accepts_external_contributions) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.governance.public_version_control) }}</td>
                 <td>{{ registry.governance.review_team }}</td>
+                <td>{{ registry.governance.scope }}</td>
             </tr>
         {% endfor %}
         </tbody>
