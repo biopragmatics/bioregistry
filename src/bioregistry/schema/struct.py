@@ -1176,6 +1176,10 @@ class Resource(BaseModel):
         >>> get_resource("pdb").miriam_standardize_identifier('00000020')
         '00000020'
         """
+        if not self.get_miriam_uri_prefix():
+            # No need to normalize for MIRIAM if it's not listed there
+            return identifier
+
         # A "banana" is an embedded prefix that isn't actually part of the identifier.
         # Usually this corresponds to the prefix itself, with some specific stylization
         # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
