@@ -18550,6 +18550,15 @@ bioregistry:aeo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:ehdaa2 ;
     bioregistry.schema:0000019 [ rdfs:label "Jonathan Bard" ] .
 
+bioregistry:agilent.probe a bioregistry.schema:0000001 ;
+    rdfs:label "Agilent Probe" ;
+    dc:description "This is the Agilent SurePrint G3 Human GE v2 8x60k Microarray, Agilent design ID 039494, GridName 039494_D_F_20120628. Probe layout is 1 x 1 x 384 rows x 164 cols, which is different from a similar ADF A-GEOD-16699 (1 x 1 x 328 rows x 192 cols). Version 2 of this array  contains long intergenic non-coding RNA (lincRNA) probes designed to the human catalog of lincRNAs from the Broad Institute, along with an update of mRNA content when compared to version 1. Probes were designed using GRCh37 assembly of the human genome. Annotation of probes came from the following database: RefSeq Build 50, Ensembl Release 52, Unigene Build 216, GenBank (April 2009), Broad Institute Human lincRNA catalog (Nov 2011), Broad Institute TUCP transcripts catalog (Nov 2011).  Probe annotation was taken from A-GEOD-16699."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.ebi.ac.uk/arrayexpress/files/A-MEXP-2320/A-MEXP-2320.adf.txt"^^xsd:string ;
+    bioregistry.schema:0000005 "A_24_P98555"^^xsd:string ;
+    bioregistry.schema:0000008 "^A_\\d+_.+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:alzforum.mutation a bioregistry.schema:0000001 ;
     rdfs:label "Alzforum Mutations" ;
     dc:description "Alzforum mutations is a repository of genes and rare variants associated with Alzheimer's disease."^^xsd:string ;
@@ -19121,6 +19130,15 @@ bioregistry:coconut a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^CNP\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:codelink a bioregistry.schema:0000001 ;
+    rdfs:label "GE Healthcare/Amersham Biosciences CodeLink Human Whole Genome Bioarray" ;
+    dc:description "GE Healthcare/Amersham Biosciences CodeLink? Human Whole Genome Bioarray targets most of the known and predictive genes of the human genome as it is described today in the public domain. It is comprised of approximately 55,000 30-mer probes designed to conserved exons across the transcripts of targeted genes. These 55,000 probes represent well annotated, full length, and partial human gene sequences from major public databases. GE Healthcare/Amersham Biosciences CodeLink? Human Whole Genome Bioarray probe sequences were selected from the NCBI UniGene build #165, RefSeq database (January 5, 2004 release) and dbEST database (January 8, 2004 release)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.ebi.ac.uk/arrayexpress/files/A-GEHB-1/A-GEHB-1.adf.txt"^^xsd:string ;
+    bioregistry.schema:0000005 "GE86325"^^xsd:string ;
+    bioregistry.schema:0000008 "^GE\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:cog.pathway a bioregistry.schema:0000001 ;
     rdfs:label "COG Pathways" ;
@@ -20413,6 +20431,15 @@ bioregistry:idr a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0001"^^xsd:string ;
     bioregistry.schema:0000006 "https://idr.openmicroscopy.org/search/?query=Name:idr$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[0-9]{4}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:illumina.probe a bioregistry.schema:0000001 ;
+    rdfs:label "Illumina Probe Identifier" ;
+    dc:description "Illumina probe identifiers for microarrays, such as those in Illumina HumanRef-6 v2.0 expression beadchip."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.ebi.ac.uk/arrayexpress/files/A-GEOD-6790/A-GEOD-6790.adf.txt"^^xsd:string ;
+    bioregistry.schema:0000005 "ILMN_129894"^^xsd:string ;
+    bioregistry.schema:0000008 "^ILMN_\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:imdrf a bioregistry.schema:0000001 ;
@@ -29060,6 +29087,7 @@ bioregistry:chebi a bioregistry.schema:0000001 ;
 orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
     dcterms:contributor bioregistry:4dn.replicate,
         bioregistry:ac,
+        bioregistry:agilent.probe,
         bioregistry:alzforum.mutation,
         bioregistry:asrp,
         bioregistry:bactibase,
@@ -29088,6 +29116,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:chembl.cell,
         bioregistry:citexplore,
         bioregistry:cmecs,
+        bioregistry:codelink,
         bioregistry:cog.category,
         bioregistry:cohd,
         bioregistry:come,
@@ -29136,6 +29165,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:hog,
         bioregistry:icepo,
         bioregistry:idpo,
+        bioregistry:illumina.probe,
         bioregistry:imdrf,
         bioregistry:inhand,
         bioregistry:iro,
@@ -34339,6 +34369,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:affy.probeset,
         bioregistry:afo,
         bioregistry:aftol.taxonomy,
+        bioregistry:agilent.probe,
         bioregistry:agricola,
         bioregistry:agro,
         bioregistry:agrovoc,
@@ -34565,6 +34596,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:co_366,
         bioregistry:cob,
         bioregistry:coconut,
+        bioregistry:codelink,
         bioregistry:cog,
         bioregistry:cog.category,
         bioregistry:cog.pathway,
@@ -34952,6 +34984,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:igsn,
         bioregistry:igsr,
         bioregistry:ihw,
+        bioregistry:illumina.probe,
         bioregistry:imanis,
         bioregistry:imdrf,
         bioregistry:imex,

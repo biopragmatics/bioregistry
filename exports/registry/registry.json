@@ -301,6 +301,23 @@
     "preferred_prefix": "aftol.taxonomy",
     "uri_format": "http://wasabi.lutzonilab.net/pub/displayTaxonInfo?aftol_id=$1"
   },
+  "agilent.probe": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "This is the Agilent SurePrint G3 Human GE v2 8x60k Microarray, Agilent design ID 039494, GridName 039494_D_F_20120628. Probe layout is 1 x 1 x 384 rows x 164 cols, which is different from a similar ADF A-GEOD-16699 (1 x 1 x 328 rows x 192 cols). Version 2 of this array  contains long intergenic non-coding RNA (lincRNA) probes designed to the human catalog of lincRNAs from the Broad Institute, along with an update of mRNA content when compared to version 1. Probes were designed using GRCh37 assembly of the human genome. Annotation of probes came from the following database: RefSeq Build 50, Ensembl Release 52, Unigene Build 216, GenBank (April 2009), Broad Institute Human lincRNA catalog (Nov 2011), Broad Institute TUCP transcripts catalog (Nov 2011).  Probe annotation was taken from A-GEOD-16699.",
+    "example": "A_24_P98555",
+    "homepage": "https://www.ebi.ac.uk/arrayexpress/files/A-MEXP-2320/A-MEXP-2320.adf.txt",
+    "name": "Agilent Probe",
+    "pattern": "^A_\\d+_.+$",
+    "preferred_prefix": "agilent.probe",
+    "references": [
+      "http://www.cs.tau.ac.il/cgi-bin/cgiwrap/click/get.cgi/conversionFiles/conversion_human_14850_agilent2entrez.txt"
+    ]
+  },
   "agricola": {
     "description": "AGRICOLA (AGRICultural OnLine Access) serves as the catalog and index to the collections of the National Agricultural Library, as well as a primary public source for world-wide access to agricultural information. The database covers materials in all formats and periods, including printed works from as far back as the 15th century.",
     "example": "50018",
@@ -4499,6 +4516,24 @@
     },
     "uri_format": "https://coconut.naturalproducts.net/compound/coconut_id/$1"
   },
+  "codelink": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "GE Healthcare/Amersham Biosciences CodeLink? Human Whole Genome Bioarray targets most of the known and predictive genes of the human genome as it is described today in the public domain. It is comprised of approximately 55,000 30-mer probes designed to conserved exons across the transcripts of targeted genes. These 55,000 probes represent well annotated, full length, and partial human gene sequences from major public databases. GE Healthcare/Amersham Biosciences CodeLink? Human Whole Genome Bioarray probe sequences were selected from the NCBI UniGene build #165, RefSeq database (January 5, 2004 release) and dbEST database (January 8, 2004 release).",
+    "example": "GE86325",
+    "homepage": "https://www.ebi.ac.uk/arrayexpress/files/A-GEHB-1/A-GEHB-1.adf.txt",
+    "name": "GE Healthcare/Amersham Biosciences CodeLink Human Whole Genome Bioarray",
+    "pattern": "^GE\\d+$",
+    "preferred_prefix": "codelink",
+    "references": [
+      "https://www.ebi.ac.uk/arrayexpress/files/A-GEOD-8060/A-GEOD-8060.adf.txt",
+      "https://www.ebi.ac.uk/arrayexpress/files/A-GEHB-1/A-GEHB-1.adf.txt"
+    ]
+  },
   "cog": {
     "contact": {
       "email": "cogs@ncbi.nlm.nih.gov",
@@ -7478,6 +7513,13 @@
         "homepage": "https://gnomad.broadinstitute.org",
         "name": "Genome Aggregation database",
         "uri_format": "https://gnomad.broadinstitute.org/gene/$1"
+      },
+      {
+        "code": "opentargets.genetics",
+        "description": "Open Targets Genetics is a comprehensive tool highlighting variant-centric statistical evidence to allow both prioritisation of candidate causal variants at trait-associated loci and identification of potential drug targets.",
+        "homepage": "https://genetics.opentargets.org",
+        "name": "OpenTargets Genetics",
+        "uri_format": "https://genetics.opentargets.org/gene/$1"
       },
       {
         "code": "CURATOR_REVIEW",
@@ -11894,6 +11936,23 @@
     "name": "International Histocompatibility Workshop cell lines",
     "pattern": "^IHW\\d+$",
     "preferred_prefix": "ihw"
+  },
+  "illumina.probe": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Illumina probe identifiers for microarrays, such as those in Illumina HumanRef-6 v2.0 expression beadchip.",
+    "example": "ILMN_129894",
+    "homepage": "https://www.ebi.ac.uk/arrayexpress/files/A-GEOD-6790/A-GEOD-6790.adf.txt",
+    "name": "Illumina Probe Identifier",
+    "pattern": "^ILMN_\\d+$",
+    "preferred_prefix": "illumina.probe",
+    "references": [
+      "https://www.ebi.ac.uk/arrayexpress/files/A-GEOD-9184/A-GEOD-9184_comments.txt"
+    ]
   },
   "imanis": {
     "description": "Cell line collections",
@@ -20872,6 +20931,9 @@
     "name": "RAP-DB Locus",
     "pattern": "^Os\\S+g\\d{7}$",
     "preferred_prefix": "rapdb.locus",
+    "synonyms": [
+      "irgsp"
+    ],
     "uri_format": "https://rapdb.dna.affrc.go.jp/viewer/gbrowse_details/irgsp1?name=$1"
   },
   "rapdb.transcript": {
