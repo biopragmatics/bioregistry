@@ -1283,15 +1283,16 @@ schema_score_map = {
     "irrelevant*": 0,
 }
 
-CurationType = Literal[
-    "private", "imports", "community", "opaque-review", "open-review"
-]
+CurationType = Literal["private", "import", "community", "opaque-review", "open-review"]
+
 
 class RegistryGovernance(BaseModel):
     """Metadata about a registry's governance."""
 
     curation: CurationType
+    accepts_external_contributions: bool
     public_version_control: bool
+    comments: Optional[str]
 
 
 class RegistrySchema(BaseModel):
