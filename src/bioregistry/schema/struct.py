@@ -1176,7 +1176,7 @@ class Resource(BaseModel):
         >>> get_resource("pdb").miriam_standardize_identifier('00000020')
         '00000020'
         """
-        if not self.get_miriam_uri_prefix():
+        if not self.get_identifiers_org_prefix():
             # No need to normalize for MIRIAM if it's not listed there
             return identifier
 
