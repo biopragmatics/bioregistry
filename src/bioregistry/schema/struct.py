@@ -1283,6 +1283,16 @@ schema_score_map = {
     "irrelevant*": 0,
 }
 
+CurationType = Literal[
+    "private", "imports", "community", "opaque-review", "open-review"
+]
+
+class RegistryGovernance(BaseModel):
+    """Metadata about a registry's governance."""
+
+    curation: CurationType
+    public_version_control: bool
+
 
 class RegistrySchema(BaseModel):
     """Metadata about a registry's schema."""
@@ -1346,6 +1356,9 @@ class Registry(BaseModel):
     example: str = Field(..., description="An example prefix inside the registry.")
     availability: RegistrySchema = Field(
         ..., description="A structured description of the metadata that the registry collects"
+    )
+    governance: RegistryGovernance = Field(
+        ..., description="A structured description of the governance for the registry"
     )
     download: Optional[str] = Field(
         description="A download link for the data contained in the registry"
