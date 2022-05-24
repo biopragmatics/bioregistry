@@ -10757,6 +10757,18 @@ hgnc:
     homepage: https://db.indra.bio
     name: INDRA Database
     uri_format: https://db.indra.bio/statements/from_agents?&format=html&agent0=$1@HGNC
+  - code: gencc
+    description: The GenCC DB provides information pertaining to the validity of gene-disease
+      relationships, with a current focus on Mendelian diseases. Curated gene-disease
+      relationships are submitted by GenCC member organizations. The GenCC comprises
+      organizations that currently provide online resources (e.g. ClinGen, DECIPHER,
+      Genomics England PanelApp, OMIM, Orphanet, PanelApp Australia, TGMI’s G2P),
+      as well as diagnostic laboratories that have committed to sharing their internal
+      curated gene-level knowledge (e.g. Ambry, Illumina, Invitae, Myriad Women’s
+      Health, Mass General Brigham Laboratory for Molecular Medicine).
+    homepage: https://thegencc.org
+    name: The Gene Curation Coalition
+    uri_format: https://search.thegencc.org/genes/HGNC:$1
   uri_format: https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1
 hgnc.genefamily:
   deprecated: true
@@ -24404,6 +24416,7 @@ uniprot.disease:
     orcid: 0000-0003-4423-4370
   description: The human diseases in which proteins are involved are described in
     UniProtKB entries with a controlled vocabulary.
+  download_obo: https://www.uniprot.org/diseases/?query=*&format=obo
   example: '04240'
   homepage: https://www.uniprot.org/diseases/
   name: UniProt Diseases
@@ -24449,6 +24462,7 @@ uniprot.isoform:
 uniprot.keyword:
   description: UniProtKB entries are tagged with keywords that can be used to retrieve
     particular subsets of entries.
+  download_obo: https://www.uniprot.org/keywords/?format=obo
   example: '1273'
   homepage: http://www.uniprot.org/keywords/
   mappings:
@@ -24466,6 +24480,7 @@ uniprot.location:
   description: The subcellular locations in which a protein is found are described
     in UniProtKB entries with a controlled vocabulary, which includes also membrane
     topology and orientation terms.
+  download_obo: https://www.uniprot.org/locations/?query=*&format=obo
   example: '0002'
   homepage: https://www.uniprot.org/locations/
   mappings:
