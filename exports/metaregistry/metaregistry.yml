@@ -26,6 +26,14 @@ aberowl:
     biological datasets.
   download: http://aber-owl.net/api/ontology/?format=json
   example: CHEBI
+  governance:
+    accepts_external_contributions: false
+    comments: null
+    curation: import
+    public_version_control: false
+    review_team: n/a
+    scope: bio-ontologies
+    status: active
   homepage: http://aber-owl.net
   license: See https://github.com/biopragmatics/bioregistry/issues/339
   name: AberOWL
@@ -56,6 +64,14 @@ agroportal:
     orcid: 0000-0002-2404-1582
   description: A vocabulary and ontology repository for agronomy and related domains.
   example: ENVO
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: opaque-review
+    public_version_control: false
+    review_team: private
+    scope: agro-ontologies
+    status: active
   homepage: http://agroportal.lirmm.fr
   license: See https://github.com/biopragmatics/bioregistry/issues/336
   name: AgroPortal
@@ -85,6 +101,14 @@ biocontext:
   description: BioContext contains modular JSON-LD contexts for bioinformatics data.
   download: https://raw.githubusercontent.com/prefixcommons/biocontext/master/registry/commons_context.jsonld
   example: CHEBI
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: open-review
+    public_version_control: true
+    review_team: inferrable
+    scope: internal
+    status: active
   homepage: https://github.com/prefixcommons/biocontext
   license: missing
   name: BioContext
@@ -115,6 +139,14 @@ biolink:
   description: A modeling paradigm-specific registry of prefixes and their URL expansions
   download: https://raw.githubusercontent.com/biolink/biolink-model/master/biolink-model.yaml
   example: doi
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: open-review
+    public_version_control: true
+    review_team: inferrable
+    scope: internal
+    status: active
   homepage: https://github.com/biolink/biolink-model
   license: Apache 2.0
   name: Biolink Model Registry
@@ -145,6 +177,14 @@ bioportal:
   description: The BioPortal is a less stringent registry of biomedical ontologies
     than the OBO Foundry
   example: CHEBI
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: opaque-review
+    public_version_control: false
+    review_team: private
+    scope: bio-ontologies
+    status: active
   homepage: https://bioportal.bioontology.org/
   license: See https://github.com/biopragmatics/bioregistry/issues/337
   name: BioPortal Prefixes
@@ -177,6 +217,14 @@ bioregistry:
     ontologies, and nomenclatures that is backed by an open database.
   download: https://bioregistry.io/api/registry/
   example: chebi
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: open-review
+    public_version_control: true
+    review_team: public
+    scope: life sciences
+    status: active
   homepage: https://bioregistry.io
   license: CC0
   name: Bioregistry
@@ -208,6 +256,14 @@ cellosaurus:
     orcid: 0000-0003-2826-6444
   description: The set of prefixes used in the Cellosaurus resource
   example: 4DN
+  governance:
+    accepts_external_contributions: false
+    comments: null
+    curation: private
+    public_version_control: false
+    review_team: n/a
+    scope: internal
+    status: active
   homepage: https://web.expasy.org/cellosaurus/
   license: CC BY 4.0
   name: Cellosaurus Registry
@@ -237,6 +293,14 @@ cheminf:
     orcid: 0000-0001-7542-0286
   description: Contains entries for various database identifiers
   example: '000140'
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: open-review
+    public_version_control: true
+    review_team: inferrable
+    scope: chemistry
+    status: unresponsive
   homepage: https://github.com/semanticchemistry/semanticchemistry
   license: CC BY 3.0
   name: Chemical Information Ontology
@@ -270,11 +334,20 @@ cropoct:
     terms
   download: https://github.com/bioversity/Crop-Ontology/blob/master/public/dump.json
   example: CO_010
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: opaque-review
+    public_version_control: false
+    review_team: public
+    scope: agro-ontologies
+    status: active
   homepage: https://www.cropontology.org
   license: CC BY 4.0
   name: Crop Ontology Curation Tool
   prefix: cropoct
   provider_uri_format: https://www.cropontology.org/ontology/$1
+  short_name: Crop OCT
 ecoportal:
   availability:
     alternate_providers: irrelevant
@@ -299,6 +372,14 @@ ecoportal:
   description: The LifeWatch ERIC repository of semantic resources for the ecological
     domain.
   example: ALIENSPECIES
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: opaque-review
+    public_version_control: false
+    review_team: private
+    scope: eco-ontologies
+    status: active
   homepage: http://ecoportal.lifewatch.eu
   license: See https://github.com/biopragmatics/bioregistry/issues/338
   name: EcoPortal
@@ -329,6 +410,14 @@ fairsharing:
   description: A curated, informative and educational resource on data and metadata
     standards, inter-related to databases and data policies.
   example: FAIRsharing.62qk8w
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: opaque-review
+    public_version_control: false
+    review_team: private
+    scope: life sciences
+    status: active
   homepage: https://fairsharing.org/
   license: CC BY-SA 4.0
   logo_url: https://api.fairsharing.org/img/fairsharing-attribution.svg
@@ -360,6 +449,14 @@ go:
   description: A database-specific registry supporting curation in the Gene Ontology
   download: https://raw.githubusercontent.com/geneontology/go-site/master/metadata/db-xrefs.yaml
   example: CHEBI
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: open-review
+    public_version_control: true
+    review_team: inferrable
+    scope: internal
+    status: inactive
   homepage: http://geneontology.org/
   license: CC BY 4.0
   name: Gene Ontology Registry
@@ -392,6 +489,14 @@ miriam:
     assigned unique prefix and a local provider designated accession number (prefix:accession).
   download: https://registry.api.identifiers.org/resolutionApi/getResolverDataset
   example: chebi
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: opaque-review
+    public_version_control: false
+    review_team: private
+    scope: life sciences
+    status: unresponsive
   homepage: https://identifiers.org
   license: CC BY 4.0
   logo_url: https://identifiers.org/identifiers_logo.c7cbd962.png
@@ -426,6 +531,14 @@ n2t:
     Identifiers.org
   download: https://n2t.net/e/n2t_full_prefixes.yaml
   example: chebi
+  governance:
+    accepts_external_contributions: false
+    comments: null
+    curation: import
+    public_version_control: false
+    review_team: n/a
+    scope: life sciences
+    status: active
   homepage: https://n2t.net
   license: CC0
   logo_url: https://n2t.net/e/images/n2t_net_logo.png
@@ -459,6 +572,14 @@ ncbi:
   description: A database-specific registry supporting curation in the NCBI GenBank
     and related NCBI resources
   example: ECOCYC
+  governance:
+    accepts_external_contributions: false
+    comments: null
+    curation: private
+    public_version_control: false
+    review_team: n/a
+    scope: internal
+    status: inactive
   homepage: https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/
   license: See https://github.com/biopragmatics/bioregistry/issues/342
   name: National Center for Biotechnology Information Registry
@@ -489,6 +610,14 @@ obofoundry:
     ontologies that are both logically well-formed and scientifically accurate.
   download: http://www.obofoundry.org/registry/ontologies.yml
   example: chebi
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: open-review
+    public_version_control: true
+    review_team: public
+    scope: bio-ontologies
+    status: active
   homepage: http://www.obofoundry.org/
   license: CC0
   logo_url: https://obofoundry.org/images/foundrylogo.png
@@ -521,6 +650,14 @@ ols:
   description: 'The Ontology Lookup Service (OLS) is a repository for biomedical ontologies
     that aims to provide a single point of access to the latest ontology versions. '
   example: chebi
+  governance:
+    accepts_external_contributions: true
+    comments: Accepts suggestions through the OLS issue tracker at https://github.com/EBISPOT/OLS/issues
+    curation: import
+    public_version_control: false
+    review_team: inferrable
+    scope: bio-ontologies
+    status: active
   homepage: https://www.ebi.ac.uk/ols
   license: See https://github.com/biopragmatics/bioregistry/issues/340
   logo_url: https://www.ebi.ac.uk/ols/img/OLS_logo_2017.png
@@ -549,9 +686,17 @@ ontobee:
     github: yongqunh
     name: Yongqun Oliver He
     orcid: 0000-0001-9189-9661
-  description: ' Ontobee is aimed to facilitate ontology data sharing, visualization,
-    query, integration, and analysis.'
+  description: Ontobee is aimed to facilitate ontology data sharing, visualization,
+    query, integration, and analysis.
   example: AGRO
+  governance:
+    accepts_external_contributions: false
+    comments: null
+    curation: import
+    public_version_control: false
+    review_team: n/a
+    scope: bio-ontologies
+    status: active
   homepage: http://www.ontobee.org/
   license: See https://github.com/biopragmatics/bioregistry/issues/341
   name: OntoBee
@@ -583,6 +728,14 @@ prefixcc:
   description: A web-developer centric archive of prefixes and URI prefixes
   download: https://prefix.cc/context.jsonld
   example: foaf
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: community
+    public_version_control: true
+    review_team: n/a
+    scope: general
+    status: active
   homepage: https://prefix.cc/
   license: CC0
   name: Prefix.cc
@@ -614,6 +767,14 @@ prefixcommons:
     data
   download: https://raw.githubusercontent.com/prefixcommons/data-ingest/master/yml/lsregistry.yml
   example: CHEBI
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: community
+    public_version_control: false
+    review_team: public
+    scope: life sciences
+    status: active
   homepage: https://prefixcommons.org
   license: missing
   name: Prefix Commons
@@ -644,6 +805,14 @@ scholia:
     orcid: 0000-0001-6128-3356
   description: A frontend to Wikidata
   example: doi
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: open-review
+    public_version_control: true
+    review_team: inferrable
+    scope: life sciences
+    status: active
   homepage: https://scholia.toolforge.org/
   license: CC0
   name: Scholia
@@ -677,6 +846,14 @@ uniprot:
     databases and genomics and proteomics resources.
   download: https://www.uniprot.org/database/?format=rdf
   example: '0174'
+  governance:
+    accepts_external_contributions: false
+    comments: null
+    curation: private
+    public_version_control: false
+    review_team: n/a
+    scope: internal
+    status: active
   homepage: https://www.uniprot.org/database/
   license: CC BY 4.0
   name: UniProt Cross-ref database
@@ -708,6 +885,14 @@ wikidata:
   description: An open, community-curated knowledgebase that contains several properties
     corresponding to resources listed in other biomedical registries.
   example: P683
+  governance:
+    accepts_external_contributions: true
+    comments: null
+    curation: open-review
+    public_version_control: false
+    review_team: inferrable
+    scope: general
+    status: active
   homepage: https://www.wikidata.org
   license: CC0
   logo_url: https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg

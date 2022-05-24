@@ -20142,6 +20142,24 @@ bioregistry:google.patent a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[A-Z]{2}\\d+([A-Z])?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:graingenes.reference a bioregistry.schema:0000001 ;
+    rdfs:label "GrainGenes" ;
+    dc:description "A database for Triticeae and Avena references."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "http://wheat.pw.usda.gov"^^xsd:string ;
+    bioregistry.schema:0000005 "WGS-95-1333"^^xsd:string ;
+    bioregistry.schema:0000006 "https://wheat.pw.usda.gov/cgi-bin/GG3/report.cgi?class=reference&name=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:graingenes.symbol a bioregistry.schema:0000001 ;
+    rdfs:label "GrainGenes" ;
+    dc:description "A database for Triticeae and Avena gene symbols."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "http://wheat.pw.usda.gov"^^xsd:string ;
+    bioregistry.schema:0000005 "1-FEH+w3"^^xsd:string ;
+    bioregistry.schema:0000006 "http://wheat.pw.usda.gov/report?class=gene;name=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:gramene.reference a bioregistry.schema:0000001 ;
     rdfs:label "Gramene Reference" ;
     dc:description "Literature references in Gramene"^^xsd:string ;
@@ -29156,6 +29174,8 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:go.resource,
         bioregistry:goche,
         bioregistry:goeco,
+        bioregistry:graingenes.reference,
+        bioregistry:graingenes.symbol,
         bioregistry:gramene.reference,
         bioregistry:grassbase,
         bioregistry:gsfa,
@@ -30078,7 +30098,7 @@ bioregistry.metaresource:go a bioregistry.schema:0000002 ;
 
 bioregistry.metaresource:ontobee a bioregistry.schema:0000002 ;
     rdfs:label "OntoBee" ;
-    dc:description " Ontobee is aimed to facilitate ontology data sharing, visualization, query, integration, and analysis." ;
+    dc:description "Ontobee is aimed to facilitate ontology data sharing, visualization, query, integration, and analysis." ;
     dcterms:hasPart ontobee:AEO,
         ontobee:AGRO,
         ontobee:AISM,
@@ -34890,6 +34910,8 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:gorel,
         bioregistry:gpcrdb,
         bioregistry:gpmdb,
+        bioregistry:graingenes.reference,
+        bioregistry:graingenes.symbol,
         bioregistry:gramene.gene,
         bioregistry:gramene.growthstage,
         bioregistry:gramene.protein,
