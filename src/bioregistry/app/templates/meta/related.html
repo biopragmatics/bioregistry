@@ -6,6 +6,12 @@
     {{ schema_status_map[value] }}
 {% endmacro %}
 
+{% macro registry_field_dl(cls, key) -%}
+    {% set field = cls.__fields__[key].field_info %}
+    <dt>{{ field.title or key.replace("_", " ").title() }}</dt>
+    <dd>{{ field.description }}</dd>
+{% endmacro %}
+
 {% block styles %}
     {{ super() }}
     <!-- DataTables, see: https://datatables.net/examples/styling/bootstrap4.html-->
@@ -100,11 +106,31 @@
 
     <h3>Capabilities</h3>
     <p>
-        The FAIR column denotes that a structured dump of the data is easily findable, accessible, and in a structured
-        format in bulk. The search column means there is a URL into which a search query can be formatted to show a list
-        of results. The provider column means there is a URL into which a prefix can be formatted to show a dedicated
-        page for its metadata.
+        This section provides a systematic evaluation and comparison of
+        the capabilities of each registry.
     </p>
+    <dl>
+        {{ registry_field_dl(registry_schema_cls, "fair") }}
+        {{ registry_field_dl(registry_schema_cls, "search") }}
+        <dt>Provider</dt>
+        <dd>
+            The registry provides information about its own prefixes either
+            in the form of a web page or an API endpoint. These can be accessed
+            through a stable URL into wich a prefix can be formatted.
+        </dd>
+        <dt>Resolver</dt>
+        <dd>
+            The registry can act as a resolver, i.e., it redirects to an external
+            page about a given biomedical concept or entity based on its CURIE and
+            the registry's internal metadata data about the prefix's associated
+            URI format string.
+        </dd>
+        <dt>Lookup</dt>
+        <dd>
+            The registry can act as a lookup service, i.e., it gives information
+            about a given biomedical concept or entity based on its CURIE.
+        </dd>
+    </dl>
     <table id="comparison-capabilities" class="table table-striped table-hover table-sm">
         <thead>
         <tr>
@@ -133,12 +159,23 @@
     </table>
 
     <h3>Governance</h3>
+    <p>
+        This section provides a systematic evaluation and comparison of
+        the governance and standard operating procedures for each registry.
+    </p>
+    <dl>
+        {{ registry_field_dl(registry_governance_cls, "accepts_external_contributions") }}
+        {{ registry_field_dl(registry_governance_cls, "public_version_control") }}
+        {{ registry_field_dl(registry_governance_cls, "review_team") }}
+        {{ registry_field_dl(registry_governance_cls, "scope") }}
+        {{ registry_field_dl(registry_governance_cls, "status") }}
+    </dl>
     <table id="comparison-governance" class="table table-striped table-hover table-sm">
         <thead>
         <tr>
             <th>Registry</th>
-            <th>Accepts Contributions</th>
-            <th>Publicly Version Controlled</th>
+            <th>Accepts External Contributions</th>
+            <th>Public Version Control</th>
             <th>Review Team</th>
             <th>Scope</th>
             <th>Status</th>

@@ -1288,7 +1288,11 @@ class RegistryGovernance(BaseModel):
     """Metadata about a registry's governance."""
 
     curation: Literal["private", "import", "community", "opaque-review", "open-review"]
-    scope: str
+    scope: str = Field(
+        description="What is the scope of prefixes which the registry covers? For example,"
+        " some registries are limited to ontologies, some have a full scope over the life sciences,"
+        " and some are general purpose."
+    )
     comments: Optional[str]
     accepts_external_contributions: bool = Field(
         description="Does the registry (in theory) accept external contributions, either via suggestion or"
@@ -1298,15 +1302,16 @@ class RegistryGovernance(BaseModel):
         " to the maintainers) to affect change."
     )
     public_version_control: bool = Field(
-        description="Does the registry store its data in publicly available version control"
-        " system, such as GitHub or GitLab?"
+        description="Does the registry store its data/code in publicly available version control"
+        " system, such as GitHub or GitLab? Currently there is no resource that does one but not"
+        " the other, so this is grouped (for now)."
     )
     review_team: Literal["public", "inferrable", "private", "n/a"] = Field(
         description="Are the reviewers for external contributions known? If there's a well-defined,"
-        " maintained listing, then it can be marked as public. If it can be inferred, e.g., from a"
-        " version control system, then it can be marked as inferrable. A closed review team, e.g.,"
-        " like for Identifiers.org can be marked as private. Resources that do not accept external"
-        " contributions can be marked with N/A."
+        " maintained listing, then it can be marked as public. If it can be inferred, e.g. from reading"
+        " the commit history on a version control system, then it can be marked as inferrable. A closed"
+        " review team, e.g., like for Identifiers.org can be marked as private. Resources that do not"
+        " accept external contributions can be marked with N/A."
     )
     status: Literal["active", "unresponsive", "inactive"] = Field(
         description="What is the status of the repository? An active repository is still being maintained and also"
@@ -1331,12 +1336,14 @@ class RegistrySchema(BaseModel):
     version: SchemaStatus  # type:ignore
     contact: SchemaStatus  # type:ignore
     search: bool = Field(
-        ..., description="Does this resource have a search functionality for prefixes"
+        ...,
+        description="Does this registry provide a URL into which a search"
+        " query can be formatted to show a list of results?",
     )
     fair: bool = Field(
         ...,
-        description="Does this resource provide a structured dump of the data is easily findable,"
-        " accessible, and in a structured format in bulk",
+        description="Does this registry provide a structured bulk dump of its prefixes, records,"
+        " and all associated metadata in an easily findable and accessible manner?",
     )
     fair_note: Optional[str] = Field(
         description="Explanation for why data isn't FAIR",
