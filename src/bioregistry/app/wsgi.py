@@ -17,7 +17,13 @@ from .api import api_blueprint
 from .ui import ui_blueprint
 from ..resolve_identifier import get_bioregistry_iri
 from ..schema.constants import bioregistry_schema_terms
-from ..schema.struct import get_json_schema, schema_status_map
+from ..schema.struct import (
+    Registry,
+    RegistryGovernance,
+    RegistrySchema,
+    get_json_schema,
+    schema_status_map,
+)
 
 app = Flask(__name__)
 Swagger.DEFAULT_CONFIG.update(
@@ -83,6 +89,9 @@ def related():
         "meta/related.html",
         registries=sorted(bioregistry.read_metaregistry().values(), key=attrgetter("name")),
         schema_status_map=schema_status_map,
+        registry_cls=Registry,
+        registry_governance_cls=RegistryGovernance,
+        registry_schema_cls=RegistrySchema,
     )
 
 
