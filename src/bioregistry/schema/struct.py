@@ -1283,13 +1283,11 @@ schema_score_map = {
     "irrelevant*": 0,
 }
 
-CurationType = Literal["private", "import", "community", "opaque-review", "open-review"]
-
 
 class RegistryGovernance(BaseModel):
     """Metadata about a registry's governance."""
 
-    curation: CurationType
+    curation: Literal["private", "import", "community", "opaque-review", "open-review"]
     scope: str
     comments: Optional[str]
     accepts_external_contributions: bool = Field(
