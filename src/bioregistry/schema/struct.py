@@ -1296,6 +1296,8 @@ class RegistryGovernance(BaseModel):
         description="Does the registry (in theory) accept external contributions, either via suggestion or"
         " proactive improvement? This field does not pass judgement on the difficult of this"
         " process from the perspective of the submitter nor the responsiveness of the registry."
+        " This field does not consider the ability for insiders (i.e., people with private relationships"
+        " to the maintainers) to affect change."
     )
     public_version_control: bool = Field(
         description="Does the registry store its data in publicly available version control"
