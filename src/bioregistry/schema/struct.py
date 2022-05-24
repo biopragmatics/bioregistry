@@ -1308,6 +1308,12 @@ class RegistryGovernance(BaseModel):
         " like for Identifiers.org can be marked as private. Resources that do not accept external"
         " contributions can be marked with N/A."
     )
+    status: Literal["active", "unresponsive", "inactive"] = Field(
+        description="What is the status of the repository? An active repository is still being maintained and also"
+        " is responsive to external requests for improvement. An unresponsive repository is still being maintained"
+        " in some capacity but is not responsive to external requests for improvement. An inactive repository is"
+        " no longer being proactively maintained (though may receive occasional patches)."
+    )
 
 
 class RegistrySchema(BaseModel):

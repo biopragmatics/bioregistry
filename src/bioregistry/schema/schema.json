@@ -653,6 +653,10 @@
           ],
           "type": "string"
         },
+        "scope": {
+          "title": "Scope",
+          "type": "string"
+        },
         "comments": {
           "title": "Comments",
           "type": "string"
@@ -677,13 +681,25 @@
             "n/a"
           ],
           "type": "string"
+        },
+        "status": {
+          "title": "Status",
+          "description": "What is the status of the repository? An active repository is still being maintained and also is responsive to external requests for improvement. An unresponsive repository is still being maintained in some capacity but is not responsive to external requests for improvement. An inactive repository is no longer being proactively maintained (though may receive occasional patches).",
+          "enum": [
+            "active",
+            "unresponsive",
+            "inactive"
+          ],
+          "type": "string"
         }
       },
       "required": [
         "curation",
+        "scope",
         "accepts_external_contributions",
         "public_version_control",
-        "review_team"
+        "review_team",
+        "status"
       ]
     },
     "Registry": {

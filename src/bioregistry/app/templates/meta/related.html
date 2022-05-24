@@ -141,6 +141,7 @@
             <th>Publicly Version Controlled</th>
             <th>Review Team</th>
             <th>Scope</th>
+            <th>Status</th>
         </tr>
         </thead>
         <tbody>
@@ -153,6 +154,7 @@
                 <td style="text-align: center;">{{ render_circle(registry.governance.public_version_control) }}</td>
                 <td>{{ registry.governance.review_team }}</td>
                 <td>{{ registry.governance.scope }}</td>
+                <td>{{ registry.governance.status }}</td>
             </tr>
         {% endfor %}
         </tbody>
