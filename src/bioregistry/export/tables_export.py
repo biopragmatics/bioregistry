@@ -71,7 +71,7 @@ def export_tables():
             index=False,
             label="registry-comparison-governance",
             caption=dedent(
-                f"""\
+                """\
                A survey of registries' governance and maintenance models. The scope column describes the
                kinds of prefixes contained within the registry. The status column is active if the registry
                is currently being maintained and is responsive to public external feedback, unresponsive if
@@ -88,7 +88,9 @@ def export_tables():
                list of the reviewers. Asterisks in this column denote that rather than an explicit list, the
                reviewers can be inferred through the registry's version control system.
             """
-            ).strip().replace("\n", " "),
+            )
+            .strip()
+            .replace("\n", " "),
         ),
         encoding="utf-8",
     )
