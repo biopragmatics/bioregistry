@@ -15,12 +15,14 @@ def export(ctx: click.Context):
     from .tsv_export import export_tsv
     from .warnings_export import export_warnings
     from .yaml_export import export_yaml
+    from .tables_export import export_tables
 
     ctx.invoke(export_warnings)
     ctx.invoke(export_rdf)
     ctx.invoke(export_tsv)
     ctx.invoke(export_yaml)
     ctx.invoke(export_sssom)
+    ctx.invoke(export_tables)
     ctx.invoke(generate_contexts)
 
 

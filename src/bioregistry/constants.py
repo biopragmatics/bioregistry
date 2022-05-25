@@ -71,6 +71,10 @@ EXPORT_COLLECTIONS = EXPORT_DIRECTORY.joinpath("collections")
 COLLECTIONS_YAML_PATH = EXPORT_COLLECTIONS / "collections.yml"
 COLLECTIONS_TSV_PATH = EXPORT_COLLECTIONS / "collections.tsv"
 
+EXPORT_TABLES = EXPORT_DIRECTORY.joinpath("tables")
+TABLES_GOVERNANCE_TSV_PATH = EXPORT_TABLES.joinpath("comparison_goveranance.tsv")
+TABLES_GOVERNANCE_LATEX_PATH = EXPORT_TABLES.joinpath("comparison_goveranance.tex")
+
 #: The URL of the remote Bioregistry site
 BIOREGISTRY_REMOTE_URL = pystow.get_config("bioregistry", "url") or "https://bioregistry.io"
 
