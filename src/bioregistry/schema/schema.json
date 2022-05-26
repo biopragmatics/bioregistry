@@ -653,6 +653,16 @@
           ],
           "type": "string"
         },
+        "curates": {
+          "title": "Curates",
+          "description": "Does the registry curate novel prefixes?",
+          "type": "boolean"
+        },
+        "imports": {
+          "title": "Imports",
+          "description": "Does the registry import and align prefixes from other registries?",
+          "type": "boolean"
+        },
         "scope": {
           "title": "Scope",
           "description": "What is the scope of prefixes which the registry covers? For example, some registries are limited to ontologies, some have a full scope over the life sciences, and some are general purpose.",
@@ -696,6 +706,8 @@
       },
       "required": [
         "curation",
+        "curates",
+        "imports",
         "scope",
         "accepts_external_contributions",
         "public_version_control",

@@ -1288,6 +1288,10 @@ class RegistryGovernance(BaseModel):
     """Metadata about a registry's governance."""
 
     curation: Literal["private", "import", "community", "opaque-review", "open-review"]
+    curates: bool = Field(description="Does the registry curate novel prefixes?")
+    imports: bool = Field(
+        description="Does the registry import and align prefixes from other registries?"
+    )
     scope: str = Field(
         description="What is the scope of prefixes which the registry covers? For example,"
         " some registries are limited to ontologies, some have a full scope over the life sciences,"
@@ -1319,6 +1323,18 @@ class RegistryGovernance(BaseModel):
         " in some capacity but is not responsive to external requests for improvement. An inactive repository is"
         " no longer being proactively maintained (though may receive occasional patches)."
     )
+
+    @property
+    def review_team_icon(self) -> str:
+        """Get an icon for the review team."""
+        if self.review_team == "public":
+            return "✓"
+        elif self.review_team == "inferrable":
+            return "✓*"
+        elif self.review_team == "private":
+            return "✗"
+        else:
+            return ""
 
 
 class RegistrySchema(BaseModel):
