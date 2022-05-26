@@ -8,8 +8,10 @@ from textwrap import dedent
 from typing import Mapping
 
 import click
+import pandas as pd
 
 import bioregistry
+from bioregistry.constants import TABLES_SUMMARY_LATEX_PATH
 from bioregistry.external import GETTERS
 from bioregistry.version import get_version
 
@@ -25,6 +27,9 @@ class BioregistrySummary:
     number_mappings: int
     number_synonyms: int
     number_mismatches_curated: int
+    number_collections: int
+    number_contexts: int
+    number_contributors: int
     external_sizes: Mapping[str, int]
     date: datetime.datetime
 
@@ -51,6 +56,38 @@ class BioregistrySummary:
             )
             .strip()
             .replace("\n", " ")
+        )
+
+    def _table_rows(self):
+        return [
+            ("Version", get_version()),
+            ("Registries", self.number_registries),
+            ("Prefixes", self.number_prefixes),
+            ("Synonyms", self.number_synonyms),
+            ("Cross-registry Mappings", self.number_mappings),
+            ("Curated Mismatches", self.number_mismatches_curated),
+            ("Collections and Contexts", self.number_collections + self.number_contexts),
+            ("Direct Contributors", self.number_contributors),
+        ]
+
+    def _table_df(self):
+        return pd.DataFrame(self._table_rows(), columns=["Category", "Count"])
+
+    def get_table_text(self, tablefmt: str = "github"):
+        """Get the text version of table 1 in the manuscript."""
+        from tabulate import tabulate
+
+        df = self._table_df()
+        return tabulate(df.values, headers=list(df.columns), tablefmt=tablefmt)
+
+    def get_table_latex(self) -> str:
+        """Get the latex for table 1 in the manuscript."""
+        return self._table_df().to_latex(
+            index=False,
+            caption=f"Overview statistics of the Bioregistry on {self.datetime_str}.",
+            label="tab:bioregistry-summary",
+            bold_rows=True,
+            column_format="lr",
         )
 
     @classmethod
@@ -93,6 +130,9 @@ class BioregistrySummary:
             number_prefixes_curated=prefixes_curated,
             number_mismatches_curated=sum(len(v) for v in bioregistry.read_mismatches().values()),
             external_sizes={metaprefix: len(getter()) for metaprefix, _, getter in GETTERS},
+            number_collections=len(bioregistry.read_collections()),
+            number_contexts=len(bioregistry.read_contexts()),
+            number_contributors=len(bioregistry.read_contributors(direct_only=True)),
         )
 
 
@@ -171,7 +211,11 @@ class MappingBurdenSummary:
 def _main():
     click.echo(MappingBurdenSummary.make().get_text())
     click.echo("")
-    click.echo(BioregistrySummary.make().get_text())
+    s = BioregistrySummary.make()
+    click.echo(s.get_text())
+    click.echo(s.get_table_text())
+
+    TABLES_SUMMARY_LATEX_PATH.write_text(s.get_table_latex())
 
 
 if __name__ == "__main__":
