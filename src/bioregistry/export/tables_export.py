@@ -11,7 +11,9 @@ import bioregistry
 from bioregistry.constants import (
     TABLES_GOVERNANCE_LATEX_PATH,
     TABLES_GOVERNANCE_TSV_PATH,
+    TABLES_SUMMARY_LATEX_PATH,
 )
+from bioregistry.summary import BioregistrySummary
 
 __all__ = [
     "export_tables",
@@ -69,7 +71,8 @@ def export_tables():
     TABLES_GOVERNANCE_LATEX_PATH.write_text(
         df.to_latex(
             index=False,
-            label="registry-comparison-governance",
+            bold_rows=True,
+            label="tab:registry-comparison-governance",
             caption=dedent(
                 """\
                A survey of registries' governance and maintenance models. The scope column describes the
@@ -94,6 +97,9 @@ def export_tables():
         ),
         encoding="utf-8",
     )
+
+    s = BioregistrySummary.make()
+    TABLES_SUMMARY_LATEX_PATH.write_text(s.get_table_latex())
 
 
 if __name__ == "__main__":
