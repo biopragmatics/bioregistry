@@ -82,7 +82,13 @@ def _save(fig, name: str, *, svg: bool = True, png: bool = False, eps: bool = Fa
     plt.close(fig)
 
 
-def _plot_attribute_pies(*, measurements, watermark, ncols: int = 4, keep_ontology: bool = True):
+def _plot_attribute_pies(
+    *,
+    measurements: Collection[Tuple[str, typing.Counter]],
+    watermark,
+    ncols: int = 4,
+    keep_ontology: bool = True,
+):
     import matplotlib.pyplot as plt
 
     if not keep_ontology:
@@ -95,16 +101,17 @@ def _plot_attribute_pies(*, measurements, watermark, ncols: int = 4, keep_ontolo
     nrows = int(math.ceil(len(measurements) / ncols))
     figsize = (2.75 * ncols, 2.0 * nrows)
     fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=figsize)
-    for (label, counter), ax in itt.zip_longest(measurements, axes.ravel(), fillvalue=(None, None)):
-        if label is None:
+    for label_counter, ax in itt.zip_longest(measurements, axes.ravel()):
+        if label_counter is None:
             ax.axis("off")
             continue
+        label, counter = label_counter
         if label == "License Type":
             labels, sizes = zip(*counter.most_common())
             explode = None
         else:
             labels = ("Yes", "No")
-            n_yes = counter.get("Yes")
+            n_yes = counter.get("Yes", 0)
             sizes = (n_yes, len(read_registry()) - n_yes)
             explode = [0.1, 0]
         ax.pie(
