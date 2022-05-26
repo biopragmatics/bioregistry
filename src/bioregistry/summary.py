@@ -7,8 +7,7 @@ from itertools import combinations
 from textwrap import dedent
 from typing import Mapping
 
-from humanize import intword
-from rich import print
+import click
 
 import bioregistry
 from bioregistry.external import GETTERS
@@ -34,20 +33,7 @@ class BioregistrySummary:
         """Get the date as an ISO 8601 string."""
         return self.date.strftime("%Y-%m-%d")
 
-    def print(self) -> None:
-        """Print the summary."""
-        print(f"Date: {self.datetime_str}")
-        print("Prefixes", self.number_prefixes)
-        print("Prefixes - Novel", self.number_prefixes_novel)
-        print("Prefixes - Curated", self.number_prefixes_curated)
-        print("Mappings", self.number_mappings)
-        print("Synonyms", self.number_synonyms)
-        print("Registries", self.number_registries)
-        print("Mismatches", self.number_mismatches_curated)
-        for metaprefix, size in sorted(self.external_sizes.items()):
-            print(f"{bioregistry.get_registry_short_name(metaprefix)} size", size)
-
-    def paper_text(self):
+    def get_text(self):
         """Write the introduction summary sentence."""
         remaining = self.number_prefixes - self.number_prefixes_novel
         return (
@@ -128,18 +114,18 @@ class MappingBurdenSummary:
         """Get the ratio between pairwise curation and direct curation."""
         return self.pairwise_upper_bound / self.direct_upper_bound
 
-    def print(self):
-        """Print the summary."""
-        print(
+    def get_text(self) -> str:
+        """Get the summary text."""
+        return (
             dedent(
                 f"""\
-            While there is an upper bound of {intword(self.total_pairwise_upper_bound)} possible pairs of
-            records between pairs of external registries, there is a more realistic upper bound of
-            {self.pairwise_upper_bound:,} when assuming mappings between each pair of registries
-            are one-to-one. When using the Bioregistry as a hub for mappings, this upper bound
-            decreases by {self.pairwise_to_direct_ratio:.1f} times to {self.direct_upper_bound:,}.
-            Of these, a total of {self.remaining:,} ({self.remaining/self.direct_upper_bound:.0%})
-            mappings remain to be curated.
+            The estimated number of one-to-one mappings between prefixes in each pair of
+            external registries is {self.pairwise_upper_bound:,}. This decreases by
+            {self.pairwise_to_direct_ratio:.1f} times to {self.direct_upper_bound:,} mappings
+            when using the Bioregistry as a mapping hub. Of these, {self.direct_upper_bound - self.remaining:,}
+            ({(self.direct_upper_bound - self.remaining) / self.direct_upper_bound:.0%}) have been curated and
+            {self.remaining:,} ({self.remaining / self.direct_upper_bound:.0%}) remain, but these numbers are
+            subject to change dependent on both updates to the Bioregistry and external registries.
             """
             )
             .strip()
@@ -158,11 +144,10 @@ class MappingBurdenSummary:
             min(len(x), len(y)) for x, y in combinations(registry_to_prefixes.values(), 2)
         )
         exclusive_direct_upper_bound = sum(len(x) for x in registry_to_prefixes.values())
-        ratio = exclusive_pairwise_upper_bound / exclusive_direct_upper_bound
 
         registry = bioregistry.read_registry()
         registry_to_mapped_prefixes = defaultdict(set)
-        for prefix, resource in registry.items():
+        for resource in registry.values():
             for metaprefix, external_prefix in resource.get_mappings().items():
                 registry_to_mapped_prefixes[metaprefix].add(external_prefix)
 
@@ -182,10 +167,11 @@ class MappingBurdenSummary:
         )
 
 
+@click.command()
 def _main():
-    MappingBurdenSummary.make().print()
-    print()
-    print(BioregistrySummary.make().paper_text())
+    click.echo(MappingBurdenSummary.make().get_text())
+    click.echo("")
+    click.echo(BioregistrySummary.make().get_text())
 
 
 if __name__ == "__main__":
