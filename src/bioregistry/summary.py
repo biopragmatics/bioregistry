@@ -1,9 +1,11 @@
 import datetime
 from dataclasses import dataclass
+from textwrap import dedent
 from typing import Mapping
 
 import bioregistry
 from bioregistry.external import GETTERS
+from bioregistry.version import get_version
 
 
 @dataclass
@@ -12,7 +14,6 @@ class BioregistrySummary:
     number_registries: int
     number_prefixes_novel: int
     number_prefixes_curated: int
-    number_prefix_curations: int
     number_mappings: int
     number_synonyms: int
     number_mismatches_curated: int
@@ -28,9 +29,10 @@ class BioregistrySummary:
         print(f"Date: {self.datetime_str}")
         print("Prefixes", self.number_prefixes)
         print("Prefixes - Novel", self.number_prefixes_novel)
-        print("Prefixes - Curated", self.number_prefixes_curated,
-              f"({self.number_prefix_curations} total, {self.number_prefix_curations / self.number_prefixes_curated:.2} on average)"
-              )
+        print(
+            "Prefixes - Curated",
+            self.number_prefixes_curated,
+        )
         print("Mappings", self.number_mappings)
         print("Synonyms", self.number_synonyms)
         print("Registries", self.number_registries)
@@ -38,47 +40,52 @@ class BioregistrySummary:
         for metaprefix, size in sorted(self.external_sizes.items()):
             print(f"{bioregistry.get_registry_short_name(metaprefix)} size", size)
 
+    def paper_text(self):
+        remaining = self.number_prefixes - self.number_prefixes_novel
+        return (
+            dedent(
+                f"""\
+        The Bioregistry (v{get_version()}) integrates {self.number_registries:,} external registries
+        and contains {self.number_prefixes:,} records, compared to {self.external_sizes['prefixcommons']}
+        records in Prefix Commons, {self.external_sizes['miriam']:,} in MIRIAM/Identifiers.org, and
+        {self.external_sizes['n2t']:,} in Name-to-Thing (each accessed on {self.datetime_str}).
+        {self.number_prefixes_novel:,} of the {self.number_prefixes:,} records are novel (i.e., they do not
+        appear in any external registry) and the Bioregistry adds additional novel curated metadata to
+        {self.number_prefixes_curated:,} of the remaining
+        {remaining:,} records ({self.number_prefixes_curated/remaining:.0%}).
+        """
+            )
+            .strip()
+            .replace("\n", " ")
+        )
+
 
 def get():
     registry = bioregistry.read_registry()
 
     #: The total number of mappings from all records to all external records
-    mapping_count = sum(
-        len(entry.mappings)
-        for entry in registry.values()
-        if entry.mappings
-    )
+    mapping_count = sum(len(entry.mappings) for entry in registry.values() if entry.mappings)
 
     #: The total number of synonyms across all records
     synonym_count = sum(
-        len(resource.synonyms)
-        for resource in registry.values()
-        if resource.synonyms
+        len(resource.synonyms) for resource in registry.values() if resource.synonyms
     )
 
     #: The number of prefixes that have no mappings to external registries
-    number_novel_prefixes = sum(not entry.mappings for entry in registry.values())
+    novel_prefixes = {prefix for prefix, entry in registry.items() if not entry.mappings}
+    number_novel_prefixes = len(novel_prefixes)
 
-    metaprefixes = set(bioregistry.read_registry())
+    metaprefixes = set(bioregistry.read_metaregistry())
 
-    #: The number of prefixes that have any overrides
+    #: The number of prefixes that have any overrides that are not novel to the Bioregistry
     prefixes_curated = sum(
         any(
             x not in metaprefixes
             for x, v in entry.dict().items()
             if v is not None and x not in {"prefix", "mappings"}
         )
-        for entry in registry.values()
-    )
-
-    #: The total number of overrides
-    prefix_curations = sum(
-        sum(
-            x not in metaprefixes
-            for x, v in entry.dict().items()
-            if v is not None and x not in {"prefix", "mappings"}
-        )
-        for entry in registry.values()
+        for prefix, entry in registry.items()
+        if prefix not in novel_prefixes
     )
 
     return BioregistrySummary(
@@ -89,18 +96,16 @@ def get():
         number_mappings=mapping_count,
         number_synonyms=synonym_count,
         number_prefixes_curated=prefixes_curated,
-        number_prefix_curations=prefix_curations,
         number_mismatches_curated=sum(len(v) for v in bioregistry.read_mismatches().values()),
-        external_sizes={
-            metaprefix: len(getter())
-            for metaprefix, _, getter in GETTERS
-        },
+        external_sizes={metaprefix: len(getter()) for metaprefix, _, getter in GETTERS},
     )
 
 
 def main():
-    get().print()
+    x = get()
+    # x.print()
+    print(x.paper_text())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
