@@ -8980,6 +8980,9 @@
     "pattern": "^\\d{7}$"
   },
   "classyfire": {
+    "comment": "There's a mismatch between the MIRIAM URI format string, which has a C prefix in front of class identifiers and the ontology which does not use them.",
+    "download_obo": "http://classyfire.wishartlab.com/system/downloads/1_0/chemont/ChemOnt_2_1.obo.zip",
+    "example": "0004828",
     "mappings": {
       "miriam": "classyfire"
     },
@@ -8994,7 +8997,12 @@
       "prefix": "classyfire",
       "sampleId": "C0004828",
       "uri_format": "http://classyfire.wishartlab.com/tax_nodes/$1"
-    }
+    },
+    "pattern": "^\\d{7}$",
+    "synonyms": [
+      "CHEMONTID"
+    ],
+    "uri_format": "http://classyfire.wishartlab.com/tax_nodes/C$1"
   },
   "cldb": {
     "biocontext": {
