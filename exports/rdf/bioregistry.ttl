@@ -263,6 +263,7 @@ orcid:0000-0001-9439-5346 rdfs:label "Benjamin Gyori",
         "Benjamin M. Gyori" ;
     dcterms:contributor bioregistry:bko,
         bioregistry:casspc,
+        bioregistry:nihreporter.project,
         bioregistry:signor.relation .
 
 orcid:0000-0002-3012-7446 rdfs:label "Daniel Himmelstein" ;
@@ -2127,9 +2128,9 @@ bioregistry:classyfire a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch miriam:classyfire ;
     foaf:homepage "http://classyfire.wishartlab.com/"^^xsd:string ;
-    bioregistry.schema:0000005 "C0004828"^^xsd:string ;
-    bioregistry.schema:0000006 "http://classyfire.wishartlab.com/tax_nodes/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^C[0-9]{7}$"^^xsd:string ;
+    bioregistry.schema:0000005 "0004828"^^xsd:string ;
+    bioregistry.schema:0000006 "http://classyfire.wishartlab.com/tax_nodes/C$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:cldb a bioregistry.schema:0000001 ;
@@ -21063,6 +21064,17 @@ bioregistry:nextprot.family a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:nihreporter.project a bioregistry.schema:0000001 ;
+    rdfs:label "NIH RePORTER" ;
+    dc:description "RePORTER is an electronic tool that allows users to search a repository of both intramural and extramural NIH-funded research projects and access publications and patents resulting from NIH funding."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://reporter.nih.gov/"^^xsd:string ;
+    bioregistry.schema:0000005 "10343835"^^xsd:string ;
+    bioregistry.schema:0000006 "https://reporter.nih.gov/project-details/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:nist a bioregistry.schema:0000001 ;
     rdfs:label "NIST Chemistry WebBook" ;
     dc:description "The NIST Chemistry WebBook provides users with easy access to chemical and physical property data for chemical species through the internet. The data provided in the site are from collections maintained by the NIST Standard Reference Data Program and outside contributors. Data in the WebBook system are organized by chemical species."^^xsd:string ;
@@ -29102,6 +29114,35 @@ bioregistry:chebi a bioregistry.schema:0000001 ;
         bioregistry:xpo ;
     bioregistry.schema:0000019 orcid:0000-0001-8123-5351 .
 
+bioregistry:uniprot a bioregistry.schema:0000001 ;
+    rdfs:label "UniProt Protein" ;
+    dc:description "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. Besides amino acid sequence and a description, it also provides taxonomic data and citation information."^^xsd:string ;
+    dcterms:hasPart bioregistry:uniprot.chain,
+        bioregistry:uniprot.disease,
+        bioregistry:uniprot.isoform,
+        bioregistry:uniprot.keyword,
+        bioregistry:uniprot.location,
+        bioregistry:uniprot.ptm,
+        bioregistry:uniprot.resource,
+        bioregistry:uniprot.tissue,
+        bioregistry:uniprot.var ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:UniProtKB,
+        cellosaurus.resource:UniProtKB,
+        go.resource:UniProtKB,
+        n2t:uniprot,
+        ncbi.resource:UniProt,
+        scholia.resource:uniprot,
+        fairsharing:FAIRsharing.s1ne3g,
+        prefixcommons:uniprot,
+        miriam:uniprot,
+        wikidata:P352 ;
+    foaf:homepage "http://www.uniprot.org"^^xsd:string ;
+    bioregistry.schema:0000005 "P0DP23"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.uniprot.org/uniprot/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
     dcterms:contributor bioregistry:4dn.replicate,
         bioregistry:ac,
@@ -29278,35 +29319,6 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:xml,
         bioregistry:xuo,
         bioregistry:ymdb .
-
-bioregistry:uniprot a bioregistry.schema:0000001 ;
-    rdfs:label "UniProt Protein" ;
-    dc:description "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. Besides amino acid sequence and a description, it also provides taxonomic data and citation information."^^xsd:string ;
-    dcterms:hasPart bioregistry:uniprot.chain,
-        bioregistry:uniprot.disease,
-        bioregistry:uniprot.isoform,
-        bioregistry:uniprot.keyword,
-        bioregistry:uniprot.location,
-        bioregistry:uniprot.ptm,
-        bioregistry:uniprot.resource,
-        bioregistry:uniprot.tissue,
-        bioregistry:uniprot.var ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:UniProtKB,
-        cellosaurus.resource:UniProtKB,
-        go.resource:UniProtKB,
-        n2t:uniprot,
-        ncbi.resource:UniProt,
-        scholia.resource:uniprot,
-        fairsharing:FAIRsharing.s1ne3g,
-        prefixcommons:uniprot,
-        miriam:uniprot,
-        wikidata:P352 ;
-    foaf:homepage "http://www.uniprot.org"^^xsd:string ;
-    bioregistry.schema:0000005 "P0DP23"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.uniprot.org/uniprot/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
 
 bioregistry:uberon a bioregistry.schema:0000001 ;
     rdfs:label "Uber Anatomy Ontology" ;
@@ -35249,6 +35261,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:nif_cell,
         bioregistry:nif_dysfunction,
         bioregistry:nif_grossanatomy,
+        bioregistry:nihreporter.project,
         bioregistry:nist,
         bioregistry:nlm,
         bioregistry:nlxanat,

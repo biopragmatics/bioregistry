@@ -3693,6 +3693,8 @@ clao:
   uri_format: http://purl.obolibrary.org/obo/CLAO_$1
   version: '2021-09-27'
 classyfire:
+  comment: There's a mismatch between the MIRIAM URI format string, which has a C
+    prefix in front of class identifiers and the ontology which does not use them.
   description: ClassyFire is a web-based application for automated structural classification
     of chemical entities. This application uses a rule-based approach that relies
     on a comprehensible, comprehensive, and computable chemical taxonomy. ClassyFire
@@ -3702,14 +3704,17 @@ classyfire:
     of organic and inorganic compounds. Moreover, ClassyFire allows for text-based
     search via its web interface. It can be accessed via the web interface or via
     the ClassyFire API.
-  example: C0004828
+  download_obo: http://classyfire.wishartlab.com/system/downloads/1_0/chemont/ChemOnt_2_1.obo.zip
+  example: 0004828
   homepage: http://classyfire.wishartlab.com/
   mappings:
     miriam: classyfire
   name: ClassyFire
-  pattern: ^C[0-9]{7}$
+  pattern: ^\d{7}$
   preferred_prefix: classyfire
-  uri_format: http://classyfire.wishartlab.com/tax_nodes/$1
+  synonyms:
+  - CHEMONTID
+  uri_format: http://classyfire.wishartlab.com/tax_nodes/C$1
 cldb:
   description: The Cell Line Data Base (CLDB) is a reference information source for
     human and animal cell lines. It provides the characteristics of the cell lines
@@ -16673,6 +16678,26 @@ nif_grossanatomy:
   name: NIF Gross Anatomy
   preferred_prefix: NIF_GROSSANATOMY
   uri_format: http://purl.obolibrary.org/obo/NIF_GROSSANATOMY_$1
+nihreporter.project:
+  contributor:
+    email: benjamin_gyori@hms.harvard.edu
+    github: bgyori
+    name: Benjamin Gyori
+    orcid: 0000-0001-9439-5346
+  description: RePORTER is an electronic tool that allows users to search a repository
+    of both intramural and extramural NIH-funded research projects and access publications
+    and patents resulting from NIH funding.
+  example: '10343835'
+  homepage: https://reporter.nih.gov/
+  name: NIH RePORTER
+  pattern: ^\d+$
+  preferred_prefix: nihreporter.project
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://reporter.nih.gov/project-details/$1
 nist:
   contributor:
     email: cthoyt@gmail.com
