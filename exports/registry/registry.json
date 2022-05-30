@@ -9568,17 +9568,32 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The GeoNames geographical database covers all countries and contains over eleven million placenames that are available for download free of charge.",
-    "example": "ADM1",
+    "example": "3532759",
     "homepage": "https://www.geonames.org",
     "mappings": {
       "fairsharing": "FAIRsharing.56a0Uj"
     },
     "name": "GeoNames",
+    "pattern": "^\\d+$",
     "preferred_prefix": "geonames",
     "synonyms": [
       "Geomames",
       "Geonamaes"
     ],
+    "uri_format": "https://www.geonames.org/$1"
+  },
+  "geonames.feature": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "All geographical features in GeoNames are categorized into one out of nine feature classes and further subcategorized into one out of 645 feature codes.",
+    "example": "ADM1",
+    "homepage": "https://www.geonames.org/export/codes.html",
+    "name": "GeoNames Feature Code",
+    "preferred_prefix": "geonames.feature",
     "uri_format": "https://www.geonames.org/recent-changes/featurecode/$1/"
   },
   "gexo": {

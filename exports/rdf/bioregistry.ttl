@@ -20077,6 +20077,16 @@ bioregistry:geonames a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch fairsharing:FAIRsharing.56a0Uj ;
     foaf:homepage "https://www.geonames.org"^^xsd:string ;
+    bioregistry.schema:0000005 "3532759"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.geonames.org/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:geonames.feature a bioregistry.schema:0000001 ;
+    rdfs:label "GeoNames Feature Code" ;
+    dc:description "All geographical features in GeoNames are categorized into one out of nine feature classes and further subcategorized into one out of 645 feature codes."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.geonames.org/export/codes.html"^^xsd:string ;
     bioregistry.schema:0000005 "ADM1"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.geonames.org/recent-changes/featurecode/$1/"^^xsd:string ;
     bioregistry.schema:0000012 false .
@@ -29211,6 +29221,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:gc,
         bioregistry:gemet,
         bioregistry:geonames,
+        bioregistry:geonames.feature,
         bioregistry:ghr,
         bioregistry:go.resource,
         bioregistry:goche,
@@ -34886,6 +34897,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:geo,
         bioregistry:geogeo,
         bioregistry:geonames,
+        bioregistry:geonames.feature,
         bioregistry:gexo,
         bioregistry:ghr,
         bioregistry:giardiadb,
