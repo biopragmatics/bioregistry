@@ -59,8 +59,7 @@ def _process(record):
     rv = {
         "name": record["title"],
         "description": record.get("description"),
-        "deprecated": record.get("is_obsolete", False),
-        "inactive": _parse_activity_status(record),
+        "deprecated": record["activity_status"] != "active",
         "homepage": record.get("homepage") or record.get("repository"),
         "preferredPrefix": record.get("preferredPrefix"),
         "license": record.get("license", {}).get("label"),
@@ -94,18 +93,6 @@ def _process(record):
             rv["download.owl"] = product["ontology_purl"]
 
     return {k: v for k, v in rv.items() if v is not None}
-
-
-def _parse_activity_status(record) -> bool:
-    status = record["activity_status"]
-    if status == "inactive":
-        return True
-    elif status == "active":
-        return False
-    elif status == "orphaned":
-        return True
-    else:
-        raise ValueError(f"unexpected activity value: {status}")
 
 
 def get_obofoundry_example(prefix: str) -> Optional[str]:

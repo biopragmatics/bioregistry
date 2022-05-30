@@ -564,6 +564,7 @@ def is_deprecated(prefix: str) -> bool:
 
     >>> import bioregistry
     >>> assert bioregistry.is_deprecated('imr')  # marked by OBO
+    >>> assert bioregistry.is_deprecated('idomal')  # marked by OBO as inactive
     >>> assert bioregistry.is_deprecated('iro') # marked by Bioregistry
     >>> assert bioregistry.is_deprecated('miriam.collection') # marked by MIRIAM
     """
