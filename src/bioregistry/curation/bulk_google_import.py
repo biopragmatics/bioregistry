@@ -39,13 +39,7 @@ def _resource_from_row(row: Mapping[str, Any]) -> Resource:
     return Resource(**kwargs)
 
 
-@click.command()
-@click.option("--sheet", required=True)
-def main(sheet: str):
-    """Import prefixes from a google sheet in bulk."""
-    # sheet = "10MPt-H6My33mOa1V_VkLh4YG8609N7B_Dey0CBnfTL4"
-    url = f"https://docs.google.com/spreadsheets/d/{sheet}/export?format=tsv&gid=0"
-    df = pd.read_csv(url, sep="\t")
+def _bulk_import_df(df: pd.DataFrame):
     for _, row in df.iterrows():
         row: pd.Series
         resource = _resource_from_row(row.to_dict())
@@ -54,6 +48,16 @@ def main(sheet: str):
         except KeyError as e:
             click.secho(str(e).strip("'"))
             continue
+
+
+@click.command()
+@click.option("--sheet", required=True)
+def main(sheet: str):
+    """Import prefixes from a google sheet in bulk."""
+    # sheet = "10MPt-H6My33mOa1V_VkLh4YG8609N7B_Dey0CBnfTL4"
+    url = f"https://docs.google.com/spreadsheets/d/{sheet}/export?format=tsv&gid=0"
+    df = pd.read_csv(url, sep="\t")
+    _bulk_import_df(df)
 
 
 if __name__ == "__main__":
