@@ -53,7 +53,7 @@ def add_resource(resource: Resource) -> None:
     """
     registry = dict(read_registry())
     if resource.prefix in registry:
-        raise KeyError("Tried to add duplicate entry to the registry")
+        raise KeyError(f"Tried to add duplicate prefix to the registry: {resource.prefix}")
     registry[resource.prefix] = resource
     # Clear the cache
     read_registry.cache_clear()

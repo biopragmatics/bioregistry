@@ -1787,7 +1787,7 @@ def write_bulk_prefix_request_template():
                 file=file,
             )
         for i in range(1, 6):
-            print(i, *["\t"] * (len(required) + len(optional)), sep="\t", file=file)  # noqa:T201
+            print(i, *[""] * (len(required) + len(optional)), sep="\t", file=file)  # noqa:T201
 
 
 def _get(resource, key):
