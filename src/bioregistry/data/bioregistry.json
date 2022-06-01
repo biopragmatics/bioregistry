@@ -82315,6 +82315,24 @@
       "prefix": "USPTO",
       "uri_format": "http://identifiers.org/uspto/$1"
     },
+    "comment": "Information about the regular expression was derived from examples at https://patft.uspto.gov/netahtml/PTO/srchnum.htm.",
+    "contributor_extras": [
+      {
+        "github": "dhimmel",
+        "name": "Daniel Himmelstein",
+        "orcid": "0000-0002-3012-7446"
+      }
+    ],
+    "example_extras": [
+      "D000152",
+      "PP07514",
+      "RE12345",
+      "T855019",
+      "H001234",
+      "AI00007",
+      "X000001",
+      "RX00001"
+    ],
     "mappings": {
       "biocontext": "USPTO",
       "miriam": "uspto",
@@ -82342,7 +82360,11 @@
       "prefix": "uspto",
       "uri_format": "http://patft.uspto.gov/netacgi/nph-Parser?Sect2=PTO1&Sect2=HITOFF&p=1&u=/netahtml/PTO/search-bool.html&r=1&f=G&l=50&d=PALL&RefSrch=yes&Query=PN/$1"
     },
-    "name": "United States Patent and Trademark Office"
+    "name": "United States Patent and Trademark Office",
+    "pattern": "^(\\d{1,2},?\\d{3},?\\d{3}|(PP|RE|AI|RX)\\d{2},?\\d{3}|(D|T|H|X)\\d{3},?\\d{3})$",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/253"
+    ]
   },
   "vac": {
     "contributor": {
