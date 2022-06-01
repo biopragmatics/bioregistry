@@ -20662,7 +20662,16 @@
     },
     "name": "Index Fungorum",
     "pattern": "^[1-9]\\d{0,5}$",
-    "uri_format": "http://www.indexfungorum.org/names/NamesRecord.asp?RecordID=$1"
+    "uri_format": "http://www.indexfungorum.org/names/NamesRecord.asp?RecordID=$1",
+    "wikidata": {
+      "database": "Q1860469",
+      "database.homepage": "http://www.indexfungorum.org/",
+      "database.label": "Index Fungorum",
+      "name": "Index Fungorum ID",
+      "pattern": "[1-9]\\d{0,5}|",
+      "prefix": "P1391",
+      "uri_format": "http://www.indexfungorum.org/names/NamesRecord.asp?RecordID=$1"
+    }
   },
   "fyeco": {
     "biolink": {
@@ -28112,6 +28121,9 @@
     "description": "Identifier for a species in iNaturalist",
     "example": "21723",
     "homepage": "https://www.inaturalist.org/taxa",
+    "mappings": {
+      "wikidata": "P3151"
+    },
     "name": "iNaturalist Taxonomy",
     "pattern": "^[1-9]\\d{0,6}$",
     "uri_format": "https://www.inaturalist.org/taxa/$1"
