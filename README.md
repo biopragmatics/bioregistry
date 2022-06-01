@@ -28,13 +28,13 @@
     <a href="https://github.com/psf/black">
         <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code style: black">
     </a>
-    <a href="https://biopragmatics.github.io/bioregistry/conduct/">
+    <a href="https://github.com/biopragmatics/bioregistry/blob/main/.github/CODE_OF_CONDUCT.md">
         <img alt="Contributor Covenant" src="https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg" />
     </a>
 </p>
 
 <p align="center">
-   A community-driven integrative meta-registry of biological databases, ontologies, and other resources.
+   A community-driven integrative meta-registry of life science databases, ontologies, and other resources.
    <br />More information <a href="https://bioregistry.io/summary">here</a>.
 </p>
 
@@ -81,7 +81,7 @@ Things that would be helpful:
 A full list of curation to-do's is automatically generated as a web page
 [here](https://biopragmatics.github.io/bioregistry/curation/). This page also has a more in-depth tutorial on how to contribute.
 
-For more information on contributions, see [CONTRIBUTING.md](CONTRIBUTING.md).
+For more information on contributions, see [CONTRIBUTING.md](docs/CONTRIBUTING.md).
 
 ## 🧹 Maintenance
 
@@ -102,11 +102,14 @@ and the last run can be seen [here](https://github.com/biopragmatics/bioregistry
 Further, a [changelog](https://github.com/biopragmatics/bioregistry/commits?author=actions-user) can be recapitulated from the
 commits of the GitHub Actions bot.
 
-If you want to manually update the database after installing in development mode, run the following:
+If you want to manually update the database, run the following:
 
 ```shell
-$ bioregistry update
+$ tox -e update
 ```
+
+Make sure that you have valid environment variables or `pystow` configurations 
+for `BIOPORTAL_API_KEY`, `FAIRSHARING_LOGIN`, and `FAIRSHARING_PASSWORD`.
 
 ## 🚀 Installation
 
@@ -123,6 +126,9 @@ $ git clone https://github.com/biopragmatics/bioregistry.git
 $ cd bioregistry
 $ pip install --editable .
 ```
+
+Build the docs locally with `tox -e ldocs` then view by opening
+`docs/build/html/index.html`.
 
 ## 💪 Usage
 

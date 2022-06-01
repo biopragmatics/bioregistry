@@ -7,6 +7,7 @@ jobs:
   homepage:
     name: Homepage Check
     runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'schedule' || github.repository == 'biopragmatics/bioregistry' }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -20,6 +21,7 @@ jobs:
   providers:
     name: Provider Check
     runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'schedule' || github.repository == 'biopragmatics/bioregistry' }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python

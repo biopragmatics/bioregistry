@@ -37,6 +37,8 @@ __all__ = [
     "get_versions",
     "get_registry_map",
     "get_registry_invmap",
+    "get_banana",
+    "get_obo_health_url",
     # Ontology
     "get_provided_by",
     "get_provides_for",
@@ -72,12 +74,18 @@ def get_name(prefix: str) -> Optional[str]:
     return manager.get_name(prefix)
 
 
-def get_description(prefix: str) -> Optional[str]:
-    """Get the description for the given prefix, if available."""
+def get_description(prefix: str, use_markdown: bool = False) -> Optional[str]:
+    """Get the description for the given prefix, if available.
+
+    :param prefix: The prefix to lookup.
+    :param use_markdown: Should :mod:`markupsafe` and :mod:`markdown` wrap the description
+        string
+    :returns: The description, if available.
+    """
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get_description()
+    return entry.get_description(use_markdown=use_markdown)
 
 
 def get_preferred_prefix(prefix: str) -> Optional[str]:
@@ -226,7 +234,7 @@ def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
     'taxonomy'
     >>> assert bioregistry.get_identifiers_org_prefix('MONDO') is None
     """
-    entry = get_resource(prefix)
+    entry = manager.get_resource(prefix)
     if entry is None:
         return None
     return entry.get_identifiers_org_prefix()
@@ -245,10 +253,7 @@ def get_n2t_prefix(prefix: str) -> Optional[str]:
     'taxonomy'
     >>> assert bioregistry.get_n2t_prefix('MONDO') is None
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_mapped_prefix("n2t")
+    return manager.get_mapped_prefix(prefix, "n2t")
 
 
 def get_wikidata_prefix(prefix: str) -> Optional[str]:
@@ -262,10 +267,7 @@ def get_wikidata_prefix(prefix: str) -> Optional[str]:
     >>> get_wikidata_prefix('ncbitaxon')
     'P685'
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_mapped_prefix("wikidata")
+    return manager.get_mapped_prefix(prefix, "wikidata")
 
 
 def get_bioportal_prefix(prefix: str) -> Optional[str]:
@@ -281,10 +283,7 @@ def get_bioportal_prefix(prefix: str) -> Optional[str]:
     >>> get_bioportal_prefix("nope")
     None
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_mapped_prefix("bioportal")
+    return manager.get_mapped_prefix(prefix, "bioportal")
 
 
 def get_obofoundry_prefix(prefix: str) -> Optional[str]:
@@ -341,10 +340,7 @@ def get_fairsharing_prefix(prefix: str) -> Optional[str]:
     >>> get_fairsharing_prefix("genbank")
     'FAIRsharing.9kahy4'
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_mapped_prefix("fairsharing")
+    return manager.get_mapped_prefix(prefix, "fairsharing")
 
 
 def get_scholia_prefix(prefix: str) -> Optional[str]:
@@ -511,6 +507,22 @@ def get_ols_uri_format(prefix: str) -> Optional[str]:
     return resource.get_ols_uri_format()
 
 
+def get_biocontext_uri_format(prefix: str) -> Optional[str]:
+    """Get the URI format for a BioContext entry.
+
+    :param prefix: The prefix to lookup.
+    :returns: The BioContext URI format string, if available.
+
+    >>> import bioregistry
+    >>> bioregistry.get_biocontext_uri_format('hgmd')
+    'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
+    """
+    resource = get_resource(prefix)
+    if resource is None:
+        return None
+    return resource.get_biocontext_uri_format()
+
+
 def get_prefixcommons_uri_format(prefix: str) -> Optional[str]:
     """Get the URI format for a Prefix Commons entry.
 
@@ -518,8 +530,8 @@ def get_prefixcommons_uri_format(prefix: str) -> Optional[str]:
     :returns: The Prefix Commons URI format string, if available.
 
     >>> import bioregistry
-    >>> bioregistry.get_prefixcommons_uri_format('hgmd')
-    'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
+    >>> bioregistry.get_prefixcommons_uri_format('antweb')
+    'http://www.antweb.org/specimen.do?name=$1'
     """
     resource = get_resource(prefix)
     if resource is None:
@@ -539,10 +551,7 @@ def get_example(prefix: str) -> Optional[str]:
 
 def has_no_terms(prefix: str) -> bool:
     """Check if the prefix is specifically noted to not have terms."""
-    entry = get_resource(prefix)
-    if entry is None or entry.no_own_terms is None:
-        return False
-    return entry.no_own_terms
+    return manager.has_no_terms(prefix)
 
 
 def is_deprecated(prefix: str) -> bool:
@@ -555,6 +564,7 @@ def is_deprecated(prefix: str) -> bool:
 
     >>> import bioregistry
     >>> assert bioregistry.is_deprecated('imr')  # marked by OBO
+    >>> assert bioregistry.is_deprecated('idomal')  # marked by OBO as inactive
     >>> assert bioregistry.is_deprecated('iro') # marked by Bioregistry
     >>> assert bioregistry.is_deprecated('miriam.collection') # marked by MIRIAM
     """
@@ -908,3 +918,18 @@ def get_curie_pattern(prefix: str) -> Optional[str]:
 def get_license_conflicts():
     """Get license conflicts."""
     return manager.get_license_conflicts()
+
+
+SHIELDS_BASE = "https://img.shields.io/badge/dynamic"
+CH_BASE = "https://cthoyt.com/obo-community-health"
+HEALTH_BASE = "https://github.com/cthoyt/obo-community-health/raw/main/data/data.json"
+EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
+
+
+def get_obo_health_url(prefix: str) -> Optional[str]:
+    """Get the OBO community health badge."""
+    obo_prefix = manager.get_mapped_prefix(prefix, "obofoundry")
+    if obo_prefix is None:
+        return None
+    obo_pp = manager.get_preferred_prefix(prefix)
+    return f"{SHIELDS_BASE}/json?url={HEALTH_BASE}&query=$.{obo_prefix.lower()}.score&label={obo_pp}{EXTRAS}"

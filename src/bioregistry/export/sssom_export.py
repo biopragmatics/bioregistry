@@ -10,6 +10,7 @@ import click
 import yaml
 
 import bioregistry
+from bioregistry import manager
 from bioregistry.constants import SSSOM_METADATA_PATH, SSSOM_PATH
 
 __all__ = [
@@ -20,30 +21,7 @@ logger = logging.getLogger(__name__)
 
 Row = namedtuple("Row", "subject_id predicate_id object_id match_type")
 
-DEFAULT_PREFIXES = {"bioregistry.schema", "bfo"}
-
-
-def _get_curie_map():
-    rv = {prefix: bioregistry.get_uri_prefix(prefix) for prefix in DEFAULT_PREFIXES}
-    for metaprefix, metaresource in bioregistry.read_metaregistry().items():
-        if not metaresource.provider_uri_format or not metaresource.provider_uri_format.endswith(
-            "$1"
-        ):
-            continue
-        uri_prefix = metaresource.provider_uri_format.rstrip("$1")
-        if metaresource.bioregistry_prefix:
-            rv[metaresource.bioregistry_prefix] = uri_prefix
-        elif metaprefix in bioregistry.read_registry() and not metaresource.bioregistry_prefix:
-            # FIXME enforce all entries have corresponding bioregistry entry
-            logger.debug("issue with overlap", metaprefix)
-            continue
-        else:
-            rv[metaprefix] = uri_prefix
-    return rv
-
-
-CURIE_MAP = _get_curie_map()
-del _get_curie_map
+CURIE_MAP = manager.get_internal_prefix_map()
 
 METADATA = {
     "license": "https://creativecommons.org/publicdomain/zero/1.0/",

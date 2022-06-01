@@ -62,8 +62,8 @@ class TestResolve(unittest.TestCase):
             ("go.ref", "0000041"),
             ("go.ref", "GO_REF:0000041"),
             # bananas from OBO
-            ("fbbt", "1234"),
-            ("fbbt", "FBbt:1234"),
+            ("fbbt", "00007294"),
+            ("fbbt", "FBbt:00007294"),
         ]
         for prefix in bioregistry.read_registry():
             if bioregistry.is_deprecated(prefix):
@@ -132,8 +132,8 @@ class TestResolve(unittest.TestCase):
             "^chembl\\.compound:CHEMBL\\d+$", bioregistry.get_curie_pattern("chembl.compound")
         )
         pattern = bioregistry.get_curie_pattern("panther.pthcmp")
-        self.assertRegexpMatches("panther.pthcmp:P00266", pattern)
-        self.assertNotRegexpMatches("pantherXpthcmp:P00266", pattern)
+        self.assertRegex("panther.pthcmp:P00266", pattern)
+        self.assertNotRegex("pantherXpthcmp:P00266", pattern)
 
     def test_depends_on(self):
         """Test getting dependencies."""

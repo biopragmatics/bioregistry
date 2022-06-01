@@ -45,16 +45,6 @@
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-- database: ApiDB_PlasmoDB
-  name: PlasmoDB Plasmodium Genome Resource
-  generic_urls:
-    - http://plasmodb.org/
-  entity_types:
-    - type_name: entity
-      type_id: BET:0000000
-      url_syntax: http://www.plasmodb.org/gene/[example_id]
-      example_id: ApiDB_PlasmoDB:PF11_0344
-      example_url: https://plasmodb.org/plasmo/app/record/gene/PF11_0344
 - database: APweb
   name: Angiosperm Phylogeny Website
   generic_urls:
@@ -239,34 +229,34 @@
   synonyms:
     - CAS_GEN
   generic_urls:
-    - http://research.calacademy.org/research/ichthyology/catalog/fishcatsearch.html
+    - https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatmain.asp
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-      url_syntax: http://research.calacademy.org/research/ichthyology/catalog/getname.asp?rank=Genus&id=[example_id]
+      url_syntax: https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genid=[example_id] OK
       example_id: CASGEN:1040
-      example_url: http://research.calacademy.org/research/ichthyology/catalog/getname.asp?rank=Genus&id=1040
+      example_url: https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genid=1040   OK
 - database: CASREF
   name: Catalog of Fishes publications database
   generic_urls:
-    - http://research.calacademy.org/research/ichthyology/catalog/fishcatsearch.html
+    - https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatmain.asp
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-      url_syntax: http://research.calacademy.org/research/ichthyology/catalog/getref.asp?id=[example_id]
+      url_syntax: https://researcharchive.calacademy.org/research/ichthyology/catalog/getref.asp?id=[example_id] OK
       example_id: CASREF:2031
-      example_url: http://research.calacademy.org/research/ichthyology/catalog/getref.asp?id=2031
+      example_url: https://researcharchive.calacademy.org/research/ichthyology/catalog/getref.asp?id=2031 OK
 - database: CASSPC
   name: Catalog of Fishes species database
   synonyms:
     - CAS_SPC
   generic_urls:
-    - http://research.calacademy.org/research/ichthyology/catalog/fishcatsearch.html
+    - https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatmain.asp
   entity_types:
     - type_name: entity
       type_id: BET:0000000
-      url_syntax: http://research.calacademy.org/research/ichthyology/catalog/getname.asp?rank=Species&id=[example_id]
-      example_url: http://research.calacademy.org/research/ichthyology/catalog/getname.asp?rank=Species&id=1979
+      url_syntax: https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=[example_id]
+      example_url: https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=1979
 - database: CAZY
   name: Carbohydrate Active EnZYmes
   description: The CAZy database describes the families of structurally-related catalytic and carbohydrate-binding modules (or functional domains) of enzymes that degrade, modify, or create glycosidic bonds.
@@ -1442,7 +1432,7 @@
       example_url: https://maizegdb.org/gene_center/gene/12098
 - database: MaizeGDB_Locus
   name: MaizeGDB
-  rdf_uri_prefix: https://registry.identifiers.org/registry/maizegdb.locus
+  rdf_uri_prefix: https://identifiers.org/maizegdb.locus
   generic_urls:
     - https://www.maizegdb.org/
   entity_types:
@@ -1527,7 +1517,7 @@
   name: Metabolic Encyclopedia of metabolic and other pathways
   synonyms:
     - METACYC
-  rdf_uri_prefix: https://registry.identifiers.org/registry/metacyc.reaction
+  rdf_uri_prefix: https://identifiers.org/metacyc.reaction
   generic_urls:
     - http://metacyc.org/
   entity_types:
@@ -1556,7 +1546,7 @@
       example_id: MGD:Adcy9
 - database: MGI
   name: Mouse Genome Informatics
-  rdf_uri_prefix: https://registry.identifiers.org/registry/mgi
+  rdf_uri_prefix: https://identifiers.org/MGI
   generic_urls:
     - http://www.informatics.jax.org/
   entity_types:
@@ -1631,7 +1621,7 @@
     - GeneID
     - LocusID
     - NCBI_Gene
-  rdf_uri_prefix: https://registry.identifiers.org/registry/ncbigene
+  rdf_uri_prefix: https://identifiers.org/ncbigene
   generic_urls:
     - http://www.ncbi.nlm.nih.gov/
   entity_types:
@@ -1753,7 +1743,7 @@
       type_id: BET:0000000
 - database: PANTHER
   name: Protein ANalysis THrough Evolutionary Relationships Classification System
-  rdf_uri_prefix: https://registry.identifiers.org/registry/panther.family
+  rdf_uri_prefix: https://identifiers.org/panther.family
   generic_urls:
     - http://www.pantherdb.org/
   entity_types:
@@ -1941,6 +1931,18 @@
       url_syntax: http://planteome.org/po_ref/[example_id]
       example_id: PO_REF:00001
       example_url: http://planteome.org/po_ref/00001
+- database: PlasmoDB
+  name: PlasmoDB
+  rdf_uri_prefix: https://identifiers.org/plasmodb
+  generic_urls:
+    - https://plasmodb.org
+  entity_types:
+    - type_name: gene
+      type_id: SO:0000704
+      id_syntax: PF3D7_[0-9]{7})
+      url_syntax: https://plasmodb.org/plasmo/app/record/gene/[example_id]
+      example_id: PF3D7_1467300
+      example_url: https://plasmodb.org/plasmo/app/record/gene/PF3D7_1467300
 - database: POC
   name: Plant Ontology Consortium
   generic_urls:
@@ -1950,7 +1952,7 @@
       type_id: BET:0000000
 - database: PomBase
   name: PomBase
-  rdf_uri_prefix: https://registry.identifiers.org/registry/pombase
+  rdf_uri_prefix: https://identifiers.org/pombase
   generic_urls:
     - https://www.pombase.org/
   entity_types:
@@ -2121,7 +2123,7 @@
   synonyms:
     - REACTOME
     - REAC
-  rdf_uri_prefix: https://registry.identifiers.org/registry/reactome
+  rdf_uri_prefix: https://identifiers.org/reactome
   generic_urls:
     - https://www.reactome.org/
   entity_types:
@@ -2193,7 +2195,7 @@
   synonyms:
     - RAD
     - RGDID
-  rdf_uri_prefix: https://registry.identifiers.org/registry/rgd
+  rdf_uri_prefix: https://identifiers.org/rgd
   generic_urls:
     - https://rgd.mcw.edu/
   entity_types:
@@ -2293,7 +2295,7 @@
   name: Saccharomyces Genome Database
   synonyms:
     - SGDID
-  rdf_uri_prefix: https://registry.identifiers.org/registry/sgd
+  rdf_uri_prefix: https://identifiers.org/sgd
   generic_urls:
     - http://www.yeastgenome.org/
   entity_types:
@@ -2327,7 +2329,7 @@
   name: Sol Genomics Network
   synonyms:
     - SGN_gene
-  rdf_uri_prefix: https://registry.identifiers.org/registry/sgn
+  rdf_uri_prefix: https://identifiers.org/sgn
   generic_urls:
     - https://www.sgn.cornell.edu/
   entity_types:
@@ -2449,7 +2451,7 @@
       type_id: BET:0000000
 - database: TAIR
   name: The Arabidopsis Information Resource
-  rdf_uri_prefix: https://registry.identifiers.org/registry/tair.locus
+  rdf_uri_prefix: https://identifiers.org/tair.locus
   generic_urls:
     - http://www.arabidopsis.org/
   entity_types:
@@ -2498,7 +2500,7 @@
       example_url: http://www.tcdb.org/tcdb/index.php?tc=9.A.4.1.1
 - database: TGD
   name: Tetrahymena Genome Database
-  rdf_uri_prefix: https://registry.identifiers.org/registry/tgd
+  rdf_uri_prefix: https://identifiers.org/tgd
   generic_urls:
     - http://www.ciliate.org/
   entity_types:
@@ -2550,7 +2552,19 @@
       type_id: BET:0000000
       url_syntax: http://dendrome.ucdavis.edu/treegenes/protein/view_protein.php?id=[example_id]
       example_id: TreeGenes:254
-      example_url: http://dendrome.ucdavis.edu/treegenes/protein/view_protein.php?id=254
+      example_url: http://dendrome.ucdavis.edu/treegenes/protein/view_protein.php?id=254  
+- database: TriTrypDB
+  name: TriTrypDB
+  rdf_uri_prefix: https://identifiers.org/tritrypdb
+  generic_urls:
+    - https://tritrypdb.org/
+  entity_types:
+    - type_name: gene
+      type_id: SO:0000704
+      id_syntax: ((LmjF|LinJ|LmxM|LINF)\.[0-9]{2}\.[0-9]{4})|(Tb[0-9]+\.[A-Za-z0-9]+\.[0-9]+)|(Tb\.[0-9]{6}\.[0-9]+)|
+      url_syntax: https://tritrypdb.org/tritrypdb/app/record/gene/[example_id]
+      example_id: Tb927.1.630
+      example_url: https://tritrypdb.org/tritrypdb/app/record/gene/Tb927.1.630   
 - database: UBERON
   name: Uber-anatomy ontology
   description: A multi-species anatomy ontology
@@ -2651,7 +2665,7 @@
 - database: UniProtKB
   name: Universal Protein Knowledgebase
   description: A central repository of protein sequence and function created by joining the information contained in Swiss-Prot, TrEMBL, and PIR database
-  rdf_uri_prefix: https://registry.identifiers.org/registry/uniprot
+  rdf_uri_prefix: https://identifiers.org/uniprot
   generic_urls:
     - http://www.uniprot.org
   entity_types:
@@ -2710,7 +2724,7 @@
   name: WormBase database of nematode biology
   synonyms:
     - WormBase
-  rdf_uri_prefix: https://registry.identifiers.org/registry/wb
+  rdf_uri_prefix: https://identifiers.org/wb
   generic_urls:
     - http://www.wormbase.org/
   entity_types:
@@ -2817,7 +2831,7 @@
       example_url: https://en.wikipedia.org/w/index.php?title=Fallopian_tube&oldid=998395727
 - database: Xenbase
   name: Xenbase
-  rdf_uri_prefix: https://registry.identifiers.org/registry/xenbase
+  rdf_uri_prefix: https://identifiers.org/xenbase
   generic_urls:
     - http://www.xenbase.org/
   entity_types:
@@ -2859,7 +2873,7 @@
     - http://citgenedb.yubiolab.org
 - database: ZFIN
   name: Zebrafish Information Network
-  rdf_uri_prefix: https://registry.identifiers.org/registry/zfin
+  rdf_uri_prefix: https://identifiers.org/zfin
   generic_urls:
     - http://zfin.org/
   entity_types:
@@ -2906,9 +2920,9 @@
     - type_name: QTL
       type_id: QTL_ID:0000000
       url_syntax: https://www.animalgenome.org/QTLdb/q?id=[example_id]
-      id_syntax: QTL_ID:\d+
-      example_id: QTL_ID:23155
-      example_url: https://www.animalgenome.org/QTLdb/q?id=QTL_ID:23155
+      id_syntax: \d+
+      example_id: 23155
+      example_url: https://www.animalgenome.org/QTLdb/q?id=23155
 - database: Animal_CorrDB
   name: CorrDB
   generic_urls:
@@ -2918,9 +2932,9 @@
     - type_name: Correlation
       type_id: CorrID:000000
       url_syntax: https://www.animalgenome.org/CorrDB/q/?id=[example_id]
-      id_syntax: CorrID:\d+
-      example_id: CorrID:37232
-      example_url: https://www.animalgenome.org/CorrDB/q/?id=CorrID:37232
+      id_syntax: \d+
+      example_id: 37232
+      example_url: https://www.animalgenome.org/CorrDB/q/?id=37232
 - database: AlphaFold
   name: AlphaFold Protein Structure Database
   generic_urls:

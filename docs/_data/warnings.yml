@@ -1,32 +1,5 @@
 embedding_rewrites: []
-license_conflict:
-- obo: CC0 1.0
-  ols: https://creativecommons.org/licenses/by/4.0/
-  prefix: clao
-- obo: CC BY 3.0
-  ols: https://creativecommons.org/publicdomain/zero/1.0/
-  prefix: envo
-- obo: CC BY 3.0
-  ols: http://creativecommons.org/licenses/by/4.0/
-  prefix: fobi
-- obo: CC BY 3.0
-  ols: https://creativecommons.org/licenses/by/4.0/
-  prefix: maxo
-- obo: CC BY 3.0
-  ols: New BSD license
-  prefix: ogsf
-- obo: CC BY 3.0
-  ols: http://creativecommons.org/licenses/by/4.0/
-  prefix: ontoneo
-- obo: CC BY 3.0
-  ols: https://creativecommons.org/licenses/by/4.0/
-  prefix: psdo
-- obo: CC BY 3.0
-  ols: http://creativecommons.org/licenses/by/4.0/
-  prefix: txpo
-- obo: CC BY 3.0
-  ols: http://creativecommons.org/licenses/by/4.0/
-  prefix: vo
+license_conflict: []
 prefix_rewrites: []
 wrong_patterns:
 - correct: ^/*[0-9A-Za-z]+(?:/[\w/.=*+@\$-]*)?(?:\?.*)?$
@@ -44,6 +17,11 @@ wrong_patterns:
   miriam: ^TEDDY_\d{7}$
   name: Terminology for Description of Dynamics
   prefix: biomodels.teddy
+- correct: ^[-A-Za-z0-9\_]*$
+  homepage: https://bio.tools/
+  miriam: ^[A-Za-z0-9\_]*$
+  name: BioTools
+  prefix: biotools
 - correct: ^\d{7}$
   homepage: http://www.brenda-enzymes.org
   miriam: ^BTO:\d{7}$
@@ -64,6 +42,11 @@ wrong_patterns:
   miriam: ^CL:\d{7}$
   name: Cell Ontology
   prefix: cl
+- correct: ^\d{7}$
+  homepage: http://classyfire.wishartlab.com/
+  miriam: ^C[0-9]{7}$
+  name: ClassyFire
+  prefix: classyfire
 - correct: ^[a-z0-9]+:[A-Za-z0-9.\-:]+$
   homepage: https://w3c-ccg.github.io/did-spec/
   miriam: ^did:[a-z0-9]+:[A-Za-z0-9.\-:]+$
@@ -74,7 +57,7 @@ wrong_patterns:
   miriam: ^DOID:\d+$
   name: Human Disease Ontology
   prefix: doid
-- correct: ^\d{1,2}(\.\d{0,3}){0,3}$
+- correct: ^\d{1,2}(((\.\d{1,3}){1,3})|(\.\d+){2}\.n\d{1,3})?$
   homepage: https://www.ebi.ac.uk/intenz/
   miriam: ^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$
   name: Enzyme Nomenclature
@@ -84,11 +67,21 @@ wrong_patterns:
   miriam: ECO:\d{7}$
   name: Evidence ontology
   prefix: eco
+- correct: ^((ENS[FPTG]\d{11}(\.\d+)?)|(FB\w{2}\d{7})|(Y[A-Z]{2}\d{3}[a-zA-Z](\-[A-Z])?)|([A-Z_a-z0-9]+(\.)?(t)?(\d+)?([a-z])?))$
+  homepage: https://www.ensembl.org/
+  miriam: ^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$
+  name: Ensembl Gene
+  prefix: ensembl
 - correct: ^\d{7,8}$
   homepage: http://environmentontology.org/
   miriam: ^ENVO:\d{7,8}$
   name: Environment Ontology
   prefix: envo
+- correct: ^\d{7}$
+  homepage: http://planteome.org/
+  miriam: ^(P)?EO\:\d{7}$
+  name: Plant Environment Ontology
+  prefix: eo
 - correct: ^\d+$
   homepage: http://si.washington.edu/projects/fma
   miriam: ^FMA:\d+$
@@ -104,12 +97,21 @@ wrong_patterns:
   miriam: ^GEO_[0-9]{9}$
   name: Geographical Entity Ontology
   prefix: geogeo
+- correct: ^[a-zA-Z0-9-_]+(/[a-zA-Z0-9-_]+)?$
+  homepage: https://github.com/
+  miriam: ^[a-zA-Z0-9-_]+/[a-zA-Z0-9-_]+$
+  name: github
+  prefix: github
 - correct: ^.*/.*$
   homepage: https://gitlab.com/
-  miriam: ^[0-9A-Za-z\u00A9-\u1f9ff_][0-9A-Za-z\p{Pd}\u00A9-\u1f9ff_()\. ]*/[0-9A-Za-z\u00A9-\u1f9ff_][0-9A-Za-z\p{Pd}\u00A9-\u1f9ff_\.
-    ]*$
+  miriam: ^[0-9A-Za-z_][0-9A-Za-z-_()\. ]*/[0-9A-Za-z_][0-9A-Za-z-_\. ]*$
   name: GitLab
   prefix: gitlab
+- correct: ^GN_[A-Za-z0-9_:]+$
+  homepage: https://www.noguchi.or.jp/
+  miriam: ^GN_[A-Za-z0-9]+$
+  name: GlycoNAVI
+  prefix: glyconavi
 - correct: ^\d{7}$
   homepage: http://geneontology.org/
   miriam: ^GO:\d{7}$
@@ -165,11 +167,6 @@ wrong_patterns:
   miriam: ^MI:\d{4}$
   name: Molecular Interactions Controlled Vocabulary
   prefix: mi
-- correct: ^\d+$
-  homepage: https://omim.org/
-  miriam: ^[*#+%^]?\d{6}$
-  name: OMIM ID
-  prefix: mim
 - correct: ^\d{8}$
   homepage: https://registry.identifiers.org/registry
   miriam: ^MIR:\d{8}$
@@ -221,10 +218,20 @@ wrong_patterns:
   name: OMA HOGs
   prefix: oma.hog
 - correct: ^\d+$
+  homepage: https://omim.org/
+  miriam: ^[*#+%^]?\d{6}$
+  name: Online Mendelian Inheritance in Man
+  prefix: omim
+- correct: ^\d+$
   homepage: http://bioportal.bioontology.org/ontologies/OPB
   miriam: ^OPB_\d+$
   name: Ontology of Physics for Biology
   prefix: opb
+- correct: ^C?\d+$
+  homepage: https://www.ebi.ac.uk/ols/ontologies/ordo
+  miriam: ^Orphanet(_|:)C?\d+$
+  name: Orphanet Rare Disease Ontology
+  prefix: orphanet.ordo
 - correct: ^(G|P|U|C|S)\d{5}$
   homepage: http://www.pantherdb.org/
   miriam: ^G|P|U|C|S\d{5}$
@@ -235,11 +242,6 @@ wrong_patterns:
   miriam: ^PATO:\d{7}$
   name: Phenotype And Trait Ontology
   prefix: pato
-- correct: ^\d{7}$
-  homepage: http://planteome.org/
-  miriam: ^(P)?EO\:\d{7}$
-  name: Plant Environment Ontology
-  prefix: peco
 - correct: ^\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b$
   homepage: http://pid.nci.nih.gov/
   miriam: ^\w+$
@@ -263,7 +265,7 @@ wrong_patterns:
 - correct: ^R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?$
   homepage: https://www.reactome.org/
   miriam: (^R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?$)|(^REACT_\d+(\.\d+)?$)
-  name: Reactome ID
+  name: Reactome
   prefix: reactome
 - correct: ^\d{7}$
   homepage: https://oborel.github.io/
@@ -286,7 +288,7 @@ wrong_patterns:
   name: Semanticscience Integrated Ontology
   prefix: sio
 - correct: ^\d{7}$
-  homepage: https://github.com/The-Sequence-Ontology/SO-Ontologies
+  homepage: http://www.sequenceontology.org/
   miriam: ^SO:\d{7}$
   name: Sequence types and features ontology
   prefix: so
@@ -310,6 +312,11 @@ wrong_patterns:
   miriam: ^Gene:\d{7}$
   name: TAIR Gene
   prefix: tair.gene
+- correct: ^\d+$
+  homepage: http://arabidopsis.org/index.jsp
+  miriam: ^\d{7}$
+  name: The Arabidopsis Information Resource
+  prefix: tair.locus
 - correct: ^\d{10}$
   homepage: http://arabidopsis.org/index.jsp
   miriam: ^AASequence:\d{10}$
@@ -320,6 +327,11 @@ wrong_patterns:
   miriam: ^UBERON:\d+$
   name: Uber Anatomy Ontology
   prefix: uberon
+- correct: ^\d{4}$
+  homepage: https://www.uniprot.org/docs/tisslist.txt
+  miriam: ^TS-\d{4}$
+  name: Tissue List
+  prefix: uniprot.tissue
 - correct: ^\d{7}$
   homepage: https://github.com/bio-ontology-research-group/unit-ontology
   miriam: ^UO:\d{7}?

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Curation
+title: Curation TODOs
 permalink: /curation/
 ---
 This page has the curation todo list. Anybody who makes a significant amount of curation will be included

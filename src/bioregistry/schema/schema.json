@@ -11,23 +11,22 @@
       "properties": {
         "name": {
           "title": "Name",
-          "description": "The full name of the author",
+          "description": "The full name of the researcher",
           "type": "string"
         },
         "orcid": {
           "title": "Open Researcher and Contributor Identifier",
-          "description": "The ORCiD of the author",
+          "description": "The Open Researcher and Contributor Identifier (ORCiD) provides researchers with an open, unambiguous identifier for connecting various digital assets (e.g., publications, reviews) across the semantic web. An account can be made in seconds at https://orcid.org.",
           "type": "string"
         },
         "email": {
-          "title": "Email",
-          "description": "The email address specific to the author",
-          "pattern": "^(\\w|\\.|\\_|\\-)+[@](\\w|\\_|\\-|\\.)+[.]\\w{2,5}$",
+          "title": "Email address",
+          "description": "The email address specific to the researcher.",
           "type": "string"
         },
         "github": {
-          "title": "Github",
-          "description": "The GitHub handle for the author",
+          "title": "GitHub handle",
+          "description": "The GitHub handle enables contacting the researcher on GitHub: the *de facto* version control in the computer sciences and life sciences.",
           "type": "string"
         }
       },
@@ -127,28 +126,27 @@
     },
     "Attributable": {
       "title": "Attributable",
-      "description": "An upper-level metadata for a person.",
+      "description": "An upper-level metadata for a researcher.",
       "type": "object",
       "properties": {
         "name": {
           "title": "Name",
-          "description": "The full name of the author",
+          "description": "The full name of the researcher",
           "type": "string"
         },
         "orcid": {
           "title": "Open Researcher and Contributor Identifier",
-          "description": "The ORCiD of the author",
+          "description": "The Open Researcher and Contributor Identifier (ORCiD) provides researchers with an open, unambiguous identifier for connecting various digital assets (e.g., publications, reviews) across the semantic web. An account can be made in seconds at https://orcid.org.",
           "type": "string"
         },
         "email": {
-          "title": "Email",
-          "description": "The email address specific to the author",
-          "pattern": "^(\\w|\\.|\\_|\\-)+[@](\\w|\\_|\\-|\\.)+[.]\\w{2,5}$",
+          "title": "Email address",
+          "description": "The email address specific to the researcher.",
           "type": "string"
         },
         "github": {
-          "title": "Github",
-          "description": "The GitHub handle for the author",
+          "title": "GitHub handle",
+          "description": "The GitHub handle enables contacting the researcher on GitHub: the *de facto* version control in the computer sciences and life sciences.",
           "type": "string"
         }
       },
@@ -161,24 +159,34 @@
       "description": "Metadata about an ontology, database, or other resource.",
       "type": "object",
       "properties": {
+        "prefix": {
+          "title": "Prefix",
+          "description": "The prefix for this resource",
+          "integration_status": "required",
+          "type": "string"
+        },
         "name": {
           "title": "Name",
-          "description": "The human-readable name of the resource",
+          "description": "The name of the resource",
+          "integration_status": "required",
           "type": "string"
         },
         "description": {
           "title": "Description",
           "description": "A description of the resource",
+          "integration_status": "required",
           "type": "string"
         },
         "pattern": {
           "title": "Pattern",
-          "description": "The regular expression pattern for identifiers in the resource",
+          "description": "The regular expression pattern for local unique identifiers in the resource",
+          "integration_status": "required_for_new",
           "type": "string"
         },
         "uri_format": {
-          "title": "URI Format",
+          "title": "URI format string",
           "description": "The URI format string, which must have at least one ``$1`` in it",
+          "integration_status": "required_for_new",
           "type": "string"
         },
         "providers": {
@@ -191,12 +199,19 @@
         },
         "homepage": {
           "title": "Homepage",
-          "description": "The URL for the homepage of the resource, preferably with HTTPS",
+          "description": "The URL for the homepage of the resource, preferably using HTTPS",
+          "integration_status": "required",
+          "type": "string"
+        },
+        "repository": {
+          "title": "Repository",
+          "description": "The URL for the repository of the resource",
           "type": "string"
         },
         "contact": {
           "title": "Contact",
           "description": "The contact email address for the resource. This must correspond to a specific person and not be a listserve nor a shared email account.",
+          "integration_status": "suggested",
           "allOf": [
             {
               "$ref": "#/definitions/Attributable"
@@ -205,8 +220,25 @@
         },
         "example": {
           "title": "Example",
-          "description": "An example local identifier for the resource, explicitly excluding any redundant usage of the prefix in the identifier. For example, a GO identifier should only look like 1234567 and not like GO:1234567",
+          "description": "An example local identifier for the resource, explicitly excluding any redundant usage of the prefix in the identifier. For example, a GO identifier should only look like ``1234567`` and not like ``GO:1234567``",
+          "integration_status": "required",
           "type": "string"
+        },
+        "example_extras": {
+          "title": "Example Extras",
+          "description": "Extra example identifiers",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "example_decoys": {
+          "title": "Example Decoys",
+          "description": "Extra example identifiers that explicitly fail regex tests",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "license": {
           "title": "License",
@@ -230,27 +262,32 @@
         },
         "download_owl": {
           "title": "OWL Download URL",
-          "description": "The OWL download URL, preferably an unversioned variant",
+          "description": "The URL to download the resource as an ontology encoded in the OWL format. More information about this format can be found at https://www.w3.org/TR/owl2-syntax/.",
           "type": "string"
         },
         "download_obo": {
           "title": "OBO Download URL",
-          "description": "The OBO download URL, preferably an unversioned variant",
+          "description": "The URL to download the resource as an ontology encoded in the OBO format. More information about this format can be found at https://owlcollab.github.io/oboformat/doc/obo-syntax.html.",
+          "type": "string"
+        },
+        "download_json": {
+          "title": "OBO Graph JSON Download URL",
+          "description": "The URL to download the resource as an ontology encoded in the OBO Graph JSON format. More information about this format can be found at https://github.com/geneontology/obographs.",
           "type": "string"
         },
         "banana": {
           "title": "Banana",
-          "description": "The redundant prefix that may appear in identifiers (e.g., `FBbt:`)",
+          "description": "The `banana` is a generalization of the concept of the \"namespace embedded in local unique identifier\". Many OBO foundry ontologies use the redundant uppercased name of the ontology in the local identifier, such as the Gene Ontology, which makes the prefixes have a redundant usage as in ``GO:GO:1234567``. The `banana` tag explicitly annotates the part in the local identifier that should be stripped, if found. While the Bioregistry automatically knows how to handle all OBO Foundry ontologies' bananas because the OBO Foundry provides the \"preferredPrefix\" field, the banana can be annotated on non-OBO ontologies to more explicitly write the beginning part of the identifier that should be stripped. This allowed for solving one of the long-standing issues with the Identifiers.org resolver (e.g., for ``oma.hog``; see https://github.com/identifiers-org/identifiers-org.github.io/issues/155) as well as better annotate new entries, such as SwissMap Lipids, which have the prefix ``swisslipid`` but have the redundant information ``SLM:`` in the beginning of identifiers. Therefore, ``SLM:`` is the banana.",
           "type": "string"
         },
         "deprecated": {
           "title": "Deprecated",
-          "description": "A flag to note if this resource is deprecated - will override OLS, OBO Foundry, and Prefix Commons flags.",
+          "description": "A flag denoting if this resource is deprecated. Currently, this is a blanket term that covers cases when the prefix is no longer maintained, when it has been rolled into another resource, when the website related to the resource goes down, or any other reason that it's difficult or impossible to find full metadata on the resource. If this is set to true, please add a comment explaining why. This flag will override annotations from the OLS, OBO Foundry, and others on the deprecation status, since they often disagree and are very conservative in calling dead resources.",
           "type": "boolean"
         },
         "mappings": {
           "title": "Mappings",
-          "description": "A dictionary of metaprefixes to prefixes in external registries",
+          "description": "A dictionary of metaprefixes (i.e., prefixes for registries) to prefixes in external registries. These also correspond to the registry-specific JSON fields in this model like ``miriam`` field.",
           "type": "object",
           "additionalProperties": {
             "type": "string"
@@ -258,7 +295,7 @@
         },
         "synonyms": {
           "title": "Synonyms",
-          "description": "A list of synonyms for the prefix of this resource",
+          "description": "A list of synonyms for the prefix of this resource. These are used in normalization of prefixes and are a useful reference tool for prefixes that are written many ways. For example, ``snomedct`` has many synonyms including typos like ``SNOWMEDCT``, lexical variants like ``SNOMED_CT``, version-variants like ``SNOMEDCT_2010_1_31``, and tons of other nonsense like ``SNOMEDCTCT``.",
           "type": "array",
           "items": {
             "type": "string"
@@ -290,12 +327,12 @@
         },
         "namespace_in_lui": {
           "title": "Namespace Embedded in Local Unique Identifier",
-          "description": "A way to override MIRIAM's namespaceEmbeddedInLui",
+          "description": "A flag denoting if the namespace is embedded in the LUI (if this is true and it is not accompanied by a banana, assume that the banana is the prefix in all caps plus a colon, as is standard in OBO). Currently this flag is only used to override identifiers.org in the case of ``gramene.growthstage``, ``oma.hog``, and ``vario``.",
           "type": "boolean"
         },
         "no_own_terms": {
           "title": "No Own Terms",
-          "description": "A flag to denote if the resource does not have any identifiers itself",
+          "description": "A flag denoting if the resource mints its own identifiers. Omission or explicit marking as false means that the resource does have its own terms. This is most applicable to ontologies, specifically application ontologies, which only reuse terms from others. One example is ChIRO.",
           "type": "boolean"
         },
         "comment": {
@@ -305,16 +342,26 @@
         },
         "contributor": {
           "title": "Contributor",
-          "description": "Contributor information, including the name, ORCiD, and optionally the email of the contributor",
+          "description": "The contributor of the prefix to the Bioregistry, including at a minimum their name and ORCiD and optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub Workflow must contain this field.",
+          "integration_status": "required_for_new",
           "allOf": [
             {
               "$ref": "#/definitions/Author"
             }
           ]
         },
+        "contributor_extras": {
+          "title": "Contributor Extras",
+          "description": "Additional contributors besides the original submitter.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Author"
+          }
+        },
         "reviewer": {
           "title": "Reviewer",
-          "description": "Reviewer information, including the name, ORCiD, and optionally the email of the reviewer",
+          "description": "The reviewer of the prefix to the Bioregistry, including at a minimum their name and ORCiD and optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub Workflow should contain this field pointing to the person who reviewed it on GitHub.",
+          "integration_status": "required_for_new",
           "allOf": [
             {
               "$ref": "#/definitions/Author"
@@ -323,7 +370,7 @@
         },
         "proprietary": {
           "title": "Proprietary",
-          "description": "Set to true if this database is proprietary. If missing, assume it's not.",
+          "description": "A flag to denote if this database is proprietary and therefore can not be included in normal quality control checks nor can it be resolved. Omission or explicit marking as false means that the resource is not proprietary.",
           "type": "boolean"
         },
         "has_canonical": {
@@ -334,6 +381,11 @@
         "preferred_prefix": {
           "title": "Preferred Prefix",
           "description": "An annotation of stylization of the prefix. This appears in OBO ontologies like FBbt as well as databases like NCBIGene. If it's not given, then assume that the normalized prefix used in the Bioregistry is canonical.",
+          "type": "string"
+        },
+        "twitter": {
+          "title": "Twitter",
+          "description": "The twitter handle for the project",
           "type": "string"
         },
         "miriam": {
@@ -395,8 +447,15 @@
         "fairsharing": {
           "title": "Fairsharing",
           "type": "object"
+        },
+        "biocontext": {
+          "title": "Biocontext",
+          "type": "object"
         }
-      }
+      },
+      "required": [
+        "prefix"
+      ]
     },
     "RegistrySchema": {
       "title": "RegistrySchema",
@@ -405,375 +464,155 @@
       "properties": {
         "name": {
           "title": "Name",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "homepage": {
           "title": "Homepage",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "description": {
           "title": "Description",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "example": {
           "title": "Example",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "pattern": {
           "title": "Pattern",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "provider": {
           "title": "Provider",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "alternate_providers": {
           "title": "Alternate Providers",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "synonyms": {
           "title": "Synonyms",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "license": {
           "title": "License",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "version": {
           "title": "Version",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "contact": {
           "title": "Contact",
-          "anyOf": [
-            {
-              "const": "required",
-              "type": "string"
-            },
-            {
-              "const": "required*",
-              "type": "string"
-            },
-            {
-              "const": "present",
-              "type": "string"
-            },
-            {
-              "const": "present*",
-              "type": "string"
-            },
-            {
-              "const": "missing",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant",
-              "type": "string"
-            },
-            {
-              "const": "irrelevant*",
-              "type": "string"
-            }
-          ]
+          "enum": [
+            "required",
+            "required*",
+            "present",
+            "present*",
+            "missing",
+            "irrelevant",
+            "irrelevant*"
+          ],
+          "type": "string"
         },
         "search": {
           "title": "Search",
-          "description": "Does this resource have a search functionality for prefixes",
+          "description": "Does this registry provide a URL into which a search query can be formatted to show a list of results?",
           "type": "boolean"
         },
         "fair": {
           "title": "Fair",
-          "description": "Does this resource provide a structured dump of the data is easily findable, accessible, and in a structured format in bulk",
+          "description": "Does this registry provide a structured bulk dump of its prefixes, records, and all associated metadata in an easily findable and accessible manner?",
           "type": "boolean"
         },
         "fair_note": {
@@ -796,6 +635,84 @@
         "contact",
         "search",
         "fair"
+      ]
+    },
+    "RegistryGovernance": {
+      "title": "RegistryGovernance",
+      "description": "Metadata about a registry's governance.",
+      "type": "object",
+      "properties": {
+        "curation": {
+          "title": "Curation",
+          "enum": [
+            "private",
+            "import",
+            "community",
+            "opaque-review",
+            "open-review"
+          ],
+          "type": "string"
+        },
+        "curates": {
+          "title": "Curates",
+          "description": "Does the registry curate novel prefixes?",
+          "type": "boolean"
+        },
+        "imports": {
+          "title": "Imports",
+          "description": "Does the registry import and align prefixes from other registries?",
+          "type": "boolean"
+        },
+        "scope": {
+          "title": "Scope",
+          "description": "What is the scope of prefixes which the registry covers? For example, some registries are limited to ontologies, some have a full scope over the life sciences, and some are general purpose.",
+          "type": "string"
+        },
+        "comments": {
+          "title": "Comments",
+          "type": "string"
+        },
+        "accepts_external_contributions": {
+          "title": "Accepts External Contributions",
+          "description": "Does the registry (in theory) accept external contributions, either via suggestion or proactive improvement? This field does not pass judgement on the difficult of this process from the perspective of the submitter nor the responsiveness of the registry. This field does not consider the ability for insiders (i.e., people with private relationships to the maintainers) to affect change.",
+          "type": "boolean"
+        },
+        "public_version_control": {
+          "title": "Public Version Control",
+          "description": "Does the registry store its data/code in publicly available version control system, such as GitHub or GitLab? Currently there is no resource that does one but not the other, so this is grouped (for now).",
+          "type": "boolean"
+        },
+        "review_team": {
+          "title": "Review Team",
+          "description": "Are the reviewers for external contributions known? If there's a well-defined, maintained listing, then it can be marked as public. If it can be inferred, e.g. from reading the commit history on a version control system, then it can be marked as inferrable. A closed review team, e.g., like for Identifiers.org can be marked as private. Resources that do not accept external contributions can be marked with N/A.",
+          "enum": [
+            "public",
+            "inferrable",
+            "private",
+            "n/a"
+          ],
+          "type": "string"
+        },
+        "status": {
+          "title": "Status",
+          "description": "What is the status of the repository? An active repository is still being maintained and also is responsive to external requests for improvement. An unresponsive repository is still being maintained in some capacity but is not responsive to external requests for improvement. An inactive repository is no longer being proactively maintained (though may receive occasional patches).",
+          "enum": [
+            "active",
+            "unresponsive",
+            "inactive"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "curation",
+        "curates",
+        "imports",
+        "scope",
+        "accepts_external_contributions",
+        "public_version_control",
+        "review_team",
+        "status"
       ]
     },
     "Registry": {
@@ -837,6 +754,15 @@
             }
           ]
         },
+        "governance": {
+          "title": "Governance",
+          "description": "A structured description of the governance for the registry",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RegistryGovernance"
+            }
+          ]
+        },
         "download": {
           "title": "Download",
           "description": "A download link for the data contained in the registry",
@@ -844,14 +770,17 @@
         },
         "provider_uri_format": {
           "title": "Provider Uri Format",
+          "description": "A URL with a $1 for a prefix to resolve in the registry",
           "type": "string"
         },
         "resolver_uri_format": {
           "title": "Resolver Uri Format",
+          "description": "A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry",
           "type": "string"
         },
         "resolver_type": {
           "title": "Resolver Type",
+          "description": "An optional type annotation for what kind of resolver it is (i.e., redirect or lookup)",
           "type": "string"
         },
         "contact": {
@@ -865,6 +794,22 @@
         },
         "bioregistry_prefix": {
           "title": "Bioregistry Prefix",
+          "description": "The prefix for this registry in the Bioregistry",
+          "type": "string"
+        },
+        "logo_url": {
+          "title": "Logo Url",
+          "description": "The URL for the logo of the resource",
+          "type": "string"
+        },
+        "license": {
+          "title": "License",
+          "description": "The license under which the resource is redistributed",
+          "type": "string"
+        },
+        "short_name": {
+          "title": "Short Name",
+          "description": "A short name for the resource, e.g., for use in charts",
           "type": "string"
         }
       },
@@ -875,7 +820,86 @@
         "homepage",
         "example",
         "availability",
+        "governance",
         "contact"
+      ]
+    },
+    "Context": {
+      "title": "Context",
+      "description": "A prescriptive context contains configuration for generating fit-for-purpose\nprefix maps to serve various communities based on the standard Bioregistry\nprefix map, custom prefix remapping rules, custom URI prefix remapping rules,\ncustom prefix maps, and other community-specific logic.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "description": "The name of the context",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "description": "A description of the context, can include Markdown",
+          "type": "string"
+        },
+        "maintainers": {
+          "title": "Maintainers",
+          "description": "A list of maintainers for the context",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Author"
+          }
+        },
+        "prefix_priority": {
+          "title": "Prefix Priority",
+          "description": "This ordering of metaprefixes (i.e., prefixes for registries) is used to determine the priority of which registry's prefixes are used. By default, the canonical Bioregistry prefixes are highest priority.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "include_synonyms": {
+          "title": "Include Synonyms",
+          "description": "Should synonyms be included in the prefix map?",
+          "default": false,
+          "type": "boolean"
+        },
+        "use_preferred": {
+          "title": "Use Preferred",
+          "description": "Should preferred prefixes (i.e., stylized prefixes) be preferred over canonicalized ones?",
+          "default": false,
+          "type": "boolean"
+        },
+        "uri_prefix_priority": {
+          "title": "Uri Prefix Priority",
+          "description": "This ordering of metaprefixes (i.e., prefixes for registries) is used to determine the priority of which registry's URI prefixes are used. By default, the canonical Bioregistry URI prefixes are highest priority.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "prefix_remapping": {
+          "title": "Prefix Remapping",
+          "description": "This is a mapping from canonical Bioregistry prefixes to custom prefixes used in this context.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "custom_prefix_map": {
+          "title": "Custom Prefix Map",
+          "description": "This is a custom prefix map (which contains custom URL/URI expansions) that is added after all other logic is applied. Keys must either be canonical Bioregistry prefixes, prefixes used based on the given prefix priority, or values in the given prefix remapping.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "maintainers",
+        "prefix_priority",
+        "uri_prefix_priority",
+        "prefix_remapping",
+        "custom_prefix_map"
       ]
     }
   }

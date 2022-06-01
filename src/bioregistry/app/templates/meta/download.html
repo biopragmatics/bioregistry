@@ -45,7 +45,7 @@
         The manually curated portions of these data are available under the
         <a href="https://creativecommons.org/share-your-work/public-domain/cc0/">
             <i class="fab fa-creative-commons-zero"></i> CC0 1.0 Universal License</a>. Aggregated data are
-        redistributed under their original licenses.
+        redistributed under their original licenses as described <a href="{{ url_for("acknowledgements") }}">here</a>.
     </p>
     <p>
         More information can be found
@@ -105,10 +105,26 @@
         More information can be found
         <a href="https://github.com/biopragmatics/bioregistry/tree/main/exports/collections">here</a>.
     </p>
+    <h2>Derived and Related Resources</h2>
     <h3>RDF</h3>
     <p>
-        The combine registry, metaregistry, and collections can be downloaded as RDF in the following formats. See the
-        <a href="{{ url_for(".schema") }}">RDF schema</a> page for further documentation.
+        The Bioregisty provides an RDF dump for integration in triple stores and linked open data settings.
+        See the <a href="{{ url_for(".schema") }}">RDF schema</a> page for documentation on schema elements.
+        The schema is provided in the following formats:
+    </p>
+    <ul>
+        <li>
+            <a href="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/exports/rdf/schema.ttl">Turtle (.ttl)</a>
+        </li>
+        <li>
+            <a href="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/exports/rdf/schema.nt">N-Triples (.nt)</a>
+        </li>
+        <li>
+            <a href="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/exports/rdf/schema.jsonld">JSON-LD (.jsonld)</a>
+        </li>
+    </ul>
+    <p>
+        The combine registry, metaregistry, and collections can be downloaded as RDF in the following formats:
     </p>
     <ul>
         <li>
@@ -135,13 +151,12 @@
         The manually curated portions of these data are available under the
         <a href="https://creativecommons.org/share-your-work/public-domain/cc0/">
             <i class="fab fa-creative-commons-zero"></i> CC0 1.0 Universal License</a>. Aggregated data are
-        redistributed under their original licenses.
+        redistributed under their original licenses as described <a href="{{ url_for("acknowledgements") }}">here</a>.
     </p>
     <p>
         More information can be found
         <a href="https://github.com/biopragmatics/bioregistry/tree/main/exports/rdf">here</a>.
     </p>
-    <h2>Derived and Related Resources</h2>
     <h3>Bioregistry Regular Expression Report</h3>
     <p>
         The Bioregistry Regular Expression Report uses <a href="https://github.com/pyobo/pyobo">PyOBO</a> to check how

@@ -7,8 +7,7 @@ import logging
 from collections import defaultdict
 from textwrap import dedent
 
-from bioregistry.constants import URI_FORMAT_KEY
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
 from bioregistry.utils import query_wikidata
 
 __all__ = [
@@ -116,6 +115,7 @@ def get_wikidata(force_download: bool = False):
 CANONICAL_DATABASES = {
     "P6800": "Q87630124",  # -> NCBI Genome
     "P627": "Q48268",  # -> International Union for Conservation of Nature
+    "P351": "Q1345229",  # NCBI Gene
 }
 
 
@@ -128,7 +128,8 @@ def _aggregate(prop, records):
     if len(databases) == 1:
         canonical_database = list(databases)[0]
     elif prop not in CANONICAL_DATABASES:
-        raise ValueError(f"need to curate which is the canonical database for {prop}: {databases}")
+        logger.warning(f"need to curate which is the canonical database for {prop}: {databases}")
+        canonical_database = list(databases)[0]
     else:
         canonical_database = CANONICAL_DATABASES[prop]
 

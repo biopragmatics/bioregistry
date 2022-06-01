@@ -8,7 +8,7 @@ from operator import attrgetter
 
 from flasgger import Swagger
 from flask import Flask, jsonify, render_template
-from flask_bootstrap import Bootstrap
+from flask_bootstrap import Bootstrap4
 
 import bioregistry
 from bioregistry import version
@@ -17,7 +17,13 @@ from .api import api_blueprint
 from .ui import ui_blueprint
 from ..resolve_identifier import get_bioregistry_iri
 from ..schema.constants import bioregistry_schema_terms
-from ..schema.struct import get_json_schema, schema_status_map
+from ..schema.struct import (
+    Registry,
+    RegistryGovernance,
+    RegistrySchema,
+    get_json_schema,
+    schema_status_map,
+)
 
 app = Flask(__name__)
 Swagger.DEFAULT_CONFIG.update(
@@ -47,7 +53,7 @@ Swagger.DEFAULT_CONFIG.update(
     }
 )
 Swagger(app)
-Bootstrap(app)
+Bootstrap4(app)
 
 app.register_blueprint(api_blueprint)
 app.register_blueprint(ui_blueprint)
@@ -83,6 +89,9 @@ def related():
         "meta/related.html",
         registries=sorted(bioregistry.read_metaregistry().values(), key=attrgetter("name")),
         schema_status_map=schema_status_map,
+        registry_cls=Registry,
+        registry_governance_cls=RegistryGovernance,
+        registry_schema_cls=RegistrySchema,
     )
 
 
@@ -95,7 +104,10 @@ def download():
 @app.route("/acknowledgements")
 def acknowledgements():
     """Render the acknowledgements page."""
-    return render_template("meta/acknowledgements.html")
+    return render_template(
+        "meta/acknowledgements.html",
+        registries=sorted(bioregistry.read_metaregistry().values(), key=attrgetter("name")),
+    )
 
 
 _VERSION = version.get_version()

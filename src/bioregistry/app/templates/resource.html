@@ -19,6 +19,8 @@
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
 {% endblock %}
 
+{% set twitter = resource.get_twitter() %}
+
 {% block container %}
     <div class="card">
         <div class="card-header">
@@ -68,10 +70,12 @@
                     instead of <code>{{ prefix }}</code>.
                 </p>
             {% endif %}
-            {% if resource.comment %}
-                <p class="text-muted"><span class="badge badge-info">Comment</span> {{ resource.comment }}</p>
-            {% endif %}
+
             <dl>
+                {% if resource.comment %}
+                    <dt>Comment</dt>
+                    <dd>{{ markdown(resource.comment) | safe }}</dd>
+                {% endif %}
                 <dt>Prefix</dt>
                 <dd><code>{{ prefix }}</code></dd>
                 {% set preferred_prefix = resource.get_preferred_prefix() %}
@@ -137,6 +141,11 @@
                             OBO JSON <i class="fas fa-download"></i>
                         </a>
                     {% endif %}
+                    {% if twitter %}
+                        <a class="badge badge-pill badge-light" href="https://twitter.com/{{ twitter }}">
+                            <i class="fa-brands fa-twitter"></i> @{{ twitter }}
+                        </a>
+                    {% endif %}
                 </dd>
                 <dt>
                     Contact
@@ -166,7 +175,7 @@
                         <span class="badge badge-pill badge-warning">Missing LUI pattern</span>
                     {% endif %}
                 </dd>
-                <dt>Example Local Unique Identifier</dt>
+                <dt>Example Local Unique Identifier{% if resource.example_extras %}s{% endif %}</dt>
                 <dd>
                     {% if example %}
                         <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example }}</a>
@@ -174,6 +183,14 @@
                         &nbsp;
                         <a class="badge badge-pill badge-info" href="{{ url_for("ui.resolve", prefix=prefix, identifier=example) }}"><i class="fas fa-share-square"></i> Resolve</a>
                         {% endif %}
+                        {% for extra_example in example_extras %}
+                            <br />
+                            <a href="{{ url_for("ui.reference", prefix=prefix, identifier=extra_example) }}">{{ extra_example }}</a>
+                            {% if providers %}
+                                &nbsp;
+                                <a class="badge badge-pill badge-info" href="{{ url_for("ui.resolve", prefix=prefix, identifier=extra_example) }}"><i class="fas fa-share-square"></i> Resolve</a>
+                            {% endif %}
+                        {% endfor %}
                     {% elif has_no_terms %}
                         <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
                     {% else %}
@@ -193,10 +210,14 @@
                         <span class="badge badge-pill badge-warning">Could not construct CURIE pattern</span>
                     {% endif %}
                 </dd>
-                <dt>Example CURIE</dt>
+                <dt>Example CURIE{% if resource.example_extras %}s{% endif %}</dt>
                 <dd>
                     {% if example_curie %}
                         <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example_curie }}</a>
+                        {% for example_curie_extra, example_extra in zip(example_curie_extras, example_extras) %}
+                            <br />
+                            <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example_extra) }}">{{ example_curie_extra }}</a>
+                        {% endfor %}
                     {% elif has_no_terms %}
                         <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
                     {% else %}
@@ -214,20 +235,49 @@
                     </dd>
                 {% endif %}
 
-                {% if resource.references %}
+                {% set publications = resource.get_publications() %}
+                {% if resource.references or publications%}
                     <dt>References</dt>
                     <dd>
                         <ul>
-                            {% for reference in resource.references %}
-                                <li><a href="{{ reference }}">{{ reference }}</a></li>
+                            {% for publication in publications or [] %}
+                                <li>
+                                    <span class="badge badge-info">Publication</span>
+                                    <a href="{{ publication.id }}">{{ publication.title }}</a>
+                                </li>
+                            {% endfor %}
+                            {% for reference in resource.references or [] %}
+                                <li>
+                                    {% if reference.startswith("https://twitter.com") %}
+                                        <span class="badge badge-info">Tweet</span>
+                                    {% elif reference.startswith("https://github.com/") and "issues/" in reference %}
+                                        <span class="badge badge-info">GitHub Issue</span>
+                                    {% elif reference.startswith("https://github.com/") and "pull" in reference %}
+                                        <span class="badge badge-info">GitHub PR</span>
+                                    {% else %}
+                                        <span class="badge badge-info">Other</span>
+                                    {% endif %}
+                                    <a href="{{ reference }}">{{ reference }}</a>
+                                </li>
                             {% endfor %}
                         </ul>
                     </dd>
                 {% endif %}
-                {% if resource.contributor %}
-                    <dt>Contributor</dt>
+                {% if resource.contributor or resource.contributor_extras %}
+                    <dt>Contributors</dt>
                     <dd>
-                        {{ utils.render_author(resource.contributor, link=url_for('ui.contributor', orcid=resource.contributor.orcid)) }}
+                        <ul>
+                            {% if resource.contributor %}
+                                <li>
+                                    <span class="badge badge-info">submitter</span> {{ utils.render_author(resource.contributor, link=url_for('ui.contributor', orcid=resource.contributor.orcid)) }}
+                                </li>
+                            {% endif %}
+                            {% for contributor in resource.contributor_extras or [] %}
+                                <li>
+                                    <span class="badge badge-info">contributor</span> {{ utils.render_author(contributor, link=url_for('ui.contributor', orcid=contributor.orcid)) }}
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </dd>
                 {% endif %}
                 {% if resource.reviewer %}
@@ -361,7 +411,9 @@
     {% if mappings %}
         <div class="card" style="margin-top: 20px">
             <a id="mappings"></a>
-            <h5 class="card-header">Metaregistry</h5>
+            <h5 class="card-header">
+                Metaregistry <i class="fas fa-angle-right"></i> {{ name }}
+            </h5>
             <div class="card-body">
                 <p>
                     The metaregistry provides mappings between the Bioregistry and other registries. There are
@@ -384,6 +436,9 @@
                                 <a href="{{ mapping.homepage }}">{{ mapping.name }}</a>
                             {% else %}
                                 {{ mapping.name }}
+                            {% endif %}
+                            {% if mapping.metaresource.logo_url %}
+                                <img style="max-height: 1em" alt="{{ mapping.name }} logo" src="{{ mapping.metaresource.logo_url }}" />
                             {% endif %}
                         </td>
                         <td><code>{{ mapping.metaprefix }}</code></td>

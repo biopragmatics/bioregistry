@@ -11,6 +11,7 @@ from .uri_format import get_prefix_map
 __all__ = [
     "curie_from_iri",
     "parse_iri",
+    "parse_obolibrary_purl",
 ]
 
 OLS_URL_PREFIX = "https://www.ebi.ac.uk/ols/ontologies/"
@@ -185,5 +186,5 @@ def parse_obolibrary_purl(iri: str) -> Union[Tuple[str, str], Tuple[None, None]]
     >>> parse_obolibrary_purl("http://purl.obolibrary.org/obo/FBbt_0000001")
     ('fbbt', '0000001')
     """
-    curie = iri[len("http://purl.obolibrary.org/obo/") :]
+    curie = iri[len(OBO_PREFIX) :]
     return parse_curie(curie, sep="_")

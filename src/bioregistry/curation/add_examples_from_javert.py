@@ -8,8 +8,7 @@ from pyobo.xrefdb.xrefs_pipeline import MAPPINGS_DB_TSV_CACHE
 from tqdm import tqdm
 
 import bioregistry
-from bioregistry import get_example
-from bioregistry.utils import write_registry
+from bioregistry import get_example, write_registry
 
 
 def main():
