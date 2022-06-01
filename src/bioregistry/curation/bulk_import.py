@@ -1,7 +1,23 @@
-"""A script for doing bulk import from google sheets."""
+"""A script for doing bulk import.
 
+If you have a local file or remote file accessible by HTTP/HTTPS/FTP,
+you can use the `--path` option like in:
+
+.. code-block:: shell
+
+    $ python -m bioregistry.curation.bulk_google_import --path <your file path>
+
+If you are doing curation on Google Sheets, you can copy the sheet identifier
+and use the `--google-sheet` option like in:
+
+.. code-block:: shell
+
+    $ python -m bioregistry.curation.bulk_google_import --google-sheet 10MPt-H6My33mOa1V_VkLh4YG8609N7B_Dey0CBnfTL4
+"""
+
+import sys
 from collections import defaultdict
-from typing import Any, Mapping
+from typing import Any, DefaultDict, Dict, Mapping, Optional
 
 import click
 import pandas as pd
@@ -15,7 +31,7 @@ NESTED = {"contact", "contributor"}
 
 def _resource_from_row(row: Mapping[str, Any]) -> Resource:
     kwargs = {}
-    nested = defaultdict(dict)
+    nested: DefaultDict[str, Dict[str, str]] = defaultdict(dict)
     for key, value in row.items():
         if pd.isna(value):
             continue
@@ -41,7 +57,6 @@ def _resource_from_row(row: Mapping[str, Any]) -> Resource:
 
 def _bulk_import_df(df: pd.DataFrame):
     for _, row in df.iterrows():
-        row: pd.Series
         resource = _resource_from_row(row.to_dict())
         try:
             add_resource(resource)
@@ -51,12 +66,21 @@ def _bulk_import_df(df: pd.DataFrame):
 
 
 @click.command()
-@click.option("--sheet", required=True)
-def main(sheet: str):
+@click.option("--google-sheet")
+@click.option("--google-sheet-gid", type=int, default=0)
+@click.option("--path")
+def main(google_sheet: Optional[str], google_sheet_gid: int, path: Optional[str]):
     """Import prefixes from a google sheet in bulk."""
-    # sheet = "10MPt-H6My33mOa1V_VkLh4YG8609N7B_Dey0CBnfTL4"
-    url = f"https://docs.google.com/spreadsheets/d/{sheet}/export?format=tsv&gid=0"
-    df = pd.read_csv(url, sep="\t")
+    # google_sheet = "10MPt-H6My33mOa1V_VkLh4YG8609N7B_Dey0CBnfTL4"
+    if google_sheet:
+        url = f"https://docs.google.com/spreadsheets/d/{google_sheet}/export?format=tsv&gid={google_sheet_gid}"
+        df = pd.read_csv(url, sep="\t")
+    elif path:
+        df = pd.read_csv(path, sep="," if path.endswith("csv") else "\t")
+    else:
+        click.secho("no sheet provided", fg="red")
+        return sys.exit(1)
+
     _bulk_import_df(df)
 
 
