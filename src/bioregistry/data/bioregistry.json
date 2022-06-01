@@ -20647,6 +20647,23 @@
       "uri_format": "https://fungidb.org/fungidb/app/record/gene/$1"
     }
   },
+  "fungorum": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier for a fungus taxon in Index Fungorum",
+    "example": "154022",
+    "homepage": "http://www.indexfungorum.org",
+    "mappings": {
+      "wikidata": "P1391"
+    },
+    "name": "Index Fungorum",
+    "pattern": "^[1-9]\\d{0,5}$",
+    "uri_format": "http://www.indexfungorum.org/names/NamesRecord.asp?RecordID=$1"
+  },
   "fyeco": {
     "biolink": {
       "is_identifiers": false,
@@ -28072,6 +28089,20 @@
       "prefix": "imr",
       "uri_format": "http://www.inoh.org/ontology-viewer/cgi-bin/InohOVAttr.php?type=IMR&id=$1"
     }
+  },
+  "inaturalist.taxon": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Identifier for a species in iNaturalist",
+    "example": "21723",
+    "homepage": "https://www.inaturalist.org/taxa",
+    "name": "iNaturalist Taxonomy",
+    "pattern": "^[1-9]\\d{0,6}$",
+    "uri_format": "https://www.inaturalist.org/taxa/$1"
   },
   "inchi": {
     "biocontext": {
@@ -48775,6 +48806,21 @@
       "prefix": "pubmed",
       "uri_format": "https://www.ncbi.nlm.nih.gov/pubmed/$1"
     },
+    "prefixcommons": {
+      "description": "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s.",
+      "example": "23735196",
+      "homepage": "http://www.ncbi.nlm.nih.gov/pubmed/",
+      "keywords": [
+        "bibliography"
+      ],
+      "name": "PubMed",
+      "pattern": "^\\d+$",
+      "prefix": "pubmed",
+      "pubmed_ids": [
+        "16381840"
+      ],
+      "uri_format": "http://www.ncbi.nlm.nih.gov/pubmed/$1"
+    },
     "providers": [
       {
         "code": "uniprot.citation",
@@ -48791,21 +48837,6 @@
         "uri_format": "http://purl.uniprot.org/pubmed/$1"
       }
     ],
-    "prefixcommons": {
-      "description": "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s.",
-      "example": "23735196",
-      "homepage": "http://www.ncbi.nlm.nih.gov/pubmed/",
-      "keywords": [
-        "bibliography"
-      ],
-      "name": "PubMed",
-      "pattern": "^\\d+$",
-      "prefix": "pubmed",
-      "pubmed_ids": [
-        "16381840"
-      ],
-      "uri_format": "http://www.ncbi.nlm.nih.gov/pubmed/$1"
-    },
     "synonyms": [
       "MEDLINE",
       "PMID",
