@@ -20647,6 +20647,32 @@
       "uri_format": "https://fungidb.org/fungidb/app/record/gene/$1"
     }
   },
+  "fungorum": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier for a fungus taxon in Index Fungorum",
+    "example": "154022",
+    "homepage": "http://www.indexfungorum.org",
+    "mappings": {
+      "wikidata": "P1391"
+    },
+    "name": "Index Fungorum",
+    "pattern": "^[1-9]\\d{0,5}$",
+    "uri_format": "http://www.indexfungorum.org/names/NamesRecord.asp?RecordID=$1",
+    "wikidata": {
+      "database": "Q1860469",
+      "database.homepage": "http://www.indexfungorum.org/",
+      "database.label": "Index Fungorum",
+      "name": "Index Fungorum ID",
+      "pattern": "[1-9]\\d{0,5}|",
+      "prefix": "P1391",
+      "uri_format": "http://www.indexfungorum.org/names/NamesRecord.asp?RecordID=$1"
+    }
+  },
   "fyeco": {
     "biolink": {
       "is_identifiers": false,
@@ -28084,6 +28110,23 @@
       "prefix": "imr",
       "uri_format": "http://www.inoh.org/ontology-viewer/cgi-bin/InohOVAttr.php?type=IMR&id=$1"
     }
+  },
+  "inaturalist.taxon": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Identifier for a species in iNaturalist",
+    "example": "21723",
+    "homepage": "https://www.inaturalist.org/taxa",
+    "mappings": {
+      "wikidata": "P3151"
+    },
+    "name": "iNaturalist Taxonomy",
+    "pattern": "^[1-9]\\d{0,6}$",
+    "uri_format": "https://www.inaturalist.org/taxa/$1"
   },
   "inchi": {
     "biocontext": {
@@ -38140,7 +38183,8 @@
       "TaxonomyID",
       "taxid",
       "taxon",
-      "taxonomy"
+      "taxonomy",
+      "uniprot.taxonomy"
     ],
     "wikidata": {
       "database": "Q13711410",
@@ -48801,6 +48845,22 @@
       ],
       "uri_format": "http://www.ncbi.nlm.nih.gov/pubmed/$1"
     },
+    "providers": [
+      {
+        "code": "uniprot.citation",
+        "description": "UniProt mints PURLs for citations identifiers",
+        "homepage": "https://uniprot.org/",
+        "name": "UniProt",
+        "uri_format": "http://purl.uniprot.org/citations/$1"
+      },
+      {
+        "code": "uniprot.pubmed",
+        "description": "UniProt mints PURLs for PubMed identifiers",
+        "homepage": "https://uniprot.org/",
+        "name": "UniProt",
+        "uri_format": "http://purl.uniprot.org/pubmed/$1"
+      }
+    ],
     "synonyms": [
       "MEDLINE",
       "PMID",
@@ -57740,7 +57800,8 @@
     "synonyms": [
       "SP_KW",
       "UniProtKB-KW",
-      "uniprot.keyword"
+      "uniprot.keyword",
+      "uniprot.kw"
     ],
     "uri_format": "https://www.uniprot.org/keywords/KW-$1"
   },
