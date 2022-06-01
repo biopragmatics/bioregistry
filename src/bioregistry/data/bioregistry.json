@@ -48775,6 +48775,22 @@
       "prefix": "pubmed",
       "uri_format": "https://www.ncbi.nlm.nih.gov/pubmed/$1"
     },
+    "providers": [
+      {
+        "code": "uniprot.citation",
+        "description": "UniProt mints PURLs for citations identifiers",
+        "homepage": "https://uniprot.org/",
+        "name": "UniProt",
+        "uri_format": "http://purl.uniprot.org/citations/$1"
+      },
+      {
+        "code": "uniprot.pubmed",
+        "description": "UniProt mints PURLs for PubMed identifiers",
+        "homepage": "https://uniprot.org/",
+        "name": "UniProt",
+        "uri_format": "http://purl.uniprot.org/pubmed/$1"
+      }
+    ],
     "prefixcommons": {
       "description": "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s.",
       "example": "23735196",
@@ -57729,7 +57745,8 @@
     "synonyms": [
       "SP_KW",
       "UniProtKB-KW",
-      "uniprot.keyword"
+      "uniprot.keyword",
+      "uniprot.kw"
     ],
     "uri_format": "https://www.uniprot.org/keywords/KW-$1"
   },
