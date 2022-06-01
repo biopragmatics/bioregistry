@@ -24,7 +24,7 @@ DIRECTORY.mkdir(exist_ok=True, parents=True)
 RAW_PATH = DIRECTORY / "raw.xml"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 
-PREFIX=  "{http://purl.uniprot.org/core/}abbreviation"
+PREFIX = "{http://purl.uniprot.org/core/}abbreviation"
 
 kz = {
     "identifier": "{http://purl.org/dc/terms/}identifier",
@@ -42,8 +42,12 @@ kz = {
 kzi = {v: k for k, v in kz.items()}
 
 #: resources with these UniProt prefixes don't exist anymore
-deprecated = {
-    "UniPathway"
+skip_prefixes = {
+    "UniPathway",  # doesn't exist anymore
+    "BRENDA",  # has bad format string contains EC, UniProt, and taxon
+    "eggNOG",  # not sure what this does
+    "PlantReactome",  # incomprehensible URLs
+    "Reactome",  # incomprehensible URLs
 }
 
 
@@ -59,7 +63,7 @@ def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
     rv = {}
     for element in root.findall("{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description"):
         prefix = element.findtext(PREFIX)
-        if prefix in deprecated:
+        if prefix in skip_prefixes:
             continue
         entry = dict(prefix=prefix)
         for key, path in kz.items():
