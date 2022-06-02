@@ -20658,9 +20658,16 @@
     "example": "154022",
     "homepage": "http://www.indexfungorum.org",
     "mappings": {
+      "ncbi": "Fungorum",
       "wikidata": "P1391"
     },
     "name": "Index Fungorum",
+    "ncbi": {
+      "example": "ID550186",
+      "homepage": "http://www.indexfungorum.org",
+      "name": "Index Fungorum",
+      "prefix": "Fungorum"
+    },
     "pattern": "^[1-9]\\d{0,5}$",
     "uri_format": "http://www.indexfungorum.org/names/NamesRecord.asp?RecordID=$1",
     "wikidata": {
@@ -38055,7 +38062,7 @@
       "obofoundry": "ncbitaxon",
       "ols": "ncbitaxon",
       "ontobee": "NCBITaxon",
-      "prefixcommons": "taxonomy",
+      "prefixcommons": "uniprot.taxonomy",
       "scholia": "ncbi-taxon",
       "wikidata": "P685"
     },
@@ -38160,20 +38167,19 @@
     },
     "pattern": "^\\d+$",
     "prefixcommons": {
-      "bioportal": "1132",
-      "description": "The NCBI taxonomy database contains the names of all organisms that are represented in the genetic databases with at least one nucleotide or protein sequence.",
+      "description": "The taxonomy contains the relationships between all living forms for which nucleic acid or protein sequence have been determined.",
       "example": "9606",
-      "homepage": "http://www.ncbi.nlm.nih.gov/taxonomy",
+      "homepage": "http://www.uniprot.org/taxonomy/",
       "keywords": [
         "DNA",
         "protein",
         "structure",
         "classification"
       ],
-      "name": "NCBI Taxonomy",
+      "name": "Uniprot Taxonomy",
       "pattern": "^\\d+$",
-      "prefix": "taxonomy",
-      "uri_format": "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=$1"
+      "prefix": "uniprot.taxonomy",
+      "uri_format": "http://www.uniprot.org/taxonomy/$1"
     },
     "synonyms": [
       "NCBITaxon",
@@ -57792,11 +57798,24 @@
       "uri_format": "https://www.uniprot.org/keywords/$1"
     },
     "mappings": {
-      "go": "UniProtKB-KW"
+      "go": "UniProtKB-KW",
+      "prefixcommons": "uniprot.kw"
     },
     "name": "UniProt Keywords",
     "part_of": "uniprot",
     "pattern": "^\\d{4}$",
+    "prefixcommons": {
+      "description": "UniProtKB entries are tagged with keywords that can be used to retrieve particular subsets of entries. There are 10 categories of keywords.",
+      "example": "KW-9998",
+      "homepage": "http://www.uniprot.org/keywords/",
+      "keywords": [
+        "classification"
+      ],
+      "name": "UniProt Knowledgebase keywords",
+      "pattern": "^KW-\\d+$",
+      "prefix": "uniprot.kw",
+      "uri_format": "http://www.uniprot.org/keywords/$1"
+    },
     "synonyms": [
       "SP_KW",
       "UniProtKB-KW",

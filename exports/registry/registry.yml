@@ -8954,6 +8954,22 @@ fungidb:
   pattern: ^[A-Za-z_0-9]+$
   preferred_prefix: fungidb
   uri_format: https://fungidb.org/fungidb/app/record/gene/$1
+fungorum:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: identifier for a fungus taxon in Index Fungorum
+  example: '154022'
+  homepage: http://www.indexfungorum.org
+  mappings:
+    ncbi: Fungorum
+    wikidata: P1391
+  name: Index Fungorum
+  pattern: ^[1-9]\d{0,5}$
+  preferred_prefix: fungorum
+  uri_format: http://www.indexfungorum.org/names/NamesRecord.asp?RecordID=$1
 fyeco:
   comment: Rather than admitting FYECO to the OBO foundry, we secure the prefix here
     at bioregistry. The FYECO namespace shows up in a lot of ingests (basically anywhere
@@ -10105,6 +10121,8 @@ google.patent:
     date back to 1790, EPO and WIPO to 1978. Google Patents can be searched using
     patent number, inventor, classification, and filing date.
   example: US4145692
+  example_extras:
+  - USRE38117E1
   homepage: https://www.google.com/patents/
   mappings:
     biocontext: GOOGLE.PATENT
@@ -10112,7 +10130,7 @@ google.patent:
     miriam: google.patent
     n2t: google.patent
   name: Google Patents
-  pattern: ^[A-Z]{2}\d+([A-Z])?$
+  pattern: ^[A-Z]{2,4}\d+([A-Z])?([0-9])?$
   preferred_prefix: google.patent
   synonyms:
   - patent
@@ -12137,6 +12155,21 @@ imr:
   pattern: ^\d{7}$
   preferred_prefix: IMR
   uri_format: http://purl.obolibrary.org/obo/IMR_$1
+inaturalist.taxon:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Identifier for a species in iNaturalist
+  example: '21723'
+  homepage: https://www.inaturalist.org/taxa
+  mappings:
+    wikidata: P3151
+  name: iNaturalist Taxonomy
+  pattern: ^[1-9]\d{0,6}$
+  preferred_prefix: inaturalist.taxon
+  uri_format: https://www.inaturalist.org/taxa/$1
 inchi:
   description: The IUPAC International Chemical Identifier (InChI) is a non-proprietary
     identifier for chemical substances that can be used in printed and electronic
@@ -16261,7 +16294,7 @@ ncbitaxon:
     obofoundry: NCBITaxon
     ols: ncbitaxon
     ontobee: NCBITaxon
-    prefixcommons: taxonomy
+    prefixcommons: uniprot.taxonomy
     scholia: ncbi-taxon
     wikidata: P685
   name: NCBI Taxonomy
@@ -16293,6 +16326,7 @@ ncbitaxon:
   - taxid
   - taxon
   - taxonomy
+  - uniprot.taxonomy
   uri_format: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1
   version: '2021-12-14'
 ncim:
@@ -20781,6 +20815,16 @@ pubmed:
   pattern: ^\d+$
   preferred_prefix: pubmed
   providers:
+  - code: uniprot.citation
+    description: UniProt mints PURLs for citations identifiers
+    homepage: https://uniprot.org/
+    name: UniProt
+    uri_format: http://purl.uniprot.org/citations/$1
+  - code: uniprot.pubmed
+    description: UniProt mints PURLs for PubMed identifiers
+    homepage: https://uniprot.org/
+    name: UniProt
+    uri_format: http://purl.uniprot.org/pubmed/$1
   - code: hubmed
     description: HubMed
     homepage: http://www.hubmed.org/
@@ -24544,6 +24588,7 @@ uniprot.keyword:
   homepage: http://www.uniprot.org/keywords/
   mappings:
     go: UniProtKB-KW
+    prefixcommons: uniprot.kw
   name: UniProt Keywords
   part_of: uniprot
   pattern: ^\d{4}$
@@ -24552,6 +24597,7 @@ uniprot.keyword:
   - SP_KW
   - UniProtKB-KW
   - uniprot.keyword
+  - uniprot.kw
   uri_format: https://www.uniprot.org/keywords/KW-$1
 uniprot.location:
   description: The subcellular locations in which a protein is found are described

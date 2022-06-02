@@ -18386,6 +18386,8 @@ ncbi.resource:FBOL dcterms:isPartOf bioregistry.metaresource:ncbi .
 
 ncbi.resource:FLYBASE dcterms:isPartOf bioregistry.metaresource:ncbi .
 
+ncbi.resource:Fungorum dcterms:isPartOf bioregistry.metaresource:ncbi .
+
 ncbi.resource:GABI dcterms:isPartOf bioregistry.metaresource:ncbi .
 
 ncbi.resource:GO dcterms:isPartOf bioregistry.metaresource:ncbi .
@@ -19979,6 +19981,18 @@ bioregistry:ftt a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:fungorum a bioregistry.schema:0000001 ;
+    rdfs:label "Index Fungorum" ;
+    dc:description "identifier for a fungus taxon in Index Fungorum"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch ncbi.resource:Fungorum,
+        wikidata:P1391 ;
+    foaf:homepage "http://www.indexfungorum.org"^^xsd:string ;
+    bioregistry.schema:0000005 "154022"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.indexfungorum.org/names/NamesRecord.asp?RecordID=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9]\\d{0,5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:fyeco a bioregistry.schema:0000001 ;
     rdfs:label "Fission Yeast Experimental Conditions Ontology" ;
     dc:description "PomBase manages gene and phenotype data related to Fission Yeast. FYECO contains experimental conditions relevant to fission yeast biology. The FYECO namespace shows up in data ingests from PomBase."^^xsd:string ;
@@ -20150,7 +20164,7 @@ bioregistry:google.patent a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.google.com/patents/"^^xsd:string ;
     bioregistry.schema:0000005 "US4145692"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.google.com/patents/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[A-Z]{2}\\d+([A-Z])?$"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Z]{2,4}\\d+([A-Z])?([0-9])?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:graingenes.reference a bioregistry.schema:0000001 ;
@@ -20476,6 +20490,17 @@ bioregistry:imdrf a bioregistry.schema:0000001 ;
     dc:description "The International Medical Device Regulators Forum (IMDRF) is a forum of voluntary medical device regulators from around the world who have come together to build on the strong foundational work of the Global Harmonization Task Force on Medical Devices (GHTF), and to accelerate international medical device regulatory harmonization and convergence."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "http://www.imdrf.org/"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:inaturalist.taxon a bioregistry.schema:0000001 ;
+    rdfs:label "iNaturalist Taxonomy" ;
+    dc:description "Identifier for a species in iNaturalist"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P3151 ;
+    foaf:homepage "https://www.inaturalist.org/taxa"^^xsd:string ;
+    bioregistry.schema:0000005 "21723"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.inaturalist.org/taxa/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9]\\d{0,6}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:inhand a bioregistry.schema:0000001 ;
@@ -22139,7 +22164,8 @@ bioregistry:uniprot.keyword a bioregistry.schema:0000001 ;
     dc:description "UniProtKB entries are tagged with keywords that can be used to retrieve particular subsets of entries."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:uniprot ;
-    skos:exactMatch go.resource:UniProtKB-KW ;
+    skos:exactMatch go.resource:UniProtKB-KW,
+        prefixcommons:uniprot.kw ;
     foaf:homepage "http://www.uniprot.org/keywords/"^^xsd:string ;
     bioregistry.schema:0000005 "1273"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.uniprot.org/keywords/KW-$1"^^xsd:string ;
@@ -24145,8 +24171,6 @@ prefixcommons:tair.protein dcterms:isPartOf bioregistry.metaresource:prefixcommo
 
 prefixcommons:tao dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
-prefixcommons:taxonomy dcterms:isPartOf bioregistry.metaresource:prefixcommons .
-
 prefixcommons:taxrank dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:tcdb dcterms:isPartOf bioregistry.metaresource:prefixcommons .
@@ -24174,6 +24198,10 @@ prefixcommons:uniparc dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 prefixcommons:unipathway dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:uniprot dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:uniprot.kw dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:uniprot.taxonomy dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:unists dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -26527,6 +26555,8 @@ uniprot.resource:neXtProt dcterms:isPartOf bioregistry.metaresource:uniprot .
 
 wikidata:P1294 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P1391 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P1550 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P1554 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -26590,6 +26620,8 @@ wikidata:P2892 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P2926 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3117 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P3151 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3201 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -28834,7 +28866,7 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
         ncbi.resource:taxon,
         scholia.resource:ncbi-taxon,
         fairsharing:FAIRsharing.fj07xj,
-        prefixcommons:taxonomy,
+        prefixcommons:uniprot.taxonomy,
         miriam:taxonomy,
         ols:ncbitaxon,
         wikidata:P685 ;
@@ -29217,6 +29249,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:fcsfree,
         bioregistry:flybrain.ndb,
         bioregistry:ftt,
+        bioregistry:fungorum,
         bioregistry:fyler,
         bioregistry:gc,
         bioregistry:gemet,
@@ -29239,6 +29272,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:idpo,
         bioregistry:illumina.probe,
         bioregistry:imdrf,
+        bioregistry:inaturalist.taxon,
         bioregistry:inhand,
         bioregistry:iro,
         bioregistry:jcrb,
@@ -29505,6 +29539,7 @@ bioregistry.metaresource:ncbi a bioregistry.schema:0000002 ;
         ncbi.resource:EcoGene,
         ncbi.resource:FBOL,
         ncbi.resource:FLYBASE,
+        ncbi.resource:Fungorum,
         ncbi.resource:GABI,
         ncbi.resource:GO,
         ncbi.resource:GOA,
@@ -29866,6 +29901,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
     rdfs:label "Wikidata Property" ;
     dc:description "An open, community-curated knowledgebase that contains several properties corresponding to resources listed in other biomedical registries." ;
     dcterms:hasPart wikidata:P1294,
+        wikidata:P1391,
         wikidata:P1550,
         wikidata:P1554,
         wikidata:P1578,
@@ -29898,6 +29934,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P2892,
         wikidata:P2926,
         wikidata:P3117,
+        wikidata:P3151,
         wikidata:P3201,
         wikidata:P3289,
         wikidata:P3345,
@@ -31487,7 +31524,6 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:tair.locus,
         prefixcommons:tair.protein,
         prefixcommons:tao,
-        prefixcommons:taxonomy,
         prefixcommons:taxrank,
         prefixcommons:tcdb,
         prefixcommons:teddy,
@@ -31502,6 +31538,8 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:uniparc,
         prefixcommons:unipathway,
         prefixcommons:uniprot,
+        prefixcommons:uniprot.kw,
+        prefixcommons:uniprot.taxonomy,
         prefixcommons:unists,
         prefixcommons:unite,
         prefixcommons:uo,
@@ -34867,6 +34905,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:funcbase.yeast,
         bioregistry:funderregistry,
         bioregistry:fungidb,
+        bioregistry:fungorum,
         bioregistry:fyeco,
         bioregistry:fyler,
         bioregistry:fypo,
@@ -35039,6 +35078,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:imgt.hla,
         bioregistry:imgt.ligm,
         bioregistry:imr,
+        bioregistry:inaturalist.taxon,
         bioregistry:inchi,
         bioregistry:inchikey,
         bioregistry:inhand,
