@@ -3,8 +3,11 @@ layout: page
 title: Contributing
 permalink: /contributing/
 ---
-Contributions to the Bioregistry are welcomed and encouraged.
-All contributors are expected to follow our [Code of Conduct](CODE_OF_CONDUCT.md).
+Contributions to the Bioregistry are welcomed and encouraged. Thanks for
+considering to participate.
+
+All contributors, maintainers, and participants of the Bioregistry project
+are expected to follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 This document is organized as follows:
 
 1. [Content Contribution](#content-contribution)
@@ -30,6 +33,8 @@ There are several ways to request a new prefix in the Bioregistry:
    [biopragmatics/bioregistry](https://github.com/biopragmatics/bioregistry).
 4. Get in touch with us informally on
    Twitter [@bioregistry](https://twitter.com/bioregistry)
+
+### Submitting New Prefixes
 
 #### Who Can Request a New Prefix
 
@@ -143,6 +148,12 @@ individual prefix requests, which each get their own discussion thread, pull
 request, and CI/CD runs. Submitters of bulk prefix requests that contain many
 issues may be asked to re-submit as individual prefix requests.
 
+#### Review of New Prefix Requests
+
+Review of new prefix requests is handled by the Bioregistry Review Team, whose
+membership and conduct is described in the Bioregistry's
+[Project Governance](GOVERNANCE.md).
+
 ### Editing Records
 
 There are several ways to update a prefix's record in the Bioregistry:
@@ -182,12 +193,24 @@ to change a prefix can do the following:
 Like with all edits, these are subject to review by the Bioregistry Review team.
 Extra care should be given with this kind of edit.
 
+#### Review of Edits
+
+Review of edits to existing records is handled by the Bioregistry Review Team,
+whose membership and conduct is described in the Bioregistry's
+[Project Governance](GOVERNANCE.md).
+
 ### Removing Records
 
 Typically, prefixes should not be removed from the Bioregistry, even if they
 correspond to subsumed, abandoned, or dead resources, because it is also a
 historical archive and reference for anyone who might run into legacy prefixes
 in legacy resources.
+
+#### Review of Removals
+
+Review of removals of existing records is handled by the Bioregistry Review
+Team, whose membership and conduct is described in the Bioregistry's
+[Project Governance](GOVERNANCE.md).
 
 ## Code Contribution
 
@@ -293,6 +316,12 @@ and from the GitHub Actions testing configuration.
 
 See https://endoflife.date/python for a timeline of Python release and
 end-of-life dates.
+
+#### Review of Pull Requests
+
+Review of edits to existing records is handled by the Bioregistry Core
+Development Team, whose membership and conduct is described in the Bioregistry's
+[Project Governance](GOVERNANCE.md).
 
 ## Meta-contributions
 
