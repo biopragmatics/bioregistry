@@ -70,6 +70,7 @@ from .resolve import (  # noqa:F401
     get_wikidata_prefix,
     has_no_terms,
     is_deprecated,
+    is_novel,
     is_proprietary,
     normalize_curie,
     normalize_parsed_curie,

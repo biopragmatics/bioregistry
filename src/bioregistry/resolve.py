@@ -39,6 +39,7 @@ __all__ = [
     "get_registry_invmap",
     "get_banana",
     "get_obo_health_url",
+    "is_novel",
     # Ontology
     "get_provided_by",
     "get_provides_for",
@@ -933,3 +934,8 @@ def get_obo_health_url(prefix: str) -> Optional[str]:
         return None
     obo_pp = manager.get_preferred_prefix(prefix)
     return f"{SHIELDS_BASE}/json?url={HEALTH_BASE}&query=$.{obo_prefix.lower()}.score&label={obo_pp}{EXTRAS}"
+
+
+def is_novel(prefix: str) -> Optional[bool]:
+    """Check if the prefix is novel to the Bioregistry, i.e., it has no external mappings."""
+    return manager.is_novel(prefix)

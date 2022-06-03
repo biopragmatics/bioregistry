@@ -864,6 +864,13 @@ class Manager:
                 rv[metaprefix] = uri_prefix
         return rv
 
+    def is_novel(self, prefix: str) -> Optional[bool]:
+        """Check if the prefix is novel to the Bioregistry, i.e., it has no external mappings."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return not resource.get_mappings()
+
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
     """Prepare a priority prefix list from a prefix map."""
