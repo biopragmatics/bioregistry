@@ -62,11 +62,12 @@ in [CONTRIBUTING.md](docs/CONTRIBUTING.md).
 The most simple contribution is to submit an issue:
 
 - Submit a new prefix using the [issue template](https://github.com/biopragmatics/bioregistry/issues/new?assignees=cthoyt&labels=New%2CPrefix&template=new-prefix.yml&title=Add+prefix+%5BX%5D). A new pull request will be generated automatically for you.
-- Update an existing record using one of the existing templates (e.g., for updating a record's regular expression, merging two prefixes) [here](https://github.com/biopragmatics/bioregistry/issues/new/choose). For anything updates that don't have a corresponding template, feel free to leave a freeform issue for us!
+- Update an existing record using one of the [existing issue templates](https://github.com/biopragmatics/bioregistry/issues/new/choose) (e.g., for updating a record's regular expression, merging two prefixes).
+- For any updates that don't have a corresponding template, feel free to start with a [blank issue](https://github.com/biopragmatics/bioregistry/issues/new).
 
 If you want to make a direct contribution, feel free to make edits directly to
 the [bioregistry.json](https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/bioregistry.json)
-file through the GitHub interface or locally by [forking the repository](https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md#code-contribution).
+file either through the GitHub interface or locally by [forking the repository](https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md#code-contribution).
 
 If you want to make a contribution but don't know where to start, you can check
 [this list](https://biopragmatics.github.io/bioregistry/curation/) of curation
