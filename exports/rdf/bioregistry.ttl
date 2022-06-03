@@ -8744,23 +8744,6 @@ bioregistry:ogsf a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-5379-5359 .
 
-bioregistry:ohd a bioregistry.schema:0000001 ;
-    rdfs:label "Oral Health and Disease Ontology" ;
-    dc:description "The Oral Health and Disease Ontology was created, initially, to represent the content of dental practice health records."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:OHD,
-        ontobee:OHD,
-        bioportal:OHD,
-        biocontext:OHD,
-        fairsharing:FAIRsharing.bg7bb6,
-        ols:ohd ;
-    foaf:homepage "https://purl.obolibrary.org/obo/ohd/home"^^xsd:string ;
-    bioregistry.schema:0000005 "0000006"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OHD_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0001-9625-1899 .
-
 bioregistry:ohmi a bioregistry.schema:0000001 ;
     rdfs:label "Ontology of Host-Microbiome Interactions" ;
     dc:description "OHMI is a biomedical ontology that represents the entities and relations in the domain of host-microbiome interactions."^^xsd:string ;
@@ -18947,6 +18930,16 @@ bioregistry:ccrid a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://www.cellresource.cn/cellsearch.aspx?sc=1&where=$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:cdt a bioregistry.schema:0000001 ;
+    rdfs:label "Current Dental Terminology" ;
+    dc:description "The Code on Dental Procedures and Nomenclature (the CDT Code) assures consistency in documenting dental treatment."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.ada.org/publications/CDT"^^xsd:string ;
+    bioregistry.schema:0000005 "1000001"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:ohd .
+
 bioregistry:cellimage a bioregistry.schema:0000001 ;
     rdfs:label "Cell Image Library" ;
     dc:description "The Cell: An Image Library™ is a freely accessible, public repository of reviewed and annotated images, videos, and animations of cells from a variety of organisms, showcasing cell architecture, intracellular functionalities, and both normal and abnormal processes."^^xsd:string ;
@@ -21197,6 +21190,23 @@ bioregistry:oboinowl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "hasDbXref"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.geneontology.org/formats/oboInOwl#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:ohd a bioregistry.schema:0000001 ;
+    rdfs:label "Oral Health and Disease Ontology" ;
+    dc:description "The Oral Health and Disease Ontology was created, initially, to represent the content of dental practice health records."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch obofoundry:OHD,
+        ontobee:OHD,
+        bioportal:OHD,
+        biocontext:OHD,
+        fairsharing:FAIRsharing.bg7bb6,
+        ols:ohd ;
+    foaf:homepage "https://purl.obolibrary.org/obo/ohd/home"^^xsd:string ;
+    bioregistry.schema:0000005 "0000006"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OHD_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-9625-1899 .
 
 bioregistry:omiabis a bioregistry.schema:0000001 ;
     rdfs:label "Ontologized MIABIS" ;
@@ -29211,6 +29221,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:caloha,
         bioregistry:cba,
         bioregistry:ccrid,
+        bioregistry:cdt,
         bioregistry:cellopub,
         bioregistry:cellosaurus.resource,
         bioregistry:cgnc,
@@ -34595,6 +34606,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:cdd,
         bioregistry:cdno,
         bioregistry:cdpd,
+        bioregistry:cdt,
         bioregistry:cell_biolabs,
         bioregistry:cell_model_passport,
         bioregistry:cellbank.australia,
