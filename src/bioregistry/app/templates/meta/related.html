@@ -151,8 +151,8 @@
                 <td style="text-align: center;">{{ render_circle(registry.availability.fair) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.availability.search) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.provider_uri_format is not none) }}</td>
-                <td style="text-align: center;">{{ render_circle(registry.resolver_uri_format is not none and registry.resolver_type != "lookup") }}</td>
-                <td style="text-align: center;">{{ render_circle(registry.resolver_uri_format is not none and registry.resolver_type == "lookup") }}</td>
+                <td style="text-align: center;">{{ render_circle(registry.is_resolver) }}</td>
+                <td style="text-align: center;">{{ render_circle(registry.is_lookup) }}</td>
             </tr>
         {% endfor %}
         </tbody>
