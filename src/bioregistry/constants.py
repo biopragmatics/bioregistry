@@ -74,6 +74,8 @@ COLLECTIONS_TSV_PATH = EXPORT_COLLECTIONS / "collections.tsv"
 EXPORT_TABLES = EXPORT_DIRECTORY.joinpath("tables")
 TABLES_GOVERNANCE_TSV_PATH = EXPORT_TABLES.joinpath("comparison_goveranance.tsv")
 TABLES_GOVERNANCE_LATEX_PATH = EXPORT_TABLES.joinpath("comparison_goveranance.tex")
+TABLES_METADATA_TSV_PATH = EXPORT_TABLES.joinpath("comparison_metadata.tsv")
+TABLES_METADATA_LATEX_PATH = EXPORT_TABLES.joinpath("comparison_metadata.tex")
 TABLES_SUMMARY_LATEX_PATH = EXPORT_TABLES.joinpath("summary.tex")
 
 #: The URL of the remote Bioregistry site
