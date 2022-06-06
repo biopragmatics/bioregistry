@@ -44,6 +44,19 @@ def _replace_na(s: str) -> str:
     return s
 
 
+schema_status_map = {
+    True: "✓",
+    False: "",
+    "required": "✓",
+    "required*": "✓*",
+    "present": "●",
+    "present*": "●*",
+    "missing": "",
+    "irrelevant": "-",
+    "irrelevant*": "-*",
+}
+
+
 def _sort_key(registry):
     if registry.prefix == "bioregistry":
         return (0, registry.prefix)
@@ -84,7 +97,7 @@ DATA_MODEL_CAPABILITIES = [
     ("Metadata Model", "Contact"),
     ("Capabilities and Qualities", "FAIR Data"),
     ("Capabilities and Qualities", "Search"),
-    ("Capabilities and Qualities", "Provider"),
+    ("Capabilities and Qualities", "Prefix Provider"),
     ("Capabilities and Qualities", "Resolver"),
     ("Capabilities and Qualities", "Lookup"),
 ]
@@ -96,25 +109,30 @@ def _get_metadata_df() -> pd.DataFrame:
         rows.append(
             (
                 registry.get_short_name(),
-                registry.availability.name,
-                registry.availability.homepage,
-                registry.availability.description,
-                registry.availability.example,
-                registry.availability.pattern,
-                registry.availability.provider,
-                registry.availability.alternate_providers,
-                registry.availability.synonyms,
-                registry.availability.license,
-                registry.availability.version,
-                registry.availability.contact,
-                registry.availability.fair,
-                registry.availability.search,
-                registry.availability.provider,
-                registry.is_resolver,
-                registry.is_lookup,
+                *(
+                    schema_status_map[t]
+                    for t in (
+                        registry.availability.name,
+                        registry.availability.homepage,
+                        registry.availability.description,
+                        registry.availability.example,
+                        registry.availability.pattern,
+                        registry.availability.provider,
+                        registry.availability.alternate_providers,
+                        registry.availability.synonyms,
+                        registry.availability.license,
+                        registry.availability.version,
+                        registry.availability.contact,
+                        registry.availability.fair,
+                        registry.availability.search,
+                        registry.provider_uri_format is not None,
+                        registry.is_resolver,
+                        registry.is_lookup,
+                    )
+                ),
             )
         )
-    return pd.DataFrame(rows, columns=DATA_MODEL_CAPABILITIES)
+    return pd.DataFrame(rows, columns=pd.MultiIndex.from_tuples(DATA_MODEL_CAPABILITIES))
 
 
 @click.command()

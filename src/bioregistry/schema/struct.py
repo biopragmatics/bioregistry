@@ -1551,12 +1551,12 @@ class Registry(BaseModel):
     @property
     def is_resolver(self) -> bool:
         """Check if it is a resolver."""
-        return self.resolver_uri_format is not none and self.resolver_type != "lookup"
+        return self.resolver_uri_format is not None and self.resolver_type != "lookup"
 
     @property
     def is_lookup(self) -> bool:
         """Check if it is a lookup service."""
-        return self.resolver_uri_format is not none and self.resolver_type == "lookup"
+        return self.resolver_uri_format is not None and self.resolver_type == "lookup"
 
 
 class Collection(BaseModel):
