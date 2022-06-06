@@ -180,7 +180,7 @@ def export_tables():
         """\
         An overview on registries covering biomedical ontologies, controlled vocabularies, and databases.
         A ✓ means the field is required. A ● means it is part of the schema, but not required or incomplete
-        on some entries. A ✗ means that it is not part of the metadata schema. The FAIR column denotes that a
+        on some entries. A blank cell means that it is not part of the metadata schema. The FAIR column denotes that a
         structured dump of the data is easily findable, accessible, and in a structured format in bulk. For
         lookup services, some fields (i.e., Example ID, Default Provider, Alternate Providers) are omitted
         because inclusion would be redundant. The search column means there is a URL into which a search
