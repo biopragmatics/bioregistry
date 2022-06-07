@@ -106,7 +106,8 @@ $ tox -e update
 ```
 
 Make sure that you have valid environment variables or `pystow` configurations 
-for `BIOPORTAL_API_KEY`, `FAIRSHARING_LOGIN`, and `FAIRSHARING_PASSWORD`.
+for `BIOPORTAL_API_KEY`, `ECOPORTAL_API_KEY`, `AGROPORTAL_API_KEY`,
+`FAIRSHARING_LOGIN`, and `FAIRSHARING_PASSWORD`.
 
 ## 🚀 Installation
 

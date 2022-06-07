@@ -43,7 +43,7 @@ def download():
 def align(skip_fairsharing: bool):
     """Align all external registries."""
     try:
-        from .align import ALIGNERS
+        from .align import aligner_resolver
     except ImportError:
         click.secho(
             "Could not import alignment dependencies."
@@ -53,7 +53,11 @@ def align(skip_fairsharing: bool):
         return sys.exit(1)
 
     pre_digests = get_hexdigests()
-    aligners = [a for a in ALIGNERS if a.key != "fairsharing"] if skip_fairsharing else ALIGNERS
+    aligners = (
+        [cls for cls in aligner_resolver if cls.key != "fairsharing"]
+        if skip_fairsharing
+        else aligner_resolver
+    )
 
     for aligner_cls in aligners:
         secho(f"Aligning {aligner_cls.key}")
