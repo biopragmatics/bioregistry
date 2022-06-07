@@ -1,3 +1,4 @@
+@prefix agroportal: <http://agroportal.lirmm.fr/ontologies/> .
 @prefix biocontext: <https://bioregistry.io/metaregistry/biocontext/> .
 @prefix biolink: <https://bioregistry.io/metaregistry/biolink/> .
 @prefix bioportal: <https://bioportal.bioontology.org/ontologies/> .
@@ -9,6 +10,7 @@
 @prefix cheminf: <https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ecoportal: <http://ecoportal.lifewatch.eu/ontologies/> .
 @prefix fairsharing: <https://fairsharing.org/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix go.resource: <https://bioregistry.io/metaregistry/go/> .
@@ -149,14 +151,6 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
     bioregistry.schema:0000007 "http://aber-owl.net/ontology/$1/#/Browse/<http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F$1_$2>" ;
     bioregistry.schema:0000019 orcid:0000-0002-5103-9058 .
 
-bioregistry.metaresource:agroportal a bioregistry.schema:0000002 ;
-    rdfs:label "AgroPortal" ;
-    dc:description "A vocabulary and ontology repository for agronomy and related domains." ;
-    foaf:homepage "http://agroportal.lirmm.fr" ;
-    bioregistry.schema:0000005 "ENVO" ;
-    bioregistry.schema:0000006 "http://agroportal.lirmm.fr/ontologies/$1" ;
-    bioregistry.schema:0000019 orcid:0000-0002-2404-1582 .
-
 bioregistry.metaresource:cropoct a bioregistry.schema:0000002 ;
     rdfs:label "Crop Ontology Curation Tool" ;
     dc:description "The Crop Ontology (CO) current objective is to compile validated concepts along with their inter-relationships on anatomy, structure and phenotype of Crops, on trait measurement and methods as well as on Germplasm with the multi-crop passport terms" ;
@@ -164,14 +158,6 @@ bioregistry.metaresource:cropoct a bioregistry.schema:0000002 ;
     bioregistry.schema:0000005 "CO_010" ;
     bioregistry.schema:0000006 "https://www.cropontology.org/ontology/$1" ;
     bioregistry.schema:0000019 orcid:0000-0002-6020-5919 .
-
-bioregistry.metaresource:ecoportal a bioregistry.schema:0000002 ;
-    rdfs:label "EcoPortal" ;
-    dc:description "The LifeWatch ERIC repository of semantic resources for the ecological domain." ;
-    foaf:homepage "http://ecoportal.lifewatch.eu" ;
-    bioregistry.schema:0000005 "ALIENSPECIES" ;
-    bioregistry.schema:0000006 "http://ecoportal.lifewatch.eu/ontologies/$1" ;
-    bioregistry.schema:0000019 orcid:0000-0003-4494-839X .
 
 bioregistry.metaresource:prefixcc a bioregistry.schema:0000002 ;
     rdfs:label "Prefix.cc" ;
@@ -479,7 +465,9 @@ bioregistry:agrovoc a bioregistry.schema:0000001 ;
     rdfs:label "Agronomy Vocabulary" ;
     dc:description "AGROVOC is a multilingual and controlled vocabulary designed to cover concepts and terminology under FAO's areas of interest. It is the largest Linked Open Data set about agriculture available for public use and its greatest impact is through providing the access and visibility of data across domains and languages."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.anpj91 ;
+    skos:exactMatch agroportal:AGROVOC,
+        ecoportal:AGROVOC,
+        fairsharing:FAIRsharing.anpj91 ;
     foaf:homepage "https://data.apps.fao.org/catalog/organization/agrovoc"^^xsd:string ;
     bioregistry.schema:0000005 "2842"^^xsd:string ;
     bioregistry.schema:0000006 "http://aims.fao.org/aos/agrovoc/c_$1"^^xsd:string ;
@@ -928,7 +916,8 @@ bioregistry:atol a bioregistry.schema:0000001 ;
     rdfs:label "Animal Trait Ontology for Livestock" ;
     dc:description "ATOL (Animal Trait Ontology for Livestock) is an ontology of characteristics defining phenotypes of livestock in their environment (EOL). ATOL aims to: - provide a reference ontology of phenotypic traits of farm animals for the international scientificand educational - communities, farmers, etc.; - deliver this reference ontology in a language which can be used by computers in order to support database management, semantic analysis and modeling; - represent traits as generic as possible for livestock vertebrates; - make the ATOL ontology as operational as possible and closely related to measurement techniques; - structure the ontology in relation to animal production."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:ATOL,
+    skos:exactMatch agroportal:ATOL,
+        bioportal:ATOL,
         fairsharing:FAIRsharing.wsfk5z,
         ols:atol ;
     foaf:homepage "http://www.atol-ontology.com"^^xsd:string ;
@@ -1859,7 +1848,8 @@ bioregistry:cdao a bioregistry.schema:0000001 ;
     rdfs:label "Comparative Data Analysis Ontology" ;
     dc:description "The Comparative Data Analysis Ontology (CDAO) provides a framework for understanding data in the context of evolutionary-comparative analysis.  This comparative approach is used commonly in bioinformatics and other areas of biology to draw inferences from a comparison of differently evolved versions of something, such as differently evolved versions of a protein.  In this kind of analysis, the things-to-be-compared typically are classes called 'OTUs' (Operational Taxonomic Units).  The OTUs can represent biological species, but also may be drawn from higher or lower in a biological hierarchy, anywhere from molecules to communities.  The features to be compared among OTUs are rendered in an entity-attribute-value model sometimes referred to as the 'character-state data model'.  For a given character, such as 'beak length', each OTU has a state, such as 'short' or 'long'.  The differences between states are understood to emerge by a historical process of evolutionary transitions in state, represented by a model (or rules) of transitions along with a phylogenetic tree.  CDAO provides the framework for representing OTUs, trees, transformations, and characters.  The representation of characters and transformations may depend on imported ontologies for a specific type of character."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:CDAO,
+    skos:exactMatch agroportal:CDAO,
+        obofoundry:CDAO,
         ontobee:CDAO,
         bioportal:CDAO,
         biocontext:CDAO,
@@ -2263,7 +2253,8 @@ bioregistry:co_320 a bioregistry.schema:0000001 ;
     rdfs:label "Rice ontology" ;
     dc:description "Rice Trait Dictionary in template v 5.0 - IRRI - March 2016 - Based on SES, RD, UPOV variables and on variables used by CIAT, FLAR and the GRISP Phenotyping Network variables"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.2jkxp5,
+    skos:exactMatch agroportal:CO_320,
+        fairsharing:FAIRsharing.2jkxp5,
         ols:co_320 ;
     foaf:homepage "https://cropontology.org/ontology/CO_320/Rice"^^xsd:string ;
     bioregistry.schema:0000005 "0000618"^^xsd:string ;
@@ -2275,7 +2266,8 @@ bioregistry:co_321 a bioregistry.schema:0000001 ;
     rdfs:label "Wheat ontology" ;
     dc:description "July 2018"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.czzmpg,
+    skos:exactMatch agroportal:CO_321,
+        fairsharing:FAIRsharing.czzmpg,
         ols:co_321 ;
     foaf:homepage "https://cropontology.org/ontology/CO_321/Wheat"^^xsd:string ;
     bioregistry.schema:0000005 "0000449"^^xsd:string ;
@@ -2287,7 +2279,8 @@ bioregistry:co_322 a bioregistry.schema:0000001 ;
     rdfs:label "Maize ontology" ;
     dc:description "Maize Trait Dictionary in template 5 - CIMMYT- September 2016"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.eeyne8,
+    skos:exactMatch agroportal:CO_322,
+        fairsharing:FAIRsharing.eeyne8,
         ols:co_322 ;
     foaf:homepage "https://cropontology.org/ontology/CO_322/Maize"^^xsd:string ;
     bioregistry.schema:0000005 "0000773"^^xsd:string ;
@@ -2299,7 +2292,8 @@ bioregistry:co_323 a bioregistry.schema:0000001 ;
     rdfs:label "Barley ontology" ;
     dc:description "ICARDA - TDv5 - Sept 2018"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.f69084,
+    skos:exactMatch agroportal:CO_323,
+        fairsharing:FAIRsharing.f69084,
         ols:co_323 ;
     foaf:homepage "https://cropontology.org/ontology/CO_323/Barley"^^xsd:string ;
     bioregistry.schema:0000005 "0000252"^^xsd:string ;
@@ -2311,7 +2305,8 @@ bioregistry:co_324 a bioregistry.schema:0000001 ;
     rdfs:label "Sorghum ontology" ;
     dc:description "Sorghum TDv5 - Oct 2019"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.dxx0c,
+    skos:exactMatch agroportal:CO_324,
+        fairsharing:FAIRsharing.dxx0c,
         ols:co_324 ;
     foaf:homepage "https://cropontology.org/ontology/CO_324/Sorghum"^^xsd:string ;
     bioregistry.schema:0000005 "0000111"^^xsd:string ;
@@ -2323,7 +2318,8 @@ bioregistry:co_325 a bioregistry.schema:0000001 ;
     rdfs:label "Banana ontology" ;
     dc:description "Banana Trait Dictionary in template 5 - Bioversity & IITA - April 2019"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.gdszhh,
+    skos:exactMatch agroportal:CO_325,
+        fairsharing:FAIRsharing.gdszhh,
         ols:co_325 ;
     foaf:homepage "https://cropontology.org/ontology/CO_325/Banana"^^xsd:string ;
     bioregistry.schema:0000005 "0000519"^^xsd:string ;
@@ -2345,7 +2341,8 @@ bioregistry:co_327 a bioregistry.schema:0000001 ;
     rdfs:label "Pearl millet ontology" ;
     dc:description "Pearl millet Trait Dictionary in template 5 - ICRISAT/INERA - April 2016"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.4e3qh9,
+    skos:exactMatch agroportal:CO_327,
+        fairsharing:FAIRsharing.4e3qh9,
         ols:co_327 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_327/Pearl%20millet"^^xsd:string ;
     bioregistry.schema:0000005 "0000095"^^xsd:string ;
@@ -2357,7 +2354,8 @@ bioregistry:co_330 a bioregistry.schema:0000001 ;
     rdfs:label "Potato ontology" ;
     dc:description "CIP - potato ontology - december 2018"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.4fa657,
+    skos:exactMatch agroportal:CO_330,
+        fairsharing:FAIRsharing.4fa657,
         ols:co_330 ;
     foaf:homepage "https://cropontology.org/ontology/CO_330/Potato"^^xsd:string ;
     bioregistry.schema:0000005 "0000106"^^xsd:string ;
@@ -2369,7 +2367,8 @@ bioregistry:co_331 a bioregistry.schema:0000001 ;
     rdfs:label "Sweet Potato ontology" ;
     dc:description "Sweet Potato Trait Dictionary in template v5 - CIP - November 2019"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.4g5qcw,
+    skos:exactMatch agroportal:CO_331,
+        fairsharing:FAIRsharing.4g5qcw,
         ols:co_331 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_331/Sweet%20Potato"^^xsd:string ;
     bioregistry.schema:0000005 "0000088"^^xsd:string ;
@@ -2381,7 +2380,8 @@ bioregistry:co_333 a bioregistry.schema:0000001 ;
     rdfs:label "Beet Ontology ontology" ;
     dc:description "This ontology was built as part of the AKER project. It describes variables used in beet phenotyping (experimental properties and measurement scale) for each institution (INRAE, Geves, ITB) and breeding companies (Florimond Desprez). Curator: Dorothee Charruaud (ADRINORD - URGI) Daphne Verdelet (Florimond Desprez) - First submission in November 2017."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.af5655,
+    skos:exactMatch agroportal:CO_333,
+        fairsharing:FAIRsharing.af5655,
         ols:co_333 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_333/Beet%20Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "3000045"^^xsd:string ;
@@ -2393,7 +2393,8 @@ bioregistry:co_334 a bioregistry.schema:0000001 ;
     rdfs:label "Cassava ontology" ;
     dc:description "Cassava Trait Dictionary in template 5 - IITA - July 2015, updated in February 2016"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.v06c4q,
+    skos:exactMatch agroportal:CO_334,
+        fairsharing:FAIRsharing.v06c4q,
         ols:co_334 ;
     foaf:homepage "https://cropontology.org/ontology/CO_334/Cassava"^^xsd:string ;
     bioregistry.schema:0000005 "0000070"^^xsd:string ;
@@ -2405,7 +2406,8 @@ bioregistry:co_335 a bioregistry.schema:0000001 ;
     rdfs:label "Common Bean ontology" ;
     dc:description "CIAT Common bean trait dictionary - version August 2014"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.a14123,
+    skos:exactMatch agroportal:CO_335,
+        fairsharing:FAIRsharing.a14123,
         ols:co_335 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_335/Common%20Bean"^^xsd:string ;
     bioregistry.schema:0000005 "0000189"^^xsd:string ;
@@ -2417,7 +2419,8 @@ bioregistry:co_336 a bioregistry.schema:0000001 ;
     rdfs:label "Soybean ontology" ;
     dc:description "Soybean Trait Dictionary in template v5 - IITA - July 2015"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.j75srj,
+    skos:exactMatch agroportal:CO_336,
+        fairsharing:FAIRsharing.j75srj,
         ols:co_336 ;
     foaf:homepage "https://cropontology.org/ontology/CO_336/Soybean"^^xsd:string ;
     bioregistry.schema:0000005 "0000339"^^xsd:string ;
@@ -2429,7 +2432,8 @@ bioregistry:co_337 a bioregistry.schema:0000001 ;
     rdfs:label "Groundnut ontology" ;
     dc:description "Groundnut Trait Dictionary in template v5 - ICRISAT/ISRA/DARS - Sept 2015"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.ge8y23,
+    skos:exactMatch agroportal:CO_337,
+        fairsharing:FAIRsharing.ge8y23,
         ols:co_337 ;
     foaf:homepage "https://cropontology.org/ontology/CO_337/Groundnut"^^xsd:string ;
     bioregistry.schema:0000005 "0000054"^^xsd:string ;
@@ -2441,7 +2445,8 @@ bioregistry:co_338 a bioregistry.schema:0000001 ;
     rdfs:label "Chickpea ontology" ;
     dc:description "Chickpea Trait Dictionary in template v5 - ICRISAT - July 2015"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.js20q3,
+    skos:exactMatch agroportal:CO_338,
+        fairsharing:FAIRsharing.js20q3,
         ols:co_338 ;
     foaf:homepage "https://cropontology.org/ontology/CO_338/Chickpea"^^xsd:string ;
     bioregistry.schema:0000005 "0000138"^^xsd:string ;
@@ -2453,7 +2458,8 @@ bioregistry:co_339 a bioregistry.schema:0000001 ;
     rdfs:label "Lentil ontology" ;
     dc:description "Lentil Trait Dictionary in template v5 - ICARDA - July 2015"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.ry1ezg,
+    skos:exactMatch agroportal:CO_339,
+        fairsharing:FAIRsharing.ry1ezg,
         ols:co_339 ;
     foaf:homepage "https://cropontology.org/ontology/CO_339/Lentil"^^xsd:string ;
     bioregistry.schema:0000005 "0000032"^^xsd:string ;
@@ -2465,7 +2471,8 @@ bioregistry:co_340 a bioregistry.schema:0000001 ;
     rdfs:label "Cowpea ontology" ;
     dc:description "Cowpea Trait Dictionary in template v5 - IITA - August 2015"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.31apg2,
+    skos:exactMatch agroportal:CO_340,
+        fairsharing:FAIRsharing.31apg2,
         ols:co_340 ;
     foaf:homepage "https://cropontology.org/ontology/CO_340/Cowpea"^^xsd:string ;
     bioregistry.schema:0000005 "0000639"^^xsd:string ;
@@ -2477,7 +2484,8 @@ bioregistry:co_341 a bioregistry.schema:0000001 ;
     rdfs:label "Pigeonpea ontology" ;
     dc:description "Pigeonpea Trait Dictionary in template v5 - ICRISAT - July 2015"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.ehe3yp,
+    skos:exactMatch agroportal:CO_341,
+        fairsharing:FAIRsharing.ehe3yp,
         ols:co_341 ;
     foaf:homepage "https://cropontology.org/ontology/CO_341/Pigeonpea"^^xsd:string ;
     bioregistry.schema:0000005 "0000140"^^xsd:string ;
@@ -2489,7 +2497,8 @@ bioregistry:co_343 a bioregistry.schema:0000001 ;
     rdfs:label "Yam ontology" ;
     dc:description "version 2019 - pvs"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.7e9cff,
+    skos:exactMatch agroportal:CO_343,
+        fairsharing:FAIRsharing.7e9cff,
         ols:co_343 ;
     foaf:homepage "https://cropontology.org/ontology/CO_343/Yam"^^xsd:string ;
     bioregistry.schema:0000005 "0100010"^^xsd:string ;
@@ -2501,7 +2510,8 @@ bioregistry:co_345 a bioregistry.schema:0000001 ;
     rdfs:label "Brachiaria ontology" ;
     dc:description "Brachiaria (forages) ontology TD v5 - Version Oct 2016"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.9e9683,
+    skos:exactMatch agroportal:CO_345,
+        fairsharing:FAIRsharing.9e9683,
         ols:co_345 ;
     foaf:homepage "https://cropontology.org/ontology/CO_345/Brachiaria"^^xsd:string ;
     bioregistry.schema:0000005 "0000127"^^xsd:string ;
@@ -2513,7 +2523,8 @@ bioregistry:co_346 a bioregistry.schema:0000001 ;
     rdfs:label "Mungbean ontology" ;
     dc:description "oct 2016"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.fgd5gq,
+    skos:exactMatch agroportal:CO_346,
+        fairsharing:FAIRsharing.fgd5gq,
         ols:co_346 ;
     foaf:homepage "https://cropontology.org/ontology/CO_346/Mungbean"^^xsd:string ;
     bioregistry.schema:0000005 "0000199"^^xsd:string ;
@@ -2525,7 +2536,8 @@ bioregistry:co_347 a bioregistry.schema:0000001 ;
     rdfs:label "Castor bean ontology" ;
     dc:description "March 2017 version "^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.qrrvyk,
+    skos:exactMatch agroportal:CO_347,
+        fairsharing:FAIRsharing.qrrvyk,
         ols:co_347 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_347/Castor%20bean"^^xsd:string ;
     bioregistry.schema:0000005 "0000108"^^xsd:string ;
@@ -2537,7 +2549,8 @@ bioregistry:co_348 a bioregistry.schema:0000001 ;
     rdfs:label "Brassica ontology" ;
     dc:description "Brassica Trait Ontology (BRaTO) hosts trait information to describe brassica crop data. Terms are collected from various projects including OREGIN, RIPR (UK) and Rapsodyn (France). BRATO development is conducted by Earlham Institute (UK), Southern Cross University (Australia) and INRA (France)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.af7a2d,
+    skos:exactMatch agroportal:CO_348,
+        fairsharing:FAIRsharing.af7a2d,
         ols:co_348 ;
     foaf:homepage "https://cropontology.org/ontology/CO_348/Brassica"^^xsd:string ;
     bioregistry.schema:0000005 "1100107"^^xsd:string ;
@@ -2549,7 +2562,8 @@ bioregistry:co_350 a bioregistry.schema:0000001 ;
     rdfs:label "Oat ontology" ;
     dc:description "Oat trait dictionary started by Oat Global (http://oatglobal.org/) and improved by NIAB and PepsiCo"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.35e1c3,
+    skos:exactMatch agroportal:CO_350,
+        fairsharing:FAIRsharing.35e1c3,
         ols:co_350 ;
     foaf:homepage "https://cropontology.org/ontology/CO_350/Oat"^^xsd:string ;
     bioregistry.schema:0000005 "0000215"^^xsd:string ;
@@ -2561,7 +2575,8 @@ bioregistry:co_356 a bioregistry.schema:0000001 ;
     rdfs:label "Vitis ontology" ;
     dc:description "Grape Ontology including OIV and bioversity descriptors. INRA July 2017"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.c7f4d7,
+    skos:exactMatch agroportal:CO_356,
+        fairsharing:FAIRsharing.c7f4d7,
         ols:co_356 ;
     foaf:homepage "https://cropontology.org/ontology/CO_356/Vitis"^^xsd:string ;
     bioregistry.schema:0000005 "4000027"^^xsd:string ;
@@ -2573,7 +2588,8 @@ bioregistry:co_357 a bioregistry.schema:0000001 ;
     rdfs:label "Woody Plant Ontology ontology" ;
     dc:description "This ontology lists all variables used for woody plant observations. Terms are collected from various sources (past and ongoing projects at national and international levels). Curators: Celia Michotey (INRAE) & Ines Chaves (IBET) - Version 2 submitted on Jun 2020 by INRAE."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.2b04ae,
+    skos:exactMatch agroportal:CO_357,
+        fairsharing:FAIRsharing.2b04ae,
         ols:co_357 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_357/Woody%20Plant%20Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "1000290"^^xsd:string ;
@@ -2585,7 +2601,8 @@ bioregistry:co_358 a bioregistry.schema:0000001 ;
     rdfs:label "Cotton ontology" ;
     dc:description "Cotton ontology from CottonGen database - June 2019"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_358 ;
+    skos:exactMatch agroportal:CO_358,
+        ols:co_358 ;
     foaf:homepage "https://cropontology.org/ontology/CO_358/Cotton"^^xsd:string ;
     bioregistry.schema:0000005 "0000139"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cropontology.org/rdf/CO_358:$1"^^xsd:string ;
@@ -2596,7 +2613,8 @@ bioregistry:co_359 a bioregistry.schema:0000001 ;
     rdfs:label "Sunflower ontology" ;
     dc:description "December 2019"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_359 ;
+    skos:exactMatch agroportal:CO_359,
+        ols:co_359 ;
     foaf:homepage "https://cropontology.org/ontology/CO_359/Sunflower"^^xsd:string ;
     bioregistry.schema:0000005 "0000947"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cropontology.org/rdf/CO_359:$1"^^xsd:string ;
@@ -2607,7 +2625,8 @@ bioregistry:co_360 a bioregistry.schema:0000001 ;
     rdfs:label "Sugar Kelp trait ontology" ;
     dc:description "Sugar Kelp trait ontology"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.1c1738,
+    skos:exactMatch agroportal:CO_360,
+        fairsharing:FAIRsharing.1c1738,
         ols:co_360 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_360/Sugar%20Kelp%20trait"^^xsd:string ;
     bioregistry.schema:0000005 "0000071"^^xsd:string ;
@@ -2619,7 +2638,8 @@ bioregistry:co_365 a bioregistry.schema:0000001 ;
     rdfs:label "Fababean ontology" ;
     dc:description "developed by ICARDA - Dec 2018"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_365 ;
+    skos:exactMatch agroportal:CO_365,
+        ols:co_365 ;
     foaf:homepage "https://cropontology.org/ontology/CO_365/Fababean"^^xsd:string ;
     bioregistry.schema:0000005 "0000205"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cropontology.org/rdf/CO_365:$1"^^xsd:string ;
@@ -2630,7 +2650,8 @@ bioregistry:co_366 a bioregistry.schema:0000001 ;
     rdfs:label "Bambara groundnut ontology" ;
     dc:description "version Dec 2019"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_366 ;
+    skos:exactMatch agroportal:CO_366,
+        ols:co_366 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_366/Bambara%20groundnut"^^xsd:string ;
     bioregistry.schema:0000005 "0000072"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.cropontology.org/rdf/CO_366:$1"^^xsd:string ;
@@ -3711,7 +3732,8 @@ bioregistry:edam a bioregistry.schema:0000001 ;
     rdfs:label "Bioinformatics operations, data types, formats, identifiers and topics" ;
     dc:description "EDAM is an ontology of general bioinformatics concepts, including topics, data types, formats, identifiers and operations. EDAM provides a controlled vocabulary for the description, in semantic terms, of things such as: web services (e.g. WSDL files), applications, tool collections and packages, work-benches and workflow software, databases and ontologies, XSD data schema and data objects, data syntax and file formats, web portals and pages, resource catalogues and documents (such as scientific publications)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ontobee:EDAM,
+    skos:exactMatch agroportal:EDAM,
+        ontobee:EDAM,
         bioportal:EDAM,
         biocontext:EDAM,
         n2t:edam,
@@ -4279,7 +4301,8 @@ bioregistry:flopo a bioregistry.schema:0000001 ;
     rdfs:label "Flora Phenotype Ontology" ;
     dc:description "Traits and phenotypes of flowering plants occurring in digitized Floras"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:FLOPO,
+    skos:exactMatch agroportal:FLOPO,
+        obofoundry:FLOPO,
         ontobee:FLOPO,
         bioportal:FLOPO,
         biocontext:FLOPO,
@@ -6539,7 +6562,8 @@ bioregistry:lbo a bioregistry.schema:0000001 ;
     rdfs:label "Livestock Breed Ontology" ;
     dc:description "A vocabulary for cattle, chicken, horse, pig, and sheep breeds."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:LBO,
+    skos:exactMatch agroportal:LBO,
+        bioportal:LBO,
         fairsharing:FAIRsharing.309v57,
         ols:lbo ;
     foaf:homepage "http://bioportal.bioontology.org/ontologies/LBO"^^xsd:string ;
@@ -8810,7 +8834,8 @@ bioregistry:om a bioregistry.schema:0000001 ;
     rdfs:label "Ontology of units of Measure" ;
     dc:description "The OM ontology provides classes, instances, and properties that represent the different concepts used for defining and using measures and units. It includes, for instance, common units such as the SI units meter and kilogram, but also units from other systems of units such as the mile or nautical mile. For many application areas it includes more specific units and quantities, such as the unit of the Hubble constant: km/s/Mpc, or the quantity vaselife.  OM defines the complete set of concepts in the domain as distinguished in the textual standards. As a result the ontology can answer a wider range of competency questions than the existing approaches do. The following application areas are supported by OM:  Geometry; Mechanics; Thermodynamics; Electromagnetism; Fluid mechanics; Chemical physics; Photometry; Radiometry and Radiobiology; Nuclear physics; Astronomy and Astrophysics; Cosmology; Earth science; Meteorology; Material science; Microbiology; Economics; Information technology; Typography; Shipping; Food engineering; Post-harvest; technology; Dynamics of texture and taste; Packaging"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:OM,
+    skos:exactMatch agroportal:OM,
+        bioportal:OM,
         ols:om ;
     foaf:homepage "https://github.com/HajoRijgersberg/OM"^^xsd:string ;
     bioregistry.schema:0000005 "Dimension"^^xsd:string ;
@@ -9897,7 +9922,8 @@ bioregistry:ppo a bioregistry.schema:0000001 ;
     rdfs:label "Plant Phenology Ontology" ;
     dc:description "An ontology for describing the phenology of individual plants and populations of plants, and for integrating plant phenological data across sources and scales."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:PPO,
+    skos:exactMatch agroportal:PPO,
+        obofoundry:PPO,
         ontobee:PPO,
         bioportal:PPO,
         biocontext:PPO,
@@ -10898,7 +10924,8 @@ bioregistry:sdgio a bioregistry.schema:0000001 ;
     rdfs:label "Sustainable Development Goals Interface Ontology" ;
     dc:description "An OBO-compliant ontology representing the entities referenced by the SDGs, their targets, and indicators."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ontobee:SDGIO,
+    skos:exactMatch agroportal:SDGIO,
+        ontobee:SDGIO,
         fairsharing:FAIRsharing.d5ff6e,
         ols:sdgio ;
     foaf:homepage "https://github.com/SDG-InterfaceOntology/sdgio"^^xsd:string ;
@@ -11113,7 +11140,8 @@ bioregistry:sio a bioregistry.schema:0000001 ;
     rdfs:label "Semanticscience Integrated Ontology" ;
     dc:description "The semanticscience integrated ontology (SIO) provides a simple, integrated upper level ontology (types, relations) for consistent knowledge representation across physical, processual and informational entities."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ontobee:SIO,
+    skos:exactMatch agroportal:SIO,
+        ontobee:SIO,
         bioportal:SIO,
         biocontext:SIO,
         biolink:SIO,
@@ -11421,7 +11449,9 @@ bioregistry:sty a bioregistry.schema:0000001 ;
     rdfs:label "Semantic Types Ontology" ;
     dc:description "UMLS Semantic Network The Semantic Network consists of (1) a set of broad subject categories, or Semantic Types, that provide a consistent categorization of all concepts represented in the UMLS Metathesaurus, and (2) a set of useful and important relationships, or Semantic Relations, that exist between Semantic Types."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:STY,
+    skos:exactMatch agroportal:STY,
+        ecoportal:STY,
+        bioportal:STY,
         biolink:STY ;
     foaf:homepage "https://lhncbc.nlm.nih.gov/semanticnetwork/"^^xsd:string ;
     bioregistry.schema:0000005 "T039"^^xsd:string ;
@@ -12262,7 +12292,8 @@ bioregistry:vario a bioregistry.schema:0000001 ;
     rdfs:label "Variation Ontology" ;
     dc:description "The Variation Ontology (VariO) is an ontology for the standardized, systematic description of effects, consequences and mechanisms of variations. It describes the effects of variations at the DNA, RNA and/or protein level."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:VariO,
+    skos:exactMatch agroportal:VARIO,
+        obofoundry:VariO,
         ontobee:VariO,
         bioportal:VARIO,
         biocontext:VARIO,
@@ -13126,6 +13157,148 @@ orcid:0000-0003-4727-9435 rdfs:label "Michel Dumontier" .
 orcid:0000-0003-4871-5569 rdfs:label "Rebecca Jackson" .
 
 orcid:0000-0003-4978-0864 rdfs:label "Lutz Fischer" .
+
+agroportal:AGRO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:AGROVOC dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:ATOL dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:BCO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:BFO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CDAO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CL dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_320 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_321 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_322 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_323 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_324 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_325 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_327 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_330 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_331 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_333 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_334 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_335 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_336 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_337 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_338 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_339 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_340 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_341 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_343 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_345 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_346 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_347 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_348 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_350 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_356 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_357 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_358 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_359 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_360 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_365 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:CO_366 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:EDAM dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:EFO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:ENVO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:EO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:EOL dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:FALDO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:FLOPO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:FOBI dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:FOODON dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:GEMET dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:GO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:LBO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:LPT dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:NCBITAXON dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:OM dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:PATO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:PCO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:PECO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:PO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:PPO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:PR dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:RO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:SDGIO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:SIO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:SO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:STY dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:TO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:VARIO dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+agroportal:VT dcterms:isPartOf bioregistry.metaresource:agroportal .
+
+ecoportal:AGROVOC dcterms:isPartOf bioregistry.metaresource:ecoportal .
+
+ecoportal:BCO dcterms:isPartOf bioregistry.metaresource:ecoportal .
+
+ecoportal:PCO dcterms:isPartOf bioregistry.metaresource:ecoportal .
+
+ecoportal:STY dcterms:isPartOf bioregistry.metaresource:ecoportal .
 
 obofoundry:AAO dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
@@ -18636,7 +18809,9 @@ bioregistry:bco a bioregistry.schema:0000001 ;
     rdfs:label "Biological Collections Ontology" ;
     dc:description "An ontology to support the interoperability of biodiversity data, including data on museum collections, environmental/metagenomic samples, and ecological surveys."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:BCO,
+    skos:exactMatch agroportal:BCO,
+        ecoportal:BCO,
+        obofoundry:BCO,
         ontobee:BCO,
         bioportal:BCO,
         biocontext:BCO,
@@ -19766,7 +19941,8 @@ bioregistry:eo a bioregistry.schema:0000001 ;
     rdfs:label "Plant Environment Ontology" ;
     dc:description "The Plant Environment Ontology is a set of standardized controlled vocabularies to describe various types of treatments given to an individual plant / a population or a cultured tissue and/or cell type sample to evaluate the response on its exposure. It also includes the study types, where the terms can be used to identify the growth study facility. Each growth facility such as field study, growth chamber, green house etc is a environment on its own it may also involve instances of biotic and abiotic environments as supplemental treatments used in these studies."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:EO,
+    skos:exactMatch agroportal:EO,
+        obofoundry:EO,
         biocontext:EO,
         n2t:eo,
         prefixcommons:eo,
@@ -19783,7 +19959,8 @@ bioregistry:eol a bioregistry.schema:0000001 ;
     rdfs:label "Environment Ontology for Livestock" ;
     dc:description "The EOL ontology describes environmental conditions of livestock farms. More specifically, it describes the feeding modalities, the environment, the structure of livestock farms and rearing systems."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:EOL,
+    skos:exactMatch agroportal:EOL,
+        bioportal:EOL,
         fairsharing:FAIRsharing.w7bw2y,
         ols:eol ;
     foaf:homepage "http://www.atol-ontology.com"^^xsd:string ;
@@ -19863,7 +20040,8 @@ bioregistry:faldo a bioregistry.schema:0000001 ;
     rdfs:label "Feature Annotation Location Description Ontology " ;
     dc:description "It is a simple ontology to describe sequence feature positions and regions as found in GFF3, DBBJ, EMBL, GenBank files, UniProt, and many other bioinformatics resources"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:FALDO,
+    skos:exactMatch agroportal:FALDO,
+        bioportal:FALDO,
         biocontext:faldo,
         fairsharing:FAIRsharing.haxp7g ;
     foaf:homepage "http://biohackathon.org/resource/faldo"^^xsd:string ;
@@ -20040,6 +20218,7 @@ bioregistry:gemet a bioregistry.schema:0000001 ;
     rdfs:label "General Multilingual Environmental Thesaurus" ;
     dc:description "The European Environment Information and Observation Network (Eionet) is a partnership network of the European Environment Agency (EEA) and its 38 member and cooperating countries. The EEA is responsible for developing Eionet and coordinating its activities together with National Focal Points (NFPs) in the countries. This terminology supports those efforts."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch agroportal:GEMET ;
     foaf:homepage "https://www.eionet.europa.eu/gemet/en/themes/"^^xsd:string ;
     bioregistry.schema:0000005 "627"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.eionet.europa.eu/gemet/en/concept/$1"^^xsd:string ;
@@ -20824,7 +21003,8 @@ bioregistry:lpt a bioregistry.schema:0000001 ;
     rdfs:label "Livestock Product Trait Ontology" ;
     dc:description "The Livestock Product Trait Ontology (LPT) is a controlled vocabulary for the description of traits (measurable or observable characteristics) pertaining to products produced by or obtained from the body of an agricultural animal or bird maintained for use and profit."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:LPT,
+    skos:exactMatch agroportal:LPT,
+        bioportal:LPT,
         biocontext:LPT,
         fairsharing:FAIRsharing.g78mbm ;
     foaf:homepage "https://github.com/AnimalGenome/livestock-product-trait-ontology"^^xsd:string ;
@@ -21929,7 +22109,8 @@ bioregistry:so a bioregistry.schema:0000001 ;
     rdfs:label "Sequence types and features ontology" ;
     dc:description "The Sequence Ontology (SO) is a structured controlled vocabulary for the parts of a genomic annotation. It provides a common set of terms and definitions to facilitate the exchange, analysis and management of genomic data."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:SO,
+    skos:exactMatch agroportal:SO,
+        obofoundry:SO,
         ontobee:SO,
         bioportal:SO,
         biocontext:SO,
@@ -22041,7 +22222,8 @@ bioregistry:to a bioregistry.schema:0000001 ;
     rdfs:label "Plant Trait Ontology" ;
     dc:description "A controlled vocabulary to describe phenotypic traits in plants."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:TO,
+    skos:exactMatch agroportal:TO,
+        obofoundry:TO,
         ontobee:TO,
         bioportal:PTO,
         biocontext:TO,
@@ -22288,7 +22470,8 @@ bioregistry:vt a bioregistry.schema:0000001 ;
     rdfs:label "Vertebrate trait ontology" ;
     dc:description "An ontology of traits covering vertebrates"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:VT,
+    skos:exactMatch agroportal:VT,
+        obofoundry:VT,
         ontobee:VT,
         bioportal:VT,
         biocontext:VT,
@@ -27040,7 +27223,8 @@ bioregistry:fobi a bioregistry.schema:0000001 ;
     rdfs:label "Food-Biomarker Ontology" ;
     dc:description "FOBI (Food-Biomarker Ontology) is an ontology to represent food intake data and associate it with metabolomic data"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:FOBI,
+    skos:exactMatch agroportal:FOBI,
+        obofoundry:FOBI,
         ontobee:FOBI,
         bioportal:FOBI,
         ols:fobi ;
@@ -27435,7 +27619,8 @@ bioregistry:peco a bioregistry.schema:0000001 ;
     rdfs:label "Plant Experimental Conditions Ontology" ;
     dc:description "A structured, controlled vocabulary which describes the treatments, growing conditions, and/or study types used in plant biology experiments."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:PECO,
+    skos:exactMatch agroportal:PECO,
+        obofoundry:PECO,
         ontobee:PECO,
         bioportal:PECO,
         biocontext:PECO,
@@ -27658,6 +27843,18 @@ orcid:0000-0002-8457-6693 rdfs:label "Bjoern Peters" .
 orcid:0000-0002-9881-1017 rdfs:label "Bill Hogan",
         "William Hogan" .
 
+bioregistry.metaresource:ecoportal a bioregistry.schema:0000002 ;
+    rdfs:label "EcoPortal" ;
+    dc:description "The LifeWatch ERIC repository of semantic resources for the ecological domain." ;
+    dcterms:hasPart ecoportal:AGROVOC,
+        ecoportal:BCO,
+        ecoportal:PCO,
+        ecoportal:STY ;
+    foaf:homepage "http://ecoportal.lifewatch.eu" ;
+    bioregistry.schema:0000005 "ALIENSPECIES" ;
+    bioregistry.schema:0000006 "http://ecoportal.lifewatch.eu/ontologies/$1" ;
+    bioregistry.schema:0000019 orcid:0000-0003-4494-839X .
+
 bioregistry:chembl a bioregistry.schema:0000001 ;
     rdfs:label "ChEMBL" ;
     dc:description "ChEMBL is a database of bioactive compounds, their quantitative properties and bioactivities (binding constants, pharmacology and ADMET, etc). The data is abstracted and curated from the primary scientific literature."^^xsd:string ;
@@ -27762,7 +27959,8 @@ bioregistry:efo a bioregistry.schema:0000001 ;
     rdfs:label "Experimental Factor Ontology" ;
     dc:description "The Experimental Factor Ontology (EFO) provides a systematic description of many experimental variables available in EBI databases. It combines parts of several biological ontologies, such as anatomy, disease and chemical compounds. The scope of EFO is to support the annotation, analysis and visualization of data handled by the EBI Functional Genomics Team."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ontobee:EFO,
+    skos:exactMatch agroportal:EFO,
+        ontobee:EFO,
         bioportal:EFO,
         biocontext:EFO,
         biolink:EFO,
@@ -27990,7 +28188,8 @@ bioregistry:po a bioregistry.schema:0000001 ;
     rdfs:label "Plant Ontology" ;
     dc:description "The Plant Ontology is a structured vocabulary and database resource that links plant anatomy, morphology and growth and development to plant genomics data."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:PO,
+    skos:exactMatch agroportal:PO,
+        obofoundry:PO,
         ontobee:PO,
         bioportal:PO,
         biocontext:PO,
@@ -28292,7 +28491,8 @@ bioregistry:pr a bioregistry.schema:0000001 ;
     rdfs:label "Protein Ontology" ;
     dc:description "The PRotein Ontology (PRO) has been designed to describe the relationships of proteins and protein evolutionary classes, to delineate the multiple protein forms of a gene locus (ontology for protein forms), and to interconnect existing ontologies."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:PR,
+    skos:exactMatch agroportal:PR,
+        obofoundry:PR,
         ontobee:PR,
         bioportal:PR,
         biocontext:PR,
@@ -28610,7 +28810,9 @@ bioregistry:pco a bioregistry.schema:0000001 ;
     rdfs:label "Population and Community Ontology" ;
     dc:description "The Population and Community Ontology (PCO) describes material entities, qualities, and processes related to collections of interacting organisms such as populations and communities. It is taxon neutral, and can be used for any species, including humans. The classes in the PCO are useful for describing evolutionary processes, organismal interactions, and ecological experiments. Practical applications of the PCO include community health care, plant pathology, behavioral studies, sociology, and ecology."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:PCO,
+    skos:exactMatch agroportal:PCO,
+        ecoportal:PCO,
+        obofoundry:PCO,
         ontobee:PCO,
         bioportal:PCO,
         biocontext:PCO,
@@ -28773,7 +28975,8 @@ bioregistry:agro a bioregistry.schema:0000001 ;
     rdfs:label "Agronomy Ontology" ;
     dc:description "AgrO is an ontlogy for representing agronomic practices, techniques, variables and related entities"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:AGRO,
+    skos:exactMatch agroportal:AGRO,
+        obofoundry:AGRO,
         ontobee:AGRO,
         bioportal:AGRO,
         biocontext:AGRO,
@@ -28804,7 +29007,8 @@ bioregistry:foodon a bioregistry.schema:0000001 ;
     rdfs:label "The Food Ontology" ;
     dc:description "FoodOn is a comprehensive and easily accessible global farm-to-fork ontology about food that accurately and consistently describes foods commonly known in cultures from around the world. It is a consortium-driven project built to interoperate with the The Open Biological and Biomedical Ontology Foundry library of ontologies."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:FOODON,
+    skos:exactMatch agroportal:FOODON,
+        obofoundry:FOODON,
         ontobee:FOODON,
         bioportal:FOODON,
         biocontext:FOODON,
@@ -28866,7 +29070,8 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
     rdfs:label "NCBI Taxonomy" ;
     dc:description "The taxonomy contains the relationships between all living forms for which nucleic acid or protein sequence have been determined."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:NCBITaxon,
+    skos:exactMatch agroportal:NCBITAXON,
+        obofoundry:NCBITaxon,
         ontobee:NCBITaxon,
         bioportal:NCBITAXON,
         biocontext:NCBITaxon,
@@ -28937,7 +29142,8 @@ bioregistry:envo a bioregistry.schema:0000001 ;
     rdfs:label "Environment Ontology" ;
     dc:description "The Environment Ontology is a resource and research target for the semantically controlled description of environmental entities. The ontology's initial aim was the representation of the biomes, environmental features, and environmental materials pertinent to genomic and microbiome-related investigations."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:ENVO,
+    skos:exactMatch agroportal:ENVO,
+        obofoundry:ENVO,
         ontobee:ENVO,
         bioportal:ENVO,
         biocontext:ENVO,
@@ -28973,7 +29179,8 @@ bioregistry:go a bioregistry.schema:0000001 ;
     rdfs:label "Gene Ontology" ;
     dc:description "The Gene Ontology project provides a controlled vocabulary to describe gene and gene product attributes in any organism."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:GO,
+    skos:exactMatch agroportal:GO,
+        obofoundry:GO,
         ontobee:GO,
         bioportal:GO,
         biocontext:GO,
@@ -29014,7 +29221,8 @@ bioregistry:cl a bioregistry.schema:0000001 ;
     rdfs:label "Cell Ontology" ;
     dc:description "The Cell Ontology is designed as a structured controlled vocabulary for cell types. The ontology was constructed for use by the model organism and other bioinformatics databases, incorporating cell types from prokaryotes to mammals, and includes plants and fungi."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:CL,
+    skos:exactMatch agroportal:CL,
+        obofoundry:CL,
         ontobee:CL,
         bioportal:CL,
         biocontext:CL,
@@ -29052,7 +29260,8 @@ bioregistry:pato a bioregistry.schema:0000001 ;
     rdfs:label "Phenotype And Trait Ontology" ;
     dc:description "PATO is an ontology of phenotypic qualities, intended for use in a number of applications, primarily defining composite phenotypes and phenotype  annotation."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:PATO,
+    skos:exactMatch agroportal:PATO,
+        obofoundry:PATO,
         ontobee:PATO,
         bioportal:PATO,
         biocontext:PATO,
@@ -29091,7 +29300,8 @@ bioregistry:bfo a bioregistry.schema:0000001 ;
     rdfs:label "Basic Formal Ontology" ;
     dc:description "The upper level ontology upon which OBO Foundry ontologies are built."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:BFO,
+    skos:exactMatch agroportal:BFO,
+        obofoundry:BFO,
         ontobee:BFO,
         bioportal:BFO,
         biocontext:BFO,
@@ -29479,7 +29689,8 @@ bioregistry:ro a bioregistry.schema:0000001 ;
     rdfs:label "Relation Ontology" ;
     dc:description "The OBO Relation Ontology provides consistent and unambiguous formal definitions of the relational expressions used in biomedical ontologies."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:RO,
+    skos:exactMatch agroportal:RO,
+        obofoundry:RO,
         ontobee:RO,
         bioportal:OBOREL,
         biocontext:OBO_REL,
@@ -29529,6 +29740,81 @@ bioregistry:ro a bioregistry.schema:0000001 ;
         bioregistry:xpo,
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 .
+
+bioregistry.metaresource:agroportal a bioregistry.schema:0000002 ;
+    rdfs:label "AgroPortal" ;
+    dc:description "A vocabulary and ontology repository for agronomy and related domains." ;
+    dcterms:hasPart agroportal:AGRO,
+        agroportal:AGROVOC,
+        agroportal:ATOL,
+        agroportal:BCO,
+        agroportal:BFO,
+        agroportal:CDAO,
+        agroportal:CL,
+        agroportal:CO_320,
+        agroportal:CO_321,
+        agroportal:CO_322,
+        agroportal:CO_323,
+        agroportal:CO_324,
+        agroportal:CO_325,
+        agroportal:CO_327,
+        agroportal:CO_330,
+        agroportal:CO_331,
+        agroportal:CO_333,
+        agroportal:CO_334,
+        agroportal:CO_335,
+        agroportal:CO_336,
+        agroportal:CO_337,
+        agroportal:CO_338,
+        agroportal:CO_339,
+        agroportal:CO_340,
+        agroportal:CO_341,
+        agroportal:CO_343,
+        agroportal:CO_345,
+        agroportal:CO_346,
+        agroportal:CO_347,
+        agroportal:CO_348,
+        agroportal:CO_350,
+        agroportal:CO_356,
+        agroportal:CO_357,
+        agroportal:CO_358,
+        agroportal:CO_359,
+        agroportal:CO_360,
+        agroportal:CO_365,
+        agroportal:CO_366,
+        agroportal:EDAM,
+        agroportal:EFO,
+        agroportal:ENVO,
+        agroportal:EO,
+        agroportal:EOL,
+        agroportal:FALDO,
+        agroportal:FLOPO,
+        agroportal:FOBI,
+        agroportal:FOODON,
+        agroportal:GEMET,
+        agroportal:GO,
+        agroportal:LBO,
+        agroportal:LPT,
+        agroportal:NCBITAXON,
+        agroportal:OM,
+        agroportal:PATO,
+        agroportal:PCO,
+        agroportal:PECO,
+        agroportal:PO,
+        agroportal:PPO,
+        agroportal:PR,
+        agroportal:RO,
+        agroportal:SDGIO,
+        agroportal:SIO,
+        agroportal:SO,
+        agroportal:STY,
+        agroportal:TO,
+        agroportal:VARIO,
+        agroportal:VT ;
+    foaf:homepage "http://agroportal.lirmm.fr" ;
+    bioregistry.schema:0000005 "ENVO" ;
+    bioregistry.schema:0000006 "http://agroportal.lirmm.fr/ontologies/$1" ;
+    bioregistry.schema:0000019 orcid:0000-0002-2404-1582 .
 
 bioregistry.metaresource:ncbi a bioregistry.schema:0000002 ;
     rdfs:label "National Center for Biotechnology Information Registry" ;
