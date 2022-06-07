@@ -43,8 +43,6 @@ class OntoPortalClient:
         self.directory.mkdir(exist_ok=True, parents=True)
         self.raw_path = self.directory.joinpath("raw.json")
         self.processed_path = self.directory.joinpath("processed.json")
-        if self.api_key is None:
-            self.api_key = pystow.get_config(self.metaprefix, "api_key", raise_on_missing=True)
 
     def query(self, url: str, **params) -> requests.Response:
         """Query the given endpoint on the OntoPortal site.
@@ -58,7 +56,7 @@ class OntoPortalClient:
         https://www.bioontology.org/wiki/Annotator_Optimizing_and_Troublehooting
         """
         if self.api_key is None:
-            raise ValueError(f"missing API key for {self.metaprefix}")
+            self.api_key = pystow.get_config(self.metaprefix, "api_key", raise_on_missing=True)
         params.setdefault("apikey", self.api_key)
         return requests.get(url, params=params)
 
