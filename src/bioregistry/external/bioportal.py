@@ -10,10 +10,10 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
 
+import pystow
 import requests
 from tqdm.contrib.concurrent import thread_map
 
-import pystow
 from bioregistry.constants import EXTERNAL
 
 __all__ = [

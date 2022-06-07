@@ -2,10 +2,16 @@
 
 """Workflows for aligning external registries."""
 
+from class_resolver import ClassResolver
 
 from .biocontext import BioContextAligner
 from .biolink import BiolinkAligner
-from .bioportal import BioPortalAligner, EcoPortalAligner, AgroPortalAligner
+from .bioportal import (
+    AgroPortalAligner,
+    BioPortalAligner,
+    EcoPortalAligner,
+    OntoPortalAligner,
+)
 from .cellosaurus import CellosaurusAligner
 from .cheminf import ChemInfAligner
 from .fairsharing import FairsharingAligner
@@ -24,7 +30,7 @@ from .wikidata import WikidataAligner
 __all__ = [
     # Abstract
     "Aligner",
-    "ALIGNERS",
+    "aligner_resolver",
     # Concrete
     "BioContextAligner",
     "BiolinkAligner",
@@ -46,4 +52,7 @@ __all__ = [
     "WikidataAligner",
 ]
 
-ALIGNERS = [sc for sc in Aligner.__subclasses__() if hasattr(sc, "key")]
+aligner_resolver = ClassResolver.from_subclasses(
+    base=Aligner,
+    skip={OntoPortalAligner},
+)

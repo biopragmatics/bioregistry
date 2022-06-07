@@ -6,7 +6,7 @@ from typing import Callable, List, Tuple
 
 from .biocontext import get_biocontext
 from .biolink import get_biolink
-from .bioportal import get_bioportal, get_ecoportal, get_agroportal
+from .bioportal import get_agroportal, get_bioportal, get_ecoportal
 from .cellosaurus import get_cellosaurus
 from .cheminf import get_cheminf
 from .fairsharing import get_fairsharing
