@@ -404,6 +404,8 @@ class Resource(BaseModel):
     agroportal: Optional[Mapping[str, Any]]
     #: External data from the Ontology Lookup Service
     ols: Optional[Mapping[str, Any]]
+    #: External data from the AberOWL ontology repository
+    aberowl: Optional[Mapping[str, Any]]
     #: External data from the NCBI Genbank's custom registry
     ncbi: Optional[Mapping[str, Any]]
     #: External data from UniProt's custom registry
