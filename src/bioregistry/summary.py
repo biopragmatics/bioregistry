@@ -4,7 +4,7 @@ import datetime
 from collections import defaultdict
 from dataclasses import dataclass
 from itertools import combinations
-from textwrap import dedent
+from textwrap import dedent, fill
 from typing import Mapping
 
 import click
@@ -22,6 +22,7 @@ class BioregistrySummary:
 
     number_prefixes: int
     number_registries: int
+    number_registries_aligned: int
     number_prefixes_novel: int
     number_prefixes_curated: int
     number_mappings: int
@@ -29,7 +30,8 @@ class BioregistrySummary:
     number_mismatches_curated: int
     number_collections: int
     number_contexts: int
-    number_contributors: int
+    number_direct_contributors: int
+    number_total_contributors: int
     external_sizes: Mapping[str, int]
     date: datetime.datetime
 
@@ -44,7 +46,8 @@ class BioregistrySummary:
         return (
             dedent(
                 f"""\
-        The Bioregistry (v{get_version()}) integrates {self.number_registries:,} external registries
+        The Bioregistry (v{get_version()}) integrates {self.number_registries_aligned:,} external registries
+        (of {self.number_registries:,} surveyed)
         and contains {self.number_prefixes:,} records, compared to {self.external_sizes['prefixcommons']}
         records in Prefix Commons, {self.external_sizes['miriam']:,} in MIRIAM/Identifiers.org, and
         {self.external_sizes['n2t']:,} in Name-to-Thing (each accessed on {self.datetime_str}).
@@ -61,13 +64,15 @@ class BioregistrySummary:
     def _table_rows(self):
         return [
             ("Version", get_version()),
-            ("Registries", self.number_registries),
+            ("Registries Surveyed", self.number_registries),
+            ("Registries Aligned", self.number_registries_aligned),
             ("Prefixes", self.number_prefixes),
             ("Synonyms", self.number_synonyms),
             ("Cross-registry Mappings", self.number_mappings),
             ("Curated Mismatches", self.number_mismatches_curated),
             ("Collections and Contexts", self.number_collections + self.number_contexts),
-            ("Direct Contributors", self.number_contributors),
+            ("Direct Contributors", self.number_direct_contributors),
+            ("Total Contributors", self.number_total_contributors),
         ]
 
     def _table_df(self):
@@ -108,6 +113,7 @@ class BioregistrySummary:
         number_novel_prefixes = len(novel_prefixes)
 
         metaprefixes = set(bioregistry.read_metaregistry())
+        metaprefixes_aligned = {key for entry in registry.values() for key in entry.get_mappings()}
 
         #: The number of prefixes that have any overrides that are not novel to the Bioregistry
         prefixes_curated = sum(
@@ -124,6 +130,7 @@ class BioregistrySummary:
             date=datetime.datetime.now(),
             number_prefixes=len(registry),
             number_registries=len(metaprefixes),
+            number_registries_aligned=len(metaprefixes_aligned),
             number_prefixes_novel=number_novel_prefixes,
             number_mappings=mapping_count,
             number_synonyms=synonym_count,
@@ -132,7 +139,8 @@ class BioregistrySummary:
             external_sizes={metaprefix: len(getter()) for metaprefix, _, getter in GETTERS},
             number_collections=len(bioregistry.read_collections()),
             number_contexts=len(bioregistry.read_contexts()),
-            number_contributors=len(bioregistry.read_contributors(direct_only=True)),
+            number_direct_contributors=len(bioregistry.read_contributors(direct_only=True)),
+            number_total_contributors=len(bioregistry.read_contributors(direct_only=False)),
         )
 
 
@@ -209,10 +217,9 @@ class MappingBurdenSummary:
 
 @click.command()
 def _main():
-    click.echo(MappingBurdenSummary.make().get_text())
-    click.echo("")
+    click.echo(fill(MappingBurdenSummary.make().get_text()) + "\n")
     s = BioregistrySummary.make()
-    click.echo(s.get_text())
+    click.echo(fill(s.get_text()) + "\n")
     click.echo(s.get_table_text())
 
     TABLES_SUMMARY_LATEX_PATH.write_text(s.get_table_latex())
