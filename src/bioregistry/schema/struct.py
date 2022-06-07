@@ -398,6 +398,10 @@ class Resource(BaseModel):
     obofoundry: Optional[Mapping[str, Any]]
     #: External data from the BioPortal ontology repository
     bioportal: Optional[Mapping[str, Any]]
+    #: External data from the EcoPortal ontology repository
+    ecoportal: Optional[Mapping[str, Any]]
+    #: External data from the AgroPortal ontology repository
+    agroportal: Optional[Mapping[str, Any]]
     #: External data from the Ontology Lookup Service
     ols: Optional[Mapping[str, Any]]
     #: External data from the NCBI Genbank's custom registry
