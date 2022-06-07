@@ -50,7 +50,6 @@ class OntoPortalClient:
         :param url: URL to query
         :param params: Kwargs to give as params to :func:`requests.get`
         :returns: The response from :func:`requests.get`
-        :raises ValueError: if there's no API key for the OntoPortal site
 
         The rate limit is 15 queries per second. See:
         https://www.bioontology.org/wiki/Annotator_Optimizing_and_Troublehooting
