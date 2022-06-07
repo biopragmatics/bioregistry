@@ -4,6 +4,7 @@
 
 from typing import Callable, List, Tuple
 
+from .aberowl import get_aberowl
 from .biocontext import get_biocontext
 from .biolink import get_biolink
 from .bioportal import get_agroportal, get_bioportal, get_ecoportal
@@ -61,4 +62,5 @@ GETTERS: List[Tuple[str, str, Callable]] = [
     ("fairsharing", "FAIRsharing", get_fairsharing),
     ("agroportal", "AgroPortal", get_agroportal),
     ("ecoportal", "EcoPortal", get_ecoportal),
+    ("aberowl", "AberOWL", get_aberowl),
 ]
