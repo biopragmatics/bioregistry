@@ -4,6 +4,7 @@
 
 from class_resolver import ClassResolver
 
+from .aberowl import AberOWLAligner
 from .biocontext import BioContextAligner
 from .biolink import BiolinkAligner
 from .bioportal import (
@@ -32,6 +33,7 @@ __all__ = [
     "Aligner",
     "aligner_resolver",
     # Concrete
+    "AberOWLAligner",
     "BioContextAligner",
     "BiolinkAligner",
     "BioPortalAligner",
