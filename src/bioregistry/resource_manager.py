@@ -3,7 +3,8 @@
 """A class-based client to a metaregistry."""
 
 import logging
-from collections import defaultdict
+import typing
+from collections import Counter, defaultdict
 from functools import lru_cache
 from pathlib import Path
 from typing import (
@@ -874,6 +875,17 @@ class Manager:
         if resource is None:
             return None
         return not resource.get_mappings()
+
+    def count_mappings(self, include_bioregistry: bool = True) -> typing.Counter[str]:
+        """Count the mappings for each registry."""
+        rv = Counter(
+            metaprefix
+            for resource in self.registry.values()
+            for metaprefix in resource.get_mappings()
+        )
+        if include_bioregistry:
+            rv["bioregistry"] = len(self.registry)
+        return rv
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
