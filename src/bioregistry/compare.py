@@ -363,11 +363,11 @@ def compare(paper: bool):  # noqa:C901
     _save(fig, "has_attribute", eps=paper)
 
     # Slightly reorganized for the paper
-    if paper:
-        fig, axes = _plot_attribute_pies(
-            measurements=measurements, watermark=watermark, keep_ontology=False
-        )
-        _save(fig, "paper_figure_3", png=True, eps=True)
+    # if paper:
+    #     fig, axes = _plot_attribute_pies(
+    #         measurements=measurements, watermark=watermark, keep_ontology=False
+    #     )
+    #     _save(fig, "paper_figure_3", png=True, eps=True)
 
     # -------------------------------------------------------------------- #
 
