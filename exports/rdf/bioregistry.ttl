@@ -9,6 +9,7 @@
 @prefix bioregistry.schema: <https://bioregistry.io/schema/#> .
 @prefix cellosaurus.resource: <https://bioregistry.io/metaregistry/cellosaurus/> .
 @prefix cheminf: <https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_> .
+@prefix cropoct: <https://www.cropontology.org/ontology/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ecoportal: <http://ecoportal.lifewatch.eu/ontologies/> .
@@ -25,7 +26,6 @@
 @prefix prefixcommons: <https://prefixcommons.org/?q=> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix scholia.resource: <https://bioregistry.io/metaregistry/scholia/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix uniprot.resource: <https://www.uniprot.org/database/DB-> .
 @prefix wikidata: <https://www.wikidata.org/wiki/Property:> .
@@ -142,14 +142,6 @@ bioregistry.collection:0000005 a bioregistry.schema:0000003 ;
         bioregistry:hba,
         bioregistry:mba,
         bioregistry:pba .
-
-bioregistry.metaresource:cropoct a bioregistry.schema:0000002 ;
-    rdfs:label "Crop Ontology Curation Tool" ;
-    dc:description "The Crop Ontology (CO) current objective is to compile validated concepts along with their inter-relationships on anatomy, structure and phenotype of Crops, on trait measurement and methods as well as on Germplasm with the multi-crop passport terms" ;
-    foaf:homepage "https://www.cropontology.org" ;
-    bioregistry.schema:0000005 "CO_010" ;
-    bioregistry.schema:0000006 "https://www.cropontology.org/ontology/$1" ;
-    bioregistry.schema:0000019 orcid:0000-0002-6020-5919 .
 
 bioregistry.metaresource:prefixcc a bioregistry.schema:0000002 ;
     rdfs:label "Prefix.cc" ;
@@ -755,7 +747,6 @@ bioregistry:arxiv a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:ARXIV,
         n2t:arxiv,
-        scholia.resource:arxiv,
         prefixcommons:arxiv,
         miriam:arxiv ;
     foaf:homepage "https://arxiv.org/"^^xsd:string ;
@@ -1438,8 +1429,7 @@ bioregistry:biorxiv a bioregistry.schema:0000001 ;
     rdfs:label "bioRxiv" ;
     dc:description "The bioRxiv is a preprint server for biology"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch go.resource:bioRxiv,
-        scholia.resource:biorxiv ;
+    skos:exactMatch go.resource:bioRxiv ;
     foaf:homepage "https://biorxiv.org"^^xsd:string ;
     bioregistry.schema:0000005 "2021.07.23.453588"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.biorxiv.org/content/10.1101/$1"^^xsd:string ;
@@ -1743,7 +1733,6 @@ bioregistry:cas a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:CAS,
         go.resource:CAS,
         n2t:cas,
-        scholia.resource:cas,
         fairsharing:FAIRsharing.r7Kwy7,
         prefixcommons:cas,
         miriam:cas,
@@ -2271,6 +2260,7 @@ bioregistry:co_320 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_320,
         fairsharing:FAIRsharing.2jkxp5,
+        cropoct:CO_320,
         ols:co_320 ;
     foaf:homepage "https://cropontology.org/ontology/CO_320/Rice"^^xsd:string ;
     bioregistry.schema:0000005 "0000618"^^xsd:string ;
@@ -2284,6 +2274,7 @@ bioregistry:co_321 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_321,
         fairsharing:FAIRsharing.czzmpg,
+        cropoct:CO_321,
         ols:co_321 ;
     foaf:homepage "https://cropontology.org/ontology/CO_321/Wheat"^^xsd:string ;
     bioregistry.schema:0000005 "0000449"^^xsd:string ;
@@ -2297,6 +2288,7 @@ bioregistry:co_322 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_322,
         fairsharing:FAIRsharing.eeyne8,
+        cropoct:CO_322,
         ols:co_322 ;
     foaf:homepage "https://cropontology.org/ontology/CO_322/Maize"^^xsd:string ;
     bioregistry.schema:0000005 "0000773"^^xsd:string ;
@@ -2310,6 +2302,7 @@ bioregistry:co_323 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_323,
         fairsharing:FAIRsharing.f69084,
+        cropoct:CO_323,
         ols:co_323 ;
     foaf:homepage "https://cropontology.org/ontology/CO_323/Barley"^^xsd:string ;
     bioregistry.schema:0000005 "0000252"^^xsd:string ;
@@ -2323,6 +2316,7 @@ bioregistry:co_324 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_324,
         fairsharing:FAIRsharing.dxx0c,
+        cropoct:CO_324,
         ols:co_324 ;
     foaf:homepage "https://cropontology.org/ontology/CO_324/Sorghum"^^xsd:string ;
     bioregistry.schema:0000005 "0000111"^^xsd:string ;
@@ -2336,6 +2330,7 @@ bioregistry:co_325 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_325,
         fairsharing:FAIRsharing.gdszhh,
+        cropoct:CO_325,
         ols:co_325 ;
     foaf:homepage "https://cropontology.org/ontology/CO_325/Banana"^^xsd:string ;
     bioregistry.schema:0000005 "0000519"^^xsd:string ;
@@ -2347,7 +2342,8 @@ bioregistry:co_326 a bioregistry.schema:0000001 ;
     rdfs:label "Coconut ontology" ;
     dc:description "Draft version"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch ols:co_326 ;
+    skos:exactMatch cropoct:CO_326,
+        ols:co_326 ;
     foaf:homepage "https://cropontology.org/ontology/CO_326/Coconut"^^xsd:string ;
     bioregistry.schema:0000005 "0000254"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
@@ -2359,6 +2355,7 @@ bioregistry:co_327 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_327,
         fairsharing:FAIRsharing.4e3qh9,
+        cropoct:CO_327,
         ols:co_327 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_327/Pearl%20millet"^^xsd:string ;
     bioregistry.schema:0000005 "0000095"^^xsd:string ;
@@ -2372,6 +2369,7 @@ bioregistry:co_330 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_330,
         fairsharing:FAIRsharing.4fa657,
+        cropoct:CO_330,
         ols:co_330 ;
     foaf:homepage "https://cropontology.org/ontology/CO_330/Potato"^^xsd:string ;
     bioregistry.schema:0000005 "0000106"^^xsd:string ;
@@ -2385,6 +2383,7 @@ bioregistry:co_331 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_331,
         fairsharing:FAIRsharing.4g5qcw,
+        cropoct:CO_331,
         ols:co_331 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_331/Sweet%20Potato"^^xsd:string ;
     bioregistry.schema:0000005 "0000088"^^xsd:string ;
@@ -2398,6 +2397,7 @@ bioregistry:co_333 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_333,
         fairsharing:FAIRsharing.af5655,
+        cropoct:CO_333,
         ols:co_333 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_333/Beet%20Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "3000045"^^xsd:string ;
@@ -2411,6 +2411,7 @@ bioregistry:co_334 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_334,
         fairsharing:FAIRsharing.v06c4q,
+        cropoct:CO_334,
         ols:co_334 ;
     foaf:homepage "https://cropontology.org/ontology/CO_334/Cassava"^^xsd:string ;
     bioregistry.schema:0000005 "0000070"^^xsd:string ;
@@ -2424,6 +2425,7 @@ bioregistry:co_335 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_335,
         fairsharing:FAIRsharing.a14123,
+        cropoct:CO_335,
         ols:co_335 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_335/Common%20Bean"^^xsd:string ;
     bioregistry.schema:0000005 "0000189"^^xsd:string ;
@@ -2437,6 +2439,7 @@ bioregistry:co_336 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_336,
         fairsharing:FAIRsharing.j75srj,
+        cropoct:CO_336,
         ols:co_336 ;
     foaf:homepage "https://cropontology.org/ontology/CO_336/Soybean"^^xsd:string ;
     bioregistry.schema:0000005 "0000339"^^xsd:string ;
@@ -2450,6 +2453,7 @@ bioregistry:co_337 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_337,
         fairsharing:FAIRsharing.ge8y23,
+        cropoct:CO_337,
         ols:co_337 ;
     foaf:homepage "https://cropontology.org/ontology/CO_337/Groundnut"^^xsd:string ;
     bioregistry.schema:0000005 "0000054"^^xsd:string ;
@@ -2463,6 +2467,7 @@ bioregistry:co_338 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_338,
         fairsharing:FAIRsharing.js20q3,
+        cropoct:CO_338,
         ols:co_338 ;
     foaf:homepage "https://cropontology.org/ontology/CO_338/Chickpea"^^xsd:string ;
     bioregistry.schema:0000005 "0000138"^^xsd:string ;
@@ -2476,6 +2481,7 @@ bioregistry:co_339 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_339,
         fairsharing:FAIRsharing.ry1ezg,
+        cropoct:CO_339,
         ols:co_339 ;
     foaf:homepage "https://cropontology.org/ontology/CO_339/Lentil"^^xsd:string ;
     bioregistry.schema:0000005 "0000032"^^xsd:string ;
@@ -2489,6 +2495,7 @@ bioregistry:co_340 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_340,
         fairsharing:FAIRsharing.31apg2,
+        cropoct:CO_340,
         ols:co_340 ;
     foaf:homepage "https://cropontology.org/ontology/CO_340/Cowpea"^^xsd:string ;
     bioregistry.schema:0000005 "0000639"^^xsd:string ;
@@ -2502,6 +2509,7 @@ bioregistry:co_341 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_341,
         fairsharing:FAIRsharing.ehe3yp,
+        cropoct:CO_341,
         ols:co_341 ;
     foaf:homepage "https://cropontology.org/ontology/CO_341/Pigeonpea"^^xsd:string ;
     bioregistry.schema:0000005 "0000140"^^xsd:string ;
@@ -2515,6 +2523,7 @@ bioregistry:co_343 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_343,
         fairsharing:FAIRsharing.7e9cff,
+        cropoct:CO_343,
         ols:co_343 ;
     foaf:homepage "https://cropontology.org/ontology/CO_343/Yam"^^xsd:string ;
     bioregistry.schema:0000005 "0100010"^^xsd:string ;
@@ -2528,6 +2537,7 @@ bioregistry:co_345 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_345,
         fairsharing:FAIRsharing.9e9683,
+        cropoct:CO_345,
         ols:co_345 ;
     foaf:homepage "https://cropontology.org/ontology/CO_345/Brachiaria"^^xsd:string ;
     bioregistry.schema:0000005 "0000127"^^xsd:string ;
@@ -2541,6 +2551,7 @@ bioregistry:co_346 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_346,
         fairsharing:FAIRsharing.fgd5gq,
+        cropoct:CO_346,
         ols:co_346 ;
     foaf:homepage "https://cropontology.org/ontology/CO_346/Mungbean"^^xsd:string ;
     bioregistry.schema:0000005 "0000199"^^xsd:string ;
@@ -2554,6 +2565,7 @@ bioregistry:co_347 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_347,
         fairsharing:FAIRsharing.qrrvyk,
+        cropoct:CO_347,
         ols:co_347 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_347/Castor%20bean"^^xsd:string ;
     bioregistry.schema:0000005 "0000108"^^xsd:string ;
@@ -2567,6 +2579,7 @@ bioregistry:co_348 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_348,
         fairsharing:FAIRsharing.af7a2d,
+        cropoct:CO_348,
         ols:co_348 ;
     foaf:homepage "https://cropontology.org/ontology/CO_348/Brassica"^^xsd:string ;
     bioregistry.schema:0000005 "1100107"^^xsd:string ;
@@ -2580,6 +2593,7 @@ bioregistry:co_350 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_350,
         fairsharing:FAIRsharing.35e1c3,
+        cropoct:CO_350,
         ols:co_350 ;
     foaf:homepage "https://cropontology.org/ontology/CO_350/Oat"^^xsd:string ;
     bioregistry.schema:0000005 "0000215"^^xsd:string ;
@@ -2593,6 +2607,7 @@ bioregistry:co_356 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_356,
         fairsharing:FAIRsharing.c7f4d7,
+        cropoct:CO_356,
         ols:co_356 ;
     foaf:homepage "https://cropontology.org/ontology/CO_356/Vitis"^^xsd:string ;
     bioregistry.schema:0000005 "4000027"^^xsd:string ;
@@ -2606,6 +2621,7 @@ bioregistry:co_357 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_357,
         fairsharing:FAIRsharing.2b04ae,
+        cropoct:CO_357,
         ols:co_357 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_357/Woody%20Plant%20Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "1000290"^^xsd:string ;
@@ -2618,6 +2634,7 @@ bioregistry:co_358 a bioregistry.schema:0000001 ;
     dc:description "Cotton ontology from CottonGen database - June 2019"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_358,
+        cropoct:CO_358,
         ols:co_358 ;
     foaf:homepage "https://cropontology.org/ontology/CO_358/Cotton"^^xsd:string ;
     bioregistry.schema:0000005 "0000139"^^xsd:string ;
@@ -2630,6 +2647,7 @@ bioregistry:co_359 a bioregistry.schema:0000001 ;
     dc:description "December 2019"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_359,
+        cropoct:CO_359,
         ols:co_359 ;
     foaf:homepage "https://cropontology.org/ontology/CO_359/Sunflower"^^xsd:string ;
     bioregistry.schema:0000005 "0000947"^^xsd:string ;
@@ -2643,6 +2661,7 @@ bioregistry:co_360 a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_360,
         fairsharing:FAIRsharing.1c1738,
+        cropoct:CO_360,
         ols:co_360 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_360/Sugar%20Kelp%20trait"^^xsd:string ;
     bioregistry.schema:0000005 "0000071"^^xsd:string ;
@@ -2655,6 +2674,7 @@ bioregistry:co_365 a bioregistry.schema:0000001 ;
     dc:description "developed by ICARDA - Dec 2018"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_365,
+        cropoct:CO_365,
         ols:co_365 ;
     foaf:homepage "https://cropontology.org/ontology/CO_365/Fababean"^^xsd:string ;
     bioregistry.schema:0000005 "0000205"^^xsd:string ;
@@ -2667,6 +2687,7 @@ bioregistry:co_366 a bioregistry.schema:0000001 ;
     dc:description "version Dec 2019"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch agroportal:CO_366,
+        cropoct:CO_366,
         ols:co_366 ;
     foaf:homepage "http://www.cropontology.org/ontology/CO_366/Bambara%20groundnut"^^xsd:string ;
     bioregistry.schema:0000005 "0000072"^^xsd:string ;
@@ -3545,7 +3566,6 @@ bioregistry:doi a bioregistry.schema:0000001 ;
         cellosaurus.resource:DOI,
         go.resource:DOI,
         n2t:doi,
-        scholia.resource:doi,
         fairsharing:FAIRsharing.hFLKCn,
         prefixcommons:doi,
         miriam:doi ;
@@ -6210,7 +6230,6 @@ bioregistry:inchikey a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:INCHIKEY,
         n2t:inchikey,
-        scholia.resource:inchikey,
         miriam:inchikey,
         wikidata:P235 ;
     foaf:homepage "http://www.chemspider.com/"^^xsd:string ;
@@ -9118,7 +9137,6 @@ bioregistry:orcid a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:ORCID,
         biolink:ORCID,
         n2t:orcid,
-        scholia.resource:orcid,
         miriam:orcid,
         wikidata:P496 ;
     foaf:homepage "https://orcid.org"^^xsd:string ;
@@ -10309,7 +10327,6 @@ bioregistry:pubchem.compound a bioregistry.schema:0000001 ;
         cellosaurus.resource:PubChem,
         go.resource:PubChem_Compound,
         n2t:pubchem.compound,
-        scholia.resource:pubchem,
         fairsharing:FAIRsharing.g63c77,
         prefixcommons:pubchem.compound,
         miriam:pubchem.compound,
@@ -10357,7 +10374,6 @@ bioregistry:pubmed a bioregistry.schema:0000001 ;
         cellosaurus.resource:PubMed,
         go.resource:PMID,
         n2t:pubmed,
-        scholia.resource:pubmed,
         fairsharing:FAIRsharing.a5sv8m,
         prefixcommons:pubmed,
         miriam:pubmed,
@@ -12606,7 +12622,6 @@ bioregistry:viaf a bioregistry.schema:0000001 ;
     dc:description "The VIAF® (Virtual International Authority File) combines multiple name authority files into a single OCLC-hosted name authority service. The goal of the service is to lower the cost and increase the utility of library authority files by matching and linking widely-used authority files and making that information available on the Web."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch n2t:viaf,
-        scholia.resource:viaf,
         miriam:viaf ;
     foaf:homepage "http://viaf.org"^^xsd:string ;
     bioregistry.schema:0000005 "75121530"^^xsd:string ;
@@ -12877,7 +12892,6 @@ All content is under the Creative Commons Attribution 3.0 Unported license."""^^
         bioportal:WIKIPATHWAYS,
         biocontext:WIKIPATHWAYS,
         n2t:wikipathways,
-        scholia.resource:wikipathways,
         fairsharing:FAIRsharing.g7b4rj,
         prefixcommons:wikipathways,
         miriam:wikipathways,
@@ -13145,8 +13159,6 @@ orcid:0000-0001-5472-917X rdfs:label "Stacia R Engel" .
 orcid:0000-0001-5809-9523 rdfs:label "Darren Natale" .
 
 orcid:0000-0001-5889-4463 rdfs:label "Mark Engelstad" .
-
-orcid:0000-0001-6128-3356 rdfs:label "Finn Årup Nielsen" .
 
 orcid:0000-0001-6466-877X rdfs:label "Pol Castellano Escuder" .
 
@@ -19447,36 +19459,6 @@ ncbi.resource:niaEST dcterms:isPartOf bioregistry.metaresource:ncbi .
 
 ncbi.resource:taxon dcterms:isPartOf bioregistry.metaresource:ncbi .
 
-scholia.resource:arxiv dcterms:isPartOf bioregistry.metaresource:scholia .
-
-scholia.resource:biorxiv dcterms:isPartOf bioregistry.metaresource:scholia .
-
-scholia.resource:cas dcterms:isPartOf bioregistry.metaresource:scholia .
-
-scholia.resource:doi dcterms:isPartOf bioregistry.metaresource:scholia .
-
-scholia.resource:inchikey dcterms:isPartOf bioregistry.metaresource:scholia .
-
-scholia.resource:lipidmaps dcterms:isPartOf bioregistry.metaresource:scholia .
-
-scholia.resource:mesh dcterms:isPartOf bioregistry.metaresource:scholia .
-
-scholia.resource:ncbi-gene dcterms:isPartOf bioregistry.metaresource:scholia .
-
-scholia.resource:ncbi-taxon dcterms:isPartOf bioregistry.metaresource:scholia .
-
-scholia.resource:orcid dcterms:isPartOf bioregistry.metaresource:scholia .
-
-scholia.resource:pubchem dcterms:isPartOf bioregistry.metaresource:scholia .
-
-scholia.resource:pubmed dcterms:isPartOf bioregistry.metaresource:scholia .
-
-scholia.resource:uniprot dcterms:isPartOf bioregistry.metaresource:scholia .
-
-scholia.resource:viaf dcterms:isPartOf bioregistry.metaresource:scholia .
-
-scholia.resource:wikipathways dcterms:isPartOf bioregistry.metaresource:scholia .
-
 bioregistry:4dn.replicate a bioregistry.schema:0000001 ;
     rdfs:label "4D Nucleome Data Portal Experiment Replicate" ;
     dc:description "Database portal containing replicate experiments of different assays and samples"^^xsd:string ;
@@ -21783,7 +21765,6 @@ bioregistry:lipidmaps a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:LIPIDMAPS,
         n2t:lipidmaps,
-        scholia.resource:lipidmaps,
         fairsharing:FAIRsharing.cpneh8,
         prefixcommons:lipidmaps,
         miriam:lipidmaps,
@@ -26845,6 +26826,70 @@ miriam:zfin dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:zinc dcterms:isPartOf bioregistry.metaresource:miriam .
 
+cropoct:CO_320 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_321 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_322 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_323 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_324 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_325 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_326 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_327 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_330 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_331 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_333 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_334 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_335 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_336 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_337 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_338 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_339 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_340 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_341 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_343 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_345 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_346 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_347 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_348 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_350 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_356 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_357 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_358 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_359 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_360 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_365 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
+cropoct:CO_366 dcterms:isPartOf bioregistry.metaresource:cropoct .
+
 ols:aeo dcterms:isPartOf bioregistry.metaresource:ols .
 
 ols:afo dcterms:isPartOf bioregistry.metaresource:ols .
@@ -28270,7 +28315,6 @@ bioregistry:mesh a bioregistry.schema:0000001 ;
         cellosaurus.resource:MeSH,
         go.resource:MeSH,
         n2t:mesh,
-        scholia.resource:mesh,
         fairsharing:FAIRsharing.qnkw45,
         prefixcommons:mesh,
         miriam:mesh,
@@ -28362,7 +28406,6 @@ bioregistry:ncbigene a bioregistry.schema:0000001 ;
         go.resource:NCBIGene,
         n2t:ncbigene,
         ncbi.resource:GeneID,
-        scholia.resource:ncbi-gene,
         fairsharing:FAIRsharing.5h3maw,
         prefixcommons:ncbigene,
         miriam:ncbigene,
@@ -29865,29 +29908,6 @@ bioregistry.metaresource:cheminf a bioregistry.schema:0000002 ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_$1" ;
     bioregistry.schema:0000019 orcid:0000-0001-7542-0286 .
 
-bioregistry.metaresource:scholia a bioregistry.schema:0000002 ;
-    rdfs:label "Scholia" ;
-    dc:description "A frontend to Wikidata" ;
-    dcterms:hasPart scholia.resource:arxiv,
-        scholia.resource:biorxiv,
-        scholia.resource:cas,
-        scholia.resource:doi,
-        scholia.resource:inchikey,
-        scholia.resource:lipidmaps,
-        scholia.resource:mesh,
-        scholia.resource:ncbi-gene,
-        scholia.resource:ncbi-taxon,
-        scholia.resource:orcid,
-        scholia.resource:pubchem,
-        scholia.resource:pubmed,
-        scholia.resource:uniprot,
-        scholia.resource:viaf,
-        scholia.resource:wikipathways ;
-    foaf:homepage "https://scholia.toolforge.org/" ;
-    bioregistry.schema:0000005 "doi" ;
-    bioregistry.schema:0000007 "https://scholia.toolforge.org/$1/$2" ;
-    bioregistry.schema:0000019 orcid:0000-0001-6128-3356 .
-
 bioregistry:agro a bioregistry.schema:0000001 ;
     rdfs:label "Agronomy Ontology" ;
     dc:description "AgrO is an ontlogy for representing agronomic practices, techniques, variables and related entities"^^xsd:string ;
@@ -30000,7 +30020,6 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
         go.resource:taxon,
         n2t:taxonomy,
         ncbi.resource:taxon,
-        scholia.resource:ncbi-taxon,
         fairsharing:FAIRsharing.fj07xj,
         prefixcommons:uniprot.taxonomy,
         miriam:taxonomy,
@@ -30322,7 +30341,6 @@ bioregistry:uniprot a bioregistry.schema:0000001 ;
         go.resource:UniProtKB,
         n2t:uniprot,
         ncbi.resource:UniProt,
-        scholia.resource:uniprot,
         fairsharing:FAIRsharing.s1ne3g,
         prefixcommons:uniprot,
         miriam:uniprot,
@@ -30566,6 +30584,46 @@ bioregistry:uberon a bioregistry.schema:0000001 ;
         bioregistry:poro,
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 .
+
+bioregistry.metaresource:cropoct a bioregistry.schema:0000002 ;
+    rdfs:label "Crop Ontology Curation Tool" ;
+    dc:description "The Crop Ontology (CO) current objective is to compile validated concepts along with their inter-relationships on anatomy, structure and phenotype of Crops, on trait measurement and methods as well as on Germplasm with the multi-crop passport terms" ;
+    dcterms:hasPart cropoct:CO_320,
+        cropoct:CO_321,
+        cropoct:CO_322,
+        cropoct:CO_323,
+        cropoct:CO_324,
+        cropoct:CO_325,
+        cropoct:CO_326,
+        cropoct:CO_327,
+        cropoct:CO_330,
+        cropoct:CO_331,
+        cropoct:CO_333,
+        cropoct:CO_334,
+        cropoct:CO_335,
+        cropoct:CO_336,
+        cropoct:CO_337,
+        cropoct:CO_338,
+        cropoct:CO_339,
+        cropoct:CO_340,
+        cropoct:CO_341,
+        cropoct:CO_343,
+        cropoct:CO_345,
+        cropoct:CO_346,
+        cropoct:CO_347,
+        cropoct:CO_348,
+        cropoct:CO_350,
+        cropoct:CO_356,
+        cropoct:CO_357,
+        cropoct:CO_358,
+        cropoct:CO_359,
+        cropoct:CO_360,
+        cropoct:CO_365,
+        cropoct:CO_366 ;
+    foaf:homepage "https://www.cropontology.org" ;
+    bioregistry.schema:0000005 "CO_010" ;
+    bioregistry.schema:0000006 "https://www.cropontology.org/ontology/$1" ;
+    bioregistry.schema:0000019 orcid:0000-0002-6020-5919 .
 
 bioregistry:scdo a bioregistry.schema:0000001 ;
     rdfs:label "Sickle Cell Disease Ontology" ;

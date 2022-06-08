@@ -170,6 +170,7 @@ adw:
   deprecated: true
   description: Animal Diversity Web (ADW) is an online database of animal natural
     history, distribution, classification, and conservation biology.
+  download_owl: http://aber-owl.net/media/ontologies/ADW/2/adw.owl
   example: Lycalopex_vetulus
   homepage: http://www.animaldiversity.org
   mappings:
@@ -597,6 +598,7 @@ aop.stressor:
   uri_format: https://aopwiki.org/stressors/$1
 apaonto:
   description: Ontology from the APA
+  download_owl: http://aber-owl.net/media/ontologies/APAONTO/4/apaonto.owl
   example: Abdomen
   homepage: https://bioportal.bioontology.org/ontologies/APAONTO
   mappings:
@@ -866,10 +868,22 @@ arxiv:
     miriam: arxiv
     n2t: arxiv
     prefixcommons: arxiv
-    scholia: arxiv
   name: arXiv
   pattern: ^(\w+(\-\w+)?(\.\w+)?)?\d{4,7}(\.\d+(v\d+)?)?$
   preferred_prefix: arxiv
+  providers:
+  - code: scholia
+    description: Scholia is a service that creates visual scholarly profiles for topic,
+      people, organizations, species, chemicals, etc using bibliographic and other
+      information in Wikidata.
+    homepage: https://scholia.toolforge.org/
+    name: Scholia
+    uri_format: https://scholia.toolforge.org/arxiv/$1
+  - code: ar5iv
+    description: Articles from arXiv.org as responsive HTML5 web pages.
+    homepage: https://ar5iv.labs.arxiv.org/
+    name: ar5iv
+    uri_format: https://ar5iv.org/abs/$1
   uri_format: https://arxiv.org/abs/$1
 asap:
   description: ASAP (a systematic annotation package for community analysis of genomes)
@@ -1065,6 +1079,7 @@ ato:
   deprecated: true
   description: Amphibian Taxonomy Ontology is an ontology of Amphibian species and
     genres. It is being integrated into UBERON resource
+  download_obo: http://aber-owl.net/media/ontologies/ATO/2/ato.obo
   example: '0000000'
   homepage: http://www.amphibanat.org
   mappings:
@@ -1752,6 +1767,7 @@ biolegend:
 biolink:
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/24/biolink.owl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
   mappings:
@@ -2012,10 +2028,17 @@ biorxiv:
   homepage: https://biorxiv.org
   mappings:
     go: bioRxiv
-    scholia: biorxiv
   name: bioRxiv
   pattern: ^(\d{4}\.\d{2}\.\d{2}\.)?\d{6,8}(v\d{1,3})?$
   preferred_prefix: biorxiv
+  providers:
+  - code: scholia
+    description: Scholia is a service that creates visual scholarly profiles for topic,
+      people, organizations, species, chemicals, etc using bibliographic and other
+      information in Wikidata.
+    homepage: https://scholia.toolforge.org/
+    name: Scholia
+    uri_format: https://scholia.toolforge.org/biorxiv/$1
   uri_format: https://www.biorxiv.org/content/10.1101/$1
 biosample:
   description: The BioSample Database stores information about biological samples
@@ -2141,6 +2164,7 @@ birnlex:
   description: The BIRN Project lexicon will provide entities for data and database
     annotation for the BIRN project, covering anatomy, disease, data collection, project
     management and experimental design.
+  download_owl: http://aber-owl.net/media/ontologies/BIRNLEX/1/birnlex.owl
   example: birnlex_2023
   homepage: https://bioportal.bioontology.org/ontologies/BIRNLEX
   mappings:
@@ -2213,6 +2237,7 @@ bko:
     associates bricks with the concepts they represent. BKO includes terms that describe
     concepts, the template bricks representing these concepts, and categories that
     gather bricks in a broader way.
+  download_owl: http://aber-owl.net/media/ontologies/BKO/1/bko.owl
   example: '0000204'
   homepage: http://www.sbgnbricks.org/
   mappings:
@@ -2652,7 +2677,6 @@ cas:
     miriam: cas
     n2t: cas
     prefixcommons: cas
-    scholia: cas
     wikidata: P231
   name: CAS Chemical Registry
   pattern: ^\d{1,7}\-\d{2}\-\d$
@@ -4070,6 +4094,7 @@ co_320:
   homepage: https://cropontology.org/ontology/CO_320/Rice
   mappings:
     agroportal: CO_320
+    cropoct: CO_320
     fairsharing: FAIRsharing.2jkxp5
     ols: co_320
   name: Rice ontology
@@ -4084,6 +4109,7 @@ co_321:
   homepage: https://cropontology.org/ontology/CO_321/Wheat
   mappings:
     agroportal: CO_321
+    cropoct: CO_321
     fairsharing: FAIRsharing.czzmpg
     ols: co_321
   name: Wheat ontology
@@ -4098,6 +4124,7 @@ co_322:
   homepage: https://cropontology.org/ontology/CO_322/Maize
   mappings:
     agroportal: CO_322
+    cropoct: CO_322
     fairsharing: FAIRsharing.eeyne8
     ols: co_322
   name: Maize ontology
@@ -4112,6 +4139,7 @@ co_323:
   homepage: https://cropontology.org/ontology/CO_323/Barley
   mappings:
     agroportal: CO_323
+    cropoct: CO_323
     fairsharing: FAIRsharing.f69084
     ols: co_323
   name: Barley ontology
@@ -4126,6 +4154,7 @@ co_324:
   homepage: https://cropontology.org/ontology/CO_324/Sorghum
   mappings:
     agroportal: CO_324
+    cropoct: CO_324
     fairsharing: FAIRsharing.dxx0c
     ols: co_324
   name: Sorghum ontology
@@ -4140,6 +4169,7 @@ co_325:
   homepage: https://cropontology.org/ontology/CO_325/Banana
   mappings:
     agroportal: CO_325
+    cropoct: CO_325
     fairsharing: FAIRsharing.gdszhh
     ols: co_325
   name: Banana ontology
@@ -4153,6 +4183,7 @@ co_326:
   example: '0000254'
   homepage: https://cropontology.org/ontology/CO_326/Coconut
   mappings:
+    cropoct: CO_326
     ols: co_326
   name: Coconut ontology
   pattern: ^\d{7}$
@@ -4165,6 +4196,7 @@ co_327:
   homepage: http://www.cropontology.org/ontology/CO_327/Pearl%20millet
   mappings:
     agroportal: CO_327
+    cropoct: CO_327
     fairsharing: FAIRsharing.4e3qh9
     ols: co_327
   name: Pearl millet ontology
@@ -4178,6 +4210,7 @@ co_330:
   homepage: https://cropontology.org/ontology/CO_330/Potato
   mappings:
     agroportal: CO_330
+    cropoct: CO_330
     fairsharing: FAIRsharing.4fa657
     ols: co_330
   name: Potato ontology
@@ -4192,6 +4225,7 @@ co_331:
   homepage: http://www.cropontology.org/ontology/CO_331/Sweet%20Potato
   mappings:
     agroportal: CO_331
+    cropoct: CO_331
     fairsharing: FAIRsharing.4g5qcw
     ols: co_331
   name: Sweet Potato ontology
@@ -4209,6 +4243,7 @@ co_333:
   homepage: http://www.cropontology.org/ontology/CO_333/Beet%20Ontology
   mappings:
     agroportal: CO_333
+    cropoct: CO_333
     fairsharing: FAIRsharing.af5655
     ols: co_333
   name: Beet Ontology ontology
@@ -4223,6 +4258,7 @@ co_334:
   homepage: https://cropontology.org/ontology/CO_334/Cassava
   mappings:
     agroportal: CO_334
+    cropoct: CO_334
     fairsharing: FAIRsharing.v06c4q
     ols: co_334
   name: Cassava ontology
@@ -4237,6 +4273,7 @@ co_335:
   homepage: http://www.cropontology.org/ontology/CO_335/Common%20Bean
   mappings:
     agroportal: CO_335
+    cropoct: CO_335
     fairsharing: FAIRsharing.a14123
     ols: co_335
   name: Common Bean ontology
@@ -4250,6 +4287,7 @@ co_336:
   homepage: https://cropontology.org/ontology/CO_336/Soybean
   mappings:
     agroportal: CO_336
+    cropoct: CO_336
     fairsharing: FAIRsharing.j75srj
     ols: co_336
   name: Soybean ontology
@@ -4264,6 +4302,7 @@ co_337:
   homepage: https://cropontology.org/ontology/CO_337/Groundnut
   mappings:
     agroportal: CO_337
+    cropoct: CO_337
     fairsharing: FAIRsharing.ge8y23
     ols: co_337
   name: Groundnut ontology
@@ -4278,6 +4317,7 @@ co_338:
   homepage: https://cropontology.org/ontology/CO_338/Chickpea
   mappings:
     agroportal: CO_338
+    cropoct: CO_338
     fairsharing: FAIRsharing.js20q3
     ols: co_338
   name: Chickpea ontology
@@ -4292,6 +4332,7 @@ co_339:
   homepage: https://cropontology.org/ontology/CO_339/Lentil
   mappings:
     agroportal: CO_339
+    cropoct: CO_339
     fairsharing: FAIRsharing.ry1ezg
     ols: co_339
   name: Lentil ontology
@@ -4306,6 +4347,7 @@ co_340:
   homepage: https://cropontology.org/ontology/CO_340/Cowpea
   mappings:
     agroportal: CO_340
+    cropoct: CO_340
     fairsharing: FAIRsharing.31apg2
     ols: co_340
   name: Cowpea ontology
@@ -4320,6 +4362,7 @@ co_341:
   homepage: https://cropontology.org/ontology/CO_341/Pigeonpea
   mappings:
     agroportal: CO_341
+    cropoct: CO_341
     fairsharing: FAIRsharing.ehe3yp
     ols: co_341
   name: Pigeonpea ontology
@@ -4334,6 +4377,7 @@ co_343:
   homepage: https://cropontology.org/ontology/CO_343/Yam
   mappings:
     agroportal: CO_343
+    cropoct: CO_343
     fairsharing: FAIRsharing.7e9cff
     ols: co_343
   name: Yam ontology
@@ -4348,6 +4392,7 @@ co_345:
   homepage: https://cropontology.org/ontology/CO_345/Brachiaria
   mappings:
     agroportal: CO_345
+    cropoct: CO_345
     fairsharing: FAIRsharing.9e9683
     ols: co_345
   name: Brachiaria ontology
@@ -4362,6 +4407,7 @@ co_346:
   homepage: https://cropontology.org/ontology/CO_346/Mungbean
   mappings:
     agroportal: CO_346
+    cropoct: CO_346
     fairsharing: FAIRsharing.fgd5gq
     ols: co_346
   name: Mungbean ontology
@@ -4376,6 +4422,7 @@ co_347:
   homepage: http://www.cropontology.org/ontology/CO_347/Castor%20bean
   mappings:
     agroportal: CO_347
+    cropoct: CO_347
     fairsharing: FAIRsharing.qrrvyk
     ols: co_347
   name: Castor bean ontology
@@ -4392,6 +4439,7 @@ co_348:
   homepage: https://cropontology.org/ontology/CO_348/Brassica
   mappings:
     agroportal: CO_348
+    cropoct: CO_348
     fairsharing: FAIRsharing.af7a2d
     ols: co_348
   name: Brassica ontology
@@ -4407,6 +4455,7 @@ co_350:
   homepage: https://cropontology.org/ontology/CO_350/Oat
   mappings:
     agroportal: CO_350
+    cropoct: CO_350
     fairsharing: FAIRsharing.35e1c3
     ols: co_350
   name: Oat ontology
@@ -4422,6 +4471,7 @@ co_356:
   homepage: https://cropontology.org/ontology/CO_356/Vitis
   mappings:
     agroportal: CO_356
+    cropoct: CO_356
     fairsharing: FAIRsharing.c7f4d7
     ols: co_356
   name: Vitis ontology
@@ -4439,6 +4489,7 @@ co_357:
   homepage: http://www.cropontology.org/ontology/CO_357/Woody%20Plant%20Ontology
   mappings:
     agroportal: CO_357
+    cropoct: CO_357
     fairsharing: FAIRsharing.2b04ae
     ols: co_357
   name: Woody Plant Ontology ontology
@@ -4452,6 +4503,7 @@ co_358:
   homepage: https://cropontology.org/ontology/CO_358/Cotton
   mappings:
     agroportal: CO_358
+    cropoct: CO_358
     ols: co_358
   name: Cotton ontology
   pattern: ^\d{7}$
@@ -4465,6 +4517,7 @@ co_359:
   homepage: https://cropontology.org/ontology/CO_359/Sunflower
   mappings:
     agroportal: CO_359
+    cropoct: CO_359
     ols: co_359
   name: Sunflower ontology
   pattern: ^\d{7}$
@@ -4477,6 +4530,7 @@ co_360:
   homepage: http://www.cropontology.org/ontology/CO_360/Sugar%20Kelp%20trait
   mappings:
     agroportal: CO_360
+    cropoct: CO_360
     fairsharing: FAIRsharing.1c1738
     ols: co_360
   name: Sugar Kelp trait ontology
@@ -4490,6 +4544,7 @@ co_365:
   homepage: https://cropontology.org/ontology/CO_365/Fababean
   mappings:
     agroportal: CO_365
+    cropoct: CO_365
     ols: co_365
   name: Fababean ontology
   pattern: ^\d{7}$
@@ -4503,6 +4558,7 @@ co_366:
   homepage: http://www.cropontology.org/ontology/CO_366/Bambara%20groundnut
   mappings:
     agroportal: CO_366
+    cropoct: CO_366
     ols: co_366
   name: Bambara groundnut ontology
   pattern: ^\d{7}$
@@ -4910,6 +4966,7 @@ cosmic.cell:
 covid19:
   description: Curated contextual database gathering samples related to SARS-CoV-2
     virus and covid-19 disease.
+  download_owl: http://aber-owl.net/media/ontologies/COVID-19/3/covid-19.owl
   example: SFB_COVID19_MW286762
   homepage: https://covid19.sfb.uit.no
   mappings:
@@ -5694,6 +5751,7 @@ dbvar.variant:
 dc:
   description: Metadata terms maintained by the Dublin Core Metadata Initiative, including
     properties, vocabulary encoding schemes, syntax encoding schemes, and classes.
+  download_owl: http://aber-owl.net/media/ontologies/DC/3/dc.owl
   example: contributor
   has_canonical: dcterms
   homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
@@ -5725,6 +5783,7 @@ dc_cl:
 dcat:
   description: DCAT is an RDF vocabulary designed to facilitate interoperability between
     data catalogs published on the Web
+  download_owl: http://aber-owl.net/media/ontologies/DCAT/2/dcat.owl
   example: Dataset
   homepage: https://www.w3.org/ns/dcat
   mappings:
@@ -5892,6 +5951,7 @@ dermo:
   description: DermO is an ontology with broad coverage of the domain of dermatologic
     disease and we demonstrate here its utility for text mining and investigation
     of phenotypic relationships between dermatologic disorders
+  download_obo: http://aber-owl.net/media/ontologies/DERMO/10/dermo.obo
   example: '0000000'
   homepage: https://jbiomedsem.biomedcentral.com/articles/10.1186/s13326-016-0085-x
   mappings:
@@ -6320,7 +6380,6 @@ doi:
     miriam: doi
     n2t: doi
     prefixcommons: doi
-    scholia: doi
   name: Digital Object Identifier
   pattern: ^(doi\:)?\d{2}\.\d{4}.*$
   preferred_prefix: doi
@@ -6708,6 +6767,7 @@ dto:
   - pr
   description: 'DTO integrates and harmonizes knowledge of the most important druggable
     protein families: kinases, GPCRs, ion channels and nuclear hormone receptors.'
+  download_owl: http://aber-owl.net/media/ontologies/DTO/4/dto.owl
   example: '90000018'
   homepage: https://github.com/DrugTargetOntology/DTO
   mappings:
@@ -6871,6 +6931,7 @@ ecg:
   description: The Electrocardiography (ECG) Ontology is a Driving Biological Project
     of the NCBO. The ECG Ontology will contain terms for describing electrocardiograms,
     their capture method(s) and their waveforms.
+  download_owl: http://aber-owl.net/media/ontologies/ECG/12/ecg.owl
   example: 000000159
   homepage: https://bioportal.bioontology.org/ontologies/ECG
   mappings:
@@ -7212,6 +7273,7 @@ edda:
     Metathesaurus. Variants include synonyms for preferred terms, singular and plural
     forms, and American and British spellings. Definitions, if they exist, are mainly
     from MeSH, NCI, Emtree, and medical dictionaries.
+  download_owl: http://aber-owl.net/media/ontologies/EDDA/11/edda.owl
   example: health_care_quality_assessment
   homepage: https://bioportal.bioontology.org/ontologies/EDDA
   mappings:
@@ -7335,6 +7397,7 @@ ehda:
     name: Jonathan Bard
     orcid: null
   deprecated: true
+  download_obo: http://aber-owl.net/media/ontologies/EHDA/6/ehda.obo
   example: '1'
   homepage: http://genex.hgu.mrc.ac.uk/
   mappings:
@@ -7355,6 +7418,7 @@ ehdaa:
     name: Jonathan Bard
     orcid: null
   deprecated: true
+  download_obo: http://aber-owl.net/media/ontologies/EHDAA/6/ehdaa.obo
   example: '1'
   mappings:
     aberowl: EHDAA
@@ -7977,6 +8041,7 @@ epso:
   description: 'The Epilepsy and Seizure Ontology (EpSO) is an application ontology
     developed to support epilepsy focused informatics tools for patient care and clinical
     research. '
+  download_owl: http://aber-owl.net/media/ontologies/EPSO/3/epso.owl
   example: '0000400'
   homepage: http://prism.case.edu/prism/index.php/EpilepsyOntology
   mappings:
@@ -8272,6 +8337,7 @@ fabio:
     describing entities that are published or potentially publishable (e.g., journal
     articles, conference papers, books), and that contain or are referred to by bibliographic
     references.
+  download_owl: http://aber-owl.net/media/ontologies/FaBiO/1/fabio.owl
   example: d4e2515
   homepage: https://github.com/sparontologies/fabio
   mappings:
@@ -8323,6 +8389,7 @@ faldo:
   description: It is a simple ontology to describe sequence feature positions and
     regions as found in GFF3, DBBJ, EMBL, GenBank files, UniProt, and many other bioinformatics
     resources
+  download_owl: http://aber-owl.net/media/ontologies/FALDO/1/faldo.owl
   example: ForwardStrandPosition
   homepage: http://biohackathon.org/resource/faldo
   mappings:
@@ -8545,6 +8612,7 @@ fbsp:
   deprecated: true
   description: The taxonomy of the family <i>Drosophilidae</i> (largely after Baechli)
     and of other taxa referred to in FlyBase.
+  download_obo: http://aber-owl.net/media/ontologies/FB-SP/7/fb-sp.obo
   download_owl: http://purl.obolibrary.org/obo/fbsp.owl
   example: '00000000'
   homepage: http://www.flybase.org/
@@ -8827,6 +8895,7 @@ foaf:
     association; representational networks that describe a simplified view of a cartoon
     universe in factual terms, and information networks that use Web-based linking
     to share independently published descriptions of this inter-connected world.'
+  download_owl: http://aber-owl.net/media/ontologies/FOAF/1/foaf.owl
   example: familyName
   homepage: http://xmlns.com/foaf/spec/
   mappings:
@@ -9252,6 +9321,7 @@ gabi:
 galen:
   comment: I really tried, but could not figure out what GALEN stands for
   deprecated: true
+  download_owl: http://aber-owl.net/media/ontologies/GALEN/1/galen.owl
   example: MagnitudeValueType
   homepage: https://www.opengalen.org
   mappings:
@@ -9652,6 +9722,7 @@ genprop:
 geo:
   description: The Gene Expression Omnibus (GEO) is a gene expression repository providing
     a curated, online resource for gene expression data browsing, query and retrieval.
+  download_owl: http://aber-owl.net/media/ontologies/GEO/4/geo.owl
   example: GDS1234
   homepage: https://www.ncbi.nlm.nih.gov/geo/
   mappings:
@@ -10582,6 +10653,7 @@ grin.taxonomy:
   uri_format: http://www.ars-grin.gov/cgi-bin/npgs/html/taxon.pl?$1
 gro:
   deprecated: true
+  download_owl: http://aber-owl.net/media/ontologies/GRO/5/gro.owl
   mappings:
     aberowl: GRO
     bioportal: GRO
@@ -10994,6 +11066,7 @@ hgnc:
     name and symbol (short-form abbreviation) for each known human gene.  All approved
     symbols are stored in the HGNC database, and each symbol is unique. HGNC identifiers
     refer to records in the HGNC symbol database.
+  download_owl: http://aber-owl.net/media/ontologies/HGNC/1/hgnc.owl
   example: '16793'
   homepage: http://www.genenames.org
   mappings:
@@ -11813,6 +11886,7 @@ icdo:
   description: The International Classification of Diseases for Oncology (ICD-O) is
     a domain-specific extension of the International Statistical Classification of
     Diseases and Related Health Problems for tumor diseases
+  download_owl: http://aber-owl.net/media/ontologies/ICDO/10/icdo.owl
   example: 9861/3
   homepage: https://www.who.int/classifications/icd/adaptations/oncology/en/
   mappings:
@@ -12018,6 +12092,7 @@ idocovid19:
   version: '2020-07-21'
 idoden:
   description: An ontology for dengue fever.
+  download_owl: http://aber-owl.net/media/ontologies/IDODEN/6/idoden.owl
   example: '0003463'
   homepage: https://bioportal.bioontology.org/ontologies/IDODEN
   mappings:
@@ -12426,7 +12501,6 @@ inchikey:
     biocontext: INCHIKEY
     miriam: inchikey
     n2t: inchikey
-    scholia: inchikey
     wikidata: P235
   name: InChIKey
   pattern: ^[A-Z]{14}\-[A-Z]{10}(\-[A-Z])$
@@ -12869,6 +12943,7 @@ ito:
   description: The Intelligence Task Ontology (ITO) provides a comprehensive map of
     machine intelligence tasks, as well as broader human intelligence or hybrid human/machine
     intelligence tasks.
+  download_owl: http://aber-owl.net/media/ontologies/ITO/15/ito.owl
   example: ITO_01625
   homepage: https://bioportal.bioontology.org/
   mappings:
@@ -13810,7 +13885,6 @@ lipidmaps:
     miriam: lipidmaps
     n2t: lipidmaps
     prefixcommons: lipidmaps
-    scholia: lipidmaps
     wikidata: P2063
   name: LIPID MAPS
   pattern: ^LM(FA|GL|GP|SP|ST|PR|SL|PK)[0-9]{4}([0-9a-zA-Z]{4,6})?$
@@ -13837,6 +13911,7 @@ lipro:
     orcid: null
   deprecated: true
   description: An ontology representation of the LIPIDMAPS nomenclature classification.
+  download_owl: http://aber-owl.net/media/ontologies/LIPRO/4/lipro.owl
   mappings:
     aberowl: LIPRO
     biocontext: LIPRO
@@ -14193,6 +14268,7 @@ mat:
     name: Jonathan Bard
     orcid: null
   deprecated: true
+  download_obo: http://aber-owl.net/media/ontologies/MAT/3/mat.obo
   example: '0000000'
   mappings:
     aberowl: MAT
@@ -14341,6 +14417,7 @@ mdm:
     (CRFs) for clinical trials. The MDM Portal provides medical forms in numerous
     export formats, facilitating the sharing and reuse of medical data models and
     exchange between information systems.
+  download_owl: http://aber-owl.net/media/ontologies/MDM/4/mdm.owl
   example: '4776'
   homepage: https://medical-data-models.org/
   mappings:
@@ -14491,7 +14568,6 @@ mesh:
     miriam: mesh
     n2t: mesh
     prefixcommons: mesh
-    scholia: mesh
     wikidata: P486
   name: Medical Subject Headings
   pattern: ^(C|D)\d{6,9}$
@@ -14756,6 +14832,7 @@ mfo:
   deprecated: true
   description: A structured controlled vocabulary of the anatomy and development of
     the Japanese medaka fish, <i>Oryzias latipes</i>.
+  download_obo: http://aber-owl.net/media/ontologies/MFO/14/mfo.obo
   download_owl: http://purl.obolibrary.org/obo/mfo.owl
   mappings:
     aberowl: MFO
@@ -16465,7 +16542,6 @@ ncbigene:
     n2t: ncbigene
     ncbi: GeneID
     prefixcommons: ncbigene
-    scholia: ncbi-gene
     wikidata: P351
   name: Entrez Gene
   pattern: ^\d+$
@@ -16476,6 +16552,13 @@ ncbigene:
     homepage: http://marrvel.org
     name: Model organism Aggregated Resources for Rare Variant ExpLoration
     uri_format: http://marrvel.org/model/gene/$1
+  - code: scholia
+    description: Scholia is a service that creates visual scholarly profiles for topic,
+      people, organizations, species, chemicals, etc using bibliographic and other
+      information in Wikidata.
+    homepage: https://scholia.toolforge.org/
+    name: Scholia
+    uri_format: https://scholia.toolforge.org/ncbi-gene/$1
   - code: CURATOR_REVIEW
     description: Bio2RDF
     homepage: http://ncbigene.bio2rdf.org/fct
@@ -16548,12 +16631,18 @@ ncbitaxon:
     ols: ncbitaxon
     ontobee: NCBITaxon
     prefixcommons: uniprot.taxonomy
-    scholia: ncbi-taxon
     wikidata: P685
   name: NCBI Taxonomy
   pattern: ^\d+$
   preferred_prefix: NCBITaxon
   providers:
+  - code: scholia
+    description: Scholia is a service that creates visual scholarly profiles for topic,
+      people, organizations, species, chemicals, etc using bibliographic and other
+      information in Wikidata.
+    homepage: https://scholia.toolforge.org/
+    name: Scholia
+    uri_format: https://scholia.toolforge.org/ncbi-taxon/$1
   - code: CURATOR_REVIEW
     description: Taxonomy through UniProt PURL
     homepage: https://www.uniprot.org/taxonomy/
@@ -16731,6 +16820,7 @@ ndfrt:
     Manifestations or Physiologic States [Disease/Finding]Dose Forms [Dose Form];
     Pharmaceutical Preparations; Physiological Effects [PE]; Therapeutic Categories
     [TC]; and VA Drug Interactions [VA Drug Interaction].'
+  download_owl: http://aber-owl.net/media/ontologies/NDF-RT/1/ndf-rt.owl
   example: N0000001662
   homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT
   mappings:
@@ -16748,6 +16838,7 @@ ndfrt:
 nemo:
   description: This namespace is about Neuroscience Multi-Omic data, specially focused
     on that data generated from the BRAIN Initiative and related brain research projects.
+  download_owl: http://aber-owl.net/media/ontologies/NEMO/24/nemo.owl
   example: smp-m3w9hbe
   homepage: https://www.nemoarchive.org
   mappings:
@@ -16955,6 +17046,7 @@ nif_cell:
     orcid: null
   deprecated: true
   description: Neuronal cell types
+  download_owl: http://aber-owl.net/media/ontologies/NIFCELL/15/nifcell.owl
   homepage: http://neuinfo.org/
   mappings:
     aberowl: NIFCELL
@@ -17280,6 +17372,7 @@ npo:
   description: An ontology that represents the basic knowledge of physical, chemical
     and functional characteristics of nanotechnology as used in cancer diagnosis and
     therapy.
+  download_owl: http://aber-owl.net/media/ontologies/NPO/31/npo.owl
   example: '1731'
   homepage: https://bioportal.bioontology.org/ontologies/NPO
   mappings:
@@ -17319,6 +17412,7 @@ nucleotide:
 oa:
   description: The W3C Web Annotation Working Group is chartered to develop a set
     of specifications for an interoperable, sharable, distributed Web Annotation architecture.
+  download_owl: http://aber-owl.net/media/ontologies/OA/4/oa.owl
   example: sourceDateStart
   homepage: http://www.w3.org/ns/oa
   mappings:
@@ -18467,6 +18561,7 @@ opb:
     scales (multiscale atoms to organisms) and multiple physical domains (multidomain
     fluid dynamics, chemical kinetics, particle diffusion, etc.) that are encountered
     in the study and analysis of biological organisms.
+  download_owl: http://aber-owl.net/media/ontologies/OPB/13/opb.owl
   example: '00573'
   homepage: http://bioportal.bioontology.org/ontologies/OPB
   mappings:
@@ -18593,11 +18688,18 @@ orcid:
     biolink: ORCID
     miriam: orcid
     n2t: orcid
-    scholia: orcid
     wikidata: P496
   name: Open Researcher and Contributor
   pattern: ^\d{4}-\d{4}-\d{4}-\d{3}(\d|X)$
   preferred_prefix: orcid
+  providers:
+  - code: scholia
+    description: Scholia is a service that creates visual scholarly profiles for topic,
+      people, organizations, species, chemicals, etc using bibliographic and other
+      information in Wikidata.
+    homepage: https://scholia.toolforge.org/
+    name: Scholia
+    uri_format: https://scholia.toolforge.org/orcid/$1
   synonyms:
   - ORCID
   - ORCiD
@@ -19189,6 +19291,7 @@ pav:
   description: PAV is a lightweight ontology for tracking provenance, authorship,
     and versioning. It specializes the W3C provenance ontology PROV-O in order to
     describe authorship, curation and digital creation of online resources.
+  download_owl: http://aber-owl.net/media/ontologies/PAV/3/pav.owl
   example: authoredBy
   homepage: https://pav-ontology.github.io/pav/
   mappings:
@@ -19906,6 +20009,7 @@ phenolexplorer:
   uri_format: http://phenol-explorer.eu/foods/$1
 phenx:
   description: A Web-based catalog of recommended measurement protocols
+  download_owl: http://aber-owl.net/media/ontologies/PHENX/16/phenx.owl
   example: '130502'
   homepage: https://www.phenxtoolkit.org/
   mappings:
@@ -20376,6 +20480,7 @@ pmp:
 pmr:
   description: Resource for the community to store, retrieve, search, reference, and
     reuse CellML models.
+  download_owl: http://aber-owl.net/media/ontologies/PMR/4/pmr.owl
   example: ebf69ca24298b28b2361e7d43eb52d6c
   homepage: https://www.auckland.ac.nz/en.html
   mappings:
@@ -20755,6 +20860,7 @@ propreo:
     name: Satya S. Sahoo
     orcid: null
   deprecated: true
+  download_owl: http://aber-owl.net/media/ontologies/PROPREO/2/propreo.owl
   homepage: http://lsdis.cs.uga.edu/projects/glycomics/propreo/
   mappings:
     aberowl: PROPREO
@@ -21053,7 +21159,6 @@ pubchem.compound:
     miriam: pubchem.compound
     n2t: pubchem.compound
     prefixcommons: pubchem.compound
-    scholia: pubchem
     wikidata: P662
   name: PubChem CID
   pattern: ^\d+$
@@ -21134,7 +21239,6 @@ pubmed:
     miriam: pubmed
     n2t: pubmed
     prefixcommons: pubmed
-    scholia: pubmed
     wikidata: P698
   name: PubMed
   pattern: ^\d+$
@@ -21252,6 +21356,7 @@ qtldb:
 qudt:
   description: Ontologies that aim to provide semantic specifications for units of
     measure, quantity kind, dimensions and data types.
+  download_owl: http://aber-owl.net/media/ontologies/QUDT/4/qudt.owl
   example: baseDimensionEnumeration
   homepage: https://qudt.org
   mappings:
@@ -21394,6 +21499,7 @@ rdf:
 rdfs:
   description: RDF Schema provides a data-modelling vocabulary for RDF data. RDF Schema
     is an extension of the basic RDF vocabulary.
+  download_owl: http://aber-owl.net/media/ontologies/RDFS/1/rdfs.owl
   example: label
   homepage: https://www.w3.org/TR/rdf-schema/
   mappings:
@@ -22282,6 +22388,7 @@ sao:
     name: Stephen Larson
     orcid: null
   deprecated: true
+  download_owl: http://aber-owl.net/media/ontologies/SAO/2/sao.owl
   homepage: http://ccdb.ucsd.edu/CCDBWebSite/sao.html
   mappings:
     aberowl: SAO
@@ -22967,6 +23074,7 @@ skos:
     support the use of knowledge organization systems (KOS) such as thesauri, classification
     schemes, subject heading lists and taxonomies within the framework of the Semantic
     Web
+  download_owl: http://aber-owl.net/media/ontologies/skos/1/skos.owl
   example: prefLabel
   homepage: https://www.w3.org/2004/02/skos/
   mappings:
@@ -23194,6 +23302,7 @@ sopharm:
     name: Adrien Coulet
     orcid: null
   deprecated: true
+  download_owl: http://aber-owl.net/media/ontologies/SOPHARM/18/sopharm.owl
   homepage: http://www.loria.fr/~coulet/sopharm2.0_description.php
   mappings:
     aberowl: SOPHARM
@@ -23883,6 +23992,7 @@ tao:
   deprecated: true
   description: Multispecies fish anatomy ontology. Originally seeded from ZFA, but
     intended to cover terms relevant to other taxa
+  download_obo: http://aber-owl.net/media/ontologies/TAO/135/tao.obo
   download_owl: http://purl.obolibrary.org/obo/tao.owl
   example: 0000086
   homepage: http://wiki.phenoscape.org/wiki/Teleost_Anatomy_Ontology
@@ -24853,7 +24963,6 @@ uniprot:
     n2t: uniprot
     ncbi: UniProt
     prefixcommons: uniprot
-    scholia: uniprot
     wikidata: P352
   name: UniProt Protein
   pattern: ^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z,
@@ -24875,6 +24984,13 @@ uniprot:
     homepage: https://db.indra.bio
     name: INDRA Database
     uri_format: https://db.indra.bio/statements/from_agents?&format=html&agent0=$1@UP
+  - code: scholia
+    description: Scholia is a service that creates visual scholarly profiles for topic,
+      people, organizations, species, chemicals, etc using bibliographic and other
+      information in Wikidata.
+    homepage: https://scholia.toolforge.org/
+    name: Scholia
+    uri_format: https://scholia.toolforge.org/uniprot/$1
   - code: ncbi
     description: UniProt through NCBI
     homepage: https://www.ncbi.nlm.nih.gov/protein/
@@ -25517,10 +25633,17 @@ viaf:
   mappings:
     miriam: viaf
     n2t: viaf
-    scholia: viaf
   name: Virtual International Authority File
   pattern: ^\d+$
   preferred_prefix: viaf
+  providers:
+  - code: scholia
+    description: Scholia is a service that creates visual scholarly profiles for topic,
+      people, organizations, species, chemicals, etc using bibliographic and other
+      information in Wikidata.
+    homepage: https://scholia.toolforge.org/
+    name: Scholia
+    uri_format: https://scholia.toolforge.org/viaf/$1
   uri_format: http://viaf.org/viaf/$1
 vido:
   contact:
@@ -25699,6 +25822,7 @@ vsao:
     orcid: 0000-0003-3162-7490
   deprecated: true
   description: Vertebrate skeletal anatomy ontology.
+  download_obo: http://aber-owl.net/media/ontologies/VSAO/20/vsao.obo
   download_owl: http://purl.obolibrary.org/obo/vsao.owl
   homepage: https://www.nescent.org/phenoscape/Main_Page
   mappings:
@@ -25738,6 +25862,7 @@ vso:
     a controlled structured vocabulary for describing vital signs measurement data,
     the various processes of measuring vital signs, and the various devices and anatomical
     entities participating in such measurements. '
+  download_owl: http://aber-owl.net/media/ontologies/VSO/1/vso.owl
   example: '0000041'
   homepage: https://bioportal.bioontology.org/ontologies/VSO
   mappings:
@@ -26057,6 +26182,7 @@ wikipathways:
   description: "WikiPathways is a resource providing an open and public collection\
     \ of  pathway maps created and curated by the community in a Wiki like style.\r\
     \nAll content is under the Creative Commons Attribution 3.0 Unported license."
+  download_owl: http://aber-owl.net/media/ontologies/WIKIPATHWAYS/225/wikipathways.owl
   example: WP732
   homepage: http://www.wikipathways.org/
   mappings:
@@ -26067,7 +26193,6 @@ wikipathways:
     miriam: wikipathways
     n2t: wikipathways
     prefixcommons: wikipathways
-    scholia: wikipathways
     wikidata: P2410
   name: WikiPathways
   pattern: ^WP\d{1,5}(\_r\d+)?$
@@ -26569,6 +26694,7 @@ zea:
     name: Leszek Vincent
     orcid: 0000-0002-9316-2919
   deprecated: true
+  download_obo: http://aber-owl.net/media/ontologies/ZEA/2/zea.obo
   homepage: http://www.maizemap.org/
   mappings:
     aberowl: ZEA
