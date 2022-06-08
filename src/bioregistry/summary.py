@@ -8,11 +8,9 @@ from textwrap import dedent, fill
 from typing import Mapping
 
 import click
-import pandas as pd
 
 import bioregistry
 from bioregistry.constants import TABLES_SUMMARY_LATEX_PATH
-from bioregistry.external import GETTERS
 from bioregistry.version import get_version
 
 
@@ -76,6 +74,8 @@ class BioregistrySummary:
         ]
 
     def _table_df(self):
+        import pandas as pd
+
         return pd.DataFrame(self._table_rows(), columns=["Category", "Count"])
 
     def get_table_text(self, tablefmt: str = "github"):
@@ -100,8 +100,10 @@ class BioregistrySummary:
         """Instantiate the class."""
         registry = bioregistry.read_registry()
 
+        metaprefix_to_mapping_count = bioregistry.count_mappings()
+
         #: The total number of mappings from all records to all external records
-        mapping_count = sum(len(entry.mappings) for entry in registry.values() if entry.mappings)
+        total_mapping_count = sum(metaprefix_to_mapping_count.values())
 
         #: The total number of synonyms across all records
         synonym_count = sum(
@@ -113,7 +115,7 @@ class BioregistrySummary:
         number_novel_prefixes = len(novel_prefixes)
 
         metaprefixes = set(bioregistry.read_metaregistry())
-        metaprefixes_aligned = {key for entry in registry.values() for key in entry.get_mappings()}
+        metaprefixes_aligned = set(metaprefix_to_mapping_count)
 
         #: The number of prefixes that have any overrides that are not novel to the Bioregistry
         prefixes_curated = sum(
@@ -126,13 +128,15 @@ class BioregistrySummary:
             if prefix not in novel_prefixes
         )
 
+        from bioregistry.external import GETTERS
+
         return cls(
             date=datetime.datetime.now(),
             number_prefixes=len(registry),
             number_registries=len(metaprefixes),
             number_registries_aligned=len(metaprefixes_aligned),
             number_prefixes_novel=number_novel_prefixes,
-            number_mappings=mapping_count,
+            number_mappings=total_mapping_count,
             number_synonyms=synonym_count,
             number_prefixes_curated=prefixes_curated,
             number_mismatches_curated=sum(len(v) for v in bioregistry.read_mismatches().values()),
@@ -183,6 +187,8 @@ class MappingBurdenSummary:
     @classmethod
     def make(cls):
         """Instantiate the class."""
+        from bioregistry.external import GETTERS
+
         registry_to_prefixes = {metaprefix: set(getter()) for metaprefix, _, getter in GETTERS}
 
         total_pairwise_upper_bound = sum(

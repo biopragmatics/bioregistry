@@ -65,7 +65,10 @@ def _sort_key(registry):
 
 def _get_governance_df() -> pd.DataFrame:
     rows = []
+    keep_metaprefixes = set(bioregistry.count_mappings())
     for registry in sorted(bioregistry.read_metaregistry().values(), key=_sort_key):
+        if registry.prefix not in keep_metaprefixes:
+            continue
         rows.append(
             (
                 registry.get_short_name(),
@@ -105,7 +108,10 @@ DATA_MODEL_CAPABILITIES = [
 
 def _get_metadata_df() -> pd.DataFrame:
     rows = []
+    keep_metaprefixes = set(bioregistry.count_mappings())
     for registry in sorted(bioregistry.read_metaregistry().values(), key=_sort_key):
+        if registry.prefix not in keep_metaprefixes:
+            continue
         rows.append(
             (
                 registry.get_short_name(),
