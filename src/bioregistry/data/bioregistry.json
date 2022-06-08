@@ -2278,8 +2278,7 @@
       "biocontext": "ARXIV",
       "miriam": "arxiv",
       "n2t": "arxiv",
-      "prefixcommons": "arxiv",
-      "scholia": "arxiv"
+      "prefixcommons": "arxiv"
     },
     "miriam": {
       "deprecated": false,
@@ -2314,7 +2313,23 @@
       "pattern": "^(\\w+(\\-\\w+)?(\\.\\w+)?/)?\\d{4,7}(\\.\\d{4}(v\\d+)?)?$",
       "prefix": "arxiv",
       "uri_format": "http://arxiv.org/abs/$1"
-    }
+    },
+    "providers": [
+      {
+        "code": "scholia",
+        "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+        "homepage": "https://scholia.toolforge.org/",
+        "name": "Scholia",
+        "uri_format": "https://scholia.toolforge.org/arxiv/$1"
+      },
+      {
+        "code": "ar5iv",
+        "description": "Articles from arXiv.org as responsive HTML5 web pages.",
+        "homepage": "https://ar5iv.labs.arxiv.org/",
+        "name": "ar5iv",
+        "uri_format": "https://ar5iv.org/abs/$1"
+      }
+    ]
   },
   "asap": {
     "biocontext": {
@@ -5105,11 +5120,19 @@
     },
     "homepage": "https://biorxiv.org",
     "mappings": {
-      "go": "bioRxiv",
-      "scholia": "biorxiv"
+      "go": "bioRxiv"
     },
     "name": "bioRxiv",
     "pattern": "^(\\d{4}\\.\\d{2}\\.\\d{2}\\.)?\\d{6,8}(v\\d{1,3})?$",
+    "providers": [
+      {
+        "code": "scholia",
+        "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+        "homepage": "https://scholia.toolforge.org/",
+        "name": "Scholia",
+        "uri_format": "https://scholia.toolforge.org/biorxiv/$1"
+      }
+    ],
     "uri_format": "https://www.biorxiv.org/content/10.1101/$1"
   },
   "biosample": {
@@ -6537,8 +6560,7 @@
       "go": "CAS",
       "miriam": "cas",
       "n2t": "cas",
-      "prefixcommons": "cas",
-      "scholia": "cas"
+      "prefixcommons": "cas"
     },
     "miriam": {
       "deprecated": false,
@@ -14988,8 +15010,7 @@
       "go": "DOI",
       "miriam": "doi",
       "n2t": "doi",
-      "prefixcommons": "doi",
-      "scholia": "doi"
+      "prefixcommons": "doi"
     },
     "miriam": {
       "deprecated": false,
@@ -29650,8 +29671,7 @@
     "mappings": {
       "biocontext": "INCHIKEY",
       "miriam": "inchikey",
-      "n2t": "inchikey",
-      "scholia": "inchikey"
+      "n2t": "inchikey"
     },
     "miriam": {
       "deprecated": false,
@@ -32960,8 +32980,7 @@
       "fairsharing": "FAIRsharing.cpneh8",
       "miriam": "lipidmaps",
       "n2t": "lipidmaps",
-      "prefixcommons": "lipidmaps",
-      "scholia": "lipidmaps"
+      "prefixcommons": "lipidmaps"
     },
     "miriam": {
       "deprecated": false,
@@ -34628,8 +34647,7 @@
       "go": "MeSH",
       "miriam": "mesh",
       "n2t": "mesh",
-      "prefixcommons": "mesh",
-      "scholia": "mesh"
+      "prefixcommons": "mesh"
     },
     "miriam": {
       "deprecated": false,
@@ -39625,7 +39643,6 @@
       "n2t": "ncbigene",
       "ncbi": "GeneID",
       "prefixcommons": "ncbigene",
-      "scholia": "ncbi-gene",
       "wikidata": "P351"
     },
     "miriam": {
@@ -39691,6 +39708,13 @@
         "homepage": "http://marrvel.org",
         "name": "Model organism Aggregated Resources for Rare Variant ExpLoration",
         "uri_format": "http://marrvel.org/model/gene/$1"
+      },
+      {
+        "code": "scholia",
+        "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+        "homepage": "https://scholia.toolforge.org/",
+        "name": "Scholia",
+        "uri_format": "https://scholia.toolforge.org/ncbi-gene/$1"
       }
     ],
     "synonyms": [
@@ -39834,7 +39858,6 @@
       "ols": "ncbitaxon",
       "ontobee": "NCBITaxon",
       "prefixcommons": "uniprot.taxonomy",
-      "scholia": "ncbi-taxon",
       "wikidata": "P685"
     },
     "miriam": {
@@ -39952,6 +39975,15 @@
       "prefix": "uniprot.taxonomy",
       "uri_format": "http://www.uniprot.org/taxonomy/$1"
     },
+    "providers": [
+      {
+        "code": "scholia",
+        "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+        "homepage": "https://scholia.toolforge.org/",
+        "name": "Scholia",
+        "uri_format": "https://scholia.toolforge.org/ncbi-taxon/$1"
+      }
+    ],
     "synonyms": [
       "NCBITaxon",
       "NCBI_Taxon_ID",
@@ -44434,8 +44466,7 @@
       "biocontext": "ORCID",
       "biolink": "ORCID",
       "miriam": "orcid",
-      "n2t": "orcid",
-      "scholia": "orcid"
+      "n2t": "orcid"
     },
     "miriam": {
       "deprecated": false,
@@ -44460,6 +44491,15 @@
       "uri_format": "https://orcid.org/$1"
     },
     "name": "Open Researcher and Contributor",
+    "providers": [
+      {
+        "code": "scholia",
+        "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+        "homepage": "https://scholia.toolforge.org/",
+        "name": "Scholia",
+        "uri_format": "https://scholia.toolforge.org/orcid/$1"
+      }
+    ],
     "synonyms": [
       "ORCID",
       "ORCiD"
@@ -50884,7 +50924,6 @@
       "miriam": "pubchem.compound",
       "n2t": "pubchem.compound",
       "prefixcommons": "pubchem.compound",
-      "scholia": "pubchem",
       "wikidata": "P662"
     },
     "miriam": {
@@ -51114,8 +51153,7 @@
       "go": "PMID",
       "miriam": "pubmed",
       "n2t": "pubmed",
-      "prefixcommons": "pubmed",
-      "scholia": "pubmed"
+      "prefixcommons": "pubmed"
     },
     "miriam": {
       "deprecated": false,
@@ -60288,7 +60326,6 @@
       "n2t": "uniprot",
       "ncbi": "UniProt",
       "prefixcommons": "uniprot",
-      "scholia": "uniprot",
       "wikidata": "P352"
     },
     "miriam": {
@@ -60365,6 +60402,13 @@
         "homepage": "https://db.indra.bio",
         "name": "INDRA Database",
         "uri_format": "https://db.indra.bio/statements/from_agents?&format=html&agent0=$1@UP"
+      },
+      {
+        "code": "scholia",
+        "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+        "homepage": "https://scholia.toolforge.org/",
+        "name": "Scholia",
+        "uri_format": "https://scholia.toolforge.org/uniprot/$1"
       }
     ],
     "synonyms": [
@@ -61854,8 +61898,7 @@
   "viaf": {
     "mappings": {
       "miriam": "viaf",
-      "n2t": "viaf",
-      "scholia": "viaf"
+      "n2t": "viaf"
     },
     "miriam": {
       "deprecated": false,
@@ -61878,7 +61921,16 @@
       "pattern": "^\\d+$",
       "prefix": "viaf",
       "uri_format": "http://viaf.org/viaf/$1"
-    }
+    },
+    "providers": [
+      {
+        "code": "scholia",
+        "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+        "homepage": "https://scholia.toolforge.org/",
+        "name": "Scholia",
+        "uri_format": "https://scholia.toolforge.org/viaf/$1"
+      }
+    ]
   },
   "vido": {
     "aberowl": {
@@ -63197,7 +63249,6 @@
       "miriam": "wikipathways",
       "n2t": "wikipathways",
       "prefixcommons": "wikipathways",
-      "scholia": "wikipathways",
       "wikidata": "P2410"
     },
     "miriam": {
