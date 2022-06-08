@@ -87,6 +87,7 @@ def related():
     """Render the related page."""
     return render_template(
         "meta/related.html",
+        mapping_counts=bioregistry.count_mappings(),
         registries=sorted(bioregistry.read_metaregistry().values(), key=attrgetter("name")),
         schema_status_map=schema_status_map,
         registry_cls=Registry,

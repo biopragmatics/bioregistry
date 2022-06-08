@@ -135,6 +135,7 @@
         <thead>
         <tr>
             <th>Registry</th>
+            <th>Mappings</th>
             <th>FAIR</th>
             <th>Search</th>
             <th>Provider</th>
@@ -148,6 +149,7 @@
                 <td>
                     <a href="{{ url_for('ui.metaresource', metaprefix=registry.prefix) }}">{{ registry.get_short_name() }}</a>
                 </td>
+                <td style="text-align: right;">{{ mapping_counts[registry.prefix] }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.availability.fair) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.availability.search) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.provider_uri_format is not none) }}</td>

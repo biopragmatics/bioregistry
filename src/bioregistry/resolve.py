@@ -34,9 +34,6 @@ __all__ = [
     "get_json_download",
     "get_owl_download",
     "get_version",
-    "get_versions",
-    "get_registry_map",
-    "get_registry_invmap",
     "get_banana",
     "get_obo_health_url",
     "is_novel",
@@ -54,6 +51,11 @@ __all__ = [
     "parse_curie",
     "normalize_parsed_curie",
     "normalize_curie",
+    # Registry-level functions
+    "get_registry_map",
+    "get_registry_invmap",
+    "count_mappings",
+    "get_versions",
 ]
 
 logger = logging.getLogger(__name__)
@@ -121,6 +123,11 @@ def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
     if entry is None:
         return None
     return entry.get_mappings()
+
+
+def count_mappings() -> Optional[Set[str]]:
+    """Count the mappings for each registry."""
+    return manager.count_mappings()
 
 
 def get_synonyms(prefix: str) -> Optional[Set[str]]:

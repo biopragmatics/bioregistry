@@ -15,6 +15,7 @@ from .metaresource_api import (  # noqa:F401
 )
 from .parse_iri import curie_from_iri, parse_iri, parse_obolibrary_purl  # noqa:F401
 from .resolve import (  # noqa:F401
+    count_mappings,
     get_appears_in,
     get_banana,
     get_biocontext_uri_format,
