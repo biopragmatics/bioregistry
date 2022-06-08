@@ -15,6 +15,7 @@ from .bioportal import (
 )
 from .cellosaurus import CellosaurusAligner
 from .cheminf import ChemInfAligner
+from .cropoct import CropOCTAligner
 from .fairsharing import FairsharingAligner
 from .go import GoAligner
 from .miriam import MiriamAligner
@@ -37,6 +38,7 @@ __all__ = [
     "BioContextAligner",
     "BiolinkAligner",
     "BioPortalAligner",
+    "CropOCTAligner",
     "EcoPortalAligner",
     "AgroPortalAligner",
     "CellosaurusAligner",
