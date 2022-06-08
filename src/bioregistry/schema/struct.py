@@ -1207,10 +1207,34 @@ class Resource(BaseModel):
         return self.is_canonical_identifier(self.standardize_identifier(identifier))
 
     def get_download_obo(self) -> Optional[str]:
-        """Get the download link for the latest OBO file."""
+        """Get the download link for the latest OBO file.
+
+        :return: A URL for an OBO text file download, if exists.
+
+        Get an ontology download link annotated directly in the
+        Bioregistry:
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("caloha").get_download_obo()
+        'https://download.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo'
+
+        Get an ontology download link from the OBO Foundry:
+
+        >>> get_resource("bfo").get_download_obo()
+        'http://purl.obolibrary.org/obo/bfo.obo'
+
+        Get ontology download link in AberOWL but not OBO Foundry
+        (note this might change over time so the exact value isn't
+        used in the doctest):
+
+        >>> url = get_resource("dermo").get_download_obo()
+        >>> assert url is not None and url.startswith("http://aber-owl.net/media/ontologies/DERMO")
+        """
         if self.download_obo:
             return self.download_obo
-        return self.get_external("obofoundry").get("download.obo")
+        return self.get_external("obofoundry").get("download.obo") or self.get_external(
+            "aberowl"
+        ).get("download_obo")
 
     def get_download_obograph(self) -> Optional[str]:
         """Get the download link for the latest OBOGraph JSON file."""
@@ -1219,13 +1243,47 @@ class Resource(BaseModel):
         return self.get_external("obofoundry").get("download.json")
 
     def get_download_owl(self) -> Optional[str]:
-        """Get the download link for the latest OWL file."""
+        """Get the download link for the latest OWL file.
+
+        :return: A URL for an OWL file download, if exists.
+
+        Get an ontology download link annotated directly in the
+        Bioregistry:
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("orphanet.ordo").get_download_owl()
+        'http://www.orphadata.org/data/ORDO/ordo_orphanet.owl'
+
+        Get an ontology download link from the OBO Foundry:
+
+        >>> get_resource("mod").get_download_owl()
+        'http://purl.obolibrary.org/obo/mod.owl'
+
+        Get ontology download link in AberOWL but not OBO Foundry
+        (note this might change over time so the exact value isn't
+        used in the doctest):
+
+        >>> url = get_resource("birnlex").get_download_owl()
+        >>> assert url is not None and url.startswith("http://aber-owl.net/media/ontologies/BIRNLEX/")
+
+        """
         if self.download_owl:
             return self.download_owl
         return (
             self.get_external("obofoundry").get("download.owl")
             or self.get_external("ols").get("version.iri")
             or self.get_external("ols").get("download")
+            or self.get_external("aberowl").get("download_owl")
+        )
+
+    def has_download(self) -> bool:
+        """Check if this resource can be downloaded."""
+        return any(
+            (
+                self.get_download_obo(),
+                self.get_download_owl(),
+                self.get_download_obograph(),
+            )
         )
 
     def get_license(self) -> Optional[str]:
