@@ -402,6 +402,8 @@ class Resource(BaseModel):
     ecoportal: Optional[Mapping[str, Any]]
     #: External data from the AgroPortal ontology repository
     agroportal: Optional[Mapping[str, Any]]
+    #: External data from the CropOCT ontology curation tool
+    cropoct: Optional[Mapping[str, Any]]
     #: External data from the Ontology Lookup Service
     ols: Optional[Mapping[str, Any]]
     #: External data from the AberOWL ontology repository
