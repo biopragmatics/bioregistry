@@ -680,8 +680,6 @@ class Manager:
         'https://n2t.net/hgnc:16793'
         >>> manager.get_formatted_iri("obofoundry", "fbbt", "00007294")
         'http://purl.obolibrary.org/obo/FBbt_00007294'
-        >>> manager.get_formatted_iri("scholia", "lipidmaps", "00000052")
-        'https://scholia.toolforge.org/lipidmaps/00000052'
         """
         mapped_prefix = self.get_mapped_prefix(prefix, metaprefix)
         registry = self.metaregistry.get(metaprefix)
@@ -735,7 +733,13 @@ class Manager:
         >>> manager.get_scholia_iri("pdb", "1234")
         None
         """
-        return self.get_formatted_iri("scholia", prefix, identifier)
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        for provider in resource.get_extra_providers():
+            if provider.code == "scholia":
+                return provider.resolve(identifier)
+        return None
 
     def get_provider_functions(self) -> Mapping[str, Callable[[str, str], Optional[str]]]:
         """Return a mapping of provider functions."""
