@@ -3,6 +3,7 @@
 """Utilities for normalizing prefixes."""
 
 import logging
+import typing
 from functools import lru_cache
 from typing import Any, Dict, List, Mapping, Optional, Set, Tuple, Union
 
@@ -125,7 +126,7 @@ def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
     return entry.get_mappings()
 
 
-def count_mappings() -> Optional[Set[str]]:
+def count_mappings() -> typing.Counter[str]:
     """Count the mappings for each registry."""
     return manager.count_mappings()
 
