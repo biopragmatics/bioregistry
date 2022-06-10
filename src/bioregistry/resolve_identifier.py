@@ -9,6 +9,8 @@ from .resolve import get_resource
 from .resource_manager import manager
 
 __all__ = [
+    "is_valid_curie",
+    "is_valid_identifier",
     "is_known_identifier",
     "get_providers",
     "get_providers_list",
@@ -26,12 +28,37 @@ __all__ = [
 ]
 
 
+def is_valid_curie(curie: str) -> Optional[bool]:
+    raise NotImplementedError
+
+
+def is_valid_identifier(prefix: str, identifier: str) -> Optional[bool]:
+    """Check that an identifier strictly matches a prefix's local unique identifier pattern.
+
+    :param prefix: The prefix in the CURIE
+    :param identifier: The identifier in the CURIE
+    :return: Whether this identifier passes validation
+
+    .. seealso:: The :func:`is_known_identifier` performs normalization before checking validity
+
+    >>> is_valid_identifier("chebi", "1234")
+    True
+    >>> is_valid_identifier("chebi", "ABCD")
+    False
+    >>> is_valid_identifier("chebi", "CHEBI:12345")
+    False
+    """
+    return manager.is_standardizable_identifier(prefix, identifier)
+
+
 def is_known_identifier(prefix: str, identifier: str) -> Optional[bool]:
     """Check that an identifier can be normalized and also matches a prefix's local unique identifier pattern.
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
     :return: Whether this identifier passes validation, after normalization
+
+    .. seealso:: The :func:`is_valid_identifier` does not perform normalization before checking validity
 
     >>> is_known_identifier("chebi", "1234")
     True
@@ -40,10 +67,7 @@ def is_known_identifier(prefix: str, identifier: str) -> Optional[bool]:
     >>> is_known_identifier("chebi", "CHEBI:ABCD")
     False
     """
-    resource = get_resource(prefix)
-    if resource is None:
-        return None
-    return resource.is_known_identifier(identifier)
+    return manager.is_standardizable_identifier(prefix, identifier)
 
 
 def miriam_standardize_identifier(prefix: str, identifier: str) -> str:

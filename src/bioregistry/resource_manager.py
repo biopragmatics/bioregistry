@@ -785,7 +785,7 @@ class Manager:
         prefix_map: Optional[Mapping[str, str]] = None,
         use_bioregistry_io: bool = True,
     ) -> Optional[str]:
-        """Get the best link for the CURIE, if possible.
+        """Get the best link for the CURIE pair, if possible.
 
         :param prefix: The prefix in the CURIE
         :param identifier: The identifier in the CURIE. If identifier is given as None, then this function will
@@ -886,6 +886,18 @@ class Manager:
         if include_bioregistry:
             rv["bioregistry"] = len(self.registry)
         return rv
+
+    def is_valid_identifier(self, prefix: str, identifier: str) -> Optional[bool]:
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.is_valid_identifier(identifier)
+
+    def is_standardizable_identifier(self, prefix: str, identifier: str) -> Optional[bool]:
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.is_standardizable_identifier(identifier)
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
