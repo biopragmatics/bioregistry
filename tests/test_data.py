@@ -460,7 +460,9 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 norm_part_of = bioregistry.normalize_prefix(resource.part_of)
                 if norm_part_of is not None:
-                    self.assertEqual(norm_part_of, resource.part_of, msg="part_of is not standardized")
+                    self.assertEqual(
+                        norm_part_of, resource.part_of, msg="part_of is not standardized"
+                    )
                 # Some are not prefixes, e.g., datanator_gene, datanator_metabolite, ctd.
                 # self.assertIn(
                 #     resource.part_of, self.registry, msg="super-resource is not a valid prefix"
