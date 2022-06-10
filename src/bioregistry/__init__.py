@@ -56,6 +56,7 @@ from .resolve import (  # noqa:F401
     get_ols_uri_prefix,
     get_owl_download,
     get_part_of,
+    get_parts_collections,
     get_pattern,
     get_preferred_prefix,
     get_prefixcommons_uri_format,
@@ -121,3 +122,4 @@ from .uri_format import (  # noqa:F401
     get_uri_format,
     get_uri_prefix,
 )
+from .utils import curie_to_str  # noqa:F401

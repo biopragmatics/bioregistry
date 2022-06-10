@@ -58,6 +58,9 @@ Bootstrap4(app)
 app.register_blueprint(api_blueprint)
 app.register_blueprint(ui_blueprint)
 
+# Make bioregistry available in all jinja templates
+app.jinja_env.globals.update(bioregistry=bioregistry)
+
 
 @app.route("/")
 def home():

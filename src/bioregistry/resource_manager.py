@@ -574,6 +574,30 @@ class Manager:
             return None
         return self.has_parts.get(norm_prefix, [])
 
+    def get_parts_collections(self) -> Mapping[str, List[str]]:
+        """Group resources' prefixes based on their ``part_of`` entries.
+
+        :returns:
+            A dictionary with keys that appear as the values of ``Resource.part_of``
+            and whose values are lists of prefixes for resources that have the key
+            as a value in its ``part_of`` field.
+
+        .. warning::
+
+            Many of the keys in this dictionary are valid Bioregistry prefixes,
+            but this is not necessary. For example, ``ctd`` is one key that
+            appears that explicitly has no prefix, since it corresponds to a
+            resource and not a vocabulary.
+        """
+        rv = {}
+        for key, values in self.has_parts.items():
+            norm_key = self.normalize_prefix(key)
+            if norm_key is None:
+                rv[key] = list(values)
+            else:
+                rv[key] = [norm_key, *values]
+        return rv
+
     def get_bioregistry_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get a Bioregistry link.
 
@@ -582,9 +606,9 @@ class Manager:
         :return: A link to the Bioregistry resolver
         """
         norm_prefix, norm_identifier = self.normalize_parsed_curie(prefix, identifier)
-        if norm_prefix is None:
+        if norm_prefix is None or norm_identifier is None:
             return None
-        return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{norm_prefix}:{norm_identifier}"
+        return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{curie_to_str(norm_prefix, norm_identifier)}"
 
     def get_default_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the default URL for the given CURIE.
@@ -615,14 +639,14 @@ class Manager:
             if identifier.startswith(f"{banana}:"):
                 return identifier
             else:
-                return f"{banana}:{identifier}"
+                return curie_to_str(banana, identifier)
         elif resource.get_namespace_in_lui():
             if identifier.startswith(prefix.upper()):
                 return identifier
             else:
-                return f"{prefix.upper()}:{identifier}"
+                return curie_to_str(prefix.upper(), identifier)
         else:
-            return f"{miriam_prefix}:{identifier}"
+            return curie_to_str(miriam_prefix, identifier)
 
     def get_miriam_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the identifiers.org URL for the given CURIE.
