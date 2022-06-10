@@ -57,6 +57,7 @@ __all__ = [
     "get_registry_invmap",
     "count_mappings",
     "get_versions",
+    "get_parts_collections",
 ]
 
 logger = logging.getLogger(__name__)
@@ -930,3 +931,21 @@ def get_obo_health_url(prefix: str) -> Optional[str]:
 def is_novel(prefix: str) -> Optional[bool]:
     """Check if the prefix is novel to the Bioregistry, i.e., it has no external mappings."""
     return manager.is_novel(prefix)
+
+
+def get_parts_collections():
+    """Group resources' prefixes based on their ``part_of`` entries.
+
+    :returns:
+        A dictionary with keys that appear as the values of ``Resource.part_of``
+        and whose values are lists of prefixes for resources that have the key
+        as a value in its ``part_of`` field.
+
+    .. warning::
+
+        Many of the keys in this dictionary are valid Bioregistry prefixes,
+        but this is not necessary. For example, ``ctd`` is one key that
+        appears that explicitly has no prefix, since it corresponds to a
+        resource and not a vocabulary.
+    """
+    return manager.get_parts_collections()

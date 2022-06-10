@@ -56,6 +56,7 @@ from .resolve import (  # noqa:F401
     get_ols_uri_prefix,
     get_owl_download,
     get_part_of,
+    get_parts_collections,
     get_pattern,
     get_preferred_prefix,
     get_prefixcommons_uri_format,

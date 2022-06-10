@@ -574,6 +574,30 @@ class Manager:
             return None
         return self.has_parts.get(norm_prefix, [])
 
+    def get_parts_collections(self) -> Mapping[str, List[str]]:
+        """Group resources' prefixes based on their ``part_of`` entries.
+
+        :returns:
+            A dictionary with keys that appear as the values of ``Resource.part_of``
+            and whose values are lists of prefixes for resources that have the key
+            as a value in its ``part_of`` field.
+
+        .. warning::
+
+            Many of the keys in this dictionary are valid Bioregistry prefixes,
+            but this is not necessary. For example, ``ctd`` is one key that
+            appears that explicitly has no prefix, since it corresponds to a
+            resource and not a vocabulary.
+        """
+        rv = {}
+        for key, values in self.has_parts.items():
+            norm_key = self.normalize_prefix(key)
+            if norm_key is None:
+                rv[key] = list(values)
+            else:
+                rv[key] = [norm_key, *values]
+        return rv
+
     def get_bioregistry_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get a Bioregistry link.
 
