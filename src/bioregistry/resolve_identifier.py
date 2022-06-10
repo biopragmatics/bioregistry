@@ -48,7 +48,7 @@ def is_valid_identifier(prefix: str, identifier: str) -> Optional[bool]:
     >>> is_valid_identifier("chebi", "CHEBI:12345")
     False
     """
-    return manager.is_standardizable_identifier(prefix, identifier)
+    return manager.is_valid_identifier(prefix, identifier)
 
 
 def is_known_identifier(prefix: str, identifier: str) -> Optional[bool]:

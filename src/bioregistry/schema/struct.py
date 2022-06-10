@@ -1204,7 +1204,7 @@ class Resource(BaseModel):
             return None
         return pattern.fullmatch(identifier) is not None
 
-    def is_standardiziable_identifier(self, identifier: str) -> Optional[bool]:
+    def is_standardizable_identifier(self, identifier: str) -> Optional[bool]:
         """Check that a local unique identifier can be normalized and also matches a prefix's pattern."""
         return self.is_valid_identifier(self.standardize_identifier(identifier))
 

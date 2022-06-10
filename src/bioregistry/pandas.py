@@ -1,9 +1,12 @@
 """Utilities for processing tabular data in Pandas dataframes."""
 
 import functools
+import re
 from typing import Optional, Union
 
 import pandas as pd
+from tabulate import tabulate
+from tqdm.autonotebook import tqdm
 
 import bioregistry
 
@@ -28,7 +31,7 @@ def _norm_column(df: pd.DataFrame, column: Union[int, str]) -> str:
 
 
 def normalize_prefixes(
-    df: pd.DataFrame, column: Union[int, str], target_column: Optional[str] = None
+    df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> None:
     """Normalize prefixes in a given column.
 
@@ -55,7 +58,7 @@ def normalize_prefixes(
 
 
 def normalize_curies(
-    df: pd.DataFrame, column: Union[int, str], target_column: Optional[str] = None
+    df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> None:
     """Normalize CURIEs in a given column.
 
@@ -104,7 +107,7 @@ def normalize_curies(
 
 
 def validate_prefixes(
-    df: pd.DataFrame, column: Union[int, str], target_column: Optional[str] = None
+    df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> pd.Series:
     """Validate prefixes in a given column.
 
@@ -134,16 +137,42 @@ def validate_prefixes(
         invalid_prefix_df = df[~idx]
     """
     column = _norm_column(df, column)
-    results = df[column].map(
-        lambda x: x == bioregistry.normalize_prefix(x), na_action="ignore"
-    )
+    results = df[column].map(lambda x: bioregistry.normalize_prefix(x) == x, na_action="ignore")
     if target_column:
         df[target_column] = results
     return results
 
 
+def summarize_prefix_validation(df, idx) -> None:
+    """Provide a summary of prefix validation"""
+    # TODO add suggestions on what to do next, e.g.:,
+    #  1. can some be normalized? use normalization function
+    #  2. slice out invalid content
+    #  3. make new prefix request to Bioregistry
+    count = (~idx).sum()
+    unique = sorted(df[~idx][0].unique())
+
+    print(
+        f"{count:,} of {len(df.index):,} ({count / len(df.index):.0%})",
+        "rows with the following prefixes need to be fixed:",
+        unique,
+    )
+    normalizable = {
+        prefix: norm_prefix
+        for prefix, norm_prefix in (
+            (prefix, bioregistry.normalize_prefix(prefix)) for prefix in unique
+        )
+        if norm_prefix
+    }
+    if normalizable:
+        print(
+            f"The following prefixes could be normalized using normalize_curies():"
+            f"\n\n{tabulate(normalizable.items(), headers=['raw', 'standardized'], tablefmt='github')}"
+        )
+
+
 def validate_curies(
-    df: pd.DataFrame, column: Union[int, str], target_column: Optional[str] = None
+    df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> pd.Series:
     """Validate CURIEs in a given column.
 
@@ -182,9 +211,11 @@ def validate_curies(
 def validate_identifiers(
     df: pd.DataFrame,
     column: Union[int, str],
+    *,
     prefix: Optional[str] = None,
     prefix_column: Optional[str] = None,
     target_column: Optional[str] = None,
+    use_tqdm: bool = False,
 ) -> pd.Series:
     """Validate local unique identifiers in a given column.
 
@@ -217,29 +248,59 @@ def validate_identifiers(
     elif prefix_column is not None and prefix is not None:
         raise ValueError
     elif prefix is not None:
-        norm_prefix = bioregistry.normalize_prefix(prefix)
-        if norm_prefix is None:
-            raise ValueError
-        results = df[column].map(
-            functools.partial(bioregistry.is_valid_identifier, prefix=norm_prefix),
-            na_action="ignore",
-        )
+        return _help_validate_identifiers(df, column, prefix)
     else:  # prefix_column is not None
-        results = df.applymap(
-            lambda row: bioregistry.is_valid_identifier(row[prefix_column], row[column]),
-            na_action="ignore",
+        prefixes = df[prefix_column].unique()
+        if 0 == len(prefixes):
+            raise ValueError(f"No prefixes found in column {prefix_column}")
+        if 1 == len(prefixes):
+            return _help_validate_identifiers(df, column, list(prefixes)[0])
+        patterns = {}
+        for prefix in df[prefix_column].unique():
+            pattern = bioregistry.get_pattern(prefix)
+            if pattern is None:
+                raise ValueError(
+                    f"Can't validate identifiers for {prefix} because it has no pattern in the Bioregistry"
+                )
+            patterns[prefix] = re.compile(pattern)
+
+        results = _multi_column_map(
+            df,
+            [prefix_column, column],
+            lambda _p, _i: bool(patterns[_p].fullmatch(_i)),
+            use_tqdm=use_tqdm,
         )
     if target_column:
         df[target_column] = results
     return results
 
 
+def _help_validate_identifiers(df, column, prefix):
+    norm_prefix = bioregistry.normalize_prefix(prefix)
+    if norm_prefix is None:
+        raise ValueError(
+            f"Can't validate identifiers for {prefix} because it is not in the Bioregistry"
+        )
+    pattern = bioregistry.get_pattern(prefix)
+    if pattern is None:
+        raise ValueError(
+            f"Can't validate identifiers for {prefix} because it has no pattern in the Bioregistry"
+        )
+    pattern_re = re.compile(pattern)
+    return df[column].map(
+        lambda s: bool(pattern_re.fullmatch(s)),
+        na_action="ignore",
+    )
+
+
 def identifiers_to_curies(
     df: pd.DataFrame,
     column: Union[int, str],
+    *,
     prefix: Optional[str] = None,
     prefix_column: Optional[str] = None,
     target_column: Optional[str] = None,
+    use_tqdm: bool = False,
 ) -> None:
     """Convert a column of local unique identifiers to CURIEs.
 
@@ -279,27 +340,52 @@ def identifiers_to_curies(
         )
     else:  # prefix_column is not None
         prefix_column = _norm_column(df, prefix_column)
-        df[target_column or column] = df.applymap(
-            lambda row: bioregistry.curie_to_str(row[prefix_column], row[column]),
-            na_action="ignore",
+        df[target_column or column] = _multi_column_map(
+            df, [prefix_column, column], bioregistry.curie_to_str, use_tqdm=use_tqdm
         )
 
 
 def identifiers_to_iris(
-    df: pd.DataFrame, column: Union[int, str], prefix: str, target_column: Optional[str] = None
+    df: pd.DataFrame,
+    column: Union[int, str],
+    *,
+    prefix: str,
+    prefix_column: Optional[str] = None,
+    target_column: Optional[str] = None,
+    use_tqdm: bool = False,
 ) -> None:
     """Convert a column of local unique identifiers to IRIs."""
     column = _norm_column(df, column)
-    norm_prefix = bioregistry.normalize_prefix(prefix)
-    if norm_prefix is None:
+    if prefix_column is None and prefix is None:
         raise ValueError
-    df[target_column or column] = df[column].map(
-        functools.partial(bioregistry.get_iri, prefix=norm_prefix), na_action="ignore"
+    elif prefix_column is not None and prefix is not None:
+        raise ValueError
+    elif prefix is not None:
+        norm_prefix = bioregistry.normalize_prefix(prefix)
+        if norm_prefix is None:
+            raise ValueError
+        df[target_column or column] = df[column].map(
+            functools.partial(bioregistry.get_iri, prefix=norm_prefix), na_action="ignore"
+        )
+    else:  # prefix_column is not None
+        prefix_column = _norm_column(df, prefix_column)
+        df[target_column or column] = _multi_column_map(
+            df, [prefix_column, column], bioregistry.get_iri, use_tqdm=use_tqdm
+        )
+
+
+def _multi_column_map(df, columns, func, *, use_tqdm: bool = False):
+    rows = df[columns].values
+    if use_tqdm:
+        rows = tqdm(rows, unit_scale=True)
+    return pd.Series(
+        [func(*row) if all(pd.notna(cell) for cell in row) else None for row in rows],
+        index=df.index,
     )
 
 
 def curies_to_iris(
-    df: pd.DataFrame, column: Union[int, str], target_column: Optional[str] = None
+    df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> None:
     """Convert a column of CURIEs to IRIs."""
     column = _norm_column(df, column)
@@ -307,7 +393,7 @@ def curies_to_iris(
 
 
 def iris_to_curies(
-    df: pd.DataFrame, column: Union[int, str], target_column: Optional[str] = None
+    df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> None:
     """Convert a column of IRIs to CURIEs."""
     column = _norm_column(df, column)
