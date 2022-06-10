@@ -1,3 +1,7 @@
+{% macro code_curie(prefix, identifier) -%}
+    <code>{{ bioregistry.curie_to_str(prefix, identifier) }}</code>
+{% endmacro %}
+
 {% macro render_resource_warnings(resource) -%}
     {% if resource.deprecated %}
         <span class="badge badge-warning" style="display: inline-block;">

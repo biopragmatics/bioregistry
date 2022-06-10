@@ -120,3 +120,4 @@ from .uri_format import (  # noqa:F401
     get_uri_format,
     get_uri_prefix,
 )
+from .utils import curie_to_str  # noqa:F401

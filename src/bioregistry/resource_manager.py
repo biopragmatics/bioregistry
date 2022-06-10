@@ -606,9 +606,9 @@ class Manager:
         :return: A link to the Bioregistry resolver
         """
         norm_prefix, norm_identifier = self.normalize_parsed_curie(prefix, identifier)
-        if norm_prefix is None:
+        if norm_prefix is None or norm_identifier is None:
             return None
-        return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{norm_prefix}:{norm_identifier}"
+        return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{curie_to_str(norm_prefix, norm_identifier)}"
 
     def get_default_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the default URL for the given CURIE.
@@ -639,14 +639,14 @@ class Manager:
             if identifier.startswith(f"{banana}:"):
                 return identifier
             else:
-                return f"{banana}:{identifier}"
+                return curie_to_str(banana, identifier)
         elif resource.get_namespace_in_lui():
             if identifier.startswith(prefix.upper()):
                 return identifier
             else:
-                return f"{prefix.upper()}:{identifier}"
+                return curie_to_str(prefix.upper(), identifier)
         else:
-            return f"{miriam_prefix}:{identifier}"
+            return curie_to_str(miriam_prefix, identifier)
 
     def get_miriam_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the identifiers.org URL for the given CURIE.
