@@ -449,13 +449,6 @@ class TestRegistry(unittest.TestCase):
         s = resource_to_rdf_str("chebi")
         self.assertIsInstance(s, str)
 
-    @unittest.skip(
-        """\
-        Not sure if this test makes sense - some of the resources, like
-        datanator_gene and datanator_metabolite are part of a larger resources,
-        but have their own well-defined endpoints.
-        """
-    )
     def test_parts(self):
         """Make sure all part of relations point to valid prefixes."""
         for prefix, resource in self.registry.items():
@@ -463,10 +456,15 @@ class TestRegistry(unittest.TestCase):
                 continue
             if resource.part_of is None:
                 continue
+
             with self.subTest(prefix=prefix):
-                self.assertIn(
-                    resource.part_of, self.registry, msg="super-resource is not a valid prefix"
-                )
+                norm_part_of = bioregistry.normalize_prefix(resource.part_of)
+                if norm_part_of is not None:
+                    self.assertEqual(norm_part_of, resource.part_of, msg="part_of is not standardized")
+                # Some are not prefixes, e.g., datanator_gene, datanator_metabolite, ctd.
+                # self.assertIn(
+                #     resource.part_of, self.registry, msg="super-resource is not a valid prefix"
+                # )
 
     def test_provides(self):
         """Make sure all provides relations point to valid prefixes."""
