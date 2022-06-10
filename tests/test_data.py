@@ -648,6 +648,17 @@ class TestRegistry(unittest.TestCase):
                     self.assertIsNotNone(contributor.orcid)
                     self.assertIsNotNone(contributor.github)
 
+    def test_no_contributor_duplicates(self):
+        """Test that the contributor doesn't show up in the contributor extras."""
+        for prefix, resource in self.registry.items():
+            with self.subTest(prefix=prefix):
+                if not resource.contributor or not resource.contributor_extras:
+                    continue
+                for contributor in resource.contributor_extras:
+                    self.assertNotEqual(
+                        resource.contributor.orcid, contributor.orcid, msg="Duplicated contributor"
+                    )
+
     def test_reviewers(self):
         """Check reviewers have minimal metadata."""
         for prefix, resource in self.registry.items():
