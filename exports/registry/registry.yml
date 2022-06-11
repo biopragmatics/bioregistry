@@ -13280,6 +13280,7 @@ kegg.drug:
   - KEGG.DRUG
   uri_format: https://www.kegg.jp/entry/$1
 kegg.environ:
+  deprecated: true
   description: KEGG ENVIRON (renamed from EDRUG) is a collection of crude drugs, essential
     oils, and other health-promoting substances, which are mostly natural products
     of plants. It will contain environmental substances and other health-damagine
@@ -13296,6 +13297,8 @@ kegg.environ:
   part_of: kegg
   pattern: ^(ev\:)?E\d+$
   preferred_prefix: kegg.environ
+  synonyms:
+  - KEGG.EDRUG
   uri_format: http://www.kegg.jp/entry/$1
 kegg.enzyme:
   description: KEGG ENZYME is an implementation of the Enzyme Nomenclature (EC number
@@ -18215,7 +18218,7 @@ omim.ps:
   mappings:
     biolink: OMIM.PS
   name: OMIM Phenotypic Series
-  part_of: mim
+  part_of: omim
   pattern: ^PS\d+$
   preferred_prefix: omim.ps
   synonyms:

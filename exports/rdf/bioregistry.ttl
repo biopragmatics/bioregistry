@@ -7448,8 +7448,6 @@ bioregistry:millipore a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.merckmillipore.com/catalogue/item/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:mim dcterms:hasPart bioregistry:omim.ps .
-
 bioregistry:mimodb a bioregistry.schema:0000001 ;
     rdfs:label "MimoDB" ;
     dc:description "MimoDB is a database collecting peptides that have been selected from random peptide libraries based on their ability to bind small compounds, nucleic acids, proteins, cells, tissues and organs. It also stores other information such as the corresponding target, template, library, and structures. As of March 2016, this database was renamed Biopanning Data Bank."^^xsd:string ;
@@ -9022,28 +9020,6 @@ bioregistry:omia a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://omia.angis.org.au/$1/"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 true .
-
-bioregistry:omim a bioregistry.schema:0000001 ;
-    rdfs:label "Online Mendelian Inheritance in Man" ;
-    dc:description "Online Mendelian Inheritance in Man is a catalog of human genes and genetic disorders."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:OMIM,
-        bioportal:OMIM,
-        biocontext:OMIM,
-        go.resource:OMIM,
-        n2t:mim,
-        ncbi.resource:MIM,
-        fairsharing:FAIRsharing.azq2t6,
-        prefixcommons:omim,
-        miriam:mim,
-        uniprot.resource:MIM,
-        wikidata:P492 ;
-    foaf:homepage "https://omim.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "603903"^^xsd:string ;
-    bioregistry.schema:0000006 "https://omim.org/entry/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-1780-5230 .
 
 bioregistry:ontoneo a bioregistry.schema:0000001 ;
     rdfs:label "Obstetric and Neonatal Ontology" ;
@@ -21588,7 +21564,7 @@ bioregistry:kegg.environ a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "ev:E00032"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.kegg.jp/entry/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^(ev\\:)?E\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 true .
 
 bioregistry:kegg.enzyme a bioregistry.schema:0000001 ;
     rdfs:label "KEGG Enzyme" ;
@@ -22220,6 +22196,29 @@ bioregistry:omiabis a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000018 bioregistry:labo ;
     bioregistry.schema:0000019 orcid:0000-0003-1834-3856 .
+
+bioregistry:omim a bioregistry.schema:0000001 ;
+    rdfs:label "Online Mendelian Inheritance in Man" ;
+    dc:description "Online Mendelian Inheritance in Man is a catalog of human genes and genetic disorders."^^xsd:string ;
+    dcterms:hasPart bioregistry:omim.ps ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:OMIM,
+        bioportal:OMIM,
+        biocontext:OMIM,
+        go.resource:OMIM,
+        n2t:mim,
+        ncbi.resource:MIM,
+        fairsharing:FAIRsharing.azq2t6,
+        prefixcommons:omim,
+        miriam:mim,
+        uniprot.resource:MIM,
+        wikidata:P492 ;
+    foaf:homepage "https://omim.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "603903"^^xsd:string ;
+    bioregistry.schema:0000006 "https://omim.org/entry/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1780-5230 .
 
 bioregistry:omit a bioregistry.schema:0000001 ;
     rdfs:label "Ontology for MicroRNA Target" ;
@@ -28496,7 +28495,7 @@ bioregistry:omim.ps a bioregistry.schema:0000001 ;
     rdfs:label "OMIM Phenotypic Series" ;
     dc:description "A Phenotypic Series is a tabular view of genetic heterogeneity of similar phenotypes across the genome."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
-        bioregistry:mim ;
+        bioregistry:omim ;
     skos:exactMatch biolink:OMIM.PS ;
     foaf:homepage "https://www.omim.org/phenotypicSeriesTitles/all"^^xsd:string ;
     bioregistry.schema:0000005 "PS214100"^^xsd:string ;
