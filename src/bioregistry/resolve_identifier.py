@@ -10,6 +10,7 @@ from .resource_manager import manager
 
 __all__ = [
     "is_valid_curie",
+    "is_standardizable_curie",
     "is_valid_identifier",
     "is_known_identifier",
     "get_providers",
@@ -29,7 +30,11 @@ __all__ = [
 
 
 def is_valid_curie(curie: str) -> Optional[bool]:
-    raise NotImplementedError
+    return manager.is_valid_curie(curie)
+
+
+def is_standardizable_curie(curie: str) -> Optional[str]:
+    return manager.is_standardizable_curie(curie)
 
 
 def is_valid_identifier(prefix: str, identifier: str) -> Optional[bool]:

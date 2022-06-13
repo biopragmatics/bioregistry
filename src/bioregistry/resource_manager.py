@@ -923,6 +923,88 @@ class Manager:
             return None
         return resource.is_standardizable_identifier(identifier)
 
+    def is_valid_curie(self, curie: str) -> Optional[bool]:
+        """Check if a CURIE is valid.
+
+        :param curie: A compact URI
+        :return: If the CURIE is standardized in both syntax and semantics.
+
+        Standard CURIE
+        >>> from bioregistry import manager
+        >>> manager.is_valid_curie("go:0000001")
+        True
+
+        Not a standard CURIE (i.e., no colon)
+        >>> manager.is_valid_curie("0000001")
+        False
+        >>> manager.is_valid_curie("GO_0000001")
+        False
+        >>> manager.is_valid_curie("PTM-0001")
+        False
+
+        Non-standardized prefix
+        >>> manager.is_valid_curie("GO:0000001")
+        False
+
+        Incorrect identifier
+        >>> manager.is_valid_curie("go:0001")
+        False
+
+        Banana scenario
+        >>> manager.is_valid_curie("go:GO:0000001")
+        False
+
+        Unknown prefix
+        >>> manager.is_valid_curie("xxx:yyy")
+        False
+        """
+        try:
+            prefix, identifier = curie.split(":", 1)
+        except ValueError:
+            return False
+        norm_prefix = self.normalize_prefix(prefix)
+        if norm_prefix != prefix:
+            return False
+        return self.registry[norm_prefix].is_valid_identifier(identifier)
+
+    def is_standardizable_curie(self, curie: str) -> Optional[bool]:
+        """Check if a CURIE is validatable, but not necessarily standardized.
+
+        :param curie: A compact URI
+        :return: If the CURIE is standardized in both syntax and semantics.
+
+        Standard CURIE
+        >>> from bioregistry import manager
+        >>> manager.is_valid_curie("go:0000001")
+        True
+
+        Not a standard CURIE (i.e., no colon)
+        >>> manager.is_valid_curie("0000001")
+        False
+        >>> manager.is_valid_curie("GO_0000001")
+        False
+        >>> manager.is_valid_curie("PTM-0001")
+        False
+
+        Non-standardized prefix
+        >>> manager.is_valid_curie("GO:0000001")
+        True
+
+        Incorrect identifier
+        >>> manager.is_valid_curie("go:0001")
+        False
+
+        Banana scenario
+        >>> manager.is_valid_curie("go:GO:0000001")
+        True
+
+        Unknown prefix
+        >>> manager.is_valid_curie("xxx:yyy")
+        False
+        """
+        norm_curie = self.normalize_curie(curie)
+        return self.is_valid_curie(norm_curie) if norm_curie else False
+
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
     """Prepare a priority prefix list from a prefix map."""

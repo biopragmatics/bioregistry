@@ -100,3 +100,65 @@ class TestResourceManager(unittest.TestCase):
                     self.manager.get_has_parts(prefix),
                     rast_manager.get_has_parts(prefix),
                 )
+
+    def test_curie_validation(self):
+        """Test validation functions."""
+        valid = [
+            "go:0000001",
+        ]
+        for curie in valid:
+            with self.subTest(curie=curie):
+                self.assertTrue(self.manager.is_valid_curie(curie))
+
+        invalid = [
+            "0000001",
+            "go:000001",  # too short
+            "GO:0000001",
+            # Wrong syntax
+            "GO-0000001",
+            "GO_0000001",
+            # banana variations
+            "go:GO:0000001",
+            "GO:GO:0000001",
+            "go:go:0000001",
+            "go:go:000001",
+            # invalid prefix
+            "xxx:yyy",
+            # TODO add one with no pattern validation
+        ]
+        for curie in invalid:
+            with self.subTest(curie=curie):
+                self.assertFalse(self.manager.is_valid_curie(curie))
+
+    def test_curie_standardizable(self):
+        """Test CURIEs that can be standardized."""
+        valid = [
+            "go:0000001",
+            "GO:0000001",
+            # banana variations
+            "go:GO:0000001",
+            "GO:GO:0000001",
+        ]
+        for curie in valid:
+            with self.subTest(curie=curie):
+                self.assertTrue(self.manager.is_standardizable_curie(curie))
+
+        invalid = [
+            "0000001",
+            # Too short
+            "go:000001",
+            "go:GO:000001",
+            "GO:GO:000001",
+            # Wrong syntax
+            "GO-0000001",
+            "GO_0000001",
+            # Invalid banana (needs to be capitalized)
+            "go:go:0000001",
+            "go:go:000001",
+            # invalid prefix
+            "xxx:yyy",
+            # TODO add one with no pattern validation
+        ]
+        for curie in invalid:
+            with self.subTest(curie=curie):
+                self.assertFalse(self.manager.is_standardizable_curie(curie))
