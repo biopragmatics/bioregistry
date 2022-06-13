@@ -46,3 +46,18 @@ class TestPandasUtils(unittest.TestCase):
         res = brpd.validate_identifiers(self.df, "identifier", prefix_column="prefix")
         # Note the fourth position got properly normalized and is True!
         self.assertEqual([True, True, False, True, None], list(res))
+
+    def test_validate_curies(self):
+        """Test validating CURIEs."""
+        rows = [
+            ("GO:0000001",),
+            ("go:0000001",),
+            ("nope:0000001",),
+            ("go:GO:0000001",),
+            ("go:go:0000001",),
+            ("go:invalid",),
+        ]
+        columns = ["curie"]
+        df = pd.DataFrame(rows, columns=columns)
+        res = brpd.validate_curies(df, 0)
+        self.assertEqual([False, True, False, False, False, False], list(res))

@@ -138,6 +138,7 @@ class TestResourceManager(unittest.TestCase):
             # banana variations
             "go:GO:0000001",
             "GO:GO:0000001",
+            "go:go:0000001",
         ]
         for curie in valid:
             with self.subTest(curie=curie):
@@ -153,7 +154,6 @@ class TestResourceManager(unittest.TestCase):
             "GO-0000001",
             "GO_0000001",
             # Invalid banana (needs to be capitalized)
-            "go:go:0000001",
             "go:go:000001",
             # invalid prefix
             "xxx:yyy",
