@@ -47,6 +47,24 @@ class TestPandasUtils(unittest.TestCase):
         # Note the fourth position got properly normalized and is True!
         self.assertEqual([True, True, False, True, None], list(res))
 
+    def test_identifiers_to_curies(self):
+        """Test converting local unique identifeirs to CURIEs."""
+        rows = [
+            ("go", "0000001"),
+            ("go", "0000002"),
+            ("xxx", "yyy"),
+        ]
+        columns = ["prefix", "identifier"]
+        df = pd.DataFrame(rows, columns=columns)
+        brpd.identifiers_to_curies(df, column="identifier", prefix_column="prefix")
+        processed_rows = [
+            ("go", "go:0000001"),
+            ("go", "go:0000002"),
+            ("xxx", None),
+        ]
+        self.assertEqual(processed_rows, [tuple(row) for row in df.values])
+
+
     def test_validate_curies(self):
         """Test validating CURIEs."""
         rows = [
