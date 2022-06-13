@@ -1,12 +1,13 @@
 """Utilities for processing tabular data in Pandas dataframes."""
 
 import functools
+import logging
 import re
 from typing import Optional, Union
 
 import pandas as pd
 from tabulate import tabulate
-from tqdm.autonotebook import tqdm
+from tqdm.auto import tqdm
 
 import bioregistry
 
@@ -22,8 +23,11 @@ __all__ = [
     "identifiers_to_curies",
     "identifiers_to_iris",
     "curies_to_iris",
+    "curies_to_identifiers",
     "iris_to_curies",
 ]
+
+logger = logging.getLogger(__name__)
 
 
 def _norm_column(df: pd.DataFrame, column: Union[int, str]) -> str:
@@ -208,6 +212,18 @@ def validate_curies(
     return results
 
 
+def summarize_curie_validation(df, idx) -> None:
+    """Provide a summary of CURIE validation"""
+    count = (~idx).sum()
+    unique = sorted(df[~idx][0].unique())
+
+    print(
+        f"{count:,} of {len(df.index):,} ({count / len(df.index):.0%})",
+        "rows with the following CURIEs need to be fixed:",
+        unique,
+    )
+
+
 def validate_identifiers(
     df: pd.DataFrame,
     column: Union[int, str],
@@ -323,22 +339,28 @@ def identifiers_to_curies(
         invalid_gene_products_df = df[~idx]
 
     """
+    # FIXME do pattern check first so you don't get bananas
     column = _norm_column(df, column)
     if prefix_column is None and prefix is None:
         raise ValueError
     elif prefix_column is not None and prefix is not None:
         raise ValueError
-    elif prefix is not None:
+
+    valid_idx = validate_identifiers(df, column=column, prefix=prefix, prefix_column=prefix_column)
+    target_column = target_column or column
+
+    if prefix is not None:
         norm_prefix = bioregistry.normalize_prefix(prefix)
         if norm_prefix is None:
             raise ValueError
-        df[target_column or column] = df[column].map(
+
+        df.loc[target_column] = df[column].map(
             functools.partial(bioregistry.curie_to_str, prefix=norm_prefix),
             na_action="ignore",
         )
     else:  # prefix_column is not None
         prefix_column = _norm_column(df, prefix_column)
-        df[target_column or column] = _multi_column_map(
+        df[target_column] = _multi_column_map(
             df, [prefix_column, column], bioregistry.curie_to_str, use_tqdm=use_tqdm
         )
 
@@ -351,6 +373,7 @@ def identifiers_to_iris(
     prefix_column: Optional[str] = None,
     target_column: Optional[str] = None,
     use_tqdm: bool = False,
+    delete_prefix_column: bool = False,
 ) -> None:
     """Convert a column of local unique identifiers to IRIs."""
     column = _norm_column(df, column)
@@ -359,6 +382,8 @@ def identifiers_to_iris(
     elif prefix_column is not None and prefix is not None:
         raise ValueError
     elif prefix is not None:
+        if delete_prefix_column:
+            logger.warning("can't delete prefix column when giving prefix explicitly. ignoring.")
         norm_prefix = bioregistry.normalize_prefix(prefix)
         if norm_prefix is None:
             raise ValueError
@@ -370,6 +395,8 @@ def identifiers_to_iris(
         df[target_column or column] = _multi_column_map(
             df, [prefix_column, column], bioregistry.get_iri, use_tqdm=use_tqdm
         )
+        if delete_prefix_column:
+            del df[prefix_column]
 
 
 def _multi_column_map(df, columns, func, *, use_tqdm: bool = False):
@@ -388,6 +415,22 @@ def curies_to_iris(
     """Convert a column of CURIEs to IRIs."""
     column = _norm_column(df, column)
     df[target_column or column] = df[column].map(bioregistry.get_iri, na_action="ignore")
+
+
+def curies_to_identifiers(
+    df: pd.DataFrame,
+    column: Union[int, str],
+    *,
+    target_column: Optional[str] = None,
+    prefix_column_name: Optional[str] = None,
+):
+    """Split a CURIE column into a prefix and local identifier column.
+
+    By default, the local identifier stays in the same column unless target_column is given.
+    If prefix_column_name isn't given, it's derived from the target column (if labels available)
+    or just appended to the end if not
+    """
+    raise NotImplementedError
 
 
 def iris_to_curies(
