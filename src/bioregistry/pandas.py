@@ -257,17 +257,15 @@ def validate_identifiers(
             return _help_validate_identifiers(df, column, list(prefixes)[0])
         patterns = {}
         for prefix in df[prefix_column].unique():
+            if pd.isna(prefix):
+                continue
             pattern = bioregistry.get_pattern(prefix)
-            if pattern is None:
-                raise ValueError(
-                    f"Can't validate identifiers for {prefix} because it has no pattern in the Bioregistry"
-                )
-            patterns[prefix] = re.compile(pattern)
+            patterns[prefix] = re.compile(pattern) if pattern else None
 
         results = _multi_column_map(
             df,
             [prefix_column, column],
-            lambda _p, _i: bool(patterns[_p].fullmatch(_i)),
+            lambda _p, _i: bool(patterns[_p].fullmatch(_i)) if _p is not None and patterns[_p] is not None else None,
             use_tqdm=use_tqdm,
         )
     if target_column:
