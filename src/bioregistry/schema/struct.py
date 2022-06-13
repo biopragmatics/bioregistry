@@ -1101,7 +1101,7 @@ class Resource(BaseModel):
         """Normalize the identifier to not have a redundant prefix or banana.
 
         :param identifier: The identifier in the CURIE
-        :param prefix: If an optional prefix is passed, checks that this isn't also used as a caseolded banana
+        :param prefix: If an optional prefix is passed, checks that this isn't also used as a casefolded banana
             like in ``go:go:1234567``, which shouldn't techinncally be right becauase the banana for gene ontology
             is ``GO``.
         :return: A normalized identifier, possibly with banana/redundant prefix removed
