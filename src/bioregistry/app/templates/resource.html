@@ -235,7 +235,7 @@
                             {% for publication in publications or [] %}
                                 <li>
                                     <span class="badge badge-info">Publication</span>
-                                    <a href="{{ publication.id }}">{{ publication.title }}</a>
+                                    <a href="{{ publication.id }}">{{ publication.title or publication.id }}</a>
                                 </li>
                             {% endfor %}
                             {% for reference in resource.references or [] %}
