@@ -183,7 +183,7 @@ https://github.com/biopragmatics/bioregistry/issues/359.
    actively publicly seek out and seriously consider suggestions and advice from
    the Bioregistry Review Team with regards to these matters (e.g., in the issue
    corresponding to a new prefix request). Submissions unable/unwilling to
-   follow these guidelines will be dismissed and asked to re-submit after their
+   follow these guidelines may be dismissed and asked to re-submit after their
    prefix has been substantiated.
 2. Submissions to park a prefix must include a primary contact person for the
    resource that is available for public discussion on GitHub. Even though this
