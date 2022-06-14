@@ -799,9 +799,26 @@ class Resource(BaseModel):
     def get_publications(self):
         """Get a list of publications."""
         # TODO make a model for this
+        rv = {}
         if self.obofoundry:
-            return self.obofoundry.get("publications", [])
-        return []
+            for publication in self.obofoundry.get("publications", []):
+                rv[publication["id"]] = publication["title"]
+        if self.fairsharing:
+            for publication in self.fairsharing.get("publications", []):
+                pubmed_id = publication.get("pubmed_id")
+                doi = publication.get("doi")
+                title = publication.get("title")
+                if pubmed_id:
+                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
+                else:
+                    rf[f"https://bioregistry.io/doi:{doi}"] = title
+        if self.prefixcommons:
+            for pmid in self.prefixcommons.get("pubmed_ids", []):
+                url = f"https://bioregistry.io/pubmed:{pmid}"
+                if url in rv:
+                    continue
+                rv[url] = None
+        return [{"id": k, "title": v} for k, v in sorted(rv.items())]
 
     def get_twitter(self) -> Optional[str]:
         """Get the Twitter handle for ther resource."""
