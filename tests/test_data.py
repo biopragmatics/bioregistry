@@ -691,6 +691,7 @@ class TestRegistry(unittest.TestCase):
             "prefix",
             "pattern",
             "paper",
+            "description",
             "homepage",
             "name",
             "uri_format",
