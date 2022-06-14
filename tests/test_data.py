@@ -750,3 +750,11 @@ class TestRegistry(unittest.TestCase):
                     prefix in set(self.registry),
                     msg=f"mismatches.json has invalid prefix: {prefix}",
                 )
+
+    def test_request_issue(self):
+        """Check all prefixes with a request issue have a reviewer."""
+        for prefix, resource in self.registry.items():
+            if resource.request_issue is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertIsNotNone(resource.reviewer)
