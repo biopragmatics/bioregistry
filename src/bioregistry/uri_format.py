@@ -28,11 +28,14 @@ def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
     :param priority: The priority order of metaresources to use for URI format string lookup.
         The default is:
 
-        1. Default first party (from bioregistry, prefix commons, or miriam)
+        1. Default first party (from the Bioregistry, BioContext, or MIRIAM)
         2. OBO Foundry
-        3. Prefix Commons
-        4. Identifiers.org / MIRIAM
-        5. OLS
+        3. BioContext
+        4. MIRIAM/Identifiers.org
+        5. N2T
+        6. OLS
+        7. Prefix Commons
+
     :return: The best URI format string, where the ``$1`` should be replaced by the
         identifier. ``$1`` could potentially appear multiple times.
 
@@ -46,7 +49,7 @@ def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
     ChEBI example above). Do so like:
 
     >>> import bioregistry
-    >>> bioregistry.get_uri_format('chebi', priority=['obofoundry', 'bioregistry', 'prefixcommons', 'miriam', 'ols'])
+    >>> bioregistry.get_uri_format('chebi', priority=['obofoundry', 'bioregistry', 'biocontext', 'miriam', 'ols'])
     'http://purl.obolibrary.org/obo/CHEBI_$1'
     """
     return manager.get_uri_format(prefix=prefix, priority=priority)

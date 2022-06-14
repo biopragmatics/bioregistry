@@ -3,7 +3,8 @@
 """A class-based client to a metaregistry."""
 
 import logging
-from collections import defaultdict
+import typing
+from collections import Counter, defaultdict
 from functools import lru_cache
 from pathlib import Path
 from typing import (
@@ -573,6 +574,30 @@ class Manager:
             return None
         return self.has_parts.get(norm_prefix, [])
 
+    def get_parts_collections(self) -> Mapping[str, List[str]]:
+        """Group resources' prefixes based on their ``part_of`` entries.
+
+        :returns:
+            A dictionary with keys that appear as the values of ``Resource.part_of``
+            and whose values are lists of prefixes for resources that have the key
+            as a value in its ``part_of`` field.
+
+        .. warning::
+
+            Many of the keys in this dictionary are valid Bioregistry prefixes,
+            but this is not necessary. For example, ``ctd`` is one key that
+            appears that explicitly has no prefix, since it corresponds to a
+            resource and not a vocabulary.
+        """
+        rv = {}
+        for key, values in self.has_parts.items():
+            norm_key = self.normalize_prefix(key)
+            if norm_key is None:
+                rv[key] = list(values)
+            else:
+                rv[key] = [norm_key, *values]
+        return rv
+
     def get_bioregistry_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get a Bioregistry link.
 
@@ -581,9 +606,9 @@ class Manager:
         :return: A link to the Bioregistry resolver
         """
         norm_prefix, norm_identifier = self.normalize_parsed_curie(prefix, identifier)
-        if norm_prefix is None:
+        if norm_prefix is None or norm_identifier is None:
             return None
-        return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{norm_prefix}:{norm_identifier}"
+        return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{curie_to_str(norm_prefix, norm_identifier)}"
 
     def get_default_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the default URL for the given CURIE.
@@ -614,14 +639,14 @@ class Manager:
             if identifier.startswith(f"{banana}:"):
                 return identifier
             else:
-                return f"{banana}:{identifier}"
+                return curie_to_str(banana, identifier)
         elif resource.get_namespace_in_lui():
             if identifier.startswith(prefix.upper()):
                 return identifier
             else:
-                return f"{prefix.upper()}:{identifier}"
+                return curie_to_str(prefix.upper(), identifier)
         else:
-            return f"{miriam_prefix}:{identifier}"
+            return curie_to_str(miriam_prefix, identifier)
 
     def get_miriam_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the identifiers.org URL for the given CURIE.
@@ -680,8 +705,6 @@ class Manager:
         'https://n2t.net/hgnc:16793'
         >>> manager.get_formatted_iri("obofoundry", "fbbt", "00007294")
         'http://purl.obolibrary.org/obo/FBbt_00007294'
-        >>> manager.get_formatted_iri("scholia", "lipidmaps", "00000052")
-        'https://scholia.toolforge.org/lipidmaps/00000052'
         """
         mapped_prefix = self.get_mapped_prefix(prefix, metaprefix)
         registry = self.metaregistry.get(metaprefix)
@@ -735,7 +758,13 @@ class Manager:
         >>> manager.get_scholia_iri("pdb", "1234")
         None
         """
-        return self.get_formatted_iri("scholia", prefix, identifier)
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        for provider in resource.get_extra_providers():
+            if provider.code == "scholia":
+                return provider.resolve(identifier)
+        return None
 
     def get_provider_functions(self) -> Mapping[str, Callable[[str, str], Optional[str]]]:
         """Return a mapping of provider functions."""
@@ -862,6 +891,24 @@ class Manager:
                 rv[metaresource.bioregistry_prefix] = uri_prefix
             else:
                 rv[metaprefix] = uri_prefix
+        return rv
+
+    def is_novel(self, prefix: str) -> Optional[bool]:
+        """Check if the prefix is novel to the Bioregistry, i.e., it has no external mappings."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return not resource.get_mappings()
+
+    def count_mappings(self, include_bioregistry: bool = True) -> typing.Counter[str]:
+        """Count the mappings for each registry."""
+        rv = Counter(
+            metaprefix
+            for resource in self.registry.values()
+            for metaprefix in resource.get_mappings() or {}
+        )
+        if include_bioregistry:
+            rv["bioregistry"] = len(self.registry)
         return rv
 
 

@@ -1,31 +1,36 @@
 ---
 layout: page
-title: Curation TODOs
+title: Help Wanted
 permalink: /curation/
 ---
-This page has the curation todo list. Anybody who makes a significant amount of curation will be included
-as co-authors on the (in preparation) Bioregistry manuscript.
+This page has the curation To-Do list.
 
-## Wikidata
+## Adding a Wikidata Database Corresponding to Each Resource
 
 <a id="wikidata"></a>
-The following entries in the Bioregistry have not been annotated with the `["wikidata"]["database"]` entry because it
-either exists in Wikidata and it needs to be annotated, or it does not exist in Wikidata and needs to be created, then
-annotated.
+The following entries in the Bioregistry have not been annotated with
+the `["wikidata"]["database"]` entry because it either exists in Wikidata and it
+needs to be annotated, or it does not exist in Wikidata and needs to be created,
+then annotated.
 
 ### Creating a Wikidata item
 
-1. Create a [new item](https://www.wikidata.org/wiki/Special:NewItem).
-2. Create the first relationship `instance of` ([P31](https://www.wikidata.org/wiki/Property:P31))
+1. Make sure an item doesn't exist already by doing a cursory search of
+   Wikidata.
+2. Create a [new item](https://www.wikidata.org/wiki/Special:NewItem).
+3. Create the first relationship `instance of` ([P31](https://www.wikidata.org/wiki/Property:P31))
    and target `biological database` ([Q4117139](https://www.wikidata.org/wiki/Q4117139)).
-3. Add second relationship `official website` ([P856](https://www.wikidata.org/wiki/Property:P856))
-4. Fill in any other information you want! `country`, `main subject`, `maintained by`, etc.
+4. Add second relationship `official website` ([P856](https://www.wikidata.org/wiki/Property:P856))
+5. Fill in any other information you want! `country`, `main subject`,
+   `maintained by`, etc.
 
-### Editing the Bioregistry 
+### Editing the Bioregistry
 
-1. Follow [this link](https://github.com/bioregistry/bioregistry/edit/main/src/bioregistry/data/bioregistry.json) to edit
-   directly on GitHub.
-2. Here's an example of `3dmet`, which has the wikidata database annotated properly.
+1. Follow [this link](https://github.com/bioregistry/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
+   to edit directly on GitHub.
+2. Here's an example of `3dmet`, which has the Wikidata database annotated
+   properly.
+
    ```json
    {
       "3dmet": {
@@ -70,11 +75,11 @@ annotated.
    </table>
 </details>
 
-## Pattern
+## Adding a Regular Expression Pattern for Each Resource's Local Unique Identifiers
 
 <a id="pattern"></a>
-Same drill for patterns - these entries need a `["pattern"]` entry that includes a regular expression
-describing the local identifiers for this namespace.
+Same drill for patterns - these entries need a `["pattern"]` entry that includes
+a regular expression describing the local unique identifiers for this namespace.
 
 <details>
    <summary>Entries ({{ site.data.curation["pattern"] | size }})</summary>
@@ -96,21 +101,22 @@ describing the local identifiers for this namespace.
    </table>
 </details>
 
-## URL Formatter
+## URI Format
 
 <a id="formatter"></a>
-Same drill for URL Formatters - these entries need a `["url"]` entry. This is a URL with a `$1`
-character where the local identifier gets put.
+Same drill for URL Formatters - these entries need a `["uri_format"]` entry.
+This is a URL with a `$1` character where the local unique identifier gets put.
 
 ```json
 {
-   ...
-   "jax": {
-      "example": "004435",
-      "name": "Jackson Laboratories Strain",
-      "url": "https://www.jax.org/strain/$1"  // <-- this one here
-   },
-   ...
+  ...
+  "jax": {
+    "example": "004435",
+    "name": "Jackson Laboratories Strain",
+    "uri_format": "https://www.jax.org/strain/$1"
+    // <-- this one here
+  },
+  ...
 }
 ```
 
@@ -134,21 +140,22 @@ character where the local identifier gets put.
    </table>
 </details>
 
-## Example Identifier
+## Example Local Unique Identifier
 
 <a id="example"></a>
-As a courtesy to newcomers, it's nice to show an example local identifier. These
-entries need a `["example"]` entry. 
+As a courtesy to newcomers, it's nice to show an example local unique
+identifier. These entries need a `["example"]` entry.
 
 ```json
 {
-   ...
-   "jax": {
-      "example": "004435",  // <-- this one here
-      "name": "Jackson Laboratories Strain",
-      "url": "https://www.jax.org/strain/$1"
-   },
-   ...
+  ...
+  "jax": {
+    "example": "004435",
+    // <-- this one here
+    "name": "Jackson Laboratories Strain",
+    "url": "https://www.jax.org/strain/$1"
+  },
+  ...
 }
 ```
 

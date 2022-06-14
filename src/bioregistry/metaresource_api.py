@@ -9,6 +9,13 @@ from .schema import Registry
 from .schema_utils import read_metaregistry
 
 __all__ = [
+    "get_registry",
+    "get_registry_name",
+    "get_registry_short_name",
+    "get_registry_homepage",
+    "get_registry_description",
+    "get_registry_example",
+    "get_registry_provider_uri_format",
     "get_registry_uri",
 ]
 
@@ -60,8 +67,8 @@ def get_registry_description(metaprefix: str) -> Optional[str]:
     :param metaprefix: The metaprefix of the registry
     :return: The description for the registry, if available, otherwise ``None``.
 
-    >>> get_registry_description('prefixcommons')
-    'A registry of commonly used prefixes in the life sciences and linked data'
+    >>> get_registry_description('biocontext')
+    'BioContext contains modular JSON-LD contexts for bioinformatics data.'
 
     >>> get_registry_description('missing')
     None

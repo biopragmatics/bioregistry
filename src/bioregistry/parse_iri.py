@@ -7,10 +7,12 @@ from typing import List, Mapping, Optional, Tuple, Union
 from .resolve import parse_curie
 from .resource_manager import prepare_prefix_list
 from .uri_format import get_prefix_map
+from .utils import curie_to_str
 
 __all__ = [
     "curie_from_iri",
     "parse_iri",
+    "parse_obolibrary_purl",
 ]
 
 OLS_URL_PREFIX = "https://www.ebi.ac.uk/ols/ontologies/"
@@ -66,9 +68,9 @@ def curie_from_iri(iri: str, *, prefix_map: Optional[Mapping[str, str]] = None) 
     'aop.relationships:5'
     """
     prefix, identifier = parse_iri(iri=iri, prefix_map=prefix_map)
-    if prefix is None:
+    if prefix is None or identifier is None:
         return None
-    return f"{prefix}:{identifier}"
+    return curie_to_str(prefix, identifier)
 
 
 def parse_iri(

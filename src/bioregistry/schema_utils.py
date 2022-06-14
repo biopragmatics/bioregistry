@@ -4,7 +4,6 @@
 
 import json
 import logging
-import warnings
 from collections import defaultdict
 from functools import lru_cache
 from pathlib import Path
@@ -54,7 +53,7 @@ def add_resource(resource: Resource) -> None:
     """
     registry = dict(read_registry())
     if resource.prefix in registry:
-        raise KeyError("Tried to add duplicate entry to the registry")
+        raise KeyError(f"Tried to add duplicate prefix to the registry: {resource.prefix}")
     registry[resource.prefix] = resource
     # Clear the cache
     read_registry.cache_clear()
@@ -102,12 +101,6 @@ def write_collections(collections: Mapping[str, Collection]) -> None:
         )
 
 
-def write_bioregistry(registry: Mapping[str, Resource]):
-    """Write to the Bioregistry."""
-    warnings.warn("use bioregistry.write_registry", DeprecationWarning)
-    write_registry(registry)
-
-
 def write_registry(registry: Mapping[str, Resource]):
     """Write to the Bioregistry."""
     with open(BIOREGISTRY_PATH, mode="w", encoding="utf-8") as file:
@@ -143,7 +136,7 @@ def write_contexts(contexts: Mapping[str, Context]) -> None:
         )
 
 
-def read_contributors() -> Mapping[str, Attributable]:
+def read_contributors(direct_only: bool = False) -> Mapping[str, Attributable]:
     """Get a mapping from contributor ORCID identifiers to author objects."""
     rv: Dict[str, Attributable] = {}
     for resource in read_registry().values():
@@ -154,16 +147,22 @@ def read_contributors() -> Mapping[str, Attributable]:
                 rv[contributor.orcid] = contributor
         if resource.reviewer and resource.reviewer.orcid:
             rv[resource.reviewer.orcid] = resource.reviewer
-        contact = resource.get_contact()
-        if contact and contact.orcid:
-            rv[contact.orcid] = contact
+        if not direct_only:
+            contact = resource.get_contact()
+            if contact and contact.orcid:
+                rv[contact.orcid] = contact
     for metaresource in read_metaregistry().values():
-        if metaresource.contact.orcid:
-            rv[metaresource.contact.orcid] = metaresource.contact
+        if not direct_only:
+            if metaresource.contact.orcid:
+                rv[metaresource.contact.orcid] = metaresource.contact
     for collection in read_collections().values():
         for author in collection.authors or []:
             if author.orcid:
                 rv[author.orcid] = author
+    for context in read_contexts().values():
+        for maintainer in context.maintainers:
+            if maintainer.orcid:
+                rv[maintainer.orcid] = maintainer
     return rv
 
 

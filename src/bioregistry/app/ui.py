@@ -5,7 +5,7 @@
 import itertools as itt
 from typing import Optional
 
-from flask import Blueprint, abort, redirect, render_template, url_for
+from flask import Blueprint, abort, redirect, render_template, request, url_for
 from markdown import markdown
 
 import bioregistry
@@ -42,11 +42,14 @@ FORMATS = [
 @ui_blueprint.route("/registry/")
 def resources():
     """Serve the Bioregistry page."""
+    registry = bioregistry.read_registry()
+    if request.args.get("novel") in {"true", "t"}:
+        registry = {p: v for p, v in registry.items() if bioregistry.is_novel(p)}
     return render_template(
         "resources.html",
         formats=FORMATS,
         markdown=markdown,
-        registry=bioregistry.read_registry(),
+        registry=registry,
     )
 
 
