@@ -15,6 +15,7 @@ from bioregistry.constants import BIOREGISTRY_PATH
 from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES
+from bioregistry.schema.struct import SCHEMA_PATH, get_json_schema
 from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.schema_utils import is_mismatch
 from bioregistry.utils import _norm, curie_to_str, extended_encoder
@@ -29,6 +30,12 @@ class TestRegistry(unittest.TestCase):
         """Set up the test case."""
         self.registry = bioregistry.read_registry()
         self.metaregistry = bioregistry.read_metaregistry()
+
+    def test_schema(self):
+        """Test the schema is up-to-date."""
+        actual = SCHEMA_PATH.read_text()
+        expected = json.dumps(get_json_schema(), indent=2)
+        self.assertEqual(expected, actual)
 
     def test_lint(self):
         """Test that the lint command was run.
