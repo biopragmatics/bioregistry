@@ -755,7 +755,12 @@ class TestRegistry(unittest.TestCase):
     def test_request_issue(self):
         """Check all prefixes with a request issue have a reviewer."""
         for prefix, resource in self.registry.items():
-            if resource.request_issue is None:
+            if resource.github_request_issue is None:
                 continue
             with self.subTest(prefix=prefix):
                 self.assertIsNotNone(resource.reviewer)
+                self.assertNotIn(
+                    f"https://github.com/biopragmatics/bioregistry/issues/{resource.github_request_issue}",
+                    resource.references or [],
+                    msg="Reference to GitHub request issue should be in its dedicated field.",
+                )
