@@ -808,13 +808,13 @@ class Resource(BaseModel):
                 rv[publication["id"]] = publication["title"]
         if self.fairsharing:
             for publication in self.fairsharing.get("publications", []):
-                pubmed_id = publication.get("pubmed_id")
-                doi = publication.get("doi")
+                pmid = publication.get("pubmed_id")
                 title = publication.get("title")
-                if pubmed_id:
+                if pmid:
                     rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
                 else:
-                    rf[f"https://bioregistry.io/doi:{doi}"] = title
+                    doi = publication["doi"]
+                    rv[f"https://bioregistry.io/doi:{doi}"] = title
         if self.prefixcommons:
             for pmid in self.prefixcommons.get("pubmed_ids", []):
                 url = f"https://bioregistry.io/pubmed:{pmid}"
