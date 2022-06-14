@@ -758,7 +758,9 @@ class TestRegistry(unittest.TestCase):
             if resource.github_request_issue is None:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertIsNotNone(resource.reviewer)
+                if resource.contributor.github != "cthoyt":
+                    # needed to bootstrap records before there was more governance in place
+                    self.assertIsNotNone(resource.reviewer)
                 self.assertNotIn(
                     f"https://github.com/biopragmatics/bioregistry/issues/{resource.github_request_issue}",
                     resource.references or [],
