@@ -25093,17 +25093,17 @@
     },
     "description": "The human diseases in which proteins are involved are described in UniProtKB entries with a controlled vocabulary.",
     "download_obo": "https://www.uniprot.org/diseases/?query=*&format=obo",
-    "example": "04240",
+    "example": "DI-04240",
     "homepage": "https://www.uniprot.org/diseases/",
     "name": "UniProt Diseases",
     "part_of": "uniprot",
-    "pattern": "^\\d{5}$",
+    "pattern": "^DI-\\d{5}$",
     "preferred_prefix": "uniprot.disease",
     "synonyms": [
       "DI",
       "SP_DI"
     ],
-    "uri_format": "https://www.uniprot.org/diseases/DI-$1"
+    "uri_format": "https://www.uniprot.org/diseases/$1"
   },
   "uniprot.isoform": {
     "description": "The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for protein sequence and functional information with extensive cross-references to more than 120 external databases. This collection is a subset of UniProtKB, and provides a means to reference isoform information.",
@@ -25142,7 +25142,7 @@
   "uniprot.keyword": {
     "description": "UniProtKB entries are tagged with keywords that can be used to retrieve particular subsets of entries.",
     "download_obo": "https://www.uniprot.org/keywords/?format=obo",
-    "example": "1273",
+    "example": "KW-1273",
     "homepage": "http://www.uniprot.org/keywords/",
     "mappings": {
       "go": "UniProtKB-KW",
@@ -25150,7 +25150,7 @@
     },
     "name": "UniProt Keywords",
     "part_of": "uniprot",
-    "pattern": "^\\d{4}$",
+    "pattern": "^KW-\\d{4}$",
     "preferred_prefix": "uniprot.keyword",
     "synonyms": [
       "SP_KW",
@@ -25158,26 +25158,26 @@
       "uniprot.keyword",
       "uniprot.kw"
     ],
-    "uri_format": "https://www.uniprot.org/keywords/KW-$1"
+    "uri_format": "https://www.uniprot.org/keywords/$1"
   },
   "uniprot.location": {
     "description": "The subcellular locations in which a protein is found are described in UniProtKB entries with a controlled vocabulary, which includes also membrane topology and orientation terms.",
     "download_obo": "https://www.uniprot.org/locations/?query=*&format=obo",
-    "example": "0002",
+    "example": "SL-0002",
     "homepage": "https://www.uniprot.org/locations/",
     "mappings": {
       "go": "UniProtKB-SubCell"
     },
     "name": "UniProt Subcellular Locations",
     "part_of": "uniprot",
-    "pattern": "^\\d+$",
+    "pattern": "^SL-\\d+$",
     "preferred_prefix": "uniprot.location",
     "synonyms": [
       "SP_SL",
       "UPLOC",
       "UniProtKB-SubCell"
     ],
-    "uri_format": "https://www.uniprot.org/locations/SL-$1"
+    "uri_format": "https://www.uniprot.org/locations/$1"
   },
   "uniprot.ptm": {
     "contributor": {
@@ -25187,11 +25187,11 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The post-translational modifications used in the UniProt knowledgebase (Swiss-Prot and TrEMBL). The definition of the post-translational modifications usage as well as other information is provided in the following format",
-    "example": "0450",
+    "example": "PTM-0450",
     "homepage": "https://www.uniprot.org/docs/ptmlist",
     "name": "UniProt Post-Translational Modification",
     "part_of": "uniprot",
-    "pattern": "^\\d{4}$",
+    "pattern": "^PTM-\\d{4}$",
     "preferred_prefix": "uniprot.ptm",
     "references": [
       "https://twitter.com/cthoyt/status/1510570256619778053",
@@ -25209,17 +25209,17 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The cross-references section of UniProtKB entries displays explicit and implicit links to databases such as nucleotide sequence databases, model organism databases and genomics and proteomics resources.",
-    "example": "0174",
+    "example": "DB-0174",
     "homepage": "https://www.uniprot.org/database/",
     "name": "UniProt Resource",
     "part_of": "uniprot",
-    "pattern": "^\\d{4}$",
+    "pattern": "^DB-\\d{4}$",
     "preferred_prefix": "uniprot.resource",
-    "uri_format": "https://www.uniprot.org/database/DB-$1"
+    "uri_format": "https://www.uniprot.org/database/$1"
   },
   "uniprot.tissue": {
     "description": "The UniProt Tissue List is a controlled vocabulary of terms used to annotate biological tissues. It also contains cross-references to other ontologies where tissue types are specified.",
-    "example": "0285",
+    "example": "TS-0285",
     "homepage": "https://www.uniprot.org/docs/tisslist.txt",
     "mappings": {
       "biocontext": "TISSUELIST",
@@ -25228,9 +25228,9 @@
     },
     "name": "Tissue List",
     "part_of": "uniprot",
-    "pattern": "^\\d{4}$",
+    "pattern": "^TS-\\d{4}$",
     "preferred_prefix": "uniprot.tissue",
-    "uri_format": "https://www.uniprot.org/tissues/TS-$1"
+    "uri_format": "https://www.uniprot.org/tissues/$1"
   },
   "uniprot.var": {
     "contributor": {
