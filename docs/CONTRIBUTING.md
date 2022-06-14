@@ -1,10 +1,22 @@
-# Contributing
+---
+layout: page
+title: Contributing
+permalink: /contributing/
+---
+Contributions to the Bioregistry are welcomed and encouraged. Thanks for
+considering to participate.
 
-Contributions to the Bioregistry are welcomed and encouraged.
+All contributors, maintainers, and participants of the Bioregistry project
+are expected to follow our [Code of Conduct](CODE_OF_CONDUCT.md).
+This document is organized as follows:
+
+1. [Content Contribution](#content-contribution)
+    1. [Submitting New Prefixes](#submitting-new-prefixes)
+    2. [Editing Records](#editing-records)
+    3. [Removing Records](#removing-records)
+2. [Code Contribution](#code-contribution)
 
 ## Content Contribution
-
-### New Prefixes
 
 There are several ways to request a new prefix in the Bioregistry:
 
@@ -22,7 +34,9 @@ There are several ways to request a new prefix in the Bioregistry:
 4. Get in touch with us informally on
    Twitter [@bioregistry](https://twitter.com/bioregistry)
 
-#### Who can request a prefix
+### Submitting New Prefixes
+
+#### Who Can Request a New Prefix
 
 A prefix can be requested by anyone, even if it is for a resource they do not
 themselves maintain. A main goal of the Bioregistry is to be a detailed,
@@ -115,12 +129,88 @@ example is the disease class annotation (legacy classification from the hard
 fork of the Disease Ontology that later became MONDO) and Dublin Core, where one
 is subjectively more important than the other.
 
-#### Removal of Prefixes
+#### Bulk Contribution
+
+If you would like to submit more than 5 prefixes at once, you can fill out the
+[bulk prefix request template](bulk_prefix_request_template.tsv)
+spreadsheet and submit it in
+an [issue](https://github.com/biopragmatics/bioregistry/issues/new). The
+template contains several examples - please review them then delete them before
+submission. Please number all of the rows in sequential order the first
+column (`request_id`). The first columns of the template are all required, even
+if some of the examples don't have an entry there for historic reasons. All
+optional fields are marked as such.
+
+Anyone is welcome to submit a bulk prefix request, but ideally submitters have a
+large working knowledge of the Bioregistry, its requirements, etc. as reviewing
+issues in a bulk request is much less ergonomic and more time-consuming than in
+individual prefix requests, which each get their own discussion thread, pull
+request, and CI/CD runs. Submitters of bulk prefix requests that contain many
+issues may be asked to re-submit as individual prefix requests.
+
+#### Review of New Prefix Requests
+
+Review of new prefix requests is handled by the Bioregistry Review Team, whose
+membership and conduct is described in the Bioregistry's
+[Project Governance](GOVERNANCE.md).
+
+### Editing Records
+
+There are several ways to update a prefix's record in the Bioregistry:
+
+1. Fill out one of the issue templates on our GitHub issue tracker with the
+   requested information. If no template exists for your update, feel free to
+   fill out a blank issue. We will help make the update and attribute you
+   properly.
+2. Edit an entry yourself by [editing the Bioregistry](https://github.com/biopragmatics/bioregistry/edit/main/src/bioregistry/data/bioregistry.json)
+   in GitHub through the web browser. As the Bioregistry is getting bigger, this
+   is becoming more of an issue, so might not always be possible.
+3. Make a pull request directly to the upstream repository
+   [biopragmatics/bioregistry](https://github.com/biopragmatics/bioregistry).
+4. Get in touch with us informally on
+   Twitter [@bioregistry](https://twitter.com/bioregistry)
+
+#### Who can edit an existing prefix's record
+
+A prefix's record can be edited by anyone, even if it is for a resource they do
+not themselves maintain. A main goal of the Bioregistry is to be a detailed,
+descriptive resource - expertise is welcome from anywhere. In many cases,
+editing an existing prefix's record is useful to override incorrect information
+from integrated repositories, such as Identifiers.org.
+
+#### Change of Prefix
+
+Typically, prefixes should not be changed since the Bioregistry acts as an
+archive of all usages, even deprecated ones. As an alternative, someone wishing
+to change a prefix can do the following:
+
+1. Mark the old prefix as deprecated
+2. Include in the `comment` field information about when and why the prefix was
+   deprecated
+3. Add a `has_canonical` relationship from the old prefix's record to the new
+   prefix
+
+Like with all edits, these are subject to review by the Bioregistry Review team.
+Extra care should be given with this kind of edit.
+
+#### Review of Edits
+
+Review of edits to existing records is handled by the Bioregistry Review Team,
+whose membership and conduct is described in the Bioregistry's
+[Project Governance](GOVERNANCE.md).
+
+### Removing Records
 
 Typically, prefixes should not be removed from the Bioregistry, even if they
 correspond to subsumed, abandoned, or dead resources, because it is also a
 historical archive and reference for anyone who might run into legacy prefixes
 in legacy resources.
+
+#### Review of Removals
+
+Review of removals of existing records is handled by the Bioregistry Review
+Team, whose membership and conduct is described in the Bioregistry's
+[Project Governance](GOVERNANCE.md).
 
 ## Code Contribution
 
@@ -194,7 +284,7 @@ reports on functions that are not fully documented.
 
 This project uses [`sphinx`](https://www.sphinx-doc.org) to automatically build
 documentation into a narrative structure. You can check that the documentation
-properly builds with `tox -e docs`.
+properly builds with `tox -e docs-test`.
 
 ### Testing
 
@@ -221,9 +311,24 @@ UI to do this by following [this tutorial](https://docs.github.com/en/github/col
 
 This project aims to support all versions of Python that have not passed their
 end-of-life dates. After end-of-life, the version will be removed from the Trove
-qualifiers in the [`setup.cfg`](setup.cfg) and from the GitHub Actions testing
-configuration.
+qualifiers in the [`setup.cfg`](https://github.com/biopragmatics/bioregistry/blob/main/setup.cfg)
+and from the GitHub Actions testing configuration.
 
 See https://endoflife.date/python for a timeline of Python release and
 end-of-life dates.
 
+#### Review of Pull Requests
+
+Review of edits to existing records is handled by the Bioregistry Core
+Development Team, whose membership and conduct is described in the Bioregistry's
+[Project Governance](GOVERNANCE.md).
+
+## Meta-contributions
+
+### Retroactive Application of Curation Guidelines
+
+As the Bioregistry matures, new fields may be added and more strict curation
+guidelines may be imposed (both from a philosophical and technical perspective).
+When imposing new rules, reasonable efforts should be made to backfill existing
+records. Alternatively, existing prefixes can be "grandfathered" in to less
+strict requirements.

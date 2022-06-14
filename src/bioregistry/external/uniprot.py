@@ -9,8 +9,7 @@ from typing import Mapping
 from defusedxml import ElementTree
 from pystow.utils import download
 
-from bioregistry.constants import URI_FORMAT_KEY
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
 
 __all__ = [
     "get_uniprot",
@@ -25,8 +24,9 @@ DIRECTORY.mkdir(exist_ok=True, parents=True)
 RAW_PATH = DIRECTORY / "raw.xml"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 
+PREFIX = "{http://purl.uniprot.org/core/}abbreviation"
+
 kz = {
-    "prefix": "{http://purl.uniprot.org/core/}abbreviation",
     "identifier": "{http://purl.org/dc/terms/}identifier",
     "name": "{http://www.w3.org/2000/01/rdf-schema#}label",
     "type": "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}type",
@@ -41,6 +41,15 @@ kz = {
 }
 kzi = {v: k for k, v in kz.items()}
 
+#: resources with these UniProt prefixes don't exist anymore
+skip_prefixes = {
+    "UniPathway",  # doesn't exist anymore
+    "BRENDA",  # has bad format string contains EC, UniProt, and taxon
+    "eggNOG",  # not sure what this does
+    "PlantReactome",  # incomprehensible URLs
+    "Reactome",  # incomprehensible URLs
+}
+
 
 def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
     """Get the UniProt registry."""
@@ -53,13 +62,17 @@ def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
     root = tree.getroot()
     rv = {}
     for element in root.findall("{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description"):
-        entry = {}
+        prefix = element.findtext(PREFIX)
+        if prefix in skip_prefixes:
+            continue
+        entry = dict(prefix=prefix)
         for key, path in kz.items():
             value = element.findtext(path)
             if not value:
                 continue
             if key == URI_FORMAT_KEY:
                 if "%s" in value and "%u" in value:
+                    logger.warning(f"{prefix} has both formats: {value}")
                     pass  # FIXME
                 else:
                     value = value.replace("%s", "$1").replace("%u", "$1")

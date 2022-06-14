@@ -5,7 +5,7 @@
 from typing import Optional
 
 from .schema import Collection, Context
-from .utils import read_collections, read_contexts
+from .schema_utils import read_collections, read_contexts
 
 __all__ = [
     "get_collection",

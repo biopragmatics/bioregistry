@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Contributor Covenant Code of Conduct
+title: Code of Conduct
 permalink: /conduct/
 ---
 ## Our Pledge
@@ -35,7 +35,10 @@ Examples of unacceptable behavior include:
 * Trolling, insulting or derogatory comments, and personal or political attacks
 * Public or private harassment
 * Publishing others' private information, such as a physical or email
-  address, without their explicit permission
+  address, without their explicit permission. As a slight departure from the
+  verbatim text from the Contributor Covenant, we relax this restriction when
+  related to the publicly available contact information for individuals related
+  to the data in the Bioregistry (i.e., contributors, reviewers, contact people).
 * Other conduct which could reasonably be considered inappropriate in a
   professional setting
 

@@ -16,7 +16,8 @@ from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import _norm, curie_to_str, extended_encoder, is_mismatch
+from bioregistry.schema_utils import is_mismatch
+from bioregistry.utils import _norm, curie_to_str, extended_encoder
 
 logger = logging.getLogger(__name__)
 
@@ -59,6 +60,21 @@ class TestRegistry(unittest.TestCase):
                 self.assertEqual(prefix.lower(), prefix, msg="prefix is not lowercased")
                 self.assertFalse(prefix.startswith("_"))
                 self.assertFalse(prefix.endswith("_"))
+
+    def test_valid_integration_annotations(self):
+        """Test that the integration keys are valid."""
+        valid = {"required", "optional", "suggested", "required_for_new"}
+        for name, field in Resource.__fields__.items():
+            with self.subTest(name=name):
+                status = field.field_info.extra.get("integration_status", None)
+                if field.required:
+                    self.assertEqual(
+                        "required",
+                        status,
+                        msg=f"required field {name} is not marked with integration_status",
+                    )
+                elif status:
+                    self.assertIn(status, valid, msg=f"invalid integration status for field {name}")
 
     def test_keys(self):
         """Check the required metadata is there."""
@@ -134,7 +150,8 @@ class TestRegistry(unittest.TestCase):
             if bioregistry.is_deprecated(prefix):
                 continue
             with self.subTest(prefix=prefix, name=bioregistry.get_name(prefix)):
-                self.assertIsNotNone(bioregistry.get_description(prefix))
+                desc = bioregistry.get_description(prefix)
+                self.assertIsNotNone(desc)
 
     def test_has_homepage(self):
         """Test that all non-deprecated entries have a homepage."""
@@ -314,22 +331,43 @@ class TestRegistry(unittest.TestCase):
         """Assert the identifier is canonical."""
         entry = self.registry[prefix]
         canonical = entry.is_canonical_identifier(example)
-        self.assertTrue(canonical is None or canonical, msg=f"Failed on prefix={prefix}")
+        self.assertTrue(canonical is None or canonical, msg=f"Failed on prefix={prefix}: {example}")
 
     def test_extra_examples(self):
         """Test extra examples."""
         for prefix, entry in self.registry.items():
             if not entry.example_extras:
                 continue
+            primary_example = entry.get_example()
             with self.subTest(prefix=prefix):
                 self.assertIsNotNone(
-                    entry.get_example(), msg="entry has extra examples but not primary example"
+                    primary_example, msg="entry has extra examples but not primary example"
                 )
 
             for example in entry.example_extras:
                 with self.subTest(prefix=prefix, identifier=example):
                     self.assertEqual(entry.standardize_identifier(example), example)
+                    self.assertNotEqual(
+                        primary_example, example, msg="extra example matches primary example"
+                    )
                     self.assert_canonical(prefix, example)
+
+            self.assertEqual(
+                len(entry.example_extras),
+                len(set(entry.example_extras)),
+                msg="duplicate extra examples",
+            )
+
+    def test_example_decoys(self):
+        """Test example decoys."""
+        for prefix, entry in self.registry.items():
+            if not entry.example_decoys:
+                continue
+            with self.subTest(prefix=prefix):
+                pattern = entry.get_pattern()
+                self.assertIsNotNone(pattern)
+                for example in entry.example_decoys:
+                    self.assertNotRegex(example, pattern)
 
     def test_is_mismatch(self):
         """Check for mismatches."""
@@ -411,13 +449,6 @@ class TestRegistry(unittest.TestCase):
         s = resource_to_rdf_str("chebi")
         self.assertIsInstance(s, str)
 
-    @unittest.skip(
-        """\
-        Not sure if this test makes sense - some of the resources, like
-        datanator_gene and datanator_metabolite are part of a larger resources,
-        but have their own well-defined endpoints.
-        """
-    )
     def test_parts(self):
         """Make sure all part of relations point to valid prefixes."""
         for prefix, resource in self.registry.items():
@@ -425,10 +456,17 @@ class TestRegistry(unittest.TestCase):
                 continue
             if resource.part_of is None:
                 continue
+
             with self.subTest(prefix=prefix):
-                self.assertIn(
-                    resource.part_of, self.registry, msg="super-resource is not a valid prefix"
-                )
+                norm_part_of = bioregistry.normalize_prefix(resource.part_of)
+                if norm_part_of is not None:
+                    self.assertEqual(
+                        norm_part_of, resource.part_of, msg="part_of is not standardized"
+                    )
+                # Some are not prefixes, e.g., datanator_gene, datanator_metabolite, ctd.
+                # self.assertIn(
+                #     resource.part_of, self.registry, msg="super-resource is not a valid prefix"
+                # )
 
     def test_provides(self):
         """Make sure all provides relations point to valid prefixes."""
@@ -611,6 +649,17 @@ class TestRegistry(unittest.TestCase):
                     self.assertIsNotNone(contributor.name)
                     self.assertIsNotNone(contributor.orcid)
                     self.assertIsNotNone(contributor.github)
+
+    def test_no_contributor_duplicates(self):
+        """Test that the contributor doesn't show up in the contributor extras."""
+        for prefix, resource in self.registry.items():
+            with self.subTest(prefix=prefix):
+                if not resource.contributor or not resource.contributor_extras:
+                    continue
+                for contributor in resource.contributor_extras:
+                    self.assertNotEqual(
+                        resource.contributor.orcid, contributor.orcid, msg="Duplicated contributor"
+                    )
 
     def test_reviewers(self):
         """Check reviewers have minimal metadata."""

@@ -23,8 +23,7 @@ from ..export.rdf_export import (
     resource_to_rdf_str,
 )
 from ..schema import sanitize_mapping
-from ..uri_format import get_uri_prefix
-from ..utils import (
+from ..schema_utils import (
     read_collections_contributions,
     read_contributors,
     read_prefix_contacts,
@@ -32,6 +31,7 @@ from ..utils import (
     read_prefix_reviews,
     read_registry_contributions,
 )
+from ..uri_format import get_uri_prefix
 
 __all__ = [
     "api_blueprint",
@@ -303,7 +303,7 @@ def contributors():
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    return serialize(read_contributors())
+    return serialize(sanitize_mapping(read_contributors()))
 
 
 @api_blueprint.route("/contributor/<orcid>")

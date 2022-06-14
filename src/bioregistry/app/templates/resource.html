@@ -28,15 +28,7 @@
                 <div class="col-8">
                     <h5 style="margin: 0"><a href="{{ url_for("ui.resources") }}">Registry</a> <i
                             class="fas fa-angle-right"></i> {{ name }}
-                        {% if deprecated %}
-                            <span class="badge badge-warning" style="display: inline-block;">
-                                Deprecated <i class="fas fa-exclamation-triangle"></i>
-                            </span>
-                        {% elif provides %}
-                            <span class="badge badge-danger" style="display: inline-block;">
-                                Provider <i class="fas fa-exclamation-triangle"></i>
-                            </span>
-                        {% endif %}
+                        {{ utils.render_resource_warnings(resource) }}
                     </h5>
                 </div>
                 <div class="col-4 text-right">
@@ -411,7 +403,9 @@
     {% if mappings %}
         <div class="card" style="margin-top: 20px">
             <a id="mappings"></a>
-            <h5 class="card-header">Metaregistry</h5>
+            <h5 class="card-header">
+                Metaregistry <i class="fas fa-angle-right"></i> {{ name }}
+            </h5>
             <div class="card-body">
                 <p>
                     The metaregistry provides mappings between the Bioregistry and other registries. There are
@@ -462,7 +456,7 @@
             <div class="card-body">
                 <p>
                     Providers are various services that resolve CURIEs to URLs. The example CURIE
-                    <code>{{ prefix }}:{{ example }}</code> is used to demonstrate the provides available for
+                    {{ utils.code_curie(prefix, identifier) }} is used to demonstrate the provides available for
                     <code>{{ prefix }}</code>. Generation of OLS and BioPortal URLs requires additional programmatic
                     logic beyond string formatting.
                 </p>

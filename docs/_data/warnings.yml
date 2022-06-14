@@ -1,47 +1,5 @@
 embedding_rewrites: []
-license_conflict:
-- obo: CC0 1.0
-  ols: https://creativecommons.org/licenses/by/4.0/
-  prefix: clao
-- obo: CC BY 3.0
-  ols: https://creativecommons.org/licenses/by/4.0/
-  prefix: dpo
-- obo: CC BY 3.0
-  ols: https://creativecommons.org/publicdomain/zero/1.0/
-  prefix: envo
-- obo: CC BY 3.0
-  ols: https://creativecommons.org/licenses/by/4.0/
-  prefix: fbbt
-- obo: CC BY 3.0
-  ols: https://creativecommons.org/licenses/by/4.0/
-  prefix: fbcv
-- obo: CC BY 3.0
-  ols: https://creativecommons.org/licenses/by/4.0/
-  prefix: fbdv
-- obo: CC BY 3.0
-  ols: http://creativecommons.org/licenses/by/4.0/
-  prefix: fobi
-- obo: CC BY-SA 2.0
-  ols: https://creativecommons.org/licenses/by-sa/2.0/
-  prefix: geno
-- obo: CC BY 3.0
-  ols: https://creativecommons.org/licenses/by/4.0/
-  prefix: maxo
-- obo: CC BY 3.0
-  ols: New BSD license
-  prefix: ogsf
-- obo: CC BY 3.0
-  ols: http://creativecommons.org/licenses/by/4.0/
-  prefix: ontoneo
-- obo: CC BY 3.0
-  ols: https://creativecommons.org/licenses/by/4.0/
-  prefix: psdo
-- obo: CC BY 3.0
-  ols: http://creativecommons.org/licenses/by/4.0/
-  prefix: txpo
-- obo: CC BY 3.0
-  ols: http://creativecommons.org/licenses/by/4.0/
-  prefix: vo
+license_conflict: []
 prefix_rewrites: []
 wrong_patterns:
 - correct: ^/*[0-9A-Za-z]+(?:/[\w/.=*+@\$-]*)?(?:\?.*)?$
@@ -84,6 +42,11 @@ wrong_patterns:
   miriam: ^CL:\d{7}$
   name: Cell Ontology
   prefix: cl
+- correct: ^\d{7}$
+  homepage: http://classyfire.wishartlab.com/
+  miriam: ^C[0-9]{7}$
+  name: ClassyFire
+  prefix: classyfire
 - correct: ^[a-z0-9]+:[A-Za-z0-9.\-:]+$
   homepage: https://w3c-ccg.github.io/did-spec/
   miriam: ^did:[a-z0-9]+:[A-Za-z0-9.\-:]+$
@@ -94,7 +57,7 @@ wrong_patterns:
   miriam: ^DOID:\d+$
   name: Human Disease Ontology
   prefix: doid
-- correct: ^\d{1,2}(\.\d{0,3}){0,3}$
+- correct: ^\d{1,2}(((\.\d{1,3}){1,3})|(\.\d+){2}\.n\d{1,3})?$
   homepage: https://www.ebi.ac.uk/intenz/
   miriam: ^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$
   name: Enzyme Nomenclature
@@ -104,6 +67,11 @@ wrong_patterns:
   miriam: ECO:\d{7}$
   name: Evidence ontology
   prefix: eco
+- correct: ^((ENS[FPTG]\d{11}(\.\d+)?)|(FB\w{2}\d{7})|(Y[A-Z]{2}\d{3}[a-zA-Z](\-[A-Z])?)|([A-Z_a-z0-9]+(\.)?(t)?(\d+)?([a-z])?))$
+  homepage: https://www.ensembl.org/
+  miriam: ^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$
+  name: Ensembl Gene
+  prefix: ensembl
 - correct: ^\d{7,8}$
   homepage: http://environmentontology.org/
   miriam: ^ENVO:\d{7,8}$
@@ -139,6 +107,11 @@ wrong_patterns:
   miriam: ^[0-9A-Za-z_][0-9A-Za-z-_()\. ]*/[0-9A-Za-z_][0-9A-Za-z-_\. ]*$
   name: GitLab
   prefix: gitlab
+- correct: ^GN_[A-Za-z0-9_:]+$
+  homepage: https://www.noguchi.or.jp/
+  miriam: ^GN_[A-Za-z0-9]+$
+  name: GlycoNAVI
+  prefix: glyconavi
 - correct: ^\d{7}$
   homepage: http://geneontology.org/
   miriam: ^GO:\d{7}$
@@ -149,6 +122,11 @@ wrong_patterns:
   miriam: ^GO_REF:\d{7}$
   name: Gene Ontology Database references
   prefix: go.ref
+- correct: ^[A-Z]{2,4}\d+([A-Z])?([0-9])?$
+  homepage: https://www.google.com/patents/
+  miriam: ^[A-Z]{2}\d+([A-Z])?$
+  name: Google Patents
+  prefix: google.patent
 - correct: ^\d{7}$
   homepage: http://www.gramene.org/
   miriam: ^GRO\:\d+$

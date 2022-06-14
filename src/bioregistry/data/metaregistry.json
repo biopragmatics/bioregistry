@@ -25,6 +25,16 @@
       "description": "AberOWL is a framework for ontology-based access to biological data. It consists of a repository of bio-ontologies, a set of webservices which provide access to OWL(-EL) reasoning over the ontologies, and several frontends which utilise the ontology repository and reasoning services to provide access to specific biological datasets.",
       "download": "http://aber-owl.net/api/ontology/?format=json",
       "example": "CHEBI",
+      "governance": {
+        "accepts_external_contributions": false,
+        "curates": false,
+        "curation": "import",
+        "imports": false,
+        "public_version_control": false,
+        "review_team": "n/a",
+        "scope": "bio-ontologies",
+        "status": "active"
+      },
       "homepage": "http://aber-owl.net",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/339",
       "name": "AberOWL",
@@ -58,11 +68,62 @@
       },
       "description": "A vocabulary and ontology repository for agronomy and related domains.",
       "example": "ENVO",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "opaque-review",
+        "imports": false,
+        "public_version_control": false,
+        "review_team": "private",
+        "scope": "agro-ontologies",
+        "status": "active"
+      },
       "homepage": "http://agroportal.lirmm.fr",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/336",
       "name": "AgroPortal",
       "prefix": "agroportal",
       "provider_uri_format": "http://agroportal.lirmm.fr/ontologies/$1"
+    },
+    {
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "missing",
+        "description": "missing",
+        "example": "missing",
+        "fair": true,
+        "homepage": "missing",
+        "license": "missing",
+        "name": "missing",
+        "pattern": "missing",
+        "provider": "present",
+        "search": false,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "contact": {
+        "email": "cjmungall@lbl.gov",
+        "github": "cmungall",
+        "name": "Chris Mungall",
+        "orcid": "0000-0002-6601-2165"
+      },
+      "description": "BioContext contains modular JSON-LD contexts for bioinformatics data.",
+      "download": "https://raw.githubusercontent.com/prefixcommons/biocontext/master/registry/commons_context.jsonld",
+      "example": "CHEBI",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "open-review",
+        "imports": false,
+        "public_version_control": true,
+        "review_team": "inferrable",
+        "scope": "internal",
+        "status": "active"
+      },
+      "homepage": "https://github.com/prefixcommons/biocontext",
+      "license": "missing",
+      "name": "BioContext",
+      "prefix": "biocontext",
+      "provider_uri_format": "https://bioregistry.io/metaregistry/biocontext/$1"
     },
     {
       "availability": {
@@ -90,10 +151,21 @@
       "description": "A modeling paradigm-specific registry of prefixes and their URL expansions",
       "download": "https://raw.githubusercontent.com/biolink/biolink-model/master/biolink-model.yaml",
       "example": "doi",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "open-review",
+        "imports": false,
+        "public_version_control": true,
+        "review_team": "inferrable",
+        "scope": "internal",
+        "status": "active"
+      },
       "homepage": "https://github.com/biolink/biolink-model",
       "license": "Apache 2.0",
       "name": "Biolink Model Registry",
-      "prefix": "biolink"
+      "prefix": "biolink",
+      "short_name": "Biolink"
     },
     {
       "availability": {
@@ -121,11 +193,22 @@
       },
       "description": "The BioPortal is a less stringent registry of biomedical ontologies than the OBO Foundry",
       "example": "CHEBI",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "opaque-review",
+        "imports": false,
+        "public_version_control": false,
+        "review_team": "private",
+        "scope": "bio-ontologies",
+        "status": "active"
+      },
       "homepage": "https://bioportal.bioontology.org/",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/337",
       "name": "BioPortal Prefixes",
       "prefix": "bioportal",
-      "provider_uri_format": "https://bioportal.bioontology.org/ontologies/$1"
+      "provider_uri_format": "https://bioportal.bioontology.org/ontologies/$1",
+      "short_name": "BioPortal"
     },
     {
       "availability": {
@@ -139,7 +222,7 @@
         "name": "required",
         "pattern": "present",
         "provider": "present",
-        "search": false,
+        "search": true,
         "synonyms": "present",
         "version": "present"
       },
@@ -153,6 +236,16 @@
       "description": "The Bioregistry is integrative meta-registry of biological databases, ontologies, and nomenclatures that is backed by an open database.",
       "download": "https://bioregistry.io/api/registry/",
       "example": "chebi",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "open-review",
+        "imports": true,
+        "public_version_control": true,
+        "review_team": "public",
+        "scope": "life sciences",
+        "status": "active"
+      },
       "homepage": "https://bioregistry.io",
       "license": "CC0",
       "name": "Bioregistry",
@@ -187,10 +280,21 @@
       },
       "description": "The set of prefixes used in the Cellosaurus resource",
       "example": "4DN",
+      "governance": {
+        "accepts_external_contributions": false,
+        "curates": true,
+        "curation": "private",
+        "imports": false,
+        "public_version_control": false,
+        "review_team": "n/a",
+        "scope": "internal",
+        "status": "active"
+      },
       "homepage": "https://web.expasy.org/cellosaurus/",
       "license": "CC BY 4.0",
       "name": "Cellosaurus Registry",
-      "prefix": "cellosaurus"
+      "prefix": "cellosaurus",
+      "short_name": "Cellosaurus"
     },
     {
       "availability": {
@@ -218,11 +322,22 @@
       },
       "description": "Contains entries for various database identifiers",
       "example": "000140",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "open-review",
+        "imports": false,
+        "public_version_control": true,
+        "review_team": "inferrable",
+        "scope": "chemistry",
+        "status": "unresponsive"
+      },
       "homepage": "https://github.com/semanticchemistry/semanticchemistry",
       "license": "CC BY 3.0",
       "name": "Chemical Information Ontology",
       "prefix": "cheminf",
-      "provider_uri_format": "https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_$1"
+      "provider_uri_format": "https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_$1",
+      "short_name": "CHEMINF"
     },
     {
       "availability": {
@@ -247,13 +362,24 @@
         "orcid": "0000-0002-6020-5919"
       },
       "description": "The Crop Ontology (CO) current objective is to compile validated concepts along with their inter-relationships on anatomy, structure and phenotype of Crops, on trait measurement and methods as well as on Germplasm with the multi-crop passport terms",
-      "download": "https://github.com/bioversity/Crop-Ontology/blob/master/public/dump.json",
+      "download": "https://cropontology.org/metadata",
       "example": "CO_010",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "opaque-review",
+        "imports": false,
+        "public_version_control": false,
+        "review_team": "public",
+        "scope": "agro-ontologies",
+        "status": "active"
+      },
       "homepage": "https://www.cropontology.org",
       "license": "CC BY 4.0",
       "name": "Crop Ontology Curation Tool",
       "prefix": "cropoct",
-      "provider_uri_format": "https://www.cropontology.org/ontology/$1"
+      "provider_uri_format": "https://www.cropontology.org/ontology/$1",
+      "short_name": "CropOCT"
     },
     {
       "availability": {
@@ -280,6 +406,16 @@
       },
       "description": "The LifeWatch ERIC repository of semantic resources for the ecological domain.",
       "example": "ALIENSPECIES",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "opaque-review",
+        "imports": false,
+        "public_version_control": false,
+        "review_team": "private",
+        "scope": "eco-ontologies",
+        "status": "active"
+      },
       "homepage": "http://ecoportal.lifewatch.eu",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/338",
       "name": "EcoPortal",
@@ -312,6 +448,16 @@
       },
       "description": "A curated, informative and educational resource on data and metadata standards, inter-related to databases and data policies.",
       "example": "FAIRsharing.62qk8w",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "opaque-review",
+        "imports": false,
+        "public_version_control": false,
+        "review_team": "private",
+        "scope": "life sciences",
+        "status": "active"
+      },
       "homepage": "https://fairsharing.org/",
       "license": "CC BY-SA 4.0",
       "logo_url": "https://api.fairsharing.org/img/fairsharing-attribution.svg",
@@ -345,10 +491,21 @@
       "description": "A database-specific registry supporting curation in the Gene Ontology",
       "download": "https://raw.githubusercontent.com/geneontology/go-site/master/metadata/db-xrefs.yaml",
       "example": "CHEBI",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "open-review",
+        "imports": false,
+        "public_version_control": true,
+        "review_team": "inferrable",
+        "scope": "internal",
+        "status": "inactive"
+      },
       "homepage": "http://geneontology.org/",
       "license": "CC BY 4.0",
       "name": "Gene Ontology Registry",
-      "prefix": "go"
+      "prefix": "go",
+      "short_name": "GO"
     },
     {
       "availability": {
@@ -376,6 +533,16 @@
       "description": "The Identifiers.org Resolution Service provides consistent access to life science data using Compact Identifiers. Compact Identifiers consist of an assigned unique prefix and a local provider designated accession number (prefix:accession).",
       "download": "https://registry.api.identifiers.org/resolutionApi/getResolverDataset",
       "example": "chebi",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "opaque-review",
+        "imports": false,
+        "public_version_control": false,
+        "review_team": "private",
+        "scope": "life sciences",
+        "status": "unresponsive"
+      },
       "homepage": "https://identifiers.org",
       "license": "CC BY 4.0",
       "logo_url": "https://identifiers.org/identifiers_logo.c7cbd962.png",
@@ -411,6 +578,16 @@
       "description": "An ARK resolver as well as resolver built with common prefixes as in Identifiers.org",
       "download": "https://n2t.net/e/n2t_full_prefixes.yaml",
       "example": "chebi",
+      "governance": {
+        "accepts_external_contributions": false,
+        "curates": false,
+        "curation": "import",
+        "imports": true,
+        "public_version_control": false,
+        "review_team": "n/a",
+        "scope": "life sciences",
+        "status": "active"
+      },
       "homepage": "https://n2t.net",
       "license": "CC0",
       "logo_url": "https://n2t.net/e/images/n2t_net_logo.png",
@@ -418,7 +595,8 @@
       "prefix": "n2t",
       "provider_uri_format": "https://n2t.net/$1:",
       "resolver_type": "resolver",
-      "resolver_uri_format": "https://n2t.net/$1:$2"
+      "resolver_uri_format": "https://n2t.net/$1:$2",
+      "short_name": "N2T"
     },
     {
       "availability": {
@@ -444,10 +622,21 @@
       },
       "description": "A database-specific registry supporting curation in the NCBI GenBank and related NCBI resources",
       "example": "ECOCYC",
+      "governance": {
+        "accepts_external_contributions": false,
+        "curates": true,
+        "curation": "private",
+        "imports": false,
+        "public_version_control": false,
+        "review_team": "n/a",
+        "scope": "internal",
+        "status": "inactive"
+      },
       "homepage": "https://www.ncbi.nlm.nih.gov/genbank/collab/db_xref/",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/342",
       "name": "National Center for Biotechnology Information Registry",
-      "prefix": "ncbi"
+      "prefix": "ncbi",
+      "short_name": "NCBI"
     },
     {
       "availability": {
@@ -474,6 +663,16 @@
       "description": "The mission of the OBO Foundry is to develop a family of interoperable ontologies that are both logically well-formed and scientifically accurate.",
       "download": "http://www.obofoundry.org/registry/ontologies.yml",
       "example": "chebi",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "open-review",
+        "imports": false,
+        "public_version_control": true,
+        "review_team": "public",
+        "scope": "bio-ontologies",
+        "status": "active"
+      },
       "homepage": "http://www.obofoundry.org/",
       "license": "CC0",
       "logo_url": "https://obofoundry.org/images/foundrylogo.png",
@@ -507,12 +706,24 @@
       },
       "description": "The Ontology Lookup Service (OLS) is a repository for biomedical ontologies that aims to provide a single point of access to the latest ontology versions. ",
       "example": "chebi",
+      "governance": {
+        "accepts_external_contributions": true,
+        "comments": "Accepts suggestions through the OLS issue tracker at https://github.com/EBISPOT/OLS/issues",
+        "curates": false,
+        "curation": "import",
+        "imports": false,
+        "public_version_control": false,
+        "review_team": "inferrable",
+        "scope": "bio-ontologies",
+        "status": "active"
+      },
       "homepage": "https://www.ebi.ac.uk/ols",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/340",
       "logo_url": "https://www.ebi.ac.uk/ols/img/OLS_logo_2017.png",
       "name": "Ontology Lookup Service",
       "prefix": "ols",
-      "provider_uri_format": "https://www.ebi.ac.uk/ols/ontologies/$1"
+      "provider_uri_format": "https://www.ebi.ac.uk/ols/ontologies/$1",
+      "short_name": "OLS"
     },
     {
       "availability": {
@@ -537,8 +748,18 @@
         "name": "Yongqun Oliver He",
         "orcid": "0000-0001-9189-9661"
       },
-      "description": " Ontobee is aimed to facilitate ontology data sharing, visualization, query, integration, and analysis.",
+      "description": "Ontobee is aimed to facilitate ontology data sharing, visualization, query, integration, and analysis.",
       "example": "AGRO",
+      "governance": {
+        "accepts_external_contributions": false,
+        "curates": false,
+        "curation": "import",
+        "imports": false,
+        "public_version_control": false,
+        "review_team": "n/a",
+        "scope": "bio-ontologies",
+        "status": "active"
+      },
       "homepage": "http://www.ontobee.org/",
       "license": "See https://github.com/biopragmatics/bioregistry/issues/341",
       "name": "OntoBee",
@@ -572,6 +793,16 @@
       "description": "A web-developer centric archive of prefixes and URI prefixes",
       "download": "https://prefix.cc/context.jsonld",
       "example": "foaf",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "community",
+        "imports": false,
+        "public_version_control": true,
+        "review_team": "n/a",
+        "scope": "general",
+        "status": "active"
+      },
       "homepage": "https://prefix.cc/",
       "license": "CC0",
       "name": "Prefix.cc",
@@ -594,6 +825,7 @@
         "synonyms": "present",
         "version": "missing"
       },
+      "bioregistry_prefix": "prefixcommons",
       "contact": {
         "email": "michel.dumontier@gmail.com",
         "github": "micheldumontier",
@@ -601,46 +833,23 @@
         "orcid": "0000-0003-4727-9435"
       },
       "description": "A registry of commonly used prefixes in the life sciences and linked data",
-      "download": "https://raw.githubusercontent.com/prefixcommons/biocontext/master/registry/commons_context.jsonld",
+      "download": "https://raw.githubusercontent.com/prefixcommons/data-ingest/master/yml/lsregistry.yml",
       "example": "CHEBI",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "community",
+        "imports": false,
+        "public_version_control": false,
+        "review_team": "public",
+        "scope": "life sciences",
+        "status": "active"
+      },
       "homepage": "https://prefixcommons.org",
       "license": "missing",
       "name": "Prefix Commons",
       "prefix": "prefixcommons",
       "provider_uri_format": "https://prefixcommons.org/?q=$1"
-    },
-    {
-      "availability": {
-        "alternate_providers": "missing",
-        "contact": "missing",
-        "description": "missing",
-        "example": "missing",
-        "fair": false,
-        "fair_note": "There is not a structured resource that lists what prefixes are covered by Scholia",
-        "homepage": "missing",
-        "license": "missing",
-        "name": "missing",
-        "pattern": "missing",
-        "provider": "missing",
-        "search": false,
-        "synonyms": "missing",
-        "version": "missing"
-      },
-      "bioregistry_prefix": "scholia.resource",
-      "contact": {
-        "email": "faan@dtu.dk",
-        "github": "fnielsen",
-        "name": "Finn Årup Nielsen",
-        "orcid": "0000-0001-6128-3356"
-      },
-      "description": "A frontend to Wikidata",
-      "example": "doi",
-      "homepage": "https://scholia.toolforge.org/",
-      "license": "CC0",
-      "name": "Scholia",
-      "prefix": "scholia",
-      "resolver_type": "lookup",
-      "resolver_uri_format": "https://scholia.toolforge.org/$1/$2"
     },
     {
       "availability": {
@@ -668,11 +877,22 @@
       "description": "The cross-references section of UniProtKB entries displays explicit and implicit links to databases such as nucleotide sequence databases, model organism databases and genomics and proteomics resources.",
       "download": "https://www.uniprot.org/database/?format=rdf",
       "example": "0174",
+      "governance": {
+        "accepts_external_contributions": false,
+        "curates": true,
+        "curation": "private",
+        "imports": false,
+        "public_version_control": false,
+        "review_team": "n/a",
+        "scope": "internal",
+        "status": "active"
+      },
       "homepage": "https://www.uniprot.org/database/",
       "license": "CC BY 4.0",
       "name": "UniProt Cross-ref database",
       "prefix": "uniprot",
-      "provider_uri_format": "https://www.uniprot.org/database/DB-$1"
+      "provider_uri_format": "https://www.uniprot.org/database/DB-$1",
+      "short_name": "UniProt"
     },
     {
       "availability": {
@@ -697,12 +917,23 @@
       },
       "description": "An open, community-curated knowledgebase that contains several properties corresponding to resources listed in other biomedical registries.",
       "example": "P683",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "open-review",
+        "imports": false,
+        "public_version_control": false,
+        "review_team": "inferrable",
+        "scope": "general",
+        "status": "active"
+      },
       "homepage": "https://www.wikidata.org",
       "license": "CC0",
       "logo_url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Wikidata-logo-en.svg",
       "name": "Wikidata Property",
       "prefix": "wikidata",
-      "provider_uri_format": "https://www.wikidata.org/wiki/Property:$1"
+      "provider_uri_format": "https://www.wikidata.org/wiki/Property:$1",
+      "short_name": "Wikidata"
     }
   ]
 }

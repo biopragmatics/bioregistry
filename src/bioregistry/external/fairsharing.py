@@ -12,7 +12,8 @@ import pystow
 import requests
 from tqdm import tqdm
 
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL
+from bioregistry.utils import removeprefix
 
 __all__ = [
     "get_fairsharing",
@@ -25,6 +26,14 @@ PROCESSED_PATH = DIRECTORY / "processed.json"
 BASE_URL = "https://api.fairsharing.org"
 SIGNIN_URL = f"{BASE_URL}/users/sign_in"
 RECORDS_URL = f"{BASE_URL}/fairsharing_records"
+
+
+ALLOWED_TYPES = {
+    "terminology_artefact",
+    # "knowledgebase",
+    # "knowledgebase_and_repository",
+    # "repository",
+}
 
 
 def get_fairsharing(force_download: bool = False, use_tqdm: bool = False):
@@ -107,6 +116,8 @@ class FairsharingClient:
         if "type" in record:
             del record["type"]
         record = {"id": record["id"], **record["attributes"]}
+        if record.get("record_type") not in ALLOWED_TYPES:
+            return None
 
         doi = record.get("doi")
         if doi is None:
@@ -118,10 +129,10 @@ class FairsharingClient:
         else:
             tqdm.write(f"DOI has unexpected prefix: {record['doi']}")
 
-        record["description"] = _removeprefix(
+        record["description"] = removeprefix(
             record.get("description"), "This FAIRsharing record describes: "
         )
-        record["name"] = _removeprefix(record.get("name"), "FAIRsharing record for: ")
+        record["name"] = removeprefix(record.get("name"), "FAIRsharing record for: ")
         # for key in [
         #     "created-at",
         #     "domains",  # maybe use later
@@ -150,14 +161,6 @@ class FairsharingClient:
         next_url = res["links"].get("next")
         if next_url:
             yield from self._iter_records_helper(next_url)
-
-
-def _removeprefix(s: Optional[str], prefix) -> Optional[str]:
-    if s is None:
-        return None
-    if s.startswith(prefix):
-        return s[len(prefix) :]
-    return s
 
 
 if __name__ == "__main__":

@@ -1,3 +1,8 @@
+---
+layout: page
+title: Project Governance
+permalink: /governance/
+---
 # Governance
 
 The goal of the Bioregistry is to enable community-driven curation and
@@ -11,26 +16,25 @@ on https://github.com/biopragmatics/bioregistry/issues/156.
 
 - Manual updates to the contents of the Bioregistry (e.g., adding a new prefix,
   merging prefixes, splitting prefixes, or updating a prefix's associated
-  metadata) should be done either in the form of an issue or a pull request.
+  metadata) must be done either in the form of an issue or a pull request.
 - The only updates that aren't considered manual are the ones done by the CI
   system on a nightly basis.
 - Manual updates can be accepted if all continuous integration tests pass and a
   member of the Bioregistry Review Team approves. It's best practice that a
   member of the Review Team does not approve their own updates.
 - New prefixes must conform to
-  https://github.com/biopragmatics/bioregistry/issues/158 and 
-  https://github.com/biopragmatics/bioregistry/issues/133 and all guidelines in
-  [CONTRIBUTING.md](CONTRIBUTING.md).
+  https://github.com/biopragmatics/bioregistry/issues/158 and
+  https://github.com/biopragmatics/bioregistry/issues/133 and the
+  [contribution guidelines](CONTRIBUTING.md).
 - Attribution information for the requester and reviewer of manual updates
-  should be collected in the form of an [ORCiD identifier](https://orcid.org).
+  must be collected in the form of an [ORCiD identifier](https://orcid.org).
 
 ## Review Team
 
-The [review team](https://github.com/orgs/biopragmatics/teams/bioregistry-reviewers)
-is responsible for reviewing requests for new prefixes, merging prefixes,
-splitting prefixes, and updating metadata associated with prefixes. It is
-implemented as a GitHub team that has "triage" permissions (e.g., able to
-maintain issues and pull requests).
+The _Bioregistry Review Team_ is responsible for reviewing requests for new
+prefixes, merging prefixes, splitting prefixes, and updating metadata associated
+with prefixes. It is implemented as a GitHub team that has "triage"
+permissions (e.g., able to maintain issues and pull requests).
 
 Until all of the potential update interactions have been codified with GitHub
 actions workflows, the review team is also responsible for either helping the
@@ -45,33 +49,36 @@ request directly if none has been given by the requester.
   using [Disapproval Voting](https://en.wikipedia.org/wiki/Disapproval_voting)
 - Members must join and participate the OBO Foundry Slack, the #prefixes
   channel, and the Review Team private chat.
-- Members should be listed alphabetically
+- Members must be listed alphabetically by family name [below](#members)
 
-### Member Onboarding
+#### Member Onboarding
 
 - Add to private channel on OBO Foundry Slack
-- Add to the
-  GitHub [review team](https://github.com/orgs/biopragmatics/teams/bioregistry-reviewers)
+- Add to the GitHub [review team](https://github.com/orgs/biopragmatics/teams/bioregistry-reviewers)
+  (note that GitHub hasn't yet enabled teams to be publicly viewed, and this
+  link currently results in a 404 error)
 - Add to membership list below in alphabetical order by last name in along with
   their GitHub handle, ORCID identifier, and date of joining.
 
-### Removing Members
+#### Removing Members
 
-- Members who unresponsive for 3 or more months can be removed
-  by another member of the Bioregistry Review Team
+- Members who unresponsive for 3 or more months can be removed by another member
+  of the Bioregistry Review Team
 - Members who do not conduct themselves according to
-  our [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md) can be suggested to be
+  the Bioregistry [Code of Conduct](CODE_OF_CONDUCT.md) can be suggested to be
   removed by a member of the Bioregistry Review Team.
 
-### Member Offboarding
+#### Member Offboarding
 
 - Remove from the private channel on OBO Foundry Slack
 - Remove from the the
   GitHub [review team](https://github.com/orgs/biopragmatics/teams/bioregistry-reviewers)
+  (note that GitHub hasn't yet enabled teams to be publicly viewed, and this 
+  link currently results in a 404 error)
 - Add the date of exit and move their name and information ot the previous
   members list.
 
-### Members
+#### Members
 
 - Meghan Balk (@megbalk; https://orcid.org/0000-0003-2699-3066; joined 2022-01)
 - Tiffany Callahan (@callahantiff; https://orcid.org/0000-0002-8169-9049; joined
@@ -81,24 +88,24 @@ request directly if none has been given by the requester.
 - Tiago Lubiana (@lubianat; https://orcid.org/0000-0003-2473-2313; joined
   2022-01)
 
-### Previous Members
+#### Previous Members
 
 We're a new team and don't have any yet!
 
 ## Core Development Team
 
-The [Core Development Team](https://github.com/orgs/biopragmatics/teams/bioregistry-core-development)
-is responsible for maintaining the codebase associated with the Bioregistry,
-which includes the Python package, the Bioregistry web application, docker
-configurations/artifacts, and related GitHub repositories. It is implemented as
-a GitHub team that has "maintain" permissions (e.g., able to write to the repo
-as well as maintain issues and pull requests).
+The _Core Development Team_ is responsible for maintaining the codebase
+associated with the Bioregistry, which includes the Python package, the
+Bioregistry web application, docker configurations/artifacts, and related GitHub
+repositories. It is implemented as a GitHub team that has "maintain"
+permissions (e.g., able to write to the repo as well as maintain issues and pull
+requests).
 
-Contributions to the Bioregistry code should be submitted as pull requests
-to https://github.com/biopragmatics/bioregistry. They should conform to
-the [contribution guidelines](https://github.com/biopragmatics/bioregistry/blob/main/CONTRIBUTING.md)
-. Code contributions must be approved by a member of the Core Development Team
-as well as pass continuous integration tests before merging.
+Contributions to the Bioregistry code must be submitted as pull requests
+to https://github.com/biopragmatics/bioregistry. They must conform to
+the [contribution guidelines](CONTRIBUTING.md). Code contributions must be
+approved by a member of the Core Development Team as well as pass continuous
+integration tests before merging.
 
 ### Membership
 
@@ -110,8 +117,9 @@ as well as pass continuous integration tests before merging.
 - Membership to the Bioregistry Core Development Team is granted at the
   discretion of the existing Bioregistry Core Development Team
   using [Disapproval Voting](https://en.wikipedia.org/wiki/Disapproval_voting)
+- Members must be listed alphabetically by family name [below](#members-1)
 
-### Members
+#### Members
 
 - Benjamin M. Gyori (@bgyori; https://orcid.org/0000-0001-9439-5346)
 - Charles Tapley Hoyt (@cthoyt; https://orcid.org/0000-0003-4423-4370)

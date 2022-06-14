@@ -5,7 +5,7 @@
 import itertools as itt
 from typing import Optional
 
-from flask import Blueprint, abort, redirect, render_template, url_for
+from flask import Blueprint, abort, redirect, render_template, request, url_for
 from markdown import markdown
 
 import bioregistry
@@ -15,10 +15,9 @@ from .utils import (
     _get_resource_providers,
     _normalize_prefix_or_404,
 )
-from .. import manager
+from ..resource_manager import manager
 from ..schema import Context
-from ..utils import (
-    curie_to_str,
+from ..schema_utils import (
     read_collections_contributions,
     read_context_contributions,
     read_prefix_contacts,
@@ -26,6 +25,7 @@ from ..utils import (
     read_prefix_reviews,
     read_registry_contributions,
 )
+from ..utils import curie_to_str
 
 __all__ = [
     "ui_blueprint",
@@ -42,11 +42,14 @@ FORMATS = [
 @ui_blueprint.route("/registry/")
 def resources():
     """Serve the Bioregistry page."""
+    registry = bioregistry.read_registry()
+    if request.args.get("novel") in {"true", "t"}:
+        registry = {p: v for p, v in registry.items() if bioregistry.is_novel(p)}
     return render_template(
         "resources.html",
         formats=FORMATS,
         markdown=markdown,
-        registry=bioregistry.read_registry(),
+        registry=registry,
     )
 
 

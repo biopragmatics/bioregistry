@@ -20,6 +20,8 @@ __all__ = [
     "get_n2t_iri",
     "get_iri",
     "get_link",
+    "get_bioregistry_iri",
+    "get_default_iri",
     "miriam_standardize_identifier",
 ]
 
@@ -338,7 +340,5 @@ def get_formatted_iri(metaprefix: str, prefix: str, identifier: str) -> Optional
     'https://n2t.net/hgnc:16793'
     >>> get_formatted_iri("obofoundry", "fbbt", "00007294")
     'http://purl.obolibrary.org/obo/FBbt_00007294'
-    >>> get_formatted_iri("scholia", "lipidmaps", "00000052")
-    'https://scholia.toolforge.org/lipidmaps/00000052'
     """
     return manager.get_formatted_iri(metaprefix=metaprefix, prefix=prefix, identifier=identifier)

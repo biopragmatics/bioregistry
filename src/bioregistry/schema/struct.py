@@ -19,15 +19,17 @@ from typing import (
     Sequence,
     Set,
     Union,
+    cast,
 )
 
 import pydantic.schema
 from pydantic import BaseModel, Field
 
 from bioregistry import constants as brc
-from bioregistry.constants import BIOREGISTRY_REMOTE_URL, URI_FORMAT_KEY
+from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE
+from bioregistry.utils import removeprefix, removesuffix
 
 try:
     from typing import Literal  # type:ignore
@@ -49,6 +51,7 @@ logger = logging.getLogger(__name__)
 
 HERE = pathlib.Path(__file__).parent.resolve()
 SCHEMA_PATH = HERE.joinpath("schema.json")
+BULK_UPLOAD_FORM = DOCS.joinpath("bulk_prefix_request_template.tsv")
 
 #: Search string for skipping formatters containing this
 IDOT_SKIP = "identifiers.org"
@@ -151,25 +154,33 @@ class Provider(BaseModel):
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
-    prefix: str = Field(..., description="The prefix for this resource", exclude=True)
+    prefix: str = Field(
+        ...,
+        description="The prefix for this resource",
+        exclude=True,
+        integration_status="required",
+    )
     name: Optional[str] = Field(
-        description="The name of the resource",
+        description="The name of the resource", integration_status="required"
     )
     description: Optional[str] = Field(
-        description="A description of the resource",
+        description="A description of the resource", integration_status="required"
     )
     pattern: Optional[str] = Field(
         description="The regular expression pattern for local unique identifiers in the resource",
+        integration_status="required_for_new",
     )
     uri_format: Optional[str] = Field(
         title="URI format string",
         description="The URI format string, which must have at least one ``$1`` in it",
+        integration_status="required_for_new",
     )
     providers: Optional[List[Provider]] = Field(
         description="Additional, non-default providers for the resource",
     )
     homepage: Optional[str] = Field(
         description="The URL for the homepage of the resource, preferably using HTTPS",
+        integration_status="required",
     )
     repository: Optional[str] = Field(
         description="The URL for the repository of the resource",
@@ -178,15 +189,20 @@ class Resource(BaseModel):
         description=(
             "The contact email address for the resource. This must correspond to a specific "
             "person and not be a listserve nor a shared email account."
-        )
+        ),
+        integration_status="suggested",
     )
     example: Optional[str] = Field(
         description="An example local identifier for the resource, explicitly excluding any redundant "
         "usage of the prefix in the identifier. For example, a GO identifier should only "
         "look like ``1234567`` and not like ``GO:1234567``",
+        integration_status="required",
     )
     example_extras: Optional[List[str]] = Field(
         description="Extra example identifiers",
+    )
+    example_decoys: Optional[List[str]] = Field(
+        description="Extra example identifiers that explicitly fail regex tests",
     )
     license: Optional[str] = Field(
         description="The license for the resource",
@@ -259,7 +275,7 @@ class Resource(BaseModel):
     into another resource, when the website related to the resource goes down, or any
     other reason that it's difficult or impossible to find full metadata on the resource.
     If this is set to true, please add a comment explaining why. This flag will override
-    annotations from the OLS, OBO Foundry, and Prefix Commons on the deprecation status,
+    annotations from the OLS, OBO Foundry, and others on the deprecation status,
     since they often disagree and are very conservative in calling dead resources.
     """
         ),
@@ -325,6 +341,7 @@ class Resource(BaseModel):
     Workflow must contain this field.
     """
         ),
+        integration_status="required_for_new",
     )
     contributor_extras: Optional[List[Author]] = Field(
         description="Additional contributors besides the original submitter.",
@@ -337,7 +354,8 @@ class Resource(BaseModel):
     optionall their email address and GitHub handle. All entries curated through the Bioregistry GitHub
     Workflow should contain this field pointing to the person who reviewed it on GitHub.
     """
-        )
+        ),
+        integration_status="required_for_new",
     )
     proprietary: Optional[bool] = Field(
         description=_dedent(
@@ -380,8 +398,16 @@ class Resource(BaseModel):
     obofoundry: Optional[Mapping[str, Any]]
     #: External data from the BioPortal ontology repository
     bioportal: Optional[Mapping[str, Any]]
+    #: External data from the EcoPortal ontology repository
+    ecoportal: Optional[Mapping[str, Any]]
+    #: External data from the AgroPortal ontology repository
+    agroportal: Optional[Mapping[str, Any]]
+    #: External data from the CropOCT ontology curation tool
+    cropoct: Optional[Mapping[str, Any]]
     #: External data from the Ontology Lookup Service
     ols: Optional[Mapping[str, Any]]
+    #: External data from the AberOWL ontology repository
+    aberowl: Optional[Mapping[str, Any]]
     #: External data from the NCBI Genbank's custom registry
     ncbi: Optional[Mapping[str, Any]]
     #: External data from UniProt's custom registry
@@ -396,6 +422,8 @@ class Resource(BaseModel):
     cheminf: Optional[Mapping[str, Any]]
     #: External data from FAIRsharing
     fairsharing: Optional[Mapping[str, Any]]
+    #: External data from BioContext
+    biocontext: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
@@ -513,7 +541,7 @@ class Resource(BaseModel):
             ("miriam", URI_FORMAT_KEY),
             ("n2t", URI_FORMAT_KEY),
             ("go", URI_FORMAT_KEY),
-            ("prefixcommons", URI_FORMAT_KEY),
+            ("biocontext", URI_FORMAT_KEY),
             ("wikidata", URI_FORMAT_KEY),
             ("uniprot", URI_FORMAT_KEY),
             ("cellosaurus", URI_FORMAT_KEY),
@@ -568,7 +596,7 @@ class Resource(BaseModel):
 
     def get_mappings(self) -> Optional[Mapping[str, str]]:
         """Get the mappings to external registries, if available."""
-        from ..utils import read_metaregistry
+        from ..schema_utils import read_metaregistry
 
         rv: Dict[str, str] = {}
         rv.update(self.mappings or {})  # This will be the replacement later
@@ -742,6 +770,7 @@ class Resource(BaseModel):
         miriam_example = self.get_external("miriam").get("sampleId")
         if miriam_example is not None:
             return miriam_example
+        # TODO go through more external data looking for this
         example = self.get_external("ncbi").get("example")
         if example is not None:
             return example
@@ -830,14 +859,25 @@ class Resource(BaseModel):
             return None
         return f"{rv}$1"
 
+    def get_biocontext_uri_format(self) -> Optional[str]:
+        """Get the BioContext URI format string for this entry, if available.
+
+        :returns: The BioContext URI format string, if available.
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("hgmd").get_biocontext_uri_format()
+        'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
+        """
+        return self.get_external("biocontext").get(URI_FORMAT_KEY)
+
     def get_prefixcommons_uri_format(self) -> Optional[str]:
         """Get the Prefix Commons URI format string for this entry, if available.
 
         :returns: The Prefix Commons URI format string, if available.
 
         >>> from bioregistry import get_resource
-        >>> get_resource("hgmd").get_prefixcommons_uri_format()
-        'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
+        >>> get_resource("antweb").get_prefixcommons_uri_format()
+        'http://www.antweb.org/specimen.do?name=$1'
         """
         return self.get_external("prefixcommons").get(URI_FORMAT_KEY)
 
@@ -961,20 +1001,20 @@ class Resource(BaseModel):
         "default": get_default_format,
         "obofoundry": get_obofoundry_uri_format,
         "prefixcommons": get_prefixcommons_uri_format,
+        "biocontext": get_biocontext_uri_format,
         "miriam": get_miriam_uri_format,
         "n2t": get_n2t_uri_format,
         "ols": get_ols_uri_format,
-        # "bioportal": lambda x: ...,
     }
 
     DEFAULT_URI_FORMATTER_PRIORITY: ClassVar[Sequence[str]] = (
         "default",
         "obofoundry",
-        "prefixcommons",
+        "biocontext",
         "miriam",
         "n2t",
         "ols",
-        # "bioportal",
+        "prefixcommons",
     )
 
     def get_uri_format(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
@@ -983,13 +1023,13 @@ class Resource(BaseModel):
         :param priority: The priority order of metaresources to use for format URI lookup.
             The default is:
 
-            1. Default first party (from bioregistry, prefix commons, or miriam)
+            1. Default first party (from the Bioregistry, BioContext, or MIRIAM)
             2. OBO Foundry
-            3. Prefix Commons
-            4. Identifiers.org
+            3. BioContext
+            4. MIRIAM/Identifiers.org
             5. N2T
             6. OLS
-            7. BioPortal
+            7. Prefix Commons
 
         :return: The best URI format string, where the ``$1`` should be replaced by a
             local unique identifier. ``$1`` could potentially appear multiple times.
@@ -1004,15 +1044,15 @@ class Resource(BaseModel):
         ChEBI example above). Do so like:
 
         >>> from bioregistry import get_resource
-        >>> priority = ['obofoundry', 'bioregistry', 'prefixcommons', 'miriam', 'ols']
+        >>> priority = ['obofoundry', 'bioregistry', 'biocontext', 'miriam', 'ols']
         >>> get_resource("chebi").get_uri_format(priority=priority)
         'http://purl.obolibrary.org/obo/CHEBI_$1'
         """
-        # TODO add examples in doctests for prefix commons, identifiers.org, and OLS
+        # TODO add examples in doctests for BioContext, MIRIAM/Identifiers.org, and OLS
         for metaprefix in priority or self.DEFAULT_URI_FORMATTER_PRIORITY:
             formatter = self.URI_FORMATTERS.get(metaprefix)
             if formatter is None:
-                logger.warning("count not get formatter for %s", metaprefix)
+                logger.warning("could not get formatter for %s", metaprefix)
                 continue
             rv = formatter(self)
             if rv is not None:
@@ -1169,10 +1209,34 @@ class Resource(BaseModel):
         return self.is_canonical_identifier(self.standardize_identifier(identifier))
 
     def get_download_obo(self) -> Optional[str]:
-        """Get the download link for the latest OBO file."""
+        """Get the download link for the latest OBO file.
+
+        :return: A URL for an OBO text file download, if exists.
+
+        Get an ontology download link annotated directly in the
+        Bioregistry:
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("caloha").get_download_obo()
+        'https://download.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo'
+
+        Get an ontology download link from the OBO Foundry:
+
+        >>> get_resource("bfo").get_download_obo()
+        'http://purl.obolibrary.org/obo/bfo.obo'
+
+        Get ontology download link in AberOWL but not OBO Foundry
+        (note this might change over time so the exact value isn't
+        used in the doctest):
+
+        >>> url = get_resource("dermo").get_download_obo()
+        >>> assert url is not None and url.startswith("http://aber-owl.net/media/ontologies/DERMO")
+        """
         if self.download_obo:
             return self.download_obo
-        return self.get_external("obofoundry").get("download.obo")
+        return self.get_external("obofoundry").get("download.obo") or self.get_external(
+            "aberowl"
+        ).get("download_obo")
 
     def get_download_obograph(self) -> Optional[str]:
         """Get the download link for the latest OBOGraph JSON file."""
@@ -1181,13 +1245,47 @@ class Resource(BaseModel):
         return self.get_external("obofoundry").get("download.json")
 
     def get_download_owl(self) -> Optional[str]:
-        """Get the download link for the latest OWL file."""
+        """Get the download link for the latest OWL file.
+
+        :return: A URL for an OWL file download, if exists.
+
+        Get an ontology download link annotated directly in the
+        Bioregistry:
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("orphanet.ordo").get_download_owl()
+        'http://www.orphadata.org/data/ORDO/ordo_orphanet.owl'
+
+        Get an ontology download link from the OBO Foundry:
+
+        >>> get_resource("mod").get_download_owl()
+        'http://purl.obolibrary.org/obo/mod.owl'
+
+        Get ontology download link in AberOWL but not OBO Foundry
+        (note this might change over time so the exact value isn't
+        used in the doctest):
+
+        >>> url = get_resource("birnlex").get_download_owl()
+        >>> assert url is not None and url.startswith("http://aber-owl.net/media/ontologies/BIRNLEX/")
+
+        """
         if self.download_owl:
             return self.download_owl
         return (
             self.get_external("obofoundry").get("download.owl")
             or self.get_external("ols").get("version.iri")
             or self.get_external("ols").get("download")
+            or self.get_external("aberowl").get("download_owl")
+        )
+
+    def has_download(self) -> bool:
+        """Check if this resource can be downloaded."""
+        return any(
+            (
+                self.get_download_obo(),
+                self.get_download_owl(),
+                self.get_download_obograph(),
+            )
         )
 
     def get_license(self) -> Optional[str]:
@@ -1205,6 +1303,26 @@ class Resource(BaseModel):
         if self.version:
             return self.version
         return self.get_external("ols").get("version")
+
+    def get_short_description(self, use_markdown: bool = False) -> Optional[str]:
+        """Get a short description."""
+        desc = self.get_description()
+        if not desc:
+            return None
+        ss = desc.split(". ")
+        if ss:
+            rv = ss[0].rstrip(".") + "."
+        else:
+            rv = desc.rstrip(".") + "."
+            logger.warning("could not split description: %s", desc)
+        if not use_markdown:
+            return rv
+
+        import markupsafe
+        from markdown import markdown
+
+        rv = cast(str, removesuffix(removeprefix(markdown(rv), "<p>"), "</p>"))
+        return markupsafe.Markup(rv)
 
 
 SchemaStatus = Literal[
@@ -1232,6 +1350,59 @@ schema_score_map = {
 }
 
 
+class RegistryGovernance(BaseModel):
+    """Metadata about a registry's governance."""
+
+    curation: Literal["private", "import", "community", "opaque-review", "open-review"]
+    curates: bool = Field(description="Does the registry curate novel prefixes?")
+    imports: bool = Field(
+        description="Does the registry import and align prefixes from other registries?"
+    )
+    scope: str = Field(
+        description="What is the scope of prefixes which the registry covers? For example,"
+        " some registries are limited to ontologies, some have a full scope over the life sciences,"
+        " and some are general purpose."
+    )
+    comments: Optional[str]
+    accepts_external_contributions: bool = Field(
+        description="Does the registry (in theory) accept external contributions, either via suggestion or"
+        " proactive improvement? This field does not pass judgement on the difficult of this"
+        " process from the perspective of the submitter nor the responsiveness of the registry."
+        " This field does not consider the ability for insiders (i.e., people with private relationships"
+        " to the maintainers) to affect change."
+    )
+    public_version_control: bool = Field(
+        description="Does the registry store its data/code in publicly available version control"
+        " system, such as GitHub or GitLab? Currently there is no resource that does one but not"
+        " the other, so this is grouped (for now)."
+    )
+    review_team: Literal["public", "inferrable", "private", "n/a"] = Field(
+        description="Are the reviewers for external contributions known? If there's a well-defined,"
+        " maintained listing, then it can be marked as public. If it can be inferred, e.g. from reading"
+        " the commit history on a version control system, then it can be marked as inferrable. A closed"
+        " review team, e.g., like for Identifiers.org can be marked as private. Resources that do not"
+        " accept external contributions can be marked with N/A."
+    )
+    status: Literal["active", "unresponsive", "inactive"] = Field(
+        description="What is the status of the repository? An active repository is still being maintained and also"
+        " is responsive to external requests for improvement. An unresponsive repository is still being maintained"
+        " in some capacity but is not responsive to external requests for improvement. An inactive repository is"
+        " no longer being proactively maintained (though may receive occasional patches)."
+    )
+
+    @property
+    def review_team_icon(self) -> str:
+        """Get an icon for the review team."""
+        if self.review_team == "public":
+            return "✓"
+        elif self.review_team == "inferrable":
+            return "✓*"
+        elif self.review_team == "private":
+            return "✗"
+        else:
+            return ""
+
+
 class RegistrySchema(BaseModel):
     """Metadata about a registry's schema."""
 
@@ -1247,12 +1418,14 @@ class RegistrySchema(BaseModel):
     version: SchemaStatus  # type:ignore
     contact: SchemaStatus  # type:ignore
     search: bool = Field(
-        ..., description="Does this resource have a search functionality for prefixes"
+        ...,
+        description="Does this registry provide a URL into which a search"
+        " query can be formatted to show a list of results?",
     )
     fair: bool = Field(
         ...,
-        description="Does this resource provide a structured dump of the data is easily findable,"
-        " accessible, and in a structured format in bulk",
+        description="Does this registry provide a structured bulk dump of its prefixes, records,"
+        " and all associated metadata in an easily findable and accessible manner?",
     )
     fair_note: Optional[str] = Field(
         description="Explanation for why data isn't FAIR",
@@ -1295,6 +1468,9 @@ class Registry(BaseModel):
     availability: RegistrySchema = Field(
         ..., description="A structured description of the metadata that the registry collects"
     )
+    governance: RegistryGovernance = Field(
+        ..., description="A structured description of the governance for the registry"
+    )
     download: Optional[str] = Field(
         description="A download link for the data contained in the registry"
     )
@@ -1316,6 +1492,9 @@ class Registry(BaseModel):
     )
     license: Optional[str] = Field(
         description="The license under which the resource is redistributed",
+    )
+    short_name: Optional[str] = Field(
+        description="A short name for the resource, e.g., for use in charts"
     )
 
     def score(self) -> int:
@@ -1430,6 +1609,20 @@ class Registry(BaseModel):
         if not path.exists():
             return None
         return f"https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/external/{self.prefix}.py"
+
+    def get_short_name(self) -> str:
+        """Get the short name or full name if none annotated."""
+        return self.short_name or self.name
+
+    @property
+    def is_resolver(self) -> bool:
+        """Check if it is a resolver."""
+        return self.resolver_uri_format is not None and self.resolver_type != "lookup"
+
+    @property
+    def is_lookup(self) -> bool:
+        """Check if it is a lookup service."""
+        return self.resolver_uri_format is not None and self.resolver_type == "lookup"
 
 
 class Collection(BaseModel):
@@ -1615,8 +1808,85 @@ def get_json_schema():
     return rv
 
 
+def write_bulk_prefix_request_template():
+    """Write a template for bulk prefix requests."""
+    import bioregistry
+
+    required = []
+    optional = []
+
+    metaprefixes = set(bioregistry.read_metaregistry())
+
+    for name, field in Resource.__fields__.items():
+        if name in {
+            "providers",
+            "example_extras",
+            "example_decoys",
+            "contributor_extras",
+            "mappings",
+            "reviewer",
+            "contact",
+            "contributor",
+        }:
+            continue
+        if name in metaprefixes:
+            continue
+        status = field.field_info.extra.get("integration_status", "optional")
+        if status in {"required", "required_for_new"}:
+            required.append(name)
+        elif status == "skip":
+            continue
+        else:
+            optional.append(name)
+    required.extend(
+        ("contributor_name", "contributor_github", "contributor_orcid", "contributor_email")
+    )
+    optional.extend(("contact_name", "contact_github", "contact_orcid", "contact_email"))
+
+    with BULK_UPLOAD_FORM.open("w") as file:
+        print(  # noqa:T201
+            "request_id",
+            *required,
+            *(f"{c} (optional)" for c in optional),
+            sep="\t",
+            file=file,
+        )
+        # add examples
+        for i, prefix in enumerate(["chebi", "tkg", "mondo", "nmdc"], start=1):
+            resource = bioregistry.get_resource(prefix)
+            assert resource is not None
+            print(  # noqa:T201
+                f"example_{i} (delete this row)",
+                *(_get(resource, c) for c in required),
+                *(_get(resource, c) for c in optional),
+                sep="\t",
+                file=file,
+            )
+        for i in range(1, 6):
+            print(i, *[""] * (len(required) + len(optional)), sep="\t", file=file)  # noqa:T201
+
+
+def _get(resource, key):
+    getter_key = f"get_{key}"
+    if hasattr(resource, getter_key):
+        x = getattr(resource, getter_key)()
+    elif hasattr(resource, key):
+        x = getattr(resource, key)
+    elif "_" in key:
+        k1, k2 = key.split("_")
+        x1 = getattr(resource, k1, None)
+        x = getattr(x1, k2, None) if x1 is not None else None
+    else:
+        x = None
+    if isinstance(x, (list, set)):
+        return "|".join(sorted(x))
+    return x or ""
+
+
 def main():
     """Dump the JSON schemata."""
+    write_bulk_prefix_request_template()
+
     with SCHEMA_PATH.open("w") as file:
         json.dump(get_json_schema(), indent=2, fp=file)
 

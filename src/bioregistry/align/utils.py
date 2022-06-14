@@ -8,10 +8,11 @@ from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, S
 import click
 from tabulate import tabulate
 
-from ..data import EXTERNAL
+from ..constants import EXTERNAL
 from ..resource_manager import Manager
 from ..schema import Resource
-from ..utils import is_mismatch, norm, read_metaregistry
+from ..schema_utils import is_mismatch, read_metaregistry
+from ..utils import norm
 
 __all__ = [
     "Aligner",

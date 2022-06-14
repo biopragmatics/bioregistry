@@ -68,7 +68,11 @@
                 {% if registry.license and registry.license == "missing" %}
                     Licensing information could not be located for this resource.
                 {% elif registry.license %}
-                    Data from this resource is redistributed under the {{ registry.license }} license.
+                    {% if registry.license.startswith("See https://github.com/biopragmatics/bioregistry/") %}
+                        ⚠️ Data from this resource does not have an explicit license. {{ registry.license }}.
+                    {% else %}
+                        Data from this resource is redistributed under the {{ registry.license }} license.
+                    {% endif %}
                 {% endif %}
             </p>
         {% endif %}

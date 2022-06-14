@@ -1,33 +1,33 @@
 # -*- coding: utf-8 -*-
 
-"""Align the Prefix Commons with the Bioregistry."""
+"""Align the BioContext with the Bioregistry."""
 
 from typing import Any, Dict, Mapping, Sequence
 
 from bioregistry.align.utils import Aligner
 from bioregistry.constants import URI_FORMAT_KEY
-from bioregistry.external.prefix_commons import get_prefix_commons
+from bioregistry.external.biocontext import get_biocontext
 
 __all__ = [
-    "PrefixCommonsAligner",
+    "BioContextAligner",
 ]
 
 
-class PrefixCommonsAligner(Aligner):
-    """Aligner for Prefix Commons."""
+class BioContextAligner(Aligner):
+    """Aligner for BioContext."""
 
-    key = "prefixcommons"
-    getter = get_prefix_commons
+    key = "biocontext"
+    getter = get_biocontext
     curation_header = [URI_FORMAT_KEY, "identifiers", "purl"]
 
     def get_skip(self) -> Mapping[str, str]:
-        """Get entries for prefix commons that should be skipped."""
+        """Get entries for BioContext that should be skipped."""
         return {
             "fbql": "not a real resource, as far as I can tell",
         }
 
     def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
-        """Prepare Prefix Commons data to be added to the Prefix Commons for each BioPortal registry entry."""
+        """Prepare BioContext data to be added to the BioContext for each BioPortal registry entry."""
         uri_format = external_entry[URI_FORMAT_KEY].strip()
         return {
             URI_FORMAT_KEY: uri_format,
@@ -36,7 +36,7 @@ class PrefixCommonsAligner(Aligner):
         }
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
-        """Prepare curation rows for unaligned Prefix Commons registry entries."""
+        """Prepare curation rows for unaligned BioContext registry entries."""
         formatter = external_entry[URI_FORMAT_KEY]
         return [
             formatter,
@@ -46,4 +46,4 @@ class PrefixCommonsAligner(Aligner):
 
 
 if __name__ == "__main__":
-    PrefixCommonsAligner.align()
+    BioContextAligner.align()

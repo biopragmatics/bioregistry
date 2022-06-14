@@ -1,6 +1,10 @@
 name: Tests
 
-on: [ push, pull_request ]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   lint:
@@ -48,7 +52,7 @@ jobs:
       - name: Check docstring coverage
         run: tox -e docstr-coverage
       - name: Check documentation build with Sphinx
-        run: tox -e docs
+        run: tox -e docs-test
   tests:
     name: Tests
     runs-on: ${{ matrix.os }}

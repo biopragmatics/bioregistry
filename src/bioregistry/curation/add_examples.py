@@ -10,7 +10,7 @@ import click
 import pyobo
 import pyobo.getters
 
-from bioregistry.utils import read_registry, write_registry
+from bioregistry import read_registry, write_registry
 
 
 def main():

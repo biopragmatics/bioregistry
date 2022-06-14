@@ -7,7 +7,7 @@ import json
 from bs4 import BeautifulSoup
 from pystow.utils import download
 
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL
 
 DIRECTORY = EXTERNAL / "ontobee"
 DIRECTORY.mkdir(exist_ok=True, parents=True)

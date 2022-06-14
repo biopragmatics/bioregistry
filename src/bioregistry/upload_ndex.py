@@ -2,13 +2,17 @@
 
 """Generate a small knowledge graph relating entities."""
 
+from typing import TYPE_CHECKING
+
 import click
 import pystow
 from more_click import verbose_option
-from ndex2 import NiceCXBuilder
 
 import bioregistry
 import bioregistry.version
+
+if TYPE_CHECKING:
+    import ndex2
 
 NDEX_UUID = "aa78a43f-9c4d-11eb-9e72-0ac135e8bacf"
 
@@ -23,6 +27,8 @@ def main():
 
 def upload():
     """Generate a CX graph and upload to NDEx."""
+    from ndex2 import NiceCXBuilder
+
     cx = NiceCXBuilder()
     cx.set_name("Bioregistry")
     cx.add_network_attribute(
@@ -102,7 +108,7 @@ def upload():
     )
 
 
-def make_registry_node(cx: NiceCXBuilder, metaprefix: str) -> int:
+def make_registry_node(cx: "ndex2.NiceCXBuilder", metaprefix: str) -> int:
     """Generate a CX node for a registry."""
     node = cx.add_node(
         name=bioregistry.get_registry_name(metaprefix),
@@ -117,7 +123,7 @@ def make_registry_node(cx: NiceCXBuilder, metaprefix: str) -> int:
     return node
 
 
-def make_resource_node(cx: NiceCXBuilder, prefix: str) -> int:
+def make_resource_node(cx: "ndex2.NiceCXBuilder", prefix: str) -> int:
     """Generate a CX node for a resource."""
     node = cx.add_node(
         name=bioregistry.get_name(prefix),

@@ -17,7 +17,13 @@ from .api import api_blueprint
 from .ui import ui_blueprint
 from ..resolve_identifier import get_bioregistry_iri
 from ..schema.constants import bioregistry_schema_terms
-from ..schema.struct import get_json_schema, schema_status_map
+from ..schema.struct import (
+    Registry,
+    RegistryGovernance,
+    RegistrySchema,
+    get_json_schema,
+    schema_status_map,
+)
 
 app = Flask(__name__)
 Swagger.DEFAULT_CONFIG.update(
@@ -52,6 +58,9 @@ Bootstrap4(app)
 app.register_blueprint(api_blueprint)
 app.register_blueprint(ui_blueprint)
 
+# Make bioregistry available in all jinja templates
+app.jinja_env.globals.update(bioregistry=bioregistry)
+
 
 @app.route("/")
 def home():
@@ -81,8 +90,12 @@ def related():
     """Render the related page."""
     return render_template(
         "meta/related.html",
+        mapping_counts=bioregistry.count_mappings(),
         registries=sorted(bioregistry.read_metaregistry().values(), key=attrgetter("name")),
         schema_status_map=schema_status_map,
+        registry_cls=Registry,
+        registry_governance_cls=RegistryGovernance,
+        registry_schema_cls=RegistrySchema,
     )
 
 

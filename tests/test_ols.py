@@ -5,7 +5,7 @@
 import json
 import unittest
 
-from bioregistry.data import OLS_PROCESSING, VersionType
+from bioregistry.external.ols import OLS_PROCESSING, VersionType
 
 
 class TestOLS(unittest.TestCase):
