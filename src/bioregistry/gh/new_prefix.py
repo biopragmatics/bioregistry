@@ -82,7 +82,7 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
             )
             continue
         rv[issue_id] = Resource(
-            prefix=prefix, contributor=contributor, request_issue=issue_id, **resource_data
+            prefix=prefix, contributor=contributor, github_request_issue=issue_id, **resource_data
         )
     return rv
 
