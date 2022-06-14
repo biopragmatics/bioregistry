@@ -28,6 +28,7 @@ HEADER = {
     "databaseHomepage": "database.homepage",
     "prop": "prefix",
     "propLabel": "name",
+    "propDescription": "description",
     "propMiriam": "miriam",
     "propHomepage": "homepage",
     "propFormat": URI_FORMAT_KEY,
@@ -42,7 +43,7 @@ def iter_results():
         """\
     SELECT
         ?database ?databaseLabel ?databaseMiriam ?databaseHomepage
-        ?prop ?propLabel ?propMiriam ?propHomepage ?propFormat ?propFormatRDF ?propPattern
+        ?prop ?propLabel ?propDescription ?propMiriam ?propHomepage ?propFormat ?propFormatRDF ?propPattern
         # ?propDatabase ?propDatabaseLabel
     WHERE {
         ?database wdt:P31 wd:Q4117139 .
