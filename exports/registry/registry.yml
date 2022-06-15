@@ -1767,7 +1767,7 @@ biolegend:
 biolink:
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
-  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/24/biolink.owl
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/25/biolink.owl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
   mappings:
@@ -5066,7 +5066,6 @@ cpt:
   pattern: ^\d+$
   preferred_prefix: cpt
   references:
-  - https://github.com/biopragmatics/bioregistry/issues/357
   - https://github.com/biopragmatics/bioregistry/pull/358
   - https://github.com/biolink/biolink-model/pull/993
   reviewer:
@@ -22594,6 +22593,23 @@ scopus:
   name: Scopus Researcher
   pattern: ^\d+$
   preferred_prefix: scopus
+scr:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The SciCrunch Registry holds metadata records that describe digital
+    resources, e.g., software, databases, projects and also services. Most of these
+    are produced as a result of government funding and are available to the scientific
+    community. Resources are manually curated to make sure the information is accurate.
+    We also use a web crawler to find literature mentions for the resources.
+  example: '003070'
+  homepage: https://scicrunch.org/browse/resourcedashboard
+  name: SciCrunch Registry
+  pattern: ^\d+$
+  preferred_prefix: scr
+  uri_format: http://scicrunch.org/resolver/SCR_$1
 scretf:
   description: ScerTF is a database of position weight matrices (PWMs) for transcription
     factors in Saccharomyces species. It identifies a single matrix for each TF that
@@ -22938,7 +22954,7 @@ sider.effect:
   preferred_prefix: sider.effect
   provides: umls
   uri_format: http://sideeffects.embl.de/se/$1
-sigmaaldirch:
+sigmaaldrich:
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -22948,7 +22964,7 @@ sigmaaldirch:
   example: HPA000698
   homepage: https://www.sigmaaldrich.com
   name: Sigma Aldrich
-  preferred_prefix: sigmaaldirch
+  preferred_prefix: sigmaaldrich
   uri_format: https://www.sigmaaldrich.com/US/en/product/sigma/$1
 signaling-gateway:
   description: The Signaling Gateway provides  information on  mammalian proteins
@@ -25030,16 +25046,16 @@ uniprot.disease:
   description: The human diseases in which proteins are involved are described in
     UniProtKB entries with a controlled vocabulary.
   download_obo: https://www.uniprot.org/diseases/?query=*&format=obo
-  example: '04240'
+  example: DI-04240
   homepage: https://www.uniprot.org/diseases/
   name: UniProt Diseases
   part_of: uniprot
-  pattern: ^\d{5}$
+  pattern: ^DI-\d{5}$
   preferred_prefix: uniprot.disease
   synonyms:
   - DI
   - SP_DI
-  uri_format: https://www.uniprot.org/diseases/DI-$1
+  uri_format: https://www.uniprot.org/diseases/$1
 uniprot.isoform:
   description: The UniProt Knowledgebase (UniProtKB) is a comprehensive resource for
     protein sequence and functional information with extensive cross-references to
@@ -25072,43 +25088,58 @@ uniprot.isoform:
   synonyms:
   - UPISO
   uri_format: http://www.uniprot.org/uniprot/$1
+uniprot.journal:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: identifier for a scientific journal, in the UniProt database
+  example: '3546'
+  homepage: https://www.uniprot.org/journals
+  mappings:
+    wikidata: P4616
+  name: UniProt journal ID
+  pattern: ^\d{4}$
+  preferred_prefix: uniprot.journal
+  uri_format: https://www.uniprot.org/journals/$1
 uniprot.keyword:
   description: UniProtKB entries are tagged with keywords that can be used to retrieve
     particular subsets of entries.
   download_obo: https://www.uniprot.org/keywords/?format=obo
-  example: '1273'
+  example: KW-1273
   homepage: http://www.uniprot.org/keywords/
   mappings:
     go: UniProtKB-KW
     prefixcommons: uniprot.kw
   name: UniProt Keywords
   part_of: uniprot
-  pattern: ^\d{4}$
+  pattern: ^KW-\d{4}$
   preferred_prefix: uniprot.keyword
   synonyms:
   - SP_KW
   - UniProtKB-KW
   - uniprot.keyword
   - uniprot.kw
-  uri_format: https://www.uniprot.org/keywords/KW-$1
+  uri_format: https://www.uniprot.org/keywords/$1
 uniprot.location:
   description: The subcellular locations in which a protein is found are described
     in UniProtKB entries with a controlled vocabulary, which includes also membrane
     topology and orientation terms.
   download_obo: https://www.uniprot.org/locations/?query=*&format=obo
-  example: '0002'
+  example: SL-0002
   homepage: https://www.uniprot.org/locations/
   mappings:
     go: UniProtKB-SubCell
   name: UniProt Subcellular Locations
   part_of: uniprot
-  pattern: ^\d+$
+  pattern: ^SL-\d+$
   preferred_prefix: uniprot.location
   synonyms:
   - SP_SL
   - UPLOC
   - UniProtKB-SubCell
-  uri_format: https://www.uniprot.org/locations/SL-$1
+  uri_format: https://www.uniprot.org/locations/$1
 uniprot.ptm:
   contributor:
     email: cthoyt@gmail.com
@@ -25118,11 +25149,11 @@ uniprot.ptm:
   description: The post-translational modifications used in the UniProt knowledgebase
     (Swiss-Prot and TrEMBL). The definition of the post-translational modifications
     usage as well as other information is provided in the following format
-  example: '0450'
+  example: PTM-0450
   homepage: https://www.uniprot.org/docs/ptmlist
   name: UniProt Post-Translational Modification
   part_of: uniprot
-  pattern: ^\d{4}$
+  pattern: ^PTM-\d{4}$
   preferred_prefix: uniprot.ptm
   references:
   - https://twitter.com/cthoyt/status/1510570256619778053
@@ -25138,18 +25169,18 @@ uniprot.resource:
   description: The cross-references section of UniProtKB entries displays explicit
     and implicit links to databases such as nucleotide sequence databases, model organism
     databases and genomics and proteomics resources.
-  example: '0174'
+  example: DB-0174
   homepage: https://www.uniprot.org/database/
   name: UniProt Resource
   part_of: uniprot
-  pattern: ^\d{4}$
+  pattern: ^DB-\d{4}$
   preferred_prefix: uniprot.resource
-  uri_format: https://www.uniprot.org/database/DB-$1
+  uri_format: https://www.uniprot.org/database/$1
 uniprot.tissue:
   description: The UniProt Tissue List is a controlled vocabulary of terms used to
     annotate biological tissues. It also contains cross-references to other ontologies
     where tissue types are specified.
-  example: 0285
+  example: TS-0285
   homepage: https://www.uniprot.org/docs/tisslist.txt
   mappings:
     biocontext: TISSUELIST
@@ -25157,9 +25188,9 @@ uniprot.tissue:
     n2t: tissuelist
   name: Tissue List
   part_of: uniprot
-  pattern: ^\d{4}$
+  pattern: ^TS-\d{4}$
   preferred_prefix: uniprot.tissue
-  uri_format: https://www.uniprot.org/tissues/TS-$1
+  uri_format: https://www.uniprot.org/tissues/$1
 uniprot.var:
   contributor:
     email: cthoyt@gmail.com

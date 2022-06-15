@@ -384,6 +384,9 @@ class Resource(BaseModel):
         ),
     )
     twitter: Optional[str] = Field(description="The twitter handle for the project")
+    github_request_issue: Optional[int] = Field(
+        description="The GitHub issue for the new prefix request"
+    )
     #: External data from Identifiers.org's MIRIAM Database
     miriam: Optional[Mapping[str, Any]]
     #: External data from the Name-to-Thing service
@@ -799,9 +802,31 @@ class Resource(BaseModel):
     def get_publications(self):
         """Get a list of publications."""
         # TODO make a model for this
+        rv = {}
         if self.obofoundry:
-            return self.obofoundry.get("publications", [])
-        return []
+            for publication in self.obofoundry.get("publications", []):
+                url, title = publication["id"], publication["title"]
+                if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
+                    pmid = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
+                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
+                else:
+                    logger.warning("unhandled obo foundry publication ID: %s", url)
+        if self.fairsharing:
+            for publication in self.fairsharing.get("publications", []):
+                pmid = publication.get("pubmed_id")
+                title = publication.get("title")
+                if pmid:
+                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
+                else:
+                    doi = publication["doi"]
+                    rv[f"https://bioregistry.io/doi:{doi}"] = title
+        if self.prefixcommons:
+            for pmid in self.prefixcommons.get("pubmed_ids", []):
+                url = f"https://bioregistry.io/pubmed:{pmid}"
+                if url in rv:
+                    continue
+                rv[url] = None
+        return [{"id": k, "title": v} for k, v in sorted(rv.items())]
 
     def get_twitter(self) -> Optional[str]:
         """Get the Twitter handle for ther resource."""
@@ -882,7 +907,7 @@ class Resource(BaseModel):
         return self.get_external("prefixcommons").get(URI_FORMAT_KEY)
 
     def get_identifiers_org_prefix(self) -> Optional[str]:
-        """Get the identifiers.org prefix if available.
+        """Get the MIRIAM/Identifiers.org prefix, if available.
 
         :returns: The Identifiers.org/MIRIAM prefix corresponding to the prefix, if mappable.
 
@@ -894,6 +919,10 @@ class Resource(BaseModel):
         >>> assert get_resource('MONDO').get_identifiers_org_prefix() is None
         """
         return self.get_mapped_prefix("miriam")
+
+    def get_miriam_prefix(self):
+        """Get the MIRIAM/Identifiers.org prefix, if available."""
+        return self.get_identifiers_org_prefix()
 
     def get_miriam_uri_prefix(self) -> Optional[str]:
         """Get the Identifiers.org URI prefix for this entry, if possible.
@@ -1827,6 +1856,7 @@ def write_bulk_prefix_request_template():
             "reviewer",
             "contact",
             "contributor",
+            "github_request_issue",
         }:
             continue
         if name in metaprefixes:

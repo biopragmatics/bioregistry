@@ -133,6 +133,11 @@
                             OBO JSON <i class="fas fa-download"></i>
                         </a>
                     {% endif %}
+                    {% if resource.github_request_issue %}
+                        <a class="badge badge-pill badge-light" href="https://github.com/biopragmatics/bioregistry/issues/{{ resource.github_request_issue }}">
+                            <i class="fas fa-info-circle"></i> Request Discussion
+                        </a>
+                    {% endif %}
                     {% if twitter %}
                         <a class="badge badge-pill badge-light" href="https://twitter.com/{{ twitter }}">
                             <i class="fa-brands fa-twitter"></i> @{{ twitter }}
@@ -235,7 +240,7 @@
                             {% for publication in publications or [] %}
                                 <li>
                                     <span class="badge badge-info">Publication</span>
-                                    <a href="{{ publication.id }}">{{ publication.title }}</a>
+                                    <a href="{{ publication.id }}">{{ publication.title or publication.id }}</a>
                                 </li>
                             {% endfor %}
                             {% for reference in resource.references or [] %}
