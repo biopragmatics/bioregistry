@@ -1190,10 +1190,10 @@ class Resource(BaseModel):
         'VariO:0376'
 
         Examples with bananas from OBO:
-        >>> get_resource("fbbt").miriam_standardize_identifier('00007294')
-        'FBbt:00007294'
-        >>> get_resource("fbbt").miriam_standardize_identifier('FBbt:00007294')
-        'FBbt:00007294'
+        >>> get_resource("go").miriam_standardize_identifier('0000001')
+        'GO:0000001'
+        >>> get_resource("go").miriam_standardize_identifier('GO:0000001')
+        'GO:0000001'
 
         Examples from OBO Foundry:
         >>> get_resource("chebi").miriam_standardize_identifier('1234')
