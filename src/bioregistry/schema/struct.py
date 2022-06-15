@@ -518,11 +518,11 @@ class Resource(BaseModel):
         """
         if self.banana is not None:
             return self.banana
-        if not self.get_namespace_in_lui():
-            return None  # override for a few situations
+        if self.get_namespace_in_lui() is False:
+            return None
         miriam_prefix = self.get_miriam_prefix()
         obo_preferred_prefix = self.get_obo_preferred_prefix()
-        if miriam_prefix and obo_preferred_prefix is not None:
+        if miriam_prefix is not None and obo_preferred_prefix is not None:
             return obo_preferred_prefix
         return None
 
