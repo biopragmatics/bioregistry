@@ -520,11 +520,10 @@ class Resource(BaseModel):
             return self.banana
         if self.namespace_in_lui is False:
             return None  # override for a few situations
+        miriam_prefix = self.get_miriam_prefix()
         obo_preferred_prefix = self.get_obo_preferred_prefix()
-        if obo_preferred_prefix is not None:
+        if miriam_prefix and obo_preferred_prefix is not None:
             return obo_preferred_prefix
-        # TODO consider reinstating all preferred prefixes should
-        #  be considered as secondary bananas
         return None
 
     def get_default_format(self) -> Optional[str]:
