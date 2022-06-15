@@ -805,7 +805,12 @@ class Resource(BaseModel):
         rv = {}
         if self.obofoundry:
             for publication in self.obofoundry.get("publications", []):
-                rv[publication["id"]] = publication["title"]
+                url, title = publication["id"], publication["title"]
+                if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
+                    pmid = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
+                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
+                else:
+                    logger.warning("unhandled obo foundry publication ID: %s", url)
         if self.fairsharing:
             for publication in self.fairsharing.get("publications", []):
                 pmid = publication.get("pubmed_id")
