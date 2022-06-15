@@ -496,8 +496,10 @@ class Resource(BaseModel):
 
         Banana imported through OBO Foundry
 
-        >>> get_resource("fbbt").get_banana()
-        'FBbt'
+        >>> get_resource("go").get_banana()
+        'GO'
+        >>> get_resource("vario").get_banana()
+        'VariO'
 
         Banana inferred for OBO Foundry ontology
 
@@ -1147,8 +1149,6 @@ class Resource(BaseModel):
 
         Examples with bananas from OBO:
         >>> get_resource("fbbt").standardize_identifier('00007294')
-        '00007294'
-        >>> get_resource("fbbt").standardize_identifier('FBbt:00007294')
         '00007294'
         >>> get_resource("chebi").standardize_identifier('1234')
         '1234'
