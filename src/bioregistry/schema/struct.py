@@ -496,8 +496,10 @@ class Resource(BaseModel):
 
         Banana imported through OBO Foundry
 
-        >>> get_resource("fbbt").get_banana()
-        'FBbt'
+        >>> get_resource("go").get_banana()
+        'GO'
+        >>> get_resource("vario").get_banana()
+        'VariO'
 
         Banana inferred for OBO Foundry ontology
 
@@ -518,13 +520,12 @@ class Resource(BaseModel):
         """
         if self.banana is not None:
             return self.banana
-        if self.namespace_in_lui is False:
-            return None  # override for a few situations
+        if self.get_namespace_in_lui() is False:
+            return None
+        miriam_prefix = self.get_miriam_prefix()
         obo_preferred_prefix = self.get_obo_preferred_prefix()
-        if obo_preferred_prefix is not None:
+        if miriam_prefix is not None and obo_preferred_prefix is not None:
             return obo_preferred_prefix
-        # TODO consider reinstating all preferred prefixes should
-        #  be considered as secondary bananas
         return None
 
     def get_default_format(self) -> Optional[str]:
@@ -1149,8 +1150,6 @@ class Resource(BaseModel):
         Examples with bananas from OBO:
         >>> get_resource("fbbt").standardize_identifier('00007294')
         '00007294'
-        >>> get_resource("fbbt").standardize_identifier('FBbt:00007294')
-        '00007294'
         >>> get_resource("chebi").standardize_identifier('1234')
         '1234'
         >>> get_resource("chebi").standardize_identifier('CHEBI:1234')
@@ -1191,10 +1190,10 @@ class Resource(BaseModel):
         'VariO:0376'
 
         Examples with bananas from OBO:
-        >>> get_resource("fbbt").miriam_standardize_identifier('00007294')
-        'FBbt:00007294'
-        >>> get_resource("fbbt").miriam_standardize_identifier('FBbt:00007294')
-        'FBbt:00007294'
+        >>> get_resource("go").miriam_standardize_identifier('0000001')
+        'GO:0000001'
+        >>> get_resource("go").miriam_standardize_identifier('GO:0000001')
+        'GO:0000001'
 
         Examples from OBO Foundry:
         >>> get_resource("chebi").miriam_standardize_identifier('1234')

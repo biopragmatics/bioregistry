@@ -64,11 +64,16 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str:
 
     Examples with bananas from OBO:
     >>> import bioregistry as br
-    >>> assert "FBbt" == br.get_banana('fbbt')
-    >>> miriam_standardize_identifier('fbbt', '00007294')
-    'FBbt:00007294'
-    >>> miriam_standardize_identifier('fbbt', 'FBbt:00007294')
-    'FBbt:00007294'
+    >>> assert "GO" == br.get_banana('go')
+    >>> miriam_standardize_identifier('go', '0000001')
+    'GO:0000001'
+    >>> miriam_standardize_identifier('go', 'GO:0000001')
+    'GO:0000001'
+    >>> assert "VariO" == br.get_banana('vario')
+    >>> miriam_standardize_identifier('vario', '0000001')
+    'VariO:0000001'
+    >>> miriam_standardize_identifier('vario', 'VariO:0000001')
+    'VariO:0000001'
 
     Examples from OBO Foundry:
     >>> miriam_standardize_identifier('chebi', '1234')
