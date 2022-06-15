@@ -22846,6 +22846,16 @@ bioregistry:scomp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^C\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:scr a bioregistry.schema:0000001 ;
+    rdfs:label "SciCrunch Registry" ;
+    dc:description "The SciCrunch Registry holds metadata records that describe digital resources, e.g., software, databases, projects and also services. Most of these are produced as a result of government funding and are available to the scientific community. Resources are manually curated to make sure the information is accurate. We also use a web crawler to find literature mentions for the resources."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://scicrunch.org/browse/resourcedashboard"^^xsd:string ;
+    bioregistry.schema:0000005 "003070"^^xsd:string ;
+    bioregistry.schema:0000006 "http://scicrunch.org/resolver/SCR_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:sdis a bioregistry.schema:0000001 ;
     rdfs:label "Selventa Diseases" ;
     dc:description "Selventa legacy disease namespace used with the Biological Expression Language"^^xsd:string ;
@@ -22879,7 +22889,7 @@ bioregistry:sheepqtldb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:sigmaaldirch a bioregistry.schema:0000001 ;
+bioregistry:sigmaaldrich a bioregistry.schema:0000001 ;
     rdfs:label "Sigma Aldrich" ;
     dc:description "Sigma Aldrich is a life sciences supply vendor."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
@@ -23182,6 +23192,17 @@ bioregistry:uniprot.isoform a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\-\\d+)$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:uniprot.journal a bioregistry.schema:0000001 ;
+    rdfs:label "UniProt journal ID" ;
+    dc:description "identifier for a scientific journal, in the UniProt database"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P4616 ;
+    foaf:homepage "https://www.uniprot.org/journals"^^xsd:string ;
+    bioregistry.schema:0000005 "3546"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.uniprot.org/journals/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{4}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:uniprot.keyword a bioregistry.schema:0000001 ;
     rdfs:label "UniProt Keywords" ;
     dc:description "UniProtKB entries are tagged with keywords that can be used to retrieve particular subsets of entries."^^xsd:string ;
@@ -23190,9 +23211,9 @@ bioregistry:uniprot.keyword a bioregistry.schema:0000001 ;
     skos:exactMatch go.resource:UniProtKB-KW,
         prefixcommons:uniprot.kw ;
     foaf:homepage "http://www.uniprot.org/keywords/"^^xsd:string ;
-    bioregistry.schema:0000005 "1273"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.uniprot.org/keywords/KW-$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{4}$"^^xsd:string ;
+    bioregistry.schema:0000005 "KW-1273"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.uniprot.org/keywords/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^KW-\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:uniprot.location a bioregistry.schema:0000001 ;
@@ -23202,9 +23223,9 @@ bioregistry:uniprot.location a bioregistry.schema:0000001 ;
         bioregistry:uniprot ;
     skos:exactMatch go.resource:UniProtKB-SubCell ;
     foaf:homepage "https://www.uniprot.org/locations/"^^xsd:string ;
-    bioregistry.schema:0000005 "0002"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.uniprot.org/locations/SL-$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000005 "SL-0002"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.uniprot.org/locations/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^SL-\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:uniprot.tissue a bioregistry.schema:0000001 ;
@@ -23216,9 +23237,9 @@ bioregistry:uniprot.tissue a bioregistry.schema:0000001 ;
         n2t:tissuelist,
         miriam:tissuelist ;
     foaf:homepage "https://www.uniprot.org/docs/tisslist.txt"^^xsd:string ;
-    bioregistry.schema:0000005 "0285"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.uniprot.org/tissues/TS-$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{4}$"^^xsd:string ;
+    bioregistry.schema:0000005 "TS-0285"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.uniprot.org/tissues/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^TS-\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:unpd a bioregistry.schema:0000001 ;
@@ -27767,6 +27788,8 @@ wikidata:P4495 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P4537 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P4616 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P486 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P492 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -28633,9 +28656,9 @@ bioregistry:uniprot.disease a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:uniprot ;
     foaf:homepage "https://www.uniprot.org/diseases/"^^xsd:string ;
-    bioregistry.schema:0000005 "04240"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.uniprot.org/diseases/DI-$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000005 "DI-04240"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.uniprot.org/diseases/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^DI-\\d{5}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:uniprot.ptm a bioregistry.schema:0000001 ;
@@ -28644,8 +28667,8 @@ bioregistry:uniprot.ptm a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:uniprot ;
     foaf:homepage "https://www.uniprot.org/docs/ptmlist"^^xsd:string ;
-    bioregistry.schema:0000005 "0450"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{4}$"^^xsd:string ;
+    bioregistry.schema:0000005 "PTM-0450"^^xsd:string ;
+    bioregistry.schema:0000008 "^PTM-\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:uniprot.resource a bioregistry.schema:0000001 ;
@@ -28654,9 +28677,9 @@ bioregistry:uniprot.resource a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:uniprot ;
     foaf:homepage "https://www.uniprot.org/database/"^^xsd:string ;
-    bioregistry.schema:0000005 "0174"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.uniprot.org/database/DB-$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{4}$"^^xsd:string ;
+    bioregistry.schema:0000005 "DB-0174"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.uniprot.org/database/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^DB-\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:uniprot.var a bioregistry.schema:0000001 ;
@@ -30500,9 +30523,10 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:schem,
         bioregistry:scholia.resource,
         bioregistry:scomp,
+        bioregistry:scr,
         bioregistry:sdis,
         bioregistry:sfam,
-        bioregistry:sigmaaldirch,
+        bioregistry:sigmaaldrich,
         bioregistry:smid,
         bioregistry:snap,
         bioregistry:snornabase,
@@ -30517,6 +30541,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ubprop,
         bioregistry:umls.aui,
         bioregistry:uniprot.disease,
+        bioregistry:uniprot.journal,
         bioregistry:uniprot.ptm,
         bioregistry:uniprot.resource,
         bioregistry:uniprot.var,
@@ -31244,6 +31269,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P4394,
         wikidata:P4495,
         wikidata:P4537,
+        wikidata:P4616,
         wikidata:P486,
         wikidata:P492,
         wikidata:P4926,
@@ -37184,6 +37210,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:scomp,
         bioregistry:scop,
         bioregistry:scopus,
+        bioregistry:scr,
         bioregistry:scretf,
         bioregistry:sdbs,
         bioregistry:sdgio,
@@ -37203,7 +37230,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:sibo,
         bioregistry:sider.drug,
         bioregistry:sider.effect,
-        bioregistry:sigmaaldirch,
+        bioregistry:sigmaaldrich,
         bioregistry:signaling-gateway,
         bioregistry:signor,
         bioregistry:signor.relation,
@@ -37311,6 +37338,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:uniprot.chain,
         bioregistry:uniprot.disease,
         bioregistry:uniprot.isoform,
+        bioregistry:uniprot.journal,
         bioregistry:uniprot.keyword,
         bioregistry:uniprot.location,
         bioregistry:uniprot.ptm,

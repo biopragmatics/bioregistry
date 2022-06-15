@@ -1772,7 +1772,7 @@
   },
   "biolink": {
     "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations.",
-    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/24/biolink.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/25/biolink.owl",
     "example": "Gene",
     "homepage": "https://biolink.github.io/biolink-model/",
     "mappings": {
@@ -5128,7 +5128,6 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "cpt",
     "references": [
-      "https://github.com/biopragmatics/bioregistry/issues/357",
       "https://github.com/biopragmatics/bioregistry/pull/358",
       "https://github.com/biolink/biolink-model/pull/993"
     ],
@@ -22694,6 +22693,21 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "scopus"
   },
+  "scr": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The SciCrunch Registry holds metadata records that describe digital resources, e.g., software, databases, projects and also services. Most of these are produced as a result of government funding and are available to the scientific community. Resources are manually curated to make sure the information is accurate. We also use a web crawler to find literature mentions for the resources.",
+    "example": "003070",
+    "homepage": "https://scicrunch.org/browse/resourcedashboard",
+    "name": "SciCrunch Registry",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "scr",
+    "uri_format": "http://scicrunch.org/resolver/SCR_$1"
+  },
   "scretf": {
     "description": "ScerTF is a database of position weight matrices (PWMs) for transcription factors in Saccharomyces species. It identifies a single matrix for each TF that best predicts in vivo data, providing metrics related to the performance of that matrix in accurately representing the DNA binding specificity of the annotated transcription factor.",
     "example": "RSC3",
@@ -23045,7 +23059,7 @@
     "provides": "umls",
     "uri_format": "http://sideeffects.embl.de/se/$1"
   },
-  "sigmaaldirch": {
+  "sigmaaldrich": {
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -23056,7 +23070,7 @@
     "example": "HPA000698",
     "homepage": "https://www.sigmaaldrich.com",
     "name": "Sigma Aldrich",
-    "preferred_prefix": "sigmaaldirch",
+    "preferred_prefix": "sigmaaldrich",
     "uri_format": "https://www.sigmaaldrich.com/US/en/product/sigma/$1"
   },
   "signaling-gateway": {
@@ -25138,6 +25152,24 @@
       "UPISO"
     ],
     "uri_format": "http://www.uniprot.org/uniprot/$1"
+  },
+  "uniprot.journal": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "identifier for a scientific journal, in the UniProt database",
+    "example": "3546",
+    "homepage": "https://www.uniprot.org/journals",
+    "mappings": {
+      "wikidata": "P4616"
+    },
+    "name": "UniProt journal ID",
+    "pattern": "^\\d{4}$",
+    "preferred_prefix": "uniprot.journal",
+    "uri_format": "https://www.uniprot.org/journals/$1"
   },
   "uniprot.keyword": {
     "description": "UniProtKB entries are tagged with keywords that can be used to retrieve particular subsets of entries.",
