@@ -58512,7 +58512,64 @@
       "uri_format": "https://www.storedb.org/?$1"
     },
     "name": "Store DB",
-    "pattern": "^(STUDY|FILE|DATASET)\\d+$"
+    "pattern": "^(STUDY|FILE|DATASET)\\d+$",
+    "uri_format": "https://www.storedb.org/?$1"
+  },
+  "storedb.dataset": {
+    "comment": "Unfortunately, the resolver itself doesn't work since datasets are actually hierarchically assigned within studies.",
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "deprecated": true,
+    "description": "Datasets inside StoreDB",
+    "example": "1251",
+    "homepage": "https://www.storedb.org/",
+    "name": "STOREDB at University of Cambridge",
+    "part_of": "storedb",
+    "pattern": "^\\d+$",
+    "uri_format": "https://www.storedb.org/?STOREDB:DATASET$1"
+  },
+  "storedb.file": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "File inside StoreDB",
+    "example": "12929",
+    "homepage": "https://www.storedb.org/",
+    "name": "STOREDB at University of Cambridge",
+    "part_of": "storedb",
+    "pattern": "^\\d+$",
+    "uri_format": "https://www.storedb.org/store_v3/download.jsp?fileId=$1"
+  },
+  "storedb.study": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Study inside StoreDB",
+    "example": "1174",
+    "homepage": "https://www.storedb.org/",
+    "name": "STOREDB at University of Cambridge",
+    "part_of": "storedb",
+    "pattern": "^\\d+$",
+    "providers": [
+      {
+        "code": "doi",
+        "description": "DOIs for studies",
+        "homepage": "https://www.storedb.org/",
+        "name": "StoreDB DOI",
+        "uri_format": "http://dx.doi.org/doi:10.20348/STOREDB/$1"
+      }
+    ],
+    "uri_format": "https://www.storedb.org/store_v3/study.jsp?studyId=$1"
   },
   "string": {
     "biocontext": {
