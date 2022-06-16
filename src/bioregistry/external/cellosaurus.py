@@ -5,11 +5,9 @@
 import itertools as itt
 import json
 
-import click
 from pystow.utils import download
 
-from bioregistry.constants import URI_FORMAT_KEY
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
 
 URL = "https://ftp.expasy.org/databases/cellosaurus/cellosaurus_xrefs.txt"
 
@@ -50,12 +48,14 @@ def get_cellosaurus(force_download: bool = False, keep_missing_uri: bool = True)
             if line[6] != ":":  # strip notes out
                 continue
             key, value = (s.strip() for s in line.split(":", 1))
-            key = KEYMAP[key]
-            if key == URI_FORMAT_KEY:
+            mapped_key = KEYMAP.get(key)
+            if mapped_key is None:
+                continue
+            if mapped_key == URI_FORMAT_KEY:
                 value = _process_db_url(value)
                 if value is None:
                     continue
-            d[key] = value
+            d[mapped_key] = value
         if not keep_missing_uri and URI_FORMAT_KEY not in d:
             continue
         rv[d.pop("prefix")] = d
@@ -72,12 +72,5 @@ def _process_db_url(value):
     return value.rstrip("/").replace("%s", "$1")
 
 
-@click.command()
-def main():
-    """Reload the Cellosaurus data."""
-    rv = get_cellosaurus(force_download=True)
-    click.echo(f"Got {len(rv)} entries from cellosaurus.")
-
-
 if __name__ == "__main__":
-    main()
+    print(len(get_cellosaurus(force_download=True)))  # noqa:T201

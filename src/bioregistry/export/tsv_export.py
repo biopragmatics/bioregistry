@@ -12,8 +12,8 @@ from ..constants import (
     REGISTRY_TSV_PATH,
     URI_FORMAT_KEY,
 )
+from ..schema_utils import read_collections, read_metaregistry, read_registry
 from ..uri_format import get_uri_format
-from ..utils import read_collections, read_metaregistry, read_registry
 
 
 @click.command()
@@ -50,7 +50,9 @@ METAREGISTRY_HEADER = [
     "description",
     "download",
     "example",
-    "contact",
+    "contact.name",
+    "contact.email",
+    "contact.github",
     "provider_uri_format",
     "resolver_uri_format",
     "resolver_type",
@@ -110,7 +112,9 @@ def get_metaregistry_rows():
                 data.description,
                 data.download,
                 data.example,
-                data.contact,
+                data.contact.name,
+                data.contact.email,
+                data.contact.github,
                 data.provider_uri_format,
                 data.resolver_uri_format,
                 data.resolver_type,

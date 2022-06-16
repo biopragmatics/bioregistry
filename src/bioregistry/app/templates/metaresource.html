@@ -31,6 +31,9 @@
             </div>
         </div>
         <div class="card-body">
+            {% if entry.logo_url %}
+                <img style="max-height: 100px;" src="{{ entry.logo_url }}"/>
+            {% endif %}
             <p>{{ description }}</p>
             <dl>
                 <dt>Metaprefix</dt>
@@ -70,11 +73,17 @@
                 <dt>Contact</dt>
                 <dd>
                     {% if entry.contact %}
-                        <a href="mailto:{{ entry.contact }}">{{ entry.contact }}</a>
+                        {{ utils.render_author(entry.contact) }}
                     {% else %}
                         <span class="badge badge-pill badge-warning">Missing Contact</span>
                     {% endif %}
                 </dd>
+                {% if entry.license %}
+                    <dt>License</dt>
+                    <dd>
+                        {{ entry.license }}
+                    </dd>
+                {% endif %}
                 <dt>Example Prefix</dt>
                 <dd>
                     <code>{{ entry.example }}</code>

@@ -7,7 +7,7 @@ import json
 from bs4 import BeautifulSoup
 from pystow.utils import download
 
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL
 
 DIRECTORY = EXTERNAL / "ontobee"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
@@ -38,7 +38,7 @@ def get_ontobee(force_download: bool = False):
         prefix = cells[1].text
         rv[prefix] = {
             "name": cells[2].text,
-            "library": LEGEND[cells[3].text],
+            "library": LEGEND[cells[3].text.upper()],
             # "link": cells[1].find("a").attrs["href"],
         }
 

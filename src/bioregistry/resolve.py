@@ -3,8 +3,9 @@
 """Utilities for normalizing prefixes."""
 
 import logging
+import typing
 from functools import lru_cache
-from typing import Any, Dict, Mapping, Optional, Set, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Set, Tuple, Union
 
 from .resource_manager import manager
 from .schema import Attributable, Resource
@@ -26,17 +27,37 @@ __all__ = [
     "get_contact",
     "get_contact_email",
     "get_contact_name",
+    "get_contact_github",
+    "get_contact_orcid",
     "get_homepage",
+    "get_repository",
     "get_obo_download",
     "get_json_download",
     "get_owl_download",
     "get_version",
-    "get_versions",
+    "get_banana",
+    "get_obo_health_url",
+    "is_novel",
+    # Ontology
+    "get_provided_by",
+    "get_provides_for",
+    "get_part_of",
+    "get_has_parts",
+    "get_has_canonical",
+    "get_canonical_for",
+    "get_appears_in",
+    "get_depends_on",
     # CURIE handling
     "normalize_prefix",
     "parse_curie",
     "normalize_parsed_curie",
     "normalize_curie",
+    # Registry-level functions
+    "get_registry_map",
+    "get_registry_invmap",
+    "count_mappings",
+    "get_versions",
+    "get_parts_collections",
 ]
 
 logger = logging.getLogger(__name__)
@@ -58,12 +79,18 @@ def get_name(prefix: str) -> Optional[str]:
     return manager.get_name(prefix)
 
 
-def get_description(prefix: str) -> Optional[str]:
-    """Get the description for the given prefix, if available."""
+def get_description(prefix: str, use_markdown: bool = False) -> Optional[str]:
+    """Get the description for the given prefix, if available.
+
+    :param prefix: The prefix to lookup.
+    :param use_markdown: Should :mod:`markupsafe` and :mod:`markdown` wrap the description
+        string
+    :returns: The description, if available.
+    """
     entry = get_resource(prefix)
     if entry is None:
         return None
-    return entry.get_description()
+    return entry.get_description(use_markdown=use_markdown)
 
 
 def get_preferred_prefix(prefix: str) -> Optional[str]:
@@ -100,6 +127,11 @@ def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
     return entry.get_mappings()
 
 
+def count_mappings() -> typing.Counter[str]:
+    """Count the mappings for each registry."""
+    return manager.count_mappings()
+
+
 def get_synonyms(prefix: str) -> Optional[Set[str]]:
     """Get the synonyms for a given prefix, if available."""
     return manager.get_synonyms(prefix)
@@ -126,6 +158,79 @@ def get_namespace_in_lui(prefix: str) -> Optional[bool]:
     return entry.get_namespace_in_lui()
 
 
+def get_appears_in(prefix: str) -> Optional[List[str]]:
+    """Return a list of resources that this resources (has been annotated to) depends on.
+
+    This is complementary to :func:`get_depends_on`.
+
+    :param prefix: The prefix to look up
+    :returns: The list of resources this prefix has been annotated to appear in. This
+        list could be incomplete, since curation of these fields can easily get out
+        of sync with curation of the resource itself. However, false positives should
+        be pretty rare.
+
+    >>> import bioregistry
+    >>> assert "bfo" not in bioregistry.get_appears_in("foodon")
+    >>> assert "fobi" in bioregistry.get_appears_in("foodon")
+    """
+    return manager.get_appears_in(prefix)
+
+
+def get_depends_on(prefix: str) -> Optional[List[str]]:
+    """Return a list of resources that this resources (has been annotated to) depends on.
+
+    This is complementary to :func:`get_appears_in`.
+
+    :param prefix: The prefix to look up
+    :returns: The list of resources this prefix has been annotated to depend on. This
+        list could be incomplete, since curation of these fields can easily get out
+        of sync with curation of the resource itself. However, false positives should
+        be pretty rare.
+
+    >>> import bioregistry
+    >>> assert "bfo" in bioregistry.get_depends_on("foodon")
+    >>> assert "fobi" not in bioregistry.get_depends_on("foodon")
+    """
+    return manager.get_depends_on(prefix)
+
+
+def get_has_canonical(prefix: str) -> Optional[str]:
+    """Get the canonical prefix.
+
+    If two (or more) stand-alone resources both provide for the same
+    semantic space, but none of them have a first-party claim to the
+    semantic space, then the ``has_canonical`` relationship is used
+    to choose a preferred prefix. This is different than the
+    ``provides``, relationship, which is appropriate when it's obvious
+    that one resource has a full claim to the semantic space.
+
+    :param prefix: The prefix to lookup.
+    :returns: The canonical prefix for this one, if one is annotated.
+        This is the inverse of :func:`get_canonical_for`.
+
+    >>> get_has_canonical("refseq")
+    'ncbiprotein'
+    >>> get_has_canonical("chebi")
+    None
+    """
+    return manager.get_has_canonical(prefix)
+
+
+def get_canonical_for(prefix: str) -> Optional[List[str]]:
+    """Get the prefixes for which this is annotated as canonical.
+
+    :param prefix: The prefix to lookup.
+    :returns: The prefixes for which this is annotated as canonical.
+        This is the inverse of :func:`get_has_canonical`.
+
+    >>> "refseq" in get_canonical_for("ncbiprotein")
+    True
+    >>> get_canonical_for("chebi")
+    []
+    """
+    return manager.get_canonical_for(prefix)
+
+
 def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
     """Get the identifiers.org prefix if available.
 
@@ -139,7 +244,7 @@ def get_identifiers_org_prefix(prefix: str) -> Optional[str]:
     'taxonomy'
     >>> assert bioregistry.get_identifiers_org_prefix('MONDO') is None
     """
-    entry = get_resource(prefix)
+    entry = manager.get_resource(prefix)
     if entry is None:
         return None
     return entry.get_identifiers_org_prefix()
@@ -158,10 +263,7 @@ def get_n2t_prefix(prefix: str) -> Optional[str]:
     'taxonomy'
     >>> assert bioregistry.get_n2t_prefix('MONDO') is None
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_mapped_prefix("n2t")
+    return manager.get_mapped_prefix(prefix, "n2t")
 
 
 def get_wikidata_prefix(prefix: str) -> Optional[str]:
@@ -175,10 +277,7 @@ def get_wikidata_prefix(prefix: str) -> Optional[str]:
     >>> get_wikidata_prefix('ncbitaxon')
     'P685'
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_mapped_prefix("wikidata")
+    return manager.get_mapped_prefix(prefix, "wikidata")
 
 
 def get_bioportal_prefix(prefix: str) -> Optional[str]:
@@ -194,10 +293,7 @@ def get_bioportal_prefix(prefix: str) -> Optional[str]:
     >>> get_bioportal_prefix("nope")
     None
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_mapped_prefix("bioportal")
+    return manager.get_mapped_prefix(prefix, "bioportal")
 
 
 def get_obofoundry_prefix(prefix: str) -> Optional[str]:
@@ -211,6 +307,11 @@ def get_obofoundry_prefix(prefix: str) -> Optional[str]:
 def get_registry_map(metaprefix: str) -> Dict[str, str]:
     """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
     return manager.get_registry_map(metaprefix)
+
+
+def get_registry_invmap(metaprefix: str) -> Dict[str, str]:
+    """Get a mapping from the external registry prefixes to Bioregistry prefixes."""
+    return manager.get_registry_invmap(metaprefix)
 
 
 def get_obofoundry_uri_prefix(prefix: str) -> Optional[str]:
@@ -249,27 +350,7 @@ def get_fairsharing_prefix(prefix: str) -> Optional[str]:
     >>> get_fairsharing_prefix("genbank")
     'FAIRsharing.9kahy4'
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_mapped_prefix("fairsharing")
-
-
-def get_scholia_prefix(prefix: str) -> Optional[str]:
-    """Get the Scholia prefix if available.
-
-    :param prefix: The prefix to lookup.
-    :returns: The Scholia prefix corresponding to the prefix, if mappable.
-
-    >>> get_scholia_prefix("pubmed")
-    'pubmed'
-    >>> get_scholia_prefix("pdb")
-    None
-    """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_scholia_prefix()
+    return manager.get_mapped_prefix(prefix, "fairsharing")
 
 
 def get_banana(prefix: str) -> Optional[str]:
@@ -286,7 +367,8 @@ def get_banana(prefix: str) -> Optional[str]:
     >>> assert "GO_REF" == get_banana('go.ref')
 
     Banana imported through OBO Foundry
-    >>> assert "FBbt" == get_banana('fbbt')
+    >>> assert "GO" == get_banana('go')
+    >>> assert "VariO" == get_banana('vario')
 
     Banana inferred for OBO Foundry ontology
     >>> get_banana('chebi')
@@ -419,6 +501,22 @@ def get_ols_uri_format(prefix: str) -> Optional[str]:
     return resource.get_ols_uri_format()
 
 
+def get_biocontext_uri_format(prefix: str) -> Optional[str]:
+    """Get the URI format for a BioContext entry.
+
+    :param prefix: The prefix to lookup.
+    :returns: The BioContext URI format string, if available.
+
+    >>> import bioregistry
+    >>> bioregistry.get_biocontext_uri_format('hgmd')
+    'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
+    """
+    resource = get_resource(prefix)
+    if resource is None:
+        return None
+    return resource.get_biocontext_uri_format()
+
+
 def get_prefixcommons_uri_format(prefix: str) -> Optional[str]:
     """Get the URI format for a Prefix Commons entry.
 
@@ -426,8 +524,8 @@ def get_prefixcommons_uri_format(prefix: str) -> Optional[str]:
     :returns: The Prefix Commons URI format string, if available.
 
     >>> import bioregistry
-    >>> bioregistry.get_prefixcommons_uri_format('hgmd')
-    'http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1'
+    >>> bioregistry.get_prefixcommons_uri_format('antweb')
+    'http://www.antweb.org/specimen.do?name=$1'
     """
     resource = get_resource(prefix)
     if resource is None:
@@ -447,10 +545,7 @@ def get_example(prefix: str) -> Optional[str]:
 
 def has_no_terms(prefix: str) -> bool:
     """Check if the prefix is specifically noted to not have terms."""
-    entry = get_resource(prefix)
-    if entry is None or entry.no_own_terms is None:
-        return False
-    return entry.no_own_terms
+    return manager.has_no_terms(prefix)
 
 
 def is_deprecated(prefix: str) -> bool:
@@ -463,6 +558,7 @@ def is_deprecated(prefix: str) -> bool:
 
     >>> import bioregistry
     >>> assert bioregistry.is_deprecated('imr')  # marked by OBO
+    >>> assert bioregistry.is_deprecated('idomal')  # marked by OBO as inactive
     >>> assert bioregistry.is_deprecated('iro') # marked by Bioregistry
     >>> assert bioregistry.is_deprecated('miriam.collection') # marked by MIRIAM
     """
@@ -500,6 +596,30 @@ def get_contact_email(prefix: str) -> Optional[str]:
     return entry.get_contact_email()
 
 
+def get_contact_github(prefix: str) -> Optional[str]:
+    """Return the contact GitHub, if available.
+
+    :param prefix: The prefix to lookup
+    :returns: The resource's contact GitHub handle, if it is available.
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_contact_github()
+
+
+def get_contact_orcid(prefix: str) -> Optional[str]:
+    """Return the contact ORCiD, if available.
+
+    :param prefix: The prefix to lookup
+    :returns: The resource's contact ORCiD, if it is available.
+    """
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_contact_orcid()
+
+
 def get_contact_name(prefix: str) -> Optional[str]:
     """Return the contact name, if available.
 
@@ -525,6 +645,14 @@ def get_homepage(prefix: str) -> Optional[str]:
     if entry is None:
         return None
     return entry.get_homepage()
+
+
+def get_repository(prefix: str) -> Optional[str]:
+    """Return the repository, if available."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_repository()
 
 
 def get_obo_download(prefix: str) -> Optional[str]:
@@ -555,15 +683,50 @@ def get_provides_for(prefix: str) -> Optional[str]:
     """Get the resource that the given prefix provides for, or return none if not a provider.
 
     :param prefix: The prefix to look up
-    :returns: The prefix of the resource that the given prefix provides for, if it's a provider
+    :returns: The prefix of the resource that the given prefix provides for, if it's a provider.
+        This is the inverse of :func:`get_provided_by`.
 
     >>> assert get_provides_for('pdb') is None
     >>> assert 'pdb' == get_provides_for('validatordb')
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.provides
+    return manager.get_provides_for(prefix)
+
+
+def get_provided_by(prefix: str) -> Optional[List[str]]:
+    """Get the resources that provide for the given prefix, or return none if the prefix can't be looked up.
+
+    :param prefix: The prefix to look up
+    :returns: The prefixes of the resources that provide for the given prefix. This
+        is the inverse of :func:`get_provides_for`.
+
+    >>> get_provides_for("validatordb")
+    'pdb'
+    """
+    return manager.get_provided_by(prefix)
+
+
+def get_part_of(prefix: str) -> Optional[str]:
+    """Get the parent resource.
+
+    :param prefix: The prefix to look up
+    :returns: The prefixes of the parent resource for this prefix, if one is annotated. This
+        is the inverse of :func:`get_has_parts`.
+
+    >>> assert 'chembl' in get_part_of('chembl.compound')
+    """
+    return manager.get_part_of(prefix)
+
+
+def get_has_parts(prefix: str) -> Optional[List[str]]:
+    """Get children resources.
+
+    :param prefix: The prefix to look up
+    :returns: The prefixes of resource for which this prefix is the parent. This
+        is the inverse of :func:`get_has_parts`.
+
+    >>> assert 'chembl.compound' in get_has_parts('chembl')
+    """
+    return manager.get_has_parts(prefix)
 
 
 def get_license(prefix: str) -> Optional[str]:
@@ -745,7 +908,7 @@ def get_versions() -> Mapping[str, str]:
 def get_curie_pattern(prefix: str) -> Optional[str]:
     """Get the CURIE pattern for this resource.
 
-    :param prefix: The prefix to to look up
+    :param prefix: The prefix to look up
     :return: The regular expression pattern to match CURIEs against
     """
     return manager.get_curie_pattern(prefix)
@@ -754,3 +917,41 @@ def get_curie_pattern(prefix: str) -> Optional[str]:
 def get_license_conflicts():
     """Get license conflicts."""
     return manager.get_license_conflicts()
+
+
+SHIELDS_BASE = "https://img.shields.io/badge/dynamic"
+CH_BASE = "https://cthoyt.com/obo-community-health"
+HEALTH_BASE = "https://github.com/cthoyt/obo-community-health/raw/main/data/data.json"
+EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
+
+
+def get_obo_health_url(prefix: str) -> Optional[str]:
+    """Get the OBO community health badge."""
+    obo_prefix = manager.get_mapped_prefix(prefix, "obofoundry")
+    if obo_prefix is None:
+        return None
+    obo_pp = manager.get_preferred_prefix(prefix)
+    return f"{SHIELDS_BASE}/json?url={HEALTH_BASE}&query=$.{obo_prefix.lower()}.score&label={obo_pp}{EXTRAS}"
+
+
+def is_novel(prefix: str) -> Optional[bool]:
+    """Check if the prefix is novel to the Bioregistry, i.e., it has no external mappings."""
+    return manager.is_novel(prefix)
+
+
+def get_parts_collections():
+    """Group resources' prefixes based on their ``part_of`` entries.
+
+    :returns:
+        A dictionary with keys that appear as the values of ``Resource.part_of``
+        and whose values are lists of prefixes for resources that have the key
+        as a value in its ``part_of`` field.
+
+    .. warning::
+
+        Many of the keys in this dictionary are valid Bioregistry prefixes,
+        but this is not necessary. For example, ``ctd`` is one key that
+        appears that explicitly has no prefix, since it corresponds to a
+        resource and not a vocabulary.
+    """
+    return manager.get_parts_collections()

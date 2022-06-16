@@ -10,8 +10,9 @@
     <dl class="row">
         <dt class="col-lg-2 text-right text-nowrap">Registry</dt>
         <dd class="col-lg-10">
-            A collection of metadata about ontologies, controlled vocabularies, and resources. Some other
-            well-known registries are the <a href="http://www.obofoundry.org/">OBO Foundry</a>,
+            A collection of prefixes and metadata for ontologies, controlled vocabularies, and other semantic spaces.
+            Some other well-known registries for prefixes are the
+            <a href="http://www.obofoundry.org/">OBO Foundry</a>,
             <a href="https://identifiers.org">Identifiers.org</a>,
             the <a href="https://www.ebi.ac.uk/ols/index">OLS</a>,
             <a href="https://bioportal.bioontology.org/">BioPortal</a>,
@@ -19,14 +20,14 @@
         </dd>
         <dt class="col-lg-2 text-right text-nowrap">Metaregistry</dt>
         <dd class="col-lg-10">
-            A collection of metadata about registries and mappings between the resources they describe. For
-            example, <a href="https://www.ebi.ac.uk/chebi">ChEBI</a> appears in all of the example registries
+            A collection of metadata about registries and mappings between their constituent prefixes.
+            For example, <a href="https://www.ebi.ac.uk/chebi">ChEBI</a> appears in all of the example registries
             from above. So far, the Bioregistry is the <i>only</i> metaregistry.
         </dd>
         <dt class="col-lg-2 text-right text-nowrap">Resolver</dt>
         <dd class="col-lg-10">
-            A tool for mapping CURIEs of the form <code>prefix:identifier</code> to HTML and structured content
-            providers. Some other well-known resolvers are <a href="https://identifiers.org">Identifiers.org</a>
+            A tool for mapping compact URIs (CURIEs) of the form <code>prefix:identifier</code> to HTML and structured
+            content providers. Some other well-known resolvers are <a href="https://identifiers.org">Identifiers.org</a>
             and <a href="https://n2t.net/">Name-To-Thing</a>.
         </dd>
     </dl>
@@ -48,6 +49,16 @@
         <dd class="col-lg-10">
             The underlying codebase can also be improved to add new features. It's all written in idiomatic,
             high quality Python code.
+        </dd>
+        <dt class="col-lg-2 text-right text">Community Driven</dt>
+        <dd class="col-lg-10">
+            Governed by public, well-defined
+            <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md">contribution
+                guidelines</a>,
+            <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CODE_OF_CONDUCT.md">code of
+                conduct</a>, and
+            <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/GOVERNANCE.md">project
+                governance</a> to promote the project's inclusivity and longevity.
         </dd>
     </dl>
     <p>The Bioregistry is <strong>not</strong> a:</p>
@@ -80,6 +91,8 @@
              alt="Bioregistry Coverage" class="img-fluid"/>
     </p>
     <p>
+        More information about each external resource covered in this image can be found on the
+        <a href="{{ url_for("ui.metaresources") }}">registries</a> page.
         Additional external registries that have been queued for alignment can be listed via the
         <a href="https://github.com/biopragmatics/bioregistry/issues?q=is%3Aissue+is%3Aopen+label%3A%22External+Registry%22">GitHub
             issue tracker</a>.
@@ -146,9 +159,10 @@
     <p>
         Licenses are only directly available from OBO Foundry and the OLS. Wikidata contains some licensing
         information, but more would need to be written to handle this.
-
+        <!-- OLS doesn't report licenses anymore
         <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/license_coverage.svg"
              alt="License Coverage" class="img-fluid"/>
+        -->
     </p>
     <p>
         However, even internally, neither the OBO Foundry nor OLS use a consistent nomenclature for licenses, so
@@ -156,7 +170,8 @@
             href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/compare.py#L19">this
         ruleset</a>. Further, some licenses that were inappropriate for data (e.g., Apache 2.0 License, GNU GPL
         3.0 License, BSD License) appeared infrequently and were collapsed into "Other". Other uncommon and
-        infrequent licenses were likewise collapsed into "Other". After, there were still several conflicts
+        infrequent licenses were likewise collapsed into "Other".
+        After, there were still several conflicts
         between the reported license in OBO Foundry and OLS, in which case both were added to the tally. In the
         majority of the conflicts, OBO Foundry reported CC-BY and OLS reported CC 0.
         <img src="https://raw.githubusercontent.com/biopragmatics/bioregistry/main/docs/img/licenses.svg"

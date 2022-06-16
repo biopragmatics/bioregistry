@@ -23,6 +23,12 @@
     "name": "American Type Culture Collection",
     "uri_format": "https://www.atcc.org/Products/$1"
   },
+  "Abcam": {
+    "category": "Cell line collections",
+    "homepage": "https://www.abcam.com/nav/cell-lines-and-lysates",
+    "name": "Abcam cell line products",
+    "uri_format": "https://www.abcam.com/$1.html"
+  },
   "AddexBio": {
     "category": "Cell line collections",
     "homepage": "https://www.addexbio.com/productshow?id=4",
@@ -36,7 +42,7 @@
     "uri_format": "https://www.ebi.ac.uk/arrayexpress/experiments/$1"
   },
   "BCGO": {
-    "category": "Ontologies",
+    "category": "Anatomy/cell type resources",
     "homepage": "https://github.com/obi-bcgo/bcgo",
     "name": "Beta Cell Genomics Ontology",
     "uri_format": "http://www.ontobee.org/ontology/BCGO?iri=http://purl.obolibrary.org/obo/$1"
@@ -60,7 +66,7 @@
     "uri_format": "https://www.beiresources.org/Catalog/cellBanks/$1.aspx"
   },
   "BTO": {
-    "category": "Ontologies",
+    "category": "Anatomy/cell type resources",
     "homepage": "https://bioportal.bioontology.org/ontologies/BTO",
     "name": "BRENDA Tissue Ontology",
     "uri_format": "https://bioportal.bioontology.org/ontologies/BTO?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FBTO_$1"
@@ -111,6 +117,12 @@
     "name": "CGH Data Base",
     "uri_format": "http://www.cghtmd.jp/CGHDatabase/mapViewer?hid=$1&aid=%t&lang=en"
   },
+  "CL": {
+    "category": "Anatomy/cell type resources",
+    "homepage": "https://obophenotype.github.io/cell-ontology/",
+    "name": "Cell Ontology",
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/$1"
+  },
   "CLDB": {
     "category": "Cell line databases/resources",
     "homepage": "http://bioinformatics.hsanmartino.it/cldb/",
@@ -118,14 +130,14 @@
     "uri_format": "http://bioinformatics.hsanmartino.it/cldb/$1.html"
   },
   "CLO": {
-    "category": "Ontologies",
+    "category": "Cell line databases/resources",
     "homepage": "http://www.clo-ontology.org",
     "name": "Cell Line Ontology",
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/clo/terms?iri=http://purl.obolibrary.org/obo/$1"
   },
   "CLS": {
     "category": "Cell line collections",
-    "homepage": "https://www.clsgmbh.de",
+    "homepage": "https://cls.shop/",
     "name": "Cell Lines Service",
     "uri_format": "https://www.clsgmbh.de/$1.html"
   },
@@ -146,6 +158,12 @@
     "homepage": "https://web.expasy.org/cellosaurus/",
     "name": "Cellosaurus Publication",
     "uri_format": "https://web.expasy.org/cellosaurus/cellopub/$1"
+  },
+  "Cellosaurus": {
+    "category": "Cell line databases/resources",
+    "homepage": "https://web.expasy.org/cellosaurus/",
+    "name": "Cellosaurus - a knowledge resource on cell lines",
+    "uri_format": "https://web.expasy.org/cellosaurus/$1"
   },
   "ChEBI": {
     "category": "Chemistry resources",
@@ -244,10 +262,16 @@
     "uri_format": "https://www.phe-culturecollections.org.uk/products/celllines/generalcell/detail.jsp?refId=$1&collection=ecacc_gc"
   },
   "EFO": {
-    "category": "Ontologies",
+    "category": "Experimental variables resources",
     "homepage": "https://www.ebi.ac.uk/efo/",
     "name": "Experimental Factor Ontology",
     "uri_format": "https://www.ebi.ac.uk/efo/$1"
+  },
+  "EGA": {
+    "category": "Sequence databases",
+    "homepage": "https://ega-archive.org/",
+    "name": "European Genome-Phenome Archive",
+    "uri_format": "https://ega-archive.org/studies/$1"
   },
   "ENCODE": {
     "category": "Biological sample resources",
@@ -263,7 +287,7 @@
   },
   "FCDI": {
     "category": "Cell line collections",
-    "homepage": "https://fujifilmcdi.com/the-cirm-ipsc-bank",
+    "homepage": "https://www.fujifilmcdi.com/cirm-ipsc-products/",
     "name": "FujiFilm Cellular Dynamics, Inc"
   },
   "FCS-free": {
@@ -272,10 +296,16 @@
     "name": "Fetal Calf Serum-Free Database",
     "uri_format": "https://fcs-free.org/fcs-database?$1"
   },
-  "FlyBase": {
+  "FlyBase_Cell_line": {
+    "category": "Cell line databases/resources",
+    "homepage": "https://flybase.org/cgi-bin/cvreport.pl?id=FBbt%3A00005329",
+    "name": "Drosophila genome database; cell line entry",
+    "uri_format": "https://flybase.org/reports/$1.html"
+  },
+  "FlyBase_Gene": {
     "category": "Organism-specific databases",
     "homepage": "https://flybase.org",
-    "name": "Drosophila genome database",
+    "name": "Drosophila genome database; gene entry",
     "uri_format": "https://flybase.org/reports/$1.html"
   },
   "GDSC": {
@@ -316,7 +346,7 @@
   },
   "IARC_TP53": {
     "category": "Polymorphism and mutation databases",
-    "homepage": "http://p53.iarc.fr/CellLines.aspx",
+    "homepage": "https://tp53.isb-cgc.org/explore_cl",
     "name": "IARC TP53 Database"
   },
   "IBRC": {
@@ -361,13 +391,19 @@
   "IZSLER": {
     "category": "Cell line collections",
     "homepage": "http://www.ibvr.org/Services/CellCultures.aspx",
-    "name": "Istituto Zooprofilattico Sperimentale della Lombardia e dell\u0092Emilia Romagna biobank"
+    "name": "Istituto Zooprofilattico Sperimentale della Lombardia e dell'Emilia Romagna biobank"
   },
   "Imanis": {
     "category": "Cell line collections",
     "homepage": "https://www.imanislife.com/collections/cell-lines/",
     "name": "Imanis Life Sciences cell line products",
     "uri_format": "https://www.imanislife.com/?s=$1"
+  },
+  "Innoprot": {
+    "category": "Cell line collections",
+    "homepage": "https://innoprot.com/",
+    "name": "Innoprot cell line products",
+    "uri_format": "https://innoprot.com/?s=$1&lang=en"
   },
   "JCRB": {
     "category": "Cell line collections",
@@ -429,7 +465,7 @@
     "uri_format": "https://knowledge.lonza.com/cell?id=$1"
   },
   "MCCL": {
-    "category": "Ontologies",
+    "category": "Cell line databases/resources",
     "homepage": "https://bioportal.bioontology.org/ontologies/MCCL",
     "name": "Molecular Connection Cell Line ontology"
   },
@@ -446,7 +482,7 @@
     "uri_format": "https://www.mmrrc.org/catalog/getSDS.php?mmrrc_id=$1"
   },
   "MeSH": {
-    "category": "Ontologies",
+    "category": "Medical resources",
     "homepage": "https://www.ncbi.nlm.nih.gov/mesh",
     "name": "Medical Subject Headings",
     "uri_format": "https://www.nlm.nih.gov/cgi/mesh/2013/MB_cgi?field=uid&term=$1"
@@ -480,7 +516,7 @@
     "name": "NCI Development Therapeutics Program"
   },
   "NCIt": {
-    "category": "Ontologies",
+    "category": "Medical resources",
     "homepage": "https://ncit.nci.nih.gov/ncitbrowser",
     "name": "NCI thesaurus",
     "uri_format": "https://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&code=$1"
@@ -496,8 +532,14 @@
     "homepage": "https://web.archive.org/web/20160709065305/https://www.gene.affrc.go.jp/ex-nises/NISESCells/CellindexE1.html",
     "name": "National Institute of Sericultural and Entomological Science Cell Database"
   },
+  "NRFC": {
+    "category": "Cell line collections",
+    "homepage": "https://mail.nbfgr.res.in/nrfc/",
+    "name": "National Repository of Fish Cell Line",
+    "uri_format": "https://mail.nbfgr.res.in/nrfc/celldetail.php?id=$1"
+  },
   "ORDO": {
-    "category": "Ontologies",
+    "category": "Medical resources",
     "homepage": "https://www.ebi.ac.uk/ols/ontologies/ordo",
     "name": "Orphanet Rare Disease Ontology",
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/ordo/terms?iri=http://www.orpha.net/ORDO/$1"
@@ -554,12 +596,18 @@
     "category": "Organism-specific databases",
     "homepage": "https://rgd.mcw.edu",
     "name": "Rat Genome Database",
-    "uri_format": "http://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1"
+    "uri_format": "https://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1"
   },
   "RSCB": {
     "category": "Cell line collections",
-    "homepage": "http://www.royaninstitute.org/cmsen/index.php?option=com_content&task=view&id=205&Itemid=40",
+    "homepage": "https://web.archive.org/web/20201001144644/http://www.royaninstitute.org/cmsen/index.php?option=com_content&task=view&id=205&Itemid=40",
     "name": "Royan Stem Cell Bank"
+  },
+  "Rockland": {
+    "category": "Cell line collections",
+    "homepage": "https://www.rockland.com/categories/cell-lines-and-lysates/",
+    "name": "Rockland cell line products",
+    "uri_format": "https://www.rockland.com/search/?searchString=$1"
   },
   "SKIP": {
     "category": "Cell line databases/resources",
@@ -602,6 +650,12 @@
     "name": "TOKU-E Cell-culture Database",
     "uri_format": "http://cell-lines.toku-e.com/Cell-Lines_$1.html"
   },
+  "UBERON": {
+    "category": "Anatomy/cell type resources",
+    "homepage": "https://uberon.github.io/",
+    "name": "Uber-anatomy ontology",
+    "uri_format": "https://www.ebi.ac.uk/ols/ontologies/cl/terms?iri=http://purl.obolibrary.org/obo/$1"
+  },
   "UniProtKB": {
     "category": "Sequence databases",
     "name": "UniProt knowledgebase",
@@ -620,7 +674,7 @@
     "uri_format": "https://www.wicell.org/home/stem-cells/catalog-of-stem-cell-lines/$1.cmsx?closable=true"
   },
   "Wikidata": {
-    "category": "Other",
+    "category": "Encyclopedic resources",
     "homepage": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
     "name": "Wikidata",
     "uri_format": "https://www.wikidata.org/wiki/$1"

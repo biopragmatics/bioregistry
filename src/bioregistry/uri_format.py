@@ -8,7 +8,6 @@
     the prefix should go, which makes them more general than URI prefix strings.
 """
 
-import warnings
 from typing import List, Mapping, Optional, Sequence, Tuple
 
 from .resource_manager import manager
@@ -16,8 +15,8 @@ from .resource_manager import manager
 __all__ = [
     "get_uri_format",
     "get_uri_prefix",
-    "get_format_urls",
     "get_prefix_map",
+    "get_pattern_map",
     "get_prefix_list",
 ]
 
@@ -29,11 +28,14 @@ def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
     :param priority: The priority order of metaresources to use for URI format string lookup.
         The default is:
 
-        1. Default first party (from bioregistry, prefix commons, or miriam)
+        1. Default first party (from the Bioregistry, BioContext, or MIRIAM)
         2. OBO Foundry
-        3. Prefix Commons
-        4. Identifiers.org / MIRIAM
-        5. OLS
+        3. BioContext
+        4. MIRIAM/Identifiers.org
+        5. N2T
+        6. OLS
+        7. Prefix Commons
+
     :return: The best URI format string, where the ``$1`` should be replaced by the
         identifier. ``$1`` could potentially appear multiple times.
 
@@ -47,7 +49,7 @@ def get_uri_format(prefix: str, priority: Optional[Sequence[str]] = None) -> Opt
     ChEBI example above). Do so like:
 
     >>> import bioregistry
-    >>> bioregistry.get_uri_format('chebi', priority=['obofoundry', 'bioregistry', 'prefixcommons', 'miriam', 'ols'])
+    >>> bioregistry.get_uri_format('chebi', priority=['obofoundry', 'bioregistry', 'biocontext', 'miriam', 'ols'])
     'http://purl.obolibrary.org/obo/CHEBI_$1'
     """
     return manager.get_uri_format(prefix=prefix, priority=priority)
@@ -92,10 +94,25 @@ def get_prefix_map(
     )
 
 
-def get_format_urls(**kwargs) -> Mapping[str, str]:
-    """Get a mapping from Bioregistry prefixes to their URI prefixes."""
-    warnings.warn("deprecated", DeprecationWarning)
-    return get_prefix_map(**kwargs)
+def get_pattern_map(
+    *,
+    include_synonyms: bool = False,
+    remapping: Optional[Mapping[str, str]] = None,
+    use_preferred: bool = False,
+) -> Mapping[str, str]:
+    """Get a mapping from Bioregistry prefixes to their regular expression patterns.
+
+    :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
+        the same URI prefix?
+    :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
+    :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+    :return: A mapping from prefixes to regular expression pattern strings.
+    """
+    return manager.get_pattern_map(
+        include_synonyms=include_synonyms,
+        remapping=remapping,
+        use_preferred=use_preferred,
+    )
 
 
 def get_prefix_list(**kwargs) -> List[Tuple[str, str]]:

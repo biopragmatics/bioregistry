@@ -1,3 +1,27 @@
+{% macro code_curie(prefix, identifier) -%}
+    <code>{{ bioregistry.curie_to_str(prefix, identifier) }}</code>
+{% endmacro %}
+
+{% macro render_resource_warnings(resource) -%}
+    {% if resource.deprecated %}
+        <span class="badge badge-warning" style="display: inline-block;">
+            Deprecated <i class="fas fa-exclamation-triangle"></i>
+        </span>
+    {% elif resource.provides %}
+        <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
+           href="{{ url_for("ui.resource", prefix=resource.provides) }}"
+           title="{{ bioregistry.get_name(resource.provides) }} ({{ resource.provides }})">
+            Provider <i class="fas fa-exclamation-triangle"></i>
+        </a>
+    {% elif resource.has_canonical %}
+        <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
+           href="{{ url_for("ui.resource", prefix=resource.has_canonical) }}"
+           title="{{ bioregistry.get_name(resource.has_canonical) }} ({{ resource.has_canonical }})">
+            Has Canonical <i class="fas fa-exclamation-triangle"></i>
+        </a>
+    {% endif %}
+{% endmacro %}
+
 {% macro render_provider_table(prefix, identifier, providers) -%}
     {% if providers %}
         <table class="table table-hover table-striped">
@@ -29,7 +53,7 @@
     {% endif %}
 {% endmacro %}
 
-{% macro render_author(author, link) -%}
+{% macro render_author(author, link=none) -%}
     {% if link or author.email %}
         <a href="{% if link %}{{ link }}{% else %}mailto:{{ author.email }}{% endif %}">
             {% if author.name %}
@@ -61,4 +85,59 @@
             </a>
         </small>
     {% endif %}
+{% endmacro %}
+
+{% macro render_author_modal(prefix, author, key) %}
+    <div class="modal fade" id="{{ key }}-modal" tabindex="-1" role="dialog" aria-labelledby="{{ key }}ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="{{ key }}ModalLabel">Programmatic Access to {{ key|title }} Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% if author.name %}
+                        <p>
+                            Get the contact's name:
+                        </p>
+                        <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+&gt;&gt;&gt; br.get_contact_name("{{ prefix }}")
+'{{ author.name }}'</code></pre>
+                    {% endif %}
+                    {% if author.email %}
+                        <p>
+                            Get the contact's email:
+                        </p>
+                        <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+&gt;&gt;&gt; br.get_contact_email("{{ prefix }}")
+'{{ author.email }}'</code></pre>
+                    {% endif %}
+                    {% if author.github %}
+                        <p>
+                            Get the contact's GitHub handle:
+                        </p>
+                        <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+&gt;&gt;&gt; br.get_contact_github("{{ prefix }}")
+'{{ author.github }}''</code></pre>
+                    {% endif %}
+                    {% if author.orcid %}
+                        <p>
+                            Get the contact's ORCiD identifier:
+                        </p>
+                        <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+&gt;&gt;&gt; br.get_contact_orcid("{{ prefix }}")
+'{{ author.orcid }}'</code></pre>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro code_example(prefix, func, text, quote=True) -%}
+<pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+&gt;&gt;&gt; br.{{ func }}("{{ prefix }}")
+{% if quote %}'{{ text }}'{% else %}{{ text }}{% endif %}</code></pre>
 {% endmacro %}

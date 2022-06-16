@@ -6,6 +6,7 @@ import unittest
 from typing import Iterable, Tuple
 
 import bioregistry
+from bioregistry import manager
 from bioregistry.resolve import get_external
 
 
@@ -61,8 +62,8 @@ class TestResolve(unittest.TestCase):
             ("go.ref", "0000041"),
             ("go.ref", "GO_REF:0000041"),
             # bananas from OBO
-            ("fbbt", "1234"),
-            ("fbbt", "FBbt:1234"),
+            ("go", "0000001"),
+            ("go", "GO:0000001"),
         ]
         for prefix in bioregistry.read_registry():
             if bioregistry.is_deprecated(prefix):
@@ -120,3 +121,35 @@ class TestResolve(unittest.TestCase):
                     or re_pattern.startswith(miriam_prefix.upper()),
                     msg=f"{prefix} pattern: {re_pattern}",
                 )
+
+    def test_curie_pattern(self):
+        """Test CURIE pattern.
+
+        .. seealso:: https://github.com/biopragmatics/bioregistry/issues/245
+        """
+        self.assertEqual("^CHEBI:\\d+$", bioregistry.get_curie_pattern("chebi"))
+        self.assertEqual(
+            "^chembl\\.compound:CHEMBL\\d+$", bioregistry.get_curie_pattern("chembl.compound")
+        )
+        pattern = bioregistry.get_curie_pattern("panther.pthcmp")
+        self.assertRegex("panther.pthcmp:P00266", pattern)
+        self.assertNotRegex("pantherXpthcmp:P00266", pattern)
+
+    def test_depends_on(self):
+        """Test getting dependencies."""
+        test_prefix = "foodon"
+        test_target = "bfo"
+        resource = bioregistry.get_resource(test_prefix)
+        self.assertIsNotNone(resource)
+
+        obofoundry = resource.get_external("obofoundry")
+        self.assertIsNotNone(obofoundry)
+        self.assertIn("depends_on", obofoundry)
+
+        fobi_dependencies = manager.get_depends_on(test_prefix)
+        self.assertIsNotNone(fobi_dependencies)
+        self.assertIn(test_target, fobi_dependencies)
+
+        fobi_dependencies = bioregistry.get_depends_on(test_prefix)
+        self.assertIsNotNone(fobi_dependencies)
+        self.assertIn(test_target, fobi_dependencies)
