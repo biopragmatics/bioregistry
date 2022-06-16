@@ -39687,15 +39687,17 @@
       "uri_format": "https://www.gsea-msigdb.org/gsea/msigdb/$1"
     },
     "description": "The Molecular Signatures Database (MSigDB) is a collection of annotated gene sets for use with GSEA software. From this web site, you can",
-    "example": "NADELLA_PRKAR1A_TARGETS_DN",
+    "example": "M1",
     "homepage": "https://www.gsea-msigdb.org",
     "mappings": {
       "biolink": "MSigDB"
     },
     "name": "Molecular Signatures Database",
+    "pattern": "^M\\d+$",
     "synonyms": [
       "msig"
     ],
+    "uri_format": "https://biopragmatics.github.io/providers/msigdb/$1",
     "wikidata": {
       "paper": "Q34509167"
     }
@@ -41731,6 +41733,15 @@
       "prefix": "NEUROLEX",
       "uri_format": "http://identifiers.org/neurolex/$1"
     },
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4802"
+    },
+    "example": "4",
+    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
+    "license": "CC BY-4.0",
     "mappings": {
       "biocontext": "NEUROLEX",
       "miriam": "neurolex",
@@ -41759,6 +41770,9 @@
       "prefix": "neurolex",
       "uri_format": "http://www.neurolex.org/wiki/$1"
     },
+    "name": "NIF Standard Ontology: Neurolex",
+    "part_of": "nif",
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "description": "The NeuroLex project is a dynamic lexicon of terms used in neuroscience.  It is supported by the Neuroscience Information Framework project and incorporates information from the NIF standardised ontology (NIFSTD), and its predecessor, the Biomedical Informatics Research Network Lexicon (BIRNLex).",
       "example": "Birnlex_721",
@@ -41775,7 +41789,14 @@
         "18975148"
       ],
       "uri_format": "http://www.neurolex.org/wiki/$1"
-    }
+    },
+    "repository": "https://github.com/SciCrunch/NIF-Ontology",
+    "synonyms": [
+      "NLX",
+      "nlx"
+    ],
+    "twitter": "SciCrunch",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_$1"
   },
   "neuromorpho": {
     "biocontext": {
@@ -42247,7 +42268,7 @@
       "uri_format": "http://lgsun.grc.nia.nih.gov/cgi-bin/pro3?sname1=$1"
     }
   },
-  "nif_cell": {
+  "nif.cell": {
     "aberowl": {
       "description": "Cell types from NIFSTD",
       "download_owl": "http://aber-owl.net/media/ontologies/NIFCELL/15/nifcell.owl",
@@ -42280,9 +42301,10 @@
       "homepage": "http://neuinfo.org/",
       "name": "NIF Cell",
       "prefix": "nif_cell"
-    }
+    },
+    "part_of": "nif"
   },
-  "nif_dysfunction": {
+  "nif.dysfunction": {
     "biocontext": {
       "is_identifiers": false,
       "is_obo": true,
@@ -42300,9 +42322,43 @@
       "homepage": "http://neuinfo.org/",
       "name": "NIF Dysfunction",
       "prefix": "nif_dysfunction"
-    }
+    },
+    "part_of": "nif"
   },
-  "nif_grossanatomy": {
+  "nif.ext": {
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4801"
+    },
+    "contributor": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4801"
+    },
+    "description": "NIFEXT covers IRIs that were \"external\" identifiers that were brought into the ontology at some point in time. This was done before most of the current standard ontology and identifier management practices had been developed.",
+    "example": "7123",
+    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
+    "license": "CC BY-4.0",
+    "name": "NIF Standard Ontology: External",
+    "part_of": "nif",
+    "pattern": "^\\d+$",
+    "repository": "https://github.com/SciCrunch/NIF-Ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "NIFEXT"
+    ],
+    "twitter": "SciCrunch",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/nifext_$1"
+  },
+  "nif.grossanatomy": {
     "biocontext": {
       "is_identifiers": false,
       "is_obo": true,
@@ -42320,7 +42376,41 @@
       "homepage": "http://neuinfo.org/",
       "name": "NIF Gross Anatomy",
       "prefix": "nif_grossanatomy"
-    }
+    },
+    "part_of": "nif"
+  },
+  "nif.std": {
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4801"
+    },
+    "contributor": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4801"
+    },
+    "description": "NIFSTD is a base namespace (like obo:) which houses many other prefixes. Sometimes NIFSTD prefixed identifiers appear undifferentiated, but usually if it shows up it means that another prefix definition is missing when serializing.",
+    "example": "BAMSC981",
+    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
+    "license": "CC BY-4.0",
+    "name": "NIF Standard Ontology",
+    "part_of": "nif",
+    "pattern": "^BAMSC\\d+$",
+    "repository": "https://github.com/SciCrunch/NIF-Ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "NIFSTD"
+    ],
+    "twitter": "SciCrunch",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/$1"
   },
   "nihreporter.project": {
     "contributor": {
@@ -42376,38 +42466,421 @@
     "pattern": "^\\d+$",
     "uri_format": "https://www.ncbi.nlm.nih.gov/nlmcatalog/$1"
   },
-  "nlxanat": {
+  "nlx.anat": {
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4804"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "The InterLex project - a core component of SciCrunch and supported by projects such as the Neuroscience Information Framework project (NIF), the NIDDK Information Network (dkNET), and the Open Data Commons for Spinal Cord Injury - is a dynamic lexicon of biomedical terms.",
+    "description": "NLXANAT covers anatomy terms. Almost all terms are also in Uberon.",
     "example": "090201",
     "homepage": "https://scicrunch.org/scicrunch/interlex/dashboard",
     "name": "NeuroLex Anatomy",
-    "part_of": "neurolex",
-    "pattern": "^\\d{6}$",
+    "part_of": "nif",
+    "pattern": "^\\d+$",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_anat_$1"
   },
-  "nlxdys": {
+  "nlx.br": {
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4804"
+    },
+    "contributor": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4804"
+    },
+    "description": "NLXBR covers brain regions from the PHT00 macaque parcellation, Paxinos, Huang, and Tog The Rhesus Monkey Brain In Stereotaxic Coordinates (1999).",
+    "example": "145",
+    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
+    "license": "CC BY-4.0",
+    "name": "NIF Standard Ontology: Brain Regions",
+    "part_of": "nif",
+    "pattern": "^\\d+$",
+    "repository": "https://github.com/SciCrunch/NIF-Ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "NLXBR"
+    ],
+    "twitter": "SciCrunch",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_br_$1"
+  },
+  "nlx.cell": {
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4805"
+    },
+    "contributor": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4805"
+    },
+    "description": "NLXCELL conatins cell types with a focus on neuron types.",
+    "example": "91005",
+    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
+    "license": "CC BY-4.0",
+    "name": "NIF Standard Ontology: Cell Types",
+    "part_of": "nif",
+    "pattern": "^\\d+$",
+    "repository": "https://github.com/SciCrunch/NIF-Ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "NLXCELL"
+    ],
+    "twitter": "SciCrunch",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_cell_$1"
+  },
+  "nlx.chem": {
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4806"
+    },
+    "contributor": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4806"
+    },
+    "description": "NLXCHEM covers chemicals. Most classes are also in ChEBI.",
+    "example": "90801",
+    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
+    "license": "CC BY-4.0",
+    "name": "NIF Standard Ontology: Chemical",
+    "part_of": "nif",
+    "pattern": "^\\d+$",
+    "repository": "https://github.com/SciCrunch/NIF-Ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "NLXCHEM"
+    ],
+    "twitter": "SciCrunch",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_chem_$1"
+  },
+  "nlx.dys": {
     "appears_in": [
       "mondo"
     ],
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4804"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "The InterLex project - a core component of SciCrunch and supported by projects such as the Neuroscience Information Framework project (NIF), the NIDDK Information Network (dkNET), and the Open Data Commons for Spinal Cord Injury - is a dynamic lexicon of biomedical terms.",
+    "description": "NLXDYS covers dysfunction, diseases, and disorders. Most classes are also in Disease Ontology (DOID), Monarch Disease Ontology (MONDO), Human Phenotype Ontology (HPO), etc.",
     "example": "20090303",
     "homepage": "https://scicrunch.org/scicrunch/interlex/dashboard",
     "name": "NeuroLex Dysfunction",
-    "part_of": "neurolex",
+    "part_of": "nif",
     "pattern": "^\\d+$",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_dys_$1"
+  },
+  "nlx.func": {
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4808"
+    },
+    "contributor": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4808"
+    },
+    "description": "NLXFUNC covers terms for cognitive function.",
+    "example": "90801",
+    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
+    "license": "CC BY-4.0",
+    "name": "NIF Standard Ontology: Cognitive Function",
+    "part_of": "nif",
+    "pattern": "^\\d+$",
+    "repository": "https://github.com/SciCrunch/NIF-Ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "NLXFUNC"
+    ],
+    "twitter": "SciCrunch",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_func_$1"
+  },
+  "nlx.inv": {
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4809"
+    },
+    "contributor": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4809"
+    },
+    "description": "NLXINV includes funding agencies and some terms related to documenting scientific investigations data acquisition and analysis.",
+    "example": "90901",
+    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
+    "license": "CC BY-4.0",
+    "name": "NIF Standard Ontology: Investigations",
+    "part_of": "nif",
+    "pattern": "^\\d+$",
+    "repository": "https://github.com/SciCrunch/NIF-Ontology",
+    "synonyms": [
+      "NLXINV"
+    ],
+    "twitter": "SciCrunch",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_inv_$1"
+  },
+  "nlx.mol": {
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4810"
+    },
+    "contributor": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4810"
+    },
+    "description": "NLXMOL covers molecules, proteins, and molecular roles, similar to entities in the Protein Ontology, UniProt, and ChEBI, with a focus on those of particular relevance in the nervous system.",
+    "example": "90806",
+    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
+    "license": "CC BY-4.0",
+    "name": "NIF Standard Ontology: Molecules",
+    "part_of": "nif",
+    "pattern": "^\\d+$",
+    "repository": "https://github.com/SciCrunch/NIF-Ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "NLXMOL"
+    ],
+    "twitter": "SciCrunch",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_mol_$1"
+  },
+  "nlx.oen": {
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4811"
+    },
+    "contributor": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4811"
+    },
+    "description": "NLXOEN prefixed identifiers are from the version of the Ontology for Experimental Neurophysiology (OEN; https://github.com/G-Node/OEN) that were originally deposited in Neurolex (for examples, see https://scicrunch.org/scicrunch/interlex/search?q=NLXOEN results).",
+    "example": "0001000",
+    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
+    "license": "CC BY-4.0",
+    "name": "NIF Standard Ontology: OEN Terms in Neurolex",
+    "part_of": "nif",
+    "pattern": "^\\d+$",
+    "repository": "https://github.com/SciCrunch/NIF-Ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "NLXOEN"
+    ],
+    "twitter": "SciCrunch",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/oen_$1"
+  },
+  "nlx.org": {
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4812"
+    },
+    "contributor": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4812"
+    },
+    "description": "NLXORG covers organisms.",
+    "example": "090701",
+    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
+    "license": "CC BY-4.0",
+    "name": "NIF Standard Ontology: Organisms",
+    "part_of": "nif",
+    "pattern": "^\\d+$",
+    "repository": "https://github.com/SciCrunch/NIF-Ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "NLXORG"
+    ],
+    "twitter": "SciCrunch",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_organ_$1"
+  },
+  "nlx.qual": {
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4813"
+    },
+    "contributor": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4813"
+    },
+    "description": "NLXQUAL covers qualities and dispositions similar to the Phenotype And Trait Ontology (PATO).",
+    "example": "100810",
+    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
+    "license": "CC BY-4.0",
+    "name": "NIF Standard Ontology: Qualities",
+    "part_of": "nif",
+    "pattern": "^\\d+$",
+    "repository": "https://github.com/SciCrunch/NIF-Ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "NLXQUAL"
+    ],
+    "twitter": "SciCrunch",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_qual_$1"
+  },
+  "nlx.res": {
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4814"
+    },
+    "contributor": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4814"
+    },
+    "description": "NLXRES covers digital resources. Most classes are high level types covering everything from databases and sourcecode to source code licenses and instrument supplier websites",
+    "example": "090924",
+    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
+    "license": "CC BY-4.0",
+    "name": "NIF Standard Ontology: Digital Resources",
+    "part_of": "nif",
+    "pattern": "^\\d+$",
+    "repository": "https://github.com/SciCrunch/NIF-Ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "NLXRES"
+    ],
+    "twitter": "SciCrunch",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_res_$1"
+  },
+  "nlx.sub": {
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4815"
+    },
+    "contributor": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4815"
+    },
+    "description": "NLXSUB covers subcellular entities similar to the cellular component branch of the Gene Ontology (GO).",
+    "example": "090803",
+    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
+    "license": "CC BY-4.0",
+    "name": "NIF Standard Ontology: Subcellular Entities",
+    "part_of": "nif",
+    "pattern": "^\\d+$",
+    "repository": "https://github.com/SciCrunch/NIF-Ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "NLXSUB"
+    ],
+    "twitter": "SciCrunch",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_subcell_$1"
   },
   "nmdc": {
     "contact": {
@@ -55915,7 +56388,8 @@
     "example": "A0001",
     "homepage": "https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets",
     "name": "Selventa Chemicals",
-    "pattern": "^A\\d{4}$"
+    "pattern": "^A\\d{4}$",
+    "uri_format": "https://biopragmatics.github.io/providers/schem/$1"
   },
   "scholia.resource": {
     "contributor": {
@@ -55941,7 +56415,8 @@
     "example": "C0001",
     "homepage": "https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets",
     "name": "Selventa Complexes",
-    "pattern": "^C\\d{4}$"
+    "pattern": "^C\\d{4}$",
+    "uri_format": "https://biopragmatics.github.io/providers/scomp/$1"
   },
   "scop": {
     "biocontext": {
@@ -56186,7 +56661,8 @@
     "example": "D0001",
     "homepage": "https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets",
     "name": "Selventa Diseases",
-    "pattern": "^D\\d{4}$"
+    "pattern": "^D\\d{4}$",
+    "uri_format": "https://biopragmatics.github.io/providers/sdis/$1"
   },
   "sedml.format": {
     "mappings": {
@@ -56470,7 +56946,8 @@
     "example": "F0001",
     "homepage": "https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets",
     "name": "Selventa Families",
-    "pattern": "^F\\d{4}$"
+    "pattern": "^F\\d{4}$",
+    "uri_format": "https://biopragmatics.github.io/providers/sfam/$1"
   },
   "sgd": {
     "biocontext": {
@@ -62428,7 +62905,8 @@
     ],
     "synonyms": [
       "PTM"
-    ]
+    ],
+    "uri_format": "https://biopragmatics.github.io/providers/uniprot.ptm/$1"
   },
   "uniprot.resource": {
     "contributor": {

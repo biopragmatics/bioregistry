@@ -243,7 +243,8 @@ orcid:0000-0002-7356-1779 rdfs:label "Nico Matentzoglu" ;
     dcterms:contributor bioregistry:pav .
 
 orcid:0000-0002-8719-7760 rdfs:label "Sierra Moxon" ;
-    dcterms:contributor bioregistry:cpt .
+    dcterms:contributor bioregistry:agrkb,
+        bioregistry:cpt .
 
 bioregistry:3dmet a bioregistry.schema:0000001 ;
     rdfs:label "3D Metabolites" ;
@@ -11551,20 +11552,6 @@ bioregistry:stitch a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\w{14}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:storedb a bioregistry.schema:0000001 ;
-    rdfs:label "Store DB" ;
-    dc:description "STOREDB database is a repository for data used by the international radiobiology community, archiving and sharing primary data outputs from research on low dose radiation. It also provides a directory of bioresources and databases for radiobiology projects containing information and materials that investigators are willing to share. STORE supports the creation of a low dose radiation research commons."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:STOREDB,
-        n2t:storedb,
-        fairsharing:FAIRsharing.6h8d2r,
-        miriam:storedb ;
-    foaf:homepage "https://www.storedb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "STUDY1040"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.storedb.org/?$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^(STUDY|FILE|DATASET)\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:string a bioregistry.schema:0000001 ;
     rdfs:label "Search Tool for Retrieval of Interacting Genes/Proteins" ;
     dc:description """STRING (Search Tool for Retrieval of Interacting Genes/Proteins) is a database of known and predicted protein interactions.\r
@@ -19471,6 +19458,28 @@ bioregistry:agilent.probe a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "A_24_P98555"^^xsd:string ;
     bioregistry.schema:0000008 "^A_\\d+_.+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:agrkb a bioregistry.schema:0000001 ;
+    rdfs:label "Alliance of Genome Resources Knowledge Base" ;
+    dc:description """The [Alliance of Genome Resources](https://www.alliancegenome.org/about-us) creates identifiers for several biological entity types including genes, other sequence features, constructs, morpholinos, TALENs, CRISPRs, variants, alleles, genotypes, strains, environments and experiments, phenotype annotations, expression annotations, disease annotations, interactions, and variant annotations.
+
+The Alliance of Genome Resources was founded by the following Model Organism databases and the Gene Ontology Consortium and distributes high-quality, curated knowledge about several model organisms in a single, unified location:
+
+- [ZFIN](https://zfin.org) - Zebrafish Information Network
+- [WormBase](https://wormbase.org)
+- [MGI](https://www.mgi.org) - Mouse Genome Informatics
+- [RGD](https://rgd.mcw.edu) - Rat Genome Database
+- [SGD](https://www.yeastgenome.org) - Saccharomyces Genome Database
+- [FlyBase](https://flybase.org)
+- [Xenbase](https://www.xenbase.org)"""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.alliancegenome.org"^^xsd:string ;
+    bioregistry.schema:0000005 "100000000000001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.alliancegenome.org/accession/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9][0-9]{14}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-6601-2165 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:alzforum.mutation a bioregistry.schema:0000001 ;
     rdfs:label "Alzforum Mutations" ;
@@ -28635,6 +28644,39 @@ bioregistry:ssbd.project a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:storedb.dataset a bioregistry.schema:0000001 ;
+    rdfs:label "STOREDB at University of Cambridge" ;
+    dc:description "Datasets inside StoreDB"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:storedb ;
+    foaf:homepage "https://www.storedb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "1251"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.storedb.org/?STOREDB:DATASET$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 true .
+
+bioregistry:storedb.file a bioregistry.schema:0000001 ;
+    rdfs:label "STOREDB at University of Cambridge" ;
+    dc:description "File inside StoreDB"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:storedb ;
+    foaf:homepage "https://www.storedb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "12929"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.storedb.org/store_v3/download.jsp?fileId=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:storedb.study a bioregistry.schema:0000001 ;
+    rdfs:label "STOREDB at University of Cambridge" ;
+    dc:description "Study inside StoreDB"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:storedb ;
+    foaf:homepage "https://www.storedb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "1174"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.storedb.org/store_v3/study.jsp?studyId=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:umbbd.compound a bioregistry.schema:0000001 ;
     rdfs:label "UM-BBD Compound" ;
     dc:description "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to compound information."^^xsd:string ;
@@ -29071,6 +29113,23 @@ bioregistry:stato a bioregistry.schema:0000001 ;
         bioregistry:psdo,
         bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0003-3499-8262 .
+
+bioregistry:storedb a bioregistry.schema:0000001 ;
+    rdfs:label "Store DB" ;
+    dc:description "STOREDB database is a repository for data used by the international radiobiology community, archiving and sharing primary data outputs from research on low dose radiation. It also provides a directory of bioresources and databases for radiobiology projects containing information and materials that investigators are willing to share. STORE supports the creation of a low dose radiation research commons."^^xsd:string ;
+    dcterms:hasPart bioregistry:storedb.dataset,
+        bioregistry:storedb.file,
+        bioregistry:storedb.study ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:STOREDB,
+        n2t:storedb,
+        fairsharing:FAIRsharing.6h8d2r,
+        miriam:storedb ;
+    foaf:homepage "https://www.storedb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "STUDY1040"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.storedb.org/?$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(STUDY|FILE|DATASET)\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 orcid:0000-0001-5985-7429 rdfs:label "Colin Batchelor" .
 
@@ -29814,10 +29873,6 @@ bioregistry:pco a bioregistry.schema:0000001 ;
         bioregistry:envo ;
     bioregistry.schema:0000019 orcid:0000-0001-8815-0078 .
 
-orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
-    dcterms:contributor bioregistry:insdc.run,
-        bioregistry:wwf.ecoregion .
-
 bioregistry:iao a bioregistry.schema:0000001 ;
     rdfs:label "Information Artifact Ontology" ;
     dc:description "An ontology of information entities, originally driven by work by the Ontology of Biomedical Investigation (OBI) digital entity and realizable information entity branch."^^xsd:string ;
@@ -29849,6 +29904,10 @@ bioregistry:iao a bioregistry.schema:0000001 ;
         bioregistry:psdo,
         bioregistry:xpo ;
     bioregistry.schema:0000019 orcid:0000-0002-2999-0103 .
+
+orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
+    dcterms:contributor bioregistry:insdc.run,
+        bioregistry:wwf.ecoregion .
 
 bioregistry:pcl a bioregistry.schema:0000001 ;
     rdfs:label "Provisional Cell Ontology" ;
@@ -30533,6 +30592,9 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:span,
         bioregistry:sprint,
         bioregistry:ssbd.project,
+        bioregistry:storedb.dataset,
+        bioregistry:storedb.file,
+        bioregistry:storedb.study,
         bioregistry:syoid,
         bioregistry:tgn,
         bioregistry:th,
@@ -36085,6 +36147,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:aftol.taxonomy,
         bioregistry:agilent.probe,
         bioregistry:agricola,
+        bioregistry:agrkb,
         bioregistry:agro,
         bioregistry:agrovoc,
         bioregistry:aism,
@@ -37265,6 +37328,9 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:stato,
         bioregistry:stitch,
         bioregistry:storedb,
+        bioregistry:storedb.dataset,
+        bioregistry:storedb.file,
+        bioregistry:storedb.study,
         bioregistry:string,
         bioregistry:sty,
         bioregistry:subtilist,
