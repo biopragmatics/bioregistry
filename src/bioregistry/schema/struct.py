@@ -1181,6 +1181,7 @@ class Resource(BaseModel):
         return identifier
 
     def get_miriam_curie(self, identifier: str) -> Optional[str]:
+        """Get the MIRIAM-flavored CURIE."""
         miriam_prefix = self.get_miriam_prefix()
         if miriam_prefix is None:
             return None
@@ -1202,7 +1203,7 @@ class Resource(BaseModel):
                 return identifier
         return f"{miriam_prefix}:{identifier}"
 
-    def miriam_standardize_identifier(self, identifier: str) -> str:
+    def miriam_standardize_identifier(self, identifier: str) -> Optional[str]:
         """Normalize the identifier for legacy usage with MIRIAM using the appropriate banana.
 
         :param identifier: The identifier in the CURIE

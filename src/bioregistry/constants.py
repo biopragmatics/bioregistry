@@ -85,7 +85,6 @@ BIOREGISTRY_REMOTE_URL = pystow.get_config("bioregistry", "url") or "https://bio
 IDOT_BROKEN = {
     "gramene.growthstage",
     "oma.hog",
-    "obi",
     "mir",  # Added on 2021-10-08
     "storedb",  # Added on 2021-10-12
 }

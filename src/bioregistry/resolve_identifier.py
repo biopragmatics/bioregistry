@@ -46,12 +46,13 @@ def is_known_identifier(prefix: str, identifier: str) -> Optional[bool]:
     return resource.is_known_identifier(identifier)
 
 
-def miriam_standardize_identifier(prefix: str, identifier: str) -> str:
+def miriam_standardize_identifier(prefix: str, identifier: str) -> Optional[str]:
     """Normalize the identifier with the appropriate banana.
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
-    :return: A normalize identifier, possibly with banana/redundant prefix added
+    :return: A normalize identifier, possibly with banana/redundant prefix added.
+        Returns none if the prefix doesn't map to MIRIAM.
 
     Examples with explicitly annotated bananas:
 

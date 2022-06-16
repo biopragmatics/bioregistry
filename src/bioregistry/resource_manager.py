@@ -22,12 +22,7 @@ from typing import (
     cast,
 )
 
-from .constants import (
-    BIOREGISTRY_REMOTE_URL,
-    IDENTIFIERS_ORG_URL_PREFIX,
-    LINK_PRIORITY,
-    MIRIAM_BLACKLIST,
-)
+from .constants import BIOREGISTRY_REMOTE_URL, IDENTIFIERS_ORG_URL_PREFIX, LINK_PRIORITY
 from .license_standardizer import standardize_license
 from .schema import Registry, Resource, sanitize_model
 from .schema_utils import (
