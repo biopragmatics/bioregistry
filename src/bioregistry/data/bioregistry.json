@@ -41718,6 +41718,15 @@
       "prefix": "NEUROLEX",
       "uri_format": "http://identifiers.org/neurolex/$1"
     },
+    "contact": {
+      "email": "tgbugs@gmail.com",
+      "github": "tgbugs",
+      "name": "Tom Gillespie",
+      "orcid": "0000-0002-7509-4802"
+    },
+    "example": "4",
+    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
+    "license": "CC BY-4.0",
     "mappings": {
       "biocontext": "NEUROLEX",
       "miriam": "neurolex",
@@ -41746,6 +41755,9 @@
       "prefix": "neurolex",
       "uri_format": "http://www.neurolex.org/wiki/$1"
     },
+    "name": "NIF Standard Ontology: Neurolex",
+    "part_of": "nif",
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "description": "The NeuroLex project is a dynamic lexicon of terms used in neuroscience.  It is supported by the Neuroscience Information Framework project and incorporates information from the NIF standardised ontology (NIFSTD), and its predecessor, the Biomedical Informatics Research Network Lexicon (BIRNLex).",
       "example": "Birnlex_721",
@@ -41762,7 +41774,14 @@
         "18975148"
       ],
       "uri_format": "http://www.neurolex.org/wiki/$1"
-    }
+    },
+    "repository": "https://github.com/SciCrunch/NIF-Ontology",
+    "synonyms": [
+      "NLX",
+      "nlx"
+    ],
+    "twitter": "SciCrunch",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_$1"
   },
   "neuromorpho": {
     "biocontext": {
@@ -42417,33 +42436,6 @@
     "pattern": "^\\d+$",
     "uri_format": "https://www.ncbi.nlm.nih.gov/nlmcatalog/$1"
   },
-  "nlx": {
-    "contact": {
-      "email": "tgbugs@gmail.com",
-      "github": "tgbugs",
-      "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4802"
-    },
-    "contributor": {
-      "email": "tgbugs@gmail.com",
-      "github": "tgbugs",
-      "name": "Tom Gillespie",
-      "orcid": "0000-0002-7509-4802"
-    },
-    "description": "NLX is the generic neurolex prefix that covers all types of entities.",
-    "example": "4",
-    "homepage": "https://github.com/SciCrunch/NIF-Ontology",
-    "license": "CC BY-4.0",
-    "name": "NIF Standard Ontology: Neurolex",
-    "part_of": "nif",
-    "pattern": "^\\d+$",
-    "repository": "https://github.com/SciCrunch/NIF-Ontology",
-    "synonyms": [
-      "NLX"
-    ],
-    "twitter": "SciCrunch",
-    "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_$1"
-  },
   "nlxanat": {
     "contact": {
       "email": "tgbugs@gmail.com",
@@ -42457,12 +42449,13 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "The InterLex project - a core component of SciCrunch and supported by projects such as the Neuroscience Information Framework project (NIF), the NIDDK Information Network (dkNET), and the Open Data Commons for Spinal Cord Injury - is a dynamic lexicon of biomedical terms.",
+    "description": "NLXANAT covers anatomy terms. Almost all terms are also in Uberon.",
     "example": "090201",
     "homepage": "https://scicrunch.org/scicrunch/interlex/dashboard",
     "name": "NeuroLex Anatomy",
     "part_of": "nif",
-    "pattern": "^\\d{6}$",
+    "pattern": "^\\d+$",
+    "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_anat_$1"
   },
   "nlxbr": {
@@ -42562,12 +42555,13 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "The InterLex project - a core component of SciCrunch and supported by projects such as the Neuroscience Information Framework project (NIF), the NIDDK Information Network (dkNET), and the Open Data Commons for Spinal Cord Injury - is a dynamic lexicon of biomedical terms.",
+    "description": "NLXDYS covers dysfunction, diseases, and disorders. Most classes are also in Disease Ontology (DOID), Monarch Disease Ontology (MONDO), Human Phenotype Ontology (HPO), etc.",
     "example": "20090303",
     "homepage": "https://scicrunch.org/scicrunch/interlex/dashboard",
     "name": "NeuroLex Dysfunction",
     "part_of": "nif",
     "pattern": "^\\d+$",
+    "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_dys_$1"
   },
   "nlxfunc": {
