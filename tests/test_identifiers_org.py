@@ -36,7 +36,7 @@ class TestIdentifiersOrg(unittest.TestCase):
 
     def test_standardization(self):
         """Test that standardization makes patterns valid."""
-        overridden = {"classyfire", "pid.pathway"}
+        overridden = {"pid.pathway"}
         for prefix, entry in bioregistry.read_registry().items():
             if not entry.get_miriam_prefix() or prefix in overridden:
                 continue

@@ -530,7 +530,8 @@ class Resource(BaseModel):
         return None
 
     def get_banana_peel(self) -> str:
-        return self.banana_peel or ":"
+        """Get the delimiter between the banana and the local unique identifier."""
+        return ":" if self.banana_peel is None else self.banana_peel
 
     def get_default_format(self) -> Optional[str]:
         """Get the default, first-party URI prefix.
