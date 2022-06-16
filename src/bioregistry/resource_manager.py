@@ -762,10 +762,10 @@ class Manager:
     def get_providers_list(self, prefix: str, identifier: str) -> Sequence[Tuple[str, str]]:
         """Get all providers for the CURIE."""
         rv = []
-        for provider, get_url in self.get_provider_functions().items():
+        for metaprefix, get_url in self.get_provider_functions().items():
             link = get_url(prefix, identifier)
             if link is not None:
-                rv.append((provider, link))
+                rv.append((metaprefix, link))
 
         resource = self.get_resource(prefix)
         if resource is None:
