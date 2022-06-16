@@ -2,7 +2,7 @@
 
 """Extract registry information."""
 
-from .collection_api import get_collection  # noqa:F401
+from .collection_api import get_collection, get_context  # noqa:F401
 from .metaresource_api import (  # noqa:F401
     get_registry,
     get_registry_description,
@@ -10,12 +10,15 @@ from .metaresource_api import (  # noqa:F401
     get_registry_homepage,
     get_registry_name,
     get_registry_provider_uri_format,
+    get_registry_short_name,
     get_registry_uri,
 )
-from .parse_iri import curie_from_iri, parse_iri  # noqa:F401
+from .parse_iri import curie_from_iri, parse_iri, parse_obolibrary_purl  # noqa:F401
 from .resolve import (  # noqa:F401
+    count_mappings,
     get_appears_in,
     get_banana,
+    get_biocontext_uri_format,
     get_bioportal_prefix,
     get_canonical_for,
     get_contact,
@@ -28,6 +31,7 @@ from .resolve import (  # noqa:F401
     get_depends_on,
     get_description,
     get_example,
+    get_external,
     get_fairsharing_prefix,
     get_has_canonical,
     get_has_parts,
@@ -43,6 +47,7 @@ from .resolve import (  # noqa:F401
     get_name,
     get_namespace_in_lui,
     get_obo_download,
+    get_obo_health_url,
     get_obofoundry_prefix,
     get_obofoundry_uri_format,
     get_obofoundry_uri_prefix,
@@ -51,6 +56,7 @@ from .resolve import (  # noqa:F401
     get_ols_uri_prefix,
     get_owl_download,
     get_part_of,
+    get_parts_collections,
     get_pattern,
     get_preferred_prefix,
     get_prefixcommons_uri_format,
@@ -66,6 +72,7 @@ from .resolve import (  # noqa:F401
     get_wikidata_prefix,
     has_no_terms,
     is_deprecated,
+    is_novel,
     is_proprietary,
     normalize_curie,
     normalize_parsed_curie,
@@ -88,18 +95,31 @@ from .resolve_identifier import (  # noqa:F401
     is_known_identifier,
 )
 from .resource_manager import Manager, manager  # noqa:F401
-from .schema.struct import Author, Collection, Provider, Registry, Resource  # noqa:F401
-from .uri_format import (  # noqa:F401
-    get_format_urls,
-    get_prefix_map,
-    get_uri_format,
-    get_uri_prefix,
+from .schema.struct import (  # noqa:F401
+    Author,
+    Collection,
+    Context,
+    Provider,
+    Registry,
+    Resource,
 )
-from .utils import (  # noqa:F401
+from .schema_utils import (  # noqa:F401
+    is_mismatch,
     read_collections,
+    read_contexts,
     read_contributors,
     read_metaregistry,
     read_mismatches,
     read_registry,
+    registries,
+    resources,
+    write_contexts,
     write_registry,
 )
+from .uri_format import (  # noqa:F401
+    get_pattern_map,
+    get_prefix_map,
+    get_uri_format,
+    get_uri_prefix,
+)
+from .utils import curie_to_str  # noqa:F401

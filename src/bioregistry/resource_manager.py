@@ -3,7 +3,8 @@
 """A class-based client to a metaregistry."""
 
 import logging
-from collections import defaultdict
+import typing
+from collections import Counter, defaultdict
 from functools import lru_cache
 from pathlib import Path
 from typing import (
@@ -18,25 +19,19 @@ from typing import (
     Set,
     Tuple,
     Union,
+    cast,
 )
 
-from .constants import (
-    BIOREGISTRY_REMOTE_URL,
-    IDENTIFIERS_ORG_URL_PREFIX,
-    LINK_PRIORITY,
-    MIRIAM_BLACKLIST,
-)
+from .constants import BIOREGISTRY_REMOTE_URL, IDENTIFIERS_ORG_URL_PREFIX, LINK_PRIORITY
 from .license_standardizer import standardize_license
 from .schema import Registry, Resource, sanitize_model
-from .utils import (
-    NormDict,
-    _norm,
+from .schema_utils import (
     _registry_from_path,
-    curie_to_str,
     read_metaregistry,
     read_registry,
     write_registry,
 )
+from .utils import NormDict, _norm, curie_to_str
 
 __all__ = [
     "Manager",
@@ -71,6 +66,9 @@ def _synonym_to_canonical(registry: Mapping[str, Resource]) -> NormDict:
 class Manager:
     """A manager for functionality related to a metaregistry."""
 
+    registry: Dict[str, Resource]
+    metaregistry: Dict[str, Registry]
+
     def __init__(
         self,
         registry: Optional[Mapping[str, Resource]] = None,
@@ -81,14 +79,10 @@ class Manager:
         :param registry: A custom registry. If none given, defaults to the Bioregistry.
         :param metaregistry: A custom metaregistry. If none, defaults to the Bioregistry's metaregistry.
         """
-        if registry is None:
-            registry = read_registry()
-        self.registry = registry
-        self.synonyms = _synonym_to_canonical(registry)
+        self.registry = dict(read_registry() if registry is None else registry)
+        self.synonyms = _synonym_to_canonical(self.registry)
 
-        if metaregistry is None:
-            metaregistry = read_metaregistry()
-        self.metaregistry = metaregistry
+        self.metaregistry = dict(read_metaregistry() if metaregistry is None else metaregistry)
 
         canonical_for = defaultdict(list)
         provided_by = defaultdict(list)
@@ -169,14 +163,19 @@ class Manager:
         norm_identifier = resource.standardize_identifier(identifier, prefix=prefix)
         return norm_prefix, norm_identifier
 
-    @lru_cache(maxsize=None)
+    @lru_cache(maxsize=None)  # noqa:B019
     def get_registry_map(self, metaprefix: str) -> Dict[str, str]:
         """Get a mapping from the Bioregistry prefixes to prefixes in another registry."""
         return dict(self._iter_registry_map(metaprefix))
 
-    @lru_cache(maxsize=None)
-    def get_registry_invmap(self, metaprefix: str) -> Dict[str, str]:
+    @lru_cache(maxsize=None)  # noqa:B019
+    def get_registry_invmap(self, metaprefix: str, normalize: bool = False) -> Dict[str, str]:
         """Get a mapping from prefixes in another registry to Bioregistry prefixes."""
+        if normalize:
+            return {
+                _norm(external_prefix): prefix
+                for prefix, external_prefix in self._iter_registry_map(metaprefix)
+            }
         return {
             external_prefix: prefix
             for prefix, external_prefix in self._iter_registry_map(metaprefix)
@@ -260,12 +259,58 @@ class Manager:
             return None
         return entry.get_example()
 
+    def has_no_terms(self, prefix: str) -> bool:
+        """Get if the entry has been annotated to not have own terms."""
+        entry = self.get_resource(prefix)
+        if entry is None or entry.no_own_terms is None:
+            return False
+        return entry.no_own_terms
+
     def is_deprecated(self, prefix: str) -> bool:
         """Return if the given prefix corresponds to a deprecated resource."""
         entry = self.get_resource(prefix)
         if entry is None:
             return False
         return entry.is_deprecated()
+
+    def get_pattern_map(
+        self,
+        *,
+        include_synonyms: bool = False,
+        remapping: Optional[Mapping[str, str]] = None,
+        use_preferred: bool = False,
+    ) -> Mapping[str, str]:
+        """Get a mapping from prefixes to their regular expression patterns.
+
+        :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
+            the same URI prefix?
+        :param remapping: A mapping from prefixes to preferred prefixes.
+        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+        :return: A mapping from prefixes to regular expression pattern strings.
+        """
+        it = self._iter_pattern_map(include_synonyms=include_synonyms, use_preferred=use_preferred)
+        if not remapping:
+            return dict(it)
+        return {remapping.get(prefix, prefix): uri_prefix for prefix, uri_prefix in it}
+
+    def _iter_pattern_map(
+        self,
+        *,
+        include_synonyms: bool = False,
+        use_preferred: bool = False,
+    ) -> Iterable[Tuple[str, str]]:
+        for prefix, resource in self.registry.items():
+            pattern = resource.get_pattern()
+            if pattern is None:
+                continue
+            if use_preferred:
+                preferred_prefix = resource.get_preferred_prefix()
+                if preferred_prefix is not None:
+                    prefix = preferred_prefix
+            yield prefix, pattern
+            if include_synonyms:
+                for synonym in resource.get_synonyms():
+                    yield synonym, pattern
 
     def get_prefix_map(
         self,
@@ -348,25 +393,34 @@ class Manager:
 
     def _rasterized_resource(self, prefix: str, resource: Resource) -> Resource:
         return Resource(
+            prefix=resource.prefix,
             preferred_prefix=resource.get_preferred_prefix() or prefix,
             name=resource.get_name(),
             description=resource.get_description(),
             pattern=resource.get_pattern(),
-            uri_format=resource.get_uri_format(),
             homepage=resource.get_homepage(),
             license=resource.get_license(),
             version=resource.get_version(),
-            contact=resource.get_contact(),
-            example=resource.get_example(),
             synonyms=resource.get_synonyms(),
-            comment=resource.comment,
-            mappings=resource.get_mappings(),
+            repository=resource.get_repository(),
+            # Downloads
+            download_obo=resource.get_download_obo(),
+            download_json=resource.get_download_obograph(),
+            download_owl=resource.get_download_owl(),
+            # Registry properties
+            example=resource.get_example(),
+            example_extras=resource.example_extras,
+            uri_format=resource.get_uri_format(),
             providers=resource.get_extra_providers(),
+            # Comments
+            comment=resource.comment,
             references=resource.references,
             # MIRIAM compatibility
             banana=resource.get_banana(),
+            banana_peel=resource.banana_peel,
             namespace_in_lui=resource.get_namespace_in_lui(),
             # Provenance
+            contact=resource.get_contact(),
             contributor=resource.contributor,
             reviewer=resource.reviewer,
             # Ontology Relations
@@ -375,6 +429,7 @@ class Manager:
             has_canonical=resource.has_canonical,
             appears_in=self.get_appears_in(prefix),
             depends_on=self.get_depends_on(prefix),
+            mappings=resource.get_mappings(),
             # Ontology Properties
             deprecated=resource.is_deprecated(),
             no_own_terms=resource.no_own_terms,
@@ -416,7 +471,7 @@ class Manager:
         if resource is None:
             return None
         rv = list(resource.appears_in or [])
-        rv.extend(self._get_obo_list(resource=resource, key="appears_in"))
+        rv.extend(self._get_obo_list(prefix=prefix, resource=resource, key="appears_in"))
         return sorted(set(rv))
 
     def get_depends_on(self, prefix: str) -> Optional[List[str]]:
@@ -437,33 +492,41 @@ class Manager:
         if resource is None:
             return None
         rv = list(resource.depends_on or [])
-        rv.extend(self._get_obo_list(resource=resource, key="depends_on"))
+        rv.extend(self._get_obo_list(prefix=prefix, resource=resource, key="depends_on"))
         return sorted(set(rv))
 
-    def _get_obo_list(self, *, resource: Resource, key: str) -> List[str]:
+    def _get_obo_list(self, *, prefix: str, resource: Resource, key: str) -> List[str]:
         rv = []
         for obo_prefix in resource.get_external("obofoundry").get(key, []):
-            depends_prefix = self.lookup_from("obofoundry", obo_prefix, normalize=True)
-            if depends_prefix is None:
-                logger.warning("could not map OBO %s: %s", key, obo_prefix)
+            canonical_prefix = self.lookup_from("obofoundry", obo_prefix, normalize=True)
+            if canonical_prefix is None:
+                logger.warning("[%s] could not map OBO %s: %s", prefix, key, obo_prefix)
             else:
-                rv.append(depends_prefix)
+                rv.append(canonical_prefix)
         return rv
 
-    def lookup_from(self, metaprefix, metaidentifier, normalize: bool = False) -> Optional[str]:
+    def lookup_from(
+        self, metaprefix: str, metaidentifier: str, normalize: bool = False
+    ) -> Optional[str]:
         """Get the bioregistry prefix from an external prefix.
 
         :param metaprefix: The key for the external registry
         :param metaidentifier: The prefix in the external registry
         :param normalize: Should external prefixes be normalized during lookup (e.g., lowercased)
         :return: The bioregistry prefix (if it can be mapped)
+
+        >>> from bioregistry import manager
+        >>> manager.lookup_from("obofoundry", "GO")
+        'go'
+        >>> manager.lookup_from("obofoundry", "go")
+        None
+        >>> manager.lookup_from("obofoundry", "go", normalize=True)
+        'go'
         """
-        external_id_to_bioregistry_id = self.get_registry_invmap(metaprefix)
-        if normalize:
-            external_id_to_bioregistry_id = {
-                _norm(k): v for k, v in external_id_to_bioregistry_id.items()
-            }
-        return external_id_to_bioregistry_id.get(_norm(metaidentifier))
+        external_id_to_bioregistry_id = self.get_registry_invmap(metaprefix, normalize=normalize)
+        return external_id_to_bioregistry_id.get(
+            _norm(metaidentifier) if normalize else metaidentifier
+        )
 
     def get_has_canonical(self, prefix: str) -> Optional[str]:
         """Get the canonical prefix."""
@@ -507,6 +570,30 @@ class Manager:
             return None
         return self.has_parts.get(norm_prefix, [])
 
+    def get_parts_collections(self) -> Mapping[str, List[str]]:
+        """Group resources' prefixes based on their ``part_of`` entries.
+
+        :returns:
+            A dictionary with keys that appear as the values of ``Resource.part_of``
+            and whose values are lists of prefixes for resources that have the key
+            as a value in its ``part_of`` field.
+
+        .. warning::
+
+            Many of the keys in this dictionary are valid Bioregistry prefixes,
+            but this is not necessary. For example, ``ctd`` is one key that
+            appears that explicitly has no prefix, since it corresponds to a
+            resource and not a vocabulary.
+        """
+        rv = {}
+        for key, values in self.has_parts.items():
+            norm_key = self.normalize_prefix(key)
+            if norm_key is None:
+                rv[key] = list(values)
+            else:
+                rv[key] = [norm_key, *values]
+        return rv
+
     def get_bioregistry_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get a Bioregistry link.
 
@@ -515,9 +602,9 @@ class Manager:
         :return: A link to the Bioregistry resolver
         """
         norm_prefix, norm_identifier = self.normalize_parsed_curie(prefix, identifier)
-        if norm_prefix is None:
+        if norm_prefix is None or norm_identifier is None:
             return None
-        return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{norm_prefix}:{norm_identifier}"
+        return f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{curie_to_str(norm_prefix, norm_identifier)}"
 
     def get_default_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the default URL for the given CURIE.
@@ -540,22 +627,7 @@ class Manager:
         resource = self.get_resource(prefix)
         if resource is None:
             return None
-        miriam_prefix = self.get_mapped_prefix(prefix, "miriam")
-        if miriam_prefix is None or miriam_prefix in MIRIAM_BLACKLIST:
-            return None
-        banana = resource.get_banana()
-        if banana:
-            if identifier.startswith(f"{banana}:"):
-                return identifier
-            else:
-                return f"{banana}:{identifier}"
-        elif resource.get_namespace_in_lui():
-            if identifier.startswith(prefix.upper()):
-                return identifier
-            else:
-                return f"{prefix.upper()}:{identifier}"
-        else:
-            return f"{miriam_prefix}:{identifier}"
+        return resource.get_miriam_curie(identifier)
 
     def get_miriam_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the identifiers.org URL for the given CURIE.
@@ -614,8 +686,6 @@ class Manager:
         'https://n2t.net/hgnc:16793'
         >>> manager.get_formatted_iri("obofoundry", "fbbt", "00007294")
         'http://purl.obolibrary.org/obo/FBbt_00007294'
-        >>> manager.get_formatted_iri("scholia", "lipidmaps", "00000052")
-        'https://scholia.toolforge.org/lipidmaps/00000052'
         """
         mapped_prefix = self.get_mapped_prefix(prefix, metaprefix)
         registry = self.metaregistry.get(metaprefix)
@@ -669,7 +739,13 @@ class Manager:
         >>> manager.get_scholia_iri("pdb", "1234")
         None
         """
-        return self.get_formatted_iri("scholia", prefix, identifier)
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        for provider in resource.get_extra_providers():
+            if provider.code == "scholia":
+                return provider.resolve(identifier)
+        return None
 
     def get_provider_functions(self) -> Mapping[str, Callable[[str, str], Optional[str]]]:
         """Return a mapping of provider functions."""
@@ -807,6 +883,38 @@ class Manager:
             if rv is not None:
                 return rv
         return None
+
+    def get_internal_prefix_map(self) -> Mapping[str, str]:
+        """Get an internal prefix map for RDF and SSSOM dumps."""
+        default_prefixes = {"bioregistry.schema", "bfo"}
+        rv = cast(
+            Dict[str, str], {prefix: self.get_uri_prefix(prefix) for prefix in default_prefixes}
+        )
+        for metaprefix, metaresource in self.metaregistry.items():
+            uri_prefix = metaresource.get_provider_uri_prefix()
+            if metaresource.bioregistry_prefix:
+                rv[metaresource.bioregistry_prefix] = uri_prefix
+            else:
+                rv[metaprefix] = uri_prefix
+        return rv
+
+    def is_novel(self, prefix: str) -> Optional[bool]:
+        """Check if the prefix is novel to the Bioregistry, i.e., it has no external mappings."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return not resource.get_mappings()
+
+    def count_mappings(self, include_bioregistry: bool = True) -> typing.Counter[str]:
+        """Count the mappings for each registry."""
+        rv = Counter(
+            metaprefix
+            for resource in self.registry.values()
+            for metaprefix in resource.get_mappings() or {}
+        )
+        if include_bioregistry:
+            rv["bioregistry"] = len(self.registry)
+        return rv
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:

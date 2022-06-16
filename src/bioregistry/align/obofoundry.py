@@ -5,7 +5,7 @@
 from typing import Mapping, Sequence
 
 from bioregistry.align.utils import Aligner
-from bioregistry.external.obofoundry import get_obofoundry
+from bioregistry.external.obofoundry import get_obofoundry, get_obofoundry_example
 
 __all__ = [
     "OBOFoundryAligner",
@@ -34,6 +34,14 @@ class OBOFoundryAligner(Aligner):
             external_entry["name"].strip(),
             external_entry.get("description", "").strip(),
         ]
+
+    def _align_action(self, bioregistry_id, external_id, external_entry):
+        super()._align_action(bioregistry_id, external_id, external_entry)
+        if self.manager.get_example(bioregistry_id) or self.manager.has_no_terms(bioregistry_id):
+            return
+        example = get_obofoundry_example(external_id)
+        if example:
+            self.internal_registry[bioregistry_id]["example"] = example
 
 
 if __name__ == "__main__":

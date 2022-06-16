@@ -6,6 +6,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'schedule' || github.repository == 'biopragmatics/bioregistry' }}
     steps:
       - uses: actions/checkout@master
         with:
@@ -14,16 +15,25 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.9
+      - name: Install dependencies
+        run: |
+          pip install tox
+
+      ############
+      #  UPDATE  #
+      ############
       - name: Create local changes
         id: update
         run: |
-          pip install --upgrade pip setuptools wheel
-          pip install -e .[align,export,charts]
-          bioregistry update
+          tox -e update
         env:
           BIOPORTAL_API_KEY: ${{ secrets.BIOPORTAL_API_KEY }}
+          ECOPORTAL_API_KEY: ${{ secrets.ECOPORTAL_API_KEY }}
+          AGROPORTAL_API_KEY: ${{ secrets.AGROPORTAL_API_KEY }}
           FAIRSHARING_LOGIN: ${{ secrets.FAIRSHARING_LOGIN }}
           FAIRSHARING_PASSWORD: ${{ secrets.FAIRSHARING_PASSWORD }}
+          NDEX_USERNAME: ${{ secrets.NDEX_USERNAME }}
+          NDEX_PASSWORD: ${{ secrets.NDEX_PASSWORD }}
       - name: Check environment
         run: echo ${{ steps.update.outputs.BR_UPDATED }}
       - name: Commit files
@@ -32,16 +42,41 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit --all -m "📮 Automatically update"
+      # Not sure if this should be here or not - what if it pushes something bad that needs to be reverted?
+      # - name: Push changes
+      #   if: steps.update.outputs.BR_UPDATED == 'true'
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: ${{ github.ref }}
+      #     tags: true
+      - name: Run tests, don't push to PyPI unless passing
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        run: |
+          tox -e py
+
+      ##################
+      #  MARK RELEASE  #
+      ##################
+      - name: bump2version release
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        run: |
+          tox -e bumpversion-release
+
+      ##########
+      #  PyPI  #
+      ##########
       - name: Release to PyPI
         if: steps.update.outputs.BR_UPDATED == 'true'
         run: |
-          pip install tox
-          tox -e bumpversion-release
           tox -e release
-          tox -e bumpversion patch
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      - name: bump2version patch
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        run: |
+          tox -e bumpversion patch
       - name: Push changes
         if: steps.update.outputs.BR_UPDATED == 'true'
         uses: ad-m/github-push-action@master
@@ -49,3 +84,36 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
           tags: true
+
+      - name: Sleep to avoid race conditions
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        run: |
+          sleep 300
+
+      ############
+      #  DOCKER  #
+      ############
+      - name: Set up QEMU
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          # See: https://github.com/docker/build-push-action/blob/master/docs/advanced/multi-platform.md
+          platforms: linux/amd64,linux/arm64
+          tags: biopragmatics/bioregistry:latest
+      - name: Image digest
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        run: echo ${{ steps.docker_build.outputs.digest }}

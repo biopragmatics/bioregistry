@@ -3,6 +3,7 @@ graft tests
 
 recursive-include docs *.py
 recursive-include docs *.rst
+recursive-include docs *.tsv
 recursive-include docs Makefile
 recursive-include docs *.png
 recursive-include docs *.svg
@@ -11,9 +12,10 @@ global-exclude *.py[cod] __pycache__ *.so *.dylib .DS_Store *.gpickle
 
 prune docs/build
 prune docs/_data
+prune docs/source/api
 prune exports
 exclude docs/*.md
 exclude docs/_config.yml
 
-exclude .appveyor.yml .bumpversion.cfg .coveragerc .flake8 .travis.yml .readthedocs.yml tox.ini .pre-commit-config.yaml
+exclude .appveyor.yml .bumpversion.cfg .coveragerc .flake8 .travis.yml .readthedocs.yml tox.ini .pre-commit-config.yaml Dockerfile
 include LICENSE *.md *.rst

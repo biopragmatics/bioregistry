@@ -4,8 +4,8 @@
 ----------------------------------------------------------------------------
 
  Description: Cellosaurus: cross-referencing to external resources
- Version: 40.0
- Last update: 16-December-2021
+ Version: 41.0
+ Last update: 17-March-2022
 
 ----------------------------------------------------------------------------
 
@@ -58,12 +58,12 @@ here:
 1) DR lines
 
 Format: DR   Resource_abbrev; %s
-Where : Resource_abbrev is one of: 4DN|Abcam|ABCD|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BTO|BioSample|BioSamples|CBA|CCLE|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbMHC|DepMap|DGRC|DiscoverX|DSMZ|eagle-i|EBiSC|ECACC|EFO|EGA|ENCODE|ESTDAB|FCDI|FCS-free|FlyBase_Cell_line|GDSC|GEO|HipSci|HIVReagentProgram|Horizon_Discovery|hPSCreg|IARC_TP53|IBRC|ICLC|IGRhCellID|IGSR|IHW|Imanis|IPD-IMGT/HLA|ISCR|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DTP|NHCDR|NISES|NRFC|PerkinElmer|PharmacoDB|PRIDE|Progenetix|RCB|RSCB|SKIP|SKY/M-FISH/CGH|SLKBase|TCB|TKG|TNGB|TOKU-E|WiCell|Wikidata|Ximbio
+Where : Resource_abbrev is one of: 4DN|Abcam|ABCD|ABM|AddexBio|ArrayExpress|ATCC|BCGO|BCRC|BCRJ|BEI_Resources|BTO|BioSample|BioSamples|CBA|CCLE|CCLV|CCRID|CCTCC|Cell_Biolabs|Cell_Model_Passport|CGH-DB|ChEMBL-Cells|ChEMBL-Targets|CLDB|CLO|CLS|ColonAtlas|Coriell|Cosmic|Cosmic-CLP|dbMHC|DepMap|DGRC|DiscoverX|DSMZ|eagle-i|EBiSC|ECACC|EFO|EGA|ENCODE|ESTDAB|FCDI|FCS-free|FlyBase_Cell_line|GDSC|GEO|HipSci|HIVReagentProgram|Horizon_Discovery|hPSCreg|IARC_TP53|IBRC|ICLC|IGRhCellID|IGSR|IHW|Imanis|Innoprot|IPD-IMGT/HLA|ISCR|IZSLER|JCRB|KCB|KCLB|Kerafast|KYinno|LiGeA|LIMORE|LINCS_HMS|LINCS_LDP|Lonza|MCCL|MeSH|MetaboLights|Millipore|MMRRC|NCBI_Iran|NCI-DTP|NHCDR|NISES|NRFC|PerkinElmer|PharmacoDB|PRIDE|Progenetix|RCB|Rockland|RSCB|SKIP|SKY/M-FISH/CGH|SLKBase|TCB|TKG|TNGB|TOKU-E|WiCell|Wikidata|Ximbio
 
 2) RX lines
 
 Format: RX   Resource_abbrev=%s;
-Where : Resource_abbrev is one of: CelloPub|DOI¦Patent¦PubMed
+Where : Resource_abbrev is one of: CelloPub|DOI|Patent|PubMed
 
 3) CC lines (except "sequence variation")
 
@@ -338,7 +338,7 @@ Cat   : Cell line databases/resources
 //
 Abbrev: CLS
 Name  : Cell Lines Service
-Server: https://www.clsgmbh.de
+Server: https://cls.shop/
 Db_URL: https://www.clsgmbh.de/%s.html
         Note: %s is the value after the slash "/" in the DR line.
         Example: for "DR   CLS; 400294/p2677_MSC-P5": %s=p2677_MSC-P5
@@ -615,6 +615,13 @@ Db_URL: https://www.imanislife.com/?s=%s
 Term. : No
 Cat   : Cell line collections
 //
+Abbrev: Innoprot
+Name  : Innoprot cell line products
+Server: https://innoprot.com/
+Db_URL: https://innoprot.com/?s=%s&lang=en
+Term. : No
+Cat   : Cell line collections
+//
 Abbrev: IPD-IMGT/HLA
 Name  : IPD-IMGT/HLA database
 Server: https://www.ebi.ac.uk/ipd/imgt/hla/
@@ -630,7 +637,7 @@ Term. : No
 Cat   : Cell line databases/resources
 //
 Abbrev: IZSLER
-Name  : Istituto Zooprofilattico Sperimentale della Lombardia e dell’Emilia Romagna biobank
+Name  : Istituto Zooprofilattico Sperimentale della Lombardia e dell'Emilia Romagna biobank
 Server: http://www.ibvr.org/Services/CellCultures.aspx
 Db_URL: None
 Term. : No
@@ -867,9 +874,16 @@ Db_URL: https://rgd.mcw.edu/rgdweb/report/gene/main.html?id=%s
 Term. : Yes
 Cat   : Organism-specific databases
 //
+Abbrev: Rockland
+Name  : Rockland cell line products
+Server: https://www.rockland.com/categories/cell-lines-and-lysates/
+Db_URL: https://www.rockland.com/search/?searchString=%s
+Term. : No
+Cat   : Cell line collections
+//
 Abbrev: RSCB
 Name  : Royan Stem Cell Bank
-Server: http://www.royaninstitute.org/cmsen/index.php?option=com_content&task=view&id=205&Itemid=40
+Server: https://web.archive.org/web/20201001144644/http://www.royaninstitute.org/cmsen/index.php?option=com_content&task=view&id=205&Itemid=40
 Db_URL: None
 Term. : No
 Cat   : Cell line collections

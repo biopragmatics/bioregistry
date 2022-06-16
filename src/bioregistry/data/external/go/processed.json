@@ -140,9 +140,9 @@
     "description": "A database with curated publicly available trait correlation and inheritability data in livestock animal species. The link ID is called  The link ID is called Corr_ID on CorrDB data downloads.",
     "entity_types": [
       {
-        "example_id": "CorrID:37232",
-        "example_url": "https://www.animalgenome.org/CorrDB/q/?id=CorrID:37232",
-        "id_syntax": "CorrID:\\d+",
+        "example_id": 37232,
+        "example_url": "https://www.animalgenome.org/CorrDB/q/?id=37232",
+        "id_syntax": "\\d+",
         "type_id": "CorrID:000000",
         "type_name": "Correlation",
         "url_syntax": "https://www.animalgenome.org/CorrDB/q/?id=[example_id]"
@@ -158,9 +158,9 @@
     "description": "A database with curated publicly available trait mapping data (QTL and SNP associations) in livestock animal species. The link ID is called QTL_ID on QTLdb data dpownloads.",
     "entity_types": [
       {
-        "example_id": "QTL_ID:23155",
-        "example_url": "https://www.animalgenome.org/QTLdb/q?id=QTL_ID:23155",
-        "id_syntax": "QTL_ID:\\d+",
+        "example_id": 23155,
+        "example_url": "https://www.animalgenome.org/QTLdb/q?id=23155",
+        "id_syntax": "\\d+",
         "type_id": "QTL_ID:0000000",
         "type_name": "QTL",
         "url_syntax": "https://www.animalgenome.org/QTLdb/q?id=[example_id]"
@@ -170,22 +170,6 @@
       "https://www.animalgenome.org/QTLdb"
     ],
     "name": "QTLdb"
-  },
-  "ApiDB_PlasmoDB": {
-    "database": "ApiDB_PlasmoDB",
-    "entity_types": [
-      {
-        "example_id": "ApiDB_PlasmoDB:PF11_0344",
-        "example_url": "https://plasmodb.org/plasmo/app/record/gene/PF11_0344",
-        "type_id": "BET:0000000",
-        "type_name": "entity",
-        "url_syntax": "http://www.plasmodb.org/gene/[example_id]"
-      }
-    ],
-    "generic_urls": [
-      "http://plasmodb.org/"
-    ],
-    "name": "PlasmoDB Plasmodium Genome Resource"
   },
   "AspGD_LOCUS": {
     "database": "AspGD_LOCUS",
@@ -390,14 +374,14 @@
     "entity_types": [
       {
         "example_id": "CASGEN:1040",
-        "example_url": "http://research.calacademy.org/research/ichthyology/catalog/getname.asp?rank=Genus&id=1040",
+        "example_url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genid=1040   OK",
         "type_id": "BET:0000000",
         "type_name": "entity",
-        "url_syntax": "http://research.calacademy.org/research/ichthyology/catalog/getname.asp?rank=Genus&id=[example_id]"
+        "url_syntax": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?genid=[example_id] OK"
       }
     ],
     "generic_urls": [
-      "http://research.calacademy.org/research/ichthyology/catalog/fishcatsearch.html"
+      "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatmain.asp"
     ],
     "name": "Catalog of Fishes genus database",
     "synonyms": [
@@ -409,14 +393,14 @@
     "entity_types": [
       {
         "example_id": "CASREF:2031",
-        "example_url": "http://research.calacademy.org/research/ichthyology/catalog/getref.asp?id=2031",
+        "example_url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/getref.asp?id=2031 OK",
         "type_id": "BET:0000000",
         "type_name": "entity",
-        "url_syntax": "http://research.calacademy.org/research/ichthyology/catalog/getref.asp?id=[example_id]"
+        "url_syntax": "https://researcharchive.calacademy.org/research/ichthyology/catalog/getref.asp?id=[example_id] OK"
       }
     ],
     "generic_urls": [
-      "http://research.calacademy.org/research/ichthyology/catalog/fishcatsearch.html"
+      "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatmain.asp"
     ],
     "name": "Catalog of Fishes publications database"
   },
@@ -424,14 +408,14 @@
     "database": "CASSPC",
     "entity_types": [
       {
-        "example_url": "http://research.calacademy.org/research/ichthyology/catalog/getname.asp?rank=Species&id=1979",
+        "example_url": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=1979",
         "type_id": "BET:0000000",
         "type_name": "entity",
-        "url_syntax": "http://research.calacademy.org/research/ichthyology/catalog/getname.asp?rank=Species&id=[example_id]"
+        "url_syntax": "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatget.asp?spid=[example_id]"
       }
     ],
     "generic_urls": [
-      "http://research.calacademy.org/research/ichthyology/catalog/fishcatsearch.html"
+      "https://researcharchive.calacademy.org/research/ichthyology/catalog/fishcatmain.asp"
     ],
     "name": "Catalog of Fishes species database",
     "synonyms": [
@@ -2239,7 +2223,7 @@
       "http://www.informatics.jax.org/"
     ],
     "name": "Mouse Genome Informatics",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/mgi"
+    "rdf_uri_prefix": "https://identifiers.org/MGI"
   },
   "MIPS_funcat": {
     "database": "MIPS_funcat",
@@ -2302,7 +2286,7 @@
       "https://www.maizegdb.org/"
     ],
     "name": "MaizeGDB",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/maizegdb.locus"
+    "rdf_uri_prefix": "https://identifiers.org/maizegdb.locus"
   },
   "MaizeGDB_QTL": {
     "database": "MaizeGDB_QTL",
@@ -2387,7 +2371,7 @@
       "http://metacyc.org/"
     ],
     "name": "Metabolic Encyclopedia of metabolic and other pathways",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/metacyc.reaction",
+    "rdf_uri_prefix": "https://identifiers.org/metacyc.reaction",
     "synonyms": [
       "METACYC"
     ]
@@ -2469,7 +2453,7 @@
       "http://www.ncbi.nlm.nih.gov/"
     ],
     "name": "NCBI Gene",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/ncbigene",
+    "rdf_uri_prefix": "https://identifiers.org/ncbigene",
     "synonyms": [
       "GeneID",
       "LocusID",
@@ -2624,7 +2608,7 @@
       "http://www.pantherdb.org/"
     ],
     "name": "Protein ANalysis THrough Evolutionary Relationships Classification System",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/panther.family"
+    "rdf_uri_prefix": "https://identifiers.org/panther.family"
   },
   "PATO": {
     "database": "PATO",
@@ -2989,6 +2973,24 @@
     ],
     "name": "PlantSystematics.org"
   },
+  "PlasmoDB": {
+    "database": "PlasmoDB",
+    "entity_types": [
+      {
+        "example_id": "PF3D7_1467300",
+        "example_url": "https://plasmodb.org/plasmo/app/record/gene/PF3D7_1467300",
+        "id_syntax": "PF3D7_[0-9]{7})",
+        "type_id": "SO:0000704",
+        "type_name": "gene",
+        "url_syntax": "https://plasmodb.org/plasmo/app/record/gene/[example_id]"
+      }
+    ],
+    "generic_urls": [
+      "https://plasmodb.org"
+    ],
+    "name": "PlasmoDB",
+    "rdf_uri_prefix": "https://identifiers.org/plasmodb"
+  },
   "PomBase": {
     "database": "PomBase",
     "entity_types": [
@@ -3005,7 +3007,7 @@
       "https://www.pombase.org/"
     ],
     "name": "PomBase",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/pombase"
+    "rdf_uri_prefix": "https://identifiers.org/pombase"
   },
   "Pompep": {
     "database": "Pompep",
@@ -3169,7 +3171,7 @@
       "https://rgd.mcw.edu/"
     ],
     "name": "Rat Genome Database",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/rgd",
+    "rdf_uri_prefix": "https://identifiers.org/rgd",
     "synonyms": [
       "RAD",
       "RGDID"
@@ -3263,7 +3265,7 @@
       "https://www.reactome.org/"
     ],
     "name": "Reactome - a curated knowledgebase of biological pathways",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/reactome",
+    "rdf_uri_prefix": "https://identifiers.org/reactome",
     "synonyms": [
       "REACTOME",
       "REAC"
@@ -3392,7 +3394,7 @@
       "http://www.yeastgenome.org/"
     ],
     "name": "Saccharomyces Genome Database",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/sgd",
+    "rdf_uri_prefix": "https://identifiers.org/sgd",
     "synonyms": [
       "SGDID"
     ]
@@ -3444,7 +3446,7 @@
       "https://www.sgn.cornell.edu/"
     ],
     "name": "Sol Genomics Network",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/sgn",
+    "rdf_uri_prefix": "https://identifiers.org/sgn",
     "synonyms": [
       "SGN_gene"
     ]
@@ -3673,7 +3675,7 @@
       "http://www.arabidopsis.org/"
     ],
     "name": "The Arabidopsis Information Resource",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/tair.locus"
+    "rdf_uri_prefix": "https://identifiers.org/tair.locus"
   },
   "TC": {
     "database": "TC",
@@ -3725,7 +3727,7 @@
       "http://www.ciliate.org/"
     ],
     "name": "Tetrahymena Genome Database",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/tgd"
+    "rdf_uri_prefix": "https://identifiers.org/tgd"
   },
   "TGD_LOCUS": {
     "database": "TGD_LOCUS",
@@ -3807,6 +3809,24 @@
       "http://dendrome.ucdavis.edu/treegenes/"
     ],
     "name": "Forest Tree Genome Database"
+  },
+  "TriTrypDB": {
+    "database": "TriTrypDB",
+    "entity_types": [
+      {
+        "example_id": "Tb927.1.630",
+        "example_url": "https://tritrypdb.org/tritrypdb/app/record/gene/Tb927.1.630",
+        "id_syntax": "((LmjF|LinJ|LmxM|LINF)\\.[0-9]{2}\\.[0-9]{4})|(Tb[0-9]+\\.[A-Za-z0-9]+\\.[0-9]+)|(Tb\\.[0-9]{6}\\.[0-9]+)|",
+        "type_id": "SO:0000704",
+        "type_name": "gene",
+        "url_syntax": "https://tritrypdb.org/tritrypdb/app/record/gene/[example_id]"
+      }
+    ],
+    "generic_urls": [
+      "https://tritrypdb.org/"
+    ],
+    "name": "TriTrypDB",
+    "rdf_uri_prefix": "https://identifiers.org/tritrypdb"
   },
   "UBERON": {
     "database": "UBERON",
@@ -3976,7 +3996,7 @@
       "http://www.uniprot.org"
     ],
     "name": "Universal Protein Knowledgebase",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/uniprot"
+    "rdf_uri_prefix": "https://identifiers.org/uniprot"
   },
   "UniProtKB-KW": {
     "database": "UniProtKB-KW",
@@ -4097,7 +4117,7 @@
       "http://www.wormbase.org/"
     ],
     "name": "WormBase database of nematode biology",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/wb",
+    "rdf_uri_prefix": "https://identifiers.org/wb",
     "synonyms": [
       "WormBase"
     ]
@@ -4251,7 +4271,7 @@
       "http://www.xenbase.org/"
     ],
     "name": "Xenbase",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/xenbase"
+    "rdf_uri_prefix": "https://identifiers.org/xenbase"
   },
   "YeastFunc": {
     "database": "YeastFunc",
@@ -4298,7 +4318,7 @@
       "http://zfin.org/"
     ],
     "name": "Zebrafish Information Network",
-    "rdf_uri_prefix": "https://registry.identifiers.org/registry/zfin"
+    "rdf_uri_prefix": "https://identifiers.org/zfin"
   },
   "bioRxiv": {
     "database": "bioRxiv",
