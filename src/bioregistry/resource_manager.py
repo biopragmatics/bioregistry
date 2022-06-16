@@ -632,26 +632,7 @@ class Manager:
         resource = self.get_resource(prefix)
         if resource is None:
             return None
-        miriam_prefix = self.get_mapped_prefix(prefix, "miriam")
-        if miriam_prefix is None or miriam_prefix in MIRIAM_BLACKLIST:
-            return None
-        banana = resource.get_banana()
-        if banana:
-            peel = resource.get_banana_peel()
-            if identifier.startswith(f"{banana}{peel}"):
-                return identifier
-            else:
-                print("banana", banana)
-                print("peel", peel)
-                print("identifier", identifier)
-                return f"{banana}{peel}{identifier}"
-        elif resource.get_namespace_in_lui():
-            if identifier.startswith(prefix.upper()):
-                return identifier
-            else:
-                return curie_to_str(prefix.upper(), identifier)
-        else:
-            return curie_to_str(miriam_prefix, identifier)
+        return resource.get_miriam_curie(identifier)
 
     def get_miriam_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the identifiers.org URL for the given CURIE.

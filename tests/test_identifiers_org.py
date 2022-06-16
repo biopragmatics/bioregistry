@@ -4,10 +4,17 @@
 
 import unittest
 from textwrap import dedent, fill
+from typing import Mapping, Tuple
+
+import requests
 
 import bioregistry
-import requests
-from bioregistry import get_identifiers_org_curie, get_identifiers_org_iri, manager
+from bioregistry import (
+    Resource,
+    get_identifiers_org_curie,
+    get_identifiers_org_iri,
+    manager,
+)
 from bioregistry.constants import IDOT_BROKEN
 from bioregistry.version import VERSION
 
@@ -20,6 +27,11 @@ class TestIdentifiersOrg(unittest.TestCase):
         self.session = requests.Session()
         self.session.headers = {
             "User-Agent": f"bioregistry/{VERSION}",
+        }
+        self.entries: Mapping[str, Resource] = {
+            prefix: entry
+            for prefix, entry in bioregistry.read_registry().items()
+            if entry.get_miriam_prefix()
         }
 
     def test_get_prefix(self):
@@ -34,11 +46,11 @@ class TestIdentifiersOrg(unittest.TestCase):
         for prefix in ["MONDO"]:
             self.assertIsNone(bioregistry.get_identifiers_org_prefix(prefix))
 
-    def test_standardization(self):
+    def test_standardize_identifier(self):
         """Test that standardization makes patterns valid."""
         overridden = {"pid.pathway"}
-        for prefix, entry in bioregistry.read_registry().items():
-            if not entry.get_miriam_prefix() or prefix in overridden:
+        for prefix, entry in self.entries.items():
+            if prefix in overridden:
                 continue
             example = entry.get_example()
             self.assertIsNotNone(example)
@@ -48,28 +60,37 @@ class TestIdentifiersOrg(unittest.TestCase):
                 standardized_example = entry.miriam_standardize_identifier(example)
                 self.assertRegex(standardized_example, pattern)
 
-    def test_banana(self):
+    def test_curie(self):
+        for prefix, identifier, expected in [
+            # Standard
+            ("pdb", "2gc4", "pdb:2gc4"),
+            # Has namespace embedded in lui for pattern
+            ("go", "0000001", "GO:0000001"),
+            ("ark", "/12345/fk1234", "ark:/12345/fk1234"),
+            # Require banana peels
+            ("cellosaurus", "0001", "cellosaurus:CVCL_0001"),
+            ("biomodels.kisao", "0000057", "biomodels.kisao:KISAO_0000057"),
+            ("geogeo", "000000001", "geogeo:GEO_000000001"),
+        ]:
+            with self.subTest(prefix=prefix, identifier=identifier):
+                self.assertEqual(expected, manager.get_miriam_curie(prefix, identifier))
+
+    def test_url_banana(self):
         """Test that entries curated with a new banana are resolved properly."""
         for prefix, entry in bioregistry.read_registry().items():
-            banana = entry.banana
-            if banana is None:
+            banana = entry.get_banana()
+            if banana is None or entry.get_miriam_prefix() is None:
                 continue
+            peel = entry.get_banana_peel()
             if prefix in IDOT_BROKEN:
                 continue  # identifiers.org is broken for these prefixes
-            with self.subTest(
-                prefix=prefix,
-                banana=banana,
-                pattern=bioregistry.get_pattern(prefix),
-            ):
-                identifier = bioregistry.get_example(prefix)
-                self.assertIsNotNone(identifier)
-                url = bioregistry.resolve_identifier.get_identifiers_org_iri(prefix, identifier)
-                # TODO better consider entries with bananas that aren't in identifiers.org,
-                # such as chembl and xmetdb (both very different kinds of cases)
-                if url is not None:
-                    self.assertIsInstance(url, str)
-                    res = self.session.get(url, allow_redirects=False)
-                    self.assertEqual(302, res.status_code, msg=f"failed with URL: {url}")
+            example = bioregistry.get_example(prefix)
+            self.assertIsNotNone(example)
+            with self.subTest(prefix=prefix, banana=banana, peel=peel):
+                url = bioregistry.get_identifiers_org_iri(prefix, example)
+                self.assertIsNotNone(url)
+                res = self.session.get(url, allow_redirects=False)
+                self.assertEqual(302, res.status_code, msg=f"failed with URL: {url}")
 
     @unittest.skip
     def test_url_auto(self):
@@ -101,14 +122,14 @@ class TestIdentifiersOrg(unittest.TestCase):
                     302,
                     res.status_code,
                     msg="\n"
-                        + dedent(
+                    + dedent(
                         f"""\
                 Prefix:     {prefix}
                 Identifier: {identifier}
                 URL:        {url}
                 Text: """
                     )
-                        + fill(res.text, 70, subsequent_indent="      "),
+                    + fill(res.text, 70, subsequent_indent="      "),
                 )
 
     def test_url(self):
@@ -140,13 +161,3 @@ class TestIdentifiersOrg(unittest.TestCase):
                 # Check that the URL resolves
                 res = self.session.get(url, allow_redirects=False)
                 self.assertEqual(302, res.status_code, msg=res.reason)
-
-    def test_banana_peeled(self):
-        """Test banana peels."""
-        for prefix, identifier, expected in [
-            ("cellosaurus", "0001", "cellosaurus:CVCL_0001"),
-            ("biomodels.kisao", "0000057", "biomodels.kisao:KISAO_0000057"),
-            ("geogeo", "000000001", "geogeo:GEO_000000001"),
-        ]:
-            with self.subTest(prefix=prefix, identifier=identifier):
-                self.assertEqual(expected, manager.get_miriam_curie(prefix, identifier))
