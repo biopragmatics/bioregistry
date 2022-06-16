@@ -34,6 +34,20 @@ class TestIdentifiersOrg(unittest.TestCase):
         for prefix in ["MONDO"]:
             self.assertIsNone(bioregistry.get_identifiers_org_prefix(prefix))
 
+    def test_standardization(self):
+        """Test that standardization makes patterns valid."""
+        overridden = {"classyfire", "pid.pathway"}
+        for prefix, entry in bioregistry.read_registry().items():
+            if not entry.get_miriam_prefix() or prefix in overridden:
+                continue
+            example = entry.get_example()
+            self.assertIsNotNone(example)
+            pattern = entry.miriam.get("pattern")
+            self.assertIsNotNone(pattern)
+            with self.subTest(prefix=prefix, example=example, pattern=pattern):
+                standardized_example = entry.miriam_standardize_identifier(example)
+                self.assertRegex(standardized_example, pattern)
+
     def test_banana(self):
         """Test that entries curated with a new banana are resolved properly."""
         for prefix, entry in bioregistry.read_registry().items():
