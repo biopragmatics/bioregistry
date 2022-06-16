@@ -113,6 +113,8 @@ from .schema_utils import (  # noqa:F401
     read_metaregistry,
     read_mismatches,
     read_registry,
+    registries,
+    resources,
     write_contexts,
     write_registry,
 )

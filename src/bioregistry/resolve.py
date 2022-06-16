@@ -367,7 +367,8 @@ def get_banana(prefix: str) -> Optional[str]:
     >>> assert "GO_REF" == get_banana('go.ref')
 
     Banana imported through OBO Foundry
-    >>> assert "FBbt" == get_banana('fbbt')
+    >>> assert "GO" == get_banana('go')
+    >>> assert "VariO" == get_banana('vario')
 
     Banana inferred for OBO Foundry ontology
     >>> get_banana('chebi')

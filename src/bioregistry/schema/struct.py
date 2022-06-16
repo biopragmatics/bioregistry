@@ -267,6 +267,7 @@ class Resource(BaseModel):
     """
         ),
     )
+    banana_peel: Optional[str] = Field(description="Delimiter used in banana")
     deprecated: Optional[bool] = Field(
         description=_dedent(
             """\
@@ -384,6 +385,9 @@ class Resource(BaseModel):
         ),
     )
     twitter: Optional[str] = Field(description="The twitter handle for the project")
+    github_request_issue: Optional[int] = Field(
+        description="The GitHub issue for the new prefix request"
+    )
     #: External data from Identifiers.org's MIRIAM Database
     miriam: Optional[Mapping[str, Any]]
     #: External data from the Name-to-Thing service
@@ -493,8 +497,10 @@ class Resource(BaseModel):
 
         Banana imported through OBO Foundry
 
-        >>> get_resource("fbbt").get_banana()
-        'FBbt'
+        >>> get_resource("go").get_banana()
+        'GO'
+        >>> get_resource("vario").get_banana()
+        'VariO'
 
         Banana inferred for OBO Foundry ontology
 
@@ -515,14 +521,17 @@ class Resource(BaseModel):
         """
         if self.banana is not None:
             return self.banana
-        if self.namespace_in_lui is False:
-            return None  # override for a few situations
+        if self.get_namespace_in_lui() is False:
+            return None
+        miriam_prefix = self.get_miriam_prefix()
         obo_preferred_prefix = self.get_obo_preferred_prefix()
-        if obo_preferred_prefix is not None:
+        if miriam_prefix is not None and obo_preferred_prefix is not None:
             return obo_preferred_prefix
-        # TODO consider reinstating all preferred prefixes should
-        #  be considered as secondary bananas
         return None
+
+    def get_banana_peel(self) -> str:
+        """Get the delimiter between the banana and the local unique identifier."""
+        return ":" if self.banana_peel is None else self.banana_peel
 
     def get_default_format(self) -> Optional[str]:
         """Get the default, first-party URI prefix.
@@ -799,9 +808,31 @@ class Resource(BaseModel):
     def get_publications(self):
         """Get a list of publications."""
         # TODO make a model for this
+        rv = {}
         if self.obofoundry:
-            return self.obofoundry.get("publications", [])
-        return []
+            for publication in self.obofoundry.get("publications", []):
+                url, title = publication["id"], publication["title"]
+                if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
+                    pmid = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
+                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
+                else:
+                    logger.warning("unhandled obo foundry publication ID: %s", url)
+        if self.fairsharing:
+            for publication in self.fairsharing.get("publications", []):
+                pmid = publication.get("pubmed_id")
+                title = publication.get("title")
+                if pmid:
+                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
+                else:
+                    doi = publication["doi"]
+                    rv[f"https://bioregistry.io/doi:{doi}"] = title
+        if self.prefixcommons:
+            for pmid in self.prefixcommons.get("pubmed_ids", []):
+                url = f"https://bioregistry.io/pubmed:{pmid}"
+                if url in rv:
+                    continue
+                rv[url] = None
+        return [{"id": k, "title": v} for k, v in sorted(rv.items())]
 
     def get_twitter(self) -> Optional[str]:
         """Get the Twitter handle for ther resource."""
@@ -882,7 +913,7 @@ class Resource(BaseModel):
         return self.get_external("prefixcommons").get(URI_FORMAT_KEY)
 
     def get_identifiers_org_prefix(self) -> Optional[str]:
-        """Get the identifiers.org prefix if available.
+        """Get the MIRIAM/Identifiers.org prefix, if available.
 
         :returns: The Identifiers.org/MIRIAM prefix corresponding to the prefix, if mappable.
 
@@ -894,6 +925,10 @@ class Resource(BaseModel):
         >>> assert get_resource('MONDO').get_identifiers_org_prefix() is None
         """
         return self.get_mapped_prefix("miriam")
+
+    def get_miriam_prefix(self):
+        """Get the MIRIAM/Identifiers.org prefix, if available."""
+        return self.get_identifiers_org_prefix()
 
     def get_miriam_uri_prefix(self) -> Optional[str]:
         """Get the Identifiers.org URI prefix for this entry, if possible.
@@ -1120,8 +1155,6 @@ class Resource(BaseModel):
         Examples with bananas from OBO:
         >>> get_resource("fbbt").standardize_identifier('00007294')
         '00007294'
-        >>> get_resource("fbbt").standardize_identifier('FBbt:00007294')
-        '00007294'
         >>> get_resource("chebi").standardize_identifier('1234')
         '1234'
         >>> get_resource("chebi").standardize_identifier('CHEBI:1234')
@@ -1139,13 +1172,38 @@ class Resource(BaseModel):
         '00000020'
         """
         banana = self.get_banana()
-        if banana and identifier.startswith(f"{banana}:"):
-            return identifier[len(banana) + 1 :]
-        elif prefix is not None and identifier.casefold().startswith(f"{prefix.casefold()}:"):
+        peel = self.get_banana_peel()
+        prebanana = f"{banana}{peel}"
+        if banana and identifier.startswith(prebanana):
+            return identifier[len(prebanana) :]
+        elif prefix is not None and identifier.casefold().startswith(f"{prefix.casefold()}{peel}"):
             return identifier[len(prefix) + 1 :]
         return identifier
 
-    def miriam_standardize_identifier(self, identifier: str) -> str:
+    def get_miriam_curie(self, identifier: str) -> Optional[str]:
+        """Get the MIRIAM-flavored CURIE."""
+        miriam_prefix = self.get_miriam_prefix()
+        if miriam_prefix is None:
+            return None
+        identifier = self.standardize_identifier(identifier)
+        if identifier is None:
+            return None
+        # A "banana" is an embedded prefix that isn't actually part of the identifier.
+        # Usually this corresponds to the prefix itself, with some specific stylization
+        # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
+        banana = self.get_banana()
+        if banana:
+            peel = self.get_banana_peel()
+            processed_banana = f"{banana}{peel}"
+            if not identifier.startswith(processed_banana):
+                identifier = f"{processed_banana}{identifier}"
+            # here we're using the fact that the banana peel has been annotated explicitly
+            # to mean that it should be redundant
+            if self.banana_peel is None:
+                return identifier
+        return f"{miriam_prefix}:{identifier}"
+
+    def miriam_standardize_identifier(self, identifier: str) -> Optional[str]:
         """Normalize the identifier for legacy usage with MIRIAM using the appropriate banana.
 
         :param identifier: The identifier in the CURIE
@@ -1162,10 +1220,10 @@ class Resource(BaseModel):
         'VariO:0376'
 
         Examples with bananas from OBO:
-        >>> get_resource("fbbt").miriam_standardize_identifier('00007294')
-        'FBbt:00007294'
-        >>> get_resource("fbbt").miriam_standardize_identifier('FBbt:00007294')
-        'FBbt:00007294'
+        >>> get_resource("go").miriam_standardize_identifier('0000001')
+        'GO:0000001'
+        >>> get_resource("go").miriam_standardize_identifier('GO:0000001')
+        'GO:0000001'
 
         Examples from OBO Foundry:
         >>> get_resource("chebi").miriam_standardize_identifier('1234')
@@ -1184,17 +1242,17 @@ class Resource(BaseModel):
         >>> get_resource("pdb").miriam_standardize_identifier('00000020')
         '00000020'
         """
+        if self.get_miriam_prefix() is None:
+            return None
         # A "banana" is an embedded prefix that isn't actually part of the identifier.
         # Usually this corresponds to the prefix itself, with some specific stylization
         # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
         banana = self.get_banana()
         if banana:
-            banana = f"{banana}:"
-            if not identifier.startswith(banana):
-                return f"{banana}{identifier}"
-        # TODO Unnecessary redundant prefix?
-        # elif identifier.lower().startswith(f'{prefix}:'):
-        #
+            delimiter = self.get_banana_peel()
+            processed_banana = f"{banana}{delimiter}"
+            if not identifier.startswith(processed_banana):
+                return f"{processed_banana}{identifier}"
         return identifier
 
     def is_valid_identifier(self, identifier: str) -> Optional[bool]:
@@ -1827,6 +1885,8 @@ def write_bulk_prefix_request_template():
             "reviewer",
             "contact",
             "contributor",
+            "github_request_issue",
+            "banana_peel",
         }:
             continue
         if name in metaprefixes:

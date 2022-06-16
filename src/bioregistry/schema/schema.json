@@ -280,6 +280,11 @@
           "description": "The `banana` is a generalization of the concept of the \"namespace embedded in local unique identifier\". Many OBO foundry ontologies use the redundant uppercased name of the ontology in the local identifier, such as the Gene Ontology, which makes the prefixes have a redundant usage as in ``GO:GO:1234567``. The `banana` tag explicitly annotates the part in the local identifier that should be stripped, if found. While the Bioregistry automatically knows how to handle all OBO Foundry ontologies' bananas because the OBO Foundry provides the \"preferredPrefix\" field, the banana can be annotated on non-OBO ontologies to more explicitly write the beginning part of the identifier that should be stripped. This allowed for solving one of the long-standing issues with the Identifiers.org resolver (e.g., for ``oma.hog``; see https://github.com/identifiers-org/identifiers-org.github.io/issues/155) as well as better annotate new entries, such as SwissMap Lipids, which have the prefix ``swisslipid`` but have the redundant information ``SLM:`` in the beginning of identifiers. Therefore, ``SLM:`` is the banana.",
           "type": "string"
         },
+        "banana_peel": {
+          "title": "Banana Peel",
+          "description": "Delimiter used in banana",
+          "type": "string"
+        },
         "deprecated": {
           "title": "Deprecated",
           "description": "A flag denoting if this resource is deprecated. Currently, this is a blanket term that covers cases when the prefix is no longer maintained, when it has been rolled into another resource, when the website related to the resource goes down, or any other reason that it's difficult or impossible to find full metadata on the resource. If this is set to true, please add a comment explaining why. This flag will override annotations from the OLS, OBO Foundry, and others on the deprecation status, since they often disagree and are very conservative in calling dead resources.",
@@ -388,6 +393,11 @@
           "description": "The twitter handle for the project",
           "type": "string"
         },
+        "github_request_issue": {
+          "title": "Github Request Issue",
+          "description": "The GitHub issue for the new prefix request",
+          "type": "integer"
+        },
         "miriam": {
           "title": "Miriam",
           "type": "object"
@@ -422,6 +432,10 @@
         },
         "agroportal": {
           "title": "Agroportal",
+          "type": "object"
+        },
+        "cropoct": {
+          "title": "Cropoct",
           "type": "object"
         },
         "ols": {

@@ -6,8 +6,9 @@ import json
 import logging
 from collections import defaultdict
 from functools import lru_cache
+from operator import attrgetter
 from pathlib import Path
-from typing import Dict, Mapping, Set, Union
+from typing import Dict, List, Mapping, Set, Union
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -33,10 +34,20 @@ def read_metaregistry() -> Mapping[str, Registry]:
     }
 
 
+def registries() -> List[Registry]:
+    """Get a list of registries in the Bioregistry."""
+    return sorted(read_metaregistry().values(), key=attrgetter("prefix"))
+
+
 @lru_cache(maxsize=1)
 def read_registry() -> Mapping[str, Resource]:
     """Read the Bioregistry as JSON."""
     return _registry_from_path(BIOREGISTRY_PATH)
+
+
+def resources() -> List[Resource]:
+    """Get a list of resources in the Bioregistry."""
+    return sorted(read_registry().values(), key=attrgetter("prefix"))
 
 
 def _registry_from_path(path: Union[str, Path]) -> Mapping[str, Resource]:

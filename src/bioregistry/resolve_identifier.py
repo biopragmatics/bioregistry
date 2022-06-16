@@ -75,12 +75,13 @@ def is_known_identifier(prefix: str, identifier: str) -> Optional[bool]:
     return manager.is_standardizable_identifier(prefix, identifier)
 
 
-def miriam_standardize_identifier(prefix: str, identifier: str) -> str:
+def miriam_standardize_identifier(prefix: str, identifier: str) -> Optional[str]:
     """Normalize the identifier with the appropriate banana.
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
-    :return: A normalize identifier, possibly with banana/redundant prefix added
+    :return: A normalize identifier, possibly with banana/redundant prefix added.
+        Returns none if the prefix doesn't map to MIRIAM.
 
     Examples with explicitly annotated bananas:
 
@@ -93,11 +94,16 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str:
 
     Examples with bananas from OBO:
     >>> import bioregistry as br
-    >>> assert "FBbt" == br.get_banana('fbbt')
-    >>> miriam_standardize_identifier('fbbt', '00007294')
-    'FBbt:00007294'
-    >>> miriam_standardize_identifier('fbbt', 'FBbt:00007294')
-    'FBbt:00007294'
+    >>> assert "GO" == br.get_banana('go')
+    >>> miriam_standardize_identifier('go', '0000001')
+    'GO:0000001'
+    >>> miriam_standardize_identifier('go', 'GO:0000001')
+    'GO:0000001'
+    >>> assert "VariO" == br.get_banana('vario')
+    >>> miriam_standardize_identifier('vario', '0000001')
+    'VariO:0000001'
+    >>> miriam_standardize_identifier('vario', 'VariO:0000001')
+    'VariO:0000001'
 
     Examples from OBO Foundry:
     >>> miriam_standardize_identifier('chebi', '1234')
@@ -105,7 +111,7 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str:
     >>> miriam_standardize_identifier('chebi', 'CHEBI:1234')
     'CHEBI:1234'
 
-     Examples outside of OBO:
+    Examples outside of OBO:
     >>> miriam_standardize_identifier('mgi', '6017782')
     'MGI:6017782'
     >>> miriam_standardize_identifier('mgi', 'MGI:6017782')
@@ -115,6 +121,24 @@ def miriam_standardize_identifier(prefix: str, identifier: str) -> str:
     'SLM:000000341'
     >>> miriam_standardize_identifier('swisslipid', 'SLM:000000341')
     'SLM:000000341'
+
+    Special cases with underscore-delimited bananas
+    >>> miriam_standardize_identifier('cellosaurus', '0001')
+    'CVCL_0001'
+    >>> miriam_standardize_identifier('cellosaurus', 'CVCL_0001')
+    'CVCL_0001'
+    >>> miriam_standardize_identifier('ro', '0000001')
+    'RO_0000001'
+    >>> miriam_standardize_identifier('ro', 'RO_0000001')
+    'RO_0000001'
+    >>> miriam_standardize_identifier('geogeo', '000000001')
+    'GEO_000000001'
+    >>> miriam_standardize_identifier('geogeo', 'GEO_000000001')
+    'GEO_000000001'
+    >>> miriam_standardize_identifier('biomodels.kisao', '0000057')
+    'KISAO_0000057'
+    >>> miriam_standardize_identifier('biomodels.kisao', 'KISAO_0000057')
+    'KISAO_0000057'
 
     Standard:
 
@@ -165,6 +189,10 @@ def get_identifiers_org_iri(prefix: str, identifier: str) -> Optional[str]:
     'https://identifiers.org/CHEBI:24867'
     >>> get_identifiers_org_iri("interpro", "IPR016380")
     'https://identifiers.org/interpro:IPR016380'
+    >>> get_identifiers_org_iri("cellosaurus", "0001")
+    'https://identifiers.org/cellosaurus:CVCL_0001'
+    >>> get_identifiers_org_iri("biomodels.kisao", "0000057")
+    'https://identifiers.org/biomodels.kisao:KISAO_0000057'
     """
     return manager.get_miriam_iri(prefix, identifier)
 
