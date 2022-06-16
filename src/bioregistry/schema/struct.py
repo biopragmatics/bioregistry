@@ -267,6 +267,7 @@ class Resource(BaseModel):
     """
         ),
     )
+    banana_peel: Optional[str] = Field(description="Delimiter used in banana")
     deprecated: Optional[bool] = Field(
         description=_dedent(
             """\
@@ -527,6 +528,10 @@ class Resource(BaseModel):
         if miriam_prefix is not None and obo_preferred_prefix is not None:
             return obo_preferred_prefix
         return None
+
+    def get_banana_peel(self) -> str:
+        """Get the delimiter between the banana and the local unique identifier."""
+        return ":" if self.banana_peel is None else self.banana_peel
 
     def get_default_format(self) -> Optional[str]:
         """Get the default, first-party URI prefix.
@@ -1167,13 +1172,38 @@ class Resource(BaseModel):
         '00000020'
         """
         banana = self.get_banana()
-        if banana and identifier.startswith(f"{banana}:"):
-            return identifier[len(banana) + 1 :]
-        elif prefix is not None and identifier.casefold().startswith(f"{prefix.casefold()}:"):
+        peel = self.get_banana_peel()
+        prebanana = f"{banana}{peel}"
+        if banana and identifier.startswith(prebanana):
+            return identifier[len(prebanana) :]
+        elif prefix is not None and identifier.casefold().startswith(f"{prefix.casefold()}{peel}"):
             return identifier[len(prefix) + 1 :]
         return identifier
 
-    def miriam_standardize_identifier(self, identifier: str) -> str:
+    def get_miriam_curie(self, identifier: str) -> Optional[str]:
+        """Get the MIRIAM-flavored CURIE."""
+        miriam_prefix = self.get_miriam_prefix()
+        if miriam_prefix is None:
+            return None
+        identifier = self.standardize_identifier(identifier)
+        if identifier is None:
+            return None
+        # A "banana" is an embedded prefix that isn't actually part of the identifier.
+        # Usually this corresponds to the prefix itself, with some specific stylization
+        # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
+        banana = self.get_banana()
+        if banana:
+            peel = self.get_banana_peel()
+            processed_banana = f"{banana}{peel}"
+            if not identifier.startswith(processed_banana):
+                identifier = f"{processed_banana}{identifier}"
+            # here we're using the fact that the banana peel has been annotated explicitly
+            # to mean that it should be redundant
+            if self.banana_peel is None:
+                return identifier
+        return f"{miriam_prefix}:{identifier}"
+
+    def miriam_standardize_identifier(self, identifier: str) -> Optional[str]:
         """Normalize the identifier for legacy usage with MIRIAM using the appropriate banana.
 
         :param identifier: The identifier in the CURIE
@@ -1212,17 +1242,17 @@ class Resource(BaseModel):
         >>> get_resource("pdb").miriam_standardize_identifier('00000020')
         '00000020'
         """
+        if self.get_miriam_prefix() is None:
+            return None
         # A "banana" is an embedded prefix that isn't actually part of the identifier.
         # Usually this corresponds to the prefix itself, with some specific stylization
         # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
         banana = self.get_banana()
         if banana:
-            banana = f"{banana}:"
-            if not identifier.startswith(banana):
-                return f"{banana}{identifier}"
-        # TODO Unnecessary redundant prefix?
-        # elif identifier.lower().startswith(f'{prefix}:'):
-        #
+            delimiter = self.get_banana_peel()
+            processed_banana = f"{banana}{delimiter}"
+            if not identifier.startswith(processed_banana):
+                return f"{processed_banana}{identifier}"
         return identifier
 
     def is_canonical_identifier(self, identifier: str) -> Optional[bool]:
@@ -1856,6 +1886,7 @@ def write_bulk_prefix_request_template():
             "contact",
             "contributor",
             "github_request_issue",
+            "banana_peel",
         }:
             continue
         if name in metaprefixes:

@@ -22,12 +22,7 @@ from typing import (
     cast,
 )
 
-from .constants import (
-    BIOREGISTRY_REMOTE_URL,
-    IDENTIFIERS_ORG_URL_PREFIX,
-    LINK_PRIORITY,
-    MIRIAM_BLACKLIST,
-)
+from .constants import BIOREGISTRY_REMOTE_URL, IDENTIFIERS_ORG_URL_PREFIX, LINK_PRIORITY
 from .license_standardizer import standardize_license
 from .schema import Registry, Resource, sanitize_model
 from .schema_utils import (
@@ -422,6 +417,7 @@ class Manager:
             references=resource.references,
             # MIRIAM compatibility
             banana=resource.get_banana(),
+            banana_peel=resource.banana_peel,
             namespace_in_lui=resource.get_namespace_in_lui(),
             # Provenance
             contact=resource.get_contact(),
@@ -631,22 +627,7 @@ class Manager:
         resource = self.get_resource(prefix)
         if resource is None:
             return None
-        miriam_prefix = self.get_mapped_prefix(prefix, "miriam")
-        if miriam_prefix is None or miriam_prefix in MIRIAM_BLACKLIST:
-            return None
-        banana = resource.get_banana()
-        if banana:
-            if identifier.startswith(f"{banana}:"):
-                return identifier
-            else:
-                return curie_to_str(banana, identifier)
-        elif resource.get_namespace_in_lui():
-            if identifier.startswith(prefix.upper()):
-                return identifier
-            else:
-                return curie_to_str(prefix.upper(), identifier)
-        else:
-            return curie_to_str(miriam_prefix, identifier)
+        return resource.get_miriam_curie(identifier)
 
     def get_miriam_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the identifiers.org URL for the given CURIE.

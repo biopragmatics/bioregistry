@@ -433,7 +433,6 @@ class TestRegistry(unittest.TestCase):
         self.assertIsNone(bioregistry.get_bioportal_iri("nope", ...))
         self.assertIsNone(bioregistry.get_bioportal_iri("gmelin", ...))
         self.assertIsNone(bioregistry.get_identifiers_org_iri("nope", ...))
-        self.assertIsNone(bioregistry.get_identifiers_org_iri("pid.pathway", ...))
         self.assertIsNone(bioregistry.get_identifiers_org_iri("gmelin", ...))
         self.assertIsNone(bioregistry.get_iri("gmelin", ...))
 
