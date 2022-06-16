@@ -42253,7 +42253,7 @@
       "uri_format": "http://lgsun.grc.nia.nih.gov/cgi-bin/pro3?sname1=$1"
     }
   },
-  "nif_cell": {
+  "nif.cell": {
     "aberowl": {
       "description": "Cell types from NIFSTD",
       "download_owl": "http://aber-owl.net/media/ontologies/NIFCELL/15/nifcell.owl",
@@ -42286,9 +42286,10 @@
       "homepage": "http://neuinfo.org/",
       "name": "NIF Cell",
       "prefix": "nif_cell"
-    }
+    },
+    "part_of": "nif"
   },
-  "nif_dysfunction": {
+  "nif.dysfunction": {
     "biocontext": {
       "is_identifiers": false,
       "is_obo": true,
@@ -42306,29 +42307,10 @@
       "homepage": "http://neuinfo.org/",
       "name": "NIF Dysfunction",
       "prefix": "nif_dysfunction"
-    }
-  },
-  "nif_grossanatomy": {
-    "biocontext": {
-      "is_identifiers": false,
-      "is_obo": true,
-      "prefix": "NIF_GROSSANATOMY",
-      "uri_format": "http://purl.obolibrary.org/obo/NIF_GROSSANATOMY_$1"
     },
-    "mappings": {
-      "biocontext": "NIF_GROSSANATOMY",
-      "obofoundry": "nif_grossanatomy"
-    },
-    "obofoundry": {
-      "contact": "smtifahim@gmail.com",
-      "contact.label": "Fahim Imam",
-      "deprecated": true,
-      "homepage": "http://neuinfo.org/",
-      "name": "NIF Gross Anatomy",
-      "prefix": "nif_grossanatomy"
-    }
+    "part_of": "nif"
   },
-  "nifext": {
+  "nif.ext": {
     "contact": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
@@ -42355,7 +42337,28 @@
     "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nifext_$1"
   },
-  "nifstd": {
+  "nif.grossanatomy": {
+    "biocontext": {
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "NIF_GROSSANATOMY",
+      "uri_format": "http://purl.obolibrary.org/obo/NIF_GROSSANATOMY_$1"
+    },
+    "mappings": {
+      "biocontext": "NIF_GROSSANATOMY",
+      "obofoundry": "nif_grossanatomy"
+    },
+    "obofoundry": {
+      "contact": "smtifahim@gmail.com",
+      "contact.label": "Fahim Imam",
+      "deprecated": true,
+      "homepage": "http://neuinfo.org/",
+      "name": "NIF Gross Anatomy",
+      "prefix": "nif_grossanatomy"
+    },
+    "part_of": "nif"
+  },
+  "nif.std": {
     "contact": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
@@ -42436,7 +42439,7 @@
     "pattern": "^\\d+$",
     "uri_format": "https://www.ncbi.nlm.nih.gov/nlmcatalog/$1"
   },
-  "nlxanat": {
+  "nlx.anat": {
     "contact": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
@@ -42458,7 +42461,7 @@
     "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_anat_$1"
   },
-  "nlxbr": {
+  "nlx.br": {
     "contact": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
@@ -42485,7 +42488,7 @@
     "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_br_$1"
   },
-  "nlxcell": {
+  "nlx.cell": {
     "contact": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
@@ -42512,7 +42515,7 @@
     "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_cell_$1"
   },
-  "nlxchem": {
+  "nlx.chem": {
     "contact": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
@@ -42539,7 +42542,7 @@
     "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_chem_$1"
   },
-  "nlxdys": {
+  "nlx.dys": {
     "appears_in": [
       "mondo"
     ],
@@ -42564,7 +42567,7 @@
     "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_dys_$1"
   },
-  "nlxfunc": {
+  "nlx.func": {
     "contact": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
@@ -42591,7 +42594,7 @@
     "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_func_$1"
   },
-  "nlxinv": {
+  "nlx.inv": {
     "contact": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
@@ -42618,7 +42621,7 @@
     "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_inv_$1"
   },
-  "nlxmol": {
+  "nlx.mol": {
     "contact": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
@@ -42645,7 +42648,7 @@
     "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_mol_$1"
   },
-  "nlxoen": {
+  "nlx.oen": {
     "contact": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
@@ -42672,7 +42675,7 @@
     "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/oen_$1"
   },
-  "nlxorg": {
+  "nlx.org": {
     "contact": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
@@ -42699,7 +42702,7 @@
     "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_organ_$1"
   },
-  "nlxqual": {
+  "nlx.qual": {
     "contact": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
@@ -42726,7 +42729,7 @@
     "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_qual_$1"
   },
-  "nlxres": {
+  "nlx.res": {
     "contact": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
@@ -42753,7 +42756,7 @@
     "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_res_$1"
   },
-  "nlxsub": {
+  "nlx.sub": {
     "contact": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
