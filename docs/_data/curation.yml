@@ -73,13 +73,13 @@ example:
   prefix: mirnao
 - homepage: http://neuinfo.org/
   name: NIF Cell
-  prefix: nif_cell
+  prefix: nif.cell
 - homepage: http://neuinfo.org/
   name: NIF Dysfunction
-  prefix: nif_dysfunction
+  prefix: nif.dysfunction
 - homepage: http://neuinfo.org/
   name: NIF Gross Anatomy
-  prefix: nif_grossanatomy
+  prefix: nif.grossanatomy
 - homepage: http://www.obofoundry.org/
   name: Internal OBO and PyOBO Relations
   prefix: obo
@@ -369,9 +369,6 @@ formatter:
 - homepage: https://winter.group.shef.ac.uk/molbase/
   name: MolBase
   prefix: molbase.sheffield
-- homepage: https://www.gsea-msigdb.org
-  name: Molecular Signatures Database
-  prefix: msigdb
 - homepage: https://github.com/MSI-Metabolomics-Standards-Initiative/MSIO
   name: Metabolomics Standards Initiative Ontology
   prefix: msio
@@ -441,24 +438,12 @@ formatter:
 - homepage: null
   name: Standards and Ontologies for Functional Genomics (SOFG) Anatomy Entry List
   prefix: sael
-- homepage: https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets
-  name: Selventa Chemicals
-  prefix: schem
-- homepage: https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets
-  name: Selventa Complexes
-  prefix: scomp
 - homepage: https://www.scopus.com
   name: Scopus Researcher
   prefix: scopus
 - homepage: https://github.com/SDG-InterfaceOntology/sdgio
   name: Sustainable Development Goals Interface Ontology
   prefix: sdgio
-- homepage: https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets
-  name: Selventa Diseases
-  prefix: sdis
-- homepage: https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets
-  name: Selventa Families
-  prefix: sfam
 - homepage: https://signor.uniroma2.it
   name: SIGNOR Relation
   prefix: signor.relation
@@ -492,9 +477,6 @@ formatter:
 - homepage: https://www.nlm.nih.gov/research/umls
   name: Unified Medical Language System Atomic Unique Identifier
   prefix: umls.aui
-- homepage: https://www.uniprot.org/docs/ptmlist
-  name: UniProt Post-Translational Modification
-  prefix: uniprot.ptm
 - homepage: http://pkuxxj.pku.edu.cn/UNPD/
   name: Universal Natural Products Database
   prefix: unpd
@@ -887,9 +869,6 @@ pattern:
 - homepage: http://www.russelllab.org/miRNAs/
   name: miRNA Target Prediction at EMBL
   prefix: mirte
-- homepage: https://www.gsea-msigdb.org
-  name: Molecular Signatures Database
-  prefix: msigdb
 - homepage: http://multicellds.org/MultiCellDB.php
   name: MultiCellDS
   prefix: multicellds
@@ -916,13 +895,13 @@ pattern:
   prefix: nhcdr
 - homepage: http://neuinfo.org/
   name: NIF Cell
-  prefix: nif_cell
+  prefix: nif.cell
 - homepage: http://neuinfo.org/
   name: NIF Dysfunction
-  prefix: nif_dysfunction
+  prefix: nif.dysfunction
 - homepage: http://neuinfo.org/
   name: NIF Gross Anatomy
-  prefix: nif_grossanatomy
+  prefix: nif.grossanatomy
 - homepage: https://webbook.nist.gov/chemistry/
   name: NIST Chemistry WebBook
   prefix: nist
@@ -3620,8 +3599,8 @@ wikidata:
 - homepage: https://www.nemoarchive.org
   name: Neural ElectroMagnetic Ontology
   prefix: nemo
-- homepage: http://www.neurolex.org/wiki/Main_Page
-  name: NeuroLex
+- homepage: https://github.com/SciCrunch/NIF-Ontology
+  name: 'NIF Standard Ontology: Neurolex'
   prefix: neurolex
 - homepage: http://neuromorpho.org/index.jsp
   name: NeuroMorpho
@@ -3655,13 +3634,19 @@ wikidata:
   prefix: niaest
 - homepage: http://neuinfo.org/
   name: NIF Cell
-  prefix: nif_cell
+  prefix: nif.cell
 - homepage: http://neuinfo.org/
   name: NIF Dysfunction
-  prefix: nif_dysfunction
+  prefix: nif.dysfunction
+- homepage: https://github.com/SciCrunch/NIF-Ontology
+  name: 'NIF Standard Ontology: External'
+  prefix: nif.ext
 - homepage: http://neuinfo.org/
   name: NIF Gross Anatomy
-  prefix: nif_grossanatomy
+  prefix: nif.grossanatomy
+- homepage: https://github.com/SciCrunch/NIF-Ontology
+  name: NIF Standard Ontology
+  prefix: nif.std
 - homepage: https://reporter.nih.gov/
   name: NIH RePORTER
   prefix: nihreporter.project
@@ -3673,10 +3658,43 @@ wikidata:
   prefix: nlm
 - homepage: https://scicrunch.org/scicrunch/interlex/dashboard
   name: NeuroLex Anatomy
-  prefix: nlxanat
+  prefix: nlx.anat
+- homepage: https://github.com/SciCrunch/NIF-Ontology
+  name: 'NIF Standard Ontology: Brain Regions'
+  prefix: nlx.br
+- homepage: https://github.com/SciCrunch/NIF-Ontology
+  name: 'NIF Standard Ontology: Cell Types'
+  prefix: nlx.cell
+- homepage: https://github.com/SciCrunch/NIF-Ontology
+  name: 'NIF Standard Ontology: Chemical'
+  prefix: nlx.chem
 - homepage: https://scicrunch.org/scicrunch/interlex/dashboard
   name: NeuroLex Dysfunction
-  prefix: nlxdys
+  prefix: nlx.dys
+- homepage: https://github.com/SciCrunch/NIF-Ontology
+  name: 'NIF Standard Ontology: Cognitive Function'
+  prefix: nlx.func
+- homepage: https://github.com/SciCrunch/NIF-Ontology
+  name: 'NIF Standard Ontology: Investigations'
+  prefix: nlx.inv
+- homepage: https://github.com/SciCrunch/NIF-Ontology
+  name: 'NIF Standard Ontology: Molecules'
+  prefix: nlx.mol
+- homepage: https://github.com/SciCrunch/NIF-Ontology
+  name: 'NIF Standard Ontology: OEN Terms in Neurolex'
+  prefix: nlx.oen
+- homepage: https://github.com/SciCrunch/NIF-Ontology
+  name: 'NIF Standard Ontology: Organisms'
+  prefix: nlx.org
+- homepage: https://github.com/SciCrunch/NIF-Ontology
+  name: 'NIF Standard Ontology: Qualities'
+  prefix: nlx.qual
+- homepage: https://github.com/SciCrunch/NIF-Ontology
+  name: 'NIF Standard Ontology: Digital Resources'
+  prefix: nlx.res
+- homepage: https://github.com/SciCrunch/NIF-Ontology
+  name: 'NIF Standard Ontology: Subcellular Entities'
+  prefix: nlx.sub
 - homepage: http://msi-ontology.sourceforge.net/
   name: NMR-instrument specific component of metabolomics investigations
   prefix: nmr

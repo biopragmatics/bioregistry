@@ -1346,9 +1346,9 @@ bioregistry:biomodels.kisao a bioregistry.schema:0000001 ;
         miriam:biomodels.kisao,
         ols:kisao ;
     foaf:homepage "https://github.com/SED-ML/KiSAO"^^xsd:string ;
-    bioregistry.schema:0000005 "KISAO_0000057"^^xsd:string ;
+    bioregistry.schema:0000005 "0000057"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/KISAO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^KISAO_\\d+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-2605-5080 .
 
@@ -8018,7 +8018,9 @@ bioregistry:msigdb a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biolink:MSigDB ;
     foaf:homepage "https://www.gsea-msigdb.org"^^xsd:string ;
-    bioregistry.schema:0000005 "NADELLA_PRKAR1A_TARGETS_DN"^^xsd:string ;
+    bioregistry.schema:0000005 "M1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/msigdb/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^M\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:msio a bioregistry.schema:0000001 ;
@@ -8463,39 +8465,6 @@ bioregistry:niaest a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://lgsun.grc.nia.nih.gov/cgi-bin/pro3?sname1=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\w\\d{4}\\w\\d{2}(\\-[35])?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
-
-bioregistry:nif_cell a bioregistry.schema:0000001 ;
-    rdfs:label "NIF Cell" ;
-    dc:description "Neuronal cell types"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:NIFCELL,
-        obofoundry:NIF_CELL,
-        bioportal:NIFCELL,
-        biocontext:NIF_CELL ;
-    foaf:homepage "http://neuinfo.org/"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NIF_CELL_$1"^^xsd:string ;
-    bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000019 [ rdfs:label "Fahim Imam" ] .
-
-bioregistry:nif_dysfunction a bioregistry.schema:0000001 ;
-    rdfs:label "NIF Dysfunction" ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:NIF_DYSFUNCTION,
-        biocontext:NIF_DYSFUNCTION ;
-    foaf:homepage "http://neuinfo.org/"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NIF_DYSFUNCTION_$1"^^xsd:string ;
-    bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000019 [ rdfs:label "Fahim Imam" ] .
-
-bioregistry:nif_grossanatomy a bioregistry.schema:0000001 ;
-    rdfs:label "NIF Gross Anatomy" ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:NIF_GROSSANATOMY,
-        biocontext:NIF_GROSSANATOMY ;
-    foaf:homepage "http://neuinfo.org/"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NIF_GROSSANATOMY_$1"^^xsd:string ;
-    bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000019 [ rdfs:label "Fahim Imam" ] .
 
 bioregistry:nlm a bioregistry.schema:0000001 ;
     rdfs:label "National Library of Medicine Catalog" ;
@@ -13237,6 +13206,38 @@ orcid:0000-0002-7073-9172 rdfs:label "David Osumi-Sutherland" .
 
 orcid:0000-0002-7440-0467 rdfs:label "Lucas Leclere" .
 
+orcid:0000-0002-7509-4802 rdfs:label "Tom Gillespie" .
+
+orcid:0000-0002-7509-4805 rdfs:label "Tom Gillespie" ;
+    dcterms:contributor bioregistry:nlx.cell .
+
+orcid:0000-0002-7509-4806 rdfs:label "Tom Gillespie" ;
+    dcterms:contributor bioregistry:nlx.chem .
+
+orcid:0000-0002-7509-4808 rdfs:label "Tom Gillespie" ;
+    dcterms:contributor bioregistry:nlx.func .
+
+orcid:0000-0002-7509-4809 rdfs:label "Tom Gillespie" ;
+    dcterms:contributor bioregistry:nlx.inv .
+
+orcid:0000-0002-7509-4810 rdfs:label "Tom Gillespie" ;
+    dcterms:contributor bioregistry:nlx.mol .
+
+orcid:0000-0002-7509-4811 rdfs:label "Tom Gillespie" ;
+    dcterms:contributor bioregistry:nlx.oen .
+
+orcid:0000-0002-7509-4812 rdfs:label "Tom Gillespie" ;
+    dcterms:contributor bioregistry:nlx.org .
+
+orcid:0000-0002-7509-4813 rdfs:label "Tom Gillespie" ;
+    dcterms:contributor bioregistry:nlx.qual .
+
+orcid:0000-0002-7509-4814 rdfs:label "Tom Gillespie" ;
+    dcterms:contributor bioregistry:nlx.res .
+
+orcid:0000-0002-7509-4815 rdfs:label "Tom Gillespie" ;
+    dcterms:contributor bioregistry:nlx.sub .
+
 orcid:0000-0002-7558-2880 rdfs:label "Jesualdo Tomás Fernández-Breis" .
 
 orcid:0000-0002-7696-731X rdfs:label "Liliana Andres Hernandez" .
@@ -13673,6 +13674,8 @@ aberowl:NDF-RT dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:NEMO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:NIFCELL dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+aberowl:NIFSTD dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:NMR dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -15359,6 +15362,8 @@ bioportal:NDFRT dcterms:isPartOf bioregistry.metaresource:bioportal .
 bioportal:NEMO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:NIFCELL dcterms:isPartOf bioregistry.metaresource:bioportal .
+
+bioportal:NIFSTD dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:NMR dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -19919,9 +19924,9 @@ bioregistry:cellosaurus a bioregistry.schema:0000001 ;
         miriam:cellosaurus,
         wikidata:P3289 ;
     foaf:homepage "https://web.expasy.org/cellosaurus/"^^xsd:string ;
-    bioregistry.schema:0000005 "CVCL_0440"^^xsd:string ;
+    bioregistry.schema:0000005 "0440"^^xsd:string ;
     bioregistry.schema:0000006 "https://web.expasy.org/cellosaurus/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^CVCL_[A-Z0-9]{4}$"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Z0-9]{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:cellosaurus.resource a bioregistry.schema:0000001 ;
@@ -22058,6 +22063,22 @@ bioregistry:ndex a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.ndexbio.org/viewer/networks/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:neurolex a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Standard Ontology: Neurolex" ;
+    dc:description "The NeuroLex project is a dynamic lexicon of terms used in neuroscience.  It is supported by the Neuroscience Information Framework project and incorporates information from the NIF standardised ontology (NIFSTD), and its predecessor, the Biomedical Informatics Research Network Lexicon (BIRNLex)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
+    skos:exactMatch biocontext:NEUROLEX,
+        n2t:neurolex,
+        prefixcommons:neurolex,
+        miriam:neurolex ;
+    foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "4"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4802 .
+
 bioregistry:nextprot.family a bioregistry.schema:0000001 ;
     rdfs:label "neXtProt family" ;
     dc:description """NeXtProt is a comprehensive human-centric discovery platform, offering its users a seamless integration of and navigation through protein-related data. 
@@ -22068,6 +22089,42 @@ bioregistry:nextprot.family a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.nextprot.org/term/FA-$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:nif.cell a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Cell" ;
+    dc:description "Neuronal cell types"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
+    skos:exactMatch aberowl:NIFCELL,
+        obofoundry:NIF_CELL,
+        bioportal:NIFCELL,
+        biocontext:NIF_CELL ;
+    foaf:homepage "http://neuinfo.org/"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NIF_CELL_$1"^^xsd:string ;
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000019 [ rdfs:label "Fahim Imam" ] .
+
+bioregistry:nif.dysfunction a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Dysfunction" ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
+    skos:exactMatch obofoundry:NIF_DYSFUNCTION,
+        biocontext:NIF_DYSFUNCTION ;
+    foaf:homepage "http://neuinfo.org/"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NIF_DYSFUNCTION_$1"^^xsd:string ;
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000019 [ rdfs:label "Fahim Imam" ] .
+
+bioregistry:nif.grossanatomy a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Gross Anatomy" ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
+    skos:exactMatch obofoundry:NIF_GROSSANATOMY,
+        biocontext:NIF_GROSSANATOMY ;
+    foaf:homepage "http://neuinfo.org/"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/NIF_GROSSANATOMY_$1"^^xsd:string ;
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000019 [ rdfs:label "Fahim Imam" ] .
 
 bioregistry:nihreporter.project a bioregistry.schema:0000001 ;
     rdfs:label "NIH RePORTER" ;
@@ -22834,6 +22891,7 @@ bioregistry:schem a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets"^^xsd:string ;
     bioregistry.schema:0000005 "A0001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/schem/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^A\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -22852,6 +22910,7 @@ bioregistry:scomp a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets"^^xsd:string ;
     bioregistry.schema:0000005 "C0001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/scomp/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^C\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -22871,6 +22930,7 @@ bioregistry:sdis a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets"^^xsd:string ;
     bioregistry.schema:0000005 "D0001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/sdis/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^D\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -22880,6 +22940,7 @@ bioregistry:sfam a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://raw.githubusercontent.com/OpenBEL/resource-generator/master/datasets"^^xsd:string ;
     bioregistry.schema:0000005 "F0001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/sfam/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^F\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -24460,6 +24521,8 @@ fairsharing:FAIRsharing.vdbagq dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.veg2d6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.vgw1m6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.vppyga dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.vq28qp dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -24635,6 +24698,10 @@ orcid:0000-0002-3528-5267 rdfs:label "Sofia Robb" .
 orcid:0000-0002-4366-3088 rdfs:label "Pier Luigi Buttigieg" .
 
 orcid:0000-0002-4532-2703 rdfs:label "Petra Fey" .
+
+orcid:0000-0002-7509-4801 rdfs:label "Tom Gillespie" ;
+    dcterms:contributor bioregistry:nif.ext,
+        bioregistry:nif.std .
 
 orcid:0000-0002-7702-4495 rdfs:label "Allyson Lister" .
 
@@ -28462,44 +28529,203 @@ bioregistry:ncbiprotein a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^(\\w+\\d+(\\.\\d+)?)|(NP_\\d+)$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:neurolex a bioregistry.schema:0000001 ;
-    rdfs:label "NeuroLex" ;
-    dc:description "The NeuroLex project is a dynamic lexicon of terms used in neuroscience.  It is supported by the Neuroscience Information Framework project and incorporates information from the NIF standardised ontology (NIFSTD), and its predecessor, the Biomedical Informatics Research Network Lexicon (BIRNLex)."^^xsd:string ;
-    dcterms:hasPart bioregistry:nlxanat,
-        bioregistry:nlxdys ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:NEUROLEX,
-        n2t:neurolex,
-        prefixcommons:neurolex,
-        miriam:neurolex ;
-    foaf:homepage "http://www.neurolex.org/wiki/Main_Page"^^xsd:string ;
-    bioregistry.schema:0000005 "Birnlex_721"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.neurolex.org/wiki/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^([Bb]irnlex_|Sao|nlx_|GO_|CogPO|HDO|nifext_)\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:nlxanat a bioregistry.schema:0000001 ;
-    rdfs:label "NeuroLex Anatomy" ;
-    dc:description "The InterLex project - a core component of SciCrunch and supported by projects such as the Neuroscience Information Framework project (NIF), the NIDDK Information Network (dkNET), and the Open Data Commons for Spinal Cord Injury - is a dynamic lexicon of biomedical terms."^^xsd:string ;
+bioregistry:nif.ext a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Standard Ontology: External" ;
+    dc:description "NIFEXT covers IRIs that were \"external\" identifiers that were brought into the ontology at some point in time. This was done before most of the current standard ontology and identifier management practices had been developed."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
-        bioregistry:neurolex ;
+        bioregistry:nif ;
+    foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "7123"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nifext_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4801 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:nif.std a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Standard Ontology" ;
+    dc:description "NIFSTD is a base namespace (like obo:) which houses many other prefixes. Sometimes NIFSTD prefixed identifiers appear undifferentiated, but usually if it shows up it means that another prefix definition is missing when serializing."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
+    skos:exactMatch aberowl:NIFSTD,
+        bioportal:NIFSTD,
+        fairsharing:FAIRsharing.vgw1m6 ;
+    foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "BAMSC981"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^BAMSC\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4801 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:nlx.anat a bioregistry.schema:0000001 ;
+    rdfs:label "NeuroLex Anatomy" ;
+    dc:description "NLXANAT covers anatomy terms. Almost all terms are also in Uberon."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
     foaf:homepage "https://scicrunch.org/scicrunch/interlex/dashboard"^^xsd:string ;
     bioregistry.schema:0000005 "090201"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_anat_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{6}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4804 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
-bioregistry:nlxdys a bioregistry.schema:0000001 ;
-    rdfs:label "NeuroLex Dysfunction" ;
-    dc:description "The InterLex project - a core component of SciCrunch and supported by projects such as the Neuroscience Information Framework project (NIF), the NIDDK Information Network (dkNET), and the Open Data Commons for Spinal Cord Injury - is a dynamic lexicon of biomedical terms."^^xsd:string ;
+bioregistry:nlx.br a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Standard Ontology: Brain Regions" ;
+    dc:description "NLXBR covers brain regions from the PHT00 macaque parcellation, Paxinos, Huang, and Tog The Rhesus Monkey Brain In Stereotaxic Coordinates (1999)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
-        bioregistry:neurolex ;
+        bioregistry:nif ;
+    foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "145"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_br_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4804 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:nlx.cell a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Standard Ontology: Cell Types" ;
+    dc:description "NLXCELL conatins cell types with a focus on neuron types."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
+    foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "91005"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_cell_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4805 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:nlx.chem a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Standard Ontology: Chemical" ;
+    dc:description "NLXCHEM covers chemicals. Most classes are also in ChEBI."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
+    foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "90801"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_chem_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4806 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:nlx.dys a bioregistry.schema:0000001 ;
+    rdfs:label "NeuroLex Dysfunction" ;
+    dc:description "NLXDYS covers dysfunction, diseases, and disorders. Most classes are also in Disease Ontology (DOID), Monarch Disease Ontology (MONDO), Human Phenotype Ontology (HPO), etc."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
     foaf:homepage "https://scicrunch.org/scicrunch/interlex/dashboard"^^xsd:string ;
     bioregistry.schema:0000005 "20090303"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_dys_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:mondo .
+    bioregistry.schema:0000018 bioregistry:mondo ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4804 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:nlx.func a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Standard Ontology: Cognitive Function" ;
+    dc:description "NLXFUNC covers terms for cognitive function."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
+    foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "90801"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_func_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4808 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:nlx.inv a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Standard Ontology: Investigations" ;
+    dc:description "NLXINV includes funding agencies and some terms related to documenting scientific investigations data acquisition and analysis."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
+    foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "90901"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_inv_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4809 .
+
+bioregistry:nlx.mol a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Standard Ontology: Molecules" ;
+    dc:description "NLXMOL covers molecules, proteins, and molecular roles, similar to entities in the Protein Ontology, UniProt, and ChEBI, with a focus on those of particular relevance in the nervous system."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
+    foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "90806"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_mol_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4810 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:nlx.oen a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Standard Ontology: OEN Terms in Neurolex" ;
+    dc:description "NLXOEN prefixed identifiers are from the version of the Ontology for Experimental Neurophysiology (OEN; https://github.com/G-Node/OEN) that were originally deposited in Neurolex (for examples, see https://scicrunch.org/scicrunch/interlex/search?q=NLXOEN results)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
+    foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "0001000"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/oen_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4811 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:nlx.org a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Standard Ontology: Organisms" ;
+    dc:description "NLXORG covers organisms."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
+    foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "090701"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_organ_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4812 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:nlx.qual a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Standard Ontology: Qualities" ;
+    dc:description "NLXQUAL covers qualities and dispositions similar to the Phenotype And Trait Ontology (PATO)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
+    foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "100810"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_qual_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4813 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:nlx.res a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Standard Ontology: Digital Resources" ;
+    dc:description "NLXRES covers digital resources. Most classes are high level types covering everything from databases and sourcecode to source code licenses and instrument supplier websites"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
+    foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "090924"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_res_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4814 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:nlx.sub a bioregistry.schema:0000001 ;
+    rdfs:label "NIF Standard Ontology: Subcellular Entities" ;
+    dc:description "NLXSUB covers subcellular entities similar to the cellular component branch of the Gene Ontology (GO)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:nif ;
+    foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "090803"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_subcell_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7509-4815 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:ogms a bioregistry.schema:0000001 ;
     rdfs:label "Ontology for General Medical Science" ;
@@ -28710,6 +28936,7 @@ bioregistry:uniprot.ptm a bioregistry.schema:0000001 ;
         bioregistry:uniprot ;
     foaf:homepage "https://www.uniprot.org/docs/ptmlist"^^xsd:string ;
     bioregistry.schema:0000005 "PTM-0450"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/uniprot.ptm/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^PTM-\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -28821,6 +29048,9 @@ orcid:0000-0002-3469-4923 rdfs:label "Janna Hastings" .
 orcid:0000-0002-5640-5491 rdfs:label "Matt Yoder" .
 
 orcid:0000-0002-6443-9376 rdfs:label "Jennifer Smith" .
+
+orcid:0000-0002-7509-4804 rdfs:label "Tom Gillespie" ;
+    dcterms:contributor bioregistry:nlx.br .
 
 orcid:0000-0002-8457-6693 rdfs:label "Bjoern Peters" .
 
@@ -30280,6 +30510,26 @@ bioregistry:cl a bioregistry.schema:0000001 ;
         bioregistry:xpo ;
     bioregistry.schema:0000019 orcid:0000-0001-9990-8331 .
 
+bioregistry:nif dcterms:hasPart bioregistry:neurolex,
+        bioregistry:nif.cell,
+        bioregistry:nif.dysfunction,
+        bioregistry:nif.ext,
+        bioregistry:nif.grossanatomy,
+        bioregistry:nif.std,
+        bioregistry:nlx.anat,
+        bioregistry:nlx.br,
+        bioregistry:nlx.cell,
+        bioregistry:nlx.chem,
+        bioregistry:nlx.dys,
+        bioregistry:nlx.func,
+        bioregistry:nlx.inv,
+        bioregistry:nlx.mol,
+        bioregistry:nlx.oen,
+        bioregistry:nlx.org,
+        bioregistry:nlx.qual,
+        bioregistry:nlx.res,
+        bioregistry:nlx.sub .
+
 bioregistry:pato a bioregistry.schema:0000001 ;
     rdfs:label "Phenotype And Trait Ontology" ;
     dc:description "PATO is an ontology of phenotypic qualities, intended for use in a number of applications, primarily defining composite phenotypes and phenotype  annotation."^^xsd:string ;
@@ -30431,192 +30681,6 @@ bioregistry:uniprot a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.uniprot.org/uniprot/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
-
-orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
-    dcterms:contributor bioregistry:4dn.replicate,
-        bioregistry:ac,
-        bioregistry:agilent.probe,
-        bioregistry:alzforum.mutation,
-        bioregistry:asrp,
-        bioregistry:bactibase,
-        bioregistry:bams,
-        bioregistry:bcrc,
-        bioregistry:beiresources,
-        bioregistry:bel,
-        bioregistry:biogrid.interaction,
-        bioregistry:biolegend,
-        bioregistry:bioregistry,
-        bioregistry:bioregistry.collection,
-        bioregistry:bioregistry.registry,
-        bioregistry:bioregistry.schema,
-        bioregistry:biozil,
-        bioregistry:bmrb.restraint,
-        bioregistry:bpdb,
-        bioregistry:brenda.ligand,
-        bioregistry:brenda.ligandgroup,
-        bioregistry:bs,
-        bioregistry:caloha,
-        bioregistry:cba,
-        bioregistry:ccrid,
-        bioregistry:cdt,
-        bioregistry:cellopub,
-        bioregistry:cellosaurus.resource,
-        bioregistry:cgnc,
-        bioregistry:chembl.cell,
-        bioregistry:citexplore,
-        bioregistry:cmecs,
-        bioregistry:codelink,
-        bioregistry:cog.category,
-        bioregistry:cohd,
-        bioregistry:come,
-        bioregistry:conso,
-        bioregistry:cosmic.cell,
-        bioregistry:cp,
-        bioregistry:credit,
-        bioregistry:dbvar.study,
-        bioregistry:dbvar.variant,
-        bioregistry:decipher,
-        bioregistry:dhba,
-        bioregistry:diseaseclass,
-        bioregistry:dmba,
-        bioregistry:dsmz,
-        bioregistry:eaglei,
-        bioregistry:ecmdb,
-        bioregistry:ecolexicon,
-        bioregistry:emolecules,
-        bioregistry:enzo,
-        bioregistry:eol,
-        bioregistry:eolife,
-        bioregistry:epcc,
-        bioregistry:eurofir,
-        bioregistry:evm,
-        bioregistry:fabio,
-        bioregistry:fbql,
-        bioregistry:fbrf,
-        bioregistry:fbtc,
-        bioregistry:fcsfree,
-        bioregistry:flybrain.ndb,
-        bioregistry:ftt,
-        bioregistry:fungorum,
-        bioregistry:fyler,
-        bioregistry:gc,
-        bioregistry:gemet,
-        bioregistry:geonames,
-        bioregistry:geonames.feature,
-        bioregistry:ghr,
-        bioregistry:go.resource,
-        bioregistry:goche,
-        bioregistry:goeco,
-        bioregistry:graingenes.reference,
-        bioregistry:graingenes.symbol,
-        bioregistry:gramene.reference,
-        bioregistry:grassbase,
-        bioregistry:gsfa,
-        bioregistry:gtr,
-        bioregistry:hba,
-        bioregistry:hms.lincs.compound,
-        bioregistry:hog,
-        bioregistry:icepo,
-        bioregistry:idpo,
-        bioregistry:illumina.probe,
-        bioregistry:imdrf,
-        bioregistry:inaturalist.taxon,
-        bioregistry:inhand,
-        bioregistry:iro,
-        bioregistry:jcrb,
-        bioregistry:kclb,
-        bioregistry:kegg.dgroup,
-        bioregistry:kegg.rclass,
-        bioregistry:kupo,
-        bioregistry:lncipedia,
-        bioregistry:lonza,
-        bioregistry:lpt,
-        bioregistry:lspci,
-        bioregistry:lter,
-        bioregistry:matrixdb,
-        bioregistry:mba,
-        bioregistry:mgnify.analysis,
-        bioregistry:miaa,
-        bioregistry:mirbase.family,
-        bioregistry:mirte,
-        bioregistry:mmsl,
-        bioregistry:molbase.sheffield,
-        bioregistry:multicellds,
-        bioregistry:n2t,
-        bioregistry:namerxn,
-        bioregistry:ncats.drug,
-        bioregistry:ncbi.genome,
-        bioregistry:ncbi.resource,
-        bioregistry:ncbibook,
-        bioregistry:ndex,
-        bioregistry:nextprot.family,
-        bioregistry:nist,
-        bioregistry:nlxanat,
-        bioregistry:nlxdys,
-        bioregistry:novus,
-        bioregistry:npass,
-        bioregistry:oboformat,
-        bioregistry:omim.ps,
-        bioregistry:omop,
-        bioregistry:oncotree,
-        bioregistry:pathbank,
-        bioregistry:pba,
-        bioregistry:peff,
-        bioregistry:pesticides,
-        bioregistry:pfam.clan,
-        bioregistry:pfr,
-        bioregistry:pharmacodb.dataset,
-        bioregistry:pharmacodb.tissue,
-        bioregistry:pictar,
-        bioregistry:ppdb,
-        bioregistry:ppr,
-        bioregistry:prefixcommons,
-        bioregistry:pspub,
-        bioregistry:pubchem.element,
-        bioregistry:rcb,
-        bioregistry:receptome.family,
-        bioregistry:reo,
-        bioregistry:rnamod,
-        bioregistry:sael,
-        bioregistry:salk,
-        bioregistry:schem,
-        bioregistry:scholia.resource,
-        bioregistry:scomp,
-        bioregistry:scr,
-        bioregistry:sdis,
-        bioregistry:sfam,
-        bioregistry:sigmaaldrich,
-        bioregistry:smid,
-        bioregistry:snap,
-        bioregistry:snornabase,
-        bioregistry:span,
-        bioregistry:sprint,
-        bioregistry:ssbd.project,
-        bioregistry:storedb.dataset,
-        bioregistry:storedb.file,
-        bioregistry:storedb.study,
-        bioregistry:syoid,
-        bioregistry:tgn,
-        bioregistry:th,
-        bioregistry:thermofisher,
-        bioregistry:tkg,
-        bioregistry:ubprop,
-        bioregistry:umls.aui,
-        bioregistry:uniprot.disease,
-        bioregistry:uniprot.journal,
-        bioregistry:uniprot.ptm,
-        bioregistry:uniprot.resource,
-        bioregistry:uniprot.var,
-        bioregistry:unpd,
-        bioregistry:vega,
-        bioregistry:vsdb,
-        bioregistry:vuid,
-        bioregistry:webelements,
-        bioregistry:ximbio,
-        bioregistry:xmetdb,
-        bioregistry:xml,
-        bioregistry:xuo,
-        bioregistry:ymdb .
 
 bioregistry:uberon a bioregistry.schema:0000001 ;
     rdfs:label "Uber Anatomy Ontology" ;
@@ -30815,6 +30879,192 @@ bioregistry:ro a bioregistry.schema:0000001 ;
         bioregistry:xpo,
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 .
+
+orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
+    dcterms:contributor bioregistry:4dn.replicate,
+        bioregistry:ac,
+        bioregistry:agilent.probe,
+        bioregistry:alzforum.mutation,
+        bioregistry:asrp,
+        bioregistry:bactibase,
+        bioregistry:bams,
+        bioregistry:bcrc,
+        bioregistry:beiresources,
+        bioregistry:bel,
+        bioregistry:biogrid.interaction,
+        bioregistry:biolegend,
+        bioregistry:bioregistry,
+        bioregistry:bioregistry.collection,
+        bioregistry:bioregistry.registry,
+        bioregistry:bioregistry.schema,
+        bioregistry:biozil,
+        bioregistry:bmrb.restraint,
+        bioregistry:bpdb,
+        bioregistry:brenda.ligand,
+        bioregistry:brenda.ligandgroup,
+        bioregistry:bs,
+        bioregistry:caloha,
+        bioregistry:cba,
+        bioregistry:ccrid,
+        bioregistry:cdt,
+        bioregistry:cellopub,
+        bioregistry:cellosaurus.resource,
+        bioregistry:cgnc,
+        bioregistry:chembl.cell,
+        bioregistry:citexplore,
+        bioregistry:cmecs,
+        bioregistry:codelink,
+        bioregistry:cog.category,
+        bioregistry:cohd,
+        bioregistry:come,
+        bioregistry:conso,
+        bioregistry:cosmic.cell,
+        bioregistry:cp,
+        bioregistry:credit,
+        bioregistry:dbvar.study,
+        bioregistry:dbvar.variant,
+        bioregistry:decipher,
+        bioregistry:dhba,
+        bioregistry:diseaseclass,
+        bioregistry:dmba,
+        bioregistry:dsmz,
+        bioregistry:eaglei,
+        bioregistry:ecmdb,
+        bioregistry:ecolexicon,
+        bioregistry:emolecules,
+        bioregistry:enzo,
+        bioregistry:eol,
+        bioregistry:eolife,
+        bioregistry:epcc,
+        bioregistry:eurofir,
+        bioregistry:evm,
+        bioregistry:fabio,
+        bioregistry:fbql,
+        bioregistry:fbrf,
+        bioregistry:fbtc,
+        bioregistry:fcsfree,
+        bioregistry:flybrain.ndb,
+        bioregistry:ftt,
+        bioregistry:fungorum,
+        bioregistry:fyler,
+        bioregistry:gc,
+        bioregistry:gemet,
+        bioregistry:geonames,
+        bioregistry:geonames.feature,
+        bioregistry:ghr,
+        bioregistry:go.resource,
+        bioregistry:goche,
+        bioregistry:goeco,
+        bioregistry:graingenes.reference,
+        bioregistry:graingenes.symbol,
+        bioregistry:gramene.reference,
+        bioregistry:grassbase,
+        bioregistry:gsfa,
+        bioregistry:gtr,
+        bioregistry:hba,
+        bioregistry:hms.lincs.compound,
+        bioregistry:hog,
+        bioregistry:icepo,
+        bioregistry:idpo,
+        bioregistry:illumina.probe,
+        bioregistry:imdrf,
+        bioregistry:inaturalist.taxon,
+        bioregistry:inhand,
+        bioregistry:iro,
+        bioregistry:jcrb,
+        bioregistry:kclb,
+        bioregistry:kegg.dgroup,
+        bioregistry:kegg.rclass,
+        bioregistry:kupo,
+        bioregistry:lncipedia,
+        bioregistry:lonza,
+        bioregistry:lpt,
+        bioregistry:lspci,
+        bioregistry:lter,
+        bioregistry:matrixdb,
+        bioregistry:mba,
+        bioregistry:mgnify.analysis,
+        bioregistry:miaa,
+        bioregistry:mirbase.family,
+        bioregistry:mirte,
+        bioregistry:mmsl,
+        bioregistry:molbase.sheffield,
+        bioregistry:multicellds,
+        bioregistry:n2t,
+        bioregistry:namerxn,
+        bioregistry:ncats.drug,
+        bioregistry:ncbi.genome,
+        bioregistry:ncbi.resource,
+        bioregistry:ncbibook,
+        bioregistry:ndex,
+        bioregistry:nextprot.family,
+        bioregistry:nist,
+        bioregistry:nlx.anat,
+        bioregistry:nlx.dys,
+        bioregistry:novus,
+        bioregistry:npass,
+        bioregistry:oboformat,
+        bioregistry:omim.ps,
+        bioregistry:omop,
+        bioregistry:oncotree,
+        bioregistry:pathbank,
+        bioregistry:pba,
+        bioregistry:peff,
+        bioregistry:pesticides,
+        bioregistry:pfam.clan,
+        bioregistry:pfr,
+        bioregistry:pharmacodb.dataset,
+        bioregistry:pharmacodb.tissue,
+        bioregistry:pictar,
+        bioregistry:ppdb,
+        bioregistry:ppr,
+        bioregistry:prefixcommons,
+        bioregistry:pspub,
+        bioregistry:pubchem.element,
+        bioregistry:rcb,
+        bioregistry:receptome.family,
+        bioregistry:reo,
+        bioregistry:rnamod,
+        bioregistry:sael,
+        bioregistry:salk,
+        bioregistry:schem,
+        bioregistry:scholia.resource,
+        bioregistry:scomp,
+        bioregistry:scr,
+        bioregistry:sdis,
+        bioregistry:sfam,
+        bioregistry:sigmaaldrich,
+        bioregistry:smid,
+        bioregistry:snap,
+        bioregistry:snornabase,
+        bioregistry:span,
+        bioregistry:sprint,
+        bioregistry:ssbd.project,
+        bioregistry:storedb.dataset,
+        bioregistry:storedb.file,
+        bioregistry:storedb.study,
+        bioregistry:syoid,
+        bioregistry:tgn,
+        bioregistry:th,
+        bioregistry:thermofisher,
+        bioregistry:tkg,
+        bioregistry:ubprop,
+        bioregistry:umls.aui,
+        bioregistry:uniprot.disease,
+        bioregistry:uniprot.journal,
+        bioregistry:uniprot.ptm,
+        bioregistry:uniprot.resource,
+        bioregistry:uniprot.var,
+        bioregistry:unpd,
+        bioregistry:vega,
+        bioregistry:vsdb,
+        bioregistry:vuid,
+        bioregistry:webelements,
+        bioregistry:ximbio,
+        bioregistry:xmetdb,
+        bioregistry:xml,
+        bioregistry:xuo,
+        bioregistry:ymdb .
 
 bioregistry.metaresource:agroportal a bioregistry.schema:0000002 ;
     rdfs:label "AgroPortal" ;
@@ -32474,6 +32724,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:NDFRT,
         bioportal:NEMO,
         bioportal:NIFCELL,
+        bioportal:NIFSTD,
         bioportal:NMR,
         bioportal:NOMEN,
         bioportal:NPO,
@@ -32794,6 +33045,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:NDF-RT,
         aberowl:NEMO,
         aberowl:NIFCELL,
+        aberowl:NIFSTD,
         aberowl:NMR,
         aberowl:NOMEN,
         aberowl:NPO,
@@ -33739,6 +33991,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.vajn3f,
         fairsharing:FAIRsharing.vdbagq,
         fairsharing:FAIRsharing.veg2d6,
+        fairsharing:FAIRsharing.vgw1m6,
         fairsharing:FAIRsharing.vppyga,
         fairsharing:FAIRsharing.vq28qp,
         fairsharing:FAIRsharing.vr52p3,
@@ -37007,14 +37260,27 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ngl,
         bioregistry:nhcdr,
         bioregistry:niaest,
-        bioregistry:nif_cell,
-        bioregistry:nif_dysfunction,
-        bioregistry:nif_grossanatomy,
+        bioregistry:nif.cell,
+        bioregistry:nif.dysfunction,
+        bioregistry:nif.ext,
+        bioregistry:nif.grossanatomy,
+        bioregistry:nif.std,
         bioregistry:nihreporter.project,
         bioregistry:nist,
         bioregistry:nlm,
-        bioregistry:nlxanat,
-        bioregistry:nlxdys,
+        bioregistry:nlx.anat,
+        bioregistry:nlx.br,
+        bioregistry:nlx.cell,
+        bioregistry:nlx.chem,
+        bioregistry:nlx.dys,
+        bioregistry:nlx.func,
+        bioregistry:nlx.inv,
+        bioregistry:nlx.mol,
+        bioregistry:nlx.oen,
+        bioregistry:nlx.org,
+        bioregistry:nlx.qual,
+        bioregistry:nlx.res,
+        bioregistry:nlx.sub,
         bioregistry:nmdc,
         bioregistry:nmr,
         bioregistry:nmrshiftdb2,

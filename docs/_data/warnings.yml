@@ -13,6 +13,11 @@ wrong_patterns:
   name: American Type Culture Collection
   prefix: atcc
 - correct: ^\d+$
+  homepage: https://github.com/SED-ML/KiSAO
+  miriam: ^KISAO_\d+$
+  name: Kinetic Simulation Algorithm Ontology
+  prefix: biomodels.kisao
+- correct: ^\d+$
   homepage: http://teddyontology.sourceforge.net/
   miriam: ^TEDDY_\d{7}$
   name: Terminology for Description of Dynamics
@@ -32,6 +37,11 @@ wrong_patterns:
   miriam: ^CCO\:\w+$
   name: Cell Cycle Ontology
   prefix: cco
+- correct: ^[A-Z0-9]{4}$
+  homepage: https://web.expasy.org/cellosaurus/
+  miriam: ^CVCL_[A-Z0-9]{4}$
+  name: Cellosaurus
+  prefix: cellosaurus
 - correct: ^\d+$
   homepage: http://www.ebi.ac.uk/chebi
   miriam: ^CHEBI:\d+$
@@ -197,6 +207,11 @@ wrong_patterns:
   miriam: ^mzspec:.+$
   name: Universal Spectrum Identifier
   prefix: mzspec
+- correct: ^\d+$
+  homepage: https://github.com/SciCrunch/NIF-Ontology
+  miriam: ^([Bb]irnlex_|Sao|nlx_|GO_|CogPO|HDO|nifext_)\d+$
+  name: 'NIF Standard Ontology: Neurolex'
+  prefix: neurolex
 - correct: ^[\w\-.]{3,}$
   homepage: https://microbiomedata.org/
   miriam: ^[A-Za-z0-9._~\-\:]+$

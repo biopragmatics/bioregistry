@@ -1853,6 +1853,7 @@ biomodels.db:
   uri_format: https://www.ebi.ac.uk/biomodels/$1
 biomodels.kisao:
   banana: KISAO
+  banana_peel: _
   contact:
     email: jonrkarr@gmail.com
     github: jonrkarr
@@ -1863,7 +1864,7 @@ biomodels.kisao:
     and the relationships between them. This provides a means to unambiguously refer
     to simulation algorithms when describing a simulation experiment.
   download_owl: http://purl.obolibrary.org/obo/kisao.owl
-  example: KISAO_0000057
+  example: '0000057'
   homepage: https://github.com/SED-ML/KiSAO
   license: Artistic License 2.0
   mappings:
@@ -1879,7 +1880,7 @@ biomodels.kisao:
     prefixcommons: kisao
   name: Kinetic Simulation Algorithm Ontology
   namespace_in_lui: true
-  pattern: ^KISAO_\d+$
+  pattern: ^\d+$
   preferred_prefix: biomodels.kisao
   repository: https://github.com/SED-ML/KiSAO
   synonyms:
@@ -1887,6 +1888,8 @@ biomodels.kisao:
   uri_format: http://purl.obolibrary.org/obo/KISAO_$1
   version: '2.30'
 biomodels.teddy:
+  banana: TEDDY
+  banana_peel: _
   description: The Terminology for Description of Dynamics (TEDDY) is an ontology
     for dynamical behaviours, observable dynamical phenomena, and control elements
     of bio-models and biological systems in Systems Biology and Synthetic Biology.
@@ -3125,6 +3128,8 @@ cellopub:
   preferred_prefix: cellopub
   uri_format: https://web.expasy.org/cellosaurus/cellopub/$1
 cellosaurus:
+  banana: CVCL
+  banana_peel: _
   description: 'The Cellosaurus is a knowledge resource on cell lines. It attempts
     to describe all cell lines used in biomedical research. Its scope includes: Immortalized
     cell lines; naturally immortal cell lines (example: stem cell lines); finite life
@@ -3133,7 +3138,7 @@ cellosaurus:
     ticks) cell lines. Its scope does not include primary cell lines (with the exception
     of the finite life cell lines described above) and plant cell lines.'
   download_obo: https://ftp.expasy.org/databases/cellosaurus/cellosaurus.obo
-  example: CVCL_0440
+  example: '0440'
   homepage: https://web.expasy.org/cellosaurus/
   mappings:
     biocontext: CELLOSAURUS
@@ -3143,7 +3148,7 @@ cellosaurus:
     n2t: cellosaurus
     wikidata: P3289
   name: Cellosaurus
-  pattern: ^CVCL_[A-Z0-9]{4}$
+  pattern: ^[A-Z0-9]{4}$
   preferred_prefix: cellosaurus
   synonyms:
   - CVCL
@@ -3804,6 +3809,7 @@ clao:
   uri_format: http://purl.obolibrary.org/obo/CLAO_$1
   version: '2021-09-27'
 classyfire:
+  banana: C
   comment: There's a mismatch between the MIRIAM URI format string, which has a C
     prefix in front of class identifiers and the ontology which does not use them.
   description: ClassyFire is a web-based application for automated structural classification
@@ -7291,7 +7297,7 @@ efo:
     The scope of EFO is to support the annotation, analysis and visualization of data
     handled by the EBI Functional Genomics Team.
   download_obo: http://www.ebi.ac.uk/efo/efo.obo
-  download_owl: http://www.ebi.ac.uk/efo/releases/v3.42.0/efo.owl
+  download_owl: http://www.ebi.ac.uk/efo/releases/v3.43.0/efo.owl
   example: '0005147'
   homepage: http://www.ebi.ac.uk/efo
   mappings:
@@ -7317,7 +7323,7 @@ efo:
     uri_format: https://www.ebi.ac.uk/efo/EFO_$1
   repository: https://github.com/EBISPOT/efo/
   uri_format: http://www.ebi.ac.uk/efo/EFO_$1
-  version: 3.42.0
+  version: 3.43.0
 ega.dataset:
   description: The EGA is a service for permanent archiving and sharing of all types
     of personally identifiable genetic and phenotypic data resulting from biomedical
@@ -9689,6 +9695,7 @@ genprop:
   preferred_prefix: genprop
   uri_format: https://www.ebi.ac.uk/interpro/genomeproperties/#$1
 geo:
+  banana_peel: _
   description: The Gene Expression Omnibus (GEO) is a gene expression repository providing
     a curated, online resource for gene expression data browsing, query and retrieval.
   download_owl: http://aber-owl.net/media/ontologies/GEO/4/geo.owl
@@ -9709,6 +9716,7 @@ geo:
   uri_format: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=$1
 geogeo:
   banana: GEO
+  banana_peel: _
   contact:
     email: hoganwr@gmail.com
     github: null
@@ -10469,7 +10477,7 @@ gramene.gene:
   - GR_GENE
   uri_format: http://www.gramene.org/db/genes/search_gene?acc=$1
 gramene.growthstage:
-  banana: GRO\
+  banana: GRO
   description: Gramene is a comparative genome mapping database for grasses and crop
     plants. It combines a semi-automatically generated database of cereal genomic
     and expressed sequence tag sequences, genetic maps, map relations, quantitative
@@ -10908,7 +10916,7 @@ hancestro:
   preferred_prefix: HANCESTRO
   repository: https://github.com/EBISPOT/ancestro
   uri_format: http://purl.obolibrary.org/obo/HANCESTRO_$1
-  version: '2.5'
+  version: '2.6'
 hao:
   contact:
     email: diapriid@gmail.com
@@ -14125,6 +14133,8 @@ maizegdb.locus:
   - MaizeGDB
   uri_format: http://www.maizegdb.org/cgi-bin/displaylocusrecord.cgi?id=$1
 mamo:
+  banana: MAMO
+  banana_peel: _
   contact:
     email: nicolas@ascistance.co.uk
     github: gambardella
@@ -15991,14 +16001,16 @@ ms:
 msigdb:
   description: The Molecular Signatures Database (MSigDB) is a collection of annotated
     gene sets for use with GSEA software. From this web site, you can
-  example: NADELLA_PRKAR1A_TARGETS_DN
+  example: M1
   homepage: https://www.gsea-msigdb.org
   mappings:
     biolink: MSigDB
   name: Molecular Signatures Database
+  pattern: ^M\d+$
   preferred_prefix: msigdb
   synonyms:
   - msig
+  uri_format: https://biopragmatics.github.io/providers/msigdb/$1
 msio:
   description: an application ontology for supporting description and annotation of
     mass-spectrometry and nmr-spectroscopy based metabolomics experiments and fluxomics
@@ -16781,21 +16793,32 @@ nemo:
   preferred_prefix: nemo
   uri_format: https://assets.nemoarchive.org/$1
 neurolex:
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4802
   description: The NeuroLex project is a dynamic lexicon of terms used in neuroscience.  It
     is supported by the Neuroscience Information Framework project and incorporates
     information from the NIF standardised ontology (NIFSTD), and its predecessor,
     the Biomedical Informatics Research Network Lexicon (BIRNLex).
-  example: Birnlex_721
-  homepage: http://www.neurolex.org/wiki/Main_Page
+  example: '4'
+  homepage: https://github.com/SciCrunch/NIF-Ontology
+  license: CC BY-4.0
   mappings:
     biocontext: NEUROLEX
     miriam: neurolex
     n2t: neurolex
     prefixcommons: neurolex
-  name: NeuroLex
-  pattern: ^([Bb]irnlex_|Sao|nlx_|GO_|CogPO|HDO|nifext_)\d+$
+  name: 'NIF Standard Ontology: Neurolex'
+  part_of: nif
+  pattern: ^\d+$
   preferred_prefix: neurolex
-  uri_format: http://www.neurolex.org/wiki/$1
+  repository: https://github.com/SciCrunch/NIF-Ontology
+  synonyms:
+  - NLX
+  - nlx
+  uri_format: http://uri.neuinfo.org/nif/nifstd/nlx_$1
 neuromorpho:
   description: NeuroMorpho.Org is a centrally curated inventory of  digitally reconstructed
     neurons.
@@ -16967,7 +16990,7 @@ niaest:
   pattern: ^\w\d{4}\w\d{2}(\-[35])?$
   preferred_prefix: niaest
   uri_format: http://lgsun.grc.nia.nih.gov/cgi-bin/pro3?sname1=$1
-nif_cell:
+nif.cell:
   contact:
     email: smtifahim@gmail.com
     github: null
@@ -16983,9 +17006,10 @@ nif_cell:
     bioportal: NIFCELL
     obofoundry: NIF_CELL
   name: NIF Cell
+  part_of: nif
   preferred_prefix: NIF_CELL
   uri_format: http://purl.obolibrary.org/obo/NIF_CELL_$1
-nif_dysfunction:
+nif.dysfunction:
   contact:
     email: smtifahim@gmail.com
     github: null
@@ -16997,9 +17021,40 @@ nif_dysfunction:
     biocontext: NIF_DYSFUNCTION
     obofoundry: NIF_DYSFUNCTION
   name: NIF Dysfunction
+  part_of: nif
   preferred_prefix: NIF_DYSFUNCTION
   uri_format: http://purl.obolibrary.org/obo/NIF_DYSFUNCTION_$1
-nif_grossanatomy:
+nif.ext:
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4801
+  contributor:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4801
+  description: NIFEXT covers IRIs that were "external" identifiers that were brought
+    into the ontology at some point in time. This was done before most of the current
+    standard ontology and identifier management practices had been developed.
+  example: '7123'
+  homepage: https://github.com/SciCrunch/NIF-Ontology
+  license: CC BY-4.0
+  name: 'NIF Standard Ontology: External'
+  part_of: nif
+  pattern: ^\d+$
+  preferred_prefix: nif.ext
+  repository: https://github.com/SciCrunch/NIF-Ontology
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  synonyms:
+  - NIFEXT
+  uri_format: http://uri.neuinfo.org/nif/nifstd/nifext_$1
+nif.grossanatomy:
   contact:
     email: smtifahim@gmail.com
     github: null
@@ -17011,8 +17066,44 @@ nif_grossanatomy:
     biocontext: NIF_GROSSANATOMY
     obofoundry: NIF_GROSSANATOMY
   name: NIF Gross Anatomy
+  part_of: nif
   preferred_prefix: NIF_GROSSANATOMY
   uri_format: http://purl.obolibrary.org/obo/NIF_GROSSANATOMY_$1
+nif.std:
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4801
+  contributor:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4801
+  description: NIFSTD is a base namespace (like obo:) which houses many other prefixes.
+    Sometimes NIFSTD prefixed identifiers appear undifferentiated, but usually if
+    it shows up it means that another prefix definition is missing when serializing.
+  download_owl: http://aber-owl.net/media/ontologies/NIFSTD/23/nifstd.owl
+  example: BAMSC981
+  homepage: https://github.com/SciCrunch/NIF-Ontology
+  license: CC BY-4.0
+  mappings:
+    aberowl: NIFSTD
+    bioportal: NIFSTD
+    fairsharing: FAIRsharing.vgw1m6
+  name: NIF Standard Ontology
+  part_of: nif
+  pattern: ^BAMSC\d+$
+  preferred_prefix: nif.std
+  repository: https://github.com/SciCrunch/NIF-Ontology
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  synonyms:
+  - NIFSTD
+  uri_format: http://uri.neuinfo.org/nif/nifstd/$1
 nihreporter.project:
   contributor:
     email: benjamin_gyori@hms.harvard.edu
@@ -17062,42 +17153,372 @@ nlm:
   pattern: ^\d+$
   preferred_prefix: nlm
   uri_format: https://www.ncbi.nlm.nih.gov/nlmcatalog/$1
-nlxanat:
+nlx.anat:
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4804
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: The InterLex project - a core component of SciCrunch and supported
-    by projects such as the Neuroscience Information Framework project (NIF), the
-    NIDDK Information Network (dkNET), and the Open Data Commons for Spinal Cord Injury
-    - is a dynamic lexicon of biomedical terms.
+  description: NLXANAT covers anatomy terms. Almost all terms are also in Uberon.
   example: 090201
   homepage: https://scicrunch.org/scicrunch/interlex/dashboard
   name: NeuroLex Anatomy
-  part_of: neurolex
-  pattern: ^\d{6}$
-  preferred_prefix: nlxanat
+  part_of: nif
+  pattern: ^\d+$
+  preferred_prefix: nlx.anat
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   uri_format: http://uri.neuinfo.org/nif/nifstd/nlx_anat_$1
-nlxdys:
+nlx.br:
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4804
+  contributor:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4804
+  description: NLXBR covers brain regions from the PHT00 macaque parcellation, Paxinos,
+    Huang, and Tog The Rhesus Monkey Brain In Stereotaxic Coordinates (1999).
+  example: '145'
+  homepage: https://github.com/SciCrunch/NIF-Ontology
+  license: CC BY-4.0
+  name: 'NIF Standard Ontology: Brain Regions'
+  part_of: nif
+  pattern: ^\d+$
+  preferred_prefix: nlx.br
+  repository: https://github.com/SciCrunch/NIF-Ontology
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  synonyms:
+  - NLXBR
+  uri_format: http://uri.neuinfo.org/nif/nifstd/nlx_br_$1
+nlx.cell:
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4805
+  contributor:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4805
+  description: NLXCELL conatins cell types with a focus on neuron types.
+  example: '91005'
+  homepage: https://github.com/SciCrunch/NIF-Ontology
+  license: CC BY-4.0
+  name: 'NIF Standard Ontology: Cell Types'
+  part_of: nif
+  pattern: ^\d+$
+  preferred_prefix: nlx.cell
+  repository: https://github.com/SciCrunch/NIF-Ontology
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  synonyms:
+  - NLXCELL
+  uri_format: http://uri.neuinfo.org/nif/nifstd/nlx_cell_$1
+nlx.chem:
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4806
+  contributor:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4806
+  description: NLXCHEM covers chemicals. Most classes are also in ChEBI.
+  example: '90801'
+  homepage: https://github.com/SciCrunch/NIF-Ontology
+  license: CC BY-4.0
+  name: 'NIF Standard Ontology: Chemical'
+  part_of: nif
+  pattern: ^\d+$
+  preferred_prefix: nlx.chem
+  repository: https://github.com/SciCrunch/NIF-Ontology
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  synonyms:
+  - NLXCHEM
+  uri_format: http://uri.neuinfo.org/nif/nifstd/nlx_chem_$1
+nlx.dys:
   appears_in:
   - mondo
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4804
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: The InterLex project - a core component of SciCrunch and supported
-    by projects such as the Neuroscience Information Framework project (NIF), the
-    NIDDK Information Network (dkNET), and the Open Data Commons for Spinal Cord Injury
-    - is a dynamic lexicon of biomedical terms.
+  description: NLXDYS covers dysfunction, diseases, and disorders. Most classes are
+    also in Disease Ontology (DOID), Monarch Disease Ontology (MONDO), Human Phenotype
+    Ontology (HPO), etc.
   example: '20090303'
   homepage: https://scicrunch.org/scicrunch/interlex/dashboard
   name: NeuroLex Dysfunction
-  part_of: neurolex
+  part_of: nif
   pattern: ^\d+$
-  preferred_prefix: nlxdys
+  preferred_prefix: nlx.dys
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   uri_format: http://uri.neuinfo.org/nif/nifstd/nlx_dys_$1
+nlx.func:
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4808
+  contributor:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4808
+  description: NLXFUNC covers terms for cognitive function.
+  example: '90801'
+  homepage: https://github.com/SciCrunch/NIF-Ontology
+  license: CC BY-4.0
+  name: 'NIF Standard Ontology: Cognitive Function'
+  part_of: nif
+  pattern: ^\d+$
+  preferred_prefix: nlx.func
+  repository: https://github.com/SciCrunch/NIF-Ontology
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  synonyms:
+  - NLXFUNC
+  uri_format: http://uri.neuinfo.org/nif/nifstd/nlx_func_$1
+nlx.inv:
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4809
+  contributor:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4809
+  description: NLXINV includes funding agencies and some terms related to documenting
+    scientific investigations data acquisition and analysis.
+  example: '90901'
+  homepage: https://github.com/SciCrunch/NIF-Ontology
+  license: CC BY-4.0
+  name: 'NIF Standard Ontology: Investigations'
+  part_of: nif
+  pattern: ^\d+$
+  preferred_prefix: nlx.inv
+  repository: https://github.com/SciCrunch/NIF-Ontology
+  synonyms:
+  - NLXINV
+  uri_format: http://uri.neuinfo.org/nif/nifstd/nlx_inv_$1
+nlx.mol:
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4810
+  contributor:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4810
+  description: NLXMOL covers molecules, proteins, and molecular roles, similar to
+    entities in the Protein Ontology, UniProt, and ChEBI, with a focus on those of
+    particular relevance in the nervous system.
+  example: '90806'
+  homepage: https://github.com/SciCrunch/NIF-Ontology
+  license: CC BY-4.0
+  name: 'NIF Standard Ontology: Molecules'
+  part_of: nif
+  pattern: ^\d+$
+  preferred_prefix: nlx.mol
+  repository: https://github.com/SciCrunch/NIF-Ontology
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  synonyms:
+  - NLXMOL
+  uri_format: http://uri.neuinfo.org/nif/nifstd/nlx_mol_$1
+nlx.oen:
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4811
+  contributor:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4811
+  description: NLXOEN prefixed identifiers are from the version of the Ontology for
+    Experimental Neurophysiology (OEN; https://github.com/G-Node/OEN) that were originally
+    deposited in Neurolex (for examples, see https://scicrunch.org/scicrunch/interlex/search?q=NLXOEN
+    results).
+  example: '0001000'
+  homepage: https://github.com/SciCrunch/NIF-Ontology
+  license: CC BY-4.0
+  name: 'NIF Standard Ontology: OEN Terms in Neurolex'
+  part_of: nif
+  pattern: ^\d+$
+  preferred_prefix: nlx.oen
+  repository: https://github.com/SciCrunch/NIF-Ontology
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  synonyms:
+  - NLXOEN
+  uri_format: http://uri.neuinfo.org/nif/nifstd/oen_$1
+nlx.org:
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4812
+  contributor:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4812
+  description: NLXORG covers organisms.
+  example: 090701
+  homepage: https://github.com/SciCrunch/NIF-Ontology
+  license: CC BY-4.0
+  name: 'NIF Standard Ontology: Organisms'
+  part_of: nif
+  pattern: ^\d+$
+  preferred_prefix: nlx.org
+  repository: https://github.com/SciCrunch/NIF-Ontology
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  synonyms:
+  - NLXORG
+  uri_format: http://uri.neuinfo.org/nif/nifstd/nlx_organ_$1
+nlx.qual:
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4813
+  contributor:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4813
+  description: NLXQUAL covers qualities and dispositions similar to the Phenotype
+    And Trait Ontology (PATO).
+  example: '100810'
+  homepage: https://github.com/SciCrunch/NIF-Ontology
+  license: CC BY-4.0
+  name: 'NIF Standard Ontology: Qualities'
+  part_of: nif
+  pattern: ^\d+$
+  preferred_prefix: nlx.qual
+  repository: https://github.com/SciCrunch/NIF-Ontology
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  synonyms:
+  - NLXQUAL
+  uri_format: http://uri.neuinfo.org/nif/nifstd/nlx_qual_$1
+nlx.res:
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4814
+  contributor:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4814
+  description: NLXRES covers digital resources. Most classes are high level types
+    covering everything from databases and sourcecode to source code licenses and
+    instrument supplier websites
+  example: 090924
+  homepage: https://github.com/SciCrunch/NIF-Ontology
+  license: CC BY-4.0
+  name: 'NIF Standard Ontology: Digital Resources'
+  part_of: nif
+  pattern: ^\d+$
+  preferred_prefix: nlx.res
+  repository: https://github.com/SciCrunch/NIF-Ontology
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  synonyms:
+  - NLXRES
+  uri_format: http://uri.neuinfo.org/nif/nifstd/nlx_res_$1
+nlx.sub:
+  contact:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4815
+  contributor:
+    email: tgbugs@gmail.com
+    github: tgbugs
+    name: Tom Gillespie
+    orcid: 0000-0002-7509-4815
+  description: NLXSUB covers subcellular entities similar to the cellular component
+    branch of the Gene Ontology (GO).
+  example: 090803
+  homepage: https://github.com/SciCrunch/NIF-Ontology
+  license: CC BY-4.0
+  name: 'NIF Standard Ontology: Subcellular Entities'
+  part_of: nif
+  pattern: ^\d+$
+  preferred_prefix: nlx.sub
+  repository: https://github.com/SciCrunch/NIF-Ontology
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  synonyms:
+  - NLXSUB
+  uri_format: http://uri.neuinfo.org/nif/nifstd/nlx_subcell_$1
 nmdc:
   contact:
     email: donny@polyneme.xyz
@@ -17476,6 +17897,7 @@ obi:
   - rbo
   - scdo
   banana: OBI
+  banana_peel: ':'
   contact:
     email: bpeters@lji.org
     github: bpeters42
@@ -18461,6 +18883,8 @@ oostt:
   uri_format: http://purl.obolibrary.org/obo/OOSTT_$1
   version: '2021-01-11'
 opb:
+  banana: OPB
+  banana_peel: _
   description: The OPB is a reference ontology of classical physics as applied to
     the dynamics of biological systems. It is designed to encompass the multiple structural
     scales (multiscale atoms to organisms) and multiple physical domains (multidomain
@@ -18706,6 +19130,8 @@ orphanet:
   - ORPHA
   uri_format: http://www.orpha.net/consor/cgi-bin/OC_Exp.php?Lng=EN&Expert=$1
 orphanet.ordo:
+  banana: Orphanet
+  banana_peel: _
   description: "The Orphanet Rare Disease ontology (ORDO) is a structured vocabulary\
     \ for rare diseases, capturing relationships between diseases, genes and other\
     \ relevant features which will form a useful resource for the computational analysis\
@@ -21988,6 +22414,7 @@ ro:
   - xpo
   - zp
   banana: RO
+  banana_peel: _
   contact:
     email: cjmungall@lbl.gov
     github: cmungall
@@ -22405,6 +22832,7 @@ schem:
   name: Selventa Chemicals
   pattern: ^A\d{4}$
   preferred_prefix: schem
+  uri_format: https://biopragmatics.github.io/providers/schem/$1
 scholia.resource:
   contributor:
     email: cthoyt@gmail.com
@@ -22430,6 +22858,7 @@ scomp:
   name: Selventa Complexes
   pattern: ^C\d{4}$
   preferred_prefix: scomp
+  uri_format: https://biopragmatics.github.io/providers/scomp/$1
 scop:
   description: The SCOP (Structural Classification of Protein) database is a comprehensive
     ordering of all proteins of known structure according to their evolutionary, functional
@@ -22547,6 +22976,7 @@ sdis:
   name: Selventa Diseases
   pattern: ^D\d{4}$
   preferred_prefix: sdis
+  uri_format: https://biopragmatics.github.io/providers/sdis/$1
 sedml.format:
   description: Data format that can be used in conjunction with the Simulation Experimental
     Description Markup Language (SED-ML).
@@ -22685,6 +23115,7 @@ sfam:
   name: Selventa Families
   pattern: ^F\d{4}$
   preferred_prefix: sfam
+  uri_format: https://biopragmatics.github.io/providers/sfam/$1
 sgd:
   description: The Saccharomyces Genome Database (SGD) project collects information
     and maintains a database of the molecular biology of the yeast Saccharomyces cerevisiae.
@@ -22890,6 +23321,8 @@ signor.relation:
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
 sio:
+  banana: SIO
+  banana_peel: _
   description: The semanticscience integrated ontology (SIO) provides a simple, integrated
     upper level ontology (types, relations) for consistent knowledge representation
     across physical, processual and informational entities.
@@ -23870,6 +24303,8 @@ tahh:
   preferred_prefix: TAHH
   uri_format: http://purl.obolibrary.org/obo/TAHH_$1
 tair.gene:
+  banana: Gene
+  banana_peel: ':'
   description: The Arabidopsis Information Resource (TAIR) maintains a database of
     genetic and molecular biology data for the model higher plant Arabidopsis thaliana.
     This is the reference gene model for a given locus.
@@ -23902,6 +24337,8 @@ tair.locus:
   preferred_prefix: tair.locus
   uri_format: http://www.arabidopsis.org/servlets/TairObject?accession=Locus:$1
 tair.protein:
+  banana: AASequence
+  banana_peel: ':'
   description: The Arabidopsis Information Resource (TAIR) maintains a database of
     genetic and molecular biology data for the model higher plant Arabidopsis thaliana.
     This provides protein information for a given gene model and provides links to
@@ -25069,6 +25506,7 @@ uniprot.ptm:
   - https://www.uniprot.org/docs/ptmlist.txt
   synonyms:
   - PTM
+  uri_format: https://biopragmatics.github.io/providers/uniprot.ptm/$1
 uniprot.resource:
   contributor:
     email: cthoyt@gmail.com

@@ -18070,8 +18070,8 @@
       "homepage": "http://www.ebi.ac.uk/efo",
       "name": "Experimental Factor Ontology",
       "prefix": "efo",
-      "version": "3.42.0",
-      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.42.0/efo.owl"
+      "version": "3.43.0",
+      "version.iri": "http://www.ebi.ac.uk/efo/releases/v3.43.0/efo.owl"
     },
     "ontobee": {
       "library": "Not Specified/No",
@@ -26899,8 +26899,8 @@
       "homepage": "https://github.com/EBISPOT/ancestro",
       "name": "Human Ancestry Ontology",
       "prefix": "hancestro",
-      "version": "2.5",
-      "version.iri": "http://purl.obolibrary.org/obo/hancestro/releases/2020-12-18/hancestro.owl"
+      "version": "2.6",
+      "version.iri": "http://purl.obolibrary.org/obo/hancestro/releases/2022-05-12/hancestro.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -42380,6 +42380,18 @@
     "part_of": "nif"
   },
   "nif.std": {
+    "aberowl": {
+      "description": "NIF Standard ontology (NIFSTD) is a core component of Neuroscience Information Framework (NIF) project (http://neuinfo.org), a semantically enhanced portal for accessing and integrating neuroscience data, tools and information. NIFSTD includes a set of modular ontologies that provide a comprehensive collection of terminologies to describe neuroscience data and resources.",
+      "download_owl": "http://aber-owl.net/media/ontologies/NIFSTD/23/nifstd.owl",
+      "homepage": "http://ontology.neuinfo.org",
+      "name": "Neuroscience Information Framework (NIF) Standard Ontology",
+      "prefix": "NIFSTD",
+      "version": "3.0 - October 16, 2017"
+    },
+    "bioportal": {
+      "name": "Neuroscience Information Framework (NIF) Standard Ontology",
+      "prefix": "NIFSTD"
+    },
     "contact": {
       "email": "tgbugs@gmail.com",
       "github": "tgbugs",
@@ -42394,8 +42406,31 @@
     },
     "description": "NIFSTD is a base namespace (like obo:) which houses many other prefixes. Sometimes NIFSTD prefixed identifiers appear undifferentiated, but usually if it shows up it means that another prefix definition is missing when serializing.",
     "example": "BAMSC981",
+    "fairsharing": {
+      "abbreviation": "NIFSTD",
+      "description": "NIF Standard ontology (NIFSTD) is a core component of Neuroscience Information Framework (NIF) project (http://neuinfo.org), a semantically enhanced portal for accessing and integrating neuroscience data, tools and information. NIFSTD includes a set of modular ontologies that provide a comprehensive collection of terminologies to describe neuroscience data and resources.",
+      "id": "333",
+      "name": "Neuroscience Information Framework Standard Ontology",
+      "prefix": "FAIRsharing.vgw1m6",
+      "publications": [
+        {
+          "doi": "10.1007/s12021-008-9032-z",
+          "pubmed_id": 18975148,
+          "title": "The NIFSTD and BIRNLex vocabularies: building comprehensive ontologies for neuroscience."
+        }
+      ],
+      "subjects": [
+        "Life Science",
+        "Neuroscience"
+      ]
+    },
     "homepage": "https://github.com/SciCrunch/NIF-Ontology",
     "license": "CC BY-4.0",
+    "mappings": {
+      "aberowl": "NIFSTD",
+      "bioportal": "NIFSTD",
+      "fairsharing": "FAIRsharing.vgw1m6"
+    },
     "name": "NIF Standard Ontology",
     "part_of": "nif",
     "pattern": "^BAMSC\\d+$",
