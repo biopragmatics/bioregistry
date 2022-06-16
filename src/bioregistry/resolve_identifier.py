@@ -304,7 +304,7 @@ def get_iri(
         6. BioPortal (``bioportal``)
     :param prefix_map: A custom prefix map to go with the ``custom`` key in the priority list
     :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults to true.
-    :param provider: The provider code to use for an extra provider
+    :param provider: The provider code to use for a custom provider
     :return: The best possible IRI that can be generated based on the priority list.
 
     A pre-parse CURIE can be given as the first two arguments
