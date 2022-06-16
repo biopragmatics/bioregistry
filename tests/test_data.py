@@ -615,7 +615,7 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(prefix=prefix):
                 for provider in resource.providers:
                     self.assertNotEqual(provider.code, prefix)
-                    self.assertNotIn(provider.code, resource.get_mappings())
+                    self.assertNotIn(provider.code, self.metaregistry)
                     self.assertNotIn(provider.code, {"custom", "default"})
 
     def test_namespace_in_lui(self):
