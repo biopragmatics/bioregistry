@@ -47,7 +47,6 @@
   preferred_prefix: 4dn.replicate
   uri_format: https://data.4dnucleome.org/experiment-set-replicates/$1
 aao:
-  banana: AAO
   contact:
     email: david.c.blackburn@gmail.com
     github: null
@@ -161,7 +160,6 @@ addgene:
   preferred_prefix: addgene
   uri_format: http://addgene.org/$1
 adw:
-  banana: ADW
   contact:
     email: adw_geeks@umich.edu
     github: null
@@ -188,7 +186,6 @@ adw:
 aeo:
   appears_in:
   - ehdaa2
-  banana: AEO
   contact:
     email: J.Bard@ed.ac.uk
     github: null
@@ -219,7 +216,6 @@ aeo:
   uri_format: http://purl.obolibrary.org/obo/AEO_$1
   version: '2014-12-05'
 aero:
-  banana: AERO
   contact:
     email: mcourtot@gmail.com
     github: null
@@ -335,8 +331,54 @@ agricola:
   - AGR
   - AGRICOLA_ID
   uri_format: https://agricola.nal.usda.gov/vwebv/holdingsInfo?bibId=$1
+agrkb:
+  contact:
+    email: cjmungall@lbl.gov
+    github: cmungall
+    name: Chris Mungall
+    orcid: 0000-0002-6601-2165
+  contributor:
+    email: null
+    github: sierra-moxon
+    name: Sierra Moxon
+    orcid: 0000-0002-8719-7760
+  description: 'The [Alliance of Genome Resources](https://www.alliancegenome.org/about-us)
+    creates identifiers for several biological entity types including genes, other
+    sequence features, constructs, morpholinos, TALENs, CRISPRs, variants, alleles,
+    genotypes, strains, environments and experiments, phenotype annotations, expression
+    annotations, disease annotations, interactions, and variant annotations.
+
+
+    The Alliance of Genome Resources was founded by the following Model Organism databases
+    and the Gene Ontology Consortium and distributes high-quality, curated knowledge
+    about several model organisms in a single, unified location:
+
+
+    - [ZFIN](https://zfin.org) - Zebrafish Information Network
+
+    - [WormBase](https://wormbase.org)
+
+    - [MGI](https://www.mgi.org) - Mouse Genome Informatics
+
+    - [RGD](https://rgd.mcw.edu) - Rat Genome Database
+
+    - [SGD](https://www.yeastgenome.org) - Saccharomyces Genome Database
+
+    - [FlyBase](https://flybase.org)
+
+    - [Xenbase](https://www.xenbase.org)'
+  example: '100000000000001'
+  homepage: https://www.alliancegenome.org
+  name: Alliance of Genome Resources Knowledge Base
+  pattern: ^[1-9][0-9]{14}$
+  preferred_prefix: agrkb
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://www.alliancegenome.org/accession/$1
 agro:
-  banana: AGRO
   contact:
     email: m.a.laporte@cgiar.org
     github: marieALaporte
@@ -402,7 +444,6 @@ aism:
   appears_in:
   - colao
   - lepao
-  banana: AISM
   contact:
     email: entiminae@gmail.com
     github: JCGiron
@@ -489,7 +530,6 @@ amoebadb:
   preferred_prefix: amoebadb
   uri_format: https://amoebadb.org/amoeba/app/record/gene/$1
 amphx:
-  banana: AMPHX
   contact:
     email: hescriva@obs-banyuls.fr
     github: hescriva
@@ -662,7 +702,6 @@ apid.interactions:
   provides: uniprot
   uri_format: http://cicblade.dep.usal.es:8080/APID/Interactions.action?protein=$1
 apo:
-  banana: APO
   contact:
     email: stacia@stanford.edu
     github: srengel
@@ -692,7 +731,6 @@ apo:
 apollosv:
   appears_in:
   - scdo
-  banana: APOLLO_SV
   contact:
     email: hoganwr@ufl.edu
     github: hoganwr
@@ -780,7 +818,6 @@ ark:
 aro:
   appears_in:
   - scdo
-  banana: ARO
   contact:
     email: mcarthua@mcmaster.ca
     github: agmcarthur
@@ -1070,7 +1107,6 @@ atfdb.family:
   preferred_prefix: atfdb.family
   uri_format: http://www.bioguo.org/AnimalTFDB/family.php?fam=$1
 ato:
-  banana: ATO
   contact:
     email: david.c.blackburn@gmail.com
     github: null
@@ -1265,7 +1301,6 @@ bbtp:
   preferred_prefix: bbtp
   uri_format: https://bbp.epfl.ch/nexus/web/studios/public/topological-sampling/studios/data:$1
 bcgo:
-  banana: BCGO
   contact:
     email: jiezheng@pennmedicine.upenn.edu
     github: zhengj2007
@@ -1303,7 +1338,6 @@ bcio:
 bco:
   appears_in:
   - fovt
-  banana: BCO
   contact:
     email: rlwalls2008@gmail.com
     github: ramonawalls
@@ -1484,7 +1518,6 @@ bfo:
   - rbo
   - xpo
   - zp
-  banana: BFO
   contact:
     email: phismith@buffalo.edu
     github: phismith
@@ -1637,7 +1670,6 @@ bigg.reaction:
   preferred_prefix: bigg.reaction
   uri_format: http://bigg.ucsd.edu/models/universal/reactions/$1
 bila:
-  banana: BILA
   deprecated: true
   description: This is a record of the Bilateria anatomy terminology and ontology.
     We have been unable to find any further information about this resource.
@@ -1846,6 +1878,7 @@ biomodels.kisao:
     ontobee: KISAO
     prefixcommons: kisao
   name: Kinetic Simulation Algorithm Ontology
+  namespace_in_lui: true
   pattern: ^KISAO_\d+$
   preferred_prefix: biomodels.kisao
   repository: https://github.com/SED-ML/KiSAO
@@ -2304,7 +2337,6 @@ bold.taxonomy:
   preferred_prefix: bold.taxonomy
   uri_format: http://www.boldsystems.org/index.php/Taxbrowser_Taxonpage?taxid=$1
 bootstrep:
-  banana: BOOTSTREP
   contact:
     email: vlee@ebi.ac.uk
     github: null
@@ -2422,7 +2454,6 @@ bspo:
   - fovt
   - lepao
   - zp
-  banana: BSPO
   contact:
     email: cjmungall@lbl.gov
     github: cmungall
@@ -2638,7 +2669,6 @@ caro:
   - ehdaa2
   - lepao
   - pco
-  banana: CARO
   contact:
     email: haendel@ohsu.edu
     github: mellybelly
@@ -2913,7 +2943,6 @@ ccrid:
   preferred_prefix: ccrid
   uri_format: http://www.cellresource.cn/cellsearch.aspx?sc=1&where=$1
 cdao:
-  banana: CDAO
   contact:
     email: balhoff@renci.org
     github: balhoff
@@ -2974,7 +3003,6 @@ cdd:
   preferred_prefix: cdd
   uri_format: https://www.ncbi.nlm.nih.gov/Structure/cdd/cddsrv.cgi?uid=$1
 cdno:
-  banana: CDNO
   contact:
     email: l.andres.hernandez.18@student.scu.edu.au
     github: LilyAndres
@@ -3144,7 +3172,6 @@ cellrepo:
   preferred_prefix: cellrepo
   uri_format: https://cellrepo.ico2s.org/repositories/$1
 ceph:
-  banana: CEPH
   contact:
     email: cjmungall@lbl.gov
     github: cmungall
@@ -3446,7 +3473,6 @@ chemidplus:
   - ChemIDplus
   uri_format: https://chem.nlm.nih.gov/chemidplus/rn/$1
 cheminf:
-  banana: CHEMINF
   contact:
     email: egon.willighagen@gmail.com
     github: egonw
@@ -3512,7 +3538,6 @@ chickenqtldb:
   preferred_prefix: chickenqtldb
   uri_format: https://www.animalgenome.org/QTLdb/q?id=QTL_ID:$1
 chiro:
-  banana: CHIRO
   contact:
     email: vasilevs@ohsu.edu
     github: nicolevasilevsky
@@ -3552,7 +3577,6 @@ chmo:
   appears_in:
   - rbo
   - scdo
-  banana: CHMO
   contact:
     email: batchelorc@rsc.org
     github: batchelorc
@@ -3584,7 +3608,6 @@ chmo:
   uri_format: http://purl.obolibrary.org/obo/CHMO_$1
   version: '2022-04-19'
 cido:
-  banana: CIDO
   contact:
     email: yongqunh@med.umich.edu
     github: yongqunh
@@ -3613,7 +3636,6 @@ cido:
   uri_format: http://purl.obolibrary.org/obo/CIDO_$1
   version: 1.0.326
 cio:
-  banana: CIO
   contact:
     email: frederic.bastian@unil.ch
     github: fbastian
@@ -3755,7 +3777,6 @@ cl:
   uri_format: https://www.ebi.ac.uk/ols/ontologies/cl/terms?obo_id=CL:$1
   version: '2022-02-16'
 clao:
-  banana: CLAO
   contact:
     email: lagonzalezmo@unal.edu.co
     github: luis-gonzalez-m
@@ -3926,7 +3947,6 @@ clinvar.submitter:
 clo:
   appears_in:
   - mco
-  banana: CLO
   contact:
     email: siiraa@umich.edu
     github: siiraa
@@ -3974,7 +3994,6 @@ cls:
   preferred_prefix: cls
   uri_format: https://www.clsgmbh.de/$1.html
 clyh:
-  banana: CLYH
   contact:
     email: lucas.leclere@obs-vlfr.fr
     github: L-Leclere
@@ -4021,7 +4040,6 @@ cmecs:
   - http://www.natureserve.org/sites/default/files/publications/files/cmecs_version_06-2012_final.pdf
   uri_format: https://cmecscatalog.org/cmecs/classification/unit/$1.html
 cmf:
-  banana: CMF
   contact:
     email: engelsta@ohsu.edu
     github: null
@@ -4042,7 +4060,6 @@ cmf:
 cmo:
   appears_in:
   - scdo
-  banana: CMO
   contact:
     email: jrsmith@mcw.edu
     github: jrsjrs
@@ -4565,7 +4582,6 @@ co_366:
   preferred_prefix: co_366
   uri_format: https://www.cropontology.org/rdf/CO_366:$1
 cob:
-  banana: COB
   contact:
     email: bpeters@lji.org
     github: bpeters42
@@ -4716,7 +4732,6 @@ cohd:
   preferred_prefix: cohd
   repository: https://github.com/MIT-LCP/mimic-omop
 colao:
-  banana: COLAO
   contact:
     email: entiminae@gmail.com
     github: JCGiron
@@ -5028,7 +5043,6 @@ cpc:
   preferred_prefix: cpc
   uri_format: https://worldwide.espacenet.com/classification?locale=en_EP#!/CPC=$1
 cpga:
-  banana: GRO
   contact:
     email: po-discuss@plantontology.org
     github: null
@@ -5106,7 +5120,6 @@ crisprdb:
   preferred_prefix: crisprdb
   uri_format: http://crispr.i2bc.paris-saclay.fr/cgi-bin/crispr/SpecieProperties_db.cgi?Taxon_id[]=$1
 cro:
-  banana: CRO
   contact:
     email: whimar@ohsu.edu
     github: marijane
@@ -5305,7 +5318,6 @@ ctd.gene:
   provides: ncbigene
   uri_format: http://ctdbase.org/detail.go?type=gene&acc=$1
 cteno:
-  banana: CTENO
   contact:
     email: cjmungall@lbl.gov
     github: cmungall
@@ -5335,7 +5347,6 @@ cteno:
   uri_format: http://purl.obolibrary.org/obo/CTENO_$1
   version: '2016-10-19'
 cto:
-  banana: CTO
   contact:
     email: alpha.tom.kodamullil@scai.fraunhofer.de
     github: akodamullil
@@ -5382,7 +5393,6 @@ cubedb:
   preferred_prefix: cubedb
   uri_format: http://epsf.bmad.bii.a-star.edu.sg/cube/db/data/$1/
 cvdo:
-  banana: CVDO
   contact:
     email: paul.fabry@usherbrooke.ca
     github: pfabry
@@ -5763,7 +5773,6 @@ dc:
   preferred_prefix: dc
   uri_format: http://purl.org/dc/terms/$1
 dc_cl:
-  banana: DC_CL
   contact:
     email: Lindsay.Cowell@utsouthwestern.edu
     github: null
@@ -5823,7 +5832,6 @@ dctypes:
   preferred_prefix: dctypes
   uri_format: http://purl.org/dc/dcmitype/$1
 ddanat:
-  banana: DDANAT
   contact:
     email: pfey@northwestern.edu
     github: pfey03
@@ -5853,7 +5861,6 @@ ddanat:
   uri_format: http://purl.obolibrary.org/obo/DDANAT_$1
   version: '2020-04-13'
 ddpheno:
-  banana: DDPHENO
   contact:
     email: pfey@northwestern.edu
     github: pfey03
@@ -6162,7 +6169,6 @@ did:
   preferred_prefix: did
   uri_format: https://uniresolver.io/#did:$1
 dideo:
-  banana: DIDEO
   contact:
     email: mbrochhausen@gmail.com
     github: mbrochhausen
@@ -6189,7 +6195,6 @@ dideo:
   uri_format: http://purl.obolibrary.org/obo/DIDEO_$1
   version: '2021-06-11'
 dinto:
-  banana: DINTO
   contact:
     email: maria.herrero@kcl.ac.uk
     github: null
@@ -6237,7 +6242,6 @@ discoverx:
   preferred_prefix: discoverx
   uri_format: https://www.discoverx.com/searchproduct?searchtext=$1&searchmode=exact
 disdriv:
-  banana: DISDRIV
   contact:
     email: lynn.schriml@gmail.com
     github: lschriml
@@ -6521,7 +6525,6 @@ doqcs.pathway:
   preferred_prefix: doqcs.pathway
   uri_format: http://doqcs.ncbs.res.in/template.php?&y=pathwaydetails&pn=$1
 dpo:
-  banana: FBcv
   comment: DPO is a subset of terms from FBcv
   contact:
     email: cp390@cam.ac.uk
@@ -6631,7 +6634,6 @@ dragondb.protein:
 dron:
   appears_in:
   - scdo
-  banana: DRON
   contact:
     email: hoganwr@gmail.com
     github: hoganwr
@@ -6780,7 +6782,6 @@ dto:
 duo:
   appears_in:
   - scdo
-  banana: DUO
   contact:
     email: mcourtot@gmail.com
     github: mcourtot
@@ -6846,7 +6847,6 @@ ecacc:
   preferred_prefix: ecacc
   uri_format: https://www.phe-culturecollections.org.uk/products/celllines/generalcell/detail.jsp?collection=ecacc_gc&refId=$1
 ecao:
-  banana: ECAO
   contact:
     email: ettensohn@cmu.edu
     github: ettensohn
@@ -7018,7 +7018,6 @@ eco:
   uri_format: https://www.ebi.ac.uk/ols/ontologies/eco/terms?obo_id=ECO:$1
   version: '2022-04-11'
 ecocore:
-  banana: ECOCORE
   contact:
     email: p.buttigieg@gmail.com
     github: pbuttigieg
@@ -7116,7 +7115,6 @@ ecoliwiki:
   preferred_prefix: ecoliwiki
   uri_format: http://ecoliwiki.net/colipedia/index.php/$1:Gene
 ecto:
-  banana: ECTO
   contact:
     email: annethessen@gmail.com
     github: diatomsRcool
@@ -7389,7 +7387,6 @@ eggnog:
   preferred_prefix: eggnog
   uri_format: http://eggnog.embl.de/version_3.0/cgi/search.py?search_term_0=$1
 ehda:
-  banana: EHDA
   contact:
     email: J.Bard@ed.ac.uk
     github: null
@@ -7410,7 +7407,6 @@ ehda:
   preferred_prefix: EHDA
   uri_format: http://purl.obolibrary.org/obo/EHDA_$1
 ehdaa:
-  banana: EHDAA
   contact:
     email: J.Bard@ed.ac.uk
     github: null
@@ -7430,7 +7426,6 @@ ehdaa:
   preferred_prefix: EHDAA
   uri_format: http://purl.obolibrary.org/obo/EHDAA_$1
 ehdaa2:
-  banana: EHDAA2
   contact:
     email: J.Bard@ed.ac.uk
     github: null
@@ -7483,7 +7478,6 @@ elm:
   preferred_prefix: elm
   uri_format: http://elm.eu.org/elms/elmPages/$1.html
 emap:
-  banana: EMAP
   contact:
     email: Terry.Hayamizu@jax.org
     github: tfhayamizu
@@ -7504,7 +7498,6 @@ emap:
   preferred_prefix: EMAP
   uri_format: http://purl.obolibrary.org/obo/EMAP_$1
 emapa:
-  banana: EMAPA
   contact:
     email: Terry.Hayamizu@jax.org
     github: tfhayamizu
@@ -7996,7 +7989,6 @@ epd:
   preferred_prefix: epd
   uri_format: http://epd.vital-it.ch/cgi-bin/query_result.pl?out_format=NICE&Entry_0=$1
 epio:
-  banana: EPIO
   contact:
     email: alpha.tom.kodamullil@scai.fraunhofer.de
     github: akodamullil
@@ -8021,7 +8013,6 @@ epio:
   repository: https://github.com/SCAI-BIO/EpilepsyOntology
   uri_format: http://purl.obolibrary.org/obo/EPIO_$1
 epo:
-  banana: EPO
   deprecated: true
   description: An ontology designed to support the semantic annotation of epidemiology
     resources
@@ -8065,7 +8056,6 @@ erm:
   preferred_prefix: erm
   uri_format: https://nanocommons.github.io/identifiers/registry#$1
 ero:
-  banana: ERO
   contact:
     email: Marc_Ciriello@hms.harvard.edu
     github: null
@@ -8158,7 +8148,6 @@ euclinicaltrials:
 eupath:
   appears_in:
   - scdo
-  banana: EUPATH
   contact:
     email: jiezheng@pennmedicine.upenn.edu
     github: zhengj2007
@@ -8210,7 +8199,6 @@ eurofir:
 ev:
   appears_in:
   - cl
-  banana: EV
   contact:
     email: evoc@sanbi.ac.za
     github: null
@@ -8295,7 +8283,6 @@ exo:
   appears_in:
   - ecto
   - scdo
-  banana: ExO
   contact:
     email: annethessen@gmail.com
     github: diatomsRcool
@@ -8401,7 +8388,6 @@ faldo:
   preferred_prefix: faldo
   uri_format: http://biohackathon.org/resource/faldo#$1
 fao:
-  banana: FAO
   contact:
     email: vw253@cam.ac.uk
     github: ValWood
@@ -8429,7 +8415,6 @@ fao:
   uri_format: http://purl.obolibrary.org/obo/FAO_$1
   version: '2020-05-07'
 fbbi:
-  banana: FBbi
   contact:
     email: wawong@gmail.com
     github: wawong
@@ -8459,7 +8444,6 @@ fbbi:
   uri_format: http://purl.obolibrary.org/obo/FBbi_$1
   version: '2020-11-06'
 fbbt:
-  banana: FBbt
   contact:
     email: cp390@cam.ac.uk
     github: Clare72
@@ -8495,7 +8479,6 @@ fbbt:
 fbcv:
   appears_in:
   - ontoavida
-  banana: FBcv
   contact:
     email: cp390@cam.ac.uk
     github: Clare72
@@ -8528,7 +8511,6 @@ fbcv:
   uri_format: http://purl.obolibrary.org/obo/FBcv_$1
   version: '2022-04-14'
 fbdv:
-  banana: FBdv
   contact:
     email: cp390@cam.ac.uk
     github: Clare72
@@ -8602,7 +8584,6 @@ fbrf:
   preferred_prefix: fbrf
   uri_format: https://flybase.org/reports/FBrf$1
 fbsp:
-  banana: FBSP
   contact:
     email: cp390@cam.ac.uk
     github: Clare72
@@ -8669,7 +8650,6 @@ fcsfree:
   preferred_prefix: fcsfree
   uri_format: https://fcs-free.org/fcs-database?$1
 fideo:
-  banana: FIDEO
   contact:
     email: georgeta.bordea@u-bordeaux.fr
     github: getbordea
@@ -8711,7 +8691,6 @@ fishbase.species:
   synonyms:
   - fishbase
 fix:
-  banana: FIX
   contact:
     email: null
     github: null
@@ -8739,7 +8718,6 @@ fix:
   uri_format: http://purl.obolibrary.org/obo/FIX_$1
   version: '2020-04-13'
 flopo:
-  banana: FLOPO
   contact:
     email: robert.hoehndorf@kaust.edu.sa
     github: leechuck
@@ -8781,7 +8759,6 @@ flowrepository:
   preferred_prefix: flowrepository
   uri_format: https://flowrepository.org/id/$1
 flu:
-  banana: FLU
   contact:
     email: burkesquires@gmail.com
     github: null
@@ -8906,7 +8883,6 @@ foaf:
   preferred_prefix: foaf
   uri_format: http://xmlns.com/foaf/0.1/$1
 fobi:
-  banana: FOBI
   contact:
     email: polcaes@gmail.com
     github: pcastellanoescuder
@@ -9003,7 +8979,6 @@ foodon:
   uri_format: https://www.ebi.ac.uk/ols/ontologies/foodon/terms?obo_id=FOODON:$1
   version: '2022-02-01'
 fovt:
-  banana: FOVT
   contact:
     email: meghan.balk@gmail.com
     github: megbalk
@@ -9259,7 +9234,6 @@ fyler:
   - https://github.com/obophenotype/human-phenotype-ontology/issues/2568
   - https://github.com/obophenotype/human-phenotype-ontology/issues/2511
 fypo:
-  banana: FYPO
   contact:
     email: vw253@cam.ac.uk
     github: ValWood
@@ -9358,7 +9332,6 @@ gateway:
 gaz:
   appears_in:
   - scdo
-  banana: GAZ
   contact:
     email: lschriml@som.umaryland.edu
     github: lschriml
@@ -9461,7 +9434,6 @@ gdsc:
   preferred_prefix: gdsc
   uri_format: https://www.cancerrxgene.org/translation/Drug/$1
 gecko:
-  banana: GECKO
   contact:
     email: rbca.jackson@gmail.com
     github: beckyjackson
@@ -9591,7 +9563,6 @@ genefarm:
   preferred_prefix: genefarm
   uri_format: https://urgi.versailles.inra.fr/Genefarm/Gene/display_gene.htpl?GENE_ID=$1
 genepio:
-  banana: GENEPIO
   contact:
     email: damion_dooley@sfu.ca
     github: ddooley
@@ -9656,7 +9627,6 @@ genewiki:
   preferred_prefix: genewiki
   uri_format: http://plugins.biogps.org/cgi-bin/wp.cgi?id=$1
 geno:
-  banana: GENO
   contact:
     email: mhb120@gmail.com
     github: mbrush
@@ -9761,6 +9731,7 @@ geogeo:
     ols: geo
     ontobee: GEO
   name: Geographical Entity Ontology
+  namespace_in_lui: true
   pattern: ^\d{9}$
   preferred_prefix: GEOGEO
   repository: https://github.com/ufbmi/geographical-entity-ontology
@@ -10094,7 +10065,6 @@ gmelin:
   references:
   - https://en.wikipedia.org/wiki/Gmelin_database
 gno:
-  banana: GNO
   contact:
     email: nje5@georgetown.edu
     github: edwardsnj
@@ -10499,7 +10469,7 @@ gramene.gene:
   - GR_GENE
   uri_format: http://www.gramene.org/db/genes/search_gene?acc=$1
 gramene.growthstage:
-  banana: gramene.growthstage:GRO\
+  banana: GRO\
   description: Gramene is a comparative genome mapping database for grasses and crop
     plants. It combines a semi-automatically generated database of cereal genomic
     and expressed sequence tag sequences, genetic maps, map relations, quantitative
@@ -10513,6 +10483,7 @@ gramene.growthstage:
     miriam: gramene.growthstage
     n2t: gramene.growthstage
   name: Gramene Growth Stage Ontology
+  namespace_in_lui: true
   pattern: ^\d{7}$
   preferred_prefix: gramene.growthstage
   uri_format: http://www.gramene.org/db/ontology/search?id=GRO:$1
@@ -10881,7 +10852,6 @@ gxa.gene:
   preferred_prefix: gxa.gene
   uri_format: https://www.ebi.ac.uk/gxa/genes/$1
 habronattus:
-  banana: HABRONATTUS
   contact:
     email: peteremidford@yahoo.com
     github: null
@@ -10915,7 +10885,6 @@ hamap:
   preferred_prefix: hamap
   uri_format: https://hamap.expasy.org/unirule/$1
 hancestro:
-  banana: HANCESTRO
   contact:
     email: danielle.welter@uni.lu
     github: daniwelter
@@ -10941,7 +10910,6 @@ hancestro:
   uri_format: http://purl.obolibrary.org/obo/HANCESTRO_$1
   version: '2.5'
 hao:
-  banana: HAO
   contact:
     email: diapriid@gmail.com
     github: mjy
@@ -11315,7 +11283,6 @@ hogenom:
   preferred_prefix: hogenom
   uri_format: http://pbil.univ-lyon1.fr/cgi-bin/view-tree.pl?db=HOGENOM5&query=$1
 hom:
-  banana: HOM
   contact:
     email: bgee@sib.swiss
     github: fbastian
@@ -11570,7 +11537,6 @@ hpscreg:
 hsapdv:
   appears_in:
   - scdo
-  banana: HsapDv
   contact:
     email: frederic.bastian@unil.ch
     github: fbastian
@@ -11613,7 +11579,6 @@ hsdb:
   preferred_prefix: hsdb
   uri_format: https://pubchem.ncbi.nlm.nih.gov/source/hsdb/$1
 hso:
-  banana: HSO
   contact:
     email: fernanda.dorea@sva.se
     github: nandadorea
@@ -11669,7 +11634,6 @@ hssp:
     uri_format: ftp://ftp.cmbi.ru.nl/pub/molbio/data/hssp/$1.hssp.bz2
   uri_format: ftp://ftp.embl-heidelberg.de/pub/databases/protein_extras/hssp/$1.hssp.bz2
 htn:
-  banana: HTN
   contact:
     email: aellenhicks@gmail.com
     github: aellenhicks
@@ -11723,7 +11687,6 @@ iao:
   - pco
   - psdo
   - xpo
-  banana: IAO
   contact:
     email: jiezheng@pennmedicine.upenn.edu
     github: zhengj2007
@@ -11936,7 +11899,6 @@ iceberg.family:
   preferred_prefix: iceberg.family
   uri_format: http://db-mml.sjtu.edu.cn/ICEberg/browse_result.php?type=fam&fam_id=$1
 iceo:
-  banana: ICEO
   contact:
     email: liumeng94@sjtu.edu.cn
     github: Lemon-Liu
@@ -11991,7 +11953,6 @@ iclc:
 ico:
   appears_in:
   - scdo
-  banana: ICO
   contact:
     email: yongqunh@med.umich.edu
     github: yongqunh
@@ -12037,7 +11998,6 @@ ideal:
 ido:
   appears_in:
   - scdo
-  banana: IDO
   contact:
     email: Lindsay.Cowell@utsouthwestern.edu
     github: lgcowell
@@ -12106,7 +12066,6 @@ idoden:
 idomal:
   appears_in:
   - scdo
-  banana: IDOMAL
   contact:
     email: topalis@imbb.forth.gr
     github: null
@@ -12210,7 +12169,6 @@ iedb:
   preferred_prefix: iedb
   uri_format: https://www.iedb.org/reference/$1
 iev:
-  banana: IEV
   deprecated: true
   example: '0000000'
   homepage: http://www.inoh.org
@@ -12422,7 +12380,6 @@ imgt.ligm:
     uri_format: http://genius.embnet.dkfz-heidelberg.de/menu/cgi-bin/srs7.1.3.1/wgetz?-id+4ktAl1fNMTA+-e+[IMGT:'$1']
   uri_format: http://www.imgt.org/ligmdb/view?id=$1
 imr:
-  banana: IMR
   contact:
     email: curator@inoh.org
     github: null
@@ -12542,7 +12499,6 @@ inn:
   - INN_ID
   uri_format: https://mednet-communities.net/inn/db/ViewINN.aspx?i=$1
 ino:
-  banana: INO
   contact:
     email: yongqunh@med.umich.edu
     github: yongqunh
@@ -13537,7 +13493,6 @@ kyinno:
   preferred_prefix: kyinno
   uri_format: https://innopedia.kyinno.com/DataBase/CellLine.aspx?file=$1.pdf
 labo:
-  banana: LABO
   contact:
     email: paul.fabry@usherbrooke.ca
     github: pfabry
@@ -13607,7 +13562,6 @@ lei:
   preferred_prefix: lei
   uri_format: https://www.gleif.org/lei/$1
 lepao:
-  banana: LEPAO
   contact:
     email: lagonzalezmo@unal.edu.co
     github: luis-gonzalez-m
@@ -13905,7 +13859,6 @@ lipidmaps:
   - LIPID_MAPS_instance
   uri_format: http://www.lipidmaps.org/data/LMSDRecord.php?LMID=$1
 lipro:
-  banana: LIPRO
   contact:
     email: bakerc@unb.ca
     github: null
@@ -13936,7 +13889,6 @@ lncipedia:
   name: LNCipedia
   preferred_prefix: lncipedia
 loggerhead:
-  banana: LOGGERHEAD
   contact:
     email: peteremidford@yahoo.com
     github: null
@@ -14173,7 +14125,6 @@ maizegdb.locus:
   - MaizeGDB
   uri_format: http://www.maizegdb.org/cgi-bin/displaylocusrecord.cgi?id=$1
 mamo:
-  banana: MAMO
   contact:
     email: nicolas@ascistance.co.uk
     github: gambardella
@@ -14203,7 +14154,6 @@ mamo:
   uri_format: http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_$1
   version: '2020-08-24'
 mao:
-  banana: MAO
   contact:
     email: julie@igbmc.u-strasbg.fr
     github: null
@@ -14263,7 +14213,6 @@ massive:
     uri_format: https://www.omicsdi.org/dataset/massive/$1
   uri_format: https://massive.ucsd.edu/ProteoSAFe/QueryMSV?id=$1
 mat:
-  banana: MAT
   contact:
     email: j.bard@ed.ac.uk
     github: null
@@ -14317,7 +14266,6 @@ matrixdb.association:
 maxo:
   appears_in:
   - ecto
-  banana: MAXO
   contact:
     email: Leigh.Carmody@jax.org
     github: LCCarmody
@@ -14372,7 +14320,6 @@ mcc:
   name: Cell Line Ontology [derivative]
   preferred_prefix: mcc
 mco:
-  banana: MCO
   contact:
     email: citlalli.mejiaalmonte@gmail.com
     github: citmejia
@@ -14768,7 +14715,6 @@ mex:
     uri_format: https://www.omicsdi.org/dataset/metabolome_express/MEX$1
   uri_format: https://www.metabolome-express.org/datasetview.php?datasetid=$1
 mf:
-  banana: MF
   contact:
     email: janna.hastings@gmail.com
     github: jannahastings
@@ -14795,7 +14741,6 @@ mf:
   uri_format: http://purl.obolibrary.org/obo/MF_$1
   version: '2021-11-17'
 mfmo:
-  banana: MFMO
   contact:
     email: druzinsk@uic.edu
     github: RDruzinsky
@@ -14825,7 +14770,6 @@ mfmo:
   uri_format: http://purl.obolibrary.org/obo/MFMO_$1
   version: '2013-11-16'
 mfo:
-  banana: MFO
   contact:
     email: Thorsten.Henrich@embl-heidelberg.de
     github: null
@@ -14846,7 +14790,6 @@ mfo:
   preferred_prefix: MFO
   uri_format: http://purl.obolibrary.org/obo/MFO_$1
 mfoem:
-  banana: MFOEM
   contact:
     email: janna.hastings@gmail.com
     github: jannahastings
@@ -14873,7 +14816,6 @@ mfoem:
   uri_format: http://purl.obolibrary.org/obo/MFOEM_$1
   version: '2021-11-17'
 mfomd:
-  banana: MFOMD
   contact:
     email: janna.hastings@gmail.com
     github: jannahastings
@@ -15046,7 +14988,6 @@ miaa:
   references:
   - https://bioconductor.statistik.tu-dortmund.de/packages/3.1/bioc/vignettes/rols/inst/doc/rols.pdf
 miapa:
-  banana: MIAPA
   contact:
     email: hilmar.lapp@duke.edu
     github: hlapp
@@ -15087,7 +15028,6 @@ miapa:
 micro:
   appears_in:
   - mco
-  banana: MICRO
   contact:
     email: carrine.blank@umontana.edu
     github: carrineblank
@@ -15378,7 +15318,6 @@ miriam.resource:
   preferred_prefix: miriam.resource
   uri_format: https://www.ebi.ac.uk/miriam/main/resources/$1
 mirnao:
-  banana: MIRNAO
   contact:
     email: topalis@imbb.forth.gr
     github: null
@@ -15414,7 +15353,6 @@ mirnest:
   preferred_prefix: mirnest
   uri_format: http://rhesus.amu.edu.pl/mirnest/copy/details.php?id=$1
 miro:
-  banana: MIRO
   contact:
     email: louis@imbb.forth.gr
     github: null
@@ -15515,7 +15453,6 @@ mmmp.biomaps:
   - mmmp:biomaps
   uri_format: http://www.mmmp.org/MMMP/public/biomap/viewBiomap.mmmp?id=$1
 mmo:
-  banana: MMO
   contact:
     email: jrsmith@mcw.edu
     github: jrsjrs
@@ -15626,7 +15563,6 @@ mmsl:
   synonyms:
   - MMSL_CODE
 mmusdv:
-  banana: MmusDv
   contact:
     email: frederic.bastian@unil.ch
     github: fbastian
@@ -15656,7 +15592,6 @@ mmusdv:
   uri_format: http://purl.obolibrary.org/obo/MMUSDV_$1
   version: '2020-03-10'
 mo:
-  banana: MO
   contact:
     email: stoeckrt@pcbi.upenn.edu
     github: null
@@ -15797,7 +15732,6 @@ molmedb:
   preferred_prefix: molmedb
   uri_format: https://molmedb.upol.cz/mol/$1
 mondo:
-  banana: MONDO
   contact:
     email: nicole@tislab.org
     github: nicolevasilevsky
@@ -15827,7 +15761,6 @@ mondo:
   uri_format: http://purl.obolibrary.org/obo/MONDO_$1
   version: '2022-05-02'
 mop:
-  banana: MOP
   contact:
     email: batchelorc@rsc.org
     github: batchelorc
@@ -15910,7 +15843,6 @@ mp:
   repository: https://github.com/mgijax/mammalian-phenotype-ontology
   uri_format: http://www.informatics.jax.org/searches/Phat.cgi?id=MP:$1
 mpath:
-  banana: MPATH
   contact:
     email: pns12@hermes.cam.ac.uk
     github: PaulNSchofield
@@ -15966,7 +15898,6 @@ mpid:
   - mpidb
   uri_format: http://www.jcvi.org/mpidb/experiment.php?interaction_id=$1
 mpio:
-  banana: MPIO
   contact:
     email: mbrochhausen@uams.edu
     github: mbrochhausen
@@ -15992,7 +15923,6 @@ mpio:
   uri_format: http://purl.obolibrary.org/obo/MPIO_$1
   version: '2019-01-30'
 mro:
-  banana: MRO
   contact:
     email: bpeters@lji.org
     github: bpeters42
@@ -16407,7 +16337,6 @@ nbo:
   - ecto
   - pcl
   - scdo
-  banana: NBO
   contact:
     email: g.gkoutos@bham.ac.uk
     github: gkoutos
@@ -16738,7 +16667,6 @@ ncit:
   uri_format: http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1
   version: 22.03d
 ncro:
-  banana: NCRO
   contact:
     email: huang@southalabama.edu
     github: Huang-OMIT
@@ -17040,7 +16968,6 @@ niaest:
   preferred_prefix: niaest
   uri_format: http://lgsun.grc.nia.nih.gov/cgi-bin/pro3?sname1=$1
 nif_cell:
-  banana: NIF_CELL
   contact:
     email: smtifahim@gmail.com
     github: null
@@ -17059,7 +16986,6 @@ nif_cell:
   preferred_prefix: NIF_CELL
   uri_format: http://purl.obolibrary.org/obo/NIF_CELL_$1
 nif_dysfunction:
-  banana: NIF_DYSFUNCTION
   contact:
     email: smtifahim@gmail.com
     github: null
@@ -17074,7 +17000,6 @@ nif_dysfunction:
   preferred_prefix: NIF_DYSFUNCTION
   uri_format: http://purl.obolibrary.org/obo/NIF_DYSFUNCTION_$1
 nif_grossanatomy:
-  banana: NIF_GROSSANATOMY
   contact:
     email: smtifahim@gmail.com
     github: null
@@ -17245,7 +17170,6 @@ nmrshiftdb2:
   preferred_prefix: nmrshiftdb2
   uri_format: https://nmrshiftdb.nmr.uni-koeln.de/molecule/$1
 nomen:
-  banana: NOMEN
   contact:
     email: diapriid@gmail.com
     github: mjy
@@ -17425,7 +17349,6 @@ oa:
   preferred_prefix: oa
   uri_format: http://www.w3.org/ns/oa#$1
 oae:
-  banana: OAE
   contact:
     email: yongqunh@med.umich.edu
     github: yongqunh
@@ -17457,7 +17380,6 @@ oae:
   uri_format: http://purl.obolibrary.org/obo/OAE_$1
   version: 1.2.44
 oarcs:
-  banana: OARCS
   contact:
     email: mjyoder@illinois.edu
     github: mjy
@@ -17485,7 +17407,6 @@ oarcs:
 oba:
   appears_in:
   - fovt
-  banana: OBA
   contact:
     email: cjmungall@lbl.gov
     github: cmungall
@@ -17514,7 +17435,6 @@ oba:
   uri_format: http://purl.obolibrary.org/obo/OBA_$1
   version: '2021-12-03'
 obcs:
-  banana: OBCS
   contact:
     email: jiezheng@pennmedicine.upenn.edu
     github: zhengj2007
@@ -17585,13 +17505,13 @@ obi:
     ontobee: OBI
     prefixcommons: obi
   name: Ontology for Biomedical Investigations
+  namespace_in_lui: true
   pattern: ^\d{7}$
   preferred_prefix: OBI
   repository: https://github.com/obi-ontology/obi
   uri_format: http://purl.obolibrary.org/obo/OBI_$1
   version: '2022-01-03'
 obib:
-  banana: OBIB
   contact:
     email: jiezheng@pennmedicine.upenn.edu
     github: zhengj2007
@@ -17784,7 +17704,6 @@ odor:
   preferred_prefix: odor
   uri_format: http://senselab.med.yale.edu/OdorDB/Data/$1/?db=5
 ogg:
-  banana: OGG
   contact:
     email: yongqunh@med.umich.edu
     github: yongqunh
@@ -17816,7 +17735,6 @@ ogg:
   uri_format: http://purl.obolibrary.org/obo/OGG_$1
   version: 1.0.59
 ogi:
-  banana: OGI
   deprecated: true
   description: "OGI formalized the genomic element by defining an upper class 'genetic\
     \ interval'.\n\nThe definition of 'genetic interval' is \"the spatial continuous\
@@ -17854,7 +17772,6 @@ ogms:
   appears_in:
   - labo
   - scdo
-  banana: OGMS
   contact:
     email: baeverma@jcvi.org
     github: BAevermann
@@ -17898,7 +17815,6 @@ ogms:
   uri_format: http://purl.obolibrary.org/obo/OGMS_$1
   version: '2021-08-19'
 ogsf:
-  banana: OGSF
   contact:
     email: linikujp@gmail.com
     github: linikujp
@@ -17925,7 +17841,6 @@ ogsf:
   uri_format: http://purl.obolibrary.org/obo/OGSF_$1
   version: '2.0'
 ohd:
-  banana: OHD
   contact:
     email: wdduncan@gmail.com
     github: wdduncan
@@ -17952,7 +17867,6 @@ ohd:
   uri_format: http://purl.obolibrary.org/obo/OHD_$1
   version: '2016-06-27'
 ohmi:
-  banana: OHMI
   contact:
     email: yongqunh@med.umich.edu
     github: yongqunh
@@ -17979,7 +17893,6 @@ ohmi:
   uri_format: http://purl.obolibrary.org/obo/OHMI_$1
   version: '2019-09-17'
 ohpi:
-  banana: OHPI
   contact:
     email: edong@umich.edu
     github: e4ong1031
@@ -18019,7 +17932,6 @@ oid:
   preferred_prefix: oid
   uri_format: http://www.oid-info.com/cgi-bin/display?oid=$1&submit=Display&action=display
 olatdv:
-  banana: OlatDv
   contact:
     email: frederic.bastian@unil.ch
     github: fbastian
@@ -18099,6 +18011,7 @@ oma.hog:
   mappings:
     miriam: oma.hog
   name: OMA HOGs
+  namespace_in_lui: true
   pattern: ^[0-9]{7}(\.[0-9a-z.]+)?(_[0-9]+)?$
   preferred_prefix: oma.hog
   uri_format: https://omabrowser.org/oma/hog/HOG:$1
@@ -18138,7 +18051,6 @@ omia:
 omiabis:
   appears_in:
   - labo
-  banana: OMIABIS
   contact:
     email: mbrochhausen@gmail.com
     github: null
@@ -18229,7 +18141,6 @@ omim.ps:
 omit:
   appears_in:
   - mco
-  banana: OMIT
   contact:
     email: huang@southalabama.edu
     github: Huang-OMIT
@@ -18267,7 +18178,6 @@ omit:
 omo:
   appears_in:
   - pcl
-  banana: OMO
   contact:
     email: cjmungall@lbl.gov
     github: cmungall
@@ -18312,7 +18222,6 @@ omop:
 omp:
   appears_in:
   - mco
-  banana: OMP
   contact:
     email: jimhu@tamu.edu
     github: jimhu-tamu
@@ -18341,7 +18250,6 @@ omp:
 omrse:
   appears_in:
   - labo
-  banana: OMRSE
   contact:
     email: hoganwr@gmail.com
     github: hoganwr
@@ -18387,7 +18295,6 @@ oncotree:
   preferred_prefix: oncotree
   uri_format: http://oncotree.mskcc.org/api/tumorTypes/search/code/$1
 one:
-  banana: ONE
   contact:
     email: chenyangnutrition@gmail.com
     github: cyang0128
@@ -18418,7 +18325,6 @@ one:
 ons:
   appears_in:
   - one
-  banana: ONS
   contact:
     email: francesco.vitali@ibba.cnr.it
     github: FrancescoVit
@@ -18454,7 +18360,6 @@ ons:
   uri_format: http://purl.obolibrary.org/obo/ONS_$1
   version: June 2021 release
 ontoavida:
-  banana: ONTOAVIDA
   contact:
     email: fortuna@ebd.csic.es
     github: miguelfortuna
@@ -18503,7 +18408,6 @@ ontoavida:
   uri_format: http://purl.obolibrary.org/obo/ONTOAVIDA_$1
   version: '2022-03-15'
 ontoneo:
-  banana: ONTONEO
   contact:
     email: fernanda.farinelli@gmail.com
     github: FernandaFarinelli
@@ -18531,7 +18435,6 @@ ontoneo:
   uri_format: http://purl.obolibrary.org/obo/ONTONEO_$1
   version: v1.6
 oostt:
-  banana: OOSTT
   contact:
     email: mbrochhausen@gmail.com
     github: mbrochhausen
@@ -18603,7 +18506,6 @@ openalex:
     orcid: 0000-0003-4423-4370
   uri_format: https://openalex.org/$1
 opl:
-  banana: OPL
   contact:
     email: jiezheng@pennmedicine.upenn.edu
     github: zhengj2007
@@ -18653,7 +18555,6 @@ opmi:
   appears_in:
   - labo
   - scdo
-  banana: OPMI
   contact:
     email: yongqunh@med.umich.edu
     github: yongqunh
@@ -18755,7 +18656,6 @@ oridb.schizo:
   preferred_prefix: oridb.schizo
   uri_format: http://pombe.oridb.org/details.php?id=$1
 ornaseq:
-  banana: ORNASEQ
   contact:
     email: safisher@upenn.edu
     github: safisher
@@ -18992,7 +18892,6 @@ otl:
   preferred_prefix: otl
   uri_format: http://oryzatagline.cirad.fr/cgi-bin/general_mutant.pl?line=$1
 ovae:
-  banana: OVAE
   contact:
     email: yongqunh@med.umich.edu
     github: yongqunh
@@ -19166,7 +19065,6 @@ panther.pthcmp:
   preferred_prefix: panther.pthcmp
   uri_format: http://www.pantherdb.org/pathway/pathCatDetail.do?clsAccession=$1
 pao:
-  banana: PAO
   contact:
     email: jaiswalp@science.oregonstate.edu
     github: jaiswalp
@@ -19380,7 +19278,6 @@ pba:
   pattern: ^\d+$
   preferred_prefix: PBA
 pcl:
-  banana: PCL
   contact:
     email: davidos@ebi.ac.uk
     github: dosumis
@@ -19423,7 +19320,6 @@ pco:
   appears_in:
   - ecocore
   - envo
-  banana: PCO
   contact:
     email: rlwalls2008@gmail.com
     github: ramonawalls
@@ -19466,7 +19362,6 @@ pco:
   uri_format: http://purl.obolibrary.org/obo/PCO_$1
   version: '2021-05-03'
 pd_st:
-  banana: PD_ST
   contact:
     email: henrich@embl.de
     github: null
@@ -19579,7 +19474,6 @@ pdb.ligand:
   - PDB_CHEM_ID
   uri_format: http://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId=$1
 pdro:
-  banana: PDRO
   contact:
     email: paul.fabry@usherbrooke.ca
     github: pfabry
@@ -19605,7 +19499,6 @@ pdro:
   uri_format: http://purl.obolibrary.org/obo/PDRO_$1
   version: '2021-06-08'
 pdumdv:
-  banana: PdumDv
   contact:
     email: frederic.bastian@unil.ch
     github: fbastian
@@ -19637,7 +19530,6 @@ peco:
   appears_in:
   - agro
   - mco
-  banana: PECO
   contact:
     email: jaiswalp@science.oregonstate.edu
     github: jaiswalp
@@ -19823,7 +19715,6 @@ pfr:
   - TDR
   uri_format: http://repository.topdownproteomics.org/proteoforms/$1
 pgdso:
-  banana: PGDSO
   contact:
     email: po-discuss@plantontology.org
     github: null
@@ -20023,7 +19914,6 @@ phenx:
   preferred_prefix: phenx
   uri_format: https://www.phenxtoolkit.org/protocols/view/$1
 phipo:
-  banana: PHIPO
   contact:
     email: alayne.cuzick@rothamsted.ac.uk
     github: CuzickA
@@ -20266,7 +20156,6 @@ pkdb:
 plana:
   appears_in:
   - planp
-  banana: PLANA
   contact:
     email: smr@stowers.org
     github: srobb1
@@ -20297,7 +20186,6 @@ plana:
   uri_format: http://purl.obolibrary.org/obo/PLANA_$1
   version: '2022-03-02'
 planp:
-  banana: PLANP
   contact:
     email: smr@stowers.org
     github: srobb1
@@ -20371,7 +20259,6 @@ plasmodb:
   - ApiDB_PlasmoDB
   uri_format: http://plasmodb.org/plasmo/showRecord.do?name=GeneRecordClasses.GeneRecordClass&source_id=$1
 plo:
-  banana: PLO
   contact:
     email: mb4@sanger.ac.uk
     github: null
@@ -20591,7 +20478,6 @@ pombase:
   - PomBase
   uri_format: http://www.pombase.org/spombe/result/$1
 poro:
-  banana: PORO
   contact:
     email: robert.thacker@stonybrook.edu
     github: bobthacker
@@ -20638,7 +20524,6 @@ ppdb:
   preferred_prefix: ppdb
   uri_format: https://sitem.herts.ac.uk/aeru/ppdb/en/Reports/$1.htm
 ppo:
-  banana: PPO
   contact:
     email: rlwalls2008@gmail.com
     github: ramonawalls
@@ -20855,7 +20740,6 @@ proglyc:
   preferred_prefix: proglyc
   uri_format: http://www.proglycprot.org/detail.aspx?ProId=$1
 propreo:
-  banana: PROPREO
   contact:
     email: satya30@uga.edu
     github: null
@@ -21010,7 +20894,6 @@ pscdb:
   preferred_prefix: pscdb
   uri_format: http://idp1.force.cs.is.nagoya-u.ac.jp/pscdb/$1.html
 psdo:
-  banana: PSDO
   contact:
     email: zachll@umich.edu
     github: zachll
@@ -21091,7 +20974,6 @@ psipar:
   preferred_prefix: psipar
   uri_format: https://www.ebi.ac.uk/ontology-lookup/?termId=$1
 pso:
-  banana: PSO
   contact:
     email: cooperl@oregonstate.edu
     github: cooperl09
@@ -21437,7 +21319,6 @@ rbk:
   preferred_prefix: rbk
   uri_format: https://www.rebuildingakidney.org/id/$1
 rbo:
-  banana: RBO
   contact:
     email: daniel.c.berrios@nasa.gov
     github: DanBerrios
@@ -21717,7 +21598,6 @@ reproduceme:
   preferred_prefix: reproduceme
   version: '1.1'
 resid:
-  banana: RESID
   contact:
     email: john.garavelli@ebi.ac.uk
     github: null
@@ -21755,7 +21635,6 @@ reto:
   preferred_prefix: reto
   version: '2019-09-17'
 rex:
-  banana: REX
   deprecated: true
   description: An ontology of physico-chemical processes, i.e. physico-chemical changes
     occurring in course of time.
@@ -22046,7 +21925,6 @@ rnamods:
   preferred_prefix: rnamods
   uri_format: http://mods.rna.albany.edu/mods/modifications/view/$1
 rnao:
-  banana: RNAO
   contact:
     email: BatchelorC@rsc.org
     github: null
@@ -22139,6 +22017,7 @@ ro:
     prefixcommons: ro
     wikidata: P3590
   name: Relation Ontology
+  namespace_in_lui: true
   pattern: ^\d{7}$
   preferred_prefix: RO
   repository: https://github.com/oborel/obo-relations
@@ -22190,7 +22069,6 @@ rrid:
   preferred_prefix: rrid
   uri_format: https://scicrunch.org/resolver/RRID:$1
 rs:
-  banana: RS
   contact:
     email: sjwang@mcw.edu
     github: shurjenw
@@ -22233,7 +22111,6 @@ runbiosimulations:
   preferred_prefix: runbiosimulations
   uri_format: https://run.biosimulations.org/simulations/$1
 rxno:
-  banana: RXNO
   contact:
     email: batchelorc@rsc.org
     github: batchelorc
@@ -22383,7 +22260,6 @@ salk:
   preferred_prefix: salk
   uri_format: https://abrc.osu.edu/stocks/number/SALK_$1
 sao:
-  banana: SAO
   contact:
     email: slarson@ncmir.ucsd.edu
     github: null
@@ -22459,7 +22335,6 @@ sbo:
   uri_format: https://www.ebi.ac.uk/sbo/main/SBO:$1
   version: '2021-08-28'
 scdo:
-  banana: SCDO
   contact:
     email: giant.plankton@gmail.com
     github: JadeHotchkiss
@@ -22749,7 +22624,6 @@ seed.reaction:
   preferred_prefix: seed.reaction
   uri_format: http://modelseed.org/biochem/reactions/$1
 sep:
-  banana: SEP
   contact:
     email: psidev-gps-dev@lists.sourceforge.net
     github: null
@@ -22774,7 +22648,6 @@ sep:
   preferred_prefix: SEP
   uri_format: http://purl.obolibrary.org/obo/SEP_$1
 sepio:
-  banana: SEPIO
   contact:
     email: mhb120@gmail.com
     github: mbrush
@@ -22897,7 +22770,6 @@ sheepqtldb:
   preferred_prefix: sheepqtldb
   uri_format: https://www.animalgenome.org/QTLdb/q?id=QTL_ID:$1
 sibo:
-  banana: SIBO
   contact:
     email: cjmungall@lbl.gov
     github: null
@@ -23314,7 +23186,6 @@ so:
   uri_format: http://www.sequenceontology.org/miso/current_release/term/SO:$1
   version: '2021-11-22'
 sopharm:
-  banana: SOPHARM
   contact:
     email: Adrien.Coulet@loria.fr
     github: null
@@ -23360,7 +23231,6 @@ span:
   name: Span
   preferred_prefix: span
 spd:
-  banana: SPD
   contact:
     email: ramirez@macn.gov.ar
     github: martinjramirez
@@ -23544,7 +23414,6 @@ stato:
   - ontoavida
   - psdo
   - scdo
-  banana: STATO
   contact:
     email: alejandra.gonzalez.beltran@gmail.com
     github: agbeltran
@@ -23604,9 +23473,61 @@ storedb:
     miriam: storedb
     n2t: storedb
   name: Store DB
+  namespace_in_lui: true
   pattern: ^(STUDY|FILE|DATASET)\d+$
   preferred_prefix: storedb
   uri_format: https://www.storedb.org/?$1
+storedb.dataset:
+  comment: Unfortunately, the resolver itself doesn't work since datasets are actually
+    hierarchically assigned within studies.
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  deprecated: true
+  description: Datasets inside StoreDB
+  example: '1251'
+  homepage: https://www.storedb.org/
+  name: STOREDB at University of Cambridge
+  part_of: storedb
+  pattern: ^\d+$
+  preferred_prefix: storedb.dataset
+  uri_format: https://www.storedb.org/?STOREDB:DATASET$1
+storedb.file:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: File inside StoreDB
+  example: '12929'
+  homepage: https://www.storedb.org/
+  name: STOREDB at University of Cambridge
+  part_of: storedb
+  pattern: ^\d+$
+  preferred_prefix: storedb.file
+  uri_format: https://www.storedb.org/store_v3/download.jsp?fileId=$1
+storedb.study:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Study inside StoreDB
+  example: '1174'
+  homepage: https://www.storedb.org/
+  name: STOREDB at University of Cambridge
+  part_of: storedb
+  pattern: ^\d+$
+  preferred_prefix: storedb.study
+  providers:
+  - code: doi
+    description: DOIs for studies
+    homepage: https://www.storedb.org/
+    name: StoreDB DOI
+    uri_format: http://dx.doi.org/doi:10.20348/STOREDB/$1
+  uri_format: https://www.storedb.org/store_v3/study.jsp?studyId=$1
 string:
   description: "STRING (Search Tool for Retrieval of Interacting Genes/Proteins) is\
     \ a database of known and predicted protein interactions.\r\nThe interactions\
@@ -23809,7 +23730,6 @@ swissregulon:
   preferred_prefix: swissregulon
   uri_format: http://swissregulon.unibas.ch/query/$1
 swo:
-  banana: SWO
   contact:
     email: allyson.lister@oerc.ox.ac.uk
     github: allysonlister
@@ -23841,7 +23761,6 @@ swo:
 symp:
   appears_in:
   - scdo
-  banana: SYMP
   contact:
     email: lynn.schriml@gmail.com
     github: lschriml
@@ -23898,7 +23817,6 @@ t3db:
   preferred_prefix: t3db
   uri_format: http://www.t3db.org/toxins/$1
 tads:
-  banana: TADS
   contact:
     email: dsonensh@odu.edu
     github: null
@@ -23926,7 +23844,6 @@ tads:
   uri_format: http://purl.obolibrary.org/obo/TADS_$1
   version: '2015-08-20'
 tahe:
-  banana: TAHE
   contact:
     email: pierre.sprumont@unifr.ch
     github: null
@@ -23940,7 +23857,6 @@ tahe:
   preferred_prefix: TAHE
   uri_format: http://purl.obolibrary.org/obo/TAHE_$1
 tahh:
-  banana: TAHH
   contact:
     email: pierre.sprumont@unifr.ch
     github: null
@@ -24002,7 +23918,6 @@ tair.protein:
   preferred_prefix: tair.protein
   uri_format: http://arabidopsis.org/servlets/TairObject?accession=AASequence:$1
 tao:
-  banana: TAO
   contact:
     email: wasila.dahdul@usd.edu
     github: null
@@ -24044,7 +23959,6 @@ tarbase:
   preferred_prefix: tarbase
   uri_format: http://diana.imis.athena-innovation.gr/DianaTools/index.php?r=tarbase/index&mirnas=$1
 taxrank:
-  banana: TAXRANK
   contact:
     email: balhoff@renci.org
     github: balhoff
@@ -24151,7 +24065,6 @@ tgd:
   preferred_prefix: tgd
   uri_format: http://ciliate.org/index.php/feature/details/$1
 tgma:
-  banana: TGMA
   contact:
     email: topalis@imbb.forth.gr
     github: null
@@ -24269,7 +24182,6 @@ tngb:
 to:
   appears_in:
   - agro
-  banana: TO
   contact:
     email: jaiswalp@science.oregonstate.edu
     github: jaiswalp
@@ -24379,7 +24291,6 @@ toxoplasma:
   preferred_prefix: toxoplasma
   uri_format: http://toxodb.org/toxo/showRecord.do?name=GeneRecordClasses.GeneRecordClass&source_id=$1
 trans:
-  banana: TRANS
   contact:
     email: lynn.schriml@gmail.com
     github: lschriml
@@ -24531,7 +24442,6 @@ ttd.target:
   preferred_prefix: ttd.target
   uri_format: http://bidd.nus.edu.sg/group/TTD/ZFTTDDetail.asp?ID=$1
 tto:
-  banana: TTO
   contact:
     email: balhoff@renci.org
     github: balhoff
@@ -24559,7 +24469,6 @@ tto:
   uri_format: http://purl.obolibrary.org/obo/TTO_$1
   version: '2018-03-26'
 txpo:
-  banana: TXPO
   contact:
     email: yuki.yamagata@riken.jp
     github: yuki-yamagata
@@ -25329,7 +25238,6 @@ uo:
   uri_format: https://www.ebi.ac.uk/ols/ontologies/uo/terms?obo_id=UO:$1
   version: '2020-03-10'
 upa:
-  banana: UPA
   contact:
     email: Anne.Morgat@sib.swiss
     github: amorgat
@@ -25366,7 +25274,6 @@ upa:
   uri_format: http://www.grenoble.prabi.fr/obiwarehouse/unipathway/upa?upid=$1
   version: '2018-12-12'
 upheno:
-  banana: UPHENO
   contact:
     email: vasilevs@ohsu.edu
     github: nicolevasilevsky
@@ -25639,7 +25546,6 @@ vgnc:
   preferred_prefix: vgnc
   uri_format: https://vertebrate.genenames.org/data/gene-symbol-report/#!/vgnc_id/$1
 vhog:
-  banana: VHOG
   deprecated: true
   download_obo: ftp://ftp.bgee.org/general/ontologies/vHOG.obo
   download_owl: http://purl.obolibrary.org/obo/vhog.owl
@@ -25802,7 +25708,6 @@ vmhreaction:
 vo:
   appears_in:
   - scdo
-  banana: VO
   contact:
     email: yongqunh@med.umich.edu
     github: yongqunh
@@ -25848,7 +25753,6 @@ void:
   preferred_prefix: void
   uri_format: http://rdfs.org/ns/void#$1
 vsao:
-  banana: VSAO
   contact:
     email: wasila.dahdul@usd.edu
     github: null
@@ -25911,7 +25815,6 @@ vso:
 vt:
   appears_in:
   - scdo
-  banana: VT
   contact:
     email: caripark@iastate.edu
     github: caripark
@@ -25939,7 +25842,6 @@ vt:
   repository: https://github.com/AnimalGenome/vertebrate-trait-ontology
   uri_format: http://purl.obolibrary.org/obo/VT_$1
 vto:
-  banana: VTO
   contact:
     email: balhoff@renci.org
     github: balhoff
@@ -26014,7 +25916,6 @@ wb.rnai:
   preferred_prefix: wb.rnai
   uri_format: https://www.wormbase.org/species/c_elegans/rnai/$1
 wbbt:
-  banana: WBbt
   contact:
     email: raymond@caltech.edu
     github: raymond91125
@@ -26046,7 +25947,6 @@ wbbt:
   uri_format: http://purl.obolibrary.org/obo/WBBT_$1
   version: '2022-03-22'
 wbls:
-  banana: WBls
   contact:
     email: cgrove@caltech.edu
     github: chris-grove
@@ -26079,7 +25979,6 @@ wbls:
   uri_format: http://www.wormbase.org/get?name=$1
   version: '2022-03-22'
 wbphenotype:
-  banana: WBPhenotype
   contact:
     email: cgrove@caltech.edu
     github: chris-grove
@@ -26378,7 +26277,6 @@ wwf.ecoregion:
 xao:
   appears_in:
   - xpo
-  banana: XAO
   contact:
     email: Erik.Segerdell@cchmc.org
     github: seger
@@ -26410,7 +26308,6 @@ xco:
   appears_in:
   - agro
   - ecto
-  banana: XCO
   contact:
     email: jrsmith@mcw.edu
     github: jrsjrs
@@ -26489,7 +26386,6 @@ xl:
   preferred_prefix: xl
   uri_format: http://purl.obolibrary.org/obo/XL_$1
 xlmod:
-  banana: XLMOD
   contact:
     email: lutz.fischer@tu-berlin.de
     github: lutzfischer
@@ -26548,7 +26444,6 @@ xml:
   preferred_prefix: xml
   uri_format: http://www.w3.org/XML/1998/namespace$1
 xpo:
-  banana: XPO
   contact:
     email: Erik.Segerdell@cchmc.org
     github: seger
@@ -26688,7 +26583,6 @@ ymdb:
   preferred_prefix: ymdb
   uri_format: http://www.ymdb.ca/compounds/$1
 ypo:
-  banana: YPO
   contact:
     email: cherry@genome.stanford.edu
     github: null
@@ -26721,7 +26615,6 @@ yrcpdr:
   preferred_prefix: yrcpdr
   uri_format: http://yeastrc.org/pdr/viewProtein.do?id=$1
 zea:
-  banana: ZEA
   contact:
     email: Leszek@missouri.edu
     github: null
@@ -26742,7 +26635,6 @@ zea:
 zeco:
   appears_in:
   - mco
-  banana: ZECO
   contact:
     email: ybradford@zfin.org
     github: ybradford
@@ -26772,7 +26664,6 @@ zeco:
 zfa:
   appears_in:
   - zp
-  banana: ZFA
   contact:
     email: van_slyke@zfin.org
     github: cerivs
@@ -26834,7 +26725,6 @@ zfin:
   - ZFIN
   uri_format: http://zfin.org/$1
 zfs:
-  banana: ZFS
   contact:
     email: van_slyke@zfin.org
     github: cerivs
@@ -26878,7 +26768,6 @@ zinc:
   preferred_prefix: zinc
   uri_format: http://zinc15.docking.org/substances/$1
 zp:
-  banana: ZP
   contact:
     email: ybradford@zfin.org
     github: ybradford
