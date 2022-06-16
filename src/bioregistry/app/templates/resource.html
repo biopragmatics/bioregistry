@@ -227,7 +227,8 @@
                         The legacy MIRIAM standard for generating CURIEs with this resource
                         includes the <code>namespaceEmbeddedInLUI</code> as true. The actual
                         part that gets prefixed before the local unique identifier regex,
-                        otherwise known as the banana, is <code>{{ banana if banana else prefix.upper() }}:</code>.
+                        otherwise known as the banana, is
+                        <code>{{ banana if banana else prefix.upper() }}{{ resource.get_banana_peel() }}</code>.
                         Therefore, you might see local unique identifiers written out as CURIEs.
                     </dd>
                 {% endif %}
