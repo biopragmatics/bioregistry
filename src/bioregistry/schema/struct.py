@@ -267,6 +267,7 @@ class Resource(BaseModel):
     """
         ),
     )
+    banana_peel: Optional[str] = Field(description="Delimiter used in banana")
     deprecated: Optional[bool] = Field(
         description=_dedent(
             """\
@@ -527,6 +528,9 @@ class Resource(BaseModel):
         if miriam_prefix is not None and obo_preferred_prefix is not None:
             return obo_preferred_prefix
         return None
+
+    def get_banana_peel(self) -> str:
+        return self.banana_peel or ":"
 
     def get_default_format(self) -> Optional[str]:
         """Get the default, first-party URI prefix.
@@ -1167,9 +1171,11 @@ class Resource(BaseModel):
         '00000020'
         """
         banana = self.get_banana()
-        if banana and identifier.startswith(f"{banana}:"):
-            return identifier[len(banana) + 1 :]
-        elif prefix is not None and identifier.casefold().startswith(f"{prefix.casefold()}:"):
+        peel = self.get_banana_peel()
+        prebanana = f"{banana}{peel}"
+        if banana and identifier.startswith(prebanana):
+            return identifier[len(prebanana) :]
+        elif prefix is not None and identifier.casefold().startswith(f"{prefix.casefold()}{peel}"):
             return identifier[len(prefix) + 1 :]
         return identifier
 
@@ -1217,9 +1223,10 @@ class Resource(BaseModel):
         # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
         banana = self.get_banana()
         if banana:
-            banana = f"{banana}:"
-            if not identifier.startswith(banana):
-                return f"{banana}{identifier}"
+            delimiter = self.get_banana_peel()
+            p = f"{banana}{delimiter}"
+            if not identifier.startswith(p):
+                return f"{p}{identifier}"
         # TODO Unnecessary redundant prefix?
         # elif identifier.lower().startswith(f'{prefix}:'):
         #
@@ -1856,6 +1863,7 @@ def write_bulk_prefix_request_template():
             "contact",
             "contributor",
             "github_request_issue",
+            "banana_peel",
         }:
             continue
         if name in metaprefixes:

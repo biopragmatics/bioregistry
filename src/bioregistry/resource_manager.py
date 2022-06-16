@@ -422,6 +422,7 @@ class Manager:
             references=resource.references,
             # MIRIAM compatibility
             banana=resource.get_banana(),
+            banana_peel=resource.banana_peel,
             namespace_in_lui=resource.get_namespace_in_lui(),
             # Provenance
             contact=resource.get_contact(),
@@ -636,10 +637,14 @@ class Manager:
             return None
         banana = resource.get_banana()
         if banana:
-            if identifier.startswith(f"{banana}:"):
+            peel = resource.get_banana_peel()
+            if identifier.startswith(f"{banana}{peel}"):
                 return identifier
             else:
-                return curie_to_str(banana, identifier)
+                print("banana", banana)
+                print("peel", peel)
+                print("identifier", identifier)
+                return f"{banana}{peel}{identifier}"
         elif resource.get_namespace_in_lui():
             if identifier.startswith(prefix.upper()):
                 return identifier

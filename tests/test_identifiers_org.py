@@ -5,10 +5,9 @@
 import unittest
 from textwrap import dedent, fill
 
-import requests
-
 import bioregistry
-from bioregistry import get_identifiers_org_curie, get_identifiers_org_iri
+import requests
+from bioregistry import get_identifiers_org_curie, get_identifiers_org_iri, manager
 from bioregistry.constants import IDOT_BROKEN
 from bioregistry.version import VERSION
 
@@ -88,14 +87,14 @@ class TestIdentifiersOrg(unittest.TestCase):
                     302,
                     res.status_code,
                     msg="\n"
-                    + dedent(
+                        + dedent(
                         f"""\
                 Prefix:     {prefix}
                 Identifier: {identifier}
                 URL:        {url}
                 Text: """
                     )
-                    + fill(res.text, 70, subsequent_indent="      "),
+                        + fill(res.text, 70, subsequent_indent="      "),
                 )
 
     def test_url(self):
@@ -127,3 +126,13 @@ class TestIdentifiersOrg(unittest.TestCase):
                 # Check that the URL resolves
                 res = self.session.get(url, allow_redirects=False)
                 self.assertEqual(302, res.status_code, msg=res.reason)
+
+    def test_banana_peeled(self):
+        """Test banana peels."""
+        for prefix, identifier, expected in [
+            ("cellosaurus", "0001", "cellosaurus:CVCL_0001"),
+            ("biomodels.kisao", "0000057", "biomodels.kisao:KISAO_0000057"),
+            ("geogeo", "000000001", "geogeo:GEO_000000001"),
+        ]:
+            with self.subTest(prefix=prefix, identifier=identifier):
+                self.assertEqual(expected, manager.get_miriam_curie(prefix, identifier))
