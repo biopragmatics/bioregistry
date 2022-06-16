@@ -14,7 +14,7 @@ from bioregistry import (
     get_identifiers_org_iri,
     manager,
 )
-from bioregistry.constants import IDOT_BROKEN
+from bioregistry.constants import IDOT_BROKEN, MIRIAM_BLACKLIST
 from bioregistry.version import VERSION
 
 
@@ -47,9 +47,8 @@ class TestIdentifiersOrg(unittest.TestCase):
 
     def test_standardize_identifier(self):
         """Test that standardization makes patterns valid."""
-        overridden = {"pid.pathway"}
         for prefix, entry in self.entries.items():
-            if prefix in overridden:
+            if prefix in MIRIAM_BLACKLIST:
                 continue
             example = entry.get_example()
             self.assertIsNotNone(example)

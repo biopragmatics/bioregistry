@@ -96,6 +96,8 @@ MIRIAM_BLACKLIST = {
     # this one uses the names instead of IDs, and points to a dead resource.
     # See https://github.com/identifiers-org/identifiers-org.github.io/issues/139
     "pid.pathway",
+    # this uses namespace-in-namespace
+    "neurolex",
 }
 IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
 
