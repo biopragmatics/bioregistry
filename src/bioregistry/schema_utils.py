@@ -6,8 +6,9 @@ import json
 import logging
 from collections import defaultdict
 from functools import lru_cache
+from operator import attrgetter
 from pathlib import Path
-from typing import Dict, Mapping, Set, Union
+from typing import Dict, List, Mapping, Set, Union
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -33,10 +34,20 @@ def read_metaregistry() -> Mapping[str, Registry]:
     }
 
 
+def registries() -> List[Registry]:
+    """Get a list of registries in the Bioregistry."""
+    return sorted(read_metaregistry().values(), key=attrgetter("prefix"))
+
+
 @lru_cache(maxsize=1)
 def read_registry() -> Mapping[str, Resource]:
     """Read the Bioregistry as JSON."""
     return _registry_from_path(BIOREGISTRY_PATH)
+
+
+def resources() -> List[Resource]:
+    """Get a list of resources in the Bioregistry."""
+    return sorted(read_registry().values(), key=attrgetter("prefix"))
 
 
 def _registry_from_path(path: Union[str, Path]) -> Mapping[str, Resource]:
@@ -53,7 +64,7 @@ def add_resource(resource: Resource) -> None:
     """
     registry = dict(read_registry())
     if resource.prefix in registry:
-        raise KeyError("Tried to add duplicate entry to the registry")
+        raise KeyError(f"Tried to add duplicate prefix to the registry: {resource.prefix}")
     registry[resource.prefix] = resource
     # Clear the cache
     read_registry.cache_clear()
@@ -136,7 +147,7 @@ def write_contexts(contexts: Mapping[str, Context]) -> None:
         )
 
 
-def read_contributors() -> Mapping[str, Attributable]:
+def read_contributors(direct_only: bool = False) -> Mapping[str, Attributable]:
     """Get a mapping from contributor ORCID identifiers to author objects."""
     rv: Dict[str, Attributable] = {}
     for resource in read_registry().values():
@@ -147,16 +158,22 @@ def read_contributors() -> Mapping[str, Attributable]:
                 rv[contributor.orcid] = contributor
         if resource.reviewer and resource.reviewer.orcid:
             rv[resource.reviewer.orcid] = resource.reviewer
-        contact = resource.get_contact()
-        if contact and contact.orcid:
-            rv[contact.orcid] = contact
+        if not direct_only:
+            contact = resource.get_contact()
+            if contact and contact.orcid:
+                rv[contact.orcid] = contact
     for metaresource in read_metaregistry().values():
-        if metaresource.contact.orcid:
-            rv[metaresource.contact.orcid] = metaresource.contact
+        if not direct_only:
+            if metaresource.contact.orcid:
+                rv[metaresource.contact.orcid] = metaresource.contact
     for collection in read_collections().values():
         for author in collection.authors or []:
             if author.orcid:
                 rv[author.orcid] = author
+    for context in read_contexts().values():
+        for maintainer in context.maintainers:
+            if maintainer.orcid:
+                rv[maintainer.orcid] = maintainer
     return rv
 
 

@@ -52,6 +52,7 @@
                                 <a href="{{ url_for("ui.resource", prefix=prefix) }}">
                                     {{ resources[prefix].get_name() }} (<code>{{ prefix }}</code>)
                                 </a>
+                                {{ utils.render_resource_warnings(resources[prefix]) }}
                             </li>
                         {% endfor %}
                     </ul>

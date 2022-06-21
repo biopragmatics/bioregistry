@@ -3,8 +3,11 @@ layout: page
 title: Contributing
 permalink: /contributing/
 ---
-Contributions to the Bioregistry are welcomed and encouraged.
-All contributors are expected to follow our [Code of Conduct](CODE_OF_CONDUCT.md).
+Contributions to the Bioregistry are welcomed and encouraged. Thanks for
+considering to participate.
+
+All contributors, maintainers, and participants of the Bioregistry project
+are expected to follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 This document is organized as follows:
 
 1. [Content Contribution](#content-contribution)
@@ -30,6 +33,8 @@ There are several ways to request a new prefix in the Bioregistry:
    [biopragmatics/bioregistry](https://github.com/biopragmatics/bioregistry).
 4. Get in touch with us informally on
    Twitter [@bioregistry](https://twitter.com/bioregistry)
+
+### Submitting New Prefixes
 
 #### Who Can Request a New Prefix
 
@@ -143,6 +148,75 @@ individual prefix requests, which each get their own discussion thread, pull
 request, and CI/CD runs. Submitters of bulk prefix requests that contain many
 issues may be asked to re-submit as individual prefix requests.
 
+#### Prefix Parking
+
+A prefix and its corresponding semantic space are **substantiated** when it's
+provable that a semantic space exists by one or more of the following:
+
+1. There's a public place where you can get the entire list of terms.
+   Ontologies (e.g., [Gene Ontology](https://bioregistry.io/go)) and databases
+   (e.g., [HGNC](https://bioregistry.io/hgnc)) usually make this pretty
+   straightforwards by offering download links for the ontology or full
+   database.
+2. There's a working, public URI format string that either lets you get HTML,
+   JSON, RDF, or some other kind of information artifact for a given local
+   unique identifier. For example, [OMIM.PS](https://bioregistry.io/omim.ps)
+   doesn't have a way to get a full list of terms but if you have a given local
+   unique identifier, you can use it with the URI format string to retrieve some
+   information about the entity corresponding to that LUI.
+
+A potential less strict third criteria for substantiation could be when
+references to entities in a semantic space (i.e., in the form of CURIEs) can be
+found in public resources or ontologies that are external to the resource in
+which the prefix/semantic space are defined. This is more common for historical
+prefixes (e.g., OpenCyc references appear quite frequently, but this resource
+was taken down more than a decade ago) and is less applicable to new prefix
+requests. Therefore, this relaxed criteria will not be considered as sufficient
+for substantiation.
+
+We define **prefix parking** as a special case of a prefix request in which the
+corresponding resource/semantic space for the prefix does not yet exist or is
+currently under development (and by definition, is not yet substantiated). The
+Bioregistry does not explicitly discourage prefix parking, but new prefix
+requests qualifying as prefix parking require additional guidelines, partially
+motivated by the difficulty of the discussion on
+https://github.com/biopragmatics/bioregistry/issues/359.
+
+1. While it's not typically under the purview of the Bioregistry Review Team to
+   judge the utility of a prefix nor comment on its corresponding design
+   decisions (e.g., choice of local unique identifier scheme, regular expression
+   pattern, URI format string), submitters seeking to park a prefix must both
+   actively publicly seek out and seriously consider suggestions and advice from
+   the Bioregistry Review Team with regards to these matters (e.g., in the issue
+   corresponding to a new prefix request). Submissions unable/unwilling to
+   follow these guidelines may be dismissed and asked to re-submit after their
+   prefix has been substantiated.
+2. Submissions to park a prefix must include a primary contact person for the
+   resource that is available for public discussion on GitHub. Even though this
+   is likely the same as the submitter, it is important that this person can be
+   contacted. If they are unresponsive within two weeks of contact regarding the
+   parked prefix, then the parked prefix is subject to removal.
+3. Parked prefixes that are not substantiated within three months are subject to
+   removal. In the case that someone else wants to use that prefix, the fact
+   that the parked prefix has not been substantiated will, by definition, result
+   in no impact or confusion that would normally result from the removal of a
+   prefix. It is the responsibility of the submitter/primary contact person for
+   the prefix to inform the Bioregistry Review Team of the updates and/or to
+   submit the updates to their prefix record themselves that demonstrates it has
+   been substantiated.
+4. It's not the job of the Bioregistry to support parking prefixes for semantic
+   spaces that will not be public or that won't be used in other public
+   resources - these can be rejected without further discussion.
+
+Original discussion about prefix parking can be found at
+https://github.com/biopragmatics/bioregistry/issues/365.
+
+#### Review of New Prefix Requests
+
+Review of new prefix requests is handled by the Bioregistry Review Team, whose
+membership and conduct is described in the Bioregistry's
+[Project Governance](GOVERNANCE.md).
+
 ### Editing Records
 
 There are several ways to update a prefix's record in the Bioregistry:
@@ -182,12 +256,24 @@ to change a prefix can do the following:
 Like with all edits, these are subject to review by the Bioregistry Review team.
 Extra care should be given with this kind of edit.
 
+#### Review of Edits
+
+Review of edits to existing records is handled by the Bioregistry Review Team,
+whose membership and conduct is described in the Bioregistry's
+[Project Governance](GOVERNANCE.md).
+
 ### Removing Records
 
 Typically, prefixes should not be removed from the Bioregistry, even if they
 correspond to subsumed, abandoned, or dead resources, because it is also a
 historical archive and reference for anyone who might run into legacy prefixes
 in legacy resources.
+
+#### Review of Removals
+
+Review of removals of existing records is handled by the Bioregistry Review
+Team, whose membership and conduct is described in the Bioregistry's
+[Project Governance](GOVERNANCE.md).
 
 ## Code Contribution
 
@@ -293,6 +379,12 @@ and from the GitHub Actions testing configuration.
 
 See https://endoflife.date/python for a timeline of Python release and
 end-of-life dates.
+
+#### Review of Pull Requests
+
+Review of edits to existing records is handled by the Bioregistry Core
+Development Team, whose membership and conduct is described in the Bioregistry's
+[Project Governance](GOVERNANCE.md).
 
 ## Meta-contributions
 

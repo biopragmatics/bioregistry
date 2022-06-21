@@ -267,6 +267,7 @@ class Resource(BaseModel):
     """
         ),
     )
+    banana_peel: Optional[str] = Field(description="Delimiter used in banana")
     deprecated: Optional[bool] = Field(
         description=_dedent(
             """\
@@ -384,6 +385,9 @@ class Resource(BaseModel):
         ),
     )
     twitter: Optional[str] = Field(description="The twitter handle for the project")
+    github_request_issue: Optional[int] = Field(
+        description="The GitHub issue for the new prefix request"
+    )
     #: External data from Identifiers.org's MIRIAM Database
     miriam: Optional[Mapping[str, Any]]
     #: External data from the Name-to-Thing service
@@ -398,8 +402,16 @@ class Resource(BaseModel):
     obofoundry: Optional[Mapping[str, Any]]
     #: External data from the BioPortal ontology repository
     bioportal: Optional[Mapping[str, Any]]
+    #: External data from the EcoPortal ontology repository
+    ecoportal: Optional[Mapping[str, Any]]
+    #: External data from the AgroPortal ontology repository
+    agroportal: Optional[Mapping[str, Any]]
+    #: External data from the CropOCT ontology curation tool
+    cropoct: Optional[Mapping[str, Any]]
     #: External data from the Ontology Lookup Service
     ols: Optional[Mapping[str, Any]]
+    #: External data from the AberOWL ontology repository
+    aberowl: Optional[Mapping[str, Any]]
     #: External data from the NCBI Genbank's custom registry
     ncbi: Optional[Mapping[str, Any]]
     #: External data from UniProt's custom registry
@@ -485,8 +497,10 @@ class Resource(BaseModel):
 
         Banana imported through OBO Foundry
 
-        >>> get_resource("fbbt").get_banana()
-        'FBbt'
+        >>> get_resource("go").get_banana()
+        'GO'
+        >>> get_resource("vario").get_banana()
+        'VariO'
 
         Banana inferred for OBO Foundry ontology
 
@@ -507,14 +521,17 @@ class Resource(BaseModel):
         """
         if self.banana is not None:
             return self.banana
-        if self.namespace_in_lui is False:
-            return None  # override for a few situations
+        if self.get_namespace_in_lui() is False:
+            return None
+        miriam_prefix = self.get_miriam_prefix()
         obo_preferred_prefix = self.get_obo_preferred_prefix()
-        if obo_preferred_prefix is not None:
+        if miriam_prefix is not None and obo_preferred_prefix is not None:
             return obo_preferred_prefix
-        # TODO consider reinstating all preferred prefixes should
-        #  be considered as secondary bananas
         return None
+
+    def get_banana_peel(self) -> str:
+        """Get the delimiter between the banana and the local unique identifier."""
+        return ":" if self.banana_peel is None else self.banana_peel
 
     def get_default_format(self) -> Optional[str]:
         """Get the default, first-party URI prefix.
@@ -791,9 +808,31 @@ class Resource(BaseModel):
     def get_publications(self):
         """Get a list of publications."""
         # TODO make a model for this
+        rv = {}
         if self.obofoundry:
-            return self.obofoundry.get("publications", [])
-        return []
+            for publication in self.obofoundry.get("publications", []):
+                url, title = publication["id"], publication["title"]
+                if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
+                    pmid = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
+                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
+                else:
+                    logger.warning("unhandled obo foundry publication ID: %s", url)
+        if self.fairsharing:
+            for publication in self.fairsharing.get("publications", []):
+                pmid = publication.get("pubmed_id")
+                title = publication.get("title")
+                if pmid:
+                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
+                else:
+                    doi = publication["doi"]
+                    rv[f"https://bioregistry.io/doi:{doi}"] = title
+        if self.prefixcommons:
+            for pmid in self.prefixcommons.get("pubmed_ids", []):
+                url = f"https://bioregistry.io/pubmed:{pmid}"
+                if url in rv:
+                    continue
+                rv[url] = None
+        return [{"id": k, "title": v} for k, v in sorted(rv.items())]
 
     def get_twitter(self) -> Optional[str]:
         """Get the Twitter handle for ther resource."""
@@ -874,7 +913,7 @@ class Resource(BaseModel):
         return self.get_external("prefixcommons").get(URI_FORMAT_KEY)
 
     def get_identifiers_org_prefix(self) -> Optional[str]:
-        """Get the identifiers.org prefix if available.
+        """Get the MIRIAM/Identifiers.org prefix, if available.
 
         :returns: The Identifiers.org/MIRIAM prefix corresponding to the prefix, if mappable.
 
@@ -886,6 +925,10 @@ class Resource(BaseModel):
         >>> assert get_resource('MONDO').get_identifiers_org_prefix() is None
         """
         return self.get_mapped_prefix("miriam")
+
+    def get_miriam_prefix(self):
+        """Get the MIRIAM/Identifiers.org prefix, if available."""
+        return self.get_identifiers_org_prefix()
 
     def get_miriam_uri_prefix(self) -> Optional[str]:
         """Get the Identifiers.org URI prefix for this entry, if possible.
@@ -1112,8 +1155,6 @@ class Resource(BaseModel):
         Examples with bananas from OBO:
         >>> get_resource("fbbt").standardize_identifier('00007294')
         '00007294'
-        >>> get_resource("fbbt").standardize_identifier('FBbt:00007294')
-        '00007294'
         >>> get_resource("chebi").standardize_identifier('1234')
         '1234'
         >>> get_resource("chebi").standardize_identifier('CHEBI:1234')
@@ -1131,13 +1172,38 @@ class Resource(BaseModel):
         '00000020'
         """
         banana = self.get_banana()
-        if banana and identifier.startswith(f"{banana}:"):
-            return identifier[len(banana) + 1 :]
-        elif prefix is not None and identifier.casefold().startswith(f"{prefix.casefold()}:"):
+        peel = self.get_banana_peel()
+        prebanana = f"{banana}{peel}"
+        if banana and identifier.startswith(prebanana):
+            return identifier[len(prebanana) :]
+        elif prefix is not None and identifier.casefold().startswith(f"{prefix.casefold()}{peel}"):
             return identifier[len(prefix) + 1 :]
         return identifier
 
-    def miriam_standardize_identifier(self, identifier: str) -> str:
+    def get_miriam_curie(self, identifier: str) -> Optional[str]:
+        """Get the MIRIAM-flavored CURIE."""
+        miriam_prefix = self.get_miriam_prefix()
+        if miriam_prefix is None:
+            return None
+        identifier = self.standardize_identifier(identifier)
+        if identifier is None:
+            return None
+        # A "banana" is an embedded prefix that isn't actually part of the identifier.
+        # Usually this corresponds to the prefix itself, with some specific stylization
+        # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
+        banana = self.get_banana()
+        if banana:
+            peel = self.get_banana_peel()
+            processed_banana = f"{banana}{peel}"
+            if not identifier.startswith(processed_banana):
+                identifier = f"{processed_banana}{identifier}"
+            # here we're using the fact that the banana peel has been annotated explicitly
+            # to mean that it should be redundant
+            if self.banana_peel is None:
+                return identifier
+        return f"{miriam_prefix}:{identifier}"
+
+    def miriam_standardize_identifier(self, identifier: str) -> Optional[str]:
         """Normalize the identifier for legacy usage with MIRIAM using the appropriate banana.
 
         :param identifier: The identifier in the CURIE
@@ -1154,10 +1220,10 @@ class Resource(BaseModel):
         'VariO:0376'
 
         Examples with bananas from OBO:
-        >>> get_resource("fbbt").miriam_standardize_identifier('00007294')
-        'FBbt:00007294'
-        >>> get_resource("fbbt").miriam_standardize_identifier('FBbt:00007294')
-        'FBbt:00007294'
+        >>> get_resource("go").miriam_standardize_identifier('0000001')
+        'GO:0000001'
+        >>> get_resource("go").miriam_standardize_identifier('GO:0000001')
+        'GO:0000001'
 
         Examples from OBO Foundry:
         >>> get_resource("chebi").miriam_standardize_identifier('1234')
@@ -1176,17 +1242,17 @@ class Resource(BaseModel):
         >>> get_resource("pdb").miriam_standardize_identifier('00000020')
         '00000020'
         """
+        if self.get_miriam_prefix() is None:
+            return None
         # A "banana" is an embedded prefix that isn't actually part of the identifier.
         # Usually this corresponds to the prefix itself, with some specific stylization
         # such as in the case of FBbt. The banana does NOT include a colon ":" at the end
         banana = self.get_banana()
         if banana:
-            banana = f"{banana}:"
-            if not identifier.startswith(banana):
-                return f"{banana}{identifier}"
-        # TODO Unnecessary redundant prefix?
-        # elif identifier.lower().startswith(f'{prefix}:'):
-        #
+            delimiter = self.get_banana_peel()
+            processed_banana = f"{banana}{delimiter}"
+            if not identifier.startswith(processed_banana):
+                return f"{processed_banana}{identifier}"
         return identifier
 
     def is_canonical_identifier(self, identifier: str) -> Optional[bool]:
@@ -1201,10 +1267,34 @@ class Resource(BaseModel):
         return self.is_canonical_identifier(self.standardize_identifier(identifier))
 
     def get_download_obo(self) -> Optional[str]:
-        """Get the download link for the latest OBO file."""
+        """Get the download link for the latest OBO file.
+
+        :return: A URL for an OBO text file download, if exists.
+
+        Get an ontology download link annotated directly in the
+        Bioregistry:
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("caloha").get_download_obo()
+        'https://download.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo'
+
+        Get an ontology download link from the OBO Foundry:
+
+        >>> get_resource("bfo").get_download_obo()
+        'http://purl.obolibrary.org/obo/bfo.obo'
+
+        Get ontology download link in AberOWL but not OBO Foundry
+        (note this might change over time so the exact value isn't
+        used in the doctest):
+
+        >>> url = get_resource("dermo").get_download_obo()
+        >>> assert url is not None and url.startswith("http://aber-owl.net/media/ontologies/DERMO")
+        """
         if self.download_obo:
             return self.download_obo
-        return self.get_external("obofoundry").get("download.obo")
+        return self.get_external("obofoundry").get("download.obo") or self.get_external(
+            "aberowl"
+        ).get("download_obo")
 
     def get_download_obograph(self) -> Optional[str]:
         """Get the download link for the latest OBOGraph JSON file."""
@@ -1213,13 +1303,47 @@ class Resource(BaseModel):
         return self.get_external("obofoundry").get("download.json")
 
     def get_download_owl(self) -> Optional[str]:
-        """Get the download link for the latest OWL file."""
+        """Get the download link for the latest OWL file.
+
+        :return: A URL for an OWL file download, if exists.
+
+        Get an ontology download link annotated directly in the
+        Bioregistry:
+
+        >>> from bioregistry import get_resource
+        >>> get_resource("orphanet.ordo").get_download_owl()
+        'http://www.orphadata.org/data/ORDO/ordo_orphanet.owl'
+
+        Get an ontology download link from the OBO Foundry:
+
+        >>> get_resource("mod").get_download_owl()
+        'http://purl.obolibrary.org/obo/mod.owl'
+
+        Get ontology download link in AberOWL but not OBO Foundry
+        (note this might change over time so the exact value isn't
+        used in the doctest):
+
+        >>> url = get_resource("birnlex").get_download_owl()
+        >>> assert url is not None and url.startswith("http://aber-owl.net/media/ontologies/BIRNLEX/")
+
+        """
         if self.download_owl:
             return self.download_owl
         return (
             self.get_external("obofoundry").get("download.owl")
             or self.get_external("ols").get("version.iri")
             or self.get_external("ols").get("download")
+            or self.get_external("aberowl").get("download_owl")
+        )
+
+    def has_download(self) -> bool:
+        """Check if this resource can be downloaded."""
+        return any(
+            (
+                self.get_download_obo(),
+                self.get_download_owl(),
+                self.get_download_obograph(),
+            )
         )
 
     def get_license(self) -> Optional[str]:
@@ -1288,6 +1412,10 @@ class RegistryGovernance(BaseModel):
     """Metadata about a registry's governance."""
 
     curation: Literal["private", "import", "community", "opaque-review", "open-review"]
+    curates: bool = Field(description="Does the registry curate novel prefixes?")
+    imports: bool = Field(
+        description="Does the registry import and align prefixes from other registries?"
+    )
     scope: str = Field(
         description="What is the scope of prefixes which the registry covers? For example,"
         " some registries are limited to ontologies, some have a full scope over the life sciences,"
@@ -1319,6 +1447,18 @@ class RegistryGovernance(BaseModel):
         " in some capacity but is not responsive to external requests for improvement. An inactive repository is"
         " no longer being proactively maintained (though may receive occasional patches)."
     )
+
+    @property
+    def review_team_icon(self) -> str:
+        """Get an icon for the review team."""
+        if self.review_team == "public":
+            return "✓"
+        elif self.review_team == "inferrable":
+            return "✓*"
+        elif self.review_team == "private":
+            return "✗"
+        else:
+            return ""
 
 
 class RegistrySchema(BaseModel):
@@ -1532,6 +1672,16 @@ class Registry(BaseModel):
         """Get the short name or full name if none annotated."""
         return self.short_name or self.name
 
+    @property
+    def is_resolver(self) -> bool:
+        """Check if it is a resolver."""
+        return self.resolver_uri_format is not None and self.resolver_type != "lookup"
+
+    @property
+    def is_lookup(self) -> bool:
+        """Check if it is a lookup service."""
+        return self.resolver_uri_format is not None and self.resolver_type == "lookup"
+
 
 class Collection(BaseModel):
     """A collection of resources."""
@@ -1735,6 +1885,8 @@ def write_bulk_prefix_request_template():
             "reviewer",
             "contact",
             "contributor",
+            "github_request_issue",
+            "banana_peel",
         }:
             continue
         if name in metaprefixes:
@@ -1771,7 +1923,7 @@ def write_bulk_prefix_request_template():
                 file=file,
             )
         for i in range(1, 6):
-            print(i, *["\t"] * (len(required) + len(optional)), sep="\t", file=file)  # noqa:T201
+            print(i, *[""] * (len(required) + len(optional)), sep="\t", file=file)  # noqa:T201
 
 
 def _get(resource, key):

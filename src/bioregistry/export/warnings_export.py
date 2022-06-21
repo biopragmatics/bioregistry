@@ -20,6 +20,8 @@ __all__ = [
     "export_warnings",
 ]
 
+CURATIONS_PATH = DOCS_DATA.joinpath("curation.yml")
+
 ENTRIES = sorted(
     (prefix, resource.dict(exclude_none=True))
     for prefix, resource in bioregistry.read_registry().items()
@@ -63,9 +65,13 @@ def export_warnings():
     )
     missing_pattern = _g(lambda prefix: bioregistry.get_pattern(prefix) is None)
     missing_format_url = _g(lambda prefix: bioregistry.get_uri_format(prefix) is None)
-    missing_example = _g(lambda prefix: bioregistry.get_example(prefix) is None)
+    missing_example = _g(
+        lambda prefix: bioregistry.get_example(prefix) is None
+        and not bioregistry.has_no_terms(prefix)
+        and bioregistry.get_provides_for(prefix) is None
+    )
 
-    with open(os.path.join(DOCS_DATA, "curation.yml"), "w") as file:
+    with CURATIONS_PATH.open("w") as file:
         yaml.safe_dump(
             {
                 "wikidata": missing_wikidata_database,

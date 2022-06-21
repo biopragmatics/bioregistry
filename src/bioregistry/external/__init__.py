@@ -4,11 +4,13 @@
 
 from typing import Callable, List, Tuple
 
+from .aberowl import get_aberowl
 from .biocontext import get_biocontext
 from .biolink import get_biolink
-from .bioportal import get_bioportal
+from .bioportal import get_agroportal, get_bioportal, get_ecoportal
 from .cellosaurus import get_cellosaurus
 from .cheminf import get_cheminf
+from .cropoct import get_cropoct
 from .fairsharing import get_fairsharing
 from .go import get_go
 from .miriam import get_miriam
@@ -59,4 +61,8 @@ GETTERS: List[Tuple[str, str, Callable]] = [
     ("ontobee", "OntoBee", get_ontobee),
     ("cheminf", "CHEMINF", get_cheminf),
     ("fairsharing", "FAIRsharing", get_fairsharing),
+    ("agroportal", "AgroPortal", get_agroportal),
+    ("ecoportal", "EcoPortal", get_ecoportal),
+    ("aberowl", "AberOWL", get_aberowl),
+    ("cropoct", "CropOCT", get_cropoct),
 ]

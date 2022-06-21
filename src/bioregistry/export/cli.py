@@ -12,6 +12,7 @@ def export(ctx: click.Context):
     from .prefix_maps import generate_contexts
     from .rdf_export import export_rdf
     from .sssom_export import export_sssom
+    from .tables_export import export_tables
     from .tsv_export import export_tsv
     from .warnings_export import export_warnings
     from .yaml_export import export_yaml
@@ -21,6 +22,7 @@ def export(ctx: click.Context):
     ctx.invoke(export_tsv)
     ctx.invoke(export_yaml)
     ctx.invoke(export_sssom)
+    ctx.invoke(export_tables)
     ctx.invoke(generate_contexts)
 
 
