@@ -3,7 +3,7 @@
 import functools
 import logging
 import re
-from typing import Optional, Union
+from typing import Dict, Mapping, Optional, Pattern, Union
 
 import pandas as pd
 from tabulate import tabulate
@@ -302,7 +302,7 @@ def validate_identifiers(
             raise ValueError(f"No prefixes found in column {prefix_column}")
         if 1 == len(prefixes):
             return _help_validate_identifiers(df, column, list(prefixes)[0])
-        patterns = {}
+        patterns: Dict[str, Optional[Pattern]] = {}
         for prefix in df[prefix_column].unique():
             if pd.isna(prefix):
                 continue
@@ -312,14 +312,23 @@ def validate_identifiers(
         results = _multi_column_map(
             df,
             [prefix_column, column],
-            lambda _p, _i: bool(patterns[_p].fullmatch(_i))
-            if _p is not None and patterns[_p] is not None
-            else None,
+            functools.partial(_validate_lambda, patterns=patterns),
             use_tqdm=use_tqdm,
         )
     if target_column:
         df[target_column] = results
     return results
+
+
+def _validate_lambda(
+    patterns: Mapping[str, Optional[Pattern]], prefix, identifier
+) -> Optional[bool]:
+    if prefix is None:
+        return None
+    pattern = patterns.get(prefix)
+    if pattern is None:
+        return None
+    return bool(pattern.fullmatch(identifier))
 
 
 def _help_validate_identifiers(df, column, prefix):
@@ -345,7 +354,7 @@ def identifiers_to_curies(
     column: Union[int, str],
     *,
     prefix: Optional[str] = None,
-    prefix_column: Optional[str] = None,
+    prefix_column: Union[None, int, str] = None,
     target_column: Optional[str] = None,
     use_tqdm: bool = False,
 ) -> None:
@@ -408,7 +417,7 @@ def identifiers_to_curies(
             functools.partial(bioregistry.curie_to_str, prefix=norm_prefix),
             na_action="ignore",
         )
-    else:  # prefix_column is not None
+    elif prefix_column is not None:
         prefix_column = _norm_column(df, prefix_column)
         df[target_column] = _multi_column_map(
             df, [prefix_column, column], bioregistry.curie_to_str, use_tqdm=use_tqdm
