@@ -143,6 +143,24 @@ bioregistry.collection:0000005 a bioregistry.schema:0000003 ;
         bioregistry:mba,
         bioregistry:pba .
 
+bioregistry.collection:0000006 a bioregistry.schema:0000003 ;
+    rdfs:label "SPAR Ontologies" ;
+    dc:creator orcid:0000-0003-4423-4370 ;
+    dc:description "The [Semantic Publishing and Referencing (SPAR) Ontologies](http://www.sparontologies.net/ontologies) are a suite of orthogonal and complementary OWL 2 ontologies that enable all aspects of the publishing process to be described in machine-readable metadata statements, encoded using RDF." ;
+    dcterms:hasPart bioregistry:bido,
+        bioregistry:biro,
+        bioregistry:c4o,
+        bioregistry:cito,
+        bioregistry:datacite,
+        bioregistry:deo,
+        bioregistry:doco,
+        bioregistry:fabio,
+        bioregistry:frapo,
+        bioregistry:pso,
+        bioregistry:puro,
+        bioregistry:pwo,
+        bioregistry:scoro .
+
 bioregistry.metaresource:prefixcc a bioregistry.schema:0000002 ;
     rdfs:label "Prefix.cc" ;
     dc:description "A web-developer centric archive of prefixes and URI prefixes" ;
@@ -8843,7 +8861,8 @@ Yu Lin, Peter Simons (2010) “DNA sequence from below: A Nominalist Approach”
     bioregistry.schema:0000005 "0000019"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OGI_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 true .
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000019 orcid:0000-0002-5379-5359 .
 
 bioregistry:ogsf a bioregistry.schema:0000001 ;
     rdfs:label "Ontology of Genetic Susceptibility Factor" ;
@@ -13190,8 +13209,6 @@ orcid:0000-0002-5159-414X rdfs:label "Edison Ong" .
 
 orcid:0000-0002-5316-1399 rdfs:label "Sebastian Koehler" .
 
-orcid:0000-0002-5379-5359 rdfs:label "Asiyah Yu Lin" .
-
 orcid:0000-0002-5714-991X rdfs:label "Chris Stoeckert" .
 
 orcid:0000-0002-6020-5919 rdfs:label "Elizabeth Arnaud" .
@@ -13409,6 +13426,8 @@ aberowl:CTO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:CVDO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
+aberowl:DATACITE dcterms:isPartOf bioregistry.metaresource:aberowl .
+
 aberowl:DC dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:DCAT dcterms:isPartOf bioregistry.metaresource:aberowl .
@@ -13514,6 +13533,8 @@ aberowl:FOODON dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:FOVT dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:FPLX dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+aberowl:FRAPO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:FYPO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -15098,6 +15119,8 @@ bioportal:CTENO dcterms:isPartOf bioregistry.metaresource:bioportal .
 bioportal:CTO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:CVDO dcterms:isPartOf bioregistry.metaresource:bioportal .
+
+bioportal:DATACITE dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:DC dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -20337,6 +20360,17 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:debio a bioregistry.schema:0000001 ;
+    rdfs:label "Decentralized Biomedical Ontology" ;
+    dc:description "A repository for the TSV-based, decentralized, community-curated curation of terms, properties, and relations that get turned into OBO, OWL, and OBO Graph JSON."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://biopragmatics.github.io/debio"^^xsd:string ;
+    bioregistry.schema:0000005 "0000001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/debio/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-4423-4370 .
+
 bioregistry:decipher a bioregistry.schema:0000001 ;
     rdfs:label "DECIPHER CNV Syndromes" ;
     dc:description "CNV syndromes in the DECIPHER genomics database that are linked to Human Phenotype Ontology terms"^^xsd:string ;
@@ -20809,18 +20843,6 @@ bioregistry:evm a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     bioregistry.schema:0000012 true .
 
-bioregistry:fabio a bioregistry.schema:0000001 ;
-    rdfs:label "FaBiO, the FRBR-aligned Bibliographic Ontology" ;
-    dc:description "The FRBR-aligned Bibliographic Ontology (FaBiO) is an ontology for describing entities that are published or potentially publishable (e.g., journal articles, conference papers, books), and that contain or are referred to by bibliographic references."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:FaBiO,
-        biolink:fabio,
-        fairsharing:FAIRsharing.2f3180 ;
-    foaf:homepage "https://github.com/sparontologies/fabio"^^xsd:string ;
-    bioregistry.schema:0000005 "d4e2515"^^xsd:string ;
-    bioregistry.schema:0000006 "https://sparontologies.github.io/fabio/current/fabio.html#$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:faldo a bioregistry.schema:0000001 ;
     rdfs:label "Feature Annotation Location Description Ontology " ;
     dc:description "It is a simple ontology to describe sequence feature positions and regions as found in GFF3, DBBJ, EMBL, GenBank files, UniProt, and many other bioinformatics resources"^^xsd:string ;
@@ -20889,6 +20911,15 @@ bioregistry:fcsfree a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://fcs-free.org/fcs-database?$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:fivestars a bioregistry.schema:0000001 ;
+    rdfs:label "Five Stars of Online Research Articles Ontology" ;
+    dc:description "An ontology written in OWL 2 DL to enable characterization of the five attributes of an online journal article - peer review, open access, enriched content, available datasets and machine-readable metadata."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.6dfe9b ;
+    foaf:homepage "http://www.sparontologies.net/ontologies/fivestars"^^xsd:string ;
+    bioregistry.schema:0000005 "hasOpenAccessRating"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:fix a bioregistry.schema:0000001 ;
     rdfs:label "Physico-chemical methods and properties" ;
     dc:description "An ontology of physico-chemical methods and properties."^^xsd:string ;
@@ -20930,6 +20961,25 @@ bioregistry:foaf a bioregistry.schema:0000001 ;
     foaf:homepage "http://xmlns.com/foaf/spec/"^^xsd:string ;
     bioregistry.schema:0000005 "familyName"^^xsd:string ;
     bioregistry.schema:0000006 "http://xmlns.com/foaf/0.1/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:fr a bioregistry.schema:0000001 ;
+    rdfs:label "FAIR* Reviews Ontology" ;
+    dc:description "An ontology that enables the description of reviews of scientific articles and other scholarly resources."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.e7e609 ;
+    foaf:homepage "http://www.sparontologies.net/ontologies/fr"^^xsd:string ;
+    bioregistry.schema:0000005 "ReviewVersion"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:frbr a bioregistry.schema:0000001 ;
+    rdfs:label "Functional Requirements for Bibliographic Records" ;
+    dc:description "The Essential FRBR in OWL2 DL Ontology (FRBR) is an expression in OWL 2 DL of the basic concepts and relations described in the IFLA report on the Functional Requirements for Bibliographic Records (FRBR), also described in Ian Davis's RDF vocabulary. It is imported by FaBiO and BiRO."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.b34b43 ;
+    foaf:homepage "http://www.sparontologies.net/ontologies/frbr"^^xsd:string ;
+    bioregistry.schema:0000005 "Expression"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/vocab/frbr/core#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:ftt a bioregistry.schema:0000001 ;
@@ -22711,24 +22761,6 @@ bioregistry:prov a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/prov#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:pso a bioregistry.schema:0000001 ;
-    rdfs:label "Plant Stress Ontology" ;
-    dc:description "The Plant Stress Ontology describes biotic and abiotic stresses that a plant may encounter."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:PSO,
-        obofoundry:PSO,
-        ontobee:PSO,
-        bioportal:PSO,
-        fairsharing:FAIRsharing.dyj433,
-        ols:pso ;
-    foaf:homepage "https://github.com/Planteome/plant-stress-ontology"^^xsd:string ;
-    bioregistry.schema:0000005 "0000013"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PSO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000017 bioregistry:ro ;
-    bioregistry.schema:0000019 orcid:0000-0002-6379-8932 .
-
 bioregistry:pspub a bioregistry.schema:0000001 ;
     rdfs:label "Phenoscape Publication" ;
     dc:description "Documentation of the Phenoscape Curation Workflow"^^xsd:string ;
@@ -23581,6 +23613,8 @@ bioregistry:zfa a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0002-2244-7917 .
 
+fairsharing:FAIRsharing.0a2576 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.0a674c dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.0pUMYW dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -23590,6 +23624,8 @@ fairsharing:FAIRsharing.10gr18 dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.10zsxb dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.1414v8 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.162003 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.17zapb dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -23663,6 +23699,8 @@ fairsharing:FAIRsharing.35e1c3 dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.36pf8q dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.39fd58 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.3J6NYn dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.3b36hk dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -23672,6 +23710,8 @@ fairsharing:FAIRsharing.3d4jx0 dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.3da56b dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.3e0sn4 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.3e88d6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.3etvdn dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -23795,6 +23835,8 @@ fairsharing:FAIRsharing.6bc7h9 dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.6bd5k6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.6dfe9b dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.6h8d2r dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.6hna78 dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -23878,6 +23920,8 @@ fairsharing:FAIRsharing.93g1th dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.96f3gm dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.97805c dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.99da5f dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.9b7wvk dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -23991,7 +24035,11 @@ fairsharing:FAIRsharing.azr389 dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.b1xD9f dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.b220d4 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.b2979t dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.b34b43 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.b4sa0w dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -24004,6 +24052,8 @@ fairsharing:FAIRsharing.bc8ayj dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.bcjrnq dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.bdn9br dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.beb855 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.bf8dsb dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -24021,7 +24071,11 @@ fairsharing:FAIRsharing.bv0zjz dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.bxc508 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.c06f1e dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.c23cqq dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.c4e46c dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.c54ywe dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -24032,6 +24086,8 @@ fairsharing:FAIRsharing.c6vhm3 dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.c7f4d7 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.c7w81a dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.c86b48 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.c86z66 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -24062,6 +24118,8 @@ fairsharing:FAIRsharing.d064y6 dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.d3pqw7 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.d5ff6e dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.d7f0a9 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.d88s6e dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -24118,6 +24176,8 @@ fairsharing:FAIRsharing.e28v7g dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.e3t0yw dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.e4n3an dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.e7e609 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.e7skwg dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -24698,6 +24758,8 @@ orcid:0000-0002-3528-5267 rdfs:label "Sofia Robb" .
 orcid:0000-0002-4366-3088 rdfs:label "Pier Luigi Buttigieg" .
 
 orcid:0000-0002-4532-2703 rdfs:label "Petra Fey" .
+
+orcid:0000-0002-5379-5359 rdfs:label "Asiyah Yu Lin" .
 
 orcid:0000-0002-7509-4801 rdfs:label "Tom Gillespie" ;
     dcterms:contributor bioregistry:nif.ext,
@@ -27967,6 +28029,16 @@ bioregistry:ac a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/activitystreams#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:bido a bioregistry.schema:0000001 ;
+    rdfs:label "Bibliometric Data Ontology" ;
+    dc:description "An ontology that allows the description of numerical and categorical bibliometric data (e.g., journal impact factor, author h-index, categories describing research careers) in RDF."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.d7f0a9 ;
+    foaf:homepage "http://www.sparontologies.net/ontologies/bido"^^xsd:string ;
+    bioregistry.schema:0000005 "CategorialBibliometricData"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/spar/bido/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:biogrid.interaction a bioregistry.schema:0000001 ;
     rdfs:label "BioGRID Interactions" ;
     dc:description "BioGRID is a database of physical and genetic interactions in Saccharomyces cerevisiae, Caenorhabditis elegans, Drosophila melanogaster, Homo sapiens, and Schizosaccharomyces pombe."^^xsd:string ;
@@ -27978,6 +28050,26 @@ bioregistry:biogrid.interaction a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-9713-9994 .
+
+bioregistry:biro a bioregistry.schema:0000001 ;
+    rdfs:label "Bibliographic Reference Ontology" ;
+    dc:description "An ontology meant to define bibliographic records, bibliographic references, and their compilation into bibliographic collections and bibliographic lists, respectively."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.99da5f ;
+    foaf:homepage "http://www.sparontologies.net/ontologies/biro"^^xsd:string ;
+    bioregistry.schema:0000005 "BibliographicRecord"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/spar/biro/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:c4o a bioregistry.schema:0000001 ;
+    rdfs:label "Citation Counting and Context Characterisation Ontology" ;
+    dc:description "An ontology that permits the number of in-text citations of a cited source to be recorded, together with their textual citation contexts, along with the number of citations a cited entity has received globally on a particular date."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.beb855 ;
+    foaf:homepage "http://www.sparontologies.net/ontologies/c4o"^^xsd:string ;
+    bioregistry.schema:0000005 "InTextReferencePointer"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/spar/c4o/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:chembl.cell a bioregistry.schema:0000001 ;
     rdfs:label "ChEMBL database of bioactive drug-like small molecules - Cell lines section" ;
@@ -28009,6 +28101,16 @@ bioregistry:chmo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:rbo,
         bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0001-5985-7429 .
+
+bioregistry:cito a bioregistry.schema:0000001 ;
+    rdfs:label "Citation Typing Ontology" ;
+    dc:description "An ontology that enables characterization of the nature or type of citations, both factually and rhetorically."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.b220d4 ;
+    foaf:homepage "http://www.sparontologies.net/ontologies/cito"^^xsd:string ;
+    bioregistry.schema:0000005 "sharesAuthorInstitutionWith"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/spar/cito/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:cog a bioregistry.schema:0000001 ;
     rdfs:label "Cluster of orthologous genes" ;
@@ -28072,6 +28174,18 @@ bioregistry:cteno a bioregistry.schema:0000001 ;
         bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 .
 
+bioregistry:datacite a bioregistry.schema:0000001 ;
+    rdfs:label "DataCite Ontology" ;
+    dc:description "An ontology that enables the metadata properties of the DataCite Metadata Schema Specification (i.e., a list of metadata properties for the accurate and consistent identification of a resource for citation and retrieval purposes) to be described in RDF."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:DATACITE,
+        bioportal:DATACITE,
+        fairsharing:FAIRsharing.c06f1e ;
+    foaf:homepage "http://www.sparontologies.net/ontologies/datacite"^^xsd:string ;
+    bioregistry.schema:0000005 "AgentIdentifierScheme"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/spar/datacite/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:dcterms a bioregistry.schema:0000001 ;
     rdfs:label "Dublin Core Metadata Vocabulary" ;
     dc:description "This document is an up-to-date specification of all metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes."^^xsd:string ;
@@ -28084,6 +28198,16 @@ bioregistry:dcterms a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/"^^xsd:string ;
     bioregistry.schema:0000005 "title"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/dc/terms/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:deo a bioregistry.schema:0000001 ;
+    rdfs:label "Discourse Elements Ontology" ;
+    dc:description "An ontology that provides a structured vocabulary for rhetorical elements within documents (e.g., Introduction, Discussion, Acknowledgements, Reference List, Figures, Appendix). It is imported by DoCO."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.39fd58 ;
+    foaf:homepage "http://www.sparontologies.net/ontologies/deo"^^xsd:string ;
+    bioregistry.schema:0000005 "Reference"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/spar/deo/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:dhba a bioregistry.schema:0000001 ;
@@ -28119,6 +28243,16 @@ bioregistry:dmba a bioregistry.schema:0000001 ;
     foaf:homepage "https://developingmouse.brain-map.org/"^^xsd:string ;
     bioregistry.schema:0000005 "688"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:doco a bioregistry.schema:0000001 ;
+    rdfs:label "Document Components Ontology" ;
+    dc:description "An ontology that provides a structured vocabulary written of document components, both structural (e.g., block, inline, paragraph, section, chapter) and rhetorical (e.g., introduction, discussion, acknowledgements, reference list, figure, appendix)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.162003 ;
+    foaf:homepage "http://www.sparontologies.net/ontologies/doco"^^xsd:string ;
+    bioregistry.schema:0000005 "Paragraph"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/spar/doco/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:doid a bioregistry.schema:0000001 ;
@@ -28204,6 +28338,18 @@ bioregistry:exo a bioregistry.schema:0000001 ;
         bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-2908-3327 .
 
+bioregistry:fabio a bioregistry.schema:0000001 ;
+    rdfs:label "FaBiO, the FRBR-aligned Bibliographic Ontology" ;
+    dc:description "The FRBR-aligned Bibliographic Ontology (FaBiO) is an ontology for describing entities that are published or potentially publishable (e.g., journal articles, conference papers, books), and that contain or are referred to by bibliographic references."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:FaBiO,
+        biolink:fabio,
+        fairsharing:FAIRsharing.2f3180 ;
+    foaf:homepage "https://github.com/sparontologies/fabio"^^xsd:string ;
+    bioregistry.schema:0000005 "d4e2515"^^xsd:string ;
+    bioregistry.schema:0000006 "https://sparontologies.github.io/fabio/current/fabio.html#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:fbrf a bioregistry.schema:0000001 ;
     rdfs:label "FlyBase Reference Report" ;
     dc:description "FlyBase internal citation identifiers"^^xsd:string ;
@@ -28244,6 +28390,17 @@ bioregistry:fobi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000017 bioregistry:chebi,
         bioregistry:foodon ;
     bioregistry.schema:0000019 orcid:0000-0001-6466-877X .
+
+bioregistry:frapo a bioregistry.schema:0000001 ;
+    rdfs:label "Funding, Research Administration and Projects Ontology" ;
+    dc:description "An ontology for describing the administrative information of research projects, e.g., grant applications, funding bodies, project partners, etc."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:FRAPO,
+        fairsharing:FAIRsharing.0a2576 ;
+    foaf:homepage "http://www.sparontologies.net/ontologies/frapo"^^xsd:string ;
+    bioregistry.schema:0000005 "Grant"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/cerif/frapo/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:gsso a bioregistry.schema:0000001 ;
     rdfs:label "Gender, Sex, and Sexual Orientation Ontology" ;
@@ -28838,6 +28995,54 @@ bioregistry:poro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000017 bioregistry:ro,
         bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0002-9654-0073 .
+
+bioregistry:pso a bioregistry.schema:0000001 ;
+    rdfs:label "Plant Stress Ontology" ;
+    dc:description "The Plant Stress Ontology describes biotic and abiotic stresses that a plant may encounter."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:PSO,
+        obofoundry:PSO,
+        ontobee:PSO,
+        bioportal:PSO,
+        fairsharing:FAIRsharing.dyj433,
+        ols:pso ;
+    foaf:homepage "https://github.com/Planteome/plant-stress-ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "0000013"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PSO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000017 bioregistry:ro ;
+    bioregistry.schema:0000019 orcid:0000-0002-6379-8932 .
+
+bioregistry:puro a bioregistry.schema:0000001 ;
+    rdfs:label "Publishing Roles Ontology" ;
+    dc:description "An ontology for the characterisation of the roles of agents – people, corporate bodies and computational agents in the publication process. These agents can be, e.g. authors, editors, reviewers, publishers or librarians."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.3e88d6 ;
+    foaf:homepage "http://www.sparontologies.net/ontologies/pro"^^xsd:string ;
+    bioregistry.schema:0000005 "RoleInTime"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/spar/pro/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:pwo a bioregistry.schema:0000001 ;
+    rdfs:label "Publishing Workflow Ontology" ;
+    dc:description "An ontology for describing the steps in the workflow associated with the publication of a document or other publication entity."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.c4e46c ;
+    foaf:homepage "http://www.sparontologies.net/ontologies/pwo"^^xsd:string ;
+    bioregistry.schema:0000005 "Workflow"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/spar/pwo/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:scoro a bioregistry.schema:0000001 ;
+    rdfs:label "Scholarly Contributions and Roles Ontology" ;
+    dc:description "An ontology based on PRO for describing the contributions that may be made, and the roles that may be held by a person with respect to a journal article or other publication (e.g. the role of article guarantor or illustrator)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.c86b48 ;
+    foaf:homepage "http://www.sparontologies.net/ontologies/scoro"^^xsd:string ;
+    bioregistry.schema:0000005 "IntellectualContribution"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/spar/scoro/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:signor.relation a bioregistry.schema:0000001 ;
     rdfs:label "SIGNOR Relation" ;
@@ -30891,6 +31096,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:bcrc,
         bioregistry:beiresources,
         bioregistry:bel,
+        bioregistry:bido,
         bioregistry:biogrid.interaction,
         bioregistry:biolegend,
         bioregistry:bioregistry,
@@ -30898,11 +31104,13 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:bioregistry.registry,
         bioregistry:bioregistry.schema,
         bioregistry:biozil,
+        bioregistry:biro,
         bioregistry:bmrb.restraint,
         bioregistry:bpdb,
         bioregistry:brenda.ligand,
         bioregistry:brenda.ligandgroup,
         bioregistry:bs,
+        bioregistry:c4o,
         bioregistry:caloha,
         bioregistry:cba,
         bioregistry:ccrid,
@@ -30912,6 +31120,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cgnc,
         bioregistry:chembl.cell,
         bioregistry:citexplore,
+        bioregistry:cito,
         bioregistry:cmecs,
         bioregistry:codelink,
         bioregistry:cog.category,
@@ -30921,12 +31130,16 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cosmic.cell,
         bioregistry:cp,
         bioregistry:credit,
+        bioregistry:datacite,
         bioregistry:dbvar.study,
         bioregistry:dbvar.variant,
+        bioregistry:debio,
         bioregistry:decipher,
+        bioregistry:deo,
         bioregistry:dhba,
         bioregistry:diseaseclass,
         bioregistry:dmba,
+        bioregistry:doco,
         bioregistry:dsmz,
         bioregistry:eaglei,
         bioregistry:ecmdb,
@@ -30943,7 +31156,11 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:fbrf,
         bioregistry:fbtc,
         bioregistry:fcsfree,
+        bioregistry:fivestars,
         bioregistry:flybrain.ndb,
+        bioregistry:fr,
+        bioregistry:frapo,
+        bioregistry:frbr,
         bioregistry:ftt,
         bioregistry:fungorum,
         bioregistry:fyler,
@@ -31021,6 +31238,8 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:prefixcommons,
         bioregistry:pspub,
         bioregistry:pubchem.element,
+        bioregistry:puro,
+        bioregistry:pwo,
         bioregistry:rcb,
         bioregistry:receptome.family,
         bioregistry:reo,
@@ -31030,6 +31249,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:schem,
         bioregistry:scholia.resource,
         bioregistry:scomp,
+        bioregistry:scoro,
         bioregistry:scr,
         bioregistry:sdis,
         bioregistry:sfam,
@@ -32592,6 +32812,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:CTENO,
         bioportal:CTO,
         bioportal:CVDO,
+        bioportal:DATACITE,
         bioportal:DC,
         bioportal:DCAT,
         bioportal:DCM,
@@ -32912,6 +33133,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:CTENO,
         aberowl:CTO,
         aberowl:CVDO,
+        aberowl:DATACITE,
         aberowl:DC,
         aberowl:DCAT,
         aberowl:DCTERMS,
@@ -32965,6 +33187,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:FOODON,
         aberowl:FOVT,
         aberowl:FPLX,
+        aberowl:FRAPO,
         aberowl:FYPO,
         aberowl:FaBiO,
         aberowl:G-O,
@@ -33521,11 +33744,13 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
 bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
     rdfs:label "FAIRSharing" ;
     dc:description "A curated, informative and educational resource on data and metadata standards, inter-related to databases and data policies." ;
-    dcterms:hasPart fairsharing:FAIRsharing.0a674c,
+    dcterms:hasPart fairsharing:FAIRsharing.0a2576,
+        fairsharing:FAIRsharing.0a674c,
         fairsharing:FAIRsharing.0pUMYW,
         fairsharing:FAIRsharing.10gr18,
         fairsharing:FAIRsharing.10zsxb,
         fairsharing:FAIRsharing.1414v8,
+        fairsharing:FAIRsharing.162003,
         fairsharing:FAIRsharing.17zapb,
         fairsharing:FAIRsharing.1a27h8,
         fairsharing:FAIRsharing.1c1738,
@@ -33562,11 +33787,13 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.353yat,
         fairsharing:FAIRsharing.35e1c3,
         fairsharing:FAIRsharing.36pf8q,
+        fairsharing:FAIRsharing.39fd58,
         fairsharing:FAIRsharing.3J6NYn,
         fairsharing:FAIRsharing.3b36hk,
         fairsharing:FAIRsharing.3d4jx0,
         fairsharing:FAIRsharing.3da56b,
         fairsharing:FAIRsharing.3e0sn4,
+        fairsharing:FAIRsharing.3e88d6,
         fairsharing:FAIRsharing.3etvdn,
         fairsharing:FAIRsharing.3kcgmr,
         fairsharing:FAIRsharing.3me82d,
@@ -33628,6 +33855,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.6L6MjA,
         fairsharing:FAIRsharing.6bc7h9,
         fairsharing:FAIRsharing.6bd5k6,
+        fairsharing:FAIRsharing.6dfe9b,
         fairsharing:FAIRsharing.6h8d2r,
         fairsharing:FAIRsharing.6hna78,
         fairsharing:FAIRsharing.6k0kwd,
@@ -33670,6 +33898,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.93g1th,
         fairsharing:FAIRsharing.96f3gm,
         fairsharing:FAIRsharing.97805c,
+        fairsharing:FAIRsharing.99da5f,
         fairsharing:FAIRsharing.9b7wvk,
         fairsharing:FAIRsharing.9c1p18,
         fairsharing:FAIRsharing.9d5f5r,
@@ -33726,13 +33955,16 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.azqskx,
         fairsharing:FAIRsharing.azr389,
         fairsharing:FAIRsharing.b1xD9f,
+        fairsharing:FAIRsharing.b220d4,
         fairsharing:FAIRsharing.b2979t,
+        fairsharing:FAIRsharing.b34b43,
         fairsharing:FAIRsharing.b4sa0w,
         fairsharing:FAIRsharing.b7z8by,
         fairsharing:FAIRsharing.b9znd5,
         fairsharing:FAIRsharing.bc8ayj,
         fairsharing:FAIRsharing.bcjrnq,
         fairsharing:FAIRsharing.bdn9br,
+        fairsharing:FAIRsharing.beb855,
         fairsharing:FAIRsharing.bf8dsb,
         fairsharing:FAIRsharing.bg5xqs,
         fairsharing:FAIRsharing.bg7bb6,
@@ -33741,12 +33973,15 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.brhpb0,
         fairsharing:FAIRsharing.bv0zjz,
         fairsharing:FAIRsharing.bxc508,
+        fairsharing:FAIRsharing.c06f1e,
         fairsharing:FAIRsharing.c23cqq,
+        fairsharing:FAIRsharing.c4e46c,
         fairsharing:FAIRsharing.c54ywe,
         fairsharing:FAIRsharing.c55d5e,
         fairsharing:FAIRsharing.c6vhm3,
         fairsharing:FAIRsharing.c7f4d7,
         fairsharing:FAIRsharing.c7w81a,
+        fairsharing:FAIRsharing.c86b48,
         fairsharing:FAIRsharing.c86z66,
         fairsharing:FAIRsharing.c886cd,
         fairsharing:FAIRsharing.c9psgb,
@@ -33762,6 +33997,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.d064y6,
         fairsharing:FAIRsharing.d3pqw7,
         fairsharing:FAIRsharing.d5ff6e,
+        fairsharing:FAIRsharing.d7f0a9,
         fairsharing:FAIRsharing.d88s6e,
         fairsharing:FAIRsharing.d95034,
         fairsharing:FAIRsharing.da493y,
@@ -33790,6 +34026,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.e28v7g,
         fairsharing:FAIRsharing.e3t0yw,
         fairsharing:FAIRsharing.e4n3an,
+        fairsharing:FAIRsharing.e7e609,
         fairsharing:FAIRsharing.e7skwg,
         fairsharing:FAIRsharing.ea287c,
         fairsharing:FAIRsharing.edxb58,
@@ -36467,6 +36704,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:bgee.gene,
         bioregistry:bgee.organ,
         bioregistry:bgee.stage,
+        bioregistry:bido,
         bioregistry:bigg.compartment,
         bioregistry:bigg.metabolite,
         bioregistry:bigg.model,
@@ -36501,6 +36739,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:biotools,
         bioregistry:biozil,
         bioregistry:birnlex,
+        bioregistry:biro,
         bioregistry:bitbucket,
         bioregistry:bitterdb.cpd,
         bioregistry:bitterdb.rec,
@@ -36520,6 +36759,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:bugbase.expt,
         bioregistry:bugbase.protocol,
         bioregistry:bykdb,
+        bioregistry:c4o,
         bioregistry:cabri,
         bioregistry:cadsr,
         bioregistry:caloha,
@@ -36574,6 +36814,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:cido,
         bioregistry:cio,
         bioregistry:citexplore,
+        bioregistry:cito,
         bioregistry:civic.aid,
         bioregistry:civic.eid,
         bioregistry:cl,
@@ -36675,6 +36916,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:darc,
         bioregistry:dashr,
         bioregistry:dashr.expression,
+        bioregistry:datacite,
         bioregistry:datanator.gene,
         bioregistry:datanator.metabolite,
         bioregistry:datanator.reaction,
@@ -36695,8 +36937,10 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dctypes,
         bioregistry:ddanat,
         bioregistry:ddpheno,
+        bioregistry:debio,
         bioregistry:decipher,
         bioregistry:degradome,
+        bioregistry:deo,
         bioregistry:depmap,
         bioregistry:depod,
         bioregistry:dermo,
@@ -36726,6 +36970,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dlxb,
         bioregistry:dlxc,
         bioregistry:dmba,
+        bioregistry:doco,
         bioregistry:doi,
         bioregistry:doid,
         bioregistry:dommino,
@@ -36834,6 +37079,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:fcsfree,
         bioregistry:fideo,
         bioregistry:fishbase.species,
+        bioregistry:fivestars,
         bioregistry:fix,
         bioregistry:flopo,
         bioregistry:flowrepository,
@@ -36847,6 +37093,9 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:foodon,
         bioregistry:fovt,
         bioregistry:fplx,
+        bioregistry:fr,
+        bioregistry:frapo,
+        bioregistry:frbr,
         bioregistry:fsnp,
         bioregistry:ftt,
         bioregistry:funcbase.fly,
@@ -37474,7 +37723,9 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:pubchem.substance,
         bioregistry:publons.researcher,
         bioregistry:pubmed,
+        bioregistry:puro,
         bioregistry:pw,
+        bioregistry:pwo,
         bioregistry:px,
         bioregistry:pypi,
         bioregistry:qtldb,
@@ -37539,6 +37790,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:scomp,
         bioregistry:scop,
         bioregistry:scopus,
+        bioregistry:scoro,
         bioregistry:scr,
         bioregistry:scretf,
         bioregistry:sdbs,

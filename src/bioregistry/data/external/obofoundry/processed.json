@@ -6,6 +6,24 @@
     "homepage": "http://github.com/seger/aao",
     "name": "Amphibian gross anatomy"
   },
+  "ado": {
+    "contact": "alpha.tom.kodamullil@scai.fraunhofer.de",
+    "contact.github": "akodamullil",
+    "contact.label": "Alpha Tom Kodamullil",
+    "contact.orcid": "0000-0001-9896-3531",
+    "depends_on": [
+      "bfo"
+    ],
+    "deprecated": false,
+    "description": "Alzheimer's Disease Ontology is a knowledge-based ontology that encompasses varieties of concepts related to Alzheimer'S Disease, structured by upper level Basic Formal Ontology(BFO). This Ontology is enriched by the interrelated entities that demonstrate the network of the understanding on Alzheimer's disease and can be readily applied for text mining.",
+    "download.owl": "http://purl.obolibrary.org/obo/ado.owl",
+    "homepage": "https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO",
+    "license": "CC BY 4.0",
+    "license.url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Alzheimer's Disease Ontology",
+    "preferredPrefix": "ADO",
+    "repository": "https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO"
+  },
   "adw": {
     "contact": "adw_geeks@umich.edu",
     "contact.label": "Animal Diversity Web technical staff",
@@ -237,6 +255,7 @@
   },
   "bfo": {
     "appears_in": [
+      "ado",
       "agro",
       "aism",
       "cdno",
@@ -442,6 +461,7 @@
       "mco",
       "ons",
       "pcl",
+      "proco",
       "uberon",
       "xpo",
       "scdo"
@@ -469,6 +489,9 @@
     "twitter": "chebit"
   },
   "cheminf": {
+    "appears_in": [
+      "proco"
+    ],
     "contact": "egon.willighagen@gmail.com",
     "contact.github": "egonw",
     "contact.label": "Egon Willighagen",
@@ -1723,8 +1746,8 @@
     "description": "An integrated ontology for representing the genetic variations described in genotypes, and their causal relationships to phenotype and diseases.",
     "download.owl": "http://purl.obolibrary.org/obo/geno.owl",
     "homepage": "https://github.com/monarch-initiative/GENO-ontology/",
-    "license": "CC BY-SA 2.0",
-    "license.url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "license": "CC BY 4.0",
+    "license.url": "https://creativecommons.org/licenses/by/4.0/",
     "name": "Genotype Ontology",
     "preferredPrefix": "GENO",
     "repository": "https://github.com/monarch-initiative/GENO-ontology"
@@ -1759,6 +1782,12 @@
     "license.url": "https://creativecommons.org/licenses/by/4.0/",
     "name": "Glycan Naming and Subsumption Ontology (GNOme)",
     "preferredPrefix": "GNO",
+    "publications": [
+      {
+        "id": "https://doi.org/10.5281/zenodo.6678278",
+        "title": "GNOme - Glycan Naming and Subsumption Ontology"
+      }
+    ],
     "repository": "https://github.com/glygen-glycan-data/GNOme"
   },
   "go": {
@@ -2888,6 +2917,7 @@
       "mco",
       "one",
       "ons",
+      "proco",
       "rbo",
       "scdo"
     ],
@@ -2951,6 +2981,10 @@
     "repository": "https://bitbucket.org/hegroup/ogg"
   },
   "ogi": {
+    "contact": "linikujp@gmail.com",
+    "contact.github": "linikujp",
+    "contact.label": "Asiyah Yu Lin",
+    "contact.orcid": "0000-0002-5379-5359",
     "deprecated": true,
     "description": "An ontology that formalizes the genomic element by defining an upper class genetic interval",
     "download.owl": "http://purl.obolibrary.org/obo/ogi.owl",
@@ -3344,6 +3378,7 @@
       "pco",
       "phipo",
       "planp",
+      "proco",
       "rbo",
       "xpo",
       "zp"
@@ -3698,6 +3733,29 @@
     ],
     "repository": "https://github.com/PROconsortium/PRoteinOntology"
   },
+  "proco": {
+    "contact": "wes_schafer@merck.com",
+    "contact.github": "schaferw",
+    "contact.label": "Wes Schafer",
+    "contact.orcid": "0000-0002-8786-1756",
+    "depends_on": [
+      "chebi",
+      "cheminf",
+      "obi",
+      "pato",
+      "ro",
+      "sbo"
+    ],
+    "deprecated": false,
+    "description": "PROCO covers process chemistry, the chemical field concerned with scaling up laboratory syntheses to commercially viable processes.",
+    "download.owl": "http://purl.obolibrary.org/obo/proco.owl",
+    "homepage": "https://github.com/proco-ontology/PROCO",
+    "license": "CC BY 4.0",
+    "license.url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Process Chemistry Ontology",
+    "preferredPrefix": "PROCO",
+    "repository": "https://github.com/proco-ontology/PROCO"
+  },
   "propreo": {
     "contact": "satya30@uga.edu",
     "contact.label": "Satya S. Sahoo",
@@ -3859,6 +3917,7 @@
       "plana",
       "planp",
       "poro",
+      "proco",
       "psdo",
       "pso",
       "rbo",
@@ -3928,6 +3987,7 @@
   },
   "sbo": {
     "appears_in": [
+      "proco",
       "scdo"
     ],
     "contact": "sheriff@ebi.ac.uk",

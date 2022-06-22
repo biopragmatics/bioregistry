@@ -3870,6 +3870,7 @@
     },
     "obofoundry": {
       "appears_in": [
+        "ado",
         "agro",
         "aism",
         "cdno",
@@ -4074,6 +4075,17 @@
     },
     "description": "An ontology that allows the description of numerical and categorical bibliometric data (e.g., journal impact factor, author h-index, categories describing research careers) in RDF.",
     "example": "CategorialBibliometricData",
+    "fairsharing": {
+      "abbreviation": "BiDO",
+      "description": "The Bibliometric Data Ontology (BiDO) is a modular ontology that allows the description of numerical and categorical bibliometric data (e.g., journal impact factor, author h-index, categories describing research careers) in RDF.",
+      "id": "3737",
+      "name": "Bibliometric Data Ontology ",
+      "prefix": "FAIRsharing.d7f0a9",
+      "publications": [],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
     "homepage": "http://www.sparontologies.net/ontologies/bido",
     "mappings": {
       "fairsharing": "FAIRsharing.d7f0a9"
@@ -4581,7 +4593,7 @@
   "biolink": {
     "aberowl": {
       "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations",
-      "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/25/biolink.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/26/biolink.owl",
       "homepage": "https://biolink.github.io/biolink-model/",
       "name": "Biolink Model",
       "prefix": "BIOLINK",
@@ -5605,6 +5617,17 @@
     },
     "description": "An ontology meant to define bibliographic records, bibliographic references, and their compilation into bibliographic collections and bibliographic lists, respectively.",
     "example": "BibliographicRecord",
+    "fairsharing": {
+      "abbreviation": "BiRO",
+      "description": "the Bibliographic Reference Ontology (BiRO) is an ontology meant to define bibliographic records, bibliographic references, and their compilation into bibliographic collections and bibliographic lists, respectively.\n\n",
+      "id": "3726",
+      "name": "Bibliographic Reference Ontology ",
+      "prefix": "FAIRsharing.99da5f",
+      "publications": [],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
     "homepage": "http://www.sparontologies.net/ontologies/biro",
     "mappings": {
       "fairsharing": "FAIRsharing.99da5f"
@@ -6451,7 +6474,21 @@
     },
     "description": "An ontology that permits the number of in-text citations of a cited source to be recorded, together with their textual citation contexts, along with the number of citations a cited entity has received globally on a particular date.",
     "example": "InTextReferencePointer",
+    "fairsharing": {
+      "abbreviation": "C4O",
+      "description": "The Citation Counting and Context Characterisation Ontology (C4O) is an ontology that permits the number of in-text citations of a cited source to be recorded, together with their textual citation contexts, along with the number of citations a cited entity has received globally on a particular date;",
+      "id": "3727",
+      "name": "Citation Counting and Context Characterization Ontology ",
+      "prefix": "FAIRsharing.beb855",
+      "publications": [],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
     "homepage": "http://www.sparontologies.net/ontologies/c4o",
+    "mappings": {
+      "fairsharing": "FAIRsharing.beb855"
+    },
     "name": "Citation Counting and Context Characterisation Ontology",
     "preferred_prefix": "C4O",
     "repository": "https://github.com/sparontologies/c4o",
@@ -8395,6 +8432,7 @@
         "mco",
         "ons",
         "pcl",
+        "proco",
         "uberon",
         "xpo",
         "scdo"
@@ -8883,6 +8921,9 @@
     },
     "name": "Chemical Information Ontology",
     "obofoundry": {
+      "appears_in": [
+        "proco"
+      ],
       "contact": "egon.willighagen@gmail.com",
       "contact.github": "egonw",
       "contact.label": "Egon Willighagen",
@@ -9401,6 +9442,23 @@
     },
     "description": "An ontology that enables characterization of the nature or type of citations, both factually and rhetorically.",
     "example": "sharesAuthorInstitutionWith",
+    "fairsharing": {
+      "abbreviation": "CiTO",
+      "description": "The Citation Typing Ontology (CiTO) is an ontology that enables the characterization of the nature or type of citations, both factually and rhetorically. It is intended to allow authors (or others) to mark citation links and to capture citation intent when someone cites a particular publication. In particular, CiTO allows the creation of metadata describing citations that are distinct from metadata describing the cited works themselves, and permits the motives of an author when referring to another document to be captured.\n",
+      "id": "3629",
+      "name": "Citation Typing Ontology ",
+      "prefix": "FAIRsharing.b220d4",
+      "publications": [
+        {
+          "doi": "10.1016/j.websem.2012.08.001",
+          "pubmed_id": null,
+          "title": "FaBiO and CiTO: Ontologies for describing bibliographic resources and citations"
+        }
+      ],
+      "subjects": [
+        "Knowledge and Information Systems"
+      ]
+    },
     "homepage": "http://www.sparontologies.net/ontologies/cito",
     "mappings": {
       "fairsharing": "FAIRsharing.b220d4"
@@ -13757,6 +13815,18 @@
     }
   },
   "datacite": {
+    "aberowl": {
+      "description": "The DataCite Ontology (DataCite) is an ontology that enables the metadata properties of the DataCite Metadata Schema Specification (i.e., a list of metadata properties for the accurate and consistent identification of a resource for citation and retrieval purposes) to be described in RDF.",
+      "download_owl": "http://aber-owl.net/media/ontologies/DATACITE/1/datacite.owl",
+      "homepage": "http://www.sparontologies.net/ontologies/datacite",
+      "name": "SPAR DataCite Ontology",
+      "prefix": "DATACITE",
+      "version": "1.1"
+    },
+    "bioportal": {
+      "name": "SPAR DataCite Ontology",
+      "prefix": "DATACITE"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -13765,8 +13835,21 @@
     },
     "description": "An ontology that enables the metadata properties of the DataCite Metadata Schema Specification (i.e., a list of metadata properties for the accurate and consistent identification of a resource for citation and retrieval purposes) to be described in RDF.",
     "example": "AgentIdentifierScheme",
+    "fairsharing": {
+      "abbreviation": "DataCite",
+      "description": "The DataCite Ontology (DataCite) is an ontology that enables the metadata properties of the DataCite Metadata Schema Specification (i.e., a list of metadata properties for the accurate and consistent identification of a resource for citation and retrieval purposes) to be described in RDF.",
+      "id": "3736",
+      "name": "DataCite Ontology ",
+      "prefix": "FAIRsharing.c06f1e",
+      "publications": [],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
     "homepage": "http://www.sparontologies.net/ontologies/datacite",
     "mappings": {
+      "aberowl": "DATACITE",
+      "bioportal": "DATACITE",
       "fairsharing": "FAIRsharing.c06f1e"
     },
     "name": "DataCite Ontology",
@@ -14778,6 +14861,23 @@
     },
     "description": "An ontology that provides a structured vocabulary for rhetorical elements within documents (e.g., Introduction, Discussion, Acknowledgements, Reference List, Figures, Appendix). It is imported by DoCO.",
     "example": "Reference",
+    "fairsharing": {
+      "abbreviation": "DEO",
+      "description": "The Discourse Elements Ontology (DEO) is an ontology that provides a structured vocabulary for rhetorical elements within documents (e.g., Introduction, Discussion, Acknowledgements, Reference List, Figures, Appendix). It is imported by DoCO.",
+      "id": "3733",
+      "name": "Discourse Elements Ontology",
+      "prefix": "FAIRsharing.39fd58",
+      "publications": [
+        {
+          "doi": "https://doi.org/10.3233/SW-150177",
+          "pubmed_id": null,
+          "title": "The Document Components Ontology (DoCO)"
+        }
+      ],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
     "homepage": "http://www.sparontologies.net/ontologies/deo",
     "mappings": {
       "fairsharing": "FAIRsharing.39fd58"
@@ -15712,6 +15812,23 @@
     },
     "description": "An ontology that provides a structured vocabulary written of document components, both structural (e.g., block, inline, paragraph, section, chapter) and rhetorical (e.g., introduction, discussion, acknowledgements, reference list, figure, appendix).",
     "example": "Paragraph",
+    "fairsharing": {
+      "abbreviation": "DoCO",
+      "description": "The Document Components Ontology (DoCO) is an ontology that provides a structured vocabulary written of document components, both structural (e.g., block, inline, paragraph, section, chapter) and rhetorical (e.g., introduction, discussion, acknowledgements, reference list, figure, appendix).",
+      "id": "3728",
+      "name": "Document Components Ontology ",
+      "prefix": "FAIRsharing.162003",
+      "publications": [
+        {
+          "doi": "10.3233/SW-150177",
+          "pubmed_id": null,
+          "title": "The Document Components Ontology (DoCO)"
+        }
+      ],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
     "homepage": "http://www.sparontologies.net/ontologies/doco",
     "mappings": {
       "fairsharing": "FAIRsharing.162003"
@@ -21633,6 +21750,23 @@
     },
     "description": "An ontology written in OWL 2 DL to enable characterization of the five attributes of an online journal article - peer review, open access, enriched content, available datasets and machine-readable metadata.",
     "example": "hasOpenAccessRating",
+    "fairsharing": {
+      "abbreviation": "FiveStars",
+      "description": "The Five Stars of Online Research Articles Ontology (FiveStars) is an ontology written in OWL 2 DL to enable characterization of the five attributes of an online journal article - peer review, open access, enriched content, available datasets and machine-readable metadata.",
+      "id": "3738",
+      "name": "Five Stars of Online Research Articles Ontology ",
+      "prefix": "FAIRsharing.6dfe9b",
+      "publications": [
+        {
+          "doi": "10.1045/january2012-shotton",
+          "pubmed_id": null,
+          "title": "The Five Stars of Online Journal Articles - a Framework for Article Evaluation"
+        }
+      ],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
     "homepage": "http://www.sparontologies.net/ontologies/fivestars",
     "mappings": {
       "fairsharing": "FAIRsharing.6dfe9b"
@@ -22603,6 +22737,17 @@
     },
     "description": "An ontology that enables the description of reviews of scientific articles and other scholarly resources.",
     "example": "ReviewVersion",
+    "fairsharing": {
+      "abbreviation": "FR",
+      "description": "The FAIR* Reviews Ontology (FR) enables the description of reviews of scientific articles and other scholarly resources.",
+      "id": "3739",
+      "name": "FAIR* Reviews Ontology ",
+      "prefix": "FAIRsharing.e7e609",
+      "publications": [],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
     "homepage": "http://www.sparontologies.net/ontologies/fr",
     "mappings": {
       "fairsharing": "FAIRsharing.e7e609"
@@ -22612,6 +22757,10 @@
     "repository": "https://github.com/sparontologies/fr"
   },
   "frapo": {
+    "aberowl": {
+      "name": "Funding, Research Administration and Projects Ontology",
+      "prefix": "FRAPO"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -22620,8 +22769,20 @@
     },
     "description": "An ontology for describing the administrative information of research projects, e.g., grant applications, funding bodies, project partners, etc.",
     "example": "Grant",
+    "fairsharing": {
+      "abbreviation": "FRAPO",
+      "description": "The Funding, Research Administration and Projects Ontology (FRAPO) is an ontology for describing the administrative information of research projects, e.g., grant applications, funding bodies, project partners, etc.",
+      "id": "3735",
+      "name": "Funding, Research Administration and Projects Ontology ",
+      "prefix": "FAIRsharing.0a2576",
+      "publications": [],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
     "homepage": "http://www.sparontologies.net/ontologies/frapo",
     "mappings": {
+      "aberowl": "FRAPO",
       "fairsharing": "FAIRsharing.0a2576"
     },
     "name": "Funding, Research Administration and Projects Ontology",
@@ -22638,6 +22799,17 @@
     },
     "description": "The Essential FRBR in OWL2 DL Ontology (FRBR) is an expression in OWL 2 DL of the basic concepts and relations described in the IFLA report on the Functional Requirements for Bibliographic Records (FRBR), also described in Ian Davis's RDF vocabulary. It is imported by FaBiO and BiRO.",
     "example": "Expression",
+    "fairsharing": {
+      "abbreviation": "FRBR",
+      "description": "The Essential FRBR in OWL2 DL Ontology (FRBR) is an expression in OWL 2 DL of the basic concepts and relations described in the IFLA report on the Functional Requirements for Bibliographic Records (FRBR), also described in Ian Davis's RDF vocabulary. It is imported by FaBiO and BiRO.",
+      "id": "3732",
+      "name": "Essential FRBR in OWL2 DL Ontology ",
+      "prefix": "FAIRsharing.b34b43",
+      "publications": [],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
     "homepage": "http://www.sparontologies.net/ontologies/frbr",
     "mappings": {
       "fairsharing": "FAIRsharing.b34b43"
@@ -24187,8 +24359,8 @@
       "description": "An integrated ontology for representing the genetic variations described in genotypes, and their causal relationships to phenotype and diseases.",
       "download.owl": "http://purl.obolibrary.org/obo/geno.owl",
       "homepage": "https://github.com/monarch-initiative/GENO-ontology/",
-      "license": "CC BY-SA 2.0",
-      "license.url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "license": "CC BY 4.0",
+      "license.url": "https://creativecommons.org/licenses/by/4.0/",
       "name": "Genotype Ontology",
       "preferredPrefix": "GENO",
       "prefix": "geno",
@@ -25207,6 +25379,12 @@
       "name": "Glycan Naming and Subsumption Ontology (GNOme)",
       "preferredPrefix": "GNO",
       "prefix": "gno",
+      "publications": [
+        {
+          "id": "https://doi.org/10.5281/zenodo.6678278",
+          "title": "GNOme - Glycan Naming and Subsumption Ontology"
+        }
+      ],
       "repository": "https://github.com/glygen-glycan-data/GNOme"
     },
     "ols": {
@@ -44094,6 +44272,7 @@
         "mco",
         "one",
         "ons",
+        "proco",
         "rbo",
         "scdo"
       ],
@@ -44628,6 +44807,10 @@
       "ontobee": "OGI"
     },
     "obofoundry": {
+      "contact": "linikujp@gmail.com",
+      "contact.github": "linikujp",
+      "contact.label": "Asiyah Yu Lin",
+      "contact.orcid": "0000-0002-5379-5359",
       "deprecated": true,
       "description": "An ontology that formalizes the genomic element by defining an upper class genetic interval",
       "download.owl": "http://purl.obolibrary.org/obo/ogi.owl",
@@ -48089,6 +48272,7 @@
         "pco",
         "phipo",
         "planp",
+        "proco",
         "rbo",
         "xpo",
         "zp"
@@ -53547,6 +53731,23 @@
     },
     "description": "An ontology for the characterisation of the roles of agents – people, corporate bodies and computational agents in the publication process. These agents can be, e.g. authors, editors, reviewers, publishers or librarians.",
     "example": "RoleInTime",
+    "fairsharing": {
+      "abbreviation": "PRO",
+      "description": "The Publishing Roles Ontology (PRO) is an ontology for the characterisation of the roles of agents – people, corporate bodies and computational agents in the publication process. These agents can be, e.g. authors, editors, reviewers, publishers or librarians.",
+      "id": "3730",
+      "name": "Publishing Roles Ontology",
+      "prefix": "FAIRsharing.3e88d6",
+      "publications": [
+        {
+          "doi": "10.1145/2362499.2362502",
+          "pubmed_id": null,
+          "title": "Scholarly publishing and Linked Data: describing roles, statuses, temporal and contextual extents"
+        }
+      ],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
     "homepage": "http://www.sparontologies.net/ontologies/pro",
     "mappings": {
       "fairsharing": "FAIRsharing.3e88d6"
@@ -53707,6 +53908,23 @@
     },
     "description": "An ontology for describing the steps in the workflow associated with the publication of a document or other publication entity.",
     "example": "Workflow",
+    "fairsharing": {
+      "abbreviation": "PWO",
+      "description": "The Publishing Workflow Ontology (PWO) is a simple ontology for describing the steps in the workflow associated with the publication of a document or other publication entity.",
+      "id": "3731",
+      "name": " Publishing Workflow Ontology ",
+      "prefix": "FAIRsharing.c4e46c",
+      "publications": [
+        {
+          "doi": "https://doi.org/10.3233/SW-160230",
+          "pubmed_id": null,
+          "title": "The Publishing Workflow Ontology (PWO)"
+        }
+      ],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
     "homepage": "http://www.sparontologies.net/ontologies/pwo",
     "mappings": {
       "fairsharing": "FAIRsharing.c4e46c"
@@ -55651,6 +55869,7 @@
         "plana",
         "planp",
         "poro",
+        "proco",
         "psdo",
         "pso",
         "rbo",
@@ -56516,6 +56735,7 @@
     },
     "obofoundry": {
       "appears_in": [
+        "proco",
         "scdo"
       ],
       "contact": "sheriff@ebi.ac.uk",
@@ -56819,6 +57039,23 @@
     },
     "description": "An ontology based on PRO for describing the contributions that may be made, and the roles that may be held by a person with respect to a journal article or other publication (e.g. the role of article guarantor or illustrator).",
     "example": "IntellectualContribution",
+    "fairsharing": {
+      "abbreviation": "SCoRO",
+      "description": "The Scholarly Contributions and Roles Ontology (SCoRO) is an ontology based on PRO for describing the contributions that may be made, and the roles that may be held by a person with respect to a journal article or other publication (e.g. the role of article guarantor or illustrator)",
+      "id": "3734",
+      "name": "Scholarly Contributions and Roles Ontology ",
+      "prefix": "FAIRsharing.c86b48",
+      "publications": [
+        {
+          "doi": "https://doi.org/10.3233/SW-150177",
+          "pubmed_id": null,
+          "title": "The Document Components Ontology (DoCO)"
+        }
+      ],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
     "homepage": "http://www.sparontologies.net/ontologies/scoro",
     "mappings": {
       "fairsharing": "FAIRsharing.c86b48"

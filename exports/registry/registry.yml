@@ -1601,6 +1601,23 @@ bgee.stage:
   pattern: ^(FBvd|XtroDO|HsapDO|MmusDO)\:\d+$
   preferred_prefix: bgee.stage
   uri_format: http://bgee.unil.ch/bgee/bgee?page=anatomy&action=organs&stage_children=on&stage_id=$1
+bido:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology that allows the description of numerical and categorical
+    bibliometric data (e.g., journal impact factor, author h-index, categories describing
+    research careers) in RDF.
+  example: CategorialBibliometricData
+  homepage: http://www.sparontologies.net/ontologies/bido
+  mappings:
+    fairsharing: FAIRsharing.d7f0a9
+  name: Bibliometric Data Ontology
+  preferred_prefix: BiDO
+  repository: https://github.com/sparontologies/bido
+  uri_format: http://purl.org/spar/bido/$1
 bigg.compartment:
   description: BiGG is a knowledgebase of Biochemically, Genetically and Genomically
     structured genome-scale metabolic network reconstructions. It more published genome-scale
@@ -1799,7 +1816,7 @@ biolegend:
 biolink:
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
-  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/25/biolink.owl
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/26/biolink.owl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
   mappings:
@@ -2209,6 +2226,23 @@ birnlex:
     fairsharing: FAIRsharing.jedbbt
   name: Biomedical Informatics Research Network Lexicon
   preferred_prefix: birnlex
+biro:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology meant to define bibliographic records, bibliographic references,
+    and their compilation into bibliographic collections and bibliographic lists,
+    respectively.
+  example: BibliographicRecord
+  homepage: http://www.sparontologies.net/ontologies/biro
+  mappings:
+    fairsharing: FAIRsharing.99da5f
+  name: Bibliographic Reference Ontology
+  preferred_prefix: BiRO
+  repository: https://github.com/sparontologies/biro
+  uri_format: http://purl.org/spar/biro/$1
 bitbucket:
   description: Bitbucket is a Git-based source code repository hosting service owned
     by Atlassian.
@@ -2573,6 +2607,23 @@ bykdb:
   preferred_prefix: bykdb
   provides: uniprot
   uri_format: https://bykdb.ibcp.fr/data/html/annotated/$1.html
+c4o:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology that permits the number of in-text citations of a cited
+    source to be recorded, together with their textual citation contexts, along with
+    the number of citations a cited entity has received globally on a particular date.
+  example: InTextReferencePointer
+  homepage: http://www.sparontologies.net/ontologies/c4o
+  mappings:
+    fairsharing: FAIRsharing.beb855
+  name: Citation Counting and Context Characterisation Ontology
+  preferred_prefix: C4O
+  repository: https://github.com/sparontologies/c4o
+  uri_format: http://purl.org/spar/c4o/$1
 cabri:
   description: CABRI (Common Access to Biotechnological Resources and Information)
     is an online service where users can search a number of European Biological Resource
@@ -3686,6 +3737,22 @@ citexplore:
   synonyms:
   - CTX
   uri_format: https://europepmc.org/article/CTX/$1
+cito:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology that enables characterization of the nature or type of
+    citations, both factually and rhetorically.
+  example: sharesAuthorInstitutionWith
+  homepage: http://www.sparontologies.net/ontologies/cito
+  mappings:
+    fairsharing: FAIRsharing.b220d4
+  name: Citation Typing Ontology
+  preferred_prefix: CiTO
+  repository: https://github.com/sparontologies/cito
+  uri_format: http://purl.org/spar/cito/$1
 civic.aid:
   description: 'A CIViC assertion classifies the clinical significance of a variant-disease
     relationship under recognized guidelines. The CIViC Assertion (AID) summarizes
@@ -5535,6 +5602,27 @@ dashr.expression:
   pattern: ^(hsa-(let|mir)-\w+(-\w+)?)|(piR-\d+)|(chr\w+.tRNA\d+-\w+)|(chr\w+.tRNA\d+-\w+-tRF\d)|((SNORD|SNORA|ACA|HBII|HBI|U)(-)?\w+)|(HY\d\+(-L\d+)?)|((LSU|SSU|5S)(-rRNA_Hsa)?(-L\d+)?)$
   preferred_prefix: dashr.expression
   uri_format: https://dashr1.lisanwanglab.org/entry/hsa-mir-200a#$1#exprPerTissueTable
+datacite:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology that enables the metadata properties of the DataCite Metadata
+    Schema Specification (i.e., a list of metadata properties for the accurate and
+    consistent identification of a resource for citation and retrieval purposes) to
+    be described in RDF.
+  download_owl: http://aber-owl.net/media/ontologies/DATACITE/1/datacite.owl
+  example: AgentIdentifierScheme
+  homepage: http://www.sparontologies.net/ontologies/datacite
+  mappings:
+    aberowl: DATACITE
+    bioportal: DATACITE
+    fairsharing: FAIRsharing.c06f1e
+  name: DataCite Ontology
+  preferred_prefix: DataCite
+  repository: https://github.com/sparontologies/datacite
+  uri_format: http://purl.org/spar/datacite/$1
 datanator.gene:
   description: Datanator is an integrated database of genomic and biochemical data
     designed to help investigators find data about specific molecules and reactions
@@ -5893,6 +5981,26 @@ ddpheno:
   repository: https://github.com/obophenotype/dicty-phenotype-ontology
   uri_format: http://purl.obolibrary.org/obo/DDPHENO_$1
   version: '2020-06-19'
+debio:
+  contact:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A repository for the TSV-based, decentralized, community-curated curation
+    of terms, properties, and relations that get turned into OBO, OWL, and OBO Graph
+    JSON.
+  example: '0000001'
+  homepage: https://biopragmatics.github.io/debio
+  name: Decentralized Biomedical Ontology
+  pattern: ^\d{7}$
+  preferred_prefix: DeBiO
+  uri_format: https://biopragmatics.github.io/debio/$1
 decipher:
   contributor:
     email: cthoyt@gmail.com
@@ -5927,6 +6035,23 @@ degradome:
   pattern: ^[AMCST][0-9x][0-9]$
   preferred_prefix: degradome
   uri_format: http://degradome.uniovi.es/cgi-bin/protease/$1
+deo:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology that provides a structured vocabulary for rhetorical elements
+    within documents (e.g., Introduction, Discussion, Acknowledgements, Reference
+    List, Figures, Appendix). It is imported by DoCO.
+  example: Reference
+  homepage: http://www.sparontologies.net/ontologies/deo
+  mappings:
+    fairsharing: FAIRsharing.39fd58
+  name: Discourse Elements Ontology
+  preferred_prefix: DEO
+  repository: https://github.com/sparontologies/deo
+  uri_format: http://purl.org/spar/deo/$1
 depmap:
   description: Cell lines used in the Dependency Map (DepMap). Highly related to CCLE
     Cells.
@@ -6363,6 +6488,24 @@ dmba:
   name: Developing Mouse Brain Atlas
   pattern: ^\d+$
   preferred_prefix: DMBA
+doco:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology that provides a structured vocabulary written of document
+    components, both structural (e.g., block, inline, paragraph, section, chapter)
+    and rhetorical (e.g., introduction, discussion, acknowledgements, reference list,
+    figure, appendix).
+  example: Paragraph
+  homepage: http://www.sparontologies.net/ontologies/doco
+  mappings:
+    fairsharing: FAIRsharing.162003
+  name: Document Components Ontology
+  preferred_prefix: DoCO
+  repository: https://github.com/sparontologies/doco
+  uri_format: http://purl.org/spar/doco/$1
 doi:
   comment: 'The [DOI resolution factsheet](https://www.doi.org/factsheets/DOIProxy.html)
     specifies that `https://doi.org/DOI` is the preferred format:
@@ -8338,6 +8481,12 @@ fabio:
     fairsharing: FAIRsharing.2f3180
   name: FaBiO, the FRBR-aligned Bibliographic Ontology
   preferred_prefix: fabio
+  providers:
+  - code: rdf
+    description: A persistent URL for FaBiO
+    homepage: https://github.com/sparontologies/fabio
+    name: FABIO PURL
+    uri_format: http://purl.org/spar/fabio/$1
   repository: https://github.com/sparontologies/fabio
   uri_format: https://sparontologies.github.io/fabio/current/fabio.html#$1
 facebase:
@@ -8696,6 +8845,22 @@ fishbase.species:
   preferred_prefix: fishbase.species
   synonyms:
   - fishbase
+fivestars:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology written in OWL 2 DL to enable characterization of the five
+    attributes of an online journal article - peer review, open access, enriched content,
+    available datasets and machine-readable metadata.
+  example: hasOpenAccessRating
+  homepage: http://www.sparontologies.net/ontologies/fivestars
+  mappings:
+    fairsharing: FAIRsharing.6dfe9b
+  name: Five Stars of Online Research Articles Ontology
+  preferred_prefix: FiveStars
+  repository: https://github.com/sparontologies/fivestars
 fix:
   contact:
     email: null
@@ -9034,6 +9199,56 @@ fplx:
   synonyms:
   - famplex
   uri_format: https://sorgerlab.github.io/famplex/$1
+fr:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology that enables the description of reviews of scientific articles
+    and other scholarly resources.
+  example: ReviewVersion
+  homepage: http://www.sparontologies.net/ontologies/fr
+  mappings:
+    fairsharing: FAIRsharing.e7e609
+  name: FAIR* Reviews Ontology
+  preferred_prefix: FR
+  repository: https://github.com/sparontologies/fr
+frapo:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology for describing the administrative information of research
+    projects, e.g., grant applications, funding bodies, project partners, etc.
+  example: Grant
+  homepage: http://www.sparontologies.net/ontologies/frapo
+  mappings:
+    aberowl: FRAPO
+    fairsharing: FAIRsharing.0a2576
+  name: Funding, Research Administration and Projects Ontology
+  preferred_prefix: FRAPO
+  repository: https://github.com/sparontologies/frapo
+  uri_format: http://purl.org/cerif/frapo/$1
+frbr:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Essential FRBR in OWL2 DL Ontology (FRBR) is an expression in OWL
+    2 DL of the basic concepts and relations described in the IFLA report on the Functional
+    Requirements for Bibliographic Records (FRBR), also described in Ian Davis's RDF
+    vocabulary. It is imported by FaBiO and BiRO.
+  example: Expression
+  homepage: http://www.sparontologies.net/ontologies/frbr
+  mappings:
+    fairsharing: FAIRsharing.b34b43
+  name: Functional Requirements for Bibliographic Records
+  preferred_prefix: FRBR
+  repository: https://github.com/sparontologies/frbr
+  uri_format: http://purl.org/vocab/frbr/core#$1
 fsnp:
   description: The Functional Single Nucleotide Polymorphism (F-SNP) database integrates
     information obtained from databases about the functional effects of SNPs. These
@@ -9652,7 +9867,7 @@ geno:
   download_owl: http://purl.obolibrary.org/obo/geno.owl
   example: '0000632'
   homepage: https://github.com/monarch-initiative/GENO-ontology/
-  license: CC BY-SA 2.0
+  license: CC BY 4.0
   mappings:
     aberowl: GENO
     biocontext: GENO
@@ -18157,6 +18372,11 @@ ogg:
   uri_format: http://purl.obolibrary.org/obo/OGG_$1
   version: 1.0.59
 ogi:
+  contact:
+    email: linikujp@gmail.com
+    github: linikujp
+    name: Asiyah Yu Lin
+    orcid: 0000-0002-5379-5359
   deprecated: true
   description: "OGI formalized the genomic element by defining an upper class 'genetic\
     \ interval'.\n\nThe definition of 'genetic interval' is \"the spatial continuous\
@@ -21591,6 +21811,23 @@ pubmed:
   - PMID
   - pmid
   uri_format: https://www.ncbi.nlm.nih.gov/pubmed/$1
+puro:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology for the characterisation of the roles of agents – people,
+    corporate bodies and computational agents in the publication process. These agents
+    can be, e.g. authors, editors, reviewers, publishers or librarians.
+  example: RoleInTime
+  homepage: http://www.sparontologies.net/ontologies/pro
+  mappings:
+    fairsharing: FAIRsharing.3e88d6
+  name: Publishing Roles Ontology
+  preferred_prefix: PuRO
+  repository: https://github.com/sparontologies/pro
+  uri_format: http://purl.org/spar/pro/$1
 pw:
   banana: PW
   contact:
@@ -21627,6 +21864,22 @@ pw:
   repository: https://github.com/rat-genome-database/PW-Pathway-Ontology
   uri_format: http://rgd.mcw.edu/rgdweb/ontology/annot.html?acc_id=PW:$1
   version: '2019-10-23'
+pwo:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology for describing the steps in the workflow associated with
+    the publication of a document or other publication entity.
+  example: Workflow
+  homepage: http://www.sparontologies.net/ontologies/pwo
+  mappings:
+    fairsharing: FAIRsharing.c4e46c
+  name: Publishing Workflow Ontology
+  preferred_prefix: PWO
+  repository: https://github.com/sparontologies/pwo
+  uri_format: http://purl.org/spar/pwo/$1
 px:
   description: The ProteomeXchange provides a single point of submission of Mass Spectrometry
     (MS) proteomics data for the main existing proteomics repositories, and encourages
@@ -22897,6 +23150,23 @@ scopus:
   name: Scopus Researcher
   pattern: ^\d+$
   preferred_prefix: scopus
+scoro:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An ontology based on PRO for describing the contributions that may
+    be made, and the roles that may be held by a person with respect to a journal
+    article or other publication (e.g. the role of article guarantor or illustrator).
+  example: IntellectualContribution
+  homepage: http://www.sparontologies.net/ontologies/scoro
+  mappings:
+    fairsharing: FAIRsharing.c86b48
+  name: Scholarly Contributions and Roles Ontology
+  preferred_prefix: SCoRO
+  repository: https://github.com/sparontologies/scoro
+  uri_format: http://purl.org/spar/scoro/$1
 scr:
   contributor:
     email: cthoyt@gmail.com
