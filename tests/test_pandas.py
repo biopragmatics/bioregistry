@@ -11,6 +11,7 @@ class TestPandasUtils(unittest.TestCase):
     """Tests for pandas utilities."""
 
     def setUp(self) -> None:
+        """Set up the test case."""
         self.rows = [
             ("go", "0000001"),
             ("GO", "0000001"),
@@ -36,11 +37,13 @@ class TestPandasUtils(unittest.TestCase):
         self.assertEqual([True, True, True, True, None], list(res))
 
     def test_validate_identifiers(self):
+        """Test validating identifiers."""
         res = brpd.validate_identifiers(self.df, "identifier", prefix_column="prefix")
         self.assertEqual([True, True, False, False, None], list(res))
 
     @unittest.skip
     def test_normalize_identifiers(self):
+        """Test normalizing identifiers."""
         brpd.normalize_identifiers(self.df)
 
         res = brpd.validate_identifiers(self.df, "identifier", prefix_column="prefix")
@@ -48,7 +51,7 @@ class TestPandasUtils(unittest.TestCase):
         self.assertEqual([True, True, False, True, None], list(res))
 
     def test_identifiers_to_curies(self):
-        """Test converting local unique identifeirs to CURIEs."""
+        """Test converting local unique identifiers to CURIEs."""
         rows = [
             ("go", "0000001"),
             ("go", "0000002"),
@@ -63,7 +66,6 @@ class TestPandasUtils(unittest.TestCase):
             ("xxx", None),
         ]
         self.assertEqual(processed_rows, [tuple(row) for row in df.values])
-
 
     def test_validate_curies(self):
         """Test validating CURIEs."""

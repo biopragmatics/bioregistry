@@ -918,12 +918,14 @@ class Manager:
         return rv
 
     def is_valid_identifier(self, prefix: str, identifier: str) -> Optional[bool]:
+        """Check if the identifier is valid."""
         resource = self.get_resource(prefix)
         if resource is None:
             return None
         return resource.is_valid_identifier(identifier)
 
     def is_standardizable_identifier(self, prefix: str, identifier: str) -> Optional[bool]:
+        """Check if the identifier is standardizable."""
         resource = self.get_resource(prefix)
         if resource is None:
             return None

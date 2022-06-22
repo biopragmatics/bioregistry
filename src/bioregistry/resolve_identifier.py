@@ -30,10 +30,12 @@ __all__ = [
 
 
 def is_valid_curie(curie: str) -> Optional[bool]:
+    """Check if the CURIE is valid and standard."""
     return manager.is_valid_curie(curie)
 
 
 def is_standardizable_curie(curie: str) -> Optional[str]:
+    """Check if the CURIE is standardizable."""
     return manager.is_standardizable_curie(curie)
 
 

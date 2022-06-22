@@ -30,6 +30,10 @@ __all__ = [
 logger = logging.getLogger(__name__)
 
 
+class PrefixLocationError(ValueError):
+    """Raised when not exactly one of prefix and prefix_column were given."""
+
+
 def _norm_column(df: pd.DataFrame, column: Union[int, str]) -> str:
     return column if isinstance(column, str) else df.columns[column]
 
@@ -37,7 +41,12 @@ def _norm_column(df: pd.DataFrame, column: Union[int, str]) -> str:
 def normalize_prefixes(
     df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> None:
-    """Normalize prefixes in a given column.
+    r"""Normalize prefixes in a given column.
+
+    :param df: A dataframe
+    :param column: A column in the dataframe containing prefixes
+    :param target_column: The target column to put the normalized prefixes. If not given,
+        overwrites the given ``column`` in place
 
     .. code-block:: python
 
@@ -64,12 +73,12 @@ def normalize_prefixes(
 def normalize_curies(
     df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> None:
-    """Normalize CURIEs in a given column.
+    r"""Normalize CURIEs in a given column.
 
-    :param df: A DataFrame
+    :param df: A dataframe
     :param column: The column of CURIEs to normalize
     :param target_column:
-        The column to put the normalized CURIEs in. If not given, overwrites the input column in place.
+        The column to put the normalized CURIEs in. If not given, overwrites the given ``column`` in place.
 
     The following example shows how the entries in the widely used `Gene Ontology Annotations
     <http://geneontology.org/docs/go-annotation-file-gaf-format-2.2/#>`_ database distributed
@@ -113,12 +122,14 @@ def normalize_curies(
 def validate_prefixes(
     df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> pd.Series:
-    """Validate prefixes in a given column.
+    r"""Validate prefixes in a given column.
 
     :param df: A DataFrame
     :param column: The column of prefixes to validate
     :param target_column:
         The optional column to put the results of validation
+    :returns:
+        A pandas series corresponding to the validity of each row
 
     .. code-block:: python
 
@@ -147,8 +158,8 @@ def validate_prefixes(
     return results
 
 
-def summarize_prefix_validation(df, idx) -> None:
-    """Provide a summary of prefix validation"""
+def summarize_prefix_validation(df: pd.DataFrame, idx: pd.Series) -> None:
+    """Provide a summary of prefix validation."""
     # TODO add suggestions on what to do next, e.g.:,
     #  1. can some be normalized? use normalization function
     #  2. slice out invalid content
@@ -156,7 +167,7 @@ def summarize_prefix_validation(df, idx) -> None:
     count = (~idx).sum()
     unique = sorted(df[~idx][0].unique())
 
-    print(
+    print(  # noqa:T201
         f"{count:,} of {len(df.index):,} ({count / len(df.index):.0%})",
         "rows with the following prefixes need to be fixed:",
         unique,
@@ -169,7 +180,7 @@ def summarize_prefix_validation(df, idx) -> None:
         if norm_prefix
     }
     if normalizable:
-        print(
+        print(  # noqa:T201
             f"The following prefixes could be normalized using normalize_curies():"
             f"\n\n{tabulate(normalizable.items(), headers=['raw', 'standardized'], tablefmt='github')}"
         )
@@ -178,12 +189,14 @@ def summarize_prefix_validation(df, idx) -> None:
 def validate_curies(
     df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> pd.Series:
-    """Validate CURIEs in a given column.
+    r"""Validate CURIEs in a given column.
 
     :param df: A DataFrame
     :param column: The column of CURIEs to validate
     :param target_column:
         The optional column to put the results of validation.
+    :returns:
+        A pandas series corresponding to the validity of each row
 
     .. code-block:: python
 
@@ -213,11 +226,10 @@ def validate_curies(
 
 
 def summarize_curie_validation(df, idx) -> None:
-    """Provide a summary of CURIE validation"""
+    """Provide a summary of CURIE validation."""
     count = (~idx).sum()
     unique = sorted(df[~idx][0].unique())
-
-    print(
+    print(  # noqa:T201
         f"{count:,} of {len(df.index):,} ({count / len(df.index):.0%})",
         "rows with the following CURIEs need to be fixed:",
         unique,
@@ -233,11 +245,30 @@ def validate_identifiers(
     target_column: Optional[str] = None,
     use_tqdm: bool = False,
 ) -> pd.Series:
-    """Validate local unique identifiers in a given column.
+    r"""Validate local unique identifiers in a given column.
 
     Some data sources split the prefix and identifier in separate columns,
     so you can use the ``prefix_column`` argument instead of the ``prefix``
     argument like in the following example with the GO Annotation Database:
+
+    :param df: A dataframe
+    :param column: A column in the dataframe containing identifiers
+    :param prefix:
+        Specify the prefix if all identifiers in the given column are from
+        the same namespace
+    :param prefix_column:
+        Specify the ``prefix_column`` if there is an additional column whose rows
+        contain the prefix for each rows' respective identifiers.
+    :param target_column:
+        If given, stores the results of validation in this column
+    :param use_tqdm:
+        Should a progress bar be shown?
+    :returns:
+        A pandas series corresponding to the validity of each row
+    :raises PrefixLocationError:
+        If not exactly one of the prefix and prefix_column arguments are given
+    :raises ValueError:
+        If prefix_column is given and it contains no valid prefixes
 
     .. code-block:: python
 
@@ -260,9 +291,9 @@ def validate_identifiers(
     """
     column = _norm_column(df, column)
     if prefix_column is None and prefix is None:
-        raise ValueError
+        raise PrefixLocationError
     elif prefix_column is not None and prefix is not None:
-        raise ValueError
+        raise PrefixLocationError
     elif prefix is not None:
         return _help_validate_identifiers(df, column, prefix)
     else:  # prefix_column is not None
@@ -281,7 +312,9 @@ def validate_identifiers(
         results = _multi_column_map(
             df,
             [prefix_column, column],
-            lambda _p, _i: bool(patterns[_p].fullmatch(_i)) if _p is not None and patterns[_p] is not None else None,
+            lambda _p, _i: bool(patterns[_p].fullmatch(_i))
+            if _p is not None and patterns[_p] is not None
+            else None,
             use_tqdm=use_tqdm,
         )
     if target_column:
@@ -316,7 +349,22 @@ def identifiers_to_curies(
     target_column: Optional[str] = None,
     use_tqdm: bool = False,
 ) -> None:
-    """Convert a column of local unique identifiers to CURIEs.
+    r"""Convert a column of local unique identifiers to CURIEs.
+
+    :param df: A dataframe
+    :param column: A column in the dataframe containing identifiers
+    :param prefix:
+        Specify the prefix if all identifiers in the given column are from
+        the same namespace
+    :param prefix_column:
+        Specify the ``prefix_column`` if there is an additional column whose rows
+        contain the prefix for each rows' respective identifiers.
+    :param target_column:
+        If given, stores CURIEs in this column,
+    :param use_tqdm:
+        Should a progress bar be shown?
+    :raises PrefixLocationError:
+        If not exactly one of the prefix and prefix_column arguments are given
 
     .. code-block:: python
 
@@ -342,9 +390,9 @@ def identifiers_to_curies(
     # FIXME do pattern check first so you don't get bananas
     column = _norm_column(df, column)
     if prefix_column is None and prefix is None:
-        raise ValueError
+        raise PrefixLocationError
     elif prefix_column is not None and prefix is not None:
-        raise ValueError
+        raise PrefixLocationError
 
     valid_idx = validate_identifiers(df, column=column, prefix=prefix, prefix_column=prefix_column)
     target_column = target_column or column
@@ -373,17 +421,33 @@ def identifiers_to_iris(
     prefix_column: Optional[str] = None,
     target_column: Optional[str] = None,
     use_tqdm: bool = False,
-    delete_prefix_column: bool = False,
 ) -> None:
-    """Convert a column of local unique identifiers to IRIs."""
+    """Convert a column of local unique identifiers to IRIs.
+
+    :param df: A dataframe
+    :param column: A column in the dataframe containing identifiers
+    :param prefix:
+        Specify the prefix if all identifiers in the given column are from
+        the same namespace
+    :param prefix_column:
+        Specify the ``prefix_column`` if there is an additional column whose rows
+        contain the prefix for each rows' respective identifiers.
+    :param target_column:
+        If given, stores IRIs in this column
+    :param use_tqdm:
+        Should a progress bar be shown?
+
+    :raises PrefixLocationError:
+        If not exactly one of the prefix and prefix_column arguments are given
+    :raises ValueError:
+        If the given prefix is not normalizable
+    """
     column = _norm_column(df, column)
     if prefix_column is None and prefix is None:
-        raise ValueError
+        raise PrefixLocationError
     elif prefix_column is not None and prefix is not None:
-        raise ValueError
+        raise PrefixLocationError
     elif prefix is not None:
-        if delete_prefix_column:
-            logger.warning("can't delete prefix column when giving prefix explicitly. ignoring.")
         norm_prefix = bioregistry.normalize_prefix(prefix)
         if norm_prefix is None:
             raise ValueError
@@ -395,8 +459,6 @@ def identifiers_to_iris(
         df[target_column or column] = _multi_column_map(
             df, [prefix_column, column], bioregistry.get_iri, use_tqdm=use_tqdm
         )
-        if delete_prefix_column:
-            del df[prefix_column]
 
 
 def _multi_column_map(df, columns, func, *, use_tqdm: bool = False):
@@ -412,7 +474,16 @@ def _multi_column_map(df, columns, func, *, use_tqdm: bool = False):
 def curies_to_iris(
     df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> None:
-    """Convert a column of CURIEs to IRIs."""
+    """Convert a column of CURIEs to IRIs.
+
+    :param df: A dataframe
+    :param column: A column in the dataframe containing CURIEs
+    :param target_column:
+        If given, stores the IRIs in this column. Otherwise, overwrites the
+        given column in place.
+
+    .. seealso:: :func:`iris_to_curies`
+    """
     column = _norm_column(df, column)
     df[target_column or column] = df[column].map(bioregistry.get_iri, na_action="ignore")
 
@@ -423,19 +494,37 @@ def curies_to_identifiers(
     *,
     target_column: Optional[str] = None,
     prefix_column_name: Optional[str] = None,
-):
+) -> None:
     """Split a CURIE column into a prefix and local identifier column.
 
     By default, the local identifier stays in the same column unless target_column is given.
     If prefix_column_name isn't given, it's derived from the target column (if labels available)
     or just appended to the end if not
+
+    :param df: A dataframe
+    :param column: A column in the dataframe containing CURIEs
+    :param target_column:
+        If given, stores identifiers in this column. Else, stores in the given column
+    :param prefix_column_name:
+        If given, stores prefixes in this column. Else, derives the column name from the
+        target column name.
     """
+
     raise NotImplementedError
 
 
 def iris_to_curies(
     df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> None:
-    """Convert a column of IRIs to CURIEs."""
+    """Convert a column of IRIs to CURIEs.
+
+    :param df: A dataframe
+    :param column: A column in the dataframe containing IRIs
+    :param target_column:
+        If given, stores the CURIEs in this column. Otherwise, overwrites the
+        given column in place.
+
+    .. seealso:: :func:`curies_to_iris`
+    """
     column = _norm_column(df, column)
     df[target_column or column] = df[column].map(bioregistry.curie_from_iri, na_action="ignore")
