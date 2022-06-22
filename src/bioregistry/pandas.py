@@ -365,6 +365,8 @@ def identifiers_to_curies(
         Should a progress bar be shown?
     :raises PrefixLocationError:
         If not exactly one of the prefix and prefix_column arguments are given
+    :raises ValueError:
+        If the given prefix is not normalizable
 
     .. code-block:: python
 
@@ -394,7 +396,7 @@ def identifiers_to_curies(
     elif prefix_column is not None and prefix is not None:
         raise PrefixLocationError
 
-    valid_idx = validate_identifiers(df, column=column, prefix=prefix, prefix_column=prefix_column)
+    # valid_idx = validate_identifiers(df, column=column, prefix=prefix, prefix_column=prefix_column)
     target_column = target_column or column
 
     if prefix is not None:
@@ -508,9 +510,23 @@ def curies_to_identifiers(
     :param prefix_column_name:
         If given, stores prefixes in this column. Else, derives the column name from the
         target column name.
+    :raises ValueError:
+        If no prefix_column_name is given and the auto-generated name conflicts with a column
+        already in the dataframe.
     """
+    column = _norm_column(df, column)
+    if target_column is None:
+        target_column = column
+    if prefix_column_name is None:
+        prefix_column_name = f"{target_column}_prefix"
+        if prefix_column_name in df.columns:
+            raise ValueError(
+                "auto-generated prefix column is already present. please specify explicitly."
+            )
 
-    raise NotImplementedError
+    prefixes, identifiers = zip(*df[column].map(bioregistry.parse_curie, na_action="ignore"))
+    df[prefix_column_name] = prefixes
+    df[target_column] = identifiers
 
 
 def iris_to_curies(
