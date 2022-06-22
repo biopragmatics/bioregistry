@@ -5590,7 +5590,7 @@
     },
     "comment": "Part of the NeuroLex namespace now",
     "description": "The BIRN Project lexicon will provide entities for data and database annotation for the BIRN project, covering anatomy, disease, data collection, project management and experimental design.",
-    "example": "birnlex_2023",
+    "example": "2023",
     "fairsharing": {
       "abbreviation": "BIRNLEX",
       "description": "The BIRN Project lexicon will provide entities for data and database annotation for the BIRN project, covering anatomy, disease, data collection, project management and experimental design.",
@@ -5606,7 +5606,9 @@
       "bioportal": "BIRNLEX",
       "fairsharing": "FAIRsharing.jedbbt"
     },
-    "name": "Biomedical Informatics Research Network Lexicon"
+    "name": "Biomedical Informatics Research Network Lexicon",
+    "pattern": "^\\d+$",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/birnlex_$1"
   },
   "biro": {
     "contributor": {
@@ -56613,6 +56615,7 @@
       "name": "Subcellular Anatomy Ontology",
       "prefix": "SAO"
     },
+    "example": "5277619",
     "mappings": {
       "aberowl": "SAO",
       "biocontext": "SAO",
@@ -56629,6 +56632,7 @@
       "name": "Subcellular anatomy ontology",
       "prefix": "sao"
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "bioportal": "1068",
       "description": "SAO describes structures from the dimensional range encompassing cellular and subcellular structure, supracellular domains, and macromolecules.",
@@ -56644,7 +56648,8 @@
     },
     "references": [
       "http://www.ontobee.org/ontology/SAO"
-    ]
+    ],
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/sao$1"
   },
   "sasbdb": {
     "biocontext": {
