@@ -1,9 +1,16 @@
-"""Utilities for processing tabular data in Pandas dataframes."""
+"""Utilities for processing tabular data in Pandas dataframes.
+
+The following examples show how the entries in the widely used `Gene Ontology Annotations
+<http://geneontology.org/docs/go-annotation-file-gaf-format-2.2/#>`_ database distributed
+in the `GAF format <http://geneontology.org/docs/go-annotation-file-gaf-format-2.2/>`_ can
+be loaded with :mod:`pandas` then normalized with the Bioregistry. It can be loaded in full
+with the :func:`get_goa_example` function.
+"""
 
 import functools
 import logging
 import re
-from typing import Dict, Mapping, Optional, Pattern, Union
+from typing import Dict, Optional, Pattern, Union
 
 import pandas as pd
 from tabulate import tabulate
@@ -85,11 +92,6 @@ def normalize_curies(
     :param column: The column of CURIEs to normalize
     :param target_column:
         The column to put the normalized CURIEs in. If not given, overwrites the given ``column`` in place.
-
-    The following example shows how the entries in the widely used `Gene Ontology Annotations
-    <http://geneontology.org/docs/go-annotation-file-gaf-format-2.2/#>`_ database distributed
-    in the `GAF format <http://geneontology.org/docs/go-annotation-file-gaf-format-2.2/>`_ can
-    be loaded with :mod:`pandas` then normalized with the Bioregistry:
 
     .. code-block:: python
 
@@ -504,6 +506,17 @@ def curies_to_identifiers(
     :raises ValueError:
         If no prefix_column_name is given and the auto-generated name conflicts with a column
         already in the dataframe.
+
+    .. code-block:: python
+
+        import bioregistry.pandas as brpd
+        import pandas as pd
+
+        df = brpd.get_goa_example()
+
+        # column 5: GO ID - convert CURIEs directly to IRIs
+        #  i.e., `GO:0003993` becomes `http://amigo.geneontology.org/amigo/term/GO:0003993`
+        brpd.curies_to_identifiers(df, column=4)
     """
     column = _norm_column(df, column)
     if target_column is None:
