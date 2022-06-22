@@ -12,6 +12,7 @@ from tqdm.auto import tqdm
 import bioregistry
 
 __all__ = [
+    "get_goa_example",
     # Normalization
     "normalize_prefixes",
     "normalize_curies",
@@ -34,6 +35,16 @@ class PrefixLocationError(ValueError):
     """Raised when not exactly one of prefix and prefix_column were given."""
 
 
+def get_goa_example() -> pd.DataFrame:
+    """Get the GOA file."""
+    return pd.read_csv(
+        "http://geneontology.org/gene-associations/goa_human.gaf.gz",
+        sep="\t",
+        comment="!",
+        header=None,
+    )
+
+
 def _norm_column(df: pd.DataFrame, column: Union[int, str]) -> str:
     return column if isinstance(column, str) else df.columns[column]
 
@@ -41,7 +52,7 @@ def _norm_column(df: pd.DataFrame, column: Union[int, str]) -> str:
 def normalize_prefixes(
     df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> None:
-    r"""Normalize prefixes in a given column.
+    """Normalize prefixes in a given column.
 
     :param df: A dataframe
     :param column: A column in the dataframe containing prefixes
@@ -53,12 +64,7 @@ def normalize_prefixes(
         import bioregistry.pandas as brpd
         import pandas as pd
 
-        df = pd.read_csv(
-            "http://geneontology.org/gene-associations/goa_human.gaf.gz",
-            sep="\t",
-            comment='!',
-            header=None,
-        )
+        df = brpd.get_goa_example()
 
         # column 1: DB
         #  i.e., `UniProtKB` becomes `uniprot`
@@ -73,7 +79,7 @@ def normalize_prefixes(
 def normalize_curies(
     df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> None:
-    r"""Normalize CURIEs in a given column.
+    """Normalize CURIEs in a given column.
 
     :param df: A dataframe
     :param column: The column of CURIEs to normalize
@@ -90,12 +96,7 @@ def normalize_curies(
         import bioregistry.pandas as brpd
         import pandas as pd
 
-        df = pd.read_csv(
-            "http://geneontology.org/gene-associations/goa_human.gaf.gz",
-            sep="\t",
-            comment='!',
-            header=None,
-        )
+        df = brpd.get_goa_example()
 
         # column 5: GO ID - fix normalization of capitalization of prefix,
         #  i.e., `GO:0003993` becomes `go:0003993`
@@ -122,7 +123,7 @@ def normalize_curies(
 def validate_prefixes(
     df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> pd.Series:
-    r"""Validate prefixes in a given column.
+    """Validate prefixes in a given column.
 
     :param df: A DataFrame
     :param column: The column of prefixes to validate
@@ -136,12 +137,7 @@ def validate_prefixes(
         import bioregistry.pandas as brpd
         import pandas as pd
 
-        df = pd.read_csv(
-            "http://geneontology.org/gene-associations/goa_human.gaf.gz",
-            sep="\t",
-            comment='!',
-            header=None,
-        )
+        df = brpd.get_goa_example()
 
         # column 1: DB
         #  i.e., `UniProtKB` entries are not standard, and are therefore false
@@ -189,7 +185,7 @@ def summarize_prefix_validation(df: pd.DataFrame, idx: pd.Series) -> None:
 def validate_curies(
     df: pd.DataFrame, column: Union[int, str], *, target_column: Optional[str] = None
 ) -> pd.Series:
-    r"""Validate CURIEs in a given column.
+    """Validate CURIEs in a given column.
 
     :param df: A DataFrame
     :param column: The column of CURIEs to validate
@@ -203,12 +199,7 @@ def validate_curies(
         import bioregistry.pandas as brpd
         import pandas as pd
 
-        df = pd.read_csv(
-            "http://geneontology.org/gene-associations/goa_human.gaf.gz",
-            sep="\t",
-            comment='!',
-            header=None,
-        )
+        df = brpd.get_goa_example()
 
         # column 5: GO ID - fix normalization of capitalization of prefix,
         #  i.e., `GO:0003993` is not standard and is therefore false
@@ -245,7 +236,7 @@ def validate_identifiers(
     target_column: Optional[str] = None,
     use_tqdm: bool = False,
 ) -> pd.Series:
-    r"""Validate local unique identifiers in a given column.
+    """Validate local unique identifiers in a given column.
 
     Some data sources split the prefix and identifier in separate columns,
     so you can use the ``prefix_column`` argument instead of the ``prefix``
@@ -275,12 +266,7 @@ def validate_identifiers(
         import bioregistry.pandas as brpd
         import pandas as pd
 
-        df = pd.read_csv(
-            "http://geneontology.org/gene-associations/goa_human.gaf.gz",
-            sep="\t",
-            comment='!',
-            header=None,
-        )
+        df = brpd.get_goa_example()
 
         # Use a combination of column 1 (DB) and column 2 (DB Object ID) for validation
         idx = brpd.validate_identifiers(df, column=1, prefix_column=0)
@@ -309,26 +295,23 @@ def validate_identifiers(
             pattern = bioregistry.get_pattern(prefix)
             patterns[prefix] = re.compile(pattern) if pattern else None
 
+        def _validate_lambda(_p: Optional[str], _i: str) -> Optional[bool]:
+            if _p is None:
+                return None
+            _pattern = patterns.get(_p)
+            if _pattern is None:
+                return None
+            return bool(_pattern.fullmatch(_i))
+
         results = _multi_column_map(
             df,
             [prefix_column, column],
-            functools.partial(_validate_lambda, patterns=patterns),
+            _validate_lambda,
             use_tqdm=use_tqdm,
         )
     if target_column:
         df[target_column] = results
     return results
-
-
-def _validate_lambda(
-    patterns: Mapping[str, Optional[Pattern]], prefix, identifier
-) -> Optional[bool]:
-    if prefix is None:
-        return None
-    pattern = patterns.get(prefix)
-    if pattern is None:
-        return None
-    return bool(pattern.fullmatch(identifier))
 
 
 def _help_validate_identifiers(df, column, prefix):
@@ -358,7 +341,7 @@ def identifiers_to_curies(
     target_column: Optional[str] = None,
     use_tqdm: bool = False,
 ) -> None:
-    r"""Convert a column of local unique identifiers to CURIEs.
+    """Convert a column of local unique identifiers to CURIEs.
 
     :param df: A dataframe
     :param column: A column in the dataframe containing identifiers
@@ -382,21 +365,10 @@ def identifiers_to_curies(
         import bioregistry.pandas as brpd
         import pandas as pd
 
-        df = pd.read_csv(
-            "http://geneontology.org/gene-associations/goa_human.gaf.gz",
-            sep="\t",
-            comment='!',
-            header=None,
-        )
+        df = brpd.get_goa_example()
 
-        # column 17: Gene Product Form ID - note that invalid CURIEs are written like UniProtKB:P12345-2,
-        #  where these refer to isoforms and should use the prefix `uniprot.isoform`
-        idx = brpd.validate_identifiers(df, column=16)
-
-        # Get a dataframe of the valid and invalid rows
-        valid_gene_products_df = df[idx]
-        invalid_gene_products_df = df[~idx]
-
+        # Use a combination of column 1 (DB) and column 2 (DB Object ID) for conversion
+        brpd.identifiers_to_curies(df, column=1, prefix_column=0)
     """
     # FIXME do pattern check first so you don't get bananas
     column = _norm_column(df, column)
@@ -452,6 +424,16 @@ def identifiers_to_iris(
         If not exactly one of the prefix and prefix_column arguments are given
     :raises ValueError:
         If the given prefix is not normalizable
+
+    .. code-block:: python
+
+        import bioregistry.pandas as brpd
+        import pandas as pd
+
+        df = brpd.get_goa_example()
+
+        # Use a combination of column 1 (DB) and column 2 (DB Object ID) for conversion
+        brpd.identifiers_to_iris(df, column=1, prefix_column=0)
     """
     column = _norm_column(df, column)
     if prefix_column is None and prefix is None:
