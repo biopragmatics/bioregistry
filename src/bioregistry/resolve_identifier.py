@@ -312,6 +312,7 @@ def get_iri(
     priority: Optional[Sequence[str]] = None,
     prefix_map: Optional[Mapping[str, str]] = None,
     use_bioregistry_io: bool = True,
+    provider: Optional[str] = None,
 ) -> Optional[str]:
     """Get the best link for the CURIE, if possible.
 
@@ -332,6 +333,7 @@ def get_iri(
         6. BioPortal (``bioportal``)
     :param prefix_map: A custom prefix map to go with the ``custom`` key in the priority list
     :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults to true.
+    :param provider: The provider code to use for a custom provider
     :return: The best possible IRI that can be generated based on the priority list.
 
     A pre-parse CURIE can be given as the first two arguments
@@ -361,6 +363,10 @@ def get_iri(
     'http://purl.obolibrary.org/obo/CHEBI_24867'
     >>> get_iri("lipidmaps:1234", prefix_map=prefix_map, priority=priority)
     'https://example.org/lipidmaps/1234'
+
+    A custom provider is given, which makes the Bioregistry very extensible
+    >>> get_iri("chebi:24867", provider="chebi-img")
+    'https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=24867'
     """
     return manager.get_iri(
         prefix=prefix,
@@ -368,6 +374,7 @@ def get_iri(
         priority=priority,
         prefix_map=prefix_map,
         use_bioregistry_io=use_bioregistry_io,
+        provider=provider,
     )
 
 

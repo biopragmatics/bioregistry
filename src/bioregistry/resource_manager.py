@@ -762,10 +762,17 @@ class Manager:
     def get_providers_list(self, prefix: str, identifier: str) -> Sequence[Tuple[str, str]]:
         """Get all providers for the CURIE."""
         rv = []
-        for provider, get_url in self.get_provider_functions().items():
+        for metaprefix, get_url in self.get_provider_functions().items():
             link = get_url(prefix, identifier)
             if link is not None:
-                rv.append((provider, link))
+                rv.append((metaprefix, link))
+
+        resource = self.get_resource(prefix)
+        if resource is None:
+            raise KeyError
+        for provider in resource.get_extra_providers():
+            rv.append((provider.code, provider.resolve(identifier)))
+
         if not rv:
             return rv
 
@@ -778,7 +785,15 @@ class Manager:
         return rv
 
     def get_providers(self, prefix: str, identifier: str) -> Dict[str, str]:
-        """Get all providers for the CURIE."""
+        """Get all providers for the CURIE.
+
+        :param prefix: the prefix in the CURIE
+        :param identifier: the identifier in the CURIE
+        :returns: A dictionary of IRIs associated with the CURIE
+
+        >>> from bioregistry import manager
+        >>> assert "chebi-img" in manager.get_providers("chebi", "24867")
+        """
         return dict(self.get_providers_list(prefix, identifier))
 
     def get_iri(
@@ -789,6 +804,7 @@ class Manager:
         priority: Optional[Sequence[str]] = None,
         prefix_map: Optional[Mapping[str, str]] = None,
         use_bioregistry_io: bool = True,
+        provider: Optional[str] = None,
     ) -> Optional[str]:
         """Get the best link for the CURIE pair, if possible.
 
@@ -809,6 +825,7 @@ class Manager:
             6. BioPortal (``bioportal``)
         :param prefix_map: A custom prefix map to go with the ``custom`` key in the priority list
         :param use_bioregistry_io: Should the bioregistry resolution IRI be used? Defaults to true.
+        :param provider: The provider code to use for a custom provider
         :return: The best possible IRI that can be generated based on the priority list.
 
         A pre-parse CURIE can be given as the first two arguments
@@ -839,6 +856,10 @@ class Manager:
         'http://purl.obolibrary.org/obo/CHEBI_24867'
         >>> manager.get_iri("lipidmaps:1234", prefix_map=prefix_map, priority=priority)
         'https://example.org/lipidmaps/1234'
+
+        A custom provider is given, which makes the Bioregistry very extensible
+        >>> manager.get_iri("chebi:24867", provider="chebi-img")
+        'https://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId=24867'
         """
         if identifier is None:
             _prefix, _identifier = self.parse_curie(prefix)
@@ -848,6 +869,10 @@ class Manager:
             _prefix, _identifier = prefix, identifier
 
         providers = self.get_providers(_prefix, _identifier)
+        if provider is not None:
+            if provider not in providers:
+                return None
+            return providers[provider]
         if prefix_map and _prefix in prefix_map:
             providers["custom"] = f"{prefix_map[_prefix]}{_identifier}"
         for key in priority or LINK_PRIORITY:
