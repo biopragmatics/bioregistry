@@ -460,7 +460,7 @@ class TestRegistry(unittest.TestCase):
         for prefix, resource in self.registry.items():
             if bioregistry.is_deprecated(prefix) or bioregistry.get_provides_for(prefix):
                 continue
-            if resource.part_of is None:
+            if resource.part_of is None or resource.part_of == "pubchem":
                 continue
 
             with self.subTest(prefix=prefix):
