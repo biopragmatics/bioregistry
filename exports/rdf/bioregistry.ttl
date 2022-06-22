@@ -22768,6 +22768,16 @@ bioregistry:pspub a bioregistry.schema:0000001 ;
     foaf:homepage "https://wiki.phenoscape.org/wiki/Curation_workflow"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:pubchem.cell a bioregistry.schema:0000001 ;
+    rdfs:label "PubChem Cell Line" ;
+    dc:description "Cell Lines in PubChem"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://pubchem.ncbi.nlm.nih.gov"^^xsd:string ;
+    bioregistry.schema:0000005 "31"^^xsd:string ;
+    bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/cell/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:pubchem.element a bioregistry.schema:0000001 ;
     rdfs:label "PubChem Element" ;
     dc:description "PubChem Element gives information on chemical elements like Hydrogen, with the local identifier corresponding to the atomic number."^^xsd:string ;
@@ -31237,6 +31247,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ppr,
         bioregistry:prefixcommons,
         bioregistry:pspub,
+        bioregistry:pubchem.cell,
         bioregistry:pubchem.element,
         bioregistry:puro,
         bioregistry:pwo,
@@ -37718,6 +37729,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:pso,
         bioregistry:pspub,
         bioregistry:pubchem.bioassay,
+        bioregistry:pubchem.cell,
         bioregistry:pubchem.compound,
         bioregistry:pubchem.element,
         bioregistry:pubchem.substance,
