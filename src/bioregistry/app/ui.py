@@ -326,6 +326,18 @@ def metaresolve(metaprefix: str, metaidentifier: str, identifier: Optional[str] 
     return redirect(url_for(f".{resolve.__name__}", prefix=prefix, identifier=identifier))
 
 
+@ui_blueprint.route("/resolve/github/issue/<owner>/<repository>/<int:issue>")
+def github_resolve_issue(owner, repository, issue):
+    """Redirect to an issue on GitHub."""
+    return redirect(f"https://github.com/{owner}/{repository}/issues/{issue}")
+
+
+@ui_blueprint.route("/resolve/github/pull/<owner>/<repository>/<int:pull>")
+def github_resolve_pull(owner, repository, pull: int):
+    """Redirect to a pull request on GitHub."""
+    return redirect(f"https://github.com/{owner}/{repository}/pull/{pull}")
+
+
 @ui_blueprint.route("/contributors/")
 def contributors():
     """Serve the Bioregistry contributors page."""
