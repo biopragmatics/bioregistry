@@ -2235,7 +2235,7 @@
     "comment": "Part of the NeuroLex namespace now",
     "description": "The BIRN Project lexicon will provide entities for data and database annotation for the BIRN project, covering anatomy, disease, data collection, project management and experimental design.",
     "download_owl": "http://aber-owl.net/media/ontologies/BIRNLEX/1/birnlex.owl",
-    "example": "birnlex_2023",
+    "example": "2023",
     "homepage": "https://bioportal.bioontology.org/ontologies/BIRNLEX",
     "mappings": {
       "aberowl": "BIRNLEX",
@@ -2243,7 +2243,9 @@
       "fairsharing": "FAIRsharing.jedbbt"
     },
     "name": "Biomedical Informatics Research Network Lexicon",
-    "preferred_prefix": "birnlex"
+    "pattern": "^\\d+$",
+    "preferred_prefix": "birnlex",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/birnlex_$1"
   },
   "biro": {
     "contributor": {
@@ -20276,6 +20278,27 @@
     ],
     "uri_format": "http://www.rcsb.org/pdb/ligand/ligandsummary.do?hetId=$1"
   },
+  "pdc.study": {
+    "contributor": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "The National Cancer Institute's Proteomic Data Commons (PDC) makes cancer-related proteomic datasets easily accessible to the public.",
+    "example": "PDC000351",
+    "homepage": "https://pdc.cancer.gov/pdc",
+    "name": "Proteomic Data Commons",
+    "pattern": "^PDC\\d+$",
+    "preferred_prefix": "pdc.study",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://pdc.cancer.gov/pdc/study/$1"
+  },
   "pdro": {
     "contact": {
       "email": "paul.fabry@usherbrooke.ca",
@@ -21830,6 +21853,7 @@
       "prefixcommons": "pubchem.bioassay"
     },
     "name": "NCBI PubChem database of bioassay records",
+    "part_of": "pubchem",
     "pattern": "^\\d+$",
     "preferred_prefix": "pubchem.bioassay",
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/bioassay/$1"
@@ -21845,9 +21869,26 @@
     "example": "31",
     "homepage": "https://pubchem.ncbi.nlm.nih.gov",
     "name": "PubChem Cell Line",
+    "part_of": "pubchem",
     "pattern": "^\\d+$",
     "preferred_prefix": "pubchem.cell",
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/cell/$1"
+  },
+  "pubchem.classification": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The PubChem Classification Browser allows you to browse the distribution of PubChem data among nodes in the hierarchy of interest, thereby providing an aggregate view of PubChem data. It also allows you to search for PubChem records annotated with the desired hierarchy/term, providing a powerful way to quickly find the subset of PubChem records.",
+    "example": "87",
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov/classification/",
+    "name": "PubChem Classification",
+    "part_of": "pubchem",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "pubchem.classification",
+    "uri_format": "https://pubchem.ncbi.nlm.nih.gov/classification/#hid=$1"
   },
   "pubchem.compound": {
     "description": "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Compound archives chemical structures and records.",
@@ -21866,6 +21907,7 @@
       "wikidata": "P662"
     },
     "name": "PubChem CID",
+    "part_of": "pubchem",
     "pattern": "^\\d+$",
     "preferred_prefix": "pubchem.compound",
     "providers": [
@@ -21898,6 +21940,7 @@
     "example": "1",
     "homepage": "https://pubchem.ncbi.nlm.nih.gov/periodic-table",
     "name": "PubChem Element",
+    "part_of": "pubchem",
     "pattern": "^\\d+$",
     "preferred_prefix": "pubchem.element",
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/element/$1"
@@ -21916,6 +21959,7 @@
       "wikidata": "P2153"
     },
     "name": "PubChem Substance ID (SID)",
+    "part_of": "pubchem",
     "pattern": "^\\d+$",
     "preferred_prefix": "pubchem.substance",
     "synonyms": [
@@ -23115,6 +23159,7 @@
     },
     "deprecated": true,
     "download_owl": "http://aber-owl.net/media/ontologies/SAO/2/sao.owl",
+    "example": "5277619",
     "homepage": "http://ccdb.ucsd.edu/CCDBWebSite/sao.html",
     "mappings": {
       "aberowl": "SAO",
@@ -23124,11 +23169,12 @@
       "prefixcommons": "sao"
     },
     "name": "Subcellular Anatomy Ontology",
+    "pattern": "^\\d+$",
     "preferred_prefix": "SAO",
     "references": [
       "http://www.ontobee.org/ontology/SAO"
     ],
-    "uri_format": "http://purl.obolibrary.org/obo/SAO_$1"
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/sao$1"
   },
   "sasbdb": {
     "description": "Small Angle Scattering Biological Data Bank (SASBDB) is a curated repository for small angle X-ray scattering (SAXS) and neutron scattering (SANS) data and derived models. Small angle scattering (SAS) of X-ray and neutrons provides structural information on biological macromolecules in solution at a resolution of 1-2 nm. SASBDB provides freely accessible and downloadable experimental data, which are deposited together with the relevant experimental conditions, sample details, derived models and their fits to the data.",
