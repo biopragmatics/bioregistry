@@ -5590,7 +5590,7 @@
     },
     "comment": "Part of the NeuroLex namespace now",
     "description": "The BIRN Project lexicon will provide entities for data and database annotation for the BIRN project, covering anatomy, disease, data collection, project management and experimental design.",
-    "example": "birnlex_2023",
+    "example": "2023",
     "fairsharing": {
       "abbreviation": "BIRNLEX",
       "description": "The BIRN Project lexicon will provide entities for data and database annotation for the BIRN project, covering anatomy, disease, data collection, project management and experimental design.",
@@ -5606,7 +5606,9 @@
       "bioportal": "BIRNLEX",
       "fairsharing": "FAIRsharing.jedbbt"
     },
-    "name": "Biomedical Informatics Research Network Lexicon"
+    "name": "Biomedical Informatics Research Network Lexicon",
+    "pattern": "^\\d+$",
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/birnlex_$1"
   },
   "biro": {
     "contributor": {
@@ -10374,7 +10376,8 @@
       "name": "Clinical measurement ontology",
       "prefix": "CMO"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "twitter": "ratgenome"
   },
   "cmpo": {
     "aberowl": {
@@ -10423,7 +10426,9 @@
       "version": "2017-12-19",
       "version.iri": "http://www.ebi.ac.uk/cmpo/releases/2017-12-19/cmpo.owl"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "repository": "https://github.com/EBISPOT/CMPO",
+    "twitter": "EBIOLS"
   },
   "co_320": {
     "agroportal": {
@@ -16876,6 +16881,21 @@
       "uri_format": "https://go.drugbank.com/drugs/DB$1"
     }
   },
+  "drugbank.category": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Close to 5K Categorizations for drugs, similar to ATCC.",
+    "example": "DBCAT000600",
+    "homepage": "https://go.drugbank.com/categories",
+    "name": "DrugBank Drug Category",
+    "part_of": "drugbank",
+    "pattern": "^DBCAT\\d+$",
+    "uri_format": "https://www.drugbank.ca/categories/$1"
+  },
   "drugbank.salt": {
     "biocontext": {
       "is_identifiers": true,
@@ -17122,7 +17142,8 @@
       "name": "Data Use Ontology",
       "prefix": "DUO"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "repository": "https://github.com/EBISPOT/DUO"
   },
   "eaglei": {
     "cellosaurus": {
@@ -20514,6 +20535,12 @@
       "name": "VEuPathDB ontology",
       "preferredPrefix": "EUPATH",
       "prefix": "eupath",
+      "publications": [
+        {
+          "id": "https://doi.org/10.5281/zenodo.6685957",
+          "title": "Malaria study data integration and information retrieval based on OBO Foundry ontologies."
+        }
+      ],
       "repository": "https://github.com/VEuPathDB-ontology/VEuPathDB-ontology"
     },
     "ols": {
@@ -38696,7 +38723,8 @@
       "name": "Measurement method ontology",
       "prefix": "MMO"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "twitter": "ratgenome"
   },
   "mmp.cat": {
     "biocontext": {
@@ -43315,7 +43343,8 @@
       "orcid": "0000-0003-4423-4370"
     },
     "synonyms": [
-      "NLXSUB"
+      "NLXSUB",
+      "nif_subcellular"
     ],
     "twitter": "SciCrunch",
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_subcell_$1"
@@ -48995,6 +49024,27 @@
       "prefix": "P3636"
     }
   },
+  "pdc.study": {
+    "contributor": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "The National Cancer Institute's Proteomic Data Commons (PDC) makes cancer-related proteomic datasets easily accessible to the public.",
+    "example": "PDC000351",
+    "github_request_issue": 430,
+    "homepage": "https://pdc.cancer.gov/pdc",
+    "name": "Proteomic Data Commons",
+    "pattern": "^PDC\\d+$",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://pdc.cancer.gov/pdc/study/$1"
+  },
   "pdro": {
     "aberowl": {
       "description": "An ontology to describe entities related to prescription of drugs",
@@ -50318,6 +50368,26 @@
       "pattern": "^\\d+$",
       "prefix": "phosphosite.residue",
       "uri_format": "http://www.phosphosite.org/siteAction.do?id=$1"
+    }
+  },
+  "phosphosite.sitegroup": {
+    "comment": "Potentially could use a URI format like https://www.phosphosite.org/siteGroupAction.action?protOrg=1156&id=$1, but it's not obvious what the protOrg does.",
+    "contributor": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "Site groups are orthologous positions in human, mouse, rat, etc. where phosphorylations or other PTMs occur.",
+    "example": "447860",
+    "homepage": "https://www.phosphosite.org",
+    "name": "PhosphoSite Site Group",
+    "pattern": "^\\d+$",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
     }
   },
   "phylomedb": {
@@ -53329,6 +53399,7 @@
       "prefix": "pubchem.bioassay",
       "uri_format": "https://pubchem.ncbi.nlm.nih.gov/assay/assay.cgi?aid=$1"
     },
+    "part_of": "pubchem",
     "prefixcommons": {
       "description": "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem bioassay archives active compounds and bioassay results.",
       "example": "1018",
@@ -53343,7 +53414,40 @@
         "17170002"
       ],
       "uri_format": "http://pubchem.ncbi.nlm.nih.gov/assay/assay.cgi?aid=$1"
-    }
+    },
+    "twitter": "pubchem"
+  },
+  "pubchem.cell": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Cell Lines in PubChem",
+    "example": "31",
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov",
+    "name": "PubChem Cell Line",
+    "part_of": "pubchem",
+    "pattern": "^\\d+$",
+    "twitter": "pubchem",
+    "uri_format": "https://pubchem.ncbi.nlm.nih.gov/cell/$1"
+  },
+  "pubchem.classification": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The PubChem Classification Browser allows you to browse the distribution of PubChem data among nodes in the hierarchy of interest, thereby providing an aggregate view of PubChem data. It also allows you to search for PubChem records annotated with the desired hierarchy/term, providing a powerful way to quickly find the subset of PubChem records.",
+    "example": "87",
+    "homepage": "https://pubchem.ncbi.nlm.nih.gov/classification/",
+    "name": "PubChem Classification",
+    "part_of": "pubchem",
+    "pattern": "^\\d+$",
+    "twitter": "pubchem",
+    "uri_format": "https://pubchem.ncbi.nlm.nih.gov/classification/#hid=$1"
   },
   "pubchem.compound": {
     "biocontext": {
@@ -53430,6 +53534,7 @@
       "prefix": "pubchem.compound",
       "uri_format": "https://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=$1"
     },
+    "part_of": "pubchem",
     "prefixcommons": {
       "description": "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Compound archives chemical structures and records.",
       "example": "100101",
@@ -53451,6 +53556,7 @@
       "Pubchem",
       "pubchem_id"
     ],
+    "twitter": "pubchem",
     "wikidata": {
       "database": "Q278487",
       "database.homepage": "http://pubchem.ncbi.nlm.nih.gov",
@@ -53475,7 +53581,9 @@
     "example": "1",
     "homepage": "https://pubchem.ncbi.nlm.nih.gov/periodic-table",
     "name": "PubChem Element",
+    "part_of": "pubchem",
     "pattern": "^\\d+$",
+    "twitter": "pubchem",
     "uri_format": "https://pubchem.ncbi.nlm.nih.gov/element/$1"
   },
   "pubchem.substance": {
@@ -53528,6 +53636,7 @@
       "prefix": "pubchem.substance",
       "uri_format": "https://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?sid=$1"
     },
+    "part_of": "pubchem",
     "prefixcommons": {
       "description": "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Substance archives chemical substance records.",
       "example": "100101",
@@ -53547,6 +53656,7 @@
     "synonyms": [
       "DSSTox_Generic_SID"
     ],
+    "twitter": "pubchem",
     "wikidata": {
       "database": "Q278487",
       "database.homepage": "http://pubchem.ncbi.nlm.nih.gov",
@@ -53894,6 +54004,7 @@
       ],
       "uri_format": "http://rgd.mcw.edu/rgdweb/ontology/annot.html?acc_id=$1"
     },
+    "twitter": "ratgenome",
     "wikidata": {
       "database": "Q28864280",
       "prefix": "P7333"
@@ -54759,6 +54870,7 @@
       "prefix": "RESID",
       "uri_format": "https://proteininformationresource.org/cgi-bin/resid?id=$1"
     },
+    "homepage": "https://proteininformationresource.org/resid/",
     "mappings": {
       "biocontext": "RESID",
       "go": "RESID",
@@ -54814,7 +54926,8 @@
         "15174124"
       ],
       "uri_format": "http://srs.ebi.ac.uk/srsbin/cgi-bin/wgetz?-id+6JSUg1NA6u4+-e+[RESID:'$1']"
-    }
+    },
+    "uri_format": "https://proteininformationresource.org/cgi-bin/resid?id=$1"
   },
   "reto": {
     "aberowl": {
@@ -55162,6 +55275,7 @@
     "synonyms": [
       "RGD"
     ],
+    "twitter": "ratgenome",
     "uniprot": {
       "category": "Organism-specific databases",
       "identifier": "91",
@@ -55214,7 +55328,8 @@
       "pattern": "^\\d+$",
       "prefix": "rgd.qtl",
       "uri_format": "http://rgd.mcw.edu/rgdweb/report/qtl/main.html?id=$1"
-    }
+    },
+    "twitter": "ratgenome"
   },
   "rgd.strain": {
     "biocontext": {
@@ -55249,7 +55364,8 @@
       "pattern": "^\\d+$",
       "prefix": "rgd.strain",
       "uri_format": "http://rgd.mcw.edu/rgdweb/report/strain/main.html?id=$1"
-    }
+    },
+    "twitter": "ratgenome"
   },
   "rhea": {
     "biocontext": {
@@ -56159,7 +56275,8 @@
       "pattern": "^RS_\\d{7}$",
       "prefix": "rs",
       "uri_format": "http://purl.obolibrary.org/obo/$1"
-    }
+    },
+    "twitter": "ratgenome"
   },
   "runbiosimulations": {
     "mappings": {
@@ -56573,6 +56690,7 @@
       "name": "Subcellular Anatomy Ontology",
       "prefix": "SAO"
     },
+    "example": "5277619",
     "mappings": {
       "aberowl": "SAO",
       "biocontext": "SAO",
@@ -56589,6 +56707,7 @@
       "name": "Subcellular anatomy ontology",
       "prefix": "sao"
     },
+    "pattern": "^\\d+$",
     "prefixcommons": {
       "bioportal": "1068",
       "description": "SAO describes structures from the dimensional range encompassing cellular and subcellular structure, supracellular domains, and macromolecules.",
@@ -56604,7 +56723,8 @@
     },
     "references": [
       "http://www.ontobee.org/ontology/SAO"
-    ]
+    ],
+    "uri_format": "http://uri.neuinfo.org/nif/nifstd/sao$1"
   },
   "sasbdb": {
     "biocontext": {
@@ -63226,6 +63346,13 @@
         "homepage": "https://scholia.toolforge.org/",
         "name": "Scholia",
         "uri_format": "https://scholia.toolforge.org/uniprot/$1"
+      },
+      {
+        "code": "oma",
+        "description": "The OMA project is a method and database for the inference of orthologs among complete genomes.",
+        "homepage": "https://omabrowser.org/oma/home/",
+        "name": "Orthologous Matrix Browser",
+        "uri_format": "http://omabrowser.org/cgi-bin/gateway.pl?f=DisplayEntry&p2=orthologs&p1=$1"
       }
     ],
     "synonyms": [
@@ -66779,7 +66906,8 @@
       "name": "Experimental Conditions Ontology",
       "pattern": "^XCO_\\d{7}$",
       "prefix": "xco"
-    }
+    },
+    "twitter": "ratgenome"
   },
   "xenbase": {
     "biocontext": {

@@ -252,6 +252,7 @@ orcid:0000-0001-9439-5346 rdfs:label "Benjamin Gyori",
     dcterms:contributor bioregistry:bko,
         bioregistry:casspc,
         bioregistry:nihreporter.project,
+        bioregistry:pdc.study,
         bioregistry:signor.relation .
 
 orcid:0000-0002-3012-7446 rdfs:label "Daniel Himmelstein" ;
@@ -1530,7 +1531,9 @@ bioregistry:birnlex a bioregistry.schema:0000001 ;
         bioportal:BIRNLEX,
         fairsharing:FAIRsharing.jedbbt ;
     foaf:homepage "https://bioportal.bioontology.org/ontologies/BIRNLEX"^^xsd:string ;
-    bioregistry.schema:0000005 "birnlex_2023"^^xsd:string ;
+    bioregistry.schema:0000005 "2023"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/birnlex_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:bitbucket a bioregistry.schema:0000001 ;
@@ -10268,58 +10271,6 @@ bioregistry:psipar a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^PAR:\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:pubchem.bioassay a bioregistry.schema:0000001 ;
-    rdfs:label "NCBI PubChem database of bioassay records" ;
-    dc:description "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem bioassay archives active compounds and bioassay results."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PUBCHEM.BIOASSAY,
-        go.resource:PubChem_BioAssay,
-        n2t:pubchem.bioassay,
-        prefixcommons:pubchem.bioassay,
-        miriam:pubchem.bioassay ;
-    foaf:homepage "https://www.ncbi.nlm.nih.gov/sites/entrez?db=pcassay"^^xsd:string ;
-    bioregistry.schema:0000005 "1018"^^xsd:string ;
-    bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/bioassay/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:pubchem.compound a bioregistry.schema:0000001 ;
-    rdfs:label "PubChem CID" ;
-    dc:description "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Compound archives chemical structures and records."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:CID,
-        biolink:CID,
-        cellosaurus.resource:PubChem,
-        go.resource:PubChem_Compound,
-        n2t:pubchem.compound,
-        fairsharing:FAIRsharing.g63c77,
-        prefixcommons:pubchem.compound,
-        miriam:pubchem.compound,
-        cheminf:000140,
-        wikidata:P662 ;
-    foaf:homepage "https://pubchem.ncbi.nlm.nih.gov/"^^xsd:string ;
-    bioregistry.schema:0000005 "100101"^^xsd:string ;
-    bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/compound/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:pubchem.substance a bioregistry.schema:0000001 ;
-    rdfs:label "PubChem Substance ID (SID)" ;
-    dc:description "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Substance archives chemical substance records."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PUBCHEM.SUBSTANCE,
-        go.resource:PubChem_Substance,
-        n2t:pubchem.substance,
-        prefixcommons:pubchem.substance,
-        miriam:pubchem.substance,
-        cheminf:000141,
-        wikidata:P2153 ;
-    foaf:homepage "https://pubchem.ncbi.nlm.nih.gov/"^^xsd:string ;
-    bioregistry.schema:0000005 "100101"^^xsd:string ;
-    bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/substance/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:publons.researcher a bioregistry.schema:0000001 ;
     rdfs:label "Publons Researcher" ;
     dc:description "Database of researchers to track publications, citation metrics, peer reviews, and journal editing work."^^xsd:string ;
@@ -10967,7 +10918,9 @@ bioregistry:sao a bioregistry.schema:0000001 ;
         biocontext:SAO,
         prefixcommons:sao ;
     foaf:homepage "http://ccdb.ucsd.edu/CCDBWebSite/sao.html"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/SAO_$1"^^xsd:string ;
+    bioregistry.schema:0000005 "5277619"^^xsd:string ;
+    bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/sao$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 [ rdfs:label "Stephen Larson" ] .
 
@@ -22575,6 +22528,17 @@ bioregistry:pdb.ligand a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[A-Za-z0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:pdc.study a bioregistry.schema:0000001 ;
+    rdfs:label "Proteomic Data Commons" ;
+    dc:description "The National Cancer Institute's Proteomic Data Commons (PDC) makes cancer-related proteomic datasets easily accessible to the public."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://pdc.cancer.gov/pdc"^^xsd:string ;
+    bioregistry.schema:0000005 "PDC000351"^^xsd:string ;
+    bioregistry.schema:0000006 "https://pdc.cancer.gov/pdc/study/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PDC\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:ped a bioregistry.schema:0000001 ;
     rdfs:label "Protein Ensemble Database" ;
     dc:description "The Protein Ensemble Database is an open access database for the deposition of structural ensembles, including intrinsically disordered proteins."^^xsd:string ;
@@ -22768,13 +22732,58 @@ bioregistry:pspub a bioregistry.schema:0000001 ;
     foaf:homepage "https://wiki.phenoscape.org/wiki/Curation_workflow"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:pubchem.element a bioregistry.schema:0000001 ;
-    rdfs:label "PubChem Element" ;
-    dc:description "PubChem Element gives information on chemical elements like Hydrogen, with the local identifier corresponding to the atomic number."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    foaf:homepage "https://pubchem.ncbi.nlm.nih.gov/periodic-table"^^xsd:string ;
-    bioregistry.schema:0000005 "1"^^xsd:string ;
-    bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/element/$1"^^xsd:string ;
+bioregistry:pubchem.bioassay a bioregistry.schema:0000001 ;
+    rdfs:label "NCBI PubChem database of bioassay records" ;
+    dc:description "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem bioassay archives active compounds and bioassay results."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:pubchem ;
+    skos:exactMatch biocontext:PUBCHEM.BIOASSAY,
+        go.resource:PubChem_BioAssay,
+        n2t:pubchem.bioassay,
+        prefixcommons:pubchem.bioassay,
+        miriam:pubchem.bioassay ;
+    foaf:homepage "https://www.ncbi.nlm.nih.gov/sites/entrez?db=pcassay"^^xsd:string ;
+    bioregistry.schema:0000005 "1018"^^xsd:string ;
+    bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/bioassay/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:pubchem.compound a bioregistry.schema:0000001 ;
+    rdfs:label "PubChem CID" ;
+    dc:description "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Compound archives chemical structures and records."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:pubchem ;
+    skos:exactMatch biocontext:CID,
+        biolink:CID,
+        cellosaurus.resource:PubChem,
+        go.resource:PubChem_Compound,
+        n2t:pubchem.compound,
+        fairsharing:FAIRsharing.g63c77,
+        prefixcommons:pubchem.compound,
+        miriam:pubchem.compound,
+        cheminf:000140,
+        wikidata:P662 ;
+    foaf:homepage "https://pubchem.ncbi.nlm.nih.gov/"^^xsd:string ;
+    bioregistry.schema:0000005 "100101"^^xsd:string ;
+    bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/compound/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:pubchem.substance a bioregistry.schema:0000001 ;
+    rdfs:label "PubChem Substance ID (SID)" ;
+    dc:description "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Substance archives chemical substance records."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:pubchem ;
+    skos:exactMatch biocontext:PUBCHEM.SUBSTANCE,
+        go.resource:PubChem_Substance,
+        n2t:pubchem.substance,
+        prefixcommons:pubchem.substance,
+        miriam:pubchem.substance,
+        cheminf:000141,
+        wikidata:P2153 ;
+    foaf:homepage "https://pubchem.ncbi.nlm.nih.gov/"^^xsd:string ;
+    bioregistry.schema:0000005 "100101"^^xsd:string ;
+    bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/substance/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -29014,6 +29023,39 @@ bioregistry:pso a bioregistry.schema:0000001 ;
     bioregistry.schema:0000017 bioregistry:ro ;
     bioregistry.schema:0000019 orcid:0000-0002-6379-8932 .
 
+bioregistry:pubchem.cell a bioregistry.schema:0000001 ;
+    rdfs:label "PubChem Cell Line" ;
+    dc:description "Cell Lines in PubChem"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:pubchem ;
+    foaf:homepage "https://pubchem.ncbi.nlm.nih.gov"^^xsd:string ;
+    bioregistry.schema:0000005 "31"^^xsd:string ;
+    bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/cell/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:pubchem.classification a bioregistry.schema:0000001 ;
+    rdfs:label "PubChem Classification" ;
+    dc:description "The PubChem Classification Browser allows you to browse the distribution of PubChem data among nodes in the hierarchy of interest, thereby providing an aggregate view of PubChem data. It also allows you to search for PubChem records annotated with the desired hierarchy/term, providing a powerful way to quickly find the subset of PubChem records."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:pubchem ;
+    foaf:homepage "https://pubchem.ncbi.nlm.nih.gov/classification/"^^xsd:string ;
+    bioregistry.schema:0000005 "87"^^xsd:string ;
+    bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/classification/#hid=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:pubchem.element a bioregistry.schema:0000001 ;
+    rdfs:label "PubChem Element" ;
+    dc:description "PubChem Element gives information on chemical elements like Hydrogen, with the local identifier corresponding to the atomic number."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:pubchem ;
+    foaf:homepage "https://pubchem.ncbi.nlm.nih.gov/periodic-table"^^xsd:string ;
+    bioregistry.schema:0000005 "1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/element/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:puro a bioregistry.schema:0000001 ;
     rdfs:label "Publishing Roles Ontology" ;
     dc:description "An ontology for the characterisation of the roles of agents – people, corporate bodies and computational agents in the publication process. These agents can be, e.g. authors, editors, reviewers, publishers or librarians."^^xsd:string ;
@@ -29921,6 +29963,13 @@ More information can be found at https://obofoundry.org/ontology/ontoavida.html"
         bioregistry:ro,
         bioregistry:stato ;
     bioregistry.schema:0000019 orcid:0000-0002-8374-1941 .
+
+bioregistry:pubchem dcterms:hasPart bioregistry:pubchem.bioassay,
+        bioregistry:pubchem.cell,
+        bioregistry:pubchem.classification,
+        bioregistry:pubchem.compound,
+        bioregistry:pubchem.element,
+        bioregistry:pubchem.substance .
 
 orcid:0000-0002-2999-0103 rdfs:label "Jie Zheng" .
 
@@ -31237,6 +31286,8 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ppr,
         bioregistry:prefixcommons,
         bioregistry:pspub,
+        bioregistry:pubchem.cell,
+        bioregistry:pubchem.classification,
         bioregistry:pubchem.element,
         bioregistry:puro,
         bioregistry:pwo,
@@ -37635,6 +37686,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:pdb,
         bioregistry:pdb-ccd,
         bioregistry:pdb.ligand,
+        bioregistry:pdc.study,
         bioregistry:pdro,
         bioregistry:pdumdv,
         bioregistry:peco,
@@ -37718,6 +37770,8 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:pso,
         bioregistry:pspub,
         bioregistry:pubchem.bioassay,
+        bioregistry:pubchem.cell,
+        bioregistry:pubchem.classification,
         bioregistry:pubchem.compound,
         bioregistry:pubchem.element,
         bioregistry:pubchem.substance,
