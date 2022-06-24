@@ -2169,10 +2169,10 @@
     },
     "cellosaurus": {
       "category": "Gene expression databases",
-      "homepage": "https://www.ebi.ac.uk/arrayexpress/",
+      "homepage": "https://www.ebi.ac.uk/biostudies/arrayexpress",
       "name": "ArrayExpress Archive of Functional Genomics",
       "prefix": "ArrayExpress",
-      "uri_format": "https://www.ebi.ac.uk/arrayexpress/experiments/$1"
+      "uri_format": "https://www.ebi.ac.uk/biostudies/ArrayExpress/studies/$1"
     },
     "fairsharing": {
       "abbreviation": "ArrayExpress",
@@ -10165,7 +10165,7 @@
       "homepage": "https://cls.shop/",
       "name": "Cell Lines Service",
       "prefix": "CLS",
-      "uri_format": "https://www.clsgmbh.de/$1.html"
+      "uri_format": "https://cls.shop/$1"
     },
     "example": "300108/p3934_A-172",
     "mappings": {
@@ -30840,7 +30840,7 @@
       "homepage": "https://www.ebi.ac.uk/ipd/imgt/hla/",
       "name": "IPD-IMGT/HLA database",
       "prefix": "IPD-IMGT/HLA",
-      "uri_format": "https://www.ebi.ac.uk/cgi-bin/imgt/hla/fetch_cell.cgi?$1"
+      "uri_format": "https://www.ebi.ac.uk/ipd/imgt/hla/cells/cell/?cellid=$1"
     },
     "fairsharing": {
       "abbreviation": "IPD-IMGT/HLA",
@@ -32810,10 +32810,10 @@
   "kclb": {
     "cellosaurus": {
       "category": "Cell line collections",
-      "homepage": "https://cellbank.snu.ac.kr/main/index.html",
+      "homepage": "https://cellbank.snu.ac.kr/eng/",
       "name": "Korean Cell Line Bank",
       "prefix": "KCLB",
-      "uri_format": "https://cellbank.snu.ac.kr/english/sub/catalog.php?page=detail&CatNo=59&strQ=$1&submit1=Find+it"
+      "uri_format": "https://cellbank.snu.ac.kr/main/tmpl/sub_main.php?m_cd=6&m_id=0201&strQ=$1"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -43330,8 +43330,17 @@
     },
     "description": "NLXSUB covers subcellular entities similar to the cellular component branch of the Gene Ontology (GO).",
     "example": "090803",
+    "go": {
+      "homepage": "http://www.neurolex.org/wiki",
+      "name": "Neuroscience Information Framework standard ontology, subcellular hierarchy",
+      "prefix": "NIF_Subcellular",
+      "uri_format": "http://www.neurolex.org/wiki/$1"
+    },
     "homepage": "https://github.com/SciCrunch/NIF-Ontology",
     "license": "CC BY-4.0",
+    "mappings": {
+      "go": "NIF_Subcellular"
+    },
     "name": "NIF Standard Ontology: Subcellular Entities",
     "part_of": "nif",
     "pattern": "^\\d+$",

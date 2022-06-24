@@ -253,6 +253,7 @@ orcid:0000-0001-9439-5346 rdfs:label "Benjamin Gyori",
         bioregistry:casspc,
         bioregistry:nihreporter.project,
         bioregistry:pdc.study,
+        bioregistry:phosphosite.sitegroup,
         bioregistry:signor.relation .
 
 orcid:0000-0002-3012-7446 rdfs:label "Daniel Himmelstein" ;
@@ -2247,7 +2248,7 @@ bioregistry:cls a bioregistry.schema:0000001 ;
     skos:exactMatch cellosaurus.resource:CLS ;
     foaf:homepage "https://cls.shop/"^^xsd:string ;
     bioregistry.schema:0000005 "300108/p3934_A-172"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.clsgmbh.de/$1.html"^^xsd:string ;
+    bioregistry.schema:0000006 "https://cls.shop/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:cmf a bioregistry.schema:0000001 ;
@@ -17775,6 +17776,8 @@ go.resource:NCBIGene dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:NCBI_NP dcterms:isPartOf bioregistry.metaresource:go .
 
+go.resource:NIF_Subcellular dcterms:isPartOf bioregistry.metaresource:go .
+
 go.resource:OBI dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:OMIM dcterms:isPartOf bioregistry.metaresource:go .
@@ -22642,6 +22645,16 @@ bioregistry:phipo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000017 bioregistry:pato ;
     bioregistry.schema:0000019 orcid:0000-0001-8941-3984 .
 
+bioregistry:phosphosite.sitegroup a bioregistry.schema:0000001 ;
+    rdfs:label "PhosphoSite Site Group" ;
+    dc:description "Site groups are orthologous positions in human, mouse, rat, etc. where phosphorylations or other PTMs occur."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.phosphosite.org"^^xsd:string ;
+    bioregistry.schema:0000005 "447860"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:pictar a bioregistry.schema:0000001 ;
     rdfs:label "PicTar" ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
@@ -22852,9 +22865,9 @@ bioregistry:resid a bioregistry.schema:0000001 ;
         n2t:resid,
         prefixcommons:resid,
         miriam:resid ;
-    foaf:homepage "http://www.ebi.ac.uk/RESID/"^^xsd:string ;
+    foaf:homepage "https://proteininformationresource.org/resid/"^^xsd:string ;
     bioregistry.schema:0000005 "AA0001"^^xsd:string ;
-    bioregistry.schema:0000006 "http://pir0.georgetown.edu/cgi-bin/resid?id=$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://proteininformationresource.org/cgi-bin/resid?id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^AA\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 [ rdfs:label "John Garavelli" ] .
@@ -28288,6 +28301,17 @@ bioregistry:doid a bioregistry.schema:0000001 ;
         bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0001-8910-9851 .
 
+bioregistry:drugbank.category a bioregistry.schema:0000001 ;
+    rdfs:label "DrugBank Drug Category" ;
+    dc:description "Close to 5K Categorizations for drugs, similar to ATCC."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:drugbank ;
+    foaf:homepage "https://go.drugbank.com/categories"^^xsd:string ;
+    bioregistry.schema:0000005 "DBCAT000600"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.drugbank.ca/categories/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^DBCAT\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:eccode a bioregistry.schema:0000001 ;
     rdfs:label "Enzyme Nomenclature" ;
     dc:description "The Enzyme Classification contains the recommendations of the Nomenclature Committee of the International Union of Biochemistry and Molecular Biology on the nomenclature and classification of enzyme-catalysed reactions."^^xsd:string ;
@@ -28885,6 +28909,7 @@ bioregistry:nlx.sub a bioregistry.schema:0000001 ;
     dc:description "NLXSUB covers subcellular entities similar to the cellular component branch of the Gene Ontology (GO)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:nif ;
+    skos:exactMatch go.resource:NIF_Subcellular ;
     foaf:homepage "https://github.com/SciCrunch/NIF-Ontology"^^xsd:string ;
     bioregistry.schema:0000005 "090803"^^xsd:string ;
     bioregistry.schema:0000006 "http://uri.neuinfo.org/nif/nifstd/nlx_subcell_$1"^^xsd:string ;
@@ -29358,27 +29383,6 @@ bioregistry:dragondb dcterms:hasPart bioregistry:dragondb.allele,
         bioregistry:dragondb.locus,
         bioregistry:dragondb.protein .
 
-bioregistry:drugbank a bioregistry.schema:0000001 ;
-    rdfs:label "DrugBank" ;
-    dc:description "The DrugBank database is a bioinformatics and chemoinformatics resource that combines detailed drug (i.e. chemical, pharmacological and pharmaceutical) data with comprehensive drug target (i.e. sequence, structure, and pathway) information. This collection references drug information."^^xsd:string ;
-    dcterms:hasPart bioregistry:drugbank.salt,
-        bioregistry:drugbankv4.target ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:DrugBank,
-        cellosaurus.resource:DrugBank,
-        n2t:drugbank,
-        fairsharing:FAIRsharing.353yat,
-        prefixcommons:drugbank,
-        miriam:drugbank,
-        cheminf:000406,
-        uniprot.resource:DrugBank,
-        wikidata:P715 ;
-    foaf:homepage "http://www.drugbank.ca"^^xsd:string ;
-    bioregistry.schema:0000005 "DB14938"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.drugbank.ca/drugs/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^DB\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:duo a bioregistry.schema:0000001 ;
     rdfs:label "Data Use Ontology" ;
     dc:description "DUO is an ontology which represent data use conditions."^^xsd:string ;
@@ -29613,6 +29617,28 @@ orcid:0000-0001-5985-7429 rdfs:label "Colin Batchelor" .
 orcid:0000-0002-8688-6599 rdfs:label "Jim Balhoff" .
 
 orcid:0000-0003-1834-3856 rdfs:label "Mathias Brochhausen" .
+
+bioregistry:drugbank a bioregistry.schema:0000001 ;
+    rdfs:label "DrugBank" ;
+    dc:description "The DrugBank database is a bioinformatics and chemoinformatics resource that combines detailed drug (i.e. chemical, pharmacological and pharmaceutical) data with comprehensive drug target (i.e. sequence, structure, and pathway) information. This collection references drug information."^^xsd:string ;
+    dcterms:hasPart bioregistry:drugbank.category,
+        bioregistry:drugbank.salt,
+        bioregistry:drugbankv4.target ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:DrugBank,
+        cellosaurus.resource:DrugBank,
+        n2t:drugbank,
+        fairsharing:FAIRsharing.353yat,
+        prefixcommons:drugbank,
+        miriam:drugbank,
+        cheminf:000406,
+        uniprot.resource:DrugBank,
+        wikidata:P715 ;
+    foaf:homepage "http://www.drugbank.ca"^^xsd:string ;
+    bioregistry.schema:0000005 "DB14938"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.drugbank.ca/drugs/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^DB\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:multicellds a bioregistry.schema:0000001 ;
     rdfs:label "MultiCellDS" ;
@@ -31189,6 +31215,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:diseaseclass,
         bioregistry:dmba,
         bioregistry:doco,
+        bioregistry:drugbank.category,
         bioregistry:dsmz,
         bioregistry:eaglei,
         bioregistry:ecmdb,
@@ -31980,6 +32007,7 @@ bioregistry.metaresource:go a bioregistry.schema:0000002 ;
         go.resource:MetaCyc,
         go.resource:NCBIGene,
         go.resource:NCBI_NP,
+        go.resource:NIF_Subcellular,
         go.resource:OBI,
         go.resource:OMIM,
         go.resource:PANTHER,
@@ -37037,6 +37065,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dron,
         bioregistry:drsc,
         bioregistry:drugbank,
+        bioregistry:drugbank.category,
         bioregistry:drugbank.salt,
         bioregistry:drugbankv4.target,
         bioregistry:drugcentral,
@@ -37718,6 +37747,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:phosphopoint.protein,
         bioregistry:phosphosite.protein,
         bioregistry:phosphosite.residue,
+        bioregistry:phosphosite.sitegroup,
         bioregistry:phylomedb,
         bioregistry:phytozome.locus,
         bioregistry:pictar,

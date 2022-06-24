@@ -4068,7 +4068,7 @@
     },
     "name": "Cell Lines Service",
     "preferred_prefix": "cls",
-    "uri_format": "https://www.clsgmbh.de/$1.html"
+    "uri_format": "https://cls.shop/$1"
   },
   "clyh": {
     "contact": {
@@ -4186,6 +4186,7 @@
     "name": "Cellular Microscopy Phenotype Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "cmpo",
+    "repository": "https://github.com/EBISPOT/CMPO",
     "version": "2017-12-19"
   },
   "co_320": {
@@ -6880,6 +6881,22 @@
       "DrugBank"
     ],
     "uri_format": "http://www.drugbank.ca/drugs/$1"
+  },
+  "drugbank.category": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Close to 5K Categorizations for drugs, similar to ATCC.",
+    "example": "DBCAT000600",
+    "homepage": "https://go.drugbank.com/categories",
+    "name": "DrugBank Drug Category",
+    "part_of": "drugbank",
+    "pattern": "^DBCAT\\d+$",
+    "preferred_prefix": "drugbank.category",
+    "uri_format": "https://www.drugbank.ca/categories/$1"
   },
   "drugbank.salt": {
     "description": "DrugBank is a web-enabled database containing comprehensive molecular information about drugs, their mechanisms, their interactions and their targets.",
@@ -17936,6 +17953,9 @@
     "example": "090803",
     "homepage": "https://github.com/SciCrunch/NIF-Ontology",
     "license": "CC BY-4.0",
+    "mappings": {
+      "go": "NIF_Subcellular"
+    },
     "name": "NIF Standard Ontology: Subcellular Entities",
     "part_of": "nif",
     "pattern": "^\\d+$",
@@ -17948,7 +17968,8 @@
       "orcid": "0000-0003-4423-4370"
     },
     "synonyms": [
-      "NLXSUB"
+      "NLXSUB",
+      "nif_subcellular"
     ],
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_subcell_$1"
   },
@@ -20835,6 +20856,27 @@
     "preferred_prefix": "phosphosite.residue",
     "uri_format": "http://www.phosphosite.org/siteAction.do?id=$1"
   },
+  "phosphosite.sitegroup": {
+    "comment": "Potentially could use a URI format like https://www.phosphosite.org/siteGroupAction.action?protOrg=1156&id=$1, but it's not obvious what the protOrg does.",
+    "contributor": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "Site groups are orthologous positions in human, mouse, rat, etc. where phosphorylations or other PTMs occur.",
+    "example": "447860",
+    "homepage": "https://www.phosphosite.org",
+    "name": "PhosphoSite Site Group",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "phosphosite.sitegroup",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    }
+  },
   "phylomedb": {
     "description": "PhylomeDB is a database of complete phylomes derived for different genomes within a specific taxonomic range. It provides alignments, phylogentic trees and tree-based orthology predictions for all encoded proteins.",
     "example": "Phy000CLXM_RAT",
@@ -22513,7 +22555,7 @@
     "deprecated": true,
     "description": "The RESID Database of Protein Modifications is a comprehensive collection of annotations and structures for protein modifications including amino-terminal, carboxyl-terminal and peptide chain cross-link post-translational modifications.",
     "example": "AA0001",
-    "homepage": "http://www.ebi.ac.uk/RESID/",
+    "homepage": "https://proteininformationresource.org/resid/",
     "mappings": {
       "biocontext": "RESID",
       "go": "RESID",
@@ -22525,7 +22567,7 @@
     "name": "Protein covalent bond",
     "pattern": "^AA\\d{4}$",
     "preferred_prefix": "RESID",
-    "uri_format": "http://pir0.georgetown.edu/cgi-bin/resid?id=$1"
+    "uri_format": "https://proteininformationresource.org/cgi-bin/resid?id=$1"
   },
   "reto": {
     "description": "Regulation of Transcription",
@@ -25808,6 +25850,13 @@
         "homepage": "https://scholia.toolforge.org/",
         "name": "Scholia",
         "uri_format": "https://scholia.toolforge.org/uniprot/$1"
+      },
+      {
+        "code": "oma",
+        "description": "The OMA project is a method and database for the inference of orthologs among complete genomes.",
+        "homepage": "https://omabrowser.org/oma/home/",
+        "name": "Orthologous Matrix Browser",
+        "uri_format": "http://omabrowser.org/cgi-bin/gateway.pl?f=DisplayEntry&p2=orthologs&p1=$1"
       },
       {
         "code": "ncbi",
