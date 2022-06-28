@@ -5,6 +5,27 @@ permalink: /curation/
 ---
 This page has the curation To-Do list.
 
+## Curating Cross-Registry Mappings
+
+The following registries have xrefs that need curating:
+
+<table>
+<thead>
+   <tr>
+      <th>Prefix</th>
+      <th>Name</th>
+   </tr>
+</thead>
+<tbody>
+{% for entry in site.data.curation["prefix_xrefs"] %}
+   <tr>
+      <td>{{ entry.metaprefix }}</td>
+      <td><a href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/external/{{ entry.metaprefix }}/curation.tsv">{{ entry.name }}</a></td>
+   </tr>
+{% endfor %}
+</tbody>
+</table>
+
 ## Adding a Wikidata Database Corresponding to Each Resource
 
 <a id="wikidata"></a>
