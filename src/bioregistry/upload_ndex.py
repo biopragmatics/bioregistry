@@ -10,11 +10,11 @@ from more_click import verbose_option
 
 import bioregistry
 import bioregistry.version
+from bioregistry import manager
+from bioregistry.constants import NDEX_UUID
 
 if TYPE_CHECKING:
     import ndex2
-
-NDEX_UUID = "aa78a43f-9c4d-11eb-9e72-0ac135e8bacf"
 
 
 @click.command()
@@ -41,6 +41,9 @@ def upload():
     )
     cx.add_network_attribute("hash", bioregistry.version.get_git_hash())
     cx.add_network_attribute("version", bioregistry.version.get_version())
+    cx.add_network_attribute("rights", "Waiver-No rights reserved (CC0)")
+    cx.add_network_attribute("rightsHolder", "Charles Tapley Hoyt")
+    cx.add_network_attribute("author", "Charles Tapley Hoyt")
     cx.set_context(
         {
             "bioregistry.collection": "https://bioregistry.io/collection/",
@@ -78,10 +81,16 @@ def upload():
                 target=resource_nodes[entry.has_canonical],
                 interaction="has_canonical",
             )
+        for dependent_prefix in manager.get_depends_on(prefix) or []:
+            cx.add_edge(
+                source=resource_nodes[prefix],
+                target=resource_nodes[dependent_prefix],
+                interaction="depends_on",
+            )
 
         # Which registries does it map to?
         for metaprefix in metaregistry:
-            if metaprefix not in entry:
+            if not getattr(entry, metaprefix, None):
                 continue
             cx.add_edge(
                 source=resource_nodes[prefix],

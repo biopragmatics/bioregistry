@@ -113,3 +113,4 @@ LINK_PRIORITY = [
     "bioportal",
     "scholia",
 ]
+NDEX_UUID = "860647c4-f7c1-11ec-ac45-0ac135e8bacf"
