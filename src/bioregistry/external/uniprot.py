@@ -18,7 +18,7 @@ __all__ = [
 logger = logging.getLogger(__name__)
 
 #: Download URL for the UniProt registry
-URL = "https://www.uniprot.org/database/?format=rdf"
+URL = "https://rest.uniprot.org/database/stream?format=rdf&query=*"
 DIRECTORY = EXTERNAL / "uniprot"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 RAW_PATH = DIRECTORY / "raw.xml"
@@ -82,7 +82,7 @@ def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
             rv[prefix] = entry
 
     with PROCESSED_PATH.open("w") as file:
-        json.dump(rv, file, indent=2)
+        json.dump(rv, file, indent=2, sort_keys=True)
     return rv
 
 
