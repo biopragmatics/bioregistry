@@ -1309,6 +1309,7 @@ bcgo:
   deprecated: true
   description: An application ontology built for beta cell genomics studies.
   download_owl: https://github.com/obi-bcgo/bcgo/raw/master/ontology/bcgo.owl
+  example: '0000015'
   homepage: https://github.com/obi-bcgo/bcgo
   license: CC BY 3.0
   mappings:
@@ -1319,6 +1320,7 @@ bcgo:
     obofoundry: BCGO
     ontobee: BCGO
   name: Beta Cell Genomics Ontology
+  pattern: ^\d{7}$
   preferred_prefix: BCGO
   repository: https://github.com/obi-bcgo/bcgo
   uri_format: http://purl.obolibrary.org/obo/BCGO_$1
@@ -6990,6 +6992,31 @@ eaglei:
   name: eagle-i
   preferred_prefix: eaglei
   uri_format: http://hawaii.eagle-i.net/i/$1
+easychair.cfp:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Conferences in EasyChair
+  example: SysBioCancer2022
+  homepage: https://easychair.org/cfp/
+  name: EasyChair Call for Paper
+  preferred_prefix: easychair.cfp
+  uri_format: https://easychair.org/cfp/$1
+easychair.topic:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Call for paper topics in EasyChair
+  example: '27106865'
+  homepage: https://easychair.org/cfp/
+  name: EasyChair Topic
+  pattern: ^\d+$
+  preferred_prefix: easychair.topic
+  uri_format: https://easychair.org/cfp/topic.cgi?tid=$1
 ebisc:
   description: Cell line collections
   example: ESi007-A
@@ -7428,6 +7455,84 @@ edam:
   preferred_prefix: edam
   uri_format: https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1
   version: '2019-07-17'
+edam.data:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Information, represented in an information artefact (data record) that
+    is 'understandable' by dedicated computational tools that can use the data as
+    input or produce it as output.
+  example: '1664'
+  homepage: http://edamontology.org
+  mappings:
+    biolink: EDAM-DATA
+  name: EDAM Data
+  part_of: edam
+  pattern: ^\d+$
+  preferred_prefix: edam.data
+  uri_format: http://edamontology.org/data_$1
+edam.format:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A defined way or layout of representing and structuring data in a computer
+    file, blob, string, message, or elsewhere. The main focus in EDAM lies on formats
+    as means of structuring data exchanged between different tools or resources. The
+    serialisation, compression, or encoding of concrete data formats/models is not
+    in scope of EDAM. Format 'is format of' Data.
+  example: '1915'
+  homepage: http://edamontology.org
+  mappings:
+    biolink: EDAM-FORMAT
+  name: EDAM Format
+  part_of: edam
+  pattern: ^\d+$
+  preferred_prefix: edam.format
+  uri_format: http://edamontology.org/format_$1
+edam.operation:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'A function that processes a set of inputs and results in a set of
+    outputs, or associates arguments (inputs) with values (outputs). Special cases
+    are: a) An operation that consumes no input (has no input arguments). Such operation
+    is either a constant function, or an operation depending only on the underlying
+    state. b) An operation that may modify the underlying state but has no output.
+    c) The singular-case operation with no input or output, that still may modify
+    the underlying state.'
+  example: '0004'
+  homepage: http://edamontology.org
+  mappings:
+    biolink: EDAM-OPERATION
+  name: EDAM Operation
+  part_of: edam
+  pattern: ^\d+$
+  preferred_prefix: edam.operation
+  uri_format: http://edamontology.org/operation_$1
+edam.topic:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A category denoting a rather broad domain or field of interest, of
+    study, application, work, data, or technology. Topics have no clearly defined
+    borders between each other.
+  example: '0003'
+  homepage: http://edamontology.org
+  mappings:
+    biolink: EDAM-TOPIC
+  name: EDAM Topic
+  part_of: edam
+  pattern: ^\d+$
+  preferred_prefix: edam.topic
+  uri_format: http://edamontology.org/topic_$1
 edda:
   description: Coverage of the terminology appearing in JMLA was extended with terms
     from MeSH, NCI Thesaurus (NCI), Emtree, the HTA Database Canadian Repository [international
@@ -8629,7 +8734,7 @@ fbbt:
   homepage: http://purl.obolibrary.org/obo/fbbt
   license: CC BY 4.0
   mappings:
-    aberowl: FBBT
+    aberowl: FB-BT
     biocontext: FBbt
     bioportal: FB-BT
     fairsharing: FAIRsharing.y2qkst
@@ -8665,7 +8770,7 @@ fbcv:
   homepage: http://purl.obolibrary.org/obo/fbcv
   license: CC BY 4.0
   mappings:
-    aberowl: FBCV
+    aberowl: FB-CV
     biocontext: FBcv
     bioportal: FB-CV
     fairsharing: FAIRsharing.6tgyxf
@@ -8696,7 +8801,7 @@ fbdv:
   homepage: http://purl.obolibrary.org/obo/fbdv
   license: CC BY 4.0
   mappings:
-    aberowl: FBDV
+    aberowl: FB-DV
     biocontext: FBdv
     bioportal: FB-DV
     fairsharing: FAIRsharing.p52pzj
@@ -9116,6 +9221,21 @@ foodb.compound:
   synonyms:
   - foodb
   uri_format: http://foodb.ca/compounds/$1
+foodb.food:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Foods in FooDB
+  example: FOOD00020
+  homepage: https://foodb.ca/foods
+  mappings:
+    biolink: foodb.food
+  name: FooDB Food
+  pattern: ^FOOD\d+$
+  preferred_prefix: foodb.food
+  uri_format: https://foodb.ca/foods/$1
 foodon:
   appears_in:
   - agro
@@ -10381,7 +10501,7 @@ go:
   homepage: http://geneontology.org/
   license: CC BY 4.0
   mappings:
-    aberowl: G-O
+    aberowl: GO
     agroportal: GO
     biocontext: GO
     bioportal: GO
@@ -10425,7 +10545,7 @@ go:
   - gomf
   - gomfid
   uri_format: http://amigo.geneontology.org/amigo/term/GO:$1
-  version: '2022-03-10'
+  version: '2022-06-15'
 go.model:
   description: GO-Causal Activity Models (GO-CAMs) use a defined “grammar” for linking
     multiple GO annotations into larger models of biological function (such as “pathways”)
@@ -11649,7 +11769,7 @@ hp:
   homepage: http://www.human-phenotype-ontology.org/
   license: hpo
   mappings:
-    aberowl: HP_O
+    aberowl: HP
     biocontext: HPO
     bioportal: HP
     fairsharing: FAIRsharing.kbtt7f
@@ -18210,21 +18330,6 @@ obo:
   name: Internal OBO and PyOBO Relations
   preferred_prefix: obo
   uri_format: http://purl.obolibrary.org/obo/$1
-oboformat:
-  contributor:
-    email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: Related to the OBO in OWL meta-model
-  example: alt_id
-  homepage: https://github.com/geneontology/go-ontology/tree/master/contrib
-  mappings:
-    biolink: oboformat
-    fairsharing: FAIRsharing.aa0eat
-  name: OBO Format
-  preferred_prefix: oboFormat
-  repository: https://github.com/geneontology/go-ontology
 oboinowl:
   description: This meta-ontology is self-describing. OBO metamodel properties are
     described using OBO metamodel properties
@@ -18233,10 +18338,12 @@ oboinowl:
   homepage: https://github.com/geneontology/go-ontology/tree/master/contrib
   mappings:
     biocontext: OIO
+    biolink: oboformat
   name: OBO in OWL
   preferred_prefix: oboInOwl
   repository: https://github.com/geneontology/go-ontology
   synonyms:
+  - oboformat
   - oio
   uri_format: http://www.geneontology.org/formats/oboInOwl#$1
 occ:
@@ -18645,6 +18752,7 @@ om:
   name: Ontology of units of Measure
   preferred_prefix: om
   repository: https://github.com/HajoRijgersberg/OM
+  uri_format: http://www.ontology-of-units-of-measure.org/resource/om-2/$1
   version: 2.0.37
 oma.grp:
   description: OMA (Orthologous MAtrix) is a database that identifies orthologs among
@@ -23183,6 +23291,25 @@ schem:
   pattern: ^A\d{4}$
   preferred_prefix: schem
   uri_format: https://biopragmatics.github.io/providers/schem/$1
+schema:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Schema.org is a collaborative, community activity with a mission to
+    create, maintain, and promote schemas for structured data on the Internet, on
+    web pages, in email messages, and beyond.
+  download_owl: http://aber-owl.net/media/ontologies/SCHEMA/2/schema.owl
+  example: Person
+  homepage: https://schema.org
+  mappings:
+    aberowl: SCHEMA
+    biolink: schema
+    bioportal: SCHEMA
+  name: Schema.org
+  preferred_prefix: schema
+  uri_format: https://schema.org/$1
 scholia.resource:
   contributor:
     email: cthoyt@gmail.com

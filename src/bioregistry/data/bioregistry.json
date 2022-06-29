@@ -7650,8 +7650,8 @@
   "cdno": {
     "aberowl": {
       "description": "CDNO provides structured terminologies to describe nutritional attributes of material entities that contribute to human diet.",
-      "download_owl": "http://aber-owl.net/media/ontologies/CDNO/4/cdno.owl",
-      "homepage": "https://github.com/Southern-Cross-Plant-Science/cdno",
+      "download_owl": "http://aber-owl.net/media/ontologies/CDNO/5/cdno.owl",
+      "homepage": "https://cdno.info/",
       "name": "Compositional Dietary Nutrition Ontology",
       "prefix": "CDNO"
     },
@@ -18242,6 +18242,12 @@
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1"
   },
   "edam.data": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "EDAM-DATA",
+      "uri_format": "http://edamontology.org/data_$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -18251,12 +18257,21 @@
     "description": "Information, represented in an information artefact (data record) that is 'understandable' by dedicated computational tools that can use the data as input or produce it as output.",
     "example": "1664",
     "homepage": "http://edamontology.org",
+    "mappings": {
+      "biolink": "EDAM-DATA"
+    },
     "name": "EDAM Data",
     "part_of": "edam",
     "pattern": "^\\d+$",
     "uri_format": "http://edamontology.org/data_$1"
   },
   "edam.format": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "EDAM-FORMAT",
+      "uri_format": "http://edamontology.org/format_$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -18266,12 +18281,21 @@
     "description": "A defined way or layout of representing and structuring data in a computer file, blob, string, message, or elsewhere. The main focus in EDAM lies on formats as means of structuring data exchanged between different tools or resources. The serialisation, compression, or encoding of concrete data formats/models is not in scope of EDAM. Format 'is format of' Data.",
     "example": "1915",
     "homepage": "http://edamontology.org",
+    "mappings": {
+      "biolink": "EDAM-FORMAT"
+    },
     "name": "EDAM Format",
     "part_of": "edam",
     "pattern": "^\\d+$",
     "uri_format": "http://edamontology.org/format_$1"
   },
   "edam.operation": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "EDAM-OPERATION",
+      "uri_format": "http://edamontology.org/operation_$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -18281,12 +18305,21 @@
     "description": "A function that processes a set of inputs and results in a set of outputs, or associates arguments (inputs) with values (outputs). Special cases are: a) An operation that consumes no input (has no input arguments). Such operation is either a constant function, or an operation depending only on the underlying state. b) An operation that may modify the underlying state but has no output. c) The singular-case operation with no input or output, that still may modify the underlying state.",
     "example": "0004",
     "homepage": "http://edamontology.org",
+    "mappings": {
+      "biolink": "EDAM-OPERATION"
+    },
     "name": "EDAM Operation",
     "part_of": "edam",
     "pattern": "^\\d+$",
     "uri_format": "http://edamontology.org/operation_$1"
   },
   "edam.topic": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "EDAM-TOPIC",
+      "uri_format": "http://edamontology.org/topic_$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -18296,6 +18329,9 @@
     "description": "A category denoting a rather broad domain or field of interest, of study, application, work, data, or technology. Topics have no clearly defined borders between each other.",
     "example": "0003",
     "homepage": "http://edamontology.org",
+    "mappings": {
+      "biolink": "EDAM-TOPIC"
+    },
     "name": "EDAM Topic",
     "part_of": "edam",
     "pattern": "^\\d+$",
@@ -21293,11 +21329,12 @@
   },
   "fbbt": {
     "aberowl": {
-      "description": "An ontology representing the gross anatomy of Drosophila melanogaster.",
-      "download_owl": "http://aber-owl.net/media/ontologies/FBBT/29/fbbt.owl",
-      "homepage": "http://purl.obolibrary.org/obo/fbbt",
-      "name": "Drosophila gross anatomy",
-      "prefix": "FBBT"
+      "description": "A structured controlled vocabulary of the anatomy of <i>Drosophila melanogaster</i>.",
+      "download_obo": "http://aber-owl.net/media/ontologies/FB-BT/40/fb-bt.obo",
+      "homepage": "http://sourceforge.net/p/fbbtdv/wiki/Home/",
+      "name": "Drosophila Gross Anatomy Ontology",
+      "prefix": "FB-BT",
+      "version": "2017-09-06"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -21351,7 +21388,7 @@
       "uri_format": "http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:$1"
     },
     "mappings": {
-      "aberowl": "FBBT",
+      "aberowl": "FB-BT",
       "biocontext": "FBbt",
       "bioportal": "FB-BT",
       "fairsharing": "FAIRsharing.y2qkst",
@@ -21435,11 +21472,12 @@
   },
   "fbcv": {
     "aberowl": {
-      "description": "A structured controlled vocabulary used for various aspects of annotation by FlyBase.",
-      "download_owl": "http://aber-owl.net/media/ontologies/FBCV/22/fbcv.owl",
-      "homepage": "http://purl.obolibrary.org/obo/fbcv",
+      "description": "A structured controlled vocabulary used for various aspects of annotation by FlyBase.<br>This ontology is maintained by FlyBase for various aspects of annotation not covered, or not yet covered, by other OBO ontologies. If and when community ontologies are available for the domains here covered FlyBase will use them. This ontology includes the Drosophila phenotype ontology (DPO), provided here together with FBcv for legacy purposes.",
+      "download_owl": "http://aber-owl.net/media/ontologies/FB-CV/21/fb-cv.owl",
+      "homepage": "http://sourceforge.net/p/fbcv/wiki/Home/",
       "name": "FlyBase Controlled Vocabulary",
-      "prefix": "FBCV"
+      "prefix": "FB-CV",
+      "version": "2014-09-23"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -21471,7 +21509,7 @@
       ]
     },
     "mappings": {
-      "aberowl": "FBCV",
+      "aberowl": "FB-CV",
       "biocontext": "FBcv",
       "bioportal": "FB-CV",
       "fairsharing": "FAIRsharing.6tgyxf",
@@ -21537,11 +21575,12 @@
   },
   "fbdv": {
     "aberowl": {
-      "description": "A structured controlled vocabulary of the development of Drosophila melanogaster.",
-      "download_owl": "http://aber-owl.net/media/ontologies/FBDV/23/fbdv.owl",
-      "homepage": "http://purl.obolibrary.org/obo/fbdv",
-      "name": "Drosophila development",
-      "prefix": "FBDV"
+      "description": "A structured controlled vocabulary of the development of <i>Drosophila melanogaster</i>.",
+      "download_obo": "http://aber-owl.net/media/ontologies/FB-DV/19/fb-dv.obo",
+      "homepage": "http://sourceforge.net/p/fbbtdv/wiki/Home/",
+      "name": "Drosophila Development Ontology",
+      "prefix": "FB-DV",
+      "version": "2016-10-14"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -21567,7 +21606,7 @@
       ]
     },
     "mappings": {
-      "aberowl": "FBDV",
+      "aberowl": "FB-DV",
       "biocontext": "FBdv",
       "bioportal": "FB-DV",
       "fairsharing": "FAIRsharing.p52pzj",
@@ -22589,6 +22628,12 @@
     ]
   },
   "foodb.food": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "foodb.food",
+      "uri_format": "http://foodb.ca/compounds/$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -22598,6 +22643,9 @@
     "description": "Foods in FooDB",
     "example": "FOOD00020",
     "homepage": "https://foodb.ca/foods",
+    "mappings": {
+      "biolink": "foodb.food"
+    },
     "name": "FooDB Food",
     "pattern": "^FOOD\\d+$",
     "uri_format": "https://foodb.ca/foods/$1"
@@ -23310,7 +23358,7 @@
   "fypo": {
     "aberowl": {
       "description": "FYPO is a formal ontology of phenotypes observed in fission yeast.",
-      "download_owl": "http://aber-owl.net/media/ontologies/FYPO/426/fypo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/FYPO/427/fypo.owl",
       "homepage": "https://github.com/pombase/fypo",
       "name": "Fission Yeast Phenotype Ontology",
       "prefix": "FYPO"
@@ -25581,12 +25629,11 @@
   },
   "go": {
     "aberowl": {
-      "description": "The Ontology defines the Geriatrics system with classes. It also has object properties and data properties which are used to create a Decision support system for the elderly.",
-      "download_owl": "http://aber-owl.net/media/ontologies/G-O/1/g-o.owl",
-      "homepage": "http://healthcareelderly.me/GeriatricsWebApp/web/ontoBrowser.html",
-      "name": "Geriatrics Ontology",
-      "prefix": "G-O",
-      "version": "1.0"
+      "description": "An ontology for describing the function of genes and gene products",
+      "download_owl": "http://aber-owl.net/media/ontologies/GO/1770/go.owl",
+      "homepage": "http://geneontology.org/",
+      "name": "Gene Ontology",
+      "prefix": "GO"
     },
     "agroportal": {
       "name": "Gene Ontology",
@@ -25666,7 +25713,7 @@
       "prefix": "GO"
     },
     "mappings": {
-      "aberowl": "G-O",
+      "aberowl": "GO",
       "agroportal": "GO",
       "biocontext": "GO",
       "bioportal": "GO",
@@ -25787,8 +25834,8 @@
       "download": "http://purl.obolibrary.org/obo/go.owl",
       "name": "Gene Ontology",
       "prefix": "go",
-      "version": "2022-03-10",
-      "version.iri": "http://purl.obolibrary.org/obo/go/releases/2022-03-10/go.owl"
+      "version": "2022-06-15",
+      "version.iri": "http://purl.obolibrary.org/obo/go/releases/2022-06-15/go.owl"
     },
     "ontobee": {
       "library": "Foundry",
@@ -28652,12 +28699,11 @@
   },
   "hp": {
     "aberowl": {
-      "description": "Hypersensitivity Pneumonitis Ontology involves the domain of knowledge of 1. diseases caused by organic dusts exposure including hypersensitivity pneumonitis as well as 2. organic dusts.",
-      "download_owl": "http://aber-owl.net/media/ontologies/HP_O/1/hp_o.owl",
-      "homepage": "https://hypontology.herokuapp.com/",
-      "name": "Hypersensitivity pneumonitis ontology",
-      "prefix": "HP_O",
-      "version": "1.0"
+      "description": "A structured and controlled vocabulary for the phenotypic features encountered in human hereditary and other disease.",
+      "download_owl": "http://aber-owl.net/media/ontologies/HP/596/hp.owl",
+      "homepage": "http://www.human-phenotype-ontology.org/",
+      "name": "Human Phenotype Ontology",
+      "prefix": "HP"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -28712,7 +28758,7 @@
       ]
     },
     "mappings": {
-      "aberowl": "HP_O",
+      "aberowl": "HP",
       "biocontext": "HPO",
       "bioportal": "HP",
       "fairsharing": "FAIRsharing.kbtt7f",
@@ -35651,7 +35697,7 @@
   "maxo": {
     "aberowl": {
       "description": "Medical Action Ontology is an ontology...",
-      "download_owl": "http://aber-owl.net/media/ontologies/MAXO/25/maxo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/MAXO/26/maxo.owl",
       "homepage": "https://github.com/monarch-initiative/MAxO",
       "name": "Medical Action Ontology",
       "prefix": "MAXO"
@@ -39687,7 +39733,7 @@
   "mp": {
     "aberowl": {
       "description": "Standard terms for annotating mammalian phenotypic data.",
-      "download_owl": "http://aber-owl.net/media/ontologies/MP/78/mp.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/MP/79/mp.owl",
       "homepage": "http://www.informatics.jax.org/searches/MP_form.shtml",
       "name": "Mammalian Phenotype Ontology",
       "prefix": "MP"
@@ -44578,12 +44624,19 @@
       "prefix": "OIO",
       "uri_format": "http://www.geneontology.org/formats/oboInOwl#$1"
     },
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "oboformat",
+      "uri_format": "http://www.geneontology.org/formats/oboInOwl#$1"
+    },
     "description": "This meta-ontology is self-describing. OBO metamodel properties are described using OBO metamodel properties",
     "download_obo": "https://github.com/geneontology/go-ontology/raw/master/contrib/oboInOwl.obo",
     "example": "hasDbXref",
     "homepage": "https://github.com/geneontology/go-ontology/tree/master/contrib",
     "mappings": {
-      "biocontext": "OIO"
+      "biocontext": "OIO",
+      "biolink": "oboformat"
     },
     "name": "OBO in OWL",
     "preferred_prefix": "oboInOwl",
@@ -46304,7 +46357,7 @@
   "ons": {
     "aberowl": {
       "description": "An ontology for description of concepts in the nutritional studies domain.",
-      "download_owl": "http://aber-owl.net/media/ontologies/ONS/22/ons.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/ONS/23/ons.owl",
       "homepage": "https://github.com/enpadasi/Ontology-for-Nutritional-Studies",
       "name": "Ontology for Nutritional Studies",
       "prefix": "ONS"
@@ -56866,7 +56919,7 @@
   "sbo": {
     "aberowl": {
       "description": "Terms commonly used in Systems Biology, and in particular in computational modeling.",
-      "download_owl": "http://aber-owl.net/media/ontologies/SBO/813/sbo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/SBO/814/sbo.owl",
       "homepage": "http://www.ebi.ac.uk/sbo/",
       "name": "Systems Biology Ontology",
       "prefix": "SBO"
@@ -57108,6 +57161,24 @@
     "uri_format": "https://biopragmatics.github.io/providers/schem/$1"
   },
   "schema": {
+    "aberowl": {
+      "description": "A collection of schemas that webmasters can use to markup HTML pages in ways recognized by major search providers, and that can also be used for structured data interoperability (e.g. in JSON).",
+      "download_owl": "http://aber-owl.net/media/ontologies/SCHEMA/2/schema.owl",
+      "homepage": "http://schema.org/",
+      "name": "Schema.org core and all extension vocabularies",
+      "prefix": "SCHEMA",
+      "version": "3.2"
+    },
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "schema",
+      "uri_format": "http://schema.org/$1"
+    },
+    "bioportal": {
+      "name": "Schema.org core and all extension vocabularies",
+      "prefix": "SCHEMA"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -57117,6 +57188,11 @@
     "description": "Schema.org is a collaborative, community activity with a mission to create, maintain, and promote schemas for structured data on the Internet, on web pages, in email messages, and beyond.",
     "example": "Person",
     "homepage": "https://schema.org",
+    "mappings": {
+      "aberowl": "SCHEMA",
+      "biolink": "schema",
+      "bioportal": "SCHEMA"
+    },
     "name": "Schema.org",
     "uri_format": "https://schema.org/$1"
   },
@@ -60545,7 +60621,7 @@
   "symp": {
     "aberowl": {
       "description": "An ontology of disease symptoms, with symptoms encompasing perceived changes in function, sensations or appearance reported by a patient indicative of a disease.",
-      "download_owl": "http://aber-owl.net/media/ontologies/SYMP/32/symp.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/SYMP/33/symp.owl",
       "homepage": "http://symptomontologywiki.igs.umaryland.edu/mediawiki/index.php/Main_Page",
       "name": "Symptom Ontology",
       "prefix": "SYMP"
@@ -62467,7 +62543,7 @@
   "uberon": {
     "aberowl": {
       "description": "An integrated cross-species anatomy ontology covering animals and bridging multiple species-specific ontologies",
-      "download_owl": "http://aber-owl.net/media/ontologies/UBERON/282/uberon.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/UBERON/283/uberon.owl",
       "homepage": "http://uberon.org",
       "name": "Uberon multi-species anatomy ontology",
       "prefix": "UBERON"
@@ -65305,7 +65381,7 @@
   "vo": {
     "aberowl": {
       "description": "VO is a biomedical ontology in the domain of vaccine and vaccination.",
-      "download_owl": "http://aber-owl.net/media/ontologies/VO/287/vo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/VO/288/vo.owl",
       "homepage": "http://www.violinet.org/vaccineontology",
       "name": "Vaccine Ontology",
       "prefix": "VO"
