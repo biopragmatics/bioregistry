@@ -2048,24 +2048,6 @@ bioregistry:chemdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:cheminf a bioregistry.schema:0000001 ;
-    rdfs:label "Chemical Information Ontology" ;
-    dc:description "Includes terms for the descriptors commonly used in cheminformatics software applications and the algorithms which generate them."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:CHEMINF,
-        obofoundry:CHEMINF,
-        ontobee:CHEMINF,
-        bioportal:CHEMINF,
-        biocontext:CHEMINF,
-        fairsharing:FAIRsharing.sjhvyy,
-        ols:cheminf ;
-    foaf:homepage "https://github.com/semanticchemistry/semanticchemistry"^^xsd:string ;
-    bioregistry.schema:0000005 "000410"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CHEMINF_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{6}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0001-7542-0286 .
-
 bioregistry:chemspider a bioregistry.schema:0000001 ;
     rdfs:label "ChemSpider" ;
     dc:description "ChemSpider is a collection of compound data from across the web, which aggregates chemical structures and their associated information into a single searchable repository entry. These entries are supplemented with additional properties, related information and links back to original data sources."^^xsd:string ;
@@ -13207,6 +13189,8 @@ orcid:0000-0002-8429-8793 rdfs:label "Pablo Porras Millán" .
 
 orcid:0000-0002-8461-9745 rdfs:label "Marie-Angélique Laporte" .
 
+orcid:0000-0002-8786-1756 rdfs:label "Wes Schafer" .
+
 orcid:0000-0002-8841-5870 rdfs:label "Willy Wong" .
 
 orcid:0000-0002-9117-9338 rdfs:label "Zach Landis-Lewis" .
@@ -13256,6 +13240,8 @@ orcid:0000-0003-4727-9435 rdfs:label "Michel Dumontier" .
 orcid:0000-0003-4871-5569 rdfs:label "Rebecca Jackson" .
 
 orcid:0000-0003-4978-0864 rdfs:label "Lutz Fischer" .
+
+aberowl:ADO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:ADW dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -13743,6 +13729,8 @@ aberowl:PR dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:PRIDE dcterms:isPartOf bioregistry.metaresource:aberowl .
 
+aberowl:PROCO dcterms:isPartOf bioregistry.metaresource:aberowl .
+
 aberowl:PROPREO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:PROV dcterms:isPartOf bioregistry.metaresource:aberowl .
@@ -14034,6 +14022,8 @@ ecoportal:PCO dcterms:isPartOf bioregistry.metaresource:ecoportal .
 ecoportal:STY dcterms:isPartOf bioregistry.metaresource:ecoportal .
 
 obofoundry:AAO dcterms:isPartOf bioregistry.metaresource:obofoundry .
+
+obofoundry:ADO dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 obofoundry:ADW dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
@@ -14414,6 +14404,8 @@ obofoundry:PORO dcterms:isPartOf bioregistry.metaresource:obofoundry .
 obofoundry:PPO dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 obofoundry:PR dcterms:isPartOf bioregistry.metaresource:obofoundry .
+
+obofoundry:PROCO dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 obofoundry:PROPREO dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
@@ -14853,6 +14845,8 @@ ontobee:PPO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:PR dcterms:isPartOf bioregistry.metaresource:ontobee .
 
+ontobee:PROCO dcterms:isPartOf bioregistry.metaresource:ontobee .
+
 ontobee:PSDO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:PSO dcterms:isPartOf bioregistry.metaresource:ontobee .
@@ -14954,6 +14948,8 @@ ontobee:ZFS dcterms:isPartOf bioregistry.metaresource:ontobee .
 ontobee:ZP dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:miRNAO dcterms:isPartOf bioregistry.metaresource:ontobee .
+
+bioportal:ADO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:ADW dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -19414,6 +19410,21 @@ bioregistry:4dn.replicate a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://data.4dnucleome.org/experiment-set-replicates/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:ado a bioregistry.schema:0000001 ;
+    rdfs:label "Alzheimer's Disease Ontology" ;
+    dc:description "Alzheimer's Disease Ontology is a knowledge-based ontology that encompasses varieties of concepts related to Alzheimer'S Disease, structured by upper level Basic Formal Ontology(BFO). This Ontology is enriched by the interrelated entities that demonstrate the network of the understanding on Alzheimer's disease and can be readily applied for text mining."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:ADO,
+        obofoundry:ADO,
+        bioportal:ADO,
+        fairsharing:FAIRsharing.ckd4rf ;
+    foaf:homepage "https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO"^^xsd:string ;
+    bioregistry.schema:0000005 "0000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ADO_$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000017 bioregistry:bfo ;
+    bioregistry.schema:0000019 orcid:0000-0001-9896-3531 .
+
 bioregistry:aeo a bioregistry.schema:0000001 ;
     rdfs:label "Anatomical Entity Ontology" ;
     dc:description "AEO is an ontology of anatomical structures that expands CARO, the Common Anatomy Reference Ontology"^^xsd:string ;
@@ -19971,6 +19982,25 @@ bioregistry:chemidplus a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://chem.nlm.nih.gov/chemidplus/rn/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+\\-\\d+\\-\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:cheminf a bioregistry.schema:0000001 ;
+    rdfs:label "Chemical Information Ontology" ;
+    dc:description "Includes terms for the descriptors commonly used in cheminformatics software applications and the algorithms which generate them."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:CHEMINF,
+        obofoundry:CHEMINF,
+        ontobee:CHEMINF,
+        bioportal:CHEMINF,
+        biocontext:CHEMINF,
+        fairsharing:FAIRsharing.sjhvyy,
+        ols:cheminf ;
+    foaf:homepage "https://github.com/semanticchemistry/semanticchemistry"^^xsd:string ;
+    bioregistry.schema:0000005 "000410"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CHEMINF_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{6}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:proco ;
+    bioregistry.schema:0000019 orcid:0000-0001-7542-0286 .
 
 bioregistry:chickenqtldb a bioregistry.schema:0000001 ;
     rdfs:label "Animal Genome Chicken QTL" ;
@@ -22937,28 +22967,6 @@ bioregistry:salk a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:efo .
 
-bioregistry:sbo a bioregistry.schema:0000001 ;
-    rdfs:label "Systems Biology Ontology" ;
-    dc:description "The goal of the Systems Biology Ontology is to develop controlled vocabularies and ontologies tailored specifically for the kinds of problems being faced in Systems Biology, especially in the context of computational modeling. SBO is a project of the BioModels.net effort."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:SBO,
-        obofoundry:SBO,
-        ontobee:SBO,
-        bioportal:SBO,
-        biocontext:SBO,
-        n2t:sbo,
-        fairsharing:FAIRsharing.s19src,
-        prefixcommons:sbo,
-        miriam:sbo,
-        ols:sbo ;
-    foaf:homepage "http://www.ebi.ac.uk/sbo/"^^xsd:string ;
-    bioregistry.schema:0000005 "0000485"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/sbo/main/SBO:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0003-0705-9809 .
-
 bioregistry:schem a bioregistry.schema:0000001 ;
     rdfs:label "Selventa Chemicals" ;
     dc:description "Selventa legacy chemical namespace used with the Biological Expression Language"^^xsd:string ;
@@ -24151,6 +24159,8 @@ fairsharing:FAIRsharing.ca48xs dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.cc3f2x dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.ckd4rf dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.cnwx8c dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.cpneh8 dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -24788,9 +24798,6 @@ orcid:0000-0001-7542-0286 rdfs:label "Egon Willighagen" .
 orcid:0000-0001-9076-6015 rdfs:label "Chris Grove" .
 
 orcid:0000-0001-9114-8737 rdfs:label "Melissa Haendel" .
-
-orcid:0000-0001-9896-3531 rdfs:label "Alpha Tom Kodamullil",
-        "Dr. Alpha Tom Kodamullil" .
 
 orcid:0000-0002-0851-6883 rdfs:label "Jennifer C. Giron",
         "Jennifer C. Girón" .
@@ -29179,6 +29186,29 @@ bioregistry:pwo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/spar/pwo/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:sbo a bioregistry.schema:0000001 ;
+    rdfs:label "Systems Biology Ontology" ;
+    dc:description "The goal of the Systems Biology Ontology is to develop controlled vocabularies and ontologies tailored specifically for the kinds of problems being faced in Systems Biology, especially in the context of computational modeling. SBO is a project of the BioModels.net effort."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:SBO,
+        obofoundry:SBO,
+        ontobee:SBO,
+        bioportal:SBO,
+        biocontext:SBO,
+        n2t:sbo,
+        fairsharing:FAIRsharing.s19src,
+        prefixcommons:sbo,
+        miriam:sbo,
+        ols:sbo ;
+    foaf:homepage "http://www.ebi.ac.uk/sbo/"^^xsd:string ;
+    bioregistry.schema:0000005 "0000485"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/sbo/main/SBO:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:proco,
+        bioregistry:scdo ;
+    bioregistry.schema:0000019 orcid:0000-0003-0705-9809 .
+
 bioregistry:scoro a bioregistry.schema:0000001 ;
     rdfs:label "Scholarly Contributions and Roles Ontology" ;
     dc:description "An ontology based on PRO for describing the contributions that may be made, and the roles that may be held by a person with respect to a journal article or other publication (e.g. the role of article guarantor or illustrator)."^^xsd:string ;
@@ -29382,6 +29412,9 @@ orcid:0000-0001-6330-7526 rdfs:label "Val Wood" ;
     dcterms:contributor bioregistry:fyeco .
 
 orcid:0000-0001-8815-0078 rdfs:label "Ramona Walls" .
+
+orcid:0000-0001-9896-3531 rdfs:label "Alpha Tom Kodamullil",
+        "Dr. Alpha Tom Kodamullil" .
 
 orcid:0000-0002-0956-8634 rdfs:label "Terry Hayamizu" .
 
@@ -30153,6 +30186,25 @@ bioregistry:pr a bioregistry.schema:0000001 ;
         bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0001-5809-9523 .
 
+bioregistry:proco a bioregistry.schema:0000001 ;
+    rdfs:label "Process Chemistry Ontology" ;
+    dc:description "PROCO covers process chemistry, the chemical field concerned with scaling up laboratory syntheses to commercially viable processes."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:PROCO,
+        obofoundry:PROCO,
+        ontobee:PROCO ;
+    foaf:homepage "https://github.com/proco-ontology/PROCO"^^xsd:string ;
+    bioregistry.schema:0000005 "0000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PROCO_$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000017 bioregistry:chebi,
+        bioregistry:cheminf,
+        bioregistry:obi,
+        bioregistry:pato,
+        bioregistry:ro,
+        bioregistry:sbo ;
+    bioregistry.schema:0000019 orcid:0000-0002-8786-1756 .
+
 orcid:0000-0002-9415-5104 rdfs:label "Frederic Bastian",
         "Frédéric Bastian" .
 
@@ -30368,37 +30420,6 @@ bioregistry:xpo a bioregistry.schema:0000001 ;
         bioregistry:xao ;
     bioregistry.schema:0000019 orcid:0000-0002-9611-1279 .
 
-bioregistry:obi a bioregistry.schema:0000001 ;
-    rdfs:label "Ontology for Biomedical Investigations" ;
-    dc:description "The Ontology for Biomedical Investigations (OBI) project is developing an integrated ontology for the description of biological and clinical investigations. The ontology will represent the design of an investigation, the protocols and instrumentation used, the material used, the data generated and the type analysis performed on it. Currently OBI is being built under the Basic Formal Ontology (BFO)."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:OBI,
-        obofoundry:OBI,
-        ontobee:OBI,
-        bioportal:OBI,
-        biocontext:OBI,
-        go.resource:OBI,
-        n2t:obi,
-        fairsharing:FAIRsharing.284e1z,
-        prefixcommons:obi,
-        miriam:obi,
-        ols:obi ;
-    foaf:homepage "http://obi-ontology.org"^^xsd:string ;
-    bioregistry.schema:0000005 "0400109"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OBI_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:agro,
-        bioregistry:foodon,
-        bioregistry:hso,
-        bioregistry:labo,
-        bioregistry:mco,
-        bioregistry:one,
-        bioregistry:ons,
-        bioregistry:rbo,
-        bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0002-8457-6693 .
-
 bioregistry:ons a bioregistry.schema:0000001 ;
     rdfs:label "Ontology for Nutritional Studies" ;
     dc:description "The Ontology for Nutritional Studies (ONS) has been developed as part of the ENPADASI European project (http://www.enpadasi.eu/) with the aim to define a common language and building ontologies for nutritional studies."^^xsd:string ;
@@ -30454,6 +30475,38 @@ bioregistry:ecocore a bioregistry.schema:0000001 ;
         bioregistry:ro,
         bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0002-4366-3088 .
+
+bioregistry:obi a bioregistry.schema:0000001 ;
+    rdfs:label "Ontology for Biomedical Investigations" ;
+    dc:description "The Ontology for Biomedical Investigations (OBI) project is developing an integrated ontology for the description of biological and clinical investigations. The ontology will represent the design of an investigation, the protocols and instrumentation used, the material used, the data generated and the type analysis performed on it. Currently OBI is being built under the Basic Formal Ontology (BFO)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:OBI,
+        obofoundry:OBI,
+        ontobee:OBI,
+        bioportal:OBI,
+        biocontext:OBI,
+        go.resource:OBI,
+        n2t:obi,
+        fairsharing:FAIRsharing.284e1z,
+        prefixcommons:obi,
+        miriam:obi,
+        ols:obi ;
+    foaf:homepage "http://obi-ontology.org"^^xsd:string ;
+    bioregistry.schema:0000005 "0400109"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OBI_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:agro,
+        bioregistry:foodon,
+        bioregistry:hso,
+        bioregistry:labo,
+        bioregistry:mco,
+        bioregistry:one,
+        bioregistry:ons,
+        bioregistry:proco,
+        bioregistry:rbo,
+        bioregistry:scdo ;
+    bioregistry.schema:0000019 orcid:0000-0002-8457-6693 .
 
 bioregistry:pco a bioregistry.schema:0000001 ;
     rdfs:label "Population and Community Ontology" ;
@@ -30948,6 +31001,7 @@ bioregistry:pato a bioregistry.schema:0000001 ;
         bioregistry:pco,
         bioregistry:phipo,
         bioregistry:planp,
+        bioregistry:proco,
         bioregistry:rbo,
         bioregistry:xpo,
         bioregistry:zp ;
@@ -30971,7 +31025,8 @@ bioregistry:bfo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BFO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:agro,
+    bioregistry.schema:0000018 bioregistry:ado,
+        bioregistry:agro,
         bioregistry:aism,
         bioregistry:cdno,
         bioregistry:colao,
@@ -31030,6 +31085,7 @@ bioregistry:chebi a bioregistry.schema:0000001 ;
         bioregistry:mco,
         bioregistry:ons,
         bioregistry:pcl,
+        bioregistry:proco,
         bioregistry:scdo,
         bioregistry:uberon,
         bioregistry:xpo ;
@@ -31254,6 +31310,7 @@ bioregistry:ro a bioregistry.schema:0000001 ;
         bioregistry:plana,
         bioregistry:planp,
         bioregistry:poro,
+        bioregistry:proco,
         bioregistry:psdo,
         bioregistry:pso,
         bioregistry:rbo,
@@ -32358,6 +32415,7 @@ bioregistry.metaresource:ontobee a bioregistry.schema:0000002 ;
         ontobee:PORO,
         ontobee:PPO,
         ontobee:PR,
+        ontobee:PROCO,
         ontobee:PSDO,
         ontobee:PSO,
         ontobee:PW,
@@ -32419,6 +32477,7 @@ bioregistry.metaresource:obofoundry a bioregistry.schema:0000002 ;
     rdfs:label "OBO Foundry" ;
     dc:description "The mission of the OBO Foundry is to develop a family of interoperable ontologies that are both logically well-formed and scientifically accurate." ;
     dcterms:hasPart obofoundry:AAO,
+        obofoundry:ADO,
         obofoundry:ADW,
         obofoundry:AEO,
         obofoundry:AERO,
@@ -32610,6 +32669,7 @@ bioregistry.metaresource:obofoundry a bioregistry.schema:0000002 ;
         obofoundry:PORO,
         obofoundry:PPO,
         obofoundry:PR,
+        obofoundry:PROCO,
         obofoundry:PROPREO,
         obofoundry:PSDO,
         obofoundry:PSO,
@@ -32954,7 +33014,8 @@ bioregistry.metaresource:ols a bioregistry.schema:0000002 ;
 bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
     rdfs:label "BioPortal Prefixes" ;
     dc:description "The BioPortal is a less stringent registry of biomedical ontologies than the OBO Foundry" ;
-    dcterms:hasPart bioportal:ADW,
+    dcterms:hasPart bioportal:ADO,
+        bioportal:ADW,
         bioportal:AEO,
         bioportal:AERO,
         bioportal:AFO,
@@ -33275,7 +33336,8 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
 bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
     rdfs:label "AberOWL" ;
     dc:description "AberOWL is a framework for ontology-based access to biological data. It consists of a repository of bio-ontologies, a set of webservices which provide access to OWL(-EL) reasoning over the ontologies, and several frontends which utilise the ontology repository and reasoning services to provide access to specific biological datasets." ;
-    dcterms:hasPart aberowl:ADW,
+    dcterms:hasPart aberowl:ADO,
+        aberowl:ADW,
         aberowl:AEO,
         aberowl:AERO,
         aberowl:AFO,
@@ -33518,6 +33580,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:PPO,
         aberowl:PR,
         aberowl:PRIDE,
+        aberowl:PROCO,
         aberowl:PROPREO,
         aberowl:PROV,
         aberowl:PSDO,
@@ -34182,6 +34245,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.c9psgb,
         fairsharing:FAIRsharing.ca48xs,
         fairsharing:FAIRsharing.cc3f2x,
+        fairsharing:FAIRsharing.ckd4rf,
         fairsharing:FAIRsharing.cnwx8c,
         fairsharing:FAIRsharing.cpneh8,
         fairsharing:FAIRsharing.ctwd7b,
@@ -36824,6 +36888,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:aceview.worm,
         bioregistry:addexbio,
         bioregistry:addgene,
+        bioregistry:ado,
         bioregistry:adw,
         bioregistry:aeo,
         bioregistry:aero,
@@ -37904,6 +37969,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:pride.project,
         bioregistry:prints,
         bioregistry:probonto,
+        bioregistry:proco,
         bioregistry:prodom,
         bioregistry:proglyc,
         bioregistry:propreo,

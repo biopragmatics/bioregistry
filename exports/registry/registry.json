@@ -164,6 +164,32 @@
     "preferred_prefix": "addgene",
     "uri_format": "http://addgene.org/$1"
   },
+  "ado": {
+    "contact": {
+      "email": "alpha.tom.kodamullil@scai.fraunhofer.de",
+      "github": "akodamullil",
+      "name": "Alpha Tom Kodamullil",
+      "orcid": "0000-0001-9896-3531"
+    },
+    "depends_on": [
+      "bfo"
+    ],
+    "description": "Alzheimer's Disease Ontology is a knowledge-based ontology that encompasses varieties of concepts related to Alzheimer'S Disease, structured by upper level Basic Formal Ontology(BFO). This Ontology is enriched by the interrelated entities that demonstrate the network of the understanding on Alzheimer's disease and can be readily applied for text mining.",
+    "download_owl": "http://purl.obolibrary.org/obo/ado.owl",
+    "example": "0000001",
+    "homepage": "https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO",
+    "license": "CC BY 4.0",
+    "mappings": {
+      "aberowl": "ADO",
+      "bioportal": "ADO",
+      "fairsharing": "FAIRsharing.ckd4rf",
+      "obofoundry": "ADO"
+    },
+    "name": "Alzheimer's Disease Ontology",
+    "preferred_prefix": "ADO",
+    "repository": "https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO",
+    "uri_format": "http://purl.obolibrary.org/obo/ADO_$1"
+  },
   "adw": {
     "contact": {
       "email": "adw_geeks@umich.edu",
@@ -469,7 +495,7 @@
     "preferred_prefix": "AISM",
     "repository": "https://github.com/insect-morphology/aism",
     "uri_format": "http://purl.obolibrary.org/obo/AISM_$1",
-    "version": "2022-03-17"
+    "version": "2022-06-27"
   },
   "allergome": {
     "description": "Allergome is a repository of data related to all IgE-binding compounds. Its purpose is to collect a list of allergenic sources and molecules by using the widest selection criteria and sources.",
@@ -1494,6 +1520,7 @@
   },
   "bfo": {
     "appears_in": [
+      "ado",
       "agro",
       "aism",
       "cdno",
@@ -2530,7 +2557,7 @@
     "preferred_prefix": "BSPO",
     "repository": "https://github.com/obophenotype/biological-spatial-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/BSPO_$1",
-    "version": "2021-10-13"
+    "version": "2022-06-28"
   },
   "bto": {
     "banana": "BTO",
@@ -3083,7 +3110,7 @@
     "preferred_prefix": "CDNO",
     "repository": "https://github.com/Southern-Cross-Plant-Science/cdno",
     "uri_format": "http://purl.obolibrary.org/obo/CDNO_$1",
-    "version": "2022-04-06"
+    "version": "2022-06-23"
   },
   "cdpd": {
     "description": "The Canadian Drug Product Database (DPD) contains product specific information on drugs approved for use in Canada, and includes human pharmaceutical and biological drugs, veterinary drugs and disinfectant products. This information includes 'brand name', 'route of administration' and a Canadian 'Drug Identification Number' (DIN).",
@@ -3360,6 +3387,7 @@
       "mco",
       "ons",
       "pcl",
+      "proco",
       "scdo",
       "uberon",
       "xpo"
@@ -3560,6 +3588,9 @@
     "uri_format": "https://chem.nlm.nih.gov/chemidplus/rn/$1"
   },
   "cheminf": {
+    "appears_in": [
+      "proco"
+    ],
     "contact": {
       "email": "egon.willighagen@gmail.com",
       "github": "egonw",
@@ -3869,7 +3900,7 @@
     "preferred_prefix": "CL",
     "repository": "https://github.com/obophenotype/cell-ontology",
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/cl/terms?obo_id=CL:$1",
-    "version": "2022-06-15"
+    "version": "2022-06-18"
   },
   "clao": {
     "contact": {
@@ -4895,7 +4926,7 @@
     "preferred_prefix": "COLAO",
     "repository": "https://github.com/insect-morphology/colao",
     "uri_format": "http://purl.obolibrary.org/obo/COLAO_$1",
-    "version": "2021-12-14"
+    "version": "2022-06-18"
   },
   "colonatlas": {
     "description": "Cell line databases/resources",
@@ -9691,7 +9722,7 @@
     "preferred_prefix": "FYPO",
     "repository": "https://github.com/pombase/fypo",
     "uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
-    "version": "2022-04-28"
+    "version": "2022-06-27"
   },
   "ga4ghdos": {
     "description": "Assists in resolving data across cloud resources.",
@@ -11363,7 +11394,7 @@
   },
   "hcao": {
     "description": "Application ontology for human cell types, anatomy and development stages for the Human Cell Atlas.",
-    "download_owl": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-06-10/hcao.owl",
+    "download_owl": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-06-22/hcao.owl",
     "homepage": "https://www.humancellatlas.org",
     "mappings": {
       "ols": "hcao"
@@ -11371,7 +11402,7 @@
     "name": "Human Cell Atlas Ontology",
     "no_own_terms": true,
     "preferred_prefix": "hcao",
-    "version": "2022-06-10"
+    "version": "2022-06-22"
   },
   "hcpcs": {
     "description": "HCPCS is a collection of standardized codes that represent medical procedures, supplies, products and services. The codes are used to facilitate the processing of health insurance claims by Medicare and other insurers.",
@@ -14783,7 +14814,7 @@
     "preferred_prefix": "MAXO",
     "repository": "https://github.com/monarch-initiative/MAxO",
     "uri_format": "http://purl.obolibrary.org/obo/MAXO_$1",
-    "version": "2022-06-01"
+    "version": "2022-06-23"
   },
   "mba": {
     "contributor": {
@@ -16438,7 +16469,7 @@
     "preferred_prefix": "MRO",
     "repository": "https://github.com/IEDB/MRO",
     "uri_format": "http://purl.obolibrary.org/obo/MRO_$1",
-    "version": "2022-03-14"
+    "version": "2022-06-17"
   },
   "ms": {
     "banana": "MS",
@@ -18472,6 +18503,7 @@
       "mco",
       "one",
       "ons",
+      "proco",
       "rbo",
       "scdo"
     ],
@@ -19698,7 +19730,7 @@
       "ordo"
     ],
     "uri_format": "http://www.orpha.net/ORDO/Orphanet_$1",
-    "version": "4.0"
+    "version": "4.1"
   },
   "orth": {
     "contact": {
@@ -20065,6 +20097,7 @@
       "pco",
       "phipo",
       "planp",
+      "proco",
       "rbo",
       "xpo",
       "zp"
@@ -21699,6 +21732,36 @@
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/probonto/terms?short_form=$1",
     "version": "2.5.0"
   },
+  "proco": {
+    "contact": {
+      "email": "wes_schafer@merck.com",
+      "github": "schaferw",
+      "name": "Wes Schafer",
+      "orcid": "0000-0002-8786-1756"
+    },
+    "depends_on": [
+      "chebi",
+      "cheminf",
+      "obi",
+      "pato",
+      "ro",
+      "sbo"
+    ],
+    "description": "PROCO covers process chemistry, the chemical field concerned with scaling up laboratory syntheses to commercially viable processes.",
+    "download_owl": "http://purl.obolibrary.org/obo/proco.owl",
+    "example": "0000001",
+    "homepage": "https://github.com/proco-ontology/PROCO",
+    "license": "CC BY 4.0",
+    "mappings": {
+      "aberowl": "PROCO",
+      "obofoundry": "PROCO",
+      "ontobee": "PROCO"
+    },
+    "name": "Process Chemistry Ontology",
+    "preferred_prefix": "PROCO",
+    "repository": "https://github.com/proco-ontology/PROCO",
+    "uri_format": "http://purl.obolibrary.org/obo/PROCO_$1"
+  },
   "prodom": {
     "description": "ProDom is a database of protein domain families generated from the global comparison of all available protein sequences.",
     "example": "PD10000",
@@ -23028,6 +23091,7 @@
       "plana",
       "planp",
       "poro",
+      "proco",
       "psdo",
       "pso",
       "rbo",
@@ -23346,6 +23410,7 @@
   },
   "sbo": {
     "appears_in": [
+      "proco",
       "scdo"
     ],
     "banana": "SBO",
@@ -24871,7 +24936,7 @@
       "SYMP"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/SYMP_$1",
-    "version": "2022-05-26"
+    "version": "2022-06-22"
   },
   "syoid": {
     "contributor": {
@@ -25657,7 +25722,7 @@
       "Uberon"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/UBERON_$1",
-    "version": "2022-05-27"
+    "version": "2022-06-20"
   },
   "ubio.namebank": {
     "description": "NameBank is a \"biological name server\" focused on storing names and objectively-derived nomenclatural attributes. NameBank is a repository for all recorded names including scientific names, vernacular (or common names), misspelled names, as well as ad-hoc nomenclatural labels that may have limited context.",
@@ -26825,7 +26890,7 @@
     "preferred_prefix": "VO",
     "repository": "https://github.com/vaccineontology/VO",
     "uri_format": "http://purl.obolibrary.org/obo/VO_$1",
-    "version": "1.1.196"
+    "version": "1.1.198"
   },
   "void": {
     "description": "The Vocabulary of Interlinked Datasets (VoID) is an RDF Schema vocabulary for expressing metadata about RDF datasets. It is intended as a bridge between the publishers and users of RDF data, with applications ranging from data discovery to cataloging and archiving of datasets. This document provides a formal definition of the new RDF classes and properties introduced for VoID. It is a companion to the main specification document for VoID, Describing Linked Datasets with the VoID Vocabulary.",
@@ -27070,7 +27135,7 @@
       "WBls"
     ],
     "uri_format": "http://www.wormbase.org/get?name=$1",
-    "version": "2022-03-22"
+    "version": "2022-06-21"
   },
   "wbphenotype": {
     "contact": {
@@ -27105,7 +27170,7 @@
       "WBPhenotype"
     ],
     "uri_format": "http://www.wormbase.org/get?name=$1",
-    "version": "2022-03-22"
+    "version": "2022-06-21"
   },
   "webelements": {
     "contributor": {
