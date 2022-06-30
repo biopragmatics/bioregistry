@@ -8,11 +8,12 @@ import json
 import logging
 from email.utils import parseaddr
 from functools import lru_cache
+from operator import itemgetter
 from textwrap import dedent
 from typing import Any, Mapping, Optional
 
+import requests
 from pydantic import BaseModel
-from pystow.utils import download
 
 from bioregistry.constants import DATA_DIRECTORY, EXTERNAL
 
@@ -43,14 +44,16 @@ def get_ols(force_download: bool = False):
         with PROCESSED_PATH.open() as file:
             return json.load(file)
 
-    download(url=URL, path=RAW_PATH, force=True)
-    with RAW_PATH.open() as file:
-        data = json.load(file)
-
+    data = requests.get(URL).json()
+    data["_embedded"]["ontologies"] = sorted(
+        data["_embedded"]["ontologies"],
+        key=itemgetter("ontologyId"),
+    )
     if "next" in data["_links"]:
         raise NotImplementedError(
             "Need to implement paging since there are more entries than fit into one page"
         )
+    RAW_PATH.write_text(json.dumps(data, indent=2, sort_keys=True))
 
     processed = {}
     for ontology in data["_embedded"]["ontologies"]:
