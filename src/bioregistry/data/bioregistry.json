@@ -36256,6 +36256,16 @@
       "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?mid=$1"
     }
   },
+  "merops.clan": {
+    "example": "IA",
+    "homepage": "https://www.ebi.ac.uk/merops",
+    "name": "MEROPS Clan",
+    "part_of": "merops",
+    "references": [
+      "https://doi.org/10.1093/nar/gkx1134"
+    ],
+    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/clansum?clan=$1"
+  },
   "merops.family": {
     "biocontext": {
       "is_identifiers": true,
@@ -36289,9 +36299,10 @@
       "pattern": "^[SCTAGMNU]\\d+$",
       "prefix": "merops.family",
       "uri_format": "http://merops.sanger.ac.uk/cgi-bin/famsum?family=$1"
-    }
+    },
+    "part_of": "merops"
   },
-  "merops.inhibitor": {
+  "merops.pep": {
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
@@ -36324,7 +36335,11 @@
       "pattern": "^I\\d{2}\\.\\d{3}$",
       "prefix": "merops.inhibitor",
       "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
-    }
+    },
+    "part_of": "merops",
+    "synonyms": [
+      "merops.entry"
+    ]
   },
   "mesh": {
     "aberowl": {
