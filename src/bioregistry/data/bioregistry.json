@@ -36175,13 +36175,34 @@
       "uri_format": "http://www.nlm.nih.gov/medlineplus/ency/article/$1.htm"
     }
   },
-  "merops": {
+  "merops.clan": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them.",
+    "example": "IA",
+    "homepage": "https://www.ebi.ac.uk/merops",
+    "name": "MEROPS Clan",
+    "part_of": "merops",
+    "references": [
+      "https://pubmed.ncbi.nlm.nih.gov/29145643",
+      "https://github.com/biopragmatics/bioregistry/issues/439"
+    ],
+    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/clansum?clan=$1"
+  },
+  "merops.entry": {
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "MEROPS",
       "uri_format": "http://identifiers.org/merops/$1"
     },
+    "example_extras": [
+      "I31.952"
+    ],
     "fairsharing": {
       "abbreviation": "MEROPS",
       "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them.",
@@ -36230,6 +36251,8 @@
       "prefix": "merops",
       "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?mid=$1"
     },
+    "name": "MEROPS Entry",
+    "pattern": "^[SCTAGMNUI]\\d{2}\\.([AB]\\d{2}|\\d{3})$",
     "prefixcommons": {
       "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them.",
       "example": "S01.001",
@@ -36247,6 +36270,13 @@
       ],
       "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
     },
+    "references": [
+      "https://www.ncbi.nlm.nih.gov/pubmed/29145643",
+      "https://github.com/biopragmatics/bioregistry/issues/439"
+    ],
+    "synonyms": [
+      "merops.inhibitor"
+    ],
     "uniprot": {
       "category": "Protein family/group databases",
       "identifier": "59",
@@ -36254,7 +36284,8 @@
       "name": "MEROPS protease database",
       "prefix": "MEROPS",
       "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?mid=$1"
-    }
+    },
+    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=$1"
   },
   "merops.family": {
     "biocontext": {
@@ -36289,42 +36320,13 @@
       "pattern": "^[SCTAGMNU]\\d+$",
       "prefix": "merops.family",
       "uri_format": "http://merops.sanger.ac.uk/cgi-bin/famsum?family=$1"
-    }
-  },
-  "merops.inhibitor": {
-    "biocontext": {
-      "is_identifiers": true,
-      "is_obo": false,
-      "prefix": "MEROPS.INHIBITOR",
-      "uri_format": "http://identifiers.org/merops.inhibitor/$1"
     },
-    "mappings": {
-      "biocontext": "MEROPS.INHIBITOR",
-      "miriam": "merops.inhibitor",
-      "n2t": "merops.inhibitor"
-    },
-    "miriam": {
-      "deprecated": false,
-      "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. This collections references inhibitors.",
-      "homepage": "http://merops.sanger.ac.uk/index.htm",
-      "id": "00000491",
-      "name": "MEROPS Inhibitor",
-      "namespaceEmbeddedInLui": false,
-      "pattern": "^I\\d{2}\\.\\d{3}$",
-      "prefix": "merops.inhibitor",
-      "sampleId": "I31.952",
-      "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
-    },
-    "n2t": {
-      "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. This collections references inhibitors.",
-      "example": "I31.952",
-      "homepage": "http://merops.sanger.ac.uk/index.htm",
-      "name": "MEROPS Inhibitor at Sanger Institute",
-      "namespaceEmbeddedInLui": false,
-      "pattern": "^I\\d{2}\\.\\d{3}$",
-      "prefix": "merops.inhibitor",
-      "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
-    }
+    "part_of": "merops",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/439",
+      "https://www.ncbi.nlm.nih.gov/pubmed/29145643"
+    ],
+    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=$1"
   },
   "mesh": {
     "aberowl": {
@@ -56875,7 +56877,7 @@
     "deprecated": true,
     "name": "Standards and Ontologies for Functional Genomics (SOFG) Anatomy Entry List",
     "references": [
-      "https://pubmed.ncbi.nlm.nih.gov/18629134/"
+      "https://www.ncbi.nlm.nih.gov/pubmed/18629134"
     ]
   },
   "salk": {
