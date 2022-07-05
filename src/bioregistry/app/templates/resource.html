@@ -361,7 +361,7 @@
                 {% endif %}
                 {% if canonical_for %}
                     <dt>
-                        Canonical For
+                        Canonical For ({{ canonical_for | length }})
                     </dt>
                     <dd>
                         {% for rel_prefix in canonical_for %}
@@ -375,7 +375,7 @@
                 {% endif %}
                 {% if depends_on %}
                     <dt>
-                        Depends On
+                        Depends On ({{ depends_on | length }})
                     </dt>
                     <dd>
                         {% for rel_prefix in depends_on %}
@@ -389,7 +389,7 @@
                 {% endif %}
                 {% if appears_in %}
                     <dt>
-                        Appears In
+                        Appears In ({{ appears_in | length }})
                     </dt>
                     <dd>
                         {% for rel_prefix in appears_in %}
@@ -415,7 +415,8 @@
             <div class="card-body">
                 <p>
                     The metaregistry provides mappings between the Bioregistry and other registries. There are
-                    {{ mappings | length }} mappings to external registries for <code>{{ prefix }}</code>.
+                    {{ mappings | length }} mappings to external registries for <code>{{ prefix }}</code> with
+                    {{ mappings | map(attribute='xref') | unique | list | length }} unique external prefixes.
                 </p>
             </div>
             <table class="table table-hover table-striped">

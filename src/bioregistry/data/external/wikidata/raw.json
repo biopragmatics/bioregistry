@@ -451,6 +451,17 @@
     "propPattern": "(gcc|ifn|ild|kew|rjp|tro)-\\d+"
   },
   {
+    "database": "Q112783946",
+    "databaseHomepage": "http://www.iedb.org/",
+    "databaseLabel": "The Immune Epitope Database",
+    "prop": "P4168",
+    "propDescription": "identifier for an Epitope in the Immune Epitope Database",
+    "propFormat": "http://www.iedb.org/epitope/$1",
+    "propHomepage": "http://www.iedb.org/home_v3.php",
+    "propLabel": "IEDB Epitope ID",
+    "propPattern": "[1-9]\\d*"
+  },
+  {
     "database": "Q7736786",
     "databaseHomepage": "http://www.nhm.ac.uk/our-science/data/lepindex/search/",
     "databaseLabel": "The Global Lepidoptera Names Index",
@@ -1492,22 +1503,22 @@
     "database": "Q106677021",
     "databaseHomepage": "https://www.mybis.gov.my/",
     "databaseLabel": "Malaysia Biodiversity Information System",
-    "prop": "P9503",
-    "propDescription": "identifier for a species in the Malaysia Biodiversity Information System",
-    "propFormat": "https://www.mybis.gov.my/sp/$1",
-    "propHomepage": "https://www.mybis.gov.my/one/",
-    "propLabel": "MyBIS species ID",
+    "prop": "P9552",
+    "propDescription": "identifier for a protected area in the Malaysia Biodiversity Information System",
+    "propFormat": "https://www.mybis.gov.my/pa/$1",
+    "propHomepage": "https://www.mybis.gov.my/one/pamaps.php",
+    "propLabel": "MyBIS protected area ID",
     "propPattern": "[1-9]\\d*"
   },
   {
     "database": "Q106677021",
     "databaseHomepage": "https://www.mybis.gov.my/",
     "databaseLabel": "Malaysia Biodiversity Information System",
-    "prop": "P9552",
-    "propDescription": "identifier for a protected area in the Malaysia Biodiversity Information System",
-    "propFormat": "https://www.mybis.gov.my/pa/$1",
-    "propHomepage": "https://www.mybis.gov.my/one/pamaps.php",
-    "propLabel": "MyBIS protected area ID",
+    "prop": "P9503",
+    "propDescription": "identifier for a species in the Malaysia Biodiversity Information System",
+    "propFormat": "https://www.mybis.gov.my/sp/$1",
+    "propHomepage": "https://www.mybis.gov.my/one/",
+    "propLabel": "MyBIS species ID",
     "propPattern": "[1-9]\\d*"
   },
   {
@@ -1577,6 +1588,28 @@
     "propHomepage": "https://www.invasiveplantatlas.org/distribution.html",
     "propLabel": "Invasive Plant Atlas of the United States ID",
     "propPattern": "[1-9]\\d*"
+  },
+  {
+    "database": "Q60315739",
+    "databaseHomepage": "http://www.ifpni.org/",
+    "databaseLabel": "International Fossil Plant Names Index",
+    "prop": "P6341",
+    "propDescription": "identifier for a species at the International Fossil Plant Names Index",
+    "propFormat": "http://www.ifpni.org/species.htm?id=$1",
+    "propHomepage": "http://www.ifni.org/species.htm",
+    "propLabel": "IFPNI species ID",
+    "propPattern": "[0-9A-F]{8}(-[0-9A-F]{4}){3}-[0-9A-F]{12}"
+  },
+  {
+    "database": "Q60315739",
+    "databaseHomepage": "http://www.ifpni.org/",
+    "databaseLabel": "International Fossil Plant Names Index",
+    "prop": "P9738",
+    "propDescription": "identifier for an author in the International Fossil Plant Names Index (IFPNI)",
+    "propFormat": "http://www.ifpni.org/author.htm?id=$1",
+    "propHomepage": "http://www.ifpni.org/author",
+    "propLabel": "IFPNI author ID",
+    "propPattern": "[0-9A-F]{8}(-[0-9A-F]{4}){3}-[0-9A-F]{12}"
   },
   {
     "database": "Q58006102",
@@ -2564,7 +2597,7 @@
     "databaseLabel": "Catalogue of the Lepidoptera of Belgium",
     "prop": "P5862",
     "propDescription": "identifier in the Catalogue of Lepidoptera of Belgium",
-    "propFormat": "http://projects.biodiversity.be/lepidoptera/species/$1/",
+    "propFormat": "https://projects.biodiversity.be/lepidoptera/species/$1/",
     "propLabel": "Lepidoptera of Belgium ID",
     "propPattern": "[1-9]\\d*"
   },
@@ -3088,7 +3121,7 @@
     "propFormat": "https://biodiversity.org.au/afd/taxa/$1",
     "propHomepage": "https://biodiversity.org.au/afd/search/names",
     "propLabel": "Australian Faunal Directory ID",
-    "propPattern": "[a-zA-Z]*([-_;]([(]?)[a-zA-Z]*(\\.)?([)]?))*(\\.)?"
+    "propPattern": "[a-zA-Z\\xC0-\\xFF]*([-_;]([(]?)[a-zA-Z\\xC0-\\xFF]*(\\.)?([)]?))*(\\.)?"
   },
   {
     "database": "Q2784883",
@@ -3236,7 +3269,18 @@
     "databaseLabel": "African Plant Database",
     "prop": "P2036",
     "propDescription": "identifier for a plant taxon, in the Conservatoire et Jardin botaniques de Gen\u00e8ve's African Plant Database of scientific names",
-    "propFormat": "https://www.ville-ge.ch/musinfo/bd/cjb/africa/details.php?langue=an&id=$1",
+    "propFormat": "http://www.ville-ge.ch/musinfo/bd/cjb/africa/details.php?langue=an&id=$1",
+    "propHomepage": "http://www.ville-ge.ch/musinfo/bd/cjb/africa/index.php?langue=an",
+    "propLabel": "African Plant Database ID",
+    "propPattern": "\\d{1,6}"
+  },
+  {
+    "database": "Q20862705",
+    "databaseHomepage": "http://www.ville-ge.ch/musinfo/bd/cjb/africa/index.php?langue=an",
+    "databaseLabel": "African Plant Database",
+    "prop": "P2036",
+    "propDescription": "identifier for a plant taxon, in the Conservatoire et Jardin botaniques de Gen\u00e8ve's African Plant Database of scientific names",
+    "propFormat": "https://www.ville-ge.ch/musinfo/bd/cjb/africa/details.php?langue=fr&id=$1",
     "propHomepage": "http://www.ville-ge.ch/musinfo/bd/cjb/africa/index.php?langue=an",
     "propLabel": "African Plant Database ID",
     "propPattern": "\\d{1,6}"

@@ -71,6 +71,14 @@ def export_warnings():
         and bioregistry.get_provides_for(prefix) is None
     )
 
+    prefix_xrefs = [
+        {
+            "metaprefix": metaprefix,
+            "name": registry.get_short_name(),
+        }
+        for metaprefix, registry in sorted(bioregistry.read_metaregistry().items())
+    ]
+
     with CURATIONS_PATH.open("w") as file:
         yaml.safe_dump(
             {
@@ -78,6 +86,7 @@ def export_warnings():
                 "pattern": missing_pattern,
                 "formatter": missing_format_url,
                 "example": missing_example,
+                "prefix_xrefs": prefix_xrefs
                 # "unparsable": unparsable,
             },
             file,

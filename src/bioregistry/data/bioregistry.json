@@ -473,6 +473,62 @@
       "uri_format": "http://www.addgene.org/$1"
     }
   },
+  "ado": {
+    "aberowl": {
+      "description": "Alzheimer's Disease Ontology is a knowledge-based ontology that encompasses varieties of concepts related to Alzheimer'S Disease, structured by upper level Basic Formal Ontology(BFO). This Ontology is enriched by the interrelated entities that demonstrate the network of the understanding on Alzheimer's disease and can be readily applied for text mining.",
+      "download_owl": "http://aber-owl.net/media/ontologies/ADO/4/ado.owl",
+      "homepage": "https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO",
+      "name": "Alzheimer's Disease Ontology",
+      "prefix": "ADO"
+    },
+    "bioportal": {
+      "name": "Alzheimer's disease ontology",
+      "prefix": "ADO"
+    },
+    "example": "0000001",
+    "fairsharing": {
+      "abbreviation": "ADO",
+      "description": "The Alzheimer's Disease Ontology (ADO) is an ontology representing relevant knowledge on Alzheimer’s disease. ADO was developed with the purpose of containing information relevant to four main biological views—preclinical, clinical, etiological, and molecular/cellular mechanisms—and contains synonyms and references.",
+      "id": "437",
+      "name": "Alzheimer's Disease Ontology",
+      "prefix": "FAIRsharing.ckd4rf",
+      "publications": [
+        {
+          "doi": "10.1016/j.jalz.2013.02.009",
+          "pubmed_id": 23830913,
+          "title": "ADO: a disease ontology representing the domain knowledge specific to Alzheimer's disease."
+        }
+      ],
+      "subjects": [
+        "Health Science"
+      ]
+    },
+    "mappings": {
+      "aberowl": "ADO",
+      "bioportal": "ADO",
+      "fairsharing": "FAIRsharing.ckd4rf",
+      "obofoundry": "ado"
+    },
+    "obofoundry": {
+      "contact": "alpha.tom.kodamullil@scai.fraunhofer.de",
+      "contact.github": "akodamullil",
+      "contact.label": "Alpha Tom Kodamullil",
+      "contact.orcid": "0000-0001-9896-3531",
+      "depends_on": [
+        "bfo"
+      ],
+      "deprecated": false,
+      "description": "Alzheimer's Disease Ontology is a knowledge-based ontology that encompasses varieties of concepts related to Alzheimer'S Disease, structured by upper level Basic Formal Ontology(BFO). This Ontology is enriched by the interrelated entities that demonstrate the network of the understanding on Alzheimer's disease and can be readily applied for text mining.",
+      "download.owl": "http://purl.obolibrary.org/obo/ado.owl",
+      "homepage": "https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO",
+      "license": "CC BY 4.0",
+      "license.url": "https://creativecommons.org/licenses/by/4.0/",
+      "name": "Alzheimer's Disease Ontology",
+      "preferredPrefix": "ADO",
+      "prefix": "ado",
+      "repository": "https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO"
+    }
+  },
   "adw": {
     "aberowl": {
       "description": "An ontology for animal life history and natural history characteristics suitable for populations and higher taxonomic entities.",
@@ -1068,7 +1124,7 @@
   "aism": {
     "aberowl": {
       "description": "The AISM contains terms used in insect biodiversity research for describing structures of the exoskeleton and the skeletomuscular system. It aims to serve as the basic backbone of generalized terms to be expanded with order-specific terminology.",
-      "download_owl": "http://aber-owl.net/media/ontologies/AISM/7/aism.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/AISM/8/aism.owl",
       "homepage": "https://github.com/insect-morphology/aism",
       "name": "Ontology for the Anatomy of the Insect SkeletoMuscular system (AISM)",
       "prefix": "AISM"
@@ -1122,8 +1178,8 @@
       "homepage": "https://github.com/insect-morphology/aism",
       "name": "Ontology for the Anatomy of the Insect SkeletoMuscular system",
       "prefix": "aism",
-      "version": "2022-03-17",
-      "version.iri": "http://purl.obolibrary.org/obo/aism/releases/2022-03-17/aism.owl"
+      "version": "2022-06-27",
+      "version.iri": "http://purl.obolibrary.org/obo/aism/releases/2022-06-27/aism.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -2169,10 +2225,10 @@
     },
     "cellosaurus": {
       "category": "Gene expression databases",
-      "homepage": "https://www.ebi.ac.uk/arrayexpress/",
+      "homepage": "https://www.ebi.ac.uk/biostudies/arrayexpress",
       "name": "ArrayExpress Archive of Functional Genomics",
       "prefix": "ArrayExpress",
-      "uri_format": "https://www.ebi.ac.uk/arrayexpress/experiments/$1"
+      "uri_format": "https://www.ebi.ac.uk/biostudies/ArrayExpress/studies/$1"
     },
     "fairsharing": {
       "abbreviation": "ArrayExpress",
@@ -3356,6 +3412,7 @@
       "uri_format": "http://www.ontobee.org/ontology/BCGO?iri=http://purl.obolibrary.org/obo/$1"
     },
     "download_owl": "https://github.com/obi-bcgo/bcgo/raw/master/ontology/bcgo.owl",
+    "example": "0000015",
     "mappings": {
       "aberowl": "BCGO",
       "biocontext": "BCGO",
@@ -3383,7 +3440,8 @@
       "library": "Library",
       "name": "Beta Cell Genomics Ontology",
       "prefix": "BCGO"
-    }
+    },
+    "pattern": "^\\d{7}$"
   },
   "bcio": {
     "aberowl": {
@@ -6069,7 +6127,7 @@
   "bspo": {
     "aberowl": {
       "description": "An ontology for representing spatial concepts, anatomical axes, gradients, regions, planes, sides, and surfaces",
-      "download_owl": "http://aber-owl.net/media/ontologies/BSPO/27/bspo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/BSPO/28/bspo.owl",
       "homepage": "https://github.com/obophenotype/biological-spatial-ontology",
       "name": "Biological Spatial Ontology",
       "prefix": "BSPO"
@@ -6149,8 +6207,8 @@
       "homepage": "https://github.com/obophenotype/biological-spatial-ontology",
       "name": "Biological Spatial Ontology",
       "prefix": "bspo",
-      "version": "2021-10-13",
-      "version.iri": "http://purl.obolibrary.org/obo/bspo/releases/2021-10-13/bspo.owl"
+      "version": "2022-06-28",
+      "version.iri": "http://purl.obolibrary.org/obo/bspo/releases/2022-06-28/bspo.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -7648,8 +7706,8 @@
   "cdno": {
     "aberowl": {
       "description": "CDNO provides structured terminologies to describe nutritional attributes of material entities that contribute to human diet.",
-      "download_owl": "http://aber-owl.net/media/ontologies/CDNO/4/cdno.owl",
-      "homepage": "https://github.com/Southern-Cross-Plant-Science/cdno",
+      "download_owl": "http://aber-owl.net/media/ontologies/CDNO/5/cdno.owl",
+      "homepage": "https://cdno.info/",
       "name": "Compositional Dietary Nutrition Ontology",
       "prefix": "CDNO"
     },
@@ -7701,8 +7759,8 @@
       "homepage": "https://cdno.info/",
       "name": "Compositional Dietary Nutrition Ontology",
       "prefix": "cdno",
-      "version": "2022-04-06",
-      "version.iri": "http://purl.obolibrary.org/obo/cdno/releases/2022-04-06/cdno.owl"
+      "version": "2022-06-23",
+      "version.iri": "http://purl.obolibrary.org/obo/cdno/releases/2022-06-23/cdno.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -9648,8 +9706,8 @@
       "download": "http://purl.obolibrary.org/obo/cl.owl",
       "name": "Cell Ontology",
       "prefix": "cl",
-      "version": "2022-06-15",
-      "version.iri": "http://purl.obolibrary.org/obo/cl/releases/2022-06-15/cl.owl"
+      "version": "2022-06-18",
+      "version.iri": "http://purl.obolibrary.org/obo/cl/releases/2022-06-18/cl.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -10165,7 +10223,7 @@
       "homepage": "https://cls.shop/",
       "name": "Cell Lines Service",
       "prefix": "CLS",
-      "uri_format": "https://www.clsgmbh.de/$1.html"
+      "uri_format": "https://cls.shop/$1"
     },
     "example": "300108/p3934_A-172",
     "mappings": {
@@ -12006,8 +12064,8 @@
       "homepage": "https://github.com/insect-morphology/colao",
       "name": "Coleoptera Anatomy Ontology",
       "prefix": "colao",
-      "version": "2021-12-14",
-      "version.iri": "http://purl.obolibrary.org/obo/colao/releases/2021-12-14/colao.owl"
+      "version": "2022-06-18",
+      "version.iri": "http://purl.obolibrary.org/obo/colao/releases/2022-06-18/colao.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -17167,6 +17225,33 @@
     "name": "eagle-i",
     "uri_format": "http://hawaii.eagle-i.net/i/$1"
   },
+  "easychair.cfp": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Conferences in EasyChair",
+    "example": "SysBioCancer2022",
+    "homepage": "https://easychair.org/cfp/",
+    "name": "EasyChair Call for Paper",
+    "uri_format": "https://easychair.org/cfp/$1"
+  },
+  "easychair.topic": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Call for paper topics in EasyChair",
+    "example": "27106865",
+    "homepage": "https://easychair.org/cfp/",
+    "name": "EasyChair Topic",
+    "pattern": "^\\d+$",
+    "uri_format": "https://easychair.org/cfp/topic.cgi?tid=$1"
+  },
   "ebisc": {
     "cellosaurus": {
       "category": "Cell line collections",
@@ -18211,6 +18296,102 @@
       "uri_format": "http://www.ebi.ac.uk/ontology-lookup/?termId=$1"
     },
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1"
+  },
+  "edam.data": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "EDAM-DATA",
+      "uri_format": "http://edamontology.org/data_$1"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Information, represented in an information artefact (data record) that is 'understandable' by dedicated computational tools that can use the data as input or produce it as output.",
+    "example": "1664",
+    "homepage": "http://edamontology.org",
+    "mappings": {
+      "biolink": "EDAM-DATA"
+    },
+    "name": "EDAM Data",
+    "part_of": "edam",
+    "pattern": "^\\d+$",
+    "uri_format": "http://edamontology.org/data_$1"
+  },
+  "edam.format": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "EDAM-FORMAT",
+      "uri_format": "http://edamontology.org/format_$1"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A defined way or layout of representing and structuring data in a computer file, blob, string, message, or elsewhere. The main focus in EDAM lies on formats as means of structuring data exchanged between different tools or resources. The serialisation, compression, or encoding of concrete data formats/models is not in scope of EDAM. Format 'is format of' Data.",
+    "example": "1915",
+    "homepage": "http://edamontology.org",
+    "mappings": {
+      "biolink": "EDAM-FORMAT"
+    },
+    "name": "EDAM Format",
+    "part_of": "edam",
+    "pattern": "^\\d+$",
+    "uri_format": "http://edamontology.org/format_$1"
+  },
+  "edam.operation": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "EDAM-OPERATION",
+      "uri_format": "http://edamontology.org/operation_$1"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A function that processes a set of inputs and results in a set of outputs, or associates arguments (inputs) with values (outputs). Special cases are: a) An operation that consumes no input (has no input arguments). Such operation is either a constant function, or an operation depending only on the underlying state. b) An operation that may modify the underlying state but has no output. c) The singular-case operation with no input or output, that still may modify the underlying state.",
+    "example": "0004",
+    "homepage": "http://edamontology.org",
+    "mappings": {
+      "biolink": "EDAM-OPERATION"
+    },
+    "name": "EDAM Operation",
+    "part_of": "edam",
+    "pattern": "^\\d+$",
+    "uri_format": "http://edamontology.org/operation_$1"
+  },
+  "edam.topic": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "EDAM-TOPIC",
+      "uri_format": "http://edamontology.org/topic_$1"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A category denoting a rather broad domain or field of interest, of study, application, work, data, or technology. Topics have no clearly defined borders between each other.",
+    "example": "0003",
+    "homepage": "http://edamontology.org",
+    "mappings": {
+      "biolink": "EDAM-TOPIC"
+    },
+    "name": "EDAM Topic",
+    "part_of": "edam",
+    "pattern": "^\\d+$",
+    "uri_format": "http://edamontology.org/topic_$1"
   },
   "edda": {
     "aberowl": {
@@ -20718,8 +20899,8 @@
   "exo": {
     "aberowl": {
       "description": "Vocabularies for describing exposure data to inform understanding of environmental health.",
-      "download_owl": "http://aber-owl.net/media/ontologies/EXO/14/exo.owl",
-      "homepage": "http://ctdbase.org/help/exposureHelp.jsp",
+      "download_owl": "http://aber-owl.net/media/ontologies/EXO/15/exo.owl",
+      "homepage": "https://github.com/CTDbase/exposure-ontology",
       "name": "Exposure ontology",
       "prefix": "EXO"
     },
@@ -21204,11 +21385,12 @@
   },
   "fbbt": {
     "aberowl": {
-      "description": "An ontology representing the gross anatomy of Drosophila melanogaster.",
-      "download_owl": "http://aber-owl.net/media/ontologies/FBBT/29/fbbt.owl",
-      "homepage": "http://purl.obolibrary.org/obo/fbbt",
-      "name": "Drosophila gross anatomy",
-      "prefix": "FBBT"
+      "description": "A structured controlled vocabulary of the anatomy of <i>Drosophila melanogaster</i>.",
+      "download_obo": "http://aber-owl.net/media/ontologies/FB-BT/40/fb-bt.obo",
+      "homepage": "http://sourceforge.net/p/fbbtdv/wiki/Home/",
+      "name": "Drosophila Gross Anatomy Ontology",
+      "prefix": "FB-BT",
+      "version": "2017-09-06"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -21262,7 +21444,7 @@
       "uri_format": "http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:$1"
     },
     "mappings": {
-      "aberowl": "FBBT",
+      "aberowl": "FB-BT",
       "biocontext": "FBbt",
       "bioportal": "FB-BT",
       "fairsharing": "FAIRsharing.y2qkst",
@@ -21346,11 +21528,12 @@
   },
   "fbcv": {
     "aberowl": {
-      "description": "A structured controlled vocabulary used for various aspects of annotation by FlyBase.",
-      "download_owl": "http://aber-owl.net/media/ontologies/FBCV/22/fbcv.owl",
-      "homepage": "http://purl.obolibrary.org/obo/fbcv",
+      "description": "A structured controlled vocabulary used for various aspects of annotation by FlyBase.<br>This ontology is maintained by FlyBase for various aspects of annotation not covered, or not yet covered, by other OBO ontologies. If and when community ontologies are available for the domains here covered FlyBase will use them. This ontology includes the Drosophila phenotype ontology (DPO), provided here together with FBcv for legacy purposes.",
+      "download_owl": "http://aber-owl.net/media/ontologies/FB-CV/21/fb-cv.owl",
+      "homepage": "http://sourceforge.net/p/fbcv/wiki/Home/",
       "name": "FlyBase Controlled Vocabulary",
-      "prefix": "FBCV"
+      "prefix": "FB-CV",
+      "version": "2014-09-23"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -21382,7 +21565,7 @@
       ]
     },
     "mappings": {
-      "aberowl": "FBCV",
+      "aberowl": "FB-CV",
       "biocontext": "FBcv",
       "bioportal": "FB-CV",
       "fairsharing": "FAIRsharing.6tgyxf",
@@ -21448,11 +21631,12 @@
   },
   "fbdv": {
     "aberowl": {
-      "description": "A structured controlled vocabulary of the development of Drosophila melanogaster.",
-      "download_owl": "http://aber-owl.net/media/ontologies/FBDV/23/fbdv.owl",
-      "homepage": "http://purl.obolibrary.org/obo/fbdv",
-      "name": "Drosophila development",
-      "prefix": "FBDV"
+      "description": "A structured controlled vocabulary of the development of <i>Drosophila melanogaster</i>.",
+      "download_obo": "http://aber-owl.net/media/ontologies/FB-DV/19/fb-dv.obo",
+      "homepage": "http://sourceforge.net/p/fbbtdv/wiki/Home/",
+      "name": "Drosophila Development Ontology",
+      "prefix": "FB-DV",
+      "version": "2016-10-14"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -21478,7 +21662,7 @@
       ]
     },
     "mappings": {
-      "aberowl": "FBDV",
+      "aberowl": "FB-DV",
       "biocontext": "FBdv",
       "bioportal": "FB-DV",
       "fairsharing": "FAIRsharing.p52pzj",
@@ -22499,6 +22683,29 @@
       "foodb"
     ]
   },
+  "foodb.food": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "foodb.food",
+      "uri_format": "http://foodb.ca/compounds/$1"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Foods in FooDB",
+    "example": "FOOD00020",
+    "homepage": "https://foodb.ca/foods",
+    "mappings": {
+      "biolink": "foodb.food"
+    },
+    "name": "FooDB Food",
+    "pattern": "^FOOD\\d+$",
+    "uri_format": "https://foodb.ca/foods/$1"
+  },
   "foodon": {
     "aberowl": {
       "description": "A broadly scoped ontology representing entities which bear a “food role”. It encompasses materials in natural ecosystems and agriculture that are consumed by humans and domesticated animals. This includes any generic (unbranded) raw or processed food material found in processing plants, markets, stores or food distribution points. FoodOn also imports nutritional component and dietary pattern terms from other OBO Foundry ontologies to support interoperability in diet and nutrition research",
@@ -23207,7 +23414,7 @@
   "fypo": {
     "aberowl": {
       "description": "FYPO is a formal ontology of phenotypes observed in fission yeast.",
-      "download_owl": "http://aber-owl.net/media/ontologies/FYPO/426/fypo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/FYPO/427/fypo.owl",
       "homepage": "https://github.com/pombase/fypo",
       "name": "Fission Yeast Phenotype Ontology",
       "prefix": "FYPO"
@@ -23295,8 +23502,8 @@
       "homepage": "https://github.com/pombase/fypo",
       "name": "Fission Yeast Phenotype Ontology (FYPO)",
       "prefix": "fypo",
-      "version": "2022-04-28",
-      "version.iri": "http://purl.obolibrary.org/obo/fypo/releases/2022-04-28/fypo.owl"
+      "version": "2022-06-27",
+      "version.iri": "http://purl.obolibrary.org/obo/fypo/releases/2022-06-27/fypo.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -25504,12 +25711,11 @@
   },
   "go": {
     "aberowl": {
-      "description": "The Ontology defines the Geriatrics system with classes. It also has object properties and data properties which are used to create a Decision support system for the elderly.",
-      "download_owl": "http://aber-owl.net/media/ontologies/G-O/1/g-o.owl",
-      "homepage": "http://healthcareelderly.me/GeriatricsWebApp/web/ontoBrowser.html",
-      "name": "Geriatrics Ontology",
-      "prefix": "G-O",
-      "version": "1.0"
+      "description": "An ontology for describing the function of genes and gene products",
+      "download_owl": "http://aber-owl.net/media/ontologies/GO/1770/go.owl",
+      "homepage": "http://geneontology.org/",
+      "name": "Gene Ontology",
+      "prefix": "GO"
     },
     "agroportal": {
       "name": "Gene Ontology",
@@ -25589,7 +25795,7 @@
       "prefix": "GO"
     },
     "mappings": {
-      "aberowl": "G-O",
+      "aberowl": "GO",
       "agroportal": "GO",
       "biocontext": "GO",
       "bioportal": "GO",
@@ -25710,8 +25916,8 @@
       "download": "http://purl.obolibrary.org/obo/go.owl",
       "name": "Gene Ontology",
       "prefix": "go",
-      "version": "2022-03-10",
-      "version.iri": "http://purl.obolibrary.org/obo/go/releases/2022-03-10/go.owl"
+      "version": "2022-06-15",
+      "version.iri": "http://purl.obolibrary.org/obo/go/releases/2022-06-15/go.owl"
     },
     "ontobee": {
       "library": "Foundry",
@@ -27479,8 +27685,8 @@
       "download": "https://raw.githubusercontent.com/ebi-ait/ontology/master/hcao.owl",
       "name": "Human Cell Atlas Ontology",
       "prefix": "hcao",
-      "version": "2022-06-10",
-      "version.iri": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-06-10/hcao.owl"
+      "version": "2022-06-22",
+      "version.iri": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-06-22/hcao.owl"
     }
   },
   "hcpcs": {
@@ -28575,12 +28781,11 @@
   },
   "hp": {
     "aberowl": {
-      "description": "Hypersensitivity Pneumonitis Ontology involves the domain of knowledge of 1. diseases caused by organic dusts exposure including hypersensitivity pneumonitis as well as 2. organic dusts.",
-      "download_owl": "http://aber-owl.net/media/ontologies/HP_O/1/hp_o.owl",
-      "homepage": "https://hypontology.herokuapp.com/",
-      "name": "Hypersensitivity pneumonitis ontology",
-      "prefix": "HP_O",
-      "version": "1.0"
+      "description": "A structured and controlled vocabulary for the phenotypic features encountered in human hereditary and other disease.",
+      "download_owl": "http://aber-owl.net/media/ontologies/HP/596/hp.owl",
+      "homepage": "http://www.human-phenotype-ontology.org/",
+      "name": "Human Phenotype Ontology",
+      "prefix": "HP"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -28635,7 +28840,7 @@
       ]
     },
     "mappings": {
-      "aberowl": "HP_O",
+      "aberowl": "HP",
       "biocontext": "HPO",
       "bioportal": "HP",
       "fairsharing": "FAIRsharing.kbtt7f",
@@ -30866,7 +31071,7 @@
       "homepage": "https://www.ebi.ac.uk/ipd/imgt/hla/",
       "name": "IPD-IMGT/HLA database",
       "prefix": "IPD-IMGT/HLA",
-      "uri_format": "https://www.ebi.ac.uk/cgi-bin/imgt/hla/fetch_cell.cgi?$1"
+      "uri_format": "https://www.ebi.ac.uk/ipd/imgt/hla/cells/cell/?cellid=$1"
     },
     "fairsharing": {
       "abbreviation": "IPD-IMGT/HLA",
@@ -32836,10 +33041,10 @@
   "kclb": {
     "cellosaurus": {
       "category": "Cell line collections",
-      "homepage": "https://cellbank.snu.ac.kr/main/index.html",
+      "homepage": "https://cellbank.snu.ac.kr/eng/",
       "name": "Korean Cell Line Bank",
       "prefix": "KCLB",
-      "uri_format": "https://cellbank.snu.ac.kr/english/sub/catalog.php?page=detail&CatNo=59&strQ=$1&submit1=Find+it"
+      "uri_format": "https://cellbank.snu.ac.kr/main/tmpl/sub_main.php?m_cd=6&m_id=0201&strQ=$1"
     },
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -35574,7 +35779,7 @@
   "maxo": {
     "aberowl": {
       "description": "Medical Action Ontology is an ontology...",
-      "download_owl": "http://aber-owl.net/media/ontologies/MAXO/25/maxo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/MAXO/26/maxo.owl",
       "homepage": "https://github.com/monarch-initiative/MAxO",
       "name": "Medical Action Ontology",
       "prefix": "MAXO"
@@ -35633,8 +35838,8 @@
       "homepage": "https://github.com/monarch-initiative/MAxO",
       "name": "Medical Action Ontology",
       "prefix": "maxo",
-      "version": "2022-06-01",
-      "version.iri": "http://purl.obolibrary.org/obo/maxo/releases/2022-06-01/maxo.owl"
+      "version": "2022-06-23",
+      "version.iri": "http://purl.obolibrary.org/obo/maxo/releases/2022-06-23/maxo.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -35996,13 +36201,34 @@
       "uri_format": "http://www.nlm.nih.gov/medlineplus/ency/article/$1.htm"
     }
   },
-  "merops": {
+  "merops.clan": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them.",
+    "example": "IA",
+    "homepage": "https://www.ebi.ac.uk/merops",
+    "name": "MEROPS Clan",
+    "part_of": "merops",
+    "references": [
+      "https://pubmed.ncbi.nlm.nih.gov/29145643",
+      "https://github.com/biopragmatics/bioregistry/issues/439"
+    ],
+    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/clansum?clan=$1"
+  },
+  "merops.entry": {
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "MEROPS",
       "uri_format": "http://identifiers.org/merops/$1"
     },
+    "example_extras": [
+      "I31.952"
+    ],
     "fairsharing": {
       "abbreviation": "MEROPS",
       "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them.",
@@ -36051,6 +36277,8 @@
       "prefix": "merops",
       "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?mid=$1"
     },
+    "name": "MEROPS Entry",
+    "pattern": "^[SCTAGMNUI]\\d{2}\\.([AB]\\d{2}|\\d{3})$",
     "prefixcommons": {
       "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them.",
       "example": "S01.001",
@@ -36068,6 +36296,13 @@
       ],
       "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
     },
+    "references": [
+      "https://www.ncbi.nlm.nih.gov/pubmed/29145643",
+      "https://github.com/biopragmatics/bioregistry/issues/439"
+    ],
+    "synonyms": [
+      "merops.inhibitor"
+    ],
     "uniprot": {
       "category": "Protein family/group databases",
       "identifier": "59",
@@ -36075,7 +36310,8 @@
       "name": "MEROPS protease database",
       "prefix": "MEROPS",
       "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?mid=$1"
-    }
+    },
+    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=$1"
   },
   "merops.family": {
     "biocontext": {
@@ -36110,42 +36346,13 @@
       "pattern": "^[SCTAGMNU]\\d+$",
       "prefix": "merops.family",
       "uri_format": "http://merops.sanger.ac.uk/cgi-bin/famsum?family=$1"
-    }
-  },
-  "merops.inhibitor": {
-    "biocontext": {
-      "is_identifiers": true,
-      "is_obo": false,
-      "prefix": "MEROPS.INHIBITOR",
-      "uri_format": "http://identifiers.org/merops.inhibitor/$1"
     },
-    "mappings": {
-      "biocontext": "MEROPS.INHIBITOR",
-      "miriam": "merops.inhibitor",
-      "n2t": "merops.inhibitor"
-    },
-    "miriam": {
-      "deprecated": false,
-      "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. This collections references inhibitors.",
-      "homepage": "http://merops.sanger.ac.uk/index.htm",
-      "id": "00000491",
-      "name": "MEROPS Inhibitor",
-      "namespaceEmbeddedInLui": false,
-      "pattern": "^I\\d{2}\\.\\d{3}$",
-      "prefix": "merops.inhibitor",
-      "sampleId": "I31.952",
-      "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
-    },
-    "n2t": {
-      "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. This collections references inhibitors.",
-      "example": "I31.952",
-      "homepage": "http://merops.sanger.ac.uk/index.htm",
-      "name": "MEROPS Inhibitor at Sanger Institute",
-      "namespaceEmbeddedInLui": false,
-      "pattern": "^I\\d{2}\\.\\d{3}$",
-      "prefix": "merops.inhibitor",
-      "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
-    }
+    "part_of": "merops",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/439",
+      "https://www.ncbi.nlm.nih.gov/pubmed/29145643"
+    ],
+    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=$1"
   },
   "mesh": {
     "aberowl": {
@@ -39436,7 +39643,7 @@
   "mondo": {
     "aberowl": {
       "description": "A semi-automatically constructed ontology that merges in multiple disease resources to yield a coherent merged ontology.",
-      "download_owl": "http://aber-owl.net/media/ontologies/MONDO/67/mondo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/MONDO/68/mondo.owl",
       "homepage": "https://monarch-initiative.github.io/mondo",
       "name": "Mondo Disease Ontology",
       "prefix": "MONDO"
@@ -39610,7 +39817,7 @@
   "mp": {
     "aberowl": {
       "description": "Standard terms for annotating mammalian phenotypic data.",
-      "download_owl": "http://aber-owl.net/media/ontologies/MP/78/mp.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/MP/80/mp.owl",
       "homepage": "http://www.informatics.jax.org/searches/MP_form.shtml",
       "name": "Mammalian Phenotype Ontology",
       "prefix": "MP"
@@ -39727,7 +39934,7 @@
       "homepage": "http://www.informatics.jax.org/searches/MP_form.shtml",
       "name": "The Mammalian Phenotype Ontology",
       "prefix": "mp",
-      "version.iri": "http://purl.obolibrary.org/obo/mp/releases/2022-06-07"
+      "version.iri": "http://purl.obolibrary.org/obo/mp/releases/2022-06-23"
     },
     "ontobee": {
       "library": "Library",
@@ -39986,26 +40193,18 @@
     "example": "0000634",
     "fairsharing": {
       "abbreviation": "MRO",
-      "description": "MHC molecules form a highly diverse family of proteins that play a key role in cellular immune recognition. No consistent nomenclature exists across different vertebrate species. To correctly represent MHC related data in The Immune Epitope Database (IEDB), we built upon a previously established MHC ontology (MaHCO) and created MRO to represent MHC molecules as they relate to immunological experiments. MRO models MHC protein chains from 16 species, deals with different approaches used to identify MHC, such as direct sequencing verses serotyping, relates engineered MHC molecules to naturally occurring ones, connects genetic loci, alleles, protein chains and multichain proteins, and establishes evidence codes for MHC restriction.",
-      "id": "849",
-      "name": "MHC Restriction Ontology",
-      "prefix": "FAIRsharing.k893xa",
-      "publications": [
-        {
-          "doi": "10.1186/s13326-016-0045-5",
-          "pubmed_id": 26759709,
-          "title": "An ontology for major histocompatibility restriction."
-        }
-      ],
-      "subjects": [
-        "Immunology"
-      ]
+      "description": "It is an ontology for Military concepts",
+      "id": "716",
+      "name": "Defen",
+      "prefix": "FAIRsharing.778n2k",
+      "publications": [],
+      "subjects": []
     },
     "mappings": {
       "aberowl": "MRO",
       "biocontext": "MRO",
       "bioportal": "MRO",
-      "fairsharing": "FAIRsharing.k893xa",
+      "fairsharing": "FAIRsharing.778n2k",
       "obofoundry": "mro",
       "ols": "mro",
       "ontobee": "MRO"
@@ -40032,8 +40231,8 @@
       "homepage": "https://github.com/IEDB/MRO",
       "name": "MHC Restriction Ontology",
       "prefix": "mro",
-      "version": "2022-03-14",
-      "version.iri": "http://purl.obolibrary.org/obo/mro/2022-03-14/mro.owl"
+      "version": "2022-06-17",
+      "version.iri": "http://purl.obolibrary.org/obo/mro/2022-06-17/mro.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -40045,7 +40244,7 @@
   "ms": {
     "aberowl": {
       "description": "A structured controlled vocabulary for the annotation of experiments concerned with proteomics mass spectrometry.",
-      "download_owl": "http://aber-owl.net/media/ontologies/MS/162/ms.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/MS/163/ms.owl",
       "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
       "name": "Mass spectrometry ontology",
       "prefix": "MS"
@@ -43356,8 +43555,17 @@
     },
     "description": "NLXSUB covers subcellular entities similar to the cellular component branch of the Gene Ontology (GO).",
     "example": "090803",
+    "go": {
+      "homepage": "http://www.neurolex.org/wiki",
+      "name": "Neuroscience Information Framework standard ontology, subcellular hierarchy",
+      "prefix": "NIF_Subcellular",
+      "uri_format": "http://www.neurolex.org/wiki/$1"
+    },
     "homepage": "https://github.com/SciCrunch/NIF-Ontology",
     "license": "CC BY-4.0",
+    "mappings": {
+      "go": "NIF_Subcellular"
+    },
     "name": "NIF Standard Ontology: Subcellular Entities",
     "part_of": "nif",
     "pattern": "^\\d+$",
@@ -44485,40 +44693,6 @@
     },
     "name": "Internal OBO and PyOBO Relations"
   },
-  "oboformat": {
-    "biolink": {
-      "is_identifiers": false,
-      "is_obo": false,
-      "prefix": "oboformat",
-      "uri_format": "http://www.geneontology.org/formats/oboInOwl#$1"
-    },
-    "contributor": {
-      "email": "cthoyt@gmail.com",
-      "github": "cthoyt",
-      "name": "Charles Tapley Hoyt",
-      "orcid": "0000-0003-4423-4370"
-    },
-    "description": "Related to the OBO in OWL meta-model",
-    "example": "alt_id",
-    "fairsharing": {
-      "abbreviation": "OBO Format",
-      "description": "The first part of this specification describes the syntax and structure of OBO Format using BNF. This states how strings of characters in OBOF Files are parsed into abstract OBO documents, and describes constraints on the structure of these documents. The second part of this specification describes the semantics of an OBO document via a mapping to OWL2-DL and community metadata vocabularies.",
-      "id": "344",
-      "name": "OBO Format Syntax and Semantics",
-      "prefix": "FAIRsharing.aa0eat",
-      "subjects": [
-        "Life Science"
-      ]
-    },
-    "homepage": "https://github.com/geneontology/go-ontology/tree/master/contrib",
-    "mappings": {
-      "biolink": "oboformat",
-      "fairsharing": "FAIRsharing.aa0eat"
-    },
-    "name": "OBO Format",
-    "preferred_prefix": "oboFormat",
-    "repository": "https://github.com/geneontology/go-ontology"
-  },
   "oboinowl": {
     "biocontext": {
       "is_identifiers": false,
@@ -44526,17 +44700,25 @@
       "prefix": "OIO",
       "uri_format": "http://www.geneontology.org/formats/oboInOwl#$1"
     },
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "oboformat",
+      "uri_format": "http://www.geneontology.org/formats/oboInOwl#$1"
+    },
     "description": "This meta-ontology is self-describing. OBO metamodel properties are described using OBO metamodel properties",
     "download_obo": "https://github.com/geneontology/go-ontology/raw/master/contrib/oboInOwl.obo",
     "example": "hasDbXref",
     "homepage": "https://github.com/geneontology/go-ontology/tree/master/contrib",
     "mappings": {
-      "biocontext": "OIO"
+      "biocontext": "OIO",
+      "biolink": "oboformat"
     },
     "name": "OBO in OWL",
     "preferred_prefix": "oboInOwl",
     "repository": "https://github.com/geneontology/go-ontology",
     "synonyms": [
+      "oboformat",
       "oio"
     ],
     "uri_format": "http://www.geneontology.org/formats/oboInOwl#$1"
@@ -45409,7 +45591,8 @@
       "prefix": "om",
       "version": "2.0.37"
     },
-    "repository": "https://github.com/HajoRijgersberg/OM"
+    "repository": "https://github.com/HajoRijgersberg/OM",
+    "uri_format": "http://www.ontology-of-units-of-measure.org/resource/om-2/$1"
   },
   "oma.grp": {
     "biocontext": {
@@ -46250,7 +46433,7 @@
   "ons": {
     "aberowl": {
       "description": "An ontology for description of concepts in the nutritional studies domain.",
-      "download_owl": "http://aber-owl.net/media/ontologies/ONS/22/ons.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/ONS/23/ons.owl",
       "homepage": "https://github.com/enpadasi/Ontology-for-Nutritional-Studies",
       "name": "Ontology for Nutritional Studies",
       "prefix": "ONS"
@@ -47273,8 +47456,8 @@
       "download": "http://www.orphadata.org/data/ORDO/ordo_orphanet.owl",
       "name": "Orphanet Rare Disease Ontology",
       "prefix": "ordo",
-      "version": "4.0",
-      "version.iri": "http://www.orpha.net/version4.0"
+      "version": "4.1",
+      "version.iri": "http://www.orpha.net/version4.1"
     },
     "pattern": "^C?\\d+$",
     "synonyms": [
@@ -50396,6 +50579,26 @@
       "uri_format": "http://www.phosphosite.org/siteAction.do?id=$1"
     }
   },
+  "phosphosite.sitegroup": {
+    "comment": "Potentially could use a URI format like https://www.phosphosite.org/siteGroupAction.action?protOrg=1156&id=$1, but it's not obvious what the protOrg does.",
+    "contributor": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "Site groups are orthologous positions in human, mouse, rat, etc. where phosphorylations or other PTMs occur.",
+    "example": "447860",
+    "homepage": "https://www.phosphosite.org",
+    "name": "PhosphoSite Site Group",
+    "pattern": "^\\d+$",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    }
+  },
   "phylomedb": {
     "biocontext": {
       "is_identifiers": true,
@@ -52554,6 +52757,50 @@
       "name": "Probability Distribution Ontology",
       "prefix": "probonto",
       "version": "2.5.0"
+    }
+  },
+  "proco": {
+    "aberowl": {
+      "description": "PROCO covers process chemistry, the chemical field concerned with scaling up laboratory syntheses to commercially viable processes.",
+      "download_owl": "http://aber-owl.net/media/ontologies/PROCO/1/proco.owl",
+      "homepage": "https://github.com/proco-ontology/PROCO",
+      "name": "Process Chemistry Ontology",
+      "prefix": "PROCO"
+    },
+    "example": "0000001",
+    "mappings": {
+      "aberowl": "PROCO",
+      "obofoundry": "proco",
+      "ontobee": "PROCO"
+    },
+    "obofoundry": {
+      "contact": "wes_schafer@merck.com",
+      "contact.github": "schaferw",
+      "contact.label": "Wes Schafer",
+      "contact.orcid": "0000-0002-8786-1756",
+      "depends_on": [
+        "chebi",
+        "cheminf",
+        "obi",
+        "pato",
+        "ro",
+        "sbo"
+      ],
+      "deprecated": false,
+      "description": "PROCO covers process chemistry, the chemical field concerned with scaling up laboratory syntheses to commercially viable processes.",
+      "download.owl": "http://purl.obolibrary.org/obo/proco.owl",
+      "homepage": "https://github.com/proco-ontology/PROCO",
+      "license": "CC BY 4.0",
+      "license.url": "https://creativecommons.org/licenses/by/4.0/",
+      "name": "Process Chemistry Ontology",
+      "preferredPrefix": "PROCO",
+      "prefix": "proco",
+      "repository": "https://github.com/proco-ontology/PROCO"
+    },
+    "ontobee": {
+      "library": "Library",
+      "name": "Process Chemistry Ontology",
+      "prefix": "PROCO"
     }
   },
   "prodom": {
@@ -56656,7 +56903,7 @@
     "deprecated": true,
     "name": "Standards and Ontologies for Functional Genomics (SOFG) Anatomy Entry List",
     "references": [
-      "https://pubmed.ncbi.nlm.nih.gov/18629134/"
+      "https://www.ncbi.nlm.nih.gov/pubmed/18629134"
     ]
   },
   "salk": {
@@ -56792,7 +57039,7 @@
   "sbo": {
     "aberowl": {
       "description": "Terms commonly used in Systems Biology, and in particular in computational modeling.",
-      "download_owl": "http://aber-owl.net/media/ontologies/SBO/813/sbo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/SBO/814/sbo.owl",
       "homepage": "http://www.ebi.ac.uk/sbo/",
       "name": "Systems Biology Ontology",
       "prefix": "SBO"
@@ -57032,6 +57279,42 @@
     "name": "Selventa Chemicals",
     "pattern": "^A\\d{4}$",
     "uri_format": "https://biopragmatics.github.io/providers/schem/$1"
+  },
+  "schema": {
+    "aberowl": {
+      "description": "A collection of schemas that webmasters can use to markup HTML pages in ways recognized by major search providers, and that can also be used for structured data interoperability (e.g. in JSON).",
+      "download_owl": "http://aber-owl.net/media/ontologies/SCHEMA/2/schema.owl",
+      "homepage": "http://schema.org/",
+      "name": "Schema.org core and all extension vocabularies",
+      "prefix": "SCHEMA",
+      "version": "3.2"
+    },
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "schema",
+      "uri_format": "http://schema.org/$1"
+    },
+    "bioportal": {
+      "name": "Schema.org core and all extension vocabularies",
+      "prefix": "SCHEMA"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Schema.org is a collaborative, community activity with a mission to create, maintain, and promote schemas for structured data on the Internet, on web pages, in email messages, and beyond.",
+    "example": "Person",
+    "homepage": "https://schema.org",
+    "mappings": {
+      "aberowl": "SCHEMA",
+      "biolink": "schema",
+      "bioportal": "SCHEMA"
+    },
+    "name": "Schema.org",
+    "uri_format": "https://schema.org/$1"
   },
   "scholia.resource": {
     "contributor": {
@@ -60458,7 +60741,7 @@
   "symp": {
     "aberowl": {
       "description": "An ontology of disease symptoms, with symptoms encompasing perceived changes in function, sensations or appearance reported by a patient indicative of a disease.",
-      "download_owl": "http://aber-owl.net/media/ontologies/SYMP/32/symp.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/SYMP/33/symp.owl",
       "homepage": "http://symptomontologywiki.igs.umaryland.edu/mediawiki/index.php/Main_Page",
       "name": "Symptom Ontology",
       "prefix": "SYMP"
@@ -60532,8 +60815,8 @@
       "homepage": "http://symptomontologywiki.igs.umaryland.edu/mediawiki/index.php/Main_Page",
       "name": "Symptom Ontology",
       "prefix": "symp",
-      "version": "2022-05-26",
-      "version.iri": "http://purl.obolibrary.org/obo/symp/releases/2022-05-26/symp.owl"
+      "version": "2022-06-22",
+      "version.iri": "http://purl.obolibrary.org/obo/symp/releases/2022-06-22/symp.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -62380,7 +62663,7 @@
   "uberon": {
     "aberowl": {
       "description": "An integrated cross-species anatomy ontology covering animals and bridging multiple species-specific ontologies",
-      "download_owl": "http://aber-owl.net/media/ontologies/UBERON/282/uberon.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/UBERON/284/uberon.owl",
       "homepage": "http://uberon.org",
       "name": "Uberon multi-species anatomy ontology",
       "prefix": "UBERON"
@@ -62538,8 +62821,8 @@
       "homepage": "http://uberon.org",
       "name": "Uber-anatomy ontology",
       "prefix": "uberon",
-      "version": "2022-05-27",
-      "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2022-05-27/uberon.owl"
+      "version": "2022-06-20",
+      "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2022-06-20/uberon.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -65218,7 +65501,7 @@
   "vo": {
     "aberowl": {
       "description": "VO is a biomedical ontology in the domain of vaccine and vaccination.",
-      "download_owl": "http://aber-owl.net/media/ontologies/VO/287/vo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/VO/288/vo.owl",
       "homepage": "http://www.violinet.org/vaccineontology",
       "name": "Vaccine Ontology",
       "prefix": "VO"
@@ -65301,7 +65584,7 @@
       "homepage": "http://www.violinet.org/vaccineontology",
       "name": "Vaccine Ontology",
       "prefix": "vo",
-      "version": "1.1.196"
+      "version": "1.1.198"
     },
     "ontobee": {
       "library": "Library",
@@ -65910,8 +66193,8 @@
       "homepage": "https://github.com/obophenotype/c-elegans-development-ontology",
       "name": "C. elegans Development Ontology",
       "prefix": "wbls",
-      "version": "2022-03-22",
-      "version.iri": "http://purl.obolibrary.org/obo/wbls/releases/2022-03-22/wbls.owl"
+      "version": "2022-06-21",
+      "version.iri": "http://purl.obolibrary.org/obo/wbls/releases/2022-06-21/wbls.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -66023,8 +66306,8 @@
       "homepage": "https://github.com/obophenotype/c-elegans-phenotype-ontology",
       "name": "C elegans Phenotype Ontology",
       "prefix": "wbphenotype",
-      "version": "2022-03-22",
-      "version.iri": "http://purl.obolibrary.org/obo/wbphenotype/releases/2022-03-22/wbphenotype.owl"
+      "version": "2022-06-21",
+      "version.iri": "http://purl.obolibrary.org/obo/wbphenotype/releases/2022-06-21/wbphenotype.owl"
     },
     "ontobee": {
       "library": "Library",

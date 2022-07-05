@@ -164,6 +164,32 @@
     "preferred_prefix": "addgene",
     "uri_format": "http://addgene.org/$1"
   },
+  "ado": {
+    "contact": {
+      "email": "alpha.tom.kodamullil@scai.fraunhofer.de",
+      "github": "akodamullil",
+      "name": "Alpha Tom Kodamullil",
+      "orcid": "0000-0001-9896-3531"
+    },
+    "depends_on": [
+      "bfo"
+    ],
+    "description": "Alzheimer's Disease Ontology is a knowledge-based ontology that encompasses varieties of concepts related to Alzheimer'S Disease, structured by upper level Basic Formal Ontology(BFO). This Ontology is enriched by the interrelated entities that demonstrate the network of the understanding on Alzheimer's disease and can be readily applied for text mining.",
+    "download_owl": "http://purl.obolibrary.org/obo/ado.owl",
+    "example": "0000001",
+    "homepage": "https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO",
+    "license": "CC BY 4.0",
+    "mappings": {
+      "aberowl": "ADO",
+      "bioportal": "ADO",
+      "fairsharing": "FAIRsharing.ckd4rf",
+      "obofoundry": "ADO"
+    },
+    "name": "Alzheimer's Disease Ontology",
+    "preferred_prefix": "ADO",
+    "repository": "https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO",
+    "uri_format": "http://purl.obolibrary.org/obo/ADO_$1"
+  },
   "adw": {
     "contact": {
       "email": "adw_geeks@umich.edu",
@@ -469,7 +495,7 @@
     "preferred_prefix": "AISM",
     "repository": "https://github.com/insect-morphology/aism",
     "uri_format": "http://purl.obolibrary.org/obo/AISM_$1",
-    "version": "2022-03-17"
+    "version": "2022-06-27"
   },
   "allergome": {
     "description": "Allergome is a repository of data related to all IgE-binding compounds. Its purpose is to collect a list of allergenic sources and molecules by using the widest selection criteria and sources.",
@@ -1286,6 +1312,7 @@
     "deprecated": true,
     "description": "An application ontology built for beta cell genomics studies.",
     "download_owl": "https://github.com/obi-bcgo/bcgo/raw/master/ontology/bcgo.owl",
+    "example": "0000015",
     "homepage": "https://github.com/obi-bcgo/bcgo",
     "license": "CC BY 3.0",
     "mappings": {
@@ -1297,6 +1324,7 @@
       "ontobee": "BCGO"
     },
     "name": "Beta Cell Genomics Ontology",
+    "pattern": "^\\d{7}$",
     "preferred_prefix": "BCGO",
     "repository": "https://github.com/obi-bcgo/bcgo",
     "uri_format": "http://purl.obolibrary.org/obo/BCGO_$1"
@@ -1492,6 +1520,7 @@
   },
   "bfo": {
     "appears_in": [
+      "ado",
       "agro",
       "aism",
       "cdno",
@@ -2528,7 +2557,7 @@
     "preferred_prefix": "BSPO",
     "repository": "https://github.com/obophenotype/biological-spatial-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/BSPO_$1",
-    "version": "2021-10-13"
+    "version": "2022-06-28"
   },
   "bto": {
     "banana": "BTO",
@@ -3081,7 +3110,7 @@
     "preferred_prefix": "CDNO",
     "repository": "https://github.com/Southern-Cross-Plant-Science/cdno",
     "uri_format": "http://purl.obolibrary.org/obo/CDNO_$1",
-    "version": "2022-04-06"
+    "version": "2022-06-23"
   },
   "cdpd": {
     "description": "The Canadian Drug Product Database (DPD) contains product specific information on drugs approved for use in Canada, and includes human pharmaceutical and biological drugs, veterinary drugs and disinfectant products. This information includes 'brand name', 'route of administration' and a Canadian 'Drug Identification Number' (DIN).",
@@ -3358,6 +3387,7 @@
       "mco",
       "ons",
       "pcl",
+      "proco",
       "scdo",
       "uberon",
       "xpo"
@@ -3558,6 +3588,9 @@
     "uri_format": "https://chem.nlm.nih.gov/chemidplus/rn/$1"
   },
   "cheminf": {
+    "appears_in": [
+      "proco"
+    ],
     "contact": {
       "email": "egon.willighagen@gmail.com",
       "github": "egonw",
@@ -3867,7 +3900,7 @@
     "preferred_prefix": "CL",
     "repository": "https://github.com/obophenotype/cell-ontology",
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/cl/terms?obo_id=CL:$1",
-    "version": "2022-06-15"
+    "version": "2022-06-18"
   },
   "clao": {
     "contact": {
@@ -4068,7 +4101,7 @@
     },
     "name": "Cell Lines Service",
     "preferred_prefix": "cls",
-    "uri_format": "https://www.clsgmbh.de/$1.html"
+    "uri_format": "https://cls.shop/$1"
   },
   "clyh": {
     "contact": {
@@ -4186,6 +4219,7 @@
     "name": "Cellular Microscopy Phenotype Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "cmpo",
+    "repository": "https://github.com/EBISPOT/CMPO",
     "version": "2017-12-19"
   },
   "co_320": {
@@ -4892,7 +4926,7 @@
     "preferred_prefix": "COLAO",
     "repository": "https://github.com/insect-morphology/colao",
     "uri_format": "http://purl.obolibrary.org/obo/COLAO_$1",
-    "version": "2021-12-14"
+    "version": "2022-06-18"
   },
   "colonatlas": {
     "description": "Cell line databases/resources",
@@ -6881,6 +6915,22 @@
     ],
     "uri_format": "http://www.drugbank.ca/drugs/$1"
   },
+  "drugbank.category": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Close to 5K Categorizations for drugs, similar to ATCC.",
+    "example": "DBCAT000600",
+    "homepage": "https://go.drugbank.com/categories",
+    "name": "DrugBank Drug Category",
+    "part_of": "drugbank",
+    "pattern": "^DBCAT\\d+$",
+    "preferred_prefix": "drugbank.category",
+    "uri_format": "https://www.drugbank.ca/categories/$1"
+  },
   "drugbank.salt": {
     "description": "DrugBank is a web-enabled database containing comprehensive molecular information about drugs, their mechanisms, their interactions and their targets.",
     "example": "DBSALT001211",
@@ -7015,6 +7065,35 @@
     "name": "eagle-i",
     "preferred_prefix": "eaglei",
     "uri_format": "http://hawaii.eagle-i.net/i/$1"
+  },
+  "easychair.cfp": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Conferences in EasyChair",
+    "example": "SysBioCancer2022",
+    "homepage": "https://easychair.org/cfp/",
+    "name": "EasyChair Call for Paper",
+    "preferred_prefix": "easychair.cfp",
+    "uri_format": "https://easychair.org/cfp/$1"
+  },
+  "easychair.topic": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Call for paper topics in EasyChair",
+    "example": "27106865",
+    "homepage": "https://easychair.org/cfp/",
+    "name": "EasyChair Topic",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "easychair.topic",
+    "uri_format": "https://easychair.org/cfp/topic.cgi?tid=$1"
   },
   "ebisc": {
     "description": "Cell line collections",
@@ -7444,6 +7523,82 @@
     "preferred_prefix": "edam",
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1",
     "version": "2019-07-17"
+  },
+  "edam.data": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Information, represented in an information artefact (data record) that is 'understandable' by dedicated computational tools that can use the data as input or produce it as output.",
+    "example": "1664",
+    "homepage": "http://edamontology.org",
+    "mappings": {
+      "biolink": "EDAM-DATA"
+    },
+    "name": "EDAM Data",
+    "part_of": "edam",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "edam.data",
+    "uri_format": "http://edamontology.org/data_$1"
+  },
+  "edam.format": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A defined way or layout of representing and structuring data in a computer file, blob, string, message, or elsewhere. The main focus in EDAM lies on formats as means of structuring data exchanged between different tools or resources. The serialisation, compression, or encoding of concrete data formats/models is not in scope of EDAM. Format 'is format of' Data.",
+    "example": "1915",
+    "homepage": "http://edamontology.org",
+    "mappings": {
+      "biolink": "EDAM-FORMAT"
+    },
+    "name": "EDAM Format",
+    "part_of": "edam",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "edam.format",
+    "uri_format": "http://edamontology.org/format_$1"
+  },
+  "edam.operation": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A function that processes a set of inputs and results in a set of outputs, or associates arguments (inputs) with values (outputs). Special cases are: a) An operation that consumes no input (has no input arguments). Such operation is either a constant function, or an operation depending only on the underlying state. b) An operation that may modify the underlying state but has no output. c) The singular-case operation with no input or output, that still may modify the underlying state.",
+    "example": "0004",
+    "homepage": "http://edamontology.org",
+    "mappings": {
+      "biolink": "EDAM-OPERATION"
+    },
+    "name": "EDAM Operation",
+    "part_of": "edam",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "edam.operation",
+    "uri_format": "http://edamontology.org/operation_$1"
+  },
+  "edam.topic": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A category denoting a rather broad domain or field of interest, of study, application, work, data, or technology. Topics have no clearly defined borders between each other.",
+    "example": "0003",
+    "homepage": "http://edamontology.org",
+    "mappings": {
+      "biolink": "EDAM-TOPIC"
+    },
+    "name": "EDAM Topic",
+    "part_of": "edam",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "edam.topic",
+    "uri_format": "http://edamontology.org/topic_$1"
   },
   "edda": {
     "description": "Coverage of the terminology appearing in JMLA was extended with terms from MeSH, NCI Thesaurus (NCI), Emtree, the HTA Database Canadian Repository [international repository for health technology assessment], and Robert Sandieson's synonym ring for research synthesis. Collected terms were enriched with terms from the NCI Metathesaurus. Variants include synonyms for preferred terms, singular and plural forms, and American and British spellings. Definitions, if they exist, are mainly from MeSH, NCI, Emtree, and medical dictionaries.",
@@ -8655,7 +8810,7 @@
     "homepage": "http://purl.obolibrary.org/obo/fbbt",
     "license": "CC BY 4.0",
     "mappings": {
-      "aberowl": "FBBT",
+      "aberowl": "FB-BT",
       "biocontext": "FBbt",
       "bioportal": "FB-BT",
       "fairsharing": "FAIRsharing.y2qkst",
@@ -8695,7 +8850,7 @@
     "homepage": "http://purl.obolibrary.org/obo/fbcv",
     "license": "CC BY 4.0",
     "mappings": {
-      "aberowl": "FBCV",
+      "aberowl": "FB-CV",
       "biocontext": "FBcv",
       "bioportal": "FB-CV",
       "fairsharing": "FAIRsharing.6tgyxf",
@@ -8730,7 +8885,7 @@
     "homepage": "http://purl.obolibrary.org/obo/fbdv",
     "license": "CC BY 4.0",
     "mappings": {
-      "aberowl": "FBDV",
+      "aberowl": "FB-DV",
       "biocontext": "FBdv",
       "bioportal": "FB-DV",
       "fairsharing": "FAIRsharing.p52pzj",
@@ -9174,6 +9329,24 @@
     ],
     "uri_format": "http://foodb.ca/compounds/$1"
   },
+  "foodb.food": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Foods in FooDB",
+    "example": "FOOD00020",
+    "homepage": "https://foodb.ca/foods",
+    "mappings": {
+      "biolink": "foodb.food"
+    },
+    "name": "FooDB Food",
+    "pattern": "^FOOD\\d+$",
+    "preferred_prefix": "foodb.food",
+    "uri_format": "https://foodb.ca/foods/$1"
+  },
   "foodon": {
     "appears_in": [
       "agro",
@@ -9549,7 +9722,7 @@
     "preferred_prefix": "FYPO",
     "repository": "https://github.com/pombase/fypo",
     "uri_format": "http://purl.obolibrary.org/obo/FYPO_$1",
-    "version": "2022-04-28"
+    "version": "2022-06-27"
   },
   "ga4ghdos": {
     "description": "Assists in resolving data across cloud resources.",
@@ -10428,7 +10601,7 @@
     "homepage": "http://geneontology.org/",
     "license": "CC BY 4.0",
     "mappings": {
-      "aberowl": "G-O",
+      "aberowl": "GO",
       "agroportal": "GO",
       "biocontext": "GO",
       "bioportal": "GO",
@@ -10481,7 +10654,7 @@
       "gomfid"
     ],
     "uri_format": "http://amigo.geneontology.org/amigo/term/GO:$1",
-    "version": "2022-03-10"
+    "version": "2022-06-15"
   },
   "go.model": {
     "description": "GO-Causal Activity Models (GO-CAMs) use a defined “grammar” for linking multiple GO annotations into larger models of biological function (such as “pathways”) in a semantically structured manner. GO-CAMs are created by expert biocurators from the GO Consortium, using the Noctua Curation Platform.",
@@ -11221,7 +11394,7 @@
   },
   "hcao": {
     "description": "Application ontology for human cell types, anatomy and development stages for the Human Cell Atlas.",
-    "download_owl": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-06-10/hcao.owl",
+    "download_owl": "http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-06-22/hcao.owl",
     "homepage": "https://www.humancellatlas.org",
     "mappings": {
       "ols": "hcao"
@@ -11229,7 +11402,7 @@
     "name": "Human Cell Atlas Ontology",
     "no_own_terms": true,
     "preferred_prefix": "hcao",
-    "version": "2022-06-10"
+    "version": "2022-06-22"
   },
   "hcpcs": {
     "description": "HCPCS is a collection of standardized codes that represent medical procedures, supplies, products and services. The codes are used to facilitate the processing of health insurance claims by Medicare and other insurers.",
@@ -11662,7 +11835,7 @@
     "homepage": "http://www.human-phenotype-ontology.org/",
     "license": "hpo",
     "mappings": {
-      "aberowl": "HP_O",
+      "aberowl": "HP",
       "biocontext": "HPO",
       "bioportal": "HP",
       "fairsharing": "FAIRsharing.kbtt7f",
@@ -14641,7 +14814,7 @@
     "preferred_prefix": "MAXO",
     "repository": "https://github.com/monarch-initiative/MAxO",
     "uri_format": "http://purl.obolibrary.org/obo/MAXO_$1",
-    "version": "2022-06-01"
+    "version": "2022-06-23"
   },
   "mba": {
     "contributor": {
@@ -16286,7 +16459,7 @@
       "aberowl": "MRO",
       "biocontext": "MRO",
       "bioportal": "MRO",
-      "fairsharing": "FAIRsharing.k893xa",
+      "fairsharing": "FAIRsharing.778n2k",
       "obofoundry": "MRO",
       "ols": "mro",
       "ontobee": "MRO"
@@ -16296,7 +16469,7 @@
     "preferred_prefix": "MRO",
     "repository": "https://github.com/IEDB/MRO",
     "uri_format": "http://purl.obolibrary.org/obo/MRO_$1",
-    "version": "2022-03-14"
+    "version": "2022-06-17"
   },
   "ms": {
     "banana": "MS",
@@ -17936,6 +18109,9 @@
     "example": "090803",
     "homepage": "https://github.com/SciCrunch/NIF-Ontology",
     "license": "CC BY-4.0",
+    "mappings": {
+      "go": "NIF_Subcellular"
+    },
     "name": "NIF Standard Ontology: Subcellular Entities",
     "part_of": "nif",
     "pattern": "^\\d+$",
@@ -17948,7 +18124,8 @@
       "orcid": "0000-0003-4423-4370"
     },
     "synonyms": [
-      "NLXSUB"
+      "NLXSUB",
+      "nif_subcellular"
     ],
     "uri_format": "http://uri.neuinfo.org/nif/nifstd/nlx_subcell_$1"
   },
@@ -18326,6 +18503,7 @@
       "mco",
       "one",
       "ons",
+      "proco",
       "rbo",
       "scdo"
     ],
@@ -18403,36 +18581,20 @@
     "preferred_prefix": "obo",
     "uri_format": "http://purl.obolibrary.org/obo/$1"
   },
-  "oboformat": {
-    "contributor": {
-      "email": "cthoyt@gmail.com",
-      "github": "cthoyt",
-      "name": "Charles Tapley Hoyt",
-      "orcid": "0000-0003-4423-4370"
-    },
-    "description": "Related to the OBO in OWL meta-model",
-    "example": "alt_id",
-    "homepage": "https://github.com/geneontology/go-ontology/tree/master/contrib",
-    "mappings": {
-      "biolink": "oboformat",
-      "fairsharing": "FAIRsharing.aa0eat"
-    },
-    "name": "OBO Format",
-    "preferred_prefix": "oboFormat",
-    "repository": "https://github.com/geneontology/go-ontology"
-  },
   "oboinowl": {
     "description": "This meta-ontology is self-describing. OBO metamodel properties are described using OBO metamodel properties",
     "download_obo": "https://github.com/geneontology/go-ontology/raw/master/contrib/oboInOwl.obo",
     "example": "hasDbXref",
     "homepage": "https://github.com/geneontology/go-ontology/tree/master/contrib",
     "mappings": {
-      "biocontext": "OIO"
+      "biocontext": "OIO",
+      "biolink": "oboformat"
     },
     "name": "OBO in OWL",
     "preferred_prefix": "oboInOwl",
     "repository": "https://github.com/geneontology/go-ontology",
     "synonyms": [
+      "oboformat",
       "oio"
     ],
     "uri_format": "http://www.geneontology.org/formats/oboInOwl#$1"
@@ -18802,6 +18964,7 @@
     "name": "Ontology of units of Measure",
     "preferred_prefix": "om",
     "repository": "https://github.com/HajoRijgersberg/OM",
+    "uri_format": "http://www.ontology-of-units-of-measure.org/resource/om-2/$1",
     "version": "2.0.37"
   },
   "oma.grp": {
@@ -19567,7 +19730,7 @@
       "ordo"
     ],
     "uri_format": "http://www.orpha.net/ORDO/Orphanet_$1",
-    "version": "4.0"
+    "version": "4.1"
   },
   "orth": {
     "contact": {
@@ -19934,6 +20097,7 @@
       "pco",
       "phipo",
       "planp",
+      "proco",
       "rbo",
       "xpo",
       "zp"
@@ -20835,6 +20999,27 @@
     "preferred_prefix": "phosphosite.residue",
     "uri_format": "http://www.phosphosite.org/siteAction.do?id=$1"
   },
+  "phosphosite.sitegroup": {
+    "comment": "Potentially could use a URI format like https://www.phosphosite.org/siteGroupAction.action?protOrg=1156&id=$1, but it's not obvious what the protOrg does.",
+    "contributor": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "Site groups are orthologous positions in human, mouse, rat, etc. where phosphorylations or other PTMs occur.",
+    "example": "447860",
+    "homepage": "https://www.phosphosite.org",
+    "name": "PhosphoSite Site Group",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "phosphosite.sitegroup",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    }
+  },
   "phylomedb": {
     "description": "PhylomeDB is a database of complete phylomes derived for different genomes within a specific taxonomic range. It provides alignments, phylogentic trees and tree-based orthology predictions for all encoded proteins.",
     "example": "Phy000CLXM_RAT",
@@ -21546,6 +21731,36 @@
     "preferred_prefix": "probonto",
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/probonto/terms?short_form=$1",
     "version": "2.5.0"
+  },
+  "proco": {
+    "contact": {
+      "email": "wes_schafer@merck.com",
+      "github": "schaferw",
+      "name": "Wes Schafer",
+      "orcid": "0000-0002-8786-1756"
+    },
+    "depends_on": [
+      "chebi",
+      "cheminf",
+      "obi",
+      "pato",
+      "ro",
+      "sbo"
+    ],
+    "description": "PROCO covers process chemistry, the chemical field concerned with scaling up laboratory syntheses to commercially viable processes.",
+    "download_owl": "http://purl.obolibrary.org/obo/proco.owl",
+    "example": "0000001",
+    "homepage": "https://github.com/proco-ontology/PROCO",
+    "license": "CC BY 4.0",
+    "mappings": {
+      "aberowl": "PROCO",
+      "obofoundry": "PROCO",
+      "ontobee": "PROCO"
+    },
+    "name": "Process Chemistry Ontology",
+    "preferred_prefix": "PROCO",
+    "repository": "https://github.com/proco-ontology/PROCO",
+    "uri_format": "http://purl.obolibrary.org/obo/PROCO_$1"
   },
   "prodom": {
     "description": "ProDom is a database of protein domain families generated from the global comparison of all available protein sequences.",
@@ -22513,7 +22728,7 @@
     "deprecated": true,
     "description": "The RESID Database of Protein Modifications is a comprehensive collection of annotations and structures for protein modifications including amino-terminal, carboxyl-terminal and peptide chain cross-link post-translational modifications.",
     "example": "AA0001",
-    "homepage": "http://www.ebi.ac.uk/RESID/",
+    "homepage": "https://proteininformationresource.org/resid/",
     "mappings": {
       "biocontext": "RESID",
       "go": "RESID",
@@ -22525,7 +22740,7 @@
     "name": "Protein covalent bond",
     "pattern": "^AA\\d{4}$",
     "preferred_prefix": "RESID",
-    "uri_format": "http://pir0.georgetown.edu/cgi-bin/resid?id=$1"
+    "uri_format": "https://proteininformationresource.org/cgi-bin/resid?id=$1"
   },
   "reto": {
     "description": "Regulation of Transcription",
@@ -22876,6 +23091,7 @@
       "plana",
       "planp",
       "poro",
+      "proco",
       "psdo",
       "pso",
       "rbo",
@@ -23194,6 +23410,7 @@
   },
   "sbo": {
     "appears_in": [
+      "proco",
       "scdo"
     ],
     "banana": "SBO",
@@ -23303,6 +23520,26 @@
     "pattern": "^A\\d{4}$",
     "preferred_prefix": "schem",
     "uri_format": "https://biopragmatics.github.io/providers/schem/$1"
+  },
+  "schema": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Schema.org is a collaborative, community activity with a mission to create, maintain, and promote schemas for structured data on the Internet, on web pages, in email messages, and beyond.",
+    "download_owl": "http://aber-owl.net/media/ontologies/SCHEMA/2/schema.owl",
+    "example": "Person",
+    "homepage": "https://schema.org",
+    "mappings": {
+      "aberowl": "SCHEMA",
+      "biolink": "schema",
+      "bioportal": "SCHEMA"
+    },
+    "name": "Schema.org",
+    "preferred_prefix": "schema",
+    "uri_format": "https://schema.org/$1"
   },
   "scholia.resource": {
     "contributor": {
@@ -24699,7 +24936,7 @@
       "SYMP"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/SYMP_$1",
-    "version": "2022-05-26"
+    "version": "2022-06-22"
   },
   "syoid": {
     "contributor": {
@@ -25485,7 +25722,7 @@
       "Uberon"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/UBERON_$1",
-    "version": "2022-05-27"
+    "version": "2022-06-20"
   },
   "ubio.namebank": {
     "description": "NameBank is a \"biological name server\" focused on storing names and objectively-derived nomenclatural attributes. NameBank is a repository for all recorded names including scientific names, vernacular (or common names), misspelled names, as well as ad-hoc nomenclatural labels that may have limited context.",
@@ -25808,6 +26045,13 @@
         "homepage": "https://scholia.toolforge.org/",
         "name": "Scholia",
         "uri_format": "https://scholia.toolforge.org/uniprot/$1"
+      },
+      {
+        "code": "oma",
+        "description": "The OMA project is a method and database for the inference of orthologs among complete genomes.",
+        "homepage": "https://omabrowser.org/oma/home/",
+        "name": "Orthologous Matrix Browser",
+        "uri_format": "http://omabrowser.org/cgi-bin/gateway.pl?f=DisplayEntry&p2=orthologs&p1=$1"
       },
       {
         "code": "ncbi",
@@ -26646,7 +26890,7 @@
     "preferred_prefix": "VO",
     "repository": "https://github.com/vaccineontology/VO",
     "uri_format": "http://purl.obolibrary.org/obo/VO_$1",
-    "version": "1.1.196"
+    "version": "1.1.198"
   },
   "void": {
     "description": "The Vocabulary of Interlinked Datasets (VoID) is an RDF Schema vocabulary for expressing metadata about RDF datasets. It is intended as a bridge between the publishers and users of RDF data, with applications ranging from data discovery to cataloging and archiving of datasets. This document provides a formal definition of the new RDF classes and properties introduced for VoID. It is a companion to the main specification document for VoID, Describing Linked Datasets with the VoID Vocabulary.",
@@ -26891,7 +27135,7 @@
       "WBls"
     ],
     "uri_format": "http://www.wormbase.org/get?name=$1",
-    "version": "2022-03-22"
+    "version": "2022-06-21"
   },
   "wbphenotype": {
     "contact": {
@@ -26926,7 +27170,7 @@
       "WBPhenotype"
     ],
     "uri_format": "http://www.wormbase.org/get?name=$1",
-    "version": "2022-03-22"
+    "version": "2022-06-21"
   },
   "webelements": {
     "contributor": {
