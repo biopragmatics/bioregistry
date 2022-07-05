@@ -36175,13 +36175,27 @@
       "uri_format": "http://www.nlm.nih.gov/medlineplus/ency/article/$1.htm"
     }
   },
-  "merops": {
+  "merops.clan": {
+    "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them.",
+    "example": "IA",
+    "homepage": "https://www.ebi.ac.uk/merops",
+    "name": "MEROPS Clan",
+    "part_of": "merops",
+    "references": [
+      "https://doi.org/10.1093/nar/gkx1134"
+    ],
+    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/clansum?clan=$1"
+  },
+  "merops.entry": {
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "MEROPS",
       "uri_format": "http://identifiers.org/merops/$1"
     },
+    "example_extras": [
+      "I31.952"
+    ],
     "fairsharing": {
       "abbreviation": "MEROPS",
       "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them.",
@@ -36230,6 +36244,7 @@
       "prefix": "merops",
       "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?mid=$1"
     },
+    "name": "MEROPS Entry",
     "prefixcommons": {
       "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them.",
       "example": "S01.001",
@@ -36248,7 +36263,7 @@
       "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
     },
     "synonyms": [
-      "merops.entry",
+      "merops",
       "merops.inhibitor"
     ],
     "uniprot": {
@@ -36260,16 +36275,6 @@
       "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?mid=$1"
     },
     "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=$1"
-  },
-  "merops.clan": {
-    "example": "IA",
-    "homepage": "https://www.ebi.ac.uk/merops",
-    "name": "MEROPS Clan",
-    "part_of": "merops",
-    "references": [
-      "https://doi.org/10.1093/nar/gkx1134"
-    ],
-    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/clansum?clan=$1"
   },
   "merops.family": {
     "biocontext": {
