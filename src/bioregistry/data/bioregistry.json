@@ -36247,6 +36247,10 @@
       ],
       "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
     },
+    "synonyms": [
+      "merops.entry",
+      "merops.inhibitor"
+    ],
     "uniprot": {
       "category": "Protein family/group databases",
       "identifier": "59",
@@ -36254,7 +36258,8 @@
       "name": "MEROPS protease database",
       "prefix": "MEROPS",
       "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?mid=$1"
-    }
+    },
+    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=$1"
   },
   "merops.clan": {
     "example": "IA",
@@ -36300,46 +36305,8 @@
       "prefix": "merops.family",
       "uri_format": "http://merops.sanger.ac.uk/cgi-bin/famsum?family=$1"
     },
-    "part_of": "merops"
-  },
-  "merops.pep": {
-    "biocontext": {
-      "is_identifiers": true,
-      "is_obo": false,
-      "prefix": "MEROPS.INHIBITOR",
-      "uri_format": "http://identifiers.org/merops.inhibitor/$1"
-    },
-    "mappings": {
-      "biocontext": "MEROPS.INHIBITOR",
-      "miriam": "merops.inhibitor",
-      "n2t": "merops.inhibitor"
-    },
-    "miriam": {
-      "deprecated": false,
-      "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. This collections references inhibitors.",
-      "homepage": "http://merops.sanger.ac.uk/index.htm",
-      "id": "00000491",
-      "name": "MEROPS Inhibitor",
-      "namespaceEmbeddedInLui": false,
-      "pattern": "^I\\d{2}\\.\\d{3}$",
-      "prefix": "merops.inhibitor",
-      "sampleId": "I31.952",
-      "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
-    },
-    "n2t": {
-      "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. This collections references inhibitors.",
-      "example": "I31.952",
-      "homepage": "http://merops.sanger.ac.uk/index.htm",
-      "name": "MEROPS Inhibitor at Sanger Institute",
-      "namespaceEmbeddedInLui": false,
-      "pattern": "^I\\d{2}\\.\\d{3}$",
-      "prefix": "merops.inhibitor",
-      "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
-    },
     "part_of": "merops",
-    "synonyms": [
-      "merops.entry"
-    ]
+    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=$1"
   },
   "mesh": {
     "aberowl": {
