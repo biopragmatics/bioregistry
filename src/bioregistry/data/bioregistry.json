@@ -768,11 +768,11 @@
   "afo": {
     "aberowl": {
       "description": "<p><strong>Allotrope Merged Ontology Suite</strong></p> <p>The AFO is an ontology suite that provides a standard vocabulary and semantic model for the representation of laboratory analytical processes. The AFO suite is aligned at the upper layer to the Basic Formal Ontology (BFO). The core domains modeled include: Equipment, Material, Process, and Results.</p> <p>This version of Allotrope Foundation Ontology (AFO) has been prepared specifically for publication on the NCBO platform.</p> <p>license: http://purl.allotrope.org/voc/creative-commons-attribution-license<br/> rights: http://purl.allotrope.org/voc/copyright<br/></p>  <p>Please get the latest version of AFO from http://purl.allotrope.org</p>",
-      "download_owl": "http://aber-owl.net/media/ontologies/AFO/25/afo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/AFO/27/afo.owl",
       "homepage": "http://purl.allotrope.org",
       "name": "Allotrope Merged Ontology Suite",
       "prefix": "AFO",
-      "version": "REC/2022/03"
+      "version": "REC/2022/06"
     },
     "bioportal": {
       "name": "Allotrope Merged Ontology Suite",
@@ -20977,8 +20977,8 @@
       "homepage": "https://github.com/CTDbase/exposure-ontology",
       "name": "Exposure ontology (ExO)",
       "prefix": "exo",
-      "version": "2020-03-10",
-      "version.iri": "http://purl.obolibrary.org/obo/exo/2.1/exo.owl"
+      "version": "2022-06-29",
+      "version.iri": "http://purl.obolibrary.org/obo/exo/releases/2022-06-29/exo.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -36223,8 +36223,8 @@
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
-      "prefix": "MEROPS",
-      "uri_format": "http://identifiers.org/merops/$1"
+      "prefix": "MEROPS.INHIBITOR",
+      "uri_format": "http://identifiers.org/merops.inhibitor/$1"
     },
     "example": "I31.952",
     "example_extras": [
@@ -36248,35 +36248,35 @@
       "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=$1"
     },
     "mappings": {
-      "biocontext": "MEROPS",
+      "biocontext": "MEROPS.INHIBITOR",
       "fairsharing": "FAIRsharing.2s4n8r",
       "go": "MEROPS",
-      "miriam": "merops",
-      "n2t": "merops",
+      "miriam": "merops.inhibitor",
+      "n2t": "merops.inhibitor",
       "prefixcommons": "merops",
       "uniprot": "MEROPS"
     },
     "miriam": {
       "deprecated": false,
-      "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them.",
+      "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. This collections references inhibitors.",
       "homepage": "http://merops.sanger.ac.uk/index.htm",
-      "id": "00000059",
-      "name": "MEROPS",
+      "id": "00000491",
+      "name": "MEROPS Inhibitor",
       "namespaceEmbeddedInLui": false,
-      "pattern": "^[SCTAGMNU]\\d{2}\\.([AB]\\d{2}|\\d{3})$",
-      "prefix": "merops",
-      "sampleId": "S01.001",
-      "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?mid=$1"
+      "pattern": "^I\\d{2}\\.\\d{3}$",
+      "prefix": "merops.inhibitor",
+      "sampleId": "I31.952",
+      "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
     },
     "n2t": {
-      "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them.",
-      "example": "S01.001",
+      "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. This collections references inhibitors.",
+      "example": "I31.952",
       "homepage": "http://merops.sanger.ac.uk/index.htm",
-      "name": "MEROPS database at Sanger Institute",
+      "name": "MEROPS Inhibitor at Sanger Institute",
       "namespaceEmbeddedInLui": false,
-      "pattern": "^[SCTAGMNU]\\d{2}\\.([AB]\\d{2}|\\d{3})$",
-      "prefix": "merops",
-      "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?mid=$1"
+      "pattern": "^I\\d{2}\\.\\d{3}$",
+      "prefix": "merops.inhibitor",
+      "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
     },
     "name": "MEROPS Entry",
     "pattern": "^[SCTAGMNUI]\\d{2}\\.([AB]\\d{2}|\\d{3})$",
@@ -37579,7 +37579,7 @@
       "repository": "https://github.com/HUPO-PSI/psi-mi-CV"
     },
     "ols": {
-      "download": "https://raw.githubusercontent.com/HUPO-PSI/psi-mi-CV/master/psi-mi.obo",
+      "download": "https://raw.githubusercontent.com/HUPO-PSI/psi-mi-CV/master/psi-mi.owl",
       "name": "mi",
       "prefix": "mi",
       "version.iri": "http://purl.obolibrary.org/obo/mi/releases/2020-04-13/mi.owl"
@@ -39710,8 +39710,8 @@
       "homepage": "http://obofoundry.org/ontology/mondo.html",
       "name": "Mondo Disease Ontology",
       "prefix": "mondo",
-      "version": "2022-06-01",
-      "version.iri": "http://purl.obolibrary.org/obo/mondo/releases/2022-06-01/mondo.owl"
+      "version": "2022-07-01",
+      "version.iri": "http://purl.obolibrary.org/obo/mondo/releases/2022-07-01/mondo.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -39935,7 +39935,7 @@
       "homepage": "http://www.informatics.jax.org/searches/MP_form.shtml",
       "name": "The Mammalian Phenotype Ontology",
       "prefix": "mp",
-      "version.iri": "http://purl.obolibrary.org/obo/mp/releases/2022-06-23"
+      "version.iri": "http://purl.obolibrary.org/obo/mp/releases/2022-06-29"
     },
     "ontobee": {
       "library": "Library",
@@ -40327,7 +40327,7 @@
       "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
       "name": "Mass spectrometry ontology",
       "prefix": "ms",
-      "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.91/ms.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.92/ms.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -41832,8 +41832,8 @@
       "download": "http://purl.obolibrary.org/obo/ncbitaxon.owl",
       "name": "ncbitaxon",
       "prefix": "ncbitaxon",
-      "version": "2022-02-21",
-      "version.iri": "http://purl.obolibrary.org/obo/ncbitaxon/2022-02-21/ncbitaxon.owl"
+      "version": "2022-06-28",
+      "version.iri": "http://purl.obolibrary.org/obo/ncbitaxon/2022-06-28/ncbitaxon.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -62822,8 +62822,8 @@
       "homepage": "http://uberon.org",
       "name": "Uber-anatomy ontology",
       "prefix": "uberon",
-      "version": "2022-06-20",
-      "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2022-06-20/uberon.owl"
+      "version": "2022-06-30",
+      "version.iri": "http://purl.obolibrary.org/obo/uberon/releases/2022-06-30/uberon.owl"
     },
     "ontobee": {
       "library": "Library",

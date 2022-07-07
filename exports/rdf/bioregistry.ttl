@@ -7068,47 +7068,21 @@ bioregistry:medlineplus a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:merops a bioregistry.schema:0000001 ;
-    rdfs:label "MEROPS peptidase database" ;
-    dc:description "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:MEROPS,
-        go.resource:MEROPS,
-        n2t:merops,
-        fairsharing:FAIRsharing.2s4n8r,
-        prefixcommons:merops,
-        miriam:merops,
-        uniprot.resource:MEROPS ;
-    foaf:homepage "http://merops.sanger.ac.uk/index.htm"^^xsd:string ;
-    bioregistry.schema:0000005 "S01.001"^^xsd:string ;
-    bioregistry.schema:0000006 "http://merops.sanger.ac.uk/cgi-bin/pepsum?mid=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[SCTAGMNU]\\d{2}\\.([AB]\\d{2}|\\d{3})$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:merops.family a bioregistry.schema:0000001 ;
-    rdfs:label "MEROPS Family" ;
-    dc:description "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. These are hierarchically classified and assigned to a Family on the basis of statistically significant similarities in amino acid sequence. Families thought to be homologous are grouped together in a Clan. This collection references peptidase families."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:MEROPS.FAMILY,
-        n2t:merops.family,
-        miriam:merops.family ;
-    foaf:homepage "http://merops.sanger.ac.uk/index.htm"^^xsd:string ;
-    bioregistry.schema:0000005 "S1"^^xsd:string ;
-    bioregistry.schema:0000006 "http://merops.sanger.ac.uk/cgi-bin/famsum?family=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[SCTAGMNU]\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:merops.inhibitor a bioregistry.schema:0000001 ;
-    rdfs:label "MEROPS Inhibitor" ;
+bioregistry:merops.entry a bioregistry.schema:0000001 ;
+    rdfs:label "MEROPS Entry" ;
     dc:description "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. This collections references inhibitors."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:MEROPS.INHIBITOR,
+        go.resource:MEROPS,
         n2t:merops.inhibitor,
-        miriam:merops.inhibitor ;
+        fairsharing:FAIRsharing.2s4n8r,
+        prefixcommons:merops,
+        miriam:merops.inhibitor,
+        uniprot.resource:MEROPS ;
     foaf:homepage "http://merops.sanger.ac.uk/index.htm"^^xsd:string ;
-    bioregistry.schema:0000005 "I31.952"^^xsd:string ;
-    bioregistry.schema:0000006 "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^I\\d{2}\\.\\d{3}$"^^xsd:string ;
+    bioregistry.schema:0000005 "S01.001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[SCTAGMNUI]\\d{2}\\.([AB]\\d{2}|\\d{3})$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:mesh.2012 a bioregistry.schema:0000001 ;
@@ -16407,8 +16381,6 @@ biocontext:MEDDRA dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:MEDLINEPLUS dcterms:isPartOf bioregistry.metaresource:biocontext .
 
-biocontext:MEROPS dcterms:isPartOf bioregistry.metaresource:biocontext .
-
 biocontext:MEROPS.FAMILY dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:MEROPS.INHIBITOR dcterms:isPartOf bioregistry.metaresource:biocontext .
@@ -18632,8 +18604,6 @@ n2t:meddra dcterms:isPartOf bioregistry.metaresource:n2t .
 n2t:medgen dcterms:isPartOf bioregistry.metaresource:n2t .
 
 n2t:medlineplus dcterms:isPartOf bioregistry.metaresource:n2t .
-
-n2t:merops dcterms:isPartOf bioregistry.metaresource:n2t .
 
 n2t:merops.family dcterms:isPartOf bioregistry.metaresource:n2t .
 
@@ -21143,6 +21113,24 @@ bioregistry:ghr a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://medlineplus.gov/genetics/condition/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:github.issue a bioregistry.schema:0000001 ;
+    rdfs:label "GitHub Issue" ;
+    dc:description "An issue in any public repository on GitHub."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://github.com/"^^xsd:string ;
+    bioregistry.schema:0000005 "biopragmatics/bioregistry/424"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bioregistry.io/resolve/github/issue/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:github.pull a bioregistry.schema:0000001 ;
+    rdfs:label "GitHub Pull Request" ;
+    dc:description "A pull request in any public repository on GitHub."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://github.com/"^^xsd:string ;
+    bioregistry.schema:0000005 "biopragmatics/bioregistry/416"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bioregistry.io/resolve/github/pull/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:glytoucan a bioregistry.schema:0000001 ;
     rdfs:label "GlyTouCan" ;
     dc:description "GlyTouCan is the single worldwide registry of glycan (carbohydrate sugar chain) data."^^xsd:string ;
@@ -21925,6 +21913,23 @@ bioregistry:matrixdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://matrixdb.univ-lyon1.fr/cgi-bin/current/newPort?type=biomolecule&value=$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:complexportal .
+
+bioregistry:merops dcterms:hasPart bioregistry:merops.clan,
+        bioregistry:merops.family .
+
+bioregistry:merops.family a bioregistry.schema:0000001 ;
+    rdfs:label "MEROPS Family" ;
+    dc:description "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. These are hierarchically classified and assigned to a Family on the basis of statistically significant similarities in amino acid sequence. Families thought to be homologous are grouped together in a Clan. This collection references peptidase families."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:merops ;
+    skos:exactMatch biocontext:MEROPS.FAMILY,
+        n2t:merops.family,
+        miriam:merops.family ;
+    foaf:homepage "http://merops.sanger.ac.uk/index.htm"^^xsd:string ;
+    bioregistry.schema:0000005 "S1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[SCTAGMNU]\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:metacyc.compound a bioregistry.schema:0000001 ;
     rdfs:label "Metabolic Encyclopedia of metabolic and other pathways" ;
@@ -26337,8 +26342,6 @@ miriam:medgen dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:medlineplus dcterms:isPartOf bioregistry.metaresource:miriam .
 
-miriam:merops dcterms:isPartOf bioregistry.metaresource:miriam .
-
 miriam:merops.family dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:merops.inhibitor dcterms:isPartOf bioregistry.metaresource:miriam .
@@ -28675,6 +28678,16 @@ bioregistry:mba a bioregistry.schema:0000001 ;
     foaf:homepage "https://mouse.brain-map.org"^^xsd:string ;
     bioregistry.schema:0000005 "688"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:merops.clan a bioregistry.schema:0000001 ;
+    rdfs:label "MEROPS Clan" ;
+    dc:description "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:merops ;
+    foaf:homepage "https://www.ebi.ac.uk/merops"^^xsd:string ;
+    bioregistry.schema:0000005 "IA"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/merops/cgi-bin/clansum?clan=$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:mesh a bioregistry.schema:0000001 ;
@@ -31411,6 +31424,8 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:geonames,
         bioregistry:geonames.feature,
         bioregistry:ghr,
+        bioregistry:github.issue,
+        bioregistry:github.pull,
         bioregistry:go.resource,
         bioregistry:goche,
         bioregistry:goeco,
@@ -31442,6 +31457,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:lter,
         bioregistry:matrixdb,
         bioregistry:mba,
+        bioregistry:merops.clan,
         bioregistry:mgnify.analysis,
         bioregistry:miaa,
         bioregistry:mirbase.family,
@@ -34933,7 +34949,6 @@ bioregistry.metaresource:n2t a bioregistry.schema:0000002 ;
         n2t:meddra,
         n2t:medgen,
         n2t:medlineplus,
-        n2t:merops,
         n2t:merops.family,
         n2t:merops.inhibitor,
         n2t:mesh,
@@ -35670,7 +35685,6 @@ bioregistry.metaresource:miriam a bioregistry.schema:0000002 ;
         miriam:meddra,
         miriam:medgen,
         miriam:medlineplus,
-        miriam:merops,
         miriam:merops.family,
         miriam:merops.inhibitor,
         miriam:mesh,
@@ -36448,7 +36462,6 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:MDM,
         biocontext:MEDDRA,
         biocontext:MEDLINEPLUS,
-        biocontext:MEROPS,
         biocontext:MEROPS.FAMILY,
         biocontext:MEROPS.INHIBITOR,
         biocontext:MESH,
@@ -37408,6 +37421,8 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ghr,
         bioregistry:giardiadb,
         bioregistry:github,
+        bioregistry:github.issue,
+        bioregistry:github.pull,
         bioregistry:gitlab,
         bioregistry:glida.gpcr,
         bioregistry:glida.ligand,
@@ -37650,9 +37665,9 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:meddra,
         bioregistry:medgen,
         bioregistry:medlineplus,
-        bioregistry:merops,
+        bioregistry:merops.clan,
+        bioregistry:merops.entry,
         bioregistry:merops.family,
-        bioregistry:merops.inhibitor,
         bioregistry:mesh,
         bioregistry:mesh.2012,
         bioregistry:mesh.2013,

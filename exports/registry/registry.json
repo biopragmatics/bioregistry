@@ -8655,7 +8655,7 @@
       "ExO"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/EXO_$1",
-    "version": "2020-03-10"
+    "version": "2022-06-29"
   },
   "fabio": {
     "contributor": {
@@ -10307,6 +10307,34 @@
     "pattern": "^[a-zA-Z0-9-_]+(/[a-zA-Z0-9-_]+)?$",
     "preferred_prefix": "github",
     "uri_format": "https://github.com/$1"
+  },
+  "github.issue": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An issue in any public repository on GitHub.",
+    "example": "biopragmatics/bioregistry/424",
+    "homepage": "https://github.com/",
+    "name": "GitHub Issue",
+    "preferred_prefix": "github.issue",
+    "uri_format": "https://bioregistry.io/resolve/github/issue/$1"
+  },
+  "github.pull": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A pull request in any public repository on GitHub.",
+    "example": "biopragmatics/bioregistry/416",
+    "homepage": "https://github.com/",
+    "name": "GitHub Pull Request",
+    "preferred_prefix": "github.pull",
+    "uri_format": "https://bioregistry.io/resolve/github/pull/$1"
   },
   "gitlab": {
     "description": "GitLab is The DevOps platform that empowers organizations to maximize the overall return on software development by delivering software faster and efficiently, while strengthening security and compliance. With GitLab, every team in your organization can collaboratively plan, build, secure, and deploy software to drive business outcomes faster with complete transparency, consistency and traceability.",
@@ -14957,23 +14985,52 @@
     "preferred_prefix": "medlineplus",
     "uri_format": "http://www.nlm.nih.gov/medlineplus/ency/article/$1.htm"
   },
-  "merops": {
+  "merops.clan": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them.",
+    "example": "IA",
+    "homepage": "https://www.ebi.ac.uk/merops",
+    "name": "MEROPS Clan",
+    "part_of": "merops",
+    "preferred_prefix": "merops.clan",
+    "references": [
+      "https://pubmed.ncbi.nlm.nih.gov/29145643",
+      "https://github.com/biopragmatics/bioregistry/issues/439"
+    ],
+    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/clansum?clan=$1"
+  },
+  "merops.entry": {
+    "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. This collections references inhibitors.",
     "example": "S01.001",
+    "example_extras": [
+      "I31.952"
+    ],
     "homepage": "http://merops.sanger.ac.uk/index.htm",
     "mappings": {
-      "biocontext": "MEROPS",
+      "biocontext": "MEROPS.INHIBITOR",
       "fairsharing": "FAIRsharing.2s4n8r",
       "go": "MEROPS",
-      "miriam": "merops",
-      "n2t": "merops",
+      "miriam": "merops.inhibitor",
+      "n2t": "merops.inhibitor",
       "prefixcommons": "merops",
       "uniprot": "MEROPS"
     },
-    "name": "MEROPS peptidase database",
-    "pattern": "^[SCTAGMNU]\\d{2}\\.([AB]\\d{2}|\\d{3})$",
-    "preferred_prefix": "merops",
-    "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?mid=$1"
+    "name": "MEROPS Entry",
+    "pattern": "^[SCTAGMNUI]\\d{2}\\.([AB]\\d{2}|\\d{3})$",
+    "preferred_prefix": "merops.entry",
+    "references": [
+      "https://www.ncbi.nlm.nih.gov/pubmed/29145643",
+      "https://github.com/biopragmatics/bioregistry/issues/439"
+    ],
+    "synonyms": [
+      "merops.inhibitor"
+    ],
+    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=$1"
   },
   "merops.family": {
     "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. These are hierarchically classified and assigned to a Family on the basis of statistically significant similarities in amino acid sequence. Families thought to be homologous are grouped together in a Clan. This collection references peptidase families.",
@@ -14985,23 +15042,14 @@
       "n2t": "merops.family"
     },
     "name": "MEROPS Family",
+    "part_of": "merops",
     "pattern": "^[SCTAGMNU]\\d+$",
     "preferred_prefix": "merops.family",
-    "uri_format": "http://merops.sanger.ac.uk/cgi-bin/famsum?family=$1"
-  },
-  "merops.inhibitor": {
-    "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. This collections references inhibitors.",
-    "example": "I31.952",
-    "homepage": "http://merops.sanger.ac.uk/index.htm",
-    "mappings": {
-      "biocontext": "MEROPS.INHIBITOR",
-      "miriam": "merops.inhibitor",
-      "n2t": "merops.inhibitor"
-    },
-    "name": "MEROPS Inhibitor",
-    "pattern": "^I\\d{2}\\.\\d{3}$",
-    "preferred_prefix": "merops.inhibitor",
-    "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1"
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/439",
+      "https://www.ncbi.nlm.nih.gov/pubmed/29145643"
+    ],
+    "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=$1"
   },
   "mesh": {
     "description": "MeSH (Medical Subject Headings) is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity. This thesaurus is used by NLM for indexing articles from biomedical journals, cataloguing of books, documents, etc.",
@@ -16275,7 +16323,7 @@
     "preferred_prefix": "MONDO",
     "repository": "https://github.com/monarch-initiative/mondo",
     "uri_format": "http://purl.obolibrary.org/obo/MONDO_$1",
-    "version": "2022-06-01"
+    "version": "2022-07-01"
   },
   "mop": {
     "contact": {
@@ -17142,7 +17190,7 @@
       "uniprot.taxonomy"
     ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1",
-    "version": "2022-02-21"
+    "version": "2022-06-28"
   },
   "ncim": {
     "description": "NCI Metathesaurus (NCIm) is a wide-ranging biomedical terminology database that covers most terminologies used by NCI for clinical care, translational and basic research, and public information and administrative activities. It integrates terms and definitions from different terminologies, including NCI Thesaurus, however the representation is not identical.",
@@ -23344,7 +23392,7 @@
     "name": "Standards and Ontologies for Functional Genomics (SOFG) Anatomy Entry List",
     "preferred_prefix": "sael",
     "references": [
-      "https://pubmed.ncbi.nlm.nih.gov/18629134/"
+      "https://www.ncbi.nlm.nih.gov/pubmed/18629134"
     ]
   },
   "salk": {
@@ -25722,7 +25770,7 @@
       "Uberon"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/UBERON_$1",
-    "version": "2022-06-20"
+    "version": "2022-06-30"
   },
   "ubio.namebank": {
     "description": "NameBank is a \"biological name server\" focused on storing names and objectively-derived nomenclatural attributes. NameBank is a repository for all recorded names including scientific names, vernacular (or common names), misspelled names, as well as ad-hoc nomenclatural labels that may have limited context.",
