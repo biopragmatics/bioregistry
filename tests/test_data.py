@@ -601,11 +601,12 @@ class TestRegistry(unittest.TestCase):
     def test_mappings(self):
         """Make sure all mapping keys are valid metaprefixes."""
         for prefix, resource in self.registry.items():
-            if not resource.mappings:
-                continue
             with self.subTest(prefix=prefix):
-                for metaprefix in resource.mappings:
+                for metaprefix in resource.mappings or {}:
                     self.assertIn(metaprefix, self.metaregistry)
+                for metaprefix in self.metaregistry:
+                    if hasattr(resource, metaprefix):
+                        self.assertIn(metaprefix, resource.mappings)
 
     def test_provider_codes(self):
         """Make sure provider codes are unique."""
