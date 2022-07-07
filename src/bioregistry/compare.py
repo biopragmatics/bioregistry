@@ -437,7 +437,7 @@ def compare(paper: bool):  # noqa:C901
     ax.text(
         x1,
         h + 1,
-        "No prefixes are available\nin $\\it{all}$ mappable external\nregistries",
+        f"No prefixes are available\nin more than {n_mappable_metaprefixes - zero_pad_count} external\nregistries",
         horizontalalignment="center",
         verticalalignment="bottom",
         fontdict=dict(fontsize=12),
