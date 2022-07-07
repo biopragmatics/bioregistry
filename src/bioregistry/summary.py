@@ -177,7 +177,7 @@ class MappingBurdenSummary:
             {self.pairwise_to_direct_ratio:.1f} times to {self.direct_upper_bound:,} mappings when
             using the Bioregistry as a mapping hub. Of these, {self.direct_upper_bound - self.remaining:,}
             ({(self.direct_upper_bound - self.remaining) / self.direct_upper_bound:.0%}) have been
-            curated and {self.remaining:,} ({self.remaining / self.direct_upper_bound:.0%}), but these
+            curated and {self.remaining:,} ({self.remaining / self.direct_upper_bound:.0%}) remain, but these
             numbers are subject to change dependent on both updates to the Bioregistry and external registries.
             """
             )

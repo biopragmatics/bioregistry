@@ -425,8 +425,8 @@ def compare(paper: bool):  # noqa:C901
     _labels[0] = f"{_labels[0]}\nNovel"
     for i in ax.containers:
         ax.bar_label(i, _labels)
-    ax.set_xlabel("Number Cross-Registry Mappings")
-    ax.set_ylabel("Number Prefixes")
+    ax.set_xlabel("Number of External Registries Capturing a Given Identifier Resource")
+    ax.set_ylabel("Number of Identifier Resources")
     ax.set_yscale("log")
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
@@ -437,7 +437,8 @@ def compare(paper: bool):  # noqa:C901
     ax.text(
         x1,
         h + 1,
-        f"No prefixes are available\nin more than {n_mappable_metaprefixes - zero_pad_count} external\nregistries",
+        f"No identifier resources are\navailable in more than\n"
+        f"{n_mappable_metaprefixes - zero_pad_count} external registries",
         horizontalalignment="center",
         verticalalignment="bottom",
         fontdict=dict(fontsize=12),
