@@ -605,8 +605,9 @@ class TestRegistry(unittest.TestCase):
                 for metaprefix in resource.mappings or {}:
                     self.assertIn(metaprefix, self.metaregistry)
                 for metaprefix in self.metaregistry:
-                    if hasattr(resource, metaprefix):
-                        self.assertIn(metaprefix, resource.mappings)
+                    if getattr(resource, metaprefix, None):
+                        self.assertIsNotNone(resource.mappings)
+                        self.assertIn(metaprefix, set(resource.mappings))
 
     def test_provider_codes(self):
         """Make sure provider codes are unique."""
