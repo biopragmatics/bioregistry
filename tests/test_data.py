@@ -601,11 +601,26 @@ class TestRegistry(unittest.TestCase):
     def test_mappings(self):
         """Make sure all mapping keys are valid metaprefixes."""
         for prefix, resource in self.registry.items():
-            if not resource.mappings:
-                continue
             with self.subTest(prefix=prefix):
-                for metaprefix in resource.mappings:
+                for metaprefix in resource.mappings or {}:
                     self.assertIn(metaprefix, self.metaregistry)
+                for metaprefix in self.metaregistry:
+                    d = getattr(resource, metaprefix, None)
+                    if not d:
+                        continue
+                    prefix = d.get("prefix")
+                    if prefix is None:
+                        if metaprefix == "wikidata":
+                            # FIXME make separate field for these
+                            self.assertTrue("paper" in d or "database" in d)
+                        else:
+                            self.fail()
+                    else:
+                        self.assertIsNotNone(
+                            resource.mappings,
+                            msg=f"did not find {metaprefix} mapping in {prefix} in {d}",
+                        )
+                        self.assertIn(metaprefix, set(resource.mappings))
 
     def test_provider_codes(self):
         """Make sure provider codes are unique."""
