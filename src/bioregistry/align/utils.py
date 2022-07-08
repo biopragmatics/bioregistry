@@ -76,7 +76,7 @@ class Aligner(ABC):
 
     def _align(self):
         """Align the external registry."""
-        for external_id, external_entry in self.external_registry.items():
+        for external_id, external_entry in sorted(self.external_registry.items()):
             if external_id in self.skip_external:
                 continue
 
