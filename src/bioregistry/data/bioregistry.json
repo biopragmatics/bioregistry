@@ -10006,10 +10006,10 @@
       "database.homepage": "http://www.ncbi.nlm.nih.gov/clinvar/",
       "database.label": "ClinVar",
       "description": "identifier in the ClinVar database for human genomic variation",
-      "homepage": "http://www.ncbi.nlm.nih.gov/clinvar/",
+      "homepage": "https://www.ncbi.nlm.nih.gov/clinvar/",
       "name": "ClinVar Variation ID",
       "prefix": "P1929",
-      "uri_format": "http://www.ncbi.nlm.nih.gov/clinvar/variation/$1/"
+      "uri_format": "https://www.ncbi.nlm.nih.gov/clinvar/variation/$1/"
     }
   },
   "clinvar.record": {
@@ -12622,19 +12622,20 @@
   },
   "covid19": {
     "aberowl": {
-      "description": "The COVID-19 ontology covers the role of molecular and cellular entities in virus-host-interactions, in the virus life cycle, as well as a wide spectrum of medical and epidemiological concepts linked to COVID-19.",
-      "download_owl": "http://aber-owl.net/media/ontologies/COVID-19/3/covid-19.owl",
-      "name": "COVID-19 Ontology",
-      "prefix": "COVID-19",
-      "version": "Version Release: 1.0.0"
+      "description": "The COVID-19 Surveillance Ontology is an application ontology used to support SARS-CoV-2 (severe acute respiratory syndrome coronavirus 2) surveillance in primary care. The ontology facilitates monitoring of COVID-19 cases and related respiratory conditions using data from multiple brands of computerised medical record systems.",
+      "download_owl": "http://aber-owl.net/media/ontologies/COVID19/3/covid19.owl",
+      "homepage": "https://orchid.phc.ox.ac.uk/index.php/cov-19/",
+      "name": "COVID-19 Surveillance Ontology",
+      "prefix": "COVID19",
+      "version": "V1.0"
     },
     "bioportal": {
-      "name": "COVID-19 Ontology",
-      "prefix": "COVID-19"
+      "name": "COVID-19 Surveillance Ontology",
+      "prefix": "COVID19"
     },
     "mappings": {
-      "aberowl": "COVID-19",
-      "bioportal": "COVID-19",
+      "aberowl": "COVID19",
+      "bioportal": "COVID19",
       "miriam": "covid19"
     },
     "miriam": {
@@ -14571,10 +14572,12 @@
   },
   "dcterms": {
     "aberowl": {
-      "description": "DCMI properties in the /terms/ namespace",
-      "homepage": "http://dublincore.org/documents/dcmi-terms/",
-      "name": "DCMI Metadata Terms: properties in /terms/ namespace",
-      "prefix": "DCTERMS"
+      "description": "This file is imported by vivo-core-public-1.5.owl. It contains terms from the http://purl.org/dc/terms/ namespace that are included in the vivo ontology.",
+      "download_owl": "http://aber-owl.net/media/ontologies/dcterms/1/dcterms.owl",
+      "homepage": "http://sourceforge.net/apps/mediawiki/vivo/index.php?title=Ontology",
+      "name": "dcterms",
+      "prefix": "dcterms",
+      "version": "1.5"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -14607,7 +14610,7 @@
     },
     "homepage": "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/",
     "mappings": {
-      "aberowl": "DCTERMS",
+      "aberowl": "dcterms",
       "biocontext": "dcterms",
       "biolink": "dct",
       "bioportal": "DCTERMS",
@@ -17353,10 +17356,10 @@
   },
   "eccode": {
     "biocontext": {
-      "is_identifiers": false,
+      "is_identifiers": true,
       "is_obo": false,
-      "prefix": "EC",
-      "uri_format": "http://www.enzyme-database.org/query.php?ec=$1"
+      "prefix": "EC-CODE",
+      "uri_format": "http://identifiers.org/ec-code/$1"
     },
     "example_decoys": [
       "100",
@@ -17393,7 +17396,7 @@
       "uri_format": "https://enzyme.expasy.org/EC/$1"
     },
     "mappings": {
-      "biocontext": "EC",
+      "biocontext": "EC-CODE",
       "fairsharing": "FAIRsharing.q1fdkc",
       "go": "EC",
       "miriam": "ec-code",
@@ -21307,10 +21310,11 @@
   "fbbi": {
     "aberowl": {
       "description": "A structured controlled vocabulary of sample preparation, visualization and imaging methods used in biomedical research.",
-      "download_owl": "http://aber-owl.net/media/ontologies/FBBI/7/fbbi.owl",
+      "download_obo": "http://aber-owl.net/media/ontologies/FBbi/14/fbbi.obo",
       "homepage": "http://cellimagelibrary.org/",
       "name": "Biological Imaging Methods Ontology",
-      "prefix": "FBBI"
+      "prefix": "FBbi",
+      "version": "unknown"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -21336,7 +21340,7 @@
       ]
     },
     "mappings": {
-      "aberowl": "FBBI",
+      "aberowl": "FBbi",
       "biocontext": "FBbi",
       "bioportal": "FBbi",
       "fairsharing": "FAIRsharing.ny3z9j",
@@ -21396,12 +21400,11 @@
   },
   "fbbt": {
     "aberowl": {
-      "description": "A structured controlled vocabulary of the anatomy of <i>Drosophila melanogaster</i>.",
-      "download_obo": "http://aber-owl.net/media/ontologies/FB-BT/40/fb-bt.obo",
-      "homepage": "http://sourceforge.net/p/fbbtdv/wiki/Home/",
-      "name": "Drosophila Gross Anatomy Ontology",
-      "prefix": "FB-BT",
-      "version": "2017-09-06"
+      "description": "An ontology representing the gross anatomy of Drosophila melanogaster.",
+      "download_owl": "http://aber-owl.net/media/ontologies/FBBT/29/fbbt.owl",
+      "homepage": "http://purl.obolibrary.org/obo/fbbt",
+      "name": "Drosophila gross anatomy",
+      "prefix": "FBBT"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -21455,7 +21458,7 @@
       "uri_format": "http://flybase.org/cgi-bin/fbcvq.html?query=FBbt:$1"
     },
     "mappings": {
-      "aberowl": "FB-BT",
+      "aberowl": "FBBT",
       "biocontext": "FBbt",
       "bioportal": "FB-BT",
       "fairsharing": "FAIRsharing.y2qkst",
@@ -21539,12 +21542,11 @@
   },
   "fbcv": {
     "aberowl": {
-      "description": "A structured controlled vocabulary used for various aspects of annotation by FlyBase.<br>This ontology is maintained by FlyBase for various aspects of annotation not covered, or not yet covered, by other OBO ontologies. If and when community ontologies are available for the domains here covered FlyBase will use them. This ontology includes the Drosophila phenotype ontology (DPO), provided here together with FBcv for legacy purposes.",
-      "download_owl": "http://aber-owl.net/media/ontologies/FB-CV/21/fb-cv.owl",
-      "homepage": "http://sourceforge.net/p/fbcv/wiki/Home/",
+      "description": "A structured controlled vocabulary used for various aspects of annotation by FlyBase.",
+      "download_owl": "http://aber-owl.net/media/ontologies/FBCV/22/fbcv.owl",
+      "homepage": "http://purl.obolibrary.org/obo/fbcv",
       "name": "FlyBase Controlled Vocabulary",
-      "prefix": "FB-CV",
-      "version": "2014-09-23"
+      "prefix": "FBCV"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -21576,7 +21578,7 @@
       ]
     },
     "mappings": {
-      "aberowl": "FB-CV",
+      "aberowl": "FBCV",
       "biocontext": "FBcv",
       "bioportal": "FB-CV",
       "fairsharing": "FAIRsharing.6tgyxf",
@@ -21642,12 +21644,11 @@
   },
   "fbdv": {
     "aberowl": {
-      "description": "A structured controlled vocabulary of the development of <i>Drosophila melanogaster</i>.",
-      "download_obo": "http://aber-owl.net/media/ontologies/FB-DV/19/fb-dv.obo",
-      "homepage": "http://sourceforge.net/p/fbbtdv/wiki/Home/",
-      "name": "Drosophila Development Ontology",
-      "prefix": "FB-DV",
-      "version": "2016-10-14"
+      "description": "A structured controlled vocabulary of the development of Drosophila melanogaster.",
+      "download_owl": "http://aber-owl.net/media/ontologies/FBDV/23/fbdv.owl",
+      "homepage": "http://purl.obolibrary.org/obo/fbdv",
+      "name": "Drosophila development",
+      "prefix": "FBDV"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -21673,7 +21674,7 @@
       ]
     },
     "mappings": {
-      "aberowl": "FB-DV",
+      "aberowl": "FBDV",
       "biocontext": "FBdv",
       "bioportal": "FB-DV",
       "fairsharing": "FAIRsharing.p52pzj",
@@ -22545,11 +22546,12 @@
   },
   "foaf": {
     "aberowl": {
-      "description": "Friend of a Friend Vocabulary",
-      "download_owl": "http://aber-owl.net/media/ontologies/FOAF/1/foaf.owl",
-      "name": "Friend of a Friend Vocabulary",
-      "prefix": "FOAF",
-      "version": "0.99"
+      "description": "This file is imported by vivo-core-public-1.5.owl. It contains terms relating to people, groups and organizations from the http://xmlns.com/foaf/0.1/ namespace that are included in the vivo ontology.",
+      "download_owl": "http://aber-owl.net/media/ontologies/foaf/1/foaf.owl",
+      "homepage": "http://sourceforge.net/apps/mediawiki/vivo/index.php?title=Ontology",
+      "name": "FOAF (people, organizations, groups)",
+      "prefix": "foaf",
+      "version": "1.5"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -22571,7 +22573,7 @@
     "example": "familyName",
     "homepage": "http://xmlns.com/foaf/spec/",
     "mappings": {
-      "aberowl": "FOAF",
+      "aberowl": "foaf",
       "biocontext": "foaf",
       "biolink": "foaf",
       "bioportal": "FOAF"
@@ -28028,18 +28030,20 @@
     "homepage": "http://www.genenames.org",
     "mappings": {
       "biocontext": "HGNC.GENEFAMILY",
-      "miriam": "hgnc.family",
+      "miriam": "hgnc.genefamily",
       "n2t": "hgnc.genefamily"
     },
     "miriam": {
-      "deprecated": true,
-      "description": "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene. All approved symbols are stored in the HGNC database, and each symbol is unique. In addition, HGNC also provides symbols for both structural and functional gene families. This collection refers to records using the HGNC family symbol.",
-      "id": "00000520",
-      "name": "HGNC Family",
+      "deprecated": false,
+      "description": "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene. All approved symbols are stored in the HGNC database, and each symbol is unique. In addition, HGNC also provides a unique numerical ID to identify gene families, providing a display of curated hierarchical relationships between families.",
+      "homepage": "https://www.genenames.org/",
+      "id": "00000573",
+      "name": "HGNC gene family",
       "namespaceEmbeddedInLui": false,
-      "pattern": "^[A-Z0-9-]+(#[A-Z0-9-]+)?$",
-      "prefix": "hgnc.family",
-      "sampleId": "PADI"
+      "pattern": "^\\d+$",
+      "prefix": "hgnc.genefamily",
+      "sampleId": "141",
+      "uri_format": "https://www.genenames.org/cgi-bin/genefamilies/set/$1"
     },
     "n2t": {
       "description": "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene. All approved symbols are stored in the HGNC database, and each symbol is unique. In addition, HGNC also provides a unique numerical ID to identify gene families, providing a display of curated hierarchical relationships between families.",
@@ -28805,11 +28809,12 @@
   },
   "hp": {
     "aberowl": {
-      "description": "A structured and controlled vocabulary for the phenotypic features encountered in human hereditary and other disease.",
-      "download_owl": "http://aber-owl.net/media/ontologies/HP/596/hp.owl",
-      "homepage": "http://www.human-phenotype-ontology.org/",
-      "name": "Human Phenotype Ontology",
-      "prefix": "HP"
+      "description": "Hypersensitivity Pneumonitis Ontology involves the domain of knowledge of 1. diseases caused by organic dusts exposure including hypersensitivity pneumonitis as well as 2. organic dusts.",
+      "download_owl": "http://aber-owl.net/media/ontologies/HP_O/1/hp_o.owl",
+      "homepage": "https://hypontology.herokuapp.com/",
+      "name": "Hypersensitivity pneumonitis ontology",
+      "prefix": "HP_O",
+      "version": "1.0"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -28818,8 +28823,8 @@
       "uri_format": "http://human-phenotype-ontology.org/$1"
     },
     "bioportal": {
-      "name": "Human Phenotype Ontology",
-      "prefix": "HP"
+      "name": "Hypersensitivity pneumonitis ontology",
+      "prefix": "HP_O"
     },
     "download_obo": "http://purl.obolibrary.org/obo/hp.obo",
     "example": "0011140",
@@ -28864,9 +28869,9 @@
       ]
     },
     "mappings": {
-      "aberowl": "HP",
+      "aberowl": "HP_O",
       "biocontext": "HPO",
-      "bioportal": "HP",
+      "bioportal": "HP_O",
       "fairsharing": "FAIRsharing.kbtt7f",
       "miriam": "hp",
       "n2t": "hp",
@@ -30640,12 +30645,12 @@
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
-      "prefix": "IDOT",
-      "uri_format": "http://identifiers.org/idot/$1"
+      "prefix": "idot",
+      "uri_format": "http://identifiers.org/$1"
     },
     "homepage": "http://biomodels.net/vocab/idot.rdf",
     "mappings": {
-      "biocontext": "IDOT",
+      "biocontext": "idot",
       "miriam": "idot",
       "n2t": "idot"
     },
@@ -32696,11 +32701,11 @@
       "database.homepage": "http://www.guidetopharmacology.org",
       "database.label": "IUPHAR/BPS Guide to PHARMACOLOGY",
       "description": "target identifier of the Guide to Pharmacology database",
-      "homepage": "http://www.guidetopharmacology.org/GRAC/",
+      "homepage": "https://www.guidetopharmacology.org/GRAC/",
       "name": "Guide to Pharmacology Target ID",
       "pattern": "[1-9]\\d{0,3}",
       "prefix": "P5458",
-      "uri_format": "http://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=$1"
+      "uri_format": "https://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=$1"
     }
   },
   "jax": {
@@ -33736,10 +33741,10 @@
   },
   "kegg.pathway": {
     "biocontext": {
-      "is_identifiers": false,
+      "is_identifiers": true,
       "is_obo": false,
-      "prefix": "KEGG-path",
-      "uri_format": "http://www.kegg.jp/dbget-bin/www_bget?path:$1"
+      "prefix": "KEGG.PATHWAY",
+      "uri_format": "http://identifiers.org/kegg.pathway/$1"
     },
     "biolink": {
       "is_identifiers": false,
@@ -33755,7 +33760,7 @@
       "uri_format": "http://www.genome.jp/dbget-bin/www_bget?path:$1"
     },
     "mappings": {
-      "biocontext": "KEGG-path",
+      "biocontext": "KEGG.PATHWAY",
       "biolink": "KEGG.PATHWAY",
       "go": "KEGG_PATHWAY",
       "miriam": "kegg.pathway",
@@ -36669,7 +36674,7 @@
       "name": "MetaboLights Compound ID",
       "pattern": "MTBLC\\d+",
       "prefix": "P3890",
-      "uri_format": "http://www.ebi.ac.uk/metabolights/$1"
+      "uri_format": "https://www.ebi.ac.uk/metabolights/$1"
     }
   },
   "metacyc.compound": {
@@ -37552,10 +37557,10 @@
       "prefix": "MI"
     },
     "biocontext": {
-      "is_identifiers": false,
-      "is_obo": true,
-      "prefix": "MI",
-      "uri_format": "http://purl.obolibrary.org/obo/MI_$1"
+      "is_identifiers": true,
+      "is_obo": false,
+      "prefix": "PSIMI",
+      "uri_format": "http://identifiers.org/psimi/$1"
     },
     "biolink": {
       "is_identifiers": false,
@@ -37578,7 +37583,7 @@
     },
     "mappings": {
       "aberowl": "MI",
-      "biocontext": "MI",
+      "biocontext": "PSIMI",
       "biolink": "MI",
       "bioportal": "MI",
       "go": "PSI-MI",
@@ -40245,18 +40250,26 @@
     "example": "0000634",
     "fairsharing": {
       "abbreviation": "MRO",
-      "description": "It is an ontology for Military concepts",
-      "id": "716",
-      "name": "Defen",
-      "prefix": "FAIRsharing.778n2k",
-      "publications": [],
-      "subjects": []
+      "description": "MHC molecules form a highly diverse family of proteins that play a key role in cellular immune recognition. No consistent nomenclature exists across different vertebrate species. To correctly represent MHC related data in The Immune Epitope Database (IEDB), we built upon a previously established MHC ontology (MaHCO) and created MRO to represent MHC molecules as they relate to immunological experiments. MRO models MHC protein chains from 16 species, deals with different approaches used to identify MHC, such as direct sequencing verses serotyping, relates engineered MHC molecules to naturally occurring ones, connects genetic loci, alleles, protein chains and multichain proteins, and establishes evidence codes for MHC restriction.",
+      "id": "849",
+      "name": "MHC Restriction Ontology",
+      "prefix": "FAIRsharing.k893xa",
+      "publications": [
+        {
+          "doi": "10.1186/s13326-016-0045-5",
+          "pubmed_id": 26759709,
+          "title": "An ontology for major histocompatibility restriction."
+        }
+      ],
+      "subjects": [
+        "Immunology"
+      ]
     },
     "mappings": {
       "aberowl": "MRO",
       "biocontext": "MRO",
       "bioportal": "MRO",
-      "fairsharing": "FAIRsharing.778n2k",
+      "fairsharing": "FAIRsharing.k893xa",
       "obofoundry": "mro",
       "ols": "mro",
       "ontobee": "MRO"
@@ -41718,10 +41731,10 @@
       "prefix": "NCBITAXON"
     },
     "biocontext": {
-      "is_identifiers": false,
-      "is_obo": true,
-      "prefix": "NCBITaxon",
-      "uri_format": "http://purl.obolibrary.org/obo/NCBITaxon_$1"
+      "is_identifiers": true,
+      "is_obo": false,
+      "prefix": "TAXONOMY",
+      "uri_format": "http://identifiers.org/taxonomy/$1"
     },
     "bioportal": {
       "name": "National Center for Biotechnology Information (NCBI) Organismal Classification",
@@ -41778,7 +41791,7 @@
     "mappings": {
       "aberowl": "NCBITAXON",
       "agroportal": "NCBITAXON",
-      "biocontext": "NCBITaxon",
+      "biocontext": "TAXONOMY",
       "bioportal": "NCBITAXON",
       "cellosaurus": "NCBI_TaxID",
       "fairsharing": "FAIRsharing.fj07xj",
@@ -42315,11 +42328,11 @@
   },
   "ndfrt": {
     "aberowl": {
-      "description": "Logically inferred version in OWL of the National Drug File – Reference Terminology (NDF-RT). NDF-RT is the terminology used by FDA and the FedMed collaboration to code these essential pharmacologic properties of medications: Mechanism of Action, Physiologic Effect, Structural Class.",
-      "download_owl": "http://aber-owl.net/media/ontologies/NDF-RT/1/ndf-rt.owl",
-      "name": "National Drug File – Reference Terminology",
-      "prefix": "NDF-RT",
-      "version": "NDF-RT2 [Public Edition]"
+      "description": "National Drug File - Reference Terminology Public Inferred Edition, 2008_03_11",
+      "homepage": "http://www.va.gov",
+      "name": "National Drug File - Reference Terminology",
+      "prefix": "NDFRT",
+      "version": "2016AB"
     },
     "bioportal": {
       "name": "National Drug File - Reference Terminology",
@@ -42349,7 +42362,7 @@
     },
     "homepage": "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT",
     "mappings": {
-      "aberowl": "NDF-RT",
+      "aberowl": "NDFRT",
       "bioportal": "NDFRT",
       "fairsharing": "FAIRsharing.901nkj",
       "ontobee": "NDF-RT",
@@ -44751,7 +44764,7 @@
     "biocontext": {
       "is_identifiers": false,
       "is_obo": false,
-      "prefix": "OIO",
+      "prefix": "oboInOwl",
       "uri_format": "http://www.geneontology.org/formats/oboInOwl#$1"
     },
     "biolink": {
@@ -44765,7 +44778,7 @@
     "example": "hasDbXref",
     "homepage": "https://github.com/geneontology/go-ontology/tree/master/contrib",
     "mappings": {
-      "biocontext": "OIO",
+      "biocontext": "oboInOwl",
       "biolink": "oboformat"
     },
     "name": "OBO in OWL",
@@ -47418,12 +47431,11 @@
   },
   "orphanet.ordo": {
     "aberowl": {
-      "description": "The Orphanet Rare Disease ontology (ORDO) is jointly developed by Orphanet and the EBI to provide a structured vocabulary for rare diseases capturing relationships between diseases, genes and other relevant features which will form a useful resource for the computational analysis of rare diseases.  It derived from the Orphanet database (www.orpha.net <http://www.orpha.net>) , a multilingual database dedicated to rare diseases populated from literature and validated by international experts. It integrates a nosology (classification of rare diseases), relationships (gene-disease relations, epiemological data) and connections with other terminologies (MeSH, SNOMED CT, UMLS, MedDRA),databases (OMIM, UniProtKB, HGNC, ensembl, Reactome, IUPHAR, Geantlas) or classifications (ICD10).  The ontology will be maintained by Orphanet and further populated with new data. Orphanet classifications can be browsed in the OLS view. The Orphanet Rare Disease Ontology is updated monthly and follows the OBO guidelines on deprecation of terms. It constitutes the official ontology of rare diseases produced and maintained by Orphanet (INSERM, US14).",
-      "download_owl": "http://aber-owl.net/media/ontologies/ORDO/11/ordo.owl",
-      "homepage": "http://www.orpha.net",
+      "download_owl": "http://aber-owl.net/media/ontologies/ordo/1/ordo.owl",
+      "homepage": "https://www.ebi.ac.uk/ols/ontologies/ordo",
       "name": "Orphanet Rare Disease Ontology",
-      "prefix": "ORDO",
-      "version": "2.4"
+      "prefix": "ordo",
+      "version": "2.7"
     },
     "banana": "Orphanet",
     "banana_peel": "_",
@@ -47474,7 +47486,7 @@
       ]
     },
     "mappings": {
-      "aberowl": "ORDO",
+      "aberowl": "ordo",
       "biocontext": "ORPHANET.ORDO",
       "biolink": "ORPHA",
       "bioportal": "ORDO",
@@ -49927,7 +49939,7 @@
       "name": "Pfam ID",
       "pattern": "(PF\\d{5}|CL\\d{4})",
       "prefix": "P3519",
-      "uri_format": "http://pfam.xfam.org/family?acc=$1"
+      "uri_format": "https://pfam.xfam.org/family?acc=$1"
     }
   },
   "pfam.clan": {
@@ -53099,7 +53111,7 @@
       "name": "PROSITE documentation ID",
       "pattern": "PDOC\\d{5}",
       "prefix": "P4355",
-      "uri_format": "http://prosite.expasy.org/$1"
+      "uri_format": "https://prosite.expasy.org/$1"
     }
   },
   "protclustdb": {
@@ -53766,10 +53778,10 @@
   },
   "pubchem.compound": {
     "biocontext": {
-      "is_identifiers": false,
+      "is_identifiers": true,
       "is_obo": false,
-      "prefix": "CID",
-      "uri_format": "http://pubchem.ncbi.nlm.nih.gov/compound/$1"
+      "prefix": "PUBCHEM.COMPOUND",
+      "uri_format": "http://identifiers.org/pubchem.compound/$1"
     },
     "biolink": {
       "is_identifiers": false,
@@ -53807,7 +53819,7 @@
       "uri_format": "https://pubchem.ncbi.nlm.nih.gov/compound/$1"
     },
     "mappings": {
-      "biocontext": "CID",
+      "biocontext": "PUBCHEM.COMPOUND",
       "biolink": "CID",
       "cellosaurus": "PubChem",
       "cheminf": "000140",
@@ -54004,10 +54016,10 @@
   },
   "pubmed": {
     "biocontext": {
-      "is_identifiers": false,
+      "is_identifiers": true,
       "is_obo": false,
-      "prefix": "PMID",
-      "uri_format": "http://www.ncbi.nlm.nih.gov/pubmed/$1"
+      "prefix": "PUBMED",
+      "uri_format": "http://identifiers.org/pubmed/$1"
     },
     "cellosaurus": {
       "category": "Reference resources",
@@ -54046,7 +54058,7 @@
       "uri_format": "http://www.ncbi.nlm.nih.gov/pubmed/$1"
     },
     "mappings": {
-      "biocontext": "PMID",
+      "biocontext": "PUBMED",
       "cellosaurus": "PubMed",
       "cheminf": "000302",
       "fairsharing": "FAIRsharing.a5sv8m",
@@ -54773,10 +54785,10 @@
   },
   "reactome": {
     "biocontext": {
-      "is_identifiers": false,
+      "is_identifiers": true,
       "is_obo": false,
-      "prefix": "REACT",
-      "uri_format": "http://www.reactome.org/PathwayBrowser/#/$1"
+      "prefix": "REACTOME",
+      "uri_format": "http://identifiers.org/reactome/$1"
     },
     "cheminf": {
       "description": "Database identifier used by Reactome.",
@@ -54796,7 +54808,7 @@
       "uri_format": "https://www.reactome.org/content/detail/$1"
     },
     "mappings": {
-      "biocontext": "REACT",
+      "biocontext": "REACTOME",
       "cheminf": "000411",
       "go": "Reactome",
       "miriam": "reactome",
@@ -55609,10 +55621,10 @@
       "database.homepage": "http://rgd.mcw.edu",
       "database.label": "Rat genome database",
       "description": "Identifier for a genetic element in the Rat Genome Database",
-      "homepage": "http://rgd.mcw.edu/",
+      "homepage": "https://rgd.mcw.edu/",
       "name": "Rat Genome Database ID",
       "prefix": "P3853",
-      "uri_format": "http://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1"
+      "uri_format": "https://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1"
     }
   },
   "rgd.qtl": {
@@ -56211,8 +56223,8 @@
     "biocontext": {
       "is_identifiers": false,
       "is_obo": true,
-      "prefix": "OBO_REL",
-      "uri_format": "http://purl.obolibrary.org/obo/OBO_REL_$1"
+      "prefix": "RO",
+      "uri_format": "http://purl.obolibrary.org/obo/RO_$1"
     },
     "biolink": {
       "is_identifiers": false,
@@ -56225,13 +56237,21 @@
     },
     "example": "0002533",
     "fairsharing": {
-      "abbreviation": "OBOREL",
-      "description": "Defines core relations used in all OBO ontologies.",
-      "id": "534",
-      "name": "Open Biological and Biomedical Ontologies Relationship Types",
-      "prefix": "FAIRsharing.1vrrdh",
-      "publications": [],
-      "subjects": []
+      "abbreviation": "RO",
+      "description": "The Wf4Ever Research Object Model provides a vocabulary for the description of workflow-centric Research Objects: aggregations of resources relating to scientific workflows.",
+      "id": "20",
+      "name": "Wf4Ever Research Object Model 1.0",
+      "prefix": "FAIRsharing.cp0ybc",
+      "publications": [
+        {
+          "doi": "10.1186/2041-1480-5-41",
+          "pubmed_id": 25276335,
+          "title": "Structuring research methods and data with the research object model: genomics workflows as a case study."
+        }
+      ],
+      "subjects": [
+        "Natural Science"
+      ]
     },
     "go": {
       "description": "A collection of relations used across OBO ontologies",
@@ -56241,10 +56261,10 @@
     "mappings": {
       "aberowl": "RO",
       "agroportal": "RO",
-      "biocontext": "OBO_REL",
+      "biocontext": "RO",
       "biolink": "RO",
       "bioportal": "OBOREL",
-      "fairsharing": "FAIRsharing.1vrrdh",
+      "fairsharing": "FAIRsharing.cp0ybc",
       "go": "RO",
       "miriam": "ro",
       "n2t": "ro",
@@ -56710,8 +56730,8 @@
     "biolink": {
       "is_identifiers": false,
       "is_obo": false,
-      "prefix": "RXCUI",
-      "uri_format": "https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=$1"
+      "prefix": "RXNORM",
+      "uri_format": "http://purl.bioontology.org/ontology/RXNORM/$1"
     },
     "bioportal": {
       "name": "RxNORM",
@@ -56751,7 +56771,7 @@
     "mappings": {
       "aberowl": "RXNORM",
       "biocontext": "RXCUI",
-      "biolink": "RXCUI",
+      "biolink": "RXNORM",
       "bioportal": "RXNORM",
       "fairsharing": "FAIRsharing.36pf8q",
       "wikidata": "P3345"
@@ -59069,10 +59089,10 @@
       "version": "2016AB"
     },
     "biocontext": {
-      "is_identifiers": false,
-      "is_obo": true,
-      "prefix": "SNOMED",
-      "uri_format": "http://purl.obolibrary.org/obo/SNOMED_$1"
+      "is_identifiers": true,
+      "is_obo": false,
+      "prefix": "SNOMEDCT",
+      "uri_format": "http://identifiers.org/snomedct/$1"
     },
     "biolink": {
       "is_identifiers": false,
@@ -59106,7 +59126,7 @@
     },
     "mappings": {
       "aberowl": "SNOMEDCT",
-      "biocontext": "SNOMED",
+      "biocontext": "SNOMEDCT",
       "biolink": "SNOMEDCT",
       "bioportal": "SNOMEDCT",
       "fairsharing": "FAIRsharing.d88s6e",
@@ -66075,17 +66095,16 @@
   "wbbt": {
     "aberowl": {
       "description": "A structured controlled vocabulary of the anatomy of <i>Caenorhabditis elegans</i>.",
-      "download_obo": "http://aber-owl.net/media/ontologies/WB-BT/116/wb-bt.obo",
-      "homepage": "http://www.wormbase.org/",
-      "name": "C. elegans Gross Anatomy Vocabulary",
-      "prefix": "WB-BT",
-      "version": "2016-06-01"
+      "download_owl": "http://aber-owl.net/media/ontologies/WBBT/21/wbbt.owl",
+      "homepage": "https://github.com/obophenotype/c-elegans-gross-anatomy-ontology",
+      "name": "C. elegans Gross Anatomy Ontology",
+      "prefix": "WBBT"
     },
     "biocontext": {
       "is_identifiers": false,
       "is_obo": true,
-      "prefix": "WBBT",
-      "uri_format": "http://purl.obolibrary.org/obo/WBBT_$1"
+      "prefix": "WBbt",
+      "uri_format": "http://purl.obolibrary.org/obo/WBbt_$1"
     },
     "biolink": {
       "is_identifiers": false,
@@ -66122,8 +66141,8 @@
       "prefix": "WBbt"
     },
     "mappings": {
-      "aberowl": "WB-BT",
-      "biocontext": "WBBT",
+      "aberowl": "WBBT",
+      "biocontext": "WBbt",
       "biolink": "WBbt",
       "bioportal": "WB-BT",
       "fairsharing": "FAIRsharing.phk7dd",
@@ -66193,11 +66212,10 @@
   "wbls": {
     "aberowl": {
       "description": "A structured controlled vocabulary of the development of <i>Caenorhabditis elegans</i>.",
-      "download_obo": "http://aber-owl.net/media/ontologies/WB-LS/49/wb-ls.obo",
-      "homepage": "http://www.wormbase.org/",
-      "name": "C. elegans Development Vocabulary",
-      "prefix": "WB-LS",
-      "version": "unknown"
+      "download_owl": "http://aber-owl.net/media/ontologies/WBLS/22/wbls.owl",
+      "homepage": "https://github.com/obophenotype/c-elegans-development-ontology",
+      "name": "C. elegans development ontology",
+      "prefix": "WBLS"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -66235,7 +66253,7 @@
       "uri_format": "http://www.wormbase.org/get?name=$1"
     },
     "mappings": {
-      "aberowl": "WB-LS",
+      "aberowl": "WBLS",
       "biocontext": "WBLS",
       "biolink": "WBls",
       "bioportal": "WB-LS",
@@ -66307,11 +66325,10 @@
   "wbphenotype": {
     "aberowl": {
       "description": "A structured controlled vocabulary of <i>Caenorhabditis elegans</i> phenotypes",
-      "download_obo": "http://aber-owl.net/media/ontologies/WB-PHENOTYPE/267/wb-phenotype.obo",
-      "homepage": "http://www.wormbase.org/",
-      "name": "C. elegans Phenotype Vocabulary",
-      "prefix": "WB-PHENOTYPE",
-      "version": "releases/2017-11-22"
+      "download_owl": "http://aber-owl.net/media/ontologies/WBPHENOTYPE/66/wbphenotype.owl",
+      "homepage": "https://github.com/obophenotype/c-elegans-phenotype-ontology",
+      "name": "C. elegans phenotype",
+      "prefix": "WBPHENOTYPE"
     },
     "biocontext": {
       "is_identifiers": false,
@@ -66349,7 +66366,7 @@
       "uri_format": "http://www.wormbase.org/get?name=$1"
     },
     "mappings": {
-      "aberowl": "WB-PHENOTYPE",
+      "aberowl": "WBPHENOTYPE",
       "biocontext": "WBPhenotype",
       "bioportal": "WB-PHENOTYPE",
       "fairsharing": "FAIRsharing.agvc7y",
@@ -66462,10 +66479,10 @@
   },
   "wikidata": {
     "biocontext": {
-      "is_identifiers": false,
+      "is_identifiers": true,
       "is_obo": false,
-      "prefix": "WD_Entity",
-      "uri_format": "https://www.wikidata.org/wiki/$1"
+      "prefix": "WIKIDATA",
+      "uri_format": "http://identifiers.org/wikidata/$1"
     },
     "biolink": {
       "is_identifiers": false,
@@ -66495,7 +66512,7 @@
       ]
     },
     "mappings": {
-      "biocontext": "WD_Entity",
+      "biocontext": "WIKIDATA",
       "biolink": "WIKIDATA",
       "cellosaurus": "Wikidata",
       "cheminf": "000567",

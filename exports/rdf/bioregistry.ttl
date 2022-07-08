@@ -2845,11 +2845,11 @@ bioregistry:cosmic a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:covid19 a bioregistry.schema:0000001 ;
-    rdfs:label "COVID-19 Ontology" ;
+    rdfs:label "COVID-19 Surveillance Ontology" ;
     dc:description "Curated contextual database gathering samples related to SARS-CoV-2 virus and covid-19 disease."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:COVID-19,
-        bioportal:COVID-19,
+    skos:exactMatch aberowl:COVID19,
+        bioportal:COVID19,
         miriam:covid19 ;
     foaf:homepage "https://covid19.sfb.uit.no"^^xsd:string ;
     bioregistry.schema:0000005 "SFB_COVID19_MW286762"^^xsd:string ;
@@ -4263,7 +4263,7 @@ bioregistry:fbbi a bioregistry.schema:0000001 ;
     rdfs:label "Biological Imaging Methods Ontology" ;
     dc:description "A structured controlled vocabulary of sample preparation, visualization and imaging methods used in biomedical research."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:FBBI,
+    skos:exactMatch aberowl:FBbi,
         obofoundry:FBbi,
         ontobee:FBBI,
         bioportal:FBbi,
@@ -4282,7 +4282,7 @@ bioregistry:fbdv a bioregistry.schema:0000001 ;
     rdfs:label "Drosophila development" ;
     dc:description "An ontology of Drosophila melanogaster developmental stages."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:FB-DV,
+    skos:exactMatch aberowl:FBDV,
         obofoundry:FBdv,
         ontobee:FBdv,
         bioportal:FB-DV,
@@ -5598,17 +5598,17 @@ bioregistry:hgnc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:hgnc.genefamily a bioregistry.schema:0000001 ;
-    rdfs:label "HGNC Family" ;
-    dc:description "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene. All approved symbols are stored in the HGNC database, and each symbol is unique. In addition, HGNC also provides symbols for both structural and functional gene families. This collection refers to records using the HGNC family symbol."^^xsd:string ;
+    rdfs:label "HGNC gene family" ;
+    dc:description "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene. All approved symbols are stored in the HGNC database, and each symbol is unique. In addition, HGNC also provides a unique numerical ID to identify gene families, providing a display of curated hierarchical relationships between families."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:HGNC.GENEFAMILY,
         n2t:hgnc.genefamily,
-        miriam:hgnc.family ;
+        miriam:hgnc.genefamily ;
     foaf:homepage "http://www.genenames.org"^^xsd:string ;
     bioregistry.schema:0000005 "2029"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.genenames.org/cgi-bin/genefamilies/set/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[A-Z0-9-]+(#[A-Z0-9-]+)?$"^^xsd:string ;
-    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
     bioregistry.schema:0000016 bioregistry:hgnc.genegroup .
 
 bioregistry:hinv.locus a bioregistry.schema:0000001 ;
@@ -7337,7 +7337,7 @@ bioregistry:mi a bioregistry.schema:0000001 ;
         obofoundry:MI,
         ontobee:MI,
         bioportal:MI,
-        biocontext:MI,
+        biocontext:PSIMI,
         biolink:MI,
         go.resource:PSI-MI,
         n2t:psimi,
@@ -7963,7 +7963,7 @@ bioregistry:mro a bioregistry.schema:0000001 ;
         ontobee:MRO,
         bioportal:MRO,
         biocontext:MRO,
-        fairsharing:FAIRsharing.778n2k,
+        fairsharing:FAIRsharing.k893xa,
         ols:mro ;
     foaf:homepage "https://github.com/IEDB/MRO"^^xsd:string ;
     bioregistry.schema:0000005 "0000634"^^xsd:string ;
@@ -8266,7 +8266,7 @@ bioregistry:ndfrt a bioregistry.schema:0000001 ;
     rdfs:label "National Drug File - Reference Terminology" ;
     dc:description "NDF-RT combines the NDF hierarchical drug classification with a multi-category reference model. The categories are: Cellular or Molecular Interactions [MoA]; Chemical Ingredients [Chemical/Ingredient]; Clinical Kinetics [PK]; Diseases, Manifestations or Physiologic States [Disease/Finding]Dose Forms [Dose Form]; Pharmaceutical Preparations; Physiological Effects [PE]; Therapeutic Categories [TC]; and VA Drug Interactions [VA Drug Interaction]."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:NDF-RT,
+    skos:exactMatch aberowl:NDFRT,
         ontobee:NDF-RT,
         bioportal:NDFRT,
         fairsharing:FAIRsharing.901nkj,
@@ -9132,7 +9132,7 @@ bioregistry:orphanet.ordo a bioregistry.schema:0000001 ;
     dc:description """The Orphanet Rare Disease ontology (ORDO) is a structured vocabulary for rare diseases, capturing relationships between diseases, genes and other relevant features which will form a useful resource for the computational analysis of rare diseases.\r
 It integrates a nosology (classification of rare diseases), relationships (gene-disease relations, epiemological data) and connections with other terminologies (MeSH, UMLS, MedDRA), databases (OMIM, UniProtKB, HGNC, ensembl, Reactome, IUPHAR, Geantlas) and classifications (ICD10)."""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:ORDO,
+    skos:exactMatch aberowl:ordo,
         bioportal:ORDO,
         biocontext:ORPHANET.ORDO,
         biolink:ORPHA,
@@ -10226,7 +10226,7 @@ bioregistry:pubmed a bioregistry.schema:0000001 ;
     rdfs:label "PubMed" ;
     dc:description "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PMID,
+    skos:exactMatch biocontext:PUBMED,
         cellosaurus.resource:PubMed,
         go.resource:PMID,
         n2t:pubmed,
@@ -10371,7 +10371,7 @@ bioregistry:reactome a bioregistry.schema:0000001 ;
     rdfs:label "Reactome" ;
     dc:description "The Reactome project is a collaboration to develop a curated resource of core pathways and reactions in human biology."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:REACT,
+    skos:exactMatch biocontext:REACTOME,
         go.resource:Reactome,
         n2t:reactome,
         prefixcommons:reactome,
@@ -10783,7 +10783,7 @@ bioregistry:rxnorm a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:RXNORM,
         bioportal:RXNORM,
         biocontext:RXCUI,
-        biolink:RXCUI,
+        biolink:RXNORM,
         fairsharing:FAIRsharing.36pf8q,
         wikidata:P3345 ;
     foaf:homepage "https://www.nlm.nih.gov/research/umls/rxnorm/"^^xsd:string ;
@@ -11270,7 +11270,7 @@ bioregistry:snomedct a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:SNOMEDCT,
         bioportal:SNOMEDCT,
-        biocontext:SNOMED,
+        biocontext:SNOMEDCT,
         biolink:SNOMEDCT,
         n2t:snomedct,
         fairsharing:FAIRsharing.d88s6e,
@@ -12646,11 +12646,11 @@ bioregistry:wbbt a bioregistry.schema:0000001 ;
     rdfs:label "C. elegans Gross Anatomy Ontology" ;
     dc:description "Ontology about the gross anatomy of the C. elegans"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:WB-BT,
+    skos:exactMatch aberowl:WBBT,
         obofoundry:WBbt,
         ontobee:WBbt,
         bioportal:WB-BT,
-        biocontext:WBBT,
+        biocontext:WBbt,
         biolink:WBbt,
         go.resource:WBbt,
         fairsharing:FAIRsharing.phk7dd,
@@ -12658,7 +12658,7 @@ bioregistry:wbbt a bioregistry.schema:0000001 ;
         ols:wbbt ;
     foaf:homepage "https://github.com/obophenotype/c-elegans-gross-anatomy-ontology"^^xsd:string ;
     bioregistry.schema:0000005 "0001290"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/WBBT_$1"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/WBbt_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-8151-7479 .
@@ -12687,7 +12687,7 @@ bioregistry:wikidata a bioregistry.schema:0000001 ;
     rdfs:label "Wikidata" ;
     dc:description "Wikidata is a collaboratively edited knowledge base operated by the Wikimedia Foundation. It is intended to provide a common source of certain types of data which can be used by Wikimedia projects such as Wikipedia. Wikidata functions as a document-oriented database, centred on individual items. Items represent topics, for which basic information is stored that identifies each topic."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:WD_Entity,
+    skos:exactMatch biocontext:WIKIDATA,
         biolink:WIKIDATA,
         cellosaurus.resource:Wikidata,
         n2t:wikidata,
@@ -13305,7 +13305,7 @@ aberowl:COB dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:COLAO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
-aberowl:COVID-19 dcterms:isPartOf bioregistry.metaresource:aberowl .
+aberowl:COVID19 dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:CPT dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -13328,8 +13328,6 @@ aberowl:DATACITE dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:DC dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:DCAT dcterms:isPartOf bioregistry.metaresource:aberowl .
-
-aberowl:DCTERMS dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:DDANAT dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -13401,15 +13399,15 @@ aberowl:FALDO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:FAO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
-aberowl:FB-BT dcterms:isPartOf bioregistry.metaresource:aberowl .
-
-aberowl:FB-CV dcterms:isPartOf bioregistry.metaresource:aberowl .
-
-aberowl:FB-DV dcterms:isPartOf bioregistry.metaresource:aberowl .
-
 aberowl:FB-SP dcterms:isPartOf bioregistry.metaresource:aberowl .
 
-aberowl:FBBI dcterms:isPartOf bioregistry.metaresource:aberowl .
+aberowl:FBBT dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+aberowl:FBCV dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+aberowl:FBDV dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+aberowl:FBbi dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:FIDEO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -13420,8 +13418,6 @@ aberowl:FLOPO dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:FLU dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:FMA dcterms:isPartOf bioregistry.metaresource:aberowl .
-
-aberowl:FOAF dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:FOBI dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -13469,7 +13465,7 @@ aberowl:HGNC dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:HOM dcterms:isPartOf bioregistry.metaresource:aberowl .
 
-aberowl:HP dcterms:isPartOf bioregistry.metaresource:aberowl .
+aberowl:HP_O dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:HSAPDV dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -13587,7 +13583,7 @@ aberowl:NCRO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:NDDF dcterms:isPartOf bioregistry.metaresource:aberowl .
 
-aberowl:NDF-RT dcterms:isPartOf bioregistry.metaresource:aberowl .
+aberowl:NDFRT dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:NEMO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -13660,8 +13656,6 @@ aberowl:OPB dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:OPL dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:OPMI dcterms:isPartOf bioregistry.metaresource:aberowl .
-
-aberowl:ORDO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:ORNASEQ dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -13823,11 +13817,11 @@ aberowl:VT dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:VTO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
-aberowl:WB-BT dcterms:isPartOf bioregistry.metaresource:aberowl .
+aberowl:WBBT dcterms:isPartOf bioregistry.metaresource:aberowl .
 
-aberowl:WB-LS dcterms:isPartOf bioregistry.metaresource:aberowl .
+aberowl:WBLS dcterms:isPartOf bioregistry.metaresource:aberowl .
 
-aberowl:WB-PHENOTYPE dcterms:isPartOf bioregistry.metaresource:aberowl .
+aberowl:WBPHENOTYPE dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:WIKIPATHWAYS dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -13850,6 +13844,12 @@ aberowl:ZFA dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:ZFS dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:ZP dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+aberowl:dcterms dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+aberowl:foaf dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+aberowl:ordo dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:skos dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -15011,7 +15011,7 @@ bioportal:COB dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:COLAO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
-bioportal:COVID-19 dcterms:isPartOf bioregistry.metaresource:bioportal .
+bioportal:COVID19 dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:CPT dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -15173,7 +15173,7 @@ bioportal:HGNC dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:HOM dcterms:isPartOf bioregistry.metaresource:bioportal .
 
-bioportal:HP dcterms:isPartOf bioregistry.metaresource:bioportal .
+bioportal:HP_O dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:HSAPDV dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -15783,8 +15783,6 @@ biocontext:CHICKENQTLDB dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:CHMO dcterms:isPartOf bioregistry.metaresource:biocontext .
 
-biocontext:CID dcterms:isPartOf bioregistry.metaresource:biocontext .
-
 biocontext:CIO dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:CL dcterms:isPartOf bioregistry.metaresource:biocontext .
@@ -15929,7 +15927,7 @@ biocontext:DUO dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:DrugBank dcterms:isPartOf bioregistry.metaresource:biocontext .
 
-biocontext:EC dcterms:isPartOf bioregistry.metaresource:biocontext .
+biocontext:EC-CODE dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:ECHOBASE dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -16235,8 +16233,6 @@ biocontext:IDO dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:IDOMAL dcterms:isPartOf bioregistry.metaresource:biocontext .
 
-biocontext:IDOT dcterms:isPartOf bioregistry.metaresource:biocontext .
-
 biocontext:IEV dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:IMEX dcterms:isPartOf bioregistry.metaresource:biocontext .
@@ -16301,8 +16297,6 @@ biocontext:JWS dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:KEGG dcterms:isPartOf bioregistry.metaresource:biocontext .
 
-biocontext:KEGG-path dcterms:isPartOf bioregistry.metaresource:biocontext .
-
 biocontext:KEGG.COMPOUND dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:KEGG.DISEASE dcterms:isPartOf bioregistry.metaresource:biocontext .
@@ -16322,6 +16316,8 @@ biocontext:KEGG.METAGENOME dcterms:isPartOf bioregistry.metaresource:biocontext 
 biocontext:KEGG.MODULE dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:KEGG.ORTHOLOGY dcterms:isPartOf bioregistry.metaresource:biocontext .
+
+biocontext:KEGG.PATHWAY dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:KEGG.REACTION dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -16418,8 +16414,6 @@ biocontext:MFOEM dcterms:isPartOf bioregistry.metaresource:biocontext .
 biocontext:MFOMD dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:MGI dcterms:isPartOf bioregistry.metaresource:biocontext .
-
-biocontext:MI dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:MIAPA dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -16545,8 +16539,6 @@ biocontext:NCBIGenome dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:NCBIProtein dcterms:isPartOf bioregistry.metaresource:biocontext .
 
-biocontext:NCBITaxon dcterms:isPartOf bioregistry.metaresource:biocontext .
-
 biocontext:NCIM dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:NCIT dcterms:isPartOf bioregistry.metaresource:biocontext .
@@ -16605,8 +16597,6 @@ biocontext:OBIB dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:OBO dcterms:isPartOf bioregistry.metaresource:biocontext .
 
-biocontext:OBO_REL dcterms:isPartOf bioregistry.metaresource:biocontext .
-
 biocontext:OCI dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:OCLC dcterms:isPartOf bioregistry.metaresource:biocontext .
@@ -16624,8 +16614,6 @@ biocontext:OGSF dcterms:isPartOf bioregistry.metaresource:biocontext .
 biocontext:OHD dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:OHMI dcterms:isPartOf bioregistry.metaresource:biocontext .
-
-biocontext:OIO dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:OLATDV dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -16783,8 +16771,6 @@ biocontext:PMCID dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:PMDB dcterms:isPartOf bioregistry.metaresource:biocontext .
 
-biocontext:PMID dcterms:isPartOf bioregistry.metaresource:biocontext .
-
 biocontext:PMP dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:PO dcterms:isPartOf bioregistry.metaresource:biocontext .
@@ -16829,11 +16815,17 @@ biocontext:PSCDB dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:PSEUDOMONAS dcterms:isPartOf bioregistry.metaresource:biocontext .
 
+biocontext:PSIMI dcterms:isPartOf bioregistry.metaresource:biocontext .
+
 biocontext:PSIPAR dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:PUBCHEM.BIOASSAY dcterms:isPartOf bioregistry.metaresource:biocontext .
 
+biocontext:PUBCHEM.COMPOUND dcterms:isPartOf bioregistry.metaresource:biocontext .
+
 biocontext:PUBCHEM.SUBSTANCE dcterms:isPartOf bioregistry.metaresource:biocontext .
+
+biocontext:PUBMED dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:PW dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -16843,7 +16835,7 @@ biocontext:PomBase dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:RBK dcterms:isPartOf bioregistry.metaresource:biocontext .
 
-biocontext:REACT dcterms:isPartOf bioregistry.metaresource:biocontext .
+biocontext:REACTOME dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:REBASE dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -16878,6 +16870,8 @@ biocontext:RNACENTRAL dcterms:isPartOf bioregistry.metaresource:biocontext .
 biocontext:RNAMODS dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:RNAO dcterms:isPartOf bioregistry.metaresource:biocontext .
+
+biocontext:RO dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:ROUGE dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -16943,7 +16937,7 @@ biocontext:SMART dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:SMPDB dcterms:isPartOf bioregistry.metaresource:biocontext .
 
-biocontext:SNOMED dcterms:isPartOf bioregistry.metaresource:biocontext .
+biocontext:SNOMEDCT dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:SO dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -17004,6 +16998,8 @@ biocontext:TAIR.PROTEIN dcterms:isPartOf bioregistry.metaresource:biocontext .
 biocontext:TAO dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:TARBASE dcterms:isPartOf bioregistry.metaresource:biocontext .
+
+biocontext:TAXONOMY dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:TAXRANK dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -17125,15 +17121,15 @@ biocontext:VTO dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:WB.RNAI dcterms:isPartOf bioregistry.metaresource:biocontext .
 
-biocontext:WBBT dcterms:isPartOf bioregistry.metaresource:biocontext .
-
 biocontext:WBLS dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:WBPhenotype dcterms:isPartOf bioregistry.metaresource:biocontext .
 
-biocontext:WD_Entity dcterms:isPartOf bioregistry.metaresource:biocontext .
+biocontext:WBbt dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:WD_Prop dcterms:isPartOf bioregistry.metaresource:biocontext .
+
+biocontext:WIKIDATA dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:WIKIGENES dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -17201,7 +17197,11 @@ biocontext:foaf dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:gro.cpga dcterms:isPartOf bioregistry.metaresource:biocontext .
 
+biocontext:idot dcterms:isPartOf bioregistry.metaresource:biocontext .
+
 biocontext:oa dcterms:isPartOf bioregistry.metaresource:biocontext .
+
+biocontext:oboInOwl dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:owl dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -17323,7 +17323,7 @@ biolink:PomBase dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:RO dcterms:isPartOf bioregistry.metaresource:biolink .
 
-biolink:RXCUI dcterms:isPartOf bioregistry.metaresource:biolink .
+biolink:RXNORM dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:ResearchID dcterms:isPartOf bioregistry.metaresource:biolink .
 
@@ -20836,7 +20836,7 @@ bioregistry:fbbt a bioregistry.schema:0000001 ;
     dc:description "An ontology of Drosophila melanogaster anatomy."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:flybase ;
-    skos:exactMatch aberowl:FB-BT,
+    skos:exactMatch aberowl:FBBT,
         obofoundry:FBbt,
         ontobee:FBBT,
         bioportal:FB-BT,
@@ -20928,7 +20928,7 @@ bioregistry:foaf a bioregistry.schema:0000001 ;
     rdfs:label "Friend of a Friend" ;
     dc:description "FOAF is a project devoted to linking people and information using the Web. Regardless of whether information is in people's heads, in physical or digital documents, or in the form of factual data, it can be linked. FOAF integrates three kinds of network: social networks of human collaboration, friendship and association; representational networks that describe a simplified view of a cartoon universe in factual terms, and information networks that use Web-based linking to share independently published descriptions of this inter-connected world."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:FOAF,
+    skos:exactMatch aberowl:foaf,
         bioportal:FOAF,
         biocontext:foaf,
         biolink:foaf ;
@@ -21469,7 +21469,7 @@ bioregistry:idot a bioregistry.schema:0000001 ;
     rdfs:label "Identifiers.org Terms" ;
     dc:description "Identifiers.org Terms (idot) is an RDF vocabulary providing useful terms for describing datasets."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:IDOT,
+    skos:exactMatch biocontext:idot,
         n2t:idot,
         miriam:idot ;
     foaf:homepage "http://biomodels.net/vocab/idot.rdf"^^xsd:string ;
@@ -21735,7 +21735,7 @@ bioregistry:kegg.pathway a bioregistry.schema:0000001 ;
     dc:description "KEGG PATHWAY is a collection of manually drawn pathway maps representing our knowledge on the molecular interaction and reaction networks."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:kegg ;
-    skos:exactMatch biocontext:KEGG-path,
+    skos:exactMatch biocontext:KEGG.PATHWAY,
         biolink:KEGG.PATHWAY,
         go.resource:KEGG_PATHWAY,
         n2t:kegg.pathway,
@@ -22281,7 +22281,7 @@ bioregistry:oboinowl a bioregistry.schema:0000001 ;
     rdfs:label "OBO in OWL" ;
     dc:description "This meta-ontology is self-describing. OBO metamodel properties are described using OBO metamodel properties"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:OIO,
+    skos:exactMatch biocontext:oboInOwl,
         biolink:oboformat ;
     foaf:homepage "https://github.com/geneontology/go-ontology/tree/master/contrib"^^xsd:string ;
     bioregistry.schema:0000005 "hasDbXref"^^xsd:string ;
@@ -22821,7 +22821,7 @@ bioregistry:pubchem.compound a bioregistry.schema:0000001 ;
     dc:description "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Compound archives chemical structures and records."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:pubchem ;
-    skos:exactMatch biocontext:CID,
+    skos:exactMatch biocontext:PUBCHEM.COMPOUND,
         biolink:CID,
         cellosaurus.resource:PubChem,
         go.resource:PubChem_Compound,
@@ -23524,7 +23524,7 @@ bioregistry:wbls a bioregistry.schema:0000001 ;
     dc:description "Ontology about the development and life stages of the C. elegans"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:wormbase ;
-    skos:exactMatch aberowl:WB-LS,
+    skos:exactMatch aberowl:WBLS,
         obofoundry:WBls,
         ontobee:WBLS,
         bioportal:WB-LS,
@@ -23546,7 +23546,7 @@ bioregistry:wbphenotype a bioregistry.schema:0000001 ;
     dc:description "Ontology about C. elegans and other nematode phenotypes"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:wormbase ;
-    skos:exactMatch aberowl:WB-PHENOTYPE,
+    skos:exactMatch aberowl:WBPHENOTYPE,
         obofoundry:WBPhenotype,
         ontobee:WBPhenotype,
         bioportal:WB-PHENOTYPE,
@@ -23707,8 +23707,6 @@ fairsharing:FAIRsharing.1gr4tz dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.1rj558 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.1tbrdz dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
-fairsharing:FAIRsharing.1vrrdh dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.27rndz dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -23919,8 +23917,6 @@ fairsharing:FAIRsharing.6wf1zw dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.6xq0ee dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.6yNXYK dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
-fairsharing:FAIRsharing.778n2k dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.78d3ad dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -24170,6 +24166,8 @@ fairsharing:FAIRsharing.ckd4rf dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.cnwx8c dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.cp0ybc dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.cpneh8 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.ctwd7b dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -24395,6 +24393,8 @@ fairsharing:FAIRsharing.jykmkw dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.k008w7 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.k5k0yh dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.k893xa dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.karvzj dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -26132,7 +26132,7 @@ miriam:hgmd dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:hgnc dcterms:isPartOf bioregistry.metaresource:miriam .
 
-miriam:hgnc.family dcterms:isPartOf bioregistry.metaresource:miriam .
+miriam:hgnc.genefamily dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:hgnc.genegroup dcterms:isPartOf bioregistry.metaresource:miriam .
 
@@ -28252,7 +28252,7 @@ bioregistry:dcterms a bioregistry.schema:0000001 ;
     rdfs:label "Dublin Core Metadata Vocabulary" ;
     dc:description "This document is an up-to-date specification of all metadata terms maintained by the Dublin Core Metadata Initiative, including properties, vocabulary encoding schemes, syntax encoding schemes, and classes."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:DCTERMS,
+    skos:exactMatch aberowl:dcterms,
         bioportal:DCTERMS,
         biocontext:dcterms,
         biolink:dct,
@@ -28356,7 +28356,7 @@ bioregistry:eccode a bioregistry.schema:0000001 ;
     rdfs:label "Enzyme Commission Code" ;
     dc:description "The Enzyme Classification contains the recommendations of the Nomenclature Committee of the International Union of Biochemistry and Molecular Biology on the nomenclature and classification of enzyme-catalysed reactions."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:EC,
+    skos:exactMatch biocontext:EC-CODE,
         go.resource:EC,
         n2t:ec-code,
         fairsharing:FAIRsharing.q1fdkc,
@@ -28555,10 +28555,10 @@ bioregistry:hp a bioregistry.schema:0000001 ;
     rdfs:label "Human Phenotype Ontology" ;
     dc:description "The Human Phenotype Ontology (HPO) aims to provide a standardized vocabulary of phenotypic abnormalities encountered in human disease. Each term in the HPO describes a phenotypic abnormality, such as atrial septal defect. The HPO is currently being developed using the medical literature, Orphanet, DECIPHER, and OMIM."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:HP,
+    skos:exactMatch aberowl:HP_O,
         obofoundry:HP,
         ontobee:HP,
-        bioportal:HP,
+        bioportal:HP_O,
         biocontext:HPO,
         n2t:hp,
         fairsharing:FAIRsharing.kbtt7f,
@@ -29596,7 +29596,7 @@ bioregistry:fbcv a bioregistry.schema:0000001 ;
     dcterms:hasPart bioregistry:dpo ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:flybase ;
-    skos:exactMatch aberowl:FB-CV,
+    skos:exactMatch aberowl:FBCV,
         obofoundry:FBcv,
         ontobee:FBCV,
         bioportal:FB-CV,
@@ -30774,7 +30774,7 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
         obofoundry:NCBITaxon,
         ontobee:NCBITaxon,
         bioportal:NCBITAXON,
-        biocontext:NCBITaxon,
+        biocontext:TAXONOMY,
         cellosaurus.resource:NCBI_TaxID,
         go.resource:taxon,
         n2t:taxonomy,
@@ -31283,11 +31283,11 @@ bioregistry:ro a bioregistry.schema:0000001 ;
         obofoundry:RO,
         ontobee:RO,
         bioportal:OBOREL,
-        biocontext:OBO_REL,
+        biocontext:RO,
         biolink:RO,
         go.resource:RO,
         n2t:ro,
-        fairsharing:FAIRsharing.1vrrdh,
+        fairsharing:FAIRsharing.cp0ybc,
         prefixcommons:ro,
         miriam:ro,
         ols:ro,
@@ -31754,7 +31754,7 @@ bioregistry.metaresource:biolink a bioregistry.schema:0000002 ;
         biolink:PathWhiz,
         biolink:PomBase,
         biolink:RO,
-        biolink:RXCUI,
+        biolink:RXNORM,
         biolink:ResearchID,
         biolink:SEED.REACTION,
         biolink:SIO,
@@ -33074,7 +33074,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:CMPO,
         bioportal:COB,
         bioportal:COLAO,
-        bioportal:COVID-19,
+        bioportal:COVID19,
         bioportal:CPT,
         bioportal:CRISP,
         bioportal:CRO,
@@ -33155,7 +33155,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:HCPCS,
         bioportal:HGNC,
         bioportal:HOM,
-        bioportal:HP,
+        bioportal:HP_O,
         bioportal:HSAPDV,
         bioportal:HSO,
         bioportal:HTN,
@@ -33397,7 +33397,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:CMPO,
         aberowl:COB,
         aberowl:COLAO,
-        aberowl:COVID-19,
+        aberowl:COVID19,
         aberowl:CPT,
         aberowl:CRISP,
         aberowl:CRO,
@@ -33409,7 +33409,6 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:DATACITE,
         aberowl:DC,
         aberowl:DCAT,
-        aberowl:DCTERMS,
         aberowl:DDANAT,
         aberowl:DDPHENO,
         aberowl:DERMO,
@@ -33445,17 +33444,16 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:EXO,
         aberowl:FALDO,
         aberowl:FAO,
-        aberowl:FB-BT,
-        aberowl:FB-CV,
-        aberowl:FB-DV,
         aberowl:FB-SP,
-        aberowl:FBBI,
+        aberowl:FBBT,
+        aberowl:FBCV,
+        aberowl:FBDV,
+        aberowl:FBbi,
         aberowl:FIDEO,
         aberowl:FIX,
         aberowl:FLOPO,
         aberowl:FLU,
         aberowl:FMA,
-        aberowl:FOAF,
         aberowl:FOBI,
         aberowl:FOODON,
         aberowl:FOVT,
@@ -33479,7 +33477,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:HCPCS,
         aberowl:HGNC,
         aberowl:HOM,
-        aberowl:HP,
+        aberowl:HP_O,
         aberowl:HSAPDV,
         aberowl:HSO,
         aberowl:HTN,
@@ -33538,7 +33536,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:NCIT,
         aberowl:NCRO,
         aberowl:NDDF,
-        aberowl:NDF-RT,
+        aberowl:NDFRT,
         aberowl:NEMO,
         aberowl:NIFCELL,
         aberowl:NIFSTD,
@@ -33575,7 +33573,6 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:OPB,
         aberowl:OPL,
         aberowl:OPMI,
-        aberowl:ORDO,
         aberowl:ORNASEQ,
         aberowl:ORTH,
         aberowl:OVAE,
@@ -33656,9 +33653,9 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:VSO,
         aberowl:VT,
         aberowl:VTO,
-        aberowl:WB-BT,
-        aberowl:WB-LS,
-        aberowl:WB-PHENOTYPE,
+        aberowl:WBBT,
+        aberowl:WBLS,
+        aberowl:WBPHENOTYPE,
         aberowl:WIKIPATHWAYS,
         aberowl:XAO,
         aberowl:XCO,
@@ -33670,6 +33667,9 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:ZFA,
         aberowl:ZFS,
         aberowl:ZP,
+        aberowl:dcterms,
+        aberowl:foaf,
+        aberowl:ordo,
         aberowl:skos ;
     foaf:homepage "http://aber-owl.net" ;
     bioregistry.schema:0000005 "CHEBI" ;
@@ -34033,7 +34033,6 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.1gr4tz,
         fairsharing:FAIRsharing.1rj558,
         fairsharing:FAIRsharing.1tbrdz,
-        fairsharing:FAIRsharing.1vrrdh,
         fairsharing:FAIRsharing.27rndz,
         fairsharing:FAIRsharing.284e1z,
         fairsharing:FAIRsharing.2abjs5,
@@ -34139,7 +34138,6 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.6wf1zw,
         fairsharing:FAIRsharing.6xq0ee,
         fairsharing:FAIRsharing.6yNXYK,
-        fairsharing:FAIRsharing.778n2k,
         fairsharing:FAIRsharing.78d3ad,
         fairsharing:FAIRsharing.7C0aVE,
         fairsharing:FAIRsharing.7c683b,
@@ -34264,6 +34262,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.cc3f2x,
         fairsharing:FAIRsharing.ckd4rf,
         fairsharing:FAIRsharing.cnwx8c,
+        fairsharing:FAIRsharing.cp0ybc,
         fairsharing:FAIRsharing.cpneh8,
         fairsharing:FAIRsharing.ctwd7b,
         fairsharing:FAIRsharing.cwx04e,
@@ -34377,6 +34376,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.jykmkw,
         fairsharing:FAIRsharing.k008w7,
         fairsharing:FAIRsharing.k5k0yh,
+        fairsharing:FAIRsharing.k893xa,
         fairsharing:FAIRsharing.karvzj,
         fairsharing:FAIRsharing.kay31r,
         fairsharing:FAIRsharing.kbtt7f,
@@ -35580,7 +35580,7 @@ bioregistry.metaresource:miriam a bioregistry.schema:0000002 ;
         miriam:hdr,
         miriam:hgmd,
         miriam:hgnc,
-        miriam:hgnc.family,
+        miriam:hgnc.genefamily,
         miriam:hgnc.genegroup,
         miriam:hgnc.symbol,
         miriam:hinv.locus,
@@ -36162,7 +36162,6 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:CHEMSPIDER,
         biocontext:CHICKENQTLDB,
         biocontext:CHMO,
-        biocontext:CID,
         biocontext:CIO,
         biocontext:CL,
         biocontext:CLDB,
@@ -36235,7 +36234,7 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:DRUGBANKV4.TARGET,
         biocontext:DUO,
         biocontext:DrugBank,
-        biocontext:EC,
+        biocontext:EC-CODE,
         biocontext:ECHOBASE,
         biocontext:ECO,
         biocontext:ECOCORE,
@@ -36389,7 +36388,6 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:IDEAL,
         biocontext:IDO,
         biocontext:IDOMAL,
-        biocontext:IDOT,
         biocontext:IEV,
         biocontext:IMEX,
         biocontext:IMG.GENE,
@@ -36422,7 +36420,6 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:JSTOR,
         biocontext:JWS,
         biocontext:KEGG,
-        biocontext:KEGG-path,
         biocontext:KEGG.COMPOUND,
         biocontext:KEGG.DISEASE,
         biocontext:KEGG.DRUG,
@@ -36433,6 +36430,7 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:KEGG.METAGENOME,
         biocontext:KEGG.MODULE,
         biocontext:KEGG.ORTHOLOGY,
+        biocontext:KEGG.PATHWAY,
         biocontext:KEGG.REACTION,
         biocontext:KISAO,
         biocontext:KNAPSACK,
@@ -36481,7 +36479,6 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:MFOEM,
         biocontext:MFOMD,
         biocontext:MGI,
-        biocontext:MI,
         biocontext:MIAPA,
         biocontext:MICRO,
         biocontext:MICROSCOPE,
@@ -36544,7 +36541,6 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:NCBIGene,
         biocontext:NCBIGenome,
         biocontext:NCBIProtein,
-        biocontext:NCBITaxon,
         biocontext:NCIM,
         biocontext:NCIT,
         biocontext:NCRO,
@@ -36574,7 +36570,6 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:OBI,
         biocontext:OBIB,
         biocontext:OBO,
-        biocontext:OBO_REL,
         biocontext:OCI,
         biocontext:OCLC,
         biocontext:ODOR,
@@ -36584,7 +36579,6 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:OGSF,
         biocontext:OHD,
         biocontext:OHMI,
-        biocontext:OIO,
         biocontext:OLATDV,
         biocontext:OMA.GRP,
         biocontext:OMA.PROTEIN,
@@ -36663,7 +36657,6 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:PMAP.SUBSTRATEDB,
         biocontext:PMCID,
         biocontext:PMDB,
-        biocontext:PMID,
         biocontext:PMP,
         biocontext:PO,
         biocontext:POCKETOME,
@@ -36686,14 +36679,17 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:PROTONET.PROTEINCARD,
         biocontext:PSCDB,
         biocontext:PSEUDOMONAS,
+        biocontext:PSIMI,
         biocontext:PSIPAR,
         biocontext:PUBCHEM.BIOASSAY,
+        biocontext:PUBCHEM.COMPOUND,
         biocontext:PUBCHEM.SUBSTANCE,
+        biocontext:PUBMED,
         biocontext:PW,
         biocontext:PX,
         biocontext:PomBase,
         biocontext:RBK,
-        biocontext:REACT,
+        biocontext:REACTOME,
         biocontext:REBASE,
         biocontext:RESID,
         biocontext:REX,
@@ -36711,6 +36707,7 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:RNACENTRAL,
         biocontext:RNAMODS,
         biocontext:RNAO,
+        biocontext:RO,
         biocontext:ROUGE,
         biocontext:RRID,
         biocontext:RS,
@@ -36743,7 +36740,7 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:SITEX,
         biocontext:SMART,
         biocontext:SMPDB,
-        biocontext:SNOMED,
+        biocontext:SNOMEDCT,
         biocontext:SO,
         biocontext:SOPHARM,
         biocontext:SOYBASE,
@@ -36774,6 +36771,7 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:TAIR.PROTEIN,
         biocontext:TAO,
         biocontext:TARBASE,
+        biocontext:TAXONOMY,
         biocontext:TAXRANK,
         biocontext:TCDB,
         biocontext:TGD,
@@ -36834,11 +36832,11 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:VT,
         biocontext:VTO,
         biocontext:WB.RNAI,
-        biocontext:WBBT,
         biocontext:WBLS,
         biocontext:WBPhenotype,
-        biocontext:WD_Entity,
+        biocontext:WBbt,
         biocontext:WD_Prop,
+        biocontext:WIKIDATA,
         biocontext:WIKIGENES,
         biocontext:WIKIPATHWAYS,
         biocontext:WIKIPEDIA.EN,
@@ -36872,7 +36870,9 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:faldo,
         biocontext:foaf,
         biocontext:gro.cpga,
+        biocontext:idot,
         biocontext:oa,
+        biocontext:oboInOwl,
         biocontext:owl,
         biocontext:pav,
         biocontext:prov,

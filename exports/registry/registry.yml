@@ -5089,14 +5089,14 @@ cosmic.cell:
 covid19:
   description: Curated contextual database gathering samples related to SARS-CoV-2
     virus and covid-19 disease.
-  download_owl: http://aber-owl.net/media/ontologies/COVID-19/3/covid-19.owl
+  download_owl: http://aber-owl.net/media/ontologies/COVID19/3/covid19.owl
   example: SFB_COVID19_MW286762
   homepage: https://covid19.sfb.uit.no
   mappings:
-    aberowl: COVID-19
-    bioportal: COVID-19
+    aberowl: COVID19
+    bioportal: COVID19
     miriam: covid19
-  name: COVID-19 Ontology
+  name: COVID-19 Surveillance Ontology
   pattern: ^\w+_COVID19_[-\w]+$
   preferred_prefix: covid19
   uri_format: https://covid19.sfb.uit.no/api/records/$1
@@ -5936,10 +5936,11 @@ dcterms:
   description: This document is an up-to-date specification of all metadata terms
     maintained by the Dublin Core Metadata Initiative, including properties, vocabulary
     encoding schemes, syntax encoding schemes, and classes.
+  download_owl: http://aber-owl.net/media/ontologies/dcterms/1/dcterms.owl
   example: title
   homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
   mappings:
-    aberowl: DCTERMS
+    aberowl: dcterms
     biocontext: dcterms
     biolink: dct
     bioportal: DCTERMS
@@ -7110,7 +7111,7 @@ eccode:
   - 3.1.26.n2
   homepage: https://www.ebi.ac.uk/intenz/
   mappings:
-    biocontext: EC
+    biocontext: EC-CODE
     fairsharing: FAIRsharing.q1fdkc
     go: EC
     miriam: ec-code
@@ -8729,12 +8730,13 @@ fbbi:
     orcid: 0000-0002-8841-5870
   description: A structured controlled vocabulary of sample preparation, visualization
     and imaging methods used in biomedical research.
+  download_obo: http://aber-owl.net/media/ontologies/FBbi/14/fbbi.obo
   download_owl: http://purl.obolibrary.org/obo/fbbi.owl
   example: 00000268
   homepage: http://cellimagelibrary.org/
   license: CC BY 4.0
   mappings:
-    aberowl: FBBI
+    aberowl: FBbi
     biocontext: FBbi
     bioportal: FBbi
     fairsharing: FAIRsharing.ny3z9j
@@ -8764,7 +8766,7 @@ fbbt:
   homepage: http://purl.obolibrary.org/obo/fbbt
   license: CC BY 4.0
   mappings:
-    aberowl: FB-BT
+    aberowl: FBBT
     biocontext: FBbt
     bioportal: FB-BT
     fairsharing: FAIRsharing.y2qkst
@@ -8800,7 +8802,7 @@ fbcv:
   homepage: http://purl.obolibrary.org/obo/fbcv
   license: CC BY 4.0
   mappings:
-    aberowl: FB-CV
+    aberowl: FBCV
     biocontext: FBcv
     bioportal: FB-CV
     fairsharing: FAIRsharing.6tgyxf
@@ -8831,7 +8833,7 @@ fbdv:
   homepage: http://purl.obolibrary.org/obo/fbdv
   license: CC BY 4.0
   mappings:
-    aberowl: FB-DV
+    aberowl: FBDV
     biocontext: FBdv
     bioportal: FB-DV
     fairsharing: FAIRsharing.p52pzj
@@ -9194,11 +9196,11 @@ foaf:
     association; representational networks that describe a simplified view of a cartoon
     universe in factual terms, and information networks that use Web-based linking
     to share independently published descriptions of this inter-connected world.'
-  download_owl: http://aber-owl.net/media/ontologies/FOAF/1/foaf.owl
+  download_owl: http://aber-owl.net/media/ontologies/foaf/1/foaf.owl
   example: familyName
   homepage: http://xmlns.com/foaf/spec/
   mappings:
-    aberowl: FOAF
+    aberowl: foaf
     biocontext: foaf
     biolink: foaf
     bioportal: FOAF
@@ -11486,21 +11488,20 @@ hgnc:
     uri_format: https://search.thegencc.org/genes/HGNC:$1
   uri_format: https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1
 hgnc.genefamily:
-  deprecated: true
   description: The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene
     name and symbol (short-form abbreviation) for each known human gene. All approved
     symbols are stored in the HGNC database, and each symbol is unique. In addition,
-    HGNC also provides symbols for both structural and functional gene families. This
-    collection refers to records using the HGNC family symbol.
+    HGNC also provides a unique numerical ID to identify gene families, providing
+    a display of curated hierarchical relationships between families.
   example: '2029'
   has_canonical: hgnc.genegroup
   homepage: http://www.genenames.org
   mappings:
     biocontext: HGNC.GENEFAMILY
-    miriam: hgnc.family
+    miriam: hgnc.genefamily
     n2t: hgnc.genefamily
-  name: HGNC Family
-  pattern: ^[A-Z0-9-]+(#[A-Z0-9-]+)?$
+  name: HGNC gene family
+  pattern: ^\d+$
   preferred_prefix: hgnc.genefamily
   synonyms:
   - GFAM
@@ -11823,9 +11824,9 @@ hp:
   homepage: http://www.human-phenotype-ontology.org/
   license: hpo
   mappings:
-    aberowl: HP
+    aberowl: HP_O
     biocontext: HPO
-    bioportal: HP
+    bioportal: HP_O
     fairsharing: FAIRsharing.kbtt7f
     miriam: hp
     n2t: hp
@@ -12524,7 +12525,7 @@ idot:
   example: identifierPattern
   homepage: http://biomodels.net/vocab/idot.rdf
   mappings:
-    biocontext: IDOT
+    biocontext: idot
     miriam: idot
     n2t: idot
   name: Identifiers.org Terms
@@ -13800,7 +13801,7 @@ kegg.pathway:
   example: rsk00410
   homepage: https://www.genome.jp/kegg/pathway.html
   mappings:
-    biocontext: KEGG-path
+    biocontext: KEGG.PATHWAY
     biolink: KEGG.PATHWAY
     go: KEGG_PATHWAY
     miriam: kegg.pathway
@@ -15388,7 +15389,7 @@ mi:
   license: CC BY 4.0
   mappings:
     aberowl: MI
-    biocontext: MI
+    biocontext: PSIMI
     biolink: MI
     bioportal: MI
     go: PSI-MI
@@ -16371,7 +16372,7 @@ mro:
     aberowl: MRO
     biocontext: MRO
     bioportal: MRO
-    fairsharing: FAIRsharing.778n2k
+    fairsharing: FAIRsharing.k893xa
     obofoundry: MRO
     ols: mro
     ontobee: MRO
@@ -16983,7 +16984,7 @@ ncbitaxon:
   mappings:
     aberowl: NCBITAXON
     agroportal: NCBITAXON
-    biocontext: NCBITaxon
+    biocontext: TAXONOMY
     bioportal: NCBITAXON
     cellosaurus: NCBI_TaxID
     fairsharing: FAIRsharing.fj07xj
@@ -17183,11 +17184,10 @@ ndfrt:
     Manifestations or Physiologic States [Disease/Finding]Dose Forms [Dose Form];
     Pharmaceutical Preparations; Physiological Effects [PE]; Therapeutic Categories
     [TC]; and VA Drug Interactions [VA Drug Interaction].'
-  download_owl: http://aber-owl.net/media/ontologies/NDF-RT/1/ndf-rt.owl
   example: N0000001662
   homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT
   mappings:
-    aberowl: NDF-RT
+    aberowl: NDFRT
     bioportal: NDFRT
     fairsharing: FAIRsharing.901nkj
     ontobee: NDF-RT
@@ -18407,7 +18407,7 @@ oboinowl:
   example: hasDbXref
   homepage: https://github.com/geneontology/go-ontology/tree/master/contrib
   mappings:
-    biocontext: OIO
+    biocontext: oboInOwl
     biolink: oboformat
   name: OBO in OWL
   preferred_prefix: oboInOwl
@@ -19563,7 +19563,7 @@ orphanet.ordo:
   - '478'
   homepage: https://www.ebi.ac.uk/ols/ontologies/ordo
   mappings:
-    aberowl: ORDO
+    aberowl: ordo
     biocontext: ORPHANET.ORDO
     biolink: ORPHA
     bioportal: ORDO
@@ -21978,7 +21978,7 @@ pubchem.compound:
   example: '100101'
   homepage: https://pubchem.ncbi.nlm.nih.gov/
   mappings:
-    biocontext: CID
+    biocontext: PUBCHEM.COMPOUND
     biolink: CID
     cellosaurus: PubChem
     cheminf: '000140'
@@ -22062,7 +22062,7 @@ pubmed:
   example: '16333295'
   homepage: https://www.ncbi.nlm.nih.gov/PubMed/
   mappings:
-    biocontext: PMID
+    biocontext: PUBMED
     cellosaurus: PubMed
     cheminf: '000302'
     fairsharing: FAIRsharing.a5sv8m
@@ -22403,7 +22403,7 @@ reactome:
   example: R-BTA-418592
   homepage: https://www.reactome.org/
   mappings:
-    biocontext: REACT
+    biocontext: REACTOME
     cheminf: '000411'
     go: Reactome
     miriam: reactome
@@ -22986,10 +22986,10 @@ ro:
   mappings:
     aberowl: RO
     agroportal: RO
-    biocontext: OBO_REL
+    biocontext: RO
     biolink: RO
     bioportal: OBOREL
-    fairsharing: FAIRsharing.1vrrdh
+    fairsharing: FAIRsharing.cp0ybc
     go: RO
     miriam: ro
     n2t: ro
@@ -23131,7 +23131,7 @@ rxnorm:
   mappings:
     aberowl: RXNORM
     biocontext: RXCUI
-    biolink: RXCUI
+    biolink: RXNORM
     bioportal: RXNORM
     fairsharing: FAIRsharing.36pf8q
     wikidata: P3345
@@ -24106,7 +24106,7 @@ snomedct:
   homepage: http://www.snomedbrowser.com/
   mappings:
     aberowl: SNOMEDCT
-    biocontext: SNOMED
+    biocontext: SNOMEDCT
     biolink: SNOMEDCT
     bioportal: SNOMEDCT
     fairsharing: FAIRsharing.d88s6e
@@ -26965,8 +26965,8 @@ wbbt:
   homepage: https://github.com/obophenotype/c-elegans-gross-anatomy-ontology
   license: CC BY 4.0
   mappings:
-    aberowl: WB-BT
-    biocontext: WBBT
+    aberowl: WBBT
+    biocontext: WBbt
     biolink: WBbt
     bioportal: WB-BT
     fairsharing: FAIRsharing.phk7dd
@@ -26981,7 +26981,7 @@ wbbt:
   repository: https://github.com/obophenotype/c-elegans-gross-anatomy-ontology
   synonyms:
   - WBbt
-  uri_format: http://purl.obolibrary.org/obo/WBBT_$1
+  uri_format: http://purl.obolibrary.org/obo/WBbt_$1
   version: '2022-06-13'
 wbls:
   contact:
@@ -26996,7 +26996,7 @@ wbls:
   homepage: https://github.com/obophenotype/c-elegans-development-ontology
   license: CC BY 4.0
   mappings:
-    aberowl: WB-LS
+    aberowl: WBLS
     biocontext: WBLS
     biolink: WBls
     bioportal: WB-LS
@@ -27028,7 +27028,7 @@ wbphenotype:
   homepage: https://github.com/obophenotype/c-elegans-phenotype-ontology
   license: CC BY 4.0
   mappings:
-    aberowl: WB-PHENOTYPE
+    aberowl: WBPHENOTYPE
     biocontext: WBPhenotype
     bioportal: WB-PHENOTYPE
     fairsharing: FAIRsharing.agvc7y
@@ -27087,7 +27087,7 @@ wikidata:
   example: Q2207226
   homepage: https://www.wikidata.org/
   mappings:
-    biocontext: WD_Entity
+    biocontext: WIKIDATA
     biolink: WIKIDATA
     cellosaurus: Wikidata
     cheminf: '000567'
