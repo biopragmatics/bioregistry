@@ -17387,6 +17387,8 @@ biolink:mirbase dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:mmmp.biomaps dcterms:isPartOf bioregistry.metaresource:biolink .
 
+biolink:ncats.drug dcterms:isPartOf bioregistry.metaresource:biolink .
+
 biolink:oboformat dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:pav dcterms:isPartOf bioregistry.metaresource:biolink .
@@ -22088,6 +22090,7 @@ bioregistry:ncats.drug a bioregistry.schema:0000001 ;
     rdfs:label "NCATS Drugs" ;
     dc:description "The [National Center for Advancing Translational Sciences (NCATS)](https://ncats.nih.gov/) has developed Inxight: Drugs as a comprehensive portal for drug development information. NCATS Inxight: Drugs  contains information on ingredients in medicinal products, including:"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biolink:ncats.drug ;
     foaf:homepage "https://drugs.ncats.io/"^^xsd:string ;
     bioregistry.schema:0000005 "44259"^^xsd:string ;
     bioregistry.schema:0000006 "https://drugs.ncats.io/drug/$1"^^xsd:string ;
@@ -31786,6 +31789,7 @@ bioregistry.metaresource:biolink a bioregistry.schema:0000002 ;
         biolink:metacyc.reaction,
         biolink:mirbase,
         biolink:mmmp.biomaps,
+        biolink:ncats.drug,
         biolink:oboformat,
         biolink:pav,
         biolink:prov,
