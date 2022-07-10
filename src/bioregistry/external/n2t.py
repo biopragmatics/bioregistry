@@ -8,8 +8,7 @@ import click
 import yaml
 from pystow.utils import download
 
-from bioregistry.constants import URI_FORMAT_KEY
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
 
 URL = "https://n2t.net/e/n2t_full_prefixes.yaml"
 DIRECTORY = EXTERNAL / "n2t"

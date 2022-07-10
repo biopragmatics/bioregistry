@@ -2,9 +2,11 @@
 
 """User blueprint for the bioregistry web application."""
 
+import itertools as itt
 from typing import Optional
 
-from flask import Blueprint, abort, redirect, render_template, url_for
+from flask import Blueprint, abort, redirect, render_template, request, url_for
+from markdown import markdown
 
 import bioregistry
 
@@ -13,15 +15,17 @@ from .utils import (
     _get_resource_providers,
     _normalize_prefix_or_404,
 )
-from .. import manager
-from ..utils import (
-    curie_to_str,
+from ..resource_manager import manager
+from ..schema import Context
+from ..schema_utils import (
     read_collections_contributions,
+    read_context_contributions,
     read_prefix_contacts,
     read_prefix_contributions,
     read_prefix_reviews,
     read_registry_contributions,
 )
+from ..utils import curie_to_str
 
 __all__ = [
     "ui_blueprint",
@@ -38,10 +42,14 @@ FORMATS = [
 @ui_blueprint.route("/registry/")
 def resources():
     """Serve the Bioregistry page."""
+    registry = bioregistry.read_registry()
+    if request.args.get("novel") in {"true", "t"}:
+        registry = {p: v for p, v in registry.items() if bioregistry.is_novel(p)}
     return render_template(
         "resources.html",
         formats=FORMATS,
-        registry=bioregistry.read_registry(),
+        markdown=markdown,
+        registry=registry,
     )
 
 
@@ -61,6 +69,7 @@ def collections():
     return render_template(
         "collections.html",
         rows=bioregistry.read_collections().items(),
+        markdown=markdown,
         formats=FORMATS,
     )
 
@@ -88,6 +97,7 @@ def resource(prefix: str):
         "resource.html",
         zip=zip,
         bioregistry=bioregistry,
+        markdown=markdown,
         prefix=prefix,
         resource=_resource,
         name=bioregistry.get_name(prefix),
@@ -110,7 +120,7 @@ def resource(prefix: str):
         deprecated=bioregistry.is_deprecated(prefix),
         contact=bioregistry.get_contact(prefix),
         banana=bioregistry.get_banana(prefix),
-        description=bioregistry.get_description(prefix),
+        description=bioregistry.get_description(prefix, use_markdown=True),
         appears_in=bioregistry.get_appears_in(prefix),
         depends_on=bioregistry.get_depends_on(prefix),
         has_canonical=bioregistry.get_has_canonical(prefix),
@@ -177,17 +187,47 @@ def collection(identifier: str):
     """Serve the a Bioregistry registry page."""
     entry = bioregistry.get_collection(identifier)
     if entry is None:
-        abort(404, f"Invalid collection: {identifier}")
+        return abort(404, f"Invalid collection: {identifier}")
     return render_template(
         "collection.html",
         identifier=identifier,
         entry=entry,
+        resources={prefix: bioregistry.get_resource(prefix) for prefix in entry.resources},
+        markdown=markdown,
         formats=[
             *FORMATS,
             ("RDF (turtle)", "turtle"),
             ("RDF (JSON-LD)", "jsonld"),
             ("Context JSON-LD", "context"),
         ],
+    )
+
+
+@ui_blueprint.route("/context/")
+def contexts():
+    """Serve the Bioregistry contexts page."""
+    return render_template(
+        "contexts.html",
+        rows=bioregistry.read_contexts().items(),
+        markdown=markdown,
+        formats=FORMATS,
+        schema=Context.schema(),
+    )
+
+
+@ui_blueprint.route("/context/<identifier>")
+def context(identifier: str):
+    """Serve the a Bioregistry context page."""
+    entry = bioregistry.get_context(identifier)
+    if entry is None:
+        return abort(404, f"Invalid context: {identifier}")
+    return render_template(
+        "context.html",
+        identifier=identifier,
+        entry=entry,
+        markdown=markdown,
+        schema=Context.schema()["properties"],
+        formats=FORMATS,
     )
 
 
@@ -238,7 +278,12 @@ def resolve(prefix: str, identifier: Optional[str] = None):
             404,
         )
 
-    url = bioregistry.get_iri(prefix, identifier, use_bioregistry_io=False)
+    url = bioregistry.get_iri(
+        prefix,
+        identifier,
+        use_bioregistry_io=False,
+        provider=request.args.get("provider"),
+    )
     if not url:
         return (
             render_template(
@@ -281,18 +326,43 @@ def metaresolve(metaprefix: str, metaidentifier: str, identifier: Optional[str] 
     return redirect(url_for(f".{resolve.__name__}", prefix=prefix, identifier=identifier))
 
 
+@ui_blueprint.route("/resolve/github/issue/<owner>/<repository>/<int:issue>")
+def github_resolve_issue(owner, repository, issue):
+    """Redirect to an issue on GitHub."""
+    return redirect(f"https://github.com/{owner}/{repository}/issues/{issue}")
+
+
+@ui_blueprint.route("/resolve/github/pull/<owner>/<repository>/<int:pull>")
+def github_resolve_pull(owner, repository, pull: int):
+    """Redirect to a pull request on GitHub."""
+    return redirect(f"https://github.com/{owner}/{repository}/pull/{pull}")
+
+
 @ui_blueprint.route("/contributors/")
 def contributors():
     """Serve the Bioregistry contributors page."""
+    collections = read_collections_contributions()
+    contexts = read_context_contributions()
+    prefix_contributions = read_prefix_contributions()
+    prefix_reviews = read_prefix_reviews()
+    prefix_contacts = read_prefix_contacts()
+    registries = read_registry_contributions()
+    unique_direct_count = len(
+        set(itt.chain(collections, contexts, prefix_contributions, prefix_reviews))
+    )
+    unique_indirect_count = len(set(itt.chain(prefix_contacts, registries)))
     return render_template(
         "contributors.html",
         rows=bioregistry.read_contributors().values(),
-        collections=read_collections_contributions(),
-        prefix_contributions=read_prefix_contributions(),
-        prefix_reviews=read_prefix_reviews(),
-        prefix_contacts=read_prefix_contacts(),
-        registries=read_registry_contributions(),
+        collections=collections,
+        contexts=contexts,
+        prefix_contributions=prefix_contributions,
+        prefix_reviews=prefix_reviews,
+        prefix_contacts=prefix_contacts,
+        registries=registries,
         formats=FORMATS,
+        unique_direct_count=unique_direct_count,
+        unique_indirect_count=unique_indirect_count,
     )
 
 
@@ -309,6 +379,10 @@ def contributor(orcid: str):
         collections=sorted(
             (collection_id, bioregistry.get_collection(collection_id))
             for collection_id in read_collections_contributions().get(author.orcid, [])
+        ),
+        contexts=sorted(
+            (context_key, bioregistry.get_context(context_key))
+            for context_key in read_context_contributions().get(author.orcid, [])
         ),
         prefix_contributions=_s(read_prefix_contributions().get(author.orcid, [])),
         prefix_contacts=_s(read_prefix_contacts().get(author.orcid, [])),

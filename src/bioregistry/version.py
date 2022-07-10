@@ -12,7 +12,7 @@ __all__ = [
     "get_git_hash",
 ]
 
-VERSION = "0.4.59-dev"
+VERSION = "0.5.39-dev"
 
 
 def get_git_hash() -> Optional[str]:
@@ -38,4 +38,4 @@ def get_version(with_git_hash: bool = False):
 
 
 if __name__ == "__main__":
-    print(get_version(with_git_hash=True))  # noqa: T001
+    print(get_version(with_git_hash=True))  # noqa: T201

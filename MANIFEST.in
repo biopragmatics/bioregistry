@@ -3,6 +3,7 @@ graft tests
 
 recursive-include docs *.py
 recursive-include docs *.rst
+recursive-include docs *.tsv
 recursive-include docs Makefile
 recursive-include docs *.png
 recursive-include docs *.svg
@@ -11,6 +12,7 @@ global-exclude *.py[cod] __pycache__ *.so *.dylib .DS_Store *.gpickle
 
 prune docs/build
 prune docs/_data
+prune docs/source/api
 prune exports
 exclude docs/*.md
 exclude docs/_config.yml

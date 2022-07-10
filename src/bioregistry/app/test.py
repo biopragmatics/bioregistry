@@ -31,7 +31,7 @@ def main(url: str, local: bool):
         if identifier is None:
             continue
         prefixes.set_postfix({"prefix": prefix})
-        req_url = f"{url}/{prefix}:{identifier}"
+        req_url = f"{url}/{bioregistry.curie_to_str(prefix, identifier)}"
         res = requests.get(req_url, allow_redirects=False)
         log = partial(_log, req_url=req_url)
         if res.status_code == 302:  # redirect

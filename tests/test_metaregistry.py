@@ -14,86 +14,70 @@ class TestMetaregistry(unittest.TestCase):
 
     def test_minimum_metadata(self):
         """Test the metaregistry entries have a minimum amount of data."""
-        for metaprefix, registry_pydantic in bioregistry.read_metaregistry().items():
-            self.assertIsInstance(registry_pydantic, Registry)
-            data = registry_pydantic.dict()
+        for metaprefix, registry in bioregistry.read_metaregistry().items():
+            self.assertIsInstance(registry, Registry)
             with self.subTest(metaprefix=metaprefix):
-                self.assertIn("name", data)
-                self.assertIn("homepage", data)
-                self.assertIn("example", data)
-                self.assertIn("description", data)
-                self.assertIsNotNone(registry_pydantic.contact)
-                self.assertNotEqual("FIXME", registry_pydantic.contact.name)
-                if "support" not in registry_pydantic.contact.name.lower():
-                    self.assertIsNotNone(registry_pydantic.contact.orcid)
-                    self.assertIsNotNone(registry_pydantic.contact.github)
+                self.assertIsNotNone(registry.name)
+                self.assertIsNotNone(registry.homepage)
+                self.assertIsNotNone(registry.example)
+                self.assertIsNotNone(registry.description)
+                self.assertIsNotNone(registry.contact)
+                self.assertIsNotNone(registry.license, msg=f"Contact: {registry.contact}")
+                self.assertNotEqual("FIXME", registry.contact.name)
+                if "support" not in registry.contact.name.lower():
+                    self.assertIsNotNone(registry.contact.orcid)
+                    self.assertIsNotNone(registry.contact.github)
 
-                if registry_pydantic.provider_uri_format:
-                    self.assertIn("provider_uri_format", data)
-                    self.assertIn("$1", data["provider_uri_format"])
+                if registry.provider_uri_format:
+                    self.assertIsNotNone(registry.provider_uri_format)
+                    self.assertIn("$1", registry.provider_uri_format)
 
                 if (
                     # Missing URI format string
-                    not registry_pydantic.provider_uri_format
+                    not registry.provider_uri_format
                     # Unresolved overlap in Bioregistry
                     or metaprefix in bioregistry.read_registry()
                     # Has URI format string, but not in proper form
                     or (
-                        registry_pydantic.provider_uri_format
-                        and not registry_pydantic.provider_uri_format.endswith("$1")
+                        registry.provider_uri_format
+                        and not registry.provider_uri_format.endswith("$1")
                     )
                 ):
-                    self.assertIsNotNone(registry_pydantic.bioregistry_prefix)
+                    self.assertIsNotNone(registry.bioregistry_prefix)
 
-                if registry_pydantic.bioregistry_prefix:
+                if registry.bioregistry_prefix:
                     self.assertEqual(
-                        bioregistry.normalize_prefix(registry_pydantic.bioregistry_prefix),
-                        registry_pydantic.bioregistry_prefix,
+                        bioregistry.normalize_prefix(registry.bioregistry_prefix),
+                        registry.bioregistry_prefix,
                         msg="link from metaregistry to bioregistry must use canonical prefix",
                     )
-                    resource = bioregistry.get_resource(registry_pydantic.bioregistry_prefix)
+                    resource = bioregistry.get_resource(registry.bioregistry_prefix)
                     self.assertIsNotNone(resource)
                     self.assertIsNotNone(
                         resource.get_uri_format(),
-                        msg=f"corresponding registry entry ({registry_pydantic.bioregistry_prefix})"
+                        msg=f"corresponding registry entry ({registry.bioregistry_prefix})"
                         f" is missing a uri_format",
                     )
 
                 # When a registry is a resolver, it means it
                 # can resolve entries (prefixes) + identifiers
-                if registry_pydantic.resolver_uri_format:
-                    self.assertIn("resolver_uri_format", data)
-                    self.assertIn("$1", data["resolver_uri_format"])
-                    self.assertIn("$2", data["resolver_uri_format"])
-                    self.assertIsNotNone(registry_pydantic.resolver_type)
-                    self.assertIn(data["resolver_type"], {"lookup", "resolver"})
+                if registry.resolver_uri_format:
+                    self.assertIn("$1", registry.resolver_uri_format)
+                    self.assertIn("$2", registry.resolver_uri_format)
+                    self.assertIsNotNone(registry.resolver_type)
+                    self.assertIn(registry.resolver_type, {"lookup", "resolver"})
                 else:
-                    self.assertIsNone(registry_pydantic.resolver_type)
+                    self.assertIsNone(registry.resolver_type)
 
-                invalid_keys = set(data).difference(
-                    {
-                        "prefix",
-                        "name",
-                        "homepage",
-                        "download",
-                        "description",
-                        "provider_uri_format",
-                        "example",
-                        "resolver_uri_format",
-                        "resolver_type",
-                        "contact",
-                        "availability",
-                        "bioregistry_prefix",
-                    }
-                )
+                invalid_keys = set(registry.dict()).difference(Registry.__fields__)
                 self.assertEqual(set(), invalid_keys, msg="invalid metadata")
-                if not registry_pydantic.availability.fair:
+                if not registry.availability.fair:
                     self.assertIsNone(
-                        registry_pydantic.download,
+                        registry.download,
                         msg="If bulk download available, resource should be annotated as FAIR",
                     )
                     self.assertIsNotNone(
-                        registry_pydantic.availability.fair_note,
+                        registry.availability.fair_note,
                         msg="All non-FAIR resources require an explanation",
                     )
 

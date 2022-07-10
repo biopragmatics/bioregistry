@@ -15,7 +15,8 @@ from ..constants import (
 )
 from ..resource_manager import manager
 from ..schema import sanitize_mapping
-from ..utils import get_hexdigests, read_collections, read_metaregistry
+from ..schema_utils import read_collections, read_metaregistry
+from ..utils import get_hexdigests
 
 
 @click.command()

@@ -19,6 +19,8 @@
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
 {% endblock %}
 
+{% set twitter = resource.get_twitter() %}
+
 {% block container %}
     <div class="card">
         <div class="card-header">
@@ -26,15 +28,7 @@
                 <div class="col-8">
                     <h5 style="margin: 0"><a href="{{ url_for("ui.resources") }}">Registry</a> <i
                             class="fas fa-angle-right"></i> {{ name }}
-                        {% if deprecated %}
-                            <span class="badge badge-warning" style="display: inline-block;">
-                                Deprecated <i class="fas fa-exclamation-triangle"></i>
-                            </span>
-                        {% elif provides %}
-                            <span class="badge badge-danger" style="display: inline-block;">
-                                Provider <i class="fas fa-exclamation-triangle"></i>
-                            </span>
-                        {% endif %}
+                        {{ utils.render_resource_warnings(resource) }}
                     </h5>
                 </div>
                 <div class="col-4 text-right">
@@ -68,10 +62,12 @@
                     instead of <code>{{ prefix }}</code>.
                 </p>
             {% endif %}
-            {% if resource.comment %}
-                <p class="text-muted"><span class="badge badge-info">Comment</span> {{ resource.comment }}</p>
-            {% endif %}
+
             <dl>
+                {% if resource.comment %}
+                    <dt>Comment</dt>
+                    <dd>{{ markdown(resource.comment) | safe }}</dd>
+                {% endif %}
                 <dt>Prefix</dt>
                 <dd><code>{{ prefix }}</code></dd>
                 {% set preferred_prefix = resource.get_preferred_prefix() %}
@@ -135,6 +131,16 @@
                     {% if json_download %}
                         <a class="badge badge-pill badge-light" href="{{ json_download }}">
                             OBO JSON <i class="fas fa-download"></i>
+                        </a>
+                    {% endif %}
+                    {% if resource.github_request_issue %}
+                        <a class="badge badge-pill badge-light" href="https://github.com/biopragmatics/bioregistry/issues/{{ resource.github_request_issue }}">
+                            <i class="fas fa-info-circle"></i> Request Discussion
+                        </a>
+                    {% endif %}
+                    {% if twitter %}
+                        <a class="badge badge-pill badge-light" href="https://twitter.com/{{ twitter }}">
+                            <i class="fa-brands fa-twitter"></i> @{{ twitter }}
                         </a>
                     {% endif %}
                 </dd>
@@ -221,25 +227,55 @@
                         The legacy MIRIAM standard for generating CURIEs with this resource
                         includes the <code>namespaceEmbeddedInLUI</code> as true. The actual
                         part that gets prefixed before the local unique identifier regex,
-                        otherwise known as the banana, is <code>{{ banana if banana else prefix.upper() }}:</code>.
+                        otherwise known as the banana, is
+                        <code>{{ banana if banana else prefix.upper() }}{{ resource.get_banana_peel() }}</code>.
                         Therefore, you might see local unique identifiers written out as CURIEs.
                     </dd>
                 {% endif %}
 
-                {% if resource.references %}
+                {% set publications = resource.get_publications() %}
+                {% if resource.references or publications%}
                     <dt>References</dt>
                     <dd>
                         <ul>
-                            {% for reference in resource.references %}
-                                <li><a href="{{ reference }}">{{ reference }}</a></li>
+                            {% for publication in publications or [] %}
+                                <li>
+                                    <span class="badge badge-info">Publication</span>
+                                    <a href="{{ publication.id }}">{{ publication.title or publication.id }}</a>
+                                </li>
+                            {% endfor %}
+                            {% for reference in resource.references or [] %}
+                                <li>
+                                    {% if reference.startswith("https://twitter.com") %}
+                                        <span class="badge badge-info">Tweet</span>
+                                    {% elif reference.startswith("https://github.com/") and "issues/" in reference %}
+                                        <span class="badge badge-info">GitHub Issue</span>
+                                    {% elif reference.startswith("https://github.com/") and "pull" in reference %}
+                                        <span class="badge badge-info">GitHub PR</span>
+                                    {% else %}
+                                        <span class="badge badge-info">Other</span>
+                                    {% endif %}
+                                    <a href="{{ reference }}">{{ reference }}</a>
+                                </li>
                             {% endfor %}
                         </ul>
                     </dd>
                 {% endif %}
-                {% if resource.contributor %}
-                    <dt>Contributor</dt>
+                {% if resource.contributor or resource.contributor_extras %}
+                    <dt>Contributors</dt>
                     <dd>
-                        {{ utils.render_author(resource.contributor, link=url_for('ui.contributor', orcid=resource.contributor.orcid)) }}
+                        <ul>
+                            {% if resource.contributor %}
+                                <li>
+                                    <span class="badge badge-info">submitter</span> {{ utils.render_author(resource.contributor, link=url_for('ui.contributor', orcid=resource.contributor.orcid)) }}
+                                </li>
+                            {% endif %}
+                            {% for contributor in resource.contributor_extras or [] %}
+                                <li>
+                                    <span class="badge badge-info">contributor</span> {{ utils.render_author(contributor, link=url_for('ui.contributor', orcid=contributor.orcid)) }}
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </dd>
                 {% endif %}
                 {% if resource.reviewer %}
@@ -325,7 +361,7 @@
                 {% endif %}
                 {% if canonical_for %}
                     <dt>
-                        Canonical For
+                        Canonical For ({{ canonical_for | length }})
                     </dt>
                     <dd>
                         {% for rel_prefix in canonical_for %}
@@ -339,7 +375,7 @@
                 {% endif %}
                 {% if depends_on %}
                     <dt>
-                        Depends On
+                        Depends On ({{ depends_on | length }})
                     </dt>
                     <dd>
                         {% for rel_prefix in depends_on %}
@@ -353,7 +389,7 @@
                 {% endif %}
                 {% if appears_in %}
                     <dt>
-                        Appears In
+                        Appears In ({{ appears_in | length }})
                     </dt>
                     <dd>
                         {% for rel_prefix in appears_in %}
@@ -373,11 +409,14 @@
     {% if mappings %}
         <div class="card" style="margin-top: 20px">
             <a id="mappings"></a>
-            <h5 class="card-header">Metaregistry</h5>
+            <h5 class="card-header">
+                Metaregistry <i class="fas fa-angle-right"></i> {{ name }}
+            </h5>
             <div class="card-body">
                 <p>
                     The metaregistry provides mappings between the Bioregistry and other registries. There are
-                    {{ mappings | length }} mappings to external registries for <code>{{ prefix }}</code>.
+                    {{ mappings | length }} mappings to external registries for <code>{{ prefix }}</code> with
+                    {{ mappings | map(attribute='xref') | unique | list | length }} unique external prefixes.
                 </p>
             </div>
             <table class="table table-hover table-striped">
@@ -396,6 +435,9 @@
                                 <a href="{{ mapping.homepage }}">{{ mapping.name }}</a>
                             {% else %}
                                 {{ mapping.name }}
+                            {% endif %}
+                            {% if mapping.metaresource.logo_url %}
+                                <img style="max-height: 1em" alt="{{ mapping.name }} logo" src="{{ mapping.metaresource.logo_url }}" />
                             {% endif %}
                         </td>
                         <td><code>{{ mapping.metaprefix }}</code></td>
@@ -421,7 +463,7 @@
             <div class="card-body">
                 <p>
                     Providers are various services that resolve CURIEs to URLs. The example CURIE
-                    <code>{{ prefix }}:{{ example }}</code> is used to demonstrate the provides available for
+                    {{ utils.code_curie(prefix, identifier) }} is used to demonstrate the provides available for
                     <code>{{ prefix }}</code>. Generation of OLS and BioPortal URLs requires additional programmatic
                     logic beyond string formatting.
                 </p>

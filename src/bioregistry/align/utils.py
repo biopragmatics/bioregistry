@@ -8,10 +8,11 @@ from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, S
 import click
 from tabulate import tabulate
 
-from ..data import EXTERNAL
+from ..constants import EXTERNAL
 from ..resource_manager import Manager
 from ..schema import Resource
-from ..utils import is_mismatch, norm, read_metaregistry
+from ..schema_utils import is_mismatch, read_metaregistry
+from ..utils import norm
 
 __all__ = [
     "Aligner",
@@ -75,7 +76,7 @@ class Aligner(ABC):
 
     def _align(self):
         """Align the external registry."""
-        for external_id, external_entry in self.external_registry.items():
+        for external_id, external_entry in sorted(self.external_registry.items()):
             if external_id in self.skip_external:
                 continue
 
@@ -191,9 +192,9 @@ class Aligner(ABC):
         directory = EXTERNAL / self.key
         directory.mkdir(parents=True, exist_ok=True)
         with (directory / "curation.tsv").open("w") as file:
-            print(self.subkey, *self.curation_header, sep="\t", file=file)  # noqa:T001
+            print(self.subkey, *self.curation_header, sep="\t", file=file)  # noqa:T201
             for row in rows:
-                print(*row, sep="\t", file=file)  # noqa:T001
+                print(*row, sep="\t", file=file)  # noqa:T201
 
     def get_curation_table(self, **kwargs) -> Optional[str]:
         """Get the curation table as a string, built by :mod:`tabulate`."""
@@ -212,4 +213,4 @@ class Aligner(ABC):
         """Print the curation table."""
         s = self.get_curation_table(**kwargs)
         if s:
-            print(s)  # noqa:T001
+            print(s)  # noqa:T201

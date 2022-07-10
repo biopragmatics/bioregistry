@@ -1,3 +1,27 @@
+{% macro code_curie(prefix, identifier) -%}
+    <code>{{ bioregistry.curie_to_str(prefix, identifier) }}</code>
+{% endmacro %}
+
+{% macro render_resource_warnings(resource) -%}
+    {% if resource.deprecated %}
+        <span class="badge badge-warning" style="display: inline-block;">
+            Deprecated <i class="fas fa-exclamation-triangle"></i>
+        </span>
+    {% elif resource.provides %}
+        <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
+           href="{{ url_for("ui.resource", prefix=resource.provides) }}"
+           title="{{ bioregistry.get_name(resource.provides) }} ({{ resource.provides }})">
+            Provider <i class="fas fa-exclamation-triangle"></i>
+        </a>
+    {% elif resource.has_canonical %}
+        <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
+           href="{{ url_for("ui.resource", prefix=resource.has_canonical) }}"
+           title="{{ bioregistry.get_name(resource.has_canonical) }} ({{ resource.has_canonical }})">
+            Has Canonical <i class="fas fa-exclamation-triangle"></i>
+        </a>
+    {% endif %}
+{% endmacro %}
+
 {% macro render_provider_table(prefix, identifier, providers) -%}
     {% if providers %}
         <table class="table table-hover table-striped">

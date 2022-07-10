@@ -11,7 +11,7 @@ import requests
 import yaml
 from pystow.utils import download
 
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL
 
 __all__ = [
     "get_obofoundry",
@@ -59,8 +59,7 @@ def _process(record):
     rv = {
         "name": record["title"],
         "description": record.get("description"),
-        "deprecated": record.get("is_obsolete", False),
-        "inactive": _parse_activity_status(record),
+        "deprecated": record["activity_status"] != "active",
         "homepage": record.get("homepage") or record.get("repository"),
         "preferredPrefix": record.get("preferredPrefix"),
         "license": record.get("license", {}).get("label"),
@@ -68,12 +67,22 @@ def _process(record):
         "contact": record.get("contact", {}).get("email"),
         "contact.label": record.get("contact", {}).get("label"),
         "contact.github": record.get("contact", {}).get("github"),
+        "contact.orcid": record.get("contact", {}).get("orcid"),
         "repository": record.get("repository"),
     }
 
+    for key in ("publications", "twitter"):
+        value = record.get(key)
+        if value:
+            rv[key] = value
+
     dependencies = record.get("dependencies")
     if dependencies:
-        rv["depends_on"] = sorted(dependency["id"] for dependency in record.get("dependencies", []))
+        rv["depends_on"] = sorted(
+            dependency["id"]
+            for dependency in record.get("dependencies", [])
+            if dependency.get("type") not in {"BridgeOntology"}
+        )
 
     for product in record.get("products", []):
         if product["id"] == f"{oid}.obo":
@@ -84,18 +93,6 @@ def _process(record):
             rv["download.owl"] = product["ontology_purl"]
 
     return {k: v for k, v in rv.items() if v is not None}
-
-
-def _parse_activity_status(record) -> bool:
-    status = record["activity_status"]
-    if status == "inactive":
-        return True
-    elif status == "active":
-        return False
-    elif status == "orphaned":
-        return True
-    else:
-        raise ValueError(f"unexpected activity value: {status}")
 
 
 def get_obofoundry_example(prefix: str) -> Optional[str]:

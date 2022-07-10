@@ -19,10 +19,12 @@ __all__ = [
 
 HERE = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
 DATA_DIRECTORY = HERE / "data"
+EXTERNAL = DATA_DIRECTORY / "external"
 BIOREGISTRY_PATH = DATA_DIRECTORY / "bioregistry.json"
 METAREGISTRY_PATH = DATA_DIRECTORY / "metaregistry.json"
 COLLECTIONS_PATH = DATA_DIRECTORY / "collections.json"
 MISMATCH_PATH = DATA_DIRECTORY / "mismatch.json"
+CONTEXTS_PATH = DATA_DIRECTORY / "contexts.json"
 
 BIOREGISTRY_MODULE = pystow.module("bioregistry")
 
@@ -36,8 +38,11 @@ EXPORT_DIRECTORY = ROOT.joinpath("exports")
 
 EXPORT_CONTEXTS = EXPORT_DIRECTORY / "contexts"
 CONTEXT_BIOREGISTRY_PATH = EXPORT_CONTEXTS / "bioregistry.context.jsonld"
+SHACL_TURTLE_PATH = EXPORT_CONTEXTS / "bioregistry.context.ttl"
 CONTEXT_OBO_PATH = EXPORT_CONTEXTS / "obo.context.jsonld"
+SHACL_OBO_TURTLE_PATH = EXPORT_CONTEXTS / "obo.context.ttl"
 CONTEXT_OBO_SYNONYMS_PATH = EXPORT_CONTEXTS / "obo_synonyms.context.jsonld"
+SHACL_OBO_SYNONYMS_TURTLE_PATH = EXPORT_CONTEXTS / "obo_synonyms.context.ttl"
 
 EXPORT_RDF = EXPORT_DIRECTORY.joinpath("rdf")
 SCHEMA_SVG_PATH = EXPORT_RDF / "schema.svg"
@@ -66,6 +71,13 @@ EXPORT_COLLECTIONS = EXPORT_DIRECTORY.joinpath("collections")
 COLLECTIONS_YAML_PATH = EXPORT_COLLECTIONS / "collections.yml"
 COLLECTIONS_TSV_PATH = EXPORT_COLLECTIONS / "collections.tsv"
 
+EXPORT_TABLES = EXPORT_DIRECTORY.joinpath("tables")
+TABLES_GOVERNANCE_TSV_PATH = EXPORT_TABLES.joinpath("comparison_goveranance.tsv")
+TABLES_GOVERNANCE_LATEX_PATH = EXPORT_TABLES.joinpath("comparison_goveranance.tex")
+TABLES_METADATA_TSV_PATH = EXPORT_TABLES.joinpath("comparison_metadata.tsv")
+TABLES_METADATA_LATEX_PATH = EXPORT_TABLES.joinpath("comparison_metadata.tex")
+TABLES_SUMMARY_LATEX_PATH = EXPORT_TABLES.joinpath("summary.tex")
+
 #: The URL of the remote Bioregistry site
 BIOREGISTRY_REMOTE_URL = pystow.get_config("bioregistry", "url") or "https://bioregistry.io"
 
@@ -73,7 +85,6 @@ BIOREGISTRY_REMOTE_URL = pystow.get_config("bioregistry", "url") or "https://bio
 IDOT_BROKEN = {
     "gramene.growthstage",
     "oma.hog",
-    "obi",
     "mir",  # Added on 2021-10-08
     "storedb",  # Added on 2021-10-12
 }
@@ -85,6 +96,8 @@ MIRIAM_BLACKLIST = {
     # this one uses the names instead of IDs, and points to a dead resource.
     # See https://github.com/identifiers-org/identifiers-org.github.io/issues/139
     "pid.pathway",
+    # this uses namespace-in-namespace
+    "neurolex",
 }
 IDENTIFIERS_ORG_URL_PREFIX = "https://identifiers.org/"
 
@@ -100,3 +113,4 @@ LINK_PRIORITY = [
     "bioportal",
     "scholia",
 ]
+NDEX_UUID = "860647c4-f7c1-11ec-ac45-0ac135e8bacf"

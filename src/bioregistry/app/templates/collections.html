@@ -62,7 +62,7 @@
                         <a href="{{ url_for('ui.collection', identifier=identifier) }}">{{ row.name }}</a>
                     </td>
                     <td class="text-right">{{ row.resources | length }}</td>
-                    <td><small>{{ row.description }}</small></td>
+                    <td><small>{{ markdown(row.description) | safe }}</small></td>
                 </tr>
             {% endfor %}
         </table>

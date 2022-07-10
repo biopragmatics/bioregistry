@@ -6,6 +6,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'schedule' || github.repository == 'biopragmatics/bioregistry' }}
     steps:
       - uses: actions/checkout@master
         with:
@@ -27,8 +28,12 @@ jobs:
           tox -e update
         env:
           BIOPORTAL_API_KEY: ${{ secrets.BIOPORTAL_API_KEY }}
+          ECOPORTAL_API_KEY: ${{ secrets.ECOPORTAL_API_KEY }}
+          AGROPORTAL_API_KEY: ${{ secrets.AGROPORTAL_API_KEY }}
           FAIRSHARING_LOGIN: ${{ secrets.FAIRSHARING_LOGIN }}
           FAIRSHARING_PASSWORD: ${{ secrets.FAIRSHARING_PASSWORD }}
+          NDEX_USERNAME: ${{ secrets.NDEX_USERNAME }}
+          NDEX_PASSWORD: ${{ secrets.NDEX_PASSWORD }}
       - name: Check environment
         run: echo ${{ steps.update.outputs.BR_UPDATED }}
       - name: Commit files
@@ -68,6 +73,22 @@ jobs:
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      - name: bump2version patch
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        run: |
+          tox -e bumpversion patch
+      - name: Push changes
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true
+
+      - name: Sleep to avoid race conditions
+        if: steps.update.outputs.BR_UPDATED == 'true'
+        run: |
+          sleep 300
 
       ############
       #  DOCKER  #
@@ -96,18 +117,3 @@ jobs:
       - name: Image digest
         if: steps.update.outputs.BR_UPDATED == 'true'
         run: echo ${{ steps.docker_build.outputs.digest }}
-
-      #############
-      #  CLEANUP  #
-      #############
-      - name: bump2version patch
-        if: steps.update.outputs.BR_UPDATED == 'true'
-        run: |
-          tox -e bumpversion patch
-      - name: Push changes
-        if: steps.update.outputs.BR_UPDATED == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-          tags: true

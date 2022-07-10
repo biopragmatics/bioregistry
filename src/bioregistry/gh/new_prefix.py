@@ -18,7 +18,7 @@ import bioregistry
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.gh import github_client
 from bioregistry.schema import Author, Resource
-from bioregistry.utils import add_resource
+from bioregistry.schema_utils import add_resource
 
 logger = logging.getLogger(__name__)
 
@@ -81,7 +81,9 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
                 issue_id,
             )
             continue
-        rv[issue_id] = Resource(prefix=prefix, contributor=contributor, **resource_data)
+        rv[issue_id] = Resource(
+            prefix=prefix, contributor=contributor, github_request_issue=issue_id, **resource_data
+        )
     return rv
 
 
