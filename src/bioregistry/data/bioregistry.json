@@ -41449,6 +41449,12 @@
     "uri_format": "https://tripod.nih.gov/bioplanet/detail.jsp?pid=bioplanet_$1"
   },
   "ncats.drug": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "ncats.drug",
+      "uri_format": "https://drugs.ncats.io/drug/$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -41466,14 +41472,22 @@
         "github": "vdancik",
         "name": "Vlado Dancik",
         "orcid": "0000-0002-5970-6660"
+      },
+      {
+        "github": "sierra-moxon",
+        "name": "Sierra Moxon",
+        "orcid": "0000-0002-8719-7760"
       }
     ],
-    "description": "The [National Center for Advancing Translational Sciences (NCATS)](https://ncats.nih.gov/) has developed Inxight: Drugs as a comprehensive portal for drug development information. NCATS Inxight: Drugs  contains information on ingredients in medicinal products, including:",
+    "description": "The National Center for Advancing Translational Sciences](http://www.ncats.nih.gov/) (NCATS) has developed Inxight Drugs as a comprehensive portal for drug development information. NCATS Inxight Drugs contains information on ingredients in medicinal products, including:\n\n- US Approved Drugs\n- Marketed Drugs\n- Investigational Drugs\n- Other Substances",
     "example": "44259",
     "example_extras": [
       "1IJV77EI07"
     ],
     "homepage": "https://drugs.ncats.io/",
+    "mappings": {
+      "biolink": "ncats.drug"
+    },
     "name": "NCATS Drugs",
     "synonyms": [
       "inxight",
