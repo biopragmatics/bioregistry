@@ -461,7 +461,7 @@ It looks like this: [![Powered by the Bioregistry](https://img.shields.io/static
 ### 📖 Citation
 
 > [The Bioregistry: Unifying the Identification of Biomedical Entities through an Integrative, Open, Community-driven Metaregistry](https://bioregistry.io/doi:10.1101/2022.07.08.499378)
-> <br />Hoyt, C. T. and Balk, M. and Callahan, T. J. and Domingo-Fernandez, D. and Haendel, M. A. and Hegde, H. B. and Himmelstein, D. S. and Karis, K. and Kunze, J. and Lubiana, T. and Matentzoglu, N. and McMurry, J. and Moxon, S. and Mungall, C. J. and Rutz, A. and Unni, D. R. and Willighagen, E. and Winston, D. and Gyori, B. M. (2022)
+> <br />Hoyt, C. T., Balk, M., Callahan, T. J., Domingo-Fernandez, D., Haendel, M. A., Hegde, H. B., Himmelstein, D. S., Karis, K., Kunze, J., Lubiana, T., Matentzoglu, N., McMurry, J., Moxon, S., Mungall, C. J., Rutz, A., Unni, D. R., Willighagen, E., Winston, D., and Gyori, B. M. (2022)
 > <br />*bioRxiv*, 2022.07.08.499378
 
 ```bibtex
