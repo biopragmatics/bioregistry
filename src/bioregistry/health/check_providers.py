@@ -51,10 +51,10 @@ def _process(element: Tuple[str, str, str]) -> Tuple[str, str, str, bool, str]:
 def main():
     """Run the provider health check script."""
     rows = []
-    for prefix in bioregistry.read_registry():
-        if bioregistry.is_deprecated(prefix):
+    for prefix, resource in tqdm(sorted(bioregistry.read_registry().items())):
+        if resource.is_deprecated():
             continue
-        example = bioregistry.get_example(prefix)
+        example = resource.get_example()
         if example is None:
             continue
 
