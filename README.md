@@ -144,7 +144,7 @@ assert 'ncbitaxon' == normalize_prefix('ncbitaxon')
 # This works for uppercased prefixes, like:
 assert 'chebi' == normalize_prefix("CHEBI")
 
-# This works for mixed case prefies like
+# This works for mixed case prefixes like
 assert 'fbbt' == normalize_prefix("FBbt")
 
 # This works for synonym prefixes, like:
