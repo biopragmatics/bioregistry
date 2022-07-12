@@ -39,6 +39,11 @@ MAPPING = {
     "Additional Comments": "comment",
     "Contributor ORCiD": "contributor_orcid",
     "Contributor Name": "contributor_name",
+    "Contributor GitHub": "contributor_gitub",
+    "Contact ORCiD": "contact_orcid",
+    "Contact Name": "contact_name",
+    "Contact Email": "contact_email",
+    "Contact GitHub": "contact_github",
 }
 
 ORCID_HTTP_PREFIX = "http://orcid.org/"
