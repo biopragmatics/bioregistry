@@ -39,6 +39,11 @@ MAPPING = {
     "Additional Comments": "comment",
     "Contributor ORCiD": "contributor_orcid",
     "Contributor Name": "contributor_name",
+    "Contributor GitHub": "contributor_gitub",
+    "Contact ORCiD": "contact_orcid",
+    "Contact Name": "contact_name",
+    "Contact Email": "contact_email",
+    "Contact GitHub": "contact_github",
 }
 
 ORCID_HTTP_PREFIX = "http://orcid.org/"
@@ -119,6 +124,7 @@ def make_title(prefixes: Sequence[str]) -> str:
 @verbose_option
 def main(dry: bool, github: bool, force: bool):
     """Run the automatic curator."""
+    dry = True
     status_porcelain_result = github_client.status_porcelain()
     if status_porcelain_result and not force:
         click.secho(f"The working directory is dirty:\n\n{status_porcelain_result}", fg="red")
