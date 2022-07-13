@@ -251,10 +251,12 @@ orcid:0000-0001-9439-5346 rdfs:label "Benjamin Gyori",
         "Benjamin M. Gyori" ;
     dcterms:contributor bioregistry:bko,
         bioregistry:casspc,
+        bioregistry:cordis.project,
         bioregistry:nihreporter.project,
         bioregistry:pdc.study,
         bioregistry:phosphosite.sitegroup,
-        bioregistry:signor.relation .
+        bioregistry:signor.relation,
+        bioregistry:zenodo.record .
 
 orcid:0000-0002-3012-7446 rdfs:label "Daniel Himmelstein" ;
     dcterms:contributor bioregistry:openalex .
@@ -12820,9 +12822,10 @@ bioregistry:xenbase a bioregistry.schema:0000001 ;
         uniprot.resource:Xenbase ;
     foaf:homepage "https://www.xenbase.org/"^^xsd:string ;
     bioregistry.schema:0000005 "XB-GENE-922462"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.xenbase.org/common/xsearch.do?exactSearch=true&searchIn=7&searchValue=$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.xenbase.org/entry/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^XB\\-\\w+\\-\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-2340-5356 .
 
 bioregistry:xl a bioregistry.schema:0000001 ;
     rdfs:label "Cross-linker reagents ontology" ;
@@ -13082,6 +13085,8 @@ orcid:0000-0002-2100-6351 rdfs:label "Carrine Blank" .
 orcid:0000-0002-2118-035X rdfs:label "Adrien Rougny" .
 
 orcid:0000-0002-2193-0704 rdfs:label "Jade Hotchkiss" .
+
+orcid:0000-0002-2340-5356 rdfs:label "Troy Pells" .
 
 orcid:0000-0002-2404-1582 rdfs:label "Clement Jonquet" .
 
@@ -20116,6 +20121,27 @@ bioregistry:conso a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^CONSO\\d{5}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:cordis.article a bioregistry.schema:0000001 ;
+    rdfs:label "CORDIS Article" ;
+    dc:description "The Community Research and Development Information Service (CORDIS) is the European Commission's primary source of results from the projects funded by the EU's framework programmes for research and innovation (FP1 to Horizon 2020)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://cordis.europa.eu/"^^xsd:string ;
+    bioregistry.schema:0000005 "436605"^^xsd:string ;
+    bioregistry.schema:0000006 "https://cordis.europa.eu/article/id/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:cordis.project a bioregistry.schema:0000001 ;
+    rdfs:label "CORDIS Project" ;
+    dc:description "The Community Research and Development Information Service (CORDIS) is the European Commission's primary source of results from the projects funded by the EU's framework programmes for research and innovation (FP1 to Horizon 2020)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://cordis.europa.eu/"^^xsd:string ;
+    bioregistry.schema:0000005 "817732"^^xsd:string ;
+    bioregistry.schema:0000006 "https://cordis.europa.eu/project/id/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:cosmic.cell a bioregistry.schema:0000001 ;
     rdfs:label "COSMIC Cell Lines" ;
     dc:description "COSMIC, the Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer"^^xsd:string ;
@@ -23685,6 +23711,18 @@ bioregistry:zeco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:mco ;
     bioregistry.schema:0000019 orcid:0000-0002-9900-7880 .
+
+bioregistry:zenodo.record a bioregistry.schema:0000001 ;
+    rdfs:label "Zenodo" ;
+    dc:description "Zenodo is an open repository that allows researchers to deposit research papers, data sets, research software, reports, and any other research related digital artefacts."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P4901 ;
+    foaf:homepage "https://zenodo.org"^^xsd:string ;
+    bioregistry.schema:0000005 "4390079"^^xsd:string ;
+    bioregistry.schema:0000006 "https://zenodo.org/record/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:zfa a bioregistry.schema:0000001 ;
     rdfs:label "Zebrafish anatomy and development ontology" ;
@@ -28018,6 +28056,8 @@ wikidata:P4616 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P486 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P4901 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P492 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P4926 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -31400,6 +31440,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cohd,
         bioregistry:come,
         bioregistry:conso,
+        bioregistry:cordis.article,
         bioregistry:cosmic.cell,
         bioregistry:cp,
         bioregistry:credit,
@@ -32097,6 +32138,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P4537,
         wikidata:P4616,
         wikidata:P486,
+        wikidata:P4901,
         wikidata:P492,
         wikidata:P4926,
         wikidata:P493,
@@ -37183,6 +37225,8 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:compulyeast,
         bioregistry:conoserver,
         bioregistry:conso,
+        bioregistry:cordis.article,
+        bioregistry:cordis.project,
         bioregistry:coriell,
         bioregistry:corrdb,
         bioregistry:corum,
@@ -38324,6 +38368,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:yrcpdr,
         bioregistry:zea,
         bioregistry:zeco,
+        bioregistry:zenodo.record,
         bioregistry:zfa,
         bioregistry:zfin,
         bioregistry:zfs,

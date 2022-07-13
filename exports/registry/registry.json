@@ -750,7 +750,7 @@
     "preferred_prefix": "APO",
     "repository": "https://github.com/obophenotype/ascomycete-phenotype-ontology",
     "uri_format": "https://www.yeastgenome.org/observable/APO:$1",
-    "version": "2022-04-19"
+    "version": "2022-07-06"
   },
   "apollosv": {
     "appears_in": [
@@ -1831,7 +1831,7 @@
   },
   "biolink": {
     "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations.",
-    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/26/biolink.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/28/biolink.owl",
     "example": "Gene",
     "homepage": "https://biolink.github.io/biolink-model/",
     "mappings": {
@@ -5051,6 +5051,42 @@
     "pattern": "^CONSO\\d{5}$",
     "preferred_prefix": "conso",
     "uri_format": "https://pharmacome.github.io/conso/$1"
+  },
+  "cordis.article": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Community Research and Development Information Service (CORDIS) is the European Commission's primary source of results from the projects funded by the EU's framework programmes for research and innovation (FP1 to Horizon 2020).",
+    "example": "436605",
+    "homepage": "https://cordis.europa.eu/",
+    "name": "CORDIS Article",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "cordis.article",
+    "uri_format": "https://cordis.europa.eu/article/id/$1"
+  },
+  "cordis.project": {
+    "contributor": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
+      "name": "Benjamin Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "The Community Research and Development Information Service (CORDIS) is the European Commission's primary source of results from the projects funded by the EU's framework programmes for research and innovation (FP1 to Horizon 2020).",
+    "example": "817732",
+    "homepage": "https://cordis.europa.eu/",
+    "name": "CORDIS Project",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "cordis.project",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://cordis.europa.eu/project/id/$1"
   },
   "coriell": {
     "description": "The Coriell Cell Repositories provide essential research reagents to the scientific community by establishing, verifying, maintaining, and distributing cell cultures and DNA derived from cell cultures. These collections, supported by funds from the National Institutes of Health (NIH) and several foundations, are extensively utilized by research scientists around the world.",
@@ -10684,7 +10720,7 @@
       "gomfid"
     ],
     "uri_format": "http://amigo.geneontology.org/amigo/term/GO:$1",
-    "version": "2022-06-15"
+    "version": "2022-07-01"
   },
   "go.model": {
     "description": "GO-Causal Activity Models (GO-CAMs) use a defined “grammar” for linking multiple GO annotations into larger models of biological function (such as “pathways”) in a semantically structured manner. GO-CAMs are created by expert biocurators from the GO Consortium, using the Noctua Curation Platform.",
@@ -18312,8 +18348,7 @@
     "pattern": "^\\d{7}$",
     "preferred_prefix": "NOMEN",
     "repository": "https://github.com/SpeciesFileGroup/nomen",
-    "uri_format": "http://purl.obolibrary.org/obo/NOMEN_$1",
-    "version": "2019-04-17"
+    "uri_format": "http://purl.obolibrary.org/obo/NOMEN_$1"
   },
   "noncodev3": {
     "description": "NONCODE is a database of expression and functional lncRNA (long noncoding RNA) data obtained from microarray studies. LncRNAs have been shown to play key roles in various biological processes such as imprinting control, circuitry controlling pluripotency and differentiation, immune responses and chromosome dynamics. The collection references NONCODE version 3. This was replaced in 2013 by version 4.",
@@ -25020,7 +25055,7 @@
       "SYMP"
     ],
     "uri_format": "http://purl.obolibrary.org/obo/SYMP_$1",
-    "version": "2022-06-22"
+    "version": "2022-07-05"
   },
   "syoid": {
     "contributor": {
@@ -27602,6 +27637,12 @@
     "version": "2019-12-18"
   },
   "xenbase": {
+    "contact": {
+      "email": "troy_pells@yahoo.ca",
+      "github": "pellst",
+      "name": "Troy Pells",
+      "orcid": "0000-0002-2340-5356"
+    },
     "description": "Xenbase is the model organism database for Xenopus laevis and X. (Silurana) tropicalis. It contains genomic, development data and community information for Xenopus research. it includes gene expression patterns that incorporates image data from the literature, large scale screens and community submissions.",
     "example": "XB-GENE-922462",
     "homepage": "https://www.xenbase.org/",
@@ -27619,7 +27660,10 @@
     "name": "Xenbase",
     "pattern": "^XB\\-\\w+\\-\\d+$",
     "preferred_prefix": "xenbase",
-    "uri_format": "https://www.xenbase.org/common/xsearch.do?exactSearch=true&searchIn=7&searchValue=$1"
+    "synonyms": [
+      "Xenbase"
+    ],
+    "uri_format": "https://www.xenbase.org/entry/$1"
   },
   "ximbio": {
     "contributor": {
@@ -27938,6 +27982,33 @@
     "repository": "https://github.com/ybradford/zebrafish-experimental-conditions-ontology",
     "uri_format": "http://purl.obolibrary.org/obo/ZECO_$1",
     "version": "2022-02-14"
+  },
+  "zenodo.record": {
+    "contributor": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "Zenodo is an open repository that allows researchers to deposit research papers, data sets, research software, reports, and any other research related digital artefacts.",
+    "example": "4390079",
+    "homepage": "https://zenodo.org",
+    "mappings": {
+      "wikidata": "P4901"
+    },
+    "name": "Zenodo",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "zenodo.record",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "synonyms": [
+      "zenodo"
+    ],
+    "uri_format": "https://zenodo.org/record/$1"
   },
   "zfa": {
     "appears_in": [
