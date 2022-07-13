@@ -669,6 +669,24 @@ class Resource(BaseModel):
             return None
         return re.compile(pattern)
 
+    def get_pattern_re_with_banana(self, strict: bool = True):
+        """Get the compiled pattern for the prefix including a banana if available.
+
+        :param strict: If True (default), and a banana exists for the prefix,
+            the banana is required in the pattern. If False, the pattern
+            will match the banana if present but will also match the identifier
+            without the banana.
+        """
+        pattern = self.get_pattern()
+        if pattern is None:
+            return None
+        banana = self.get_banana()
+        banana_peel = self.get_banana_peel() or ':'
+        optional = '' if strict else '?'
+        if banana:
+            pattern = f'^({banana}{banana_peel}){optional}' + pattern[1:]
+        return re.compile(pattern)
+
     def get_namespace_in_lui(self) -> Optional[bool]:
         """Check if the namespace should appear in the LUI."""
         if self.namespace_in_lui is not None:
