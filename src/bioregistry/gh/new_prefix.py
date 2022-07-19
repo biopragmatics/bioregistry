@@ -12,7 +12,7 @@ from typing import Dict, Iterable, Mapping, Optional, Sequence
 from uuid import uuid4
 
 import click
-from more_click import verbose_option
+from more_click import force_option, verbose_option
 
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
@@ -39,11 +39,12 @@ MAPPING = {
     "Additional Comments": "comment",
     "Contributor ORCiD": "contributor_orcid",
     "Contributor Name": "contributor_name",
-    "Contributor GitHub": "contributor_gitub",
+    "Contributor GitHub": "contributor_github",
     "Contact ORCiD": "contact_orcid",
     "Contact Name": "contact_name",
     "Contact Email": "contact_email",
     "Contact GitHub": "contact_github",
+    "Wikidata Property": "wikidata_prefix",
 }
 
 ORCID_HTTP_PREFIX = "http://orcid.org/"
@@ -74,7 +75,31 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
         contributor = Author(
             name=resource_data.pop("contributor_name"),
             orcid=_pop_orcid(resource_data),
+            email=resource_data.pop("contributor_email", None),
+            github=resource_data.pop("contributor_github"),
         )
+
+        contact_name = resource_data.pop("contact_name", None)
+        contact_orcid = resource_data.pop("contact_orcid", None)
+        contact_email = resource_data.pop("contact_email", None)
+        contact_github = resource_data.pop("contact_github", None)
+        if contact_orcid:
+            contact = Author(
+                name=contact_name,
+                orcid=contact_orcid,
+                email=contact_email,
+                contact_github=contact_github,
+            )
+        else:
+            contact = None
+
+        wikidata_property = resource_data.pop("wikidata_prefix", None)
+        if wikidata_property:
+            wikidata = {"prefix": wikidata_property}
+            mappings = {"wikidata": wikidata_property}
+        else:
+            wikidata = mappings = None
+
         # Remove redundant prefix from identifier if given as a CURIE
         if "example" in resource_data and resource_data["example"].startswith(f"{prefix}:"):
             resource_data["example"] = resource_data["example"][len(prefix) + 1 :]
@@ -87,7 +112,13 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
             )
             continue
         rv[issue_id] = Resource(
-            prefix=prefix, contributor=contributor, github_request_issue=issue_id, **resource_data
+            prefix=prefix,
+            contributor=contributor,
+            contact=contact,
+            github_request_issue=issue_id,
+            wikidata=wikidata,
+            mappings=mappings,
+            **resource_data,
         )
     return rv
 
@@ -118,14 +149,14 @@ def make_title(prefixes: Sequence[str]) -> str:
 
 
 @click.command()
-@click.option("--dry", is_flag=True)
-@click.option("--github", is_flag=True)
-@click.option("--force", is_flag=True)
+@click.option("--dry", is_flag=True, help="Dry run - do not create any PRs")
+@click.option("--github", is_flag=True, help="Use this flag in a GHA setting to set run variables")
+@force_option
 @verbose_option
 def main(dry: bool, github: bool, force: bool):
     """Run the automatic curator."""
     status_porcelain_result = github_client.status_porcelain()
-    if status_porcelain_result and not force:
+    if status_porcelain_result and not force and not dry:
         click.secho(f"The working directory is dirty:\n\n{status_porcelain_result}", fg="red")
         sys.exit(1)
 
@@ -134,10 +165,26 @@ def main(dry: bool, github: bool, force: bool):
         sys.exit(1)
 
     issue_to_resource = get_new_prefix_issues()
-    click.echo(f"Found {len(issue_to_resource)} new prefix issues: {_join(issue_to_resource)}")
+    if issue_to_resource:
+        click.echo(f"Found {len(issue_to_resource)} new prefix issues:")
+        for issue_number in sorted(issue_to_resource):
+            link = click.style(
+                f"https://github.com/biopragmatics/bioregistry/issues/{issue_number}", fg="green"
+            )
+            click.echo(f" - {link}")
+    else:
+        click.echo("Found no new prefix issues")
 
     pulled_issues = github_client.get_issues_with_pr(issue_to_resource)
-    click.echo(f"Found PRs covering {len(pulled_issues)} new prefix issues: {_join(pulled_issues)}")
+    if pulled_issues:
+        click.echo(f"Found PRs covering {len(pulled_issues)} new prefix issues:")
+        for pr_number in sorted(pulled_issues):
+            link = click.style(
+                f"https://github.com/biopragmatics/bioregistry/pulls/{pr_number}", fg="blue"
+            )
+            click.echo(f" - {link}")
+    else:
+        click.echo("Found no PRs covering new prefix issues")
 
     # filter out issues that already have an associated pull request
     issue_to_resource = {
@@ -156,8 +203,10 @@ def main(dry: bool, github: bool, force: bool):
 
     # Add resources
     # TODO what happens if two issues have the same prefix?
+    if issue_to_resource:
+        click.secho(f"Adding {len(issue_to_resource)} resources", fg="green")
     for resource in issue_to_resource.values():
-        click.echo(f"Adding resource {resource.prefix}")
+        click.echo(f"🚀 Adding resource {resource.prefix}")
         add_resource(resource)
 
     title = make_title(sorted(resource.prefix for resource in issue_to_resource.values()))
