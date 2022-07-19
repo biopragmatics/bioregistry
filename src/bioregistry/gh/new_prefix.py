@@ -203,9 +203,7 @@ def main(dry: bool, github: bool, force: bool):
     }
 
     if issue_to_resource:
-        click.echo(
-            f"Adding {len(issue_to_resource)} issues after filter"
-        )
+        click.echo(f"Adding {len(issue_to_resource)} issues after filter")
     else:
         click.secho("No issues without PRs to worry about. Exiting.")
         sys.exit(0)
