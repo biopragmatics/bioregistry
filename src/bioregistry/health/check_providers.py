@@ -60,7 +60,9 @@ def main():
     """Run the provider health check script."""
     rows = []
 
-    for prefix, resource in tqdm(sorted(bioregistry.read_registry().items()), desc="Preparing example URLs"):
+    for prefix, resource in tqdm(
+        sorted(bioregistry.read_registry().items()), desc="Preparing example URLs"
+    ):
         if resource.is_deprecated():
             continue
         example = resource.get_example()
@@ -83,7 +85,11 @@ def main():
 
     df = pd.DataFrame(
         columns=["prefix", "example", "url", "message", "context"],
-        data=[(prefix, example, url, msg) for prefix, example, url, failed, msg in rv if failed],
+        data=[
+            (prefix, example, url, msg, context)
+            for prefix, example, url, failed, msg, context in rv
+            if failed
+        ],
     )
     click.echo(df.to_markdown())
     HEALTH_PATH.write_text(
