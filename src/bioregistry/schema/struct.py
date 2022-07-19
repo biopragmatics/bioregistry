@@ -701,11 +701,10 @@ class Resource(BaseModel):
             return re.compile(pattern)
 
         banana_peel = self.get_banana_peel()
-        if strict:
-            head = f"^({banana}{banana_peel})?"
-        else:
-            head = f"^{banana}{banana_peel}"
-        return re.compile(pattern + pattern.lstrip("^"))
+        prepattern = f"{banana}{banana_peel}"
+        if not strict:
+            prepattern = f"({prepattern})?"
+        return re.compile("^" + prepattern + pattern.lstrip("^"))
 
     def get_namespace_in_lui(self) -> Optional[bool]:
         """Check if the namespace should appear in the LUI."""
