@@ -103,6 +103,15 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
         # Remove redundant prefix from identifier if given as a CURIE
         if "example" in resource_data and resource_data["example"].startswith(f"{prefix}:"):
             resource_data["example"] = resource_data["example"][len(prefix) + 1 :]
+
+        # Capitalize the description
+        resource_data["description"] = resource_data["description"].capitalize()
+
+        # Ensure the pattern is delimited properly
+        pattern = resource_data.get("pattern")
+        if pattern:
+            resource_data["pattern"] = "^" + pattern.lstrip("^").rstrip("$") + "$"
+
         if bioregistry.get_resource(prefix) is not None:
             # TODO close issue
             logger.warning(
