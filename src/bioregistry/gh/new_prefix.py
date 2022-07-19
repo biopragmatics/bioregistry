@@ -204,16 +204,12 @@ def main(dry: bool, github: bool, force: bool):
 
     if issue_to_resource:
         click.echo(
-            f"Remaining {len(issue_to_resource)} issues after filter: {_join(issue_to_resource)}"
+            f"Adding {len(issue_to_resource)} issues after filter"
         )
     else:
         click.secho("No issues without PRs to worry about. Exiting.")
         sys.exit(0)
 
-    # Add resources
-    # TODO what happens if two issues have the same prefix?
-    if issue_to_resource:
-        click.secho(f"Adding {len(issue_to_resource)} resources", fg="green")
     for issue_number, resource in issue_to_resource.items():
         click.echo(f"🚀 Adding resource {resource.prefix} (#{issue_number})")
         add_resource(resource)
