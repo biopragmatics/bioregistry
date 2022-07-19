@@ -32,9 +32,9 @@ from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.utils import removeprefix, removesuffix
 
 try:
-    from typing import Literal  # type:ignore
+    from typing import Literal, Match  # type:ignore
 except ImportError:
-    from typing_extensions import Literal  # type:ignore
+    from typing_extensions import Literal, Match  # type:ignore
 
 __all__ = [
     "Attributable",
@@ -669,7 +669,7 @@ class Resource(BaseModel):
             return None
         return re.compile(pattern)
 
-    def get_pattern_re_with_banana(self, strict: bool = True) -> Optional[str]:
+    def get_pattern_re_with_banana(self, strict: bool = True) -> Optional[Match]:
         """Get the compiled pattern for the prefix including a banana if available.
 
         :param strict: If True (default), and a banana exists for the prefix,
@@ -677,6 +677,21 @@ class Resource(BaseModel):
             will match the banana if present but will also match the identifier
             without the banana.
         :returns: A compiled pattern for the prefix if available
+
+        >>> import bioregistry as br
+        >>> resource = br.get_resource("chebi")
+
+        Strict match requires banana
+        >>> pattern = resource.get_pattern_re_with_banana().match("1234")
+        None
+        >>> pattern = resource.get_pattern_re_with_banana().match("CHEBI:1234")
+        <re.Match object; span=(0, 10), match='CHEBI:1234'>
+
+        Loose match does not require banana
+        >>> resource.get_pattern_re_with_banana(strict=False).match('1234')
+        <re.Match object; span=(0, 4), match='1234'>
+        >>> resource.get_pattern_re_with_banana(strict=False).match('CHEBI:1234')
+        <re.Match object; span=(0, 10), match='CHEBI:1234'>
         """
         pattern = self.get_pattern()
         if pattern is None:
@@ -686,7 +701,7 @@ class Resource(BaseModel):
             return re.compile(pattern)
 
         banana_peel = self.get_banana_peel()
-        if optional:
+        if strict:
             head = f"^({banana}{banana_peel})?"
         else:
             head = f"^{banana}{banana_peel}"
