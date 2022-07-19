@@ -84,16 +84,36 @@ def main():
     )
 
     df = pd.DataFrame(
-        columns=["prefix", "example", "url", "message", "context"],
+        columns=[
+            "prefix",
+            "name",
+            "example",
+            "url",
+            "message",
+            "context",
+            "contact_name",
+            "contact_email",
+            "contact_github",
+        ],
         data=[
-            (prefix, example, url, msg, context)
+            (
+                prefix,
+                bioregistry.get_name(prefix),
+                example,
+                url,
+                msg,
+                context,
+                bioregistry.get_contact_name(prefix),
+                bioregistry.get_contact_email(prefix),
+                bioregistry.get_contact_github(prefix),
+            )
             for prefix, example, url, failed, msg, context in rv
             if failed
         ],
     )
     click.echo(df.to_markdown())
     HEALTH_PATH.write_text(
-        yaml.safe_dump(df.to_dict(orient="row"), sort_keys=True, allow_unicode=True)
+        yaml.safe_dump(df.to_dict(orient="records"), sort_keys=True, allow_unicode=True)
     )
     sys.exit(1 if 0 < failed else 0)
 
