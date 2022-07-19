@@ -32,9 +32,9 @@ from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.utils import removeprefix, removesuffix
 
 try:
-    from typing import Literal, Pattern  # type:ignore
+    from typing import Literal  # type:ignore
 except ImportError:
-    from typing_extensions import Literal, Pattern  # type:ignore
+    from typing_extensions import Literal  # type:ignore
 
 __all__ = [
     "Attributable",
@@ -669,8 +669,14 @@ class Resource(BaseModel):
             return None
         return re.compile(pattern)
 
-    def get_pattern_re_with_banana(self, strict: bool = True) -> Optional[Pattern]:
+    def get_pattern_re_with_banana(self, strict: bool = True):
         """Get the compiled pattern for the prefix including a banana if available.
+
+        .. warning::
+
+            This function is meant to mediate backwards compatibility with legacy
+            MIRIAM/Identifiers.org standards. New projects should **not** use redundant
+            prefixes in their local unique identifiers.
 
         :param strict: If True (default), and a banana exists for the prefix,
             the banana is required in the pattern. If False, the pattern
@@ -683,7 +689,7 @@ class Resource(BaseModel):
 
         Strict match requires banana
         >>> pattern = resource.get_pattern_re_with_banana().match("1234")
-        None
+
         >>> pattern = resource.get_pattern_re_with_banana().match("CHEBI:1234")
         <re.Match object; span=(0, 10), match='CHEBI:1234'>
 
