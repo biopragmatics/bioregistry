@@ -94,6 +94,8 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
             contact = None
 
         wikidata_property = resource_data.pop("wikidata_prefix", None)
+        wikidata: Optional[Mapping]
+        mappings: Optional[Mapping]
         if wikidata_property:
             wikidata = {"prefix": wikidata_property}
             mappings = {"wikidata": wikidata_property}
