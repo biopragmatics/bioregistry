@@ -32,9 +32,9 @@ from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.utils import removeprefix, removesuffix
 
 try:
-    from typing import Literal, Match  # type:ignore
+    from typing import Literal, Pattern  # type:ignore
 except ImportError:
-    from typing_extensions import Literal, Match  # type:ignore
+    from typing_extensions import Literal, Pattern  # type:ignore
 
 __all__ = [
     "Attributable",
@@ -669,7 +669,7 @@ class Resource(BaseModel):
             return None
         return re.compile(pattern)
 
-    def get_pattern_re_with_banana(self, strict: bool = True) -> Optional[Match]:
+    def get_pattern_re_with_banana(self, strict: bool = True) -> Optional[Pattern]:
         """Get the compiled pattern for the prefix including a banana if available.
 
         :param strict: If True (default), and a banana exists for the prefix,
