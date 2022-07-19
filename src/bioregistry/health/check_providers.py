@@ -30,6 +30,7 @@ def _process(element: Tuple[str, str, str]) -> Tuple[str, str, str, bool, str, s
 
     failed = False
     msg = ""
+    context = ""
     try:
         res = requests.get(url, timeout=15, allow_redirects=True)
     except IOError as e:
@@ -59,7 +60,7 @@ def main():
     """Run the provider health check script."""
     rows = []
 
-    for prefix, resource in tqdm(sorted(bioregistry.read_registry().items())):
+    for prefix, resource in tqdm(sorted(bioregistry.read_registry().items()), desc="Preparing example URLs"):
         if resource.is_deprecated():
             continue
         example = resource.get_example()
@@ -75,7 +76,7 @@ def main():
     with logging_redirect_tqdm():
         rv = thread_map(_process, rows, desc="Checking providers")
 
-    failed = sum(failed for _, _, _, failed, _ in rv)
+    failed = sum(failed for _, _, _, failed, _, _ in rv)
     click.secho(
         f"{failed}/{len(rv)} ({failed / len(rv):.2%}) providers failed", fg="red", bold=True
     )
