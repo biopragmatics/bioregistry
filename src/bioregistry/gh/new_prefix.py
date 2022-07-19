@@ -176,9 +176,9 @@ def main(dry: bool, github: bool, force: bool):
     issue_to_resource = get_new_prefix_issues()
     if issue_to_resource:
         click.echo(f"Found {len(issue_to_resource)} new prefix issues:")
-        for issue_number in sorted(issue_to_resource):
+        for issue_number in sorted(issue_to_resource, reverse=True):
             link = click.style(
-                f"https://github.com/biopragmatics/bioregistry/issues/{issue_number}", fg="green"
+                f"https://github.com/biopragmatics/bioregistry/issues/{issue_number}", fg="cyan"
             )
             click.echo(f" - {link}")
     else:
@@ -187,9 +187,9 @@ def main(dry: bool, github: bool, force: bool):
     pulled_issues = github_client.get_issues_with_pr(issue_to_resource)
     if pulled_issues:
         click.echo(f"Found PRs covering {len(pulled_issues)} new prefix issues:")
-        for pr_number in sorted(pulled_issues):
+        for pr_number in sorted(pulled_issues, reverse=True):
             link = click.style(
-                f"https://github.com/biopragmatics/bioregistry/pulls/{pr_number}", fg="blue"
+                f"https://github.com/biopragmatics/bioregistry/pulls/{pr_number}", fg="cyan"
             )
             click.echo(f" - {link}")
     else:
@@ -214,8 +214,8 @@ def main(dry: bool, github: bool, force: bool):
     # TODO what happens if two issues have the same prefix?
     if issue_to_resource:
         click.secho(f"Adding {len(issue_to_resource)} resources", fg="green")
-    for resource in issue_to_resource.values():
-        click.echo(f"🚀 Adding resource {resource.prefix}")
+    for issue_number, resource in issue_to_resource.items():
+        click.echo(f"🚀 Adding resource {resource.prefix} (#{issue_number})")
         add_resource(resource)
 
     title = make_title(sorted(resource.prefix for resource in issue_to_resource.values()))
