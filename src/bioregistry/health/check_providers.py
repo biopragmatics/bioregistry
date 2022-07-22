@@ -79,7 +79,7 @@ def main():
         rv = thread_map(_process, rows, desc="Checking providers")
 
     failed = sum(failed for _, _, _, failed, _, _ in rv)
-    click.secho(
+    secho(
         f"{failed}/{len(rv)} ({failed / len(rv):.2%}) providers failed", fg="red", bold=True
     )
 
