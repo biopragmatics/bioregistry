@@ -936,6 +936,12 @@
     "uri_format": "https://agricola.nal.usda.gov/vwebv/holdingsInfo?bibId=$1"
   },
   "agrkb": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "AGRKB",
+      "uri_format": "https://www.alliancegenome.org/$1"
+    },
     "contact": {
       "email": "cjmungall@lbl.gov",
       "github": "cmungall",
@@ -951,6 +957,9 @@
     "example": "100000000000001",
     "github_request_issue": 359,
     "homepage": "https://www.alliancegenome.org",
+    "mappings": {
+      "biolink": "AGRKB"
+    },
     "name": "Alliance of Genome Resources Knowledge Base",
     "pattern": "^[1-9][0-9]{14}$",
     "reviewer": {
@@ -49014,7 +49023,8 @@
       "aberowl": "PCL",
       "bioportal": "PCL",
       "obofoundry": "pcl",
-      "ols": "pcl"
+      "ols": "pcl",
+      "ontobee": "PCL"
     },
     "obofoundry": {
       "contact": "davidos@ebi.ac.uk",
@@ -49055,6 +49065,11 @@
       "prefix": "pcl",
       "version": "2022-04-27",
       "version.iri": "http://purl.obolibrary.org/obo/pcl/releases/2022-04-27/pcl-full.owl"
+    },
+    "ontobee": {
+      "library": "Library",
+      "name": "Provisional Cell Ontology",
+      "prefix": "PCL"
     },
     "pattern": "^\\d{7}$"
   },
@@ -63922,6 +63937,12 @@
     ]
   },
   "uniprot.disease": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "SPDI",
+      "uri_format": "https://api.ncbi.nlm.nih.gov/variation/v0/spdi/$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -63932,6 +63953,9 @@
     "download_obo": "https://www.uniprot.org/diseases/?query=*&format=obo",
     "example": "DI-04240",
     "homepage": "https://www.uniprot.org/diseases/",
+    "mappings": {
+      "biolink": "SPDI"
+    },
     "name": "UniProt Diseases",
     "part_of": "uniprot",
     "pattern": "^DI-\\d{5}$",

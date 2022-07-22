@@ -14806,6 +14806,8 @@ ontobee:OVAE dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:PATO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
+ontobee:PCL dcterms:isPartOf bioregistry.metaresource:ontobee .
+
 ontobee:PCO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:PDRO dcterms:isPartOf bioregistry.metaresource:ontobee .
@@ -17230,6 +17232,8 @@ biocontext:xml dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:xsd dcterms:isPartOf bioregistry.metaresource:biocontext .
 
+biolink:AGRKB dcterms:isPartOf bioregistry.metaresource:biolink .
+
 biolink:CAID dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:CID dcterms:isPartOf bioregistry.metaresource:biolink .
@@ -17341,6 +17345,8 @@ biolink:SEED.REACTION dcterms:isPartOf bioregistry.metaresource:biolink .
 biolink:SIO dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:SNOMEDCT dcterms:isPartOf bioregistry.metaresource:biolink .
+
+biolink:SPDI dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:STY dcterms:isPartOf bioregistry.metaresource:biolink .
 
@@ -19450,6 +19456,7 @@ The Alliance of Genome Resources was founded by the following Model Organism dat
 - [FlyBase](https://flybase.org)
 - [Xenbase](https://www.xenbase.org)"""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biolink:AGRKB ;
     foaf:homepage "https://www.alliancegenome.org"^^xsd:string ;
     bioregistry.schema:0000005 "100000000000001"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.alliancegenome.org/accession/$1"^^xsd:string ;
@@ -29397,6 +29404,7 @@ bioregistry:uniprot.disease a bioregistry.schema:0000001 ;
     dc:description "The human diseases in which proteins are involved are described in UniProtKB entries with a controlled vocabulary."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:uniprot ;
+    skos:exactMatch biolink:SPDI ;
     foaf:homepage "https://www.uniprot.org/diseases/"^^xsd:string ;
     bioregistry.schema:0000005 "DI-04240"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.uniprot.org/diseases/$1"^^xsd:string ;
@@ -30674,6 +30682,7 @@ bioregistry:pcl a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:PCL,
         obofoundry:PCL,
+        ontobee:PCL,
         bioportal:PCL,
         ols:pcl ;
     foaf:homepage "https://github.com/obophenotype/provisional_cell_ontology"^^xsd:string ;
@@ -31785,7 +31794,8 @@ bioregistry.metaresource:ncbi a bioregistry.schema:0000002 ;
 bioregistry.metaresource:biolink a bioregistry.schema:0000002 ;
     rdfs:label "Biolink Model Registry" ;
     dc:description "A modeling paradigm-specific registry of prefixes and their URL expansions" ;
-    dcterms:hasPart biolink:CAID,
+    dcterms:hasPart biolink:AGRKB,
+        biolink:CAID,
         biolink:CID,
         biolink:CLINVAR,
         biolink:COG,
@@ -31841,6 +31851,7 @@ bioregistry.metaresource:biolink a bioregistry.schema:0000002 ;
         biolink:SEED.REACTION,
         biolink:SIO,
         biolink:SNOMEDCT,
+        biolink:SPDI,
         biolink:STY,
         biolink:ScopusID,
         biolink:VANDF,
@@ -32506,6 +32517,7 @@ bioregistry.metaresource:ontobee a bioregistry.schema:0000002 ;
         ontobee:ORNASEQ,
         ontobee:OVAE,
         ontobee:PATO,
+        ontobee:PCL,
         ontobee:PCO,
         ontobee:PDRO,
         ontobee:PDUMDV,
