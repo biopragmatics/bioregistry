@@ -936,6 +936,12 @@
     "uri_format": "https://agricola.nal.usda.gov/vwebv/holdingsInfo?bibId=$1"
   },
   "agrkb": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "AGRKB",
+      "uri_format": "https://www.alliancegenome.org/$1"
+    },
     "contact": {
       "email": "cjmungall@lbl.gov",
       "github": "cmungall",
@@ -951,6 +957,9 @@
     "example": "100000000000001",
     "github_request_issue": 359,
     "homepage": "https://www.alliancegenome.org",
+    "mappings": {
+      "biolink": "AGRKB"
+    },
     "name": "Alliance of Genome Resources Knowledge Base",
     "pattern": "^[1-9][0-9]{14}$",
     "reviewer": {
@@ -26127,7 +26136,7 @@
       "go": "gomodel"
     },
     "name": "Gene Ontology Causal Assembly Model",
-    "uri_format": "noctua.geneontology.org/editor/graph/gomodel:$1"
+    "uri_format": "http://noctua.geneontology.org/editor/graph/gomodel:$1"
   },
   "go.ref": {
     "banana": "GO_REF",
@@ -49145,7 +49154,8 @@
       "aberowl": "PCL",
       "bioportal": "PCL",
       "obofoundry": "pcl",
-      "ols": "pcl"
+      "ols": "pcl",
+      "ontobee": "PCL"
     },
     "obofoundry": {
       "contact": "davidos@ebi.ac.uk",
@@ -49186,6 +49196,11 @@
       "prefix": "pcl",
       "version": "2022-04-27",
       "version.iri": "http://purl.obolibrary.org/obo/pcl/releases/2022-04-27/pcl-full.owl"
+    },
+    "ontobee": {
+      "library": "Library",
+      "name": "Provisional Cell Ontology",
+      "prefix": "PCL"
     },
     "pattern": "^\\d{7}$"
   },
@@ -60066,7 +60081,7 @@
       ],
       "uri_format": "http://www.bioinf.manchester.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?prints_accn=$1&display_opts=Prints&category=None&queryform=false&regexpr=off"
     },
-    "uri_format": "130.88.97.239/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1"
+    "uri_format": "http://130.88.97.239/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1"
   },
   "srao": {
     "download_owl": "https://raw.githubusercontent.com/FAIRsharing/subject-ontology/master/releases/SRAO.owl",
@@ -64081,6 +64096,12 @@
     ]
   },
   "uniprot.disease": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "SPDI",
+      "uri_format": "https://api.ncbi.nlm.nih.gov/variation/v0/spdi/$1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -64091,6 +64112,9 @@
     "download_obo": "https://www.uniprot.org/diseases/?query=*&format=obo",
     "example": "DI-04240",
     "homepage": "https://www.uniprot.org/diseases/",
+    "mappings": {
+      "biolink": "SPDI"
+    },
     "name": "UniProt Diseases",
     "part_of": "uniprot",
     "pattern": "^DI-\\d{5}$",
@@ -67595,7 +67619,8 @@
       "pattern": "^XCO_\\d{7}$",
       "prefix": "xco"
     },
-    "twitter": "ratgenome"
+    "twitter": "ratgenome",
+    "uri_format": "https://rgd.mcw.edu/rgdweb/ontology/view.html?acc_id=XCO:$1"
   },
   "xenbase": {
     "biocontext": {
@@ -67851,7 +67876,7 @@
       "biocontext": "xml"
     },
     "name": "Extensible Markup Language",
-    "uri_format": "http://www.w3.org/XML/1998/namespace$1"
+    "uri_format": "http://www.w3.org/XML/1998/namespace#$1"
   },
   "xpo": {
     "aberowl": {
