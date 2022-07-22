@@ -6856,6 +6856,12 @@
       "obsolete": false,
       "prefix": "000446"
     },
+    "edam": {
+      "description": "CAS registry number of a chemical compound; a unique numerical identifier of chemicals in the scientific literature, as assigned by the Chemical Abstracts Service.",
+      "name": "CAS number",
+      "obsolete": false,
+      "prefix": "1002"
+    },
     "fairsharing": {
       "abbreviation": "CAS RN",
       "description": "Identifier used by the Chemical Abstracts Service Registry. A CAS Registry Number is a numeric identifier that can contain up to 10 digits, divided by hyphens into three parts. The right-most digit is a check digit used to verify the validity and uniqueness of the entire number.",
@@ -14379,6 +14385,12 @@
       "prefix": "dbSNP",
       "uri_format": "https://www.ncbi.nlm.nih.gov/snp/$1"
     },
+    "edam": {
+      "description": "Identifier of a dbSNP database entry.",
+      "name": "dbSNP ID",
+      "obsolete": false,
+      "prefix": "1106"
+    },
     "fairsharing": {
       "abbreviation": "dbSNP",
       "description": "dbSNP contains human single nucleotide variations, microsatellites, and small-scale insertions and deletions along with publication, population frequency, molecular consequence, and genomic and RefSeq mapping information for both common variations and clinical mutations.",
@@ -14398,6 +14410,7 @@
     "mappings": {
       "biocontext": "dbSNP",
       "cellosaurus": "dbSNP",
+      "edam": "1106",
       "fairsharing": "FAIRsharing.edxb58",
       "go": "dbSNP",
       "miriam": "dbsnp",
@@ -16906,6 +16919,12 @@
       "obsolete": false,
       "prefix": "000406"
     },
+    "edam": {
+      "description": "Unique identifier of a drug from the DrugBank database.",
+      "name": "DrugBank ID",
+      "obsolete": false,
+      "prefix": "2326"
+    },
     "example": "DB14938",
     "fairsharing": {
       "abbreviation": "DrugBank",
@@ -16923,6 +16942,7 @@
       "biocontext": "DrugBank",
       "cellosaurus": "DrugBank",
       "cheminf": "000406",
+      "edam": "2326",
       "fairsharing": "FAIRsharing.353yat",
       "miriam": "drugbank",
       "n2t": "drugbank",
@@ -25656,9 +25676,16 @@
   },
   "gmelin": {
     "description": "The Gmelin database is a large database of organometallic and inorganic compounds updated quarterly. It is based on the German publication Gmelins Handbuch der anorganischen Chemie which was originally published by Leopold Gmelin in 1817; the last print edition, the 8th, appeared in the 1990s.",
+    "edam": {
+      "description": "Gmelin registry number of a chemical compound.",
+      "name": "Chemical registry number (Gmelin)",
+      "obsolete": false,
+      "prefix": "1004"
+    },
     "example": "1466",
     "homepage": "https://link.springer.com/bookseries/562",
     "mappings": {
+      "edam": "1004",
       "wikidata": "P1578"
     },
     "name": "Gmelins Handbuch der anorganischen Chemie",
@@ -33796,6 +33823,12 @@
       "prefix": "KEGG.PATHWAY",
       "uri_format": "https://www.kegg.jp/entry/$1"
     },
+    "edam": {
+      "description": "Identifier of a pathway from the KEGG pathway database.",
+      "name": "Pathway ID (KEGG)",
+      "obsolete": false,
+      "prefix": "2343"
+    },
     "example": "rsk00410",
     "go": {
       "homepage": "http://www.genome.jp/kegg/pathway.html",
@@ -33806,6 +33839,7 @@
     "mappings": {
       "biocontext": "KEGG.PATHWAY",
       "biolink": "KEGG.PATHWAY",
+      "edam": "2343",
       "go": "KEGG_PATHWAY",
       "miriam": "kegg.pathway",
       "n2t": "kegg.pathway",
@@ -55027,9 +55061,16 @@
   },
   "reaxys": {
     "description": "Reaxys is a web-based tool for the retrieval of chemistry information and data from published literature, including journals and patents. The information includes chemical compounds, chemical reactions, chemical properties, related bibliographic data, substance data with synthesis planning information, as well as experimental procedures from selected journals and patents. It is licensed by Elsevier.",
+    "edam": {
+      "description": "Beilstein registry number of a chemical compound.",
+      "name": "Chemical registry number (Beilstein)",
+      "obsolete": false,
+      "prefix": "1003"
+    },
     "example": "1257009",
     "homepage": "https://www.reaxys.com",
     "mappings": {
+      "edam": "1003",
       "wikidata": "P1579"
     },
     "name": "Reaxys",
@@ -55572,6 +55613,12 @@
       "prefix": "RFAM",
       "uri_format": "http://identifiers.org/rfam/$1"
     },
+    "edam": {
+      "description": "Stable accession number of an entry (RNA family) from the RFAM database.",
+      "name": "RFAM accession",
+      "obsolete": false,
+      "prefix": "2356"
+    },
     "fairsharing": {
       "abbreviation": "Rfam",
       "description": "The Rfam database is a collection of RNA families, each represented by multiple sequence alignments, consensus secondary structures and covariance models (CMs). The families in Rfam break down into three broad functional classes: non-coding RNA genes, structured cis-regulatory elements and self-splicing RNAs. Typically these functional RNAs often have a conserved secondary structure which may be better preserved than the RNA sequence.",
@@ -55590,6 +55637,7 @@
     },
     "mappings": {
       "biocontext": "RFAM",
+      "edam": "2356",
       "fairsharing": "FAIRsharing.fex4c8",
       "go": "Rfam",
       "miriam": "rfam",
@@ -58140,6 +58188,12 @@
       "prefix": "SGD",
       "uri_format": "https://www.yeastgenome.org/locus/$1"
     },
+    "edam": {
+      "description": "Identifier of an entry from the SGD database.",
+      "name": "Gene ID (SGD)",
+      "obsolete": false,
+      "prefix": "1034"
+    },
     "example": "S000002493",
     "fairsharing": {
       "abbreviation": "SGD",
@@ -58165,6 +58219,7 @@
     },
     "mappings": {
       "biocontext": "SGD",
+      "edam": "1034",
       "fairsharing": "FAIRsharing.pzvw40",
       "go": "SGD",
       "miriam": "sgd",

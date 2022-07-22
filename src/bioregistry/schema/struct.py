@@ -428,6 +428,8 @@ class Resource(BaseModel):
     fairsharing: Optional[Mapping[str, Any]]
     #: External data from BioContext
     biocontext: Optional[Mapping[str, Any]]
+    #: External data from EDAM ontology
+    edam: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""

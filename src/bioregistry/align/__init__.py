@@ -16,6 +16,7 @@ from .bioportal import (
 from .cellosaurus import CellosaurusAligner
 from .cheminf import ChemInfAligner
 from .cropoct import CropOCTAligner
+from .edam import EDAMAligner
 from .fairsharing import FairsharingAligner
 from .go import GoAligner
 from .miriam import MiriamAligner
@@ -54,6 +55,7 @@ __all__ = [
     "PrefixCommonsAligner",
     "UniProtAligner",
     "WikidataAligner",
+    "EDAMAligner",
 ]
 
 aligner_resolver = ClassResolver.from_subclasses(
