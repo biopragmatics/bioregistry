@@ -17,6 +17,7 @@ class EDAMAligner(Aligner):
 
     key = "edam"
     getter = get_edam
+    alt_key_match = "name"
     curation_header = ("name", "description")
 
     def get_skip(self) -> Mapping[str, str]:

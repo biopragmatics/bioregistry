@@ -172,6 +172,6 @@ def _get_identifier(term, ontology: str) -> str:
 
 
 def _clean(s: str) -> str:
-    if s.endswith("identifier"):
-        s = s[: -len("identifier")].strip()
+    s = removesuffix(s, "identifier").strip()
+    s = removesuffix(s, "ID").strip()
     return s

@@ -6,6 +6,12 @@
       "prefix": "3DMET",
       "uri_format": "http://identifiers.org/3dmet/$1"
     },
+    "edam": {
+      "description": "Identifier of a metabolite from the 3DMET database.",
+      "name": "Compound ID (3DMET)",
+      "obsolete": false,
+      "prefix": "2635"
+    },
     "fairsharing": {
       "abbreviation": "3DMET",
       "description": "3DMET is a database of three-dimensional structures of natural metabolites.",
@@ -277,6 +283,12 @@
       "prefix": "ABS",
       "uri_format": "http://identifiers.org/abs/$1"
     },
+    "edam": {
+      "description": "Identifier of an entry (promoter) from the ABS database.",
+      "name": "ABS",
+      "obsolete": false,
+      "prefix": "2741"
+    },
     "fairsharing": {
       "abbreviation": "ABS",
       "description": "ABS is a database of Annotated regulatory Binding Sites from known binding sites identified in promoters of orthologous vertebrate genes.",
@@ -289,6 +301,7 @@
     },
     "mappings": {
       "biocontext": "ABS",
+      "edam": "2741",
       "fairsharing": "FAIRsharing.7mnebr",
       "miriam": "abs",
       "n2t": "abs",
@@ -1998,6 +2011,12 @@
       "prefix": "ARACHNOSERVER",
       "uri_format": "http://identifiers.org/arachnoserver/$1"
     },
+    "edam": {
+      "description": "Unique identifier of a toxin from the ArachnoServer database.",
+      "name": "ArachnoServer",
+      "obsolete": false,
+      "prefix": "2578"
+    },
     "fairsharing": {
       "abbreviation": "ArachnoServer",
       "description": "ArachnoServer is a manually curated database containing information on the sequence, three-dimensional structure, and biological activity of protein toxins derived from spider venom.",
@@ -2010,6 +2029,7 @@
     },
     "mappings": {
       "biocontext": "ARACHNOSERVER",
+      "edam": "2578",
       "fairsharing": "FAIRsharing.c54ywe",
       "miriam": "arachnoserver",
       "n2t": "arachnoserver",
@@ -2747,6 +2767,12 @@
       "name": "Anatomical Therapeutic Chemical Classification",
       "prefix": "ATC"
     },
+    "edam": {
+      "description": "Unique identifier of a drug conforming to the Anatomical Therapeutic Chemical (ATC) Classification System, a drug classification system controlled by the WHO Collaborating Centre for Drug Statistics Methodology (WHOCC).",
+      "name": "ATC code",
+      "obsolete": false,
+      "prefix": "3103"
+    },
     "fairsharing": {
       "abbreviation": "ATC",
       "description": "The Anatomical Therapeutic Chemical (ATC) Classification System is used for the classification of active ingredients of drugs according to the organ or system on which they act and their therapeutic, pharmacological and chemical properties. It is controlled by the World Health Organization Collaborating Centre for Drug Statistics Methodology (WHOCC), and was first published in 1976.",
@@ -2775,6 +2801,7 @@
       "aberowl": "ATC",
       "biocontext": "ATC",
       "bioportal": "ATC",
+      "edam": "3103",
       "fairsharing": "FAIRsharing.1a27h8",
       "miriam": "atc",
       "n2t": "atc",
@@ -4484,6 +4511,12 @@
       "prefix": "BIOCYC",
       "uri_format": "http://identifiers.org/biocyc/$1"
     },
+    "edam": {
+      "description": "Identifier of an object from one of the BioCyc databases.",
+      "name": "BioCyc",
+      "obsolete": false,
+      "prefix": "2104"
+    },
     "go": {
       "homepage": "http://biocyc.org/",
       "name": "BioCyc collection of metabolic pathway databases",
@@ -4492,6 +4525,7 @@
     },
     "mappings": {
       "biocontext": "BIOCYC",
+      "edam": "2104",
       "go": "BioCyc",
       "miriam": "biocyc",
       "n2t": "biocyc",
@@ -4641,7 +4675,7 @@
     "description": "BioGRID is a database of physical and genetic interactions in Saccharomyces cerevisiae, Caenorhabditis elegans, Drosophila melanogaster, Homo sapiens, and Schizosaccharomyces pombe.",
     "edam": {
       "description": "A unique identifier of an interaction from the BioGRID database.",
-      "name": "BioGRID interaction ID",
+      "name": "BioGRID interaction",
       "obsolete": false,
       "prefix": "2628"
     },
@@ -5093,8 +5127,15 @@
       "prefix": "BIONUMBERS",
       "uri_format": "http://identifiers.org/bionumbers/$1"
     },
+    "edam": {
+      "description": "Identifier of an entry from the BioNumbers database of key numbers and associated data in molecular biology.",
+      "name": "BioNumbers",
+      "obsolete": false,
+      "prefix": "2660"
+    },
     "mappings": {
       "biocontext": "BIONUMBERS",
+      "edam": "2660",
       "miriam": "bionumbers",
       "n2t": "bionumbers",
       "prefixcommons": "bionumbers"
@@ -7003,6 +7044,12 @@
       "prefix": "CATH",
       "uri_format": "http://identifiers.org/cath/$1"
     },
+    "edam": {
+      "description": "Identifier of a protein domain (or other node) from the CATH database.",
+      "name": "CATH",
+      "obsolete": false,
+      "prefix": "2700"
+    },
     "fairsharing": {
       "abbreviation": "CATH",
       "description": "The CATH database is a free, publicly available online resource that provides information on the evolutionary relationships of protein domains. It provides a hierarchical domain classification of protein structures in the Protein Data Bank. Protein structures are classified using a combination of automated and manual procedures. There are four major levels in this hierarchy; Class (secondary structure classification, e.g. mostly alpha), Architecture (classification based on overall shape), Topology (fold family) and Homologous superfamily (protein domains which are thought to share a common ancestor).",
@@ -7016,6 +7063,7 @@
     },
     "mappings": {
       "biocontext": "CATH",
+      "edam": "2700",
       "fairsharing": "FAIRsharing.xgcyyn",
       "miriam": "cath",
       "n2t": "cath",
@@ -7068,8 +7116,15 @@
       "prefix": "CATH.DOMAIN",
       "uri_format": "http://identifiers.org/cath.domain/$1"
     },
+    "edam": {
+      "description": "Identifier of a protein domain from CATH.",
+      "name": "CATH domain",
+      "obsolete": false,
+      "prefix": "1040"
+    },
     "mappings": {
       "biocontext": "CATH.DOMAIN",
+      "edam": "1040",
       "miriam": "cath.domain",
       "n2t": "cath.domain"
     },
@@ -7653,6 +7708,12 @@
       "prefix": "CDD",
       "uri_format": "http://identifiers.org/cdd/$1"
     },
+    "edam": {
+      "description": "Identifier of a conserved domain from the Conserved Domain Database.",
+      "name": "CDD",
+      "obsolete": false,
+      "prefix": "2666"
+    },
     "fairsharing": {
       "abbreviation": "CDD",
       "description": "The Canadian Disaster Database (CDD) contains detailed disaster information on more than 1000 natural, technological and conflict events (excluding war) that have happened since 1900 at home or abroad and that have directly affected Canadians. The database describes where and when a disaster occurred, the number of injuries, evacuations, and fatalities, as well as a rough estimate of the costs. As much as possible, the CDD contains primary data that is valid, current and supported by reliable and traceable sources, including federal institutions, provincial/territorial governments, non-governmental organizations and media sources. Data is updated and reviewed on a semi-annual basis.",
@@ -7672,6 +7733,7 @@
     },
     "mappings": {
       "biocontext": "CDD",
+      "edam": "2666",
       "fairsharing": "FAIRsharing.ea287c",
       "go": "CDD",
       "miriam": "cdd",
@@ -8422,7 +8484,7 @@
     },
     "edam": {
       "description": "Identifier of an entry from the ChEBI database.",
-      "name": "ChEBI ID",
+      "name": "ChEBI",
       "obsolete": false,
       "prefix": "1174"
     },
@@ -8918,6 +8980,12 @@
       "prefix": "CHEMIDPLUS",
       "uri_format": "http://identifiers.org/chemidplus/$1"
     },
+    "edam": {
+      "description": "Identifier of a chemical from the ChemIDplus database.",
+      "name": "Compound ID (ChemIDplus)",
+      "obsolete": false,
+      "prefix": "2658"
+    },
     "fairsharing": {
       "abbreviation": "ChemIDplus",
       "description": "ChemIDplus is a web-based search system that provides access to structure and nomenclature authority files used for the identification of chemical substances cited in National Library of Medicine (NLM) databases. It also provides structure searching and direct links to many biomedical resources at NLM and on the Internet for chemicals of interest.",
@@ -8931,9 +8999,9 @@
     },
     "mappings": {
       "biocontext": "CHEMIDPLUS",
+      "edam": "2658",
       "fairsharing": "FAIRsharing.5949vn",
       "miriam": "chemidplus",
-      "edam": "2658",
       "n2t": "chemidplus",
       "prefixcommons": "chemidplus"
     },
@@ -9078,7 +9146,7 @@
     },
     "edam": {
       "description": "Identifier of an entry from the ChemSpider database.",
-      "name": "ChemSpider ID",
+      "name": "ChemSpider",
       "obsolete": false,
       "prefix": "1173"
     },
@@ -12674,7 +12742,7 @@
     },
     "edam": {
       "description": "Identifier of a COSMIC database entry.",
-      "name": "COSMIC ID",
+      "name": "COSMIC",
       "obsolete": false,
       "prefix": "3264"
     },
@@ -14162,8 +14230,15 @@
       "prefix": "DBD",
       "uri_format": "http://identifiers.org/dbd/$1"
     },
+    "edam": {
+      "description": "Identifier of a predicted transcription factor from the DBD database.",
+      "name": "DBD",
+      "obsolete": false,
+      "prefix": "2716"
+    },
     "mappings": {
       "biocontext": "DBD",
+      "edam": "2716",
       "miriam": "dbd",
       "n2t": "dbd",
       "prefixcommons": "dbd"
@@ -14397,8 +14472,15 @@
       "prefix": "DBPROBE",
       "uri_format": "http://identifiers.org/dbprobe/$1"
     },
+    "edam": {
+      "description": "Identifier of an oligonucleotide probe from the dbProbe database.",
+      "name": "dbProbe",
+      "obsolete": false,
+      "prefix": "2719"
+    },
     "mappings": {
       "biocontext": "DBPROBE",
+      "edam": "2719",
       "miriam": "dbprobe",
       "n2t": "dbprobe",
       "ncbi": "dbProbe",
@@ -14461,7 +14543,7 @@
     },
     "edam": {
       "description": "Identifier of a dbSNP database entry.",
-      "name": "dbSNP ID",
+      "name": "dbSNP",
       "obsolete": false,
       "prefix": "1106"
     },
@@ -15714,6 +15796,12 @@
       "prefix": "DIP",
       "uri_format": "http://identifiers.org/dip/$1"
     },
+    "edam": {
+      "description": "Unique identifier of an entry from the DIP database of protein-protein interactions.",
+      "name": "DIP",
+      "obsolete": false,
+      "prefix": "2616"
+    },
     "fairsharing": {
       "abbreviation": "DIP",
       "description": "The database of interacting protein (DIP) database stores experimentally determined interactions between proteins. It combines information from a variety of sources to create a single, consistent set of protein-protein interactions. The data stored within the DIP database were curated, both manually by expert curators and automatically using computational approaches that utilize the the knowledge about the protein-protein interaction networks extracted from the core DIP data.",
@@ -15726,9 +15814,9 @@
     },
     "mappings": {
       "biocontext": "DIP",
+      "edam": "2616",
       "fairsharing": "FAIRsharing.qje0v8",
       "miriam": "dip",
-      "edam": "2616",
       "n2t": "dip",
       "prefixcommons": "dip",
       "uniprot": "DIP"
@@ -17010,7 +17098,7 @@
     },
     "edam": {
       "description": "Unique identifier of a drug from the DrugBank database.",
-      "name": "DrugBank ID",
+      "name": "DrugBank",
       "obsolete": false,
       "prefix": "2326"
     },
@@ -17514,6 +17602,12 @@
       "prefix": "EC-CODE",
       "uri_format": "http://identifiers.org/ec-code/$1"
     },
+    "edam": {
+      "description": "An Enzyme Commission (EC) number of an enzyme.",
+      "name": "EC number",
+      "obsolete": false,
+      "prefix": "1011"
+    },
     "example_decoys": [
       "100",
       "2.",
@@ -17550,9 +17644,9 @@
     },
     "mappings": {
       "biocontext": "EC-CODE",
+      "edam": "1011",
       "fairsharing": "FAIRsharing.q1fdkc",
       "go": "EC",
-      "edam": "1011",
       "miriam": "ec-code",
       "n2t": "ec-code",
       "prefixcommons": "intenz",
@@ -19299,6 +19393,12 @@
       "prefix": "EMDB",
       "uri_format": "http://identifiers.org/emdb/$1"
     },
+    "edam": {
+      "description": "Identifier of an entry from the EMDB electron microscopy database.",
+      "name": "EMDB",
+      "obsolete": false,
+      "prefix": "1146"
+    },
     "fairsharing": {
       "abbreviation": "EMDB",
       "description": "Cryo-electron microscopy reconstruction methods are uniquely able to reveal structures of many important macromolecules and macromolecular complexes. The Electron Microscopy Data Bank (EMDB) is a public repository for electron microscopy density maps of macromolecular complexes and subcellular structures. It covers a variety of techniques, including single-particle analysis, electron tomography, and electron (2D) crystallography. The EMDB was founded at EBI in 2002, under the leadership of Kim Henrick. Since 2007 it has been operated jointly by the PDBe, and the Research Collaboratory for Structural Bioinformatics (RCSB PDB) as a part of EMDataBank which is funded by a joint NIH grant to PDBe, the RCSB and the National Center for Macromolecular Imaging (NCMI).",
@@ -19313,6 +19413,7 @@
     },
     "mappings": {
       "biocontext": "EMDB",
+      "edam": "1146",
       "fairsharing": "FAIRsharing.651n9j",
       "miriam": "emdb",
       "n2t": "emdb"
@@ -19570,6 +19671,12 @@
       "prefix": "ENSEMBL",
       "uri_format": "http://ensembl.org/id/$1"
     },
+    "edam": {
+      "description": "Identifier of an entry (exon, gene, transcript or protein) from the Ensembl database.",
+      "name": "Ensembl",
+      "obsolete": false,
+      "prefix": "2610"
+    },
     "example_extras": [
       "ENSG00000049246.14",
       "ENSG00000109819.9",
@@ -19600,6 +19707,7 @@
     },
     "mappings": {
       "biocontext": "ENSEMBL",
+      "edam": "2610",
       "fairsharing": "FAIRsharing.fx0mw7",
       "go": "ENSEMBL",
       "miriam": "ensembl",
@@ -20471,6 +20579,12 @@
       "prefix": "EPD",
       "uri_format": "http://identifiers.org/epd/$1"
     },
+    "edam": {
+      "description": "Identifier of an entry (promoter) from the EPD database.",
+      "name": "EPD",
+      "obsolete": false,
+      "prefix": "2386"
+    },
     "fairsharing": {
       "abbreviation": "EPD",
       "description": "The EPD has been created and is maintained by the Lamond group in the University of Dundee. It combines a polyglot persistent database and web-application that provides open access to integrated proteomics data for >30 000 proteins from published studies on human cells and model organisms. It is designed to provide a user-friendly interface, featuring graphical navigation with interactive visualizations that facilitate powerful data exploration in an intuitive manner. The EPD offers a flexible and scalable ecosystem to integrate proteomics data with genomics information, RNA expression and other related, large-scale datasets.",
@@ -20485,6 +20599,7 @@
     },
     "mappings": {
       "biocontext": "EPD",
+      "edam": "2386",
       "fairsharing": "FAIRsharing.sym4ne",
       "miriam": "epd",
       "n2t": "epd",
@@ -22466,6 +22581,12 @@
       "prefix": "FlyBase",
       "uri_format": "https://flybase.org/reports/$1.html"
     },
+    "edam": {
+      "description": "Identifier of an object from the FlyBase database.",
+      "name": "FlyBase",
+      "obsolete": false,
+      "prefix": "1089"
+    },
     "fairsharing": {
       "abbreviation": "FlyBase",
       "description": "Genetic, genomic and molecular information pertaining to the model organism Drosophila melanogaster and related sequences. This database also contains information relating to human disease models in Drosophila, the use of transgenic constructs containing sequence from other organisms in Drosophila, and information on where to buy Drosophila strains and constructs.",
@@ -22497,6 +22618,7 @@
     "mappings": {
       "biocontext": "FlyBase",
       "cellosaurus": "FlyBase",
+      "edam": "1089",
       "fairsharing": "FAIRsharing.wrvze3",
       "go": "FB",
       "miriam": "fb",
@@ -22627,7 +22749,7 @@
     },
     "edam": {
       "description": "An identifier of a concept from Foundational Model of Anatomy.",
-      "name": "FMA concept ID",
+      "name": "FMA concept",
       "obsolete": false,
       "prefix": "1182"
     },
@@ -24453,6 +24575,12 @@
       "uri_format": "http://identifiers.org/genedb/$1"
     },
     "deprecated": true,
+    "edam": {
+      "description": "Identifier of a gene from the GeneDB database.",
+      "name": "Gene ID (GeneDB)",
+      "obsolete": false,
+      "prefix": "1035"
+    },
     "fairsharing": {
       "abbreviation": "GeneDB",
       "description": "GeneDB is a genome database for prokaryotic and eukaryotic organisms and provides a portal through which data generated by the \"Pathogen Genomics\" group at the Wellcome Trust Sanger Institute and other collaborating sequencing centres can be accessed.",
@@ -24471,9 +24599,9 @@
     },
     "mappings": {
       "biocontext": "GENEDB",
+      "edam": "1035",
       "fairsharing": "FAIRsharing.j7esqq",
       "go": "GeneDB",
-      "edam": "1035",
       "miriam": "genedb",
       "n2t": "genedb",
       "ncbi": "GeneDB",
@@ -24962,6 +25090,12 @@
       "name": "Gene Expression Omnibus",
       "prefix": "GEO",
       "uri_format": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=$1"
+    },
+    "edam": {
+      "description": "Accession number of an entry from the GEO database.",
+      "name": "GEO accession number",
+      "obsolete": false,
+      "prefix": "1147"
     },
     "fairsharing": {
       "abbreviation": "GEO",
@@ -25473,7 +25607,7 @@
     "comment": "this is exactly the same as glytoucan. Idk why there are two different ones",
     "edam": {
       "description": "Identifier of an entry from the GlycomeDB database.",
-      "name": "GlycomeDB ID",
+      "name": "GlycomeDB",
       "obsolete": false,
       "prefix": "2664"
     },
@@ -26006,7 +26140,7 @@
     },
     "edam": {
       "description": "An identifier of a concept from The Gene Ontology.",
-      "name": "GO concept ID",
+      "name": "GO concept",
       "obsolete": false,
       "prefix": "1176"
     },
@@ -27699,6 +27833,12 @@
       "prefix": "HAMAP",
       "uri_format": "http://identifiers.org/hamap/$1"
     },
+    "edam": {
+      "description": "Name of a protein family from the HAMAP database.",
+      "name": "HAMAP",
+      "obsolete": false,
+      "prefix": "2766"
+    },
     "fairsharing": {
       "abbreviation": "HAMAP",
       "description": "HAMAP is a system, based on manual protein annotation, that identifies and semi-automatically annotates proteins that are part of well-conserved families or subfamilies: the HAMAP families. HAMAP is based on manually created family rules and is applied to bacterial, archaeal and plastid-encoded proteins.",
@@ -27717,6 +27857,7 @@
     },
     "mappings": {
       "biocontext": "HAMAP",
+      "edam": "2766",
       "fairsharing": "FAIRsharing.63m4ss",
       "go": "HAMAP",
       "miriam": "hamap",
@@ -28105,7 +28246,7 @@
     },
     "edam": {
       "description": "Identifier of a HGMD database entry.",
-      "name": "HGMD ID",
+      "name": "HGMD",
       "obsolete": false,
       "prefix": "3265"
     },
@@ -30023,6 +30164,12 @@
       "name": "International Classification of Diseases, Version 10",
       "prefix": "ICD10"
     },
+    "edam": {
+      "description": "An identifier of a disease from the International Classification of Diseases (ICD) database.",
+      "name": "ICD",
+      "obsolete": false,
+      "prefix": "2611"
+    },
     "fairsharing": {
       "abbreviation": "ICD-10",
       "description": "The ICD is the international standard diagnostic classification for all general epidemiological, many health management purposes and clinical use. ICD-10 is the 10th revision of the International Statistical Classification of Diseases and Related Health Problems (ICD), a medical classification list by the World Health Organization (WHO). It contains codes for diseases, signs and symptoms, abnormal findings, complaints, social circumstances, and external causes of injury or diseases.",
@@ -30043,6 +30190,7 @@
       "biocontext": "ICD",
       "biolink": "ICD10",
       "bioportal": "ICD10",
+      "edam": "2611",
       "fairsharing": "FAIRsharing.nj16g",
       "miriam": "icd",
       "n2t": "icd",
@@ -31389,6 +31537,12 @@
       "prefix": "IPD-IMGT/HLA",
       "uri_format": "https://www.ebi.ac.uk/ipd/imgt/hla/cells/cell/?cellid=$1"
     },
+    "edam": {
+      "description": "Identifier of a human major histocompatibility complex (HLA) or other protein from the IMGT/HLA database.",
+      "name": "IMGT/HLA",
+      "obsolete": false,
+      "prefix": "2773"
+    },
     "fairsharing": {
       "abbreviation": "IPD-IMGT/HLA",
       "description": "The IPD-IMGT/HLA Database provides a specialist database for sequences of the human major histocompatibility complex (MHC) and includes the official sequences named by the WHO Nomenclature Committee For Factors of the HLA System. The IMGT/HLA Database was established to provide a locus-specific database (LSDB) for the allelic sequences of the genes in the HLA system, also known as the human MHC. The IMGT/HLA Database was first released in 1998 and subsequently incorporated as a module of IPD in 2012.",
@@ -31409,6 +31563,7 @@
     "mappings": {
       "biocontext": "IMGT.HLA",
       "cellosaurus": "IPD-IMGT/HLA",
+      "edam": "2773",
       "fairsharing": "FAIRsharing.e28v7g",
       "go": "IMGT_HLA",
       "miriam": "imgt.hla",
@@ -33842,7 +33997,7 @@
     },
     "edam": {
       "description": "Unique identifier of a glycan ligand from the KEGG GLYCAN database (a subset of KEGG LIGAND).",
-      "name": "KEGG Glycan ID",
+      "name": "KEGG Glycan",
       "obsolete": false,
       "prefix": "2613"
     },
@@ -34996,6 +35151,12 @@
       "prefix": "LIPIDBANK",
       "uri_format": "http://identifiers.org/lipidbank/$1"
     },
+    "edam": {
+      "description": "Identifier of an entry from the LipidBank database.",
+      "name": "LipidBank",
+      "obsolete": false,
+      "prefix": "2665"
+    },
     "fairsharing": {
       "abbreviation": "LipidBank",
       "description": "LipidBank is an open, publicly free database of natural lipids including fatty acids, glycerolipids, sphingolipids, steroids, and various vitamins.",
@@ -35008,9 +35169,9 @@
     },
     "mappings": {
       "biocontext": "LIPIDBANK",
+      "edam": "2665",
       "fairsharing": "FAIRsharing.bdn9br",
       "miriam": "lipidbank",
-      "edam": "2665",
       "n2t": "lipidbank",
       "prefixcommons": "lipidbank"
     },
@@ -35069,7 +35230,7 @@
     },
     "edam": {
       "description": "Identifier of an entry from the LIPID MAPS database.",
-      "name": "LIPID MAPS ID",
+      "name": "LIPID MAPS",
       "obsolete": false,
       "prefix": "2625"
     },
@@ -36787,7 +36948,7 @@
     },
     "edam": {
       "description": "An identifier of a concept from the MeSH vocabulary.",
-      "name": "MeSH concept ID",
+      "name": "MeSH concept",
       "obsolete": false,
       "prefix": "1177"
     },
@@ -38421,6 +38582,12 @@
       "prefix": "MINT",
       "uri_format": "http://identifiers.org/mint/$1"
     },
+    "edam": {
+      "description": "Unique identifier of an entry from the MINT database of protein-protein interactions.",
+      "name": "MINT",
+      "obsolete": false,
+      "prefix": "2615"
+    },
     "fairsharing": {
       "abbreviation": "MINT",
       "description": "MINT focuses on experimentally verified protein-protein interactions mined from the scientific literature by expert curators. This resource uses the IntAct database framework to help reduce the effort of scientists and improve on IT development. MINT is an ELIXIR Core Resource.",
@@ -38434,6 +38601,7 @@
     },
     "mappings": {
       "biocontext": "MINT",
+      "edam": "2615",
       "fairsharing": "FAIRsharing.2bdvmk",
       "miriam": "mint",
       "n2t": "mint",
@@ -38819,6 +38987,12 @@
     }
   },
   "miriam": {
+    "edam": {
+      "description": "Unique identifier of a MIRIAM data resource.",
+      "name": "MIRIAM",
+      "obsolete": false,
+      "prefix": "1162"
+    },
     "fairsharing": {
       "abbreviation": "MIRIAM",
       "description": "The Minimal Information Required In the Annotation of Models (MIRIAM), initiated by the BioModels.net effort, is a set of guidelines for the consistent annotation and curation of computational models in biology. It is suitable for use with any structured format for computational models.",
@@ -38832,6 +39006,7 @@
       ]
     },
     "mappings": {
+      "edam": "1162",
       "fairsharing": "FAIRsharing.ap169a",
       "miriam": "identifiers.namespace"
     },
@@ -39192,8 +39367,15 @@
       "prefix": "MMDB",
       "uri_format": "http://identifiers.org/mmdb/$1"
     },
+    "edam": {
+      "description": "An identifier of an entry from the MMDB database.",
+      "name": "MMDB",
+      "obsolete": false,
+      "prefix": "2667"
+    },
     "mappings": {
       "biocontext": "MMDB",
+      "edam": "2667",
       "miriam": "mmdb",
       "n2t": "mmdb",
       "prefixcommons": "mmdb"
@@ -39924,6 +40106,12 @@
       "prefix": "MODELDB",
       "uri_format": "http://identifiers.org/modeldb/$1"
     },
+    "edam": {
+      "description": "Unique identifier of an entry from the ModelDB database.",
+      "name": "ModelDB",
+      "obsolete": false,
+      "prefix": "2669"
+    },
     "fairsharing": {
       "abbreviation": "ModelDB",
       "description": "ModelDB provides an accessible location for storing and efficiently retrieving computational neuroscience models. A ModelDB entry contains a model's source code, concise description, and a citation of the article that published it. Models can be coded in any language for any environment. Model code can be viewed before downloading and browsers can be set to auto-launch the models.",
@@ -39938,6 +40126,7 @@
     },
     "mappings": {
       "biocontext": "MODELDB",
+      "edam": "2669",
       "fairsharing": "FAIRsharing.5rb3fk",
       "miriam": "modeldb",
       "n2t": "modeldb",
@@ -42168,7 +42357,7 @@
     "download_obo": "http://purl.obolibrary.org/obo/ncbitaxon.obo",
     "edam": {
       "description": "A stable unique identifier for each taxon (for a species, a family, an order, or any other group in the NCBI taxonomy database.",
-      "name": "NCBI taxonomy ID",
+      "name": "NCBI taxonomy",
       "obsolete": false,
       "prefix": "1179"
     },
@@ -42953,8 +43142,15 @@
       "prefix": "NEUROMORPHO",
       "uri_format": "http://identifiers.org/neuromorpho/$1"
     },
+    "edam": {
+      "description": "A unique identifier of a neuron from the NeuroMorpho database.",
+      "name": "NeuroMorpho",
+      "obsolete": false,
+      "prefix": "2657"
+    },
     "mappings": {
       "biocontext": "NEUROMORPHO",
+      "edam": "2657",
       "miriam": "neuromorpho",
       "n2t": "neuromorpho",
       "prefixcommons": "neuromorpho"
@@ -43025,6 +43221,12 @@
       "prefix": "NEURONDB",
       "uri_format": "http://identifiers.org/neurondb/$1"
     },
+    "edam": {
+      "description": "A unique identifier of a neuron from the NeuronDB database.",
+      "name": "NeuronDB",
+      "obsolete": false,
+      "prefix": "2656"
+    },
     "fairsharing": {
       "abbreviation": "NeuronDB",
       "description": "NeuronDB provides a dynamically searchable database of three types of neuronal properties: voltage gated conductances, neurotransmitter receptors, and neurotransmitter substances. It contains tools that provide for integration of these properties in a given type of neuron and compartment, and for comparison of properties across different types of neurons and compartments.",
@@ -43042,6 +43244,7 @@
     },
     "mappings": {
       "biocontext": "NEURONDB",
+      "edam": "2656",
       "fairsharing": "FAIRsharing.45a10e",
       "miriam": "neurondb",
       "n2t": "neurondb",
@@ -46348,7 +46551,7 @@
     },
     "edam": {
       "description": "Identifier of an entry from the OMIM database.",
-      "name": "OMIM ID",
+      "name": "OMIM",
       "obsolete": false,
       "prefix": "1153"
     },
@@ -49524,6 +49727,12 @@
       "prefix": "PDB",
       "uri_format": "http://www.ebi.ac.uk/pdbsum/$1"
     },
+    "edam": {
+      "description": "An identifier of an entry from the PDB database.",
+      "name": "PDB",
+      "obsolete": false,
+      "prefix": "1127"
+    },
     "fairsharing": {
       "abbreviation": "wwPDB",
       "description": "The Worldwide PDB (wwPDB) organization manages the PDB archive and ensures that the PDB is freely and publicly available to the global community. The mission of the wwPDB is to maintain a single Protein Data Bank Archive of macromolecular structural data that is freely and publicly available to the global community.  The wwPDB is composed of the RCSB PDB, PDBe, PDBj and BMRB.",
@@ -49543,6 +49752,7 @@
     },
     "mappings": {
       "biocontext": "PDB",
+      "edam": "1127",
       "fairsharing": "FAIRsharing.mckkb4",
       "go": "PDB",
       "miriam": "pdb",
@@ -50113,6 +50323,12 @@
       "prefix": "PEPTIDEATLAS",
       "uri_format": "http://identifiers.org/peptideatlas/$1"
     },
+    "edam": {
+      "description": "Identifier of a peptide from the PeptideAtlas peptide databases.",
+      "name": "PeptideAtlas",
+      "obsolete": false,
+      "prefix": "2626"
+    },
     "fairsharing": {
       "abbreviation": "PeptideAtlas",
       "description": "The PeptideAtlas Project provides a publicly-accessible database of peptides identified in tandem mass spectrometry proteomics studies and software tools. Mass spectrometer output files are collected for human, mouse, yeast, and several other organisms, and sequence and spectral library searches are applied. Analyses are performed to produce a probability of correct identification for all results in a uniform manner, together with false discovery rates at the whole-atlas level.",
@@ -50125,6 +50341,7 @@
     },
     "mappings": {
       "biocontext": "PEPTIDEATLAS",
+      "edam": "2626",
       "fairsharing": "FAIRsharing.dvyrsz",
       "miriam": "peptideatlas",
       "n2t": "peptideatlas",
@@ -50424,7 +50641,7 @@
     "description": "Higher order grouping of Pfam families",
     "edam": {
       "description": "Accession number of a Pfam clan.",
-      "name": "Pfam clan ID",
+      "name": "Pfam clan",
       "obsolete": false,
       "prefix": "2758"
     },
@@ -51523,6 +51740,12 @@
       "prefix": "PIRSF",
       "uri_format": "http://identifiers.org/pirsf/$1"
     },
+    "edam": {
+      "description": "Unique identifier of an entry from the PIRSF database.",
+      "name": "PIRSF",
+      "obsolete": false,
+      "prefix": "1136"
+    },
     "fairsharing": {
       "abbreviation": "PIRSF",
       "description": "The PIR SuperFamily concept is being used as a guiding principle to provide comprehensive and non-overlapping clustering of UniProtKB sequences into a hierarchical order to reflect their evolutionary relationships.",
@@ -51542,6 +51765,7 @@
     },
     "mappings": {
       "biocontext": "PIRSF",
+      "edam": "1136",
       "fairsharing": "FAIRsharing.vssch2",
       "go": "PIRSF",
       "miriam": "pirsf",
@@ -54193,6 +54417,12 @@
       "prefix": "PUBCHEM.BIOASSAY",
       "uri_format": "http://identifiers.org/pubchem.bioassay/$1"
     },
+    "edam": {
+      "description": "Identifier of an assay from the PubChem database.",
+      "name": "PubChem bioassay",
+      "obsolete": false,
+      "prefix": "2638"
+    },
     "go": {
       "homepage": "https://pubchem.ncbi.nlm.nih.gov",
       "name": "NCBI PubChem database of bioassay records",
@@ -54201,6 +54431,7 @@
     },
     "mappings": {
       "biocontext": "PUBCHEM.BIOASSAY",
+      "edam": "2638",
       "go": "PubChem_BioAssay",
       "miriam": "pubchem.bioassay",
       "n2t": "pubchem.bioassay",
@@ -54304,6 +54535,12 @@
       "obsolete": false,
       "prefix": "000140"
     },
+    "edam": {
+      "description": "Identifier of an entry from the PubChem database.",
+      "name": "PubChem",
+      "obsolete": false,
+      "prefix": "2639"
+    },
     "fairsharing": {
       "abbreviation": "CID",
       "description": "In addition to data used in on-going collaborations, this database host images from France Bio Imaging microscopy facility with public access either associated to publications, either that make interest from an image processing point of view (such as challenges for developpers or for use in metrology). This resource requires a log in account, however some projects are available with a guest account.",
@@ -54325,6 +54562,7 @@
       "biolink": "CID",
       "cellosaurus": "PubChem",
       "cheminf": "000140",
+      "edam": "2639",
       "fairsharing": "FAIRsharing.g63c77",
       "go": "PubChem_Compound",
       "miriam": "pubchem.compound",
@@ -54535,6 +54773,12 @@
       "name": "PubMed Identifier",
       "obsolete": false,
       "prefix": "000302"
+    },
+    "edam": {
+      "description": "PubMed unique identifier of an article.",
+      "name": "PubMed",
+      "obsolete": false,
+      "prefix": "1187"
     },
     "fairsharing": {
       "abbreviation": "PubMed",
@@ -55722,7 +55966,7 @@
     },
     "edam": {
       "description": "Identifier of a protein modification catalogued in the RESID database.",
-      "name": "RESID ID",
+      "name": "RESID",
       "obsolete": false,
       "prefix": "2619"
     },
@@ -56053,7 +56297,7 @@
     },
     "edam": {
       "description": "Identifier of an entry from the RGD database.",
-      "name": "RGD ID",
+      "name": "RGD",
       "obsolete": false,
       "prefix": "2620"
     },
@@ -56546,7 +56790,7 @@
     },
     "edam": {
       "description": "Identifier of an entry from the RNA central database of annotated human miRNAs.",
-      "name": "RNA central ID",
+      "name": "RNA central",
       "obsolete": false,
       "prefix": "3856"
     },
@@ -58573,10 +58817,10 @@
       "uri_format": "https://www.yeastgenome.org/locus/$1"
     },
     "edam": {
-      "description": "Identifier of an entry from the SGD database.",
-      "name": "Gene ID (SGD)",
+      "description": "Identifier of an entry from the Saccharomyces genome database (SGD).",
+      "name": "SGD",
       "obsolete": false,
-      "prefix": "1034"
+      "prefix": "2632"
     },
     "example": "S000002493",
     "fairsharing": {
@@ -58603,7 +58847,7 @@
     },
     "mappings": {
       "biocontext": "SGD",
-      "edam": "1034",
+      "edam": "2632",
       "fairsharing": "FAIRsharing.pzvw40",
       "go": "SGD",
       "miriam": "sgd",
@@ -59560,6 +59804,12 @@
       "prefix": "PathWhiz",
       "uri_format": "http://smpdb.ca/pathways/#$1"
     },
+    "edam": {
+      "description": "Identifier of a pathway from the Small Molecule Pathway Database (SMPDB).",
+      "name": "Pathway ID (SMPDB)",
+      "obsolete": false,
+      "prefix": "2659"
+    },
     "example": "SMP0000219",
     "fairsharing": {
       "abbreviation": "SMPDB",
@@ -59572,9 +59822,9 @@
       ]
     },
     "mappings": {
-    "edam": "2659",
       "biocontext": "SMPDB",
       "biolink": "PathWhiz",
+      "edam": "2659",
       "fairsharing": "FAIRsharing.y1zyaq",
       "miriam": "smpdb",
       "n2t": "smpdb",
@@ -60734,6 +60984,12 @@
       "prefix": "STRING",
       "uri_format": "http://identifiers.org/string/$1"
     },
+    "edam": {
+      "description": "Unique identifier of an entry from the STRING database of protein-protein interactions.",
+      "name": "STRING",
+      "obsolete": false,
+      "prefix": "2302"
+    },
     "fairsharing": {
       "abbreviation": "STRING",
       "description": "STRING is a database of known and predicted protein interactions. The interactions include direct (physical) and indirect (functional) associations.",
@@ -60747,6 +61003,7 @@
     },
     "mappings": {
       "biocontext": "STRING",
+      "edam": "2302",
       "fairsharing": "FAIRsharing.9b7wvk",
       "miriam": "string",
       "n2t": "string",
@@ -61521,7 +61778,7 @@
     },
     "edam": {
       "description": "Unique identifier of a toxin from the Toxin and Toxin Target Database (T3DB) database.",
-      "name": "T3DB ID",
+      "name": "T3DB",
       "obsolete": false,
       "prefix": "2662"
     },
@@ -62100,10 +62357,10 @@
       "uri_format": "http://identifiers.org/tcdb/$1"
     },
     "edam": {
-      "description": "A unique identifier of a family from the transport classification database (TCDB) of membrane transport proteins.",
-      "name": "TCDB ID",
+      "description": "Identifier of a membrane transport proteins from the transport classification database (TCDB).",
+      "name": "TC",
       "obsolete": false,
-      "prefix": "2614"
+      "prefix": "2756"
     },
     "fairsharing": {
       "abbreviation": "TCDB",
@@ -62128,7 +62385,7 @@
     "homepage": "https://www.tcdb.org",
     "mappings": {
       "biocontext": "TCDB",
-      "edam": "2614",
+      "edam": "2756",
       "fairsharing": "FAIRsharing.p3bzqb",
       "go": "TC",
       "miriam": "tcdb",
@@ -62453,8 +62710,15 @@
         "orcid": "0000-0002-6601-2165"
       }
     ],
+    "edam": {
+      "description": "Accession number of an entry (family) from the TIGRFam database.",
+      "name": "TIGRFam",
+      "obsolete": false,
+      "prefix": "1141"
+    },
     "mappings": {
       "biocontext": "TIGRFAM",
+      "edam": "1141",
       "miriam": "tigrfam",
       "n2t": "tigrfam",
       "ncbi": "TIGRFAM"
@@ -63139,10 +63403,16 @@
       "prefix": "TTD.DRUG",
       "uri_format": "http://identifiers.org/ttd.drug/$1"
     },
+    "edam": {
+      "description": "Identifier of a drug from the Therapeutic Target Database (TTD).",
+      "name": "Drug ID (TTD)",
+      "obsolete": false,
+      "prefix": "2653"
+    },
     "mappings": {
       "biocontext": "TTD.DRUG",
-      "miriam": "ttd.drug",
       "edam": "2653",
+      "miriam": "ttd.drug",
       "n2t": "ttd.drug"
     },
     "miriam": {
@@ -63175,10 +63445,16 @@
       "prefix": "TTD.TARGET",
       "uri_format": "http://identifiers.org/ttd.target/$1"
     },
+    "edam": {
+      "description": "Identifier of a target protein from the Therapeutic Target Database (TTD).",
+      "name": "Target ID (TTD)",
+      "obsolete": false,
+      "prefix": "2654"
+    },
     "mappings": {
       "biocontext": "TTD.TARGET",
-      "miriam": "ttd.target",
       "edam": "2654",
+      "miriam": "ttd.target",
       "n2t": "ttd.target"
     },
     "miriam": {
@@ -63856,7 +64132,7 @@
     },
     "edam": {
       "description": "An identifier of a concept from the UMLS vocabulary.",
-      "name": "UMLS concept ID",
+      "name": "UMLS concept",
       "obsolete": false,
       "prefix": "1181"
     },
@@ -64036,7 +64312,7 @@
     },
     "edam": {
       "description": "Identifier of a protein modification catalogued in the Unimod database.",
-      "name": "Unimod ID",
+      "name": "Unimod",
       "obsolete": false,
       "prefix": "3757"
     },
@@ -64096,6 +64372,12 @@
       "prefix": "UNIPARC",
       "uri_format": "http://identifiers.org/uniparc/$1"
     },
+    "edam": {
+      "description": "Accession number of a UniParc (protein sequence) database entry.",
+      "name": "UniParc accession",
+      "obsolete": false,
+      "prefix": "2392"
+    },
     "go": {
       "description": "A non-redundant archive of protein sequences extracted from Swiss-Prot, TrEMBL, PIR-PSD, EMBL, Ensembl, IPI, PDB, RefSeq, FlyBase, WormBase, European Patent Office, United States Patent and Trademark Office, and Japanese Patent Office",
       "homepage": "https://www.uniprot.org/uniparc/",
@@ -64105,8 +64387,8 @@
     },
     "mappings": {
       "biocontext": "UNIPARC",
-      "go": "UniParc",
       "edam": "2392",
+      "go": "UniParc",
       "miriam": "uniparc",
       "n2t": "uniparc",
       "prefixcommons": "uniparc"
