@@ -4899,6 +4899,30 @@
     "preferred_prefix": "cohd",
     "repository": "https://github.com/MIT-LCP/mimic-omop"
   },
+  "col.taiwan": {
+    "contributor": {
+      "email": null,
+      "github": "megbalk",
+      "name": "Meghan Balk",
+      "orcid": "0000-0003-2699-3066"
+    },
+    "description": "Identifier (name code) for a taxon in the catalogue of life in taiwan",
+    "example": "431472",
+    "homepage": "http://taibnet.sinica.edu.tw/home.php",
+    "mappings": {
+      "wikidata": "P3088"
+    },
+    "name": "Catalogue of Life in Taiwan",
+    "pattern": "^[1-9]\\d{5}$",
+    "preferred_prefix": "col.taiwan",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1"
+  },
   "colao": {
     "contact": {
       "email": "entiminae@gmail.com",
@@ -9484,6 +9508,56 @@
     "repository": "https://github.com/FoodOntology/foodon",
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/foodon/terms?obo_id=FOODON:$1",
     "version": "2022-02-01"
+  },
+  "fossilworks.journal": {
+    "contributor": {
+      "email": null,
+      "github": "megbalk",
+      "name": "Meghan Balk",
+      "orcid": "0000-0003-2699-3066"
+    },
+    "description": "Identifier for a journal article in the fossilworks website",
+    "example": "61467",
+    "homepage": "http://fossilworks.org",
+    "mappings": {
+      "wikidata": "P7720"
+    },
+    "name": "Fossilworks Journal",
+    "part_of": "fossilworks",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "fossilworks.journal",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://fossilworks.org/?a=referenceInfo&reference_no=$1"
+  },
+  "fossilworks.taxon": {
+    "contributor": {
+      "email": null,
+      "github": "megbalk",
+      "name": "Meghan Balk",
+      "orcid": "0000-0003-2699-3066"
+    },
+    "description": "Identifier for an animal, plant, or microorganism from the fossilworks website",
+    "example": "40565",
+    "homepage": "http://www.fossilworks.org",
+    "mappings": {
+      "wikidata": "P842"
+    },
+    "name": "Fossilworks Taxon",
+    "part_of": "fossilworks",
+    "pattern": "^[1-9]\\d{0,5}$",
+    "preferred_prefix": "fossilworks.taxon",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1"
   },
   "fovt": {
     "contact": {
@@ -20057,6 +20131,30 @@
     "preferred_prefix": "otl",
     "uri_format": "http://oryzatagline.cirad.fr/cgi-bin/general_mutant.pl?line=$1"
   },
+  "otol": {
+    "contributor": {
+      "email": null,
+      "github": "megbalk",
+      "name": "Meghan Balk",
+      "orcid": "0000-0003-2699-3066"
+    },
+    "description": "Identifier for an entity in open tree of life",
+    "example": "3905431",
+    "homepage": "https://tree.opentreeoflife.org",
+    "mappings": {
+      "wikidata": "P9157"
+    },
+    "name": "Open Tree of Life",
+    "pattern": "^[1-9]\\d*$",
+    "preferred_prefix": "otol",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://tree.opentreeoflife.org/taxonomy/browse?id=$1"
+  },
   "ovae": {
     "contact": {
       "email": "yongqunh@med.umich.edu",
@@ -25614,11 +25712,15 @@
     "mappings": {
       "biocontext": "TOL",
       "miriam": "tol",
-      "n2t": "tol"
+      "n2t": "tol",
+      "wikidata": "P5221"
     },
-    "name": "Tree of Life",
+    "name": "Tree of Life Web Project ID",
     "pattern": "^\\d+$",
     "preferred_prefix": "tol",
+    "synonyms": [
+      "tol.webproj"
+    ],
     "uri_format": "http://tolweb.org/$1"
   },
   "topdb": {
@@ -27623,7 +27725,8 @@
       "biocontext": "WORMS",
       "fairsharing": "FAIRsharing.7g1bzj",
       "miriam": "worms",
-      "n2t": "worms"
+      "n2t": "worms",
+      "wikidata": "P850"
     },
     "name": "World Register of Marine Species",
     "pattern": "^\\d+$",
