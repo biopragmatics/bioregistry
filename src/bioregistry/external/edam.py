@@ -5,7 +5,7 @@
 import json
 
 from bioregistry.constants import EXTERNAL
-from bioregistry.utils import get_ols_descendants
+from bioregistry.utils import get_ols_descendants, removesuffix
 
 __all__ = [
     "get_edam",
@@ -36,8 +36,9 @@ def get_edam(force_download: bool = False):
 
 def _get_identifier(term, ontology: str) -> str:
     # note that this prefix doesn't match the ontology name
-    return term["obo_id"][len("data:") :]
-
+    rv = term["obo_id"][len("data:") :]
+    rv = removesuffix(rv, " ID")
+    return rv
 
 if __name__ == "__main__":
     print(len(get_edam(force_download=True)))  # noqa:T201
