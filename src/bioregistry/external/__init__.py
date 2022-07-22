@@ -11,6 +11,7 @@ from .bioportal import get_agroportal, get_bioportal, get_ecoportal
 from .cellosaurus import get_cellosaurus
 from .cheminf import get_cheminf
 from .cropoct import get_cropoct
+from .edam import get_edam
 from .fairsharing import get_fairsharing
 from .go import get_go
 from .miriam import get_miriam
@@ -42,6 +43,7 @@ __all__ = [
     "get_prefixcommons",
     "get_uniprot",
     "get_wikidata",
+    "get_edam",
 ]
 
 GETTERS: List[Tuple[str, str, Callable]] = [
@@ -65,4 +67,5 @@ GETTERS: List[Tuple[str, str, Callable]] = [
     ("ecoportal", "EcoPortal", get_ecoportal),
     ("aberowl", "AberOWL", get_aberowl),
     ("cropoct", "CropOCT", get_cropoct),
+    ("edam", "EDAM", get_edam),
 ]

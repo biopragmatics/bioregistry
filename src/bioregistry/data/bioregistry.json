@@ -4638,8 +4638,17 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "BioGRID is a database of physical and genetic interactions in Saccharomyces cerevisiae, Caenorhabditis elegans, Drosophila melanogaster, Homo sapiens, and Schizosaccharomyces pombe.",
+    "edam": {
+      "description": "A unique identifier of an interaction from the BioGRID database.",
+      "name": "BioGRID interaction ID",
+      "obsolete": false,
+      "prefix": "2628"
+    },
     "example": "2649230",
     "homepage": "https://thebiogrid.org/",
+    "mappings": {
+      "edam": "2628"
+    },
     "name": "BioGRID Interactions",
     "part_of": "biogrid",
     "pattern": "^\\d+$",
@@ -6865,6 +6874,12 @@
       "obsolete": false,
       "prefix": "000446"
     },
+    "edam": {
+      "description": "CAS registry number of a chemical compound; a unique numerical identifier of chemicals in the scientific literature, as assigned by the Chemical Abstracts Service.",
+      "name": "CAS number",
+      "obsolete": false,
+      "prefix": "1002"
+    },
     "fairsharing": {
       "abbreviation": "CAS RN",
       "description": "Identifier used by the Chemical Abstracts Service Registry. A CAS Registry Number is a numeric identifier that can contain up to 10 digits, divided by hyphens into three parts. The right-most digit is a check digit used to verify the validity and uniqueness of the entire number.",
@@ -6884,6 +6899,7 @@
     "mappings": {
       "biocontext": "CAS",
       "cheminf": "000446",
+      "edam": "1002",
       "fairsharing": "FAIRsharing.r7Kwy7",
       "go": "CAS",
       "miriam": "cas",
@@ -14387,6 +14403,12 @@
       "prefix": "dbSNP",
       "uri_format": "https://www.ncbi.nlm.nih.gov/snp/$1"
     },
+    "edam": {
+      "description": "Identifier of a dbSNP database entry.",
+      "name": "dbSNP ID",
+      "obsolete": false,
+      "prefix": "1106"
+    },
     "fairsharing": {
       "abbreviation": "dbSNP",
       "description": "dbSNP contains human single nucleotide variations, microsatellites, and small-scale insertions and deletions along with publication, population frequency, molecular consequence, and genomic and RefSeq mapping information for both common variations and clinical mutations.",
@@ -14406,6 +14428,7 @@
     "mappings": {
       "biocontext": "dbSNP",
       "cellosaurus": "dbSNP",
+      "edam": "1106",
       "fairsharing": "FAIRsharing.edxb58",
       "go": "dbSNP",
       "miriam": "dbsnp",
@@ -16914,6 +16937,12 @@
       "obsolete": false,
       "prefix": "000406"
     },
+    "edam": {
+      "description": "Unique identifier of a drug from the DrugBank database.",
+      "name": "DrugBank ID",
+      "obsolete": false,
+      "prefix": "2326"
+    },
     "example": "DB14938",
     "fairsharing": {
       "abbreviation": "DrugBank",
@@ -16931,6 +16960,7 @@
       "biocontext": "DrugBank",
       "cellosaurus": "DrugBank",
       "cheminf": "000406",
+      "edam": "2326",
       "fairsharing": "FAIRsharing.353yat",
       "miriam": "drugbank",
       "n2t": "drugbank",
@@ -18281,6 +18311,13 @@
       "name": "EDAM - Bioscientific data analysis ontology",
       "prefix": "EDAM"
     },
+    "contact": {
+      "email": "matus.kalas@uib.no",
+      "github": "matuskalas",
+      "name": "Matúš Kalaš",
+      "orcid": "0000-0002-1509-4981"
+    },
+    "download_obo": "https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo",
     "fairsharing": {
       "abbreviation": "EDAM",
       "description": "EDAM (originally from “EMBRACE Data and Methods”) is an ontology of well established, familiar concepts that are prevalent within bioinformatics, including types of data and data identifiers, data formats, operations and topics.",
@@ -18361,6 +18398,8 @@
       "prefix": "edam",
       "uri_format": "http://www.ebi.ac.uk/ontology-lookup/?termId=$1"
     },
+    "repository": "https://github.com/edamontology/edamontology",
+    "twitter": "edamontology",
     "uri_format": "https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1"
   },
   "edam.data": {
@@ -18370,6 +18409,12 @@
       "prefix": "EDAM-DATA",
       "uri_format": "http://edamontology.org/data_$1"
     },
+    "contact": {
+      "email": "matus.kalas@uib.no",
+      "github": "matuskalas",
+      "name": "Matúš Kalaš",
+      "orcid": "0000-0002-1509-4981"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -18377,6 +18422,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "Information, represented in an information artefact (data record) that is 'understandable' by dedicated computational tools that can use the data as input or produce it as output.",
+    "download_obo": "https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo",
     "example": "1664",
     "homepage": "http://edamontology.org",
     "mappings": {
@@ -18385,6 +18431,8 @@
     "name": "EDAM Data",
     "part_of": "edam",
     "pattern": "^\\d+$",
+    "repository": "https://github.com/edamontology/edamontology",
+    "twitter": "edamontology",
     "uri_format": "http://edamontology.org/data_$1"
   },
   "edam.format": {
@@ -18394,6 +18442,12 @@
       "prefix": "EDAM-FORMAT",
       "uri_format": "http://edamontology.org/format_$1"
     },
+    "contact": {
+      "email": "matus.kalas@uib.no",
+      "github": "matuskalas",
+      "name": "Matúš Kalaš",
+      "orcid": "0000-0002-1509-4981"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -18401,6 +18455,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "A defined way or layout of representing and structuring data in a computer file, blob, string, message, or elsewhere. The main focus in EDAM lies on formats as means of structuring data exchanged between different tools or resources. The serialisation, compression, or encoding of concrete data formats/models is not in scope of EDAM. Format 'is format of' Data.",
+    "download_obo": "https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo",
     "example": "1915",
     "homepage": "http://edamontology.org",
     "mappings": {
@@ -18409,6 +18464,8 @@
     "name": "EDAM Format",
     "part_of": "edam",
     "pattern": "^\\d+$",
+    "repository": "https://github.com/edamontology/edamontology",
+    "twitter": "edamontology",
     "uri_format": "http://edamontology.org/format_$1"
   },
   "edam.operation": {
@@ -18418,6 +18475,12 @@
       "prefix": "EDAM-OPERATION",
       "uri_format": "http://edamontology.org/operation_$1"
     },
+    "contact": {
+      "email": "matus.kalas@uib.no",
+      "github": "matuskalas",
+      "name": "Matúš Kalaš",
+      "orcid": "0000-0002-1509-4981"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -18425,6 +18488,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "A function that processes a set of inputs and results in a set of outputs, or associates arguments (inputs) with values (outputs). Special cases are: a) An operation that consumes no input (has no input arguments). Such operation is either a constant function, or an operation depending only on the underlying state. b) An operation that may modify the underlying state but has no output. c) The singular-case operation with no input or output, that still may modify the underlying state.",
+    "download_obo": "https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo",
     "example": "0004",
     "homepage": "http://edamontology.org",
     "mappings": {
@@ -18433,6 +18497,8 @@
     "name": "EDAM Operation",
     "part_of": "edam",
     "pattern": "^\\d+$",
+    "repository": "https://github.com/edamontology/edamontology",
+    "twitter": "edamontology",
     "uri_format": "http://edamontology.org/operation_$1"
   },
   "edam.topic": {
@@ -18442,6 +18508,12 @@
       "prefix": "EDAM-TOPIC",
       "uri_format": "http://edamontology.org/topic_$1"
     },
+    "contact": {
+      "email": "matus.kalas@uib.no",
+      "github": "matuskalas",
+      "name": "Matúš Kalaš",
+      "orcid": "0000-0002-1509-4981"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -18449,6 +18521,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "A category denoting a rather broad domain or field of interest, of study, application, work, data, or technology. Topics have no clearly defined borders between each other.",
+    "download_obo": "https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo",
     "example": "0003",
     "homepage": "http://edamontology.org",
     "mappings": {
@@ -18457,6 +18530,8 @@
     "name": "EDAM Topic",
     "part_of": "edam",
     "pattern": "^\\d+$",
+    "repository": "https://github.com/edamontology/edamontology",
+    "twitter": "edamontology",
     "uri_format": "http://edamontology.org/topic_$1"
   },
   "edda": {
@@ -25664,9 +25739,16 @@
   },
   "gmelin": {
     "description": "The Gmelin database is a large database of organometallic and inorganic compounds updated quarterly. It is based on the German publication Gmelins Handbuch der anorganischen Chemie which was originally published by Leopold Gmelin in 1817; the last print edition, the 8th, appeared in the 1990s.",
+    "edam": {
+      "description": "Gmelin registry number of a chemical compound.",
+      "name": "Chemical registry number (Gmelin)",
+      "obsolete": false,
+      "prefix": "1004"
+    },
     "example": "1466",
     "homepage": "https://link.springer.com/bookseries/562",
     "mappings": {
+      "edam": "1004",
       "wikidata": "P1578"
     },
     "name": "Gmelins Handbuch der anorganischen Chemie",
@@ -28332,6 +28414,12 @@
       "obsolete": false,
       "prefix": "000408"
     },
+    "edam": {
+      "description": "Identifier of a small molecule metabolite from the Human Metabolome Database (HMDB).",
+      "name": "Compound ID (HMDB)",
+      "obsolete": false,
+      "prefix": "2622"
+    },
     "fairsharing": {
       "abbreviation": "HMDB",
       "description": "The Human Metabolome Database (HMDB) is a database containing detailed information about small molecule metabolites found in the human body.It contains or links 1) chemical 2) clinical and 3) molecular biology/biochemistry data.",
@@ -28348,6 +28436,7 @@
     "mappings": {
       "biocontext": "HMDB",
       "cheminf": "000408",
+      "edam": "2622",
       "fairsharing": "FAIRsharing.sye5js",
       "miriam": "hmdb",
       "n2t": "hmdb",
@@ -32309,6 +32398,12 @@
       "prefix": "isbn",
       "uri_format": "https://www.isbn-international.org/identifier/$1"
     },
+    "edam": {
+      "description": "The International Standard Book Number (ISBN) is for identifying printed books.",
+      "name": "ISBN",
+      "obsolete": false,
+      "prefix": "2634"
+    },
     "go": {
       "homepage": "https://www.worldcat.org",
       "name": "International Standard Book Number",
@@ -32318,6 +32413,7 @@
     "mappings": {
       "biocontext": "ISBN-13",
       "biolink": "isbn",
+      "edam": "2634",
       "go": "ISBN",
       "miriam": "isbn",
       "n2t": "isbn",
@@ -33366,8 +33462,15 @@
       "prefix": "KEGG.DRUG",
       "uri_format": "http://identifiers.org/kegg.drug/$1"
     },
+    "edam": {
+      "description": "Unique identifier of a drug from the KEGG Drug database.",
+      "name": "Drug ID (KEGG)",
+      "obsolete": false,
+      "prefix": "2609"
+    },
     "mappings": {
       "biocontext": "KEGG.DRUG",
+      "edam": "2609",
       "miriam": "kegg.drug",
       "n2t": "kegg.drug",
       "prefixcommons": "kegg.drug",
@@ -33804,6 +33907,12 @@
       "prefix": "KEGG.PATHWAY",
       "uri_format": "https://www.kegg.jp/entry/$1"
     },
+    "edam": {
+      "description": "Identifier of a pathway from the KEGG pathway database.",
+      "name": "Pathway ID (KEGG)",
+      "obsolete": false,
+      "prefix": "2343"
+    },
     "example": "rsk00410",
     "go": {
       "homepage": "http://www.genome.jp/kegg/pathway.html",
@@ -33814,6 +33923,7 @@
     "mappings": {
       "biocontext": "KEGG.PATHWAY",
       "biolink": "KEGG.PATHWAY",
+      "edam": "2343",
       "go": "KEGG_PATHWAY",
       "miriam": "kegg.pathway",
       "n2t": "kegg.pathway",
@@ -34799,6 +34909,12 @@
       "obsolete": false,
       "prefix": "000564"
     },
+    "edam": {
+      "description": "Identifier of an entry from the LIPID MAPS database.",
+      "name": "LIPID MAPS ID",
+      "obsolete": false,
+      "prefix": "2625"
+    },
     "fairsharing": {
       "abbreviation": "LIPID MAPS",
       "description": "The LIPID MAPS Lipid Classification System is comprised of eight lipid categories, each with its own subclassification hierarchy. All lipids in the LIPID MAPS Structure Database (LMSD) have been classified using this system and have been assigned LIPID MAPS ID's which reflects their position in the classification hierarchy.",
@@ -34815,6 +34931,7 @@
     "mappings": {
       "biocontext": "LIPIDMAPS",
       "cheminf": "000564",
+      "edam": "2625",
       "fairsharing": "FAIRsharing.cpneh8",
       "miriam": "lipidmaps",
       "n2t": "lipidmaps",
@@ -36336,6 +36453,12 @@
       "prefix": "MEROPS.INHIBITOR",
       "uri_format": "http://identifiers.org/merops.inhibitor/$1"
     },
+    "edam": {
+      "description": "Unique identifier of a peptidase enzyme from the MEROPS database.",
+      "name": "Enzyme ID (MEROPS)",
+      "obsolete": false,
+      "prefix": "2629"
+    },
     "example": "I31.952",
     "example_extras": [
       "S01.001"
@@ -36359,6 +36482,7 @@
     },
     "mappings": {
       "biocontext": "MEROPS.INHIBITOR",
+      "edam": "2629",
       "fairsharing": "FAIRsharing.2s4n8r",
       "go": "MEROPS",
       "miriam": "merops.inhibitor",
@@ -38296,6 +38420,12 @@
       "prefix": "mirbase",
       "uri_format": "http://identifiers.org/mirbase$1"
     },
+    "edam": {
+      "description": "Identifier for a gene from the miRBase database.",
+      "name": "Gene ID (miRBase)",
+      "obsolete": false,
+      "prefix": "2642"
+    },
     "example": "MI0026471",
     "fairsharing": {
       "abbreviation": "miRBase",
@@ -38311,6 +38441,7 @@
     "mappings": {
       "biocontext": "MIRBASE",
       "biolink": "mirbase",
+      "edam": "2642",
       "fairsharing": "FAIRsharing.hmgte8",
       "miriam": "mirbase",
       "n2t": "mirbase",
@@ -55041,9 +55172,16 @@
   },
   "reaxys": {
     "description": "Reaxys is a web-based tool for the retrieval of chemistry information and data from published literature, including journals and patents. The information includes chemical compounds, chemical reactions, chemical properties, related bibliographic data, substance data with synthesis planning information, as well as experimental procedures from selected journals and patents. It is licensed by Elsevier.",
+    "edam": {
+      "description": "Beilstein registry number of a chemical compound.",
+      "name": "Chemical registry number (Beilstein)",
+      "obsolete": false,
+      "prefix": "1003"
+    },
     "example": "1257009",
     "homepage": "https://www.reaxys.com",
     "mappings": {
+      "edam": "1003",
       "wikidata": "P1579"
     },
     "name": "Reaxys",
@@ -55586,6 +55724,12 @@
       "prefix": "RFAM",
       "uri_format": "http://identifiers.org/rfam/$1"
     },
+    "edam": {
+      "description": "Stable accession number of an entry (RNA family) from the RFAM database.",
+      "name": "RFAM accession",
+      "obsolete": false,
+      "prefix": "2356"
+    },
     "fairsharing": {
       "abbreviation": "Rfam",
       "description": "The Rfam database is a collection of RNA families, each represented by multiple sequence alignments, consensus secondary structures and covariance models (CMs). The families in Rfam break down into three broad functional classes: non-coding RNA genes, structured cis-regulatory elements and self-splicing RNAs. Typically these functional RNAs often have a conserved secondary structure which may be better preserved than the RNA sequence.",
@@ -55604,6 +55748,7 @@
     },
     "mappings": {
       "biocontext": "RFAM",
+      "edam": "2356",
       "fairsharing": "FAIRsharing.fex4c8",
       "go": "Rfam",
       "miriam": "rfam",
@@ -55854,6 +55999,12 @@
       "prefix": "RHEA",
       "uri_format": "http://identifiers.org/rhea/$1"
     },
+    "edam": {
+      "description": "Identifier of an enzyme-catalysed reaction from the Rhea database.",
+      "name": "Reaction ID (Rhea)",
+      "obsolete": false,
+      "prefix": "2644"
+    },
     "fairsharing": {
       "abbreviation": "Rhea",
       "description": "Rhea is a comprehensive and non-redundant resource of expert-curated chemical and transport reactions of biological interest. Rhea can be used for enzyme annotation, genome-scale metabolic modeling and omics-related analysis. Rhea describes enzyme-catalyzed reactions covering the IUBMB Enzyme Nomenclature list as well as additional reactions, including spontaneously occurring reactions. Rhea is built on ChEBI (Chemical Entities of Biological Interest) ontology of small molecules to describe its reaction participants. Since December 2018, Rhea is the standard for enzyme annotation in UniProt.",
@@ -55874,6 +56025,7 @@
     },
     "mappings": {
       "biocontext": "RHEA",
+      "edam": "2644",
       "fairsharing": "FAIRsharing.pn1sr5",
       "go": "RHEA",
       "miriam": "rhea",
@@ -58154,6 +58306,12 @@
       "prefix": "SGD",
       "uri_format": "https://www.yeastgenome.org/locus/$1"
     },
+    "edam": {
+      "description": "Identifier of an entry from the SGD database.",
+      "name": "Gene ID (SGD)",
+      "obsolete": false,
+      "prefix": "1034"
+    },
     "example": "S000002493",
     "fairsharing": {
       "abbreviation": "SGD",
@@ -58179,6 +58337,7 @@
     },
     "mappings": {
       "biocontext": "SGD",
+      "edam": "1034",
       "fairsharing": "FAIRsharing.pzvw40",
       "go": "SGD",
       "miriam": "sgd",
