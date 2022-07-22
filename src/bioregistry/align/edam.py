@@ -18,8 +18,6 @@ class EDAMAligner(Aligner):
     key = "edam"
     getter = get_edam
     curation_header = ("name", "description")
-    # FIXME remove this when out of canada and back on consistent wifi
-    getter_kwargs = {"force_download": False}
 
     def get_skip(self) -> Mapping[str, str]:
         """Get entries that should be skipped and their reasons."""

@@ -40,5 +40,6 @@ def _get_identifier(term, ontology: str) -> str:
     rv = removesuffix(rv, " ID")
     return rv
 
+
 if __name__ == "__main__":
     print(len(get_edam(force_download=True)))  # noqa:T201
