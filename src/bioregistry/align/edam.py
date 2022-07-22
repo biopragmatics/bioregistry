@@ -25,6 +25,8 @@ class EDAMAligner(Aligner):
         return {
             "1164": "MIRIAM URI not relevant",
             "1175": "BioPAX ontologies aren't globally unique",
+            "2582": "GO sub-hierarchy",
+            "2583": "GO sub-hierarchy",
         }
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:

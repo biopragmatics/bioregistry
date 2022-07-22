@@ -6624,6 +6624,12 @@
       "prefix": "CABRI",
       "uri_format": "http://identifiers.org/cabri/$1"
     },
+    "edam": {
+      "description": "A unique identifier of an item from the CABRI database.",
+      "name": "CABRI",
+      "obsolete": false,
+      "prefix": "2380"
+    },
     "fairsharing": {
       "abbreviation": "CABRI",
       "description": "CABRI provides an integrated resource including catalogues of strains of different organism types, genetic materials and other biologicals resources of European culture collections so that the user world-wide can access these relevant data during one searching session through a common entry point and get in touch with collections for ordering products to be delivered to their place of work.",
@@ -6641,6 +6647,7 @@
     },
     "mappings": {
       "biocontext": "CABRI",
+      "edam": "2380",
       "fairsharing": "FAIRsharing.qx2rvz",
       "miriam": "cabri",
       "n2t": "cabri",
@@ -14287,6 +14294,12 @@
       "prefix": "DBEST",
       "uri_format": "http://identifiers.org/dbest/$1"
     },
+    "edam": {
+      "description": "Identifier of a dbEST database entry.",
+      "name": "dbEST",
+      "obsolete": false,
+      "prefix": "1105"
+    },
     "fairsharing": {
       "abbreviation": "dbEST",
       "description": "The dbEST contains sequence data and other information on \"single-pass\" cDNA sequences, or \"Expressed Sequence Tags\", from a number of organisms. NCBI is in the process of merging EST and GSS records into the Nucleotide database, and the process is expected to be completed 2019. Accession.version and GI identifiers will not change during this process. For more information please see https://ncbiinsights.ncbi.nlm.nih.gov/2018/07/30/upcoming-changes-est-gss-databases/",
@@ -14300,6 +14313,7 @@
     },
     "mappings": {
       "biocontext": "DBEST",
+      "edam": "1105",
       "fairsharing": "FAIRsharing.v9fya8",
       "miriam": "dbest",
       "n2t": "dbest",
@@ -24436,6 +24450,12 @@
       "prefix": "000304"
     },
     "description": "GenBank ® is the NIH genetic sequence database, an annotated collection of all publicly available DNA sequences (Nucleic Acids Research, 2013 Jan;41(D1):D36-42).",
+    "edam": {
+      "description": "Accession number of an entry from the GenBank sequence database.",
+      "name": "GenBank",
+      "obsolete": false,
+      "prefix": "2292"
+    },
     "example": "U49845",
     "fairsharing": {
       "abbreviation": "GenBank",
@@ -24467,6 +24487,7 @@
     "mappings": {
       "biocontext": "GenBank",
       "cheminf": "000304",
+      "edam": "2292",
       "fairsharing": "FAIRsharing.9kahy4",
       "go": "GenBank",
       "prefixcommons": "genbank",
@@ -32437,6 +32458,12 @@
       "uri_format": "https://www.ebi.ac.uk/interpro/entry/$1"
     },
     "deprecated": false,
+    "edam": {
+      "description": "Primary accession number of an InterPro entry.",
+      "name": "InterPro",
+      "obsolete": false,
+      "prefix": "1133"
+    },
     "example": "IPR016380",
     "fairsharing": {
       "abbreviation": "InterPro",
@@ -32462,6 +32489,7 @@
     "mappings": {
       "biocontext": "IPR",
       "biolink": "interpro",
+      "edam": "1133",
       "fairsharing": "FAIRsharing.pda11d",
       "go": "InterPro",
       "miriam": "interpro",
@@ -37875,7 +37903,7 @@
     },
     "edam": {
       "description": "Identifier of an object from the MGI database.",
-      "name": "MGI accession",
+      "name": "MGI",
       "obsolete": false,
       "prefix": "3274"
     },
@@ -42097,10 +42125,17 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "This resource organizes information on genomes including sequences, maps, chromosomes, assemblies, and annotations.",
+    "edam": {
+      "description": "A unique identifier of a whole genome assigned by the NCBI.",
+      "name": "NCBI genome",
+      "obsolete": false,
+      "prefix": "2787"
+    },
     "example": "51",
     "homepage": "https://www.ncbi.nlm.nih.gov/genome",
     "mappings": {
-      "biocontext": "NCBIGenome"
+      "biocontext": "NCBIGenome",
+      "edam": "2787"
     },
     "name": "NCBI Genome",
     "pattern": "^\\d+$",
@@ -42146,6 +42181,12 @@
       "prefix": "NCBIGene",
       "uri_format": "http://identifiers.org/ncbigene/$1"
     },
+    "edam": {
+      "description": "An NCBI unique identifier of a gene.",
+      "name": "Gene ID (NCBI)",
+      "obsolete": false,
+      "prefix": "1027"
+    },
     "fairsharing": {
       "abbreviation": "NCBI Gene",
       "description": "Gene supplies gene-specific connections in the nexus of map, sequence, expression, structure, function, citation, and homology data. Unique identifiers are assigned to genes with defining sequences, genes with known map positions, and genes inferred from phenotypic information. These gene identifiers are used throughout NCBI's databases and tracked through updates of annotation. Gene includes genomes represented by NCBI Reference Sequences (or RefSeqs) and is integrated for indexing and query and retrieval from NCBI's Entrez and E-Utilities systems. Gene comprises sequences from thousands of distinct taxonomic identifiers, ranging from viruses to bacteria to eukaryotes. It represents chromosomes, organelles, plasmids, viruses, transcripts, and millions of proteins.",
@@ -42171,6 +42212,7 @@
     "mappings": {
       "biocontext": "NCBIGene",
       "biolink": "NCBIGene",
+      "edam": "1027",
       "fairsharing": "FAIRsharing.5h3maw",
       "go": "NCBIGene",
       "miriam": "ncbigene",
@@ -55780,6 +55822,12 @@
       "prefix": "RefSeq",
       "uri_format": "http://www.ncbi.nlm.nih.gov/refseq/?term=$1"
     },
+    "edam": {
+      "description": "Accession number of a RefSeq database entry.",
+      "name": "RefSeq",
+      "obsolete": false,
+      "prefix": "1098"
+    },
     "fairsharing": {
       "abbreviation": "RefSeq",
       "description": "The Reference Sequence (RefSeq) collection aims to provide a comprehensive, integrated, non-redundant, well-annotated set of sequences, including genomic DNA, transcripts, and proteins.",
@@ -55800,6 +55848,7 @@
     "has_canonical": "ncbiprotein",
     "mappings": {
       "biocontext": "RefSeq",
+      "edam": "1098",
       "fairsharing": "FAIRsharing.4jg0qw",
       "go": "RefSeq",
       "miriam": "refseq",
@@ -56215,7 +56264,7 @@
     },
     "edam": {
       "description": "Stable accession number of an entry (RNA family) from the RFAM database.",
-      "name": "RFAM accession",
+      "name": "RFAM",
       "obsolete": false,
       "prefix": "2356"
     },
@@ -64374,7 +64423,7 @@
     },
     "edam": {
       "description": "Accession number of a UniParc (protein sequence) database entry.",
-      "name": "UniParc accession",
+      "name": "UniParc",
       "obsolete": false,
       "prefix": "2392"
     },
@@ -64524,6 +64573,12 @@
       "prefix": "UniProtKB",
       "uri_format": "https://www.uniprot.org/uniprot/$1"
     },
+    "edam": {
+      "description": "Accession number of a UniProt (protein sequence) database entry.",
+      "name": "UniProt",
+      "obsolete": false,
+      "prefix": "3021"
+    },
     "fairsharing": {
       "abbreviation": "UniProtKB",
       "description": "The UniProt Knowledgebase (UniProtKB) is the central hub for the collection of functional information on proteins, with accurate, consistent and rich annotation. In addition to capturing the core data mandatory for each UniProtKB entry (mainly, the amino acid sequence, protein name or description, taxonomic data and citation information), as much annotation information as possible is added. This includes widely accepted biological ontologies, classifications and cross-references, and clear indications of the quality of annotation in the form of evidence attribution of experimental and computational data. The UniProt Knowledgebase consists of two sections: a reviewed section containing manually-annotated records with information extracted from literature and curator-evaluated computational analysis (aka \"UniProtKB/Swiss-Prot\"), and an unreviewed section with computationally analyzed records that await full manual annotation (aka \"UniProtKB/TrEMBL\").",
@@ -64547,6 +64602,7 @@
       "aberowl": "UP",
       "biocontext": "UniProtKB",
       "cellosaurus": "UniProtKB",
+      "edam": "3021",
       "fairsharing": "FAIRsharing.s1ne3g",
       "go": "UniProtKB",
       "miriam": "uniprot",
@@ -65006,8 +65062,15 @@
       "prefix": "UNISTS",
       "uri_format": "http://identifiers.org/unists/$1"
     },
+    "edam": {
+      "description": "Identifier of an entry from the UniSTS database.",
+      "name": "UniSTS",
+      "obsolete": false,
+      "prefix": "2389"
+    },
     "mappings": {
       "biocontext": "UNISTS",
+      "edam": "2389",
       "miriam": "unists",
       "n2t": "unists",
       "ncbi": "UniSTS",
@@ -65061,6 +65124,12 @@
       "prefix": "UNITE",
       "uri_format": "http://identifiers.org/unite/$1"
     },
+    "edam": {
+      "description": "Identifier of an entry from the UNITE database.",
+      "name": "UNITE",
+      "obsolete": false,
+      "prefix": "2390"
+    },
     "fairsharing": {
       "abbreviation": null,
       "description": "UNITE is a database and sequence management environment centered on the eukaryotic nuclear ribosomal ITS region. All eukaryotic ITS sequences from the International Nucleotide Sequence Database Collaboration are clustered to approximately the species level (distance between species in steps of 0.5%), and all such species hypotheses are given a DOI to facilitate unambiguous scientific communication and data assembly. The user can interact with these species hypotheses (e.g., SH1566366.08FU) in various ways, and third-party sequence and metadata annotation are supported. Registration is needed to access the more powerful features of the accompanying PlutoF workbench. A range of search and query options are available, and precompiled reference datasets for local sequence similarity searches and HTS pipelines are available for download. Owing to the mycological roots of UNITE, two versions of the release files are available: all eukaryotes (including fungi), and fungi only. UNITE is a community effort that relies on the scientific expertise of its users – please consider contributing by, e.g., annotating sequences of your taxa of expertise.",
@@ -65078,6 +65147,7 @@
     },
     "mappings": {
       "biocontext": "UNITE",
+      "edam": "2390",
       "fairsharing": "FAIRsharing.cnwx8c",
       "miriam": "unite",
       "n2t": "unite",

@@ -174,4 +174,6 @@ def _get_identifier(term, ontology: str) -> str:
 def _clean(s: str) -> str:
     s = removesuffix(s, "identifier").strip()
     s = removesuffix(s, "ID").strip()
+    s = removesuffix(s, "accession").strip()
+
     return s

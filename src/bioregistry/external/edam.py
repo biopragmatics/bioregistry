@@ -37,7 +37,6 @@ def get_edam(force_download: bool = False):
 def _get_identifier(term, ontology: str) -> str:
     # note that this prefix doesn't match the ontology name
     rv = term["obo_id"][len("data:") :]
-    rv = removesuffix(rv, " ID")
     return rv
 
 
