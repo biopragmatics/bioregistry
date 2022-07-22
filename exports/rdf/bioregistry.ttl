@@ -13,6 +13,7 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ecoportal: <http://ecoportal.lifewatch.eu/ontologies/> .
+@prefix edam.data: <http://edamontology.org/data_> .
 @prefix fairsharing: <https://fairsharing.org/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix go.resource: <https://bioregistry.io/metaregistry/go/> .
@@ -1758,7 +1759,8 @@ bioregistry:cas a bioregistry.schema:0000001 ;
     rdfs:label "CAS Chemical Registry" ;
     dc:description "CAS (Chemical Abstracts Service) is a division of the American Chemical Society and is the producer of comprehensive databases of chemical information."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:CAS,
+    skos:exactMatch edam.data:1002,
+        biocontext:CAS,
         go.resource:CAS,
         n2t:cas,
         fairsharing:FAIRsharing.r7Kwy7,
@@ -5056,7 +5058,8 @@ bioregistry:gmelin a bioregistry.schema:0000001 ;
     rdfs:label "Gmelins Handbuch der anorganischen Chemie" ;
     dc:description "The Gmelin database is a large database of organometallic and inorganic compounds updated quarterly. It is based on the German publication Gmelins Handbuch der anorganischen Chemie which was originally published by Leopold Gmelin in 1817; the last print edition, the 8th, appeared in the 1990s."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch wikidata:P1578 ;
+    skos:exactMatch edam.data:1004,
+        wikidata:P1578 ;
     foaf:homepage "https://link.springer.com/bookseries/562"^^xsd:string ;
     bioregistry.schema:0000005 "1466"^^xsd:string ;
     bioregistry.schema:0000008 "^[1-9][0-9]{3,6}$"^^xsd:string ;
@@ -5099,7 +5102,7 @@ bioregistry:go.model a bioregistry.schema:0000001 ;
     skos:exactMatch go.resource:gomodel ;
     foaf:homepage "http://www.geneontology.org/gocam"^^xsd:string ;
     bioregistry.schema:0000005 "5fce9b7300001250"^^xsd:string ;
-    bioregistry.schema:0000006 "noctua.geneontology.org/editor/graph/gomodel:$1"^^xsd:string ;
+    bioregistry.schema:0000006 "http://noctua.geneontology.org/editor/graph/gomodel:$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:go.ref a bioregistry.schema:0000001 ;
@@ -6380,7 +6383,8 @@ bioregistry:isbn a bioregistry.schema:0000001 ;
     rdfs:label "International Standard Book Number" ;
     dc:description "The International Standard Book Number (ISBN) is for identifying printed books."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:ISBN-13,
+    skos:exactMatch edam.data:2634,
+        biocontext:ISBN-13,
         biolink:isbn,
         go.resource:ISBN,
         n2t:isbn,
@@ -7075,7 +7079,8 @@ bioregistry:merops.entry a bioregistry.schema:0000001 ;
     rdfs:label "MEROPS Entry" ;
     dc:description "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. This collections references inhibitors."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:MEROPS.INHIBITOR,
+    skos:exactMatch edam.data:2629,
+        biocontext:MEROPS.INHIBITOR,
         go.resource:MEROPS,
         n2t:merops.inhibitor,
         fairsharing:FAIRsharing.2s4n8r,
@@ -7498,7 +7503,8 @@ bioregistry:mirbase a bioregistry.schema:0000001 ;
     rdfs:label "miRBase pre-miRNA" ;
     dc:description "The miRBase Sequence Database is a searchable database of published miRNA sequences and annotation. The data were previously provided by the miRNA Registry. Each entry in the miRBase Sequence database represents a predicted hairpin portion of a miRNA transcript (termed mir in the database), with information on the location and sequence of the mature miRNA sequence (termed miR)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:MIRBASE,
+    skos:exactMatch edam.data:2642,
+        biocontext:MIRBASE,
         biolink:mirbase,
         n2t:mirbase,
         ncbi.resource:miRBase,
@@ -10392,7 +10398,8 @@ bioregistry:reaxys a bioregistry.schema:0000001 ;
     rdfs:label "Reaxys" ;
     dc:description "Reaxys is a web-based tool for the retrieval of chemistry information and data from published literature, including journals and patents. The information includes chemical compounds, chemical reactions, chemical properties, related bibliographic data, substance data with synthesis planning information, as well as experimental procedures from selected journals and patents. It is licensed by Elsevier."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch wikidata:P1579 ;
+    skos:exactMatch edam.data:1003,
+        wikidata:P1579 ;
     foaf:homepage "https://www.reaxys.com"^^xsd:string ;
     bioregistry.schema:0000005 "1257009"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
@@ -10493,7 +10500,8 @@ bioregistry:rfam a bioregistry.schema:0000001 ;
     rdfs:label "Rfam database of RNA families" ;
     dc:description "The Rfam database is a collection of RNA families, each represented by multiple sequence alignments, consensus secondary structures and covariance models (CMs). The families in Rfam break down into three broad functional classes: non-coding RNA genes, structured cis-regulatory elements and self-splicing RNAs. Typically these functional RNAs often have a conserved secondary structure which may be better preserved than the RNA sequence. The CMs used to describe each family are a slightly more complicated relative of the profile hidden Markov models (HMMs) used by Pfam. CMs can simultaneously model RNA sequence and the structure in an elegant and accurate fashion."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:RFAM,
+    skos:exactMatch edam.data:2356,
+        biocontext:RFAM,
         go.resource:Rfam,
         n2t:rfam,
         ncbi.resource:RFAM,
@@ -10559,7 +10567,8 @@ bioregistry:rhea a bioregistry.schema:0000001 ;
 
 Rhea covers the reactions described by the IUBMB Enzyme Nomenclature as well as many additional reactions and can be used for enzyme annotation, genome-scale metabolic modeling and omics-related analyses. Rhea is the standard for enzyme and transporter annotation in UniProtKB."""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:RHEA,
+    skos:exactMatch edam.data:2644,
+        biocontext:RHEA,
         go.resource:RHEA,
         n2t:rhea,
         fairsharing:FAIRsharing.pn1sr5,
@@ -11050,7 +11059,8 @@ bioregistry:sgd a bioregistry.schema:0000001 ;
     rdfs:label "Saccharomyces Genome Database" ;
     dc:description "The Saccharomyces Genome Database (SGD) project collects information and maintains a database of the molecular biology of the yeast Saccharomyces cerevisiae."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:SGD,
+    skos:exactMatch edam.data:1034,
+        biocontext:SGD,
         go.resource:SGD,
         n2t:sgd,
         ncbi.resource:SGD,
@@ -14003,6 +14013,38 @@ ecoportal:BCO dcterms:isPartOf bioregistry.metaresource:ecoportal .
 ecoportal:PCO dcterms:isPartOf bioregistry.metaresource:ecoportal .
 
 ecoportal:STY dcterms:isPartOf bioregistry.metaresource:ecoportal .
+
+edam.data:1002 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1003 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1004 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1034 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1106 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2326 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2343 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2356 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2609 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2622 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2625 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2628 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2629 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2634 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2642 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2644 dcterms:isPartOf bioregistry.metaresource:edam .
 
 obofoundry:AAO dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
@@ -20285,7 +20327,8 @@ bioregistry:dbsnp a bioregistry.schema:0000001 ;
     rdfs:label "NCBI dbSNP" ;
     dc:description "The dbSNP database is a repository for both single base nucleotide subsitutions and short deletion and insertion polymorphisms."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:dbSNP,
+    skos:exactMatch edam.data:1106,
+        biocontext:dbSNP,
         cellosaurus.resource:dbSNP,
         go.resource:dbSNP,
         n2t:dbsnp,
@@ -21311,7 +21354,8 @@ bioregistry:hmdb a bioregistry.schema:0000001 ;
     rdfs:label "Human Metabolome Database" ;
     dc:description "The Human Metabolome Database (HMDB) is a database containing detailed information about small molecule metabolites found in the human body.It contains or links 1) chemical 2) clinical and 3) molecular biology/biochemistry data."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:HMDB,
+    skos:exactMatch edam.data:2622,
+        biocontext:HMDB,
         n2t:hmdb,
         fairsharing:FAIRsharing.sye5js,
         prefixcommons:hmdb,
@@ -21776,7 +21820,8 @@ bioregistry:kegg.pathway a bioregistry.schema:0000001 ;
     dc:description "KEGG PATHWAY is a collection of manually drawn pathway maps representing our knowledge on the molecular interaction and reaction networks."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:kegg ;
-    skos:exactMatch biocontext:KEGG.PATHWAY,
+    skos:exactMatch edam.data:2343,
+        biocontext:KEGG.PATHWAY,
         biolink:KEGG.PATHWAY,
         go.resource:KEGG_PATHWAY,
         n2t:kegg.pathway,
@@ -21847,7 +21892,8 @@ bioregistry:lipidmaps a bioregistry.schema:0000001 ;
     rdfs:label "LIPID MAPS" ;
     dc:description "The LIPID MAPS Lipid Classification System is comprised of eight lipid categories, each with its own subclassification hierarchy. All lipids in the LIPID MAPS Structure Database (LMSD) have been classified using this system and have been assigned LIPID MAPS ID's which reflects their position in the classification hierarchy."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:LIPIDMAPS,
+    skos:exactMatch edam.data:2625,
+        biocontext:LIPIDMAPS,
         n2t:lipidmaps,
         fairsharing:FAIRsharing.cpneh8,
         prefixcommons:lipidmaps,
@@ -23222,7 +23268,7 @@ bioregistry:sprint a bioregistry.schema:0000001 ;
     skos:exactMatch prefixcommons:sprint ;
     foaf:homepage "http://130.88.97.239/dbbrowser/sprint/"^^xsd:string ;
     bioregistry.schema:0000005 "PR00001"^^xsd:string ;
-    bioregistry.schema:0000006 "130.88.97.239/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1"^^xsd:string ;
+    bioregistry.schema:0000006 "http://130.88.97.239/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^PR\\d{5}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -23694,7 +23740,7 @@ bioregistry:xml a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:xml ;
     foaf:homepage "https://www.w3.org/TR/xml/"^^xsd:string ;
     bioregistry.schema:0000005 "lang"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.w3.org/XML/1998/namespace$1"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.w3.org/XML/1998/namespace#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:xsd a bioregistry.schema:0000001 ;
@@ -28194,6 +28240,7 @@ bioregistry:biogrid.interaction a bioregistry.schema:0000001 ;
     dc:description "BioGRID is a database of physical and genetic interactions in Saccharomyces cerevisiae, Caenorhabditis elegans, Drosophila melanogaster, Homo sapiens, and Schizosaccharomyces pombe."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:biogrid ;
+    skos:exactMatch edam.data:2628 ;
     foaf:homepage "https://thebiogrid.org/"^^xsd:string ;
     bioregistry.schema:0000005 "2649230"^^xsd:string ;
     bioregistry.schema:0000006 "https://thebiogrid.org/interaction/$1"^^xsd:string ;
@@ -28481,7 +28528,8 @@ bioregistry:edam.data a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "1664"^^xsd:string ;
     bioregistry.schema:0000006 "http://edamontology.org/data_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1509-4981 .
 
 bioregistry:edam.format a bioregistry.schema:0000001 ;
     rdfs:label "EDAM Format" ;
@@ -28493,7 +28541,8 @@ bioregistry:edam.format a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "1915"^^xsd:string ;
     bioregistry.schema:0000006 "http://edamontology.org/format_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1509-4981 .
 
 bioregistry:edam.operation a bioregistry.schema:0000001 ;
     rdfs:label "EDAM Operation" ;
@@ -28505,7 +28554,8 @@ bioregistry:edam.operation a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0004"^^xsd:string ;
     bioregistry.schema:0000006 "http://edamontology.org/operation_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1509-4981 .
 
 bioregistry:edam.topic a bioregistry.schema:0000001 ;
     rdfs:label "EDAM Topic" ;
@@ -28517,7 +28567,8 @@ bioregistry:edam.topic a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0003"^^xsd:string ;
     bioregistry.schema:0000006 "http://edamontology.org/topic_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1509-4981 .
 
 bioregistry:eurofir a bioregistry.schema:0000001 ;
     rdfs:label "European Food Information Resource Network" ;
@@ -28722,7 +28773,8 @@ bioregistry:kegg.drug a bioregistry.schema:0000001 ;
     dc:description "KEGG DRUG contains chemical structures of drugs and additional information such as therapeutic categories and target molecules."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:kegg ;
-    skos:exactMatch biocontext:KEGG.DRUG,
+    skos:exactMatch edam.data:2609,
+        biocontext:KEGG.DRUG,
         n2t:kegg.drug,
         prefixcommons:kegg.drug,
         miriam:kegg.drug,
@@ -29490,7 +29542,7 @@ bioregistry:xco a bioregistry.schema:0000001 ;
         ols:xco ;
     foaf:homepage "https://rgd.mcw.edu/rgdweb/ontology/view.html?acc_id=XCO:0000000"^^xsd:string ;
     bioregistry.schema:0000005 "0000780"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/XCO_$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://rgd.mcw.edu/rgdweb/ontology/view.html?acc_id=XCO:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:agro,
@@ -29838,7 +29890,8 @@ bioregistry:drugbank a bioregistry.schema:0000001 ;
         bioregistry:drugbank.salt,
         bioregistry:drugbankv4.target ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:DrugBank,
+    skos:exactMatch edam.data:2326,
+        biocontext:DrugBank,
         cellosaurus.resource:DrugBank,
         n2t:drugbank,
         fairsharing:FAIRsharing.353yat,
@@ -29875,7 +29928,8 @@ bioregistry:edam a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "data_1664"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^(data|topic|operation|format)\\_\\d{4}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1509-4981 .
 
 bioregistry:multicellds a bioregistry.schema:0000001 ;
     rdfs:label "MultiCellDS" ;
@@ -30233,6 +30287,8 @@ bioregistry:pubchem dcterms:hasPart bioregistry:pubchem.bioassay,
         bioregistry:pubchem.compound,
         bioregistry:pubchem.element,
         bioregistry:pubchem.substance .
+
+orcid:0000-0002-1509-4981 rdfs:label "Matúš Kalaš" .
 
 orcid:0000-0002-2999-0103 rdfs:label "Jie Zheng" .
 
@@ -30894,6 +30950,30 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
         bioregistry:pcl,
         bioregistry:pco ;
     bioregistry.schema:0000019 orcid:0000-0002-9415-5104 .
+
+bioregistry.metaresource:edam a bioregistry.schema:0000002 ;
+    rdfs:label "EDAM Ontology" ;
+    dc:description "EDAM is a comprehensive ontology of well-established, familiar concepts that are prevalent within computational biology, bioinformatics, and bioimage informatics. EDAM includes types of data and data identifiers, data formats, operations, and topics related to data analysis in life sciences. EDAM provides a set of concepts with preferred terms and synonyms, related terms, definitions, and other information - organised into a simple and intuitive hierarchy for convenient use." ;
+    dcterms:hasPart edam.data:1002,
+        edam.data:1003,
+        edam.data:1004,
+        edam.data:1034,
+        edam.data:1106,
+        edam.data:2326,
+        edam.data:2343,
+        edam.data:2356,
+        edam.data:2609,
+        edam.data:2622,
+        edam.data:2625,
+        edam.data:2628,
+        edam.data:2629,
+        edam.data:2634,
+        edam.data:2642,
+        edam.data:2644 ;
+    foaf:homepage " http://edamontology.org" ;
+    bioregistry.schema:0000005 "1004" ;
+    bioregistry.schema:0000006 "http://edamontology.org/data_$1" ;
+    bioregistry.schema:0000019 orcid:0000-0002-1509-4981 .
 
 bioregistry:kegg a bioregistry.schema:0000001 ;
     rdfs:label "Kyoto Encyclopedia of Genes and Genomes" ;

@@ -1826,6 +1826,8 @@ biogrid.interaction:
     Schizosaccharomyces pombe.
   example: '2649230'
   homepage: https://thebiogrid.org/
+  mappings:
+    edam: '2628'
   name: BioGRID Interactions
   part_of: biogrid
   pattern: ^\d+$
@@ -2789,6 +2791,7 @@ cas:
   mappings:
     biocontext: CAS
     cheminf: '000446'
+    edam: '1002'
     fairsharing: FAIRsharing.r7Kwy7
     go: CAS
     miriam: cas
@@ -5878,6 +5881,7 @@ dbsnp:
   mappings:
     biocontext: dbSNP
     cellosaurus: dbSNP
+    edam: '1106'
     fairsharing: FAIRsharing.edxb58
     go: dbSNP
     miriam: dbsnp
@@ -6910,6 +6914,7 @@ drugbank:
     biocontext: DrugBank
     cellosaurus: DrugBank
     cheminf: '000406'
+    edam: '2326'
     fairsharing: FAIRsharing.353yat
     miriam: drugbank
     n2t: drugbank
@@ -7497,6 +7502,11 @@ ecyano.rule:
   preferred_prefix: ecyano.rule
   uri_format: https://e-cyanobacterium.org/bcs/rule/$1
 edam:
+  contact:
+    email: matus.kalas@uib.no
+    github: matuskalas
+    name: Matúš Kalaš
+    orcid: 0000-0002-1509-4981
   description: 'EDAM is an ontology of general bioinformatics concepts, including
     topics, data types, formats, identifiers and operations. EDAM provides a controlled
     vocabulary for the description, in semantic terms, of things such as: web services
@@ -7504,6 +7514,7 @@ edam:
     workflow software, databases and ontologies, XSD data schema and data objects,
     data syntax and file formats, web portals and pages, resource catalogues and documents
     (such as scientific publications).'
+  download_obo: https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo
   download_owl: https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl
   example: data_1664
   homepage: http://edamontology.org
@@ -7521,9 +7532,15 @@ edam:
   name: Bioinformatics operations, data types, formats, identifiers and topics
   pattern: ^(data|topic|operation|format)\_\d{4}$
   preferred_prefix: edam
+  repository: https://github.com/edamontology/edamontology
   uri_format: https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1
   version: '2019-07-17'
 edam.data:
+  contact:
+    email: matus.kalas@uib.no
+    github: matuskalas
+    name: Matúš Kalaš
+    orcid: 0000-0002-1509-4981
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -7532,6 +7549,7 @@ edam.data:
   description: Information, represented in an information artefact (data record) that
     is 'understandable' by dedicated computational tools that can use the data as
     input or produce it as output.
+  download_obo: https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo
   example: '1664'
   homepage: http://edamontology.org
   mappings:
@@ -7540,8 +7558,14 @@ edam.data:
   part_of: edam
   pattern: ^\d+$
   preferred_prefix: edam.data
+  repository: https://github.com/edamontology/edamontology
   uri_format: http://edamontology.org/data_$1
 edam.format:
+  contact:
+    email: matus.kalas@uib.no
+    github: matuskalas
+    name: Matúš Kalaš
+    orcid: 0000-0002-1509-4981
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -7552,6 +7576,7 @@ edam.format:
     as means of structuring data exchanged between different tools or resources. The
     serialisation, compression, or encoding of concrete data formats/models is not
     in scope of EDAM. Format 'is format of' Data.
+  download_obo: https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo
   example: '1915'
   homepage: http://edamontology.org
   mappings:
@@ -7560,8 +7585,14 @@ edam.format:
   part_of: edam
   pattern: ^\d+$
   preferred_prefix: edam.format
+  repository: https://github.com/edamontology/edamontology
   uri_format: http://edamontology.org/format_$1
 edam.operation:
+  contact:
+    email: matus.kalas@uib.no
+    github: matuskalas
+    name: Matúš Kalaš
+    orcid: 0000-0002-1509-4981
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -7574,6 +7605,7 @@ edam.operation:
     state. b) An operation that may modify the underlying state but has no output.
     c) The singular-case operation with no input or output, that still may modify
     the underlying state.'
+  download_obo: https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo
   example: '0004'
   homepage: http://edamontology.org
   mappings:
@@ -7582,8 +7614,14 @@ edam.operation:
   part_of: edam
   pattern: ^\d+$
   preferred_prefix: edam.operation
+  repository: https://github.com/edamontology/edamontology
   uri_format: http://edamontology.org/operation_$1
 edam.topic:
+  contact:
+    email: matus.kalas@uib.no
+    github: matuskalas
+    name: Matúš Kalaš
+    orcid: 0000-0002-1509-4981
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
@@ -7592,6 +7630,7 @@ edam.topic:
   description: A category denoting a rather broad domain or field of interest, of
     study, application, work, data, or technology. Topics have no clearly defined
     borders between each other.
+  download_obo: https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo
   example: '0003'
   homepage: http://edamontology.org
   mappings:
@@ -7600,6 +7639,7 @@ edam.topic:
   part_of: edam
   pattern: ^\d+$
   preferred_prefix: edam.topic
+  repository: https://github.com/edamontology/edamontology
   uri_format: http://edamontology.org/topic_$1
 edda:
   description: Coverage of the terminology appearing in JMLA was extended with terms
@@ -10511,6 +10551,7 @@ gmelin:
   example: '1466'
   homepage: https://link.springer.com/bookseries/562
   mappings:
+    edam: '1004'
     wikidata: P1578
   name: Gmelins Handbuch der anorganischen Chemie
   pattern: ^[1-9][0-9]{3,6}$
@@ -10650,7 +10691,7 @@ go.model:
     go: gomodel
   name: Gene Ontology Causal Assembly Model
   preferred_prefix: go.model
-  uri_format: noctua.geneontology.org/editor/graph/gomodel:$1
+  uri_format: http://noctua.geneontology.org/editor/graph/gomodel:$1
 go.ref:
   banana: GO_REF
   description: The GO reference collection is a set of abstracts that can be cited
@@ -11674,6 +11715,7 @@ hmdb:
   mappings:
     biocontext: HMDB
     cheminf: 000408
+    edam: '2622'
     fairsharing: FAIRsharing.sye5js
     miriam: hmdb
     n2t: hmdb
@@ -13252,6 +13294,7 @@ isbn:
   mappings:
     biocontext: ISBN-13
     biolink: isbn
+    edam: '2634'
     go: ISBN
     miriam: isbn
     n2t: isbn
@@ -13674,6 +13717,7 @@ kegg.drug:
   homepage: https://www.genome.jp/kegg/drug/
   mappings:
     biocontext: KEGG.DRUG
+    edam: '2609'
     miriam: kegg.drug
     n2t: kegg.drug
     prefixcommons: kegg.drug
@@ -13840,6 +13884,7 @@ kegg.pathway:
   mappings:
     biocontext: KEGG.PATHWAY
     biolink: KEGG.PATHWAY
+    edam: '2343'
     go: KEGG_PATHWAY
     miriam: kegg.pathway
     n2t: kegg.pathway
@@ -14289,6 +14334,7 @@ lipidmaps:
   mappings:
     biocontext: LIPIDMAPS
     cheminf: '000564'
+    edam: '2625'
     fairsharing: FAIRsharing.cpneh8
     miriam: lipidmaps
     n2t: lipidmaps
@@ -14929,6 +14975,7 @@ merops.entry:
   homepage: http://merops.sanger.ac.uk/index.htm
   mappings:
     biocontext: MEROPS.INHIBITOR
+    edam: '2629'
     fairsharing: FAIRsharing.2s4n8r
     go: MEROPS
     miriam: merops.inhibitor
@@ -15673,6 +15720,7 @@ mirbase:
   mappings:
     biocontext: MIRBASE
     biolink: mirbase
+    edam: '2642'
     fairsharing: FAIRsharing.hmgte8
     miriam: mirbase
     n2t: mirbase
@@ -22536,6 +22584,7 @@ reaxys:
   example: '1257009'
   homepage: https://www.reaxys.com
   mappings:
+    edam: '1003'
     wikidata: P1579
   name: Reaxys
   pattern: ^\d+$
@@ -22766,6 +22815,7 @@ rfam:
   homepage: https://rfam.xfam.org/
   mappings:
     biocontext: RFAM
+    edam: '2356'
     fairsharing: FAIRsharing.fex4c8
     go: Rfam
     miriam: rfam
@@ -22855,6 +22905,7 @@ rhea:
   homepage: https://www.rhea-db.org/
   mappings:
     biocontext: RHEA
+    edam: '2644'
     fairsharing: FAIRsharing.pn1sr5
     go: RHEA
     miriam: rhea
@@ -23819,6 +23870,7 @@ sgd:
   homepage: https://www.yeastgenome.org/
   mappings:
     biocontext: SGD
+    edam: '1034'
     fairsharing: FAIRsharing.pzvw40
     go: SGD
     miriam: sgd
@@ -24469,7 +24521,7 @@ sprint:
   name: Search PRINTS-S
   pattern: ^PR\d{5}$
   preferred_prefix: sprint
-  uri_format: 130.88.97.239/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1
+  uri_format: http://130.88.97.239/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1
 srao:
   description: The FAIRsharing Subject Ontology (SRAO) is an application ontology
     for the categorization of research disciplines across all research domains, from
@@ -27474,7 +27526,7 @@ xco:
   pattern: ^\d{7}$
   preferred_prefix: XCO
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
-  uri_format: http://purl.obolibrary.org/obo/XCO_$1
+  uri_format: https://rgd.mcw.edu/rgdweb/ontology/view.html?acc_id=XCO:$1
   version: '2019-12-18'
 xenbase:
   contact:
@@ -27590,7 +27642,7 @@ xml:
     biocontext: xml
   name: Extensible Markup Language
   preferred_prefix: xml
-  uri_format: http://www.w3.org/XML/1998/namespace$1
+  uri_format: http://www.w3.org/XML/1998/namespace#$1
 xpo:
   contact:
     email: Erik.Segerdell@cchmc.org
