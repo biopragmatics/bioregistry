@@ -12032,17 +12032,17 @@
       "orcid": "0000-0003-2699-3066"
     },
     "description": "Identifier (name code) for a taxon in the catalogue of life in taiwan",
-    "example": "[Name Code: 431472](https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=431472)",
+    "example": "431472",
     "github_request_issue": 466,
     "homepage": "http://taibnet.sinica.edu.tw/home.php",
     "mappings": {
-      "wikidata": "[P3088](https://www.wikidata.org/wiki/Property:P3088)"
+      "wikidata": "P3088"
     },
     "name": "Catalogue of Life in Taiwan",
-    "pattern": "^([1-9]\\d{5})$",
-    "uri_format": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=431472",
+    "pattern": "^[1-9]\\d{5}$",
+    "uri_format": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
     "wikidata": {
-      "prefix": "[P3088](https://www.wikidata.org/wiki/Property:P3088)"
+      "prefix": "P3088"
     }
   },
   "colao": {
@@ -22924,7 +22924,6 @@
     "pattern": "^[0-9]{8}$"
   },
   "fossilworks.taxon": {
-    "comment": "I think this website is defunct",
     "contributor": {
       "github": "megbalk",
       "name": "Meghan Balk",
@@ -22935,13 +22934,13 @@
     "github_request_issue": 469,
     "homepage": "http://www.fossilworks.org",
     "mappings": {
-      "wikidata": "[P842](https://www.wikidata.org/wiki/Property:P842)"
+      "wikidata": "P842"
     },
-    "name": "Fossilworks",
-    "pattern": "^([1-9]\\d{0,5})$",
-    "uri_format": "http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=40565",
+    "name": "Fossilworks Taxon",
+    "pattern": "^[1-9]\\d{0,5}$",
+    "uri_format": "http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1",
     "wikidata": {
-      "prefix": "[P842](https://www.wikidata.org/wiki/Property:P842)"
+      "prefix": "P842"
     }
   },
   "fovt": {
@@ -62255,26 +62254,6 @@
       "pattern": "^\\d+$",
       "prefix": "tol",
       "uri_format": "http://tolweb.org/$1"
-    }
-  },
-  "tol.webproj": {
-    "contributor": {
-      "github": "megbalk",
-      "name": "Meghan Balk",
-      "orcid": "0000-0003-2699-3066"
-    },
-    "description": "Identifier in the tree of life web project",
-    "example": "16952",
-    "github_request_issue": 471,
-    "homepage": "http://tolweb.org",
-    "mappings": {
-      "wikidata": "[P5221](https://www.wikidata.org/wiki/Property:P5221)"
-    },
-    "name": "Tree of Life Web Project ID",
-    "pattern": "^[1-9]\\d*$",
-    "uri_format": "http://tolweb.org/$1",
-    "wikidata": {
-      "prefix": "[P5221](https://www.wikidata.org/wiki/Property:P5221)"
     }
   },
   "topdb": {
