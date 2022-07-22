@@ -151,7 +151,7 @@ def get_ols_descendants(ontology: str, uri: str, force_download: bool = False, g
     """Get descendants in the OLS."""
     if get_identifier is None:
         get_identifier = _get_identifier
-    url = f"https://www.ebi.ac.uk/ols/api/ontologies/{ontology}/terms/{uri}/descendants"
+    url = f"https://www.ebi.ac.uk/ols/api/ontologies/{ontology}/terms/{uri}/descendants?size=1000"
     res = requests.get(url)
     res.raise_for_status()
     res_json = res.json()
