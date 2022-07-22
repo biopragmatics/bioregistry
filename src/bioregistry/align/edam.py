@@ -25,7 +25,7 @@ class EDAMAligner(Aligner):
         """Get entries that should be skipped and their reasons."""
         return {
             "1164": "MIRIAM URI not relevant",
-            "1175": "BioPAX ontologies aren't globally unique"
+            "1175": "BioPAX ontologies aren't globally unique",
         }
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
