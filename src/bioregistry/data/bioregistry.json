@@ -23013,6 +23013,27 @@
     },
     "pattern": "^[0-9]{8}$"
   },
+  "fossilworks.journal": {
+    "comment": "I think this website is defunct",
+    "contributor": {
+      "github": "megbalk",
+      "name": "Meghan Balk",
+      "orcid": "0000-0003-2699-3066"
+    },
+    "description": "Identifier for a journal article in the fossilworks website",
+    "example": "61467",
+    "github_request_issue": 468,
+    "homepage": "http://fossilworks.org",
+    "mappings": {
+      "wikidata": "P7720"
+    },
+    "name": "Fossilworks",
+    "pattern": "^\\d+$",
+    "uri_format": "http://fossilworks.org/?a=referenceInfo&reference_no=$1",
+    "wikidata": {
+      "prefix": "P7720"
+    }
+  },
   "fossilworks.taxon": {
     "contributor": {
       "github": "megbalk",
@@ -48214,6 +48235,27 @@
       "pattern": "^A[A-Z]+\\d+$",
       "prefix": "otl",
       "uri_format": "http://urgi.versailles.inra.fr/OryzaTagLine/cgi-bin/general_mutant.pl?line=$1"
+    }
+  },
+  "otol": {
+    "comment": "use NCBI Taxon",
+    "contributor": {
+      "github": "megbalk",
+      "name": "Meghan Balk",
+      "orcid": "0000-0003-2699-3066"
+    },
+    "description": "Identifier for an entity in open tree of life",
+    "example": "3905431",
+    "github_request_issue": 470,
+    "homepage": "https://tree.opentreeoflife.org",
+    "mappings": {
+      "wikidata": "P9157"
+    },
+    "name": "Open Tree of Life",
+    "pattern": "^[1-9]\\d*$",
+    "uri_format": "https://tree.opentreeoflife.org/taxonomy/browse?id=$1",
+    "wikidata": {
+      "prefix": "P9157"
     }
   },
   "ovae": {
