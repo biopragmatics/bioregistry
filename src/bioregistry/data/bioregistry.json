@@ -12171,7 +12171,15 @@
     },
     "uri_format": "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1",
     "wikidata": {
-      "prefix": "P3088"
+      "database": "Q26218155",
+      "database.homepage": "https://taibnet.sinica.edu.tw/home.php",
+      "database.label": "Catalogue of Life in Taiwan",
+      "description": "identifier (name code) for a taxon in the Catalogue of Life in Taiwan",
+      "homepage": "http://taibnet.sinica.edu.tw/home.php",
+      "name": "Catalogue of Life in Taiwan ID",
+      "pattern": "([1-9]\\d{5})",
+      "prefix": "P3088",
+      "uri_format": "http://taibnet.sinica.edu.tw/chi/taibnet_species_detail.php?name_code=$1"
     }
   },
   "colao": {
@@ -23203,6 +23211,41 @@
     },
     "pattern": "^[0-9]{8}$"
   },
+  "fossilworks.journal": {
+    "contributor": {
+      "github": "megbalk",
+      "name": "Meghan Balk",
+      "orcid": "0000-0003-2699-3066"
+    },
+    "description": "Identifier for a journal article in the fossilworks website",
+    "example": "61467",
+    "github_request_issue": 468,
+    "homepage": "http://fossilworks.org",
+    "mappings": {
+      "wikidata": "P7720"
+    },
+    "name": "Fossilworks Journal",
+    "part_of": "fossilworks",
+    "pattern": "^\\d+$",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://fossilworks.org/?a=referenceInfo&reference_no=$1",
+    "wikidata": {
+      "database": "Q796451",
+      "database.homepage": "http://www.fossilworks.org",
+      "database.label": "Fossilworks",
+      "description": "identifier for a journal article in the Fossilworks database",
+      "homepage": "http://fossilworks.org",
+      "name": "Fossilworks ID for this journal article",
+      "pattern": "\\d+",
+      "prefix": "P7720",
+      "uri_format": "http://fossilworks.org/?a=referenceInfo&reference_no=$1"
+    }
+  },
   "fossilworks.taxon": {
     "contributor": {
       "github": "megbalk",
@@ -23217,6 +23260,7 @@
       "wikidata": "P842"
     },
     "name": "Fossilworks Taxon",
+    "part_of": "fossilworks",
     "pattern": "^[1-9]\\d{0,5}$",
     "reviewer": {
       "email": "cthoyt@gmail.com",
@@ -23226,7 +23270,15 @@
     },
     "uri_format": "http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1",
     "wikidata": {
-      "prefix": "P842"
+      "database": "Q796451",
+      "database.homepage": "http://www.fossilworks.org",
+      "database.label": "Fossilworks",
+      "description": "identifier for an animal, plant, or microorganism in the Fossilworks database",
+      "homepage": "http://www.fossilworks.org",
+      "name": "Fossilworks taxon ID",
+      "pattern": "([1-9]\\d{0,5})",
+      "prefix": "P842",
+      "uri_format": "http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1"
     }
   },
   "fovt": {
@@ -48602,6 +48654,32 @@
       "uri_format": "http://urgi.versailles.inra.fr/OryzaTagLine/cgi-bin/general_mutant.pl?line=$1"
     }
   },
+  "otol": {
+    "contributor": {
+      "github": "megbalk",
+      "name": "Meghan Balk",
+      "orcid": "0000-0003-2699-3066"
+    },
+    "description": "Identifier for an entity in open tree of life",
+    "example": "3905431",
+    "github_request_issue": 470,
+    "homepage": "https://tree.opentreeoflife.org",
+    "mappings": {
+      "wikidata": "P9157"
+    },
+    "name": "Open Tree of Life",
+    "pattern": "^[1-9]\\d*$",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://tree.opentreeoflife.org/taxonomy/browse?id=$1",
+    "wikidata": {
+      "prefix": "P9157"
+    }
+  },
   "ovae": {
     "aberowl": {
       "description": "A biomedical ontology in the domain of vaccine adverse events.",
@@ -62994,7 +63072,18 @@
     },
     "synonyms": [
       "tol.webproj"
-    ]
+    ],
+    "wikidata": {
+      "database": "Q2300489",
+      "database.homepage": "http://www.tolweb.org/",
+      "database.label": "Tree of Life Web Project",
+      "description": "identifier in the Tree of Life Web Project",
+      "homepage": "https://tolweb.org",
+      "name": "Tree of Life Web Project ID",
+      "pattern": "[1-9]\\d*",
+      "prefix": "P5221",
+      "uri_format": "http://tolweb.org/$1"
+    }
   },
   "topdb": {
     "biocontext": {

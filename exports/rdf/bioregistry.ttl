@@ -11889,14 +11889,15 @@ bioregistry:tokue a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true .
 
 bioregistry:tol a bioregistry.schema:0000001 ;
-    rdfs:label "Tree of Life" ;
+    rdfs:label "Tree of Life Web Project ID" ;
     dc:description """The Tree of Life Web Project (ToL) is a collaborative effort of biologists and nature enthusiasts from around the world. On more than 10,000 World Wide Web pages, the project provides information about biodiversity, the characteristics of different groups of organisms, and their evolutionary history (phylogeny). \r
 \r
 Each page contains information about a particular group, with pages linked one to another hierarchically, in the form of the evolutionary tree of life. Starting with the root of all Life on Earth and moving out along diverging branches to individual species, the structure of the ToL project thus illustrates the genetic connections between all living things."""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:TOL,
         n2t:tol,
-        miriam:tol ;
+        miriam:tol,
+        wikidata:P5221 ;
     foaf:homepage "http://tolweb.org/tree/"^^xsd:string ;
     bioregistry.schema:0000005 "98034"^^xsd:string ;
     bioregistry.schema:0000006 "http://tolweb.org/$1"^^xsd:string ;
@@ -12810,7 +12811,8 @@ bioregistry:worms a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:WORMS,
         n2t:worms,
         fairsharing:FAIRsharing.7g1bzj,
-        miriam:worms ;
+        miriam:worms,
+        wikidata:P850 ;
     foaf:homepage "http://www.marinespecies.org/"^^xsd:string ;
     bioregistry.schema:0000005 "146421"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.marinespecies.org/aphia.php?p=taxdetails&id=$1"^^xsd:string ;
@@ -13214,7 +13216,11 @@ orcid:0000-0003-1613-5981 rdfs:label "Heather Piwowar" .
 orcid:0000-0003-2338-8872 rdfs:label "Fernanda Farinelli" .
 
 orcid:0000-0003-2699-3066 rdfs:label "Meghan Balk" ;
-    dcterms:contributor bioregistry:noaa .
+    dcterms:contributor bioregistry:col.taiwan,
+        bioregistry:fossilworks.journal,
+        bioregistry:fossilworks.taxon,
+        bioregistry:noaa,
+        bioregistry:otol .
 
 orcid:0000-0003-2826-6444 rdfs:label "Amos Bairoch" .
 
@@ -20145,6 +20151,18 @@ bioregistry:cohd a bioregistry.schema:0000001 ;
     foaf:homepage "https://github.com/MIT-LCP/mimic-omop"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:col.taiwan a bioregistry.schema:0000001 ;
+    rdfs:label "Catalogue of Life in Taiwan" ;
+    dc:description "Identifier (name code) for a taxon in the catalogue of life in taiwan"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P3088 ;
+    foaf:homepage "http://taibnet.sinica.edu.tw/home.php"^^xsd:string ;
+    bioregistry.schema:0000005 "431472"^^xsd:string ;
+    bioregistry.schema:0000006 "https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9]\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:complexportal a bioregistry.schema:0000001 ;
     rdfs:label "Complex Portal" ;
     dc:description "A database that describes manually curated macromolecular complexes and provides links to details about these complexes in other databases."^^xsd:string ;
@@ -21031,6 +21049,9 @@ bioregistry:foodb.food a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://foodb.ca/foods/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^FOOD\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:fossilworks dcterms:hasPart bioregistry:fossilworks.journal,
+        bioregistry:fossilworks.taxon .
 
 bioregistry:fr a bioregistry.schema:0000001 ;
     rdfs:label "FAIR* Reviews Ontology" ;
@@ -22566,6 +22587,18 @@ bioregistry:openalex a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[WAICV]\\d{2,}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-1613-5981 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:otol a bioregistry.schema:0000001 ;
+    rdfs:label "Open Tree of Life" ;
+    dc:description "Identifier for an entity in open tree of life"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P9157 ;
+    foaf:homepage "https://tree.opentreeoflife.org"^^xsd:string ;
+    bioregistry.schema:0000005 "3905431"^^xsd:string ;
+    bioregistry.schema:0000006 "https://tree.opentreeoflife.org/taxonomy/browse?id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9]\\d*$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:owl a bioregistry.schema:0000001 ;
@@ -28066,6 +28099,8 @@ wikidata:P2892 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P2926 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P3088 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P3117 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3151 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -28134,6 +28169,8 @@ wikidata:P494 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P496 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P5221 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P5270 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P5458 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -28192,6 +28229,8 @@ wikidata:P7333 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P7718 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P7720 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P7807 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P7963 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -28202,11 +28241,17 @@ wikidata:P815 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P830 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P842 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P846 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P850 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P8656 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P8691 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P9157 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P932 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -28650,6 +28695,32 @@ bioregistry:fobi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000017 bioregistry:chebi,
         bioregistry:foodon ;
     bioregistry.schema:0000019 orcid:0000-0001-6466-877X .
+
+bioregistry:fossilworks.journal a bioregistry.schema:0000001 ;
+    rdfs:label "Fossilworks Journal" ;
+    dc:description "Identifier for a journal article in the fossilworks website"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:fossilworks ;
+    skos:exactMatch wikidata:P7720 ;
+    foaf:homepage "http://fossilworks.org"^^xsd:string ;
+    bioregistry.schema:0000005 "61467"^^xsd:string ;
+    bioregistry.schema:0000006 "http://fossilworks.org/?a=referenceInfo&reference_no=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:fossilworks.taxon a bioregistry.schema:0000001 ;
+    rdfs:label "Fossilworks Taxon" ;
+    dc:description "Identifier for an animal, plant, or microorganism from the fossilworks website"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:fossilworks ;
+    skos:exactMatch wikidata:P842 ;
+    foaf:homepage "http://www.fossilworks.org"^^xsd:string ;
+    bioregistry.schema:0000005 "40565"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9]\\d{0,5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:frapo a bioregistry.schema:0000001 ;
     rdfs:label "Funding, Research Administration and Projects Ontology" ;
@@ -32216,6 +32287,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P2871,
         wikidata:P2892,
         wikidata:P2926,
+        wikidata:P3088,
         wikidata:P3117,
         wikidata:P3151,
         wikidata:P3201,
@@ -32250,6 +32322,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P493,
         wikidata:P494,
         wikidata:P496,
+        wikidata:P5221,
         wikidata:P5270,
         wikidata:P5458,
         wikidata:P5501,
@@ -32281,14 +32354,18 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P7260,
         wikidata:P7333,
         wikidata:P7718,
+        wikidata:P7720,
         wikidata:P7807,
         wikidata:P7963,
         wikidata:P8121,
         wikidata:P815,
         wikidata:P830,
+        wikidata:P842,
         wikidata:P846,
+        wikidata:P850,
         wikidata:P8656,
         wikidata:P8691,
+        wikidata:P9157,
         wikidata:P932,
         wikidata:P938 ;
     foaf:homepage "https://www.wikidata.org" ;
@@ -37324,6 +37401,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:cog.category,
         bioregistry:cog.pathway,
         bioregistry:cohd,
+        bioregistry:col.taiwan,
         bioregistry:colao,
         bioregistry:colonatlas,
         bioregistry:combine.specifications,
@@ -37552,6 +37630,8 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:foodb.compound,
         bioregistry:foodb.food,
         bioregistry:foodon,
+        bioregistry:fossilworks.journal,
+        bioregistry:fossilworks.taxon,
         bioregistry:fovt,
         bioregistry:fplx,
         bioregistry:fr,
@@ -38073,6 +38153,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:oryzabase.stage,
         bioregistry:oryzabase.strain,
         bioregistry:otl,
+        bioregistry:otol,
         bioregistry:ovae,
         bioregistry:owl,
         bioregistry:p3db.protein,
