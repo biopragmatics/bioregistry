@@ -693,7 +693,7 @@ class Resource(BaseModel):
 
         Non-strict match allows the banana to be optionally present
         >>> resource.get_pattern_with_banana(strict=False)
-         '^(CHEBI:)?\\d+$'
+        '^(CHEBI:)?\\d+$'
         """
         pattern = self.get_pattern()
         if pattern is None:
