@@ -4,7 +4,7 @@ import logging
 from dataclasses import asdict, is_dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, List, Mapping, Optional, Union
+from typing import Any, List, Mapping, Optional, Union, cast
 
 import click
 import requests
@@ -149,7 +149,7 @@ def _get_hexdigest(path: Union[str, Path], alg: str = "sha256") -> str:
 
 def get_ols_descendants(
     ontology: str, uri: str, *, force_download: bool = False, get_identifier=None, clean=None
-):
+) -> Mapping[str, Mapping[str, Any]]:
     """Get descendants in the OLS."""
     url = f"https://www.ebi.ac.uk/ols/api/ontologies/{ontology}/terms/{uri}/descendants?size=1000"
     res = requests.get(url)
@@ -159,7 +159,9 @@ def get_ols_descendants(
     return _process_ols(ontology=ontology, terms=terms, clean=clean, get_identifier=get_identifier)
 
 
-def _process_ols(*, ontology, terms, clean=None, get_identifier=None):
+def _process_ols(
+    *, ontology, terms, clean=None, get_identifier=None
+) -> Mapping[str, Mapping[str, Any]]:
     if clean is None:
         clean = _clean
     if get_identifier is None:
@@ -181,8 +183,7 @@ def _get_identifier(term, ontology: str) -> str:
 
 
 def _clean(s: str) -> str:
-    s = removesuffix(s, "identifier").strip()
-    s = removesuffix(s, "ID").strip()
-    s = removesuffix(s, "accession").strip()
-
+    s = cast(str, removesuffix(s, "identifier")).strip()
+    s = cast(str, removesuffix(s, "ID")).strip()
+    s = cast(str, removesuffix(s, "accession")).strip()
     return s
