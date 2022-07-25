@@ -294,6 +294,15 @@ class TestRegistry(unittest.TestCase):
                     ),
                 )
 
+    def test_pattern_with_banana(self):
+        """Test getting patterns with bananas."""
+        resource = self.registry["chebi"]
+        self.assertEqual(
+            "^CHEBI:\\d+$",
+            resource.get_pattern_with_banana(),
+        )
+        self.assertEqual("^(CHEBI:)?\\d+$", resource.get_pattern_with_banana(strict=False))
+
     def test_examples(self):
         """Test examples for the required conditions.
 

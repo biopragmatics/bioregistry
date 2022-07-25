@@ -671,6 +671,80 @@ class Resource(BaseModel):
             return None
         return re.compile(pattern)
 
+    def get_pattern_with_banana(self, strict: bool = True) -> Optional[str]:
+        r"""Get the pattern for the prefix including a banana if available.
+
+        .. warning::
+
+            This function is meant to mediate backwards compatibility with legacy
+            MIRIAM/Identifiers.org standards. New projects should **not** use redundant
+            prefixes in their local unique identifiers.
+
+        :param strict: If True (default), and a banana exists for the prefix,
+            the banana is required in the pattern. If False, the pattern
+            will match the banana if present but will also match the identifier
+            without the banana.
+        :returns: A pattern for the prefix if available
+
+        >>> import bioregistry as br
+        >>> resource = br.get_resource("chebi")
+
+        Strict match requires the banana to be present
+        >>> resource.get_pattern_with_banana()
+        '^CHEBI:\\d+$'
+
+        Non-strict match allows the banana to be optionally present
+        >>> resource.get_pattern_with_banana(strict=False)
+        '^(CHEBI:)?\\d+$'
+        """
+        pattern = self.get_pattern()
+        if pattern is None:
+            return None
+        banana = self.get_banana()
+        if not banana:
+            return pattern
+
+        banana_peel = self.get_banana_peel()
+        prepattern = f"{banana}{banana_peel}"
+        if not strict:
+            prepattern = f"({prepattern})?"
+        return "^" + prepattern + pattern.lstrip("^")
+
+    def get_pattern_re_with_banana(self, strict: bool = True):
+        """Get the compiled pattern for the prefix including a banana if available.
+
+        .. warning::
+
+            This function is meant to mediate backwards compatibility with legacy
+            MIRIAM/Identifiers.org standards. New projects should **not** use redundant
+            prefixes in their local unique identifiers.
+
+        :param strict: If True (default), and a banana exists for the prefix,
+            the banana is required in the pattern. If False, the pattern
+            will match the banana if present but will also match the identifier
+            without the banana.
+        :returns: A compiled pattern for the prefix if available
+
+        >>> import bioregistry as br
+        >>> resource = br.get_resource("chebi")
+
+        Strict match requires banana
+        >>> resource.get_pattern_re_with_banana().match("1234")
+
+        >>> resource.get_pattern_re_with_banana().match("CHEBI:1234")
+        <re.Match object; span=(0, 10), match='CHEBI:1234'>
+
+        Loose match does not require banana
+        >>> resource.get_pattern_re_with_banana(strict=False).match('1234')
+        <re.Match object; span=(0, 4), match='1234'>
+        >>> resource.get_pattern_re_with_banana(strict=False).match('CHEBI:1234')
+        <re.Match object; span=(0, 10), match='CHEBI:1234'>
+        """
+        p = self.get_pattern_with_banana(strict=strict)
+        if p is None:
+            return None
+        return re.compile(p)
+
     def get_namespace_in_lui(self) -> Optional[bool]:
         """Check if the namespace should appear in the LUI."""
         if self.namespace_in_lui is not None:
