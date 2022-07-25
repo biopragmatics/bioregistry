@@ -12,6 +12,7 @@ import yaml
 import bioregistry
 from bioregistry import manager
 from bioregistry.constants import SSSOM_METADATA_PATH, SSSOM_PATH
+from bioregistry.utils import curie_to_str
 
 __all__ = [
     "export_sssom",
@@ -104,9 +105,9 @@ def export_sssom():
 
 def _make_row(mp1: str, mi1: str, rp: str, ri: str, mp2: str, mi2: str) -> Row:
     return Row(
-        subject_id=f"{mp1}:{mi1}",
-        predicate_id=f"{rp}:{ri}",
-        object_id=f"{mp2}:{mi2}",
+        subject_id=curie_to_str(mp1, mi1),
+        predicate_id=curie_to_str(rp, ri),
+        object_id=curie_to_str(mp2, mi2),
         match_type="sssom:HumanCurated",
     )
 

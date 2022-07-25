@@ -5,7 +5,7 @@
 import itertools as itt
 from typing import Optional
 
-from flask import Blueprint, abort, redirect, render_template, url_for
+from flask import Blueprint, abort, redirect, render_template, request, url_for
 from markdown import markdown
 
 import bioregistry
@@ -42,11 +42,14 @@ FORMATS = [
 @ui_blueprint.route("/registry/")
 def resources():
     """Serve the Bioregistry page."""
+    registry = bioregistry.read_registry()
+    if request.args.get("novel") in {"true", "t"}:
+        registry = {p: v for p, v in registry.items() if bioregistry.is_novel(p)}
     return render_template(
         "resources.html",
         formats=FORMATS,
         markdown=markdown,
-        registry=bioregistry.read_registry(),
+        registry=registry,
     )
 
 
@@ -275,7 +278,12 @@ def resolve(prefix: str, identifier: Optional[str] = None):
             404,
         )
 
-    url = bioregistry.get_iri(prefix, identifier, use_bioregistry_io=False)
+    url = bioregistry.get_iri(
+        prefix,
+        identifier,
+        use_bioregistry_io=False,
+        provider=request.args.get("provider"),
+    )
     if not url:
         return (
             render_template(
@@ -316,6 +324,18 @@ def metaresolve(metaprefix: str, metaidentifier: str, identifier: Optional[str] 
             f" {list(manager.get_registry_invmap(metaprefix))}",
         )
     return redirect(url_for(f".{resolve.__name__}", prefix=prefix, identifier=identifier))
+
+
+@ui_blueprint.route("/resolve/github/issue/<owner>/<repository>/<int:issue>")
+def github_resolve_issue(owner, repository, issue):
+    """Redirect to an issue on GitHub."""
+    return redirect(f"https://github.com/{owner}/{repository}/issues/{issue}")
+
+
+@ui_blueprint.route("/resolve/github/pull/<owner>/<repository>/<int:pull>")
+def github_resolve_pull(owner, repository, pull: int):
+    """Redirect to a pull request on GitHub."""
+    return redirect(f"https://github.com/{owner}/{repository}/pull/{pull}")
 
 
 @ui_blueprint.route("/contributors/")

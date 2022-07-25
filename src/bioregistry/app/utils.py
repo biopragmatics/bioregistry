@@ -12,7 +12,7 @@ from pydantic import BaseModel
 import bioregistry
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL
 from bioregistry.schema import Resource, sanitize_model
-from bioregistry.utils import extended_encoder
+from bioregistry.utils import curie_to_str, extended_encoder
 
 
 def _get_resource_providers(
@@ -154,11 +154,11 @@ def _get_identifier(prefix: str, identifier: str) -> Mapping[str, Any]:
     if not bioregistry.is_known_identifier(prefix, identifier):
         return abort(
             404,
-            f"invalid identifier: {prefix}:{identifier} for pattern {bioregistry.get_pattern(prefix)}",
+            f"invalid identifier: {curie_to_str(prefix, identifier)} for pattern {bioregistry.get_pattern(prefix)}",
         )
     providers = bioregistry.get_providers(prefix, identifier)
     if not providers:
-        return abort(404, f"no providers available for {prefix}:{identifier}")
+        return abort(404, f"no providers available for {curie_to_str(prefix, identifier)}")
 
     return dict(
         query=dict(prefix=prefix, identifier=identifier),

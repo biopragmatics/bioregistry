@@ -8,11 +8,9 @@ from textwrap import dedent
 from typing import Mapping
 
 import click
-import pandas as pd
 
 import bioregistry
 from bioregistry.constants import TABLES_SUMMARY_LATEX_PATH
-from bioregistry.external import GETTERS
 from bioregistry.version import get_version
 
 
@@ -22,6 +20,7 @@ class BioregistrySummary:
 
     number_prefixes: int
     number_registries: int
+    number_registries_aligned: int
     number_prefixes_novel: int
     number_prefixes_curated: int
     number_mappings: int
@@ -29,7 +28,8 @@ class BioregistrySummary:
     number_mismatches_curated: int
     number_collections: int
     number_contexts: int
-    number_contributors: int
+    number_direct_contributors: int
+    number_total_contributors: int
     external_sizes: Mapping[str, int]
     date: datetime.datetime
 
@@ -44,14 +44,16 @@ class BioregistrySummary:
         return (
             dedent(
                 f"""\
-        The Bioregistry (v{get_version()}) integrates {self.number_registries:,} external registries
-        and contains {self.number_prefixes:,} records, compared to {self.external_sizes['prefixcommons']}
-        records in Prefix Commons, {self.external_sizes['miriam']:,} in MIRIAM/Identifiers.org, and
-        {self.external_sizes['n2t']:,} in Name-to-Thing (each accessed on {self.datetime_str}).
-        {self.number_prefixes_novel:,} of the {self.number_prefixes:,} records are novel (i.e., they do not
-        appear in any external registry) and the Bioregistry adds additional novel curated metadata to
-        {self.number_prefixes_curated:,} of the remaining
-        {remaining:,} records ({self.number_prefixes_curated / remaining:.0%}).
+        The Bioregistry ({get_version()}; {self.datetime_str}) integrates content from and aligns
+        {self.number_registries_aligned:,} external registries and contains {self.number_prefixes:,}
+        individual records. These records extend on each prior registry
+        (e.g., 838 records in {self.external_sizes['prefixcommons']}, {self.external_sizes['miriam']:,}
+        in MIRIAM/Identifiers.org, and {self.external_sizes['n2t']:,}  in Name-to-Thing (Wimalaratne et al., 2018),
+        each accessed on {self.datetime_str}), as well as the aligned registries combined:
+        {self.number_prefixes_novel:,} of the Bioregistry’s {self.number_prefixes:,} records are novel,
+        i.e. they do not appear in any existing registry. The Bioregistry also adds novel curated metadata
+        for {self.number_prefixes_curated:,} of the remaining {remaining:,} records
+        ({self.number_prefixes_curated / remaining:.0%} of all records).
         """
             )
             .strip()
@@ -61,16 +63,20 @@ class BioregistrySummary:
     def _table_rows(self):
         return [
             ("Version", get_version()),
-            ("Registries", self.number_registries),
+            ("Registries Surveyed", self.number_registries),
+            ("Registries Aligned", self.number_registries_aligned),
             ("Prefixes", self.number_prefixes),
             ("Synonyms", self.number_synonyms),
             ("Cross-registry Mappings", self.number_mappings),
             ("Curated Mismatches", self.number_mismatches_curated),
             ("Collections and Contexts", self.number_collections + self.number_contexts),
-            ("Direct Contributors", self.number_contributors),
+            ("Direct Contributors", self.number_direct_contributors),
+            ("Total Contributors", self.number_total_contributors),
         ]
 
     def _table_df(self):
+        import pandas as pd
+
         return pd.DataFrame(self._table_rows(), columns=["Category", "Count"])
 
     def get_table_text(self, tablefmt: str = "github"):
@@ -95,8 +101,10 @@ class BioregistrySummary:
         """Instantiate the class."""
         registry = bioregistry.read_registry()
 
+        metaprefix_to_mapping_count = bioregistry.count_mappings()
+
         #: The total number of mappings from all records to all external records
-        mapping_count = sum(len(entry.mappings) for entry in registry.values() if entry.mappings)
+        total_mapping_count = sum(metaprefix_to_mapping_count.values())
 
         #: The total number of synonyms across all records
         synonym_count = sum(
@@ -108,6 +116,7 @@ class BioregistrySummary:
         number_novel_prefixes = len(novel_prefixes)
 
         metaprefixes = set(bioregistry.read_metaregistry())
+        metaprefixes_aligned = set(metaprefix_to_mapping_count)
 
         #: The number of prefixes that have any overrides that are not novel to the Bioregistry
         prefixes_curated = sum(
@@ -120,19 +129,23 @@ class BioregistrySummary:
             if prefix not in novel_prefixes
         )
 
+        from bioregistry.external import GETTERS
+
         return cls(
             date=datetime.datetime.now(),
             number_prefixes=len(registry),
             number_registries=len(metaprefixes),
+            number_registries_aligned=len(metaprefixes_aligned),
             number_prefixes_novel=number_novel_prefixes,
-            number_mappings=mapping_count,
+            number_mappings=total_mapping_count,
             number_synonyms=synonym_count,
             number_prefixes_curated=prefixes_curated,
             number_mismatches_curated=sum(len(v) for v in bioregistry.read_mismatches().values()),
             external_sizes={metaprefix: len(getter()) for metaprefix, _, getter in GETTERS},
             number_collections=len(bioregistry.read_collections()),
             number_contexts=len(bioregistry.read_contexts()),
-            number_contributors=len(bioregistry.read_contributors(direct_only=True)),
+            number_direct_contributors=len(bioregistry.read_contributors(direct_only=True)),
+            number_total_contributors=len(bioregistry.read_contributors(direct_only=False)),
         )
 
 
@@ -159,13 +172,13 @@ class MappingBurdenSummary:
         return (
             dedent(
                 f"""\
-            The estimated number of one-to-one mappings between prefixes in each pair of
+            The upper bound on the number of one-to-one mappings between prefixes in each pair of
             external registries is {self.pairwise_upper_bound:,}. This decreases by
-            {self.pairwise_to_direct_ratio:.1f} times to {self.direct_upper_bound:,} mappings
-            when using the Bioregistry as a mapping hub. Of these, {self.direct_upper_bound - self.remaining:,}
-            ({(self.direct_upper_bound - self.remaining) / self.direct_upper_bound:.0%}) have been curated and
-            {self.remaining:,} ({self.remaining / self.direct_upper_bound:.0%}) remain, but these numbers are
-            subject to change dependent on both updates to the Bioregistry and external registries.
+            {self.pairwise_to_direct_ratio:.1f} times to {self.direct_upper_bound:,} mappings when
+            using the Bioregistry as a mapping hub. Of these, {self.direct_upper_bound - self.remaining:,}
+            ({(self.direct_upper_bound - self.remaining) / self.direct_upper_bound:.0%}) have been
+            curated and {self.remaining:,} ({self.remaining / self.direct_upper_bound:.0%}) remain, but these
+            numbers are subject to change dependent on both updates to the Bioregistry and external registries.
             """
             )
             .strip()
@@ -175,6 +188,8 @@ class MappingBurdenSummary:
     @classmethod
     def make(cls):
         """Instantiate the class."""
+        from bioregistry.external import GETTERS
+
         registry_to_prefixes = {metaprefix: set(getter()) for metaprefix, _, getter in GETTERS}
 
         total_pairwise_upper_bound = sum(
@@ -208,11 +223,18 @@ class MappingBurdenSummary:
 
 
 @click.command()
-def _main():
-    click.echo(MappingBurdenSummary.make().get_text())
-    click.echo("")
+@click.option("--split-lines", is_flag=True)
+def _main(split_lines: bool):
+    if split_lines:
+        from textwrap import fill as _fill
+    else:
+
+        def _fill(_s):  # type:ignore
+            return _s
+
+    click.echo(_fill(MappingBurdenSummary.make().get_text()) + "\n")
     s = BioregistrySummary.make()
-    click.echo(s.get_text())
+    click.echo(_fill(s.get_text()) + "\n")
     click.echo(s.get_table_text())
 
     TABLES_SUMMARY_LATEX_PATH.write_text(s.get_table_latex())

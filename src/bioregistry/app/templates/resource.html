@@ -28,15 +28,7 @@
                 <div class="col-8">
                     <h5 style="margin: 0"><a href="{{ url_for("ui.resources") }}">Registry</a> <i
                             class="fas fa-angle-right"></i> {{ name }}
-                        {% if deprecated %}
-                            <span class="badge badge-warning" style="display: inline-block;">
-                                Deprecated <i class="fas fa-exclamation-triangle"></i>
-                            </span>
-                        {% elif provides %}
-                            <span class="badge badge-danger" style="display: inline-block;">
-                                Provider <i class="fas fa-exclamation-triangle"></i>
-                            </span>
-                        {% endif %}
+                        {{ utils.render_resource_warnings(resource) }}
                     </h5>
                 </div>
                 <div class="col-4 text-right">
@@ -141,6 +133,11 @@
                             OBO JSON <i class="fas fa-download"></i>
                         </a>
                     {% endif %}
+                    {% if resource.github_request_issue %}
+                        <a class="badge badge-pill badge-light" href="https://github.com/biopragmatics/bioregistry/issues/{{ resource.github_request_issue }}">
+                            <i class="fas fa-info-circle"></i> Request Discussion
+                        </a>
+                    {% endif %}
                     {% if twitter %}
                         <a class="badge badge-pill badge-light" href="https://twitter.com/{{ twitter }}">
                             <i class="fa-brands fa-twitter"></i> @{{ twitter }}
@@ -230,7 +227,8 @@
                         The legacy MIRIAM standard for generating CURIEs with this resource
                         includes the <code>namespaceEmbeddedInLUI</code> as true. The actual
                         part that gets prefixed before the local unique identifier regex,
-                        otherwise known as the banana, is <code>{{ banana if banana else prefix.upper() }}:</code>.
+                        otherwise known as the banana, is
+                        <code>{{ banana if banana else prefix.upper() }}{{ resource.get_banana_peel() }}</code>.
                         Therefore, you might see local unique identifiers written out as CURIEs.
                     </dd>
                 {% endif %}
@@ -243,7 +241,7 @@
                             {% for publication in publications or [] %}
                                 <li>
                                     <span class="badge badge-info">Publication</span>
-                                    <a href="{{ publication.id }}">{{ publication.title }}</a>
+                                    <a href="{{ publication.id }}">{{ publication.title or publication.id }}</a>
                                 </li>
                             {% endfor %}
                             {% for reference in resource.references or [] %}
@@ -363,7 +361,7 @@
                 {% endif %}
                 {% if canonical_for %}
                     <dt>
-                        Canonical For
+                        Canonical For ({{ canonical_for | length }})
                     </dt>
                     <dd>
                         {% for rel_prefix in canonical_for %}
@@ -377,7 +375,7 @@
                 {% endif %}
                 {% if depends_on %}
                     <dt>
-                        Depends On
+                        Depends On ({{ depends_on | length }})
                     </dt>
                     <dd>
                         {% for rel_prefix in depends_on %}
@@ -391,7 +389,7 @@
                 {% endif %}
                 {% if appears_in %}
                     <dt>
-                        Appears In
+                        Appears In ({{ appears_in | length }})
                     </dt>
                     <dd>
                         {% for rel_prefix in appears_in %}
@@ -417,7 +415,8 @@
             <div class="card-body">
                 <p>
                     The metaregistry provides mappings between the Bioregistry and other registries. There are
-                    {{ mappings | length }} mappings to external registries for <code>{{ prefix }}</code>.
+                    {{ mappings | length }} mappings to external registries for <code>{{ prefix }}</code> with
+                    {{ mappings | map(attribute='xref') | unique | list | length }} unique external prefixes.
                 </p>
             </div>
             <table class="table table-hover table-striped">
@@ -464,7 +463,7 @@
             <div class="card-body">
                 <p>
                     Providers are various services that resolve CURIEs to URLs. The example CURIE
-                    <code>{{ prefix }}:{{ example }}</code> is used to demonstrate the provides available for
+                    {{ utils.code_curie(prefix, identifier) }} is used to demonstrate the provides available for
                     <code>{{ prefix }}</code>. Generation of OLS and BioPortal URLs requires additional programmatic
                     logic beyond string formatting.
                 </p>

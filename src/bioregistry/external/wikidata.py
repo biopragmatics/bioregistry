@@ -28,6 +28,7 @@ HEADER = {
     "databaseHomepage": "database.homepage",
     "prop": "prefix",
     "propLabel": "name",
+    "propDescription": "description",
     "propMiriam": "miriam",
     "propHomepage": "homepage",
     "propFormat": URI_FORMAT_KEY,
@@ -42,7 +43,7 @@ def iter_results():
         """\
     SELECT
         ?database ?databaseLabel ?databaseMiriam ?databaseHomepage
-        ?prop ?propLabel ?propMiriam ?propHomepage ?propFormat ?propFormatRDF ?propPattern
+        ?prop ?propLabel ?propDescription ?propMiriam ?propHomepage ?propFormat ?propFormatRDF ?propPattern
         # ?propDatabase ?propDatabaseLabel
     WHERE {
         ?database wdt:P31 wd:Q4117139 .
@@ -116,6 +117,7 @@ CANONICAL_DATABASES = {
     "P6800": "Q87630124",  # -> NCBI Genome
     "P627": "Q48268",  # -> International Union for Conservation of Nature
     "P351": "Q1345229",  # NCBI Gene
+    "P4168": "Q112783946",  # Immune epitope database
 }
 
 

@@ -222,7 +222,7 @@
         "name": "required",
         "pattern": "present",
         "provider": "present",
-        "search": false,
+        "search": true,
         "synonyms": "present",
         "version": "present"
       },
@@ -362,7 +362,7 @@
         "orcid": "0000-0002-6020-5919"
       },
       "description": "The Crop Ontology (CO) current objective is to compile validated concepts along with their inter-relationships on anatomy, structure and phenotype of Crops, on trait measurement and methods as well as on Germplasm with the multi-crop passport terms",
-      "download": "https://github.com/bioversity/Crop-Ontology/blob/master/public/dump.json",
+      "download": "https://cropontology.org/metadata",
       "example": "CO_010",
       "governance": {
         "accepts_external_contributions": true,
@@ -379,7 +379,7 @@
       "name": "Crop Ontology Curation Tool",
       "prefix": "cropoct",
       "provider_uri_format": "https://www.cropontology.org/ontology/$1",
-      "short_name": "Crop OCT"
+      "short_name": "CropOCT"
     },
     {
       "availability": {
@@ -421,6 +421,49 @@
       "name": "EcoPortal",
       "prefix": "ecoportal",
       "provider_uri_format": "http://ecoportal.lifewatch.eu/ontologies/$1"
+    },
+    {
+      "availability": {
+        "alternate_providers": "missing",
+        "contact": "missing",
+        "description": "missing",
+        "example": "missing",
+        "fair": true,
+        "homepage": "missing",
+        "license": "missing",
+        "name": "required",
+        "pattern": "missing",
+        "provider": "missing",
+        "search": false,
+        "synonyms": "missing",
+        "version": "missing"
+      },
+      "bioregistry_prefix": "edam.data",
+      "contact": {
+        "email": "matus.kalas@uib.no",
+        "github": "matuskalas",
+        "name": "Matúš Kalaš",
+        "orcid": "0000-0002-1509-4981"
+      },
+      "description": "EDAM is a comprehensive ontology of well-established, familiar concepts that are prevalent within computational biology, bioinformatics, and bioimage informatics. EDAM includes types of data and data identifiers, data formats, operations, and topics related to data analysis in life sciences. EDAM provides a set of concepts with preferred terms and synonyms, related terms, definitions, and other information - organised into a simple and intuitive hierarchy for convenient use.",
+      "download": "http://edamontology.org/EDAM.owl",
+      "example": "1004",
+      "governance": {
+        "accepts_external_contributions": true,
+        "curates": true,
+        "curation": "community",
+        "imports": false,
+        "public_version_control": true,
+        "review_team": "inferrable",
+        "scope": "Life Sciences",
+        "status": "active"
+      },
+      "homepage": " http://edamontology.org",
+      "license": "CC BY 4.0-SA",
+      "name": "EDAM Ontology",
+      "prefix": "edam",
+      "provider_uri_format": "http://edamontology.org/data_$1",
+      "short_name": "EDAM"
     },
     {
       "availability": {
@@ -595,7 +638,8 @@
       "prefix": "n2t",
       "provider_uri_format": "https://n2t.net/$1:",
       "resolver_type": "resolver",
-      "resolver_uri_format": "https://n2t.net/$1:$2"
+      "resolver_uri_format": "https://n2t.net/$1:$2",
+      "short_name": "N2T"
     },
     {
       "availability": {
@@ -849,49 +893,6 @@
       "name": "Prefix Commons",
       "prefix": "prefixcommons",
       "provider_uri_format": "https://prefixcommons.org/?q=$1"
-    },
-    {
-      "availability": {
-        "alternate_providers": "missing",
-        "contact": "missing",
-        "description": "missing",
-        "example": "missing",
-        "fair": false,
-        "fair_note": "There is not a structured resource that lists what prefixes are covered by Scholia",
-        "homepage": "missing",
-        "license": "missing",
-        "name": "missing",
-        "pattern": "missing",
-        "provider": "missing",
-        "search": false,
-        "synonyms": "missing",
-        "version": "missing"
-      },
-      "bioregistry_prefix": "scholia.resource",
-      "contact": {
-        "email": "faan@dtu.dk",
-        "github": "fnielsen",
-        "name": "Finn Årup Nielsen",
-        "orcid": "0000-0001-6128-3356"
-      },
-      "description": "A frontend to Wikidata",
-      "example": "doi",
-      "governance": {
-        "accepts_external_contributions": true,
-        "curates": true,
-        "curation": "open-review",
-        "imports": false,
-        "public_version_control": true,
-        "review_team": "inferrable",
-        "scope": "life sciences",
-        "status": "active"
-      },
-      "homepage": "https://scholia.toolforge.org/",
-      "license": "CC0",
-      "name": "Scholia",
-      "prefix": "scholia",
-      "resolver_type": "lookup",
-      "resolver_uri_format": "https://scholia.toolforge.org/$1/$2"
     },
     {
       "availability": {

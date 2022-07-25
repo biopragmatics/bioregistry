@@ -3,6 +3,7 @@
 """Utilities for normalizing prefixes."""
 
 import logging
+import typing
 from functools import lru_cache
 from typing import Any, Dict, List, Mapping, Optional, Set, Tuple, Union
 
@@ -34,11 +35,9 @@ __all__ = [
     "get_json_download",
     "get_owl_download",
     "get_version",
-    "get_versions",
-    "get_registry_map",
-    "get_registry_invmap",
     "get_banana",
     "get_obo_health_url",
+    "is_novel",
     # Ontology
     "get_provided_by",
     "get_provides_for",
@@ -53,6 +52,12 @@ __all__ = [
     "parse_curie",
     "normalize_parsed_curie",
     "normalize_curie",
+    # Registry-level functions
+    "get_registry_map",
+    "get_registry_invmap",
+    "count_mappings",
+    "get_versions",
+    "get_parts_collections",
 ]
 
 logger = logging.getLogger(__name__)
@@ -120,6 +125,11 @@ def get_mappings(prefix: str) -> Optional[Mapping[str, str]]:
     if entry is None:
         return None
     return entry.get_mappings()
+
+
+def count_mappings() -> typing.Counter[str]:
+    """Count the mappings for each registry."""
+    return manager.count_mappings()
 
 
 def get_synonyms(prefix: str) -> Optional[Set[str]]:
@@ -343,23 +353,6 @@ def get_fairsharing_prefix(prefix: str) -> Optional[str]:
     return manager.get_mapped_prefix(prefix, "fairsharing")
 
 
-def get_scholia_prefix(prefix: str) -> Optional[str]:
-    """Get the Scholia prefix if available.
-
-    :param prefix: The prefix to lookup.
-    :returns: The Scholia prefix corresponding to the prefix, if mappable.
-
-    >>> get_scholia_prefix("pubmed")
-    'pubmed'
-    >>> get_scholia_prefix("pdb")
-    None
-    """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_scholia_prefix()
-
-
 def get_banana(prefix: str) -> Optional[str]:
     """Get the optional redundant prefix to go before an identifier.
 
@@ -374,7 +367,8 @@ def get_banana(prefix: str) -> Optional[str]:
     >>> assert "GO_REF" == get_banana('go.ref')
 
     Banana imported through OBO Foundry
-    >>> assert "FBbt" == get_banana('fbbt')
+    >>> assert "GO" == get_banana('go')
+    >>> assert "VariO" == get_banana('vario')
 
     Banana inferred for OBO Foundry ontology
     >>> get_banana('chebi')
@@ -564,6 +558,7 @@ def is_deprecated(prefix: str) -> bool:
 
     >>> import bioregistry
     >>> assert bioregistry.is_deprecated('imr')  # marked by OBO
+    >>> assert bioregistry.is_deprecated('idomal')  # marked by OBO as inactive
     >>> assert bioregistry.is_deprecated('iro') # marked by Bioregistry
     >>> assert bioregistry.is_deprecated('miriam.collection') # marked by MIRIAM
     """
@@ -932,3 +927,26 @@ def get_obo_health_url(prefix: str) -> Optional[str]:
         return None
     obo_pp = manager.get_preferred_prefix(prefix)
     return f"{SHIELDS_BASE}/json?url={HEALTH_BASE}&query=$.{obo_prefix.lower()}.score&label={obo_pp}{EXTRAS}"
+
+
+def is_novel(prefix: str) -> Optional[bool]:
+    """Check if the prefix is novel to the Bioregistry, i.e., it has no external mappings."""
+    return manager.is_novel(prefix)
+
+
+def get_parts_collections():
+    """Group resources' prefixes based on their ``part_of`` entries.
+
+    :returns:
+        A dictionary with keys that appear as the values of ``Resource.part_of``
+        and whose values are lists of prefixes for resources that have the key
+        as a value in its ``part_of`` field.
+
+    .. warning::
+
+        Many of the keys in this dictionary are valid Bioregistry prefixes,
+        but this is not necessary. For example, ``ctd`` is one key that
+        appears that explicitly has no prefix, since it corresponds to a
+        resource and not a vocabulary.
+    """
+    return manager.get_parts_collections()

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros.html" as utils %}
 
 {% block title %}Bioregistry Resolution Error{% endblock %}
 
@@ -7,7 +8,7 @@
         <h5 class="card-title">HTTP 404 - Unknown Prefix</h5>
         <p>
             The prefix <code>{{ prefix }}</code> is not registered in the Bioregistry{% if identifier %}
-            so <code>{{ prefix }}:{{ identifier }}</code> could not be resolved{% endif %}. If you
+            so {{ utils.code_curie(prefix, identifier) }} could not be resolved{% endif %}. If you
             think it should be, please contribute in one of the following ways:
         </p>
         <ul>
