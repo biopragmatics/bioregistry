@@ -17,15 +17,16 @@ class EDAMAligner(Aligner):
 
     key = "edam"
     getter = get_edam
+    alt_key_match = "name"
     curation_header = ("name", "description")
-    # FIXME remove this when out of canada and back on consistent wifi
-    getter_kwargs = {"force_download": False}
 
     def get_skip(self) -> Mapping[str, str]:
         """Get entries that should be skipped and their reasons."""
         return {
             "1164": "MIRIAM URI not relevant",
             "1175": "BioPAX ontologies aren't globally unique",
+            "2582": "GO sub-hierarchy",
+            "2583": "GO sub-hierarchy",
         }
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
