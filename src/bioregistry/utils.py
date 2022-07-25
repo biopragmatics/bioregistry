@@ -156,10 +156,10 @@ def get_ols_descendants(
     res.raise_for_status()
     res_json = res.json()
     terms = res_json["_embedded"]["terms"]
-    return _process_ols(terms, clean=clean, get_identifier=get_identifier)
+    return _process_ols(ontology=ontology, terms=terms, clean=clean, get_identifier=get_identifier)
 
 
-def _process_ols(terms, *, clean=None, get_identifier=None):
+def _process_ols(*, ontology, terms, clean=None, get_identifier=None):
     if clean is None:
         clean = _clean
     if get_identifier is None:
