@@ -670,7 +670,7 @@ class Resource(BaseModel):
         return re.compile(pattern)
 
     def get_pattern_with_banana(self, strict: bool = True) -> Optional[str]:
-        """Get the pattern for the prefix including a banana if available.
+        r"""Get the pattern for the prefix including a banana if available.
 
         .. warning::
 
@@ -687,9 +687,11 @@ class Resource(BaseModel):
         >>> import bioregistry as br
         >>> resource = br.get_resource("chebi")
 
-        Strict match requires banana
+        Strict match requires the banana to be present
         >>> resource.get_pattern_with_banana()
         '^CHEBI:\\d+$'
+
+        Non-strict match allows the banana to be optionally present
         >>> resource.get_pattern_with_banana(strict=False)
          '^(CHEBI:)?\\d+$'
         """
