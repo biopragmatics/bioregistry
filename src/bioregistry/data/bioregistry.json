@@ -1468,7 +1468,8 @@
       "miriam": "antweb",
       "n2t": "antweb",
       "ncbi": "AntWeb",
-      "prefixcommons": "antweb"
+      "prefixcommons": "antweb",
+      "wikidata": "P5299"
     },
     "miriam": {
       "deprecated": false,
@@ -1514,6 +1515,17 @@
         "12867945"
       ],
       "uri_format": "http://www.antweb.org/specimen.do?name=$1"
+    },
+    "wikidata": {
+      "database": "Q2507304",
+      "database.homepage": "http://www.antweb.org/",
+      "database.label": "AntWeb",
+      "description": "identifier for a taxon in the AntWeb database",
+      "homepage": "https://www.antweb.org",
+      "name": "AntWeb ID",
+      "pattern": "[A-Z][a-z]+( [a-z]+){0,2}",
+      "prefix": "P5299",
+      "uri_format": "https://www.antweb.org/description.do?taxonName=$1"
     }
   },
   "aop": {
@@ -27022,9 +27034,23 @@
     "example": "imp10873",
     "github_request_issue": 218,
     "homepage": "https://www.kew.org/data/grasses-syn/index.htm",
+    "mappings": {
+      "wikidata": "P1832"
+    },
     "name": "GrassBase",
     "pattern": "^(imp|gen)\\d{5}$",
-    "uri_format": "https://www.kew.org/data/grasses-db/www/$1"
+    "uri_format": "https://www.kew.org/data/grasses-db/www/$1",
+    "wikidata": {
+      "database": "Q19816560",
+      "database.homepage": "https://www.kew.org/data/grasses-db.html",
+      "database.label": "GrassBase",
+      "description": "identifier in GrassBase - The Online World Grass Flora",
+      "homepage": "http://www.kew.org/data/grasses-syn/index.htm",
+      "name": "GrassBase ID",
+      "pattern": "(imp|gen){1}\\d{5}",
+      "prefix": "P1832",
+      "uri_format": "http://www.kew.org/data/grasses-db/www/$1"
+    }
   },
   "greengenes": {
     "biocontext": {
