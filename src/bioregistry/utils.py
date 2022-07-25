@@ -147,20 +147,29 @@ def _get_hexdigest(path: Union[str, Path], alg: str = "sha256") -> str:
     return hashes[alg].hexdigest()
 
 
-def get_ols_descendants(ontology: str, uri: str, force_download: bool = False, get_identifier=None):
+def get_ols_descendants(
+    ontology: str, uri: str, *, force_download: bool = False, get_identifier=None, clean=None
+):
     """Get descendants in the OLS."""
-    if get_identifier is None:
-        get_identifier = _get_identifier
     url = f"https://www.ebi.ac.uk/ols/api/ontologies/{ontology}/terms/{uri}/descendants?size=1000"
     res = requests.get(url)
     res.raise_for_status()
     res_json = res.json()
+    terms = res_json["_embedded"]["terms"]
+    return _process_ols(terms, clean=clean, get_identifier=get_identifier)
+
+
+def _process_ols(terms, *, clean=None, get_identifier=None):
+    if clean is None:
+        clean = _clean
+    if get_identifier is None:
+        get_identifier = _get_identifier
     rv = {}
-    for term in res_json["_embedded"]["terms"]:
+    for term in terms:
         identifier = get_identifier(term, ontology)
         description = term.get("description")
         rv[identifier] = {
-            "name": _clean(term["label"]),
+            "name": clean(term["label"]),
             "description": description and description[0],
             "obsolete": term.get("is_obsolete", False),
         }
