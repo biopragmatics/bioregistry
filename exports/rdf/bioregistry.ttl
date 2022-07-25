@@ -274,7 +274,8 @@ bioregistry:3dmet a bioregistry.schema:0000001 ;
     rdfs:label "3D Metabolites" ;
     dc:description "3DMET is a database collecting three-dimensional structures of natural metabolites."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:3DMET,
+    skos:exactMatch edam.data:2635,
+        biocontext:3DMET,
         n2t:3dmet,
         fairsharing:FAIRsharing.5ab0n7,
         prefixcommons:3dmet,
@@ -339,7 +340,8 @@ bioregistry:abs a bioregistry.schema:0000001 ;
     rdfs:label "Annotated Regulatory Binding Sites" ;
     dc:description "The database of Annotated regulatory Binding Sites (from orthologous promoters), ABS, is a public database of known binding sites identified in promoters of orthologous vertebrate genes that have been manually curated from bibliography."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:ABS,
+    skos:exactMatch edam.data:2741,
+        biocontext:ABS,
         n2t:abs,
         fairsharing:FAIRsharing.7mnebr,
         prefixcommons:abs,
@@ -531,7 +533,7 @@ bioregistry:antibodyregistry a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:antweb a bioregistry.schema:0000001 ;
-    rdfs:label "Ant Database" ;
+    rdfs:label "AntWeb ID" ;
     dc:description "AntWeb is a website documenting the known species of ants, with records for each species linked to their geographical distribution, life history, and includes pictures."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:ANTWEB,
@@ -539,7 +541,8 @@ bioregistry:antweb a bioregistry.schema:0000001 ;
         ncbi.resource:AntWeb,
         fairsharing:FAIRsharing.yk38tw,
         prefixcommons:antweb,
-        miriam:antweb ;
+        miriam:antweb,
+        wikidata:P5299 ;
     foaf:homepage "http://www.antweb.org/"^^xsd:string ;
     bioregistry.schema:0000005 "casent0106247"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.antweb.org/specimen.do?name=$1"^^xsd:string ;
@@ -674,7 +677,8 @@ bioregistry:arachnoserver a bioregistry.schema:0000001 ;
     rdfs:label "ArachnoServer" ;
     dc:description "ArachnoServer (www.arachnoserver.org) is a manually curated database providing information on the sequence, structure and biological activity of protein toxins from spider venoms. It include a molecular target ontology designed specifically for venom toxins, as well as current and historic taxonomic information."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:ARACHNOSERVER,
+    skos:exactMatch edam.data:2578,
+        biocontext:ARACHNOSERVER,
         n2t:arachnoserver,
         fairsharing:FAIRsharing.c54ywe,
         prefixcommons:arachnoserver,
@@ -856,6 +860,7 @@ bioregistry:atc a bioregistry.schema:0000001 ;
     dc:description "The Anatomical Therapeutic Chemical (ATC) classification system, divides active substances into different groups according to the organ or system on which they act and their therapeutic, pharmacological and chemical properties. Drugs are classified in groups at five different levels;  Drugs are divided into fourteen main groups (1st level), with pharmacological/therapeutic subgroups (2nd level).  The 3rd and 4th levels are chemical/pharmacological/therapeutic subgroups and the 5th level is the chemical substance. The Anatomical Therapeutic Chemical (ATC) classification system and the Defined Daily Dose (DDD) is a tool for exchanging and comparing data on drug use at international, national or local levels."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:ATC,
+        edam.data:3103,
         bioportal:ATC,
         biocontext:ATC,
         n2t:atc,
@@ -1303,7 +1308,8 @@ bioregistry:biocyc a bioregistry.schema:0000001 ;
     rdfs:label "BioCyc collection of metabolic pathway databases" ;
     dc:description "BioCyc is a collection of Pathway/Genome Databases (PGDBs) which provides an electronic reference source on the genomes and metabolic pathways of sequenced organisms."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:BIOCYC,
+    skos:exactMatch edam.data:2104,
+        biocontext:BIOCYC,
         go.resource:BioCyc,
         n2t:biocyc,
         prefixcommons:biocyc,
@@ -1413,7 +1419,8 @@ bioregistry:bionumbers a bioregistry.schema:0000001 ;
     rdfs:label "BioNumbers" ;
     dc:description "BioNumbers is a database of key numberical information that may be used in molecular biology. Along with the numbers, it contains references to the original literature, useful comments, and related numeric data."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:BIONUMBERS,
+    skos:exactMatch edam.data:2660,
+        biocontext:BIONUMBERS,
         n2t:bionumbers,
         prefixcommons:bionumbers,
         miriam:bionumbers ;
@@ -1705,7 +1712,8 @@ bioregistry:cabri a bioregistry.schema:0000001 ;
     rdfs:label "Common Access to Biological Resources and Information Project" ;
     dc:description "CABRI (Common Access to Biotechnological Resources and Information) is an online service where users can search a number of European Biological Resource Centre catalogues. It lists the availability of a particular organism or genetic resource and defines the set of technical specifications and procedures which should be used to handle it."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:CABRI,
+    skos:exactMatch edam.data:2380,
+        biocontext:CABRI,
         n2t:cabri,
         ncbi.resource:CABRI,
         fairsharing:FAIRsharing.qx2rvz,
@@ -1778,7 +1786,8 @@ bioregistry:cath.domain a bioregistry.schema:0000001 ;
     rdfs:label "CATH domain" ;
     dc:description "The CATH database is a hierarchical domain classification of protein structures in the Protein Data Bank. Protein structures are classified using a combination of automated and manual procedures. There are four major levels in this hierarchy; Class (secondary structure classification, e.g. mostly alpha), Architecture (classification based on overall shape), Topology (fold family) and Homologous superfamily (protein domains which are thought to share a common ancestor). This colelction is concerned with CATH domains."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:CATH.DOMAIN,
+    skos:exactMatch edam.data:1040,
+        biocontext:CATH.DOMAIN,
         n2t:cath.domain,
         miriam:cath.domain ;
     foaf:homepage "http://www.cathdb.info/"^^xsd:string ;
@@ -1895,7 +1904,8 @@ bioregistry:cdd a bioregistry.schema:0000001 ;
     rdfs:label "Conserved Domain Database at NCBI" ;
     dc:description "The Conserved Domain Database (CDD) is a collection of multiple sequence alignments and derived database search models, which represent protein domains conserved in molecular evolution."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:CDD,
+    skos:exactMatch edam.data:2666,
+        biocontext:CDD,
         go.resource:CDD,
         n2t:cdd,
         ncbi.resource:CDD,
@@ -2057,7 +2067,8 @@ bioregistry:chemspider a bioregistry.schema:0000001 ;
     rdfs:label "ChemSpider" ;
     dc:description "ChemSpider is a collection of compound data from across the web, which aggregates chemical structures and their associated information into a single searchable repository entry. These entries are supplemented with additional properties, related information and links back to original data sources."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:CHEMSPIDER,
+    skos:exactMatch edam.data:1173,
+        biocontext:CHEMSPIDER,
         n2t:chemspider,
         fairsharing:FAIRsharing.96f3gm,
         prefixcommons:chemspider,
@@ -2838,7 +2849,8 @@ bioregistry:cosmic a bioregistry.schema:0000001 ;
     rdfs:label "COSMIC Gene" ;
     dc:description "COSMIC is a comprehensive global resource for information on somatic mutations in human cancer, combining curation of the scientific literature with tumor resequencing data from the Cancer Genome Project at the Sanger Institute, U.K. This collection references genes."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:COSMIC,
+    skos:exactMatch edam.data:3264,
+        biocontext:COSMIC,
         cellosaurus.resource:Cosmic,
         n2t:cosmic,
         fairsharing:FAIRsharing.s5zmbp,
@@ -3180,7 +3192,8 @@ bioregistry:dbd a bioregistry.schema:0000001 ;
     rdfs:label "Transcription Factor Database" ;
     dc:description "The DBD (transcription factor database) provides genome-wide transcription factor predictions for organisms across the tree of life. The prediction method identifies sequence-specific DNA-binding transcription factors through homology using profile hidden Markov models (HMMs) of domains from Pfam and SUPERFAMILY. It does not include basal transcription factors or chromatin-associated proteins."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:DBD,
+    skos:exactMatch edam.data:2716,
+        biocontext:DBD,
         n2t:dbd,
         prefixcommons:dbd,
         miriam:dbd ;
@@ -3232,7 +3245,8 @@ bioregistry:dbprobe a bioregistry.schema:0000001 ;
     rdfs:label "NCBI Probe database Public registry of nucleic acid reagents" ;
     dc:description "The NCBI Probe Database is a public registry of nucleic acid reagents designed for use in a wide variety of biomedical research applications, together with information on reagent distributors, probe effectiveness, and computed sequence similarities."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:DBPROBE,
+    skos:exactMatch edam.data:2719,
+        biocontext:DBPROBE,
         n2t:dbprobe,
         ncbi.resource:dbProbe,
         prefixcommons:dbprobe,
@@ -3495,7 +3509,8 @@ bioregistry:dip a bioregistry.schema:0000001 ;
     rdfs:label "Database of Interacting Proteins" ;
     dc:description "The database of interacting protein (DIP) database stores experimentally determined interactions between proteins. It combines information from a variety of sources to create a single, consistent set of protein-protein interactions"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:DIP,
+    skos:exactMatch edam.data:2616,
+        biocontext:DIP,
         n2t:dip,
         fairsharing:FAIRsharing.qje0v8,
         prefixcommons:dip,
@@ -3546,7 +3561,8 @@ bioregistry:disprot a bioregistry.schema:0000001 ;
     rdfs:label "DisProt" ;
     dc:description "DisProt is a database of intrinsically disordered proteins and protein disordered regions, manually curated from literature."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:DISPROT,
+    skos:exactMatch edam.data:2723,
+        biocontext:DISPROT,
         n2t:disprot,
         fairsharing:FAIRsharing.dt9z89,
         prefixcommons:disprot,
@@ -3573,7 +3589,8 @@ bioregistry:doi a bioregistry.schema:0000001 ;
     rdfs:label "Digital Object Identifier" ;
     dc:description "The Digital Object Identifier System is for identifying content objects in the digital environment."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:DOI,
+    skos:exactMatch edam.data:1188,
+        biocontext:DOI,
         biolink:doi,
         cellosaurus.resource:DOI,
         go.resource:DOI,
@@ -3929,7 +3946,8 @@ bioregistry:ensembl a bioregistry.schema:0000001 ;
     rdfs:label "Ensembl Gene" ;
     dc:description "Ensembl is a joint project between EMBL - EBI and the Sanger Institute  to develop a software system which produces and maintains automatic annotation on selected eukaryotic genomes. This collections also references outgroup organisms."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:ENSEMBL,
+    skos:exactMatch edam.data:2610,
+        biocontext:ENSEMBL,
         go.resource:ENSEMBL,
         n2t:ensembl,
         ncbi.resource:ENSEMBL,
@@ -4048,7 +4066,8 @@ bioregistry:epd a bioregistry.schema:0000001 ;
     rdfs:label "Eukaryotic Promoter Database" ;
     dc:description "The Eukaryotic Promoter Database (EPD) is an annotated non-redundant collection of eukaryotic POL II promoters, for which the transcription start site has been determined experimentally. Access to promoter sequences is provided by pointers to positions in nucleotide sequence entries. The annotation part of an entry includes description of the initiation site mapping data, cross-references to other databases, and bibliographic references. EPD is structured in a way that facilitates dynamic extraction of biologically meaningful promoter subsets for comparative sequence analysis."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:EPD,
+    skos:exactMatch edam.data:2386,
+        biocontext:EPD,
         n2t:epd,
         ncbi.resource:EPD,
         fairsharing:FAIRsharing.sym4ne,
@@ -4406,6 +4425,7 @@ bioregistry:fma a bioregistry.schema:0000001 ;
     dc:description "The Foundational Model of Anatomy Ontology (FMA) is a biomedical informatics ontology. It is concerned with the representation of classes or types and relationships necessary for the symbolic representation of the phenotypic structure of the human body.  Specifically, the FMA is a domain ontology that represents a coherent body of explicit declarative knowledge about human anatomy."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:FMA,
+        edam.data:1182,
         obofoundry:FMA,
         ontobee:FMA,
         bioportal:FMA,
@@ -4725,7 +4745,8 @@ bioregistry:genedb a bioregistry.schema:0000001 ;
     rdfs:label "GeneDB" ;
     dc:description "GeneDB is a genome database for prokaryotic and eukaryotic organisms and provides a portal through which data generated by the \"Pathogen Genomics\" group at the Wellcome Trust Sanger Institute and other collaborating sequencing centres can be accessed."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:GENEDB,
+    skos:exactMatch edam.data:1035,
+        biocontext:GENEDB,
         go.resource:GeneDB,
         n2t:genedb,
         ncbi.resource:GeneDB,
@@ -4941,7 +4962,8 @@ bioregistry:glycomedb a bioregistry.schema:0000001 ;
     rdfs:label "GlycomeDB" ;
     dc:description "GlycomeDB is the result of a systematic data integration effort, and provides an overview of all carbohydrate structures available in public databases, as well as cross-links."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:GLYCOMEDB,
+    skos:exactMatch edam.data:2664,
+        biocontext:GLYCOMEDB,
         n2t:glycomedb,
         fairsharing:FAIRsharing.k5k0yh,
         prefixcommons:glycomedb,
@@ -5472,7 +5494,8 @@ bioregistry:hamap a bioregistry.schema:0000001 ;
     rdfs:label "High-quality Automated and Manual Annotation of microbial Proteomes" ;
     dc:description "HAMAP is a system that identifies and semi-automatically annotates proteins that are part of well-conserved and orthologous microbial families or subfamilies. These are used to build rules which are used to propagate annotations to member bacterial, archaeal and plastid-encoded protein entries."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:HAMAP,
+    skos:exactMatch edam.data:2766,
+        biocontext:HAMAP,
         go.resource:HAMAP,
         n2t:hamap,
         fairsharing:FAIRsharing.63m4ss,
@@ -5572,7 +5595,8 @@ bioregistry:hgmd a bioregistry.schema:0000001 ;
     rdfs:label "Human Gene Mutation Database" ;
     dc:description "The Human Gene Mutation Database (HGMD) collates data on germ-line mutations in nuclear genes associated with human inherited disease. It includes information on single base-pair substitutions in coding, regulatory and splicing-relevant regions; micro-deletions and micro-insertions; indels; triplet repeat expansions as well as gross deletions; insertions; duplications; and complex rearrangements. Each mutation entry is unique, and includes cDNA reference sequences for most genes, splice junction sequences, disease-associated and functional polymorphisms, as well as links to data present in publicly available online locus-specific mutation databases."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:HGMD,
+    skos:exactMatch edam.data:3265,
+        biocontext:HGMD,
         n2t:hgmd,
         miriam:hgmd ;
     foaf:homepage "http://www.hgmd.cf.ac.uk/ac/index.php"^^xsd:string ;
@@ -5586,6 +5610,7 @@ bioregistry:hgnc a bioregistry.schema:0000001 ;
     dc:description "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene.  All approved symbols are stored in the HGNC database, and each symbol is unique. HGNC identifiers refer to records in the HGNC symbol database."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:HGNC,
+        edam.data:2298,
         bioportal:HGNC,
         biocontext:HGNC,
         cellosaurus.resource:HGNC,
@@ -6159,7 +6184,8 @@ bioregistry:imgt.hla a bioregistry.schema:0000001 ;
     rdfs:label "IMGT/HLA human major histocompatibility complex sequence database" ;
     dc:description "IMGT, the international ImMunoGeneTics project, is a collection of high-quality integrated databases specialising in Immunoglobulins, T cell receptors and the Major Histocompatibility Complex (MHC) of all vertebrate species. IMGT/HLA is a database for sequences of the human MHC, referred to as HLA. It includes all the official sequences for the WHO Nomenclature Committee For Factors of the HLA System. This collection references allele information through the WHO nomenclature."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:IMGT.HLA,
+    skos:exactMatch edam.data:2773,
+        biocontext:IMGT.HLA,
         <https://bioregistry.io/metaregistry/cellosaurus/IPD-IMGT/HLA>,
         go.resource:IMGT_HLA,
         n2t:imgt.hla,
@@ -6332,7 +6358,8 @@ bioregistry:interpro a bioregistry.schema:0000001 ;
     rdfs:label "InterPro" ;
     dc:description "InterPro is a database of protein families, domains and functional sites in which identifiable features found in known proteins can be applied to unknown protein sequences."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:IPR,
+    skos:exactMatch edam.data:1133,
+        obofoundry:IPR,
         biocontext:IPR,
         biolink:interpro,
         go.resource:InterPro,
@@ -6819,7 +6846,8 @@ bioregistry:lipidbank a bioregistry.schema:0000001 ;
     rdfs:label "LipidBank" ;
     dc:description "LipidBank is an open, publicly free database of natural lipids including fatty acids, glycerolipids, sphingolipids, steroids, and various vitamins."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:LIPIDBANK,
+    skos:exactMatch edam.data:2665,
+        biocontext:LIPIDBANK,
         n2t:lipidbank,
         fairsharing:FAIRsharing.bdn9br,
         prefixcommons:lipidbank,
@@ -6904,7 +6932,8 @@ bioregistry:macie a bioregistry.schema:0000001 ;
     rdfs:label "Mechanism, Annotation and Classification in Enzymes" ;
     dc:description "MACiE (Mechanism, Annotation and Classification in Enzymes) is a database of enzyme reaction mechanisms. Each entry in MACiE consists of an overall reaction describing the chemical compounds involved, as well as the species name in which the reaction occurs. The individual reaction stages for each overall reaction are listed with mechanisms, alternative mechanisms, and amino acids involved."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:MACIE,
+    skos:exactMatch edam.data:2641,
+        biocontext:MACIE,
         n2t:macie,
         fairsharing:FAIRsharing.7xkx69,
         prefixcommons:macie,
@@ -6950,8 +6979,7 @@ bioregistry:mamo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000026"^^xsd:string ;
     bioregistry.schema:0000006 "http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-6309-7327 .
+    bioregistry.schema:0000012 true .
 
 bioregistry:mao a bioregistry.schema:0000001 ;
     rdfs:label "Multiple alignment" ;
@@ -7297,7 +7325,8 @@ bioregistry:mgi a bioregistry.schema:0000001 ;
     rdfs:label "Mouse Genome Informatics" ;
     dc:description "The Mouse Genome Database (MGD) project includes data on gene characterization, nomenclature, mapping, gene homologies among mammals, sequence links, phenotypes, allelic variants and mutants, and strain data."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:MGI,
+    skos:exactMatch edam.data:3274,
+        biocontext:MGI,
         cellosaurus.resource:MGI,
         go.resource:MGI,
         n2t:mgi,
@@ -7460,7 +7489,8 @@ bioregistry:mint a bioregistry.schema:0000001 ;
     rdfs:label "Molecular Interaction Database" ;
     dc:description "The Molecular INTeraction database (MINT) stores, in a structured format, information about molecular interactions by extracting experimental details from work published in peer-reviewed journals."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:MINT,
+    skos:exactMatch edam.data:2615,
+        biocontext:MINT,
         n2t:mint,
         fairsharing:FAIRsharing.2bdvmk,
         prefixcommons:mint,
@@ -7551,7 +7581,8 @@ bioregistry:miriam a bioregistry.schema:0000001 ;
     rdfs:label "Identifiers.org namespace" ;
     dc:description "Identifiers.org is an established resolving system that enables the referencing of data for the scientific community, with a current focus on the Life Sciences domain."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.ap169a,
+    skos:exactMatch edam.data:1162,
+        fairsharing:FAIRsharing.ap169a,
         miriam:identifiers.namespace ;
     foaf:homepage "https://www.ebi.ac.uk"^^xsd:string ;
     bioregistry.schema:0000005 "pubmed"^^xsd:string ;
@@ -7662,7 +7693,8 @@ bioregistry:mmdb a bioregistry.schema:0000001 ;
     rdfs:label "Molecular Modeling Database" ;
     dc:description "The Molecular Modeling Database (MMDB) is a database of experimentally determined structures obtained from the Protein Data Bank (PDB). Since structures are known for a large fraction of all protein families, structure homologs may facilitate inference of biological function, or the identification of binding or catalytic sites."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:MMDB,
+    skos:exactMatch edam.data:2667,
+        biocontext:MMDB,
         n2t:mmdb,
         prefixcommons:mmdb,
         miriam:mmdb ;
@@ -7847,7 +7879,8 @@ bioregistry:modeldb a bioregistry.schema:0000001 ;
     rdfs:label "ModelDB" ;
     dc:description "ModelDB is a curated, searchable database of published models in the computational neuroscience domain. It accommodates models expressed in textual form, including procedural or declarative languages (e.g. C++, XML dialects) and source code written for any simulation environment."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:MODELDB,
+    skos:exactMatch edam.data:2669,
+        biocontext:MODELDB,
         n2t:modeldb,
         fairsharing:FAIRsharing.5rb3fk,
         prefixcommons:modeldb,
@@ -8303,7 +8336,8 @@ bioregistry:neuromorpho a bioregistry.schema:0000001 ;
     rdfs:label "NeuroMorpho" ;
     dc:description "NeuroMorpho.Org is a centrally curated inventory of  digitally reconstructed neurons."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:NEUROMORPHO,
+    skos:exactMatch edam.data:2657,
+        biocontext:NEUROMORPHO,
         n2t:neuromorpho,
         prefixcommons:neuromorpho,
         miriam:neuromorpho ;
@@ -8328,7 +8362,8 @@ bioregistry:neurondb a bioregistry.schema:0000001 ;
     rdfs:label "NeuronDB" ;
     dc:description "NeuronDB provides a dynamically searchable database of three types of neuronal properties: voltage gated conductances, neurotransmitter receptors, and neurotransmitter substances. It contains tools that provide for integration of these properties in a given type of neuron and compartment, and for comparison of properties across different types of neurons and compartments."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:NEURONDB,
+    skos:exactMatch edam.data:2656,
+        biocontext:NEURONDB,
         n2t:neurondb,
         fairsharing:FAIRsharing.45a10e,
         prefixcommons:neurondb,
@@ -9453,7 +9488,8 @@ bioregistry:peptideatlas a bioregistry.schema:0000001 ;
     rdfs:label "PeptideAtlas" ;
     dc:description "The PeptideAtlas Project provides a publicly accessible database of peptides identified in tandem mass spectrometry proteomics studies and software tools."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PEPTIDEATLAS,
+    skos:exactMatch edam.data:2626,
+        biocontext:PEPTIDEATLAS,
         n2t:peptideatlas,
         fairsharing:FAIRsharing.dvyrsz,
         prefixcommons:peptideatlas,
@@ -9560,7 +9596,8 @@ bioregistry:pharmgkb.disease a bioregistry.schema:0000001 ;
     rdfs:label "PharmGKB Disease" ;
     dc:description "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PHARMGKB.DISEASE,
+    skos:exactMatch edam.data:2651,
+        biocontext:PHARMGKB.DISEASE,
         n2t:pharmgkb.disease,
         prefixcommons:pharmgkb.disease,
         miriam:pharmgkb.disease,
@@ -9575,7 +9612,8 @@ bioregistry:pharmgkb.drug a bioregistry.schema:0000001 ;
     rdfs:label "PharmGKB Drug" ;
     dc:description "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PHARMGKB.DRUG,
+    skos:exactMatch edam.data:2652,
+        biocontext:PHARMGKB.DRUG,
         n2t:pharmgkb.drug,
         prefixcommons:pharmgkb.drug,
         miriam:pharmgkb.drug,
@@ -9608,7 +9646,8 @@ bioregistry:pharmgkb.pathways a bioregistry.schema:0000001 ;
     dc:description """The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains. \r
 PharmGKB Pathways are drug centric, gene based, interactive pathways which focus on candidate genes and gene groups and associated genotype and phenotype data of relevance for pharmacogenetic and pharmacogenomic studies."""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PHARMGKB.PATHWAYS,
+    skos:exactMatch edam.data:2650,
+        biocontext:PHARMGKB.PATHWAYS,
         n2t:pharmgkb.pathways,
         prefixcommons:pharmgkb.pathways,
         miriam:pharmgkb.pathways,
@@ -9774,7 +9813,8 @@ bioregistry:pirsf a bioregistry.schema:0000001 ;
     rdfs:label "PIR Superfamily Classification System" ;
     dc:description "The PIR SuperFamily concept is being used as a guiding principle to provide comprehensive and non-overlapping clustering of UniProtKB sequences into a hierarchical order to reflect their evolutionary relationships."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PIRSF,
+    skos:exactMatch edam.data:1136,
+        biocontext:PIRSF,
         go.resource:PIRSF,
         n2t:pirsf,
         fairsharing:FAIRsharing.vssch2,
@@ -10235,7 +10275,8 @@ bioregistry:pubmed a bioregistry.schema:0000001 ;
     rdfs:label "PubMed" ;
     dc:description "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PUBMED,
+    skos:exactMatch edam.data:1187,
+        biocontext:PUBMED,
         cellosaurus.resource:PubMed,
         go.resource:PMID,
         n2t:pubmed,
@@ -10380,7 +10421,8 @@ bioregistry:reactome a bioregistry.schema:0000001 ;
     rdfs:label "Reactome" ;
     dc:description "The Reactome project is a collaboration to develop a curated resource of core pathways and reactions in human biology."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:REACTOME,
+    skos:exactMatch edam.data:1155,
+        biocontext:REACTOME,
         go.resource:Reactome,
         n2t:reactome,
         prefixcommons:reactome,
@@ -10409,7 +10451,8 @@ bioregistry:rebase a bioregistry.schema:0000001 ;
     rdfs:label "REBASE restriction enzyme database" ;
     dc:description "REBASE is a comprehensive database of information about restriction enzymes, DNA methyltransferases and related proteins involved in the biological process of restriction-modification (R-M). It contains fully referenced information about recognition and cleavage sites, isoschizomers, neoschizomers, commercial availability, methylation sensitivity, crystal and sequence data."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:REBASE,
+    skos:exactMatch edam.data:2325,
+        biocontext:REBASE,
         go.resource:REBASE,
         n2t:rebase,
         fairsharing:FAIRsharing.9sb9qh,
@@ -10426,7 +10469,8 @@ bioregistry:refseq a bioregistry.schema:0000001 ;
     rdfs:label "Reference Sequence Collection" ;
     dc:description "The Reference Sequence (RefSeq) collection aims to provide a comprehensive, integrated, non-redundant set of sequences, including genomic DNA, transcript (RNA), and protein products."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:RefSeq,
+    skos:exactMatch edam.data:1098,
+        biocontext:RefSeq,
         go.resource:RefSeq,
         n2t:refseq,
         fairsharing:FAIRsharing.4jg0qw,
@@ -10518,6 +10562,7 @@ bioregistry:rgd a bioregistry.schema:0000001 ;
     dc:description "Rat Genome Database seeks to collect, consolidate, and integrate rat genomic and genetic data with curated functional and physiological data and make these data widely available to the scientific community. This collection references genes."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:RGD,
+        edam.data:2620,
         bioportal:RGD,
         biocontext:RGD,
         cellosaurus.resource:RGD,
@@ -10662,7 +10707,8 @@ bioregistry:rnacentral a bioregistry.schema:0000001 ;
     rdfs:label "RNAcentral" ;
     dc:description "RNAcentral is a public resource that offers integrated access to a comprehensive and up-to-date set of non-coding RNA sequences provided by a collaborating group of Expert Databases."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:RNACENTRAL,
+    skos:exactMatch edam.data:3856,
+        biocontext:RNACENTRAL,
         go.resource:RNAcentral,
         n2t:rnacentral,
         ncbi.resource:RNAcentral,
@@ -10849,7 +10895,8 @@ bioregistry:sabiork.reaction a bioregistry.schema:0000001 ;
     rdfs:label "SABIO-RK Reaction" ;
     dc:description "SABIO-RK is a relational database system that contains information about biochemical reactions, their kinetic equations with their parameters, and the experimental conditions under which these parameters were measured. The reaction data set provides information regarding the organism in which a reaction is observed, pathways in which it participates, and links to further information."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:SABIORK.REACTION,
+    skos:exactMatch edam.data:2309,
+        biocontext:SABIORK.REACTION,
         n2t:sabiork.reaction,
         fairsharing:FAIRsharing.cwx04e,
         prefixcommons:sabiork.reaction,
@@ -11059,7 +11106,7 @@ bioregistry:sgd a bioregistry.schema:0000001 ;
     rdfs:label "Saccharomyces Genome Database" ;
     dc:description "The Saccharomyces Genome Database (SGD) project collects information and maintains a database of the molecular biology of the yeast Saccharomyces cerevisiae."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1034,
+    skos:exactMatch edam.data:2632,
         biocontext:SGD,
         go.resource:SGD,
         n2t:sgd,
@@ -11265,7 +11312,8 @@ bioregistry:smpdb a bioregistry.schema:0000001 ;
     rdfs:label "Small Molecule Pathway Database" ;
     dc:description "The Small Molecule Pathway Database (SMPDB) contains small molecule pathways found in humans, which are presented visually. All SMPDB pathways include information on the relevant organs, subcellular compartments, protein cofactors, protein locations, metabolite locations, chemical structures and protein quaternary structures. Accompanying data includes detailed descriptions and references, providing an overview of the pathway, condition or processes depicted in each diagram."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:SMPDB,
+    skos:exactMatch edam.data:2659,
+        biocontext:SMPDB,
         biolink:PathWhiz,
         n2t:smpdb,
         fairsharing:FAIRsharing.y1zyaq,
@@ -11451,7 +11499,8 @@ bioregistry:string a bioregistry.schema:0000001 ;
     dc:description """STRING (Search Tool for Retrieval of Interacting Genes/Proteins) is a database of known and predicted protein interactions.\r
 The interactions include direct (physical) and indirect (functional) associations; they are derived from four sources:Genomic Context, High-throughput Experiments,(Conserved) Coexpression, Previous Knowledge. STRING quantitatively integrates interaction data from these sources for a large number of organisms, and transfers information between these organisms where applicable."""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:STRING,
+    skos:exactMatch edam.data:2302,
+        biocontext:STRING,
         n2t:string,
         fairsharing:FAIRsharing.9b7wvk,
         prefixcommons:string,
@@ -11631,7 +11680,8 @@ bioregistry:t3db a bioregistry.schema:0000001 ;
     rdfs:label "Toxin and Toxin Target Database" ;
     dc:description "Toxin and Toxin Target Database (T3DB) is a bioinformatics resource that combines detailed toxin data with comprehensive toxin target information."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:T3DB,
+    skos:exactMatch edam.data:2662,
+        biocontext:T3DB,
         n2t:t3db,
         fairsharing:FAIRsharing.psn0h2,
         prefixcommons:t3db,
@@ -11786,7 +11836,8 @@ bioregistry:tcdb a bioregistry.schema:0000001 ;
     rdfs:label "Transporter Classification Database" ;
     dc:description "The database details a comprehensive  IUBMB approved classification system for membrane transport proteins known as the Transporter Classification (TC) system. The TC system is analogous to the Enzyme Commission (EC) system for classification of enzymes, but incorporates phylogenetic information additionally."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:TCDB,
+    skos:exactMatch edam.data:2756,
+        biocontext:TCDB,
         go.resource:TC,
         n2t:tcdb,
         fairsharing:FAIRsharing.p3bzqb,
@@ -11858,7 +11909,8 @@ bioregistry:tigrfam a bioregistry.schema:0000001 ;
     rdfs:label "TIGR protein families" ;
     dc:description "TIGRFAMs is a resource consisting of curated multiple sequence alignments, Hidden Markov Models (HMMs) for protein sequence classification, and associated information designed to support automated annotation of (mostly prokaryotic) proteins."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:TIGRFAM,
+    skos:exactMatch edam.data:1141,
+        biocontext:TIGRFAM,
         n2t:tigrfam,
         ncbi.resource:TIGRFAM,
         miriam:tigrfam ;
@@ -12038,7 +12090,8 @@ bioregistry:ttd.drug a bioregistry.schema:0000001 ;
     rdfs:label "TTD Drug" ;
     dc:description "The Therapeutic Target Database (TTD) is designed to provide information about the known therapeutic protein and nucleic acid targets described in the literature, the targeted disease conditions, the pathway information and the corresponding drugs/ligands directed at each of these targets. Cross-links to other databases allow the access to information about the sequence, 3D structure, function, nomenclature, drug/ligand binding properties, drug usage and effects, and related literature for each target."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:TTD.DRUG,
+    skos:exactMatch edam.data:2653,
+        biocontext:TTD.DRUG,
         n2t:ttd.drug,
         miriam:ttd.drug ;
     foaf:homepage "http://bidd.nus.edu.sg/group/ttd/ttd.asp"^^xsd:string ;
@@ -12051,7 +12104,8 @@ bioregistry:ttd.target a bioregistry.schema:0000001 ;
     rdfs:label "TTD Target" ;
     dc:description "The Therapeutic Target Database (TTD) is designed to provide information about the known therapeutic protein and nucleic acid targets described in the literature, the targeted disease conditions, the pathway information and the corresponding drugs/ligands directed at each of these targets. Cross-links to other databases are also introduced to facilitate the access of information about the sequence, 3D structure, function, nomenclature, drug/ligand binding properties, drug usage and effects, and related literature for each target."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:TTD.TARGET,
+    skos:exactMatch edam.data:2654,
+        biocontext:TTD.TARGET,
         n2t:ttd.target,
         miriam:ttd.target ;
     foaf:homepage "http://bidd.nus.edu.sg/group/ttd/ttd.asp"^^xsd:string ;
@@ -12158,7 +12212,8 @@ bioregistry:unimod a bioregistry.schema:0000001 ;
     rdfs:label "Unimod protein modification database for mass spectrometry" ;
     dc:description "Unimod is a public domain database created to provide a community supported, comprehensive database of protein modifications for mass spectrometry applications. That is, accurate and verifiable values, derived from elemental compositions, for the mass differences introduced by all types of natural and artificial modifications. Other important information includes any mass change, (neutral loss), that occurs during MS/MS analysis, and site specificity, (which residues are susceptible to modification and any constraints on the position of the modification within the protein or peptide)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:UNIMOD,
+    skos:exactMatch edam.data:3757,
+        biocontext:UNIMOD,
         n2t:unimod,
         fairsharing:FAIRsharing.zZHCUQ,
         miriam:unimod,
@@ -12173,7 +12228,8 @@ bioregistry:uniparc a bioregistry.schema:0000001 ;
     rdfs:label "UniProt Archive" ;
     dc:description "The UniProt Archive (UniParc) is a  database containing non-redundant protein sequence information from many sources. Each unique sequence is given a stable and unique identifier (UPI) making it possible to identify the same protein from different source databases."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:UNIPARC,
+    skos:exactMatch edam.data:2392,
+        biocontext:UNIPARC,
         go.resource:UniParc,
         n2t:uniparc,
         prefixcommons:uniparc,
@@ -12214,7 +12270,8 @@ bioregistry:uniref a bioregistry.schema:0000001 ;
     rdfs:label "UniRef" ;
     dc:description "The UniProt Reference Clusters (UniRef) provide clustered sets of sequences from the UniProt Knowledgebase (including isoforms) and selected UniParc records in order to obtain complete coverage of the sequence space at several resolutions while hiding redundant sequences (but not their descriptions) from view."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch miriam:uniref ;
+    skos:exactMatch edam.data:2346,
+        miriam:uniref ;
     foaf:homepage "https://www.uniprot.org/"^^xsd:string ;
     bioregistry.schema:0000005 "UniRef90_P00750"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.uniprot.org/uniref/$1"^^xsd:string ;
@@ -12235,7 +12292,8 @@ bioregistry:unists a bioregistry.schema:0000001 ;
     rdfs:label "Database of Sequence Tagged Sites" ;
     dc:description "UniSTS is a comprehensive database of sequence tagged sites (STSs) derived from STS-based maps and other experiments. STSs are defined by PCR primer pairs and are associated with additional information such as genomic position, genes, and sequences."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:UNISTS,
+    skos:exactMatch edam.data:2389,
+        biocontext:UNISTS,
         n2t:unists,
         ncbi.resource:UniSTS,
         prefixcommons:unists,
@@ -12250,7 +12308,8 @@ bioregistry:unite a bioregistry.schema:0000001 ;
     rdfs:label "Molecular database for the identification of fungi" ;
     dc:description "UNITE is a fungal rDNA internal transcribed spacer (ITS) sequence database. It focuses on high-quality ITS sequences generated from fruiting bodies collected and identified by experts and deposited in public herbaria. Entries may be supplemented with metadata on describing locality, habitat, soil, climate, and interacting taxa."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:UNITE,
+    skos:exactMatch edam.data:2390,
+        biocontext:UNITE,
         n2t:unite,
         ncbi.resource:UNITE,
         fairsharing:FAIRsharing.cnwx8c,
@@ -12747,6 +12806,7 @@ bioregistry:wikipathways a bioregistry.schema:0000001 ;
 All content is under the Creative Commons Attribution 3.0 Unported license."""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:WIKIPATHWAYS,
+        edam.data:3952,
         bioportal:WIKIPATHWAYS,
         biocontext:WIKIPATHWAYS,
         n2t:wikipathways,
@@ -12823,7 +12883,8 @@ bioregistry:xenbase a bioregistry.schema:0000001 ;
     rdfs:label "Xenbase" ;
     dc:description "Xenbase is the model organism database for Xenopus laevis and X. (Silurana) tropicalis. It contains genomic, development data and community information for Xenopus research. it includes gene expression patterns that incorporates image data from the literature, large scale screens and community submissions."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:Xenbase,
+    skos:exactMatch edam.data:2738,
+        biocontext:Xenbase,
         biolink:Xenbase,
         go.resource:Xenbase,
         n2t:xenbase,
@@ -13125,8 +13186,6 @@ orcid:0000-0002-5316-1399 rdfs:label "Sebastian Koehler" .
 orcid:0000-0002-5714-991X rdfs:label "Chris Stoeckert" .
 
 orcid:0000-0002-6020-5919 rdfs:label "Elizabeth Arnaud" .
-
-orcid:0000-0002-6309-7327 rdfs:label "Nicolas Gambardella" .
 
 orcid:0000-0002-6379-8932 rdfs:label "Laurel Cooper" .
 
@@ -14026,31 +14085,211 @@ edam.data:1003 dcterms:isPartOf bioregistry.metaresource:edam .
 
 edam.data:1004 dcterms:isPartOf bioregistry.metaresource:edam .
 
-edam.data:1034 dcterms:isPartOf bioregistry.metaresource:edam .
+edam.data:1011 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1027 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1035 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1040 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1089 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1098 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1105 dcterms:isPartOf bioregistry.metaresource:edam .
 
 edam.data:1106 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1127 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1133 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1136 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1141 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1146 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1147 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1153 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1155 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1162 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1173 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1174 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1176 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1177 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1179 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1181 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1182 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1187 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1188 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1805 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2104 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2292 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2298 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2302 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2309 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2325 dcterms:isPartOf bioregistry.metaresource:edam .
 
 edam.data:2326 dcterms:isPartOf bioregistry.metaresource:edam .
 
 edam.data:2343 dcterms:isPartOf bioregistry.metaresource:edam .
 
+edam.data:2346 dcterms:isPartOf bioregistry.metaresource:edam .
+
 edam.data:2356 dcterms:isPartOf bioregistry.metaresource:edam .
 
+edam.data:2380 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2386 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2389 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2390 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2392 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2578 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2605 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2608 dcterms:isPartOf bioregistry.metaresource:edam .
+
 edam.data:2609 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2610 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2611 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2613 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2615 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2616 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2619 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2620 dcterms:isPartOf bioregistry.metaresource:edam .
 
 edam.data:2622 dcterms:isPartOf bioregistry.metaresource:edam .
 
 edam.data:2625 dcterms:isPartOf bioregistry.metaresource:edam .
 
+edam.data:2626 dcterms:isPartOf bioregistry.metaresource:edam .
+
 edam.data:2628 dcterms:isPartOf bioregistry.metaresource:edam .
 
 edam.data:2629 dcterms:isPartOf bioregistry.metaresource:edam .
 
+edam.data:2632 dcterms:isPartOf bioregistry.metaresource:edam .
+
 edam.data:2634 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2635 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2638 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2639 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2641 dcterms:isPartOf bioregistry.metaresource:edam .
 
 edam.data:2642 dcterms:isPartOf bioregistry.metaresource:edam .
 
 edam.data:2644 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2645 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2646 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2650 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2651 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2652 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2653 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2654 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2656 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2657 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2658 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2659 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2660 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2662 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2664 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2665 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2666 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2667 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2669 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2700 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2716 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2719 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2723 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2738 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2741 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2756 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2758 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2766 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2773 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2787 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:3021 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:3103 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:3264 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:3265 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:3274 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:3757 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:3856 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:3952 dcterms:isPartOf bioregistry.metaresource:edam .
 
 obofoundry:AAO dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
@@ -19845,7 +20084,8 @@ bioregistry:cath a bioregistry.schema:0000001 ;
     dc:description "CATH is a classification of protein structural domains. We group protein domains into superfamilies when there is sufficient evidence they have diverged from a common ancestor. CATH can be used to predict structural and functional information directly from protein sequence."^^xsd:string ;
     dcterms:hasPart bioregistry:cath.superfamily ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:CATH,
+    skos:exactMatch edam.data:2700,
+        biocontext:CATH,
         n2t:cath,
         fairsharing:FAIRsharing.xgcyyn,
         prefixcommons:cath,
@@ -19981,7 +20221,8 @@ bioregistry:chembl.compound a bioregistry.schema:0000001 ;
     dc:description "ChEMBL is a database of bioactive compounds, their quantitative properties and bioactivities (binding constants, pharmacology and ADMET, etc). The data is abstracted and curated from the primary scientific literature."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:chembl ;
-    skos:exactMatch biocontext:CHEMBL.COMPOUND,
+    skos:exactMatch edam.data:2646,
+        biocontext:CHEMBL.COMPOUND,
         n2t:chembl.compound,
         miriam:chembl.compound,
         wikidata:P592 ;
@@ -20010,7 +20251,8 @@ bioregistry:chemidplus a bioregistry.schema:0000001 ;
     rdfs:label "ChemIDplus" ;
     dc:description "ChemIDplus is a web-based search system that provides access to structure and nomenclature authority files used for the identification of chemical substances cited in National Library of Medicine (NLM) databases. It also provides structure searching and direct links to many biomedical resources at NLM and on the Internet for chemicals of interest."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:CHEMIDPLUS,
+    skos:exactMatch edam.data:2658,
+        biocontext:CHEMIDPLUS,
         n2t:chemidplus,
         fairsharing:FAIRsharing.5949vn,
         prefixcommons:chemidplus,
@@ -20329,7 +20571,8 @@ bioregistry:dbest a bioregistry.schema:0000001 ;
     rdfs:label "EST database maintained at the NCBI." ;
     dc:description "The dbEST contains sequence data and other information on \"single-pass\" cDNA sequences, or \"Expressed Sequence Tags\", from a number of organisms."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:DBEST,
+    skos:exactMatch edam.data:1105,
+        biocontext:DBEST,
         n2t:dbest,
         ncbi.resource:dbEST,
         fairsharing:FAIRsharing.v9fya8,
@@ -20771,7 +21014,8 @@ bioregistry:emdb a bioregistry.schema:0000001 ;
     rdfs:label "Electron Microscopy Data Bank" ;
     dc:description "The Electron Microscopy Data Bank (EMDB) is a public repository for electron microscopy density maps of macromolecular complexes and subcellular structures. It covers a variety of techniques, including single-particle analysis, electron tomography, and electron (2D) crystallography. The EMDB map distribution format follows the CCP4 definition, which is widely recognized by software packages used by the structural biology community."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:EMDB,
+    skos:exactMatch edam.data:1146,
+        biocontext:EMDB,
         n2t:emdb,
         fairsharing:FAIRsharing.651n9j,
         miriam:emdb ;
@@ -21160,7 +21404,8 @@ bioregistry:genbank a bioregistry.schema:0000001 ;
     rdfs:label "GenBank" ;
     dc:description "GenBank ® is the NIH genetic sequence database, an annotated collection of all publicly available DNA sequences (Nucleic Acids Research, 2013 Jan;41(D1):D36-42)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:GenBank,
+    skos:exactMatch edam.data:2292,
+        biocontext:GenBank,
         go.resource:GenBank,
         fairsharing:FAIRsharing.9kahy4,
         prefixcommons:genbank,
@@ -21176,6 +21421,7 @@ bioregistry:geo a bioregistry.schema:0000001 ;
     dc:description "The Gene Expression Omnibus (GEO) is a gene expression repository providing a curated, online resource for gene expression data browsing, query and retrieval."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:GEO,
+        edam.data:1147,
         biocontext:GEO,
         cellosaurus.resource:GEO,
         go.resource:GEO,
@@ -21321,6 +21567,7 @@ bioregistry:grassbase a bioregistry.schema:0000001 ;
     rdfs:label "GrassBase" ;
     dc:description "GrassBase provides an interactive guide to nomenclature for the whole grass family. It provides lists of over 60,000 names for any given genus, geographical region or genus within a geographical region, helps find the accepted name, synonyms and distribution for any given name, and gives a desription for each species."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P1832 ;
     foaf:homepage "https://www.kew.org/data/grasses-syn/index.htm"^^xsd:string ;
     bioregistry.schema:0000005 "imp10873"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.kew.org/data/grasses-db/www/$1"^^xsd:string ;
@@ -21412,6 +21659,7 @@ bioregistry:icd10 a bioregistry.schema:0000001 ;
     dc:description "The International Classification of Diseases is the international standard diagnostic classification for all general epidemiological and many health management purposes."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:ICD10,
+        edam.data:2611,
         bioportal:ICD10,
         biocontext:ICD,
         biolink:ICD10,
@@ -21860,7 +22108,8 @@ bioregistry:kegg.reaction a bioregistry.schema:0000001 ;
     dc:description "KEGG reaction contains our knowledge on the universe of reactions that are relevant to life."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:kegg ;
-    skos:exactMatch biocontext:KEGG.REACTION,
+    skos:exactMatch edam.data:2608,
+        biocontext:KEGG.REACTION,
         go.resource:KEGG_REACTION,
         n2t:kegg.reaction,
         prefixcommons:kegg.reaction,
@@ -22224,7 +22473,8 @@ bioregistry:ncbi.genome a bioregistry.schema:0000001 ;
     rdfs:label "NCBI Genome" ;
     dc:description "This resource organizes information on genomes including sequences, maps, chromosomes, assemblies, and annotations."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:NCBIGenome ;
+    skos:exactMatch edam.data:2787,
+        biocontext:NCBIGenome ;
     foaf:homepage "https://www.ncbi.nlm.nih.gov/genome"^^xsd:string ;
     bioregistry.schema:0000005 "51"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/genome/$1"^^xsd:string ;
@@ -22469,6 +22719,7 @@ bioregistry:omim a bioregistry.schema:0000001 ;
     dcterms:hasPart bioregistry:omim.ps ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:OMIM,
+        edam.data:1153,
         bioportal:OMIM,
         biocontext:OMIM,
         go.resource:OMIM,
@@ -22797,6 +23048,7 @@ bioregistry:pfam.clan a bioregistry.schema:0000001 ;
     rdfs:label "Pfam Clans" ;
     dc:description "Higher order grouping of Pfam families"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:2758 ;
     foaf:homepage "https://pfam.xfam.org"^^xsd:string ;
     bioregistry.schema:0000005 "CL0192"^^xsd:string ;
     bioregistry.schema:0000006 "https://pfam.xfam.org/clan/$1"^^xsd:string ;
@@ -22956,7 +23208,8 @@ bioregistry:pubchem.bioassay a bioregistry.schema:0000001 ;
     dc:description "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem bioassay archives active compounds and bioassay results."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:pubchem ;
-    skos:exactMatch biocontext:PUBCHEM.BIOASSAY,
+    skos:exactMatch edam.data:2638,
+        biocontext:PUBCHEM.BIOASSAY,
         go.resource:PubChem_BioAssay,
         n2t:pubchem.bioassay,
         prefixcommons:pubchem.bioassay,
@@ -22972,7 +23225,8 @@ bioregistry:pubchem.compound a bioregistry.schema:0000001 ;
     dc:description "PubChem provides information on the biological activities of small molecules. It is a component of NIH's Molecular Libraries Roadmap Initiative. PubChem Compound archives chemical structures and records."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:pubchem ;
-    skos:exactMatch biocontext:PUBCHEM.COMPOUND,
+    skos:exactMatch edam.data:2639,
+        biocontext:PUBCHEM.COMPOUND,
         biolink:CID,
         cellosaurus.resource:PubChem,
         go.resource:PubChem_Compound,
@@ -23065,7 +23319,8 @@ bioregistry:resid a bioregistry.schema:0000001 ;
     rdfs:label "Protein covalent bond" ;
     dc:description "The RESID Database of Protein Modifications is a comprehensive collection of annotations and structures for protein modifications including amino-terminal, carboxyl-terminal and peptide chain cross-link post-translational modifications."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch obofoundry:RESID,
+    skos:exactMatch edam.data:2619,
+        obofoundry:RESID,
         biocontext:RESID,
         go.resource:RESID,
         n2t:resid,
@@ -23467,7 +23722,8 @@ bioregistry:umls a bioregistry.schema:0000001 ;
     rdfs:label "Unified Medical Language System Concept Unique Identifier" ;
     dc:description "The Unified Medical Language System is a repository of biomedical vocabularies. Vocabularies integrated in the UMLS Metathesaurus include the NCBI taxonomy, Gene Ontology, the Medical Subject Headings (MeSH), OMIM and the Digital Anatomist Symbolic Knowledge Base. UMLS concepts are not only inter-related, but may also be linked to external resources such as GenBank."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:UMLS,
+    skos:exactMatch edam.data:1181,
+        biocontext:UMLS,
         n2t:umls,
         miriam:umls,
         wikidata:P2892 ;
@@ -23573,6 +23829,7 @@ bioregistry:upa a bioregistry.schema:0000001 ;
     dc:description "A manually curated resource for the representation and annotation of metabolic pathways"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:UPA,
+        edam.data:2645,
         obofoundry:UPA,
         ontobee:UPA,
         bioportal:UPA,
@@ -28053,6 +28310,8 @@ wikidata:P1693 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P1748 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P1832 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P1929 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P2057 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -28172,6 +28431,8 @@ wikidata:P496 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P5221 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P5270 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P5299 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P5458 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -28536,7 +28797,8 @@ bioregistry:eccode a bioregistry.schema:0000001 ;
     rdfs:label "Enzyme Commission Code" ;
     dc:description "The Enzyme Classification contains the recommendations of the Nomenclature Committee of the International Union of Biochemistry and Molecular Biology on the nomenclature and classification of enzyme-catalysed reactions."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:EC-CODE,
+    skos:exactMatch edam.data:1011,
+        biocontext:EC-CODE,
         go.resource:EC,
         n2t:ec-code,
         fairsharing:FAIRsharing.q1fdkc,
@@ -28809,7 +29071,8 @@ bioregistry:kegg.compound a bioregistry.schema:0000001 ;
     dc:description "KEGG compound contains our knowledge on the universe of chemical substances that are relevant to life."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:kegg ;
-    skos:exactMatch biocontext:KEGG.COMPOUND,
+    skos:exactMatch edam.data:2605,
+        biocontext:KEGG.COMPOUND,
         n2t:kegg.compound,
         prefixcommons:kegg.compound,
         miriam:kegg.compound,
@@ -28861,7 +29124,8 @@ bioregistry:kegg.glycan a bioregistry.schema:0000001 ;
     dc:description "KEGG GLYCAN, a part of the KEGG LIGAND database, is a collection of experimentally determined glycan structures. It contains all unique structures taken from CarbBank, structures entered from recent publications, and structures present in KEGG pathways."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:kegg ;
-    skos:exactMatch biocontext:KEGG.GLYCAN,
+    skos:exactMatch edam.data:2613,
+        biocontext:KEGG.GLYCAN,
         n2t:kegg.glycan,
         prefixcommons:kegg.glycan,
         miriam:kegg.glycan ;
@@ -28906,6 +29170,7 @@ bioregistry:mesh a bioregistry.schema:0000001 ;
     dc:description "MeSH (Medical Subject Headings) is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity. This thesaurus is used by NLM for indexing articles from biomedical journals, cataloguing of books, documents, etc."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:MESH,
+        edam.data:1177,
         bioportal:MESH,
         biocontext:MESH,
         biolink:MESH,
@@ -28998,7 +29263,8 @@ bioregistry:ncbigene a bioregistry.schema:0000001 ;
     rdfs:label "Entrez Gene" ;
     dc:description "Entrez Gene is the NCBI's database for gene-specific information, focusing on completely sequenced genomes, those with an active research community to contribute gene-specific information, or those that are scheduled for intense sequence analysis."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:NCBIGene,
+    skos:exactMatch edam.data:1027,
+        biocontext:NCBIGene,
         biolink:NCBIGene,
         go.resource:NCBIGene,
         n2t:ncbigene,
@@ -29583,7 +29849,8 @@ bioregistry:wormbase a bioregistry.schema:0000001 ;
     dcterms:hasPart bioregistry:wbls,
         bioregistry:wbphenotype ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:WormBase,
+    skos:exactMatch edam.data:1805,
+        biocontext:WormBase,
         biolink:WBVocab,
         go.resource:WB_REF,
         n2t:wb,
@@ -29874,7 +30141,8 @@ bioregistry:pdb a bioregistry.schema:0000001 ;
     rdfs:label "PDB Structure" ;
     dc:description "The Protein Data Bank is the single worldwide archive of structural data of biological macromolecules."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PDB,
+    skos:exactMatch edam.data:1127,
+        biocontext:PDB,
         go.resource:PDB,
         n2t:pdb,
         ncbi.resource:PDB,
@@ -30266,7 +30534,8 @@ bioregistry:flybase a bioregistry.schema:0000001 ;
         bioregistry:fbsp,
         bioregistry:fbtc ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:FlyBase,
+    skos:exactMatch edam.data:1089,
+        biocontext:FlyBase,
         cellosaurus.resource:FlyBase,
         go.resource:FB,
         n2t:fb,
@@ -30988,6 +31257,7 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:NCBITAXON,
         agroportal:NCBITAXON,
+        edam.data:1179,
         obofoundry:NCBITaxon,
         ontobee:NCBITaxon,
         bioportal:NCBITAXON,
@@ -31021,30 +31291,6 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
         bioregistry:pcl,
         bioregistry:pco ;
     bioregistry.schema:0000019 orcid:0000-0002-9415-5104 .
-
-bioregistry.metaresource:edam a bioregistry.schema:0000002 ;
-    rdfs:label "EDAM Ontology" ;
-    dc:description "EDAM is a comprehensive ontology of well-established, familiar concepts that are prevalent within computational biology, bioinformatics, and bioimage informatics. EDAM includes types of data and data identifiers, data formats, operations, and topics related to data analysis in life sciences. EDAM provides a set of concepts with preferred terms and synonyms, related terms, definitions, and other information - organised into a simple and intuitive hierarchy for convenient use." ;
-    dcterms:hasPart edam.data:1002,
-        edam.data:1003,
-        edam.data:1004,
-        edam.data:1034,
-        edam.data:1106,
-        edam.data:2326,
-        edam.data:2343,
-        edam.data:2356,
-        edam.data:2609,
-        edam.data:2622,
-        edam.data:2625,
-        edam.data:2628,
-        edam.data:2629,
-        edam.data:2634,
-        edam.data:2642,
-        edam.data:2644 ;
-    foaf:homepage " http://edamontology.org" ;
-    bioregistry.schema:0000005 "1004" ;
-    bioregistry.schema:0000006 "http://edamontology.org/data_$1" ;
-    bioregistry.schema:0000019 orcid:0000-0002-1509-4981 .
 
 bioregistry:kegg a bioregistry.schema:0000001 ;
     rdfs:label "Kyoto Encyclopedia of Genes and Genomes" ;
@@ -31122,6 +31368,7 @@ bioregistry:go a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:GO,
         agroportal:GO,
+        edam.data:1176,
         obofoundry:GO,
         ontobee:GO,
         bioportal:GO,
@@ -31308,6 +31555,7 @@ bioregistry:chebi a bioregistry.schema:0000001 ;
         bioregistry:rex ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:CHEBI,
+        edam.data:1174,
         obofoundry:CHEBI,
         ontobee:CHEBI,
         bioportal:CHEBI,
@@ -31359,6 +31607,7 @@ bioregistry:uniprot a bioregistry.schema:0000001 ;
         bioregistry:uniprot.var ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:UP,
+        edam.data:3021,
         biocontext:UniProtKB,
         cellosaurus.resource:UniProtKB,
         go.resource:UniProtKB,
@@ -32251,6 +32500,120 @@ bioregistry.metaresource:cellosaurus a bioregistry.schema:0000002 ;
     bioregistry.schema:0000005 "4DN" ;
     bioregistry.schema:0000019 orcid:0000-0003-2826-6444 .
 
+bioregistry.metaresource:edam a bioregistry.schema:0000002 ;
+    rdfs:label "EDAM Ontology" ;
+    dc:description "EDAM is a comprehensive ontology of well-established, familiar concepts that are prevalent within computational biology, bioinformatics, and bioimage informatics. EDAM includes types of data and data identifiers, data formats, operations, and topics related to data analysis in life sciences. EDAM provides a set of concepts with preferred terms and synonyms, related terms, definitions, and other information - organised into a simple and intuitive hierarchy for convenient use." ;
+    dcterms:hasPart edam.data:1002,
+        edam.data:1003,
+        edam.data:1004,
+        edam.data:1011,
+        edam.data:1027,
+        edam.data:1035,
+        edam.data:1040,
+        edam.data:1089,
+        edam.data:1098,
+        edam.data:1105,
+        edam.data:1106,
+        edam.data:1127,
+        edam.data:1133,
+        edam.data:1136,
+        edam.data:1141,
+        edam.data:1146,
+        edam.data:1147,
+        edam.data:1153,
+        edam.data:1155,
+        edam.data:1162,
+        edam.data:1173,
+        edam.data:1174,
+        edam.data:1176,
+        edam.data:1177,
+        edam.data:1179,
+        edam.data:1181,
+        edam.data:1182,
+        edam.data:1187,
+        edam.data:1188,
+        edam.data:1805,
+        edam.data:2104,
+        edam.data:2292,
+        edam.data:2298,
+        edam.data:2302,
+        edam.data:2309,
+        edam.data:2325,
+        edam.data:2326,
+        edam.data:2343,
+        edam.data:2346,
+        edam.data:2356,
+        edam.data:2380,
+        edam.data:2386,
+        edam.data:2389,
+        edam.data:2390,
+        edam.data:2392,
+        edam.data:2578,
+        edam.data:2605,
+        edam.data:2608,
+        edam.data:2609,
+        edam.data:2610,
+        edam.data:2611,
+        edam.data:2613,
+        edam.data:2615,
+        edam.data:2616,
+        edam.data:2619,
+        edam.data:2620,
+        edam.data:2622,
+        edam.data:2625,
+        edam.data:2626,
+        edam.data:2628,
+        edam.data:2629,
+        edam.data:2632,
+        edam.data:2634,
+        edam.data:2635,
+        edam.data:2638,
+        edam.data:2639,
+        edam.data:2641,
+        edam.data:2642,
+        edam.data:2644,
+        edam.data:2645,
+        edam.data:2646,
+        edam.data:2650,
+        edam.data:2651,
+        edam.data:2652,
+        edam.data:2653,
+        edam.data:2654,
+        edam.data:2656,
+        edam.data:2657,
+        edam.data:2658,
+        edam.data:2659,
+        edam.data:2660,
+        edam.data:2662,
+        edam.data:2664,
+        edam.data:2665,
+        edam.data:2666,
+        edam.data:2667,
+        edam.data:2669,
+        edam.data:2700,
+        edam.data:2716,
+        edam.data:2719,
+        edam.data:2723,
+        edam.data:2738,
+        edam.data:2741,
+        edam.data:2756,
+        edam.data:2758,
+        edam.data:2766,
+        edam.data:2773,
+        edam.data:2787,
+        edam.data:3021,
+        edam.data:3103,
+        edam.data:3264,
+        edam.data:3265,
+        edam.data:3274,
+        edam.data:3757,
+        edam.data:3856,
+        edam.data:3952 ;
+    foaf:homepage " http://edamontology.org" ;
+    bioregistry.schema:0000005 "1004" ;
+    bioregistry.schema:0000006 "http://edamontology.org/data_$1" ;
+    bioregistry.schema:0000019 orcid:0000-0002-1509-4981 .
+
 bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
     rdfs:label "Wikidata Property" ;
     dc:description "An open, community-curated knowledgebase that contains several properties corresponding to resources listed in other biomedical registries." ;
@@ -32264,6 +32627,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P1692,
         wikidata:P1693,
         wikidata:P1748,
+        wikidata:P1832,
         wikidata:P1929,
         wikidata:P2057,
         wikidata:P2062,
@@ -32324,6 +32688,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P496,
         wikidata:P5221,
         wikidata:P5270,
+        wikidata:P5299,
         wikidata:P5458,
         wikidata:P5501,
         wikidata:P557,
