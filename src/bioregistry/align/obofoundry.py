@@ -17,7 +17,7 @@ class OBOFoundryAligner(Aligner):
 
     key = "obofoundry"
     getter = get_obofoundry
-    curation_header = ("name", "description")
+    curation_header = ("deprecated", "name", "description")
     include_new = True
 
     def get_skip(self) -> Mapping[str, str]:
