@@ -252,6 +252,8 @@
                                         <span class="badge badge-info">GitHub Issue</span>
                                     {% elif reference.startswith("https://github.com/") and "pull" in reference %}
                                         <span class="badge badge-info">GitHub PR</span>
+                                    {% elif reference.startswith("https://doi.org/") %}
+                                        <span class="badge badge-info">DOI</span>
                                     {% else %}
                                         <span class="badge badge-info">Other</span>
                                     {% endif %}
