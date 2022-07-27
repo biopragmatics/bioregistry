@@ -81,15 +81,17 @@ class Aligner(ABC):
                 continue
 
             bioregistry_id = self.external_id_to_bioregistry_id.get(external_id)
+            if bioregistry_id is not None:
+                self._align_action(bioregistry_id, external_id, external_entry)
+                continue
 
             # try to lookup with lexical match
-            if bioregistry_id is None:
-                if not self.alt_key_match:
-                    bioregistry_id = self.manager.normalize_prefix(external_id)
-                else:
-                    alt_match = external_entry.get(self.alt_key_match)
-                    if alt_match:
-                        bioregistry_id = self.manager.normalize_prefix(alt_match)
+            if not self.alt_key_match:
+                bioregistry_id = self.manager.normalize_prefix(external_id)
+            else:
+                alt_match = external_entry.get(self.alt_key_match)
+                if alt_match:
+                    bioregistry_id = self.manager.normalize_prefix(alt_match)
 
             # add the identifier from an external resource if it's been marked as high quality
             if bioregistry_id is None and self.include_new:
@@ -97,6 +99,8 @@ class Aligner(ABC):
                 self.internal_registry[bioregistry_id] = Resource(prefix=bioregistry_id)
 
             if self._do_align_action(bioregistry_id):
+                if is_mismatch(bioregistry_id, self.key, external_id):
+                    continue
                 self._align_action(bioregistry_id, external_id, external_entry)
 
     def _do_align_action(self, prefix: Optional[str]) -> bool:
@@ -105,11 +109,8 @@ class Aligner(ABC):
             not self.skip_deprecated or not self.manager.is_deprecated(prefix)
         )
 
-    def _align_action(self, bioregistry_id, external_id, external_entry):
+    def _align_action(self, bioregistry_id: str, external_id: str, external_entry: Dict[str, Any]) -> None:
         # skip mismatches
-        if is_mismatch(bioregistry_id, self.key, external_id):
-            return
-
         # Add mapping
         if self.internal_registry[bioregistry_id].mappings is None:
             self.internal_registry[bioregistry_id].mappings = {}
@@ -120,7 +121,7 @@ class Aligner(ABC):
         self.internal_registry[bioregistry_id][self.key] = _entry
         self.external_id_to_bioregistry_id[external_id] = bioregistry_id
 
-    def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
+    def prepare_external(self, external_id: str, external_entry: Dict[str, Any]) -> Dict[str, Any]:
         """Prepare a dictionary to be added to the bioregistry for each external registry entry.
 
         The default implementation returns `external_entry` unchanged.
