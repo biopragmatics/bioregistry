@@ -53,6 +53,10 @@ def get_re3data():
         if license_element:
             data["license"] = license_element.text
 
+        xref_element = tree_inner.find(f"{SCHEMA}repositoryIdentifier")
+        if xref_element:
+            data["xref"] = xref_element.text
+
         records[identifier] = data
 
     return records
