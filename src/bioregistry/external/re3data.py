@@ -74,7 +74,7 @@ def get_re3data(force_download: bool = False):
         records[identifier] = data
 
     with PROCESSED_PATH.open("w") as file:
-        json.dump(records, file, indent=2, sort_keys=True)
+        json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
 
     return records
 
