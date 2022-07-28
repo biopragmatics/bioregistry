@@ -6,27 +6,41 @@ API documentation is available at https://www.re3data.org/api/doc
 Michael Witt (mwitt@purdue.edu, orcid:0000-0003-4221-7956)
 """
 
-import requests
+import json
 from xml.etree import ElementTree
-from bioregistry.utils import removeprefix
+
+import requests
 from tqdm.auto import tqdm
+
+from bioregistry.constants import EXTERNAL
+from bioregistry.utils import removeprefix
 
 __all__ = [
     "get_re3data",
 ]
 
+DIRECTORY = EXTERNAL / "re3data"
+DIRECTORY.mkdir(exist_ok=True, parents=True)
+RAW_PATH = DIRECTORY / "raw.json"
+PROCESSED_PATH = DIRECTORY / "processed.json"
+
 BASE_URL = "https://www.re3data.org"
 SCHEMA = "{http://www.re3data.org/schema/2-2}"
 
 
-def get_re3data():
+def get_re3data(force_download: bool = False):
     """Get the re3data registry.
 
     This takes about 9 minutes since it has to look up each of the ~3K
     records with their own API call.
 
-    :returns: A
+    :param force_download: If true, re-downloads the data
+    :returns: The re3data pre-processed data
     """
+    if PROCESSED_PATH.exists() and not force_download:
+        with PROCESSED_PATH.open() as file:
+            return json.load(file)
+
     res = requests.get(BASE_URL + "/api/v1/repositories")
     records = {}
 
@@ -59,8 +73,11 @@ def get_re3data():
 
         records[identifier] = data
 
+    with PROCESSED_PATH.open("w") as file:
+        json.dump(records, file, indent=2, sort_keys=True)
+
     return records
 
 
-if __name__ == '__main__':
-    get_re3data()
+if __name__ == "__main__":
+    get_re3data(force_download=True)
