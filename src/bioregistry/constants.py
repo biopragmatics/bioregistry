@@ -33,7 +33,6 @@ DOCS = ROOT.joinpath("docs")
 DOCS_DATA = DOCS.joinpath("_data")
 DOCS_IMG = DOCS.joinpath("img")
 
-
 EXPORT_DIRECTORY = ROOT.joinpath("exports")
 
 EXPORT_CONTEXTS = EXPORT_DIRECTORY / "contexts"
@@ -81,7 +80,7 @@ TABLES_SUMMARY_LATEX_PATH = EXPORT_TABLES.joinpath("summary.tex")
 BENCHMARKS = EXPORT_DIRECTORY.joinpath("benchmarks")
 BENCHMARKS.mkdir(exist_ok=True, parents=True)
 URI_PATH = BENCHMARKS.joinpath("uri_parser.tsv")
-URI_RESULTS_PATH = BENCHMARKS.joinpath("uri_parser_results.txt")
+URI_RESULTS_SVG_PATH = BENCHMARKS.joinpath("uri_parser_results.svg")
 
 #: The URL of the remote Bioregistry site
 BIOREGISTRY_REMOTE_URL = pystow.get_config("bioregistry", "url") or "https://bioregistry.io"

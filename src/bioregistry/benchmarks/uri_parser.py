@@ -1,14 +1,16 @@
+"""A benchmark for Bioregistry's URI parser."""
+
 import time
 from typing import Iterable, Tuple
 
-import matplotlib
+import matplotlib.pyplot as plt
 import seaborn as sns
 from tqdm import tqdm
 
 import bioregistry
 from bioregistry import manager
-from bioregistry.constants import URI_PATH, URI_RESULTS_PATH
-from bioregistry.parse_iri import _ensure_prefix_list, _parse_iri
+from bioregistry.constants import URI_PATH, URI_RESULTS_SVG_PATH
+from bioregistry.parse_iri import _get_default_prefix_list
 
 
 def get_uris(rebuild: bool = True):
@@ -40,18 +42,21 @@ def iter_uris() -> Iterable[Tuple[str, str, str, str]]:
 def main(rebuild: bool = False):
     """Test parsing IRIs."""
     uris = get_uris(rebuild=rebuild)
-    print(f"using {len(uris):,} test URIs")
-    print(URI_PATH)
 
-    prefix_list = _ensure_prefix_list()
+    # warm up cache
+    _get_default_prefix_list()
 
     times = []
-    for prefix, identifier, metaprefix, url in tqdm(uris):
+    for _, _, _, url in tqdm(uris, unit_scale=True, unit="URI"):
         start = time.time()
-        _parse_iri(url, prefix_list)
+        bioregistry.parse_iri(url)
         times.append(time.time() - start)
 
-    URI_RESULTS_PATH.write_text("\n".join(str(time) for time in sorted(times)))
+    fig, ax = plt.subplots()
+    sns.histplot(data=times, ax=ax, log_scale=True)
+    ax.set_xlabel("Time (seconds)")
+    ax.set_title("Bioregistry URI Parsing Benchmark")
+    fig.savefig(URI_RESULTS_SVG_PATH)
 
 
 if __name__ == "__main__":

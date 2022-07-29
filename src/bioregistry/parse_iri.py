@@ -2,6 +2,7 @@
 
 """Functionality for parsing IRIs."""
 
+from functools import lru_cache
 from typing import List, Mapping, Optional, Tuple, Union
 
 from .resolve import parse_curie
@@ -73,6 +74,11 @@ def curie_from_iri(iri: str, *, prefix_map: Optional[Mapping[str, str]] = None) 
     return curie_to_str(prefix, identifier)
 
 
+@lru_cache(1)
+def _get_default_prefix_list():
+    return _ensure_prefix_list()
+
+
 def parse_iri(
     iri: str, *, prefix_map: Optional[Mapping[str, str]] = None
 ) -> Union[Tuple[str, str], Tuple[None, None]]:
@@ -85,6 +91,22 @@ def parse_iri(
         to use this function in a loop, pre-compute this and pass it instead.
         If a list of pairs is passed, will use it directly.
     :return: A pair of prefix/identifier, if can be parsed
+
+    .. warning::
+
+        If you're using a custom prefix map and doing parsing in bulk, you'll want
+        to use a different interface like:
+
+        .. code:: python
+
+            from bioregistry.parse_iri import _ensure_prefix_list, _parse_iri
+
+            iri = ...
+            prefix_map = ...
+            prefix_list = _ensure_prefix_list(prefix_map)
+            prefix, identifier = _parse_iri(iri, prefix_list)
+
+        It's a future TODO item to provide some nicer caching for this.
 
     IRI from an OBO PURL:
 
@@ -136,6 +158,9 @@ def parse_iri(
 
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
+    if prefix_map is None:
+        return _parse_iri(iri, _get_default_prefix_list())
+
     prefix_list = _ensure_prefix_list(prefix_map)
     return _parse_iri(iri, prefix_list)
 
