@@ -93,15 +93,25 @@ class Aligner(ABC):
                 if alt_match:
                     bioregistry_id = self.manager.normalize_prefix(alt_match)
 
-            # add the identifier from an external resource if it's been marked as high quality
-            if bioregistry_id is None and self.include_new:
-                bioregistry_id = norm(external_id)
-                self.internal_registry[bioregistry_id] = Resource(prefix=bioregistry_id)
-
-            if self._do_align_action(bioregistry_id):
+            if bioregistry_id is not None:
                 if is_mismatch(bioregistry_id, self.key, external_id):
                     continue
+                if self._do_align_action(bioregistry_id):
+                    self._align_action(bioregistry_id, external_id, external_entry)
+
+            # add the identifier from an external resource if it's been marked as high quality
+            elif self.include_new:
+                bioregistry_id = norm(external_id)
+                if is_mismatch(bioregistry_id, self.key, external_id):
+                    continue
+
+                self.internal_registry[bioregistry_id] = Resource(
+                    prefix=bioregistry_id,
+                    mappings={self.key: external_id},
+                )
                 self._align_action(bioregistry_id, external_id, external_entry)
+                continue
+
 
     def _do_align_action(self, prefix: Optional[str]) -> bool:
         # a match was found if the prefix is not None
