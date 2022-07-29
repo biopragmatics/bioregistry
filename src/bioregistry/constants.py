@@ -78,6 +78,10 @@ TABLES_METADATA_TSV_PATH = EXPORT_TABLES.joinpath("comparison_metadata.tsv")
 TABLES_METADATA_LATEX_PATH = EXPORT_TABLES.joinpath("comparison_metadata.tex")
 TABLES_SUMMARY_LATEX_PATH = EXPORT_TABLES.joinpath("summary.tex")
 
+BENCHMARKS = EXPORT_DIRECTORY.joinpath("benchmarks")
+BENCHMARKS.mkdir(exist_ok=True, parents=True)
+URI_PATH = BENCHMARKS.joinpath("uri_parser.tsv")
+
 #: The URL of the remote Bioregistry site
 BIOREGISTRY_REMOTE_URL = pystow.get_config("bioregistry", "url") or "https://bioregistry.io"
 
