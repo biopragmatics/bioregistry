@@ -29,7 +29,7 @@ from bioregistry import constants as brc
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import removeprefix, removesuffix
+from bioregistry.utils import curie_to_str, removeprefix, removesuffix
 
 try:
     from typing import Literal  # type:ignore
@@ -861,6 +861,18 @@ class Resource(BaseModel):
             return example
         return None
 
+    def get_example_curie(self, use_preferred: bool = False) -> Optional[str]:
+        """Get an example CURIE, if an example identifier is available.
+
+        :param use_preferred: Should the preferred prefix be used instead
+            of the Bioregistry prefix (if it exists)?
+        :return: An example CURIE for this resource
+        """
+        example = self.get_example()
+        if example is None:
+            return None
+        return self.get_curie(example, use_preferred=use_preferred)
+
     def is_deprecated(self) -> bool:
         """Return if the given prefix corresponds to a deprecated resource.
 
@@ -1208,12 +1220,29 @@ class Resource(BaseModel):
                 rv.append(Provider(**p))
         return rv
 
+    def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
+        """Get a CURIE for a local unique identifier in this resource's semantic space.
+
+        :param identifier: A local unique identifier in this resource's semantic space
+        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+        :returns: A CURIE for the given identifier
+
+        >>> import bioregistry
+        >>> resource = bioregistry.get_resource("go")
+        >>> resource.get_curie("0000001")
+        'go:0000001'
+        >>> resource.get_curie("0000001", use_preferred=True)
+        'GO:0000001'
+        """
+        _p = self.get_preferred_prefix() or self.prefix if use_preferred else self.prefix
+        return curie_to_str(_p, identifier)
+
     def standardize_identifier(self, identifier: str, prefix: Optional[str] = None) -> str:
         """Normalize the identifier to not have a redundant prefix or banana.
 
         :param identifier: The identifier in the CURIE
-        :param prefix: If an optional prefix is passed, checks that this isn't also used as a caseolded banana
-            like in ``go:go:1234567``, which shouldn't techinncally be right becauase the banana for gene ontology
+        :param prefix: If an optional prefix is passed, checks that this isn't also used as a casefolded banana
+            like in ``go:go:1234567``, which shouldn't technically be right because the banana for gene ontology
             is ``GO``.
         :return: A normalized identifier, possibly with banana/redundant prefix removed
 

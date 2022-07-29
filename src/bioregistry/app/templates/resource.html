@@ -252,6 +252,8 @@
                                         <span class="badge badge-info">GitHub Issue</span>
                                     {% elif reference.startswith("https://github.com/") and "pull" in reference %}
                                         <span class="badge badge-info">GitHub PR</span>
+                                    {% elif reference.startswith("https://doi.org/") %}
+                                        <span class="badge badge-info">DOI</span>
                                     {% else %}
                                         <span class="badge badge-info">Other</span>
                                     {% endif %}
@@ -463,7 +465,7 @@
             <div class="card-body">
                 <p>
                     Providers are various services that resolve CURIEs to URLs. The example CURIE
-                    {{ utils.code_curie(prefix, identifier) }} is used to demonstrate the provides available for
+                    {{ utils.code_curie(prefix, example) }} is used to demonstrate the provides available for
                     <code>{{ prefix }}</code>. Generation of OLS and BioPortal URLs requires additional programmatic
                     logic beyond string formatting.
                 </p>

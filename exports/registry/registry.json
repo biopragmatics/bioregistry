@@ -1843,7 +1843,7 @@
   },
   "biolink": {
     "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations.",
-    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/28/biolink.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/32/biolink.owl",
     "example": "Gene",
     "homepage": "https://biolink.github.io/biolink-model/",
     "mappings": {
@@ -2064,6 +2064,10 @@
     "homepage": "https://bioregistry.io",
     "name": "Bioregistry",
     "preferred_prefix": "bioregistry",
+    "references": [
+      "https://doi.org/10.1101/2022.07.08.499378"
+    ],
+    "repository": "https://github.com/biopragmatics/bioregistry",
     "uri_format": "https://bioregistry.io/registry/$1"
   },
   "bioregistry.collection": {
@@ -2130,11 +2134,11 @@
   },
   "biorxiv": {
     "description": "The bioRxiv is a preprint server for biology",
-    "example": "2021.07.23.453588",
+    "example": "2022.07.08.499378",
     "example_extras": [
       "000091",
       "000091v1",
-      "2022.01.24.477526v1"
+      "2022.07.08.499378v2"
     ],
     "homepage": "https://biorxiv.org",
     "mappings": {
@@ -6662,7 +6666,7 @@
   "doi": {
     "comment": "The [DOI resolution factsheet](https://www.doi.org/factsheets/DOIProxy.html) specifies that `https://doi.org/DOI` is the preferred format:\n\n> Users may resolve DOI names that are structured to use the DOI system Proxy Server (https://doi.org (preferred)). The resolution of the DOI name in this case depends on the use of URL syntax: the example DOI name doi:10.10.123/456 would be resolved from the address: \"https://doi.org/10.123/456\". Any standard browser encountering a DOI name in this form will be able to resolve it. The proxy service (both doi.org and the **earlier but no longer preferred** dx.doi.org) is accessible over IPv6, and supports DNSSEC. The proxy servers respond to HTTPS (**preferred**) as well as HTTP requests.",
     "description": "The Digital Object Identifier System is for identifying content objects in the digital environment.",
-    "example": "10.1038/nbt1156",
+    "example": "10.1101/2022.07.08.499378",
     "homepage": "https://www.doi.org/",
     "mappings": {
       "biocontext": "DOI",
@@ -20342,6 +20346,7 @@
     "homepage": "http://www.pantherdb.org/",
     "mappings": {
       "biocontext": "PANTHER.PATHWAY",
+      "edam": "1161",
       "miriam": "panther.pathway",
       "n2t": "panther.pathway"
     },
@@ -21032,6 +21037,7 @@
     "homepage": "https://pfam.xfam.org/",
     "mappings": {
       "biocontext": "PFAM",
+      "edam": "1138",
       "fairsharing": "FAIRsharing.y3scf6",
       "go": "Pfam",
       "miriam": "pfam",
@@ -21439,6 +21445,7 @@
     "homepage": "http://pid.nci.nih.gov/",
     "mappings": {
       "biocontext": "PID.PATHWAY",
+      "edam": "2344",
       "fairsharing": "FAIRsharing.ncgh1j",
       "miriam": "pid.pathway",
       "n2t": "pid.pathway",
@@ -21787,6 +21794,7 @@
       "agroportal": "PO",
       "biocontext": "PO",
       "bioportal": "PO",
+      "edam": "1180",
       "fairsharing": "FAIRsharing.3ngg40",
       "go": "PO",
       "miriam": "po",
@@ -25808,6 +25816,7 @@
     "homepage": "http://topdb.enzim.hu/",
     "mappings": {
       "biocontext": "TOPDB",
+      "edam": "2789",
       "miriam": "topdb",
       "n2t": "topdb",
       "prefixcommons": "topdb"
