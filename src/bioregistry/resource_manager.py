@@ -721,7 +721,13 @@ class Manager:
         >>> manager.get_obofoundry_iri('fbbt', '00007294')
         'http://purl.obolibrary.org/obo/FBbt_00007294'
         """
-        return self.get_formatted_iri("obofoundry", prefix, identifier)
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        p  = resource.get_obofoundry_uri_prefix()
+        if p is None:
+            raise ValueError
+        return p + identifier
 
     def get_n2t_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the name-to-thing URL for the given CURIE.

@@ -605,26 +605,9 @@ class Resource(BaseModel):
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
         return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
 
-    def get_mappings(self) -> Optional[Mapping[str, str]]:
+    def get_mappings(self) -> Mapping[str, str]:
         """Get the mappings to external registries, if available."""
-        from ..schema_utils import read_metaregistry
-
-        rv: Dict[str, str] = {}
-        rv.update(self.mappings or {})  # This will be the replacement later
-        for metaprefix in read_metaregistry():
-            external = self.get_external(metaprefix)
-            if not external:
-                continue
-            if metaprefix == "wikidata":
-                value = external.get("prefix")
-                if value is not None:
-                    rv["wikidata"] = value
-            elif metaprefix == "obofoundry":
-                rv[metaprefix] = external.get("preferredPrefix", external["prefix"].upper())
-            else:
-                rv[metaprefix] = external["prefix"]
-
-        return rv
+        return self.mappings or {}
 
     def get_name(self) -> Optional[str]:
         """Get the name for the given prefix, it it's available."""
@@ -942,7 +925,7 @@ class Resource(BaseModel):
         'NCBITaxon'
         >>> assert get_resource("sty").get_obofoundry_prefix() is None
         """
-        return self.get_mapped_prefix("obofoundry")
+        return (self.obofoundry or {}).get("preferredPrefix")
 
     def get_obofoundry_uri_prefix(self) -> Optional[str]:
         """Get the OBO Foundry URI prefix for this entry, if possible.
