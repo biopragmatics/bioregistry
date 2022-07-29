@@ -607,24 +607,7 @@ class Resource(BaseModel):
 
     def get_mappings(self) -> Optional[Mapping[str, str]]:
         """Get the mappings to external registries, if available."""
-        from ..schema_utils import read_metaregistry
-
-        rv: Dict[str, str] = {}
-        rv.update(self.mappings or {})  # This will be the replacement later
-        for metaprefix in read_metaregistry():
-            external = self.get_external(metaprefix)
-            if not external:
-                continue
-            if metaprefix == "wikidata":
-                value = external.get("prefix")
-                if value is not None:
-                    rv["wikidata"] = value
-            elif metaprefix == "obofoundry":
-                rv[metaprefix] = external.get("preferredPrefix", external["prefix"].upper())
-            else:
-                rv[metaprefix] = external["prefix"]
-
-        return rv
+        return self.mappings or {}
 
     def get_name(self) -> Optional[str]:
         """Get the name for the given prefix, it it's available."""
