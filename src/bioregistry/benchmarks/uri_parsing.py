@@ -9,16 +9,15 @@ from tqdm import tqdm
 
 import bioregistry
 from bioregistry import manager
-from bioregistry.constants import URI_PATH, URI_RESULTS_SVG_PATH
-from bioregistry.parse_iri import _get_default_prefix_list
+from bioregistry.constants import URI_PARSING_DATA_PATH, URI_PARSING_SVG_PATH
 
 
 def get_uris(rebuild: bool = True):
     """Get prefix-identifier-metaprefix-url quads for benchmarking."""
-    if URI_PATH.is_file() and not rebuild:
-        return [line.strip().split("\t") for line in URI_PATH.read_text().splitlines()]
+    if URI_PARSING_DATA_PATH.is_file() and not rebuild:
+        return [line.strip().split("\t") for line in URI_PARSING_DATA_PATH.read_text().splitlines()]
     uris = sorted(set(iter_uris()))
-    URI_PATH.write_text("\n".join("\t".join(line) for line in uris))
+    URI_PARSING_DATA_PATH.write_text("\n".join("\t".join(line) for line in uris))
     return uris
 
 
@@ -44,7 +43,7 @@ def main(rebuild: bool = False):
     uris = get_uris(rebuild=rebuild)
 
     # warm up cache
-    _get_default_prefix_list()
+    bioregistry.parse_iri("https://bioregistry.io/DRON:00023232")
 
     times = []
     for _, _, _, url in tqdm(uris, unit_scale=True, unit="URI"):
@@ -56,7 +55,7 @@ def main(rebuild: bool = False):
     sns.histplot(data=times, ax=ax, log_scale=True)
     ax.set_xlabel("Time (seconds)")
     ax.set_title("Bioregistry URI Parsing Benchmark")
-    fig.savefig(URI_RESULTS_SVG_PATH)
+    fig.savefig(URI_PARSING_SVG_PATH)
 
 
 if __name__ == "__main__":

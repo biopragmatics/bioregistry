@@ -94,7 +94,7 @@ def parse_iri(
     :param iri: A valid IRI
     :param prefix_map:
         If None, will use the default prefix map. If a mapping, will convert into a sorted
-        list using ``sorted(prefix_map.items(), key=lambda kv: -len(kv[0]))``. If you plan
+        list using :func:`ensure_prefix_list`. If you plan
         to use this function in a loop, pre-compute this and pass it instead.
         If a list of pairs is passed, will use it directly.
     :return: A pair of prefix/identifier, if can be parsed
