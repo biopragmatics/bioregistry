@@ -12,6 +12,7 @@ from flask_bootstrap import Bootstrap4
 
 import bioregistry
 from bioregistry import version
+from bioregistry.constants import NDEX_UUID
 
 from .api import api_blueprint
 from .ui import ui_blueprint
@@ -102,7 +103,7 @@ def related():
 @app.route("/download")
 def download():
     """Render the download page."""
-    return render_template("meta/download.html")
+    return render_template("meta/download.html", ndex_uuid=NDEX_UUID)
 
 
 @app.route("/acknowledgements")

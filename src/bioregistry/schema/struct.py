@@ -29,7 +29,7 @@ from bioregistry import constants as brc
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import removeprefix, removesuffix
+from bioregistry.utils import curie_to_str, removeprefix, removesuffix
 
 try:
     from typing import Literal  # type:ignore
@@ -428,6 +428,8 @@ class Resource(BaseModel):
     fairsharing: Optional[Mapping[str, Any]]
     #: External data from BioContext
     biocontext: Optional[Mapping[str, Any]]
+    #: External data from EDAM ontology
+    edam: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
@@ -669,6 +671,80 @@ class Resource(BaseModel):
             return None
         return re.compile(pattern)
 
+    def get_pattern_with_banana(self, strict: bool = True) -> Optional[str]:
+        r"""Get the pattern for the prefix including a banana if available.
+
+        .. warning::
+
+            This function is meant to mediate backwards compatibility with legacy
+            MIRIAM/Identifiers.org standards. New projects should **not** use redundant
+            prefixes in their local unique identifiers.
+
+        :param strict: If True (default), and a banana exists for the prefix,
+            the banana is required in the pattern. If False, the pattern
+            will match the banana if present but will also match the identifier
+            without the banana.
+        :returns: A pattern for the prefix if available
+
+        >>> import bioregistry as br
+        >>> resource = br.get_resource("chebi")
+
+        Strict match requires the banana to be present
+        >>> resource.get_pattern_with_banana()
+        '^CHEBI:\\d+$'
+
+        Non-strict match allows the banana to be optionally present
+        >>> resource.get_pattern_with_banana(strict=False)
+        '^(CHEBI:)?\\d+$'
+        """
+        pattern = self.get_pattern()
+        if pattern is None:
+            return None
+        banana = self.get_banana()
+        if not banana:
+            return pattern
+
+        banana_peel = self.get_banana_peel()
+        prepattern = f"{banana}{banana_peel}"
+        if not strict:
+            prepattern = f"({prepattern})?"
+        return "^" + prepattern + pattern.lstrip("^")
+
+    def get_pattern_re_with_banana(self, strict: bool = True):
+        """Get the compiled pattern for the prefix including a banana if available.
+
+        .. warning::
+
+            This function is meant to mediate backwards compatibility with legacy
+            MIRIAM/Identifiers.org standards. New projects should **not** use redundant
+            prefixes in their local unique identifiers.
+
+        :param strict: If True (default), and a banana exists for the prefix,
+            the banana is required in the pattern. If False, the pattern
+            will match the banana if present but will also match the identifier
+            without the banana.
+        :returns: A compiled pattern for the prefix if available
+
+        >>> import bioregistry as br
+        >>> resource = br.get_resource("chebi")
+
+        Strict match requires banana
+        >>> resource.get_pattern_re_with_banana().match("1234")
+
+        >>> resource.get_pattern_re_with_banana().match("CHEBI:1234")
+        <re.Match object; span=(0, 10), match='CHEBI:1234'>
+
+        Loose match does not require banana
+        >>> resource.get_pattern_re_with_banana(strict=False).match('1234')
+        <re.Match object; span=(0, 4), match='1234'>
+        >>> resource.get_pattern_re_with_banana(strict=False).match('CHEBI:1234')
+        <re.Match object; span=(0, 10), match='CHEBI:1234'>
+        """
+        p = self.get_pattern_with_banana(strict=strict)
+        if p is None:
+            return None
+        return re.compile(p)
+
     def get_namespace_in_lui(self) -> Optional[bool]:
         """Check if the namespace should appear in the LUI."""
         if self.namespace_in_lui is not None:
@@ -784,6 +860,18 @@ class Resource(BaseModel):
         if example is not None:
             return example
         return None
+
+    def get_example_curie(self, use_preferred: bool = False) -> Optional[str]:
+        """Get an example CURIE, if an example identifier is available.
+
+        :param use_preferred: Should the preferred prefix be used instead
+            of the Bioregistry prefix (if it exists)?
+        :return: An example CURIE for this resource
+        """
+        example = self.get_example()
+        if example is None:
+            return None
+        return self.get_curie(example, use_preferred=use_preferred)
 
     def is_deprecated(self) -> bool:
         """Return if the given prefix corresponds to a deprecated resource.
@@ -1132,12 +1220,29 @@ class Resource(BaseModel):
                 rv.append(Provider(**p))
         return rv
 
+    def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
+        """Get a CURIE for a local unique identifier in this resource's semantic space.
+
+        :param identifier: A local unique identifier in this resource's semantic space
+        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+        :returns: A CURIE for the given identifier
+
+        >>> import bioregistry
+        >>> resource = bioregistry.get_resource("go")
+        >>> resource.get_curie("0000001")
+        'go:0000001'
+        >>> resource.get_curie("0000001", use_preferred=True)
+        'GO:0000001'
+        """
+        _p = self.get_preferred_prefix() or self.prefix if use_preferred else self.prefix
+        return curie_to_str(_p, identifier)
+
     def standardize_identifier(self, identifier: str, prefix: Optional[str] = None) -> str:
         """Normalize the identifier to not have a redundant prefix or banana.
 
         :param identifier: The identifier in the CURIE
         :param prefix: If an optional prefix is passed, checks that this isn't also used as a casefolded banana
-            like in ``go:go:1234567``, which shouldn't techinncally be right becauase the banana for gene ontology
+            like in ``go:go:1234567``, which shouldn't technically be right because the banana for gene ontology
             is ``GO``.
         :return: A normalized identifier, possibly with banana/redundant prefix removed
 

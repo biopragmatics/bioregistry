@@ -252,6 +252,8 @@
                                         <span class="badge badge-info">GitHub Issue</span>
                                     {% elif reference.startswith("https://github.com/") and "pull" in reference %}
                                         <span class="badge badge-info">GitHub PR</span>
+                                    {% elif reference.startswith("https://doi.org/") %}
+                                        <span class="badge badge-info">DOI</span>
                                     {% else %}
                                         <span class="badge badge-info">Other</span>
                                     {% endif %}
@@ -361,7 +363,7 @@
                 {% endif %}
                 {% if canonical_for %}
                     <dt>
-                        Canonical For
+                        Canonical For ({{ canonical_for | length }})
                     </dt>
                     <dd>
                         {% for rel_prefix in canonical_for %}
@@ -375,7 +377,7 @@
                 {% endif %}
                 {% if depends_on %}
                     <dt>
-                        Depends On
+                        Depends On ({{ depends_on | length }})
                     </dt>
                     <dd>
                         {% for rel_prefix in depends_on %}
@@ -389,7 +391,7 @@
                 {% endif %}
                 {% if appears_in %}
                     <dt>
-                        Appears In
+                        Appears In ({{ appears_in | length }})
                     </dt>
                     <dd>
                         {% for rel_prefix in appears_in %}
@@ -415,7 +417,8 @@
             <div class="card-body">
                 <p>
                     The metaregistry provides mappings between the Bioregistry and other registries. There are
-                    {{ mappings | length }} mappings to external registries for <code>{{ prefix }}</code>.
+                    {{ mappings | length }} mappings to external registries for <code>{{ prefix }}</code> with
+                    {{ mappings | map(attribute='xref') | unique | list | length }} unique external prefixes.
                 </p>
             </div>
             <table class="table table-hover table-striped">
@@ -462,7 +465,7 @@
             <div class="card-body">
                 <p>
                     Providers are various services that resolve CURIEs to URLs. The example CURIE
-                    {{ utils.code_curie(prefix, identifier) }} is used to demonstrate the provides available for
+                    {{ utils.code_curie(prefix, example) }} is used to demonstrate the provides available for
                     <code>{{ prefix }}</code>. Generation of OLS and BioPortal URLs requires additional programmatic
                     logic beyond string formatting.
                 </p>

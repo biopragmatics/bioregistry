@@ -76,7 +76,7 @@ class Aligner(ABC):
 
     def _align(self):
         """Align the external registry."""
-        for external_id, external_entry in self.external_registry.items():
+        for external_id, external_entry in sorted(self.external_registry.items()):
             if external_id in self.skip_external:
                 continue
 
@@ -185,13 +185,15 @@ class Aligner(ABC):
 
     def write_curation_table(self) -> None:
         """Write the curation table to a TSV."""
+        path = EXTERNAL.joinpath(self.key, "curation.tsv")
         rows = list(self._iter_curation_rows())
         if not rows:
+            if path.is_file():
+                path.unlink()
             return
 
-        directory = EXTERNAL / self.key
-        directory.mkdir(parents=True, exist_ok=True)
-        with (directory / "curation.tsv").open("w") as file:
+        path.parent.mkdir(exist_ok=True, parents=True)
+        with path.open("w") as file:
             print(self.subkey, *self.curation_header, sep="\t", file=file)  # noqa:T201
             for row in rows:
                 print(*row, sep="\t", file=file)  # noqa:T201

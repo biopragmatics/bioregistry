@@ -5,6 +5,7 @@
   homepage: http://www.3dmet.dna.affrc.go.jp/
   mappings:
     biocontext: 3DMET
+    edam: '2635'
     fairsharing: FAIRsharing.5ab0n7
     miriam: 3dmet
     n2t: 3dmet
@@ -94,6 +95,7 @@ abs:
   homepage: http://genome.crg.es/datasets/abs2005/
   mappings:
     biocontext: ABS
+    edam: '2741'
     fairsharing: FAIRsharing.7mnebr
     miriam: abs
     n2t: abs
@@ -159,6 +161,32 @@ addgene:
   pattern: ^[0-9]{5}(-[a-zA-Z0-9-]{0,7})?$|^[0-9]{10}$
   preferred_prefix: addgene
   uri_format: http://addgene.org/$1
+ado:
+  contact:
+    email: alpha.tom.kodamullil@scai.fraunhofer.de
+    github: akodamullil
+    name: Alpha Tom Kodamullil
+    orcid: 0000-0001-9896-3531
+  depends_on:
+  - bfo
+  description: Alzheimer's Disease Ontology is a knowledge-based ontology that encompasses
+    varieties of concepts related to Alzheimer'S Disease, structured by upper level
+    Basic Formal Ontology(BFO). This Ontology is enriched by the interrelated entities
+    that demonstrate the network of the understanding on Alzheimer's disease and can
+    be readily applied for text mining.
+  download_owl: http://purl.obolibrary.org/obo/ado.owl
+  example: '0000001'
+  homepage: https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO
+  license: CC BY 4.0
+  mappings:
+    aberowl: ADO
+    bioportal: ADO
+    fairsharing: FAIRsharing.ckd4rf
+    obofoundry: ADO
+  name: Alzheimer's Disease Ontology
+  preferred_prefix: ADO
+  repository: https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO
+  uri_format: http://purl.obolibrary.org/obo/ADO_$1
 adw:
   contact:
     email: adw_geeks@umich.edu
@@ -369,6 +397,8 @@ agrkb:
     - [Xenbase](https://www.xenbase.org)'
   example: '100000000000001'
   homepage: https://www.alliancegenome.org
+  mappings:
+    biolink: AGRKB
   name: Alliance of Genome Resources Knowledge Base
   pattern: ^[1-9][0-9]{14}$
   preferred_prefix: agrkb
@@ -476,7 +506,7 @@ aism:
   preferred_prefix: AISM
   repository: https://github.com/insect-morphology/aism
   uri_format: http://purl.obolibrary.org/obo/AISM_$1
-  version: '2022-03-17'
+  version: '2022-06-27'
 allergome:
   description: Allergome is a repository of data related to all IgE-binding compounds.
     Its purpose is to collect a list of allergenic sources and molecules by using
@@ -584,7 +614,8 @@ antweb:
     n2t: antweb
     ncbi: AntWeb
     prefixcommons: antweb
-  name: Ant Database
+    wikidata: P5299
+  name: AntWeb ID
   pattern: ^casent\d+(\-D\d+)?$
   preferred_prefix: antweb
   uri_format: http://www.antweb.org/specimen.do?name=$1
@@ -727,7 +758,7 @@ apo:
   preferred_prefix: APO
   repository: https://github.com/obophenotype/ascomycete-phenotype-ontology
   uri_format: https://www.yeastgenome.org/observable/APO:$1
-  version: '2022-04-19'
+  version: '2022-07-06'
 apollosv:
   appears_in:
   - scdo
@@ -764,6 +795,7 @@ arachnoserver:
   homepage: http://www.arachnoserver.org/
   mappings:
     biocontext: ARACHNOSERVER
+    edam: '2578'
     fairsharing: FAIRsharing.c54ywe
     miriam: arachnoserver
     n2t: arachnoserver
@@ -1039,6 +1071,7 @@ atc:
     aberowl: ATC
     biocontext: ATC
     bioportal: ATC
+    edam: '3103'
     fairsharing: FAIRsharing.1a27h8
     miriam: atc
     n2t: atc
@@ -1309,6 +1342,7 @@ bcgo:
   deprecated: true
   description: An application ontology built for beta cell genomics studies.
   download_owl: https://github.com/obi-bcgo/bcgo/raw/master/ontology/bcgo.owl
+  example: '0000015'
   homepage: https://github.com/obi-bcgo/bcgo
   license: CC BY 3.0
   mappings:
@@ -1319,6 +1353,7 @@ bcgo:
     obofoundry: BCGO
     ontobee: BCGO
   name: Beta Cell Genomics Ontology
+  pattern: ^\d{7}$
   preferred_prefix: BCGO
   repository: https://github.com/obi-bcgo/bcgo
   uri_format: http://purl.obolibrary.org/obo/BCGO_$1
@@ -1499,6 +1534,7 @@ bel:
   preferred_prefix: bel
 bfo:
   appears_in:
+  - ado
   - agro
   - aism
   - cdno
@@ -1753,6 +1789,7 @@ biocyc:
   homepage: http://biocyc.org
   mappings:
     biocontext: BIOCYC
+    edam: '2104'
     go: BioCyc
     miriam: biocyc
     n2t: biocyc
@@ -1795,6 +1832,8 @@ biogrid.interaction:
     Schizosaccharomyces pombe.
   example: '2649230'
   homepage: https://thebiogrid.org/
+  mappings:
+    edam: '2628'
   name: BioGRID Interactions
   part_of: biogrid
   pattern: ^\d+$
@@ -1816,7 +1855,7 @@ biolegend:
 biolink:
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
-  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/26/biolink.owl
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/32/biolink.owl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
   mappings:
@@ -1949,6 +1988,7 @@ bionumbers:
   homepage: https://bionumbers.hms.harvard.edu
   mappings:
     biocontext: BIONUMBERS
+    edam: '2660'
     miriam: bionumbers
     n2t: bionumbers
     prefixcommons: bionumbers
@@ -2017,6 +2057,9 @@ bioregistry:
   homepage: https://bioregistry.io
   name: Bioregistry
   preferred_prefix: bioregistry
+  references:
+  - https://doi.org/10.1101/2022.07.08.499378
+  repository: https://github.com/biopragmatics/bioregistry
   uri_format: https://bioregistry.io/registry/$1
 bioregistry.collection:
   contact:
@@ -2073,11 +2116,11 @@ bioregistry.schema:
   uri_format: https://bioregistry.io/schema/#$1
 biorxiv:
   description: The bioRxiv is a preprint server for biology
-  example: 2021.07.23.453588
+  example: 2022.07.08.499378
   example_extras:
   - 000091
   - 000091v1
-  - 2022.01.24.477526v1
+  - 2022.07.08.499378v2
   homepage: https://biorxiv.org
   mappings:
     go: bioRxiv
@@ -2521,7 +2564,7 @@ bspo:
   preferred_prefix: BSPO
   repository: https://github.com/obophenotype/biological-spatial-ontology
   uri_format: http://purl.obolibrary.org/obo/BSPO_$1
-  version: '2021-10-13'
+  version: '2022-06-28'
 bto:
   banana: BTO
   contact:
@@ -2636,6 +2679,7 @@ cabri:
   homepage: http://www.cabri.org/
   mappings:
     biocontext: CABRI
+    edam: '2380'
     fairsharing: FAIRsharing.qx2rvz
     miriam: cabri
     n2t: cabri
@@ -2758,6 +2802,7 @@ cas:
   mappings:
     biocontext: CAS
     cheminf: '000446'
+    edam: '1002'
     fairsharing: FAIRsharing.r7Kwy7
     go: CAS
     miriam: cas
@@ -2809,6 +2854,7 @@ cath:
   homepage: http://www.cathdb.info
   mappings:
     biocontext: CATH
+    edam: '2700'
     fairsharing: FAIRsharing.xgcyyn
     miriam: cath
     n2t: cath
@@ -2829,6 +2875,7 @@ cath.domain:
   homepage: http://www.cathdb.info/
   mappings:
     biocontext: CATH.DOMAIN
+    edam: '1040'
     miriam: cath.domain
     n2t: cath.domain
   name: CATH domain
@@ -3047,6 +3094,7 @@ cdd:
   homepage: https://www.ncbi.nlm.nih.gov/sites/entrez?db=cdd
   mappings:
     biocontext: CDD
+    edam: '2666'
     fairsharing: FAIRsharing.ea287c
     go: CDD
     miriam: cdd
@@ -3087,7 +3135,7 @@ cdno:
   preferred_prefix: CDNO
   repository: https://github.com/Southern-Cross-Plant-Science/cdno
   uri_format: http://purl.obolibrary.org/obo/CDNO_$1
-  version: '2022-04-06'
+  version: '2022-06-23'
 cdpd:
   description: The Canadian Drug Product Database (DPD) contains product specific
     information on drugs approved for use in Canada, and includes human pharmaceutical
@@ -3353,6 +3401,7 @@ chebi:
   - mco
   - ons
   - pcl
+  - proco
   - scdo
   - uberon
   - xpo
@@ -3375,6 +3424,7 @@ chebi:
     bioportal: CHEBI
     cellosaurus: ChEBI
     cheminf: '000407'
+    edam: '1174'
     fairsharing: FAIRsharing.62qk8w
     go: CHEBI
     miriam: chebi
@@ -3446,6 +3496,7 @@ chembl.compound:
   homepage: https://www.ebi.ac.uk/chembldb/
   mappings:
     biocontext: CHEMBL.COMPOUND
+    edam: '2646'
     miriam: chembl.compound
     n2t: chembl.compound
     wikidata: P592
@@ -3520,6 +3571,7 @@ chemidplus:
   homepage: https://chem.nlm.nih.gov/chemidplus/chemidheavy.jsp
   mappings:
     biocontext: CHEMIDPLUS
+    edam: '2658'
     fairsharing: FAIRsharing.5949vn
     miriam: chemidplus
     n2t: chemidplus
@@ -3531,6 +3583,8 @@ chemidplus:
   - ChemIDplus
   uri_format: https://chem.nlm.nih.gov/chemidplus/rn/$1
 cheminf:
+  appears_in:
+  - proco
   contact:
     email: egon.willighagen@gmail.com
     github: egonw
@@ -3566,6 +3620,7 @@ chemspider:
   mappings:
     biocontext: CHEMSPIDER
     cheminf: '000405'
+    edam: '1173'
     fairsharing: FAIRsharing.96f3gm
     miriam: chemspider
     n2t: chemspider
@@ -3849,7 +3904,7 @@ cl:
   preferred_prefix: CL
   repository: https://github.com/obophenotype/cell-ontology
   uri_format: https://www.ebi.ac.uk/ols/ontologies/cl/terms?obo_id=CL:$1
-  version: '2022-06-15'
+  version: '2022-06-18'
 clao:
   contact:
     email: lagonzalezmo@unal.edu.co
@@ -4067,7 +4122,7 @@ cls:
     cellosaurus: CLS
   name: Cell Lines Service
   preferred_prefix: cls
-  uri_format: https://www.clsgmbh.de/$1.html
+  uri_format: https://cls.shop/$1
 clyh:
   contact:
     email: lucas.leclere@obs-vlfr.fr
@@ -4176,6 +4231,7 @@ cmpo:
   name: Cellular Microscopy Phenotype Ontology
   pattern: ^\d{7}$
   preferred_prefix: cmpo
+  repository: https://github.com/EBISPOT/CMPO
   version: '2017-12-19'
 co_320:
   description: Rice Trait Dictionary in template v 5.0 - IRRI - March 2016 - Based
@@ -4806,6 +4862,26 @@ cohd:
   no_own_terms: true
   preferred_prefix: cohd
   repository: https://github.com/MIT-LCP/mimic-omop
+col.taiwan:
+  contributor:
+    email: null
+    github: megbalk
+    name: Meghan Balk
+    orcid: 0000-0003-2699-3066
+  description: Identifier (name code) for a taxon in the catalogue of life in taiwan
+  example: '431472'
+  homepage: http://taibnet.sinica.edu.tw/home.php
+  mappings:
+    wikidata: P3088
+  name: Catalogue of Life in Taiwan
+  pattern: ^[1-9]\d{5}$
+  preferred_prefix: col.taiwan
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://taibnet.sinica.edu.tw/eng/taibnet_species_detail.php?name_code=$1
 colao:
   contact:
     email: entiminae@gmail.com
@@ -4838,7 +4914,7 @@ colao:
   preferred_prefix: COLAO
   repository: https://github.com/insect-morphology/colao
   uri_format: http://purl.obolibrary.org/obo/COLAO_$1
-  version: '2021-12-14'
+  version: '2022-06-18'
 colonatlas:
   description: Cell line databases/resources
   example: ALA
@@ -4962,6 +5038,41 @@ conso:
   pattern: ^CONSO\d{5}$
   preferred_prefix: conso
   uri_format: https://pharmacome.github.io/conso/$1
+cordis.article:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Community Research and Development Information Service (CORDIS)
+    is the European Commission's primary source of results from the projects funded
+    by the EU's framework programmes for research and innovation (FP1 to Horizon 2020).
+  example: '436605'
+  homepage: https://cordis.europa.eu/
+  name: CORDIS Article
+  pattern: ^\d+$
+  preferred_prefix: cordis.article
+  uri_format: https://cordis.europa.eu/article/id/$1
+cordis.project:
+  contributor:
+    email: benjamin_gyori@hms.harvard.edu
+    github: bgyori
+    name: Benjamin Gyori
+    orcid: 0000-0001-9439-5346
+  description: The Community Research and Development Information Service (CORDIS)
+    is the European Commission's primary source of results from the projects funded
+    by the EU's framework programmes for research and innovation (FP1 to Horizon 2020).
+  example: '817732'
+  homepage: https://cordis.europa.eu/
+  name: CORDIS Project
+  pattern: ^\d+$
+  preferred_prefix: cordis.project
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://cordis.europa.eu/project/id/$1
 coriell:
   description: The Coriell Cell Repositories provide essential research reagents to
     the scientific community by establishing, verifying, maintaining, and distributing
@@ -5029,6 +5140,7 @@ cosmic:
   mappings:
     biocontext: COSMIC
     cellosaurus: Cosmic
+    edam: '3264'
     fairsharing: FAIRsharing.s5zmbp
     miriam: cosmic
     n2t: cosmic
@@ -5056,14 +5168,14 @@ cosmic.cell:
 covid19:
   description: Curated contextual database gathering samples related to SARS-CoV-2
     virus and covid-19 disease.
-  download_owl: http://aber-owl.net/media/ontologies/COVID-19/3/covid-19.owl
+  download_owl: http://aber-owl.net/media/ontologies/COVID19/3/covid19.owl
   example: SFB_COVID19_MW286762
   homepage: https://covid19.sfb.uit.no
   mappings:
-    aberowl: COVID-19
-    bioportal: COVID-19
+    aberowl: COVID19
+    bioportal: COVID19
     miriam: covid19
-  name: COVID-19 Ontology
+  name: COVID-19 Surveillance Ontology
   pattern: ^\w+_COVID19_[-\w]+$
   preferred_prefix: covid19
   uri_format: https://covid19.sfb.uit.no/api/records/$1
@@ -5708,6 +5820,7 @@ dbd:
   homepage: http://www.transcriptionfactor.org/
   mappings:
     biocontext: DBD
+    edam: '2716'
     miriam: dbd
     n2t: dbd
     prefixcommons: dbd
@@ -5722,6 +5835,7 @@ dbest:
   homepage: https://www.ncbi.nlm.nih.gov/nucest
   mappings:
     biocontext: DBEST
+    edam: '1105'
     fairsharing: FAIRsharing.v9fya8
     miriam: dbest
     n2t: dbest
@@ -5792,6 +5906,7 @@ dbprobe:
   homepage: https://www.ncbi.nlm.nih.gov/sites/entrez?db=probe
   mappings:
     biocontext: DBPROBE
+    edam: '2719'
     miriam: dbprobe
     n2t: dbprobe
     ncbi: dbProbe
@@ -5808,6 +5923,7 @@ dbsnp:
   mappings:
     biocontext: dbSNP
     cellosaurus: dbSNP
+    edam: '1106'
     fairsharing: FAIRsharing.edxb58
     go: dbSNP
     miriam: dbsnp
@@ -5903,10 +6019,11 @@ dcterms:
   description: This document is an up-to-date specification of all metadata terms
     maintained by the Dublin Core Metadata Initiative, including properties, vocabulary
     encoding schemes, syntax encoding schemes, and classes.
+  download_owl: http://aber-owl.net/media/ontologies/dcterms/1/dcterms.owl
   example: title
   homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
   mappings:
-    aberowl: DCTERMS
+    aberowl: dcterms
     biocontext: dcterms
     biolink: dct
     bioportal: DCTERMS
@@ -6356,6 +6473,7 @@ dip:
   homepage: https://dip.doe-mbi.ucla.edu/
   mappings:
     biocontext: DIP
+    edam: '2616'
     fairsharing: FAIRsharing.qje0v8
     miriam: dip
     n2t: dip
@@ -6432,6 +6550,7 @@ disprot:
   homepage: https://disprot.org/
   mappings:
     biocontext: DISPROT
+    edam: '2723'
     fairsharing: FAIRsharing.dt9z89
     miriam: disprot
     n2t: disprot
@@ -6523,12 +6642,13 @@ doi:
     as well as HTTP requests.'
   description: The Digital Object Identifier System is for identifying content objects
     in the digital environment.
-  example: 10.1038/nbt1156
+  example: 10.1101/2022.07.08.499378
   homepage: https://www.doi.org/
   mappings:
     biocontext: DOI
     biolink: doi
     cellosaurus: DOI
+    edam: '1188'
     fairsharing: FAIRsharing.hFLKCn
     go: DOI
     miriam: doi
@@ -6839,6 +6959,7 @@ drugbank:
     biocontext: DrugBank
     cellosaurus: DrugBank
     cheminf: '000406'
+    edam: '2326'
     fairsharing: FAIRsharing.353yat
     miriam: drugbank
     n2t: drugbank
@@ -6852,6 +6973,20 @@ drugbank:
   - DRUGBANK_ID
   - DrugBank
   uri_format: http://www.drugbank.ca/drugs/$1
+drugbank.category:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Close to 5K Categorizations for drugs, similar to ATCC.
+  example: DBCAT000600
+  homepage: https://go.drugbank.com/categories
+  name: DrugBank Drug Category
+  part_of: drugbank
+  pattern: ^DBCAT\d+$
+  preferred_prefix: drugbank.category
+  uri_format: https://www.drugbank.ca/categories/$1
 drugbank.salt:
   description: DrugBank is a web-enabled database containing comprehensive molecular
     information about drugs, their mechanisms, their interactions and their targets.
@@ -6975,6 +7110,31 @@ eaglei:
   name: eagle-i
   preferred_prefix: eaglei
   uri_format: http://hawaii.eagle-i.net/i/$1
+easychair.cfp:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Conferences in EasyChair
+  example: SysBioCancer2022
+  homepage: https://easychair.org/cfp/
+  name: EasyChair Call for Paper
+  preferred_prefix: easychair.cfp
+  uri_format: https://easychair.org/cfp/$1
+easychair.topic:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Call for paper topics in EasyChair
+  example: '27106865'
+  homepage: https://easychair.org/cfp/
+  name: EasyChair Topic
+  pattern: ^\d+$
+  preferred_prefix: easychair.topic
+  uri_format: https://easychair.org/cfp/topic.cgi?tid=$1
 ebisc:
   description: Cell line collections
   example: ESi007-A
@@ -7038,14 +7198,15 @@ eccode:
   - 3.1.26.n2
   homepage: https://www.ebi.ac.uk/intenz/
   mappings:
-    biocontext: EC
+    biocontext: EC-CODE
+    edam: '1011'
     fairsharing: FAIRsharing.q1fdkc
     go: EC
     miriam: ec-code
     n2t: ec-code
     prefixcommons: intenz
     wikidata: P591
-  name: Enzyme Nomenclature
+  name: Enzyme Commission Code
   pattern: ^\d{1,2}(((\.\d{1,3}){1,3})|(\.\d+){2}\.n\d{1,3})?$
   preferred_prefix: eccode
   providers:
@@ -7071,6 +7232,7 @@ eccode:
     uri_format: https://enzyme.expasy.org/EC/$1
   synonyms:
   - EC
+  - EC number
   - EC-CODE
   - ECCODE
   - EC_CODE
@@ -7387,6 +7549,11 @@ ecyano.rule:
   preferred_prefix: ecyano.rule
   uri_format: https://e-cyanobacterium.org/bcs/rule/$1
 edam:
+  contact:
+    email: matus.kalas@uib.no
+    github: matuskalas
+    name: Matúš Kalaš
+    orcid: 0000-0002-1509-4981
   description: 'EDAM is an ontology of general bioinformatics concepts, including
     topics, data types, formats, identifiers and operations. EDAM provides a controlled
     vocabulary for the description, in semantic terms, of things such as: web services
@@ -7394,6 +7561,7 @@ edam:
     workflow software, databases and ontologies, XSD data schema and data objects,
     data syntax and file formats, web portals and pages, resource catalogues and documents
     (such as scientific publications).'
+  download_obo: https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo
   download_owl: https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl
   example: data_1664
   homepage: http://edamontology.org
@@ -7411,8 +7579,115 @@ edam:
   name: Bioinformatics operations, data types, formats, identifiers and topics
   pattern: ^(data|topic|operation|format)\_\d{4}$
   preferred_prefix: edam
+  repository: https://github.com/edamontology/edamontology
   uri_format: https://www.ebi.ac.uk/ols/ontologies/edam/terms?iri=http://edamontology.org/$1
   version: '2019-07-17'
+edam.data:
+  contact:
+    email: matus.kalas@uib.no
+    github: matuskalas
+    name: Matúš Kalaš
+    orcid: 0000-0002-1509-4981
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Information, represented in an information artefact (data record) that
+    is 'understandable' by dedicated computational tools that can use the data as
+    input or produce it as output.
+  download_obo: https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo
+  example: '1664'
+  homepage: http://edamontology.org
+  mappings:
+    biolink: EDAM-DATA
+  name: EDAM Data
+  part_of: edam
+  pattern: ^\d+$
+  preferred_prefix: edam.data
+  repository: https://github.com/edamontology/edamontology
+  uri_format: http://edamontology.org/data_$1
+edam.format:
+  contact:
+    email: matus.kalas@uib.no
+    github: matuskalas
+    name: Matúš Kalaš
+    orcid: 0000-0002-1509-4981
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A defined way or layout of representing and structuring data in a computer
+    file, blob, string, message, or elsewhere. The main focus in EDAM lies on formats
+    as means of structuring data exchanged between different tools or resources. The
+    serialisation, compression, or encoding of concrete data formats/models is not
+    in scope of EDAM. Format 'is format of' Data.
+  download_obo: https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo
+  example: '1915'
+  homepage: http://edamontology.org
+  mappings:
+    biolink: EDAM-FORMAT
+  name: EDAM Format
+  part_of: edam
+  pattern: ^\d+$
+  preferred_prefix: edam.format
+  repository: https://github.com/edamontology/edamontology
+  uri_format: http://edamontology.org/format_$1
+edam.operation:
+  contact:
+    email: matus.kalas@uib.no
+    github: matuskalas
+    name: Matúš Kalaš
+    orcid: 0000-0002-1509-4981
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'A function that processes a set of inputs and results in a set of
+    outputs, or associates arguments (inputs) with values (outputs). Special cases
+    are: a) An operation that consumes no input (has no input arguments). Such operation
+    is either a constant function, or an operation depending only on the underlying
+    state. b) An operation that may modify the underlying state but has no output.
+    c) The singular-case operation with no input or output, that still may modify
+    the underlying state.'
+  download_obo: https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo
+  example: '0004'
+  homepage: http://edamontology.org
+  mappings:
+    biolink: EDAM-OPERATION
+  name: EDAM Operation
+  part_of: edam
+  pattern: ^\d+$
+  preferred_prefix: edam.operation
+  repository: https://github.com/edamontology/edamontology
+  uri_format: http://edamontology.org/operation_$1
+edam.topic:
+  contact:
+    email: matus.kalas@uib.no
+    github: matuskalas
+    name: Matúš Kalaš
+    orcid: 0000-0002-1509-4981
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A category denoting a rather broad domain or field of interest, of
+    study, application, work, data, or technology. Topics have no clearly defined
+    borders between each other.
+  download_obo: https://github.com/edamontology/edamontology/raw/main/releases/EDAM.obo
+  example: '0003'
+  homepage: http://edamontology.org
+  mappings:
+    biolink: EDAM-TOPIC
+  name: EDAM Topic
+  part_of: edam
+  pattern: ^\d+$
+  preferred_prefix: edam.topic
+  repository: https://github.com/edamontology/edamontology
+  uri_format: http://edamontology.org/topic_$1
 edda:
   description: Coverage of the terminology appearing in JMLA was extended with terms
     from MeSH, NCI Thesaurus (NCI), Emtree, the HTA Database Canadian Repository [international
@@ -7677,7 +7952,7 @@ emapa:
   synonyms:
   - EMAPA_RETIRED
   uri_format: http://www.informatics.jax.org/vocab/gxd/anatomy/EMAPA:$1
-  version: '2021-09-01'
+  version: '2022-07-14'
 emdb:
   description: The Electron Microscopy Data Bank (EMDB) is a public repository for
     electron microscopy density maps of macromolecular complexes and subcellular structures.
@@ -7689,6 +7964,7 @@ emdb:
   homepage: https://www.ebi.ac.uk/pdbe/emdb/
   mappings:
     biocontext: EMDB
+    edam: '1146'
     fairsharing: FAIRsharing.651n9j
     miriam: emdb
     n2t: emdb
@@ -7782,7 +8058,7 @@ enm:
   name: eNanoMapper Ontology
   pattern: ^\d+$
   preferred_prefix: enm
-  version: '7.3'
+  version: '7.4'
 ensembl:
   description: Ensembl is a joint project between EMBL - EBI and the Sanger Institute  to
     develop a software system which produces and maintains automatic annotation on
@@ -7797,6 +8073,7 @@ ensembl:
   homepage: https://www.ensembl.org/
   mappings:
     biocontext: ENSEMBL
+    edam: '2610'
     fairsharing: FAIRsharing.fx0mw7
     go: ENSEMBL
     miriam: ensembl
@@ -8130,6 +8407,7 @@ epd:
   homepage: http://epd.vital-it.ch/
   mappings:
     biocontext: EPD
+    edam: '2386'
     fairsharing: FAIRsharing.sym4ne
     miriam: epd
     n2t: epd
@@ -8463,7 +8741,7 @@ exo:
   synonyms:
   - ExO
   uri_format: http://purl.obolibrary.org/obo/EXO_$1
-  version: '2020-03-10'
+  version: '2022-06-29'
 fabio:
   contributor:
     email: cthoyt@gmail.com
@@ -8579,12 +8857,13 @@ fbbi:
     orcid: 0000-0002-8841-5870
   description: A structured controlled vocabulary of sample preparation, visualization
     and imaging methods used in biomedical research.
+  download_obo: http://aber-owl.net/media/ontologies/FBbi/14/fbbi.obo
   download_owl: http://purl.obolibrary.org/obo/fbbi.owl
   example: 00000268
   homepage: http://cellimagelibrary.org/
   license: CC BY 4.0
   mappings:
-    aberowl: FBBI
+    aberowl: FBbi
     biocontext: FBbi
     bioportal: FBbi
     fairsharing: FAIRsharing.ny3z9j
@@ -8958,6 +9237,7 @@ flybase:
   mappings:
     biocontext: FlyBase
     cellosaurus: FlyBase
+    edam: '1089'
     fairsharing: FAIRsharing.wrvze3
     go: FB
     miriam: fb
@@ -9018,6 +9298,7 @@ fma:
     aberowl: FMA
     biocontext: FMA
     bioportal: FMA
+    edam: '1182'
     fairsharing: FAIRsharing.x56jsy
     go: FMA
     miriam: fma
@@ -9044,11 +9325,11 @@ foaf:
     association; representational networks that describe a simplified view of a cartoon
     universe in factual terms, and information networks that use Web-based linking
     to share independently published descriptions of this inter-connected world.'
-  download_owl: http://aber-owl.net/media/ontologies/FOAF/1/foaf.owl
+  download_owl: http://aber-owl.net/media/ontologies/foaf/1/foaf.owl
   example: familyName
   homepage: http://xmlns.com/foaf/spec/
   mappings:
-    aberowl: FOAF
+    aberowl: foaf
     biocontext: foaf
     biolink: foaf
     bioportal: FOAF
@@ -9101,6 +9382,21 @@ foodb.compound:
   synonyms:
   - foodb
   uri_format: http://foodb.ca/compounds/$1
+foodb.food:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Foods in FooDB
+  example: FOOD00020
+  homepage: https://foodb.ca/foods
+  mappings:
+    biolink: foodb.food
+  name: FooDB Food
+  pattern: ^FOOD\d+$
+  preferred_prefix: foodb.food
+  uri_format: https://foodb.ca/foods/$1
 foodon:
   appears_in:
   - agro
@@ -9151,6 +9447,49 @@ foodon:
   repository: https://github.com/FoodOntology/foodon
   uri_format: https://www.ebi.ac.uk/ols/ontologies/foodon/terms?obo_id=FOODON:$1
   version: '2022-02-01'
+fossilworks.journal:
+  contributor:
+    email: null
+    github: megbalk
+    name: Meghan Balk
+    orcid: 0000-0003-2699-3066
+  description: Identifier for a journal article in the fossilworks website
+  example: '61467'
+  homepage: http://fossilworks.org
+  mappings:
+    wikidata: P7720
+  name: Fossilworks Journal
+  part_of: fossilworks
+  pattern: ^\d+$
+  preferred_prefix: fossilworks.journal
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: http://fossilworks.org/?a=referenceInfo&reference_no=$1
+fossilworks.taxon:
+  contributor:
+    email: null
+    github: megbalk
+    name: Meghan Balk
+    orcid: 0000-0003-2699-3066
+  description: Identifier for an animal, plant, or microorganism from the fossilworks
+    website
+  example: '40565'
+  homepage: http://www.fossilworks.org
+  mappings:
+    wikidata: P842
+  name: Fossilworks Taxon
+  part_of: fossilworks
+  pattern: ^[1-9]\d{0,5}$
+  preferred_prefix: fossilworks.taxon
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1
 fovt:
   contact:
     email: meghan.balk@gmail.com
@@ -9483,7 +9822,7 @@ fypo:
   preferred_prefix: FYPO
   repository: https://github.com/pombase/fypo
   uri_format: http://purl.obolibrary.org/obo/FYPO_$1
-  version: '2022-04-28'
+  version: '2022-07-14'
 ga4ghdos:
   description: Assists in resolving data across cloud resources.
   example: dg.4503/01b048d0-e128-4cb0-94e9-b2d2cab7563d
@@ -9723,6 +10062,7 @@ genbank:
   mappings:
     biocontext: GenBank
     cheminf: '000304'
+    edam: '2292'
     fairsharing: FAIRsharing.9kahy4
     go: GenBank
     prefixcommons: genbank
@@ -9758,6 +10098,7 @@ genedb:
   homepage: https://www.genedb.org/
   mappings:
     biocontext: GENEDB
+    edam: '1035'
     fairsharing: FAIRsharing.j7esqq
     go: GeneDB
     miriam: genedb
@@ -9922,6 +10263,7 @@ geo:
     aberowl: GEO
     biocontext: GEO
     cellosaurus: GEO
+    edam: '1147'
     fairsharing: FAIRsharing.27rndz
     go: GEO
     miriam: geo
@@ -10057,6 +10399,30 @@ github:
   pattern: ^[a-zA-Z0-9-_]+(/[a-zA-Z0-9-_]+)?$
   preferred_prefix: github
   uri_format: https://github.com/$1
+github.issue:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: An issue in any public repository on GitHub.
+  example: biopragmatics/bioregistry/424
+  homepage: https://github.com/
+  name: GitHub Issue
+  preferred_prefix: github.issue
+  uri_format: https://bioregistry.io/resolve/github/issue/$1
+github.pull:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A pull request in any public repository on GitHub.
+  example: biopragmatics/bioregistry/416
+  homepage: https://github.com/
+  name: GitHub Pull Request
+  preferred_prefix: github.pull
+  uri_format: https://bioregistry.io/resolve/github/pull/$1
 gitlab:
   description: GitLab is The DevOps platform that empowers organizations to maximize
     the overall return on software development by delivering software faster and efficiently,
@@ -10128,6 +10494,7 @@ glycomedb:
   homepage: https://glytoucan.org/
   mappings:
     biocontext: GLYCOMEDB
+    edam: '2664'
     fairsharing: FAIRsharing.k5k0yh
     miriam: glycomedb
     n2t: glycomedb
@@ -10283,6 +10650,7 @@ gmelin:
   example: '1466'
   homepage: https://link.springer.com/bookseries/562
   mappings:
+    edam: '1004'
     wikidata: P1578
   name: Gmelins Handbuch der anorganischen Chemie
   pattern: ^[1-9][0-9]{3,6}$
@@ -10366,10 +10734,11 @@ go:
   homepage: http://geneontology.org/
   license: CC BY 4.0
   mappings:
-    aberowl: G-O
+    aberowl: GO
     agroportal: GO
     biocontext: GO
     bioportal: GO
+    edam: '1176'
     fairsharing: FAIRsharing.6xq0ee
     go: GO
     miriam: go
@@ -10410,7 +10779,7 @@ go:
   - gomf
   - gomfid
   uri_format: http://amigo.geneontology.org/amigo/term/GO:$1
-  version: '2022-03-10'
+  version: '2022-07-01'
 go.model:
   description: GO-Causal Activity Models (GO-CAMs) use a defined “grammar” for linking
     multiple GO annotations into larger models of biological function (such as “pathways”)
@@ -10422,7 +10791,7 @@ go.model:
     go: gomodel
   name: Gene Ontology Causal Assembly Model
   preferred_prefix: go.model
-  uri_format: noctua.geneontology.org/editor/graph/gomodel:$1
+  uri_format: http://noctua.geneontology.org/editor/graph/gomodel:$1
 go.ref:
   banana: GO_REF
   description: The GO reference collection is a set of abstracts that can be cited
@@ -10796,6 +11165,8 @@ grassbase:
     and distribution for any given name, and gives a desription for each species.
   example: imp10873
   homepage: https://www.kew.org/data/grasses-syn/index.htm
+  mappings:
+    wikidata: P1832
   name: GrassBase
   pattern: ^(imp|gen)\d{5}$
   preferred_prefix: grassbase
@@ -11099,6 +11470,7 @@ hamap:
   homepage: https://hamap.expasy.org/
   mappings:
     biocontext: HAMAP
+    edam: '2766'
     fairsharing: FAIRsharing.63m4ss
     go: HAMAP
     miriam: hamap
@@ -11180,14 +11552,14 @@ hba:
 hcao:
   description: Application ontology for human cell types, anatomy and development
     stages for the Human Cell Atlas.
-  download_owl: http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-06-10/hcao.owl
+  download_owl: http://ontology.data.humancellatlas.org/ontologies/hcao/releases/2022-06-22/hcao.owl
   homepage: https://www.humancellatlas.org
   mappings:
     ols: hcao
   name: Human Cell Atlas Ontology
   no_own_terms: true
   preferred_prefix: hcao
-  version: '2022-06-10'
+  version: '2022-06-22'
 hcpcs:
   description: HCPCS is a collection of standardized codes that represent medical
     procedures, supplies, products and services. The codes are used to facilitate
@@ -11247,6 +11619,7 @@ hgmd:
   homepage: http://www.hgmd.cf.ac.uk/ac/index.php
   mappings:
     biocontext: HGMD
+    edam: '3265'
     miriam: hgmd
     n2t: hgmd
   name: Human Gene Mutation Database
@@ -11266,6 +11639,7 @@ hgnc:
     biocontext: HGNC
     bioportal: HGNC
     cellosaurus: HGNC
+    edam: '2298'
     fairsharing: FAIRsharing.amcv1e
     go: HGNC
     miriam: hgnc
@@ -11297,21 +11671,20 @@ hgnc:
     uri_format: https://search.thegencc.org/genes/HGNC:$1
   uri_format: https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1
 hgnc.genefamily:
-  deprecated: true
   description: The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene
     name and symbol (short-form abbreviation) for each known human gene. All approved
     symbols are stored in the HGNC database, and each symbol is unique. In addition,
-    HGNC also provides symbols for both structural and functional gene families. This
-    collection refers to records using the HGNC family symbol.
+    HGNC also provides a unique numerical ID to identify gene families, providing
+    a display of curated hierarchical relationships between families.
   example: '2029'
   has_canonical: hgnc.genegroup
   homepage: http://www.genenames.org
   mappings:
     biocontext: HGNC.GENEFAMILY
-    miriam: hgnc.family
+    miriam: hgnc.genefamily
     n2t: hgnc.genefamily
-  name: HGNC Family
-  pattern: ^[A-Z0-9-]+(#[A-Z0-9-]+)?$
+  name: HGNC gene family
+  pattern: ^\d+$
   preferred_prefix: hgnc.genefamily
   synonyms:
   - GFAM
@@ -11447,6 +11820,7 @@ hmdb:
   mappings:
     biocontext: HMDB
     cheminf: 000408
+    edam: '2622'
     fairsharing: FAIRsharing.sye5js
     miriam: hmdb
     n2t: hmdb
@@ -11636,7 +12010,7 @@ hp:
   mappings:
     aberowl: HP_O
     biocontext: HPO
-    bioportal: HP
+    bioportal: HP_O
     fairsharing: FAIRsharing.kbtt7f
     miriam: hp
     n2t: hp
@@ -11952,6 +12326,7 @@ icd10:
     biocontext: ICD
     biolink: ICD10
     bioportal: ICD10
+    edam: '2611'
     fairsharing: FAIRsharing.nj16g
     miriam: icd
     n2t: icd
@@ -12335,7 +12710,7 @@ idot:
   example: identifierPattern
   homepage: http://biomodels.net/vocab/idot.rdf
   mappings:
-    biocontext: IDOT
+    biocontext: idot
     miriam: idot
     n2t: idot
   name: Identifiers.org Terms
@@ -12567,6 +12942,7 @@ imgt.hla:
   mappings:
     biocontext: IMGT.HLA
     cellosaurus: IPD-IMGT/HLA
+    edam: '2773'
     fairsharing: FAIRsharing.e28v7g
     go: IMGT_HLA
     miriam: imgt.hla
@@ -12948,6 +13324,7 @@ interpro:
   mappings:
     biocontext: IPR
     biolink: interpro
+    edam: '1133'
     fairsharing: FAIRsharing.pda11d
     go: InterPro
     miriam: interpro
@@ -13025,6 +13402,7 @@ isbn:
   mappings:
     biocontext: ISBN-13
     biolink: isbn
+    edam: '2634'
     go: ISBN
     miriam: isbn
     n2t: isbn
@@ -13382,6 +13760,7 @@ kegg.compound:
   homepage: https://www.genome.jp/kegg/ligand.html
   mappings:
     biocontext: KEGG.COMPOUND
+    edam: '2605'
     miriam: kegg.compound
     n2t: kegg.compound
     prefixcommons: kegg.compound
@@ -13447,6 +13826,7 @@ kegg.drug:
   homepage: https://www.genome.jp/kegg/drug/
   mappings:
     biocontext: KEGG.DRUG
+    edam: '2609'
     miriam: kegg.drug
     n2t: kegg.drug
     prefixcommons: kegg.drug
@@ -13539,6 +13919,7 @@ kegg.glycan:
   homepage: https://www.genome.jp/kegg/glycan/
   mappings:
     biocontext: KEGG.GLYCAN
+    edam: '2613'
     miriam: kegg.glycan
     n2t: kegg.glycan
     prefixcommons: kegg.glycan
@@ -13611,8 +13992,9 @@ kegg.pathway:
   example: rsk00410
   homepage: https://www.genome.jp/kegg/pathway.html
   mappings:
-    biocontext: KEGG-path
+    biocontext: KEGG.PATHWAY
     biolink: KEGG.PATHWAY
+    edam: '2343'
     go: KEGG_PATHWAY
     miriam: kegg.pathway
     n2t: kegg.pathway
@@ -13655,6 +14037,7 @@ kegg.reaction:
   homepage: https://www.genome.jp/kegg/reaction/
   mappings:
     biocontext: KEGG.REACTION
+    edam: '2608'
     go: KEGG_REACTION
     miriam: kegg.reaction
     n2t: kegg.reaction
@@ -14043,6 +14426,7 @@ lipidbank:
   homepage: http://lipidbank.jp/index.html
   mappings:
     biocontext: LIPIDBANK
+    edam: '2665'
     fairsharing: FAIRsharing.bdn9br
     miriam: lipidbank
     n2t: lipidbank
@@ -14062,6 +14446,7 @@ lipidmaps:
   mappings:
     biocontext: LIPIDMAPS
     cheminf: '000564'
+    edam: '2625'
     fairsharing: FAIRsharing.cpneh8
     miriam: lipidmaps
     n2t: lipidmaps
@@ -14321,6 +14706,7 @@ macie:
   homepage: https://www.ebi.ac.uk/thornton-srv/databases/MACiE/index.html
   mappings:
     biocontext: MACIE
+    edam: '2641'
     fairsharing: FAIRsharing.7xkx69
     miriam: macie
     n2t: macie
@@ -14352,11 +14738,7 @@ maizegdb.locus:
 mamo:
   banana: MAMO
   banana_peel: _
-  contact:
-    email: nicolas@ascistance.co.uk
-    github: gambardella
-    name: Nicolas Gambardella
-    orcid: 0000-0002-6309-7327
+  deprecated: true
   description: The Mathematical Modelling Ontology (MAMO) is a classification of the
     types of mathematical models used mostly in the life sciences, their variables,
     relationships and other relevant features.
@@ -14525,7 +14907,7 @@ maxo:
   preferred_prefix: MAXO
   repository: https://github.com/monarch-initiative/MAxO
   uri_format: http://purl.obolibrary.org/obo/MAXO_$1
-  version: '2022-06-01'
+  version: '2022-06-23'
 mba:
   contributor:
     email: cthoyt@gmail.com
@@ -14674,24 +15056,50 @@ medlineplus:
   pattern: ^\d+$
   preferred_prefix: medlineplus
   uri_format: http://www.nlm.nih.gov/medlineplus/ency/article/$1.htm
-merops:
+merops.clan:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: The MEROPS database is an information resource for peptidases (also
     termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit
     them.
-  example: S01.001
+  example: IA
+  homepage: https://www.ebi.ac.uk/merops
+  name: MEROPS Clan
+  part_of: merops
+  preferred_prefix: merops.clan
+  references:
+  - https://pubmed.ncbi.nlm.nih.gov/29145643
+  - https://github.com/biopragmatics/bioregistry/issues/439
+  uri_format: https://www.ebi.ac.uk/merops/cgi-bin/clansum?clan=$1
+merops.entry:
+  description: The MEROPS database is an information resource for peptidases (also
+    termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit
+    them. This collections references inhibitors.
+  example: I31.952
+  example_extras:
+  - S01.001
   homepage: http://merops.sanger.ac.uk/index.htm
   mappings:
-    biocontext: MEROPS
+    biocontext: MEROPS.INHIBITOR
+    edam: '2629'
     fairsharing: FAIRsharing.2s4n8r
     go: MEROPS
-    miriam: merops
-    n2t: merops
+    miriam: merops.inhibitor
+    n2t: merops.inhibitor
     prefixcommons: merops
     uniprot: MEROPS
-  name: MEROPS peptidase database
-  pattern: ^[SCTAGMNU]\d{2}\.([AB]\d{2}|\d{3})$
-  preferred_prefix: merops
-  uri_format: http://merops.sanger.ac.uk/cgi-bin/pepsum?mid=$1
+  name: MEROPS Entry
+  pattern: ^[SCTAGMNUI]\d{2}\.([AB]\d{2}|\d{3})$
+  preferred_prefix: merops.entry
+  references:
+  - https://www.ncbi.nlm.nih.gov/pubmed/29145643
+  - https://github.com/biopragmatics/bioregistry/issues/439
+  synonyms:
+  - merops.inhibitor
+  uri_format: https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=$1
 merops.family:
   description: The MEROPS database is an information resource for peptidases (also
     termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit
@@ -14706,23 +15114,13 @@ merops.family:
     miriam: merops.family
     n2t: merops.family
   name: MEROPS Family
+  part_of: merops
   pattern: ^[SCTAGMNU]\d+$
   preferred_prefix: merops.family
-  uri_format: http://merops.sanger.ac.uk/cgi-bin/famsum?family=$1
-merops.inhibitor:
-  description: The MEROPS database is an information resource for peptidases (also
-    termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit
-    them. This collections references inhibitors.
-  example: I31.952
-  homepage: http://merops.sanger.ac.uk/index.htm
-  mappings:
-    biocontext: MEROPS.INHIBITOR
-    miriam: merops.inhibitor
-    n2t: merops.inhibitor
-  name: MEROPS Inhibitor
-  pattern: ^I\d{2}\.\d{3}$
-  preferred_prefix: merops.inhibitor
-  uri_format: http://merops.sanger.ac.uk/cgi-bin/pepsum?id=$1
+  references:
+  - https://github.com/biopragmatics/bioregistry/issues/439
+  - https://www.ncbi.nlm.nih.gov/pubmed/29145643
+  uri_format: https://www.ebi.ac.uk/merops/cgi-bin/famsum?family=$1
 mesh:
   description: MeSH (Medical Subject Headings) is the National Library of Medicine's
     controlled vocabulary thesaurus. It consists of sets of terms naming descriptors
@@ -14739,6 +15137,7 @@ mesh:
     biolink: MESH
     bioportal: MESH
     cellosaurus: MeSH
+    edam: '1177'
     fairsharing: FAIRsharing.qnkw45
     go: MeSH
     miriam: mesh
@@ -15094,6 +15493,7 @@ mgi:
   mappings:
     biocontext: MGI
     cellosaurus: MGI
+    edam: '3274'
     fairsharing: FAIRsharing.fcwyhz
     go: MGI
     miriam: mgi
@@ -15184,7 +15584,7 @@ mi:
   license: CC BY 4.0
   mappings:
     aberowl: MI
-    biocontext: MI
+    biocontext: PSIMI
     biolink: MI
     bioportal: MI
     go: PSI-MI
@@ -15372,6 +15772,7 @@ mint:
   homepage: http://mint.bio.uniroma2.it/mint/
   mappings:
     biocontext: MINT
+    edam: '2615'
     fairsharing: FAIRsharing.2bdvmk
     miriam: mint
     n2t: mint
@@ -15431,6 +15832,7 @@ mirbase:
   mappings:
     biocontext: MIRBASE
     biolink: mirbase
+    edam: '2642'
     fairsharing: FAIRsharing.hmgte8
     miriam: mirbase
     n2t: mirbase
@@ -15503,6 +15905,7 @@ miriam:
   example: pubmed
   homepage: https://www.ebi.ac.uk
   mappings:
+    edam: '1162'
     fairsharing: FAIRsharing.ap169a
     miriam: identifiers.namespace
   name: Identifiers.org namespace
@@ -15656,6 +16059,7 @@ mmdb:
   homepage: http://www.ncbi.nlm.nih.gov/sites/entrez?db=structure
   mappings:
     biocontext: MMDB
+    edam: '2667'
     miriam: mmdb
     n2t: mmdb
     prefixcommons: mmdb
@@ -15908,6 +16312,7 @@ modeldb:
   homepage: http://senselab.med.yale.edu/ModelDB/
   mappings:
     biocontext: MODELDB
+    edam: '2669'
     fairsharing: FAIRsharing.5rb3fk
     miriam: modeldb
     n2t: modeldb
@@ -15986,7 +16391,7 @@ mondo:
   preferred_prefix: MONDO
   repository: https://github.com/monarch-initiative/mondo
   uri_format: http://purl.obolibrary.org/obo/MONDO_$1
-  version: '2022-06-01'
+  version: '2022-07-01'
 mop:
   contact:
     email: batchelorc@rsc.org
@@ -16176,7 +16581,7 @@ mro:
   preferred_prefix: MRO
   repository: https://github.com/IEDB/MRO
   uri_format: http://purl.obolibrary.org/obo/MRO_$1
-  version: '2022-03-14'
+  version: '2022-06-17'
 ms:
   banana: MS
   contact:
@@ -16611,20 +17016,65 @@ nbrc:
   pattern: ^\d+$
   preferred_prefix: nbrc
   uri_format: http://www.nbrc.nite.go.jp/NBRC2/NBRCCatalogueDetailServlet?ID=NBRC&CAT=$1
+ncats.bioplanet:
+  contact:
+    email: ruili.huang@nih.gov
+    github: null
+    name: Ruili Huang
+    orcid: 0000-0001-8886-8311
+  contributor:
+    email: null
+    github: sierra-moxon
+    name: Sierra Moxon
+    orcid: 0000-0002-8719-7760
+  description: The NCATS BioPlanet is a comprehensive, publicly accessible informatics
+    resource that catalogs all pathways, their healthy and disease state annotations,
+    and targets within and relationships among them. The BioPlanet integrates pathway
+    annotations from publicly available, manually curated sources subjected to thorough
+    redundancy and consistency cross-evaluation via extensive manual curation. The
+    browser supports interactive browsing, retrieval and analysis of pathways, exploration
+    of pathway connections, and pathway search by gene targets, category, and availability
+    of bioactivity assays.
+  example: '3'
+  homepage: https://tripod.nih.gov/bioplanet/
+  mappings:
+    biolink: ncats.bioplanet
+  name: National Center for Advancing Translation Sciences BioPlanet
+  pattern: ^\d+$
+  preferred_prefix: ncats.bioplanet
+  references:
+  - https://doi.org/10.3389/fphar.2019.00445
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://tripod.nih.gov/bioplanet/detail.jsp?pid=bioplanet_$1
 ncats.drug:
   contributor:
     email: cthoyt@gmail.com
     github: cthoyt
     name: Charles Tapley Hoyt
     orcid: 0000-0003-4423-4370
-  description: 'The [National Center for Advancing Translational Sciences (NCATS)](https://ncats.nih.gov/)
-    has developed Inxight: Drugs as a comprehensive portal for drug development information.
-    NCATS Inxight: Drugs  contains information on ingredients in medicinal products,
-    including:'
+  description: 'The National Center for Advancing Translational Sciences](http://www.ncats.nih.gov/)
+    (NCATS) has developed Inxight Drugs as a comprehensive portal for drug development
+    information. NCATS Inxight Drugs contains information on ingredients in medicinal
+    products, including:
+
+
+    - US Approved Drugs
+
+    - Marketed Drugs
+
+    - Investigational Drugs
+
+    - Other Substances'
   example: '44259'
   example_extras:
   - 1IJV77EI07
   homepage: https://drugs.ncats.io/
+  mappings:
+    biolink: ncats.drug
   name: NCATS Drugs
   preferred_prefix: ncats.drug
   synonyms:
@@ -16656,6 +17106,7 @@ ncbi.genome:
   homepage: https://www.ncbi.nlm.nih.gov/genome
   mappings:
     biocontext: NCBIGenome
+    edam: '2787'
   name: NCBI Genome
   pattern: ^\d+$
   preferred_prefix: ncbi.genome
@@ -16696,6 +17147,7 @@ ncbigene:
   mappings:
     biocontext: NCBIGene
     biolink: NCBIGene
+    edam: '1027'
     fairsharing: FAIRsharing.5h3maw
     go: NCBIGene
     miriam: ncbigene
@@ -16779,9 +17231,10 @@ ncbitaxon:
   mappings:
     aberowl: NCBITAXON
     agroportal: NCBITAXON
-    biocontext: NCBITaxon
+    biocontext: TAXONOMY
     bioportal: NCBITAXON
     cellosaurus: NCBI_TaxID
+    edam: '1179'
     fairsharing: FAIRsharing.fj07xj
     go: taxon
     miriam: taxonomy
@@ -16830,7 +17283,7 @@ ncbitaxon:
   - taxonomy
   - uniprot.taxonomy
   uri_format: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$1
-  version: '2022-02-21'
+  version: '2022-06-28'
 ncim:
   description: NCI Metathesaurus (NCIm) is a wide-ranging biomedical terminology database
     that covers most terminologies used by NCI for clinical care, translational and
@@ -16979,11 +17432,10 @@ ndfrt:
     Manifestations or Physiologic States [Disease/Finding]Dose Forms [Dose Form];
     Pharmaceutical Preparations; Physiological Effects [PE]; Therapeutic Categories
     [TC]; and VA Drug Interactions [VA Drug Interaction].'
-  download_owl: http://aber-owl.net/media/ontologies/NDF-RT/1/ndf-rt.owl
   example: N0000001662
   homepage: https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT
   mappings:
-    aberowl: NDF-RT
+    aberowl: NDFRT
     bioportal: NDFRT
     fairsharing: FAIRsharing.901nkj
     ontobee: NDF-RT
@@ -17043,6 +17495,7 @@ neuromorpho:
   homepage: http://neuromorpho.org/index.jsp
   mappings:
     biocontext: NEUROMORPHO
+    edam: '2657'
     miriam: neuromorpho
     n2t: neuromorpho
     prefixcommons: neuromorpho
@@ -17076,6 +17529,7 @@ neurondb:
   homepage: http://senselab.med.yale.edu/NeuronDB/
   mappings:
     biocontext: NEURONDB
+    edam: '2656'
     fairsharing: FAIRsharing.45a10e
     miriam: neurondb
     n2t: neurondb
@@ -17723,6 +18177,8 @@ nlx.sub:
   example: 090803
   homepage: https://github.com/SciCrunch/NIF-Ontology
   license: CC BY-4.0
+  mappings:
+    go: NIF_Subcellular
   name: 'NIF Standard Ontology: Subcellular Entities'
   part_of: nif
   pattern: ^\d+$
@@ -17735,6 +18191,7 @@ nlx.sub:
     orcid: 0000-0003-4423-4370
   synonyms:
   - NLXSUB
+  - nif_subcellular
   uri_format: http://uri.neuinfo.org/nif/nifstd/nlx_subcell_$1
 nmdc:
   contact:
@@ -17807,6 +18264,26 @@ nmrshiftdb2:
   pattern: ^[0-9]+$
   preferred_prefix: nmrshiftdb2
   uri_format: https://nmrshiftdb.nmr.uni-koeln.de/molecule/$1
+noaa:
+  contributor:
+    email: meghan.balk@gmail.com
+    github: megbalk
+    name: Meghan Balk
+    orcid: 0000-0003-2699-3066
+  description: Identifier for a species on the noaa fisheries website
+  example: long-finned-pilot-whale
+  homepage: https://www.fisheries.noaa.gov/species-directory
+  mappings:
+    wikidata: P6049
+  name: NOAA Fisheries Species Directory
+  pattern: ^[a-z]+(\-[a-z]+)*$
+  preferred_prefix: noaa
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://www.fisheries.noaa.gov/species/$1
 nomen:
   contact:
     email: diapriid@gmail.com
@@ -17830,7 +18307,6 @@ nomen:
   preferred_prefix: NOMEN
   repository: https://github.com/SpeciesFileGroup/nomen
   uri_format: http://purl.obolibrary.org/obo/NOMEN_$1
-  version: '2019-04-17'
 noncodev3:
   description: NONCODE is a database of expression and functional lncRNA (long noncoding
     RNA) data obtained from microarray studies. LncRNAs have been shown to play key
@@ -18111,6 +18587,7 @@ obi:
   - mco
   - one
   - ons
+  - proco
   - rbo
   - scdo
   banana: OBI
@@ -18149,7 +18626,7 @@ obi:
   preferred_prefix: OBI
   repository: https://github.com/obi-ontology/obi
   uri_format: http://purl.obolibrary.org/obo/OBI_$1
-  version: '2022-01-03'
+  version: '2022-07-11'
 obib:
   contact:
     email: jiezheng@pennmedicine.upenn.edu
@@ -18192,21 +18669,6 @@ obo:
   name: Internal OBO and PyOBO Relations
   preferred_prefix: obo
   uri_format: http://purl.obolibrary.org/obo/$1
-oboformat:
-  contributor:
-    email: cthoyt@gmail.com
-    github: cthoyt
-    name: Charles Tapley Hoyt
-    orcid: 0000-0003-4423-4370
-  description: Related to the OBO in OWL meta-model
-  example: alt_id
-  homepage: https://github.com/geneontology/go-ontology/tree/master/contrib
-  mappings:
-    biolink: oboformat
-    fairsharing: FAIRsharing.aa0eat
-  name: OBO Format
-  preferred_prefix: oboFormat
-  repository: https://github.com/geneontology/go-ontology
 oboinowl:
   description: This meta-ontology is self-describing. OBO metamodel properties are
     described using OBO metamodel properties
@@ -18214,11 +18676,13 @@ oboinowl:
   example: hasDbXref
   homepage: https://github.com/geneontology/go-ontology/tree/master/contrib
   mappings:
-    biocontext: OIO
+    biocontext: oboInOwl
+    biolink: oboformat
   name: OBO in OWL
   preferred_prefix: oboInOwl
   repository: https://github.com/geneontology/go-ontology
   synonyms:
+  - oboformat
   - oio
   uri_format: http://www.geneontology.org/formats/oboInOwl#$1
 occ:
@@ -18627,6 +19091,7 @@ om:
   name: Ontology of units of Measure
   preferred_prefix: om
   repository: https://github.com/HajoRijgersberg/OM
+  uri_format: http://www.ontology-of-units-of-measure.org/resource/om-2/$1
   version: 2.0.37
 oma.grp:
   description: OMA (Orthologous MAtrix) is a database that identifies orthologs among
@@ -18734,6 +19199,7 @@ omim:
     aberowl: OMIM
     biocontext: OMIM
     bioportal: OMIM
+    edam: '1153'
     fairsharing: FAIRsharing.azq2t6
     go: OMIM
     miriam: mim
@@ -19367,7 +19833,7 @@ orphanet.ordo:
   - '478'
   homepage: https://www.ebi.ac.uk/ols/ontologies/ordo
   mappings:
-    aberowl: ORDO
+    aberowl: ordo
     biocontext: ORPHANET.ORDO
     biolink: ORPHA
     bioportal: ORDO
@@ -19382,7 +19848,7 @@ orphanet.ordo:
   synonyms:
   - ordo
   uri_format: http://www.orpha.net/ORDO/Orphanet_$1
-  version: '4.0'
+  version: '4.1'
 orth:
   contact:
     email: jfernand@um.es
@@ -19539,6 +20005,26 @@ otl:
   pattern: ^A[A-Z]+\d+$
   preferred_prefix: otl
   uri_format: http://oryzatagline.cirad.fr/cgi-bin/general_mutant.pl?line=$1
+otol:
+  contributor:
+    email: null
+    github: megbalk
+    name: Meghan Balk
+    orcid: 0000-0003-2699-3066
+  description: Identifier for an entity in open tree of life
+  example: '3905431'
+  homepage: https://tree.opentreeoflife.org
+  mappings:
+    wikidata: P9157
+  name: Open Tree of Life
+  pattern: ^[1-9]\d*$
+  preferred_prefix: otol
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: https://tree.opentreeoflife.org/taxonomy/browse?id=$1
 ovae:
   contact:
     email: yongqunh@med.umich.edu
@@ -19684,6 +20170,7 @@ panther.pathway:
   homepage: http://www.pantherdb.org/
   mappings:
     biocontext: PANTHER.PATHWAY
+    edam: '1161'
     miriam: panther.pathway
     n2t: panther.pathway
   name: PANTHER Pathway
@@ -19793,6 +20280,7 @@ pato:
   - pco
   - phipo
   - planp
+  - proco
   - rbo
   - xpo
   - zp
@@ -19958,6 +20446,7 @@ pcl:
     bioportal: PCL
     obofoundry: PCL
     ols: pcl
+    ontobee: PCL
   name: Provisional Cell Ontology
   pattern: ^\d{7}$
   preferred_prefix: PCL
@@ -20030,6 +20519,7 @@ pdb:
   homepage: https://www.wwpdb.org/
   mappings:
     biocontext: PDB
+    edam: '1127'
     fairsharing: FAIRsharing.mckkb4
     go: PDB
     miriam: pdb
@@ -20269,6 +20759,7 @@ peptideatlas:
   homepage: http://www.peptideatlas.org/
   mappings:
     biocontext: PEPTIDEATLAS
+    edam: '2626'
     fairsharing: FAIRsharing.dvyrsz
     miriam: peptideatlas
     n2t: peptideatlas
@@ -20336,6 +20827,7 @@ pfam:
   homepage: https://pfam.xfam.org/
   mappings:
     biocontext: PFAM
+    edam: '1138'
     fairsharing: FAIRsharing.y3scf6
     go: Pfam
     miriam: pfam
@@ -20359,6 +20851,8 @@ pfam.clan:
   description: Higher order grouping of Pfam families
   example: CL0192
   homepage: https://pfam.xfam.org
+  mappings:
+    edam: '2758'
   name: Pfam Clans
   pattern: ^CL\d+$
   preferred_prefix: pfam.clan
@@ -20481,6 +20975,7 @@ pharmgkb.disease:
   homepage: http://www.pharmgkb.org/
   mappings:
     biocontext: PHARMGKB.DISEASE
+    edam: '2651'
     miriam: pharmgkb.disease
     n2t: pharmgkb.disease
     prefixcommons: pharmgkb.disease
@@ -20500,6 +20995,7 @@ pharmgkb.drug:
   homepage: http://www.pharmgkb.org/
   mappings:
     biocontext: PHARMGKB.DRUG
+    edam: '2652'
     miriam: pharmgkb.drug
     n2t: pharmgkb.drug
     prefixcommons: pharmgkb.drug
@@ -20542,6 +21038,7 @@ pharmgkb.pathways:
   homepage: http://www.pharmgkb.org/
   mappings:
     biocontext: PHARMGKB.PATHWAYS
+    edam: '2650'
     miriam: pharmgkb.pathways
     n2t: pharmgkb.pathways
     prefixcommons: pharmgkb.pathways
@@ -20667,6 +21164,26 @@ phosphosite.residue:
   pattern: ^\d+$
   preferred_prefix: phosphosite.residue
   uri_format: http://www.phosphosite.org/siteAction.do?id=$1
+phosphosite.sitegroup:
+  comment: Potentially could use a URI format like https://www.phosphosite.org/siteGroupAction.action?protOrg=1156&id=$1,
+    but it's not obvious what the protOrg does.
+  contributor:
+    email: benjamin_gyori@hms.harvard.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  description: Site groups are orthologous positions in human, mouse, rat, etc. where
+    phosphorylations or other PTMs occur.
+  example: '447860'
+  homepage: https://www.phosphosite.org
+  name: PhosphoSite Site Group
+  pattern: ^\d+$
+  preferred_prefix: phosphosite.sitegroup
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
 phylomedb:
   description: PhylomeDB is a database of complete phylomes derived for different
     genomes within a specific taxonomic range. It provides alignments, phylogentic
@@ -20725,6 +21242,7 @@ pid.pathway:
   homepage: http://pid.nci.nih.gov/
   mappings:
     biocontext: PID.PATHWAY
+    edam: '2344'
     fairsharing: FAIRsharing.ncgh1j
     miriam: pid.pathway
     n2t: pid.pathway
@@ -20796,6 +21314,7 @@ pirsf:
   homepage: https://pir.georgetown.edu/
   mappings:
     biocontext: PIRSF
+    edam: '1136'
     fairsharing: FAIRsharing.vssch2
     go: PIRSF
     miriam: pirsf
@@ -21073,6 +21592,7 @@ po:
     agroportal: PO
     biocontext: PO
     bioportal: PO
+    edam: '1180'
     fairsharing: FAIRsharing.3ngg40
     go: PO
     miriam: po
@@ -21374,6 +21894,33 @@ probonto:
   preferred_prefix: probonto
   uri_format: https://www.ebi.ac.uk/ols/ontologies/probonto/terms?short_form=$1
   version: 2.5.0
+proco:
+  contact:
+    email: wes_schafer@merck.com
+    github: schaferw
+    name: Wes Schafer
+    orcid: 0000-0002-8786-1756
+  depends_on:
+  - chebi
+  - cheminf
+  - obi
+  - pato
+  - ro
+  - sbo
+  description: PROCO covers process chemistry, the chemical field concerned with scaling
+    up laboratory syntheses to commercially viable processes.
+  download_owl: http://purl.obolibrary.org/obo/proco.owl
+  example: '0000001'
+  homepage: https://github.com/proco-ontology/PROCO
+  license: CC BY 4.0
+  mappings:
+    aberowl: PROCO
+    obofoundry: PROCO
+    ontobee: PROCO
+  name: Process Chemistry Ontology
+  preferred_prefix: PROCO
+  repository: https://github.com/proco-ontology/PROCO
+  uri_format: http://purl.obolibrary.org/obo/PROCO_$1
 prodom:
   description: ProDom is a database of protein domain families generated from the
     global comparison of all available protein sequences.
@@ -21686,6 +22233,7 @@ pubchem.bioassay:
   homepage: https://www.ncbi.nlm.nih.gov/sites/entrez?db=pcassay
   mappings:
     biocontext: PUBCHEM.BIOASSAY
+    edam: '2638'
     go: PubChem_BioAssay
     miriam: pubchem.bioassay
     n2t: pubchem.bioassay
@@ -21734,10 +22282,11 @@ pubchem.compound:
   example: '100101'
   homepage: https://pubchem.ncbi.nlm.nih.gov/
   mappings:
-    biocontext: CID
+    biocontext: PUBCHEM.COMPOUND
     biolink: CID
     cellosaurus: PubChem
     cheminf: '000140'
+    edam: '2639'
     fairsharing: FAIRsharing.g63c77
     go: PubChem_Compound
     miriam: pubchem.compound
@@ -21818,9 +22367,10 @@ pubmed:
   example: '16333295'
   homepage: https://www.ncbi.nlm.nih.gov/PubMed/
   mappings:
-    biocontext: PMID
+    biocontext: PUBMED
     cellosaurus: PubMed
     cheminf: '000302'
+    edam: '1187'
     fairsharing: FAIRsharing.a5sv8m
     go: PMID
     miriam: pubmed
@@ -22159,8 +22709,9 @@ reactome:
   example: R-BTA-418592
   homepage: https://www.reactome.org/
   mappings:
-    biocontext: REACT
+    biocontext: REACTOME
     cheminf: '000411'
+    edam: '1155'
     go: Reactome
     miriam: reactome
     n2t: reactome
@@ -22190,6 +22741,7 @@ reaxys:
   example: '1257009'
   homepage: https://www.reaxys.com
   mappings:
+    edam: '1003'
     wikidata: P1579
   name: Reaxys
   pattern: ^\d+$
@@ -22207,6 +22759,7 @@ rebase:
   homepage: http://rebase.neb.com/rebase/
   mappings:
     biocontext: REBASE
+    edam: '2325'
     fairsharing: FAIRsharing.9sb9qh
     go: REBASE
     miriam: rebase
@@ -22239,6 +22792,7 @@ refseq:
   homepage: https://www.ncbi.nlm.nih.gov/projects/RefSeq/
   mappings:
     biocontext: RefSeq
+    edam: '1098'
     fairsharing: FAIRsharing.4jg0qw
     go: RefSeq
     miriam: refseq
@@ -22344,9 +22898,10 @@ resid:
     of annotations and structures for protein modifications including amino-terminal,
     carboxyl-terminal and peptide chain cross-link post-translational modifications.
   example: AA0001
-  homepage: http://www.ebi.ac.uk/RESID/
+  homepage: https://proteininformationresource.org/resid/
   mappings:
     biocontext: RESID
+    edam: '2619'
     go: RESID
     miriam: resid
     n2t: resid
@@ -22355,7 +22910,7 @@ resid:
   name: Protein covalent bond
   pattern: ^AA\d{4}$
   preferred_prefix: RESID
-  uri_format: http://pir0.georgetown.edu/cgi-bin/resid?id=$1
+  uri_format: https://proteininformationresource.org/cgi-bin/resid?id=$1
 reto:
   description: Regulation of Transcription
   download_obo: https://www.bio.ntnu.no/ontology/ReTO/reto.obo
@@ -22420,6 +22975,7 @@ rfam:
   homepage: https://rfam.xfam.org/
   mappings:
     biocontext: RFAM
+    edam: '2356'
     fairsharing: FAIRsharing.fex4c8
     go: Rfam
     miriam: rfam
@@ -22441,6 +22997,7 @@ rgd:
     biocontext: RGD
     bioportal: RGD
     cellosaurus: RGD
+    edam: '2620'
     fairsharing: FAIRsharing.pfg82t
     go: RGD
     miriam: rgd
@@ -22509,6 +23066,7 @@ rhea:
   homepage: https://www.rhea-db.org/
   mappings:
     biocontext: RHEA
+    edam: '2644'
     fairsharing: FAIRsharing.pn1sr5
     go: RHEA
     miriam: rhea
@@ -22618,6 +23176,7 @@ rnacentral:
   homepage: https://rnacentral.org/
   mappings:
     biocontext: RNACENTRAL
+    edam: '3856'
     fairsharing: FAIRsharing.KcCjL7
     go: RNAcentral
     miriam: rnacentral
@@ -22717,6 +23276,7 @@ ro:
   - plana
   - planp
   - poro
+  - proco
   - psdo
   - pso
   - rbo
@@ -22741,10 +23301,10 @@ ro:
   mappings:
     aberowl: RO
     agroportal: RO
-    biocontext: OBO_REL
+    biocontext: RO
     biolink: RO
     bioportal: OBOREL
-    fairsharing: FAIRsharing.1vrrdh
+    fairsharing: FAIRsharing.cp0ybc
     go: RO
     miriam: ro
     n2t: ro
@@ -22886,7 +23446,7 @@ rxnorm:
   mappings:
     aberowl: RXNORM
     biocontext: RXCUI
-    biolink: RXCUI
+    biolink: RXNORM
     bioportal: RXNORM
     fairsharing: FAIRsharing.36pf8q
     wikidata: P3345
@@ -22957,6 +23517,7 @@ sabiork.reaction:
   homepage: http://sabiork.h-its.org/
   mappings:
     biocontext: SABIORK.REACTION
+    edam: '2309'
     fairsharing: FAIRsharing.cwx04e
     miriam: sabiork.reaction
     n2t: sabiork.reaction
@@ -22978,7 +23539,7 @@ sael:
   name: Standards and Ontologies for Functional Genomics (SOFG) Anatomy Entry List
   preferred_prefix: sael
   references:
-  - https://pubmed.ncbi.nlm.nih.gov/18629134/
+  - https://www.ncbi.nlm.nih.gov/pubmed/18629134
 salk:
   appears_in:
   - efo
@@ -23040,6 +23601,7 @@ sasbdb:
   uri_format: http://www.sasbdb.org/data/$1
 sbo:
   appears_in:
+  - proco
   - scdo
   banana: SBO
   contact:
@@ -23145,6 +23707,25 @@ schem:
   pattern: ^A\d{4}$
   preferred_prefix: schem
   uri_format: https://biopragmatics.github.io/providers/schem/$1
+schema:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Schema.org is a collaborative, community activity with a mission to
+    create, maintain, and promote schemas for structured data on the Internet, on
+    web pages, in email messages, and beyond.
+  download_owl: http://aber-owl.net/media/ontologies/SCHEMA/2/schema.owl
+  example: Person
+  homepage: https://schema.org
+  mappings:
+    aberowl: SCHEMA
+    biolink: schema
+    bioportal: SCHEMA
+  name: Schema.org
+  preferred_prefix: schema
+  uri_format: https://schema.org/$1
 scholia.resource:
   contributor:
     email: cthoyt@gmail.com
@@ -23452,6 +24033,7 @@ sgd:
   homepage: https://www.yeastgenome.org/
   mappings:
     biocontext: SGD
+    edam: '2632'
     fairsharing: FAIRsharing.pzvw40
     go: SGD
     miriam: sgd
@@ -23805,6 +24387,7 @@ smpdb:
   mappings:
     biocontext: SMPDB
     biolink: PathWhiz
+    edam: '2659'
     fairsharing: FAIRsharing.y1zyaq
     miriam: smpdb
     n2t: smpdb
@@ -23841,7 +24424,7 @@ snomedct:
   homepage: http://www.snomedbrowser.com/
   mappings:
     aberowl: SNOMEDCT
-    biocontext: SNOMED
+    biocontext: SNOMEDCT
     biolink: SNOMEDCT
     bioportal: SNOMEDCT
     fairsharing: FAIRsharing.d88s6e
@@ -24102,7 +24685,7 @@ sprint:
   name: Search PRINTS-S
   pattern: ^PR\d{5}$
   preferred_prefix: sprint
-  uri_format: 130.88.97.239/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1
+  uri_format: http://130.88.97.239/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&category=None&queryform=false&regexpr=off&prints_accn=$1
 srao:
   description: The FAIRsharing Subject Ontology (SRAO) is an application ontology
     for the categorization of research disciplines across all research domains, from
@@ -24302,6 +24885,7 @@ string:
   homepage: http://string.embl.de/
   mappings:
     biocontext: STRING
+    edam: '2302'
     fairsharing: FAIRsharing.9b7wvk
     miriam: string
     n2t: string
@@ -24551,7 +25135,7 @@ symp:
   synonyms:
   - SYMP
   uri_format: http://purl.obolibrary.org/obo/SYMP_$1
-  version: '2022-05-26'
+  version: '2022-07-12'
 syoid:
   contributor:
     email: cthoyt@gmail.com
@@ -24570,6 +25154,7 @@ t3db:
   homepage: http://www.t3db.org/
   mappings:
     biocontext: T3DB
+    edam: '2662'
     fairsharing: FAIRsharing.psn0h2
     miriam: t3db
     n2t: t3db
@@ -24770,6 +25355,7 @@ tcdb:
   homepage: https://www.tcdb.org
   mappings:
     biocontext: TCDB
+    edam: '2756'
     fairsharing: FAIRsharing.p3bzqb
     go: TC
     miriam: tcdb
@@ -24908,6 +25494,7 @@ tigrfam:
   homepage: http://www.jcvi.org/cgi-bin/tigrfams/Listing.cgi
   mappings:
     biocontext: TIGRFAM
+    edam: '1141'
     miriam: tigrfam
     n2t: tigrfam
     ncbi: TIGRFAM
@@ -24999,9 +25586,12 @@ tol:
     biocontext: TOL
     miriam: tol
     n2t: tol
-  name: Tree of Life
+    wikidata: P5221
+  name: Tree of Life Web Project ID
   pattern: ^\d+$
   preferred_prefix: tol
+  synonyms:
+  - tol.webproj
   uri_format: http://tolweb.org/$1
 topdb:
   description: The Topology Data Bank of Transmembrane Proteins (TOPDB) is a collection
@@ -25014,6 +25604,7 @@ topdb:
   homepage: http://topdb.enzim.hu/
   mappings:
     biocontext: TOPDB
+    edam: '2789'
     miriam: topdb
     n2t: topdb
     prefixcommons: topdb
@@ -25183,6 +25774,7 @@ ttd.drug:
   homepage: http://bidd.nus.edu.sg/group/ttd/ttd.asp
   mappings:
     biocontext: TTD.DRUG
+    edam: '2653'
     miriam: ttd.drug
     n2t: ttd.drug
   name: TTD Drug
@@ -25201,6 +25793,7 @@ ttd.target:
   homepage: http://bidd.nus.edu.sg/group/ttd/ttd.asp
   mappings:
     biocontext: TTD.TARGET
+    edam: '2654'
     miriam: ttd.target
     n2t: ttd.target
   name: TTD Target
@@ -25344,7 +25937,7 @@ uberon:
   - Uber-anatomy ontology
   - Uberon
   uri_format: http://purl.obolibrary.org/obo/UBERON_$1
-  version: '2022-05-27'
+  version: '2022-06-30'
 ubio.namebank:
   description: NameBank is a "biological name server" focused on storing names and
     objectively-derived nomenclatural attributes. NameBank is a repository for all
@@ -25498,6 +26091,7 @@ umls:
   homepage: https://www.nlm.nih.gov/research/umls
   mappings:
     biocontext: UMLS
+    edam: '1181'
     miriam: umls
     n2t: umls
     wikidata: P2892
@@ -25577,6 +26171,7 @@ unimod:
   homepage: http://www.unimod.org/
   mappings:
     biocontext: UNIMOD
+    edam: '3757'
     fairsharing: FAIRsharing.zZHCUQ
     miriam: unimod
     n2t: unimod
@@ -25594,6 +26189,7 @@ uniparc:
   homepage: https://www.ebi.ac.uk/uniparc/
   mappings:
     biocontext: UNIPARC
+    edam: '2392'
     go: UniParc
     miriam: uniparc
     n2t: uniparc
@@ -25651,6 +26247,7 @@ uniprot:
     aberowl: UP
     biocontext: UniProtKB
     cellosaurus: UniProtKB
+    edam: '3021'
     fairsharing: FAIRsharing.s1ne3g
     go: UniProtKB
     miriam: uniprot
@@ -25685,6 +26282,12 @@ uniprot:
     homepage: https://scholia.toolforge.org/
     name: Scholia
     uri_format: https://scholia.toolforge.org/uniprot/$1
+  - code: oma
+    description: The OMA project is a method and database for the inference of orthologs
+      among complete genomes.
+    homepage: https://omabrowser.org/oma/home/
+    name: Orthologous Matrix Browser
+    uri_format: http://omabrowser.org/cgi-bin/gateway.pl?f=DisplayEntry&p2=orthologs&p1=$1
   - code: ncbi
     description: UniProt through NCBI
     homepage: https://www.ncbi.nlm.nih.gov/protein/
@@ -25723,6 +26326,8 @@ uniprot.disease:
   download_obo: https://www.uniprot.org/diseases/?query=*&format=obo
   example: DI-04240
   homepage: https://www.uniprot.org/diseases/
+  mappings:
+    biolink: SPDI
   name: UniProt Diseases
   part_of: uniprot
   pattern: ^DI-\d{5}$
@@ -25896,6 +26501,7 @@ uniref:
   example: UniRef90_P00750
   homepage: https://www.uniprot.org/
   mappings:
+    edam: '2346'
     miriam: uniref
   name: UniRef
   pattern: ^UniRef(100|90|50)_([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}|UPI[A-F0-9]{10})$
@@ -25923,6 +26529,7 @@ unists:
   homepage: https://www.ncbi.nlm.nih.gov/sites/entrez?db=unists
   mappings:
     biocontext: UNISTS
+    edam: '2389'
     miriam: unists
     n2t: unists
     ncbi: UniSTS
@@ -25941,6 +26548,7 @@ unite:
   homepage: http://unite.ut.ee/
   mappings:
     biocontext: UNITE
+    edam: '2390'
     fairsharing: FAIRsharing.cnwx8c
     miriam: unite
     n2t: unite
@@ -26023,6 +26631,7 @@ upa:
     aberowl: UPA
     biocontext: UNIPATHWAY
     bioportal: UPA
+    edam: '2645'
     go: UniPathway
     obofoundry: UPA
     ols: upa
@@ -26502,7 +27111,7 @@ vo:
   preferred_prefix: VO
   repository: https://github.com/vaccineontology/VO
   uri_format: http://purl.obolibrary.org/obo/VO_$1
-  version: 1.1.196
+  version: 1.1.198
 void:
   description: The Vocabulary of Interlinked Datasets (VoID) is an RDF Schema vocabulary
     for expressing metadata about RDF datasets. It is intended as a bridge between
@@ -26694,8 +27303,8 @@ wbbt:
   homepage: https://github.com/obophenotype/c-elegans-gross-anatomy-ontology
   license: CC BY 4.0
   mappings:
-    aberowl: WB-BT
-    biocontext: WBBT
+    aberowl: WBBT
+    biocontext: WBbt
     biolink: WBbt
     bioportal: WB-BT
     fairsharing: FAIRsharing.phk7dd
@@ -26710,7 +27319,7 @@ wbbt:
   repository: https://github.com/obophenotype/c-elegans-gross-anatomy-ontology
   synonyms:
   - WBbt
-  uri_format: http://purl.obolibrary.org/obo/WBBT_$1
+  uri_format: http://purl.obolibrary.org/obo/WBbt_$1
   version: '2022-06-13'
 wbls:
   contact:
@@ -26725,7 +27334,7 @@ wbls:
   homepage: https://github.com/obophenotype/c-elegans-development-ontology
   license: CC BY 4.0
   mappings:
-    aberowl: WB-LS
+    aberowl: WBLS
     biocontext: WBLS
     biolink: WBls
     bioportal: WB-LS
@@ -26743,7 +27352,7 @@ wbls:
   synonyms:
   - WBls
   uri_format: http://www.wormbase.org/get?name=$1
-  version: '2022-03-22'
+  version: '2022-06-21'
 wbphenotype:
   contact:
     email: cgrove@caltech.edu
@@ -26757,7 +27366,7 @@ wbphenotype:
   homepage: https://github.com/obophenotype/c-elegans-phenotype-ontology
   license: CC BY 4.0
   mappings:
-    aberowl: WB-PHENOTYPE
+    aberowl: WBPHENOTYPE
     biocontext: WBPhenotype
     bioportal: WB-PHENOTYPE
     fairsharing: FAIRsharing.agvc7y
@@ -26774,7 +27383,7 @@ wbphenotype:
   synonyms:
   - WBPhenotype
   uri_format: http://www.wormbase.org/get?name=$1
-  version: '2022-03-22'
+  version: '2022-06-21'
 webelements:
   contributor:
     email: cthoyt@gmail.com
@@ -26816,7 +27425,7 @@ wikidata:
   example: Q2207226
   homepage: https://www.wikidata.org/
   mappings:
-    biocontext: WD_Entity
+    biocontext: WIKIDATA
     biolink: WIKIDATA
     cellosaurus: Wikidata
     cheminf: '000567'
@@ -26888,6 +27497,7 @@ wikipathways:
     aberowl: WIKIPATHWAYS
     biocontext: WIKIPATHWAYS
     bioportal: WIKIPATHWAYS
+    edam: '3952'
     fairsharing: FAIRsharing.g7b4rj
     miriam: wikipathways
     n2t: wikipathways
@@ -26959,6 +27569,7 @@ wormbase:
   mappings:
     biocontext: WormBase
     biolink: WBVocab
+    edam: '1805'
     fairsharing: FAIRsharing.zx1td8
     go: WB_REF
     miriam: wb
@@ -27012,6 +27623,7 @@ worms:
     fairsharing: FAIRsharing.7g1bzj
     miriam: worms
     n2t: worms
+    wikidata: P850
   name: World Register of Marine Species
   pattern: ^\d+$
   preferred_prefix: worms
@@ -27099,9 +27711,14 @@ xco:
   pattern: ^\d{7}$
   preferred_prefix: XCO
   repository: https://github.com/rat-genome-database/XCO-experimental-condition-ontology
-  uri_format: http://purl.obolibrary.org/obo/XCO_$1
+  uri_format: https://rgd.mcw.edu/rgdweb/ontology/view.html?acc_id=XCO:$1
   version: '2019-12-18'
 xenbase:
+  contact:
+    email: troy_pells@yahoo.ca
+    github: pellst
+    name: Troy Pells
+    orcid: 0000-0002-2340-5356
   description: Xenbase is the model organism database for Xenopus laevis and X. (Silurana)
     tropicalis. It contains genomic, development data and community information for
     Xenopus research. it includes gene expression patterns that incorporates image
@@ -27111,6 +27728,7 @@ xenbase:
   mappings:
     biocontext: Xenbase
     biolink: Xenbase
+    edam: '2738'
     fairsharing: FAIRsharing.jrv6wj
     go: Xenbase
     miriam: xenbase
@@ -27121,7 +27739,9 @@ xenbase:
   name: Xenbase
   pattern: ^XB\-\w+\-\d+$
   preferred_prefix: xenbase
-  uri_format: https://www.xenbase.org/common/xsearch.do?exactSearch=true&searchIn=7&searchValue=$1
+  synonyms:
+  - Xenbase
+  uri_format: https://www.xenbase.org/entry/$1
 ximbio:
   contributor:
     email: cthoyt@gmail.com
@@ -27208,7 +27828,7 @@ xml:
     biocontext: xml
   name: Extensible Markup Language
   preferred_prefix: xml
-  uri_format: http://www.w3.org/XML/1998/namespace$1
+  uri_format: http://www.w3.org/XML/1998/namespace#$1
 xpo:
   contact:
     email: Erik.Segerdell@cchmc.org
@@ -27427,6 +28047,30 @@ zeco:
   repository: https://github.com/ybradford/zebrafish-experimental-conditions-ontology
   uri_format: http://purl.obolibrary.org/obo/ZECO_$1
   version: '2022-02-14'
+zenodo.record:
+  contributor:
+    email: benjamin_gyori@hms.harvard.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  description: Zenodo is an open repository that allows researchers to deposit research
+    papers, data sets, research software, reports, and any other research related
+    digital artefacts.
+  example: '4390079'
+  homepage: https://zenodo.org
+  mappings:
+    wikidata: P4901
+  name: Zenodo
+  pattern: ^\d+$
+  preferred_prefix: zenodo.record
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  synonyms:
+  - zenodo
+  uri_format: https://zenodo.org/record/$1
 zfa:
   appears_in:
   - zp

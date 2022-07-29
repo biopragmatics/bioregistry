@@ -362,11 +362,23 @@ class Manager:
         #: in order to avoid conflicts of sub-URIs (thanks to Nico Matentzoglu for the idea)
         return prepare_prefix_list(self.get_prefix_map(**kwargs))
 
-    def get_curie_pattern(self, prefix: str) -> Optional[str]:
-        """Get the CURIE pattern for this resource.
+    def get_curie_pattern(self, prefix: str, use_preferred: bool = False) -> Optional[str]:
+        r"""Get the CURIE pattern for this resource.
 
         :param prefix: The prefix to look up
+        :param use_preferred: Should the preferred prefix be used instead
+            of the Bioregistry prefix (if it exists)?
         :return: The regular expression pattern to match CURIEs against
+
+        >>> from bioregistry import manager
+        >>> manager.get_curie_pattern("go")
+        '^go:\\d{7}$'
+        >>> manager.get_curie_pattern("go", use_preferred=True)
+        '^GO:\\d{7}$'
+        >>> manager.get_curie_pattern("kegg.compound")
+        '^kegg\\.compound:C\\d+$'
+        >>> manager.get_curie_pattern("KEGG.COMPOUND")
+        '^kegg\\.compound:C\\d+$'
         """
         resource = self.get_resource(prefix)
         if resource is None:
@@ -374,7 +386,7 @@ class Manager:
         pattern = resource.get_pattern()
         if pattern is None:
             return None
-        p = resource.get_preferred_prefix() or prefix
+        p = resource.get_preferred_prefix() or resource.prefix if use_preferred else resource.prefix
         p = p.replace(".", "\\.")
         return f"^{p}:{pattern.lstrip('^')}"
 
