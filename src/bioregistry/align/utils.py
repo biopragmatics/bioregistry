@@ -112,18 +112,19 @@ class Aligner(ABC):
                 self._align_action(bioregistry_id, external_id, external_entry)
                 continue
 
-
     def _do_align_action(self, prefix: Optional[str]) -> bool:
         # a match was found if the prefix is not None
         return prefix is not None and (
             not self.skip_deprecated or not self.manager.is_deprecated(prefix)
         )
 
-    def _align_action(self, bioregistry_id: str, external_id: str, external_entry: Dict[str, Any]) -> None:
+    def _align_action(
+        self, bioregistry_id: str, external_id: str, external_entry: Dict[str, Any]
+    ) -> None:
         # Add mapping
         if self.internal_registry[bioregistry_id].mappings is None:
             self.internal_registry[bioregistry_id].mappings = {}
-        self.internal_registry[bioregistry_id].mappings[self.key] = external_id
+        self.internal_registry[bioregistry_id].mappings[self.key] = external_id  # type:ignore
 
         _entry = self.prepare_external(external_id, external_entry)
         _entry[self.subkey] = external_id
