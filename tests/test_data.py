@@ -272,27 +272,30 @@ class TestRegistry(unittest.TestCase):
     def test_curie_patterns(self):
         """Test that all examples can validate against the CURIE pattern."""
         for prefix, entry in self.registry.items():
-            curie_pattern = bioregistry.get_curie_pattern(prefix)
             lui_example = entry.get_example()
-            if curie_pattern is None or lui_example is None:
+            if lui_example is None:
                 continue
-            pp = bioregistry.get_preferred_prefix(prefix)
-            curie_example = curie_to_str(pp or prefix, lui_example)
-            with self.subTest(prefix=prefix):
-                self.assertRegex(
-                    curie_example,
-                    curie_pattern,
-                    msg=dedent(
-                        f"""
-                prefix: {prefix}
-                preferred prefix: {pp}
-                example LUI: {lui_example}
-                example CURIE: {curie_example}
-                pattern for LUI: {bioregistry.get_pattern(prefix)}
-                pattern for CURIE: {curie_pattern}
-                """
-                    ),
-                )
+
+            for use_preferred in (True, False):
+                curie_pattern = bioregistry.get_curie_pattern(prefix, use_preferred=use_preferred)
+                if curie_pattern is None:
+                    continue
+                curie_example = curie_to_str(prefix, lui_example, use_preferred=use_preferred)
+                with self.subTest(prefix=prefix, use_preferred=use_preferred):
+                    self.assertRegex(
+                        curie_example,
+                        curie_pattern,
+                        msg=dedent(
+                            f"""
+                    prefix: {prefix}
+                    preferred prefix: {entry.get_preferred_prefix()}
+                    example LUI: {lui_example}
+                    example CURIE: {curie_example}
+                    pattern for LUI: {bioregistry.get_pattern(prefix)}
+                    pattern for CURIE: {curie_pattern}
+                    """
+                        ),
+                    )
 
     def test_pattern_with_banana(self):
         """Test getting patterns with bananas."""

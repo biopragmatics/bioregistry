@@ -1214,6 +1214,13 @@ class Resource(BaseModel):
         :param identifier: A local unique identifier in this resource's semantic space
         :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
         :returns: A CURIE for the given identifier
+
+        >>> import bioregistry
+        >>> resource = bioregistry.get_resource("go")
+        >>> resource.get_curie("0000001")
+        'go:0000001'
+        >>> resource.get_curie("0000001", use_preferred=True)
+        'GO:0000001'
         """
         _p = self.get_preferred_prefix() or self.prefix if use_preferred else self.prefix
         return curie_to_str(_p, identifier)
@@ -1222,8 +1229,8 @@ class Resource(BaseModel):
         """Normalize the identifier to not have a redundant prefix or banana.
 
         :param identifier: The identifier in the CURIE
-        :param prefix: If an optional prefix is passed, checks that this isn't also used as a caseolded banana
-            like in ``go:go:1234567``, which shouldn't techinncally be right becauase the banana for gene ontology
+        :param prefix: If an optional prefix is passed, checks that this isn't also used as a casefolded banana
+            like in ``go:go:1234567``, which shouldn't technically be right because the banana for gene ontology
             is ``GO``.
         :return: A normalized identifier, possibly with banana/redundant prefix removed
 

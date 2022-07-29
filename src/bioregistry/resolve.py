@@ -900,13 +900,15 @@ def get_versions() -> Mapping[str, str]:
     return manager.get_versions()
 
 
-def get_curie_pattern(prefix: str) -> Optional[str]:
+def get_curie_pattern(prefix: str, use_preferred: bool = False) -> Optional[str]:
     """Get the CURIE pattern for this resource.
 
     :param prefix: The prefix to look up
+    :param use_preferred: Should the preferred prefix be used instead
+        of the Bioregistry prefix (if it exists)?
     :return: The regular expression pattern to match CURIEs against
     """
-    return manager.get_curie_pattern(prefix)
+    return manager.get_curie_pattern(prefix, use_preferred=use_preferred)
 
 
 def get_license_conflicts():

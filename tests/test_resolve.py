@@ -127,7 +127,8 @@ class TestResolve(unittest.TestCase):
 
         .. seealso:: https://github.com/biopragmatics/bioregistry/issues/245
         """
-        self.assertEqual("^CHEBI:\\d+$", bioregistry.get_curie_pattern("chebi"))
+        self.assertEqual("^chebi:\\d+$", bioregistry.get_curie_pattern("chebi"))
+        self.assertEqual("^CHEBI:\\d+$", bioregistry.get_curie_pattern("chebi", use_preferred=True))
         self.assertEqual(
             "^chembl\\.compound:CHEMBL\\d+$", bioregistry.get_curie_pattern("chembl.compound")
         )
