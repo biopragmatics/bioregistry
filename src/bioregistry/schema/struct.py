@@ -29,7 +29,7 @@ from bioregistry import constants as brc
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import removeprefix, removesuffix
+from bioregistry.utils import curie_to_str, removeprefix, removesuffix
 
 try:
     from typing import Literal  # type:ignore
