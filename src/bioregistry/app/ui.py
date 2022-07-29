@@ -84,7 +84,7 @@ def resource(prefix: str):
     if _resource is None:
         raise RuntimeError
     example = _resource.get_example()
-    example_curie = _resource.get_curie(example) if example else None
+    example_curie = _resource.get_example_curie()
     example_extras = _resource.example_extras or []
     example_curie_extras = [_resource.get_curie(example_extra) for example_extra in example_extras]
     return render_template(

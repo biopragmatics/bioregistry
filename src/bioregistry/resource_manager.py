@@ -386,10 +386,7 @@ class Manager:
         pattern = resource.get_pattern()
         if pattern is None:
             return None
-        if use_preferred:
-            p = resource.get_preferred_prefix() or resource.prefix
-        else:
-            p = resource.prefix
+        p = resource.get_preferred_prefix() or resource.prefix if use_preferred else resource.prefix
         p = p.replace(".", "\\.")
         return f"^{p}:{pattern.lstrip('^')}"
 

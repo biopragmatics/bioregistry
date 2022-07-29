@@ -861,6 +861,18 @@ class Resource(BaseModel):
             return example
         return None
 
+    def get_example_curie(self, use_preferred: bool = False) -> Optional[str]:
+        """Get an example CURIE, if an example identifier is available.
+
+        :param use_preferred: Should the preferred prefix be used instead
+            of the Bioregistry prefix (if it exists)?
+        :return: An example CURIE for this resource
+        """
+        example = self.get_example()
+        if example is None:
+            return None
+        return self.get_curie(example, use_preferred=use_preferred)
+
     def is_deprecated(self) -> bool:
         """Return if the given prefix corresponds to a deprecated resource.
 
