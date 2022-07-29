@@ -136,6 +136,11 @@ def parse_iri(
 
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
+    prefix_list = _ensure_prefix_list(prefix_map)
+    return _parse_iri(iri, prefix_list)
+
+
+def _parse_iri(iri, prefix_list):
     if iri.startswith(BIOREGISTRY_PREFIX):
         curie = iri[len(BIOREGISTRY_PREFIX) :]
         return parse_curie(curie)
@@ -153,13 +158,15 @@ def parse_iri(
     if iri.startswith(N2T_PREFIX):
         curie = iri[len(N2T_PREFIX) :]
         return parse_curie(curie)
-    for prefix, prefix_url in _ensure_prefix_list(prefix_map):
+    for prefix, prefix_url in prefix_list:
         if iri.startswith(prefix_url):
             return prefix, iri[len(prefix_url) :]
     return None, None
 
 
-def _ensure_prefix_list(prefix_map: Optional[Mapping[str, str]], **kwargs) -> List[Tuple[str, str]]:
+def _ensure_prefix_list(
+    prefix_map: Optional[Mapping[str, str]] = None, **kwargs
+) -> List[Tuple[str, str]]:
     """Ensure a prefix list, using the given merge strategy with default."""
     _prefix_map = dict(get_prefix_map(**kwargs))
     if prefix_map:
