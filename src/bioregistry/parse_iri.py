@@ -142,7 +142,7 @@ def parse_iri(
     >>> parse_iri("https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=268")
     ('neuronames', '268')
 
-    Provide your own prefix map:
+    Provide your own prefix map for one-off parsing (i.e., not in bulk):
     >>> prefix_map = {"chebi": "https://example.org/chebi:"}
     >>> parse_iri("https://example.org/chebi:1234", prefix_map=prefix_map)
     ('chebi', '1234')
@@ -151,7 +151,7 @@ def parse_iri(
     you should pre-process the prefix map with:
 
     >>> from bioregistry import ensure_prefix_list
-    >>> prefix_map = prefix_map = {"chebi": "https://example.org/chebi:"}
+    >>> prefix_map = {"chebi": "https://example.org/chebi:"}
     >>> prefix_list = ensure_prefix_list(prefix_map)
     >>> parse_iri("https://example.org/chebi:1234", prefix_map=prefix_list)
     ('chebi', '1234')
