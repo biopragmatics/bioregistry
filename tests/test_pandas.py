@@ -54,16 +54,30 @@ class TestPandasUtils(unittest.TestCase):
         """Test converting local unique identifiers to CURIEs."""
         rows = [
             ("go", "0000001"),
-            ("go", "0000002"),
+            ("GO", "0000002"),
             ("xxx", "yyy"),
         ]
         columns = ["prefix", "identifier"]
         df = pd.DataFrame(rows, columns=columns)
-        brpd.identifiers_to_curies(df, column="identifier", prefix_column="prefix")
+
+        brpd.identifiers_to_curies(
+            df, column="identifier", prefix_column="prefix", normalize_prefixes_=False
+        )
+        processed_rows = [
+            ("go", "go:0000001"),
+            ("GO", "GO:0000002"),
+            ("xxx", "xxx:yyy"),
+        ]
+        self.assertEqual(processed_rows, [tuple(row) for row in df.values])
+
+        df = pd.DataFrame(rows, columns=columns)
+        brpd.identifiers_to_curies(
+            df, column="identifier", prefix_column="prefix", normalize_prefixes_=True
+        )
         processed_rows = [
             ("go", "go:0000001"),
             ("go", "go:0000002"),
-            ("xxx", None),
+            (None, None),
         ]
         self.assertEqual(processed_rows, [tuple(row) for row in df.values])
 

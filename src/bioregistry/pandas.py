@@ -342,6 +342,7 @@ def identifiers_to_curies(
     prefix_column: Union[None, int, str] = None,
     target_column: Optional[str] = None,
     use_tqdm: bool = False,
+    normalize_prefixes_: bool = True,
 ) -> None:
     """Convert a column of local unique identifiers to CURIEs.
 
@@ -357,6 +358,8 @@ def identifiers_to_curies(
         If given, stores CURIEs in this column,
     :param use_tqdm:
         Should a progress bar be shown?
+    :param normalize_prefixes_:
+        Should the prefix column get auto-normalized if ``prefix_column`` is not None?
     :raises PrefixLocationError:
         If not exactly one of the prefix and prefix_column arguments are given
     :raises ValueError:
@@ -393,6 +396,8 @@ def identifiers_to_curies(
         )
     elif prefix_column is not None:
         prefix_column = _norm_column(df, prefix_column)
+        if normalize_prefixes_:
+            normalize_prefixes(df=df, column=prefix_column)
         df[target_column] = _multi_column_map(
             df, [prefix_column, column], bioregistry.curie_to_str, use_tqdm=use_tqdm
         )

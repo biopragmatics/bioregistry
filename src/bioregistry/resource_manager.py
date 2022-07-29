@@ -995,35 +995,37 @@ class Manager:
 
         Standard CURIE
         >>> from bioregistry import manager
-        >>> manager.is_valid_curie("go:0000001")
+        >>> manager.is_standardizable_curie("go:0000001")
         True
 
         Not a standard CURIE (i.e., no colon)
-        >>> manager.is_valid_curie("0000001")
+        >>> manager.is_standardizable_curie("0000001")
         False
-        >>> manager.is_valid_curie("GO_0000001")
+        >>> manager.is_standardizable_curie("GO_0000001")
         False
-        >>> manager.is_valid_curie("PTM-0001")
+        >>> manager.is_standardizable_curie("PTM-0001")
         False
 
         Non-standardized prefix
-        >>> manager.is_valid_curie("GO:0000001")
+        >>> manager.is_standardizable_curie("GO:0000001")
         True
 
         Incorrect identifier
-        >>> manager.is_valid_curie("go:0001")
+        >>> manager.is_standardizable_curie("go:0001")
         False
 
         Banana scenario
-        >>> manager.is_valid_curie("go:GO:0000001")
+        >>> manager.is_standardizable_curie("go:GO:0000001")
         True
 
         Unknown prefix
-        >>> manager.is_valid_curie("xxx:yyy")
+        >>> manager.is_standardizable_curie("xxx:yyy")
         False
         """
         norm_curie = self.normalize_curie(curie)
-        return self.is_valid_curie(norm_curie) if norm_curie else False
+        if norm_curie is None:
+            return False
+        return self.is_valid_curie(norm_curie)
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
