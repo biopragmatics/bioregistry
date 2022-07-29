@@ -18,7 +18,7 @@ from bioregistry.license_standardizer import REVERSE_LICENSES
 from bioregistry.schema.struct import SCHEMA_PATH, get_json_schema
 from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.schema_utils import is_mismatch
-from bioregistry.utils import _norm, curie_to_str, extended_encoder
+from bioregistry.utils import _norm, extended_encoder
 
 logger = logging.getLogger(__name__)
 

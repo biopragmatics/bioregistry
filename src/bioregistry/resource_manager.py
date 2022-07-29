@@ -372,13 +372,13 @@ class Manager:
 
         >>> from bioregistry import manager
         >>> manager.get_curie_pattern("go")
-        'go:\d{7}'
+        '^go:\\d{7}$'
         >>> manager.get_curie_pattern("go", use_preferred=True)
-        'GO:\d{7}'
+        '^GO:\\d{7}$'
         >>> manager.get_curie_pattern("kegg.compound")
-        '^kegg\.compound:C\d+$'
+        '^kegg\\.compound:C\\d+$'
         >>> manager.get_curie_pattern("KEGG.COMPOUND")
-        '^kegg\.compound:C\d+$'
+        '^kegg\\.compound:C\\d+$'
         """
         resource = self.get_resource(prefix)
         if resource is None:
