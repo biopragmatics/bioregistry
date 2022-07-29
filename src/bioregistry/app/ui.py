@@ -84,15 +84,9 @@ def resource(prefix: str):
     if _resource is None:
         raise RuntimeError
     example = _resource.get_example()
-    # TODO move into manager
-    example_curie = (
-        curie_to_str(_resource.get_preferred_prefix() or prefix, example) if example else None
-    )
+    example_curie = _resource.get_curie(example) if example else None
     example_extras = _resource.example_extras or []
-    example_curie_extras = [
-        curie_to_str(_resource.get_preferred_prefix() or prefix, example_extra)
-        for example_extra in example_extras
-    ]
+    example_curie_extras = [_resource.get_curie(example_extra) for example_extra in example_extras]
     return render_template(
         "resource.html",
         zip=zip,

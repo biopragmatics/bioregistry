@@ -5,7 +5,7 @@
 from functools import lru_cache
 from typing import List, Mapping, Optional, Tuple, Union
 
-from .resolve import parse_curie
+from .resolve import get_preferred_prefix, parse_curie
 from .resource_manager import prepare_prefix_list
 from .uri_format import get_prefix_map
 from .utils import curie_to_str
@@ -28,12 +28,17 @@ PrefixList = List[Tuple[str, str]]
 
 
 def curie_from_iri(
-    iri: str, *, prefix_map: Union[Mapping[str, str], PrefixList, None] = None
+    iri: str,
+    *,
+    prefix_map: Union[Mapping[str, str], PrefixList, None] = None,
+    use_preferred: bool = False,
 ) -> Optional[str]:
     """Parse a compact identifier from an IRI using :func:`parse_iri` and reconstitute it.
 
     :param iri: A valid IRI
     :param prefix_map: See :func:`parse_iri`
+    :param use_preferred: Should the preferred prefix be used instead
+        of the Bioregistry prefix (if it exists)?
     :return: A CURIE string, if the IRI can be parsed by :func:`parse_iri`.
 
     IRI from an OBO PURL:
@@ -72,10 +77,16 @@ def curie_from_iri(
     IRI from N2T
     >>> curie_from_iri("https://n2t.net/aop.relationships:5")
     'aop.relationships:5'
+
+    IRI from an OBO PURL (with preferred prefix)
+    >>> curie_from_iri("http://purl.obolibrary.org/obo/DRON_00023232", use_preferred=True)
+    'DRON:00023232'
     """
     prefix, identifier = parse_iri(iri=iri, prefix_map=prefix_map)
     if prefix is None or identifier is None:
         return None
+    if use_preferred:
+        prefix = get_preferred_prefix(prefix) or prefix
     return curie_to_str(prefix, identifier)
 
 

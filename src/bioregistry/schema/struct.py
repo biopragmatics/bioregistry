@@ -1208,6 +1208,16 @@ class Resource(BaseModel):
                 rv.append(Provider(**p))
         return rv
 
+    def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
+        """Get a CURIE for a local unique identifier in this resource's semantic space.
+
+        :param identifier: A local unique identifier in this resource's semantic space
+        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+        :returns: A CURIE for the given identifier
+        """
+        _p = self.get_preferred_prefix() or self.prefix if use_preferred else self.prefix
+        return curie_to_str(_p, identifier)
+
     def standardize_identifier(self, identifier: str, prefix: Optional[str] = None) -> str:
         """Normalize the identifier to not have a redundant prefix or banana.
 
