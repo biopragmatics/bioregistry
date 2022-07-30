@@ -818,7 +818,7 @@ class Manager:
         use_bioregistry_io: bool = True,
         provider: Optional[str] = None,
     ) -> Optional[str]:
-        """Get the best link for the CURIE, if possible.
+        """Get the best link for the CURIE pair, if possible.
 
         :param prefix: The prefix in the CURIE
         :param identifier: The identifier in the CURIE. If identifier is given as None, then this function will
@@ -928,6 +928,104 @@ class Manager:
         if include_bioregistry:
             rv["bioregistry"] = len(self.registry)
         return rv
+
+    def is_valid_identifier(self, prefix: str, identifier: str) -> Optional[bool]:
+        """Check if the identifier is valid."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.is_valid_identifier(identifier)
+
+    def is_standardizable_identifier(self, prefix: str, identifier: str) -> Optional[bool]:
+        """Check if the identifier is standardizable."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.is_standardizable_identifier(identifier)
+
+    def is_valid_curie(self, curie: str) -> Optional[bool]:
+        """Check if a CURIE is valid.
+
+        :param curie: A compact URI
+        :return: If the CURIE is standardized in both syntax and semantics.
+
+        Standard CURIE
+        >>> from bioregistry import manager
+        >>> manager.is_valid_curie("go:0000001")
+        True
+
+        Not a standard CURIE (i.e., no colon)
+        >>> manager.is_valid_curie("0000001")
+        False
+        >>> manager.is_valid_curie("GO_0000001")
+        False
+        >>> manager.is_valid_curie("PTM-0001")
+        False
+
+        Non-standardized prefix
+        >>> manager.is_valid_curie("GO:0000001")
+        False
+
+        Incorrect identifier
+        >>> manager.is_valid_curie("go:0001")
+        False
+
+        Banana scenario
+        >>> manager.is_valid_curie("go:GO:0000001")
+        False
+
+        Unknown prefix
+        >>> manager.is_valid_curie("xxx:yyy")
+        False
+        """
+        try:
+            prefix, identifier = curie.split(":", 1)
+        except ValueError:
+            return False
+        norm_prefix = self.normalize_prefix(prefix)
+        if norm_prefix != prefix:
+            return False
+        return self.registry[norm_prefix].is_valid_identifier(identifier)
+
+    def is_standardizable_curie(self, curie: str) -> Optional[bool]:
+        """Check if a CURIE is validatable, but not necessarily standardized.
+
+        :param curie: A compact URI
+        :return: If the CURIE is standardized in both syntax and semantics.
+
+        Standard CURIE
+        >>> from bioregistry import manager
+        >>> manager.is_standardizable_curie("go:0000001")
+        True
+
+        Not a standard CURIE (i.e., no colon)
+        >>> manager.is_standardizable_curie("0000001")
+        False
+        >>> manager.is_standardizable_curie("GO_0000001")
+        False
+        >>> manager.is_standardizable_curie("PTM-0001")
+        False
+
+        Non-standardized prefix
+        >>> manager.is_standardizable_curie("GO:0000001")
+        True
+
+        Incorrect identifier
+        >>> manager.is_standardizable_curie("go:0001")
+        False
+
+        Banana scenario
+        >>> manager.is_standardizable_curie("go:GO:0000001")
+        True
+
+        Unknown prefix
+        >>> manager.is_standardizable_curie("xxx:yyy")
+        False
+        """
+        norm_curie = self.normalize_curie(curie)
+        if norm_curie is None:
+            return False
+        return self.is_valid_curie(norm_curie)
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:

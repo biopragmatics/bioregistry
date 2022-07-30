@@ -98,6 +98,8 @@ from .resolve_identifier import (  # noqa:F401
     get_providers,
     get_providers_list,
     is_known_identifier,
+    is_valid_curie,
+    is_valid_identifier,
 )
 from .resource_manager import Manager, manager  # noqa:F401
 from .schema.struct import (  # noqa:F401
