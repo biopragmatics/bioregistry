@@ -60,7 +60,7 @@ aao:
   mappings:
     biocontext: AAO
     fairsharing: FAIRsharing.mxx5rp
-    obofoundry: AAO
+    obofoundry: aao
     prefixcommons: aao
   name: Amphibian gross anatomy
   no_own_terms: true
@@ -170,10 +170,10 @@ ado:
   depends_on:
   - bfo
   description: Alzheimer's Disease Ontology is a knowledge-based ontology that encompasses
-    varieties of concepts related to Alzheimer'S Disease, structured by upper level
-    Basic Formal Ontology(BFO). This Ontology is enriched by the interrelated entities
-    that demonstrate the network of the understanding on Alzheimer's disease and can
-    be readily applied for text mining.
+    varieties of concepts related to Alzheimer'S Disease, foundamentally structured
+    by upper level Basic Formal Ontology(BFO). This Ontology is enriched by the interrelational
+    entities that demonstrate the nextwork of the understanding on Alzheimer's disease
+    and can be readily applied for text mining.
   download_owl: http://purl.obolibrary.org/obo/ado.owl
   example: '0000001'
   homepage: https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO
@@ -182,11 +182,13 @@ ado:
     aberowl: ADO
     bioportal: ADO
     fairsharing: FAIRsharing.ckd4rf
-    obofoundry: ADO
+    obofoundry: ado
+    ols: ado
   name: Alzheimer's Disease Ontology
   preferred_prefix: ADO
   repository: https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO
   uri_format: http://purl.obolibrary.org/obo/ADO_$1
+  version: 2.0.0
 adw:
   contact:
     email: adw_geeks@umich.edu
@@ -206,14 +208,12 @@ adw:
     fairsharing: FAIRsharing.t9fvdn
     miriam: adw
     n2t: adw
-    obofoundry: ADW
+    obofoundry: adw
   name: Animal natural history and life history
   pattern: ^[A-Z_a-z]+$
   preferred_prefix: ADW
   uri_format: https://animaldiversity.org/accounts/$1
 aeo:
-  appears_in:
-  - ehdaa2
   contact:
     email: J.Bard@ed.ac.uk
     github: null
@@ -232,7 +232,7 @@ aeo:
     biocontext: AEO
     bioportal: AEO
     fairsharing: FAIRsharing.93ee19
-    obofoundry: AEO
+    obofoundry: aeo
     ols: aeo
     ontobee: AEO
   name: Anatomical Entity Ontology
@@ -262,7 +262,7 @@ aero:
     biocontext: AERO
     bioportal: AERO
     fairsharing: FAIRsharing.rycy2x
-    obofoundry: AERO
+    obofoundry: aero
   name: Adverse Event Reporting Ontology
   pattern: ^\d{7}$
   preferred_prefix: AERO
@@ -442,7 +442,7 @@ agro:
     biocontext: AGRO
     bioportal: AGRO
     fairsharing: FAIRsharing.m40bhw
-    obofoundry: AGRO
+    obofoundry: agro
     ols: agro
     ontobee: AGRO
   name: Agronomy Ontology
@@ -498,7 +498,7 @@ aism:
   mappings:
     aberowl: AISM
     bioportal: AISM
-    obofoundry: AISM
+    obofoundry: aism
     ols: aism
     ontobee: AISM
   name: Ontology for the Anatomy of the Insect SkeletoMuscular system
@@ -577,7 +577,7 @@ amphx:
   mappings:
     aberowl: AMPHX
     bioportal: AMPHX
-    obofoundry: AMPHX
+    obofoundry: amphx
     ols: amphx
     ontobee: AMPHX
   name: The Amphioxus Development and Anatomy Ontology
@@ -750,7 +750,7 @@ apo:
     biocontext: YPO
     bioportal: APO
     fairsharing: FAIRsharing.dyqz3y
-    obofoundry: APO
+    obofoundry: apo
     ols: apo
     ontobee: APO
   name: Ascomycete phenotype ontology
@@ -777,7 +777,7 @@ apollosv:
     aberowl: APOLLO_SV
     bioportal: APOLLO-SV
     fairsharing: FAIRsharing.ngv2xx
-    obofoundry: APOLLO_SV
+    obofoundry: apollo_sv
     ols: apollo_sv
     ontobee: APOLLO_SV
   name: Apollo Structured Vocabulary
@@ -864,7 +864,7 @@ aro:
     aberowl: ARO
     biocontext: ARO
     bioportal: ARO
-    obofoundry: ARO
+    obofoundry: aro
     ols: aro
     ontobee: ARO
   name: Antibiotic Resistance Ontology
@@ -1156,7 +1156,7 @@ ato:
     biocontext: ATO
     bioportal: ATO
     fairsharing: FAIRsharing.ayjdsm
-    obofoundry: ATO
+    obofoundry: ato
   name: Amphibian taxonomy
   pattern: ^\d{7}$
   preferred_prefix: ATO
@@ -1350,7 +1350,7 @@ bcgo:
     biocontext: BCGO
     bioportal: BCGO
     cellosaurus: BCGO
-    obofoundry: BCGO
+    obofoundry: bcgo
     ontobee: BCGO
   name: Beta Cell Genomics Ontology
   pattern: ^\d{7}$
@@ -1392,7 +1392,7 @@ bco:
     bioportal: BCO
     ecoportal: BCO
     fairsharing: FAIRsharing.8ktkqy
-    obofoundry: BCO
+    obofoundry: bco
     ols: bco
     ontobee: BCO
   name: Biological Collections Ontology
@@ -1572,7 +1572,7 @@ bfo:
     bioportal: BFO
     fairsharing: FAIRsharing.wcpd6f
     go: BFO
-    obofoundry: BFO
+    obofoundry: bfo
     ols: bfo
     ontobee: BFO
   name: Basic Formal Ontology
@@ -1723,13 +1723,21 @@ bigg.reaction:
   preferred_prefix: bigg.reaction
   uri_format: http://bigg.ucsd.edu/models/universal/reactions/$1
 bila:
+  contact:
+    email: henrich@embl.de
+    github: null
+    name: Thorsten Heinrich
+    orcid: null
   deprecated: true
   description: This is a record of the Bilateria anatomy terminology and ontology.
     We have been unable to find any further information about this resource.
+  download_owl: http://purl.obolibrary.org/obo/bila.owl
+  example: '0000000'
+  homepage: http://4dx.embl.de/4DXpress
   mappings:
     biocontext: BILA
     fairsharing: FAIRsharing.eqgjeq
-    obofoundry: BILA
+    obofoundry: bila
   name: Bilateria anatomy
   preferred_prefix: BILA
   uri_format: http://purl.obolibrary.org/obo/BILA_$1
@@ -1930,7 +1938,7 @@ biomodels.kisao:
     fairsharing: FAIRsharing.jcg19w
     miriam: biomodels.kisao
     n2t: biomodels.kisao
-    obofoundry: KISAO
+    obofoundry: kisao
     ols: kisao
     ontobee: KISAO
     prefixcommons: kisao
@@ -2428,7 +2436,7 @@ bootstrep:
   homepage: http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html
   mappings:
     biocontext: BOOTSTREP
-    obofoundry: BOOTSTREP
+    obofoundry: bootstrep
   name: Gene Regulation Ontology
   preferred_prefix: BOOTSTREP
   uri_format: http://purl.obolibrary.org/obo/BOOTSTREP_$1
@@ -2556,7 +2564,7 @@ bspo:
     biocontext: BSPO
     bioportal: BSPO
     fairsharing: FAIRsharing.newa3z
-    obofoundry: BSPO
+    obofoundry: bspo
     ols: bspo
     ontobee: BSPO
   name: Biological Spatial Ontology
@@ -2591,7 +2599,7 @@ bto:
     go: BTO
     miriam: bto
     n2t: bto
-    obofoundry: BTO
+    obofoundry: bto
     ols: bto
     ontobee: BTO
     prefixcommons: bto
@@ -2766,7 +2774,6 @@ caro:
   appears_in:
   - aism
   - colao
-  - ehdaa2
   - lepao
   - pco
   contact:
@@ -2785,7 +2792,7 @@ caro:
     bioportal: CARO
     fairsharing: FAIRsharing.3kcgmr
     go: CARO
-    obofoundry: CARO
+    obofoundry: caro
     ols: caro
     ontobee: CARO
   name: Common Anatomy Reference Ontology
@@ -3077,7 +3084,7 @@ cdao:
     biocontext: CDAO
     bioportal: CDAO
     fairsharing: FAIRsharing.kay31r
-    obofoundry: CDAO
+    obofoundry: cdao
     ols: cdao
     ontobee: CDAO
   name: Comparative Data Analysis Ontology
@@ -3127,7 +3134,7 @@ cdno:
   mappings:
     aberowl: CDNO
     bioportal: CDNO
-    obofoundry: CDNO
+    obofoundry: cdno
     ols: cdno
     ontobee: CDNO
   name: Compositional Dietary Nutrition Ontology
@@ -3295,7 +3302,7 @@ ceph:
     biocontext: CEPH
     bioportal: CEPH
     fairsharing: FAIRsharing.p58bm4
-    obofoundry: CEPH
+    obofoundry: ceph
     ols: ceph
     ontobee: CEPH
   name: Cephalopod Ontology
@@ -3429,7 +3436,7 @@ chebi:
     go: CHEBI
     miriam: chebi
     n2t: chebi
-    obofoundry: CHEBI
+    obofoundry: chebi
     ols: chebi
     ontobee: CHEBI
     prefixcommons: chebi
@@ -3601,7 +3608,7 @@ cheminf:
     biocontext: CHEMINF
     bioportal: CHEMINF
     fairsharing: FAIRsharing.sjhvyy
-    obofoundry: CHEMINF
+    obofoundry: cheminf
     ols: cheminf
     ontobee: CHEMINF
   name: Chemical Information Ontology
@@ -3677,7 +3684,7 @@ chiro:
   mappings:
     aberowl: CHIRO
     bioportal: CHIRO
-    obofoundry: CHIRO
+    obofoundry: chiro
     ols: chiro
     ontobee: CHIRO
   name: ChEBI Integrated Role Ontology
@@ -3711,7 +3718,7 @@ chmo:
     biocontext: CHMO
     bioportal: CHMO
     fairsharing: FAIRsharing.9j4wh2
-    obofoundry: CHMO
+    obofoundry: chmo
     ols: chmo
     ontobee: CHMO
   name: Chemical Methods Ontology
@@ -3739,7 +3746,7 @@ cido:
     aberowl: CIDO
     bioportal: CIDO
     fairsharing: FAIRsharing.aVmpKl
-    obofoundry: CIDO
+    obofoundry: cido
     ols: cido
     ontobee: CIDO
   name: Coronavirus Infectious Disease Ontology
@@ -3765,7 +3772,7 @@ cio:
     biocontext: CIO
     bioportal: CIO
     fairsharing: FAIRsharing.e3t0yw
-    obofoundry: CIO
+    obofoundry: cio
     ols: cio
     ontobee: CIO
   name: Confidence Information Ontology
@@ -3854,7 +3861,6 @@ cl:
   appears_in:
   - clo
   - ecao
-  - ehdaa2
   - go
   - mco
   - pcl
@@ -3893,7 +3899,7 @@ cl:
     go: CL
     miriam: cl
     n2t: cl
-    obofoundry: CL
+    obofoundry: cl
     ols: cl
     ontobee: CL
     prefixcommons: cl
@@ -3923,7 +3929,7 @@ clao:
   mappings:
     aberowl: CLAO
     bioportal: CLAO
-    obofoundry: CLAO
+    obofoundry: clao
     ols: clao
     ontobee: CLAO
   name: Collembola Anatomy Ontology
@@ -4101,7 +4107,7 @@ clo:
     bioportal: CLO
     cellosaurus: CLO
     fairsharing: FAIRsharing.4dvtcz
-    obofoundry: CLO
+    obofoundry: clo
     ols: clo
     ontobee: CLO
     prefixcommons: clo
@@ -4143,7 +4149,7 @@ clyh:
   mappings:
     aberowl: CLYH
     bioportal: CLYH
-    obofoundry: CLYH
+    obofoundry: clyh
     ols: clyh
     ontobee: CLYH
   name: Clytia hemisphaerica Development and Anatomy Ontology
@@ -4182,7 +4188,7 @@ cmf:
   mappings:
     aberowl: CMF
     biocontext: CMF
-    obofoundry: CMF
+    obofoundry: cmf
     ontobee: CMF
   name: CranioMaxilloFacial ontology
   preferred_prefix: CMF
@@ -4207,7 +4213,7 @@ cmo:
     biocontext: CMO
     bioportal: CMO
     fairsharing: FAIRsharing.dq78pn
-    obofoundry: CMO
+    obofoundry: cmo
     ols: cmo
     ontobee: CMO
   name: Clinical measurement ontology
@@ -4727,7 +4733,7 @@ cob:
   mappings:
     aberowl: COB
     bioportal: COB
-    obofoundry: COB
+    obofoundry: cob
     ols: cob
     ontobee: COB
   name: Core Ontology for Biology and Biomedicine
@@ -4906,7 +4912,7 @@ colao:
   mappings:
     aberowl: COLAO
     bioportal: COLAO
-    obofoundry: COLAO
+    obofoundry: colao
     ols: colao
     ontobee: COLAO
   name: Coleoptera Anatomy Ontology
@@ -5236,14 +5242,15 @@ cpga:
     name: Plant Ontology Administrators
     orcid: null
   deprecated: true
+  description: A structured controlled vocabulary for the anatomy of Graminae. Please
+    note that this ontology has now been superseded by the Plant Ontology.
   homepage: http://www.gramene.org/plant_ontology/
   mappings:
     biocontext: gro.cpga
     bioportal: GRO-CPGA
-    obofoundry: GRO
+    obofoundry: gro
   name: Cereal Plant Gross Anatomy
   preferred_prefix: GRO
-  uri_format: http://purl.obolibrary.org/obo/GRO_$1
 cpt:
   contributor:
     email: null
@@ -5325,7 +5332,7 @@ cro:
     aberowl: CRO
     biocontext: CRO
     bioportal: CRO
-    obofoundry: CRO
+    obofoundry: cro
     ols: cro
     ontobee: CRO
   name: Contributor Role Ontology
@@ -5524,7 +5531,7 @@ cteno:
     biocontext: CTENO
     bioportal: CTENO
     fairsharing: FAIRsharing.mgxgza
-    obofoundry: CTENO
+    obofoundry: cteno
     ols: cteno
     ontobee: CTENO
   name: Ctenophore Ontology
@@ -5552,7 +5559,7 @@ cto:
     aberowl: CTO
     bioportal: CTO
     fairsharing: FAIRsharing.qp211a
-    obofoundry: CTO
+    obofoundry: cto
     ols: cto
     ontobee: CTO
   name: Clinical Trials Ontology
@@ -5595,7 +5602,7 @@ cvdo:
     biocontext: CVDO
     bioportal: CVDO
     fairsharing: FAIRsharing.2basyz
-    obofoundry: CVDO
+    obofoundry: cvdo
     ols: cvdo
     ontobee: CVDO
   name: Cardiovascular Disease Ontology
@@ -5995,7 +6002,7 @@ dc_cl:
   homepage: http://www.dukeontologygroup.org/Projects.html
   mappings:
     biocontext: DC_CL
-    obofoundry: DC_CL
+    obofoundry: dc_cl
   name: Dendritic cell
   pattern: ^\d{7}$
   preferred_prefix: DC_CL
@@ -6063,7 +6070,7 @@ ddanat:
     bioportal: DDANAT
     fairsharing: FAIRsharing.z656ab
     go: DDANAT
-    obofoundry: DDANAT
+    obofoundry: ddanat
     ols: ddanat
     ontobee: DDANAT
     prefixcommons: ddanat
@@ -6091,7 +6098,7 @@ ddpheno:
     biocontext: DDPHENO
     bioportal: DDPHENO
     fairsharing: FAIRsharing.9c1p18
-    obofoundry: DDPHENO
+    obofoundry: ddpheno
     ols: ddpheno
     ontobee: DDPHENO
   name: Dictyostelium discoideum phenotype ontology
@@ -6435,7 +6442,7 @@ dideo:
     biocontext: DIDEO
     bioportal: DIDEO
     fairsharing: FAIRsharing.9y8f0n
-    obofoundry: DIDEO
+    obofoundry: dideo
     ols: dideo
     ontobee: DIDEO
   name: Drug-drug Interaction and Drug-drug Interaction Evidence Ontology
@@ -6459,7 +6466,7 @@ dinto:
     aberowl: DINTO
     biocontext: DINTO
     bioportal: DINTO
-    obofoundry: DINTO
+    obofoundry: dinto
     ontobee: DINTO
   name: The Drug-Drug Interactions Ontology
   preferred_prefix: DINTO
@@ -6507,7 +6514,7 @@ disdriv:
   mappings:
     aberowl: DISDRIV
     bioportal: DISDRIV
-    obofoundry: DISDRIV
+    obofoundry: disdriv
     ols: disdriv
   name: Disease Drivers Ontology
   pattern: ^\d+$
@@ -6710,7 +6717,7 @@ doid:
     fairsharing: FAIRsharing.8b6wfq
     miriam: doid
     n2t: doid
-    obofoundry: DOID
+    obofoundry: doid
     ols: doid
     ontobee: DOID
     prefixcommons: do
@@ -6811,7 +6818,7 @@ dpo:
   mappings:
     aberowl: DPO
     bioportal: DPO
-    obofoundry: FBcv
+    obofoundry: dpo
     ols: dpo
     ontobee: DPO
   name: Drosophila Phenotype Ontology
@@ -6923,7 +6930,7 @@ dron:
     biocontext: DRON
     bioportal: DRON
     fairsharing: FAIRsharing.w5ntfd
-    obofoundry: DRON
+    obofoundry: dron
     ols: dron
     ontobee: DRON
   name: The Drug Ontology
@@ -7086,7 +7093,7 @@ duo:
     biocontext: DUO
     bioportal: DUO
     fairsharing: FAIRsharing.5dnjs2
-    obofoundry: DUO
+    obofoundry: duo
     ols: duo
     ontobee: DUO
   name: Data Use Ontology
@@ -7176,7 +7183,7 @@ ecao:
   mappings:
     aberowl: ECAO
     bioportal: ECAO
-    obofoundry: ECAO
+    obofoundry: ecao
     ols: ecao
     ontobee: ECAO
   name: The Echinoderm Anatomy and Development Ontology
@@ -7319,7 +7326,7 @@ eco:
     go: ECO
     miriam: eco
     n2t: eco
-    obofoundry: ECO
+    obofoundry: eco
     ols: eco
     ontobee: ECO
     prefixcommons: eco
@@ -7358,7 +7365,7 @@ ecocore:
     aberowl: ECOCORE
     biocontext: ECOCORE
     bioportal: ECOCORE
-    obofoundry: ECOCORE
+    obofoundry: ecocore
     ols: ecocore
     ontobee: ECOCORE
   name: An ontology of core ecological entities
@@ -7466,7 +7473,7 @@ ecto:
     aberowl: ECTO
     biolink: ECTO
     bioportal: ECTO
-    obofoundry: ECTO
+    obofoundry: ecto
     ols: ecto
     ontobee: ECTO
   name: Environmental conditions, treatments and exposures ontology
@@ -7826,7 +7833,7 @@ ehda:
     aberowl: EHDA
     biocontext: EHDA
     bioportal: EHDA
-    obofoundry: EHDA
+    obofoundry: ehda
     prefixcommons: ehda
   name: Human developmental anatomy, timed version
   pattern: ^\d+$
@@ -7845,7 +7852,7 @@ ehdaa:
     aberowl: EHDAA
     biocontext: EHDAA
     bioportal: EHDAA
-    obofoundry: EHDAA
+    obofoundry: ehdaa
     prefixcommons: ehdaa
   name: Human developmental anatomy, abstract version
   pattern: ^\d+$
@@ -7874,7 +7881,7 @@ ehdaa2:
     biocontext: EHDAA2
     bioportal: EHDAA2
     fairsharing: FAIRsharing.7zxrs6
-    obofoundry: EHDAA2
+    obofoundry: ehdaa2
     ols: ehdaa2
     ontobee: EHDAA2
   name: Human developmental anatomy, abstract
@@ -7918,7 +7925,7 @@ emap:
   mappings:
     biocontext: EMAP
     bioportal: EMAP
-    obofoundry: EMAP
+    obofoundry: emap
   name: Mouse gross anatomy and development, timed
   pattern: ^\d+$
   preferred_prefix: EMAP
@@ -7942,7 +7949,7 @@ emapa:
     bioportal: EMAPA
     fairsharing: FAIRsharing.j0fa1d
     go: EMAPA
-    obofoundry: EMAPA
+    obofoundry: emapa
     ols: emapa
     ontobee: EMAPA
   name: Mouse Developmental Anatomy Ontology
@@ -8281,7 +8288,7 @@ envo:
     fairsharing: FAIRsharing.azqskx
     miriam: envo
     n2t: envo
-    obofoundry: ENVO
+    obofoundry: envo
     ols: envo
     ontobee: ENVO
   name: Environment Ontology
@@ -8334,7 +8341,7 @@ eo:
     biocontext: EO
     miriam: eo
     n2t: eo
-    obofoundry: EO
+    obofoundry: eo
     prefixcommons: eo
   name: Plant Environment Ontology
   namespace_in_lui: true
@@ -8434,7 +8441,7 @@ epio:
   mappings:
     aberowl: EPIO
     bioportal: EPIO
-    obofoundry: EPIO
+    obofoundry: epio
     ontobee: EPIO
   name: Epilepsy Ontology
   pattern: ^\d{7}$
@@ -8451,7 +8458,7 @@ epo:
     aberowl: EPO
     biocontext: EPO
     bioportal: EPO
-    obofoundry: EPO
+    obofoundry: epo
     ontobee: EPO
   name: Epidemiology Ontology
   preferred_prefix: EPO
@@ -8502,7 +8509,7 @@ ero:
     biocontext: ERO
     bioportal: ERO
     fairsharing: FAIRsharing.nwgynk
-    obofoundry: ERO
+    obofoundry: ero
     ols: ero
     ontobee: ERO
   name: eagle-i resource ontology
@@ -8602,7 +8609,7 @@ eupath:
     biocontext: EUPATH
     bioportal: EUPATH
     fairsharing: FAIRsharing.9rhr9j
-    obofoundry: EUPATH
+    obofoundry: eupath
     ols: eupath
     ontobee: EUPATH
   name: VEuPathDB ontology
@@ -8637,7 +8644,7 @@ ev:
   homepage: http://www.evocontology.org/
   mappings:
     biocontext: EV
-    obofoundry: EV
+    obofoundry: ev
   name: eVOC (Expressed Sequence Annotation for Humans)
   preferred_prefix: EV
   references:
@@ -8731,7 +8738,7 @@ exo:
     biolink: ExO
     bioportal: EXO
     fairsharing: FAIRsharing.6hna78
-    obofoundry: ExO
+    obofoundry: exo
     ols: exo
     ontobee: ExO
   name: Exposure ontology
@@ -8839,7 +8846,7 @@ fao:
     biocontext: FAO
     bioportal: FAO
     fairsharing: FAIRsharing.xs6t67
-    obofoundry: FAO
+    obofoundry: fao
     ols: fao
     ontobee: FAO
     prefixcommons: fao
@@ -8867,7 +8874,7 @@ fbbi:
     biocontext: FBbi
     bioportal: FBbi
     fairsharing: FAIRsharing.ny3z9j
-    obofoundry: FBbi
+    obofoundry: fbbi
     ols: fbbi
     ontobee: FBBI
     prefixcommons: fbbi
@@ -8898,7 +8905,7 @@ fbbt:
     bioportal: FB-BT
     fairsharing: FAIRsharing.y2qkst
     go: FBbt
-    obofoundry: FBbt
+    obofoundry: fbbt
     ols: fbbt
     ontobee: FBBT
     prefixcommons: fbbt
@@ -8933,7 +8940,7 @@ fbcv:
     biocontext: FBcv
     bioportal: FB-CV
     fairsharing: FAIRsharing.6tgyxf
-    obofoundry: FBcv
+    obofoundry: fbcv
     ols: fbcv
     ontobee: FBCV
     prefixcommons: fbcv
@@ -8964,7 +8971,7 @@ fbdv:
     biocontext: FBdv
     bioportal: FB-DV
     fairsharing: FAIRsharing.p52pzj
-    obofoundry: FBdv
+    obofoundry: fbdv
     ols: fbdv
     ontobee: FBdv
     prefixcommons: fbdv
@@ -9036,7 +9043,7 @@ fbsp:
     aberowl: FB-SP
     biocontext: FBSP
     bioportal: FB-SP
-    obofoundry: FBSP
+    obofoundry: fbsp
   name: Fly taxonomy
   part_of: flybase
   pattern: ^\d{8}$
@@ -9104,7 +9111,7 @@ fideo:
   mappings:
     aberowl: FIDEO
     bioportal: FIDEO
-    obofoundry: FIDEO
+    obofoundry: fideo
     ols: fideo
     ontobee: FIDEO
   name: Food Interactions with Drugs Evidence Ontology
@@ -9159,7 +9166,7 @@ fix:
     biocontext: FIX
     bioportal: FIX
     fairsharing: FAIRsharing.wwy1ns
-    obofoundry: FIX
+    obofoundry: fix
     ols: fix
     ontobee: FIX
     prefixcommons: fix
@@ -9186,7 +9193,7 @@ flopo:
     biocontext: FLOPO
     bioportal: FLOPO
     fairsharing: FAIRsharing.ny9vnm
-    obofoundry: FLOPO
+    obofoundry: flopo
     ols: flopo
     ontobee: FLOPO
   name: Flora Phenotype Ontology
@@ -9224,7 +9231,7 @@ flu:
     aberowl: FLU
     biocontext: FLU
     bioportal: FLU
-    obofoundry: FLU
+    obofoundry: flu
   name: Influenza Ontology
   pattern: ^\d{7}$
   preferred_prefix: FLU
@@ -9303,7 +9310,7 @@ fma:
     go: FMA
     miriam: fma
     n2t: fma
-    obofoundry: FMA
+    obofoundry: fma
     ols: fma
     ontobee: FMA
     prefixcommons: fma
@@ -9355,7 +9362,7 @@ fobi:
     aberowl: FOBI
     agroportal: FOBI
     bioportal: FOBI
-    obofoundry: FOBI
+    obofoundry: fobi
     ols: fobi
     ontobee: FOBI
   name: Food-Biomarker Ontology
@@ -9415,7 +9422,6 @@ foodon:
   - bfo
   - chebi
   - envo
-  - eo
   - ncbitaxon
   - obi
   - ro
@@ -9437,7 +9443,7 @@ foodon:
     fairsharing: FAIRsharing.dzxae
     miriam: foodon
     n2t: foodon
-    obofoundry: FOODON
+    obofoundry: foodon
     ols: foodon
     ontobee: FOODON
   name: The Food Ontology
@@ -9514,7 +9520,7 @@ fovt:
   mappings:
     aberowl: FOVT
     bioportal: FOVT
-    obofoundry: FOVT
+    obofoundry: fovt
     ols: fovt
     ontobee: FOVT
   name: FuTRES Ontology of Vertebrate Traits
@@ -9814,7 +9820,7 @@ fypo:
     bioportal: FYPO
     fairsharing: FAIRsharing.4vr0ys
     go: FYPO
-    obofoundry: FYPO
+    obofoundry: fypo
     ols: fypo
     ontobee: FYPO
   name: Fission Yeast Phenotype Ontology
@@ -9911,7 +9917,7 @@ gaz:
     biocontext: GAZ
     bioportal: GAZ
     fairsharing: FAIRsharing.wkdjpb
-    obofoundry: GAZ
+    obofoundry: gaz
     ols: gaz
     ontobee: GAZ
     wikidata: P6778
@@ -10010,7 +10016,7 @@ gecko:
     aberowl: GECKO
     bioportal: GECKO
     fairsharing: FAIRsharing.3da56b
-    obofoundry: GECKO
+    obofoundry: gecko
     ols: gecko
     ontobee: GECKO
   name: Genomics Cohorts Knowledge Ontology
@@ -10148,7 +10154,7 @@ genepio:
     aberowl: GENEPIO
     biocontext: GENEPIO
     fairsharing: FAIRsharing.y1mmbv
-    obofoundry: GENEPIO
+    obofoundry: genepio
     ols: genepio
     ontobee: GENEPIO
   name: Genomic Epidemiology Ontology
@@ -10216,7 +10222,7 @@ geno:
     biocontext: GENO
     bioportal: GENO
     fairsharing: FAIRsharing.kpbna7
-    obofoundry: GENO
+    obofoundry: geno
     ols: geno
     ontobee: GENO
   name: Genotype Ontology
@@ -10278,9 +10284,9 @@ geogeo:
   banana_peel: _
   contact:
     email: hoganwr@gmail.com
-    github: null
+    github: hoganwr
     name: Bill Hogan
-    orcid: null
+    orcid: 0000-0002-9881-1017
   description: An ontology and inventory of geopolitical entities such as nations
     and their components (states, provinces, districts, counties) and the actual physical
     territories over which they have jurisdiction.  We thus distinguish and assign
@@ -10294,7 +10300,7 @@ geogeo:
     biocontext: GEO
     bioportal: GEO
     miriam: geogeo
-    obofoundry: GEO
+    obofoundry: geo
     ols: geo
     ontobee: GEO
   name: Geographical Entity Ontology
@@ -10673,7 +10679,7 @@ gno:
   mappings:
     aberowl: GNO
     bioportal: GNO
-    obofoundry: GNO
+    obofoundry: gno
     ols: gno
     ontobee: GNO
   name: Glycan Naming and Subsumption Ontology
@@ -10744,7 +10750,7 @@ go:
     miriam: go
     n2t: go
     ncbi: GO
-    obofoundry: GO
+    obofoundry: go
     ols: go
     ontobee: GO
     prefixcommons: go
@@ -11287,7 +11293,7 @@ gsso:
     aberowl: GSSO
     bioportal: GSSO
     miriam: gsso
-    obofoundry: GSSO
+    obofoundry: gsso
     ols: gsso
     ontobee: GSSO
   name: Gender, Sex, and Sexual Orientation Ontology
@@ -11457,7 +11463,7 @@ habronattus:
   homepage: http://www.mesquiteproject.org/ontology/Habronattus/index.html
   mappings:
     biocontext: HABRONATTUS
-    obofoundry: HABRONATTUS
+    obofoundry: habronattus
   name: Habronattus courtship
   preferred_prefix: HABRONATTUS
   uri_format: http://purl.obolibrary.org/obo/HABRONATTUS_$1
@@ -11497,7 +11503,7 @@ hancestro:
     biolink: HANCESTRO
     bioportal: HANCESTRO
     fairsharing: FAIRsharing.rja8qp
-    obofoundry: HANCESTRO
+    obofoundry: hancestro
     ols: hancestro
     ontobee: HANCESTRO
   name: Human Ancestry Ontology
@@ -11524,7 +11530,7 @@ hao:
     biocontext: HAO
     bioportal: HAO
     fairsharing: FAIRsharing.kj3m5n
-    obofoundry: HAO
+    obofoundry: hao
     ols: hao
     ontobee: HAO
   name: Hymenoptera Anatomy Ontology
@@ -11898,7 +11904,7 @@ hom:
     biocontext: HOM
     bioportal: HOM
     fairsharing: FAIRsharing.efv7gw
-    obofoundry: HOM
+    obofoundry: hom
     ols: hom
     ontobee: HOM
   name: Homology Ontology
@@ -12014,7 +12020,7 @@ hp:
     fairsharing: FAIRsharing.kbtt7f
     miriam: hp
     n2t: hp
-    obofoundry: HP
+    obofoundry: hp
     ols: hp
     ontobee: HP
     wikidata: P3841
@@ -12153,7 +12159,7 @@ hsapdv:
     biolink: HsapDv
     bioportal: HSAPDV
     fairsharing: FAIRsharing.c6vhm3
-    obofoundry: HsapDv
+    obofoundry: hsapdv
     ols: hsapdv
     ontobee: HSAPDV
   name: Human Developmental Stages
@@ -12200,7 +12206,7 @@ hso:
   mappings:
     aberowl: HSO
     bioportal: HSO
-    obofoundry: HSO
+    obofoundry: hso
     ols: hso
     ontobee: HSO
   name: Health Surveillance Ontology
@@ -12247,7 +12253,7 @@ htn:
   mappings:
     aberowl: HTN
     bioportal: HTN
-    obofoundry: HTN
+    obofoundry: htn
     ols: htn
     ontobee: HTN
   name: Hypertension Ontology
@@ -12306,7 +12312,7 @@ iao:
     go: IAO
     miriam: iao
     n2t: iao
-    obofoundry: IAO
+    obofoundry: iao
     ols: iao
     ontobee: IAO
   name: Information Artifact Ontology
@@ -12515,7 +12521,7 @@ iceo:
   mappings:
     aberowl: ICEO
     bioportal: ICEO
-    obofoundry: ICEO
+    obofoundry: iceo
     ols: iceo
     ontobee: ICEO
   name: Integrative and Conjugative Element Ontology
@@ -12569,7 +12575,7 @@ ico:
     biocontext: ICO
     bioportal: ICO
     fairsharing: FAIRsharing.b9znd5
-    obofoundry: ICO
+    obofoundry: ico
     ols: ico
     ontobee: ICO
   name: Informed Consent Ontology
@@ -12616,7 +12622,7 @@ ido:
     fairsharing: FAIRsharing.aae3v6
     miriam: ido
     n2t: ido
-    obofoundry: IDO
+    obofoundry: ido
     ols: ido
     ontobee: IDO
   name: Infectious Disease Ontology
@@ -12684,7 +12690,7 @@ idomal:
     biocontext: IDOMAL
     bioportal: IDOMAL
     fairsharing: FAIRsharing.2q8c28
-    obofoundry: IDOMAL
+    obofoundry: idomal
     ols: idomal
     ontobee: IDOMAL
   name: Malaria Ontology
@@ -12774,7 +12780,7 @@ iev:
   homepage: http://www.inoh.org
   mappings:
     biocontext: IEV
-    obofoundry: IEV
+    obofoundry: iev
     prefixcommons: iev
   name: Event (INOH pathway ontology)
   pattern: ^\d{7}$
@@ -12991,7 +12997,7 @@ imr:
   homepage: http://www.inoh.org
   mappings:
     biocontext: IMR
-    obofoundry: IMR
+    obofoundry: imr
     prefixcommons: imr
   name: Molecule role (INOH Protein name/family name ontology)
   pattern: ^\d{7}$
@@ -13119,7 +13125,7 @@ ino:
     biolink: INO
     bioportal: INO
     fairsharing: FAIRsharing.mm72as
-    obofoundry: INO
+    obofoundry: ino
     ols: ino
     ontobee: INO
   name: Interaction Network Ontology
@@ -13330,7 +13336,7 @@ interpro:
     miriam: interpro
     n2t: interpro
     ncbi: InterPro
-    obofoundry: IPR
+    obofoundry: ipr
     prefixcommons: interpro
     uniprot: InterPro
     wikidata: P2926
@@ -14110,7 +14116,6 @@ labo:
   - iao
   - obi
   - ogms
-  - omiabis
   - omrse
   - opmi
   description: LABO is an ontology of informational entities formalizing clinical
@@ -14122,7 +14127,7 @@ labo:
   mappings:
     aberowl: LABO
     bioportal: LABO
-    obofoundry: LABO
+    obofoundry: labo
     ols: labo
     ontobee: LABO
   name: clinical LABoratory Ontology
@@ -14193,7 +14198,7 @@ lepao:
   mappings:
     aberowl: LEPAO
     bioportal: LEPAO
-    obofoundry: LEPAO
+    obofoundry: lepao
     ols: lepao
   name: Lepidoptera Anatomy Ontology
   pattern: ^\d{7}$
@@ -14481,7 +14486,7 @@ lipro:
     aberowl: LIPRO
     biocontext: LIPRO
     bioportal: LIPRO
-    obofoundry: LIPRO
+    obofoundry: lipro
   name: Lipid Ontology
   preferred_prefix: LIPRO
   uri_format: http://purl.obolibrary.org/obo/LIPRO_$1
@@ -14508,7 +14513,7 @@ loggerhead:
   homepage: http://www.mesquiteproject.org/ontology/Loggerhead/index.html
   mappings:
     biocontext: LOGGERHEAD
-    obofoundry: LOGGERHEAD
+    obofoundry: loggerhead
   name: Loggerhead nesting
   preferred_prefix: LOGGERHEAD
   uri_format: http://purl.obolibrary.org/obo/LOGGERHEAD_$1
@@ -14685,7 +14690,7 @@ ma:
     go: MA
     miriam: ma
     n2t: ma
-    obofoundry: MA
+    obofoundry: ma
     ols: ma
     ontobee: MA
     prefixcommons: ma
@@ -14753,7 +14758,7 @@ mamo:
     fairsharing: FAIRsharing.kbz5jh
     miriam: mamo
     n2t: mamo
-    obofoundry: MAMO
+    obofoundry: mamo
     ols: mamo
     ontobee: MAMO
   name: Mathematical modeling ontology
@@ -14772,7 +14777,7 @@ mao:
   homepage: http://www-igbmc.u-strasbg.fr/BioInfo/MAO/mao.html
   mappings:
     biocontext: MAO
-    obofoundry: MAO
+    obofoundry: mao
     prefixcommons: mao
   name: Multiple alignment
   preferred_prefix: MAO
@@ -14834,7 +14839,7 @@ mat:
     aberowl: MAT
     biocontext: MAT
     bioportal: MAT
-    obofoundry: MAT
+    obofoundry: mat
   name: Minimal Anatomical Terminology
   pattern: ^\d{7}$
   preferred_prefix: MAT
@@ -14899,7 +14904,7 @@ maxo:
     aberowl: MAXO
     biolink: MAXO
     bioportal: MAXO
-    obofoundry: MAXO
+    obofoundry: maxo
     ols: maxo
     ontobee: MAXO
   name: Medical Action Ontology
@@ -14958,7 +14963,7 @@ mco:
   mappings:
     aberowl: MCO
     bioportal: MCO
-    obofoundry: MCO
+    obofoundry: mco
     ols: mco
     ontobee: MCO
   name: Microbial Conditions Ontology
@@ -15357,7 +15362,7 @@ mf:
     biocontext: MF
     bioportal: MF
     fairsharing: FAIRsharing.4gm9gt
-    obofoundry: MF
+    obofoundry: mf
     ols: mf
     ontobee: MF
   name: Mental Functioning Ontology
@@ -15386,7 +15391,7 @@ mfmo:
     biocontext: MFMO
     bioportal: MFMO
     fairsharing: FAIRsharing.669cnk
-    obofoundry: MFMO
+    obofoundry: mfmo
     ols: mfmo
     ontobee: MFMO
   name: Mammalian Feeding Muscle Ontology
@@ -15410,7 +15415,7 @@ mfo:
     aberowl: MFO
     biocontext: MFO
     bioportal: MFO
-    obofoundry: MFO
+    obofoundry: mfo
     prefixcommons: mfo
   name: Medaka fish anatomy and development
   preferred_prefix: MFO
@@ -15432,7 +15437,7 @@ mfoem:
     biocontext: MFOEM
     bioportal: MFOEM
     fairsharing: FAIRsharing.dx30m8
-    obofoundry: MFOEM
+    obofoundry: mfoem
     ols: mfoem
     ontobee: MFOEM
   name: Emotion Ontology
@@ -15459,7 +15464,7 @@ mfomd:
     biocontext: MFOMD
     bioportal: MFOMD
     fairsharing: FAIRsharing.q053vb
-    obofoundry: MFOMD
+    obofoundry: mfomd
     ols: mfomd
     ontobee: MFOMD
   name: Mental Disease Ontology
@@ -15590,7 +15595,7 @@ mi:
     go: PSI-MI
     miriam: mi
     n2t: psimi
-    obofoundry: MI
+    obofoundry: mi
     ols: mi
     ontobee: MI
     prefixcommons: psi.mi
@@ -15643,7 +15648,7 @@ miapa:
     biocontext: MIAPA
     bioportal: MIAPA
     fairsharing: FAIRsharing.ca48xs
-    obofoundry: MIAPA
+    obofoundry: miapa
     ols: miapa
     ontobee: MIAPA
   name: Minimum Anformation About a Phylogenetic Analysis Ontology
@@ -15669,7 +15674,7 @@ micro:
     aberowl: MICRO
     biocontext: MICRO
     fairsharing: FAIRsharing.brhpb0
-    obofoundry: MICRO
+    obofoundry: micro
     ols: micro
     ontobee: MicrO
   name: Ontology of Prokaryotic Phenotypic and Metabolic Characters
@@ -15962,7 +15967,7 @@ mirnao:
     aberowl: MIRNAO
     biocontext: MIRNAO
     bioportal: MIRNAO
-    obofoundry: MIRNAO
+    obofoundry: mirnao
     ontobee: miRNAO
   name: microRNA Ontology
   preferred_prefix: MIRNAO
@@ -16000,7 +16005,7 @@ miro:
     biocontext: MIRO
     bioportal: MIRO
     fairsharing: FAIRsharing.sjf113
-    obofoundry: MIRO
+    obofoundry: miro
     ols: miro
     ontobee: MIRO
   name: Mosquito insecticide resistance
@@ -16101,7 +16106,7 @@ mmo:
     biocontext: MMO
     bioportal: MMO
     fairsharing: FAIRsharing.bgkyd7
-    obofoundry: MMO
+    obofoundry: mmo
     ols: mmo
     ontobee: MMO
   name: Measurement method ontology
@@ -16211,7 +16216,7 @@ mmusdv:
     biolink: MmusDv
     bioportal: MMUSDV
     fairsharing: FAIRsharing.zchb68
-    obofoundry: MmusDv
+    obofoundry: mmusdv
     ols: mmusdv
     ontobee: MMUSDV
   name: Mouse Developmental Stages
@@ -16242,7 +16247,7 @@ mo:
     bioportal: MO
     miriam: mo
     n2t: mo
-    obofoundry: MO
+    obofoundry: mo
   name: Microarray experimental conditions
   pattern: ^\w+$
   preferred_prefix: MO
@@ -16291,7 +16296,7 @@ mod:
     go: PSI-MOD
     miriam: mod
     n2t: mod
-    obofoundry: MOD
+    obofoundry: mod
     ols: mod
     ontobee: MOD
     prefixcommons: psi.mod
@@ -16382,7 +16387,7 @@ mondo:
     biocontext: MONDO
     bioportal: MONDO
     fairsharing: FAIRsharing.b2979t
-    obofoundry: MONDO
+    obofoundry: mondo
     ols: mondo
     ontobee: MONDO
     wikidata: P5270
@@ -16411,7 +16416,7 @@ mop:
     biocontext: MOP
     bioportal: MOP
     fairsharing: FAIRsharing.mct09a
-    obofoundry: MOP
+    obofoundry: mop
     ols: mop
     ontobee: MOP
   name: Molecular Process Ontology
@@ -16464,7 +16469,7 @@ mp:
     fairsharing: FAIRsharing.kg1x4z
     miriam: mp
     n2t: mp
-    obofoundry: MP
+    obofoundry: mp
     ols: mp
     ontobee: MP
     prefixcommons: mp
@@ -16492,7 +16497,7 @@ mpath:
     biocontext: MPATH
     bioportal: MPATH
     fairsharing: FAIRsharing.3wbgm0
-    obofoundry: MPATH
+    obofoundry: mpath
     ols: mpath
     ontobee: MPATH
     prefixcommons: mpath
@@ -16545,7 +16550,7 @@ mpio:
     aberowl: MPIO
     biocontext: MPIO
     bioportal: MPIO
-    obofoundry: MPIO
+    obofoundry: mpio
     ols: mpio
     ontobee: MPIO
   name: Minimum PDDI Information Ontology
@@ -16573,7 +16578,7 @@ mro:
     biocontext: MRO
     bioportal: MRO
     fairsharing: FAIRsharing.k893xa
-    obofoundry: MRO
+    obofoundry: mro
     ols: mro
     ontobee: MRO
   name: MHC Restriction Ontology
@@ -16611,7 +16616,7 @@ ms:
     bioportal: MS
     miriam: ms
     n2t: ms
-    obofoundry: MS
+    obofoundry: ms
     ols: ms
     ontobee: MS
   name: Mass spectrometry ontology
@@ -16987,7 +16992,7 @@ nbo:
     biocontext: NBO
     bioportal: NBO
     fairsharing: FAIRsharing.pktgc6
-    obofoundry: NBO
+    obofoundry: nbo
     ols: nbo
     ontobee: NBO
   name: Neuro Behavior Ontology
@@ -17240,7 +17245,7 @@ ncbitaxon:
     miriam: taxonomy
     n2t: taxonomy
     ncbi: taxon
-    obofoundry: NCBITaxon
+    obofoundry: ncbitaxon
     ols: ncbitaxon
     ontobee: NCBITaxon
     prefixcommons: uniprot.taxonomy
@@ -17327,7 +17332,7 @@ ncit:
     fairsharing: FAIRsharing.4cvwxa
     miriam: ncit
     n2t: ncit
-    obofoundry: NCIT
+    obofoundry: ncit
     ols: ncit
     ontobee: NCIT
     prefixcommons: ncit
@@ -17365,7 +17370,7 @@ ncro:
     biocontext: NCRO
     bioportal: NCRO
     fairsharing: FAIRsharing.vppyga
-    obofoundry: NCRO
+    obofoundry: ncro
     ols: ncro
     ontobee: NCRO
   name: Non-Coding RNA Ontology
@@ -17675,7 +17680,7 @@ nif.cell:
     aberowl: NIFCELL
     biocontext: NIF_CELL
     bioportal: NIFCELL
-    obofoundry: NIF_CELL
+    obofoundry: nif_cell
   name: NIF Cell
   part_of: nif
   preferred_prefix: NIF_CELL
@@ -17690,7 +17695,7 @@ nif.dysfunction:
   homepage: http://neuinfo.org/
   mappings:
     biocontext: NIF_DYSFUNCTION
-    obofoundry: NIF_DYSFUNCTION
+    obofoundry: nif_dysfunction
   name: NIF Dysfunction
   part_of: nif
   preferred_prefix: NIF_DYSFUNCTION
@@ -17735,7 +17740,7 @@ nif.grossanatomy:
   homepage: http://neuinfo.org/
   mappings:
     biocontext: NIF_GROSSANATOMY
-    obofoundry: NIF_GROSSANATOMY
+    obofoundry: nif_grossanatomy
   name: NIF Gross Anatomy
   part_of: nif
   preferred_prefix: NIF_GROSSANATOMY
@@ -18240,7 +18245,7 @@ nmr:
     bioportal: NMR
     miriam: nmr
     n2t: nmr
-    obofoundry: NMR
+    obofoundry: nmr
     ols: nmrcv
     prefixcommons: nmr
   name: NMR-instrument specific component of metabolomics investigations
@@ -18299,7 +18304,7 @@ nomen:
   mappings:
     aberowl: NOMEN
     bioportal: NOMEN
-    obofoundry: NOMEN
+    obofoundry: nomen
     ols: nomen
     ontobee: NOMEN
   name: A nomenclatural ontology for biological names
@@ -18484,7 +18489,7 @@ oae:
     biocontext: OAE
     bioportal: OAE
     fairsharing: FAIRsharing.tw4q8x
-    obofoundry: OAE
+    obofoundry: oae
     ols: oae
     ontobee: OAE
   name: Ontology of Adverse Events
@@ -18509,7 +18514,7 @@ oarcs:
     biocontext: OARCS
     bioportal: OARCS
     fairsharing: FAIRsharing.yqn857
-    obofoundry: OARCS
+    obofoundry: oarcs
     ols: oarcs
     ontobee: OARCS
   name: Ontology of Arthropod Circulatory Systems
@@ -18539,7 +18544,7 @@ oba:
     biocontext: OBA
     bioportal: OBA
     fairsharing: FAIRsharing.mp0rwf
-    obofoundry: OBA
+    obofoundry: oba
     ols: oba
     ontobee: OBA
   name: Ontology of Biological Attributes
@@ -18569,7 +18574,7 @@ obcs:
     biocontext: OBCS
     bioportal: OBCS
     fairsharing: FAIRsharing.5p12xh
-    obofoundry: OBCS
+    obofoundry: obcs
     ols: obcs
     ontobee: OBCS
   name: Ontology of Biological and Clinical Statistics
@@ -18616,7 +18621,7 @@ obi:
     go: OBI
     miriam: obi
     n2t: obi
-    obofoundry: OBI
+    obofoundry: obi
     ols: obi
     ontobee: OBI
     prefixcommons: obi
@@ -18650,7 +18655,7 @@ obib:
     biocontext: OBIB
     bioportal: OBIB
     fairsharing: FAIRsharing.bxc508
-    obofoundry: OBIB
+    obofoundry: obib
     ols: obib
     ontobee: OBIB
   name: Ontology for Biobanking
@@ -18828,7 +18833,7 @@ ogg:
     biocontext: OGG
     bioportal: OGG
     fairsharing: FAIRsharing.zmx7nn
-    obofoundry: OGG
+    obofoundry: ogg
     ols: ogg
     ontobee: OGG
   name: The Ontology of Genes and Genomes
@@ -18866,7 +18871,7 @@ ogi:
     aberowl: OGI
     biocontext: OGI
     bioportal: OGI
-    obofoundry: OGI
+    obofoundry: ogi
     ols: ogi
     ontobee: OGI
   name: Ontology for genetic interval
@@ -18911,7 +18916,7 @@ ogms:
     biocontext: OGMS
     bioportal: OGMS
     fairsharing: FAIRsharing.rvz0m9
-    obofoundry: OGMS
+    obofoundry: ogms
     ols: ogms
     ontobee: OGMS
   name: Ontology for General Medical Science
@@ -18939,7 +18944,7 @@ ogsf:
     biocontext: OGSF
     bioportal: OGSF
     fairsharing: FAIRsharing.egv2cz
-    obofoundry: OGSF
+    obofoundry: ogsf
     ols: ogsf
     ontobee: OGSF
   name: Ontology of Genetic Susceptibility Factor
@@ -18965,7 +18970,7 @@ ohd:
     biocontext: OHD
     bioportal: OHD
     fairsharing: FAIRsharing.bg7bb6
-    obofoundry: OHD
+    obofoundry: ohd
     ols: ohd
     ontobee: OHD
   name: Oral Health and Disease Ontology
@@ -18991,7 +18996,7 @@ ohmi:
     biocontext: OHMI
     bioportal: OHMI
     fairsharing: FAIRsharing.cz9cnp
-    obofoundry: OHMI
+    obofoundry: ohmi
     ols: ohmi
     ontobee: OHMI
   name: Ontology of Host-Microbiome Interactions
@@ -19017,7 +19022,7 @@ ohpi:
     aberowl: OHPI
     bioportal: OHPI
     fairsharing: FAIRsharing.vxpUJ6
-    obofoundry: OHPI
+    obofoundry: ohpi
     ols: ohpi
     ontobee: OHPI
   name: Ontology of Host Pathogen Interactions
@@ -19056,7 +19061,7 @@ olatdv:
     biocontext: OLATDV
     bioportal: OLATDV
     fairsharing: FAIRsharing.c86z66
-    obofoundry: OlatDv
+    obofoundry: olatdv
     ols: olatdv
     ontobee: OLATDV
   name: Medaka Developmental Stages
@@ -19176,7 +19181,7 @@ omiabis:
     aberowl: OMIABIS
     biocontext: OMIABIS
     bioportal: OMIABIS
-    obofoundry: OMIABIS
+    obofoundry: omiabis
     ols: omiabis
     ontobee: OMIABIS
   name: Ontologized MIABIS
@@ -19274,7 +19279,7 @@ omit:
     fairsharing: FAIRsharing.mf91p5
     miriam: omit
     n2t: omit
-    obofoundry: OMIT
+    obofoundry: omit
     ols: omit
     ontobee: OMIT
   name: Ontology for MicroRNA Target
@@ -19302,7 +19307,7 @@ omo:
   mappings:
     aberowl: OMO
     bioportal: OMO
-    obofoundry: OMO
+    obofoundry: omo
     ols: omo
     ontobee: OMO
   name: OBO Metadata Ontology
@@ -19348,7 +19353,7 @@ omp:
     biocontext: OMP
     bioportal: OMP
     fairsharing: FAIRsharing.cc3f2x
-    obofoundry: OMP
+    obofoundry: omp
     ols: omp
     ontobee: OMP
   name: Ontology of Microbial Phenotypes
@@ -19378,7 +19383,7 @@ omrse:
     biocontext: OMRSE
     bioportal: OMRSE
     fairsharing: FAIRsharing.z0p37e
-    obofoundry: OMRSE
+    obofoundry: omrse
     ols: omrse
     ontobee: OMRSE
   name: Ontology of Medically Related Social Entities
@@ -19424,7 +19429,7 @@ one:
     aberowl: ONE
     bioportal: ONE
     fairsharing: FAIRsharing.USxx0K
-    obofoundry: ONE
+    obofoundry: one
     ols: one
     ontobee: ONE
   name: Ontology for Nutritional Epidemiology
@@ -19460,7 +19465,7 @@ ons:
     aberowl: ONS
     bioportal: ONS
     fairsharing: FAIRsharing.rfec93
-    obofoundry: ONS
+    obofoundry: ons
     ols: ons
     ontobee: ONS
   name: Ontology for Nutritional Studies
@@ -19508,7 +19513,7 @@ ontoavida:
   mappings:
     aberowl: ONTOAVIDA
     bioportal: ONTOAVIDA
-    obofoundry: ONTOAVIDA
+    obofoundry: ontoavida
     ols: ontoavida
     ontobee: ONTOAVIDA
   name: Ontology for Avida digital evolution platform
@@ -19535,7 +19540,7 @@ ontoneo:
     biocontext: ONTONEO
     bioportal: ONTONEO
     fairsharing: FAIRsharing.5a4y1y
-    obofoundry: ONTONEO
+    obofoundry: ontoneo
     ols: ontoneo
     ontobee: ONTONEO
   name: Obstetric and Neonatal Ontology
@@ -19561,7 +19566,7 @@ oostt:
     biocontext: OOSTT
     bioportal: OOSTT
     fairsharing: FAIRsharing.b4sa0w
-    obofoundry: OOSTT
+    obofoundry: oostt
     ols: oostt
     ontobee: OOSTT
   name: Ontology of Organizational Structures of Trauma centers and Trauma systems
@@ -19638,7 +19643,7 @@ opl:
     biocontext: OPL
     bioportal: OPL
     fairsharing: FAIRsharing.ez2nhb
-    obofoundry: OPL
+    obofoundry: opl
     ols: opl
     ontobee: OPL
   name: Ontology for Parasite LifeCycle
@@ -19682,7 +19687,7 @@ opmi:
   mappings:
     aberowl: OPMI
     bioportal: OPMI
-    obofoundry: OPMI
+    obofoundry: opmi
     ols: opmi
     ontobee: OPMI
   name: Ontology of Precision Medicine and Investigation
@@ -19782,7 +19787,7 @@ ornaseq:
   mappings:
     aberowl: ORNASEQ
     bioportal: ORNASEQ
-    obofoundry: ORNASEQ
+    obofoundry: ornaseq
     ols: ornaseq
     ontobee: ORNASEQ
   name: Ontology of RNA Sequencing
@@ -20042,7 +20047,7 @@ ovae:
     biocontext: OVAE
     bioportal: OVAE
     fairsharing: FAIRsharing.w4x6n4
-    obofoundry: OVAE
+    obofoundry: ovae
     ols: ovae
     ontobee: OVAE
   name: Ontology of Vaccine Adverse Events
@@ -20209,7 +20214,7 @@ pao:
   homepage: http://www.plantontology.org
   mappings:
     biocontext: PAO
-    obofoundry: PAO
+    obofoundry: pao
   name: Plant Anatomy Ontology
   preferred_prefix: PAO
   uri_format: http://purl.obolibrary.org/obo/PAO_$1
@@ -20307,7 +20312,7 @@ pato:
     go: PATO
     miriam: pato
     n2t: pato
-    obofoundry: PATO
+    obofoundry: pato
     ols: pato
     ontobee: PATO
     prefixcommons: pato
@@ -20444,7 +20449,7 @@ pcl:
   mappings:
     aberowl: PCL
     bioportal: PCL
-    obofoundry: PCL
+    obofoundry: pcl
     ols: pcl
     ontobee: PCL
   name: Provisional Cell Ontology
@@ -20489,7 +20494,7 @@ pco:
     bioportal: PCO
     ecoportal: PCO
     fairsharing: FAIRsharing.vq28qp
-    obofoundry: PCO
+    obofoundry: pco
     ols: pco
     ontobee: PCO
   name: Population and Community Ontology
@@ -20508,7 +20513,7 @@ pd_st:
   homepage: http://4dx.embl.de/platy
   mappings:
     biocontext: PD_ST
-    obofoundry: PD_ST
+    obofoundry: pd_st
   name: Platynereis stage ontology
   preferred_prefix: PD_ST
   uri_format: http://purl.obolibrary.org/obo/PD_ST_$1
@@ -20646,7 +20651,7 @@ pdro:
     biocontext: PDRO
     bioportal: PDRO
     fairsharing: FAIRsharing.9te3ev
-    obofoundry: PDRO
+    obofoundry: pdro
     ols: pdro
     ontobee: PDRO
   name: The Prescription of Drugs Ontology
@@ -20672,7 +20677,7 @@ pdumdv:
     biocontext: PDUMDV
     bioportal: PDUMDV
     fairsharing: FAIRsharing.493qns
-    obofoundry: PdumDv
+    obofoundry: pdumdv
     ols: pdumdv
     ontobee: PDUMDV
   name: Platynereis Developmental Stages
@@ -20705,7 +20710,7 @@ peco:
     biocontext: PECO
     bioportal: PECO
     fairsharing: FAIRsharing.6yNXYK
-    obofoundry: PECO
+    obofoundry: peco
     ols: peco
     ontobee: PECO
   name: Plant Experimental Conditions Ontology
@@ -20885,7 +20890,7 @@ pgdso:
   homepage: http://www.plantontology.org
   mappings:
     biocontext: PGDSO
-    obofoundry: PGDSO
+    obofoundry: pgdso
   name: Plant Growth and Development Stage
   preferred_prefix: PGDSO
   uri_format: http://purl.obolibrary.org/obo/PGDSO_$1
@@ -21094,7 +21099,7 @@ phipo:
   mappings:
     aberowl: PHIPO
     bioportal: PHIPO
-    obofoundry: PHIPO
+    obofoundry: phipo
     ols: phipo
     ontobee: PHIPO
   name: Pathogen Host Interaction Phenotype Ontology
@@ -21362,7 +21367,7 @@ plana:
     biocontext: PLANA
     bioportal: PLANA
     fairsharing: FAIRsharing.g1qrqs
-    obofoundry: PLANA
+    obofoundry: plana
     ols: plana
     ontobee: PLANA
   name: Planarian Anatomy and Schmidtea mediterranean Developmental Stage Ontology
@@ -21392,7 +21397,7 @@ planp:
   mappings:
     aberowl: PLANP
     bioportal: PLANP
-    obofoundry: PLANP
+    obofoundry: planp
     ols: planp
     ontobee: PLANP
   name: Planarian Phenotype Ontology
@@ -21454,7 +21459,7 @@ plo:
   homepage: http://www.sanger.ac.uk/Users/mb4/PLO/
   mappings:
     biocontext: PLO
-    obofoundry: PLO
+    obofoundry: plo
   name: Plasmodium Life Cycle
   preferred_prefix: PLO
   uri_format: http://purl.obolibrary.org/obo/PLO_$1
@@ -21597,7 +21602,7 @@ po:
     go: PO
     miriam: po
     n2t: po
-    obofoundry: PO
+    obofoundry: po
     ols: po
     ontobee: PO
     prefixcommons: po
@@ -21685,7 +21690,7 @@ poro:
     biocontext: PORO
     bioportal: PORO
     fairsharing: FAIRsharing.93g1th
-    obofoundry: PORO
+    obofoundry: poro
     ols: poro
     ontobee: PORO
   name: Porifera Ontology
@@ -21728,7 +21733,7 @@ ppo:
     biocontext: PPO
     bioportal: PPO
     fairsharing: FAIRsharing.hakg7c
-    obofoundry: PPO
+    obofoundry: ppo
     ols: ppo
     ontobee: PPO
   name: Plant Phenology Ontology
@@ -21782,7 +21787,7 @@ pr:
     go: PR
     miriam: pr
     n2t: pr
-    obofoundry: PR
+    obofoundry: pr
     ols: pr
     ontobee: PR
     prefixcommons: pr
@@ -21907,20 +21912,23 @@ proco:
   - pato
   - ro
   - sbo
-  description: PROCO covers process chemistry, the chemical field concerned with scaling
-    up laboratory syntheses to commercially viable processes.
+  description: PROCO (PROcess Chemistry Ontology) is a formal ontology that aims to
+    standardly represent entities and relations among entities in the domain of process
+    chemistry.
   download_owl: http://purl.obolibrary.org/obo/proco.owl
   example: '0000001'
   homepage: https://github.com/proco-ontology/PROCO
   license: CC BY 4.0
   mappings:
     aberowl: PROCO
-    obofoundry: PROCO
+    obofoundry: proco
+    ols: proco
     ontobee: PROCO
   name: Process Chemistry Ontology
   preferred_prefix: PROCO
   repository: https://github.com/proco-ontology/PROCO
   uri_format: http://purl.obolibrary.org/obo/PROCO_$1
+  version: PROCO release 20220414
 prodom:
   description: ProDom is a database of protein domain families generated from the
     global comparison of all available protein sequences.
@@ -21966,7 +21974,7 @@ propreo:
     aberowl: PROPREO
     biocontext: PROPREO
     bioportal: PROPREO
-    obofoundry: PROPREO
+    obofoundry: propreo
     prefixcommons: propreo
   name: Proteomics data and process provenance
   preferred_prefix: PROPREO
@@ -22134,7 +22142,7 @@ psdo:
   mappings:
     aberowl: PSDO
     bioportal: PSDO
-    obofoundry: PSDO
+    obofoundry: psdo
     ols: psdo
     ontobee: PSDO
   name: Performance Summary Display Ontology
@@ -22206,7 +22214,7 @@ pso:
     aberowl: PSO
     bioportal: PSO
     fairsharing: FAIRsharing.dyj433
-    obofoundry: PSO
+    obofoundry: pso
     ols: pso
     ontobee: PSO
   name: Plant Stress Ontology
@@ -22459,7 +22467,7 @@ pw:
     fairsharing: FAIRsharing.f73xhd
     miriam: pw
     n2t: pw
-    obofoundry: PW
+    obofoundry: pw
     ols: pw
     ontobee: PW
     prefixcommons: pw
@@ -22629,7 +22637,7 @@ rbo:
   mappings:
     aberowl: RBO
     bioportal: RBO
-    obofoundry: RBO
+    obofoundry: rbo
     ols: rbo
     ontobee: RBO
   name: Radiation Biology Ontology
@@ -22905,7 +22913,7 @@ resid:
     go: RESID
     miriam: resid
     n2t: resid
-    obofoundry: RESID
+    obofoundry: resid
     prefixcommons: resid
   name: Protein covalent bond
   pattern: ^AA\d{4}$
@@ -22937,7 +22945,7 @@ rex:
     biocontext: REX
     bioportal: REX
     fairsharing: FAIRsharing.g0a7s0
-    obofoundry: REX
+    obofoundry: rex
     ols: rex
     ontobee: REX
     prefixcommons: rex
@@ -23238,7 +23246,7 @@ rnao:
     biocontext: RNAO
     bioportal: RNAO
     fairsharing: FAIRsharing.kqt2h2
-    obofoundry: RNAO
+    obofoundry: rnao
     ols: rnao
     ontobee: RNAO
     prefixcommons: rnao
@@ -23280,7 +23288,6 @@ ro:
   - psdo
   - pso
   - rbo
-  - upa
   - xpo
   - zp
   banana: RO
@@ -23308,7 +23315,7 @@ ro:
     go: RO
     miriam: ro
     n2t: ro
-    obofoundry: RO
+    obofoundry: ro
     ols: ro
     ontobee: RO
     prefixcommons: ro
@@ -23382,7 +23389,7 @@ rs:
     biocontext: RS
     bioportal: RS
     fairsharing: FAIRsharing.vajn3f
-    obofoundry: RS
+    obofoundry: rs
     ols: rs
     ontobee: RS
     prefixcommons: rs
@@ -23425,7 +23432,7 @@ rxno:
     biocontext: RXNO
     bioportal: RXNO
     fairsharing: FAIRsharing.w4tncg
-    obofoundry: RXNO
+    obofoundry: rxno
     ols: rxno
     ontobee: RXNO
     wikidata: P2106
@@ -23571,7 +23578,7 @@ sao:
     aberowl: SAO
     biocontext: SAO
     bioportal: SAO
-    obofoundry: SAO
+    obofoundry: sao
     prefixcommons: sao
   name: Subcellular Anatomy Ontology
   pattern: ^\d+$
@@ -23624,7 +23631,7 @@ sbo:
     fairsharing: FAIRsharing.s19src
     miriam: sbo
     n2t: sbo
-    obofoundry: SBO
+    obofoundry: sbo
     ols: sbo
     ontobee: SBO
     prefixcommons: sbo
@@ -23653,13 +23660,11 @@ scdo:
   - envo
   - eupath
   - exo
-  - gaz
   - gsso
   - hp
   - hsapdv
   - ico
   - ido
-  - idomal
   - mp
   - nbo
   - ncit
@@ -23684,7 +23689,7 @@ scdo:
     aberowl: SCDO
     bioportal: SCDO
     fairsharing: FAIRsharing.kkq6pw
-    obofoundry: SCDO
+    obofoundry: scdo
     ols: scdo
     ontobee: SCDO
   name: Sickle Cell Disease Ontology
@@ -23980,7 +23985,7 @@ sep:
     aberowl: SEP
     biocontext: SEP
     bioportal: SEP
-    obofoundry: SEP
+    obofoundry: sep
     ontobee: SEP
     prefixcommons: sep
   name: Sample processing and separation techniques
@@ -24003,7 +24008,7 @@ sepio:
     aberowl: SEPIO
     biocontext: SEPIO
     bioportal: SEPIO
-    obofoundry: SEPIO
+    obofoundry: sepio
     ols: sepio
     ontobee: SEPIO
   name: Scientific Evidence and Provenance Information Ontology
@@ -24129,7 +24134,7 @@ sibo:
     biocontext: SIBO
     bioportal: SIBO
     fairsharing: FAIRsharing.q09hck
-    obofoundry: SIBO
+    obofoundry: sibo
     ols: sibo
     ontobee: SIBO
   name: Social Insect Behavior Ontology
@@ -24519,7 +24524,7 @@ so:
     go: SO
     miriam: so
     n2t: so
-    obofoundry: SO
+    obofoundry: so
     ols: so
     ontobee: SO
     prefixcommons: so
@@ -24543,7 +24548,7 @@ sopharm:
     aberowl: SOPHARM
     biocontext: SOPHARM
     bioportal: SOPHARM
-    obofoundry: SOPHARM
+    obofoundry: sopharm
   name: Suggested Ontology for Pharmacogenomics
   preferred_prefix: SOPHARM
   uri_format: http://purl.obolibrary.org/obo/SOPHARM_$1
@@ -24593,7 +24598,7 @@ spd:
     biocontext: SPD
     bioportal: SPD
     fairsharing: FAIRsharing.yecp83
-    obofoundry: SPD
+    obofoundry: spd
     ols: spd
     ontobee: SPD
     prefixcommons: spd
@@ -24777,7 +24782,7 @@ stato:
     biocontext: STATO
     bioportal: STATO
     fairsharing: FAIRsharing.na5xp
-    obofoundry: STATO
+    obofoundry: stato
     ols: stato
     ontobee: STATO
   name: The Statistical Methods Ontology
@@ -25094,7 +25099,7 @@ swo:
     biocontext: SWO
     bioportal: SWO
     fairsharing: FAIRsharing.sp3szt
-    obofoundry: SWO
+    obofoundry: swo
     ols: swo
     ontobee: SWO
     prefixcommons: swo
@@ -25124,7 +25129,7 @@ symp:
     biocontext: SYMP
     bioportal: SYMP
     fairsharing: FAIRsharing.ay74mj
-    obofoundry: SYMP
+    obofoundry: symp
     ols: symp
     ontobee: SYMP
     wikidata: P8656
@@ -25181,7 +25186,7 @@ tads:
     biocontext: TADS
     bioportal: TADS
     fairsharing: FAIRsharing.8wm364
-    obofoundry: TADS
+    obofoundry: tads
     ols: tads
     ontobee: TADS
   name: Tick Anatomy Ontology
@@ -25199,7 +25204,7 @@ tahe:
   deprecated: true
   mappings:
     biocontext: TAHE
-    obofoundry: TAHE
+    obofoundry: tahe
   name: Terminology of Anatomy of Human Embryology
   preferred_prefix: TAHE
   uri_format: http://purl.obolibrary.org/obo/TAHE_$1
@@ -25212,7 +25217,7 @@ tahh:
   deprecated: true
   mappings:
     biocontext: TAHH
-    obofoundry: TAHH
+    obofoundry: tahh
   name: Terminology of Anatomy of Human Histology
   preferred_prefix: TAHH
   uri_format: http://purl.obolibrary.org/obo/TAHH_$1
@@ -25286,7 +25291,7 @@ tao:
     aberowl: TAO
     biocontext: TAO
     bioportal: TAO
-    obofoundry: TAO
+    obofoundry: tao
     prefixcommons: tao
   name: Teleost Anatomy Ontology
   pattern: ^\d{7}$
@@ -25326,7 +25331,7 @@ taxrank:
     biocontext: TAXRANK
     bioportal: TAXRANK
     fairsharing: FAIRsharing.p1sejz
-    obofoundry: TAXRANK
+    obofoundry: taxrank
     ols: taxrank
     ontobee: TAXRANK
     prefixcommons: taxrank
@@ -25434,7 +25439,7 @@ tgma:
     biocontext: TGMA
     bioportal: TGMA
     fairsharing: FAIRsharing.dqnfkg
-    obofoundry: TGMA
+    obofoundry: tgma
     ols: tgma
     ontobee: TGMA
     prefixcommons: tgma
@@ -25552,7 +25557,7 @@ to:
     biocontext: TO
     bioportal: PTO
     fairsharing: FAIRsharing.w69t6r
-    obofoundry: TO
+    obofoundry: to
     ols: to
     ontobee: TO
   name: Plant Trait Ontology
@@ -25667,7 +25672,7 @@ trans:
     biocontext: TRANS
     bioportal: TRANS
     fairsharing: FAIRsharing.nygmp7
-    obofoundry: TRANS
+    obofoundry: trans
     ols: trans
     ontobee: TRANS
   name: Pathogen Transmission Ontology
@@ -25817,7 +25822,7 @@ tto:
     biocontext: TTO
     bioportal: TTO
     fairsharing: FAIRsharing.1rj558
-    obofoundry: TTO
+    obofoundry: tto
     ols: tto
     ontobee: TTO
     prefixcommons: tto
@@ -25856,7 +25861,7 @@ txpo:
   mappings:
     aberowl: TXPO
     bioportal: TXPO
-    obofoundry: TXPO
+    obofoundry: txpo
     ols: txpo
     ontobee: TXPO
   name: Toxic Process Ontology
@@ -25923,7 +25928,7 @@ uberon:
     go: UBERON
     miriam: uberon
     n2t: uberon
-    obofoundry: UBERON
+    obofoundry: uberon
     ols: uberon
     ontobee: UBERON
     wikidata: P1554
@@ -26601,7 +26606,7 @@ uo:
     fairsharing: FAIRsharing.mjnypw
     miriam: uo
     n2t: uo
-    obofoundry: UO
+    obofoundry: uo
     ols: uo
     ontobee: UO
     prefixcommons: uo
@@ -26633,7 +26638,7 @@ upa:
     bioportal: UPA
     edam: '2645'
     go: UniPathway
-    obofoundry: UPA
+    obofoundry: upa
     ols: upa
     ontobee: UPA
     prefixcommons: unipathway
@@ -26664,7 +26669,7 @@ upheno:
     biocontext: UPHENO
     bioportal: UPHENO
     fairsharing: FAIRsharing.r41qhx
-    obofoundry: UPHENO
+    obofoundry: upheno
     ols: upheno
     ontobee: UPHENO
   name: Unified Phenotype Ontology
@@ -26745,7 +26750,7 @@ vario:
     fairsharing: FAIRsharing.65xkbs
     miriam: vario
     n2t: vario
-    obofoundry: VariO
+    obofoundry: vario
     ols: vario
     ontobee: VariO
   name: Variation Ontology
@@ -26929,7 +26934,7 @@ vhog:
     aberowl: VHOG
     biocontext: VHOG
     bioportal: VHOG
-    obofoundry: VHOG
+    obofoundry: vhog
     prefixcommons: vhog
   name: Vertebrate Homologous Organ Group Ontology
   pattern: ^\d{7}$
@@ -27102,7 +27107,7 @@ vo:
     biocontext: VO
     bioportal: VO
     fairsharing: FAIRsharing.zwtww5
-    obofoundry: VO
+    obofoundry: vo
     ols: vo
     ontobee: VO
     prefixcommons: vo
@@ -27142,7 +27147,7 @@ vsao:
     aberowl: VSAO
     biocontext: VSAO
     bioportal: VSAO
-    obofoundry: VSAO
+    obofoundry: vsao
   name: Vertebrate Skeletal Anatomy Ontology
   preferred_prefix: VSAO
   synonyms:
@@ -27207,7 +27212,7 @@ vt:
     biocontext: VT
     bioportal: VT
     fairsharing: FAIRsharing.10gr18
-    obofoundry: VT
+    obofoundry: vt
     ols: vt
     ontobee: VT
     prefixcommons: vt
@@ -27233,7 +27238,7 @@ vto:
     biocontext: VTO
     bioportal: VTO
     fairsharing: FAIRsharing.akmeb9
-    obofoundry: VTO
+    obofoundry: vto
     ols: vto
     ontobee: VTO
   name: Vertebrate Taxonomy Ontology
@@ -27309,7 +27314,7 @@ wbbt:
     bioportal: WB-BT
     fairsharing: FAIRsharing.phk7dd
     go: WBbt
-    obofoundry: WBbt
+    obofoundry: wbbt
     ols: wbbt
     ontobee: WBbt
     prefixcommons: wbbt
@@ -27340,7 +27345,7 @@ wbls:
     bioportal: WB-LS
     fairsharing: FAIRsharing.sm90nh
     go: WBls
-    obofoundry: WBls
+    obofoundry: wbls
     ols: wbls
     ontobee: WBLS
     prefixcommons: wbls
@@ -27371,7 +27376,7 @@ wbphenotype:
     bioportal: WB-PHENOTYPE
     fairsharing: FAIRsharing.agvc7y
     go: WBPhenotype
-    obofoundry: WBPhenotype
+    obofoundry: wbphenotype
     ols: wbphenotype
     ontobee: WBPhenotype
     prefixcommons: wbphenotype
@@ -27672,7 +27677,7 @@ xao:
     biocontext: XAO
     bioportal: XAO
     fairsharing: FAIRsharing.17zapb
-    obofoundry: XAO
+    obofoundry: xao
     ols: xao
     ontobee: XAO
     wikidata: P4495
@@ -27703,7 +27708,7 @@ xco:
     biocontext: XCO
     bioportal: XCO
     fairsharing: FAIRsharing.x39h5y
-    obofoundry: XCO
+    obofoundry: xco
     ols: xco
     ontobee: XCO
     prefixcommons: xco
@@ -27787,7 +27792,7 @@ xlmod:
   mappings:
     aberowl: XLMOD
     bioportal: XLMOD
-    obofoundry: XLMOD
+    obofoundry: xlmod
     ols: xlmod
     ontobee: XLMOD
   name: HUPO-PSI cross-linking and derivatization reagents controlled vocabulary
@@ -27855,7 +27860,7 @@ xpo:
     aberowl: XPO
     biolink: XPO
     bioportal: XPO
-    obofoundry: XPO
+    obofoundry: xpo
     ols: xpo
     ontobee: XPO
   name: Xenopus Phenotype Ontology
@@ -27977,11 +27982,10 @@ ypo:
   deprecated: true
   homepage: http://www.yeastgenome.org/
   mappings:
-    obofoundry: YPO
+    obofoundry: ypo
     ols: ypo
   name: Yeast phenotypes
   preferred_prefix: YPO
-  uri_format: http://purl.obolibrary.org/obo/YPO_$1
 yrcpdr:
   description: The Yeast Resource Center Public Data Repository (YRC PDR) serves as
     a single point of access for the experimental data produced from many collaborations
@@ -28013,7 +28017,7 @@ zea:
     aberowl: ZEA
     biocontext: ZEA
     bioportal: ZEA
-    obofoundry: ZEA
+    obofoundry: zea
     prefixcommons: zea
   name: Maize gross anatomy
   preferred_prefix: ZEA
@@ -28038,7 +28042,7 @@ zeco:
     biocontext: ZECO
     bioportal: ZECO
     fairsharing: FAIRsharing.np2wfz
-    obofoundry: ZECO
+    obofoundry: zeco
     ols: zeco
     ontobee: ZECO
   name: Zebrafish Experimental Conditions Ontology
@@ -28090,7 +28094,7 @@ zfa:
     biocontext: ZFA
     bioportal: ZFA
     fairsharing: FAIRsharing.s3r6sk
-    obofoundry: ZFA
+    obofoundry: zfa
     ols: zfa
     ontobee: ZFA
     prefixcommons: zfa
@@ -28151,7 +28155,7 @@ zfs:
     biocontext: ZFS
     bioportal: ZFS
     fairsharing: FAIRsharing.bc8ayj
-    obofoundry: ZFS
+    obofoundry: zfs
     ols: zfs
     ontobee: ZFS
   name: Zebrafish developmental stages ontology
@@ -28202,7 +28206,7 @@ zp:
     aberowl: ZP
     biocontext: ZP
     bioportal: ZP
-    obofoundry: ZP
+    obofoundry: zp
     ols: zp
     ontobee: ZP
   name: Zebrafish Phenotype Ontology
