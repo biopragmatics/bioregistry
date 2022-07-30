@@ -71,7 +71,7 @@ def get_re3data(force_download: bool = False):
         if xref_element:
             data["xref"] = xref_element.text
 
-        records[identifier] = data
+        records[identifier] = {k: v.strip() for k, v in data.items()}
 
     with PROCESSED_PATH.open("w") as file:
         json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)

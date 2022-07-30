@@ -21,6 +21,7 @@ from .obofoundry import get_obofoundry
 from .ols import get_ols
 from .ontobee import get_ontobee
 from .prefixcommons import get_prefixcommons
+from .re3data import get_re3data
 from .uniprot import get_uniprot
 from .wikidata import get_wikidata
 
@@ -44,6 +45,7 @@ __all__ = [
     "get_uniprot",
     "get_wikidata",
     "get_edam",
+    "get_re3data",
 ]
 
 GETTERS: List[Tuple[str, str, Callable]] = [
@@ -68,4 +70,5 @@ GETTERS: List[Tuple[str, str, Callable]] = [
     ("aberowl", "AberOWL", get_aberowl),
     ("cropoct", "CropOCT", get_cropoct),
     ("edam", "EDAM", get_edam),
+    ("re3data", "re3data", get_re3data),
 ]
