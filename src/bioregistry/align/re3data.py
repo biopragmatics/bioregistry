@@ -18,7 +18,6 @@ class Re3dataAligner(Aligner):
     key = "re3data"
     alt_key_match = "name"
     getter = get_re3data
-    getter_kwargs = dict(force_download=False)
     curation_header = ("name", "homepage", "description")
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
