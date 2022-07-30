@@ -121,14 +121,13 @@ class Aligner(ABC):
     def _align_action(
         self, bioregistry_id: str, external_id: str, external_entry: Dict[str, Any]
     ) -> None:
-        # Add mapping
         if self.internal_registry[bioregistry_id].mappings is None:
             self.internal_registry[bioregistry_id].mappings = {}
         self.internal_registry[bioregistry_id].mappings[self.key] = external_id  # type:ignore
 
         _entry = self.prepare_external(external_id, external_entry)
         _entry[self.subkey] = external_id
-        setattr(self.internal_registry[bioregistry_id], self.key, _entry)
+        self.internal_registry[bioregistry_id][self.key] = _entry
         self.external_id_to_bioregistry_id[external_id] = bioregistry_id
 
     def prepare_external(self, external_id: str, external_entry: Dict[str, Any]) -> Dict[str, Any]:
