@@ -430,6 +430,8 @@ class Resource(BaseModel):
     biocontext: Optional[Mapping[str, Any]]
     #: External data from EDAM ontology
     edam: Optional[Mapping[str, Any]]
+    #: External data from re3data
+    re3data: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
