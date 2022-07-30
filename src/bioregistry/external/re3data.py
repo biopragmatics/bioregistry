@@ -11,7 +11,6 @@ from typing import Any, Mapping, Optional, Tuple
 from xml.etree import ElementTree
 
 import requests
-from tqdm.auto import tqdm
 from tqdm.contrib.concurrent import thread_map
 from tqdm.contrib.logging import logging_redirect_tqdm
 
@@ -139,7 +138,7 @@ def _clean_xref(xref: str) -> Optional[Tuple[str, str]]:
         ("PSSB-", "pssb"),
         ("OpenDOAR:", "opendoar"),
         ("openDOAR:", "opendoar"),
-        ("ROAR:", "roar"),
+        ("ROAR:", "roar"),  # e.g., see http://roar.eprints.org/14208/
         ("hdl:", "hdl"),
         ("https://fairsharing.org/", "fairsharing.legacy"),
         ("http://fairsharing.org/", "fairsharing.legacy"),
@@ -165,6 +164,11 @@ def _clean_xref(xref: str) -> Optional[Tuple[str, str]]:
         else:
             logger.debug("unknown RRID: %s", xref)
             return None
+
+    if "doi:" in xref:
+        for part in xref.split(" "):
+            if part.startswith("doi"):
+                return "doi", part[len("doi:"):]
 
     logger.debug("re3data record had unparsable xref: %s", xref)
     return None
