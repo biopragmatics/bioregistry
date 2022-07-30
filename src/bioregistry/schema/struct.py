@@ -444,9 +444,12 @@ class Resource(BaseModel):
         >>> from bioregistry import get_resource
         >>> get_resource("chebi").get_mapped_prefix("wikidata")
         'P683'
+        >>> get_resource("chebi").get_mapped_prefix("obofoundry")
+        'CHEBI'
         """
-        # TODO is this even a good idea? is this effectively the same as get_external?
-        return (self.get_mappings() or {}).get(metaprefix)
+        if metaprefix == "obofoundry":
+            return (self.obofoundry or {}).get("preferredPrefix")
+        return self.get_mappings().get(metaprefix)
 
     def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]):
         """Get a key enriched by the given external resources' data."""
@@ -605,7 +608,7 @@ class Resource(BaseModel):
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
         return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
 
-    def get_mappings(self) -> Optional[Mapping[str, str]]:
+    def get_mappings(self) -> Mapping[str, str]:
         """Get the mappings to external registries, if available."""
         return self.mappings or {}
 
@@ -1343,16 +1346,16 @@ class Resource(BaseModel):
                 return f"{processed_banana}{identifier}"
         return identifier
 
-    def is_canonical_identifier(self, identifier: str) -> Optional[bool]:
+    def is_valid_identifier(self, identifier: str) -> Optional[bool]:
         """Check that a local unique identifier is canonical, meaning no bananas."""
         pattern = self.get_pattern_re()
         if pattern is None:
             return None
         return pattern.fullmatch(identifier) is not None
 
-    def is_known_identifier(self, identifier: str) -> Optional[bool]:
+    def is_standardizable_identifier(self, identifier: str) -> Optional[bool]:
         """Check that a local unique identifier can be normalized and also matches a prefix's pattern."""
-        return self.is_canonical_identifier(self.standardize_identifier(identifier))
+        return self.is_valid_identifier(self.standardize_identifier(identifier))
 
     def get_download_obo(self) -> Optional[str]:
         """Get the download link for the latest OBO file.

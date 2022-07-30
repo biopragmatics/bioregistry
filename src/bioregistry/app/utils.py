@@ -40,10 +40,7 @@ def _get_resource_providers(
     return rv
 
 
-def _get_resource_mapping_rows(resource: Resource) -> Optional[List[Mapping[str, Any]]]:
-    mappings = resource.get_mappings()
-    if mappings is None:
-        return None
+def _get_resource_mapping_rows(resource: Resource) -> List[Mapping[str, Any]]:
     return [
         dict(
             metaprefix=metaprefix,
@@ -53,7 +50,7 @@ def _get_resource_mapping_rows(resource: Resource) -> Optional[List[Mapping[str,
             name=bioregistry.get_registry_name(metaprefix),
             uri=bioregistry.get_registry_provider_uri_format(metaprefix, xref),
         )
-        for metaprefix, xref in mappings.items()
+        for metaprefix, xref in resource.get_mappings().items()
     ]
 
 
