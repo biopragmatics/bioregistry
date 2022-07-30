@@ -114,11 +114,13 @@ class TestResourceManager(unittest.TestCase):
                 )
 
     def test_lookup_from(self):
-        """"""
+        """Test the lookup_from method."""
         for metaprefix, key, normalize, expected in [
-            ("obofoundry", "GO", False, 'go'),
+            ("obofoundry", "GO", False, "go"),
             ("obofoundry", "go", False, None),
-            ("obofoundry", "go", True, 'go'),
+            ("obofoundry", "go", True, "go"),
         ]:
             with self.subTest(meteprefix=metaprefix, key=key, norm=normalize):
-                self.assertEqual(expected, self.manager.lookup_from(metaprefix, key, normalize=normalize))
+                self.assertEqual(
+                    expected, self.manager.lookup_from(metaprefix, key, normalize=normalize)
+                )

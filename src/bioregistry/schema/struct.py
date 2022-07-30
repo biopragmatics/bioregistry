@@ -445,7 +445,7 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_mapped_prefix("wikidata")
         'P683'
         >>> get_resource("chebi").get_mapped_prefix("obofoundry")
-        'chebi'
+        'CHEBI'
         """
         if metaprefix == "obofoundry":
             return (self.obofoundry or {}).get("preferredPrefix")
@@ -928,7 +928,7 @@ class Resource(BaseModel):
         'NCBITaxon'
         >>> assert get_resource("sty").get_obofoundry_prefix() is None
         """
-        return (self.obofoundry or {}).get("preferredPrefix")
+        return self.get_mapped_prefix("obofoundry")
 
     def get_obofoundry_uri_prefix(self) -> Optional[str]:
         """Get the OBO Foundry URI prefix for this entry, if possible.
