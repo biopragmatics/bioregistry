@@ -62,7 +62,12 @@ def get_re3data(force_download: bool = False):
 
     records = dict(
         thread_map(
-            _get_record, identifier_to_doi, unit_scale=True, unit="record", desc="Getting re3data"
+            _get_record,
+            identifier_to_doi,
+            unit_scale=True,
+            unit="record",
+            desc="Getting re3data",
+            disable=True,
         )
     )
 
