@@ -699,14 +699,11 @@ class Manager:
         >>> manager.get_formatted_iri("obofoundry", "fbbt", "00007294")
         'http://purl.obolibrary.org/obo/FBbt_00007294'
         """
-        resource = self.get_resource(prefix)
-        if resource is None:
+        mapped_prefix = self.get_mapped_prefix(prefix, metaprefix)
+        registry = self.metaregistry.get(metaprefix)
+        if registry is None or mapped_prefix is None:
             return None
-        external_prefix = resource.get_mapped_prefix(metaprefix)
-        registry: Registry = self.metaregistry.get(metaprefix)
-        if registry is None or external_prefix is None:
-            return None
-        return registry.resolve(external_prefix, identifier)
+        return registry.resolve(mapped_prefix, identifier)
 
     def get_obofoundry_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the OBO Foundry URL if possible.
