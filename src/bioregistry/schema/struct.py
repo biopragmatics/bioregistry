@@ -29,7 +29,7 @@ from bioregistry import constants as brc
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import removeprefix, removesuffix
+from bioregistry.utils import curie_to_str, removeprefix, removesuffix
 
 try:
     from typing import Literal  # type:ignore
@@ -444,9 +444,12 @@ class Resource(BaseModel):
         >>> from bioregistry import get_resource
         >>> get_resource("chebi").get_mapped_prefix("wikidata")
         'P683'
+        >>> get_resource("chebi").get_mapped_prefix("obofoundry")
+        'CHEBI'
         """
-        # TODO is this even a good idea? is this effectively the same as get_external?
-        return (self.get_mappings() or {}).get(metaprefix)
+        if metaprefix == "obofoundry":
+            return (self.obofoundry or {}).get("preferredPrefix")
+        return self.get_mappings().get(metaprefix)
 
     def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]):
         """Get a key enriched by the given external resources' data."""
@@ -605,26 +608,9 @@ class Resource(BaseModel):
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
         return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
 
-    def get_mappings(self) -> Optional[Mapping[str, str]]:
+    def get_mappings(self) -> Mapping[str, str]:
         """Get the mappings to external registries, if available."""
-        from ..schema_utils import read_metaregistry
-
-        rv: Dict[str, str] = {}
-        rv.update(self.mappings or {})  # This will be the replacement later
-        for metaprefix in read_metaregistry():
-            external = self.get_external(metaprefix)
-            if not external:
-                continue
-            if metaprefix == "wikidata":
-                value = external.get("prefix")
-                if value is not None:
-                    rv["wikidata"] = value
-            elif metaprefix == "obofoundry":
-                rv[metaprefix] = external.get("preferredPrefix", external["prefix"].upper())
-            else:
-                rv[metaprefix] = external["prefix"]
-
-        return rv
+        return self.mappings or {}
 
     def get_name(self) -> Optional[str]:
         """Get the name for the given prefix, it it's available."""
@@ -860,6 +846,18 @@ class Resource(BaseModel):
         if example is not None:
             return example
         return None
+
+    def get_example_curie(self, use_preferred: bool = False) -> Optional[str]:
+        """Get an example CURIE, if an example identifier is available.
+
+        :param use_preferred: Should the preferred prefix be used instead
+            of the Bioregistry prefix (if it exists)?
+        :return: An example CURIE for this resource
+        """
+        example = self.get_example()
+        if example is None:
+            return None
+        return self.get_curie(example, use_preferred=use_preferred)
 
     def is_deprecated(self) -> bool:
         """Return if the given prefix corresponds to a deprecated resource.
@@ -1208,12 +1206,29 @@ class Resource(BaseModel):
                 rv.append(Provider(**p))
         return rv
 
+    def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
+        """Get a CURIE for a local unique identifier in this resource's semantic space.
+
+        :param identifier: A local unique identifier in this resource's semantic space
+        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+        :returns: A CURIE for the given identifier
+
+        >>> import bioregistry
+        >>> resource = bioregistry.get_resource("go")
+        >>> resource.get_curie("0000001")
+        'go:0000001'
+        >>> resource.get_curie("0000001", use_preferred=True)
+        'GO:0000001'
+        """
+        _p = self.get_preferred_prefix() or self.prefix if use_preferred else self.prefix
+        return curie_to_str(_p, identifier)
+
     def standardize_identifier(self, identifier: str, prefix: Optional[str] = None) -> str:
         """Normalize the identifier to not have a redundant prefix or banana.
 
         :param identifier: The identifier in the CURIE
-        :param prefix: If an optional prefix is passed, checks that this isn't also used as a caseolded banana
-            like in ``go:go:1234567``, which shouldn't techinncally be right becauase the banana for gene ontology
+        :param prefix: If an optional prefix is passed, checks that this isn't also used as a casefolded banana
+            like in ``go:go:1234567``, which shouldn't technically be right because the banana for gene ontology
             is ``GO``.
         :return: A normalized identifier, possibly with banana/redundant prefix removed
 
@@ -1331,16 +1346,16 @@ class Resource(BaseModel):
                 return f"{processed_banana}{identifier}"
         return identifier
 
-    def is_canonical_identifier(self, identifier: str) -> Optional[bool]:
+    def is_valid_identifier(self, identifier: str) -> Optional[bool]:
         """Check that a local unique identifier is canonical, meaning no bananas."""
         pattern = self.get_pattern_re()
         if pattern is None:
             return None
         return pattern.fullmatch(identifier) is not None
 
-    def is_known_identifier(self, identifier: str) -> Optional[bool]:
+    def is_standardizable_identifier(self, identifier: str) -> Optional[bool]:
         """Check that a local unique identifier can be normalized and also matches a prefix's pattern."""
-        return self.is_canonical_identifier(self.standardize_identifier(identifier))
+        return self.is_valid_identifier(self.standardize_identifier(identifier))
 
     def get_download_obo(self) -> Optional[str]:
         """Get the download link for the latest OBO file.
