@@ -74,6 +74,7 @@ def is_known_identifier(prefix: str, identifier: str) -> Optional[bool]:
     >>> is_known_identifier("chebi", "CHEBI:ABCD")
     False
     """
+    # TODO rename this function
     return manager.is_standardizable_identifier(prefix, identifier)
 
 
