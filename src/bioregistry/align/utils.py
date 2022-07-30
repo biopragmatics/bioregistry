@@ -63,7 +63,8 @@ class Aligner(ABC):
 
         # Get all of the pre-curated mappings from the Bioregistry
         self.external_id_to_bioregistry_id = self.manager.get_registry_invmap(
-            self.key, normalize=self.normalize_invmap,
+            self.key,
+            normalize=self.normalize_invmap,
         )
 
         # Run lexical alignment
