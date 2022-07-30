@@ -19,11 +19,11 @@ class OBOFoundryAligner(Aligner):
     getter = get_obofoundry
     curation_header = ("deprecated", "name", "description")
     include_new = True
+    normalize_invmap = True
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the prefixes in the OBO Foundry that should be skipped."""
         return {
-            "bila": "website is not longer active",
             "obo_rel": "replaced",
         }
 

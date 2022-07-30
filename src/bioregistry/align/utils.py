@@ -47,6 +47,8 @@ class Aligner(ABC):
 
     subkey: ClassVar[str] = "prefix"
 
+    normalize_invmap: ClassVar[bool] = False
+
     def __init__(self):
         """Instantiate the aligner."""
         if self.key not in read_metaregistry():
@@ -60,7 +62,9 @@ class Aligner(ABC):
         self.skip_external = self.get_skip()
 
         # Get all of the pre-curated mappings from the Bioregistry
-        self.external_id_to_bioregistry_id = self.manager.get_registry_invmap(self.key)
+        self.external_id_to_bioregistry_id = self.manager.get_registry_invmap(
+            self.key, normalize=self.normalize_invmap,
+        )
 
         # Run lexical alignment
         self._align()
