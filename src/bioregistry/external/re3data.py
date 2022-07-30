@@ -45,17 +45,19 @@ def get_re3data(force_download: bool = False):
 
     res = requests.get(f"{BASE_URL}/api/v1/repositories")
     tree = ElementTree.fromstring(res.text)
-    identifiers = {
+    identifier_to_doi = {
         repository.find("id").text.strip(): _get_doi(repository)
         for repository in tree.findall("repository")
     }
     records = dict(
-        thread_map(_get_record, identifiers, unit_scale=True, unit="record", desc="Getting re3data")
+        thread_map(
+            _get_record, identifier_to_doi, unit_scale=True, unit="record", desc="Getting re3data"
+        )
     )
 
     # backfill DOIs
-    for key, record in records.items():
-        doi = identifiers.get(key)
+    for identifier, record in records.items():
+        doi = identifier_to_doi.get(identifier)
         if doi:
             record["doi"] = doi
 
@@ -94,7 +96,8 @@ def _process_record(identifier: str, tree_inner):
     return {k: v.strip() if isinstance(v, str) else v for k, v in data.items() if v}
 
 
-def _get_doi(repository):
+def _get_doi(repository) -> Optional[str]:
+    # FIXME
     doi_element = repository.find("doi")
     if doi_element:
         return removeprefix(doi_element.text, "https://doi.org/")
@@ -168,7 +171,7 @@ def _clean_xref(xref: str) -> Optional[Tuple[str, str]]:
     if "doi:" in xref:
         for part in xref.split(" "):
             if part.startswith("doi"):
-                return "doi", part[len("doi:"):]
+                return "doi", part[len("doi:") :]
 
     logger.debug("re3data record had unparsable xref: %s", xref)
     return None
