@@ -45,10 +45,21 @@ def get_re3data(force_download: bool = False):
 
     res = requests.get(f"{BASE_URL}/api/v1/repositories")
     tree = ElementTree.fromstring(res.text)
-    identifier_to_doi = {
-        repository.find("id").text.strip(): _get_doi(repository)
-        for repository in tree.findall("repository")
-    }
+
+    identifier_to_doi = {}
+    for repository in tree.findall("repository"):
+        identifier_element = repository.find("id")
+        if identifier_element is None or identifier_element.text is None:
+            continue
+
+        doi_element = repository.find("doi")
+        doi = (
+            removeprefix(doi_element.text, "https://doi.org/")
+            if doi_element and doi_element.text
+            else None
+        )
+        identifier_to_doi[identifier_element.text.strip()] = doi
+
     records = dict(
         thread_map(
             _get_record, identifier_to_doi, unit_scale=True, unit="record", desc="Getting re3data"
@@ -86,7 +97,7 @@ def _process_record(identifier: str, tree_inner):
         "synonyms": [
             element.text.strip() for element in tree_inner.findall(f"{SCHEMA}additionalName")
         ],
-        "xrefs": dict(tup for tup in xrefs if tup and tup[1] not in {"0"}),
+        "xrefs": dict(tup for tup in xrefs if tup),
     }
 
     license_element = tree_inner.find(f"{SCHEMA}databaseLicense/{SCHEMA}databaseLicenseName")
@@ -94,14 +105,6 @@ def _process_record(identifier: str, tree_inner):
         data["license"] = license_element.text
 
     return {k: v.strip() if isinstance(v, str) else v for k, v in data.items() if v}
-
-
-def _get_doi(repository) -> Optional[str]:
-    # FIXME
-    doi_element = repository.find("doi")
-    if doi_element:
-        return removeprefix(doi_element.text, "https://doi.org/")
-    return None
 
 
 def _clean_xref(xref: str) -> Optional[Tuple[str, str]]:
@@ -150,7 +153,7 @@ def _clean_xref(xref: str) -> Optional[Tuple[str, str]]:
         ("https://doi.org/", "doi"),
     ]:
         if xref.startswith(start):
-            return key, xref[len(start)]
+            return key, xref[len(start) :]
 
     if xref.startswith("RRID:"):
         inner_xref = xref[len("RRID:") :]
