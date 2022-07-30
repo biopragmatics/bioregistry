@@ -100,3 +100,15 @@ class TestResourceManager(unittest.TestCase):
                     self.manager.get_has_parts(prefix),
                     rast_manager.get_has_parts(prefix),
                 )
+
+    def test_formatted_iri(self):
+        """Test formatted IRI."""
+        for metaprefix, prefix, identifier, uri in [
+            ("miriam", "hgnc", "16793", "https://identifiers.org/hgnc:16793"),
+            ("n2t", "hgnc", "16793", "https://n2t.net/hgnc:16793"),
+            ("obofoundry", "fbbt", "00007294", "http://purl.obolibrary.org/obo/FBbt_00007294"),
+        ]:
+            with self.subTest(metaprefix=metaprefix, prefix=prefix, identifier=identifier):
+                self.assertEqual(
+                    uri, self.manager.get_formatted_iri(metaprefix, prefix, identifier)
+                )

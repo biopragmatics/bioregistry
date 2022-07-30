@@ -395,9 +395,10 @@ def compare(paper: bool):  # noqa:C901
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
     xrefs_counter: typing.Counter[int] = Counter(xref_counts)
 
-    n_mappable_metaprefixes = len(
-        {metaprefix for entry in read_registry().values() for metaprefix in entry.get_mappings()}
-    )
+    mappable_metaprefixes = {
+        metaprefix for entry in read_registry().values() for metaprefix in entry.get_mappings()
+    }
+    n_mappable_metaprefixes = len(mappable_metaprefixes)
     zero_pad_count = 0  # how many columns left from the end should it go
     for i in range(n_mappable_metaprefixes + 1):
         if i not in xrefs_counter:

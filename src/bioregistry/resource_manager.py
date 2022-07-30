@@ -699,11 +699,16 @@ class Manager:
         >>> manager.get_formatted_iri("obofoundry", "fbbt", "00007294")
         'http://purl.obolibrary.org/obo/FBbt_00007294'
         """
-        mapped_prefix = self.get_mapped_prefix(prefix, metaprefix)
-        registry = self.metaregistry.get(metaprefix)
-        if registry is None or mapped_prefix is None:
+        resource = self.get_resource(prefix)
+        if resource is None:
             return None
-        return registry.resolve(mapped_prefix, identifier)
+        external_prefix = resource.get_mapped_prefix(metaprefix)
+        if metaprefix == "obofoundry":
+            external_prefix = resource.get_preferred_prefix()
+        registry: Registry = self.metaregistry.get(metaprefix)
+        if registry is None or external_prefix is None:
+            return None
+        return registry.resolve(external_prefix, identifier)
 
     def get_obofoundry_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the OBO Foundry URL if possible.
@@ -724,10 +729,10 @@ class Manager:
         resource = self.get_resource(prefix)
         if resource is None:
             return None
-        p = resource.get_obofoundry_uri_prefix()
-        if p is None:
-            raise ValueError
-        return p + identifier
+        uri_prefix = resource.get_obofoundry_uri_prefix()
+        if uri_prefix is None:
+            return None
+        return uri_prefix + identifier
 
     def get_n2t_iri(self, prefix: str, identifier: str) -> Optional[str]:
         """Get the name-to-thing URL for the given CURIE.
