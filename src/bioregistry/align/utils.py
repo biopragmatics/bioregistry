@@ -81,6 +81,8 @@ class Aligner(ABC):
                 continue
 
             bioregistry_id = self.external_id_to_bioregistry_id.get(external_id)
+            # There's already a mapping for this external ID to a bioregistry
+            # entry. Just add all of the latest metadata and move on
             if bioregistry_id is not None:
                 self._align_action(bioregistry_id, external_id, external_entry)
                 continue
@@ -93,30 +95,25 @@ class Aligner(ABC):
                 if alt_match:
                     bioregistry_id = self.manager.normalize_prefix(alt_match)
 
+            # A lexical match was possible
             if bioregistry_id is not None:
+                # check this external ID for curated mismatches, and move
+                # on if one has already been curated
                 if is_mismatch(bioregistry_id, self.key, external_id):
                     continue
-                if self._do_align_action(bioregistry_id):
-                    self._align_action(bioregistry_id, external_id, external_entry)
+                if self.skip_deprecated and self.manager.is_deprecated(bioregistry_id):
+                    continue
+                self._align_action(bioregistry_id, external_id, external_entry)
+                continue
 
             # add the identifier from an external resource if it's been marked as high quality
             elif self.include_new:
                 bioregistry_id = norm(external_id)
                 if is_mismatch(bioregistry_id, self.key, external_id):
                     continue
-
-                self.internal_registry[bioregistry_id] = Resource(
-                    prefix=bioregistry_id,
-                    mappings={self.key: external_id},
-                )
+                self.internal_registry[bioregistry_id] = Resource(prefix=bioregistry_id)
                 self._align_action(bioregistry_id, external_id, external_entry)
                 continue
-
-    def _do_align_action(self, prefix: Optional[str]) -> bool:
-        # a match was found if the prefix is not None
-        return prefix is not None and (
-            not self.skip_deprecated or not self.manager.is_deprecated(prefix)
-        )
 
     def _align_action(
         self, bioregistry_id: str, external_id: str, external_entry: Dict[str, Any]
