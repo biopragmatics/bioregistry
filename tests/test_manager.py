@@ -101,6 +101,30 @@ class TestResourceManager(unittest.TestCase):
                     rast_manager.get_has_parts(prefix),
                 )
 
+    def test_formatted_iri(self):
+        """Test formatted IRI."""
+        for metaprefix, prefix, identifier, uri in [
+            ("miriam", "hgnc", "16793", "https://identifiers.org/hgnc:16793"),
+            ("n2t", "hgnc", "16793", "https://n2t.net/hgnc:16793"),
+            ("obofoundry", "fbbt", "00007294", "http://purl.obolibrary.org/obo/FBbt_00007294"),
+        ]:
+            with self.subTest(metaprefix=metaprefix, prefix=prefix, identifier=identifier):
+                self.assertEqual(
+                    uri, self.manager.get_formatted_iri(metaprefix, prefix, identifier)
+                )
+
+    def test_lookup_from(self):
+        """Test the lookup_from method."""
+        for metaprefix, key, normalize, expected in [
+            ("obofoundry", "GO", False, "go"),
+            ("obofoundry", "go", False, None),
+            ("obofoundry", "go", True, "go"),
+        ]:
+            with self.subTest(meteprefix=metaprefix, key=key, norm=normalize):
+                self.assertEqual(
+                    expected, self.manager.lookup_from(metaprefix, key, normalize=normalize)
+                )
+
     def test_curie_validation(self):
         """Test validation functions."""
         valid = [

@@ -923,7 +923,7 @@ class Manager:
         rv = Counter(
             metaprefix
             for resource in self.registry.values()
-            for metaprefix in resource.get_mappings() or {}
+            for metaprefix in resource.get_mappings()
         )
         if include_bioregistry:
             rv["bioregistry"] = len(self.registry)

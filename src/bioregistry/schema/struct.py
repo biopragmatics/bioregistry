@@ -444,9 +444,12 @@ class Resource(BaseModel):
         >>> from bioregistry import get_resource
         >>> get_resource("chebi").get_mapped_prefix("wikidata")
         'P683'
+        >>> get_resource("chebi").get_mapped_prefix("obofoundry")
+        'CHEBI'
         """
-        # TODO is this even a good idea? is this effectively the same as get_external?
-        return (self.get_mappings() or {}).get(metaprefix)
+        if metaprefix == "obofoundry":
+            return (self.obofoundry or {}).get("preferredPrefix")
+        return self.get_mappings().get(metaprefix)
 
     def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]):
         """Get a key enriched by the given external resources' data."""
@@ -605,26 +608,9 @@ class Resource(BaseModel):
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
         return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
 
-    def get_mappings(self) -> Optional[Mapping[str, str]]:
+    def get_mappings(self) -> Mapping[str, str]:
         """Get the mappings to external registries, if available."""
-        from ..schema_utils import read_metaregistry
-
-        rv: Dict[str, str] = {}
-        rv.update(self.mappings or {})  # This will be the replacement later
-        for metaprefix in read_metaregistry():
-            external = self.get_external(metaprefix)
-            if not external:
-                continue
-            if metaprefix == "wikidata":
-                value = external.get("prefix")
-                if value is not None:
-                    rv["wikidata"] = value
-            elif metaprefix == "obofoundry":
-                rv[metaprefix] = external.get("preferredPrefix", external["prefix"].upper())
-            else:
-                rv[metaprefix] = external["prefix"]
-
-        return rv
+        return self.mappings or {}
 
     def get_name(self) -> Optional[str]:
         """Get the name for the given prefix, it it's available."""
