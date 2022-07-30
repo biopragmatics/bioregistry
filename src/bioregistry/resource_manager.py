@@ -170,7 +170,19 @@ class Manager:
 
     @lru_cache(maxsize=None)  # noqa:B019
     def get_registry_invmap(self, metaprefix: str, normalize: bool = False) -> Dict[str, str]:
-        """Get a mapping from prefixes in another registry to Bioregistry prefixes."""
+        """Get a mapping from prefixes in another registry to Bioregistry prefixes.
+
+        :param metaprefix: Which external registry should be used?
+        :param normalize: Should the external prefixes be normalized?
+        :returns: A mapping of external prefixes to bioregistry prefies
+
+        >>> from bioregistry import manager
+        >>> obofoundry_to_bioregistry = manager.get_registry_invmap("obofoundry", normalize=True)
+        >>> obofoundry_to_bioregistry["go"]
+        'go'
+        >>> obofoundry_to_bioregistry["geo"]
+        'geogeo'
+        """
         if normalize:
             return {
                 _norm(external_prefix): prefix
