@@ -24,7 +24,7 @@ class Re3dataAligner(Aligner):
         """Prepare curation rows for unaligned re3data registry entries."""
         return [
             external_entry["name"],
-            external_entry["homepage"],
+            external_entry.get("homepage", ""),
             external_entry["description"],
         ]
 
