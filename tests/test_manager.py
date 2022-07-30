@@ -112,3 +112,13 @@ class TestResourceManager(unittest.TestCase):
                 self.assertEqual(
                     uri, self.manager.get_formatted_iri(metaprefix, prefix, identifier)
                 )
+
+    def test_lookup_from(self):
+        """"""
+        for metaprefix, key, normalize, expected in [
+            ("obofoundry", "GO", False, 'go'),
+            ("obofoundry", "go", False, None),
+            ("obofoundry", "go", True, 'go'),
+        ]:
+            with self.subTest(meteprefix=metaprefix, key=key, norm=normalize):
+                self.assertEqual(expected, self.manager.lookup_from(metaprefix, key, normalize=normalize))

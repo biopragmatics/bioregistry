@@ -703,8 +703,6 @@ class Manager:
         if resource is None:
             return None
         external_prefix = resource.get_mapped_prefix(metaprefix)
-        if metaprefix == "obofoundry":
-            external_prefix = resource.get_preferred_prefix()
         registry: Registry = self.metaregistry.get(metaprefix)
         if registry is None or external_prefix is None:
             return None

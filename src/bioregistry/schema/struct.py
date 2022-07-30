@@ -447,6 +447,8 @@ class Resource(BaseModel):
         >>> get_resource("chebi").get_mapped_prefix("obofoundry")
         'chebi'
         """
+        if metaprefix == "obofoundry":
+            return (self.obofoundry or {}).get("preferredPrefix")
         return self.get_mappings().get(metaprefix)
 
     def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]):
