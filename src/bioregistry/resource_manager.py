@@ -724,7 +724,7 @@ class Manager:
         resource = self.get_resource(prefix)
         if resource is None:
             return None
-        p  = resource.get_obofoundry_uri_prefix()
+        p = resource.get_obofoundry_uri_prefix()
         if p is None:
             raise ValueError
         return p + identifier
@@ -929,7 +929,7 @@ class Manager:
         rv = Counter(
             metaprefix
             for resource in self.registry.values()
-            for metaprefix in resource.get_mappings() or {}
+            for metaprefix in resource.get_mappings()
         )
         if include_bioregistry:
             rv["bioregistry"] = len(self.registry)

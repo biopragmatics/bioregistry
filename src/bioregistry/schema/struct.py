@@ -444,9 +444,10 @@ class Resource(BaseModel):
         >>> from bioregistry import get_resource
         >>> get_resource("chebi").get_mapped_prefix("wikidata")
         'P683'
+        >>> get_resource("chebi").get_mapped_prefix("obofoundry")
+        'chebi'
         """
-        # TODO is this even a good idea? is this effectively the same as get_external?
-        return (self.get_mappings() or {}).get(metaprefix)
+        return self.get_mappings().get(metaprefix)
 
     def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]):
         """Get a key enriched by the given external resources' data."""

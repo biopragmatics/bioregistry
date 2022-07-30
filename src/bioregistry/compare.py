@@ -396,11 +396,7 @@ def compare(paper: bool):  # noqa:C901
     xrefs_counter: typing.Counter[int] = Counter(xref_counts)
 
     n_mappable_metaprefixes = len(
-        {
-            metaprefix
-            for entry in read_registry().values()
-            for metaprefix in (entry.get_mappings() or {})
-        }
+        {metaprefix for entry in read_registry().values() for metaprefix in entry.get_mappings()}
     )
     zero_pad_count = 0  # how many columns left from the end should it go
     for i in range(n_mappable_metaprefixes + 1):
