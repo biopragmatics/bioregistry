@@ -11,6 +11,7 @@ from .compare import compare
 from .export.cli import export
 from .lint import lint
 from .utils import get_hexdigests, secho
+from .validate.cli import validate
 from .version import VERSION
 
 
@@ -74,6 +75,7 @@ def align(skip_fairsharing: bool):
 main.add_command(lint)
 main.add_command(compare)
 main.add_command(export)
+main.add_command(validate)
 main.add_command(make_web_command("bioregistry.app.wsgi:app"))
 
 
