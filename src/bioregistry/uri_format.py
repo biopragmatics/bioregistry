@@ -85,6 +85,7 @@ def get_prefix_map(
         the same URI prefix?
     :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
     :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+    :param blacklist: Prefixes to skip
     :return: A mapping from prefixes to URI prefixes.
     """
     return manager.get_prefix_map(
@@ -109,6 +110,7 @@ def get_pattern_map(
         the same URI prefix?
     :param remapping: A mapping from bioregistry prefixes to preferred prefixes.
     :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+    :param blacklist: Prefixes to skip
     :return: A mapping from prefixes to regular expression pattern strings.
     """
     return manager.get_pattern_map(

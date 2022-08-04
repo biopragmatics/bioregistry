@@ -300,6 +300,7 @@ class Manager:
             the same URI prefix?
         :param remapping: A mapping from prefixes to preferred prefixes.
         :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+        :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to regular expression pattern strings.
         """
         it = self._iter_pattern_map(
@@ -348,6 +349,7 @@ class Manager:
             the same URI prefix?
         :param remapping: A mapping from Bioregistry prefixes to preferred prefixes.
         :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+        :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to URI prefixes.
         """
         it = self._iter_prefix_map(
