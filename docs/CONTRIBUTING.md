@@ -74,6 +74,10 @@ as a synonym.
 Original discussion about minimum prefix requirements can be found at
 https://github.com/biopragmatics/bioregistry/issues/158.
 
+#### Miscellaneous Requirements
+
+- Do not include titles (e.g., Dr.) in contact information for the requester, reviewer, nor contact for a resource.
+
 #### Choosing a Good Prefix
 
 1. Prefixes should be chosen in a way to minimize confusion (e.g., prefixes
