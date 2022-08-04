@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import (
     Any,
     Callable,
+    Collection,
     Dict,
     Iterable,
     List,
@@ -291,6 +292,7 @@ class Manager:
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
         use_preferred: bool = False,
+        blacklist: Optional[Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from prefixes to their regular expression patterns.
 
@@ -298,9 +300,12 @@ class Manager:
             the same URI prefix?
         :param remapping: A mapping from prefixes to preferred prefixes.
         :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+        :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to regular expression pattern strings.
         """
-        it = self._iter_pattern_map(include_synonyms=include_synonyms, use_preferred=use_preferred)
+        it = self._iter_pattern_map(
+            include_synonyms=include_synonyms, use_preferred=use_preferred, blacklist=blacklist
+        )
         if not remapping:
             return dict(it)
         return {remapping.get(prefix, prefix): uri_prefix for prefix, uri_prefix in it}
@@ -310,8 +315,12 @@ class Manager:
         *,
         include_synonyms: bool = False,
         use_preferred: bool = False,
+        blacklist: Optional[Collection[str]] = None,
     ) -> Iterable[Tuple[str, str]]:
+        blacklist = set(blacklist or [])
         for prefix, resource in self.registry.items():
+            if prefix in blacklist:
+                continue
             pattern = resource.get_pattern()
             if pattern is None:
                 continue
@@ -331,6 +340,7 @@ class Manager:
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
         use_preferred: bool = False,
+        blacklist: Optional[Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from Bioregistry prefixes to their URI prefixes .
 
@@ -339,10 +349,14 @@ class Manager:
             the same URI prefix?
         :param remapping: A mapping from Bioregistry prefixes to preferred prefixes.
         :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+        :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to URI prefixes.
         """
         it = self._iter_prefix_map(
-            priority=priority, include_synonyms=include_synonyms, use_preferred=use_preferred
+            priority=priority,
+            include_synonyms=include_synonyms,
+            use_preferred=use_preferred,
+            blacklist=blacklist,
         )
         if not remapping:
             return dict(it)
@@ -354,8 +368,12 @@ class Manager:
         priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
         use_preferred: bool = False,
+        blacklist: Optional[Collection[str]] = None,
     ) -> Iterable[Tuple[str, str]]:
+        blacklist = set(blacklist or [])
         for prefix, resource in self.registry.items():
+            if prefix in blacklist:
+                continue
             uri_prefix = resource.get_uri_prefix(priority=priority)
             if uri_prefix is None:
                 continue
