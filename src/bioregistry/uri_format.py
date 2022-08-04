@@ -8,7 +8,7 @@
     the prefix should go, which makes them more general than URI prefix strings.
 """
 
-from typing import List, Mapping, Optional, Sequence, Tuple
+from typing import Collection, List, Mapping, Optional, Sequence, Tuple
 
 from .resource_manager import manager
 
@@ -76,6 +76,7 @@ def get_prefix_map(
     include_synonyms: bool = False,
     remapping: Optional[Mapping[str, str]] = None,
     use_preferred: bool = False,
+    blacklist: Optional[Collection[str]] = None,
 ) -> Mapping[str, str]:
     """Get a mapping from Bioregistry prefixes to their URI prefixes.
 
@@ -91,6 +92,7 @@ def get_prefix_map(
         include_synonyms=include_synonyms,
         remapping=remapping,
         use_preferred=use_preferred,
+        blacklist=blacklist,
     )
 
 
@@ -99,6 +101,7 @@ def get_pattern_map(
     include_synonyms: bool = False,
     remapping: Optional[Mapping[str, str]] = None,
     use_preferred: bool = False,
+    blacklist: Optional[Collection] = None,
 ) -> Mapping[str, str]:
     """Get a mapping from Bioregistry prefixes to their regular expression patterns.
 
@@ -112,6 +115,7 @@ def get_pattern_map(
         include_synonyms=include_synonyms,
         remapping=remapping,
         use_preferred=use_preferred,
+        blacklist=blacklist,
     )
 
 

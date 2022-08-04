@@ -1910,6 +1910,10 @@ class Context(BaseModel):
         """
         ),
     )
+    blacklist: Optional[List[str]] = Field(
+        ...,
+        description="This is a list of canonical Bioregistry prefixes that should not be included in the context.",
+    )
 
 
 def _clean_pattern(rv: str) -> str:
