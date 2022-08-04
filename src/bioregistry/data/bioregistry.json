@@ -15490,10 +15490,10 @@
       "prefix": "ddanat"
     }
   },
-  "ddinter": {
-    "comment": "for contacting this resource, they provide this email address `yjc @ nudt.edu.cn` request generated via NCATS Translator",
+  "ddinter.drug": {
     "contact": {
-      "name": "Dr. Dongsheng Cao",
+      "email": "oriental-cds@163.com",
+      "name": "Dongsheng Cao",
       "orcid": "0000-0003-3604-3785"
     },
     "contributor": {
@@ -15504,10 +15504,36 @@
     "description": "Ddinter is a comprehensive, professional, and open-access database specific to drug-drug interactions. it provides abundant annotations for each ddi association including mechanism description, risk levels, management strategies, alternative medications, etc. to improve clinical decision-making and patient safety.",
     "example": "DDInter20",
     "github_request_issue": 492,
-    "homepage": "http://ddinter.scbdd.com/",
-    "name": "Curated Drug-Drug Interactions Database",
-    "pattern": "^DDInter[0-9]+$",
-    "uri_format": "http://ddinter.scbdd.com/ddinter/drug-detail/$1/"
+    "homepage": "http://ddinter.scbdd.com",
+    "name": "Curated Drug-Drug Interactions Database - Drug",
+    "pattern": "^DDInter\\d+$",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://ddinter.scbdd.com/ddinter/drug-detail/$1"
+  },
+  "ddinter.interaction": {
+    "contact": {
+      "email": "oriental-cds@163.com",
+      "name": "Dongsheng Cao",
+      "orcid": "0000-0003-3604-3785"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Ddinter is a comprehensive, professional, and open-access database specific to drug-drug interactions. it provides abundant annotations for each ddi association including mechanism description, risk levels, management strategies, alternative medications, etc. to improve clinical decision-making and patient safety.",
+    "example": "1122888",
+    "github_request_issue": 492,
+    "homepage": "http://ddinter.scbdd.com",
+    "name": "Curated Drug-Drug Interactions Database - Interaction",
+    "pattern": "^\\d+$",
+    "uri_format": "http://ddinter.scbdd.com/ddinter/interact/$1"
   },
   "ddpheno": {
     "aberowl": {
