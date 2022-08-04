@@ -52196,6 +52196,25 @@
       ],
       "uri_format": "http://pfam.sanger.ac.uk/family?entry=$1"
     },
+    "providers": [
+      {
+        "code": "xfam",
+        "description": "Pfam's familes in their old home in the xfam.org",
+        "homepage": "https://pfam.xfam.org",
+        "name": "Xfam",
+        "uri_format": "https://pfam.xfam.org/family?acc=$1"
+      },
+      {
+        "code": "sanger",
+        "description": "The Pfam database contains information about protein domains and families. For each entry a protein sequence alignment and a Hidden Markov Model is stored.",
+        "homepage": "http://pfam.sanger.ac.uk/",
+        "name": "Sanger Pfam Mirror",
+        "uri_format": "http://pfam.sanger.ac.uk/family?entry=$1"
+      }
+    ],
+    "references": [
+      "https://twitter.com/PfamDB/status/1555149527228813314"
+    ],
     "synonyms": [
       "PF"
     ],
@@ -52207,6 +52226,7 @@
       "prefix": "Pfam",
       "uri_format": "https://pfam.xfam.org/family/$1"
     },
+    "uri_format": "https://www.ebi.ac.uk/interpro/entry/pfam/$1",
     "wikidata": {
       "database": "Q906796",
       "database.homepage": "http://pfam.xfam.org/",
@@ -52240,7 +52260,19 @@
     },
     "name": "Pfam Clans",
     "pattern": "^CL\\d+$",
-    "uri_format": "https://pfam.xfam.org/clan/$1"
+    "providers": [
+      {
+        "code": "xfam",
+        "description": "Pfam's clans in their old home in the xfam.org",
+        "homepage": "https://pfam.xfam.org",
+        "name": "Xfam",
+        "uri_format": "https://pfam.xfam.org/clan/$1"
+      }
+    ],
+    "references": [
+      "https://twitter.com/PfamDB/status/1555149527228813314"
+    ],
+    "uri_format": "https://www.ebi.ac.uk/interpro/set/pfam/$1"
   },
   "pfr": {
     "contributor": {
