@@ -269,6 +269,7 @@ orcid:0000-0002-7356-1779 rdfs:label "Nico Matentzoglu" ;
 orcid:0000-0002-8719-7760 rdfs:label "Sierra Moxon" ;
     ns1:contributor bioregistry:agrkb,
         bioregistry:cpt,
+        bioregistry:ddinter.drug,
         bioregistry:ncats.bioplanet .
 
 bioregistry:3dmet a bioregistry.schema:0000001 ;
@@ -9709,7 +9710,7 @@ bioregistry:pfam a bioregistry.schema:0000001 ;
         wikidata:P3519 ;
     foaf:homepage "https://pfam.xfam.org/"^^xsd:string ;
     bioregistry.schema:0000005 "PF11779"^^xsd:string ;
-    bioregistry.schema:0000006 "https://pfam.xfam.org/family/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/interpro/entry/pfam/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^PF\\d{5}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -20901,6 +20902,29 @@ bioregistry:dctypes a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/dc/dcmitype/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:ddinter.drug a bioregistry.schema:0000001 ;
+    rdfs:label "Curated Drug-Drug Interactions Database - Drug" ;
+    dc:description "Ddinter is a comprehensive, professional, and open-access database specific to drug-drug interactions. it provides abundant annotations for each ddi association including mechanism description, risk levels, management strategies, alternative medications, etc. to improve clinical decision-making and patient safety."^^xsd:string ;
+    ns1:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "http://ddinter.scbdd.com"^^xsd:string ;
+    bioregistry.schema:0000005 "DDInter20"^^xsd:string ;
+    bioregistry.schema:0000006 "http://ddinter.scbdd.com/ddinter/drug-detail/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^DDInter\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-3604-3785 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:ddinter.interaction a bioregistry.schema:0000001 ;
+    rdfs:label "Curated Drug-Drug Interactions Database - Interaction" ;
+    dc:description "Ddinter is a comprehensive, professional, and open-access database specific to drug-drug interactions. it provides abundant annotations for each ddi association including mechanism description, risk levels, management strategies, alternative medications, etc. to improve clinical decision-making and patient safety."^^xsd:string ;
+    ns1:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "http://ddinter.scbdd.com"^^xsd:string ;
+    bioregistry.schema:0000005 "1122888"^^xsd:string ;
+    bioregistry.schema:0000006 "http://ddinter.scbdd.com/ddinter/interact/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-3604-3785 .
+
 bioregistry:debio a bioregistry.schema:0000001 ;
     rdfs:label "Decentralized Biomedical Ontology" ;
     dc:description "A repository for the TSV-based, decentralized, community-curated curation of terms, properties, and relations that get turned into OBO, OWL, and OBO Graph JSON."^^xsd:string ;
@@ -23226,7 +23250,7 @@ bioregistry:pfam.clan a bioregistry.schema:0000001 ;
     ns2:exactMatch edam.data:2758 ;
     foaf:homepage "https://pfam.xfam.org"^^xsd:string ;
     bioregistry.schema:0000005 "CL0192"^^xsd:string ;
-    bioregistry.schema:0000006 "https://pfam.xfam.org/clan/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/interpro/set/pfam/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^CL\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -25423,6 +25447,8 @@ orcid:0000-0003-1617-8244 rdfs:label "Lindsay Cowell" .
 orcid:0000-0003-2408-2883 rdfs:label "Jingshan Huang" .
 
 orcid:0000-0003-3162-7490 rdfs:label "Wasila Dahdul" .
+
+orcid:0000-0003-3604-3785 rdfs:label "Dongsheng Cao" .
 
 prefixcommons:3dmet ns1:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -32263,6 +32289,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:datacite,
         bioregistry:dbvar.study,
         bioregistry:dbvar.variant,
+        bioregistry:ddinter.interaction,
         bioregistry:debio,
         bioregistry:decipher,
         bioregistry:deo,
@@ -38364,6 +38391,8 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dcterms,
         bioregistry:dctypes,
         bioregistry:ddanat,
+        bioregistry:ddinter.drug,
+        bioregistry:ddinter.interaction,
         bioregistry:ddpheno,
         bioregistry:debio,
         bioregistry:decipher,

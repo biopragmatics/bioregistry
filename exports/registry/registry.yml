@@ -6112,6 +6112,57 @@ ddanat:
   repository: https://github.com/dictyBase/migration-data
   uri_format: http://purl.obolibrary.org/obo/DDANAT_$1
   version: '2020-04-13'
+ddinter.drug:
+  contact:
+    email: oriental-cds@163.com
+    github: null
+    name: Dongsheng Cao
+    orcid: 0000-0003-3604-3785
+  contributor:
+    email: null
+    github: sierra-moxon
+    name: Sierra Moxon
+    orcid: 0000-0002-8719-7760
+  description: Ddinter is a comprehensive, professional, and open-access database
+    specific to drug-drug interactions. it provides abundant annotations for each
+    ddi association including mechanism description, risk levels, management strategies,
+    alternative medications, etc. to improve clinical decision-making and patient
+    safety.
+  example: DDInter20
+  homepage: http://ddinter.scbdd.com
+  license: CC-BY-NC-SA-4.0
+  name: Curated Drug-Drug Interactions Database - Drug
+  pattern: ^DDInter\d+$
+  preferred_prefix: ddinter.drug
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: http://ddinter.scbdd.com/ddinter/drug-detail/$1
+ddinter.interaction:
+  contact:
+    email: oriental-cds@163.com
+    github: null
+    name: Dongsheng Cao
+    orcid: 0000-0003-3604-3785
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Ddinter is a comprehensive, professional, and open-access database
+    specific to drug-drug interactions. it provides abundant annotations for each
+    ddi association including mechanism description, risk levels, management strategies,
+    alternative medications, etc. to improve clinical decision-making and patient
+    safety.
+  example: '1122888'
+  homepage: http://ddinter.scbdd.com
+  license: CC-BY-NC-SA-4.0
+  name: Curated Drug-Drug Interactions Database - Interaction
+  pattern: ^\d+$
+  preferred_prefix: ddinter.interaction
+  uri_format: http://ddinter.scbdd.com/ddinter/interact/$1
 ddpheno:
   contact:
     email: pfey@northwestern.edu
@@ -20936,9 +20987,24 @@ pfam:
   name: Pfam
   pattern: ^PF\d{5}$
   preferred_prefix: pfam
+  providers:
+  - code: xfam
+    description: Pfam's familes in their old home in the xfam.org
+    homepage: https://pfam.xfam.org
+    name: Xfam
+    uri_format: https://pfam.xfam.org/family?acc=$1
+  - code: sanger
+    description: The Pfam database contains information about protein domains and
+      families. For each entry a protein sequence alignment and a Hidden Markov Model
+      is stored.
+    homepage: http://pfam.sanger.ac.uk/
+    name: Sanger Pfam Mirror
+    uri_format: http://pfam.sanger.ac.uk/family?entry=$1
+  references:
+  - https://twitter.com/PfamDB/status/1555149527228813314
   synonyms:
   - PF
-  uri_format: https://pfam.xfam.org/family/$1
+  uri_format: https://www.ebi.ac.uk/interpro/entry/pfam/$1
 pfam.clan:
   contributor:
     email: cthoyt@gmail.com
@@ -20953,7 +21019,15 @@ pfam.clan:
   name: Pfam Clans
   pattern: ^CL\d+$
   preferred_prefix: pfam.clan
-  uri_format: https://pfam.xfam.org/clan/$1
+  providers:
+  - code: xfam
+    description: Pfam's clans in their old home in the xfam.org
+    homepage: https://pfam.xfam.org
+    name: Xfam
+    uri_format: https://pfam.xfam.org/clan/$1
+  references:
+  - https://twitter.com/PfamDB/status/1555149527228813314
+  uri_format: https://www.ebi.ac.uk/interpro/set/pfam/$1
 pfr:
   contributor:
     email: cthoyt@gmail.com
