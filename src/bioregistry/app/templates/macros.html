@@ -2,6 +2,18 @@
     <code>{{ bioregistry.curie_to_str(prefix, identifier) }}</code>
 {% endmacro %}
 
+{% macro render_prefix(prefix) -%}
+    <a href="{{ url_for("ui.resource", prefix=prefix) }}">
+        <code>{{ prefix }}</code>
+    </a>
+{% endmacro %}
+
+{% macro render_metaprefix(metaprefix) -%}
+    <a href="{{ url_for("ui.metaresource", metaprefix=metaprefix) }}">
+        <code>{{ metaprefix }}</code>
+    </a>
+{% endmacro %}
+
 {% macro render_resource_warnings(resource) -%}
     {% if resource.deprecated %}
         <span class="badge badge-warning" style="display: inline-block;">

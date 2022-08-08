@@ -79,9 +79,7 @@
                         <ol>
                             {% for metaprefix in entry.prefix_priority %}
                                 <li>
-                                    <a href="{{ url_for("ui.metaresource", metaprefix=metaprefix) }}">
-                                        <code>{{ metaprefix }}</code>
-                                    </a>
+                                    {{ utils.render_metaprefix(metaprefix) }}
                                 </li>
                             {% endfor %}
                         </ol>
@@ -94,9 +92,7 @@
                         <ol>
                             {% for metaprefix in entry.uri_prefix_priority %}
                                 <li>
-                                    <a href="{{ url_for("ui.metaresource", metaprefix=metaprefix) }}">
-                                        <code>{{ metaprefix }}</code>
-                                    </a>
+                                    {{ utils.render_metaprefix(metaprefix) }}
                                 </li>
                             {% endfor %}
                         </ol>
@@ -126,6 +122,17 @@
                                 <dd class="col-sm-9 text-left">{{ value }}</dd>
                             {% endfor %}
                         </dl>
+                    </dd>
+                {% endif %}
+                {% if entry.blacklist %}
+                    <dt>Prefix Blacklist</dt>
+                    <dd>
+                        <p>{{ schema.blacklist.description }}</p>
+                        <ul>
+                            {% for blacklist_prefix in entry.blacklist %}
+                                <li>{{ utils.render_prefix(blacklist_prefix) }}</li>
+                            {% endfor %}
+                        </ul>
                     </dd>
                 {% endif %}
             </dl>
