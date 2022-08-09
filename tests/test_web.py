@@ -52,3 +52,11 @@ class TestWeb(unittest.TestCase):
                 with self.subTest(metaprefix=metaprefix):
                     res = client.get(f"/metaregistry/{metaprefix}")
                     self.assertEqual(200, res.status_code, msg=res)
+
+    def test_missing_prefix(self):
+        """Test missing prefix responses."""
+        with app.test_client() as client:
+            for query in ["xxxx", "xxxx:yyyy"]:
+                with self.subTest(query=query):
+                    res = client.get(f"/{query}")
+                    self.assertEqual(404, res.status_code)

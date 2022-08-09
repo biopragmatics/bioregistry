@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import (
     Any,
     Callable,
+    Collection,
     Dict,
     Iterable,
     List,
@@ -170,7 +171,19 @@ class Manager:
 
     @lru_cache(maxsize=None)  # noqa:B019
     def get_registry_invmap(self, metaprefix: str, normalize: bool = False) -> Dict[str, str]:
-        """Get a mapping from prefixes in another registry to Bioregistry prefixes."""
+        """Get a mapping from prefixes in another registry to Bioregistry prefixes.
+
+        :param metaprefix: Which external registry should be used?
+        :param normalize: Should the external prefixes be normalized?
+        :returns: A mapping of external prefixes to bioregistry prefies
+
+        >>> from bioregistry import manager
+        >>> obofoundry_to_bioregistry = manager.get_registry_invmap("obofoundry", normalize=True)
+        >>> obofoundry_to_bioregistry["go"]
+        'go'
+        >>> obofoundry_to_bioregistry["geo"]
+        'geogeo'
+        """
         if normalize:
             return {
                 _norm(external_prefix): prefix
@@ -279,6 +292,7 @@ class Manager:
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
         use_preferred: bool = False,
+        blacklist: Optional[Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from prefixes to their regular expression patterns.
 
@@ -286,9 +300,12 @@ class Manager:
             the same URI prefix?
         :param remapping: A mapping from prefixes to preferred prefixes.
         :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+        :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to regular expression pattern strings.
         """
-        it = self._iter_pattern_map(include_synonyms=include_synonyms, use_preferred=use_preferred)
+        it = self._iter_pattern_map(
+            include_synonyms=include_synonyms, use_preferred=use_preferred, blacklist=blacklist
+        )
         if not remapping:
             return dict(it)
         return {remapping.get(prefix, prefix): uri_prefix for prefix, uri_prefix in it}
@@ -298,8 +315,12 @@ class Manager:
         *,
         include_synonyms: bool = False,
         use_preferred: bool = False,
+        blacklist: Optional[Collection[str]] = None,
     ) -> Iterable[Tuple[str, str]]:
+        blacklist = set(blacklist or [])
         for prefix, resource in self.registry.items():
+            if prefix in blacklist:
+                continue
             pattern = resource.get_pattern()
             if pattern is None:
                 continue
@@ -319,6 +340,7 @@ class Manager:
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
         use_preferred: bool = False,
+        blacklist: Optional[Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from Bioregistry prefixes to their URI prefixes .
 
@@ -327,10 +349,14 @@ class Manager:
             the same URI prefix?
         :param remapping: A mapping from Bioregistry prefixes to preferred prefixes.
         :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+        :param blacklist: Prefixes to skip
         :return: A mapping from prefixes to URI prefixes.
         """
         it = self._iter_prefix_map(
-            priority=priority, include_synonyms=include_synonyms, use_preferred=use_preferred
+            priority=priority,
+            include_synonyms=include_synonyms,
+            use_preferred=use_preferred,
+            blacklist=blacklist,
         )
         if not remapping:
             return dict(it)
@@ -342,8 +368,12 @@ class Manager:
         priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
         use_preferred: bool = False,
+        blacklist: Optional[Collection[str]] = None,
     ) -> Iterable[Tuple[str, str]]:
+        blacklist = set(blacklist or [])
         for prefix, resource in self.registry.items():
+            if prefix in blacklist:
+                continue
             uri_prefix = resource.get_uri_prefix(priority=priority)
             if uri_prefix is None:
                 continue
@@ -362,11 +392,23 @@ class Manager:
         #: in order to avoid conflicts of sub-URIs (thanks to Nico Matentzoglu for the idea)
         return prepare_prefix_list(self.get_prefix_map(**kwargs))
 
-    def get_curie_pattern(self, prefix: str) -> Optional[str]:
-        """Get the CURIE pattern for this resource.
+    def get_curie_pattern(self, prefix: str, use_preferred: bool = False) -> Optional[str]:
+        r"""Get the CURIE pattern for this resource.
 
         :param prefix: The prefix to look up
+        :param use_preferred: Should the preferred prefix be used instead
+            of the Bioregistry prefix (if it exists)?
         :return: The regular expression pattern to match CURIEs against
+
+        >>> from bioregistry import manager
+        >>> manager.get_curie_pattern("go")
+        '^go:\\d{7}$'
+        >>> manager.get_curie_pattern("go", use_preferred=True)
+        '^GO:\\d{7}$'
+        >>> manager.get_curie_pattern("kegg.compound")
+        '^kegg\\.compound:C\\d+$'
+        >>> manager.get_curie_pattern("KEGG.COMPOUND")
+        '^kegg\\.compound:C\\d+$'
         """
         resource = self.get_resource(prefix)
         if resource is None:
@@ -374,7 +416,7 @@ class Manager:
         pattern = resource.get_pattern()
         if pattern is None:
             return None
-        p = resource.get_preferred_prefix() or prefix
+        p = resource.get_preferred_prefix() or resource.prefix if use_preferred else resource.prefix
         p = p.replace(".", "\\.")
         return f"^{p}:{pattern.lstrip('^')}"
 
@@ -806,7 +848,7 @@ class Manager:
         use_bioregistry_io: bool = True,
         provider: Optional[str] = None,
     ) -> Optional[str]:
-        """Get the best link for the CURIE, if possible.
+        """Get the best link for the CURIE pair, if possible.
 
         :param prefix: The prefix in the CURIE
         :param identifier: The identifier in the CURIE. If identifier is given as None, then this function will
@@ -911,11 +953,109 @@ class Manager:
         rv = Counter(
             metaprefix
             for resource in self.registry.values()
-            for metaprefix in resource.get_mappings() or {}
+            for metaprefix in resource.get_mappings()
         )
         if include_bioregistry:
             rv["bioregistry"] = len(self.registry)
         return rv
+
+    def is_valid_identifier(self, prefix: str, identifier: str) -> Optional[bool]:
+        """Check if the identifier is valid."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.is_valid_identifier(identifier)
+
+    def is_standardizable_identifier(self, prefix: str, identifier: str) -> Optional[bool]:
+        """Check if the identifier is standardizable."""
+        resource = self.get_resource(prefix)
+        if resource is None:
+            return None
+        return resource.is_standardizable_identifier(identifier)
+
+    def is_valid_curie(self, curie: str) -> Optional[bool]:
+        """Check if a CURIE is valid.
+
+        :param curie: A compact URI
+        :return: If the CURIE is standardized in both syntax and semantics.
+
+        Standard CURIE
+        >>> from bioregistry import manager
+        >>> manager.is_valid_curie("go:0000001")
+        True
+
+        Not a standard CURIE (i.e., no colon)
+        >>> manager.is_valid_curie("0000001")
+        False
+        >>> manager.is_valid_curie("GO_0000001")
+        False
+        >>> manager.is_valid_curie("PTM-0001")
+        False
+
+        Non-standardized prefix
+        >>> manager.is_valid_curie("GO:0000001")
+        False
+
+        Incorrect identifier
+        >>> manager.is_valid_curie("go:0001")
+        False
+
+        Banana scenario
+        >>> manager.is_valid_curie("go:GO:0000001")
+        False
+
+        Unknown prefix
+        >>> manager.is_valid_curie("xxx:yyy")
+        False
+        """
+        try:
+            prefix, identifier = curie.split(":", 1)
+        except ValueError:
+            return False
+        norm_prefix = self.normalize_prefix(prefix)
+        if norm_prefix != prefix:
+            return False
+        return self.registry[norm_prefix].is_valid_identifier(identifier)
+
+    def is_standardizable_curie(self, curie: str) -> Optional[bool]:
+        """Check if a CURIE is validatable, but not necessarily standardized.
+
+        :param curie: A compact URI
+        :return: If the CURIE is standardized in both syntax and semantics.
+
+        Standard CURIE
+        >>> from bioregistry import manager
+        >>> manager.is_standardizable_curie("go:0000001")
+        True
+
+        Not a standard CURIE (i.e., no colon)
+        >>> manager.is_standardizable_curie("0000001")
+        False
+        >>> manager.is_standardizable_curie("GO_0000001")
+        False
+        >>> manager.is_standardizable_curie("PTM-0001")
+        False
+
+        Non-standardized prefix
+        >>> manager.is_standardizable_curie("GO:0000001")
+        True
+
+        Incorrect identifier
+        >>> manager.is_standardizable_curie("go:0001")
+        False
+
+        Banana scenario
+        >>> manager.is_standardizable_curie("go:GO:0000001")
+        True
+
+        Unknown prefix
+        >>> manager.is_standardizable_curie("xxx:yyy")
+        False
+        """
+        norm_curie = self.normalize_curie(curie)
+        if norm_curie is None:
+            return False
+        return self.is_valid_curie(norm_curie)
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:

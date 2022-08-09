@@ -13,7 +13,12 @@ from .metaresource_api import (  # noqa:F401
     get_registry_short_name,
     get_registry_uri,
 )
-from .parse_iri import curie_from_iri, parse_iri, parse_obolibrary_purl  # noqa:F401
+from .parse_iri import (  # noqa:F401
+    curie_from_iri,
+    ensure_prefix_list,
+    parse_iri,
+    parse_obolibrary_purl,
+)
 from .resolve import (  # noqa:F401
     count_mappings,
     get_appears_in,
@@ -93,6 +98,8 @@ from .resolve_identifier import (  # noqa:F401
     get_providers,
     get_providers_list,
     is_known_identifier,
+    is_valid_curie,
+    is_valid_identifier,
 )
 from .resource_manager import Manager, manager  # noqa:F401
 from .schema.struct import (  # noqa:F401

@@ -70,11 +70,13 @@ def get_prescriptive_artifacts(
         priority=context.uri_prefix_priority,
         include_synonyms=include_synonyms,
         use_preferred=context.use_preferred,
+        blacklist=context.blacklist,
     )
     prescriptive_pattern_map = get_pattern_map(
         remapping=remapping,
         include_synonyms=include_synonyms,
         use_preferred=context.use_preferred,
+        blacklist=context.blacklist,
     )
     return prescriptive_prefix_map, prescriptive_pattern_map
 

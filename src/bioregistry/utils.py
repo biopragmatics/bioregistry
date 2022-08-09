@@ -4,7 +4,7 @@ import logging
 from dataclasses import asdict, is_dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, List, Mapping, Optional, Union
+from typing import Any, List, Mapping, Optional, Union, cast
 
 import click
 import requests
@@ -145,3 +145,45 @@ def get_hexdigests(alg: str = "sha256") -> Mapping[str, str]:
 def _get_hexdigest(path: Union[str, Path], alg: str = "sha256") -> str:
     hashes = get_hashes(path, [alg])
     return hashes[alg].hexdigest()
+
+
+def get_ols_descendants(
+    ontology: str, uri: str, *, force_download: bool = False, get_identifier=None, clean=None
+) -> Mapping[str, Mapping[str, Any]]:
+    """Get descendants in the OLS."""
+    url = f"https://www.ebi.ac.uk/ols/api/ontologies/{ontology}/terms/{uri}/descendants?size=1000"
+    res = requests.get(url)
+    res.raise_for_status()
+    res_json = res.json()
+    terms = res_json["_embedded"]["terms"]
+    return _process_ols(ontology=ontology, terms=terms, clean=clean, get_identifier=get_identifier)
+
+
+def _process_ols(
+    *, ontology, terms, clean=None, get_identifier=None
+) -> Mapping[str, Mapping[str, Any]]:
+    if clean is None:
+        clean = _clean
+    if get_identifier is None:
+        get_identifier = _get_identifier
+    rv = {}
+    for term in terms:
+        identifier = get_identifier(term, ontology)
+        description = term.get("description")
+        rv[identifier] = {
+            "name": clean(term["label"]),
+            "description": description and description[0],
+            "obsolete": term.get("is_obsolete", False),
+        }
+    return rv
+
+
+def _get_identifier(term, ontology: str) -> str:
+    return term["obo_id"][len(ontology) + 1 :]
+
+
+def _clean(s: str) -> str:
+    s = cast(str, removesuffix(s, "identifier")).strip()
+    s = cast(str, removesuffix(s, "ID")).strip()
+    s = cast(str, removesuffix(s, "accession")).strip()
+    return s

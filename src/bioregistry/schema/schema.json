@@ -477,6 +477,14 @@
         "biocontext": {
           "title": "Biocontext",
           "type": "object"
+        },
+        "edam": {
+          "title": "Edam",
+          "type": "object"
+        },
+        "re3data": {
+          "title": "Re3Data",
+          "type": "object"
         }
       },
       "required": [
@@ -916,6 +924,14 @@
           "additionalProperties": {
             "type": "string"
           }
+        },
+        "blacklist": {
+          "title": "Blacklist",
+          "description": "This is a list of canonical Bioregistry prefixes that should not be included in the context.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "required": [
@@ -925,7 +941,8 @@
         "prefix_priority",
         "uri_prefix_priority",
         "prefix_remapping",
-        "custom_prefix_map"
+        "custom_prefix_map",
+        "blacklist"
       ]
     }
   }

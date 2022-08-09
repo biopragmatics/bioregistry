@@ -90,6 +90,7 @@ def _bind(graph: rdflib.Graph) -> None:
     graph.namespace_manager.bind("foaf", FOAF)
     graph.namespace_manager.bind("dc", DC)
     graph.namespace_manager.bind("dcterms", DCTERMS)
+    graph.namespace_manager.bind("skos", SKOS)
     for key, value in CURIE_MAP.items():
         graph.namespace_manager.bind(key, value)
 
