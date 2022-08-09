@@ -362,7 +362,7 @@
 <rdfs:label>Information system for G protein-coupled receptors (GPCRs)</rdfs:label>
 <citation rdf:resource="http://purl.uniprot.org/citations/11125133"/>
 <rdfs:seeAlso rdf:resource="https://gpcrdb.org"/>
-<urlTemplate>https://gpcrdb.org/protein/%s/</urlTemplate>
+<urlTemplate>https://gpcrdb.org/protein/%u/</urlTemplate>
 </rdf:Description>
 <rdf:Description rdf:about="http://purl.uniprot.org/citations/11125133">
 <rdf:type rdf:resource="http://purl.uniprot.org/core/Citation"/>
@@ -654,7 +654,7 @@
 <rdfs:label>Database of comparative protein structure models</rdfs:label>
 <citation rdf:resource="http://purl.uniprot.org/citations/16381869"/>
 <rdfs:seeAlso rdf:resource="https://modbase.compbio.ucsf.edu/modbase-cgi/index.cgi"/>
-<urlTemplate>https://salilab.org/modbase-cgi/model_search.cgi?searchkw=name&amp;kword=%s</urlTemplate>
+<urlTemplate>https://salilab.org/modbase-cgi/model_search.cgi?searchkw=name&amp;kword=%u</urlTemplate>
 </rdf:Description>
 <rdf:Description rdf:about="http://purl.uniprot.org/citations/16381869">
 <rdf:type rdf:resource="http://purl.uniprot.org/core/Citation"/>
@@ -794,7 +794,7 @@
 <citation rdf:resource="http://purl.uniprot.org/citations/30321395"/>
 <rdfs:seeAlso rdf:resource="https://www.pombase.org/"/>
 <rdfs:comment>Replacement for GeneDB_Spombe</rdfs:comment>
-<urlTemplate>https://www.pombase.org/spombe/result/%s</urlTemplate>
+<urlTemplate>https://www.pombase.org/gene/%s</urlTemplate>
 </rdf:Description>
 <rdf:Description rdf:about="http://purl.uniprot.org/citations/30321395">
 <rdf:type rdf:resource="http://purl.uniprot.org/core/Citation"/>
@@ -841,7 +841,7 @@
 <linkIsExplicit rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</linkIsExplicit>
 <citation rdf:resource="http://purl.uniprot.org/citations/SIPA92E437F3CD7880E"/>
 <rdfs:seeAlso rdf:resource="https://bgee.org"/>
-<urlTemplate>https://bgee.org/?page=gene&amp;gene_id=%s</urlTemplate>
+<urlTemplate>https://bgee.org/gene/%s</urlTemplate>
 </rdf:Description>
 <rdf:Description rdf:about="http://purl.uniprot.org/citations/SIPA92E437F3CD7880E">
 <rdf:type rdf:resource="http://purl.uniprot.org/core/Citation"/>
@@ -1961,8 +1961,8 @@
 <rdfs:label>ESTHER database of the Alpha/Beta-hydrolase fold superfamily of proteins</rdfs:label>
 <linkIsExplicit rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</linkIsExplicit>
 <citation rdf:resource="http://purl.uniprot.org/citations/23193256"/>
-<rdfs:seeAlso rdf:resource="http://bioweb.supagro.inra.fr/ESTHER/general?what=index"/>
-<urlTemplate>http://bioweb.supagro.inra.fr/ESTHER/gene_locus?name=%s&amp;class=Gene_locus</urlTemplate>
+<rdfs:seeAlso rdf:resource="https://bioweb.supagro.inra.fr/ESTHER/general?what=index"/>
+<urlTemplate>https://bioweb.supagro.inra.fr/ESTHER/gene_locus?name=%s&amp;class=Gene_locus</urlTemplate>
 </rdf:Description>
 <rdf:Description rdf:about="http://purl.uniprot.org/citations/23193256">
 <rdf:type rdf:resource="http://purl.uniprot.org/core/Citation"/>
@@ -2343,8 +2343,9 @@
 <rdfs:label>Structure-Function Linkage Database</rdfs:label>
 <linkIsExplicit rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</linkIsExplicit>
 <citation rdf:resource="http://purl.uniprot.org/citations/24271399"/>
-<rdfs:seeAlso rdf:resource="http://sfld.rbvi.ucsf.edu/django/"/>
-<urlTemplate>http://sfld.rbvi.ucsf.edu/django/lookup/%s</urlTemplate>
+<rdfs:seeAlso rdf:resource="http://sfld.rbvi.ucsf.edu/archive/django/index.html"/>
+<rdfs:seeAlso rdf:resource="https://www.ebi.ac.uk/interpro/entry/sfld/#table"/>
+<urlTemplate>https://www.ebi.ac.uk/interpro/entry/sfld/%s</urlTemplate>
 </rdf:Description>
 <rdf:Description rdf:about="http://purl.uniprot.org/citations/24271399">
 <rdf:type rdf:resource="http://purl.uniprot.org/core/Citation"/>
@@ -2586,6 +2587,22 @@
 <foaf:primaryTopicOf rdf:resource="https://pubmed.ncbi.nlm.nih.gov/29509874"/>
 <dcterms:identifier>doi:10.1093/bioinformatics/bty123</dcterms:identifier>
 </rdf:Description>
+<rdf:Description rdf:about="http://purl.uniprot.org/database/ClinGen">
+<rdf:type rdf:resource="http://purl.uniprot.org/core/Database"/>
+<abbreviation>ClinGen</abbreviation>
+<dcterms:identifier>263</dcterms:identifier>
+<category>Genetic variation databases</category>
+<rdfs:label>The ClinGen clinical relevance of genes and variants resource</rdfs:label>
+<citation rdf:resource="http://purl.uniprot.org/citations/26014595"/>
+<rdfs:seeAlso rdf:resource="https://www.clinicalgenome.org/"/>
+<urlTemplate>https://search.clinicalgenome.org/kb/genes/%s</urlTemplate>
+</rdf:Description>
+<rdf:Description rdf:about="http://purl.uniprot.org/citations/26014595">
+<rdf:type rdf:resource="http://purl.uniprot.org/core/Citation"/>
+<skos:exactMatch rdf:resource="http://purl.uniprot.org/pubmed/26014595"/>
+<foaf:primaryTopicOf rdf:resource="https://pubmed.ncbi.nlm.nih.gov/26014595"/>
+<dcterms:identifier>doi:10.1056/NEJMsr1406261</dcterms:identifier>
+</rdf:Description>
 <rdf:Description rdf:about="http://purl.uniprot.org/database/ComplexPortal">
 <rdf:type rdf:resource="http://purl.uniprot.org/core/Database"/>
 <abbreviation>ComplexPortal</abbreviation>
@@ -2646,6 +2663,22 @@
 <skos:exactMatch rdf:resource="http://purl.uniprot.org/pubmed/30371892"/>
 <foaf:primaryTopicOf rdf:resource="https://pubmed.ncbi.nlm.nih.gov/30371892"/>
 <dcterms:identifier>doi:10.1093/nar/gky963</dcterms:identifier>
+</rdf:Description>
+<rdf:Description rdf:about="http://purl.uniprot.org/database/GenCC">
+<rdf:type rdf:resource="http://purl.uniprot.org/core/Database"/>
+<abbreviation>GenCC</abbreviation>
+<dcterms:identifier>264</dcterms:identifier>
+<category>Genetic variation databases</category>
+<rdfs:label>GenCC: The Gene Curation Coalition</rdfs:label>
+<citation rdf:resource="http://purl.uniprot.org/citations/35507016"/>
+<rdfs:seeAlso rdf:resource="https://thegencc.org/"/>
+<urlTemplate>https://search.thegencc.org/genes/%s</urlTemplate>
+</rdf:Description>
+<rdf:Description rdf:about="http://purl.uniprot.org/citations/35507016">
+<rdf:type rdf:resource="http://purl.uniprot.org/core/Citation"/>
+<skos:exactMatch rdf:resource="http://purl.uniprot.org/pubmed/35507016"/>
+<foaf:primaryTopicOf rdf:resource="https://pubmed.ncbi.nlm.nih.gov/35507016"/>
+<dcterms:identifier>doi:10.1016/j.gim.2022.04.017</dcterms:identifier>
 </rdf:Description>
 <rdf:Description rdf:about="http://purl.uniprot.org/database/GlyConnect">
 <rdf:type rdf:resource="http://purl.uniprot.org/core/Database"/>
@@ -2722,9 +2755,16 @@
 <category>Genome annotation databases</category>
 <rdfs:label>Matched Annotation from NCBI and EMBL-EBI (MANE) - Phase one</rdfs:label>
 <linkIsExplicit rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</linkIsExplicit>
+<citation rdf:resource="http://purl.uniprot.org/citations/35388217"/>
 <rdfs:seeAlso rdf:resource="https://www.ensembl.org/info/genome/genebuild/mane.html"/>
 <rdfs:seeAlso rdf:resource="https://www.ncbi.nlm.nih.gov/refseq/MANE/"/>
 <urlTemplate>https://www.ensembl.org/id/%s</urlTemplate>
+</rdf:Description>
+<rdf:Description rdf:about="http://purl.uniprot.org/citations/35388217">
+<rdf:type rdf:resource="http://purl.uniprot.org/core/Citation"/>
+<skos:exactMatch rdf:resource="http://purl.uniprot.org/pubmed/35388217"/>
+<foaf:primaryTopicOf rdf:resource="https://pubmed.ncbi.nlm.nih.gov/35388217"/>
+<dcterms:identifier>doi:10.1038/s41586-022-04558-8</dcterms:identifier>
 </rdf:Description>
 <rdf:Description rdf:about="http://purl.uniprot.org/database/MassIVE">
 <rdf:type rdf:resource="http://purl.uniprot.org/core/Database"/>
