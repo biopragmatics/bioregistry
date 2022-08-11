@@ -78,10 +78,16 @@ TABLES_METADATA_LATEX_PATH = EXPORT_TABLES.joinpath("comparison_metadata.tex")
 TABLES_SUMMARY_LATEX_PATH = EXPORT_TABLES.joinpath("summary.tex")
 
 BENCHMARKS = EXPORT_DIRECTORY.joinpath("benchmarks")
+
 URI_PARSING = BENCHMARKS.joinpath("uri_parsing")
 URI_PARSING.mkdir(exist_ok=True, parents=True)
 URI_PARSING_DATA_PATH = URI_PARSING.joinpath("data.tsv")
 URI_PARSING_SVG_PATH = URI_PARSING.joinpath("results.svg")
+
+CURIE_PARSING = BENCHMARKS.joinpath("curie_parsing")
+CURIE_PARSING.mkdir(exist_ok=True, parents=True)
+CURIE_PARSING_DATA_PATH = CURIE_PARSING.joinpath("data.tsv")
+CURIE_PARSING_SVG_PATH = CURIE_PARSING.joinpath("results.svg")
 
 #: The URL of the remote Bioregistry site
 BIOREGISTRY_REMOTE_URL = pystow.get_config("bioregistry", "url") or "https://bioregistry.io"
