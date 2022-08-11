@@ -5,7 +5,7 @@ This benchmark checks the `bioregistry.parse_curie` function.
 ## Dataset
 
 The benchmarking dataset is available in [`data.tsv`](data.tsv). It contains
-5 columns:
+the following columns:
 
 1. `prefix` - a canonical Bioregistry prefix
 2. `identifier` - a local unique identifier in the prefix's semantic space
