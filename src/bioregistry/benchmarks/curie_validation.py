@@ -26,23 +26,36 @@ def get_curies(rebuild: bool = True):
     return rows
 
 
-def iter_curies() -> Iterable[Tuple[str, str, str, str, str]]:
+def iter_curies() -> Iterable[Tuple[str, str, str, str]]:
     """Generate prefix-identifier-banana-curie tuples for benchmarking."""
     for prefix, resource in tqdm(
         manager.registry.items(), desc="Generating test CURIEs", unit="prefix"
     ):
+        pattern = resource.get_pattern()
+        if not pattern:
+            continue
+        synonyms = resource.get_synonyms()
         for example in resource.get_examples():
             yield prefix, example, "true", curie_to_str(prefix, example)
+            for synonym in synonyms:
+                yield prefix, example, "false", curie_to_str(synonym, example)
+            for mutilation in [
+                f"{example}!",
+                f"!{example}",
+            ]:
+                yield prefix, mutilation, "false", curie_to_str(prefix, mutilation)
         for counterexample in resource.example_decoys or []:
             yield prefix, counterexample, "false", curie_to_str(prefix, counterexample)
-        for synonym in resource.get_synonyms():
-            yield prefix, example, "false", curie_to_str(synonym, example)
+            for synonym in synonyms:
+                yield prefix, counterexample, "false", curie_to_str(synonym, counterexample)
         banana = resource.get_banana()
         if banana:
             peel = resource.get_banana_peel()
-            example_extended = f"{banana}{peel}{example}"
-            yield prefix, example_extended, "false", curie_to_str(prefix, example_extended)
-        # TODO generate more false examples from identifier mutilation
+            for example in resource.get_examples():
+                example_extended = f"{banana}{peel}{example}"
+                yield prefix, example_extended, "false", curie_to_str(prefix, example_extended)
+                for synonym in synonyms:
+                    yield prefix, example_extended, "false", curie_to_str(synonym, example_extended)
 
 
 def main(rebuild: bool = True, epochs: int = 10):
@@ -63,11 +76,20 @@ def main(rebuild: bool = True, epochs: int = 10):
             start = time.time()
             result = bioregistry.is_valid_curie(curie)
             rows_.append((time.time() - start, label))
-            if result and label != "true":
+            if result is None:
+                tqdm.write(f"Missing pattern for {curie}")
+            elif result is True and label == "false":
                 failures += 1
                 if (prefix, identifier, label, curie) not in xx:
                     xx.add((prefix, identifier, label, curie))
-                    tqdm.write(f"incorrect validation {curie} (expected {label})")
+                    tqdm.write(
+                        f"expecting {curie} to be invalid against (got {result} but expected false)"
+                    )
+            elif result is False and label == "true":
+                failures += 1
+                if (prefix, identifier, label, curie) not in xx:
+                    xx.add((prefix, identifier, label, curie))
+                    tqdm.write(f"expecting {curie} to be valid (got {result} but expected true)")
 
     fig, ax = plt.subplots()
     df = pd.DataFrame(rows_, columns=["time", "label"])
