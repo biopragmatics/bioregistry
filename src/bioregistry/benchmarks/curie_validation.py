@@ -1,23 +1,17 @@
 """A benchmark for Bioregistry's CURIE validator."""
 
-import itertools as itt
 import random
 import time
-from statistics import mean
 from typing import Iterable, Tuple
-import pandas as pd
 
 import matplotlib.pyplot as plt
+import pandas as pd
 import seaborn as sns
 from tqdm import tqdm, trange
 
 import bioregistry
 from bioregistry import manager
-from bioregistry.constants import (
-    CURIE_VALIDATION,
-    CURIE_VALIDATION_DATA_PATH,
-    CURIE_VALIDATION_SVG_PATH,
-)
+from bioregistry.constants import CURIE_VALIDATION_DATA_PATH, CURIE_VALIDATION_SVG_PATH
 from bioregistry.utils import curie_to_str
 
 
@@ -63,7 +57,9 @@ def main(rebuild: bool = True, epochs: int = 10):
     xx = set()
     for _ in trange(epochs, desc="epochs"):
         random.shuffle(curies)
-        for prefix, identifier, label, curie in tqdm(curies, unit_scale=True, unit="CURIE", leave=False):
+        for prefix, identifier, label, curie in tqdm(
+            curies, unit_scale=True, unit="CURIE", leave=False
+        ):
             start = time.time()
             result = bioregistry.is_valid_curie(curie)
             rows_.append((time.time() - start, label))
