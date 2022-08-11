@@ -39,7 +39,7 @@ def iter_uris() -> Iterable[Tuple[str, str, str, str]]:
                     yield prefix, extra_example, metaprefix, url
 
 
-def main(rebuild: bool = False, epochs: int = 3):
+def main(rebuild: bool = False, epochs: int = 10):
     """Test parsing IRIs."""
     uris = get_uris(rebuild=rebuild)
 

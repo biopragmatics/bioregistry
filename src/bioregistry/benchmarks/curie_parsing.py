@@ -54,7 +54,7 @@ def iter_curies() -> Iterable[Tuple[str, str, str, str]]:
                 yield prefix, e, p, banana_extended, f"{p}:{example_extended}"
 
 
-def main(rebuild: bool = False, epochs: int = 3):
+def main(rebuild: bool = False, epochs: int = 10):
     """Test parsing CURIEs."""
     curies = get_curies(rebuild=rebuild)
 
