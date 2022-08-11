@@ -8,6 +8,6 @@
 
 ## Overview
 
-| something                    | other                          |
+| URI Parsing                  | CURIE Parsing                  |
 |------------------------------|--------------------------------|
 | ![](uri_parsing/results.svg) | ![](curie_parsing/results.svg) |
