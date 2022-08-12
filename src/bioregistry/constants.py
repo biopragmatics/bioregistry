@@ -89,6 +89,11 @@ CURIE_PARSING.mkdir(exist_ok=True, parents=True)
 CURIE_PARSING_DATA_PATH = CURIE_PARSING.joinpath("data.tsv")
 CURIE_PARSING_SVG_PATH = CURIE_PARSING.joinpath("results.svg")
 
+CURIE_VALIDATION = BENCHMARKS.joinpath("curie_validation")
+CURIE_VALIDATION.mkdir(exist_ok=True, parents=True)
+CURIE_VALIDATION_DATA_PATH = CURIE_VALIDATION.joinpath("data.tsv")
+CURIE_VALIDATION_SVG_PATH = CURIE_VALIDATION.joinpath("results.svg")
+
 #: The URL of the remote Bioregistry site
 BIOREGISTRY_REMOTE_URL = pystow.get_config("bioregistry", "url") or "https://bioregistry.io"
 
