@@ -149,8 +149,21 @@ def write_contexts(contexts: Mapping[str, Context]) -> None:
 
 def read_contributors(direct_only: bool = False) -> Mapping[str, Attributable]:
     """Get a mapping from contributor ORCID identifiers to author objects."""
+    return _read_contributors(
+        registry=read_registry(),
+        metaregistry=read_metaregistry(),
+        collections=read_collections(),
+        contexts=read_contexts(),
+        direct_only=direct_only,
+    )
+
+
+def _read_contributors(
+    registry, metaregistry, collections, contexts, direct_only: bool = False
+) -> Mapping[str, Attributable]:
+    """Get a mapping from contributor ORCID identifiers to author objects."""
     rv: Dict[str, Attributable] = {}
-    for resource in read_registry().values():
+    for resource in registry.values():
         if resource.contributor and resource.contributor.orcid:
             rv[resource.contributor.orcid] = resource.contributor
         for contributor in resource.contributor_extras or []:
@@ -162,15 +175,15 @@ def read_contributors(direct_only: bool = False) -> Mapping[str, Attributable]:
             contact = resource.get_contact()
             if contact and contact.orcid:
                 rv[contact.orcid] = contact
-    for metaresource in read_metaregistry().values():
+    for metaresource in metaregistry.values():
         if not direct_only:
             if metaresource.contact.orcid:
                 rv[metaresource.contact.orcid] = metaresource.contact
-    for collection in read_collections().values():
+    for collection in collections.values():
         for author in collection.authors or []:
             if author.orcid:
                 rv[author.orcid] = author
-    for context in read_contexts().values():
+    for context in contexts.values():
         for maintainer in context.maintainers:
             if maintainer.orcid:
                 rv[maintainer.orcid] = maintainer

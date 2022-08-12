@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "macros.html" as utils %}
 
-{% block title %}Bioregistry - {{ contributor.name }}{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} - {{ contributor.name }}{% endblock %}
 
 {% block scripts %}
     {{ super() }}

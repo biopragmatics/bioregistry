@@ -4,6 +4,7 @@
 
 import logging
 import typing
+import typing as t
 from collections import Counter, defaultdict
 from functools import lru_cache
 from pathlib import Path
@@ -25,9 +26,11 @@ from typing import (
 
 from .constants import BIOREGISTRY_REMOTE_URL, IDENTIFIERS_ORG_URL_PREFIX, LINK_PRIORITY
 from .license_standardizer import standardize_license
-from .schema import Registry, Resource, sanitize_model
+from .schema import Collection, Context, Registry, Resource, sanitize_model
 from .schema_utils import (
     _registry_from_path,
+    read_collections,
+    read_contexts,
     read_metaregistry,
     read_registry,
     write_registry,
@@ -69,11 +72,15 @@ class Manager:
 
     registry: Dict[str, Resource]
     metaregistry: Dict[str, Registry]
+    collections: Dict[str, Collection]
+    contexts: Dict[str, Context]
 
     def __init__(
         self,
         registry: Optional[Mapping[str, Resource]] = None,
         metaregistry: Optional[Mapping[str, Registry]] = None,
+        collections: Optional[Mapping[str, Collection]] = None,
+        contexts: Optional[Mapping[str, Context]] = None,
     ):
         """Instantiate a registry manager.
 
@@ -84,6 +91,8 @@ class Manager:
         self.synonyms = _synonym_to_canonical(self.registry)
 
         self.metaregistry = dict(read_metaregistry() if metaregistry is None else metaregistry)
+        self.collections = dict(read_collections() if collections is None else collections)
+        self.contexts = dict(read_contexts() if contexts is None else contexts)
 
         canonical_for = defaultdict(list)
         provided_by = defaultdict(list)
@@ -292,7 +301,7 @@ class Manager:
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
         use_preferred: bool = False,
-        blacklist: Optional[Collection[str]] = None,
+        blacklist: Optional[t.Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from prefixes to their regular expression patterns.
 
@@ -315,7 +324,7 @@ class Manager:
         *,
         include_synonyms: bool = False,
         use_preferred: bool = False,
-        blacklist: Optional[Collection[str]] = None,
+        blacklist: Optional[t.Collection[str]] = None,
     ) -> Iterable[Tuple[str, str]]:
         blacklist = set(blacklist or [])
         for prefix, resource in self.registry.items():
@@ -340,7 +349,7 @@ class Manager:
         include_synonyms: bool = False,
         remapping: Optional[Mapping[str, str]] = None,
         use_preferred: bool = False,
-        blacklist: Optional[Collection[str]] = None,
+        blacklist: Optional[t.Collection[str]] = None,
     ) -> Mapping[str, str]:
         """Get a mapping from Bioregistry prefixes to their URI prefixes .
 
@@ -368,7 +377,7 @@ class Manager:
         priority: Optional[Sequence[str]] = None,
         include_synonyms: bool = False,
         use_preferred: bool = False,
-        blacklist: Optional[Collection[str]] = None,
+        blacklist: Optional[t.Collection[str]] = None,
     ) -> Iterable[Tuple[str, str]]:
         blacklist = set(blacklist or [])
         for prefix, resource in self.registry.items():

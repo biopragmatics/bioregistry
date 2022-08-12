@@ -41,7 +41,7 @@ FORMATS = [
 
 @ui_blueprint.route("/registry/")
 def resources():
-    """Serve the Bioregistry page."""
+    """Serve the registry page."""
     registry = bioregistry.read_registry()
     if request.args.get("novel") in {"true", "t"}:
         registry = {p: v for p, v in registry.items() if bioregistry.is_novel(p)}
@@ -55,7 +55,7 @@ def resources():
 
 @ui_blueprint.route("/metaregistry/")
 def metaresources():
-    """Serve the Bioregistry metaregistry page."""
+    """Serve the metaregistry page."""
     return render_template(
         "metaresources.html",
         rows=bioregistry.read_metaregistry().values(),
@@ -65,7 +65,7 @@ def metaresources():
 
 @ui_blueprint.route("/collection/")
 def collections():
-    """Serve the Bioregistry collection page."""
+    """Serve the collections page."""
     return render_template(
         "collections.html",
         rows=bioregistry.read_collections().items(),
@@ -76,7 +76,7 @@ def collections():
 
 @ui_blueprint.route("/registry/<prefix>")
 def resource(prefix: str):
-    """Serve the a Bioregistry entry page."""
+    """Serve a resource page."""
     prefix = _normalize_prefix_or_404(prefix, "." + resource.__name__)
     if not isinstance(prefix, str):
         return prefix
@@ -134,7 +134,7 @@ def resource(prefix: str):
 
 @ui_blueprint.route("/metaregistry/<metaprefix>")
 def metaresource(metaprefix: str):
-    """Serve the a Bioregistry registry page."""
+    """Serve a metaresource page."""
     entry = bioregistry.get_registry(metaprefix)
     if entry is None:
         return abort(404, f"Invalid metaprefix: {metaprefix}")
@@ -178,7 +178,7 @@ def obo_health(prefix: str):
 
 @ui_blueprint.route("/collection/<identifier>")
 def collection(identifier: str):
-    """Serve the a Bioregistry registry page."""
+    """Serve a collection page."""
     entry = bioregistry.get_collection(identifier)
     if entry is None:
         return abort(404, f"Invalid collection: {identifier}")
@@ -199,7 +199,7 @@ def collection(identifier: str):
 
 @ui_blueprint.route("/context/")
 def contexts():
-    """Serve the Bioregistry contexts page."""
+    """Serve the contexts page."""
     return render_template(
         "contexts.html",
         rows=bioregistry.read_contexts().items(),
@@ -211,7 +211,7 @@ def contexts():
 
 @ui_blueprint.route("/context/<identifier>")
 def context(identifier: str):
-    """Serve the a Bioregistry context page."""
+    """Serve a context page."""
     entry = bioregistry.get_context(identifier)
     if entry is None:
         return abort(404, f"Invalid context: {identifier}")
@@ -227,7 +227,7 @@ def context(identifier: str):
 
 @ui_blueprint.route("/reference/<prefix>:<path:identifier>")
 def reference(prefix: str, identifier: str):
-    """Serve the a Bioregistry reference page."""
+    """Serve a reference page."""
     return render_template(
         "reference.html",
         prefix=prefix,
@@ -245,7 +245,7 @@ def resolve(prefix: str, identifier: Optional[str] = None):
 
     The following things can make a CURIE unable to resolve:
 
-    1. The prefix is not registered with the Bioregistry
+    1. The prefix is not registered
     2. The prefix has a validation pattern and the identifier does not match it
     3. There are no providers available for the URL
     """  # noqa:DAR101,DAR201
@@ -334,7 +334,7 @@ def github_resolve_pull(owner, repository, pull: int):
 
 @ui_blueprint.route("/contributors/")
 def contributors():
-    """Serve the Bioregistry contributors page."""
+    """Serve the contributors page."""
     collections = read_collections_contributions()
     contexts = read_context_contributions()
     prefix_contributions = read_prefix_contributions()
@@ -362,7 +362,7 @@ def contributors():
 
 @ui_blueprint.route("/contributor/<orcid>")
 def contributor(orcid: str):
-    """Serve a Bioregistry contributor page."""
+    """Serve a contributor page."""
     author = bioregistry.read_contributors().get(orcid)
     if author is None or author.orcid is None:
         return abort(404)

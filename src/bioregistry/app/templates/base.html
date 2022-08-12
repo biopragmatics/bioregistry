@@ -35,7 +35,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="{{ url_for("home") }}">
         <img src="{{ url_for('static', filename='logo.svg') }}" width="30" height="30" alt="">
-        Bioregistry
+        {{ config.METAREGISTRY_TITLE }}
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,17 +52,22 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for("ui.collections") }}">Collections</a>
             </li>
+            {% if config.METAREGISTRY_FIRST_PARTY %}
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for("ui.contexts") }}">Contexts</a>
             </li>
-
+            {% endif %}
 
             <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     About
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% if config.METAREGISTRY_FIRST_PARTY %}
                     <a class="dropdown-item" href="{{ url_for("summary") }}">Summary</a>
+                    {% else %}
+                    <a class="dropdown-item" href="https://bioregistry.io/summary">Summary (External)</a>
+                    {% endif %}
                     <a class="dropdown-item" href="{{ url_for("usage") }}">Programmatic Usage</a>
                     <a class="dropdown-item" href="{{ url_for("schema") }}">JSON and RDF Schemata</a>
                     <a class="dropdown-item" href="{{ url_for("sustainability") }}">Deployment and Sustainability</a>
@@ -82,7 +87,7 @@
         <ul class="navbar-nav my-2 my-lg-0">
             <li class="nav-item active">
                 <span class="text-muted">
-                    Version {{ config.bioregistry_version }}
+                    Version {{ config.METAREGISTRY_VERSION }}
                 </span>
             </li>
         </ul>
@@ -101,11 +106,7 @@
 
 <footer class="footer">
     <p class="small text-center text-muted">
-        Developed with ❤️ by the <a href="https://indralab.github.io">INDRA Lab</a> in the
-        <a href="https://hits.harvard.edu">Harvard Program in Therapeutic Science (HiTS)</a>.<br/>
-        Funded by the DARPA Young Faculty Award W911NF2010255 (PI: Benjamin M. Gyori).<br/>
-        Point of contact: <a href="https://github.com/cthoyt">@cthoyt</a>.
-        (<a href="https://github.com/biopragmatics/bioregistry">Source code</a>)
+        {{ config.METAREGISTRY_FOOTER | safe }}
     </p>
 </footer>
 
