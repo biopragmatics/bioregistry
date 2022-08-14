@@ -25,9 +25,10 @@ from typing import (
 
 from .constants import BIOREGISTRY_REMOTE_URL, IDENTIFIERS_ORG_URL_PREFIX, LINK_PRIORITY
 from .license_standardizer import standardize_license
-from .schema import Registry, Resource, sanitize_model
+from .schema import Context, Registry, Resource, sanitize_model
 from .schema_utils import (
     _registry_from_path,
+    read_contexts,
     read_metaregistry,
     read_registry,
     write_registry,
@@ -69,11 +70,13 @@ class Manager:
 
     registry: Dict[str, Resource]
     metaregistry: Dict[str, Registry]
+    contexts: Dict[str, Context]
 
     def __init__(
         self,
         registry: Optional[Mapping[str, Resource]] = None,
         metaregistry: Optional[Mapping[str, Registry]] = None,
+        contexts: Optional[Mapping[str, Context]] = None,
     ):
         """Instantiate a registry manager.
 
@@ -84,6 +87,7 @@ class Manager:
         self.synonyms = _synonym_to_canonical(self.registry)
 
         self.metaregistry = dict(read_metaregistry() if metaregistry is None else metaregistry)
+        self.contexts = dict(read_contexts() if contexts is None else contexts)
 
         canonical_for = defaultdict(list)
         provided_by = defaultdict(list)
@@ -1056,6 +1060,44 @@ class Manager:
         if norm_curie is None:
             return False
         return self.is_valid_curie(norm_curie)
+
+    def get_context(self, identifier: str) -> Optional[Context]:
+        """Get a presriptive context"""
+        return self.contexts.get(identifier)
+
+    def get_context_artifacts(
+        self, key: str, include_synonyms: Optional[bool] = None
+    ) -> Tuple[Mapping[str, str], Mapping[str, str]]:
+        """Get a prescriptive prefix map and pattern map."""
+        context = self.get_context(key)
+        if context is None:
+            raise KeyError
+        remapping = dict(
+            ChainMap(
+                *(
+                    self.get_registry_map(metaprefix)
+                    for metaprefix in context.prefix_priority or []
+                ),
+                context.prefix_remapping or {},
+            )
+        )
+        include_synonyms = (
+            include_synonyms if include_synonyms is not None else context.include_synonyms
+        )
+        prescriptive_prefix_map = self.get_prefix_map(
+            remapping=remapping,
+            priority=context.uri_prefix_priority,
+            include_synonyms=include_synonyms,
+            use_preferred=context.use_preferred,
+            blacklist=context.blacklist,
+        )
+        prescriptive_pattern_map = self.get_pattern_map(
+            remapping=remapping,
+            include_synonyms=include_synonyms,
+            use_preferred=context.use_preferred,
+            blacklist=context.blacklist,
+        )
+        return prescriptive_prefix_map, prescriptive_pattern_map
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
