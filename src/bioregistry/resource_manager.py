@@ -10,7 +10,6 @@ from pathlib import Path
 from typing import (
     Any,
     Callable,
-    Collection,
     Dict,
     Iterable,
     List,
@@ -85,6 +84,7 @@ class Manager:
 
         :param registry: A custom registry. If none given, defaults to the Bioregistry.
         :param metaregistry: A custom metaregistry. If none, defaults to the Bioregistry's metaregistry.
+        :param collections: A custom collections dictionary. If none, defaults to the Bioregistry's collections.
         :param contexts: A custom contexts dictionary. If none, defaults to the Bioregistry's contexts.
         """
         self.registry = dict(read_registry() if registry is None else registry)
