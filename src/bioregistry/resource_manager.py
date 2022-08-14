@@ -82,6 +82,7 @@ class Manager:
 
         :param registry: A custom registry. If none given, defaults to the Bioregistry.
         :param metaregistry: A custom metaregistry. If none, defaults to the Bioregistry's metaregistry.
+        :param contexts: A custom contexts dictionary. If none, defaults to the Bioregistry's contexts.
         """
         self.registry = dict(read_registry() if registry is None else registry)
         self.synonyms = _synonym_to_canonical(self.registry)
@@ -1061,13 +1062,13 @@ class Manager:
             return False
         return self.is_valid_curie(norm_curie)
 
-    def get_context(self, identifier: str) -> Optional[Context]:
+    def get_context(self, key: str) -> Optional[Context]:
         """Get a prescriptive context.
 
         :param key: The identifier for the prescriptive context, e.g., `obo`.
         :returns: A prescriptive context object, if available
         """
-        return self.contexts.get(identifier)
+        return self.contexts.get(key)
 
     def get_context_artifacts(
         self, key: str, include_synonyms: Optional[bool] = None
