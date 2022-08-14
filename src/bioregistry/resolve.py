@@ -7,7 +7,6 @@ import typing
 from functools import lru_cache
 from typing import Any, Dict, List, Mapping, Optional, Set, Tuple, Union
 
-from . import manager
 from .resource_manager import manager
 from .schema import Attributable, Resource
 

@@ -4,7 +4,7 @@
 
 import logging
 import typing
-from collections import Counter, defaultdict
+from collections import ChainMap, Counter, defaultdict
 from functools import lru_cache
 from pathlib import Path
 from typing import (
@@ -1062,7 +1062,11 @@ class Manager:
         return self.is_valid_curie(norm_curie)
 
     def get_context(self, identifier: str) -> Optional[Context]:
-        """Get a presriptive context"""
+        """Get a prescriptive context.
+
+        :param key: The identifier for the prescriptive context, e.g., `obo`.
+        :returns: A prescriptive context object, if available
+        """
         return self.contexts.get(identifier)
 
     def get_context_artifacts(
