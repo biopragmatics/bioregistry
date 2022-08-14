@@ -1843,6 +1843,10 @@ class Collection(BaseModel):
 
         return node
 
+    def as_context_jsonld_str(self) -> str:
+        """Get the JSON-LD context as a string from a given collection."""
+        return json.dumps(self.as_context_jsonld())
+
     def as_context_jsonld(self) -> Mapping[str, Mapping[str, str]]:
         """Get the JSON-LD context from a given collection."""
         return {

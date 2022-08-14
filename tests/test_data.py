@@ -12,9 +12,9 @@ from typing import Mapping
 import bioregistry
 from bioregistry import Resource
 from bioregistry.constants import BIOREGISTRY_PATH
-from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES
+from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.schema.struct import SCHEMA_PATH, get_json_schema
 from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.schema_utils import is_mismatch
@@ -575,11 +575,11 @@ class TestRegistry(unittest.TestCase):
 
     def test_obo_prefix_map(self):
         """Test the integrity of the OBO prefix map."""
-        obofoundry_prefix_map = get_obofoundry_prefix_map()
+        obofoundry_prefix_map = get_obo_context_prefix_map()
         self.assert_no_idot(obofoundry_prefix_map)
         self.assertIn("FlyBase", set(obofoundry_prefix_map))
 
-        self.assert_no_idot(get_obofoundry_prefix_map(include_synonyms=True))
+        self.assert_no_idot(get_obo_context_prefix_map(include_synonyms=True))
 
     def assert_no_idot(self, prefix_map: Mapping[str, str]) -> None:
         """Assert none of the URI prefixes have identifiers.org in them."""
