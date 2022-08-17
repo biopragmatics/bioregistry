@@ -23649,6 +23649,15 @@ bioregistry:sfam a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^F\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:shacl a bioregistry.schema:0000001 ;
+    rdfs:label "Shapes Constraint Language" ;
+    dc:description "A language for validating RDF graphs against a set of conditions"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.w3.org/TR/shacl/"^^xsd:string ;
+    bioregistry.schema:0000005 "NodeShape"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.w3.org/ns/shacl#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:sheepqtldb a bioregistry.schema:0000001 ;
     rdfs:label "Animal Genome Sheep QTL" ;
     dc:description "The Animal Quantitative Trait Loci (QTL) database (Animal QTLdb) is designed to house publicly all available QTL and single-nucleotide polymorphism/gene association data on livestock animal species. This collection references sheep QTLs."^^xsd:string ;
@@ -32423,6 +32432,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:scr,
         bioregistry:sdis,
         bioregistry:sfam,
+        bioregistry:shacl,
         bioregistry:sigmaaldrich,
         bioregistry:smid,
         bioregistry:snap,
@@ -39284,6 +39294,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:sgd,
         bioregistry:sgd.pathways,
         bioregistry:sgn,
+        bioregistry:shacl,
         bioregistry:sheepqtldb,
         bioregistry:sibo,
         bioregistry:sider.drug,
