@@ -15363,7 +15363,8 @@
     },
     "name": "Dublin Core Metadata Vocabulary",
     "synonyms": [
-      "dc.terms"
+      "dc.terms",
+      "dct"
     ],
     "uri_format": "http://purl.org/dc/terms/$1"
   },
@@ -27119,6 +27120,9 @@
       "prefix": "GNO"
     },
     "example": "10004892",
+    "example_extras": [
+      "G99373GG"
+    ],
     "mappings": {
       "aberowl": "GNO",
       "bioportal": "GNO",
@@ -27165,7 +27169,19 @@
       "name": "Glycan Naming and Subsumption Ontology (GNOme)",
       "prefix": "GNO"
     },
-    "pattern": "^\\d{8}$"
+    "pattern": "^\\d{8}$",
+    "providers": [
+      {
+        "code": "gno.structure",
+        "description": "GNOme structure browser",
+        "homepage": "https://gnome.glyomics.org/StructureBrowser.html",
+        "name": "GNOme Structure Viewer",
+        "uri_format": "https://gnome.glyomics.org/StructureBrowser.html?focus=$1"
+      }
+    ],
+    "synonyms": [
+      "gnome"
+    ]
   },
   "gnpis": {
     "biocontext": {
@@ -44246,6 +44262,15 @@
       ],
       "uri_format": "http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1"
     },
+    "providers": [
+      {
+        "code": "evs",
+        "description": "Links to a no-longer existing OWL file",
+        "homepage": "https://ncit.nci.nih.gov/ncitbrowser/",
+        "name": "Legacy NCBI OWL",
+        "uri_format": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#$1"
+      }
+    ],
     "synonyms": [
       "NCI",
       "NCI2004_11_17",
@@ -59868,7 +59893,16 @@
         "17118155"
       ],
       "uri_format": "http://www.ebi.ac.uk/sbo/main/$1"
-    }
+    },
+    "providers": [
+      {
+        "code": "biomodels",
+        "description": "Provider for SBO at BioModels",
+        "homepage": "http://biomodels.net",
+        "name": "BioModels",
+        "uri_format": "http://biomodels.net/SBO/SBO_$1"
+      }
+    ]
   },
   "scdo": {
     "aberowl": {
@@ -63580,7 +63614,37 @@
       "name": "Software Ontology",
       "pattern": "^SWO_\\d{7}$",
       "prefix": "swo"
-    }
+    },
+    "providers": [
+      {
+        "code": "ebi",
+        "description": "The EBI's old SWO URIs before switching over to OBO PURLs",
+        "homepage": "http://www.ebi.ac.uk/swo/license",
+        "name": "Legacy EBI SWO",
+        "uri_format": "http://www.ebi.ac.uk/swo/SWO_$1"
+      },
+      {
+        "code": "ebi.efo",
+        "description": "The EBI's old SWO URIs before switching over to OBO PURLs",
+        "homepage": "http://www.ebi.ac.uk/efo/swo/",
+        "name": "Legacy EBI SWO",
+        "uri_format": "http://www.ebi.ac.uk/efo/swo/SWO_$1"
+      },
+      {
+        "code": "ebi.license",
+        "description": "The EBI's old SWO URIs before switching over to OBO PURLs",
+        "homepage": "http://www.ebi.ac.uk/swo/license",
+        "name": "Legacy EBI SWO",
+        "uri_format": "http://www.ebi.ac.uk/swo/license/SWO_$1"
+      },
+      {
+        "code": "ebi.data",
+        "description": "The EBI's old SWO URIs before switching over to OBO PURLs",
+        "homepage": "http://www.ebi.ac.uk/swo/data",
+        "name": "Legacy EBI SWO",
+        "uri_format": "http://www.ebi.ac.uk/swo/data/SWO_$1"
+      }
+    ]
   },
   "symp": {
     "aberowl": {
@@ -68421,6 +68485,13 @@
       "uri_format": "http://viaf.org/viaf/$1"
     },
     "providers": [
+      {
+        "code": "viaf.https",
+        "description": "A duplicate endpoint over HTTPS",
+        "homepage": "http://viaf.org",
+        "name": "VIAF (https)",
+        "uri_format": "https://viaf.org/$1"
+      },
       {
         "code": "scholia",
         "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
