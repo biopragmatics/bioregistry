@@ -9550,7 +9550,16 @@
       "name": "Chemical Information Ontology",
       "prefix": "CHEMINF"
     },
-    "pattern": "^\\d{6}$"
+    "pattern": "^\\d{6}$",
+    "providers": [
+      {
+        "code": "semanticscience",
+        "description": "Legacy URLs before conversion of CHEMINF to OBO PURLs",
+        "homepage": "http://semanticscience.org",
+        "name": "Semantic Science",
+        "uri_format": "http://semanticscience.org/resource/CHEMINF_$1"
+      }
+    ]
   },
   "chemspider": {
     "biocontext": {
@@ -64094,7 +64103,16 @@
         "12444417"
       ],
       "uri_format": "http://arabidopsis.org/servlets/TairObject?type=locus&name=$1"
-    }
+    },
+    "providers": [
+      {
+        "code": "thalemine",
+        "description": "Data mining on aradopsis",
+        "homepage": "https://bar.utoronto.ca/thalemine",
+        "name": "ThaleMine",
+        "uri_format": "https://bar.utoronto.ca/thalemine/portal.do?externalids=$1"
+      }
+    ]
   },
   "tair.protein": {
     "banana": "AASequence",
