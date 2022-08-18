@@ -249,8 +249,7 @@ bioregistry.schema:0000022 a rdf:Property ;
     rdfs:domain bioregistry.schema:0000002 ;
     rdfs:range bioregistry.schema:0000020 .
 
-orcid:0000-0001-9439-5346 rdfs:label "Benjamin Gyori",
-        "Benjamin M. Gyori" ;
+orcid:0000-0001-9439-5346 rdfs:label "Benjamin M. Gyori" ;
     dcterms:contributor bioregistry:bko,
         bioregistry:casspc,
         bioregistry:cordis.project,
@@ -5207,7 +5206,7 @@ bioregistry:gno a bioregistry.schema:0000001 ;
     foaf:homepage "https://gnome.glyomics.org/"^^xsd:string ;
     bioregistry.schema:0000005 "10004892"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/GNO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
+    bioregistry.schema:0000008 "^(\\d{8}|(\\w+\\d+\\w+))$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-5168-3196 .
 
@@ -8740,7 +8739,7 @@ bioregistry:npo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "1731"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 [ rdfs:label "Nathan Baker" ] .
+    bioregistry.schema:0000019 orcid:0000-0002-5892-6506 .
 
 bioregistry:nuclearbd a bioregistry.schema:0000001 ;
     rdfs:label "NucleaRDB" ;
@@ -9838,19 +9837,6 @@ bioregistry:phenolexplorer a bioregistry.schema:0000001 ;
     foaf:homepage "http://www.phenol-explorer.eu/foods/"^^xsd:string ;
     bioregistry.schema:0000005 "75"^^xsd:string ;
     bioregistry.schema:0000006 "http://phenol-explorer.eu/foods/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:phenx a bioregistry.schema:0000001 ;
-    rdfs:label "PhenX Toolkit" ;
-    dc:description "A Web-based catalog of recommended measurement protocols"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:PHENX,
-        bioportal:PHENX,
-        fairsharing:FAIRsharing.y5jcwa ;
-    foaf:homepage "https://www.phenxtoolkit.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "130502"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.phenxtoolkit.org/protocols/view/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -13403,6 +13389,8 @@ orcid:0000-0002-5316-1399 rdfs:label "Sebastian Koehler" .
 
 orcid:0000-0002-5714-991X rdfs:label "Chris Stoeckert" .
 
+orcid:0000-0002-5892-6506 rdfs:label "Nathan Baker" .
+
 orcid:0000-0002-6020-5919 rdfs:label "Elizabeth Arnaud" .
 
 orcid:0000-0002-6379-8932 rdfs:label "Laurel Cooper" .
@@ -14084,6 +14072,8 @@ aberowl:TAXRANK dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:TEDDY dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:TGMA dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+aberowl:TIME dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:TO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -16023,6 +16013,8 @@ bioportal:TEDDY dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:TGMA dcterms:isPartOf bioregistry.metaresource:bioportal .
 
+bioportal:TIME dcterms:isPartOf bioregistry.metaresource:bioportal .
+
 bioportal:TRANS dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:TTO dcterms:isPartOf bioregistry.metaresource:bioportal .
@@ -17914,6 +17906,8 @@ biolink:isbn dcterms:isPartOf bioregistry.metaresource:biolink .
 biolink:isni dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:issn dcterms:isPartOf bioregistry.metaresource:biolink .
+
+biolink:linkml dcterms:isPartOf bioregistry.metaresource:biolink .
 
 biolink:medgen dcterms:isPartOf bioregistry.metaresource:biolink .
 
@@ -20825,6 +20819,15 @@ bioregistry:dbest a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^([A-Z]+)?\\d+(\\.\\d+)?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:dbo a bioregistry.schema:0000001 ;
+    rdfs:label "DBPedia Ontology" ;
+    dc:description "This ontology is generated from the manually created specifications in the dbpedia mappings wiki. each release of this ontology corresponds to a new release of the dbpedia data set which contains instance data extracted from the different language versions of wikipedia. for information regarding changes in this ontology, please refer to the dbpedia mappings wiki."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://dbpedia.org/ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "careerPrizeMoney"^^xsd:string ;
+    bioregistry.schema:0000006 "https://dbpedia.org/ontology/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:dbsnp a bioregistry.schema:0000001 ;
     rdfs:label "NCBI dbSNP" ;
     dc:description "The dbSNP database is a repository for both single base nucleotide subsitutions and short deletion and insertion polymorphisms."^^xsd:string ;
@@ -21753,6 +21756,16 @@ bioregistry:goeco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "IPI"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:google.book a bioregistry.schema:0000001 ;
+    rdfs:label "Google Books" ;
+    dc:description "Search the world's most comprehensive index of full-text books."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P675 ;
+    foaf:homepage "https://books.google.com"^^xsd:string ;
+    bioregistry.schema:0000005 "qafeQTWIWmcC"^^xsd:string ;
+    bioregistry.schema:0000006 "https://books.google.com/books?id=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:google.patent a bioregistry.schema:0000001 ;
     rdfs:label "Google Patents" ;
     dc:description "Google Patents covers the entire collection of granted patents and published patent applications from the USPTO, EPO, and WIPO. US patent documents date back to 1790, EPO and WIPO to 1978. Google Patents can be searched using patent number, inventor, classification, and filing date."^^xsd:string ;
@@ -21825,6 +21838,16 @@ bioregistry:gtr a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/gtr/conditions/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:mondo .
+
+bioregistry:hathitrust a bioregistry.schema:0000001 ;
+    rdfs:label "Hathi Trust Digital Library" ;
+    dc:description "Hathitrust is a partnership of academic and research institutions, offering a collection of millions of titles digitized from libraries around the world."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.hathitrust.org"^^xsd:string ;
+    bioregistry.schema:0000005 "008893080"^^xsd:string ;
+    bioregistry.schema:0000006 "https://catalog.hathitrust.org/Record/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:hgnc.genegroup a bioregistry.schema:0000001 ;
     rdfs:label "HGNC Gene Group" ;
@@ -22358,6 +22381,16 @@ bioregistry:kupo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000018 bioregistry:cl .
 
+bioregistry:langual a bioregistry.schema:0000001 ;
+    rdfs:label "Langua aLimentaria Thesaurus" ;
+    dc:description "Langual stands for \"langua alimentaria\" or \"language of food\". it is an automated method for describing, capturing and retrieving data about food. the work on langual was started in the late 1970's by the center for food safety and applied nutrition (cfsan) of the united states food and drug administration as an ongoing co-operative effort of specialists in food technology, information science and nutrition. the thesaurus provides a standardized language for describing foods, specifically for classifying food products for information retrieval. langual is based on the concept that: - any food (or food product) can be systematically described by a combination of characteristics - these characteristics can be categorized into viewpoints and coded for computer processing - the resulting viewpoint/characteristic codes can be used to retrieve data about the food from external databases"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.langual.org"^^xsd:string ;
+    bioregistry.schema:0000005 "B2067"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.langual.org/langual_thesaurus.asp?termid=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^B\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:lincs.smallmolecule a bioregistry.schema:0000001 ;
     rdfs:label "LINCS Small Molecule" ;
     dc:description "The Library of Network-Based Cellular Signatures (LINCS) Program aims to create a network-based understanding of biology by cataloging changes in gene expression and other cellular processes that occur when cells are exposed to a variety of perturbing agents. The LINCS small molecule collection is used as perturbagens in LINCS experiments. The small molecule metadata includes substance-specific batch information provided by each LINCS Data and Signature Generation Center (DSGC)."^^xsd:string ;
@@ -22370,6 +22403,17 @@ bioregistry:lincs.smallmolecule a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://lincsportal.ccs.miami.edu/SmallMolecules/#/view/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^LSM-\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:linkml a bioregistry.schema:0000001 ;
+    rdfs:label "LinkML" ;
+    dc:description "Linkml is a flexible modeling language that allows you to author schemas in yaml that describe the structure of your data. additionally, it is a framework for working with and validating data in a variety of formats (json, rdf, tsv), with generators for compiling linkml schemas to other frameworks."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biolink:linkml ;
+    foaf:homepage "https://linkml.io/linkml-model/docs/SchemaDefinition/"^^xsd:string ;
+    bioregistry.schema:0000005 "SchemaDefinition"^^xsd:string ;
+    bioregistry.schema:0000006 "https://w3id.org/linkml/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-6601-2165 .
 
 bioregistry:lipidmaps a bioregistry.schema:0000001 ;
     rdfs:label "LIPID MAPS" ;
@@ -23285,6 +23329,19 @@ bioregistry:pharmacodb.tissue a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:phenx a bioregistry.schema:0000001 ;
+    rdfs:label "PhenX Toolkit" ;
+    dc:description "A web-based catalog of recommended measurement protocols selected by experts to include in studies with human participants."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:PHENX,
+        bioportal:PHENX,
+        fairsharing:FAIRsharing.y5jcwa ;
+    foaf:homepage "https://www.phenxtoolkit.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "130502"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.phenxtoolkit.org/protocols/view/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:phipo a bioregistry.schema:0000001 ;
     rdfs:label "Pathogen Host Interaction Phenotype Ontology" ;
     dc:description "Ontology of species-neutral phenotypes observed in pathogen-host interactions."^^xsd:string ;
@@ -23829,6 +23886,18 @@ bioregistry:thermofisher a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.thermofisher.com"^^xsd:string ;
     bioregistry.schema:0000005 "OSR00185W"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.thermofisher.com/antibody/product/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:time a bioregistry.schema:0000001 ;
+    rdfs:label "Time Ontology in OWL" ;
+    dc:description "Owl-time is an owl-2 dl ontology of temporal concepts, for describing the temporal properties of resources in the world or described in web pages. the ontology provides a vocabulary for expressing facts about topological (ordering) relations among instants and intervals, together with information about durations, and about temporal position including date-time information. time positions and durations may be expressed using either the conventional (gregorian) calendar and clock, or using another temporal reference system such as unix-time, geologic time, or different calendars."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:TIME,
+        bioportal:TIME,
+        fairsharing:FAIRsharing.hw3bh2 ;
+    foaf:homepage "https://www.w3.org/TR/owl-time/"^^xsd:string ;
+    bioregistry.schema:0000005 "DateTimeDescription"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.w3.org/2006/time#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:tkg a bioregistry.schema:0000001 ;
@@ -24962,6 +25031,8 @@ fairsharing:FAIRsharing.hmgte8 dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.hpvbxb dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.hsbpq3 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.hw3bh2 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.i1F3Hb dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -28913,6 +28984,8 @@ wikidata:P6689 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P671 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P675 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P6778 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P683 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -31497,10 +31570,6 @@ bioregistry:iao a bioregistry.schema:0000001 ;
         bioregistry:xpo ;
     bioregistry.schema:0000019 orcid:0000-0002-2999-0103 .
 
-orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
-    dcterms:contributor bioregistry:insdc.run,
-        bioregistry:wwf.ecoregion .
-
 bioregistry:pcl a bioregistry.schema:0000001 ;
     rdfs:label "Provisional Cell Ontology" ;
     dc:description "Cell types that are provisionally defined by experimental techniques such as single cell transcriptomics rather than a straightforward & coherent set of properties."^^xsd:string ;
@@ -31528,6 +31597,10 @@ bioregistry:pcl a bioregistry.schema:0000001 ;
         bioregistry:so,
         bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0002-7073-9172 .
+
+orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
+    dcterms:contributor bioregistry:insdc.run,
+        bioregistry:wwf.ecoregion .
 
 bioregistry:ecto a bioregistry.schema:0000001 ;
     rdfs:label "Environmental conditions, treatments and exposures ontology" ;
@@ -32296,6 +32369,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cp,
         bioregistry:credit,
         bioregistry:datacite,
+        bioregistry:dbo,
         bioregistry:dbvar.study,
         bioregistry:dbvar.variant,
         bioregistry:ddinter.interaction,
@@ -32348,12 +32422,14 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:go.resource,
         bioregistry:goche,
         bioregistry:goeco,
+        bioregistry:google.book,
         bioregistry:graingenes.reference,
         bioregistry:graingenes.symbol,
         bioregistry:gramene.reference,
         bioregistry:grassbase,
         bioregistry:gsfa,
         bioregistry:gtr,
+        bioregistry:hathitrust,
         bioregistry:hba,
         bioregistry:hms.lincs.compound,
         bioregistry:hog,
@@ -32369,6 +32445,8 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:kegg.dgroup,
         bioregistry:kegg.rclass,
         bioregistry:kupo,
+        bioregistry:langual,
+        bioregistry:linkml,
         bioregistry:lncipedia,
         bioregistry:lonza,
         bioregistry:lpt,
@@ -32408,6 +32486,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:pfr,
         bioregistry:pharmacodb.dataset,
         bioregistry:pharmacodb.tissue,
+        bioregistry:phenx,
         bioregistry:pictar,
         bioregistry:ppdb,
         bioregistry:ppr,
@@ -32447,6 +32526,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:tgn,
         bioregistry:th,
         bioregistry:thermofisher,
+        bioregistry:time,
         bioregistry:tkg,
         bioregistry:ubprop,
         bioregistry:umls.aui,
@@ -32704,6 +32784,7 @@ bioregistry.metaresource:biolink a bioregistry.schema:0000002 ;
         biolink:isbn,
         biolink:isni,
         biolink:issn,
+        biolink:linkml,
         biolink:medgen,
         biolink:metacyc.reaction,
         biolink:mirbase,
@@ -33142,6 +33223,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P665,
         wikidata:P6689,
         wikidata:P671,
+        wikidata:P675,
         wikidata:P6778,
         wikidata:P683,
         wikidata:P685,
@@ -34503,6 +34585,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:TAXRANK,
         bioportal:TEDDY,
         bioportal:TGMA,
+        bioportal:TIME,
         bioportal:TRANS,
         bioportal:TTO,
         bioportal:TXPO,
@@ -34824,6 +34907,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:TAXRANK,
         aberowl:TEDDY,
         aberowl:TGMA,
+        aberowl:TIME,
         aberowl:TO,
         aberowl:TRANS,
         aberowl:TTO,
@@ -35545,6 +35629,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.hmgte8,
         fairsharing:FAIRsharing.hpvbxb,
         fairsharing:FAIRsharing.hsbpq3,
+        fairsharing:FAIRsharing.hw3bh2,
         fairsharing:FAIRsharing.i1F3Hb,
         fairsharing:FAIRsharing.j0ezpm,
         fairsharing:FAIRsharing.j0fa1d,
@@ -38391,6 +38476,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dbg2introns,
         bioregistry:dbgap,
         bioregistry:dbmhc,
+        bioregistry:dbo,
         bioregistry:dbprobe,
         bioregistry:dbsnp,
         bioregistry:dbvar.study,
@@ -38646,6 +38732,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:gold,
         bioregistry:gold.genome,
         bioregistry:gold.meta,
+        bioregistry:google.book,
         bioregistry:google.patent,
         bioregistry:google.scholar,
         bioregistry:gorel,
@@ -38679,6 +38766,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:hamap,
         bioregistry:hancestro,
         bioregistry:hao,
+        bioregistry:hathitrust,
         bioregistry:hba,
         bioregistry:hcao,
         bioregistry:hcpcs,
@@ -38815,6 +38903,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:kupo,
         bioregistry:kyinno,
         bioregistry:labo,
+        bioregistry:langual,
         bioregistry:lbo,
         bioregistry:lei,
         bioregistry:lepao,
@@ -38831,6 +38920,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:lincs.protein,
         bioregistry:lincs.smallmolecule,
         bioregistry:linguist,
+        bioregistry:linkml,
         bioregistry:lipidbank,
         bioregistry:lipidmaps,
         bioregistry:lipro,
@@ -39371,6 +39461,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:th,
         bioregistry:thermofisher,
         bioregistry:tigrfam,
+        bioregistry:time,
         bioregistry:tkg,
         bioregistry:tngb,
         bioregistry:to,

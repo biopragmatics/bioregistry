@@ -36525,6 +36525,12 @@
     "repository": "https://github.com/github/linguist"
   },
   "linkml": {
+    "biolink": {
+      "is_identifiers": false,
+      "is_obo": false,
+      "prefix": "linkml",
+      "uri_format": "https://w3id.org/linkml/$1"
+    },
     "comment": "Closes #508",
     "contact": {
       "email": "cjmungall@lbl.gov",
@@ -36542,6 +36548,9 @@
     "example": "SchemaDefinition",
     "github_request_issue": 512,
     "homepage": "https://linkml.io/linkml-model/docs/SchemaDefinition/",
+    "mappings": {
+      "biolink": "linkml"
+    },
     "name": "LinkML",
     "uri_format": "https://w3id.org/linkml/$1"
   },
@@ -64911,6 +64920,18 @@
     "uri_format": "https://www.ncbi.nlm.nih.gov/cdd?term=$1"
   },
   "time": {
+    "aberowl": {
+      "description": "OWL-Time is an OWL-2 DL ontology of temporal concepts, for describing the temporal properties of resources in the world or described in Web pages. The ontology provides a vocabulary for expressing facts about topological (ordering) relations among instants and intervals, together with information about durations, and about temporal position including date-time information. Time positions and durations may be expressed using either the conventional (Gregorian) calendar and clock, or using another temporal reference system such as Unix-time, geologic time, or different calendars.",
+      "download_owl": "http://aber-owl.net/media/ontologies/TIME/2/time.owl",
+      "homepage": "https://www.w3.org/TR/owl-time/",
+      "name": "OWL-Time",
+      "prefix": "TIME",
+      "version": "2017"
+    },
+    "bioportal": {
+      "name": "OWL-Time",
+      "prefix": "TIME"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -64919,8 +64940,24 @@
     },
     "description": "Owl-time is an owl-2 dl ontology of temporal concepts, for describing the temporal properties of resources in the world or described in web pages. the ontology provides a vocabulary for expressing facts about topological (ordering) relations among instants and intervals, together with information about durations, and about temporal position including date-time information. time positions and durations may be expressed using either the conventional (gregorian) calendar and clock, or using another temporal reference system such as unix-time, geologic time, or different calendars.",
     "example": "DateTimeDescription",
+    "fairsharing": {
+      "abbreviation": "TIME",
+      "description": "OWL-Time is an OWL-2 DL ontology of temporal concepts, for describing the temporal properties of resources in the world or described in Web pages. The ontology provides a vocabulary for expressing facts about topological (ordering) relations among instants and intervals, together with information about durations, and about temporal position including date-time information. Time positions and durations may be expressed using either the conventional (Gregorian) calendar and clock, or using another temporal reference system such as Unix-time, geologic time, or different calendars.",
+      "id": "367",
+      "name": "OWL-Time",
+      "prefix": "FAIRsharing.hw3bh2",
+      "publications": [],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
     "github_request_issue": 505,
     "homepage": "https://www.w3.org/TR/owl-time/",
+    "mappings": {
+      "aberowl": "TIME",
+      "bioportal": "TIME",
+      "fairsharing": "FAIRsharing.hw3bh2"
+    },
     "name": "Time Ontology in OWL",
     "uri_format": "http://www.w3.org/2006/time#$1"
   },

@@ -2371,9 +2371,9 @@ bko:
     name: Adrien Rougny
     orcid: 0000-0002-2118-035X
   contributor:
-    email: null
+    email: benjamin_gyori@hms.harvard.edu
     github: bgyori
-    name: Benjamin Gyori
+    name: Benjamin M. Gyori
     orcid: 0000-0001-9439-5346
   description: SBGN bricks represent biomolecular or biological concepts. BKO formally
     associates bricks with the concepts they represent. BKO includes terms that describe
@@ -3639,6 +3639,12 @@ cheminf:
   name: Chemical Information Ontology
   pattern: ^\d{6}$
   preferred_prefix: CHEMINF
+  providers:
+  - code: semanticscience
+    description: Legacy URLs before conversion of CHEMINF to OBO PURLs
+    homepage: http://semanticscience.org
+    name: Semantic Science
+    uri_format: http://semanticscience.org/resource/CHEMINF_$1
   repository: https://github.com/semanticchemistry/semanticchemistry
   uri_format: http://purl.obolibrary.org/obo/CHEMINF_$1
   version: '2.0'
@@ -4772,7 +4778,7 @@ cob:
 coconut:
   comment: '@mSorok is the dev of the resource, hope I got it right!'
   contributor:
-    email: null
+    email: adriano.rutz@ik.me
     github: adafede
     name: Adriano Rutz
     orcid: 0000-0003-0443-9902
@@ -4897,7 +4903,7 @@ cohd:
   repository: https://github.com/MIT-LCP/mimic-omop
 col.taiwan:
   contributor:
-    email: null
+    email: meghan.balk@gmail.com
     github: megbalk
     name: Meghan Balk
     orcid: 0000-0003-2699-3066
@@ -5091,7 +5097,7 @@ cordis.project:
   contributor:
     email: benjamin_gyori@hms.harvard.edu
     github: bgyori
-    name: Benjamin Gyori
+    name: Benjamin M. Gyori
     orcid: 0000-0001-9439-5346
   description: The Community Research and Development Information Service (CORDIS)
     is the European Commission's primary source of results from the projects funded
@@ -5935,6 +5941,22 @@ dbmhc:
   name: Database of human Major Histocompatibility Complex
   pattern: ^\d+$
   preferred_prefix: dbmhc
+dbo:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: This ontology is generated from the manually created specifications
+    in the dbpedia mappings wiki. each release of this ontology corresponds to a new
+    release of the dbpedia data set which contains instance data extracted from the
+    different language versions of wikipedia. for information regarding changes in
+    this ontology, please refer to the dbpedia mappings wiki.
+  example: careerPrizeMoney
+  homepage: https://dbpedia.org/ontology
+  name: DBPedia Ontology
+  preferred_prefix: dbo
+  uri_format: https://dbpedia.org/ontology/$1
 dbprobe:
   description: The NCBI Probe Database is a public registry of nucleic acid reagents
     designed for use in a wide variety of biomedical research applications, together
@@ -6071,6 +6093,7 @@ dcterms:
   preferred_prefix: dcterms
   synonyms:
   - dc.terms
+  - dct
   uri_format: http://purl.org/dc/terms/$1
 dctypes:
   description: This document is an up-to-date specification of all metadata terms
@@ -9559,7 +9582,7 @@ foodon:
   version: '2022-02-01'
 fossilworks.journal:
   contributor:
-    email: null
+    email: meghan.balk@gmail.com
     github: megbalk
     name: Meghan Balk
     orcid: 0000-0003-2699-3066
@@ -9580,7 +9603,7 @@ fossilworks.journal:
   uri_format: http://fossilworks.org/?a=referenceInfo&reference_no=$1
 fossilworks.taxon:
   contributor:
-    email: null
+    email: meghan.balk@gmail.com
     github: megbalk
     name: Meghan Balk
     orcid: 0000-0003-2699-3066
@@ -10787,6 +10810,8 @@ gno:
   download_obo: http://purl.obolibrary.org/obo/gno.obo
   download_owl: http://purl.obolibrary.org/obo/gno.owl
   example: '10004892'
+  example_extras:
+  - G99373GG
   homepage: https://gnome.glyomics.org/
   license: CC BY 4.0
   mappings:
@@ -10796,9 +10821,22 @@ gno:
     ols: gno
     ontobee: GNO
   name: Glycan Naming and Subsumption Ontology
-  pattern: ^\d{8}$
+  pattern: ^(\d{8}|(\w+\d+\w+))$
   preferred_prefix: GNO
+  providers:
+  - code: gno.structure
+    description: GNOme structure browser
+    homepage: https://gnome.glyomics.org/StructureBrowser.html
+    name: GNOme Structure Viewer
+    uri_format: https://gnome.glyomics.org/StructureBrowser.html?focus=$1
+  - code: gno.composition
+    description: GNOme composition browser
+    homepage: https://gnome.glyomics.org/CompositionBrowser.html
+    name: GNOme Composition Browser
+    uri_format: https://gnome.glyomics.org/CompositionBrowser.html?focus=$1
   repository: https://github.com/glygen-glycan-data/GNOme
+  synonyms:
+  - gnome
   uri_format: http://purl.obolibrary.org/obo/GNO_$1
   version: 1.10.0
 gnpis:
@@ -11056,6 +11094,20 @@ gold.meta:
   pattern: ^Gm\d+$
   preferred_prefix: gold.meta
   uri_format: http://genomesonline.org/cgi-bin/GOLD/bin/GOLDCards.cgi?goldstamp=$1
+google.book:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Search the world's most comprehensive index of full-text books.
+  example: qafeQTWIWmcC
+  homepage: https://books.google.com
+  mappings:
+    wikidata: P675
+  name: Google Books
+  preferred_prefix: google.book
+  uri_format: https://books.google.com/books?id=$1
 google.patent:
   description: Google Patents covers the entire collection of granted patents and
     published patent applications from the USPTO, EPO, and WIPO. US patent documents
@@ -11655,6 +11707,21 @@ hao:
   repository: https://github.com/hymao/hao
   uri_format: http://purl.obolibrary.org/obo/HAO_$1
   version: '2021-03-05'
+hathitrust:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Hathitrust is a partnership of academic and research institutions,
+    offering a collection of millions of titles digitized from libraries around the
+    world.
+  example: 008893080
+  homepage: https://www.hathitrust.org
+  name: Hathi Trust Digital Library
+  pattern: ^\d+$
+  preferred_prefix: hathitrust
+  uri_format: https://catalog.hathitrust.org/Record/$1
 hba:
   contributor:
     email: cthoyt@gmail.com
@@ -14259,6 +14326,29 @@ labo:
   repository: https://github.com/OpenLHS/LABO
   uri_format: http://purl.obolibrary.org/obo/LABO_$1
   version: '2021-06-08'
+langual:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'Langual stands for "langua alimentaria" or "language of food". it
+    is an automated method for describing, capturing and retrieving data about food.
+    the work on langual was started in the late 1970''s by the center for food safety
+    and applied nutrition (cfsan) of the united states food and drug administration
+    as an ongoing co-operative effort of specialists in food technology, information
+    science and nutrition. the thesaurus provides a standardized language for describing
+    foods, specifically for classifying food products for information retrieval. langual
+    is based on the concept that: - any food (or food product) can be systematically
+    described by a combination of characteristics - these characteristics can be categorized
+    into viewpoints and coded for computer processing - the resulting viewpoint/characteristic
+    codes can be used to retrieve data about the food from external databases'
+  example: B2067
+  homepage: https://www.langual.org
+  name: Langua aLimentaria Thesaurus
+  pattern: ^B\d+$
+  preferred_prefix: langual
+  uri_format: https://www.langual.org/langual_thesaurus.asp?termid=$1
 lbo:
   contact:
     email: caripark@iastate.edu
@@ -14548,6 +14638,29 @@ linguist:
   preferred_prefix: linguist
   repository: https://github.com/github/linguist
   uri_format: https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml#$1
+linkml:
+  comment: 'Closes #508'
+  contact:
+    email: cjmungall@lbl.gov
+    github: cmungall
+    name: Chris Mungall
+    orcid: 0000-0002-6601-2165
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Linkml is a flexible modeling language that allows you to author schemas
+    in yaml that describe the structure of your data. additionally, it is a framework
+    for working with and validating data in a variety of formats (json, rdf, tsv),
+    with generators for compiling linkml schemas to other frameworks.
+  example: SchemaDefinition
+  homepage: https://linkml.io/linkml-model/docs/SchemaDefinition/
+  mappings:
+    biolink: linkml
+  name: LinkML
+  preferred_prefix: linkml
+  uri_format: https://w3id.org/linkml/$1
 lipidbank:
   description: LipidBank is an open, publicly free database of natural lipids including
     fatty acids, glycerolipids, sphingolipids, steroids, and various vitamins.
@@ -14680,7 +14793,7 @@ lotus:
     name: Adriano Rutz
     orcid: 0000-0003-0443-9902
   contributor:
-    email: null
+    email: adriano.rutz@ik.me
     github: adafede
     name: Adriano Rutz
     orcid: 0000-0003-0443-9902
@@ -15641,6 +15754,11 @@ mgi:
   pattern: ^\d+$
   preferred_prefix: MGI
   providers:
+  - code: mgi.marker
+    description: MGI Marker
+    homepage: http://www.informatics.jax.org/marker
+    name: MGI Marker
+    uri_format: http://www.informatics.jax.org/marker/MGI:$1
   - code: bioentitylink
     description: MGD through BioEntity Link
     homepage: https://bioentity.link/
@@ -17480,6 +17598,12 @@ ncit:
   name: NCI Thesaurus
   pattern: ^C\d+$
   preferred_prefix: NCIT
+  providers:
+  - code: evs
+    description: Links to a no-longer existing OWL file
+    homepage: https://ncit.nci.nih.gov/ncitbrowser/
+    name: Legacy NCBI OWL
+    uri_format: http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#$1
   repository: https://github.com/NCI-Thesaurus/thesaurus-obo-edition
   synonyms:
   - NCI
@@ -17924,7 +18048,7 @@ nihreporter.project:
   contributor:
     email: benjamin_gyori@hms.harvard.edu
     github: bgyori
-    name: Benjamin Gyori
+    name: Benjamin M. Gyori
     orcid: 0000-0001-9439-5346
   description: RePORTER is an electronic tool that allows users to search a repository
     of both intramural and extramural NIH-funded research projects and access publications
@@ -18550,10 +18674,10 @@ npass:
   preferred_prefix: npass
 npo:
   contact:
-    email: nathan.baker@pnl.gov
-    github: null
+    email: nathan.baker@pnnl.gov
+    github: sobolevnrm
     name: Nathan Baker
-    orcid: null
+    orcid: 0000-0002-5892-6506
   description: An ontology that represents the basic knowledge of physical, chemical
     and functional characteristics of nanotechnology as used in cancer diagnosis and
     therapy.
@@ -18567,6 +18691,7 @@ npo:
   name: NanoParticle Ontology
   pattern: ^\d+$
   preferred_prefix: npo
+  repository: https://github.com/sobolevnrm/npo
 nuclearbd:
   description: NucleaRDB is an information system that stores heterogenous data on
     Nuclear Hormone Receptors (NHRs). It contains data on sequences, ligand binding
@@ -20153,7 +20278,7 @@ otl:
   uri_format: http://oryzatagline.cirad.fr/cgi-bin/general_mutant.pl?line=$1
 otol:
   contributor:
-    email: null
+    email: meghan.balk@gmail.com
     github: megbalk
     name: Meghan Balk
     orcid: 0000-0003-2699-3066
@@ -21240,7 +21365,13 @@ phenolexplorer:
   preferred_prefix: phenolexplorer
   uri_format: http://phenol-explorer.eu/foods/$1
 phenx:
-  description: A Web-based catalog of recommended measurement protocols
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A web-based catalog of recommended measurement protocols selected by
+    experts to include in studies with human participants.
   download_owl: http://aber-owl.net/media/ontologies/PHENX/16/phenx.owl
   example: '130502'
   homepage: https://www.phenxtoolkit.org/
@@ -21251,6 +21382,8 @@ phenx:
   name: PhenX Toolkit
   pattern: ^\d+$
   preferred_prefix: phenx
+  synonyms:
+  - phenxtoolkit
   uri_format: https://www.phenxtoolkit.org/protocols/view/$1
 phipo:
   contact:
@@ -23817,6 +23950,12 @@ sbo:
   namespace_in_lui: true
   pattern: ^\d{7}$
   preferred_prefix: SBO
+  providers:
+  - code: biomodels
+    description: Provider for SBO at BioModels
+    homepage: http://biomodels.net
+    name: BioModels
+    uri_format: http://biomodels.net/SBO/SBO_$1
   repository: https://github.com/EBI-BioModels/SBO
   uri_format: https://www.ebi.ac.uk/sbo/main/SBO:$1
   version: '2021-08-28'
@@ -25305,6 +25444,27 @@ swo:
   name: Software ontology
   pattern: ^\d{7}$
   preferred_prefix: SWO
+  providers:
+  - code: ebi
+    description: The EBI's old SWO URIs before switching over to OBO PURLs
+    homepage: http://www.ebi.ac.uk/swo/license
+    name: Legacy EBI SWO
+    uri_format: http://www.ebi.ac.uk/swo/SWO_$1
+  - code: ebi.efo
+    description: The EBI's old SWO URIs before switching over to OBO PURLs
+    homepage: http://www.ebi.ac.uk/efo/swo/
+    name: Legacy EBI SWO
+    uri_format: http://www.ebi.ac.uk/efo/swo/SWO_$1
+  - code: ebi.license
+    description: The EBI's old SWO URIs before switching over to OBO PURLs
+    homepage: http://www.ebi.ac.uk/swo/license
+    name: Legacy EBI SWO
+    uri_format: http://www.ebi.ac.uk/swo/license/SWO_$1
+  - code: ebi.data
+    description: The EBI's old SWO URIs before switching over to OBO PURLs
+    homepage: http://www.ebi.ac.uk/swo/data
+    name: Legacy EBI SWO
+    uri_format: http://www.ebi.ac.uk/swo/data/SWO_$1
   repository: https://github.com/allysonlister/swo
   uri_format: http://purl.obolibrary.org/obo/SWO_$1
   version: '1.7'
@@ -25454,6 +25614,12 @@ tair.locus:
   name: The Arabidopsis Information Resource
   pattern: ^\d+$
   preferred_prefix: tair.locus
+  providers:
+  - code: thalemine
+    description: Data mining on aradopsis
+    homepage: https://bar.utoronto.ca/thalemine
+    name: ThaleMine
+    uri_format: https://bar.utoronto.ca/thalemine/portal.do?externalids=$1
   uri_format: http://www.arabidopsis.org/servlets/TairObject?accession=Locus:$1
 tair.protein:
   banana: AASequence
@@ -25710,6 +25876,30 @@ tigrfam:
   - https://ftp.ncbi.nlm.nih.gov/hmm/TIGRFAMs/license_and_availability.txt
   - https://github.com/biopragmatics/bioregistry/issues/366
   uri_format: https://www.ncbi.nlm.nih.gov/cdd?term=$1
+time:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Owl-time is an owl-2 dl ontology of temporal concepts, for describing
+    the temporal properties of resources in the world or described in web pages. the
+    ontology provides a vocabulary for expressing facts about topological (ordering)
+    relations among instants and intervals, together with information about durations,
+    and about temporal position including date-time information. time positions and
+    durations may be expressed using either the conventional (gregorian) calendar
+    and clock, or using another temporal reference system such as unix-time, geologic
+    time, or different calendars.
+  download_owl: http://aber-owl.net/media/ontologies/TIME/2/time.owl
+  example: DateTimeDescription
+  homepage: https://www.w3.org/TR/owl-time/
+  mappings:
+    aberowl: TIME
+    bioportal: TIME
+    fairsharing: FAIRsharing.hw3bh2
+  name: Time Ontology in OWL
+  preferred_prefix: time
+  uri_format: http://www.w3.org/2006/time#$1
 tkg:
   contributor:
     email: cthoyt@gmail.com
@@ -27169,6 +27359,11 @@ viaf:
   pattern: ^\d+$
   preferred_prefix: viaf
   providers:
+  - code: viaf.https
+    description: A duplicate endpoint over HTTPS
+    homepage: http://viaf.org
+    name: VIAF (https)
+    uri_format: https://viaf.org/$1
   - code: scholia
     description: Scholia is a service that creates visual scholarly profiles for topic,
       people, organizations, species, chemicals, etc using bibliographic and other
@@ -27802,6 +27997,11 @@ wormbase:
   pattern: ^WB[A-Z][a-z]+\d+$
   preferred_prefix: WormBase
   providers:
+  - code: wormbase.c_elegans
+    description: Pages describing C. Elegans genes.
+    homepage: http://www.wormbase.org
+    name: WormBase C. Elegans Gene Portal
+    uri_format: http://www.wormbase.org/species/c_elegans/gene/$1
   - code: bioentitylink
     description: WormBase through BioEntity Link
     homepage: https://bioentity.link/
