@@ -45,7 +45,7 @@ def _main():
             resource.contact = _new(resource.contact.orcid)
         if resource.contributor_extras:
             resource.contributor_extras = [
-                _new(contributor.orcid)
+                _new(contributor.orcid) if contributor.orcid else contributor
                 for contributor in resource.contributor_extras
             ]
 
