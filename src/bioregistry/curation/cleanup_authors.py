@@ -1,8 +1,9 @@
 """Add ragged ORCID, email, and GitHub."""
 
+from collections import defaultdict
+
 from bioregistry import manager
 from bioregistry.schema import Attributable
-from collections import defaultdict
 
 
 def _main():
@@ -52,5 +53,5 @@ def _main():
     manager.write_registry()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     _main()
