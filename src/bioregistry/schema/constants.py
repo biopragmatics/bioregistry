@@ -239,6 +239,7 @@ def get_schema_rdf() -> rdflib.Graph:
     graph.bind("bioregistry.schema", bioregistry_schema)
     graph.bind("bioregistry.collection", bioregistry_collection)
     graph.bind("bioregistry", bioregistry_resource)
+    graph.bind("dcterms", DCTERMS)
     for term in bioregistry_schema_terms:
         node = bioregistry_schema[term.identifier]
         if isinstance(term, ClassTerm):

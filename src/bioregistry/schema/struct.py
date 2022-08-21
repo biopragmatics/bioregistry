@@ -849,6 +849,15 @@ class Resource(BaseModel):
             return example
         return None
 
+    def get_examples(self) -> List[str]:
+        """Get a list of examples."""
+        rv = []
+        example = self.get_example()
+        if example:
+            rv.append(example)
+        rv.extend(self.example_extras or [])
+        return rv
+
     def get_example_curie(self, use_preferred: bool = False) -> Optional[str]:
         """Get an example CURIE, if an example identifier is available.
 
@@ -1833,6 +1842,10 @@ class Collection(BaseModel):
             graph.add((node, DCTERMS.hasPart, bioregistry_resource[resource]))
 
         return node
+
+    def as_context_jsonld_str(self) -> str:
+        """Get the JSON-LD context as a string from a given collection."""
+        return json.dumps(self.as_context_jsonld())
 
     def as_context_jsonld(self) -> Mapping[str, Mapping[str, str]]:
         """Get the JSON-LD context from a given collection."""

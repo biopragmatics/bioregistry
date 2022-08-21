@@ -1567,6 +1567,18 @@
     "sampleId": "3",
     "uri_format": "https://civicdb.org/links/assertions/$1"
   },
+  "civic.did": {
+    "deprecated": false,
+    "description": "Within the CIViC database, the disease should be the cancer or cancer subtype that is a result of the described variant. The disease selected should be as specific as possible should reflect the disease type used in the source that supports the evidence statement.",
+    "homepage": "https://civicdb.org/",
+    "id": "00000957",
+    "name": "CIViC Disease",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+$",
+    "prefix": "civic.did",
+    "sampleId": "46",
+    "uri_format": "https://civicdb.org/links/diseases/$1"
+  },
   "civic.eid": {
     "deprecated": false,
     "description": "Evidence Items are the central building block of the Clinical Interpretation of Variants in Cancer (CIViC) knowledgebase. The clinical Evidence Item is a piece of information that has been manually curated from trustable medical literature about a Variant or genomic \u2018event\u2019 that has implications in cancer Predisposition, Diagnosis (aka molecular classification), Prognosis, Predictive response to therapy, Oncogenicity or protein Function. For example, an Evidence Item might describe a line of evidence supporting the notion that tumors with a somatic BRAF V600 mutation generally respond well to the drug dabrafenib. A Variant may be a single nucleotide substitution, a small insertion or deletion, an RNA gene fusion, a chromosomal rearrangement, an RNA expression pattern (e.g. over-expression), etc. Each clinical Evidence statement corresponds to a single citable Source (a publication or conference abstract).",
@@ -1590,6 +1602,30 @@
     "prefix": "civic.gid",
     "sampleId": "272",
     "uri_format": "https://civicdb.org/links/gene/$1"
+  },
+  "civic.sid": {
+    "deprecated": false,
+    "description": "In CIViC, each Evidence Item must be associated with a Source Type and Source ID, which link the Evidence Item to the original source of information supporting clinical claims. Currently, CIViC accepts publications indexed on PubMed OR abstracts published through the American Society of Clinical Oncology (ASCO). Each such source entered into CIViC is assigned a unique identifier and expert curators can curate guidance that assists future curators in the interpretation of information from this source.",
+    "homepage": "https://civicdb.org/",
+    "id": "00000953",
+    "name": "CIViC Source",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+$",
+    "prefix": "civic.sid",
+    "sampleId": "62",
+    "uri_format": "https://civicdb.org/links/sources/$1"
+  },
+  "civic.tid": {
+    "deprecated": false,
+    "description": "Therapies (often drugs) in CIViC are associated with Predictive Evidence Types, which describe sensitivity, resistance or adverse response to therapies when a given variant is present. The Therapy field may also be used to describe more general treatment types and regimes, such as FOLFOX or Radiation, as long as the literature derived Evidence Item makes a scientific association between the Therapy (treatment type) and the presence of the variant.",
+    "homepage": "https://civicdb.org/",
+    "id": "00000955",
+    "name": "CIViC Therapy",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^[0-9]+$",
+    "prefix": "civic.tid",
+    "sampleId": "14",
+    "uri_format": "https://civicdb.org/links/drugs/$1"
   },
   "civic.vid": {
     "deprecated": false,
@@ -5973,6 +6009,18 @@
     "sampleId": "MNXR101574",
     "uri_format": "https://www.metanetx.org/equa_info/$1"
   },
+  "metatlas": {
+    "deprecated": false,
+    "description": "Metabolic Atlas facilitates metabolic modelling by presenting open source genome-scale metabolic models for easy browsing and analysis.",
+    "homepage": "https://metabolicatlas.org",
+    "id": "00000959",
+    "name": "Metabolic Atlas",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^MA[MR]\\d{5}[a-z]?$",
+    "prefix": "metatlas",
+    "sampleId": "MAR01234",
+    "uri_format": "https://metabolicatlas.org/identifier/MetabolicAtlas/$1"
+  },
   "metlin": {
     "deprecated": false,
     "description": "The METLIN (Metabolite and Tandem Mass Spectrometry) Database is a repository of metabolite information as well as tandem mass spectrometry data, providing public access to its comprehensive MS and MS/MS metabolite data. An annotated list of known metabolites and their mass, chemical formula, and structure are available, with each metabolite linked to external resources for further reference and inquiry.",
@@ -8791,6 +8839,18 @@
     "sampleId": "RO_0002533",
     "uri_format": "http://purl.obolibrary.org/obo/$1"
   },
+  "ror": {
+    "deprecated": false,
+    "description": "ROR (Research Organization Registry) is a global, community-led registry\nof open persistent identifiers for research organizations. ROR is jointly\noperated by California Digital Library, Crossref, and Datacite.",
+    "homepage": "https://ror.org",
+    "id": "00000961",
+    "name": "ROR",
+    "namespaceEmbeddedInLui": false,
+    "pattern": "^0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$",
+    "prefix": "ror",
+    "sampleId": "03yrm5c26",
+    "uri_format": "https://ror.org/$1"
+  },
   "rouge": {
     "deprecated": false,
     "description": "The Rouge protein database contains results from sequence analysis of novel large (>4 kb) cDNAs identified in the Kazusa cDNA sequencing project.",
@@ -10376,7 +10436,7 @@
     "pattern": "^XB\\-\\w+\\-\\d+$",
     "prefix": "xenbase",
     "sampleId": "XB-GENE-922462",
-    "uri_format": "https://www.xenbase.org/common/xsearch.do?exactSearch=true&searchIn=7&searchValue=$1"
+    "uri_format": "https://www.xenbase.org/entry/$1"
   },
   "ydpm": {
     "deprecated": false,
