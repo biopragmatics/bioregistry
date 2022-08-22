@@ -67,9 +67,9 @@ def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
     return norm_prefix
 
 
-def _search(q: str) -> List[str]:
+def _search(manager_, q: str) -> List[str]:
     q_norm = q.lower()
-    return [prefix for prefix in manager.registry if q_norm in prefix]
+    return [prefix for prefix in manager_.registry if q_norm in prefix]
 
 
 def _autocomplete(manager_, q: str) -> Mapping[str, Any]:
@@ -110,7 +110,7 @@ def _autocomplete(manager_, q: str) -> Mapping[str, Any]:
             url = None
         return dict(
             query=q,
-            results=_search(q),
+            results=_search(manager_, q),
             success=True,
             reason=reason,
             url=url,
