@@ -9,7 +9,7 @@ from typing import Mapping
 
 import click
 
-import bioregistry
+from bioregistry import manager
 from bioregistry.constants import TABLES_SUMMARY_LATEX_PATH
 from bioregistry.version import get_version
 
@@ -99,9 +99,9 @@ class BioregistrySummary:
     @classmethod
     def make(cls):
         """Instantiate the class."""
-        registry = bioregistry.read_registry()
+        registry = manager.registry
 
-        metaprefix_to_mapping_count = bioregistry.count_mappings()
+        metaprefix_to_mapping_count = manager.count_mappings()
 
         #: The total number of mappings from all records to all external records
         total_mapping_count = sum(metaprefix_to_mapping_count.values())
@@ -115,7 +115,7 @@ class BioregistrySummary:
         novel_prefixes = {prefix for prefix, entry in registry.items() if not entry.mappings}
         number_novel_prefixes = len(novel_prefixes)
 
-        metaprefixes = set(bioregistry.read_metaregistry())
+        metaprefixes = set(manager.metaregistry)
         metaprefixes_aligned = set(metaprefix_to_mapping_count)
 
         #: The number of prefixes that have any overrides that are not novel to the Bioregistry
@@ -140,12 +140,12 @@ class BioregistrySummary:
             number_mappings=total_mapping_count,
             number_synonyms=synonym_count,
             number_prefixes_curated=prefixes_curated,
-            number_mismatches_curated=sum(len(v) for v in bioregistry.read_mismatches().values()),
+            number_mismatches_curated=sum(len(v) for v in manager.mismatches.values()),
             external_sizes={metaprefix: len(getter()) for metaprefix, _, getter in GETTERS},
-            number_collections=len(bioregistry.read_collections()),
-            number_contexts=len(bioregistry.read_contexts()),
-            number_direct_contributors=len(bioregistry.read_contributors(direct_only=True)),
-            number_total_contributors=len(bioregistry.read_contributors(direct_only=False)),
+            number_collections=len(manager.collections),
+            number_contexts=len(manager.contexts),
+            number_direct_contributors=len(manager.read_contributors(direct_only=True)),
+            number_total_contributors=len(manager.read_contributors(direct_only=False)),
         )
 
 
@@ -200,7 +200,7 @@ class MappingBurdenSummary:
         )
         exclusive_direct_upper_bound = sum(len(x) for x in registry_to_prefixes.values())
 
-        registry = bioregistry.read_registry()
+        registry = manager.registry
         registry_to_mapped_prefixes = defaultdict(set)
         for resource in registry.values():
             for metaprefix, external_prefix in resource.get_mappings().items():

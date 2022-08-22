@@ -78,7 +78,7 @@ def read_mismatches() -> Mapping[str, Mapping[str, str]]:
         return json.load(file)
 
 
-def is_mismatch(bioregistry_prefix, external_metaprefix, external_prefix) -> bool:
+def is_mismatch(bioregistry_prefix: str, external_metaprefix: str, external_prefix: str) -> bool:
     """Return if the triple is a mismatch."""
     return external_prefix in read_mismatches().get(bioregistry_prefix, {}).get(
         external_metaprefix, {}
@@ -145,49 +145,6 @@ def write_contexts(contexts: Mapping[str, Context]) -> None:
             ensure_ascii=False,
             default=extended_encoder,
         )
-
-
-def read_contributors(direct_only: bool = False) -> Mapping[str, Attributable]:
-    """Get a mapping from contributor ORCID identifiers to author objects."""
-    return _read_contributors(
-        registry=read_registry(),
-        metaregistry=read_metaregistry(),
-        collections=read_collections(),
-        contexts=read_contexts(),
-        direct_only=direct_only,
-    )
-
-
-def _read_contributors(
-    registry, metaregistry, collections, contexts, direct_only: bool = False
-) -> Mapping[str, Attributable]:
-    """Get a mapping from contributor ORCID identifiers to author objects."""
-    rv: Dict[str, Attributable] = {}
-    for resource in registry.values():
-        if resource.contributor and resource.contributor.orcid:
-            rv[resource.contributor.orcid] = resource.contributor
-        for contributor in resource.contributor_extras or []:
-            if contributor.orcid:
-                rv[contributor.orcid] = contributor
-        if resource.reviewer and resource.reviewer.orcid:
-            rv[resource.reviewer.orcid] = resource.reviewer
-        if not direct_only:
-            contact = resource.get_contact()
-            if contact and contact.orcid:
-                rv[contact.orcid] = contact
-    for metaresource in metaregistry.values():
-        if not direct_only:
-            if metaresource.contact.orcid:
-                rv[metaresource.contact.orcid] = metaresource.contact
-    for collection in collections.values():
-        for author in collection.authors or []:
-            if author.orcid:
-                rv[author.orcid] = author
-    for context in contexts.values():
-        for maintainer in context.maintainers:
-            if maintainer.orcid:
-                rv[maintainer.orcid] = maintainer
-    return rv
 
 
 def read_prefix_contributions() -> Mapping[str, Set[str]]:

@@ -25,6 +25,7 @@ from ..resource_manager import manager
 from ..schema import Context
 from ..schema.constants import bioregistry_schema_terms
 from ..schema.struct import (
+    Attributable,
     Registry,
     RegistryGovernance,
     RegistrySchema,
@@ -32,7 +33,6 @@ from ..schema.struct import (
     schema_status_map,
 )
 from ..schema_utils import (
-    _read_contributors,
     read_collections_contributions,
     read_context_contributions,
     read_prefix_contacts,
@@ -115,20 +115,20 @@ def resource(prefix: str):
         example_curie=example_curie,
         example_curie_extras=example_curie_extras,
         mappings=_get_resource_mapping_rows(_resource),
-        synonyms=manager.get_synonyms(prefix),
-        homepage=manager.get_homepage(prefix),
+        synonyms=_resource.get_synonyms(),
+        homepage=_resource.get_homepage(),
         repository=_resource.get_repository(),
         pattern=manager.get_pattern(prefix),
         curie_pattern=manager.get_curie_pattern(prefix),
-        version=manager.get_version(prefix),
+        version=_resource.get_version(),
         has_no_terms=manager.has_no_terms(prefix),
-        obo_download=manager.get_obo_download(prefix),
-        owl_download=manager.get_owl_download(prefix),
-        json_download=manager.get_json_download(prefix),
-        namespace_in_lui=manager.get_namespace_in_lui(prefix),
+        obo_download=_resource.get_download_obo(),
+        owl_download=_resource.get_download_owl(),
+        json_download=_resource.get_download_obograph(),
+        namespace_in_lui=_resource.get_namespace_in_lui(),
         deprecated=manager.is_deprecated(prefix),
-        contact=manager.get_contact(prefix),
-        banana=manager.get_banana(prefix),
+        contact=_resource.get_contact(),
+        banana=_resource.get_banana(),
         description=manager.get_description(prefix, use_markdown=True),
         appears_in=manager.get_appears_in(prefix),
         depends_on=manager.get_depends_on(prefix),
@@ -170,7 +170,7 @@ def metaresource(metaprefix: str):
             curie_to_str(entry.example, example_identifier) if example_identifier else None
         ),
         example_curie_url=(
-            bioregistry.get_registry_uri(metaprefix, entry.example, example_identifier)
+            manager.get_registry_uri(metaprefix, entry.example, example_identifier)
             if example_identifier
             else None
         ),
@@ -185,7 +185,7 @@ def metaresource(metaprefix: str):
 @ui_blueprint.route("/health/<prefix>")
 def obo_health(prefix: str):
     """Serve a redirect to OBO Foundry community health image."""
-    url = bioregistry.get_obo_health_url(prefix)
+    url = manager.get_obo_health_url(prefix)
     if url is None:
         abort(404, f"Missing OBO prefix {prefix}")
     return redirect(url)
@@ -194,14 +194,14 @@ def obo_health(prefix: str):
 @ui_blueprint.route("/collection/<identifier>")
 def collection(identifier: str):
     """Serve a collection page."""
-    entry = bioregistry.get_collection(identifier)
+    entry = manager.collections.get(identifier)
     if entry is None:
         return abort(404, f"Invalid collection: {identifier}")
     return render_template(
         "collection.html",
         identifier=identifier,
         entry=entry,
-        resources={prefix: bioregistry.get_resource(prefix) for prefix in entry.resources},
+        resources={prefix: manager.get_resource(prefix) for prefix in entry.resources},
         markdown=markdown,
         formats=[
             *FORMATS,
@@ -217,7 +217,7 @@ def contexts():
     """Serve the contexts page."""
     return render_template(
         "contexts.html",
-        rows=bioregistry.read_contexts().items(),
+        rows=manager.contexts.items(),
         markdown=markdown,
         formats=FORMATS,
         schema=Context.schema(),
@@ -227,7 +227,7 @@ def contexts():
 @ui_blueprint.route("/context/<identifier>")
 def context(identifier: str):
     """Serve a context page."""
-    entry = bioregistry.get_context(identifier)
+    entry = manager.contexts.get(identifier)
     if entry is None:
         return abort(404, f"Invalid context: {identifier}")
     return render_template(
@@ -246,7 +246,7 @@ def reference(prefix: str, identifier: str):
     return render_template(
         "reference.html",
         prefix=prefix,
-        name=bioregistry.get_name(prefix),
+        name=manager.get_name(prefix),
         identifier=identifier,
         providers=_get_resource_providers(prefix, identifier),
         formats=FORMATS,
@@ -264,7 +264,7 @@ def resolve(prefix: str, identifier: Optional[str] = None):
     2. The prefix has a validation pattern and the identifier does not match it
     3. There are no providers available for the URL
     """  # noqa:DAR101,DAR201
-    norm_prefix = bioregistry.normalize_prefix(prefix)
+    norm_prefix = manager.normalize_prefix(prefix)
     if norm_prefix is None:
         return (
             render_template(
@@ -275,8 +275,8 @@ def resolve(prefix: str, identifier: Optional[str] = None):
     if identifier is None:
         return redirect(url_for("." + resource.__name__, prefix=norm_prefix))
 
-    pattern = bioregistry.get_pattern(prefix)
-    if pattern and not bioregistry.is_known_identifier(prefix, identifier):
+    pattern = manager.get_pattern(prefix)
+    if pattern and not manager.is_standardizable_identifier(prefix, identifier):
         return (
             render_template(
                 "resolve_errors/invalid_identifier.html",
@@ -287,7 +287,7 @@ def resolve(prefix: str, identifier: Optional[str] = None):
             404,
         )
 
-    url = bioregistry.get_iri(
+    url = manager.get_iri(
         prefix,
         identifier,
         use_bioregistry_io=False,
@@ -362,7 +362,7 @@ def contributors():
     unique_indirect_count = len(set(itt.chain(prefix_contacts, registries)))
     return render_template(
         "contributors.html",
-        rows=bioregistry.read_contributors().values(),
+        rows=manager.read_contributors().values(),
         collections=collections,
         contexts=contexts,
         prefix_contributions=prefix_contributions,
@@ -378,7 +378,7 @@ def contributors():
 @ui_blueprint.route("/contributor/<orcid>")
 def contributor(orcid: str):
     """Serve a contributor page."""
-    author = bioregistry.read_contributors().get(orcid)
+    author = manager.read_contributors().get(orcid)
     if author is None or author.orcid is None:
         return abort(404)
     return render_template(
@@ -386,11 +386,11 @@ def contributor(orcid: str):
         bioregistry=bioregistry,
         contributor=author,
         collections=sorted(
-            (collection_id, bioregistry.get_collection(collection_id))
+            (collection_id, manager.collections.get(collection_id))
             for collection_id in read_collections_contributions().get(author.orcid, [])
         ),
         contexts=sorted(
-            (context_key, bioregistry.get_context(context_key))
+            (context_key, manager.contexts.get(context_key))
             for context_key in read_context_contributions().get(author.orcid, [])
         ),
         prefix_contributions=_s(read_prefix_contributions().get(author.orcid, [])),
@@ -402,7 +402,7 @@ def contributor(orcid: str):
 
 
 def _s(prefixes):
-    return sorted((p, bioregistry.get_resource(p)) for p in prefixes)
+    return sorted((p, manager.get_resource(p)) for p in prefixes)
 
 
 @ui_blueprint.route("/")
@@ -418,14 +418,7 @@ def home():
         registry_size=len(manager.registry),
         metaregistry_size=len(manager.metaregistry),
         collections_size=len(manager.collections),
-        contributors_size=len(
-            _read_contributors(
-                registry=manager.registry,
-                metaregistry=manager.metaregistry,
-                collections=manager.collections,
-                contexts=manager.contexts,
-            )
-        ),
+        contributors_size=len(manager.read_contributors()),
     )
 
 
@@ -440,8 +433,8 @@ def related():
     """Render the related page."""
     return render_template(
         "meta/related.html",
-        mapping_counts=bioregistry.count_mappings(),
-        registries=sorted(bioregistry.read_metaregistry().values(), key=attrgetter("name")),
+        mapping_counts=manager.count_mappings(),
+        registries=sorted(manager.metaregistry.values(), key=attrgetter("name")),
         schema_status_map=schema_status_map,
         registry_cls=Registry,
         registry_governance_cls=RegistryGovernance,
@@ -460,7 +453,7 @@ def acknowledgements():
     """Render the acknowledgements page."""
     return render_template(
         "meta/acknowledgements.html",
-        registries=sorted(bioregistry.read_metaregistry().values(), key=attrgetter("name")),
+        registries=sorted(manager.metaregistry.values(), key=attrgetter("name")),
     )
 
 

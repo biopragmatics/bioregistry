@@ -22,7 +22,6 @@ from ..export.rdf_export import (
 from ..schema import Collection, sanitize_mapping
 from ..schema_utils import (
     read_collections_contributions,
-    read_contributors,
     read_prefix_contacts,
     read_prefix_contributions,
     read_prefix_reviews,
@@ -299,7 +298,7 @@ def contributors():
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    return serialize(sanitize_mapping(read_contributors()))
+    return serialize(sanitize_mapping(manager.read_contributors()))
 
 
 @api_blueprint.route("/contributor/<orcid>")
@@ -325,7 +324,7 @@ def contributor(orcid: str):
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    author = read_contributors().get(orcid)
+    author = manager.read_contributors().get(orcid)
     if author is None:
         return abort(404, f"No contributor with orcid:{orcid}")
 

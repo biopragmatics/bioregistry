@@ -130,3 +130,8 @@ LINK_PRIORITY = [
     "scholia",
 ]
 NDEX_UUID = "860647c4-f7c1-11ec-ac45-0ac135e8bacf"
+
+SHIELDS_BASE = "https://img.shields.io/badge/dynamic"
+CH_BASE = "https://cthoyt.com/obo-community-health"
+HEALTH_BASE = "https://github.com/cthoyt/obo-community-health/raw/main/data/data.json"
+EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
