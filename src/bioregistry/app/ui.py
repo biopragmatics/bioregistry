@@ -348,12 +348,12 @@ def github_resolve_pull(owner, repository, pull: int):
 @ui_blueprint.route("/contributors/")
 def contributors():
     """Serve the contributors page."""
-    collections = read_collections_contributions()
-    contexts = read_context_contributions()
-    prefix_contributions = read_prefix_contributions()
-    prefix_reviews = read_prefix_reviews()
-    prefix_contacts = read_prefix_contacts()
-    registries = read_registry_contributions()
+    collections = read_collections_contributions(manager.collections)
+    contexts = read_context_contributions(manager.contexts)
+    prefix_contributions = read_prefix_contributions(manager.registry)
+    prefix_reviews = read_prefix_reviews(manager.registry)
+    prefix_contacts = read_prefix_contacts(manager.registry)
+    registries = read_registry_contributions(manager.metaregistry)
     unique_direct_count = len(
         set(itt.chain(collections, contexts, prefix_contributions, prefix_reviews))
     )
