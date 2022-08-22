@@ -75,13 +75,13 @@ HEADER_DEFAULT = dedent(
 
 def get_app(manager: Optional[Manager] = None) -> Flask:
     """Prepare the flask application."""
-    app = Flask(__name__)
     if manager is None:
         from .. import resource_manager
 
-        app.manager = resource_manager.manager
-    else:
-        app.manager = manager
+        manager = resource_manager.manager
+
+    app = Flask(__name__)
+    app.manager = manager
     app.config.update(
         {
             # "METAREGISTRY_TITLE": "...",
