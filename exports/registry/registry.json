@@ -228,6 +228,9 @@
     "uri_format": "https://animaldiversity.org/accounts/$1"
   },
   "aeo": {
+    "appears_in": [
+      "ehdaa2"
+    ],
     "contact": {
       "email": "J.Bard@ed.ac.uk",
       "github": null,
@@ -963,18 +966,18 @@
     "preferred_prefix": "arxiv",
     "providers": [
       {
-        "code": "scholia",
-        "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
-        "homepage": "https://scholia.toolforge.org/",
-        "name": "Scholia",
-        "uri_format": "https://scholia.toolforge.org/arxiv/$1"
-      },
-      {
         "code": "ar5iv",
         "description": "Articles from arXiv.org as responsive HTML5 web pages.",
         "homepage": "https://ar5iv.labs.arxiv.org/",
         "name": "ar5iv",
         "uri_format": "https://ar5iv.org/abs/$1"
+      },
+      {
+        "code": "scholia",
+        "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+        "homepage": "https://scholia.toolforge.org/",
+        "name": "Scholia",
+        "uri_format": "https://scholia.toolforge.org/arxiv/$1"
       }
     ],
     "uri_format": "https://arxiv.org/abs/$1"
@@ -2063,18 +2066,18 @@
     "preferred_prefix": "bioproject",
     "providers": [
       {
-        "code": "ncbi",
-        "description": "BioProject at NCBI",
-        "homepage": "https://www.ncbi.nlm.nih.gov/bioproject",
-        "name": "BioProject at NCBI",
-        "uri_format": "https://www.ncbi.nlm.nih.gov/bioproject?term=$1"
-      },
-      {
         "code": "ebi",
         "description": "BioProject at European Nucleotide Archive (ENA)",
         "homepage": "https://www.ebi.ac.uk/ena/",
         "name": "BioProject at European Nucleotide Archive (ENA)",
         "uri_format": "https://www.ebi.ac.uk/ena/browser/view/$1"
+      },
+      {
+        "code": "ncbi",
+        "description": "BioProject at NCBI",
+        "homepage": "https://www.ncbi.nlm.nih.gov/bioproject",
+        "name": "BioProject at NCBI",
+        "uri_format": "https://www.ncbi.nlm.nih.gov/bioproject?term=$1"
       }
     ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/bioproject/?term=$1"
@@ -2214,18 +2217,18 @@
     "preferred_prefix": "biosample",
     "providers": [
       {
-        "code": "ncbi",
-        "description": "BioSample at NCBI",
-        "homepage": "http://www.ncbi.nlm.nih.gov/biosample",
-        "name": "BioSample at NCBI",
-        "uri_format": "http://www.ncbi.nlm.nih.gov/biosample?term=$1"
-      },
-      {
         "code": "CURATOR_REVIEW",
         "description": "BioSample at DNA Data Bank of Japan",
         "homepage": "http://trace.ddbj.nig.ac.jp/biosample/",
         "name": "BioSample at DNA Data Bank of Japan",
         "uri_format": "http://trace.ddbj.nig.ac.jp/BSSearch/biosample?acc=$1"
+      },
+      {
+        "code": "ncbi",
+        "description": "BioSample at NCBI",
+        "homepage": "http://www.ncbi.nlm.nih.gov/biosample",
+        "name": "BioSample at NCBI",
+        "uri_format": "http://www.ncbi.nlm.nih.gov/biosample?term=$1"
       }
     ],
     "synonyms": [
@@ -2823,6 +2826,7 @@
     "appears_in": [
       "aism",
       "colao",
+      "ehdaa2",
       "lepao",
       "pco"
     ],
@@ -3947,6 +3951,7 @@
     "appears_in": [
       "clo",
       "ecao",
+      "ehdaa2",
       "go",
       "mco",
       "pcl",
@@ -5162,6 +5167,47 @@
     "provides": "uniprot",
     "uri_format": "http://compluyeast2dpage.dacya.ucm.es/cgi-bin/2d/2d.cgi?ac=$1"
   },
+  "confident.event": {
+    "contact": {
+      "email": "Philip.Stroemert@tib.eu",
+      "github": "StroemPhi",
+      "name": "Philip Strömert",
+      "orcid": "0000-0002-1595-3213"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Confident makes descriptive metadata on conferences and other formats of scientific events permanently accessible in a high quality through automated processes and scientific data curating.",
+    "example": "37af84f2-bfd7-4653-b608-eaff44febba6",
+    "homepage": "https://www.confident-conference.org/index.php/Category:Event",
+    "name": "ConfIDent Event",
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+    "preferred_prefix": "confident.event",
+    "uri_format": "https://www.confident-conference.org/index.php/Event:$1"
+  },
+  "confident.series": {
+    "contact": {
+      "email": "Philip.Stroemert@tib.eu",
+      "github": "StroemPhi",
+      "name": "Philip Strömert",
+      "orcid": "0000-0002-1595-3213"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Confident makes descriptive metadata on conferences and other formats of scientific events permanently accessible in a high quality through automated processes and scientific data curating.",
+    "example": "AAC",
+    "homepage": "https://www.confident-conference.org/index.php/Category:Event_Series",
+    "name": "ConfIDent Event Series",
+    "preferred_prefix": "confident.series",
+    "uri_format": "https://www.confident-conference.org/index.php/Event_Series:$1"
+  },
   "conoserver": {
     "description": "ConoServer is a database specialized in the sequence and structures of conopeptides, which are peptides expressed by carnivorous marine cone snails.",
     "example": "2639",
@@ -5393,7 +5439,8 @@
       "obofoundry": "gro"
     },
     "name": "Cereal Plant Gross Anatomy",
-    "preferred_prefix": "GRO"
+    "preferred_prefix": "GRO",
+    "uri_format": "http://purl.obolibrary.org/obo/GRO_$1"
   },
   "cpt": {
     "contributor": {
@@ -5942,18 +5989,18 @@
     "preferred_prefix": "dbest",
     "providers": [
       {
-        "code": "ebi",
-        "description": "dbEST through European Nucleotide Archive (ENA)",
-        "homepage": "https://www.ebi.ac.uk/ena",
-        "name": "dbEST through European Nucleotide Archive (ENA)",
-        "uri_format": "https://www.ebi.ac.uk/ena/data/view/$1"
-      },
-      {
         "code": "CURATOR_REVIEW",
         "description": "dbEST through DNA Data Bank of Japan (DDBJ)",
         "homepage": "http://www.ddbj.nig.ac.jp/",
         "name": "dbEST through DNA Data Bank of Japan (DDBJ)",
         "uri_format": "http://getentry.ddbj.nig.ac.jp/getentry/na/$1"
+      },
+      {
+        "code": "ebi",
+        "description": "dbEST through European Nucleotide Archive (ENA)",
+        "homepage": "https://www.ebi.ac.uk/ena",
+        "name": "dbEST through European Nucleotide Archive (ENA)",
+        "uri_format": "https://www.ebi.ac.uk/ena/data/view/$1"
       }
     ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/nucest/$1"
@@ -6889,6 +6936,13 @@
     "preferred_prefix": "doi",
     "providers": [
       {
+        "code": "doi_http",
+        "description": "An alternate provider from the DOI website using HTTP",
+        "homepage": "https://www.doi.org",
+        "name": "Digital Object Identifier",
+        "uri_format": "http://doi.org/$1"
+      },
+      {
         "code": "dx_doi_http",
         "description": "An alternate provider from the DOI website using HTTP",
         "homepage": "https://www.doi.org",
@@ -6901,13 +6955,6 @@
         "homepage": "https://www.doi.org",
         "name": "Digital Object Identifier",
         "uri_format": "https://dx.doi.org/$1"
-      },
-      {
-        "code": "doi_http",
-        "description": "An alternate provider from the DOI website using HTTP",
-        "homepage": "https://www.doi.org",
-        "name": "Digital Object Identifier",
-        "uri_format": "http://doi.org/$1"
       },
       {
         "code": "scholia",
@@ -7511,13 +7558,6 @@
         "uri_format": "https://www.genome.jp/dbget-bin/www_bget?ec:$1"
       },
       {
-        "code": "expenz",
-        "description": "ExploreEnz at Trinity College",
-        "homepage": "http://www.enzyme-database.org/",
-        "name": "ExploreEnz at Trinity College",
-        "uri_format": "http://www.enzyme-database.org/query.php?ec=$1"
-      },
-      {
         "code": "enzymeportal",
         "description": "Enzyme Portal through EMBL-EBI",
         "homepage": "https://www.ebi.ac.uk/enzymeportal",
@@ -7530,6 +7570,13 @@
         "homepage": "https://enzyme.expasy.org/",
         "name": "Enzyme nomenclature database, ExPASy (Expert Protein Analysis System)",
         "uri_format": "https://enzyme.expasy.org/EC/$1"
+      },
+      {
+        "code": "expenz",
+        "description": "ExploreEnz at Trinity College",
+        "homepage": "http://www.enzyme-database.org/",
+        "name": "ExploreEnz at Trinity College",
+        "uri_format": "http://www.enzyme-database.org/query.php?ec=$1"
       }
     ],
     "synonyms": [
@@ -8392,27 +8439,6 @@
     "preferred_prefix": "ensembl",
     "providers": [
       {
-        "code": "bgee",
-        "description": "Gene expression in various tissues",
-        "homepage": "https://bgee.org",
-        "name": "Bgee",
-        "uri_format": "https://bgee.org/?page=gene&gene_id=$1"
-      },
-      {
-        "code": "gnomad",
-        "description": "The Genome Aggregation Database (gnomAD) is a resource developed by an international coalition of investigators, with the goal of aggregating and harmonizing both exome and genome sequencing data from a wide variety of large-scale sequencing projects, and making summary data available for the wider scientific community.",
-        "homepage": "https://gnomad.broadinstitute.org",
-        "name": "Genome Aggregation database",
-        "uri_format": "https://gnomad.broadinstitute.org/gene/$1"
-      },
-      {
-        "code": "opentargets.genetics",
-        "description": "Open Targets Genetics is a comprehensive tool highlighting variant-centric statistical evidence to allow both prioritisation of candidate causal variants at trait-associated loci and identification of potential drug targets.",
-        "homepage": "https://genetics.opentargets.org",
-        "name": "OpenTargets Genetics",
-        "uri_format": "https://genetics.opentargets.org/gene/$1"
-      },
-      {
         "code": "CURATOR_REVIEW",
         "description": "Ensembl US West mirror",
         "homepage": "http://uswest.ensembl.org/",
@@ -8432,6 +8458,27 @@
         "homepage": "http://asia.ensembl.org/",
         "name": "Ensembl Asia mirror",
         "uri_format": "http://asia.ensembl.org/id/$1"
+      },
+      {
+        "code": "bgee",
+        "description": "Gene expression in various tissues",
+        "homepage": "https://bgee.org",
+        "name": "Bgee",
+        "uri_format": "https://bgee.org/?page=gene&gene_id=$1"
+      },
+      {
+        "code": "gnomad",
+        "description": "The Genome Aggregation Database (gnomAD) is a resource developed by an international coalition of investigators, with the goal of aggregating and harmonizing both exome and genome sequencing data from a wide variety of large-scale sequencing projects, and making summary data available for the wider scientific community.",
+        "homepage": "https://gnomad.broadinstitute.org",
+        "name": "Genome Aggregation database",
+        "uri_format": "https://gnomad.broadinstitute.org/gene/$1"
+      },
+      {
+        "code": "opentargets.genetics",
+        "description": "Open Targets Genetics is a comprehensive tool highlighting variant-centric statistical evidence to allow both prioritisation of candidate causal variants at trait-associated loci and identification of potential drug targets.",
+        "homepage": "https://genetics.opentargets.org",
+        "name": "OpenTargets Genetics",
+        "uri_format": "https://genetics.opentargets.org/gene/$1"
       }
     ],
     "synonyms": [
@@ -9605,18 +9652,18 @@
     "preferred_prefix": "FlyBase",
     "providers": [
       {
-        "code": "bioentitylink",
-        "description": "FlyBase through BioEntity Link",
-        "homepage": "https://bioentity.link/",
-        "name": "FlyBase through BioEntity Link",
-        "uri_format": "https://bioentity.link/#/lexicon/public/$1"
-      },
-      {
         "code": "agr",
         "description": "FlyBase through the Alliance of Genome Resources",
         "homepage": "https://www.alliancegenome.org",
         "name": "FlyBase through the Alliance of Genome Resources",
         "uri_format": "https://www.alliancegenome.org/gene/FB:$1"
+      },
+      {
+        "code": "bioentitylink",
+        "description": "FlyBase through BioEntity Link",
+        "homepage": "https://bioentity.link/",
+        "name": "FlyBase through BioEntity Link",
+        "uri_format": "https://bioentity.link/#/lexicon/public/$1"
       }
     ],
     "synonyms": [
@@ -9788,6 +9835,7 @@
       "bfo",
       "chebi",
       "envo",
+      "eo",
       "ncbitaxon",
       "obi",
       "ro",
@@ -11092,18 +11140,18 @@
     "preferred_prefix": "GNO",
     "providers": [
       {
-        "code": "gno.structure",
-        "description": "GNOme structure browser",
-        "homepage": "https://gnome.glyomics.org/StructureBrowser.html",
-        "name": "GNOme Structure Viewer",
-        "uri_format": "https://gnome.glyomics.org/StructureBrowser.html?focus=$1"
-      },
-      {
         "code": "gno.composition",
         "description": "GNOme composition browser",
         "homepage": "https://gnome.glyomics.org/CompositionBrowser.html",
         "name": "GNOme Composition Browser",
         "uri_format": "https://gnome.glyomics.org/CompositionBrowser.html?focus=$1"
+      },
+      {
+        "code": "gno.structure",
+        "description": "GNOme structure browser",
+        "homepage": "https://gnome.glyomics.org/StructureBrowser.html",
+        "name": "GNOme Structure Viewer",
+        "uri_format": "https://gnome.glyomics.org/StructureBrowser.html?focus=$1"
       }
     ],
     "repository": "https://github.com/glygen-glycan-data/GNOme",
@@ -11189,13 +11237,6 @@
     "preferred_prefix": "GO",
     "providers": [
       {
-        "code": "quickgo",
-        "description": "QuickGO (Gene Ontology browser)",
-        "homepage": "https://www.ebi.ac.uk/QuickGO/",
-        "name": "QuickGO (Gene Ontology browser)",
-        "uri_format": "https://www.ebi.ac.uk/QuickGO/GTerm?id=GO:$1"
-      },
-      {
         "code": "CURATOR_REVIEW",
         "description": "GO Browser",
         "homepage": "http://www.informatics.jax.org/searches/GO_form.shtml",
@@ -11208,6 +11249,13 @@
         "homepage": "http://www.pantherdb.org/",
         "name": "GO through PANTHER",
         "uri_format": "http://www.pantherdb.org/panther/category.do?categoryAcc=GO:$1"
+      },
+      {
+        "code": "quickgo",
+        "description": "QuickGO (Gene Ontology browser)",
+        "homepage": "https://www.ebi.ac.uk/QuickGO/",
+        "name": "QuickGO (Gene Ontology browser)",
+        "uri_format": "https://www.ebi.ac.uk/QuickGO/GTerm?id=GO:$1"
       }
     ],
     "repository": "https://github.com/geneontology/go-ontology",
@@ -12108,18 +12156,18 @@
     "preferred_prefix": "hgnc",
     "providers": [
       {
-        "code": "indra",
-        "description": "A large scale database of biomedical statements.",
-        "homepage": "https://db.indra.bio",
-        "name": "INDRA Database",
-        "uri_format": "https://db.indra.bio/statements/from_agents?&format=html&agent0=$1@HGNC"
-      },
-      {
         "code": "gencc",
         "description": "The GenCC DB provides information pertaining to the validity of gene-disease relationships, with a current focus on Mendelian diseases. Curated gene-disease relationships are submitted by GenCC member organizations. The GenCC comprises organizations that currently provide online resources (e.g. ClinGen, DECIPHER, Genomics England PanelApp, OMIM, Orphanet, PanelApp Australia, TGMI’s G2P), as well as diagnostic laboratories that have committed to sharing their internal curated gene-level knowledge (e.g. Ambry, Illumina, Invitae, Myriad Women’s Health, Mass General Brigham Laboratory for Molecular Medicine).",
         "homepage": "https://thegencc.org",
         "name": "The Gene Curation Coalition",
         "uri_format": "https://search.thegencc.org/genes/HGNC:$1"
+      },
+      {
+        "code": "indra",
+        "description": "A large scale database of biomedical statements.",
+        "homepage": "https://db.indra.bio",
+        "name": "INDRA Database",
+        "uri_format": "https://db.indra.bio/statements/from_agents?&format=html&agent0=$1@HGNC"
       }
     ],
     "uri_format": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1"
@@ -12177,18 +12225,18 @@
         "uri_format": "https://depmap.org/portal/gene/$1"
       },
       {
-        "code": "pathwaycommons",
-        "description": "Interactions between a given gene and other molecular entities",
-        "homepage": "https://www.pathwaycommons.org/",
-        "name": "Pathway Commons Gene Interations",
-        "uri_format": "https://apps.pathwaycommons.org/interactions?source=$1"
-      },
-      {
         "code": "oncomx",
         "description": "Mutation profiles for a gene",
         "homepage": "https://oncomx.org",
         "name": "OncoMX",
         "uri_format": "https://oncomx.org/searchview/?gene=$1"
+      },
+      {
+        "code": "pathwaycommons",
+        "description": "Interactions between a given gene and other molecular entities",
+        "homepage": "https://www.pathwaycommons.org/",
+        "name": "Pathway Commons Gene Interations",
+        "uri_format": "https://apps.pathwaycommons.org/interactions?source=$1"
       }
     ],
     "uri_format": "https://www.genenames.org/cgi-bin/gene_symbol_report?match=$1"
@@ -12778,6 +12826,11 @@
   "icd10": {
     "description": "The International Classification of Diseases is the international standard diagnostic classification for all general epidemiological and many health management purposes.",
     "example": "C34",
+    "example_extras": [
+      "V20",
+      "G00",
+      "A01.1"
+    ],
     "homepage": "https://icd.who.int/browse10",
     "mappings": {
       "aberowl": "ICD10",
@@ -12794,15 +12847,57 @@
     "name": "International Classification of Diseases, 10th Revision",
     "pattern": "^[A-Z]\\d+(\\.[-\\d+])?$",
     "preferred_prefix": "icd10",
-    "references": [
-      "https://icdcodelookup.com/icd-10/codes/A01.1"
+    "providers": [
+      {
+        "code": "icd10_2008",
+        "description": "The 2008 revision of ICD-10",
+        "homepage": "https://icd.who.int/browse10/2008/en#",
+        "name": "ICD-10 Version 2008",
+        "uri_format": "https://icd.who.int/browse10/2008/en#/$1"
+      },
+      {
+        "code": "icd10_2010",
+        "description": "The 2010 revision of ICD-10",
+        "homepage": "https://icd.who.int/browse10/2010/en#",
+        "name": "ICD-10 Version 2010",
+        "uri_format": "https://icd.who.int/browse10/2010/en#/$1"
+      },
+      {
+        "code": "icd10_2014",
+        "description": "The 2014 revision of ICD-10",
+        "homepage": "https://icd.who.int/browse10/2014/en#",
+        "name": "ICD-10 Version 2014",
+        "uri_format": "https://icd.who.int/browse10/2014/en#/$1"
+      },
+      {
+        "code": "icd10_2015",
+        "description": "The 2015 revision of ICD-10",
+        "homepage": "https://icd.who.int/browse10/2015/en#",
+        "name": "ICD-10 Version 2015",
+        "uri_format": "https://icd.who.int/browse10/2015/en#/$1"
+      },
+      {
+        "code": "icd10_2016",
+        "description": "The 2016 revision of ICD-10",
+        "homepage": "https://icd.who.int/browse10/2016/en#",
+        "name": "ICD-10 Version 2016",
+        "uri_format": "https://icd.who.int/browse10/2016/en#/$1"
+      },
+      {
+        "code": "icdcodelookup",
+        "description": "This site is dedicated exclusively to helping you look up ICD-10 codes, quickly access the codes you use most, and become more comfortable with the new code set in general.",
+        "homepage": "https://icdcodelookup.com/icd-10/codes",
+        "name": "ICD Code Lookup",
+        "uri_format": "https://icdcodelookup.com/icd-10/codes/$1"
+      }
     ],
     "synonyms": [
       "ICD",
       "ICD-10",
-      "ICD10"
+      "ICD10",
+      "ICD10WHO"
     ],
-    "uri_format": "http://apps.who.int/classifications/icd10/browse/2010/en#/$1"
+    "uri_format": "https://icd.who.int/browse10/2019/en#/$1"
   },
   "icd10cm": {
     "contributor": {
@@ -13845,18 +13940,18 @@
     "preferred_prefix": "insdc.sra",
     "providers": [
       {
-        "code": "ebi",
-        "description": "European Nucleotide Archive (ENA)",
-        "homepage": "https://www.ebi.ac.uk/ena",
-        "name": "European Nucleotide Archive (ENA)",
-        "uri_format": "https://www.ebi.ac.uk/ena/data/view/$1"
-      },
-      {
         "code": "ddbj",
         "description": "DDBJ Sequence Read Archive (DRA)",
         "homepage": "http://trace.ddbj.nig.ac.jp/dra/",
         "name": "DDBJ Sequence Read Archive (DRA)",
         "uri_format": "http://trace.ddbj.nig.ac.jp/DRASearch/experiment?acc=$1"
+      },
+      {
+        "code": "ebi",
+        "description": "European Nucleotide Archive (ENA)",
+        "homepage": "https://www.ebi.ac.uk/ena",
+        "name": "European Nucleotide Archive (ENA)",
+        "uri_format": "https://www.ebi.ac.uk/ena/data/view/$1"
       }
     ],
     "uri_format": "https://www.ncbi.nlm.nih.gov/sra/$1"
@@ -14749,6 +14844,7 @@
       "iao",
       "obi",
       "ogms",
+      "omiabis",
       "omrse",
       "opmi"
     ],
@@ -16009,6 +16105,95 @@
     "preferred_prefix": "metanetx.reaction",
     "uri_format": "https://www.metanetx.org/equa_info/$1"
   },
+  "metatlas": {
+    "contact": {
+      "email": "mihail.anton@chalmers.se",
+      "github": "mihai-sysbio",
+      "name": "Mihail Anton",
+      "orcid": "0000-0002-7753-9042"
+    },
+    "contributor": {
+      "email": "mihail.anton@chalmers.se",
+      "github": "mihai-sysbio",
+      "name": "Mihail Anton",
+      "orcid": "0000-0002-7753-9042"
+    },
+    "description": "A resource for exploring metabolism, starting with a set of of community-curated genome-scale metabolic models of human and model organisms, enriched with pathway maps and other tools for easy browsing and analysis.",
+    "example": "MAM01234c",
+    "example_extras": [
+      "MAR11851"
+    ],
+    "homepage": "https://metabolicatlas.org",
+    "mappings": {
+      "miriam": "metatlas"
+    },
+    "name": "Metabolic Atlas",
+    "pattern": "^(MAM\\d{5}\\w)|(MAR\\d{5})$",
+    "preferred_prefix": "metatlas",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://metabolicatlas.org/identifier/MetabolicAtlas/$1"
+  },
+  "metatlas.metabolite": {
+    "contact": {
+      "email": "mihail.anton@chalmers.se",
+      "github": "mihai-sysbio",
+      "name": "Mihail Anton",
+      "orcid": "0000-0002-7753-9042"
+    },
+    "contributor": {
+      "email": "mihail.anton@chalmers.se",
+      "github": "mihai-sysbio",
+      "name": "Mihail Anton",
+      "orcid": "0000-0002-7753-9042"
+    },
+    "description": "A subspace of Metabolic Atlas for compartment-specific records for metabolites.",
+    "example": "MAM01234c",
+    "homepage": "https://metabolicatlas.org",
+    "name": "Metabolic Atlas Metabolite",
+    "part_of": "metatlas",
+    "pattern": "^MAM\\d{5}\\w$",
+    "preferred_prefix": "metatlas.metabolite",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://metabolicatlas.org/identifier/MetabolicAtlas/$1"
+  },
+  "metatlas.reaction": {
+    "contact": {
+      "email": "mihail.anton@chalmers.se",
+      "github": "mihai-sysbio",
+      "name": "Mihail Anton",
+      "orcid": "0000-0002-7753-9042"
+    },
+    "contributor": {
+      "email": "mihail.anton@chalmers.se",
+      "github": "mihai-sysbio",
+      "name": "Mihail Anton",
+      "orcid": "0000-0002-7753-9042"
+    },
+    "description": "A subspace of Metabolic Atlas for reactions.",
+    "example": "MAR11851",
+    "homepage": "https://metabolicatlas.org",
+    "name": "Metabolic Atlas Reaction",
+    "part_of": "metatlas",
+    "pattern": "^MAR\\d{5}$",
+    "preferred_prefix": "metatlas.reaction",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://metabolicatlas.org/identifier/MetabolicAtlas/$1"
+  },
   "metlin": {
     "description": "The METLIN (Metabolite and Tandem Mass Spectrometry) Database is a repository of metabolite information as well as tandem mass spectrometry data, providing public access to its comprehensive MS and MS/MS metabolite data. An annotated list of known metabolites and their mass, chemical formula, and structure are available, with each metabolite linked to external resources for further reference and inquiry.",
     "example": "1455",
@@ -16223,11 +16408,11 @@
     "preferred_prefix": "MGI",
     "providers": [
       {
-        "code": "mgi.marker",
-        "description": "MGI Marker",
-        "homepage": "http://www.informatics.jax.org/marker",
-        "name": "MGI Marker",
-        "uri_format": "http://www.informatics.jax.org/marker/MGI:$1"
+        "code": "agr",
+        "description": "MGI through the Alliance of Genome Resources",
+        "homepage": "https://www.alliancegenome.org",
+        "name": "MGI through the Alliance of Genome Resources",
+        "uri_format": "https://www.alliancegenome.org/gene/MGI:$1"
       },
       {
         "code": "bioentitylink",
@@ -16237,11 +16422,11 @@
         "uri_format": "https://bioentity.link/#/lexicon/public/MGI:$1"
       },
       {
-        "code": "agr",
-        "description": "MGI through the Alliance of Genome Resources",
-        "homepage": "https://www.alliancegenome.org",
-        "name": "MGI through the Alliance of Genome Resources",
-        "uri_format": "https://www.alliancegenome.org/gene/MGI:$1"
+        "code": "mgi.marker",
+        "description": "MGI Marker",
+        "homepage": "http://www.informatics.jax.org/marker",
+        "name": "MGI Marker",
+        "uri_format": "http://www.informatics.jax.org/marker/MGI:$1"
       }
     ],
     "synonyms": [
@@ -17908,6 +18093,13 @@
     "preferred_prefix": "NCBIGene",
     "providers": [
       {
+        "code": "CURATOR_REVIEW",
+        "description": "Bio2RDF",
+        "homepage": "http://ncbigene.bio2rdf.org/fct",
+        "name": "Bio2RDF",
+        "uri_format": "http://ncbigene.bio2rdf.org/describe/?url=http://bio2rdf.org/ncbigene:$1"
+      },
+      {
         "code": "marrvel",
         "description": "Helps browse potential orthologs in model organisms for a given gene",
         "homepage": "http://marrvel.org",
@@ -17920,13 +18112,6 @@
         "homepage": "https://scholia.toolforge.org/",
         "name": "Scholia",
         "uri_format": "https://scholia.toolforge.org/ncbi-gene/$1"
-      },
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "Bio2RDF",
-        "homepage": "http://ncbigene.bio2rdf.org/fct",
-        "name": "Bio2RDF",
-        "uri_format": "http://ncbigene.bio2rdf.org/describe/?url=http://bio2rdf.org/ncbigene:$1"
       }
     ],
     "synonyms": [
@@ -18010,18 +18195,18 @@
     "preferred_prefix": "NCBITaxon",
     "providers": [
       {
-        "code": "scholia",
-        "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
-        "homepage": "https://scholia.toolforge.org/",
-        "name": "Scholia",
-        "uri_format": "https://scholia.toolforge.org/ncbi-taxon/$1"
-      },
-      {
         "code": "CURATOR_REVIEW",
         "description": "Taxonomy through UniProt PURL",
         "homepage": "https://www.uniprot.org/taxonomy/",
         "name": "Taxonomy through UniProt PURL",
         "uri_format": "https://purl.uniprot.org/taxonomy/$1"
+      },
+      {
+        "code": "CURATOR_REVIEW",
+        "description": "Bio2RDF",
+        "homepage": "https://bio2rdf.org/",
+        "name": "Bio2RDF",
+        "uri_format": "https://bio2rdf.org/taxonomy:$1"
       },
       {
         "code": "ebi",
@@ -18031,11 +18216,11 @@
         "uri_format": "https://www.ebi.ac.uk/ena/data/view/Taxon:$1"
       },
       {
-        "code": "CURATOR_REVIEW",
-        "description": "Bio2RDF",
-        "homepage": "https://bio2rdf.org/",
-        "name": "Bio2RDF",
-        "uri_format": "https://bio2rdf.org/taxonomy:$1"
+        "code": "scholia",
+        "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+        "homepage": "https://scholia.toolforge.org/",
+        "name": "Scholia",
+        "uri_format": "https://scholia.toolforge.org/ncbi-taxon/$1"
       }
     ],
     "repository": "https://github.com/obophenotype/ncbitaxon",
@@ -21392,11 +21577,11 @@
         "uri_format": "https://www.ebi.ac.uk/pdbsum/$1"
       },
       {
-        "code": "rcsb",
-        "description": "RCSB PDB",
-        "homepage": "https://www.rcsb.org/",
-        "name": "RCSB PDB",
-        "uri_format": "https://www.rcsb.org/structure/$1"
+        "code": "pdbe",
+        "description": "Protein Databank in Europe (PDBe)",
+        "homepage": "http://www.pdbe.org/",
+        "name": "Protein Databank in Europe (PDBe)",
+        "uri_format": "https://www.ebi.ac.uk/pdbe/entry/pdb/$1"
       },
       {
         "code": "pdbj",
@@ -21406,11 +21591,11 @@
         "uri_format": "https://pdbj.org/mine/summary/$1"
       },
       {
-        "code": "pdbe",
-        "description": "Protein Databank in Europe (PDBe)",
-        "homepage": "http://www.pdbe.org/",
-        "name": "Protein Databank in Europe (PDBe)",
-        "uri_format": "https://www.ebi.ac.uk/pdbe/entry/pdb/$1"
+        "code": "rcsb",
+        "description": "RCSB PDB",
+        "homepage": "https://www.rcsb.org/",
+        "name": "RCSB PDB",
+        "uri_format": "https://www.rcsb.org/structure/$1"
       }
     ],
     "synonyms": [
@@ -21723,18 +21908,18 @@
     "preferred_prefix": "pfam",
     "providers": [
       {
-        "code": "xfam",
-        "description": "Pfam's familes in their old home in the xfam.org",
-        "homepage": "https://pfam.xfam.org",
-        "name": "Xfam",
-        "uri_format": "https://pfam.xfam.org/family?acc=$1"
-      },
-      {
         "code": "sanger",
         "description": "The Pfam database contains information about protein domains and families. For each entry a protein sequence alignment and a Hidden Markov Model is stored.",
         "homepage": "http://pfam.sanger.ac.uk/",
         "name": "Sanger Pfam Mirror",
         "uri_format": "http://pfam.sanger.ac.uk/family?entry=$1"
+      },
+      {
+        "code": "xfam",
+        "description": "Pfam's familes in their old home in the xfam.org",
+        "homepage": "https://pfam.xfam.org",
+        "name": "Xfam",
+        "uri_format": "https://pfam.xfam.org/family?acc=$1"
       }
     ],
     "references": [
@@ -23330,6 +23515,34 @@
     "preferred_prefix": "pubmed",
     "providers": [
       {
+        "code": "CURATOR_REVIEW",
+        "description": "PubMed through Linkedlife data",
+        "homepage": "http://linkedlifedata.com/",
+        "name": "PubMed through Linkedlife data",
+        "uri_format": "http://linkedlifedata.com/resource/pubmed/id/$1"
+      },
+      {
+        "code": "epmc",
+        "description": "Europe PMC",
+        "homepage": "http://europepmc.org/",
+        "name": "Europe PMC",
+        "uri_format": "http://europepmc.org/abstract/MED/$1"
+      },
+      {
+        "code": "hubmed",
+        "description": "HubMed",
+        "homepage": "http://www.hubmed.org/",
+        "name": "HubMed",
+        "uri_format": "http://www.hubmed.org/display.cgi?uids=$1"
+      },
+      {
+        "code": "scholia",
+        "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+        "homepage": "https://scholia.toolforge.org/",
+        "name": "Scholia",
+        "uri_format": "https://scholia.toolforge.org/pubmed/$1"
+      },
+      {
         "code": "uniprot.citation",
         "description": "UniProt mints PURLs for citations identifiers",
         "homepage": "https://uniprot.org/",
@@ -23342,34 +23555,6 @@
         "homepage": "https://uniprot.org/",
         "name": "UniProt",
         "uri_format": "http://purl.uniprot.org/pubmed/$1"
-      },
-      {
-        "code": "hubmed",
-        "description": "HubMed",
-        "homepage": "http://www.hubmed.org/",
-        "name": "HubMed",
-        "uri_format": "http://www.hubmed.org/display.cgi?uids=$1"
-      },
-      {
-        "code": "epmc",
-        "description": "Europe PMC",
-        "homepage": "http://europepmc.org/",
-        "name": "Europe PMC",
-        "uri_format": "http://europepmc.org/abstract/MED/$1"
-      },
-      {
-        "code": "CURATOR_REVIEW",
-        "description": "PubMed through Linkedlife data",
-        "homepage": "http://linkedlifedata.com/",
-        "name": "PubMed through Linkedlife data",
-        "uri_format": "http://linkedlifedata.com/resource/pubmed/id/$1"
-      },
-      {
-        "code": "scholia",
-        "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
-        "homepage": "https://scholia.toolforge.org/",
-        "name": "Scholia",
-        "uri_format": "https://scholia.toolforge.org/pubmed/$1"
       }
     ],
     "synonyms": [
@@ -24253,6 +24438,7 @@
       "psdo",
       "pso",
       "rbo",
+      "upa",
       "xpo",
       "zp"
     ],
@@ -24639,11 +24825,13 @@
       "envo",
       "eupath",
       "exo",
+      "gaz",
       "gsso",
       "hp",
       "hsapdv",
       "ico",
       "ido",
+      "idomal",
       "mp",
       "nbo",
       "ncit",
@@ -25049,18 +25237,18 @@
         "uri_format": "http://sgd.bio2rdf.org/describe/?url=http://bio2rdf.org/sgd:$1"
       },
       {
-        "code": "bioentitylink",
-        "description": "SGD through BioEntity Link",
-        "homepage": "https://bioentity.link/",
-        "name": "SGD through BioEntity Link",
-        "uri_format": "https://bioentity.link/#/lexicon/public/$1"
-      },
-      {
         "code": "agr",
         "description": "SGD through the Alliance of Genome Resources",
         "homepage": "https://www.alliancegenome.org",
         "name": "SGD through the Alliance of Genome Resources",
         "uri_format": "https://www.alliancegenome.org/gene/SGD:$1"
+      },
+      {
+        "code": "bioentitylink",
+        "description": "SGD through BioEntity Link",
+        "homepage": "https://bioentity.link/",
+        "name": "SGD through BioEntity Link",
+        "uri_format": "https://bioentity.link/#/lexicon/public/$1"
       }
     ],
     "uri_format": "https://www.yeastgenome.org/locus/$1"
@@ -26150,6 +26338,13 @@
         "uri_format": "http://www.ebi.ac.uk/swo/SWO_$1"
       },
       {
+        "code": "ebi.data",
+        "description": "The EBI's old SWO URIs before switching over to OBO PURLs",
+        "homepage": "http://www.ebi.ac.uk/swo/data",
+        "name": "Legacy EBI SWO",
+        "uri_format": "http://www.ebi.ac.uk/swo/data/SWO_$1"
+      },
+      {
         "code": "ebi.efo",
         "description": "The EBI's old SWO URIs before switching over to OBO PURLs",
         "homepage": "http://www.ebi.ac.uk/efo/swo/",
@@ -26162,13 +26357,6 @@
         "homepage": "http://www.ebi.ac.uk/swo/license",
         "name": "Legacy EBI SWO",
         "uri_format": "http://www.ebi.ac.uk/swo/license/SWO_$1"
-      },
-      {
-        "code": "ebi.data",
-        "description": "The EBI's old SWO URIs before switching over to OBO PURLs",
-        "homepage": "http://www.ebi.ac.uk/swo/data",
-        "name": "Legacy EBI SWO",
-        "uri_format": "http://www.ebi.ac.uk/swo/data/SWO_$1"
       }
     ],
     "repository": "https://github.com/allysonlister/swo",
@@ -27361,11 +27549,11 @@
     "preferred_prefix": "uniprot",
     "providers": [
       {
-        "code": "omnipath",
-        "description": "Molecular interations endpoint from OmniPathDB",
-        "homepage": "https://omnipathdb.org/",
-        "name": "OmniPathDB",
-        "uri_format": "https://omnipathdb.org/interactions/?fields=sources,references&partners=$1"
+        "code": "indra",
+        "description": "A large scale database of biomedical statements.",
+        "homepage": "https://db.indra.bio",
+        "name": "INDRA Database",
+        "uri_format": "https://db.indra.bio/statements/from_agents?&format=html&agent0=$1@UP"
       },
       {
         "code": "iptmnet",
@@ -27375,18 +27563,11 @@
         "uri_format": "https://research.bioinformatics.udel.edu/iptmnet/entry/$1"
       },
       {
-        "code": "indra",
-        "description": "A large scale database of biomedical statements.",
-        "homepage": "https://db.indra.bio",
-        "name": "INDRA Database",
-        "uri_format": "https://db.indra.bio/statements/from_agents?&format=html&agent0=$1@UP"
-      },
-      {
-        "code": "scholia",
-        "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
-        "homepage": "https://scholia.toolforge.org/",
-        "name": "Scholia",
-        "uri_format": "https://scholia.toolforge.org/uniprot/$1"
+        "code": "ncbi",
+        "description": "UniProt through NCBI",
+        "homepage": "https://www.ncbi.nlm.nih.gov/protein/",
+        "name": "UniProt through NCBI",
+        "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1"
       },
       {
         "code": "oma",
@@ -27396,11 +27577,18 @@
         "uri_format": "http://omabrowser.org/cgi-bin/gateway.pl?f=DisplayEntry&p2=orthologs&p1=$1"
       },
       {
-        "code": "ncbi",
-        "description": "UniProt through NCBI",
-        "homepage": "https://www.ncbi.nlm.nih.gov/protein/",
-        "name": "UniProt through NCBI",
-        "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1"
+        "code": "omnipath",
+        "description": "Molecular interations endpoint from OmniPathDB",
+        "homepage": "https://omnipathdb.org/",
+        "name": "OmniPathDB",
+        "uri_format": "https://omnipathdb.org/interactions/?fields=sources,references&partners=$1"
+      },
+      {
+        "code": "scholia",
+        "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
+        "homepage": "https://scholia.toolforge.org/",
+        "name": "Scholia",
+        "uri_format": "https://scholia.toolforge.org/uniprot/$1"
       }
     ],
     "synonyms": [
@@ -28103,18 +28291,18 @@
     "preferred_prefix": "viaf",
     "providers": [
       {
-        "code": "viaf.https",
-        "description": "A duplicate endpoint over HTTPS",
-        "homepage": "http://viaf.org",
-        "name": "VIAF (https)",
-        "uri_format": "https://viaf.org/$1"
-      },
-      {
         "code": "scholia",
         "description": "Scholia is a service that creates visual scholarly profiles for topic, people, organizations, species, chemicals, etc using bibliographic and other information in Wikidata.",
         "homepage": "https://scholia.toolforge.org/",
         "name": "Scholia",
         "uri_format": "https://scholia.toolforge.org/viaf/$1"
+      },
+      {
+        "code": "viaf.https",
+        "description": "A duplicate endpoint over HTTPS",
+        "homepage": "http://viaf.org",
+        "name": "VIAF (https)",
+        "uri_format": "https://viaf.org/$1"
       }
     ],
     "uri_format": "http://viaf.org/viaf/$1"
@@ -28773,11 +28961,11 @@
     "preferred_prefix": "WormBase",
     "providers": [
       {
-        "code": "wormbase.c_elegans",
-        "description": "Pages describing C. Elegans genes.",
-        "homepage": "http://www.wormbase.org",
-        "name": "WormBase C. Elegans Gene Portal",
-        "uri_format": "http://www.wormbase.org/species/c_elegans/gene/$1"
+        "code": "agr",
+        "description": "WormBase through the Alliance of Genome Resources",
+        "homepage": "https://www.alliancegenome.org",
+        "name": "WormBase through the Alliance of Genome Resources",
+        "uri_format": "https://www.alliancegenome.org/gene/WB:$1"
       },
       {
         "code": "bioentitylink",
@@ -28787,11 +28975,11 @@
         "uri_format": "https://bioentity.link/#/lexicon/public/$1"
       },
       {
-        "code": "agr",
-        "description": "WormBase through the Alliance of Genome Resources",
-        "homepage": "https://www.alliancegenome.org",
-        "name": "WormBase through the Alliance of Genome Resources",
-        "uri_format": "https://www.alliancegenome.org/gene/WB:$1"
+        "code": "wormbase.c_elegans",
+        "description": "Pages describing C. Elegans genes.",
+        "homepage": "http://www.wormbase.org",
+        "name": "WormBase C. Elegans Gene Portal",
+        "uri_format": "http://www.wormbase.org/species/c_elegans/gene/$1"
       }
     ],
     "synonyms": [
@@ -29210,7 +29398,8 @@
       "ols": "ypo"
     },
     "name": "Yeast phenotypes",
-    "preferred_prefix": "YPO"
+    "preferred_prefix": "YPO",
+    "uri_format": "http://purl.obolibrary.org/obo/YPO_$1"
   },
   "yrcpdr": {
     "description": "The Yeast Resource Center Public Data Repository (YRC PDR) serves as a single point of access for the experimental data produced from many collaborations typically studying Saccharomyces cerevisiae (baker's yeast). The experimental data include large amounts of mass spectrometry results from protein co-purification experiments, yeast two-hybrid interaction experiments, fluorescence microscopy images and protein structure predictions.",
@@ -29365,18 +29554,18 @@
     "preferred_prefix": "zfin",
     "providers": [
       {
-        "code": "bioentitylink",
-        "description": "ZFIN through BioEntity Link",
-        "homepage": "https://bioentity.link/",
-        "name": "ZFIN through BioEntity Link",
-        "uri_format": "https://bioentity.link/#/lexicon/public/$1"
-      },
-      {
         "code": "agr",
         "description": "ZFIN through the Alliance of Genome Resources",
         "homepage": "https://www.alliancegenome.org",
         "name": "ZFIN through the Alliance of Genome Resources",
         "uri_format": "https://test.alliancegenome.org/gene/ZFIN:$1"
+      },
+      {
+        "code": "bioentitylink",
+        "description": "ZFIN through BioEntity Link",
+        "homepage": "https://bioentity.link/",
+        "name": "ZFIN through BioEntity Link",
+        "uri_format": "https://bioentity.link/#/lexicon/public/$1"
       }
     ],
     "synonyms": [

@@ -2865,6 +2865,7 @@ bioregistry:cpga a bioregistry.schema:0000001 ;
         bioportal:GRO-CPGA,
         biocontext:gro.cpga ;
     foaf:homepage "http://www.gramene.org/plant_ontology/"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/GRO_$1"^^xsd:string ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 [ rdfs:label "Plant Ontology Administrators" ] .
 
@@ -3748,27 +3749,6 @@ bioregistry:ehdaa a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 [ rdfs:label "Jonathan Bard" ] .
 
-bioregistry:ehdaa2 a bioregistry.schema:0000001 ;
-    rdfs:label "Human developmental anatomy, abstract" ;
-    dc:description "A structured controlled vocabulary of stage-specific anatomical structures of the developing human."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:EHDAA2,
-        obofoundry:ehdaa2,
-        ontobee:EHDAA2,
-        bioportal:EHDAA2,
-        biocontext:EHDAA2,
-        fairsharing:FAIRsharing.7zxrs6,
-        ols:ehdaa2 ;
-    foaf:homepage "https://github.com/obophenotype/human-developmental-anatomy-ontology"^^xsd:string ;
-    bioregistry.schema:0000005 "0000000"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/EHDAA2_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000017 bioregistry:aeo,
-        bioregistry:caro,
-        bioregistry:cl ;
-    bioregistry.schema:0000019 [ rdfs:label "Jonathan Bard" ] .
-
 bioregistry:elm a bioregistry.schema:0000001 ;
     rdfs:label "Eukaryotic Linear Motif Resource" ;
     dc:description "Linear motifs are short, evolutionarily plastic components of regulatory proteins. Mainly focused on the eukaryotic sequences,the Eukaryotic Linear Motif resource (ELM) is a database of curated motif classes and instances."^^xsd:string ;
@@ -3970,25 +3950,6 @@ bioregistry:envipath a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://envipath.org/package/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[\\w^_]{8}-[\\w^_]{4}-[\\w^_]{4}-[\\w^_]{4}-[\\w^_]{12}\\/[\\w-]+\\/[\\w^_]{8}-[\\w^_]{4}-[\\w^_]{4}-[\\w^_]{4}-[\\w^_]{12}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
-
-bioregistry:eo a bioregistry.schema:0000001 ;
-    rdfs:label "Plant Environment Ontology" ;
-    dc:description "The Plant Environment Ontology is a set of standardized controlled vocabularies to describe various types of treatments given to an individual plant / a population or a cultured tissue and/or cell type sample to evaluate the response on its exposure. It also includes the study types, where the terms can be used to identify the growth study facility. Each growth facility such as field study, growth chamber, green house etc is a environment on its own it may also involve instances of biotic and abiotic environments as supplemental treatments used in these studies."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:EO,
-        agroportal:EO,
-        obofoundry:eo,
-        biocontext:EO,
-        n2t:eo,
-        prefixcommons:eo,
-        miriam:eo ;
-    foaf:homepage "http://planteome.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "0007404"^^xsd:string ;
-    bioregistry.schema:0000006 "http://archive.gramene.org/db/ontology/search?query=EO:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000018 bioregistry:foodon ;
-    bioregistry.schema:0000019 orcid:0000-0002-1005-8383 .
 
 bioregistry:epd a bioregistry.schema:0000001 ;
     rdfs:label "Eukaryotic Promoter Database" ;
@@ -4553,26 +4514,6 @@ bioregistry:gateway a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://web.www.healthdatagateway.org/dataset/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
-
-bioregistry:gaz a bioregistry.schema:0000001 ;
-    rdfs:label "Gazetteer" ;
-    dc:description "A gazetteer constructed on ontological principles"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:GAZ,
-        obofoundry:gaz,
-        ontobee:GAZ,
-        bioportal:GAZ,
-        biocontext:GAZ,
-        fairsharing:FAIRsharing.wkdjpb,
-        ols:gaz,
-        wikidata:P6778 ;
-    foaf:homepage "http://environmentontology.github.io/gaz/"^^xsd:string ;
-    bioregistry.schema:0000005 "00620027"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/GAZ_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
-    bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000018 bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0001-8910-9851 .
 
 bioregistry:gcst a bioregistry.schema:0000001 ;
     rdfs:label "GWAS Catalog" ;
@@ -5899,25 +5840,6 @@ bioregistry:idocovid19 a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-1118-1738 .
-
-bioregistry:idomal a bioregistry.schema:0000001 ;
-    rdfs:label "Malaria Ontology" ;
-    dc:description "An application ontology to cover all aspects of malaria as well as the intervention attempts to control it."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:IDOMAL,
-        obofoundry:idomal,
-        ontobee:IDOMAL,
-        bioportal:IDOMAL,
-        biocontext:IDOMAL,
-        fairsharing:FAIRsharing.2q8c28,
-        ols:idomal ;
-    foaf:homepage "https://www.vectorbase.org/ontology-browser"^^xsd:string ;
-    bioregistry.schema:0000005 "0002350"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/IDOMAL_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000018 bioregistry:scdo ;
-    bioregistry.schema:0000019 [ rdfs:label "Pantelis Topalis" ] .
 
 bioregistry:idoo a bioregistry.schema:0000001 ;
     rdfs:label "Identifiers.org Ontology" ;
@@ -8752,24 +8674,6 @@ bioregistry:omia a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://omia.angis.org.au/$1/"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 true .
-
-bioregistry:omiabis a bioregistry.schema:0000001 ;
-    rdfs:label "Ontologized MIABIS" ;
-    dc:description "An ontological version of MIABIS (Minimum Information About BIobank data Sharing)"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:OMIABIS,
-        obofoundry:omiabis,
-        ontobee:OMIABIS,
-        bioportal:OMIABIS,
-        biocontext:OMIABIS,
-        ols:omiabis ;
-    foaf:homepage "https://github.com/OMIABIS/omiabis-dev"^^xsd:string ;
-    bioregistry.schema:0000005 "0001079"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OMIABIS_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000018 bioregistry:labo ;
-    bioregistry.schema:0000019 orcid:0000-0003-1834-3856 .
 
 bioregistry:ontoneo a bioregistry.schema:0000001 ;
     rdfs:label "Obstetric and Neonatal Ontology" ;
@@ -11926,28 +11830,6 @@ bioregistry:unite a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^UDB\\d{6}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:upa a bioregistry.schema:0000001 ;
-    rdfs:label "Unipathway" ;
-    dc:description "A manually curated resource for the representation and annotation of metabolic pathways"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:UPA,
-        edam.data:2645,
-        obofoundry:upa,
-        ontobee:UPA,
-        bioportal:UPA,
-        biocontext:UNIPATHWAY,
-        go.resource:UniPathway,
-        prefixcommons:unipathway,
-        ols:upa,
-        uniprot.resource:UniPathway ;
-    foaf:homepage "https://github.com/geneontology/unipathway"^^xsd:string ;
-    bioregistry.schema:0000005 "UCR00513"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.grenoble.prabi.fr/obiwarehouse/unipathway/upa?upid=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^(UCR|UCY|UER|ULS|UPA|UPC|UPX)\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000012 true ;
-    bioregistry.schema:0000017 bioregistry:ro ;
-    bioregistry.schema:0000019 orcid:0000-0002-1216-2969 .
-
 bioregistry:upheno a bioregistry.schema:0000001 ;
     rdfs:label "Unified Phenotype Ontology" ;
     dc:description "The uPheno ontology integrates multiple phenotype ontologies into a unified cross-species phenotype ontology."^^xsd:string ;
@@ -12583,6 +12465,7 @@ bioregistry:ypo a bioregistry.schema:0000001 ;
     skos:exactMatch obofoundry:ypo,
         ols:ypo ;
     foaf:homepage "http://www.yeastgenome.org/"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/YPO_$1"^^xsd:string ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0001-9163-5180 .
 
@@ -19350,6 +19233,7 @@ bioregistry:aeo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/AEO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000018 bioregistry:ehdaa2 ;
     bioregistry.schema:0000019 [ rdfs:label "Jonathan Bard" ] .
 
 bioregistry:agilent.probe a bioregistry.schema:0000001 ;
@@ -20105,6 +19989,27 @@ bioregistry:complexportal a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^CPX-[0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:confident.event a bioregistry.schema:0000001 ;
+    rdfs:label "ConfIDent Event" ;
+    dc:description "Confident makes descriptive metadata on conferences and other formats of scientific events permanently accessible in a high quality through automated processes and scientific data curating."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.confident-conference.org/index.php/Category:Event"^^xsd:string ;
+    bioregistry.schema:0000005 "37af84f2-bfd7-4653-b608-eaff44febba6"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.confident-conference.org/index.php/Event:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1595-3213 .
+
+bioregistry:confident.series a bioregistry.schema:0000001 ;
+    rdfs:label "ConfIDent Event Series" ;
+    dc:description "Confident makes descriptive metadata on conferences and other formats of scientific events permanently accessible in a high quality through automated processes and scientific data curating."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.confident-conference.org/index.php/Category:Event_Series"^^xsd:string ;
+    bioregistry.schema:0000005 "AAC"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.confident-conference.org/index.php/Event_Series:$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1595-3213 .
+
 bioregistry:conso a bioregistry.schema:0000001 ;
     rdfs:label "Curation of Neurodegeneration Supporting Ontology" ;
     dc:description "An ontology describing phenomena encountered in the literature surrounding neurodegenerative diseases such as Alzheimer's disease, Parkinson's disease, Huntington's disease, tauopathies, and related protein aggregation diseases."^^xsd:string ;
@@ -20811,6 +20716,25 @@ bioregistry:enzo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.enzolifesciences.com/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:eo a bioregistry.schema:0000001 ;
+    rdfs:label "Plant Environment Ontology" ;
+    dc:description "The Plant Environment Ontology is a set of standardized controlled vocabularies to describe various types of treatments given to an individual plant / a population or a cultured tissue and/or cell type sample to evaluate the response on its exposure. It also includes the study types, where the terms can be used to identify the growth study facility. Each growth facility such as field study, growth chamber, green house etc is a environment on its own it may also involve instances of biotic and abiotic environments as supplemental treatments used in these studies."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:EO,
+        agroportal:EO,
+        obofoundry:eo,
+        biocontext:EO,
+        n2t:eo,
+        prefixcommons:eo,
+        miriam:eo ;
+    foaf:homepage "http://planteome.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "0007404"^^xsd:string ;
+    bioregistry.schema:0000006 "http://archive.gramene.org/db/ontology/search?query=EO:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000018 bioregistry:foodon ;
+    bioregistry.schema:0000019 orcid:0000-0002-1005-8383 .
+
 bioregistry:eol a bioregistry.schema:0000001 ;
     rdfs:label "Environment Ontology for Livestock" ;
     dc:description "The EOL ontology describes environmental conditions of livestock farms. More specifically, it describes the feeding modalities, the environment, the structure of livestock farms and rearing systems."^^xsd:string ;
@@ -21074,6 +20998,26 @@ bioregistry:gard a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "6038"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:gaz a bioregistry.schema:0000001 ;
+    rdfs:label "Gazetteer" ;
+    dc:description "A gazetteer constructed on ontological principles"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:GAZ,
+        obofoundry:gaz,
+        ontobee:GAZ,
+        bioportal:GAZ,
+        biocontext:GAZ,
+        fairsharing:FAIRsharing.wkdjpb,
+        ols:gaz,
+        wikidata:P6778 ;
+    foaf:homepage "http://environmentontology.github.io/gaz/"^^xsd:string ;
+    bioregistry.schema:0000005 "00620027"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/GAZ_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000018 bioregistry:scdo ;
+    bioregistry.schema:0000019 orcid:0000-0001-8910-9851 .
 
 bioregistry:gbif a bioregistry.schema:0000001 ;
     rdfs:label "Global Biodiversity Information Facility" ;
@@ -21450,7 +21394,7 @@ bioregistry:icd10 a bioregistry.schema:0000001 ;
         wikidata:P494 ;
     foaf:homepage "https://icd.who.int/browse10"^^xsd:string ;
     bioregistry.schema:0000005 "C34"^^xsd:string ;
-    bioregistry.schema:0000006 "http://apps.who.int/classifications/icd10/browse/2010/en#/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://icd.who.int/browse10/2019/en#/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Z]\\d+(\\.[-\\d+])?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -21514,6 +21458,25 @@ bioregistry:idoden a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0003463"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:idomal a bioregistry.schema:0000001 ;
+    rdfs:label "Malaria Ontology" ;
+    dc:description "An application ontology to cover all aspects of malaria as well as the intervention attempts to control it."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:IDOMAL,
+        obofoundry:idomal,
+        ontobee:IDOMAL,
+        bioportal:IDOMAL,
+        biocontext:IDOMAL,
+        fairsharing:FAIRsharing.2q8c28,
+        ols:idomal ;
+    foaf:homepage "https://www.vectorbase.org/ontology-browser"^^xsd:string ;
+    bioregistry.schema:0000005 "0002350"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/IDOMAL_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000018 bioregistry:scdo ;
+    bioregistry.schema:0000019 [ rdfs:label "Pantelis Topalis" ] .
 
 bioregistry:idot a bioregistry.schema:0000001 ;
     rdfs:label "Identifiers.org Terms" ;
@@ -22555,6 +22518,24 @@ bioregistry:ohd a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0001-9625-1899 .
+
+bioregistry:omiabis a bioregistry.schema:0000001 ;
+    rdfs:label "Ontologized MIABIS" ;
+    dc:description "An ontological version of MIABIS (Minimum Information About BIobank data Sharing)"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:OMIABIS,
+        obofoundry:omiabis,
+        ontobee:OMIABIS,
+        bioportal:OMIABIS,
+        biocontext:OMIABIS,
+        ols:omiabis ;
+    foaf:homepage "https://github.com/OMIABIS/omiabis-dev"^^xsd:string ;
+    bioregistry.schema:0000005 "0001079"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OMIABIS_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000018 bioregistry:labo ;
+    bioregistry.schema:0000019 orcid:0000-0003-1834-3856 .
 
 bioregistry:omim a bioregistry.schema:0000001 ;
     rdfs:label "Online Mendelian Inheritance in Man" ;
@@ -23792,6 +23773,28 @@ bioregistry:unpd a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "http://pkuxxj.pku.edu.cn/UNPD/"^^xsd:string ;
     bioregistry.schema:0000012 true .
+
+bioregistry:upa a bioregistry.schema:0000001 ;
+    rdfs:label "Unipathway" ;
+    dc:description "A manually curated resource for the representation and annotation of metabolic pathways"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:UPA,
+        edam.data:2645,
+        obofoundry:upa,
+        ontobee:UPA,
+        bioportal:UPA,
+        biocontext:UNIPATHWAY,
+        go.resource:UniPathway,
+        prefixcommons:unipathway,
+        ols:upa,
+        uniprot.resource:UniPathway ;
+    foaf:homepage "https://github.com/geneontology/unipathway"^^xsd:string ;
+    bioregistry.schema:0000005 "UCR00513"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.grenoble.prabi.fr/obiwarehouse/unipathway/upa?upid=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(UCR|UCY|UER|ULS|UPA|UPC|UPX)\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000017 bioregistry:ro ;
+    bioregistry.schema:0000019 orcid:0000-0002-1216-2969 .
 
 bioregistry:vandf a bioregistry.schema:0000001 ;
     rdfs:label "Veterans Administration National Drug File" ;
@@ -25197,6 +25200,8 @@ orcid:0000-0002-0851-6883 rdfs:label "Jennifer C. Giron",
 orcid:0000-0002-1048-5019 rdfs:label "Matthew Brush" .
 
 orcid:0000-0002-1118-1738 rdfs:label "John Beverly" .
+
+orcid:0000-0002-1595-3213 rdfs:label "Philip Strömert" .
 
 orcid:0000-0002-1780-5230 rdfs:label "Ada Hamosh" .
 
@@ -26752,6 +26757,8 @@ miriam:metanetx.chemical dcterms:isPartOf bioregistry.metaresource:miriam .
 miriam:metanetx.compartment dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:metanetx.reaction dcterms:isPartOf bioregistry.metaresource:miriam .
+
+miriam:metatlas dcterms:isPartOf bioregistry.metaresource:miriam .
 
 miriam:metlin dcterms:isPartOf bioregistry.metaresource:miriam .
 
@@ -29576,6 +29583,32 @@ bioregistry:mesh a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^(C|D)\\d{6,9}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:metatlas.metabolite a bioregistry.schema:0000001 ;
+    rdfs:label "Metabolic Atlas Metabolite" ;
+    dc:description "A subspace of Metabolic Atlas for compartment-specific records for metabolites."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:metatlas ;
+    foaf:homepage "https://metabolicatlas.org"^^xsd:string ;
+    bioregistry.schema:0000005 "MAM01234c"^^xsd:string ;
+    bioregistry.schema:0000006 "https://metabolicatlas.org/identifier/MetabolicAtlas/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^MAM\\d{5}\\w$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7753-9042 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:metatlas.reaction a bioregistry.schema:0000001 ;
+    rdfs:label "Metabolic Atlas Reaction" ;
+    dc:description "A subspace of Metabolic Atlas for reactions."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:metatlas ;
+    foaf:homepage "https://metabolicatlas.org"^^xsd:string ;
+    bioregistry.schema:0000005 "MAR11851"^^xsd:string ;
+    bioregistry.schema:0000006 "https://metabolicatlas.org/identifier/MetabolicAtlas/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^MAR\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7753-9042 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:molbase.sheffield a bioregistry.schema:0000001 ;
     rdfs:label "MolBase" ;
     dc:description "An online database of inorganic compounds, MolBase was constructed by Dr Mark Winter of the University of Sheffield with input from undergraduate students."^^xsd:string ;
@@ -30454,6 +30487,11 @@ orcid:0000-0002-6443-9376 rdfs:label "Jennifer Smith" .
 orcid:0000-0002-7509-4804 rdfs:label "Tom Gillespie" ;
     dcterms:contributor bioregistry:nlx.br .
 
+orcid:0000-0002-7753-9042 rdfs:label "Mihail Anton" ;
+    dcterms:contributor bioregistry:metatlas,
+        bioregistry:metatlas.metabolite,
+        bioregistry:metatlas.reaction .
+
 orcid:0000-0002-8457-6693 rdfs:label "Bjoern Peters" .
 
 bioregistry.metaresource:ecoportal a bioregistry.schema:0000002 ;
@@ -30604,6 +30642,27 @@ bioregistry:efo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-3458-4839 .
 
+bioregistry:ehdaa2 a bioregistry.schema:0000001 ;
+    rdfs:label "Human developmental anatomy, abstract" ;
+    dc:description "A structured controlled vocabulary of stage-specific anatomical structures of the developing human."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:EHDAA2,
+        obofoundry:ehdaa2,
+        ontobee:EHDAA2,
+        bioportal:EHDAA2,
+        biocontext:EHDAA2,
+        fairsharing:FAIRsharing.7zxrs6,
+        ols:ehdaa2 ;
+    foaf:homepage "https://github.com/obophenotype/human-developmental-anatomy-ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "0000000"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/EHDAA2_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 true ;
+    bioregistry.schema:0000017 bioregistry:aeo,
+        bioregistry:caro,
+        bioregistry:cl ;
+    bioregistry.schema:0000019 [ rdfs:label "Jonathan Bard" ] .
+
 bioregistry:fbcv a bioregistry.schema:0000001 ;
     rdfs:label "FlyBase Controlled Vocabulary" ;
     dc:description "A miscellaneous ontology of terms used for curation in FlyBase, including the DPO."^^xsd:string ;
@@ -30625,6 +30684,21 @@ bioregistry:fbcv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:ontoavida ;
     bioregistry.schema:0000019 orcid:0000-0002-1373-1705 .
+
+bioregistry:metatlas a bioregistry.schema:0000001 ;
+    rdfs:label "Metabolic Atlas" ;
+    dc:description "A resource for exploring metabolism, starting with a set of of community-curated genome-scale metabolic models of human and model organisms, enriched with pathway maps and other tools for easy browsing and analysis."^^xsd:string ;
+    dcterms:hasPart bioregistry:metatlas.metabolite,
+        bioregistry:metatlas.reaction ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch miriam:metatlas ;
+    foaf:homepage "https://metabolicatlas.org"^^xsd:string ;
+    bioregistry.schema:0000005 "MAM01234c"^^xsd:string ;
+    bioregistry.schema:0000006 "https://metabolicatlas.org/identifier/MetabolicAtlas/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(MAM\\d{5}\\w)|(MAR\\d{5})$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7753-9042 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:nbo a bioregistry.schema:0000001 ;
     rdfs:label "Neuro Behavior Ontology" ;
@@ -31015,6 +31089,7 @@ bioregistry:caro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:aism,
         bioregistry:colao,
+        bioregistry:ehdaa2,
         bioregistry:lepao,
         bioregistry:pco ;
     bioregistry.schema:0000019 orcid:0000-0001-9114-8737 .
@@ -31191,6 +31266,7 @@ bioregistry:labo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000017 bioregistry:iao,
         bioregistry:obi,
         bioregistry:ogms,
+        bioregistry:omiabis,
         bioregistry:omrse,
         bioregistry:opmi ;
     bioregistry.schema:0000019 orcid:0000-0002-3336-2476 .
@@ -31750,6 +31826,7 @@ bioregistry:foodon a bioregistry.schema:0000001 ;
     bioregistry.schema:0000017 bioregistry:bfo,
         bioregistry:chebi,
         bioregistry:envo,
+        bioregistry:eo,
         bioregistry:ncbitaxon,
         bioregistry:obi,
         bioregistry:ro,
@@ -31980,6 +32057,7 @@ bioregistry:cl a bioregistry.schema:0000001 ;
         bioregistry:uberon ;
     bioregistry.schema:0000018 bioregistry:clo,
         bioregistry:ecao,
+        bioregistry:ehdaa2,
         bioregistry:go,
         bioregistry:mco,
         bioregistry:pcl,
@@ -32285,11 +32363,13 @@ bioregistry:scdo a bioregistry.schema:0000001 ;
         bioregistry:envo,
         bioregistry:eupath,
         bioregistry:exo,
+        bioregistry:gaz,
         bioregistry:gsso,
         bioregistry:hp,
         bioregistry:hsapdv,
         bioregistry:ico,
         bioregistry:ido,
+        bioregistry:idomal,
         bioregistry:mp,
         bioregistry:nbo,
         bioregistry:ncit,
@@ -32358,6 +32438,7 @@ bioregistry:ro a bioregistry.schema:0000001 ;
         bioregistry:psdo,
         bioregistry:pso,
         bioregistry:rbo,
+        bioregistry:upa,
         bioregistry:xpo,
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 .
@@ -32411,6 +32492,8 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cog.pathway,
         bioregistry:cohd,
         bioregistry:come,
+        bioregistry:confident.event,
+        bioregistry:confident.series,
         bioregistry:conso,
         bioregistry:cordis.article,
         bioregistry:cosmic.cell,
@@ -37096,6 +37179,7 @@ bioregistry.metaresource:miriam a bioregistry.schema:0000002 ;
         miriam:metanetx.chemical,
         miriam:metanetx.compartment,
         miriam:metanetx.reaction,
+        miriam:metatlas,
         miriam:metlin,
         miriam:mex,
         miriam:mge,
@@ -38554,6 +38638,8 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:complexportal,
         bioregistry:comptox,
         bioregistry:compulyeast,
+        bioregistry:confident.event,
+        bioregistry:confident.series,
         bioregistry:conoserver,
         bioregistry:conso,
         bioregistry:cordis.article,
@@ -39092,6 +39178,9 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:metanetx.chemical,
         bioregistry:metanetx.compartment,
         bioregistry:metanetx.reaction,
+        bioregistry:metatlas,
+        bioregistry:metatlas.metabolite,
+        bioregistry:metatlas.reaction,
         bioregistry:metlin,
         bioregistry:mex,
         bioregistry:mf,
