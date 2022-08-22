@@ -147,10 +147,10 @@ def write_contexts(contexts: Mapping[str, Context]) -> None:
         )
 
 
-def read_prefix_contributions() -> Mapping[str, Set[str]]:
+def read_prefix_contributions(registry: Mapping[str, Resource]) -> Mapping[str, Set[str]]:
     """Get a mapping from contributor ORCID identifiers to prefixes."""
     rv = defaultdict(set)
-    for prefix, resource in read_registry().items():
+    for prefix, resource in registry.items():
         if resource.contributor and resource.contributor.orcid:
             rv[resource.contributor.orcid].add(prefix)
         for contributor in resource.contributor_extras or []:
@@ -159,47 +159,47 @@ def read_prefix_contributions() -> Mapping[str, Set[str]]:
     return dict(rv)
 
 
-def read_prefix_reviews() -> Mapping[str, Set[str]]:
+def read_prefix_reviews(registry: Mapping[str, Resource]) -> Mapping[str, Set[str]]:
     """Get a mapping from reviewer ORCID identifiers to prefixes."""
     rv = defaultdict(set)
-    for prefix, resource in read_registry().items():
+    for prefix, resource in registry.items():
         if resource.reviewer and resource.reviewer.orcid:
             rv[resource.reviewer.orcid].add(prefix)
     return dict(rv)
 
 
-def read_prefix_contacts() -> Mapping[str, Set[str]]:
+def read_prefix_contacts(registry: Mapping[str, Resource]) -> Mapping[str, Set[str]]:
     """Get a mapping from contact ORCID identifiers to prefixes."""
     rv = defaultdict(set)
-    for prefix, resource in read_registry().items():
+    for prefix, resource in registry.items():
         contact_orcid = resource.get_contact_orcid()
         if contact_orcid:
             rv[contact_orcid].add(prefix)
     return dict(rv)
 
 
-def read_collections_contributions() -> Mapping[str, Set[str]]:
+def read_collections_contributions(collections: Mapping[str, Collection]) -> Mapping[str, Set[str]]:
     """Get a mapping from contributor ORCID identifiers to collections."""
     rv = defaultdict(set)
-    for collection_id, resource in read_collections().items():
+    for collection_id, resource in collections.items():
         for author in resource.authors or []:
             rv[author.orcid].add(collection_id)
     return dict(rv)
 
 
-def read_registry_contributions() -> Mapping[str, Set[str]]:
+def read_registry_contributions(metaregistry: Mapping[str, Registry]) -> Mapping[str, Set[str]]:
     """Get a mapping from contributor ORCID identifiers to collections."""
     rv = defaultdict(set)
-    for metaprefix, resource in read_metaregistry().items():
+    for metaprefix, resource in metaregistry.items():
         if resource.contact and resource.contact.orcid:
             rv[resource.contact.orcid].add(metaprefix)
     return dict(rv)
 
 
-def read_context_contributions() -> Mapping[str, Set[str]]:
+def read_context_contributions(contexts: Mapping[str, Context]) -> Mapping[str, Set[str]]:
     """Get a mapping from contributor ORCID identifiers to contexts."""
     rv = defaultdict(set)
-    for context_key, context in read_contexts().items():
+    for context_key, context in contexts.items():
         for maintainer in context.maintainers:
             rv[maintainer.orcid].add(context_key)
     return dict(rv)

@@ -385,16 +385,18 @@ def contributor(orcid: str):
         contributor=author,
         collections=sorted(
             (collection_id, manager.collections.get(collection_id))
-            for collection_id in read_collections_contributions().get(author.orcid, [])
+            for collection_id in read_collections_contributions(manager.collections).get(
+                author.orcid, []
+            )
         ),
         contexts=sorted(
             (context_key, manager.contexts.get(context_key))
-            for context_key in read_context_contributions().get(author.orcid, [])
+            for context_key in read_context_contributions(manager.contexts).get(author.orcid, [])
         ),
-        prefix_contributions=_s(read_prefix_contributions().get(author.orcid, [])),
-        prefix_contacts=_s(read_prefix_contacts().get(author.orcid, [])),
-        prefix_reviews=_s(read_prefix_reviews().get(author.orcid, [])),
-        registries=_s(read_registry_contributions().get(author.orcid, [])),
+        prefix_contributions=_s(read_prefix_contributions(manager.registry).get(author.orcid, [])),
+        prefix_contacts=_s(read_prefix_contacts(manager.registry).get(author.orcid, [])),
+        prefix_reviews=_s(read_prefix_reviews(manager.registry).get(author.orcid, [])),
+        registries=_s(read_registry_contributions(manager.metaregistry).get(author.orcid, [])),
         formats=FORMATS,
     )
 

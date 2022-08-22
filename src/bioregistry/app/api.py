@@ -347,11 +347,15 @@ def contributor(orcid: str):
     return serialize(
         {
             **author.dict(),
-            "prefix_contributions": sorted(read_prefix_contributions().get(orcid, [])),
-            "prefix_reviews": sorted(read_prefix_reviews().get(orcid, [])),
-            "prefix_contacts": sorted(read_prefix_contacts().get(orcid, [])),
-            "registries": sorted(read_registry_contributions().get(orcid, [])),
-            "collections": sorted(read_collections_contributions().get(orcid, [])),
+            "prefix_contributions": sorted(
+                read_prefix_contributions(manager.registry).get(orcid, [])
+            ),
+            "prefix_reviews": sorted(read_prefix_reviews(manager.registry).get(orcid, [])),
+            "prefix_contacts": sorted(read_prefix_contacts(manager.registry).get(orcid, [])),
+            "registries": sorted(read_registry_contributions(manager.metaregistry).get(orcid, [])),
+            "collections": sorted(
+                read_collections_contributions(manager.collections).get(orcid, [])
+            ),
         }
     )
 
