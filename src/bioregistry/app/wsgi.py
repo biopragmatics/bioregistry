@@ -3,6 +3,7 @@
 """Web application for the Bioregistry."""
 
 from textwrap import dedent
+from typing import Optional
 
 from flasgger import Swagger
 from flask import Flask
@@ -11,7 +12,7 @@ from flask_bootstrap import Bootstrap4
 from .api import api_blueprint
 from .ui import ui_blueprint
 from .. import version
-from ..resource_manager import manager
+from ..resource_manager import Manager
 from ..utils import curie_to_str
 
 TITLE_DEFAULT = "Bioregistry"
@@ -72,13 +73,15 @@ HEADER_DEFAULT = dedent(
 )
 
 
-def get_app() -> Flask:
+def get_app(manager: Optional[Manager] = None) -> Flask:
     """Prepare the flask application."""
     app = Flask(__name__)
+    if manager is None:
+        from ..resource_manager import manager
     app.manager = manager
     app.config.update(
         {
-            # "METAREGISTRY_TITLE": "ASKEM-Registry",
+            # "METAREGISTRY_TITLE": "...",
             # "METAREGISTRY_FIRST_PARTY": False,
         }
     )
@@ -122,7 +125,7 @@ def get_app() -> Flask:
     app.register_blueprint(api_blueprint)
     app.register_blueprint(ui_blueprint)
 
-    # Make bioregistry available in all jinja templates
+    # Make manager available in all jinja templates
     app.jinja_env.globals.update(manager=manager, curie_to_str=curie_to_str)
     return app
 

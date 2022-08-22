@@ -83,8 +83,12 @@ def resource(prefix: str):
     return serialize(
         data,
         serializers=[
-            ("turtle", "text/plain", partial(resource_to_rdf_str, fmt="turtle")),
-            ("jsonld", "application/ld+json", partial(resource_to_rdf_str, fmt="json-ld")),
+            ("turtle", "text/plain", partial(resource_to_rdf_str, manager=manager, fmt="turtle")),
+            (
+                "jsonld",
+                "application/ld+json",
+                partial(resource_to_rdf_str, manager=manager, fmt="json-ld"),
+            ),
         ],
     )
 
@@ -138,8 +142,16 @@ def metaresource(metaprefix: str):
     return serialize(
         data,
         serializers=[
-            ("turtle", "text/plain", partial(metaresource_to_rdf_str, fmt="turtle")),
-            ("jsonld", "application/ld+json", partial(metaresource_to_rdf_str, fmt="json-ld")),
+            (
+                "turtle",
+                "text/plain",
+                partial(metaresource_to_rdf_str, manager=manager, fmt="turtle"),
+            ),
+            (
+                "jsonld",
+                "application/ld+json",
+                partial(metaresource_to_rdf_str, manager=manager, fmt="json-ld"),
+            ),
         ],
     )
 
@@ -194,8 +206,12 @@ def collection(identifier: str):
         data,
         serializers=[
             ("context", "application/ld+json", Collection.as_context_jsonld_str),
-            ("turtle", "text/plain", partial(collection_to_rdf_str, fmt="turtle")),
-            ("jsonld", "application/ld+json", partial(collection_to_rdf_str, fmt="json-ld")),
+            ("turtle", "text/plain", partial(collection_to_rdf_str, manager=manager, fmt="turtle")),
+            (
+                "jsonld",
+                "application/ld+json",
+                partial(collection_to_rdf_str, manager=manager, fmt="json-ld"),
+            ),
         ],
     )
 
