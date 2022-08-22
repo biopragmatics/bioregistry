@@ -64,7 +64,7 @@
                             {% for prefix, resource in prefix_reviews %}
                                 <li>
                                     <a href="{{ url_for('ui.resource', prefix=prefix) }}">
-                                        {{ bioregistry.get_name(prefix) }}
+                                        {{ manager.get_name(prefix) }}
                                         (<code>{{ prefix }}</code>)
                                     </a>
                                     for
@@ -109,7 +109,7 @@
                             {% for prefix, resource in prefix_contacts %}
                                 <li>
                                     <a href="{{ url_for('ui.resource', prefix=prefix) }}">
-                                        {{ bioregistry.get_name(prefix) }}
+                                        {{ manager.get_name(prefix) }}
                                         (<code>{{ prefix }}</code>)
                                     </a>
                                 </li>
@@ -124,7 +124,7 @@
                             {% for metaprefix, metaresource in registries %}
                                 <li>
                                     <a href="{{ url_for("ui.metaresource", metaprefix=metaprefix) }}">
-                                        {{ bioregistry.get_registry_name(metaprefix) }}
+                                        {{ manager.get_registry_name(metaprefix) }}
                                         (<code>{{ metaprefix }}</code>)
                                     </a>
                                 </li>
@@ -139,7 +139,7 @@
                             {% for prefix, resource in prefix_contributions %}
                                 <li>
                                     <a href="{{ url_for('ui.resource', prefix=prefix) }}">
-                                        {{ bioregistry.get_name(prefix) }}
+                                        {{ manager.get_name(prefix) }}
                                         (<code>{{ prefix }}</code>)
                                     </a>
                                 </li>

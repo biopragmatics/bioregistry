@@ -1,5 +1,5 @@
 {% macro code_curie(prefix, identifier) -%}
-    <code>{{ bioregistry.curie_to_str(prefix, identifier) }}</code>
+    <code>{{ curie_to_str(prefix, identifier) }}</code>
 {% endmacro %}
 
 {% macro render_prefix(prefix) -%}
@@ -22,13 +22,13 @@
     {% elif resource.provides %}
         <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
            href="{{ url_for("ui.resource", prefix=resource.provides) }}"
-           title="{{ bioregistry.get_name(resource.provides) }} ({{ resource.provides }})">
+           title="{{ manager.get_name(resource.provides) }} ({{ resource.provides }})">
             Provider <i class="fas fa-exclamation-triangle"></i>
         </a>
     {% elif resource.has_canonical %}
         <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
            href="{{ url_for("ui.resource", prefix=resource.has_canonical) }}"
-           title="{{ bioregistry.get_name(resource.has_canonical) }} ({{ resource.has_canonical }})">
+           title="{{ manager.get_name(resource.has_canonical) }} ({{ resource.has_canonical }})">
             Has Canonical <i class="fas fa-exclamation-triangle"></i>
         </a>
     {% endif %}

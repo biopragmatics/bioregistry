@@ -33,7 +33,7 @@
 </head>
 <body {% block bodyattr %}{% endblock %}>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ url_for("home") }}">
+    <a class="navbar-brand" href="{{ url_for("ui.home") }}">
         <img src="{{ url_for('static', filename='logo.svg') }}" width="30" height="30" alt="">
         {{ config.METAREGISTRY_TITLE }}
     </a>
@@ -64,21 +64,21 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% if config.METAREGISTRY_FIRST_PARTY %}
-                    <a class="dropdown-item" href="{{ url_for("summary") }}">Summary</a>
+                    <a class="dropdown-item" href="{{ url_for("ui.summary") }}">Summary</a>
                     {% else %}
                     <a class="dropdown-item" href="https://bioregistry.io/summary">Summary (External)</a>
                     {% endif %}
-                    <a class="dropdown-item" href="{{ url_for("usage") }}">Programmatic Usage</a>
-                    <a class="dropdown-item" href="{{ url_for("schema") }}">JSON and RDF Schemata</a>
-                    <a class="dropdown-item" href="{{ url_for("sustainability") }}">Deployment and Sustainability</a>
-                    <a class="dropdown-item" href="{{ url_for("related") }}">Related</a>
+                    <a class="dropdown-item" href="{{ url_for("ui.usage") }}">Programmatic Usage</a>
+                    <a class="dropdown-item" href="{{ url_for("ui.schema") }}">JSON and RDF Schemata</a>
+                    <a class="dropdown-item" href="{{ url_for("ui.sustainability") }}">Deployment and Sustainability</a>
+                    <a class="dropdown-item" href="{{ url_for("ui.related") }}">Related</a>
                     <a class="dropdown-item" href="{{ url_for("ui.contributors") }}">Contributors</a>
-                    <a class="dropdown-item" href="{{ url_for("acknowledgements") }}">How to Cite and Acknowledge</a>
+                    <a class="dropdown-item" href="{{ url_for("ui.acknowledgements") }}">How to Cite and Acknowledge</a>
                     <!--<div class="dropdown-divider"></div>-->
                 </div>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('download') }}">Downloads</a>
+                <a class="nav-link" href="{{ url_for('ui.download') }}">Downloads</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('flasgger.apidocs') }}">API</a>

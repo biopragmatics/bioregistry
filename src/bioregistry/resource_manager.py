@@ -117,6 +117,38 @@ class Manager:
         """Write the registry."""
         write_registry(self.registry)
 
+    def get_registry(self, metaprefix: str) -> Optional[Registry]:
+        """Get the metaregistry entry for the given prefix."""
+        return self.metaregistry.get(metaprefix)
+
+    def get_registry_name(self, metaprefix: str) -> Optional[str]:
+        """Get the registry name."""
+        registry = self.get_registry(metaprefix)
+        if registry is None:
+            return None
+        return registry.name
+
+    def get_registry_homepage(self, metaprefix: str) -> Optional[str]:
+        """Get the registry homepage."""
+        registry = self.get_registry(metaprefix)
+        if registry is None:
+            return None
+        return registry.homepage
+
+    def get_registry_description(self, metaprefix: str) -> Optional[str]:
+        """Get the registry description."""
+        registry = self.get_registry(metaprefix)
+        if registry is None:
+            return None
+        return registry.description
+
+    def get_registry_provider_uri_format(self, metaprefix: str, prefix: str) -> Optional[str]:
+        """Get the URL for the resource inside registry, if available."""
+        entry = self.get_registry(metaprefix)
+        if entry is None:
+            return None
+        return entry.get_provider_uri_format(prefix)
+
     def normalize_prefix(self, prefix: str) -> Optional[str]:
         """Get the normalized prefix, or return None if not registered.
 

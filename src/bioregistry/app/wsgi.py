@@ -2,32 +2,17 @@
 
 """Web application for the Bioregistry."""
 
-import datetime
-import platform
-from operator import attrgetter
 from textwrap import dedent
 
 from flasgger import Swagger
-from flask import Flask, current_app, jsonify, render_template
+from flask import Flask
 from flask_bootstrap import Bootstrap4
-
-import bioregistry
-from bioregistry import version
-from bioregistry.constants import NDEX_UUID
 
 from .api import api_blueprint
 from .ui import ui_blueprint
-from ..resolve_identifier import get_bioregistry_iri
+from .. import version
 from ..resource_manager import manager
-from ..schema.constants import bioregistry_schema_terms
-from ..schema.struct import (
-    Registry,
-    RegistryGovernance,
-    RegistrySchema,
-    get_json_schema,
-    schema_status_map,
-)
-from ..schema_utils import _read_contributors
+from ..utils import curie_to_str
 
 TITLE_DEFAULT = "Bioregistry"
 FOOTER_DEFAULT = dedent(
@@ -87,154 +72,62 @@ HEADER_DEFAULT = dedent(
 )
 
 
-app = Flask(__name__)
-app.manager = manager
-app.config.update(
-    {
-        "METAREGISTRY_TITLE": "ASKEM-Registry",
-        "METAREGISTRY_VERSION": version.get_version(),
-        "METAREGISTRY_FIRST_PARTY": False,
-    }
-)
-app.config.setdefault("METAREGISTRY_TITLE", "Bioregistry")
-app.config.setdefault("METAREGISTRY_HOST", "bioregistry.io")
-app.config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
-app.config.setdefault("METAREGISTRY_FIRST_PARTY", True)
-app.config.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
-Swagger.DEFAULT_CONFIG.update(
-    {
-        "info": {
-            "title": app.config["METAREGISTRY_TITLE"],
-            "description": "A service for resolving CURIEs",
-            "contact": {
-                "responsibleDeveloper": "Charles Tapley Hoyt",
-                "email": "cthoyt@gmail.com",
-            },
-            "version": "1.0",
-            "license": {
-                "name": "Code available under the MIT License",
-                "url": "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE",
-            },
-        },
-        "host": app.config["METAREGISTRY_HOST"],
-        "tags": [
-            {
-                "name": "collections",
-                "externalDocs": {
-                    "url": f"https://{app.config['SERVER_NAME']}/collection/",
+def get_app() -> Flask:
+    """"""
+    app = Flask(__name__)
+    app.manager = manager
+    app.config.update(
+        {
+            # "METAREGISTRY_TITLE": "ASKEM-Registry",
+            # "METAREGISTRY_FIRST_PARTY": False,
+        }
+    )
+    app.config.setdefault("METAREGISTRY_TITLE", "Bioregistry")
+    app.config.setdefault("METAREGISTRY_HOST", "bioregistry.io")
+    app.config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
+    app.config.setdefault("METAREGISTRY_FIRST_PARTY", True)
+    app.config.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
+    app.config.setdefault("METAREGISTRY_VERSION", version.get_version())
+
+    Swagger.DEFAULT_CONFIG.update(
+        {
+            "info": {
+                "title": app.config["METAREGISTRY_TITLE"],
+                "description": "A service for resolving CURIEs",
+                "contact": {
+                    "responsibleDeveloper": "Charles Tapley Hoyt",
+                    "email": "cthoyt@gmail.com",
+                },
+                "version": "1.0",
+                "license": {
+                    "name": "Code available under the MIT License",
+                    "url": "https://github.com/biopragmatics/bioregistry/blob/main/LICENSE",
                 },
             },
-        ],
-    }
-)
-Swagger(app)
-Bootstrap4(app)
-
-app.register_blueprint(api_blueprint)
-app.register_blueprint(ui_blueprint)
-
-# Make bioregistry available in all jinja templates
-app.jinja_env.globals.update(bioregistry=bioregistry, manager=manager)
-
-
-@app.route("/")
-def home():
-    """Render the homepage."""
-    example_prefix, example_identifier = "chebi", "138488"
-    example_url = manager.get_bioregistry_iri(example_prefix, example_identifier)
-    return render_template(
-        "home.html",
-        example_url=example_url,
-        example_prefix=example_prefix,
-        example_identifier=example_identifier,
-        registry_size=len(manager.registry),
-        metaregistry_size=len(manager.metaregistry),
-        collections_size=len(manager.collections),
-        contributors_size=len(
-            _read_contributors(
-                registry=manager.registry,
-                metaregistry=manager.metaregistry,
-                collections=manager.collections,
-                contexts=manager.contexts,
-            )
-        ),
+            "host": app.config["METAREGISTRY_HOST"],
+            "tags": [
+                {
+                    "name": "collections",
+                    "externalDocs": {
+                        "url": f"https://{app.config['METAREGISTRY_HOST']}/collection/",
+                    },
+                },
+            ],
+        }
     )
 
+    Swagger(app)
+    Bootstrap4(app)
 
-@app.route("/summary")
-def summary():
-    """Render the summary page."""
-    return render_template("meta/summary.html")
+    app.register_blueprint(api_blueprint)
+    app.register_blueprint(ui_blueprint)
 
-
-@app.route("/related")
-def related():
-    """Render the related page."""
-    return render_template(
-        "meta/related.html",
-        mapping_counts=bioregistry.count_mappings(),
-        registries=sorted(bioregistry.read_metaregistry().values(), key=attrgetter("name")),
-        schema_status_map=schema_status_map,
-        registry_cls=Registry,
-        registry_governance_cls=RegistryGovernance,
-        registry_schema_cls=RegistrySchema,
-    )
+    # Make bioregistry available in all jinja templates
+    app.jinja_env.globals.update(manager=manager, curie_to_str=curie_to_str)
+    return app
 
 
-@app.route("/download")
-def download():
-    """Render the download page."""
-    return render_template("meta/download.html", ndex_uuid=NDEX_UUID)
-
-
-@app.route("/acknowledgements")
-def acknowledgements():
-    """Render the acknowledgements page."""
-    return render_template(
-        "meta/acknowledgements.html",
-        registries=sorted(bioregistry.read_metaregistry().values(), key=attrgetter("name")),
-    )
-
-
-_VERSION = version.get_version()
-_GIT_HASH = version.get_git_hash()
-_PLATFORM = platform.platform()
-_PLATFORM_VERSION = platform.version()
-_PYTHON_VERSION = platform.python_version()
-_DEPLOYED = datetime.datetime.now()
-
-
-@app.route("/sustainability")
-def sustainability():
-    """Render the sustainability page."""
-    return render_template(
-        "meta/sustainability.html",
-        software_version=_VERSION,
-        software_git_hash=_GIT_HASH,
-        platform=_PLATFORM,
-        platform_version=_PLATFORM_VERSION,
-        python_version=_PYTHON_VERSION,
-        deployed=_DEPLOYED,
-    )
-
-
-@app.route("/usage")
-def usage():
-    """Render the programmatic usage page."""
-    return render_template("meta/access.html")
-
-
-@app.route("/schema/")
-def schema():
-    """Render the Bioregistry RDF schema."""
-    return render_template("meta/schema.html", terms=bioregistry_schema_terms)
-
-
-@app.route("/schema.json")
-def json_schema():
-    """Return the JSON schema."""
-    return jsonify(get_json_schema())
-
+app = get_app()
 
 if __name__ == "__main__":
     app.run(debug=True)  # noqa

@@ -6,8 +6,7 @@ from functools import partial
 
 from flask import Blueprint, abort, jsonify, request
 
-import bioregistry
-
+from .proxies import manager
 from .utils import (
     _autocomplete,
     _get_identifier,
@@ -15,7 +14,6 @@ from .utils import (
     _search,
     serialize,
 )
-from .. import normalize_prefix
 from ..export.prefix_maps import collection_to_context_jsonlds
 from ..export.rdf_export import (
     collection_to_rdf_str,
@@ -31,7 +29,6 @@ from ..schema_utils import (
     read_prefix_reviews,
     read_registry_contributions,
 )
-from ..uri_format import get_uri_prefix
 
 __all__ = [
     "api_blueprint",
@@ -57,7 +54,7 @@ def resources():
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    return serialize(sanitize_mapping(bioregistry.read_registry()))
+    return serialize(sanitize_mapping(manager.registry))
 
 
 @api_blueprint.route("/registry/<prefix>")
@@ -84,7 +81,7 @@ def resource(prefix: str):
         enum: [json, yaml, turtle, jsonld]
     """  # noqa:DAR101,DAR201
     prefix = _normalize_prefix_or_404(prefix)
-    data = dict(prefix=prefix, **bioregistry.get_resource(prefix).dict())  # type:ignore
+    data = dict(prefix=prefix, **manager.get_resource(prefix).dict())  # type:ignore
     return serialize(
         data,
         serializers=[
@@ -111,7 +108,7 @@ def metaresources():
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    return serialize(sanitize_mapping(bioregistry.read_metaregistry()))
+    return serialize(sanitize_mapping(manager.metaregistry))
 
 
 @api_blueprint.route("/metaregistry/<metaprefix>")
@@ -137,7 +134,7 @@ def metaresource(metaprefix: str):
         type: string
         enum: [json, yaml, turtle, jsonld]
     """  # noqa:DAR101,DAR201
-    data = bioregistry.get_registry(metaprefix)
+    data = manager.metaregistry.get(metaprefix)
     if not data:
         abort(404, f"Invalid metaprefix: {metaprefix}")
     return serialize(
@@ -166,7 +163,7 @@ def collections():
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    return serialize(sanitize_mapping(bioregistry.read_collections()))
+    return serialize(sanitize_mapping(manager.collections))
 
 
 @api_blueprint.route("/collection/<identifier>")
@@ -192,7 +189,7 @@ def collection(identifier: str):
         type: string
         enum: [json, yaml, context, turtle, jsonld]
     """  # noqa:DAR101,DAR201
-    data = bioregistry.get_collection(identifier)
+    data = manager.collections.get(identifier)
     if not data:
         abort(404, f"Invalid collection: {identifier}")
     return serialize(
@@ -222,7 +219,7 @@ def contexts():
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    return serialize(sanitize_mapping(bioregistry.read_contexts()))
+    return serialize(sanitize_mapping(manager.contexts))
 
 
 @api_blueprint.route("/context/<identifier>")
@@ -248,7 +245,7 @@ def context(identifier: str):
         type: string
         enum: [json, yaml]
     """  # noqa:DAR101,DAR201
-    data = bioregistry.get_context(identifier)
+    data = manager.contexts.get(identifier)
     if not data:
         abort(404, f"Invalid context: {identifier}")
     return serialize(data)
@@ -403,10 +400,10 @@ def generate_context_json_ld():
     prefix_map = {}
     for arg in request.args.getlist("prefix", type=str):
         for prefix in arg.split(","):
-            prefix = normalize_prefix(prefix.strip())
+            prefix = manager.normalize_prefix(prefix.strip())
             if prefix is None:
                 continue
-            uri_prefix = get_uri_prefix(prefix)
+            uri_prefix = manager.get_uri_prefix(prefix)
             if uri_prefix is None:
                 continue
             prefix_map[prefix] = uri_prefix

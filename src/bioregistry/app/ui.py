@@ -2,22 +2,37 @@
 
 """User blueprint for the bioregistry web application."""
 
+import datetime
 import itertools as itt
+import platform
+from operator import attrgetter
 from typing import Optional
 
-from flask import Blueprint, abort, redirect, render_template, request, url_for
+from flask import Blueprint, abort, jsonify, redirect, render_template, request, url_for
 from markdown import markdown
 
 import bioregistry
 
+from .proxies import manager
 from .utils import (
     _get_resource_mapping_rows,
     _get_resource_providers,
     _normalize_prefix_or_404,
 )
+from .. import version
+from ..constants import NDEX_UUID
 from ..resource_manager import manager
 from ..schema import Context
+from ..schema.constants import bioregistry_schema_terms
+from ..schema.struct import (
+    Registry,
+    RegistryGovernance,
+    RegistrySchema,
+    get_json_schema,
+    schema_status_map,
+)
 from ..schema_utils import (
+    _read_contributors,
     read_collections_contributions,
     read_context_contributions,
     read_prefix_contacts,
@@ -42,9 +57,9 @@ FORMATS = [
 @ui_blueprint.route("/registry/")
 def resources():
     """Serve the registry page."""
-    registry = bioregistry.read_registry()
+    registry = manager.registry
     if request.args.get("novel") in {"true", "t"}:
-        registry = {p: v for p, v in registry.items() if bioregistry.is_novel(p)}
+        registry = {p: v for p, v in registry.items() if manager.is_novel(p)}
     return render_template(
         "resources.html",
         formats=FORMATS,
@@ -58,7 +73,7 @@ def metaresources():
     """Serve the metaregistry page."""
     return render_template(
         "metaresources.html",
-        rows=bioregistry.read_metaregistry().values(),
+        rows=manager.metaregistry.values(),
         formats=FORMATS,
     )
 
@@ -68,7 +83,7 @@ def collections():
     """Serve the collections page."""
     return render_template(
         "collections.html",
-        rows=bioregistry.read_collections().items(),
+        rows=manager.collections.items(),
         markdown=markdown,
         formats=FORMATS,
     )
@@ -80,7 +95,7 @@ def resource(prefix: str):
     prefix = _normalize_prefix_or_404(prefix, "." + resource.__name__)
     if not isinstance(prefix, str):
         return prefix
-    _resource = bioregistry.get_resource(prefix)
+    _resource = manager.get_resource(prefix)
     if _resource is None:
         raise RuntimeError
     example = _resource.get_example()
@@ -94,35 +109,35 @@ def resource(prefix: str):
         markdown=markdown,
         prefix=prefix,
         resource=_resource,
-        name=bioregistry.get_name(prefix),
+        name=manager.get_name(prefix),
         example=example,
         example_extras=example_extras,
         example_curie=example_curie,
         example_curie_extras=example_curie_extras,
         mappings=_get_resource_mapping_rows(_resource),
-        synonyms=bioregistry.get_synonyms(prefix),
-        homepage=bioregistry.get_homepage(prefix),
+        synonyms=manager.get_synonyms(prefix),
+        homepage=manager.get_homepage(prefix),
         repository=_resource.get_repository(),
-        pattern=bioregistry.get_pattern(prefix),
-        curie_pattern=bioregistry.get_curie_pattern(prefix),
-        version=bioregistry.get_version(prefix),
-        has_no_terms=bioregistry.has_no_terms(prefix),
-        obo_download=bioregistry.get_obo_download(prefix),
-        owl_download=bioregistry.get_owl_download(prefix),
-        json_download=bioregistry.get_json_download(prefix),
-        namespace_in_lui=bioregistry.get_namespace_in_lui(prefix),
-        deprecated=bioregistry.is_deprecated(prefix),
-        contact=bioregistry.get_contact(prefix),
-        banana=bioregistry.get_banana(prefix),
-        description=bioregistry.get_description(prefix, use_markdown=True),
-        appears_in=bioregistry.get_appears_in(prefix),
-        depends_on=bioregistry.get_depends_on(prefix),
-        has_canonical=bioregistry.get_has_canonical(prefix),
-        canonical_for=bioregistry.get_canonical_for(prefix),
-        provides=bioregistry.get_provides_for(prefix),
-        provided_by=bioregistry.get_provided_by(prefix),
-        part_of=bioregistry.get_part_of(prefix),
-        has_parts=bioregistry.get_has_parts(prefix),
+        pattern=manager.get_pattern(prefix),
+        curie_pattern=manager.get_curie_pattern(prefix),
+        version=manager.get_version(prefix),
+        has_no_terms=manager.has_no_terms(prefix),
+        obo_download=manager.get_obo_download(prefix),
+        owl_download=manager.get_owl_download(prefix),
+        json_download=manager.get_json_download(prefix),
+        namespace_in_lui=manager.get_namespace_in_lui(prefix),
+        deprecated=manager.is_deprecated(prefix),
+        contact=manager.get_contact(prefix),
+        banana=manager.get_banana(prefix),
+        description=manager.get_description(prefix, use_markdown=True),
+        appears_in=manager.get_appears_in(prefix),
+        depends_on=manager.get_depends_on(prefix),
+        has_canonical=manager.get_has_canonical(prefix),
+        canonical_for=manager.get_canonical_for(prefix),
+        provides=manager.get_provides_for(prefix),
+        provided_by=manager.get_provided_by(prefix),
+        part_of=manager.get_part_of(prefix),
+        has_parts=manager.get_has_parts(prefix),
         providers=None if example is None else _get_resource_providers(prefix, example),
         formats=[
             *FORMATS,
@@ -135,18 +150,18 @@ def resource(prefix: str):
 @ui_blueprint.route("/metaregistry/<metaprefix>")
 def metaresource(metaprefix: str):
     """Serve a metaresource page."""
-    entry = bioregistry.get_registry(metaprefix)
+    entry = manager.metaregistry.get(metaprefix)
     if entry is None:
         return abort(404, f"Invalid metaprefix: {metaprefix}")
 
-    example_identifier = bioregistry.get_example(entry.example)
+    example_identifier = manager.get_example(entry.example)
     return render_template(
         "metaresource.html",
         entry=entry,
         metaprefix=metaprefix,
-        name=bioregistry.get_registry_name(metaprefix),
-        description=bioregistry.get_registry_description(metaprefix),
-        homepage=bioregistry.get_registry_homepage(metaprefix),
+        name=entry.name,
+        description=entry.description,
+        homepage=entry.homepage,
         download=entry.download,
         example_prefix=entry.example,
         example_prefix_url=entry.get_provider_uri_format(entry.example),
@@ -388,3 +403,102 @@ def contributor(orcid: str):
 
 def _s(prefixes):
     return sorted((p, bioregistry.get_resource(p)) for p in prefixes)
+
+
+@ui_blueprint.route("/")
+def home():
+    """Render the homepage."""
+    example_prefix, example_identifier = "chebi", "138488"
+    example_url = manager.get_bioregistry_iri(example_prefix, example_identifier)
+    return render_template(
+        "home.html",
+        example_url=example_url,
+        example_prefix=example_prefix,
+        example_identifier=example_identifier,
+        registry_size=len(manager.registry),
+        metaregistry_size=len(manager.metaregistry),
+        collections_size=len(manager.collections),
+        contributors_size=len(
+            _read_contributors(
+                registry=manager.registry,
+                metaregistry=manager.metaregistry,
+                collections=manager.collections,
+                contexts=manager.contexts,
+            )
+        ),
+    )
+
+
+@ui_blueprint.route("/summary")
+def summary():
+    """Render the summary page."""
+    return render_template("meta/summary.html")
+
+
+@ui_blueprint.route("/related")
+def related():
+    """Render the related page."""
+    return render_template(
+        "meta/related.html",
+        mapping_counts=bioregistry.count_mappings(),
+        registries=sorted(bioregistry.read_metaregistry().values(), key=attrgetter("name")),
+        schema_status_map=schema_status_map,
+        registry_cls=Registry,
+        registry_governance_cls=RegistryGovernance,
+        registry_schema_cls=RegistrySchema,
+    )
+
+
+@ui_blueprint.route("/download")
+def download():
+    """Render the download page."""
+    return render_template("meta/download.html", ndex_uuid=NDEX_UUID)
+
+
+@ui_blueprint.route("/acknowledgements")
+def acknowledgements():
+    """Render the acknowledgements page."""
+    return render_template(
+        "meta/acknowledgements.html",
+        registries=sorted(bioregistry.read_metaregistry().values(), key=attrgetter("name")),
+    )
+
+
+_VERSION = version.get_version()
+_GIT_HASH = version.get_git_hash()
+_PLATFORM = platform.platform()
+_PLATFORM_VERSION = platform.version()
+_PYTHON_VERSION = platform.python_version()
+_DEPLOYED = datetime.datetime.now()
+
+
+@ui_blueprint.route("/sustainability")
+def sustainability():
+    """Render the sustainability page."""
+    return render_template(
+        "meta/sustainability.html",
+        software_version=_VERSION,
+        software_git_hash=_GIT_HASH,
+        platform=_PLATFORM,
+        platform_version=_PLATFORM_VERSION,
+        python_version=_PYTHON_VERSION,
+        deployed=_DEPLOYED,
+    )
+
+
+@ui_blueprint.route("/usage")
+def usage():
+    """Render the programmatic usage page."""
+    return render_template("meta/access.html")
+
+
+@ui_blueprint.route("/schema/")
+def schema():
+    """Render the Bioregistry RDF schema."""
+    return render_template("meta/schema.html", terms=bioregistry_schema_terms)
+
+
+@ui_blueprint.route("/schema.json")
+def json_schema():
+    """Return the JSON schema."""
+    return jsonify(get_json_schema())

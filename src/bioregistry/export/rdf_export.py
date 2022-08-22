@@ -107,7 +107,7 @@ def get_full_rdf() -> rdflib.Graph:
 def collection_to_rdf_str(data: Union[str, Collection], fmt: Optional[str] = None) -> str:
     """Get a collection as an RDF string."""
     if isinstance(data, str):
-        data = bioregistry.get_collection(data)  # type: ignore
+        data = manager.collections.get(data)  # type: ignore
         if data is None:
             raise KeyError
     graph, _ = _add_collection(cast(Collection, data))
@@ -117,7 +117,7 @@ def collection_to_rdf_str(data: Union[str, Collection], fmt: Optional[str] = Non
 def metaresource_to_rdf_str(data: Union[str, Registry], fmt: Optional[str] = None) -> str:
     """Get a collection as an RDF string."""
     if isinstance(data, str):
-        data = bioregistry.get_registry(data)  # type: ignore
+        data = manager.get_registry(data)  # type: ignore
         if data is None:
             raise KeyError
     graph, _ = _add_metaresource(cast(Registry, data))
@@ -127,7 +127,7 @@ def metaresource_to_rdf_str(data: Union[str, Registry], fmt: Optional[str] = Non
 def resource_to_rdf_str(data, fmt: Optional[str] = None) -> str:
     """Get a collection as an RDF string."""
     if isinstance(data, str):
-        data = {"prefix": data, **bioregistry.get_resource(data).dict()}  # type: ignore
+        data = {"prefix": data, **manager.get_resource(data).dict()}  # type: ignore
     graph = _add_resource(data)
     return _graph_str(graph, fmt=fmt)
 
@@ -141,7 +141,7 @@ def _graph_str(graph: rdflib.Graph, fmt: Optional[str] = None) -> str:
 def _add_metaresources(*, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
     if graph is None:
         graph = _graph()
-    for data in read_metaregistry().values():
+    for data in manager.metaregistry.values():
         _add_metaresource(graph=graph, data=data)
     return graph
 
@@ -149,7 +149,7 @@ def _add_metaresources(*, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
 def _add_collections(*, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
     if graph is None:
         graph = _graph()
-    for collection in read_collections().values():
+    for collection in manager.collections.values():
         _add_collection(graph=graph, data=collection)
     return graph
 
@@ -157,7 +157,7 @@ def _add_collections(*, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
 def _add_resources(*, graph: Optional[rdflib.Graph] = None) -> rdflib.Graph:
     if graph is None:
         graph = _graph()
-    for prefix, data in read_registry().items():
+    for prefix, data in manager.registry.items():
         _add_resource(graph=graph, data={"prefix": prefix, **data.dict()})
     return graph
 
@@ -181,12 +181,12 @@ def _add_metaresource(
 
 
 RESOURCE_FUNCTIONS: List[Tuple[Union[str, URIRef], Callable[[str], Any], URIRef]] = [
-    ("0000008", bioregistry.get_pattern, XSD.string),
-    ("0000006", bioregistry.get_uri_format, XSD.string),
-    ("0000005", bioregistry.get_example, XSD.string),
-    ("0000012", bioregistry.is_deprecated, XSD.boolean),
-    (DC.description, bioregistry.get_description, XSD.string),
-    (FOAF.homepage, bioregistry.get_homepage, XSD.string),
+    ("0000008", manager.get_pattern, XSD.string),
+    ("0000006", manager.get_uri_format, XSD.string),
+    ("0000005", manager.get_example, XSD.string),
+    ("0000012", manager.is_deprecated, XSD.boolean),
+    (DC.description, manager.get_description, XSD.string),
+    (FOAF.homepage, manager.get_homepage, XSD.string),
 ]
 
 

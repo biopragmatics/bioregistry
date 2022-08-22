@@ -46,7 +46,7 @@
         <a href="https://creativecommons.org/share-your-work/public-domain/cc0/">
             <i class="fab fa-creative-commons-zero"></i> CC0 1.0 Universal License</a>. Aggregated data are
         redistributed under their original licenses as described <a
-            href="{{ url_for("acknowledgements") }}">here</a>.
+            href="{{ url_for(".acknowledgements") }}">here</a>.
         More information about these resources can be found
         <a href="https://github.com/biopragmatics/bioregistry/tree/main/exports/registry">here</a>.
     </p>
@@ -169,13 +169,13 @@
         The manually curated portions of these data are available under the
         <a href="https://creativecommons.org/share-your-work/public-domain/cc0/">
             <i class="fab fa-creative-commons-zero"></i> CC0 1.0 Universal License</a>. Aggregated data are
-        redistributed under their original licenses as described <a href="{{ url_for("acknowledgements") }}">here</a>.
+        redistributed under their original licenses as described <a href="{{ url_for(".acknowledgements") }}">here</a>.
         More information about these resources can be found
         <a href="https://github.com/biopragmatics/bioregistry/tree/main/exports/rdf">here</a>.
     </p>
     <p>
         A network-based view over the full knowledge graph is generated and uploaded to the
-        <a href="{{ url_for("ui.resolve", prefix="ndex", identifier=ndex_uuid) }}">
+        <a href="{{ url_for(".resolve", prefix="ndex", identifier=ndex_uuid) }}">
             Network Data Exchange (NDEx)</a> for exploration using Cytoscape.
     </p>
     <h3>Semantic Web Contexts</h3>
