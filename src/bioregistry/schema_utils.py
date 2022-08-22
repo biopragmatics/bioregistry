@@ -8,7 +8,7 @@ from collections import defaultdict
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
-from typing import Dict, List, Mapping, Set, Union
+from typing import List, Mapping, Set, Union
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -17,7 +17,7 @@ from .constants import (
     METAREGISTRY_PATH,
     MISMATCH_PATH,
 )
-from .schema import Attributable, Collection, Context, Registry, Resource
+from .schema import Collection, Context, Registry, Resource
 from .utils import extended_encoder
 
 logger = logging.getLogger(__name__)

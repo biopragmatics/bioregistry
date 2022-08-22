@@ -13,7 +13,7 @@ from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS, SKOS, XSD
 from rdflib.term import Node, URIRef
 
 import bioregistry
-from bioregistry import manager, read_collections, read_metaregistry, read_registry
+from bioregistry import manager
 from bioregistry.constants import (
     RDF_JSONLD_PATH,
     RDF_NT_PATH,

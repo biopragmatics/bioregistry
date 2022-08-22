@@ -1,3 +1,5 @@
+"""Proxies for the web application."""
+
 from flask import current_app
 from werkzeug.local import LocalProxy
 

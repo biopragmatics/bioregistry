@@ -21,11 +21,9 @@ from .utils import (
 )
 from .. import version
 from ..constants import NDEX_UUID
-from ..resource_manager import manager
 from ..schema import Context
 from ..schema.constants import bioregistry_schema_terms
 from ..schema.struct import (
-    Attributable,
     Registry,
     RegistryGovernance,
     RegistrySchema,

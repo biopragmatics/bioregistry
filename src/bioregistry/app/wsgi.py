@@ -73,7 +73,7 @@ HEADER_DEFAULT = dedent(
 
 
 def get_app() -> Flask:
-    """"""
+    """Prepare the flask application."""
     app = Flask(__name__)
     app.manager = manager
     app.config.update(

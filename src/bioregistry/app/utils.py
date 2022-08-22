@@ -9,7 +9,6 @@ import yaml
 from flask import abort, current_app, redirect, render_template, request, url_for
 from pydantic import BaseModel
 
-import bioregistry
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL
 from bioregistry.schema import Resource, sanitize_model
 from bioregistry.utils import curie_to_str, extended_encoder

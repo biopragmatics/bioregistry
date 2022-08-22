@@ -4,10 +4,8 @@
 
 from typing import Optional
 
-from .resolve_identifier import get_providers
 from .resource_manager import manager
 from .schema import Registry
-from .schema_utils import read_metaregistry
 
 __all__ = [
     "get_registry",
