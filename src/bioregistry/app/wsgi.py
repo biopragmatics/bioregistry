@@ -82,12 +82,7 @@ def get_app(manager: Optional[Manager] = None) -> Flask:
 
     app = Flask(__name__)
     app.manager = manager
-    app.config.update(
-        {
-            # "METAREGISTRY_TITLE": "...",
-            # "METAREGISTRY_FIRST_PARTY": False,
-        }
-    )
+    # app.config.update()
     app.config.setdefault("METAREGISTRY_TITLE", "Bioregistry")
     app.config.setdefault("METAREGISTRY_HOST", "bioregistry.io")
     app.config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
