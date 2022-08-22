@@ -285,6 +285,20 @@ class Manager:
             return None
         return entry.get_name()
 
+    def get_description(self, prefix: str, *, use_markdown: bool = False) -> Optional[str]:
+        """Get the description for the given prefix, it it's available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_description(use_markdown=use_markdown)
+
+    def get_homepage(self, prefix: str) -> Optional[str]:
+        """Get the description for the given prefix, it it's available."""
+        entry = self.get_resource(prefix)
+        if entry is None:
+            return None
+        return entry.get_homepage()
+
     def get_preferred_prefix(self, prefix: str) -> Optional[str]:
         """Get the preferred prefix (e.g., with stylization) if it exists."""
         entry = self.get_resource(prefix)

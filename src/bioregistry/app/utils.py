@@ -129,7 +129,7 @@ def _autocomplete(q: str) -> Mapping[str, Any]:
         success = True
         reason = "no pattern"
         url = manager.get_bioregistry_iri(prefix, identifier)
-    elif manager.is_known_identifier(prefix, identifier):
+    elif manager.is_standardizable_identifier(prefix, identifier):
         success = True
         reason = "passed validation"
         url = manager.get_bioregistry_iri(prefix, identifier)

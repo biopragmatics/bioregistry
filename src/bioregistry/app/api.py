@@ -14,7 +14,6 @@ from .utils import (
     _search,
     serialize,
 )
-from ..export.prefix_maps import collection_to_context_jsonlds
 from ..export.rdf_export import (
     collection_to_rdf_str,
     metaresource_to_rdf_str,

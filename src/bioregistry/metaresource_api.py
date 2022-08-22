@@ -53,7 +53,7 @@ def get_registry_homepage(metaprefix: str) -> Optional[str]:
     >>> get_registry_homepage('missing')
     None
     """
-    return manager.get_registry_homepage()
+    return manager.get_registry_homepage(metaprefix)
 
 
 def get_registry_description(metaprefix: str) -> Optional[str]:
