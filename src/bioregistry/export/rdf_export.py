@@ -12,8 +12,7 @@ from rdflib import Literal, Namespace
 from rdflib.namespace import DC, DCTERMS, FOAF, RDF, RDFS, SKOS, XSD
 from rdflib.term import Node, URIRef
 
-import bioregistry
-from bioregistry import Manager
+from bioregistry import Manager, manager
 from bioregistry.constants import (
     RDF_JSONLD_PATH,
     RDF_NT_PATH,
@@ -22,7 +21,6 @@ from bioregistry.constants import (
     SCHEMA_NT_PATH,
     SCHEMA_TURTLE_PATH,
 )
-from bioregistry.export.sssom_export import CURIE_MAP
 from bioregistry.schema.constants import (
     bioregistry_collection,
     bioregistry_metaresource,
@@ -35,7 +33,7 @@ from bioregistry.schema.struct import Collection, Registry
 
 logger = logging.getLogger(__name__)
 
-NAMESPACES = {_ns: Namespace(_uri) for _ns, _uri in CURIE_MAP.items()}
+NAMESPACES = {_ns: Namespace(_uri) for _ns, _uri in manager.get_internal_prefix_map().items()}
 NAMESPACE_WARNINGS = set()
 
 

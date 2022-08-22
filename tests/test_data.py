@@ -10,7 +10,7 @@ from textwrap import dedent
 from typing import Mapping
 
 import bioregistry
-from bioregistry import Resource
+from bioregistry import Resource, manager
 from bioregistry.constants import BIOREGISTRY_PATH
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES
@@ -459,7 +459,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = resource_to_rdf_str("chebi")
+        s = resource_to_rdf_str("chebi", manager=manager)
         self.assertIsInstance(s, str)
 
     def test_parts(self):
