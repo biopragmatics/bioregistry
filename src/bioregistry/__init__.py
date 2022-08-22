@@ -51,6 +51,7 @@ from .resolve import (  # noqa:F401
     get_n2t_prefix,
     get_name,
     get_namespace_in_lui,
+    get_obo_context_prefix_map,
     get_obo_download,
     get_obo_health_url,
     get_obofoundry_prefix,

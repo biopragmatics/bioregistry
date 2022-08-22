@@ -1,7 +1,7 @@
 [
   {
     "database": "Q6826947",
-    "databaseHomepage": "http://www.mirbase.org/",
+    "databaseHomepage": "http://www.mirbase.org",
     "databaseLabel": "miRBase",
     "prop": "P2870",
     "propDescription": "identifier for pre-miRNAs in miRBase, the reference database for microRNAs",
@@ -12,7 +12,7 @@
   },
   {
     "database": "Q6826947",
-    "databaseHomepage": "http://www.mirbase.org/",
+    "databaseHomepage": "http://www.mirbase.org",
     "databaseLabel": "miRBase",
     "prop": "P2871",
     "propDescription": "identifier for mature miRNAs in miRBase, the reference database for microRNAs",
@@ -1269,7 +1269,8 @@
     "propDescription": "identifier for a taxon in the Native Plants Database, on the Lady Bird Johnson Wildflower Center website",
     "propFormat": "https://www.wildflower.org/plants/result.php?id_plant=$1",
     "propHomepage": "https://www.wildflower.org/plants/index.php",
-    "propLabel": "Native Plants Database ID"
+    "propLabel": "Native Plants Database ID",
+    "propPattern": "[A-Z]{4,5}[1-9]?"
   },
   {
     "database": "Q5152005",
@@ -1504,22 +1505,22 @@
     "database": "Q106677021",
     "databaseHomepage": "https://www.mybis.gov.my/",
     "databaseLabel": "Malaysia Biodiversity Information System",
-    "prop": "P9552",
-    "propDescription": "identifier for a protected area in the Malaysia Biodiversity Information System",
-    "propFormat": "https://www.mybis.gov.my/pa/$1",
-    "propHomepage": "https://www.mybis.gov.my/one/pamaps.php",
-    "propLabel": "MyBIS protected area ID",
+    "prop": "P9503",
+    "propDescription": "identifier for a species in the Malaysia Biodiversity Information System",
+    "propFormat": "https://www.mybis.gov.my/sp/$1",
+    "propHomepage": "https://www.mybis.gov.my/one/",
+    "propLabel": "MyBIS species ID",
     "propPattern": "[1-9]\\d*"
   },
   {
     "database": "Q106677021",
     "databaseHomepage": "https://www.mybis.gov.my/",
     "databaseLabel": "Malaysia Biodiversity Information System",
-    "prop": "P9503",
-    "propDescription": "identifier for a species in the Malaysia Biodiversity Information System",
-    "propFormat": "https://www.mybis.gov.my/sp/$1",
-    "propHomepage": "https://www.mybis.gov.my/one/",
-    "propLabel": "MyBIS species ID",
+    "prop": "P9552",
+    "propDescription": "identifier for a protected area in the Malaysia Biodiversity Information System",
+    "propFormat": "https://www.mybis.gov.my/pa/$1",
+    "propHomepage": "https://www.mybis.gov.my/one/pamaps.php",
+    "propLabel": "MyBIS protected area ID",
     "propPattern": "[1-9]\\d*"
   },
   {
@@ -1936,6 +1937,18 @@
     "propHomepage": "https://www.hemiptera-databases.org/flow/?db=flow&page=explorer&card=speciess&lang=en",
     "propLabel": "FLOW ID",
     "propPattern": "[1-9]\\d*"
+  },
+  {
+    "database": "Q796451",
+    "databaseHomepage": "http://www.fossilworks.org",
+    "databaseLabel": "Fossilworks",
+    "databaseMiriam": "paleodb",
+    "prop": "P842",
+    "propDescription": "identifier for an animal, plant, or microorganism in the Fossilworks database",
+    "propFormat": "http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1",
+    "propHomepage": "http://www.fossilworks.org",
+    "propLabel": "Fossilworks taxon ID",
+    "propPattern": "([1-9]\\d{0,5})"
   },
   {
     "database": "Q796451",
@@ -2768,6 +2781,26 @@
     "propHomepage": "https://www.catalogueoflife.org/",
     "propLabel": "Catalogue of Life ID",
     "propPattern": "[23456789BCDFGHJKLMNPQRSTVWXYZ]{1,6}"
+  },
+  {
+    "database": "Q2166958",
+    "databaseHomepage": "https://www.ccdc.cam.ac.uk/",
+    "databaseLabel": "Cambridge Structural Database",
+    "prop": "P6852",
+    "propDescription": "identifier for a single crystal structure per the Cambridge Crystallographic Data Centre (CCDC)",
+    "propFormat": "https://www.ccdc.cam.ac.uk/services/structures?sid=IDORG&pid=csd:$1",
+    "propHomepage": "https://www.ccdc.cam.ac.uk/",
+    "propLabel": "CCDC Number"
+  },
+  {
+    "database": "Q2166958",
+    "databaseHomepage": "https://www.ccdc.cam.ac.uk/",
+    "databaseLabel": "Cambridge Structural Database",
+    "prop": "P6852",
+    "propDescription": "identifier for a single crystal structure per the Cambridge Crystallographic Data Centre (CCDC)",
+    "propFormat": "https://www.ccdc.cam.ac.uk/services/structures?sid=IDORG&pid=csd:$1",
+    "propHomepage": "https://www.ccdc.cam.ac.uk/structures/?",
+    "propLabel": "CCDC Number"
   },
   {
     "database": "Q5020710",

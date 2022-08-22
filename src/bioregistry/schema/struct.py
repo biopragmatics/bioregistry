@@ -8,6 +8,7 @@ import pathlib
 import re
 import textwrap
 from functools import lru_cache
+from operator import attrgetter
 from typing import (
     Any,
     Callable,
@@ -450,7 +451,12 @@ class Resource(BaseModel):
         'CHEBI'
         """
         if metaprefix == "obofoundry":
-            return (self.obofoundry or {}).get("preferredPrefix")
+            obofoundry_dict = self.obofoundry or {}
+            if "preferredPrefix" in obofoundry_dict:
+                return obofoundry_dict["preferredPrefix"]
+            if "prefix" in obofoundry_dict:
+                return obofoundry_dict["prefix"].upper()
+            return None
         return self.get_mappings().get(metaprefix)
 
     def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]):
@@ -935,6 +941,8 @@ class Resource(BaseModel):
         >>> from bioregistry import get_resource
         >>> get_resource("go").get_obofoundry_prefix()  # standard
         'GO'
+        >>> get_resource("aao").get_obofoundry_prefix()  # standard but deprecated
+        'AAO'
         >>> get_resource("ncbitaxon").get_obofoundry_prefix()  # mixed case
         'NCBITaxon'
         >>> assert get_resource("sty").get_obofoundry_prefix() is None
@@ -1215,7 +1223,7 @@ class Resource(BaseModel):
         if self.miriam:
             for p in self.miriam.get("providers", []):
                 rv.append(Provider(**p))
-        return rv
+        return sorted(rv, key=attrgetter("code"))
 
     def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
         """Get a CURIE for a local unique identifier in this resource's semantic space.
@@ -1842,6 +1850,10 @@ class Collection(BaseModel):
             graph.add((node, DCTERMS.hasPart, bioregistry_resource[resource]))
 
         return node
+
+    def as_context_jsonld_str(self) -> str:
+        """Get the JSON-LD context as a string from a given collection."""
+        return json.dumps(self.as_context_jsonld())
 
     def as_context_jsonld(self) -> Mapping[str, Mapping[str, str]]:
         """Get the JSON-LD context from a given collection."""

@@ -494,7 +494,7 @@
                 <tbody>
                 {% for provider in extra_providers %}
                     <tr>
-                        <td>{{ provider.code }}</td>
+                        <td><code>{{ provider.code }}</code></td>
                         <td>{{ provider.name }}</td>
                         {% set url = provider.resolve(example) %}
                         <td><a href="{{ url }}">{{ url }}</a></td>

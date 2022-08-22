@@ -58,6 +58,7 @@ __all__ = [
     "count_mappings",
     "get_versions",
     "get_parts_collections",
+    "get_obo_context_prefix_map",
 ]
 
 logger = logging.getLogger(__name__)
@@ -952,3 +953,13 @@ def get_parts_collections():
         resource and not a vocabulary.
     """
     return manager.get_parts_collections()
+
+
+def get_obo_context_prefix_map(include_synonyms: bool = False) -> Mapping[str, str]:
+    """Get the OBO Foundry prefix map.
+
+    :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
+        the same URL prefix?
+    :return: A mapping from prefixes to prefix URLs.
+    """
+    return manager.get_context_artifacts("obo", include_synonyms=include_synonyms)[0]

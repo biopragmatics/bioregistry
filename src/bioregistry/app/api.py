@@ -20,7 +20,7 @@ from ..export.rdf_export import (
     metaresource_to_rdf_str,
     resource_to_rdf_str,
 )
-from ..schema import sanitize_mapping
+from ..schema import Collection, sanitize_mapping
 from ..schema_utils import (
     read_collections_contributions,
     read_contributors,
@@ -195,7 +195,7 @@ def collection(identifier: str):
     return serialize(
         data,
         serializers=[
-            ("context", "application/ld+json", collection_to_context_jsonlds),
+            ("context", "application/ld+json", Collection.as_context_jsonld_str),
             ("turtle", "text/plain", partial(collection_to_rdf_str, fmt="turtle")),
             ("jsonld", "application/ld+json", partial(collection_to_rdf_str, fmt="json-ld")),
         ],
