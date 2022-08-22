@@ -451,7 +451,12 @@ class Resource(BaseModel):
         'CHEBI'
         """
         if metaprefix == "obofoundry":
-            return (self.obofoundry or {}).get("preferredPrefix")
+            obofoundry_dict = self.obofoundry or {}
+            if "preferredPrefix" in obofoundry_dict:
+                return obofoundry_dict["preferredPrefix"]
+            if "prefix" in obofoundry_dict:
+                return obofoundry_dict["prefix"].upper()
+            return None
         return self.get_mappings().get(metaprefix)
 
     def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]):
@@ -936,6 +941,8 @@ class Resource(BaseModel):
         >>> from bioregistry import get_resource
         >>> get_resource("go").get_obofoundry_prefix()  # standard
         'GO'
+        >>> get_resource("aao").get_obofoundry_prefix()  # standard but deprecated
+        'AAO'
         >>> get_resource("ncbitaxon").get_obofoundry_prefix()  # mixed case
         'NCBITaxon'
         >>> assert get_resource("sty").get_obofoundry_prefix() is None
