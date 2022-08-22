@@ -8,6 +8,7 @@ import pathlib
 import re
 import textwrap
 from functools import lru_cache
+from operator import attrgetter
 from typing import (
     Any,
     Callable,
@@ -1215,7 +1216,7 @@ class Resource(BaseModel):
         if self.miriam:
             for p in self.miriam.get("providers", []):
                 rv.append(Provider(**p))
-        return rv
+        return sorted(rv, key=attrgetter("code"))
 
     def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
         """Get a CURIE for a local unique identifier in this resource's semantic space.
