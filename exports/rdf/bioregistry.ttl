@@ -271,6 +271,9 @@ orcid:0000-0002-8719-7760 rdfs:label "Sierra Moxon" ;
         bioregistry:ddinter.drug,
         bioregistry:ncats.bioplanet .
 
+orcid:0000-0003-3389-2191 rdfs:label "Pierre-Marie Allard" ;
+    dcterms:contributor bioregistry:inaturalist.observation .
+
 bioregistry:3dmet a bioregistry.schema:0000001 ;
     rdfs:label "3D Metabolites" ;
     dc:description "3DMET is a database collecting three-dimensional structures of natural metabolites."^^xsd:string ;
@@ -21574,6 +21577,29 @@ bioregistry:imdrf a bioregistry.schema:0000001 ;
     foaf:homepage "http://www.imdrf.org/"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:inaturalist.observation a bioregistry.schema:0000001 ;
+    rdfs:label "iNaturalist Observation" ;
+    dc:description "The identifier for an observation in iNaturalist"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P5683 ;
+    foaf:homepage "https://www.inaturalist.org/observations"^^xsd:string ;
+    bioregistry.schema:0000005 "36010371"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.inaturalist.org/observations/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9]\\d*$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:inaturalist.place a bioregistry.schema:0000001 ;
+    rdfs:label "iNaturalist Place" ;
+    dc:description "Identifier for a place in iNaturalist"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P7471 ;
+    foaf:homepage "https://www.inaturalist.org/places"^^xsd:string ;
+    bioregistry.schema:0000005 "7207"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.inaturalist.org/places/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9]\\d*$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:inaturalist.taxon a bioregistry.schema:0000001 ;
     rdfs:label "iNaturalist Taxonomy" ;
     dc:description "Identifier for a species in iNaturalist"^^xsd:string ;
@@ -21583,6 +21609,16 @@ bioregistry:inaturalist.taxon a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "21723"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.inaturalist.org/taxa/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[1-9]\\d{0,6}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:inaturalist.user a bioregistry.schema:0000001 ;
+    rdfs:label "iNaturalist User" ;
+    dc:description "Identifier for a user in iNaturalist"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.inaturalist.org/users"^^xsd:string ;
+    bioregistry.schema:0000005 "1426686"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.inaturalist.org/users/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9]\\d*$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:inhand a bioregistry.schema:0000001 ;
@@ -28627,6 +28663,8 @@ wikidata:P557 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P563 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P5683 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P5806 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P591 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -28674,6 +28712,8 @@ wikidata:P715 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P7260 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P7333 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P7471 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P7718 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -32478,7 +32518,9 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ihw,
         bioregistry:illumina.probe,
         bioregistry:imdrf,
+        bioregistry:inaturalist.place,
         bioregistry:inaturalist.taxon,
+        bioregistry:inaturalist.user,
         bioregistry:inhand,
         bioregistry:inn,
         bioregistry:iro,
@@ -33290,6 +33332,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P5501,
         wikidata:P557,
         wikidata:P563,
+        wikidata:P5683,
         wikidata:P5806,
         wikidata:P591,
         wikidata:P592,
@@ -33316,6 +33359,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P715,
         wikidata:P7260,
         wikidata:P7333,
+        wikidata:P7471,
         wikidata:P7718,
         wikidata:P7720,
         wikidata:P7807,
@@ -38926,7 +38970,10 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:imgt.hla,
         bioregistry:imgt.ligm,
         bioregistry:imr,
+        bioregistry:inaturalist.observation,
+        bioregistry:inaturalist.place,
         bioregistry:inaturalist.taxon,
+        bioregistry:inaturalist.user,
         bioregistry:inchi,
         bioregistry:inchikey,
         bioregistry:inhand,
