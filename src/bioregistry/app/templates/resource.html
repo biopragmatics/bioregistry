@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "macros.html" as utils %}
 
-{% block title %}Bioregistry - {{ name }}{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} - {{ name }}{% endblock %}
 
 {% block styles %}
 {{ super() }}
@@ -304,8 +304,8 @@
                     <dd>
                         <a href="{{ url_for("ui.resource", prefix=provides) }}"
                            class="badge badge-pill badge-light" data-toggle="tooltip"
-                           title="{{ bioregistry.get_name(provides) }}">
-                            {{ bioregistry.get_preferred_prefix(provides) or provides }}
+                           title="{{ manager.get_name(provides) }}">
+                            {{ manager.get_preferred_prefix(provides) or provides }}
                         </a>
                     </dd>
                 {% endif %}
@@ -317,8 +317,8 @@
                         {% for rel_prefix in provided_by %}
                             <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
-                               title="{{ bioregistry.get_name(rel_prefix) }}">
-                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                               title="{{ manager.get_name(rel_prefix) }}">
+                                {{ manager.get_preferred_prefix(rel_prefix) or rel_prefix }}
                             </a>
                         {% endfor %}
                     </dd>
@@ -330,8 +330,8 @@
                     <dd>
                         <a href="{{ url_for("ui.resource", prefix=part_of) }}"
                            class="badge badge-pill badge-light" data-toggle="tooltip"
-                           title="{{ bioregistry.get_name(part_of) }}">
-                            {{ bioregistry.get_preferred_prefix(part_of) or part_of }}
+                           title="{{ manager.get_name(part_of) }}">
+                            {{ manager.get_preferred_prefix(part_of) or part_of }}
                         </a>
                     </dd>
                 {% endif %}
@@ -343,8 +343,8 @@
                         {% for rel_prefix in has_parts %}
                             <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
-                               title="{{ bioregistry.get_name(rel_prefix) }}">
-                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                               title="{{ manager.get_name(rel_prefix) }}">
+                                {{ manager.get_preferred_prefix(rel_prefix) or rel_prefix }}
                             </a>
                         {% endfor %}
                     </dd>
@@ -356,8 +356,8 @@
                     <dd>
                         <a href="{{ url_for("ui.resource", prefix=has_canonical) }}"
                            class="badge badge-pill badge-light" data-toggle="tooltip"
-                           title="{{ bioregistry.get_name(has_canonical) }}">
-                            {{ bioregistry.get_preferred_prefix(has_canonical) or has_canonical }}
+                           title="{{ manager.get_name(has_canonical) }}">
+                            {{ manager.get_preferred_prefix(has_canonical) or has_canonical }}
                         </a>
                     </dd>
                 {% endif %}
@@ -369,8 +369,8 @@
                         {% for rel_prefix in canonical_for %}
                             <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
-                               title="{{ bioregistry.get_name(rel_prefix) }}">
-                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                               title="{{ manager.get_name(rel_prefix) }}">
+                                {{ manager.get_preferred_prefix(rel_prefix) or rel_prefix }}
                             </a>
                         {% endfor %}
                     </dd>
@@ -383,8 +383,8 @@
                         {% for rel_prefix in depends_on %}
                             <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
-                               title="{{ bioregistry.get_name(rel_prefix) }}">
-                                {{ bioregistry.get_preferred_prefix(rel_prefix) or rel_prefix }}
+                               title="{{ manager.get_name(rel_prefix) }}">
+                                {{ manager.get_preferred_prefix(rel_prefix) or rel_prefix }}
                             </a>
                         {% endfor %}
                     </dd>
@@ -397,8 +397,8 @@
                         {% for rel_prefix in appears_in %}
                             <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
-                               title="{{ bioregistry.get_name(rel_prefix) }}">
-                                {{ bioregistry.get_preferred_prefix(rel_prefix) }}
+                               title="{{ manager.get_name(rel_prefix) }}">
+                                {{ manager.get_preferred_prefix(rel_prefix) }}
                             </a>
                         {% endfor %}
                     </dd>

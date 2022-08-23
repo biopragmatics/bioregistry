@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Bioregistry{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} - Contributors{% endblock %}
 
 {% block styles %}
     {{ super() }}
@@ -54,7 +54,7 @@
         </div>
         <div class="card-body">
             <p style="margin-bottom: 0">
-                The following users have made contributions to the Bioregistry either directly
+                The following users have made contributions to the {{ config.METAREGISTRY_TITLE }} either directly
                 (i.e., {{ unique_direct_count }} unique researchers have submitted a prefix, contributed
                 an update for a prefix, reviewed a prefix, submitted a collection, or taken responsibility
                 for a context) or indirectly (i.e., {{ unique_indirect_count }} unique researchers are

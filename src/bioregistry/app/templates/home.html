@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Bioregistry{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }}{% endblock %}
 
 {% block scripts %}
     {{ super() }}
@@ -17,49 +17,8 @@
 
 {% block container %}
     <div class="card card-body bg-light">
-        <h1 class="display-3">Bioregistry</h1>
-        <p class="lead">
-            The Bioregistry is an open source, community curated registry, meta-registry, and compact
-            identifier resolver. Here's what that means:
-        </p>
-        <dl class="row">
-            <dt class="col-lg-2 text-right text-nowrap">Registry</dt>
-            <dd class="col-lg-10">
-                A collection of prefixes and metadata for ontologies, controlled vocabularies, and other semantic
-                spaces. Some other well-known registries are the <a href="http://www.obofoundry.org/">OBO Foundry</a>,
-                <a href="https://identifiers.org">Identifiers.org</a>, and the
-                the <a href="https://www.ebi.ac.uk/ols/index">OLS</a>.
-            </dd>
-            <dt class="col-lg-2 text-right text-nowrap">Metaregistry</dt>
-            <dd class="col-lg-10">
-                A collection of metadata about registries and mappings between their constituent prefixes. For
-                example, <a href="https://www.ebi.ac.uk/chebi">ChEBI</a> appears in all of the example registries
-                from above. So far, the Bioregistry is the <i>only</i> metaregistry.
-            </dd>
-            <dt class="col-lg-2 text-right text-nowrap">Resolver</dt>
-            <dd class="col-lg-10">
-                A tool for mapping compact URIs (CURIEs) of the form <code>prefix:identifier</code> to HTML and
-                structured content providers. Some other well-known resolvers are
-                <a href="https://identifiers.org">Identifiers.org</a> and <a href="https://n2t.net/">Name-To-Thing</a>.
-            </dd>
-            <dt class="col-lg-2 text-right text-nowrap">Open Source</dt>
-            <dd class="col-lg-10">
-                Anyone can <a href="https://github.com/biopragmatics/bioregistry/issues/new/choose">suggest
-                improvements</a> or make pull requests to update the underlying database, which is stored in
-                <a href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/bioregistry.json">
-                    JSON</a> on GitHub where the community can engage in an open review process.
-            </dd>
-            <dt class="col-lg-2 text-right text-nowrap">Community</dt>
-            <dd class="col-lg-10">
-                Governed by public, well-defined
-                <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md">contribution
-                    guidelines</a>,
-                <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CODE_OF_CONDUCT.md">code of
-                conduct</a>, and
-                <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/GOVERNANCE.md">project
-                    governance</a> to promote the project's inclusivity and longevity.
-            </dd>
-        </dl>
+        <h1 class="display-3">{{ config.METAREGISTRY_TITLE }}</h1>
+        {{ config.METAREGISTRY_HEADER | safe}}
 
         {# This is a Vue template which also uses {{ value }} syntax, use raw to avoid mixups. #}
         {% raw %}
@@ -107,7 +66,7 @@
         </div>
         {% endraw %}
 
-        <p>Here's how to get started with the Bioregistry site:</p>
+        <p>Here's how to get started with the {{ config.METAREGISTRY_TITLE }} site:</p>
         <div class="list-group">
             <a href="{{ example_url }}" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
@@ -119,9 +78,9 @@
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-list"></i> View Registry</h5>
-                    <small class="text-muted">{{ registry_size }} entries</small>
+                    <small class="text-muted">{{ "{:,}".format(registry_size) }} entries</small>
                 </div>
-                <p class="mb-1">The integrative registry of biological databases, ontologies, and resources.</p>
+                <p class="mb-1">The integrative registry of databases, ontologies, and resources.</p>
             </a>
             <a href="{{ url_for('ui.metaresources') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
@@ -145,23 +104,26 @@
                     <h5 class="mb-1"><i class="fas fa-users"></i> View Contributors</h5>
                     <small class="text-muted">{{ contributors_size }} contributors</small>
                 </div>
-                <p class="mb-1">Contributors to the Bioregistry</p>
+                <p class="mb-1">Contributors to the {{ config.METAREGISTRY_TITLE }}</p>
             </a>
-            <a href="{{ url_for('summary') }}"
+            <a href="{{ url_for('ui.summary') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-book"></i> Learn</h5>
                 </div>
-                <p class="mb-1">About the motivation for constructing the Bioregistry and insights gathered from the
-                    meta-registry.</p>
+                <p class="mb-1">
+                    About the motivation for constructing the {{ config.METAREGISTRY_TITLE }}.
+                </p>
                 {# <small class="text-muted">Donec id elit non mi porta.</small> #}
             </a>
-            <a href="{{ url_for('download') }}"
+            <a href="{{ url_for('ui.download') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-download"></i> Download</h5>
                 </div>
-                <p class="mb-1">All of the data in the Bioregistry (version {{ config.bioregistry_version }}).</p>
+                <p class="mb-1">
+                    All of the data in the {{ config.METAREGISTRY_TITLE }} (version {{ config.METAREGISTRY_VERSION }}).
+                </p>
                 <small class="text-muted">Available under the CC0 1.0 Universal License.</small>
             </a>
         </div>

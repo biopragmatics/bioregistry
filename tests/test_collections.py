@@ -6,7 +6,7 @@ import logging
 import unittest
 from collections import Counter
 
-import bioregistry
+from bioregistry import manager
 from bioregistry.export.rdf_export import collection_to_rdf_str
 from bioregistry.schema import Collection
 
@@ -16,11 +16,15 @@ logger = logging.getLogger(__name__)
 class TestCollections(unittest.TestCase):
     """Tests for collections."""
 
+    def setUp(self) -> None:
+        """Set up the test case."""
+        self.manager = manager
+
     def test_minimum_metadata(self):
         """Check collections have minimal metadata and correct prefixes."""
-        registry = bioregistry.read_registry()
+        registry = self.manager.registry
 
-        for key, collection_pydantic in sorted(bioregistry.read_collections().items()):
+        for key, collection_pydantic in sorted(self.manager.collections.items()):
             self.assertIsInstance(collection_pydantic, Collection)
             collection = collection_pydantic.dict()
             with self.subTest(key=key):
@@ -31,7 +35,7 @@ class TestCollections(unittest.TestCase):
                 for author in collection["authors"]:
                     self.assertIn("name", author)
                     self.assertIn("orcid", author)
-                    self.assertRegex(author["orcid"], bioregistry.get_pattern("orcid"))
+                    self.assertRegex(author["orcid"], self.manager.get_pattern("orcid"))
                 self.assertIn("description", collection)
                 incorrect = {prefix for prefix in collection["resources"] if prefix not in registry}
                 self.assertEqual(set(), incorrect, msg="Invalid prefixes")
@@ -44,10 +48,10 @@ class TestCollections(unittest.TestCase):
 
     def test_get_collection(self):
         """Test getting a collection."""
-        self.assertIsNone(bioregistry.get_collection("nope"))
+        self.assertIsNone(self.manager.collections.get("nope"))
 
         identifier = "0000001"
-        collection = bioregistry.get_collection(identifier)
+        collection = self.manager.collections.get(identifier)
         self.assertIsInstance(collection, Collection)
         self.assertEqual(identifier, collection.identifier)
 
@@ -63,5 +67,5 @@ class TestCollections(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = collection_to_rdf_str("0000001")
+        s = collection_to_rdf_str("0000001", manager=self.manager)
         self.assertIsInstance(s, str)

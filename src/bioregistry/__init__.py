@@ -84,6 +84,7 @@ from .resolve import (  # noqa:F401
     normalize_parsed_curie,
     normalize_prefix,
     parse_curie,
+    read_contributors,
 )
 from .resolve_identifier import (  # noqa:F401
     get_bioportal_iri,
@@ -115,7 +116,6 @@ from .schema_utils import (  # noqa:F401
     is_mismatch,
     read_collections,
     read_contexts,
-    read_contributors,
     read_metaregistry,
     read_mismatches,
     read_registry,

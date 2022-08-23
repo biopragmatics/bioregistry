@@ -9,10 +9,11 @@ import yaml
 from flask import abort, current_app, redirect, render_template, request, url_for
 from pydantic import BaseModel
 
-import bioregistry
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL
 from bioregistry.schema import Resource, sanitize_model
 from bioregistry.utils import curie_to_str, extended_encoder
+
+from .proxies import manager
 
 
 def _get_resource_providers(
@@ -21,14 +22,14 @@ def _get_resource_providers(
     if identifier is None:
         return None
     rv = []
-    for metaprefix, uri in bioregistry.get_providers_list(prefix, identifier):
+    for metaprefix, uri in manager.get_providers_list(prefix, identifier):
         if metaprefix == "default":
             metaprefix = prefix
-            name = bioregistry.get_name(prefix)
-            homepage = bioregistry.get_homepage(prefix)
+            name = manager.get_name(prefix)
+            homepage = manager.get_homepage(prefix)
         else:
-            name = bioregistry.get_registry_name(metaprefix)
-            homepage = bioregistry.get_registry_homepage(metaprefix)
+            name = manager.get_registry_name(metaprefix)
+            homepage = manager.get_registry_homepage(metaprefix)
         rv.append(
             dict(
                 metaprefix=metaprefix,
@@ -44,11 +45,11 @@ def _get_resource_mapping_rows(resource: Resource) -> List[Mapping[str, Any]]:
     return [
         dict(
             metaprefix=metaprefix,
-            metaresource=bioregistry.get_registry(metaprefix),
+            metaresource=manager.get_registry(metaprefix),
             xref=xref,
-            homepage=bioregistry.get_registry_homepage(metaprefix),
-            name=bioregistry.get_registry_name(metaprefix),
-            uri=bioregistry.get_registry_provider_uri_format(metaprefix, xref),
+            homepage=manager.get_registry_homepage(metaprefix),
+            name=manager.get_registry_name(metaprefix),
+            uri=manager.get_registry_provider_uri_format(metaprefix, xref),
         )
         for metaprefix, xref in resource.get_mappings().items()
     ]
@@ -56,7 +57,7 @@ def _get_resource_mapping_rows(resource: Resource) -> List[Mapping[str, Any]]:
 
 def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
     try:
-        norm_prefix = bioregistry.normalize_prefix(prefix)
+        norm_prefix = manager.normalize_prefix(prefix)
     except ValueError:
         norm_prefix = None
     if norm_prefix is None:
@@ -66,40 +67,42 @@ def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
     return norm_prefix
 
 
-def _search(q: str) -> List[str]:
+def _search(manager_, q: str) -> List[str]:
     q_norm = q.lower()
-    return [prefix for prefix in bioregistry.read_registry() if q_norm in prefix]
+    return [prefix for prefix in manager_.registry if q_norm in prefix]
 
 
-def _autocomplete(q: str) -> Mapping[str, Any]:
+def _autocomplete(manager_, q: str) -> Mapping[str, Any]:
     r"""Run the autocomplete algorithm.
 
+    :param manager_: A manager
     :param q: The query string
     :return: A dictionary with the autocomplete results.
 
     Before completion is of prefix:
 
-    >>> _autocomplete('cheb')
+    >>> from bioregistry import manager
+    >>> _autocomplete(manager, 'cheb')
     {'query': 'cheb', 'results': ['chebi'], 'success': True, 'reason': 'searched prefix', 'url': None}
 
     If only prefix is complete:
 
-    >>> _autocomplete('chebi')
+    >>> _autocomplete(manager, 'chebi')
     {'query': 'chebi', 'results': ['chebi'], 'success': True, 'reason': 'matched prefix', 'url': 'https://bioregistry.io/chebi'}
 
     Not matching the pattern:
 
-    >>> _autocomplete('chebi:NOPE')
+    >>> _autocomplete(manager, 'chebi:NOPE')
     {'query': 'chebi:NOPE', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': 'NOPE', 'success': False, 'reason': 'failed validation', 'url': None}
 
     Matching the pattern:
 
-    >>> _autocomplete('chebi:1234')
+    >>> _autocomplete(manager, 'chebi:1234')
     {'query': 'chebi:1234', 'prefix': 'chebi', 'pattern': '^\\d+$', 'identifier': '1234', 'success': True, 'reason': 'passed validation', 'url': 'https://bioregistry.io/chebi:1234'}
     """  # noqa: E501
     if ":" not in q:
         url: Optional[str]
-        if q in bioregistry.read_registry():
+        if q in manager_.registry:
             reason = "matched prefix"
             url = f"{BIOREGISTRY_REMOTE_URL.rstrip()}/{q}"
         else:
@@ -107,13 +110,13 @@ def _autocomplete(q: str) -> Mapping[str, Any]:
             url = None
         return dict(
             query=q,
-            results=_search(q),
+            results=_search(manager_, q),
             success=True,
             reason=reason,
             url=url,
         )
     prefix, identifier = q.split(":", 1)
-    norm_prefix = bioregistry.normalize_prefix(prefix)
+    norm_prefix = manager_.normalize_prefix(prefix)
     if norm_prefix is None:
         return dict(
             query=q,
@@ -122,15 +125,15 @@ def _autocomplete(q: str) -> Mapping[str, Any]:
             success=False,
             reason="bad prefix",
         )
-    pattern = bioregistry.get_pattern(prefix)
+    pattern = manager_.get_pattern(prefix)
     if pattern is None:
         success = True
         reason = "no pattern"
-        url = bioregistry.get_bioregistry_iri(prefix, identifier)
-    elif bioregistry.is_known_identifier(prefix, identifier):
+        url = manager_.get_bioregistry_iri(prefix, identifier)
+    elif manager_.is_standardizable_identifier(prefix, identifier):
         success = True
         reason = "passed validation"
-        url = bioregistry.get_bioregistry_iri(prefix, identifier)
+        url = manager_.get_bioregistry_iri(prefix, identifier)
     else:
         success = False
         reason = "failed validation"
@@ -148,12 +151,12 @@ def _autocomplete(q: str) -> Mapping[str, Any]:
 
 def _get_identifier(prefix: str, identifier: str) -> Mapping[str, Any]:
     prefix = _normalize_prefix_or_404(prefix)
-    if not bioregistry.is_known_identifier(prefix, identifier):
+    if not manager.is_standardizable_identifier(prefix, identifier):
         return abort(
             404,
-            f"invalid identifier: {curie_to_str(prefix, identifier)} for pattern {bioregistry.get_pattern(prefix)}",
+            f"invalid identifier: {curie_to_str(prefix, identifier)} for pattern {manager.get_pattern(prefix)}",
         )
-    providers = bioregistry.get_providers(prefix, identifier)
+    providers = manager.get_providers(prefix, identifier)
     if not providers:
         return abort(404, f"no providers available for {curie_to_str(prefix, identifier)}")
 
