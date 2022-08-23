@@ -1,6 +1,7 @@
+"""A custom deploymenet."""
+
 import pystow
 
-import bioregistry
 from bioregistry import Manager, get_collection, resources, write_registry
 from bioregistry.app.impl import get_app
 
@@ -23,7 +24,6 @@ if not REGISTRY_PATH.is_file() or True:
         resource.prefix: resource for resource in resources() if resource.prefix in PREFIXES
     }
     write_registry(slim_registry, path=REGISTRY_PATH)
-    print("wrote registry to", REGISTRY_PATH)
 
 manager = Manager(registry=REGISTRY_PATH, collections={}, contexts={})
 config = {

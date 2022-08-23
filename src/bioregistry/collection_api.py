@@ -6,7 +6,6 @@ from typing import Optional
 
 from .resource_manager import manager
 from .schema import Collection, Context
-from .schema_utils import read_collections
 
 __all__ = [
     "get_collection",
