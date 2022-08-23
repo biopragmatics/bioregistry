@@ -26,7 +26,11 @@ logger = logging.getLogger(__name__)
 @lru_cache(maxsize=1)
 def read_metaregistry() -> Mapping[str, Registry]:
     """Read the metaregistry."""
-    with open(METAREGISTRY_PATH, encoding="utf-8") as file:
+    return _read_metaregistry(METAREGISTRY_PATH)
+
+
+def _read_metaregistry(path: Path) -> Mapping[str, Registry]:
+    with path.open(encoding="utf-8") as file:
         data = json.load(file)
     return {
         registry.prefix: registry

@@ -40,6 +40,7 @@ from .schema import (
     sanitize_model,
 )
 from .schema_utils import (
+    _read_metaregistry,
     _registry_from_path,
     read_collections,
     read_contexts,
@@ -92,7 +93,7 @@ class Manager:
     def __init__(
         self,
         registry: Union[None, str, Path, Mapping[str, Resource]] = None,
-        metaregistry: Optional[Mapping[str, Registry]] = None,
+        metaregistry: Union[None, str, Path, Mapping[str, Registry]] = None,
         collections: Optional[Mapping[str, Collection]] = None,
         contexts: Optional[Mapping[str, Context]] = None,
         mismatches: Optional[Mapping[str, Mapping[str, str]]] = None,
@@ -113,7 +114,12 @@ class Manager:
             self.registry = dict(registry)
         self.synonyms = _synonym_to_canonical(self.registry)
 
-        self.metaregistry = dict(read_metaregistry() if metaregistry is None else metaregistry)
+        if metaregistry is None:
+            self.metaregistry = dict(read_metaregistry())
+        elif isinstance(metaregistry, (str, Path)):
+            self.metaregistry = _read_metaregistry(metaregistry)
+        else:
+            self.metaregistry = dict(metaregistry)
         self.collections = dict(read_collections() if collections is None else collections)
         self.contexts = dict(read_contexts() if contexts is None else contexts)
         self.mismatches = dict(read_mismatches() if mismatches is None else mismatches)
