@@ -32,7 +32,7 @@ __all__ = [
     "api_blueprint",
 ]
 
-api_blueprint = Blueprint("api", __name__, url_prefix="/api")
+api_blueprint = Blueprint("metaregistry_api", __name__, url_prefix="/api")
 
 
 @api_blueprint.route("/registry")

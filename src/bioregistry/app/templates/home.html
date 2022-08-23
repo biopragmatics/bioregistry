@@ -7,7 +7,7 @@
     <script>
         $(".basicAutoComplete").autoComplete({
             resolverSettings: {
-                url: "{{ url_for('api.search') }}"
+                url: "{{ url_for('metaregistry_api.search') }}"
             }
         });
     </script>
@@ -79,7 +79,7 @@
                     {{ curie_to_str(example_prefix, example_identifier) }}</span>.
                 </p>
             </a>
-            <a href="{{ url_for('ui.resources') }}"
+            <a href="{{ url_for('metaregistry_ui.resources') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-list"></i> View Registry</h5>
@@ -87,7 +87,7 @@
                 </div>
                 <p class="mb-1">The integrative registry of databases, ontologies, and resources.</p>
             </a>
-            <a href="{{ url_for('ui.metaresources') }}"
+            <a href="{{ url_for('metaregistry_ui.metaresources') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-atom"></i> View Metaregistry</h5>
@@ -96,7 +96,7 @@
                 <p class="mb-1">The registry of registries.</p>
             </a>
             {% if manager.collections | length > 0 %}
-            <a href="{{ url_for('ui.collections') }}"
+            <a href="{{ url_for('metaregistry_ui.collections') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-layer-group"></i> View Collections</h5>
@@ -105,7 +105,7 @@
                 <p class="mb-1">Manually curated subsets of the registry.</p>
             </a>
             {% endif %}
-            <a href="{{ url_for('ui.contributors') }}"
+            <a href="{{ url_for('metaregistry_ui.contributors') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-users"></i> View Contributors</h5>
@@ -114,7 +114,7 @@
                 <p class="mb-1">Contributors to the {{ config.METAREGISTRY_TITLE }}</p>
             </a>
             {% if config.METAREGISTRY_FIRST_PARTY %}
-            <a href="{{ url_for('ui.summary') }}"
+            <a href="{{ url_for('metaregistry_ui.summary') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-book"></i> Learn</h5>
@@ -124,7 +124,7 @@
                 </p>
                 {# <small class="text-muted">Donec id elit non mi porta.</small> #}
             </a>
-            <a href="{{ url_for('ui.download') }}"
+            <a href="{{ url_for('metaregistry_ui.download') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-download"></i> Download</h5>
@@ -187,7 +187,7 @@
                 current_result: null,
                 last_yielding_result: null,
                 error_message: null,
-                autocomplete_url: "{{ url_for('api.autocomplete') }}"
+                autocomplete_url: "{{ url_for('metaregistry_api.autocomplete') }}"
             },
             methods: {
                 /// Get the data to suggest auto-completes to the prefix.

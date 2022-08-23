@@ -33,7 +33,7 @@
 </head>
 <body {% block bodyattr %}{% endblock %}>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ url_for("ui.home") }}">
+    <a class="navbar-brand" href="{{ url_for("metaregistry_ui.home") }}">
         <img src="{{ url_for('static', filename='logo.svg') }}" width="30" height="30" alt="">
         {{ config.METAREGISTRY_TITLE }}
     </a>
@@ -44,19 +44,19 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for("ui.resources") }}">Registry</a>
+                <a class="nav-link" href="{{ url_for("metaregistry_ui.resources") }}">Registry</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for("ui.metaresources") }}">Metaregistry</a>
+                <a class="nav-link" href="{{ url_for("metaregistry_ui.metaresources") }}">Metaregistry</a>
             </li>
             {% if manager.collections | length > 0 %}
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for("ui.collections") }}">Collections</a>
+                <a class="nav-link" href="{{ url_for("metaregistry_ui.collections") }}">Collections</a>
             </li>
             {% endif %}
             {% if config.METAREGISTRY_FIRST_PARTY %}
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for("ui.contexts") }}">Contexts</a>
+                <a class="nav-link" href="{{ url_for("metaregistry_ui.contexts") }}">Contexts</a>
             </li>
             {% endif %}
 
@@ -66,24 +66,24 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% if config.METAREGISTRY_FIRST_PARTY %}
-                    <a class="dropdown-item" href="{{ url_for("ui.summary") }}">Summary</a>
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.summary") }}">Summary</a>
                     {% else %}
                     <a class="dropdown-item" target="_blank" href="https://bioregistry.io/summary">Summary (External)</a>
                     {% endif %}
-                    <a class="dropdown-item" href="{{ url_for("ui.usage") }}">Programmatic Usage</a>
-                    <a class="dropdown-item" href="{{ url_for("ui.schema") }}">JSON and RDF Schemata</a>
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.usage") }}">Programmatic Usage</a>
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.schema") }}">JSON and RDF Schemata</a>
                     {% if config.METAREGISTRY_FIRST_PARTY %}
-                    <a class="dropdown-item" href="{{ url_for("ui.sustainability") }}">Deployment and Sustainability</a>
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.sustainability") }}">Deployment and Sustainability</a>
                     {% endif %}
-                    <a class="dropdown-item" href="{{ url_for("ui.related") }}">Related</a>
-                    <a class="dropdown-item" href="{{ url_for("ui.contributors") }}">Contributors</a>
-                    <a class="dropdown-item" href="{{ url_for("ui.acknowledgements") }}">How to Cite and Acknowledge</a>
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.related") }}">Related</a>
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.contributors") }}">Contributors</a>
+                    <a class="dropdown-item" href="{{ url_for("metaregistry_ui.acknowledgements") }}">How to Cite and Acknowledge</a>
                     <!--<div class="dropdown-divider"></div>-->
                 </div>
             </li>
             {% if config.METAREGISTRY_FIRST_PARTY %}
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('ui.download') }}">Downloads</a>
+                <a class="nav-link" href="{{ url_for('metaregistry_ui.download') }}">Downloads</a>
             </li>
             {% endif %}
             <li class="nav-item active">

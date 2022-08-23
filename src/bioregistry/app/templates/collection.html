@@ -8,7 +8,7 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h5 style="margin: 0"><a href="{{ url_for("ui.collections") }}">Collections</a>
+                    <h5 style="margin: 0"><a href="{{ url_for("metaregistry_ui.collections") }}">Collections</a>
                         <i class="fas fa-angle-right"></i> {{ entry.name }}</h5>
                 </div>
                 <div class="col-4 text-right">
@@ -21,7 +21,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for("api.collection", identifier=identifier, format=key) }}">
+                                   href="{{ url_for("metaregistry_api.collection", identifier=identifier, format=key) }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
@@ -38,7 +38,7 @@
                 <dt>Contributors</dt>
                 <dd>
                     {% for author in entry.authors %}
-                        <a href="{{ url_for("ui.contributor", orcid=author.orcid) }}">
+                        <a href="{{ url_for("metaregistry_ui.contributor", orcid=author.orcid) }}">
                             {{ author.name }}
                             <i class="fab fa-orcid"></i>
                         </a>{% if not loop.last %}, {% endif %}
@@ -49,7 +49,7 @@
                     <ul>
                         {% for prefix in entry.resources %}
                             <li>
-                                <a href="{{ url_for("ui.resource", prefix=prefix) }}">
+                                <a href="{{ url_for("metaregistry_ui.resource", prefix=prefix) }}">
                                     {{ resources[prefix].get_name() }} (<code>{{ prefix }}</code>)
                                 </a>
                                 {{ utils.render_resource_warnings(resources[prefix]) }}
