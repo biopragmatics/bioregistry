@@ -90,6 +90,7 @@
                 <a class="nav-link" href="{{ url_for('flasgger.apidocs') }}">API</a>
             </li>
         </ul>
+        {% if config.METAREGISTRY_VERSION %}
         <ul class="navbar-nav my-2 my-lg-0">
             <li class="nav-item active">
                 <span class="text-muted">
@@ -97,6 +98,7 @@
                 </span>
             </li>
         </ul>
+        {% endif %}
     </div>
 </nav>
 

@@ -33,7 +33,7 @@ config = {
     "METAREGISTRY_FOOTER": "This is a custom instance of the Bioregistry",
     "METAREGISTRY_HEADER": "<p>This is a custom instance of the Bioregistry, for demo purposes</p>",
     "METAREGISTRY_RESOURCES_SUBHEADER": "",
-    "METAREGISTRY_VERSION": "0.0.1",
+    "METAREGISTRY_VERSION": "",
     "METAREGISTRY_HOST": "http://localhost:5000",
     "METAREGISTRY_EXAMPLE_PREFIX": "ido",
 }
