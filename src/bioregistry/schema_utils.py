@@ -29,8 +29,8 @@ def read_metaregistry() -> Mapping[str, Registry]:
     return _read_metaregistry(METAREGISTRY_PATH)
 
 
-def _read_metaregistry(path: Path) -> Mapping[str, Registry]:
-    with path.open(encoding="utf-8") as file:
+def _read_metaregistry(path: Union[str, Path]) -> Mapping[str, Registry]:
+    with open(path, encoding="utf-8") as file:
         data = json.load(file)
     return {
         registry.prefix: registry

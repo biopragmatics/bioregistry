@@ -33,21 +33,21 @@
     <pre><code class="language-python">import requests
 res = requests.get('https://{{ config.METAREGISTRY_HOST }}/api/registry').json()</code></pre>
     <p>
-        Just get metadata for ChEBI:
+        Just get metadata for {{ resource.get_name() }}:
     </p>
     <pre><code class="language-python">import requests
-res = requests.get('https://{{ config.METAREGISTRY_HOST }}/api/registry/chebi').json()</code></pre>
+res = requests.get('https://{{ config.METAREGISTRY_HOST }}/api/registry/{{ resource.prefix }}').json()</code></pre>
     <p>
-        Get metadata about ChEBI entry 138488 (alsterpaullone):
+        Get metadata about {{ resource.get_name() }} entry {{ resource.get_example() }}:
     </p>
     <pre><code
-            class="language-python">res = requests.get('https://{{ config.METAREGISTRY_HOST }}/api/reference/chebi:138488').json()</code></pre>
+            class="language-python">res = requests.get('https://{{ config.METAREGISTRY_HOST }}/api/reference/{{ resource.prefix }}:{{ resource.get_example() }}').json()</code></pre>
     <p>
-        Search prefixes containing <code>che</code>:
+        Search prefixes containing <code>{{ resource.prefix[:2] }}</code>:
     </p>
     <pre><code class="language-python">res = requests.get(
     'https://{{ config.METAREGISTRY_HOST }}/api/search',
-    params={'q': 'che'},
+    params={'q': '{{ resource.prefix[:2] }}'},
 ).json()</code></pre>
     {#
     <h3>Metaregistry</h3>

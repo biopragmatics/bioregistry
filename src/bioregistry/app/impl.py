@@ -73,7 +73,7 @@ HEADER_DEFAULT = dedent(
 """
 )
 RESOURCES_SUBHEADER_DEFAULT = dedent(
-    f"""\
+    """\
     <p style="margin-bottom: 0">
         Anyone can <a href="https://github.com/biopragmatics/bioregistry/issues/new/choose">suggest
         improvements</a> or make pull requests to update the underlying database, which is stored in
@@ -95,6 +95,8 @@ def get_app(manager: Optional[Manager] = None, config: Optional[Mapping[str, Any
     app.config.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
     app.config.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
     app.config.setdefault("METAREGISTRY_VERSION", version.get_version())
+    app.config.setdefault("METAREGISTRY_EXAMPLE_PREFIX", "chebi")
+    app.config.setdefault("METAREGISTRY_EXAMPLE_IDENTIFIER", "138488")
 
     if manager is None:
         from .. import resource_manager
@@ -104,6 +106,17 @@ def get_app(manager: Optional[Manager] = None, config: Optional[Mapping[str, Any
     else:
         app.config.setdefault("METAREGISTRY_FIRST_PARTY", False)
     app.manager = manager
+
+    example_prefix = app.config["METAREGISTRY_EXAMPLE_PREFIX"]
+    resource = app.manager.registry.get(example_prefix)
+    if resource is None:
+        raise ValueError(
+            f"{example_prefix} is not available as a prefix. Set a different METAREGISTRY_EXAMPLE_PREFIX"
+        )
+    if resource.get_example() is None:
+        raise ValueError("Must use an example prefix with an example identifier")
+    if resource.get_uri_format() is None:
+        raise ValueError("Must use an example prefix with a URI format")
 
     Swagger.DEFAULT_CONFIG.update(
         {

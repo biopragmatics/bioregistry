@@ -14,7 +14,9 @@ COLLECTIONS = {
     "0000006",  # publishing
 }
 PREFIXES.update(
-    prefix for collection_id in COLLECTIONS for prefix in get_collection(collection_id).resources
+    prefix
+    for collection_id in COLLECTIONS
+    for prefix in get_collection(collection_id).resources  # type:ignore
 )
 PREFIXES.update(resource.prefix for resource in resources() if "bioregistry" in resource.prefix)
 
@@ -30,8 +32,10 @@ config = {
     "METAREGISTRY_TITLE": "Custom Metaregistry",
     "METAREGISTRY_FOOTER": "This is a custom instance of the Bioregistry",
     "METAREGISTRY_HEADER": "<p>This is a custom instance of the Bioregistry, for demo purposes</p>",
-    "METAREGISTRY_VERSION": "0.0.0",
+    "METAREGISTRY_RESOURCES_SUBHEADER": "",
+    "METAREGISTRY_VERSION": "0.0.1",
     "METAREGISTRY_HOST": "localhost:5000",
+    "METAREGISTRY_EXAMPLE_PREFIX": "ido",
 }
 app = get_app(manager=manager, config=config)
 

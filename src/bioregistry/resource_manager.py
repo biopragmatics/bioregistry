@@ -109,7 +109,7 @@ class Manager:
         if registry is None:
             self.registry = dict(read_registry())
         elif isinstance(registry, (str, Path)):
-            self.registry = _registry_from_path(registry)
+            self.registry = dict(_registry_from_path(registry))
         else:
             self.registry = dict(registry)
         self.synonyms = _synonym_to_canonical(self.registry)
@@ -117,7 +117,7 @@ class Manager:
         if metaregistry is None:
             self.metaregistry = dict(read_metaregistry())
         elif isinstance(metaregistry, (str, Path)):
-            self.metaregistry = _read_metaregistry(metaregistry)
+            self.metaregistry = dict(_read_metaregistry(metaregistry))
         else:
             self.metaregistry = dict(metaregistry)
         self.collections = dict(read_collections() if collections is None else collections)

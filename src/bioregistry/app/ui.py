@@ -8,7 +8,16 @@ import platform
 from operator import attrgetter
 from typing import Optional
 
-from flask import Blueprint, abort, jsonify, redirect, render_template, request, url_for
+from flask import (
+    Blueprint,
+    abort,
+    current_app,
+    jsonify,
+    redirect,
+    render_template,
+    request,
+    url_for,
+)
 from markdown import markdown
 
 import bioregistry
@@ -408,8 +417,8 @@ def _s(prefixes):
 @ui_blueprint.route("/")
 def home():
     """Render the homepage."""
-    # FIXME get from registry itself
-    example_prefix, example_identifier = "chebi", "138488"
+    example_prefix = current_app.config["METAREGISTRY_EXAMPLE_PREFIX"]
+    example_identifier = manager.get_example(example_prefix)
     example_url = manager.get_bioregistry_iri(example_prefix, example_identifier)
     return render_template(
         "home.html",
@@ -483,7 +492,8 @@ def sustainability():
 @ui_blueprint.route("/usage")
 def usage():
     """Render the programmatic usage page."""
-    return render_template("meta/access.html")
+    resource = manager.get_resource(current_app.config["METAREGISTRY_EXAMPLE_PREFIX"])
+    return render_template("meta/access.html", resource=resource)
 
 
 @ui_blueprint.route("/schema/")
