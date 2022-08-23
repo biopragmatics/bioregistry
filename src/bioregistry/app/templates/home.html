@@ -18,7 +18,9 @@
 {% block container %}
     <div class="card card-body bg-light">
         <h1 class="display-3">{{ config.METAREGISTRY_TITLE }}</h1>
+        {% if config.METAREGISTRY_HEADER %}
         {{ config.METAREGISTRY_HEADER | safe}}
+        {% endif %}
 
         {# This is a Vue template which also uses {{ value }} syntax, use raw to avoid mixups. #}
         {% raw %}
@@ -90,6 +92,7 @@
                 </div>
                 <p class="mb-1">The registry of registries.</p>
             </a>
+            {% if collections_size > 0 %}
             <a href="{{ url_for('ui.collections') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
@@ -98,6 +101,7 @@
                 </div>
                 <p class="mb-1">Manually curated subsets of the registry.</p>
             </a>
+            {% endif %}
             <a href="{{ url_for('ui.contributors') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">

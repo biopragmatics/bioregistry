@@ -8,7 +8,7 @@ from collections import defaultdict
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
-from typing import List, Mapping, Set, Union
+from typing import List, Mapping, Set, Union, Optional
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -112,9 +112,11 @@ def write_collections(collections: Mapping[str, Collection]) -> None:
         )
 
 
-def write_registry(registry: Mapping[str, Resource]):
+def write_registry(registry: Mapping[str, Resource], path: Optional[Path] = None) -> None:
     """Write to the Bioregistry."""
-    with open(BIOREGISTRY_PATH, mode="w", encoding="utf-8") as file:
+    if path is None:
+        path = BIOREGISTRY_PATH
+    with path.open(mode="w", encoding="utf-8") as file:
         json.dump(
             registry, file, indent=2, sort_keys=True, ensure_ascii=False, default=extended_encoder
         )

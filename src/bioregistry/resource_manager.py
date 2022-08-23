@@ -91,7 +91,7 @@ class Manager:
 
     def __init__(
         self,
-        registry: Optional[Mapping[str, Resource]] = None,
+        registry: Union[None, str, Path, Mapping[str, Resource]] = None,
         metaregistry: Optional[Mapping[str, Registry]] = None,
         collections: Optional[Mapping[str, Collection]] = None,
         contexts: Optional[Mapping[str, Context]] = None,
@@ -105,7 +105,12 @@ class Manager:
         :param contexts: A custom contexts dictionary. If none, defaults to the Bioregistry's contexts.
         :param mismatches: A custom mismatches dictionary. If none, defaults to the Bioregistry's mismatches.
         """
-        self.registry = dict(read_registry() if registry is None else registry)
+        if registry is None:
+            self.registry = dict(read_registry())
+        elif isinstance(registry, (str, Path)):
+            self.registry = _registry_from_path(registry)
+        else:
+            self.registry = dict(registry)
         self.synonyms = _synonym_to_canonical(self.registry)
 
         self.metaregistry = dict(read_metaregistry() if metaregistry is None else metaregistry)
