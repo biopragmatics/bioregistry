@@ -138,11 +138,6 @@ class Manager:
         self.provided_by = dict(provided_by)
         self.has_parts = dict(has_parts)
 
-    @classmethod
-    def from_path(cls, path: Union[str, Path]) -> "Manager":
-        """Load a manager from the given path."""
-        return cls(_registry_from_path(path))
-
     def write_registry(self):
         """Write the registry."""
         write_registry(self.registry)
