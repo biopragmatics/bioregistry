@@ -90,7 +90,7 @@ def get_app(manager: Optional[Manager] = None, config: Optional[Mapping[str, Any
     if config is not None:
         app.config.update(config)
     app.config.setdefault("METAREGISTRY_TITLE", "Bioregistry")
-    app.config.setdefault("METAREGISTRY_HOST", "bioregistry.io")
+    app.config.setdefault("METAREGISTRY_HOST", "https://bioregistry.io")
     app.config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
     app.config.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
     app.config.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
@@ -138,7 +138,7 @@ def get_app(manager: Optional[Manager] = None, config: Optional[Mapping[str, Any
                 {
                     "name": "collections",
                     "externalDocs": {
-                        "url": f"https://{app.config['METAREGISTRY_HOST']}/collection/",
+                        "url": f"{app.config['METAREGISTRY_HOST']}/collection/",
                     },
                 },
             ],

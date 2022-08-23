@@ -34,7 +34,7 @@ config = {
     "METAREGISTRY_HEADER": "<p>This is a custom instance of the Bioregistry, for demo purposes</p>",
     "METAREGISTRY_RESOURCES_SUBHEADER": "",
     "METAREGISTRY_VERSION": "0.0.1",
-    "METAREGISTRY_HOST": "localhost:5000",
+    "METAREGISTRY_HOST": "http://localhost:5000",
     "METAREGISTRY_EXAMPLE_PREFIX": "ido",
 }
 app = get_app(manager=manager, config=config)
