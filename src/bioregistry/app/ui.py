@@ -408,6 +408,7 @@ def _s(prefixes):
 @ui_blueprint.route("/")
 def home():
     """Render the homepage."""
+    # FIXME get from registry itself
     example_prefix, example_identifier = "chebi", "138488"
     example_url = manager.get_bioregistry_iri(example_prefix, example_identifier)
     return render_template(

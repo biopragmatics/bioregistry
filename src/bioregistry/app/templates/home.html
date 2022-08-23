@@ -92,12 +92,12 @@
                 </div>
                 <p class="mb-1">The registry of registries.</p>
             </a>
-            {% if collections_size > 0 %}
+            {% if manager.collections | length > 0 %}
             <a href="{{ url_for('ui.collections') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-layer-group"></i> View Collections</h5>
-                    <small class="text-muted">{{ collections_size }} collections</small>
+                    <small class="text-muted">{{ manager.collections | length }} collections</small>
                 </div>
                 <p class="mb-1">Manually curated subsets of the registry.</p>
             </a>
@@ -110,6 +110,7 @@
                 </div>
                 <p class="mb-1">Contributors to the {{ config.METAREGISTRY_TITLE }}</p>
             </a>
+            {% if config.METAREGISTRY_FIRST_PARTY %}
             <a href="{{ url_for('ui.summary') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
@@ -130,6 +131,7 @@
                 </p>
                 <small class="text-muted">Available under the CC0 1.0 Universal License.</small>
             </a>
+            {% endif %}
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
