@@ -56,12 +56,9 @@
                 The registry contains metadata about ontologies, controlled vocabularies, and resources including their
                 preferred prefix, name, description, homepage, mappings to other registries, and more.
             </p>
-            <p style="margin-bottom: 0">
-                Anyone can <a href="https://github.com/biopragmatics/bioregistry/issues/new/choose">suggest
-                improvements</a> or make pull requests to update the underlying database, which is stored in
-                <a href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/bioregistry.json">
-                    JSON</a> on GitHub where the community can engage in an open review process.
-            </p>
+            {% if config.METAREGISTRY_RESOURCES_SUBHEADER %}
+            {{ config.METAREGISTRY_RESOURCES_SUBHEADER | safe}}
+            {% endif %}
         </div>
         <table id="table-entries" class="table table-striped table-hover ">
             <thead>

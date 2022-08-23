@@ -1,7 +1,7 @@
 import pystow
 
 import bioregistry
-from bioregistry import Manager, resources, write_registry, get_collection
+from bioregistry import Manager, get_collection, resources, write_registry
 from bioregistry.app.impl import get_app
 
 MODULE = pystow.module("bioregistry", "demo")
@@ -13,19 +13,15 @@ COLLECTIONS = {
     "0000006",  # publishing
 }
 PREFIXES.update(
-    prefix
-    for collection_id in COLLECTIONS
-    for prefix in get_collection(collection_id).resources
+    prefix for collection_id in COLLECTIONS for prefix in get_collection(collection_id).resources
 )
-PREFIXES.update(
-    resource.prefix
-    for resource in resources()
-    if "bioregistry" in resource.prefix
-)
+PREFIXES.update(resource.prefix for resource in resources() if "bioregistry" in resource.prefix)
 
 if not REGISTRY_PATH.is_file() or True:
     # Generate a slim
-    slim_registry = {resource.prefix: resource for resource in resources() if resource.prefix in PREFIXES}
+    slim_registry = {
+        resource.prefix: resource for resource in resources() if resource.prefix in PREFIXES
+    }
     write_registry(slim_registry, path=REGISTRY_PATH)
     print("wrote registry to", REGISTRY_PATH)
 
@@ -39,5 +35,5 @@ config = {
 }
 app = get_app(manager=manager, config=config)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run()

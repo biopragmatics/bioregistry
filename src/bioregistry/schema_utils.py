@@ -8,7 +8,7 @@ from collections import defaultdict
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
-from typing import List, Mapping, Set, Union, Optional
+from typing import List, Mapping, Optional, Set, Union
 
 from .constants import (
     BIOREGISTRY_PATH,

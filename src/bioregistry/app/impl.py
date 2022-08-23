@@ -1,13 +1,14 @@
 """App builder interface."""
 
 from textwrap import dedent
-from typing import Optional, Mapping, Any
+from typing import Any, Mapping, Optional
 
 from flasgger import Swagger
 from flask import Flask
 from flask_bootstrap import Bootstrap4
 
 from bioregistry import Manager, curie_to_str, version
+
 from .api import api_blueprint
 from .ui import ui_blueprint
 
@@ -71,6 +72,16 @@ HEADER_DEFAULT = dedent(
     </dl>
 """
 )
+RESOURCES_SUBHEADER_DEFAULT = dedent(
+    f"""\
+    <p style="margin-bottom: 0">
+        Anyone can <a href="https://github.com/biopragmatics/bioregistry/issues/new/choose">suggest
+        improvements</a> or make pull requests to update the underlying database, which is stored in
+        <a href="https://github.com/biopragmatics/bioregistry/blob/main/src/bioregistry/data/bioregistry.json">
+            JSON</a> on GitHub where the community can engage in an open review process.
+    </p>
+    """
+)
 
 
 def get_app(manager: Optional[Manager] = None, config: Optional[Mapping[str, Any]] = None) -> Flask:
@@ -82,6 +93,7 @@ def get_app(manager: Optional[Manager] = None, config: Optional[Mapping[str, Any
     app.config.setdefault("METAREGISTRY_HOST", "bioregistry.io")
     app.config.setdefault("METAREGISTRY_FOOTER", FOOTER_DEFAULT)
     app.config.setdefault("METAREGISTRY_HEADER", HEADER_DEFAULT)
+    app.config.setdefault("METAREGISTRY_RESOURCES_SUBHEADER", RESOURCES_SUBHEADER_DEFAULT)
     app.config.setdefault("METAREGISTRY_VERSION", version.get_version())
 
     if manager is None:
