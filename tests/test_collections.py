@@ -45,6 +45,7 @@ class TestCollections(unittest.TestCase):
                     if 1 < count
                 }
                 self.assertEqual(set(), duplicates, msg="Duplicates found")
+                self.assertEqual(sorted(collection_pydantic.resources), collection_pydantic.resources)
 
     def test_get_collection(self):
         """Test getting a collection."""
