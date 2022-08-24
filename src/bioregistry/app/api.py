@@ -375,7 +375,7 @@ def search():
     q = request.args.get("q")
     if q is None:
         abort(400)
-    return jsonify(_search(q))
+    return jsonify(_search(manager, q))
 
 
 @api_blueprint.route("/autocomplete")
