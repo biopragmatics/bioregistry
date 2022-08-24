@@ -6,6 +6,7 @@ import datetime
 import itertools as itt
 import platform
 from operator import attrgetter
+from pathlib import Path
 from typing import Optional
 
 from flask import (
@@ -53,7 +54,8 @@ __all__ = [
     "ui_blueprint",
 ]
 
-ui_blueprint = Blueprint("ui", __name__)
+TEMPLATES = Path(__file__).parent.resolve().joinpath("templates")
+ui_blueprint = Blueprint("metaregistry_ui", __name__, template_folder=TEMPLATES)
 
 FORMATS = [
     ("JSON", "json"),
