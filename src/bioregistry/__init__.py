@@ -68,6 +68,7 @@ from .resolve import (  # noqa:F401
     get_prefixcommons_uri_format,
     get_provided_by,
     get_provides_for,
+    get_rdf_download,
     get_registry_invmap,
     get_registry_map,
     get_repository,

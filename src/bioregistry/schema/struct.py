@@ -251,6 +251,14 @@ class Resource(BaseModel):
     """
         ),
     )
+    download_rdf: Optional[str] = Field(
+        title="RDF Download URL",
+        description=_dedent(
+            """
+    The URL to download the resource as an RDF file, in one of many formats.
+    """
+        ),
+    )
     banana: Optional[str] = Field(
         description=_dedent(
             """\
@@ -1411,6 +1419,10 @@ class Resource(BaseModel):
         if self.download_json:
             return self.download_json
         return self.get_external("obofoundry").get("download.json")
+
+    def get_download_rdf(self) -> Optional[str]:
+        """Get the download link for the latest RDF file."""
+        return self.download_rdf
 
     def get_download_owl(self) -> Optional[str]:
         """Get the download link for the latest OWL file.

@@ -34,6 +34,7 @@ __all__ = [
     "get_obo_download",
     "get_json_download",
     "get_owl_download",
+    "get_rdf_download",
     "get_version",
     "get_banana",
     "get_obo_health_url",
@@ -672,6 +673,14 @@ def get_owl_download(prefix: str) -> Optional[str]:
     if entry is None:
         return None
     return entry.get_download_owl()
+
+
+def get_rdf_download(prefix: str) -> Optional[str]:
+    """Get the download link for the RDF file."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_download_rdf()
 
 
 def get_provides_for(prefix: str) -> Optional[str]:
