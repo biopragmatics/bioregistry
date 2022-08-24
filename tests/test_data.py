@@ -796,12 +796,13 @@ class TestRegistry(unittest.TestCase):
                 )
 
     def test_publications(self):
-        """"""
+        """Test references and publications are sorted right."""
         for prefix, resource in self.registry.items():
             if not resource.references:
                 continue
             with self.subTest(prefix=prefix):
                 for reference in resource.references:
-                    self.assertNotIn("doi.org", reference)
+                    self.assertNotIn("doi", reference)
                     self.assertNotIn("pubmed", reference)
                     self.assertNotIn("pmc", reference)
+                    self.assertNotIn("arxiv", reference)
