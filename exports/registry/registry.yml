@@ -682,7 +682,14 @@ aop.stressor:
   preferred_prefix: aop.stressor
   uri_format: https://aopwiki.org/stressors/$1
 apaonto:
-  description: Ontology from the APA
+  contact:
+    email: alexgarciac@gmail.com
+    github: alexgarciac
+    name: Alexander Garcia Castro
+    orcid: 0000-0003-1238-2539
+  description: An ontology developed by the American Psychological Association (APA).
+    Note that URIs in this ontology appear to have been generated with erroneous settings
+    in Protege.
   download_owl: http://aber-owl.net/media/ontologies/APAONTO/4/apaonto.owl
   example: Abdomen
   homepage: https://bioportal.bioontology.org/ontologies/APAONTO
@@ -692,6 +699,8 @@ apaonto:
     fairsharing: FAIRsharing.gkw1w8
   name: Psychology Ontology
   preferred_prefix: apaonto
+  references:
+  - https://github.com/biopragmatics/bioregistry/issues/528
   uri_format: http://ontology.apa.org/apaonto/termsonlyOUT%20(5).owl#$1
 apd:
   description: The antimicrobial peptide database (APD) provides information on anticancer,
@@ -25827,9 +25836,12 @@ sty:
     biolink: STY
     bioportal: STY
     ecoportal: STY
-  name: Semantic Types Ontology
+  name: UMLS Semantic Types Ontology
   pattern: ^T\d{3}$
   preferred_prefix: sty
+  synonyms:
+  - umls.st
+  - umls.sty
   uri_format: http://purl.bioontology.org/ontology/STY/$1
 subtilist:
   description: "SubtiList serves to collate and integrate various aspects of the genomic\

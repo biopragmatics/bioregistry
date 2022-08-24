@@ -163,6 +163,15 @@ bioregistry.collection:0000006 a bioregistry.schema:0000003 ;
         bioregistry:pwo,
         bioregistry:scoro .
 
+bioregistry.collection:0000007 a bioregistry.schema:0000003 ;
+    rdfs:label "Publication Provenance Prefixes" ;
+    dc:creator orcid:0000-0003-4423-4370 ;
+    dc:description "Prefixes useful in annotating documentation provenance." ;
+    dcterms:hasPart bioregistry:arxiv,
+        bioregistry:doi,
+        bioregistry:pmc,
+        bioregistry:pubmed .
+
 bioregistry.metaresource:prefixcc a bioregistry.schema:0000002 ;
     rdfs:label "Prefix.cc" ;
     dc:description "A web-developer centric archive of prefixes and URI prefixes" ;
@@ -584,7 +593,7 @@ bioregistry:aop.stressor a bioregistry.schema:0000001 ;
 
 bioregistry:apaonto a bioregistry.schema:0000001 ;
     rdfs:label "Psychology Ontology" ;
-    dc:description "Ontology from the APA"^^xsd:string ;
+    dc:description "An ontology developed by the American Psychological Association (APA). Note that URIs in this ontology appear to have been generated with erroneous settings in Protege."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:APAONTO,
         bioportal:APAONTO,
@@ -592,7 +601,8 @@ bioregistry:apaonto a bioregistry.schema:0000001 ;
     foaf:homepage "https://bioportal.bioontology.org/ontologies/APAONTO"^^xsd:string ;
     bioregistry.schema:0000005 "Abdomen"^^xsd:string ;
     bioregistry.schema:0000006 "http://ontology.apa.org/apaonto/termsonlyOUT%20(5).owl#$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-1238-2539 .
 
 bioregistry:apd a bioregistry.schema:0000001 ;
     rdfs:label "Antimicrobial Peptide Database" ;
@@ -752,20 +762,6 @@ bioregistry:arraymap a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "icdom:8500_3"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.arraymap.org/pgx:$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[\\w\\-:,]{3,64}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:arxiv a bioregistry.schema:0000001 ;
-    rdfs:label "arXiv" ;
-    dc:description "arXiv is an e-print service in the fields of physics, mathematics, non-linear science, computer science, and quantitative biology."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:ARXIV,
-        n2t:arxiv,
-        prefixcommons:arxiv,
-        miriam:arxiv ;
-    foaf:homepage "https://arxiv.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "0807.4956v1"^^xsd:string ;
-    bioregistry.schema:0000006 "https://arxiv.org/abs/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^(\\w+(\\-\\w+)?(\\.\\w+)?)?\\d{4,7}(\\.\\d+(v\\d+)?)?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:asap a bioregistry.schema:0000001 ;
@@ -3513,25 +3509,6 @@ bioregistry:disprot.region a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "DP00086r013"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.disprot.org/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^DP\\d{5}r\\d{3}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:doi a bioregistry.schema:0000001 ;
-    rdfs:label "Digital Object Identifier" ;
-    dc:description "The Digital Object Identifier System is for identifying content objects in the digital environment."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1188,
-        biocontext:DOI,
-        biolink:doi,
-        cellosaurus.resource:DOI,
-        go.resource:DOI,
-        n2t:doi,
-        fairsharing:FAIRsharing.hFLKCn,
-        prefixcommons:doi,
-        miriam:doi ;
-    foaf:homepage "https://www.doi.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "10.1101/2022.07.08.499378"^^xsd:string ;
-    bioregistry.schema:0000006 "https://doi.org/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^(doi\\:)?\\d{2}\\.\\d{4}.*$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:dommino a bioregistry.schema:0000001 ;
@@ -9571,23 +9548,6 @@ bioregistry:pmap.substratedb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:pmc a bioregistry.schema:0000001 ;
-    rdfs:label "Pubmed Central" ;
-    dc:description "PMC International (PMCI) is a free full-text archive of biomedical and life sciences journal literature. PMCI is a collaborative effort between the U.S. National Institutes of Health and the National Library of Medicine, the publishers whose journal content makes up the PMC archive, and organizations in other countries that share NIH's and NLM's interest in archiving life sciences literature."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PMCID,
-        go.resource:PMCID,
-        n2t:pmc,
-        fairsharing:FAIRsharing.wpt5mp,
-        prefixcommons:pmc,
-        miriam:pmc,
-        wikidata:P932 ;
-    foaf:homepage "http://europepmc.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "PMC3084216"^^xsd:string ;
-    bioregistry.schema:0000006 "http://europepmc.org/articles/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PMC\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:pmdb a bioregistry.schema:0000001 ;
     rdfs:label "Protein Model Database" ;
     dc:description "The Protein Model DataBase (PMDB), is a database that collects manually built three dimensional protein models, obtained by different structure prediction techniques."^^xsd:string ;
@@ -9910,26 +9870,6 @@ bioregistry:psipar a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "PAR:0116"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ontology-lookup/?termId=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^PAR:\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:pubmed a bioregistry.schema:0000001 ;
-    rdfs:label "PubMed" ;
-    dc:description "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1187,
-        biocontext:PUBMED,
-        cellosaurus.resource:PubMed,
-        go.resource:PMID,
-        n2t:pubmed,
-        fairsharing:FAIRsharing.a5sv8m,
-        prefixcommons:pubmed,
-        miriam:pubmed,
-        cheminf:000302,
-        wikidata:P698 ;
-    foaf:homepage "https://www.ncbi.nlm.nih.gov/PubMed/"^^xsd:string ;
-    bioregistry.schema:0000005 "16333295"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/pubmed/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:pw a bioregistry.schema:0000001 ;
@@ -12746,6 +12686,8 @@ orcid:0000-0003-0443-9902 rdfs:label "Adriano Rutz" ;
 orcid:0000-0003-0705-9809 rdfs:label "Rahuman Sheriff" .
 
 orcid:0000-0003-1058-2668 rdfs:label "Danielle Welter" .
+
+orcid:0000-0003-1238-2539 rdfs:label "Alexander Garcia Castro" .
 
 orcid:0000-0003-1346-1327 rdfs:label "Brian Aevermann" .
 
@@ -19343,6 +19285,20 @@ bioregistry:aro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-1142-3063 .
 
+bioregistry:arxiv a bioregistry.schema:0000001 ;
+    rdfs:label "arXiv" ;
+    dc:description "arXiv is an e-print service in the fields of physics, mathematics, non-linear science, computer science, and quantitative biology."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:ARXIV,
+        n2t:arxiv,
+        prefixcommons:arxiv,
+        miriam:arxiv ;
+    foaf:homepage "https://arxiv.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "0807.4956v1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://arxiv.org/abs/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(\\w+(\\-\\w+)?(\\.\\w+)?)?\\d{4,7}(\\.\\d+(v\\d+)?)?$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:asrp a bioregistry.schema:0000001 ;
     rdfs:label "Arabidopsis Small RNA Project" ;
     dc:description "Arabidopsis Small RNA Project is a repository of data on Arabidopsis small RNA genes."^^xsd:string ;
@@ -20362,6 +20318,25 @@ bioregistry:dlxc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "M77F7JM"^^xsd:string ;
     bioregistry.schema:0000006 "https://doulix.com/constructs/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Z0-9]{6,7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:doi a bioregistry.schema:0000001 ;
+    rdfs:label "Digital Object Identifier" ;
+    dc:description "The Digital Object Identifier System is for identifying content objects in the digital environment."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1188,
+        biocontext:DOI,
+        biolink:doi,
+        cellosaurus.resource:DOI,
+        go.resource:DOI,
+        n2t:doi,
+        fairsharing:FAIRsharing.hFLKCn,
+        prefixcommons:doi,
+        miriam:doi ;
+    foaf:homepage "https://www.doi.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "10.1101/2022.07.08.499378"^^xsd:string ;
+    bioregistry.schema:0000006 "https://doi.org/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(doi\\:)?\\d{2}\\.\\d{4}.*$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:doqcs dcterms:hasPart bioregistry:doqcs.model,
@@ -22962,6 +22937,23 @@ bioregistry:pigqtldb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:pmc a bioregistry.schema:0000001 ;
+    rdfs:label "Pubmed Central" ;
+    dc:description "PMC International (PMCI) is a free full-text archive of biomedical and life sciences journal literature. PMCI is a collaborative effort between the U.S. National Institutes of Health and the National Library of Medicine, the publishers whose journal content makes up the PMC archive, and organizations in other countries that share NIH's and NLM's interest in archiving life sciences literature."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:PMCID,
+        go.resource:PMCID,
+        n2t:pmc,
+        fairsharing:FAIRsharing.wpt5mp,
+        prefixcommons:pmc,
+        miriam:pmc,
+        wikidata:P932 ;
+    foaf:homepage "http://europepmc.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "PMC3084216"^^xsd:string ;
+    bioregistry.schema:0000006 "http://europepmc.org/articles/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PMC\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:ppdb a bioregistry.schema:0000001 ;
     rdfs:label "Pesticide Properties DataBase" ;
     dc:description "PPDB is a comprehensive source of data on pesticide chemical, physical and biological properties. "^^xsd:string ;
@@ -23094,6 +23086,26 @@ bioregistry:publons.researcher a bioregistry.schema:0000001 ;
     foaf:homepage "https://publons.com/researcher"^^xsd:string ;
     bioregistry.schema:0000005 "1981638"^^xsd:string ;
     bioregistry.schema:0000006 "https://publons.com/researcher/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:pubmed a bioregistry.schema:0000001 ;
+    rdfs:label "PubMed" ;
+    dc:description "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1187,
+        biocontext:PUBMED,
+        cellosaurus.resource:PubMed,
+        go.resource:PMID,
+        n2t:pubmed,
+        fairsharing:FAIRsharing.a5sv8m,
+        prefixcommons:pubmed,
+        miriam:pubmed,
+        cheminf:000302,
+        wikidata:P698 ;
+    foaf:homepage "https://www.ncbi.nlm.nih.gov/PubMed/"^^xsd:string ;
+    bioregistry.schema:0000005 "16333295"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/pubmed/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -23456,7 +23468,7 @@ bioregistry:sprint a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:sty a bioregistry.schema:0000001 ;
-    rdfs:label "Semantic Types Ontology" ;
+    rdfs:label "UMLS Semantic Types Ontology" ;
     dc:description "UMLS Semantic Network The Semantic Network consists of (1) a set of broad subject categories, or Semantic Types, that provide a consistent categorization of all concepts represented in the UMLS Metathesaurus, and (2) a set of useful and important relationships, or Semantic Relations, that exist between Semantic Types."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:STY,
