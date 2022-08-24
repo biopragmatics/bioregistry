@@ -154,6 +154,41 @@
         "name"
       ]
     },
+    "Publication": {
+      "title": "Publication",
+      "description": "Metadata about a publication.",
+      "type": "object",
+      "properties": {
+        "pubmed": {
+          "title": "PubMed",
+          "description": "The PubMed identifier for the article",
+          "type": "string"
+        },
+        "doi": {
+          "title": "DOI",
+          "description": "The DOI for the article",
+          "type": "string"
+        },
+        "pmc": {
+          "title": "PMC",
+          "description": "The PubMed Central identifier for the article",
+          "type": "string"
+        },
+        "arxiv": {
+          "title": "arXiv",
+          "description": "The arXiv identifier for the article",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "description": "The title of the article",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ]
+    },
     "Resource": {
       "title": "Resource",
       "description": "Metadata about an ontology, database, or other resource.",
@@ -317,6 +352,14 @@
           "type": "array",
           "items": {
             "type": "string"
+          }
+        },
+        "publications": {
+          "title": "Publications",
+          "description": "A list of URLs to also see, such as publications describing the resource",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Publication"
           }
         },
         "appears_in": {

@@ -155,11 +155,15 @@ class Provider(BaseModel):
 class Publication(BaseModel):
     """Metadata about a publication."""
 
-    pubmed: Optional[str] = None
-    doi: Optional[str] = None
-    pmc: Optional[str] = None
-    arxiv: Optional[str] = None
-    title: str
+    pubmed: Optional[str] = Field(
+        title="PubMed", description="The PubMed identifier for the article"
+    )
+    doi: Optional[str] = Field(title="DOI", description="The DOI for the article")
+    pmc: Optional[str] = Field(
+        title="PMC", description="The PubMed Central identifier for the article"
+    )
+    arxiv: Optional[str] = Field(title="arXiv", description="The arXiv identifier for the article")
+    title: str = Field(description="The title of the article")
 
 
 class Resource(BaseModel):
@@ -2003,6 +2007,7 @@ def get_json_schema():
                 Registry,
                 RegistrySchema,
                 Context,
+                Publication,
             ],
             title="Bioregistry JSON Schema",
             description="The Bioregistry JSON Schema describes the shapes of the objects in"
@@ -2034,6 +2039,7 @@ def write_bulk_prefix_request_template():
             "contributor",
             "github_request_issue",
             "banana_peel",
+            "publications",
         }:
             continue
         if name in metaprefixes:
