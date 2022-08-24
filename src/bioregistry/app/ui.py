@@ -134,6 +134,7 @@ def resource(prefix: str):
         obo_download=_resource.get_download_obo(),
         owl_download=_resource.get_download_owl(),
         json_download=_resource.get_download_obograph(),
+        rdf_download=_resource.get_download_rdf(),
         namespace_in_lui=_resource.get_namespace_in_lui(),
         deprecated=manager.is_deprecated(prefix),
         contact=_resource.get_contact(),
