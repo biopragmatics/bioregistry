@@ -794,3 +794,15 @@ class TestRegistry(unittest.TestCase):
                     resource.references or [],
                     msg="Reference to GitHub request issue should be in its dedicated field.",
                 )
+
+    def test_publications(self):
+        """Test references and publications are sorted right."""
+        for prefix, resource in self.registry.items():
+            if not resource.references:
+                continue
+            with self.subTest(prefix=prefix):
+                for reference in resource.references:
+                    self.assertNotIn("doi", reference)
+                    self.assertNotIn("pubmed", reference)
+                    self.assertNotIn("pmc", reference)
+                    self.assertNotIn("arxiv", reference)

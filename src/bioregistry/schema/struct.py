@@ -152,6 +152,20 @@ class Provider(BaseModel):
         return self.uri_format.replace("$1", identifier)
 
 
+class Publication(BaseModel):
+    """Metadata about a publication."""
+
+    pubmed: Optional[str] = Field(
+        title="PubMed", description="The PubMed identifier for the article"
+    )
+    doi: Optional[str] = Field(title="DOI", description="The DOI for the article")
+    pmc: Optional[str] = Field(
+        title="PMC", description="The PubMed Central identifier for the article"
+    )
+    arxiv: Optional[str] = Field(title="arXiv", description="The arXiv identifier for the article")
+    title: str = Field(description="The title of the article")
+
+
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
@@ -310,6 +324,9 @@ class Resource(BaseModel):
         ),
     )
     references: Optional[List[str]] = Field(
+        description="A list of URLs to also see, such as publications describing the resource",
+    )
+    publications: Optional[List[Publication]] = Field(
         description="A list of URLs to also see, such as publications describing the resource",
     )
     appears_in: Optional[List[str]] = Field(
@@ -906,8 +923,12 @@ class Resource(BaseModel):
 
     def get_publications(self):
         """Get a list of publications."""
-        # TODO make a model for this
         rv = {}
+        for publication in self.publications or []:
+            if publication.pubmed:
+                rv[f"https://bioregistry.io/pubmed:{publication.pubmed}"] = publication.title
+            elif publication.doi:
+                rv[f"https://bioregistry.io/doi:{publication.doi}"] = publication.title
         if self.obofoundry:
             for publication in self.obofoundry.get("publications", []):
                 url, title = publication["id"], publication["title"]
@@ -1986,6 +2007,7 @@ def get_json_schema():
                 Registry,
                 RegistrySchema,
                 Context,
+                Publication,
             ],
             title="Bioregistry JSON Schema",
             description="The Bioregistry JSON Schema describes the shapes of the objects in"
@@ -2017,6 +2039,7 @@ def write_bulk_prefix_request_template():
             "contributor",
             "github_request_issue",
             "banana_peel",
+            "publications",
         }:
             continue
         if name in metaprefixes:
