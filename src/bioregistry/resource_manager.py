@@ -40,6 +40,7 @@ from .schema import (
     sanitize_model,
 )
 from .schema_utils import (
+    _read_metaregistry,
     _registry_from_path,
     read_collections,
     read_contexts,
@@ -91,8 +92,8 @@ class Manager:
 
     def __init__(
         self,
-        registry: Optional[Mapping[str, Resource]] = None,
-        metaregistry: Optional[Mapping[str, Registry]] = None,
+        registry: Union[None, str, Path, Mapping[str, Resource]] = None,
+        metaregistry: Union[None, str, Path, Mapping[str, Registry]] = None,
         collections: Optional[Mapping[str, Collection]] = None,
         contexts: Optional[Mapping[str, Context]] = None,
         mismatches: Optional[Mapping[str, Mapping[str, str]]] = None,
@@ -105,10 +106,20 @@ class Manager:
         :param contexts: A custom contexts dictionary. If none, defaults to the Bioregistry's contexts.
         :param mismatches: A custom mismatches dictionary. If none, defaults to the Bioregistry's mismatches.
         """
-        self.registry = dict(read_registry() if registry is None else registry)
+        if registry is None:
+            self.registry = dict(read_registry())
+        elif isinstance(registry, (str, Path)):
+            self.registry = dict(_registry_from_path(registry))
+        else:
+            self.registry = dict(registry)
         self.synonyms = _synonym_to_canonical(self.registry)
 
-        self.metaregistry = dict(read_metaregistry() if metaregistry is None else metaregistry)
+        if metaregistry is None:
+            self.metaregistry = dict(read_metaregistry())
+        elif isinstance(metaregistry, (str, Path)):
+            self.metaregistry = dict(_read_metaregistry(metaregistry))
+        else:
+            self.metaregistry = dict(metaregistry)
         self.collections = dict(read_collections() if collections is None else collections)
         self.contexts = dict(read_contexts() if contexts is None else contexts)
         self.mismatches = dict(read_mismatches() if mismatches is None else mismatches)
@@ -126,11 +137,6 @@ class Manager:
         self.canonical_for = dict(canonical_for)
         self.provided_by = dict(provided_by)
         self.has_parts = dict(has_parts)
-
-    @classmethod
-    def from_path(cls, path: Union[str, Path]) -> "Manager":
-        """Load a manager from the given path."""
-        return cls(_registry_from_path(path))
 
     def write_registry(self):
         """Write the registry."""

@@ -85,7 +85,7 @@
         {% for registry in registries %}
             <tr>
                 <td>
-                    <a href="{{ url_for('ui.metaresource', metaprefix=registry.prefix) }}">{{ registry.get_short_name() }}</a>
+                    <a href="{{ url_for('metaregistry_ui.metaresource', metaprefix=registry.prefix) }}">{{ registry.get_short_name() }}</a>
                 </td>
                 <td style="text-align: right;">{{ registry.score() }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.availability.name) }}</td>
@@ -147,7 +147,7 @@
         {% for registry in registries %}
             <tr>
                 <td>
-                    <a href="{{ url_for('ui.metaresource', metaprefix=registry.prefix) }}">{{ registry.get_short_name() }}</a>
+                    <a href="{{ url_for('metaregistry_ui.metaresource', metaprefix=registry.prefix) }}">{{ registry.get_short_name() }}</a>
                 </td>
                 <td style="text-align: right;">{{ mapping_counts[registry.prefix] }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.availability.fair) }}</td>
@@ -187,7 +187,7 @@
         {% for registry in registries %}
             <tr>
                 <td>
-                    <a href="{{ url_for('ui.metaresource', metaprefix=registry.prefix) }}">{{ registry.get_short_name() }}</a>
+                    <a href="{{ url_for('metaregistry_ui.metaresource', metaprefix=registry.prefix) }}">{{ registry.get_short_name() }}</a>
                 </td>
                 <td style="text-align: center;">{{ render_circle(registry.governance.accepts_external_contributions) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.governance.public_version_control) }}</td>

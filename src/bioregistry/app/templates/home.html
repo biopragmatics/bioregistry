@@ -7,7 +7,7 @@
     <script>
         $(".basicAutoComplete").autoComplete({
             resolverSettings: {
-                url: "{{ url_for('api.search') }}"
+                url: "{{ url_for('metaregistry_api.search') }}"
             }
         });
     </script>
@@ -18,7 +18,9 @@
 {% block container %}
     <div class="card card-body bg-light">
         <h1 class="display-3">{{ config.METAREGISTRY_TITLE }}</h1>
+        {% if config.METAREGISTRY_HEADER %}
         {{ config.METAREGISTRY_HEADER | safe}}
+        {% endif %}
 
         {# This is a Vue template which also uses {{ value }} syntax, use raw to avoid mixups. #}
         {% raw %}
@@ -68,13 +70,16 @@
 
         <p>Here's how to get started with the {{ config.METAREGISTRY_TITLE }} site:</p>
         <div class="list-group">
-            <a href="{{ example_url }}" class="list-group-item list-group-item-action flex-column align-items-start">
+            <a href="{{ url_for(".resolve", prefix=example_prefix, identifier=example_identifier) }}" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-share-square"></i> Resolve</h5>
                 </div>
-                <p class="mb-1">A compact identifier like <span class="badge badge-light">{{ example_url }}</span>.</p>
+                <p class="mb-1">
+                    A compact URI (CURIE) like <span class="badge badge-light">
+                    {{ curie_to_str(example_prefix, example_identifier) }}</span>.
+                </p>
             </a>
-            <a href="{{ url_for('ui.resources') }}"
+            <a href="{{ url_for('metaregistry_ui.resources') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-list"></i> View Registry</h5>
@@ -82,7 +87,7 @@
                 </div>
                 <p class="mb-1">The integrative registry of databases, ontologies, and resources.</p>
             </a>
-            <a href="{{ url_for('ui.metaresources') }}"
+            <a href="{{ url_for('metaregistry_ui.metaresources') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-atom"></i> View Metaregistry</h5>
@@ -90,15 +95,17 @@
                 </div>
                 <p class="mb-1">The registry of registries.</p>
             </a>
-            <a href="{{ url_for('ui.collections') }}"
+            {% if manager.collections | length > 0 %}
+            <a href="{{ url_for('metaregistry_ui.collections') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-layer-group"></i> View Collections</h5>
-                    <small class="text-muted">{{ collections_size }} collections</small>
+                    <small class="text-muted">{{ manager.collections | length }} collections</small>
                 </div>
                 <p class="mb-1">Manually curated subsets of the registry.</p>
             </a>
-            <a href="{{ url_for('ui.contributors') }}"
+            {% endif %}
+            <a href="{{ url_for('metaregistry_ui.contributors') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-users"></i> View Contributors</h5>
@@ -106,7 +113,8 @@
                 </div>
                 <p class="mb-1">Contributors to the {{ config.METAREGISTRY_TITLE }}</p>
             </a>
-            <a href="{{ url_for('ui.summary') }}"
+            {% if config.METAREGISTRY_FIRST_PARTY %}
+            <a href="{{ url_for('metaregistry_ui.summary') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-book"></i> Learn</h5>
@@ -116,7 +124,7 @@
                 </p>
                 {# <small class="text-muted">Donec id elit non mi porta.</small> #}
             </a>
-            <a href="{{ url_for('ui.download') }}"
+            <a href="{{ url_for('metaregistry_ui.download') }}"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><i class="fas fa-download"></i> Download</h5>
@@ -126,6 +134,7 @@
                 </p>
                 <small class="text-muted">Available under the CC0 1.0 Universal License.</small>
             </a>
+            {% endif %}
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -178,7 +187,7 @@
                 current_result: null,
                 last_yielding_result: null,
                 error_message: null,
-                autocomplete_url: "{{ url_for('api.autocomplete') }}"
+                autocomplete_url: "{{ url_for('metaregistry_api.autocomplete') }}"
             },
             methods: {
                 /// Get the data to suggest auto-completes to the prefix.

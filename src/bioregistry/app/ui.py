@@ -6,9 +6,19 @@ import datetime
 import itertools as itt
 import platform
 from operator import attrgetter
+from pathlib import Path
 from typing import Optional
 
-from flask import Blueprint, abort, jsonify, redirect, render_template, request, url_for
+from flask import (
+    Blueprint,
+    abort,
+    current_app,
+    jsonify,
+    redirect,
+    render_template,
+    request,
+    url_for,
+)
 from markdown import markdown
 
 import bioregistry
@@ -44,7 +54,8 @@ __all__ = [
     "ui_blueprint",
 ]
 
-ui_blueprint = Blueprint("ui", __name__)
+TEMPLATES = Path(__file__).parent.resolve().joinpath("templates")
+ui_blueprint = Blueprint("metaregistry_ui", __name__, template_folder=TEMPLATES)
 
 FORMATS = [
     ("JSON", "json"),
@@ -408,7 +419,8 @@ def _s(prefixes):
 @ui_blueprint.route("/")
 def home():
     """Render the homepage."""
-    example_prefix, example_identifier = "chebi", "138488"
+    example_prefix = current_app.config["METAREGISTRY_EXAMPLE_PREFIX"]
+    example_identifier = manager.get_example(example_prefix)
     example_url = manager.get_bioregistry_iri(example_prefix, example_identifier)
     return render_template(
         "home.html",
@@ -482,7 +494,8 @@ def sustainability():
 @ui_blueprint.route("/usage")
 def usage():
     """Render the programmatic usage page."""
-    return render_template("meta/access.html")
+    resource = manager.get_resource(current_app.config["METAREGISTRY_EXAMPLE_PREFIX"])
+    return render_template("meta/access.html", resource=resource)
 
 
 @ui_blueprint.route("/schema/")

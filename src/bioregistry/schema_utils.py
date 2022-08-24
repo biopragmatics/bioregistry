@@ -8,7 +8,7 @@ from collections import defaultdict
 from functools import lru_cache
 from operator import attrgetter
 from pathlib import Path
-from typing import List, Mapping, Set, Union
+from typing import List, Mapping, Optional, Set, Union
 
 from .constants import (
     BIOREGISTRY_PATH,
@@ -26,7 +26,11 @@ logger = logging.getLogger(__name__)
 @lru_cache(maxsize=1)
 def read_metaregistry() -> Mapping[str, Registry]:
     """Read the metaregistry."""
-    with open(METAREGISTRY_PATH, encoding="utf-8") as file:
+    return _read_metaregistry(METAREGISTRY_PATH)
+
+
+def _read_metaregistry(path: Union[str, Path]) -> Mapping[str, Registry]:
+    with open(path, encoding="utf-8") as file:
         data = json.load(file)
     return {
         registry.prefix: registry
@@ -112,9 +116,11 @@ def write_collections(collections: Mapping[str, Collection]) -> None:
         )
 
 
-def write_registry(registry: Mapping[str, Resource]):
+def write_registry(registry: Mapping[str, Resource], path: Optional[Path] = None) -> None:
     """Write to the Bioregistry."""
-    with open(BIOREGISTRY_PATH, mode="w", encoding="utf-8") as file:
+    if path is None:
+        path = BIOREGISTRY_PATH
+    with path.open(mode="w", encoding="utf-8") as file:
         json.dump(
             registry, file, indent=2, sort_keys=True, ensure_ascii=False, default=extended_encoder
         )

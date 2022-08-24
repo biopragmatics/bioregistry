@@ -32,7 +32,7 @@ __all__ = [
     "api_blueprint",
 ]
 
-api_blueprint = Blueprint("api", __name__, url_prefix="/api")
+api_blueprint = Blueprint("metaregistry_api", __name__, url_prefix="/api")
 
 
 @api_blueprint.route("/registry")
@@ -375,7 +375,7 @@ def search():
     q = request.args.get("q")
     if q is None:
         abort(400)
-    return jsonify(_search(q))
+    return jsonify(_search(manager, q))
 
 
 @api_blueprint.route("/autocomplete")

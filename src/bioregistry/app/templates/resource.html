@@ -26,7 +26,7 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h5 style="margin: 0"><a href="{{ url_for("ui.resources") }}">Registry</a> <i
+                    <h5 style="margin: 0"><a href="{{ url_for("metaregistry_ui.resources") }}">Registry</a> <i
                             class="fas fa-angle-right"></i> {{ name }}
                         {{ utils.render_resource_warnings(resource) }}
                     </h5>
@@ -41,7 +41,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for("api.resource", prefix=prefix, format=key) }}">
+                                   href="{{ url_for("metaregistry_api.resource", prefix=prefix, format=key) }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
@@ -175,17 +175,17 @@
                 <dt>Example Local Unique Identifier{% if resource.example_extras %}s{% endif %}</dt>
                 <dd>
                     {% if example %}
-                        <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example }}</a>
+                        <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example) }}">{{ example }}</a>
                         {% if providers %}
                         &nbsp;
-                        <a class="badge badge-pill badge-info" href="{{ url_for("ui.resolve", prefix=prefix, identifier=example) }}"><i class="fas fa-share-square"></i> Resolve</a>
+                        <a class="badge badge-pill badge-info" href="{{ url_for("metaregistry_ui.resolve", prefix=prefix, identifier=example) }}"><i class="fas fa-share-square"></i> Resolve</a>
                         {% endif %}
                         {% for extra_example in example_extras %}
                             <br />
-                            <a href="{{ url_for("ui.reference", prefix=prefix, identifier=extra_example) }}">{{ extra_example }}</a>
+                            <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=extra_example) }}">{{ extra_example }}</a>
                             {% if providers %}
                                 &nbsp;
-                                <a class="badge badge-pill badge-info" href="{{ url_for("ui.resolve", prefix=prefix, identifier=extra_example) }}"><i class="fas fa-share-square"></i> Resolve</a>
+                                <a class="badge badge-pill badge-info" href="{{ url_for("metaregistry_ui.resolve", prefix=prefix, identifier=extra_example) }}"><i class="fas fa-share-square"></i> Resolve</a>
                             {% endif %}
                         {% endfor %}
                     {% elif has_no_terms %}
@@ -210,10 +210,10 @@
                 <dt>Example CURIE{% if resource.example_extras %}s{% endif %}</dt>
                 <dd>
                     {% if example_curie %}
-                        <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example) }}">{{ example_curie }}</a>
+                        <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example) }}">{{ example_curie }}</a>
                         {% for example_curie_extra, example_extra in zip(example_curie_extras, example_extras) %}
                             <br />
-                            <a href="{{ url_for("ui.reference", prefix=prefix, identifier=example_extra) }}">{{ example_curie_extra }}</a>
+                            <a href="{{ url_for("metaregistry_ui.reference", prefix=prefix, identifier=example_extra) }}">{{ example_curie_extra }}</a>
                         {% endfor %}
                     {% elif has_no_terms %}
                         <span class="badge badge-pill badge-secondary">No Terms in {{ prefix }}</span>
@@ -269,12 +269,12 @@
                         <ul>
                             {% if resource.contributor %}
                                 <li>
-                                    <span class="badge badge-info">submitter</span> {{ utils.render_author(resource.contributor, link=url_for('ui.contributor', orcid=resource.contributor.orcid)) }}
+                                    <span class="badge badge-info">submitter</span> {{ utils.render_author(resource.contributor, link=url_for('metaregistry_ui.contributor', orcid=resource.contributor.orcid)) }}
                                 </li>
                             {% endif %}
                             {% for contributor in resource.contributor_extras or [] %}
                                 <li>
-                                    <span class="badge badge-info">contributor</span> {{ utils.render_author(contributor, link=url_for('ui.contributor', orcid=contributor.orcid)) }}
+                                    <span class="badge badge-info">contributor</span> {{ utils.render_author(contributor, link=url_for('metaregistry_ui.contributor', orcid=contributor.orcid)) }}
                                 </li>
                             {% endfor %}
                         </ul>
@@ -283,7 +283,7 @@
                 {% if resource.reviewer %}
                     <dt>Reviewer</dt>
                     <dd>
-                        {{ utils.render_author(resource.reviewer, link=url_for('ui.contributor', orcid=resource.reviewer.orcid)) }}
+                        {{ utils.render_author(resource.reviewer, link=url_for('metaregistry_ui.contributor', orcid=resource.reviewer.orcid)) }}
                     </dd>
                 {% endif %}
             </dl>
@@ -302,7 +302,7 @@
                         Provides
                     </dt>
                     <dd>
-                        <a href="{{ url_for("ui.resource", prefix=provides) }}"
+                        <a href="{{ url_for("metaregistry_ui.resource", prefix=provides) }}"
                            class="badge badge-pill badge-light" data-toggle="tooltip"
                            title="{{ manager.get_name(provides) }}">
                             {{ manager.get_preferred_prefix(provides) or provides }}
@@ -315,7 +315,7 @@
                     </dt>
                     <dd>
                         {% for rel_prefix in provided_by %}
-                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                            <a href="{{ url_for("metaregistry_ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
                                title="{{ manager.get_name(rel_prefix) }}">
                                 {{ manager.get_preferred_prefix(rel_prefix) or rel_prefix }}
@@ -328,7 +328,7 @@
                         Part Of
                     </dt>
                     <dd>
-                        <a href="{{ url_for("ui.resource", prefix=part_of) }}"
+                        <a href="{{ url_for("metaregistry_ui.resource", prefix=part_of) }}"
                            class="badge badge-pill badge-light" data-toggle="tooltip"
                            title="{{ manager.get_name(part_of) }}">
                             {{ manager.get_preferred_prefix(part_of) or part_of }}
@@ -341,7 +341,7 @@
                     </dt>
                     <dd>
                         {% for rel_prefix in has_parts %}
-                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                            <a href="{{ url_for("metaregistry_ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
                                title="{{ manager.get_name(rel_prefix) }}">
                                 {{ manager.get_preferred_prefix(rel_prefix) or rel_prefix }}
@@ -354,7 +354,7 @@
                         Has Canonical
                     </dt>
                     <dd>
-                        <a href="{{ url_for("ui.resource", prefix=has_canonical) }}"
+                        <a href="{{ url_for("metaregistry_ui.resource", prefix=has_canonical) }}"
                            class="badge badge-pill badge-light" data-toggle="tooltip"
                            title="{{ manager.get_name(has_canonical) }}">
                             {{ manager.get_preferred_prefix(has_canonical) or has_canonical }}
@@ -367,7 +367,7 @@
                     </dt>
                     <dd>
                         {% for rel_prefix in canonical_for %}
-                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                            <a href="{{ url_for("metaregistry_ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
                                title="{{ manager.get_name(rel_prefix) }}">
                                 {{ manager.get_preferred_prefix(rel_prefix) or rel_prefix }}
@@ -381,7 +381,7 @@
                     </dt>
                     <dd>
                         {% for rel_prefix in depends_on %}
-                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                            <a href="{{ url_for("metaregistry_ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
                                title="{{ manager.get_name(rel_prefix) }}">
                                 {{ manager.get_preferred_prefix(rel_prefix) or rel_prefix }}
@@ -395,7 +395,7 @@
                     </dt>
                     <dd>
                         {% for rel_prefix in appears_in %}
-                            <a href="{{ url_for("ui.resource", prefix=rel_prefix) }}"
+                            <a href="{{ url_for("metaregistry_ui.resource", prefix=rel_prefix) }}"
                                class="badge badge-pill badge-light" data-toggle="tooltip"
                                title="{{ manager.get_name(rel_prefix) }}">
                                 {{ manager.get_preferred_prefix(rel_prefix) }}
