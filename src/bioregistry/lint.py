@@ -24,7 +24,10 @@ def lint():
         if resource.synonyms:
             resource.synonyms = sorted(resource.synonyms)
     write_registry(registry)
-    write_collections(read_collections())
+    collections = read_collections()
+    for collection in collections.values():
+        collection.resources = sorted(collection.resources)
+    write_collections(collections)
     write_metaregistry(read_metaregistry())
     write_contexts(read_contexts())
 
