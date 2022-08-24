@@ -149,7 +149,7 @@ class TestWeb(unittest.TestCase):
     def test_search(self):
         """Test search."""
         with self.app.test_client() as client:
-            res = client.get(f"/api/search?q=che")
+            res = client.get("/api/search?q=che")
             self.assertEqual(200, res.status_code)
 
     def test_autocomplete(self):
