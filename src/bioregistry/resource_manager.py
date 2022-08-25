@@ -529,6 +529,7 @@ class Manager:
             download_obo=resource.get_download_obo(),
             download_json=resource.get_download_obograph(),
             download_owl=resource.get_download_owl(),
+            download_rdf=resource.get_download_rdf(),
             # Registry properties
             example=resource.get_example(),
             example_extras=resource.example_extras,
@@ -537,6 +538,7 @@ class Manager:
             # Comments
             comment=resource.comment,
             references=resource.references,
+            publications=resource.get_publications(),
             # MIRIAM compatibility
             banana=resource.get_banana(),
             banana_peel=resource.banana_peel,

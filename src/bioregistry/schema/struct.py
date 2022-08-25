@@ -165,6 +165,18 @@ class Publication(BaseModel):
     arxiv: Optional[str] = Field(title="arXiv", description="The arXiv identifier for the article")
     title: str = Field(description="The title of the article")
 
+    def get_url(self) -> str:
+        """Get a URL link."""
+        for prefix, identifier in [
+            ("pubmed", self.pubmed),
+            ("doi", self.doi),
+            ("pmc", self.pmc),
+            ("arxiv", self.arxiv),
+        ]:
+            if identifier is not None:
+                return f"https://bioregistry.io/{prefix}:{identifier}"
+        raise ValueError("no fields were full")
+
 
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
@@ -921,38 +933,28 @@ class Resource(BaseModel):
                 return True
         return False
 
-    def get_publications(self):
+    def get_publications(self) -> List[Publication]:
         """Get a list of publications."""
-        rv = {}
-        for publication in self.publications or []:
-            if publication.pubmed:
-                rv[f"https://bioregistry.io/pubmed:{publication.pubmed}"] = publication.title
-            elif publication.doi:
-                rv[f"https://bioregistry.io/doi:{publication.doi}"] = publication.title
+        publications = self.publications or []
         if self.obofoundry:
             for publication in self.obofoundry.get("publications", []):
                 url, title = publication["id"], publication["title"]
                 if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
-                    pmid = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
-                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
+                    pubmed = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
+                    publications.append(Publication(pubmed=pubmed, title=title))
                 else:
                     logger.warning("unhandled obo foundry publication ID: %s", url)
         if self.fairsharing:
             for publication in self.fairsharing.get("publications", []):
-                pmid = publication.get("pubmed_id")
+                pubmed = publication.get("pubmed_id")
+                doi = publication.get("doi")
                 title = publication.get("title")
-                if pmid:
-                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
-                else:
-                    doi = publication["doi"]
-                    rv[f"https://bioregistry.io/doi:{doi}"] = title
+                if pubmed or doi:
+                    publications.append(Publication(pubmed=pubmed, doi=doi, title=title))
         if self.prefixcommons:
-            for pmid in self.prefixcommons.get("pubmed_ids", []):
-                url = f"https://bioregistry.io/pubmed:{pmid}"
-                if url in rv:
-                    continue
-                rv[url] = None
-        return [{"id": k, "title": v} for k, v in sorted(rv.items())]
+            for pubmed in self.prefixcommons.get("pubmed_ids", []):
+                publications.append(Publication(pubmed=pubmed, title="<unknown>"))
+        return deduplicate_publications(publications)
 
     def get_twitter(self) -> Optional[str]:
         """Get the Twitter handle for ther resource."""
@@ -2095,6 +2097,10 @@ def _get(resource, key):
         return "|".join(sorted(x))
     return x or ""
 
+def deduplicate_publications(publications: List[Publication]) -> List[Publication]:
+    """Deduplicate publications."""
+    # TODO
+    return publications
 
 def main():
     """Dump the JSON schemata."""
