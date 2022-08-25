@@ -20,6 +20,7 @@ from typing import (
     Optional,
     Sequence,
     Set,
+    Tuple,
     Union,
     cast,
 )
@@ -165,7 +166,8 @@ class Publication(BaseModel):
     )
     title: Optional[str] = Field(description="The title of the article")
 
-    def key(self):
+    def key(self) -> Tuple[str, ...]:
+        """Create a key based on identifiers in this data structure."""
         return self.pubmed or "", self.doi or "", self.pmc or ""
 
     def get_url(self) -> str:
