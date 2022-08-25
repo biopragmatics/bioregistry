@@ -944,13 +944,13 @@ class Resource(BaseModel):
                     pubmed = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
                     publications.append(Publication(pubmed=pubmed, title=title))
                 elif url.startswith("https://doi.org/"):
-                    doi = url[len("https://doi.org/"): ]
+                    doi = url[len("https://doi.org/") :]
                     publications.append(Publication(doi=doi, title=title))
                 elif url.startswith("https://zenodo.org/record/"):
-                    zenodo = url[len("https://zenodo.org/record/"): ]
+                    zenodo = url[len("https://zenodo.org/record/") :]
                     publications.append(Publication(zenodo=zenodo, title=title))
                 elif url.startswith("https://www.medrxiv.org/content/"):
-                    doi = url[len("https://www.medrxiv.org/content/"): ]
+                    doi = url[len("https://www.medrxiv.org/content/") :]
                     publications.append(Publication(doi=doi, title=title))
                 elif "ceur-ws.org" in url:
                     continue
@@ -2109,10 +2109,12 @@ def _get(resource, key):
         return "|".join(sorted(x))
     return x or ""
 
+
 def deduplicate_publications(publications: List[Publication]) -> List[Publication]:
     """Deduplicate publications."""
     # TODO
     return publications
+
 
 def main():
     """Dump the JSON schemata."""
