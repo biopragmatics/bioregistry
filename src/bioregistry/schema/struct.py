@@ -163,6 +163,7 @@ class Publication(BaseModel):
         title="PMC", description="The PubMed Central identifier for the article"
     )
     arxiv: Optional[str] = Field(title="arXiv", description="The arXiv identifier for the article")
+    zenodo: Optional[str] = Field(title="Zenodo", description="The Zenodo record for the article")
     title: str = Field(description="The title of the article")
 
     def get_url(self) -> str:
@@ -942,6 +943,17 @@ class Resource(BaseModel):
                 if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
                     pubmed = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
                     publications.append(Publication(pubmed=pubmed, title=title))
+                elif url.startswith("https://doi.org/"):
+                    doi = url[len("https://doi.org/"): ]
+                    publications.append(Publication(doi=doi, title=title))
+                elif url.startswith("https://zenodo.org/record/"):
+                    zenodo = url[len("https://zenodo.org/record/"): ]
+                    publications.append(Publication(zenodo=zenodo, title=title))
+                elif url.startswith("https://www.medrxiv.org/content/"):
+                    doi = url[len("https://www.medrxiv.org/content/"): ]
+                    publications.append(Publication(doi=doi, title=title))
+                elif "ceur-ws.org" in url:
+                    continue
                 else:
                     logger.warning("unhandled obo foundry publication ID: %s", url)
         if self.fairsharing:
