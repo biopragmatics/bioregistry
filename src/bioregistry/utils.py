@@ -25,6 +25,10 @@ logger = logging.getLogger(__name__)
 WIKIDATA_ENDPOINT = "https://query.wikidata.org/bigdata/namespace/wdq/sparql"
 
 
+class OLSBroken(RuntimeError):
+    """Raised when the OLS is having a problem."""
+
+
 def secho(s, fg="cyan", bold=True, **kwargs):
     """Wrap :func:`click.secho`."""
     click.echo(
@@ -155,7 +159,10 @@ def get_ols_descendants(
     res = requests.get(url)
     res.raise_for_status()
     res_json = res.json()
-    terms = res_json["_embedded"]["terms"]
+    try:
+        terms = res_json["_embedded"]["terms"]
+    except KeyError:
+        raise OLSBroken from None
     return _process_ols(ontology=ontology, terms=terms, clean=clean, get_identifier=get_identifier)
 
 

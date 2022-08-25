@@ -10,7 +10,7 @@ from more_click import make_web_command
 from .compare import compare
 from .export.cli import export
 from .lint import lint
-from .utils import get_hexdigests, secho
+from .utils import OLSBroken, get_hexdigests, secho
 from .version import VERSION
 
 
@@ -63,7 +63,7 @@ def align(skip_fairsharing: bool):
         secho(f"Aligning {aligner_cls.key}")
         try:
             aligner_cls.align()
-        except IOError as e:
+        except (IOError, OLSBroken) as e:
             secho(f"Failed to align {aligner_cls.key}: {e}", fg="red")
 
     if pre_digests != get_hexdigests():
