@@ -7,6 +7,7 @@ import logging
 import pathlib
 import re
 import textwrap
+from collections import defaultdict
 from functools import lru_cache
 from operator import attrgetter
 from typing import (
@@ -162,9 +163,10 @@ class Publication(BaseModel):
     pmc: Optional[str] = Field(
         title="PMC", description="The PubMed Central identifier for the article"
     )
-    arxiv: Optional[str] = Field(title="arXiv", description="The arXiv identifier for the article")
-    zenodo: Optional[str] = Field(title="Zenodo", description="The Zenodo record for the article")
-    title: str = Field(description="The title of the article")
+    title: Optional[str] = Field(description="The title of the article")
+
+    def key(self):
+        return self.pubmed or "", self.doi or "", self.pmc or ""
 
     def get_url(self) -> str:
         """Get a URL link."""
@@ -172,7 +174,6 @@ class Publication(BaseModel):
             ("pubmed", self.pubmed),
             ("doi", self.doi),
             ("pmc", self.pmc),
-            ("arxiv", self.arxiv),
         ]:
             if identifier is not None:
                 return f"https://bioregistry.io/{prefix}:{identifier}"
@@ -946,12 +947,12 @@ class Resource(BaseModel):
                 elif url.startswith("https://doi.org/"):
                     doi = url[len("https://doi.org/") :]
                     publications.append(Publication(doi=doi, title=title))
-                elif url.startswith("https://zenodo.org/record/"):
-                    zenodo = url[len("https://zenodo.org/record/") :]
-                    publications.append(Publication(zenodo=zenodo, title=title))
+
                 elif url.startswith("https://www.medrxiv.org/content/"):
                     doi = url[len("https://www.medrxiv.org/content/") :]
                     publications.append(Publication(doi=doi, title=title))
+                elif url.startswith("https://zenodo.org/record/"):
+                    continue
                 elif "ceur-ws.org" in url:
                     continue
                 else:
@@ -965,7 +966,7 @@ class Resource(BaseModel):
                     publications.append(Publication(pubmed=pubmed, doi=doi, title=title))
         if self.prefixcommons:
             for pubmed in self.prefixcommons.get("pubmed_ids", []):
-                publications.append(Publication(pubmed=pubmed, title="<unknown>"))
+                publications.append(Publication(pubmed=pubmed))
         return deduplicate_publications(publications)
 
     def get_twitter(self) -> Optional[str]:
@@ -2112,8 +2113,32 @@ def _get(resource, key):
 
 def deduplicate_publications(publications: List[Publication]) -> List[Publication]:
     """Deduplicate publications."""
-    # TODO
-    return publications
+    d = defaultdict(list)
+
+    # Index mappings
+    doi_to_pmid = {}
+    pmid_to_doi = {}
+    for p in publications:
+        if p.doi and p.pubmed:
+            doi_to_pmid[p.doi] = p.pubmed
+            pmid_to_doi[p.pubmed] = p.doi
+    for p in publications:
+        # apply mappings
+        if p.doi and not p.pubmed:
+            p.pubmed = doi_to_pmid.get(p.doi)
+        elif p.pubmed and not p.doi:
+            p.doi = pmid_to_doi.get(p.pubmed)
+        # index by key
+        d[p.key()].append(p)
+
+    for k, vs in d.items():
+        try:
+            title = next(v.title for v in vs if v.title)
+        except StopIteration:
+            continue
+        else:
+            vs[0].title = title
+    return [v[0] for _, v in sorted(d.items())]
 
 
 def main():
