@@ -602,7 +602,7 @@ bioregistry:apaonto a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "Abdomen"^^xsd:string ;
     bioregistry.schema:0000006 "http://ontology.apa.org/apaonto/termsonlyOUT%20(5).owl#$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0003-1238-2539 .
+    bioregistry.schema:0000019 orcid:0000-0003-1082-8760 .
 
 bioregistry:apd a bioregistry.schema:0000001 ;
     rdfs:label "Antimicrobial Peptide Database" ;
@@ -3976,12 +3976,14 @@ bioregistry:erm a bioregistry.schema:0000001 ;
     dc:description "The European Registry of Materials is a simple registry with the sole purpose to mint material identifiers to be used by research projects throughout the life cycle of their project."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch n2t:erm,
-        miriam:erm ;
+        miriam:erm,
+        cheminf:000569 ;
     foaf:homepage "https://nanocommons.github.io/identifiers/"^^xsd:string ;
     bioregistry.schema:0000005 "ERM00000044"^^xsd:string ;
     bioregistry.schema:0000006 "https://nanocommons.github.io/identifiers/registry#$1"^^xsd:string ;
     bioregistry.schema:0000008 "^ERM[0-9]{8}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-7542-0286 .
 
 bioregistry:ero a bioregistry.schema:0000001 ;
     rdfs:label "eagle-i resource ontology" ;
@@ -12687,7 +12689,7 @@ orcid:0000-0003-0705-9809 rdfs:label "Rahuman Sheriff" .
 
 orcid:0000-0003-1058-2668 rdfs:label "Danielle Welter" .
 
-orcid:0000-0003-1238-2539 rdfs:label "Alexander Garcia Castro" .
+orcid:0000-0003-1082-8760 rdfs:label "Alvin Walker" .
 
 orcid:0000-0003-1346-1327 rdfs:label "Brian Aevermann" .
 
@@ -25200,8 +25202,6 @@ fairsharing:FAIRsharing.zx2ztd dcterms:isPartOf bioregistry.metaresource:fairsha
 
 orcid:0000-0001-6512-3296 rdfs:label "Peter Midford" .
 
-orcid:0000-0001-7542-0286 rdfs:label "Egon Willighagen" .
-
 orcid:0000-0001-9076-6015 rdfs:label "Chris Grove" .
 
 orcid:0000-0001-9114-8737 rdfs:label "Melissa Haendel" .
@@ -27593,6 +27593,8 @@ cheminf:000563 dcterms:isPartOf bioregistry.metaresource:cheminf .
 cheminf:000564 dcterms:isPartOf bioregistry.metaresource:cheminf .
 
 cheminf:000567 dcterms:isPartOf bioregistry.metaresource:cheminf .
+
+cheminf:000569 dcterms:isPartOf bioregistry.metaresource:cheminf .
 
 ols:chiro dcterms:isPartOf bioregistry.metaresource:ols .
 
@@ -30475,6 +30477,8 @@ orcid:0000-0001-5208-3432 rdfs:label "Nicole Vasilevsky" .
 orcid:0000-0001-6330-7526 rdfs:label "Val Wood" ;
     dcterms:contributor bioregistry:fyeco .
 
+orcid:0000-0001-7542-0286 rdfs:label "Egon Willighagen" .
+
 orcid:0000-0001-8815-0078 rdfs:label "Ramona Walls" .
 
 orcid:0000-0001-9896-3531 rdfs:label "Alpha Tom Kodamullil",
@@ -31760,29 +31764,6 @@ bioregistry:ecto a bioregistry.schema:0000001 ;
         bioregistry:xco ;
     bioregistry.schema:0000019 orcid:0000-0002-2908-3327 .
 
-bioregistry.metaresource:cheminf a bioregistry.schema:0000002 ;
-    rdfs:label "Chemical Information Ontology" ;
-    dc:description "Contains entries for various database identifiers" ;
-    dcterms:hasPart cheminf:000140,
-        cheminf:000141,
-        cheminf:000302,
-        cheminf:000304,
-        cheminf:000405,
-        cheminf:000406,
-        cheminf:000407,
-        cheminf:000408,
-        cheminf:000409,
-        cheminf:000411,
-        cheminf:000412,
-        cheminf:000446,
-        cheminf:000563,
-        cheminf:000564,
-        cheminf:000567 ;
-    foaf:homepage "https://github.com/semanticchemistry/semanticchemistry" ;
-    bioregistry.schema:0000005 "000140" ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_$1" ;
-    bioregistry.schema:0000019 orcid:0000-0001-7542-0286 .
-
 bioregistry:agro a bioregistry.schema:0000001 ;
     rdfs:label "Agronomy Ontology" ;
     dc:description "AgrO is an ontlogy for representing agronomic practices, techniques, variables and related entities"^^xsd:string ;
@@ -31922,6 +31903,30 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
         bioregistry:pcl,
         bioregistry:pco ;
     bioregistry.schema:0000019 orcid:0000-0002-9415-5104 .
+
+bioregistry.metaresource:cheminf a bioregistry.schema:0000002 ;
+    rdfs:label "Chemical Information Ontology" ;
+    dc:description "Contains entries for various database identifiers" ;
+    dcterms:hasPart cheminf:000140,
+        cheminf:000141,
+        cheminf:000302,
+        cheminf:000304,
+        cheminf:000405,
+        cheminf:000406,
+        cheminf:000407,
+        cheminf:000408,
+        cheminf:000409,
+        cheminf:000411,
+        cheminf:000412,
+        cheminf:000446,
+        cheminf:000563,
+        cheminf:000564,
+        cheminf:000567,
+        cheminf:000569 ;
+    foaf:homepage "https://github.com/semanticchemistry/semanticchemistry" ;
+    bioregistry.schema:0000005 "000140" ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_$1" ;
+    bioregistry.schema:0000019 orcid:0000-0001-7542-0286 .
 
 bioregistry:kegg a bioregistry.schema:0000001 ;
     rdfs:label "Kyoto Encyclopedia of Genes and Genomes" ;
