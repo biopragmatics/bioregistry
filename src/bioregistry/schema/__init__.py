@@ -7,6 +7,7 @@ from .struct import (  # noqa:F401
     Author,
     Collection,
     Context,
+    Publication,
     Registry,
     Resource,
     get_json_schema,

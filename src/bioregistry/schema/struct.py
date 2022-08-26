@@ -7,6 +7,7 @@ import logging
 import pathlib
 import re
 import textwrap
+from collections import defaultdict
 from functools import lru_cache
 from operator import attrgetter
 from typing import (
@@ -19,6 +20,7 @@ from typing import (
     Optional,
     Sequence,
     Set,
+    Tuple,
     Union,
     cast,
 )
@@ -162,8 +164,22 @@ class Publication(BaseModel):
     pmc: Optional[str] = Field(
         title="PMC", description="The PubMed Central identifier for the article"
     )
-    arxiv: Optional[str] = Field(title="arXiv", description="The arXiv identifier for the article")
-    title: str = Field(description="The title of the article")
+    title: Optional[str] = Field(description="The title of the article")
+
+    def key(self) -> Tuple[str, ...]:
+        """Create a key based on identifiers in this data structure."""
+        return self.pubmed or "", self.doi or "", self.pmc or ""
+
+    def get_url(self) -> str:
+        """Get a URL link."""
+        for prefix, identifier in [
+            ("pubmed", self.pubmed),
+            ("doi", self.doi),
+            ("pmc", self.pmc),
+        ]:
+            if identifier is not None:
+                return f"https://bioregistry.io/{prefix}:{identifier}"
+        raise ValueError("no fields were full")
 
 
 class Resource(BaseModel):
@@ -921,38 +937,38 @@ class Resource(BaseModel):
                 return True
         return False
 
-    def get_publications(self):
+    def get_publications(self) -> List[Publication]:
         """Get a list of publications."""
-        rv = {}
-        for publication in self.publications or []:
-            if publication.pubmed:
-                rv[f"https://bioregistry.io/pubmed:{publication.pubmed}"] = publication.title
-            elif publication.doi:
-                rv[f"https://bioregistry.io/doi:{publication.doi}"] = publication.title
+        publications = self.publications or []
         if self.obofoundry:
             for publication in self.obofoundry.get("publications", []):
                 url, title = publication["id"], publication["title"]
                 if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
-                    pmid = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
-                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
+                    pubmed = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
+                    publications.append(Publication(pubmed=pubmed, title=title))
+                elif url.startswith("https://doi.org/"):
+                    doi = url[len("https://doi.org/") :]
+                    publications.append(Publication(doi=doi, title=title))
+                elif url.startswith("https://www.medrxiv.org/content/"):
+                    doi = url[len("https://www.medrxiv.org/content/") :]
+                    publications.append(Publication(doi=doi, title=title))
+                elif url.startswith("https://zenodo.org/record/"):
+                    continue
+                elif "ceur-ws.org" in url:
+                    continue
                 else:
                     logger.warning("unhandled obo foundry publication ID: %s", url)
         if self.fairsharing:
             for publication in self.fairsharing.get("publications", []):
-                pmid = publication.get("pubmed_id")
+                pubmed = publication.get("pubmed_id")
+                doi = publication.get("doi")
                 title = publication.get("title")
-                if pmid:
-                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
-                else:
-                    doi = publication["doi"]
-                    rv[f"https://bioregistry.io/doi:{doi}"] = title
+                if pubmed or doi:
+                    publications.append(Publication(pubmed=pubmed, doi=doi, title=title))
         if self.prefixcommons:
-            for pmid in self.prefixcommons.get("pubmed_ids", []):
-                url = f"https://bioregistry.io/pubmed:{pmid}"
-                if url in rv:
-                    continue
-                rv[url] = None
-        return [{"id": k, "title": v} for k, v in sorted(rv.items())]
+            for pubmed in self.prefixcommons.get("pubmed_ids", []):
+                publications.append(Publication(pubmed=pubmed))
+        return deduplicate_publications(publications)
 
     def get_twitter(self) -> Optional[str]:
         """Get the Twitter handle for ther resource."""
@@ -2094,6 +2110,50 @@ def _get(resource, key):
     if isinstance(x, (list, set)):
         return "|".join(sorted(x))
     return x or ""
+
+
+def deduplicate_publications(publications: List[Publication]) -> List[Publication]:
+    """Deduplicate publications."""
+    d = defaultdict(list)
+
+    # Index mappings
+    doi_to_pmid = {}
+    pmid_to_doi = {}
+    doi_to_pmc = {}
+    pmc_to_doi = {}
+    pmid_to_pmc = {}
+    pmc_to_pmid = {}
+    for p in publications:
+        if p.doi and p.pubmed:
+            doi_to_pmid[p.doi] = p.pubmed
+            pmid_to_doi[p.pubmed] = p.doi
+        if p.doi and p.pmc:
+            doi_to_pmc[p.doi] = p.pmc
+            pmc_to_doi[p.pmc] = p.doi
+        if p.pubmed and p.pmc:
+            pmid_to_pmc[p.pubmed] = p.pmc
+            pmc_to_pmid[p.pmc] = p.pubmed
+    for p in publications:
+        # apply mappings
+        if p.doi and not p.pubmed:
+            p.pubmed = doi_to_pmid.get(p.doi)
+        if p.pubmed and not p.doi:
+            p.doi = pmid_to_doi.get(p.pubmed)
+        if p.doi and not p.pmc:
+            p.pmc = doi_to_pmc.get(p.doi)
+        if p.pubmed and not p.pmc:
+            p.pmc = pmid_to_pmc.get(p.pubmed)
+        # todo not exhaustive, doesn't account for multi-hop mappings
+        d[p.key()].append(p)
+
+    for vs in d.values():
+        try:
+            title = next(v.title for v in vs if v.title)
+        except StopIteration:
+            continue
+        else:
+            vs[0].title = title
+    return [v[0] for _, v in sorted(d.items())]
 
 
 def main():

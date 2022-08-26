@@ -806,3 +806,17 @@ class TestRegistry(unittest.TestCase):
                     self.assertNotIn("pubmed", reference)
                     self.assertNotIn("pmc", reference)
                     self.assertNotIn("arxiv", reference)
+
+                if resource.publications:
+                    for publication in resource.publications:
+                        self.assertIsNotNone(publication.title)
+                        self.assertLessEqual(
+                            1,
+                            sum(
+                                (
+                                    publication.doi is not None,
+                                    publication.pubmed is not None,
+                                    publication.pmc is not None,
+                                )
+                            ),
+                        )
