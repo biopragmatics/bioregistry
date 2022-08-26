@@ -2132,7 +2132,7 @@ def deduplicate_publications(publications: List[Publication]) -> List[Publicatio
         # index by key
         d[p.key()].append(p)
 
-    for k, vs in d.items():
+    for vs in d.values():
         try:
             title = next(v.title for v in vs if v.title)
         except StopIteration:
