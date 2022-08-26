@@ -3073,7 +3073,6 @@
     "viewOf": null,
     "viewingRestriction": "public",
     "views": [
-      "http://data.agroportal.lirmm.fr/ontologies/COMPOMKGPROCESS",
       "http://data.agroportal.lirmm.fr/ontologies/PO2-BIOREFINERY",
       "http://data.agroportal.lirmm.fr/ontologies/PO2_DG",
       "http://data.agroportal.lirmm.fr/ontologies/TRANSFORMON"
@@ -7517,8 +7516,10 @@
     "@type": "http://data.bioontology.org/metadata/Ontology",
     "acronym": "OEEV",
     "administeredBy": [
+      "http://data.agroportal.lirmm.fr/users/ialic",
       "http://data.agroportal.lirmm.fr/users/inraeadmin",
-      "http://data.agroportal.lirmm.fr/users/Lloren%C3%A7"
+      "http://data.agroportal.lirmm.fr/users/Lloren%C3%A7",
+      "http://data.agroportal.lirmm.fr/users/atireau"
     ],
     "flat": null,
     "group": [
@@ -8623,7 +8624,32 @@
   },
   {
     "@context": {
-      "@vocab": "http://data.bioontology.org/metadata/"
+      "@vocab": "http://data.bioontology.org/metadata/",
+      "acronym": "http://omv.ontoware.org/2005/05/ontology#acronym",
+      "administeredBy": {
+        "@id": "http://data.bioontology.org/metadata/User",
+        "@type": "@id"
+      },
+      "flat": "http://data.bioontology.org/metadata/flat",
+      "group": {
+        "@id": "http://data.bioontology.org/metadata/Group",
+        "@type": "@id"
+      },
+      "hasDomain": {
+        "@id": "http://data.bioontology.org/metadata/Category",
+        "@type": "@id"
+      },
+      "name": "http://omv.ontoware.org/2005/05/ontology#name",
+      "ontologyType": {
+        "@id": "http://data.bioontology.org/metadata/OntologyType",
+        "@type": "@id"
+      },
+      "summaryOnly": "http://data.bioontology.org/metadata/summaryOnly",
+      "viewOf": {
+        "@id": "http://data.bioontology.org/metadata/Ontology",
+        "@type": "@id"
+      },
+      "viewingRestriction": "http://data.bioontology.org/metadata/viewingRestriction"
     },
     "@id": "http://data.agroportal.lirmm.fr/ontologies/INFRARISK",
     "@type": "http://data.bioontology.org/metadata/Ontology",
