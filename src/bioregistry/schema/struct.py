@@ -949,7 +949,6 @@ class Resource(BaseModel):
                 elif url.startswith("https://doi.org/"):
                     doi = url[len("https://doi.org/") :]
                     publications.append(Publication(doi=doi, title=title))
-
                 elif url.startswith("https://www.medrxiv.org/content/"):
                     doi = url[len("https://www.medrxiv.org/content/") :]
                     publications.append(Publication(doi=doi, title=title))
