@@ -34,12 +34,18 @@ class TestResourceManager(unittest.TestCase):
     def test_rasterized_manager(self):
         """Test that generating a rasterized manager works the same for all functions."""
         rasterized_registry = self.manager._rasterized_registry()
-        self.assertEqual(set(self.manager.registry), set(rasterized_registry))
+        #: prefixes that are removed during rasterization, e.g., because the are providers
+        removed = {v for vs in self.manager.provided_by.values() for v in vs}
+        self.assertEqual(set(self.manager.registry) - removed, set(rasterized_registry))
         rast_manager = Manager(rasterized_registry)
-        self.assertEqual(set(self.manager.registry), set(rast_manager.registry))
-        self.assertEqual(self.manager.synonyms, rast_manager.synonyms)
-        for prefix in self.manager.registry:
+        self.assertEqual(set(self.manager.registry) - removed, set(rast_manager.registry))
+        #self.assertEqual(self.manager.synonyms, rast_manager.synonyms)
+        for prefix, resource in self.manager.registry.items():
             with self.subTest(prefix=prefix):
+                if resource.provides:
+                    self.assertNotIn(prefix, rast_manager.registry)
+                    continue
+
                 self.assertEqual(
                     self.manager.is_deprecated(prefix),
                     rast_manager.is_deprecated(prefix),
@@ -65,7 +71,7 @@ class TestResourceManager(unittest.TestCase):
                     rast_manager.get_preferred_prefix(prefix),
                 )
                 self.assertEqual(
-                    self.manager.get_synonyms(prefix),
+                    self.manager.get_synonyms(prefix).union(self.manager.provided_by.get(prefix, [])),
                     rast_manager.get_synonyms(prefix),
                 )
                 self.assertEqual(
@@ -81,8 +87,9 @@ class TestResourceManager(unittest.TestCase):
                     rast_manager.get_provides_for(prefix),
                 )
                 self.assertEqual(
-                    self.manager.get_provided_by(prefix),
+                    [],
                     rast_manager.get_provided_by(prefix),
+                    msg="All provider relationships should be removed in rasterization"
                 )
                 self.assertEqual(
                     self.manager.get_has_canonical(prefix),
