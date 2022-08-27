@@ -515,21 +515,27 @@ class Manager:
 
     def _rasterized_registry(self) -> Mapping[str, Resource]:
         return {
-            prefix: self._rasterized_resource(prefix, resource)
+            prefix: self._rasterized_resource(resource)
             for prefix, resource in self.registry.items()
+            if not resource.provides # those get handled in self._rasterize_resource
         }
 
-    def _rasterized_resource(self, prefix: str, resource: Resource) -> Resource:
-        return Resource(
+    def _rasterized_resource(self, resource: Resource) -> Resource:
+        syns = set()
+        for p in self.get_provided_by(resource.prefix):
+            r = self.registry[p]
+            syns.add(r.prefix)
+            syns.update(r.get_synonyms())
+        rv = Resource(
             prefix=resource.prefix,
-            preferred_prefix=resource.get_preferred_prefix() or prefix,
+            preferred_prefix=resource.get_preferred_prefix() or resource.prefix,
             name=resource.get_name(),
             description=resource.get_description(),
             pattern=resource.get_pattern(),
             homepage=resource.get_homepage(),
             license=resource.get_license(),
             version=resource.get_version(),
-            synonyms=resource.get_synonyms(),
+            synonyms={*resource.get_synonyms(), *syns},
             repository=resource.get_repository(),
             # Downloads
             download_obo=resource.get_download_obo(),
@@ -557,14 +563,15 @@ class Manager:
             part_of=resource.part_of,
             provides=resource.provides,
             has_canonical=resource.has_canonical,
-            appears_in=self.get_appears_in(prefix),
-            depends_on=self.get_depends_on(prefix),
+            appears_in=self.get_appears_in(resource),
+            depends_on=self.get_depends_on(resource),
             mappings=resource.get_mappings(),
             # Ontology Properties
             deprecated=resource.is_deprecated(),
             no_own_terms=resource.no_own_terms,
             proprietary=resource.proprietary,
         )
+        return rv
 
     def get_license_conflicts(self):
         """Get license conflicts."""
@@ -586,7 +593,7 @@ class Manager:
                 conflicts.append((prefix, override, obo_license, ols_license))
         return conflicts
 
-    def get_appears_in(self, prefix: str) -> Optional[List[str]]:
+    def get_appears_in(self, prefix: Union[str, Resource]) -> Optional[List[str]]:
         """Return a list of resources that this resources (has been annotated to) depends on.
 
         This is complementary to :func:`get_depends_on`.
@@ -597,14 +604,14 @@ class Manager:
             of sync with curation of the resource itself. However, false positives should
             be pretty rare.
         """
-        resource = self.get_resource(prefix)
+        resource = self.get_resource(prefix) if isinstance(prefix, str) else prefix
         if resource is None:
             return None
         rv = list(resource.appears_in or [])
         rv.extend(self._get_obo_list(prefix=prefix, resource=resource, key="appears_in"))
         return sorted(set(rv))
 
-    def get_depends_on(self, prefix: str) -> Optional[List[str]]:
+    def get_depends_on(self, prefix: Union[str, Resource]) -> Optional[List[str]]:
         """Return a list of resources that this resources (has been annotated to) depends on.
 
         This is complementary to :func:`get_appears_in`.
@@ -618,7 +625,7 @@ class Manager:
         >>> from bioregistry import manager
         >>> assert "bfo" in manager.get_depends_on("foodon")
         """
-        resource = self.get_resource(prefix)
+        resource = self.get_resource(prefix) if isinstance(prefix, str) else prefix
         if resource is None:
             return None
         rv = list(resource.depends_on or [])
