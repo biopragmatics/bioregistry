@@ -77,6 +77,7 @@ bioregistry.collection:0000002 a bioregistry.schema:0000003 ;
     dc:creator orcid:0000-0003-4423-4370 ;
     dc:description "Resources used in the semantic web, inspired by [this list](https://github.com/prefixcommons/biocontext/blob/master/registry/semweb_context.yaml) in BioContext." ;
     dcterms:hasPart bioregistry:ac,
+        bioregistry:bibo,
         bioregistry:dc,
         bioregistry:dcat,
         bioregistry:dcterms,
@@ -86,11 +87,21 @@ bioregistry.collection:0000002 a bioregistry.schema:0000003 ;
         bioregistry:idot,
         bioregistry:oa,
         bioregistry:oboinowl,
+        bioregistry:oslc,
         bioregistry:owl,
+        bioregistry:pav,
         bioregistry:prov,
+        bioregistry:qb,
+        bioregistry:qudt,
         bioregistry:rdf,
         bioregistry:rdfs,
+        bioregistry:schema,
+        bioregistry:shacl,
+        bioregistry:shex,
         bioregistry:skos,
+        bioregistry:skosxl,
+        bioregistry:swrl,
+        bioregistry:vann,
         bioregistry:void,
         bioregistry:xsd .
 
@@ -12550,8 +12561,6 @@ orcid:0000-0001-9625-1899 rdfs:label "Bill Duncan" .
 
 orcid:0000-0001-9921-8234 rdfs:label "Georgeta Bordea" .
 
-orcid:0000-0001-9950-5209 rdfs:label "Richard Cyganiak" .
-
 orcid:0000-0001-9990-8331 rdfs:label "Alexander Diehl" .
 
 orcid:0000-0002-0045-7698 rdfs:label "Pierre-Alain Binz" .
@@ -22724,22 +22733,6 @@ bioregistry:pathbank a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^(SMP|PW)\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:pav a bioregistry.schema:0000001 ;
-    rdfs:label "Provenance, Authoring, and Versioning Vocabulary" ;
-    dc:description "PAV is a lightweight ontology for tracking provenance, authorship, and versioning. It specializes the W3C provenance ontology PROV-O in order to describe authorship, curation and digital creation of online resources."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:PAV,
-        bioportal:PAV,
-        biocontext:pav,
-        biolink:pav,
-        fairsharing:FAIRsharing.nbfwwv ;
-    foaf:homepage "https://pav-ontology.github.io/pav/"^^xsd:string ;
-    bioregistry.schema:0000005 "authoredBy"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.org/pav/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[a-z][a-zA-Z]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
-
 bioregistry:pdb-ccd a bioregistry.schema:0000001 ;
     rdfs:label "Chemical Component Dictionary" ;
     dc:description "The Chemical Component Dictionary is as an external reference file describing all residue and small molecule components found in Protein Data Bank entries. It contains detailed chemical descriptions for standard and modified amino acids/nucleotides, small molecule ligands, and solvent molecules. Each chemical definition includes descriptions of chemical properties such as stereochemical assignments, aromatic bond assignments, idealized coordinates, chemical descriptors (SMILES & InChI), and systematic chemical names."^^xsd:string ;
@@ -23111,19 +23104,6 @@ bioregistry:pubmed a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:qudt a bioregistry.schema:0000001 ;
-    rdfs:label "Quantities, Units, Dimensions, and Types Ontology" ;
-    dc:description "Ontologies that aim to provide semantic specifications for units of measure, quantity kind, dimensions and data types."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:QUDT,
-        bioportal:QUDT,
-        biolink:qud,
-        fairsharing:FAIRsharing.d3pqw7 ;
-    foaf:homepage "https://qudt.org"^^xsd:string ;
-    bioregistry.schema:0000005 "baseDimensionEnumeration"^^xsd:string ;
-    bioregistry.schema:0000006 "http://qudt.org/schema/qudt#$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:rcb a bioregistry.schema:0000001 ;
     rdfs:label "RIKEN Bioresource Center Cell Bank" ;
     dc:description "Collection of many cell lines derived from human and other various animals, preserved by the RIKEN BioResource Research Center."^^xsd:string ;
@@ -23266,18 +23246,6 @@ bioregistry:schem a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^A\\d{4}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:schema a bioregistry.schema:0000001 ;
-    rdfs:label "Schema.org" ;
-    dc:description "Schema.org is a collaborative, community activity with a mission to create, maintain, and promote schemas for structured data on the Internet, on web pages, in email messages, and beyond."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:SCHEMA,
-        bioportal:SCHEMA,
-        biolink:schema ;
-    foaf:homepage "https://schema.org"^^xsd:string ;
-    bioregistry.schema:0000005 "Person"^^xsd:string ;
-    bioregistry.schema:0000006 "https://schema.org/$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:scholia.resource a bioregistry.schema:0000001 ;
     rdfs:label "Scholia Registry" ;
     dc:description "A frontend to Wikidata"^^xsd:string ;
@@ -23338,15 +23306,6 @@ bioregistry:sfam a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "F0001"^^xsd:string ;
     bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/sfam/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^F\\d{4}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:shacl a bioregistry.schema:0000001 ;
-    rdfs:label "Shapes Constraint Language" ;
-    dc:description "A language for validating RDF graphs against a set of conditions"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    foaf:homepage "https://www.w3.org/TR/shacl/"^^xsd:string ;
-    bioregistry.schema:0000005 "NodeShape"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.w3.org/ns/shacl#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:sheepqtldb a bioregistry.schema:0000001 ;
@@ -25205,6 +25164,8 @@ orcid:0000-0001-6512-3296 rdfs:label "Peter Midford" .
 orcid:0000-0001-9076-6015 rdfs:label "Chris Grove" .
 
 orcid:0000-0001-9114-8737 rdfs:label "Melissa Haendel" .
+
+orcid:0000-0001-9950-5209 rdfs:label "Richard Cyganiak" .
 
 orcid:0000-0002-0851-6883 rdfs:label "Jennifer C. Giron",
         "Jennifer C. Girón" .
@@ -28777,6 +28738,16 @@ bioregistry:ac a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/activitystreams#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:bibo a bioregistry.schema:0000001 ;
+    rdfs:label "The Bibliographic Ontology" ;
+    dc:description "The Bibliographic Ontology Specification provides main concepts and properties for describing citations and bibliographic references (i.e. quotes, books, articles, etc) on the Semantic Web."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://bibliontology.com/"^^xsd:string ;
+    bioregistry.schema:0000005 "authorList"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/ontology/bibo/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Frédérick Giasson" ] .
+
 bioregistry:bido a bioregistry.schema:0000001 ;
     rdfs:label "Bibliometric Data Ontology" ;
     dc:description "An ontology that allows the description of numerical and categorical bibliometric data (e.g., journal impact factor, author h-index, categories describing research careers) in RDF."^^xsd:string ;
@@ -30007,6 +29978,16 @@ bioregistry:opmi a bioregistry.schema:0000001 ;
         bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0001-9189-9661 .
 
+bioregistry:oslc a bioregistry.schema:0000001 ;
+    rdfs:label "OASIS Open Services for Lifecycle Collaboration Core Vocabulary" ;
+    dc:description "Core Vocabulary defines the OSLC Core RDF vocabulary terms and resources, that have broad applicability across various domains."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "http://open-services.net/ns/core"^^xsd:string ;
+    bioregistry.schema:0000005 "Property"^^xsd:string ;
+    bioregistry.schema:0000006 "http://open-services.net/ns/core#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Jim Amsden" ] .
+
 bioregistry:owl a bioregistry.schema:0000001 ;
     rdfs:label "Web Ontology Language" ;
     dc:description "Overview of the Web Ontology Language (OWL) which provides an introduction to OWL by informally describing the features of each of the sublanguages. "^^xsd:string ;
@@ -30027,6 +30008,22 @@ bioregistry:panorama a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "FxnI151FMs"^^xsd:string ;
     bioregistry.schema:0000006 "https://panoramaweb.org/$1.url"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:pav a bioregistry.schema:0000001 ;
+    rdfs:label "Provenance, Authoring, and Versioning Vocabulary" ;
+    dc:description "PAV is a lightweight ontology for tracking provenance, authorship, and versioning. It specializes the W3C provenance ontology PROV-O in order to describe authorship, curation and digital creation of online resources."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:PAV,
+        bioportal:PAV,
+        biocontext:pav,
+        biolink:pav,
+        fairsharing:FAIRsharing.nbfwwv ;
+    foaf:homepage "https://pav-ontology.github.io/pav/"^^xsd:string ;
+    bioregistry.schema:0000005 "authoredBy"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/pav/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[a-z][a-zA-Z]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:pba a bioregistry.schema:0000001 ;
     rdfs:label "Primate Brain Atlas" ;
@@ -30171,6 +30168,30 @@ bioregistry:pwo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/spar/pwo/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:qb a bioregistry.schema:0000001 ;
+    rdfs:label "The data cube vocabulary" ;
+    dc:description "This vocabulary allows multi-dimensional data, such as statistics, to be published in RDF. It is based on the core information model from SDMX (and thus also DDI)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.w3.org/TR/vocab-data-cube"^^xsd:string ;
+    bioregistry.schema:0000005 "Observation"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.org/linked-data/cube#$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-9950-5209 .
+
+bioregistry:qudt a bioregistry.schema:0000001 ;
+    rdfs:label "Quantities, Units, Dimensions, and Types Ontology" ;
+    dc:description "Ontologies that aim to provide semantic specifications for units of measure, quantity kind, dimensions and data types."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:QUDT,
+        bioportal:QUDT,
+        biolink:qud,
+        fairsharing:FAIRsharing.d3pqw7 ;
+    foaf:homepage "https://qudt.org"^^xsd:string ;
+    bioregistry.schema:0000005 "baseDimensionEnumeration"^^xsd:string ;
+    bioregistry.schema:0000006 "http://qudt.org/schema/qudt#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:rdf a bioregistry.schema:0000001 ;
     rdfs:label "Resource Description Framework" ;
     dc:description "This is the RDF Schema for the RDF vocabulary terms in the RDF Namespace, defined in RDF 1.1 Concepts"^^xsd:string ;
@@ -30218,6 +30239,18 @@ bioregistry:sbo a bioregistry.schema:0000001 ;
         bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0003-0705-9809 .
 
+bioregistry:schema a bioregistry.schema:0000001 ;
+    rdfs:label "Schema.org" ;
+    dc:description "Schema.org is a collaborative, community activity with a mission to create, maintain, and promote schemas for structured data on the Internet, on web pages, in email messages, and beyond."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:SCHEMA,
+        bioportal:SCHEMA,
+        biolink:schema ;
+    foaf:homepage "https://schema.org"^^xsd:string ;
+    bioregistry.schema:0000005 "Person"^^xsd:string ;
+    bioregistry.schema:0000006 "https://schema.org/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:scoro a bioregistry.schema:0000001 ;
     rdfs:label "Scholarly Contributions and Roles Ontology" ;
     dc:description "An ontology based on PRO for describing the contributions that may be made, and the roles that may be held by a person with respect to a journal article or other publication (e.g. the role of article guarantor or illustrator)."^^xsd:string ;
@@ -30226,6 +30259,24 @@ bioregistry:scoro a bioregistry.schema:0000001 ;
     foaf:homepage "http://www.sparontologies.net/ontologies/scoro"^^xsd:string ;
     bioregistry.schema:0000005 "IntellectualContribution"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/spar/scoro/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:shacl a bioregistry.schema:0000001 ;
+    rdfs:label "Shapes Constraint Language" ;
+    dc:description "A language for validating RDF graphs against a set of conditions"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.w3.org/TR/shacl/"^^xsd:string ;
+    bioregistry.schema:0000005 "NodeShape"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.w3.org/ns/shacl#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:shex a bioregistry.schema:0000001 ;
+    rdfs:label "Shape Expression Vocabulary" ;
+    dc:description "The Shape Expressions (ShEx) language describes RDF nodes and graph structures. A node constraint describes an RDF node (IRI, blank node or literal) and a shape describes the triples involving nodes in an RDF graph. These descriptions identify predicates and their associated cardinalities and datatypes. ShEx shapes can be used to communicate data structures associated with some process or interface, generate or validate data, or drive user interfaces."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "http://www.w3.org/ns/shex#"^^xsd:string ;
+    bioregistry.schema:0000005 "TripleExpression"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.w3.org/ns/shex#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:signor.relation a bioregistry.schema:0000001 ;
@@ -30248,6 +30299,15 @@ bioregistry:skos a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.w3.org/2004/02/skos/"^^xsd:string ;
     bioregistry.schema:0000005 "prefLabel"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/2004/02/skos/core#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:skosxl a bioregistry.schema:0000001 ;
+    rdfs:label "Simple Knowledge Organization System eXtension for Labels" ;
+    dc:description "The Simple Knowledge Organization System (SKOS) is a common data model for sharing and linking knowledge organization systems via the Semantic Web. SKOS-XL defines an extension for the Simple Knowledge Organization System, providing additional support for describing and linking lexical entities.This document provides a brief description of the SKOS-XL vocabulary."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "http://www.w3.org/2008/05/skos-xl#"^^xsd:string ;
+    bioregistry.schema:0000005 "literalForm"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.w3.org/2008/05/skos-xl#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:smid a bioregistry.schema:0000001 ;
@@ -30312,6 +30372,15 @@ bioregistry:storedb.study a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "1174"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.storedb.org/store_v3/study.jsp?studyId=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:swrl a bioregistry.schema:0000001 ;
+    rdfs:label "A Semantic Web Rule Language Combining OWL and RuleML" ;
+    dc:description "SWRL enables Horn-like rules to be combined with an OWL knowledge base."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.w3.org/2003/11/swrl#"^^xsd:string ;
+    bioregistry.schema:0000005 "Variable"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.w3.org/2003/11/swrl#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:umbbd.compound a bioregistry.schema:0000001 ;
@@ -30385,6 +30454,16 @@ bioregistry:uniprot.var a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://web.expasy.org/variant_pages/VAR_$1.html"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:vann a bioregistry.schema:0000001 ;
+    rdfs:label "A vocabulary for annotating vocabulary descriptions" ;
+    dc:description "This document describes a vocabulary for annotating descriptions of vocabularies with examples and usage notes."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://vocab.org/vann/"^^xsd:string ;
+    bioregistry.schema:0000005 "usageNote"^^xsd:string ;
+    bioregistry.schema:0000006 "https://vocab.org/vann/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Ian Davis" ] .
 
 bioregistry:void a bioregistry.schema:0000001 ;
     rdfs:label "Vocabulary of Interlinked Datasets" ;
@@ -32473,6 +32552,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:bcrc,
         bioregistry:beiresources,
         bioregistry:bel,
+        bioregistry:bibo,
         bioregistry:bido,
         bioregistry:biogrid.interaction,
         bioregistry:biolegend,
@@ -32673,6 +32753,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:omim.ps,
         bioregistry:omop,
         bioregistry:oncotree,
+        bioregistry:oslc,
         bioregistry:owl,
         bioregistry:panorama,
         bioregistry:pathbank,
@@ -32698,6 +32779,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:publons.researcher,
         bioregistry:puro,
         bioregistry:pwo,
+        bioregistry:qb,
         bioregistry:qudt,
         bioregistry:rcb,
         bioregistry:rdf,
@@ -32720,9 +32802,11 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:sdis,
         bioregistry:sfam,
         bioregistry:shacl,
+        bioregistry:shex,
         bioregistry:sigmaaldrich,
         bioregistry:skip,
         bioregistry:skos,
+        bioregistry:skosxl,
         bioregistry:smid,
         bioregistry:smiles,
         bioregistry:snap,
@@ -32736,6 +32820,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:storedb.study,
         bioregistry:sty,
         bioregistry:sweetrealm,
+        bioregistry:swrl,
         bioregistry:syoid,
         bioregistry:te,
         bioregistry:tfclass,
@@ -32756,6 +32841,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:unirule,
         bioregistry:unpd,
         bioregistry:vandf,
+        bioregistry:vann,
         bioregistry:vega,
         bioregistry:void,
         bioregistry:vsdb,
@@ -38478,6 +38564,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:bgee.gene,
         bioregistry:bgee.organ,
         bioregistry:bgee.stage,
+        bioregistry:bibo,
         bioregistry:bido,
         bioregistry:bigg.compartment,
         bioregistry:bigg.metabolite,
@@ -39413,6 +39500,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:oryzabase.reference,
         bioregistry:oryzabase.stage,
         bioregistry:oryzabase.strain,
+        bioregistry:oslc,
         bioregistry:otl,
         bioregistry:otol,
         bioregistry:ovae,
@@ -39539,6 +39627,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:pwo,
         bioregistry:px,
         bioregistry:pypi,
+        bioregistry:qb,
         bioregistry:qtldb,
         bioregistry:qudt,
         bioregistry:radiomics,
@@ -39621,6 +39710,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:sgn,
         bioregistry:shacl,
         bioregistry:sheepqtldb,
+        bioregistry:shex,
         bioregistry:sibo,
         bioregistry:sider.drug,
         bioregistry:sider.effect,
@@ -39633,6 +39723,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:sitex,
         bioregistry:skip,
         bioregistry:skos,
+        bioregistry:skosxl,
         bioregistry:slkbase,
         bioregistry:smart,
         bioregistry:smid,
@@ -39674,6 +39765,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:swisslipid,
         bioregistry:swissregulon,
         bioregistry:swo,
+        bioregistry:swrl,
         bioregistry:symp,
         bioregistry:syoid,
         bioregistry:t3db,
@@ -39754,6 +39846,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:uspto,
         bioregistry:validatordb,
         bioregistry:vandf,
+        bioregistry:vann,
         bioregistry:vario,
         bioregistry:vbase2,
         bioregistry:vbrc,
