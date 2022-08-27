@@ -144,7 +144,7 @@ assert 'ncbitaxon' == normalize_prefix('ncbitaxon')
 # This works for uppercased prefixes, like:
 assert 'chebi' == normalize_prefix("CHEBI")
 
-# This works for mixed case prefies like
+# This works for mixed case prefixes like
 assert 'fbbt' == normalize_prefix("FBbt")
 
 # This works for synonym prefixes, like:
@@ -460,8 +460,19 @@ It looks like this: [![Powered by the Bioregistry](https://img.shields.io/static
 
 ### 📖 Citation
 
-Hopefully there will be a paper describing this resource on *bioRxiv* sometime in 2021! Until then, you can use the
-Zenodo [BibTeX](https://zenodo.org/record/4404608/export/hx) or [CSL](https://zenodo.org/record/4404608/export/csl).
+> [Unifying the Identification of Biomedical Entities with the Bioregistry](https://bioregistry.io/doi:10.1101/2022.07.08.499378)
+> <br />Hoyt, C. T., Balk, M., Callahan, T. J., Domingo-Fernandez, D., Haendel, M. A., Hegde, H. B., Himmelstein, D. S., Karis, K., Kunze, J., Lubiana, T., Matentzoglu, N., McMurry, J., Moxon, S., Mungall, C. J., Rutz, A., Unni, D. R., Willighagen, E., Winston, D., and Gyori, B. M. (2022)
+> <br />*bioRxiv*, 2022.07.08.499378
+
+```bibtex
+@article{Hoyt2022Bioregistry,
+    author = {Hoyt, C T and Balk, M and Callahan, T J and Domingo-Fernandez, D and Haendel, M A and Hegde, H B and Himmelstein, D S and Karis, K and Kunze, J and Lubiana, T and Matentzoglu, N and McMurry, J and Moxon, S and Mungall, C J and Rutz, A and Unni, D R and Willighagen, E and Winston, D and Gyori, B M},
+    doi = {10.1101/2022.07.08.499378},
+    journal = {bioRxiv},
+    title = {{Unifying the Identification of Biomedical Entities with the Bioregistry}},
+    year = {2022}
+}
+```
 
 ### 🎁 Support
 

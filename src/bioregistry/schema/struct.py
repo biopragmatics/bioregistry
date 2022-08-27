@@ -7,7 +7,9 @@ import logging
 import pathlib
 import re
 import textwrap
+from collections import defaultdict
 from functools import lru_cache
+from operator import attrgetter
 from typing import (
     Any,
     Callable,
@@ -18,6 +20,7 @@ from typing import (
     Optional,
     Sequence,
     Set,
+    Tuple,
     Union,
     cast,
 )
@@ -29,7 +32,7 @@ from bioregistry import constants as brc
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import removeprefix, removesuffix
+from bioregistry.utils import curie_to_str, removeprefix, removesuffix
 
 try:
     from typing import Literal  # type:ignore
@@ -151,6 +154,34 @@ class Provider(BaseModel):
         return self.uri_format.replace("$1", identifier)
 
 
+class Publication(BaseModel):
+    """Metadata about a publication."""
+
+    pubmed: Optional[str] = Field(
+        title="PubMed", description="The PubMed identifier for the article"
+    )
+    doi: Optional[str] = Field(title="DOI", description="The DOI for the article")
+    pmc: Optional[str] = Field(
+        title="PMC", description="The PubMed Central identifier for the article"
+    )
+    title: Optional[str] = Field(description="The title of the article")
+
+    def key(self) -> Tuple[str, ...]:
+        """Create a key based on identifiers in this data structure."""
+        return self.pubmed or "", self.doi or "", self.pmc or ""
+
+    def get_url(self) -> str:
+        """Get a URL link."""
+        for prefix, identifier in [
+            ("pubmed", self.pubmed),
+            ("doi", self.doi),
+            ("pmc", self.pmc),
+        ]:
+            if identifier is not None:
+                return f"https://bioregistry.io/{prefix}:{identifier}"
+        raise ValueError("no fields were full")
+
+
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
@@ -250,6 +281,14 @@ class Resource(BaseModel):
     """
         ),
     )
+    download_rdf: Optional[str] = Field(
+        title="RDF Download URL",
+        description=_dedent(
+            """
+    The URL to download the resource as an RDF file, in one of many formats.
+    """
+        ),
+    )
     banana: Optional[str] = Field(
         description=_dedent(
             """\
@@ -301,6 +340,9 @@ class Resource(BaseModel):
         ),
     )
     references: Optional[List[str]] = Field(
+        description="A list of URLs to also see, such as publications describing the resource",
+    )
+    publications: Optional[List[Publication]] = Field(
         description="A list of URLs to also see, such as publications describing the resource",
     )
     appears_in: Optional[List[str]] = Field(
@@ -428,6 +470,10 @@ class Resource(BaseModel):
     fairsharing: Optional[Mapping[str, Any]]
     #: External data from BioContext
     biocontext: Optional[Mapping[str, Any]]
+    #: External data from EDAM ontology
+    edam: Optional[Mapping[str, Any]]
+    #: External data from re3data
+    re3data: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
@@ -442,9 +488,17 @@ class Resource(BaseModel):
         >>> from bioregistry import get_resource
         >>> get_resource("chebi").get_mapped_prefix("wikidata")
         'P683'
+        >>> get_resource("chebi").get_mapped_prefix("obofoundry")
+        'CHEBI'
         """
-        # TODO is this even a good idea? is this effectively the same as get_external?
-        return (self.get_mappings() or {}).get(metaprefix)
+        if metaprefix == "obofoundry":
+            obofoundry_dict = self.obofoundry or {}
+            if "preferredPrefix" in obofoundry_dict:
+                return obofoundry_dict["preferredPrefix"]
+            if "prefix" in obofoundry_dict:
+                return obofoundry_dict["prefix"].upper()
+            return None
+        return self.get_mappings().get(metaprefix)
 
     def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]):
         """Get a key enriched by the given external resources' data."""
@@ -603,26 +657,9 @@ class Resource(BaseModel):
         # of the OBO Foundry ID is the preferred prefix (e.g., for GO)
         return self.obofoundry.get("preferredPrefix", self.obofoundry["prefix"].upper())
 
-    def get_mappings(self) -> Optional[Mapping[str, str]]:
+    def get_mappings(self) -> Mapping[str, str]:
         """Get the mappings to external registries, if available."""
-        from ..schema_utils import read_metaregistry
-
-        rv: Dict[str, str] = {}
-        rv.update(self.mappings or {})  # This will be the replacement later
-        for metaprefix in read_metaregistry():
-            external = self.get_external(metaprefix)
-            if not external:
-                continue
-            if metaprefix == "wikidata":
-                value = external.get("prefix")
-                if value is not None:
-                    rv["wikidata"] = value
-            elif metaprefix == "obofoundry":
-                rv[metaprefix] = external.get("preferredPrefix", external["prefix"].upper())
-            else:
-                rv[metaprefix] = external["prefix"]
-
-        return rv
+        return self.mappings or {}
 
     def get_name(self) -> Optional[str]:
         """Get the name for the given prefix, it it's available."""
@@ -668,6 +705,80 @@ class Resource(BaseModel):
         if pattern is None:
             return None
         return re.compile(pattern)
+
+    def get_pattern_with_banana(self, strict: bool = True) -> Optional[str]:
+        r"""Get the pattern for the prefix including a banana if available.
+
+        .. warning::
+
+            This function is meant to mediate backwards compatibility with legacy
+            MIRIAM/Identifiers.org standards. New projects should **not** use redundant
+            prefixes in their local unique identifiers.
+
+        :param strict: If True (default), and a banana exists for the prefix,
+            the banana is required in the pattern. If False, the pattern
+            will match the banana if present but will also match the identifier
+            without the banana.
+        :returns: A pattern for the prefix if available
+
+        >>> import bioregistry as br
+        >>> resource = br.get_resource("chebi")
+
+        Strict match requires the banana to be present
+        >>> resource.get_pattern_with_banana()
+        '^CHEBI:\\d+$'
+
+        Non-strict match allows the banana to be optionally present
+        >>> resource.get_pattern_with_banana(strict=False)
+        '^(CHEBI:)?\\d+$'
+        """
+        pattern = self.get_pattern()
+        if pattern is None:
+            return None
+        banana = self.get_banana()
+        if not banana:
+            return pattern
+
+        banana_peel = self.get_banana_peel()
+        prepattern = f"{banana}{banana_peel}"
+        if not strict:
+            prepattern = f"({prepattern})?"
+        return "^" + prepattern + pattern.lstrip("^")
+
+    def get_pattern_re_with_banana(self, strict: bool = True):
+        """Get the compiled pattern for the prefix including a banana if available.
+
+        .. warning::
+
+            This function is meant to mediate backwards compatibility with legacy
+            MIRIAM/Identifiers.org standards. New projects should **not** use redundant
+            prefixes in their local unique identifiers.
+
+        :param strict: If True (default), and a banana exists for the prefix,
+            the banana is required in the pattern. If False, the pattern
+            will match the banana if present but will also match the identifier
+            without the banana.
+        :returns: A compiled pattern for the prefix if available
+
+        >>> import bioregistry as br
+        >>> resource = br.get_resource("chebi")
+
+        Strict match requires banana
+        >>> resource.get_pattern_re_with_banana().match("1234")
+
+        >>> resource.get_pattern_re_with_banana().match("CHEBI:1234")
+        <re.Match object; span=(0, 10), match='CHEBI:1234'>
+
+        Loose match does not require banana
+        >>> resource.get_pattern_re_with_banana(strict=False).match('1234')
+        <re.Match object; span=(0, 4), match='1234'>
+        >>> resource.get_pattern_re_with_banana(strict=False).match('CHEBI:1234')
+        <re.Match object; span=(0, 10), match='CHEBI:1234'>
+        """
+        p = self.get_pattern_with_banana(strict=strict)
+        if p is None:
+            return None
+        return re.compile(p)
 
     def get_namespace_in_lui(self) -> Optional[bool]:
         """Check if the namespace should appear in the LUI."""
@@ -785,6 +896,27 @@ class Resource(BaseModel):
             return example
         return None
 
+    def get_examples(self) -> List[str]:
+        """Get a list of examples."""
+        rv = []
+        example = self.get_example()
+        if example:
+            rv.append(example)
+        rv.extend(self.example_extras or [])
+        return rv
+
+    def get_example_curie(self, use_preferred: bool = False) -> Optional[str]:
+        """Get an example CURIE, if an example identifier is available.
+
+        :param use_preferred: Should the preferred prefix be used instead
+            of the Bioregistry prefix (if it exists)?
+        :return: An example CURIE for this resource
+        """
+        example = self.get_example()
+        if example is None:
+            return None
+        return self.get_curie(example, use_preferred=use_preferred)
+
     def is_deprecated(self) -> bool:
         """Return if the given prefix corresponds to a deprecated resource.
 
@@ -805,34 +937,38 @@ class Resource(BaseModel):
                 return True
         return False
 
-    def get_publications(self):
+    def get_publications(self) -> List[Publication]:
         """Get a list of publications."""
-        # TODO make a model for this
-        rv = {}
+        publications = self.publications or []
         if self.obofoundry:
             for publication in self.obofoundry.get("publications", []):
                 url, title = publication["id"], publication["title"]
                 if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
-                    pmid = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
-                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
+                    pubmed = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
+                    publications.append(Publication(pubmed=pubmed, title=title))
+                elif url.startswith("https://doi.org/"):
+                    doi = url[len("https://doi.org/") :]
+                    publications.append(Publication(doi=doi, title=title))
+                elif url.startswith("https://www.medrxiv.org/content/"):
+                    doi = url[len("https://www.medrxiv.org/content/") :]
+                    publications.append(Publication(doi=doi, title=title))
+                elif url.startswith("https://zenodo.org/record/"):
+                    continue
+                elif "ceur-ws.org" in url:
+                    continue
                 else:
                     logger.warning("unhandled obo foundry publication ID: %s", url)
         if self.fairsharing:
             for publication in self.fairsharing.get("publications", []):
-                pmid = publication.get("pubmed_id")
+                pubmed = publication.get("pubmed_id")
+                doi = publication.get("doi")
                 title = publication.get("title")
-                if pmid:
-                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
-                else:
-                    doi = publication["doi"]
-                    rv[f"https://bioregistry.io/doi:{doi}"] = title
+                if pubmed or doi:
+                    publications.append(Publication(pubmed=pubmed, doi=doi, title=title))
         if self.prefixcommons:
-            for pmid in self.prefixcommons.get("pubmed_ids", []):
-                url = f"https://bioregistry.io/pubmed:{pmid}"
-                if url in rv:
-                    continue
-                rv[url] = None
-        return [{"id": k, "title": v} for k, v in sorted(rv.items())]
+            for pubmed in self.prefixcommons.get("pubmed_ids", []):
+                publications.append(Publication(pubmed=pubmed))
+        return deduplicate_publications(publications)
 
     def get_twitter(self) -> Optional[str]:
         """Get the Twitter handle for ther resource."""
@@ -850,6 +986,8 @@ class Resource(BaseModel):
         >>> from bioregistry import get_resource
         >>> get_resource("go").get_obofoundry_prefix()  # standard
         'GO'
+        >>> get_resource("aao").get_obofoundry_prefix()  # standard but deprecated
+        'AAO'
         >>> get_resource("ncbitaxon").get_obofoundry_prefix()  # mixed case
         'NCBITaxon'
         >>> assert get_resource("sty").get_obofoundry_prefix() is None
@@ -1130,14 +1268,31 @@ class Resource(BaseModel):
         if self.miriam:
             for p in self.miriam.get("providers", []):
                 rv.append(Provider(**p))
-        return rv
+        return sorted(rv, key=attrgetter("code"))
+
+    def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
+        """Get a CURIE for a local unique identifier in this resource's semantic space.
+
+        :param identifier: A local unique identifier in this resource's semantic space
+        :param use_preferred: Should preferred prefixes be used? Set this to true if you're in the OBO context.
+        :returns: A CURIE for the given identifier
+
+        >>> import bioregistry
+        >>> resource = bioregistry.get_resource("go")
+        >>> resource.get_curie("0000001")
+        'go:0000001'
+        >>> resource.get_curie("0000001", use_preferred=True)
+        'GO:0000001'
+        """
+        _p = self.get_preferred_prefix() or self.prefix if use_preferred else self.prefix
+        return curie_to_str(_p, identifier)
 
     def standardize_identifier(self, identifier: str, prefix: Optional[str] = None) -> str:
         """Normalize the identifier to not have a redundant prefix or banana.
 
         :param identifier: The identifier in the CURIE
-        :param prefix: If an optional prefix is passed, checks that this isn't also used as a caseolded banana
-            like in ``go:go:1234567``, which shouldn't techinncally be right becauase the banana for gene ontology
+        :param prefix: If an optional prefix is passed, checks that this isn't also used as a casefolded banana
+            like in ``go:go:1234567``, which shouldn't technically be right because the banana for gene ontology
             is ``GO``.
         :return: A normalized identifier, possibly with banana/redundant prefix removed
 
@@ -1255,16 +1410,16 @@ class Resource(BaseModel):
                 return f"{processed_banana}{identifier}"
         return identifier
 
-    def is_canonical_identifier(self, identifier: str) -> Optional[bool]:
+    def is_valid_identifier(self, identifier: str) -> Optional[bool]:
         """Check that a local unique identifier is canonical, meaning no bananas."""
         pattern = self.get_pattern_re()
         if pattern is None:
             return None
         return pattern.fullmatch(identifier) is not None
 
-    def is_known_identifier(self, identifier: str) -> Optional[bool]:
+    def is_standardizable_identifier(self, identifier: str) -> Optional[bool]:
         """Check that a local unique identifier can be normalized and also matches a prefix's pattern."""
-        return self.is_canonical_identifier(self.standardize_identifier(identifier))
+        return self.is_valid_identifier(self.standardize_identifier(identifier))
 
     def get_download_obo(self) -> Optional[str]:
         """Get the download link for the latest OBO file.
@@ -1301,6 +1456,10 @@ class Resource(BaseModel):
         if self.download_json:
             return self.download_json
         return self.get_external("obofoundry").get("download.json")
+
+    def get_download_rdf(self) -> Optional[str]:
+        """Get the download link for the latest RDF file."""
+        return self.download_rdf
 
     def get_download_owl(self) -> Optional[str]:
         """Get the download link for the latest OWL file.
@@ -1741,6 +1900,10 @@ class Collection(BaseModel):
 
         return node
 
+    def as_context_jsonld_str(self) -> str:
+        """Get the JSON-LD context as a string from a given collection."""
+        return json.dumps(self.as_context_jsonld())
+
     def as_context_jsonld(self) -> Mapping[str, Mapping[str, str]]:
         """Get the JSON-LD context from a given collection."""
         return {
@@ -1817,6 +1980,10 @@ class Context(BaseModel):
         """
         ),
     )
+    blacklist: Optional[List[str]] = Field(
+        ...,
+        description="This is a list of canonical Bioregistry prefixes that should not be included in the context.",
+    )
 
 
 def _clean_pattern(rv: str) -> str:
@@ -1856,6 +2023,7 @@ def get_json_schema():
                 Registry,
                 RegistrySchema,
                 Context,
+                Publication,
             ],
             title="Bioregistry JSON Schema",
             description="The Bioregistry JSON Schema describes the shapes of the objects in"
@@ -1887,6 +2055,7 @@ def write_bulk_prefix_request_template():
             "contributor",
             "github_request_issue",
             "banana_peel",
+            "publications",
         }:
             continue
         if name in metaprefixes:
@@ -1941,6 +2110,50 @@ def _get(resource, key):
     if isinstance(x, (list, set)):
         return "|".join(sorted(x))
     return x or ""
+
+
+def deduplicate_publications(publications: List[Publication]) -> List[Publication]:
+    """Deduplicate publications."""
+    d = defaultdict(list)
+
+    # Index mappings
+    doi_to_pmid = {}
+    pmid_to_doi = {}
+    doi_to_pmc = {}
+    pmc_to_doi = {}
+    pmid_to_pmc = {}
+    pmc_to_pmid = {}
+    for p in publications:
+        if p.doi and p.pubmed:
+            doi_to_pmid[p.doi] = p.pubmed
+            pmid_to_doi[p.pubmed] = p.doi
+        if p.doi and p.pmc:
+            doi_to_pmc[p.doi] = p.pmc
+            pmc_to_doi[p.pmc] = p.doi
+        if p.pubmed and p.pmc:
+            pmid_to_pmc[p.pubmed] = p.pmc
+            pmc_to_pmid[p.pmc] = p.pubmed
+    for p in publications:
+        # apply mappings
+        if p.doi and not p.pubmed:
+            p.pubmed = doi_to_pmid.get(p.doi)
+        if p.pubmed and not p.doi:
+            p.doi = pmid_to_doi.get(p.pubmed)
+        if p.doi and not p.pmc:
+            p.pmc = doi_to_pmc.get(p.doi)
+        if p.pubmed and not p.pmc:
+            p.pmc = pmid_to_pmc.get(p.pubmed)
+        # todo not exhaustive, doesn't account for multi-hop mappings
+        d[p.key()].append(p)
+
+    for vs in d.values():
+        try:
+            title = next(v.title for v in vs if v.title)
+        except StopIteration:
+            continue
+        else:
+            vs[0].title = title
+    return [v[0] for _, v in sorted(d.items())]
 
 
 def main():

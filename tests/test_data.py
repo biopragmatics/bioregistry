@@ -10,15 +10,15 @@ from textwrap import dedent
 from typing import Mapping
 
 import bioregistry
-from bioregistry import Resource
+from bioregistry import Resource, manager
 from bioregistry.constants import BIOREGISTRY_PATH
-from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES
+from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.schema.struct import SCHEMA_PATH, get_json_schema
 from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.schema_utils import is_mismatch
-from bioregistry.utils import _norm, curie_to_str, extended_encoder
+from bioregistry.utils import _norm, extended_encoder
 
 logger = logging.getLogger(__name__)
 
@@ -272,27 +272,34 @@ class TestRegistry(unittest.TestCase):
     def test_curie_patterns(self):
         """Test that all examples can validate against the CURIE pattern."""
         for prefix, entry in self.registry.items():
-            curie_pattern = bioregistry.get_curie_pattern(prefix)
-            lui_example = entry.get_example()
-            if curie_pattern is None or lui_example is None:
-                continue
-            pp = bioregistry.get_preferred_prefix(prefix)
-            curie_example = curie_to_str(pp or prefix, lui_example)
-            with self.subTest(prefix=prefix):
-                self.assertRegex(
-                    curie_example,
-                    curie_pattern,
-                    msg=dedent(
-                        f"""
-                prefix: {prefix}
-                preferred prefix: {pp}
-                example LUI: {lui_example}
-                example CURIE: {curie_example}
-                pattern for LUI: {bioregistry.get_pattern(prefix)}
-                pattern for CURIE: {curie_pattern}
-                """
-                    ),
-                )
+            for use_preferred in (True, False):
+                curie_example = entry.get_example_curie(use_preferred=use_preferred)
+                curie_pattern = bioregistry.get_curie_pattern(prefix, use_preferred=use_preferred)
+                if curie_pattern is None or curie_example is None:
+                    continue
+                with self.subTest(prefix=prefix, use_preferred=use_preferred):
+                    self.assertRegex(
+                        curie_example,
+                        curie_pattern,
+                        msg=dedent(
+                            f"""
+                    prefix: {prefix}
+                    preferred prefix: {entry.get_preferred_prefix()}
+                    example CURIE: {curie_example}
+                    pattern for LUI: {bioregistry.get_pattern(prefix)}
+                    pattern for CURIE: {curie_pattern}
+                    """
+                        ),
+                    )
+
+    def test_pattern_with_banana(self):
+        """Test getting patterns with bananas."""
+        resource = self.registry["chebi"]
+        self.assertEqual(
+            "^CHEBI:\\d+$",
+            resource.get_pattern_with_banana(),
+        )
+        self.assertEqual("^(CHEBI:)?\\d+$", resource.get_pattern_with_banana(strict=False))
 
     def test_examples(self):
         """Test examples for the required conditions.
@@ -337,7 +344,7 @@ class TestRegistry(unittest.TestCase):
     def assert_canonical(self, prefix: str, example: str) -> None:
         """Assert the identifier is canonical."""
         entry = self.registry[prefix]
-        canonical = entry.is_canonical_identifier(example)
+        canonical = entry.is_valid_identifier(example)
         self.assertTrue(canonical is None or canonical, msg=f"Failed on prefix={prefix}: {example}")
 
     def test_extra_examples(self):
@@ -452,7 +459,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = resource_to_rdf_str("chebi")
+        s = resource_to_rdf_str("chebi", manager=manager)
         self.assertIsInstance(s, str)
 
     def test_parts(self):
@@ -460,7 +467,7 @@ class TestRegistry(unittest.TestCase):
         for prefix, resource in self.registry.items():
             if bioregistry.is_deprecated(prefix) or bioregistry.get_provides_for(prefix):
                 continue
-            if resource.part_of is None:
+            if resource.part_of is None or resource.part_of == "pubchem":
                 continue
 
             with self.subTest(prefix=prefix):
@@ -568,11 +575,11 @@ class TestRegistry(unittest.TestCase):
 
     def test_obo_prefix_map(self):
         """Test the integrity of the OBO prefix map."""
-        obofoundry_prefix_map = get_obofoundry_prefix_map()
+        obofoundry_prefix_map = get_obo_context_prefix_map()
         self.assert_no_idot(obofoundry_prefix_map)
         self.assertIn("FlyBase", set(obofoundry_prefix_map))
 
-        self.assert_no_idot(get_obofoundry_prefix_map(include_synonyms=True))
+        self.assert_no_idot(get_obo_context_prefix_map(include_synonyms=True))
 
     def assert_no_idot(self, prefix_map: Mapping[str, str]) -> None:
         """Assert none of the URI prefixes have identifiers.org in them."""
@@ -601,11 +608,26 @@ class TestRegistry(unittest.TestCase):
     def test_mappings(self):
         """Make sure all mapping keys are valid metaprefixes."""
         for prefix, resource in self.registry.items():
-            if not resource.mappings:
-                continue
             with self.subTest(prefix=prefix):
-                for metaprefix in resource.mappings:
+                for metaprefix in resource.mappings or {}:
                     self.assertIn(metaprefix, self.metaregistry)
+                for metaprefix in self.metaregistry:
+                    d = getattr(resource, metaprefix, None)
+                    if not d:
+                        continue
+                    prefix = d.get("prefix")
+                    if prefix is None:
+                        if metaprefix == "wikidata":
+                            # FIXME make separate field for these
+                            self.assertTrue("paper" in d or "database" in d)
+                        else:
+                            self.fail()
+                    else:
+                        self.assertIsNotNone(
+                            resource.mappings,
+                            msg=f"did not find {metaprefix} mapping in {prefix} in {d}",
+                        )
+                        self.assertIn(metaprefix, set(resource.mappings))
 
     def test_provider_codes(self):
         """Make sure provider codes are unique."""
@@ -772,3 +794,29 @@ class TestRegistry(unittest.TestCase):
                     resource.references or [],
                     msg="Reference to GitHub request issue should be in its dedicated field.",
                 )
+
+    def test_publications(self):
+        """Test references and publications are sorted right."""
+        for prefix, resource in self.registry.items():
+            if not resource.references:
+                continue
+            with self.subTest(prefix=prefix):
+                for reference in resource.references:
+                    self.assertNotIn("doi", reference)
+                    self.assertNotIn("pubmed", reference)
+                    self.assertNotIn("pmc", reference)
+                    self.assertNotIn("arxiv", reference)
+
+                if resource.publications:
+                    for publication in resource.publications:
+                        self.assertIsNotNone(publication.title)
+                        self.assertLessEqual(
+                            1,
+                            sum(
+                                (
+                                    publication.doi is not None,
+                                    publication.pubmed is not None,
+                                    publication.pmc is not None,
+                                )
+                            ),
+                        )

@@ -47,6 +47,8 @@ class Aligner(ABC):
 
     subkey: ClassVar[str] = "prefix"
 
+    normalize_invmap: ClassVar[bool] = False
+
     def __init__(self):
         """Instantiate the aligner."""
         if self.key not in read_metaregistry():
@@ -60,7 +62,10 @@ class Aligner(ABC):
         self.skip_external = self.get_skip()
 
         # Get all of the pre-curated mappings from the Bioregistry
-        self.external_id_to_bioregistry_id = self.manager.get_registry_invmap(self.key)
+        self.external_id_to_bioregistry_id = self.manager.get_registry_invmap(
+            self.key,
+            normalize=self.normalize_invmap,
+        )
 
         # Run lexical alignment
         self._align()
@@ -76,51 +81,58 @@ class Aligner(ABC):
 
     def _align(self):
         """Align the external registry."""
-        for external_id, external_entry in self.external_registry.items():
+        for external_id, external_entry in sorted(self.external_registry.items()):
             if external_id in self.skip_external:
                 continue
 
             bioregistry_id = self.external_id_to_bioregistry_id.get(external_id)
+            # There's already a mapping for this external ID to a bioregistry
+            # entry. Just add all of the latest metadata and move on
+            if bioregistry_id is not None:
+                self._align_action(bioregistry_id, external_id, external_entry)
+                continue
 
             # try to lookup with lexical match
-            if bioregistry_id is None:
-                if not self.alt_key_match:
-                    bioregistry_id = self.manager.normalize_prefix(external_id)
-                else:
-                    alt_match = external_entry.get(self.alt_key_match)
-                    if alt_match:
-                        bioregistry_id = self.manager.normalize_prefix(alt_match)
+            if not self.alt_key_match:
+                bioregistry_id = self.manager.normalize_prefix(external_id)
+            else:
+                alt_match = external_entry.get(self.alt_key_match)
+                if alt_match:
+                    bioregistry_id = self.manager.normalize_prefix(alt_match)
+
+            # A lexical match was possible
+            if bioregistry_id is not None:
+                # check this external ID for curated mismatches, and move
+                # on if one has already been curated
+                if is_mismatch(bioregistry_id, self.key, external_id):
+                    continue
+                if self.skip_deprecated and self.manager.is_deprecated(bioregistry_id):
+                    continue
+                self._align_action(bioregistry_id, external_id, external_entry)
+                continue
 
             # add the identifier from an external resource if it's been marked as high quality
-            if bioregistry_id is None and self.include_new:
+            elif self.include_new:
                 bioregistry_id = norm(external_id)
+                if is_mismatch(bioregistry_id, self.key, external_id):
+                    continue
                 self.internal_registry[bioregistry_id] = Resource(prefix=bioregistry_id)
-
-            if self._do_align_action(bioregistry_id):
                 self._align_action(bioregistry_id, external_id, external_entry)
+                continue
 
-    def _do_align_action(self, prefix: Optional[str]) -> bool:
-        # a match was found if the prefix is not None
-        return prefix is not None and (
-            not self.skip_deprecated or not self.manager.is_deprecated(prefix)
-        )
-
-    def _align_action(self, bioregistry_id, external_id, external_entry):
-        # skip mismatches
-        if is_mismatch(bioregistry_id, self.key, external_id):
-            return
-
-        # Add mapping
+    def _align_action(
+        self, bioregistry_id: str, external_id: str, external_entry: Dict[str, Any]
+    ) -> None:
         if self.internal_registry[bioregistry_id].mappings is None:
             self.internal_registry[bioregistry_id].mappings = {}
-        self.internal_registry[bioregistry_id].mappings[self.key] = external_id
+        self.internal_registry[bioregistry_id].mappings[self.key] = external_id  # type:ignore
 
         _entry = self.prepare_external(external_id, external_entry)
         _entry[self.subkey] = external_id
         self.internal_registry[bioregistry_id][self.key] = _entry
         self.external_id_to_bioregistry_id[external_id] = bioregistry_id
 
-    def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
+    def prepare_external(self, external_id: str, external_entry: Dict[str, Any]) -> Dict[str, Any]:
         """Prepare a dictionary to be added to the bioregistry for each external registry entry.
 
         The default implementation returns `external_entry` unchanged.
@@ -185,13 +197,15 @@ class Aligner(ABC):
 
     def write_curation_table(self) -> None:
         """Write the curation table to a TSV."""
+        path = EXTERNAL.joinpath(self.key, "curation.tsv")
         rows = list(self._iter_curation_rows())
         if not rows:
+            if path.is_file():
+                path.unlink()
             return
 
-        directory = EXTERNAL / self.key
-        directory.mkdir(parents=True, exist_ok=True)
-        with (directory / "curation.tsv").open("w") as file:
+        path.parent.mkdir(exist_ok=True, parents=True)
+        with path.open("w") as file:
             print(self.subkey, *self.curation_header, sep="\t", file=file)  # noqa:T201
             for row in rows:
                 print(*row, sep="\t", file=file)  # noqa:T201

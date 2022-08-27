@@ -1,7 +1,7 @@
 [
   {
     "database": "Q6826947",
-    "databaseHomepage": "http://www.mirbase.org/",
+    "databaseHomepage": "http://www.mirbase.org",
     "databaseLabel": "miRBase",
     "prop": "P2870",
     "propDescription": "identifier for pre-miRNAs in miRBase, the reference database for microRNAs",
@@ -12,7 +12,7 @@
   },
   {
     "database": "Q6826947",
-    "databaseHomepage": "http://www.mirbase.org/",
+    "databaseHomepage": "http://www.mirbase.org",
     "databaseLabel": "miRBase",
     "prop": "P2871",
     "propDescription": "identifier for mature miRNAs in miRBase, the reference database for microRNAs",
@@ -93,7 +93,7 @@
     "databaseLabel": "ZooBank",
     "prop": "P2007",
     "propDescription": "identifier for a publication at ZooBank",
-    "propFormat": "http://zoobank.org/References/$1",
+    "propFormat": "https://zoobank.org/References/$1",
     "propHomepage": "http://zoobank.org/",
     "propLabel": "ZooBank publication ID",
     "propPattern": "^[A-Z0-9]{8}(-[A-Z0-9]{4}){3}-[A-Z0-9]{12}$"
@@ -451,6 +451,17 @@
     "propPattern": "(gcc|ifn|ild|kew|rjp|tro)-\\d+"
   },
   {
+    "database": "Q112783946",
+    "databaseHomepage": "http://www.iedb.org/",
+    "databaseLabel": "The Immune Epitope Database",
+    "prop": "P4168",
+    "propDescription": "identifier for an Epitope in the Immune Epitope Database",
+    "propFormat": "http://www.iedb.org/epitope/$1",
+    "propHomepage": "http://www.iedb.org/home_v3.php",
+    "propLabel": "IEDB Epitope ID",
+    "propPattern": "[1-9]\\d*"
+  },
+  {
     "database": "Q7736786",
     "databaseHomepage": "http://www.nhm.ac.uk/our-science/data/lepindex/search/",
     "databaseLabel": "The Global Lepidoptera Names Index",
@@ -481,16 +492,6 @@
     "propFormat": "https://www.arabidopsis.org/servlets/TairObject?accession=$1",
     "propHomepage": "https://www.arabidopsis.org",
     "propLabel": "The Arabidopsis Information Resource Accession"
-  },
-  {
-    "database": "Q3517247",
-    "databaseHomepage": "https://www.tela-botanica.org",
-    "databaseLabel": "Tela Botanica",
-    "prop": "P3105",
-    "propDescription": "identifier for a plant taxon in Tela Botanica's 'base des trach\u00e9ophytes de France m\u00e9tropolitaine' - BDTFX - (Metropolitan France Tracheophyte Database)",
-    "propFormat": "https://referentiels.tela-botanica.org/referentiel/index.php?ref=bdtfx&module=FicheTaxon&num_nom=$1",
-    "propHomepage": "https://referentiels.tela-botanica.org/referentiel/index.php?module=Consultation&ref=bdtfx",
-    "propLabel": "Tela Botanica ID"
   },
   {
     "database": "Q13711410",
@@ -794,8 +795,8 @@
     "databaseMiriam": "rgd",
     "prop": "P3853",
     "propDescription": "Identifier for a genetic element in the Rat Genome Database",
-    "propFormat": "http://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1",
-    "propHomepage": "http://rgd.mcw.edu/",
+    "propFormat": "https://rgd.mcw.edu/rgdweb/report/gene/main.html?id=$1",
+    "propHomepage": "https://rgd.mcw.edu/",
     "propLabel": "Rat Genome Database ID"
   },
   {
@@ -837,7 +838,7 @@
     "databaseHomepage": "http://pubchem.ncbi.nlm.nih.gov",
     "databaseLabel": "PubChem",
     "prop": "P2153",
-    "propDescription": "substance (e.g. mixtures, undefined stereochemistry, ...) identifier in the PubChem database.",
+    "propDescription": "substance (e.g. mixtures, undefined stereochemistry, ...) identifier in the PubChem database",
     "propFormat": "https://pubchem.ncbi.nlm.nih.gov/substance/$1",
     "propFormatRDF": "http://rdf.ncbi.nlm.nih.gov/pubchem/substance/SID$1",
     "propHomepage": "https://www.ncbi.nlm.nih.gov/pcsubstance",
@@ -1010,7 +1011,7 @@
     "databaseMiriam": "pfam",
     "prop": "P3519",
     "propDescription": "identifier in the Pfam database of protein families",
-    "propFormat": "http://pfam.xfam.org/family?acc=$1",
+    "propFormat": "https://pfam.xfam.org/family?acc=$1",
     "propHomepage": "https://pfam.xfam.org/",
     "propLabel": "Pfam ID",
     "propMiriam": "pfam",
@@ -1038,13 +1039,24 @@
     "propPattern": "[A-Z][a-z]*\\__?[a-z-]+"
   },
   {
+    "database": "Q17073815",
+    "databaseHomepage": "http://paleobiodb.org/",
+    "databaseLabel": "Paleobiology Database",
+    "prop": "P10907",
+    "propDescription": "identifier for a fossil taxon in the Paleobiology Database",
+    "propFormat": "https://paleobiodb.org/classic/basicTaxonInfo?taxon_no=$1",
+    "propHomepage": "https://paleobiodb.org/",
+    "propLabel": "Paleobiology Database ID",
+    "propPattern": "[1-9]\\d*"
+  },
+  {
     "database": "Q899676",
     "databaseHomepage": "http://prosite.expasy.org/",
     "databaseLabel": "PROSITE",
     "databaseMiriam": "prosite",
     "prop": "P4355",
     "propDescription": "identifier for a protein family, domain or functional site, in the PROSITE database",
-    "propFormat": "http://prosite.expasy.org/$1",
+    "propFormat": "https://prosite.expasy.org/$1",
     "propLabel": "PROSITE documentation ID",
     "propPattern": "PDOC\\d{5}"
   },
@@ -1202,8 +1214,8 @@
     "databaseLabel": "New Zealand Birds Online",
     "prop": "P6048",
     "propDescription": "identifier for a species on the New Zealand Birds Online website",
-    "propFormat": "http://nzbirdsonline.org.nz/species/$1",
-    "propHomepage": "http://nzbirdsonline.org.nz/name-search?title=&field_other_names_value=&field_search_scientific_name_value=",
+    "propFormat": "https://nzbirdsonline.org.nz/species/$1",
+    "propHomepage": "https://nzbirdsonline.org.nz/name-search?title=&field_other_names_value=&field_search_scientific_name_value=",
     "propLabel": "New Zealand Birds Online ID",
     "propPattern": "[a-z]+(\\-[a-z]+)*"
   },
@@ -1257,7 +1269,8 @@
     "propDescription": "identifier for a taxon in the Native Plants Database, on the Lady Bird Johnson Wildflower Center website",
     "propFormat": "https://www.wildflower.org/plants/result.php?id_plant=$1",
     "propHomepage": "https://www.wildflower.org/plants/index.php",
-    "propLabel": "Native Plants Database ID"
+    "propLabel": "Native Plants Database ID",
+    "propPattern": "[A-Z]{4,5}[1-9]?"
   },
   {
     "database": "Q5152005",
@@ -1463,7 +1476,7 @@
     "databaseMiriam": "metabolights",
     "prop": "P3890",
     "propDescription": "identifiers for compound entries in the MetaboLights databases.",
-    "propFormat": "http://www.ebi.ac.uk/metabolights/$1",
+    "propFormat": "https://www.ebi.ac.uk/metabolights/$1",
     "propLabel": "MetaboLights Compound ID",
     "propPattern": "MTBLC\\d+"
   },
@@ -1579,6 +1592,28 @@
     "propPattern": "[1-9]\\d*"
   },
   {
+    "database": "Q60315739",
+    "databaseHomepage": "http://www.ifpni.org/",
+    "databaseLabel": "International Fossil Plant Names Index",
+    "prop": "P6341",
+    "propDescription": "identifier for a species at the International Fossil Plant Names Index",
+    "propFormat": "http://www.ifpni.org/species.htm?id=$1",
+    "propHomepage": "http://www.ifpni.org/species.htm",
+    "propLabel": "IFPNI species ID",
+    "propPattern": "[0-9A-F]{8}(-[0-9A-F]{4}){3}-[0-9A-F]{12}"
+  },
+  {
+    "database": "Q60315739",
+    "databaseHomepage": "http://www.ifpni.org/",
+    "databaseLabel": "International Fossil Plant Names Index",
+    "prop": "P9738",
+    "propDescription": "identifier for an author in the International Fossil Plant Names Index (IFPNI)",
+    "propFormat": "http://www.ifpni.org/author.htm?id=$1",
+    "propHomepage": "http://www.ifpni.org/author",
+    "propLabel": "IFPNI author ID",
+    "propPattern": "[0-9A-F]{8}(-[0-9A-F]{4}){3}-[0-9A-F]{12}"
+  },
+  {
     "database": "Q58006102",
     "databaseHomepage": "https://www.infoflora.ch/fr/",
     "databaseLabel": "Info Flora",
@@ -1660,8 +1695,8 @@
     "databaseLabel": "IUPHAR/BPS Guide to PHARMACOLOGY",
     "prop": "P5458",
     "propDescription": "target identifier of the Guide to Pharmacology database",
-    "propFormat": "http://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=$1",
-    "propHomepage": "http://www.guidetopharmacology.org/GRAC/",
+    "propFormat": "https://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=$1",
+    "propHomepage": "https://www.guidetopharmacology.org/GRAC/",
     "propLabel": "Guide to Pharmacology Target ID",
     "propPattern": "[1-9]\\d{0,3}"
   },
@@ -1681,27 +1716,7 @@
     "databaseLabel": "IUCN Red List",
     "prop": "P627",
     "propDescription": "identifier for a taxon in the International Union for Conservation of Nature database; source for conservation status (P141)",
-    "propFormat": "https://www.iucnredlist.org/details/$1/0",
-    "propLabel": "IUCN taxon ID",
-    "propPattern": "[1-9]\\d{0,8}"
-  },
-  {
-    "database": "Q32059",
-    "databaseHomepage": "https://www.iucnredlist.org/",
-    "databaseLabel": "IUCN Red List",
-    "prop": "P627",
-    "propDescription": "identifier for a taxon in the International Union for Conservation of Nature database; source for conservation status (P141)",
     "propFormat": "https://apiv3.iucnredlist.org/api/v3/taxonredirect/$1",
-    "propLabel": "IUCN taxon ID",
-    "propPattern": "[1-9]\\d{0,8}"
-  },
-  {
-    "database": "Q32059",
-    "databaseHomepage": "https://www.iucnredlist.org/",
-    "databaseLabel": "IUCN Red List",
-    "prop": "P627",
-    "propDescription": "identifier for a taxon in the International Union for Conservation of Nature database; source for conservation status (P141)",
-    "propFormat": "https://www.iucnredlist.org/details/$1/0",
     "propLabel": "IUCN taxon ID",
     "propPattern": "[1-9]\\d{0,8}"
   },
@@ -1932,7 +1947,19 @@
     "propDescription": "identifier for an animal, plant, or microorganism in the Fossilworks database",
     "propFormat": "http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1",
     "propHomepage": "http://www.fossilworks.org",
-    "propLabel": "Fossilworks ID for this taxon",
+    "propLabel": "Fossilworks taxon ID",
+    "propPattern": "([1-9]\\d{0,5})"
+  },
+  {
+    "database": "Q796451",
+    "databaseHomepage": "http://www.fossilworks.org",
+    "databaseLabel": "Fossilworks",
+    "databaseMiriam": "paleodb",
+    "prop": "P842",
+    "propDescription": "identifier for an animal, plant, or microorganism in the Fossilworks database",
+    "propFormat": "http://www.fossilworks.org/cgi-bin/bridge.pl?a=taxonInfo&taxon_no=$1",
+    "propHomepage": "http://www.fossilworks.org",
+    "propLabel": "Fossilworks taxon ID",
     "propPattern": "([1-9]\\d{0,5})"
   },
   {
@@ -2343,7 +2370,7 @@
     "databaseLabel": "Donn\u00e9es d'observations pour la reconnaissance et l'identification de la faune et de la flore subaquatiques",
     "prop": "P4630",
     "propDescription": "identifier of an underwater animal or plant species from French metropolitan and overseas waters on the participatory site DORIS",
-    "propFormat": "http://doris.ffessm.fr/ref/specie/$1",
+    "propFormat": "https://doris.ffessm.fr/ref/specie/$1",
     "propLabel": "DORIS ID",
     "propPattern": "[1-9]\\d*"
   },
@@ -2445,8 +2472,8 @@
     "databaseLabel": "ClinVar",
     "prop": "P1929",
     "propDescription": "identifier in the ClinVar database for human genomic variation",
-    "propFormat": "http://www.ncbi.nlm.nih.gov/clinvar/variation/$1/",
-    "propHomepage": "http://www.ncbi.nlm.nih.gov/clinvar/",
+    "propFormat": "https://www.ncbi.nlm.nih.gov/clinvar/variation/$1/",
+    "propHomepage": "https://www.ncbi.nlm.nih.gov/clinvar/",
     "propLabel": "ClinVar Variation ID"
   },
   {
@@ -2564,7 +2591,7 @@
     "databaseLabel": "Catalogue of the Lepidoptera of Belgium",
     "prop": "P5862",
     "propDescription": "identifier in the Catalogue of Lepidoptera of Belgium",
-    "propFormat": "http://projects.biodiversity.be/lepidoptera/species/$1/",
+    "propFormat": "https://projects.biodiversity.be/lepidoptera/species/$1/",
     "propLabel": "Lepidoptera of Belgium ID",
     "propPattern": "[1-9]\\d*"
   },
@@ -2754,6 +2781,26 @@
     "propHomepage": "https://www.catalogueoflife.org/",
     "propLabel": "Catalogue of Life ID",
     "propPattern": "[23456789BCDFGHJKLMNPQRSTVWXYZ]{1,6}"
+  },
+  {
+    "database": "Q2166958",
+    "databaseHomepage": "https://www.ccdc.cam.ac.uk/",
+    "databaseLabel": "Cambridge Structural Database",
+    "prop": "P6852",
+    "propDescription": "identifier for a single crystal structure per the Cambridge Crystallographic Data Centre (CCDC)",
+    "propFormat": "https://www.ccdc.cam.ac.uk/services/structures?sid=IDORG&pid=csd:$1",
+    "propHomepage": "https://www.ccdc.cam.ac.uk/",
+    "propLabel": "CCDC Number"
+  },
+  {
+    "database": "Q2166958",
+    "databaseHomepage": "https://www.ccdc.cam.ac.uk/",
+    "databaseLabel": "Cambridge Structural Database",
+    "prop": "P6852",
+    "propDescription": "identifier for a single crystal structure per the Cambridge Crystallographic Data Centre (CCDC)",
+    "propFormat": "https://www.ccdc.cam.ac.uk/services/structures?sid=IDORG&pid=csd:$1",
+    "propHomepage": "https://www.ccdc.cam.ac.uk/structures/?",
+    "propLabel": "CCDC Number"
   },
   {
     "database": "Q5020710",
@@ -3088,7 +3135,7 @@
     "propFormat": "https://biodiversity.org.au/afd/taxa/$1",
     "propHomepage": "https://biodiversity.org.au/afd/search/names",
     "propLabel": "Australian Faunal Directory ID",
-    "propPattern": "[a-zA-Z]*([-_;]([(]?)[a-zA-Z]*(\\.)?([)]?))*(\\.)?"
+    "propPattern": "[a-zA-Z\\xC0-\\xFF]*([-_;]([(]?)[a-zA-Z\\xC0-\\xFF]*(\\.)?([)]?))*(\\.)?"
   },
   {
     "database": "Q2784883",
@@ -3159,12 +3206,12 @@
     "database": "Q2850008",
     "databaseHomepage": "https://animaldiversity.org",
     "databaseLabel": "Animal Diversity Web",
-    "databaseMiriam": "adw",
     "prop": "P4024",
     "propDescription": "identifier for a taxon in the Animal Diversity Web database",
     "propFormat": "https://animaldiversity.org/accounts/$1/",
     "propHomepage": "http://animaldiversity.org",
-    "propLabel": "ADW taxon ID"
+    "propLabel": "ADW taxon ID",
+    "propMiriam": "adw"
   },
   {
     "database": "Q59784234",
@@ -3236,7 +3283,7 @@
     "databaseLabel": "African Plant Database",
     "prop": "P2036",
     "propDescription": "identifier for a plant taxon, in the Conservatoire et Jardin botaniques de Gen\u00e8ve's African Plant Database of scientific names",
-    "propFormat": "https://www.ville-ge.ch/musinfo/bd/cjb/africa/details.php?langue=an&id=$1",
+    "propFormat": "https://africanplantdatabase.ch/nomen/$1",
     "propHomepage": "http://www.ville-ge.ch/musinfo/bd/cjb/africa/index.php?langue=an",
     "propLabel": "African Plant Database ID",
     "propPattern": "\\d{1,6}"

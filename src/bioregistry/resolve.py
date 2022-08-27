@@ -34,6 +34,7 @@ __all__ = [
     "get_obo_download",
     "get_json_download",
     "get_owl_download",
+    "get_rdf_download",
     "get_version",
     "get_banana",
     "get_obo_health_url",
@@ -58,6 +59,7 @@ __all__ = [
     "count_mappings",
     "get_versions",
     "get_parts_collections",
+    "get_obo_context_prefix_map",
 ]
 
 logger = logging.getLogger(__name__)
@@ -79,7 +81,7 @@ def get_name(prefix: str) -> Optional[str]:
     return manager.get_name(prefix)
 
 
-def get_description(prefix: str, use_markdown: bool = False) -> Optional[str]:
+def get_description(prefix: str, *, use_markdown: bool = False) -> Optional[str]:
     """Get the description for the given prefix, if available.
 
     :param prefix: The prefix to lookup.
@@ -87,10 +89,7 @@ def get_description(prefix: str, use_markdown: bool = False) -> Optional[str]:
         string
     :returns: The description, if available.
     """
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_description(use_markdown=use_markdown)
+    return manager.get_description(prefix, use_markdown=use_markdown)
 
 
 def get_preferred_prefix(prefix: str) -> Optional[str]:
@@ -641,10 +640,7 @@ def get_contact_name(prefix: str) -> Optional[str]:
 
 def get_homepage(prefix: str) -> Optional[str]:
     """Return the homepage, if available."""
-    entry = get_resource(prefix)
-    if entry is None:
-        return None
-    return entry.get_homepage()
+    return manager.get_homepage(prefix)
 
 
 def get_repository(prefix: str) -> Optional[str]:
@@ -677,6 +673,14 @@ def get_owl_download(prefix: str) -> Optional[str]:
     if entry is None:
         return None
     return entry.get_download_owl()
+
+
+def get_rdf_download(prefix: str) -> Optional[str]:
+    """Get the download link for the RDF file."""
+    entry = get_resource(prefix)
+    if entry is None:
+        return None
+    return entry.get_download_rdf()
 
 
 def get_provides_for(prefix: str) -> Optional[str]:
@@ -905,13 +909,15 @@ def get_versions() -> Mapping[str, str]:
     return manager.get_versions()
 
 
-def get_curie_pattern(prefix: str) -> Optional[str]:
+def get_curie_pattern(prefix: str, use_preferred: bool = False) -> Optional[str]:
     """Get the CURIE pattern for this resource.
 
     :param prefix: The prefix to look up
+    :param use_preferred: Should the preferred prefix be used instead
+        of the Bioregistry prefix (if it exists)?
     :return: The regular expression pattern to match CURIEs against
     """
-    return manager.get_curie_pattern(prefix)
+    return manager.get_curie_pattern(prefix, use_preferred=use_preferred)
 
 
 def get_license_conflicts():
@@ -919,19 +925,9 @@ def get_license_conflicts():
     return manager.get_license_conflicts()
 
 
-SHIELDS_BASE = "https://img.shields.io/badge/dynamic"
-CH_BASE = "https://cthoyt.com/obo-community-health"
-HEALTH_BASE = "https://github.com/cthoyt/obo-community-health/raw/main/data/data.json"
-EXTRAS = f"%20Community%20Health%20Score&link={CH_BASE}"
-
-
 def get_obo_health_url(prefix: str) -> Optional[str]:
     """Get the OBO community health badge."""
-    obo_prefix = manager.get_mapped_prefix(prefix, "obofoundry")
-    if obo_prefix is None:
-        return None
-    obo_pp = manager.get_preferred_prefix(prefix)
-    return f"{SHIELDS_BASE}/json?url={HEALTH_BASE}&query=$.{obo_prefix.lower()}.score&label={obo_pp}{EXTRAS}"
+    return manager.get_obo_health_url(prefix)
 
 
 def is_novel(prefix: str) -> Optional[bool]:
@@ -955,3 +951,18 @@ def get_parts_collections():
         resource and not a vocabulary.
     """
     return manager.get_parts_collections()
+
+
+def get_obo_context_prefix_map(include_synonyms: bool = False) -> Mapping[str, str]:
+    """Get the OBO Foundry prefix map.
+
+    :param include_synonyms: Should synonyms of each prefix also be included as additional prefixes, but with
+        the same URL prefix?
+    :return: A mapping from prefixes to prefix URLs.
+    """
+    return manager.get_context_artifacts("obo", include_synonyms=include_synonyms)[0]
+
+
+def read_contributors(direct_only: bool = False) -> Mapping[str, Attributable]:
+    """Get a mapping from contributor ORCID identifiers to author objects."""
+    return manager.read_contributors(direct_only=direct_only)

@@ -395,15 +395,12 @@ def compare(paper: bool):  # noqa:C901
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
     xrefs_counter: typing.Counter[int] = Counter(xref_counts)
 
-    n_mappable_metaprefixes = len(
-        {
-            metaprefix
-            for entry in read_registry().values()
-            for metaprefix in (entry.get_mappings() or {})
-        }
-    )
+    mappable_metaprefixes = {
+        metaprefix for entry in read_registry().values() for metaprefix in entry.get_mappings()
+    }
+    n_mappable_metaprefixes = len(mappable_metaprefixes)
     zero_pad_count = 0  # how many columns left from the end should it go
-    for i in range(n_mappable_metaprefixes):
+    for i in range(n_mappable_metaprefixes + 1):
         if i not in xrefs_counter:
             zero_pad_count += 1
             xrefs_counter[i] = 0
@@ -425,24 +422,25 @@ def compare(paper: bool):  # noqa:C901
     _labels[0] = f"{_labels[0]}\nNovel"
     for i in ax.containers:
         ax.bar_label(i, _labels)
-    ax.set_xlabel("Number Cross-Registry Mappings")
-    ax.set_ylabel("Number Prefixes")
+    ax.set_xlabel("Number of External Registries Capturing a Given Identifier Resource")
+    ax.set_ylabel("Number of Identifier Resources")
     ax.set_yscale("log")
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
-    h = 15  # how high should the text go
     x1, _y1 = ax.patches[-zero_pad_count].get_xy()
     x2, _y2 = ax.patches[-1].get_xy()
+    h = 18  # how high should the text go
     ax.text(
         x1,
         h + 1,
-        "No prefixes are available\nin $\\it{all}$ mappable external\nregistries",
+        f"No identifier resources are\navailable in more than\n"
+        f"{n_mappable_metaprefixes - zero_pad_count} external registries",
         horizontalalignment="center",
         verticalalignment="bottom",
         fontdict=dict(fontsize=12),
     )
-    ax.arrow(x1, h, x2 - x1, 2 - h, head_width=0.3, head_length=0.2, fc="k", ec="k")
+    ax.arrow(x1, h, (x2 - x1) / 2.0, 3 - h, head_width=0.3, head_length=0.2, fc="k", ec="k")
     if watermark:
         fig.text(
             1.0,

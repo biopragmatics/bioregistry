@@ -70,7 +70,7 @@ wrong_patterns:
 - correct: ^\d{1,2}(((\.\d{1,3}){1,3})|(\.\d+){2}\.n\d{1,3})?$
   homepage: https://www.ebi.ac.uk/intenz/
   miriam: ^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$
-  name: Enzyme Nomenclature
+  name: Enzyme Commission Code
   prefix: eccode
 - correct: ^\d{7}$
   homepage: https://github.com/evidenceontology/evidenceontology/
@@ -167,6 +167,16 @@ wrong_patterns:
   miriam: ^MAMO_\d{7}$
   name: Mathematical modeling ontology
   prefix: mamo
+- correct: ^[SCTAGMNUI]\d{2}\.([AB]\d{2}|\d{3})$
+  homepage: http://merops.sanger.ac.uk/index.htm
+  miriam: ^I\d{2}\.\d{3}$
+  name: MEROPS Entry
+  prefix: merops.entry
+- correct: ^(MAM\d{5}\w)|(MAR\d{5})$
+  homepage: https://metabolicatlas.org
+  miriam: ^MA[MR]\d{5}[a-z]?$
+  name: Metabolic Atlas
+  prefix: metatlas
 - correct: ^\d+$
   homepage: http://aclame.ulb.ac.be/
   miriam: ^mge:\d+$
