@@ -517,7 +517,7 @@ class Manager:
         return {
             prefix: self._rasterized_resource(resource)
             for prefix, resource in self.registry.items()
-            if not resource.provides # those get handled in self._rasterize_resource
+            if not resource.provides  # those get handled in self._rasterize_resource
         }
 
     def _rasterized_resource(self, resource: Resource) -> Resource:

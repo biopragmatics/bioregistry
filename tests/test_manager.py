@@ -35,11 +35,13 @@ class TestResourceManager(unittest.TestCase):
         """Test that generating a rasterized manager works the same for all functions."""
         rasterized_registry = self.manager._rasterized_registry()
         #: prefixes that are removed during rasterization, e.g., because the are providers
-        removed = {v for vs in self.manager.provided_by.values() for v in vs}
-        self.assertEqual(set(self.manager.registry) - removed, set(rasterized_registry))
+        removed_prefixes = {
+            prefix for prefixes in self.manager.provided_by.values() for prefix in prefixes
+        }
+        self.assertEqual(set(self.manager.registry) - removed_prefixes, set(rasterized_registry))
         rast_manager = Manager(rasterized_registry)
-        self.assertEqual(set(self.manager.registry) - removed, set(rast_manager.registry))
-        #self.assertEqual(self.manager.synonyms, rast_manager.synonyms)
+        self.assertEqual(set(self.manager.registry) - removed_prefixes, set(rast_manager.registry))
+        # self.assertEqual(self.manager.synonyms, rast_manager.synonyms)
         for prefix, resource in self.manager.registry.items():
             with self.subTest(prefix=prefix):
                 if resource.provides:
@@ -71,7 +73,9 @@ class TestResourceManager(unittest.TestCase):
                     rast_manager.get_preferred_prefix(prefix),
                 )
                 self.assertEqual(
-                    self.manager.get_synonyms(prefix).union(self.manager.provided_by.get(prefix, [])),
+                    self.manager.get_synonyms(prefix).union(
+                        self.manager.provided_by.get(prefix, [])
+                    ),
                     rast_manager.get_synonyms(prefix),
                 )
                 self.assertEqual(
@@ -89,7 +93,7 @@ class TestResourceManager(unittest.TestCase):
                 self.assertEqual(
                     [],
                     rast_manager.get_provided_by(prefix),
-                    msg="All provider relationships should be removed in rasterization"
+                    msg="All provider relationships should be removed in rasterization",
                 )
                 self.assertEqual(
                     self.manager.get_has_canonical(prefix),
@@ -104,8 +108,9 @@ class TestResourceManager(unittest.TestCase):
                     rast_manager.get_part_of(prefix),
                 )
                 self.assertEqual(
-                    self.manager.get_has_parts(prefix),
-                    rast_manager.get_has_parts(prefix),
+                    set(self.manager.get_has_parts(prefix) or []) - removed_prefixes,
+                    set(rast_manager.get_has_parts(prefix) or []),
+                    msg=f"Rasterized manager has the wrong parts of {prefix}",
                 )
 
     def test_formatted_iri(self):
