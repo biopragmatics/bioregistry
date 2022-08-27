@@ -522,10 +522,10 @@ class Manager:
 
     def _rasterized_resource(self, resource: Resource) -> Resource:
         syns = set()
-        for p in self.get_provided_by(resource.prefix):
-            r = self.registry[p]
-            syns.add(r.prefix)
-            syns.update(r.get_synonyms())
+        for prefix in self.get_provided_by(resource.prefix) or []:
+            resource = self.registry[prefix]
+            syns.add(resource.prefix)
+            syns.update(resource.get_synonyms())
         rv = Resource(
             prefix=resource.prefix,
             preferred_prefix=resource.get_preferred_prefix() or resource.prefix,
@@ -608,7 +608,7 @@ class Manager:
         if resource is None:
             return None
         rv = list(resource.appears_in or [])
-        rv.extend(self._get_obo_list(prefix=prefix, resource=resource, key="appears_in"))
+        rv.extend(self._get_obo_list(resource=resource, key="appears_in"))
         return sorted(set(rv))
 
     def get_depends_on(self, prefix: Union[str, Resource]) -> Optional[List[str]]:
@@ -629,15 +629,15 @@ class Manager:
         if resource is None:
             return None
         rv = list(resource.depends_on or [])
-        rv.extend(self._get_obo_list(prefix=prefix, resource=resource, key="depends_on"))
+        rv.extend(self._get_obo_list(resource=resource, key="depends_on"))
         return sorted(set(rv))
 
-    def _get_obo_list(self, *, prefix: str, resource: Resource, key: str) -> List[str]:
+    def _get_obo_list(self, *, resource: Resource, key: str) -> List[str]:
         rv = []
         for obo_prefix in resource.get_external("obofoundry").get(key, []):
             canonical_prefix = self.lookup_from("obofoundry", obo_prefix, normalize=True)
             if canonical_prefix is None:
-                logger.warning("[%s] could not map OBO %s: %s", prefix, key, obo_prefix)
+                logger.warning("[%s] could not map OBO %s: %s", resource.prefix, key, obo_prefix)
             else:
                 rv.append(canonical_prefix)
         return rv
