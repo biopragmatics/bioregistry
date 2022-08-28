@@ -154,6 +154,33 @@
         "name"
       ]
     },
+    "Publication": {
+      "title": "Publication",
+      "description": "Metadata about a publication.",
+      "type": "object",
+      "properties": {
+        "pubmed": {
+          "title": "PubMed",
+          "description": "The PubMed identifier for the article",
+          "type": "string"
+        },
+        "doi": {
+          "title": "DOI",
+          "description": "The DOI for the article",
+          "type": "string"
+        },
+        "pmc": {
+          "title": "PMC",
+          "description": "The PubMed Central identifier for the article",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "description": "The title of the article",
+          "type": "string"
+        }
+      }
+    },
     "Resource": {
       "title": "Resource",
       "description": "Metadata about an ontology, database, or other resource.",
@@ -275,6 +302,11 @@
           "description": "The URL to download the resource as an ontology encoded in the OBO Graph JSON format. More information about this format can be found at https://github.com/geneontology/obographs.",
           "type": "string"
         },
+        "download_rdf": {
+          "title": "RDF Download URL",
+          "description": "The URL to download the resource as an RDF file, in one of many formats.",
+          "type": "string"
+        },
         "banana": {
           "title": "Banana",
           "description": "The `banana` is a generalization of the concept of the \"namespace embedded in local unique identifier\". Many OBO foundry ontologies use the redundant uppercased name of the ontology in the local identifier, such as the Gene Ontology, which makes the prefixes have a redundant usage as in ``GO:GO:1234567``. The `banana` tag explicitly annotates the part in the local identifier that should be stripped, if found. While the Bioregistry automatically knows how to handle all OBO Foundry ontologies' bananas because the OBO Foundry provides the \"preferredPrefix\" field, the banana can be annotated on non-OBO ontologies to more explicitly write the beginning part of the identifier that should be stripped. This allowed for solving one of the long-standing issues with the Identifiers.org resolver (e.g., for ``oma.hog``; see https://github.com/identifiers-org/identifiers-org.github.io/issues/155) as well as better annotate new entries, such as SwissMap Lipids, which have the prefix ``swisslipid`` but have the redundant information ``SLM:`` in the beginning of identifiers. Therefore, ``SLM:`` is the banana.",
@@ -312,6 +344,14 @@
           "type": "array",
           "items": {
             "type": "string"
+          }
+        },
+        "publications": {
+          "title": "Publications",
+          "description": "A list of URLs to also see, such as publications describing the resource",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Publication"
           }
         },
         "appears_in": {

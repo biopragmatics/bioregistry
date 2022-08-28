@@ -1,6 +1,7 @@
 """A benchmark for Bioregistry's URI parser."""
 
 import time
+from statistics import mean
 from typing import Iterable, Tuple
 
 import matplotlib.pyplot as plt
@@ -38,7 +39,7 @@ def iter_uris() -> Iterable[Tuple[str, str, str, str]]:
                     yield prefix, extra_example, metaprefix, url
 
 
-def main(rebuild: bool = False):
+def main(rebuild: bool = False, epochs: int = 10):
     """Test parsing IRIs."""
     uris = get_uris(rebuild=rebuild)
 
@@ -46,15 +47,17 @@ def main(rebuild: bool = False):
     bioregistry.parse_iri("https://bioregistry.io/DRON:00023232")
 
     times = []
-    for _, _, _, url in tqdm(uris, unit_scale=True, unit="URI"):
-        start = time.time()
-        bioregistry.parse_iri(url)
-        times.append(time.time() - start)
+    for _ in range(epochs):
+        for _, _, _, url in tqdm(uris, unit_scale=True, unit="URI"):
+            start = time.time()
+            bioregistry.parse_iri(url)
+            times.append(time.time() - start)
 
     fig, ax = plt.subplots()
+    mean_time = mean(times)
     sns.histplot(data=times, ax=ax, log_scale=True)
     ax.set_xlabel("Time (seconds)")
-    ax.set_title("Bioregistry URI Parsing Benchmark")
+    ax.set_title(f"Bioregistry URI Parsing Benchmark\nAverage: {round(1 / mean_time):,} URI/s")
     fig.savefig(URI_PARSING_SVG_PATH)
 
 

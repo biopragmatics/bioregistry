@@ -51,6 +51,7 @@ from .resolve import (  # noqa:F401
     get_n2t_prefix,
     get_name,
     get_namespace_in_lui,
+    get_obo_context_prefix_map,
     get_obo_download,
     get_obo_health_url,
     get_obofoundry_prefix,
@@ -67,6 +68,7 @@ from .resolve import (  # noqa:F401
     get_prefixcommons_uri_format,
     get_provided_by,
     get_provides_for,
+    get_rdf_download,
     get_registry_invmap,
     get_registry_map,
     get_repository,
@@ -83,6 +85,7 @@ from .resolve import (  # noqa:F401
     normalize_parsed_curie,
     normalize_prefix,
     parse_curie,
+    read_contributors,
 )
 from .resolve_identifier import (  # noqa:F401
     get_bioportal_iri,
@@ -114,7 +117,6 @@ from .schema_utils import (  # noqa:F401
     is_mismatch,
     read_collections,
     read_contexts,
-    read_contributors,
     read_metaregistry,
     read_mismatches,
     read_registry,

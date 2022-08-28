@@ -7,7 +7,9 @@ import logging
 import pathlib
 import re
 import textwrap
+from collections import defaultdict
 from functools import lru_cache
+from operator import attrgetter
 from typing import (
     Any,
     Callable,
@@ -18,6 +20,7 @@ from typing import (
     Optional,
     Sequence,
     Set,
+    Tuple,
     Union,
     cast,
 )
@@ -151,6 +154,34 @@ class Provider(BaseModel):
         return self.uri_format.replace("$1", identifier)
 
 
+class Publication(BaseModel):
+    """Metadata about a publication."""
+
+    pubmed: Optional[str] = Field(
+        title="PubMed", description="The PubMed identifier for the article"
+    )
+    doi: Optional[str] = Field(title="DOI", description="The DOI for the article")
+    pmc: Optional[str] = Field(
+        title="PMC", description="The PubMed Central identifier for the article"
+    )
+    title: Optional[str] = Field(description="The title of the article")
+
+    def key(self) -> Tuple[str, ...]:
+        """Create a key based on identifiers in this data structure."""
+        return self.pubmed or "", self.doi or "", self.pmc or ""
+
+    def get_url(self) -> str:
+        """Get a URL link."""
+        for prefix, identifier in [
+            ("pubmed", self.pubmed),
+            ("doi", self.doi),
+            ("pmc", self.pmc),
+        ]:
+            if identifier is not None:
+                return f"https://bioregistry.io/{prefix}:{identifier}"
+        raise ValueError("no fields were full")
+
+
 class Resource(BaseModel):
     """Metadata about an ontology, database, or other resource."""
 
@@ -250,6 +281,14 @@ class Resource(BaseModel):
     """
         ),
     )
+    download_rdf: Optional[str] = Field(
+        title="RDF Download URL",
+        description=_dedent(
+            """
+    The URL to download the resource as an RDF file, in one of many formats.
+    """
+        ),
+    )
     banana: Optional[str] = Field(
         description=_dedent(
             """\
@@ -301,6 +340,9 @@ class Resource(BaseModel):
         ),
     )
     references: Optional[List[str]] = Field(
+        description="A list of URLs to also see, such as publications describing the resource",
+    )
+    publications: Optional[List[Publication]] = Field(
         description="A list of URLs to also see, such as publications describing the resource",
     )
     appears_in: Optional[List[str]] = Field(
@@ -450,7 +492,12 @@ class Resource(BaseModel):
         'CHEBI'
         """
         if metaprefix == "obofoundry":
-            return (self.obofoundry or {}).get("preferredPrefix")
+            obofoundry_dict = self.obofoundry or {}
+            if "preferredPrefix" in obofoundry_dict:
+                return obofoundry_dict["preferredPrefix"]
+            if "prefix" in obofoundry_dict:
+                return obofoundry_dict["prefix"].upper()
+            return None
         return self.get_mappings().get(metaprefix)
 
     def get_prefix_key(self, key: str, metaprefixes: Union[str, Sequence[str]]):
@@ -849,6 +896,15 @@ class Resource(BaseModel):
             return example
         return None
 
+    def get_examples(self) -> List[str]:
+        """Get a list of examples."""
+        rv = []
+        example = self.get_example()
+        if example:
+            rv.append(example)
+        rv.extend(self.example_extras or [])
+        return rv
+
     def get_example_curie(self, use_preferred: bool = False) -> Optional[str]:
         """Get an example CURIE, if an example identifier is available.
 
@@ -881,34 +937,38 @@ class Resource(BaseModel):
                 return True
         return False
 
-    def get_publications(self):
+    def get_publications(self) -> List[Publication]:
         """Get a list of publications."""
-        # TODO make a model for this
-        rv = {}
+        publications = self.publications or []
         if self.obofoundry:
             for publication in self.obofoundry.get("publications", []):
                 url, title = publication["id"], publication["title"]
                 if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
-                    pmid = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
-                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
+                    pubmed = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
+                    publications.append(Publication(pubmed=pubmed, title=title))
+                elif url.startswith("https://doi.org/"):
+                    doi = url[len("https://doi.org/") :]
+                    publications.append(Publication(doi=doi, title=title))
+                elif url.startswith("https://www.medrxiv.org/content/"):
+                    doi = url[len("https://www.medrxiv.org/content/") :]
+                    publications.append(Publication(doi=doi, title=title))
+                elif url.startswith("https://zenodo.org/record/"):
+                    continue
+                elif "ceur-ws.org" in url:
+                    continue
                 else:
                     logger.warning("unhandled obo foundry publication ID: %s", url)
         if self.fairsharing:
             for publication in self.fairsharing.get("publications", []):
-                pmid = publication.get("pubmed_id")
+                pubmed = publication.get("pubmed_id")
+                doi = publication.get("doi")
                 title = publication.get("title")
-                if pmid:
-                    rv[f"https://bioregistry.io/pubmed:{pmid}"] = title
-                else:
-                    doi = publication["doi"]
-                    rv[f"https://bioregistry.io/doi:{doi}"] = title
+                if pubmed or doi:
+                    publications.append(Publication(pubmed=pubmed, doi=doi, title=title))
         if self.prefixcommons:
-            for pmid in self.prefixcommons.get("pubmed_ids", []):
-                url = f"https://bioregistry.io/pubmed:{pmid}"
-                if url in rv:
-                    continue
-                rv[url] = None
-        return [{"id": k, "title": v} for k, v in sorted(rv.items())]
+            for pubmed in self.prefixcommons.get("pubmed_ids", []):
+                publications.append(Publication(pubmed=pubmed))
+        return deduplicate_publications(publications)
 
     def get_twitter(self) -> Optional[str]:
         """Get the Twitter handle for ther resource."""
@@ -926,6 +986,8 @@ class Resource(BaseModel):
         >>> from bioregistry import get_resource
         >>> get_resource("go").get_obofoundry_prefix()  # standard
         'GO'
+        >>> get_resource("aao").get_obofoundry_prefix()  # standard but deprecated
+        'AAO'
         >>> get_resource("ncbitaxon").get_obofoundry_prefix()  # mixed case
         'NCBITaxon'
         >>> assert get_resource("sty").get_obofoundry_prefix() is None
@@ -1206,7 +1268,7 @@ class Resource(BaseModel):
         if self.miriam:
             for p in self.miriam.get("providers", []):
                 rv.append(Provider(**p))
-        return rv
+        return sorted(rv, key=attrgetter("code"))
 
     def get_curie(self, identifier: str, use_preferred: bool = False) -> str:
         """Get a CURIE for a local unique identifier in this resource's semantic space.
@@ -1394,6 +1456,10 @@ class Resource(BaseModel):
         if self.download_json:
             return self.download_json
         return self.get_external("obofoundry").get("download.json")
+
+    def get_download_rdf(self) -> Optional[str]:
+        """Get the download link for the latest RDF file."""
+        return self.download_rdf
 
     def get_download_owl(self) -> Optional[str]:
         """Get the download link for the latest OWL file.
@@ -1834,6 +1900,10 @@ class Collection(BaseModel):
 
         return node
 
+    def as_context_jsonld_str(self) -> str:
+        """Get the JSON-LD context as a string from a given collection."""
+        return json.dumps(self.as_context_jsonld())
+
     def as_context_jsonld(self) -> Mapping[str, Mapping[str, str]]:
         """Get the JSON-LD context from a given collection."""
         return {
@@ -1953,6 +2023,7 @@ def get_json_schema():
                 Registry,
                 RegistrySchema,
                 Context,
+                Publication,
             ],
             title="Bioregistry JSON Schema",
             description="The Bioregistry JSON Schema describes the shapes of the objects in"
@@ -1984,6 +2055,7 @@ def write_bulk_prefix_request_template():
             "contributor",
             "github_request_issue",
             "banana_peel",
+            "publications",
         }:
             continue
         if name in metaprefixes:
@@ -2038,6 +2110,50 @@ def _get(resource, key):
     if isinstance(x, (list, set)):
         return "|".join(sorted(x))
     return x or ""
+
+
+def deduplicate_publications(publications: List[Publication]) -> List[Publication]:
+    """Deduplicate publications."""
+    d = defaultdict(list)
+
+    # Index mappings
+    doi_to_pmid = {}
+    pmid_to_doi = {}
+    doi_to_pmc = {}
+    pmc_to_doi = {}
+    pmid_to_pmc = {}
+    pmc_to_pmid = {}
+    for p in publications:
+        if p.doi and p.pubmed:
+            doi_to_pmid[p.doi] = p.pubmed
+            pmid_to_doi[p.pubmed] = p.doi
+        if p.doi and p.pmc:
+            doi_to_pmc[p.doi] = p.pmc
+            pmc_to_doi[p.pmc] = p.doi
+        if p.pubmed and p.pmc:
+            pmid_to_pmc[p.pubmed] = p.pmc
+            pmc_to_pmid[p.pmc] = p.pubmed
+    for p in publications:
+        # apply mappings
+        if p.doi and not p.pubmed:
+            p.pubmed = doi_to_pmid.get(p.doi)
+        if p.pubmed and not p.doi:
+            p.doi = pmid_to_doi.get(p.pubmed)
+        if p.doi and not p.pmc:
+            p.pmc = doi_to_pmc.get(p.doi)
+        if p.pubmed and not p.pmc:
+            p.pmc = pmid_to_pmc.get(p.pubmed)
+        # todo not exhaustive, doesn't account for multi-hop mappings
+        d[p.key()].append(p)
+
+    for vs in d.values():
+        try:
+            title = next(v.title for v in vs if v.title)
+        except StopIteration:
+            continue
+        else:
+            vs[0].title = title
+    return [v[0] for _, v in sorted(d.items())]
 
 
 def main():

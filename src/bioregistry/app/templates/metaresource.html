@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% import "macros.html" as utils %}
 
-{% block title %}Bioregistry - {{ name }}{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} - {{ name }}{% endblock %}
 
 {% block container %}
     <div class="card">
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h5 style="margin: 0"><a href="{{ url_for("ui.metaresources") }}">Metaregistry</a> <i
+                    <h5 style="margin: 0"><a href="{{ url_for("metaregistry_ui.metaresources") }}">Metaregistry</a> <i
                             class="fas fa-angle-right"></i> {{ name }}</h5>
                 </div>
                 <div class="col-4 text-right">
@@ -21,7 +21,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for("api.metaresource", metaprefix=metaprefix, format=key) }}">
+                                   href="{{ url_for("metaregistry_api.metaresource", metaprefix=metaprefix, format=key) }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}

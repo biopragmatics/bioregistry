@@ -4,8 +4,8 @@
 
 from typing import Optional
 
+from .resource_manager import manager
 from .schema import Collection, Context
-from .schema_utils import read_collections, read_contexts
 
 __all__ = [
     "get_collection",
@@ -15,9 +15,9 @@ __all__ = [
 
 def get_collection(identifier: str) -> Optional[Collection]:
     """Get the collection entry for the given identifier."""
-    return read_collections().get(identifier)
+    return manager.collections.get(identifier)
 
 
 def get_context(identifier: str) -> Optional[Context]:
     """Get the context for the given identifier."""
-    return read_contexts().get(identifier)
+    return manager.get_context(identifier)

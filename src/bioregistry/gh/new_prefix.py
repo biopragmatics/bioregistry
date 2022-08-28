@@ -19,6 +19,7 @@ from bioregistry.constants import BIOREGISTRY_PATH, URI_FORMAT_KEY
 from bioregistry.gh import github_client
 from bioregistry.schema import Author, Resource
 from bioregistry.schema_utils import add_resource
+from bioregistry.utils import removeprefix
 
 logger = logging.getLogger(__name__)
 
@@ -76,13 +77,13 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
             name=resource_data.pop("contributor_name"),
             orcid=_pop_orcid(resource_data),
             email=resource_data.pop("contributor_email", None),
-            github=resource_data.pop("contributor_github"),
+            github=removeprefix(resource_data.pop("contributor_github"), "@"),
         )
 
         contact_name = resource_data.pop("contact_name", None)
         contact_orcid = resource_data.pop("contact_orcid", None)
         contact_email = resource_data.pop("contact_email", None)
-        contact_github = resource_data.pop("contact_github", None)
+        contact_github = removeprefix(resource_data.pop("contact_github", None), "@")
         if contact_orcid:
             contact = Author(
                 name=contact_name,

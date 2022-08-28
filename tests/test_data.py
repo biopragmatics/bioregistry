@@ -10,11 +10,11 @@ from textwrap import dedent
 from typing import Mapping
 
 import bioregistry
-from bioregistry import Resource
+from bioregistry import Resource, manager
 from bioregistry.constants import BIOREGISTRY_PATH
-from bioregistry.export.prefix_maps import get_obofoundry_prefix_map
 from bioregistry.export.rdf_export import resource_to_rdf_str
 from bioregistry.license_standardizer import REVERSE_LICENSES
+from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.schema.struct import SCHEMA_PATH, get_json_schema
 from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.schema_utils import is_mismatch
@@ -459,7 +459,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = resource_to_rdf_str("chebi")
+        s = resource_to_rdf_str("chebi", manager=manager)
         self.assertIsInstance(s, str)
 
     def test_parts(self):
@@ -575,11 +575,11 @@ class TestRegistry(unittest.TestCase):
 
     def test_obo_prefix_map(self):
         """Test the integrity of the OBO prefix map."""
-        obofoundry_prefix_map = get_obofoundry_prefix_map()
+        obofoundry_prefix_map = get_obo_context_prefix_map()
         self.assert_no_idot(obofoundry_prefix_map)
         self.assertIn("FlyBase", set(obofoundry_prefix_map))
 
-        self.assert_no_idot(get_obofoundry_prefix_map(include_synonyms=True))
+        self.assert_no_idot(get_obo_context_prefix_map(include_synonyms=True))
 
     def assert_no_idot(self, prefix_map: Mapping[str, str]) -> None:
         """Assert none of the URI prefixes have identifiers.org in them."""
@@ -794,3 +794,29 @@ class TestRegistry(unittest.TestCase):
                     resource.references or [],
                     msg="Reference to GitHub request issue should be in its dedicated field.",
                 )
+
+    def test_publications(self):
+        """Test references and publications are sorted right."""
+        for prefix, resource in self.registry.items():
+            if not resource.references:
+                continue
+            with self.subTest(prefix=prefix):
+                for reference in resource.references:
+                    self.assertNotIn("doi", reference)
+                    self.assertNotIn("pubmed", reference)
+                    self.assertNotIn("pmc", reference)
+                    self.assertNotIn("arxiv", reference)
+
+                if resource.publications:
+                    for publication in resource.publications:
+                        self.assertIsNotNone(publication.title)
+                        self.assertLessEqual(
+                            1,
+                            sum(
+                                (
+                                    publication.doi is not None,
+                                    publication.pubmed is not None,
+                                    publication.pmc is not None,
+                                )
+                            ),
+                        )
