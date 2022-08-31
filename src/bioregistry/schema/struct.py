@@ -945,13 +945,13 @@ class Resource(BaseModel):
                 url, title = publication["id"], publication["title"]
                 if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
                     pubmed = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
-                    publications.append(Publication(pubmed=pubmed, title=title))
+                    publications.append(Publication(pubmed=pubmed, title=title, doi=None, pmc=None))
                 elif url.startswith("https://doi.org/"):
                     doi = url[len("https://doi.org/") :]
-                    publications.append(Publication(doi=doi, title=title))
+                    publications.append(Publication(doi=doi, title=title, pubmed=None, pmc=None))
                 elif url.startswith("https://www.medrxiv.org/content/"):
                     doi = url[len("https://www.medrxiv.org/content/") :]
-                    publications.append(Publication(doi=doi, title=title))
+                    publications.append(Publication(doi=doi, title=title, pubmed=None, pmc=None))
                 elif url.startswith("https://zenodo.org/record/"):
                     continue
                 elif "ceur-ws.org" in url:
@@ -964,10 +964,10 @@ class Resource(BaseModel):
                 doi = publication.get("doi")
                 title = publication.get("title")
                 if pubmed or doi:
-                    publications.append(Publication(pubmed=pubmed, doi=doi, title=title))
+                    publications.append(Publication(pubmed=pubmed, doi=doi, title=title, pmc=None))
         if self.prefixcommons:
             for pubmed in self.prefixcommons.get("pubmed_ids", []):
-                publications.append(Publication(pubmed=pubmed))
+                publications.append(Publication(pubmed=pubmed, doi=None, pmc=None, title=None))
         return deduplicate_publications(publications)
 
     def get_twitter(self) -> Optional[str]:

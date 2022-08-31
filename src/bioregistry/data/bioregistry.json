@@ -5135,7 +5135,7 @@
   "biolink": {
     "aberowl": {
       "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations",
-      "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/34/biolink.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/35/biolink.owl",
       "homepage": "https://biolink.github.io/biolink-model/",
       "name": "Biolink Model",
       "prefix": "BIOLINK",
@@ -10309,6 +10309,12 @@
       "name": "Confidence Information Ontology",
       "preferredPrefix": "CIO",
       "prefix": "cio",
+      "publications": [
+        {
+          "id": "https://www.ncbi.nlm.nih.gov/pubmed/25957950",
+          "title": "The Confidence Information Ontology: a step towards a standard for asserting confidence in annotations"
+        }
+      ],
       "repository": "https://github.com/BgeeDB/confidence-information-ontology"
     },
     "ols": {
@@ -19215,7 +19221,7 @@
       "description": "An ontology for experimental and other evidence statements.",
       "download.obo": "http://purl.obolibrary.org/obo/eco.obo",
       "download.owl": "http://purl.obolibrary.org/obo/eco.owl",
-      "homepage": "https://github.com/evidenceontology/evidenceontology/",
+      "homepage": "https://www.evidenceontology.org",
       "license": "CC0 1.0",
       "license.url": "https://creativecommons.org/publicdomain/zero/1.0/",
       "name": "Evidence ontology",
@@ -19224,6 +19230,7 @@
       "publications": [
         {
           "id": "https://www.ncbi.nlm.nih.gov/pubmed/30407590",
+          "preferred": true,
           "title": "ECO, the Evidence & Conclusion Ontology: community standard for evidence information."
         },
         {
@@ -23292,6 +23299,7 @@
       "publications": [
         {
           "id": "https://www.ncbi.nlm.nih.gov/pubmed/24139062",
+          "preferred": true,
           "title": "The Drosophila anatomy ontology"
         },
         {
@@ -30981,6 +30989,12 @@
       "name": "Homology Ontology",
       "preferredPrefix": "HOM",
       "prefix": "hom",
+      "publications": [
+        {
+          "id": "https://doi.org/10.1016/j.tig.2009.12.012",
+          "title": "An ontology to clarify homology-related concepts"
+        }
+      ],
       "repository": "https://github.com/BgeeDB/homology-ontology"
     },
     "ols": {
@@ -32921,6 +32935,7 @@
       "publications": [],
       "subjects": [
         "Medicine",
+        "Clinical Studies",
         "Health Science",
         "Biomedical Science"
       ]
@@ -34366,6 +34381,12 @@
       "name": "Interaction Network Ontology",
       "preferredPrefix": "INO",
       "prefix": "ino",
+      "publications": [
+        {
+          "id": "https://doi.org/10.1186/2041-1480-6-2",
+          "title": "Development and application of an Interaction Network Ontology for literature mining of vaccine-associated gene-gene interactions"
+        }
+      ],
       "repository": "https://github.com/INO-ontology/ino"
     },
     "ols": {
@@ -41165,6 +41186,12 @@
       "name": "MIAPA Ontology",
       "preferredPrefix": "MIAPA",
       "prefix": "miapa",
+      "publications": [
+        {
+          "id": "https://doi.org/10.1089/omi.2006.10.231",
+          "title": "Taking the First Steps towards a Standard for Reporting on Phylogenies: Minimum Information about a Phylogenetic Analysis (MIAPA)"
+        }
+      ],
       "repository": "https://github.com/evoinfo/miapa"
     },
     "ols": {
@@ -49408,6 +49435,12 @@
       "name": "Ontology of Host Pathogen Interactions",
       "preferredPrefix": "OHPI",
       "prefix": "ohpi",
+      "publications": [
+        {
+          "id": "https://www.ncbi.nlm.nih.gov/pubmed/30365026",
+          "title": "Victors: a web-based knowledge base of virulence factors in human and animal pathogens"
+        }
+      ],
       "repository": "https://github.com/OHPI/ohpi"
     },
     "ols": {
@@ -50214,6 +50247,12 @@
       "name": "Ontology of Microbial Phenotypes",
       "preferredPrefix": "OMP",
       "prefix": "omp",
+      "publications": [
+        {
+          "id": "https://doi.org/10.1186/s12866-014-0294-3",
+          "title": "An ontology for microbial phenotypes"
+        }
+      ],
       "repository": "https://github.com/microbialphenotypes/OMP-ontology"
     },
     "ols": {
@@ -62990,7 +63029,7 @@
     "wikidata": {
       "database": "Q3460832",
       "database.homepage": "http://www.yeastgenome.org",
-      "database.label": "Saccharomyces Genome Database",
+      "database.label": "SGD",
       "description": "identifier for a genetic element in the Saccharomyces Genome Database",
       "homepage": "http://www.yeastgenome.org",
       "name": "Saccharomyces Genome Database ID",
@@ -64651,6 +64690,36 @@
       "uri_format": "https://spdx.org/licenses/$1"
     },
     "name": "Software Package Data Exchange License"
+  },
+  "sphn": {
+    "contact": {
+      "email": "vasundra.toure@gmail.com",
+      "github": "vtoure",
+      "name": "Vasundra Touré",
+      "orcid": "0000-0003-4639-4431"
+    },
+    "contributor": {
+      "github": "deepakunni3",
+      "name": "Deepak Unni",
+      "orcid": "0000-0002-3583-7340"
+    },
+    "description": "The Swiss Personalized Health Network is a national infrastructure initiative with the aim to develop, implement, and validate coordinated data infrastructures in order to make health-relevant data interoperable and shareable for research in Switzerland. The sphn RDF schema builds the foundation for all data exchanges within the sphn by integrating semantic information defined in the [sphn dataset](https://sphn.ch/document/sphn-dataset/).",
+    "download_owl": "https://git.dcc.sib.swiss/sphn-semantic-framework/sphn-ontology/-/raw/master/ontology/sphn_ontology.owl?inline=false",
+    "download_rdf": "https://git.dcc.sib.swiss/sphn-semantic-framework/sphn-ontology/-/raw/master/ontology/sphn_ontology.ttl?inline=false",
+    "example": "Allergy",
+    "github_request_issue": 535,
+    "homepage": "https://www.sphn.ch",
+    "license": "CC BY 4.0-NC-SA",
+    "name": "Swiss Personalized Health Network Schema",
+    "pattern": "^\\S+$",
+    "repository": "https://git.dcc.sib.swiss/sphn-semantic-framework/sphn-ontology",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://biomedit.ch/rdf/sphn-ontology/sphn#$1"
   },
   "spike.map": {
     "biocontext": {

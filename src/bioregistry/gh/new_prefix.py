@@ -89,7 +89,7 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
                 name=contact_name,
                 orcid=contact_orcid,
                 email=contact_email,
-                contact_github=contact_github,
+                github=contact_github,
             )
         else:
             contact = None
