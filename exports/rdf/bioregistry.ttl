@@ -12599,7 +12599,8 @@ orcid:0000-0002-2605-5080 rdfs:label "Jonathan Karr" .
 
 orcid:0000-0002-3458-4839 rdfs:label "Trish Whetzel" .
 
-orcid:0000-0002-3583-7340 rdfs:label "Deepak Unni" .
+orcid:0000-0002-3583-7340 rdfs:label "Deepak Unni" ;
+    dcterms:contributor bioregistry:sphn .
 
 orcid:0000-0002-3625-0955 rdfs:label "Charles Ettensohn" .
 
@@ -12624,6 +12625,8 @@ orcid:0000-0002-6379-8932 rdfs:label "Laurel Cooper" .
 orcid:0000-0002-6982-4660 rdfs:label "Alex Bateman" .
 
 orcid:0000-0002-7073-9172 rdfs:label "David Osumi-Sutherland" .
+
+orcid:0000-0002-7140-9933 rdfs:label "Thomas Lütteke" .
 
 orcid:0000-0002-7440-0467 rdfs:label "Lucas Leclere" .
 
@@ -12728,6 +12731,8 @@ orcid:0000-0003-4312-9552 rdfs:label "Daniel C. Berrios" .
 orcid:0000-0003-4494-839X rdfs:label "Xeni Kechagioglou" .
 
 orcid:0000-0003-4606-0597 rdfs:label "Sue Bello" .
+
+orcid:0000-0003-4639-4431 rdfs:label "Vasundra Touré" .
 
 orcid:0000-0003-4727-9435 rdfs:label "Michel Dumontier" .
 
@@ -21106,6 +21111,18 @@ bioregistry:github.pull a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://bioregistry.io/resolve/github/pull/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:glycosciencesdb a bioregistry.schema:0000001 ;
+    rdfs:label "Glycosciences.DB" ;
+    dc:description "A database to support glycobiology and glycomics research. Its main focus is on 3D structures, including 3D structure models as well as references to PDB entries that feature carbohydrates."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "http://www.glycosciences.de/database/"^^xsd:string ;
+    bioregistry.schema:0000005 "1"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.glycosciences.de/database/start.php?action=explore_linucsid&linucsid=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-7140-9933 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:glygen a bioregistry.schema:0000001 ;
     rdfs:label "Computational and Informatics Resources for Glycoscience" ;
     dc:description "GlyGen is a data integration and dissemination project for carbohydrate and glycoconjugate related data. GlyGen retrieves information from multiple international data sources and integrates and harmonizes this data."^^xsd:string ;
@@ -22468,6 +22485,15 @@ bioregistry:npo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-5892-6506 .
 
+bioregistry:nsf.award a bioregistry.schema:0000001 ;
+    rdfs:label "National Science Foundation Award" ;
+    dc:description "Information about research projects that NSF has funded since 1989 can be found by searching the Award Abstracts database. The information includes abstracts that describe the research, and names of principal investigators and their institutions. The database includes both completed and in-process research."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.nsf.gov/awards/about.jsp"^^xsd:string ;
+    bioregistry.schema:0000005 "1458400"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.nsf.gov/awardsearch/showAward?AWD_ID=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:oba a bioregistry.schema:0000001 ;
     rdfs:label "Ontology of Biological Attributes" ;
     dc:description "A collection of biological attributes (traits) covering all kingdoms of life. Interoperable with VT (vertebrate trait ontology) and TO (plant trait ontology). Extends PATO."^^xsd:string ;
@@ -23416,6 +23442,18 @@ bioregistry:span a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "http://ontology.buffalo.edu/smith/articles/SNAP_SPAN.pdf"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:sphn a bioregistry.schema:0000001 ;
+    rdfs:label "Swiss Personalized Health Network Schema" ;
+    dc:description "The Swiss Personalized Health Network is a national infrastructure initiative with the aim to develop, implement, and validate coordinated data infrastructures in order to make health-relevant data interoperable and shareable for research in Switzerland. The sphn RDF schema builds the foundation for all data exchanges within the sphn by integrating semantic information defined in the [sphn dataset](https://sphn.ch/document/sphn-dataset/)."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.sphn.ch"^^xsd:string ;
+    bioregistry.schema:0000005 "Allergy"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biomedit.ch/rdf/sphn-ontology/sphn#$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\S+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-4639-4431 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:sprint a bioregistry.schema:0000001 ;
     rdfs:label "Search PRINTS-S" ;
@@ -31810,7 +31848,8 @@ bioregistry:pcl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0002-7073-9172 .
 
 orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
-    dcterms:contributor bioregistry:insdc.run,
+    dcterms:contributor bioregistry:glycosciencesdb,
+        bioregistry:insdc.run,
         bioregistry:wwf.ecoregion .
 
 bioregistry:ecto a bioregistry.schema:0000001 ;
@@ -32748,6 +32787,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:novus,
         bioregistry:npass,
         bioregistry:npo,
+        bioregistry:nsf.award,
         bioregistry:oa,
         bioregistry:oboinowl,
         bioregistry:omim.ps,
@@ -39028,6 +39068,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:glycomedb,
         bioregistry:glyconavi,
         bioregistry:glycopost,
+        bioregistry:glycosciencesdb,
         bioregistry:glygen,
         bioregistry:glytoucan,
         bioregistry:gmd,
@@ -39434,6 +39475,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:novus,
         bioregistry:npass,
         bioregistry:npo,
+        bioregistry:nsf.award,
         bioregistry:nuclearbd,
         bioregistry:nucleotide,
         bioregistry:oa,
@@ -39739,6 +39781,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:span,
         bioregistry:spd,
         bioregistry:spdx,
+        bioregistry:sphn,
         bioregistry:spike.map,
         bioregistry:splash,
         bioregistry:spp,
