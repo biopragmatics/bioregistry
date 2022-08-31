@@ -399,10 +399,10 @@ def compare(paper: bool):  # noqa:C901
         metaprefix for entry in read_registry().values() for metaprefix in entry.get_mappings()
     }
     n_mappable_metaprefixes = len(mappable_metaprefixes)
-    zero_pad_count = 0  # how many columns left from the end should it go
+    max_mapped = max(xrefs_counter)
+    zero_pad_count = n_mappable_metaprefixes - max_mapped
     for i in range(n_mappable_metaprefixes + 1):
         if i not in xrefs_counter:
-            zero_pad_count += 1
             xrefs_counter[i] = 0
 
     xrefs_df = pd.DataFrame(sorted(xrefs_counter.items()), columns=["frequency", "count"])
@@ -435,7 +435,7 @@ def compare(paper: bool):  # noqa:C901
         x1,
         h + 1,
         f"No identifier resources are\navailable in more than\n"
-        f"{n_mappable_metaprefixes - zero_pad_count} external registries",
+        f"{max_mapped} external registries",
         horizontalalignment="center",
         verticalalignment="bottom",
         fontdict=dict(fontsize=12),
