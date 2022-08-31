@@ -27569,18 +27569,37 @@
       "uri_format": "https://glycopost.glycosmos.org/entry/$1"
     }
   },
-  "glycosciences": {
+  "glycosciencesdb": {
+    "contact": {
+      "email": "thomas@luetteke-online.de",
+      "github": "glycosciences",
+      "name": "Thomas Lütteke",
+      "orcid": "0000-0002-7140-9933"
+    },
     "contributor": {
+      "email": "cjmungall@lbl.gov",
       "github": "cmungall",
       "name": "Chris Mungall",
       "orcid": "0000-0002-6601-2165"
     },
-    "description": "A database to support glycobiology and glycomics research. its main focus is on 3d structures, including 3d structure models as well as references to pdb entries that feature carbohydrates. note the website and paper https://academic.oup.com/nar/article/47/d1/d1195/5144145 refer to the database as glycosciences.db, but the period is conventionally used as an authority-type tuple separator in bioregistry, so we should ask this group how they want to be referred to. urls look like this: http://www.glycosciences.de/database/start.php?action=explore_linucsid&linucsid=1 i am not totally sure what the identifier lifecycle is for linucs ids. note these ids are different from lincus strings, which are analogous to smiles/inchi/etc (see also #460)",
-    "example": "http://www.glycosciences.de/database/start.php?action=explore_linucsid&linucsid=1",
+    "description": "A database to support glycobiology and glycomics research. Its main focus is on 3D structures, including 3D structure models as well as references to PDB entries that feature carbohydrates.",
+    "example": "1",
     "github_request_issue": 537,
-    "homepage": "http://www.glycosciences.de/",
-    "name": "glycosciences.DB",
+    "homepage": "http://www.glycosciences.de/database/",
+    "name": "Glycosciences.DB",
     "pattern": "^\\d+$",
+    "publications": [
+      {
+        "doi": "10.1093/nar/gky994",
+        "title": "Glycosciences.DB: an annotated data collection linking glycomics and proteomics data (2018 update)"
+      }
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
     "uri_format": "http://www.glycosciences.de/database/start.php?action=explore_linucsid&linucsid=$1"
   },
   "glygen": {
