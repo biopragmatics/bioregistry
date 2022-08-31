@@ -15,6 +15,11 @@ def main():
     for prefix, resource in r.items():
         if not prefix.startswith("co_"):
             continue
+        if not resource.repository:
+            resource.repository = "https://github.com/bioversity/Crop-Ontology"
+        if not resource.preferred_prefix:
+            resource.preferred_prefix = prefix.upper()
+        continue
         if not resource.example:
             click.echo(f"{prefix} missing example")
             continue
