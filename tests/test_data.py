@@ -798,15 +798,13 @@ class TestRegistry(unittest.TestCase):
     def test_publications(self):
         """Test references and publications are sorted right."""
         for prefix, resource in self.registry.items():
-            if not resource.references:
-                continue
             with self.subTest(prefix=prefix):
-                for reference in resource.references:
-                    self.assertNotIn("doi", reference)
-                    self.assertNotIn("pubmed", reference)
-                    self.assertNotIn("pmc", reference)
-                    self.assertNotIn("arxiv", reference)
-
+                if resource.references:
+                    for reference in resource.references:
+                        self.assertNotIn("doi", reference)
+                        self.assertNotIn("pubmed", reference)
+                        self.assertNotIn("pmc", reference)
+                        self.assertNotIn("arxiv", reference)
                 if resource.publications:
                     for publication in resource.publications:
                         self.assertIsNotNone(publication.title)
@@ -820,3 +818,6 @@ class TestRegistry(unittest.TestCase):
                                 )
                             ),
                         )
+                        if publication.doi:
+                            # DOIs are case insensitive, so standardize to lowercase in bioregistry
+                            self.assertEqual(publication.doi.lower(), publication.doi)

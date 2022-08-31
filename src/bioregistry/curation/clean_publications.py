@@ -3,6 +3,8 @@
 Run this script with python -m bioregistry.curation.clean_publications.
 """
 
+from typing import Set
+
 from manubot.cite.pubmed import get_pubmed_csl_item
 from tqdm import tqdm
 
@@ -15,9 +17,15 @@ def _main():
 
     resources = []
     for resource in manager.registry.values():
-        if not resource.prefixcommons:
-            continue
-        pubmed_ids = set(resource.prefixcommons.get("pubmed_ids", []))
+        pubmed_ids: Set[str] = set()
+        if resource.prefixcommons:
+            pubmed_ids.update(resource.prefixcommons.get("pubmed_ids", []))
+        if resource.fairsharing:
+            pubmed_ids.update(
+                str(p["pubmed_id"])
+                for p in resource.fairsharing.get("publications", [])
+                if p.get("pubmed_id")
+            )
         if not pubmed_ids:
             continue
         pubmed_ids.difference_update(
@@ -40,7 +48,7 @@ def _main():
                 Publication(
                     pubmed=pubmed,
                     title=title,
-                    doi=doi,
+                    doi=doi and doi.lower(),
                     pmc=pmc,
                 )
             )
