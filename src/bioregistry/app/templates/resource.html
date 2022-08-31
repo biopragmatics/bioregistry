@@ -97,6 +97,16 @@
                     </dt>
                     <dd>{{ version }}</dd>
                 {% endif %}
+                {% set resource_license = resource.get_license() %}
+                {% if resource_license %}
+                    <dt>
+                        License
+                        <a type="button" data-toggle="modal" data-target="#license-modal">
+                            <i class="far fa-question-circle"></i>
+                        </a>
+                    </dt>
+                    <dd>{{ resource_license }}</dd>
+                {% endif %}
                 <dt>
                     Links
                     {% if homepage or obo_download or owl_download or json_download or rdf_download %}
@@ -549,6 +559,25 @@
                 <div class="modal-body">
                     <p>Get the version:</p>
                     {{ utils.code_example(prefix, "get_version", version) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if resource_license %}
+    <div class="modal fade" id="license-modal" tabindex="-1" role="dialog" aria-labelledby="licenseModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="licenseModalLabel">Programmatic Access to License</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Get the license:</p>
+                    {{ utils.code_example(prefix, "get_license", resource_license) }}
                 </div>
             </div>
         </div>
