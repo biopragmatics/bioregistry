@@ -19,6 +19,8 @@ def main():
             resource.repository = "https://github.com/bioversity/Crop-Ontology"
         if not resource.preferred_prefix:
             resource.preferred_prefix = prefix.upper()
+        if not resource.get_license():
+            resource.license = "CC BY 4.0"
         continue
         if not resource.example:
             click.echo(f"{prefix} missing example")
