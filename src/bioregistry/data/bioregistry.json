@@ -3379,7 +3379,8 @@
       "prefix": "atol",
       "version": "2018-09-13"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "uri_format": "http://opendata.inra.fr/ATOL/ATOL_$1"
   },
   "autdb": {
     "biocontext": {
@@ -3834,7 +3835,8 @@
       "prefix": "bcio",
       "version.iri": "http://humanbehaviourchange.org/ontology/bcio.owl/2022-04-30"
     },
-    "pattern": "^\\d{6}$"
+    "pattern": "^\\d{6}$",
+    "uri_format": "https://w3id.org/BCI-ontology#$1"
   },
   "bco": {
     "aberowl": {
@@ -11405,7 +11407,8 @@
     },
     "pattern": "^\\d{7}$",
     "repository": "https://github.com/EBISPOT/CMPO",
-    "twitter": "EBIOLS"
+    "twitter": "EBIOLS",
+    "uri_format": "http://www.ebi.ac.uk/cmpo/CMPO_$1"
   },
   "co_320": {
     "agroportal": {
@@ -11693,7 +11696,8 @@
       "name": "Coconut ontology",
       "prefix": "co_326"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "uri_format": "https://www.cropontology.org/rdf/CO_326:$1"
   },
   "co_327": {
     "agroportal": {
@@ -13740,7 +13744,8 @@
       "version.iri": "http://purl.obolibrary.org/obo/covoc/releases/2020-08-28/covoc.owl"
     },
     "pattern": "^\\d{7}$",
-    "repository": "https://github.com/EBISPOT/covoc"
+    "repository": "https://github.com/EBISPOT/covoc",
+    "uri_format": "http://purl.obolibrary.org/obo/COVOC_$1"
   },
   "cp": {
     "appears_in": [
@@ -14053,7 +14058,8 @@
       "version": "2021-03-09",
       "version.iri": "http://scipion.i2pc.es/ontology/cryoem/releases/2021-03-09/cryoem.owl"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "uri_format": "http://scipion.i2pc.es/ontology/CRYOEM_$1"
   },
   "cryptodb": {
     "biocontext": {
@@ -16548,7 +16554,8 @@
       "prefix": "dicom",
       "version": "2021e_20211122"
     },
-    "pattern": "^\\d+$"
+    "pattern": "^\\d+$",
+    "uri_format": "http://dicom.nema.org/resources/ontology/DCM/$1"
   },
   "dictybase": {
     "biocontext": {
@@ -17053,6 +17060,7 @@
     },
     "name": "Diseases Database",
     "pattern": "^\\d+$",
+    "uri_format": "https://www.diseasesdatabase.com/ddb$1.htm",
     "wikidata": {
       "database": "Q213103",
       "prefix": "P557"
@@ -20990,7 +20998,8 @@
       "prefix": "enm",
       "version": "7.4"
     },
-    "pattern": "^\\d+$"
+    "pattern": "^\\d+$",
+    "uri_format": "http://purl.enanomapper.org/onto/ENM_$1"
   },
   "ensembl": {
     "biocontext": {
@@ -21575,7 +21584,8 @@
       "version": "2021-07-14",
       "version.iri": "http://ensembl.org/glossary/ensembl-glossary/releases/2021-07-14/ensembl-glossary.owl"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "uri_format": "http://ensembl.org/glossary/ENSGLOSSARY_$1"
   },
   "envipath": {
     "fairsharing": {
@@ -21947,7 +21957,8 @@
       "synonyms": [
         "Earth Observing Laboratory"
       ]
-    }
+    },
+    "uri_format": "http://purl.org/obo/owlEOL_$1"
   },
   "eolife": {
     "contributor": {
@@ -22202,7 +22213,8 @@
       "name": "Epilepsy Ontology",
       "prefix": "EPSO"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "uri_format": "http://www.case.edu/EpilepsyOntology.owl#$1"
   },
   "erm": {
     "cheminf": {
@@ -23798,6 +23810,7 @@
     "synonyms": [
       "fishbase"
     ],
+    "uri_format": "https://www.fishbase.ca/summary/$1",
     "wikidata": {
       "database": "Q837101",
       "prefix": "P938"
@@ -25676,6 +25689,7 @@
       "GARD",
       "Genetic and Rare Diseases Information Center"
     ],
+    "uri_format": "https://rarediseases.info.nih.gov/diseases/$1/index",
     "wikidata": {
       "prefix": "P4317"
     }
@@ -27904,6 +27918,7 @@
     },
     "name": "Gmelins Handbuch der anorganischen Chemie",
     "pattern": "^[1-9][0-9]{3,6}$",
+    "proprietary": true,
     "references": [
       "https://en.wikipedia.org/wiki/Gmelin_database"
     ],
@@ -30213,7 +30228,8 @@
       "bioportal": "HCPCS",
       "fairsharing": "FAIRsharing.x81wz8"
     },
-    "name": "Healthcare Common Procedure Coding System"
+    "name": "Healthcare Common Procedure Coding System",
+    "uri_format": "http://purl.bioontology.org/ontology/HCPCS/$1"
   },
   "hcvdb": {
     "biocontext": {
@@ -31612,7 +31628,8 @@
     "repository": "https://github.com/Novartis/hpath",
     "synonyms": [
       "MC"
-    ]
+    ],
+    "uri_format": "http://purl.obolibrary.org/obo/MC_$1"
   },
   "hpm.peptide": {
     "biocontext": {
@@ -33204,7 +33221,8 @@
       "version.iri": "http://purl.obolibrary.org/obo/2020-21-07/ido-covid-19.owl"
     },
     "pattern": "^\\d{7}$",
-    "repository": "https://github.com/infectious-disease-ontology-extensions/ido-covid-19"
+    "repository": "https://github.com/infectious-disease-ontology-extensions/ido-covid-19",
+    "uri_format": "http://purl.obolibrary.org/obo/COVIDO_$1"
   },
   "idoden": {
     "aberowl": {
@@ -37252,7 +37270,8 @@
       "prefix": "lbo"
     },
     "pattern": "^\\d{7}$",
-    "repository": "https://github.com/AnimalGenome/livestock-breed-ontology"
+    "repository": "https://github.com/AnimalGenome/livestock-breed-ontology",
+    "uri_format": "http://purl.obolibrary.org/obo/LBO_$1"
   },
   "lei": {
     "mappings": {
@@ -44086,7 +44105,8 @@
       "version": "1.0.1"
     },
     "pattern": "^\\d{7}$",
-    "repository": "https://github.com/MSI-Metabolomics-Standards-Initiative/MSIO"
+    "repository": "https://github.com/MSI-Metabolomics-Standards-Initiative/MSIO",
+    "uri_format": "http://purl.obolibrary.org/obo/MSIO_$1"
   },
   "multicellds": {
     "contributor": {
@@ -46157,7 +46177,8 @@
       "fairsharing": "FAIRsharing.8qcbs0"
     },
     "name": "National Drug Data File",
-    "pattern": "^\\d{6}$"
+    "pattern": "^\\d{6}$",
+    "uri_format": "http://purl.bioontology.org/ontology/NDDF/$1"
   },
   "ndex": {
     "contributor": {
@@ -46255,6 +46276,7 @@
       "NUI",
       "ndf-rt"
     ],
+    "uri_format": "https://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#$1",
     "wikidata": {
       "database": "Q21008030",
       "prefix": "P2115"
@@ -51597,7 +51619,8 @@
       "version": "This ontology is the second version of the orthology ontology first published in 2015 and available at http://purl.bioontology.org/ontology/ORTH .\n@authors T.M. de Farias, H. Chiba, J.T. Fernandez-Breis, E. Antezana, D. Kuznetsov, C. Dessimoz and F. Villiers.",
       "version.iri": "http://purl.org/net/orth/2.0"
     },
-    "repository": "https://github.com/qfo/OrthologyOntology"
+    "repository": "https://github.com/qfo/OrthologyOntology",
+    "uri_format": "http://purl.org/net/orth#$1"
   },
   "orthodb": {
     "biocontext": {
@@ -59886,7 +59909,8 @@
       "https://code.google.com/archive/p/reagent-ontology/",
       "https://github.com/obi-ontology/obi/issues/1135"
     ],
-    "repository": "https://github.com/tis-lab/reagent-ontology"
+    "repository": "https://github.com/tis-lab/reagent-ontology",
+    "uri_format": "http://purl.obolibrary.org/obo/REO_$11"
   },
   "repeatsdb.protein": {
     "mappings": {
@@ -59950,7 +59974,8 @@
       "name": "REPRODUCE-ME Ontology",
       "prefix": "reproduceme",
       "version": "1.1"
-    }
+    },
+    "uri_format": "https://w3id.org/reproduceme#$1"
   },
   "resid": {
     "biocontext": {
@@ -62641,7 +62666,8 @@
     "references": [
       "https://github.com/SDG-InterfaceOntology/sdgio/issues/233"
     ],
-    "repository": "https://github.com/SDG-InterfaceOntology/sdgio"
+    "repository": "https://github.com/SDG-InterfaceOntology/sdgio",
+    "uri_format": "http://purl.unep.org/sdg/SDGIO_$1"
   },
   "sdis": {
     "contributor": {
@@ -64948,7 +64974,8 @@
       "version.iri": "http://www.fairsharing.org/ontology/subject/SRAO.owl/0.3.0"
     },
     "pattern": "^\\d{7}$",
-    "repository": "https://github.com/FAIRsharing/subject-ontology"
+    "repository": "https://github.com/FAIRsharing/subject-ontology",
+    "uri_format": "http://www.fairsharing.org/ontology/subject/SRAO_$1"
   },
   "ssbd.dataset": {
     "contributor": {
@@ -70425,7 +70452,8 @@
         "pmc": "PMC2244318",
         "title": "A semantic normal form for clinical drugs in the UMLS: early experiences with the VANDF"
       }
-    ]
+    ],
+    "uri_format": "http://purl.bioontology.org/ontology/VANDF/$1"
   },
   "vann": {
     "contact": {
@@ -71206,7 +71234,8 @@
       "prefix": "VIDO"
     },
     "pattern": "^\\d{7}$",
-    "repository": "https://github.com/infectious-disease-ontology-extensions/ido-virus"
+    "repository": "https://github.com/infectious-disease-ontology-extensions/ido-virus",
+    "uri_format": "http://purl.obolibrary.org/obo/VIDO_$1"
   },
   "vipr": {
     "biocontext": {
