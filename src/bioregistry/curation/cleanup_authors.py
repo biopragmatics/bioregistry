@@ -21,28 +21,32 @@ def _main():
             if author is None:
                 continue
             orcid = author.orcid
-            names[orcid].add(author.name)
+            if orcid is None:
+                continue
+            if author.name:
+                names[orcid].add(author.name)
             if author.github:
                 githubs[orcid] = author.github
             if author.email:
                 emails[orcid] = author.email
 
-    nn = {orcid: max(all_names, key=len) for orcid, all_names in names.items()}
+    # Chose the longest name, assuming that contains the least abbreviations and most initials
+    orcid_to_name = {orcid: max(all_names, key=len) for orcid, all_names in names.items()}
 
-    def _new(orcid: str) -> Attributable:
+    def _new(orcid_: str) -> Attributable:
         return Attributable(
-            orcid=orcid,
-            name=nn[orcid],
-            email=emails.get(orcid),
-            github=githubs.get(orcid),
+            orcid=orcid_,
+            name=orcid_to_name[orcid_],
+            email=emails.get(orcid_),
+            github=githubs.get(orcid_),
         )
 
     for resource in manager.registry.values():
-        if resource.contributor:
+        if resource.contributor and resource.contributor.orcid:
             resource.contributor = _new(resource.contributor.orcid)
-        if resource.reviewer:
+        if resource.reviewer and resource.reviewer.orcid:
             resource.reviewer = _new(resource.reviewer.orcid)
-        if resource.contact:
+        if resource.contact and resource.contact.orcid:
             resource.contact = _new(resource.contact.orcid)
         if resource.contributor_extras:
             resource.contributor_extras = [
