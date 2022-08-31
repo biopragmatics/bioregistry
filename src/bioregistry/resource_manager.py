@@ -533,6 +533,7 @@ class Manager:
             # Registry properties
             example=resource.get_example(),
             example_extras=resource.example_extras,
+            example_decoys=resource.example_decoys,
             uri_format=resource.get_uri_format(),
             providers=resource.get_extra_providers(),
             # Comments
@@ -546,7 +547,10 @@ class Manager:
             # Provenance
             contact=resource.get_contact(),
             contributor=resource.contributor,
+            contributor_extras=resource.contributor_extras,
             reviewer=resource.reviewer,
+            twitter=resource.get_twitter(),
+            github_request_issue=resource.github_request_issue,
             # Ontology Relations
             part_of=resource.part_of,
             provides=resource.provides,
