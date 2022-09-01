@@ -8704,19 +8704,18 @@
       "prefix": "CELLOSAURUS",
       "uri_format": "http://identifiers.org/cellosaurus/$1"
     },
-    "contact": {
-        "email": "Amos.Bairoch@sib.swiss",
-        "github": "AmosBairoch",
-        "name": "Amos Bairoch",
-        "orcid": "0000-0003-2826-6444"
-      },
-      "homepage": "https://www.cellosaurus.org/",
     "cellosaurus": {
       "category": "Cell line databases/resources",
       "homepage": "https://web.expasy.org/cellosaurus/",
       "name": "Cellosaurus - a knowledge resource on cell lines",
       "prefix": "Cellosaurus",
       "uri_format": "https://web.expasy.org/cellosaurus/$1"
+    },
+    "contact": {
+      "email": "Amos.Bairoch@sib.swiss",
+      "github": "AmosBairoch",
+      "name": "Amos Bairoch",
+      "orcid": "0000-0003-2826-6444"
     },
     "download_obo": "https://ftp.expasy.org/databases/cellosaurus/cellosaurus.obo",
     "example": "0440",
@@ -8730,6 +8729,7 @@
         "Life Science"
       ]
     },
+    "homepage": "https://web.expasy.org/cellosaurus",
     "mappings": {
       "biocontext": "CELLOSAURUS",
       "cellosaurus": "Cellosaurus",
@@ -8763,6 +8763,15 @@
     },
     "name": "Cellosaurus",
     "pattern": "^[A-Z0-9]{4}$",
+    "providers": [
+      {
+        "code": "legacy",
+        "description": "The legacy URI for the Cellosaurus website, updated on August 30, 2022 [ref](https://twitter.com/Cellosaurus/status/1564658792691810305).",
+        "homepage": "https://web.expasy.org/cellosaurus",
+        "name": "Legacy Endpoint",
+        "uri_format": "https://web.expasy.org/cellosaurus/CVCL_$1"
+      }
+    ],
     "re3data": {
       "description": "The Cellosaurus is a knowledge resource on cell lines. It attempts to describe all cell lines used in biomedical research. Its scope includes: Immortalized cell lines, Naturally immortal cell lines (example: stem cell lines), Finite life cell lines when those are distributed and used widely, Vertebrate cell line with an emphasis on human, mouse and rat cell lines, Invertebrate (insects and ticks) cell lines. Its scope does not include: Primary cell lines (with the exception of the finite life cell lines described above), Plant cell lines.  Cellosaurus was initiated to be used as a cell line controlled vocabulary in the context of the neXtProt knowledgebase, but it quickly become apparent that there was a need for a cell line knowledge resource that would serve the needs of individual researchers, cell line distributors and bioinformatic resources. This leads to an increase of the scope and depth of the content of the Cellosaurus. The Cellosaurus is a participant of the Resource Identification Initiative and contributes actively to the work of the International Cell Line Authentication Committee (ICLAC).",
       "homepage": "https://web.expasy.org/cellosaurus/",
@@ -8776,21 +8785,11 @@
         "scr": "013869"
       }
     },
-    "homepage": "https://web.expasy.org/cellosaurus",
     "synonyms": [
       "CVCL"
     ],
-    "providers": [
-    {
-    "code": "legacy",
-    "name": "Legacy Endpoint",
-    "homepage": "https://web.expasy.org/cellosaurus",
-    "description": "The legacy URI for the Cellosaurus website, updated on August 30, 2022 [ref](https://twitter.com/Cellosaurus/status/1564658792691810305).",
-    "uri_format": "https://web.expasy.org/cellosaurus/CVCL_$1",
-    }
-    ],
     "twitter": "cellosaurus",
-    "uri_format": "https://www.cellosaurus.org/CVCL_$1"
+    "uri_format": "https://www.cellosaurus.org/CVCL_$1",
     "wikidata": {
       "database": "Q24691710",
       "database.homepage": "https://web.expasy.org/cellosaurus/",
