@@ -59799,12 +59799,22 @@
       "prefix": "RefSeq",
       "uri_format": "http://www.ncbi.nlm.nih.gov/refseq/?term=$1"
     },
+    "contributor_extras": [
+      {
+        "github": "slobentanzer",
+        "name": "Sebastian Lobentanzer",
+        "orcid": "0000-0003-3399-6695"
+      }
+    ],
     "edam": {
       "description": "Accession number of a RefSeq database entry.",
       "name": "RefSeq",
       "obsolete": false,
       "prefix": "1098"
     },
+    "example_extras": [
+      "WP_029104145.1"
+    ],
     "fairsharing": {
       "abbreviation": "RefSeq",
       "description": "The Reference Sequence (RefSeq) collection aims to provide a comprehensive, integrated, non-redundant, well-annotated set of sequences, including genomic DNA, transcripts, and proteins.",
@@ -59856,6 +59866,7 @@
       "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1"
     },
     "name": "Reference Sequence Collection",
+    "pattern": "^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|WP|XM|XP|XR|YP|ZP)_\\d+)|(NZ_[A-Z]{2,4}\\d+))(\\.\\d+)?$",
     "prefixcommons": {
       "description": "The Reference Sequence (RefSeq) collection aims to provide a comprehensive, integrated, non-redundant, well-annotated set of sequences, including genomic DNA, transcripts, and proteins.",
       "example": "NP_012345",
@@ -59880,6 +59891,9 @@
         "pubmed": "17130148",
         "title": "NCBI reference sequences (RefSeq): a curated non-redundant sequence database of genomes, transcripts and proteins."
       }
+    ],
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/545"
     ],
     "synonyms": [
       "REFSEQ_PROT"
