@@ -1141,7 +1141,8 @@ class Resource(BaseModel):
         n2t_prefix = self.get_mapped_prefix("n2t")
         if n2t_prefix is None:
             return None
-        return f"https://n2t.net/{n2t_prefix}:"
+        protocol = "http" if legacy_protocol else "https"
+        return f"{protocol}://n2t.net/{n2t_prefix}:"
 
     def get_n2t_uri_format(self, legacy_protocol: bool = False):
         """Get the Name-to-Thing URI format string, if available."""
