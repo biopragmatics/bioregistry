@@ -16,10 +16,15 @@ from bioregistry.constants import (
 )
 from bioregistry.resource_manager import manager
 
+REVERSE_PREFIX_MAP_PATH = EXPORT_CONTEXTS.joinpath("reverse_prefix_map.json")
+
 
 @click.command()
 def generate_contexts():
     """Generate various context files."""
+    reverse_prefix_map = manager.get_reverse_prefix_map(include_prefixes=True)
+    REVERSE_PREFIX_MAP_PATH.write_text(json.dumps(reverse_prefix_map, indent=4))
+
     _context_prefix_maps()
     _collection_prefix_maps()
 
