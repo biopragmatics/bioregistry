@@ -414,8 +414,30 @@ class Manager:
                 for synonym in resource.get_synonyms():
                     yield synonym, pattern
 
-    def get_reverse_prefix_map(self) -> Mapping[str, str]:
-        """Get a reverse prefix map, pointing to canonical prefixes."""
+    def get_reverse_prefix_map(
+        self, include_prefixes: bool = False, strict: bool = False
+    ) -> Mapping[str, str]:
+        """Get a reverse prefix map, pointing to canonical prefixes.
+
+        :param include_prefixes: Should prefixes be included with colon delimiters?
+            Setting this to true makes an "omni"-reverse prefix map that can be
+            used to parse both URIs and CURIEs
+        :param strict:
+            If true, errors on URI prefix collisions. If false, sends logging
+            and skips them.
+        :return: A converter
+        :raises ValueError: if there are duplicate URI prefixes. This movitates
+            additional curation.
+
+        .. code-block:: python
+
+            from bioregistry import manager
+            import curies
+
+            converter = curies.Converter.from_reverse_prefix_map(
+                manager.get_reverse_prefix_map(include_prefixes=True),
+            )
+        """
         prefix_blacklist = {"bgee.gene"}
         uri_prefix_blacklist = {
             "http://www.ebi.ac.uk/ontology-lookup/?termId=$1",
@@ -458,10 +480,23 @@ class Manager:
                 if uri_prefix in rv:
                     if resource.part_of or resource.provides or resource.has_canonical:
                         continue
-                    raise ValueError(
-                        f"Dupicate in {rv[uri_prefix]} and {resource.prefix} for {uri_prefix}"
-                    )
+                    msg = f"Duplicate in {rv[uri_prefix]} and {resource.prefix} for {uri_prefix}"
+                    if not strict:
+                        logger.warning(msg)
+                        continue
+                    raise ValueError(msg)
                 rv[uri_prefix[:-2]] = resource.prefix
+            if include_prefixes:
+                prefixes_ = [
+                    resource.prefix,
+                    *resource.get_synonyms(),
+                    resource.get_preferred_prefix(),
+                ]
+                for prefix_ in prefixes_:
+                    if prefix_:
+                        rv[f"{prefix_}:"] = resource.prefix
+                        rv[f"{prefix_.upper()}:"] = resource.prefix
+                        rv[f"{prefix_.lower()}:"] = resource.prefix
         return rv
 
     def get_prefix_map(
