@@ -419,18 +419,13 @@ class Manager:
         uri_prefix_blacklist = {
             "http://www.ebi.ac.uk/ontology-lookup/?termId=$1",
             "https://bioentity.link/#/lexicon/public/$1",
+            "https://purl.obolibrary.org/obo/$1",
+            "http://purl.obolibrary.org/obo/$1",
             # see https://github.com/biopragmatics/bioregistry/issues/548
             "https://www.ncbi.nlm.nih.gov/nuccore/$1",
             "https://www.ebi.ac.uk/ena/data/view/$1",
         }
         prefix_resource_blacklist = {
-            ("obi", "http://purl.obolibrary.org/obo/$1"),  # from miriam
-            ("rnao", "http://purl.obolibrary.org/obo/$1"),  # from miriam
-            ("rs", "http://purl.obolibrary.org/obo/$1"),  # from miriam
-            ("tao", "http://purl.obolibrary.org/obo/$1"),  # from miriam
-            ("taxrank", "http://purl.obolibrary.org/obo/$1"),  # from miriam
-            ("tto", "http://purl.obolibrary.org/obo/$1"),  # from miriam
-            ("zfa", "http://purl.obolibrary.org/obo/$1"),  # from miriam
             ("orphanet", "http://www.orpha.net/ORDO/Orphanet_$1"),  # biocontext is wrong
             (
                 "uniprot",
@@ -438,17 +433,20 @@ class Manager:
             ),  # FIXME not sure how to resolve this
         }
         # stratify resources
-        a, b = [], []
+        primary_resources, secondary_resources = [], []
         for resource in self.registry.values():
             if resource.prefix in prefix_blacklist:
                 continue
             if resource.part_of or resource.provides or resource.has_canonical:
-                b.append(resource)
+                secondary_resources.append(resource)
             else:
-                a.append(resource)
+                primary_resources.append(resource)
 
-        rv: Dict[str, str] = {}
-        for resources in [a, b]:
+        rv: Dict[str, str] = {
+            "http://purl.obolibrary.org/obo/": "obo",
+            "https://purl.obolibrary.org/obo/": "obo",
+        }
+        for resources in [primary_resources, secondary_resources]:
             for resource in resources:
                 for uri_prefix in resource.get_uri_formats():
                     if not uri_prefix.endswith("$1") or uri_prefix.count("$1") > 1:
