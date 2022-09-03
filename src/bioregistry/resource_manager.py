@@ -414,12 +414,17 @@ class Manager:
                 for synonym in resource.get_synonyms():
                     yield synonym, pattern
 
-    def get_reverse_prefix_map(self, include_prefixes: bool = False) -> Mapping[str, str]:
+    def get_reverse_prefix_map(
+        self, include_prefixes: bool = False, strict: bool = True
+    ) -> Mapping[str, str]:
         """Get a reverse prefix map, pointing to canonical prefixes.
 
         :param include_prefixes: Should prefixes be included with colon delimiters?
             Setting this to true makes an "omni"-reverse prefix map that can be
             used to parse both URIs and CURIEs
+        :param strict:
+            If true, errors on URI prefix collisions. If false, sends logging
+            and skips them.
         :return: A converter
         :raises ValueError: if there are duplicate URI prefixes. This movitates
             additional curation.
@@ -475,9 +480,11 @@ class Manager:
                 if uri_prefix in rv:
                     if resource.part_of or resource.provides or resource.has_canonical:
                         continue
-                    raise ValueError(
-                        f"Dupicate in {rv[uri_prefix]} and {resource.prefix} for {uri_prefix}"
-                    )
+                    msg = f"Duplicate in {rv[uri_prefix]} and {resource.prefix} for {uri_prefix}"
+                    if not strict:
+                        logger.warning(msg)
+                        continue
+                    raise ValueError(msg)
                 rv[uri_prefix[:-2]] = resource.prefix
             if include_prefixes:
                 prefixes_ = [
