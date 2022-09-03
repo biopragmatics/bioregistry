@@ -217,7 +217,14 @@ class TestRegistry(unittest.TestCase):
             if not uri_format:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertIn("$1", uri_format, msg=f"{prefix} format does not have a $1")
+                self.assertTrue(
+                    any(
+                        uri_format.startswith(protocol + "://")
+                        for protocol in ["http", "https", "ftp", "s3"]
+                    ),
+                    msg=f"{prefix} URI format dos not start with a valid protocol",
+                )
+                self.assertIn("$1", uri_format, msg=f"{prefix} URI format does not have a $1")
 
     def test_uri_format_uniqueness(self):
         """Test URI format uniqueness."""
