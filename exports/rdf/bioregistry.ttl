@@ -10064,7 +10064,7 @@ bioregistry:refseq a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.ncbi.nlm.nih.gov/projects/RefSeq/"^^xsd:string ;
     bioregistry.schema:0000005 "NP_012345"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/protein/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\\d+)|(NZ\\_[A-Z]{2,4}\\d+))(\\.\\d+)?$"^^xsd:string ;
+    bioregistry.schema:0000008 "^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|WP|XM|XP|XR|YP|ZP)_\\d+)|(NZ_[A-Z]{2,4}\\d+))(\\.\\d+)?$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000016 bioregistry:ncbiprotein .
 
@@ -12258,8 +12258,7 @@ bioregistry:wikigenes a bioregistry.schema:0000001 ;
 
 bioregistry:wikipathways a bioregistry.schema:0000001 ;
     rdfs:label "WikiPathways" ;
-    dc:description """WikiPathways is a resource providing an open and public collection of  pathway maps created and curated by the community in a Wiki like style.\r
-All content is under the Creative Commons Attribution 3.0 Unported license."""^^xsd:string ;
+    dc:description "WikiPathways is a database of biological pathways maintained by and for the scientific community."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:WIKIPATHWAYS,
         edam.data:3952,
@@ -12744,8 +12743,6 @@ orcid:0000-0003-2699-3066 rdfs:label "Meghan Balk" ;
         bioregistry:fossilworks.taxon,
         bioregistry:noaa,
         bioregistry:otol .
-
-orcid:0000-0003-2826-6444 rdfs:label "Amos Bairoch" .
 
 orcid:0000-0003-3499-8262 rdfs:label "Alejandra Gonzalez-Beltran" .
 
@@ -19757,11 +19754,12 @@ bioregistry:cellosaurus a bioregistry.schema:0000001 ;
         miriam:cellosaurus,
         re3data:r3d100013293,
         wikidata:P3289 ;
-    foaf:homepage "https://web.expasy.org/cellosaurus/"^^xsd:string ;
+    foaf:homepage "https://cellosaurus.org"^^xsd:string ;
     bioregistry.schema:0000005 "0440"^^xsd:string ;
-    bioregistry.schema:0000006 "https://web.expasy.org/cellosaurus/CVCL_$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.cellosaurus.org/CVCL_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Z0-9]{4}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-2826-6444 .
 
 bioregistry:cellosaurus.resource a bioregistry.schema:0000001 ;
     rdfs:label "Cellosaurus Registry" ;
@@ -25291,6 +25289,8 @@ orcid:0000-0002-9900-7880 rdfs:label "Yvonne Bradford" .
 orcid:0000-0003-1617-8244 rdfs:label "Lindsay Cowell" .
 
 orcid:0000-0003-2408-2883 rdfs:label "Jingshan Huang" .
+
+orcid:0000-0003-2826-6444 rdfs:label "Amos Bairoch" .
 
 orcid:0000-0003-3162-7490 rdfs:label "Wasila Dahdul" .
 

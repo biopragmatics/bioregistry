@@ -38,7 +38,7 @@ wrong_patterns:
   name: Cell Cycle Ontology
   prefix: cco
 - correct: ^[A-Z0-9]{4}$
-  homepage: https://web.expasy.org/cellosaurus/
+  homepage: https://cellosaurus.org
   miriam: ^CVCL_[A-Z0-9]{4}$
   name: Cellosaurus
   prefix: cellosaurus
@@ -297,6 +297,11 @@ wrong_patterns:
   miriam: (^R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?$)|(^REACT_\d+(\.\d+)?$)
   name: Reactome
   prefix: reactome
+- correct: ^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|WP|XM|XP|XR|YP|ZP)_\d+)|(NZ_[A-Z]{2,4}\d+))(\.\d+)?$
+  homepage: https://www.ncbi.nlm.nih.gov/projects/RefSeq/
+  miriam: ^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\d+)|(NZ\_[A-Z]{2,4}\d+))(\.\d+)?$
+  name: Reference Sequence Collection
+  prefix: refseq
 - correct: ^\d{7}$
   homepage: https://oborel.github.io/
   miriam: ^RO_\d{7}$

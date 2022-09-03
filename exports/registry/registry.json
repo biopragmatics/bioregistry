@@ -3834,10 +3834,16 @@
   "cellosaurus": {
     "banana": "CVCL",
     "banana_peel": "_",
+    "contact": {
+      "email": "Amos.Bairoch@sib.swiss",
+      "github": "AmosBairoch",
+      "name": "Amos Bairoch",
+      "orcid": "0000-0003-2826-6444"
+    },
     "description": "The Cellosaurus is a knowledge resource on cell lines. It attempts to describe all cell lines used in biomedical research. Its scope includes: Immortalized cell lines; naturally immortal cell lines (example: stem cell lines); finite life cell lines when those are distributed and used widely; vertebrate cell line with an emphasis on human, mouse and rat cell lines; and invertebrate (insects and ticks) cell lines. Its scope does not include primary cell lines (with the exception of the finite life cell lines described above) and plant cell lines.",
     "download_obo": "https://ftp.expasy.org/databases/cellosaurus/cellosaurus.obo",
     "example": "0440",
-    "homepage": "https://web.expasy.org/cellosaurus/",
+    "homepage": "https://cellosaurus.org",
     "mappings": {
       "biocontext": "CELLOSAURUS",
       "cellosaurus": "Cellosaurus",
@@ -3850,11 +3856,20 @@
     "name": "Cellosaurus",
     "pattern": "^[A-Z0-9]{4}$",
     "preferred_prefix": "cellosaurus",
+    "providers": [
+      {
+        "code": "legacy",
+        "description": "The legacy URI for the Cellosaurus website, updated on August 30, 2022 [ref](https://twitter.com/Cellosaurus/status/1564658792691810305).",
+        "homepage": "https://web.expasy.org/cellosaurus",
+        "name": "Legacy Endpoint",
+        "uri_format": "https://web.expasy.org/cellosaurus/CVCL_$1"
+      }
+    ],
     "synonyms": [
       "CVCL"
     ],
     "twitter": "cellosaurus",
-    "uri_format": "https://web.expasy.org/cellosaurus/CVCL_$1"
+    "uri_format": "https://www.cellosaurus.org/CVCL_$1"
   },
   "cellosaurus.resource": {
     "contributor": {
@@ -27356,8 +27371,19 @@
     "uri_format": "http://www.receptome.org/families/Frameset_family.asp?ProtType=Receptor&FamId=$1"
   },
   "refseq": {
+    "contributor_extras": [
+      {
+        "email": null,
+        "github": "slobentanzer",
+        "name": "Sebastian Lobentanzer",
+        "orcid": "0000-0003-3399-6695"
+      }
+    ],
     "description": "The Reference Sequence (RefSeq) collection aims to provide a comprehensive, integrated, non-redundant set of sequences, including genomic DNA, transcript (RNA), and protein products.",
     "example": "NP_012345",
+    "example_extras": [
+      "WP_029104145.1"
+    ],
     "has_canonical": "ncbiprotein",
     "homepage": "https://www.ncbi.nlm.nih.gov/projects/RefSeq/",
     "mappings": {
@@ -27371,7 +27397,7 @@
       "uniprot": "RefSeq"
     },
     "name": "Reference Sequence Collection",
-    "pattern": "^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\\d+)|(NZ\\_[A-Z]{2,4}\\d+))(\\.\\d+)?$",
+    "pattern": "^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|WP|XM|XP|XR|YP|ZP)_\\d+)|(NZ_[A-Z]{2,4}\\d+))(\\.\\d+)?$",
     "preferred_prefix": "refseq",
     "publications": [
       {
@@ -27380,6 +27406,9 @@
         "pubmed": "17130148",
         "title": "NCBI reference sequences (RefSeq): a curated non-redundant sequence database of genomes, transcripts and proteins."
       }
+    ],
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/545"
     ],
     "synonyms": [
       "REFSEQ_PROT"
@@ -33026,10 +33055,11 @@
         "orcid": "0000-0001-7542-0286"
       }
     ],
-    "description": "WikiPathways is a resource providing an open and public collection of  pathway maps created and curated by the community in a Wiki like style.\r\nAll content is under the Creative Commons Attribution 3.0 Unported license.",
+    "description": "WikiPathways is a database of biological pathways maintained by and for the scientific community.",
     "download_owl": "http://aber-owl.net/media/ontologies/WIKIPATHWAYS/225/wikipathways.owl",
     "example": "WP732",
     "homepage": "http://www.wikipathways.org/",
+    "license": "CC0 1.0",
     "mappings": {
       "aberowl": "WIKIPATHWAYS",
       "biocontext": "WIKIPATHWAYS",
@@ -33086,6 +33116,7 @@
         "title": "WikiPathways: connecting communities"
       }
     ],
+    "twitter": "WikiPathways",
     "uri_format": "http://www.wikipathways.org/instance/$1"
   },
   "wikipedia.en": {
