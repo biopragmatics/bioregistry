@@ -182,11 +182,8 @@ def parse_iri(
     # TODO remove this and update all relevant docstrings and README
     if isinstance(prefix_map, list):
         return _parse_iri(iri, prefix_map)
-    elif isinstance(prefix_map, dict):
-        prefix_list = ensure_prefix_list(prefix_map)
-        return _parse_iri(iri, prefix_list)
-    else:
-        raise TypeError
+    prefix_list = ensure_prefix_list(prefix_map)
+    return _parse_iri(iri, prefix_list)
 
 
 def _parse_iri(iri: str, prefix_list: List[Tuple[str, str]]):
