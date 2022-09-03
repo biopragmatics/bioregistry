@@ -1317,6 +1317,8 @@ class Resource(BaseModel):
         if self.uri_format:
             yield self.uri_format
         yield f"https://bioregistry.io/{self.prefix}:$1"
+        for synonym in self.get_synonyms():
+            yield f"https://bioregistry.io/{synonym}:$1"
         for provider in self.get_extra_providers():
             yield provider.uri_format
         for formatter_getter in self.URI_FORMATTERS.values():
