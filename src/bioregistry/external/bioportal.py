@@ -68,6 +68,9 @@ class OntoPortalClient:
         # see https://data.bioontology.org/documentation#Ontology
         res = self.query(self.base_url + "/ontologies", summaryOnly=False, notes=True)
         records = res.json()
+        # Pop the context, which is non-deterministically returend by the API
+        for record in records:
+            record.pop("@context", None)
         with self.raw_path.open("w") as file:
             json.dump(records, file, indent=2, sort_keys=True)
 
