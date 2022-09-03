@@ -432,7 +432,10 @@ class Manager:
             ("tto", "http://purl.obolibrary.org/obo/$1"),  # from miriam
             ("zfa", "http://purl.obolibrary.org/obo/$1"),  # from miriam
             ("orphanet", "http://www.orpha.net/ORDO/Orphanet_$1"),  # biocontext is wrong
-            ("uniprot", "https://www.ncbi.nlm.nih.gov/protein/$1"),
+            (
+                "uniprot",
+                "https://www.ncbi.nlm.nih.gov/protein/$1",
+            ),  # FIXME not sure how to resolve this
         }
         # stratify resources
         a, b = [], []

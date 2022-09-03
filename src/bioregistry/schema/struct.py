@@ -61,6 +61,11 @@ BULK_UPLOAD_FORM = DOCS.joinpath("bulk_prefix_request_template.tsv")
 IDOT_SKIP = "identifiers.org"
 
 
+def _uri_sort(uri):
+    protocol, rest = uri.split(":", 1)
+    return (rest, protocol)
+
+
 def _dedent(s: str) -> str:
     return textwrap.dedent(s).replace("\n", " ").replace("  ", " ").strip()
 
@@ -1285,7 +1290,7 @@ class Resource(BaseModel):
 
     def get_uri_formats(self) -> Set[str]:
         """Get all URI prefixes."""
-        return set(sorted(self._iter_uri_formats()))
+        return set(sorted(self._iter_uri_formats(), key=_uri_sort))
 
     def _iter_uri_formats(self) -> Iterable[str]:
         if self.uri_format:
