@@ -7,9 +7,9 @@
     <dl class="row">
         {% for k, v in ddd.items() %}
             <dt class="col-3" style="text-align: right">{{ k }}
-            {% if k not in manager.registry %}
-                <i class="far fa-question-circle" style="color: red;"></i>
-            {% endif %}
+                {% if k not in manager.registry %}
+                    <i class="far fa-question-circle" style="color: red;"></i>
+                {% endif %}
             </dt>
             <dd class="col-9">
                 {% for prefix in v %}

@@ -5,6 +5,7 @@
 import datetime
 import itertools as itt
 import platform
+from collections import defaultdict
 from operator import attrgetter
 from pathlib import Path
 from typing import Optional
@@ -511,7 +512,18 @@ def json_schema():
     return jsonify(get_json_schema())
 
 
+@ui_blueprint.route("/highlights/twitter")
+def highlights_twitter():
+    """Render the twitter highlights page."""
+    twitters = defaultdict(list)
+    for resource in manager.registry.values():
+        twitter = resource.get_twitter()
+        if twitter:
+            twitters[twitter].append(resource)
+    return render_template("highlights/twitter.html", twitters=twitters)
+
+
 @ui_blueprint.route("/highlights/relations")
 def highlights_relations():
     """Render the relations highlights page."""
-    return render_template("highlights/relations.html", manager=manager)
+    return render_template("highlights/relations.html")
