@@ -517,8 +517,9 @@ def highlights_twitter():
     """Render the twitter highlights page."""
     twitters = defaultdict(list)
     for resource in manager.registry.values():
-        if resource.twitter:
-            twitters[resource.twitter].append(resource)
+        twitter = resource.get_twitter()
+        if twitter:
+            twitters[twitter].append(resource)
     return render_template("highlights/twitter.html", twitters=twitters)
 
 
