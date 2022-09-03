@@ -15,6 +15,7 @@ from typing import (
     Callable,
     ClassVar,
     Dict,
+    Iterable,
     List,
     Mapping,
     Optional,
@@ -1269,6 +1270,20 @@ class Resource(BaseModel):
             logging.debug("formatter does not end with $1: %s", self.name)
             return None
         return fmt[: -len("$1")]
+
+    def get_uri_prefixes(self) -> Set[str]:
+        """Get all URI prefixes."""
+        return set(self._iter_uri_prefixes())
+
+    def _iter_uri_prefixes(self) -> Iterable[str]:
+        if self.uri_format:
+            yield self.uri_format
+        for provider in self.get_extra_providers():
+            yield provider.uri_format
+        for formatter_getter in self.URI_FORMATTERS.values():
+            uri_format = formatter_getter(self)
+            if uri_format:
+                yield uri_format
 
     def get_extra_providers(self) -> List[Provider]:
         """Get a list of all extra providers."""

@@ -413,6 +413,20 @@ class Manager:
                 for synonym in resource.get_synonyms():
                     yield synonym, pattern
 
+    def get_reverse_prefix_map(self) -> Mapping[str, str]:
+        """Get a reverse prefix map, pointing to canonical prefixes."""
+        rv = {}
+        for resource in self.registry.values():
+            for uri_prefix in resource.get_uri_prefixes():
+                if uri_prefix in rv:
+                    if resource.part_of or resource.provides or resource.has_canonical:
+                        continue
+                    raise ValueError(
+                        f"Dupicate in {rv[uri_prefix]} and {resource.prefix} for {uri_prefix}"
+                    )
+                rv[uri_prefix] = resource.prefix
+        return rv
+
     def get_prefix_map(
         self,
         *,

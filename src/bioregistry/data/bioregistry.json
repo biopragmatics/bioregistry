@@ -10969,6 +10969,7 @@
       "prefix": "clinvar.record",
       "uri_format": "http://www.ncbi.nlm.nih.gov/clinvar/$1/"
     },
+    "part_of": "clinvar",
     "uri_format": "http://www.ncbi.nlm.nih.gov/clinvar/$1"
   },
   "clinvar.submission": {
@@ -14292,19 +14293,11 @@
     "uri_format": "http://purl.bioontology.org/ontology/CSP/$1"
   },
   "cst": {
-    "aberowl": {
-      "name": "Cancer Staging Terms",
-      "prefix": "CST"
-    },
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "CST",
       "uri_format": "http://identifiers.org/cst/$1"
-    },
-    "bioportal": {
-      "name": "Cancer Staging Terms",
-      "prefix": "CST"
     },
     "fairsharing": {
       "abbreviation": "CST",
@@ -14318,13 +14311,10 @@
       ]
     },
     "mappings": {
-      "aberowl": "CST",
       "biocontext": "CST",
-      "bioportal": "CST",
       "fairsharing": "FAIRsharing.n8pxvx",
       "miriam": "cst",
-      "n2t": "cst",
-      "prefixcommons": "cst"
+      "n2t": "cst"
     },
     "miriam": {
       "deprecated": false,
@@ -14347,18 +14337,6 @@
       "pattern": "^[A-Za-z0-9_-]+$",
       "prefix": "cst",
       "uri_format": "http://www.cellsignal.com/reference/pathway/$1.html"
-    },
-    "prefixcommons": {
-      "description": "A small pathway portal for showcasing Cell Signaling Technology phospho-antibody products.  Contains pathway diagrams that are clickable and link to more information about each protein and the commercial products that are available for that protein.",
-      "example": "3762",
-      "homepage": "http://www.cellsignal.com/",
-      "keywords": [
-        "pathway"
-      ],
-      "name": "Cell Signaling Technology Pathway Database",
-      "pattern": "^\\d+$",
-      "prefix": "cst",
-      "uri_format": "http://www.cellsignal.com/products/$1.html"
     }
   },
   "cst.ab": {
@@ -14371,7 +14349,8 @@
     "mappings": {
       "biocontext": "CST.AB",
       "miriam": "cst.ab",
-      "n2t": "cst.ab"
+      "n2t": "cst.ab",
+      "prefixcommons": "cst"
     },
     "miriam": {
       "deprecated": false,
@@ -14393,6 +14372,18 @@
       "namespaceEmbeddedInLui": false,
       "pattern": "^\\d+$",
       "prefix": "cst.ab",
+      "uri_format": "http://www.cellsignal.com/products/$1.html"
+    },
+    "prefixcommons": {
+      "description": "A small pathway portal for showcasing Cell Signaling Technology phospho-antibody products.  Contains pathway diagrams that are clickable and link to more information about each protein and the commercial products that are available for that protein.",
+      "example": "3762",
+      "homepage": "http://www.cellsignal.com/",
+      "keywords": [
+        "pathway"
+      ],
+      "name": "Cell Signaling Technology Pathway Database",
+      "pattern": "^\\d+$",
+      "prefix": "cst",
       "uri_format": "http://www.cellsignal.com/products/$1.html"
     }
   },
