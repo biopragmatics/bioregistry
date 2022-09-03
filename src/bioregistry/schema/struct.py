@@ -1134,16 +1134,16 @@ class Resource(BaseModel):
             return None
         return f"{miriam_url_prefix}$1"
 
-    def get_nt2_uri_prefix(self) -> Optional[str]:
+    def get_nt2_uri_prefix(self, legacy_protocol: bool = False) -> Optional[str]:
         """Get the Name-to-Thing URI prefix for this entry, if possible."""
         n2t_prefix = self.get_mapped_prefix("n2t")
         if n2t_prefix is None:
             return None
         return f"https://n2t.net/{n2t_prefix}:"
 
-    def get_n2t_uri_format(self):
+    def get_n2t_uri_format(self, legacy_protocol: bool = False):
         """Get the Name-to-Thing URI format string, if available."""
-        n2t_uri_prefix = self.get_nt2_uri_prefix()
+        n2t_uri_prefix = self.get_nt2_uri_prefix(legacy_protocol=legacy_protocol)
         if n2t_uri_prefix is None:
             return None
         return f"{n2t_uri_prefix}$1"
@@ -1306,6 +1306,12 @@ class Resource(BaseModel):
             self.get_miriam_uri_format(legacy_delimiter=False, legacy_protocol=True),
             self.get_miriam_uri_format(legacy_delimiter=True, legacy_protocol=False),
             self.get_miriam_uri_format(legacy_delimiter=False, legacy_protocol=False),
+        ]:
+            if uri_prefix:
+                yield uri_prefix
+        for uri_prefix in [
+            self.get_n2t_uri_format(legacy_protocol=True),
+            self.get_n2t_uri_format(legacy_protocol=False),
         ]:
             if uri_prefix:
                 yield uri_prefix
