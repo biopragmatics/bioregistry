@@ -1079,9 +1079,11 @@ class Resource(BaseModel):
         """Get the MIRIAM/Identifiers.org prefix, if available."""
         return self.get_identifiers_org_prefix()
 
-    def get_miriam_uri_prefix(self) -> Optional[str]:
+    def get_miriam_uri_prefix(self, legacy_delimiter: bool = False, legacy_protocol: bool = False) -> Optional[str]:
         """Get the Identifiers.org URI prefix for this entry, if possible.
 
+        :param legacy_protocol: If true, uses HTTP
+        :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
         :returns: The Identifiers.org/MIRIAM URI prefix, if available.
 
         >>> from bioregistry import get_resource
@@ -1098,11 +1100,15 @@ class Resource(BaseModel):
             # not exact solution, some less common ones don't use capitalization
             # align with the banana solution
             miriam_prefix = miriam_prefix.upper()
-        return f"https://identifiers.org/{miriam_prefix}:"
+        protocol = "http" if legacy_protocol else "https"
+        delimiter = "/" if legacy_delimiter else ":"
+        return f"{protocol}://identifiers.org/{miriam_prefix}{delimiter}"
 
-    def get_miriam_uri_format(self) -> Optional[str]:
+    def get_miriam_uri_format(self, legacy_delimiter: bool = False, legacy_protocol: bool = False) -> Optional[str]:
         """Get the Identifiers.org URI format string for this entry, if possible.
 
+        :param legacy_protocol: If true, uses HTTP
+        :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
         :returns: The Identifiers.org/MIRIAM URL format string, if available.
 
         >>> from bioregistry import get_resource
@@ -1112,7 +1118,7 @@ class Resource(BaseModel):
         'https://identifiers.org/GO:$1'
         >>> assert get_resource('sty').get_miriam_uri_format() is None
         """
-        miriam_url_prefix = self.get_miriam_uri_prefix()
+        miriam_url_prefix = self.get_miriam_uri_prefix(legacy_delimiter=legacy_delimiter, legacy_protocol=legacy_protocol)
         if miriam_url_prefix is None:
             return None
         return f"{miriam_url_prefix}$1"
@@ -1271,11 +1277,11 @@ class Resource(BaseModel):
             return None
         return fmt[: -len("$1")]
 
-    def get_uri_prefixes(self) -> Set[str]:
+    def get_uri_formats(self) -> Set[str]:
         """Get all URI prefixes."""
-        return set(self._iter_uri_prefixes())
+        return set(sorted(self._iter_uri_formats()))
 
-    def _iter_uri_prefixes(self) -> Iterable[str]:
+    def _iter_uri_formats(self) -> Iterable[str]:
         if self.uri_format:
             yield self.uri_format
         for provider in self.get_extra_providers():
@@ -1284,6 +1290,14 @@ class Resource(BaseModel):
             uri_format = formatter_getter(self)
             if uri_format:
                 yield uri_format
+        for uri_prefix in [
+            self.get_miriam_uri_format(legacy_delimiter=True, legacy_protocol=True),
+            self.get_miriam_uri_format(legacy_delimiter=False, legacy_protocol=True),
+            self.get_miriam_uri_format(legacy_delimiter=True, legacy_protocol=False),
+            self.get_miriam_uri_format(legacy_delimiter=False, legacy_protocol=False),
+        ]:
+            if uri_prefix:
+                yield uri_prefix
 
     def get_extra_providers(self) -> List[Provider]:
         """Get a list of all extra providers."""

@@ -416,7 +416,24 @@ class Manager:
     def get_reverse_prefix_map(self) -> Mapping[str, str]:
         """Get a reverse prefix map, pointing to canonical prefixes."""
         prefix_blacklist = {"bgee.gene"}
-        uri_prefix_blacklist = {"http://www.ebi.ac.uk/ontology-lookup/?termId=$1"}
+        uri_prefix_blacklist = {
+            "http://www.ebi.ac.uk/ontology-lookup/?termId=$1",
+            "https://bioentity.link/#/lexicon/public/$1",
+            # see https://github.com/biopragmatics/bioregistry/issues/548
+            "https://www.ncbi.nlm.nih.gov/nuccore/$1",
+            "https://www.ebi.ac.uk/ena/data/view/$1",
+        }
+        prefix_resource_blacklist = {
+            ("obi", "http://purl.obolibrary.org/obo/$1"), # from miriam
+            ("rnao", "http://purl.obolibrary.org/obo/$1"), # from miriam
+            ("rs", "http://purl.obolibrary.org/obo/$1"), # from miriam
+            ("tao", "http://purl.obolibrary.org/obo/$1"), # from miriam
+            ("taxrank", "http://purl.obolibrary.org/obo/$1"), # from miriam
+            ("tto", "http://purl.obolibrary.org/obo/$1"), # from miriam
+            ("zfa", "http://purl.obolibrary.org/obo/$1"), # from miriam
+            ("orphanet", "http://www.orpha.net/ORDO/Orphanet_$1"), # biocontext is wrong
+            ("uniprot", "https://www.ncbi.nlm.nih.gov/protein/$1"),
+        }
         # stratify resources
         a, b = [], []
         for resource in self.registry.values():
@@ -430,7 +447,11 @@ class Manager:
         rv = {}
         for resources in [a, b]:
             for resource in resources:
-                for uri_prefix in resource.get_uri_prefixes():
+                for uri_prefix in resource.get_uri_formats():
+                    if not uri_prefix.endswith("$1") or uri_prefix.count("$1") > 1:
+                        continue
+                    if (resource.prefix, uri_prefix) in prefix_resource_blacklist:
+                        continue
                     if uri_prefix in uri_prefix_blacklist:
                         continue
                     if uri_prefix in rv:
@@ -439,7 +460,7 @@ class Manager:
                         raise ValueError(
                             f"Dupicate in {rv[uri_prefix]} and {resource.prefix} for {uri_prefix}"
                         )
-                    rv[uri_prefix] = resource.prefix
+                    rv[uri_prefix[:-2]] = resource.prefix
         return rv
 
     def get_prefix_map(

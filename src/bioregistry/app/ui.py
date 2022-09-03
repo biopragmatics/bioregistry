@@ -509,3 +509,10 @@ def schema():
 def json_schema():
     """Return the JSON schema."""
     return jsonify(get_json_schema())
+
+
+
+@ui_blueprint.route("/highlights/relations")
+def highlights_relations():
+    """Render the relations highlights page."""
+    return render_template("highlights/relations.html", manager=manager)
