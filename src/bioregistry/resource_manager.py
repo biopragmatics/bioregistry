@@ -447,7 +447,7 @@ class Manager:
             else:
                 a.append(resource)
 
-        rv = {}
+        rv: Dict[str, str] = {}
         for resources in [a, b]:
             for resource in resources:
                 for uri_prefix in resource.get_uri_formats():
