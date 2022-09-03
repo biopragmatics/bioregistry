@@ -79,6 +79,16 @@ semantic web. An account can be made in seconds at https://orcid.org.
 """
 )
 
+URI_FORMAT_PATHS = [
+    ("miriam", URI_FORMAT_KEY),
+    ("n2t", URI_FORMAT_KEY),
+    ("go", URI_FORMAT_KEY),
+    ("biocontext", URI_FORMAT_KEY),
+    ("wikidata", URI_FORMAT_KEY),
+    ("uniprot", URI_FORMAT_KEY),
+    ("cellosaurus", URI_FORMAT_KEY),
+]
+
 
 class Attributable(BaseModel):
     """An upper-level metadata for a researcher."""
@@ -610,15 +620,7 @@ class Resource(BaseModel):
         """
         if self.uri_format is not None:
             return self.uri_format
-        for metaprefix, key in [
-            ("miriam", URI_FORMAT_KEY),
-            ("n2t", URI_FORMAT_KEY),
-            ("go", URI_FORMAT_KEY),
-            ("biocontext", URI_FORMAT_KEY),
-            ("wikidata", URI_FORMAT_KEY),
-            ("uniprot", URI_FORMAT_KEY),
-            ("cellosaurus", URI_FORMAT_KEY),
-        ]:
+        for metaprefix, key in URI_FORMAT_PATHS:
             rv = self.get_external(metaprefix).get(key)
             if rv is not None and _allowed_uri_format(rv):
                 return rv
@@ -1301,6 +1303,10 @@ class Resource(BaseModel):
             yield provider.uri_format
         for formatter_getter in self.URI_FORMATTERS.values():
             uri_format = formatter_getter(self)
+            if uri_format:
+                yield uri_format
+        for metaprefix, key in URI_FORMAT_PATHS:
+            uri_format = self.get_external(metaprefix).get(key)
             if uri_format:
                 yield uri_format
         for uri_prefix in [
