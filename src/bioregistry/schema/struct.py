@@ -1326,7 +1326,7 @@ class Resource(BaseModel):
         for metaprefix, key in URI_FORMAT_PATHS:
             uri_format = self.get_external(metaprefix).get(key)
             if uri_format:
-                yield from uri_format
+                yield uri_format
         miriam_legacy_uri_prefix = self.get_miriam_uri_format(legacy_delimiter=True)
         if miriam_legacy_uri_prefix:
             yield uri_prefix
