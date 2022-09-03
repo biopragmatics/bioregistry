@@ -2,6 +2,7 @@
 
 """A class-based client to a metaregistry."""
 
+import itertools as itt
 import logging
 import typing
 from collections import ChainMap, Counter, defaultdict
@@ -446,22 +447,21 @@ class Manager:
             "http://purl.obolibrary.org/obo/": "obo",
             "https://purl.obolibrary.org/obo/": "obo",
         }
-        for resources in [primary_resources, secondary_resources]:
-            for resource in resources:
-                for uri_prefix in resource.get_uri_formats():
-                    if not uri_prefix.endswith("$1") or uri_prefix.count("$1") > 1:
+        for resource in itt.chain(primary_resources, secondary_resources):
+            for uri_prefix in resource.get_uri_formats():
+                if not uri_prefix.endswith("$1") or uri_prefix.count("$1") > 1:
+                    continue
+                if (resource.prefix, uri_prefix) in prefix_resource_blacklist:
+                    continue
+                if uri_prefix in uri_prefix_blacklist:
+                    continue
+                if uri_prefix in rv:
+                    if resource.part_of or resource.provides or resource.has_canonical:
                         continue
-                    if (resource.prefix, uri_prefix) in prefix_resource_blacklist:
-                        continue
-                    if uri_prefix in uri_prefix_blacklist:
-                        continue
-                    if uri_prefix in rv:
-                        if resource.part_of or resource.provides or resource.has_canonical:
-                            continue
-                        raise ValueError(
-                            f"Dupicate in {rv[uri_prefix]} and {resource.prefix} for {uri_prefix}"
-                        )
-                    rv[uri_prefix[:-2]] = resource.prefix
+                    raise ValueError(
+                        f"Dupicate in {rv[uri_prefix]} and {resource.prefix} for {uri_prefix}"
+                    )
+                rv[uri_prefix[:-2]] = resource.prefix
         return rv
 
     def get_prefix_map(
