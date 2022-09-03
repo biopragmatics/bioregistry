@@ -36,9 +36,14 @@ def get_miriam(force_download: bool = False):
     return rv
 
 
+#: Pairs of MIRIAM prefix and provider codes to skip
+PROVIDER_BLACKLIST = {("ega.study", "omicsdi")}
+
+
 def _process(record):
+    prefix = record["prefix"]
     rv = {
-        "prefix": record["prefix"],
+        "prefix": prefix,
         "id": record["mirId"][len("MIR:") :],
         "name": record["name"],
         "deprecated": record["deprecated"],
@@ -66,7 +71,8 @@ def _process(record):
 
     extras = []
     for provider in rest:
-        if provider["code"] in SKIP_PROVIDERS:
+        code = provider["code"]
+        if code in SKIP_PROVIDERS or (prefix, code) in PROVIDER_BLACKLIST:
             continue
         del provider["official"]
         extras.append(provider)
