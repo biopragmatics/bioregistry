@@ -2337,6 +2337,7 @@ bioproject:
     different databases. It provides information about a project’s scope, material,
     objectives, funding source and general relevance categories.
   example: PRJDB3
+  has_canonical: ena.embl
   homepage: http://trace.ddbj.nig.ac.jp/bioproject/
   mappings:
     biocontext: BIOPROJECT
@@ -4372,6 +4373,19 @@ civic.aid:
   pattern: ^[0-9]+$
   preferred_prefix: civic.aid
   uri_format: https://civicdb.org/links/assertions/$1
+civic.did:
+  description: Within the CIViC database, the disease should be the cancer or cancer
+    subtype that is a result of the described variant. The disease selected should
+    be as specific as possible should reflect the disease type used in the source
+    that supports the evidence statement.
+  example: '46'
+  homepage: https://civicdb.org/
+  mappings:
+    miriam: civic.did
+  name: CIViC Disease
+  pattern: ^[0-9]+$
+  preferred_prefix: civic.did
+  uri_format: https://civicdb.org/links/diseases/$1
 civic.eid:
   description: Evidence Items are the central building block of the Clinical Interpretation
     of Variants in Cancer (CIViC) knowledgebase. The clinical Evidence Item is a piece
@@ -4393,6 +4407,73 @@ civic.eid:
   pattern: ^[0-9]+$
   preferred_prefix: civic.eid
   uri_format: https://civicdb.org/links/evidence/$1
+civic.gid:
+  description: A CIViC Gene Summary is created to provide a high-level overview of
+    clinical relevance of cancer variants for the gene. Gene Summaries in CIViC focus
+    on emphasizing the clinical relevance from a molecular perspective rather than
+    describing the biological function of the gene unless necessary to contextualize
+    its clinical relevance in cancer. Gene Summaries include relevant cancer subtypes,
+    specific treatments for the gene’s associated variants, pathway interactions,
+    functional alterations caused by the variants in the gene, and normal/abnormal
+    functions of the gene with associated roles in oncogenesis
+  example: '272'
+  homepage: https://civicdb.org/
+  mappings:
+    miriam: civic.gid
+  name: CIViC Gene
+  pattern: ^[0-9]+$
+  preferred_prefix: civic.gid
+  uri_format: https://civicdb.org/links/gene/$1
+civic.sid:
+  description: In CIViC, each Evidence Item must be associated with a Source Type
+    and Source ID, which link the Evidence Item to the original source of information
+    supporting clinical claims. Currently, CIViC accepts publications indexed on PubMed
+    OR abstracts published through the American Society of Clinical Oncology (ASCO).
+    Each such source entered into CIViC is assigned a unique identifier and expert
+    curators can curate guidance that assists future curators in the interpretation
+    of information from this source.
+  example: '62'
+  homepage: https://civicdb.org/
+  mappings:
+    miriam: civic.sid
+  name: CIViC Source
+  pattern: ^[0-9]+$
+  preferred_prefix: civic.sid
+  uri_format: https://civicdb.org/links/sources/$1
+civic.tid:
+  description: Therapies (often drugs) in CIViC are associated with Predictive Evidence
+    Types, which describe sensitivity, resistance or adverse response to therapies
+    when a given variant is present. The Therapy field may also be used to describe
+    more general treatment types and regimes, such as FOLFOX or Radiation, as long
+    as the literature derived Evidence Item makes a scientific association between
+    the Therapy (treatment type) and the presence of the variant.
+  example: '14'
+  homepage: https://civicdb.org/
+  mappings:
+    miriam: civic.tid
+  name: CIViC Therapy
+  pattern: ^[0-9]+$
+  preferred_prefix: civic.tid
+  uri_format: https://civicdb.org/links/drugs/$1
+civic.vid:
+  description: CIViC variants are usually genomic alterations, including single nucleotide
+    variants (SNVs), insertion/deletion events (indels), copy number alterations (CNV’s
+    such as amplification or deletion), structural variants (SVs such as translocations
+    and inversions), and other events that differ from the “normal” genome. In some
+    cases a CIViC variant may represent events of the transcriptome or proteome. For
+    example, ‘expression’ or ‘over-expression’ is a valid variant. Regardless of the
+    variant, it must have a Predictive, Prognostic, Predisposing, Diagnostic, Oncogenic,
+    or Functional relevance that is clinical in nature to be entered in CIViC. i.e.
+    There must be some rationale for why curation of this variant could ultimately
+    aid clinical decision making.
+  example: '12'
+  homepage: https://civicdb.org/
+  mappings:
+    miriam: civic.vid
+  name: CIViC Variant
+  pattern: ^[0-9]+$
+  preferred_prefix: civic.vid
+  uri_format: https://civicdb.org/links/variant/$1
 cl:
   appears_in:
   - clo
@@ -4554,6 +4635,13 @@ clinicaltrials:
   name: ClinicalTrials.gov
   pattern: ^NCT\d{8}$
   preferred_prefix: clinicaltrials
+  providers:
+  - code: smartpatients
+    description: Smart Patients is an online community for patients and their families.
+      Join us to talk with other patients about the latest research for your condition.
+    homepage: https://www.smartpatients.com
+    name: Smart Patients
+    uri_format: https://www.smartpatients.com/trials/$1
   uri_format: https://clinicaltrials.gov/ct2/show/$1
 clinvar:
   description: ClinVar archives reports of relationships among medically important
@@ -4594,6 +4682,7 @@ clinvar.record:
     miriam: clinvar.record
     n2t: clinvar.record
   name: ClinVar Record
+  part_of: clinvar
   pattern: ^RCV\d+(\.\d+)?$
   preferred_prefix: clinvar.record
   uri_format: http://www.ncbi.nlm.nih.gov/clinvar/$1
@@ -6008,6 +6097,17 @@ cro:
   repository: https://github.com/data2health/contributor-role-ontology
   uri_format: http://purl.obolibrary.org/obo/CRO_$1
   version: '2019-12-11'
+crop2ml:
+  description: CropMRespository is a database of soil and crop biophysical process
+    models.
+  example: '000000001'
+  homepage: http://www.crop2ml.org
+  mappings:
+    miriam: crop2ml
+  name: CropMRepository
+  pattern: ^[0-9]{9}$
+  preferred_prefix: crop2ml
+  uri_format: http://www.crop2ml.org/cropmdb/$1
 cryoem:
   description: Ontology that describes data types and image processing operations
     in Cryo Electron Microscopy of Single Particles
@@ -6107,14 +6207,11 @@ cst:
   example: Akt_PKB
   homepage: http://www.cellsignal.com/pathways/index.html
   mappings:
-    aberowl: CST
     biocontext: CST
-    bioportal: CST
     fairsharing: FAIRsharing.n8pxvx
     miriam: cst
     n2t: cst
-    prefixcommons: cst
-  name: Cancer Staging Terms
+  name: Cell Signaling Technology Pathways
   pattern: ^[A-Za-z0-9_-]+$
   preferred_prefix: cst
   uri_format: http://www.cellsignal.com/reference/pathway/$1.html
@@ -6128,10 +6225,45 @@ cst.ab:
     biocontext: CST.AB
     miriam: cst.ab
     n2t: cst.ab
+    prefixcommons: cst
   name: Cell Signaling Technology Antibody
   pattern: ^\d+$
   preferred_prefix: cst.ab
   uri_format: http://www.cellsignal.com/products/$1.html
+'ctcae:':
+  appears_in:
+  - oae
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  deprecated: true
+  description: The Common Terminology Criteria for Adverse Events (CTCAE),[1] formerly
+    called the Common Toxicity Criteria (CTC or NCI-CTC), are a set of criteria for
+    the standardized classification of adverse effects of drugs used in cancer therapy.
+    The CTCAE system is a product of the US National Cancer Institute (NCI).
+  download_owl: http://aber-owl.net/media/ontologies/CTCAE/2/ctcae.owl
+  example: E12768
+  homepage: https://evs.nci.nih.gov/ftp1/CTCAE/About.html
+  mappings:
+    aberowl: CTCAE
+    bioportal: CTCAE
+  name: Common Terminology Criteria for Adverse Events
+  pattern: ^E\d+$
+  preferred_prefix: 'ctcae:'
+  publications:
+  - doi: null
+    pmc: PMC5977606
+    pubmed: '29854250'
+    title: 'Towards precision informatics of pharmacovigilance: OAE-CTCAE mapping
+      and OAE-based representation and analysis of adverse events in patients treated
+      with cancer drugs'
+  references:
+  - https://github.com/OAE-ontology/OAE/issues/8
+  - https://en.wikipedia.org/wiki/Common_Terminology_Criteria_for_Adverse_Events
+  synonyms:
+  - CTCAE
 ctd.chemical:
   description: The Comparative Toxicogenomics Database (CTD) presents scientifically
     reviewed and curated information on chemicals, relevant genes and proteins, and
@@ -6691,7 +6823,6 @@ dc:
     properties, vocabulary encoding schemes, syntax encoding schemes, and classes.
   download_owl: http://aber-owl.net/media/ontologies/DC/3/dc.owl
   example: contributor
-  has_canonical: dcterms
   homepage: https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
   mappings:
     aberowl: DC
@@ -6700,7 +6831,9 @@ dc:
     fairsharing: FAIRsharing.3nx7t
   name: Dublin Core
   preferred_prefix: dc
-  uri_format: http://purl.org/dc/terms/$1
+  synonyms:
+  - dc11
+  uri_format: http://purl.org/dc/elements/1.1/$1
 dc_cl:
   contact:
     email: Lindsay.Cowell@utsouthwestern.edu
@@ -7605,6 +7738,11 @@ doid:
     homepage: http://disease-ontology.org/
     name: Human Disease Ontology at Northwestern University
     uri_format: http://disease-ontology.org/term/DOID:$1
+  - code: purl
+    description: Legacy PURLs found in OAE
+    homepage: http://purl.org/obo/owl/
+    name: Legacy PURL
+    uri_format: http://purl.org/obo/owl/DOID#DOID_$1
   publications:
   - doi: 10.1093/bioinformatics/btp193
     pmc: null
@@ -8878,12 +9016,6 @@ ega.study:
   name: European Genome-phenome Archive Study
   pattern: ^EGAS\d{11}$
   preferred_prefix: ega.study
-  providers:
-  - code: omicsdi
-    description: EGA Study through OmicsDI
-    homepage: https://www.omicsdi.org/
-    name: EGA Study through OmicsDI
-    uri_format: https://www.omicsdi.org/dataset/ega/$1
   uri_format: https://www.ebi.ac.uk/ega/studies/$1
 eggnog:
   description: 'eggNOG (evolutionary genealogy of genes: Non-supervised Orthologous
@@ -12452,6 +12584,7 @@ gold.meta:
     \ their associated metadata. This collection references metadata associated with\
     \ samples."
   example: Gm00047
+  has_canonical: gold
   homepage: http://www.genomesonline.org/cgi-bin/GOLD/index.cgi
   mappings:
     biocontext: GOLD.META
@@ -13580,7 +13713,7 @@ homd.taxon:
     pubmed: '20624719'
     title: 'The Human Oral Microbiome Database: a web accessible resource for investigating
       oral microbe taxonomic and genomic information.'
-  uri_format: www.homd.org/modules.php?op=modload&name=HOMD&view=dynamic&oraltaxonid=$1
+  uri_format: http://www.homd.org/modules.php?op=modload&name=HOMD&view=dynamic&oraltaxonid=$1
 homologene:
   description: HomoloGene is a system for automated detection of homologs among the
     annotated genes of several completely sequenced eukaryotic genomes.
@@ -15134,6 +15267,7 @@ insdc.gca:
     assemblies for eukaryota, bacteria and archaea. The scope of the genome collections
     database does not extend to viruses, viroids and bacteriophage.
   example: GCA_000155495.1
+  has_canonical: ncbi.assembly
   homepage: https://www.ebi.ac.uk/ena/browse/genome-assembly-database
   mappings:
     biocontext: INSDC.GCA
@@ -17216,6 +17350,12 @@ medlineplus:
   name: MedlinePlus Health Topics
   pattern: ^\d+$
   preferred_prefix: medlineplus
+  providers:
+  - code: medlineplus.fp
+    description: First-party version of medline plus.
+    homepage: https://medlineplus.gov
+    name: MedLine Plus home page
+    uri_format: https://medlineplus.gov/ency/article/$1.htm
   uri_format: http://www.nlm.nih.gov/medlineplus/ency/article/$1.htm
 merops.clan:
   contributor:
@@ -18700,6 +18840,17 @@ modeldb:
     pubmed: '15055399'
     title: 'ModelDB: making models publicly accessible to support computational neuroscience.'
   uri_format: http://senselab.med.yale.edu/ModelDB/ShowModel.asp?model=$1
+modeldb.concept:
+  description: Concept used by ModelDB, an accessible location for storing and efficiently
+    retrieving computational neuroscience models.
+  example: '3639'
+  homepage: https://www.yale.edu
+  mappings:
+    miriam: modeldb.concept
+  name: ModelDB concept
+  pattern: ^\d+$
+  preferred_prefix: modeldb.concept
+  uri_format: https://senselab.med.yale.edu/ModelDB/ModelList?id=$1
 molbase:
   description: Molbase provides compound data information for researchers as well
     as listing suppliers and price information. It can be searched by keyword or CAS
@@ -19856,6 +20007,7 @@ ncit:
   - NCITt
   - NCI_Thesaurus
   - NCIt
+  - NCit
   - ncithesaurus
   uri_format: http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1
   version: 22.03d
@@ -23134,6 +23286,12 @@ pato:
   namespace_in_lui: true
   pattern: ^\d{7}$
   preferred_prefix: PATO
+  providers:
+  - code: purl
+    description: Legacy PURLs found in OAE
+    homepage: http://purl.org/obo/owl/
+    name: Legacy PURL
+    uri_format: http://purl.org/obo/owl/PATO#PATO_$1
   publications:
   - doi: 10.1186/gb-2004-6-1-r8
     pmc: null
@@ -24608,6 +24766,17 @@ pmr:
   pattern: ^[a-z0-9]{32,32}$
   preferred_prefix: pmr
   uri_format: https://models.physiomeproject.org/exposure/$1
+pmr.workspace:
+  description: Workspace (Git repository) for modeling projects managed by the Physiome
+    Model Repository
+  example: modularmassactionprimer
+  homepage: https://www.auckland.ac.nz/en.html
+  mappings:
+    miriam: pmr.workspace
+  name: Physiome Model Repository workspace
+  pattern: ^[a-zA-Z0-9_\-]+(/.*?)?$
+  preferred_prefix: pmr.workspace
+  uri_format: https://models.physiomeproject.org/workspace/$1
 po:
   appears_in:
   - agro
@@ -25596,6 +25765,11 @@ pubmed:
     homepage: http://www.hubmed.org/
     name: HubMed
     uri_format: http://www.hubmed.org/display.cgi?uids=$1
+  - code: pubmed.new
+    description: New-style link for pubmed
+    homepage: https://pubmed.ncbi.nlm.nih.gov
+    name: PubMed (new)
+    uri_format: https://pubmed.ncbi.nlm.nih.gov/$1
   - code: scholia
     description: Scholia is a service that creates visual scholarly profiles for topic,
       people, organizations, species, chemicals, etc using bibliographic and other
@@ -25621,6 +25795,7 @@ pubmed:
   synonyms:
   - MEDLINE
   - PMID
+  - PubMed
   - pmid
   uri_format: https://www.ncbi.nlm.nih.gov/pubmed/$1
 puro:
@@ -26501,6 +26676,18 @@ ricenetdb.reaction:
   pattern: ^OSR\d{4}$
   preferred_prefix: ricenetdb.reaction
   uri_format: http://bis.zju.edu.cn/ricenetdb/reactiondetails.php?ID=$1
+rism:
+  description: RISM Online is a new service that will publish the bibliographic and
+    authority data from the catalogue of the Répertoire International des Sources
+    Musicales project.
+  example: people/11035
+  homepage: https://rism.digital/
+  mappings:
+    miriam: rism
+  name: RISM Online
+  pattern: ^[a-z]+/[0-9]+$
+  preferred_prefix: rism
+  uri_format: https://rism.online/$1
 rnacentral:
   description: RNAcentral is a public resource that offers integrated access to a
     comprehensive and up-to-date set of non-coding RNA sequences provided by a collaborating
@@ -26677,6 +26864,21 @@ ro:
   - oborel
   uri_format: http://purl.obolibrary.org/obo/RO_$1
   version: '2022-05-23'
+ror:
+  description: 'ROR (Research Organization Registry) is a global, community-led registry
+
+    of open persistent identifiers for research organizations. ROR is jointly
+
+    operated by California Digital Library, Crossref, and Datacite.'
+  example: 03yrm5c26
+  homepage: https://ror.org
+  mappings:
+    miriam: ror
+    n2t: ror
+  name: Research Organization Registry
+  pattern: ^0[a-hj-km-np-tv-z|0-9]{6}[0-9]{2}$
+  preferred_prefix: ror
+  uri_format: https://ror.org/$1
 rouge:
   description: The Rouge protein database contains results from sequence analysis
     of novel large (>4 kb) cDNAs identified in the Kazusa cDNA sequencing project.
@@ -26822,6 +27024,12 @@ rxnorm:
   name: RxNorm
   pattern: ^[0-9]{1,7}$
   preferred_prefix: rxnorm
+  providers:
+  - code: bp
+    description: RxNorm in BioPortal
+    homepage: http://purl.bioontology.org/ontology/RXNORM
+    name: BioPortal
+    uri_format: http://purl.bioontology.org/ontology/RXNORM/$1
   publications:
   - doi: 10.1109/mitp.2005.122
     pmc: null
@@ -28293,6 +28501,7 @@ sprint:
   description: SPRINT (Search PRINTS-S) provides an interface to the PRINTS-S database.
     PRINTS-S is the relational cousin of the PRINTS data bank of protein family fingerprints.
   example: PR00001
+  has_canonical: prints
   homepage: http://130.88.97.239/dbbrowser/sprint/
   mappings:
     prefixcommons: sprint
@@ -28955,6 +29164,7 @@ tair.gene:
     n2t: tair.gene
     prefixcommons: tair.gene
   name: TAIR Gene
+  part_of: tair
   pattern: ^\d{7}$
   preferred_prefix: tair.gene
   publications:
@@ -29831,6 +30041,9 @@ ubprop:
   deprecated: true
   name: Uberon Property
   preferred_prefix: ubprop
+  synonyms:
+  - UBPROP
+  - UBREL
 ucsc:
   contributor:
     email: cthoyt@gmail.com
@@ -30613,6 +30826,26 @@ uspto:
   pattern: ^(D|PP|R|T|H|X|AI)?\d+$
   preferred_prefix: uspto
   uri_format: http://patft.uspto.gov/netacgi/nph-Parser?Sect2=PTO1&Sect2=HITOFF&p=1&u=/netahtml/PTO/search-bool.html&r=1&f=G&l=50&d=PALL&RefSrch=yes&Query=PN/$1
+vac:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Vaccine Adjuvant Compendium (VAC) was established in 2020 by the
+    NIAID Division of Allergy, Immunology, and Transplantation to foster collaborations
+    between NIAID-supported adjuvant researchers and the broader scientific community.
+    The VAC displays adjuvant characteristics or metadata defined through NIAID-supported
+    adjuvant studies to help vaccine developers identify suitable adjuvants for various
+    vaccine indications, including immune-mediated and infectious diseases. In addition,
+    the VAC welcomes the inclusion of adjuvant metadata generated by other research
+    programs.
+  example: '15'
+  homepage: https://vac.niaid.nih.gov
+  name: Vaccine Adjuvant Compendium
+  pattern: ^\d+$
+  preferred_prefix: vac
+  uri_format: https://vac.niaid.nih.gov/view?id=$1
 validatordb:
   description: Database of validation results for ligands and non-standard residues
     in the Protein Data Bank.
@@ -30983,6 +31216,24 @@ vido:
   repository: https://github.com/infectious-disease-ontology-extensions/ido-virus
   uri_format: http://purl.obolibrary.org/obo/VIDO_$1
   version: '2020-08-25'
+violinnet:
+  appears_in:
+  - oae
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  deprecated: true
+  description: Defunct vaccine information source from the He Lab
+  example: '4140'
+  name: ViolinNet
+  pattern: ^\d+$
+  preferred_prefix: violinnet
+  synonyms:
+  - violinID
+  - violinId
+  uri_format: http://www.violinet.org/vaxquery/vaccine_detail.php?c_vaccine_id=$1
 vipr:
   description: The Virus Pathogen Database and Analysis Resource (ViPR) supports bioinformatics
     workflows for a broad range of human virus pathogens and other related viruses.
@@ -31299,6 +31550,7 @@ vz:
     information, along with virion and genome figures. Each virus or family page gives
     an easy access to UniProtKB/Swiss-Prot viral protein entries.
   example: '886'
+  has_canonical: viralzone
   homepage: http://viralzone.expasy.org/
   mappings:
     go: VZ
@@ -31517,6 +31769,7 @@ wikidata.property:
     biocontext: WD_Prop
     biolink: WIKIDATA_PROPERTY
   name: Wikidata Property
+  part_of: wikidata
   pattern: ^P\d+$
   preferred_prefix: wikidata.property
   providers:
@@ -31626,6 +31879,11 @@ wikipedia.en:
     homepage: http://wiki.dbpedia.org/
     name: Wikipedia structured content through DBpedia
     uri_format: http://dbpedia.org/page/$1
+  - code: volupedia
+    description: A mix of wikipedia and 3d
+    homepage: http://en.volupedia.org
+    name: Volupedia
+    uri_format: http://en.volupedia.org/wiki/$1
   synonyms:
   - wikipedia
   uri_format: http://en.wikipedia.org/wiki/$1
@@ -32118,6 +32376,7 @@ ypo:
     name: Mike Cherry
     orcid: 0000-0001-9163-5180
   deprecated: true
+  has_canonical: apo
   homepage: http://www.yeastgenome.org/
   mappings:
     obofoundry: ypo
