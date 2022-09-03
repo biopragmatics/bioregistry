@@ -2,6 +2,7 @@
 
 """Pydantic models for the Bioregistry."""
 
+import itertools as itt
 import json
 import logging
 import pathlib
@@ -67,6 +68,17 @@ def _uri_sort(uri):
     except ValueError:
         return uri, ""
     return rest, protocol
+
+
+def _yield_httpss(u):
+    if u.startswith("http://"):
+        yield "https://" + u[7:]
+        yield u
+    elif u.startswith("https://"):
+        yield u
+        yield "http://" + u[8:]
+    else:
+        yield u
 
 
 def _dedent(s: str) -> str:
@@ -1296,13 +1308,15 @@ class Resource(BaseModel):
 
     def get_uri_formats(self) -> Set[str]:
         """Get all URI prefixes."""
-        return set(sorted(self._iter_uri_formats(), key=_uri_sort))
+        uri_formats = itt.chain.from_iterable(
+            _yield_httpss(uri_format) for uri_format in self._iter_uri_formats()
+        )
+        return set(sorted(uri_formats, key=_uri_sort))
 
     def _iter_uri_formats(self) -> Iterable[str]:
         if self.uri_format:
             yield self.uri_format
         yield f"https://bioregistry.io/{self.prefix}:$1"
-        yield f"http://bioregistry.io/{self.prefix}:$1"
         for provider in self.get_extra_providers():
             yield provider.uri_format
         for formatter_getter in self.URI_FORMATTERS.values():
@@ -1312,21 +1326,10 @@ class Resource(BaseModel):
         for metaprefix, key in URI_FORMAT_PATHS:
             uri_format = self.get_external(metaprefix).get(key)
             if uri_format:
-                yield uri_format
-        for uri_prefix in [
-            self.get_miriam_uri_format(legacy_delimiter=True, legacy_protocol=True),
-            self.get_miriam_uri_format(legacy_delimiter=False, legacy_protocol=True),
-            self.get_miriam_uri_format(legacy_delimiter=True, legacy_protocol=False),
-            self.get_miriam_uri_format(legacy_delimiter=False, legacy_protocol=False),
-        ]:
-            if uri_prefix:
-                yield uri_prefix
-        for uri_prefix in [
-            self.get_n2t_uri_format(legacy_protocol=True),
-            self.get_n2t_uri_format(legacy_protocol=False),
-        ]:
-            if uri_prefix:
-                yield uri_prefix
+                yield from uri_format
+        miriam_legacy_uri_prefix = self.get_miriam_uri_format(legacy_delimiter=True)
+        if miriam_legacy_uri_prefix:
+            yield uri_prefix
 
     def get_extra_providers(self) -> List[Provider]:
         """Get a list of all extra providers."""
