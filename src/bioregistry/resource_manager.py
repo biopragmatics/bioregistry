@@ -421,6 +421,8 @@ class Manager:
             Setting this to true makes an "omni"-reverse prefix map that can be
             used to parse both URIs and CURIEs
         :return: A converter
+        :raises ValueError: if there are duplicate URI prefixes. This movitates
+            additional curation.
 
         .. code-block:: python
 
