@@ -1295,6 +1295,8 @@ class Resource(BaseModel):
     def _iter_uri_formats(self) -> Iterable[str]:
         if self.uri_format:
             yield self.uri_format
+        yield f"https://bioregistry.io/{self.prefix}:$1"
+        yield f"http://bioregistry.io/{self.prefix}:$1"
         for provider in self.get_extra_providers():
             yield provider.uri_format
         for formatter_getter in self.URI_FORMATTERS.values():
