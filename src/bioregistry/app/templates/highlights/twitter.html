@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% import "macros.html" as utils %}
+
+{% block title %}{{ config.METAREGISTRY_TITLE }} - Twitter{% endblock %}
+
+{% block container %}
+    <div class="card">
+        <div class="card-header">
+            Twitter
+        </div>
+        <table class="table">
+            <thead></thead>
+            <tbody>
+            {% for handle, resources in twitters.items() %}
+                <tr>
+                    <td><a href="https://twitter.com/{{ handle }}">@{{ handle }}</a></td>
+                    <td>
+                        {% for resource in resources %}
+                            {{ utils.render_prefix(resource.prefix, classes="badge badge-pill badge-primary") }}
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}
