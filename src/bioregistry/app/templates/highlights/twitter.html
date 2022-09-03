@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% import "macros.html" as utils %}
+
+{% block title %}{{ config.METAREGISTRY_TITLE }} - Twitter{% endblock %}
+
+{% block container %}
+    <div class="card">
+        <div class="card-header">
+            Twitter
+        </div>
+        <div class="card-body">
+            <dl>
+                {% for prefix, resource in manager.registry.items() %}
+                    {% if resource.twitter %}
+                    <dt class="col-3" style="text-align: right">
+                        {{ utils.render_prefix(prefix) }}
+                    </dt>
+                    <dd class="col-9">
+                        {{ resource.twitter }}
+                    </dd>
+                {% endfor %}
+            </dl>
+        </div>
+    </div>
+{% endblock %}
