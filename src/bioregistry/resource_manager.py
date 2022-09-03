@@ -415,16 +415,31 @@ class Manager:
 
     def get_reverse_prefix_map(self) -> Mapping[str, str]:
         """Get a reverse prefix map, pointing to canonical prefixes."""
-        rv = {}
+        prefix_blacklist = {"bgee.gene"}
+        uri_prefix_blacklist = {"http://www.ebi.ac.uk/ontology-lookup/?termId=$1"}
+        # stratify resources
+        a, b = [], []
         for resource in self.registry.values():
-            for uri_prefix in resource.get_uri_prefixes():
-                if uri_prefix in rv:
-                    if resource.part_of or resource.provides or resource.has_canonical:
+            if resource.prefix in prefix_blacklist:
+                continue
+            if resource.part_of or resource.provides or resource.has_canonical:
+                b.append(resource)
+            else:
+                a.append(resource)
+
+        rv = {}
+        for resources in [a, b]:
+            for resource in resources:
+                for uri_prefix in resource.get_uri_prefixes():
+                    if uri_prefix in uri_prefix_blacklist:
                         continue
-                    raise ValueError(
-                        f"Dupicate in {rv[uri_prefix]} and {resource.prefix} for {uri_prefix}"
-                    )
-                rv[uri_prefix] = resource.prefix
+                    if uri_prefix in rv:
+                        if resource.part_of or resource.provides or resource.has_canonical:
+                            continue
+                        raise ValueError(
+                            f"Dupicate in {rv[uri_prefix]} and {resource.prefix} for {uri_prefix}"
+                        )
+                    rv[uri_prefix] = resource.prefix
         return rv
 
     def get_prefix_map(

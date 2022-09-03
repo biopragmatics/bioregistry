@@ -35,10 +35,10 @@ def get_miriam(force_download: bool = False):
         json.dump(rv, file, indent=2, sort_keys=True)
     return rv
 
+
 #: Pairs of MIRIAM prefix and provider codes to skip
-PROVIDER_BLACKLIST = {
-    ("ega.study", "omicsdi")
-}
+PROVIDER_BLACKLIST = {("ega.study", "omicsdi")}
+
 
 def _process(record):
     prefix = record["prefix"]
