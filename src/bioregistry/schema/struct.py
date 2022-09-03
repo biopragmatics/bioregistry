@@ -70,7 +70,7 @@ def _uri_sort(uri):
     return rest, protocol
 
 
-def _yield_httpss(u):
+def _yield_protocol_variations(u):
     if u.startswith("http://"):
         yield "https://" + u[7:]
         yield u
@@ -1309,7 +1309,7 @@ class Resource(BaseModel):
     def get_uri_formats(self) -> Set[str]:
         """Get all URI prefixes."""
         uri_formats = itt.chain.from_iterable(
-            _yield_httpss(uri_format) for uri_format in self._iter_uri_formats()
+            _yield_protocol_variations(uri_format) for uri_format in self._iter_uri_formats()
         )
         return set(sorted(uri_formats, key=_uri_sort))
 

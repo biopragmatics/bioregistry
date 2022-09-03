@@ -2,6 +2,7 @@
 
 """Functionality for parsing IRIs."""
 
+import warnings
 from functools import lru_cache
 from typing import List, Mapping, Optional, Tuple, Union
 
@@ -173,11 +174,19 @@ def parse_iri(
     """
     if prefix_map is None:
         return _get_default_prefix_list().parse_uri(iri)
+
+    warnings.warn(
+        "Parsing without a pre-compiled `curies.Converter` class is very slow. "
+        "This functionality will be removed from the Bioregistry in a future version.",
+    )
+    # TODO remove this and update all relevant docstrings and README
     if isinstance(prefix_map, list):
         return _parse_iri(iri, prefix_map)
-
-    prefix_list = ensure_prefix_list(prefix_map)
-    return _parse_iri(iri, prefix_list)
+    elif isinstance(prefix_map, dict):
+        prefix_list = ensure_prefix_list(prefix_map)
+        return _parse_iri(iri, prefix_list)
+    else:
+        raise TypeError
 
 
 def _parse_iri(iri: str, prefix_list: List[Tuple[str, str]]):
