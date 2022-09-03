@@ -415,7 +415,7 @@ class Manager:
                     yield synonym, pattern
 
     def get_reverse_prefix_map(
-        self, include_prefixes: bool = False, strict: bool = True
+        self, include_prefixes: bool = False, strict: bool = False
     ) -> Mapping[str, str]:
         """Get a reverse prefix map, pointing to canonical prefixes.
 
