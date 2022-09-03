@@ -424,14 +424,14 @@ class Manager:
             "https://www.ebi.ac.uk/ena/data/view/$1",
         }
         prefix_resource_blacklist = {
-            ("obi", "http://purl.obolibrary.org/obo/$1"), # from miriam
-            ("rnao", "http://purl.obolibrary.org/obo/$1"), # from miriam
-            ("rs", "http://purl.obolibrary.org/obo/$1"), # from miriam
-            ("tao", "http://purl.obolibrary.org/obo/$1"), # from miriam
-            ("taxrank", "http://purl.obolibrary.org/obo/$1"), # from miriam
-            ("tto", "http://purl.obolibrary.org/obo/$1"), # from miriam
-            ("zfa", "http://purl.obolibrary.org/obo/$1"), # from miriam
-            ("orphanet", "http://www.orpha.net/ORDO/Orphanet_$1"), # biocontext is wrong
+            ("obi", "http://purl.obolibrary.org/obo/$1"),  # from miriam
+            ("rnao", "http://purl.obolibrary.org/obo/$1"),  # from miriam
+            ("rs", "http://purl.obolibrary.org/obo/$1"),  # from miriam
+            ("tao", "http://purl.obolibrary.org/obo/$1"),  # from miriam
+            ("taxrank", "http://purl.obolibrary.org/obo/$1"),  # from miriam
+            ("tto", "http://purl.obolibrary.org/obo/$1"),  # from miriam
+            ("zfa", "http://purl.obolibrary.org/obo/$1"),  # from miriam
+            ("orphanet", "http://www.orpha.net/ORDO/Orphanet_$1"),  # biocontext is wrong
             ("uniprot", "https://www.ncbi.nlm.nih.gov/protein/$1"),
         }
         # stratify resources

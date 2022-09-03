@@ -1079,7 +1079,9 @@ class Resource(BaseModel):
         """Get the MIRIAM/Identifiers.org prefix, if available."""
         return self.get_identifiers_org_prefix()
 
-    def get_miriam_uri_prefix(self, legacy_delimiter: bool = False, legacy_protocol: bool = False) -> Optional[str]:
+    def get_miriam_uri_prefix(
+        self, legacy_delimiter: bool = False, legacy_protocol: bool = False
+    ) -> Optional[str]:
         """Get the Identifiers.org URI prefix for this entry, if possible.
 
         :param legacy_protocol: If true, uses HTTP
@@ -1104,7 +1106,9 @@ class Resource(BaseModel):
         delimiter = "/" if legacy_delimiter else ":"
         return f"{protocol}://identifiers.org/{miriam_prefix}{delimiter}"
 
-    def get_miriam_uri_format(self, legacy_delimiter: bool = False, legacy_protocol: bool = False) -> Optional[str]:
+    def get_miriam_uri_format(
+        self, legacy_delimiter: bool = False, legacy_protocol: bool = False
+    ) -> Optional[str]:
         """Get the Identifiers.org URI format string for this entry, if possible.
 
         :param legacy_protocol: If true, uses HTTP
@@ -1118,7 +1122,9 @@ class Resource(BaseModel):
         'https://identifiers.org/GO:$1'
         >>> assert get_resource('sty').get_miriam_uri_format() is None
         """
-        miriam_url_prefix = self.get_miriam_uri_prefix(legacy_delimiter=legacy_delimiter, legacy_protocol=legacy_protocol)
+        miriam_url_prefix = self.get_miriam_uri_prefix(
+            legacy_delimiter=legacy_delimiter, legacy_protocol=legacy_protocol
+        )
         if miriam_url_prefix is None:
             return None
         return f"{miriam_url_prefix}$1"

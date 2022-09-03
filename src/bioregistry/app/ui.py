@@ -511,7 +511,6 @@ def json_schema():
     return jsonify(get_json_schema())
 
 
-
 @ui_blueprint.route("/highlights/relations")
 def highlights_relations():
     """Render the relations highlights page."""
