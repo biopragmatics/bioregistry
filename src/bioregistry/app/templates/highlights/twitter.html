@@ -8,18 +8,21 @@
         <div class="card-header">
             Twitter
         </div>
-        <div class="card-body">
-            <dl>
-                {% for prefix, resource in manager.registry.items() %}
-                    {% if resource.twitter %}
-                    <dt class="col-3" style="text-align: right">
-                        {{ utils.render_prefix(prefix) }}
-                    </dt>
-                    <dd class="col-9">
-                        {{ resource.twitter }}
-                    </dd>
-                {% endfor %}
-            </dl>
-        </div>
+        <table class="table">
+            <thead></thead>
+            <tbody>
+            {% for handle, resources in twitters.items() %}
+                <tr>
+                    <td><a href="https://twitter.com/{{ handle }}">@{{ handle }}</a></td>
+                    <td>
+                        {% for resource in resources %}
+                            {{ utils.render_prefix(resource.prefix, classes="badge badge-pill badge-primary") }}
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
     </div>
 {% endblock %}
