@@ -62,8 +62,11 @@ IDOT_SKIP = "identifiers.org"
 
 
 def _uri_sort(uri):
-    protocol, rest = uri.split(":", 1)
-    return (rest, protocol)
+    try:
+        protocol, rest = uri.split(":", 1)
+    except ValueError:
+        return uri, ""
+    return rest, protocol
 
 
 def _dedent(s: str) -> str:
