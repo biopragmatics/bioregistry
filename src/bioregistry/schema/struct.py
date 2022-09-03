@@ -1329,7 +1329,7 @@ class Resource(BaseModel):
                 yield uri_format
         miriam_legacy_uri_prefix = self.get_miriam_uri_format(legacy_delimiter=True)
         if miriam_legacy_uri_prefix:
-            yield uri_prefix
+            yield miriam_legacy_uri_prefix
 
     def get_extra_providers(self) -> List[Provider]:
         """Get a list of all extra providers."""
