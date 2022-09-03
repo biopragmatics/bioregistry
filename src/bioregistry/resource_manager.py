@@ -2,6 +2,7 @@
 
 """A class-based client to a metaregistry."""
 
+import itertools as itt
 import logging
 import typing
 from collections import ChainMap, Counter, defaultdict
@@ -412,6 +413,56 @@ class Manager:
             if include_synonyms:
                 for synonym in resource.get_synonyms():
                     yield synonym, pattern
+
+    def get_reverse_prefix_map(self) -> Mapping[str, str]:
+        """Get a reverse prefix map, pointing to canonical prefixes."""
+        prefix_blacklist = {"bgee.gene"}
+        uri_prefix_blacklist = {
+            "http://www.ebi.ac.uk/ontology-lookup/?termId=$1",
+            "https://bioentity.link/#/lexicon/public/$1",
+            "https://purl.obolibrary.org/obo/$1",
+            "http://purl.obolibrary.org/obo/$1",
+            # see https://github.com/biopragmatics/bioregistry/issues/548
+            "https://www.ncbi.nlm.nih.gov/nuccore/$1",
+            "https://www.ebi.ac.uk/ena/data/view/$1",
+        }
+        prefix_resource_blacklist = {
+            ("orphanet", "http://www.orpha.net/ORDO/Orphanet_$1"),  # biocontext is wrong
+            (
+                "uniprot",
+                "https://www.ncbi.nlm.nih.gov/protein/$1",
+            ),  # FIXME not sure how to resolve this
+        }
+        # stratify resources
+        primary_resources, secondary_resources = [], []
+        for resource in self.registry.values():
+            if resource.prefix in prefix_blacklist:
+                continue
+            if resource.part_of or resource.provides or resource.has_canonical:
+                secondary_resources.append(resource)
+            else:
+                primary_resources.append(resource)
+
+        rv: Dict[str, str] = {
+            "http://purl.obolibrary.org/obo/": "obo",
+            "https://purl.obolibrary.org/obo/": "obo",
+        }
+        for resource in itt.chain(primary_resources, secondary_resources):
+            for uri_prefix in resource.get_uri_formats():
+                if not uri_prefix.endswith("$1") or uri_prefix.count("$1") > 1:
+                    continue
+                if (resource.prefix, uri_prefix) in prefix_resource_blacklist:
+                    continue
+                if uri_prefix in uri_prefix_blacklist:
+                    continue
+                if uri_prefix in rv:
+                    if resource.part_of or resource.provides or resource.has_canonical:
+                        continue
+                    raise ValueError(
+                        f"Dupicate in {rv[uri_prefix]} and {resource.prefix} for {uri_prefix}"
+                    )
+                rv[uri_prefix[:-2]] = resource.prefix
+        return rv
 
     def get_prefix_map(
         self,

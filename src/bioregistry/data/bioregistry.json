@@ -5703,6 +5703,7 @@
         "Life Science"
       ]
     },
+    "has_canonical": "ena.embl",
     "mappings": {
       "biocontext": "BIOPROJECT",
       "fairsharing": "FAIRsharing.aqhv1y",
@@ -11054,6 +11055,7 @@
       "prefix": "clinvar.record",
       "uri_format": "http://www.ncbi.nlm.nih.gov/clinvar/$1/"
     },
+    "part_of": "clinvar",
     "uri_format": "http://www.ncbi.nlm.nih.gov/clinvar/$1"
   },
   "clinvar.submission": {
@@ -14394,19 +14396,11 @@
     "uri_format": "http://purl.bioontology.org/ontology/CSP/$1"
   },
   "cst": {
-    "aberowl": {
-      "name": "Cancer Staging Terms",
-      "prefix": "CST"
-    },
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "CST",
       "uri_format": "http://identifiers.org/cst/$1"
-    },
-    "bioportal": {
-      "name": "Cancer Staging Terms",
-      "prefix": "CST"
     },
     "fairsharing": {
       "abbreviation": "CST",
@@ -14420,13 +14414,10 @@
       ]
     },
     "mappings": {
-      "aberowl": "CST",
       "biocontext": "CST",
-      "bioportal": "CST",
       "fairsharing": "FAIRsharing.n8pxvx",
       "miriam": "cst",
-      "n2t": "cst",
-      "prefixcommons": "cst"
+      "n2t": "cst"
     },
     "miriam": {
       "deprecated": false,
@@ -14449,18 +14440,6 @@
       "pattern": "^[A-Za-z0-9_-]+$",
       "prefix": "cst",
       "uri_format": "http://www.cellsignal.com/reference/pathway/$1.html"
-    },
-    "prefixcommons": {
-      "description": "A small pathway portal for showcasing Cell Signaling Technology phospho-antibody products.  Contains pathway diagrams that are clickable and link to more information about each protein and the commercial products that are available for that protein.",
-      "example": "3762",
-      "homepage": "http://www.cellsignal.com/",
-      "keywords": [
-        "pathway"
-      ],
-      "name": "Cell Signaling Technology Pathway Database",
-      "pattern": "^\\d+$",
-      "prefix": "cst",
-      "uri_format": "http://www.cellsignal.com/products/$1.html"
     }
   },
   "cst.ab": {
@@ -14473,7 +14452,8 @@
     "mappings": {
       "biocontext": "CST.AB",
       "miriam": "cst.ab",
-      "n2t": "cst.ab"
+      "n2t": "cst.ab",
+      "prefixcommons": "cst"
     },
     "miriam": {
       "deprecated": false,
@@ -14495,6 +14475,18 @@
       "namespaceEmbeddedInLui": false,
       "pattern": "^\\d+$",
       "prefix": "cst.ab",
+      "uri_format": "http://www.cellsignal.com/products/$1.html"
+    },
+    "prefixcommons": {
+      "description": "A small pathway portal for showcasing Cell Signaling Technology phospho-antibody products.  Contains pathway diagrams that are clickable and link to more information about each protein and the commercial products that are available for that protein.",
+      "example": "3762",
+      "homepage": "http://www.cellsignal.com/",
+      "keywords": [
+        "pathway"
+      ],
+      "name": "Cell Signaling Technology Pathway Database",
+      "pattern": "^\\d+$",
+      "prefix": "cst",
       "uri_format": "http://www.cellsignal.com/products/$1.html"
     }
   },
@@ -28721,6 +28713,7 @@
       "prefix": "GOLD.META",
       "uri_format": "http://identifiers.org/gold.meta/$1"
     },
+    "has_canonical": "gold",
     "mappings": {
       "biocontext": "GOLD.META",
       "miriam": "gold.meta",
@@ -34724,6 +34717,7 @@
       "prefix": "INSDC.GCA",
       "uri_format": "http://identifiers.org/insdc.gca/$1"
     },
+    "has_canonical": "ncbi.assembly",
     "mappings": {
       "biocontext": "INSDC.GCA",
       "miriam": "insdc.gca",
@@ -65117,6 +65111,7 @@
     },
     "description": "SPRINT (Search PRINTS-S) provides an interface to the PRINTS-S database. PRINTS-S is the relational cousin of the PRINTS data bank of protein family fingerprints.",
     "example": "PR00001",
+    "has_canonical": "prints",
     "homepage": "http://130.88.97.239/dbbrowser/sprint/",
     "mappings": {
       "prefixcommons": "sprint"
@@ -66708,6 +66703,7 @@
       "prefix": "tair.gene",
       "uri_format": "http://arabidopsis.org/servlets/TairObject?accession=$1"
     },
+    "part_of": "tair",
     "pattern": "^\\d{7}$",
     "prefixcommons": {
       "description": "The reference gene model for a given locus",
@@ -72147,6 +72143,7 @@
       "prefix": "VZ",
       "uri_format": "http://viralzone.expasy.org/all_by_protein/$1.html"
     },
+    "has_canonical": "viralzone",
     "mappings": {
       "go": "VZ",
       "prefixcommons": "vz"
@@ -72702,6 +72699,7 @@
       "biolink": "WIKIDATA_PROPERTY"
     },
     "name": "Wikidata Property",
+    "part_of": "wikidata",
     "pattern": "^P\\d+$",
     "providers": [
       {
@@ -74111,6 +74109,7 @@
     "uri_format": "http://www.ymdb.ca/compounds/$1"
   },
   "ypo": {
+    "has_canonical": "apo",
     "mappings": {
       "obofoundry": "ypo",
       "ols": "ypo"

@@ -2,6 +2,7 @@
 
 """Pydantic models for the Bioregistry."""
 
+import itertools as itt
 import json
 import logging
 import pathlib
@@ -15,6 +16,7 @@ from typing import (
     Callable,
     ClassVar,
     Dict,
+    Iterable,
     List,
     Mapping,
     Optional,
@@ -60,6 +62,25 @@ BULK_UPLOAD_FORM = DOCS.joinpath("bulk_prefix_request_template.tsv")
 IDOT_SKIP = "identifiers.org"
 
 
+def _uri_sort(uri):
+    try:
+        protocol, rest = uri.split(":", 1)
+    except ValueError:
+        return uri, ""
+    return rest, protocol
+
+
+def _yield_protocol_variations(u):
+    if u.startswith("http://"):
+        yield "https://" + u[7:]
+        yield u
+    elif u.startswith("https://"):
+        yield u
+        yield "http://" + u[8:]
+    else:
+        yield u
+
+
 def _dedent(s: str) -> str:
     return textwrap.dedent(s).replace("\n", " ").replace("  ", " ").strip()
 
@@ -72,6 +93,16 @@ various digital assets (e.g., publications, reviews) across the
 semantic web. An account can be made in seconds at https://orcid.org.
 """
 )
+
+URI_FORMAT_PATHS = [
+    ("miriam", URI_FORMAT_KEY),
+    ("n2t", URI_FORMAT_KEY),
+    ("go", URI_FORMAT_KEY),
+    ("biocontext", URI_FORMAT_KEY),
+    ("wikidata", URI_FORMAT_KEY),
+    ("uniprot", URI_FORMAT_KEY),
+    ("cellosaurus", URI_FORMAT_KEY),
+]
 
 
 class Attributable(BaseModel):
@@ -604,15 +635,7 @@ class Resource(BaseModel):
         """
         if self.uri_format is not None:
             return self.uri_format
-        for metaprefix, key in [
-            ("miriam", URI_FORMAT_KEY),
-            ("n2t", URI_FORMAT_KEY),
-            ("go", URI_FORMAT_KEY),
-            ("biocontext", URI_FORMAT_KEY),
-            ("wikidata", URI_FORMAT_KEY),
-            ("uniprot", URI_FORMAT_KEY),
-            ("cellosaurus", URI_FORMAT_KEY),
-        ]:
+        for metaprefix, key in URI_FORMAT_PATHS:
             rv = self.get_external(metaprefix).get(key)
             if rv is not None and _allowed_uri_format(rv):
                 return rv
@@ -1078,9 +1101,13 @@ class Resource(BaseModel):
         """Get the MIRIAM/Identifiers.org prefix, if available."""
         return self.get_identifiers_org_prefix()
 
-    def get_miriam_uri_prefix(self) -> Optional[str]:
+    def get_miriam_uri_prefix(
+        self, legacy_delimiter: bool = False, legacy_protocol: bool = False
+    ) -> Optional[str]:
         """Get the Identifiers.org URI prefix for this entry, if possible.
 
+        :param legacy_protocol: If true, uses HTTP
+        :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
         :returns: The Identifiers.org/MIRIAM URI prefix, if available.
 
         >>> from bioregistry import get_resource
@@ -1097,11 +1124,17 @@ class Resource(BaseModel):
             # not exact solution, some less common ones don't use capitalization
             # align with the banana solution
             miriam_prefix = miriam_prefix.upper()
-        return f"https://identifiers.org/{miriam_prefix}:"
+        protocol = "http" if legacy_protocol else "https"
+        delimiter = "/" if legacy_delimiter else ":"
+        return f"{protocol}://identifiers.org/{miriam_prefix}{delimiter}"
 
-    def get_miriam_uri_format(self) -> Optional[str]:
+    def get_miriam_uri_format(
+        self, legacy_delimiter: bool = False, legacy_protocol: bool = False
+    ) -> Optional[str]:
         """Get the Identifiers.org URI format string for this entry, if possible.
 
+        :param legacy_protocol: If true, uses HTTP
+        :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
         :returns: The Identifiers.org/MIRIAM URL format string, if available.
 
         >>> from bioregistry import get_resource
@@ -1111,21 +1144,24 @@ class Resource(BaseModel):
         'https://identifiers.org/GO:$1'
         >>> assert get_resource('sty').get_miriam_uri_format() is None
         """
-        miriam_url_prefix = self.get_miriam_uri_prefix()
+        miriam_url_prefix = self.get_miriam_uri_prefix(
+            legacy_delimiter=legacy_delimiter, legacy_protocol=legacy_protocol
+        )
         if miriam_url_prefix is None:
             return None
         return f"{miriam_url_prefix}$1"
 
-    def get_nt2_uri_prefix(self) -> Optional[str]:
+    def get_nt2_uri_prefix(self, legacy_protocol: bool = False) -> Optional[str]:
         """Get the Name-to-Thing URI prefix for this entry, if possible."""
         n2t_prefix = self.get_mapped_prefix("n2t")
         if n2t_prefix is None:
             return None
-        return f"https://n2t.net/{n2t_prefix}:"
+        protocol = "http" if legacy_protocol else "https"
+        return f"{protocol}://n2t.net/{n2t_prefix}:"
 
-    def get_n2t_uri_format(self):
+    def get_n2t_uri_format(self, legacy_protocol: bool = False):
         """Get the Name-to-Thing URI format string, if available."""
-        n2t_uri_prefix = self.get_nt2_uri_prefix()
+        n2t_uri_prefix = self.get_nt2_uri_prefix(legacy_protocol=legacy_protocol)
         if n2t_uri_prefix is None:
             return None
         return f"{n2t_uri_prefix}$1"
@@ -1269,6 +1305,37 @@ class Resource(BaseModel):
             logging.debug("formatter does not end with $1: %s", self.name)
             return None
         return fmt[: -len("$1")]
+
+    def get_uri_formats(self) -> Set[str]:
+        """Get all URI prefixes."""
+        uri_formats = itt.chain.from_iterable(
+            _yield_protocol_variations(uri_format) for uri_format in self._iter_uri_formats()
+        )
+        return set(sorted(uri_formats, key=_uri_sort))
+
+    def _iter_uri_formats(self) -> Iterable[str]:
+        if self.uri_format:
+            yield self.uri_format
+        yield f"https://bioregistry.io/{self.prefix}:$1"
+        preferred_prefix = self.get_preferred_prefix()
+        if preferred_prefix:
+            yield f"https://bioregistry.io/{preferred_prefix}:$1"
+        for synonym in self.get_synonyms():
+            yield f"https://bioregistry.io/{synonym}:$1"
+        # TODO consider adding bananas
+        for provider in self.get_extra_providers():
+            yield provider.uri_format
+        for formatter_getter in self.URI_FORMATTERS.values():
+            uri_format = formatter_getter(self)
+            if uri_format:
+                yield uri_format
+        for metaprefix, key in URI_FORMAT_PATHS:
+            uri_format = self.get_external(metaprefix).get(key)
+            if uri_format:
+                yield uri_format
+        miriam_legacy_uri_prefix = self.get_miriam_uri_format(legacy_delimiter=True)
+        if miriam_legacy_uri_prefix:
+            yield miriam_legacy_uri_prefix
 
     def get_extra_providers(self) -> List[Provider]:
         """Get a list of all extra providers."""
