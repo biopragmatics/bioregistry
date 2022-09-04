@@ -23,7 +23,7 @@ REVERSE_PREFIX_MAP_PATH = EXPORT_CONTEXTS.joinpath("reverse_prefix_map.json")
 def generate_contexts():
     """Generate various context files."""
     reverse_prefix_map = manager.get_reverse_prefix_map(include_prefixes=True, strict=False)
-    REVERSE_PREFIX_MAP_PATH.write_text(json.dumps(reverse_prefix_map, indent=4))
+    REVERSE_PREFIX_MAP_PATH.write_text(json.dumps(reverse_prefix_map, indent=4, sort_keys=True))
 
     _context_prefix_maps()
     _collection_prefix_maps()
