@@ -28932,7 +28932,16 @@
       "go": "GOREL"
     },
     "name": "GO Relations",
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "providers": [
+      {
+        "code": "obo.legacy",
+        "description": "Legacy OBO PURLs",
+        "homepage": "http://purl.obolibrary.org/obo/gorel.owl",
+        "name": "Legacy OBO",
+        "uri_format": "http://purl.obolibrary.org/obo/GOREL_$1"
+      }
+    ]
   },
   "gpcrdb": {
     "biocontext": {
@@ -48931,7 +48940,7 @@
       "prefix": "OBO",
       "uri_format": "http://purl.obolibrary.org/obo/$1"
     },
-    "description": "Community development of interoperable ontologies for the biological sciences",
+    "description": "The OBO namespace is the top-level namespace used by Open Biological and Biomedical Ontology (OBO) Foundry ontologies.",
     "fairsharing": {
       "abbreviation": "OBO",
       "description": "The Open Biological and Biomedical Ontology (OBO) Foundry is a collective of ontology developers that are committed to collaboration and adherence to shared principles. The mission of the OBO Foundry is to develop a family of interoperable ontologies that are both logically well-formed and scientifically accurate. To achieve this, OBO Foundry participants voluntarily adhere to and contribute to the development of an evolving set of principles including open use, collaborative development, non-overlapping and strictly-scoped content, and common syntax and relations, based on ontology models that work well, such as the Gene Ontology (GO). The OBO Foundry is overseen by an Operations Committee with Editorial, Technical and Outreach working groups.",
@@ -48947,7 +48956,8 @@
       "biocontext": "OBO",
       "fairsharing": "FAIRsharing.847069"
     },
-    "name": "Internal OBO and PyOBO Relations"
+    "name": "Open Biological and Biomedical Ontologies",
+    "preferred_prefix": "obo"
   },
   "oboinowl": {
     "biocontext": {
