@@ -13243,7 +13243,16 @@
     },
     "name": "GO Relations",
     "pattern": "^\\d{7}$",
-    "preferred_prefix": "gorel"
+    "preferred_prefix": "gorel",
+    "providers": [
+      {
+        "code": "obo.legacy",
+        "description": "Legacy OBO PURLs",
+        "homepage": "http://purl.obolibrary.org/obo/gorel.owl",
+        "name": "Legacy OBO",
+        "uri_format": "http://purl.obolibrary.org/obo/GOREL_$1"
+      }
+    ]
   },
   "gpcrdb": {
     "description": "The G protein-coupled receptor database (GPCRDB) collects, large amounts of heterogeneous data on GPCRs. It contains experimental data on sequences, ligand-binding constants, mutations and oligomers, and derived data such as multiple sequence alignments and homology models.",
@@ -22561,13 +22570,13 @@
     "version": "2021-11-12"
   },
   "obo": {
-    "description": "Community development of interoperable ontologies for the biological sciences",
+    "description": "The OBO namespace is the top-level namespace used by Open Biological and Biomedical Ontology (OBO) Foundry ontologies.",
     "homepage": "http://www.obofoundry.org/",
     "mappings": {
       "biocontext": "OBO",
       "fairsharing": "FAIRsharing.847069"
     },
-    "name": "Internal OBO and PyOBO Relations",
+    "name": "Open Biological and Biomedical Ontologies",
     "preferred_prefix": "obo",
     "uri_format": "http://purl.obolibrary.org/obo/$1"
   },
