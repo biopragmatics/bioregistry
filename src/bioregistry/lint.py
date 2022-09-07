@@ -22,11 +22,11 @@ def lint():
     registry = read_registry()
     for resource in registry.values():
         if resource.synonyms:
-            resource.synonyms = sorted(resource.synonyms)
+            resource.synonyms = sorted(set(resource.synonyms))
     write_registry(registry)
     collections = read_collections()
     for collection in collections.values():
-        collection.resources = sorted(collection.resources)
+        collection.resources = sorted(set(collection.resources))
     write_collections(collections)
     write_metaregistry(read_metaregistry())
     write_contexts(read_contexts())
