@@ -183,6 +183,29 @@ bioregistry.collection:0000007 a bioregistry.schema:0000003 ;
         bioregistry:pmc,
         bioregistry:pubmed .
 
+bioregistry.collection:0000008 a bioregistry.schema:0000003 ;
+    rdfs:label "ASKEM Epidemiology Prefixes" ;
+    dc:creator orcid:0000-0003-4423-4370 ;
+    dc:description "Prefixes exported for the epidemiology domain knowledge graph in the ASKEM project." ;
+    dcterms:hasPart bioregistry:bfo,
+        bioregistry:caro,
+        bioregistry:doi,
+        bioregistry:doid,
+        bioregistry:dso,
+        bioregistry:hp,
+        bioregistry:ido,
+        bioregistry:oae,
+        bioregistry:oboinowl,
+        bioregistry:ovae,
+        bioregistry:owl,
+        bioregistry:pmc,
+        bioregistry:pubmed,
+        bioregistry:rdfs,
+        bioregistry:ro,
+        bioregistry:symp,
+        bioregistry:trans,
+        bioregistry:vo .
+
 bioregistry.metaresource:prefixcc a bioregistry.schema:0000002 ;
     rdfs:label "Prefix.cc" ;
     dc:description "A web-developer centric archive of prefixes and URI prefixes" ;
@@ -2988,6 +3011,7 @@ bioregistry:csd a bioregistry.schema:0000001 ;
 
 bioregistry:csp a bioregistry.schema:0000001 ;
     rdfs:label "Computer Retrieval of Information on Science Projects Thesaurus" ;
+    dc:description "Computer Retrieval of Information on Scientific Projects (CRISP)"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:CRISP,
         bioportal:CRISP ;
@@ -3735,6 +3759,7 @@ bioregistry:eggnog a bioregistry.schema:0000001 ;
 
 bioregistry:ehda a bioregistry.schema:0000001 ;
     rdfs:label "Human developmental anatomy, timed version" ;
+    dc:description "A structured controlled vocabulary of stage-specific anatomical structures of the human. It has been designed to mesh with the mouse anatomy and incorporates each Carnegie stage of development (CS1-20). The timed version of the human developmental anatomy ontology gives all the tissues present at each Carnegie Stage (CS) of human development (1-20) linked by a part-of rule. Each term is mentioned only once so that the embryo at each stage can be seen as the simple sum of its parts. Users should note that tissues that are symmetric (e.g. eyes, ears, limbs) are only mentioned once."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:EHDA,
         obofoundry:ehda,
@@ -3750,6 +3775,7 @@ bioregistry:ehda a bioregistry.schema:0000001 ;
 
 bioregistry:ehdaa a bioregistry.schema:0000001 ;
     rdfs:label "Human developmental anatomy, abstract version" ;
+    dc:description "A structured controlled vocabulary of stage-specific anatomical structures of the human. It has been designed to mesh with the mouse anatomy and incorporates each Carnegie stage of development (CS1-20). The abstract version of the human developmental anatomy ontology compresses all the tissues present over Carnegie stages 1-20 into a single hierarchy. The heart, for example, is present from Carnegie Stage 9 onwards and is thus represented by 12 EHDA IDs (one for each stage). In the abstract mouse, it has a single ID so that the abstract term given as just <i>heart</i> really means <i>heart (CS 9-20)</i>. Timing details will be added to the abstract version of the ontology in a future release."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:EHDAA,
         obofoundry:ehdaa,
@@ -4308,6 +4334,7 @@ bioregistry:flowrepository a bioregistry.schema:0000001 ;
 
 bioregistry:flu a bioregistry.schema:0000001 ;
     rdfs:label "Influenza Ontology" ;
+    dc:description "Starting in the fall of 2007, a collaborative group of influenza researchers have established an influenza ontology. The influenza ontology is an application ontology.  Consolidated influenza sequence and surveillance terms from resources such as the BioHealthBase (BHB), a Bioinformatics Resource Center (BRC) for Biodefense and Emerging and Re-emerging Infectious Diseases, the Centers for Excellence in Influenza Research and Surveillance (CEIRS)"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:FLU,
         obofoundry:flu,
@@ -4515,6 +4542,7 @@ bioregistry:gabi a bioregistry.schema:0000001 ;
 
 bioregistry:galen a bioregistry.schema:0000001 ;
     rdfs:label "GALEN" ;
+    dc:description "A translation of the full Galen ontology (from the OpenGALEN project) into the OWL description logic."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:GALEN,
         bioportal:GALEN ;
@@ -5201,6 +5229,7 @@ bioregistry:grin.taxonomy a bioregistry.schema:0000001 ;
 
 bioregistry:gro a bioregistry.schema:0000001 ;
     rdfs:label "Gene Regulation Ontology" ;
+    dc:description "The Gene Regulation Ontology (GRO) is a conceptual model for the domain of gene regulation. It covers processes that are linked to the regulation of gene expression as well as physical entities that are involved in these processes (such as genes and transcription factors) in terms of ontology classes and semantic relations between classes."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:GRO,
         bioportal:GRO ;
@@ -6765,6 +6794,7 @@ bioregistry:massbank a bioregistry.schema:0000001 ;
 
 bioregistry:mat a bioregistry.schema:0000001 ;
     rdfs:label "Minimal Anatomical Terminology" ;
+    dc:description "Minimal set of terms for anatomy"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:MAT,
         obofoundry:mat,
@@ -8975,24 +9005,6 @@ bioregistry:otl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^A[A-Z]+\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:ovae a bioregistry.schema:0000001 ;
-    rdfs:label "Ontology of Vaccine Adverse Events" ;
-    dc:description "OVAE is a biomedical ontology in the area of vaccine adverse events. OVAE is an extension of the community-based Ontology of Adverse Events (OAE). "^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:OVAE,
-        obofoundry:ovae,
-        ontobee:OVAE,
-        bioportal:OVAE,
-        biocontext:OVAE,
-        fairsharing:FAIRsharing.w4x6n4,
-        ols:ovae ;
-    foaf:homepage "http://www.violinet.org/ovae/"^^xsd:string ;
-    bioregistry.schema:0000005 "0000609"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OVAE_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0001-9189-9661 .
-
 bioregistry:p3db.protein a bioregistry.schema:0000001 ;
     rdfs:label "P3DB Protein" ;
     dc:description "Plant Protein Phosphorylation DataBase (P3DB) is a database that provides information on experimentally determined phosphorylation sites in the proteins of various plant species. This collection references plant proteins that contain phosphorylation sites."^^xsd:string ;
@@ -9749,6 +9761,7 @@ bioregistry:proglyc a bioregistry.schema:0000001 ;
 
 bioregistry:propreo a bioregistry.schema:0000001 ;
     rdfs:label "Proteomics data and process provenance" ;
+    dc:description "A comprehensive proteomics data and process provenance ontology."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:PROPREO,
         obofoundry:propreo,
@@ -10486,6 +10499,7 @@ bioregistry:sabiork.reaction a bioregistry.schema:0000001 ;
 
 bioregistry:sao a bioregistry.schema:0000001 ;
     rdfs:label "Subcellular Anatomy Ontology" ;
+    dc:description "SAO describes structures from the dimensional range encompassing cellular and subcellular structure, supracellular domains, and macromolecules."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:SAO,
         obofoundry:sao,
@@ -10904,6 +10918,7 @@ bioregistry:snp2tfbs a bioregistry.schema:0000001 ;
 
 bioregistry:sopharm a bioregistry.schema:0000001 ;
     rdfs:label "Suggested Ontology for Pharmacogenomics" ;
+    dc:description "SO-Pharm (Suggested Ontology for Pharmacogenomics) is a domain ontology implemented in OWL-DL, which proposes a formal description of pharmacogenomic knowledge. SO-Pharm articulates different ontologies that represent complementary sub-domains of pharmacogenomics, i.e. related to genotype, phenotype, drugs, and clinical trials. SO-Pharm enables to represent pharmacogenomic relationships between a drug, a genomic variation and a phenotype trait. In addition, it enables to represent patient and more largely panel included in trials, and populations. SO-Pharm enables the representation of measured items on this patients such as results from the observation of a phenotype trait or of genomic variations. SO-Pharm supports knowledge about pharmacogenomic hypothesis, case study, and investigations in pharmacogenomics. SO-Pharm is designed to facilitate data integration and knowledge discovery in pharmacogenomics. In addition it provides a consistent articulation of ontologies of pharmacogenomic sub-domains."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:SOPHARM,
         obofoundry:sopharm,
@@ -11494,24 +11509,6 @@ bioregistry:toxoplasma a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:trans a bioregistry.schema:0000001 ;
-    rdfs:label "Pathogen Transmission Ontology" ;
-    dc:description "The Pathogen Transmission Ontology describes the tranmission methods of human disease pathogens describing how a pathogen is transmitted from one host, reservoir, or source to another host. The pathogen transmission may occur either directly or indirectly and may involve animate vectors or inanimate vehicles."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:TRANS,
-        obofoundry:trans,
-        ontobee:TRANS,
-        bioportal:TRANS,
-        biocontext:TRANS,
-        fairsharing:FAIRsharing.nygmp7,
-        ols:trans ;
-    foaf:homepage "https://github.com/DiseaseOntology/PathogenTransmissionOntology"^^xsd:string ;
-    bioregistry.schema:0000005 "0000024"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/TRANS_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0001-8910-9851 .
-
 bioregistry:transyt a bioregistry.schema:0000001 ;
     rdfs:label "Transport Systems Tracker" ;
     dc:description "The Transport Systems Tracker (TranSyT) is a tool to identify transport systems and the compounds carried across membranes."^^xsd:string ;
@@ -11993,6 +11990,7 @@ bioregistry:vgnc a bioregistry.schema:0000001 ;
 
 bioregistry:vhog a bioregistry.schema:0000001 ;
     rdfs:label "Vertebrate Homologous Organ Group Ontology" ;
+    dc:description "vHOG is a multi-species anatomical ontology for the vertebrate lineage, developed as part of the Bgee project. The mapping to species-specific anatomical ontologies is provided as a separated file: http://bgee.unil.ch/download/organ_association_vHOG.txt This mapping represents homology-strict relationships, in the sense of HOM:0000007 \"historical homology\". Each mapping has been manually reviewed, and we provide confidence codes and references when available."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:VHOG,
         obofoundry:vhog,
@@ -12666,6 +12664,8 @@ orcid:0000-0002-8429-8793 rdfs:label "Pablo Porras Millán" .
 
 orcid:0000-0002-8461-9745 rdfs:label "Marie-Angélique Laporte" .
 
+orcid:0000-0002-8600-949X rdfs:label "Evan Patterson" .
+
 orcid:0000-0002-8786-1756 rdfs:label "Wes Schafer" .
 
 orcid:0000-0002-8841-5870 rdfs:label "Willy Wong" .
@@ -12790,6 +12790,8 @@ aberowl:CEPH dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:CHEBI dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:CHEMINF dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+aberowl:CHEMROF dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:CHIRO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -14728,6 +14730,8 @@ bioportal:CEPH dcterms:isPartOf bioregistry.metaresource:bioportal .
 bioportal:CHEBI dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:CHEMINF dcterms:isPartOf bioregistry.metaresource:bioportal .
+
+bioportal:CHEMROF dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:CHIRO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -19831,6 +19835,18 @@ bioregistry:cheminf a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:proco ;
     bioregistry.schema:0000019 orcid:0000-0001-7542-0286 .
 
+bioregistry:chemrof a bioregistry.schema:0000001 ;
+    rdfs:label "Chemical Entity Materials and Reactions Ontological Framework" ;
+    dc:description "CHEMROF is an ontological framework for Chemical Entities Mixtures Reactions Ontological Framework. This OWL ontology is an automated Translation of the source LinkML schema, https://w3id.org/chemrof"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:CHEMROF,
+        bioportal:CHEMROF ;
+    foaf:homepage "https://chemkg.github.io/chemrof/"^^xsd:string ;
+    bioregistry.schema:0000005 "FullySpecifiedAtom"^^xsd:string ;
+    bioregistry.schema:0000006 "https://chemkg.github.io/chemrof/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-6601-2165 .
+
 bioregistry:chickenqtldb a bioregistry.schema:0000001 ;
     rdfs:label "Animal Genome Chicken QTL" ;
     dc:description "The Animal Quantitative Trait Loci (QTL) database (Animal QTLdb) is designed to house publicly all available QTL and single-nucleotide polymorphism/gene association data on livestock animal species. This collection references chicken QTLs."^^xsd:string ;
@@ -20389,25 +20405,6 @@ bioregistry:dlxc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "M77F7JM"^^xsd:string ;
     bioregistry.schema:0000006 "https://doulix.com/constructs/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Z0-9]{6,7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:doi a bioregistry.schema:0000001 ;
-    rdfs:label "Digital Object Identifier" ;
-    dc:description "The Digital Object Identifier System is for identifying content objects in the digital environment."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1188,
-        biocontext:DOI,
-        biolink:doi,
-        cellosaurus.resource:DOI,
-        go.resource:DOI,
-        n2t:doi,
-        fairsharing:FAIRsharing.hFLKCn,
-        prefixcommons:doi,
-        miriam:doi ;
-    foaf:homepage "https://www.doi.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "10.1101/2022.07.08.499378"^^xsd:string ;
-    bioregistry.schema:0000006 "https://doi.org/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^(doi\\:)?\\d{2}\\.\\d{4}.*$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:doqcs dcterms:hasPart bioregistry:doqcs.model,
@@ -21242,6 +21239,17 @@ bioregistry:gold a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[A-Z][a-z][0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:goldbook a bioregistry.schema:0000001 ;
+    rdfs:label "IUPAC Gold Book Compendium of Chemical Terminology" ;
+    dc:description """The Compendium is popularly referred to as the "Gold Book", in recognition of the contribution of the late Victor Gold, who initiated work on the first edition. It is one of the series of IUPAC "Colour Books" on chemical nomenclature, terminology, symbols and units (see the list of source documents), and collects together terminology definitions from IUPAC recommendations already published in Pure and Applied Chemistry and in the other Colour Books.
+
+Terminology definitions published by IUPAC are drafted by international committees of experts in the appropriate chemistry sub-disciplines, and ratified by IUPAC's Interdivisional Committee on Terminology, Nomenclature and Symbols (ICTNS). In this edition of the Compendium these IUPAC-approved definitions are supplemented with some definitions from ISO and from the International Vocabulary of Basic and General Terms in Metrology; both these sources are recognised by IUPAC as authoritative. The result is a collection of nearly 7000 terms, with authoritative definitions, spanning the whole range of chemistry."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://goldbook.iupac.org"^^xsd:string ;
+    bioregistry.schema:0000005 "G02681"^^xsd:string ;
+    bioregistry.schema:0000006 "https://goldbook.iupac.org/terms/view/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:google.book a bioregistry.schema:0000001 ;
     rdfs:label "Google Books" ;
     dc:description "Search the world's most comprehensive index of full-text books."^^xsd:string ;
@@ -21486,27 +21494,6 @@ bioregistry:ico a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0001-9189-9661 .
-
-bioregistry:ido a bioregistry.schema:0000001 ;
-    rdfs:label "Infectious Disease Ontology" ;
-    dc:description "Infectious Disease Ontology holds entities relevant to both biomedical and clinical aspects of most infectious diseases."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:IDO,
-        obofoundry:ido,
-        ontobee:IDO,
-        bioportal:IDO,
-        biocontext:IDO,
-        n2t:ido,
-        fairsharing:FAIRsharing.aae3v6,
-        miriam:ido,
-        ols:ido ;
-    foaf:homepage "http://www.bioontology.org/wiki/index.php/Infectious_Disease_Ontology"^^xsd:string ;
-    bioregistry.schema:0000005 "0000504"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/ido/terms?obo_id=IDO:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0003-1617-8244 .
 
 bioregistry:idoden a bioregistry.schema:0000001 ;
     rdfs:label "Dengue Fever Ontology" ;
@@ -22763,6 +22750,24 @@ bioregistry:otol a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
+bioregistry:ovae a bioregistry.schema:0000001 ;
+    rdfs:label "Ontology of Vaccine Adverse Events" ;
+    dc:description "OVAE is a biomedical ontology in the area of vaccine adverse events. OVAE is an extension of the community-based Ontology of Adverse Events (OAE). "^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:OVAE,
+        obofoundry:ovae,
+        ontobee:OVAE,
+        bioportal:OVAE,
+        biocontext:OVAE,
+        fairsharing:FAIRsharing.w4x6n4,
+        ols:ovae ;
+    foaf:homepage "http://www.violinet.org/ovae/"^^xsd:string ;
+    bioregistry.schema:0000005 "0000609"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OVAE_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-9189-9661 .
+
 bioregistry:panther.family a bioregistry.schema:0000001 ;
     rdfs:label "Protein ANalysis THrough Evolutionary Relationships Classification System" ;
     dc:description "The PANTHER (Protein ANalysis THrough Evolutionary Relationships) Classification System is a resource that classifies genes by their functions, using published scientific experimental evidence and evolutionary relationships to predict function even in the absence of direct experimental evidence. This collection references groups of genes that have been organised as families."^^xsd:string ;
@@ -23033,23 +23038,6 @@ bioregistry:pigqtldb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:pmc a bioregistry.schema:0000001 ;
-    rdfs:label "Pubmed Central" ;
-    dc:description "PMC International (PMCI) is a free full-text archive of biomedical and life sciences journal literature. PMCI is a collaborative effort between the U.S. National Institutes of Health and the National Library of Medicine, the publishers whose journal content makes up the PMC archive, and organizations in other countries that share NIH's and NLM's interest in archiving life sciences literature."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:PMCID,
-        go.resource:PMCID,
-        n2t:pmc,
-        fairsharing:FAIRsharing.wpt5mp,
-        prefixcommons:pmc,
-        miriam:pmc,
-        wikidata:P932 ;
-    foaf:homepage "http://europepmc.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "PMC3084216"^^xsd:string ;
-    bioregistry.schema:0000006 "http://europepmc.org/articles/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PMC\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:ppdb a bioregistry.schema:0000001 ;
     rdfs:label "Pesticide Properties DataBase" ;
     dc:description "PPDB is a comprehensive source of data on pesticide chemical, physical and biological properties. "^^xsd:string ;
@@ -23198,26 +23186,6 @@ bioregistry:publons.researcher a bioregistry.schema:0000001 ;
     foaf:homepage "https://publons.com/researcher"^^xsd:string ;
     bioregistry.schema:0000005 "1981638"^^xsd:string ;
     bioregistry.schema:0000006 "https://publons.com/researcher/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:pubmed a bioregistry.schema:0000001 ;
-    rdfs:label "PubMed" ;
-    dc:description "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1187,
-        biocontext:PUBMED,
-        cellosaurus.resource:PubMed,
-        go.resource:PMID,
-        n2t:pubmed,
-        fairsharing:FAIRsharing.a5sv8m,
-        prefixcommons:pubmed,
-        miriam:pubmed,
-        cheminf:000302,
-        wikidata:P698 ;
-    foaf:homepage "https://www.ncbi.nlm.nih.gov/PubMed/"^^xsd:string ;
-    bioregistry.schema:0000005 "16333295"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/pubmed/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -23585,26 +23553,6 @@ bioregistry:sweetrealm a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://sweetontology.net/matrMineral/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:symp a bioregistry.schema:0000001 ;
-    rdfs:label "Symptom Ontology" ;
-    dc:description "The Symptom Ontology has been developed as a standardized ontology for symptoms of human diseases."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:SYMP,
-        obofoundry:symp,
-        ontobee:SYMP,
-        bioportal:SYMP,
-        biocontext:SYMP,
-        fairsharing:FAIRsharing.ay74mj,
-        ols:symp,
-        wikidata:P8656 ;
-    foaf:homepage "http://symptomontologywiki.igs.umaryland.edu/mediawiki/index.php/Main_Page"^^xsd:string ;
-    bioregistry.schema:0000005 "0019171"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/SYMP_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0001-8910-9851 .
-
 bioregistry:syoid a bioregistry.schema:0000001 ;
     rdfs:label "Gemina Symptom Ontology" ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
@@ -23713,6 +23661,24 @@ bioregistry:to a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:agro ;
     bioregistry.schema:0000019 orcid:0000-0002-1005-8383 .
+
+bioregistry:trans a bioregistry.schema:0000001 ;
+    rdfs:label "Pathogen Transmission Ontology" ;
+    dc:description "The Pathogen Transmission Ontology describes the tranmission methods of human disease pathogens describing how a pathogen is transmitted from one host, reservoir, or source to another host. The pathogen transmission may occur either directly or indirectly and may involve animate vectors or inanimate vehicles."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:TRANS,
+        obofoundry:trans,
+        ontobee:TRANS,
+        bioportal:TRANS,
+        biocontext:TRANS,
+        fairsharing:FAIRsharing.nygmp7,
+        ols:trans ;
+    foaf:homepage "https://github.com/DiseaseOntology/PathogenTransmissionOntology"^^xsd:string ;
+    bioregistry.schema:0000005 "0000024"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/TRANS_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-8910-9851 .
 
 bioregistry:ubprop a bioregistry.schema:0000001 ;
     rdfs:label "Uberon Property" ;
@@ -23977,26 +23943,6 @@ bioregistry:viralzone a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://viralzone.expasy.org/all_by_protein/$1.html"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
-
-bioregistry:vo a bioregistry.schema:0000001 ;
-    rdfs:label "Vaccine Ontology" ;
-    dc:description "The Vaccine Ontology (VO) is a biomedical ontology in the domain of vaccine and vaccination. VO aims to standardize vaccine annotation, integrate various vaccine data, and support computer-assisted reasoning. VO supports basic vaccine R&D and clincal vaccine usage. VO is being developed as a community-based ontology with support and collaborations from the vaccine and bio-ontology communities."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:VO,
-        obofoundry:vo,
-        ontobee:VO,
-        bioportal:VO,
-        biocontext:VO,
-        fairsharing:FAIRsharing.zwtww5,
-        prefixcommons:vo,
-        ols:vo ;
-    foaf:homepage "http://www.violinet.org/vaccineontology"^^xsd:string ;
-    bioregistry.schema:0000005 "0000093"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0001-9189-9661 .
 
 bioregistry:vsdb a bioregistry.schema:0000001 ;
     rdfs:label "Veterinary Substances DataBase" ;
@@ -29219,29 +29165,24 @@ bioregistry:doco a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/spar/doco/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:doid a bioregistry.schema:0000001 ;
-    rdfs:label "Human Disease Ontology" ;
-    dc:description "The Disease Ontology has been developed as a standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts."^^xsd:string ;
+bioregistry:doi a bioregistry.schema:0000001 ;
+    rdfs:label "Digital Object Identifier" ;
+    dc:description "The Digital Object Identifier System is for identifying content objects in the digital environment."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:DOID,
-        obofoundry:doid,
-        ontobee:DOID,
-        bioportal:DOID,
-        biocontext:DOID,
-        n2t:doid,
-        fairsharing:FAIRsharing.8b6wfq,
-        prefixcommons:do,
-        miriam:doid,
-        ols:doid,
-        wikidata:P699 ;
-    foaf:homepage "http://www.disease-ontology.org"^^xsd:string ;
-    bioregistry.schema:0000005 "0110974"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/doid/terms?obo_id=DOID:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:clo,
-        bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0001-8910-9851 .
+    skos:exactMatch edam.data:1188,
+        biocontext:DOI,
+        biolink:doi,
+        cellosaurus.resource:DOI,
+        go.resource:DOI,
+        n2t:doi,
+        fairsharing:FAIRsharing.hFLKCn,
+        prefixcommons:doi,
+        miriam:doi ;
+    foaf:homepage "https://www.doi.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "10.1101/2022.07.08.499378"^^xsd:string ;
+    bioregistry.schema:0000006 "https://doi.org/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(doi\\:)?\\d{2}\\.\\d{4}.*$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:drugbank.category a bioregistry.schema:0000001 ;
     rdfs:label "DrugBank Drug Category" ;
@@ -29265,6 +29206,16 @@ bioregistry:drugbank.salt a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://go.drugbank.com/salts/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^DBSALT\\d{6}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:dso a bioregistry.schema:0000001 ;
+    rdfs:label "Data Science Ontology" ;
+    dc:description "The Data Science Ontology is a research project of IBM Research AI and Stanford University Statistics. Its long-term objective is to improve the efficiency and transparency of collaborative, data-driven science."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://www.datascienceontology.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "classification-model"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.datascienceontology.org/concept/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-8600-949X .
 
 bioregistry:eccode a bioregistry.schema:0000001 ;
     rdfs:label "Enzyme Commission Code" ;
@@ -29567,29 +29518,6 @@ bioregistry:hba a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:hp a bioregistry.schema:0000001 ;
-    rdfs:label "Human Phenotype Ontology" ;
-    dc:description "The Human Phenotype Ontology (HPO) aims to provide a standardized vocabulary of phenotypic abnormalities encountered in human disease. Each term in the HPO describes a phenotypic abnormality, such as atrial septal defect. The HPO is currently being developed using the medical literature, Orphanet, DECIPHER, and OMIM."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:HP_O,
-        obofoundry:hp,
-        ontobee:HP,
-        bioportal:HP_O,
-        biocontext:HPO,
-        n2t:hp,
-        fairsharing:FAIRsharing.kbtt7f,
-        miriam:hp,
-        ols:hp,
-        wikidata:P3841 ;
-    foaf:homepage "http://www.human-phenotype-ontology.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "0011140"^^xsd:string ;
-    bioregistry.schema:0000006 "https://hpo.jax.org/app/browse/term/HP:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:chiro,
-        bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0002-5316-1399 .
-
 bioregistry:hsapdv a bioregistry.schema:0000001 ;
     rdfs:label "Human Developmental Stages" ;
     dc:description "Life cycle stages for Human"^^xsd:string ;
@@ -29686,6 +29614,27 @@ bioregistry:icdo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://codes.iarc.fr/search.php?cx=009987501641899931167%3A2_7lsevqpdm&cof=FORID%3A9&ie=UTF-8&ie=ISO-8859-1&oe=ISO-8859-1&sa=&q=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[8-9]\\d{3}(/[0-3])?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:ido a bioregistry.schema:0000001 ;
+    rdfs:label "Infectious Disease Ontology" ;
+    dc:description "Infectious Disease Ontology holds entities relevant to both biomedical and clinical aspects of most infectious diseases."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:IDO,
+        obofoundry:ido,
+        ontobee:IDO,
+        bioportal:IDO,
+        biocontext:IDO,
+        n2t:ido,
+        fairsharing:FAIRsharing.aae3v6,
+        miriam:ido,
+        ols:ido ;
+    foaf:homepage "http://www.bioontology.org/wiki/index.php/Infectious_Disease_Ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "0000504"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/ido/terms?obo_id=IDO:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:scdo ;
+    bioregistry.schema:0000019 orcid:0000-0003-1617-8244 .
 
 bioregistry:kegg.compound a bioregistry.schema:0000001 ;
     rdfs:label "KEGG Compound" ;
@@ -30154,35 +30103,6 @@ bioregistry:oa a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://www.w3.org/ns/oa#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:oae a bioregistry.schema:0000001 ;
-    rdfs:label "Ontology of Adverse Events" ;
-    dc:description "The Ontology of Adverse Eventsy (OAE) is a biomedical ontology in the domain of adverse events. OAE aims to standardize adverse event annotation, integrate various adverse event data, and support computer-assisted reasoning.  OAE is a community-based ontology. Its development follows the OBO Foundry principles. Vaccine adverse events have been used as an initial testing use case. OAE also studies adverse events associated with the administration of drug and nutritional products, the operation of surgeries, and the usage of medical devices, etc."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:OAE,
-        obofoundry:oae,
-        ontobee:OAE,
-        bioportal:OAE,
-        biocontext:OAE,
-        fairsharing:FAIRsharing.tw4q8x,
-        ols:oae ;
-    foaf:homepage "https://github.com/OAE-ontology/OAE/"^^xsd:string ;
-    bioregistry.schema:0000005 "0002959"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OAE_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0001-9189-9661 .
-
-bioregistry:oboinowl a bioregistry.schema:0000001 ;
-    rdfs:label "OBO in OWL" ;
-    dc:description "This meta-ontology is self-describing. OBO metamodel properties are described using OBO metamodel properties"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:oboInOwl,
-        biolink:oboformat ;
-    foaf:homepage "https://github.com/geneontology/go-ontology/tree/master/contrib"^^xsd:string ;
-    bioregistry.schema:0000005 "hasDbXref"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.geneontology.org/formats/oboInOwl#$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:ogms a bioregistry.schema:0000001 ;
     rdfs:label "Ontology for General Medical Science" ;
     dc:description """The Ontology for General Medical Science (OGMS) is an ontology of entities involved in a clinical encounter. OGMS includes very general terms that are used across medical disciplines, including: 'disease', 'disorder', 'disease course', 'diagnosis', 'patient', and 'healthcare provider'. OGMS uses the Basic Formal Ontology (BFO) as an upper-level ontology. The scope of OGMS is restricted to humans, but many terms can be applied to a variety of organisms. OGMS provides a formal theory of disease that can be further elaborated by specific disease ontologies. This theory is implemented using OWL-DL and OBO Relation Ontology relations and is available in OWL and OBO formats.
@@ -30245,17 +30165,6 @@ bioregistry:oslc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://open-services.net/ns/core#$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Jim Amsden" ] .
-
-bioregistry:owl a bioregistry.schema:0000001 ;
-    rdfs:label "Web Ontology Language" ;
-    dc:description "Overview of the Web Ontology Language (OWL) which provides an introduction to OWL by informally describing the features of each of the sublanguages. "^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:owl,
-        fairsharing:FAIRsharing.atygwy ;
-    foaf:homepage "https://www.w3.org/TR/owl-features/"^^xsd:string ;
-    bioregistry.schema:0000005 "Ontology"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.w3.org/2002/07/owl#$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
 
 bioregistry:panorama a bioregistry.schema:0000001 ;
     rdfs:label "Panorama Public" ;
@@ -30320,6 +30229,23 @@ bioregistry:pesticides a bioregistry.schema:0000001 ;
     foaf:homepage "http://www.alanwood.net/pesticides"^^xsd:string ;
     bioregistry.schema:0000005 "derivatives%2Fthiocyclam%20hydrochloride"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.alanwood.net/pesticides/$1.html"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:pmc a bioregistry.schema:0000001 ;
+    rdfs:label "Pubmed Central" ;
+    dc:description "PMC International (PMCI) is a free full-text archive of biomedical and life sciences journal literature. PMCI is a collaborative effort between the U.S. National Institutes of Health and the National Library of Medicine, the publishers whose journal content makes up the PMC archive, and organizations in other countries that share NIH's and NLM's interest in archiving life sciences literature."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:PMCID,
+        go.resource:PMCID,
+        n2t:pmc,
+        fairsharing:FAIRsharing.wpt5mp,
+        prefixcommons:pmc,
+        miriam:pmc,
+        wikidata:P932 ;
+    foaf:homepage "http://europepmc.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "PMC3084216"^^xsd:string ;
+    bioregistry.schema:0000006 "http://europepmc.org/articles/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PMC\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:poro a bioregistry.schema:0000001 ;
@@ -30406,6 +30332,26 @@ bioregistry:pubchem.element a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:pubmed a bioregistry.schema:0000001 ;
+    rdfs:label "PubMed" ;
+    dc:description "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1187,
+        biocontext:PUBMED,
+        cellosaurus.resource:PubMed,
+        go.resource:PMID,
+        n2t:pubmed,
+        fairsharing:FAIRsharing.a5sv8m,
+        prefixcommons:pubmed,
+        miriam:pubmed,
+        cheminf:000302,
+        wikidata:P698 ;
+    foaf:homepage "https://www.ncbi.nlm.nih.gov/PubMed/"^^xsd:string ;
+    bioregistry.schema:0000005 "16333295"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/pubmed/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:puro a bioregistry.schema:0000001 ;
     rdfs:label "Publishing Roles Ontology" ;
     dc:description "An ontology for the characterisation of the roles of agents – people, corporate bodies and computational agents in the publication process. These agents can be, e.g. authors, editors, reviewers, publishers or librarians."^^xsd:string ;
@@ -30459,19 +30405,6 @@ bioregistry:rdf a bioregistry.schema:0000001 ;
     foaf:homepage "http://www.w3.org/1999/02/22-rdf-syntax-ns"^^xsd:string ;
     bioregistry.schema:0000005 "RDF"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/1999/02/22-rdf-syntax-ns#$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:rdfs a bioregistry.schema:0000001 ;
-    rdfs:label "RDF Schema" ;
-    dc:description "RDF Schema provides a data-modelling vocabulary for RDF data. RDF Schema is an extension of the basic RDF vocabulary."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:RDFS,
-        bioportal:RDFS,
-        biocontext:rdfs,
-        fairsharing:FAIRsharing.v9n3gk ;
-    foaf:homepage "https://www.w3.org/TR/rdf-schema/"^^xsd:string ;
-    bioregistry.schema:0000005 "label"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.w3.org/2000/01/rdf-schema#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:sbo a bioregistry.schema:0000001 ;
@@ -30641,6 +30574,26 @@ bioregistry:swrl a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://www.w3.org/2003/11/swrl#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:symp a bioregistry.schema:0000001 ;
+    rdfs:label "Symptom Ontology" ;
+    dc:description "The Symptom Ontology has been developed as a standardized ontology for symptoms of human diseases."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:SYMP,
+        obofoundry:symp,
+        ontobee:SYMP,
+        bioportal:SYMP,
+        biocontext:SYMP,
+        fairsharing:FAIRsharing.ay74mj,
+        ols:symp,
+        wikidata:P8656 ;
+    foaf:homepage "http://symptomontologywiki.igs.umaryland.edu/mediawiki/index.php/Main_Page"^^xsd:string ;
+    bioregistry.schema:0000005 "0019171"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/SYMP_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:scdo ;
+    bioregistry.schema:0000019 orcid:0000-0001-8910-9851 .
+
 bioregistry:umbbd.compound a bioregistry.schema:0000001 ;
     rdfs:label "UM-BBD Compound" ;
     dc:description "The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD) contains information on microbial biocatalytic reactions and biodegradation pathways for primarily xenobiotic, chemical compounds. The goal of the UM-BBD is to provide information on microbial enzyme-catalyzed reactions that are important for biotechnology. This collection refers to compound information."^^xsd:string ;
@@ -30722,6 +30675,26 @@ bioregistry:vann a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://vocab.org/vann/$1"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 [ rdfs:label "Ian Davis" ] .
+
+bioregistry:vo a bioregistry.schema:0000001 ;
+    rdfs:label "Vaccine Ontology" ;
+    dc:description "The Vaccine Ontology (VO) is a biomedical ontology in the domain of vaccine and vaccination. VO aims to standardize vaccine annotation, integrate various vaccine data, and support computer-assisted reasoning. VO supports basic vaccine R&D and clincal vaccine usage. VO is being developed as a community-based ontology with support and collaborations from the vaccine and bio-ontology communities."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:VO,
+        obofoundry:vo,
+        ontobee:VO,
+        bioportal:VO,
+        biocontext:VO,
+        fairsharing:FAIRsharing.zwtww5,
+        prefixcommons:vo,
+        ols:vo ;
+    foaf:homepage "http://www.violinet.org/vaccineontology"^^xsd:string ;
+    bioregistry.schema:0000005 "0000093"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:scdo ;
+    bioregistry.schema:0000019 orcid:0000-0001-9189-9661 .
 
 bioregistry:void a bioregistry.schema:0000001 ;
     rdfs:label "Vocabulary of Interlinked Datasets" ;
@@ -30928,6 +30901,30 @@ bioregistry:cog a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-2265-5572 .
 
+bioregistry:doid a bioregistry.schema:0000001 ;
+    rdfs:label "Human Disease Ontology" ;
+    dc:description "The Disease Ontology has been developed as a standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:DOID,
+        obofoundry:doid,
+        ontobee:DOID,
+        bioportal:DOID,
+        biocontext:DOID,
+        n2t:doid,
+        fairsharing:FAIRsharing.8b6wfq,
+        prefixcommons:do,
+        miriam:doid,
+        ols:doid,
+        wikidata:P699 ;
+    foaf:homepage "http://www.disease-ontology.org"^^xsd:string ;
+    bioregistry.schema:0000005 "0110974"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/doid/terms?obo_id=DOID:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:clo,
+        bioregistry:scdo ;
+    bioregistry.schema:0000019 orcid:0000-0001-8910-9851 .
+
 bioregistry:dragondb dcterms:hasPart bioregistry:dragondb.allele,
         bioregistry:dragondb.dna,
         bioregistry:dragondb.locus,
@@ -31038,6 +31035,29 @@ bioregistry:fbcv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:ontoavida ;
     bioregistry.schema:0000019 orcid:0000-0002-1373-1705 .
 
+bioregistry:hp a bioregistry.schema:0000001 ;
+    rdfs:label "Human Phenotype Ontology" ;
+    dc:description "The Human Phenotype Ontology (HPO) aims to provide a standardized vocabulary of phenotypic abnormalities encountered in human disease. Each term in the HPO describes a phenotypic abnormality, such as atrial septal defect. The HPO is currently being developed using the medical literature, Orphanet, DECIPHER, and OMIM."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:HP_O,
+        obofoundry:hp,
+        ontobee:HP,
+        bioportal:HP_O,
+        biocontext:HPO,
+        n2t:hp,
+        fairsharing:FAIRsharing.kbtt7f,
+        miriam:hp,
+        ols:hp,
+        wikidata:P3841 ;
+    foaf:homepage "http://www.human-phenotype-ontology.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "0011140"^^xsd:string ;
+    bioregistry.schema:0000006 "https://hpo.jax.org/app/browse/term/HP:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:chiro,
+        bioregistry:scdo ;
+    bioregistry.schema:0000019 orcid:0000-0002-5316-1399 .
+
 bioregistry:metatlas a bioregistry.schema:0000001 ;
     rdfs:label "Metabolic Atlas" ;
     dc:description "A resource for exploring metabolism, starting with a set of of community-curated genome-scale metabolic models of human and model organisms, enriched with pathway maps and other tools for easy browsing and analysis."^^xsd:string ;
@@ -31074,6 +31094,35 @@ bioregistry:nbo a bioregistry.schema:0000001 ;
         bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-2061-091X .
 
+bioregistry:oae a bioregistry.schema:0000001 ;
+    rdfs:label "Ontology of Adverse Events" ;
+    dc:description "The Ontology of Adverse Eventsy (OAE) is a biomedical ontology in the domain of adverse events. OAE aims to standardize adverse event annotation, integrate various adverse event data, and support computer-assisted reasoning.  OAE is a community-based ontology. Its development follows the OBO Foundry principles. Vaccine adverse events have been used as an initial testing use case. OAE also studies adverse events associated with the administration of drug and nutritional products, the operation of surgeries, and the usage of medical devices, etc."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:OAE,
+        obofoundry:oae,
+        ontobee:OAE,
+        bioportal:OAE,
+        biocontext:OAE,
+        fairsharing:FAIRsharing.tw4q8x,
+        ols:oae ;
+    foaf:homepage "https://github.com/OAE-ontology/OAE/"^^xsd:string ;
+    bioregistry.schema:0000005 "0002959"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/OAE_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-9189-9661 .
+
+bioregistry:oboinowl a bioregistry.schema:0000001 ;
+    rdfs:label "OBO in OWL" ;
+    dc:description "This meta-ontology is self-describing. OBO metamodel properties are described using OBO metamodel properties"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:oboInOwl,
+        biolink:oboformat ;
+    foaf:homepage "https://github.com/geneontology/go-ontology/tree/master/contrib"^^xsd:string ;
+    bioregistry.schema:0000005 "hasDbXref"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.geneontology.org/formats/oboInOwl#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:one a bioregistry.schema:0000001 ;
     rdfs:label "Ontology for Nutritional Epidemiology" ;
     dc:description "An ontology to standardize research output of nutritional epidemiologic studies."^^xsd:string ;
@@ -31093,6 +31142,17 @@ bioregistry:one a bioregistry.schema:0000001 ;
         bioregistry:obi,
         bioregistry:ons ;
     bioregistry.schema:0000019 orcid:0000-0001-9202-5309 .
+
+bioregistry:owl a bioregistry.schema:0000001 ;
+    rdfs:label "Web Ontology Language" ;
+    dc:description "Overview of the Web Ontology Language (OWL) which provides an introduction to OWL by informally describing the features of each of the sublanguages. "^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:owl,
+        fairsharing:FAIRsharing.atygwy ;
+    foaf:homepage "https://www.w3.org/TR/owl-features/"^^xsd:string ;
+    bioregistry.schema:0000005 "Ontology"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.w3.org/2002/07/owl#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:panther dcterms:hasPart bioregistry:panther.family,
         bioregistry:panther.node,
@@ -31140,6 +31200,19 @@ bioregistry:plana a bioregistry.schema:0000001 ;
         bioregistry:uberon ;
     bioregistry.schema:0000018 bioregistry:planp ;
     bioregistry.schema:0000019 orcid:0000-0002-3528-5267 .
+
+bioregistry:rdfs a bioregistry.schema:0000001 ;
+    rdfs:label "RDF Schema" ;
+    dc:description "RDF Schema provides a data-modelling vocabulary for RDF data. RDF Schema is an extension of the basic RDF vocabulary."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:RDFS,
+        bioportal:RDFS,
+        biocontext:rdfs,
+        fairsharing:FAIRsharing.v9n3gk ;
+    foaf:homepage "https://www.w3.org/TR/rdf-schema/"^^xsd:string ;
+    bioregistry.schema:0000005 "label"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.w3.org/2000/01/rdf-schema#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:stato a bioregistry.schema:0000001 ;
     rdfs:label "The Statistical Methods Ontology" ;
@@ -31423,30 +31496,6 @@ bioregistry:bspo a bioregistry.schema:0000001 ;
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 .
 
-bioregistry:caro a bioregistry.schema:0000001 ;
-    rdfs:label "Common Anatomy Reference Ontology" ;
-    dc:description "None"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:CARO,
-        obofoundry:caro,
-        ontobee:CARO,
-        bioportal:CARO,
-        biocontext:CARO,
-        go.resource:CARO,
-        fairsharing:FAIRsharing.3kcgmr,
-        ols:caro ;
-    foaf:homepage "https://github.com/obophenotype/caro/"^^xsd:string ;
-    bioregistry.schema:0000005 "0000000"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CARO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:aism,
-        bioregistry:colao,
-        bioregistry:ehdaa2,
-        bioregistry:lepao,
-        bioregistry:pco ;
-    bioregistry.schema:0000019 orcid:0000-0001-9114-8737 .
-
 bioregistry:cdno a bioregistry.schema:0000001 ;
     rdfs:label "Compositional Dietary Nutrition Ontology" ;
     dc:description "None"^^xsd:string ;
@@ -31601,6 +31650,30 @@ bioregistry:pubchem dcterms:hasPart bioregistry:pubchem.bioassay,
 orcid:0000-0002-1509-4981 rdfs:label "Matúš Kalaš" .
 
 orcid:0000-0002-2999-0103 rdfs:label "Jie Zheng" .
+
+bioregistry:caro a bioregistry.schema:0000001 ;
+    rdfs:label "Common Anatomy Reference Ontology" ;
+    dc:description "None"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:CARO,
+        obofoundry:caro,
+        ontobee:CARO,
+        bioportal:CARO,
+        biocontext:CARO,
+        go.resource:CARO,
+        fairsharing:FAIRsharing.3kcgmr,
+        ols:caro ;
+    foaf:homepage "https://github.com/obophenotype/caro/"^^xsd:string ;
+    bioregistry.schema:0000005 "0000000"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/CARO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:aism,
+        bioregistry:colao,
+        bioregistry:ehdaa2,
+        bioregistry:lepao,
+        bioregistry:pco ;
+    bioregistry.schema:0000019 orcid:0000-0001-9114-8737 .
 
 bioregistry:labo a bioregistry.schema:0000001 ;
     rdfs:label "clinical LABoratory Ontology" ;
@@ -32067,11 +32140,6 @@ bioregistry:pcl a bioregistry.schema:0000001 ;
         bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0002-7073-9172 .
 
-orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
-    dcterms:contributor bioregistry:glycosciencesdb,
-        bioregistry:insdc.run,
-        bioregistry:wwf.ecoregion .
-
 bioregistry:ecto a bioregistry.schema:0000001 ;
     rdfs:label "Environmental conditions, treatments and exposures ontology" ;
     dc:description "ECTO describes exposures to experimental treatments of plants and model organisms (e.g. exposures to modification of diet, lighting levels, temperature); exposures of humans or any other organisms to stressors through a variety of routes, for purposes of public health, environmental monitoring etc, stimuli, natural and experimental, any kind of environmental condition or change in condition that can be experienced by an organism or population of organisms on earth. The scope is very general and can include for example plant treatment regimens, as well as human clinical exposures (although these may better be handled by a more specialized ontology)."^^xsd:string ;
@@ -32101,6 +32169,11 @@ bioregistry:ecto a bioregistry.schema:0000001 ;
         bioregistry:uberon,
         bioregistry:xco ;
     bioregistry.schema:0000019 orcid:0000-0002-2908-3327 .
+
+orcid:0000-0002-6601-2165 rdfs:label "Chris Mungall" ;
+    dcterms:contributor bioregistry:glycosciencesdb,
+        bioregistry:insdc.run,
+        bioregistry:wwf.ecoregion .
 
 bioregistry:agro a bioregistry.schema:0000001 ;
     rdfs:label "Agronomy Ontology" ;
@@ -32482,46 +32555,6 @@ bioregistry:pato a bioregistry.schema:0000001 ;
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0002-2061-091X .
 
-bioregistry:bfo a bioregistry.schema:0000001 ;
-    rdfs:label "Basic Formal Ontology" ;
-    dc:description "The upper level ontology upon which OBO Foundry ontologies are built."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:BFO,
-        agroportal:BFO,
-        obofoundry:bfo,
-        ontobee:BFO,
-        bioportal:BFO,
-        biocontext:BFO,
-        go.resource:BFO,
-        fairsharing:FAIRsharing.wcpd6f,
-        ols:bfo ;
-    foaf:homepage "http://ifomis.org/bfo/"^^xsd:string ;
-    bioregistry.schema:0000005 "0000001"^^xsd:string ;
-    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BFO_$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:ado,
-        bioregistry:agro,
-        bioregistry:aism,
-        bioregistry:cdno,
-        bioregistry:colao,
-        bioregistry:duo,
-        bioregistry:ecocore,
-        bioregistry:epio,
-        bioregistry:foodon,
-        bioregistry:fovt,
-        bioregistry:hso,
-        bioregistry:lepao,
-        bioregistry:mco,
-        bioregistry:ons,
-        bioregistry:pcl,
-        bioregistry:pco,
-        bioregistry:psdo,
-        bioregistry:rbo,
-        bioregistry:xpo,
-        bioregistry:zp ;
-    bioregistry.schema:0000019 orcid:0000-0003-1384-116X .
-
 bioregistry:chebi a bioregistry.schema:0000001 ;
     rdfs:label "Chemical Entities of Biological Interest" ;
     dc:description "Chemical Entities of Biological Interest (ChEBI) is a freely available dictionary of molecular entities focused on 'small' chemical compounds."^^xsd:string ;
@@ -32567,6 +32600,46 @@ bioregistry:chebi a bioregistry.schema:0000001 ;
         bioregistry:uberon,
         bioregistry:xpo ;
     bioregistry.schema:0000019 orcid:0000-0001-8123-5351 .
+
+bioregistry:bfo a bioregistry.schema:0000001 ;
+    rdfs:label "Basic Formal Ontology" ;
+    dc:description "The upper level ontology upon which OBO Foundry ontologies are built."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:BFO,
+        agroportal:BFO,
+        obofoundry:bfo,
+        ontobee:BFO,
+        bioportal:BFO,
+        biocontext:BFO,
+        go.resource:BFO,
+        fairsharing:FAIRsharing.wcpd6f,
+        ols:bfo ;
+    foaf:homepage "http://ifomis.org/bfo/"^^xsd:string ;
+    bioregistry.schema:0000005 "0000001"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BFO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:ado,
+        bioregistry:agro,
+        bioregistry:aism,
+        bioregistry:cdno,
+        bioregistry:colao,
+        bioregistry:duo,
+        bioregistry:ecocore,
+        bioregistry:epio,
+        bioregistry:foodon,
+        bioregistry:fovt,
+        bioregistry:hso,
+        bioregistry:lepao,
+        bioregistry:mco,
+        bioregistry:ons,
+        bioregistry:pcl,
+        bioregistry:pco,
+        bioregistry:psdo,
+        bioregistry:rbo,
+        bioregistry:xpo,
+        bioregistry:zp ;
+    bioregistry.schema:0000019 orcid:0000-0003-1384-116X .
 
 bioregistry:uniprot a bioregistry.schema:0000001 ;
     rdfs:label "UniProt Protein" ;
@@ -32838,6 +32911,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cellosaurus.resource,
         bioregistry:cgnc,
         bioregistry:chembl.cell,
+        bioregistry:chemrof,
         bioregistry:citexplore,
         bioregistry:cito,
         bioregistry:clingene,
@@ -32879,6 +32953,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:drugbank.salt,
         bioregistry:drugcentral,
         bioregistry:dsmz,
+        bioregistry:dso,
         bioregistry:dto,
         bioregistry:eaglei,
         bioregistry:easychair.cfp,
@@ -32931,6 +33006,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:go.resource,
         bioregistry:goche,
         bioregistry:goeco,
+        bioregistry:goldbook,
         bioregistry:google.book,
         bioregistry:google.scholar,
         bioregistry:gorel,
@@ -34908,6 +34984,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:CEPH,
         bioportal:CHEBI,
         bioportal:CHEMINF,
+        bioportal:CHEMROF,
         bioportal:CHIRO,
         bioportal:CHMO,
         bioportal:CIDO,
@@ -35231,6 +35308,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:CEPH,
         aberowl:CHEBI,
         aberowl:CHEMINF,
+        aberowl:CHEMROF,
         aberowl:CHIRO,
         aberowl:CHMO,
         aberowl:CIDO,
@@ -38942,6 +39020,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:chemdb,
         bioregistry:chemidplus,
         bioregistry:cheminf,
+        bioregistry:chemrof,
         bioregistry:chemspider,
         bioregistry:chickenqtldb,
         bioregistry:chiro,
@@ -39141,6 +39220,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:drugbankv4.target,
         bioregistry:drugcentral,
         bioregistry:dsmz,
+        bioregistry:dso,
         bioregistry:dto,
         bioregistry:duo,
         bioregistry:eaglei,
@@ -39330,6 +39410,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:gold,
         bioregistry:gold.genome,
         bioregistry:gold.meta,
+        bioregistry:goldbook,
         bioregistry:google.book,
         bioregistry:google.patent,
         bioregistry:google.scholar,
