@@ -703,7 +703,8 @@ class Resource(BaseModel):
 
             return markupsafe.Markup(markdown(self.description))
         rv = self.get_prefix_key(
-            "description", ("miriam", "ols", "obofoundry", "wikidata", "fairsharing")
+            "description",
+            ("miriam", "ols", "obofoundry", "wikidata", "fairsharing", "aberowl", "bioportal"),
         )
         if rv is not None:
             return rv
