@@ -10,10 +10,12 @@ from flask import abort, current_app, redirect, render_template, request, url_fo
 from pydantic import BaseModel
 
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL
+from bioregistry.resource_manager import Manager
 from bioregistry.schema import Resource, sanitize_model
 from bioregistry.utils import curie_to_str, extended_encoder
 
 from .proxies import manager
+from ..utils import _norm
 
 
 def _get_resource_providers(
@@ -67,12 +69,17 @@ def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
     return norm_prefix
 
 
-def _search(manager_, q: str) -> List[str]:
-    q_norm = q.lower()
-    return [prefix for prefix in manager_.registry if q_norm in prefix]
+def _search(manager_: Manager, q: str) -> List[str]:
+    q_norm = _norm(q)
+    results = [
+        prefix
+        for lookup, prefix in manager_.synonyms.items()
+        if q_norm in lookup
+    ]
+    return sorted(set(results))
 
 
-def _autocomplete(manager_, q: str) -> Mapping[str, Any]:
+def _autocomplete(manager_: Manager, q: str) -> Mapping[str, Any]:
     r"""Run the autocomplete algorithm.
 
     :param manager_: A manager
