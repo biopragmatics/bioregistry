@@ -69,14 +69,14 @@ def _normalize_prefix_or_404(prefix: str, endpoint: Optional[str] = None):
     return norm_prefix
 
 
-def _search(manager_: Manager, q: str) -> List[str]:
+def _search(manager_: Manager, q: str) -> List[Tuple[str, str]]:
     q_norm = _norm(q)
     results = [
-        prefix
+        (prefix, lookup if _norm(prefix) != lookup else "")
         for lookup, prefix in manager_.synonyms.items()
         if q_norm in lookup
     ]
-    return sorted(set(results))
+    return sorted(results)
 
 
 def _autocomplete(manager_: Manager, q: str) -> Mapping[str, Any]:

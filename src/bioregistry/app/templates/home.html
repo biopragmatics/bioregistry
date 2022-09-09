@@ -57,7 +57,7 @@
                         <div v-for="option in result_options"
                              class="option-line"
                              @click="setUserInput">
-                            {{ option }}
+                            {{ option[0] }} <span v-if="option[1]">({{ option[1] }})</span>
                         </div>
                     </div>
                     <div v-else-if="options_are_worth_showing" class="option-line">
