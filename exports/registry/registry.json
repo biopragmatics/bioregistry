@@ -7954,6 +7954,7 @@
     "uri_format": "http://purl.org/spar/doco/$1"
   },
   "doi": {
+    "banana": "doi",
     "comment": "The [DOI resolution factsheet](https://www.doi.org/factsheets/DOIProxy.html) specifies that `https://doi.org/DOI` is the preferred format:\n\n> Users may resolve DOI names that are structured to use the DOI system Proxy Server (https://doi.org (preferred)). The resolution of the DOI name in this case depends on the use of URL syntax: the example DOI name doi:10.10.123/456 would be resolved from the address: \"https://doi.org/10.123/456\". Any standard browser encountering a DOI name in this form will be able to resolve it. The proxy service (both doi.org and the **earlier but no longer preferred** dx.doi.org) is accessible over IPv6, and supports DNSSEC. The proxy servers respond to HTTPS (**preferred**) as well as HTTP requests.",
     "contributor_extras": [
       {
@@ -7971,6 +7972,9 @@
     ],
     "description": "The Digital Object Identifier System is for identifying content objects in the digital environment.",
     "example": "10.1101/2022.07.08.499378",
+    "example_extras": [
+      "10.21/FQSQT4T3"
+    ],
     "homepage": "https://www.doi.org/",
     "mappings": {
       "biocontext": "DOI",
@@ -7984,7 +7988,7 @@
       "prefixcommons": "doi"
     },
     "name": "Digital Object Identifier",
-    "pattern": "^(doi\\:)?\\d{2}\\.\\d{4}.*$",
+    "pattern": "^10.\\d{2,9}/[-._;()/:A-Z0-9]+$",
     "preferred_prefix": "doi",
     "providers": [
       {
@@ -9980,7 +9984,7 @@
     ],
     "banana": "ENVO",
     "contact": {
-      "email": "p.buttigieg@gmail.com",
+      "email": "pier.buttigieg@awi.de",
       "github": "pbuttigieg",
       "name": "Pier Luigi Buttigieg",
       "orcid": "0000-0002-4366-3088"
@@ -10001,7 +10005,7 @@
     "download_owl": "http://purl.obolibrary.org/obo/envo.owl",
     "example": "09200010",
     "homepage": "http://environmentontology.org/",
-    "license": "CC BY 3.0",
+    "license": "CC0 1.0",
     "mappings": {
       "aberowl": "ENVO",
       "agroportal": "ENVO",
