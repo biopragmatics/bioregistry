@@ -12707,6 +12707,8 @@ orcid:0000-0003-2699-3066 rdfs:label "Meghan Balk" ;
         bioregistry:noaa,
         bioregistry:otol .
 
+orcid:0000-0003-3248-7899 rdfs:label "Sabine Oesterle" .
+
 orcid:0000-0003-3499-8262 rdfs:label "Alejandra Gonzalez-Beltran" .
 
 orcid:0000-0003-3781-6962 rdfs:label "Meng LIU" .
@@ -12718,8 +12720,6 @@ orcid:0000-0003-4312-9552 rdfs:label "Daniel C. Berrios" .
 orcid:0000-0003-4494-839X rdfs:label "Xeni Kechagioglou" .
 
 orcid:0000-0003-4606-0597 rdfs:label "Sue Bello" .
-
-orcid:0000-0003-4639-4431 rdfs:label "Vasundra Touré" .
 
 orcid:0000-0003-4727-9435 rdfs:label "Michel Dumontier" .
 
@@ -20407,6 +20407,16 @@ bioregistry:dlxc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[A-Z0-9]{6,7}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:doap a bioregistry.schema:0000001 ;
+    rdfs:label "Description of a Project" ;
+    dc:description "DOAP is a project to create an XML/RDF vocabulary to describe software projects, and in particular open source projects."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://github.com/ewilderj/doap/wiki"^^xsd:string ;
+    bioregistry.schema:0000005 "Project"^^xsd:string ;
+    bioregistry.schema:0000006 "http://usefulinc.com/ns/doap#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Edd Wilder-James" ] .
+
 bioregistry:doqcs dcterms:hasPart bioregistry:doqcs.model,
         bioregistry:doqcs.pathway .
 
@@ -23513,7 +23523,7 @@ bioregistry:sphn a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://biomedit.ch/rdf/sphn-ontology/sphn#$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\S+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0003-4639-4431 ;
+    bioregistry.schema:0000019 orcid:0000-0003-3248-7899 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
 bioregistry:sprint a bioregistry.schema:0000001 ;
@@ -32948,6 +32958,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:diseaseclass,
         bioregistry:diseasesdb,
         bioregistry:dmba,
+        bioregistry:doap,
         bioregistry:doco,
         bioregistry:drugbank.category,
         bioregistry:drugbank.salt,
@@ -39199,6 +39210,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:dlxb,
         bioregistry:dlxc,
         bioregistry:dmba,
+        bioregistry:doap,
         bioregistry:doco,
         bioregistry:doi,
         bioregistry:doid,
