@@ -29,17 +29,17 @@ __all__ = [
 ]
 
 
-def is_valid_curie(curie: str) -> Optional[bool]:
+def is_valid_curie(curie: str) -> bool:
     """Check if the CURIE is valid and standard."""
     return manager.is_valid_curie(curie)
 
 
-def is_standardizable_curie(curie: str) -> Optional[bool]:
+def is_standardizable_curie(curie: str) -> bool:
     """Check if the CURIE is standardizable."""
     return manager.is_standardizable_curie(curie)
 
 
-def is_valid_identifier(prefix: str, identifier: str) -> Optional[bool]:
+def is_valid_identifier(prefix: str, identifier: str) -> bool:
     """Check that an identifier strictly matches a prefix's local unique identifier pattern.
 
     :param prefix: The prefix in the CURIE
@@ -58,7 +58,7 @@ def is_valid_identifier(prefix: str, identifier: str) -> Optional[bool]:
     return manager.is_valid_identifier(prefix, identifier)
 
 
-def is_known_identifier(prefix: str, identifier: str) -> Optional[bool]:
+def is_known_identifier(prefix: str, identifier: str) -> bool:
     """Check that an identifier can be normalized and also matches a prefix's local unique identifier pattern.
 
     :param prefix: The prefix in the CURIE

@@ -1488,14 +1488,14 @@ class Resource(BaseModel):
                 return f"{processed_banana}{identifier}"
         return identifier
 
-    def is_valid_identifier(self, identifier: str) -> Optional[bool]:
+    def is_valid_identifier(self, identifier: str) -> bool:
         """Check that a local unique identifier is canonical, meaning no bananas."""
         pattern = self.get_pattern_re()
         if pattern is None:
-            return None
+            return True
         return pattern.fullmatch(identifier) is not None
 
-    def is_standardizable_identifier(self, identifier: str) -> Optional[bool]:
+    def is_standardizable_identifier(self, identifier: str) -> bool:
         """Check that a local unique identifier can be normalized and also matches a prefix's pattern."""
         return self.is_valid_identifier(self.standardize_identifier(identifier))
 

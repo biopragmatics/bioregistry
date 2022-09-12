@@ -1138,21 +1138,21 @@ class Manager:
             rv["bioregistry"] = len(self.registry)
         return rv
 
-    def is_valid_identifier(self, prefix: str, identifier: str) -> Optional[bool]:
+    def is_valid_identifier(self, prefix: str, identifier: str) -> bool:
         """Check if the identifier is valid."""
         resource = self.get_resource(prefix)
         if resource is None:
-            return None
+            return False
         return resource.is_valid_identifier(identifier)
 
-    def is_standardizable_identifier(self, prefix: str, identifier: str) -> Optional[bool]:
+    def is_standardizable_identifier(self, prefix: str, identifier: str) -> bool:
         """Check if the identifier is standardizable."""
         resource = self.get_resource(prefix)
         if resource is None:
-            return None
+            return False
         return resource.is_standardizable_identifier(identifier)
 
-    def is_valid_curie(self, curie: str) -> Optional[bool]:
+    def is_valid_curie(self, curie: str) -> bool:
         """Check if a CURIE is valid.
 
         :param curie: A compact URI
@@ -1196,7 +1196,7 @@ class Manager:
             return False
         return self.registry[norm_prefix].is_valid_identifier(identifier)
 
-    def is_standardizable_curie(self, curie: str) -> Optional[bool]:
+    def is_standardizable_curie(self, curie: str) -> bool:
         """Check if a CURIE is validatable, but not necessarily standardized.
 
         :param curie: A compact URI
