@@ -32829,13 +32829,22 @@
     },
     "description": "ICD-10-CM is the official system of assigning codes to diagnoses and procedures associated with hospital utilization in the United States issued by the National Center for Health Statistics (NCHS) and Centers for Medicare & Medicaid Services (CMS).",
     "example": "F45.21",
+    "example_decoys": [
+      "C000",
+      "c00",
+      "C00-D499",
+      "C00-99",
+      "C34.90000"
+    ],
     "example_extras": [
       "C00-D49",
+      "U49",
       "C34",
       "C34.90",
       "C4A.8",
       "C91.Z",
-      "C91.Z0"
+      "C91.Z0",
+      "T37.0X1A"
     ],
     "fairsharing": {
       "abbreviation": "ICD-10-CM",
@@ -32858,7 +32867,7 @@
       "wikidata": "P4229"
     },
     "name": "International Classification of Diseases, 10th Revision, Clinical Modification",
-    "pattern": "^[A-TV-Z][0-9][0-9AB]\\.?[0-9A-TV-Z]{0,4}$",
+    "pattern": "^([A-Z][0-9][0-9AB]((-[A-Z][0-9][0-9AB])|(\\.[0-9A-KXZ]([0-9A-EXYZ]([0-9A-HX][0-59A-HJKMNP-S]?)?)?)?))$",
     "synonyms": [
       "ICD10CM"
     ],
