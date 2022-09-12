@@ -83,7 +83,7 @@ class TestResolve(unittest.TestCase):
     def assert_known_identifiers(self, examples: Iterable[Tuple[str, str]]) -> None:
         """Validate the examples."""
         for prefix, identifier in examples:
-            is_known = bioregistry.is_known_identifier(prefix, identifier)
+            is_known = bioregistry.is_standardizable_identifier(prefix, identifier)
             if is_known is False:
                 with self.subTest(prefix=prefix, identifier=identifier):
                     self.fail(
@@ -97,7 +97,7 @@ class TestResolve(unittest.TestCase):
             ("chebi", "chebi:1234"),
         ]:
             with self.subTest(prefix=prefix, identifier=identifier):
-                self.assertFalse(bioregistry.is_known_identifier(prefix, identifier))
+                self.assertFalse(bioregistry.is_standardizable_identifier(prefix, identifier))
 
     def test_lui(self):
         """Test the LUI makes sense (spoilers, they don't).

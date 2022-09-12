@@ -12,7 +12,7 @@ __all__ = [
     "is_valid_curie",
     "is_standardizable_curie",
     "is_valid_identifier",
-    "is_known_identifier",
+    "is_standardizable_identifier",
     "get_providers",
     "get_providers_list",
     "get_identifiers_org_iri",
@@ -30,12 +30,24 @@ __all__ = [
 
 
 def is_valid_curie(curie: str) -> bool:
-    """Check if the CURIE is valid and standard."""
+    """Check if the CURIE is valid and standard.
+
+    :param curie: A CURIE string
+    :return:
+        Whether this identifier passes validation. If the prefix is
+        not valid, returns false. If no pattern is available, returns true.
+    """
     return manager.is_valid_curie(curie)
 
 
 def is_standardizable_curie(curie: str) -> bool:
-    """Check if the CURIE is standardizable."""
+    """Check if the CURIE is standardizable.
+
+    :param curie: A CURIE string
+    :return:
+        Whether this identifier passes validation, after normalization. If the prefix is
+        not valid, returns false. If no pattern is available, returns true.
+    """
     return manager.is_standardizable_curie(curie)
 
 
@@ -44,9 +56,11 @@ def is_valid_identifier(prefix: str, identifier: str) -> bool:
 
     :param prefix: The prefix in the CURIE
     :param identifier: The identifier in the CURIE
-    :return: Whether this identifier passes validation
+    :return:
+        Whether this identifier passes validation. If the prefix is
+        not valid, returns false. If no pattern is available, returns true.
 
-    .. seealso:: The :func:`is_known_identifier` performs normalization before checking validity
+    .. seealso:: The :func:`is_standardizable_identifier` performs normalization before checking validity
 
     >>> is_valid_identifier("chebi", "1234")
     True
@@ -58,7 +72,7 @@ def is_valid_identifier(prefix: str, identifier: str) -> bool:
     return manager.is_valid_identifier(prefix, identifier)
 
 
-def is_known_identifier(prefix: str, identifier: str) -> bool:
+def is_standardizable_identifier(prefix: str, identifier: str) -> bool:
     """Check that an identifier can be normalized and also matches a prefix's local unique identifier pattern.
 
     :param prefix: The prefix in the CURIE
@@ -67,14 +81,13 @@ def is_known_identifier(prefix: str, identifier: str) -> bool:
 
     .. seealso:: The :func:`is_valid_identifier` does not perform normalization before checking validity
 
-    >>> is_known_identifier("chebi", "1234")
+    >>> is_standardizable_identifier("chebi", "1234")
     True
-    >>> is_known_identifier("chebi", "CHEBI:12345")
+    >>> is_standardizable_identifier("chebi", "CHEBI:12345")
     True
-    >>> is_known_identifier("chebi", "CHEBI:ABCD")
+    >>> is_standardizable_identifier("chebi", "CHEBI:ABCD")
     False
     """
-    # TODO rename this function
     return manager.is_standardizable_identifier(prefix, identifier)
 
 
