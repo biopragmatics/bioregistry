@@ -10883,6 +10883,9 @@ fobi:
     data and associate it with metabolomic data
   download_owl: http://purl.obolibrary.org/obo/fobi.owl
   example: 030719
+  example_extras:
+  - '0142'
+  - '07504'
   homepage: https://github.com/pcastellanoescuder/FoodBiomarkerOntology
   license: CC BY 3.0
   mappings:
@@ -10893,7 +10896,7 @@ fobi:
     ols: fobi
     ontobee: FOBI
   name: Food-Biomarker Ontology
-  pattern: ^\d{6}$
+  pattern: ^\d{4,6}$
   preferred_prefix: FOBI
   publications:
   - doi: null
@@ -14768,6 +14771,8 @@ idomal:
   download_obo: http://purl.obolibrary.org/obo/idomal.obo
   download_owl: http://purl.obolibrary.org/obo/idomal.owl
   example: '0002350'
+  example_extras:
+  - '50000015'
   homepage: https://www.vectorbase.org/ontology-browser
   license: CC0 1.0
   mappings:
@@ -14779,7 +14784,7 @@ idomal:
     ols: idomal
     ontobee: IDOMAL
   name: Malaria Ontology
-  pattern: ^\d{7}$
+  pattern: ^(5?)\d{7}$
   preferred_prefix: IDOMAL
   publications:
   - doi: 10.1186/1475-2875-9-230
@@ -21469,6 +21474,8 @@ oba:
   download_obo: http://purl.obolibrary.org/obo/oba.obo
   download_owl: http://purl.obolibrary.org/obo/oba.owl
   example: '0000001'
+  example_extras:
+  - VT0003769
   homepage: https://github.com/obophenotype/bio-attribute-ontology
   license: CC0 1.0
   mappings:
@@ -21480,7 +21487,7 @@ oba:
     ols: oba
     ontobee: OBA
   name: Ontology of Biological Attributes
-  pattern: ^\d{7}$
+  pattern: ^(VT)?\d{7}$
   preferred_prefix: OBA
   repository: https://github.com/obophenotype/bio-attribute-ontology
   uri_format: http://purl.obolibrary.org/obo/OBA_$1
@@ -26217,6 +26224,8 @@ rbo:
   download_obo: http://purl.obolibrary.org/obo/rbo.obo
   download_owl: http://purl.obolibrary.org/obo/rbo.owl
   example: '00000105'
+  example_extras:
+  - '010007'
   homepage: https://github.com/Radiobiology-Informatics-Consortium/RBO
   license: CC BY 3.0
   mappings:
@@ -26226,7 +26235,7 @@ rbo:
     ols: rbo
     ontobee: RBO
   name: Radiation Biology Ontology
-  pattern: ^\d{8}$
+  pattern: ^\d{6,8}$
   preferred_prefix: RBO
   repository: https://github.com/Radiobiology-Informatics-Consortium/RBO
   uri_format: http://purl.obolibrary.org/obo/RBO_$1
@@ -27797,7 +27806,7 @@ sep:
     ontobee: SEP
     prefixcommons: sep
   name: Sample processing and separation techniques
-  pattern: ^\d{5}$
+  pattern: ^\d{5,6}$
   preferred_prefix: SEP
   uri_format: http://purl.obolibrary.org/obo/SEP_$1
 sepio:
