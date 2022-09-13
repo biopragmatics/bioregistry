@@ -30,62 +30,147 @@ __all__ = [
 
 
 def is_valid_curie(curie: str) -> bool:
-    """Check if the CURIE is valid and standard.
+    """Check if a CURIE is standardized and valid.
 
-    :param curie: A CURIE string
+    :param curie: A compact URI of the form ``<prefix>:<local unique identifier>``.
     :return:
-        Whether this identifier passes validation. If the prefix is
-        not valid, returns false. If no pattern is available, returns true.
+        If the CURIE is standardized in both syntax and semantics. This means that it uses the Bioregistry
+        canonical prefix, does not have a redundant prefix, and if available, matches the Bioregistry's
+        regular expression pattern for identifiers.
+
+    Standard CURIE
+    >>> is_valid_curie("go:0000001")
+    True
+
+    Not a standard CURIE (i.e., no colon)
+    >>> is_valid_curie("0000001")
+    False
+    >>> is_valid_curie("GO_0000001")
+    False
+    >>> is_valid_curie("PTM-0001")
+    False
+
+    Non-standardized prefix
+    >>> is_valid_curie("GO:0000001")
+    False
+
+    Incorrect identifier
+    >>> is_valid_curie("go:0001")
+    False
+
+    Banana scenario
+    >>> is_valid_curie("go:GO:0000001")
+    False
+
+    Unknown prefix
+    >>> is_valid_curie("xxx:yyy")
+    False
     """
     return manager.is_valid_curie(curie)
 
 
 def is_standardizable_curie(curie: str) -> bool:
-    """Check if the CURIE is standardizable.
+    """Check if a CURIE is validatable, but not necessarily standardized.
 
-    :param curie: A CURIE string
-    :return:
-        Whether this identifier passes validation, after normalization. If the prefix is
-        not valid, returns false. If no pattern is available, returns true.
+    :param curie: A compact URI
+    :return: If the CURIE can be standardized (e.g., prefix normalize and identifier normalized)
+        then validated.
+
+    Standard CURIE
+    >>> is_standardizable_curie("go:0000001")
+    True
+
+    Not a standard CURIE (i.e., no colon)
+    >>> is_standardizable_curie("0000001")
+    False
+    >>> is_standardizable_curie("GO_0000001")
+    False
+    >>> is_standardizable_curie("PTM-0001")
+    False
+
+    Non-standardized prefix
+    >>> is_standardizable_curie("GO:0000001")
+    True
+
+    Incorrect identifier
+    >>> is_standardizable_curie("go:0001")
+    False
+
+    Banana scenario
+    >>> is_standardizable_curie("go:GO:0000001")
+    True
+
+    Unknown prefix
+    >>> is_standardizable_curie("xxx:yyy")
+    False
     """
     return manager.is_standardizable_curie(curie)
 
 
 def is_valid_identifier(prefix: str, identifier: str) -> bool:
-    """Check that an identifier strictly matches a prefix's local unique identifier pattern.
+    """Check if the pre-parsed CURIE is standardized valid.
 
-    :param prefix: The prefix in the CURIE
-    :param identifier: The identifier in the CURIE
+    :param prefix: The prefix from a compact URI
+    :param identifier: The local unique identifer from a compact URI
     :return:
-        Whether this identifier passes validation. If the prefix is
-        not valid, returns false. If no pattern is available, returns true.
+        If the CURIE is standardized in both syntax and semantics. This means that it uses the Bioregistry
+        canonical prefix, does not have a redundant prefix, and if available, matches the Bioregistry's
+        regular expression pattern for identifiers.
 
     .. seealso:: The :func:`is_standardizable_identifier` performs normalization before checking validity
 
-    >>> is_valid_identifier("chebi", "1234")
+    Standard CURIE
+    >>> is_valid_identifier("go", "0000001")
     True
-    >>> is_valid_identifier("chebi", "ABCD")
+
+    Non-standardized prefix
+    >>> is_valid_identifier("GO", "0000001")
     False
-    >>> is_valid_identifier("chebi", "CHEBI:12345")
+
+    Incorrect identifier
+    >>> is_valid_identifier("go", "0001")
+    False
+
+    Banana scenario
+    >>> is_valid_identifier("go", "GO:0000001")
+    False
+
+    Unknown prefix
+    >>> is_valid_identifier("xxx", "yyy")
     False
     """
     return manager.is_valid_identifier(prefix, identifier)
 
 
 def is_standardizable_identifier(prefix: str, identifier: str) -> bool:
-    """Check that an identifier can be normalized and also matches a prefix's local unique identifier pattern.
+    """Check if the identifier is standardizable.
 
-    :param prefix: The prefix in the CURIE
-    :param identifier: The identifier in the CURIE
-    :return: Whether this identifier passes validation, after normalization
+    :param prefix: The prefix from a compact URI
+    :param identifier: The local unique identifer from a compact URI
+    :return:
+        If the CURIE can be standardized (e.g., prefix normalize and identifier normalized)
+        then validated.
 
     .. seealso:: The :func:`is_valid_identifier` does not perform normalization before checking validity
 
-    >>> is_standardizable_identifier("chebi", "1234")
+    Standard CURIE
+    >>> is_standardizable_identifier("go", "0000001")
     True
-    >>> is_standardizable_identifier("chebi", "CHEBI:12345")
+
+    Non-standardized prefix
+    >>> is_standardizable_identifier("GO", "0000001")
     True
-    >>> is_standardizable_identifier("chebi", "CHEBI:ABCD")
+
+    Incorrect identifier
+    >>> is_standardizable_identifier("go", "0001")
+    False
+
+    Banana scenario
+    >>> is_standardizable_identifier("go", "GO:0000001")
+    True
+
+    Unknown prefix
+    >>> is_standardizable_identifier("xxx", "yyy")
     False
     """
     return manager.is_standardizable_identifier(prefix, identifier)

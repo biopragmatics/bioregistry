@@ -1154,19 +1154,19 @@ class Manager:
         True
 
         Non-standardized prefix
-        >>> manager.is_valid_curie("GO", "0000001")
+        >>> manager.is_valid_identifier("GO", "0000001")
         False
 
         Incorrect identifier
-        >>> manager.is_valid_curie("go", "0001")
+        >>> manager.is_valid_identifier("go", "0001")
         False
 
         Banana scenario
-        >>> manager.is_valid_curie("go", "GO:0000001")
+        >>> manager.is_valid_identifier("go", "GO:0000001")
         False
 
         Unknown prefix
-        >>> manager.is_valid_curie("xxx", "yyy")
+        >>> manager.is_valid_identifier("xxx", "yyy")
         False
         """
         resource = self.registry.get(prefix)
