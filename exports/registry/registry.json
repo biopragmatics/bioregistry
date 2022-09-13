@@ -14925,12 +14925,23 @@
         "orcid": "0000-0003-4423-4370"
       }
     ],
-    "description": "The International Classification of Diseases is the international standard diagnostic classification for all general epidemiological and many health management purposes.",
+    "description": "The 10th revision of the International Classification of Diseases (ICD) issued by the World Health Organization (WHO). ICD is formally named 'The International Statistical Classification of Diseases and Related Health Problems'. It contains codes for diseases, signs and symptoms, abnormal findings, complaints, social circumstances, and external causes of injury or diseases.\n\nNote that the WHO version of ICD-10 is distinct from the ICD-10-CM (Clinical Modification) issued by the U.S. National Center for Health Statistics for use in the United States.",
     "example": "C34",
+    "example_decoys": [
+      "G00X",
+      "C34.90",
+      "C4A.8",
+      "C91.Z",
+      "C91.Z0"
+    ],
     "example_extras": [
       "V20",
       "G00",
-      "A01.1"
+      "A01.1",
+      "XVIII",
+      "R25-R29",
+      "R25",
+      "R25.3"
     ],
     "homepage": "https://icd.who.int/browse10",
     "mappings": {
@@ -14946,7 +14957,7 @@
       "wikidata": "P494"
     },
     "name": "International Classification of Diseases, 10th Revision",
-    "pattern": "^[A-Z]\\d+(\\.[-\\d+])?$",
+    "pattern": "^(([XVI]+)|([A-Z][0-9]+((-[A-Z][0-9]+)|(\\.[0-9]))?))$",
     "preferred_prefix": "icd10",
     "providers": [
       {
@@ -15007,8 +15018,25 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
-    "description": "ICD-10-CM is the official system of assigning codes to diagnoses and procedures associated with hospital utilization in the United States.",
-    "example": "F4521",
+    "description": "ICD-10-CM is the official system of assigning codes to diagnoses and procedures associated with hospital utilization in the United States issued by the National Center for Health Statistics (NCHS) and Centers for Medicare & Medicaid Services (CMS).",
+    "example": "F45.21",
+    "example_decoys": [
+      "C000",
+      "c00",
+      "C00-D499",
+      "C00-99",
+      "C34.90000"
+    ],
+    "example_extras": [
+      "C00-D49",
+      "U49",
+      "C34",
+      "C34.90",
+      "C4A.8",
+      "C91.Z",
+      "C91.Z0",
+      "T37.0X1A"
+    ],
     "homepage": "https://www.icd10data.com/ICD10CM",
     "mappings": {
       "aberowl": "ICD10CM",
@@ -15017,6 +15045,7 @@
       "wikidata": "P4229"
     },
     "name": "International Classification of Diseases, 10th Revision, Clinical Modification",
+    "pattern": "^([A-Z][0-9][0-9AB]((-[A-Z][0-9][0-9AB])|(\\.[0-9A-KXZ]([0-9A-EXYZ]([0-9A-HX][0-59A-HJKMNP-S]?)?)?)?))$",
     "preferred_prefix": "icd10cm",
     "synonyms": [
       "ICD10CM"
