@@ -228,7 +228,7 @@ class Manager:
         if not norm_prefix:
             return None, None
         resource = self.registry[norm_prefix]
-        norm_identifier = resource.standardize_identifier(identifier, prefix=prefix)
+        norm_identifier = resource.standardize_identifier(identifier)
         return norm_prefix, norm_identifier
 
     @lru_cache(maxsize=None)  # noqa:B019

@@ -1366,13 +1366,10 @@ class Resource(BaseModel):
         _p = self.get_preferred_prefix() or self.prefix if use_preferred else self.prefix
         return curie_to_str(_p, identifier)
 
-    def standardize_identifier(self, identifier: str, prefix: Optional[str] = None) -> str:
+    def standardize_identifier(self, identifier: str) -> str:
         """Normalize the identifier to not have a redundant prefix or banana.
 
         :param identifier: The identifier in the CURIE
-        :param prefix: If an optional prefix is passed, checks that this isn't also used as a casefolded banana
-            like in ``go:go:1234567``, which shouldn't technically be right because the banana for gene ontology
-            is ``GO``.
         :return: A normalized identifier, possibly with banana/redundant prefix removed
 
         Examples with explicitly annotated bananas:
@@ -1407,11 +1404,9 @@ class Resource(BaseModel):
         """
         banana = self.get_banana()
         peel = self.get_banana_peel()
-        prebanana = f"{banana}{peel}"
-        if banana and identifier.startswith(prebanana):
+        prebanana = f"{banana}{peel}".casefold()
+        if banana and identifier.casefold().startswith(prebanana):
             return identifier[len(prebanana) :]
-        elif prefix is not None and identifier.casefold().startswith(f"{prefix.casefold()}{peel}"):
-            return identifier[len(prefix) + 1 :]
         return identifier
 
     def get_miriam_curie(self, identifier: str) -> Optional[str]:

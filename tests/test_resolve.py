@@ -64,6 +64,7 @@ class TestResolve(unittest.TestCase):
             # bananas from OBO
             ("go", "0000001"),
             ("go", "GO:0000001"),
+            ("go", "go:0000001"),
         ]
         for prefix, resource in bioregistry.read_registry().items():
             if bioregistry.is_deprecated(prefix):
@@ -94,7 +95,7 @@ class TestResolve(unittest.TestCase):
         """Test that validation returns false."""
         for prefix, identifier in [
             ("chebi", "A1234"),
-            ("chebi", "chebi:1234"),
+            ("chebi", "GO:A1234"),
         ]:
             with self.subTest(prefix=prefix, identifier=identifier):
                 self.assertFalse(bioregistry.is_standardizable_identifier(prefix, identifier))
