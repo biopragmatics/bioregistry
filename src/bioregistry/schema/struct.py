@@ -1405,8 +1405,11 @@ class Resource(BaseModel):
         banana = self.get_banana()
         peel = self.get_banana_peel()
         prebanana = f"{banana}{peel}".casefold()
-        if banana and identifier.casefold().startswith(prebanana):
+        icf = identifier.casefold()
+        if banana and icf.startswith(prebanana):
             return identifier[len(prebanana) :]
+        elif icf.startswith(f"{self.prefix.casefold()}{peel}"):
+            return identifier[len(self.prefix) + len(peel) :]
         return identifier
 
     def get_miriam_curie(self, identifier: str) -> Optional[str]:
