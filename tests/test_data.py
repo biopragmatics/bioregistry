@@ -67,6 +67,7 @@ class TestRegistry(unittest.TestCase):
                 self.assertEqual(prefix.lower(), prefix, msg="prefix is not lowercased")
                 self.assertFalse(prefix.startswith("_"))
                 self.assertFalse(prefix.endswith("_"))
+                self.assertNotIn(":", prefix)
 
     def test_valid_integration_annotations(self):
         """Test that the integration keys are valid."""
