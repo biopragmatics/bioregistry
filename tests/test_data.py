@@ -346,9 +346,9 @@ class TestRegistry(unittest.TestCase):
 
                 pattern = entry.get_pattern_re()
                 if pattern is not None:
-                    self.assert_canonical(prefix, example)
+                    self.assert_is_valid_identifier(prefix, example)
 
-    def assert_canonical(self, prefix: str, example: str) -> None:
+    def assert_is_valid_identifier(self, prefix: str, example: str) -> None:
         """Assert the identifier is canonical."""
         entry = self.registry[prefix]
         canonical = entry.is_valid_identifier(example)
@@ -371,7 +371,7 @@ class TestRegistry(unittest.TestCase):
                     self.assertNotEqual(
                         primary_example, example, msg="extra example matches primary example"
                     )
-                    self.assert_canonical(prefix, example)
+                    self.assert_is_valid_identifier(prefix, example)
 
             self.assertEqual(
                 len(entry.example_extras),
@@ -440,7 +440,7 @@ class TestRegistry(unittest.TestCase):
         self.assertFalse(bioregistry.is_deprecated("nope"))
         self.assertIsNone(bioregistry.get_provides_for("nope"))
         self.assertIsNone(bioregistry.get_version("gmelin"))
-        self.assertIsNone(bioregistry.is_known_identifier("nope", ...))
+        self.assertFalse(bioregistry.is_standardizable_identifier("nope", ...))
         self.assertIsNone(bioregistry.get_default_iri("nope", ...))
         self.assertIsNone(bioregistry.get_identifiers_org_iri("nope", ...))
         self.assertIsNone(bioregistry.get_n2t_iri("nope", ...))

@@ -732,6 +732,7 @@ class Resource(BaseModel):
         pattern = self.get_pattern()
         if pattern is None:
             return None
+        # FIXME cache this
         return re.compile(pattern)
 
     def get_pattern_with_banana(self, strict: bool = True) -> Optional[str]:
@@ -1365,13 +1366,10 @@ class Resource(BaseModel):
         _p = self.get_preferred_prefix() or self.prefix if use_preferred else self.prefix
         return curie_to_str(_p, identifier)
 
-    def standardize_identifier(self, identifier: str, prefix: Optional[str] = None) -> str:
+    def standardize_identifier(self, identifier: str) -> str:
         """Normalize the identifier to not have a redundant prefix or banana.
 
         :param identifier: The identifier in the CURIE
-        :param prefix: If an optional prefix is passed, checks that this isn't also used as a casefolded banana
-            like in ``go:go:1234567``, which shouldn't technically be right because the banana for gene ontology
-            is ``GO``.
         :return: A normalized identifier, possibly with banana/redundant prefix removed
 
         Examples with explicitly annotated bananas:
@@ -1406,11 +1404,12 @@ class Resource(BaseModel):
         """
         banana = self.get_banana()
         peel = self.get_banana_peel()
-        prebanana = f"{banana}{peel}"
-        if banana and identifier.startswith(prebanana):
+        prebanana = f"{banana}{peel}".casefold()
+        icf = identifier.casefold()
+        if banana and icf.startswith(prebanana):
             return identifier[len(prebanana) :]
-        elif prefix is not None and identifier.casefold().startswith(f"{prefix.casefold()}{peel}"):
-            return identifier[len(prefix) + 1 :]
+        elif icf.startswith(f"{self.prefix.casefold()}{peel}"):
+            return identifier[len(self.prefix) + len(peel) :]
         return identifier
 
     def get_miriam_curie(self, identifier: str) -> Optional[str]:
@@ -1488,14 +1487,14 @@ class Resource(BaseModel):
                 return f"{processed_banana}{identifier}"
         return identifier
 
-    def is_valid_identifier(self, identifier: str) -> Optional[bool]:
+    def is_valid_identifier(self, identifier: str) -> bool:
         """Check that a local unique identifier is canonical, meaning no bananas."""
         pattern = self.get_pattern_re()
         if pattern is None:
-            return None
+            return True
         return pattern.fullmatch(identifier) is not None
 
-    def is_standardizable_identifier(self, identifier: str) -> Optional[bool]:
+    def is_standardizable_identifier(self, identifier: str) -> bool:
         """Check that a local unique identifier can be normalized and also matches a prefix's pattern."""
         return self.is_valid_identifier(self.standardize_identifier(identifier))
 

@@ -228,7 +228,7 @@ class Manager:
         if not norm_prefix:
             return None, None
         resource = self.registry[norm_prefix]
-        norm_identifier = resource.standardize_identifier(identifier, prefix=prefix)
+        norm_identifier = resource.standardize_identifier(identifier)
         return norm_prefix, norm_identifier
 
     @lru_cache(maxsize=None)  # noqa:B019
@@ -1138,25 +1138,85 @@ class Manager:
             rv["bioregistry"] = len(self.registry)
         return rv
 
-    def is_valid_identifier(self, prefix: str, identifier: str) -> Optional[bool]:
-        """Check if the identifier is valid."""
-        resource = self.get_resource(prefix)
+    def is_valid_identifier(self, prefix: str, identifier: str) -> bool:
+        """Check if the pre-parsed CURIE is standardized valid.
+
+        :param prefix: The prefix from a compact URI
+        :param identifier: The local unique identifer from a compact URI
+        :return:
+            If the CURIE is standardized in both syntax and semantics. This means that it uses the Bioregistry
+            canonical prefix, does not have a redundant prefix, and if available, matches the Bioregistry's
+            regular expression pattern for identifiers.
+
+        Standard CURIE
+        >>> from bioregistry import manager
+        >>> manager.is_valid_identifier("go", "0000001")
+        True
+
+        Non-standardized prefix
+        >>> manager.is_valid_identifier("GO", "0000001")
+        False
+
+        Incorrect identifier
+        >>> manager.is_valid_identifier("go", "0001")
+        False
+
+        Banana scenario
+        >>> manager.is_valid_identifier("go", "GO:0000001")
+        False
+
+        Unknown prefix
+        >>> manager.is_valid_identifier("xxx", "yyy")
+        False
+        """
+        resource = self.registry.get(prefix)
         if resource is None:
-            return None
+            return False
         return resource.is_valid_identifier(identifier)
 
-    def is_standardizable_identifier(self, prefix: str, identifier: str) -> Optional[bool]:
-        """Check if the identifier is standardizable."""
+    def is_standardizable_identifier(self, prefix: str, identifier: str) -> bool:
+        """Check if the identifier is standardizable.
+
+        :param prefix: The prefix from a compact URI
+        :param identifier: The local unique identifer from a compact URI
+        :return:
+            If the CURIE can be standardized (e.g., prefix normalize and identifier normalized)
+            then validated.
+
+        Standard CURIE
+        >>> from bioregistry import manager
+        >>> manager.is_standardizable_identifier("go", "0000001")
+        True
+
+        Non-standardized prefix
+        >>> manager.is_standardizable_identifier("GO", "0000001")
+        True
+
+        Incorrect identifier
+        >>> manager.is_standardizable_identifier("go", "0001")
+        False
+
+        Banana scenario
+        >>> manager.is_standardizable_identifier("go", "GO:0000001")
+        True
+
+        Unknown prefix
+        >>> manager.is_standardizable_identifier("xxx", "yyy")
+        False
+        """
         resource = self.get_resource(prefix)
         if resource is None:
-            return None
+            return False
         return resource.is_standardizable_identifier(identifier)
 
-    def is_valid_curie(self, curie: str) -> Optional[bool]:
-        """Check if a CURIE is valid.
+    def is_valid_curie(self, curie: str) -> bool:
+        """Check if a CURIE is standardized and valid.
 
-        :param curie: A compact URI
-        :return: If the CURIE is standardized in both syntax and semantics.
+        :param curie: A compact URI of the form ``<prefix>:<local unique identifier>``.
+        :return:
+            If the CURIE is standardized in both syntax and semantics. This means that it uses the Bioregistry
+            canonical prefix, does not have a redundant prefix, and if available, matches the Bioregistry's
+            regular expression pattern for identifiers.
 
         Standard CURIE
         >>> from bioregistry import manager
@@ -1191,16 +1251,14 @@ class Manager:
             prefix, identifier = curie.split(":", 1)
         except ValueError:
             return False
-        norm_prefix = self.normalize_prefix(prefix)
-        if norm_prefix != prefix:
-            return False
-        return self.registry[norm_prefix].is_valid_identifier(identifier)
+        return self.is_valid_identifier(prefix, identifier)
 
-    def is_standardizable_curie(self, curie: str) -> Optional[bool]:
+    def is_standardizable_curie(self, curie: str) -> bool:
         """Check if a CURIE is validatable, but not necessarily standardized.
 
         :param curie: A compact URI
-        :return: If the CURIE is standardized in both syntax and semantics.
+        :return: If the CURIE can be standardized (e.g., prefix normalize and identifier normalized)
+            then validated.
 
         Standard CURIE
         >>> from bioregistry import manager
@@ -1231,10 +1289,11 @@ class Manager:
         >>> manager.is_standardizable_curie("xxx:yyy")
         False
         """
-        norm_curie = self.normalize_curie(curie)
-        if norm_curie is None:
+        try:
+            prefix, identifier = curie.split(":", 1)
+        except ValueError:
             return False
-        return self.is_valid_curie(norm_curie)
+        return self.is_standardizable_identifier(prefix, identifier)
 
     def get_context(self, key: str) -> Optional[Context]:
         """Get a prescriptive context.
