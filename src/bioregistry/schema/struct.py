@@ -732,6 +732,7 @@ class Resource(BaseModel):
         pattern = self.get_pattern()
         if pattern is None:
             return None
+        # FIXME cache this
         return re.compile(pattern)
 
     def get_pattern_with_banana(self, strict: bool = True) -> Optional[str]:

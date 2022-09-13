@@ -100,8 +100,8 @@ from .resolve_identifier import (  # noqa:F401
     get_ols_iri,
     get_providers,
     get_providers_list,
-    is_standardizable_identifier,
     is_standardizable_curie,
+    is_standardizable_identifier,
     is_valid_curie,
     is_valid_identifier,
 )
