@@ -727,6 +727,7 @@ class Resource(BaseModel):
             return None
         return _clean_pattern(rv)
 
+    @lru_cache(1)
     def get_pattern_re(self):
         """Get the compiled pattern for the given prefix, if it's available."""
         pattern = self.get_pattern()
