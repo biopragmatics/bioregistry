@@ -65,30 +65,30 @@ class TestResolve(unittest.TestCase):
             ("go", "0000001"),
             ("go", "GO:0000001"),
         ]
-        for prefix in bioregistry.read_registry():
+        for prefix, resource in bioregistry.read_registry().items():
             if bioregistry.is_deprecated(prefix):
                 continue
             banana = bioregistry.get_banana(prefix)
             if banana is None or bioregistry.has_no_terms(prefix):
                 continue
+            peel = resource.get_banana_peel()
             example = bioregistry.get_example(prefix)
             with self.subTest(prefix=prefix):
                 if example is None:
                     self.fail(msg=f"{prefix} has a banana {banana} but is missing an example")
                 else:
-                    tests.append(("prefix", example))
-                    tests.append(("prefix", f"{banana}:{example}"))
+                    tests.append((prefix, example))
+                    tests.append((prefix, f"{banana}{peel}{example}"))
         self.assert_known_identifiers(tests)
 
     def assert_known_identifiers(self, examples: Iterable[Tuple[str, str]]) -> None:
         """Validate the examples."""
         for prefix, identifier in examples:
-            is_known = bioregistry.is_standardizable_identifier(prefix, identifier)
-            if is_known is False:
-                with self.subTest(prefix=prefix, identifier=identifier):
-                    self.fail(
-                        msg=f"CURIE {prefix}:{identifier} does not loosely match {bioregistry.get_pattern(prefix)}"
-                    )
+            with self.subTest(prefix=prefix, identifier=identifier):
+                self.assertTrue(
+                    bioregistry.is_standardizable_identifier(prefix, identifier),
+                    msg=f"CURIE {prefix}:{identifier} does not loosely match {bioregistry.get_pattern(prefix)}",
+                )
 
     def test_validate_false(self):
         """Test that validation returns false."""
