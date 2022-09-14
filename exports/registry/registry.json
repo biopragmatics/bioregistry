@@ -3011,7 +3011,8 @@
     "name": "Biosapiens Protein Feature Ontology",
     "pattern": "^\\d+$",
     "preferred_prefix": "bs",
-    "repository": "https://github.com/The-Sequence-Ontology/SO-Ontologies"
+    "repository": "https://github.com/The-Sequence-Ontology/SO-Ontologies",
+    "uri_format": "https://biopragmatics.github.io/providers/bs/$1"
   },
   "bspo": {
     "appears_in": [
@@ -3242,6 +3243,8 @@
     "uri_format": "https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement[@publicId=$1]"
   },
   "caloha": {
+    "banana": "TS",
+    "banana_peel": "-",
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -3250,16 +3253,17 @@
     },
     "description": "This is a code repository for the SIB - Swiss Institute of Bioinformatics CALIPHO group neXtProt project, which is a comprehensive human-centric discovery platform, that offers a integration of and navigation through protein-related data. CALIPHO is an interdisciplinary team which aims to use a variety of methodologies to help uncover the function of uncharacterized human proteins.",
     "download_obo": "https://download.nextprot.org/pub/current_release/controlled_vocabularies/caloha.obo",
-    "example": "TS-0001",
+    "example": "0001",
     "homepage": "https://github.com/calipho-sib/controlled-vocabulary",
     "name": "CALIPHO Group Ontology of Human Anatomy",
-    "pattern": "^TS-\\d+$",
+    "pattern": "^\\d+$",
     "preferred_prefix": "caloha",
     "references": [
       "https://twitter.com/neXtProt_news/status/1350105997633867781"
     ],
     "repository": "https://github.com/calipho-sib/controlled-vocabulary",
-    "twitter": "neXtProt_news"
+    "twitter": "neXtProt_news",
+    "uri_format": "https://biopragmatics.github.io/providers/caloha/$1"
   },
   "cameo": {
     "description": "The goal of the CAMEO (Continuous Automated Model EvaluatiOn) community project is to continuously evaluate the accuracy and reliability of protein structure prediction servers, offering scores on  tertiary and quaternary structure prediction, model quality estimation, accessible surface area prediction, ligand binding site residue prediction and contact prediction services in a fully automated manner. These predictions are regularly compared against reference structures from PDB.",
@@ -7589,7 +7593,8 @@
     "homepage": "https://www.brainspan.org/",
     "name": "Developing Human Brain Atlas",
     "pattern": "^\\d+$",
-    "preferred_prefix": "DHBA"
+    "preferred_prefix": "DHBA",
+    "uri_format": "https://biopragmatics.github.io/providers/dhba/$1"
   },
   "dicom": {
     "description": "DICOM Controlled Terminology",
@@ -7830,7 +7835,8 @@
     "example": "0000598",
     "name": "Disease Class",
     "pattern": "^\\d{7}$",
-    "preferred_prefix": "diseaseclass"
+    "preferred_prefix": "diseaseclass",
+    "uri_format": "https://biopragmatics.github.io/providers/diseaseclass/$1"
   },
   "diseasesdb": {
     "contributor": {
@@ -7924,11 +7930,12 @@
     },
     "description": "A controlled vocabulary to support the study of transcription in the developing mouse brain",
     "download_obo": "https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-dmba.obo",
-    "example": "688",
+    "example": "15567",
     "homepage": "https://developingmouse.brain-map.org/",
     "name": "Developing Mouse Brain Atlas",
     "pattern": "^\\d+$",
-    "preferred_prefix": "DMBA"
+    "preferred_prefix": "DMBA",
+    "uri_format": "https://biopragmatics.github.io/providers/dmba/$1"
   },
   "doap": {
     "contact": {
@@ -13980,7 +13987,8 @@
     "homepage": "https://human.brain-map.org",
     "name": "Human Brain Atlas",
     "pattern": "^\\d+$",
-    "preferred_prefix": "HBA"
+    "preferred_prefix": "HBA",
+    "uri_format": "https://biopragmatics.github.io/providers/hba/$1"
   },
   "hcao": {
     "description": "Application ontology for human cell types, anatomy and development stages for the Human Cell Atlas.",
@@ -14308,7 +14316,8 @@
     "homepage": "https://bgee.org/bgee/bgee?page=documentation#sectionHomologyRelationships",
     "name": "Homologous Organ Groups",
     "pattern": "^\\d{7}$",
-    "preferred_prefix": "hog"
+    "preferred_prefix": "hog",
+    "uri_format": "https://biopragmatics.github.io/providers/hog/$1"
   },
   "hogenom": {
     "description": "HOGENOM is a database of homologous genes from fully sequenced organisms (bacteria, archeae and eukarya). This collection references phylogenetic trees which can be retrieved using either UniProt accession numbers, or HOGENOM tree family identifier.",
@@ -15266,7 +15275,8 @@
         "title": "ICEPO: the ion channel electrophysiology ontology"
       }
     ],
-    "twitter": "neXtProt_news"
+    "twitter": "neXtProt_news",
+    "uri_format": "https://biopragmatics.github.io/providers/icepo/$1"
   },
   "iclc": {
     "description": "Cell line collections",
@@ -18198,7 +18208,8 @@
     "homepage": "https://mouse.brain-map.org",
     "name": "Mouse Brain Atlas",
     "pattern": "^\\d+$",
-    "preferred_prefix": "MBA"
+    "preferred_prefix": "MBA",
+    "uri_format": "https://biopragmatics.github.io/providers/mba/$1"
   },
   "mcc": {
     "deprecated": true,
@@ -19956,6 +19967,20 @@
     "preferred_prefix": "molbase.sheffield"
   },
   "molmedb": {
+    "contact": {
+      "email": "karel.berka@upol.cz",
+      "github": "KarelBerka",
+      "name": "Karel Berka",
+      "orcid": "0000-0001-9472-2589"
+    },
+    "contributor_extras": [
+      {
+        "email": "dominik.martinat@gmail.com",
+        "github": "DominikMartinat",
+        "name": "Dominik Martinat",
+        "orcid": "0000-0001-6611-7883"
+      }
+    ],
     "description": "MolMeDB is an open chemistry database about interactions of molecules with membranes. We collect information on how chemicals interact with individual membranes either from experiment or from simulations. ",
     "example": "MM00040",
     "homepage": "http://www.upol.cz/en/",
@@ -24664,7 +24689,8 @@
     "homepage": "https://www.blueprintnhpatlas.org/",
     "name": "Primate Brain Atlas",
     "pattern": "^\\d+$",
-    "preferred_prefix": "PBA"
+    "preferred_prefix": "PBA",
+    "uri_format": "https://biopragmatics.github.io/providers/pba/$1"
   },
   "pcl": {
     "contact": {
@@ -25065,7 +25091,8 @@
     "homepage": "https://www.psidev.info/peff",
     "name": "PSI Extended File Format",
     "pattern": "^\\d{7}$",
-    "preferred_prefix": "peff"
+    "preferred_prefix": "peff",
+    "uri_format": "https://biopragmatics.github.io/providers/peff/$1"
   },
   "peptideatlas": {
     "description": "The PeptideAtlas Project provides a publicly accessible database of peptides identified in tandem mass spectrometry proteomics studies and software tools.",

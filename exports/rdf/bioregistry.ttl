@@ -7718,7 +7718,8 @@ bioregistry:molmedb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "MM00040"^^xsd:string ;
     bioregistry.schema:0000006 "https://molmedb.upol.cz/mol/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[m,M]{2}[0-9]{5}[0-9]*$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-9472-2589 .
 
 bioregistry:mop a bioregistry.schema:0000001 ;
     rdfs:label "Molecular Process Ontology" ;
@@ -12543,6 +12544,8 @@ orcid:0000-0001-9125-4337 rdfs:label "Francesco Vitali" .
 orcid:0000-0001-9163-5180 rdfs:label "Mike Cherry" .
 
 orcid:0000-0001-9202-5309 rdfs:label "Chen Yang" .
+
+orcid:0000-0001-9472-2589 rdfs:label "Karel Berka" .
 
 orcid:0000-0001-9625-1899 rdfs:label "Bill Duncan" .
 
@@ -19596,6 +19599,7 @@ bioregistry:bs a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://github.com/The-Sequence-Ontology/SO-Ontologies"^^xsd:string ;
     bioregistry.schema:0000005 "00042"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/bs/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -19604,8 +19608,9 @@ bioregistry:caloha a bioregistry.schema:0000001 ;
     dc:description "This is a code repository for the SIB - Swiss Institute of Bioinformatics CALIPHO group neXtProt project, which is a comprehensive human-centric discovery platform, that offers a integration of and navigation through protein-related data. CALIPHO is an interdisciplinary team which aims to use a variety of methodologies to help uncover the function of uncharacterized human proteins."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://github.com/calipho-sib/controlled-vocabulary"^^xsd:string ;
-    bioregistry.schema:0000005 "TS-0001"^^xsd:string ;
-    bioregistry.schema:0000008 "^TS-\\d+$"^^xsd:string ;
+    bioregistry.schema:0000005 "0001"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/caloha/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:casspc a bioregistry.schema:0000001 ;
@@ -20365,6 +20370,7 @@ bioregistry:diseaseclass a bioregistry.schema:0000001 ;
     dc:description "Legacy disease classes that later became MONDO"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     bioregistry.schema:0000005 "0000598"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/diseaseclass/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000018 bioregistry:efo .
@@ -21443,6 +21449,7 @@ bioregistry:hog a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://bgee.org/bgee/bgee?page=documentation#sectionHomologyRelationships"^^xsd:string ;
     bioregistry.schema:0000005 "0000255"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/hog/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -21485,6 +21492,7 @@ bioregistry:icepo a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://download.nextprot.org/pub/current_release/controlled_vocabularies/"^^xsd:string ;
     bioregistry.schema:0000005 "0000002"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/icepo/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -22921,6 +22929,7 @@ bioregistry:peff a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://www.psidev.info/peff"^^xsd:string ;
     bioregistry.schema:0000005 "0001011"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/peff/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 true .
 
@@ -29137,6 +29146,7 @@ bioregistry:dhba a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://www.brainspan.org/"^^xsd:string ;
     bioregistry.schema:0000005 "10153"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/dhba/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -29163,7 +29173,8 @@ bioregistry:dmba a bioregistry.schema:0000001 ;
     dc:description "A controlled vocabulary to support the study of transcription in the developing mouse brain"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://developingmouse.brain-map.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "688"^^xsd:string ;
+    bioregistry.schema:0000005 "15567"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/dmba/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -29527,6 +29538,7 @@ bioregistry:hba a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://human.brain-map.org"^^xsd:string ;
     bioregistry.schema:0000005 "4005"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/hba/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -29735,6 +29747,7 @@ bioregistry:mba a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://mouse.brain-map.org"^^xsd:string ;
     bioregistry.schema:0000005 "688"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/mba/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -30211,6 +30224,7 @@ bioregistry:pba a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "https://www.blueprintnhpatlas.org/"^^xsd:string ;
     bioregistry.schema:0000005 "128011350"^^xsd:string ;
+    bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/pba/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
