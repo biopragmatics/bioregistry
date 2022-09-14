@@ -5478,7 +5478,7 @@ bioregistry:hgnc a bioregistry.schema:0000001 ;
     foaf:homepage "http://www.genenames.org"^^xsd:string ;
     bioregistry.schema:0000005 "16793"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^((HGNC|hgnc):)?\\d{1,5}$"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{1,5}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:hgnc.genefamily a bioregistry.schema:0000001 ;
@@ -6685,9 +6685,9 @@ bioregistry:lrg a bioregistry.schema:0000001 ;
         n2t:lrg,
         miriam:lrg ;
     foaf:homepage "http://www.lrg-sequence.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "LRG_1"^^xsd:string ;
+    bioregistry.schema:0000005 "1"^^xsd:string ;
     bioregistry.schema:0000006 "ftp://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml"^^xsd:string ;
-    bioregistry.schema:0000008 "^LRG_\\d+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:ma a bioregistry.schema:0000001 ;
@@ -7287,7 +7287,7 @@ bioregistry:mint a bioregistry.schema:0000001 ;
         prefixcommons:mint,
         miriam:mint,
         uniprot.resource:MINT ;
-    foaf:homepage "http://mint.bio.uniroma2.it/mint/"^^xsd:string ;
+    foaf:homepage "https://mint.bio.uniroma2.it"^^xsd:string ;
     bioregistry.schema:0000005 "MINT-10000"^^xsd:string ;
     bioregistry.schema:0000006 "http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^MINT\\-\\d{1,7}$"^^xsd:string ;
@@ -9323,7 +9323,7 @@ bioregistry:pharmgkb.gene a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:pharmgkb.pathways a bioregistry.schema:0000001 ;
-    rdfs:label "PharmGKB Pathways" ;
+    rdfs:label "PharmGKB ID" ;
     dc:description """The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains. \r
 PharmGKB Pathways are drug centric, gene based, interactive pathways which focus on candidate genes and gene groups and associated genotype and phenotype data of relevance for pharmacogenetic and pharmacogenomic studies."""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
@@ -11983,9 +11983,9 @@ bioregistry:vgnc a bioregistry.schema:0000001 ;
         miriam:vgnc,
         uniprot.resource:VGNC ;
     foaf:homepage "https://vertebrate.genenames.org"^^xsd:string ;
-    bioregistry.schema:0000005 "VGNC:3792"^^xsd:string ;
+    bioregistry.schema:0000005 "3792"^^xsd:string ;
     bioregistry.schema:0000006 "https://vertebrate.genenames.org/data/gene-symbol-report/#!/vgnc_id/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^((VGNC|vgnc):)?\\d{1,9}$"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{1,9}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:vhog a bioregistry.schema:0000001 ;
@@ -20110,7 +20110,7 @@ bioregistry:credit a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "Software"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-<https://bioregistry.io/registry/ctcae:> a bioregistry.schema:0000001 ;
+bioregistry:ctcae a bioregistry.schema:0000001 ;
     rdfs:label "Common Terminology Criteria for Adverse Events" ;
     dc:description "The Common Terminology Criteria for Adverse Events (CTCAE),[1] formerly called the Common Toxicity Criteria (CTC or NCI-CTC), are a set of criteria for the standardized classification of adverse effects of drugs used in cancer therapy. The CTCAE system is a product of the US National Cancer Institute (NCI)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
@@ -29193,7 +29193,7 @@ bioregistry:doi a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.doi.org/"^^xsd:string ;
     bioregistry.schema:0000005 "10.1101/2022.07.08.499378"^^xsd:string ;
     bioregistry.schema:0000006 "https://doi.org/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^10.\\d{2,9}/[-._;()/:A-Z0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000008 "^10.\\d{2,9}/.*$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:drugbank.category a bioregistry.schema:0000001 ;
@@ -32942,7 +32942,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cosmic.cell,
         bioregistry:cp,
         bioregistry:credit,
-        <https://bioregistry.io/registry/ctcae:>,
+        bioregistry:ctcae,
         bioregistry:datacite,
         bioregistry:dbo,
         bioregistry:dbvar.study,
@@ -39142,7 +39142,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:csp,
         bioregistry:cst,
         bioregistry:cst.ab,
-        <https://bioregistry.io/registry/ctcae:>,
+        bioregistry:ctcae,
         bioregistry:ctd.chemical,
         bioregistry:ctd.disease,
         bioregistry:ctd.gene,

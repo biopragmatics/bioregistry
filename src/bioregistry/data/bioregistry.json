@@ -899,11 +899,11 @@
   "afo": {
     "aberowl": {
       "description": "<p><strong>Allotrope Merged Ontology Suite</strong></p> <p>The AFO is an ontology suite that provides a standard vocabulary and semantic model for the representation of laboratory analytical processes. The AFO suite is aligned at the upper layer to the Basic Formal Ontology (BFO). The core domains modeled include: Equipment, Material, Process, and Results.</p> <p>This version of Allotrope Foundation Ontology (AFO) has been prepared specifically for publication on the NCBO platform.</p> <p>license: http://purl.allotrope.org/voc/creative-commons-attribution-license<br/> rights: http://purl.allotrope.org/voc/copyright<br/></p>  <p>Please get the latest version of AFO from http://purl.allotrope.org</p>",
-      "download_owl": "http://aber-owl.net/media/ontologies/AFO/28/afo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/AFO/30/afo.owl",
       "homepage": "http://purl.allotrope.org",
       "name": "Allotrope Merged Ontology Suite",
       "prefix": "AFO",
-      "version": "REC/2022/06"
+      "version": "REC/2022/09"
     },
     "bioportal": {
       "name": "Allotrope Merged Ontology Suite",
@@ -5138,7 +5138,7 @@
   "biolink": {
     "aberowl": {
       "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations",
-      "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/37/biolink.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/40/biolink.owl",
       "homepage": "https://biolink.github.io/biolink-model/",
       "name": "Biolink Model",
       "prefix": "BIOLINK",
@@ -9900,7 +9900,7 @@
   "chemrof": {
     "aberowl": {
       "description": "CHEMROF is an ontological framework for Chemical Entities Mixtures Reactions Ontological Framework. This OWL ontology is an automated Translation of the source LinkML schema, https://w3id.org/chemrof",
-      "download_owl": "http://aber-owl.net/media/ontologies/CHEMROF/1/chemrof.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/CHEMROF/2/chemrof.owl",
       "homepage": "https://w3id.org/chemrof",
       "name": "CHEMROF",
       "prefix": "CHEMROF"
@@ -35855,12 +35855,12 @@
   },
   "ito": {
     "aberowl": {
-      "description": "The Intelligence Task Ontology and Knowledge Graph (ITO) provides a comprehensive, curated model of artificial intelligence tasks, benchmarks and benchmark results, including the biomedical domain.",
-      "download_owl": "http://aber-owl.net/media/ontologies/ITO/16/ito.owl",
+      "description": "The Intelligence Task Ontology and Knowledge Graph (ITO) provides a comprehensive, curated model of artificial intelligence tasks, benchmarks and benchmark results, including the biomedical domain. NOTE: The version uploaded to BioPortal has all instances and benchmark data removed because of performance issues with the BioPortal class browser. Please refer to https://github.com/OpenBioLink/ITO/ for downloading the full version of the ontology and dataset.",
+      "download_owl": "http://aber-owl.net/media/ontologies/ITO/17/ito.owl",
       "homepage": "https://github.com/OpenBioLink/ITO/",
       "name": "Intelligence Task Ontology",
       "prefix": "ITO",
-      "version": "1.10 (PWC export dated 2022-07-30)"
+      "version": "1.12 (PWC export dated 2022-07-30) - internal, just a minor fix"
     },
     "bioportal": {
       "name": "Intelligence Task Ontology",
@@ -55100,7 +55100,15 @@
       }
     ],
     "wikidata": {
-      "prefix": "P7001"
+      "database": "Q18392556",
+      "database.homepage": "https://www.pharmgkb.org/",
+      "database.label": "PharmGKB",
+      "description": "unique identifier for an entity in the PharmGKB knowledgebase",
+      "homepage": "https://www.pharmgkb.org/",
+      "name": "PharmGKB ID",
+      "pattern": "PA[1-9]\\d*",
+      "prefix": "P7001",
+      "uri_format": "https://www.pharmgkb.org/accession/$1"
     }
   },
   "phenolexplorer": {

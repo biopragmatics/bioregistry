@@ -1458,7 +1458,7 @@
   },
   "atol": {
     "description": "ATOL (Animal Trait Ontology for Livestock) is an ontology of characteristics defining phenotypes of livestock in their environment (EOL). ATOL aims to: - provide a reference ontology of phenotypic traits of farm animals for the international scientificand educational - communities, farmers, etc.; - deliver this reference ontology in a language which can be used by computers in order to support database management, semantic analysis and modeling; - represent traits as generic as possible for livestock vertebrates; - make the ATOL ontology as operational as possible and closely related to measurement techniques; - structure the ontology in relation to animal production.",
-    "download_owl": "https://sicpa-web.cati.inrae.fr/ontologies/visualisation/ontologie/atol/creation_fichier_owl.php?filename=atol.owl",
+    "download_owl": "http://sicpa-web.cati.inrae.fr/ontologies/visualisation/ontologie/atol/creation_fichier_owl.php?filename=atol.owl",
     "example": "0002233",
     "homepage": "http://www.atol-ontology.com",
     "mappings": {
@@ -2248,7 +2248,7 @@
   },
   "biolink": {
     "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations.",
-    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/37/biolink.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/40/biolink.owl",
     "example": "Gene",
     "homepage": "https://biolink.github.io/biolink-model/",
     "mappings": {
@@ -4355,7 +4355,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "CHEMROF is an ontological framework for Chemical Entities Mixtures Reactions Ontological Framework. This OWL ontology is an automated Translation of the source LinkML schema, https://w3id.org/chemrof",
-    "download_owl": "http://aber-owl.net/media/ontologies/CHEMROF/1/chemrof.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/CHEMROF/2/chemrof.owl",
     "example": "FullySpecifiedAtom",
     "homepage": "https://chemkg.github.io/chemrof/",
     "mappings": {
@@ -6532,7 +6532,7 @@
     "preferred_prefix": "cst.ab",
     "uri_format": "http://www.cellsignal.com/products/$1.html"
   },
-  "ctcae:": {
+  "ctcae": {
     "appears_in": [
       "oae"
     ],
@@ -6553,7 +6553,7 @@
     },
     "name": "Common Terminology Criteria for Adverse Events",
     "pattern": "^E\\d+$",
-    "preferred_prefix": "ctcae:",
+    "preferred_prefix": "ctcae",
     "publications": [
       {
         "doi": null,
@@ -8001,7 +8001,11 @@
     "description": "The Digital Object Identifier System is for identifying content objects in the digital environment.",
     "example": "10.1101/2022.07.08.499378",
     "example_extras": [
-      "10.21/FQSQT4T3"
+      "10.21/FQSQT4T3",
+      "10.1333/s00897980202a",
+      "10.1139/z02-135",
+      "10.1016/j.foodchem.2008.11.065",
+      "10.1093/acprof:oso/9780195159561.001.1"
     ],
     "homepage": "https://www.doi.org/",
     "mappings": {
@@ -8016,7 +8020,7 @@
       "prefixcommons": "doi"
     },
     "name": "Digital Object Identifier",
-    "pattern": "^10.\\d{2,9}/[-._;()/:A-Z0-9]+$",
+    "pattern": "^10.\\d{2,9}/.*$",
     "preferred_prefix": "doi",
     "providers": [
       {
@@ -10147,7 +10151,7 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The EOL ontology describes environmental conditions of livestock farms. More specifically, it describes the feeding modalities, the environment, the structure of livestock farms and rearing systems.",
-    "download_owl": "https://sicpa-web.cati.inrae.fr/ontologies/visualisation/ontologie/atol/creation_fichier_owl.php?filename=eol.owl",
+    "download_owl": "http://sicpa-web.cati.inrae.fr/ontologies/visualisation/ontologie/atol/creation_fichier_owl.php?filename=eol.owl",
     "example": "0001927",
     "homepage": "http://www.atol-ontology.com",
     "mappings": {
@@ -14055,6 +14059,7 @@
     "uri_format": "http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1"
   },
   "hgnc": {
+    "banana": "HGNC",
     "description": "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene.  All approved symbols are stored in the HGNC database, and each symbol is unique. HGNC identifiers refer to records in the HGNC symbol database.",
     "download_owl": "http://aber-owl.net/media/ontologies/HGNC/1/hgnc.owl",
     "example": "16793",
@@ -14075,7 +14080,7 @@
       "wikidata": "P354"
     },
     "name": "HUGO Gene Nomenclature Committee",
-    "pattern": "^((HGNC|hgnc):)?\\d{1,5}$",
+    "pattern": "^\\d{1,5}$",
     "preferred_prefix": "hgnc",
     "providers": [
       {
@@ -16499,7 +16504,7 @@
   },
   "ito": {
     "description": "The Intelligence Task Ontology (ITO) provides a comprehensive map of machine intelligence tasks, as well as broader human intelligence or hybrid human/machine intelligence tasks.",
-    "download_owl": "http://aber-owl.net/media/ontologies/ITO/16/ito.owl",
+    "download_owl": "http://aber-owl.net/media/ontologies/ITO/17/ito.owl",
     "example": "ITO_01625",
     "homepage": "https://bioportal.bioontology.org/",
     "mappings": {
@@ -17804,8 +17809,10 @@
     "uri_format": "http://purl.obolibrary.org/obo/LPT_$1"
   },
   "lrg": {
+    "banana": "LRG",
+    "banana_peel": "_",
     "description": "A Locus Reference Genomic (LRG) is a manually curated record that contains stable genomic, transcript and protein reference sequences for reporting clinically relevant sequence variants. All LRGs are generated and maintained by the NCBI and EMBL-EBI.",
-    "example": "LRG_1",
+    "example": "1",
     "homepage": "http://www.lrg-sequence.org/",
     "mappings": {
       "biocontext": "LRG",
@@ -17813,7 +17820,7 @@
       "n2t": "lrg"
     },
     "name": "Locus Reference Genomic",
-    "pattern": "^LRG_\\d+$",
+    "pattern": "^\\d+$",
     "preferred_prefix": "lrg",
     "providers": [
       {
@@ -19248,7 +19255,7 @@
   "mint": {
     "description": "The Molecular INTeraction database (MINT) stores, in a structured format, information about molecular interactions by extracting experimental details from work published in peer-reviewed journals.",
     "example": "MINT-10000",
-    "homepage": "http://mint.bio.uniroma2.it/mint/",
+    "homepage": "https://mint.bio.uniroma2.it",
     "mappings": {
       "biocontext": "MINT",
       "edam": "2615",
@@ -25478,7 +25485,7 @@
       "prefixcommons": "pharmgkb.pathways",
       "wikidata": "P7001"
     },
-    "name": "PharmGKB Pathways",
+    "name": "PharmGKB ID",
     "pattern": "^PA\\d+$",
     "preferred_prefix": "pharmgkb.pathways",
     "publications": [
@@ -32774,8 +32781,9 @@
     "uri_format": "http://www.mgc.ac.cn/cgi-bin/VFs/genus.cgi?Genus=$1"
   },
   "vgnc": {
+    "banana": "VGNC",
     "description": "The Vertebrate Gene Nomenclature Committee (VGNC) is an extension of the established HGNC (HUGO Gene Nomenclature Committee) project that names human genes. VGNC is responsible for assigning standardized names to genes in vertebrate species that currently lack a nomenclature committee.",
-    "example": "VGNC:3792",
+    "example": "3792",
     "homepage": "https://vertebrate.genenames.org",
     "mappings": {
       "cellosaurus": "VGNC",
@@ -32785,7 +32793,7 @@
       "uniprot": "VGNC"
     },
     "name": "Vertebrate Gene Nomenclature Committee",
-    "pattern": "^((VGNC|vgnc):)?\\d{1,9}$",
+    "pattern": "^\\d{1,9}$",
     "preferred_prefix": "vgnc",
     "uri_format": "https://vertebrate.genenames.org/data/gene-symbol-report/#!/vgnc_id/$1"
   },

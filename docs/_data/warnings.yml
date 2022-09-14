@@ -62,7 +62,7 @@ wrong_patterns:
   miriam: ^did:[a-z0-9]+:[A-Za-z0-9.\-:]+$
   name: Decentralized Identifier
   prefix: did
-- correct: ^10.\d{2,9}/[-._;()/:A-Z0-9]+$
+- correct: ^10.\d{2,9}/.*$
   homepage: https://www.doi.org/
   miriam: ^(doi\:)?\d{2}\.\d{4}.*$
   name: Digital Object Identifier
@@ -152,6 +152,11 @@ wrong_patterns:
   miriam: ^GSSO:\d{6}$
   name: Gender, Sex, and Sexual Orientation Ontology
   prefix: gsso
+- correct: ^\d{1,5}$
+  homepage: http://www.genenames.org
+  miriam: ^((HGNC|hgnc):)?\d{1,5}$
+  name: HUGO Gene Nomenclature Committee
+  prefix: hgnc
 - correct: ^\d{7}$
   homepage: http://www.human-phenotype-ontology.org/
   miriam: ^HP:\d{7}$
@@ -167,6 +172,11 @@ wrong_patterns:
   miriam: (^LCL-\d+$)|(^LDC-\d+$)|(^ES-\d+$)|(^LSC-\d+$)|(^LPC-\d+$)
   name: LINCS Cell
   prefix: lincs.cell
+- correct: ^\d+$
+  homepage: http://www.lrg-sequence.org/
+  miriam: ^LRG_\d+$
+  name: Locus Reference Genomic
+  prefix: lrg
 - correct: ^\d+$
   homepage: https://github.com/obophenotype/mouse-anatomy-ontology
   miriam: ^MA:\d+$
@@ -382,3 +392,8 @@ wrong_patterns:
   miriam: ^VariO:\d+$
   name: Variation Ontology
   prefix: vario
+- correct: ^\d{1,9}$
+  homepage: https://vertebrate.genenames.org
+  miriam: ^((VGNC|vgnc):)?\d{1,9}$
+  name: Vertebrate Gene Nomenclature Committee
+  prefix: vgnc
