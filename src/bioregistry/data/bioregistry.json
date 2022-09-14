@@ -35803,6 +35803,9 @@
       "uri_format": "http://identifiers.org/imex/$1"
     },
     "example": "19210-3",
+    "example_extras": [
+      "19210"
+    ],
     "mappings": {
       "biocontext": "IMEX",
       "miriam": "imex",
@@ -35859,6 +35862,15 @@
       ],
       "uri_format": "http://www.ebi.ac.uk/intact/imex/main.xhtml?query=$1"
     },
+    "providers": [
+      {
+        "code": "intact.search",
+        "description": "Search page on IntAct",
+        "homepage": "https://www.ebi.ac.uk/intact",
+        "name": "IntAct Search",
+        "uri_format": "https://www.ebi.ac.uk/intact/search?query=IM-$1"
+      }
+    ],
     "publications": [
       {
         "doi": "10.1002/pmic.200700286",
@@ -35878,7 +35890,8 @@
         "nif": "0000-00447",
         "scr": "002805"
       }
-    }
+    },
+    "uri_format": "https://www.ebi.ac.uk/intact/imex/main.xhtml?query=IM-$1"
   },
   "img.gene": {
     "biocontext": {
