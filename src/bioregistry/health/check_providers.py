@@ -22,7 +22,8 @@ __all__ = [
     "main",
 ]
 
-HEALTH_PATH = DOCS_DATA.joinpath("health.yaml")
+HEALTH_TSV_PATH = DOCS_DATA.joinpath("health.tsv")
+TODAY = datetime.today().strftime("%Y-%m-%d")
 
 
 def _process(element: Tuple[str, str, str]) -> Tuple[str, str, str, bool, str, str]:
@@ -58,8 +59,13 @@ def _process(element: Tuple[str, str, str]) -> Tuple[str, str, str, bool, str, s
 @click.command()
 def main():
     """Run the provider health check script."""
-    rows = []
+    if HEALTH_TSV_PATH.is_file():
+        df = pd.read_csv(HEALTH_TSV_PATH, sep='\t')
+        rows = list(df.values)
+    else:
+        rows = []
 
+    xxx = []
     for prefix, resource in tqdm(
         sorted(bioregistry.read_registry().items()), desc="Preparing example URLs"
     ):
@@ -68,52 +74,41 @@ def main():
         example = resource.get_example()
         if example is None:
             continue
-
         url = bioregistry.get_iri(prefix, example, use_bioregistry_io=False)
         if url is None:
             continue
-
-        rows.append((prefix, example, url))
+        xxx.append((prefix, example, url))
 
     with logging_redirect_tqdm():
-        rv = thread_map(_process, rows, desc="Checking providers")
+        rv = thread_map(_process, xxx, desc="Checking providers")
 
     failed = sum(failed for _, _, _, failed, _, _ in rv)
     secho(f"{failed}/{len(rv)} ({failed / len(rv):.2%}) providers failed", fg="red", bold=True)
 
+    rows.extend(
+        (
+            TODAY,
+            prefix,
+            url,
+            msg,
+            context,
+        )
+        for prefix, _example, url, failed, msg, context in rv
+        if failed
+    )
+
     df = pd.DataFrame(
         columns=[
+            "date",
             "prefix",
-            "name",
-            "example",
             "url",
             "message",
             "context",
-            "contact_name",
-            "contact_email",
-            "contact_github",
         ],
-        data=[
-            (
-                prefix,
-                bioregistry.get_name(prefix),
-                example,
-                url,
-                msg,
-                context,
-                bioregistry.get_contact_name(prefix),
-                bioregistry.get_contact_email(prefix),
-                bioregistry.get_contact_github(prefix),
-            )
-            for prefix, example, url, failed, msg, context in rv
-            if failed
-        ],
+        data=rows,
     )
-    click.echo(df.to_markdown())
-    HEALTH_PATH.write_text(
-        yaml.safe_dump(df.to_dict(orient="records"), sort_keys=True, allow_unicode=True)
-    )
-    sys.exit(1 if 0 < failed else 0)
+    df.sort_values(["date", "prefix"], inplace=True)
+    df.to_csv(HEALTH_TSV_PATH, sep='\t', index=False)
 
 
 if __name__ == "__main__":
