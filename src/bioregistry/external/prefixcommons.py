@@ -27,7 +27,7 @@ GOOGLE_DOCUMENT_ID = "1c4DmQqTGS4ZvJU_Oq2MFnLk-3UUND6pWhuMoP8jgZhg"
 URL = f"https://docs.google.com/spreadsheets/d/{GOOGLE_DOCUMENT_ID}/export?format=tsv&gid=0"
 COLUMNS = [
     "prefix",  # "Preferred Prefix",
-    "Alt-prefix",
+    "synonyms",
     "Provider Base URI",
     "Alternative Base URI",
     "MIRIAM",
@@ -64,6 +64,7 @@ COLUMNS = [
 ]
 KEEP = {
     "prefix",
+    "synonyms",
     "bioportal",
     "miriam",
     "name",
@@ -109,7 +110,7 @@ def _process_row(line: str):
         if not rv.get(key):
             return None, None
 
-    for key in ["keywords", "pubmed_ids"]:
+    for key in ["keywords", "pubmed_ids", "synonyms"]:
         values = rv.get(key)
         if values:
             rv[key] = [value.strip() for value in values.split(",")]

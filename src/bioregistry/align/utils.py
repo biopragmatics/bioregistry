@@ -42,6 +42,8 @@ class Aligner(ABC):
     #: Set this if there's another part of the data besides the ID that should be matched
     alt_key_match: ClassVar[Optional[str]] = None
 
+    alt_keys_match: ClassVar[Optional[str]] = None
+
     #: Set to true if you don't want to align to deprecated resources
     skip_deprecated: ClassVar[bool] = False
 
@@ -99,6 +101,12 @@ class Aligner(ABC):
                 alt_match = external_entry.get(self.alt_key_match)
                 if alt_match:
                     bioregistry_id = self.manager.normalize_prefix(alt_match)
+
+            if bioregistry_id is None and self.alt_keys_match:
+                for alt_match in external_entry.get(self.alt_keys_match, []):
+                    bioregistry_id = self.manager.normalize_prefix(alt_match)
+                    if bioregistry_id:
+                        break
 
             # A lexical match was possible
             if bioregistry_id is not None:
