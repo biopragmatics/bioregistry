@@ -84,13 +84,22 @@ class OntoPortalClient:
     def _preprocess(self, record):
         record.pop("@context", None)
         prefix = record["acronym"]
-        url = f'{self.base_url}/ontologies/{prefix}/latest_submission'
-        res = self.query(url)
+        url = f"{self.base_url}/ontologies/{prefix}/latest_submission"
+        res = self.query(url, display="all")
         if res.status_code != 200:
-            tqdm.write(f"{self.metaprefix}:{prefix} had issue getting submission details: {res.text}")
+            tqdm.write(
+                f"{self.metaprefix}:{prefix} had issue getting submission details: {res.text}"
+            )
             return record
         res_json = res.json()
-        for key in ["homepage", "publication", "version", "description"]:
+        for key in [
+            "homepage",
+            "publication",
+            "version",
+            "description",
+            "exampleIdentifier",
+            "repository",
+        ]:
             value = res_json.get(key)
             if value:
                 record[key] = value
@@ -110,15 +119,21 @@ class OntoPortalClient:
         prefix = entry["acronym"]
         rv = {
             "prefix": prefix,
-            "name": entry["name"],
-            "description": entry.get("description"),
-            "contact": entry.get("contact", {}).get("email"),
-            "contact.label": entry.get("contact", {}).get("name"),
-            "homepage": entry.get("homepage"),
-            "version": entry.get("version"),
-            "publication": entry.get("publication"),
+            "name": entry["name"].strip(),
+            "description": (entry.get("description") or "")
+            .replace("\n", " ")
+            .replace("\r\n", " ")
+            .replace("  ", " ")
+            .strip(),
+            "contact": {k: v.strip() for k, v in (entry.get("contact") or {}).items()},
+            "homepage": (entry.get("homepage") or "").strip(),
+            "version": (entry.get("version") or "").strip(),
+            "publication": (entry.get("publication") or "").strip(),
+            "repository": (entry.get("repository") or "").strip(),
+            "example_uri": (entry.get("exampleIdentifier") or "").strip(),
+            "license": (entry.get("license") or "").strip(),
         }
-        return {k: v for k, v in rv.items() if v is not None}
+        return {k: v for k, v in rv.items() if v}
 
 
 bioportal_client = OntoPortalClient(
@@ -155,6 +170,6 @@ def get_agroportal(force_download: bool = False):
 
 
 if __name__ == "__main__":
-    print("AgroPortal has", len(get_agroportal(force_download=True)))  # noqa:T201
     print("EcoPortal has", len(get_ecoportal(force_download=True)))  # noqa:T201
+    print("AgroPortal has", len(get_agroportal(force_download=True)))  # noqa:T201
     print("BioPortal has", len(get_bioportal(force_download=True)))  # noqa:T201

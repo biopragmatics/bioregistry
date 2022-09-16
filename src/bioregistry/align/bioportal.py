@@ -27,7 +27,7 @@ class OntoPortalAligner(Aligner):
         return [
             external_entry["name"].strip(),
             external_entry.get("homepage", "").strip(),
-            external_entry.get("description", "").replace("\n", "\\n").replace("  ", " ").strip(),
+            external_entry.get("description", ""),
         ]
 
 
@@ -53,6 +53,6 @@ class AgroPortalAligner(OntoPortalAligner):
 
 
 if __name__ == "__main__":
-    AgroPortalAligner.align()
     EcoPortalAligner.align()
+    AgroPortalAligner.align()
     BioPortalAligner.align()
