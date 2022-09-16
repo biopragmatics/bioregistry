@@ -25,11 +25,13 @@ class PrefixCommonsAligner(Aligner):
     getter = get_prefixcommons
     curation_header = (
         "name",
+        "synonyms",
         "description",
         "example",
         "pattern",
         "uri_format",
     )
+    alt_keys_match = "synonyms"
     # TODO consider updating
     include_new = False
 
@@ -41,6 +43,7 @@ class PrefixCommonsAligner(Aligner):
         """Prepare curation rows for unaligned Prefix Commons registry entries."""
         return [
             external_entry["name"],
+            ", ".join(external_entry.get("synonyms", [])),
             external_entry.get("description", "").replace('"', ""),
             external_entry.get("example", ""),
             external_entry.get("pattern", ""),

@@ -473,6 +473,9 @@
       "pubmed_ids": [
         "16925834"
       ],
+      "synonyms": [
+        "aceview_wormgenes"
+      ],
       "uri_format": "http://www.ncbi.nlm.nih.gov/IEB/Research/Acembly/av.cgi?db=[?species_database]&c=Gene&l=$1"
     },
     "publications": [
@@ -3134,6 +3137,10 @@
       "name": "Anatomical Therapeutic Chemical",
       "pattern": "^\\w(\\d+)?(\\w{1,2})?(\\d+)?$",
       "prefix": "atc",
+      "synonyms": [
+        "atc",
+        "uatc"
+      ],
       "uri_format": "http://www.whocc.no/atc_ddd_index/?code=$1"
     },
     "synonyms": [
@@ -3981,7 +3988,8 @@
       "biocontext": "BDGP.EST",
       "miriam": "bdgp.est",
       "n2t": "bdgp.est",
-      "ncbi": "BDGP_EST"
+      "ncbi": "BDGP_EST",
+      "prefixcommons": "flybase.est"
     },
     "miriam": {
       "deprecated": false,
@@ -4010,6 +4018,20 @@
       "homepage": "http://www.fruitfly.org/EST/index.shtml",
       "name": "Berkeley Drosophila Genome Project EST database",
       "prefix": "BDGP_EST"
+    },
+    "prefixcommons": {
+      "description": "The goals of the Drosophila Genome Center are to finish the sequence of the euchromatic genome of Drosophila melanogaster to high quality and to generate and maintain biological annotations of this sequence.",
+      "example": "123456",
+      "homepage": "http://www.fruitfly.org/EST/index.shtml",
+      "keywords": [
+        "genome"
+      ],
+      "name": "Berkeley Drosophila Genome Project EST database",
+      "pattern": "^\\d+$",
+      "prefix": "flybase.est",
+      "synonyms": [
+        "bdgp_est"
+      ]
     }
   },
   "bdgp.insertion": {
@@ -4022,7 +4044,8 @@
     "mappings": {
       "biocontext": "BDGP.INSERTION",
       "miriam": "bdgp.insertion",
-      "n2t": "bdgp.insertion"
+      "n2t": "bdgp.insertion",
+      "prefixcommons": "bdgp"
     },
     "miriam": {
       "deprecated": false,
@@ -4044,6 +4067,24 @@
       "namespaceEmbeddedInLui": false,
       "pattern": "^\\w+$",
       "prefix": "bdgp.insertion",
+      "uri_format": "http://flypush.imgen.bcm.tmc.edu/pscreen/details.php?line=$1"
+    },
+    "prefixcommons": {
+      "description": "BDGP gene disruption collection provides a public resource of gene disruptions of Drosophila genes using a single transposable element.",
+      "example": "KG09531",
+      "keywords": [
+        "gene",
+        "sequence"
+      ],
+      "name": "Drosphila Gene Disruption Database",
+      "pattern": "^\\w+$",
+      "prefix": "bdgp",
+      "pubmed_ids": [
+        "15238527"
+      ],
+      "synonyms": [
+        "BDGP.insertion"
+      ],
       "uri_format": "http://flypush.imgen.bcm.tmc.edu/pscreen/details.php?line=$1"
     }
   },
@@ -5055,6 +5096,9 @@
       "pubmed_ids": [
         "16381927"
       ],
+      "synonyms": [
+        "grid"
+      ],
       "uri_format": "http://thebiogrid.org/$1"
     },
     "publications": [
@@ -5299,6 +5343,10 @@
       "pubmed_ids": [
         "16381960"
       ],
+      "synonyms": [
+        "biomodelsdatabase",
+        "biomodels.db"
+      ],
       "uri_format": "http://www.ebi.ac.uk/biomodels-main/$1"
     },
     "synonyms": [
@@ -5426,7 +5474,10 @@
       ],
       "name": "Kinetic Simulation Algorithm Ontology",
       "pattern": "^KISAO_\\d+$",
-      "prefix": "kisao"
+      "prefix": "kisao",
+      "synonyms": [
+        "biomodels.kisao"
+      ]
     },
     "synonyms": [
       "kisao"
@@ -5526,7 +5577,10 @@
       ],
       "name": "Terminology for the Description of Dynamics",
       "pattern": "^TEDDY_\\d{7}$",
-      "prefix": "teddy"
+      "prefix": "teddy",
+      "synonyms": [
+        "biomodels.teddy"
+      ]
     },
     "synonyms": [
       "teddy"
@@ -6173,6 +6227,9 @@
       "pubmed_ids": [
         "19854944"
       ],
+      "synonyms": [
+        "bsid"
+      ],
       "uri_format": "http://www.ncbi.nlm.nih.gov/biosystems/$1"
     },
     "publications": [
@@ -6592,6 +6649,9 @@
       "prefix": "bold",
       "pubmed_ids": [
         "18784790"
+      ],
+      "synonyms": [
+        "bold.taxonomy"
       ],
       "uri_format": "http://www.barcodinglife.com/views/taxbrowser.php?taxid=$1"
     }
@@ -7062,7 +7122,11 @@
       ],
       "name": "BRENDA Tissue Ontology",
       "pattern": "^BTO:\\d{7}$",
-      "prefix": "bto"
+      "prefix": "bto",
+      "synonyms": [
+        "brendatissueontology",
+        "obo.bto"
+      ]
     },
     "synonyms": [
       "BTO"
@@ -7638,6 +7702,9 @@
       "name": "CAS: A Divison of the American Chemical Society",
       "pattern": "^\\d{1,7}\\-\\d{2}\\-\\d$",
       "prefix": "cas",
+      "synonyms": [
+        "chemicalabstractscas"
+      ],
       "uri_format": "http://commonchemistry.org/ChemicalDetail.aspx?ref=$1"
     },
     "synonyms": [
@@ -7753,6 +7820,10 @@
       "prefix": "cath",
       "pubmed_ids": [
         "9309224"
+      ],
+      "synonyms": [
+        "cath.domain",
+        "cath.superfamily"
       ],
       "uri_format": "http://www.cathdb.info/cathnode/$1"
     },
@@ -8275,6 +8346,9 @@
       "prefix": "cco",
       "pubmed_ids": [
         "19480664"
+      ],
+      "synonyms": [
+        "cell cycle ontology"
       ]
     }
   },
@@ -8711,6 +8785,9 @@
       "name": "The Cell: An Image Library",
       "pattern": "^\\d+$",
       "prefix": "cellimage",
+      "synonyms": [
+        "cellimage"
+      ],
       "uri_format": "http://cellimagelibrary.org/images/$1"
     }
   },
@@ -9408,6 +9485,10 @@
       "pubmed_ids": [
         "23180789"
       ],
+      "synonyms": [
+        "obo.chebi (miriam)",
+        "atp_chebi"
+      ],
       "uri_format": "http://www.ebi.ac.uk/chebi/searchId.do?chebiId=$1"
     },
     "providers": [
@@ -9505,6 +9586,9 @@
       "name": "chEMBL",
       "pattern": "^\\d+$",
       "prefix": "chembl",
+      "synonyms": [
+        "chembldb"
+      ],
       "uri_format": "https://www.ebi.ac.uk/chembldb/index.php/compound/inspect/$1"
     },
     "re3data": {
@@ -11309,6 +11393,9 @@
       "prefix": "clo",
       "pubmed_ids": [
         "15693950"
+      ],
+      "synonyms": [
+        "obo.clo"
       ]
     },
     "publications": [
@@ -15576,7 +15663,8 @@
     "mappings": {
       "biocontext": "DBG2INTRONS",
       "miriam": "dbg2introns",
-      "n2t": "dbg2introns"
+      "n2t": "dbg2introns",
+      "prefixcommons": "mgiid"
     },
     "miriam": {
       "deprecated": false,
@@ -15599,6 +15687,24 @@
       "pattern": "^\\w{1,2}\\.(\\w{1,2}\\.)?[A-Za-z0-9]+$",
       "prefix": "dbg2introns",
       "uri_format": "http://webapps2.ucalgary.ca/~groupii/cgi-bin/intron.cgi?name=$1"
+    },
+    "prefixcommons": {
+      "description": "Many newly sequenced bacterial group II introns are incorrectly identified or annotated. A major goal of this database is to be a resource in helping to identify and catalog group II introns in the databases.",
+      "example": "Cu.me.I1",
+      "homepage": "http://www.fp.ucalgary.ca/group2introns/",
+      "keywords": [
+        "DNA"
+      ],
+      "name": "Mobile group II introns database",
+      "pattern": "^\\w{1,2}\\.(\\w{1,2}\\.)?[A-Za-z0-9]+$",
+      "prefix": "mgiid",
+      "pubmed_ids": [
+        "22080509"
+      ],
+      "synonyms": [
+        "dbg2introns"
+      ],
+      "uri_format": "http://www.fp.ucalgary.ca/group2introns/$1.htm"
     }
   },
   "dbgap": {
@@ -16223,7 +16329,10 @@
       ],
       "name": "Dictyostelium discoideum anatomy",
       "pattern": "^DDANAT_\\d+$",
-      "prefix": "ddanat"
+      "prefix": "ddanat",
+      "synonyms": [
+        "ddana"
+      ]
     }
   },
   "ddinter.drug": {
@@ -17928,6 +18037,12 @@
       "name": "Human disease ontology",
       "pattern": "^DOID\\:\\d+$",
       "prefix": "do",
+      "synonyms": [
+        "doid",
+        "diseaseontology",
+        "obo.do",
+        "human disease ontology"
+      ],
       "uri_format": "http://disease-ontology.org/term/$1"
     },
     "providers": [
@@ -19618,6 +19733,9 @@
       "name": "Evidence Code Ontology",
       "pattern": "^ECO:\\d{7}$",
       "prefix": "eco",
+      "synonyms": [
+        "evidence codes ontologyobo.eco"
+      ],
       "uri_format": "http://www.ebi.ac.uk/ontology-lookup/?termId=$1"
     }
   },
@@ -20200,6 +20318,9 @@
       "name": "Bioinformatics operations, types of data, data formats and topics",
       "pattern": "^EDAM_(data|topic)\\:\\d{4}$",
       "prefix": "edam",
+      "synonyms": [
+        "edam"
+      ],
       "uri_format": "http://www.ebi.ac.uk/ontology-lookup/?termId=$1"
     },
     "repository": "https://github.com/edamontology/edamontology",
@@ -20766,7 +20887,10 @@
       ],
       "name": "Human developmental anatomy, abstract version",
       "pattern": "^EHDAA_\\d+$",
-      "prefix": "ehdaa"
+      "prefix": "ehdaa",
+      "synonyms": [
+        "hdaa"
+      ]
     }
   },
   "ehdaa2": {
@@ -21850,6 +21974,9 @@
       "name": "Ensembl Plants",
       "pattern": "^\\w+$",
       "prefix": "ensembl.plant",
+      "synonyms": [
+        "ensembl_plants"
+      ],
       "uri_format": "http://plants.ensembl.org/[?species_name]/Gene/Summary?g=$1"
     }
   },
@@ -21898,6 +22025,9 @@
       "name": "Ensembl Protists",
       "pattern": "^\\w+$",
       "prefix": "ensembl.protist",
+      "synonyms": [
+        "ensembl_protists"
+      ],
       "uri_format": "http://protists.ensembl.org/[?species_name]/Gene/Summary?g=$1"
     }
   },
@@ -22904,7 +23034,8 @@
     },
     "mappings": {
       "biocontext": "EV",
-      "obofoundry": "ev"
+      "obofoundry": "ev",
+      "prefixcommons": "evoc"
     },
     "obofoundry": {
       "contact": "evoc@sanbi.ac.za",
@@ -22913,6 +23044,26 @@
       "homepage": "http://www.evocontology.org/",
       "name": "eVOC (Expressed Sequence Annotation for Humans)",
       "prefix": "ev"
+    },
+    "prefixcommons": {
+      "bioportal": "1013",
+      "description": "Provides structured controlled vocabularies for the annotation of expressed sequences with respect to anatomical system, cell type, developmental stage, experimental technique, microarray platform, pathology, pooling, tissue preparation and treatment.",
+      "example": "EV_0100011",
+      "homepage": "http://www.evocontology.org/",
+      "keywords": [
+        "obo",
+        "anatomy",
+        "cell",
+        "development",
+        "experiment"
+      ],
+      "name": "eVOC (Expressed Sequence Annotation for Humans)",
+      "pattern": "^EV_\\d+$",
+      "prefix": "evoc",
+      "synonyms": [
+        "ev"
+      ],
+      "uri_format": "http://www.evocontology.org/site/Main/BrowseEvoc?x_termid=$1"
     },
     "references": [
       "https://twitter.com/Bgeedb/status/1350124337815281664"
@@ -23553,7 +23704,10 @@
       ],
       "name": "Biological imaging methods",
       "pattern": "^FBbi_\\d+$",
-      "prefix": "fbbi"
+      "prefix": "fbbi",
+      "synonyms": [
+        "fbbi.root"
+      ]
     },
     "synonyms": [
       "FBbi"
@@ -23694,7 +23848,11 @@
       ],
       "name": "Drosophila gross anatomy",
       "pattern": "^FBbt_\\d{8}$",
-      "prefix": "fbbt"
+      "prefix": "fbbt",
+      "synonyms": [
+        "fly_anatomy",
+        "fbbt_root"
+      ]
     },
     "synonyms": [
       "FBbt",
@@ -23890,7 +24048,10 @@
       ],
       "name": "Drosophila development",
       "pattern": "^FBdv_\\d{8}$",
-      "prefix": "fbdv"
+      "prefix": "fbdv",
+      "synonyms": [
+        "fbdv.root"
+      ]
     },
     "synonyms": [
       "FBdv"
@@ -24566,6 +24727,9 @@
       "name": "Drosophila genome database",
       "pattern": "^FB\\w{2}\\d{7}$",
       "prefix": "flybase",
+      "synonyms": [
+        "fb"
+      ],
       "uri_format": "http://flybase.org/reports/$1.html"
     },
     "re3data": {
@@ -24773,6 +24937,10 @@
       "prefix": "fma",
       "pubmed_ids": [
         "17271570"
+      ],
+      "synonyms": [
+        "obo.fma",
+        "fmaid"
       ]
     },
     "publications": [
@@ -26525,6 +26693,12 @@
       "name": "GenBank",
       "pattern": "^\\w+$",
       "prefix": "genbank",
+      "synonyms": [
+        "genbank_nucl_gi",
+        "genbank_protein_gi",
+        "gb",
+        "GenPept"
+      ],
       "uri_format": "http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=$1"
     },
     "re3data": {
@@ -26610,6 +26784,9 @@
       "prefix": "genecards",
       "pubmed_ids": [
         "20689021"
+      ],
+      "synonyms": [
+        "genecard"
       ],
       "uri_format": "http://www.genecards.org/cgi-bin/carddisp.pl?gene=$1"
     },
@@ -27160,7 +27337,8 @@
     "mappings": {
       "biocontext": "GENPROP",
       "miriam": "genprop",
-      "n2t": "genprop"
+      "n2t": "genprop",
+      "prefixcommons": "jcvi.genprop"
     },
     "miriam": {
       "deprecated": false,
@@ -27183,6 +27361,22 @@
       "pattern": "^GenProp\\d+$",
       "prefix": "genprop",
       "uri_format": "https://www.ebi.ac.uk/interpro/genomeproperties/#$1"
+    },
+    "prefixcommons": {
+      "description": "The Genome Properties system consists of a suite of \"Properties\" which are carefully defined attributes of prokaryotic organisms whose status can be described by numerical values or controlled vocabulary terms for individual completely sequenced genomes.",
+      "example": "GenProp0151",
+      "homepage": "http://cmr.jcvi.org/tigr-scripts/CMR/shared/GenomePropertiesHomePage.cgi",
+      "keywords": [
+        "classification",
+        "genome"
+      ],
+      "name": "Genome Properties database at the J. Craig Venter Institute",
+      "pattern": "^GenProp\\d+$",
+      "prefix": "jcvi.genprop",
+      "synonyms": [
+        "genprop"
+      ],
+      "uri_format": "http://cmr.jcvi.org/tigr-scripts/CMR/shared/GenomePropDefinition.cgi?prop_acc=$1"
     }
   },
   "geo": {
@@ -28650,6 +28844,11 @@
         "14681407",
         "10802651"
       ],
+      "synonyms": [
+        "gene_ontology",
+        "gene ontology",
+        "obo.go"
+      ],
       "uri_format": "http://amigo.geneontology.org/cgi-bin/amigo/term-details.cgi?term=GO:$1"
     },
     "synonyms": [
@@ -28812,6 +29011,9 @@
       "prefix": "goa",
       "pubmed_ids": [
         "18957448"
+      ],
+      "synonyms": [
+        "goa-projects"
       ],
       "uri_format": "http://www.ebi.ac.uk/QuickGO/GTerm?id=$1"
     },
@@ -30606,7 +30808,8 @@
     "mappings": {
       "biocontext": "HCVDB",
       "miriam": "hcvdb",
-      "n2t": "hcvdb"
+      "n2t": "hcvdb",
+      "prefixcommons": "euhcvdb"
     },
     "miriam": {
       "deprecated": false,
@@ -30630,7 +30833,25 @@
       "prefix": "hcvdb",
       "uri_format": "https://euhcvdb.ibcp.fr/euHCVdb/do/displayHCVEntry?primaryAC=$1"
     },
-    "name": "Hepatitis C Virus Database"
+    "name": "Hepatitis C Virus Database",
+    "prefixcommons": {
+      "description": "The euHCVdb is mainly oriented towards protein sequence, structure and function analyses and structural biology of Hepatitis C Virus.",
+      "example": "M58335",
+      "homepage": "http://euhcvdb.ibcp.fr/euHCVdb/",
+      "keywords": [
+        "protein"
+      ],
+      "name": "European Hepatitis C Virus database",
+      "pattern": "^M\\d{5}$",
+      "prefix": "euhcvdb",
+      "pubmed_ids": [
+        "17142229"
+      ],
+      "synonyms": [
+        "hcvdb"
+      ],
+      "uri_format": "http://euhcvdb.ibcp.fr/euHCVdb/do/displayHCVEntry?primaryAC=$1"
+    }
   },
   "hdr": {
     "biocontext": {
@@ -30677,6 +30898,9 @@
       "name": "Homeodomain Resource Database",
       "pattern": "^\\d+$",
       "prefix": "hdr",
+      "synonyms": [
+        "homeodb"
+      ],
       "uri_format": "http://research.nhgri.nih.gov/homeodomain/?mode=view&view=proteins&id=$1"
     }
   },
@@ -30843,6 +31067,9 @@
       "name": "HUGO Gene Nomenclature Committee",
       "pattern": "^\\d+$",
       "prefix": "hgnc",
+      "synonyms": [
+        "hugo"
+      ],
       "uri_format": "http://www.genenames.org/data/hgnc_data.php?hgnc_id=$1"
     },
     "providers": [
@@ -31474,6 +31701,9 @@
       "pubmed_ids": [
         "20624719"
       ],
+      "synonyms": [
+        "homd.seq"
+      ],
       "uri_format": "http://www.homd.org/modules.php?op=modload&name=GenomeList&file=index&link=detailinfo&seqid=$1"
     },
     "publications": [
@@ -31532,6 +31762,9 @@
       "prefix": "homd.taxon",
       "pubmed_ids": [
         "20624719"
+      ],
+      "synonyms": [
+        "homd.taxon"
       ],
       "uri_format": "http://www.homd.org/modules.php?op=modload&name=HOMD&file=index&oraltaxonid=$1&view=dynamic"
     },
@@ -33184,7 +33417,11 @@
       "example": "M-8272/O",
       "name": "International Classification of Diseases for Oncology",
       "pattern": "^[A-Z0-9]+\\/[0-9]+$",
-      "prefix": "icdo"
+      "prefix": "icdo",
+      "synonyms": [
+        "icdo3",
+        "icd-o"
+      ]
     },
     "synonyms": [
       "ICD-O",
@@ -34459,6 +34696,9 @@
       "prefix": "imgt.ligm",
       "pubmed_ids": [
         "16381979"
+      ],
+      "synonyms": [
+        "imgt_ligmdb"
       ]
     },
     "publications": [
@@ -34505,6 +34745,9 @@
       "name": "MoleculeRole Ontology (INOH Protein name/family name ontology)",
       "pattern": "^IMR_\\d+$",
       "prefix": "imr",
+      "synonyms": [
+        "molecule_role"
+      ],
       "uri_format": "http://www.inoh.org/ontology-viewer/cgi-bin/InohOVAttr.php?type=IMR&id=$1"
     }
   },
@@ -34929,6 +35172,10 @@
         "17202161",
         "2326192",
         "12436968"
+      ],
+      "synonyms": [
+        "ddbj/embl/genbank",
+        "insd"
       ]
     },
     "publications": [
@@ -35435,6 +35682,9 @@
       "prefix": "interpro",
       "pubmed_ids": [
         "15608177"
+      ],
+      "synonyms": [
+        "ipr"
       ],
       "uri_format": "http://www.ebi.ac.uk/interpro/IEntry?ac=$1"
     },
@@ -35998,6 +36248,9 @@
       "name": "G protein-coupled receptors database",
       "pattern": "^\\d+$",
       "prefix": "iuphar.family",
+      "synonyms": [
+        "iuphar.gpcr"
+      ],
       "uri_format": "http://www.iuphar-db.org/DATABASE/FamilyIntroductionForward?familyId=$1"
     },
     "synonyms": [
@@ -36662,6 +36915,10 @@
       "pubmed_ids": [
         "22700311"
       ],
+      "synonyms": [
+        "cpd",
+        "kegg.compounds"
+      ],
       "uri_format": "http://www.genome.jp/dbget-bin/www_bget?cpd:$1"
     },
     "publications": [
@@ -36755,6 +37012,10 @@
       "name": "KEGG Disease",
       "pattern": "^H\\d+$",
       "prefix": "kegg.disease",
+      "synonyms": [
+        "ds",
+        "kegg.diseases"
+      ],
       "uri_format": "http://www.genome.jp/dbget-bin/www_bget?ds:$1"
     }
   },
@@ -36814,6 +37075,10 @@
       "prefix": "kegg.drug",
       "pubmed_ids": [
         "16381885"
+      ],
+      "synonyms": [
+        "dr",
+        "kegg.drugs"
       ],
       "uri_format": "http://www.genome.jp/dbget-bin/www_bget?dr:$1"
     },
@@ -36914,6 +37179,7 @@
       "biolink": "KEGG.GENE",
       "miriam": "kegg.genes",
       "n2t": "kegg.genes",
+      "prefixcommons": "kegg.gene",
       "wikidata": "P665"
     },
     "miriam": {
@@ -36939,6 +37205,27 @@
       "uri_format": "http://www.kegg.jp/entry/$1"
     },
     "part_of": "kegg",
+    "prefixcommons": {
+      "description": "KEGG GENES is a collection of gene catalogs for all complete genomes generated from publicly available resources, mostly NCBI RefSeq. They are subject to SSDB computation and KO assignment (gene annotation) by KOALA tool",
+      "example": "syn:ssr3451",
+      "homepage": "http://www.genome.jp/kegg/genes.html",
+      "keywords": [
+        "gene",
+        "DNA",
+        "protein"
+      ],
+      "name": "KEGG Genes",
+      "pattern": "^\\w+:[\\w\\d\\.-]*$",
+      "prefix": "kegg.gene",
+      "pubmed_ids": [
+        "16381885"
+      ],
+      "synonyms": [
+        "gene",
+        "kegg.genes"
+      ],
+      "uri_format": "http://www.genome.jp/dbget-bin/www_bget?[?species]:$1"
+    },
     "wikidata": {
       "prefix": "P665"
     }
@@ -36990,6 +37277,10 @@
       "prefix": "kegg.genome",
       "pubmed_ids": [
         "22080510"
+      ],
+      "synonyms": [
+        "gn",
+        "kegg.genomes"
       ],
       "uri_format": "http://www.genome.jp/dbget-bin/www_bget?gn:$1"
     },
@@ -37065,6 +37356,10 @@
       "pubmed_ids": [
         "16014746"
       ],
+      "synonyms": [
+        "gl",
+        "kegg.glycans"
+      ],
       "uri_format": "http://www.genome.jp/dbget-bin/www_bget?gl:$1"
     },
     "publications": [
@@ -37137,6 +37432,9 @@
       "prefix": "kegg.metagenome",
       "pubmed_ids": [
         "22080510"
+      ],
+      "synonyms": [
+        "kegg.metagenomes"
       ],
       "uri_format": "http://www.genome.jp/kegg-bin/show_organism?org=$1"
     },
@@ -37232,6 +37530,9 @@
       "name": "KEGG Orthology",
       "pattern": "^K\\d+$",
       "prefix": "kegg.orthology",
+      "synonyms": [
+        "ko"
+      ],
       "uri_format": "http://www.genome.jp/dbget-bin/www_bget?ko:$1"
     }
   },
@@ -37306,6 +37607,10 @@
       "prefix": "kegg.pathway",
       "pubmed_ids": [
         "22700311"
+      ],
+      "synonyms": [
+        "path",
+        "kegg.pathways"
       ],
       "uri_format": "http://www.genome.jp/dbget-bin/www_bget?map$1"
     },
@@ -37419,6 +37724,10 @@
       "prefix": "kegg.reaction",
       "pubmed_ids": [
         "22700311"
+      ],
+      "synonyms": [
+        "rn",
+        "kegg.reactions"
       ],
       "uri_format": "http://www.genome.jp/dbget-bin/www_bget?rn:$1"
     },
@@ -37790,7 +38099,8 @@
     "mappings": {
       "biocontext": "LGIC",
       "miriam": "lgic",
-      "n2t": "lgic"
+      "n2t": "lgic",
+      "prefixcommons": "lgicdb"
     },
     "miriam": {
       "deprecated": false,
@@ -37813,6 +38123,26 @@
       "pattern": "^\\w+$",
       "prefix": "lgic",
       "uri_format": "https://www.ebi.ac.uk/compneur-srv/LGICdb/HTML/$1.php"
+    },
+    "prefixcommons": {
+      "description": "The Ligand-Gated Ion Channel database provides nucleic and proteic sequences of the subunits of ligand-gated ion channels. These transmembrane proteins can exist under different conformations, at least one of which forms a pore through the membrane connecting two neighbouring compartments. The database can be used to generate multiple sequence alignments from selected subunits, and gives the atomic coordinates of subunits, or portion of subunits, where available.",
+      "example": "5HT3Arano",
+      "homepage": "http://www.ebi.ac.uk/compneur-srv/LGICdb/",
+      "keywords": [
+        "gene",
+        "protein",
+        "sequence"
+      ],
+      "name": "Ligand-Gated Ion Channel database",
+      "pattern": "^\\w+$",
+      "prefix": "lgicdb",
+      "pubmed_ids": [
+        "9847222"
+      ],
+      "synonyms": [
+        "lgic"
+      ],
+      "uri_format": "http://www.ebi.ac.uk/compneur-srv/LGICdb/HTML/$1.php"
     }
   },
   "licebase": {
@@ -39087,6 +39417,10 @@
       "pubmed_ids": [
         "18769488"
       ],
+      "synonyms": [
+        "maizegdb.locus",
+        "maizegdb_qtl"
+      ],
       "uri_format": "http://www.maizegdb.org/cgi-bin/displaylocusrecord.cgi?id=$1"
     },
     "publications": [
@@ -39458,6 +39792,9 @@
       "prefix": "matrixdb",
       "pubmed_ids": [
         "19147664"
+      ],
+      "synonyms": [
+        "matrixdb.association"
       ],
       "uri_format": "http://matrixdb.ibcp.fr/cgi-bin/model/report/default?name=$1&class=Association"
     },
@@ -40260,7 +40597,12 @@
       ],
       "name": "Medical Subject Headings",
       "pattern": "^[A-Za-z0-9]+$",
-      "prefix": "mesh"
+      "prefix": "mesh",
+      "synonyms": [
+        "msh",
+        "bionto.mesh",
+        "mesh_cui"
+      ]
     },
     "synonyms": [
       "MESH",
@@ -41370,6 +41712,9 @@
       "pubmed_ids": [
         "15608240"
       ],
+      "synonyms": [
+        "mgd"
+      ],
       "uri_format": "http://www.informatics.jax.org/searches/accession_report.cgi?id=mgi:$1"
     },
     "providers": [
@@ -41596,6 +41941,10 @@
       "prefix": "psi.mi",
       "pubmed_ids": [
         "14755292"
+      ],
+      "synonyms": [
+        "mi",
+        "obo.mi"
       ]
     },
     "publications": [
@@ -41970,6 +42319,9 @@
       "pubmed_ids": [
         "22053087"
       ],
+      "synonyms": [
+        "mimodb"
+      ],
       "uri_format": "http://immunet.cn/mimodb/browse.php?table=mimoset&ID=$1"
     },
     "publications": [
@@ -42180,6 +42532,9 @@
       "prefix": "mipmod",
       "pubmed_ids": [
         "22080560"
+      ],
+      "synonyms": [
+        "mipmod"
       ],
       "uri_format": "http://bioinfo.iitk.ac.in/MIPModDB/result.php?code=$1"
     },
@@ -42602,6 +42957,9 @@
       "pubmed_ids": [
         "18078503"
       ],
+      "synonyms": [
+        "mir"
+      ],
       "uri_format": "http://www.ebi.ac.uk/miriam/main/resources/$1"
     },
     "publications": [
@@ -42717,6 +43075,9 @@
       "prefix": "mirnest",
       "pubmed_ids": [
         "22135287"
+      ],
+      "synonyms": [
+        "mirnest"
       ],
       "uri_format": "http://lemur.amu.edu.pl/share/php/mirnest/search.php?search_term=$1"
     },
@@ -43618,7 +43979,12 @@
       ],
       "name": "Protein Modification ontology",
       "pattern": "^MOD:\\d{5}$",
-      "prefix": "psi.mod"
+      "prefix": "psi.mod",
+      "synonyms": [
+        "mod",
+        "protein modification ontology",
+        "obo.psi-mod"
+      ]
     },
     "synonyms": [
       "PSI-MOD"
@@ -44266,7 +44632,8 @@
       "biocontext": "MPID",
       "fairsharing": "FAIRsharing.eyjkws",
       "miriam": "mpid",
-      "n2t": "mpid"
+      "n2t": "mpid",
+      "prefixcommons": "mpi"
     },
     "miriam": {
       "deprecated": false,
@@ -44298,6 +44665,27 @@
       "pattern": "^\\d+$",
       "prefix": "mpid",
       "uri_format": "http://www.jcvi.org/mpidb/experiment.php?interaction_id=$1"
+    },
+    "prefixcommons": {
+      "description": "The microbial protein interaction database (MPIDB) provides physical microbial interaction data. The interactions are manually curated from the literature or imported from other databases, and are linked to supporting experimental evidence, as well as evidences based on interaction conservation, protein complex membership, and 3D domain contacts.",
+      "example": "172",
+      "homepage": "http://www.jcvi.org/mpidb/",
+      "keywords": [
+        "interaction",
+        "protein",
+        "small molecule"
+      ],
+      "name": "Microbial Protein Interaction Database",
+      "pattern": "^\\d+$",
+      "prefix": "mpi",
+      "pubmed_ids": [
+        "18556668"
+      ],
+      "synonyms": [
+        "mpid",
+        "mpidb"
+      ],
+      "uri_format": "http://www.jcvi.org/mpidb/interaction.php?pname=$1"
     },
     "synonyms": [
       "mpidb"
@@ -45897,6 +46285,11 @@
       "pubmed_ids": [
         "15608257"
       ],
+      "synonyms": [
+        "entrez.gene",
+        "entrezgene/locuslink",
+        "geneid"
+      ],
       "uri_format": "http://www.ncbi.nlm.nih.gov/gene/$1"
     },
     "providers": [
@@ -46012,6 +46405,10 @@
       "name": "NCBI Protein",
       "pattern": "^\\w+\\d+(\\.\\d+)?$",
       "prefix": "ncbi.protein",
+      "synonyms": [
+        "protein",
+        "ncbi-proteinid"
+      ],
       "uri_format": "http://www.ncbi.nlm.nih.gov/protein/$1"
     },
     "re3data": {
@@ -46234,6 +46631,9 @@
       "name": "Uniprot Taxonomy",
       "pattern": "^\\d+$",
       "prefix": "uniprot.taxonomy",
+      "synonyms": [
+        "newt"
+      ],
       "uri_format": "http://www.uniprot.org/taxonomy/$1"
     },
     "providers": [
@@ -46454,6 +46854,12 @@
       "prefix": "ncit",
       "pubmed_ids": [
         "19789731"
+      ],
+      "synonyms": [
+        "ncithesaurus",
+        "nci",
+        "nci2009_04d",
+        "nci_thesaurus_code"
       ],
       "uri_format": "http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1"
     },
@@ -48180,7 +48586,10 @@
       ],
       "name": "NMR-instrument specific component of metabolomics investigations",
       "pattern": "^NMR_\\d+$",
-      "prefix": "nmr"
+      "prefix": "nmr",
+      "synonyms": [
+        "msi.nmr"
+      ]
     },
     "synonyms": [
       "nmrcv"
@@ -49125,6 +49534,9 @@
       "name": "Ontology for Biomedical Investigations",
       "pattern": "^OBI_\\d{7}$",
       "prefix": "obi",
+      "synonyms": [
+        "obo.obi"
+      ],
       "uri_format": "http://purl.obolibrary.org/obo/$1"
     },
     "uri_format": "http://purl.obolibrary.org/obo/OBI_$1"
@@ -50464,6 +50876,9 @@
       "pubmed_ids": [
         "15608251"
       ],
+      "synonyms": [
+        "mim"
+      ],
       "uri_format": "http://www.ncbi.nlm.nih.gov/omim/$1"
     },
     "publications": [
@@ -51378,7 +51793,10 @@
       ],
       "name": "Ontology of Physics for Biology",
       "pattern": "^OPB_\\d+$",
-      "prefix": "opb"
+      "prefix": "opb",
+      "synonyms": [
+        "opb.properties"
+      ]
     },
     "uri_format": "http://purl.bioontology.org/ontology/OPB?conceptid=http%3A%2F%2Fbhi.washington.edu%2FOPB%23OPB_$1"
   },
@@ -51713,6 +52131,9 @@
       "name": "Olfactory Receptor Database",
       "pattern": "^\\d+$",
       "prefix": "ordb",
+      "synonyms": [
+        "ord"
+      ],
       "uri_format": "http://senselab.med.yale.edu/ordb/eavdata.asp?o=$1"
     }
   },
@@ -53052,6 +53473,9 @@
       "name": "Pathway Commons",
       "pattern": "^\\d+$",
       "prefix": "pathwaycommons",
+      "synonyms": [
+        "cpath"
+      ],
       "uri_format": "http://www.pathwaycommons.org/pc/record2.do?id=$1"
     },
     "re3data": {
@@ -53239,6 +53663,9 @@
       "name": "PATO",
       "pattern": "^PATO:\\d{7}$",
       "prefix": "pato",
+      "synonyms": [
+        "obo.pato"
+      ],
       "uri_format": "http://www.ebi.ac.uk/ontology-lookup/?termId=$1"
     },
     "providers": [
@@ -53885,6 +54312,11 @@
       "prefix": "ccd",
       "pubmed_ids": [
         "14634627"
+      ],
+      "synonyms": [
+        "het",
+        "pdb.het",
+        "pdb.ccd"
       ],
       "uri_format": "http://www.ebi.ac.uk/msd-srv/msdchem/cgi-bin/cgi.pl?FUNCTION=record&ENTITY=CHEM_COMP&PRIMARYKEY=$1&APPLICATION=1"
     },
@@ -55802,6 +56234,9 @@
       "pubmed_ids": [
         "18832364"
       ],
+      "synonyms": [
+        "pid.pathway"
+      ],
       "uri_format": "http://pid.nci.nih.gov/search/pathway_landing.shtml?what=graphic&jpg=on&pathway_id=$1"
     },
     "publications": [
@@ -56523,6 +56958,9 @@
       "pubmed_ids": [
         "18842634"
       ],
+      "synonyms": [
+        "pmap.substratedb"
+      ],
       "uri_format": "http://substrate.burnham.org/protein/annotation/$1/html"
     },
     "publications": [
@@ -56615,6 +57053,9 @@
       "name": "Pubmed Central",
       "pattern": "^PMC\\d+$",
       "prefix": "pmc",
+      "synonyms": [
+        "pmcid"
+      ],
       "uri_format": "http://www.ncbi.nlm.nih.gov/pmc/articles/$1/?tool=pmcentrez"
     },
     "synonyms": [
@@ -56733,6 +57174,9 @@
       "prefix": "pmp",
       "pubmed_ids": [
         "19037750"
+      ],
+      "synonyms": [
+        "proteinmodelportal"
       ],
       "uri_format": "http://www.proteinmodelportal.org/query/uniprot/$1"
     },
@@ -56985,6 +57429,9 @@
       "name": "Plant Ontology",
       "pattern": "^PO:\\d+$",
       "prefix": "po",
+      "synonyms": [
+        "poc"
+      ],
       "uri_format": "http://www.plantontology.org/amigo/go.cgi?view=details&search_constraint=terms&depth=0&query=$1"
     }
   },
@@ -57579,6 +58026,11 @@
       "prefix": "pr",
       "pubmed_ids": [
         "18047702"
+      ],
+      "synonyms": [
+        "obo.pr",
+        "pro",
+        "protein ontology"
       ],
       "uri_format": "http://pir.georgetown.edu/cgi-bin/pro/entry_pro?id=$1"
     },
@@ -58205,6 +58657,9 @@
       "pubmed_ids": [
         "16381852"
       ],
+      "synonyms": [
+        "prositedoc"
+      ],
       "uri_format": "http://www.expasy.org/cgi-bin/nicesite.pl?$1"
     },
     "publications": [
@@ -58295,6 +58750,9 @@
       "prefix": "protclustdb",
       "pubmed_ids": [
         "18940865"
+      ],
+      "synonyms": [
+        "protein_clusters"
       ],
       "uri_format": "http://www.ncbi.nlm.nih.gov/sites/entrez?Db=proteinclusters&Cmd=ShowDetailView&TermToSearch=$1"
     },
@@ -58428,6 +58886,9 @@
       "pubmed_ids": [
         "16672244"
       ],
+      "synonyms": [
+        "protonet.cluster"
+      ],
       "uri_format": "http://www.protonet.cs.huji.ac.il/requested/cluster_card.php?cluster=$1"
     },
     "publications": [
@@ -58485,6 +58946,9 @@
       "prefix": "protonet.proteincard",
       "pubmed_ids": [
         "16672244"
+      ],
+      "synonyms": [
+        "protonet.proteincard"
       ],
       "uri_format": "http://www.protonet.cs.huji.ac.il/requested/protein_card.php?protein_id=$1"
     },
@@ -59052,6 +59516,9 @@
       "name": "Pubchem: Compounds",
       "pattern": "^\\d+$",
       "prefix": "pubchem.compound",
+      "synonyms": [
+        "pubchemcompound"
+      ],
       "uri_format": "http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?db=pccompound&term=$1"
     },
     "re3data": {
@@ -59168,6 +59635,9 @@
       "prefix": "pubchem.substance",
       "pubmed_ids": [
         "17170002"
+      ],
+      "synonyms": [
+        "pubchemsubstance"
       ],
       "uri_format": "http://www.ncbi.nlm.nih.gov/sites/entrez?cmd=search&db=pcsubstance&term=$1"
     },
@@ -59344,6 +59814,10 @@
       "prefix": "pubmed",
       "pubmed_ids": [
         "16381840"
+      ],
+      "synonyms": [
+        "pmid",
+        "medline"
       ],
       "uri_format": "http://www.ncbi.nlm.nih.gov/pubmed/$1"
     },
@@ -59558,6 +60032,9 @@
       "prefix": "pw",
       "pubmed_ids": [
         "21478484"
+      ],
+      "synonyms": [
+        "obo.pw"
       ],
       "uri_format": "http://rgd.mcw.edu/rgdweb/ontology/annot.html?acc_id=$1"
     },
@@ -60144,6 +60621,10 @@
       "prefix": "reactome",
       "pubmed_ids": [
         "15608231"
+      ],
+      "synonyms": [
+        "reactome database",
+        "identifier.reactome"
       ],
       "uri_format": "http://www.reactome.org/cgi-bin/eventbrowser_st_id?FROM_REACTOME=1&ST_ID=$1"
     },
@@ -61607,6 +62088,9 @@
       "name": "RNA Modification Database",
       "pattern": "^\\d+$",
       "prefix": "rnamods",
+      "synonyms": [
+        "rnamod"
+      ],
       "uri_format": "http://s59.cas.albany.edu/RNAmods/cgi-bin/rnashow.cgi?$1"
     }
   },
@@ -61880,6 +62364,11 @@
       "prefix": "ro",
       "pubmed_ids": [
         "15892874"
+      ],
+      "synonyms": [
+        "obo_rel",
+        "obo.ro",
+        "ro_proposed_relation"
       ]
     },
     "publications": [
@@ -62440,7 +62929,8 @@
       "biocontext": "SABIORK.KINETICRECORD",
       "go": "SABIO-RK",
       "miriam": "sabiork.kineticrecord",
-      "n2t": "sabiork.kineticrecord"
+      "n2t": "sabiork.kineticrecord",
+      "prefixcommons": "sabiork.kinetic"
     },
     "miriam": {
       "deprecated": false,
@@ -62463,6 +62953,27 @@
       "pattern": "^\\d+$",
       "prefix": "sabiork.kineticrecord",
       "uri_format": "http://sabiork.h-its.org/kineticLawEntry.jsp?viewData=true&kinlawid=$1"
+    },
+    "prefixcommons": {
+      "description": "The kinetic record data set provides information regarding the kinetic law, measurement conditions, parameter details and other reference information.",
+      "example": "5046",
+      "keywords": [
+        "classification",
+        "enzyme",
+        "kinetics"
+      ],
+      "name": "SABIO-RK Kinetic Record",
+      "pattern": "^\\d+$",
+      "prefix": "sabiork.kinetic",
+      "pubmed_ids": [
+        "17822389"
+      ],
+      "synonyms": [
+        "sabiok",
+        "sabio-kr",
+        "sabiork.kineticrecord"
+      ],
+      "uri_format": "http://sabiork.h-its.org/kineticLawEntry.jsp?kinlawid=$1"
     }
   },
   "sabiork.reaction": {
@@ -62532,6 +63043,9 @@
       "name": "SABIO-RK Reaction Record",
       "pattern": "^\\d+$",
       "prefix": "sabiork.reaction",
+      "synonyms": [
+        "sabior"
+      ],
       "uri_format": "http://sabiork.h-its.org/index2.jsp?reac=$1"
     },
     "re3data": {
@@ -62644,7 +63158,10 @@
       ],
       "name": "Subcellular Anatomy Ontology (SAO)",
       "pattern": "^sao\\d+$",
-      "prefix": "sao"
+      "prefix": "sao",
+      "synonyms": [
+        "sao:"
+      ]
     },
     "references": [
       "http://www.ontobee.org/ontology/SAO"
@@ -62838,6 +63355,10 @@
       "prefix": "sbo",
       "pubmed_ids": [
         "17118155"
+      ],
+      "synonyms": [
+        "biomodels.sbo",
+        "Systems_Biology_Ontology"
       ],
       "uri_format": "http://www.ebi.ac.uk/sbo/main/$1"
     },
@@ -63838,6 +64359,10 @@
       "pubmed_ids": [
         "14681421"
       ],
+      "synonyms": [
+        "sgd.pathways",
+        "spt"
+      ],
       "uri_format": "http://pathway.yeastgenome.org/YEAST/new-image?type=PATHWAY&object=$1"
     },
     "publications": [
@@ -64245,6 +64770,10 @@
         "17965093",
         "12478304",
         "21505029"
+      ],
+      "synonyms": [
+        "afcs",
+        "sgmp"
       ],
       "uri_format": "http://www.signaling-gateway.org/molecule/query?afcsid=$1"
     },
@@ -64968,7 +65497,12 @@
       "homepage": "http://ihtsdo.org",
       "name": "Systematized Nomenclature of Medicine - Clinical Terms",
       "pattern": "^(\\w+)?\\d+$",
-      "prefix": "snomedct"
+      "prefix": "snomedct",
+      "synonyms": [
+        "snomed",
+        "snomedct_2010_1_31",
+        "snomedct_2013_01_31"
+      ]
     },
     "synonyms": [
       "SCTID",
@@ -65020,7 +65554,25 @@
     "description": "A comprehensive database of\n\nhuman H/ACA and C/D box snoRNAs.",
     "example": "SR0000178",
     "homepage": "https://www-snorna.biotoul.fr/",
+    "mappings": {
+      "prefixcommons": "snornalbmedb"
+    },
     "name": "snoRNABase",
+    "prefixcommons": {
+      "description": "This is a database of human C/D box and H/ACA modification guide RNAs",
+      "example": "HBII-240",
+      "homepage": "http://www-snorna.biotoul.fr/",
+      "keywords": [
+        "RNA"
+      ],
+      "name": "snoRNA-LBME-db",
+      "pattern": "^[A-Z,0-9]+$",
+      "prefix": "snornalbmedb",
+      "synonyms": [
+        "snornabase"
+      ],
+      "uri_format": "http://www-snorna.biotoul.fr/plus.php?id=$1"
+    },
     "wikidata": {
       "paper": "Q24675417"
     }
@@ -65200,6 +65752,9 @@
       "prefix": "so",
       "pubmed_ids": [
         "15892872"
+      ],
+      "synonyms": [
+        "obo.so"
       ],
       "uri_format": "http://www.sequenceontology.org/miso/current_release/term/$1"
     }
@@ -65495,7 +66050,8 @@
     "mappings": {
       "biocontext": "SPIKE.MAP",
       "miriam": "spike.map",
-      "n2t": "spike.map"
+      "n2t": "spike.map",
+      "prefixcommons": "spike"
     },
     "miriam": {
       "deprecated": false,
@@ -65518,6 +66074,26 @@
       "pattern": "^spike\\d{5}$",
       "prefix": "spike.map",
       "uri_format": "http://www.cs.tau.ac.il/~spike/maps/$1.html"
+    },
+    "prefixcommons": {
+      "description": "SPIKE (Signaling Pathway Integrated Knowledge Engine) is an interactive software environment that graphically displays biological signaling networks, allows dynamic layout and navigation through these networks, and enables the superposition of DNA microarray and other functional genomics data on interaction maps.",
+      "example": "spike00001",
+      "homepage": "http://www.cs.tau.ac.il/~spike/",
+      "keywords": [
+        "pathway",
+        "DNA",
+        "gene expression"
+      ],
+      "name": "Signaling Pathway Integrated Knowledge Engine",
+      "pattern": "^spike\\d{5}$",
+      "prefix": "spike",
+      "pubmed_ids": [
+        "18289391",
+        "21097778"
+      ],
+      "synonyms": [
+        "spike.map"
+      ]
     }
   },
   "splash": {
@@ -66401,6 +66977,7 @@
       "biocontext": "SUPFAM",
       "miriam": "supfam",
       "n2t": "supfam",
+      "prefixcommons": "superfamily",
       "uniprot": "SUPFAM"
     },
     "miriam": {
@@ -66426,6 +67003,24 @@
       "uri_format": "http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid=$1"
     },
     "name": "SUPERFAMILY",
+    "prefixcommons": {
+      "description": "SUPERFAMILY is a database of structural and functional annotation for all proteins and genomes.",
+      "example": "46556",
+      "homepage": "http://supfam.org",
+      "keywords": [
+        "protein",
+        "genome",
+        "structure",
+        "classification"
+      ],
+      "name": "SUPERFAMILY database of structural and functional annotation",
+      "pattern": "^\\d+$",
+      "prefix": "superfamily",
+      "synonyms": [
+        "supfam"
+      ],
+      "uri_format": "http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?sunid=$1"
+    },
     "uniprot": {
       "category": "Family and domain databases",
       "identifier": "155",
@@ -66944,6 +67539,10 @@
       "name": "Symptom Ontology",
       "pattern": "^SYMP_\\d{7}$",
       "prefix": "symptom",
+      "synonyms": [
+        "symptomontology",
+        "symp"
+      ],
       "uri_format": "http://purl.obolibrary.org/obo/$1"
     },
     "synonyms": [
@@ -67440,6 +68039,9 @@
       "name": "Teleost Anatomy Ontology",
       "pattern": "^TAO_\\d{7}$",
       "prefix": "tao",
+      "synonyms": [
+        "teleost_anatomy"
+      ],
       "uri_format": "http://purl.obolibrary.org/obo/$1"
     },
     "synonyms": [
@@ -67583,6 +68185,9 @@
       "name": "Taxonomic rank vocabulary",
       "pattern": "^TAXRANK:\\d+$",
       "prefix": "taxrank",
+      "synonyms": [
+        "taxonomic_rank"
+      ],
       "uri_format": "http://purl.obolibrary.org/obo/$1"
     }
   },
@@ -67681,6 +68286,9 @@
       "prefix": "tcdb",
       "pubmed_ids": [
         "16381841"
+      ],
+      "synonyms": [
+        "tc"
       ],
       "uri_format": "http://www.tcdb.org/search/result.php?tc=$1"
     },
@@ -68163,7 +68771,8 @@
       "fairsharing": "FAIRsharing.w69t6r",
       "obofoundry": "to",
       "ols": "to",
-      "ontobee": "TO"
+      "ontobee": "TO",
+      "prefixcommons": "pto"
     },
     "obofoundry": {
       "appears_in": [
@@ -68205,7 +68814,25 @@
       "name": "Plant Trait Ontology",
       "prefix": "TO"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "prefixcommons": {
+      "bioportal": "1037",
+      "description": "A controlled vocabulary to describe phenotypic traits in plants. Each trait is a distinguishable feature, characteristic, quality or phenotypic feature of a developing or mature plant, or a plant part.",
+      "example": "TO_0000017",
+      "homepage": "http://www.gramene.org/plant_ontology/",
+      "keywords": [
+        "obo",
+        "plant",
+        "trait"
+      ],
+      "name": "Plant Trait Ontology",
+      "pattern": "^TO_\\d{7}$",
+      "prefix": "pto",
+      "synonyms": [
+        "to",
+        "gramene.po"
+      ]
+    }
   },
   "tokue": {
     "cellosaurus": {
@@ -68468,7 +69095,8 @@
       "fairsharing": "FAIRsharing.nygmp7",
       "obofoundry": "trans",
       "ols": "trans",
-      "ontobee": "TRANS"
+      "ontobee": "TRANS",
+      "prefixcommons": "pt"
     },
     "obofoundry": {
       "contact": "lynn.schriml@gmail.com",
@@ -68511,7 +69139,23 @@
       "name": "Pathogen Transmission Ontology",
       "prefix": "TRANS"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "prefixcommons": {
+      "bioportal": "1094",
+      "description": "This vocabulary describes a process that is the means of how a pathogen is transmitted from one host, reservoir, or source to another host. This transmission may occur either directly or indirectly and may involve animate vectors or inanimate vehicles.",
+      "example": "TRANS_0000001",
+      "homepage": "http://diseaseontology.sourceforge.net/",
+      "keywords": [
+        "obo",
+        "pathogen"
+      ],
+      "name": "Pathogen transmission",
+      "pattern": "^TRANS_\\d{7}$",
+      "prefix": "pt",
+      "synonyms": [
+        "trans"
+      ]
+    }
   },
   "transyt": {
     "mappings": {
@@ -68972,6 +69616,9 @@
       "name": "Teleost taxonomy Ontology",
       "pattern": "^TTO_\\d$",
       "prefix": "tto",
+      "synonyms": [
+        "teleost_taxonomy"
+      ],
       "uri_format": "http://purl.obolibrary.org/obo/$1"
     },
     "wikidata": {
@@ -70060,6 +70707,14 @@
       "pubmed_ids": [
         "16381842"
       ],
+      "synonyms": [
+        "uniprotkb",
+        "uniprotkb/trembl",
+        "swiss-prot",
+        "sp",
+        "uniprot knowledge base",
+        "UNIPROTKB/SWISSPROT"
+      ],
       "uri_format": "http://www.uniprot.org/uniprot/$1"
     },
     "providers": [
@@ -70304,6 +70959,10 @@
       "name": "UniProt Knowledgebase keywords",
       "pattern": "^KW-\\d+$",
       "prefix": "uniprot.kw",
+      "synonyms": [
+        "spkw",
+        "uniprotkb-kw"
+      ],
       "uri_format": "http://www.uniprot.org/keywords/$1"
     },
     "synonyms": [
@@ -70357,9 +71016,33 @@
     "description": "The post-translational modifications used in the UniProt knowledgebase (Swiss-Prot and TrEMBL). The definition of the post-translational modifications usage as well as other information is provided in the following format",
     "example": "PTM-0450",
     "homepage": "https://www.uniprot.org/docs/ptmlist",
+    "mappings": {
+      "prefixcommons": "ptmswitchboard"
+    },
     "name": "UniProt Post-Translational Modification",
     "part_of": "uniprot",
     "pattern": "^PTM-\\d{4}$",
+    "prefixcommons": {
+      "description": "PTM-Switchboard is designed to catalog known cases of TF-PTMs affecting gene transcriptions.. PTM-Switchboard differs from existing molecular pathway databases in that, instead of using pairwise interactions as a primary data type, it stores triplets of genes such that the ability of one gene (the TF) to regulate a target gene is dependent on a third gene (the modifying enzyme).",
+      "example": "128",
+      "homepage": "http://cagr.pcbi.upenn.edu/PTMswitchboard/",
+      "keywords": [
+        "gene",
+        "regulation",
+        "DNA",
+        "pathway",
+        "small molecule",
+        "interaction",
+        "enzyme"
+      ],
+      "name": "PTM-Switchboard",
+      "pattern": "^\\d+$",
+      "prefix": "ptmswitchboard",
+      "synonyms": [
+        "ptm"
+      ],
+      "uri_format": "http://cagr.pcbi.upenn.edu/PTMswitchboard/jsp/detail.jsp?ID=$1"
+    },
     "references": [
       "https://twitter.com/cthoyt/status/1510570256619778053",
       "https://www.uniprot.org/docs/ptmlist.txt"
@@ -70823,6 +71506,10 @@
       "name": "Unit Ontology",
       "pattern": "^UO:\\d{7}?$",
       "prefix": "uo",
+      "synonyms": [
+        "obo.unit",
+        "unit"
+      ],
       "uri_format": "http://www.ebi.ac.uk/ontology-lookup/?termId=$1"
     }
   },
@@ -72436,7 +73123,8 @@
       "aberowl": "VSAO",
       "biocontext": "VSAO",
       "bioportal": "VSAO",
-      "obofoundry": "vsao"
+      "obofoundry": "vsao",
+      "prefixcommons": "vao"
     },
     "name": "Vertebrate Skeletal Anatomy Ontology",
     "obofoundry": {
@@ -72449,6 +73137,23 @@
       "homepage": "https://www.nescent.org/phenoscape/Main_Page",
       "name": "Vertebrate Skeletal Anatomy Ontology-",
       "prefix": "vsao"
+    },
+    "prefixcommons": {
+      "bioportal": "1555",
+      "description": "Vertebrate anatomy ontology. Currently covers the skeletal system",
+      "example": "VSAO_0000183",
+      "homepage": "https://www.nescent.org/phenoscape/Main_Page",
+      "keywords": [
+        "obo",
+        "anatomy",
+        "vertebrate"
+      ],
+      "name": "Vertebrate Anatomy Ontology",
+      "pattern": "^VSA_\\d{7}$",
+      "prefix": "vao",
+      "synonyms": [
+        "vsao"
+      ]
     },
     "synonyms": [
       "VSAO_RETIRED"
@@ -72891,6 +73596,9 @@
       "name": "C. elegans gross anatomy",
       "pattern": "^WBbt_\\d{7}$",
       "prefix": "wbbt",
+      "synonyms": [
+        "worm_anatomy"
+      ],
       "uri_format": "http://wormbase.org/db/ontology/anatomy?name=$1"
     },
     "synonyms": [
@@ -73004,6 +73712,9 @@
       "name": "C. elegans development",
       "pattern": "^WBIs_\\d{7}$",
       "prefix": "wbls",
+      "synonyms": [
+        "worm_development"
+      ],
       "uri_format": "http://purl.obolibrary.org/obo/$1"
     },
     "synonyms": [
@@ -73116,6 +73827,9 @@
       "name": "C. elegans phenotype",
       "pattern": "^WBPhenotype_\\d{7}$",
       "prefix": "wbphenotype",
+      "synonyms": [
+        "worm_phenotype"
+      ],
       "uri_format": "http://purl.obolibrary.org/obo/$1"
     },
     "synonyms": [
@@ -73544,6 +74258,9 @@
       "name": "Wikipedia",
       "pattern": "^[A-Za-z0-9_]+$",
       "prefix": "wikipedia",
+      "synonyms": [
+        "wikipedia.en"
+      ],
       "uri_format": "http://en.wikipedia.org/wiki/$1"
     },
     "providers": [
@@ -73723,6 +74440,9 @@
       "prefix": "wormbase",
       "pubmed_ids": [
         "11125056"
+      ],
+      "synonyms": [
+        "wb"
       ]
     },
     "providers": [
@@ -75028,6 +75748,9 @@
       "name": "Zebrafish anatomy and development Ontology",
       "pattern": "^ZFS_\\d{7}$",
       "prefix": "zfa",
+      "synonyms": [
+        "zfs"
+      ],
       "uri_format": "http://purl.obolibrary.org/obo/$1"
     },
     "synonyms": [
