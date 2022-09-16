@@ -5244,7 +5244,8 @@
       "biocontext": "BIOMODELS.DB",
       "go": "BIOMD",
       "miriam": "biomodels.db",
-      "n2t": "biomodels.db"
+      "n2t": "biomodels.db",
+      "prefixcommons": "biomodels"
     },
     "miriam": {
       "deprecated": false,
@@ -5283,6 +5284,22 @@
       "pattern": "^((BIOMD|MODEL)\\d{10})|(BMID\\d{12})$",
       "prefix": "biomodels.db",
       "uri_format": "https://www.ebi.ac.uk/biomodels/$1"
+    },
+    "prefixcommons": {
+      "bioportal": "3022",
+      "description": "BioModels Database is a data resource that allows biologists to store, search and retrieve published mathematical models of biological interests.",
+      "example": "BIOMD0000000048",
+      "homepage": "http://www.ebi.ac.uk/biomodels/",
+      "keywords": [
+        "model"
+      ],
+      "name": "A Database of Annotated Published Models",
+      "pattern": "^((BIOMD|MODEL)\\d{10})|(BMID\\d{12})$",
+      "prefix": "biomodels",
+      "pubmed_ids": [
+        "16381960"
+      ],
+      "uri_format": "http://www.ebi.ac.uk/biomodels-main/$1"
     },
     "synonyms": [
       "BIOMD"
@@ -6532,7 +6549,8 @@
       "biocontext": "BOLD.TAXONOMY",
       "miriam": "bold.taxonomy",
       "n2t": "bold.taxonomy",
-      "ncbi": "BOLD"
+      "ncbi": "BOLD",
+      "prefixcommons": "bold"
     },
     "miriam": {
       "deprecated": false,
@@ -6561,6 +6579,21 @@
       "homepage": "http://www.barcodinglife.com",
       "name": "Barcode of Life database",
       "prefix": "BOLD"
+    },
+    "prefixcommons": {
+      "description": "The Barcode of Life Data Systems (BOLD) is an online workbench that aids collection, management, analysis, and use of DNA barcodes. It consists of 3 components (MAS, IDS, and ECS) that each address the needs of various groups in the barcoding community.",
+      "example": "27267",
+      "homepage": "http://www.barcodinglife.com",
+      "keywords": [
+        "DNA"
+      ],
+      "name": "The Barcode of Life Data Systems",
+      "pattern": "^\\d+$",
+      "prefix": "bold",
+      "pubmed_ids": [
+        "18784790"
+      ],
+      "uri_format": "http://www.barcodinglife.com/views/taxbrowser.php?taxid=$1"
     }
   },
   "bootstrep": {
@@ -41177,7 +41210,8 @@
     "banana": "mge",
     "mappings": {
       "miriam": "mge",
-      "n2t": "mge"
+      "n2t": "mge",
+      "prefixcommons": "aclame"
     },
     "miriam": {
       "deprecated": false,
@@ -41201,7 +41235,27 @@
       "prefix": "mge",
       "uri_format": "http://aclame.ulb.ac.be/perl/Aclame/Genomes/mge_view.cgi?view=info&id=mge:$1"
     },
-    "pattern": "^\\d+$"
+    "pattern": "^\\d+$",
+    "prefixcommons": {
+      "description": "ACLAME is a database dedicated to the collection and classification of mobile genetic elements (MGEs) from various sources, comprising all known phage genomes, plasmids and transposons.",
+      "example": "mge:2",
+      "homepage": "http://aclame.ulb.ac.be",
+      "keywords": [
+        "genome",
+        "gene"
+      ],
+      "miriam": "mge",
+      "name": "A CLAssification of Mobile genetic Elements",
+      "pattern": "^mge:\\d+$",
+      "prefix": "aclame",
+      "pubmed_ids": [
+        "14681355"
+      ],
+      "uri_format": "http://aclame.ulb.ac.be/perl/Aclame/Genomes/mge_view.cgi?view=info&id=$1"
+    },
+    "synonyms": [
+      "aclame"
+    ]
   },
   "mgi": {
     "banana": "MGI",
@@ -53792,7 +53846,8 @@
     "mappings": {
       "biocontext": "PDB-CCD",
       "miriam": "pdb-ccd",
-      "n2t": "pdb-ccd"
+      "n2t": "pdb-ccd",
+      "prefixcommons": "ccd"
     },
     "miriam": {
       "deprecated": false,
@@ -53817,6 +53872,22 @@
       "uri_format": "https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/$1"
     },
     "pattern": "^\\w{1,3}$",
+    "prefixcommons": {
+      "description": "The Chemical Component Dictionary is as an external reference file describing all residue and small molecule components found in Protein Data Bank entries. It contains detailed chemical descriptions for standard and modified amino acids/nucleotides, small molecule ligands, and solvent molecules. Each chemical definition includes descriptions of chemical properties such as stereochemical assignments, aromatic bond assignments, idealized coordinates, chemical descriptors (SMILES & InChI), and systematic chemical names.",
+      "example": "AB0",
+      "homepage": "http://www.ebi.ac.uk/msd-srv/msdchem/cgi-bin/cgi.pl?APPLICATION=1",
+      "keywords": [
+        "chemical",
+        "classification"
+      ],
+      "name": "Chemical Component Dictionary",
+      "pattern": "^\\w{3}$",
+      "prefix": "ccd",
+      "pubmed_ids": [
+        "14634627"
+      ],
+      "uri_format": "http://www.ebi.ac.uk/msd-srv/msdchem/cgi-bin/cgi.pl?FUNCTION=record&ENTITY=CHEM_COMP&PRIMARYKEY=$1&APPLICATION=1"
+    },
     "synonyms": [
       "pdbechem"
     ],
@@ -66813,6 +66884,7 @@
       "obofoundry": "symp",
       "ols": "symp",
       "ontobee": "SYMP",
+      "prefixcommons": "symptom",
       "wikidata": "P8656"
     },
     "obofoundry": {
@@ -66860,6 +66932,20 @@
       "prefix": "SYMP"
     },
     "pattern": "^\\d{7}$",
+    "prefixcommons": {
+      "bioportal": "1224",
+      "description": "The symptom ontology was designed around the guiding concept of a symptom being: \"A perceived change in function, sensation or appearance reported by a patient indicative of a disease\"",
+      "example": "SYMP_0000461",
+      "homepage": "http://symptomontologywiki.igs.umaryland.edu/wiki/index.php/Main_Page",
+      "keywords": [
+        "obo",
+        "ontology"
+      ],
+      "name": "Symptom Ontology",
+      "pattern": "^SYMP_\\d{7}$",
+      "prefix": "symptom",
+      "uri_format": "http://purl.obolibrary.org/obo/$1"
+    },
     "synonyms": [
       "SYMP"
     ],
