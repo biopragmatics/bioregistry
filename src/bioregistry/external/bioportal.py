@@ -102,10 +102,10 @@ class OntoPortalClient:
         ]:
             value = res_json.get(key)
             if value:
-                record[key] = value
+                record[key] = (value or "").strip()
 
         if "hasLicense" in res_json:
-            record["license"] = standardize_license(res_json["hasLicense"])
+            record["license"] = standardize_license((res_json["hasLicense"] or "").strip())
 
         contacts = res_json.get("contact", [])
         if contacts:
@@ -126,12 +126,12 @@ class OntoPortalClient:
             .replace("  ", " ")
             .strip(),
             "contact": {k: v.strip() for k, v in (entry.get("contact") or {}).items()},
-            "homepage": (entry.get("homepage") or "").strip(),
-            "version": (entry.get("version") or "").strip(),
+            "homepage": entry.get("homepage"),
+            "version": entry.get("version"),
             "publication": (entry.get("publication") or "").strip(),
-            "repository": (entry.get("repository") or "").strip(),
-            "example_uri": (entry.get("exampleIdentifier") or "").strip(),
-            "license": (entry.get("license") or "").strip(),
+            "repository": entry.get("repository"),
+            "example_uri": entry.get("exampleIdentifier"),
+            "license": entry.get("license"),
         }
         return {k: v for k, v in rv.items() if v}
 
