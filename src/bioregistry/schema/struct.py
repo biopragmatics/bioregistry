@@ -692,7 +692,17 @@ class Resource(BaseModel):
         """Get the name for the given prefix, it it's available."""
         return self.get_prefix_key(
             "name",
-            ("obofoundry", "ols", "wikidata", "go", "ncbi", "bioportal", "miriam", "cellosaurus"),
+            (
+                "obofoundry",
+                "ols",
+                "wikidata",
+                "go",
+                "ncbi",
+                "bioportal",
+                "miriam",
+                "n2t",
+                "cellosaurus",
+            ),
         )
 
     def get_description(self, use_markdown: bool = False) -> Optional[str]:
@@ -704,7 +714,16 @@ class Resource(BaseModel):
             return markupsafe.Markup(markdown(self.description))
         rv = self.get_prefix_key(
             "description",
-            ("miriam", "ols", "obofoundry", "wikidata", "fairsharing", "aberowl", "bioportal"),
+            (
+                "miriam",
+                "n2t",
+                "ols",
+                "obofoundry",
+                "wikidata",
+                "fairsharing",
+                "aberowl",
+                "bioportal",
+            ),
         )
         if rv is not None:
             return rv
@@ -919,10 +938,10 @@ class Resource(BaseModel):
         miriam_example = self.get_external("miriam").get("sampleId")
         if miriam_example is not None:
             return miriam_example
-        # TODO go through more external data looking for this
-        example = self.get_external("ncbi").get("example")
-        if example is not None:
-            return example
+        for metaprefix in ["ncbi", "n2t"]:
+            example = self.get_external(metaprefix).get("example")
+            if example is not None:
+                return example
         return None
 
     def get_examples(self) -> List[str]:

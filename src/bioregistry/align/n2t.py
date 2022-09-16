@@ -19,6 +19,13 @@ class N2TAligner(Aligner):
         """Get the prefixes in N2T that should be skipped."""
         return {
             "zzztestprefix": "test prefix should not be considered",
+            "urn": "too meta",
+            "url": "too meta",
+            "purl": "too meta",
+            "lsid": "too meta",
+            "hdl": "paid service, too meta",
+            "repec": "irrelevant prefix from economics",
+            "merops": "issue with miriam having duplicate prefixes for this resource",  # FIXME
         }
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
