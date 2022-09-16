@@ -5433,6 +5433,26 @@ co_366:
   pattern: ^\d{7}$
   preferred_prefix: co_366
   uri_format: https://www.cropontology.org/rdf/CO_366:$1
+co_367:
+  description: 'Curator name: Clara S. Stanschewski; Curator Affiliation: King Abdullah
+    University of Science and Technology; Contributing Scientists or Crop expert group:
+    The Salt Lab and the Quinoa Phenotyping Consortium Creation Date: 23.05.2021'
+  example: '0000004'
+  homepage: https://cropontology.org/term/CO_367:ROOT
+  mappings:
+    cropoct: CO_367
+  name: Quinoa Ontology ontology
+  preferred_prefix: co_367
+co_370:
+  description: Apple (Malus domestica) defines crop traits and variables to support
+    the standardisation of apple breeding databases providing description of agronomic,
+    morphological, physiological, quality traits, its methods and scales.
+  example: 0000890
+  homepage: https://cropontology.org/term/CO_370:ROOT
+  mappings:
+    cropoct: CO_370
+  name: Apple ontology
+  preferred_prefix: co_370
 cob:
   contact:
     email: bpeters@lji.org
@@ -20065,6 +20085,7 @@ ncbitaxon:
   - ons
   - pcl
   - pco
+  - vbo
   contact:
     email: frederic.bastian@unil.ch
     github: fbastian
@@ -24000,6 +24021,20 @@ peff:
   pattern: ^\d{7}$
   preferred_prefix: peff
   uri_format: https://biopragmatics.github.io/providers/peff/$1
+pennsieve:
+  description: 'Pennsieve is a publicly accessible Scientific Data Management and
+    publication platform. The platform supports data curation, sharing and publishing
+    complex scientific datasets with a focus on integration between graph-based metadata
+    and file-archival. The platform provides a "peer"-reviewed publication mechanism
+    and public datasets are available through its Discover Web Application and APIs. '
+  example: N:package:e3243db3-7986-488e-9a10-c7a0bfdcfe8a
+  homepage: https://discover.pennsieve.io
+  mappings:
+    miriam: ps
+  name: Pennsieve
+  pattern: ^N:package:[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$
+  preferred_prefix: pennsieve
+  uri_format: https://discover.pennsieve.io/package/$1
 peptideatlas:
   description: The PeptideAtlas Project provides a publicly accessible database of
     peptides identified in tandem mass spectrometry proteomics studies and software
@@ -25406,6 +25441,30 @@ prints:
   pattern: ^PR\d{5}$
   preferred_prefix: prints
   uri_format: http://www.bioinf.manchester.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?prints_accn=$1&display_opts=Prints&category=None&queryform=false&regexpr=off
+probesanddrugs:
+  contact:
+    email: ctibor.skuta@img.cas.cz
+    github: null
+    name: Ctibor Škuta
+    orcid: 0000-0001-5325-4934
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The Probes & Drugs portal (P&D) is a hub for the integration of high-quality
+    bioactive compound sets enabling their analysis and comparison. Its main focus
+    is on chemical probes and drugs but it also includes additional relevant sets
+    from specialist databases/scientific publications, and vendor sets. Upon these,
+    established bioactive chemistry sources (such as ChEMBL, BindingDB, Guide To Pharmacology,
+    DrugCentral or DrugBank) are utilized for compounds' biological annotation.
+  example: PD000596
+  homepage: https://www.probes-drugs.org
+  license: CC BY-SA 4.0
+  name: Probes and Drugs
+  pattern: ^PD\d{6}$
+  preferred_prefix: probesanddrugs
+  uri_format: https://www.probes-drugs.org/compound/$1
 probonto:
   description: ProbOnto, is an ontology-based knowledge base of probability distributions,
     featuring uni- and multivariate distributions with their defining functions, characteristics,
@@ -26715,6 +26774,20 @@ rfam:
   pattern: ^RF\d{5}$
   preferred_prefix: rfam
   uri_format: https://rfam.xfam.org/family/$1
+rfc:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Legacy site for IETF RFC proposals
+  example: '5013'
+  homepage: https://www.ietf.org/
+  mappings:
+    n2t: rfc
+  name: Internet Standard -- IETF Request for Comments
+  preferred_prefix: rfc
+  uri_format: https://tools.ietf.org/rfc/rfc$1
 rgd:
   description: Rat Genome Database seeks to collect, consolidate, and integrate rat
     genomic and genetic data with curated functional and physiological data and make
@@ -27583,15 +27656,17 @@ schema:
   description: Schema.org is a collaborative, community activity with a mission to
     create, maintain, and promote schemas for structured data on the Internet, on
     web pages, in email messages, and beyond.
-  download_owl: http://aber-owl.net/media/ontologies/SCHEMA/2/schema.owl
+  download_owl: http://aber-owl.net/media/ontologies/SCHEMAORG/2/schemaorg.owl
   example: Person
   homepage: https://schema.org
   mappings:
-    aberowl: SCHEMA
+    aberowl: SCHEMAORG
     biolink: schema
     bioportal: SCHEMA
   name: Schema.org
   preferred_prefix: schema
+  synonyms:
+  - schemaorg
   uri_format: https://schema.org/$1
 scholia.resource:
   contributor:
@@ -28013,6 +28088,19 @@ shacl:
   synonyms:
   - sh
   uri_format: http://www.w3.org/ns/shacl#$1
+shareloc:
+  description: 'ShareLoc defines terms to annotate data sets from single molecule
+    localization microscopy, including but not limited to: imaging technique, biological
+    structures or molecules of interest, cell types, experimental condition, labeling
+    method, fixation protocol, etc.'
+  download_owl: https://raw.githubusercontent.com/imodpasteur/ShareLoc.XYZ/ontology/shareloc.owl
+  example: '000004'
+  homepage: https://shareloc.xyz
+  mappings:
+    ols: shareloc
+  name: ShareLoc
+  preferred_prefix: shareloc
+  uri_format: https://shareloc.xyz/#/ontology/vocabulary/SHARELOC_$1
 sheepqtldb:
   description: The Animal Quantitative Trait Loci (QTL) database (Animal QTLdb) is
     designed to house publicly all available QTL and single-nucleotide polymorphism/gene
@@ -31250,6 +31338,29 @@ vbase2:
     pubmed: '15608286'
     title: VBASE2, an integrative V gene database.
   uri_format: http://www.vbase2.org/vgene.php?id=$1
+vbo:
+  contact:
+    email: Sabrina@tislab.org
+    github: sabrinatoro
+    name: Sabrina Toro
+    orcid: 0000-0002-4142-7153
+  depends_on:
+  - ncbitaxon
+  description: Vertebrate Breed Ontology is an ontology created to serve as a single
+    computable resource for vertebrate breed names.
+  download_json: http://purl.obolibrary.org/obo/vbo.json
+  download_obo: http://purl.obolibrary.org/obo/vbo.obo
+  download_owl: http://purl.obolibrary.org/obo/vbo.owl
+  example: 0000038
+  homepage: https://github.com/monarch-initiative/vertebrate-breed-ontology
+  license: CC BY 4.0
+  mappings:
+    aberowl: VBO
+    obofoundry: vbo
+  name: Vertebrate Breed Ontology
+  preferred_prefix: VBO
+  repository: https://github.com/monarch-initiative/vertebrate-breed-ontology
+  uri_format: http://purl.obolibrary.org/obo/VBO_$1
 vbrc:
   description: The VBRC provides bioinformatics resources to support scientific research
     directed at viruses belonging to the Arenaviridae, Bunyaviridae, Filoviridae,
