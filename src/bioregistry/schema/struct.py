@@ -702,6 +702,7 @@ class Resource(BaseModel):
                 "miriam",
                 "n2t",
                 "cellosaurus",
+                "cropoct",
             ),
         )
 
@@ -723,6 +724,7 @@ class Resource(BaseModel):
                 "fairsharing",
                 "aberowl",
                 "bioportal",
+                "cropoct",
             ),
         )
         if rv is not None:
@@ -838,7 +840,17 @@ class Resource(BaseModel):
         """Return the homepage, if available."""
         return self.get_prefix_key(
             "homepage",
-            ("obofoundry", "ols", "miriam", "n2t", "wikidata", "go", "ncbi", "cellosaurus"),
+            (
+                "obofoundry",
+                "ols",
+                "miriam",
+                "n2t",
+                "wikidata",
+                "go",
+                "ncbi",
+                "cellosaurus",
+                "cropoct",
+            ),
         )
 
     def get_repository(self) -> Optional[str]:
