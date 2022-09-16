@@ -20,18 +20,14 @@ __all__ = [
 class OntoPortalAligner(Aligner):
     """Aligner for OntoPortal."""
 
-    curation_header = ("name",)
-
-    def prepare_external(self, external_id, external_entry) -> Dict[str, Any]:
-        """Prepare OntoPortal data to be added to the Bioregistry for each registry entry."""
-        return {
-            "name": external_entry["name"].strip(),
-        }
+    curation_header = ("name", "homepage", "description")
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Prepare curation rows for unaligned registry entries."""
         return [
             external_entry["name"].strip(),
+            external_entry.get("homepage", "").strip(),
+            external_entry.get("description", "").replace("\n", "\\n").replace("  ", " ").strip(),
         ]
 
 
@@ -57,6 +53,6 @@ class AgroPortalAligner(OntoPortalAligner):
 
 
 if __name__ == "__main__":
-    BioPortalAligner.align()
-    EcoPortalAligner.align()
     AgroPortalAligner.align()
+    EcoPortalAligner.align()
+    BioPortalAligner.align()
