@@ -5,7 +5,7 @@
 from typing import Mapping, Sequence
 
 from bioregistry.align.utils import Aligner
-from bioregistry.external.n2t import get_n2t
+from bioregistry.external.n2t import SKIP, get_n2t
 
 
 class N2TAligner(Aligner):
@@ -17,16 +17,7 @@ class N2TAligner(Aligner):
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the prefixes in N2T that should be skipped."""
-        return {
-            "zzztestprefix": "test prefix should not be considered",
-            "urn": "too meta",
-            "url": "too meta",
-            "purl": "too meta",
-            "lsid": "too meta",
-            "hdl": "paid service, too meta",
-            "repec": "irrelevant prefix from economics",
-            "merops": "issue with miriam having duplicate prefixes for this resource",  # FIXME
-        }
+        return SKIP
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Prepare curation rows for unaligned BioPortal registry entries."""

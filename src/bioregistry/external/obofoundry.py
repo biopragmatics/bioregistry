@@ -25,6 +25,9 @@ DIRECTORY.mkdir(exist_ok=True, parents=True)
 RAW_PATH = DIRECTORY / "raw.yaml"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 OBOFOUNDRY_URL = "https://raw.githubusercontent.com/OBOFoundry/OBOFoundry.github.io/master/registry/ontologies.yml"
+SKIP = {
+    "obo_rel": "replaced",
+}
 
 
 def get_obofoundry(force_download: bool = False):
@@ -37,7 +40,9 @@ def get_obofoundry(force_download: bool = False):
     with RAW_PATH.open() as file:
         data = yaml.full_load(file)
 
-    rv = {record["id"]: _process(record) for record in data["ontologies"]}
+    rv = {
+        record["id"]: _process(record) for record in data["ontologies"] if record["id"] not in SKIP
+    }
     for key, record in rv.items():
         for depends_on in record.get("depends_on", []):
             if depends_on not in rv:

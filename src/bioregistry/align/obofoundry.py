@@ -5,7 +5,7 @@
 from typing import Mapping, Sequence
 
 from bioregistry.align.utils import Aligner
-from bioregistry.external.obofoundry import get_obofoundry, get_obofoundry_example
+from bioregistry.external.obofoundry import SKIP, get_obofoundry, get_obofoundry_example
 
 __all__ = [
     "OBOFoundryAligner",
@@ -23,9 +23,7 @@ class OBOFoundryAligner(Aligner):
 
     def get_skip(self) -> Mapping[str, str]:
         """Get the prefixes in the OBO Foundry that should be skipped."""
-        return {
-            "obo_rel": "replaced",
-        }
+        return SKIP
 
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Prepare curation rows for unaligned BioPortal registry entries."""
