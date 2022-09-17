@@ -10,6 +10,7 @@ from typing import (
     Any,
     DefaultDict,
     Dict,
+    Iterable,
     List,
     Mapping,
     Optional,
@@ -208,40 +209,42 @@ def _clean(s: str) -> str:
     return s
 
 
-def backfill(records: Sequence[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
+def backfill(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
     _key_set = set(keys)
-    index = defaultdict(lambda: defaultdict(dict))
+    index_dd: DefaultDict[str, DefaultDict[str, Dict[str, str]]] = defaultdict(
+        lambda: defaultdict(dict)
+    )
 
     # Make a copy
-    records = [record.copy() for record in records]
+    records_copy = [record.copy() for record in records]
 
     # 1. index existing mappings
-    for record in records:
+    for record in records_copy:
         pairs = ((key, value) for key, value in record.items() if key in _key_set)
         for (k1, v1), (k2, v2) in itt.combinations(pairs, 2):
-            index[k1][v1][k2] = v2
-            index[k2][v2][k1] = v1
+            index_dd[k1][v1][k2] = v2
+            index_dd[k2][v2][k1] = v1
 
-    index = {k: dict(v) for k, v in index.items()}
+    index = {k: dict(v) for k, v in index_dd.items()}
 
-    for record in records:
+    for record in records_copy:
         missing_keys = {key for key in keys if key not in record}
         for _ in range(len(keys)):
             if not missing_keys:
                 continue
             values = {key: record[key] for key in keys if key in record}
             for key, value in values.items():
-                for xref_key, xref_value in index[key][value].items():
+                for xref_key, xref_value in index.get(key, {}).get(value, {}).items():
                     if xref_key in missing_keys:
                         record[xref_key] = xref_value
                         missing_keys.remove(xref_key)
-    return records
+    return records_copy
 
 
-def deduplicate(records: Sequence[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
+def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
     dd: DefaultDict[Sequence[str], List[Dict[str, Any]]] = defaultdict(list)
 
-    def _key(r: Mapping[str, Any]) -> Sequence[str]:
+    def _key(r: Dict[str, Any]):
         return tuple(r.get(key) or "" for key in keys)
 
     for record in backfill(records, keys):
