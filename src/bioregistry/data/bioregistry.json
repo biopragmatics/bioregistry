@@ -35794,12 +35794,18 @@
     ]
   },
   "imex": {
+    "banana": "IM",
+    "banana_peel": "-",
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "IMEX",
       "uri_format": "http://identifiers.org/imex/$1"
     },
+    "example": "19210-3",
+    "example_extras": [
+      "19210"
+    ],
     "mappings": {
       "biocontext": "IMEX",
       "miriam": "imex",
@@ -35839,6 +35845,7 @@
       "uri_format": "https://www.ebi.ac.uk/intact/imex/main.xhtml?query=$1"
     },
     "name": "International Molecular Exchange",
+    "pattern": "^\\d+(-\\d+)?$",
     "prefixcommons": {
       "description": "The International Molecular Exchange (IMEx) is a consortium of molecular interaction databases which collaborate to share manual curation efforts and provide accessibility to multiple information sources.",
       "example": "IM-12080-80",
@@ -35855,6 +35862,15 @@
       ],
       "uri_format": "http://www.ebi.ac.uk/intact/imex/main.xhtml?query=$1"
     },
+    "providers": [
+      {
+        "code": "intact.search",
+        "description": "Search page on IntAct",
+        "homepage": "https://www.ebi.ac.uk/intact",
+        "name": "IntAct Search",
+        "uri_format": "https://www.ebi.ac.uk/intact/search?query=IM-$1"
+      }
+    ],
     "publications": [
       {
         "doi": "10.1002/pmic.200700286",
@@ -35874,7 +35890,8 @@
         "nif": "0000-00447",
         "scr": "002805"
       }
-    }
+    },
+    "uri_format": "https://www.ebi.ac.uk/intact/imex/main.xhtml?query=IM-$1"
   },
   "img.gene": {
     "biocontext": {
@@ -44056,6 +44073,8 @@
     }
   },
   "mint": {
+    "banana": "MINT",
+    "banana_peel": "-",
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
@@ -44068,6 +44087,7 @@
       "obsolete": false,
       "prefix": "2615"
     },
+    "example": "6978836",
     "fairsharing": {
       "abbreviation": "MINT",
       "description": "MINT focuses on experimentally verified protein-protein interactions mined from the scientific literature by expert curators. This resource uses the IntAct database framework to help reduce the effort of scientists and improve on IT development. MINT is an ELIXIR Core Resource.",
@@ -44121,6 +44141,7 @@
       "uri_format": "https://www.ebi.ac.uk/intact/query/interaction_id:$1"
     },
     "name": "Molecular Interaction Database",
+    "pattern": "^\\d{1,7}$",
     "prefixcommons": {
       "description": "The Molecular INTeraction database (MINT) stores, in a structured format, information about molecular interactions by extracting experimental details from work published in peer-reviewed journals.",
       "example": "MINT-10000",
@@ -44152,7 +44173,8 @@
       "name": "Molecular INTeraction database",
       "prefix": "MINT",
       "uri_format": "https://mint.bio.uniroma2.it/cgi-bin/protein.py?id=$1"
-    }
+    },
+    "uri_format": "https://mint.bio.uniroma2.it/index.php/detailed-curation/?id=MINT-$1"
   },
   "mipmod": {
     "biocontext": {
@@ -44546,12 +44568,15 @@
     ]
   },
   "miriam.collection": {
+    "banana": "MIR",
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "MIRIAM.COLLECTION",
       "uri_format": "http://identifiers.org/miriam.collection/$1"
     },
+    "deprecated": true,
+    "example": "00000008",
     "mappings": {
       "biocontext": "MIRIAM.COLLECTION",
       "miriam": "miriam.collection",
@@ -44576,16 +44601,20 @@
       "pattern": "^MIR:000\\d{5}$",
       "prefix": "miriam.collection",
       "uri_format": "https://www.ebi.ac.uk/miriam/main/$1"
-    }
+    },
+    "part_of": "miriam",
+    "pattern": "^000\\d{5}$"
   },
   "miriam.resource": {
+    "banana": "MIR",
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "MIRIAM.RESOURCE",
       "uri_format": "http://identifiers.org/miriam.resource/$1"
     },
-    "comment": "yo dawg i heard you like registries...",
+    "deprecated": true,
+    "example": "00100005",
     "mappings": {
       "biocontext": "MIRIAM.RESOURCE",
       "miriam": "miriam.resource",
@@ -44614,6 +44643,9 @@
       "prefix": "miriam.resource",
       "uri_format": "https://www.ebi.ac.uk/miriam/main/resources/$1"
     },
+    "name": "MIRIAM Legacy Registry Identifier",
+    "part_of": "miriam",
+    "pattern": "^001\\d{5}$",
     "prefixcommons": {
       "description": "MIRIAM Resources is an online resource created to catalogue the data-types (Gene Ontology, Taxonomy or PubMed are some examples), their URIs and the corresponding physical URLs, whether these are controlled vocabularies or databases.",
       "example": "MIR:00100245",
@@ -61496,12 +61528,17 @@
     }
   },
   "psipar": {
+    "banana": "PAR",
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "PSIPAR",
       "uri_format": "http://identifiers.org/psipar/$1"
     },
+    "comment": "This resource is no longer loaded on XML and the sourceforge link from the HUPO website to the psi-par.obo artifact is dead.",
+    "deprecated": true,
+    "example": "0116",
+    "homepage": "https://www.psidev.info/psi-par",
     "mappings": {
       "biocontext": "PSIPAR",
       "miriam": "psipar",
@@ -61528,7 +61565,8 @@
       "pattern": "^PAR:\\d+$",
       "prefix": "psipar",
       "uri_format": "https://www.ebi.ac.uk/ontology-lookup/?termId=$1"
-    }
+    },
+    "pattern": "^\\d+$"
   },
   "pso": {
     "aberowl": {

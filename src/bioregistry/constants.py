@@ -103,6 +103,9 @@ IDOT_BROKEN = {
     "oma.hog",
     "mir",  # Added on 2021-10-08
     "storedb",  # Added on 2021-10-12
+    "miriam.collection",  # Added on 2022-09-17
+    "miriam.resource",  # Added on 2022-09-17
+    "psipar",  # Added on 2022-09-17
 }
 
 URI_FORMAT_KEY = "uri_format"
