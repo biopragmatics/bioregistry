@@ -1617,7 +1617,7 @@ class Resource(BaseModel):
         """Get the license for the resource."""
         if self.license:
             return self.license
-        for metaprefix in ("obofoundry", "ols"):
+        for metaprefix in ("obofoundry", "ols", "bioportal"):
             license_value = standardize_license(self.get_external(metaprefix).get("license"))
             if license_value is not None:
                 return license_value
