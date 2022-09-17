@@ -59,7 +59,7 @@ class Aligner(ABC):
 
         self.manager = Manager()
 
-        kwargs = self.getter_kwargs or {}
+        kwargs = dict(self.getter_kwargs or {})
         kwargs.setdefault("force_download", True)
         if force_download is not None:
             kwargs["force_download"] = force_download
