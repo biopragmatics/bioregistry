@@ -829,3 +829,18 @@ class TestRegistry(unittest.TestCase):
                         if publication.doi:
                             # DOIs are case insensitive, so standardize to lowercase in bioregistry
                             self.assertEqual(publication.doi.lower(), publication.doi)
+
+                    # Test no duplicates
+                    index = defaultdict(lambda: defaultdict(list))
+                    for publication in resource.publications:
+                        for key, value in publication.dict().items():
+                            if key == "title" or value is None:
+                                continue
+                            index[key][value].append(publication)
+                    for citation_prefix, citation_identifier_dict in index.items():
+                        for citation_identifier, values in citation_identifier_dict.items():
+                            self.assertEqual(
+                                1,
+                                len(values),
+                                msg=f"[{prefix}] duplication on {citation_prefix}:{citation_identifier}",
+                            )
