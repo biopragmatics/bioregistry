@@ -729,6 +729,7 @@ class Resource(BaseModel):
                 "agroportal",
                 "ecoportal",
                 "cropoct",
+                "cheminf",
             ),
         )
         if rv is not None:
