@@ -239,10 +239,10 @@ def backfill(records: Sequence[Dict[str, Any]], keys: Sequence[str]) -> Sequence
 
 
 def deduplicate(records: Sequence[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
-    dd: DefaultDict[Sequence[Optional[str]], List[Dict[str, Any]]] = defaultdict(list)
+    dd: DefaultDict[Sequence[str], List[Dict[str, Any]]] = defaultdict(list)
 
-    def _key(r: Mapping[str, Any]) -> Sequence[Optional[str]]:
-        return tuple(r.get(key) for key in keys)
+    def _key(r: Mapping[str, Any]) -> Sequence[str]:
+        return tuple(r.get(key) or "" for key in keys)
 
     for record in backfill(records, keys):
         dd[_key(record)].append(record)
