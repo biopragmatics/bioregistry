@@ -705,6 +705,7 @@ class Resource(BaseModel):
                 "n2t",
                 "cellosaurus",
                 "cropoct",
+                "cheminf",
             ),
         )
 
