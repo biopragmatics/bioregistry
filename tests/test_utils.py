@@ -11,8 +11,10 @@ class TestDeduplicate(unittest.TestCase):
     def test_backfill(self):
         """Test record backfill."""
         records = [
+            {"pubmed": "pmid_1"},
             {"arxiv": "arxiv_1", "doi": "doi_1"},
             {"doi": "doi_1", "pubmed": "pmid_1", "title": "yup"},
+            {"pubmed": "pmid_1"},
         ]
         res = backfill(records, keys=["pubmed", "doi", "pmc", "arxiv"])
         self.assertEqual(
@@ -26,7 +28,17 @@ class TestDeduplicate(unittest.TestCase):
                     "arxiv": "arxiv_1",
                     "doi": "doi_1",
                     "pubmed": "pmid_1",
+                },
+                {
+                    "arxiv": "arxiv_1",
+                    "doi": "doi_1",
+                    "pubmed": "pmid_1",
                     "title": "yup",
+                },
+                {
+                    "arxiv": "arxiv_1",
+                    "doi": "doi_1",
+                    "pubmed": "pmid_1",
                 },
             ],
             res,
@@ -38,6 +50,7 @@ class TestDeduplicate(unittest.TestCase):
             {"arxiv": "arxiv_1", "doi": "doi_1"},
             {"doi": "doi_1", "pubmed": "pmid_1", "title": "yup"},
             {"pubmed": "pmid_1", "pmc": "pmc_1"},
+            {"pubmed": "pmid_1"},
         ]
         res = deduplicate(records, keys=["pubmed", "doi", "pmc", "arxiv"])
         self.assertEqual(
