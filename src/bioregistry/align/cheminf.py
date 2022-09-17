@@ -14,6 +14,7 @@ __all__ = [
 SKIP = {
     "000467": "Not enough information available on this term.",
     "000234": "PubChem Conformer isn't actually an identifier, just a part of PubChem Compound database",
+    "000303": "Double mapping onto `genbank`",
 }
 
 
