@@ -102,17 +102,26 @@ class OntoPortalClient:
         ]:
             value = res_json.get(key)
             if value:
-                record[key] = (value or "").strip()
+                record[key] = (
+                    (value or "")
+                    .strip()
+                    .replace("\r\n", "")
+                    .replace("\r", "")
+                    .strip()
+                    .replace("  ", " ")
+                    .replace("  ", " ")
+                    .replace("  ", " ")
+                )
 
-        if "hasLicense" in res_json:
-            record["license"] = standardize_license((res_json["hasLicense"] or "").strip())
+        license_stub = res_json.get("hasLicense")
+        if license_stub:
+            record["license"] = standardize_license(license_stub)
 
         contacts = res_json.get("contact", [])
         if contacts:
-            record["contact"] = contacts[0]
-            record["contact"].pop("id", None)
+            record["contact"] = {k: v.strip() for k, v in contacts[0].items() if k != "id"}
 
-        return record
+        return {k: v for k, v in record.items() if v}
 
     def process(self, entry):
         """Process a record from the OntoPortal site's API."""
@@ -120,15 +129,11 @@ class OntoPortalClient:
         rv = {
             "prefix": prefix,
             "name": entry["name"].strip(),
-            "description": (entry.get("description") or "")
-            .replace("\n", " ")
-            .replace("\r\n", " ")
-            .replace("  ", " ")
-            .strip(),
-            "contact": {k: v.strip() for k, v in (entry.get("contact") or {}).items()},
+            "description": entry.get("description"),
+            "contact": entry.get("contact"),
             "homepage": entry.get("homepage"),
             "version": entry.get("version"),
-            "publication": (entry.get("publication") or "").strip(),
+            "publication": entry.get("publication"),
             "repository": entry.get("repository"),
             "example_uri": entry.get("exampleIdentifier"),
             "license": entry.get("license"),

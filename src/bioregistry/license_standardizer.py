@@ -17,9 +17,12 @@ __all__ = [
 
 def standardize_license(license_str: Optional[str]) -> Optional[str]:
     """Standardize a license string."""
-    if license_str is None:
+    if license_str is None or not license_str.strip():
         return None
-    return LICENSES.get(license_str.rstrip("/"), license_str)
+    license_str = license_str.strip().rstrip("/")
+    if not license_str:
+        return None
+    return LICENSES.get(license_str, license_str)
 
 
 #: https://creativecommons.org/licenses/by/3.0/
