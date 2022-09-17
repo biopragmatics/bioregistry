@@ -105,8 +105,8 @@ class OntoPortalClient:
                 record[key] = (
                     (value or "")
                     .strip()
-                    .replace("\r\n", "")
-                    .replace("\r", "")
+                    .replace("\r\n", " ")
+                    .replace("\r", " ")
                     .strip()
                     .replace("  ", " ")
                     .replace("  ", " ")

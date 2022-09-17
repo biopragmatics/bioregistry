@@ -2,6 +2,7 @@
 
 """Utilities for registry alignment."""
 
+import csv
 from abc import ABC, abstractmethod
 from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, Sequence
 
@@ -214,9 +215,9 @@ class Aligner(ABC):
 
         path.parent.mkdir(exist_ok=True, parents=True)
         with path.open("w") as file:
-            print(self.subkey, *self.curation_header, sep="\t", file=file)  # noqa:T201
-            for row in rows:
-                print(*row, sep="\t", file=file)  # noqa:T201
+            writer = csv.writer(file, delimiter="\t", quoting=csv.QUOTE_MINIMAL)
+            writer.writerow((self.subkey, *self.curation_header))
+            writer.writerows(rows)
 
     def get_curation_table(self, **kwargs) -> Optional[str]:
         """Get the curation table as a string, built by :mod:`tabulate`."""
