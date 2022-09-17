@@ -699,6 +699,8 @@ class Resource(BaseModel):
                 "go",
                 "ncbi",
                 "bioportal",
+                "agroportal",
+                "ecoportal",
                 "miriam",
                 "n2t",
                 "cellosaurus",
@@ -724,6 +726,8 @@ class Resource(BaseModel):
                 "fairsharing",
                 "aberowl",
                 "bioportal",
+                "agroportal",
+                "ecoportal",
                 "cropoct",
             ),
         )
@@ -850,6 +854,9 @@ class Resource(BaseModel):
                 "ncbi",
                 "cellosaurus",
                 "cropoct",
+                "bioportal",
+                "agroportal",
+                "ecoportal",
             ),
         )
 

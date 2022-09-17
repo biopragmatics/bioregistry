@@ -52,7 +52,7 @@ class Aligner(ABC):
 
     normalize_invmap: ClassVar[bool] = False
 
-    def __init__(self):
+    def __init__(self, force_download: Optional[bool] = None):
         """Instantiate the aligner."""
         if self.key not in read_metaregistry():
             raise TypeError(f"invalid metaprefix for aligner: {self.key}")
@@ -61,6 +61,8 @@ class Aligner(ABC):
 
         kwargs = self.getter_kwargs or {}
         kwargs.setdefault("force_download", True)
+        if force_download is not None:
+            kwargs["force_download"] = force_download
         self.external_registry = self.__class__.getter(**kwargs)
         self.skip_external = self.get_skip()
 
@@ -158,9 +160,9 @@ class Aligner(ABC):
         self.manager.write_registry()
 
     @classmethod
-    def align(cls, dry: bool = False, show: bool = False):
+    def align(cls, dry: bool = False, show: bool = False, force_download: Optional[bool] = None):
         """Align and output the curation sheet."""
-        instance = cls()
+        instance = cls(force_download=force_download)
         if not dry:
             instance.write_registry()
         if show:
