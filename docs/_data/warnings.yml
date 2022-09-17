@@ -167,6 +167,11 @@ wrong_patterns:
   miriam: ^[A-Z]\d+(\.[-\d+])?$
   name: International Classification of Diseases, 10th Revision
   prefix: icd10
+- correct: ^\d+(-\d+)?$
+  homepage: https://www.imexconsortium.org/
+  miriam: ^IM-\d+(-?)(\d+?)$
+  name: International Molecular Exchange
+  prefix: imex
 - correct: ^(LCL|LDC|ES|LSC|LPC)-\d+$
   homepage: http://lincsportal.ccs.miami.edu/cells/
   miriam: (^LCL-\d+$)|(^LDC-\d+$)|(^ES-\d+$)|(^LSC-\d+$)|(^LPC-\d+$)
@@ -212,11 +217,26 @@ wrong_patterns:
   miriam: ^MI:\d{4}$
   name: Molecular Interactions Controlled Vocabulary
   prefix: mi
+- correct: ^\d{1,7}$
+  homepage: https://mint.bio.uniroma2.it
+  miriam: ^MINT\-\d{1,7}$
+  name: Molecular Interaction Database
+  prefix: mint
 - correct: ^\d{8}$
   homepage: https://registry.identifiers.org/registry
   miriam: ^MIR:\d{8}$
   name: Identifiers.org Registry
   prefix: mir
+- correct: ^000\d{5}$
+  homepage: https://www.ebi.ac.uk/miriam/
+  miriam: ^MIR:000\d{5}$
+  name: MIRIAM Registry collection
+  prefix: miriam.collection
+- correct: ^001\d{5}$
+  homepage: https://www.ebi.ac.uk/miriam/
+  miriam: ^MIR:001\d{5}$
+  name: MIRIAM Legacy Registry Identifier
+  prefix: miriam.resource
 - correct: ^\d{5}$
   homepage: http://www.psidev.info/MOD
   miriam: ^MOD:\d{5}
@@ -307,6 +327,11 @@ wrong_patterns:
   miriam: ^PR:P?\d+$
   name: Protein Ontology
   prefix: pr
+- correct: ^\d+$
+  homepage: https://www.psidev.info/psi-par
+  miriam: ^PAR:\d+$
+  name: Protein Affinity Reagents
+  prefix: psipar
 - correct: ^\d{7}$
   homepage: http://rgd.mcw.edu/rgdweb/ontology/search.html
   miriam: ^PW:\d{7}$
