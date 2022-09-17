@@ -36887,15 +36887,12 @@
     }
   },
   "intact": {
-    "banana": "EBI",
-    "banana_peel": "-",
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "INTACT",
       "uri_format": "http://identifiers.org/intact/$1"
     },
-    "example": "2307691",
     "fairsharing": {
       "abbreviation": "IntAct",
       "description": "IntAct provides a freely available, open source database system and analysis tools for protein interaction data. All interactions are derived from literature curation or direct user submissions and are freely available.",
@@ -36943,7 +36940,6 @@
       "prefix": "intact",
       "uri_format": "https://www.ebi.ac.uk/intact/interaction/$1"
     },
-    "pattern": "^\\d+$",
     "prefixcommons": {
       "description": "IntAct provides a freely available, open source database system and analysis tools for protein interaction data. All interactions are derived from literature curation or direct user submissions and are freely available.",
       "example": "EBI-2307691",
@@ -36986,8 +36982,7 @@
       "name": "Protein interaction database and analysis system",
       "prefix": "IntAct",
       "uri_format": "https://www.ebi.ac.uk/intact/interactors/id:$1*"
-    },
-    "uri_format": "https://www.ebi.ac.uk/intact/details/interaction/$1"
+    }
   },
   "intact.molecule": {
     "biocontext": {
@@ -73534,8 +73529,6 @@
     ]
   },
   "uniprot.disease": {
-    "banana": "DI",
-    "banana_peel": "-",
     "biolink": {
       "is_identifiers": false,
       "is_obo": false,
@@ -73550,19 +73543,19 @@
     },
     "description": "The human diseases in which proteins are involved are described in UniProtKB entries with a controlled vocabulary.",
     "download_obo": "https://www.uniprot.org/diseases/?query=*&format=obo",
-    "example": "04240",
+    "example": "DI=04240",
     "homepage": "https://www.uniprot.org/diseases/",
     "mappings": {
       "biolink": "SPDI"
     },
     "name": "UniProt Diseases",
     "part_of": "uniprot",
-    "pattern": "^\\d{5}$",
+    "pattern": "^DI-\\d{5}$",
     "synonyms": [
       "DI",
       "SP_DI"
     ],
-    "uri_format": "https://www.uniprot.org/diseases/$1"
+    "uri_format": "https://www.uniprot.org/diseases/DI-$1"
   },
   "uniprot.isoform": {
     "biocontext": {
@@ -73723,8 +73716,6 @@
     "uri_format": "https://www.uniprot.org/locations/$1"
   },
   "uniprot.ptm": {
-    "banana": "PTM",
-    "banana_peel": "-",
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -73732,14 +73723,14 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The post-translational modifications used in the UniProt knowledgebase (Swiss-Prot and TrEMBL). The definition of the post-translational modifications usage as well as other information is provided in the following format",
-    "example": "0450",
+    "example": "PTM-0450",
     "homepage": "https://www.uniprot.org/docs/ptmlist",
     "mappings": {
       "prefixcommons": "ptmswitchboard"
     },
     "name": "UniProt Post-Translational Modification",
     "part_of": "uniprot",
-    "pattern": "^PTM-\\d{4}$",
+    "pattern": "^\\d{4}$",
     "prefixcommons": {
       "description": "PTM-Switchboard is designed to catalog known cases of TF-PTMs affecting gene transcriptions.. PTM-Switchboard differs from existing molecular pathway databases in that, instead of using pairwise interactions as a primary data type, it stores triplets of genes such that the ability of one gene (the TF) to regulate a target gene is dependent on a third gene (the modifying enzyme).",
       "example": "128",
@@ -73761,7 +73752,6 @@
       ],
       "uri_format": "http://cagr.pcbi.upenn.edu/PTMswitchboard/jsp/detail.jsp?ID=$1"
     },
-    "pattern": "^\\d{4}$",
     "references": [
       "https://twitter.com/cthoyt/status/1510570256619778053",
       "https://www.uniprot.org/docs/ptmlist.txt"
@@ -73772,8 +73762,6 @@
     "uri_format": "https://biopragmatics.github.io/providers/uniprot.ptm/$1"
   },
   "uniprot.resource": {
-    "banana": "DB",
-    "banana_peel": "-",
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -73781,23 +73769,21 @@
       "orcid": "0000-0003-4423-4370"
     },
     "description": "The cross-references section of UniProtKB entries displays explicit and implicit links to databases such as nucleotide sequence databases, model organism databases and genomics and proteomics resources.",
-    "example": "0174",
+    "example": "DB-0174",
     "homepage": "https://www.uniprot.org/database/",
     "name": "UniProt Resource",
     "part_of": "uniprot",
-    "pattern": "^\\d{4}$",
+    "pattern": "^DB-\\d{4}$",
     "uri_format": "https://www.uniprot.org/database/$1"
   },
   "uniprot.tissue": {
-    "banana": "TS",
-    "banana_peel": "-",
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "TISSUELIST",
       "uri_format": "http://identifiers.org/tissuelist/$1"
     },
-    "example": "0285",
+    "example": "TS-0285",
     "mappings": {
       "biocontext": "TISSUELIST",
       "miriam": "tissuelist",
@@ -73826,7 +73812,7 @@
       "uri_format": "https://www.uniprot.org/tissues/$1"
     },
     "part_of": "uniprot",
-    "pattern": "^\\d{4}$",
+    "pattern": "^TS-\\d{4}$",
     "uri_format": "https://www.uniprot.org/tissues/$1"
   },
   "uniprot.var": {
