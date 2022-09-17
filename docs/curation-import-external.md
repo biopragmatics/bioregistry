@@ -23,9 +23,9 @@ the relevant diff for the changes described in this tutorial.
 3. Go into the `bioregistry.json` file and use the prefix as a key for a new
    dictionary object.
 4. The only thing you need inside the object is `"mappings"` which itself is a
-   dictionary object where the key is the metaprefix for the external registry (
-   in this case `agroportal`) and the value is the external registry's prefix (
-   in this case `FOODEX2`).
+   dictionary object where the key is the metaprefix for the external registry
+   (in this case `agroportal`) and the value is the external registry's prefix
+   (in this case `FOODEX2`).
 
     ```json
     "foodex2": {
