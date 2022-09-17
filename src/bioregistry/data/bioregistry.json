@@ -20489,6 +20489,30 @@
       "database": "Q17052437"
     }
   },
+  "ecn": {
+    "cheminf": {
+      "description": "A seven-digit identifier for chemical substances for regulatory purposes within the European Union.",
+      "name": "European Community number",
+      "obsolete": false,
+      "prefix": "000447"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "example": "200-003-9",
+    "homepage": "https://echa.europa.eu/information-on-chemicals",
+    "mappings": {
+      "cheminf": "000447"
+    },
+    "pattern": "^\\d{3}-\\d{3}-\\d$",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/257",
+      "https://en.wikipedia.org/wiki/European_Community_number"
+    ]
+  },
   "eco": {
     "aberowl": {
       "description": "An ontology for experimental and other evidence statements.",
@@ -50876,6 +50900,31 @@
     "repository": "https://github.com/sobolevnrm/npo",
     "uri_format": "http://purl.bioontology.org/ontology/npo#NPO_$1"
   },
+  "nsc": {
+    "cheminf": {
+      "description": "Identifier used by the Cancer Chemotherapy National Service Center.",
+      "name": "National Service Center number",
+      "obsolete": false,
+      "prefix": "000565"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "example": "27223",
+    "homepage": "https://wiki.nci.nih.gov/display/NCIDTPdata/Chemical+Data",
+    "mappings": {
+      "cheminf": "000565"
+    },
+    "name": "USA National Service Center Number",
+    "pattern": "^\\d+$",
+    "references": [
+      "https://pubchem.ncbi.nlm.nih.gov/source/DTP/NCI"
+    ],
+    "uri_format": "https://dtp.cancer.gov/dtpstandard/servlet/ChemData?searchtype=NSC&searchlist=$1"
+  },
   "nsf.award": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -65129,6 +65178,39 @@
       "uri_format": "http://purl.obolibrary.org/obo/$1"
     },
     "twitter": "ratgenome"
+  },
+  "rtecs": {
+    "cheminf": {
+      "description": "Identifier used by the RTECS database (http://www.cdc.gov/niosh/rtecs/).",
+      "name": "RTECS",
+      "obsolete": false,
+      "prefix": "000566"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "RTECS is a compendium of data extracted from the open scientific literature. The data are recorded in the format developed by the RTECS staff and arranged in alphabetical order by prime chemical name. Six types of toxicity data are included in the file: (1) primary irritation; (2) mutagenic effects; (3) reproductive effects; (4) tumorigenic effects; (5) acute toxicity; and (6) other multiple dose toxicity. Specific numeric toxicity values such as LD50, LC50, TDLo, and TCLo are noted as well as species studied and route of administration used. For each citation, the bibliographic source is listed thereby enabling the user to access the actual studies cited. No attempt has been made to evaluate the studies cited in RTECS. The user has the responsibility of making such assessments.",
+    "example": "AB1925000",
+    "homepage": "https://www.cdc.gov/niosh/rtecs/",
+    "mappings": {
+      "cheminf": "000566"
+    },
+    "name": "Registry of Toxic Effects of Chemical Substances",
+    "pattern": "^AB\\d+$",
+    "proprietary": true,
+    "publications": [
+      {
+        "doi": "https://doi.org/10.1016/s1074-9098%2899%2900058-1",
+        "title": "An overview of the Registry of Toxic Effects of Chemical Substances (RTECS): Critical information on chemical hazards"
+      }
+    ],
+    "references": [
+      "https://www.cdc.gov/niosh/docs/97-119/pdfs/97-119.pdf",
+      "https://www.cdc.gov/niosh/npg/npgdrtec.html"
+    ]
   },
   "runbiosimulations": {
     "mappings": {

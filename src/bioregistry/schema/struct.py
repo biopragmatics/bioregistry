@@ -705,6 +705,7 @@ class Resource(BaseModel):
                 "n2t",
                 "cellosaurus",
                 "cropoct",
+                "cheminf",
             ),
         )
 
@@ -729,6 +730,7 @@ class Resource(BaseModel):
                 "agroportal",
                 "ecoportal",
                 "cropoct",
+                "cheminf",
             ),
         )
         if rv is not None:
