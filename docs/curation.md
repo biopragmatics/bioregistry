@@ -26,6 +26,8 @@ The following registries have xrefs that need curating:
 </tbody>
 </table>
 
+See a more detailed tutorial [here](/curation/import-external).
+
 ## Adding a Wikidata Database Corresponding to Each Resource
 
 <a id="wikidata"></a>
