@@ -23,9 +23,8 @@ def _main():
 
     resources = []
     for resource in manager.registry.values():
-        pubmed_ids: Set[str] = set()
         resource_publications = resource.get_publications()
-        pubmed_ids.update(p.pubmed for p in resource_publications if p.pubmed)
+        pubmed_ids = {p.pubmed for p in resource_publications if p.pubmed}
         if pubmed_ids:
             resources.append((resource, pubmed_ids))
         elif resource.publications:
@@ -53,23 +52,15 @@ def _main():
             )
 
         if not resource.publications and not new_publications:
-            tqdm.write(f"error on {resource.prefix}")
+            raise ValueError(f"error on {resource.prefix}")
+        _pubs = [
+            *(new_publications or []),
+            *(resource.publications or []),
+        ]
+        if len(_pubs) == 1:
+            resource.publications = _pubs
         else:
-            _pubs = [
-                *(new_publications or []),
-                *(resource.publications or []),
-            ]
-            if len(_pubs) == 1:
-                resource.publications = _pubs
-            else:
-                from rich import print
-                print(resource.prefix)
-                print("pre")
-                print(_pubs)
-                resource.publications = deduplicate_publications(_pubs)
-                print("post")
-                print(resource.publications)
-                print()
+            resource.publications = deduplicate_publications(_pubs)
 
     # output every so often in case of failure
     manager.write_registry()
