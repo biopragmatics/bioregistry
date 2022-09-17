@@ -1686,6 +1686,7 @@ bdgp.est:
     miriam: bdgp.est
     n2t: bdgp.est
     ncbi: BDGP_EST
+    prefixcommons: flybase.est
   name: Berkeley Drosophila Genome Project EST database
   pattern: ^\w+(\.)?(\d+)?$
   preferred_prefix: bdgp.est
@@ -1699,9 +1700,15 @@ bdgp.insertion:
     biocontext: BDGP.INSERTION
     miriam: bdgp.insertion
     n2t: bdgp.insertion
+    prefixcommons: bdgp
   name: BDGP insertion DB
   pattern: ^\w+$
   preferred_prefix: bdgp.insertion
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '15238527'
+    title: null
   uri_format: http://flypush.imgen.bcm.tmc.edu/pscreen/details.php?line=$1
 bdsc:
   description: The Bloomington Drosophila Stock Center collects, maintains and distributes
@@ -2192,6 +2199,7 @@ biomodels.db:
     go: BIOMD
     miriam: biomodels.db
     n2t: biomodels.db
+    prefixcommons: biomodels
   name: BioModels Database
   pattern: ^((BIOMD|MODEL)\d{10})|(BMID\d{12})$
   preferred_prefix: biomodels.db
@@ -2206,6 +2214,11 @@ biomodels.db:
     homepage: https://www.omicsdi.org/
     name: BioModels through OmicsDI
     uri_format: https://www.omicsdi.org/dataset/biomodels/$1
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '16381960'
+    title: null
   synonyms:
   - BIOMD
   uri_format: https://www.ebi.ac.uk/biomodels/$1
@@ -2760,9 +2773,15 @@ bold.taxonomy:
     miriam: bold.taxonomy
     n2t: bold.taxonomy
     ncbi: BOLD
+    prefixcommons: bold
   name: Barcode of Life database
   pattern: ^\d+$
   preferred_prefix: bold.taxonomy
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '18784790'
+    title: null
   uri_format: http://www.boldsystems.org/index.php/Taxbrowser_Taxonpage?taxid=$1
 bootstrep:
   contact:
@@ -6740,9 +6759,15 @@ dbg2introns:
     biocontext: DBG2INTRONS
     miriam: dbg2introns
     n2t: dbg2introns
+    prefixcommons: mgiid
   name: DBG2 Introns
   pattern: ^\w{1,2}\.(\w{1,2}\.)?[A-Za-z0-9]+$
   preferred_prefix: dbg2introns
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '22080509'
+    title: null
   uri_format: http://webapps2.ucalgary.ca/~groupii/cgi-bin/intron.cgi?name=$1
 dbgap:
   description: The database of Genotypes and Phenotypes (dbGaP) archives and distributes
@@ -10094,6 +10119,7 @@ ev:
   mappings:
     biocontext: EV
     obofoundry: ev
+    prefixcommons: evoc
   name: eVOC (Expressed Sequence Annotation for Humans)
   preferred_prefix: EV
   references:
@@ -11904,6 +11930,7 @@ genprop:
     biocontext: GENPROP
     miriam: genprop
     n2t: genprop
+    prefixcommons: jcvi.genprop
   name: Genome Properties
   pattern: ^GenProp\d+$
   preferred_prefix: genprop
@@ -13503,9 +13530,15 @@ hcvdb:
     biocontext: HCVDB
     miriam: hcvdb
     n2t: hcvdb
+    prefixcommons: euhcvdb
   name: Hepatitis C Virus Database
   pattern: ^M\d{5}$
   preferred_prefix: hcvdb
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '17142229'
+    title: null
   uri_format: https://euhcvdb.ibcp.fr/euHCVdb/do/displayHCVEntry?primaryAC=$1
 hdr:
   description: The Homeodomain Resource is a curated collection of sequence, structure,
@@ -16247,11 +16280,17 @@ kegg.genes:
     biolink: KEGG.GENE
     miriam: kegg.genes
     n2t: kegg.genes
+    prefixcommons: kegg.gene
     wikidata: P665
   name: KEGG Genes
   part_of: kegg
   pattern: ^\w+:[\w\d\.-]*$
   preferred_prefix: kegg.genes
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '16381885'
+    title: null
   uri_format: http://www.kegg.jp/entry/$1
 kegg.genome:
   description: KEGG Genome is a collection of organisms whose genomes have been completely
@@ -16647,9 +16686,15 @@ lgic:
     biocontext: LGIC
     miriam: lgic
     n2t: lgic
+    prefixcommons: lgicdb
   name: Ligand-Gated Ion Channel database
   pattern: ^\w+$
   preferred_prefix: lgic
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '9847222'
+    title: null
   uri_format: https://www.ebi.ac.uk/compneur-srv/LGICdb/HTML/$1.php
 licebase:
   description: Sea lice (Lepeophtheirus salmonis and Caligus species) are the major
@@ -18124,12 +18169,22 @@ mge:
   example: '2'
   homepage: http://aclame.ulb.ac.be/
   mappings:
+    biocontext: ACLAME
+    edam: '2631'
     miriam: mge
     n2t: mge
+    prefixcommons: aclame
   name: Aclame
   namespace_in_lui: true
   pattern: ^\d+$
   preferred_prefix: mge
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '14681355'
+    title: null
+  synonyms:
+  - aclame
   uri_format: http://aclame.ulb.ac.be/perl/Aclame/Genomes/mge_view.cgi?view=info&id=mge:$1
 mgi:
   banana: MGI
@@ -19320,6 +19375,7 @@ mpid:
     fairsharing: FAIRsharing.eyjkws
     miriam: mpid
     n2t: mpid
+    prefixcommons: mpi
   name: Microbial Protein Interaction Database
   pattern: ^\d+$
   preferred_prefix: mpid
@@ -19329,6 +19385,11 @@ mpid:
     homepage: https://www.ebi.ac.uk/intact/
     name: Microbial Protein Interaction Database subset through IntAct
     uri_format: https://www.ebi.ac.uk/intact/query/interaction_id:MPIDB-INT-$1
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '18556668'
+    title: null
   synonyms:
   - mpidb
   uri_format: http://www.jcvi.org/mpidb/experiment.php?interaction_id=$1
@@ -23838,9 +23899,15 @@ pdb-ccd:
     biocontext: PDB-CCD
     miriam: pdb-ccd
     n2t: pdb-ccd
+    prefixcommons: ccd
   name: Chemical Component Dictionary
   pattern: ^\w{1,3}$
   preferred_prefix: pdb-ccd
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '14634627'
+    title: null
   synonyms:
   - pdbechem
   uri_format: https://www.ebi.ac.uk/pdbe-srv/pdbechem/chemicalCompound/show/$1
@@ -27403,9 +27470,15 @@ sabiork.kineticrecord:
     go: SABIO-RK
     miriam: sabiork.kineticrecord
     n2t: sabiork.kineticrecord
+    prefixcommons: sabiork.kinetic
   name: SABIO Reaction Kinetics
   pattern: ^\d+$
   preferred_prefix: sabiork.kineticrecord
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '17822389'
+    title: null
   uri_format: http://sabiork.h-its.org/kineticLawEntry.jsp?viewData=true&kinlawid=$1
 sabiork.reaction:
   description: SABIO-RK is a relational database system that contains information
@@ -28572,8 +28645,11 @@ snornabase:
     human H/ACA and C/D box snoRNAs.'
   example: SR0000178
   homepage: https://www-snorna.biotoul.fr/
+  mappings:
+    prefixcommons: snornalbmedb
   name: snoRNABase
   preferred_prefix: snornabase
+  uri_format: http://www-snorna.biotoul.fr/plus.php?id=$1
 snp2tfbs:
   description: SNP2TFBS is aimed at studying variations (SNPs/indels) that affect
     transcription factor binding (TFB) in the Human genome.
@@ -28794,9 +28870,19 @@ spike.map:
     biocontext: SPIKE.MAP
     miriam: spike.map
     n2t: spike.map
+    prefixcommons: spike
   name: SPIKE Map
   pattern: ^spike\d{5}$
   preferred_prefix: spike.map
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '18289391'
+    title: null
+  - doi: null
+    pmc: null
+    pubmed: '21097778'
+    title: null
   uri_format: http://www.cs.tau.ac.il/~spike/maps/$1.html
 splash:
   description: The spectra hash code (SPLASH) is a unique and non-proprietary identifier
@@ -29188,6 +29274,7 @@ supfam:
     biocontext: SUPFAM
     miriam: supfam
     n2t: supfam
+    prefixcommons: superfamily
     uniprot: SUPFAM
   name: SUPERFAMILY
   pattern: ^\w+$
@@ -29384,6 +29471,7 @@ symp:
     obofoundry: symp
     ols: symp
     ontobee: SYMP
+    prefixcommons: symptom
     wikidata: P8656
   name: Symptom Ontology
   pattern: ^\d{7}$
@@ -29926,6 +30014,7 @@ to:
     obofoundry: to
     ols: to
     ontobee: TO
+    prefixcommons: pto
   name: Plant Trait Ontology
   pattern: ^\d{7}$
   preferred_prefix: TO
@@ -30053,6 +30142,7 @@ trans:
     obofoundry: trans
     ols: trans
     ontobee: TRANS
+    prefixcommons: pt
   name: Pathogen Transmission Ontology
   pattern: ^\d{7}$
   preferred_prefix: TRANS
@@ -30877,6 +30967,8 @@ uniprot.ptm:
     usage as well as other information is provided in the following format
   example: PTM-0450
   homepage: https://www.uniprot.org/docs/ptmlist
+  mappings:
+    prefixcommons: ptmswitchboard
   name: UniProt Post-Translational Modification
   part_of: uniprot
   pattern: ^PTM-\d{4}$
@@ -31788,6 +31880,7 @@ vsao:
     biocontext: VSAO
     bioportal: VSAO
     obofoundry: vsao
+    prefixcommons: vao
   name: Vertebrate Skeletal Anatomy Ontology
   preferred_prefix: VSAO
   synonyms:
