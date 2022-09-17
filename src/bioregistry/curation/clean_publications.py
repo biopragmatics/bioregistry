@@ -3,6 +3,7 @@
 Run this script with python -m bioregistry.curation.clean_publications.
 """
 
+from functools import lru_cache
 from typing import Set
 
 from manubot.cite.pubmed import get_pubmed_csl_item
@@ -12,32 +13,30 @@ from bioregistry import manager
 from bioregistry.schema.struct import Publication, deduplicate_publications
 
 
+@lru_cache(None)
+def _get_pubmed_csl_item(pmid):
+    return get_pubmed_csl_item(pmid)
+
+
 def _main():
     c = 0
 
     resources = []
     for resource in manager.registry.values():
         pubmed_ids: Set[str] = set()
-        if resource.prefixcommons:
-            pubmed_ids.update(resource.prefixcommons.get("pubmed_ids", []))
-        if resource.fairsharing:
-            pubmed_ids.update(
-                str(p["pubmed_id"])
-                for p in resource.fairsharing.get("publications", [])
-                if p.get("pubmed_id")
-            )
-        if not pubmed_ids:
-            continue
-        pubmed_ids.difference_update(
-            p.pubmed for p in resource.get_publications() if p.pubmed and p.title
-        )
+        resource_publications = resource.get_publications()
+        pubmed_ids.update(p.pubmed for p in resource_publications if p.pubmed)
         if pubmed_ids:
             resources.append((resource, pubmed_ids))
+        elif resource.publications:
+            resource.publications = deduplicate_publications(resource.publications)
 
-    for resource, pubmed_ids in tqdm(resources):
+    for resource, pubmed_ids in tqdm(
+        resources, desc="resources with pubmeds to update", unit="resource"
+    ):
         new_publications = []
         for pubmed in pubmed_ids:
-            csl_item = get_pubmed_csl_item(pubmed)
+            csl_item = _get_pubmed_csl_item(pubmed)
             title = csl_item.get("title", "").strip() or None
             doi = csl_item.get("DOI") or None
             pmc = csl_item.get("PMCID") or None
@@ -53,21 +52,29 @@ def _main():
                 )
             )
 
-        if resource.publications:
-            resource.publications = deduplicate_publications(
-                [
-                    *new_publications,
-                    *resource.publications,
-                ]
-            )
+        if not resource.publications and not new_publications:
+            tqdm.write(f"error on {resource.prefix}")
         else:
-            resource.publications = deduplicate_publications(new_publications)
+            _pubs = [
+                *(new_publications or []),
+                *(resource.publications or []),
+            ]
+            if len(_pubs) == 1:
+                resource.publications = _pubs
+            else:
+                from rich import print
+                print(resource.prefix)
+                print("pre")
+                print(_pubs)
+                resource.publications = deduplicate_publications(_pubs)
+                print("post")
+                print(resource.publications)
+                print()
 
-        c += 1
-        if c > 5:
-            # output every so often in case of failure
-            manager.write_registry()
-            c = 0
+    # output every so often in case of failure
+    manager.write_registry()
+    tqdm.write("wrote registry")
+    c = 0
 
 
 if __name__ == "__main__":

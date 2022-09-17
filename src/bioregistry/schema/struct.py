@@ -1029,7 +1029,7 @@ class Resource(BaseModel):
                 title = publication.get("title")
                 if pubmed or doi:
                     publications.append(
-                        Publication(pubmed=pubmed, doi=doi and doi.lower(), title=title, pmc=None)
+                        Publication(pubmed=pubmed and str(pubmed), doi=doi and doi.lower(), title=title, pmc=None)
                     )
         if self.prefixcommons:
             for pubmed in self.prefixcommons.get("pubmed_ids", []):
