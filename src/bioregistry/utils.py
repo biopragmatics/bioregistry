@@ -1,10 +1,22 @@
 """Utilities."""
 
+import itertools as itt
 import logging
+from collections import ChainMap, defaultdict
 from dataclasses import asdict, is_dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, List, Mapping, Optional, Union, cast
+from typing import (
+    Any,
+    DefaultDict,
+    Dict,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    Union,
+    cast,
+)
 
 import click
 import requests
@@ -194,3 +206,47 @@ def _clean(s: str) -> str:
     s = cast(str, removesuffix(s, "ID")).strip()
     s = cast(str, removesuffix(s, "accession")).strip()
     return s
+
+
+def backfill(records: Sequence[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
+    _key_set = set(keys)
+    index = defaultdict(lambda: defaultdict(dict))
+
+    # Make a copy
+    records = [record.copy() for record in records]
+
+    # 1. index existing mappings
+    for record in records:
+        pairs = ((key, value) for key, value in record.items() if key in _key_set)
+        for (k1, v1), (k2, v2) in itt.combinations(pairs, 2):
+            index[k1][v1][k2] = v2
+            index[k2][v2][k1] = v1
+
+    index = {k: dict(v) for k, v in index.items()}
+
+    for record in records:
+        missing_keys = {key for key in keys if key not in record}
+        for _ in range(len(keys)):
+            if not missing_keys:
+                continue
+            values = {key: record[key] for key in keys if key in record}
+            for key, value in values.items():
+                for xref_key, xref_value in index[key][value].items():
+                    if xref_key in missing_keys:
+                        record[xref_key] = xref_value
+                        missing_keys.remove(xref_key)
+    return records
+
+
+def deduplicate(records: Sequence[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
+    dd: DefaultDict[Sequence[Optional[str]], List[Dict[str, Any]]] = defaultdict(list)
+
+    def _key(r: Mapping[str, Any]) -> Sequence[Optional[str]]:
+        return tuple(r.get(key) for key in keys)
+
+    for record in backfill(records, keys):
+        dd[_key(record)].append(record)
+
+    rv = [dict(ChainMap(*v)) for v in dd.values()]
+
+    return sorted(rv, key=_key)

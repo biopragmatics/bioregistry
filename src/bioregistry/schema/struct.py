@@ -34,7 +34,7 @@ from bioregistry import constants as brc
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import curie_to_str, removeprefix, removesuffix
+from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
 
 try:
     from typing import Literal  # type:ignore
@@ -2222,46 +2222,10 @@ def _get(resource, key):
 
 def deduplicate_publications(publications: List[Publication]) -> List[Publication]:
     """Deduplicate publications."""
-    d = defaultdict(list)
-
-    # Index mappings
-    doi_to_pmid = {}
-    pmid_to_doi = {}
-    doi_to_pmc = {}
-    pmc_to_doi = {}
-    pmid_to_pmc = {}
-    pmc_to_pmid = {}
-    for p in publications:
-        if p.doi and p.pubmed:
-            doi_to_pmid[p.doi] = p.pubmed
-            pmid_to_doi[p.pubmed] = p.doi
-        if p.doi and p.pmc:
-            doi_to_pmc[p.doi] = p.pmc
-            pmc_to_doi[p.pmc] = p.doi
-        if p.pubmed and p.pmc:
-            pmid_to_pmc[p.pubmed] = p.pmc
-            pmc_to_pmid[p.pmc] = p.pubmed
-    for p in publications:
-        # apply mappings
-        if p.doi and not p.pubmed:
-            p.pubmed = doi_to_pmid.get(p.doi)
-        if p.pubmed and not p.doi:
-            p.doi = pmid_to_doi.get(p.pubmed)
-        if p.doi and not p.pmc:
-            p.pmc = doi_to_pmc.get(p.doi)
-        if p.pubmed and not p.pmc:
-            p.pmc = pmid_to_pmc.get(p.pubmed)
-        # todo not exhaustive, doesn't account for multi-hop mappings
-        d[p.key()].append(p)
-
-    for vs in d.values():
-        try:
-            title = next(v.title for v in vs if v.title)
-        except StopIteration:
-            continue
-        else:
-            vs[0].title = title
-    return [v[0] for _, v in sorted(d.items())]
+    records = deduplicate(
+        [publication.dict() for publication in publications], keys=["pubmed", "doi", "pmc"]
+    )
+    return [Publication(**record) for record in records]
 
 
 def main():
