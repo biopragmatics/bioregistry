@@ -1085,6 +1085,7 @@ bioregistry:bdgp.est a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:BDGP.EST,
         n2t:bdgp.est,
         ncbi.resource:BDGP_EST,
+        prefixcommons:flybase.est,
         miriam:bdgp.est ;
     foaf:homepage "https://www.ncbi.nlm.nih.gov/dbEST/index.html"^^xsd:string ;
     bioregistry.schema:0000005 "EY223054.1"^^xsd:string ;
@@ -1099,6 +1100,7 @@ bioregistry:bdgp.insertion a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:BDGP.INSERTION,
         n2t:bdgp.insertion,
+        prefixcommons:bdgp,
         miriam:bdgp.insertion ;
     foaf:homepage "http://flypush.imgen.bcm.tmc.edu/pscreen/"^^xsd:string ;
     bioregistry.schema:0000005 "KG09531"^^xsd:string ;
@@ -1361,6 +1363,7 @@ bioregistry:biomodels.db a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:BIOMODELS.DB,
         go.resource:BIOMD,
         n2t:biomodels.db,
+        prefixcommons:biomodels,
         miriam:biomodels.db ;
     foaf:homepage "https://www.ebi.ac.uk/biomodels/"^^xsd:string ;
     bioregistry.schema:0000005 "BIOMD0000000048"^^xsd:string ;
@@ -1584,6 +1587,7 @@ bioregistry:bold.taxonomy a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:BOLD.TAXONOMY,
         n2t:bold.taxonomy,
         ncbi.resource:BOLD,
+        prefixcommons:bold,
         miriam:bold.taxonomy ;
     foaf:homepage "http://www.boldsystems.org/"^^xsd:string ;
     bioregistry.schema:0000005 "27267"^^xsd:string ;
@@ -3242,6 +3246,7 @@ bioregistry:dbg2introns a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:DBG2INTRONS,
         n2t:dbg2introns,
+        prefixcommons:mgiid,
         miriam:dbg2introns ;
     foaf:homepage "http://webapps2.ucalgary.ca/~groupii/"^^xsd:string ;
     bioregistry.schema:0000005 "Cu.me.I1"^^xsd:string ;
@@ -4141,7 +4146,8 @@ bioregistry:ev a bioregistry.schema:0000001 ;
     rdfs:label "eVOC (Expressed Sequence Annotation for Humans)" ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch obofoundry:ev,
-        biocontext:EV ;
+        biocontext:EV,
+        prefixcommons:evoc ;
     foaf:homepage "http://www.evocontology.org/"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/EV_$1"^^xsd:string ;
     bioregistry.schema:0000012 true ;
@@ -4773,6 +4779,7 @@ bioregistry:genprop a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:GENPROP,
         n2t:genprop,
+        prefixcommons:jcvi.genprop,
         miriam:genprop ;
     foaf:homepage "https://www.ebi.ac.uk/interpro/genomeproperties/"^^xsd:string ;
     bioregistry.schema:0000005 "GenProp0699"^^xsd:string ;
@@ -5441,6 +5448,7 @@ bioregistry:hcvdb a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:HCVDB,
         n2t:hcvdb,
+        prefixcommons:euhcvdb,
         miriam:hcvdb ;
     foaf:homepage "http://euhcvdb.ibcp.fr"^^xsd:string ;
     bioregistry.schema:0000005 "M58335"^^xsd:string ;
@@ -6524,6 +6532,7 @@ bioregistry:lgic a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:LGIC,
         n2t:lgic,
+        prefixcommons:lgicdb,
         miriam:lgic ;
     foaf:homepage "https://www.ebi.ac.uk/compneur-srv/LGICdb/LGICdb.php"^^xsd:string ;
     bioregistry.schema:0000005 "5HT3Arano"^^xsd:string ;
@@ -7121,7 +7130,10 @@ bioregistry:mge a bioregistry.schema:0000001 ;
     rdfs:label "Aclame" ;
     dc:description "ACLAME is a database dedicated to the collection and classification of mobile genetic elements (MGEs) from various sources, comprising all known phage genomes, plasmids and transposons."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch n2t:mge,
+    skos:exactMatch edam.data:2631,
+        biocontext:ACLAME,
+        n2t:mge,
+        prefixcommons:aclame,
         miriam:mge ;
     foaf:homepage "http://aclame.ulb.ac.be/"^^xsd:string ;
     bioregistry.schema:0000005 "2"^^xsd:string ;
@@ -7795,6 +7807,7 @@ bioregistry:mpid a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:MPID,
         n2t:mpid,
         fairsharing:FAIRsharing.eyjkws,
+        prefixcommons:mpi,
         miriam:mpid ;
     foaf:homepage "http://www.jcvi.org/mpidb/about.php"^^xsd:string ;
     bioregistry.schema:0000005 "172"^^xsd:string ;
@@ -10502,6 +10515,7 @@ bioregistry:sabiork.kineticrecord a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:SABIORK.KINETICRECORD,
         go.resource:SABIO-RK,
         n2t:sabiork.kineticrecord,
+        prefixcommons:sabiork.kinetic,
         miriam:sabiork.kineticrecord ;
     foaf:homepage "http://sabiork.h-its.org/"^^xsd:string ;
     bioregistry.schema:0000005 "5046"^^xsd:string ;
@@ -11023,6 +11037,7 @@ bioregistry:spike.map a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:SPIKE.MAP,
         n2t:spike.map,
+        prefixcommons:spike,
         miriam:spike.map ;
     foaf:homepage "http://www.cs.tau.ac.il/~spike/"^^xsd:string ;
     bioregistry.schema:0000005 "spike00001"^^xsd:string ;
@@ -11169,6 +11184,7 @@ bioregistry:supfam a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:SUPFAM,
         n2t:supfam,
+        prefixcommons:superfamily,
         miriam:supfam,
         uniprot.resource:SUPFAM ;
     foaf:homepage "http://supfam.org/SUPERFAMILY/"^^xsd:string ;
@@ -12147,7 +12163,8 @@ bioregistry:vsao a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:VSAO,
         obofoundry:vsao,
         bioportal:VSAO,
-        biocontext:VSAO ;
+        biocontext:VSAO,
+        prefixcommons:vao ;
     foaf:homepage "https://www.nescent.org/phenoscape/Main_Page"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VSAO_$1"^^xsd:string ;
     bioregistry.schema:0000012 true ;
@@ -13688,6 +13705,8 @@ edam.data:2626 dcterms:isPartOf bioregistry.metaresource:edam .
 edam.data:2628 dcterms:isPartOf bioregistry.metaresource:edam .
 
 edam.data:2629 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:2631 dcterms:isPartOf bioregistry.metaresource:edam .
 
 edam.data:2632 dcterms:isPartOf bioregistry.metaresource:edam .
 
@@ -15356,6 +15375,8 @@ biocontext:AAO dcterms:isPartOf bioregistry.metaresource:biocontext .
 biocontext:ABS dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:ACEVIEW.WORM dcterms:isPartOf bioregistry.metaresource:biocontext .
+
+biocontext:ACLAME dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:ADW dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -21862,6 +21883,7 @@ bioregistry:kegg.genes a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:KEGG.GENES,
         biolink:KEGG.GENE,
         n2t:kegg.genes,
+        prefixcommons:kegg.gene,
         miriam:kegg.genes,
         wikidata:P665 ;
     foaf:homepage "http://www.genome.jp/kegg/genes.html"^^xsd:string ;
@@ -22914,6 +22936,7 @@ bioregistry:pdb-ccd a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:PDB-CCD,
         n2t:pdb-ccd,
+        prefixcommons:ccd,
         miriam:pdb-ccd ;
     foaf:homepage "https://www.ebi.ac.uk/pdbe-srv/pdbechem/"^^xsd:string ;
     bioregistry.schema:0000005 "AB0"^^xsd:string ;
@@ -23560,8 +23583,10 @@ bioregistry:snornabase a bioregistry.schema:0000001 ;
 
 human H/ACA and C/D box snoRNAs."""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch prefixcommons:snornalbmedb ;
     foaf:homepage "https://www-snorna.biotoul.fr/"^^xsd:string ;
     bioregistry.schema:0000005 "SR0000178"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www-snorna.biotoul.fr/plus.php?id=$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:so a bioregistry.schema:0000001 ;
@@ -23744,6 +23769,7 @@ bioregistry:to a bioregistry.schema:0000001 ;
         bioportal:PTO,
         biocontext:TO,
         fairsharing:FAIRsharing.w69t6r,
+        prefixcommons:pto,
         ols:to ;
     foaf:homepage "http://browser.planteome.org/amigo"^^xsd:string ;
     bioregistry.schema:0000005 "0000630"^^xsd:string ;
@@ -23763,6 +23789,7 @@ bioregistry:trans a bioregistry.schema:0000001 ;
         bioportal:TRANS,
         biocontext:TRANS,
         fairsharing:FAIRsharing.nygmp7,
+        prefixcommons:pt,
         ols:trans ;
     foaf:homepage "https://github.com/DiseaseOntology/PathogenTransmissionOntology"^^xsd:string ;
     bioregistry.schema:0000005 "0000024"^^xsd:string ;
@@ -25466,6 +25493,8 @@ prefixcommons:abs dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:aceview.worm dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
+prefixcommons:aclame dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
 prefixcommons:addgene dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:allergome dcterms:isPartOf bioregistry.metaresource:prefixcommons .
@@ -25490,6 +25519,8 @@ prefixcommons:atc dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:bactibase dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
+prefixcommons:bdgp dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
 prefixcommons:beetlebase dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:bindingdb dcterms:isPartOf bioregistry.metaresource:prefixcommons .
@@ -25498,11 +25529,15 @@ prefixcommons:biocyc dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:biogrid dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
+prefixcommons:biomodels dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
 prefixcommons:bionumbers dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:bioportal dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:biosystems dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:bold dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:brenda dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -25517,6 +25552,8 @@ prefixcommons:cath dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 prefixcommons:cattleqtldb dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:cazy dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:ccd dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:ccds dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -25626,6 +25663,10 @@ prefixcommons:ensembl.protist dcterms:isPartOf bioregistry.metaresource:prefixco
 
 prefixcommons:eo dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
+prefixcommons:euhcvdb dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:evoc dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
 prefixcommons:fao dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:fbbi dcterms:isPartOf bioregistry.metaresource:prefixcommons .
@@ -25639,6 +25680,8 @@ prefixcommons:fbdv dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 prefixcommons:fix dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:flybase dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:flybase.est dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:fma dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -25742,6 +25785,8 @@ prefixcommons:jcm dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:jcsd dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
+prefixcommons:jcvi.genprop dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
 prefixcommons:jws dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:kegg.compound dcterms:isPartOf bioregistry.metaresource:prefixcommons .
@@ -25749,6 +25794,8 @@ prefixcommons:kegg.compound dcterms:isPartOf bioregistry.metaresource:prefixcomm
 prefixcommons:kegg.disease dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:kegg.drug dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:kegg.gene dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:kegg.genome dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -25763,6 +25810,8 @@ prefixcommons:kegg.pathway dcterms:isPartOf bioregistry.metaresource:prefixcommo
 prefixcommons:kegg.reaction dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:kisao dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:lgicdb dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:ligandexpo dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -25788,6 +25837,8 @@ prefixcommons:mfo dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:mgi dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
+prefixcommons:mgiid dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
 prefixcommons:microsporidia dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:mimodb dcterms:isPartOf bioregistry.metaresource:prefixcommons .
@@ -25811,6 +25862,8 @@ prefixcommons:modeldb dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 prefixcommons:mp dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:mpath dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:mpi dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:myco.lepra dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -25940,6 +25993,12 @@ prefixcommons:psi.mi dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:psi.mod dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
+prefixcommons:pt dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:ptmswitchboard dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:pto dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
 prefixcommons:pubchem.bioassay dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:pubchem.compound dcterms:isPartOf bioregistry.metaresource:prefixcommons .
@@ -25976,6 +26035,8 @@ prefixcommons:rs dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:sabiork.ec dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
+prefixcommons:sabiork.kinetic dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
 prefixcommons:sabiork.reaction dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:sao dcterms:isPartOf bioregistry.metaresource:prefixcommons .
@@ -26006,9 +26067,13 @@ prefixcommons:snap dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:snomedct dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
+prefixcommons:snornalbmedb dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
 prefixcommons:so dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:spd dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:spike dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:sprint dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -26020,9 +26085,13 @@ prefixcommons:subtilist dcterms:isPartOf bioregistry.metaresource:prefixcommons 
 
 prefixcommons:subtiwiki dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
+prefixcommons:superfamily dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
 prefixcommons:swissmodel dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:swo dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:symptom dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:t3db dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -26071,6 +26140,8 @@ prefixcommons:unists dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 prefixcommons:unite dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:uo dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:vao dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:vbase2 dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -30702,6 +30773,7 @@ bioregistry:symp a bioregistry.schema:0000001 ;
         bioportal:SYMP,
         biocontext:SYMP,
         fairsharing:FAIRsharing.ay74mj,
+        prefixcommons:symptom,
         ols:symp,
         wikidata:P8656 ;
     foaf:homepage "http://symptomontologywiki.igs.umaryland.edu/mediawiki/index.php/Main_Page"^^xsd:string ;
@@ -30756,6 +30828,7 @@ bioregistry:uniprot.ptm a bioregistry.schema:0000001 ;
     dc:description "The post-translational modifications used in the UniProt knowledgebase (Swiss-Prot and TrEMBL). The definition of the post-translational modifications usage as well as other information is provided in the following format"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:uniprot ;
+    skos:exactMatch prefixcommons:ptmswitchboard ;
     foaf:homepage "https://www.uniprot.org/docs/ptmlist"^^xsd:string ;
     bioregistry.schema:0000005 "PTM-0450"^^xsd:string ;
     bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/uniprot.ptm/$1"^^xsd:string ;
@@ -33851,6 +33924,7 @@ bioregistry.metaresource:edam a bioregistry.schema:0000002 ;
         edam.data:2626,
         edam.data:2628,
         edam.data:2629,
+        edam.data:2631,
         edam.data:2632,
         edam.data:2634,
         edam.data:2635,
@@ -35738,6 +35812,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:aao,
         prefixcommons:abs,
         prefixcommons:aceview.worm,
+        prefixcommons:aclame,
         prefixcommons:addgene,
         prefixcommons:allergome,
         prefixcommons:amoebadb,
@@ -35750,13 +35825,16 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:asrp,
         prefixcommons:atc,
         prefixcommons:bactibase,
+        prefixcommons:bdgp,
         prefixcommons:beetlebase,
         prefixcommons:bindingdb,
         prefixcommons:biocyc,
         prefixcommons:biogrid,
+        prefixcommons:biomodels,
         prefixcommons:bionumbers,
         prefixcommons:bioportal,
         prefixcommons:biosystems,
+        prefixcommons:bold,
         prefixcommons:brenda,
         prefixcommons:bto,
         prefixcommons:bykdb,
@@ -35764,6 +35842,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:cath,
         prefixcommons:cattleqtldb,
         prefixcommons:cazy,
+        prefixcommons:ccd,
         prefixcommons:ccds,
         prefixcommons:cco,
         prefixcommons:cdd,
@@ -35818,6 +35897,8 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:ensembl.plant,
         prefixcommons:ensembl.protist,
         prefixcommons:eo,
+        prefixcommons:euhcvdb,
+        prefixcommons:evoc,
         prefixcommons:fao,
         prefixcommons:fbbi,
         prefixcommons:fbbt,
@@ -35825,6 +35906,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:fbdv,
         prefixcommons:fix,
         prefixcommons:flybase,
+        prefixcommons:flybase.est,
         prefixcommons:fma,
         prefixcommons:fsnp,
         prefixcommons:gabi,
@@ -35876,10 +35958,12 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:iuphar.family,
         prefixcommons:jcm,
         prefixcommons:jcsd,
+        prefixcommons:jcvi.genprop,
         prefixcommons:jws,
         prefixcommons:kegg.compound,
         prefixcommons:kegg.disease,
         prefixcommons:kegg.drug,
+        prefixcommons:kegg.gene,
         prefixcommons:kegg.genome,
         prefixcommons:kegg.glycan,
         prefixcommons:kegg.metagenome,
@@ -35887,6 +35971,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:kegg.pathway,
         prefixcommons:kegg.reaction,
         prefixcommons:kisao,
+        prefixcommons:lgicdb,
         prefixcommons:ligandexpo,
         prefixcommons:lipidbank,
         prefixcommons:lipidmaps,
@@ -35899,6 +35984,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:mesh,
         prefixcommons:mfo,
         prefixcommons:mgi,
+        prefixcommons:mgiid,
         prefixcommons:microsporidia,
         prefixcommons:mimodb,
         prefixcommons:mint,
@@ -35911,6 +35997,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:modeldb,
         prefixcommons:mp,
         prefixcommons:mpath,
+        prefixcommons:mpi,
         prefixcommons:myco.lepra,
         prefixcommons:myco.marinum,
         prefixcommons:myco.smeg,
@@ -35975,6 +36062,9 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:pseudogene,
         prefixcommons:psi.mi,
         prefixcommons:psi.mod,
+        prefixcommons:pt,
+        prefixcommons:ptmswitchboard,
+        prefixcommons:pto,
         prefixcommons:pubchem.bioassay,
         prefixcommons:pubchem.compound,
         prefixcommons:pubchem.substance,
@@ -35993,6 +36083,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:rouge,
         prefixcommons:rs,
         prefixcommons:sabiork.ec,
+        prefixcommons:sabiork.kinetic,
         prefixcommons:sabiork.reaction,
         prefixcommons:sao,
         prefixcommons:sbo,
@@ -36008,15 +36099,19 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:smpdb,
         prefixcommons:snap,
         prefixcommons:snomedct,
+        prefixcommons:snornalbmedb,
         prefixcommons:so,
         prefixcommons:spd,
+        prefixcommons:spike,
         prefixcommons:sprint,
         prefixcommons:stitch,
         prefixcommons:string,
         prefixcommons:subtilist,
         prefixcommons:subtiwiki,
+        prefixcommons:superfamily,
         prefixcommons:swissmodel,
         prefixcommons:swo,
+        prefixcommons:symptom,
         prefixcommons:t3db,
         prefixcommons:tair.gene,
         prefixcommons:tair.locus,
@@ -36041,6 +36136,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:unists,
         prefixcommons:unite,
         prefixcommons:uo,
+        prefixcommons:vao,
         prefixcommons:vbase2,
         prefixcommons:vbrc,
         prefixcommons:vectorbase,
@@ -38118,6 +38214,7 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:AAO,
         biocontext:ABS,
         biocontext:ACEVIEW.WORM,
+        biocontext:ACLAME,
         biocontext:ADW,
         biocontext:AEO,
         biocontext:AERO,
