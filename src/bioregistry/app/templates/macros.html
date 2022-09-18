@@ -14,6 +14,28 @@
     </a>
 {% endmacro %}
 
+{% macro render_publication(publication) -%}
+    {% if publication.year %}
+        <span class="badge badge-info">{{ publication.year }}</span>
+    {% endif %}
+    <a href="{{ publication.get_url() }}">{{ publication.title or publication.get_url() }}</a>
+{% endmacro %}
+
+{% macro render_reference(reference) -%}
+    {% if reference.startswith("https://twitter.com") %}
+        <span class="badge badge-info">Tweet</span>
+    {% elif reference.startswith("https://github.com/") and "issues/" in reference %}
+        <span class="badge badge-info">GitHub Issue</span>
+    {% elif reference.startswith("https://github.com/") and "pull" in reference %}
+        <span class="badge badge-info">GitHub PR</span>
+    {% elif reference.startswith("https://doi.org/") %}
+        <span class="badge badge-info">DOI</span>
+    {% else %}
+        <span class="badge badge-info">Other</span>
+    {% endif %}
+    <a href="{{ reference }}">{{ reference }}</a>
+{% endmacro %}
+
 {% macro render_resource_warnings(resource) -%}
     {% if resource.deprecated %}
         <span class="badge badge-warning" style="display: inline-block;">
