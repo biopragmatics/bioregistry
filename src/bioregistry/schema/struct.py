@@ -8,7 +8,6 @@ import logging
 import pathlib
 import re
 import textwrap
-from collections import defaultdict
 from functools import lru_cache
 from operator import attrgetter
 from typing import (
@@ -200,6 +199,7 @@ class Publication(BaseModel):
         title="PMC", description="The PubMed Central identifier for the article"
     )
     title: Optional[str] = Field(description="The title of the article")
+    year: Optional[int] = Field(description="The year the article was published")
 
     def key(self) -> Tuple[str, ...]:
         """Create a key based on identifiers in this data structure."""
@@ -1005,16 +1005,18 @@ class Resource(BaseModel):
                 url, title = publication["id"], publication["title"]
                 if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
                     pubmed = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
-                    publications.append(Publication(pubmed=pubmed, title=title, doi=None, pmc=None))
+                    publications.append(
+                        Publication(pubmed=pubmed, title=title, doi=None, pmc=None, year=None)
+                    )
                 elif url.startswith("https://doi.org/"):
                     doi = url[len("https://doi.org/") :]
                     publications.append(
-                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None)
+                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None, year=None)
                     )
                 elif url.startswith("https://www.medrxiv.org/content/"):
                     doi = url[len("https://www.medrxiv.org/content/") :]
                     publications.append(
-                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None)
+                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None, year=None)
                     )
                 elif url.startswith("https://zenodo.org/record/"):
                     continue
@@ -1029,11 +1031,17 @@ class Resource(BaseModel):
                 title = publication.get("title")
                 if pubmed or doi:
                     publications.append(
-                        Publication(pubmed=pubmed and str(pubmed), doi=doi and doi.lower(), title=title, pmc=None)
+                        Publication(
+                            pubmed=pubmed and str(pubmed),
+                            doi=doi and doi.lower(),
+                            title=title,
+                            pmc=None,
+                            year=None,
+                        )
                     )
         if self.prefixcommons:
             for pubmed in self.prefixcommons.get("pubmed_ids", []):
-                publications.append(Publication(pubmed=pubmed, doi=None, pmc=None, title=None))
+                publications.append(Publication(pubmed=pubmed, doi=None, pmc=None, title=None, year=None))
         return deduplicate_publications(publications)
 
     def get_twitter(self) -> Optional[str]:

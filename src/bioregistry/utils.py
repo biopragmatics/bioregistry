@@ -210,6 +210,7 @@ def _clean(s: str) -> str:
 
 
 def backfill(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
+    """Backfill records that may have overlapping data."""
     _key_set = set(keys)
     index_dd: DefaultDict[str, DefaultDict[str, Dict[str, str]]] = defaultdict(
         lambda: defaultdict(dict)
@@ -242,6 +243,7 @@ def backfill(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Sequence
 
 
 def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
+    """De-duplicate records that might have overlapping data."""
     dd: DefaultDict[Sequence[str], List[Dict[str, Any]]] = defaultdict(list)
 
     def _key(r: Dict[str, Any]):
@@ -252,4 +254,4 @@ def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Seque
 
     rv = [dict(ChainMap(*v)) for v in dd.values()]
 
-    return sorted(rv, key=_key)
+    return sorted(rv, key=_key, reverse=True)

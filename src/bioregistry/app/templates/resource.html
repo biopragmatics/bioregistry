@@ -249,13 +249,13 @@
                 {% endif %}
 
                 {% set publications = resource.get_publications() %}
-                {% if resource.references or publications%}
+                {% if resource.references or publications %}
                     <dt>References</dt>
                     <dd>
                         <ul>
                             {% for publication in publications or [] %}
                                 <li>
-                                    <span class="badge badge-info">Publication</span>
+                                    <span class="badge badge-info">Publication{% if publication.year %}: {{ publication.year }}{% endif %}</span>
                                     <a href="{{ publication.get_url() }}">{{ publication.title or publication.get_url() }}</a>
                                 </li>
                             {% endfor %}

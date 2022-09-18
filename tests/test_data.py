@@ -838,6 +838,8 @@ class TestRegistry(unittest.TestCase):
                                 continue
                             index[key][value].append(publication)
                     for citation_prefix, citation_identifier_dict in index.items():
+                        if citation_prefix == "year":
+                            continue
                         for citation_identifier, values in citation_identifier_dict.items():
                             self.assertEqual(
                                 1,

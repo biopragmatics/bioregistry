@@ -4,7 +4,6 @@ Run this script with python -m bioregistry.curation.clean_publications.
 """
 
 from functools import lru_cache
-from typing import Set
 
 from manubot.cite.pubmed import get_pubmed_csl_item
 from tqdm import tqdm
@@ -39,6 +38,7 @@ def _main():
             title = csl_item.get("title", "").strip() or None
             doi = csl_item.get("DOI") or None
             pmc = csl_item.get("PMCID") or None
+            year = csl_item.get("issued", {}).get("date-parts", [[None]])[0][0]
             if not title:
                 tqdm.write(f"No title available for pubmed:{pubmed} / doi:{doi} / pmc:{pmc}")
                 continue
@@ -48,6 +48,7 @@ def _main():
                     title=title,
                     doi=doi and doi.lower(),
                     pmc=pmc,
+                    year=year,
                 )
             )
 
@@ -62,10 +63,11 @@ def _main():
         else:
             resource.publications = deduplicate_publications(_pubs)
 
-    # output every so often in case of failure
-    manager.write_registry()
-    tqdm.write("wrote registry")
-    c = 0
+        c += 1
+        if c > 7:
+            # output every so often in case of failure
+            manager.write_registry()
+            c = 0
 
 
 if __name__ == "__main__":
