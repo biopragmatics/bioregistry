@@ -49643,6 +49643,43 @@
       "uri_format": "https://www.ncbi.nlm.nih.gov/gene/$1"
     }
   },
+  "ncbigi": {
+    "biocontext": {
+      "is_identifiers": true,
+      "is_obo": false,
+      "prefix": "NCBIGI",
+      "uri_format": "http://identifiers.org/ncbigi/$1"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A GI number (for GenInfo Identifier, sometimes written in lower case, _gi_) is a simple series of digits that are assigned consecutively to each sequence record processed by NCBI. The GI number bears no resemblance to the Version number of the sequence record. Each time a sequence record is changed, it is assigned a new GI number.",
+    "example": "568815597",
+    "go": {
+      "homepage": "http://www.ncbi.nlm.nih.gov/",
+      "name": "NCBI databases",
+      "prefix": "NCBI_gi",
+      "uri_format": "http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=$1"
+    },
+    "homepage": "https://www.ncbi.nlm.nih.gov/genbank/sequenceids/",
+    "mappings": {
+      "biocontext": "NCBIGI",
+      "go": "NCBI_gi"
+    },
+    "name": "GenInfo Identifier",
+    "pattern": "^\\d+$",
+    "references": [
+      "https://www.ncbi.nlm.nih.gov/Sitemap/sequenceIDs.html",
+      "https://www.ncbi.nlm.nih.gov/Class/MLACourse/Modules/Format/exercises/qa_accession_vs_gi.html"
+    ],
+    "synonyms": [
+      "NCBI_gi",
+      "ncbi.gi"
+    ]
+  },
   "ncbiprotein": {
     "biocontext": {
       "is_identifiers": false,
