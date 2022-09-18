@@ -2242,7 +2242,7 @@ def _get(resource, key):
 DEDP_PUB_KEYS = ("pubmed", "doi", "pmc")
 
 
-def deduplicate_publications(publications: List[Publication]) -> List[Publication]:
+def deduplicate_publications(publications: Iterable[Publication]) -> List[Publication]:
     """Deduplicate publications."""
     records = [publication.dict(exclude_none=True) for publication in publications]
     records_deduplicated = deduplicate(records, keys=DEDP_PUB_KEYS)
