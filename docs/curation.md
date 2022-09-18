@@ -26,6 +26,11 @@ The following registries have xrefs that need curating:
 </tbody>
 </table>
 
+See also the following tutorials:
+
+1. [importing external prefixes](/curation/import-external)
+2. [curating explicit prefix blacklists](/curation/blacklist-external)
+
 ## Adding a Wikidata Database Corresponding to Each Resource
 
 <a id="wikidata"></a>

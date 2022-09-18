@@ -174,6 +174,9 @@ formatter:
 - homepage: https://www.ncbi.nlm.nih.gov/gv/mhc/
   name: Database of human Major Histocompatibility Complex
   prefix: dbmhc
+- homepage: https://echa.europa.eu/information-on-chemicals
+  name: European Community number
+  prefix: ecn
 - homepage: http://ecolexicon.ugr.es/en/index.htm
   name: EcoLexicon
   prefix: ecolexicon
@@ -288,6 +291,9 @@ formatter:
 - homepage: http://www.semantic-systems-biology.org/apo
   name: Regulation of Gene Expression Ontology
   prefix: rexo
+- homepage: https://www.cdc.gov/niosh/rtecs/
+  name: Registry of Toxic Effects of Chemical Substances
+  prefix: rtecs
 - homepage: null
   name: Standards and Ontologies for Functional Genomics (SOFG) Anatomy Entry List
   prefix: sael
@@ -349,9 +355,6 @@ pattern:
 - homepage: https://www.addexbio.com/productshow?id=4
   name: AddexBio cell line products
   prefix: addexbio
-- homepage: https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO
-  name: Alzheimer's Disease Ontology
-  prefix: ado
 - homepage: https://www.allotrope.org/
   name: Allotrope Merged Ontology Suite
   prefix: afo
@@ -385,9 +388,6 @@ pattern:
 - homepage: http://www.sparontologies.net/ontologies/bido
   name: Bibliometric Data Ontology
   prefix: bido
-- homepage: http://4dx.embl.de/4DXpress
-  name: Bilateria anatomy
-  prefix: bila
 - homepage: https://bioregistry.io
   name: Bioregistry
   prefix: bioregistry
@@ -422,9 +422,6 @@ pattern:
   name: CellBank Australia
   prefix: cellbank.australia
 - homepage: https://web.expasy.org/cellosaurus/
-  name: Cellosaurus Publication
-  prefix: cellopub
-- homepage: https://web.expasy.org/cellosaurus/
   name: Cellosaurus Registry
   prefix: cellosaurus.resource
 - homepage: http://www.cghtmd.jp/CGHDatabase/index_e.jsp
@@ -454,12 +451,6 @@ pattern:
 - homepage: https://code.google.com/p/craniomaxillofacial-ontology/
   name: CranioMaxilloFacial ontology
   prefix: cmf
-- homepage: https://cropontology.org/term/CO_367:ROOT
-  name: Quinoa Ontology ontology
-  prefix: co_367
-- homepage: https://cropontology.org/term/CO_370:ROOT
-  name: Apple ontology
-  prefix: co_370
 - homepage: https://www.ncbi.nlm.nih.gov/research/cog/
   name: COG Categories
   prefix: cog.category
@@ -592,6 +583,9 @@ pattern:
 - homepage: http://xmlns.com/foaf/spec/
   name: Friend of a Friend
   prefix: foaf
+- homepage: http://www.efsa.europa.eu/
+  name: Food classification and description system
+  prefix: foodex2
 - homepage: http://www.sparontologies.net/ontologies/fr
   name: FAIR* Reviews Ontology
   prefix: fr
@@ -649,7 +643,7 @@ pattern:
 - homepage: http://wheat.pw.usda.gov
   name: GrainGenes
   prefix: graingenes.symbol
-- homepage: null
+- homepage: http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html
   name: Gene Regulation Ontology
   prefix: gro
 - homepage: https://www.ncbi.nlm.nih.gov/gtr/
@@ -752,7 +746,7 @@ pattern:
 - homepage: http://matrixdb.univ-lyon1.fr/
   name: MatrixDB
   prefix: matrixdb
-- homepage: null
+- homepage: http://www.molecularconnections.com
   name: Cell Line Ontology [derivative]
   prefix: mcc
 - homepage: https://www.ebi.ac.uk/merops
@@ -815,9 +809,6 @@ pattern:
 - homepage: https://www.novusbio.com
   name: Novus Biologicals
   prefix: novus
-- homepage: https://www.nsf.gov/awards/about.jsp
-  name: National Science Foundation Award
-  prefix: nsf.award
 - homepage: http://www.w3.org/ns/oa
   name: Web Annotation Ontology
   prefix: oa
@@ -881,9 +872,6 @@ pattern:
 - homepage: https://prefixcommons.org
   name: Prefix Commons
   prefix: prefixcommons
-- homepage: https://github.com/proco-ontology/PROCO
-  name: Process Chemistry Ontology
-  prefix: proco
 - homepage: http://lsdis.cs.uga.edu/projects/glycomics/propreo/
   name: Proteomics data and process provenance
   prefix: propreo
@@ -926,9 +914,6 @@ pattern:
 - homepage: http://www.semantic-systems-biology.org/apo
   name: Regulation of Gene Expression Ontology
   prefix: rexo
-- homepage: https://www.ietf.org/
-  name: Internet Standard -- IETF Request for Comments
-  prefix: rfc
 - homepage: null
   name: Standards and Ontologies for Functional Genomics (SOFG) Anatomy Entry List
   prefix: sael
@@ -944,18 +929,12 @@ pattern:
 - homepage: https://www.w3.org/TR/shacl/
   name: Shapes Constraint Language
   prefix: shacl
-- homepage: https://shareloc.xyz
-  name: ShareLoc
-  prefix: shareloc
 - homepage: http://www.w3.org/ns/shex#
   name: Shape Expression Vocabulary
   prefix: shex
 - homepage: https://www.sigmaaldrich.com
   name: Sigma Aldrich
   prefix: sigmaaldrich
-- homepage: https://skip.stemcellinformatics.org/en/
-  name: Stemcell Knowledge and Information Portal
-  prefix: skip
 - homepage: https://www.w3.org/2004/02/skos/
   name: Simple Knowledge Organization System
   prefix: skos
@@ -1028,9 +1007,6 @@ pattern:
 - homepage: https://vocab.org/vann/
   name: A vocabulary for annotating vocabulary descriptions
   prefix: vann
-- homepage: https://github.com/monarch-initiative/vertebrate-breed-ontology
-  name: Vertebrate Breed Ontology
-  prefix: vbo
 - homepage: https://vega.archive.ensembl.org/index.html
   name: Vertebrate Genome Annotation Database
   prefix: vega
@@ -1080,8 +1056,6 @@ prefix_xrefs:
   name: BioPortal
 - metaprefix: cellosaurus
   name: Cellosaurus
-- metaprefix: cheminf
-  name: CHEMINF
 - metaprefix: ecoportal
   name: EcoPortal
 - metaprefix: edam
@@ -2270,6 +2244,9 @@ wikidata:
 - homepage: http://www.york.ac.uk/
   name: EchoBASE post-genomic database for Escherichia coli
   prefix: echobase
+- homepage: https://echa.europa.eu/information-on-chemicals
+  name: European Community number
+  prefix: ecn
 - homepage: https://www.evidenceontology.org
   name: Evidence ontology
   prefix: eco
@@ -2336,7 +2313,7 @@ wikidata:
 - homepage: http://genex.hgu.mrc.ac.uk/
   name: Human developmental anatomy, timed version
   prefix: ehda
-- homepage: null
+- homepage: http://obofoundry.org/ontology/ehdaa.html
   name: Human developmental anatomy, abstract version
   prefix: ehdaa
 - homepage: https://github.com/obophenotype/human-developmental-anatomy-ontology
@@ -2544,6 +2521,9 @@ wikidata:
 - homepage: https://foodb.ca/foods
   name: FooDB Food
   prefix: foodb.food
+- homepage: http://www.efsa.europa.eu/
+  name: Food classification and description system
+  prefix: foodex2
 - homepage: https://foodon.org/
   name: The Food Ontology
   prefix: foodon
@@ -2832,7 +2812,7 @@ wikidata:
 - homepage: http://www.ars-grin.gov/cgi-bin/npgs/html/index.pl?language=en
   name: Germplasm Resources Information Network
   prefix: grin.taxonomy
-- homepage: null
+- homepage: http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html
   name: Gene Regulation Ontology
   prefix: gro
 - homepage: http://bioinformatics.ramapo.edu/GRSDB2/
@@ -3400,7 +3380,7 @@ wikidata:
 - homepage: https://mouse.brain-map.org
   name: Mouse Brain Atlas
   prefix: mba
-- homepage: null
+- homepage: http://www.molecularconnections.com
   name: Cell Line Ontology [derivative]
   prefix: mcc
 - homepage: https://github.com/microbial-conditions-ontology/microbial-conditions-ontology
@@ -3539,7 +3519,7 @@ wikidata:
   name: MIRIAM Registry collection
   prefix: miriam.collection
 - homepage: https://www.ebi.ac.uk/miriam/
-  name: MIRIAM Registry resource
+  name: MIRIAM Legacy Registry Identifier
   prefix: miriam.resource
 - homepage: http://code.google.com/p/mirna-ontology/
   name: microRNA Ontology
@@ -3874,6 +3854,9 @@ wikidata:
 - homepage: https://bioportal.bioontology.org/ontologies/NPO
   name: NanoParticle Ontology
   prefix: npo
+- homepage: https://wiki.nci.nih.gov/display/NCIDTPdata/Chemical+Data
+  name: USA National Service Center Number
+  prefix: nsc
 - homepage: https://www.nsf.gov/awards/about.jsp
   name: National Science Foundation Award
   prefix: nsf.award
@@ -4378,7 +4361,7 @@ wikidata:
 - homepage: http://www.pseudomonas.com/
   name: Pseudomonas Genome Database
   prefix: pseudomonas
-- homepage: https://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=PAR
+- homepage: https://www.psidev.info/psi-par
   name: Protein Affinity Reagents
   prefix: psipar
 - homepage: https://github.com/Planteome/plant-stress-ontology
@@ -4552,6 +4535,9 @@ wikidata:
 - homepage: http://rgd.mcw.edu/rgdweb/search/strains.html
   name: Rat Strain Ontology
   prefix: rs
+- homepage: https://www.cdc.gov/niosh/rtecs/
+  name: Registry of Toxic Effects of Chemical Substances
+  prefix: rtecs
 - homepage: https://icahn.mssm.edu/
   name: runBioSimulations
   prefix: runbiosimulations
@@ -5090,7 +5076,7 @@ wikidata:
 - homepage: https://vertebrate.genenames.org
   name: Vertebrate Gene Nomenclature Committee
   prefix: vgnc
-- homepage: null
+- homepage: http://bgee.unil.ch
   name: Vertebrate Homologous Organ Group Ontology
   prefix: vhog
 - homepage: http://viaf.org

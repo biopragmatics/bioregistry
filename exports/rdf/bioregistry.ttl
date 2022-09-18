@@ -557,7 +557,7 @@ bioregistry:antibodyregistry a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:antweb a bioregistry.schema:0000001 ;
-    rdfs:label "AntWeb ID" ;
+    rdfs:label "AntWeb" ;
     dc:description "AntWeb is a website documenting the known species of ants, with records for each species linked to their geographical distribution, life history, and includes pictures."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch biocontext:ANTWEB,
@@ -1265,6 +1265,7 @@ bioregistry:bila a bioregistry.schema:0000001 ;
     foaf:homepage "http://4dx.embl.de/4DXpress"^^xsd:string ;
     bioregistry.schema:0000005 "0000000"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/BILA_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 [ rdfs:label "Thorsten Heinrich" ] .
 
@@ -1387,7 +1388,7 @@ bioregistry:biomodels.kisao a bioregistry.schema:0000001 ;
         ols:kisao ;
     foaf:homepage "https://github.com/SED-ML/KiSAO"^^xsd:string ;
     bioregistry.schema:0000005 "0000057"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.biomodels.net/kisao/KISAO#KISAO_$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bioportal.bioontology.org/ontologies/KISAO?p=classes&conceptid=kisao:KISAO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-2605-5080 .
@@ -2727,6 +2728,7 @@ bioregistry:co_367 a bioregistry.schema:0000001 ;
     skos:exactMatch cropoct:CO_367 ;
     foaf:homepage "https://cropontology.org/term/CO_367:ROOT"^^xsd:string ;
     bioregistry.schema:0000005 "0000004"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:co_370 a bioregistry.schema:0000001 ;
@@ -2736,6 +2738,7 @@ bioregistry:co_370 a bioregistry.schema:0000001 ;
     skos:exactMatch cropoct:CO_370 ;
     foaf:homepage "https://cropontology.org/term/CO_370:ROOT"^^xsd:string ;
     bioregistry.schema:0000005 "0000890"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:cob a bioregistry.schema:0000001 ;
@@ -3805,6 +3808,7 @@ bioregistry:ehdaa a bioregistry.schema:0000001 ;
         bioportal:EHDAA,
         biocontext:EHDAA,
         prefixcommons:ehdaa ;
+    foaf:homepage "http://obofoundry.org/ontology/ehdaa.html"^^xsd:string ;
     bioregistry.schema:0000005 "1"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/EHDAA_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
@@ -4407,6 +4411,16 @@ bioregistry:foodb.compound a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "FDB002100"^^xsd:string ;
     bioregistry.schema:0000006 "http://foodb.ca/compounds/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^FDB\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:foodex2 a bioregistry.schema:0000001 ;
+    rdfs:label "Food classification and description system" ;
+    dc:description "FoodEx2 is a comprehensive food classification and description system aimed at covering the need to describe food in data collections across different food safety domains."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch agroportal:FOODEX2 ;
+    foaf:homepage "http://www.efsa.europa.eu/"^^xsd:string ;
+    bioregistry.schema:0000005 "A0TMC"^^xsd:string ;
+    bioregistry.schema:0000006 "http://data.food.gov.uk/codes/foodtype/id/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:fplx a bioregistry.schema:0000001 ;
@@ -5258,6 +5272,7 @@ bioregistry:gro a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:GRO,
         bioportal:GRO ;
+    foaf:homepage "http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html"^^xsd:string ;
     bioregistry.schema:0000005 "Lipid"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.bootstrep.eu/ontology/GRO#$1"^^xsd:string ;
     bioregistry.schema:0000012 true .
@@ -5997,9 +6012,9 @@ bioregistry:imex a bioregistry.schema:0000001 ;
         miriam:imex,
         re3data:r3d100010669 ;
     foaf:homepage "https://www.imexconsortium.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "IM-19210-3"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/intact/imex/main.xhtml?query=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^IM-\\d+(-?)(\\d+?)$"^^xsd:string ;
+    bioregistry.schema:0000005 "19210-3"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/intact/imex/main.xhtml?query=IM-$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+(-\\d+)?$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:img.gene a bioregistry.schema:0000001 ;
@@ -6848,8 +6863,10 @@ bioregistry:matrixdb.association a bioregistry.schema:0000001 ;
 
 bioregistry:mcc a bioregistry.schema:0000001 ;
     rdfs:label "Cell Line Ontology [derivative]" ;
+    dc:description "Ontologies provide a common platform of controlled vocabulary for researchers who need to share information across a particular domain, inclusive of machine-interpretable definitions of basic concepts in the domain and relations among them. The need for ontologies that provide a systematic arrangement of available data and allow cross talk across various related domains is gaining momentum. In this backdrop, we have developed a comprehensive ontology on primary and established cell lines-both normal and pathologic. It covers around 400 cell lines. This ontology has been built to include the major domains in the field of biology like anatomy, bio-molecules, chemicals and drugs, pathological conditions and genetic variations around the cell lines. An extensive network of relations has been built across these concepts to enable different combinations of queries. The ontology covers all cell lines from major sources like ATCC, DSMZ, ECACC, ICLC etc. and is built in OWL format."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch bioportal:MCCL ;
+    foaf:homepage "http://www.molecularconnections.com"^^xsd:string ;
     bioregistry.schema:0000005 "ThoracicArtery"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.semanticweb.org/pallabi.d/ontologies/2014/2/untitled-ontology-11#$1"^^xsd:string ;
     bioregistry.schema:0000012 true .
@@ -7318,9 +7335,9 @@ bioregistry:mint a bioregistry.schema:0000001 ;
         miriam:mint,
         uniprot.resource:MINT ;
     foaf:homepage "https://mint.bio.uniroma2.it"^^xsd:string ;
-    bioregistry.schema:0000005 "MINT-10000"^^xsd:string ;
-    bioregistry.schema:0000006 "http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^MINT\\-\\d{1,7}$"^^xsd:string ;
+    bioregistry.schema:0000005 "6978836"^^xsd:string ;
+    bioregistry.schema:0000006 "https://mint.bio.uniroma2.it/index.php/detailed-curation/?id=MINT-$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{1,7}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:mipmod a bioregistry.schema:0000001 ;
@@ -7397,46 +7414,6 @@ bioregistry:mirex a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "165a"^^xsd:string ;
     bioregistry.schema:0000006 "http://comgen.pl/mirex1/?page=results/record&name=$1&exref=pp2a&limit=yes"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+(\\w+)?$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:miriam a bioregistry.schema:0000001 ;
-    rdfs:label "Identifiers.org namespace" ;
-    dc:description "Identifiers.org is an established resolving system that enables the referencing of data for the scientific community, with a current focus on the Life Sciences domain."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1162,
-        fairsharing:FAIRsharing.ap169a,
-        miriam:identifiers.namespace ;
-    foaf:homepage "https://www.ebi.ac.uk"^^xsd:string ;
-    bioregistry.schema:0000005 "pubmed"^^xsd:string ;
-    bioregistry.schema:0000006 "https://registry.identifiers.org/registry/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[a-z_\\.]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:miriam.collection a bioregistry.schema:0000001 ;
-    rdfs:label "MIRIAM Registry collection" ;
-    dc:description "MIRIAM Registry is an online resource created to catalogue collections (Gene Ontology, Taxonomy or PubMed are some examples) and the corresponding resources (physical locations) providing access to those data collections. The Registry provides unique and perennial URIs for each entity of those data collections."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:MIRIAM.COLLECTION,
-        n2t:miriam.collection,
-        miriam:miriam.collection ;
-    foaf:homepage "https://www.ebi.ac.uk/miriam/"^^xsd:string ;
-    bioregistry.schema:0000005 "MIR:00000008"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/miriam/main/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^MIR:000\\d{5}$"^^xsd:string ;
-    bioregistry.schema:0000012 true .
-
-bioregistry:miriam.resource a bioregistry.schema:0000001 ;
-    rdfs:label "MIRIAM Registry resource" ;
-    dc:description "MIRIAM Registry is an online resource created to catalogue data types (Gene Ontology, Taxonomy or PubMed are some examples), their URIs and the corresponding resources (or physical locations), whether these are controlled vocabularies or databases."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:MIRIAM.RESOURCE,
-        n2t:miriam.resource,
-        prefixcommons:miriam.resource,
-        miriam:miriam.resource ;
-    foaf:homepage "https://www.ebi.ac.uk/miriam/"^^xsd:string ;
-    bioregistry.schema:0000005 "MIR:00100005"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/miriam/main/resources/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^MIR:001\\d{5}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:mirnao a bioregistry.schema:0000001 ;
@@ -9366,7 +9343,7 @@ bioregistry:pharmgkb.gene a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:pharmgkb.pathways a bioregistry.schema:0000001 ;
-    rdfs:label "PharmGKB ID" ;
+    rdfs:label "PharmGKB" ;
     dc:description """The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains. \r
 PharmGKB Pathways are drug centric, gene based, interactive pathways which focus on candidate genes and gene groups and associated genotype and phenotype data of relevance for pharmacogenetic and pharmacogenomic studies."""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
@@ -9937,11 +9914,11 @@ bioregistry:psipar a bioregistry.schema:0000001 ;
     skos:exactMatch biocontext:PSIPAR,
         n2t:psipar,
         miriam:psipar ;
-    foaf:homepage "https://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=PAR"^^xsd:string ;
-    bioregistry.schema:0000005 "PAR:0116"^^xsd:string ;
+    foaf:homepage "https://www.psidev.info/psi-par"^^xsd:string ;
+    bioregistry.schema:0000005 "0116"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ebi.ac.uk/ontology-lookup/?termId=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PAR:\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 true .
 
 bioregistry:pw a bioregistry.schema:0000001 ;
     rdfs:label "Pathway ontology" ;
@@ -10784,6 +10761,7 @@ bioregistry:shareloc a bioregistry.schema:0000001 ;
     foaf:homepage "https://shareloc.xyz"^^xsd:string ;
     bioregistry.schema:0000005 "000004"^^xsd:string ;
     bioregistry.schema:0000006 "https://shareloc.xyz/#/ontology/vocabulary/SHARELOC_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{6}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:sibo a bioregistry.schema:0000001 ;
@@ -11506,7 +11484,7 @@ bioregistry:tokue a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true .
 
 bioregistry:tol a bioregistry.schema:0000001 ;
-    rdfs:label "Tree of Life Web Project ID" ;
+    rdfs:label "Tree of Life Web Project" ;
     dc:description """The Tree of Life Web Project (ToL) is a collaborative effort of biologists and nature enthusiasts from around the world. On more than 10,000 World Wide Web pages, the project provides information about biodiversity, the characteristics of different groups of organisms, and their evolutionary history (phylogeny). \r
 \r
 Each page contains information about a particular group, with pages linked one to another hierarchically, in the form of the evolutionary tree of life. Starting with the root of all Life on Earth and moving out along diverging branches to individual species, the structure of the ToL project thus illustrates the genetic connections between all living things."""^^xsd:string ;
@@ -12053,6 +12031,7 @@ bioregistry:vhog a bioregistry.schema:0000001 ;
         bioportal:VHOG,
         biocontext:VHOG,
         prefixcommons:vhog ;
+    foaf:homepage "http://bgee.unil.ch"^^xsd:string ;
     bioregistry.schema:0000005 "0000411"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VHOG_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
@@ -13526,6 +13505,8 @@ agroportal:FLOPO dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:FOBI dcterms:isPartOf bioregistry.metaresource:agroportal .
 
+agroportal:FOODEX2 dcterms:isPartOf bioregistry.metaresource:agroportal .
+
 agroportal:FOODON dcterms:isPartOf bioregistry.metaresource:agroportal .
 
 agroportal:GEMET dcterms:isPartOf bioregistry.metaresource:agroportal .
@@ -14735,6 +14716,8 @@ ontobee:ZFS dcterms:isPartOf bioregistry.metaresource:ontobee .
 ontobee:ZP dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:miRNAO dcterms:isPartOf bioregistry.metaresource:ontobee .
+
+bioportal:ABA-AMB dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:ADO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -19237,6 +19220,7 @@ bioregistry:ado a bioregistry.schema:0000001 ;
     foaf:homepage "https://github.com/Fraunhofer-SCAI-Applied-Semantics/ADO"^^xsd:string ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/ADO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:bfo ;
     bioregistry.schema:0000019 orcid:0000-0001-9896-3531 .
@@ -19803,6 +19787,7 @@ bioregistry:cellopub a bioregistry.schema:0000001 ;
     foaf:homepage "https://web.expasy.org/cellosaurus/"^^xsd:string ;
     bioregistry.schema:0000005 "CLPUB00496"^^xsd:string ;
     bioregistry.schema:0000006 "https://web.expasy.org/cellosaurus/cellopub/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^CLPUB\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:cellosaurus a bioregistry.schema:0000001 ;
@@ -20720,6 +20705,16 @@ bioregistry:ecg a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "000000159"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.cvrgrid.org/files/ECGOntologyv1.owl#ECG_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:ecn a bioregistry.schema:0000001 ;
+    rdfs:label "European Community number" ;
+    dc:description "A seven-digit identifier for chemical substances for regulatory purposes within the European Union."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch cheminf:000447 ;
+    foaf:homepage "https://echa.europa.eu/information-on-chemicals"^^xsd:string ;
+    bioregistry.schema:0000005 "200-003-9"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{3}-\\d{3}-\\d$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:ecolexicon a bioregistry.schema:0000001 ;
@@ -22278,6 +22273,35 @@ bioregistry:mirbase.family a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://www.mirbase.org/cgi-bin/mirna_summary.pl?fam=$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:miriam.collection a bioregistry.schema:0000001 ;
+    rdfs:label "MIRIAM Registry collection" ;
+    dc:description "MIRIAM Registry is an online resource created to catalogue collections (Gene Ontology, Taxonomy or PubMed are some examples) and the corresponding resources (physical locations) providing access to those data collections. The Registry provides unique and perennial URIs for each entity of those data collections."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:miriam ;
+    skos:exactMatch biocontext:MIRIAM.COLLECTION,
+        n2t:miriam.collection,
+        miriam:miriam.collection ;
+    foaf:homepage "https://www.ebi.ac.uk/miriam/"^^xsd:string ;
+    bioregistry.schema:0000005 "00000008"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/miriam/main/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^000\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000012 true .
+
+bioregistry:miriam.resource a bioregistry.schema:0000001 ;
+    rdfs:label "MIRIAM Legacy Registry Identifier" ;
+    dc:description "MIRIAM Registry is an online resource created to catalogue data types (Gene Ontology, Taxonomy or PubMed are some examples), their URIs and the corresponding resources (or physical locations), whether these are controlled vocabularies or databases."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:miriam ;
+    skos:exactMatch biocontext:MIRIAM.RESOURCE,
+        n2t:miriam.resource,
+        prefixcommons:miriam.resource,
+        miriam:miriam.resource ;
+    foaf:homepage "https://www.ebi.ac.uk/miriam/"^^xsd:string ;
+    bioregistry.schema:0000005 "00100005"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/miriam/main/resources/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^001\\d{5}$"^^xsd:string ;
+    bioregistry.schema:0000012 true .
+
 bioregistry:mirte a bioregistry.schema:0000001 ;
     rdfs:label "miRNA Target Prediction at EMBL" ;
     dc:description "This website provides access to our 2003 and 2005 miRNA-Target predictions for Drosophila miRNAs"^^xsd:string ;
@@ -22638,6 +22662,17 @@ bioregistry:npo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-5892-6506 .
 
+bioregistry:nsc a bioregistry.schema:0000001 ;
+    rdfs:label "USA National Service Center Number" ;
+    dc:description "Identifier used by the Cancer Chemotherapy National Service Center."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch cheminf:000565 ;
+    foaf:homepage "https://wiki.nci.nih.gov/display/NCIDTPdata/Chemical+Data"^^xsd:string ;
+    bioregistry.schema:0000005 "27223"^^xsd:string ;
+    bioregistry.schema:0000006 "https://dtp.cancer.gov/dtpstandard/servlet/ChemData?searchtype=NSC&searchlist=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:nsf.award a bioregistry.schema:0000001 ;
     rdfs:label "National Science Foundation Award" ;
     dc:description "Information about research projects that NSF has funded since 1989 can be found by searching the Award Abstracts database. The information includes abstracts that describe the research, and names of principal investigators and their institutions. The database includes both completed and in-process research."^^xsd:string ;
@@ -22645,6 +22680,7 @@ bioregistry:nsf.award a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.nsf.gov/awards/about.jsp"^^xsd:string ;
     bioregistry.schema:0000005 "1458400"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.nsf.gov/awardsearch/showAward?AWD_ID=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:oba a bioregistry.schema:0000001 ;
@@ -23393,6 +23429,7 @@ bioregistry:rfc a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.ietf.org/"^^xsd:string ;
     bioregistry.schema:0000005 "5013"^^xsd:string ;
     bioregistry.schema:0000006 "https://tools.ietf.org/rfc/rfc$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:rnamod a bioregistry.schema:0000001 ;
@@ -23403,6 +23440,16 @@ bioregistry:rnamod a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "051"^^xsd:string ;
     bioregistry.schema:0000006 "http://rna.rega.kuleuven.be/cgi-bin/rnamods/rnashow.pl?$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{3}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:rtecs a bioregistry.schema:0000001 ;
+    rdfs:label "Registry of Toxic Effects of Chemical Substances" ;
+    dc:description "RTECS is a compendium of data extracted from the open scientific literature. The data are recorded in the format developed by the RTECS staff and arranged in alphabetical order by prime chemical name. Six types of toxicity data are included in the file: (1) primary irritation; (2) mutagenic effects; (3) reproductive effects; (4) tumorigenic effects; (5) acute toxicity; and (6) other multiple dose toxicity. Specific numeric toxicity values such as LD50, LC50, TDLo, and TCLo are noted as well as species studied and route of administration used. For each citation, the bibliographic source is listed thereby enabling the user to access the actual studies cited. No attempt has been made to evaluate the studies cited in RTECS. The user has the responsibility of making such assessments."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch cheminf:000566 ;
+    foaf:homepage "https://www.cdc.gov/niosh/rtecs/"^^xsd:string ;
+    bioregistry.schema:0000005 "AB1925000"^^xsd:string ;
+    bioregistry.schema:0000008 "^AB\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:rxnorm a bioregistry.schema:0000001 ;
@@ -23555,6 +23602,7 @@ bioregistry:skip a bioregistry.schema:0000001 ;
     foaf:homepage "https://skip.stemcellinformatics.org/en/"^^xsd:string ;
     bioregistry.schema:0000005 "SKIP001214"^^xsd:string ;
     bioregistry.schema:0000006 "https://skip.stemcellinformatics.org/SKIPSearch/cell_line_detail?accession=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^SKIP\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:smiles a bioregistry.schema:0000001 ;
@@ -23926,7 +23974,7 @@ bioregistry:uniprot.isoform a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false .
 
 bioregistry:uniprot.journal a bioregistry.schema:0000001 ;
-    rdfs:label "UniProt journal ID" ;
+    rdfs:label "UniProt journal" ;
     dc:description "identifier for a scientific journal, in the UniProt database"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch wikidata:P4616 ;
@@ -24034,6 +24082,7 @@ bioregistry:vbo a bioregistry.schema:0000001 ;
     foaf:homepage "https://github.com/monarch-initiative/vertebrate-breed-ontology"^^xsd:string ;
     bioregistry.schema:0000005 "0000038"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VBO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:ncbitaxon ;
     bioregistry.schema:0000019 orcid:0000-0002-4142-7153 .
@@ -27887,9 +27936,15 @@ cheminf:000412 dcterms:isPartOf bioregistry.metaresource:cheminf .
 
 cheminf:000446 dcterms:isPartOf bioregistry.metaresource:cheminf .
 
+cheminf:000447 dcterms:isPartOf bioregistry.metaresource:cheminf .
+
 cheminf:000563 dcterms:isPartOf bioregistry.metaresource:cheminf .
 
 cheminf:000564 dcterms:isPartOf bioregistry.metaresource:cheminf .
+
+cheminf:000565 dcterms:isPartOf bioregistry.metaresource:cheminf .
+
+cheminf:000566 dcterms:isPartOf bioregistry.metaresource:cheminf .
 
 cheminf:000567 dcterms:isPartOf bioregistry.metaresource:cheminf .
 
@@ -29907,6 +29962,7 @@ bioregistry:mba a bioregistry.schema:0000001 ;
     rdfs:label "Mouse Brain Atlas" ;
     dc:description "A controlled vocabulary to support the study of transcription in the mouse brain"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch bioportal:ABA-AMB ;
     foaf:homepage "https://mouse.brain-map.org"^^xsd:string ;
     bioregistry.schema:0000005 "688"^^xsd:string ;
     bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/mba/$1"^^xsd:string ;
@@ -29970,6 +30026,21 @@ bioregistry:metatlas.reaction a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-7753-9042 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
+bioregistry:miriam a bioregistry.schema:0000001 ;
+    rdfs:label "Identifiers.org namespace" ;
+    dc:description "Identifiers.org is an established resolving system that enables the referencing of data for the scientific community, with a current focus on the Life Sciences domain."^^xsd:string ;
+    dcterms:hasPart bioregistry:miriam.collection,
+        bioregistry:miriam.resource ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1162,
+        fairsharing:FAIRsharing.ap169a,
+        miriam:identifiers.namespace ;
+    foaf:homepage "https://www.ebi.ac.uk"^^xsd:string ;
+    bioregistry.schema:0000005 "pubmed"^^xsd:string ;
+    bioregistry.schema:0000006 "https://registry.identifiers.org/registry/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[a-z_\\.]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:molbase.sheffield a bioregistry.schema:0000001 ;
     rdfs:label "MolBase" ;
@@ -31929,6 +32000,7 @@ bioregistry:proco a bioregistry.schema:0000001 ;
     foaf:homepage "https://github.com/proco-ontology/PROCO"^^xsd:string ;
     bioregistry.schema:0000005 "0000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/PROCO_$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000017 bioregistry:chebi,
         bioregistry:cheminf,
@@ -32464,30 +32536,6 @@ bioregistry:mco a bioregistry.schema:0000001 ;
         bioregistry:zeco ;
     bioregistry.schema:0000019 orcid:0000-0002-0142-5591 .
 
-bioregistry.metaresource:cheminf a bioregistry.schema:0000002 ;
-    rdfs:label "Chemical Information Ontology" ;
-    dc:description "Contains entries for various database identifiers" ;
-    dcterms:hasPart cheminf:000140,
-        cheminf:000141,
-        cheminf:000302,
-        cheminf:000304,
-        cheminf:000405,
-        cheminf:000406,
-        cheminf:000407,
-        cheminf:000408,
-        cheminf:000409,
-        cheminf:000411,
-        cheminf:000412,
-        cheminf:000446,
-        cheminf:000563,
-        cheminf:000564,
-        cheminf:000567,
-        cheminf:000569 ;
-    foaf:homepage "https://github.com/semanticchemistry/semanticchemistry" ;
-    bioregistry.schema:0000005 "000140" ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_$1" ;
-    bioregistry.schema:0000019 orcid:0000-0001-7542-0286 .
-
 bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
     rdfs:label "NCBI Taxonomy" ;
     dc:description "The taxonomy contains the relationships between all living forms for which nucleic acid or protein sequence have been determined."^^xsd:string ;
@@ -32644,6 +32692,33 @@ bioregistry:go a bioregistry.schema:0000001 ;
         bioregistry:xpo,
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0001-6787-2901 .
+
+bioregistry.metaresource:cheminf a bioregistry.schema:0000002 ;
+    rdfs:label "Chemical Information Ontology" ;
+    dc:description "Contains entries for various database identifiers" ;
+    dcterms:hasPart cheminf:000140,
+        cheminf:000141,
+        cheminf:000302,
+        cheminf:000304,
+        cheminf:000405,
+        cheminf:000406,
+        cheminf:000407,
+        cheminf:000408,
+        cheminf:000409,
+        cheminf:000411,
+        cheminf:000412,
+        cheminf:000446,
+        cheminf:000447,
+        cheminf:000563,
+        cheminf:000564,
+        cheminf:000565,
+        cheminf:000566,
+        cheminf:000567,
+        cheminf:000569 ;
+    foaf:homepage "https://github.com/semanticchemistry/semanticchemistry" ;
+    bioregistry.schema:0000005 "000140" ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_$1" ;
+    bioregistry.schema:0000019 orcid:0000-0001-7542-0286 .
 
 bioregistry:cl a bioregistry.schema:0000001 ;
     rdfs:label "Cell Ontology" ;
@@ -33156,6 +33231,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ecacc,
         bioregistry:ecg,
         bioregistry:ecmdb,
+        bioregistry:ecn,
         bioregistry:ecolexicon,
         bioregistry:edam.data,
         bioregistry:edam.format,
@@ -33279,6 +33355,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:novus,
         bioregistry:npass,
         bioregistry:npo,
+        bioregistry:nsc,
         bioregistry:nsf.award,
         bioregistry:oa,
         bioregistry:oboinowl,
@@ -33323,6 +33400,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:reo,
         bioregistry:rfc,
         bioregistry:rnamod,
+        bioregistry:rtecs,
         bioregistry:rxnorm,
         bioregistry:sael,
         bioregistry:salk,
@@ -33441,6 +33519,7 @@ bioregistry.metaresource:agroportal a bioregistry.schema:0000002 ;
         agroportal:FALDO,
         agroportal:FLOPO,
         agroportal:FOBI,
+        agroportal:FOODEX2,
         agroportal:FOODON,
         agroportal:GEMET,
         agroportal:GO,
@@ -35152,7 +35231,8 @@ bioregistry.metaresource:ols a bioregistry.schema:0000002 ;
 bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
     rdfs:label "BioPortal Prefixes" ;
     dc:description "The BioPortal is a less stringent registry of biomedical ontologies than the OBO Foundry" ;
-    dcterms:hasPart bioportal:ADO,
+    dcterms:hasPart bioportal:ABA-AMB,
+        bioportal:ADO,
         bioportal:ADW,
         bioportal:AEO,
         bioportal:AERO,
@@ -39462,6 +39542,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ecg,
         bioregistry:echobase,
         bioregistry:ecmdb,
+        bioregistry:ecn,
         bioregistry:eco,
         bioregistry:ecocore,
         bioregistry:ecocyc,
@@ -39557,6 +39638,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:fobi,
         bioregistry:foodb.compound,
         bioregistry:foodb.food,
+        bioregistry:foodex2,
         bioregistry:foodon,
         bioregistry:fossilworks.journal,
         bioregistry:fossilworks.taxon,
@@ -40027,6 +40109,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:novus,
         bioregistry:npass,
         bioregistry:npo,
+        bioregistry:nsc,
         bioregistry:nsf.award,
         bioregistry:nuclearbd,
         bioregistry:nucleotide,
@@ -40272,6 +40355,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:rouge,
         bioregistry:rrid,
         bioregistry:rs,
+        bioregistry:rtecs,
         bioregistry:runbiosimulations,
         bioregistry:rxno,
         bioregistry:rxnorm,

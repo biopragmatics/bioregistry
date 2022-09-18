@@ -12,9 +12,11 @@ from typing import Optional
 
 import pystow
 import requests
+from tqdm import tqdm
 from tqdm.contrib.concurrent import thread_map
 
 from bioregistry.constants import EXTERNAL
+from bioregistry.license_standardizer import standardize_license
 
 __all__ = [
     "get_bioportal",
@@ -68,42 +70,75 @@ class OntoPortalClient:
         # see https://data.bioontology.org/documentation#Ontology
         res = self.query(self.base_url + "/ontologies", summaryOnly=False, notes=True)
         records = res.json()
-        # Pop the context, which is non-deterministically returend by the API
-        for record in records:
-            record.pop("@context", None)
+        records = thread_map(self._preprocess, records, unit="ontology", max_workers=3)
         with self.raw_path.open("w") as file:
-            json.dump(records, file, indent=2, sort_keys=True)
+            json.dump(records, file, indent=2, sort_keys=True, ensure_ascii=False)
 
         records = thread_map(self.process, records, disable=True)
         rv = {result["prefix"]: result for result in records}
 
         with self.processed_path.open("w") as file:
-            json.dump(rv, file, indent=2, sort_keys=True)
+            json.dump(rv, file, indent=2, sort_keys=True, ensure_ascii=False)
         return rv
+
+    def _preprocess(self, record):
+        record.pop("@context", None)
+        prefix = record["acronym"]
+        url = f"{self.base_url}/ontologies/{prefix}/latest_submission"
+        res = self.query(url, display="all")
+        if res.status_code != 200:
+            tqdm.write(
+                f"{self.metaprefix}:{prefix} had issue getting submission details: {res.text}"
+            )
+            return record
+        res_json = res.json()
+        for key in [
+            "homepage",
+            "publication",
+            "version",
+            "description",
+            "exampleIdentifier",
+            "repository",
+        ]:
+            value = res_json.get(key)
+            if value:
+                record[key] = (
+                    (value or "")
+                    .strip()
+                    .replace("\r\n", " ")
+                    .replace("\r", " ")
+                    .strip()
+                    .replace("  ", " ")
+                    .replace("  ", " ")
+                    .replace("  ", " ")
+                )
+
+        license_stub = res_json.get("hasLicense")
+        if license_stub:
+            record["license"] = standardize_license(license_stub)
+
+        contacts = res_json.get("contact", [])
+        if contacts:
+            record["contact"] = {k: v.strip() for k, v in contacts[0].items() if k != "id"}
+
+        return {k: v for k, v in record.items() if v}
 
     def process(self, entry):
         """Process a record from the OntoPortal site's API."""
         prefix = entry["acronym"]
-        extra_data = {}
-        # res = query(f'{BASE_URL}/ontologies/{bioportal_key}/latest_submission')
-        # if res:
-        #     extra_data = res.json()
-        # else:
-        #     print('failed on', bioportal_key)
-        #     extra_data = {}
-
-        contact = (extra_data.get("contact") or [{}])[0]
         rv = {
             "prefix": prefix,
-            "name": entry["name"],
-            "description": extra_data.get("description"),
-            "contact": contact.get("email"),
-            "contact.label": contact.get("name"),
-            "homepage": extra_data.get("homepage"),
-            "version": extra_data.get("version"),
-            "publication": extra_data.get("publication"),
+            "name": entry["name"].strip(),
+            "description": entry.get("description"),
+            "contact": entry.get("contact"),
+            "homepage": entry.get("homepage"),
+            "version": entry.get("version"),
+            "publication": entry.get("publication"),
+            "repository": entry.get("repository"),
+            "example_uri": entry.get("exampleIdentifier"),
+            "license": entry.get("license"),
         }
-        return {k: v for k, v in rv.items() if v is not None}
+        return {k: v for k, v in rv.items() if v}
 
 
 bioportal_client = OntoPortalClient(
@@ -140,6 +175,6 @@ def get_agroportal(force_download: bool = False):
 
 
 if __name__ == "__main__":
-    print("AgroPortal has", len(get_agroportal(force_download=True)))  # noqa:T201
     print("EcoPortal has", len(get_ecoportal(force_download=True)))  # noqa:T201
+    print("AgroPortal has", len(get_agroportal(force_download=True)))  # noqa:T201
     print("BioPortal has", len(get_bioportal(force_download=True)))  # noqa:T201

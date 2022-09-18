@@ -246,6 +246,7 @@ ado:
     obofoundry: ado
     ols: ado
   name: Alzheimer's Disease Ontology
+  pattern: ^\d{7}$
   preferred_prefix: ADO
   publications:
   - doi: 10.1016/j.jalz.2013.02.009
@@ -740,7 +741,7 @@ antweb:
     ncbi: AntWeb
     prefixcommons: antweb
     wikidata: P5299
-  name: AntWeb ID
+  name: AntWeb
   pattern: ^casent\d+(\-D\d+)?$
   preferred_prefix: antweb
   publications:
@@ -2020,6 +2021,7 @@ bila:
     fairsharing: FAIRsharing.eqgjeq
     obofoundry: bila
   name: Bilateria anatomy
+  pattern: ^\d{7}$
   preferred_prefix: BILA
   uri_format: http://purl.obolibrary.org/obo/BILA_$1
 bindingdb:
@@ -2253,6 +2255,12 @@ biomodels.kisao:
   namespace_in_lui: true
   pattern: ^\d+$
   preferred_prefix: biomodels.kisao
+  providers:
+  - code: legacy
+    description: This is the URI scheme used in the ontology but it does not resolve.
+    homepage: https://www.biomodels.net
+    name: Legacy Biomodels URL
+    uri_format: https://www.biomodels.net/kisao/KISAO#KISAO_$1
   publications:
   - doi: 10.1038/msb.2011.77
     pmc: null
@@ -2261,7 +2269,7 @@ biomodels.kisao:
   repository: https://github.com/SED-ML/KiSAO
   synonyms:
   - kisao
-  uri_format: https://www.biomodels.net/kisao/KISAO#KISAO_$1
+  uri_format: https://bioportal.bioontology.org/ontologies/KISAO?p=classes&conceptid=kisao:KISAO_$1
   version: '2.30'
 biomodels.teddy:
   banana: TEDDY
@@ -3695,6 +3703,7 @@ cellopub:
   mappings:
     cellosaurus: CelloPub
   name: Cellosaurus Publication
+  pattern: ^CLPUB\d+$
   preferred_prefix: cellopub
   uri_format: https://web.expasy.org/cellosaurus/cellopub/$1
 cellosaurus:
@@ -5461,6 +5470,7 @@ co_367:
   mappings:
     cropoct: CO_367
   name: Quinoa Ontology ontology
+  pattern: ^\d{7}$
   preferred_prefix: co_367
 co_370:
   description: Apple (Malus domestica) defines crop traits and variables to support
@@ -5471,6 +5481,7 @@ co_370:
   mappings:
     cropoct: CO_370
   name: Apple ontology
+  pattern: ^\d{7}$
   preferred_prefix: co_370
 cob:
   contact:
@@ -8621,6 +8632,24 @@ ecmdb:
   synonyms:
   - ECMDB
   uri_format: http://ecmdb.ca/compounds/$1
+ecn:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: A seven-digit identifier for chemical substances for regulatory purposes
+    within the European Union.
+  example: 200-003-9
+  homepage: https://echa.europa.eu/information-on-chemicals
+  mappings:
+    cheminf: '000447'
+  name: European Community number
+  pattern: ^\d{3}-\d{3}-\d$
+  preferred_prefix: ecn
+  references:
+  - https://github.com/biopragmatics/bioregistry/issues/257
+  - https://en.wikipedia.org/wiki/European_Community_number
 eco:
   banana: ECO
   contact:
@@ -9225,6 +9254,7 @@ ehdaa:
     to the abstract version of the ontology in a future release.
   download_obo: http://aber-owl.net/media/ontologies/EHDAA/6/ehdaa.obo
   example: '1'
+  homepage: http://obofoundry.org/ontology/ehdaa.html
   mappings:
     aberowl: EHDAA
     biocontext: EHDAA
@@ -11002,6 +11032,17 @@ foodb.food:
   pattern: ^FOOD\d+$
   preferred_prefix: foodb.food
   uri_format: https://foodb.ca/foods/$1
+foodex2:
+  description: FoodEx2 is a comprehensive food classification and description system
+    aimed at covering the need to describe food in data collections across different
+    food safety domains.
+  example: A0TMC
+  homepage: http://www.efsa.europa.eu/
+  mappings:
+    agroportal: FOODEX2
+  name: Food classification and description system
+  preferred_prefix: foodex2
+  uri_format: http://data.food.gov.uk/codes/foodtype/id/$1
 foodon:
   appears_in:
   - agro
@@ -13131,6 +13172,7 @@ gro:
     relations between classes.
   download_owl: http://aber-owl.net/media/ontologies/GRO/5/gro.owl
   example: Lipid
+  homepage: http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html
   mappings:
     aberowl: GRO
     bioportal: GRO
@@ -15089,10 +15131,14 @@ imdrf:
   references:
   - https://www.fda.gov/medical-devices/mandatory-reporting-requirements-manufacturers-importers-and-device-user-facilities/mdr-adverse-event-codes
 imex:
+  banana: IM
+  banana_peel: '-'
   description: The International Molecular Exchange (IMEx) is a consortium of molecular
     interaction databases which collaborate to share manual curation efforts and provide
     accessibility to multiple information sources.
-  example: IM-19210-3
+  example: 19210-3
+  example_extras:
+  - '19210'
   homepage: https://www.imexconsortium.org/
   mappings:
     biocontext: IMEX
@@ -15101,7 +15147,7 @@ imex:
     prefixcommons: imex
     re3data: r3d100010669
   name: International Molecular Exchange
-  pattern: ^IM-\d+(-?)(\d+?)$
+  pattern: ^\d+(-\d+)?$
   preferred_prefix: imex
   providers:
   - code: CURATOR_REVIEW
@@ -15109,13 +15155,18 @@ imex:
     homepage: https://www.ebi.ac.uk/intact/
     name: IMEx Consortium though Intact
     uri_format: https://imexcentral.org/icentral/imex/rec/$1
+  - code: intact.search
+    description: Search page on IntAct
+    homepage: https://www.ebi.ac.uk/intact
+    name: IntAct Search
+    uri_format: https://www.ebi.ac.uk/intact/search?query=IM-$1
   publications:
   - doi: 10.1002/pmic.200700286
     pmc: null
     pubmed: '17893861'
     title: 'Submit your interaction data the IMEx way: a step by step guide to trouble-free
       deposition.'
-  uri_format: https://www.ebi.ac.uk/intact/imex/main.xhtml?query=$1
+  uri_format: https://www.ebi.ac.uk/intact/imex/main.xhtml?query=IM-$1
 img.gene:
   description: The integrated microbial genomes (IMG) system is a data management,
     analysis and annotation platform for all publicly available genomes. IMG contains
@@ -17475,13 +17526,28 @@ mba:
   download_obo: https://raw.githubusercontent.com/obophenotype/uberon/master/source-ontologies/allen-mba.obo
   example: '688'
   homepage: https://mouse.brain-map.org
+  mappings:
+    bioportal: ABA-AMB
   name: Mouse Brain Atlas
   pattern: ^\d+$
   preferred_prefix: MBA
   uri_format: https://biopragmatics.github.io/providers/mba/$1
 mcc:
   deprecated: true
+  description: Ontologies provide a common platform of controlled vocabulary for researchers
+    who need to share information across a particular domain, inclusive of machine-interpretable
+    definitions of basic concepts in the domain and relations among them. The need
+    for ontologies that provide a systematic arrangement of available data and allow
+    cross talk across various related domains is gaining momentum. In this backdrop,
+    we have developed a comprehensive ontology on primary and established cell lines-both
+    normal and pathologic. It covers around 400 cell lines. This ontology has been
+    built to include the major domains in the field of biology like anatomy, bio-molecules,
+    chemicals and drugs, pathological conditions and genetic variations around the
+    cell lines. An extensive network of relations has been built across these concepts
+    to enable different combinations of queries. The ontology covers all cell lines
+    from major sources like ATCC, DSMZ, ECACC, ICLC etc. and is built in OWL format.
   example: ThoracicArtery
+  homepage: http://www.molecularconnections.com
   mappings:
     bioportal: MCCL
   name: Cell Line Ontology [derivative]
@@ -18508,10 +18574,12 @@ minid.test:
   preferred_prefix: minid.test
   uri_format: https://hdl.handle.net/hdl:20.500.12633/$1
 mint:
+  banana: MINT
+  banana_peel: '-'
   description: The Molecular INTeraction database (MINT) stores, in a structured format,
     information about molecular interactions by extracting experimental details from
     work published in peer-reviewed journals.
-  example: MINT-10000
+  example: '6978836'
   homepage: https://mint.bio.uniroma2.it
   mappings:
     biocontext: MINT
@@ -18522,7 +18590,7 @@ mint:
     prefixcommons: mint
     uniprot: MINT
   name: Molecular Interaction Database
-  pattern: ^MINT\-\d{1,7}$
+  pattern: ^\d{1,7}$
   preferred_prefix: mint
   providers:
   - code: ebi
@@ -18535,7 +18603,7 @@ mint:
     pmc: PMC1751541
     pubmed: '17135203'
     title: 'MINT: the Molecular INTeraction database.'
-  uri_format: http://mint.bio.uniroma2.it/mint/search/inFrameInteraction.do?interactionAc=$1
+  uri_format: https://mint.bio.uniroma2.it/index.php/detailed-curation/?id=MINT-$1
 mipmod:
   description: MIPModDb is a database of comparative protein structure models of MIP
     (Major Intrinsic Protein) family of proteins, identified from complete genome
@@ -18674,36 +18742,40 @@ miriam:
   - identifiers.namespace
   uri_format: https://registry.identifiers.org/registry/$1
 miriam.collection:
+  banana: MIR
   deprecated: true
   description: MIRIAM Registry is an online resource created to catalogue collections
     (Gene Ontology, Taxonomy or PubMed are some examples) and the corresponding resources
     (physical locations) providing access to those data collections. The Registry
     provides unique and perennial URIs for each entity of those data collections.
-  example: MIR:00000008
+  example: 00000008
   homepage: https://www.ebi.ac.uk/miriam/
   mappings:
     biocontext: MIRIAM.COLLECTION
     miriam: miriam.collection
     n2t: miriam.collection
   name: MIRIAM Registry collection
-  pattern: ^MIR:000\d{5}$
+  part_of: miriam
+  pattern: ^000\d{5}$
   preferred_prefix: miriam.collection
   uri_format: https://www.ebi.ac.uk/miriam/main/$1
 miriam.resource:
-  comment: yo dawg i heard you like registries...
+  banana: MIR
+  deprecated: true
   description: MIRIAM Registry is an online resource created to catalogue data types
     (Gene Ontology, Taxonomy or PubMed are some examples), their URIs and the corresponding
     resources (or physical locations), whether these are controlled vocabularies or
     databases.
-  example: MIR:00100005
+  example: '00100005'
   homepage: https://www.ebi.ac.uk/miriam/
   mappings:
     biocontext: MIRIAM.RESOURCE
     miriam: miriam.resource
     n2t: miriam.resource
     prefixcommons: miriam.resource
-  name: MIRIAM Registry resource
-  pattern: ^MIR:001\d{5}$
+  name: MIRIAM Legacy Registry Identifier
+  part_of: miriam
+  pattern: ^001\d{5}$
   preferred_prefix: miriam.resource
   publications:
   - doi: 10.1186/1752-0509-1-58
@@ -21476,6 +21548,23 @@ npo:
     title: NanoParticle Ontology for cancer nanotechnology research.
   repository: https://github.com/sobolevnrm/npo
   uri_format: http://purl.bioontology.org/ontology/npo#NPO_$1
+nsc:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: Identifier used by the Cancer Chemotherapy National Service Center.
+  example: '27223'
+  homepage: https://wiki.nci.nih.gov/display/NCIDTPdata/Chemical+Data
+  mappings:
+    cheminf: '000565'
+  name: USA National Service Center Number
+  pattern: ^\d+$
+  preferred_prefix: nsc
+  references:
+  - https://pubchem.ncbi.nlm.nih.gov/source/DTP/NCI
+  uri_format: https://dtp.cancer.gov/dtpstandard/servlet/ChemData?searchtype=NSC&searchlist=$1
 nsf.award:
   contributor:
     email: cthoyt@gmail.com
@@ -21489,6 +21578,7 @@ nsf.award:
   example: '1458400'
   homepage: https://www.nsf.gov/awards/about.jsp
   name: National Science Foundation Award
+  pattern: ^\d+$
   preferred_prefix: nsf.award
   uri_format: https://www.nsf.gov/awardsearch/showAward?AWD_ID=$1
 nuclearbd:
@@ -24491,7 +24581,7 @@ pharmgkb.pathways:
     n2t: pharmgkb.pathways
     prefixcommons: pharmgkb.pathways
     wikidata: P7001
-  name: PharmGKB ID
+  name: PharmGKB
   pattern: ^PA\d+$
   preferred_prefix: pharmgkb.pathways
   publications:
@@ -25578,6 +25668,7 @@ proco:
     ols: proco
     ontobee: PROCO
   name: Process Chemistry Ontology
+  pattern: ^\d{7}$
   preferred_prefix: PROCO
   repository: https://github.com/proco-ontology/PROCO
   uri_format: http://purl.obolibrary.org/obo/PROCO_$1
@@ -25869,19 +25960,23 @@ pseudomonas:
   preferred_prefix: pseudomonas
   uri_format: http://www.pseudomonas.com/feature/show/?locus_tag=$1
 psipar:
+  banana: PAR
+  comment: This resource is no longer loaded on XML and the sourceforge link from
+    the HUPO website to the psi-par.obo artifact is dead.
+  deprecated: true
   description: Protein Affinity Reagents (PSI-PAR) provides a structured controlled
     vocabulary for the annotation of experiments concerned with interactions, and
     interactor production methods. PAR is developed by the HUPO Proteomics Standards
     Initiative and contains the majority of the terms from the PSI-MI controlled vocabular,
     as well as additional terms.
-  example: PAR:0116
-  homepage: https://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=PAR
+  example: '0116'
+  homepage: https://www.psidev.info/psi-par
   mappings:
     biocontext: PSIPAR
     miriam: psipar
     n2t: psipar
   name: Protein Affinity Reagents
-  pattern: ^PAR:\d+$
+  pattern: ^\d+$
   preferred_prefix: psipar
   uri_format: https://www.ebi.ac.uk/ontology-lookup/?termId=$1
 pso:
@@ -26853,6 +26948,7 @@ rfc:
   mappings:
     n2t: rfc
   name: Internet Standard -- IETF Request for Comments
+  pattern: ^\d+$
   preferred_prefix: rfc
   uri_format: https://tools.ietf.org/rfc/rfc$1
 rgd:
@@ -27330,6 +27426,39 @@ rs:
   twitter: ratgenome
   uri_format: http://purl.obolibrary.org/obo/RS_$1
   version: '2019-12-13'
+rtecs:
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: 'RTECS is a compendium of data extracted from the open scientific literature.
+    The data are recorded in the format developed by the RTECS staff and arranged
+    in alphabetical order by prime chemical name. Six types of toxicity data are included
+    in the file: (1) primary irritation; (2) mutagenic effects; (3) reproductive effects;
+    (4) tumorigenic effects; (5) acute toxicity; and (6) other multiple dose toxicity.
+    Specific numeric toxicity values such as LD50, LC50, TDLo, and TCLo are noted
+    as well as species studied and route of administration used. For each citation,
+    the bibliographic source is listed thereby enabling the user to access the actual
+    studies cited. No attempt has been made to evaluate the studies cited in RTECS.
+    The user has the responsibility of making such assessments.'
+  example: AB1925000
+  homepage: https://www.cdc.gov/niosh/rtecs/
+  mappings:
+    cheminf: '000566'
+  name: Registry of Toxic Effects of Chemical Substances
+  pattern: ^AB\d+$
+  preferred_prefix: rtecs
+  proprietary: true
+  publications:
+  - doi: https://doi.org/10.1016/s1074-9098%2899%2900058-1
+    pmc: null
+    pubmed: null
+    title: 'An overview of the Registry of Toxic Effects of Chemical Substances (RTECS):
+      Critical information on chemical hazards'
+  references:
+  - https://www.cdc.gov/niosh/docs/97-119/pdfs/97-119.pdf
+  - https://www.cdc.gov/niosh/npg/npgdrtec.html
 runbiosimulations:
   description: runBioSimulations is a platform for sharing simulation experiments
     and their results. runBioSimulations enables investigators to use a wide range
@@ -28172,6 +28301,7 @@ shareloc:
   mappings:
     ols: shareloc
   name: ShareLoc
+  pattern: ^\d{6}$
   preferred_prefix: shareloc
   uri_format: https://shareloc.xyz/#/ontology/vocabulary/SHARELOC_$1
 sheepqtldb:
@@ -28430,6 +28560,7 @@ skip:
   mappings:
     cellosaurus: SKIP
   name: Stemcell Knowledge and Information Portal
+  pattern: ^SKIP\d+$
   preferred_prefix: skip
   uri_format: https://skip.stemcellinformatics.org/SKIPSearch/cell_line_detail?accession=$1
 skos:
@@ -30058,7 +30189,7 @@ tol:
     miriam: tol
     n2t: tol
     wikidata: P5221
-  name: Tree of Life Web Project ID
+  name: Tree of Life Web Project
   pattern: ^\d+$
   preferred_prefix: tol
   synonyms:
@@ -30910,7 +31041,7 @@ uniprot.journal:
   homepage: https://www.uniprot.org/journals
   mappings:
     wikidata: P4616
-  name: UniProt journal ID
+  name: UniProt journal
   pattern: ^\d{4}$
   preferred_prefix: uniprot.journal
   uri_format: https://www.uniprot.org/journals/$1
@@ -31450,6 +31581,7 @@ vbo:
     aberowl: VBO
     obofoundry: vbo
   name: Vertebrate Breed Ontology
+  pattern: ^\d{7}$
   preferred_prefix: VBO
   repository: https://github.com/monarch-initiative/vertebrate-breed-ontology
   uri_format: http://purl.obolibrary.org/obo/VBO_$1
@@ -31616,6 +31748,7 @@ vhog:
   download_obo: ftp://ftp.bgee.org/general/ontologies/vHOG.obo
   download_owl: http://purl.obolibrary.org/obo/vhog.owl
   example: '0000411'
+  homepage: http://bgee.unil.ch
   mappings:
     aberowl: VHOG
     biocontext: VHOG
