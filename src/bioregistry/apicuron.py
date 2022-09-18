@@ -7,18 +7,20 @@ Run this with:
 .. code-block:: sh
 
     $ pip install -e .[apicuron]
-    $ pip install apicuron-client
     $ python -m bioregistry.apicuron
 """
 
 from functools import lru_cache
-from typing import Iterable
+from typing import Iterable, TYPE_CHECKING
 
 import bioregistry
 
+if TYPE_CHECKING:
+    import apicuron_client
+
 DESCRIPTION_PAYLOAD = {
     "resource_id": "bioregistry",
-    "resource_uri": "bioregistry",
+    "resource_uri": "https://bioregistry.io",
     "resource_name": "Bioregistry",
     "resource_url": "https://bioregistry.io",
     "resource_long_name": "Bioregistry",
@@ -58,7 +60,7 @@ def _get_description():
     return Description(**DESCRIPTION_PAYLOAD)
 
 
-def get_curation_payload() -> "Submission":
+def get_curation_payload() -> "apicuron_client.Submission":
     """Get curation payload dictionary for upload to APICURON."""
     from apicuron_client import Submission
 
@@ -69,7 +71,7 @@ def get_curation_payload() -> "Submission":
     )
 
 
-def iter_reports() -> Iterable["Report"]:
+def iter_reports() -> Iterable["apicuron_client.Report"]:
     """Generate reports from the Bioregistry for APICURON."""
     from apicuron_client import Report
 
@@ -97,8 +99,10 @@ def main():
     """Submit the payload."""
     from apicuron_client import resubmit_curations, submit_description
 
-    x = submit_description(_get_description())
-    print(x)
+    description = _get_description()
+    submit_res = submit_description(description)
+    submit_res.raise_for_status()
+    print(submit_res)
 
     sub = get_curation_payload()
     res = resubmit_curations(sub)
