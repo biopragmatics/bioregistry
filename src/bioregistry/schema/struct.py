@@ -1050,7 +1050,9 @@ class Resource(BaseModel):
                     )
         if self.prefixcommons:
             for pubmed in self.prefixcommons.get("pubmed_ids", []):
-                publications.append(Publication(pubmed=pubmed, doi=None, pmc=None, title=None, year=None))
+                publications.append(
+                    Publication(pubmed=pubmed, doi=None, pmc=None, title=None, year=None)
+                )
         return deduplicate_publications(publications)
 
     def get_twitter(self) -> Optional[str]:
