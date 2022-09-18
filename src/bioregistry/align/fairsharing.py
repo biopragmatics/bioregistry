@@ -24,8 +24,8 @@ class FairsharingAligner(Aligner):
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Prepare curation rows for unaligned BioPortal registry entries."""
         return [
-            external_entry["name"],
             external_entry["abbreviation"],
+            external_entry["name"],
             external_entry["description"],
         ]
 
