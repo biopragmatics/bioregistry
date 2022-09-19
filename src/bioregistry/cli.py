@@ -42,7 +42,8 @@ def download():
 @click.option("--skip-fairsharing", is_flag=True)
 @click.option("--skip-re3data", is_flag=True)
 @click.option("--skip-slow", is_flag=True)
-def align(skip_fairsharing: bool, skip_re3data: bool, skip_slow: bool):
+@click.option("--no-force", is_flag=True)
+def align(skip_fairsharing: bool, skip_re3data: bool, skip_slow: bool, no_force: bool):
     """Align all external registries."""
     try:
         from .align import aligner_resolver
@@ -66,7 +67,7 @@ def align(skip_fairsharing: bool, skip_re3data: bool, skip_slow: bool):
             continue
         secho(f"Aligning {aligner_cls.key}")
         try:
-            aligner_cls.align()
+            aligner_cls.align(force_download=not no_force)
         except (IOError, OLSBroken) as e:
             secho(f"Failed to align {aligner_cls.key}: {e}", fg="red")
 
