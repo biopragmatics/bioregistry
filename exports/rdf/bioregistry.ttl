@@ -2984,6 +2984,7 @@ bioregistry:cryoem a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:CRYOEM,
         bioportal:CRYOEM,
+        fairsharing:FAIRsharing.q47I0t,
         ols:cryoem ;
     foaf:homepage "http://scipion.i2pc.es/ontology/cryoem"^^xsd:string ;
     bioregistry.schema:0000005 "0000052"^^xsd:string ;
@@ -7215,6 +7216,7 @@ bioregistry:mi a bioregistry.schema:0000001 ;
         biolink:MI,
         go.resource:PSI-MI,
         n2t:psimi,
+        fairsharing:FAIRsharing.8qzmtr,
         prefixcommons:psi.mi,
         miriam:mi,
         ols:mi ;
@@ -16335,6 +16337,8 @@ biocontext:NBRC dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:NCBIAssembly dcterms:isPartOf bioregistry.metaresource:biocontext .
 
+biocontext:NCBIGI dcterms:isPartOf bioregistry.metaresource:biocontext .
+
 biocontext:NCBIGene dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:NCBIGenome dcterms:isPartOf bioregistry.metaresource:biocontext .
@@ -17554,6 +17558,8 @@ go.resource:MetaCyc dcterms:isPartOf bioregistry.metaresource:go .
 go.resource:NCBIGene dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:NCBI_NP dcterms:isPartOf bioregistry.metaresource:go .
+
+go.resource:NCBI_gi dcterms:isPartOf bioregistry.metaresource:go .
 
 go.resource:NIF_Subcellular dcterms:isPartOf bioregistry.metaresource:go .
 
@@ -21189,7 +21195,7 @@ bioregistry:geonames a bioregistry.schema:0000001 ;
     rdfs:label "GeoNames" ;
     dc:description "The GeoNames geographical database covers all countries and contains over eleven million placenames that are available for download free of charge."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.56a0Uj,
+    skos:exactMatch fairsharing:FAIRsharing.6dba71,
         re3data:r3d100010245 ;
     foaf:homepage "https://www.geonames.org"^^xsd:string ;
     bioregistry.schema:0000005 "3532759"^^xsd:string ;
@@ -22462,6 +22468,18 @@ bioregistry:ncbibook a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^NBK\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:ncbigi a bioregistry.schema:0000001 ;
+    rdfs:label "GenInfo Identifier" ;
+    dc:description "A GI number (for GenInfo Identifier, sometimes written in lower case, _gi_) is a simple series of digits that are assigned consecutively to each sequence record processed by NCBI. The GI number bears no resemblance to the Version number of the sequence record. Each time a sequence record is changed, it is assigned a new GI number."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:NCBIGI,
+        go.resource:NCBI_gi ;
+    foaf:homepage "https://www.ncbi.nlm.nih.gov/genbank/sequenceids/"^^xsd:string ;
+    bioregistry.schema:0000005 "568815597"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:nddf a bioregistry.schema:0000001 ;
     rdfs:label "National Drug Data File" ;
     dc:description "FDB MedKnowledge encompasses medications approved by the U.S. Food and Drug Administration, and information on commonly-used over-the-counter and alternative therapy agents such as herbals, nutraceuticals and dietary supplements."^^xsd:string ;
@@ -22750,7 +22768,7 @@ bioregistry:omim a bioregistry.schema:0000001 ;
         go.resource:OMIM,
         n2t:mim,
         ncbi.resource:MIM,
-        fairsharing:FAIRsharing.azq2t6,
+        fairsharing:FAIRsharing.b084yh,
         prefixcommons:omim,
         miriam:mim,
         uniprot.resource:MIM,
@@ -24514,8 +24532,6 @@ fairsharing:FAIRsharing.4vr0ys dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.530e61 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
-fairsharing:FAIRsharing.56a0Uj dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
 fairsharing:FAIRsharing.5701h1 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.5949vn dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -24575,6 +24591,8 @@ fairsharing:FAIRsharing.6L6MjA dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.6bc7h9 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.6bd5k6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.6dba71 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.6dfe9b dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -24641,6 +24659,8 @@ fairsharing:FAIRsharing.8ktkqy dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.8nq9t6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.8qcbs0 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.8qzmtr dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.8t18te dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -24766,11 +24786,11 @@ fairsharing:FAIRsharing.ay74mj dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.ayjdsm dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
-fairsharing:FAIRsharing.azq2t6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
 fairsharing:FAIRsharing.azqskx dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.azr389 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.b084yh dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.b1xD9f dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -25212,6 +25232,8 @@ fairsharing:FAIRsharing.q1fdkc dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.q3b39v dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.q47I0t dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.q9j2e3 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.qcceez dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -25257,8 +25279,6 @@ fairsharing:FAIRsharing.ry1ezg dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.rycy2x dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.s19src dcterms:isPartOf bioregistry.metaresource:fairsharing .
-
-fairsharing:FAIRsharing.s1ne3g dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.s3r6sk dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -25367,6 +25387,8 @@ fairsharing:FAIRsharing.wb0txg dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.wcpd6f dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.we2r5a dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.wf28wm dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.wjzty dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -32928,7 +32950,7 @@ bioregistry:uniprot a bioregistry.schema:0000001 ;
         go.resource:UniProtKB,
         n2t:uniprot,
         ncbi.resource:UniProt,
-        fairsharing:FAIRsharing.s1ne3g,
+        fairsharing:FAIRsharing.wf28wm,
         prefixcommons:uniprot,
         miriam:uniprot,
         re3data:r3d100011521,
@@ -33343,6 +33365,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:ncbi.genome,
         bioregistry:ncbi.resource,
         bioregistry:ncbibook,
+        bioregistry:ncbigi,
         bioregistry:nddf,
         bioregistry:ndex,
         bioregistry:ndfrt,
@@ -34390,6 +34413,7 @@ bioregistry.metaresource:go a bioregistry.schema:0000002 ;
         go.resource:MetaCyc,
         go.resource:NCBIGene,
         go.resource:NCBI_NP,
+        go.resource:NCBI_gi,
         go.resource:NIF_Subcellular,
         go.resource:OBI,
         go.resource:OMIM,
@@ -36327,7 +36351,6 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.4shj9c,
         fairsharing:FAIRsharing.4vr0ys,
         fairsharing:FAIRsharing.530e61,
-        fairsharing:FAIRsharing.56a0Uj,
         fairsharing:FAIRsharing.5701h1,
         fairsharing:FAIRsharing.5949vn,
         fairsharing:FAIRsharing.595710,
@@ -36358,6 +36381,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.6L6MjA,
         fairsharing:FAIRsharing.6bc7h9,
         fairsharing:FAIRsharing.6bd5k6,
+        fairsharing:FAIRsharing.6dba71,
         fairsharing:FAIRsharing.6dfe9b,
         fairsharing:FAIRsharing.6h8d2r,
         fairsharing:FAIRsharing.6hna78,
@@ -36391,6 +36415,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.8ktkqy,
         fairsharing:FAIRsharing.8nq9t6,
         fairsharing:FAIRsharing.8qcbs0,
+        fairsharing:FAIRsharing.8qzmtr,
         fairsharing:FAIRsharing.8t18te,
         fairsharing:FAIRsharing.8wm364,
         fairsharing:FAIRsharing.8zqzm9,
@@ -36453,9 +36478,9 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.atygwy,
         fairsharing:FAIRsharing.ay74mj,
         fairsharing:FAIRsharing.ayjdsm,
-        fairsharing:FAIRsharing.azq2t6,
         fairsharing:FAIRsharing.azqskx,
         fairsharing:FAIRsharing.azr389,
+        fairsharing:FAIRsharing.b084yh,
         fairsharing:FAIRsharing.b1xD9f,
         fairsharing:FAIRsharing.b220d4,
         fairsharing:FAIRsharing.b2979t,
@@ -36676,6 +36701,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.q09hck,
         fairsharing:FAIRsharing.q1fdkc,
         fairsharing:FAIRsharing.q3b39v,
+        fairsharing:FAIRsharing.q47I0t,
         fairsharing:FAIRsharing.q9j2e3,
         fairsharing:FAIRsharing.qcceez,
         fairsharing:FAIRsharing.qe8tz8,
@@ -36699,7 +36725,6 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.ry1ezg,
         fairsharing:FAIRsharing.rycy2x,
         fairsharing:FAIRsharing.s19src,
-        fairsharing:FAIRsharing.s1ne3g,
         fairsharing:FAIRsharing.s3r6sk,
         fairsharing:FAIRsharing.s5zmbp,
         fairsharing:FAIRsharing.s9ztmd,
@@ -36754,6 +36779,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.wb0txg,
         fairsharing:FAIRsharing.wcpd6f,
         fairsharing:FAIRsharing.we2r5a,
+        fairsharing:FAIRsharing.wf28wm,
         fairsharing:FAIRsharing.wjzty,
         fairsharing:FAIRsharing.wkaakq,
         fairsharing:FAIRsharing.wkdjpb,
@@ -38783,6 +38809,7 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:NBO,
         biocontext:NBRC,
         biocontext:NCBIAssembly,
+        biocontext:NCBIGI,
         biocontext:NCBIGene,
         biocontext:NCBIGenome,
         biocontext:NCBIProtein,
@@ -40054,6 +40081,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ncbi.resource,
         bioregistry:ncbibook,
         bioregistry:ncbigene,
+        bioregistry:ncbigi,
         bioregistry:ncbiprotein,
         bioregistry:ncbitaxon,
         bioregistry:ncim,
