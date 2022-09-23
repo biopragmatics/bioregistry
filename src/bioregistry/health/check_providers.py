@@ -2,14 +2,15 @@
 
 """A script to check which providers in entries in the Bioregistry actually can be accessed."""
 
+import datetime
 import sys
-from datetime import datetime
-from typing import Tuple
+from typing import List, Optional, Tuple
 
 import click
 import pandas as pd
 import requests
 import yaml
+from pydantic import BaseModel, Field
 from tqdm import tqdm
 from tqdm.contrib.concurrent import thread_map
 from tqdm.contrib.logging import logging_redirect_tqdm
@@ -22,11 +23,81 @@ __all__ = [
     "main",
 ]
 
-HEALTH_TSV_PATH = DOCS_DATA.joinpath("health.tsv")
-TODAY = datetime.today().strftime("%Y-%m-%d")
+HEALTH_YAML_PATH = DOCS_DATA.joinpath("health.yaml")
 
 
-def _process(element: Tuple[str, str, str]) -> Tuple[str, str, str, bool, str, str]:
+class ProviderStatus(BaseModel):
+    """A container for provider information."""
+
+    prefix: str
+    example: str
+    url: str
+    failed: bool
+    message: Optional[str]
+    context: Optional[str]
+    date: str = Field(default_factory=lambda: datetime.date.today().strftime("%Y-%m-%d"))
+
+
+class DailySummary(BaseModel):
+    date: str
+    total_measured: int
+    failure_percent: float = Field(
+        ge=0.0, le=100.00, description="The percentage of providers that did not successfully ping."
+    )
+
+
+class Database(BaseModel):
+    results: List[ProviderStatus]
+    daily_summaries: List[DailySummary]
+
+
+@click.command()
+def main():
+    """Run the provider health check script."""
+    if HEALTH_YAML_PATH.is_file():
+        data = Database(**yaml.safe_load(HEALTH_YAML_PATH.read_text()))
+    else:
+        data = Database(results=[], daily_summaries=[])
+
+    queue = []
+    for resource in tqdm(bioregistry.resources(), desc="Preparing example URLs"):
+        if resource.is_deprecated():
+            continue
+        example = resource.get_example()
+        if example is None:
+            continue
+        url = bioregistry.get_iri(resource.prefix, example, use_bioregistry_io=False)
+        if url is None:
+            continue
+        queue.append((resource.prefix, example, url))
+
+    import random
+    queue = list(random.choices(queue, k=10))
+
+    with logging_redirect_tqdm():
+        results = thread_map(_process, queue, desc="Checking providers", unit="prefix")
+
+    failed_percent = sum(result.failed for result in results)
+    secho(
+        f"{failed_percent}/{len(results)} ({failed_percent / len(results):.2%}) providers failed",
+        fg="red",
+        bold=True,
+    )
+
+    data.results.extend(results)
+    data.daily_summaries.append(
+        DailySummary(
+            date=results[0].date,
+            failure_percent=failed_percent,
+            total_measured=len(results),
+        )
+    )
+
+    HEALTH_YAML_PATH.write_text(yaml.safe_dump(data.dict(exclude_none=True)))
+    click.echo(f"Wrote to {HEALTH_YAML_PATH}")
+
+
+def _process(element: Tuple[str, str, str]) -> ProviderStatus:
     prefix, example, url = element
 
     failed = False
@@ -46,69 +117,21 @@ def _process(element: Tuple[str, str, str]) -> Tuple[str, str, str, bool, str, s
     if failed:
         with tqdm.external_write_mode():
             click.echo(
-                f'[{datetime.now().strftime("%H:%M:%S")}] '
+                f'[{datetime.datetime.now().strftime("%H:%M:%S")}] '
                 + click.style(prefix, fg="green")
                 + " at "
                 + click.style(url, fg="red")
                 + " failed to download: "
                 + click.style(msg, fg="bright_black")
             )
-    return prefix, example, url, failed, msg, context
-
-
-@click.command()
-def main():
-    """Run the provider health check script."""
-    if HEALTH_TSV_PATH.is_file():
-        df = pd.read_csv(HEALTH_TSV_PATH, sep='\t')
-        rows = list(df.values)
-    else:
-        rows = []
-
-    xxx = []
-    for prefix, resource in tqdm(
-        sorted(bioregistry.read_registry().items()), desc="Preparing example URLs"
-    ):
-        if resource.is_deprecated():
-            continue
-        example = resource.get_example()
-        if example is None:
-            continue
-        url = bioregistry.get_iri(prefix, example, use_bioregistry_io=False)
-        if url is None:
-            continue
-        xxx.append((prefix, example, url))
-
-    with logging_redirect_tqdm():
-        rv = thread_map(_process, xxx, desc="Checking providers")
-
-    failed = sum(failed for _, _, _, failed, _, _ in rv)
-    secho(f"{failed}/{len(rv)} ({failed / len(rv):.2%}) providers failed", fg="red", bold=True)
-
-    rows.extend(
-        (
-            TODAY,
-            prefix,
-            url,
-            msg,
-            context,
-        )
-        for prefix, _example, url, failed, msg, context in rv
-        if failed
+    return ProviderStatus(
+        prefix=prefix,
+        example=example,
+        url=url,
+        failed=failed,
+        message=msg or None,
+        context=context or None,
     )
-
-    df = pd.DataFrame(
-        columns=[
-            "date",
-            "prefix",
-            "url",
-            "message",
-            "context",
-        ],
-        data=rows,
-    )
-    df.sort_values(["date", "prefix"], inplace=True)
-    df.to_csv(HEALTH_TSV_PATH, sep='\t', index=False)
 
 
 if __name__ == "__main__":
