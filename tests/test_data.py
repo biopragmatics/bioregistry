@@ -815,7 +815,12 @@ class TestRegistry(unittest.TestCase):
                         self.assertNotIn("arxiv", reference)
                 if resource.publications:
                     for publication in resource.publications:
-                        self.assertIsNotNone(publication.title)
+                        self.assertIsNotNone(
+                            publication.title,
+                            msg="Manually curated publication is missing a title. Please run the "
+                            "publication clean-up script `python -m bioregistry.curation.clean_publications` "
+                            "to automatically retrieve the title.",
+                        )
                         self.assertLessEqual(
                             1,
                             sum(
