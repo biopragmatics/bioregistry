@@ -15391,6 +15391,9 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "synonyms": [
+      "ama-cpt"
+    ],
     "uri_format": "https://www.aapc.com/codes/cpt-codes/$1"
   },
   "credit": {
@@ -16358,6 +16361,19 @@
       "prefix": "CVDO"
     },
     "pattern": "^\\d{7}$"
+  },
+  "cvx": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The CDC's National Center of Immunization and Respiratory Diseases (NCIRD) developed and maintains the CVX (vaccine administered) code set. The table below has the most up to date values. It includes both active and inactive vaccines available in the US. CVX codes for inactive vaccines allow transmission of historical immunization records.",
+    "example": "54",
+    "homepage": "https://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=cvx",
+    "name": "Vaccine administered code set",
+    "pattern": "^\\d+$"
   },
   "d1id": {
     "biocontext": {
@@ -20485,6 +20501,50 @@
       "uri_format": "https://drugcentral.org/target/$1"
     },
     "uri_format": "http://drugcentral.org/drugcard/$1"
+  },
+  "dsm4": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A terminology published by the American Psychiatric Association (APA) for the classification of mental disorders using a common language and standard criteria. [wikipedia]",
+    "example": "315.1",
+    "example_extras": [
+      "291.89"
+    ],
+    "homepage": "https://en.wikipedia.org/wiki/Diagnostic_and_Statistical_Manual_of_Mental_Disorders#DSM-IV-TR_(2000)",
+    "mappings": {
+      "wikidata": "P663"
+    },
+    "name": "Diagnostic and Statistical Manual of Mental Disorders (4th Edition)",
+    "pattern": "^\\d+\\.\\d+$",
+    "synonyms": [
+      "dsm-iv"
+    ]
+  },
+  "dsm5": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A terminology published by the American Psychiatric Association (APA) for the classification of mental disorders using a common language and standard criteria. [wikipedia]",
+    "example": "312.33",
+    "homepage": "https://en.wikipedia.org/wiki/DSM-5",
+    "mappings": {
+      "wikidata": "P1930"
+    },
+    "name": "Diagnostic and Statistical Manual of Mental Disorders (5th Edition)",
+    "pattern": "^\\d{3}\\.\\d{2}$",
+    "references": [
+      "https://archive.org/details/diagnosticstatis0005unse"
+    ],
+    "synonyms": [
+      "dsm-v"
+    ]
   },
   "dsmz": {
     "cellosaurus": {
@@ -26248,6 +26308,19 @@
     },
     "name": "Fetal Calf Serum-Free Database",
     "uri_format": "https://fcs-free.org/fcs-database?$1"
+  },
+  "fhir.implementation": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A set of guides on implementing various processes within hospitals or healthcare systems.",
+    "example": "immds",
+    "homepage": "https://hl7.org/fhir/us/",
+    "name": "FHIR United States Implementation Guides",
+    "uri_format": "https://hl7.org/fhir/us/$1"
   },
   "fideo": {
     "aberowl": {
@@ -33184,6 +33257,39 @@
     "preferred_prefix": "HBA",
     "uri_format": "https://biopragmatics.github.io/providers/hba/$1"
   },
+  "hc.din": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A Drug Identification Number (DIN) is a computer-generated eight digit number assigned by Health Canada to a drug product prior to being marketed in Canada. It uniquely identifies all drug products sold in a dosage form in Canada and is located on the label of prescription and over-the-counter drug products that have been evaluated and authorized for sale in Canada.",
+    "example": "02069237",
+    "homepage": "https://www.canada.ca/en/health-canada/services/drugs-health-products/drug-products/fact-sheets/drug-identification-number.html",
+    "name": "Health Canada Drug Identification Number",
+    "pattern": "^\\d{8}$",
+    "references": [
+      "http://www.hc-sc.gc.ca/dhp-mps/prodpharma/databasdon/index-eng.php"
+    ]
+  },
+  "hc.npn": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Licensed Natural Health Products Database contains information about natural health products that have been issued a product licence by Health Canada.",
+    "example": "18125",
+    "homepage": "http://webprod.hc-sc.gc.ca/nhpid-bdipsn/search-rechercheReq.do?lang=eng",
+    "name": "Health Canada Natural Product Number",
+    "pattern": "^\\d+$",
+    "references": [
+      "https://www.canada.ca/en/health-canada/services/drugs-health-products/natural-non-prescription/applications-submissions/product-licensing/licensed-natural-health-products-database.html"
+    ],
+    "uri_format": "http://webprod.hc-sc.gc.ca/nhpid-bdipsn/ingredReq.do?id=$1"
+  },
   "hcao": {
     "homepage": "https://www.humancellatlas.org",
     "mappings": {
@@ -33838,6 +33944,34 @@
     "mappings": {
       "cellosaurus": "HIVReagentProgram"
     }
+  },
+  "hl7.v2codesystem": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A registry of code systems (each are small vocabularies themselves) used by HL7 international, related to FHIR.",
+    "example": "0778",
+    "homepage": "https://terminology.hl7.org/codesystems-v2.html",
+    "name": "HL7 V2 Code Systems",
+    "pattern": "^\\d+$",
+    "uri_format": "http://terminology.hl7.org/CodeSystem/v2-$1"
+  },
+  "hl7.v3codesystem": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A registry of code systems (each are small vocabularies themselves) used by HL7 international, related to FHIR.",
+    "example": "AcknowledgementCondition",
+    "homepage": "https://terminology.hl7.org/codesystems-v2.html",
+    "name": "HL7 V2 Code Systems",
+    "pattern": "^\\w+$",
+    "uri_format": "https://terminology.hl7.org/CodeSystem-v3-$1"
   },
   "hmdb": {
     "biocontext": {
@@ -36210,6 +36344,21 @@
     "twitter": "neXtProt_news",
     "uri_format": "https://biopragmatics.github.io/providers/icepo/$1"
   },
+  "icf": {
+    "comment": "This might be possible to roll directly into ICD11",
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The International Classification of Functioning, Disability and Health, known more commonly as ICF, is a classification of health and health-related domains. As the functioning and disability of an individual occurs in a context, ICF also includes a list of environmental factors. ICF is the WHO framework for measuring health and disability at both individual and population levels.",
+    "example": "326705068",
+    "homepage": "https://icd.who.int/dev11/l-icf/en",
+    "name": "International Classification of Functioning, Disability and Health",
+    "pattern": "^\\d+$",
+    "uri_format": "http://id.who.int/icd/entity/$1"
+  },
   "iclc": {
     "cellosaurus": {
       "category": "Cell line collections",
@@ -36824,6 +36973,30 @@
       "uri_format": "https://www.iedb.org/reference/$1"
     },
     "name": "Immune Epitope Database"
+  },
+  "ietf.language": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Shorthand representations of languages and their subtypes",
+    "example": "en-GB",
+    "example_extras": [
+      "en",
+      "ar-SA",
+      "aaf"
+    ],
+    "homepage": "http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry",
+    "mappings": {
+      "wikidata": "P305"
+    },
+    "name": "Internet Engineering Task Force Language Tag",
+    "pattern": "^\\w{2,3}(-\\w+)?$",
+    "synonyms": [
+      "bcp47"
+    ]
   },
   "iev": {
     "biocontext": {
@@ -38835,6 +39008,22 @@
       "prefix": "isni",
       "uri_format": "http://www.isni.org/isni/$1"
     }
+  },
+  "iso.3166": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "An identifier for a country in numeric format per ISO 3166-1",
+    "example": "554",
+    "homepage": "https://www.iso.org/iso-3166-country-codes.html",
+    "mappings": {
+      "wikidata": "P299"
+    },
+    "name": "ISO 3166-1 Country Code",
+    "pattern": "^\\d+$"
   },
   "issn": {
     "biocontext": {
@@ -52528,6 +52717,40 @@
     "pattern": "^\\d+$",
     "uri_format": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=$1"
   },
+  "nucc.characteristic": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Provider Characteristics code set is for use with health care provider information for enrollment and credentialing transactions and their corresponding responses. It is intended to provide codified responses to questions presented to a health care provider applying to or registering with an entity and to report the outcome of such application or registration. It may also be used for responses to inquiries regarding provider participation or registration in a program or plan.",
+    "example": "2A",
+    "example_extras": [
+      "11",
+      "10"
+    ],
+    "homepage": "https://nucc.org/index.php/code-sets-mainmenu-41/provider-characteristics-mainmenu-39",
+    "name": "National Uniform Claim Committee Characteristic",
+    "pattern": "^\\d(\\d|\\w)$"
+  },
+  "nucc.taxonomy": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Health Care Provider Taxonomy code set is an external, nonmedical data code set designed for use in an electronic environment, specifically within the ASC X12N Health Care transactions. This includes the transactions mandated under HIPAA.\n\nThe taxonomy code is a unique alphanumeric code, ten characters in length. The code set is structured into three distinct \"Levels\" including Provider Grouping, Classification, and Area of Specialization.\n\n - **Level I, Provider Grouping** A major grouping of service(s) or occupation(s) of health care providers. For example: Allopathic & Osteopathic Physicians, Dental Providers, Hospitals, etc.\n - **Level II, Classification** A more specific service or occupation related to the Provider Grouping. For example, the Classification for Allopathic & Osteopathic Physicians is based upon the General Specialty Certificates as issued by the appropriate national boards. The following boards will however, have their general certificates appear as Level III areas of specialization strictly due to display limitations of the code set for Boards that have multiple general certificates: Medical Genetics, Preventive Medicine, Psychiatry & Neurology, Radiology, Surgery, Otolaryngology, Pathology.\n - **Level III, Area of Specialization** A more specialized area of the Classification in which a provider chooses to practice or make services available. For example, the Area of Specialization for provider grouping Allopathic & Osteopathic Physicians is based upon the Subspecialty Certificates as issued by the appropriate national boards.",
+    "example": "207LH0002X",
+    "homepage": "https://taxonomy.nucc.org",
+    "name": "National Uniform Claim Committee Taxonomy",
+    "pattern": "^\\d{3}\\w(\\w|\\d_)\\d{4}X$",
+    "references": [
+      "https://www.nucc.org/images/stories/CSV/nucc_taxonomy_221.csv",
+      "https://www.nucc.org"
+    ]
+  },
   "nuclearbd": {
     "biocontext": {
       "is_identifiers": true,
@@ -64743,6 +64966,22 @@
     },
     "uri_format": "http://www.radiomics.org/RO/$1"
   },
+  "radlex": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "A comprehensive set of radiology terms for use in radiology reporting, decision support, data mining, data registries, education and research.\n\nRadLex provides the foundation for vital data resources used in radiology:\n\n- The LOINC/RSNA Radiology Playbook\n- RadElement Common Data Elements\n-RadReport Radiology Reporting Templates\n\nThe development of RadLex has been supported by the National Institute of Biomedical Imaging and Bioengineering (NIBIB) and the cancer Biomedical Informatics Grid (caBIG) project.",
+    "example": "RID1",
+    "homepage": "https://radlex.org",
+    "license": "http://www.rsna.org/uploadedFiles/RSNA/Content/Informatics/RadLex_License_Agreement_and_Terms_of_Use_V2_Final.pdf",
+    "name": "RSNA Informatics RadLex",
+    "pattern": "^RID\\d+$",
+    "uri_format": "https://radlex.org/RID/$1",
+    "version": "4.1"
+  },
   "rapdb.locus": {
     "mappings": {
       "miriam": "rapdb.locus"
@@ -75139,6 +75378,49 @@
     "wikidata": {
       "prefix": "P2576"
     }
+  },
+  "ucum": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "Unified Code for Units of Measure (UCUM) is a code system intended to include all units of measures being contemporarily used in international science, engineering, and business.",
+    "example": "aBq",
+    "example_extras": [
+      "/A/s3/cg3/T3",
+      "/g",
+      "/m3",
+      "%",
+      "Cel.d-1",
+      "dL/g",
+      "dlm",
+      "dlx",
+      "Em.s-2",
+      "g.cm-3",
+      "K2",
+      "kW/h",
+      "m/s",
+      "m.s-2",
+      "m/s/d",
+      "mmol.mL-1",
+      "mol.L-1",
+      "mol.um",
+      "ng-1",
+      "pA",
+      "ug.mL-1",
+      "umol.L-1",
+      "us",
+      "Wb"
+    ],
+    "homepage": "https://ucum.org",
+    "name": "Unified Code for Units of Measure",
+    "references": [
+      "https://units-of-measurement.org/"
+    ],
+    "repository": "https://github.com/ucum-org/ucum",
+    "uri_format": "https://units-of-measurement.org/$1"
   },
   "umbbd.compound": {
     "biocontext": {
