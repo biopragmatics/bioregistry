@@ -3,13 +3,43 @@ layout: page
 title: Help Wanted
 permalink: /curation/
 ---
-This page has the curation To-Do list.
+Welcome to the _Help Wanted_ section of the Bioregistry 👋, a place where both
+first-time contributors or veteran Bioregistras can find small, meaningful
+ways to contribute curations.
 
-## Curating Cross-Registry Mappings
+It's one of the core values of the Bioregistry project to provide attribution
+and appreciation to curation contributors, here's how that works:
+
+1. We associate your ORCID identifier with records that you submitted or helped
+   improve. These are displayed proudly on our
+   site's [contributions page](https://bioregistry.io/contributors/).
+2. We associate your GitHub handle with the commits to the repository (even if
+   one of the Bioregistry team members or an automated workflow on GitHub makes
+   it on your behalf) to get GitHub cred.
+3. We will consider _all_ curation contributors as co-authors on Bioregistry
+   papers.
+
+**Table of Contents**:
+
+Each of the following sections has its own instructions on how to get started
+making your own curations. If there's something unclear, please let us know
+via
+the [GitHub issue tracker](https://github.com/biopragmatics/bioregistry/issues/new)
+,
+and we can improve this page.
+
+1. [Improving the Metaregistry](#improving-the-metaregistry)
+2. [Aligning Wikidata database records](#wikidata)
+3. [Curating regular expression patterns](#pattern)
+4. [Curating URI format strings](#formatter)
+5. [Curating example local unique identifiers](#example)
+
+## Improving the Metaregistry
 
 The Bioregistry processes and semi-automatically aligns metadata
 from external registries such as Identifiers.org, the OBO Foundry,
-FAIRsharing, and others. Some resources (e.g., Identifiers.org)
+FAIRsharing, and others. These alignments constitute the Bioregistry's
+_metaregistry_. Some resources (e.g., Identifiers.org)
 have similar scope, minimum metadata standards, and curation standards
 to the Bioregistry and are imported in full. Others are aligned only when
 prefixes can be matched based on an algorithm.
@@ -45,7 +75,7 @@ that show relevant metadata to help curate each record as one of the following:
 </tbody>
 </table>
 
-## Adding a Wikidata Database Corresponding to Each Resource
+## Aligning Wikidata Database Records
 
 <a id="wikidata"></a>
 The following entries in the Bioregistry have not been annotated with
@@ -141,7 +171,7 @@ a regular expression describing the local unique identifiers for this namespace.
    </table>
 </details>
 
-## URI Format
+## Curating URI Format Strings
 
 <a id="formatter"></a>
 Same drill for URL Formatters - these entries need a `["uri_format"]` entry.
