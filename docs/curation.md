@@ -7,7 +7,26 @@ This page has the curation To-Do list.
 
 ## Curating Cross-Registry Mappings
 
-The following registries have xrefs that need curating:
+The Bioregistry processes and semi-automatically aligns metadata
+from external registries such as Identifiers.org, the OBO Foundry,
+FAIRsharing, and others. Some resources (e.g., Identifiers.org)
+have similar scope, minimum metadata standards, and curation standards
+to the Bioregistry and are imported in full. Others are aligned only when
+prefixes can be matched based on an algorithm.
+
+This means that there are potentially many records in external registries
+that are relevant for the Bioregistry, but either were not able to be mapped
+to an existing prefix, or do not have a mapping but would be valuable to import.
+
+The following table links to curation sheets for each external registry
+that show relevant metadata to help curate each record as one of the following:
+
+1. Record corresponds to a prefix in the Bioregistry. Tutorial TBD.
+2. Record is relevant but does not have a corresponding prefix in the
+   Bioregistry. See the tutorial
+   on [importing external prefixes](/curation/import-external).
+3. Record is irrelevant for the bioregistry. See the tutorial
+   on [curating explicit prefix blacklists](/curation/blacklist-external).
 
 <table>
 <thead>
@@ -25,11 +44,6 @@ The following registries have xrefs that need curating:
 {% endfor %}
 </tbody>
 </table>
-
-See also the following tutorials:
-
-1. [importing external prefixes](/curation/import-external)
-2. [curating explicit prefix blacklists](/curation/blacklist-external)
 
 ## Adding a Wikidata Database Corresponding to Each Resource
 
