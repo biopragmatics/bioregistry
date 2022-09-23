@@ -5118,6 +5118,55 @@
     },
     "pattern": "^\\d{7}$"
   },
+  "bind": {
+    "biocontext": {
+      "is_identifiers": true,
+      "is_obo": false,
+      "prefix": "BIND",
+      "uri_format": "http://identifiers.org/bind/$1"
+    },
+    "deprecated": true,
+    "edam": {
+      "description": "Accession number of an entry from the BIND database.",
+      "name": "BIND accession number",
+      "obsolete": false,
+      "prefix": "1129"
+    },
+    "homepage": "http://bind.ca",
+    "mappings": {
+      "biocontext": "BIND",
+      "edam": "1129",
+      "prefixcommons": "bind"
+    },
+    "prefixcommons": {
+      "description": "BIND is a database designed to store full descriptions of interactions, molecular complexes and pathways.",
+      "example": "98346",
+      "homepage": "http://bond.unleashedinformatics.com/",
+      "keywords": [
+        "interaction",
+        "small molecule",
+        "pathway"
+      ],
+      "name": "Biomolecular Interaction Network Databank",
+      "pattern": "^\\d+$",
+      "prefix": "bind",
+      "synonyms": [
+        "bind_translation (irefindex)"
+      ],
+      "uri_format": "http://www.bind.ca/Action?identifier=bindid&idsearch=$1"
+    },
+    "publications": [
+      {
+        "pubmed": "12519993",
+        "title": "BIND: the Biomolecular Interaction Network Database"
+      },
+      {
+        "pubmed": "10871269",
+        "title": "BIND--a data specification for storing and describing biomolecular interactions, molecular complexes and pathways"
+      }
+    ],
+    "uri_format": "http://www.bind.ca/Action?identifier=bindid&idsearch=$1"
+  },
   "bindingdb": {
     "biocontext": {
       "is_identifiers": true,
