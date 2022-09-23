@@ -5,7 +5,7 @@ permalink: /curation/
 ---
 Welcome to the _Help Wanted_ section of the Bioregistry 👋, a place where both
 first-time contributors or veteran Bioregistras can find small, meaningful
-ways to contribute curations.
+ways to contribute novel curations.
 
 It's one of the core values of the Bioregistry project to provide attribution
 and appreciation to curation contributors, here's how that works:
@@ -23,9 +23,7 @@ and appreciation to curation contributors, here's how that works:
 
 Each of the following sections has its own instructions on how to get started
 making your own curations. If there's something unclear, please let us know
-via
-the [GitHub issue tracker](https://github.com/biopragmatics/bioregistry/issues/new)
-,
+via the [GitHub issue tracker](https://github.com/biopragmatics/bioregistry/issues/new),
 and we can improve this page.
 
 1. [Improving the Metaregistry](#improving-the-metaregistry)
@@ -75,9 +73,9 @@ that show relevant metadata to help curate each record as one of the following:
 </tbody>
 </table>
 
+<a id="wikidata"></a>
 ## Aligning Wikidata Database Records
 
-<a id="wikidata"></a>
 The following entries in the Bioregistry have not been annotated with
 the `["wikidata"]["database"]` entry because it either exists in Wikidata and it
 needs to be annotated, or it does not exist in Wikidata and needs to be created,
@@ -145,9 +143,9 @@ then annotated.
    </table>
 </details>
 
+<a id="pattern"></a>
 ## Adding a Regular Expression Pattern for Each Resource's Local Unique Identifiers
 
-<a id="pattern"></a>
 Same drill for patterns - these entries need a `["pattern"]` entry that includes
 a regular expression describing the local unique identifiers for this namespace.
 
@@ -171,9 +169,9 @@ a regular expression describing the local unique identifiers for this namespace.
    </table>
 </details>
 
+<a id="formatter"></a>
 ## Curating URI Format Strings
 
-<a id="formatter"></a>
 Same drill for URL Formatters - these entries need a `["uri_format"]` entry.
 This is a URL with a `$1` character where the local unique identifier gets put.
 
@@ -210,9 +208,9 @@ This is a URL with a `$1` character where the local unique identifier gets put.
    </table>
 </details>
 
+<a id="example"></a>
 ## Example Local Unique Identifier
 
-<a id="example"></a>
 As a courtesy to newcomers, it's nice to show an example local unique
 identifier. These entries need a `["example"]` entry.
 
