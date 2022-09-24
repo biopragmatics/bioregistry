@@ -36345,6 +36345,25 @@
     "uri_format": "https://biopragmatics.github.io/providers/icepo/$1"
   },
   "icf": {
+    "aberowl": {
+      "description": "The International Classification of Functioning, Disability and Health, known more commonly as ICF, is a classification of health and health-related domains. These domains are classified from body, individual and societal perspectives by means of two lists: a list of body functions and structure, and a list of domains of activity and participation. Since an individual's functioning and disability occurs in a context, the ICF also includes a list of environmental factors. <br><br> Source: <a href=\"http://www.who.int/classifications/icf/en/\">http://www.who.int/classifications/icf/en/</a>",
+      "download_owl": "http://aber-owl.net/media/ontologies/ICF/3/icf.owl",
+      "homepage": "http://www.who.int/classifications/icf/en/",
+      "name": "International Classification of Functioning, Disability and Health",
+      "prefix": "ICF",
+      "version": "1.0.2"
+    },
+    "bioportal": {
+      "contact": {
+        "email": "info@who.int",
+        "name": "The World Health Organization"
+      },
+      "description": "The International Classification of Functioning, Disability and Health, known more commonly as ICF, is a classification of health and health-related domains. These domains are classified from body, individual and societal perspectives by means of two lists: a list of body functions and structure, and a list of domains of activity and participation. Since an individual's functioning and disability occurs in a context, the ICF also includes a list of environmental factors. <br><br> Source: <a href=\"http://www.who.int/classifications/icf/en/\">http://www.who.int/classifications/icf/en/</a>",
+      "homepage": "http://www.who.int/classifications/icf/en/",
+      "name": "International Classification of Functioning, Disability and Health",
+      "prefix": "ICF",
+      "version": "1.0.2"
+    },
     "comment": "This might be possible to roll directly into ICD11",
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -36354,7 +36373,26 @@
     },
     "description": "The International Classification of Functioning, Disability and Health, known more commonly as ICF, is a classification of health and health-related domains. As the functioning and disability of an individual occurs in a context, ICF also includes a list of environmental factors. ICF is the WHO framework for measuring health and disability at both individual and population levels.",
     "example": "326705068",
+    "fairsharing": {
+      "abbreviation": "ICF",
+      "description": "The International Classification of Functioning, Disability and Health (ICF) is a classification of health and health-related domains. As the functioning and disability of an individual occurs in a context, ICF also includes a list of environmental factors. ICF is the WHO framework for measuring health and disability at both individual and population levels. ICF was officially endorsed by all 191 WHO Member States in the Fifty-fourth World Health Assembly on 22 May 2001 (resolution WHA 54.21) as the international standard to describe and measure health and disability.",
+      "id": "859",
+      "name": "International Classification of Functioning, Disability and Health",
+      "prefix": "FAIRsharing.7rngj0",
+      "publications": [],
+      "subjects": [
+        "Medicine",
+        "Health Science",
+        "Primary Health Care",
+        "Biomedical Science"
+      ]
+    },
     "homepage": "https://icd.who.int/dev11/l-icf/en",
+    "mappings": {
+      "aberowl": "ICF",
+      "bioportal": "ICF",
+      "fairsharing": "FAIRsharing.7rngj0"
+    },
     "name": "International Classification of Functioning, Disability and Health",
     "pattern": "^\\d+$",
     "uri_format": "http://id.who.int/icd/entity/$1"
@@ -42982,7 +43020,7 @@
       "homepage": "https://github.com/monarch-initiative/MAxO",
       "name": "Medical Action Ontology",
       "prefix": "MAXO",
-      "version": "2022-08-22"
+      "version": "2022-09-07"
     },
     "example": "0000008",
     "mappings": {
@@ -48340,7 +48378,7 @@
       "name": "Mass Spectrometry Ontology",
       "prefix": "MS",
       "publication": "http://database.oxfordjournals.org/content/2013/bat009.long",
-      "version": "4.1.102"
+      "version": "4.1.103"
     },
     "example": "1000560",
     "mappings": {
@@ -55788,7 +55826,7 @@
       "homepage": "https://github.com/OOSTT/OOSTT",
       "name": "Ontology of Organizational Structures of Trauma centers and Trauma systems",
       "prefix": "OOSTT",
-      "version": "release version - 2021-01-11"
+      "version": "release version - 2022-09-23"
     },
     "example": "00000099",
     "fairsharing": {
@@ -64967,6 +65005,25 @@
     "uri_format": "http://www.radiomics.org/RO/$1"
   },
   "radlex": {
+    "aberowl": {
+      "description": "RadLex is a controlled terminology for radiology-a single unified source of radiology terms for radiology practice, education, and research. For license information see : <a href=\"http://www.rsna.org/uploadedFiles/RSNA/Content/Informatics/RadLex_License_Agreement_and_Terms_of_Use_V2_Final.pdf\">http://www.rsna.org/uploadedFiles/RSNA/Content/Informatics/RadLex_License_Agreement_and_Terms_of_Use_V2_Final.pdf</a> Converted to use OWL format submissions",
+      "download_owl": "http://aber-owl.net/media/ontologies/RADLEX/37/radlex.owl",
+      "homepage": "http://www.rsna.org/RadLex.aspx",
+      "name": "Radiology Lexicon",
+      "prefix": "RADLEX",
+      "version": "3.14"
+    },
+    "bioportal": {
+      "contact": {
+        "email": "radlex-feedback@lists.rsna.org",
+        "name": "Radiological Society of North America"
+      },
+      "description": "RadLex OWL, as downloaded from BioPortal, includes a set of puns in order to facilitate browsing and display. The base RadLex ontology, without puns, is available at http://radlex.org/",
+      "homepage": "https://www.rsna.org/practice-tools/data-tools-and-standards/radlex-radiology-lexicon",
+      "name": "Radiology Lexicon",
+      "prefix": "RADLEX",
+      "version": "4.1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -64975,8 +65032,44 @@
     },
     "description": "A comprehensive set of radiology terms for use in radiology reporting, decision support, data mining, data registries, education and research.\n\nRadLex provides the foundation for vital data resources used in radiology:\n\n- The LOINC/RSNA Radiology Playbook\n- RadElement Common Data Elements\n-RadReport Radiology Reporting Templates\n\nThe development of RadLex has been supported by the National Institute of Biomedical Imaging and Bioengineering (NIBIB) and the cancer Biomedical Informatics Grid (caBIG) project.",
     "example": "RID1",
+    "fairsharing": {
+      "abbreviation": "RadLex",
+      "description": "RadLex is a comprehensive lexicon—a unified language of radiology terms—for standardized indexing and retrieval of radiology information resources. With more than 68,000 terms, RadLex satisfies the needs of software developers, system vendors and radiology users by adopting the best features of existing terminology systems while producing new terms to fill critical gaps. RadLex also provides a comprehensive and technology-friendly replacement for the ACR Index for Radiological Diagnoses. It unifies and supplements other lexicons and standards, such as SNOMED-CT and DICOM. RadLex development has received support from both the National Institute of Biomedical Imaging and Bioengineering (NIBIB) and the cancer Biomedical Informatics Grid (caBIG) project.",
+      "id": "461",
+      "name": "Radiology Lexicon",
+      "prefix": "FAIRsharing.shm2f2",
+      "publications": [
+        {
+          "doi": "10.2214/ajr.174.5.1741463",
+          "pubmed_id": 10789815,
+          "title": "Radiology lexicon."
+        },
+        {
+          "doi": "10.1016/j.jvir.2008.10.022",
+          "pubmed_id": 19081735,
+          "title": "The IR RadLex project: an interventional radiology lexicon--a collaborative project of the Radiological Society of North America and the Society of Interventional Radiology."
+        },
+        {
+          "doi": "10.1016/j.jvir.2009.04.031",
+          "pubmed_id": 19560008,
+          "title": "The IR Radlex Project: an interventional radiology lexicon--a collaborative project of the Radiological Society of North America and the Society of Interventional Radiology."
+        }
+      ],
+      "subjects": [
+        "Anatomy",
+        "Radiology",
+        "Clinical Studies",
+        "Biomedical Science",
+        "Medical Informatics"
+      ]
+    },
     "homepage": "https://radlex.org",
     "license": "http://www.rsna.org/uploadedFiles/RSNA/Content/Informatics/RadLex_License_Agreement_and_Terms_of_Use_V2_Final.pdf",
+    "mappings": {
+      "aberowl": "RADLEX",
+      "bioportal": "RADLEX",
+      "fairsharing": "FAIRsharing.shm2f2"
+    },
     "name": "RSNA Informatics RadLex",
     "pattern": "^RID\\d+$",
     "uri_format": "https://radlex.org/RID/$1",
@@ -75414,7 +75507,27 @@
       "us",
       "Wb"
     ],
+    "fairsharing": {
+      "abbreviation": "UCUM",
+      "description": "The Unified Code for Units of Measure is a code system intended to include all units of measures being contemporarily used in international science, engineering, and business. The purpose is to facilitate unambiguous electronic communication of quantities together with their units. The focus is on electronic communication, as opposed to communication between humans. A typical application of The Unified Code for Units of Measure are electronic data interchange (EDI) protocols, but there is nothing that prevents it from being used in other types of machine communication.",
+      "id": "527",
+      "name": "The Unified Code for Units of Measure",
+      "prefix": "FAIRsharing.27w8k0",
+      "publications": [
+        {
+          "doi": "10.1136/jamia.1999.0060151",
+          "pubmed_id": 10094068,
+          "title": "Units of measure in clinical information systems."
+        }
+      ],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
     "homepage": "https://ucum.org",
+    "mappings": {
+      "fairsharing": "FAIRsharing.27w8k0"
+    },
     "name": "Unified Code for Units of Measure",
     "references": [
       "https://units-of-measurement.org/"
