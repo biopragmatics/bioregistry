@@ -14529,6 +14529,8 @@ ontobee:UPA dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:UPHENO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
+ontobee:VBO dcterms:isPartOf bioregistry.metaresource:ontobee .
+
 ontobee:VIDO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:VO dcterms:isPartOf bioregistry.metaresource:ontobee .
@@ -24026,7 +24028,8 @@ bioregistry:vbo a bioregistry.schema:0000001 ;
     dc:description "Vertebrate Breed Ontology is an ontology created to serve as a single computable resource for vertebrate breed names."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:VBO,
-        obofoundry:vbo ;
+        obofoundry:vbo,
+        ontobee:VBO ;
     foaf:homepage "https://github.com/monarch-initiative/vertebrate-breed-ontology"^^xsd:string ;
     bioregistry.schema:0000005 "0000038"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VBO_$1"^^xsd:string ;
@@ -34957,6 +34960,7 @@ bioregistry.metaresource:ontobee a bioregistry.schema:0000002 ;
         ontobee:UO,
         ontobee:UPA,
         ontobee:UPHENO,
+        ontobee:VBO,
         ontobee:VIDO,
         ontobee:VO,
         ontobee:VT,
