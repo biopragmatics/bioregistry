@@ -27,7 +27,11 @@ class OBOFoundryAligner(Aligner):
 
     def _align_action(self, bioregistry_id, external_id, external_entry):
         super()._align_action(bioregistry_id, external_id, external_entry)
-        if self.manager.get_example(bioregistry_id) or self.manager.has_no_terms(bioregistry_id):
+        if (
+            self.manager.get_example(bioregistry_id)
+            or self.manager.has_no_terms(bioregistry_id)
+            or self.manager.is_deprecated(bioregistry_id)
+        ):
             return
         example = get_obofoundry_example(external_id)
         if example:
