@@ -71,7 +71,7 @@ def _get_has_present(func) -> Counter:
     return Counter(x for x in (func(prefix) for prefix in read_registry()) if x)
 
 
-SINGLE_FIG = (8, 3.5)
+SINGLE_FIG = (8.25, 3.5)
 TODAY = datetime.datetime.today().strftime("%Y-%m-%d")
 WATERMARK_TEXT = f"https://github.com/biopragmatics/bioregistry ({TODAY})"
 
@@ -337,7 +337,7 @@ def compare():  # noqa:C901
         ("Pattern", _get_has(get_pattern)),
         ("Provider", _get_has(get_uri_format)),
         ("License", _get_has(get_license)),
-        ("License Type", _get_has_present(get_license)),
+        ("License Type", licenses_mapped_counter),
         ("Version", _get_has(get_version)),
         ("Contact Email", _get_has(get_contact_email)),
         ("Wikidata Database", HAS_WIKIDATA_DATABASE),
@@ -402,7 +402,9 @@ def compare():  # noqa:C901
     _labels[0] = f"{_labels[0]}\nNovel"
     for i in ax.containers:
         ax.bar_label(i, _labels)
-    ax.set_xlabel("Number of External Registries Capturing a Given Identifier Resource")
+    ax.set_xlabel(
+        f"Number of the {len(_labels) - 1} Mapped External Registries Capturing a Given Identifier Resource"
+    )
     ax.set_ylabel("Number of Identifier Resources")
     ax.set_yscale("log")
     ax.spines["top"].set_visible(False)
@@ -466,8 +468,12 @@ def compare():  # noqa:C901
     ########################################
     # Regular expression complexity report #
     ########################################
-    g = sns.displot(x=get_regex_complexities(), log_scale=2, height=3, aspect=4 / 3)
-    g.set(xlabel="Regular Expression Complexity")
+    regex_complexities = get_regex_complexities()
+    g = sns.displot(x=regex_complexities, log_scale=2, height=3, aspect=4 / 3)
+    g.set(
+        xlabel="Regular Expression Complexity",
+        xlim=(min(regex_complexities), max(regex_complexities)),
+    )
     _save(g.figure, name="regex_report", eps=paper)
 
 
@@ -527,7 +533,7 @@ def get_regex_complexities() -> Collection[float]:
         if pattern is None:
             continue
         # Consider alternate complexity estimates
-        rows.append(float(len(pattern)))
+        rows.append(float(len(pattern) - 2))
     return sorted(rows)
 
 
