@@ -3,7 +3,6 @@
 """Utilities for registry alignment."""
 
 import csv
-from abc import ABC
 from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, Sequence
 
 import click
@@ -20,7 +19,7 @@ __all__ = [
 ]
 
 
-class Aligner(ABC):
+class Aligner:
     """A class for aligning new registries."""
 
     #: The key for the external registry
@@ -54,10 +53,15 @@ class Aligner(ABC):
 
     def __init__(self, force_download: Optional[bool] = None):
         """Instantiate the aligner."""
-        if self.key not in read_metaregistry():
-            raise TypeError(f"invalid metaprefix for aligner: {self.key}")
+        if not hasattr(self.__class__, "key"):
+            raise TypeError
+        if not hasattr(self.__class__, "curation_header"):
+            raise TypeError
 
         self.manager = Manager()
+
+        if self.key not in self.manager.metaregistry:
+            raise TypeError(f"invalid metaprefix for aligner: {self.key}")
 
         kwargs = dict(self.getter_kwargs or {})
         kwargs.setdefault("force_download", True)

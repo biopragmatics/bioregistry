@@ -2,8 +2,6 @@
 
 """Align HL7 External Code Systems with the Bioregistry."""
 
-from typing import Sequence
-
 from bioregistry.align.utils import Aligner
 from bioregistry.external.hl7 import get_hl7
 
