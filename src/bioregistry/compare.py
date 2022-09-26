@@ -337,7 +337,16 @@ def compare():  # noqa:C901
         ("Pattern", _get_has(get_pattern)),
         ("Provider", _get_has(get_uri_format)),
         ("License", _get_has(get_license)),
-        ("License Type", licenses_mapped_counter),
+        (
+            "License Type",
+            Counter(
+                {
+                    license_key: count
+                    for license_key, count in licenses_mapped_counter.most_common()
+                    if license_key is not None and license_key != "None"
+                }
+            ),
+        ),
         ("Version", _get_has(get_version)),
         ("Contact Email", _get_has(get_contact_email)),
         ("Wikidata Database", HAS_WIKIDATA_DATABASE),
