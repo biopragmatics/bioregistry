@@ -1310,6 +1310,7 @@ atc:
     bioportal: ATC
     edam: '3103'
     fairsharing: FAIRsharing.1a27h8
+    hl7: whoATC
     miriam: atc
     n2t: atc
     prefixcommons: atc
@@ -1346,6 +1347,7 @@ atcc:
     biocontext: ATCC
     cellosaurus: ATCC
     fairsharing: FAIRsharing.j0ezpm
+    hl7: 2.16.840.1.113883.6.77
     miriam: atcc
     n2t: atcc
     ncbi: ATCC
@@ -3314,6 +3316,7 @@ cas:
     edam: '1002'
     fairsharing: FAIRsharing.r7Kwy7
     go: CAS
+    hl7: 2.16.840.1.113883.6.61
     miriam: cas
     n2t: cas
     prefixcommons: cas
@@ -3731,6 +3734,8 @@ cdt:
   download_owl: https://github.com/oral-health-and-disease-ontologies/ohd-ontology/blob/master/src/ontology/older/CDTCodes%20as%20Classes_pruned.owl
   example: '1000001'
   homepage: https://www.ada.org/publications/CDT
+  mappings:
+    hl7: 2.16.840.1.113883.6.116
   name: Current Dental Terminology
   pattern: ^\d{7}$
   preferred_prefix: cdt
@@ -4818,6 +4823,7 @@ clinvar:
     biolink: CLINVAR
     cellosaurus: ClinVar
     fairsharing: FAIRsharing.wx5r6f
+    hl7: clinVar-V
     miriam: clinvar
     n2t: clinvar
     re3data: r3d100013331
@@ -5600,7 +5606,7 @@ cob:
     improve interoperability.
   download_owl: http://purl.obolibrary.org/obo/cob.owl
   example: 0000080
-  homepage: https://github.com/OBOFoundry/COB
+  homepage: https://obofoundry.org/COB/
   license: CC0 1.0
   mappings:
     aberowl: COB
@@ -6389,6 +6395,7 @@ csp:
   mappings:
     aberowl: CRISP
     bioportal: CRISP
+    hl7: 2.16.840.1.113883.6.120
   name: Computer Retrieval of Information on Science Projects Thesaurus
   preferred_prefix: csp
   synonyms:
@@ -6406,6 +6413,7 @@ cst:
   mappings:
     biocontext: CST
     fairsharing: FAIRsharing.n8pxvx
+    hl7: 2.16.840.1.113883.6.62
     miriam: cst
     n2t: cst
   name: Cell Signaling Technology Pathways
@@ -6635,6 +6643,8 @@ cvx:
     immunization records.
   example: '54'
   homepage: https://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=cvx
+  mappings:
+    hl7: 2.16.840.1.113883.6.59
   name: Vaccine administered code set
   pattern: ^\d+$
   preferred_prefix: cvx
@@ -6985,6 +6995,7 @@ dbsnp:
     edam: '1106'
     fairsharing: FAIRsharing.edxb58
     go: dbSNP
+    hl7: 2.16.840.1.113883.6.284
     miriam: dbsnp
     n2t: dbsnp
     ncbi: dbSNP
@@ -7541,6 +7552,7 @@ dicom:
   mappings:
     bioportal: DCM
     fairsharing: FAIRsharing.b7z8by
+    hl7: DCM
     ols: dicom
   name: DICOM Controlled Terminology
   pattern: ^\d+$
@@ -8487,6 +8499,7 @@ dsm4:
   - '291.89'
   homepage: https://en.wikipedia.org/wiki/Diagnostic_and_Statistical_Manual_of_Mental_Disorders#DSM-IV-TR_(2000)
   mappings:
+    hl7: 2.16.840.1.113883.6.126
     wikidata: P663
   name: Diagnostic and Statistical Manual of Mental Disorders (4th Edition)
   pattern: ^\d+\.\d+$
@@ -8505,6 +8518,7 @@ dsm5:
   example: '312.33'
   homepage: https://en.wikipedia.org/wiki/DSM-5
   mappings:
+    hl7: 2.16.840.1.113883.6.344
     wikidata: P1930
   name: Diagnostic and Statistical Manual of Mental Disorders (5th Edition)
   pattern: ^\d{3}\.\d{2}$
@@ -11147,6 +11161,7 @@ fma:
     edam: '1182'
     fairsharing: FAIRsharing.x56jsy
     go: FMA
+    hl7: 2.16.840.1.113883.6.119
     miriam: fma
     n2t: fma
     obofoundry: fma
@@ -12841,6 +12856,7 @@ go:
     edam: '1176'
     fairsharing: FAIRsharing.6xq0ee
     go: GO
+    hl7: 2.16.840.1.113883.6.128
     miriam: go
     n2t: go
     ncbi: GO
@@ -13836,6 +13852,8 @@ hc.din:
     that have been evaluated and authorized for sale in Canada.
   example: 02069237
   homepage: https://www.canada.ca/en/health-canada/services/drugs-health-products/drug-products/fact-sheets/drug-identification-number.html
+  mappings:
+    hl7: 2.16.840.1.113883.5.1105
   name: Health Canada Drug Identification Number
   pattern: ^\d{8}$
   preferred_prefix: hc.din
@@ -13852,6 +13870,8 @@ hc.npn:
     Canada.
   example: '18125'
   homepage: http://webprod.hc-sc.gc.ca/nhpid-bdipsn/search-rechercheReq.do?lang=eng
+  mappings:
+    hl7: 2.16.840.1.113883.5.1107
   name: Health Canada Natural Product Number
   pattern: ^\d+$
   preferred_prefix: hc.npn
@@ -13964,6 +13984,7 @@ hgnc:
     edam: '2298'
     fairsharing: FAIRsharing.amcv1e
     go: HGNC
+    hl7: 2.16.840.1.113883.6.281
     miriam: hgnc
     n2t: hgnc
     ncbi: HGNC
@@ -14420,6 +14441,7 @@ hp:
     biocontext: HPO
     bioportal: HP_O
     fairsharing: FAIRsharing.kbtt7f
+    hl7: 2.16.840.1.113883.6.339
     miriam: hp
     n2t: hp
     obofoundry: hp
@@ -14855,6 +14877,7 @@ icd10:
     bioportal: ICD10
     edam: '2611'
     fairsharing: FAIRsharing.nj16g
+    hl7: 2.16.840.1.113883.6.3
     miriam: icd
     n2t: icd
     prefixcommons: icd
@@ -14932,6 +14955,7 @@ icd10cm:
     aberowl: ICD10CM
     bioportal: ICD10CM
     fairsharing: FAIRsharing.hpvbxb
+    hl7: 2.16.840.1.113883.6.90
     wikidata: P4229
   name: International Classification of Diseases, 10th Revision, Clinical Modification
   pattern: ^([A-Z][0-9][0-9AB]((-[A-Z][0-9][0-9AB])|(\.[0-9A-KXZ]([0-9A-EXYZ]([0-9A-HX][0-59A-HJKMNP-S]?)?)?)?))$
@@ -14959,6 +14983,7 @@ icd10pcs:
     aberowl: ICD10PCS
     bioportal: ICD10PCS
     fairsharing: FAIRsharing.85k1jm
+    hl7: 2.16.840.1.113883.6.4
     wikidata: P1690
   name: International Classification of Diseases, 10th Revision, Procedure Coding
     System
@@ -14979,6 +15004,7 @@ icd11:
   homepage: https://icd.who.int/
   mappings:
     fairsharing: FAIRsharing.97805c
+    hl7: 2.16.840.1.113883.6.347
     wikidata: P7807
   name: International Classification of Diseases, 11th Revision
   preferred_prefix: icd11
@@ -14998,6 +15024,7 @@ icd9:
   homepage: https://www.cdc.gov/nchs/icd/icd9.htm
   mappings:
     biolink: ICD9
+    hl7: 2.16.840.1.113883.6.42
     wikidata: P493
   name: International Classification of Diseases, 9th Revision
   preferred_prefix: icd9
@@ -15020,6 +15047,7 @@ icd9cm:
     aberowl: ICD9CM
     bioportal: ICD9CM
     fairsharing: FAIRsharing.10zsxb
+    hl7: 2.16.840.1.113883.6.2
     wikidata: P1692
   name: International Classification of Diseases, 9th Revision, Clinical Modification
   pattern: ^([\dA-Z]\d{2}(\.\d{1,3}|))|(\d{2}(\.\d{1,2}|))$
@@ -15060,6 +15088,7 @@ icdo:
   homepage: https://www.who.int/classifications/icd/adaptations/oncology/en/
   mappings:
     aberowl: ICDO
+    hl7: 2.16.840.1.113883.6.43
     prefixcommons: icdo
     wikidata: P563
   name: International Classification of Diseases for Oncology
@@ -15173,6 +15202,7 @@ icf:
     aberowl: ICF
     bioportal: ICF
     fairsharing: FAIRsharing.7rngj0
+    hl7: 2.16.840.1.113883.6.254
   name: International Classification of Functioning, Disability and Health
   pattern: ^\d+$
   preferred_prefix: icf
@@ -16121,7 +16151,7 @@ intact.molecule:
   name: IntAct Molecule
   pattern: ^EBI\-[0-9]+$
   preferred_prefix: intact.molecule
-  uri_format: https://www.ebi.ac.uk/intact/molecule/$1
+  uri_format: https://www.ebi.ac.uk/intact/search?query=$1
 interlex:
   description: 'InterLex is a dynamic lexicon, initially built on the foundation of
     NeuroLex (PMID: 24009581), of biomedical terms and common data elements designed
@@ -17557,6 +17587,7 @@ loinc:
     biolink: LOINC
     bioportal: LOINC
     fairsharing: FAIRsharing.2mk2zb
+    hl7: 2.16.840.1.113883.6.1
   name: Logical Observation Identifiers Names and Codes
   preferred_prefix: loinc
   publications:
@@ -17664,6 +17695,7 @@ lrg:
   homepage: http://www.lrg-sequence.org/
   mappings:
     biocontext: LRG
+    hl7: 2.16.840.1.113883.6.283
     miriam: lrg
     n2t: lrg
   name: Locus Reference Genomic
@@ -18112,6 +18144,7 @@ meddra:
     biocontext: MEDDRA
     bioportal: MEDDRA
     fairsharing: FAIRsharing.ad3137
+    hl7: mdr
     miriam: meddra
     n2t: meddra
     wikidata: P3201
@@ -18167,6 +18200,7 @@ medlineplus:
     biocontext: MEDLINEPLUS
     bioportal: MEDLINEPLUS
     fairsharing: FAIRsharing.bf8dsb
+    hl7: 2.16.840.1.113883.6.173
     miriam: medlineplus
     n2t: medlineplus
   name: MedlinePlus Health Topics
@@ -18287,6 +18321,7 @@ mesh:
     edam: '1177'
     fairsharing: FAIRsharing.qnkw45
     go: MeSH
+    hl7: 2.16.840.1.113883.6.177
     miriam: mesh
     n2t: mesh
     prefixcommons: mesh
@@ -19557,6 +19592,8 @@ mmsl:
     names and ICD-9 codes is also included.
   example: '3355'
   homepage: https://www.nlm.nih.gov/research/umls/rxnorm/sourcereleasedocs/mmsl.html
+  mappings:
+    hl7: 2.16.840.1.113883.6.175
   name: Multum MediSource Lexicon
   pattern: ^\d+$
   preferred_prefix: mmsl
@@ -20666,6 +20703,7 @@ ncbigene:
     edam: '1027'
     fairsharing: FAIRsharing.5h3maw
     go: NCBIGene
+    hl7: geneCodeNCBI
     miriam: ncbigene
     n2t: ncbigene
     ncbi: GeneID
@@ -20789,6 +20827,7 @@ ncbitaxon:
     edam: '1179'
     fairsharing: FAIRsharing.fj07xj
     go: taxon
+    hl7: NCBI
     miriam: taxonomy
     n2t: taxonomy
     ncbi: taxon
@@ -20895,6 +20934,7 @@ ncit:
     bioportal: NCIT
     cellosaurus: NCIt
     fairsharing: FAIRsharing.4cvwxa
+    hl7: 2.16.840.1.113883.6.206
     miriam: ncit
     n2t: ncit
     obofoundry: ncit
@@ -20973,6 +21013,7 @@ ndc:
   homepage: http://www.accessdata.fda.gov/scripts/cder/ndc/
   mappings:
     biocontext: NDC
+    hl7: 2.16.840.1.113883.6.69
     miriam: ndc
     n2t: ndc
   name: National Drug Code
@@ -21001,6 +21042,7 @@ nddf:
     biolink: NDDF
     bioportal: NDDF
     fairsharing: FAIRsharing.8qcbs0
+    hl7: 2.16.840.1.113883.6.208
   name: National Drug Data File
   pattern: ^\d{6}$
   preferred_prefix: nddf
@@ -21039,6 +21081,7 @@ ndfrt:
     aberowl: NDFRT
     bioportal: NDFRT
     fairsharing: FAIRsharing.901nkj
+    hl7: 2.16.840.1.113883.6.209
     ontobee: NDF-RT
     prefixcommons: ndfrt
     wikidata: P2115
@@ -22897,18 +22940,36 @@ ohpi:
   uri_format: http://purl.obolibrary.org/obo/OHPI_$1
   version: '2019-10-02'
 oid:
+  contributor_extras:
+  - email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
   description: OIDs provide a persistent identification of objects based on a hierarchical
     structure of Registration Authorities (RA), where each parent has an object identifier
     and allocates object identifiers to child nodes.
   example: 2.16.840
+  example_extras:
+  - '2'
+  - '2.16'
+  - 2.16.840.1
+  - 2.16.840.1.113883
+  - 2.16.840.1.113883.6
+  - 2.16.840.1.113883.6.88
   homepage: http://www.oid-info.com/introduction.htm
   mappings:
     miriam: oid
     n2t: oid
-  name: OID Repository
+  name: Orange Identifier
   pattern: ^[\d.]+$
   preferred_prefix: oid
-  uri_format: http://www.oid-info.com/cgi-bin/display?oid=$1&submit=Display&action=display
+  providers:
+  - code: orange
+    description: Mirror of OID site from Orange
+    homepage: https://oid-rep.orange-labs.fr
+    name: Mirror of OID site from Orange
+    uri_format: https://oid-rep.orange-labs.fr/get/$1
+  uri_format: http://oid-info.com/get/$1
 olatdv:
   contact:
     email: frederic.bastian@unil.ch
@@ -23072,6 +23133,7 @@ omim:
     edam: '1153'
     fairsharing: FAIRsharing.b084yh
     go: OMIM
+    hl7: 2.16.840.1.113883.6.174
     miriam: mim
     n2t: mim
     ncbi: MIM
@@ -27194,6 +27256,7 @@ radlex:
     aberowl: RADLEX
     bioportal: RADLEX
     fairsharing: FAIRsharing.shm2f2
+    hl7: 2.16.840.1.113883.6.256
   name: RSNA Informatics RadLex
   pattern: ^RID\d+$
   preferred_prefix: radlex
@@ -27505,6 +27568,7 @@ refseq:
     edam: '1098'
     fairsharing: FAIRsharing.4jg0qw
     go: RefSeq
+    hl7: 2.16.840.1.113883.6.280
     miriam: refseq
     n2t: refseq
     prefixcommons: refseq
@@ -28313,6 +28377,7 @@ rxnorm:
     biolink: RXNORM
     bioportal: RXNORM
     fairsharing: FAIRsharing.36pf8q
+    hl7: 2.16.840.1.113883.6.88
     wikidata: P3345
   name: RxNorm
   pattern: ^[0-9]{1,7}$
@@ -29533,6 +29598,7 @@ snomedct:
     biolink: SNOMEDCT
     bioportal: SNOMEDCT
     fairsharing: FAIRsharing.d88s6e
+    hl7: 2.16.840.1.113883.6.96
     miriam: snomedct
     n2t: snomedct
     ols: snomed
@@ -31511,6 +31577,7 @@ ucum:
   homepage: https://ucum.org
   mappings:
     fairsharing: FAIRsharing.27w8k0
+    hl7: 2.16.840.1.113883.6.8
   name: Unified Code for Units of Measure
   preferred_prefix: ucum
   publications:
@@ -31637,6 +31704,7 @@ umls:
   mappings:
     biocontext: UMLS
     edam: '1181'
+    hl7: 2.16.840.1.113883.6.86
     miriam: umls
     n2t: umls
     wikidata: P2892
@@ -32350,6 +32418,7 @@ vandf:
     biolink: VANDF
     bioportal: VANDF
     fairsharing: FAIRsharing.xn3pb3
+    hl7: 2.16.840.1.113883.6.229
   name: Veterans Administration National Drug File
   pattern: ^\d+$
   preferred_prefix: vandf
