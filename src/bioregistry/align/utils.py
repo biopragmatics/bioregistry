@@ -164,9 +164,15 @@ class Aligner:
         self.manager.write_registry()
 
     @classmethod
-    def align(cls, dry: bool = False, show: bool = False, force_download: Optional[bool] = None):
+    def align(
+        cls,
+        dry: bool = False,
+        show: bool = False,
+        force_download: Optional[bool] = None,
+        use_tqdm: bool = False,
+    ):
         """Align and output the curation sheet."""
-        instance = cls(force_download=force_download)
+        instance = cls(force_download=force_download, use_tqdm=use_tqdm)
         if not dry:
             instance.write_registry()
         if show:
@@ -180,8 +186,9 @@ class Aligner:
         @click.command()
         @click.option("--dry", is_flag=True)
         @click.option("--show", is_flag=True)
-        def _main(dry: bool, show: bool):
-            cls.align(dry=dry, show=show)
+        @click.option("--no-force", is_flag=True)
+        def _main(dry: bool, show: bool, no_force: bool):
+            cls.align(dry=dry, show=show, force_download=not no_force)
 
         _main()
 
