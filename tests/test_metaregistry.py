@@ -79,7 +79,7 @@ class TestMetaregistry(unittest.TestCase):
                     )
                     self.assertIsNotNone(
                         registry.availability.fair_note,
-                        msg="All non-FAIR resources require an explanation",
+                        msg="All non-FAIR resources require an explanation using the `fair_note` key",
                     )
 
     def test_get_registry(self):
