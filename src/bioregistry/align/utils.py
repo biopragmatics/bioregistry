@@ -11,7 +11,7 @@ from tabulate import tabulate
 from ..constants import EXTERNAL
 from ..resource_manager import Manager
 from ..schema import Resource
-from ..schema_utils import is_mismatch, read_metaregistry
+from ..schema_utils import is_mismatch
 from ..utils import norm
 
 __all__ = [
@@ -164,7 +164,12 @@ class Aligner:
         self.manager.write_registry()
 
     @classmethod
-    def align(cls, dry: bool = False, show: bool = False, force_download: Optional[bool] = None):
+    def align(
+        cls,
+        dry: bool = False,
+        show: bool = False,
+        force_download: Optional[bool] = None,
+    ):
         """Align and output the curation sheet."""
         instance = cls(force_download=force_download)
         if not dry:
@@ -180,8 +185,9 @@ class Aligner:
         @click.command()
         @click.option("--dry", is_flag=True)
         @click.option("--show", is_flag=True)
-        def _main(dry: bool, show: bool):
-            cls.align(dry=dry, show=show)
+        @click.option("--no-force", is_flag=True)
+        def _main(dry: bool, show: bool, no_force: bool):
+            cls.align(dry=dry, show=show, force_download=not no_force)
 
         _main()
 
@@ -198,7 +204,7 @@ class Aligner:
 
         .. note:: You don't need to pass the external ID. this will automatically be the first element.
         """  # noqa:DAR202
-        return [external_entry.get(k) or "" for k in self.curation_header]
+        return [(external_entry.get(k) or "").strip() for k in self.curation_header]
 
     def _iter_curation_rows(self) -> Iterable[Sequence[str]]:
         for external_id, external_entry in sorted(
