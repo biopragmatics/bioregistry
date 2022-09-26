@@ -169,10 +169,9 @@ class Aligner:
         dry: bool = False,
         show: bool = False,
         force_download: Optional[bool] = None,
-        use_tqdm: bool = False,
     ):
         """Align and output the curation sheet."""
-        instance = cls(force_download=force_download, use_tqdm=use_tqdm)
+        instance = cls(force_download=force_download)
         if not dry:
             instance.write_registry()
         if show:
