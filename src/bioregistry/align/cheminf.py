@@ -2,7 +2,7 @@
 
 """Align CHEMINF with the Bioregistry."""
 
-from typing import Mapping, Sequence
+from typing import Mapping
 
 from bioregistry.align.utils import Aligner
 from bioregistry.external.cheminf import get_cheminf
@@ -28,13 +28,6 @@ class ChemInfAligner(Aligner):
     def get_skip(self) -> Mapping[str, str]:
         """Get the skipped identifiers."""
         return SKIP
-
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
-        """Prepare curation rows for unaligned CHEMINF registry entries."""
-        return [
-            external_entry["name"],
-            external_entry.get("description") or "",
-        ]
 
 
 if __name__ == "__main__":
