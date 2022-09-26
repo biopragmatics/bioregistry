@@ -2,7 +2,7 @@
 
 """Utilities for getting HL7 OIDs.
 
-1. Navitgate to https://www.hl7.org/oid/index.cfm?Comp_OID=2.16.840.1.113883.6.9
+1. Navigate to https://www.hl7.org/oid/index.cfm?Comp_OID=2.16.840.1.113883.6.9
 2. In ``OID_Type``, select 6) for external code system
 3. Download CSV and copy in this directory (this might be automatable)
 """
