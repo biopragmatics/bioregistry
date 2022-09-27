@@ -8124,7 +8124,16 @@
       "name": "Common Anatomy Reference Ontology",
       "prefix": "CARO"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "providers": [
+      {
+        "code": "obo.1",
+        "description": "This incorrect encoding was found inside IDO-COVID-19",
+        "homepage": "http://purl.obolibrary.org",
+        "name": "Nonstandard OBO PURL",
+        "uri_format": "http://purl.obolibrary.org/obo/ido.owl/CARO_$1"
+      }
+    ]
   },
   "cas": {
     "biocontext": {
@@ -11027,6 +11036,7 @@
       "publication": "He Y, Yu H, Ong E, Wang Y, Liu Y, Huffman A, Huang H, Beverley J, Hur J, Yang X, Chen L, Omenn GS, Athey B, Smith B. CIDO, a community-based ontology for coronavirus disease knowledge and data integration, sharing, and analysis. Scientific Data. (2020) 7:181 | https://doi.org/10.1038/s41597-020-0523-6.",
       "version": "1.0.337"
     },
+    "download_owl": "https://github.com/CIDO-ontology/cido/raw/master/cido.owl",
     "example": "0000005",
     "fairsharing": {
       "abbreviation": "CIDO",
@@ -31248,6 +31258,15 @@
       ],
       "uri_format": "http://amigo.geneontology.org/cgi-bin/amigo/term-details.cgi?term=GO:$1"
     },
+    "providers": [
+      {
+        "code": "jax",
+        "description": "The JAX endpoint for exploring GO",
+        "homepage": "http://www.informatics.jax.org",
+        "name": "Jackson Laboratories",
+        "uri_format": "http://www.informatics.jax.org/vocab/gene_ontology/GO:$1"
+      }
+    ],
     "publications": [
       {
         "doi": "10.1038/75556",
@@ -36753,7 +36772,16 @@
       "library": "Library",
       "name": "Infectious Disease Ontology",
       "prefix": "IDO"
-    }
+    },
+    "providers": [
+      {
+        "code": "obo.1",
+        "description": "This incorrect encoding was found inside IDO-COVID-19",
+        "homepage": "http://purl.obolibrary.org",
+        "name": "Nonstandard OBO PURL",
+        "uri_format": "http://purl.obolibrary.org/obo/ido.owl/IDO_$1"
+      }
+    ]
   },
   "idocovid19": {
     "aberowl": {
@@ -36781,6 +36809,7 @@
       "name": "John Beverly",
       "orcid": "0000-0002-1118-1738"
     },
+    "download_owl": "https://raw.githubusercontent.com/infectious-disease-ontology-extensions/ido-covid-19/master/ontology/ido%20covid-19",
     "example": "0001191",
     "mappings": {
       "aberowl": "IDO-COVID-19",
@@ -36798,6 +36827,15 @@
       "version.iri": "http://purl.obolibrary.org/obo/2020-21-07/ido-covid-19.owl"
     },
     "pattern": "^\\d{7}$",
+    "providers": [
+      {
+        "code": "obo1",
+        "description": "This variation uses incorrect usage of dashes instead of underscores",
+        "homepage": "http://purl.obolibrary.org",
+        "name": "Incorrect OBO PURL variation 1",
+        "uri_format": "http://purl.obolibrary.org/obo/IDO-COVID-19_$1"
+      }
+    ],
     "repository": "https://github.com/infectious-disease-ontology-extensions/ido-covid-19",
     "uri_format": "http://purl.obolibrary.org/obo/COVIDO_$1"
   },
@@ -76638,6 +76676,15 @@
       "uri_format": "http://www.uniprot.org/uniparc/?query=$1"
     },
     "part_of": "uniprot",
+    "providers": [
+      {
+        "code": "obo.1",
+        "description": "This incorrect encoding was found inside IDO-COVID-19",
+        "homepage": "http://purl.obolibrary.org",
+        "name": "Nonstandard OBO PURL",
+        "uri_format": "http://purl.obolibrary.org/obo/UniProtKB_$1"
+      }
+    ],
     "synonyms": [
       "UPISO"
     ]
@@ -78519,6 +78566,7 @@
       "name": "John Beverly",
       "orcid": "0000-0002-1118-1738"
     },
+    "download_owl": "https://raw.githubusercontent.com/infectious-disease-ontology-extensions/ido-virus/master/ontology/vido.owl",
     "example": "0001114",
     "homepage": "https://github.com/infectious-disease-ontology-extensions/ido-virus",
     "mappings": {
@@ -78543,6 +78591,15 @@
       "prefix": "VIDO"
     },
     "pattern": "^\\d{7}$",
+    "providers": [
+      {
+        "code": "obo.1",
+        "description": "This incorrect encoding was found inside IDO-COVID-19",
+        "homepage": "http://purl.obolibrary.org",
+        "name": "Nonstandard OBO PURL",
+        "uri_format": "http://purl.obolibrary.org/VIDO_$1"
+      }
+    ],
     "repository": "https://github.com/infectious-disease-ontology-extensions/ido-virus",
     "uri_format": "http://purl.obolibrary.org/obo/VIDO_$1"
   },
