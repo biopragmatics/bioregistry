@@ -894,6 +894,8 @@ class Resource(BaseModel):
         'cthoyt@gmail.com'
         >>> get_resource("chebi").get_contact_email()
         'amalik@ebi.ac.uk'
+        >>> get_resource("rbo").get_contact_email()
+        'kristen.m.peach@nasa.gov'
         """
         if self.contact and self.contact.email:
             return self.contact.email
@@ -902,6 +904,9 @@ class Resource(BaseModel):
         if rv and not EMAIL_RE.match(rv):
             logger.warning("[%s] invalid email address listed: %s", self.name, rv)
             return None
+        rv = (self.bioportal or {}).get("contact", {}).get("name")
+        if rv:
+            return rv
         return rv
 
     def get_contact_name(self) -> Optional[str]:
@@ -914,11 +919,16 @@ class Resource(BaseModel):
         'Charles Tapley Hoyt'
         >>> get_resource("chebi").get_contact_name()
         'Adnan Malik'
+        >>> get_resource("rbo").get_contact_name()
+        'Kristen Peach'
         """
         if self.contact and self.contact.name:
             return self.contact.name
         if self.obofoundry and "contact.label" in self.obofoundry:
             return self.obofoundry["contact.label"]
+        rv = (self.bioportal or {}).get("contact", {}).get("email")
+        if rv:
+            return rv
         return None
 
     def get_contact_github(self) -> Optional[str]:
