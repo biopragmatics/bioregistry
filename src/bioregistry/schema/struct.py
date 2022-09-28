@@ -900,7 +900,9 @@ class Resource(BaseModel):
             return self.contact.email
         # FIXME if contact is not none but email is, this will have a problem after
         rv = self.get_prefix_key("contact", ("obofoundry", "ols"))
-        if rv and not EMAIL_RE.match(rv):
+        if rv:
+            if EMAIL_RE.match(rv):
+                return rv
             logger.warning("[%s] invalid email address listed: %s", self.name, rv)
             return None
         rv = (self.bioportal or {}).get("contact", {}).get("email")
