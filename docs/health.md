@@ -19,6 +19,10 @@ resolve with a HTTP 200. This provides an upper bound, because some websites do
 not give proper error messages for pages that are missing and instead redirect
 to e.g. the homepage.
 
+TODO: note on why it's still valuable to have these URI formats even if they're not working
+
+TODO: notes on why they stop working
+
 {% if run.delta %}
 
 ### Changes
