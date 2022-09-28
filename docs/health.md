@@ -13,13 +13,17 @@ strings?
 ### Summary
 
 Of the {{ run.summary.total_measured }} prefixes in the Bioregistry that have
-both example local unique identifiers and at least one URI format string,
+both an example local unique identifiers and at least one URI format string,
 {{ run.summary.total_failed }} ({{ run.summary.failure_percent }}%) were able to
-resolve with a HTTP 200. This provides an upper bound, because some websites do
-not give proper error messages for pages that are missing and instead redirect
-to e.g. the homepage.
+resolve with a HTTP 200. This comes with a few caveats:
 
-TODO: note on why it's still valuable to have these URI formats even if they're not working
+1. Some websites do not send appropriate HTTP statuses, and may return HTTP 200
+   even when redirecting to a default "Page Not Found" page.
+2. Some websites sporadically fail, so it's better to look at the last few checks
+
+It's still valuable to store URI format strings, even if the websites don't work
+anymore, because URIs based on these URI format strings may appear in biomedical 
+resources like ontologies or databases.
 
 TODO: notes on why they stop working
 
