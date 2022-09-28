@@ -4,7 +4,7 @@
 
 import datetime
 from operator import attrgetter
-from typing import List, NamedTuple, Optional, Set
+from typing import List, NamedTuple, Optional
 
 import click
 import requests
@@ -158,10 +158,14 @@ def _calculate_delta(current: List[ProviderStatus], previous: List[ProviderStatu
     forgotten = set(previous_results).difference(current_results)
     intersection_prefixes = set(current_results).intersection(previous_results)
     fallen = {
-        prefix for prefix in intersection_prefixes if not previous_results[prefix] and current_results[prefix]
+        prefix
+        for prefix in intersection_prefixes
+        if not previous_results[prefix] and current_results[prefix]
     }
     revived = {
-        prefix for prefix in intersection_prefixes if previous_results[prefix] and not current_results[prefix]
+        prefix
+        for prefix in intersection_prefixes
+        if previous_results[prefix] and not current_results[prefix]
     }
     alive = sum(
         not previous_results[prefix] and not current_results[prefix]
