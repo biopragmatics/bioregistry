@@ -2233,7 +2233,7 @@ biolegend:
 biolink:
   description: A high level datamodel of biological entities (genes, diseases, phenotypes,
     pathways, individuals, substances, etc) and their associations.
-  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/41/biolink.owl
+  download_owl: http://aber-owl.net/media/ontologies/BIOLINK/42/biolink.owl
   example: Gene
   homepage: https://biolink.github.io/biolink-model/
   mappings:
@@ -6249,8 +6249,38 @@ credit:
     contribution to the scholarly output.
   example: Software
   homepage: https://casrai.org/credit/
+  mappings:
+    fairsharing: FAIRsharing.fe4816
   name: CASRAI Contributor Roles Taxonomy
   preferred_prefix: credit
+  publications:
+  - doi: 10.3789/ansi.niso.z39.104-2022
+    pmc: null
+    pubmed: null
+    title: ANSI/NISO Z39.104-2022, CRediT, Contributor Roles Taxonomy
+    year: null
+  - doi: 10.1087/20150211
+    pmc: null
+    pubmed: null
+    title: 'Beyond authorship: attribution, contribution, collaboration, and credit'
+    year: null
+  - doi: 10.1038/d41586-019-01715-4
+    pmc: null
+    pubmed: null
+    title: Credit data generators for data reuse
+    year: null
+  - doi: 10.1038/508312a
+    pmc: null
+    pubmed: null
+    title: 'Publishing: Credit where credit is due'
+    year: null
+  - doi: 10.1002/leap.1210
+    pmc: null
+    pubmed: null
+    title: How can we ensure visibility and diversity in research contributions? How
+      the Contributor Role Taxonomy (CRediT) is helping the shift from authorship
+      to contributorship
+    year: null
 crisprdb:
   description: Repeated CRISPR ("clustered regularly interspaced short palindromic
     repeats") elements found in archaebacteria and eubacteria are believed to defend
@@ -9898,7 +9928,7 @@ ensembl.protist:
 ensemblglossary:
   description: The Ensembl glossary lists the terms, data types and file types that
     are used in Ensembl and describes how they are used.
-  download_owl: http://ensembl.org/glossary/ensembl-glossary/releases/2021-07-14/ensembl-glossary.owl
+  download_owl: http://ensembl.org/glossary/ensembl-glossary/releases/2022-08-31/ensembl-glossary.owl
   example: 0000198
   homepage: http://ensembl.org/glossary
   mappings:
@@ -9907,7 +9937,7 @@ ensemblglossary:
   pattern: ^\d{7}$
   preferred_prefix: ensemblglossary
   uri_format: http://ensembl.org/glossary/ENSGLOSSARY_$1
-  version: '2021-07-14'
+  version: '2022-08-31'
 envipath:
   description: enviPath is a database and prediction system for the microbial biotransformation
     of organic environmental contaminants. The database provides the possibility to
@@ -22877,6 +22907,13 @@ ohd:
   name: Oral Health and Disease Ontology
   pattern: ^\d{7}$
   preferred_prefix: OHD
+  publications:
+  - doi: null
+    pmc: null
+    pubmed: '32819435'
+    title: Structuring, reuse and analysis of electronic dental data using the Oral
+      Health and Disease Ontology
+    year: null
   repository: https://github.com/oral-health-and-disease-ontologies/ohd-ontology
   uri_format: http://purl.obolibrary.org/obo/OHD_$1
   version: '2016-06-27'
@@ -24566,12 +24603,20 @@ pcl:
   mappings:
     aberowl: PCL
     bioportal: PCL
+    fairsharing: FAIRsharing.bfcfd0
     obofoundry: pcl
     ols: pcl
     ontobee: PCL
   name: Provisional Cell Ontology
   pattern: ^\d{7}$
   preferred_prefix: PCL
+  publications:
+  - doi: 10.1101/2021.10.10.463703
+    pmc: null
+    pubmed: null
+    title: 'Brain Data Standards Ontology: A data-driven ontology of transcriptomically
+      defined cell types in the primary motor cortex'
+    year: null
   repository: https://github.com/obophenotype/provisional_cell_ontology
   uri_format: http://purl.obolibrary.org/obo/PCL_$1
   version: '2022-04-27'
@@ -32724,6 +32769,7 @@ vhog:
   download_obo: ftp://ftp.bgee.org/general/ontologies/vHOG.obo
   download_owl: http://purl.obolibrary.org/obo/vhog.owl
   example: '0000411'
+  homepage: http://bgee.unil.ch
   mappings:
     aberowl: VHOG
     biocontext: VHOG
