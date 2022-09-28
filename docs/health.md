@@ -3,33 +3,48 @@ layout: page
 title: Health Report
 permalink: /health/
 ---
-This page checks the health of the resources
+{% assign run = site.data.health.runs.last %}
 
-### Provider Health
+## Provider Health
 
 Are local unique identifiers able to be resolved in the given URI format
 strings?
 
+### Summary
+
+Of the {{ run.summary.total_measured }} prefixes that have both example local
+unique identifiers and at least one URI format string,
+{{ run.summary.failure_percent }}%
+were able to resolve. This provides an upper bound, because some websites do not
+give proper error messages for pages that are missing and instead redirect to
+e.g. the homepage.
+
+### Results
+
 <table>
    <thead>
       <tr>
+         <th>Date</th>
          <th>Prefix</th>
-         <th>Name</th>
          <th>Example</th>
-         <th>Error</th>
+         <th>Status</th>
       </tr>
    </thead>
    <tbody>
-   {% for entry in site.data.health %}
+   {% for record in run.results %}
       <tr>
-         <td><code>{{ entry.prefix }}</code></td>
-         <td>{{ entry.name }}</td>
-         <td><a href="{{ entry.url }}"><code>{{ entry.example }}</code></a></td>
+         <td>{{ run.date }}</td>
+         <td><a href="https://bioregistry.io/{{ record.prefix }}">{{ record.prefix }}</a></td>
+         <td><a href="{{ record.url }}">{{ record.example }}</a></td>
          <td>
-            {% if entry.contact_name %}
-            <a href="mailto:{{ entry.contact_email }}">{{ entry.contact_name }}</a>
+            {% if record.exception %}
+                {{ record.exception }}
+            {% elsif record.status_code == 200 %}
+                HTTP {{ record.status_code }}
+            {% else %}
+                HTTP {{ record.status_code }}
             {% endif %}
-        </td> 
+        </td>
       </tr>
    {% endfor %}
    </tbody>

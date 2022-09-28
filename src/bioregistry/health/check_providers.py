@@ -3,11 +3,10 @@
 """A script to check which providers in entries in the Bioregistry actually can be accessed."""
 
 import datetime
-import sys
-from typing import List, Optional, Tuple
+from operator import attrgetter
+from typing import List, NamedTuple, Optional, Set
 
 import click
-import pandas as pd
 import requests
 import yaml
 from pydantic import BaseModel, Field
@@ -32,35 +31,77 @@ class ProviderStatus(BaseModel):
     prefix: str
     example: str
     url: str
+    status_code: Optional[int]
     failed: bool
-    message: Optional[str]
+    exception: Optional[str]
     context: Optional[str]
-    date: str = Field(default_factory=lambda: datetime.date.today().strftime("%Y-%m-%d"))
 
 
-class DailySummary(BaseModel):
-    date: str
+class Summary(BaseModel):
+    """Statistics for a single run."""
+
     total_measured: int
+    total_failed: int
+    total_success: int
     failure_percent: float = Field(
-        ge=0.0, le=100.00, description="The percentage of providers that did not successfully ping."
+        ge=0.0, le=1.0, description="The percentage of providers that did not successfully ping."
     )
 
 
-class Database(BaseModel):
+class Delta(BaseModel):
+    """Change between runs."""
+
+    new: Set[str] = Field(
+        description="Prefixes that are new in the current run that were not present in the previous run"
+    )
+    forgotten: Set[str] = Field(
+        description="Prefixes that were checked in the previous run but not the current run"
+    )
+    revived: Set[str] = Field(
+        description="Prefixes that failed in the previous run but are now passing the current run"
+    )
+    fallen: Set[str] = Field(
+        description="Prefixes that were passing in the previous run but are now failing in the current run"
+    )
+
+
+class Run(BaseModel):
+    """Results and metadata about a single provider check run."""
+
+    time: datetime.datetime = Field(default_factory=datetime.datetime.now)
+    date: str = Field(default_factory=lambda: datetime.datetime.now().strftime("%Y-%m-%d"))
     results: List[ProviderStatus]
-    daily_summaries: List[DailySummary]
+    summary: Summary
+    delta: Optional[str] = Field(description="Information about the changes since the last run")
+
+
+class Database(BaseModel):
+    """A database of runs of the provider check."""
+
+    runs: List[Run] = Field(default_factory=list)
+
+
+class QueueTuple(NamedTuple):
+    """A tuple representing an input to the provider check."""
+
+    prefix: str
+    example: str
+    url: str
 
 
 @click.command()
 def main():
     """Run the provider health check script."""
     if HEALTH_YAML_PATH.is_file():
-        data = Database(**yaml.safe_load(HEALTH_YAML_PATH.read_text()))
+        database = Database(**yaml.safe_load(HEALTH_YAML_PATH.read_text()))
     else:
-        data = Database(results=[], daily_summaries=[])
+        click.secho(f"Creating new database at {HEALTH_YAML_PATH}", fg="green")
+        database = Database()
 
-    queue = []
-    for resource in tqdm(bioregistry.resources(), desc="Preparing example URLs"):
+    queue: List[QueueTuple] = []
+
+    # this is very fast and does not require tqdm
+    for resource in bioregistry.resources():
         if resource.is_deprecated():
             continue
         example = resource.get_example()
@@ -69,68 +110,102 @@ def main():
         url = bioregistry.get_iri(resource.prefix, example, use_bioregistry_io=False)
         if url is None:
             continue
-        queue.append((resource.prefix, example, url))
-
-    import random
-    queue = list(random.choices(queue, k=10))
+        queue.append(QueueTuple(resource.prefix, example, url))
 
     with logging_redirect_tqdm():
         results = thread_map(_process, queue, desc="Checking providers", unit="prefix")
 
-    failed_percent = sum(result.failed for result in results)
+    total = len(results)
+    total_failed = sum(result.failed for result in results)
+    failure_percent = total_failed / total
     secho(
-        f"{failed_percent}/{len(results)} ({failed_percent / len(results):.2%}) providers failed",
+        f"{total_failed:,}/{total:,} ({failure_percent:.1%}) providers failed",
         fg="red",
         bold=True,
     )
 
-    data.results.extend(results)
-    data.daily_summaries.append(
-        DailySummary(
-            date=results[0].date,
-            failure_percent=failed_percent,
-            total_measured=len(results),
-        )
+    delta = (
+        _calculate_delta(results, max(database.runs, key=attrgetter("time")).results)
+        if database.runs
+        else None
     )
+    current_run = Run(
+        results=results,
+        summary=Summary(
+            total_measured=total,
+            total_failed=total_failed,
+            total_succeeded=total - total_failed,
+            failure_percent=failure_percent,
+        ),
+        delta=delta,
+    )
+    database.runs.append(current_run)
 
-    HEALTH_YAML_PATH.write_text(yaml.safe_dump(data.dict(exclude_none=True)))
+    HEALTH_YAML_PATH.write_text(yaml.safe_dump(database.dict(exclude_none=True)))
     click.echo(f"Wrote to {HEALTH_YAML_PATH}")
 
 
-def _process(element: Tuple[str, str, str]) -> ProviderStatus:
+def _calculate_delta(current: List[ProviderStatus], previous: List[ProviderStatus]) -> Delta:
+    current_results = {status.prefix: status.failed for status in current}
+    previous_results = {status.prefix: status.failed for status in previous}
+    new = set(current_results).difference(previous_results)
+    forgotten = set(previous_results).difference(current_results)
+    intersection_prefixes = set(current_results).intersection(previous_results)
+    fallen = {
+        not previous_results[prefix] and current_results[prefix] for prefix in intersection_prefixes
+    }
+    revived = {
+        previous_results[prefix] and not current_results[prefix] for prefix in intersection_prefixes
+    }
+    return Delta(
+        new=new,
+        fallen=fallen,
+        revived=revived,
+        forgotten=forgotten,
+    )
+
+
+def _process(element: QueueTuple) -> ProviderStatus:
     prefix, example, url = element
 
-    failed = False
-    msg = ""
-    context = ""
+    status_code: Optional[int]
+    exception: Optional[str]
+    context: Optional[str]
+
     try:
-        res = requests.get(url, timeout=15, allow_redirects=True)
+        res = requests.head(url, timeout=5, allow_redirects=True)
     except IOError as e:
+        status_code = None
         failed = True
-        msg = e.__class__.__name__
+        exception = e.__class__.__name__
         context = str(e)
     else:
-        if res.status_code != 200:
-            failed = True
-            msg = f"HTTP {res.status_code}"
-            context = str(res.status_code)
+        status_code = res.status_code
+        failed = res.status_code != 200
+        exception = None
+        context = None
+
     if failed:
+        text = (
+            f'[{datetime.datetime.now().strftime("%H:%M:%S")}] '
+            + click.style(prefix, fg="green")
+            + " at "
+            + click.style(url, fg="red")
+            + " failed to download"
+        )
+        if exception:
+            text += ": " + click.style(exception, fg="bright_black")
         with tqdm.external_write_mode():
-            click.echo(
-                f'[{datetime.datetime.now().strftime("%H:%M:%S")}] '
-                + click.style(prefix, fg="green")
-                + " at "
-                + click.style(url, fg="red")
-                + " failed to download: "
-                + click.style(msg, fg="bright_black")
-            )
+            click.echo(text)
+
     return ProviderStatus(
         prefix=prefix,
         example=example,
         url=url,
         failed=failed,
-        message=msg or None,
-        context=context or None,
+        status_code=status_code,
+        exception=exception,
+        context=context,
     )
 
 
