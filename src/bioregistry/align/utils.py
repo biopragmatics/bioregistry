@@ -3,7 +3,6 @@
 """Utilities for registry alignment."""
 
 import csv
-from abc import ABC, abstractmethod
 from typing import Any, Callable, ClassVar, Dict, Iterable, Mapping, Optional, Sequence
 
 import click
@@ -12,7 +11,7 @@ from tabulate import tabulate
 from ..constants import EXTERNAL
 from ..resource_manager import Manager
 from ..schema import Resource
-from ..schema_utils import is_mismatch, read_metaregistry
+from ..schema_utils import is_mismatch
 from ..utils import norm
 
 __all__ = [
@@ -20,7 +19,7 @@ __all__ = [
 ]
 
 
-class Aligner(ABC):
+class Aligner:
     """A class for aligning new registries."""
 
     #: The key for the external registry
@@ -54,10 +53,15 @@ class Aligner(ABC):
 
     def __init__(self, force_download: Optional[bool] = None):
         """Instantiate the aligner."""
-        if self.key not in read_metaregistry():
-            raise TypeError(f"invalid metaprefix for aligner: {self.key}")
+        if not hasattr(self.__class__, "key"):
+            raise TypeError
+        if not hasattr(self.__class__, "curation_header"):
+            raise TypeError
 
         self.manager = Manager()
+
+        if self.key not in self.manager.metaregistry:
+            raise TypeError(f"invalid metaprefix for aligner: {self.key}")
 
         kwargs = dict(self.getter_kwargs or {})
         kwargs.setdefault("force_download", True)
@@ -160,7 +164,12 @@ class Aligner(ABC):
         self.manager.write_registry()
 
     @classmethod
-    def align(cls, dry: bool = False, show: bool = False, force_download: Optional[bool] = None):
+    def align(
+        cls,
+        dry: bool = False,
+        show: bool = False,
+        force_download: Optional[bool] = None,
+    ):
         """Align and output the curation sheet."""
         instance = cls(force_download=force_download)
         if not dry:
@@ -176,12 +185,12 @@ class Aligner(ABC):
         @click.command()
         @click.option("--dry", is_flag=True)
         @click.option("--show", is_flag=True)
-        def _main(dry: bool, show: bool):
-            cls.align(dry=dry, show=show)
+        @click.option("--no-force", is_flag=True)
+        def _main(dry: bool, show: bool, no_force: bool):
+            cls.align(dry=dry, show=show, force_download=not no_force)
 
         _main()
 
-    @abstractmethod
     def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
         """Get a sequence of items that will be ech row in the curation table.
 
@@ -189,8 +198,13 @@ class Aligner(ABC):
         :param external_entry: The external registry data
         :return: A sequence of cells to add to the curation table.
 
+        The default implementation of this function iterates over all of the keys
+        in the class variable :data:`curation_header` and looks inside each record
+        for those in order.
+
         .. note:: You don't need to pass the external ID. this will automatically be the first element.
         """  # noqa:DAR202
+        return [(external_entry.get(k) or "").strip() for k in self.curation_header]
 
     def _iter_curation_rows(self) -> Iterable[Sequence[str]]:
         for external_id, external_entry in sorted(

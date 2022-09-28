@@ -509,6 +509,8 @@ class Resource(BaseModel):
     edam: Optional[Mapping[str, Any]]
     #: External data from re3data
     re3data: Optional[Mapping[str, Any]]
+    #: External data from hl7
+    hl7: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""

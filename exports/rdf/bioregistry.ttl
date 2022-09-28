@@ -21,6 +21,7 @@
 @prefix n2t: <https://bioregistry.io/metaregistry/n2t/> .
 @prefix ncbi.resource: <https://bioregistry.io/metaregistry/ncbi/> .
 @prefix obofoundry: <http://www.obofoundry.org/ontology/> .
+@prefix oid: <http://www.oid-info.com/get/> .
 @prefix ols: <https://www.ebi.ac.uk/ols/ontologies/> .
 @prefix ontobee: <http://www.ontobee.org/ontology/> .
 @prefix orcid: <https://orcid.org/> .
@@ -205,6 +206,54 @@ bioregistry.collection:0000008 a bioregistry.schema:0000003 ;
         bioregistry:symp,
         bioregistry:trans,
         bioregistry:vo .
+
+bioregistry.collection:0000009 a bioregistry.schema:0000003 ;
+    rdfs:label "FHIR External Terminologies" ;
+    dc:creator orcid:0000-0003-4423-4370 ;
+    dc:description """Prefixes mentioned on the _external_ list on the FHIR [Code Systems](https://hl7.org/fhir/terminologies-systems.html) page. This list is mostly complete. Notably, some entries that have not been curated:
+
+- HGVS (see discussion at [#460](https://github.com/biopragmatics/bioregistry/issues/460))
+- [NUBC](http://www.nubc.org) (National Uniform Billing Committee) - could not find information about the terminology or its entries
+- [ICPC](http://www.ph3c.org/) (International Classification of Primary Care) _same_
+- [GTIN](https://www.gs1.org/standards/id-keys/gtin) (Global Trade Item Number) _same_
+- [MDC](https://www.iso.org/standard/37890.html) (Medical Device Codes) since that appears to be part of a larger ISO standard vocabulary that needs further investigation""" ;
+    dcterms:hasPart bioregistry:atcc,
+        bioregistry:clinicaltrials,
+        bioregistry:clinvar,
+        bioregistry:cosmic,
+        bioregistry:cpt,
+        bioregistry:cvx,
+        bioregistry:dbsnp,
+        bioregistry:dicom,
+        bioregistry:dsm5,
+        bioregistry:ensembl,
+        bioregistry:hc.din,
+        bioregistry:hc.npn,
+        bioregistry:hgnc,
+        bioregistry:hl7.v2codesystem,
+        bioregistry:hl7.v3codesystem,
+        bioregistry:icd10,
+        bioregistry:icd9,
+        bioregistry:icf,
+        bioregistry:ietf.language,
+        bioregistry:imgt.hla,
+        bioregistry:iso.3166,
+        bioregistry:loinc,
+        bioregistry:lrg,
+        bioregistry:ncit,
+        bioregistry:ndc,
+        bioregistry:ndfrt,
+        bioregistry:nucc.taxonomy,
+        bioregistry:omim,
+        bioregistry:pharmgkb.gene,
+        bioregistry:pubmed,
+        bioregistry:radlex,
+        bioregistry:refseq,
+        bioregistry:rxnorm,
+        bioregistry:snomedct,
+        bioregistry:so,
+        bioregistry:ucum,
+        bioregistry:unii .
 
 bioregistry.metaresource:prefixcc a bioregistry.schema:0000002 ;
     rdfs:label "Prefix.cc" ;
@@ -858,6 +907,7 @@ bioregistry:atc a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:ATC,
         edam.data:3103,
+        oid:whoATC,
         bioportal:ATC,
         biocontext:ATC,
         n2t:atc,
@@ -869,22 +919,6 @@ bioregistry:atc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "A10BA02"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.whocc.no/atc_ddd_index/?code=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[A-Z](\\d+([A-Z]{1,2}(\\d+)?)?)?$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:atcc a bioregistry.schema:0000001 ;
-    rdfs:label "American Type Culture Collection" ;
-    dc:description "The American Type Culture Collection (ATCC) is a private, nonprofit biological resource center whose mission focuses on the acquisition, authentication, production, preservation, development and distribution of standard reference microorganisms, cell lines and other materials for research in the life sciences."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:ATCC,
-        cellosaurus.resource:ATCC,
-        n2t:atcc,
-        ncbi.resource:ATCC,
-        fairsharing:FAIRsharing.j0ezpm,
-        miriam:atcc ;
-    foaf:homepage "https://www.lgcstandards-atcc.org"^^xsd:string ;
-    bioregistry.schema:0000005 "11303"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.atcc.org/products/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^([A-Z]+-)?\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:atcvet a bioregistry.schema:0000001 ;
@@ -1268,6 +1302,17 @@ bioregistry:bila a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 [ rdfs:label "Thorsten Heinrich" ] .
+
+bioregistry:bind a bioregistry.schema:0000001 ;
+    rdfs:label "BIND accession number" ;
+    dc:description "Accession number of an entry from the BIND database."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1129,
+        biocontext:BIND,
+        prefixcommons:bind ;
+    foaf:homepage "http://bind.ca"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.bind.ca/Action?identifier=bindid&idsearch=$1"^^xsd:string ;
+    bioregistry.schema:0000012 true .
 
 bioregistry:bindingdb a bioregistry.schema:0000001 ;
     rdfs:label "BindingDB" ;
@@ -1763,6 +1808,7 @@ bioregistry:cas a bioregistry.schema:0000001 ;
     dc:description "CAS (Chemical Abstracts Service) is a division of the American Chemical Society and is the producer of comprehensive databases of chemical information."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch edam.data:1002,
+        oid:2.16.840.1.113883.6.61,
         biocontext:CAS,
         go.resource:CAS,
         n2t:cas,
@@ -2202,20 +2248,6 @@ bioregistry:cldb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "cl3603"^^xsd:string ;
     bioregistry.schema:0000006 "http://bioinformatics.hsanmartino.it/hypercldb/$1.html"^^xsd:string ;
     bioregistry.schema:0000008 "^(cl|tum)\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:clinicaltrials a bioregistry.schema:0000001 ;
-    rdfs:label "ClinicalTrials.gov" ;
-    dc:description "ClinicalTrials.gov provides free access to information on clinical studies for a wide range of diseases and conditions. Studies listed in the database are conducted in 175 countries"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:CLINICALTRIALS,
-        n2t:clinicaltrials,
-        prefixcommons:clinicaltrials,
-        miriam:clinicaltrials ;
-    foaf:homepage "https://clinicaltrials.gov/"^^xsd:string ;
-    bioregistry.schema:0000005 "NCT00222573"^^xsd:string ;
-    bioregistry.schema:0000006 "https://clinicaltrials.gov/ct2/show/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^NCT\\d{8}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:clinvar.submission a bioregistry.schema:0000001 ;
@@ -2750,7 +2782,7 @@ bioregistry:cob a bioregistry.schema:0000001 ;
         ontobee:COB,
         bioportal:COB,
         ols:cob ;
-    foaf:homepage "https://github.com/OBOFoundry/COB"^^xsd:string ;
+    foaf:homepage "https://obofoundry.org/COB/"^^xsd:string ;
     bioregistry.schema:0000005 "0000080"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/COB_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
@@ -2867,22 +2899,6 @@ bioregistry:corum a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "100"^^xsd:string ;
     bioregistry.schema:0000006 "https://mips.helmholtz-muenchen.de/corum/?id=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:cosmic a bioregistry.schema:0000001 ;
-    rdfs:label "COSMIC Gene" ;
-    dc:description "COSMIC is a comprehensive global resource for information on somatic mutations in human cancer, combining curation of the scientific literature with tumor resequencing data from the Cancer Genome Project at the Sanger Institute, U.K. This collection references genes."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:3264,
-        biocontext:COSMIC,
-        cellosaurus.resource:Cosmic,
-        n2t:cosmic,
-        fairsharing:FAIRsharing.s5zmbp,
-        miriam:cosmic ;
-    foaf:homepage "http://cancer.sanger.ac.uk/cosmic/"^^xsd:string ;
-    bioregistry.schema:0000005 "BRAF"^^xsd:string ;
-    bioregistry.schema:0000006 "http://cancer.sanger.ac.uk/cosmic/gene/overview?ln=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[A-Z0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:covid19 a bioregistry.schema:0000001 ;
@@ -3040,6 +3056,7 @@ bioregistry:csp a bioregistry.schema:0000001 ;
     dc:description "Computer Retrieval of Information on Scientific Projects (CRISP)"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:CRISP,
+        oid:2.16.840.1.113883.6.120,
         bioportal:CRISP ;
     foaf:homepage "https://web.archive.org/web/20091223034048/http://crisp.cit.nih.gov/Thesaurus/index.htm"^^xsd:string ;
     bioregistry.schema:0000005 "2004-2820"^^xsd:string ;
@@ -3050,7 +3067,8 @@ bioregistry:cst a bioregistry.schema:0000001 ;
     rdfs:label "Cell Signaling Technology Pathways" ;
     dc:description "Cell Signaling Technology is a commercial organisation which provides a pathway portal to showcase their phospho-antibody products. This collection references pathways."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:CST,
+    skos:exactMatch oid:2.16.840.1.113883.6.62,
+        biocontext:CST,
         n2t:cst,
         fairsharing:FAIRsharing.n8pxvx,
         miriam:cst ;
@@ -3469,19 +3487,6 @@ bioregistry:dgrc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:dicom a bioregistry.schema:0000001 ;
-    rdfs:label "DICOM Controlled Terminology" ;
-    dc:description "DICOM Controlled Terminology"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:DCM,
-        fairsharing:FAIRsharing.b7z8by,
-        ols:dicom ;
-    foaf:homepage "http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_D.html"^^xsd:string ;
-    bioregistry.schema:0000005 "109082"^^xsd:string ;
-    bioregistry.schema:0000006 "http://dicom.nema.org/resources/ontology/DCM/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:did a bioregistry.schema:0000001 ;
     rdfs:label "Decentralized Identifier" ;
     dc:description "DIDs are an effort by the W3C Credentials Community Group and the wider Internet identity community to define identifiers that can be registered, updated, resolved, and revoked without any dependency on a central authority or intermediary."^^xsd:string ;
@@ -3892,27 +3897,6 @@ bioregistry:enm a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "8000221"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.enanomapper.org/onto/ENM_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:ensembl a bioregistry.schema:0000001 ;
-    rdfs:label "Ensembl Gene" ;
-    dc:description "Ensembl is a joint project between EMBL - EBI and the Sanger Institute  to develop a software system which produces and maintains automatic annotation on selected eukaryotic genomes. This collections also references outgroup organisms."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:2610,
-        biocontext:ENSEMBL,
-        go.resource:ENSEMBL,
-        n2t:ensembl,
-        ncbi.resource:ENSEMBL,
-        fairsharing:FAIRsharing.fx0mw7,
-        prefixcommons:ensembl,
-        miriam:ensembl,
-        re3data:r3d100010228,
-        uniprot.resource:Ensembl,
-        wikidata:P594 ;
-    foaf:homepage "https://www.ensembl.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "ENSG00000139618"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ensembl.org/id/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:ensembl.bacteria a bioregistry.schema:0000001 ;
@@ -4383,6 +4367,7 @@ bioregistry:fma a bioregistry.schema:0000001 ;
     skos:exactMatch aberowl:FMA,
         edam.data:1182,
         obofoundry:fma,
+        oid:2.16.840.1.113883.6.119,
         ontobee:FMA,
         bioportal:FMA,
         biocontext:FMA,
@@ -5500,29 +5485,6 @@ bioregistry:hgmd a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^[A-Z_0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:hgnc a bioregistry.schema:0000001 ;
-    rdfs:label "HUGO Gene Nomenclature Committee" ;
-    dc:description "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene.  All approved symbols are stored in the HGNC database, and each symbol is unique. HGNC identifiers refer to records in the HGNC symbol database."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:HGNC,
-        edam.data:2298,
-        bioportal:HGNC,
-        biocontext:HGNC,
-        cellosaurus.resource:HGNC,
-        go.resource:HGNC,
-        n2t:hgnc,
-        ncbi.resource:HGNC,
-        fairsharing:FAIRsharing.amcv1e,
-        prefixcommons:hgnc,
-        miriam:hgnc,
-        uniprot.resource:HGNC,
-        wikidata:P354 ;
-    foaf:homepage "http://www.genenames.org"^^xsd:string ;
-    bioregistry.schema:0000005 "16793"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{1,5}$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:hgnc.genefamily a bioregistry.schema:0000001 ;
     rdfs:label "HGNC gene family" ;
     dc:description "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene. All approved symbols are stored in the HGNC database, and each symbol is unique. In addition, HGNC also provides a unique numerical ID to identify gene families, providing a display of curated hierarchical relationships between families."^^xsd:string ;
@@ -6046,25 +6008,6 @@ bioregistry:img.taxon a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:imgt.hla a bioregistry.schema:0000001 ;
-    rdfs:label "IMGT/HLA human major histocompatibility complex sequence database" ;
-    dc:description "IMGT, the international ImMunoGeneTics project, is a collection of high-quality integrated databases specialising in Immunoglobulins, T cell receptors and the Major Histocompatibility Complex (MHC) of all vertebrate species. IMGT/HLA is a database for sequences of the human MHC, referred to as HLA. It includes all the official sequences for the WHO Nomenclature Committee For Factors of the HLA System. This collection references allele information through the WHO nomenclature."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:2773,
-        biocontext:IMGT.HLA,
-        <https://bioregistry.io/metaregistry/cellosaurus/IPD-IMGT/HLA>,
-        go.resource:IMGT_HLA,
-        n2t:imgt.hla,
-        <https://bioregistry.io/metaregistry/ncbi/IMGT/HLA>,
-        fairsharing:FAIRsharing.e28v7g,
-        prefixcommons:imgthla,
-        miriam:imgt.hla ;
-    foaf:homepage "https://www.ebi.ac.uk/imgt/hla/allele.html"^^xsd:string ;
-    bioregistry.schema:0000005 "A*01:01:01:01"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/cgi-bin/imgt/hla/get_allele.cgi?$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[A-Z0-9*:]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:imgt.ligm a bioregistry.schema:0000001 ;
     rdfs:label "ImMunoGeneTics database covering immunoglobulins and T-cell receptors" ;
     dc:description "IMGT, the international ImMunoGeneTics project, is a collection of high-quality integrated databases specialising in Immunoglobulins, T cell receptors and the Major Histocompatibility Complex (MHC) of all vertebrate species. IMGT/LIGM is a comprehensive database of fully annotated sequences of Immunoglobulins and T cell receptors from human and other vertebrates."^^xsd:string ;
@@ -6196,7 +6139,7 @@ bioregistry:intact.molecule a bioregistry.schema:0000001 ;
         miriam:intact.molecule ;
     foaf:homepage "https://www.ebi.ac.uk/intact/"^^xsd:string ;
     bioregistry.schema:0000005 "EBI-366083"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ebi.ac.uk/intact/molecule/$1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/intact/search?query=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^EBI\\-[0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -6720,19 +6663,6 @@ bioregistry:loggerhead a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000019 orcid:0000-0001-6512-3296 .
 
-bioregistry:lrg a bioregistry.schema:0000001 ;
-    rdfs:label "Locus Reference Genomic" ;
-    dc:description "A Locus Reference Genomic (LRG) is a manually curated record that contains stable genomic, transcript and protein reference sequences for reporting clinically relevant sequence variants. All LRGs are generated and maintained by the NCBI and EMBL-EBI."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:LRG,
-        n2t:lrg,
-        miriam:lrg ;
-    foaf:homepage "http://www.lrg-sequence.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "1"^^xsd:string ;
-    bioregistry.schema:0000006 "ftp://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:ma a bioregistry.schema:0000001 ;
     rdfs:label "Mouse adult gross anatomy" ;
     dc:description "A structured controlled vocabulary of the adult anatomy of the mouse (Mus)"^^xsd:string ;
@@ -6893,6 +6823,7 @@ bioregistry:meddra a bioregistry.schema:0000001 ;
     dc:description "The Medical Dictionary for Regulatory Activities (MedDRA) was developed by the International Council for Harmonisation of Technical Requirements for Registration of Pharmaceuticals for Human Use (ICH)to provide a standardised medical terminology to facilitate sharing of regulatory information internationally for medical products used by humans. It is used within regulatory processes, safety monitoring, as well as for marketing activities. Products covered by the scope of MedDRA include pharmaceuticals, biologics, vaccines and drug-device combination products. The MedDRA dictionary is organized by System Organ Class (SOC), divided into High-Level Group Terms (HLGT), High-Level Terms (HLT), Preferred Terms (PT) and finally into Lowest Level Terms (LLT)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:MEDDRA,
+        oid:mdr,
         bioportal:MEDDRA,
         biocontext:MEDDRA,
         n2t:meddra,
@@ -6925,6 +6856,7 @@ bioregistry:medlineplus a bioregistry.schema:0000001 ;
     dc:description "MedlinePlus is the National Institutes of Health's Web site for patients and their families and friends. Produced by the National Library of Medicine, it provides information about diseases, conditions, and wellness issues using non-technical terms and language."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:MEDLINEPLUS,
+        oid:2.16.840.1.113883.6.173,
         bioportal:MEDLINEPLUS,
         biocontext:MEDLINEPLUS,
         n2t:medlineplus,
@@ -8073,19 +8005,6 @@ bioregistry:ncro a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0003-2408-2883 .
 
-bioregistry:ndc a bioregistry.schema:0000001 ;
-    rdfs:label "National Drug Code" ;
-    dc:description "The National Drug Code (NDC) is a unique, three-segment number used by the Food and Drug Administration (FDA) to identify drug products for commercial use. This is required by the Drug Listing Act of 1972. The FDA publishes and updates the listed NDC numbers daily."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:NDC,
-        n2t:ndc,
-        miriam:ndc ;
-    foaf:homepage "http://www.accessdata.fda.gov/scripts/cder/ndc/"^^xsd:string ;
-    bioregistry.schema:0000005 "0002-1975-61"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.hipaaspace.com/Medical_Billing/Coding/National.Drug.Codes/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+\\-\\d+\\-\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:nemo a bioregistry.schema:0000001 ;
     rdfs:label "Neural ElectroMagnetic Ontology" ;
     dc:description "This namespace is about Neuroscience Multi-Omic data, specially focused on that data generated from the BRAIN Initiative and related brain research projects."^^xsd:string ;
@@ -8619,14 +8538,14 @@ bioregistry:ohpi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0002-5159-414X .
 
 bioregistry:oid a bioregistry.schema:0000001 ;
-    rdfs:label "OID Repository" ;
+    rdfs:label "Orange Identifier" ;
     dc:description "OIDs provide a persistent identification of objects based on a hierarchical structure of Registration Authorities (RA), where each parent has an object identifier and allocates object identifiers to child nodes."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch n2t:oid,
         miriam:oid ;
     foaf:homepage "http://www.oid-info.com/introduction.htm"^^xsd:string ;
     bioregistry.schema:0000005 "2.16.840"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.oid-info.com/cgi-bin/display?oid=$1&submit=Display&action=display"^^xsd:string ;
+    bioregistry.schema:0000006 "http://oid-info.com/get/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[\\d.]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
@@ -9325,23 +9244,6 @@ bioregistry:pharmgkb.drug a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "PA448710"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.pharmgkb.org/drug/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^PA\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:pharmgkb.gene a bioregistry.schema:0000001 ;
-    rdfs:label "Pharmacogenetics and Pharmacogenomics Knowledge Base" ;
-    dc:description "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch bioportal:PHARMGKB,
-        biocontext:PHARMGKB.GENE,
-        go.resource:PharmGKB,
-        n2t:pharmgkb.gene,
-        prefixcommons:pharmgkb.gene,
-        miriam:pharmgkb.gene,
-        wikidata:P7001 ;
-    foaf:homepage "http://www.pharmgkb.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "PA131"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.pharmgkb.org/gene/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^PA\\w+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:pharmgkb.pathways a bioregistry.schema:0000001 ;
@@ -10063,25 +9965,6 @@ bioregistry:rebase a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://rebase.neb.com/rebase/enz/$1.html"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
-
-bioregistry:refseq a bioregistry.schema:0000001 ;
-    rdfs:label "Reference Sequence Collection" ;
-    dc:description "The Reference Sequence (RefSeq) collection aims to provide a comprehensive, integrated, non-redundant set of sequences, including genomic DNA, transcript (RNA), and protein products."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1098,
-        biocontext:RefSeq,
-        go.resource:RefSeq,
-        n2t:refseq,
-        fairsharing:FAIRsharing.4jg0qw,
-        prefixcommons:refseq,
-        miriam:refseq,
-        uniprot.resource:RefSeq ;
-    foaf:homepage "https://www.ncbi.nlm.nih.gov/projects/RefSeq/"^^xsd:string ;
-    bioregistry.schema:0000005 "NP_012345"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/protein/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|WP|XM|XP|XR|YP|ZP)_\\d+)|(NZ_[A-Z]{2,4}\\d+))(\\.\\d+)?$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000016 bioregistry:ncbiprotein .
 
 bioregistry:repeatsdb.protein a bioregistry.schema:0000001 ;
     rdfs:label "RepeatsDB Protein" ;
@@ -10918,26 +10801,6 @@ bioregistry:smpdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^SMP\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:snomedct a bioregistry.schema:0000001 ;
-    rdfs:label "SNOMED CT (International Edition)" ;
-    dc:description "SNOMED CT (Systematized Nomenclature of Medicine -- Clinical Terms), is a systematically organized computer processable collection of medical terminology covering most areas of clinical information such as diseases, findings, procedures, microorganisms, pharmaceuticals, etc."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:SNOMEDCT,
-        bioportal:SNOMEDCT,
-        biocontext:SNOMEDCT,
-        biolink:SNOMEDCT,
-        n2t:snomedct,
-        fairsharing:FAIRsharing.d88s6e,
-        prefixcommons:snomedct,
-        miriam:snomedct,
-        ols:snomed,
-        wikidata:P5806 ;
-    foaf:homepage "http://www.snomedbrowser.com/"^^xsd:string ;
-    bioregistry.schema:0000005 "284196006"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.snomedbrowser.com/Codes/Details/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^(\\w+)?\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:snp2tfbs a bioregistry.schema:0000001 ;
     rdfs:label "SNP to Transcription Factor Binding Sites" ;
     dc:description "SNP2TFBS is aimed at studying variations (SNPs/indels) that affect transcription factor binding (TFB) in the Human genome."^^xsd:string ;
@@ -11712,21 +11575,6 @@ bioregistry:unigene a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "4900"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.ncbi.nlm.nih.gov/UniGene/clust.cgi?UGID=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:unii a bioregistry.schema:0000001 ;
-    rdfs:label "Unique Ingredient Identifier" ;
-    dc:description "The purpose of the joint FDA/USP Substance Registration System (SRS) is to support health information technology initiatives by generating unique ingredient identifiers (UNIIs) for substances in drugs, biologics, foods, and devices. The UNII is a non- proprietary, free, unique, unambiguous, non semantic, alphanumeric identifier based on a substance’s molecular structure and/or descriptive information."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:UNII,
-        n2t:unii,
-        miriam:unii,
-        cheminf:000563,
-        wikidata:P652 ;
-    foaf:homepage "http://fdasis.nlm.nih.gov/srs/"^^xsd:string ;
-    bioregistry.schema:0000005 "3G6A5W338E"^^xsd:string ;
-    bioregistry.schema:0000006 "http://fdasis.nlm.nih.gov/srs/srsdirect.jsp?regno=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[A-Z0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:unimod a bioregistry.schema:0000001 ;
@@ -13045,6 +12893,8 @@ aberowl:ICDO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:ICEO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
+aberowl:ICF dcterms:isPartOf bioregistry.metaresource:aberowl .
+
 aberowl:ICO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:IDO dcterms:isPartOf bioregistry.metaresource:aberowl .
@@ -13270,6 +13120,8 @@ aberowl:PSO dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:PW dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:QUDT dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+aberowl:RADLEX dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:RBO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -13582,6 +13434,8 @@ edam.data:1105 dcterms:isPartOf bioregistry.metaresource:edam .
 edam.data:1106 dcterms:isPartOf bioregistry.metaresource:edam .
 
 edam.data:1127 dcterms:isPartOf bioregistry.metaresource:edam .
+
+edam.data:1129 dcterms:isPartOf bioregistry.metaresource:edam .
 
 edam.data:1133 dcterms:isPartOf bioregistry.metaresource:edam .
 
@@ -14289,6 +14143,98 @@ obofoundry:zfs dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
 obofoundry:zp dcterms:isPartOf bioregistry.metaresource:obofoundry .
 
+oid:2.16.840.1.113883.5.1105 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.5.1107 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.1 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.116 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.119 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.120 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.126 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.128 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.173 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.174 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.175 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.177 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.2 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.206 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.208 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.209 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.229 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.254 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.256 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.280 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.281 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.283 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.284 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.3 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.339 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.344 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.347 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.4 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.42 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.43 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.59 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.61 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.62 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.69 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.77 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.8 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.86 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.88 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.90 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:2.16.840.1.113883.6.96 dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:DCM dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:NCBI dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:clinVar-V dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:geneCodeNCBI dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:mdr dcterms:isPartOf bioregistry.metaresource:hl7 .
+
+oid:whoATC dcterms:isPartOf bioregistry.metaresource:hl7 .
+
 ontobee:AEO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:AGRO dcterms:isPartOf bioregistry.metaresource:ontobee .
@@ -14683,6 +14629,8 @@ ontobee:UPA dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:UPHENO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
+ontobee:VBO dcterms:isPartOf bioregistry.metaresource:ontobee .
+
 ontobee:VIDO dcterms:isPartOf bioregistry.metaresource:ontobee .
 
 ontobee:VO dcterms:isPartOf bioregistry.metaresource:ontobee .
@@ -14993,6 +14941,8 @@ bioportal:ICD9CM dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:ICEO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
+bioportal:ICF dcterms:isPartOf bioregistry.metaresource:bioportal .
+
 bioportal:ICO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:IDO dcterms:isPartOf bioregistry.metaresource:bioportal .
@@ -15220,6 +15170,8 @@ bioportal:PTO dcterms:isPartOf bioregistry.metaresource:bioportal .
 bioportal:PW dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:QUDT dcterms:isPartOf bioregistry.metaresource:bioportal .
+
+bioportal:RADLEX dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:RBO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -15474,6 +15426,8 @@ biocontext:BIGG.MODEL dcterms:isPartOf bioregistry.metaresource:biocontext .
 biocontext:BIGG.REACTION dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:BILA dcterms:isPartOf bioregistry.metaresource:biocontext .
+
+biocontext:BIND dcterms:isPartOf bioregistry.metaresource:biocontext .
 
 biocontext:BINDINGDB dcterms:isPartOf bioregistry.metaresource:biocontext .
 
@@ -19399,6 +19353,23 @@ bioregistry:asrp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://asrp.cgrb.oregonstate.edu/db/sRNAdisplay.html?ASRP_id=$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:atcc a bioregistry.schema:0000001 ;
+    rdfs:label "American Type Culture Collection" ;
+    dc:description "The American Type Culture Collection (ATCC) is a private, nonprofit biological resource center whose mission focuses on the acquisition, authentication, production, preservation, development and distribution of standard reference microorganisms, cell lines and other materials for research in the life sciences."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch oid:2.16.840.1.113883.6.77,
+        biocontext:ATCC,
+        cellosaurus.resource:ATCC,
+        n2t:atcc,
+        ncbi.resource:ATCC,
+        fairsharing:FAIRsharing.j0ezpm,
+        miriam:atcc ;
+    foaf:homepage "https://www.lgcstandards-atcc.org"^^xsd:string ;
+    bioregistry.schema:0000005 "11303"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.atcc.org/products/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^([A-Z]+-)?\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:bactibase a bioregistry.schema:0000001 ;
     rdfs:label "Bactibase" ;
     dc:description "Bactibase is a database describing the physical and chemical properties of bacteriocins from gram-negative and gram-positive bacteria."^^xsd:string ;
@@ -19764,6 +19735,7 @@ bioregistry:cdt a bioregistry.schema:0000001 ;
     rdfs:label "Current Dental Terminology" ;
     dc:description "The Code on Dental Procedures and Nomenclature (the CDT Code) assures consistency in documenting dental treatment."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch oid:2.16.840.1.113883.6.116 ;
     foaf:homepage "https://www.ada.org/publications/CDT"^^xsd:string ;
     bioregistry.schema:0000005 "1000001"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
@@ -19966,23 +19938,18 @@ bioregistry:clingene a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://reg.clinicalgenome.org/redmine/projects/registry/genboree_registry/by_caid?caid=$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:clinvar a bioregistry.schema:0000001 ;
-    rdfs:label "ClinVar Variation" ;
-    dc:description "ClinVar archives reports of relationships among medically important variants and phenotypes. It records human variation, interpretations of the relationship specific variations to human health, and supporting evidence for each interpretation. Each ClinVar record (RCV identifier) represents an aggregated view of interpretations of the same variation and condition from one or more submitters. Submissions for individual variation/phenotype combinations (SCV identifier) are also collected and made available separately. This collection references the Variant identifier."^^xsd:string ;
-    dcterms:hasPart bioregistry:clinvar.record ;
+bioregistry:clinicaltrials a bioregistry.schema:0000001 ;
+    rdfs:label "ClinicalTrials.gov" ;
+    dc:description "ClinicalTrials.gov provides free access to information on clinical studies for a wide range of diseases and conditions. Studies listed in the database are conducted in 175 countries"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biocontext:ClinVar,
-        biolink:CLINVAR,
-        cellosaurus.resource:ClinVar,
-        n2t:clinvar,
-        fairsharing:FAIRsharing.wx5r6f,
-        miriam:clinvar,
-        re3data:r3d100013331,
-        wikidata:P1929 ;
-    foaf:homepage "http://www.ncbi.nlm.nih.gov/clinvar/"^^xsd:string ;
-    bioregistry.schema:0000005 "12345"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/clinvar/variation/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    skos:exactMatch biocontext:CLINICALTRIALS,
+        n2t:clinicaltrials,
+        prefixcommons:clinicaltrials,
+        miriam:clinicaltrials ;
+    foaf:homepage "https://clinicaltrials.gov/"^^xsd:string ;
+    bioregistry.schema:0000005 "NCT00222573"^^xsd:string ;
+    bioregistry.schema:0000006 "https://clinicaltrials.gov/ct2/show/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^NCT\\d{8}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:clinvar.record a bioregistry.schema:0000001 ;
@@ -20136,6 +20103,22 @@ bioregistry:cordis.project a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
+bioregistry:cosmic a bioregistry.schema:0000001 ;
+    rdfs:label "COSMIC Gene" ;
+    dc:description "COSMIC is a comprehensive global resource for information on somatic mutations in human cancer, combining curation of the scientific literature with tumor resequencing data from the Cancer Genome Project at the Sanger Institute, U.K. This collection references genes."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:3264,
+        biocontext:COSMIC,
+        cellosaurus.resource:Cosmic,
+        n2t:cosmic,
+        fairsharing:FAIRsharing.s5zmbp,
+        miriam:cosmic ;
+    foaf:homepage "http://cancer.sanger.ac.uk/cosmic/"^^xsd:string ;
+    bioregistry.schema:0000005 "BRAF"^^xsd:string ;
+    bioregistry.schema:0000006 "http://cancer.sanger.ac.uk/cosmic/gene/overview?ln=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Z0-9]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:cosmic.cell a bioregistry.schema:0000001 ;
     rdfs:label "COSMIC Cell Lines" ;
     dc:description "COSMIC, the Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer"^^xsd:string ;
@@ -20153,25 +20136,11 @@ bioregistry:cp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000018 bioregistry:cl .
 
-bioregistry:cpt a bioregistry.schema:0000001 ;
-    rdfs:label "Current Procedural Terminology" ;
-    dc:description "Current Procedural Terminology, more commonly known as CPT®, refers to a medical code set created and maintained by the American Medical Association — and used by physicians, allied health professionals, nonphysician practitioners, hospitals, outpatient facilities, and laboratories to represent the services and procedures they perform. No provider of outpatient services gets paid without reporting the proper CPT® codes. [Description taken from this site](https://www.aapc.com/codes/cpt-codes-range/)]"^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:CPT,
-        bioportal:CPT,
-        biolink:CPT,
-        fairsharing:FAIRsharing.wpxab1 ;
-    foaf:homepage "https://www.aapc.com"^^xsd:string ;
-    bioregistry.schema:0000005 "00103"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.aapc.com/codes/cpt-codes/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
-
 bioregistry:credit a bioregistry.schema:0000001 ;
     rdfs:label "CASRAI Contributor Roles Taxonomy" ;
     dc:description "CRediT (Contributor Roles Taxonomy) is high-level taxonomy, including 14 roles, that can be used to represent the roles typically played by contributors to scientific scholarly output. The roles describe each contributor’s specific contribution to the scholarly output."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch fairsharing:FAIRsharing.fe4816 ;
     foaf:homepage "https://casrai.org/credit/"^^xsd:string ;
     bioregistry.schema:0000005 "Software"^^xsd:string ;
     bioregistry.schema:0000012 false .
@@ -20289,27 +20258,6 @@ bioregistry:dbo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://dbpedia.org/ontology/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:dbsnp a bioregistry.schema:0000001 ;
-    rdfs:label "NCBI dbSNP" ;
-    dc:description "The dbSNP database is a repository for both single base nucleotide subsitutions and short deletion and insertion polymorphisms."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1106,
-        biocontext:dbSNP,
-        cellosaurus.resource:dbSNP,
-        go.resource:dbSNP,
-        n2t:dbsnp,
-        ncbi.resource:dbSNP,
-        fairsharing:FAIRsharing.edxb58,
-        prefixcommons:dbsnp,
-        miriam:dbsnp,
-        re3data:r3d100010652,
-        uniprot.resource:dbSNP ;
-    foaf:homepage "https://www.ncbi.nlm.nih.gov/snp/"^^xsd:string ;
-    bioregistry.schema:0000005 "rs121909098"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/snp/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^rs\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:dbvar.study a bioregistry.schema:0000001 ;
     rdfs:label "Database of Genomic Structural Variation - Study" ;
     dc:description "Studies in dbVar."^^xsd:string ;
@@ -20396,6 +20344,20 @@ bioregistry:dermo a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "0000000"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/DERMO_$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:dicom a bioregistry.schema:0000001 ;
+    rdfs:label "DICOM Controlled Terminology" ;
+    dc:description "DICOM Controlled Terminology"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch oid:DCM,
+        bioportal:DCM,
+        fairsharing:FAIRsharing.b7z8by,
+        ols:dicom ;
+    foaf:homepage "http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_D.html"^^xsd:string ;
+    bioregistry.schema:0000005 "109082"^^xsd:string ;
+    bioregistry.schema:0000006 "http://dicom.nema.org/resources/ontology/DCM/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:dictybase.est a bioregistry.schema:0000001 ;
@@ -20634,6 +20596,17 @@ bioregistry:drugcentral a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:dsm4 a bioregistry.schema:0000001 ;
+    rdfs:label "Diagnostic and Statistical Manual of Mental Disorders (4th Edition)" ;
+    dc:description "A terminology published by the American Psychiatric Association (APA) for the classification of mental disorders using a common language and standard criteria. [wikipedia]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch oid:2.16.840.1.113883.6.126,
+        wikidata:P663 ;
+    foaf:homepage "https://en.wikipedia.org/wiki/Diagnostic_and_Statistical_Manual_of_Mental_Disorders#DSM-IV-TR_(2000)"^^xsd:string ;
+    bioregistry.schema:0000005 "315.1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+\\.\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:dsmz a bioregistry.schema:0000001 ;
     rdfs:label "Deutsche Sammlung von Mikroorganismen und Zellkulturen" ;
     dc:description "The Leibniz Institute DSMZ is the most diverse biological resource center in the world and one of the largest collections of microorganisms and cell cultures worldwide (bacteria, archaea, protists, yeasts, fungi, bacteriophages, plant viruses, genomic bacterial DNA as well as human and animal cell lines)."^^xsd:string ;
@@ -20823,6 +20796,27 @@ bioregistry:emolecules a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:ensembl a bioregistry.schema:0000001 ;
+    rdfs:label "Ensembl Gene" ;
+    dc:description "Ensembl is a joint project between EMBL - EBI and the Sanger Institute  to develop a software system which produces and maintains automatic annotation on selected eukaryotic genomes. This collections also references outgroup organisms."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:2610,
+        biocontext:ENSEMBL,
+        go.resource:ENSEMBL,
+        n2t:ensembl,
+        ncbi.resource:ENSEMBL,
+        fairsharing:FAIRsharing.fx0mw7,
+        prefixcommons:ensembl,
+        miriam:ensembl,
+        re3data:r3d100010228,
+        uniprot.resource:Ensembl,
+        wikidata:P594 ;
+    foaf:homepage "https://www.ensembl.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "ENSG00000139618"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ensembl.org/id/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^((ENS[FPTG]\\d{11}(\\.\\d+)?)|(FB\\w{2}\\d{7})|(Y[A-Z]{2}\\d{3}[a-zA-Z](\\-[A-Z])?)|([A-Z_a-z0-9]+(\\.)?(t)?(\\d+)?([a-z])?))$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:enzo a bioregistry.schema:0000001 ;
     rdfs:label "Enzo Life Sciences" ;
     dc:description "Enzo Life Sciences is an antibody vendor."^^xsd:string ;
@@ -20978,6 +20972,15 @@ bioregistry:fcsfree a bioregistry.schema:0000001 ;
     foaf:homepage "https://fcs-free.org"^^xsd:string ;
     bioregistry.schema:0000005 "240-17-488-3-4-12"^^xsd:string ;
     bioregistry.schema:0000006 "https://fcs-free.org/fcs-database?$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:fhir.implementation a bioregistry.schema:0000001 ;
+    rdfs:label "FHIR United States Implementation Guides" ;
+    dc:description "A set of guides on implementing various processes within hospitals or healthcare systems."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://hl7.org/fhir/us/"^^xsd:string ;
+    bioregistry.schema:0000005 "immds"^^xsd:string ;
+    bioregistry.schema:0000006 "https://hl7.org/fhir/us/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:fishbase.species a bioregistry.schema:0000001 ;
@@ -21463,6 +21466,30 @@ bioregistry:hcpcs a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.bioontology.org/ontology/HCPCS/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:hgnc a bioregistry.schema:0000001 ;
+    rdfs:label "HUGO Gene Nomenclature Committee" ;
+    dc:description "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene.  All approved symbols are stored in the HGNC database, and each symbol is unique. HGNC identifiers refer to records in the HGNC symbol database."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:HGNC,
+        edam.data:2298,
+        oid:2.16.840.1.113883.6.281,
+        bioportal:HGNC,
+        biocontext:HGNC,
+        cellosaurus.resource:HGNC,
+        go.resource:HGNC,
+        n2t:hgnc,
+        ncbi.resource:HGNC,
+        fairsharing:FAIRsharing.amcv1e,
+        prefixcommons:hgnc,
+        miriam:hgnc,
+        uniprot.resource:HGNC,
+        wikidata:P354 ;
+    foaf:homepage "http://www.genenames.org"^^xsd:string ;
+    bioregistry.schema:0000005 "16793"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{1,5}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:hgnc.genegroup a bioregistry.schema:0000001 ;
     rdfs:label "HGNC Gene Group" ;
     dc:description "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene. All approved symbols are stored in the HGNC database, and each symbol is unique. In addition, HGNC also provides a unique numerical ID to identify gene families, providing a display of curated hierarchical relationships between families."^^xsd:string ;
@@ -21533,28 +21560,6 @@ bioregistry:hsdb a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "5621"^^xsd:string ;
     bioregistry.schema:0000006 "https://pubchem.ncbi.nlm.nih.gov/source/hsdb/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:icd10 a bioregistry.schema:0000001 ;
-    rdfs:label "International Classification of Diseases, 10th Revision" ;
-    dc:description """The 10th revision of the International Classification of Diseases (ICD) issued by the World Health Organization (WHO). ICD is formally named 'The International Statistical Classification of Diseases and Related Health Problems'. It contains codes for diseases, signs and symptoms, abnormal findings, complaints, social circumstances, and external causes of injury or diseases.
-
-Note that the WHO version of ICD-10 is distinct from the ICD-10-CM (Clinical Modification) issued by the U.S. National Center for Health Statistics for use in the United States."""^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:ICD10,
-        edam.data:2611,
-        bioportal:ICD10,
-        biocontext:ICD,
-        biolink:ICD10,
-        n2t:icd,
-        fairsharing:FAIRsharing.nj16g,
-        prefixcommons:icd,
-        miriam:icd,
-        wikidata:P494 ;
-    foaf:homepage "https://icd.who.int/browse10"^^xsd:string ;
-    bioregistry.schema:0000005 "C34"^^xsd:string ;
-    bioregistry.schema:0000006 "https://icd.who.int/browse10/2019/en#/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^(([XVI]+)|([A-Z][0-9]+((-[A-Z][0-9]+)|(\\.[0-9]))?))$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:icepo a bioregistry.schema:0000001 ;
@@ -21678,6 +21683,25 @@ bioregistry:imdrf a bioregistry.schema:0000001 ;
     dc:description "The International Medical Device Regulators Forum (IMDRF) is a forum of voluntary medical device regulators from around the world who have come together to build on the strong foundational work of the Global Harmonization Task Force on Medical Devices (GHTF), and to accelerate international medical device regulatory harmonization and convergence."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     foaf:homepage "http://www.imdrf.org/"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:imgt.hla a bioregistry.schema:0000001 ;
+    rdfs:label "IMGT/HLA human major histocompatibility complex sequence database" ;
+    dc:description "IMGT, the international ImMunoGeneTics project, is a collection of high-quality integrated databases specialising in Immunoglobulins, T cell receptors and the Major Histocompatibility Complex (MHC) of all vertebrate species. IMGT/HLA is a database for sequences of the human MHC, referred to as HLA. It includes all the official sequences for the WHO Nomenclature Committee For Factors of the HLA System. This collection references allele information through the WHO nomenclature."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:2773,
+        biocontext:IMGT.HLA,
+        <https://bioregistry.io/metaregistry/cellosaurus/IPD-IMGT/HLA>,
+        go.resource:IMGT_HLA,
+        n2t:imgt.hla,
+        <https://bioregistry.io/metaregistry/ncbi/IMGT/HLA>,
+        fairsharing:FAIRsharing.e28v7g,
+        prefixcommons:imgthla,
+        miriam:imgt.hla ;
+    foaf:homepage "https://www.ebi.ac.uk/imgt/hla/allele.html"^^xsd:string ;
+    bioregistry.schema:0000005 "A*01:01:01:01"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ebi.ac.uk/cgi-bin/imgt/hla/get_allele.cgi?$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Z0-9*:]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:inaturalist.observation a bioregistry.schema:0000001 ;
@@ -22084,19 +22108,6 @@ bioregistry:lncipedia a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "SNHG3"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:loinc a bioregistry.schema:0000001 ;
-    rdfs:label "Logical Observation Identifiers Names and Codes" ;
-    dc:description "The international standard for identifying health measurements, observations, and documents."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:LOINC,
-        bioportal:LOINC,
-        biolink:LOINC,
-        fairsharing:FAIRsharing.2mk2zb ;
-    foaf:homepage "https://loinc.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "LL379-9"^^xsd:string ;
-    bioregistry.schema:0000006 "https://loinc.org/$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:lonza a bioregistry.schema:0000001 ;
     rdfs:label "Lonza" ;
     dc:description "Contains information about cells and data sheets related to transfection."^^xsd:string ;
@@ -22135,6 +22146,20 @@ bioregistry:lpt a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000019 orcid:0000-0002-2346-5201 .
+
+bioregistry:lrg a bioregistry.schema:0000001 ;
+    rdfs:label "Locus Reference Genomic" ;
+    dc:description "A Locus Reference Genomic (LRG) is a manually curated record that contains stable genomic, transcript and protein reference sequences for reporting clinically relevant sequence variants. All LRGs are generated and maintained by the NCBI and EMBL-EBI."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch oid:2.16.840.1.113883.6.283,
+        biocontext:LRG,
+        n2t:lrg,
+        miriam:lrg ;
+    foaf:homepage "http://www.lrg-sequence.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "1"^^xsd:string ;
+    bioregistry.schema:0000006 "ftp://ftp.ebi.ac.uk/pub/databases/lrgex/$1.xml"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:lspci a bioregistry.schema:0000001 ;
     rdfs:label "Laboratory of Systems Pharmacology Compound" ;
@@ -22320,6 +22345,7 @@ bioregistry:mmsl a bioregistry.schema:0000001 ;
     rdfs:label "Multum MediSource Lexicon" ;
     dc:description "The Lexicon is a foundational database with comprehensive drug product and disease nomenclature information. It includes drug names, drug product information, disease names, coding systems such as ICD-9-CM and NDC, generic names, brand names and common abbreviations. A comprehensive list of standard or customized disease names and ICD-9 codes is also included."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch oid:2.16.840.1.113883.6.175 ;
     foaf:homepage "https://www.nlm.nih.gov/research/umls/rxnorm/sourcereleasedocs/mmsl.html"^^xsd:string ;
     bioregistry.schema:0000005 "3355"^^xsd:string ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
@@ -22480,11 +22506,26 @@ bioregistry:ncbigi a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:ndc a bioregistry.schema:0000001 ;
+    rdfs:label "National Drug Code" ;
+    dc:description "The National Drug Code (NDC) is a unique, three-segment number used by the Food and Drug Administration (FDA) to identify drug products for commercial use. This is required by the Drug Listing Act of 1972. The FDA publishes and updates the listed NDC numbers daily."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch oid:2.16.840.1.113883.6.69,
+        biocontext:NDC,
+        n2t:ndc,
+        miriam:ndc ;
+    foaf:homepage "http://www.accessdata.fda.gov/scripts/cder/ndc/"^^xsd:string ;
+    bioregistry.schema:0000005 "0002-1975-61"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.hipaaspace.com/Medical_Billing/Coding/National.Drug.Codes/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+\\-\\d+\\-\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:nddf a bioregistry.schema:0000001 ;
     rdfs:label "National Drug Data File" ;
     dc:description "FDB MedKnowledge encompasses medications approved by the U.S. Food and Drug Administration, and information on commonly-used over-the-counter and alternative therapy agents such as herbals, nutraceuticals and dietary supplements."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:NDDF,
+        oid:2.16.840.1.113883.6.208,
         bioportal:NDDF,
         biolink:NDDF,
         fairsharing:FAIRsharing.8qcbs0 ;
@@ -22502,21 +22543,6 @@ bioregistry:ndex a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.ndexbio.org"^^xsd:string ;
     bioregistry.schema:0000005 "aa78a43f-9c4d-11eb-9e72-0ac135e8bacf"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ndexbio.org/viewer/networks/$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:ndfrt a bioregistry.schema:0000001 ;
-    rdfs:label "National Drug File - Reference Terminology" ;
-    dc:description "NDF-RT combines the NDF hierarchical drug classification with a multi-category reference model. The categories are: Cellular or Molecular Interactions [MoA]; Chemical Ingredients [Chemical/Ingredient]; Clinical Kinetics [PK]; Diseases, Manifestations or Physiologic States [Disease/Finding]Dose Forms [Dose Form]; Pharmaceutical Preparations; Physiological Effects [PE]; Therapeutic Categories [TC]; and VA Drug Interactions [VA Drug Interaction]."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:NDFRT,
-        ontobee:NDF-RT,
-        bioportal:NDFRT,
-        fairsharing:FAIRsharing.901nkj,
-        prefixcommons:ndfrt,
-        wikidata:P2115 ;
-    foaf:homepage "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT"^^xsd:string ;
-    bioregistry.schema:0000005 "N0000001662"^^xsd:string ;
-    bioregistry.schema:0000006 "https://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:neurolex a bioregistry.schema:0000001 ;
@@ -22701,6 +22727,15 @@ bioregistry:nsf.award a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:nucc.characteristic a bioregistry.schema:0000001 ;
+    rdfs:label "National Uniform Claim Committee Characteristic" ;
+    dc:description "The Provider Characteristics code set is for use with health care provider information for enrollment and credentialing transactions and their corresponding responses. It is intended to provide codified responses to questions presented to a health care provider applying to or registering with an entity and to report the outcome of such application or registration. It may also be used for responses to inquiries regarding provider participation or registration in a program or plan."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://nucc.org/index.php/code-sets-mainmenu-41/provider-characteristics-mainmenu-39"^^xsd:string ;
+    bioregistry.schema:0000005 "2A"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d(\\d|\\w)$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:oba a bioregistry.schema:0000001 ;
     rdfs:label "Ontology of Biological Attributes" ;
     dc:description "A collection of biological attributes (traits) covering all kingdoms of life. Interoperable with VT (vertebrate trait ontology) and TO (plant trait ontology). Extends PATO."^^xsd:string ;
@@ -22755,30 +22790,6 @@ bioregistry:omiabis a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 true ;
     bioregistry.schema:0000018 bioregistry:labo ;
     bioregistry.schema:0000019 orcid:0000-0003-1834-3856 .
-
-bioregistry:omim a bioregistry.schema:0000001 ;
-    rdfs:label "Online Mendelian Inheritance in Man" ;
-    dc:description "Online Mendelian Inheritance in Man is a catalog of human genes and genetic disorders."^^xsd:string ;
-    dcterms:hasPart bioregistry:omim.ps ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:OMIM,
-        edam.data:1153,
-        bioportal:OMIM,
-        biocontext:OMIM,
-        go.resource:OMIM,
-        n2t:mim,
-        ncbi.resource:MIM,
-        fairsharing:FAIRsharing.b084yh,
-        prefixcommons:omim,
-        miriam:mim,
-        uniprot.resource:MIM,
-        wikidata:P492 ;
-    foaf:homepage "https://omim.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "603903"^^xsd:string ;
-    bioregistry.schema:0000006 "https://omim.org/entry/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000019 orcid:0000-0002-1780-5230 .
 
 bioregistry:omit a bioregistry.schema:0000001 ;
     rdfs:label "Ontology for MicroRNA Target" ;
@@ -23123,6 +23134,23 @@ bioregistry:pharmacodb.tissue a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:pharmgkb.gene a bioregistry.schema:0000001 ;
+    rdfs:label "Pharmacogenetics and Pharmacogenomics Knowledge Base" ;
+    dc:description "The PharmGKB database is a central repository for genetic, genomic, molecular and cellular phenotype data and clinical information about people who have participated in pharmacogenomics research studies. The data includes, but is not limited to, clinical and basic pharmacokinetic and pharmacogenomic research in the cardiovascular, pulmonary, cancer, pathways, metabolic and transporter domains."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch bioportal:PHARMGKB,
+        biocontext:PHARMGKB.GENE,
+        go.resource:PharmGKB,
+        n2t:pharmgkb.gene,
+        prefixcommons:pharmgkb.gene,
+        miriam:pharmgkb.gene,
+        wikidata:P7001 ;
+    foaf:homepage "http://www.pharmgkb.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "PA131"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.pharmgkb.org/gene/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^PA\\w+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:phenx a bioregistry.schema:0000001 ;
     rdfs:label "PhenX Toolkit" ;
     dc:description "A web-based catalog of recommended measurement protocols selected by experts to include in studies with human participants."^^xsd:string ;
@@ -23390,6 +23418,26 @@ bioregistry:receptome.family a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://www.receptome.org/families/Frameset_family.asp?ProtType=Receptor&FamId=$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:refseq a bioregistry.schema:0000001 ;
+    rdfs:label "Reference Sequence Collection" ;
+    dc:description "The Reference Sequence (RefSeq) collection aims to provide a comprehensive, integrated, non-redundant set of sequences, including genomic DNA, transcript (RNA), and protein products."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1098,
+        oid:2.16.840.1.113883.6.280,
+        biocontext:RefSeq,
+        go.resource:RefSeq,
+        n2t:refseq,
+        fairsharing:FAIRsharing.4jg0qw,
+        prefixcommons:refseq,
+        miriam:refseq,
+        uniprot.resource:RefSeq ;
+    foaf:homepage "https://www.ncbi.nlm.nih.gov/projects/RefSeq/"^^xsd:string ;
+    bioregistry.schema:0000005 "NP_012345"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/protein/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|WP|XM|XP|XR|YP|ZP)_\\d+)|(NZ_[A-Z]{2,4}\\d+))(\\.\\d+)?$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000016 bioregistry:ncbiprotein .
+
 bioregistry:reo a bioregistry.schema:0000001 ;
     rdfs:label "Reagent Ontology" ;
     dc:description "The Reagent Ontology (ReO) adheres to OBO Foundry principles (obofoundry.org) to model the domain of biomedical research reagents, considered broadly to include materials applied “chemically” in scientific techniques to facilitate generation of data and research materials. ReO is a modular ontology that re-uses existing ontologies to facilitate cross-domain interoperability. It consists of reagents and their properties, linking diverse biological and experimental entities to which they are related. ReO supports community use cases by providing a flexible, extensible, and deeply integrated framework that can be adapted and extended with more specific modeling to meet application needs."^^xsd:string ;
@@ -23468,22 +23516,6 @@ bioregistry:rtecs a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.cdc.gov/niosh/rtecs/"^^xsd:string ;
     bioregistry.schema:0000005 "AB1925000"^^xsd:string ;
     bioregistry.schema:0000008 "^AB\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:rxnorm a bioregistry.schema:0000001 ;
-    rdfs:label "RxNorm" ;
-    dc:description "RxNorm provides normalized names for clinical drugs and links its names to many of the drug vocabularies commonly used in pharmacy management and drug interaction software, including those of First Databank, Micromedex, and Gold Standard Drug Database. By providing links between these vocabularies, RxNorm can mediate messages between systems not using the same software and vocabulary."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:RXNORM,
-        bioportal:RXNORM,
-        biocontext:RXCUI,
-        biolink:RXNORM,
-        fairsharing:FAIRsharing.36pf8q,
-        wikidata:P3345 ;
-    foaf:homepage "https://www.nlm.nih.gov/research/umls/rxnorm/"^^xsd:string ;
-    bioregistry.schema:0000005 "221058"^^xsd:string ;
-    bioregistry.schema:0000006 "https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^[0-9]{1,7}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:sael a bioregistry.schema:0000001 ;
@@ -23643,6 +23675,27 @@ bioregistry:snap a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://snap.humgen.au.dk/views/geneview.cgi?gene=$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:snomedct a bioregistry.schema:0000001 ;
+    rdfs:label "SNOMED CT (International Edition)" ;
+    dc:description "SNOMED CT (Systematized Nomenclature of Medicine -- Clinical Terms), is a systematically organized computer processable collection of medical terminology covering most areas of clinical information such as diseases, findings, procedures, microorganisms, pharmaceuticals, etc."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:SNOMEDCT,
+        oid:2.16.840.1.113883.6.96,
+        bioportal:SNOMEDCT,
+        biocontext:SNOMEDCT,
+        biolink:SNOMEDCT,
+        n2t:snomedct,
+        fairsharing:FAIRsharing.d88s6e,
+        prefixcommons:snomedct,
+        miriam:snomedct,
+        ols:snomed,
+        wikidata:P5806 ;
+    foaf:homepage "http://www.snomedbrowser.com/"^^xsd:string ;
+    bioregistry.schema:0000005 "284196006"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.snomedbrowser.com/Codes/Details/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(\\w+)?\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:snornabase a bioregistry.schema:0000001 ;
     rdfs:label "snoRNABase" ;
     dc:description """A comprehensive database of
@@ -23654,30 +23707,6 @@ human H/ACA and C/D box snoRNAs."""^^xsd:string ;
     bioregistry.schema:0000005 "SR0000178"^^xsd:string ;
     bioregistry.schema:0000006 "http://www-snorna.biotoul.fr/plus.php?id=$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
-
-bioregistry:so a bioregistry.schema:0000001 ;
-    rdfs:label "Sequence types and features ontology" ;
-    dc:description "The Sequence Ontology (SO) is a structured controlled vocabulary for the parts of a genomic annotation. It provides a common set of terms and definitions to facilitate the exchange, analysis and management of genomic data."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:SO,
-        agroportal:SO,
-        obofoundry:so,
-        ontobee:SO,
-        bioportal:SO,
-        biocontext:SO,
-        go.resource:SO,
-        n2t:so,
-        fairsharing:FAIRsharing.6bc7h9,
-        prefixcommons:so,
-        miriam:so,
-        ols:so ;
-    foaf:homepage "http://www.sequenceontology.org/"^^xsd:string ;
-    bioregistry.schema:0000005 "0001157"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.sequenceontology.org/miso/current_release/term/SO:$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:pcl ;
-    bioregistry.schema:0000019 orcid:0000-0002-0831-6427 .
 
 bioregistry:span a bioregistry.schema:0000001 ;
     rdfs:label "Span" ;
@@ -23946,6 +23975,7 @@ bioregistry:umls a bioregistry.schema:0000001 ;
     dc:description "The Unified Medical Language System is a repository of biomedical vocabularies. Vocabularies integrated in the UMLS Metathesaurus include the NCBI taxonomy, Gene Ontology, the Medical Subject Headings (MeSH), OMIM and the Digital Anatomist Symbolic Knowledge Base. UMLS concepts are not only inter-related, but may also be linked to external resources such as GenBank."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch edam.data:1181,
+        oid:2.16.840.1.113883.6.86,
         biocontext:UMLS,
         n2t:umls,
         miriam:umls,
@@ -23963,6 +23993,21 @@ bioregistry:umls.aui a bioregistry.schema:0000001 ;
     foaf:homepage "https://www.nlm.nih.gov/research/umls"^^xsd:string ;
     bioregistry.schema:0000005 "A0118748"^^xsd:string ;
     bioregistry.schema:0000008 "^A\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:unii a bioregistry.schema:0000001 ;
+    rdfs:label "Unique Ingredient Identifier" ;
+    dc:description "The purpose of the joint FDA/USP Substance Registration System (SRS) is to support health information technology initiatives by generating unique ingredient identifiers (UNIIs) for substances in drugs, biologics, foods, and devices. The UNII is a non- proprietary, free, unique, unambiguous, non semantic, alphanumeric identifier based on a substance’s molecular structure and/or descriptive information."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch biocontext:UNII,
+        n2t:unii,
+        miriam:unii,
+        cheminf:000563,
+        wikidata:P652 ;
+    foaf:homepage "http://fdasis.nlm.nih.gov/srs/"^^xsd:string ;
+    bioregistry.schema:0000005 "3G6A5W338E"^^xsd:string ;
+    bioregistry.schema:0000006 "http://fdasis.nlm.nih.gov/srs/srsdirect.jsp?regno=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[A-Z0-9]+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:uniprot.chain a bioregistry.schema:0000001 ;
@@ -24082,6 +24127,7 @@ bioregistry:vandf a bioregistry.schema:0000001 ;
     dc:description "The National Drug File (NDF) is produced by the U.S. Department of Veterans Affairs, Veterans Health Administration (VHA). NDF is a centrally maintained electronic drug list used by the VHA hospitals and clinics. Facilities use the NDF to check drug interactions, to manage orders, and to send outpatient prescriptions to regional automated mail-out pharmacies. NDF includes information on clinical drugs, drug classes, ingredients and National Drug Code (NDC) Directory codes. "^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:VANDF,
+        oid:2.16.840.1.113883.6.229,
         bioportal:VANDF,
         biolink:VANDF,
         fairsharing:FAIRsharing.xn3pb3 ;
@@ -24096,7 +24142,8 @@ bioregistry:vbo a bioregistry.schema:0000001 ;
     dc:description "Vertebrate Breed Ontology is an ontology created to serve as a single computable resource for vertebrate breed names."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:VBO,
-        obofoundry:vbo ;
+        obofoundry:vbo,
+        ontobee:VBO ;
     foaf:homepage "https://github.com/monarch-initiative/vertebrate-breed-ontology"^^xsd:string ;
     bioregistry.schema:0000005 "0000038"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/VBO_$1"^^xsd:string ;
@@ -24404,6 +24451,8 @@ fairsharing:FAIRsharing.1tbrdz dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.27rndz dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.27w8k0 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.284e1z dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.2abjs5 dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -24632,6 +24681,8 @@ fairsharing:FAIRsharing.7mnebr dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.7q4gsz dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.7rngj0 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.7sfedh dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.7xkx69 dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -24816,6 +24867,8 @@ fairsharing:FAIRsharing.beb855 dcterms:isPartOf bioregistry.metaresource:fairsha
 
 fairsharing:FAIRsharing.bf8dsb dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
+fairsharing:FAIRsharing.bfcfd0 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
 fairsharing:FAIRsharing.bg5xqs dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.bg7bb6 dcterms:isPartOf bioregistry.metaresource:fairsharing .
@@ -24981,6 +25034,8 @@ fairsharing:FAIRsharing.f73xhd dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.fc3431 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.fcwyhz dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.fe4816 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.fex4c8 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -25285,6 +25340,8 @@ fairsharing:FAIRsharing.s3r6sk dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.s5zmbp dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.s9ztmd dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.shm2f2 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.sjf113 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -25593,6 +25650,8 @@ prefixcommons:bactibase dcterms:isPartOf bioregistry.metaresource:prefixcommons 
 prefixcommons:bdgp dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:beetlebase dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
+prefixcommons:bind dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:bindingdb dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -28934,6 +28993,8 @@ wikidata:P1832 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P1929 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
+wikidata:P1930 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
 wikidata:P2057 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P2062 dcterms:isPartOf bioregistry.metaresource:wikidata .
@@ -28977,6 +29038,10 @@ wikidata:P2871 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P2892 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P2926 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P299 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P305 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P3088 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -29087,6 +29152,8 @@ wikidata:P652 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P661 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P662 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P663 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P6689 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -29249,6 +29316,26 @@ bioregistry:cito a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://purl.org/spar/cito/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:clinvar a bioregistry.schema:0000001 ;
+    rdfs:label "ClinVar Variation" ;
+    dc:description "ClinVar archives reports of relationships among medically important variants and phenotypes. It records human variation, interpretations of the relationship specific variations to human health, and supporting evidence for each interpretation. Each ClinVar record (RCV identifier) represents an aggregated view of interpretations of the same variation and condition from one or more submitters. Submissions for individual variation/phenotype combinations (SCV identifier) are also collected and made available separately. This collection references the Variant identifier."^^xsd:string ;
+    dcterms:hasPart bioregistry:clinvar.record ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch oid:clinVar-V,
+        biocontext:ClinVar,
+        biolink:CLINVAR,
+        cellosaurus.resource:ClinVar,
+        n2t:clinvar,
+        fairsharing:FAIRsharing.wx5r6f,
+        miriam:clinvar,
+        re3data:r3d100013331,
+        wikidata:P1929 ;
+    foaf:homepage "http://www.ncbi.nlm.nih.gov/clinvar/"^^xsd:string ;
+    bioregistry.schema:0000005 "12345"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/clinvar/variation/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:cog.category a bioregistry.schema:0000001 ;
     rdfs:label "COG Categories" ;
     dc:description "Higher-level classifications of COG Pathways"^^xsd:string ;
@@ -29282,6 +29369,21 @@ bioregistry:come a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://www.flymine.org/come/entry?gn=$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:cpt a bioregistry.schema:0000001 ;
+    rdfs:label "Current Procedural Terminology" ;
+    dc:description "Current Procedural Terminology, more commonly known as CPT®, refers to a medical code set created and maintained by the American Medical Association — and used by physicians, allied health professionals, nonphysician practitioners, hospitals, outpatient facilities, and laboratories to represent the services and procedures they perform. No provider of outpatient services gets paid without reporting the proper CPT® codes. [Description taken from this site](https://www.aapc.com/codes/cpt-codes-range/)]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:CPT,
+        bioportal:CPT,
+        biolink:CPT,
+        fairsharing:FAIRsharing.wpxab1 ;
+    foaf:homepage "https://www.aapc.com"^^xsd:string ;
+    bioregistry.schema:0000005 "00103"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.aapc.com/codes/cpt-codes/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:ctd dcterms:hasPart bioregistry:ctd.chemical,
         bioregistry:ctd.disease,
         bioregistry:ctd.gene .
@@ -29306,6 +29408,16 @@ bioregistry:cteno a bioregistry.schema:0000001 ;
         bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 .
 
+bioregistry:cvx a bioregistry.schema:0000001 ;
+    rdfs:label "Vaccine administered code set" ;
+    dc:description "The CDC's National Center of Immunization and Respiratory Diseases (NCIRD) developed and maintains the CVX (vaccine administered) code set. The table below has the most up to date values. It includes both active and inactive vaccines available in the US. CVX codes for inactive vaccines allow transmission of historical immunization records."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch oid:2.16.840.1.113883.6.59 ;
+    foaf:homepage "https://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=cvx"^^xsd:string ;
+    bioregistry.schema:0000005 "54"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:datacite a bioregistry.schema:0000001 ;
     rdfs:label "DataCite Ontology" ;
     dc:description "An ontology that enables the metadata properties of the DataCite Metadata Schema Specification (i.e., a list of metadata properties for the accurate and consistent identification of a resource for citation and retrieval purposes) to be described in RDF."^^xsd:string ;
@@ -29316,6 +29428,28 @@ bioregistry:datacite a bioregistry.schema:0000001 ;
     foaf:homepage "http://www.sparontologies.net/ontologies/datacite"^^xsd:string ;
     bioregistry.schema:0000005 "AgentIdentifierScheme"^^xsd:string ;
     bioregistry.schema:0000006 "http://purl.org/spar/datacite/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:dbsnp a bioregistry.schema:0000001 ;
+    rdfs:label "NCBI dbSNP" ;
+    dc:description "The dbSNP database is a repository for both single base nucleotide subsitutions and short deletion and insertion polymorphisms."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1106,
+        oid:2.16.840.1.113883.6.284,
+        biocontext:dbSNP,
+        cellosaurus.resource:dbSNP,
+        go.resource:dbSNP,
+        n2t:dbsnp,
+        ncbi.resource:dbSNP,
+        fairsharing:FAIRsharing.edxb58,
+        prefixcommons:dbsnp,
+        miriam:dbsnp,
+        re3data:r3d100010652,
+        uniprot.resource:dbSNP ;
+    foaf:homepage "https://www.ncbi.nlm.nih.gov/snp/"^^xsd:string ;
+    bioregistry.schema:0000005 "rs121909098"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/snp/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^rs\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:dc a bioregistry.schema:0000001 ;
@@ -29467,6 +29601,17 @@ bioregistry:drugbank.salt a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "DBSALT001211"^^xsd:string ;
     bioregistry.schema:0000006 "https://go.drugbank.com/salts/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^DBSALT\\d{6}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:dsm5 a bioregistry.schema:0000001 ;
+    rdfs:label "Diagnostic and Statistical Manual of Mental Disorders (5th Edition)" ;
+    dc:description "A terminology published by the American Psychiatric Association (APA) for the classification of mental disorders using a common language and standard criteria. [wikipedia]"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch oid:2.16.840.1.113883.6.344,
+        wikidata:P1930 ;
+    foaf:homepage "https://en.wikipedia.org/wiki/DSM-5"^^xsd:string ;
+    bioregistry.schema:0000005 "312.33"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{3}\\.\\d{2}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:dso a bioregistry.schema:0000001 ;
@@ -29781,6 +29926,47 @@ bioregistry:hba a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:hc.din a bioregistry.schema:0000001 ;
+    rdfs:label "Health Canada Drug Identification Number" ;
+    dc:description "A Drug Identification Number (DIN) is a computer-generated eight digit number assigned by Health Canada to a drug product prior to being marketed in Canada. It uniquely identifies all drug products sold in a dosage form in Canada and is located on the label of prescription and over-the-counter drug products that have been evaluated and authorized for sale in Canada."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch oid:2.16.840.1.113883.5.1105 ;
+    foaf:homepage "https://www.canada.ca/en/health-canada/services/drugs-health-products/drug-products/fact-sheets/drug-identification-number.html"^^xsd:string ;
+    bioregistry.schema:0000005 "02069237"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{8}$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:hc.npn a bioregistry.schema:0000001 ;
+    rdfs:label "Health Canada Natural Product Number" ;
+    dc:description "The Licensed Natural Health Products Database contains information about natural health products that have been issued a product licence by Health Canada."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch oid:2.16.840.1.113883.5.1107 ;
+    foaf:homepage "http://webprod.hc-sc.gc.ca/nhpid-bdipsn/search-rechercheReq.do?lang=eng"^^xsd:string ;
+    bioregistry.schema:0000005 "18125"^^xsd:string ;
+    bioregistry.schema:0000006 "http://webprod.hc-sc.gc.ca/nhpid-bdipsn/ingredReq.do?id=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:hl7.v2codesystem a bioregistry.schema:0000001 ;
+    rdfs:label "HL7 V2 Code Systems" ;
+    dc:description "A registry of code systems (each are small vocabularies themselves) used by HL7 international, related to FHIR."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://terminology.hl7.org/codesystems-v2.html"^^xsd:string ;
+    bioregistry.schema:0000005 "0778"^^xsd:string ;
+    bioregistry.schema:0000006 "http://terminology.hl7.org/CodeSystem/v2-$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:hl7.v3codesystem a bioregistry.schema:0000001 ;
+    rdfs:label "HL7 V2 Code Systems" ;
+    dc:description "A registry of code systems (each are small vocabularies themselves) used by HL7 international, related to FHIR."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://terminology.hl7.org/codesystems-v2.html"^^xsd:string ;
+    bioregistry.schema:0000005 "AcknowledgementCondition"^^xsd:string ;
+    bioregistry.schema:0000006 "https://terminology.hl7.org/CodeSystem-v3-$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\w+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:hsapdv a bioregistry.schema:0000001 ;
     rdfs:label "Human Developmental Stages" ;
     dc:description "Life cycle stages for Human"^^xsd:string ;
@@ -29801,11 +29987,35 @@ bioregistry:hsapdv a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-9415-5104 .
 
+bioregistry:icd10 a bioregistry.schema:0000001 ;
+    rdfs:label "International Classification of Diseases, 10th Revision" ;
+    dc:description """The 10th revision of the International Classification of Diseases (ICD) issued by the World Health Organization (WHO). ICD is formally named 'The International Statistical Classification of Diseases and Related Health Problems'. It contains codes for diseases, signs and symptoms, abnormal findings, complaints, social circumstances, and external causes of injury or diseases.
+
+Note that the WHO version of ICD-10 is distinct from the ICD-10-CM (Clinical Modification) issued by the U.S. National Center for Health Statistics for use in the United States."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:ICD10,
+        edam.data:2611,
+        oid:2.16.840.1.113883.6.3,
+        bioportal:ICD10,
+        biocontext:ICD,
+        biolink:ICD10,
+        n2t:icd,
+        fairsharing:FAIRsharing.nj16g,
+        prefixcommons:icd,
+        miriam:icd,
+        wikidata:P494 ;
+    foaf:homepage "https://icd.who.int/browse10"^^xsd:string ;
+    bioregistry.schema:0000005 "C34"^^xsd:string ;
+    bioregistry.schema:0000006 "https://icd.who.int/browse10/2019/en#/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^(([XVI]+)|([A-Z][0-9]+((-[A-Z][0-9]+)|(\\.[0-9]))?))$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:icd10cm a bioregistry.schema:0000001 ;
     rdfs:label "International Classification of Diseases, 10th Revision, Clinical Modification" ;
     dc:description "ICD-10-CM is the official system of assigning codes to diagnoses and procedures associated with hospital utilization in the United States issued by the National Center for Health Statistics (NCHS) and Centers for Medicare & Medicaid Services (CMS)."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:ICD10CM,
+        oid:2.16.840.1.113883.6.90,
         bioportal:ICD10CM,
         fairsharing:FAIRsharing.hpvbxb,
         wikidata:P4229 ;
@@ -29822,6 +30032,7 @@ bioregistry:icd10pcs a bioregistry.schema:0000001 ;
 ICD-10-PCS will be the official system of assigning codes to procedures associated with hospital utilization in the United States. ICD-10-PCS codes will support data collection, payment and electronic health records."""^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:ICD10PCS,
+        oid:2.16.840.1.113883.6.4,
         bioportal:ICD10PCS,
         fairsharing:FAIRsharing.85k1jm,
         wikidata:P1690 ;
@@ -29834,22 +30045,12 @@ bioregistry:icd11 a bioregistry.schema:0000001 ;
     rdfs:label "International Classification of Diseases, 11th Revision" ;
     dc:description "Diagnostic tool for epidemiology, health management and clinical purposes, maintained by the World Health Organization (WHO). It provides a system of diagnostic codes for classifying diseases, including nuanced classifications of a wide variety of signs, symptoms, abnormal findings, complaints, social circumstances, and external causes of injury or disease."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch fairsharing:FAIRsharing.97805c,
+    skos:exactMatch oid:2.16.840.1.113883.6.347,
+        fairsharing:FAIRsharing.97805c,
         wikidata:P7807 ;
     foaf:homepage "https://icd.who.int/"^^xsd:string ;
     bioregistry.schema:0000005 "RA01.0"^^xsd:string ;
     bioregistry.schema:0000006 "https://icd.who.int/browse11/l-m/en#/http://id.who.int/icd/entity/$1"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
-bioregistry:icd9 a bioregistry.schema:0000001 ;
-    rdfs:label "International Classification of Diseases, 9th Revision" ;
-    dc:description "The International Classification of Diseases (ICD) is designed to promote international comparability in the collection, processing, classification, and presentation of mortality statistics."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch biolink:ICD9,
-        wikidata:P493 ;
-    foaf:homepage "https://www.cdc.gov/nchs/icd/icd9.htm"^^xsd:string ;
-    bioregistry.schema:0000005 "277.9"^^xsd:string ;
-    bioregistry.schema:0000006 "http://www.icd9data.com/getICD9Code.ashx?icd9=$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:icd9cm a bioregistry.schema:0000001 ;
@@ -29857,6 +30058,7 @@ bioregistry:icd9cm a bioregistry.schema:0000001 ;
     dc:description "ICD-9-CM is the official system of assigning codes to diagnoses and procedures associated with hospital utilization in the United States."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:ICD9CM,
+        oid:2.16.840.1.113883.6.2,
         bioportal:ICD9CM,
         fairsharing:FAIRsharing.10zsxb,
         wikidata:P1692 ;
@@ -29871,12 +30073,27 @@ bioregistry:icdo a bioregistry.schema:0000001 ;
     dc:description "The International Classification of Diseases for Oncology (ICD-O) is a domain-specific extension of the International Statistical Classification of Diseases and Related Health Problems for tumor diseases"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:ICDO,
+        oid:2.16.840.1.113883.6.43,
         prefixcommons:icdo,
         wikidata:P563 ;
     foaf:homepage "https://www.who.int/classifications/icd/adaptations/oncology/en/"^^xsd:string ;
     bioregistry.schema:0000005 "9861/3"^^xsd:string ;
     bioregistry.schema:0000006 "http://codes.iarc.fr/search.php?cx=009987501641899931167%3A2_7lsevqpdm&cof=FORID%3A9&ie=UTF-8&ie=ISO-8859-1&oe=ISO-8859-1&sa=&q=$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[8-9]\\d{3}(/[0-3])?$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:icf a bioregistry.schema:0000001 ;
+    rdfs:label "International Classification of Functioning, Disability and Health" ;
+    dc:description "The International Classification of Functioning, Disability and Health, known more commonly as ICF, is a classification of health and health-related domains. As the functioning and disability of an individual occurs in a context, ICF also includes a list of environmental factors. ICF is the WHO framework for measuring health and disability at both individual and population levels."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:ICF,
+        oid:2.16.840.1.113883.6.254,
+        bioportal:ICF,
+        fairsharing:FAIRsharing.7rngj0 ;
+    foaf:homepage "https://icd.who.int/dev11/l-icf/en"^^xsd:string ;
+    bioregistry.schema:0000005 "326705068"^^xsd:string ;
+    bioregistry.schema:0000006 "http://id.who.int/icd/entity/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:ido a bioregistry.schema:0000001 ;
@@ -29899,6 +30116,26 @@ bioregistry:ido a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0003-1617-8244 .
+
+bioregistry:ietf.language a bioregistry.schema:0000001 ;
+    rdfs:label "Internet Engineering Task Force Language Tag" ;
+    dc:description "Shorthand representations of languages and their subtypes"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P305 ;
+    foaf:homepage "http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry"^^xsd:string ;
+    bioregistry.schema:0000005 "en-GB"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\w{2,3}(-\\w+)?$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:iso.3166 a bioregistry.schema:0000001 ;
+    rdfs:label "ISO 3166-1 Country Code" ;
+    dc:description "An identifier for a country in numeric format per ISO 3166-1"^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P299 ;
+    foaf:homepage "https://www.iso.org/iso-3166-country-codes.html"^^xsd:string ;
+    bioregistry.schema:0000005 "554"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:kegg.compound a bioregistry.schema:0000001 ;
     rdfs:label "KEGG Compound" ;
@@ -29980,6 +30217,20 @@ bioregistry:kegg.rclass a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^RC\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:loinc a bioregistry.schema:0000001 ;
+    rdfs:label "Logical Observation Identifiers Names and Codes" ;
+    dc:description "The international standard for identifying health measurements, observations, and documents."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:LOINC,
+        oid:2.16.840.1.113883.6.1,
+        bioportal:LOINC,
+        biolink:LOINC,
+        fairsharing:FAIRsharing.2mk2zb ;
+    foaf:homepage "https://loinc.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "LL379-9"^^xsd:string ;
+    bioregistry.schema:0000006 "https://loinc.org/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:mba a bioregistry.schema:0000001 ;
     rdfs:label "Mouse Brain Atlas" ;
     dc:description "A controlled vocabulary to support the study of transcription in the mouse brain"^^xsd:string ;
@@ -30007,6 +30258,7 @@ bioregistry:mesh a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:MESH,
         edam.data:1177,
+        oid:2.16.840.1.113883.6.177,
         bioportal:MESH,
         biocontext:MESH,
         biolink:MESH,
@@ -30141,6 +30393,7 @@ bioregistry:ncbigene a bioregistry.schema:0000001 ;
     dc:description "Entrez Gene is the NCBI's database for gene-specific information, focusing on completely sequenced genomes, those with an active research community to contribute gene-specific information, or those that are scheduled for intense sequence analysis."^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch edam.data:1027,
+        oid:geneCodeNCBI,
         biocontext:NCBIGene,
         biolink:NCBIGene,
         go.resource:NCBIGene,
@@ -30171,6 +30424,22 @@ bioregistry:ncbiprotein a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "CAA71118.1"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/protein/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^(\\w+\\d+(\\.\\d+)?)|(NP_\\d+)$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:ndfrt a bioregistry.schema:0000001 ;
+    rdfs:label "National Drug File - Reference Terminology" ;
+    dc:description "NDF-RT combines the NDF hierarchical drug classification with a multi-category reference model. The categories are: Cellular or Molecular Interactions [MoA]; Chemical Ingredients [Chemical/Ingredient]; Clinical Kinetics [PK]; Diseases, Manifestations or Physiologic States [Disease/Finding]Dose Forms [Dose Form]; Pharmaceutical Preparations; Physiological Effects [PE]; Therapeutic Categories [TC]; and VA Drug Interactions [VA Drug Interaction]."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:NDFRT,
+        oid:2.16.840.1.113883.6.209,
+        ontobee:NDF-RT,
+        bioportal:NDFRT,
+        fairsharing:FAIRsharing.901nkj,
+        prefixcommons:ndfrt,
+        wikidata:P2115 ;
+    foaf:homepage "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT"^^xsd:string ;
+    bioregistry.schema:0000005 "N0000001662"^^xsd:string ;
+    bioregistry.schema:0000006 "https://evs.nci.nih.gov/ftp1/NDF-RT/NDF-RT.owl#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:nif.ext a bioregistry.schema:0000001 ;
@@ -30372,6 +30641,21 @@ bioregistry:nlx.sub a bioregistry.schema:0000001 ;
     bioregistry.schema:0000019 orcid:0000-0002-7509-4815 ;
     bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
 
+bioregistry:nucc.taxonomy a bioregistry.schema:0000001 ;
+    rdfs:label "National Uniform Claim Committee Taxonomy" ;
+    dc:description """The Health Care Provider Taxonomy code set is an external, nonmedical data code set designed for use in an electronic environment, specifically within the ASC X12N Health Care transactions. This includes the transactions mandated under HIPAA.
+
+The taxonomy code is a unique alphanumeric code, ten characters in length. The code set is structured into three distinct "Levels" including Provider Grouping, Classification, and Area of Specialization.
+
+ - **Level I, Provider Grouping** A major grouping of service(s) or occupation(s) of health care providers. For example: Allopathic & Osteopathic Physicians, Dental Providers, Hospitals, etc.
+ - **Level II, Classification** A more specific service or occupation related to the Provider Grouping. For example, the Classification for Allopathic & Osteopathic Physicians is based upon the General Specialty Certificates as issued by the appropriate national boards. The following boards will however, have their general certificates appear as Level III areas of specialization strictly due to display limitations of the code set for Boards that have multiple general certificates: Medical Genetics, Preventive Medicine, Psychiatry & Neurology, Radiology, Surgery, Otolaryngology, Pathology.
+ - **Level III, Area of Specialization** A more specialized area of the Classification in which a provider chooses to practice or make services available. For example, the Area of Specialization for provider grouping Allopathic & Osteopathic Physicians is based upon the Subspecialty Certificates as issued by the appropriate national boards."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://taxonomy.nucc.org"^^xsd:string ;
+    bioregistry.schema:0000005 "207LH0002X"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{3}\\w(\\w|\\d_)\\d{4}X$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:oa a bioregistry.schema:0000001 ;
     rdfs:label "Web Annotation Ontology" ;
     dc:description "The W3C Web Annotation Working Group is chartered to develop a set of specifications for an interoperable, sharable, distributed Web Annotation architecture."^^xsd:string ;
@@ -30405,6 +30689,31 @@ OGMS is based on the papers Toward an Ontological Treatment of Disease and Diagn
     bioregistry.schema:0000018 bioregistry:labo,
         bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0003-1346-1327 .
+
+bioregistry:omim a bioregistry.schema:0000001 ;
+    rdfs:label "Online Mendelian Inheritance in Man" ;
+    dc:description "Online Mendelian Inheritance in Man is a catalog of human genes and genetic disorders."^^xsd:string ;
+    dcterms:hasPart bioregistry:omim.ps ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:OMIM,
+        edam.data:1153,
+        oid:2.16.840.1.113883.6.174,
+        bioportal:OMIM,
+        biocontext:OMIM,
+        go.resource:OMIM,
+        n2t:mim,
+        ncbi.resource:MIM,
+        fairsharing:FAIRsharing.b084yh,
+        prefixcommons:omim,
+        miriam:mim,
+        uniprot.resource:MIM,
+        wikidata:P492 ;
+    foaf:homepage "https://omim.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "603903"^^xsd:string ;
+    bioregistry.schema:0000006 "https://omim.org/entry/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-1780-5230 .
 
 bioregistry:omim.ps a bioregistry.schema:0000001 ;
     rdfs:label "OMIM Phenotypic Series" ;
@@ -30614,26 +30923,6 @@ bioregistry:pubchem.element a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
-bioregistry:pubmed a bioregistry.schema:0000001 ;
-    rdfs:label "PubMed" ;
-    dc:description "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch edam.data:1187,
-        biocontext:PUBMED,
-        cellosaurus.resource:PubMed,
-        go.resource:PMID,
-        n2t:pubmed,
-        fairsharing:FAIRsharing.a5sv8m,
-        prefixcommons:pubmed,
-        miriam:pubmed,
-        cheminf:000302,
-        wikidata:P698 ;
-    foaf:homepage "https://www.ncbi.nlm.nih.gov/PubMed/"^^xsd:string ;
-    bioregistry.schema:0000005 "16333295"^^xsd:string ;
-    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/pubmed/$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
-
 bioregistry:puro a bioregistry.schema:0000001 ;
     rdfs:label "Publishing Roles Ontology" ;
     dc:description "An ontology for the characterisation of the roles of agents – people, corporate bodies and computational agents in the publication process. These agents can be, e.g. authors, editors, reviewers, publishers or librarians."^^xsd:string ;
@@ -30678,6 +30967,28 @@ bioregistry:qudt a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "http://qudt.org/schema/qudt#$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:radlex a bioregistry.schema:0000001 ;
+    rdfs:label "RSNA Informatics RadLex" ;
+    dc:description """A comprehensive set of radiology terms for use in radiology reporting, decision support, data mining, data registries, education and research.
+
+RadLex provides the foundation for vital data resources used in radiology:
+
+- The LOINC/RSNA Radiology Playbook
+- RadElement Common Data Elements
+-RadReport Radiology Reporting Templates
+
+The development of RadLex has been supported by the National Institute of Biomedical Imaging and Bioengineering (NIBIB) and the cancer Biomedical Informatics Grid (caBIG) project."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:RADLEX,
+        oid:2.16.840.1.113883.6.256,
+        bioportal:RADLEX,
+        fairsharing:FAIRsharing.shm2f2 ;
+    foaf:homepage "https://radlex.org"^^xsd:string ;
+    bioregistry.schema:0000005 "RID1"^^xsd:string ;
+    bioregistry.schema:0000006 "https://radlex.org/RID/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^RID\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:rdf a bioregistry.schema:0000001 ;
     rdfs:label "Resource Description Framework" ;
     dc:description "This is the RDF Schema for the RDF vocabulary terms in the RDF Namespace, defined in RDF 1.1 Concepts"^^xsd:string ;
@@ -30687,6 +30998,23 @@ bioregistry:rdf a bioregistry.schema:0000001 ;
     foaf:homepage "http://www.w3.org/1999/02/22-rdf-syntax-ns"^^xsd:string ;
     bioregistry.schema:0000005 "RDF"^^xsd:string ;
     bioregistry.schema:0000006 "http://www.w3.org/1999/02/22-rdf-syntax-ns#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
+bioregistry:rxnorm a bioregistry.schema:0000001 ;
+    rdfs:label "RxNorm" ;
+    dc:description "RxNorm provides normalized names for clinical drugs and links its names to many of the drug vocabularies commonly used in pharmacy management and drug interaction software, including those of First Databank, Micromedex, and Gold Standard Drug Database. By providing links between these vocabularies, RxNorm can mediate messages between systems not using the same software and vocabulary."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:RXNORM,
+        oid:2.16.840.1.113883.6.88,
+        bioportal:RXNORM,
+        biocontext:RXCUI,
+        biolink:RXNORM,
+        fairsharing:FAIRsharing.36pf8q,
+        wikidata:P3345 ;
+    foaf:homepage "https://www.nlm.nih.gov/research/umls/rxnorm/"^^xsd:string ;
+    bioregistry.schema:0000005 "221058"^^xsd:string ;
+    bioregistry.schema:0000006 "https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[0-9]{1,7}$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
 bioregistry:sbo a bioregistry.schema:0000001 ;
@@ -30793,6 +31121,30 @@ bioregistry:smid a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:so a bioregistry.schema:0000001 ;
+    rdfs:label "Sequence types and features ontology" ;
+    dc:description "The Sequence Ontology (SO) is a structured controlled vocabulary for the parts of a genomic annotation. It provides a common set of terms and definitions to facilitate the exchange, analysis and management of genomic data."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:SO,
+        agroportal:SO,
+        obofoundry:so,
+        ontobee:SO,
+        bioportal:SO,
+        biocontext:SO,
+        go.resource:SO,
+        n2t:so,
+        fairsharing:FAIRsharing.6bc7h9,
+        prefixcommons:so,
+        miriam:so,
+        ols:so ;
+    foaf:homepage "http://www.sequenceontology.org/"^^xsd:string ;
+    bioregistry.schema:0000005 "0001157"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.sequenceontology.org/miso/current_release/term/SO:$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d{7}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:pcl ;
+    bioregistry.schema:0000019 orcid:0000-0002-0831-6427 .
+
 bioregistry:ssbd.dataset a bioregistry.schema:0000001 ;
     rdfs:label "System Science of Biological Dynamics dataset" ;
     dc:description "Systems Science of Biological Dynamics database (SSBD:database) is an added-value database for biological dynamics. It provides a rich set of open resources for analyzing quantitative data and microscopy images of biological objects, such as single-molecule, cell, tissue, individual, etc., and software tools for analysis. Quantitative biological data and microscopy images are collected from a variety of species, sources, and methods. These include data obtained from both experiments and computational simulations."^^xsd:string ;
@@ -30876,6 +31228,17 @@ bioregistry:symp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000012 false ;
     bioregistry.schema:0000018 bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0001-8910-9851 .
+
+bioregistry:ucum a bioregistry.schema:0000001 ;
+    rdfs:label "Unified Code for Units of Measure" ;
+    dc:description "Unified Code for Units of Measure (UCUM) is a code system intended to include all units of measures being contemporarily used in international science, engineering, and business."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch oid:2.16.840.1.113883.6.8,
+        fairsharing:FAIRsharing.27w8k0 ;
+    foaf:homepage "https://ucum.org"^^xsd:string ;
+    bioregistry.schema:0000005 "aBq"^^xsd:string ;
+    bioregistry.schema:0000006 "https://units-of-measurement.org/$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:umbbd.compound a bioregistry.schema:0000001 ;
     rdfs:label "UM-BBD Compound" ;
@@ -31325,6 +31688,7 @@ bioregistry:hp a bioregistry.schema:0000001 ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry ;
     skos:exactMatch aberowl:HP_O,
         obofoundry:hp,
+        oid:2.16.840.1.113883.6.339,
         ontobee:HP,
         bioportal:HP_O,
         biocontext:HPO,
@@ -31341,6 +31705,18 @@ bioregistry:hp a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:chiro,
         bioregistry:scdo ;
     bioregistry.schema:0000019 orcid:0000-0002-5316-1399 .
+
+bioregistry:icd9 a bioregistry.schema:0000001 ;
+    rdfs:label "International Classification of Diseases, 9th Revision" ;
+    dc:description "The International Classification of Diseases (ICD) is designed to promote international comparability in the collection, processing, classification, and presentation of mortality statistics."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch oid:2.16.840.1.113883.6.42,
+        biolink:ICD9,
+        wikidata:P493 ;
+    foaf:homepage "https://www.cdc.gov/nchs/icd/icd9.htm"^^xsd:string ;
+    bioregistry.schema:0000005 "277.9"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.icd9data.com/getICD9Code.ashx?icd9=$1"^^xsd:string ;
+    bioregistry.schema:0000012 false .
 
 bioregistry:metatlas a bioregistry.schema:0000001 ;
     rdfs:label "Metabolic Atlas" ;
@@ -31485,6 +31861,26 @@ bioregistry:plana a bioregistry.schema:0000001 ;
     bioregistry.schema:0000018 bioregistry:planp ;
     bioregistry.schema:0000019 orcid:0000-0002-3528-5267 .
 
+bioregistry:pubmed a bioregistry.schema:0000001 ;
+    rdfs:label "PubMed" ;
+    dc:description "PubMed is a service of the U.S. National Library of Medicine that includes citations from MEDLINE and other life science journals for biomedical articles back to the 1950s."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch edam.data:1187,
+        biocontext:PUBMED,
+        cellosaurus.resource:PubMed,
+        go.resource:PMID,
+        n2t:pubmed,
+        fairsharing:FAIRsharing.a5sv8m,
+        prefixcommons:pubmed,
+        miriam:pubmed,
+        cheminf:000302,
+        wikidata:P698 ;
+    foaf:homepage "https://www.ncbi.nlm.nih.gov/PubMed/"^^xsd:string ;
+    bioregistry.schema:0000005 "16333295"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.ncbi.nlm.nih.gov/pubmed/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false .
+
 bioregistry:rdfs a bioregistry.schema:0000001 ;
     rdfs:label "RDF Schema" ;
     dc:description "RDF Schema provides a data-modelling vocabulary for RDF data. RDF Schema is an extension of the basic RDF vocabulary."^^xsd:string ;
@@ -31607,33 +32003,6 @@ bioregistry:multicellds a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "MCDS_S_0000000001"^^xsd:string ;
     bioregistry.schema:0000006 "http://multicellds.org/MultiCellDB/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
-
-bioregistry:ncit a bioregistry.schema:0000001 ;
-    rdfs:label "NCI Thesaurus" ;
-    dc:description "NCI Thesaurus (NCIt) provides reference terminology covering vocabulary for clinical care, translational and basic research, and public information and administrative activities, providing a stable and unique identification code."^^xsd:string ;
-    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
-    skos:exactMatch aberowl:NCIT,
-        obofoundry:ncit,
-        ontobee:NCIT,
-        bioportal:NCIT,
-        biocontext:NCIT,
-        cellosaurus.resource:NCIt,
-        n2t:ncit,
-        fairsharing:FAIRsharing.4cvwxa,
-        prefixcommons:ncit,
-        miriam:ncit,
-        ols:ncit,
-        wikidata:P1748 ;
-    foaf:homepage "https://github.com/NCI-Thesaurus/thesaurus-obo-edition"^^xsd:string ;
-    bioregistry.schema:0000005 "C138986"^^xsd:string ;
-    bioregistry.schema:0000006 "http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1"^^xsd:string ;
-    bioregistry.schema:0000008 "^C\\d+$"^^xsd:string ;
-    bioregistry.schema:0000012 false ;
-    bioregistry.schema:0000018 bioregistry:ecto,
-        bioregistry:mco,
-        bioregistry:ontoavida,
-        bioregistry:scdo ;
-    bioregistry.schema:0000019 orcid:0000-0001-9114-8737 .
 
 bioregistry:planp a bioregistry.schema:0000001 ;
     rdfs:label "Planarian Phenotype Ontology" ;
@@ -31896,6 +32265,34 @@ bioregistry:hso a bioregistry.schema:0000001 ;
         bioregistry:ro,
         bioregistry:uberon ;
     bioregistry.schema:0000019 orcid:0000-0001-8638-8525 .
+
+bioregistry:ncit a bioregistry.schema:0000001 ;
+    rdfs:label "NCI Thesaurus" ;
+    dc:description "NCI Thesaurus (NCIt) provides reference terminology covering vocabulary for clinical care, translational and basic research, and public information and administrative activities, providing a stable and unique identification code."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:NCIT,
+        obofoundry:ncit,
+        oid:2.16.840.1.113883.6.206,
+        ontobee:NCIT,
+        bioportal:NCIT,
+        biocontext:NCIT,
+        cellosaurus.resource:NCIt,
+        n2t:ncit,
+        fairsharing:FAIRsharing.4cvwxa,
+        prefixcommons:ncit,
+        miriam:ncit,
+        ols:ncit,
+        wikidata:P1748 ;
+    foaf:homepage "https://github.com/NCI-Thesaurus/thesaurus-obo-edition"^^xsd:string ;
+    bioregistry.schema:0000005 "C138986"^^xsd:string ;
+    bioregistry.schema:0000006 "http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^C\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000018 bioregistry:ecto,
+        bioregistry:mco,
+        bioregistry:ontoavida,
+        bioregistry:scdo ;
+    bioregistry.schema:0000019 orcid:0000-0001-9114-8737 .
 
 bioregistry:ontoavida a bioregistry.schema:0000001 ;
     rdfs:label "Ontology for Avida digital evolution platform" ;
@@ -32405,6 +32802,7 @@ bioregistry:pcl a bioregistry.schema:0000001 ;
         obofoundry:pcl,
         ontobee:PCL,
         bioportal:PCL,
+        fairsharing:FAIRsharing.bfcfd0,
         ols:pcl ;
     foaf:homepage "https://github.com/obophenotype/provisional_cell_ontology"^^xsd:string ;
     bioregistry.schema:0000005 "0011124"^^xsd:string ;
@@ -32566,6 +32964,7 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
         agroportal:NCBITAXON,
         edam.data:1179,
         obofoundry:ncbitaxon,
+        oid:NCBI,
         ontobee:NCBITaxon,
         bioportal:NCBITAXON,
         biocontext:TAXONOMY,
@@ -32679,6 +33078,7 @@ bioregistry:go a bioregistry.schema:0000001 ;
         agroportal:GO,
         edam.data:1176,
         obofoundry:go,
+        oid:2.16.840.1.113883.6.128,
         ontobee:GO,
         bioportal:GO,
         biocontext:GO,
@@ -33162,6 +33562,60 @@ bioregistry:ro a bioregistry.schema:0000001 ;
         bioregistry:zp ;
     bioregistry.schema:0000019 orcid:0000-0002-6601-2165 .
 
+bioregistry.metaresource:hl7 a bioregistry.schema:0000002 ;
+    rdfs:label "HL7 External Code Systems" ;
+    dc:description "HL7 External Code Systems are stored within the greater OID system" ;
+    dcterms:hasPart oid:2.16.840.1.113883.5.1105,
+        oid:2.16.840.1.113883.5.1107,
+        oid:2.16.840.1.113883.6.1,
+        oid:2.16.840.1.113883.6.116,
+        oid:2.16.840.1.113883.6.119,
+        oid:2.16.840.1.113883.6.120,
+        oid:2.16.840.1.113883.6.126,
+        oid:2.16.840.1.113883.6.128,
+        oid:2.16.840.1.113883.6.173,
+        oid:2.16.840.1.113883.6.174,
+        oid:2.16.840.1.113883.6.175,
+        oid:2.16.840.1.113883.6.177,
+        oid:2.16.840.1.113883.6.2,
+        oid:2.16.840.1.113883.6.206,
+        oid:2.16.840.1.113883.6.208,
+        oid:2.16.840.1.113883.6.209,
+        oid:2.16.840.1.113883.6.229,
+        oid:2.16.840.1.113883.6.254,
+        oid:2.16.840.1.113883.6.256,
+        oid:2.16.840.1.113883.6.280,
+        oid:2.16.840.1.113883.6.281,
+        oid:2.16.840.1.113883.6.283,
+        oid:2.16.840.1.113883.6.284,
+        oid:2.16.840.1.113883.6.3,
+        oid:2.16.840.1.113883.6.339,
+        oid:2.16.840.1.113883.6.344,
+        oid:2.16.840.1.113883.6.347,
+        oid:2.16.840.1.113883.6.4,
+        oid:2.16.840.1.113883.6.42,
+        oid:2.16.840.1.113883.6.43,
+        oid:2.16.840.1.113883.6.59,
+        oid:2.16.840.1.113883.6.61,
+        oid:2.16.840.1.113883.6.62,
+        oid:2.16.840.1.113883.6.69,
+        oid:2.16.840.1.113883.6.77,
+        oid:2.16.840.1.113883.6.8,
+        oid:2.16.840.1.113883.6.86,
+        oid:2.16.840.1.113883.6.88,
+        oid:2.16.840.1.113883.6.90,
+        oid:2.16.840.1.113883.6.96,
+        oid:DCM,
+        oid:NCBI,
+        oid:clinVar-V,
+        oid:geneCodeNCBI,
+        oid:mdr,
+        oid:whoATC ;
+    foaf:homepage "http://www.oid-info.com/get/2.16.840.1.113883.6" ;
+    bioregistry.schema:0000005 "2.16.840.1.113883.6.88" ;
+    bioregistry.schema:0000006 "http://www.oid-info.com/get/$1" ;
+    bioregistry.schema:0000019 [ rdfs:label "W. Ted Klein" ] .
+
 orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
     dcterms:contributor bioregistry:4dn.replicate,
         bioregistry:abcd,
@@ -33221,6 +33675,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:cp,
         bioregistry:credit,
         bioregistry:ctcae,
+        bioregistry:cvx,
         bioregistry:datacite,
         bioregistry:dbo,
         bioregistry:dbvar.study,
@@ -33244,6 +33699,8 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:drugbank.category,
         bioregistry:drugbank.salt,
         bioregistry:drugcentral,
+        bioregistry:dsm4,
+        bioregistry:dsm5,
         bioregistry:dsmz,
         bioregistry:dso,
         bioregistry:dto,
@@ -33273,6 +33730,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:fbrf,
         bioregistry:fbtc,
         bioregistry:fcsfree,
+        bioregistry:fhir.implementation,
         bioregistry:fishbase.species,
         bioregistry:fivestars,
         bioregistry:flybrain.ndb,
@@ -33311,7 +33769,11 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:gtr,
         bioregistry:hathitrust,
         bioregistry:hba,
+        bioregistry:hc.din,
+        bioregistry:hc.npn,
         bioregistry:hcpcs,
+        bioregistry:hl7.v2codesystem,
+        bioregistry:hl7.v3codesystem,
         bioregistry:hms.lincs.compound,
         bioregistry:hog,
         bioregistry:hsdb,
@@ -33322,8 +33784,10 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:icd9cm,
         bioregistry:icdo,
         bioregistry:icepo,
+        bioregistry:icf,
         bioregistry:idoden,
         bioregistry:idpo,
+        bioregistry:ietf.language,
         bioregistry:ihw,
         bioregistry:illumina.probe,
         bioregistry:imdrf,
@@ -33333,6 +33797,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:inhand,
         bioregistry:inn,
         bioregistry:iro,
+        bioregistry:iso.3166,
         bioregistry:itis,
         bioregistry:jax,
         bioregistry:jcrb,
@@ -33380,6 +33845,8 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:npo,
         bioregistry:nsc,
         bioregistry:nsf.award,
+        bioregistry:nucc.characteristic,
+        bioregistry:nucc.taxonomy,
         bioregistry:oa,
         bioregistry:oboinowl,
         bioregistry:omim.ps,
@@ -33414,6 +33881,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:pwo,
         bioregistry:qb,
         bioregistry:qudt,
+        bioregistry:radlex,
         bioregistry:rcb,
         bioregistry:rdf,
         bioregistry:rdfs,
@@ -33466,6 +33934,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:tkg,
         bioregistry:ubprop,
         bioregistry:ucsc,
+        bioregistry:ucum,
         bioregistry:umls.aui,
         bioregistry:uniprot.disease,
         bioregistry:uniprot.journal,
@@ -33973,6 +34442,7 @@ bioregistry.metaresource:edam a bioregistry.schema:0000002 ;
         edam.data:1105,
         edam.data:1106,
         edam.data:1127,
+        edam.data:1129,
         edam.data:1133,
         edam.data:1136,
         edam.data:1138,
@@ -34093,6 +34563,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P1748,
         wikidata:P1832,
         wikidata:P1929,
+        wikidata:P1930,
         wikidata:P2057,
         wikidata:P2062,
         wikidata:P2063,
@@ -34115,6 +34586,8 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P2871,
         wikidata:P2892,
         wikidata:P2926,
+        wikidata:P299,
+        wikidata:P305,
         wikidata:P3088,
         wikidata:P3117,
         wikidata:P3151,
@@ -34170,6 +34643,7 @@ bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
         wikidata:P652,
         wikidata:P661,
         wikidata:P662,
+        wikidata:P663,
         wikidata:P665,
         wikidata:P6689,
         wikidata:P671,
@@ -34685,6 +35159,7 @@ bioregistry.metaresource:ontobee a bioregistry.schema:0000002 ;
         ontobee:UO,
         ontobee:UPA,
         ontobee:UPHENO,
+        ontobee:VBO,
         ontobee:VIDO,
         ontobee:VO,
         ontobee:VT,
@@ -35392,6 +35867,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:ICD10PCS,
         bioportal:ICD9CM,
         bioportal:ICEO,
+        bioportal:ICF,
         bioportal:ICO,
         bioportal:IDO,
         bioportal:IDO-COVID-19,
@@ -35506,6 +35982,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:PTO,
         bioportal:PW,
         bioportal:QUDT,
+        bioportal:RADLEX,
         bioportal:RBO,
         bioportal:RDFS,
         bioportal:RDO,
@@ -35717,6 +36194,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:ICD9CM,
         aberowl:ICDO,
         aberowl:ICEO,
+        aberowl:ICF,
         aberowl:ICO,
         aberowl:IDO,
         aberowl:IDO-COVID-19,
@@ -35830,6 +36308,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:PSO,
         aberowl:PW,
         aberowl:QUDT,
+        aberowl:RADLEX,
         aberowl:RBO,
         aberowl:RDFS,
         aberowl:RDO,
@@ -35931,6 +36410,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:bactibase,
         prefixcommons:bdgp,
         prefixcommons:beetlebase,
+        prefixcommons:bind,
         prefixcommons:bindingdb,
         prefixcommons:biocyc,
         prefixcommons:biogrid,
@@ -36287,6 +36767,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.1rj558,
         fairsharing:FAIRsharing.1tbrdz,
         fairsharing:FAIRsharing.27rndz,
+        fairsharing:FAIRsharing.27w8k0,
         fairsharing:FAIRsharing.284e1z,
         fairsharing:FAIRsharing.2abjs5,
         fairsharing:FAIRsharing.2ajtcf,
@@ -36401,6 +36882,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.7k8zh0,
         fairsharing:FAIRsharing.7mnebr,
         fairsharing:FAIRsharing.7q4gsz,
+        fairsharing:FAIRsharing.7rngj0,
         fairsharing:FAIRsharing.7sfedh,
         fairsharing:FAIRsharing.7xkx69,
         fairsharing:FAIRsharing.7zffgc,
@@ -36493,6 +36975,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.bdn9br,
         fairsharing:FAIRsharing.beb855,
         fairsharing:FAIRsharing.bf8dsb,
+        fairsharing:FAIRsharing.bfcfd0,
         fairsharing:FAIRsharing.bg5xqs,
         fairsharing:FAIRsharing.bg7bb6,
         fairsharing:FAIRsharing.bgkyd7,
@@ -36576,6 +37059,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.f73xhd,
         fairsharing:FAIRsharing.fc3431,
         fairsharing:FAIRsharing.fcwyhz,
+        fairsharing:FAIRsharing.fe4816,
         fairsharing:FAIRsharing.fex4c8,
         fairsharing:FAIRsharing.fgd5gq,
         fairsharing:FAIRsharing.fhcmwq,
@@ -36728,6 +37212,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.s3r6sk,
         fairsharing:FAIRsharing.s5zmbp,
         fairsharing:FAIRsharing.s9ztmd,
+        fairsharing:FAIRsharing.shm2f2,
         fairsharing:FAIRsharing.sjf113,
         fairsharing:FAIRsharing.sjhvyy,
         fairsharing:FAIRsharing.sm90nh,
@@ -38377,6 +38862,7 @@ bioregistry.metaresource:biocontext a bioregistry.schema:0000002 ;
         biocontext:BIGG.MODEL,
         biocontext:BIGG.REACTION,
         biocontext:BILA,
+        biocontext:BIND,
         biocontext:BINDINGDB,
         biocontext:BIOCARTA.PATHWAY,
         biocontext:BIOCATALOGUE.SERVICE,
@@ -39256,6 +39742,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:bigg.model,
         bioregistry:bigg.reaction,
         bioregistry:bila,
+        bioregistry:bind,
         bioregistry:bindingdb,
         bioregistry:biocarta.pathway,
         bioregistry:biocatalogue.service,
@@ -39471,6 +39958,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:cto,
         bioregistry:cubedb,
         bioregistry:cvdo,
+        bioregistry:cvx,
         bioregistry:d1id,
         bioregistry:dailymed,
         bioregistry:dandi,
@@ -39555,6 +40043,8 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:drugbank.salt,
         bioregistry:drugbankv4.target,
         bioregistry:drugcentral,
+        bioregistry:dsm4,
+        bioregistry:dsm5,
         bioregistry:dsmz,
         bioregistry:dso,
         bioregistry:dto,
@@ -39651,6 +40141,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:fbtc,
         bioregistry:fcb,
         bioregistry:fcsfree,
+        bioregistry:fhir.implementation,
         bioregistry:fideo,
         bioregistry:fishbase.species,
         bioregistry:fivestars,
@@ -39785,6 +40276,8 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:hao,
         bioregistry:hathitrust,
         bioregistry:hba,
+        bioregistry:hc.din,
+        bioregistry:hc.npn,
         bioregistry:hcao,
         bioregistry:hcpcs,
         bioregistry:hcvdb,
@@ -39799,6 +40292,8 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:hinv.transcript,
         bioregistry:hipsci,
         bioregistry:hivreagentprogram,
+        bioregistry:hl7.v2codesystem,
+        bioregistry:hl7.v3codesystem,
         bioregistry:hmdb,
         bioregistry:hms.lincs.compound,
         bioregistry:hog,
@@ -39835,6 +40330,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:iceberg.family,
         bioregistry:iceo,
         bioregistry:icepo,
+        bioregistry:icf,
         bioregistry:iclc,
         bioregistry:ico,
         bioregistry:ideal,
@@ -39847,6 +40343,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:idpo,
         bioregistry:idr,
         bioregistry:iedb,
+        bioregistry:ietf.language,
         bioregistry:iev,
         bioregistry:igrhcellid,
         bioregistry:igsn,
@@ -39885,6 +40382,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:isbn,
         bioregistry:isfinder,
         bioregistry:isni,
+        bioregistry:iso.3166,
         bioregistry:issn,
         bioregistry:itis,
         bioregistry:ito,
@@ -40139,6 +40637,8 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:npo,
         bioregistry:nsc,
         bioregistry:nsf.award,
+        bioregistry:nucc.characteristic,
+        bioregistry:nucc.taxonomy,
         bioregistry:nuclearbd,
         bioregistry:nucleotide,
         bioregistry:oa,
@@ -40339,6 +40839,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:qtldb,
         bioregistry:qudt,
         bioregistry:radiomics,
+        bioregistry:radlex,
         bioregistry:rapdb.locus,
         bioregistry:rapdb.transcript,
         bioregistry:rbk,
@@ -40525,6 +41026,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ubio.namebank,
         bioregistry:ubprop,
         bioregistry:ucsc,
+        bioregistry:ucum,
         bioregistry:umbbd.compound,
         bioregistry:umbbd.enzyme,
         bioregistry:umbbd.pathway,

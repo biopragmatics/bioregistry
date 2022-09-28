@@ -3293,6 +3293,7 @@
       "bioportal": "ATC",
       "edam": "3103",
       "fairsharing": "FAIRsharing.1a27h8",
+      "hl7": "whoATC",
       "miriam": "atc",
       "n2t": "atc",
       "prefixcommons": "atc",
@@ -3385,11 +3386,19 @@
         "Epidemiology"
       ]
     },
+    "hl7": {
+      "description": "American Type Culture Collection",
+      "name": "ATC",
+      "preferred_prefix": "ATC",
+      "prefix": "2.16.840.1.113883.6.77",
+      "status": "Pending"
+    },
     "homepage": "https://www.lgcstandards-atcc.org",
     "mappings": {
       "biocontext": "ATCC",
       "cellosaurus": "ATCC",
       "fairsharing": "FAIRsharing.j0ezpm",
+      "hl7": "2.16.840.1.113883.6.77",
       "miriam": "atcc",
       "n2t": "atcc",
       "ncbi": "ATCC"
@@ -5580,7 +5589,7 @@
   "biolink": {
     "aberowl": {
       "description": "A high level datamodel of biological entities (genes, diseases, phenotypes, pathways, individuals, substances, etc) and their associations",
-      "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/41/biolink.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/BIOLINK/42/biolink.owl",
       "homepage": "https://biolink.github.io/biolink-model/",
       "name": "Biolink Model",
       "prefix": "BIOLINK",
@@ -8163,7 +8172,16 @@
       "name": "Common Anatomy Reference Ontology",
       "prefix": "CARO"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "providers": [
+      {
+        "code": "obo.1",
+        "description": "This incorrect encoding was found inside IDO-COVID-19",
+        "homepage": "http://purl.obolibrary.org",
+        "name": "Nonstandard OBO PURL",
+        "uri_format": "http://purl.obolibrary.org/obo/ido.owl/CARO_$1"
+      }
+    ]
   },
   "cas": {
     "biocontext": {
@@ -8200,12 +8218,20 @@
       "name": "CAS Chemical Registry",
       "prefix": "CAS"
     },
+    "hl7": {
+      "description": "Chemical abstract codes",
+      "name": "CAS",
+      "preferred_prefix": "CAS",
+      "prefix": "2.16.840.1.113883.6.61",
+      "status": "Pending"
+    },
     "mappings": {
       "biocontext": "CAS",
       "cheminf": "000446",
       "edam": "1002",
       "fairsharing": "FAIRsharing.r7Kwy7",
       "go": "CAS",
+      "hl7": "2.16.840.1.113883.6.61",
       "miriam": "cas",
       "n2t": "cas",
       "prefixcommons": "cas",
@@ -9172,7 +9198,7 @@
   "cdno": {
     "aberowl": {
       "description": "CDNO provides structured terminologies to describe nutritional attributes of material entities that contribute to human diet.",
-      "download_owl": "http://aber-owl.net/media/ontologies/CDNO/6/cdno.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/CDNO/7/cdno.owl",
       "homepage": "https://cdno.info/",
       "name": "Compositional Dietary Nutrition Ontology",
       "prefix": "CDNO"
@@ -9289,7 +9315,17 @@
     "description": "The Code on Dental Procedures and Nomenclature (the CDT Code) assures consistency in documenting dental treatment.",
     "download_owl": "https://github.com/oral-health-and-disease-ontologies/ohd-ontology/blob/master/src/ontology/older/CDTCodes%20as%20Classes_pruned.owl",
     "example": "1000001",
+    "hl7": {
+      "description": "Version of Current Dental Terminology (CDT) version 4, included in the Healthcare Common Procedure Coding System (HCPCS).Request rejected.  This is a duplicate of OID 2.16.840.1.113883.6.13",
+      "name": "Current Dental Terminology",
+      "preferred_prefix": "CDT",
+      "prefix": "2.16.840.1.113883.6.116",
+      "status": "Rejected"
+    },
     "homepage": "https://www.ada.org/publications/CDT",
+    "mappings": {
+      "hl7": "2.16.840.1.113883.6.116"
+    },
     "name": "Current Dental Terminology",
     "pattern": "^\\d{7}$"
   },
@@ -11061,6 +11097,7 @@
       "publication": "He Y, Yu H, Ong E, Wang Y, Liu Y, Huffman A, Huang H, Beverley J, Hur J, Yang X, Chen L, Omenn GS, Athey B, Smith B. CIDO, a community-based ontology for coronavirus disease knowledge and data integration, sharing, and analysis. Scientific Data. (2020) 7:181 | https://doi.org/10.1038/s41597-020-0523-6.",
       "version": "1.0.337"
     },
+    "download_owl": "https://github.com/CIDO-ontology/cido/raw/master/cido.owl",
     "example": "0000005",
     "fairsharing": {
       "abbreviation": "CIDO",
@@ -11903,6 +11940,7 @@
       "biolink": "CLINVAR",
       "cellosaurus": "ClinVar",
       "fairsharing": "FAIRsharing.wx5r6f",
+      "hl7": "clinVar-V",
       "miriam": "clinvar",
       "n2t": "clinvar",
       "re3data": "r3d100013331",
@@ -12343,7 +12381,7 @@
       "name": "Clinical Measurement Ontology",
       "prefix": "CMO",
       "publication": "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3361058/",
-      "version": "2.170"
+      "version": "2.171"
     },
     "example": "0001350",
     "fairsharing": {
@@ -14198,7 +14236,7 @@
       "deprecated": false,
       "description": "COB brings together key terms from a wide range of OBO projects to improve interoperability.",
       "download.owl": "http://purl.obolibrary.org/obo/cob.owl",
-      "homepage": "https://github.com/OBOFoundry/COB",
+      "homepage": "https://obofoundry.org/COB/",
       "license": "CC0 1.0",
       "license.url": "https://creativecommons.org/publicdomain/zero/1.0/",
       "name": "Core Ontology for Biology and Biomedicine",
@@ -14209,7 +14247,7 @@
     "ols": {
       "description": "COB brings together key terms from a wide range of OBO projects to improve interoperability.",
       "download": "http://purl.obolibrary.org/obo/cob.owl",
-      "homepage": "https://github.com/OBOFoundry/COB",
+      "homepage": "https://obofoundry.org/COB/",
       "name": "Core Ontology for Biology and Biomedicine",
       "prefix": "cob",
       "version": "2022-05-02",
@@ -14565,6 +14603,27 @@
       "uri_format": "http://www.flymine.org/come/entry?gn=$1"
     },
     "uri_format": "https://www.flymine.org/come/entry?gn=$1"
+  },
+  "commoncoreontology": {
+    "contact": {
+      "email": "mpjensen@buffalo.edu",
+      "github": "mark-jensen",
+      "name": "Mark Jensen",
+      "orcid": "0000-0001-9228-8838"
+    },
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "The Common Core Ontologies (CCO) comprise twelve ontologies that are designed to represent and integrate taxonomies of generic classes and relations across all domains of interest.\n\nCCO is a mid-level extension of Basic Formal Ontology (BFO), an upper-level ontology framework widely used to structure and integrate ontologies in the biomedical domain (Arp, et al., 2015). BFO aims to represent the most generic categories of entity and the most generic types of relations that hold between them, by defining a small number of classes and relations. CCO then extends from BFO in the sense that every class in CCO is asserted to be a subclass of some class in BFO, and that CCO adopts the generic relations defined in BFO (e.g., has_part) (Smith and Grenon, 2004). Accordingly, CCO classes and relations are heavily constrained by the BFO framework, from which it inherits much of its basic semantic relationships.",
+    "example": "DirectiveInformationContentEntity",
+    "homepage": "http://www.ontologyrepository.com",
+    "license": "CC BY 4.0",
+    "name": "Common Core Ontologies",
+    "repository": "https://github.com/CommonCoreOntology/CommonCoreOntologies",
+    "uri_format": "http://www.ontologyrepository.com/CommonCoreOntologies/$1"
   },
   "complexportal": {
     "biocontext": {
@@ -15405,7 +15464,49 @@
     },
     "description": "CRediT (Contributor Roles Taxonomy) is high-level taxonomy, including 14 roles, that can be used to represent the roles typically played by contributors to scientific scholarly output. The roles describe each contributor’s specific contribution to the scholarly output.",
     "example": "Software",
+    "fairsharing": {
+      "abbreviation": "CRediT",
+      "description": "CRediT (Contributor Roles Taxonomy) is a high-level taxonomy, including 14 roles, that can be used to represent the roles typically played by contributors to scientific scholarly output. The roles describe each contributor’s specific contribution to the scholarly output.",
+      "id": "4215",
+      "name": "Contributor Roles Taxonomy",
+      "prefix": "FAIRsharing.fe4816",
+      "publications": [
+        {
+          "doi": "10.1038/508312a",
+          "pubmed_id": null,
+          "title": "Publishing: Credit where credit is due"
+        },
+        {
+          "doi": "10.3789/ansi.niso.z39.104-2022",
+          "pubmed_id": null,
+          "title": "ANSI/NISO Z39.104-2022, CRediT, Contributor Roles Taxonomy"
+        },
+        {
+          "doi": "10.1002/leap.1210",
+          "pubmed_id": null,
+          "title": "How can we ensure visibility and diversity in research contributions? How the Contributor Role Taxonomy (CRediT) is helping the shift from authorship to contributorship"
+        },
+        {
+          "doi": "10.1087/20150211",
+          "pubmed_id": null,
+          "title": "Beyond authorship: attribution, contribution, collaboration, and credit"
+        },
+        {
+          "doi": "10.1038/d41586-019-01715-4",
+          "pubmed_id": null,
+          "title": "Credit data generators for data reuse"
+        }
+      ],
+      "subjects": [
+        "Data Quality",
+        "Subject Agnostic",
+        "Ontology and Terminology"
+      ]
+    },
     "homepage": "https://casrai.org/credit/",
+    "mappings": {
+      "fairsharing": "FAIRsharing.fe4816"
+    },
     "name": "CASRAI Contributor Roles Taxonomy"
   },
   "crisprdb": {
@@ -15798,10 +15899,20 @@
     },
     "deprecated": true,
     "example": "2004-2820",
+    "hl7": {
+      "description": "Computer Retrieval of Information on Scientific Projects (CRISP). Bethesda (MD): National Institutes of Health, Division of Research Grants, Research Documentation Section, 2004.   http://crisp.cit.nih.gov/The CRISP system has been replaced by the RePORT Expenditures and Results (RePORTER) query tool.",
+      "homepage": "http://www.nih.gov/",
+      "name": "CRISP Thesaurus",
+      "organization": "National Institutes of Health",
+      "preferred_prefix": "csp",
+      "prefix": "2.16.840.1.113883.6.120",
+      "status": "Complete"
+    },
     "homepage": "https://web.archive.org/web/20091223034048/http://crisp.cit.nih.gov/Thesaurus/index.htm",
     "mappings": {
       "aberowl": "CRISP",
-      "bioportal": "CRISP"
+      "bioportal": "CRISP",
+      "hl7": "2.16.840.1.113883.6.120"
     },
     "name": "Computer Retrieval of Information on Science Projects Thesaurus",
     "synonyms": [
@@ -15830,9 +15941,17 @@
         "Biomedical Science"
       ]
     },
+    "hl7": {
+      "description": "COSTART",
+      "name": "CST",
+      "preferred_prefix": "CST",
+      "prefix": "2.16.840.1.113883.6.62",
+      "status": "Pending"
+    },
     "mappings": {
       "biocontext": "CST",
       "fairsharing": "FAIRsharing.n8pxvx",
+      "hl7": "2.16.840.1.113883.6.62",
       "miriam": "cst",
       "n2t": "cst"
     },
@@ -16371,7 +16490,17 @@
     },
     "description": "The CDC's National Center of Immunization and Respiratory Diseases (NCIRD) developed and maintains the CVX (vaccine administered) code set. The table below has the most up to date values. It includes both active and inactive vaccines available in the US. CVX codes for inactive vaccines allow transmission of historical immunization records.",
     "example": "54",
+    "hl7": {
+      "description": "CDC Vaccine Codes used in the 1999 RRF research project at HL7.DO NOT USEThis OID has been retired as it only identifies the set of codes used in the RRF research project.",
+      "name": "CVX",
+      "preferred_prefix": "cvx",
+      "prefix": "2.16.840.1.113883.6.59",
+      "status": "Retired"
+    },
     "homepage": "https://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=cvx",
+    "mappings": {
+      "hl7": "2.16.840.1.113883.6.59"
+    },
     "name": "Vaccine administered code set",
     "pattern": "^\\d+$"
   },
@@ -17161,12 +17290,22 @@
       "prefix": "dbSNP",
       "uri_format": "http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=$1"
     },
+    "hl7": {
+      "description": "In collaboration with the National Human Genome Research Institute, The National Center for Biotechnology Information has established the dbSNP database to serve as a central repository for both single base nucleotide substitutions and short deletion and insertion polymorphisms.  The entries in the dbSNP database can be used with the HL7 coded data type.  For example, in the HL7 messages specified according to the HL7 V2 Clinical Genomics Fully LOINC-Qualified Genetic Variation Model, dbSNP entries can be used to as the observation values for DNA sequence variation identifiers.  For example, OBX|1|CWE|48004-6^DNA Sequence Variation Identifier^LN||rs55538123^^dbSNPVersioning is identified by the build id.  A new build is released approximately every six months or every year. The latest build id is 130, and the dbSNP web query for built 130 was available on Apr 30, 2009.dbSNP is a database that can be used freely by the public.More information may be fouond at: http://www.ncbi.nlm.nih.gov/projects/SNP/",
+      "homepage": "https://lhncbc.nlm.nih.gov/",
+      "name": "The Short Genetic Variations database",
+      "organization": "National Center for Biotechnology Information,National Center for Biotechnology Information",
+      "preferred_prefix": "dbSNP",
+      "prefix": "2.16.840.1.113883.6.284",
+      "status": "Complete"
+    },
     "mappings": {
       "biocontext": "dbSNP",
       "cellosaurus": "dbSNP",
       "edam": "1106",
       "fairsharing": "FAIRsharing.edxb58",
       "go": "dbSNP",
+      "hl7": "2.16.840.1.113883.6.284",
       "miriam": "dbsnp",
       "n2t": "dbsnp",
       "ncbi": "dbSNP",
@@ -17824,6 +17963,15 @@
     "name": "Decentralized Biomedical Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "DeBiO",
+    "providers": [
+      {
+        "code": "obo2",
+        "description": "Because it's not possible to configure the base URI with ROBOT/OWLAPI, this pops out",
+        "homepage": "http://purl.obolibrary.org",
+        "name": "Placeholder OBO PURL",
+        "uri_format": "http://purl.obolibrary.org/obo/debio_$1"
+      }
+    ],
     "uri_format": "https://biopragmatics.github.io/debio/$1"
   },
   "decipher": {
@@ -18272,6 +18420,7 @@
     "mappings": {
       "bioportal": "DCM",
       "fairsharing": "FAIRsharing.b7z8by",
+      "hl7": "DCM",
       "ols": "dicom"
     },
     "ols": {
@@ -20514,8 +20663,18 @@
     "example_extras": [
       "291.89"
     ],
+    "hl7": {
+      "description": "Diagnostic and Statistical Manual of Mental Disorders (DSM-IV). 4th ed. Washington (DC): American Psychiatric Association, 1994.",
+      "homepage": "http://www.psych.org",
+      "name": "DSM-IV",
+      "organization": "American Psychiatric Association",
+      "preferred_prefix": "dsm4",
+      "prefix": "2.16.840.1.113883.6.126",
+      "status": "Complete"
+    },
     "homepage": "https://en.wikipedia.org/wiki/Diagnostic_and_Statistical_Manual_of_Mental_Disorders#DSM-IV-TR_(2000)",
     "mappings": {
+      "hl7": "2.16.840.1.113883.6.126",
       "wikidata": "P663"
     },
     "name": "Diagnostic and Statistical Manual of Mental Disorders (4th Edition)",
@@ -20533,8 +20692,18 @@
     },
     "description": "A terminology published by the American Psychiatric Association (APA) for the classification of mental disorders using a common language and standard criteria. [wikipedia]",
     "example": "312.33",
+    "hl7": {
+      "description": "The Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition (DSM-5) is the 2013 update to the Diagnostic and Statistical Manual of Mental Disorders, the taxonomic and diagnostic tool published by the American Psychiatric Association (APA). In the United States, the DSM serves as a universal authority for psychiatric diagnoses. Treatment recommendations, as well as payment by health care providers, are often determined by DSM classifications, so the appearance of a new version has significant practical importance.The DSM-5 was published on May 18, 2013, superseding the DSM-IV-TR, which was published in 2000.",
+      "homepage": "https://www.psychiatry.org",
+      "name": "DSM-5",
+      "organization": "American Psychiatry Association",
+      "preferred_prefix": "dsm5",
+      "prefix": "2.16.840.1.113883.6.344",
+      "status": "Complete"
+    },
     "homepage": "https://en.wikipedia.org/wiki/DSM-5",
     "mappings": {
+      "hl7": "2.16.840.1.113883.6.344",
       "wikidata": "P1930"
     },
     "name": "Diagnostic and Statistical Manual of Mental Disorders (5th Edition)",
@@ -21387,7 +21556,7 @@
     "ols": {
       "description": "The Evidence & Conclusion Ontology (ECO) describes types of scientific evidence within the biological research domain that arise from laboratory experiments, computational methods, literature curation, or other means.",
       "download": "http://purl.obolibrary.org/obo/eco.owl",
-      "homepage": "https://github.com/evidenceontology/evidenceontology/",
+      "homepage": "https://www.evidenceontology.org",
       "name": "Evidence & Conclusion Ontology (ECO)",
       "prefix": "eco",
       "version": "2022-08-05",
@@ -23877,8 +24046,8 @@
       "homepage": "http://ensembl.org/glossary",
       "name": "Ensembl Glossary",
       "prefix": "ensemblglossary",
-      "version": "2021-07-14",
-      "version.iri": "http://ensembl.org/glossary/ensembl-glossary/releases/2021-07-14/ensembl-glossary.owl"
+      "version": "2022-08-31",
+      "version.iri": "http://ensembl.org/glossary/ensembl-glossary/releases/2022-08-31/ensembl-glossary.owl"
     },
     "pattern": "^\\d{7}$",
     "uri_format": "http://ensembl.org/glossary/ENSGLOSSARY_$1"
@@ -27004,6 +27173,15 @@
       "name": "Foundational Model of Anatomy",
       "prefix": "FMA"
     },
+    "hl7": {
+      "description": "Digital Anatomist Foundational Model of Anatomy (FMA)http://depts.washington.edu/ventures/UW_Technology/Express_Licenses/FMA.php",
+      "homepage": "http://depts.washington.edu/ventures/UW_Technology/",
+      "name": "Foundational Model of Anatomy Ontology",
+      "organization": "Jose Leonardo V Mejino Jr. MD, Structural Informatics Group",
+      "preferred_prefix": "fma",
+      "prefix": "2.16.840.1.113883.6.119",
+      "status": "Complete"
+    },
     "mappings": {
       "aberowl": "FMA",
       "biocontext": "FMA",
@@ -27011,6 +27189,7 @@
       "edam": "1182",
       "fairsharing": "FAIRsharing.x56jsy",
       "go": "FMA",
+      "hl7": "2.16.840.1.113883.6.119",
       "miriam": "fma",
       "n2t": "fma",
       "obofoundry": "fma",
@@ -28266,7 +28445,7 @@
         "email": "vw253@cam.ac.uk",
         "name": "Valerie Wood"
       },
-      "description": "update URL",
+      "description": "Fission Yeast Phenotype Ontology",
       "homepage": "https://github.com/pombase/fypo",
       "name": "Fission Yeast Phenotype Ontology",
       "prefix": "FYPO",
@@ -30995,7 +31174,7 @@
   "go": {
     "aberowl": {
       "description": "An ontology for describing the function of genes and gene products",
-      "download_owl": "http://aber-owl.net/media/ontologies/GO/1771/go.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/GO/1772/go.owl",
       "homepage": "http://geneontology.org/",
       "name": "Gene Ontology",
       "prefix": "GO"
@@ -31101,6 +31280,15 @@
       "name": "Gene Ontology Database",
       "prefix": "GO"
     },
+    "hl7": {
+      "description": "Gene Ontology: tool for the unification of biology. The Gene Ontology Consortium (2000) Nature Genet. 25: 25-29, http://www.geneontology.org/#cite_go.ftp://ftp.geneontology.org/pub/go/ontology-archive/",
+      "homepage": "http://www.geneontology.org/",
+      "name": "Gene Ontology",
+      "organization": "The Gene Ontology Consortium",
+      "preferred_prefix": "go",
+      "prefix": "2.16.840.1.113883.6.128",
+      "status": "Complete"
+    },
     "mappings": {
       "aberowl": "GO",
       "agroportal": "GO",
@@ -31109,6 +31297,7 @@
       "edam": "1176",
       "fairsharing": "FAIRsharing.6xq0ee",
       "go": "GO",
+      "hl7": "2.16.840.1.113883.6.128",
       "miriam": "go",
       "n2t": "go",
       "ncbi": "GO",
@@ -31258,6 +31447,15 @@
       ],
       "uri_format": "http://amigo.geneontology.org/cgi-bin/amigo/term-details.cgi?term=GO:$1"
     },
+    "providers": [
+      {
+        "code": "jax",
+        "description": "The JAX endpoint for exploring GO",
+        "homepage": "http://www.informatics.jax.org",
+        "name": "Jackson Laboratories",
+        "uri_format": "http://www.informatics.jax.org/vocab/gene_ontology/GO:$1"
+      }
+    ],
     "publications": [
       {
         "doi": "10.1038/75556",
@@ -33266,7 +33464,19 @@
     },
     "description": "A Drug Identification Number (DIN) is a computer-generated eight digit number assigned by Health Canada to a drug product prior to being marketed in Canada. It uniquely identifies all drug products sold in a dosage form in Canada and is located on the label of prescription and over-the-counter drug products that have been evaluated and authorized for sale in Canada.",
     "example": "02069237",
+    "hl7": {
+      "description": "A Drug Identification Number (DIN) is a computer-generated eight digit number assigned by Health Canada to a drug product prior to being marketed in Canada. It uniquely identifies all drug products sold in a dosage form in Canada and is located on the label of prescription and over-the-counter drug products that have been evaluated and authorized for sale in Canada.A DIN uniquely identifies the following product characteristics:manufacturer;product name;active ingredient(s);strength(s) of active ingredient(s);pharmaceutical form; androute of administration.Note: The number has a leading zeroMore information can be found here: https://www.canada.ca/en/health-canada/services/drugs-health-products/drug-products/applications-submissions/guidance-documents/regulatory-requirements-drug-identification-numbers/document.html",
+      "homepage": "http://www.hc-sc.gc.ca/index-eng.php",
+      "name": "Health Canada Drug Id Number",
+      "organization": "Health Canada,Health Canada",
+      "preferred_prefix": "hc-DIN",
+      "prefix": "2.16.840.1.113883.5.1105",
+      "status": "Complete"
+    },
     "homepage": "https://www.canada.ca/en/health-canada/services/drugs-health-products/drug-products/fact-sheets/drug-identification-number.html",
+    "mappings": {
+      "hl7": "2.16.840.1.113883.5.1105"
+    },
     "name": "Health Canada Drug Identification Number",
     "pattern": "^\\d{8}$",
     "references": [
@@ -33282,7 +33492,19 @@
     },
     "description": "The Licensed Natural Health Products Database contains information about natural health products that have been issued a product licence by Health Canada.",
     "example": "18125",
+    "hl7": {
+      "description": "Natural Product Number (NPN) is an eight digit numerical code assigned to each natural health product approved to be marketed under the Natural Health Products Regulations. A Homeopathic Medicine Number (DIN-HM) is an eight digit numerical code assigned to each homeopathic medicine approved to be marketed under the Natural Health Products Regulations. More information can be found here: https://www.canada.ca/en/health-canada/services/drugs-health-products/natural-non-prescription/applications-submissions/product-licensing/licensed-natural-health-products-database.html",
+      "homepage": "http://www.hc-sc.gc.ca/index-eng.php",
+      "name": "Health Canada Natural Product Number",
+      "organization": "Health Canada,Health Canada",
+      "preferred_prefix": "hc-NPN",
+      "prefix": "2.16.840.1.113883.5.1107",
+      "status": "Complete"
+    },
     "homepage": "http://webprod.hc-sc.gc.ca/nhpid-bdipsn/search-rechercheReq.do?lang=eng",
+    "mappings": {
+      "hl7": "2.16.840.1.113883.5.1107"
+    },
     "name": "Health Canada Natural Product Number",
     "pattern": "^\\d+$",
     "references": [
@@ -33589,6 +33811,15 @@
       "prefix": "HGNC",
       "uri_format": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:$1"
     },
+    "hl7": {
+      "description": "HUGO Gene Nomenclature Committee (HGNC) is committee jointly funded by the US National Human Genome Research Institute and the Wellcome Trust (UK).  It operates under the auspices of HUGO, with key policy advice from an International Advisory Committee, and is responsible for approving gene names and symbols.  All approved symbols are stored in the HGNC database.  Each symbol is unique and each gene is only given one approved gene symbol.  More than 28,000 human gene symbols and names have been approved so far.  The vast majority of these is for protein-coding genes, but also includes symbols for peudogenes, non-coding RNAs, phenotypes and genomic features.  HGNC gene symbols can be used with the HL7 coded data type.  For example, in the HL7 messages specified according to the HL7 V2 Clinical Genomics Fully LOINC-Qualified Genetic Variation Model Implementation Guide, HGNC gene symbols can be used to as the observation values for gene identifiers.  For example, OBX|1|CWE|48018-6^Gene identifier^||BRCA1^HGNC|Versioning Information:The version of the HGNC database is reported using the last updated date and timestamp.  The last updated date and timestamp is posted on the main HGNC Search screen in the format like \"Monday March 30 23:00:56 2009\".HGNC is updated daily.HGNC is a free database for the public.",
+      "homepage": "http://www.genenames.org/",
+      "name": "HUGO Gene Nomenclature",
+      "organization": "HUGO Gene Nomenclature Committee,HUGO Gene Nomenclature Committee",
+      "preferred_prefix": "hgnc",
+      "prefix": "2.16.840.1.113883.6.281",
+      "status": "Complete"
+    },
     "homepage": "http://www.genenames.org",
     "mappings": {
       "aberowl": "HGNC",
@@ -33598,6 +33829,7 @@
       "edam": "2298",
       "fairsharing": "FAIRsharing.amcv1e",
       "go": "HGNC",
+      "hl7": "2.16.840.1.113883.6.281",
       "miriam": "hgnc",
       "n2t": "hgnc",
       "ncbi": "HGNC",
@@ -34671,11 +34903,21 @@
         "Preclinical Studies"
       ]
     },
+    "hl7": {
+      "description": "The Human Phenotype Ontology (HPO) aims to provide a standardized vocabulary of phenotypic abnormalities encountered in human disease. Each term in the HPO describes a phenotypic abnormality, such as atrial septal defect.",
+      "homepage": "https://lhncbc.nlm.nih.gov/",
+      "name": "Human Phenotype Ontology",
+      "organization": "Lister Hill National Center for Biomedical Communications",
+      "preferred_prefix": "hpo",
+      "prefix": "2.16.840.1.113883.6.339",
+      "status": "Complete"
+    },
     "mappings": {
       "aberowl": "HP_O",
       "biocontext": "HPO",
       "bioportal": "HP_O",
       "fairsharing": "FAIRsharing.kbtt7f",
+      "hl7": "2.16.840.1.113883.6.339",
       "miriam": "hp",
       "n2t": "hp",
       "obofoundry": "hp",
@@ -35751,6 +35993,15 @@
         "Epidemiology"
       ]
     },
+    "hl7": {
+      "description": "International Classification of Diseases revision 10 (ICD 10)Note this does NOT have the CM changes, and is specifically for international use.This node is the ontological branch in the HL7 OID tree.  The actual ICD10 code systems (the various national and international versions) are defined below this node.",
+      "homepage": "https://who.int",
+      "name": "ICD10",
+      "organization": "World Health Organization",
+      "preferred_prefix": "icd10",
+      "prefix": "2.16.840.1.113883.6.3",
+      "status": "Complete"
+    },
     "homepage": "https://icd.who.int/browse10",
     "mappings": {
       "aberowl": "ICD10",
@@ -35759,6 +36010,7 @@
       "bioportal": "ICD10",
       "edam": "2611",
       "fairsharing": "FAIRsharing.nj16g",
+      "hl7": "2.16.840.1.113883.6.3",
       "miriam": "icd",
       "n2t": "icd",
       "prefixcommons": "icd",
@@ -35915,11 +36167,21 @@
         "Biomedical Science"
       ]
     },
+    "hl7": {
+      "description": "The International Classification of Diseases, 10th Revision, Clinical Modification (ICD-10-CM), describes the classification of morbidity and mortality information for statistical purposes and for the indexing of healthcare records by diseases. The ICD-10-CM codes can be used as the value of the Act.cd attribute.",
+      "homepage": "http://www.cdc.gov/nchs/about/otheract/icd9/icd10cm.htm",
+      "name": "International Classification of Diseases, 10th Revision, Clinical Modification (ICD-10-CM)",
+      "organization": "National Center for Health Statistics/Centers for Disease Control and Prevention",
+      "preferred_prefix": "icd10CM",
+      "prefix": "2.16.840.1.113883.6.90",
+      "status": "Complete"
+    },
     "homepage": "https://www.icd10data.com/ICD10CM",
     "mappings": {
       "aberowl": "ICD10CM",
       "bioportal": "ICD10CM",
       "fairsharing": "FAIRsharing.hpvbxb",
+      "hl7": "2.16.840.1.113883.6.90",
       "wikidata": "P4229"
     },
     "name": "International Classification of Diseases, 10th Revision, Clinical Modification",
@@ -35973,11 +36235,21 @@
         "Epidemiology"
       ]
     },
+    "hl7": {
+      "description": "The International Classification of Diseases, 10th Revision, Procedure Coding System (ICD-10-PCS), describes the classification of inpatient procedures for statistical purposes and for the indexing of healthcare records by procedures. The ICD-10-PCS codes can be used as the value of the Act.cd attribute",
+      "homepage": "http://cms.hhs.gov/paymentsystems/icd9/icd10.asp",
+      "name": "International Classification of Diseases, 10th Revision, Procedure Coding System (ICD-10-PCS)",
+      "organization": "Centers for Medicare and Medicaid Services",
+      "preferred_prefix": "icd10PCS",
+      "prefix": "2.16.840.1.113883.6.4",
+      "status": "Complete"
+    },
     "homepage": "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/ICD10PCS",
     "mappings": {
       "aberowl": "ICD10PCS",
       "bioportal": "ICD10PCS",
       "fairsharing": "FAIRsharing.85k1jm",
+      "hl7": "2.16.840.1.113883.6.4",
       "wikidata": "P1690"
     },
     "name": "International Classification of Diseases, 10th Revision, Procedure Coding System",
@@ -36009,9 +36281,19 @@
         "Epidemiology"
       ]
     },
+    "hl7": {
+      "description": "International Classification of Diseases 11th RevisionThe global standard for diagnostic health information",
+      "homepage": "https://who.int",
+      "name": "ICD-11",
+      "organization": "World Health Organization",
+      "preferred_prefix": "icd11",
+      "prefix": "2.16.840.1.113883.6.347",
+      "status": "Complete"
+    },
     "homepage": "https://icd.who.int/",
     "mappings": {
       "fairsharing": "FAIRsharing.97805c",
+      "hl7": "2.16.840.1.113883.6.347",
       "wikidata": "P7807"
     },
     "name": "International Classification of Diseases, 11th Revision",
@@ -36038,9 +36320,19 @@
     },
     "description": "The International Classification of Diseases (ICD) is designed to promote international comparability in the collection, processing, classification, and presentation of mortality statistics.",
     "example": "277.9",
+    "hl7": {
+      "description": "International Classification of Diseases, Version 9 (ICD9)",
+      "homepage": "https://who.int",
+      "name": "International Classification of Diseases, Version 9",
+      "organization": "World Health Organization",
+      "preferred_prefix": "icd9",
+      "prefix": "2.16.840.1.113883.6.42",
+      "status": "Complete"
+    },
     "homepage": "https://www.cdc.gov/nchs/icd/icd9.htm",
     "mappings": {
       "biolink": "ICD9",
+      "hl7": "2.16.840.1.113883.6.42",
       "wikidata": "P493"
     },
     "name": "International Classification of Diseases, 9th Revision",
@@ -36096,11 +36388,21 @@
         "Preclinical Studies"
       ]
     },
+    "hl7": {
+      "description": "The International Classification of Diseases, 9th Revision, Clinical Modification (ICD-9-CM), Volumes I, II (diagnoses) and III (procedures) describes the classification of morbidity and mortality information for statistical purposes and for the indexing of healthcare records by diseases and procedures. The ICD-9-CM codes can be used as the value of the Act.cd attribute.Note that this has been retired in favor of an explicit split between the diagnosis codes and the procedures codes as per the Vocablary TC decision on Wednesday Q4, January 21, 2004.  Replaced by 2.16.840.1.113883.6.103 and 2.16.840.1.113883.6.104 as voted by committee.  -T. Klein",
+      "homepage": "http://www.cdc.gov/nchs/icd9.htm.",
+      "name": "National Center for Health Statistics",
+      "organization": "National Center for Health Statistics",
+      "preferred_prefix": "icd9cm",
+      "prefix": "2.16.840.1.113883.6.2",
+      "status": "Retired"
+    },
     "homepage": "https://www.cdc.gov/nchs/icd/icd9cm.htm",
     "mappings": {
       "aberowl": "ICD9CM",
       "bioportal": "ICD9CM",
       "fairsharing": "FAIRsharing.10zsxb",
+      "hl7": "2.16.840.1.113883.6.2",
       "wikidata": "P1692"
     },
     "name": "International Classification of Diseases, 9th Revision, Clinical Modification",
@@ -36167,9 +36469,19 @@
     },
     "description": "The International Classification of Diseases for Oncology (ICD-O) is a domain-specific extension of the International Statistical Classification of Diseases and Related Health Problems for tumor diseases",
     "example": "9861/3",
+    "hl7": {
+      "description": "This branch node heads up the different versions of the International Classification of Diseases for Oncology, which must be identified as different coding systems under HL7 terminology rules.",
+      "homepage": "http://www.who.int/en/",
+      "name": "International Classification of Diseases for Oncology:  ICD-O",
+      "organization": "World Health Organization (WHO)",
+      "preferred_prefix": "icd-o",
+      "prefix": "2.16.840.1.113883.6.43",
+      "status": "Complete"
+    },
     "homepage": "https://www.who.int/classifications/icd/adaptations/oncology/en/",
     "mappings": {
       "aberowl": "ICDO",
+      "hl7": "2.16.840.1.113883.6.43",
       "prefixcommons": "icdo",
       "wikidata": "P563"
     },
@@ -36345,6 +36657,25 @@
     "uri_format": "https://biopragmatics.github.io/providers/icepo/$1"
   },
   "icf": {
+    "aberowl": {
+      "description": "The International Classification of Functioning, Disability and Health, known more commonly as ICF, is a classification of health and health-related domains. These domains are classified from body, individual and societal perspectives by means of two lists: a list of body functions and structure, and a list of domains of activity and participation. Since an individual's functioning and disability occurs in a context, the ICF also includes a list of environmental factors. <br><br> Source: <a href=\"http://www.who.int/classifications/icf/en/\">http://www.who.int/classifications/icf/en/</a>",
+      "download_owl": "http://aber-owl.net/media/ontologies/ICF/3/icf.owl",
+      "homepage": "http://www.who.int/classifications/icf/en/",
+      "name": "International Classification of Functioning, Disability and Health",
+      "prefix": "ICF",
+      "version": "1.0.2"
+    },
+    "bioportal": {
+      "contact": {
+        "email": "info@who.int",
+        "name": "The World Health Organization"
+      },
+      "description": "The International Classification of Functioning, Disability and Health, known more commonly as ICF, is a classification of health and health-related domains. These domains are classified from body, individual and societal perspectives by means of two lists: a list of body functions and structure, and a list of domains of activity and participation. Since an individual's functioning and disability occurs in a context, the ICF also includes a list of environmental factors. <br><br> Source: <a href=\"http://www.who.int/classifications/icf/en/\">http://www.who.int/classifications/icf/en/</a>",
+      "homepage": "http://www.who.int/classifications/icf/en/",
+      "name": "International Classification of Functioning, Disability and Health",
+      "prefix": "ICF",
+      "version": "1.0.2"
+    },
     "comment": "This might be possible to roll directly into ICD11",
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -36354,7 +36685,36 @@
     },
     "description": "The International Classification of Functioning, Disability and Health, known more commonly as ICF, is a classification of health and health-related domains. As the functioning and disability of an individual occurs in a context, ICF also includes a list of environmental factors. ICF is the WHO framework for measuring health and disability at both individual and population levels.",
     "example": "326705068",
+    "fairsharing": {
+      "abbreviation": "ICF",
+      "description": "The International Classification of Functioning, Disability and Health (ICF) is a classification of health and health-related domains. As the functioning and disability of an individual occurs in a context, ICF also includes a list of environmental factors. ICF is the WHO framework for measuring health and disability at both individual and population levels. ICF was officially endorsed by all 191 WHO Member States in the Fifty-fourth World Health Assembly on 22 May 2001 (resolution WHA 54.21) as the international standard to describe and measure health and disability.",
+      "id": "859",
+      "name": "International Classification of Functioning, Disability and Health",
+      "prefix": "FAIRsharing.7rngj0",
+      "publications": [],
+      "subjects": [
+        "Medicine",
+        "Health Science",
+        "Primary Health Care",
+        "Biomedical Science"
+      ]
+    },
+    "hl7": {
+      "description": "ICF describes how people live with their health condition. ICF is a classification of health and health related domains that describe body functions and structures, activities and participation. The domains are classified from body, individual and societal perspectives. Since an individual's functioning and disability occurs in a context, ICF also includes a list of environmental factors. ICF  is useful to understand and measure health outcomes. It can be used in clinical settings, health services or surveys at the individual or population level. Thus ICF complements ICD-10 , The International Statistical Classification of Diseases and Related Health Problems and therefore is looking beyond mortality and disease.",
+      "homepage": "http://www.who.int/classifications/icf/en/",
+      "name": "International Classification of Function",
+      "organization": "World Health Organisation",
+      "preferred_prefix": "icf",
+      "prefix": "2.16.840.1.113883.6.254",
+      "status": "Complete"
+    },
     "homepage": "https://icd.who.int/dev11/l-icf/en",
+    "mappings": {
+      "aberowl": "ICF",
+      "bioportal": "ICF",
+      "fairsharing": "FAIRsharing.7rngj0",
+      "hl7": "2.16.840.1.113883.6.254"
+    },
     "name": "International Classification of Functioning, Disability and Health",
     "pattern": "^\\d+$",
     "uri_format": "http://id.who.int/icd/entity/$1"
@@ -36617,7 +36977,16 @@
       "library": "Library",
       "name": "Infectious Disease Ontology",
       "prefix": "IDO"
-    }
+    },
+    "providers": [
+      {
+        "code": "obo.1",
+        "description": "This incorrect encoding was found inside IDO-COVID-19",
+        "homepage": "http://purl.obolibrary.org",
+        "name": "Nonstandard OBO PURL",
+        "uri_format": "http://purl.obolibrary.org/obo/ido.owl/IDO_$1"
+      }
+    ]
   },
   "idocovid19": {
     "aberowl": {
@@ -36645,6 +37014,7 @@
       "name": "John Beverly",
       "orcid": "0000-0002-1118-1738"
     },
+    "download_owl": "https://raw.githubusercontent.com/infectious-disease-ontology-extensions/ido-covid-19/master/ontology/ido%20covid-19",
     "example": "0001191",
     "mappings": {
       "aberowl": "IDO-COVID-19",
@@ -36662,6 +37032,15 @@
       "version.iri": "http://purl.obolibrary.org/obo/2020-21-07/ido-covid-19.owl"
     },
     "pattern": "^\\d{7}$",
+    "providers": [
+      {
+        "code": "obo1",
+        "description": "This variation uses incorrect usage of dashes instead of underscores",
+        "homepage": "http://purl.obolibrary.org",
+        "name": "Incorrect OBO PURL variation 1",
+        "uri_format": "http://purl.obolibrary.org/obo/IDO-COVID-19_$1"
+      }
+    ],
     "repository": "https://github.com/infectious-disease-ontology-extensions/ido-covid-19",
     "uri_format": "http://purl.obolibrary.org/obo/COVIDO_$1"
   },
@@ -38444,7 +38823,8 @@
       "pattern": "^EBI\\-[0-9]+$",
       "prefix": "intact.molecule",
       "uri_format": "https://www.ebi.ac.uk/intact/molecule/$1"
-    }
+    },
+    "uri_format": "https://www.ebi.ac.uk/intact/search?query=$1"
   },
   "interlex": {
     "fairsharing": {
@@ -41942,12 +42322,22 @@
         "Preclinical Studies"
       ]
     },
+    "hl7": {
+      "description": "Logical Observation Identifiers Names and Codes (LOINC&#174;) provides a set of universal codes and names for identifying laboratory and other clinical observations. One of the main goals of LOINC is to facilitate the exchange and pooling of results for clinical care, outcomes management, and research. LOINC was initiated by Regenstrief Institute research scientists who continue to develop it with the collaboration of the LOINC Committee. The LOINC table, LOINC codes, and LOINC panels and forms file are copyright &#169; 1995-2010, Regenstrief Institute, Inc. and the LOINC Committee and available at no cost (http://loinc.org) under the license at http://loinc.org/terms-of-use.The laboratory portion of the LOINC database contains the usual clinical laboratory categories of chemistry, hematology, serology, microbiology (including parasitology and virology), toxicology; as well as categories for drugs and the cell counts, antibiotic susceptibilities, and more. The clinical portion of the LOINC database includes entries for vital signs, hemodynamics, intake/output, EKG, obstetric ultrasound, cardiac echo, radiology report titles, pulmonary ventilator management, document and section titles, patient assessment instruments (e.g. Glascow Coma Score, PHQ-9 depression scale, CMS-required patient assessment instruments), and other clinical observations.LOINC may be accessed at http://loinc.org",
+      "homepage": "http://www.regenstrief.org",
+      "name": "Logical Observation Identifier Names and Codes",
+      "organization": "Regenstrief Institute",
+      "preferred_prefix": "loinc",
+      "prefix": "2.16.840.1.113883.6.1",
+      "status": "Complete"
+    },
     "homepage": "https://loinc.org/",
     "mappings": {
       "aberowl": "LOINC",
       "biolink": "LOINC",
       "bioportal": "LOINC",
-      "fairsharing": "FAIRsharing.2mk2zb"
+      "fairsharing": "FAIRsharing.2mk2zb",
+      "hl7": "2.16.840.1.113883.6.1"
     },
     "name": "Logical Observation Identifiers Names and Codes",
     "publications": [
@@ -42116,8 +42506,18 @@
       "uri_format": "http://identifiers.org/lrg/$1"
     },
     "example": "1",
+    "hl7": {
+      "description": "In collaboration with NCBI, the European Bioinformatics Institute (EBI) is developing the Locus Reference Genomic Sequences (LRG) database, which is a database of reference sequences. LRG is a system for providing a genomic DNA sequence representation of a single gene that is idealized, has a permanent ID (with no versioning), and core content that never changes. LRG is not a nomenclature system. More than one LRG could be created for a region of interest, should that need arise.  Additional annotations will be present that may change with time (each item carrying its own date stamp), so that the latest ancillary knowledge about a gene is directly available.  In other words, an LRG sequence and its core annotation are not meant to represent current biology knowledge, but to provide a standard for reporting variation in a stable coordinate system.  The combination of the LRG plus the updatable-annotation layer will be used to support the biological interpretation of variants.LRG identifiers can be used with the HL7 coded data type (code data type that accepts expression data, or a coded expression data type).  This coded data type will be  gene symbols can be used with the HL7 coded data type.  For example, in the HL7 messages specified according to the HL7 V2 Clinical Genomics Fully LOINC-Qualified Genetic Variation Model, LRG identifiers can be used to as the observation values for Genomic Reference Sequence Identifier (LOINC code: 48013-7).  LRG is a database that can be used freely by the public.",
+      "homepage": "http://ebi.ac.uk",
+      "name": "Locus Reference Genomic Sequences (LRG)",
+      "organization": "Wellcome Trust",
+      "preferred_prefix": "lrg",
+      "prefix": "2.16.840.1.113883.6.283",
+      "status": "Complete"
+    },
     "mappings": {
       "biocontext": "LRG",
+      "hl7": "2.16.840.1.113883.6.283",
       "miriam": "lrg",
       "n2t": "lrg"
     },
@@ -42962,7 +43362,7 @@
   "maxo": {
     "aberowl": {
       "description": "Medical Action Ontology is an ontology...",
-      "download_owl": "http://aber-owl.net/media/ontologies/MAXO/27/maxo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/MAXO/28/maxo.owl",
       "homepage": "https://github.com/monarch-initiative/MAxO",
       "name": "Medical Action Ontology",
       "prefix": "MAXO"
@@ -42982,7 +43382,7 @@
       "homepage": "https://github.com/monarch-initiative/MAxO",
       "name": "Medical Action Ontology",
       "prefix": "MAXO",
-      "version": "2022-08-22"
+      "version": "2022-09-07"
     },
     "example": "0000008",
     "mappings": {
@@ -43290,6 +43690,7 @@
       "biocontext": "MEDDRA",
       "bioportal": "MEDDRA",
       "fairsharing": "FAIRsharing.ad3137",
+      "hl7": "mdr",
       "miriam": "meddra",
       "n2t": "meddra",
       "wikidata": "P3201"
@@ -43429,11 +43830,19 @@
         "Biomedical Science"
       ]
     },
+    "hl7": {
+      "description": "MedlinePlus Health Topics. Bethesda (MD): National Library of Medicine, August 14, 2004.",
+      "name": "MedlinePlus",
+      "preferred_prefix": "MEDLINEPLUS",
+      "prefix": "2.16.840.1.113883.6.173",
+      "status": "Pending"
+    },
     "mappings": {
       "aberowl": "MEDLINEPLUS",
       "biocontext": "MEDLINEPLUS",
       "bioportal": "MEDLINEPLUS",
       "fairsharing": "FAIRsharing.bf8dsb",
+      "hl7": "2.16.840.1.113883.6.173",
       "miriam": "medlineplus",
       "n2t": "medlineplus"
     },
@@ -43739,6 +44148,13 @@
       ],
       "uri_format": "http://id.nlm.nih.gov/mesh/$1"
     },
+    "hl7": {
+      "description": "Medical Subject Headings (MeSH). Bethesda (MD): National Library of Medicine, 2004",
+      "name": "MeSH",
+      "preferred_prefix": "MSH",
+      "prefix": "2.16.840.1.113883.6.177",
+      "status": "Pending"
+    },
     "license": "CC0 1.0",
     "mappings": {
       "aberowl": "MESH",
@@ -43749,6 +44165,7 @@
       "edam": "1177",
       "fairsharing": "FAIRsharing.qnkw45",
       "go": "MeSH",
+      "hl7": "2.16.840.1.113883.6.177",
       "miriam": "mesh",
       "n2t": "mesh",
       "prefixcommons": "mesh",
@@ -46717,7 +47134,7 @@
       "name": "Measurement Method Ontology",
       "prefix": "MMO",
       "publication": "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3361058/",
-      "version": "2.88"
+      "version": "2.89"
     },
     "example": "0000574",
     "fairsharing": {
@@ -47000,7 +47417,19 @@
     },
     "description": "The Lexicon is a foundational database with comprehensive drug product and disease nomenclature information. It includes drug names, drug product information, disease names, coding systems such as ICD-9-CM and NDC, generic names, brand names and common abbreviations. A comprehensive list of standard or customized disease names and ICD-9 codes is also included.",
     "example": "3355",
+    "hl7": {
+      "description": "Medisource Lexicon. Multum Information Services, Inc., Denver, CO. Release Date: March 1, 2004. URL: http://www.multum.com/ Phone: 888-633-4772 x1420.http://www.multum.com/Lexicon.htm",
+      "homepage": "http://www.multum.com/",
+      "name": "Multum",
+      "organization": "Multum Information Services, Inc.",
+      "preferred_prefix": "mmsl",
+      "prefix": "2.16.840.1.113883.6.175",
+      "status": "Complete"
+    },
     "homepage": "https://www.nlm.nih.gov/research/umls/rxnorm/sourcereleasedocs/mmsl.html",
+    "mappings": {
+      "hl7": "2.16.840.1.113883.6.175"
+    },
     "name": "Multum MediSource Lexicon",
     "pattern": "^\\d+$",
     "synonyms": [
@@ -48340,7 +48769,7 @@
       "name": "Mass Spectrometry Ontology",
       "prefix": "MS",
       "publication": "http://database.oxfordjournals.org/content/2013/bat009.long",
-      "version": "4.1.102"
+      "version": "4.1.103"
     },
     "example": "1000560",
     "mappings": {
@@ -48409,7 +48838,7 @@
       "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
       "name": "Mass spectrometry ontology",
       "prefix": "ms",
-      "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.99/ms.owl"
+      "version.iri": "http://purl.obolibrary.org/obo/ms/4.1.100/ms.owl"
     },
     "ontobee": {
       "library": "Library",
@@ -49751,6 +50180,7 @@
       "edam": "1027",
       "fairsharing": "FAIRsharing.5h3maw",
       "go": "NCBIGene",
+      "hl7": "geneCodeNCBI",
       "miriam": "ncbigene",
       "n2t": "ncbigene",
       "ncbi": "GeneID",
@@ -50088,6 +50518,7 @@
       "edam": "1179",
       "fairsharing": "FAIRsharing.fj07xj",
       "go": "taxon",
+      "hl7": "NCBI",
       "miriam": "taxonomy",
       "n2t": "taxonomy",
       "ncbi": "taxon",
@@ -50377,12 +50808,20 @@
         "Preclinical Studies"
       ]
     },
+    "hl7": {
+      "description": "NCI Thesaurus, 2004. Bethesda, MD: National Cancer Institute, National Institutes of Health, July 2004.This OID entry has been rejected upon review, as the object has already been registered by the NCI (owners).",
+      "name": "NCI Thesaurus",
+      "preferred_prefix": "NCI",
+      "prefix": "2.16.840.1.113883.6.206",
+      "status": "Rejected"
+    },
     "mappings": {
       "aberowl": "NCIT",
       "biocontext": "NCIT",
       "bioportal": "NCIT",
       "cellosaurus": "NCIt",
       "fairsharing": "FAIRsharing.4cvwxa",
+      "hl7": "2.16.840.1.113883.6.206",
       "miriam": "ncit",
       "n2t": "ncit",
       "obofoundry": "ncit",
@@ -50599,8 +51038,18 @@
       "prefix": "NDC",
       "uri_format": "http://identifiers.org/ndc/$1"
     },
+    "hl7": {
+      "description": "National Drug Codes System (which includes both the National Drug Codes (NDC) and the National Health Related Item Codes (NHRIC)).",
+      "homepage": "http://www.fda.gov/ForIndustry/DataStandards/default.htm",
+      "name": "National Drug Codes System",
+      "organization": "FDA Data Standards Council",
+      "preferred_prefix": "ndc",
+      "prefix": "2.16.840.1.113883.6.69",
+      "status": "Complete"
+    },
     "mappings": {
       "biocontext": "NDC",
+      "hl7": "2.16.840.1.113883.6.69",
       "miriam": "ndc",
       "n2t": "ndc"
     },
@@ -50679,12 +51128,20 @@
         "Medicinal Chemistry"
       ]
     },
+    "hl7": {
+      "description": "National Drug Data File Plus Source Vocabulary 2004. San Bruno, CA: First DataBank, March 11, 2004.This entry was generated to support the Sources in the UMLS.  Additional metadata is still missing.",
+      "name": "National Drug Data File",
+      "preferred_prefix": "nddf",
+      "prefix": "2.16.840.1.113883.6.208",
+      "status": "Complete"
+    },
     "homepage": "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDDF",
     "mappings": {
       "aberowl": "NDDF",
       "biolink": "NDDF",
       "bioportal": "NDDF",
-      "fairsharing": "FAIRsharing.8qcbs0"
+      "fairsharing": "FAIRsharing.8qcbs0",
+      "hl7": "2.16.840.1.113883.6.208"
     },
     "name": "National Drug Data File",
     "pattern": "^\\d{6}$",
@@ -50766,11 +51223,19 @@
         "Biomedical Science"
       ]
     },
+    "hl7": {
+      "description": "National Drug File - Reference Terminology, 2004_01. Washington, DC: U.S. Department of Veterans Affairs, Veterans Health Administration, January 2004.",
+      "name": "National Drug File - Reference Terminology",
+      "preferred_prefix": "NDFRT",
+      "prefix": "2.16.840.1.113883.6.209",
+      "status": "Pending"
+    },
     "homepage": "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT",
     "mappings": {
       "aberowl": "NDFRT",
       "bioportal": "NDFRT",
       "fairsharing": "FAIRsharing.901nkj",
+      "hl7": "2.16.840.1.113883.6.209",
       "ontobee": "NDF-RT",
       "prefixcommons": "ndfrt",
       "wikidata": "P2115"
@@ -54195,7 +54660,7 @@
       "contact.label": "Bill Duncan",
       "contact.orcid": "0000-0001-9625-1899",
       "deprecated": false,
-      "description": "The Oral Health and Disease Ontology was created, initially, to represent the content of dental practice health records.",
+      "description": "The Oral Health and Disease Ontology is used for representing the diagnosis and treatment of dental maladies.",
       "download.owl": "http://purl.obolibrary.org/obo/ohd.owl",
       "homepage": "https://purl.obolibrary.org/obo/ohd/home",
       "license": "CC BY 4.0",
@@ -54203,6 +54668,12 @@
       "name": "Oral Health and Disease Ontology",
       "preferredPrefix": "OHD",
       "prefix": "ohd",
+      "publications": [
+        {
+          "id": "https://www.ncbi.nlm.nih.gov/pubmed/32819435",
+          "title": "Structuring, reuse and analysis of electronic dental data using the Oral Health and Disease Ontology"
+        }
+      ],
       "repository": "https://github.com/oral-health-and-disease-ontologies/ohd-ontology"
     },
     "ols": {
@@ -54394,6 +54865,22 @@
     ]
   },
   "oid": {
+    "contributor_extras": [
+      {
+        "email": "cthoyt@gmail.com",
+        "github": "cthoyt",
+        "name": "Charles Tapley Hoyt",
+        "orcid": "0000-0003-4423-4370"
+      }
+    ],
+    "example_extras": [
+      "2",
+      "2.16",
+      "2.16.840.1",
+      "2.16.840.1.113883",
+      "2.16.840.1.113883.6",
+      "2.16.840.1.113883.6.88"
+    ],
     "mappings": {
       "miriam": "oid",
       "n2t": "oid"
@@ -54419,7 +54906,18 @@
       "pattern": "^[\\d.]+$",
       "prefix": "oid",
       "uri_format": "http://www.oid-info.com/cgi-bin/display?oid=$1&submit=Display&action=display"
-    }
+    },
+    "name": "Orange Identifier",
+    "providers": [
+      {
+        "code": "orange",
+        "description": "Mirror of OID site from Orange",
+        "homepage": "https://oid-rep.orange-labs.fr",
+        "name": "Mirror of OID site from Orange",
+        "uri_format": "https://oid-rep.orange-labs.fr/get/$1"
+      }
+    ],
+    "uri_format": "http://oid-info.com/get/$1"
   },
   "olatdv": {
     "aberowl": {
@@ -54823,6 +55321,13 @@
       ],
       "uri_format": "https://omim.org/entry/$1"
     },
+    "hl7": {
+      "description": "Online Mendelian Inheritance in Man (OMIM). Baltimore (MD): Johns Hopkins University, Center for Biotechnology Information, 1994.",
+      "name": "Online Mendelian Inheritance in Man 1993",
+      "preferred_prefix": "MIM",
+      "prefix": "2.16.840.1.113883.6.174",
+      "status": "Pending"
+    },
     "mappings": {
       "aberowl": "OMIM",
       "biocontext": "OMIM",
@@ -54830,6 +55335,7 @@
       "edam": "1153",
       "fairsharing": "FAIRsharing.b084yh",
       "go": "OMIM",
+      "hl7": "2.16.840.1.113883.6.174",
       "miriam": "mim",
       "n2t": "mim",
       "ncbi": "MIM",
@@ -55768,7 +56274,7 @@
   "oostt": {
     "aberowl": {
       "description": "An ontology built for representating the organizational components of trauma centers and trauma systems.",
-      "download_owl": "http://aber-owl.net/media/ontologies/OOSTT/7/oostt.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/OOSTT/8/oostt.owl",
       "homepage": "https://github.com/OOSTT/OOSTT",
       "name": "Ontology of Organizational Structures of Trauma centers and Trauma systems",
       "prefix": "OOSTT"
@@ -55788,7 +56294,7 @@
       "homepage": "https://github.com/OOSTT/OOSTT",
       "name": "Ontology of Organizational Structures of Trauma centers and Trauma systems",
       "prefix": "OOSTT",
-      "version": "release version - 2021-01-11"
+      "version": "release version - 2022-09-23"
     },
     "example": "00000099",
     "fairsharing": {
@@ -58213,9 +58719,29 @@
       "version": "2022-09-02"
     },
     "example": "0011124",
+    "fairsharing": {
+      "abbreviation": "PCL",
+      "description": "PCL is an ontology created to record claims of potential new cell types derived from single cell data analysis, where there is no additional evidence that supports the addition of corresponding classically defined cell type to the Cell Ontology (CL). PCL hence provides a place for terms that might not be ready for CL.",
+      "id": "4349",
+      "name": "Provisional Cell Ontology",
+      "prefix": "FAIRsharing.bfcfd0",
+      "publications": [
+        {
+          "doi": "10.1101/2021.10.10.463703",
+          "pubmed_id": null,
+          "title": "Brain Data Standards Ontology: A data-driven ontology of transcriptomically defined cell types in the primary motor cortex"
+        }
+      ],
+      "subjects": [
+        "Anatomy",
+        "Life Science",
+        "Cell Biology"
+      ]
+    },
     "mappings": {
       "aberowl": "PCL",
       "bioportal": "PCL",
+      "fairsharing": "FAIRsharing.bfcfd0",
       "obofoundry": "pcl",
       "ols": "pcl",
       "ontobee": "PCL"
@@ -64967,6 +65493,25 @@
     "uri_format": "http://www.radiomics.org/RO/$1"
   },
   "radlex": {
+    "aberowl": {
+      "description": "RadLex is a controlled terminology for radiology-a single unified source of radiology terms for radiology practice, education, and research. For license information see : <a href=\"http://www.rsna.org/uploadedFiles/RSNA/Content/Informatics/RadLex_License_Agreement_and_Terms_of_Use_V2_Final.pdf\">http://www.rsna.org/uploadedFiles/RSNA/Content/Informatics/RadLex_License_Agreement_and_Terms_of_Use_V2_Final.pdf</a> Converted to use OWL format submissions",
+      "download_owl": "http://aber-owl.net/media/ontologies/RADLEX/37/radlex.owl",
+      "homepage": "http://www.rsna.org/RadLex.aspx",
+      "name": "Radiology Lexicon",
+      "prefix": "RADLEX",
+      "version": "3.14"
+    },
+    "bioportal": {
+      "contact": {
+        "email": "radlex-feedback@lists.rsna.org",
+        "name": "Radiological Society of North America"
+      },
+      "description": "RadLex OWL, as downloaded from BioPortal, includes a set of puns in order to facilitate browsing and display. The base RadLex ontology, without puns, is available at http://radlex.org/",
+      "homepage": "https://www.rsna.org/practice-tools/data-tools-and-standards/radlex-radiology-lexicon",
+      "name": "Radiology Lexicon",
+      "prefix": "RADLEX",
+      "version": "4.1"
+    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -64975,8 +65520,54 @@
     },
     "description": "A comprehensive set of radiology terms for use in radiology reporting, decision support, data mining, data registries, education and research.\n\nRadLex provides the foundation for vital data resources used in radiology:\n\n- The LOINC/RSNA Radiology Playbook\n- RadElement Common Data Elements\n-RadReport Radiology Reporting Templates\n\nThe development of RadLex has been supported by the National Institute of Biomedical Imaging and Bioengineering (NIBIB) and the cancer Biomedical Informatics Grid (caBIG) project.",
     "example": "RID1",
+    "fairsharing": {
+      "abbreviation": "RadLex",
+      "description": "RadLex is a comprehensive lexicon—a unified language of radiology terms—for standardized indexing and retrieval of radiology information resources. With more than 68,000 terms, RadLex satisfies the needs of software developers, system vendors and radiology users by adopting the best features of existing terminology systems while producing new terms to fill critical gaps. RadLex also provides a comprehensive and technology-friendly replacement for the ACR Index for Radiological Diagnoses. It unifies and supplements other lexicons and standards, such as SNOMED-CT and DICOM. RadLex development has received support from both the National Institute of Biomedical Imaging and Bioengineering (NIBIB) and the cancer Biomedical Informatics Grid (caBIG) project.",
+      "id": "461",
+      "name": "Radiology Lexicon",
+      "prefix": "FAIRsharing.shm2f2",
+      "publications": [
+        {
+          "doi": "10.2214/ajr.174.5.1741463",
+          "pubmed_id": 10789815,
+          "title": "Radiology lexicon."
+        },
+        {
+          "doi": "10.1016/j.jvir.2008.10.022",
+          "pubmed_id": 19081735,
+          "title": "The IR RadLex project: an interventional radiology lexicon--a collaborative project of the Radiological Society of North America and the Society of Interventional Radiology."
+        },
+        {
+          "doi": "10.1016/j.jvir.2009.04.031",
+          "pubmed_id": 19560008,
+          "title": "The IR Radlex Project: an interventional radiology lexicon--a collaborative project of the Radiological Society of North America and the Society of Interventional Radiology."
+        }
+      ],
+      "subjects": [
+        "Anatomy",
+        "Radiology",
+        "Clinical Studies",
+        "Biomedical Science",
+        "Medical Informatics"
+      ]
+    },
+    "hl7": {
+      "description": "RadLex terminology comprises coded terms used in the acquisition and management of diagnostic images and related data, and in the representation of imaging-related findings and results.  RadLex terms would be used in both Orders and Observations, appearing in HL7 V2 OBX segments and in HL7 V3 Acts describing both imaging procedures and the observations derived therefrom.  RadLex codes will also be used in HL7 CDA documents, as they will be in related DICOM Structured Reporting (SR) objects used in imaging applications.",
+      "homepage": "http://www.radlex.org",
+      "name": "RadLex",
+      "organization": "Radiological Society of North America",
+      "preferred_prefix": "radLex",
+      "prefix": "2.16.840.1.113883.6.256",
+      "status": "Complete"
+    },
     "homepage": "https://radlex.org",
     "license": "http://www.rsna.org/uploadedFiles/RSNA/Content/Informatics/RadLex_License_Agreement_and_Terms_of_Use_V2_Final.pdf",
+    "mappings": {
+      "aberowl": "RADLEX",
+      "bioportal": "RADLEX",
+      "fairsharing": "FAIRsharing.shm2f2",
+      "hl7": "2.16.840.1.113883.6.256"
+    },
     "name": "RSNA Informatics RadLex",
     "pattern": "^RID\\d+$",
     "uri_format": "https://radlex.org/RID/$1",
@@ -65652,11 +66243,20 @@
       "prefix": "RefSeq"
     },
     "has_canonical": "ncbiprotein",
+    "hl7": {
+      "description": "The Reference Sequence (RefSeq) is one of the NCBI projects, the RefSeq collection aims to provide a comprehensive, integrated, non-redundant, well-annotated set of sequences, including genomic DNA, transcripts, and proteins. ReqSeq is accessible via BLAST, Entrez, and the NCBI FTP site.  Information is also available in Entrez Genomes and Entrez Gene, and for some genomes additional information is available in the Map Viewer. RefSeq entries can be used with the HL7 coded data type.  For example, in the HL7 messages specified according to the HL7 V2 Clinical Genomics Fully LOINC-Qualified Genetic Variation Model, RefSeq entries can be used to as the observation values for genomic reference sequence identifiers (LOINC #: 48013-7).  More information may be found at: http://www.ncbi.nlm.nih.gov/RefSeqVersioning informaiton:The latest release of RefSeq was released on May 13, 2009 with the release number of 35.RefSeq generates new releases roughly every two months.  The dates of the three previous releases were:Release 34, March 12, 2009Release 33, January 20, 2009Release 32, November 17, 2008RefSeq is a free database for the public.",
+      "homepage": "http://www.ncbi.nlm.nih.gov",
+      "organization": "National Center for Biotechnology Information,National Center for Biotechnology Information",
+      "preferred_prefix": "refSeq",
+      "prefix": "2.16.840.1.113883.6.280",
+      "status": "Complete"
+    },
     "mappings": {
       "biocontext": "RefSeq",
       "edam": "1098",
       "fairsharing": "FAIRsharing.4jg0qw",
       "go": "RefSeq",
+      "hl7": "2.16.840.1.113883.6.280",
       "miriam": "refseq",
       "n2t": "refseq",
       "prefixcommons": "refseq",
@@ -67726,6 +68326,15 @@
         "Preclinical Studies"
       ]
     },
+    "hl7": {
+      "description": "RxNorm provides standard names for clinical drugs (active ingredient + strength + dose form) and for dose forms as administered to a patient. It provides links from clinical drugs, both branded and generic, to their active ingredients, drug components (active ingredient + strength), and related brand names. NDCs (National Drug Codes) for specific drug products (where there are often many NDC codes for a single product) are linked to that product in RxNorm. RxNorm links its names to many of the drug vocabularies commonly used in pharmacy management and drug interaction software, including those of First Databank, Micromedex, MediSpan, and Multum. By providing links between these vocabularies, RxNorm can mediate messages between systems not using the same software and vocabulary.RxNorm is one of a suite of designated standards for use in U.S. Federal Government systems for the electronic exchange of clinical health information.",
+      "homepage": "http://www.nlm.nih.gov/",
+      "name": "RxNorm",
+      "organization": "National Library of Medicine",
+      "preferred_prefix": "rxNorm",
+      "prefix": "2.16.840.1.113883.6.88",
+      "status": "Complete"
+    },
     "homepage": "https://www.nlm.nih.gov/research/umls/rxnorm/",
     "mappings": {
       "aberowl": "RXNORM",
@@ -67733,6 +68342,7 @@
       "biolink": "RXNORM",
       "bioportal": "RXNORM",
       "fairsharing": "FAIRsharing.36pf8q",
+      "hl7": "2.16.840.1.113883.6.88",
       "wikidata": "P3345"
     },
     "name": "RxNorm",
@@ -70548,12 +71158,22 @@
         "Preclinical Studies"
       ]
     },
+    "hl7": {
+      "description": "SNOMED CT is a concept-based, scientifically validated terminology that provides a unique and permanent concept identifier that can be included in multiple HL7 data types including CD and CE.  The concepts are managed to avoid \"semantic drift\" so the meaning remains constant.  If the concept is found to be ambiguous or the meaning changes, the concept is inactivated but still retained and the identifier is never reused.  SNOMED CT's concepts are interrelated hierarchically and using description logic.  SNOMED CT concepts have a unique \"fully-specified name\", a preferred term, and, optionally, synonyms.  The description languages include English and Spanish.   ",
+      "homepage": "http://www.ihtsdo.org",
+      "name": "SNOMED Clinical Terms",
+      "organization": "International Health Terminology Standards Development Organisation ",
+      "preferred_prefix": "snomed-CT",
+      "prefix": "2.16.840.1.113883.6.96",
+      "status": "Complete"
+    },
     "mappings": {
       "aberowl": "SNOMEDCT",
       "biocontext": "SNOMEDCT",
       "biolink": "SNOMEDCT",
       "bioportal": "SNOMEDCT",
       "fairsharing": "FAIRsharing.d88s6e",
+      "hl7": "2.16.840.1.113883.6.96",
       "miriam": "snomedct",
       "n2t": "snomedct",
       "ols": "snomed",
@@ -70706,7 +71326,7 @@
   "so": {
     "aberowl": {
       "description": "A structured controlled vocabulary for sequence annotation, for the exchange of annotation data and for the description of sequence objects in databases.",
-      "download_owl": "http://aber-owl.net/media/ontologies/SO/283/so.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/SO/284/so.owl",
       "homepage": "http://www.sequenceontology.org/",
       "name": "Sequence types and features ontology",
       "prefix": "SO"
@@ -75414,7 +76034,37 @@
       "us",
       "Wb"
     ],
+    "fairsharing": {
+      "abbreviation": "UCUM",
+      "description": "The Unified Code for Units of Measure is a code system intended to include all units of measures being contemporarily used in international science, engineering, and business. The purpose is to facilitate unambiguous electronic communication of quantities together with their units. The focus is on electronic communication, as opposed to communication between humans. A typical application of The Unified Code for Units of Measure are electronic data interchange (EDI) protocols, but there is nothing that prevents it from being used in other types of machine communication.",
+      "id": "527",
+      "name": "The Unified Code for Units of Measure",
+      "prefix": "FAIRsharing.27w8k0",
+      "publications": [
+        {
+          "doi": "10.1136/jamia.1999.0060151",
+          "pubmed_id": 10094068,
+          "title": "Units of measure in clinical information systems."
+        }
+      ],
+      "subjects": [
+        "Subject Agnostic"
+      ]
+    },
+    "hl7": {
+      "description": "Unified Code for Units of Measure.  The Unified Code for Units of Measure is a code system intended to include all units of measures being contemporarily used in international science, engineering, and business. The purpose is to facilitate unambiguous electronic communication of quantities together with their units. The focus is on electronic communication, as opposed to communication between humans. A typical application of The Unified Code for Units of Measure are electronic data interchange (EDI) protocols, but there is nothing that prevents it from being used in other types of machine communication.http://unitsofmeasure.org/",
+      "homepage": "http://www.regenstrief.org",
+      "name": "Unified Code for Units of Measure",
+      "organization": "Regenstrief Institute",
+      "preferred_prefix": "ucum",
+      "prefix": "2.16.840.1.113883.6.8",
+      "status": "Complete"
+    },
     "homepage": "https://ucum.org",
+    "mappings": {
+      "fairsharing": "FAIRsharing.27w8k0",
+      "hl7": "2.16.840.1.113883.6.8"
+    },
     "name": "Unified Code for Units of Measure",
     "references": [
       "https://units-of-measurement.org/"
@@ -75670,10 +76320,20 @@
       "prefix": "1181"
     },
     "example": "C2584994",
+    "hl7": {
+      "description": "UMLS codes as CUIs making up the values in a coding system.  More information may be found at http://www.nlm.nih.gov/research/umls/",
+      "homepage": "http://www.nlm.nih.gov",
+      "name": "Unified Medical Language System",
+      "organization": "National Library of Medicine",
+      "preferred_prefix": "umls",
+      "prefix": "2.16.840.1.113883.6.86",
+      "status": "Complete"
+    },
     "homepage": "https://www.nlm.nih.gov/research/umls",
     "mappings": {
       "biocontext": "UMLS",
       "edam": "1181",
+      "hl7": "2.16.840.1.113883.6.86",
       "miriam": "umls",
       "n2t": "umls",
       "wikidata": "P2892"
@@ -76376,6 +77036,15 @@
       "uri_format": "http://www.uniprot.org/uniparc/?query=$1"
     },
     "part_of": "uniprot",
+    "providers": [
+      {
+        "code": "obo.1",
+        "description": "This incorrect encoding was found inside IDO-COVID-19",
+        "homepage": "http://purl.obolibrary.org",
+        "name": "Nonstandard OBO PURL",
+        "uri_format": "http://purl.obolibrary.org/obo/UniProtKB_$1"
+      }
+    ],
     "synonyms": [
       "UPISO"
     ]
@@ -77378,12 +78047,20 @@
         "Biomedical Science"
       ]
     },
+    "hl7": {
+      "description": "U.S. Department of Veterns Affairs, Veterans Health Administration National Drug File. Department of Veterans Affairs, Washington, DC. URL: http://www.vapbm.org/PBM/natform.htm",
+      "name": "National Drug File",
+      "preferred_prefix": "VANDF",
+      "prefix": "2.16.840.1.113883.6.229",
+      "status": "Pending"
+    },
     "homepage": "https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/VANDF",
     "mappings": {
       "aberowl": "VANDF",
       "biolink": "VANDF",
       "bioportal": "VANDF",
-      "fairsharing": "FAIRsharing.xn3pb3"
+      "fairsharing": "FAIRsharing.xn3pb3",
+      "hl7": "2.16.840.1.113883.6.229"
     },
     "name": "Veterans Administration National Drug File",
     "pattern": "^\\d+$",
@@ -77680,13 +78357,17 @@
   },
   "vbo": {
     "aberowl": {
+      "description": "Vertebrate Breed Ontology is an ontology created to serve as a single computable resource for vertebrate breed names.",
+      "download_owl": "http://aber-owl.net/media/ontologies/VBO/1/vbo.owl",
+      "homepage": "https://github.com/monarch-initiative/vertebrate-breed-ontology",
       "name": "Vertebrate Breed Ontology",
       "prefix": "VBO"
     },
     "example": "0000038",
     "mappings": {
       "aberowl": "VBO",
-      "obofoundry": "vbo"
+      "obofoundry": "vbo",
+      "ontobee": "VBO"
     },
     "obofoundry": {
       "contact": "Sabrina@tislab.org",
@@ -77708,6 +78389,11 @@
       "preferredPrefix": "VBO",
       "prefix": "vbo",
       "repository": "https://github.com/monarch-initiative/vertebrate-breed-ontology"
+    },
+    "ontobee": {
+      "library": "Library",
+      "name": "Vertebrate Breed Ontology",
+      "prefix": "VBO"
     },
     "pattern": "^\\d{7}$"
   },
@@ -78255,6 +78941,7 @@
       "name": "John Beverly",
       "orcid": "0000-0002-1118-1738"
     },
+    "download_owl": "https://raw.githubusercontent.com/infectious-disease-ontology-extensions/ido-virus/master/ontology/vido.owl",
     "example": "0001114",
     "homepage": "https://github.com/infectious-disease-ontology-extensions/ido-virus",
     "mappings": {
@@ -78279,6 +78966,15 @@
       "prefix": "VIDO"
     },
     "pattern": "^\\d{7}$",
+    "providers": [
+      {
+        "code": "obo.1",
+        "description": "This incorrect encoding was found inside IDO-COVID-19",
+        "homepage": "http://purl.obolibrary.org",
+        "name": "Nonstandard OBO PURL",
+        "uri_format": "http://purl.obolibrary.org/VIDO_$1"
+      }
+    ],
     "repository": "https://github.com/infectious-disease-ontology-extensions/ido-virus",
     "uri_format": "http://purl.obolibrary.org/obo/VIDO_$1"
   },
@@ -78804,6 +79500,30 @@
     "pattern": "^\\d+$",
     "uri_format": "https://sitem.herts.ac.uk/aeru/vsdb/Reports/$1.htm"
   },
+  "vsmo": {
+    "contributor": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "description": "an ontology for vector surveillance and management, focusing on arthropod vectors and vector-borne pathogens with relevance to humans or domestic animals, and with special emphasis on content to support operational activities through inclusion in databases, data management systems, or decision support systems.",
+    "download_json": "https://raw.githubusercontent.com/cthoyt/vsmo/main/vsmo.json",
+    "download_obo": "https://raw.githubusercontent.com/cthoyt/vsmo/main/vsmo.obo",
+    "download_owl": "https://raw.githubusercontent.com/cthoyt/vsmo/main/vsmo.owl",
+    "example": "0000000",
+    "homepage": "https://code.google.com/archive/p/vector-surveillance-and-management-ontology/",
+    "license": "New BSD License",
+    "name": "Ontology for vector surveillance and management",
+    "publications": [
+      {
+        "doi": "10.1603/me12169",
+        "pubmed": "23427646",
+        "title": "Ontology for Vector Surveillance and Management"
+      }
+    ],
+    "uri_format": "http://purl.obolibrary.org/obo/VSMO_$1"
+  },
   "vso": {
     "aberowl": {
       "description": "The Vital Sign Ontology (VSO) is an extension of the Ontology for General Medical Science (OGMS). VSO covers the four consensus human vital signs: blood pressure, body temperature, respiration rate, pulse rate. VSO provides also a controlled structured vocabulary for describing vital signs measurement data, the various processes of measuring vital signs, and the various devices and anatomical entities participating in such measurements.",
@@ -79296,7 +80016,7 @@
   "wbls": {
     "aberowl": {
       "description": "A structured controlled vocabulary of the development of <i>Caenorhabditis elegans</i>.",
-      "download_owl": "http://aber-owl.net/media/ontologies/WBLS/23/wbls.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/WBLS/24/wbls.owl",
       "homepage": "https://github.com/obophenotype/c-elegans-development-ontology",
       "name": "C. elegans development ontology",
       "prefix": "WBLS"
@@ -79428,7 +80148,7 @@
   "wbphenotype": {
     "aberowl": {
       "description": "A structured controlled vocabulary of <i>Caenorhabditis elegans</i> phenotypes",
-      "download_owl": "http://aber-owl.net/media/ontologies/WBPHENOTYPE/67/wbphenotype.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/WBPHENOTYPE/68/wbphenotype.owl",
       "homepage": "https://github.com/obophenotype/c-elegans-phenotype-ontology",
       "name": "C. elegans phenotype",
       "prefix": "WBPHENOTYPE"
@@ -80923,7 +81643,7 @@
   "xpo": {
     "aberowl": {
       "description": "XPO represents anatomical, cellular, and gene function phenotypes occurring throughout the development of the African frogs Xenopus laevis and tropicalis.",
-      "download_owl": "http://aber-owl.net/media/ontologies/XPO/14/xpo.owl",
+      "download_owl": "http://aber-owl.net/media/ontologies/XPO/15/xpo.owl",
       "homepage": "https://github.com/obophenotype/xenopus-phenotype-ontology",
       "name": "Xenopus Phenotype Ontology",
       "prefix": "XPO"

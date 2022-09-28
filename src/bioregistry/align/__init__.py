@@ -19,6 +19,7 @@ from .cropoct import CropOCTAligner
 from .edam import EDAMAligner
 from .fairsharing import FairsharingAligner
 from .go import GoAligner
+from .hl7 import HL7Aligner
 from .miriam import MiriamAligner
 from .n2t import N2TAligner
 from .ncbi import NcbiAligner
@@ -58,6 +59,7 @@ __all__ = [
     "WikidataAligner",
     "EDAMAligner",
     "Re3dataAligner",
+    "HL7Aligner",
 ]
 
 aligner_resolver = ClassResolver.from_subclasses(

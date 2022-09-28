@@ -2,7 +2,7 @@
 
 """Align EDAM with the Bioregistry."""
 
-from typing import Mapping, Sequence
+from typing import Mapping
 
 from bioregistry.align.utils import Aligner
 from bioregistry.external.edam import get_edam
@@ -28,13 +28,6 @@ class EDAMAligner(Aligner):
             "2582": "GO sub-hierarchy",
             "2583": "GO sub-hierarchy",
         }
-
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
-        """Prepare curation rows for unaligned EDAM ontology classes."""
-        return [
-            external_entry["name"],
-            external_entry["description"],
-        ]
 
 
 if __name__ == "__main__":
