@@ -44,25 +44,28 @@ class Summary(BaseModel):
     total_failed: int
     total_success: int
     failure_percent: float = Field(
-        ge=0.0, le=1.0, description="The percentage of providers that did not successfully ping."
+        ge=0.0, le=100.0, description="The percentage of providers that did not successfully ping."
     )
 
 
 class Delta(BaseModel):
     """Change between runs."""
 
-    new: Set[str] = Field(
+    new: List[str] = Field(
         description="Prefixes that are new in the current run that were not present in the previous run"
     )
-    forgotten: Set[str] = Field(
+    forgotten: List[str] = Field(
         description="Prefixes that were checked in the previous run but not the current run"
     )
-    revived: Set[str] = Field(
+    revived: List[str] = Field(
         description="Prefixes that failed in the previous run but are now passing the current run"
     )
-    fallen: Set[str] = Field(
+    fallen: List[str] = Field(
         description="Prefixes that were passing in the previous run but are now failing in the current run"
     )
+    intersection: int = Field(description="Size of intersection")
+    alive: int = Field(description="Prefixes that passed in the previous and this run")
+    dead: int = Field(description="Prefixes failed in the previous and this run")
 
 
 class Run(BaseModel):
@@ -72,7 +75,7 @@ class Run(BaseModel):
     date: str = Field(default_factory=lambda: datetime.datetime.now().strftime("%Y-%m-%d"))
     results: List[ProviderStatus]
     summary: Summary
-    delta: Optional[str] = Field(description="Information about the changes since the last run")
+    delta: Optional[Delta] = Field(description="Information about the changes since the last run")
 
 
 class Database(BaseModel):
@@ -124,6 +127,8 @@ def main():
         bold=True,
     )
 
+    # TODO smooth delta against last N runs, since some things sporadically
+    #  come in and out
     delta = (
         _calculate_delta(results, max(database.runs, key=attrgetter("time")).results)
         if database.runs
@@ -134,12 +139,13 @@ def main():
         summary=Summary(
             total_measured=total,
             total_failed=total_failed,
-            total_succeeded=total - total_failed,
-            failure_percent=failure_percent,
+            total_success=total - total_failed,
+            failure_percent=round(100 * failure_percent, 1),
         ),
         delta=delta,
     )
     database.runs.append(current_run)
+    database.runs = sorted(database.runs, key=attrgetter("time"), reverse=True)
 
     HEALTH_YAML_PATH.write_text(yaml.safe_dump(database.dict(exclude_none=True)))
     click.echo(f"Wrote to {HEALTH_YAML_PATH}")
@@ -152,16 +158,26 @@ def _calculate_delta(current: List[ProviderStatus], previous: List[ProviderStatu
     forgotten = set(previous_results).difference(current_results)
     intersection_prefixes = set(current_results).intersection(previous_results)
     fallen = {
-        not previous_results[prefix] and current_results[prefix] for prefix in intersection_prefixes
+        prefix for prefix in intersection_prefixes if not previous_results[prefix] and current_results[prefix]
     }
     revived = {
-        previous_results[prefix] and not current_results[prefix] for prefix in intersection_prefixes
+        prefix for prefix in intersection_prefixes if previous_results[prefix] and not current_results[prefix]
     }
+    alive = sum(
+        not previous_results[prefix] and not current_results[prefix]
+        for prefix in intersection_prefixes
+    )
+    dead = sum(
+        previous_results[prefix] and current_results[prefix] for prefix in intersection_prefixes
+    )
     return Delta(
-        new=new,
-        fallen=fallen,
-        revived=revived,
-        forgotten=forgotten,
+        new=sorted(new),
+        fallen=sorted(fallen),
+        revived=sorted(revived),
+        forgotten=sorted(forgotten),
+        intersection=len(intersection_prefixes),
+        alive=alive,
+        dead=dead,
     )
 
 
@@ -173,7 +189,7 @@ def _process(element: QueueTuple) -> ProviderStatus:
     context: Optional[str]
 
     try:
-        res = requests.head(url, timeout=5, allow_redirects=True)
+        res = requests.head(url, timeout=10, allow_redirects=True)
     except IOError as e:
         status_code = None
         failed = True
