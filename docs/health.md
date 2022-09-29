@@ -18,11 +18,11 @@ resolve with a HTTP 200. This comes with a few caveats:
 **Why Does Resolution Fail?**
 
 1. The website has been updated, and the URI format does not correspond to an
-   existing endpoint anymore (solvable with additional curation)
+   existing endpoint anymore (solvable with additional curation).
 2. The website has been fully taken down (e.g., in the case of `bind`)
 3. The website has been replaced with another unrelated website, and the URI
    format does not correspond to an existing endpoint anymore (e.g., the old
-   site for `atfdb.family` has been replaced by something unrelated)
+   site for `atfdb.family` has been replaced by something unrelated).
 4. The website suffered from a temporary issue and failed to resolve during
    check, but still works. Because this is possible, it's better to compare the
    last few checks for any newly failing prefixes.
@@ -34,8 +34,8 @@ resolve with a HTTP 200. This comes with a few caveats:
 6. The URI corresponds to a redirect that is misconfigured in the redirection
    service (e.g., this happened for several CropOCT ontologies
    (ref: [#527](https://github.com/biopragmatics/bioregistry/issues/527)) and
-   sporadically for the OBO PURL service)
-7. The URI format string was curated incorrectly
+   sporadically for the OBO PURL service).
+7. The URI format string was curated incorrectly.
 
 **Why Store URI Formats for Dead Resources?**
 
