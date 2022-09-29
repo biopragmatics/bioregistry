@@ -75,14 +75,19 @@ Forgotten (i.e., tested in the previous check but not this check):
    </thead>
    <tbody>
    {% for record in run.results %}
-      <tr>
+      {% if record.exception %}
+         {% assign color = "#FFDDDB" %}
+      {% elsif record.status_code == 200 %}
+         {% assign color = "#B0EEB0" %}
+      {% else %}
+         {% assign color = "#FFFFE0" %}
+      {% endif %}
+      <tr style="background-color: {{ color }}">
          <td><a href="https://bioregistry.io/{{ record.prefix }}">{{ record.prefix }}</a></td>
          <td><a href="{{ record.url | uri_escape }}">{{ record.example | truncate: 30 }}</a></td>
          <td>
             {% if record.exception %}
                 {{ record.exception }}
-            {% elsif record.status_code == 200 %}
-                HTTP {{ record.status_code }}
             {% else %}
                 HTTP {{ record.status_code }}
             {% endif %}
