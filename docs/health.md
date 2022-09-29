@@ -19,7 +19,7 @@ resolve with a HTTP 200. This comes with a few caveats:
 
 1. The website has been updated, and the URI format does not correspond to an
    existing endpoint anymore (solvable with additional curation).
-2. The website has been fully taken down (e.g., in the case of `bind`)
+2. The website has been fully taken down
 3. The website has been replaced with another unrelated website, and the URI
    format does not correspond to an existing endpoint anymore (e.g., the old
    site for `atfdb.family` has been replaced by something unrelated).
