@@ -13,7 +13,7 @@ import bioregistry
 from bioregistry import Resource, manager
 from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE
 from bioregistry.export.rdf_export import resource_to_rdf_str
-from bioregistry.license_standardizer import REVERSE_LICENSES
+from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.schema.struct import SCHEMA_PATH, get_json_schema
 from bioregistry.schema_utils import is_mismatch
@@ -668,6 +668,12 @@ class TestRegistry(unittest.TestCase):
         for key, values in REVERSE_LICENSES.items():
             with self.subTest(key=key):
                 self.assertEqual(len(values), len(set(values)), msg=f"duplicates in {key}")
+
+        for prefix, resource in self.registry.items():
+            if resource.license is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertEqual(standardize_license(resource.license), resource.license)
 
     def test_contributors(self):
         """Check contributors have minimal metadata."""
