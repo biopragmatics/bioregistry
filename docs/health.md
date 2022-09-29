@@ -5,13 +5,6 @@ permalink: /health/
 ---
 {% assign run = site.data.health.runs[0] %}
 
-## Provider Health
-
-Are local unique identifiers able to be resolved in the given URI format
-strings?
-
-### Summary
-
 Of the {{ run.summary.total_measured }} prefixes in the Bioregistry that have
 both an example local unique identifiers and at least one URI format string,
 {{ run.summary.total_failed }} ({{ run.summary.failure_percent }}%) were able to
@@ -23,8 +16,6 @@ resolve with a HTTP 200. This comes with a few caveats:
    positives (see below).
 
 **Why Does Resolution Fail?**
-
-There are several reasons why resolution of URI might fail:
 
 1. The website has been updated, and the URI format does not correspond to an
    existing endpoint anymore (solvable with additional curation)
@@ -57,6 +48,9 @@ ultimately for standardizing data.
 {% if run.delta %}
 
 ### Changes
+
+There are {{ run.delta.alive }} prefixes that remain passing and
+{{ run.delta.dead }} that remained failing.
 
 {% if run.delta.new.size > 0 or run.delta.fallen.size > 0 %}
 New failures (passing in the previous check but not in the current check):
