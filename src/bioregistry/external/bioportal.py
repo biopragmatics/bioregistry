@@ -15,7 +15,7 @@ import requests
 from tqdm import tqdm
 from tqdm.contrib.concurrent import thread_map
 
-from bioregistry.constants import EXTERNAL
+from bioregistry.constants import EMAIL_RE, EXTERNAL
 from bioregistry.license_standardizer import standardize_license
 
 __all__ = [
@@ -117,9 +117,15 @@ class OntoPortalClient:
         if license_stub:
             record["license"] = standardize_license(license_stub)
 
-        contacts = res_json.get("contact", [])
+        contacts = [
+            {k: v.strip() for k, v in contact.items()} for contact in res_json.get("contact", [])
+        ]
+        contacts = [contact for contact in contacts if EMAIL_RE.match(contact.get("email", ""))]
         if contacts:
-            record["contact"] = {k: v.strip() for k, v in contacts[0].items() if k != "id"}
+            contact = contacts[0]
+            # TODO consider sorting contacts in a canonical order?
+            # contact = min(contacts, key=lambda c: len(c["email"]))
+            record["contact"] = {k: v for k, v in contact.items() if k != "id"}
 
         return {k: v for k, v in record.items() if v}
 
