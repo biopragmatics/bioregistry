@@ -41,8 +41,8 @@ There are several reasons why resolution of URI might fail:
    resolve. Ontologies typically use IRIs (a superset of URIs), which do not
    necessarily imply that their content are resolvable as a URL.
 6. The URI corresponds to a redirect that is misconfigured in the redirection
-   service (e.g., this happened for several CropOCT ontologies (
-   ref: [#527](https://github.com/biopragmatics/bioregistry/issues/527)) and
+   service (e.g., this happened for several CropOCT ontologies
+   (ref: [#527](https://github.com/biopragmatics/bioregistry/issues/527)) and
    sporadically for the OBO PURL service)
 7. The URI format string was curated incorrectly
 
