@@ -341,16 +341,6 @@ bioregistry.schema:0000022 a rdf:Property ;
     rdfs:domain bioregistry.schema:0000002 ;
     rdfs:range bioregistry.schema:0000020 .
 
-orcid:0000-0001-9439-5346 rdfs:label "Benjamin M. Gyori" ;
-    dcterms:contributor bioregistry:bko,
-        bioregistry:casspc,
-        bioregistry:cordis.project,
-        bioregistry:nihreporter.project,
-        bioregistry:pdc.study,
-        bioregistry:phosphosite.sitegroup,
-        bioregistry:signor.relation,
-        bioregistry:zenodo.record .
-
 orcid:0000-0002-3012-7446 rdfs:label "Daniel Himmelstein" ;
     dcterms:contributor bioregistry:openalex .
 
@@ -4438,7 +4428,8 @@ bioregistry:fplx a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "GPIb_IX_V"^^xsd:string ;
     bioregistry.schema:0000006 "https://sorgerlab.github.io/famplex/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^[a-zA-Z0-9][A-Za-z0-9_]+$"^^xsd:string ;
-    bioregistry.schema:0000012 false .
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0001-9439-5346 .
 
 bioregistry:fsnp a bioregistry.schema:0000001 ;
     rdfs:label "F-SNP" ;
@@ -12471,6 +12462,17 @@ orcid:0000-0001-9202-5309 rdfs:label "Chen Yang" .
 
 orcid:0000-0001-9228-8838 rdfs:label "Mark Jensen" .
 
+orcid:0000-0001-9439-5346 rdfs:label "Benjamin M. Gyori" ;
+    dcterms:contributor bioregistry:bko,
+        bioregistry:casspc,
+        bioregistry:cemo,
+        bioregistry:cordis.project,
+        bioregistry:nihreporter.project,
+        bioregistry:pdc.study,
+        bioregistry:phosphosite.sitegroup,
+        bioregistry:signor.relation,
+        bioregistry:zenodo.record .
+
 orcid:0000-0001-9472-2589 rdfs:label "Karel Berka" .
 
 orcid:0000-0001-9625-1899 rdfs:label "Bill Duncan" .
@@ -12612,6 +12614,8 @@ orcid:0000-0002-9654-0073 rdfs:label "Bob Thacker" .
 orcid:0000-0002-9673-1283 rdfs:label "Yuki Yamagata" .
 
 orcid:0000-0002-9713-9994 rdfs:label "Mike Tyers" .
+
+orcid:0000-0003-0169-8159 rdfs:label "Núria Queralt Rosinach" .
 
 orcid:0000-0003-0443-9902 rdfs:label "Adriano Rutz" ;
     dcterms:contributor bioregistry:coconut,
@@ -12891,6 +12895,8 @@ aberowl:GENO dcterms:isPartOf bioregistry.metaresource:aberowl .
 aberowl:GEO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:GEXO dcterms:isPartOf bioregistry.metaresource:aberowl .
+
+aberowl:GFO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
 aberowl:GNO dcterms:isPartOf bioregistry.metaresource:aberowl .
 
@@ -14939,6 +14945,8 @@ bioportal:GENO dcterms:isPartOf bioregistry.metaresource:bioportal .
 bioportal:GEO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:GEXO dcterms:isPartOf bioregistry.metaresource:bioportal .
+
+bioportal:GFO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
 bioportal:GNO dcterms:isPartOf bioregistry.metaresource:bioportal .
 
@@ -19835,6 +19843,18 @@ bioregistry:cellosaurus.resource a bioregistry.schema:0000001 ;
     bioregistry.schema:0000006 "https://bioregistry.io/metaregistry/cellosaurus/$1"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:cemo a bioregistry.schema:0000001 ;
+    rdfs:label "The COVID-19 epidemiology and monitoring ontology" ;
+    dc:description "The covid-19 epidemiology and monitoring ontology (cemo) provides a common ontological model to make epidemiological quantitative data for monitoring the covid-19 outbreak machine-readable and interoperable to facilitate its exchange, integration and analysis, to eventually support evidence-based rapid response."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://github.com/NuriaQueralt/covid19-epidemiology-ontology"^^xsd:string ;
+    bioregistry.schema:0000005 "length_of_intensive_care_unit_(icu)_stay"^^xsd:string ;
+    bioregistry.schema:0000006 "http://purl.obolibrary.org/obo/cemo.owl#$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[()0-9a-z_-]+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0003-0169-8159 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:cgnc a bioregistry.schema:0000001 ;
     rdfs:label "Chicken Gene Nomenclature Consortium" ;
     dc:description "Nomenclature Consortium around Chicken genes (analogous to the HGNC for humans)"^^xsd:string ;
@@ -21272,6 +21292,19 @@ bioregistry:geonames.feature a bioregistry.schema:0000001 ;
     bioregistry.schema:0000005 "ADM1"^^xsd:string ;
     bioregistry.schema:0000006 "https://www.geonames.org/recent-changes/featurecode/$1/"^^xsd:string ;
     bioregistry.schema:0000012 false .
+
+bioregistry:gfo a bioregistry.schema:0000001 ;
+    rdfs:label "General Formal Ontology" ;
+    dc:description "The General Formal Ontology is a top-level ontology for conceptual modeling, which is being constantly further developed by Onto-Med. It includes elaborations of categories like objects, processes, time and space, properties, relations, roles, functions, facts, and situations. Moreover, we are working on an integration with the notion of levels of reality in order to more appropriately capture entities in the material, mental, and social areas."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch aberowl:GFO,
+        bioportal:GFO,
+        fairsharing:FAIRsharing.175hsz ;
+    foaf:homepage "https://www.onto-med.de/ontologies/gfo"^^xsd:string ;
+    bioregistry.schema:0000005 "projects_to"^^xsd:string ;
+    bioregistry.schema:0000006 "http://www.onto-med.de/ontologies/gfo.owl#$1"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 [ rdfs:label "Heinrich Herre" ] .
 
 bioregistry:ghr a bioregistry.schema:0000001 ;
     rdfs:label "Genetics Home Reference" ;
@@ -24513,6 +24546,8 @@ fairsharing:FAIRsharing.10zsxb dcterms:isPartOf bioregistry.metaresource:fairsha
 fairsharing:FAIRsharing.1414v8 dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.162003 dcterms:isPartOf bioregistry.metaresource:fairsharing .
+
+fairsharing:FAIRsharing.175hsz dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
 fairsharing:FAIRsharing.17zapb dcterms:isPartOf bioregistry.metaresource:fairsharing .
 
@@ -33850,6 +33885,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:genbank,
         bioregistry:geonames,
         bioregistry:geonames.feature,
+        bioregistry:gfo,
         bioregistry:ghr,
         bioregistry:github.issue,
         bioregistry:github.pull,
@@ -35949,6 +35985,7 @@ bioregistry.metaresource:bioportal a bioregistry.schema:0000002 ;
         bioportal:GENO,
         bioportal:GEO,
         bioportal:GEXO,
+        bioportal:GFO,
         bioportal:GNO,
         bioportal:GO,
         bioportal:GRO,
@@ -36276,6 +36313,7 @@ bioregistry.metaresource:aberowl a bioregistry.schema:0000002 ;
         aberowl:GENO,
         aberowl:GEO,
         aberowl:GEXO,
+        aberowl:GFO,
         aberowl:GNO,
         aberowl:GO,
         aberowl:GRO,
@@ -36861,6 +36899,7 @@ bioregistry.metaresource:fairsharing a bioregistry.schema:0000002 ;
         fairsharing:FAIRsharing.10zsxb,
         fairsharing:FAIRsharing.1414v8,
         fairsharing:FAIRsharing.162003,
+        fairsharing:FAIRsharing.175hsz,
         fairsharing:FAIRsharing.17zapb,
         fairsharing:FAIRsharing.1a27h8,
         fairsharing:FAIRsharing.1c1738,
@@ -39928,6 +39967,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:cellosaurus,
         bioregistry:cellosaurus.resource,
         bioregistry:cellrepo,
+        bioregistry:cemo,
         bioregistry:ceph,
         bioregistry:cgd,
         bioregistry:cghdb,
@@ -40309,6 +40349,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:geonames,
         bioregistry:geonames.feature,
         bioregistry:gexo,
+        bioregistry:gfo,
         bioregistry:ghr,
         bioregistry:giardiadb,
         bioregistry:github,

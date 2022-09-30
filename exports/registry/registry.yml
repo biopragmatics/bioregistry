@@ -3914,6 +3914,36 @@ cellrepo:
   pattern: ^[0-9]+$
   preferred_prefix: cellrepo
   uri_format: https://cellrepo.ico2s.org/repositories/$1
+cemo:
+  contact:
+    email: n.queralt_rosinach@lumc.nl
+    github: NuriaQueralt
+    name: Núria Queralt Rosinach
+    orcid: 0000-0003-0169-8159
+  contributor:
+    email: null
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
+  description: The covid-19 epidemiology and monitoring ontology (cemo) provides a
+    common ontological model to make epidemiological quantitative data for monitoring
+    the covid-19 outbreak machine-readable and interoperable to facilitate its exchange,
+    integration and analysis, to eventually support evidence-based rapid response.
+  download_owl: https://raw.githubusercontent.com/NuriaQueralt/covid19-epidemiology-ontology/main/owl/cemo.owl
+  example: length_of_intensive_care_unit_(icu)_stay
+  github_request_issue: 593
+  homepage: https://github.com/NuriaQueralt/covid19-epidemiology-ontology
+  license: CC0 1.0
+  name: The COVID-19 epidemiology and monitoring ontology
+  pattern: ^[()0-9a-z_-]+$
+  preferred_prefix: cemo
+  repository: https://github.com/NuriaQueralt/covid19-epidemiology-ontology
+  reviewer:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  uri_format: http://purl.obolibrary.org/obo/cemo.owl#$1
 ceph:
   contact:
     email: cjmungall@lbl.gov
@@ -11692,6 +11722,11 @@ fovt:
   uri_format: http://purl.obolibrary.org/obo/FOVT_$1
   version: '2021-11-10'
 fplx:
+  contact:
+    email: benjamin_gyori@hms.harvard.edu
+    github: bgyori
+    name: Benjamin M. Gyori
+    orcid: 0000-0001-9439-5346
   description: FamPlex is a collection of resources for grounding biological entities
     from text and describing their hierarchical relationships.
   example: GPIb_IX_V
@@ -11705,6 +11740,13 @@ fplx:
   name: FamPlex
   pattern: ^[a-zA-Z0-9][A-Za-z0-9_]+$
   preferred_prefix: fplx
+  publications:
+  - doi: 10.1186/s12859-018-2211-5
+    pmc: PMC6022344
+    pubmed: '29954318'
+    title: 'FamPlex: a resource for entity recognition and relationship resolution
+      of human protein families and complexes in biomedical text mining'
+    year: 2018
   synonyms:
   - famplex
   uri_format: https://sorgerlab.github.io/famplex/$1
@@ -12615,6 +12657,33 @@ gexo:
       base.
     year: 2014
   version: '2019-09-18'
+gfo:
+  contact:
+    email: heinrich.herre@imise.uni-leipzig.de
+    github: null
+    name: Heinrich Herre
+    orcid: null
+  contributor:
+    email: cthoyt@gmail.com
+    github: cthoyt
+    name: Charles Tapley Hoyt
+    orcid: 0000-0003-4423-4370
+  description: The General Formal Ontology is a top-level ontology for conceptual
+    modeling, which is being constantly further developed by Onto-Med. It includes
+    elaborations of categories like objects, processes, time and space, properties,
+    relations, roles, functions, facts, and situations. Moreover, we are working on
+    an integration with the notion of levels of reality in order to more appropriately
+    capture entities in the material, mental, and social areas.
+  download_owl: http://www.onto-med.de/ontologies/gfo.owl
+  example: projects_to
+  homepage: https://www.onto-med.de/ontologies/gfo
+  mappings:
+    aberowl: GFO
+    bioportal: GFO
+    fairsharing: FAIRsharing.175hsz
+  name: General Formal Ontology
+  preferred_prefix: gfo
+  uri_format: http://www.onto-med.de/ontologies/gfo.owl#$1
 ghr:
   contributor:
     email: cthoyt@gmail.com
