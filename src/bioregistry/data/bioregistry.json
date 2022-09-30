@@ -55784,9 +55784,9 @@
       }
     ],
     "description": "The OMOP Common Data Model allows for the systematic analysis of disparate observational databases. The concept behind this approach is to transform data contained within those databases into a common format (data model) as well as a common representation (terminologies, vocabularies, coding schemes), and then perform systematic analyses using a library of standard analytic routines that have been written based on the common format.",
+    "example": "1",
     "homepage": "https://www.ohdsi.org/data-standardization/the-common-data-model/",
     "name": "Observational Medical Outcomes Partnership",
-    "no_own_terms": true,
     "pattern": "^\\d+",
     "providers": [
       {
@@ -55795,6 +55795,13 @@
         "homepage": "http://api.ohdsi.org",
         "name": "OHDSI API",
         "uri_format": "http://api.ohdsi.org/WebAPI/vocabulary/concept/$1"
+      },
+      {
+        "code": "ohdsi.data",
+        "description": " https://faircookbook.elixir-europe.org/content/recipes/applied-examples/ehden-ohdsi.html suggests https://data.ohdsi.org/concept/ as another uri expansion but it does not resolve.",
+        "homepage": "https://data.ohdsi.org/concept",
+        "name": "OHDSI Data Endpoint",
+        "uri_format": "https://data.ohdsi.org/concept/$1"
       }
     ],
     "references": [
