@@ -39,6 +39,13 @@ body:
       placeholder: ex. https://www.ebi.ac.uk/chebi/
     validations:
       required: true
+  - type: input
+    id: repository
+    attributes:
+      label: Repository
+      description: |
+        What is the version control repository's URL for this resource? Typically on GitHub, GitLab, BitBucket, etc. for resources like ontologies. This is useful in two ways: first, it allows to quickly find the related issue tracker. Second, it enables external contributions.
+      placeholder: ex. https://github.com/ebi-chebi/ChEBI
   - type: textarea
     id: description
     attributes:
@@ -48,6 +55,13 @@ body:
       # value: "A bug happened!"
     validations:
       required: true
+  - type: input
+    id: license
+    attributes:
+      label: License
+      description: |
+        What is the repository's license? Write with a SPDX identifier, if possible.
+      placeholder: ex. CC0
   - type: input
     id: example
     attributes:
@@ -124,6 +138,18 @@ body:
       label: Contact ORCiD
       description: Please provide the ORCiD identifier of the primary contact for this resource, if known. If you are contributing your own resource, please fill out this field even though it is redundant of the contributor field.
       placeholder: ex. 0000-0003-4423-4370
+  - type: input
+    id: contact_github
+    attributes:
+      label: Contact GitHub
+      description: Please provide the GitHub handle of the primary contact for this resource, if known. If you are contributing your own resource, please fill out this field even though it is redundant of the contributor field.
+      placeholder: ex. cthoyt
+  - type: input
+    id: contact_email
+    attributes:
+      label: Contact Email
+      description: Please provide the email address of the primary contact for this resource, if known.
+      placeholder: ex. cthoyt@gmail.com
 
   - type: textarea
     id: comments
