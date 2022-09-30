@@ -44,7 +44,9 @@ body:
     attributes:
       label: Repository
       description: |
-        What is the version control repository's URL for this resource? Typically on GitHub, GitLab, BitBucket, etc. for resources like ontologies. This is useful in two ways: first, it allows to quickly find the related issue tracker. Second, it enables external contributions.
+        What is the version control repository associated with this prefix?
+
+        Typically, this is a URL to a repository on GitHub, GitLab, BitBucket, etc. for resources like ontologies. This is useful in two ways: first, it allows to quickly find the related issue tracker. Second, it enables external contributions.
       placeholder: ex. https://github.com/ebi-chebi/ChEBI
   - type: textarea
     id: description
@@ -80,7 +82,6 @@ body:
         Do include a carat `^` at the beginning and a dollar sign `$` at the end to signify that your pattern only matches the identifier, and not potentially any other parts of the string.
 
         Do not include a redundant prefix within the pattern (e.g., do not write `^CHEBI:\d+$`).
-        If your identifiers contain a redundant prefix, simply write it as write it simply as `^\d+$` and follow the instructions below in the  "Redundant Prefix" section to capture the redundant `CHEBI:`. This is important for some communities using the Bioregistry.
       placeholder: ex. ^\d+$
     validations:
       required: false
@@ -88,7 +89,11 @@ body:
     id: url
     attributes:
       label: URI Format String
-      description: A URI format string is a URI with a placeholder (`$1`) for the local unique identifier that can be used in combination with a given local unique identifier to make a webpage for the local unique identifier.
+      description: |
+        A URI format string is a URI with a placeholder (`$1`) for the local unique identifier that can be used in
+        combination with a given local unique identifier to make a URI for the local unique identifier. While
+        encouraged that these URIs can resolved to a webpage, it is not strictly necessary, e.g in the case of
+        many ontologies, URIs are auto-generated.
       placeholder: ex. `https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1`
     validations:
       required: false
