@@ -137,11 +137,15 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
     return rv
 
 
-def _pop_orcid(d, key,) -> str:
+def _pop_orcid(
+    d,
+    key,
+) -> str:
     orcid = d.pop("contributor_orcid")
     return _trim_orcid(orcid)
 
-def _trim_orcid(s: str) -> str:
+
+def _trim_orcid(orcid: str) -> str:
     if orcid.startswith(ORCID_HTTP_PREFIX):
         return orcid[len(ORCID_HTTP_PREFIX) :]
     if orcid.startswith(ORCID_HTTPS_PREFIX):
