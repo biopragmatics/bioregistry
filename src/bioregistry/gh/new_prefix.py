@@ -149,7 +149,7 @@ def _trim_orcid(orcid: str) -> str:
     if orcid.startswith(ORCID_HTTP_PREFIX):
         return orcid[len(ORCID_HTTP_PREFIX) :]
     if orcid.startswith(ORCID_HTTPS_PREFIX):
-        returnorcid[len(ORCID_HTTPS_PREFIX) :]
+        return orcid[len(ORCID_HTTPS_PREFIX) :]
     return orcid
 
 
