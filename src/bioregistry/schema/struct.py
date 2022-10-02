@@ -1657,6 +1657,9 @@ class Resource(BaseModel):
                 return license_value
         return None
 
+    def get_license_url(self) -> Optional[str]:
+        raise NotImplementedError
+
     def get_version(self) -> Optional[str]:
         """Get the version for the resource."""
         if self.version:
@@ -1689,14 +1692,20 @@ class Resource(BaseModel):
             "@context": "https://schema.org",
             "@type": "Dataset",
             "@id": f"https://bioregistry.io/{self.prefix}",
+            "url": self.get_homepage(),
             "name": self.get_name(),
+            "description": self.get_description(),
+            "identifier": [
+                f"bioregistry:{self.prefix}",
+            ],
+            "keywords": [],
         }
         version = self.get_version()
         if version:
             rv["version"] = version
-        license = self.get_license()
-        if license:
-            rv["license"] = license
+        license_url = self.get_license_url()
+        if license_url:
+            rv["license"] = license_url
         return rv
 
 
