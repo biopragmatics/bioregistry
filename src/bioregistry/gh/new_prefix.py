@@ -137,11 +137,8 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
     return rv
 
 
-def _pop_orcid(
-    d,
-    key,
-) -> str:
-    orcid = d.pop("contributor_orcid")
+def _pop_orcid(data: Dict[str, str]) -> str:
+    orcid = data.pop("contributor_orcid")
     return _trim_orcid(orcid)
 
 
