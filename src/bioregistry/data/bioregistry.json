@@ -10114,8 +10114,8 @@
         "ons",
         "pcl",
         "proco",
-        "xpo",
         "uberon",
+        "xpo",
         "scdo"
       ],
       "contact": "amalik@ebi.ac.uk",
@@ -11628,8 +11628,8 @@
         "go",
         "mco",
         "pcl",
-        "xpo",
         "uberon",
+        "xpo",
         "ehdaa2"
       ],
       "contact": "addiehl@buffalo.edu",
@@ -31457,9 +31457,9 @@
         "pcl",
         "pco",
         "planp",
+        "uberon",
         "xpo",
-        "zp",
-        "uberon"
+        "zp"
       ],
       "contact": "suzia@stanford.edu",
       "contact.github": "suzialeksander",
@@ -31807,7 +31807,8 @@
       "go.chebi",
       "go.chemical",
       "go.chemicals"
-    ]
+    ],
+    "uri_format": "https://biopragmatics.github.io/providers/goche/$1"
   },
   "goeco": {
     "contributor": {
@@ -48842,11 +48843,6 @@
       "uri_format": "http://purl.obolibrary.org/obo/MS_$1"
     },
     "bioportal": {
-      "contact": {
-        "email": "psidev-ms-vocab@lists.sourceforge.net",
-        "name": "PSI-MS Administrators"
-      },
-      "description": "A structured controlled vocabulary for the annotation of mass spectrometry experiments. Developed by the HUPO Proteomics Standards Initiative (PSI).",
       "homepage": "http://www.psidev.info/groups/controlled-vocabularies",
       "name": "Mass Spectrometry Ontology",
       "prefix": "MS",
@@ -54985,7 +54981,7 @@
       "prefix": "oid",
       "uri_format": "http://www.oid-info.com/cgi-bin/display?oid=$1&submit=Display&action=display"
     },
-    "name": "Orange Identifier",
+    "name": "ISO Object Identifier",
     "providers": [
       {
         "code": "orange",
@@ -54994,6 +54990,9 @@
         "name": "Mirror of OID site from Orange",
         "uri_format": "https://oid-rep.orange-labs.fr/get/$1"
       }
+    ],
+    "references": [
+      "https://en.wikipedia.org/wiki/Object_identifier"
     ],
     "uri_format": "http://oid-info.com/get/$1"
   },
@@ -55508,7 +55507,7 @@
       "name": "OMIM ID",
       "pattern": "\\d{6}",
       "prefix": "P492",
-      "uri_format": "https://omim.org/entry/$1"
+      "uri_format": "https://omim.org/OMIM:$1"
     }
   },
   "omim.ps": {
@@ -67510,6 +67509,32 @@
       "LNCRNADB"
     ]
   },
+  "rnaloops": {
+    "contact": {
+      "email": "Maciej.Antczak@cs.put.poznan.pl",
+      "github": "mantczak",
+      "name": "Maciej Antczak",
+      "orcid": "0000-0002-5320-2023"
+    },
+    "contributor": {
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "Rnaloops stores the information about n-way junctions (where n≥3) found in experimentally determined rna 3d structures deposited in the protein data bank.",
+    "example": "91792",
+    "github_request_issue": 601,
+    "homepage": "https://rnaloops.cs.put.poznan.pl",
+    "name": "RNAloops",
+    "pattern": "^\\d+$",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://rnaloops.cs.put.poznan.pl/search/details/$1"
+  },
   "rnamod": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -75808,7 +75833,7 @@
       "name": "Uber Anatomy Ontology",
       "prefix": "UBERON",
       "publication": "http://genomebiology.com/content/13/1/R5",
-      "version": "2022-08-19"
+      "version": "2022-09-30"
     },
     "cellosaurus": {
       "category": "Anatomy/cell type resources",
@@ -77226,6 +77251,40 @@
     ],
     "uri_format": "https://www.uniprot.org/locations/$1"
   },
+  "uniprot.proteome": {
+    "contributor": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "UniProt provides proteome sets of proteins whose genomes have been completely sequenced.",
+    "example": "UP000005640",
+    "homepage": "https://www.uniprot.org/proteomes",
+    "mappings": {
+      "uniprot": "Proteomes"
+    },
+    "name": "UniProt Proteomes",
+    "part_of": "uniprot",
+    "pattern": "^UP\\d{9}$",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/604"
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uniprot": {
+      "category": "Miscellaneous databases",
+      "identifier": "191",
+      "link_is_explicit": "true",
+      "name": "Proteomes",
+      "prefix": "Proteomes",
+      "uri_format": "https://www.uniprot.org/proteomes/$1"
+    }
+  },
   "uniprot.ptm": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -77233,36 +77292,20 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "contributor_extras": [
+      {
+        "email": "benjamin_gyori@hms.harvard.edu",
+        "github": "bgyori",
+        "name": "Benjamin M. Gyori",
+        "orcid": "0000-0001-9439-5346"
+      }
+    ],
     "description": "The post-translational modifications used in the UniProt knowledgebase (Swiss-Prot and TrEMBL). The definition of the post-translational modifications usage as well as other information is provided in the following format",
     "example": "PTM-0450",
-    "homepage": "https://www.uniprot.org/docs/ptmlist",
-    "mappings": {
-      "prefixcommons": "ptmswitchboard"
-    },
+    "homepage": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/docs/ptmlist",
     "name": "UniProt Post-Translational Modification",
     "part_of": "uniprot",
     "pattern": "^PTM-\\d{4}$",
-    "prefixcommons": {
-      "description": "PTM-Switchboard is designed to catalog known cases of TF-PTMs affecting gene transcriptions.. PTM-Switchboard differs from existing molecular pathway databases in that, instead of using pairwise interactions as a primary data type, it stores triplets of genes such that the ability of one gene (the TF) to regulate a target gene is dependent on a third gene (the modifying enzyme).",
-      "example": "128",
-      "homepage": "http://cagr.pcbi.upenn.edu/PTMswitchboard/",
-      "keywords": [
-        "gene",
-        "regulation",
-        "DNA",
-        "pathway",
-        "small molecule",
-        "interaction",
-        "enzyme"
-      ],
-      "name": "PTM-Switchboard",
-      "pattern": "^\\d+$",
-      "prefix": "ptmswitchboard",
-      "synonyms": [
-        "ptm"
-      ],
-      "uri_format": "http://cagr.pcbi.upenn.edu/PTMswitchboard/jsp/detail.jsp?ID=$1"
-    },
     "references": [
       "https://twitter.com/cthoyt/status/1510570256619778053",
       "https://www.uniprot.org/docs/ptmlist.txt"
