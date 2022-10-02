@@ -39,9 +39,7 @@ BIOSCHEMAS = {
         "name": "Harvard Medical School",
         "url": "https://hms.harvard.edu/",
     },
-    "citation": [
-        "https://bioregistry.io/doi:10.1101/2022.07.08.499378",
-    ],
+    "citation": "https://bioregistry.io/doi:10.1101/2022.07.08.499378",
     "distribution": [
         {
             "contentUrl": "https://github.com/biopragmatics/bioregistry/blob/main/docs/_data/bioregistry.ttl",
