@@ -11,6 +11,7 @@ from bioregistry import Manager, curie_to_str, version
 
 from .api import api_blueprint
 from .ui import ui_blueprint
+from .constants import BIOSCHEMAS
 
 __all__ = [
     "get_app",
@@ -103,6 +104,7 @@ def get_app(manager: Optional[Manager] = None, config: Optional[Mapping[str, Any
 
         manager = resource_manager.manager
         app.config.setdefault("METAREGISTRY_FIRST_PARTY", True)
+        app.config.setdefault("METAREGISTRY_BIOSCHEMAS", BIOSCHEMAS)
     else:
         app.config.setdefault("METAREGISTRY_FIRST_PARTY", False)
     app.manager = manager
