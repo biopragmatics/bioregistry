@@ -8,10 +8,12 @@ from bioregistry.schema_utils import (
     read_collections,
     read_contexts,
     read_metaregistry,
+    read_mismatches,
     read_registry,
     write_collections,
     write_contexts,
     write_metaregistry,
+    write_mismatches,
     write_registry,
 )
 
@@ -30,6 +32,7 @@ def lint():
     write_collections(collections)
     write_metaregistry(read_metaregistry())
     write_contexts(read_contexts())
+    write_mismatches(read_mismatches())
 
 
 if __name__ == "__main__":
