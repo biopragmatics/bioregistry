@@ -1683,6 +1683,22 @@ class Resource(BaseModel):
         rv = cast(str, removesuffix(removeprefix(markdown(rv), "<p>"), "</p>"))
         return markupsafe.Markup(rv)
 
+    def get_bioschemas_jsonld(self):
+        """Get the BioSchemas JSON-LD."""
+        rv = {
+            "@context": "https://schema.org",
+            "@type": "Dataset",
+            "@id": f"https://bioregistry.io/{self.prefix}",
+            "name": self.get_name(),
+        }
+        version = self.get_version()
+        if version:
+            rv["version"] = version
+        license = self.get_license()
+        if license:
+            rv["license"] = license
+        return rv
+
 
 SchemaStatus = Literal[
     "required", "required*", "present", "present*", "missing", "irrelevant", "irrelevant*"

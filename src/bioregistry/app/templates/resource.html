@@ -22,15 +22,7 @@
 {% set twitter = resource.get_twitter() %}
 
 {% block container %}
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Dataset",
-        "@id": "https://bioregistry.io/{{ entry.prefix }}",
-        {% if version %}"version": "{{ version }}",{% endif %}
-        "name": "{{ name }}"
-    }
-    </script>
+    <script type="application/ld+json">{{ resource.get_bioschemas_jsonld() | safe }}</script>
     <div class="card">
         <div class="card-header">
             <div class="row align-items-center">
