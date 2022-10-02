@@ -10,8 +10,8 @@ from flask_bootstrap import Bootstrap4
 from bioregistry import Manager, curie_to_str, version
 
 from .api import api_blueprint
-from .ui import ui_blueprint
 from .constants import BIOSCHEMAS
+from .ui import ui_blueprint
 
 __all__ = [
     "get_app",
