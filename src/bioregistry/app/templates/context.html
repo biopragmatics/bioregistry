@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% import "macros.html" as utils %}
+
+{% block title %}{{ config.METAREGISTRY_TITLE }} - {{ entry.name }}{% endblock %}
+
+{% block container %}
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h5 style="margin: 0"><a href="{{ url_for("metaregistry_ui.contexts") }}">Contexts</a>
+                        <i class="fas fa-angle-right"></i> {{ entry.name }}</h5>
+                </div>
+                <div class="col-4 text-right">
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-dark dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            Download
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {% for label, key in formats %}
+                                <a class="dropdown-item"
+                                   href="{{ url_for("metaregistry_api.context", identifier=identifier, format=key) }}">
+                                    {{ label }} <i class="fas fa-download"></i>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            {{ markdown(entry.description) | safe }}
+            <dl>
+                <dt>Identifier</dt>
+                <dd><code>{{ identifier }}</code></dd>
+                <dt>Download</dt>
+                <dd>
+                    <a class="badge badge-pill badge-success"
+                       href="https://github.com/biopragmatics/bioregistry/blob/main/exports/contexts/{{ identifier }}.context.jsonld">
+                        Download JSON LD <i class="fas fa-download"></i>
+                    </a>
+                    <a class="badge badge-pill badge-success"
+                       href="https://github.com/biopragmatics/bioregistry/blob/main/exports/contexts/{{ identifier }}.context.ttl">
+                        Download SHACL <i class="fas fa-download"></i>
+                    </a>
+                </dd>
+                <dt>Maintainers</dt>
+                <dd>
+                    <ul>
+                        {% for author in entry.maintainers %}
+                            <li>
+                                <a href="{{ url_for("metaregistry_ui.contributor", orcid=author.orcid) }}">
+                                    {{ author.name }}
+                                    <i class="fab fa-orcid"></i>
+                                </a>
+                            </li>
+                        {% endfor %}
+                        {% if entry.maintainers|length < 2 %}
+                            <li>Bioregistry Review Team (until this record has two maintainers, see
+                                <a href="https://github.com/biopragmatics/bioregistry/tree/main/exports/contexts#prescriptive-contexts">here</a>
+                                for more information on governance)
+                            </li>
+                        {% endif %}
+                    </ul>
+                </dd>
+                <dt>Properties</dt>
+                <dd>
+                    <span class="badge badge-pill badge-{% if entry.include_synonyms %}success{% else %}light{% endif %}"
+                          data-toggle="tooltip" title="{{ schema.include_synonyms.description }}">Synonyms</span>
+                    <span class="badge badge-pill badge-{% if entry.use_preferred %}success{% else %}light{% endif %}"
+                          data-toggle="tooltip" title="{{ schema.use_preferred.description }}">Preferred Prefixes</span>
+                </dd>
+                {% if entry.prefix_priority %}
+                    <dt>Prefix Priority</dt>
+                    <dd>
+                        <p>{{ schema.prefix_priority.description }}</p>
+                        <ol>
+                            {% for metaprefix in entry.prefix_priority %}
+                                <li>
+                                    {{ utils.render_metaprefix(metaprefix) }}
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    </dd>
+                {% endif %}
+                {% if entry.uri_prefix_priority %}
+                    <dt>URI Prefix Priority</dt>
+                    <dd>
+                        <p>{{ schema.uri_prefix_priority.description }}</p>
+                        <ol>
+                            {% for metaprefix in entry.uri_prefix_priority %}
+                                <li>
+                                    {{ utils.render_metaprefix(metaprefix) }}
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    </dd>
+                {% endif %}
+                {% if entry.prefix_remapping %}
+                    <dt>Prefix Remapping</dt>
+                    <dd>
+                        <p>{{ schema.prefix_remapping.description }}</p>
+                        <dl class="row">
+                            {% for key, value in entry.prefix_remapping.items() %}
+                                <dt class="col-sm-3 text-right">
+                                    <a href="{{ url_for("metaregistry_ui.resource", prefix=key) }}">{{ key }}</a>
+                                </dt>
+                                <dd class="col-sm-9 text-left">{{ value }}</dd>
+                            {% endfor %}
+                        </dl>
+                    </dd>
+                {% endif %}
+                {% if entry.custom_prefix_map %}
+                    <dt>Custom Prefix Map</dt>
+                    <dd>
+                        <p>{{ schema.custom_prefix_map.description }}</p>
+                        <dl class="row">
+                            {% for key, value in entry.custom_prefix_map.items() %}
+                                <dt class="col-sm-3 text-right">{{ key }}</dt>
+                                <dd class="col-sm-9 text-left">{{ value }}</dd>
+                            {% endfor %}
+                        </dl>
+                    </dd>
+                {% endif %}
+                {% if entry.blacklist %}
+                    <dt>Prefix Blacklist</dt>
+                    <dd>
+                        <p>{{ schema.blacklist.description }}</p>
+                        <ul>
+                            {% for blacklist_prefix in entry.blacklist %}
+                                <li>{{ utils.render_prefix(blacklist_prefix) }}</li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                {% endif %}
+            </dl>
+        </div>
+    </div>
+{% endblock %}

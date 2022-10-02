@@ -2,16 +2,15 @@
 
 """Command line interface for the bioregistry."""
 
+import sys
+
 import click
 from more_click import make_web_command
 
-from .align.cli import align
 from .compare import compare
-from .curation.wikidata_curation import main as wikidata_curation
 from .export.cli import export
-from .external.cli import download
-from .generate_warnings_file import warnings
 from .lint import lint
+from .utils import OLSBroken, get_hexdigests, secho
 from .version import VERSION
 
 
@@ -21,27 +20,66 @@ def main():
     """Run the Bioregistry CLI."""
 
 
-main.add_command(lint)
-main.add_command(compare)
-main.add_command(warnings)
-main.add_command(export)
-main.add_command(download)
-main.add_command(align)
-main.add_command(make_web_command("bioregistry.app.wsgi:app"))
+@click.command()
+def download():
+    """Download/update the external entries in the Bioregistry."""
+    try:
+        from .external import GETTERS
+    except ImportError:
+        click.secho(
+            "Could not import alignment dependencies."
+            " Install bioregistry again with `pip install bioregistry[align]`.",
+            fg="red",
+        )
+        return sys.exit(1)
+
+    for _, name, getter in GETTERS:
+        secho(f"Downloading {name}")
+        getter(force_download=True)
 
 
 @main.command()
-def versions():
-    """Print the versions."""
-    from .resolve import get_versions
-    from tabulate import tabulate
-
-    click.echo(
-        tabulate(
-            sorted(get_versions().items()),
-            headers=["Prefix", "Version"],
+@click.option("--skip-fairsharing", is_flag=True)
+@click.option("--skip-re3data", is_flag=True)
+@click.option("--skip-slow", is_flag=True)
+@click.option("--no-force", is_flag=True)
+def align(skip_fairsharing: bool, skip_re3data: bool, skip_slow: bool, no_force: bool):
+    """Align all external registries."""
+    try:
+        from .align import aligner_resolver
+    except ImportError:
+        click.secho(
+            "Could not import alignment dependencies."
+            " Install bioregistry again with `pip install bioregistry[align]`.",
+            fg="red",
         )
-    )
+        return sys.exit(1)
+
+    pre_digests = get_hexdigests()
+
+    skip = set()
+    if skip_fairsharing or skip_slow:
+        skip.add("fairsharing")
+    if skip_re3data or skip_slow:
+        skip.add("re3data")
+    for aligner_cls in aligner_resolver:
+        if aligner_cls.key in skip:
+            continue
+        secho(f"Aligning {aligner_cls.key}")
+        try:
+            aligner_cls.align(force_download=not no_force)
+        except (IOError, OLSBroken) as e:
+            secho(f"Failed to align {aligner_cls.key}: {e}", fg="red")
+
+    if pre_digests != get_hexdigests():
+        secho("Alignment created updates", fg="green")
+        click.echo("::set-output name=BR_UPDATED::true")
+
+
+main.add_command(lint)
+main.add_command(compare)
+main.add_command(export)
+main.add_command(make_web_command("bioregistry.app.wsgi:app"))
 
 
 @main.command()
@@ -52,8 +90,13 @@ def update(ctx: click.Context):
     ctx.invoke(lint)
     ctx.invoke(export)
     ctx.invoke(compare)
-    ctx.invoke(wikidata_curation)
-    ctx.invoke(warnings)
+
+    try:
+        from . import upload_ndex
+    except ImportError:
+        click.secho("Could not import ndex")
+    else:
+        ctx.invoke(upload_ndex.main)
 
 
 if __name__ == "__main__":

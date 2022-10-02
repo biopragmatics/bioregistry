@@ -1,193 +1,45 @@
-# -*- coding: utf-8 -*-
-
 """Utilities."""
 
-import json
+import itertools as itt
 import logging
-import warnings
-from collections import defaultdict
+from collections import ChainMap, defaultdict
 from dataclasses import asdict, is_dataclass
 from datetime import datetime
-from functools import lru_cache, wraps
-from typing import Any, List, Mapping, Set
+from pathlib import Path
+from typing import (
+    Any,
+    DefaultDict,
+    Dict,
+    Iterable,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    Union,
+    cast,
+)
 
 import click
 import requests
 from pydantic import BaseModel
 from pydantic.json import ENCODERS_BY_TYPE
+from pystow.utils import get_hashes
 
-from .constants import BIOREGISTRY_PATH, COLLECTIONS_PATH, METAREGISTRY_PATH, MISMATCH_PATH
-from .schema import Author, Collection, Registry, Resource
+from .constants import (
+    BIOREGISTRY_PATH,
+    COLLECTIONS_YAML_PATH,
+    METAREGISTRY_YAML_PATH,
+    REGISTRY_YAML_PATH,
+)
 
 logger = logging.getLogger(__name__)
 
-
-@lru_cache(maxsize=1)
-def read_metaregistry() -> Mapping[str, Registry]:
-    """Read the metaregistry."""
-    with open(METAREGISTRY_PATH, encoding="utf-8") as file:
-        data = json.load(file)
-    return {
-        registry.prefix: registry
-        for registry in (Registry(**record) for record in data["metaregistry"])
-    }
+#: Wikidata SPARQL endpoint. See https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service#Interfacing
+WIKIDATA_ENDPOINT = "https://query.wikidata.org/bigdata/namespace/wdq/sparql"
 
 
-@lru_cache(maxsize=1)
-def read_registry() -> Mapping[str, Resource]:
-    """Read the Bioregistry as JSON."""
-    with open(BIOREGISTRY_PATH, encoding="utf-8") as file:
-        data = json.load(file)
-    return {key: Resource(**value) for key, value in data.items()}
-
-
-def add_resource(prefix: str, resource: Resource) -> None:
-    """Add a resource to the registry.
-
-    :param prefix: A prefix.
-    :param resource: A resource object to write
-    :raises KeyError: if the prefix is already present in the registry
-    """
-    registry = dict(read_registry())
-    if prefix in registry:
-        raise KeyError("Tried to add duplicate entry to the registry")
-    registry[prefix] = resource
-    # Clear the cache
-    read_registry.cache_clear()
-    write_registry(registry)
-
-
-@lru_cache(maxsize=1)
-def read_mismatches() -> Mapping[str, Mapping[str, str]]:
-    """Read the mismatches as JSON."""
-    with MISMATCH_PATH.open() as file:
-        return json.load(file)
-
-
-def is_mismatch(bioregistry_prefix, external_metaprefix, external_prefix) -> bool:
-    """Return if the triple is a mismatch."""
-    return external_prefix in read_mismatches().get(bioregistry_prefix, {}).get(
-        external_metaprefix, {}
-    )
-
-
-@lru_cache(maxsize=1)
-def read_collections() -> Mapping[str, Collection]:
-    """Read the manually curated collections."""
-    with open(COLLECTIONS_PATH, encoding="utf-8") as file:
-        data = json.load(file)
-    return {
-        collection.identifier: collection
-        for collection in (Collection(**record) for record in data["collections"])
-    }
-
-
-def write_collections(collections: Mapping[str, Collection]) -> None:
-    """Write the collections."""
-    values = [v for _, v in sorted(collections.items())]
-    for collection in values:
-        collection.resources = sorted(set(collection.resources))
-    with open(COLLECTIONS_PATH, encoding="utf-8", mode="w") as file:
-        json.dump(
-            {"collections": values},
-            file,
-            indent=2,
-            sort_keys=True,
-            ensure_ascii=False,
-            default=extended_encoder,
-        )
-
-
-def write_bioregistry(registry: Mapping[str, Resource]):
-    """Write to the Bioregistry."""
-    warnings.warn("use bioregistry.write_registry", DeprecationWarning)
-    write_registry(registry)
-
-
-def write_registry(registry: Mapping[str, Resource]):
-    """Write to the Bioregistry."""
-    with open(BIOREGISTRY_PATH, mode="w", encoding="utf-8") as file:
-        json.dump(
-            registry, file, indent=2, sort_keys=True, ensure_ascii=False, default=extended_encoder
-        )
-
-
-def write_metaregistry(metaregistry: Mapping[str, Registry]) -> None:
-    """Write to the metaregistry."""
-    values = [v for _, v in sorted(metaregistry.items())]
-    with open(METAREGISTRY_PATH, mode="w", encoding="utf-8") as file:
-        json.dump(
-            {"metaregistry": values},
-            fp=file,
-            indent=2,
-            sort_keys=True,
-            ensure_ascii=False,
-            default=extended_encoder,
-        )
-
-
-def read_contributors() -> Mapping[str, Author]:
-    """Get a mapping from contributor ORCID identifiers to author objects."""
-    rv = {}
-    for resource in read_registry().values():
-        if resource.contributor:
-            rv[resource.contributor.orcid] = resource.contributor
-        if resource.reviewer:
-            rv[resource.reviewer.orcid] = resource.reviewer
-    for resource in read_collections().values():
-        for author in resource.authors or []:
-            rv[author.orcid] = author
-    return rv
-
-
-def read_prefix_contributions() -> Mapping[str, Set[str]]:
-    """Get a mapping from contributor ORCID identifiers to prefixes."""
-    rv = defaultdict(set)
-    for prefix, resource in read_registry().items():
-        if resource.contributor:
-            rv[resource.contributor.orcid].add(prefix)
-    return dict(rv)
-
-
-def read_prefix_reviews() -> Mapping[str, Set[str]]:
-    """Get a mapping from reviewer ORCID identifiers to prefixes."""
-    rv = defaultdict(set)
-    for prefix, resource in read_registry().items():
-        if resource.reviewer:
-            rv[resource.reviewer.orcid].add(prefix)
-    return dict(rv)
-
-
-def read_collections_contributions():
-    """Get a mapping from contributor ORCID identifiers to collections."""
-    rv = defaultdict(set)
-    for collection_id, resource in read_collections().items():
-        for author in resource.authors or []:
-            rv[author.orcid].add(collection_id)
-    return dict(rv)
-
-
-# FIXME remove this
-def updater(f):
-    """Make a decorator for functions that auto-update the bioregistry."""
-
-    @wraps(f)
-    def wrapped():
-        registry = read_registry()
-        rv = f(registry)
-        if rv is not None:
-            write_registry(registry)
-        return rv
-
-    return wrapped
-
-
-def norm(s: str) -> str:
-    """Normalize a string for dictionary key usage."""
-    rv = s.lower()
-    for x in " .-":
-        rv = rv.replace(x, "")
-    return rv
+class OLSBroken(RuntimeError):
+    """Raised when the OLS is having a problem."""
 
 
 def secho(s, fg="cyan", bold=True, **kwargs):
@@ -197,8 +49,22 @@ def secho(s, fg="cyan", bold=True, **kwargs):
     )
 
 
-#: Wikidata SPARQL endpoint. See https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service#Interfacing
-WIKIDATA_ENDPOINT = "https://query.wikidata.org/bigdata/namespace/wdq/sparql"
+def removeprefix(s: Optional[str], prefix: str) -> Optional[str]:
+    """Remove the prefix from the string."""
+    if s is None:
+        return None
+    if s.startswith(prefix):
+        return s[len(prefix) :]
+    return s
+
+
+def removesuffix(s: Optional[str], suffix: str) -> Optional[str]:
+    """Remove the prefix from the string."""
+    if s is None:
+        return None
+    if s.endswith(suffix):
+        return s[: -len(suffix)]
+    return s
 
 
 def query_wikidata(sparql: str) -> List[Mapping[str, Any]]:
@@ -262,6 +128,130 @@ class NormDict(dict):
 def _norm(s: str) -> str:
     """Normalize a string for dictionary key usage."""
     rv = s.casefold().lower()
-    for x in " .-_./":
+    for x in " -_./":
         rv = rv.replace(x, "")
     return rv
+
+
+def norm(s: str) -> str:
+    """Normalize a string for dictionary key usage."""
+    rv = s.lower()
+    for x in " .-":
+        rv = rv.replace(x, "")
+    return rv
+
+
+def curie_to_str(prefix: str, identifier: str) -> str:
+    """Combine a prefix and identifier into a CURIE string."""
+    return f"{prefix}:{identifier}"
+
+
+def get_hexdigests(alg: str = "sha256") -> Mapping[str, str]:
+    """Get hex digests."""
+    return {
+        path.as_posix(): _get_hexdigest(path, alg=alg)
+        for path in (
+            BIOREGISTRY_PATH,
+            REGISTRY_YAML_PATH,
+            METAREGISTRY_YAML_PATH,
+            COLLECTIONS_YAML_PATH,
+        )
+    }
+
+
+def _get_hexdigest(path: Union[str, Path], alg: str = "sha256") -> str:
+    hashes = get_hashes(path, [alg])
+    return hashes[alg].hexdigest()
+
+
+def get_ols_descendants(
+    ontology: str, uri: str, *, force_download: bool = False, get_identifier=None, clean=None
+) -> Mapping[str, Mapping[str, Any]]:
+    """Get descendants in the OLS."""
+    url = f"https://www.ebi.ac.uk/ols/api/ontologies/{ontology}/terms/{uri}/descendants?size=1000"
+    res = requests.get(url)
+    res.raise_for_status()
+    res_json = res.json()
+    try:
+        terms = res_json["_embedded"]["terms"]
+    except KeyError:
+        raise OLSBroken from None
+    return _process_ols(ontology=ontology, terms=terms, clean=clean, get_identifier=get_identifier)
+
+
+def _process_ols(
+    *, ontology, terms, clean=None, get_identifier=None
+) -> Mapping[str, Mapping[str, Any]]:
+    if clean is None:
+        clean = _clean
+    if get_identifier is None:
+        get_identifier = _get_identifier
+    rv = {}
+    for term in terms:
+        identifier = get_identifier(term, ontology)
+        description = term.get("description")
+        rv[identifier] = {
+            "name": clean(term["label"]),
+            "description": description and description[0],
+            "obsolete": term.get("is_obsolete", False),
+        }
+    return rv
+
+
+def _get_identifier(term, ontology: str) -> str:
+    return term["obo_id"][len(ontology) + 1 :]
+
+
+def _clean(s: str) -> str:
+    s = cast(str, removesuffix(s, "identifier")).strip()
+    s = cast(str, removesuffix(s, "ID")).strip()
+    s = cast(str, removesuffix(s, "accession")).strip()
+    return s
+
+
+def backfill(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
+    """Backfill records that may have overlapping data."""
+    _key_set = set(keys)
+    index_dd: DefaultDict[str, DefaultDict[str, Dict[str, str]]] = defaultdict(
+        lambda: defaultdict(dict)
+    )
+
+    # Make a copy
+    records_copy = [record.copy() for record in records]
+
+    # 1. index existing mappings
+    for record in records_copy:
+        pairs = ((key, value) for key, value in record.items() if key in _key_set)
+        for (k1, v1), (k2, v2) in itt.combinations(pairs, 2):
+            index_dd[k1][v1][k2] = v2
+            index_dd[k2][v2][k1] = v1
+
+    index = {k: dict(v) for k, v in index_dd.items()}
+
+    for record in records_copy:
+        missing_keys = {key for key in keys if key not in record}
+        for _ in range(len(keys)):
+            if not missing_keys:
+                continue
+            values = {key: record[key] for key in keys if key in record}
+            for key, value in values.items():
+                for xref_key, xref_value in index.get(key, {}).get(value, {}).items():
+                    if xref_key in missing_keys:
+                        record[xref_key] = xref_value
+                        missing_keys.remove(xref_key)
+    return records_copy
+
+
+def deduplicate(records: Iterable[Dict[str, Any]], keys: Sequence[str]) -> Sequence[Dict[str, Any]]:
+    """De-duplicate records that might have overlapping data."""
+    dd: DefaultDict[Sequence[str], List[Dict[str, Any]]] = defaultdict(list)
+
+    def _key(r: Dict[str, Any]):
+        return tuple(r.get(key) or "" for key in keys)
+
+    for record in backfill(records, keys):
+        dd[_key(record)].append(record)
+
+    rv = [dict(ChainMap(*v)) for v in dd.values()]
+
+    return sorted(rv, key=_key, reverse=True)

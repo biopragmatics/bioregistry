@@ -3,13 +3,18 @@
 """Tests for identifiers.org."""
 
 import unittest
-from textwrap import dedent, fill
+from typing import Mapping
 
 import requests
 
 import bioregistry
-from bioregistry import get_identifiers_org_curie, get_identifiers_org_iri
-from bioregistry.constants import IDOT_BROKEN
+from bioregistry import (
+    Resource,
+    get_identifiers_org_curie,
+    get_identifiers_org_iri,
+    manager,
+)
+from bioregistry.constants import IDOT_BROKEN, MIRIAM_BLACKLIST
 from bioregistry.version import VERSION
 
 
@@ -21,6 +26,11 @@ class TestIdentifiersOrg(unittest.TestCase):
         self.session = requests.Session()
         self.session.headers = {
             "User-Agent": f"bioregistry/{VERSION}",
+        }
+        self.entries: Mapping[str, Resource] = {
+            prefix: entry
+            for prefix, entry in bioregistry.read_registry().items()
+            if entry.get_miriam_prefix()
         }
 
     def test_get_prefix(self):
@@ -35,58 +45,72 @@ class TestIdentifiersOrg(unittest.TestCase):
         for prefix in ["MONDO"]:
             self.assertIsNone(bioregistry.get_identifiers_org_prefix(prefix))
 
-    def test_banana(self):
+    def test_standardize_identifier(self):
+        """Test that standardization makes patterns valid."""
+        for prefix, entry in self.entries.items():
+            if prefix in MIRIAM_BLACKLIST:
+                continue
+            example = entry.get_example()
+            self.assertIsNotNone(example)
+            pattern = entry.miriam.get("pattern")
+            self.assertIsNotNone(pattern)
+            with self.subTest(prefix=prefix, example=example, pattern=pattern):
+                standardized_example = entry.miriam_standardize_identifier(example)
+                self.assertIsNotNone(standardized_example)
+                self.assertRegex(standardized_example, pattern)
+
+    def test_curie(self):
+        """Test CURIEs explicitly."""
+        for prefix, identifier, expected in [
+            # Standard
+            ("pdb", "2gc4", "pdb:2gc4"),
+            # Has namespace embedded in lui for pattern
+            ("go", "0000001", "GO:0000001"),
+            ("ark", "/12345/fk1234", "ark:/12345/fk1234"),
+            # Require banana peels
+            ("cellosaurus", "0001", "cellosaurus:CVCL_0001"),
+            ("biomodels.kisao", "0000057", "biomodels.kisao:KISAO_0000057"),
+            ("geogeo", "000000001", "geogeo:GEO_000000001"),
+        ]:
+            with self.subTest(prefix=prefix, identifier=identifier):
+                self.assertEqual(expected, manager.get_miriam_curie(prefix, identifier))
+
+    def test_url_banana(self):
         """Test that entries curated with a new banana are resolved properly."""
-        for prefix, entry in bioregistry.read_registry().items():
-            banana = entry.banana
+        for prefix, entry in self.entries.items():
+            banana = entry.get_banana()
             if banana is None:
                 continue
             if prefix in IDOT_BROKEN:
                 continue  # identifiers.org is broken for these prefixes
-            with self.subTest(
-                prefix=prefix,
-                banana=banana,
-                pattern=bioregistry.get_pattern(prefix),
-            ):
-                identifier = bioregistry.get_example(prefix)
-                self.assertIsNotNone(identifier)
-                url = bioregistry.resolve_identifier.get_identifiers_org_iri(prefix, identifier)
-                res = self.session.get(url, allow_redirects=False)
-                self.assertEqual(302, res.status_code, msg=f"failed with URL: {url}")
+            example = bioregistry.get_example(prefix)
+            self.assertIsNotNone(example)
+            with self.subTest(prefix=prefix, banana=banana, peel=entry.get_banana_peel()):
+                self.assert_url(prefix, example)
+
+    def assert_url(self, prefix: str, identifier: str):
+        """Assert the URL resolves."""
+        url = bioregistry.get_identifiers_org_iri(prefix, identifier)
+        self.assertIsNotNone(url)
+        res = self.session.get(url, allow_redirects=False)
+        self.assertEqual(302, res.status_code, msg=f"failed with URL: {url}")
 
     @unittest.skip
     def test_url_auto(self):
-        """Test formatting URLs."""
-        for prefix in bioregistry.read_registry():
-            miriam_prefix = bioregistry.get_identifiers_org_prefix(prefix)
+        """Test generating and resolving Identifiers.org URIs.
+
+        .. warning::
+
+            This test takes up to 5 minutes since it makes a lot of web requests, and
+            is therefore skipped by default.
+        """
+        for prefix, entry in self.entries.items():
+            miriam_prefix = entry.get_identifiers_org_prefix()
             if miriam_prefix is None or prefix in IDOT_BROKEN:
                 continue
-
-            identifier = bioregistry.get_example(prefix)
-
+            identifier = entry.get_example()
             with self.subTest(prefix=prefix, identifier=identifier):
-                self.assertIsNotNone(identifier, msg="All MIRIAM entries should have an example")
-
-                url = get_identifiers_org_iri(prefix, identifier)
-                self.assertIsNotNone(url, msg="All MIRIAM entries should be formattable")
-                self.assertTrue(
-                    url.startswith(f"https://identifiers.org/{miriam_prefix}:"),
-                    msg=f"bad prefix for {prefix}. Expected {miriam_prefix} in {url}",
-                )
-                res = self.session.get(url, allow_redirects=False)
-                self.assertEqual(
-                    302,
-                    res.status_code,
-                    msg="\n"
-                    + dedent(
-                        f"""\
-                Prefix: {prefix}
-                Identifier: {identifier}
-                URL: {url}
-                Text: """
-                    )
-                    + fill(res.text, 70, subsequent_indent="      "),
-                )
+                self.assert_url(prefix, identifier)
 
     def test_url(self):
         """Test formatting URLs."""
@@ -114,6 +138,4 @@ class TestIdentifiersOrg(unittest.TestCase):
                 url = get_identifiers_org_iri(prefix, identifier)
                 self.assertEqual(f"https://identifiers.org/{curie}", url, msg="wrong URL")
 
-                # Check that the URL resolves
-                res = self.session.get(url, allow_redirects=False)
-                self.assertEqual(302, res.status_code, msg=res.reason)
+                self.assert_url(prefix, identifier)

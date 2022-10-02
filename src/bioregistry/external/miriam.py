@@ -7,7 +7,7 @@ import json
 import click
 from pystow.utils import download
 
-from bioregistry.data import EXTERNAL
+from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
 
 __all__ = [
     "get_miriam",
@@ -18,6 +18,14 @@ DIRECTORY.mkdir(exist_ok=True, parents=True)
 RAW_PATH = DIRECTORY / "raw.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 MIRIAM_URL = "https://registry.api.identifiers.org/resolutionApi/getResolverDataset"
+SKIP = {
+    "merops",
+    "hgnc.family",
+    # Appear to be unreleased records
+    "f82a1a",
+    "4503",
+    "6vts",
+}
 
 
 def get_miriam(force_download: bool = False):
@@ -30,15 +38,25 @@ def get_miriam(force_download: bool = False):
     with RAW_PATH.open() as file:
         data = json.load(file)
 
-    rv = {record["prefix"]: _process(record) for record in data["payload"]["namespaces"]}
+    rv = {
+        record["prefix"]: _process(record)
+        for record in data["payload"]["namespaces"]
+        # records whose prefixes start with `dg.` appear to be unreleased
+        if not record["prefix"].startswith("dg.") and record["prefix"] not in SKIP
+    }
     with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, indent=2, sort_keys=True)
     return rv
 
 
+#: Pairs of MIRIAM prefix and provider codes to skip
+PROVIDER_BLACKLIST = {("ega.study", "omicsdi")}
+
+
 def _process(record):
+    prefix = record["prefix"]
     rv = {
-        "prefix": record["prefix"],
+        "prefix": prefix,
         "id": record["mirId"][len("MIR:") :],
         "name": record["name"],
         "deprecated": record["deprecated"],
@@ -47,24 +65,51 @@ def _process(record):
         "description": record["description"],
         "pattern": record["pattern"],
     }
-    resources = record.get("resources", [])
+    resources = [
+        _preprocess_resource(resource)
+        for resource in record.get("resources", [])
+        if not resource.get("deprecated")
+    ]
+    if not resources:
+        return rv
+
     has_official = any(resource["official"] for resource in resources)
     if has_official:
-        for resource in resources:
-            if not resource["official"]:
-                continue
-            rv["homepage"] = resource["resourceHomeUrl"]
-            rv["provider_url"] = resource["urlPattern"].replace("{$id}", "$1")
-            break
+        primary = next(resource for resource in resources if resource["official"])
+        rest = [resource for resource in resources if not resource["official"]]
     else:
-        for resource in resources:
-            homepage = resource.get("resourceHomeUrl")
-            if homepage:
-                rv["homepage"] = homepage
-            url = resource.get("urlPattern")
-            if url:
-                rv["provider_url"] = url.replace("{$id}", "$1")
+        primary, *rest = resources
+    rv["homepage"] = primary["homepage"]
+    rv[URI_FORMAT_KEY] = primary[URI_FORMAT_KEY]
+
+    extras = []
+    for provider in rest:
+        code = provider["code"]
+        if code in SKIP_PROVIDERS or (prefix, code) in PROVIDER_BLACKLIST:
+            continue
+        del provider["official"]
+        extras.append(provider)
+    if extras:
+        rv["providers"] = extras
     return rv
+
+
+#: These provider codes are handled by the Bioregistry's metaregistry
+SKIP_PROVIDERS = {
+    "ols",
+    "bptl",
+}
+
+
+def _preprocess_resource(resource):
+    return {
+        "official": resource["official"],
+        "homepage": resource["resourceHomeUrl"],
+        "code": resource["providerCode"],
+        URI_FORMAT_KEY: resource["urlPattern"].replace("{$id}", "$1"),
+        "name": resource["name"],
+        "description": resource["description"],
+    }
 
 
 @click.command()

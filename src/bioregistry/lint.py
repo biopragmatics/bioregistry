@@ -4,27 +4,35 @@
 
 import click
 
-from bioregistry.utils import (
+from bioregistry.schema_utils import (
     read_collections,
+    read_contexts,
     read_metaregistry,
-    updater,
+    read_mismatches,
+    read_registry,
     write_collections,
+    write_contexts,
     write_metaregistry,
+    write_mismatches,
+    write_registry,
 )
-
-
-@updater
-def sort_registry(registry):
-    """Sort the registry."""
-    return registry
 
 
 @click.command()
 def lint():
     """Run the lint commands."""
-    sort_registry()
-    write_collections(read_collections())
+    registry = read_registry()
+    for resource in registry.values():
+        if resource.synonyms:
+            resource.synonyms = sorted(set(resource.synonyms))
+    write_registry(registry)
+    collections = read_collections()
+    for collection in collections.values():
+        collection.resources = sorted(set(collection.resources))
+    write_collections(collections)
     write_metaregistry(read_metaregistry())
+    write_contexts(read_contexts())
+    write_mismatches(read_mismatches())
 
 
 if __name__ == "__main__":

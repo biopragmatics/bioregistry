@@ -5,6 +5,7 @@
 import unittest
 
 import bioregistry
+from bioregistry import manager
 from bioregistry.export.rdf_export import metaresource_to_rdf_str
 from bioregistry.schema import Registry
 
@@ -14,52 +15,81 @@ class TestMetaregistry(unittest.TestCase):
 
     def test_minimum_metadata(self):
         """Test the metaregistry entries have a minimum amount of data."""
-        for metaprefix, registry_pydantic in bioregistry.read_metaregistry().items():
-            self.assertIsInstance(registry_pydantic, Registry)
-            data = registry_pydantic.dict()
+        for metaprefix, registry in bioregistry.read_metaregistry().items():
+            self.assertIsInstance(registry, Registry)
             with self.subTest(metaprefix=metaprefix):
-                self.assertIn("name", data)
-                self.assertIn("homepage", data)
-                self.assertIn("example", data)
-                self.assertIn("description", data)
+                self.assertIsNotNone(registry.name)
+                self.assertIsNotNone(registry.homepage)
+                self.assertIsNotNone(registry.example)
+                self.assertIsNotNone(registry.description)
+                self.assertIsNotNone(registry.contact)
+                self.assertIsNotNone(registry.license, msg=f"Contact: {registry.contact}")
+                self.assertNotEqual("FIXME", registry.contact.name)
+                if "support" not in registry.contact.name.lower():
+                    self.assertIsNotNone(registry.contact.orcid)
+                    self.assertIsNotNone(registry.contact.github)
 
-                if registry_pydantic.provider_url:
-                    self.assertIn("provider_url", data)
-                    self.assertIn("$1", data["provider_url"])
+                if registry.provider_uri_format:
+                    self.assertIsNotNone(registry.provider_uri_format)
+                    self.assertIn("$1", registry.provider_uri_format)
+
+                if (
+                    # Missing URI format string
+                    not registry.provider_uri_format
+                    # Unresolved overlap in Bioregistry
+                    or metaprefix in bioregistry.read_registry()
+                    # Has URI format string, but not in proper form
+                    or (
+                        registry.provider_uri_format
+                        and not registry.provider_uri_format.endswith("$1")
+                    )
+                ):
+                    self.assertIsNotNone(registry.bioregistry_prefix)
+
+                if registry.bioregistry_prefix:
+                    self.assertEqual(
+                        bioregistry.normalize_prefix(registry.bioregistry_prefix),
+                        registry.bioregistry_prefix,
+                        msg="link from metaregistry to bioregistry must use canonical prefix",
+                    )
+                    resource = bioregistry.get_resource(registry.bioregistry_prefix)
+                    self.assertIsNotNone(resource)
+                    self.assertIsNotNone(
+                        resource.get_uri_format(),
+                        msg=f"corresponding registry entry ({registry.bioregistry_prefix})"
+                        f" is missing a uri_format",
+                    )
 
                 # When a registry is a resolver, it means it
                 # can resolve entries (prefixes) + identifiers
-                if registry_pydantic.resolver_url:
-                    self.assertIn("resolver_url", data)
-                    self.assertIn("$1", data["resolver_url"])
-                    self.assertIn("$2", data["resolver_url"])
+                if registry.resolver_uri_format:
+                    self.assertIn("$1", registry.resolver_uri_format)
+                    self.assertIn("$2", registry.resolver_uri_format)
+                    self.assertIsNotNone(registry.resolver_type)
+                    self.assertIn(registry.resolver_type, {"lookup", "resolver"})
+                else:
+                    self.assertIsNone(registry.resolver_type)
 
-                invalid_keys = set(data).difference(
-                    {
-                        "prefix",
-                        "name",
-                        "homepage",
-                        "download",
-                        "description",
-                        "provider_url",
-                        "example",
-                        "resolver_url",
-                        "contact",
-                    }
-                )
+                invalid_keys = set(registry.dict()).difference(Registry.__fields__)
                 self.assertEqual(set(), invalid_keys, msg="invalid metadata")
+                if not registry.availability.fair:
+                    self.assertIsNone(
+                        registry.download,
+                        msg="If bulk download available, resource should be annotated as FAIR",
+                    )
+                    self.assertIsNotNone(
+                        registry.availability.fair_note,
+                        msg="All non-FAIR resources require an explanation using the `fair_note` key",
+                    )
 
     def test_get_registry(self):
         """Test getting a registry."""
         self.assertIsNone(bioregistry.get_registry("nope"))
         self.assertIsNone(bioregistry.get_registry_name("nope"))
         self.assertIsNone(bioregistry.get_registry_homepage("nope"))
-        self.assertIsNone(bioregistry.get_registry_url("nope", ...))
+        self.assertIsNone(bioregistry.get_registry_provider_uri_format("nope", ...))
         self.assertIsNone(bioregistry.get_registry_example("nope"))
         self.assertIsNone(bioregistry.get_registry_description("nope"))
-        self.assertIsNone(
-            bioregistry.get_registry_url("n2t", ...)
-        )  # no provider available for N2T registry
 
         metaprefix = "uniprot"
         registry = bioregistry.get_registry(metaprefix)
@@ -80,20 +110,20 @@ class TestMetaregistry(unittest.TestCase):
         self.assertEqual(example, registry.example)
         self.assertEqual(example, bioregistry.get_registry_example(metaprefix))
 
-        url = bioregistry.get_registry_url(metaprefix, example)
+        url = bioregistry.get_registry_provider_uri_format(metaprefix, example)
         self.assertEqual("https://www.uniprot.org/database/DB-0174", url)
 
     def test_resolver(self):
         """Test generating resolver URLs."""
         # Can't resolve since nope isn't a valid registry
-        self.assertIsNone(bioregistry.get_registry_resolve_url("nope", "chebi", "1234"))
+        self.assertIsNone(bioregistry.get_registry_uri("nope", "chebi", "1234"))
         # Can't resolve since GO isn't a resolver
-        self.assertIsNone(bioregistry.get_registry_resolve_url("go", "chebi", "1234"))
+        self.assertIsNone(bioregistry.get_registry_uri("go", "chebi", "1234"))
 
-        url = bioregistry.get_registry_resolve_url("bioregistry", "chebi", "1234")
+        url = bioregistry.get_registry_uri("bioregistry", "chebi", "1234")
         self.assertEqual("https://bioregistry.io/chebi:1234", url)
 
     def test_get_rdf(self):
         """Test conversion to RDF."""
-        s = metaresource_to_rdf_str("uniprot")
+        s = metaresource_to_rdf_str("uniprot", manager=manager)
         self.assertIsInstance(s, str)

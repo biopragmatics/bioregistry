@@ -63,10 +63,9 @@
     </dl>
     <h3>Containerization</h3>
     <p>
-        A Docker image is automatically built on a cron job in the
-        <a href="https://github.com/biopragmatics/bioregistry-docker"><i class="fab fa-github"></i>
-            biopragmatics/bioregistry-docker</a> GitHub repository
-        and pushed to the <a href="https://hub.docker.com/r/biopragmatics/bioregistry"><i class="fab fa-docker"></i>
+        A Docker image is automatically built nightly following the
+        <a href="https://github.com/biopragmatics/bioregistry/actions/workflows/update.yml">update workflow</a>
+        on GitHub Actions and pushed to the <a href="https://hub.docker.com/r/biopragmatics/bioregistry"><i class="fab fa-docker"></i>
         biopragmatics/bioregistry</a> DockerHub repository. This image is built with the Python 3.9 alpine base image,
         which significantly reduces non-essential components. The final compressed image weights less than 40 MB of disk
         space and runs inside Docker with about 65 MB of memory at baseline. This could easily fit on a dedicated
@@ -80,19 +79,21 @@
         seconds.
     </p>
     <pre><code class="language-bash">#!/bin/bash
+# /data/services/restart_bioregistry.sh
 
-# store the bioregistry id
-BIOREGISTRY_CONTAINER_ID=$(docker ps --filter "name=bioregistry" -q)
+# Store the container's hash
+BIOREGISTRY_CONTAINER_ID=$(docker ps --filter "name=bioregistry" -aq)
 
-# Stop and remove the old container taking advantage
-#   of the fact that it's named specifically
-docker stop $BIOREGISTRY_CONTAINER_ID
-docker rm $BIOREGISTRY_CONTAINER_ID
+# Stop and remove the old container, taking advantage of the fact that it's named specifically
+if [ -n "BIOREGISTRY_CONTAINER_ID" ]; then
+  docker stop $BIOREGISTRY_CONTAINER_ID
+  docker rm $BIOREGISTRY_CONTAINER_ID
+fi
 
 # Pull the latest
 docker pull biopragmatics/bioregistry:latest
 
-# Run the start script
+# Run the start script, remove -d to run interactively
 docker run -id --name bioregistry -p 8766:8766 biopragmatics/bioregistry:latest</code></pre>
     <p>This script can be put on the EC2 instance and run via SSH with:</p>
     <pre><code class="language-bash">#!/bin/bash
@@ -103,13 +104,26 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
         The SSL/TLS certificate for <code>bioregistry.io</code> so it can be served with HTTPS is managed through
         the <a href="https://aws.amazon.com/certificate-manager/">AWS Certificate Manager</a>.
     </p>
-    <h2>Data Maintenance, Interoperability with other Projects, and Project Governance</h2>
+
+    <h2>Project Longevity</h2>
     <p>
-        So far, the Bioregistry (both the data and web application) have been curated and developed within a small team
-        and used by a limited audience. This means we have been able to address issues very quickly. However, this
-        attitude is not scalable to larger audiences, where changes have higher potential for disruption of users'
-        usages. With that being said, there are many things we are looking to discuss with potential stakeholders
-        including (but not limited to):
+        The deployment of the Bioregistry is currently funded by the DARPA Young Faculty Award W911NF2010255
+        grant. Due to its low cost, the Laboratory of Systems Pharmacology at Harvard Medical School has
+        additionally committed discretionary (i.e., not tied to a project) funding to continue running the
+        Bioregistry instance at https://bioregistry.io.
+    </p>
+    <p>
+        The Bioregistry project is also interested in acquiring grants to help ensure its longevity. We give a
+        conservative estimate of around $100-200/year to support domain registration, AWS costs, and
+        personnel time for maitenance. This means that the Bioregistry could cost as little as $1,000
+        to run for 10 years (which is much longer than most scientific databases/websites are able to persist).
+        For example, an International Society for Biocuration
+        <a href="https://www.biocuration.org/community/microgrants/">microgrant</a> might be sufficient.
+    </p>
+
+    <h2>Project Governance</h2>
+    <p>
+        Stakeholders in the Bioregistry have been interested in questions including:
     </p>
     <ul>
         <li>Will the service still be running in 10 years?</li>
@@ -119,15 +133,37 @@ ssh -i ~/.ssh/&lt;credentials&gt.pem &lt;user&gt;@&lt;address&gt; 'sh /data/serv
             Should there be acceptance criteria for new entries, such as a minimum metadata standard or assessment of
             impact?
         </li>
+        <li>
+            How will the Bioregistry avoid the pitfalls of a closed curation process like the one implemented
+            by Identifiers.org?
+        </li>
         <li>How should inevitable prefix/namespace collisions be handled?</li>
-        <li>... and many more</li>
     </ul>
     <p>
         These questions do not have easy answers and apply to most databases, software, and web applications in the life
-        sciences. If you would like to be part of this discussion, please <a
-            href="https://join.slack.com/t/obo-communitygroup/shared_invite/zt-qdvt040i-ac3eU1MOgXF~lehfeNa9eA">join
-        us</a> on the OBO Community Slack workspace's <a
-            href="https://obo-communitygroup.slack.com/archives/C01E0H083BP">#ontotools</a>
-        channel.
+        sciences.
+
+        As first steps towards addressing those, we have written explicit, public, well-defined
+            <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md">contribution
+                guidelines</a>,
+            <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CODE_OF_CONDUCT.md">code of
+                conduct</a>, and
+            <a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/GOVERNANCE.md">project
+                governance</a>.
     </p>
+    <p>
+       If you would like to be part of this discussion and/or development of these policies, you can try the
+       following:
+    </p>
+    <ul>
+        <li>
+            Join the<a href="https://join.slack.com/t/obo-communitygroup/shared_invite/zt-qdvt040i-ac3eU1MOgXF~lehfeNa9eA">
+            OBO Community Slack workspace</a> and participate in discussions on the
+            <a href="https://obo-communitygroup.slack.com/archives/C023P0Z304T">#prefixes</a> channel.
+        </li>
+        <li>
+            Participate in discussion labeled with
+            <a href="https://github.com/biopragmatics/bioregistry/issues?q=is%3Aissue+label%3APolicy">Policy</a> on the Bioregistry's GitHub issue tracker
+        </li>
+    </ul>
 {% endblock %}

@@ -2,27 +2,37 @@
 
 """Generate a small knowledge graph relating entities."""
 
+from typing import TYPE_CHECKING
+
 import click
 import pystow
 from more_click import verbose_option
-from ndex2 import NiceCXBuilder
 
 import bioregistry
 import bioregistry.version
+from bioregistry import manager
+from bioregistry.constants import NDEX_UUID
 
-NDEX_UUID = "aa78a43f-9c4d-11eb-9e72-0ac135e8bacf"
+if TYPE_CHECKING:
+    import ndex2
 
 
 @click.command()
 @verbose_option
 def main():
     """Upload the Bioregistry KG to NDEx."""
-    upload()
-    click.echo(f"see https://bioregistry.io/ndex:{NDEX_UUID}")
+    try:
+        upload()
+    except IOError:
+        click.secho("Failed to upload to NDEx", fg="red")
+    else:
+        click.echo(f"Uploaded to NDEx. See: https://bioregistry.io/ndex:{NDEX_UUID}")
 
 
 def upload():
     """Generate a CX graph and upload to NDEx."""
+    from ndex2 import NiceCXBuilder
+
     cx = NiceCXBuilder()
     cx.set_name("Bioregistry")
     cx.add_network_attribute(
@@ -31,6 +41,9 @@ def upload():
     )
     cx.add_network_attribute("hash", bioregistry.version.get_git_hash())
     cx.add_network_attribute("version", bioregistry.version.get_version())
+    cx.add_network_attribute("rights", "Waiver-No rights reserved (CC0)")
+    cx.add_network_attribute("rightsHolder", "Charles Tapley Hoyt")
+    cx.add_network_attribute("author", "Charles Tapley Hoyt")
     cx.set_context(
         {
             "bioregistry.collection": "https://bioregistry.io/collection/",
@@ -68,10 +81,16 @@ def upload():
                 target=resource_nodes[entry.has_canonical],
                 interaction="has_canonical",
             )
+        for dependent_prefix in manager.get_depends_on(prefix) or []:
+            cx.add_edge(
+                source=resource_nodes[prefix],
+                target=resource_nodes[dependent_prefix],
+                interaction="depends_on",
+            )
 
         # Which registries does it map to?
         for metaprefix in metaregistry:
-            if metaprefix not in entry:
+            if not getattr(entry, metaprefix, None):
                 continue
             cx.add_edge(
                 source=resource_nodes[prefix],
@@ -102,7 +121,7 @@ def upload():
     )
 
 
-def make_registry_node(cx: NiceCXBuilder, metaprefix: str) -> int:
+def make_registry_node(cx: "ndex2.NiceCXBuilder", metaprefix: str) -> int:
     """Generate a CX node for a registry."""
     node = cx.add_node(
         name=bioregistry.get_registry_name(metaprefix),
@@ -117,7 +136,7 @@ def make_registry_node(cx: NiceCXBuilder, metaprefix: str) -> int:
     return node
 
 
-def make_resource_node(cx: NiceCXBuilder, prefix: str) -> int:
+def make_resource_node(cx: "ndex2.NiceCXBuilder", prefix: str) -> int:
     """Generate a CX node for a resource."""
     node = cx.add_node(
         name=bioregistry.get_name(prefix),

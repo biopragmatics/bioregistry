@@ -1,3 +1,61 @@
+{% macro code_curie(prefix, identifier) -%}
+    <code>{{ curie_to_str(prefix, identifier) }}</code>
+{% endmacro %}
+
+{% macro render_prefix(prefix, classes="") -%}
+    <a class="{{ classes }}" href="{{ url_for("metaregistry_ui.resource", prefix=prefix) }}">
+        <code>{{ prefix }}</code>
+    </a>
+{% endmacro %}
+
+{% macro render_metaprefix(metaprefix) -%}
+    <a href="{{ url_for("metaregistry_ui.metaresource", metaprefix=metaprefix) }}">
+        <code>{{ metaprefix }}</code>
+    </a>
+{% endmacro %}
+
+{% macro render_publication(publication) -%}
+    {% if publication.year %}
+        <span class="badge badge-info">{{ publication.year }}</span>
+    {% endif %}
+    <a href="{{ publication.get_url() }}">{{ publication.title or publication.get_url() }}</a>
+{% endmacro %}
+
+{% macro render_reference(reference) -%}
+    {% if reference.startswith("https://twitter.com") %}
+        <span class="badge badge-info">Tweet</span>
+    {% elif reference.startswith("https://github.com/") and "issues/" in reference %}
+        <span class="badge badge-info">GitHub Issue</span>
+    {% elif reference.startswith("https://github.com/") and "pull" in reference %}
+        <span class="badge badge-info">GitHub PR</span>
+    {% elif reference.startswith("https://doi.org/") %}
+        <span class="badge badge-info">DOI</span>
+    {% else %}
+        <span class="badge badge-info">Other</span>
+    {% endif %}
+    <a href="{{ reference }}">{{ reference }}</a>
+{% endmacro %}
+
+{% macro render_resource_warnings(resource) -%}
+    {% if resource.deprecated %}
+        <span class="badge badge-warning" style="display: inline-block;">
+            Deprecated <i class="fas fa-exclamation-triangle"></i>
+        </span>
+    {% elif resource.provides %}
+        <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
+           href="{{ url_for("metaregistry_ui.resource", prefix=resource.provides) }}"
+           title="{{ manager.get_name(resource.provides) }} ({{ resource.provides }})">
+            Provider <i class="fas fa-exclamation-triangle"></i>
+        </a>
+    {% elif resource.has_canonical %}
+        <a class="badge badge-danger" style="display: inline-block;" data-toggle="tooltip"
+           href="{{ url_for("metaregistry_ui.resource", prefix=resource.has_canonical) }}"
+           title="{{ manager.get_name(resource.has_canonical) }} ({{ resource.has_canonical }})">
+            Has Canonical <i class="fas fa-exclamation-triangle"></i>
+        </a>
+    {% endif %}
+{% endmacro %}
+
 {% macro render_provider_table(prefix, identifier, providers) -%}
     {% if providers %}
         <table class="table table-hover table-striped">
@@ -5,7 +63,7 @@
             <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Metaprefix</th>
-                <th scope="col">URL</th>
+                <th scope="col">URI</th>
             </tr>
             </thead>
             <tbody>
@@ -20,11 +78,100 @@
                     </td>
                     <td class="text-nowrap"><code>{{ provider.metaprefix }}</code></td>
                     <td>
-                        <a href="{{ provider.url }}">{{ provider.url }}</a>
+                        <a href="{{ provider.uri }}">{{ provider.uri }}</a>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     {% endif %}
+{% endmacro %}
+
+{% macro render_author(author, link=none) -%}
+    {% if link or author.email %}
+        <a href="{% if link %}{{ link }}{% else %}mailto:{{ author.email }}{% endif %}">
+            {% if author.name %}
+                {{ author.name }}
+            {% else %}
+                {{ author.email }}
+            {% endif %}
+        </a>
+    {% else %}
+        {% if author.name %}
+            {{ author.name }}
+        {% endif %}
+    {% endif %}
+    {% if author.orcid %}
+        &nbsp;
+        <small>
+            <i class="fab fa-orcid"></i>
+            <a href="https://orcid.org/{{ author.orcid }}">
+                {{ author.orcid }}
+            </a>
+        </small>
+    {% endif %}
+    {% if author.github %}
+        &nbsp;
+        <small>
+            <i class="fab fa-github"></i>
+            <a href="https://github.com/{{ author.github }}">
+                {{ author.github }}
+            </a>
+        </small>
+    {% endif %}
+{% endmacro %}
+
+{% macro render_author_modal(prefix, author, key) %}
+    <div class="modal fade" id="{{ key }}-modal" tabindex="-1" role="dialog" aria-labelledby="{{ key }}ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="{{ key }}ModalLabel">Programmatic Access to {{ key|title }} Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% if author.name %}
+                        <p>
+                            Get the contact's name:
+                        </p>
+                        <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+&gt;&gt;&gt; br.get_contact_name("{{ prefix }}")
+'{{ author.name }}'</code></pre>
+                    {% endif %}
+                    {% if author.email %}
+                        <p>
+                            Get the contact's email:
+                        </p>
+                        <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+&gt;&gt;&gt; br.get_contact_email("{{ prefix }}")
+'{{ author.email }}'</code></pre>
+                    {% endif %}
+                    {% if author.github %}
+                        <p>
+                            Get the contact's GitHub handle:
+                        </p>
+                        <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+&gt;&gt;&gt; br.get_contact_github("{{ prefix }}")
+'{{ author.github }}'</code></pre>
+                    {% endif %}
+                    {% if author.orcid %}
+                        <p>
+                            Get the contact's ORCiD identifier:
+                        </p>
+                        <pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+&gt;&gt;&gt; br.get_contact_orcid("{{ prefix }}")
+'{{ author.orcid }}'</code></pre>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro code_example(prefix, func, text, quote=True) -%}
+<pre><code class="language-python">&gt;&gt;&gt; import bioregistry as br
+&gt;&gt;&gt; br.{{ func }}("{{ prefix }}")
+{% if quote %}'{{ text }}'{% else %}{{ text }}{% endif %}</code></pre>
 {% endmacro %}

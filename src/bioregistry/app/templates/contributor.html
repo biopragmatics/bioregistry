@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "macros.html" as utils %}
 
-{% block title %}Bioregistry - {{ contributor.name }}{% endblock %}
+{% block title %}{{ config.METAREGISTRY_TITLE }} - {{ contributor.name }}{% endblock %}
 
 {% block scripts %}
     {{ super() }}
@@ -18,7 +18,7 @@
             <div class="row align-items-center">
                 <div class="col-8">
                     <h5 style="margin: 0">
-                        <a href="{{ url_for('ui.contributors') }}">Contributors</a>
+                        <a href="{{ url_for('metaregistry_ui.contributors') }}">Contributors</a>
                         <i class="fas fa-angle-right"></i> {{ contributor.name }}
                     </h5>
                 </div>
@@ -32,7 +32,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for label, key in formats %}
                                 <a class="dropdown-item"
-                                   href="{{ url_for('api.contributor', orcid=contributor.orcid, format=key) }}">
+                                   href="{{ url_for('metaregistry_api.contributor', orcid=contributor.orcid, format=key) }}">
                                     {{ label }} <i class="fas fa-download"></i>
                                 </a>
                             {% endfor %}
@@ -57,40 +57,90 @@
                     <dd><a href="mailto:{{ contributor.email }}">{{ contributor.email }}</a></dd>
                 {% endif %}
                 #}
-                {% if prefix_contributions %}
-                    <dt>Prefixes Contributed</dt>
-                    <dd>
-                        <ul>
-                            {% for prefix, resource in prefix_contributions %}
-                                <li>
-                                    <a href="{{ url_for('ui.resource', prefix=prefix) }}"><code>{{ prefix }}</code></a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </dd>
-                {% endif %}
                 {% if prefix_reviews %}
-                    <dt>Prefixes Reviewed</dt>
+                    <dt>Prefixes Reviewed ({{ prefix_reviews|length }})</dt>
                     <dd>
                         <ul>
                             {% for prefix, resource in prefix_reviews %}
                                 <li>
-                                    <a href="{{ url_for('ui.resource', prefix=prefix) }}"><code>{{ prefix }}</code></a>
+                                    <a href="{{ url_for('metaregistry_ui.resource', prefix=prefix) }}">
+                                        {{ manager.get_name(prefix) }}
+                                        (<code>{{ prefix }}</code>)
+                                    </a>
                                     for
-                                    <a href="{{ url_for('ui.contributor', orcid=resource.contributor.orcid) }}">{{ resource.contributor.name }}</a>
+                                    <a href="{{ url_for('metaregistry_ui.contributor', orcid=resource.contributor.orcid) }}">{{ resource.contributor.name }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
                     </dd>
                 {% endif %}
                 {% if collections %}
-                    <dt>Collections Contributed</dt>
+                    <dt>Collections Contributed ({{ collections|length }})</dt>
                     <dd>
                         <ul>
                             {% for collection, resource in collections %}
                                 <li>
-                                    <a href="{{ url_for("ui.collection", identifier=collection) }}">
+                                    <a href="{{ url_for("metaregistry_ui.collection", identifier=collection) }}">
                                         {{ resource.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                {% endif %}
+                {% if contexts %}
+                    <dt>Contexts Maintained ({{ contexts|length }})</dt>
+                    <dd>
+                        <ul>
+                            {% for context_key, context in contexts %}
+                                <li>
+                                    <a href="{{ url_for("metaregistry_ui.context", identifier=context_key) }}">
+                                        {{ context.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                {% endif %}
+                {% if prefix_contacts %}
+                    <dt>Prefixes Responsible ({{ prefix_contacts|length }})</dt>
+                    <dd>
+                        <ul>
+                            {% for prefix, resource in prefix_contacts %}
+                                <li>
+                                    <a href="{{ url_for('metaregistry_ui.resource', prefix=prefix) }}">
+                                        {{ manager.get_name(prefix) }}
+                                        (<code>{{ prefix }}</code>)
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                {% endif %}
+                {% if registries %}
+                    <dt>Registries Responsible ({{ registries|length }})</dt>
+                    <dd>
+                        <ul>
+                            {% for metaprefix, metaresource in registries %}
+                                <li>
+                                    <a href="{{ url_for("metaregistry_ui.metaresource", metaprefix=metaprefix) }}">
+                                        {{ manager.get_registry_name(metaprefix) }}
+                                        (<code>{{ metaprefix }}</code>)
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                {% endif %}
+                {% if prefix_contributions %}
+                    <dt>Prefixes Contributed ({{ prefix_contributions|length }})</dt>
+                    <dd>
+                        <ul>
+                            {% for prefix, resource in prefix_contributions %}
+                                <li>
+                                    <a href="{{ url_for('metaregistry_ui.resource', prefix=prefix) }}">
+                                        {{ manager.get_name(prefix) }}
+                                        (<code>{{ prefix }}</code>)
                                     </a>
                                 </li>
                             {% endfor %}

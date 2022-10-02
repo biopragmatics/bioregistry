@@ -1,6 +1,10 @@
 name: Tests
 
-on: [ push ]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   lint:
@@ -8,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ 3.6, 3.9 ]
+        python-version: [ "3.7", "3.10" ]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
@@ -16,7 +20,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
-        run: pip install tox
+        run: |
+          pip install --upgrade pip setuptools wheel
+          pip install tox
       - name: Check manifest
         run: tox -e manifest
       - name: Check code quality with flake8
@@ -25,13 +31,12 @@ jobs:
         run: tox -e pyroma
       - name: Check static typing with MyPy
         run: tox -e mypy
-  tests:
-    name: Tests
-    runs-on: ${{ matrix.os }}
+  docs:
+    name: Documentation
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest ]
-        python-version: [ 3.6, 3.9 ]
+        python-version: [ "3.10" ]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
@@ -39,10 +44,40 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
-        run: pip install tox
+        run: |
+          pip install --upgrade pip setuptools wheel
+          pip install tox
+      - name: Check RST conformity with doc8
+        run: tox -e doc8
+      - name: Check docstring coverage
+        run: tox -e docstr-coverage
+      - name: Check documentation build with Sphinx
+        run: tox -e docs-test
+  tests:
+    name: Tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+        python-version: [ "3.7", "3.10" ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip setuptools wheel
+          pip install tox
       - name: Test with pytest
         run:
           tox -e py
       - name: Doctests
         run:
           tox -e doctests
+      - name: Upload coverage report to codecov
+        uses: codecov/codecov-action@v1
+        if: success()
+        with:
+          file: coverage.xml

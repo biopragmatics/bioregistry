@@ -10,12 +10,12 @@ import click
 import pyobo
 import pyobo.getters
 
-from bioregistry.utils import updater
+from bioregistry import read_registry, write_registry
 
 
-@updater
-def main(registry):
+def main():
     """Add examples to the bioregistry from OBO/OLS."""
+    registry = read_registry()
     for prefix, entry in registry.items():
         # if 'pattern' not in entry:  # TODO remove this later
         #     continue
@@ -24,7 +24,7 @@ def main(registry):
         example = _get_example(prefix)
         if example is not None:
             entry["example"] = example
-    return registry
+    write_registry(registry)
 
 
 def _get_example(prefix: str) -> Optional[str]:
