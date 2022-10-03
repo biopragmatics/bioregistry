@@ -35,6 +35,7 @@ OLS_SKIP = {
     "phi": "this is low quality and has no associated metadata",
     "epso": "can't figure out / not sure if still exists",
     "epio": "can't figure out / not sure if still exists",
+    "ccf": "this is full of temporary annotations and is mostly nonsense",
 }
 
 
@@ -58,6 +59,8 @@ def get_ols(force_download: bool = False):
     processed = {}
     for ontology in data["_embedded"]["ontologies"]:
         ols_id = ontology["ontologyId"]
+        if ols_id in OLS_SKIP:
+            continue
         # TODO better docs on how to maintain this file
         config = get_ols_processing().get(ols_id)
         if config is None:

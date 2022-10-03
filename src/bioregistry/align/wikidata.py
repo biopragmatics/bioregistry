@@ -2,8 +2,6 @@
 
 """Align Wikidata with the Bioregistry."""
 
-from typing import Sequence
-
 from bioregistry.align.utils import Aligner
 from bioregistry.external.wikidata import get_wikidata
 
@@ -21,17 +19,7 @@ class WikidataAligner(Aligner):
 
     key = "wikidata"
     getter = get_wikidata
-    curation_header = ("miriam", "databaseMiriam", "name", "database", "databaseLabel")
-
-    def get_curation_row(self, external_id, external_entry) -> Sequence[str]:
-        """Prepare curation rows for unaligned Wikidata properties."""
-        return [
-            external_entry.get("miriam"),
-            external_entry.get("database.miriam"),
-            external_entry["name"],
-            external_entry["database"],
-            external_entry["database.label"],
-        ]
+    curation_header = ("miriam", "database.miriam", "name", "database", "database.label")
 
     def prepare_external(self, external_id, external_entry):
         """Prepare the external Wikidata data dictionary for alignment."""

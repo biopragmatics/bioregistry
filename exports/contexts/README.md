@@ -21,6 +21,7 @@ the `bioregistry.export.prefix_maps` module.
 | [`bioregistry.context.jsonld`](bioregistry.context.jsonld) and [`bioregistry.context.ttl`](bioregistry.context.ttl)     | Contains Bioregistry-normalized prefixes (lowercase, punctuation normalized) and the best URI prefixes for each based on the Bioregistry's ruleset. |
 | [`obo.context.jsonld`](obo.context.jsonld) and [`obo.context.ttl`](obo.context.ttl)                                     | Contains prefixes and URI prefixes prioritized for the OBO Foundry and ontology contexts.                                                           |
 | [`obo_synonyms.context.jsonld`](obo_synonyms.context.jsonld) and [`obo_synonyms.context.ttl`](obo_synonyms.context.ttl) | Contains prefixes, prefix's synonyms, and URI prefixes prioritized for the OBO Foundry and ontology contexts.                                       |
+| [`spar.context.jsonld`](spar.context.jsonld) and [`spar.context.ttl`](spar.context.ttl)                                 | Contains prefixes from the [Semantic Publishing and Referencing (SPAR) Ontologies](http://www.sparontologies.net/ontologies).                       |
 
 ## Prescriptive Contexts
 

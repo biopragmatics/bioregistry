@@ -2382,13 +2382,6 @@
     "pattern": "^M\\d{5}$",
     "uri_format": "https://euhcvdb.ibcp.fr/euHCVdb/do/displayHCVEntry?primaryAC=$1"
   },
-  "hdl": {
-    "example": "4263537/4000",
-    "homepage": "http://www.handle.net",
-    "name": "Handle System Identifier",
-    "namespaceEmbeddedInLui": false,
-    "uri_format": "http://hdl.handle.net/$1"
-  },
   "hdr": {
     "description": "The Homeodomain Resource is a curated collection of sequence, structure, interaction, genomic and functional information on the homeodomain family. It contains sets of curated homeodomain sequences from fully sequenced genomes, including experimentally derived homeodomain structures, homeodomain protein-protein interactions, homeodomain DNA-binding sites and homeodomain proteins implicated in human genetic disorders.",
     "example": "63",
@@ -2415,15 +2408,6 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^((HGNC|hgnc):)?\\d{1,5}$",
     "uri_format": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/$1"
-  },
-  "hgnc.family": {
-    "description": "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene. All approved symbols are stored in the HGNC database, and each symbol is unique. In addition, HGNC also provides symbols for both structural and functional gene families. This collection refers to records using the HGNC family symbol.",
-    "example": "PADI",
-    "homepage": "https://www.genenames.org/",
-    "name": "HGNC Family at HUGO Genome Nomenclature Committee",
-    "namespaceEmbeddedInLui": false,
-    "pattern": "^[A-Z0-9-]+(#[A-Z0-9-]+)?$",
-    "uri_format": "https://www.genenames.org/genefamilies/$1"
   },
   "hgnc.genefamily": {
     "description": "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene. All approved symbols are stored in the HGNC database, and each symbol is unique. In addition, HGNC also provides a unique numerical ID to identify gene families, providing a display of curated hierarchical relationships between families.",
@@ -3188,13 +3172,6 @@
     "pattern": "^LRG_\\d+$",
     "uri_format": "http://uswest.ensembl.org/Homo_sapiens/LRG/Summary?lrg=$1"
   },
-  "lsid": {
-    "example": "lsid:ipni.org:names:77145066-1:1.4",
-    "homepage": "https://www.lsid.info/",
-    "name": "Life Sciences Identifier",
-    "namespaceEmbeddedInLui": false,
-    "uri_format": "http://www.lsid.info/urn:$1"
-  },
   "ma": {
     "description": "A structured controlled vocabulary of the adult anatomy of the mouse (Mus)",
     "example": "0002502",
@@ -3293,15 +3270,6 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^\\d+$",
     "uri_format": "http://www.nlm.nih.gov/medlineplus/ency/article/$1.htm"
-  },
-  "merops": {
-    "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them.",
-    "example": "S01.001",
-    "homepage": "http://merops.sanger.ac.uk/index.htm",
-    "name": "MEROPS database at Sanger Institute",
-    "namespaceEmbeddedInLui": false,
-    "pattern": "^[SCTAGMNU]\\d{2}\\.([AB]\\d{2}|\\d{3})$",
-    "uri_format": "http://merops.sanger.ac.uk/cgi-bin/pepsum?mid=$1"
   },
   "merops.family": {
     "description": "The MEROPS database is an information resource for peptidases (also termed proteases, proteinases and proteolytic enzymes) and the proteins that inhibit them. These are hierarchically classified and assigned to a Family on the basis of statistically significant similarities in amino acid sequence. Families thought to be homologous are grouped together in a Clan. This collection references peptidase families.",
@@ -4887,13 +4855,6 @@
     "pattern": "^\\d+$",
     "uri_format": "https://www.ncbi.nlm.nih.gov/pubmed/$1"
   },
-  "purl": {
-    "example": "dc/terms/creator",
-    "homepage": "http://purl.org/",
-    "name": "Persistent URL",
-    "namespaceEmbeddedInLui": false,
-    "uri_format": "http://purl.org/$1"
-  },
   "pw": {
     "description": "The Pathway Ontology captures information on biological networks, the relationships between netweorks and the alterations or malfunctioning of such networks within a hierarchical structure. The five main branches of the ontology are: classic metabolic pathways, regulatory, signaling, drug, and disease pathwaysfor complex human conditions.",
     "example": "0000208",
@@ -4947,13 +4908,6 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^((AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\\d+|(NZ\\_[A-Z]{4}\\d+))(\\.\\d+)?$",
     "uri_format": "https://www.ncbi.nlm.nih.gov/protein/$1"
-  },
-  "repec": {
-    "example": "pdi221",
-    "homepage": "http://repec.org/",
-    "name": "Research Papers in Economics",
-    "namespaceEmbeddedInLui": false,
-    "uri_format": "http://econpapers.repec.org/$1"
   },
   "resid": {
     "description": "The RESID Database of Protein Modifications is a comprehensive collection of annotations and structures for protein modifications including amino-terminal, carboxyl-terminal and peptide chain cross-link post-translational modifications.",
@@ -5842,21 +5796,6 @@
     "pattern": "^UO:\\d{7}?",
     "uri_format": "http://purl.bioontology.org/ontology/UO/UO:$1"
   },
-  "url": {
-    "example": "www.w3c.org",
-    "homepage": "https://www.w3c.org/",
-    "name": "Uniform Resource Locator",
-    "namespaceEmbeddedInLui": false,
-    "uri_format": "$1"
-  },
-  "urn": {
-    "description": "Uniform Resource Names (URNs) are intended to serve as persistent, location-independent, resource identifiers.",
-    "example": "urn:nbn:fi:tkk-004781",
-    "homepage": "https://tools.ietf.org/html/rfc2141",
-    "name": "Uniform Resource Name",
-    "namespaceEmbeddedInLui": false,
-    "uri_format": "http://nbn-resolving.org/resolver?identifier=urn:$1&verb=redirect"
-  },
   "uspto": {
     "description": "The United States Patent and Trademark Office (USPTO) is the federal agency for granting U.S. patents and registering trademarks. As a mechanism that protects new ideas and investments in innovation and creativity, the USPTO is at the cutting edge of the nation's technological progress and achievement.",
     "example": "4145692",
@@ -6144,12 +6083,5 @@
     "namespaceEmbeddedInLui": false,
     "pattern": "^(ZINC)?\\d+$",
     "uri_format": "http://zinc15.docking.org/substances/$1"
-  },
-  "zzztestprefix": {
-    "example": "0123456789",
-    "homepage": "https://id.example.org/",
-    "name": "Test Prefix",
-    "namespaceEmbeddedInLui": false,
-    "uri_format": "id.example.org/$1"
   }
 }

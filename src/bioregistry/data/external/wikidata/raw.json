@@ -142,6 +142,17 @@
     "propPattern": "[1-9]\\d*"
   },
   {
+    "database": "Q111694088",
+    "databaseHomepage": "http://woodyplants.cals.cornell.edu/home",
+    "databaseLabel": "Woody Plants Database",
+    "prop": "P11082",
+    "propDescription": "identifier for a cultivar in the Woody Plants Database",
+    "propFormat": "http://woodyplants.cals.cornell.edu/cultivar/$1",
+    "propHomepage": "http://woodyplants.cals.cornell.edu/home",
+    "propLabel": "Woody Plants Database cultivar ID",
+    "propPattern": "[1-9]\\d*"
+  },
+  {
     "database": "Q25489909",
     "databaseHomepage": "http://www.wildflowers.co.il",
     "databaseLabel": "Wildflowers of Palestine",
@@ -183,6 +194,20 @@
     "prop": "P2410",
     "propDescription": "describes in which biological pathways a biological entity occurs",
     "propFormat": "https://www.wikipathways.org/instance/$1",
+    "propFormatRDF": "http://identifiers.org/wikipathways/$1",
+    "propHomepage": "http://www.wikipathways.org",
+    "propLabel": "WikiPathways ID",
+    "propMiriam": "wikipathways",
+    "propPattern": "WP\\d{1,4}"
+  },
+  {
+    "database": "Q7999828",
+    "databaseHomepage": "https://www.wikipathways.org/",
+    "databaseLabel": "WikiPathways",
+    "databaseMiriam": "wikipathways",
+    "prop": "P2410",
+    "propDescription": "describes in which biological pathways a biological entity occurs",
+    "propFormat": "https://new.wikipathways.org/pathways/$1",
     "propFormatRDF": "http://identifiers.org/wikipathways/$1",
     "propHomepage": "http://www.wikipathways.org",
     "propLabel": "WikiPathways ID",
@@ -880,7 +905,29 @@
   },
   {
     "database": "Q55118584",
+    "databaseHomepage": "http://proconsortium.org",
+    "databaseLabel": "Protein Ontology",
+    "prop": "P4926",
+    "propDescription": "Identifier for an entry in the PRotein Ontology (PRO)",
+    "propFormat": "https://proconsortium.org/app/entry/$1/",
+    "propHomepage": "https://pir.georgetown.edu/pro/pro.shtml",
+    "propLabel": "PRotein Ontology ID",
+    "propPattern": "PR:\\d*"
+  },
+  {
+    "database": "Q55118584",
     "databaseHomepage": "http://pir.georgetown.edu/pro",
+    "databaseLabel": "Protein Ontology",
+    "prop": "P4926",
+    "propDescription": "Identifier for an entry in the PRotein Ontology (PRO)",
+    "propFormat": "https://research.bioinformatics.udel.edu/pro/entry/$1",
+    "propHomepage": "https://pir.georgetown.edu/pro/pro.shtml",
+    "propLabel": "PRotein Ontology ID",
+    "propPattern": "PR:\\d*"
+  },
+  {
+    "database": "Q55118584",
+    "databaseHomepage": "http://proconsortium.org",
     "databaseLabel": "Protein Ontology",
     "prop": "P4926",
     "propDescription": "Identifier for an entry in the PRotein Ontology (PRO)",
@@ -1003,6 +1050,17 @@
     "propHomepage": "http://phasmida.speciesfile.org/HomePage/Phasmida/HomePage.aspx",
     "propLabel": "Phasmida Species File ID",
     "propPattern": "[1-9]\\d*"
+  },
+  {
+    "database": "Q18392556",
+    "databaseHomepage": "https://www.pharmgkb.org/",
+    "databaseLabel": "PharmGKB",
+    "prop": "P7001",
+    "propDescription": "unique identifier for an entity in the PharmGKB knowledgebase",
+    "propFormat": "https://www.pharmgkb.org/accession/$1",
+    "propHomepage": "https://www.pharmgkb.org/",
+    "propLabel": "PharmGKB ID",
+    "propPattern": "PA[1-9]\\d*"
   },
   {
     "database": "Q906796",
@@ -1155,6 +1213,17 @@
     "propPattern": "\\d{6}"
   },
   {
+    "database": "Q241953",
+    "databaseHomepage": "https://www.omim.org",
+    "databaseLabel": "Online Mendelian Inheritance in Man",
+    "databaseMiriam": "omim",
+    "prop": "P492",
+    "propDescription": "Online \"Mendelian Inheritance in Man\" catalogue codes for diseases, genes, or phenotypes",
+    "propFormat": "https://omim.org/OMIM:$1",
+    "propLabel": "OMIM ID",
+    "propPattern": "\\d{6}"
+  },
+  {
     "database": "Q3349966",
     "databaseLabel": "Oiseaux.net",
     "prop": "P6025",
@@ -1270,7 +1339,7 @@
     "propFormat": "https://www.wildflower.org/plants/result.php?id_plant=$1",
     "propHomepage": "https://www.wildflower.org/plants/index.php",
     "propLabel": "Native Plants Database ID",
-    "propPattern": "[A-Z]{4,5}[1-9]?"
+    "propPattern": "[A-Za-z]{4,5}[1-9]?"
   },
   {
     "database": "Q5152005",
@@ -1505,22 +1574,22 @@
     "database": "Q106677021",
     "databaseHomepage": "https://www.mybis.gov.my/",
     "databaseLabel": "Malaysia Biodiversity Information System",
-    "prop": "P9503",
-    "propDescription": "identifier for a species in the Malaysia Biodiversity Information System",
-    "propFormat": "https://www.mybis.gov.my/sp/$1",
-    "propHomepage": "https://www.mybis.gov.my/one/",
-    "propLabel": "MyBIS species ID",
+    "prop": "P9552",
+    "propDescription": "identifier for a protected area in the Malaysia Biodiversity Information System",
+    "propFormat": "https://www.mybis.gov.my/pa/$1",
+    "propHomepage": "https://www.mybis.gov.my/one/pamaps.php",
+    "propLabel": "MyBIS protected area ID",
     "propPattern": "[1-9]\\d*"
   },
   {
     "database": "Q106677021",
     "databaseHomepage": "https://www.mybis.gov.my/",
     "databaseLabel": "Malaysia Biodiversity Information System",
-    "prop": "P9552",
-    "propDescription": "identifier for a protected area in the Malaysia Biodiversity Information System",
-    "propFormat": "https://www.mybis.gov.my/pa/$1",
-    "propHomepage": "https://www.mybis.gov.my/one/pamaps.php",
-    "propLabel": "MyBIS protected area ID",
+    "prop": "P9503",
+    "propDescription": "identifier for a species in the Malaysia Biodiversity Information System",
+    "propFormat": "https://www.mybis.gov.my/sp/$1",
+    "propHomepage": "https://www.mybis.gov.my/one/",
+    "propLabel": "MyBIS species ID",
     "propPattern": "[1-9]\\d*"
   },
   {
@@ -1733,19 +1802,7 @@
   },
   {
     "database": "Q17027854",
-    "databaseHomepage": "http://www.human-phenotype-ontology.org/",
-    "databaseLabel": "Human Phenotype Ontology",
-    "databaseMiriam": "hp",
-    "prop": "P3841",
-    "propDescription": "The Human Phenotype Ontology (HPO) is a widely used vocabulary of phenotypic abnormalities encountered in human disease",
-    "propFormat": "https://hpo.jax.org/app/browse/term/$1",
-    "propHomepage": "http://human-phenotype-ontology.github.io/about.html",
-    "propLabel": "Human Phenotype Ontology ID",
-    "propPattern": "HP:[0-9]{7}"
-  },
-  {
-    "database": "Q17027854",
-    "databaseHomepage": "https://hpo.jax.org/app/",
+    "databaseHomepage": "https://hpo.jax.org",
     "databaseLabel": "Human Phenotype Ontology",
     "databaseMiriam": "hp",
     "prop": "P3841",
@@ -2565,23 +2622,23 @@
   },
   {
     "database": "Q24691710",
-    "databaseHomepage": "https://web.expasy.org/cellosaurus/",
+    "databaseHomepage": "https://www.cellosaurus.org/",
     "databaseLabel": "Cellosaurus",
     "databaseMiriam": "cellosaurus",
     "prop": "P3289",
     "propDescription": "Cellosaurus cell line identifier",
-    "propFormat": "https://web.expasy.org/cellosaurus/$1",
+    "propFormat": "https://www.cellosaurus.org/$1",
     "propLabel": "Cellosaurus ID",
     "propPattern": "CVCL_[A-Z\\d][A-Z\\d][A-Z\\d][A-Z\\d]"
   },
   {
     "database": "Q24691710",
-    "databaseHomepage": "https://web.expasy.org/cellosaurus/",
+    "databaseHomepage": "https://www.cellosaurus.org/",
     "databaseLabel": "Cellosaurus",
     "databaseMiriam": "cellosaurus",
     "prop": "P3289",
     "propDescription": "Cellosaurus cell line identifier",
-    "propFormat": "https://web.expasy.org/cellosaurus/$1",
+    "propFormat": "https://www.cellosaurus.org/$1",
     "propLabel": "Cellosaurus ID",
     "propPattern": "CVCL_[A-Z\\d][A-Z\\d][A-Z\\d][A-Z\\d]"
   },
@@ -2968,6 +3025,17 @@
     "propLabel": "Bioweb Ecuador ID"
   },
   {
+    "database": "Q113580292",
+    "databaseHomepage": "https://bison-m.org/",
+    "databaseLabel": "Biota Information System of New Mexico",
+    "prop": "P11076",
+    "propDescription": "identifier for an animal species in the Biota Information System of New Mexico",
+    "propFormat": "https://bison-m.org/booklet.aspx?SpeciesID=$1",
+    "propHomepage": "https://bison-m.org/",
+    "propLabel": "Biota Information System of New Mexico species ID",
+    "propPattern": "\\d{6}"
+  },
+  {
     "database": "Q48814267",
     "databaseHomepage": "http://www.bmrb.wisc.edu/",
     "databaseLabel": "Biological Magnetic Resonance Data Bank",
@@ -2980,12 +3048,33 @@
   },
   {
     "database": "Q172266",
+    "databaseHomepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
+    "databaseLabel": "Biodiversity Heritage Library",
+    "prop": "P687",
+    "propDescription": "identifier in the Biodiversity Heritage Library (BHL)",
+    "propFormat": "https://biodiversitylibrary.org/page/$1",
+    "propLabel": "BHL page ID",
+    "propPattern": "[1-9]\\d*"
+  },
+  {
+    "database": "Q172266",
     "databaseHomepage": "https://www.biodiversitylibrary.org/",
     "databaseLabel": "Biodiversity Heritage Library",
     "prop": "P687",
     "propDescription": "identifier in the Biodiversity Heritage Library (BHL)",
     "propFormat": "https://biodiversitylibrary.org/page/$1",
     "propLabel": "BHL page ID",
+    "propPattern": "[1-9]\\d*"
+  },
+  {
+    "database": "Q172266",
+    "databaseHomepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
+    "databaseLabel": "Biodiversity Heritage Library",
+    "prop": "P4081",
+    "propDescription": "identifier for an author (\"creator\") in the Biodiversity Heritage Library database",
+    "propFormat": "https://www.biodiversitylibrary.org/creator/$1",
+    "propHomepage": "http://www.biodiversitylibrary.org/",
+    "propLabel": "BHL creator ID",
     "propPattern": "[1-9]\\d*"
   },
   {
@@ -3001,12 +3090,33 @@
   },
   {
     "database": "Q172266",
+    "databaseHomepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
+    "databaseLabel": "Biodiversity Heritage Library",
+    "prop": "P4327",
+    "propDescription": "identifier for a journal or book (\"bibliography\") in the Biodiversity Heritage Library (BHL)",
+    "propFormat": "https://www.biodiversitylibrary.org/bibliography/$1",
+    "propLabel": "BHL bibliography ID",
+    "propPattern": "[1-9]\\d*"
+  },
+  {
+    "database": "Q172266",
     "databaseHomepage": "https://www.biodiversitylibrary.org/",
     "databaseLabel": "Biodiversity Heritage Library",
     "prop": "P4327",
     "propDescription": "identifier for a journal or book (\"bibliography\") in the Biodiversity Heritage Library (BHL)",
     "propFormat": "https://www.biodiversitylibrary.org/bibliography/$1",
     "propLabel": "BHL bibliography ID",
+    "propPattern": "[1-9]\\d*"
+  },
+  {
+    "database": "Q172266",
+    "databaseHomepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
+    "databaseLabel": "Biodiversity Heritage Library",
+    "prop": "P6535",
+    "propDescription": "identifier of a part-work, in the BHL database",
+    "propFormat": "https://www.biodiversitylibrary.org/part/$1",
+    "propHomepage": "http://www.biodiversitylibrary.org/part/$1",
+    "propLabel": "BHL part ID",
     "propPattern": "[1-9]\\d*"
   },
   {
@@ -3019,6 +3129,16 @@
     "propHomepage": "http://www.biodiversitylibrary.org/part/$1",
     "propLabel": "BHL part ID",
     "propPattern": "[1-9]\\d*"
+  },
+  {
+    "database": "Q172266",
+    "databaseHomepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
+    "databaseLabel": "Biodiversity Heritage Library",
+    "prop": "P8724",
+    "propDescription": "identifier for a scientific name in the Biodiversity Heritage Library",
+    "propFormat": "https://www.biodiversitylibrary.org/name/$1",
+    "propHomepage": "https://www.biodiversitylibrary.org/advsearch",
+    "propLabel": "BHL name ID"
   },
   {
     "database": "Q172266",
@@ -3073,8 +3193,8 @@
   },
   {
     "database": "Q4836352",
-    "databaseHomepage": "https://www.brenda-enzymes.org/ontology.php?ontology_id=3",
-    "databaseLabel": "BRENDA tissue ontology",
+    "databaseHomepage": "https://www.brenda-enzymes.org",
+    "databaseLabel": "BRENDA Tissue Ontology",
     "databaseMiriam": "bto",
     "prop": "P5501",
     "propDescription": "identifier in the Brenda Tissue Ontology",

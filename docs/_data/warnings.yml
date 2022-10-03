@@ -38,7 +38,7 @@ wrong_patterns:
   name: Cell Cycle Ontology
   prefix: cco
 - correct: ^[A-Z0-9]{4}$
-  homepage: https://web.expasy.org/cellosaurus/
+  homepage: https://cellosaurus.org
   miriam: ^CVCL_[A-Z0-9]{4}$
   name: Cellosaurus
   prefix: cellosaurus
@@ -62,6 +62,11 @@ wrong_patterns:
   miriam: ^did:[a-z0-9]+:[A-Za-z0-9.\-:]+$
   name: Decentralized Identifier
   prefix: did
+- correct: ^10.\d{2,9}/.*$
+  homepage: https://www.doi.org/
+  miriam: ^(doi\:)?\d{2}\.\d{4}.*$
+  name: Digital Object Identifier
+  prefix: doi
 - correct: ^\d+$
   homepage: http://www.disease-ontology.org
   miriam: ^DOID:\d+$
@@ -147,16 +152,36 @@ wrong_patterns:
   miriam: ^GSSO:\d{6}$
   name: Gender, Sex, and Sexual Orientation Ontology
   prefix: gsso
+- correct: ^\d{1,5}$
+  homepage: http://www.genenames.org
+  miriam: ^((HGNC|hgnc):)?\d{1,5}$
+  name: HUGO Gene Nomenclature Committee
+  prefix: hgnc
 - correct: ^\d{7}$
   homepage: http://www.human-phenotype-ontology.org/
   miriam: ^HP:\d{7}$
   name: Human Phenotype Ontology
   prefix: hp
+- correct: ^(([XVI]+)|([A-Z][0-9]+((-[A-Z][0-9]+)|(\.[0-9]))?))$
+  homepage: https://icd.who.int/browse10
+  miriam: ^[A-Z]\d+(\.[-\d+])?$
+  name: International Classification of Diseases, 10th Revision
+  prefix: icd10
+- correct: ^\d+(-\d+)?$
+  homepage: https://www.imexconsortium.org/
+  miriam: ^IM-\d+(-?)(\d+?)$
+  name: International Molecular Exchange
+  prefix: imex
 - correct: ^(LCL|LDC|ES|LSC|LPC)-\d+$
   homepage: http://lincsportal.ccs.miami.edu/cells/
   miriam: (^LCL-\d+$)|(^LDC-\d+$)|(^ES-\d+$)|(^LSC-\d+$)|(^LPC-\d+$)
   name: LINCS Cell
   prefix: lincs.cell
+- correct: ^\d+$
+  homepage: http://www.lrg-sequence.org/
+  miriam: ^LRG_\d+$
+  name: Locus Reference Genomic
+  prefix: lrg
 - correct: ^\d+$
   homepage: https://github.com/obophenotype/mouse-anatomy-ontology
   miriam: ^MA:\d+$
@@ -192,11 +217,26 @@ wrong_patterns:
   miriam: ^MI:\d{4}$
   name: Molecular Interactions Controlled Vocabulary
   prefix: mi
+- correct: ^\d{1,7}$
+  homepage: https://mint.bio.uniroma2.it
+  miriam: ^MINT\-\d{1,7}$
+  name: Molecular Interaction Database
+  prefix: mint
 - correct: ^\d{8}$
   homepage: https://registry.identifiers.org/registry
   miriam: ^MIR:\d{8}$
   name: Identifiers.org Registry
   prefix: mir
+- correct: ^000\d{5}$
+  homepage: https://www.ebi.ac.uk/miriam/
+  miriam: ^MIR:000\d{5}$
+  name: MIRIAM Registry collection
+  prefix: miriam.collection
+- correct: ^001\d{5}$
+  homepage: https://www.ebi.ac.uk/miriam/
+  miriam: ^MIR:001\d{5}$
+  name: MIRIAM Legacy Registry Identifier
+  prefix: miriam.resource
 - correct: ^\d{5}$
   homepage: http://www.psidev.info/MOD
   miriam: ^MOD:\d{5}
@@ -287,6 +327,11 @@ wrong_patterns:
   miriam: ^PR:P?\d+$
   name: Protein Ontology
   prefix: pr
+- correct: ^\d+$
+  homepage: https://www.psidev.info/psi-par
+  miriam: ^PAR:\d+$
+  name: Protein Affinity Reagents
+  prefix: psipar
 - correct: ^\d{7}$
   homepage: http://rgd.mcw.edu/rgdweb/ontology/search.html
   miriam: ^PW:\d{7}$
@@ -297,6 +342,11 @@ wrong_patterns:
   miriam: (^R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?$)|(^REACT_\d+(\.\d+)?$)
   name: Reactome
   prefix: reactome
+- correct: ^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|WP|XM|XP|XR|YP|ZP)_\d+)|(NZ_[A-Z]{2,4}\d+))(\.\d+)?$
+  homepage: https://www.ncbi.nlm.nih.gov/projects/RefSeq/
+  miriam: ^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|XM|XP|XR|YP|ZP)_\d+)|(NZ\_[A-Z]{2,4}\d+))(\.\d+)?$
+  name: Reference Sequence Collection
+  prefix: refseq
 - correct: ^\d{7}$
   homepage: https://oborel.github.io/
   miriam: ^RO_\d{7}$
@@ -367,3 +417,8 @@ wrong_patterns:
   miriam: ^VariO:\d+$
   name: Variation Ontology
   prefix: vario
+- correct: ^\d{1,9}$
+  homepage: https://vertebrate.genenames.org
+  miriam: ^((VGNC|vgnc):)?\d{1,9}$
+  name: Vertebrate Gene Nomenclature Committee
+  prefix: vgnc

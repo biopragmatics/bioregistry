@@ -125,6 +125,28 @@
     "prefix": "P10907",
     "uri_format": "https://paleobiodb.org/classic/basicTaxonInfo?taxon_no=$1"
   },
+  "P11076": {
+    "database": "Q113580292",
+    "database.homepage": "https://bison-m.org/",
+    "database.label": "Biota Information System of New Mexico",
+    "description": "identifier for an animal species in the Biota Information System of New Mexico",
+    "homepage": "https://bison-m.org/",
+    "name": "Biota Information System of New Mexico species ID",
+    "pattern": "\\d{6}",
+    "prefix": "P11076",
+    "uri_format": "https://bison-m.org/booklet.aspx?SpeciesID=$1"
+  },
+  "P11082": {
+    "database": "Q111694088",
+    "database.homepage": "http://woodyplants.cals.cornell.edu/home",
+    "database.label": "Woody Plants Database",
+    "description": "identifier for a cultivar in the Woody Plants Database",
+    "homepage": "http://woodyplants.cals.cornell.edu/home",
+    "name": "Woody Plants Database cultivar ID",
+    "pattern": "[1-9]\\d*",
+    "prefix": "P11082",
+    "uri_format": "http://woodyplants.cals.cornell.edu/cultivar/$1"
+  },
   "P1391": {
     "database": "Q1860469",
     "database.homepage": "http://www.indexfungorum.org/",
@@ -386,7 +408,7 @@
     "name": "WikiPathways ID",
     "pattern": "WP\\d{1,4}",
     "prefix": "P2410",
-    "uri_format": "https://www.wikipathways.org/index.php/Pathway:$1"
+    "uri_format": "https://new.wikipathways.org/pathways/$1"
   },
   "P2426": {
     "database": "Q8043516",
@@ -614,14 +636,14 @@
   },
   "P3289": {
     "database": "Q24691710",
-    "database.homepage": "https://web.expasy.org/cellosaurus/",
+    "database.homepage": "https://www.cellosaurus.org/",
     "database.label": "Cellosaurus",
     "database.miriam": "cellosaurus",
     "description": "Cellosaurus cell line identifier",
     "name": "Cellosaurus ID",
     "pattern": "CVCL_[A-Z\\d][A-Z\\d][A-Z\\d][A-Z\\d]",
     "prefix": "P3289",
-    "uri_format": "https://web.expasy.org/cellosaurus/$1"
+    "uri_format": "https://www.cellosaurus.org/$1"
   },
   "P3322": {
     "database": "Q24053150",
@@ -797,7 +819,7 @@
   },
   "P3841": {
     "database": "Q17027854",
-    "database.homepage": "http://www.human-phenotype-ontology.org/",
+    "database.homepage": "https://hpo.jax.org",
     "database.label": "Human Phenotype Ontology",
     "database.miriam": "hp",
     "description": "The Human Phenotype Ontology (HPO) is a widely used vocabulary of phenotypic abnormalities encountered in human disease",
@@ -886,7 +908,7 @@
   },
   "P4081": {
     "database": "Q172266",
-    "database.homepage": "https://www.biodiversitylibrary.org/",
+    "database.homepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
     "database.label": "Biodiversity Heritage Library",
     "description": "identifier for an author (\"creator\") in the Biodiversity Heritage Library database",
     "homepage": "http://www.biodiversitylibrary.org/",
@@ -951,7 +973,7 @@
   },
   "P4327": {
     "database": "Q172266",
-    "database.homepage": "https://www.biodiversitylibrary.org/",
+    "database.homepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
     "database.label": "Biodiversity Heritage Library",
     "description": "identifier for a journal or book (\"bibliography\") in the Biodiversity Heritage Library (BHL)",
     "name": "BHL bibliography ID",
@@ -1137,7 +1159,7 @@
     "name": "OMIM ID",
     "pattern": "\\d{6}",
     "prefix": "P492",
-    "uri_format": "https://omim.org/entry/$1"
+    "uri_format": "https://omim.org/OMIM:$1"
   },
   "P4926": {
     "database": "Q55118584",
@@ -1327,8 +1349,8 @@
   },
   "P5501": {
     "database": "Q4836352",
-    "database.homepage": "https://www.brenda-enzymes.org/ontology.php?ontology_id=3",
-    "database.label": "BRENDA tissue ontology",
+    "database.homepage": "https://www.brenda-enzymes.org",
+    "database.label": "BRENDA Tissue Ontology",
     "database.miriam": "bto",
     "description": "identifier in the Brenda Tissue Ontology",
     "homepage": "https://www.brenda-enzymes.org/ontology.php?ontology_id=3",
@@ -1981,7 +2003,7 @@
   },
   "P6535": {
     "database": "Q172266",
-    "database.homepage": "https://www.biodiversitylibrary.org/",
+    "database.homepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
     "database.label": "Biodiversity Heritage Library",
     "description": "identifier of a part-work, in the BHL database",
     "homepage": "http://www.biodiversitylibrary.org/part/$1",
@@ -2128,7 +2150,7 @@
   },
   "P687": {
     "database": "Q172266",
-    "database.homepage": "https://www.biodiversitylibrary.org/",
+    "database.homepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
     "database.label": "Biodiversity Heritage Library",
     "description": "identifier in the Biodiversity Heritage Library (BHL)",
     "name": "BHL page ID",
@@ -2158,6 +2180,17 @@
     "pattern": "DOID:([0-9]{7}|[1-9][0-9]{0,4})",
     "prefix": "P699",
     "uri_format": "http://www.disease-ontology.org/?id=$1"
+  },
+  "P7001": {
+    "database": "Q18392556",
+    "database.homepage": "https://www.pharmgkb.org/",
+    "database.label": "PharmGKB",
+    "description": "unique identifier for an entity in the PharmGKB knowledgebase",
+    "homepage": "https://www.pharmgkb.org/",
+    "name": "PharmGKB ID",
+    "pattern": "PA[1-9]\\d*",
+    "prefix": "P7001",
+    "uri_format": "https://www.pharmgkb.org/accession/$1"
   },
   "P704": {
     "database": "Q1344256",
@@ -2386,7 +2419,7 @@
     "description": "identifier for a taxon in the Native Plants Database, on the Lady Bird Johnson Wildflower Center website",
     "homepage": "https://www.wildflower.org/plants/index.php",
     "name": "Native Plants Database ID",
-    "pattern": "[A-Z]{4,5}[1-9]?",
+    "pattern": "[A-Za-z]{4,5}[1-9]?",
     "prefix": "P8660",
     "uri_format": "https://www.wildflower.org/plants/result.php?id_plant=$1"
   },
@@ -2424,7 +2457,7 @@
   },
   "P8724": {
     "database": "Q172266",
-    "database.homepage": "https://www.biodiversitylibrary.org/",
+    "database.homepage": "https://about.biodiversitylibrary.org/about/bhl-consortium/",
     "database.label": "Biodiversity Heritage Library",
     "description": "identifier for a scientific name in the Biodiversity Heritage Library",
     "homepage": "https://www.biodiversitylibrary.org/advsearch",

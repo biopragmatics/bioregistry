@@ -11,12 +11,11 @@ from typing import Mapping
 
 import bioregistry
 from bioregistry import Resource, manager
-from bioregistry.constants import BIOREGISTRY_PATH
+from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE
 from bioregistry.export.rdf_export import resource_to_rdf_str
-from bioregistry.license_standardizer import REVERSE_LICENSES
+from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.schema.struct import SCHEMA_PATH, get_json_schema
-from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.schema_utils import is_mismatch
 from bioregistry.utils import _norm, extended_encoder
 
@@ -67,6 +66,7 @@ class TestRegistry(unittest.TestCase):
                 self.assertEqual(prefix.lower(), prefix, msg="prefix is not lowercased")
                 self.assertFalse(prefix.startswith("_"))
                 self.assertFalse(prefix.endswith("_"))
+                self.assertNotIn(":", prefix)
 
     def test_valid_integration_annotations(self):
         """Test that the integration keys are valid."""
@@ -217,7 +217,14 @@ class TestRegistry(unittest.TestCase):
             if not uri_format:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertIn("$1", uri_format, msg=f"{prefix} format does not have a $1")
+                self.assertTrue(
+                    any(
+                        uri_format.startswith(protocol + "://")
+                        for protocol in ["http", "https", "ftp", "s3"]
+                    ),
+                    msg=f"{prefix} URI format dos not start with a valid protocol",
+                )
+                self.assertIn("$1", uri_format, msg=f"{prefix} URI format does not have a $1")
 
     def test_uri_format_uniqueness(self):
         """Test URI format uniqueness."""
@@ -339,9 +346,9 @@ class TestRegistry(unittest.TestCase):
 
                 pattern = entry.get_pattern_re()
                 if pattern is not None:
-                    self.assert_canonical(prefix, example)
+                    self.assert_is_valid_identifier(prefix, example)
 
-    def assert_canonical(self, prefix: str, example: str) -> None:
+    def assert_is_valid_identifier(self, prefix: str, example: str) -> None:
         """Assert the identifier is canonical."""
         entry = self.registry[prefix]
         canonical = entry.is_valid_identifier(example)
@@ -364,7 +371,7 @@ class TestRegistry(unittest.TestCase):
                     self.assertNotEqual(
                         primary_example, example, msg="extra example matches primary example"
                     )
-                    self.assert_canonical(prefix, example)
+                    self.assert_is_valid_identifier(prefix, example)
 
             self.assertEqual(
                 len(entry.example_extras),
@@ -433,7 +440,7 @@ class TestRegistry(unittest.TestCase):
         self.assertFalse(bioregistry.is_deprecated("nope"))
         self.assertIsNone(bioregistry.get_provides_for("nope"))
         self.assertIsNone(bioregistry.get_version("gmelin"))
-        self.assertIsNone(bioregistry.is_known_identifier("nope", ...))
+        self.assertFalse(bioregistry.is_standardizable_identifier("nope", ...))
         self.assertIsNone(bioregistry.get_default_iri("nope", ...))
         self.assertIsNone(bioregistry.get_identifiers_org_iri("nope", ...))
         self.assertIsNone(bioregistry.get_n2t_iri("nope", ...))
@@ -662,6 +669,12 @@ class TestRegistry(unittest.TestCase):
             with self.subTest(key=key):
                 self.assertEqual(len(values), len(set(values)), msg=f"duplicates in {key}")
 
+        for prefix, resource in self.registry.items():
+            if resource.license is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertEqual(standardize_license(resource.license), resource.license)
+
     def test_contributors(self):
         """Check contributors have minimal metadata."""
         for prefix, resource in self.registry.items():
@@ -798,18 +811,21 @@ class TestRegistry(unittest.TestCase):
     def test_publications(self):
         """Test references and publications are sorted right."""
         for prefix, resource in self.registry.items():
-            if not resource.references:
-                continue
             with self.subTest(prefix=prefix):
-                for reference in resource.references:
-                    self.assertNotIn("doi", reference)
-                    self.assertNotIn("pubmed", reference)
-                    self.assertNotIn("pmc", reference)
-                    self.assertNotIn("arxiv", reference)
-
+                if resource.references:
+                    for reference in resource.references:
+                        self.assertNotIn("doi", reference)
+                        self.assertNotIn("pubmed", reference)
+                        self.assertNotIn("pmc", reference)
+                        self.assertNotIn("arxiv", reference)
                 if resource.publications:
                     for publication in resource.publications:
-                        self.assertIsNotNone(publication.title)
+                        self.assertIsNotNone(
+                            publication.title,
+                            msg="Manually curated publication is missing a title. Please run the "
+                            "publication clean-up script `python -m bioregistry.curation.clean_publications` "
+                            "to automatically retrieve the title.",
+                        )
                         self.assertLessEqual(
                             1,
                             sum(
@@ -820,3 +836,23 @@ class TestRegistry(unittest.TestCase):
                                 )
                             ),
                         )
+                        if publication.doi:
+                            # DOIs are case insensitive, so standardize to lowercase in bioregistry
+                            self.assertEqual(publication.doi.lower(), publication.doi)
+
+                    # Test no duplicates
+                    index = defaultdict(lambda: defaultdict(list))
+                    for publication in resource.publications:
+                        for key, value in publication.dict().items():
+                            if key == "title" or value is None:
+                                continue
+                            index[key][value].append(publication)
+                    for citation_prefix, citation_identifier_dict in index.items():
+                        if citation_prefix == "year":
+                            continue
+                        for citation_identifier, values in citation_identifier_dict.items():
+                            self.assertEqual(
+                                1,
+                                len(values),
+                                msg=f"[{prefix}] duplication on {citation_prefix}:{citation_identifier}",
+                            )

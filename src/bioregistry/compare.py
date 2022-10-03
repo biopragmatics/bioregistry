@@ -43,6 +43,15 @@ logger = logging.getLogger(__name__)
 BIOREGISTRY_COLOR = "silver"
 
 
+class RegistryInfo(typing.NamedTuple):
+    """A tuple representing keys."""
+
+    metaprefix: str
+    label: str
+    color: str
+    prefixes: Set[str]
+
+
 def _get_has(func, yes: str = "Yes", no: str = "No") -> Counter:
     return Counter(
         no if func(prefix) is None else yes
@@ -62,7 +71,7 @@ def _get_has_present(func) -> Counter:
     return Counter(x for x in (func(prefix) for prefix in read_registry()) if x)
 
 
-SINGLE_FIG = (8, 3.5)
+SINGLE_FIG = (8.25, 3.5)
 TODAY = datetime.datetime.today().strftime("%Y-%m-%d")
 WATERMARK_TEXT = f"https://github.com/biopragmatics/bioregistry ({TODAY})"
 
@@ -70,15 +79,16 @@ WATERMARK_TEXT = f"https://github.com/biopragmatics/bioregistry ({TODAY})"
 def _save(fig, name: str, *, svg: bool = True, png: bool = False, eps: bool = False) -> None:
     import matplotlib.pyplot as plt
 
-    path = DOCS_IMG.joinpath(name).with_suffix(".svg")
+    stub = DOCS_IMG.joinpath(name)
+    path = stub.with_suffix(".svg")
     click.echo(f"output to {path}")
     fig.tight_layout()
     if svg:
         fig.savefig(path)
     if eps:
-        fig.savefig(DOCS_IMG.joinpath(name).with_suffix(".eps"))
+        fig.savefig(stub.with_suffix(".eps"))
     if png:
-        fig.savefig(DOCS_IMG.joinpath(name).with_suffix(".png"), dpi=300)
+        fig.savefig(stub.with_suffix(".png"), dpi=300)
     plt.close(fig)
 
 
@@ -140,17 +150,17 @@ REMAPPED_KEY = "x"
 REMAPPED_VALUE = "y"
 
 
-def make_overlaps(keys) -> Mapping[str, Mapping[str, Set[str]]]:
-    """Make overlaps ditionary."""
+def make_overlaps(keys: List[RegistryInfo]) -> Mapping[str, Mapping[str, Set[str]]]:
+    """Make overlaps dictionary."""
     rv = {}
-    for key, _, _, prefixes in keys:
+    for metaprefix, _, _, prefixes in keys:
         # Remap bioregistry prefixes to match the external
         #  vocabulary, when possible
         bioregistry_remapped = {
-            bioregistry.get_external(br_key, key).get("prefix", br_key)
-            for br_key, br_entry in bioregistry.read_registry().items()
+            resource.get_external(metaprefix).get("prefix", prefix)
+            for prefix, resource in bioregistry.read_registry().items()
         }
-        rv[key] = {
+        rv[metaprefix] = {
             REMAPPED_KEY: bioregistry_remapped,
             REMAPPED_VALUE: prefixes,
         }
@@ -243,7 +253,7 @@ def get_getters():
         return GETTERS
 
 
-def get_keys() -> List[Tuple[str, str, str, Set[str]]]:
+def get_registry_infos() -> List[RegistryInfo]:
     """Get keys for plots."""
     getters = get_getters()
     try:
@@ -253,14 +263,13 @@ def get_keys() -> List[Tuple[str, str, str, Set[str]]]:
     else:
         palette = sns.color_palette("Paired", len(getters))
     return [
-        (metaprefix, label, color, set(func(force_download=False)))
+        RegistryInfo(metaprefix, label, color, set(func(force_download=False)))
         for (metaprefix, label, func), color in zip(getters, palette)
     ]
 
 
 @click.command()
-@click.option("--paper", is_flag=True)
-def compare(paper: bool):  # noqa:C901
+def compare():  # noqa:C901
     """Compare the registries."""
     paper = True
     random.seed(0)
@@ -276,8 +285,8 @@ def compare(paper: bool):  # noqa:C901
         )
         return sys.exit(1)
 
-    keys = get_keys()
-    overlaps = make_overlaps(keys)
+    registry_infos = get_registry_infos()
+    overlaps = make_overlaps(registry_infos)
 
     # This should make SVG output deterministic
     # See https://matplotlib.org/3.1.0/users/prev_whats_new/whats_new_2.0.0.html#added-svg-hashsalt-key-to-rcparams
@@ -290,28 +299,6 @@ def compare(paper: bool):  # noqa:C901
     # What kinds of licenses are resources using? #
     ###############################################
     licenses, conflicts, obo_has_license, ols_has_license = _get_license_and_conflicts()
-
-    # How many times does the license appear in OLS / OBO Foundry
-    # fig, ax = plt.subplots(figsize=SINGLE_FIG)
-    # venn2(
-    #     subsets=(obo_has_license, ols_has_license),
-    #     set_labels=("OBO", "OLS"),
-    #     set_colors=("red", "green"),
-    #     ax=ax,
-    # )
-    # if watermark:
-    #     ax.text(
-    #         0.5,
-    #         -0.1,
-    #         WATERMARK_TEXT,
-    #         transform=plt.gca().transAxes,
-    #         fontsize=10,
-    #         color="gray",
-    #         alpha=0.5,
-    #         ha="center",
-    #         va="bottom",
-    #     )
-    # _save(fig, name="license_coverage", eps=paper)
 
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
     licenses_counter: typing.Counter[str] = Counter(licenses)
@@ -350,7 +337,16 @@ def compare(paper: bool):  # noqa:C901
         ("Pattern", _get_has(get_pattern)),
         ("Provider", _get_has(get_uri_format)),
         ("License", _get_has(get_license)),
-        ("License Type", _get_has_present(get_license)),
+        (
+            "License Type",
+            Counter(
+                {
+                    license_key: count
+                    for license_key, count in licenses_mapped_counter.most_common()
+                    if license_key is not None and license_key != "None"
+                }
+            ),
+        ),
         ("Version", _get_has(get_version)),
         ("Contact Email", _get_has(get_contact_email)),
         ("Wikidata Database", HAS_WIKIDATA_DATABASE),
@@ -362,19 +358,12 @@ def compare(paper: bool):  # noqa:C901
     fig, axes = _plot_attribute_pies(measurements=measurements, watermark=watermark)
     _save(fig, "has_attribute", eps=paper)
 
-    # Slightly reorganized for the paper
-    # if paper:
-    #     fig, axes = _plot_attribute_pies(
-    #         measurements=measurements, watermark=watermark, keep_ontology=False
-    #     )
-    #     _save(fig, "paper_figure_3", png=True, eps=True)
-
     # -------------------------------------------------------------------- #
 
     ############################################################
     # How well does the Bioregistry cover the other resources? #
     ############################################################
-    fig, axes = _plot_coverage(keys=keys, overlaps=overlaps, watermark=watermark)
+    fig, axes = _plot_coverage(keys=registry_infos, overlaps=overlaps, watermark=watermark)
     _save(fig, name="bioregistry_coverage", eps=paper)
     plot_coverage_bar_abridged(overlaps=overlaps, paper=paper)
     plot_coverage_bar(overlaps=overlaps, paper=True)
@@ -382,14 +371,14 @@ def compare(paper: bool):  # noqa:C901
     ######################################################
     # What's the overlap between each pair of resources? #
     ######################################################
-    fig, axes = _plot_external_overlap(keys=keys, watermark=watermark)
+    fig, axes = _plot_external_overlap(keys=registry_infos, watermark=watermark)
     _save(fig, name="external_overlap", eps=paper)
 
     ##############################################
     # Histogram of how many xrefs each entry has #
     ##############################################
     xref_counts = [
-        sum(0 < len(entry.get_external(key)) for key, *_ in keys)
+        sum(0 < len(entry.get_external(key)) for key, *_ in registry_infos)
         for entry in read_registry().values()
     ]
     fig, ax = plt.subplots(figsize=SINGLE_FIG)
@@ -399,10 +388,10 @@ def compare(paper: bool):  # noqa:C901
         metaprefix for entry in read_registry().values() for metaprefix in entry.get_mappings()
     }
     n_mappable_metaprefixes = len(mappable_metaprefixes)
-    zero_pad_count = 0  # how many columns left from the end should it go
+    max_mapped = max(xrefs_counter)
+    zero_pad_count = n_mappable_metaprefixes - max_mapped
     for i in range(n_mappable_metaprefixes + 1):
         if i not in xrefs_counter:
-            zero_pad_count += 1
             xrefs_counter[i] = 0
 
     xrefs_df = pd.DataFrame(sorted(xrefs_counter.items()), columns=["frequency", "count"])
@@ -422,7 +411,9 @@ def compare(paper: bool):  # noqa:C901
     _labels[0] = f"{_labels[0]}\nNovel"
     for i in ax.containers:
         ax.bar_label(i, _labels)
-    ax.set_xlabel("Number of External Registries Capturing a Given Identifier Resource")
+    ax.set_xlabel(
+        f"Number of the {len(_labels) - 1} Mapped External Registries Capturing a Given Identifier Resource"
+    )
     ax.set_ylabel("Number of Identifier Resources")
     ax.set_yscale("log")
     ax.spines["top"].set_visible(False)
@@ -435,7 +426,7 @@ def compare(paper: bool):  # noqa:C901
         x1,
         h + 1,
         f"No identifier resources are\navailable in more than\n"
-        f"{n_mappable_metaprefixes - zero_pad_count} external registries",
+        f"{max_mapped} external registries",
         horizontalalignment="center",
         verticalalignment="bottom",
         fontdict=dict(fontsize=12),
@@ -486,8 +477,12 @@ def compare(paper: bool):  # noqa:C901
     ########################################
     # Regular expression complexity report #
     ########################################
-    g = sns.displot(x=get_regex_complexities(), log_scale=2, height=3, aspect=4 / 3)
-    g.set(xlabel="Regular Expression Complexity")
+    regex_complexities = get_regex_complexities()
+    g = sns.displot(x=regex_complexities, log_scale=2, height=3, aspect=4 / 3)
+    g.set(
+        xlabel="Regular Expression Complexity",
+        xlim=(min(regex_complexities), max(regex_complexities)),
+    )
     _save(g.figure, name="regex_report", eps=paper)
 
 
@@ -547,7 +542,7 @@ def get_regex_complexities() -> Collection[float]:
         if pattern is None:
             continue
         # Consider alternate complexity estimates
-        rows.append(float(len(pattern)))
+        rows.append(float(len(pattern) - 2))
     return sorted(rows)
 
 
@@ -622,7 +617,6 @@ def plot_coverage_bar_abridged(*, overlaps, paper: bool = False):
             verticalalignment="center",
         )
 
-    ax.get_legend().remove()
     plt.tight_layout()
     _save(fig, name="bioregistry_coverage_bar_short", eps=paper)
 
@@ -635,32 +629,37 @@ def plot_coverage_bar(*, overlaps, paper: bool = False):
 
     sns.set_style("white")
 
-    rows_1 = []
+    rows = []
     for metaprefix, data in overlaps.items():
-        br, external = data[REMAPPED_KEY], data[REMAPPED_VALUE]
-        rows_1.append(
+        # Get the set of remapped bioregistry prefixes
+        bioregistry_prefixes = data[REMAPPED_KEY]
+        # Get the set of prefixes from the registry with the given metaprefix
+        external_prefixes = data[REMAPPED_VALUE]
+        rows.append(
             (
                 bioregistry.get_registry_short_name(metaprefix),
-                len(external - br),
-                len(br.intersection(external)),
-                len(br - external),
+                # (blue) The number of external prefixes that were not mapped to bioregistry prefixes
+                len(external_prefixes - bioregistry_prefixes),
+                # (orange) The number of external prefixes that were mapped to bioregistry prefixes
+                len(bioregistry_prefixes.intersection(external_prefixes)),
+                # (green) The number of bioregistry prefixes that were not mapped to external prefixes
+                len(bioregistry_prefixes - external_prefixes),
             )
         )
-    rows_1 = sorted(rows_1, key=lambda row: sum(row[1:]), reverse=True)
+    rows = sorted(rows, key=lambda row: sum(row[1:]), reverse=True)
 
-    df1 = pd.DataFrame(
-        rows_1, columns=["metaprefix", "external_only", "intersection", "bioregistry_only"]
-    )
-    df1.set_index("metaprefix", inplace=True)
+    df = pd.DataFrame(rows, columns=["metaprefix", "External Only", "Mapped", "Bioregistry Only"])
+    df.set_index("metaprefix", inplace=True)
 
-    fig, ax = plt.subplots(1, 1, figsize=(10, 7))
-    df1.plot(
+    fig, ax = plt.subplots(1, 1, figsize=(10, 7.5))
+    df.plot(
         kind="barh",
         stacked=True,
         ax=ax,
         width=0.85,
         fontsize=14,
         grid=False,
+        legend=True,
     )
     ax.set_ylabel("")
     ax.set_xticks([])
@@ -674,9 +673,9 @@ def plot_coverage_bar(*, overlaps, paper: bool = False):
     )
 
     dd = defaultdict(list)
-    for p in ax.patches:
-        width, height = p.get_width(), p.get_height()
-        x, y = p.get_xy()
+    for patch in ax.patches:
+        width, height = patch.get_width(), patch.get_height()
+        x, y = patch.get_xy()
         dd[y, height].append((width, x))
         if width < 40:
             continue
@@ -705,7 +704,6 @@ def plot_coverage_bar(*, overlaps, paper: bool = False):
     for label in ax.get_yticklabels():
         label.set_fontweight("bold")
 
-    ax.get_legend().remove()
     plt.tight_layout()
     _save(fig, name="bioregistry_coverage_bar", eps=paper, png=True)
 

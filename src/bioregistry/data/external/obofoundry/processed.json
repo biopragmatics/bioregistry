@@ -754,7 +754,7 @@
     "deprecated": false,
     "description": "COB brings together key terms from a wide range of OBO projects to improve interoperability.",
     "download.owl": "http://purl.obolibrary.org/obo/cob.owl",
-    "homepage": "https://github.com/OBOFoundry/COB",
+    "homepage": "https://obofoundry.org/COB/",
     "license": "CC0 1.0",
     "license.url": "https://creativecommons.org/publicdomain/zero/1.0/",
     "name": "Core Ontology for Biology and Biomedicine",
@@ -1237,7 +1237,7 @@
       "rbo",
       "scdo"
     ],
-    "contact": "p.buttigieg@gmail.com",
+    "contact": "pier.buttigieg@awi.de",
     "contact.github": "pbuttigieg",
     "contact.label": "Pier Luigi Buttigieg",
     "contact.orcid": "0000-0002-4366-3088",
@@ -1252,22 +1252,23 @@
       "uberon"
     ],
     "deprecated": false,
-    "description": "Ontology of environmental features and habitats",
+    "description": "An ontology of environmental systems, components, and processes.",
     "download.json": "http://purl.obolibrary.org/obo/envo.json",
     "download.obo": "http://purl.obolibrary.org/obo/envo.obo",
     "download.owl": "http://purl.obolibrary.org/obo/envo.owl",
     "homepage": "http://environmentontology.org/",
-    "license": "CC BY 3.0",
-    "license.url": "http://creativecommons.org/licenses/by/3.0/",
+    "license": "CC0 1.0",
+    "license.url": "http://creativecommons.org/publicdomain/zero/1.0/",
     "name": "Environment Ontology",
     "preferredPrefix": "ENVO",
     "publications": [
       {
-        "id": "https://www.ncbi.nlm.nih.gov/pubmed/24330602",
+        "id": "https://doi.org/10.1186/2041-1480-4-43",
+        "preferred": true,
         "title": "The environment ontology: contextualising biological and biomedical entities"
       },
       {
-        "id": "https://www.ncbi.nlm.nih.gov/pubmed/27664130",
+        "id": "https://doi.org/10.1186/s13326-016-0097-6",
         "title": "The environment ontology in 2016: bridging domains with increased scope, semantic density, and interoperation"
       }
     ],
@@ -2772,7 +2773,8 @@
       "mco",
       "ons",
       "pcl",
-      "pco"
+      "pco",
+      "vbo"
     ],
     "contact": "frederic.bastian@unil.ch",
     "contact.github": "fbastian",
@@ -2985,14 +2987,6 @@
     "preferredPrefix": "OBIB",
     "repository": "https://github.com/biobanking/biobanking"
   },
-  "obo_rel": {
-    "contact": "cjmungall@lbl.gov",
-    "contact.label": "Chris Mungall",
-    "contact.orcid": "0000-0002-6601-2165",
-    "deprecated": true,
-    "homepage": "http://www.obofoundry.org/ro",
-    "name": "OBO relationship types (legacy)"
-  },
   "ogg": {
     "contact": "yongqunh@med.umich.edu",
     "contact.github": "yongqunh",
@@ -3059,13 +3053,19 @@
     "contact.label": "Bill Duncan",
     "contact.orcid": "0000-0001-9625-1899",
     "deprecated": false,
-    "description": "The Oral Health and Disease Ontology was created, initially, to represent the content of dental practice health records.",
+    "description": "The Oral Health and Disease Ontology is used for representing the diagnosis and treatment of dental maladies.",
     "download.owl": "http://purl.obolibrary.org/obo/ohd.owl",
     "homepage": "https://purl.obolibrary.org/obo/ohd/home",
     "license": "CC BY 4.0",
     "license.url": "http://creativecommons.org/licenses/by/4.0/",
     "name": "Oral Health and Disease Ontology",
     "preferredPrefix": "OHD",
+    "publications": [
+      {
+        "id": "https://www.ncbi.nlm.nih.gov/pubmed/32819435",
+        "title": "Structuring, reuse and analysis of electronic dental data using the Oral Health and Disease Ontology"
+      }
+    ],
     "repository": "https://github.com/oral-health-and-disease-ontologies/ohd-ontology"
   },
   "ohmi": {
@@ -4591,6 +4591,26 @@
     "homepage": "http://variationontology.org",
     "name": "Variation Ontology",
     "preferredPrefix": "VariO"
+  },
+  "vbo": {
+    "contact": "Sabrina@tislab.org",
+    "contact.github": "sabrinatoro",
+    "contact.label": "Sabrina Toro",
+    "contact.orcid": "0000-0002-4142-7153",
+    "depends_on": [
+      "ncbitaxon"
+    ],
+    "deprecated": false,
+    "description": "Vertebrate Breed Ontology is an ontology created to serve as a single computable resource for vertebrate breed names.",
+    "download.json": "http://purl.obolibrary.org/obo/vbo.json",
+    "download.obo": "http://purl.obolibrary.org/obo/vbo.obo",
+    "download.owl": "http://purl.obolibrary.org/obo/vbo.owl",
+    "homepage": "https://github.com/monarch-initiative/vertebrate-breed-ontology",
+    "license": "CC BY 4.0",
+    "license.url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Vertebrate Breed Ontology",
+    "preferredPrefix": "VBO",
+    "repository": "https://github.com/monarch-initiative/vertebrate-breed-ontology"
   },
   "vhog": {
     "deprecated": true,

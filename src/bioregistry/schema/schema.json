@@ -166,7 +166,7 @@
         },
         "doi": {
           "title": "DOI",
-          "description": "The DOI for the article",
+          "description": "The DOI for the article. DOIs are case insensitive, so these are required by the Bioregistry to be standardized to their lowercase form.",
           "type": "string"
         },
         "pmc": {
@@ -178,6 +178,11 @@
           "title": "Title",
           "description": "The title of the article",
           "type": "string"
+        },
+        "year": {
+          "title": "Year",
+          "description": "The year the article was published",
+          "type": "integer"
         }
       }
     },
@@ -524,6 +529,10 @@
         },
         "re3data": {
           "title": "Re3Data",
+          "type": "object"
+        },
+        "hl7": {
+          "title": "Hl7",
           "type": "object"
         }
       },

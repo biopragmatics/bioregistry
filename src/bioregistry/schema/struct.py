@@ -2,12 +2,12 @@
 
 """Pydantic models for the Bioregistry."""
 
+import itertools as itt
 import json
 import logging
 import pathlib
 import re
 import textwrap
-from collections import defaultdict
 from functools import lru_cache
 from operator import attrgetter
 from typing import (
@@ -15,6 +15,7 @@ from typing import (
     Callable,
     ClassVar,
     Dict,
+    Iterable,
     List,
     Mapping,
     Optional,
@@ -29,10 +30,9 @@ import pydantic.schema
 from pydantic import BaseModel, Field
 
 from bioregistry import constants as brc
-from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, URI_FORMAT_KEY
+from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, EMAIL_RE, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
-from bioregistry.schema.utils import EMAIL_RE
-from bioregistry.utils import curie_to_str, removeprefix, removesuffix
+from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
 
 try:
     from typing import Literal  # type:ignore
@@ -60,6 +60,25 @@ BULK_UPLOAD_FORM = DOCS.joinpath("bulk_prefix_request_template.tsv")
 IDOT_SKIP = "identifiers.org"
 
 
+def _uri_sort(uri):
+    try:
+        protocol, rest = uri.split(":", 1)
+    except ValueError:
+        return uri, ""
+    return rest, protocol
+
+
+def _yield_protocol_variations(u):
+    if u.startswith("http://"):
+        yield "https://" + u[7:]
+        yield u
+    elif u.startswith("https://"):
+        yield u
+        yield "http://" + u[8:]
+    else:
+        yield u
+
+
 def _dedent(s: str) -> str:
     return textwrap.dedent(s).replace("\n", " ").replace("  ", " ").strip()
 
@@ -72,6 +91,16 @@ various digital assets (e.g., publications, reviews) across the
 semantic web. An account can be made in seconds at https://orcid.org.
 """
 )
+
+URI_FORMAT_PATHS = [
+    ("miriam", URI_FORMAT_KEY),
+    ("n2t", URI_FORMAT_KEY),
+    ("go", URI_FORMAT_KEY),
+    ("biocontext", URI_FORMAT_KEY),
+    ("wikidata", URI_FORMAT_KEY),
+    ("uniprot", URI_FORMAT_KEY),
+    ("cellosaurus", URI_FORMAT_KEY),
+]
 
 
 class Attributable(BaseModel):
@@ -160,11 +189,16 @@ class Publication(BaseModel):
     pubmed: Optional[str] = Field(
         title="PubMed", description="The PubMed identifier for the article"
     )
-    doi: Optional[str] = Field(title="DOI", description="The DOI for the article")
+    doi: Optional[str] = Field(
+        title="DOI",
+        description="The DOI for the article. DOIs are case insensitive, so these are "
+        "required by the Bioregistry to be standardized to their lowercase form.",
+    )
     pmc: Optional[str] = Field(
         title="PMC", description="The PubMed Central identifier for the article"
     )
     title: Optional[str] = Field(description="The title of the article")
+    year: Optional[int] = Field(description="The year the article was published")
 
     def key(self) -> Tuple[str, ...]:
         """Create a key based on identifiers in this data structure."""
@@ -474,6 +508,8 @@ class Resource(BaseModel):
     edam: Optional[Mapping[str, Any]]
     #: External data from re3data
     re3data: Optional[Mapping[str, Any]]
+    #: External data from hl7
+    hl7: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
@@ -600,15 +636,7 @@ class Resource(BaseModel):
         """
         if self.uri_format is not None:
             return self.uri_format
-        for metaprefix, key in [
-            ("miriam", URI_FORMAT_KEY),
-            ("n2t", URI_FORMAT_KEY),
-            ("go", URI_FORMAT_KEY),
-            ("biocontext", URI_FORMAT_KEY),
-            ("wikidata", URI_FORMAT_KEY),
-            ("uniprot", URI_FORMAT_KEY),
-            ("cellosaurus", URI_FORMAT_KEY),
-        ]:
+        for metaprefix, key in URI_FORMAT_PATHS:
             rv = self.get_external(metaprefix).get(key)
             if rv is not None and _allowed_uri_format(rv):
                 return rv
@@ -665,7 +693,22 @@ class Resource(BaseModel):
         """Get the name for the given prefix, it it's available."""
         return self.get_prefix_key(
             "name",
-            ("obofoundry", "ols", "wikidata", "go", "ncbi", "bioportal", "miriam", "cellosaurus"),
+            (
+                "obofoundry",
+                "ols",
+                "wikidata",
+                "go",
+                "ncbi",
+                "bioportal",
+                "agroportal",
+                "ecoportal",
+                "miriam",
+                "n2t",
+                "cellosaurus",
+                "cropoct",
+                "cheminf",
+                "edam",
+            ),
         )
 
     def get_description(self, use_markdown: bool = False) -> Optional[str]:
@@ -676,7 +719,22 @@ class Resource(BaseModel):
 
             return markupsafe.Markup(markdown(self.description))
         rv = self.get_prefix_key(
-            "description", ("miriam", "ols", "obofoundry", "wikidata", "fairsharing")
+            "description",
+            (
+                "miriam",
+                "n2t",
+                "ols",
+                "obofoundry",
+                "wikidata",
+                "fairsharing",
+                "aberowl",
+                "bioportal",
+                "agroportal",
+                "ecoportal",
+                "cropoct",
+                "cheminf",
+                "edam",
+            ),
         )
         if rv is not None:
             return rv
@@ -704,6 +762,7 @@ class Resource(BaseModel):
         pattern = self.get_pattern()
         if pattern is None:
             return None
+        # FIXME cache this
         return re.compile(pattern)
 
     def get_pattern_with_banana(self, strict: bool = True) -> Optional[str]:
@@ -790,7 +849,20 @@ class Resource(BaseModel):
         """Return the homepage, if available."""
         return self.get_prefix_key(
             "homepage",
-            ("obofoundry", "ols", "miriam", "n2t", "wikidata", "go", "ncbi", "cellosaurus"),
+            (
+                "obofoundry",
+                "ols",
+                "miriam",
+                "n2t",
+                "wikidata",
+                "go",
+                "ncbi",
+                "cellosaurus",
+                "cropoct",
+                "bioportal",
+                "agroportal",
+                "ecoportal",
+            ),
         )
 
     def get_repository(self) -> Optional[str]:
@@ -821,14 +893,21 @@ class Resource(BaseModel):
         'cthoyt@gmail.com'
         >>> get_resource("chebi").get_contact_email()
         'amalik@ebi.ac.uk'
+        >>> get_resource("vandf").get_contact_email()
+        'michael.lincoln@med.va.gov'
         """
         if self.contact and self.contact.email:
             return self.contact.email
         # FIXME if contact is not none but email is, this will have a problem after
         rv = self.get_prefix_key("contact", ("obofoundry", "ols"))
-        if rv and not EMAIL_RE.match(rv):
+        if rv:
+            if EMAIL_RE.match(rv):
+                return rv
             logger.warning("[%s] invalid email address listed: %s", self.name, rv)
             return None
+        rv = (self.bioportal or {}).get("contact", {}).get("email")
+        if rv:
+            return rv
         return rv
 
     def get_contact_name(self) -> Optional[str]:
@@ -841,11 +920,16 @@ class Resource(BaseModel):
         'Charles Tapley Hoyt'
         >>> get_resource("chebi").get_contact_name()
         'Adnan Malik'
+        >>> get_resource("vandf").get_contact_name()
+        'Michael Lincoln'
         """
         if self.contact and self.contact.name:
             return self.contact.name
         if self.obofoundry and "contact.label" in self.obofoundry:
             return self.obofoundry["contact.label"]
+        rv = (self.bioportal or {}).get("contact", {}).get("name")
+        if rv:
+            return rv
         return None
 
     def get_contact_github(self) -> Optional[str]:
@@ -890,10 +974,10 @@ class Resource(BaseModel):
         miriam_example = self.get_external("miriam").get("sampleId")
         if miriam_example is not None:
             return miriam_example
-        # TODO go through more external data looking for this
-        example = self.get_external("ncbi").get("example")
-        if example is not None:
-            return example
+        for metaprefix in ["ncbi", "n2t"]:
+            example = self.get_external(metaprefix).get("example")
+            if example is not None:
+                return example
         return None
 
     def get_examples(self) -> List[str]:
@@ -945,13 +1029,19 @@ class Resource(BaseModel):
                 url, title = publication["id"], publication["title"]
                 if url.startswith("https://www.ncbi.nlm.nih.gov/pubmed/"):
                     pubmed = url[len("https://www.ncbi.nlm.nih.gov/pubmed/") :]
-                    publications.append(Publication(pubmed=pubmed, title=title, doi=None, pmc=None))
+                    publications.append(
+                        Publication(pubmed=pubmed, title=title, doi=None, pmc=None, year=None)
+                    )
                 elif url.startswith("https://doi.org/"):
                     doi = url[len("https://doi.org/") :]
-                    publications.append(Publication(doi=doi, title=title, pubmed=None, pmc=None))
+                    publications.append(
+                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None, year=None)
+                    )
                 elif url.startswith("https://www.medrxiv.org/content/"):
                     doi = url[len("https://www.medrxiv.org/content/") :]
-                    publications.append(Publication(doi=doi, title=title, pubmed=None, pmc=None))
+                    publications.append(
+                        Publication(doi=doi.lower(), title=title, pubmed=None, pmc=None, year=None)
+                    )
                 elif url.startswith("https://zenodo.org/record/"):
                     continue
                 elif "ceur-ws.org" in url:
@@ -964,10 +1054,20 @@ class Resource(BaseModel):
                 doi = publication.get("doi")
                 title = publication.get("title")
                 if pubmed or doi:
-                    publications.append(Publication(pubmed=pubmed, doi=doi, title=title, pmc=None))
+                    publications.append(
+                        Publication(
+                            pubmed=pubmed and str(pubmed),
+                            doi=doi and doi.lower(),
+                            title=title,
+                            pmc=None,
+                            year=None,
+                        )
+                    )
         if self.prefixcommons:
             for pubmed in self.prefixcommons.get("pubmed_ids", []):
-                publications.append(Publication(pubmed=pubmed, doi=None, pmc=None, title=None))
+                publications.append(
+                    Publication(pubmed=pubmed, doi=None, pmc=None, title=None, year=None)
+                )
         return deduplicate_publications(publications)
 
     def get_twitter(self) -> Optional[str]:
@@ -1068,9 +1168,13 @@ class Resource(BaseModel):
         """Get the MIRIAM/Identifiers.org prefix, if available."""
         return self.get_identifiers_org_prefix()
 
-    def get_miriam_uri_prefix(self) -> Optional[str]:
+    def get_miriam_uri_prefix(
+        self, legacy_delimiter: bool = False, legacy_protocol: bool = False
+    ) -> Optional[str]:
         """Get the Identifiers.org URI prefix for this entry, if possible.
 
+        :param legacy_protocol: If true, uses HTTP
+        :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
         :returns: The Identifiers.org/MIRIAM URI prefix, if available.
 
         >>> from bioregistry import get_resource
@@ -1087,11 +1191,17 @@ class Resource(BaseModel):
             # not exact solution, some less common ones don't use capitalization
             # align with the banana solution
             miriam_prefix = miriam_prefix.upper()
-        return f"https://identifiers.org/{miriam_prefix}:"
+        protocol = "http" if legacy_protocol else "https"
+        delimiter = "/" if legacy_delimiter else ":"
+        return f"{protocol}://identifiers.org/{miriam_prefix}{delimiter}"
 
-    def get_miriam_uri_format(self) -> Optional[str]:
+    def get_miriam_uri_format(
+        self, legacy_delimiter: bool = False, legacy_protocol: bool = False
+    ) -> Optional[str]:
         """Get the Identifiers.org URI format string for this entry, if possible.
 
+        :param legacy_protocol: If true, uses HTTP
+        :param legacy_delimiter: If true, uses a slash delimiter for CURIEs instead of colon
         :returns: The Identifiers.org/MIRIAM URL format string, if available.
 
         >>> from bioregistry import get_resource
@@ -1101,21 +1211,24 @@ class Resource(BaseModel):
         'https://identifiers.org/GO:$1'
         >>> assert get_resource('sty').get_miriam_uri_format() is None
         """
-        miriam_url_prefix = self.get_miriam_uri_prefix()
+        miriam_url_prefix = self.get_miriam_uri_prefix(
+            legacy_delimiter=legacy_delimiter, legacy_protocol=legacy_protocol
+        )
         if miriam_url_prefix is None:
             return None
         return f"{miriam_url_prefix}$1"
 
-    def get_nt2_uri_prefix(self) -> Optional[str]:
+    def get_nt2_uri_prefix(self, legacy_protocol: bool = False) -> Optional[str]:
         """Get the Name-to-Thing URI prefix for this entry, if possible."""
         n2t_prefix = self.get_mapped_prefix("n2t")
         if n2t_prefix is None:
             return None
-        return f"https://n2t.net/{n2t_prefix}:"
+        protocol = "http" if legacy_protocol else "https"
+        return f"{protocol}://n2t.net/{n2t_prefix}:"
 
-    def get_n2t_uri_format(self):
+    def get_n2t_uri_format(self, legacy_protocol: bool = False):
         """Get the Name-to-Thing URI format string, if available."""
-        n2t_uri_prefix = self.get_nt2_uri_prefix()
+        n2t_uri_prefix = self.get_nt2_uri_prefix(legacy_protocol=legacy_protocol)
         if n2t_uri_prefix is None:
             return None
         return f"{n2t_uri_prefix}$1"
@@ -1260,6 +1373,37 @@ class Resource(BaseModel):
             return None
         return fmt[: -len("$1")]
 
+    def get_uri_formats(self) -> Set[str]:
+        """Get all URI prefixes."""
+        uri_formats = itt.chain.from_iterable(
+            _yield_protocol_variations(uri_format) for uri_format in self._iter_uri_formats()
+        )
+        return set(sorted(uri_formats, key=_uri_sort))
+
+    def _iter_uri_formats(self) -> Iterable[str]:
+        if self.uri_format:
+            yield self.uri_format
+        yield f"https://bioregistry.io/{self.prefix}:$1"
+        preferred_prefix = self.get_preferred_prefix()
+        if preferred_prefix:
+            yield f"https://bioregistry.io/{preferred_prefix}:$1"
+        for synonym in self.get_synonyms():
+            yield f"https://bioregistry.io/{synonym}:$1"
+        # TODO consider adding bananas
+        for provider in self.get_extra_providers():
+            yield provider.uri_format
+        for formatter_getter in self.URI_FORMATTERS.values():
+            uri_format = formatter_getter(self)
+            if uri_format:
+                yield uri_format
+        for metaprefix, key in URI_FORMAT_PATHS:
+            uri_format = self.get_external(metaprefix).get(key)
+            if uri_format:
+                yield uri_format
+        miriam_legacy_uri_prefix = self.get_miriam_uri_format(legacy_delimiter=True)
+        if miriam_legacy_uri_prefix:
+            yield miriam_legacy_uri_prefix
+
     def get_extra_providers(self) -> List[Provider]:
         """Get a list of all extra providers."""
         rv = []
@@ -1287,13 +1431,10 @@ class Resource(BaseModel):
         _p = self.get_preferred_prefix() or self.prefix if use_preferred else self.prefix
         return curie_to_str(_p, identifier)
 
-    def standardize_identifier(self, identifier: str, prefix: Optional[str] = None) -> str:
+    def standardize_identifier(self, identifier: str) -> str:
         """Normalize the identifier to not have a redundant prefix or banana.
 
         :param identifier: The identifier in the CURIE
-        :param prefix: If an optional prefix is passed, checks that this isn't also used as a casefolded banana
-            like in ``go:go:1234567``, which shouldn't technically be right because the banana for gene ontology
-            is ``GO``.
         :return: A normalized identifier, possibly with banana/redundant prefix removed
 
         Examples with explicitly annotated bananas:
@@ -1328,11 +1469,12 @@ class Resource(BaseModel):
         """
         banana = self.get_banana()
         peel = self.get_banana_peel()
-        prebanana = f"{banana}{peel}"
-        if banana and identifier.startswith(prebanana):
+        prebanana = f"{banana}{peel}".casefold()
+        icf = identifier.casefold()
+        if banana and icf.startswith(prebanana):
             return identifier[len(prebanana) :]
-        elif prefix is not None and identifier.casefold().startswith(f"{prefix.casefold()}{peel}"):
-            return identifier[len(prefix) + 1 :]
+        elif icf.startswith(f"{self.prefix.casefold()}{peel}"):
+            return identifier[len(self.prefix) + len(peel) :]
         return identifier
 
     def get_miriam_curie(self, identifier: str) -> Optional[str]:
@@ -1410,14 +1552,14 @@ class Resource(BaseModel):
                 return f"{processed_banana}{identifier}"
         return identifier
 
-    def is_valid_identifier(self, identifier: str) -> Optional[bool]:
+    def is_valid_identifier(self, identifier: str) -> bool:
         """Check that a local unique identifier is canonical, meaning no bananas."""
         pattern = self.get_pattern_re()
         if pattern is None:
-            return None
+            return True
         return pattern.fullmatch(identifier) is not None
 
-    def is_standardizable_identifier(self, identifier: str) -> Optional[bool]:
+    def is_standardizable_identifier(self, identifier: str) -> bool:
         """Check that a local unique identifier can be normalized and also matches a prefix's pattern."""
         return self.is_valid_identifier(self.standardize_identifier(identifier))
 
@@ -1509,7 +1651,7 @@ class Resource(BaseModel):
         """Get the license for the resource."""
         if self.license:
             return self.license
-        for metaprefix in ("obofoundry", "ols"):
+        for metaprefix in ("obofoundry", "ols", "bioportal"):
             license_value = standardize_license(self.get_external(metaprefix).get("license"))
             if license_value is not None:
                 return license_value
@@ -2112,48 +2254,14 @@ def _get(resource, key):
     return x or ""
 
 
+DEDP_PUB_KEYS = ("pubmed", "doi", "pmc")
+
+
 def deduplicate_publications(publications: List[Publication]) -> List[Publication]:
     """Deduplicate publications."""
-    d = defaultdict(list)
-
-    # Index mappings
-    doi_to_pmid = {}
-    pmid_to_doi = {}
-    doi_to_pmc = {}
-    pmc_to_doi = {}
-    pmid_to_pmc = {}
-    pmc_to_pmid = {}
-    for p in publications:
-        if p.doi and p.pubmed:
-            doi_to_pmid[p.doi] = p.pubmed
-            pmid_to_doi[p.pubmed] = p.doi
-        if p.doi and p.pmc:
-            doi_to_pmc[p.doi] = p.pmc
-            pmc_to_doi[p.pmc] = p.doi
-        if p.pubmed and p.pmc:
-            pmid_to_pmc[p.pubmed] = p.pmc
-            pmc_to_pmid[p.pmc] = p.pubmed
-    for p in publications:
-        # apply mappings
-        if p.doi and not p.pubmed:
-            p.pubmed = doi_to_pmid.get(p.doi)
-        if p.pubmed and not p.doi:
-            p.doi = pmid_to_doi.get(p.pubmed)
-        if p.doi and not p.pmc:
-            p.pmc = doi_to_pmc.get(p.doi)
-        if p.pubmed and not p.pmc:
-            p.pmc = pmid_to_pmc.get(p.pubmed)
-        # todo not exhaustive, doesn't account for multi-hop mappings
-        d[p.key()].append(p)
-
-    for vs in d.values():
-        try:
-            title = next(v.title for v in vs if v.title)
-        except StopIteration:
-            continue
-        else:
-            vs[0].title = title
-    return [v[0] for _, v in sorted(d.items())]
+    records = [publication.dict(exclude_none=True) for publication in publications]
+    records_deduplicated = deduplicate(records, keys=DEDP_PUB_KEYS)
+    return [Publication(**record) for record in records_deduplicated]
 
 
 def main():

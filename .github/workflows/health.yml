@@ -4,20 +4,6 @@ on:
   schedule:
     - cron: "0 0 * * 0"
 jobs:
-  homepage:
-    name: Homepage Check
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'schedule' || github.repository == 'biopragmatics/bioregistry' }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
-      - name: Install the Bioregistry
-        run: pip install .[health]
-      - name: Run the homepage checks
-        run: python -m bioregistry.health homepages
   providers:
     name: Provider Check
     runs-on: ubuntu-latest
@@ -27,8 +13,19 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: "3.10"
       - name: Install the Bioregistry
-        run: pip install .[health]
+        run: pip install -e .[health]
       - name: Run the provider checks
         run: python -m bioregistry.health providers
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit --all -m "🫀Health Report"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true
