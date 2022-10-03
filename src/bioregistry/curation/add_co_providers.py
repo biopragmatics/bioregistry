@@ -21,7 +21,6 @@ def main():
             resource.preferred_prefix = prefix.upper()
         if not resource.get_license():
             resource.license = "CC BY 4.0"
-        continue
         if not resource.example:
             click.echo(f"{prefix} missing example")
             continue
@@ -32,7 +31,7 @@ def main():
             click.echo(res.text)
             click.echo("")
             continue
-        resource.uri_format = f"https://www.cropontology.org/rdf/{prefix.upper()}:$1"
+        resource.uri_format = f"https://cropontology.org/rdf/{prefix.upper()}:$1"
     bioregistry.write_registry(r)
 
 
