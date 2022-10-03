@@ -4,6 +4,7 @@
 
 import json
 import logging
+import re
 import unittest
 from collections import defaultdict
 from textwrap import dedent
@@ -60,6 +61,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_prefixes(self):
         """Check prefixes aren't malformed."""
+        pattern = re.compile(r"^[a-z0-9_]+(\.[a-z0-9_]+)?$")
         for prefix, resource in self.registry.items():
             with self.subTest(prefix=prefix):
                 self.assertEqual(prefix, resource.prefix)
@@ -67,6 +69,7 @@ class TestRegistry(unittest.TestCase):
                 self.assertFalse(prefix.startswith("_"))
                 self.assertFalse(prefix.endswith("_"))
                 self.assertNotIn(":", prefix)
+                self.assertRegexpMatches(prefix, pattern)
 
     def test_valid_integration_annotations(self):
         """Test that the integration keys are valid."""
