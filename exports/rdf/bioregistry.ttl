@@ -12470,7 +12470,9 @@ orcid:0000-0001-9439-5346 rdfs:label "Benjamin M. Gyori" ;
         bioregistry:nihreporter.project,
         bioregistry:pdc.study,
         bioregistry:phosphosite.sitegroup,
+        bioregistry:rnaloops,
         bioregistry:signor.relation,
+        bioregistry:uniprot.proteome,
         bioregistry:zenodo.record .
 
 orcid:0000-0001-9472-2589 rdfs:label "Karel Berka" .
@@ -12533,6 +12535,8 @@ orcid:0000-0002-5111-7263 rdfs:label "Paul Schofield" .
 orcid:0000-0002-5159-414X rdfs:label "Edison Ong" .
 
 orcid:0000-0002-5316-1399 rdfs:label "Sebastian Koehler" .
+
+orcid:0000-0002-5320-2023 rdfs:label "Maciej Antczak" .
 
 orcid:0000-0002-5714-991X rdfs:label "Chris Stoeckert" .
 
@@ -23598,6 +23602,18 @@ bioregistry:rfc a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:rnaloops a bioregistry.schema:0000001 ;
+    rdfs:label "RNAloops" ;
+    dc:description "Rnaloops stores the information about n-way junctions (where n≥3) found in experimentally determined rna 3d structures deposited in the protein data bank."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    foaf:homepage "https://rnaloops.cs.put.poznan.pl"^^xsd:string ;
+    bioregistry.schema:0000005 "91792"^^xsd:string ;
+    bioregistry.schema:0000006 "https://rnaloops.cs.put.poznan.pl/search/details/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^\\d+$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-5320-2023 ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:rnamod a bioregistry.schema:0000001 ;
     rdfs:label "The RNA Modification Database" ;
     dc:description "A comprehensive listing of post-transcriptionally modified nucleosides from RNA -"^^xsd:string ;
@@ -26239,8 +26255,6 @@ prefixcommons:psi.mi dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 prefixcommons:psi.mod dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:pt dcterms:isPartOf bioregistry.metaresource:prefixcommons .
-
-prefixcommons:ptmswitchboard dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:pto dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -29030,6 +29044,8 @@ uniprot.resource:PhylomeDB dcterms:isPartOf bioregistry.metaresource:uniprot .
 
 uniprot.resource:PomBase dcterms:isPartOf bioregistry.metaresource:uniprot .
 
+uniprot.resource:Proteomes dcterms:isPartOf bioregistry.metaresource:uniprot .
+
 uniprot.resource:RCSB-PDB dcterms:isPartOf bioregistry.metaresource:uniprot .
 
 uniprot.resource:REBASE dcterms:isPartOf bioregistry.metaresource:uniprot .
@@ -31414,13 +31430,25 @@ bioregistry:uniprot.location a bioregistry.schema:0000001 ;
     bioregistry.schema:0000008 "^SL-\\d+$"^^xsd:string ;
     bioregistry.schema:0000012 false .
 
+bioregistry:uniprot.proteome a bioregistry.schema:0000001 ;
+    rdfs:label "UniProt Proteomes" ;
+    dc:description "UniProt provides proteome sets of proteins whose genomes have been completely sequenced."^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry,
+        bioregistry:uniprot ;
+    skos:exactMatch uniprot.resource:Proteomes ;
+    foaf:homepage "https://www.uniprot.org/proteomes"^^xsd:string ;
+    bioregistry.schema:0000005 "UP000005640"^^xsd:string ;
+    bioregistry.schema:0000006 "https://www.uniprot.org/proteomes/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^UP\\d{9}$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000021 orcid:0000-0003-4423-4370 .
+
 bioregistry:uniprot.ptm a bioregistry.schema:0000001 ;
     rdfs:label "UniProt Post-Translational Modification" ;
     dc:description "The post-translational modifications used in the UniProt knowledgebase (Swiss-Prot and TrEMBL). The definition of the post-translational modifications usage as well as other information is provided in the following format"^^xsd:string ;
     dcterms:isPartOf bioregistry.metaresource:bioregistry,
         bioregistry:uniprot ;
-    skos:exactMatch prefixcommons:ptmswitchboard ;
-    foaf:homepage "https://www.uniprot.org/docs/ptmlist"^^xsd:string ;
+    foaf:homepage "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/docs/ptmlist"^^xsd:string ;
     bioregistry.schema:0000005 "PTM-0450"^^xsd:string ;
     bioregistry.schema:0000006 "https://biopragmatics.github.io/providers/uniprot.ptm/$1"^^xsd:string ;
     bioregistry.schema:0000008 "^PTM-\\d{4}$"^^xsd:string ;
@@ -33474,6 +33502,7 @@ bioregistry:uniprot a bioregistry.schema:0000001 ;
         bioregistry:uniprot.isoform,
         bioregistry:uniprot.keyword,
         bioregistry:uniprot.location,
+        bioregistry:uniprot.proteome,
         bioregistry:uniprot.ptm,
         bioregistry:uniprot.resource,
         bioregistry:uniprot.tissue,
@@ -34428,6 +34457,7 @@ bioregistry.metaresource:uniprot a bioregistry.schema:0000002 ;
         uniprot.resource:Pfam,
         uniprot.resource:PhylomeDB,
         uniprot.resource:PomBase,
+        uniprot.resource:Proteomes,
         uniprot.resource:RCSB-PDB,
         uniprot.resource:REBASE,
         uniprot.resource:RGD,
@@ -36788,7 +36818,6 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:psi.mi,
         prefixcommons:psi.mod,
         prefixcommons:pt,
-        prefixcommons:ptmswitchboard,
         prefixcommons:pto,
         prefixcommons:pubchem.bioassay,
         prefixcommons:pubchem.compound,
@@ -41021,6 +41050,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:ricenetdb.reaction,
         bioregistry:rism,
         bioregistry:rnacentral,
+        bioregistry:rnaloops,
         bioregistry:rnamod,
         bioregistry:rnamods,
         bioregistry:rnao,
@@ -41192,6 +41222,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:uniprot.journal,
         bioregistry:uniprot.keyword,
         bioregistry:uniprot.location,
+        bioregistry:uniprot.proteome,
         bioregistry:uniprot.ptm,
         bioregistry:uniprot.resource,
         bioregistry:uniprot.tissue,
