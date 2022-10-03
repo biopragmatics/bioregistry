@@ -30,9 +30,8 @@ import pydantic.schema
 from pydantic import BaseModel, Field
 
 from bioregistry import constants as brc
-from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, URI_FORMAT_KEY
+from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, EMAIL_RE, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
-from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
 
 try:
@@ -509,6 +508,8 @@ class Resource(BaseModel):
     edam: Optional[Mapping[str, Any]]
     #: External data from re3data
     re3data: Optional[Mapping[str, Any]]
+    #: External data from hl7
+    hl7: Optional[Mapping[str, Any]]
 
     def get_external(self, metaprefix) -> Mapping[str, Any]:
         """Get an external registry."""
@@ -706,6 +707,7 @@ class Resource(BaseModel):
                 "cellosaurus",
                 "cropoct",
                 "cheminf",
+                "edam",
             ),
         )
 
@@ -731,6 +733,7 @@ class Resource(BaseModel):
                 "ecoportal",
                 "cropoct",
                 "cheminf",
+                "edam",
             ),
         )
         if rv is not None:
@@ -890,14 +893,21 @@ class Resource(BaseModel):
         'cthoyt@gmail.com'
         >>> get_resource("chebi").get_contact_email()
         'amalik@ebi.ac.uk'
+        >>> get_resource("vandf").get_contact_email()
+        'michael.lincoln@med.va.gov'
         """
         if self.contact and self.contact.email:
             return self.contact.email
         # FIXME if contact is not none but email is, this will have a problem after
         rv = self.get_prefix_key("contact", ("obofoundry", "ols"))
-        if rv and not EMAIL_RE.match(rv):
+        if rv:
+            if EMAIL_RE.match(rv):
+                return rv
             logger.warning("[%s] invalid email address listed: %s", self.name, rv)
             return None
+        rv = (self.bioportal or {}).get("contact", {}).get("email")
+        if rv:
+            return rv
         return rv
 
     def get_contact_name(self) -> Optional[str]:
@@ -910,11 +920,16 @@ class Resource(BaseModel):
         'Charles Tapley Hoyt'
         >>> get_resource("chebi").get_contact_name()
         'Adnan Malik'
+        >>> get_resource("vandf").get_contact_name()
+        'Michael Lincoln'
         """
         if self.contact and self.contact.name:
             return self.contact.name
         if self.obofoundry and "contact.label" in self.obofoundry:
             return self.obofoundry["contact.label"]
+        rv = (self.bioportal or {}).get("contact", {}).get("name")
+        if rv:
+            return rv
         return None
 
     def get_contact_github(self) -> Optional[str]:

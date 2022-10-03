@@ -128,3 +128,8 @@ resources. They typically have a URL format string into which a compact
 identifier can be placed like OntoBee, but many require more complicated
 programmatic logic to construct. Some well-known lookup services are the OLS,
 AberOWL, OntoBee, and BioPortal.
+
+## Bioregistra
+
+Noun: a developer, contributor, user, or supporter of the Bioregistry who loves cute
+names for things. Plural: _Bioregistras_
