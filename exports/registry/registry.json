@@ -29916,6 +29916,34 @@
     ],
     "uri_format": "https://rnacentral.org/rna/$1"
   },
+  "rnaloops": {
+    "contact": {
+      "email": "Maciej.Antczak@cs.put.poznan.pl",
+      "github": "mantczak",
+      "name": "Maciej Antczak",
+      "orcid": "0000-0002-5320-2023"
+    },
+    "contributor": {
+      "email": null,
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "Rnaloops stores the information about n-way junctions (where n≥3) found in experimentally determined rna 3d structures deposited in the protein data bank.",
+    "example": "91792",
+    "github_request_issue": 601,
+    "homepage": "https://rnaloops.cs.put.poznan.pl",
+    "name": "RNAloops",
+    "pattern": "^\\d+$",
+    "preferred_prefix": "rnaloops",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://rnaloops.cs.put.poznan.pl/search/details/$1"
+  },
   "rnamod": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -34139,6 +34167,34 @@
     ],
     "uri_format": "https://www.uniprot.org/locations/$1"
   },
+  "uniprot.proteome": {
+    "contributor": {
+      "email": "benjamin_gyori@hms.harvard.edu",
+      "github": "bgyori",
+      "name": "Benjamin M. Gyori",
+      "orcid": "0000-0001-9439-5346"
+    },
+    "description": "UniProt provides proteome sets of proteins whose genomes have been completely sequenced.",
+    "example": "UP000005640",
+    "homepage": "https://www.uniprot.org/proteomes",
+    "mappings": {
+      "uniprot": "Proteomes"
+    },
+    "name": "UniProt Proteomes",
+    "part_of": "uniprot",
+    "pattern": "^UP\\d{9}$",
+    "preferred_prefix": "uniprot.proteome",
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/pull/604"
+    ],
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://www.uniprot.org/proteomes/$1"
+  },
   "uniprot.ptm": {
     "contributor": {
       "email": "cthoyt@gmail.com",
@@ -34146,12 +34202,17 @@
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
     },
+    "contributor_extras": [
+      {
+        "email": "benjamin_gyori@hms.harvard.edu",
+        "github": "bgyori",
+        "name": "Benjamin M. Gyori",
+        "orcid": "0000-0001-9439-5346"
+      }
+    ],
     "description": "The post-translational modifications used in the UniProt knowledgebase (Swiss-Prot and TrEMBL). The definition of the post-translational modifications usage as well as other information is provided in the following format",
     "example": "PTM-0450",
-    "homepage": "https://www.uniprot.org/docs/ptmlist",
-    "mappings": {
-      "prefixcommons": "ptmswitchboard"
-    },
+    "homepage": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/docs/ptmlist",
     "name": "UniProt Post-Translational Modification",
     "part_of": "uniprot",
     "pattern": "^PTM-\\d{4}$",
