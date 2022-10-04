@@ -16,11 +16,12 @@ from bioregistry.schema.struct import Publication, deduplicate_publications
 
 def get_oldest_publications() -> List[Publication]:
     """Get the oldest publication (by year) for each resource."""
-    return deduplicate_publications(
-        min(publications, key=lambda p: p.year or 0)
-        for resource in manager.registry.values()
-        if (publications := resource.get_publications())
-    )
+    publications = []
+    for resource in manager.registry.values():
+        resource_publications = resource.get_publications()
+        if resource_publications:
+            publications.append(min(resource_publications, key=lambda p: p.year or 0))
+    return deduplicate_publications(publications)
 
 
 def get_all_publications() -> List[Publication]:
