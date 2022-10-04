@@ -61,7 +61,7 @@ def main():
     ax.set_title(f"Timeline of {len(publications):,} Publications")
     plt.xticks(rotation=45)
     fig.tight_layout()
-    fig.savefig(DOCS_IMG.joinpath("bibliography_years.png"), dpi=350)
+    fig.savefig(DOCS_IMG.joinpath("bibliography_years.svg"), dpi=350)
 
 
 if __name__ == "__main__":
