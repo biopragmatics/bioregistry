@@ -2,16 +2,16 @@
 
 import typing
 from collections import Counter
-from typing import Iterable, List
+from typing import TYPE_CHECKING, Iterable, List
 
 import click
-import matplotlib.pyplot as plt
-import pandas as pd
-import seaborn as sns
 
 from bioregistry import manager
 from bioregistry.constants import DOCS_IMG
 from bioregistry.schema.struct import Publication, deduplicate_publications
+
+if TYPE_CHECKING:
+    import pandas
 
 
 def get_oldest_publications() -> List[Publication]:
@@ -33,6 +33,24 @@ def get_all_publications() -> List[Publication]:
     )
 
 
+def get_publications_df() -> "pandas.DataFrame":
+    """Get a dataframe with all publications."""
+    import pandas
+
+    rows = []
+    for publication in get_all_publications():
+        rows.append(
+            (
+                publication.pubmed,
+                publication.doi,
+                publication.pmc,
+                publication.year,
+                publication.title,
+            )
+        )
+    return pandas.DataFrame(rows, columns=["pubmed", "doi", "pmc", "year", "title"])
+
+
 def count_publication_years(
     publications: Iterable[Publication], minimum_year: int = 1995
 ) -> typing.Counter[int]:
@@ -51,9 +69,13 @@ def count_publication_years(
 @click.command()
 def main():
     """Generate images."""
+    import matplotlib.pyplot as plt
+    import pandas
+    import seaborn as sns
+
     publications = get_oldest_publications()
     year_counter = count_publication_years(publications)
-    df = pd.DataFrame(sorted(year_counter.items()), columns=["year", "count"])
+    df = pandas.DataFrame(sorted(year_counter.items()), columns=["year", "count"])
 
     fig, ax = plt.subplots(figsize=(8, 3.5))
     sns.barplot(data=df, ax=ax, x="year", y="count")
