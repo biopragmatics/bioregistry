@@ -11,12 +11,11 @@ from typing import Mapping
 
 import bioregistry
 from bioregistry import Resource, manager
-from bioregistry.constants import BIOREGISTRY_PATH
+from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE
 from bioregistry.export.rdf_export import resource_to_rdf_str
-from bioregistry.license_standardizer import REVERSE_LICENSES
+from bioregistry.license_standardizer import REVERSE_LICENSES, standardize_license
 from bioregistry.resolve import get_obo_context_prefix_map
 from bioregistry.schema.struct import SCHEMA_PATH, get_json_schema
-from bioregistry.schema.utils import EMAIL_RE
 from bioregistry.schema_utils import is_mismatch
 from bioregistry.utils import _norm, extended_encoder
 
@@ -608,7 +607,7 @@ class TestRegistry(unittest.TestCase):
             if pp is None:
                 continue
             with self.subTest(prefix=prefix):
-                self.assertEqual(prefix.replace(".", ""), _norm(pp))
+                self.assertEqual(prefix.replace(".", "").replace("_", ""), _norm(pp))
                 # TODO consider later if preferred prefix should
                 #  explicitly not be mentioned in synonyms
                 # self.assertNotIn(pp, resource.get_synonyms())
@@ -669,6 +668,12 @@ class TestRegistry(unittest.TestCase):
         for key, values in REVERSE_LICENSES.items():
             with self.subTest(key=key):
                 self.assertEqual(len(values), len(set(values)), msg=f"duplicates in {key}")
+
+        for prefix, resource in self.registry.items():
+            if resource.license is None:
+                continue
+            with self.subTest(prefix=prefix):
+                self.assertEqual(standardize_license(resource.license), resource.license)
 
     def test_contributors(self):
         """Check contributors have minimal metadata."""
@@ -815,7 +820,12 @@ class TestRegistry(unittest.TestCase):
                         self.assertNotIn("arxiv", reference)
                 if resource.publications:
                     for publication in resource.publications:
-                        self.assertIsNotNone(publication.title)
+                        self.assertIsNotNone(
+                            publication.title,
+                            msg="Manually curated publication is missing a title. Please run the "
+                            "publication clean-up script `python -m bioregistry.curation.clean_publications` "
+                            "to automatically retrieve the title.",
+                        )
                         self.assertLessEqual(
                             1,
                             sum(

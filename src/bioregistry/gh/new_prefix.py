@@ -36,16 +36,18 @@ MAPPING = {
     "Redundant Prefix in Regular Expression Pattern": "banana",
     "Provider Format URL": URI_FORMAT_KEY,  # old
     "URI Format String": URI_FORMAT_KEY,
-    "Contact": "contact",
     "Additional Comments": "comment",
     "Contributor ORCiD": "contributor_orcid",
     "Contributor Name": "contributor_name",
     "Contributor GitHub": "contributor_github",
+    "Contributor Email": "contributor_email",
     "Contact ORCiD": "contact_orcid",
     "Contact Name": "contact_name",
     "Contact Email": "contact_email",
     "Contact GitHub": "contact_github",
     "Wikidata Property": "wikidata_prefix",
+    "License": "license",
+    "Repository": "repository",
 }
 
 ORCID_HTTP_PREFIX = "http://orcid.org/"
@@ -87,7 +89,7 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
         if contact_orcid:
             contact = Author(
                 name=contact_name,
-                orcid=contact_orcid,
+                orcid=_trim_orcid(contact_orcid),
                 email=contact_email,
                 github=contact_github,
             )
@@ -135,12 +137,16 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
     return rv
 
 
-def _pop_orcid(d) -> str:
-    orcid = d.pop("contributor_orcid")
+def _pop_orcid(data: Dict[str, str]) -> str:
+    orcid = data.pop("contributor_orcid")
+    return _trim_orcid(orcid)
+
+
+def _trim_orcid(orcid: str) -> str:
     if orcid.startswith(ORCID_HTTP_PREFIX):
-        orcid = orcid[len(ORCID_HTTP_PREFIX) :]
-    elif orcid.startswith(ORCID_HTTPS_PREFIX):
-        orcid = orcid[len(ORCID_HTTPS_PREFIX) :]
+        return orcid[len(ORCID_HTTP_PREFIX) :]
+    if orcid.startswith(ORCID_HTTPS_PREFIX):
+        return orcid[len(ORCID_HTTPS_PREFIX) :]
     return orcid
 
 
