@@ -55583,6 +55583,36 @@
       ],
       "uri_format": "http://www.ncbi.nlm.nih.gov/omim/$1"
     },
+    "providers": [
+      {
+        "code": "legacy",
+        "description": "This is the actual endpoint for OMIM entries",
+        "homepage": "https://www.omim.org",
+        "name": "OMIM",
+        "uri_format": "https://www.omim.org/entry/$1"
+      },
+      {
+        "code": "ncbi.omim",
+        "description": "An NCBI endpoint for OMIM entries",
+        "homepage": "http://www.ncbi.nlm.nih.gov/omim",
+        "name": "NCBI",
+        "uri_format": "http://www.ncbi.nlm.nih.gov/omim/$1"
+      },
+      {
+        "code": "purl",
+        "description": "An extra purl that was registred, but probably won't be used.",
+        "homepage": "https://www.omim.org",
+        "name": "OMIM PURL (not in use)",
+        "uri_format": "https://purl.org/mim/MIM:$1"
+      },
+      {
+        "code": "purl2",
+        "description": "An extra purl that was registred, but probably won't be used.",
+        "homepage": "https://www.omim.org",
+        "name": "OMIM PURL (not in use)",
+        "uri_format": "https://omim.org/OMIM:$1"
+      }
+    ],
     "publications": [
       {
         "doi": "10.1093/nar/gki033",
@@ -55591,6 +55621,9 @@
         "title": "Online Mendelian Inheritance in Man (OMIM), a knowledgebase of human genes and genetic disorders.",
         "year": 2005
       }
+    ],
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/497"
     ],
     "synonyms": [
       "OMIM",
@@ -55604,6 +55637,7 @@
       "prefix": "MIM",
       "uri_format": "https://www.omim.org/entry/$1"
     },
+    "uri_format": "https://omim.org/MIM:",
     "wikidata": {
       "database": "Q241953",
       "database.homepage": "https://www.omim.org",
