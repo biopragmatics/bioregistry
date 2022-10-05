@@ -7,7 +7,7 @@ import pandas as pd
 from sklearn.metrics import matthews_corrcoef, roc_auc_score
 from sklearn.metrics import confusion_matrix
 
-URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?gid=0&single=true&output=tsv"
+URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=tsv"
 MODULE = pystow.module("bioregistry", "analysis")
 
 
@@ -25,15 +25,15 @@ def main():
     publication_df = publication_df[publication_df.pubmed.notna()]
     publication_df = publication_df[["pubmed", "title"]]
     publication_df["label"] = True
+    print(f"got {publication_df.shape[0]} publications from the bioregistry")
 
     print("downloading curation")
-    curation_df = MODULE.ensure_csv(url=URL, name="ben_curation.tsv")
+    curation_df = MODULE.ensure_csv(url=URL, name="curation.tsv")
     curation_df["label"] = curation_df["relevant"].map(_map)
     curation_df = curation_df[["pubmed", "title", "label"]]
+    print(f"got {curation_df.label.notna().sum()} curated publications from google sheets")
 
     df = pd.concat([curation_df, publication_df])
-
-    print("labels:", df.label.unique())
 
     print("training tf-idf")
     vectorizer = TfidfVectorizer()
@@ -60,6 +60,13 @@ def main():
     roc_auc = roc_auc_score(y_test, clf.predict_log_proba(x_test)[:, 1])
     print(f"mcc: {mcc:.2f}, auc-roc: {roc_auc:.2f}")
     print(confusion_matrix(y_test, y_pred))
+
+    importances_df = pd.DataFrame(
+        list(zip(vectorizer.get_feature_names_out(), vectorizer.idf_, clf.feature_importances_)),
+        columns=["word", "idf", "importance"],
+    ).sort_values("importance", ascending=False, key=abs).round(4)
+    importance_path = MODULE.join(name="importances.tsv")
+    importances_df.to_csv(importance_path, sep='\t', index=False)
 
     print("predicting on unknowns")
     novel_df = df[~annotation_idx][["pubmed", "title"]].copy()
