@@ -65,6 +65,12 @@ class TestResolve(unittest.TestCase):
             ("go", "0000001"),
             ("go", "GO:0000001"),
             ("go", "go:0000001"),
+            # banana are strange
+            ("omim.ps", "PS214100"),
+            ("omim.ps", "214100"),
+            ("OMIMPS", "214100"),
+            ("PS", "214100"),
+            ("PS", "PS214100"),
         ]
         for prefix, resource in bioregistry.read_registry().items():
             if bioregistry.is_deprecated(prefix):

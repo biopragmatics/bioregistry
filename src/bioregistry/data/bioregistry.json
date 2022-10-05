@@ -55650,6 +55650,8 @@
     }
   },
   "omim.ps": {
+    "banana": "PS",
+    "banana_peel": "",
     "biolink": {
       "is_identifiers": false,
       "is_obo": false,
@@ -55676,21 +55678,30 @@
       }
     ],
     "description": "A Phenotypic Series is a tabular view of genetic heterogeneity of similar phenotypes across the genome.",
-    "example": "PS214100",
+    "example": "214100",
     "homepage": "https://www.omim.org/phenotypicSeriesTitles/all",
     "mappings": {
       "biolink": "OMIM.PS"
     },
     "name": "OMIM Phenotypic Series",
     "part_of": "omim",
-    "pattern": "^PS\\d+$",
+    "pattern": "^\\d+$",
+    "providers": [
+      {
+        "code": "legacy",
+        "description": "This is the actual endpoint for OMIM phenotypic series entries",
+        "homepage": "https://www.omim.org",
+        "name": "OMIM",
+        "uri_format": "https://omim.org/phenotypicSeries/PS$1"
+      }
+    ],
     "synonyms": [
       "MIMPS",
       "OMIMPS",
       "PS",
       "mim.ps"
     ],
-    "uri_format": "https://omim.org/phenotypicSeries/$1"
+    "uri_format": "https://omim.org/MIM:PS$1"
   },
   "omit": {
     "aberowl": {
