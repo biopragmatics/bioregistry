@@ -4,12 +4,15 @@ Run this script with python -m bioregistry.curation.clean_publications.
 """
 
 from functools import lru_cache
+from typing import Optional
 
+from manubot.cite.doi import get_pubmed_ids_for_doi
 from manubot.cite.pubmed import get_pubmed_csl_item
 from tqdm import tqdm
 
-from bioregistry import manager
+from bioregistry import Resource, manager
 from bioregistry.schema.struct import Publication, deduplicate_publications
+from bioregistry.utils import removeprefix
 
 
 @lru_cache(None)
@@ -17,17 +20,46 @@ def _get_pubmed_csl_item(pmid):
     return get_pubmed_csl_item(pmid)
 
 
+@lru_cache(None)
+def _get_pubmed_from_doi(doi: str) -> Optional[str]:
+    doi = removeprefix(doi, "https://doi.org/")
+    try:
+        dict = get_pubmed_ids_for_doi(doi)
+    except AssertionError:
+        tqdm.write(f"Expected DOI to start with 10., but got {doi}")
+        return None
+    if dict:
+        print(dict)
+        raise
+    return dict.get("pmid")
+
+
 def _main():
     c = 0
 
+    dois = set()
     resources = []
-    for resource in manager.registry.values():
+    it = tqdm(manager.registry.values(), unit="resource", unit_scale=True, desc="caching PMIDs")
+    for resource in it:
+        resource: Resource
+        it.set_postfix(prefix=resource.prefix)
         resource_publications = resource.get_publications()
-        pubmed_ids = {p.pubmed for p in resource_publications if p.pubmed}
+        pubmed_ids = set()
+        for publication in resource_publications:
+            if publication.pubmed:
+                pubmed_ids.add(publication.pubmed)
+            elif publication.doi:
+                dois.add(publication.doi)
+                tqdm.write("getting pubmed from DOI")
+                pmid = _get_pubmed_from_doi(publication.doi)
+                if pmid:
+                    pubmed_ids.add(pmid)
         if pubmed_ids:
             resources.append((resource, pubmed_ids))
         elif resource.publications:
             resource.publications = deduplicate_publications(resource.publications)
+
+    tqdm.write(f"looked up {len(dois):,} DOIs")
 
     for resource, pubmed_ids in tqdm(
         resources, desc="resources with pubmeds to update", unit="resource"

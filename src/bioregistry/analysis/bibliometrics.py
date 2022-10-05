@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING, Iterable, List
 import click
 
 from bioregistry import manager
-from bioregistry.constants import DOCS_IMG
+from bioregistry.constants import DOCS_IMG, EXPORT_REGISTRY
 from bioregistry.schema.struct import Publication, deduplicate_publications
 
 if TYPE_CHECKING:
@@ -44,11 +44,16 @@ def get_publications_df() -> "pandas.DataFrame":
                 publication.pubmed,
                 publication.doi,
                 publication.pmc,
-                publication.year,
+                str(publication.year) if publication.year else None,
                 publication.title,
             )
         )
-    return pandas.DataFrame(rows, columns=["pubmed", "doi", "pmc", "year", "title"])
+    df = pandas.DataFrame(
+        rows,
+        columns=["pubmed", "doi", "pmc", "year", "title"],
+        dtype=str,
+    ).sort_values(["pubmed", "doi", "pmc"])
+    return df
 
 
 def count_publication_years(
@@ -72,6 +77,9 @@ def main():
     import matplotlib.pyplot as plt
     import pandas
     import seaborn as sns
+
+    publications_df = get_publications_df()
+    publications_df.to_csv(EXPORT_REGISTRY.joinpath("publications.tsv"), sep="\t", index=False)
 
     publications = get_oldest_publications()
     year_counter = count_publication_years(publications)
