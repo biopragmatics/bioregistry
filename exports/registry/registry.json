@@ -370,6 +370,37 @@
     "uri_format": "http://purl.obolibrary.org/obo/AEO_$1",
     "version": "2014-12-05"
   },
+  "aeon": {
+    "contact": {
+      "email": "philip.stroemert@tib.eu",
+      "github": "StroemPhi",
+      "name": "Philip Strömert",
+      "orcid": "0000-0002-1595-3213"
+    },
+    "contributor": {
+      "email": "philip.stroemert@tib.eu",
+      "github": "StroemPhi",
+      "name": "Philip Strömert",
+      "orcid": "0000-0002-1595-3213"
+    },
+    "description": "The academic event ontology, currently still in development and thus unstable, is as an OBO compliant reference ontology for describing the academic events such as conferences, workshops or seminars and their series. it is being developed as part of the [ConfIDent project](https://projects.tib.eu/confident/) to allow and RDF of the academic events and series stored and curated in the [ConfIDent platform](https://www.confident-conference.org/index.php/main_page).",
+    "download_owl": "https://raw.githubusercontent.com/tibonto/aeon/main/aeon.owl",
+    "example": "0000001",
+    "github_request_issue": 617,
+    "homepage": "https://tibonto.github.io/aeon/",
+    "license": "CC BY 4.0",
+    "name": "Academic Event Ontology",
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "aeon",
+    "repository": "https://github.com/tibonto/aeon",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "http://purl.obolibrary.org/obo/AEON_$1"
+  },
   "aero": {
     "contact": {
       "email": "mcourtot@gmail.com",
@@ -419,12 +450,6 @@
     "uri_format": "https://www.affymetrix.com/LinkServlet?probeset=$1"
   },
   "afo": {
-    "contact": {
-      "email": "more.info@allotrope.org",
-      "github": null,
-      "name": "Allotrope Foundation",
-      "orcid": null
-    },
     "description": "Allotrope Merged Ontology Suite",
     "download_owl": "http://purl.allotrope.org/voc/afo/merged-OLS/REC/2019/05/10",
     "homepage": "https://www.allotrope.org/",
@@ -608,25 +633,25 @@
     "preferred_prefix": "agrovoc",
     "publications": [
       {
-        "doi": "https://doi.org/10.4060/cb2838en",
+        "doi": "10.4060/cb2838en",
         "pmc": null,
         "pubmed": null,
-        "title": "AGROVOC – Semantic data interoperability on food and agriculture",
-        "year": null
+        "title": "AGROVOC",
+        "year": 2021
       },
       {
-        "doi": "https://doi.org/10.3390/engproc2021009017",
+        "doi": "10.3390/engproc2021009017",
         "pmc": null,
         "pubmed": null,
         "title": "How Agricultural Digital Innovation Can Benefit from Semantics: The Case of the AGROVOC Multilingual Thesaurus",
-        "year": null
+        "year": 2021
       },
       {
         "doi": "10.1016/j.compag.2020.105965",
         "pmc": null,
         "pubmed": null,
         "title": "AGROVOC: The linked data concept hub for food and agriculture",
-        "year": null
+        "year": 2022
       }
     ],
     "references": [
@@ -1020,6 +1045,15 @@
     "name": "Apollo Structured Vocabulary",
     "pattern": "^\\d{8}$",
     "preferred_prefix": "APOLLO_SV",
+    "providers": [
+      {
+        "code": "conflated",
+        "description": "This might be resulting from properties in Apollo SV actually trying to use appropriate identifiers",
+        "homepage": "http://purl.obolibrary.org",
+        "name": "OBO PURL in Parts",
+        "uri_format": "http://purl.obolibrary.org/obo/apollo_sv/dev/apollo_sv.owl#APOLLO_SV_$1"
+      }
+    ],
     "publications": [
       {
         "doi": "10.1186/s13326-016-0092-y",
@@ -2193,18 +2227,18 @@
     "preferred_prefix": "bind",
     "publications": [
       {
-        "doi": null,
-        "pmc": null,
+        "doi": "10.1093/nar/gkg056",
+        "pmc": "PMC165503",
         "pubmed": "12519993",
-        "title": "BIND: the Biomolecular Interaction Network Database",
-        "year": null
+        "title": "BIND: the Biomolecular Interaction Network Database.",
+        "year": 2003
       },
       {
-        "doi": null,
+        "doi": "10.1093/bioinformatics/16.5.465",
         "pmc": null,
         "pubmed": "10871269",
-        "title": "BIND--a data specification for storing and describing biomolecular interactions, molecular complexes and pathways",
-        "year": null
+        "title": "BIND--a data specification for storing and describing biomolecular interactions, molecular complexes and pathways.",
+        "year": 2000
       }
     ],
     "uri_format": "http://www.bind.ca/Action?identifier=bindid&idsearch=$1"
@@ -2650,7 +2684,7 @@
         "pmc": null,
         "pubmed": null,
         "title": "Unifying the Identification of Biomedical Entities with the Bioregistry",
-        "year": null
+        "year": 2022
       }
     ],
     "repository": "https://github.com/biopragmatics/bioregistry",
@@ -3517,7 +3551,7 @@
         "pmc": null,
         "pubmed": null,
         "title": "CARO – The Common Anatomy Reference Ontology",
-        "year": null
+        "year": 2008
       }
     ],
     "repository": "https://github.com/obophenotype/caro",
@@ -3933,7 +3967,7 @@
         "pmc": null,
         "pubmed": null,
         "title": "Knowledge representation and data sharing to unlock crop variation for nutritional food security",
-        "year": null
+        "year": 2020
       }
     ],
     "repository": "https://github.com/Southern-Cross-Plant-Science/cdno",
@@ -4689,7 +4723,7 @@
         "pmc": null,
         "pubmed": null,
         "title": "Extension of Roles in the ChEBI Ontology",
-        "year": null
+        "year": 2020
       }
     ],
     "repository": "https://github.com/obophenotype/chiro",
@@ -4857,7 +4891,7 @@
         "pmc": null,
         "pubmed": null,
         "title": "FaBiO and CiTO: Ontologies for describing bibliographic resources and citations",
-        "year": null
+        "year": 2012
       }
     ],
     "repository": "https://github.com/sparontologies/cito",
@@ -6574,12 +6608,6 @@
     "uri_format": "https://cancer.sanger.ac.uk/cell_lines/sample/overview?id=$1"
   },
   "covid19": {
-    "contact": {
-      "email": "dylan.mcgagh@magd.ox.ac.uk",
-      "github": null,
-      "name": "Dylan McGagh",
-      "orcid": null
-    },
     "description": "Curated contextual database gathering samples related to SARS-CoV-2 virus and covid-19 disease.",
     "download_owl": "http://aber-owl.net/media/ontologies/COVID19/3/covid19.owl",
     "example": "SFB_COVID19_MW286762",
@@ -6746,6 +6774,20 @@
     "preferred_prefix": "credit",
     "publications": [
       {
+        "doi": "10.1038/d41586-019-01715-4",
+        "pmc": null,
+        "pubmed": "31164773",
+        "title": "Credit data generators for data reuse.",
+        "year": 2019
+      },
+      {
+        "doi": "10.1038/508312a",
+        "pmc": null,
+        "pubmed": "24745070",
+        "title": "Publishing: Credit where credit is due.",
+        "year": 2014
+      },
+      {
         "doi": "10.3789/ansi.niso.z39.104-2022",
         "pmc": null,
         "pubmed": null,
@@ -6757,28 +6799,14 @@
         "pmc": null,
         "pubmed": null,
         "title": "Beyond authorship: attribution, contribution, collaboration, and credit",
-        "year": null
-      },
-      {
-        "doi": "10.1038/d41586-019-01715-4",
-        "pmc": null,
-        "pubmed": null,
-        "title": "Credit data generators for data reuse",
-        "year": null
-      },
-      {
-        "doi": "10.1038/508312a",
-        "pmc": null,
-        "pubmed": null,
-        "title": "Publishing: Credit where credit is due",
-        "year": null
+        "year": 2015
       },
       {
         "doi": "10.1002/leap.1210",
         "pmc": null,
         "pubmed": null,
         "title": "How can we ensure visibility and diversity in research contributions? How the Contributor Role Taxonomy (CRediT) is helping the shift from authorship to contributorship",
-        "year": null
+        "year": 2019
       }
     ]
   },
@@ -6838,12 +6866,6 @@
     "uri_format": "http://www.crop2ml.org/cropmdb/$1"
   },
   "cryoem": {
-    "contact": {
-      "email": "isanchez@cnb.csic.es",
-      "github": null,
-      "name": "Carlos Oscar Sorzano",
-      "orcid": null
-    },
     "description": "Ontology that describes data types and image processing operations in Cryo Electron Microscopy of Single Particles",
     "download_owl": "http://scipion.i2pc.es/ontology/cryoem/releases/2021-03-09/cryoem.owl",
     "example": "0000052",
@@ -7895,10 +7917,10 @@
     "publications": [
       {
         "doi": "10.1016/j.ajhg.2009.03.010",
-        "pmc": null,
-        "pubmed": null,
-        "title": "DECIPHER: Database of Chromosomal Imbalance and Phenotype in Humans Using Ensembl Resources",
-        "year": null
+        "pmc": "PMC2667985",
+        "pubmed": "19344873",
+        "title": "DECIPHER: Database of Chromosomal Imbalance and Phenotype in Humans Using Ensembl Resources.",
+        "year": 2009
       }
     ],
     "uri_format": "https://www.deciphergenomics.org/syndrome/$1"
@@ -7934,11 +7956,11 @@
     "preferred_prefix": "DEO",
     "publications": [
       {
-        "doi": "https://doi.org/10.3233/sw-150177",
+        "doi": "10.3233/sw-150177",
         "pmc": null,
         "pubmed": null,
-        "title": "The Document Components Ontology (DoCO)",
-        "year": null
+        "title": "The Document Components Ontology (DoCO)",
+        "year": 2016
       }
     ],
     "repository": "https://github.com/sparontologies/deo",
@@ -8252,8 +8274,8 @@
         "doi": "10.1016/j.knosys.2016.10.006",
         "pmc": null,
         "pubmed": null,
-        "title": "Conceptual models of drug-drug interactions : A summary of recent efforts",
-        "year": null
+        "title": "Conceptual models of drug-drug interactions: A summary of recent efforts",
+        "year": 2016
       }
     ],
     "repository": "https://github.com/DIDEO/DIDEO",
@@ -8520,8 +8542,8 @@
         "doi": "10.3233/sw-150177",
         "pmc": null,
         "pubmed": null,
-        "title": "The Document Components Ontology (DoCO)",
-        "year": null
+        "title": "The Document Components Ontology (DoCO)",
+        "year": 2016
       }
     ],
     "repository": "https://github.com/sparontologies/doco",
@@ -10045,12 +10067,6 @@
     "uri_format": "http://edamontology.org/topic_$1"
   },
   "edda": {
-    "contact": {
-      "email": "tanja.bekhuis@tcbinfosci.com",
-      "github": null,
-      "name": "Tanja Bekhuis",
-      "orcid": null
-    },
     "description": "Coverage of the terminology appearing in JMLA was extended with terms from MeSH, NCI Thesaurus (NCI), Emtree, the HTA Database Canadian Repository [international repository for health technology assessment], and Robert Sandieson's synonym ring for research synthesis. Collected terms were enriched with terms from the NCI Metathesaurus. Variants include synonyms for preferred terms, singular and plural forms, and American and British spellings. Definitions, if they exist, are mainly from MeSH, NCI, Emtree, and medical dictionaries.",
     "download_owl": "http://aber-owl.net/media/ontologies/EDDA/11/edda.owl",
     "example": "health_care_quality_assessment",
@@ -10213,7 +10229,6 @@
     "description": "A structured controlled vocabulary of stage-specific anatomical structures of the human. It has been designed to mesh with the mouse anatomy and incorporates each Carnegie stage of development (CS1-20). The abstract version of the human developmental anatomy ontology compresses all the tissues present over Carnegie stages 1-20 into a single hierarchy. The heart, for example, is present from Carnegie Stage 9 onwards and is thus represented by 12 EHDA IDs (one for each stage). In the abstract mouse, it has a single ID so that the abstract term given as just <i>heart</i> really means <i>heart (CS 9-20)</i>. Timing details will be added to the abstract version of the ontology in a future release.",
     "download_obo": "http://aber-owl.net/media/ontologies/EHDAA/6/ehdaa.obo",
     "example": "1",
-    "homepage": "http://obofoundry.org/ontology/ehdaa.html",
     "mappings": {
       "aberowl": "EHDAA",
       "biocontext": "EHDAA",
@@ -10983,10 +10998,10 @@
     "publications": [
       {
         "doi": "10.1136/amiajnl-2013-001696",
-        "pmc": null,
-        "pubmed": null,
-        "title": "Epilepsy and seizure ontology: towards an epilepsy informatics infrastructure for clinical research and patient care",
-        "year": null
+        "pmc": "PMC3912711",
+        "pubmed": "23686934",
+        "title": "Epilepsy and seizure ontology: towards an epilepsy informatics infrastructure for clinical research and patient care.",
+        "year": 2013
       }
     ],
     "uri_format": "http://www.case.edu/EpilepsyOntology.owl#$1"
@@ -11013,10 +11028,10 @@
     "publications": [
       {
         "doi": "10.1186/s13321-022-00614-7",
-        "pmc": null,
-        "pubmed": null,
-        "title": "European Registry of Materials: global, unique identifiers for (undisclosed) nanomaterials",
-        "year": null
+        "pmc": "PMC9400299",
+        "pubmed": "36002868",
+        "title": "European Registry of Materials: global, unique identifiers for (undisclosed) nanomaterials.",
+        "year": 2022
       }
     ],
     "twitter": "nanocommons",
@@ -11154,8 +11169,8 @@
         "doi": "10.5281/zenodo.6685957",
         "pmc": null,
         "pubmed": null,
-        "title": "Malaria study data integration and information retrieval based on OBO Foundry ontologies.",
-        "year": null
+        "title": "Malaria study data integration and information retrieval based on OBO Foundry ontologies",
+        "year": 2016
       }
     ],
     "repository": "https://github.com/VEuPathDB-ontology/VEuPathDB-ontology",
@@ -11334,7 +11349,7 @@
         "pmc": null,
         "pubmed": null,
         "title": "FaBiO and CiTO: Ontologies for describing bibliographic resources and citations",
-        "year": null
+        "year": 2012
       }
     ],
     "repository": "https://github.com/sparontologies/fabio",
@@ -11818,7 +11833,7 @@
         "pmc": null,
         "pubmed": null,
         "title": "The Five Stars of Online Journal Articles - a Framework for Article Evaluation",
-        "year": null
+        "year": 2012
       }
     ],
     "repository": "https://github.com/sparontologies/fivestars"
@@ -12386,7 +12401,7 @@
         "doi": "10.1186/s12859-018-2211-5",
         "pmc": "PMC6022344",
         "pubmed": "29954318",
-        "title": "FamPlex: a resource for entity recognition and relationship resolution of human protein families and complexes in biomedical text mining",
+        "title": "FamPlex: a resource for entity recognition and relationship resolution of human protein families and complexes in biomedical text mining.",
         "year": 2018
       }
     ],
@@ -13330,12 +13345,6 @@
     "version": "2019-09-18"
   },
   "gfo": {
-    "contact": {
-      "email": "heinrich.herre@imise.uni-leipzig.de",
-      "github": null,
-      "name": "Heinrich Herre",
-      "orcid": null
-    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -13577,10 +13586,10 @@
     "publications": [
       {
         "doi": "10.1093/nar/gky994",
-        "pmc": null,
-        "pubmed": null,
-        "title": "Glycosciences.DB: an annotated data collection linking glycomics and proteomics data (2018 update)",
-        "year": null
+        "pmc": "PMC6323918",
+        "pubmed": "30357361",
+        "title": "Glycosciences.DB: an annotated data collection linking glycomics and proteomics data (2018 update).",
+        "year": 2019
       }
     ],
     "reviewer": {
@@ -13769,7 +13778,7 @@
         "pmc": null,
         "pubmed": null,
         "title": "GNOme - Glycan Naming and Subsumption Ontology",
-        "year": null
+        "year": 2021
       }
     ],
     "repository": "https://github.com/glygen-glycan-data/GNOme",
@@ -14477,17 +14486,10 @@
     "uri_format": "http://www.ars-grin.gov/cgi-bin/npgs/html/taxon.pl?$1"
   },
   "gro": {
-    "contact": {
-      "email": "vlee@ebi.ac.uk",
-      "github": null,
-      "name": "Vivian Lee",
-      "orcid": null
-    },
     "deprecated": true,
     "description": "The Gene Regulation Ontology (GRO) is a conceptual model for the domain of gene regulation. It covers processes that are linked to the regulation of gene expression as well as physical entities that are involved in these processes (such as genes and transcription factors) in terms of ontology classes and semantic relations between classes.",
     "download_owl": "http://aber-owl.net/media/ontologies/GRO/5/gro.owl",
     "example": "Lipid",
-    "homepage": "http://www.ebi.ac.uk/Rebholz-srv/GRO/GRO.html",
     "mappings": {
       "aberowl": "GRO",
       "bioportal": "GRO"
@@ -14975,12 +14977,6 @@
     "uri_format": "http://www.hgmd.cf.ac.uk/ac/gene.php?gene=$1"
   },
   "hgnc": {
-    "contact": {
-      "email": "hgnc@genenames.org",
-      "github": null,
-      "name": "Dr. Elspeth Bruford",
-      "orcid": null
-    },
     "description": "The HGNC (HUGO Gene Nomenclature Committee) provides an approved gene name and symbol (short-form abbreviation) for each known human gene.  All approved symbols are stored in the HGNC database, and each symbol is unique. HGNC identifiers refer to records in the HGNC symbol database.",
     "download_owl": "http://aber-owl.net/media/ontologies/HGNC/1/hgnc.owl",
     "example": "16793",
@@ -15493,13 +15489,6 @@
         "year": 2019
       },
       {
-        "doi": "https://doi.org/10.1093/nar/gkw1039",
-        "pmc": "PMC5210535",
-        "pubmed": "27899602",
-        "title": "The Human Phenotype Ontology in 2017.",
-        "year": null
-      },
-      {
         "doi": "10.1093/nar/gkw1039",
         "pmc": "PMC5210535",
         "pubmed": "27899602",
@@ -15878,6 +15867,15 @@
     "name": "Information Artifact Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "IAO",
+    "providers": [
+      {
+        "code": "legacy",
+        "description": "A URI from the semanticweb.og",
+        "homepage": "http://www.semanticweb.org",
+        "name": "Legacy URI",
+        "uri_format": "http://www.semanticweb.org/ontologies/2011/9/Ontology1317751904226.owl#IAO_$1"
+      }
+    ],
     "publications": [
       {
         "doi": "10.3233/978-1-61499-101-4-68",
@@ -16054,12 +16052,6 @@
     "uri_format": "https://icd.codes/icd10cm/$1"
   },
   "icd10pcs": {
-    "contact": {
-      "email": "patricia.brooks2@cms.hhs.gov",
-      "github": null,
-      "name": "Pat Brooks",
-      "orcid": null
-    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -16285,12 +16277,6 @@
   },
   "icf": {
     "comment": "This might be possible to roll directly into ICD11",
-    "contact": {
-      "email": "info@who.int",
-      "github": null,
-      "name": "The World Health Organization",
-      "orcid": null
-    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -18389,8 +18375,8 @@
         "doi": "10.5281/zenodo.6522019",
         "pmc": null,
         "pubmed": null,
-        "title": "LABO: An Ontology for Laboratory Test Prescription and Reporting",
-        "year": null
+        "title": "LABO: An ontology for laboratory test prescription and reporting",
+        "year": 2019
       }
     ],
     "repository": "https://github.com/OpenLHS/LABO",
@@ -18863,12 +18849,6 @@
     "uri_format": "http://purl.obolibrary.org/obo/LOGGERHEAD_$1"
   },
   "loinc": {
-    "contact": {
-      "email": "loinc@regenstrief.org",
-      "github": null,
-      "name": "LOINC Support",
-      "orcid": null
-    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -19175,12 +19155,6 @@
   "mamo": {
     "banana": "MAMO",
     "banana_peel": "_",
-    "contact": {
-      "email": "mamo-ontology-discuss@lists.sourceforge.net",
-      "github": null,
-      "name": "mamo-ontology-discuss",
-      "orcid": null
-    },
     "deprecated": true,
     "description": "The Mathematical Modelling Ontology (MAMO) is a classification of the types of mathematical models used mostly in the life sciences, their variables, relationships and other relevant features.",
     "download_owl": "http://purl.obolibrary.org/obo/mamo.owl",
@@ -19555,12 +19529,6 @@
     "uri_format": "https://www.ncbi.nlm.nih.gov/medgen/$1"
   },
   "medlineplus": {
-    "contact": {
-      "email": "custserv@nlm.nih.gov",
-      "github": null,
-      "name": "NLM Customer Service",
-      "orcid": null
-    },
     "description": "MedlinePlus is the National Institutes of Health's Web site for patients and their families and friends. Produced by the National Library of Medicine, it provides information about diseases, conditions, and wellness issues using non-technical terms and language.",
     "example": "002804",
     "homepage": "http://www.nlm.nih.gov/medlineplus/",
@@ -20061,6 +20029,15 @@
     "name": "Mammalian Feeding Muscle Ontology",
     "pattern": "^\\d{7}$",
     "preferred_prefix": "MFMO",
+    "providers": [
+      {
+        "code": "conflated",
+        "description": "A conflated URL with parts.",
+        "homepage": "http://purl.obolibrary.org",
+        "name": "OBO PURL Parts",
+        "uri_format": "http://purl.obolibrary.org/obo/mfmo.owl#MFMO_$1"
+      }
+    ],
     "repository": "https://github.com/RDruzinsky/feedontology",
     "uri_format": "http://purl.obolibrary.org/obo/MFMO_$1",
     "version": "2013-11-16"
@@ -20372,10 +20349,10 @@
     "publications": [
       {
         "doi": "10.1089/omi.2006.10.231",
-        "pmc": null,
-        "pubmed": null,
-        "title": "Taking the First Steps towards a Standard for Reporting on Phylogenies: Minimum Information about a Phylogenetic Analysis (MIAPA)",
-        "year": null
+        "pmc": "PMC3167193",
+        "pubmed": "16901231",
+        "title": "Taking the first steps towards a standard for reporting on phylogenies: Minimum Information About a Phylogenetic Analysis (MIAPA).",
+        "year": 2006
       }
     ],
     "repository": "https://github.com/evoinfo/miapa",
@@ -21306,7 +21283,7 @@
         "pmc": null,
         "pubmed": null,
         "title": "Mondo: Unifying diseases for the world, by the world",
-        "year": null
+        "year": 2022
       }
     ],
     "repository": "https://github.com/monarch-initiative/mondo",
@@ -21882,18 +21859,18 @@
     "proprietary": true,
     "publications": [
       {
+        "doi": "10.1021/acs.jmedchem.6b00153",
+        "pmc": null,
+        "pubmed": "27028220",
+        "title": "Big Data from Pharmaceutical Patents: A Computational Analysis of Medicinal Chemists' Bread and Butter.",
+        "year": 2016
+      },
+      {
         "doi": "10.1038/s42256-020-00284-w",
         "pmc": null,
         "pubmed": null,
         "title": "Mapping the space of chemical reactions using attention-based neural networks",
-        "year": null
-      },
-      {
-        "doi": "10.1021/acs.jmedchem.6b00153",
-        "pmc": null,
-        "pubmed": null,
-        "title": "Big Data from Pharmaceutical Patents: A Computational Analysis of Medicinal Chemists’ Bread and Butter",
-        "year": null
+        "year": 2021
       }
     ],
     "references": [
@@ -22071,10 +22048,10 @@
     "publications": [
       {
         "doi": "10.3389/fphar.2019.00445",
-        "pmc": null,
-        "pubmed": null,
-        "title": "The NCATS BioPlanet – An Integrated Platform for Exploring the Universe of Cellular Signaling Pathways for Toxicology, Systems Biology, and Chemical Genomics",
-        "year": null
+        "pmc": "PMC6524730",
+        "pubmed": "31133849",
+        "title": "The NCATS BioPlanet - An Integrated Platform for Exploring the Universe of Cellular Signaling Pathways for Toxicology, Systems Biology, and Chemical Genomics.",
+        "year": 2019
       }
     ],
     "reviewer": {
@@ -22569,12 +22546,6 @@
     "uri_format": "http://www.hipaaspace.com/Medical_Billing/Coding/National.Drug.Codes/$1"
   },
   "nddf": {
-    "contact": {
-      "email": "cs@firstdatabank.com",
-      "github": null,
-      "name": "First DataBank Customer Support",
-      "orcid": null
-    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -22614,12 +22585,6 @@
     "uri_format": "https://www.ndexbio.org/viewer/networks/$1"
   },
   "ndfrt": {
-    "contact": {
-      "email": "michael.lincoln@va.gov",
-      "github": null,
-      "name": "Michael J. Lincoln MD",
-      "orcid": null
-    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -22688,7 +22653,7 @@
         "pmc": null,
         "pubmed": null,
         "title": "Development of Neural Electromagnetic Ontologies (NEMO): Ontology-based Tools for Representation and Integration of Event-related Brain Potentials",
-        "year": null
+        "year": 2009
       }
     ],
     "uri_format": "https://assets.nemoarchive.org/$1"
@@ -23987,9 +23952,9 @@
       {
         "doi": "10.1093/sysbio/syw108",
         "pmc": null,
-        "pubmed": null,
-        "title": "The first organ-based free ontology for arthropods (Ontology of Arthropod Circulatory Systems - OArCS) and its integration into a novel formalization scheme for morphological descriptions",
-        "year": null
+        "pubmed": "28123116",
+        "title": "The First Organ-Based Ontology for Arthropods (Ontology of Arthropod Circulatory Systems - OArCS) and its Integration into a Novel Formalization Scheme for Morphological Descriptions.",
+        "year": 2017
       }
     ],
     "repository": "https://github.com/aszool/oarcs",
@@ -24181,10 +24146,10 @@
     "publications": [
       {
         "doi": "10.1186/s13326-016-0068-y",
-        "pmc": null,
-        "pubmed": null,
-        "title": "OBIB-a novel ontology for biobanking",
-        "year": null
+        "pmc": "PMC4855778",
+        "pubmed": "27148435",
+        "title": "OBIB-a novel ontology for biobanking.",
+        "year": 2016
       }
     ],
     "repository": "https://github.com/biobanking/biobanking",
@@ -24505,11 +24470,11 @@
     "preferred_prefix": "OHD",
     "publications": [
       {
-        "doi": null,
-        "pmc": null,
+        "doi": "10.1186/s13326-020-00222-0",
+        "pmc": "PMC7439527",
         "pubmed": "32819435",
-        "title": "Structuring, reuse and analysis of electronic dental data using the Oral Health and Disease Ontology",
-        "year": null
+        "title": "Structuring, reuse and analysis of electronic dental data using the Oral Health and Disease Ontology.",
+        "year": 2020
       }
     ],
     "repository": "https://github.com/oral-health-and-disease-ontologies/ohd-ontology",
@@ -24798,15 +24763,43 @@
         "homepage": "http://mirror.omim.org/",
         "name": "OMIM mirror at John Hopkins",
         "uri_format": "http://mirror.omim.org/entry/$1"
+      },
+      {
+        "code": "legacy",
+        "description": "This is the actual endpoint for OMIM entries",
+        "homepage": "https://www.omim.org",
+        "name": "OMIM",
+        "uri_format": "https://www.omim.org/entry/$1"
+      },
+      {
+        "code": "ncbi.omim",
+        "description": "An NCBI endpoint for OMIM entries",
+        "homepage": "http://www.ncbi.nlm.nih.gov/omim",
+        "name": "NCBI",
+        "uri_format": "http://www.ncbi.nlm.nih.gov/omim/$1"
+      },
+      {
+        "code": "purl",
+        "description": "An extra purl that was registred, but probably won't be used.",
+        "homepage": "https://www.omim.org",
+        "name": "OMIM PURL (not in use)",
+        "uri_format": "https://purl.org/mim/MIM:$1"
+      },
+      {
+        "code": "purl2",
+        "description": "An extra purl that was registred, but probably won't be used.",
+        "homepage": "https://www.omim.org",
+        "name": "OMIM PURL (not in use)",
+        "uri_format": "https://omim.org/OMIM:$1"
       }
     ],
     "publications": [
       {
         "doi": "10.1093/nar/gku1205",
-        "pmc": null,
+        "pmc": "PMC4383985",
         "pubmed": "25428349",
-        "title": "OMIM.org: Online Mendelian Inheritance in Man (OMIM(R)), an online catalog of human genes and genetic disorders.",
-        "year": null
+        "title": "OMIM.org: Online Mendelian Inheritance in Man (OMIM®), an online catalog of human genes and genetic disorders.",
+        "year": 2014
       },
       {
         "doi": "10.1093/nar/gki033",
@@ -24816,13 +24809,17 @@
         "year": 2005
       }
     ],
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/497"
+    ],
     "synonyms": [
       "OMIM",
       "mim"
     ],
-    "uri_format": "https://omim.org/entry/$1"
+    "uri_format": "https://omim.org/MIM:$1"
   },
   "omim.ps": {
+    "banana": "PS",
     "contact": {
       "email": "ahamosh@jhmi.edu",
       "github": "ahamosh",
@@ -24844,22 +24841,31 @@
       }
     ],
     "description": "A Phenotypic Series is a tabular view of genetic heterogeneity of similar phenotypes across the genome.",
-    "example": "PS214100",
+    "example": "214100",
     "homepage": "https://www.omim.org/phenotypicSeriesTitles/all",
     "mappings": {
       "biolink": "OMIM.PS"
     },
     "name": "OMIM Phenotypic Series",
     "part_of": "omim",
-    "pattern": "^PS\\d+$",
+    "pattern": "^\\d+$",
     "preferred_prefix": "omim.ps",
+    "providers": [
+      {
+        "code": "legacy",
+        "description": "This is the actual endpoint for OMIM phenotypic series entries",
+        "homepage": "https://www.omim.org",
+        "name": "OMIM",
+        "uri_format": "https://omim.org/phenotypicSeries/PS$1"
+      }
+    ],
     "synonyms": [
       "MIMPS",
       "OMIMPS",
       "PS",
       "mim.ps"
     ],
-    "uri_format": "https://omim.org/phenotypicSeries/$1"
+    "uri_format": "https://omim.org/MIM:PS$1"
   },
   "omit": {
     "appears_in": [
@@ -25641,10 +25647,10 @@
     "publications": [
       {
         "doi": "10.1186/s13326-016-0077-x",
-        "pmc": null,
-        "pubmed": null,
-        "title": "The Orthology Ontology: development and applications",
-        "year": null
+        "pmc": "PMC4893294",
+        "pubmed": "27259657",
+        "title": "The Orthology Ontology: development and applications.",
+        "year": 2016
       }
     ],
     "repository": "https://github.com/qfo/OrthologyOntology",
@@ -26302,8 +26308,8 @@
         "doi": "10.1101/2021.10.10.463703",
         "pmc": null,
         "pubmed": null,
-        "title": "Brain Data Standards Ontology: A data-driven ontology of transcriptomically defined cell types in the primary motor cortex",
-        "year": null
+        "title": "Brain Data Standards - A method for building data-driven cell-type ontologies",
+        "year": 2021
       }
     ],
     "repository": "https://github.com/obophenotype/provisional_cell_ontology",
@@ -28987,8 +28993,8 @@
         "doi": "10.1145/2362499.2362502",
         "pmc": null,
         "pubmed": null,
-        "title": "Scholarly publishing and Linked Data: describing roles, statuses, temporal and contextual extents",
-        "year": null
+        "title": "Scholarly publishing and linked data",
+        "year": 2012
       }
     ],
     "repository": "https://github.com/sparontologies/pro",
@@ -29070,11 +29076,11 @@
     "preferred_prefix": "PWO",
     "publications": [
       {
-        "doi": "https://doi.org/10.3233/sw-160230",
+        "doi": "10.3233/sw-160230",
         "pmc": null,
         "pubmed": null,
         "title": "The Publishing Workflow Ontology (PWO)",
-        "year": null
+        "year": 2017
       }
     ],
     "repository": "https://github.com/sparontologies/pwo",
@@ -29213,21 +29219,21 @@
         "pmc": null,
         "pubmed": "19560008",
         "title": "The IR Radlex Project: an interventional radiology lexicon--a collaborative project of the Radiological Society of North America and the Society of Interventional Radiology.",
-        "year": null
+        "year": 2009
       },
       {
         "doi": "10.1016/j.jvir.2008.10.022",
         "pmc": null,
         "pubmed": "19081735",
         "title": "The IR RadLex project: an interventional radiology lexicon--a collaborative project of the Radiological Society of North America and the Society of Interventional Radiology.",
-        "year": null
+        "year": 2008
       },
       {
         "doi": "10.2214/ajr.174.5.1741463",
         "pmc": null,
         "pubmed": "10789815",
         "title": "Radiology lexicon.",
-        "year": null
+        "year": 2000
       }
     ],
     "uri_format": "https://radlex.org/RID/$1",
@@ -29707,12 +29713,6 @@
     "version": "2019-09-17"
   },
   "rex": {
-    "contact": {
-      "email": "chebi-help@ebi.ac.uk",
-      "github": null,
-      "name": "Chebi Administrators",
-      "orcid": null
-    },
     "deprecated": true,
     "description": "An ontology of physico-chemical processes, i.e. physico-chemical changes occurring in course of time.",
     "download_owl": "http://purl.obolibrary.org/obo/rex.owl",
@@ -29924,8 +29924,8 @@
       {
         "doi": "10.1093/nar/gkac840",
         "pmc": null,
-        "pubmed": null,
-        "title": "Ribocentre: a database of ribozymes",
+        "pubmed": "36177882",
+        "title": "Ribocentre: a database of ribozymes.",
         "year": 2022
       }
     ],
@@ -30156,8 +30156,8 @@
         "doi": "10.3233/ao-2011-0082",
         "pmc": null,
         "pubmed": null,
-        "title": "The RNA Ontology (RNAO): An Ontology for Integrating RNA Sequence and Structure Data",
-        "year": null
+        "title": "The RNA Ontology (RNAO): An ontology for integrating RNA sequence and structure data",
+        "year": 2011
       }
     ],
     "repository": "https://github.com/BGSU-RNA/rnao",
@@ -30373,11 +30373,11 @@
     "proprietary": true,
     "publications": [
       {
-        "doi": "https://doi.org/10.1016/s1074-9098%2899%2900058-1",
+        "doi": "10.1016/s1074-9098%2899%2900058-1",
         "pmc": null,
         "pubmed": null,
         "title": "An overview of the Registry of Toxic Effects of Chemical Substances (RTECS): Critical information on chemical hazards",
-        "year": null
+        "year": 1999
       }
     ],
     "references": [
@@ -30484,7 +30484,7 @@
         "pmc": null,
         "pubmed": null,
         "title": "RxNorm: prescription for electronic drug information exchange",
-        "year": null
+        "year": 2005
       }
     ],
     "synonyms": [
@@ -30940,11 +30940,11 @@
     "preferred_prefix": "SCoRO",
     "publications": [
       {
-        "doi": "https://doi.org/10.3233/sw-150177",
+        "doi": "10.3233/sw-150177",
         "pmc": null,
         "pubmed": null,
-        "title": "The Document Components Ontology (DoCO)",
-        "year": null
+        "title": "The Document Components Ontology (DoCO)",
+        "year": 2016
       }
     ],
     "repository": "https://github.com/sparontologies/scoro",
@@ -31339,7 +31339,7 @@
         "doi": "10.1038/s41597-022-01655-1",
         "pmc": "PMC9464254",
         "pubmed": "36088355",
-        "title": "Sharkipedia: a curated open access database of shark and ray life history traits and abundance time-series",
+        "title": "Sharkipedia: a curated open access database of shark and ray life history traits and abundance time-series.",
         "year": 2022
       }
     ],
@@ -31378,7 +31378,7 @@
         "doi": "10.1038/s41597-022-01655-1",
         "pmc": "PMC9464254",
         "pubmed": "36088355",
-        "title": "Sharkipedia: a curated open access database of shark and ray life history traits and abundance time-series",
+        "title": "Sharkipedia: a curated open access database of shark and ray life history traits and abundance time-series.",
         "year": 2022
       }
     ],
@@ -31417,7 +31417,7 @@
         "doi": "10.1038/s41597-022-01655-1",
         "pmc": "PMC9464254",
         "pubmed": "36088355",
-        "title": "Sharkipedia: a curated open access database of shark and ray life history traits and abundance time-series",
+        "title": "Sharkipedia: a curated open access database of shark and ray life history traits and abundance time-series.",
         "year": 2022
       }
     ],
@@ -32099,7 +32099,7 @@
         "pmc": null,
         "pubmed": null,
         "title": "The Spider Anatomy Ontology (SPD)—A Versatile Tool to Link Anatomy with Cross-Disciplinary Data",
-        "year": null
+        "year": 2019
       }
     ],
     "repository": "https://github.com/obophenotype/spider-ontology",
@@ -32475,12 +32475,6 @@
     "uri_format": "http://string.embl.de/interactions/$1"
   },
   "sty": {
-    "contact": {
-      "email": "support@bioontology.org",
-      "github": null,
-      "name": "bioportal",
-      "orcid": null
-    },
     "contributor": {
       "email": "cthoyt@gmail.com",
       "github": "cthoyt",
@@ -33104,10 +33098,10 @@
     "publications": [
       {
         "doi": "10.1186/2041-1480-4-34",
-        "pmc": null,
-        "pubmed": null,
-        "title": "The vertebrate taxonomy ontology: a framework for reasoning across model organism and species phenotypes",
-        "year": null
+        "pmc": "PMC4177199",
+        "pubmed": "24267744",
+        "title": "The vertebrate taxonomy ontology: a framework for reasoning across model organism and species phenotypes.",
+        "year": 2013
       }
     ],
     "repository": "https://github.com/phenoscape/taxrank",
@@ -33706,7 +33700,7 @@
         "pmc": null,
         "pubmed": null,
         "title": "The Teleost Taxonomy Ontology",
-        "year": null
+        "year": 2010
       }
     ],
     "repository": "https://github.com/phenoscape/teleost-taxonomy-ontology",
@@ -33935,7 +33929,7 @@
     "publications": [
       {
         "doi": "10.1136/jamia.1999.0060151",
-        "pmc": null,
+        "pmc": "PMC61354",
         "pubmed": "10094068",
         "title": "Units of measure in clinical information systems.",
         "year": null
@@ -34627,18 +34621,18 @@
     "preferred_prefix": "unpd",
     "publications": [
       {
-        "doi": "10.1371/journal.pone.0062839",
-        "pmc": null,
-        "pubmed": null,
-        "title": "Use of Natural Products as Chemical Library for Drug Discovery and Network Pharmacology",
-        "year": null
-      },
-      {
         "doi": "10.1021/acs.jnatprod.6b01093",
         "pmc": null,
-        "pubmed": null,
-        "title": "Database for Rapid Dereplication of Known Natural Products Using Data from MS and Fast NMR Experiments",
-        "year": null
+        "pubmed": "28616931",
+        "title": "Database for Rapid Dereplication of Known Natural Products Using Data from MS and Fast NMR Experiments.",
+        "year": 2017
+      },
+      {
+        "doi": "10.1371/journal.pone.0062839",
+        "pmc": "PMC3636197",
+        "pubmed": "23638153",
+        "title": "Use of natural products as chemical library for drug discovery and network pharmacology.",
+        "year": 2013
       }
     ],
     "references": [
@@ -35157,18 +35151,11 @@
     "uri_format": "https://vertebrate.genenames.org/data/gene-symbol-report/#!/vgnc_id/$1"
   },
   "vhog": {
-    "contact": {
-      "email": "bgee@isb-sib.ch",
-      "github": null,
-      "name": "Bgee team",
-      "orcid": null
-    },
     "deprecated": true,
     "description": "vHOG is a multi-species anatomical ontology for the vertebrate lineage, developed as part of the Bgee project. The mapping to species-specific anatomical ontologies is provided as a separated file: http://bgee.unil.ch/download/organ_association_vHOG.txt This mapping represents homology-strict relationships, in the sense of HOM:0000007 \"historical homology\". Each mapping has been manually reviewed, and we provide confidence codes and references when available.",
     "download_obo": "ftp://ftp.bgee.org/general/ontologies/vHOG.obo",
     "download_owl": "http://purl.obolibrary.org/obo/vhog.owl",
     "example": "0000411",
-    "homepage": "http://bgee.unil.ch",
     "mappings": {
       "aberowl": "VHOG",
       "biocontext": "VHOG",
@@ -35498,21 +35485,15 @@
     "publications": [
       {
         "doi": "10.1603/me12169",
-        "pmc": null,
+        "pmc": "PMC3695545",
         "pubmed": "23427646",
-        "title": "Ontology for Vector Surveillance and Management",
-        "year": null
+        "title": "Ontology for vector surveillance and management.",
+        "year": 2013
       }
     ],
     "uri_format": "http://purl.obolibrary.org/obo/VSMO_$1"
   },
   "vso": {
-    "contact": {
-      "email": "albertgoldfain@gmail.com",
-      "github": null,
-      "name": "Albert Goldfain",
-      "orcid": null
-    },
     "description": "The Vital Sign Ontology (VSO) is an extension of the Ontology for General Medical Science (OGMS). VSO covers the four consensus human vital signs: blood pressure, body temperature, respiration rate, pulse rate. VSO provides also a controlled structured vocabulary for describing vital signs measurement data, the various processes of measuring vital signs, and the various devices and anatomical entities participating in such measurements. ",
     "download_owl": "http://aber-owl.net/media/ontologies/VSO/1/vso.owl",
     "example": "0000041",
@@ -35598,10 +35579,10 @@
     "publications": [
       {
         "doi": "10.1186/2041-1480-4-34",
-        "pmc": null,
-        "pubmed": null,
-        "title": "The vertebrate taxonomy ontology: a framework for reasoning across model organism and species phenotypes",
-        "year": null
+        "pmc": "PMC4177199",
+        "pubmed": "24267744",
+        "title": "The vertebrate taxonomy ontology: a framework for reasoning across model organism and species phenotypes.",
+        "year": 2013
       }
     ],
     "repository": "https://github.com/phenoscape/vertebrate-taxonomy-ontology",
@@ -35906,12 +35887,6 @@
     "uri_format": "http://www.wikigenes.org/e/gene/e/$1.html"
   },
   "wikipathways": {
-    "contact": {
-      "email": "egon.willighagen@gmail.com",
-      "github": null,
-      "name": "Egon Willighagen",
-      "orcid": null
-    },
     "contributor_extras": [
       {
         "email": "egon.willighagen@gmail.com",
@@ -36707,7 +36682,7 @@
         "pmc": "PMC3944782",
         "pubmed": "24568621",
         "title": "The zebrafish anatomy and stage ontologies: representing the anatomy and development of Danio rerio.",
-        "year": null
+        "year": 2014
       }
     ],
     "repository": "https://github.com/cerivs/zebrafish-anatomical-ontology",
