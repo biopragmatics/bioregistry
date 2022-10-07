@@ -172,7 +172,7 @@ def parse_iri(
 
     Corner cases:
 
-    >>> br.parse_iri("https://omim.org/MIM:PS214100")
+    >>> parse_iri("https://omim.org/MIM:PS214100")
     ('omim.ps', '214100')
 
     .. todo:: IRI with weird embedding, like ones that end in .html
