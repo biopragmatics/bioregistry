@@ -170,6 +170,11 @@ def parse_iri(
     >>> parse_iri("https://example.org/chebi:1234", prefix_map=prefix_list)
     ('chebi', '1234')
 
+    Corner cases:
+
+    >>> parse_iri("https://omim.org/MIM:PS214100")
+    ('omim.ps', '214100')
+
     .. todo:: IRI with weird embedding, like ones that end in .html
     """
     if prefix_map is None:

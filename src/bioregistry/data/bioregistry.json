@@ -56001,6 +56001,36 @@
       ],
       "uri_format": "http://www.ncbi.nlm.nih.gov/omim/$1"
     },
+    "providers": [
+      {
+        "code": "legacy",
+        "description": "This is the actual endpoint for OMIM entries",
+        "homepage": "https://www.omim.org",
+        "name": "OMIM",
+        "uri_format": "https://www.omim.org/entry/$1"
+      },
+      {
+        "code": "ncbi.omim",
+        "description": "An NCBI endpoint for OMIM entries",
+        "homepage": "http://www.ncbi.nlm.nih.gov/omim",
+        "name": "NCBI",
+        "uri_format": "http://www.ncbi.nlm.nih.gov/omim/$1"
+      },
+      {
+        "code": "purl",
+        "description": "An extra purl that was registred, but probably won't be used.",
+        "homepage": "https://www.omim.org",
+        "name": "OMIM PURL (not in use)",
+        "uri_format": "https://purl.org/mim/MIM:$1"
+      },
+      {
+        "code": "purl2",
+        "description": "An extra purl that was registred, but probably won't be used.",
+        "homepage": "https://www.omim.org",
+        "name": "OMIM PURL (not in use)",
+        "uri_format": "https://omim.org/OMIM:$1"
+      }
+    ],
     "publications": [
       {
         "doi": "10.1093/nar/gku1205",
@@ -56017,6 +56047,9 @@
         "year": 2005
       }
     ],
+    "references": [
+      "https://github.com/biopragmatics/bioregistry/issues/497"
+    ],
     "synonyms": [
       "OMIM",
       "mim"
@@ -56029,6 +56062,7 @@
       "prefix": "MIM",
       "uri_format": "https://www.omim.org/entry/$1"
     },
+    "uri_format": "https://omim.org/MIM:$1",
     "wikidata": {
       "database": "Q241953",
       "database.homepage": "https://www.omim.org",
@@ -56041,6 +56075,8 @@
     }
   },
   "omim.ps": {
+    "banana": "PS",
+    "banana_peel": "",
     "biolink": {
       "is_identifiers": false,
       "is_obo": false,
@@ -56067,21 +56103,30 @@
       }
     ],
     "description": "A Phenotypic Series is a tabular view of genetic heterogeneity of similar phenotypes across the genome.",
-    "example": "PS214100",
+    "example": "214100",
     "homepage": "https://www.omim.org/phenotypicSeriesTitles/all",
     "mappings": {
       "biolink": "OMIM.PS"
     },
     "name": "OMIM Phenotypic Series",
     "part_of": "omim",
-    "pattern": "^PS\\d+$",
+    "pattern": "^\\d+$",
+    "providers": [
+      {
+        "code": "legacy",
+        "description": "This is the actual endpoint for OMIM phenotypic series entries",
+        "homepage": "https://www.omim.org",
+        "name": "OMIM",
+        "uri_format": "https://omim.org/phenotypicSeries/PS$1"
+      }
+    ],
     "synonyms": [
       "MIMPS",
       "OMIMPS",
       "PS",
       "mim.ps"
     ],
-    "uri_format": "https://omim.org/phenotypicSeries/$1"
+    "uri_format": "https://omim.org/MIM:PS$1"
   },
   "omit": {
     "aberowl": {
