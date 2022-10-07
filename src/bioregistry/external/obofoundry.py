@@ -74,6 +74,7 @@ def _process(record):
         "contact.github": record.get("contact", {}).get("github"),
         "contact.orcid": record.get("contact", {}).get("orcid"),
         "repository": record.get("repository"),
+        "domain": record.get("domain"),
     }
 
     for key in ("publications", "twitter"):

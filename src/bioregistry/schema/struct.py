@@ -47,6 +47,7 @@ __all__ = [
     "Collection",
     "Registry",
     "Context",
+    "Publication",
     "get_json_schema",
 ]
 
@@ -1052,12 +1053,14 @@ class Resource(BaseModel):
             for publication in self.fairsharing.get("publications", []):
                 pubmed = publication.get("pubmed_id")
                 doi = publication.get("doi")
+                if doi:
+                    doi = removeprefix(doi.lower(), "https://doi.org/")
                 title = publication.get("title")
                 if pubmed or doi:
                     publications.append(
                         Publication(
                             pubmed=pubmed and str(pubmed),
-                            doi=doi and doi.lower(),
+                            doi=doi,
                             title=title,
                             pmc=None,
                             year=None,
@@ -2257,7 +2260,7 @@ def _get(resource, key):
 DEDP_PUB_KEYS = ("pubmed", "doi", "pmc")
 
 
-def deduplicate_publications(publications: List[Publication]) -> List[Publication]:
+def deduplicate_publications(publications: Iterable[Publication]) -> List[Publication]:
     """Deduplicate publications."""
     records = [publication.dict(exclude_none=True) for publication in publications]
     records_deduplicated = deduplicate(records, keys=DEDP_PUB_KEYS)

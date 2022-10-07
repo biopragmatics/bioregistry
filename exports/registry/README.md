@@ -33,3 +33,8 @@ most important.
 
 If there's something additional you'd like included in this export, please open
 an issue.
+
+### [`publications.tsv`](publications.tsv)
+
+This is a derived view of all of the publications referenced by various records
+in the Bioregistry.
