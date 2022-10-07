@@ -844,12 +844,10 @@ class TestRegistry(unittest.TestCase):
                     index = defaultdict(lambda: defaultdict(list))
                     for publication in resource.publications:
                         for key, value in publication.dict().items():
-                            if key == "title" or value is None:
+                            if key in {"title", "year"} or value is None:
                                 continue
                             index[key][value].append(publication)
                     for citation_prefix, citation_identifier_dict in index.items():
-                        if citation_prefix == "year":
-                            continue
                         for citation_identifier, values in citation_identifier_dict.items():
                             self.assertEqual(
                                 1,
