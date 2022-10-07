@@ -1,4 +1,6 @@
-"""Train a TF-IDF classifier on resources that should be curated by publication title."""
+# -*- coding: utf-8 -*-
+
+"""Train, evaluate, and apply a TF-IDF classifier on resources that should be curated by publication title."""
 
 import click
 import pandas as pd
@@ -18,9 +20,10 @@ MODULE = pystow.module("bioregistry", "analysis")
 
 @click.command()
 def main():
-    """"""
+    """Train, evaluate, and apply a TF-IDF classifier on resources that should be curated by publication title."""
     click.echo("loading bioregistry publications")
     publication_df = get_publications_df()
+    # TODO extend to documents with only a DOI
     publication_df = publication_df[publication_df.pubmed.notna()]
     publication_df = publication_df[["pubmed", "title"]]
     publication_df["label"] = True

@@ -4,7 +4,7 @@ Run this script with python -m bioregistry.curation.clean_publications.
 """
 
 from functools import lru_cache
-from typing import Optional
+from typing import Optional, cast
 
 from manubot.cite.doi import get_doi_csl_item
 from manubot.cite.pubmed import get_pmid_for_doi, get_pubmed_csl_item
@@ -30,7 +30,7 @@ def _get_doi_csl_item(pmid):
 
 @lru_cache(None)
 def _get_pubmed_from_doi(doi: str) -> Optional[str]:
-    doi = removeprefix(doi, "https://doi.org/")
+    doi = cast(str, removeprefix(doi, "https://doi.org/"))
     return get_pmid_for_doi(doi)
 
 
