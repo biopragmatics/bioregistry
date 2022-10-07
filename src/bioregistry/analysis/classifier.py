@@ -14,7 +14,10 @@ from sklearn.tree import DecisionTreeClassifier
 
 from bioregistry.bibliometrics import get_publications_df
 
-URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=tsv"
+URL = (
+    "https://docs.google.com/spreadsheets/d/e/"
+    "2PACX-1vRPtP-tcXSx8zvhCuX6fqz_QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=tsv"
+)
 MODULE = pystow.module("bioregistry", "analysis")
 
 

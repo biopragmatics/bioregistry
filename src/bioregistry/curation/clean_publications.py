@@ -34,7 +34,7 @@ def _get_pubmed_from_doi(doi: str) -> Optional[str]:
     return get_pmid_for_doi(doi)
 
 
-def _main():
+def _main():  # noqa:C901
     c = 0
 
     resource_dois = []
