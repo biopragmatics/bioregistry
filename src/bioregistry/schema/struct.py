@@ -1053,12 +1053,14 @@ class Resource(BaseModel):
             for publication in self.fairsharing.get("publications", []):
                 pubmed = publication.get("pubmed_id")
                 doi = publication.get("doi")
+                if doi:
+                    doi = removeprefix(doi.lower(), "https://doi.org/")
                 title = publication.get("title")
                 if pubmed or doi:
                     publications.append(
                         Publication(
                             pubmed=pubmed and str(pubmed),
-                            doi=doi and doi.lower(),
+                            doi=doi,
                             title=title,
                             pmc=None,
                             year=None,
