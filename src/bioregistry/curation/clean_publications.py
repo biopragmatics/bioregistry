@@ -6,8 +6,7 @@ Run this script with python -m bioregistry.curation.clean_publications.
 from functools import lru_cache
 from typing import Optional
 
-from manubot.cite.doi import get_pubmed_ids_for_doi
-from manubot.cite.pubmed import get_pubmed_csl_item
+from manubot.cite.pubmed import get_pmid_for_doi, get_pubmed_csl_item
 from tqdm import tqdm
 
 from bioregistry import Resource, manager
@@ -23,15 +22,7 @@ def _get_pubmed_csl_item(pmid):
 @lru_cache(None)
 def _get_pubmed_from_doi(doi: str) -> Optional[str]:
     doi = removeprefix(doi, "https://doi.org/")
-    try:
-        dict = get_pubmed_ids_for_doi(doi)
-    except AssertionError:
-        tqdm.write(f"Expected DOI to start with 10., but got {doi}")
-        return None
-    if dict:
-        print(dict)
-        raise
-    return dict.get("pmid")
+    return get_pmid_for_doi(doi)
 
 
 def _main():
@@ -49,9 +40,10 @@ def _main():
             if publication.pubmed:
                 pubmed_ids.add(publication.pubmed)
             elif publication.doi:
-                dois.add(publication.doi)
-                tqdm.write("getting pubmed from DOI")
-                pmid = _get_pubmed_from_doi(publication.doi)
+                doi = removeprefix(publication.doi, "https://doi.org/")
+                dois.add(doi)
+                tqdm.write(f"getting pubmed from DOI:{doi}")
+                pmid = _get_pubmed_from_doi(doi)
                 if pmid:
                     pubmed_ids.add(pmid)
         if pubmed_ids:

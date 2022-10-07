@@ -47,6 +47,7 @@ __all__ = [
     "Collection",
     "Registry",
     "Context",
+    "Publication",
     "get_json_schema",
 ]
 
