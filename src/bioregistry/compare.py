@@ -33,7 +33,12 @@ from bioregistry import (
     manager,
     read_registry,
 )
-from bioregistry.constants import DOCS_IMG
+from bioregistry.bibliometrics import (
+    count_publication_years,
+    get_oldest_publications,
+    get_publications_df,
+)
+from bioregistry.constants import DOCS_IMG, EXPORT_REGISTRY
 from bioregistry.license_standardizer import standardize_license
 from bioregistry.schema import Resource
 
@@ -268,6 +273,29 @@ def get_registry_infos() -> List[RegistryInfo]:
     ]
 
 
+def bibliometric_comparison():
+    """Generate images."""
+    import matplotlib.pyplot as plt
+    import pandas
+    import seaborn as sns
+
+    publications_df = get_publications_df()
+    publications_df.to_csv(EXPORT_REGISTRY.joinpath("publications.tsv"), sep="\t", index=False)
+
+    publications = get_oldest_publications()
+    year_counter = count_publication_years(publications)
+    df = pandas.DataFrame(sorted(year_counter.items()), columns=["year", "count"])
+
+    fig, ax = plt.subplots(figsize=(8, 3.5))
+    sns.barplot(data=df, ax=ax, x="year", y="count")
+    ax.set_ylabel("Publications")
+    ax.set_xlabel("")
+    ax.set_title(f"Timeline of {len(publications):,} Publications")
+    plt.xticks(rotation=45)
+    fig.tight_layout()
+    fig.savefig(DOCS_IMG.joinpath("bibliography_years.svg"), dpi=350)
+
+
 @click.command()
 def compare():  # noqa:C901
     """Compare the registries."""
@@ -284,6 +312,8 @@ def compare():  # noqa:C901
             fg="red",
         )
         return sys.exit(1)
+
+    bibliometric_comparison()
 
     registry_infos = get_registry_infos()
     overlaps = make_overlaps(registry_infos)

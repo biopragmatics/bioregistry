@@ -1,14 +1,13 @@
+# -*- coding: utf-8 -*-
+
 """Utilities for publications."""
 
 import typing
 from collections import Counter
 from typing import TYPE_CHECKING, Iterable, List
 
-import click
-
-from bioregistry import manager
-from bioregistry.constants import DOCS_IMG, EXPORT_REGISTRY
-from bioregistry.schema.struct import Publication, deduplicate_publications
+from .resource_manager import manager
+from .schema.struct import Publication, deduplicate_publications
 
 if TYPE_CHECKING:
     import pandas
@@ -69,31 +68,3 @@ def count_publication_years(
         if i not in year_counter:
             year_counter[i] = 0
     return year_counter
-
-
-@click.command()
-def main():
-    """Generate images."""
-    import matplotlib.pyplot as plt
-    import pandas
-    import seaborn as sns
-
-    publications_df = get_publications_df()
-    publications_df.to_csv(EXPORT_REGISTRY.joinpath("publications.tsv"), sep="\t", index=False)
-
-    publications = get_oldest_publications()
-    year_counter = count_publication_years(publications)
-    df = pandas.DataFrame(sorted(year_counter.items()), columns=["year", "count"])
-
-    fig, ax = plt.subplots(figsize=(8, 3.5))
-    sns.barplot(data=df, ax=ax, x="year", y="count")
-    ax.set_ylabel("Publications")
-    ax.set_xlabel("")
-    ax.set_title(f"Timeline of {len(publications):,} Publications")
-    plt.xticks(rotation=45)
-    fig.tight_layout()
-    fig.savefig(DOCS_IMG.joinpath("bibliography_years.svg"), dpi=350)
-
-
-if __name__ == "__main__":
-    main()

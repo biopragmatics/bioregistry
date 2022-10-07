@@ -5,28 +5,20 @@ import pandas as pd
 import pystow
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import ElasticNet
-from sklearn.metrics import confusion_matrix, matthews_corrcoef, roc_auc_score
+from sklearn.metrics import matthews_corrcoef, roc_auc_score
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 
-from bioregistry.analysis.bibliometrics import get_publications_df
+from bioregistry.bibliometrics import get_publications_df
 
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPtP-tcXSx8zvhCuX6fqz_QvHowyAoDahnkixARk9rFTe0gfBN9GfdG6qTNQHHVL0i33XGSp_nV9XM/pub?output=tsv"
 MODULE = pystow.module("bioregistry", "analysis")
 
 
-def _map(s: str):
-    if s in {"1", "1.0", 1, 1.0}:
-        return 1
-    if s in {"0", "0.0", 0, 0.0}:
-        return 0
-    return None
-
-
 @click.command()
 def main():
+    """"""
     click.echo("loading bioregistry publications")
     publication_df = get_publications_df()
     publication_df = publication_df[publication_df.pubmed.notna()]
@@ -36,7 +28,7 @@ def main():
 
     click.echo("downloading curation")
     curation_df = MODULE.ensure_csv(url=URL, name="curation.tsv")
-    curation_df["label"] = curation_df["relevant"].map(_map)
+    curation_df["label"] = curation_df["relevant"].map(_map_labels)
     curation_df = curation_df[["pubmed", "title", "label"]]
     click.echo(f"got {curation_df.label.notna().sum()} curated publications from google sheets")
 
@@ -78,7 +70,7 @@ def main():
         click.echo(f"{clf} mcc: {mcc:.2f}, auc-roc: {roc_auc if roc_auc else float('nan'):.2f}")
         # click.echo(confusion_matrix(y_test, y_pred))
 
-    clf = classifiers[0]
+    clf = classifiers[0]  # use the random forest
     importances_df = (
         pd.DataFrame(
             list(
@@ -100,6 +92,14 @@ def main():
     path = MODULE.join(name="results.tsv")
     click.echo(f"writing predicted scores to {path}")
     novel_df.to_csv(path, sep="\t", index=False)
+
+
+def _map_labels(s: str):
+    if s in {"1", "1.0", 1, 1.0}:
+        return 1
+    if s in {"0", "0.0", 0, 0.0}:
+        return 0
+    return None
 
 
 if __name__ == "__main__":
