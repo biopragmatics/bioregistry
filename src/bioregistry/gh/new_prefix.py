@@ -110,7 +110,7 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
             resource_data["example"] = resource_data["example"][len(prefix) + 1 :]
 
         # Capitalize the description
-        resource_data["description"] = resource_data["description"].capitalize()
+        resource_data["description"] = resource_data["description"]
 
         # Ensure the pattern is delimited properly
         pattern = resource_data.get("pattern")
