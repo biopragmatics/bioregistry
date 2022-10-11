@@ -74,7 +74,7 @@ def get_new_prefix_issues(token: Optional[str] = None) -> Mapping[int, Resource]
     )
     rv: Dict[int, Resource] = {}
     for issue_id, resource_data in data.items():
-        prefix = resource_data.pop("prefix")
+        prefix = resource_data.pop("prefix").lower()
         contributor = Author(
             name=resource_data.pop("contributor_name"),
             orcid=_pop_orcid(resource_data),
