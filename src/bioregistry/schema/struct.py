@@ -1741,7 +1741,8 @@ class RegistryGovernance(BaseModel):
         "there's a well-defined, maintained listing, then it can be marked as public. If it can be inferred, e.g. from "
         "reading the commit history on a version control system, then it can be marked as inferrable. A closed"
         " review team, e.g., like for Identifiers.org can be marked as private. Resources that do not"
-        " accept external contributions can be marked with N/A."
+        " accept external contributions can be marked with N/A. An unmoderated regitry like Prefix.cc is marked with "
+        " 'democratic'."
     )
     status: Literal["active", "unresponsive", "inactive"] = Field(
         description="This field denotes the maitenance status of the repository. An active repository is still being "
@@ -1751,7 +1752,7 @@ class RegistryGovernance(BaseModel):
     )
     issue_tracker: Optional[str] = Field(
         description="This field denotes the public issue tracker for issues related to the code and data of the "
-        "repository"
+        "repository."
     )
 
     @property
