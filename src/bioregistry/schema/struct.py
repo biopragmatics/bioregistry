@@ -1735,7 +1735,8 @@ class RegistryGovernance(BaseModel):
         " system, such as GitHub or GitLab? Currently there is no resource that does one but not"
         " the other, so this is grouped (for now)."
     )
-    review_team: Literal["public", "inferrable", "private", "n/a"] = Field(
+    repository: Optional[str] = Field(description="")
+    review_team: Literal["public", "inferrable", "private", "democratic", "n/a"] = Field(
         description="This field denotes if the registry's reviewers/moderators for external contributions known? If "
         "there's a well-defined, maintained listing, then it can be marked as public. If it can be inferred, e.g. from "
         "reading the commit history on a version control system, then it can be marked as inferrable. A closed"
@@ -1747,6 +1748,10 @@ class RegistryGovernance(BaseModel):
         "maintained and also is responsive to external requests for improvement. An unresponsive repository is still "
         "being maintained in some capacity but is not responsive to external requests for improvement. An inactive "
         "repository is no longer being proactively maintained (though may receive occasional patches)."
+    )
+    issue_tracker: Optional[str] = Field(
+        description="This field denotes the public issue tracker for issues related to the code and data of the "
+        "repository"
     )
 
     @property
@@ -1760,6 +1765,21 @@ class RegistryGovernance(BaseModel):
             return "x"
         else:
             return ""
+
+    def score(self) -> int:
+        """Get the governance score."""
+        _r = {"public": 2, "inferrable": 1, "private": 0, "n/a": 0, "democratic": 2}
+        return sum(
+            [
+                self.accepts_external_contributions,
+                self.public_version_control,
+                self.repository is not None,
+                _r[self.review_team],
+                self.status == "active",
+                self.issue_tracker is not None,
+                -1 if self.scope == "internal" else 0,
+            ]
+        )
 
 
 class RegistryQualities(BaseModel):

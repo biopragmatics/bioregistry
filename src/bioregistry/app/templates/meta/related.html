@@ -2,8 +2,12 @@
 
 {% block title %}Related{% endblock %}
 
-{% macro render_circle(value) -%}
-    {{ schema_status_map[value] }}
+{% macro render_circle(value, link=None) -%}
+    {% if link %}
+        <a href="{{ link }}">{{ schema_status_map[value] }}</a>
+    {% else %}
+        {{ schema_status_map[value] }}
+    {% endif %}
 {% endmacro %}
 
 {% macro registry_field_dl(cls, key) -%}
@@ -185,7 +189,7 @@
                     <a href="{{ url_for('metaregistry_ui.metaresource', metaprefix=registry.prefix) }}">{{ registry.get_short_name() }}</a>
                 </td>
                 <td style="text-align: right;">{{ mapping_counts[registry.prefix] }}</td>
-                <td style="text-align: center;">{{ registry.get_quality_score() }}</td>
+                <td style="text-align: right;">{{ registry.get_quality_score() }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.qualities.structured_data) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.qualities.bulk_data) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.qualities.no_authentication) }}</td>
@@ -206,8 +210,14 @@
         the governance and standard operating procedures for each registry.
     </p>
     <dl>
+        <dt>Governance Score</dt>
+        <dd>
+            The sum of the following boolean fields and some additional logic. One point is deducted from registries
+            with internal-focused scope.
+        </dd>
         {{ registry_field_dl(registry_governance_cls, "accepts_external_contributions") }}
         {{ registry_field_dl(registry_governance_cls, "public_version_control") }}
+        {{ registry_field_dl(registry_governance_cls, "issue_tracker") }}
         {{ registry_field_dl(registry_governance_cls, "review_team") }}
         {{ registry_field_dl(registry_governance_cls, "scope") }}
         {{ registry_field_dl(registry_governance_cls, "status") }}
@@ -216,8 +226,10 @@
         <thead>
         <tr>
             <th>Registry</th>
+            <th>Governance Score</th>
             <th>Accepts External Contributions</th>
             <th>Public Version Control</th>
+            <th>Issue Tracker</th>
             <th>Review Team</th>
             <th>Scope</th>
             <th>Status</th>
@@ -229,8 +241,16 @@
                 <td>
                     <a href="{{ url_for('metaregistry_ui.metaresource', metaprefix=registry.prefix) }}">{{ registry.get_short_name() }}</a>
                 </td>
+                <td style="text-align: right;">{{ registry.governance.score() }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.governance.accepts_external_contributions) }}</td>
-                <td style="text-align: center;">{{ render_circle(registry.governance.public_version_control) }}</td>
+                <td style="text-align: center;">{{ render_circle(registry.governance.public_version_control, registry.governance.repository) }}</td>
+                <td style="text-align: center;">
+                    {% if registry.governance.issue_tracker %}
+                        <a href="{{ registry.governance.issue_tracker }}">
+                            <i class="fa fa-external-link" aria-hidden="true"></i>
+                        </a>
+                    {% endif %}
+                </td>
                 <td>{{ registry.governance.review_team }}</td>
                 <td>{{ registry.governance.scope }}</td>
                 <td>{{ registry.governance.status }}</td>
