@@ -431,3 +431,50 @@ def generate_context_json_ld():
             "@context": prefix_map,
         }
     )
+
+
+@api_blueprint.route("/external/mapping/<source>/<target>")
+def mapping(source: str, target: str):
+    """Get mappings between two external prefixes.
+
+    ---
+    parameters:
+    - name: source
+      in: path
+      description: The source metaprefix (e.g., obofoundry)
+      required: true
+      type: string
+    - name: target
+      in: path
+      description: The target metaprefix (e.g., bioportal)
+      required: true
+      type: string
+    """
+    if source not in manager.metaregistry:
+        return {"bad source prefix": source}, 400
+    if target not in manager.metaregistry:
+        return {"bad target prefix": target}, 400
+    rv = {}
+    source_only = 0
+    target_only = 0
+    for resource in manager.registry.values():
+        mappings = resource.get_mappings()
+        mp1_prefix = mappings.get(source)
+        mp2_prefix = mappings.get(target)
+        if mp1_prefix and mp2_prefix:
+            rv[mp1_prefix] = mp2_prefix
+        elif mp1_prefix and not mp2_prefix:
+            source_only += 1
+        elif not mp1_prefix and mp2_prefix:
+            target_only += 1
+
+    return jsonify(
+        meta=dict(
+            overlap=len(rv),
+            source=source,
+            target=target,
+            source_only=source_only,
+            target_only=target_only,
+        ),
+        mappings=rv,
+    )
