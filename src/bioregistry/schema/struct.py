@@ -1847,6 +1847,7 @@ class Registry(BaseModel):
     description: str = Field(..., description="A full description of the registry.")
     homepage: str = Field(..., description="The URL for the homepage of the registry.")
     example: str = Field(..., description="An example prefix inside the registry.")
+    bibtex: Optional[str] = Field(description="Citation key used in BibTex for this registry.")
     availability: RegistrySchema = Field(
         ..., description="A structured description of the metadata that the registry collects"
     )
