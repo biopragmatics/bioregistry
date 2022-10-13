@@ -86,7 +86,34 @@ def resource(prefix: str):
 
 @api_blueprint.route("/metaregistry/<metaprefix>/<metaidentifier>")
 def resource_from_metaregistry(metaprefix: str, metaidentifier: str):
-    """Get a resource by an external prefix."""
+    """Get a resource by an external prefix.
+
+    ---
+    tags:
+    - resource
+    parameters:
+    - name: metaprefix
+      in: path
+      description: The meteprefix for a registry
+      required: true
+      type: string
+      example: obofoundry
+    - name: metaidentifier
+      in: path
+      description: The prefix instide for a registry
+      required: true
+      type: string
+      example: GO
+    - name: format
+      description: The file type
+      in: query
+      required: false
+      default: json
+      schema:
+        type: string
+        enum: [json, yaml, turtle, jsonld]
+
+    """  # noqa:DAR101,DAR201
     if metaprefix not in manager.metaregistry:
         return abort(404, f"invalid metaprefix: {metaprefix}")
     prefix = manager.lookup_from(metaprefix, metaidentifier, normalize=True)
@@ -470,7 +497,7 @@ def mapping(source: str, target: str):
       description: The target metaprefix (e.g., bioportal)
       required: true
       type: string
-    """
+    """  # noqa:DAR101,DAR201
     if source not in manager.metaregistry:
         return {"bad source prefix": source}, 400
     if target not in manager.metaregistry:
