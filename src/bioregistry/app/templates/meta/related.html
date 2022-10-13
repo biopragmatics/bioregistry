@@ -57,12 +57,24 @@
         it is not part of the metadata schema. For lookup services like the OLS, some fields (i.e.,&nbsp;Example ID,
         Default Provider, Alternate Providers) are omitted because inclusion would be redundant.
     </p>
-    <p>
-        <b>Caveats:</b> Several of Wikidata's fields can be accessed indirectly with alternative SPARQL queries.
-        BioPortal's data is locked behind an API that requires a key and has rate limited access. The Crop Ontology
-        Curation Tool does not list homepages because it is the homepage itself. Non-english language registries in the
-        OntoPortal Alliance were not included.
-    </p>
+    <dl>
+        <dt>Data Model Score</dt>
+        <dd>
+            The weighted sum of green dots, less valuable yellow dots, and some negatively weighted red dots. Higher is
+            better.
+        </dd>
+        {{ registry_field_dl(registry_schema_cls, "name") }}
+        {{ registry_field_dl(registry_schema_cls, "homepage") }}
+        {{ registry_field_dl(registry_schema_cls, "description") }}
+        {{ registry_field_dl(registry_schema_cls, "example") }}
+        {{ registry_field_dl(registry_schema_cls, "pattern") }}
+        {{ registry_field_dl(registry_schema_cls, "provider") }}
+        {{ registry_field_dl(registry_schema_cls, "alternate_providers") }}
+        {{ registry_field_dl(registry_schema_cls, "synonyms") }}
+        {{ registry_field_dl(registry_schema_cls, "license") }}
+        {{ registry_field_dl(registry_schema_cls, "version") }}
+        {{ registry_field_dl(registry_schema_cls, "contact") }}
+    </dl>
     <table id="comparison-datamodel" class="table table-striped table-hover table-sm">
         <thead>
         <tr>
@@ -103,6 +115,11 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <p>
+        <b>Notes:</b> Several of Wikidata's fields can be accessed indirectly with alternative SPARQL queries.
+        Non-english language registries in the OntoPortal Alliance were not considered.
+    </p>
 
     <h3>Capabilities and Qualities</h3>
     <p>

@@ -1805,17 +1805,52 @@ class RegistryQualities(BaseModel):
 class RegistrySchema(BaseModel):
     """Metadata about a registry's schema."""
 
-    name: SchemaStatus  # type:ignore
-    homepage: SchemaStatus  # type:ignore
-    description: SchemaStatus  # type:ignore
-    example: SchemaStatus  # type:ignore
-    pattern: SchemaStatus  # type:ignore
-    provider: SchemaStatus  # type:ignore
-    alternate_providers: SchemaStatus  # type:ignore
-    synonyms: SchemaStatus  # type:ignore
-    license: SchemaStatus  # type:ignore
-    version: SchemaStatus  # type:ignore
-    contact: SchemaStatus  # type:ignore
+    name: SchemaStatus = Field(
+        description="This field denotes if a name is required, optional, "
+        "or never captured for each record in the registry."
+    )
+    homepage: SchemaStatus = Field(
+        description="This field denotes if a homepage is required, optional, "
+        "or never captured for each record in the registry."
+    )
+    description: SchemaStatus = Field(
+        description="This field denotes if a description is required, optional, "
+        "or never captured for each record in the registry."
+    )
+    example: SchemaStatus = Field(
+        description="This field denotes if an example local unique identifier is "
+        "required, optional, or never captured for each record in the registry."
+    )
+    pattern: SchemaStatus = Field(
+        description="This field denotes if a regular expression pattern for matching "
+        "local unique identifiers is required, optional, or never captured for each record in the registry."
+    )
+    provider: SchemaStatus = Field(
+        description="This field denotes if a URI format string for converting local "
+        "unique identifiers into URIs is required, optional, or never captured for each record in the registry."
+    )
+    alternate_providers: Literal["present", "missing"] = Field(
+        description="This field denotes if additional/secondary URI format strings "
+        "for converting local unique identifiers into URIs is required, optional, or never captured for "
+        "each record in the registry."
+    )
+    synonyms: Literal["present", "missing"] = Field(
+        description="This field denotes if alternative prefixes (e.g., taxonomy for NCBITaxon) "
+        "is required, optional, or never captured for each record in the registry."
+    )
+    license: SchemaStatus = Field(
+        description="This field denotes if capturing the data license is required, optional, "
+        "or never captured for each record in the registry."
+    )
+    version: SchemaStatus = Field(
+        description="This field denotes if capturing the current data version is required, "
+        "optional, or never captured for each record in the registry."
+    )
+    contact: SchemaStatus = Field(
+        description="This field denotes if capturing the primary responsible person's contact "
+        "information (e.g., name, ORCID, email) is required, optional, or never captured for each "
+        "record in the registry."
+    )
     search: bool = Field(
         ...,
         title="Prefix Search",
