@@ -1781,18 +1781,10 @@ class RegistryQualities(BaseModel):
         " through its data. Another counterexample is HL7 which requires manually navigating a form to"
         " download its content. While GenBank is not structured, it is still bulk downloadable."
     )
-    open_data: bool = Field(
+    requires_authentication: bool = Field(
         description="Does this registry provide access to its data without an API key? For example,"
         " Identifiers.org. As a counter-example, BioPortal requires an API key for access to its structured data."
     )
-    """
-    "qualities": {
-        "structured_data": true,
-        "bulk_data": true,
-        "open_data": true
-      },
-    
-    """
 
 
 class RegistrySchema(BaseModel):
