@@ -1826,27 +1826,27 @@ class RegistryQualities(BaseModel):
 class RegistrySchema(BaseModel):
     """Metadata about a registry's schema."""
 
-    name: SchemaStatus = Field(
+    name: SchemaStatus = Field(  # type:ignore
         description="This field denotes if a name is required, optional, "
         "or never captured for each record in the registry."
     )
-    homepage: SchemaStatus = Field(
+    homepage: SchemaStatus = Field(  # type:ignore
         description="This field denotes if a homepage is required, optional, "
         "or never captured for each record in the registry."
     )
-    description: SchemaStatus = Field(
+    description: SchemaStatus = Field(  # type:ignore
         description="This field denotes if a description is required, optional, "
         "or never captured for each record in the registry."
     )
-    example: SchemaStatus = Field(
+    example: SchemaStatus = Field(  # type:ignore
         description="This field denotes if an example local unique identifier is "
         "required, optional, or never captured for each record in the registry."
     )
-    pattern: SchemaStatus = Field(
+    pattern: SchemaStatus = Field(  # type:ignore
         description="This field denotes if a regular expression pattern for matching "
         "local unique identifiers is required, optional, or never captured for each record in the registry."
     )
-    provider: SchemaStatus = Field(
+    provider: SchemaStatus = Field(  # type:ignore
         description="This field denotes if a URI format string for converting local "
         "unique identifiers into URIs is required, optional, or never captured for each record in the registry."
     )
@@ -1859,15 +1859,15 @@ class RegistrySchema(BaseModel):
         description="This field denotes if alternative prefixes (e.g., taxonomy for NCBITaxon) "
         "is required, optional, or never captured for each record in the registry."
     )
-    license: SchemaStatus = Field(
+    license: SchemaStatus = Field(  # type:ignore
         description="This field denotes if capturing the data license is required, optional, "
         "or never captured for each record in the registry."
     )
-    version: SchemaStatus = Field(
+    version: SchemaStatus = Field(  # type:ignore
         description="This field denotes if capturing the current data version is required, "
         "optional, or never captured for each record in the registry."
     )
-    contact: SchemaStatus = Field(
+    contact: SchemaStatus = Field(  # type:ignore
         description="This field denotes if capturing the primary responsible person's contact "
         "information (e.g., name, ORCID, email) is required, optional, or never captured for each "
         "record in the registry."

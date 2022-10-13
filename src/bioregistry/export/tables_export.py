@@ -26,7 +26,6 @@ YES = "Y"
 # MAYBE = "●"
 MAYBE = "o"
 NO = ""
-IRRELEVANT = "-"
 
 #: This is Table S2 in the paper
 GOVERNANCE_COLUMNS = [
@@ -36,7 +35,8 @@ GOVERNANCE_COLUMNS = [
     "Imports External Prefixes",
     "Curates Novel Prefixes",
     "Accepts External Contributions",
-    "Uses Public Version Control",
+    "Public Version Control",
+    "Public Issue Tracker",
     "Has Public Review Team",
 ]
 
@@ -64,8 +64,6 @@ schema_status_map = {
     "present": MAYBE,
     "present*": f"{MAYBE}*",
     "missing": NO,
-    "irrelevant": IRRELEVANT,
-    "irrelevant*": f"{IRRELEVANT}*",
 }
 
 
@@ -90,6 +88,7 @@ def _get_governance_df() -> pd.DataFrame:
                 _render_bool(registry.governance.curates),
                 _render_bool(registry.governance.accepts_external_contributions),
                 _render_bool(registry.governance.public_version_control),
+                _render_bool(registry.governance.issue_tracker is not None),
                 registry.governance.review_team_icon,
             )
         )
