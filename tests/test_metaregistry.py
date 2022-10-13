@@ -82,6 +82,9 @@ class TestMetaregistry(unittest.TestCase):
                         msg="All non-FAIR resources require an explanation using the `fair_note` key",
                     )
 
+                self.assertIsNotNone(registry.qualities)
+                self.assertIsInstance(registry.qualities.bulk_data, bool)
+
     def test_get_registry(self):
         """Test getting a registry."""
         self.assertIsNone(bioregistry.get_registry("nope"))

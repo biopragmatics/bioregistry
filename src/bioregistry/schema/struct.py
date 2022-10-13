@@ -1765,6 +1765,36 @@ class RegistryGovernance(BaseModel):
             return ""
 
 
+class RegistryQualities(BaseModel):
+    """Qualities about a registry."""
+
+    structured_data: bool = Field(
+        description="Does this registry provide structured access to its data? For example,"
+        " this can be through an API (e.g., FAIRsharing, OLS) or a bulk download (e.g., OBO Foundry) in a "
+        "structured file format. A counter-example is a site that must be scraped to acquied its content "
+                    "(e.g, the NCBI GenBank)."
+    )
+    bulk_data: bool = Field(
+        description="Does this registry provide a bulk dump of its data? For example,"
+        " the OBO Foundry provides its bulk data in a file and Identifiers.org provides its bulk data in"
+        " an API endpoint. A counterexample is FAIRsharing, which requires slow, expensive pagination"
+        " through its data. Another counterexample is HL7 which requires manually navigating a form to"
+        " download its content. While GenBank is not structured, it is still bulk downloadable."
+    )
+    open_data: bool = Field(
+        description="Does this registry provide access to its data without an API key? For example,"
+        " Identifiers.org. As a counter-example, BioPortal requires an API key for access to its structured data."
+    )
+    """
+    "qualities": {
+        "structured_data": true,
+        "bulk_data": true,
+        "open_data": true
+      },
+    
+    """
+
+
 class RegistrySchema(BaseModel):
     """Metadata about a registry's schema."""
 
@@ -1829,6 +1859,9 @@ class Registry(BaseModel):
     example: str = Field(..., description="An example prefix inside the registry.")
     availability: RegistrySchema = Field(
         ..., description="A structured description of the metadata that the registry collects"
+    )
+    qualities: RegistryQualities = Field(
+        ..., description="A structured description of the registry's qualities"
     )
     governance: RegistryGovernance = Field(
         ..., description="A structured description of the governance for the registry"
