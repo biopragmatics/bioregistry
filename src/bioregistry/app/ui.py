@@ -37,6 +37,7 @@ from ..schema.constants import bioregistry_schema_terms
 from ..schema.struct import (
     Registry,
     RegistryGovernance,
+    RegistryQualities,
     RegistrySchema,
     get_json_schema,
     schema_status_map,
@@ -453,6 +454,7 @@ def related():
         registry_cls=Registry,
         registry_governance_cls=RegistryGovernance,
         registry_schema_cls=RegistrySchema,
+        registry_qualities_cls=RegistryQualities,
     )
 
 

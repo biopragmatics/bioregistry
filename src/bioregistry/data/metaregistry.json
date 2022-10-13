@@ -2,20 +2,20 @@
   "metaregistry": [
     {
       "availability": {
-        "alternate_providers": "irrelevant",
+        "alternate_providers": "missing",
         "contact": "missing",
         "description": "required",
-        "example": "irrelevant",
-        "fair": true,
+        "example": "present",
         "homepage": "required",
         "license": "missing",
         "name": "required",
         "pattern": "missing",
-        "provider": "irrelevant",
+        "provider": "present",
         "search": true,
         "synonyms": "missing",
         "version": "present"
       },
+      "bibtex": "Hoehndorf2015",
       "contact": {
         "email": "ali.syed@kaust.edu.sa",
         "github": "aliraza995",
@@ -40,26 +40,32 @@
       "name": "AberOWL",
       "prefix": "aberowl",
       "provider_uri_format": "http://aber-owl.net/ontology/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
       "resolver_type": "lookup",
-      "resolver_uri_format": "http://aber-owl.net/ontology/$1/#/Browse/<http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F$1_$2>"
+      "resolver_uri_format": "http://aber-owl.net/ontology/$1/#/Browse/<http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F$1_$2>",
+      "search_uri_format": "http://aber-owl.net/#/$1/Ontologies"
     },
     {
       "availability": {
-        "alternate_providers": "irrelevant",
+        "alternate_providers": "missing",
         "contact": "present",
         "description": "required",
-        "example": "irrelevant",
-        "fair": false,
-        "fair_note": "The API for AgroPortal requires authentication",
+        "example": "present",
         "homepage": "required",
         "license": "present",
         "name": "required",
         "pattern": "missing",
-        "provider": "irrelevant",
-        "search": false,
+        "provider": "required",
+        "search": true,
         "synonyms": "missing",
         "version": "present"
       },
+      "bibtex": "Jonquet2018",
       "contact": {
         "email": "clement.jonquet@inrae.fr",
         "github": "jonquet",
@@ -82,7 +88,14 @@
       "license": "See https://github.com/biopragmatics/bioregistry/issues/336",
       "name": "AgroPortal",
       "prefix": "agroportal",
-      "provider_uri_format": "http://agroportal.lirmm.fr/ontologies/$1"
+      "provider_uri_format": "http://agroportal.lirmm.fr/ontologies/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": false,
+        "no_authentication": false,
+        "structured_data": true
+      },
+      "resolver_type": "lookup"
     },
     {
       "availability": {
@@ -90,7 +103,6 @@
         "contact": "missing",
         "description": "missing",
         "example": "missing",
-        "fair": true,
         "homepage": "missing",
         "license": "missing",
         "name": "missing",
@@ -100,6 +112,7 @@
         "synonyms": "missing",
         "version": "missing"
       },
+      "bibtex": "biocontext",
       "contact": {
         "email": "cjmungall@lbl.gov",
         "github": "cmungall",
@@ -114,7 +127,9 @@
         "curates": true,
         "curation": "open-review",
         "imports": false,
+        "issue_tracker": "https://github.com/prefixcommons/biocontext/issues",
         "public_version_control": true,
+        "repository": "https://github.com/prefixcommons/biocontext",
         "review_team": "inferrable",
         "scope": "internal",
         "status": "active"
@@ -123,7 +138,13 @@
       "license": "missing",
       "name": "BioContext",
       "prefix": "biocontext",
-      "provider_uri_format": "https://bioregistry.io/metaregistry/biocontext/$1"
+      "provider_uri_format": "https://bioregistry.io/metaregistry/biocontext/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      }
     },
     {
       "availability": {
@@ -131,7 +152,6 @@
         "contact": "missing",
         "description": "missing",
         "example": "missing",
-        "fair": true,
         "homepage": "missing",
         "license": "present",
         "name": "required",
@@ -141,6 +161,7 @@
         "synonyms": "missing",
         "version": "missing"
       },
+      "bibtex": "Unni2022",
       "bioregistry_prefix": "biolink",
       "contact": {
         "email": "deepak.unni3@lbl.gov",
@@ -156,7 +177,9 @@
         "curates": true,
         "curation": "open-review",
         "imports": false,
+        "issue_tracker": "https://github.com/biolink/biolink-model/issues",
         "public_version_control": true,
+        "repository": "https://github.com/biolink/biolink-model",
         "review_team": "inferrable",
         "scope": "internal",
         "status": "active"
@@ -165,25 +188,30 @@
       "license": "Apache 2.0",
       "name": "Biolink Model Registry",
       "prefix": "biolink",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
       "short_name": "Biolink"
     },
     {
       "availability": {
-        "alternate_providers": "irrelevant",
+        "alternate_providers": "missing",
         "contact": "present",
         "description": "required",
-        "example": "irrelevant",
-        "fair": false,
-        "fair_note": "The API for BioPortal requires authentication",
+        "example": "present",
         "homepage": "required",
         "license": "missing",
         "name": "required",
         "pattern": "missing",
-        "provider": "irrelevant",
-        "search": false,
+        "provider": "required",
+        "search": true,
         "synonyms": "missing",
         "version": "required"
       },
+      "bibtex": "Whetzel2011",
       "bioregistry_prefix": "bioportal",
       "contact": {
         "email": "jgraybeal@stanford.edu",
@@ -198,6 +226,7 @@
         "curates": true,
         "curation": "opaque-review",
         "imports": false,
+        "issue_tracker": "https://github.com/ncbo/bioportal-project/issues",
         "public_version_control": false,
         "review_team": "private",
         "scope": "bio-ontologies",
@@ -208,6 +237,13 @@
       "name": "BioPortal Prefixes",
       "prefix": "bioportal",
       "provider_uri_format": "https://bioportal.bioontology.org/ontologies/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": false,
+        "no_authentication": false,
+        "structured_data": true
+      },
+      "resolver_type": "lookup",
       "short_name": "BioPortal"
     },
     {
@@ -216,7 +252,6 @@
         "contact": "present",
         "description": "required",
         "example": "required",
-        "fair": true,
         "homepage": "required",
         "license": "present",
         "name": "required",
@@ -226,6 +261,7 @@
         "synonyms": "present",
         "version": "present"
       },
+      "bibtex": "Hoyt2022",
       "bioregistry_prefix": "bioregistry",
       "contact": {
         "email": "cthoyt@gmail.com",
@@ -241,7 +277,9 @@
         "curates": true,
         "curation": "open-review",
         "imports": true,
+        "issue_tracker": "https://github.com/biopragmatics/bioregistry/issues",
         "public_version_control": true,
+        "repository": "https://github.com/biopragmatics/bioregistry",
         "review_team": "public",
         "scope": "life sciences",
         "status": "active"
@@ -251,6 +289,12 @@
       "name": "Bioregistry",
       "prefix": "bioregistry",
       "provider_uri_format": "https://bioregistry.io/registry/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
       "resolver_type": "resolver",
       "resolver_uri_format": "https://bioregistry.io/$1:$2"
     },
@@ -260,8 +304,6 @@
         "contact": "missing",
         "description": "missing",
         "example": "missing",
-        "fair": true,
-        "fair_note": "Data is available but requires custom parser",
         "homepage": "required",
         "license": "missing",
         "name": "required",
@@ -271,6 +313,7 @@
         "synonyms": "missing",
         "version": "missing"
       },
+      "bibtex": "Bairoch2018",
       "bioregistry_prefix": "cellosaurus.resource",
       "contact": {
         "email": "Amos.Bairoch@sib.swiss",
@@ -294,6 +337,12 @@
       "license": "CC BY 4.0",
       "name": "Cellosaurus Registry",
       "prefix": "cellosaurus",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
       "short_name": "Cellosaurus"
     },
     {
@@ -302,8 +351,6 @@
         "contact": "missing",
         "description": "missing",
         "example": "missing",
-        "fair": false,
-        "fair_note": "No additional metadata included besides name in ontology",
         "homepage": "missing",
         "license": "missing",
         "name": "required",
@@ -313,6 +360,7 @@
         "synonyms": "missing",
         "version": "missing"
       },
+      "bibtex": "Hastings2011",
       "bioregistry_prefix": "cheminf",
       "contact": {
         "email": "egon.willighagen@gmail.com",
@@ -327,7 +375,9 @@
         "curates": true,
         "curation": "open-review",
         "imports": false,
+        "issue_tracker": "https://github.com/semanticchemistry/semanticchemistry/issues",
         "public_version_control": true,
+        "repository": "https://github.com/semanticchemistry/semanticchemistry",
         "review_team": "inferrable",
         "scope": "chemistry",
         "status": "unresponsive"
@@ -337,24 +387,31 @@
       "name": "Chemical Information Ontology",
       "prefix": "cheminf",
       "provider_uri_format": "https://www.ebi.ac.uk/ols/ontologies/cheminf/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
+      "resolver_type": "lookup",
       "short_name": "CHEMINF"
     },
     {
       "availability": {
-        "alternate_providers": "irrelevant",
+        "alternate_providers": "missing",
         "contact": "missing",
         "description": "missing",
-        "example": "irrelevant",
-        "fair": true,
-        "homepage": "irrelevant*",
+        "example": "present",
+        "homepage": "required",
         "license": "missing",
         "name": "required",
         "pattern": "missing",
-        "provider": "irrelevant",
+        "provider": "required",
         "search": true,
         "synonyms": "missing",
         "version": "missing"
       },
+      "bibtex": "Arnaud2020",
       "contact": {
         "email": "e.arnaud@cgiar.org",
         "github": "elizabetharnaud",
@@ -369,6 +426,7 @@
         "curates": true,
         "curation": "opaque-review",
         "imports": false,
+        "issue_tracker": "https://github.com/EBISPOT/OLS/issues",
         "public_version_control": false,
         "review_team": "public",
         "scope": "agro-ontologies",
@@ -379,25 +437,32 @@
       "name": "Crop Ontology Curation Tool",
       "prefix": "cropoct",
       "provider_uri_format": "https://www.cropontology.org/ontology/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
+      "resolver_type": "lookup",
+      "resolver_uri_format": "https://cropontology.org/term/$1:$2",
       "short_name": "CropOCT"
     },
     {
       "availability": {
-        "alternate_providers": "irrelevant",
+        "alternate_providers": "missing",
         "contact": "present",
         "description": "required",
-        "example": "irrelevant",
-        "fair": false,
-        "fair_note": "The API for EcoPortal requires authentication",
+        "example": "present",
         "homepage": "present",
         "license": "present",
         "name": "required",
         "pattern": "missing",
-        "provider": "irrelevant",
-        "search": false,
+        "provider": "present",
+        "search": true,
         "synonyms": "missing",
         "version": "present"
       },
+      "bibtex": "Kechagioglou2021",
       "contact": {
         "email": "xeni.kechagioglou@lifewatch.eu",
         "github": "xeniacs",
@@ -420,7 +485,14 @@
       "license": "See https://github.com/biopragmatics/bioregistry/issues/338",
       "name": "EcoPortal",
       "prefix": "ecoportal",
-      "provider_uri_format": "http://ecoportal.lifewatch.eu/ontologies/$1"
+      "provider_uri_format": "http://ecoportal.lifewatch.eu/ontologies/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": false,
+        "no_authentication": false,
+        "structured_data": true
+      },
+      "resolver_type": "lookup"
     },
     {
       "availability": {
@@ -428,13 +500,12 @@
         "contact": "missing",
         "description": "missing",
         "example": "missing",
-        "fair": true,
         "homepage": "missing",
         "license": "missing",
         "name": "required",
         "pattern": "missing",
         "provider": "missing",
-        "search": false,
+        "search": true,
         "synonyms": "missing",
         "version": "missing"
       },
@@ -453,16 +524,24 @@
         "curates": true,
         "curation": "community",
         "imports": false,
+        "issue_tracker": "https://github.com/edamontology/edamontology/issues",
         "public_version_control": true,
+        "repository": "https://github.com/edamontology/edamontology",
         "review_team": "inferrable",
         "scope": "Life Sciences",
         "status": "active"
       },
       "homepage": " http://edamontology.org",
-      "license": "CC BY 4.0-SA",
+      "license": "CC BY-SA 4.0",
       "name": "EDAM Ontology",
       "prefix": "edam",
       "provider_uri_format": "http://edamontology.org/data_$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
       "short_name": "EDAM"
     },
     {
@@ -471,8 +550,6 @@
         "contact": "required",
         "description": "required",
         "example": "missing",
-        "fair": false,
-        "fair_note": "The API for FAIRsharing requires authentication",
         "homepage": "required",
         "license": "missing",
         "name": "required",
@@ -482,6 +559,7 @@
         "synonyms": "missing",
         "version": "missing"
       },
+      "bibtex": "Sansone2019",
       "bioregistry_prefix": "fairsharing",
       "contact": {
         "email": "allyson.lister@oerc.ox.ac.uk",
@@ -506,7 +584,13 @@
       "logo_url": "https://api.fairsharing.org/img/fairsharing-attribution.svg",
       "name": "FAIRSharing",
       "prefix": "fairsharing",
-      "provider_uri_format": "https://fairsharing.org/$1"
+      "provider_uri_format": "https://fairsharing.org/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": false,
+        "no_authentication": false,
+        "structured_data": true
+      }
     },
     {
       "availability": {
@@ -514,7 +598,6 @@
         "contact": "missing",
         "description": "present",
         "example": "present",
-        "fair": true,
         "homepage": "present",
         "license": "missing",
         "name": "required",
@@ -524,6 +607,7 @@
         "synonyms": "missing",
         "version": "missing"
       },
+      "bibtex": "TheGeneOntologyConsortium2019",
       "bioregistry_prefix": "go.resource",
       "contact": {
         "email": "cjmungall@lbl.gov",
@@ -539,7 +623,9 @@
         "curates": true,
         "curation": "open-review",
         "imports": false,
+        "issue_tracker": "https://github.com/geneontology/go-site/issues",
         "public_version_control": true,
+        "repository": "https://github.com/geneontology/go-site",
         "review_team": "inferrable",
         "scope": "internal",
         "status": "inactive"
@@ -548,16 +634,20 @@
       "license": "CC BY 4.0",
       "name": "Gene Ontology Registry",
       "prefix": "go",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
       "short_name": "GO"
     },
     {
       "availability": {
-        "alternate_providers": "irrelevant",
+        "alternate_providers": "missing",
         "contact": "present",
         "description": "present",
         "example": "missing",
-        "fair": false,
-        "fair_note": "There are no download links nor API endpoints",
         "homepage": "present",
         "license": "missing",
         "name": "required",
@@ -591,6 +681,12 @@
       "name": "HL7 External Code Systems",
       "prefix": "hl7",
       "provider_uri_format": "http://www.oid-info.com/get/$1",
+      "qualities": {
+        "automatable_download": false,
+        "bulk_data": false,
+        "no_authentication": true,
+        "structured_data": true
+      },
       "short_name": "HL7"
     },
     {
@@ -599,7 +695,6 @@
         "contact": "missing",
         "description": "required",
         "example": "required",
-        "fair": true,
         "homepage": "required",
         "license": "missing",
         "name": "required",
@@ -609,6 +704,7 @@
         "synonyms": "missing",
         "version": "missing"
       },
+      "bibtex": "Juty2012",
       "bioregistry_prefix": "miriam",
       "contact": {
         "email": "hhe@ebi.ac.uk",
@@ -624,6 +720,7 @@
         "curates": true,
         "curation": "opaque-review",
         "imports": false,
+        "issue_tracker": "https://github.com/identifiers-org/identifiers-org.github.io/issues",
         "public_version_control": false,
         "review_team": "private",
         "scope": "life sciences",
@@ -635,6 +732,12 @@
       "name": "Identifiers.org",
       "prefix": "miriam",
       "provider_uri_format": "https://registry.identifiers.org/registry/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
       "resolver_type": "resolver",
       "resolver_uri_format": "https://identifiers.org/$1:$2"
     },
@@ -644,7 +747,6 @@
         "contact": "missing",
         "description": "required",
         "example": "required",
-        "fair": true,
         "homepage": "required",
         "license": "missing",
         "name": "required",
@@ -654,6 +756,7 @@
         "synonyms": "present",
         "version": "missing"
       },
+      "bibtex": "Wimalaratne2018",
       "bioregistry_prefix": "n2t",
       "contact": {
         "email": "jak@ucop.edu",
@@ -680,6 +783,12 @@
       "name": "Name-to-Thing",
       "prefix": "n2t",
       "provider_uri_format": "https://n2t.net/$1:",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
       "resolver_type": "resolver",
       "resolver_uri_format": "https://n2t.net/$1:$2",
       "short_name": "N2T"
@@ -690,8 +799,6 @@
         "contact": "missing",
         "description": "missing",
         "example": "required",
-        "fair": false,
-        "fair_note": "Requires web scraping",
         "homepage": "required",
         "license": "missing",
         "name": "required",
@@ -701,6 +808,7 @@
         "synonyms": "missing",
         "version": "missing"
       },
+      "bibtex": "Clark2016",
       "bioregistry_prefix": "ncbi.resource",
       "contact": {
         "email": "gb-admin@ncbi.nlm.nih.gov",
@@ -722,6 +830,12 @@
       "license": "See https://github.com/biopragmatics/bioregistry/issues/342",
       "name": "National Center for Biotechnology Information Registry",
       "prefix": "ncbi",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": false
+      },
       "short_name": "NCBI"
     },
     {
@@ -730,16 +844,16 @@
         "contact": "required",
         "description": "required",
         "example": "missing",
-        "fair": true,
         "homepage": "required",
         "license": "required",
         "name": "required",
         "pattern": "missing",
         "provider": "missing",
-        "search": false,
+        "search": true,
         "synonyms": "missing",
         "version": "missing"
       },
+      "bibtex": "Jackson2021",
       "contact": {
         "email": "cjmungall@lbl.gov",
         "github": "cmungall",
@@ -754,7 +868,9 @@
         "curates": true,
         "curation": "open-review",
         "imports": false,
+        "issue_tracker": "https://github.com/OBOFoundry/OBOFoundry.github.io/issues",
         "public_version_control": true,
+        "repository": "https://github.com/OBOFoundry/OBOFoundry.github.io",
         "review_team": "public",
         "scope": "bio-ontologies",
         "status": "active"
@@ -765,25 +881,31 @@
       "name": "OBO Foundry",
       "prefix": "obofoundry",
       "provider_uri_format": "http://www.obofoundry.org/ontology/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
       "resolver_type": "resolver",
       "resolver_uri_format": "http://purl.obolibrary.org/obo/$1_$2"
     },
     {
       "availability": {
-        "alternate_providers": "irrelevant",
+        "alternate_providers": "missing",
         "contact": "present",
         "description": "required",
-        "example": "irrelevant",
-        "fair": true,
+        "example": "present",
         "homepage": "present",
         "license": "required",
         "name": "required",
         "pattern": "missing",
-        "provider": "irrelevant",
+        "provider": "present",
         "search": true,
         "synonyms": "missing",
         "version": "present"
       },
+      "bibtex": "Cote2006a",
       "contact": {
         "email": "henriette007@ebi.ac.uk",
         "github": "henrietteharmse",
@@ -798,6 +920,7 @@
         "curates": false,
         "curation": "import",
         "imports": false,
+        "issue_tracker": "https://github.com/EBISPOT/OLS/issues/",
         "public_version_control": false,
         "review_team": "inferrable",
         "scope": "bio-ontologies",
@@ -809,25 +932,31 @@
       "name": "Ontology Lookup Service",
       "prefix": "ols",
       "provider_uri_format": "https://www.ebi.ac.uk/ols/ontologies/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
+      "resolver_type": "lookup",
       "short_name": "OLS"
     },
     {
       "availability": {
-        "alternate_providers": "irrelevant",
+        "alternate_providers": "missing",
         "contact": "required",
         "description": "required",
-        "example": "irrelevant",
-        "fair": false,
-        "fair_note": "No API available, data download requires web scraping",
+        "example": "present",
         "homepage": "required",
         "license": "missing",
         "name": "required",
         "pattern": "missing",
-        "provider": "irrelevant",
+        "provider": "present",
         "search": false,
         "synonyms": "missing",
         "version": "missing"
       },
+      "bibtex": "Ong2017",
       "contact": {
         "email": "yongqunh@med.umich.edu",
         "github": "yongqunh",
@@ -837,10 +966,11 @@
       "description": "Ontobee is aimed to facilitate ontology data sharing, visualization, query, integration, and analysis.",
       "example": "AGRO",
       "governance": {
-        "accepts_external_contributions": false,
+        "accepts_external_contributions": true,
         "curates": false,
         "curation": "import",
         "imports": false,
+        "issue_tracker": "https://github.com/OntoZoo/ontobee/issues",
         "public_version_control": false,
         "review_team": "n/a",
         "scope": "bio-ontologies",
@@ -851,6 +981,12 @@
       "name": "OntoBee",
       "prefix": "ontobee",
       "provider_uri_format": "http://www.ontobee.org/ontology/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": false
+      },
       "resolver_type": "lookup",
       "resolver_uri_format": "http://www.ontobee.org/ontology/$1?iri=http://purl.obolibrary.org/obo/$1_$2"
     },
@@ -860,7 +996,6 @@
         "contact": "missing",
         "description": "missing",
         "example": "missing",
-        "fair": true,
         "homepage": "missing",
         "license": "missing",
         "name": "missing",
@@ -884,8 +1019,10 @@
         "curates": true,
         "curation": "community",
         "imports": false,
+        "issue_tracker": "https://github.com/cygri/prefix.cc/issues",
         "public_version_control": true,
-        "review_team": "n/a",
+        "repository": "https://github.com/cygri/prefix.cc/",
+        "review_team": "democratic",
         "scope": "general",
         "status": "active"
       },
@@ -893,15 +1030,20 @@
       "license": "CC0",
       "name": "Prefix.cc",
       "prefix": "prefixcc",
-      "provider_uri_format": "https://prefix.cc/$1"
+      "provider_uri_format": "https://prefix.cc/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      }
     },
     {
       "availability": {
-        "alternate_providers": "required",
+        "alternate_providers": "present",
         "contact": "missing",
         "description": "present",
         "example": "present",
-        "fair": true,
         "homepage": "present",
         "license": "missing",
         "name": "required",
@@ -911,6 +1053,7 @@
         "synonyms": "present",
         "version": "missing"
       },
+      "bibtex": "prefixcommons",
       "bioregistry_prefix": "prefixcommons",
       "contact": {
         "email": "michel.dumontier@gmail.com",
@@ -935,7 +1078,13 @@
       "license": "missing",
       "name": "Prefix Commons",
       "prefix": "prefixcommons",
-      "provider_uri_format": "https://prefixcommons.org/?q=$1"
+      "provider_uri_format": "https://prefixcommons.org/?q=$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      }
     },
     {
       "availability": {
@@ -943,8 +1092,6 @@
         "contact": "present",
         "description": "required",
         "example": "missing",
-        "fair": false,
-        "fair_note": "The API for Re3data does not provide a bulk download",
         "homepage": "required",
         "license": "present",
         "name": "required",
@@ -974,10 +1121,16 @@
         "status": "active"
       },
       "homepage": "https://www.re3data.org",
-      "license": "CC 0",
+      "license": "CC0",
       "name": "Registry of Research Data Repositories",
       "prefix": "re3data",
       "provider_uri_format": "https://www.re3data.org/repository/$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": false,
+        "no_authentication": true,
+        "structured_data": false
+      },
       "short_name": "re3data"
     },
     {
@@ -986,7 +1139,6 @@
         "contact": "missing",
         "description": "missing",
         "example": "missing",
-        "fair": true,
         "homepage": "required",
         "license": "missing",
         "name": "required",
@@ -996,6 +1148,7 @@
         "synonyms": "missing",
         "version": "missing"
       },
+      "bibtex": "Bateman2021",
       "bioregistry_prefix": "uniprot.resource",
       "contact": {
         "email": "agb@ebi.ac.uk",
@@ -1021,24 +1174,30 @@
       "name": "UniProt Cross-ref database",
       "prefix": "uniprot",
       "provider_uri_format": "https://www.uniprot.org/database/DB-$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
       "short_name": "UniProt"
     },
     {
       "availability": {
         "alternate_providers": "present",
-        "contact": "present*",
+        "contact": "present",
         "description": "required",
         "example": "present",
-        "fair": true,
         "homepage": "present",
-        "license": "present*",
+        "license": "present",
         "name": "required",
         "pattern": "present",
         "provider": "present",
         "search": true,
         "synonyms": "missing",
-        "version": "present*"
+        "version": "present"
       },
+      "bibtex": "Waagmeester2020",
       "bioregistry_prefix": "wikidata",
       "contact": {
         "email": "info@wikidata.org",
@@ -1062,6 +1221,12 @@
       "name": "Wikidata Property",
       "prefix": "wikidata",
       "provider_uri_format": "https://www.wikidata.org/wiki/Property:$1",
+      "qualities": {
+        "automatable_download": true,
+        "bulk_data": true,
+        "no_authentication": true,
+        "structured_data": true
+      },
       "short_name": "Wikidata"
     }
   ]
