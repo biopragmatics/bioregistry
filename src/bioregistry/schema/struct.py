@@ -1756,11 +1756,11 @@ class RegistryGovernance(BaseModel):
     def review_team_icon(self) -> str:
         """Get an icon for the review team."""
         if self.review_team == "public":
-            return "✓"
+            return "Y"
         elif self.review_team == "inferrable":
-            return "✓*"
+            return "Y*"
         elif self.review_team == "private":
-            return "✗"
+            return "x"
         else:
             return ""
 
@@ -1781,7 +1781,7 @@ class RegistryQualities(BaseModel):
         " through its data. Another counterexample is HL7 which requires manually navigating a form to"
         " download its content. While GenBank is not structured, it is still bulk downloadable."
     )
-    requires_authentication: bool = Field(
+    no_authentication: bool = Field(
         description="Does this registry provide access to its data without an API key? For example,"
         " Identifiers.org. As a counter-example, BioPortal requires an API key for access to its structured data."
     )
@@ -1791,6 +1791,10 @@ class RegistryQualities(BaseModel):
         "A counter example is HL7, whose download can not be automated due to the need to interact with a web"
         " form."
     )
+
+    def score(self) -> int:
+        """Score qualities of a registry."""
+        return sum([self.structured_data, self.bulk_data, self.no_authentication, self.automatable_download])
 
 
 class RegistrySchema(BaseModel):
@@ -1809,13 +1813,15 @@ class RegistrySchema(BaseModel):
     contact: SchemaStatus  # type:ignore
     search: bool = Field(
         ...,
-        description="Does this registry provide a URL into which a search"
-        " query can be formatted to show a list of results?",
+        title="Prefix Search",
+        description="Does this registry provide either a dedicated page for searching for prefixes "
+        "(e.g. AberOWL has a dedicated search page) OR a contextual search (e.g., AgroPortal "
+        "has a prefix search built in its homepage).",
     )
 
     def score(self) -> int:
         """Calculate a score for the metadata availability in the registry."""
-        return (self.search + 2 * self.fair) + sum(
+        return sum(
             schema_score_map[x]
             for x in [
                 self.name,
@@ -1863,6 +1869,9 @@ class Registry(BaseModel):
     provider_uri_format: Optional[str] = Field(
         description="A URL with a $1 for a prefix to resolve in the registry"
     )
+    search_uri_format: Optional[str] = Field(
+        description="A URL with a $1 for a prefix or string for searching for prefixes"
+    )
     resolver_uri_format: Optional[str] = Field(
         description="A URL with a $1 for a prefix and $2 for an identifier to resolve in the registry"
     )
@@ -1890,7 +1899,7 @@ class Registry(BaseModel):
             + int(self.resolver_uri_format is not None)
             + int(self.download is not None)
             + int(self.contact is not None)
-        ) + self.availability.score()
+        ) + self.availability.score() + self.qualities.score()
 
     def get_provider_uri_prefix(self) -> str:
         """Get provider URI prefix.
@@ -2003,12 +2012,12 @@ class Registry(BaseModel):
     @property
     def is_resolver(self) -> bool:
         """Check if it is a resolver."""
-        return self.resolver_uri_format is not None and self.resolver_type != "lookup"
+        return self.resolver_type == "resolver"
 
     @property
     def is_lookup(self) -> bool:
         """Check if it is a lookup service."""
-        return self.resolver_uri_format is not None and self.resolver_type == "lookup"
+        return self.resolver_type == "lookup"
 
 
 class Collection(BaseModel):

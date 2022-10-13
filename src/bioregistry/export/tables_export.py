@@ -21,6 +21,13 @@ __all__ = [
     "export_tables",
 ]
 
+# YES = "✓"
+YES = "Y"
+# MAYBE = "●"
+MAYBE = "o"
+NO = ""
+IRRELEVANT = "-"
+
 #: This is Table S2 in the paper
 GOVERNANCE_COLUMNS = [
     "Registry",
@@ -34,7 +41,7 @@ GOVERNANCE_COLUMNS = [
 ]
 
 
-def _render_bool(x: bool, true_value: str = "✓", false_value: str = "") -> str:
+def _render_bool(x: bool, true_value: str = YES, false_value: str = NO) -> str:
     return true_value if x else false_value
 
 
@@ -44,23 +51,28 @@ def _replace_na(s: str) -> str:
     return s
 
 
+def _short_name_bibtex(registry) -> str:
+    name = registry.get_short_name()
+    return f"{name}~\\cite{{{registry.bibtex}}}" if registry.bibtex else name
+
+
 schema_status_map = {
-    True: "✓",
-    False: "",
-    "required": "✓",
-    "required*": "✓*",
-    "present": "●",
-    "present*": "●*",
-    "missing": "",
-    "irrelevant": "-",
-    "irrelevant*": "-*",
+    True: YES,
+    False: NO,
+    "required": YES,
+    "required*": f"{YES}*",
+    "present": MAYBE,
+    "present*": f"{MAYBE}*",
+    "missing": NO,
+    "irrelevant": IRRELEVANT,
+    "irrelevant*": f"{IRRELEVANT}*",
 }
 
 
 def _sort_key(registry):
     if registry.prefix == "bioregistry":
-        return (0, registry.prefix)
-    return (1, registry.prefix)
+        return 0, registry.prefix
+    return 1, registry.prefix
 
 
 def _get_governance_df() -> pd.DataFrame:
@@ -71,7 +83,7 @@ def _get_governance_df() -> pd.DataFrame:
             continue
         rows.append(
             (
-                registry.get_short_name(),
+                _short_name_bibtex(registry),
                 registry.governance.scope.title(),
                 registry.governance.status.title(),
                 _render_bool(registry.governance.imports),
@@ -98,11 +110,13 @@ DATA_MODEL_CAPABILITIES = [
     ("Metadata Model", "License"),
     ("Metadata Model", "Version"),
     ("Metadata Model", "Contact"),
-    ("Capabilities and Qualities", "FAIR Data"),
+    ("Capabilities and Qualities", "Structured Data"),
+    ("Capabilities and Qualities", "Bulk Data"),
+    ("Capabilities and Qualities", "No Auth. for Data"),
     ("Capabilities and Qualities", "Search"),
     ("Capabilities and Qualities", "Prefix Provider"),
-    ("Capabilities and Qualities", "Resolver"),
-    ("Capabilities and Qualities", "Lookup"),
+    ("Capabilities and Qualities", "Resolve CURIEs"),
+    ("Capabilities and Qualities", "Lookup CURIEs"),
 ]
 
 
@@ -114,27 +128,29 @@ def _get_metadata_df() -> pd.DataFrame:
             continue
         rows.append(
             (
-                registry.get_short_name(),
+                _short_name_bibtex(registry),
                 *(
                     schema_status_map[t]
                     for t in (
-                        registry.availability.name,
-                        registry.availability.homepage,
-                        registry.availability.description,
-                        registry.availability.example,
-                        registry.availability.pattern,
-                        registry.availability.provider,
-                        registry.availability.alternate_providers,
-                        registry.availability.synonyms,
-                        registry.availability.license,
-                        registry.availability.version,
-                        registry.availability.contact,
-                        registry.availability.fair,
-                        registry.availability.search,
-                        registry.provider_uri_format is not None,
-                        registry.is_resolver,
-                        registry.is_lookup,
-                    )
+                    registry.availability.name,
+                    registry.availability.homepage,
+                    registry.availability.description,
+                    registry.availability.example,
+                    registry.availability.pattern,
+                    registry.availability.provider,
+                    registry.availability.alternate_providers,
+                    registry.availability.synonyms,
+                    registry.availability.license,
+                    registry.availability.version,
+                    registry.availability.contact,
+                    registry.qualities.structured_data,
+                    registry.qualities.bulk_data,
+                    registry.qualities.no_authentication,
+                    registry.availability.search,
+                    registry.provider_uri_format is not None,
+                    registry.is_resolver,
+                    registry.is_lookup,
+                )
                 ),
             )
         )
@@ -155,6 +171,7 @@ def export_tables():
             index=False,
             bold_rows=True,
             label="tab:registry-comparison-governance",
+            escape=False,
             caption=dedent(
                 """\
                A survey of registries' governance and maintenance models. The scope column describes the
@@ -183,9 +200,9 @@ def export_tables():
     metadata_df = _get_metadata_df()
     metadata_df.to_csv(TABLES_METADATA_TSV_PATH, sep="\t", index=False)
     metadata_caption = dedent(
-        """\
+        f"""\
         An overview on registries covering biomedical ontologies, controlled vocabularies, and databases.
-        A ✓ means the field is required. A ● means it is part of the schema, but not required or incomplete
+        A {YES} means the field is required. A {MAYBE} means it is part of the schema, but not required or incomplete
         on some entries. A blank cell means that it is not part of the metadata schema. The FAIR column denotes that a
         structured dump of the data is easily findable, accessible, and in a structured format in bulk. For
         lookup services, some fields (i.e., Example ID, Default Provider, Alternate Providers) are omitted
@@ -202,6 +219,7 @@ def export_tables():
         metadata_df.to_latex(
             index=False,
             bold_rows=True,
+            escape=False,
             label="tab:registry-comparison-governance",
             caption=metadata_caption.strip().replace("\n", " "),
         ),

@@ -104,28 +104,31 @@
         </tbody>
     </table>
 
-    <h3>Capabilities</h3>
+    <h3>Capabilities and Qualities</h3>
     <p>
         This section provides a systematic evaluation and comparison of
         the capabilities of each registry.
     </p>
     <dl>
-        {{ registry_field_dl(registry_schema_cls, "fair") }}
+        {{ registry_field_dl(registry_qualities_cls, "structured_data") }}
+        {{ registry_field_dl(registry_qualities_cls, "bulk_data") }}
+        {{ registry_field_dl(registry_qualities_cls, "no_authentication") }}
+        {{ registry_field_dl(registry_qualities_cls, "automatable_download") }}
         {{ registry_field_dl(registry_schema_cls, "search") }}
-        <dt>Provider</dt>
+        <dt>Prefix Provider</dt>
         <dd>
             The registry provides information about its own prefixes either
             in the form of a web page or an API endpoint. These can be accessed
             through a stable URL into wich a prefix can be formatted.
         </dd>
-        <dt>Resolver</dt>
+        <dt>CURIE Resolver</dt>
         <dd>
             The registry can act as a resolver, i.e., it redirects to an external
             page about a given biomedical concept or entity based on its CURIE and
             the registry's internal metadata data about the prefix's associated
             URI format string.
         </dd>
-        <dt>Lookup</dt>
+        <dt>CURIE Lookup</dt>
         <dd>
             The registry can act as a lookup service, i.e., it gives information
             about a given biomedical concept or entity based on its CURIE.
@@ -136,11 +139,14 @@
         <tr>
             <th>Registry</th>
             <th>Mappings</th>
-            <th>FAIR</th>
-            <th>Search</th>
-            <th>Provider</th>
-            <th>Resolver</th>
-            <th>Lookup</th>
+            <th>Structured Data</th>
+            <th>Bulk Data</th>
+            <th>Requires Authentication</th>
+            <th>Automatable Download</th>
+            <th>Prefix Search</th>
+            <th>Prefix Provider</th>
+            <th>CURIE Resolver</th>
+            <th>CURIE Lookup</th>
         </tr>
         </thead>
         <tbody>
@@ -150,7 +156,10 @@
                     <a href="{{ url_for('metaregistry_ui.metaresource', metaprefix=registry.prefix) }}">{{ registry.get_short_name() }}</a>
                 </td>
                 <td style="text-align: right;">{{ mapping_counts[registry.prefix] }}</td>
-                <td style="text-align: center;">{{ render_circle(registry.availability.fair) }}</td>
+                <td style="text-align: center;">{{ render_circle(registry.qualities.structured_data) }}</td>
+                <td style="text-align: center;">{{ render_circle(registry.qualities.bulk_data) }}</td>
+                <td style="text-align: center;">{{ render_circle(registry.qualities.no_authentication) }}</td>
+                <td style="text-align: center;">{{ render_circle(registry.qualities.automatable_download) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.availability.search) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.provider_uri_format is not none) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.is_resolver) }}</td>
@@ -160,7 +169,7 @@
         </tbody>
     </table>
 
-    <h3>Governance</h3>
+    <h3>Community and Governance</h3>
     <p>
         This section provides a systematic evaluation and comparison of
         the governance and standard operating procedures for each registry.

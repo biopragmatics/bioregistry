@@ -43,11 +43,12 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       },
       "resolver_type": "lookup",
-      "resolver_uri_format": "http://aber-owl.net/ontology/$1/#/Browse/<http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F$1_$2>"
+      "resolver_uri_format": "http://aber-owl.net/ontology/$1/#/Browse/<http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F$1_$2>",
+      "search_uri_format": "http://aber-owl.net/#/$1/Ontologies"
     },
     {
       "availability": {
@@ -60,7 +61,7 @@
         "name": "required",
         "pattern": "missing",
         "provider": "irrelevant",
-        "search": false,
+        "search": true,
         "synonyms": "missing",
         "version": "present"
       },
@@ -91,9 +92,10 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": false,
-        "requires_authentication": false,
+        "no_authentication": false,
         "structured_data": true
-      }
+      },
+      "resolver_type": "lookup"
     },
     {
       "availability": {
@@ -138,7 +140,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       }
     },
@@ -185,7 +187,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       },
       "short_name": "Biolink"
@@ -201,7 +203,7 @@
         "name": "required",
         "pattern": "missing",
         "provider": "irrelevant",
-        "search": false,
+        "search": true,
         "synonyms": "missing",
         "version": "required"
       },
@@ -233,9 +235,10 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": false,
-        "requires_authentication": false,
+        "no_authentication": false,
         "structured_data": true
       },
+      "resolver_type": "lookup",
       "short_name": "BioPortal"
     },
     {
@@ -282,7 +285,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       },
       "resolver_type": "resolver",
@@ -330,7 +333,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       },
       "short_name": "Cellosaurus"
@@ -378,9 +381,10 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       },
+      "resolver_type": "lookup",
       "short_name": "CHEMINF"
     },
     {
@@ -426,9 +430,11 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       },
+      "resolver_type": "lookup",
+      "resolver_uri_format": "https://cropontology.org/term/$1:$2",
       "short_name": "CropOCT"
     },
     {
@@ -442,7 +448,7 @@
         "name": "required",
         "pattern": "missing",
         "provider": "irrelevant",
-        "search": false,
+        "search": true,
         "synonyms": "missing",
         "version": "present"
       },
@@ -473,9 +479,10 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": false,
-        "requires_authentication": false,
+        "no_authentication": false,
         "structured_data": true
-      }
+      },
+      "resolver_type": "lookup"
     },
     {
       "availability": {
@@ -488,7 +495,7 @@
         "name": "required",
         "pattern": "missing",
         "provider": "missing",
-        "search": false,
+        "search": true,
         "synonyms": "missing",
         "version": "missing"
       },
@@ -520,7 +527,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       },
       "short_name": "EDAM"
@@ -569,7 +576,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": false,
-        "requires_authentication": false,
+        "no_authentication": false,
         "structured_data": true
       }
     },
@@ -616,7 +623,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       },
       "short_name": "GO"
@@ -663,7 +670,7 @@
       "qualities": {
         "automatable_download": false,
         "bulk_data": false,
-        "requires_authentication": false,
+        "no_authentication": true,
         "structured_data": true
       },
       "short_name": "HL7"
@@ -713,7 +720,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       },
       "resolver_type": "resolver",
@@ -764,7 +771,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       },
       "resolver_type": "resolver",
@@ -811,7 +818,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": false
       },
       "short_name": "NCBI"
@@ -827,7 +834,7 @@
         "name": "required",
         "pattern": "missing",
         "provider": "missing",
-        "search": false,
+        "search": true,
         "synonyms": "missing",
         "version": "missing"
       },
@@ -860,7 +867,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       },
       "resolver_type": "resolver",
@@ -910,7 +917,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       },
       "short_name": "OLS"
@@ -957,7 +964,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": false
       },
       "resolver_type": "lookup",
@@ -1005,7 +1012,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       }
     },
@@ -1053,7 +1060,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       }
     },
@@ -1099,7 +1106,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": false,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": false
       },
       "short_name": "re3data"
@@ -1148,7 +1155,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       },
       "short_name": "UniProt"
@@ -1195,7 +1202,7 @@
       "qualities": {
         "automatable_download": true,
         "bulk_data": true,
-        "requires_authentication": true,
+        "no_authentication": true,
         "structured_data": true
       },
       "short_name": "Wikidata"
