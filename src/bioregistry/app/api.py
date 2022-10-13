@@ -455,8 +455,8 @@ def mapping(source: str, target: str):
     if target not in manager.metaregistry:
         return {"bad target prefix": target}, 400
     rv = {}
-    source_only = 0
-    target_only = 0
+    source_only = set()
+    target_only = set()
     for resource in manager.registry.values():
         mappings = resource.get_mappings()
         mp1_prefix = mappings.get(source)
@@ -464,17 +464,19 @@ def mapping(source: str, target: str):
         if mp1_prefix and mp2_prefix:
             rv[mp1_prefix] = mp2_prefix
         elif mp1_prefix and not mp2_prefix:
-            source_only += 1
+            source_only.add(mp1_prefix)
         elif not mp1_prefix and mp2_prefix:
-            target_only += 1
+            target_only.add(mp2_prefix)
 
     return jsonify(
         meta=dict(
-            overlap=len(rv),
+            len_overlap=len(rv),
             source=source,
             target=target,
-            source_only=source_only,
-            target_only=target_only,
+            len_source_only=len(source_only),
+            len_target_only=len(target_only),
+            source_only=sorted(source_only),
+            target_only=sorted(target_only),
         ),
         mappings=rv,
     )
