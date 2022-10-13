@@ -1785,6 +1785,12 @@ class RegistryQualities(BaseModel):
         description="Does this registry provide access to its data without an API key? For example,"
         " Identifiers.org. As a counter-example, BioPortal requires an API key for access to its structured data."
     )
+    automatable_download: bool = Field(
+        default=True, description="Does this registry make its data available downloadable in an automated way?"
+        "This includes websites that have bulk downloads, paginated API downloads, or even require scraping."
+        "A counter example is HL7, whose download can not be automated due to the need to interact with a web"
+        " form."
+    )
 
 
 class RegistrySchema(BaseModel):
@@ -1805,14 +1811,6 @@ class RegistrySchema(BaseModel):
         ...,
         description="Does this registry provide a URL into which a search"
         " query can be formatted to show a list of results?",
-    )
-    fair: bool = Field(
-        ...,
-        description="Does this registry provide a structured bulk dump of its prefixes, records,"
-        " and all associated metadata in an easily findable and accessible manner?",
-    )
-    fair_note: Optional[str] = Field(
-        description="Explanation for why data isn't FAIR",
     )
 
     def score(self) -> int:
