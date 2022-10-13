@@ -79,7 +79,28 @@ def resource(prefix: str):
         enum: [json, yaml, turtle, jsonld]
     """  # noqa:DAR101,DAR201
     prefix = _normalize_prefix_or_404(prefix)
-    data = dict(prefix=prefix, **manager.get_resource(prefix).dict())  # type:ignore
+    resource = manager.get_resource(prefix)
+    assert resource is not None
+    return _serialize_resource(resource)
+
+
+@api_blueprint.route("/metaregistry/<metaprefix>/<metaidentifier>")
+def resource_from_metaregistry(metaprefix: str, metaidentifier: str):
+    """Get a resource by an external prefix."""
+    if metaprefix not in manager.metaregistry:
+        return abort(404, f"invalid metaprefix: {metaprefix}")
+    prefix = manager.lookup_from(metaprefix, metaidentifier, normalize=True)
+    if not prefix:
+        return abort(404, f"invalid metaidentifier: {metaidentifier}")
+    resource = manager.get_resource(prefix)
+    assert resource is not None
+    return _serialize_resource(resource, rasterize=True)
+
+
+def _serialize_resource(resource, rasterize: bool = False):
+    if rasterize:
+        resource = manager.rasterized_resource(resource.prefix, resource)
+    data = dict(prefix=resource.prefix, **resource.dict(exclude_unset=True, exclude_none=True))
     return serialize(
         data,
         serializers=[
