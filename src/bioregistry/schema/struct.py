@@ -1687,9 +1687,7 @@ class Resource(BaseModel):
         return markupsafe.Markup(rv)
 
 
-SchemaStatus = Literal[
-    "required", "required*", "present", "present*", "missing", "irrelevant", "irrelevant*"
-]
+SchemaStatus = Literal["required", "required*", "present", "present*", "missing"]
 schema_status_map = {
     True: "🟢",
     False: "🔴",
@@ -1698,8 +1696,6 @@ schema_status_map = {
     "present": "🟡",
     "present*": "🟡*",
     "missing": "🔴",
-    "irrelevant": "⚪",
-    "irrelevant*": "⚪*",
 }
 schema_score_map = {
     "required": 3,
@@ -1707,8 +1703,6 @@ schema_score_map = {
     "present": 1,
     "present*": 2,
     "missing": -1,
-    "irrelevant": 0,
-    "irrelevant*": 0,
 }
 
 
