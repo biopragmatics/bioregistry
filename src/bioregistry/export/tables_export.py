@@ -113,7 +113,8 @@ DATA_MODEL_CAPABILITIES = [
     ("Capabilities and Qualities", "Structured Data"),
     ("Capabilities and Qualities", "Bulk Data"),
     ("Capabilities and Qualities", "No Auth. for Data"),
-    ("Capabilities and Qualities", "Search"),
+    ("Capabilities and Qualities", "Permissive License"),
+    ("Capabilities and Qualities", "Prefix Search"),
     ("Capabilities and Qualities", "Prefix Provider"),
     ("Capabilities and Qualities", "Resolve CURIEs"),
     ("Capabilities and Qualities", "Lookup CURIEs"),
@@ -132,25 +133,28 @@ def _get_metadata_df() -> pd.DataFrame:
                 *(
                     schema_status_map[t]
                     for t in (
-                    registry.availability.name,
-                    registry.availability.homepage,
-                    registry.availability.description,
-                    registry.availability.example,
-                    registry.availability.pattern,
-                    registry.availability.provider,
-                    registry.availability.alternate_providers,
-                    registry.availability.synonyms,
-                    registry.availability.license,
-                    registry.availability.version,
-                    registry.availability.contact,
-                    registry.qualities.structured_data,
-                    registry.qualities.bulk_data,
-                    registry.qualities.no_authentication,
-                    registry.availability.search,
-                    registry.provider_uri_format is not None,
-                    registry.is_resolver,
-                    registry.is_lookup,
-                )
+                        # Data Model
+                        registry.availability.name,
+                        registry.availability.homepage,
+                        registry.availability.description,
+                        registry.availability.example,
+                        registry.availability.pattern,
+                        registry.availability.provider,
+                        registry.availability.alternate_providers,
+                        registry.availability.synonyms,
+                        registry.availability.license,
+                        registry.availability.version,
+                        registry.availability.contact,
+                        # Qualities and Capabilities
+                        registry.qualities.structured_data,
+                        registry.qualities.bulk_data,
+                        registry.qualities.no_authentication,
+                        registry.has_permissive_license,
+                        registry.availability.search,
+                        registry.is_prefix_provider,
+                        registry.is_resolver,
+                        registry.is_lookup,
+                    )
                 ),
             )
         )
@@ -208,13 +212,10 @@ def export_tables():
         lookup services, some fields (i.e., Example ID, Default Provider, Alternate Providers) are omitted
         because inclusion would be redundant. The search column means there is a URL into which a search
         query can be formatted to show a list of results. The provider column means there is a URL into
-        which a prefix can be formatted to show a dedicated page for its metadata. *Caveats: Several of
-        Wikidata's fields can be accessed indirectly with alternative SPARQL queries. BioPortal's data is
-        locked behind an API that requires a key and has rate limited access. The Crop Ontology Curation Tool
-        does not list homepages because it is the homepage itself. Non-english language registries in the
-        OntoPortal Alliance were not included.
+        which a prefix can be formatted to show a dedicated page for its metadata.
     """
     )
+    # TODO move remark about non-english language registries in the OntoPortal Alliance
     TABLES_METADATA_LATEX_PATH.write_text(
         metadata_df.to_latex(
             index=False,

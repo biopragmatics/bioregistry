@@ -1716,40 +1716,43 @@ class RegistryGovernance(BaseModel):
     """Metadata about a registry's governance."""
 
     curation: Literal["private", "import", "community", "opaque-review", "open-review"]
-    curates: bool = Field(description="Does the registry curate novel prefixes?")
+    curates: bool = Field(
+        description="This field denotes if the registry's maintainers and "
+        "potentially contributors curate novel prefixes."
+    )
     imports: bool = Field(
-        description="Does the registry import and align prefixes from other registries?"
+        description="This field denotes if the registry imports and aligns prefixes from other registries."
     )
     scope: str = Field(
-        description="What is the scope of prefixes which the registry covers? For example,"
+        description="This field denotes the scope of prefixes which the registry covers. For example,"
         " some registries are limited to ontologies, some have a full scope over the life sciences,"
         " and some are general purpose."
     )
     comments: Optional[str]
     accepts_external_contributions: bool = Field(
-        description="Does the registry (in theory) accept external contributions, either via suggestion or"
-        " proactive improvement? This field does not pass judgement on the difficult of this"
+        description="This field denotes if the registry (in theory) accepts external contributions, either via "
+        "suggestion or proactive improvement. This field does not pass judgement on the difficult of this"
         " process from the perspective of the submitter nor the responsiveness of the registry."
         " This field does not consider the ability for insiders (i.e., people with private relationships"
         " to the maintainers) to affect change."
     )
     public_version_control: bool = Field(
-        description="Does the registry store its data/code in publicly available version control"
+        description="This field denotes if the registry stores its data/code in publicly available version control"
         " system, such as GitHub or GitLab? Currently there is no resource that does one but not"
         " the other, so this is grouped (for now)."
     )
     review_team: Literal["public", "inferrable", "private", "n/a"] = Field(
-        description="Are the reviewers for external contributions known? If there's a well-defined,"
-        " maintained listing, then it can be marked as public. If it can be inferred, e.g. from reading"
-        " the commit history on a version control system, then it can be marked as inferrable. A closed"
+        description="This field denotes if the registry's reviewers/moderators for external contributions known? If "
+        "there's a well-defined, maintained listing, then it can be marked as public. If it can be inferred, e.g. from "
+        "reading the commit history on a version control system, then it can be marked as inferrable. A closed"
         " review team, e.g., like for Identifiers.org can be marked as private. Resources that do not"
         " accept external contributions can be marked with N/A."
     )
     status: Literal["active", "unresponsive", "inactive"] = Field(
-        description="What is the status of the repository? An active repository is still being maintained and also"
-        " is responsive to external requests for improvement. An unresponsive repository is still being maintained"
-        " in some capacity but is not responsive to external requests for improvement. An inactive repository is"
-        " no longer being proactively maintained (though may receive occasional patches)."
+        description="This field denotes the maitenance status of the repository. An active repository is still being "
+        "maintained and also is responsive to external requests for improvement. An unresponsive repository is still "
+        "being maintained in some capacity but is not responsive to external requests for improvement. An inactive "
+        "repository is no longer being proactively maintained (though may receive occasional patches)."
     )
 
     @property
@@ -1769,32 +1772,40 @@ class RegistryQualities(BaseModel):
     """Qualities about a registry."""
 
     structured_data: bool = Field(
-        description="Does this registry provide structured access to its data? For example,"
+        description="This field denotes if the registry provides structured access to its data? For example,"
         " this can be through an API (e.g., FAIRsharing, OLS) or a bulk download (e.g., OBO Foundry) in a "
-        "structured file format. A counter-example is a site that must be scraped to acquied its content "
-                    "(e.g, the NCBI GenBank)."
+        "structured file format. A counter-example is a site that must be scraped to acquire its content "
+        "(e.g, the NCBI GenBank)."
     )
     bulk_data: bool = Field(
-        description="Does this registry provide a bulk dump of its data? For example,"
+        description="This field denotes if the registry provides a bulk dump of its data? For example,"
         " the OBO Foundry provides its bulk data in a file and Identifiers.org provides its bulk data in"
         " an API endpoint. A counterexample is FAIRsharing, which requires slow, expensive pagination"
         " through its data. Another counterexample is HL7 which requires manually navigating a form to"
         " download its content. While GenBank is not structured, it is still bulk downloadable."
     )
     no_authentication: bool = Field(
-        description="Does this registry provide access to its data without an API key? For example,"
+        description="This field denotes if the registry provides access to its data without an API key? For example,"
         " Identifiers.org. As a counter-example, BioPortal requires an API key for access to its structured data."
     )
     automatable_download: bool = Field(
-        default=True, description="Does this registry make its data available downloadable in an automated way?"
+        default=True,
+        description="This field denotes if the registry makes its data available downloadable in an automated way?"
         "This includes websites that have bulk downloads, paginated API downloads, or even require scraping."
         "A counter example is HL7, whose download can not be automated due to the need to interact with a web"
-        " form."
+        " form.",
     )
 
     def score(self) -> int:
         """Score qualities of a registry."""
-        return sum([self.structured_data, self.bulk_data, self.no_authentication, self.automatable_download])
+        return sum(
+            [
+                self.structured_data,
+                self.bulk_data,
+                self.no_authentication,
+                self.automatable_download,
+            ]
+        )
 
 
 class RegistrySchema(BaseModel):
@@ -1814,7 +1825,7 @@ class RegistrySchema(BaseModel):
     search: bool = Field(
         ...,
         title="Prefix Search",
-        description="Does this registry provide either a dedicated page for searching for prefixes "
+        description="This field denotes if the registry provides either a dedicated page for searching for prefixes "
         "(e.g. AberOWL has a dedicated search page) OR a contextual search (e.g., AgroPortal "
         "has a prefix search built in its homepage).",
     )
@@ -1895,11 +1906,15 @@ class Registry(BaseModel):
     def score(self) -> int:
         """Calculate a metadata score/goodness for this registry."""
         return (
-            int(self.provider_uri_format is not None)
-            + int(self.resolver_uri_format is not None)
-            + int(self.download is not None)
-            + int(self.contact is not None)
-        ) + self.availability.score() + self.qualities.score()
+            (
+                int(self.provider_uri_format is not None)
+                + int(self.resolver_uri_format is not None)
+                + int(self.download is not None)
+                + int(self.contact is not None)
+            )
+            + self.availability.score()
+            + self.qualities.score()
+        )
 
     def get_provider_uri_prefix(self) -> str:
         """Get provider URI prefix.
@@ -2018,6 +2033,22 @@ class Registry(BaseModel):
     def is_lookup(self) -> bool:
         """Check if it is a lookup service."""
         return self.resolver_type == "lookup"
+
+    @property
+    def has_permissive_license(self) -> bool:
+        """Check if the registry has a permissive license."""
+        return self.license in {"CC BY 4.0", "CC0", "CC BY 3.0"}
+
+    @property
+    def is_prefix_provider(self) -> bool:
+        """Check if the registry is a prefix provider."""
+        return self.provider_uri_format is not None
+
+    def get_quality_score(self) -> int:
+        """Get the quality score for this registry."""
+        return self.qualities.score() + sum(
+            [self.availability.search, self.is_prefix_provider, self.has_permissive_license]
+        )
 
 
 class Collection(BaseModel):

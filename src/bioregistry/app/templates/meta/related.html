@@ -67,7 +67,7 @@
         <thead>
         <tr>
             <th>Registry</th>
-            <th>Score</th>
+            <th>Data Model Score</th>
             <th>Name</th>
             <th>Homepage</th>
             <th>Description</th>
@@ -87,7 +87,7 @@
                 <td>
                     <a href="{{ url_for('metaregistry_ui.metaresource', metaprefix=registry.prefix) }}">{{ registry.get_short_name() }}</a>
                 </td>
-                <td style="text-align: right;">{{ registry.score() }}</td>
+                <td style="text-align: right;">{{ registry.availability.score() }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.availability.name) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.availability.homepage) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.availability.description) }}</td>
@@ -110,27 +110,37 @@
         the capabilities of each registry.
     </p>
     <dl>
+        <dt>Quality Score</dt>
+        <dd>The sum of the number of green dots across each row.</dd>
         {{ registry_field_dl(registry_qualities_cls, "structured_data") }}
         {{ registry_field_dl(registry_qualities_cls, "bulk_data") }}
         {{ registry_field_dl(registry_qualities_cls, "no_authentication") }}
         {{ registry_field_dl(registry_qualities_cls, "automatable_download") }}
+        <dt>Permissive License</dt>
+        <dd>
+            This field denotes if the registry uses a license that permits reuse and or remixing? Based on the OBO
+            Foundry's <a href="https://obofoundry.org/principles/fp-001-open.html">FP-001 "openness" principle</a>, this
+            includes Creative Commons CC BY 3.0, CC BY 4.0, and CC Zero. This explicitly does not include resources
+            licensed with share-alike clauses, no derivatives clauses, or ones that are missing license statements
+            entirely.
+        </dd>
         {{ registry_field_dl(registry_schema_cls, "search") }}
         <dt>Prefix Provider</dt>
         <dd>
-            The registry provides information about its own prefixes either
+            This field denotes if the registry provides information about its own prefixes either
             in the form of a web page or an API endpoint. These can be accessed
-            through a stable URL into wich a prefix can be formatted.
+            through a stable URL into which a prefix from the registry can be formatted.
         </dd>
         <dt>CURIE Resolver</dt>
         <dd>
-            The registry can act as a resolver, i.e., it redirects to an external
+            This field denotes if the registry can act as a resolver, i.e., it redirects to an external
             page about a given biomedical concept or entity based on its CURIE and
             the registry's internal metadata data about the prefix's associated
             URI format string.
         </dd>
         <dt>CURIE Lookup</dt>
         <dd>
-            The registry can act as a lookup service, i.e., it gives information
+            This field denotes if the registry act as a lookup service, i.e., it gives information
             about a given biomedical concept or entity based on its CURIE.
         </dd>
     </dl>
@@ -139,10 +149,12 @@
         <tr>
             <th>Registry</th>
             <th>Mappings</th>
+            <th>Quality Score</th>
             <th>Structured Data</th>
             <th>Bulk Data</th>
             <th>Requires Authentication</th>
             <th>Automatable Download</th>
+            <th>Permissive License</th>
             <th>Prefix Search</th>
             <th>Prefix Provider</th>
             <th>CURIE Resolver</th>
@@ -156,12 +168,14 @@
                     <a href="{{ url_for('metaregistry_ui.metaresource', metaprefix=registry.prefix) }}">{{ registry.get_short_name() }}</a>
                 </td>
                 <td style="text-align: right;">{{ mapping_counts[registry.prefix] }}</td>
+                <td style="text-align: center;">{{ registry.get_quality_score() }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.qualities.structured_data) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.qualities.bulk_data) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.qualities.no_authentication) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.qualities.automatable_download) }}</td>
+                <td style="text-align: center;">{{ render_circle(registry.has_permissive_license) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.availability.search) }}</td>
-                <td style="text-align: center;">{{ render_circle(registry.provider_uri_format is not none) }}</td>
+                <td style="text-align: center;">{{ render_circle(registry.is_prefix_provider) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.is_resolver) }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.is_lookup) }}</td>
             </tr>

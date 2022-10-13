@@ -37,8 +37,8 @@ from ..schema.constants import bioregistry_schema_terms
 from ..schema.struct import (
     Registry,
     RegistryGovernance,
+    RegistryQualities,
     RegistrySchema,
- RegistryQualities,
     get_json_schema,
     schema_status_map,
 )
