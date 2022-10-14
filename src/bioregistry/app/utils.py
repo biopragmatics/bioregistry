@@ -169,8 +169,8 @@ def _get_identifier(prefix: str, identifier: str) -> Mapping[str, Any]:
 def jsonify(data):
     """Dump data as JSON, like like :func:`flask.jsonify`."""
     return current_app.response_class(
-        json.dumps(data, ensure_ascii=False, default=extended_encoder) + "\n",
-        mimetype=current_app.config["JSONIFY_MIMETYPE"],
+        json.dumps(data, ensure_ascii=False, default=extended_encoder),
+        mimetype="application/json",
     )
 
 
