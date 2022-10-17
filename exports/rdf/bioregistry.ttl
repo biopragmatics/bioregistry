@@ -12497,6 +12497,8 @@ orcid:0000-0002-0341-4888 rdfs:label "Federica Quaglia" .
 
 orcid:0000-0002-0358-0130 rdfs:label "Martin Ramirez" .
 
+orcid:0000-0002-0629-0446 rdfs:label "Andreas Ledl" .
+
 orcid:0000-0002-0831-6427 rdfs:label "Karen Eilbeck" .
 
 orcid:0000-0002-1142-3063 rdfs:label "Andrew G. McArthur" .
@@ -19460,6 +19462,19 @@ bioregistry:bams a bioregistry.schema:0000001 ;
     foaf:homepage "https://bams1.org"^^xsd:string ;
     bioregistry.schema:0000012 true .
 
+bioregistry:bartoc a bioregistry.schema:0000001 ;
+    rdfs:label "Basic Register of Thesauri, Ontologies & Classifications" ;
+    dc:description """The Basic Register of Thesauri, Ontologies & Classifications (BARTOC) is a database of Knowledge Organization Systems and KOS related registries.
+The main goal of BARTOC is to list as many Knowledge Organization Systems as possible at one place in order to achieve greater visibility, highlight their features, make them searchable and comparable, and foster knowledge sharing. BARTOC includes any kind of KOS from any subject area, in any language, any publication format, and any form of accessibility. BARTOC’s search interface is available in 20 European languages and provides two search options: Basic Search by keywords, and Advanced Search by taxonomy terms. A circle of editors has gathered around BARTOC from all across Europe and BARTOC has been approved by the International Society for Knowledge Organization (ISKO)."""^^xsd:string ;
+    dcterms:isPartOf bioregistry.metaresource:bioregistry ;
+    skos:exactMatch wikidata:P2689 ;
+    foaf:homepage "https://bartoc.org"^^xsd:string ;
+    bioregistry.schema:0000005 "241"^^xsd:string ;
+    bioregistry.schema:0000006 "https://bartoc.org/en/node/$1"^^xsd:string ;
+    bioregistry.schema:0000008 "^[1-9][0-9]*$"^^xsd:string ;
+    bioregistry.schema:0000012 false ;
+    bioregistry.schema:0000019 orcid:0000-0002-0629-0446 .
+
 bioregistry:bco a bioregistry.schema:0000001 ;
     rdfs:label "Biological Collections Ontology" ;
     dc:description "An ontology to support the interoperability of biodiversity data, including data on museum collections, environmental/metagenomic samples, and ecological surveys."^^xsd:string ;
@@ -26406,6 +26421,8 @@ prefixcommons:tair.protein dcterms:isPartOf bioregistry.metaresource:prefixcommo
 
 prefixcommons:tao dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
+prefixcommons:taxonomy dcterms:isPartOf bioregistry.metaresource:prefixcommons .
+
 prefixcommons:taxrank dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:tcdb dcterms:isPartOf bioregistry.metaresource:prefixcommons .
@@ -26435,8 +26452,6 @@ prefixcommons:unipathway dcterms:isPartOf bioregistry.metaresource:prefixcommons
 prefixcommons:uniprot dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:uniprot.kw dcterms:isPartOf bioregistry.metaresource:prefixcommons .
-
-prefixcommons:uniprot.taxonomy dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
 prefixcommons:unists dcterms:isPartOf bioregistry.metaresource:prefixcommons .
 
@@ -29203,6 +29218,8 @@ wikidata:P2410 dcterms:isPartOf bioregistry.metaresource:wikidata .
 wikidata:P2576 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P267 dcterms:isPartOf bioregistry.metaresource:wikidata .
+
+wikidata:P2689 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
 wikidata:P2796 dcterms:isPartOf bioregistry.metaresource:wikidata .
 
@@ -33230,7 +33247,7 @@ bioregistry:ncbitaxon a bioregistry.schema:0000001 ;
         n2t:taxonomy,
         ncbi.resource:taxon,
         fairsharing:FAIRsharing.fj07xj,
-        prefixcommons:uniprot.taxonomy,
+        prefixcommons:taxonomy,
         miriam:taxonomy,
         ols:ncbitaxon,
         re3data:r3d100010415,
@@ -33961,6 +33978,7 @@ orcid:0000-0003-4423-4370 rdfs:label "Charles Tapley Hoyt" ;
         bioregistry:asrp,
         bioregistry:bactibase,
         bioregistry:bams,
+        bioregistry:bartoc,
         bioregistry:bcrc,
         bioregistry:beiresources,
         bioregistry:bel,
@@ -34811,137 +34829,6 @@ bioregistry.metaresource:edam a bioregistry.schema:0000002 ;
     bioregistry.schema:0000006 "http://edamontology.org/data_$1" ;
     bioregistry.schema:0000019 orcid:0000-0002-1509-4981 .
 
-bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
-    rdfs:label "Wikidata Property" ;
-    dc:description "An open, community-curated knowledgebase that contains several properties corresponding to resources listed in other biomedical registries." ;
-    dcterms:hasPart wikidata:P1294,
-        wikidata:P1391,
-        wikidata:P1550,
-        wikidata:P1554,
-        wikidata:P1578,
-        wikidata:P1579,
-        wikidata:P1690,
-        wikidata:P1692,
-        wikidata:P1693,
-        wikidata:P1748,
-        wikidata:P1832,
-        wikidata:P1929,
-        wikidata:P1930,
-        wikidata:P2057,
-        wikidata:P2062,
-        wikidata:P2063,
-        wikidata:P2064,
-        wikidata:P2084,
-        wikidata:P2106,
-        wikidata:P2115,
-        wikidata:P2153,
-        wikidata:P2158,
-        wikidata:P2275,
-        wikidata:P231,
-        wikidata:P233,
-        wikidata:P234,
-        wikidata:P235,
-        wikidata:P2410,
-        wikidata:P2576,
-        wikidata:P267,
-        wikidata:P2796,
-        wikidata:P2870,
-        wikidata:P2871,
-        wikidata:P2892,
-        wikidata:P2926,
-        wikidata:P299,
-        wikidata:P305,
-        wikidata:P3088,
-        wikidata:P3117,
-        wikidata:P3151,
-        wikidata:P3201,
-        wikidata:P3289,
-        wikidata:P3345,
-        wikidata:P3382,
-        wikidata:P3406,
-        wikidata:P351,
-        wikidata:P3519,
-        wikidata:P352,
-        wikidata:P354,
-        wikidata:P3590,
-        wikidata:P3636,
-        wikidata:P3841,
-        wikidata:P3852,
-        wikidata:P3853,
-        wikidata:P3860,
-        wikidata:P3870,
-        wikidata:P3890,
-        wikidata:P3937,
-        wikidata:P4229,
-        wikidata:P4317,
-        wikidata:P4355,
-        wikidata:P4394,
-        wikidata:P4495,
-        wikidata:P4537,
-        wikidata:P4616,
-        wikidata:P486,
-        wikidata:P4901,
-        wikidata:P492,
-        wikidata:P4926,
-        wikidata:P493,
-        wikidata:P494,
-        wikidata:P496,
-        wikidata:P5221,
-        wikidata:P5270,
-        wikidata:P5299,
-        wikidata:P5458,
-        wikidata:P5501,
-        wikidata:P557,
-        wikidata:P563,
-        wikidata:P5683,
-        wikidata:P5806,
-        wikidata:P591,
-        wikidata:P592,
-        wikidata:P593,
-        wikidata:P594,
-        wikidata:P595,
-        wikidata:P6049,
-        wikidata:P6245,
-        wikidata:P638,
-        wikidata:P652,
-        wikidata:P661,
-        wikidata:P662,
-        wikidata:P663,
-        wikidata:P665,
-        wikidata:P6689,
-        wikidata:P671,
-        wikidata:P675,
-        wikidata:P6778,
-        wikidata:P683,
-        wikidata:P685,
-        wikidata:P686,
-        wikidata:P698,
-        wikidata:P699,
-        wikidata:P7001,
-        wikidata:P715,
-        wikidata:P7260,
-        wikidata:P7333,
-        wikidata:P7471,
-        wikidata:P7718,
-        wikidata:P7720,
-        wikidata:P7807,
-        wikidata:P7963,
-        wikidata:P8121,
-        wikidata:P815,
-        wikidata:P830,
-        wikidata:P842,
-        wikidata:P846,
-        wikidata:P850,
-        wikidata:P8656,
-        wikidata:P8691,
-        wikidata:P9157,
-        wikidata:P932,
-        wikidata:P938 ;
-    foaf:homepage "https://www.wikidata.org" ;
-    bioregistry.schema:0000005 "P683" ;
-    bioregistry.schema:0000006 "https://www.wikidata.org/wiki/Property:$1" ;
-    bioregistry.schema:0000019 [ rdfs:label "WikiData Support" ] .
-
 bioregistry.metaresource:re3data a bioregistry.schema:0000002 ;
     rdfs:label "Registry of Research Data Repositories" ;
     dc:description "Re3data is a global registry of research data repositories that covers research data repositories from different academic disciplines." ;
@@ -35073,6 +34960,138 @@ bioregistry.metaresource:re3data a bioregistry.schema:0000002 ;
     bioregistry.schema:0000005 "r3d100010772" ;
     bioregistry.schema:0000006 "https://www.re3data.org/repository/$1" ;
     bioregistry.schema:0000019 orcid:0000-0003-4221-7956 .
+
+bioregistry.metaresource:wikidata a bioregistry.schema:0000002 ;
+    rdfs:label "Wikidata Property" ;
+    dc:description "An open, community-curated knowledgebase that contains several properties corresponding to resources listed in other biomedical registries." ;
+    dcterms:hasPart wikidata:P1294,
+        wikidata:P1391,
+        wikidata:P1550,
+        wikidata:P1554,
+        wikidata:P1578,
+        wikidata:P1579,
+        wikidata:P1690,
+        wikidata:P1692,
+        wikidata:P1693,
+        wikidata:P1748,
+        wikidata:P1832,
+        wikidata:P1929,
+        wikidata:P1930,
+        wikidata:P2057,
+        wikidata:P2062,
+        wikidata:P2063,
+        wikidata:P2064,
+        wikidata:P2084,
+        wikidata:P2106,
+        wikidata:P2115,
+        wikidata:P2153,
+        wikidata:P2158,
+        wikidata:P2275,
+        wikidata:P231,
+        wikidata:P233,
+        wikidata:P234,
+        wikidata:P235,
+        wikidata:P2410,
+        wikidata:P2576,
+        wikidata:P267,
+        wikidata:P2689,
+        wikidata:P2796,
+        wikidata:P2870,
+        wikidata:P2871,
+        wikidata:P2892,
+        wikidata:P2926,
+        wikidata:P299,
+        wikidata:P305,
+        wikidata:P3088,
+        wikidata:P3117,
+        wikidata:P3151,
+        wikidata:P3201,
+        wikidata:P3289,
+        wikidata:P3345,
+        wikidata:P3382,
+        wikidata:P3406,
+        wikidata:P351,
+        wikidata:P3519,
+        wikidata:P352,
+        wikidata:P354,
+        wikidata:P3590,
+        wikidata:P3636,
+        wikidata:P3841,
+        wikidata:P3852,
+        wikidata:P3853,
+        wikidata:P3860,
+        wikidata:P3870,
+        wikidata:P3890,
+        wikidata:P3937,
+        wikidata:P4229,
+        wikidata:P4317,
+        wikidata:P4355,
+        wikidata:P4394,
+        wikidata:P4495,
+        wikidata:P4537,
+        wikidata:P4616,
+        wikidata:P486,
+        wikidata:P4901,
+        wikidata:P492,
+        wikidata:P4926,
+        wikidata:P493,
+        wikidata:P494,
+        wikidata:P496,
+        wikidata:P5221,
+        wikidata:P5270,
+        wikidata:P5299,
+        wikidata:P5458,
+        wikidata:P5501,
+        wikidata:P557,
+        wikidata:P563,
+        wikidata:P5683,
+        wikidata:P5806,
+        wikidata:P591,
+        wikidata:P592,
+        wikidata:P593,
+        wikidata:P594,
+        wikidata:P595,
+        wikidata:P6049,
+        wikidata:P6245,
+        wikidata:P638,
+        wikidata:P652,
+        wikidata:P661,
+        wikidata:P662,
+        wikidata:P663,
+        wikidata:P665,
+        wikidata:P6689,
+        wikidata:P671,
+        wikidata:P675,
+        wikidata:P6778,
+        wikidata:P683,
+        wikidata:P685,
+        wikidata:P686,
+        wikidata:P698,
+        wikidata:P699,
+        wikidata:P7001,
+        wikidata:P715,
+        wikidata:P7260,
+        wikidata:P7333,
+        wikidata:P7471,
+        wikidata:P7718,
+        wikidata:P7720,
+        wikidata:P7807,
+        wikidata:P7963,
+        wikidata:P8121,
+        wikidata:P815,
+        wikidata:P830,
+        wikidata:P842,
+        wikidata:P846,
+        wikidata:P850,
+        wikidata:P8656,
+        wikidata:P8691,
+        wikidata:P9157,
+        wikidata:P932,
+        wikidata:P938 ;
+    foaf:homepage "https://www.wikidata.org" ;
+    bioregistry.schema:0000005 "P683" ;
+    bioregistry.schema:0000006 "https://www.wikidata.org/wiki/Property:$1" ;
+    bioregistry.schema:0000019 [ rdfs:label "WikiData Support" ] .
 
 bioregistry.metaresource:go a bioregistry.schema:0000002 ;
     rdfs:label "Gene Ontology Registry" ;
@@ -36965,6 +36984,7 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:tair.locus,
         prefixcommons:tair.protein,
         prefixcommons:tao,
+        prefixcommons:taxonomy,
         prefixcommons:taxrank,
         prefixcommons:tcdb,
         prefixcommons:teddy,
@@ -36980,7 +37000,6 @@ bioregistry.metaresource:prefixcommons a bioregistry.schema:0000002 ;
         prefixcommons:unipathway,
         prefixcommons:uniprot,
         prefixcommons:uniprot.kw,
-        prefixcommons:uniprot.taxonomy,
         prefixcommons:unists,
         prefixcommons:unite,
         prefixcommons:uo,
@@ -39982,6 +40001,7 @@ bioregistry.metaresource:bioregistry a bioregistry.schema:0000002 ;
         bioregistry:bactibase,
         bioregistry:bams,
         bioregistry:bao,
+        bioregistry:bartoc,
         bioregistry:bbkg,
         bioregistry:bbtp,
         bioregistry:bcgo,
