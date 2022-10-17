@@ -51077,7 +51077,7 @@
       "obofoundry": "ncbitaxon",
       "ols": "ncbitaxon",
       "ontobee": "NCBITaxon",
-      "prefixcommons": "uniprot.taxonomy",
+      "prefixcommons": "taxonomy",
       "re3data": "r3d100010415",
       "wikidata": "P685"
     },
@@ -51184,22 +51184,30 @@
     },
     "pattern": "^\\d+$",
     "prefixcommons": {
-      "description": "The taxonomy contains the relationships between all living forms for which nucleic acid or protein sequence have been determined.",
+      "bioportal": "1132",
+      "description": "The NCBI taxonomy database contains the names of all organisms that are represented in the genetic databases with at least one nucleotide or protein sequence.",
       "example": "9606",
-      "homepage": "http://www.uniprot.org/taxonomy/",
+      "homepage": "http://www.ncbi.nlm.nih.gov/taxonomy",
       "keywords": [
         "DNA",
         "protein",
         "structure",
         "classification"
       ],
-      "name": "Uniprot Taxonomy",
+      "name": "NCBI Taxonomy",
       "pattern": "^\\d+$",
-      "prefix": "uniprot.taxonomy",
+      "prefix": "taxonomy",
       "synonyms": [
-        "newt"
+        "taxid",
+        "taxon",
+        "ncbitaxon",
+        "ncbitaxonomy",
+        "newt",
+        "taxman",
+        "ncbi_taxid",
+        "ncbi_taxon_id"
       ],
-      "uri_format": "http://www.uniprot.org/taxonomy/$1"
+      "uri_format": "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=$1"
     },
     "providers": [
       {
