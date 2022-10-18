@@ -117,7 +117,9 @@ def _process_row(line: str):
 
     uri_format = rv.get("uri_format")
     if uri_format:
-        rv["uri_format"] = uri_format.replace("$id", "$1")
+        rv["uri_format"] = (
+            uri_format.replace("$id", "$1").replace("[?id]", "$1").replace("$d", "$1")
+        )
 
     pattern = rv.get("pattern")
     if pattern:

@@ -1765,12 +1765,17 @@ class RegistryGovernance(BaseModel):
         " This field does not consider the ability for insiders (i.e., people with private relationships"
         " to the maintainers) to affect change."
     )
-    public_version_control: bool = Field(
-        description="This field denotes if the registry stores its data/code in publicly available version control"
-        " system, such as GitHub or GitLab? Currently there is no resource that does one but not"
-        " the other, so this is grouped (for now)."
+    public_version_controlled_data: bool = Field(
+        title="Public Version-Controlled Data",
+        description="This field denotes if the registry stores its data in publicly available version control"
+        " system, such as GitHub or GitLab",
     )
-    repository: Optional[str] = Field(description="")
+    data_repository: Optional[str] = Field(
+        description="This field denotes the address of the registry's data version control repository."
+    )
+    code_repository: Optional[str] = Field(
+        description="This field denotes the address of the registry's code version control repository."
+    )
     review_team: Literal["public", "inferrable", "private", "democratic", "n/a"] = Field(
         description="This field denotes if the registry's reviewers/moderators for external contributions known? If "
         "there's a well-defined, maintained listing, then it can be marked as public. If it can be inferred, e.g. from "
@@ -1808,8 +1813,9 @@ class RegistryGovernance(BaseModel):
         return sum(
             [
                 self.accepts_external_contributions,
-                self.public_version_control,
-                self.repository is not None,
+                self.public_version_controlled_data,
+                self.code_repository is not None,
+                self.data_repository is not None,
                 _r[self.review_team],
                 self.status == "active",
                 self.issue_tracker is not None,

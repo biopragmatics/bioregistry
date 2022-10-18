@@ -87,7 +87,7 @@ def _get_governance_df() -> pd.DataFrame:
                 _render_bool(registry.governance.imports),
                 _render_bool(registry.governance.curates),
                 _render_bool(registry.governance.accepts_external_contributions),
-                _render_bool(registry.governance.public_version_control),
+                _render_bool(registry.governance.public_version_controlled_data),
                 _render_bool(registry.governance.issue_tracker is not None),
                 registry.governance.review_team_icon,
             )

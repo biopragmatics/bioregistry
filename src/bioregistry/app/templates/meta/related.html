@@ -273,7 +273,7 @@
             with internal-focused scope.
         </dd>
         {{ registry_field_dl(registry_governance_cls, "accepts_external_contributions") }}
-        {{ registry_field_dl(registry_governance_cls, "public_version_control") }}
+        {{ registry_field_dl(registry_governance_cls, "public_version_controlled_data") }}
         {{ registry_field_dl(registry_governance_cls, "issue_tracker") }}
         {{ registry_field_dl(registry_governance_cls, "review_team") }}
         {{ registry_field_dl(registry_governance_cls, "scope") }}
@@ -285,7 +285,7 @@
             <th>Registry</th>
             <th>Score</th>
             <th>Accepts External Contributions</th>
-            <th>Public Version Control</th>
+            <th>Public Version-Controlled Data</th>
             <th>Issue Tracker</th>
             <th>Review Team</th>
             <th>Scope</th>
@@ -300,7 +300,7 @@
                 </td>
                 <td style="text-align: right;">{{ registry.governance.score() }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.governance.accepts_external_contributions) }}</td>
-                <td style="text-align: center;">{{ render_circle(registry.governance.public_version_control, registry.governance.repository) }}</td>
+                <td style="text-align: center;">{{ render_circle(registry.governance.public_version_controlled_data, registry.governance.data_repository) }}</td>
                 <td style="text-align: center;">
                     {% if registry.governance.issue_tracker %}
                         <a href="{{ registry.governance.issue_tracker }}">
