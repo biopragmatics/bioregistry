@@ -84,7 +84,11 @@ def _process_record(record):
         logger.debug(f"has both formats: {value}")
         return None
     else:
-        rv[URI_FORMAT_KEY] = value.replace("%s", "$1").replace("%u", "$1")
+        value = value.replace("%s", "$1").replace("%u", "$1")
+        if "$1" in value:
+            rv[URI_FORMAT_KEY] = value
+        else:
+            logger.debug("no annotation in %s", rv["prefix"])
     if record:
         logger.debug("forgot something: %s", record)
     return rv
