@@ -1731,8 +1731,9 @@ class RegistryGovernance(BaseModel):
         " to the maintainers) to affect change."
     )
     public_version_controlled_data: bool = Field(
+        title="Public Version-Controlled Data",
         description="This field denotes if the registry stores its data in publicly available version control"
-        " system, such as GitHub or GitLab"
+        " system, such as GitHub or GitLab",
     )
     data_repository: Optional[str] = Field(
         description="This field denotes the address of the registry's data version control repository."
