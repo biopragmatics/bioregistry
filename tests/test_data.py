@@ -854,3 +854,29 @@ class TestRegistry(unittest.TestCase):
                                 len(values),
                                 msg=f"[{prefix}] duplication on {citation_prefix}:{citation_identifier}",
                             )
+
+    def test_mapping_patterns(self):
+        """Test mappings correspond to valid identifiers."""
+        k = {}
+        whitelist = {"uniprot"}
+        for metaprefix, registry in self.metaregistry.items():
+            if metaprefix not in whitelist:  # FIXME remove this to expand testing
+                continue
+            if registry.bioregistry_prefix:
+                resource = self.registry[registry.bioregistry_prefix]
+            elif registry.prefix in self.registry:
+                resource = self.registry[registry.prefix]
+            else:
+                continue
+            pattern = resource.get_pattern_re()
+            if pattern is None:
+                continue
+            k[metaprefix] = pattern
+
+        for prefix, resource in self.registry.items():
+            for metaprefix, metaidentifier in resource.get_mappings().items():
+                pattern = k.get(metaprefix)
+                if pattern is None:
+                    continue
+                with self.subTest(prefix=prefix, metaprefix=metaprefix):
+                    self.assertRegex(metaidentifier, pattern)
