@@ -765,13 +765,19 @@
           "description": "This field denotes if the registry (in theory) accepts external contributions, either via suggestion or proactive improvement. This field does not pass judgement on the difficult of this process from the perspective of the submitter nor the responsiveness of the registry. This field does not consider the ability for insiders (i.e., people with private relationships to the maintainers) to affect change.",
           "type": "boolean"
         },
-        "public_version_control": {
-          "title": "Public Version Control",
-          "description": "This field denotes if the registry stores its data/code in publicly available version control system, such as GitHub or GitLab? Currently there is no resource that does one but not the other, so this is grouped (for now).",
+        "public_version_controlled_data": {
+          "title": "Public Version-Controlled Data",
+          "description": "This field denotes if the registry stores its data in publicly available version control system, such as GitHub or GitLab",
           "type": "boolean"
         },
-        "repository": {
-          "title": "Repository",
+        "data_repository": {
+          "title": "Data Repository",
+          "description": "This field denotes the address of the registry's data version control repository.",
+          "type": "string"
+        },
+        "code_repository": {
+          "title": "Code Repository",
+          "description": "This field denotes the address of the registry's code version control repository.",
           "type": "string"
         },
         "review_team": {
@@ -808,7 +814,7 @@
         "imports",
         "scope",
         "accepts_external_contributions",
-        "public_version_control",
+        "public_version_controlled_data",
         "review_team",
         "status"
       ]
