@@ -38,7 +38,7 @@
             <dl>
                 <dt>Metaprefix</dt>
                 <dd><code>{{ metaprefix }}</code></dd>
-                {% if metaprefix != entry.bioregistry_prefix %}
+                {% if entry.bioregistry_prefix and metaprefix != entry.bioregistry_prefix %}
                 <dt>Bioregistry Prefix</dt>
                 <dd>
                     For this registry, the metaprefix (i.e., the key for the registry)
