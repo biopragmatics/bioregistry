@@ -18,16 +18,15 @@ __all__ = [
 logger = logging.getLogger(__name__)
 
 #: Download URL for the UniProt registry
-URL = "https://rest.uniprot.org/database/stream?format=rdf&query=*"
+URL = "https://rest.uniprot.org/database/stream?format=json&query=*"
 DIRECTORY = EXTERNAL / "uniprot"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
-RAW_PATH = DIRECTORY / "raw.xml"
+RAW_PATH = DIRECTORY / "raw.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
 
-PREFIX = "{http://purl.uniprot.org/core/}abbreviation"
-
 kz = {
-    "identifier": "{http://purl.org/dc/terms/}identifier",
+    "abbreviation": "{http://purl.uniprot.org/core/}abbreviation",
+    "prefix": "{http://purl.org/dc/terms/}identifier",
     "name": "{http://www.w3.org/2000/01/rdf-schema#}label",
     "type": "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}type",
     "primary_topic_of": "{http://xmlns.com/foaf/0.1/}primaryTopicOf",
@@ -57,34 +56,43 @@ def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
     download(url=URL, path=RAW_PATH, force=True)
-    with RAW_PATH.open() as file:
-        tree = ElementTree.parse(file)
-    root = tree.getroot()
     rv = {}
-    for element in root.findall("{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description"):
-        prefix = element.findtext(PREFIX)
-        if prefix in skip_prefixes:
+    for record in json.loads(RAW_PATH.read_text())["results"]:
+        processed_record = _process_record(record)
+        if processed_record is None:
             continue
-        entry = dict(prefix=prefix)
-        for key, path in kz.items():
-            value = element.findtext(path)
-            if not value:
-                continue
-            if key == URI_FORMAT_KEY:
-                if "%s" in value and "%u" in value:
-                    logger.warning(f"{prefix} has both formats: {value}")
-                    pass  # FIXME
-                else:
-                    value = value.replace("%s", "$1").replace("%u", "$1")
-            entry[key] = value
-        prefix = entry.get("prefix")
-        if prefix is not None:
-            rv[prefix] = entry
+        rv[processed_record.pop("prefix")] = processed_record
 
     with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, indent=2, sort_keys=True)
     return rv
 
 
+def _process_record(record):
+    rv = {
+        "prefix": record.pop("id"),
+        "name": record.pop("name"),
+        "abbreviation": record.pop("abbrev"),
+        "pubmed": record.pop('pubMedId', None),
+        "doi": record.pop('doiId', None),
+        "homepage": record.pop('server'),
+        "linktype": record.pop('linkType'),
+        "category": record.pop('category'),
+    }
+    del record["statistics"]
+    rv = {k:v for k,v in rv.items() if k and v}
+
+    value = record.pop("dbUrl")
+    if "%s" in value and "%u" in value:
+        logger.debug(f"has both formats: {value}")
+        return None
+    else:
+        rv[URI_FORMAT_KEY] = value.replace("%s", "$1").replace("%u", "$1")
+    if record:
+        print("forgot something", record)
+
+    return rv
+
+
 if __name__ == "__main__":
-    get_uniprot(force_download=True)
+    get_uniprot(force_download=False)

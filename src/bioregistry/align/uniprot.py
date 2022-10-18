@@ -15,8 +15,9 @@ class UniProtAligner(Aligner):
     """Aligner for UniProt."""
 
     key = "uniprot"
+    alt_key_match = "abbreviation"
     getter = get_uniprot
-    curation_header = ("identifier", "name", URI_FORMAT_KEY, "category")
+    curation_header = ("abbreviation", "name", URI_FORMAT_KEY, "category")
 
 
 if __name__ == "__main__":
