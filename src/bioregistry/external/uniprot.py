@@ -6,7 +6,7 @@ import json
 import logging
 from typing import Mapping
 
-from defusedxml import ElementTree
+import requests
 from pystow.utils import download
 
 from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
@@ -55,7 +55,10 @@ def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
     if PROCESSED_PATH.is_file() and not force_download:
         with PROCESSED_PATH.open() as file:
             return json.load(file)
-    download(url=URL, path=RAW_PATH, force=True)
+
+    RAW_PATH.write_text(
+        json.dumps(requests.get(URL).json(), indent=2, sort_keys=True, ensure_ascii=False)
+    )
     rv = {}
     for record in json.loads(RAW_PATH.read_text())["results"]:
         processed_record = _process_record(record)
@@ -73,14 +76,14 @@ def _process_record(record):
         "prefix": record.pop("id"),
         "name": record.pop("name"),
         "abbreviation": record.pop("abbrev"),
-        "pubmed": record.pop('pubMedId', None),
-        "doi": record.pop('doiId', None),
-        "homepage": record.pop('server'),
-        "linktype": record.pop('linkType'),
-        "category": record.pop('category'),
+        "pubmed": record.pop("pubMedId", None),
+        "doi": record.pop("doiId", None),
+        "homepage": record.pop("server"),
+        "linktype": record.pop("linkType"),
+        "category": record.pop("category"),
     }
     del record["statistics"]
-    rv = {k:v for k,v in rv.items() if k and v}
+    rv = {k: v for k, v in rv.items() if k and v}
 
     value = record.pop("dbUrl")
     if "%s" in value and "%u" in value:
@@ -89,8 +92,7 @@ def _process_record(record):
     else:
         rv[URI_FORMAT_KEY] = value.replace("%s", "$1").replace("%u", "$1")
     if record:
-        print("forgot something", record)
-
+        logger.debug("forgot something: %s", record)
     return rv
 
 
