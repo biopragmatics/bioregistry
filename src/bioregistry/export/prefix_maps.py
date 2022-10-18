@@ -35,15 +35,15 @@ def generate_contexts():
     _write_shacl(SHACL_TURTLE_PATH, prefix_map=prefix_map, pattern_map=pattern_map)
 
     records = manager.get_records()
-    RECORDS_PATH.write_text(json.dumps(
-        [
-            record.to_dict()
-            for record in records
-        ],
-        indent=2,
-        sort_keys=True,
-        ensure_ascii=False,
-    ))
+    RECORDS_PATH.write_text(
+        json.dumps(
+            [record.to_dict() for record in records],
+            indent=2,
+            sort_keys=True,
+            ensure_ascii=False,
+        )
+    )
+
 
 def _collection_prefix_maps():
     for collection in manager.collections.values():

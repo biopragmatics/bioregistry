@@ -1391,10 +1391,7 @@ class Resource(BaseModel):
         return uri_format[: -len("$1")]
 
     def get_uri_prefixes(self) -> Set[str]:
-        return {
-            self._clip_uri_format(uri_format)
-            for uri_format in self.get_uri_formats()
-        } - {None}
+        return {self._clip_uri_format(uri_format) for uri_format in self.get_uri_formats()} - {None}
 
     def get_uri_formats(self) -> Set[str]:
         """Get all URI prefixes."""
@@ -1706,7 +1703,11 @@ class Resource(BaseModel):
         rv = cast(str, removesuffix(removeprefix(markdown(rv), "<p>"), "</p>"))
         return markupsafe.Markup(rv)
 
-    def get_record(self, prefix_priority: Optional[Sequence[str]]=None, uri_prefix_priority: Optional[Sequence[str]]=None) -> curies.Record:
+    def get_record(
+        self,
+        prefix_priority: Optional[Sequence[str]] = None,
+        uri_prefix_priority: Optional[Sequence[str]] = None,
+    ) -> curies.Record:
         """Get a record."""
         prefix = self.get_priority_prefix(priority=prefix_priority)
         prefixes = self.get_synonyms() - {prefix}
@@ -1718,6 +1719,7 @@ class Resource(BaseModel):
             uri_prefix=uri_prefix,
             uri_prefix_synonyms=sorted(uri_prefixes),
         )
+
 
 SchemaStatus = Literal["required", "required*", "present", "present*", "missing"]
 schema_status_map = {
