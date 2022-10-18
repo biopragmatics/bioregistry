@@ -23,6 +23,8 @@ from typing import (
     cast,
 )
 
+import curies
+
 from .constants import (
     BIOREGISTRY_REMOTE_URL,
     EXTRAS,
@@ -413,6 +415,18 @@ class Manager:
             if include_synonyms:
                 for synonym in resource.get_synonyms():
                     yield synonym, pattern
+
+    def get_converter(self, **kwargs) -> curies.Converter:
+        """Get a converter from this manager."""
+        return curies.Converter(records=self.get_records(**kwargs))
+
+    def get_records(self, **kwargs) -> List[curies.Record]:
+        """Get a list of records for all resources in this manager.
+
+        :param kwargs: Keyword arguments to pass to :meth:`Resource.get_record`
+        :returns: A list of records for :class:`curies.Converter`
+        """
+        return [resource.get_record(**kwargs) for _, resource in sorted(self.registry.items())]
 
     def get_reverse_prefix_map(
         self, include_prefixes: bool = False, strict: bool = False
