@@ -7361,8 +7361,7 @@
       "miriam": "brenda",
       "n2t": "brenda",
       "prefixcommons": "brenda",
-      "re3data": "r3d100010616",
-      "uniprot": "BRENDA"
+      "re3data": "r3d100010616"
     },
     "miriam": {
       "deprecated": false,
@@ -7425,14 +7424,6 @@
         "omics": "02681",
         "scr": "002997"
       }
-    },
-    "uniprot": {
-      "category": "Enzyme and pathway databases",
-      "identifier": "131",
-      "link_is_explicit": "true",
-      "name": "BRENDA Comprehensive Enzyme Information System",
-      "prefix": "BRENDA",
-      "uri_format": "https://www.brenda-enzymes.org/enzyme.php?ecno=%s&UniProtAcc=%u&OrganismID=%d"
     }
   },
   "brenda.ligand": {
@@ -21634,6 +21625,7 @@
       "miriam": "ec-code",
       "n2t": "ec-code",
       "prefixcommons": "intenz",
+      "uniprot": "DB-0024",
       "wikidata": "P591"
     },
     "miriam": {
@@ -21712,6 +21704,20 @@
       "ec-code",
       "intenz"
     ],
+    "uniprot": {
+      "abbreviation": "ENZYME",
+      "category": "Enzyme and pathway databases",
+      "homepage": "https://enzyme.expasy.org/",
+      "name": "Enzyme nomenclature database",
+      "prefix": "DB-0024",
+      "publications": [
+        {
+          "doi": "10.1093/nar/28.1.304",
+          "pubmed": "10592255"
+        }
+      ],
+      "uri_format": "https://enzyme.expasy.org/EC/$1"
+    },
     "uri_format": "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=$1",
     "wikidata": {
       "prefix": "P591"
@@ -23171,7 +23177,7 @@
       "miriam": "eggnog",
       "n2t": "eggnog",
       "prefixcommons": "eggnog",
-      "uniprot": "eggNOG"
+      "uniprot": "DB-0152"
     },
     "miriam": {
       "deprecated": false,
@@ -23218,15 +23224,7 @@
         "title": "eggNOG v2.0: extending the evolutionary genealogy of genes with enhanced non-supervised orthologous groups, species and functional annotations.",
         "year": 2009
       }
-    ],
-    "uniprot": {
-      "category": "Phylogenomic databases",
-      "identifier": "152",
-      "link_is_explicit": "true",
-      "name": "evolutionary genealogy of genes: Non-supervised Orthologous Groups",
-      "prefix": "eggNOG",
-      "uri_format": "http://eggnogdb.embl.de/#/app/results?seqid=%u&target_nogs=%s"
-    }
+    ]
   },
   "ehda": {
     "aberowl": {
@@ -23782,7 +23780,8 @@
       "go": "ENA",
       "miriam": "ena.embl",
       "n2t": "ena.embl",
-      "prefixcommons": "ena"
+      "prefixcommons": "ena",
+      "uniprot": "DB-0022"
     },
     "miriam": {
       "deprecated": false,
@@ -23830,6 +23829,20 @@
     "synonyms": [
       "ena"
     ],
+    "uniprot": {
+      "abbreviation": "EMBL",
+      "category": "Sequence databases",
+      "homepage": "https://www.ebi.ac.uk/ena",
+      "name": "EMBL nucleotide sequence database",
+      "prefix": "DB-0022",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gkaa1028",
+          "pubmed": "33175160"
+        }
+      ],
+      "uri_format": "https://www.ebi.ac.uk/ena/browser/view/$1"
+    },
     "uri_format": "https://www.ebi.ac.uk/ena/browser/view/$1"
   },
   "encode": {
@@ -30019,7 +30032,6 @@
       "ncbi": "GeneDB",
       "prefixcommons": "genedb",
       "re3data": "r3d100010626",
-      "uniprot": "GeneDB",
       "wikidata": "P3382"
     },
     "miriam": {
@@ -30087,14 +30099,6 @@
         "nif": "0000-02880",
         "scr": "002774"
       }
-    },
-    "uniprot": {
-      "category": "Genome annotation databases",
-      "identifier": "199",
-      "link_is_explicit": "true",
-      "name": "GeneDB pathogen genome database from Sanger Institute",
-      "prefix": "GeneDB",
-      "uri_format": "https://www.genedb.org/gene/$1"
     },
     "wikidata": {
       "database": "Q5531047",
@@ -44792,8 +44796,7 @@
       "go": "MEROPS",
       "miriam": "merops.inhibitor",
       "n2t": "merops.inhibitor",
-      "prefixcommons": "merops",
-      "uniprot": "MEROPS"
+      "prefixcommons": "merops"
     },
     "miriam": {
       "deprecated": false,
@@ -44858,14 +44861,6 @@
     "synonyms": [
       "merops.inhibitor"
     ],
-    "uniprot": {
-      "category": "Protein family/group databases",
-      "identifier": "59",
-      "link_is_explicit": "true",
-      "name": "MEROPS protease database",
-      "prefix": "MEROPS",
-      "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?mid=$1"
-    },
     "uri_format": "https://www.ebi.ac.uk/merops/cgi-bin/pepsum?id=$1"
   },
   "merops.family": {
@@ -59014,7 +59009,8 @@
       "biolink": "PANTHER.FAMILY",
       "go": "PANTHER",
       "miriam": "panther.family",
-      "n2t": "panther.family"
+      "n2t": "panther.family",
+      "uniprot": "DB-0069"
     },
     "miriam": {
       "deprecated": false,
@@ -59038,7 +59034,21 @@
       "prefix": "panther.family",
       "uri_format": "http://www.pantherdb.org/panther/family.do?clsAccession=$1"
     },
-    "part_of": "panther"
+    "part_of": "panther",
+    "uniprot": {
+      "abbreviation": "PANTHER",
+      "category": "Family and domain databases",
+      "homepage": "http://www.pantherdb.org/",
+      "name": "The PANTHER Classification System",
+      "prefix": "DB-0069",
+      "publications": [
+        {
+          "doi": "10.1093/nar/gky1038",
+          "pubmed": "30407594"
+        }
+      ],
+      "uri_format": "http://www.pantherdb.org/panther/family.do?clsAccession=$1"
+    }
   },
   "panther.node": {
     "biocontext": {
@@ -61623,6 +61633,7 @@
       "miriam": "pharmgkb.gene",
       "n2t": "pharmgkb.gene",
       "prefixcommons": "pharmgkb.gene",
+      "uniprot": "DB-0074",
       "wikidata": "P7001"
     },
     "miriam": {
@@ -61671,6 +61682,20 @@
         "year": 2011
       }
     ],
+    "uniprot": {
+      "abbreviation": "PharmGKB",
+      "category": "Organism-specific databases",
+      "homepage": "https://www.pharmgkb.org/",
+      "name": "The Pharmacogenetics and Pharmacogenomics Knowledge Base",
+      "prefix": "DB-0074",
+      "publications": [
+        {
+          "doi": "10.1385/1-59259-957-5:179",
+          "pubmed": "16100408"
+        }
+      ],
+      "uri_format": "https://www.pharmgkb.org/gene/$1"
+    },
     "wikidata": {
       "prefix": "P7001"
     }
@@ -67187,7 +67212,6 @@
       "n2t": "reactome",
       "prefixcommons": "reactome",
       "re3data": "r3d100010861",
-      "uniprot": "Reactome",
       "wikidata": "P3937"
     },
     "miriam": {
@@ -67273,15 +67297,6 @@
       "RE",
       "REACT"
     ],
-    "uniprot": {
-      "category": "Enzyme and pathway databases",
-      "comment": "Replacement for GK",
-      "identifier": "88",
-      "link_is_explicit": "true",
-      "name": "Reactome - a knowledgebase of biological pathways and processes",
-      "prefix": "Reactome",
-      "uri_format": "https://www.reactome.org/PathwayBrowser/#%s&FLG=%u"
-    },
     "wikidata": {
       "database": "Q2134522",
       "database.homepage": "http://www.reactome.org/",
@@ -78781,9 +78796,6 @@
     "description": "UniProt provides proteome sets of proteins whose genomes have been completely sequenced.",
     "example": "UP000005640",
     "homepage": "https://www.uniprot.org/proteomes",
-    "mappings": {
-      "uniprot": "Proteomes"
-    },
     "name": "UniProt Proteomes",
     "part_of": "uniprot",
     "pattern": "^UP\\d{9}$",
@@ -78795,14 +78807,6 @@
       "github": "cthoyt",
       "name": "Charles Tapley Hoyt",
       "orcid": "0000-0003-4423-4370"
-    },
-    "uniprot": {
-      "category": "Miscellaneous databases",
-      "identifier": "191",
-      "link_is_explicit": "true",
-      "name": "Proteomes",
-      "prefix": "Proteomes",
-      "uri_format": "https://www.uniprot.org/proteomes/$1"
     }
   },
   "uniprot.ptm": {
@@ -79374,8 +79378,7 @@
       "obofoundry": "upa",
       "ols": "upa",
       "ontobee": "UPA",
-      "prefixcommons": "unipathway",
-      "uniprot": "UniPathway"
+      "prefixcommons": "unipathway"
     },
     "obofoundry": {
       "contact": "Anne.Morgat@sib.swiss",
@@ -79444,14 +79447,6 @@
       "unipathway",
       "unipathway.pathway"
     ],
-    "uniprot": {
-      "category": "Enzyme and pathway databases",
-      "identifier": "170",
-      "link_is_explicit": "true",
-      "name": "UniPathway: a resource for the exploration and annotation of metabolic pathways",
-      "prefix": "UniPathway",
-      "uri_format": "http://www.unipathway.org?upid=%s&entryac=%u"
-    },
     "wikidata": {
       "database": "Q85719315"
     }
