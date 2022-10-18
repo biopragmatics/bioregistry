@@ -1391,10 +1391,11 @@ class Resource(BaseModel):
         return uri_format[: -len("$1")]
 
     def get_uri_prefixes(self) -> Set[str]:
+        """Get the set of all URI prefixes."""
         return {self._clip_uri_format(uri_format) for uri_format in self.get_uri_formats()} - {None}
 
     def get_uri_formats(self) -> Set[str]:
-        """Get all URI prefixes."""
+        """Get the set of all URI format strings."""
         uri_formats = itt.chain.from_iterable(
             _yield_protocol_variations(uri_format) for uri_format in self._iter_uri_formats()
         )
