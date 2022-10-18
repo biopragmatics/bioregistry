@@ -3373,13 +3373,22 @@
         "Biomedical Science"
       ]
     },
+    "hl7": {
+      "description": "WHO ATC, Anatomical Therapeutic Chemical classification. The classification system divides drugs into different groups according to the organ or system on which they act and/or their therapeutic and chemical characteristics. It contains several subsets.",
+      "homepage": "http://www.who-umc.org/",
+      "name": "WHO Anatomical Therapeutic Chemical classification",
+      "organization": "World Health Organization",
+      "preferred_prefix": "whoATC",
+      "prefix": "2.16.840.1.113883.6.73",
+      "status": "Complete"
+    },
     "mappings": {
       "aberowl": "ATC",
       "biocontext": "ATC",
       "bioportal": "ATC",
       "edam": "3103",
       "fairsharing": "FAIRsharing.1a27h8",
-      "hl7": "whoATC",
+      "hl7": "2.16.840.1.113883.6.73",
       "miriam": "atc",
       "n2t": "atc",
       "prefixcommons": "atc",
@@ -6290,7 +6299,9 @@
       "uri_format": "http://identifiers.org/bioportal/$1"
     },
     "example_extras": [
-      "SEPIO"
+      "SEPIO",
+      "pseudo",
+      "FBBi"
     ],
     "fairsharing": {
       "abbreviation": "BioPortal",
@@ -12182,12 +12193,21 @@
         "Preclinical Studies"
       ]
     },
+    "hl7": {
+      "description": "ClinVar processes submissions reporting variants found in patient samples, assertions made regarding their clinical significance, information about the submitter, and other supporting data. The alleles described in submissions are mapped to reference sequences, and reported according to the HGVS standard. The ClinVar records have a field for Allele ID and for Variant ID. All simple variants have an Allele ID. At present, all complex  and most simple variants also have a Variant ID, and by the end of 2016, all variants will have a variant ID. This coding system uses the variant ID as the code and the variant name ( field TBD) from the \"variant_summary\" file as the code print string. The \"variant_summary\" file caries more than 20 fields , including the seperate components of the variant nane, the cytogenomic locatiaon, the genomic reference etc. Many of these attributes have been indexed to assist users and applications that need to find the  ID for a particular variant. ",
+      "homepage": "https://lhncbc.nlm.nih.gov/",
+      "name": "ClinVar Variant ID",
+      "organization": "National Lister Hill Center of Biomedical Communications, National Library of Medicine",
+      "preferred_prefix": "clinVar-V",
+      "prefix": "2.16.840.1.113883.6.319",
+      "status": "Complete"
+    },
     "mappings": {
       "biocontext": "ClinVar",
       "biolink": "CLINVAR",
       "cellosaurus": "ClinVar",
       "fairsharing": "FAIRsharing.wx5r6f",
-      "hl7": "clinVar-V",
+      "hl7": "2.16.840.1.113883.6.319",
       "miriam": "clinvar",
       "n2t": "clinvar",
       "re3data": "r3d100013331",
@@ -18857,10 +18877,19 @@
         "Biomedical Science"
       ]
     },
+    "hl7": {
+      "description": "Coded concepts defined in PS 3.16 Digital Imaging andCommunications in Medicine (DICOM): Part 16: Content Mapping Resource,Annex D: DICOM Controlled Terminology Definition",
+      "homepage": "http://medical.nema.org/",
+      "name": "DICOM Controlled Terminology",
+      "organization": "DICOM Standards Committee",
+      "preferred_prefix": "DCM",
+      "prefix": "1.2.840.10008.2.16.4",
+      "status": "Complete"
+    },
     "mappings": {
       "bioportal": "DCM",
       "fairsharing": "FAIRsharing.b7z8by",
-      "hl7": "DCM",
+      "hl7": "1.2.840.10008.2.16.4",
       "ols": "dicom"
     },
     "ols": {
@@ -44544,12 +44573,21 @@
         "Preclinical Studies"
       ]
     },
+    "hl7": {
+      "description": "MedDRA is a five-level hierarchy of terms.  MedDRA was developed as an ICH initiative and is maintained and distributed by the MedDRA Maintenance and Support Services Organization (MSSO).\tVersions \u0013 Versions are released twice per year and are identified by 2 numbers separated by a decimal point (e.g., 7.0, 7.1, 8.0, and 8.1).  \u001c.0\u001d releases may contain changes to the hierarchy.  \u001c.1\u001d releases will only contain additions, moves, and modifications of medical concept terms (Preferred Terms) and coding level terms (Lowest Level Terms).\tConcepts \u0013 Concepts are represented by a MedDRA code and a MedDRA term name.  The MedDRA code is an eight digit numeric code.  MedDRA codes are unique and are never reused.  The MedDRA term name is a 100 character alphanumeric field used to describe the concept or term.\tHierarchies \u0013 MedDRA is structured as a five level hierarchy.  System Organ Classes (SOCs) are the broadest terms (e.g., Cardiac disorders, Investigations).  The lowest level of the terminology is the Lowest Level Term (LLT) level.  There are 26 SOCs and over 60,000 LLTs",
+      "homepage": "www.meddramsso.com",
+      "name": "MedDRA",
+      "organization": "MedDRA MSSO/ Northrop Grumman,MedDRA MSSO/ Northrop Grumman",
+      "preferred_prefix": "mdr",
+      "prefix": "2.16.840.1.113883.6.163",
+      "status": "Complete"
+    },
     "mappings": {
       "aberowl": "MEDDRA",
       "biocontext": "MEDDRA",
       "bioportal": "MEDDRA",
       "fairsharing": "FAIRsharing.ad3137",
-      "hl7": "mdr",
+      "hl7": "2.16.840.1.113883.6.163",
       "miriam": "meddra",
       "n2t": "meddra",
       "wikidata": "P3201"
@@ -51097,13 +51135,22 @@
       ],
       "uri_format": "https://www.ncbi.nlm.nih.gov/gene/$1"
     },
+    "hl7": {
+      "description": "Because not all genes have HGNC names and codes, NCBI has created gene IDs that cover the genes that are not registered by HGNC. When applicable, this variable identifies the gene on which the variant is located. The gene identifier is also carried in the transcript reference sequence database, and is part of a full HGVS expression.",
+      "homepage": "https://lhncbc.nlm.nih.gov/",
+      "name": "NCBI Gene Code",
+      "organization": "Lister Hill National Center for Biomedical Communications",
+      "preferred_prefix": "geneCodeNCBI",
+      "prefix": "2.16.840.1.113883.6.340",
+      "status": "Complete"
+    },
     "mappings": {
       "biocontext": "NCBIGene",
       "biolink": "NCBIGene",
       "edam": "1027",
       "fairsharing": "FAIRsharing.5h3maw",
       "go": "NCBIGene",
-      "hl7": "geneCodeNCBI",
+      "hl7": "2.16.840.1.113883.6.340",
       "miriam": "ncbigene",
       "n2t": "ncbigene",
       "ncbi": "GeneID",
@@ -51447,6 +51494,13 @@
       ],
       "uri_format": "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=$1"
     },
+    "hl7": {
+      "description": "NCBI Taxonomy. National Center for Biotechnology Information, National Library of Medicine, Bethesda, MD, 2001. http://www.ncbi.nlm.nih.gov/Taxonomy/",
+      "name": "Taxonomy from NCBI",
+      "preferred_prefix": "NCBI",
+      "prefix": "2.16.840.1.113883.6.205",
+      "status": "Pending"
+    },
     "mappings": {
       "aberowl": "NCBITAXON",
       "agroportal": "NCBITAXON",
@@ -51456,7 +51510,7 @@
       "edam": "1179",
       "fairsharing": "FAIRsharing.fj07xj",
       "go": "taxon",
-      "hl7": "NCBI",
+      "hl7": "2.16.840.1.113883.6.205",
       "miriam": "taxonomy",
       "n2t": "taxonomy",
       "ncbi": "taxon",
