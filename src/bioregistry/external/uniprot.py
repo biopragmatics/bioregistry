@@ -7,7 +7,6 @@ import logging
 from typing import Mapping
 
 import requests
-from pystow.utils import download
 
 from bioregistry.constants import EXTERNAL, URI_FORMAT_KEY
 
@@ -23,22 +22,6 @@ DIRECTORY = EXTERNAL / "uniprot"
 DIRECTORY.mkdir(exist_ok=True, parents=True)
 RAW_PATH = DIRECTORY / "raw.json"
 PROCESSED_PATH = DIRECTORY / "processed.json"
-
-kz = {
-    "abbreviation": "{http://purl.uniprot.org/core/}abbreviation",
-    "prefix": "{http://purl.org/dc/terms/}identifier",
-    "name": "{http://www.w3.org/2000/01/rdf-schema#}label",
-    "type": "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}type",
-    "primary_topic_of": "{http://xmlns.com/foaf/0.1/}primaryTopicOf",
-    "category": "{http://purl.uniprot.org/core/}category",
-    "link_is_explicit": "{http://purl.uniprot.org/core/}linkIsExplicit",
-    "see_also": "{http://www.w3.org/2000/01/rdf-schema#}seeAlso",
-    URI_FORMAT_KEY: "{http://purl.uniprot.org/core/}urlTemplate",
-    "citation": "{http://purl.uniprot.org/core/}citation",
-    "exact_match": "{http://www.w3.org/2004/02/skos/core#}exactMatch",
-    "comment": "{http://www.w3.org/2000/01/rdf-schema#}comment",
-}
-kzi = {v: k for k, v in kz.items()}
 
 #: resources with these UniProt prefixes don't exist anymore
 skip_prefixes = {
@@ -64,7 +47,10 @@ def get_uniprot(force_download: bool = True) -> Mapping[str, Mapping[str, str]]:
         processed_record = _process_record(record)
         if processed_record is None:
             continue
-        rv[processed_record.pop("prefix")] = processed_record
+        prefix = processed_record.pop("prefix")
+        if prefix in skip_prefixes:
+            continue
+        rv[prefix] = processed_record
 
     with PROCESSED_PATH.open("w") as file:
         json.dump(rv, file, indent=2, sort_keys=True)
