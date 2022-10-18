@@ -76,12 +76,20 @@ def _process_record(record):
         "prefix": record.pop("id"),
         "name": record.pop("name"),
         "abbreviation": record.pop("abbrev"),
-        "pubmed": record.pop("pubMedId", None),
-        "doi": record.pop("doiId", None),
         "homepage": record.pop("server"),
-        "linktype": record.pop("linkType"),
         "category": record.pop("category"),
     }
+    doi = record.pop("doiId", None)
+    pubmed = record.pop("pubMedId", None)
+    publication = {}
+    if doi:
+        publication["doi"] = doi.lower()
+    if pubmed:
+        publication["pubmed"] = pubmed
+    if publication:
+        rv["publications"] = [publication]
+
+    del record["linkType"]
     del record["statistics"]
     rv = {k: v for k, v in rv.items() if k and v}
 
