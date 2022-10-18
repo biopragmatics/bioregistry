@@ -1777,6 +1777,9 @@ class RegistryGovernance(BaseModel):
         return sum(
             [
                 self.accepts_external_contributions,
+                self.public_version_controlled_data,
+                self.code_repository is not None,
+                self.data_repository is not None,
                 _r[self.review_team],
                 self.status == "active",
                 self.issue_tracker is not None,
