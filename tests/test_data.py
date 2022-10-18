@@ -858,10 +858,7 @@ class TestRegistry(unittest.TestCase):
     def test_mapping_patterns(self):
         """Test mappings correspond to valid identifiers."""
         k = {}
-        whitelist = {"uniprot"}
         for metaprefix, registry in self.metaregistry.items():
-            if metaprefix not in whitelist:  # FIXME remove this to expand testing
-                continue
             if registry.bioregistry_prefix:
                 resource = self.registry[registry.bioregistry_prefix]
             elif registry.prefix in self.registry:
