@@ -1071,6 +1071,9 @@ class Resource(BaseModel):
                 publications.append(
                     Publication(pubmed=pubmed, doi=None, pmc=None, title=None, year=None)
                 )
+        if self.uniprot:
+            for publication in self.uniprot.get("publications", []):
+                publications.append(Publication.parse_obj(publication))
         return deduplicate_publications(publications)
 
     def get_twitter(self) -> Optional[str]:
