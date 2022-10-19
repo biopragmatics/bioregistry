@@ -94,10 +94,10 @@ def _process(record):
     return rv
 
 
-#: These provider codes are handled by the Bioregistry's metaregistry
 SKIP_PROVIDERS = {
-    "ols",
-    "bptl",
+    "ols", # handled by the Bioregistry's metaregistry
+    "bptl", # handled by the Bioregistry's metaregistry
+    "bioentitylink",
 }
 
 
