@@ -462,6 +462,8 @@ class Manager:
         :param strict:
             If true, errors on URI prefix collisions. If false, sends logging
             and skips them.
+        :raises ValueError: if there are duplicate URI prefixes. This movitates
+            additional curation.
 
         :returns: A list of records for :class:`curies.Converter`
         """
