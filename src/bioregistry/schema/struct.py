@@ -1379,13 +1379,13 @@ class Resource(BaseModel):
     def _clip_uri_format(self, uri_format: str) -> Optional[str]:
         count = uri_format.count("$1")
         if 0 == count:
-            logging.warning("formatter missing $1: %s", self.get_name())
+            logging.debug("[%s] formatter missing $1: %s", self.prefix, self.get_name())
             return None
         if uri_format.count("$1") != 1:
-            logging.debug("formatter has multiple $1: %s", self.get_name())
+            logging.debug("[%s] formatter has multiple $1: %s", self.prefix, self.get_name())
             return None
         if not uri_format.endswith("$1"):
-            logging.debug("formatter does not end with $1: %s", self.get_name())
+            logging.debug("[%s] formatter does not end with $1: %s", self.prefix, self.get_name())
             return None
         return uri_format[: -len("$1")]
 
