@@ -566,6 +566,8 @@ class TestRegistry(unittest.TestCase):
             record.prefix: record
             for record in bioregistry.manager.get_curies_records(include_prefixes=True)
         }
+
+        # This is a "provides" situation
         self.assertNotIn("ctd.gene", set(records))
         self.assertIn("ncbigene", set(records))
         ncbigene_record = records["ncbigene"]
@@ -588,6 +590,35 @@ class TestRegistry(unittest.TestCase):
         self.assertIn(
             "https://ctdbase.org/detail.go?type=gene&acc=", ncbigene_record.uri_prefix_synonyms
         )
+
+        # This is a "canonical" situation
+        self.assertIn("ena.embl", set(records))
+        record = records["ena.embl"]
+        self.assertIsInstance(record, curies.Record)
+        self.assertEqual("ena.embl", record.prefix)
+        self.assertEqual("ena.embl", record.prefix)
+        self.assertIn("bioproject", record.prefix_synonyms)
+        self.assertIn("ena.embl:", record.uri_prefix_synonyms)
+        self.assertIn("bioproject:", record.uri_prefix_synonyms)
+
+        # part of but different stuff
+        self.assertNotIn("biogrid.interaction", records["biogrid"].prefix_synonyms)
+
+        self.assertIn("biogrid.interaction", set(records))
+        record = records["biogrid.interaction"]
+        self.assertIsInstance(record, curies.Record)
+        self.assertEqual("biogrid.interaction", record.prefix)
+        self.assertEqual("https://thebiogrid.org/interaction/", record.uri_prefix)
+
+        # part of but same URIs
+        self.assertIn("kegg", set(records))
+        record = records["kegg"]
+        self.assertIsInstance(record, curies.Record)
+        self.assertEqual("kegg", record.prefix)
+        self.assertIn("kegg.module", record.prefix_synonyms)
+        self.assertEqual("http://www.kegg.jp/entry/", record.uri_prefix)
+        self.assertIn("kegg:", record.uri_prefix_synonyms)
+        self.assertIn("kegg.module:", record.uri_prefix_synonyms)
 
     def test_prefix_map_priorities(self):
         """Test that different lead priorities all work for prefix map generation."""

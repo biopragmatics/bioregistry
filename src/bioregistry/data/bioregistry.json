@@ -51299,6 +51299,7 @@
       "prefix": "NCBI_gi",
       "uri_format": "http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=$1"
     },
+    "has_canonical": "genbank",
     "homepage": "https://www.ncbi.nlm.nih.gov/genbank/sequenceids/",
     "mappings": {
       "biocontext": "NCBIGI",
@@ -64510,13 +64511,7 @@
       "prefix": "PRIDE",
       "uri_format": "http://identifiers.org/pride/$1"
     },
-    "cellosaurus": {
-      "category": "Proteomic databases",
-      "homepage": "https://www.ebi.ac.uk/pride/archive/",
-      "name": "PRoteomics IDEntifications archive",
-      "prefix": "PRIDE",
-      "uri_format": "https://www.ebi.ac.uk/pride/archive/projects/$1"
-    },
+    "example": "0000006",
     "fairsharing": {
       "abbreviation": "PRIDE",
       "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence.",
@@ -64531,7 +64526,6 @@
     "mappings": {
       "aberowl": "PRIDE",
       "biocontext": "PRIDE",
-      "cellosaurus": "PRIDE",
       "fairsharing": "FAIRsharing.e1byny",
       "miriam": "pride",
       "n2t": "pride",
@@ -64568,6 +64562,7 @@
       "name": "PRIDE Controlled Vocabulary",
       "prefix": "pride"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence.",
       "example": "1",
@@ -64628,7 +64623,8 @@
         }
       ],
       "uri_format": "https://www.ebi.ac.uk/pride/searchSummary.do?queryTypeSelected=identification%20accession%20number&identificationAccessionNumber=$1"
-    }
+    },
+    "uri_format": "http://purl.obolibrary.org/obo/PRIDE_$1"
   },
   "pride.project": {
     "biocontext": {
@@ -64637,8 +64633,16 @@
       "prefix": "PRIDE.PROJECT",
       "uri_format": "http://identifiers.org/pride.project/$1"
     },
+    "cellosaurus": {
+      "category": "Proteomic databases",
+      "homepage": "https://www.ebi.ac.uk/pride/archive/",
+      "name": "PRoteomics IDEntifications archive",
+      "prefix": "PRIDE",
+      "uri_format": "https://www.ebi.ac.uk/pride/archive/projects/$1"
+    },
     "mappings": {
       "biocontext": "PRIDE.PROJECT",
+      "cellosaurus": "PRIDE",
       "miriam": "pride.project",
       "n2t": "pride.project"
     },
