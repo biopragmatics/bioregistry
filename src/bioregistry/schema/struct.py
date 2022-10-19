@@ -1391,7 +1391,8 @@ class Resource(BaseModel):
 
     def get_uri_prefixes(self) -> Set[str]:
         """Get the set of all URI prefixes."""
-        return {self._clip_uri_format(uri_format) for uri_format in self.get_uri_formats()} - {None}
+        uri_prefixes = (self._clip_uri_format(uri_format) for uri_format in self.get_uri_formats())
+        return {uri_prefix for uri_prefix in uri_prefixes if uri_prefix is not None}
 
     def get_uri_formats(self) -> Set[str]:
         """Get the set of all URI format strings."""
