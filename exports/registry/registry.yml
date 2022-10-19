@@ -123,7 +123,7 @@ abcd:
   mappings:
     cellosaurus: ABCD
     fairsharing: FAIRsharing.Z8OKi5
-    uniprot: ABCD
+    uniprot: DB-0236
   name: AntiBodies Chemically Defined database
   preferred_prefix: abcd
   uri_format: https://web.expasy.org/abcd/ABCD_$1
@@ -679,7 +679,7 @@ allergome:
     miriam: allergome
     n2t: allergome
     prefixcommons: allergome
-    uniprot: Allergome
+    uniprot: DB-0160
   name: Allergome
   pattern: ^\d+$
   preferred_prefix: allergome
@@ -1027,7 +1027,7 @@ arachnoserver:
     n2t: arachnoserver
     prefixcommons: arachnoserver
     re3data: r3d100012902
-    uniprot: ArachnoServer
+    uniprot: DB-0145
   name: ArachnoServer
   pattern: ^AS\d{6}$
   preferred_prefix: arachnoserver
@@ -1052,7 +1052,7 @@ araport:
   homepage: https://www.araport.org/
   mappings:
     ncbi: Araport
-    uniprot: Araport
+    uniprot: DB-0221
   name: Arabidopsis Information Portal
   preferred_prefix: araport
   uri_format: https://www.arabidopsis.org/servlets/TairObject?type=locus&name=$1
@@ -1359,7 +1359,7 @@ atc:
     bioportal: ATC
     edam: '3103'
     fairsharing: FAIRsharing.1a27h8
-    hl7: whoATC
+    hl7: 2.16.840.1.113883.6.73
     miriam: atc
     n2t: atc
     prefixcommons: atc
@@ -2197,7 +2197,7 @@ bindingdb:
     n2t: bindingdb
     prefixcommons: bindingdb
     re3data: r3d100012074
-    uniprot: BindingDB
+    uniprot: DB-0127
   name: BindingDB
   pattern: ^\w\d+$
   preferred_prefix: bindingdb
@@ -2254,7 +2254,7 @@ biocyc:
     miriam: biocyc
     n2t: biocyc
     prefixcommons: biocyc
-    uniprot: BioCyc
+    uniprot: DB-0005
   name: BioCyc collection of metabolic pathway databases
   pattern: ^[A-Z-0-9]+(\:)?[A-Za-z0-9+_.%-:]+$
   preferred_prefix: biocyc
@@ -2278,7 +2278,7 @@ biogrid:
     n2t: biogrid
     prefixcommons: biogrid
     re3data: r3d100010350
-    uniprot: BioGRID
+    uniprot: DB-0184
   name: BioGRID
   pattern: ^\d+$
   preferred_prefix: biogrid
@@ -2513,6 +2513,10 @@ bioportal:
     OBO format and Protégé frames. BioPortal functionality includes the ability to
     browse, search and visualize ontologies.
   example: '1046'
+  example_extras:
+  - SEPIO
+  - pseudo
+  - FBBi
   homepage: http://bioportal.bioontology.org/
   mappings:
     biocontext: BIOPORTAL
@@ -2522,7 +2526,7 @@ bioportal:
     prefixcommons: bioportal
     re3data: r3d100012344
   name: BioPortal
-  pattern: ^\d+$
+  pattern: ^(\d+)|(\w+)$
   preferred_prefix: bioportal
   publications:
   - doi: 10.1093/nar/gkp440
@@ -2932,7 +2936,7 @@ bmrb:
   mappings:
     fairsharing: FAIRsharing.p06nme
     miriam: bmrb
-    uniprot: BMRB
+    uniprot: DB-0256
   name: Biological Magnetic Resonance Data Bank
   pattern: ^(bmr|bmse|bmst)?[0-9]{1,6}$
   preferred_prefix: bmrb
@@ -3022,7 +3026,6 @@ brenda:
     n2t: brenda
     prefixcommons: brenda
     re3data: r3d100010616
-    uniprot: BRENDA
   name: BRENDA, The Comprehensive Enzyme Information System
   pattern: ^((\d+\.-\.-\.-)|(\d+\.\d+\.-\.-)|(\d+\.\d+\.\d+\.-)|(\d+\.\d+\.\d+\.\d+))$
   preferred_prefix: brenda
@@ -3573,7 +3576,7 @@ cazy:
     miriam: cazy
     n2t: cazy
     prefixcommons: cazy
-    uniprot: CAZy
+    uniprot: DB-0136
   name: Carbohydrate Active EnZYmes
   pattern: ^(GT|GH|PL|CE|CBM)\d+(\_\d+)?$
   preferred_prefix: cazy
@@ -3640,7 +3643,7 @@ ccds:
     miriam: ccds
     n2t: ccds
     prefixcommons: ccds
-    uniprot: CCDS
+    uniprot: DB-0187
   name: Consensus CDS
   pattern: ^CCDS\d+\.\d+$
   preferred_prefix: ccds
@@ -3780,7 +3783,7 @@ cdd:
     n2t: cdd
     ncbi: CDD
     prefixcommons: cdd
-    uniprot: CDD
+    uniprot: DB-0214
   name: Conserved Domain Database at NCBI
   pattern: ^(cd)?\d{5}$
   preferred_prefix: cdd
@@ -4059,7 +4062,7 @@ cgd:
     n2t: cgd
     ncbi: CGD
     prefixcommons: cgd
-    uniprot: CGD
+    uniprot: DB-0126
   name: Candida Genome Database
   pattern: ^CAL\d{7}$
   preferred_prefix: cgd
@@ -4245,7 +4248,7 @@ chembl:
     miriam: chembl
     prefixcommons: chembl
     re3data: r3d100010539
-    uniprot: ChEMBL
+    uniprot: DB-0174
   name: ChEMBL
   pattern: ^CHEMBL\d+$
   preferred_prefix: chembl
@@ -4976,7 +4979,7 @@ clinvar:
     biolink: CLINVAR
     cellosaurus: ClinVar
     fairsharing: FAIRsharing.wx5r6f
-    hl7: clinVar-V
+    hl7: 2.16.840.1.113883.6.319
     miriam: clinvar
     n2t: clinvar
     re3data: r3d100013331
@@ -6123,7 +6126,7 @@ complexportal:
     miriam: complexportal
     n2t: complexportal
     re3data: r3d100013295
-    uniprot: ComplexPortal
+    uniprot: DB-0228
     wikidata: P7718
   name: Complex Portal
   pattern: ^CPX-[0-9]+$
@@ -6216,7 +6219,7 @@ conoserver:
     fairsharing: FAIRsharing.y00hz4
     miriam: conoserver
     n2t: conoserver
-    uniprot: ConoServer
+    uniprot: DB-0156
   name: ConoServer
   pattern: ^\d+$
   preferred_prefix: conoserver
@@ -6325,7 +6328,7 @@ corum:
     miriam: corum
     n2t: corum
     prefixcommons: corum
-    uniprot: CORUM
+    uniprot: DB-0224
   name: Comprehensive Resource of Mammalian protein complexes
   pattern: ^\d+$
   preferred_prefix: corum
@@ -6839,6 +6842,7 @@ ctd.gene:
     biolink: CTD.GENE
     miriam: ctd.gene
     n2t: ctd.gene
+    uniprot: DB-0140
   name: CTD Gene
   part_of: ctd
   pattern: ^\d+$
@@ -7321,7 +7325,7 @@ dbsnp:
     ncbi: dbSNP
     prefixcommons: dbsnp
     re3data: r3d100010652
-    uniprot: dbSNP
+    uniprot: DB-0013
   name: NCBI dbSNP
   pattern: ^rs\d+$
   preferred_prefix: dbsnp
@@ -7733,7 +7737,7 @@ depod:
     miriam: depod
     n2t: depod
     re3data: r3d100011936
-    uniprot: DEPOD
+    uniprot: DB-0190
   name: Human Dephosphorylation Database
   pattern: ^[A-Z0-9]+$
   preferred_prefix: depod
@@ -7904,7 +7908,7 @@ dicom:
   mappings:
     bioportal: DCM
     fairsharing: FAIRsharing.b7z8by
-    hl7: DCM
+    hl7: 1.2.840.10008.2.16.4
     ols: dicom
   name: DICOM Controlled Terminology
   pattern: ^\d+$
@@ -7922,7 +7926,7 @@ dictybase:
     ncbi: dictyBase
     prefixcommons: dictybase
     re3data: r3d100010586
-    uniprot: dictyBase
+    uniprot: DB-0015
   name: dictyBase
   preferred_prefix: dictybase
   synonyms:
@@ -8059,7 +8063,7 @@ dip:
     miriam: dip
     n2t: dip
     prefixcommons: dip
-    uniprot: DIP
+    uniprot: DB-0016
   name: Database of Interacting Proteins
   pattern: ^DIP(\:)?\-\d{1,}[ENXS]$
   preferred_prefix: dip
@@ -8151,7 +8155,7 @@ disprot:
     n2t: disprot
     prefixcommons: disprot
     re3data: r3d100010561
-    uniprot: DisProt
+    uniprot: DB-0017
   name: DisProt
   pattern: ^DP\d{5}$
   preferred_prefix: disprot
@@ -8738,7 +8742,7 @@ drugbank:
     n2t: drugbank
     prefixcommons: drugbank
     re3data: r3d100010544
-    uniprot: DrugBank
+    uniprot: DB-0019
     wikidata: P715
   name: DrugBank
   pattern: ^DB\d{5}$
@@ -8830,7 +8834,7 @@ drugcentral:
   mappings:
     biolink: DrugCentral
     fairsharing: FAIRsharing.3me82d
-    uniprot: DrugCentral
+    uniprot: DB-0239
   name: Drug Central
   pattern: ^\d+$
   preferred_prefix: drugcentral
@@ -9105,6 +9109,7 @@ eccode:
     miriam: ec-code
     n2t: ec-code
     prefixcommons: intenz
+    uniprot: DB-0024
     wikidata: P591
   name: Enzyme Commission Code
   pattern: ^\d{1,2}(((\.\d{1,3}){1,3})|(\.\d+){2}\.n\d{1,3})?$
@@ -9187,7 +9192,7 @@ echobase:
     n2t: echobase
     prefixcommons: echobase
     re3data: r3d100011646
-    uniprot: EchoBASE
+    uniprot: DB-0020
   name: EchoBASE post-genomic database for Escherichia coli
   pattern: ^EB\d+$
   preferred_prefix: echobase
@@ -9797,7 +9802,7 @@ eggnog:
     miriam: eggnog
     n2t: eggnog
     prefixcommons: eggnog
-    uniprot: eggNOG
+    uniprot: DB-0152
   name: eggNOG
   pattern: ^\w+$
   preferred_prefix: eggnog
@@ -9920,7 +9925,7 @@ elm:
     fairsharing: FAIRsharing.rj3kj5
     miriam: elm
     n2t: elm
-    uniprot: ELM
+    uniprot: DB-0223
   name: Eukaryotic Linear Motif Resource
   pattern: ^[A-Za-z_0-9]+$
   preferred_prefix: elm
@@ -10039,6 +10044,7 @@ ena.embl:
     miriam: ena.embl
     n2t: ena.embl
     prefixcommons: ena
+    uniprot: DB-0022
   name: European Nucleotide Archive
   pattern: ^[A-Z]+[0-9]+(\.\d+)?$
   preferred_prefix: ena.embl
@@ -10122,7 +10128,7 @@ ensembl:
     ncbi: ENSEMBL
     prefixcommons: ensembl
     re3data: r3d100010228
-    uniprot: Ensembl
+    uniprot: DB-0023
     wikidata: P594
   name: Ensembl Gene
   pattern: ^((ENS[FPTG]\d{11}(\.\d+)?)|(FB\w{2}\d{7})|(Y[A-Z]{2}\d{3}[a-zA-Z](\-[A-Z])?)|([A-Z_a-z0-9]+(\.)?(t)?(\d+)?([a-z])?))$
@@ -10187,7 +10193,7 @@ ensembl.bacteria:
     n2t: ensembl.bacteria
     prefixcommons: ensembl.bacteria
     re3data: r3d100011195
-    uniprot: EnsemblBacteria
+    uniprot: DB-0147
   name: Ensembl Bacteria
   pattern: ^((EB\w+)|([A-Z0-9]+\_[A-Z0-9]+))$
   preferred_prefix: ensembl.bacteria
@@ -10212,7 +10218,7 @@ ensembl.fungi:
     n2t: ensembl.fungi
     prefixcommons: ensembl.fungi
     re3data: r3d100011196
-    uniprot: EnsemblFungi
+    uniprot: DB-0148
   name: Ensembl Fungi, the Ensembl database for accessing genome-scale data from fungi.
   pattern: ^[A-Z-a-z0-9]+$
   preferred_prefix: ensembl.fungi
@@ -10231,7 +10237,7 @@ ensembl.metazoa:
     n2t: ensembl.metazoa
     prefixcommons: ensembl.metazoa
     re3data: r3d100011198
-    uniprot: EnsemblMetazoa
+    uniprot: DB-0149
   name: Ensembl Metazoa, the Ensembl database for accessing genome-scale data from
     non-vertebrate metazoa.
   pattern: ^\w+(\.)?\d+$
@@ -10507,7 +10513,7 @@ epd:
     miriam: epd
     n2t: epd
     ncbi: EPD
-    uniprot: EPD
+    uniprot: DB-0205
   name: Eukaryotic Promoter Database
   pattern: ^[A-Z-_0-9]+$
   preferred_prefix: epd
@@ -10957,6 +10963,8 @@ fairsharing:
     references bioinformatics data exchange standards, which includes 'Reporting Guidelines',
     Format Specifications and Terminologies.
   example: bsg-000052
+  example_extras:
+  - FAIRsharing.CugtbQ
   homepage: https://fairsharing.org/
   mappings:
     biocontext: FAIRSHARING
@@ -10965,7 +10973,7 @@ fairsharing:
     n2t: fairsharing
     re3data: r3d100010142
   name: FAIRsharing
-  pattern: ^bsg-[dscp]?\d{6}$
+  pattern: ^(bsg-[dscp]?\d{6})|(FAIRsharing\.\w+)$
   preferred_prefix: fairsharing
   uri_format: https://fairsharing.org/$1
 faldo:
@@ -11496,7 +11504,7 @@ flybase:
     ncbi: FLYBASE
     prefixcommons: flybase
     re3data: r3d100010591
-    uniprot: FlyBase
+    uniprot: DB-0026
     wikidata: P3852
   name: FlyBase Gene
   pattern: ^FB\w{2}\d{7}$
@@ -12436,7 +12444,7 @@ genatlas:
     miriam: genatlas
     n2t: genatlas
     prefixcommons: genatlas
-    uniprot: GenAtlas
+    uniprot: DB-0027
   name: Genatlas
   pattern: ^\w+$
   preferred_prefix: genatlas
@@ -12465,7 +12473,7 @@ genbank:
     go: GenBank
     prefixcommons: genbank
     re3data: r3d100010528
-    uniprot: GenBank
+    uniprot: DB-0028
   name: GenBank
   preferred_prefix: genbank
   uri_format: https://www.ncbi.nlm.nih.gov/nucleotide/$1
@@ -12483,7 +12491,7 @@ genecards:
     n2t: genecards
     prefixcommons: genecards
     re3data: r3d100012015
-    uniprot: GeneCards
+    uniprot: DB-0030
   name: GeneCards
   pattern: ^[A-Za-z-0-9_]+(\@)?$
   preferred_prefix: genecards
@@ -12512,7 +12520,6 @@ genedb:
     ncbi: GeneDB
     prefixcommons: genedb
     re3data: r3d100010626
-    uniprot: GeneDB
     wikidata: P3382
   name: GeneDB
   pattern: ^[\w\d\.-]*$
@@ -12588,7 +12595,7 @@ genetree:
     miriam: genetree
     n2t: genetree
     prefixcommons: genetree
-    uniprot: GeneTree
+    uniprot: DB-0162
   name: GeneTree
   pattern: ^ENSGT\d+$
   preferred_prefix: genetree
@@ -12611,7 +12618,7 @@ genewiki:
     fairsharing: FAIRsharing.t3snf
     miriam: genewiki
     n2t: genewiki
-    uniprot: GeneWiki
+    uniprot: DB-0180
   name: Gene Wiki
   pattern: ^\d+$
   preferred_prefix: genewiki
@@ -13075,7 +13082,7 @@ glygen:
   homepage: https://glygen.org/glycan/
   mappings:
     fairsharing: FAIRsharing.aI1J5W
-    uniprot: GlyGen
+    uniprot: DB-0254
   name: Computational and Informatics Resources for Glycoscience
   preferred_prefix: glygen
   uri_format: https://glygen.org/glycan/$1
@@ -13310,7 +13317,7 @@ go:
     ols: go
     ontobee: GO
     prefixcommons: go
-    uniprot: GO
+    uniprot: DB-0037
     wikidata: P686
   name: Gene Ontology
   namespace_in_lui: true
@@ -13680,7 +13687,7 @@ gpcrdb:
     miriam: gpcrdb
     n2t: gpcrdb
     prefixcommons: gpcrdb
-    uniprot: GPCRDB
+    uniprot: DB-0038
   name: G protein-coupled receptor database
   pattern: ^\w+$
   preferred_prefix: gpcrdb
@@ -14193,7 +14200,7 @@ hamap:
     miriam: hamap
     n2t: hamap
     prefixcommons: hamap
-    uniprot: HAMAP
+    uniprot: DB-0041
   name: High-quality Automated and Manual Annotation of microbial Proteomes
   pattern: ^MF_\d+$
   preferred_prefix: hamap
@@ -14456,7 +14463,7 @@ hgnc:
     n2t: hgnc
     ncbi: HGNC
     prefixcommons: hgnc
-    uniprot: HGNC
+    uniprot: DB-0042
     wikidata: P354
   name: HUGO Gene Nomenclature Committee
   pattern: ^\d{1,5}$
@@ -14732,7 +14739,7 @@ hogenom:
     miriam: hogenom
     n2t: hogenom
     prefixcommons: hogenom
-    uniprot: HOGENOM
+    uniprot: DB-0044
   name: Database of Complete Genome Homologous Genes Families
   pattern: ^\w+$
   preferred_prefix: hogenom
@@ -14973,7 +14980,7 @@ hpa:
     miriam: hpa
     n2t: hpa
     prefixcommons: hpa
-    uniprot: HPA
+    uniprot: DB-0046
   name: Human Protein Atlas tissue profile information
   pattern: ^ENSG\d{11}$
   preferred_prefix: hpa
@@ -15230,7 +15237,7 @@ huge:
     miriam: huge
     n2t: huge
     prefixcommons: huge
-    uniprot: HUGE
+    uniprot: DB-0049
   name: Human Unidentified Gene-Encoded
   pattern: ^KIAA\d{4}$
   preferred_prefix: huge
@@ -15749,7 +15756,7 @@ ideal:
     fairsharing: FAIRsharing.h3y42f
     miriam: ideal
     n2t: ideal
-    uniprot: IDEAL
+    uniprot: DB-0251
   name: Intrinsically Disordered proteins with Extensive Annotations and Literature
   pattern: ^IID\d+$
   preferred_prefix: ideal
@@ -16637,7 +16644,7 @@ intact:
     n2t: intact
     prefixcommons: intact
     re3data: r3d100010671
-    uniprot: IntAct
+    uniprot: DB-0051
   name: IntAct protein interaction database
   pattern: ^EBI\-[0-9]+$
   preferred_prefix: intact
@@ -16715,7 +16722,7 @@ interpro:
     obofoundry: ipr
     prefixcommons: interpro
     re3data: r3d100010798
-    uniprot: InterPro
+    uniprot: DB-0052
     wikidata: P2926
   name: InterPro
   pattern: ^IPR\d{6}$
@@ -16991,6 +16998,7 @@ iuphar.receptor:
     go: IUPHAR_RECEPTOR
     miriam: iuphar.receptor
     n2t: iuphar.receptor
+    uniprot: DB-0182
     wikidata: P5458
   name: Guide to Pharmacology Target
   pattern: ^\d+$
@@ -17181,7 +17189,7 @@ kegg:
     go: KEGG
     miriam: kegg
     n2t: kegg
-    uniprot: KEGG
+    uniprot: DB-0053
   name: Kyoto Encyclopedia of Genes and Genomes
   pattern: ^([CHDEGTMKR]\d+)|(\w+:[\w\d\.-]*)|([a-z]{3,5})|(\w{2,4}\d{5})$
   preferred_prefix: kegg
@@ -18345,7 +18353,7 @@ maizegdb.locus:
     ncbi: MaizeGDB
     prefixcommons: maizegdb
     re3data: r3d100010795
-    uniprot: MaizeGDB
+    uniprot: DB-0058
   name: MaizeGDB Locus
   pattern: ^\d+$
   preferred_prefix: maizegdb.locus
@@ -18439,7 +18447,7 @@ massive:
     fairsharing: FAIRsharing.LYsiMd
     miriam: massive
     n2t: massive
-    uniprot: MassIVE
+    uniprot: DB-0241
   name: MassIVE
   pattern: ^MSV\d+$
   preferred_prefix: massive
@@ -18684,7 +18692,7 @@ meddra:
     biocontext: MEDDRA
     bioportal: MEDDRA
     fairsharing: FAIRsharing.ad3137
-    hl7: mdr
+    hl7: 2.16.840.1.113883.6.163
     miriam: meddra
     n2t: meddra
     wikidata: P3201
@@ -18798,7 +18806,6 @@ merops.entry:
     miriam: merops.inhibitor
     n2t: merops.inhibitor
     prefixcommons: merops
-    uniprot: MEROPS
   name: MEROPS Entry
   pattern: ^[SCTAGMNUI]\d{2}\.([AB]\d{2}|\d{3})$
   preferred_prefix: merops.entry
@@ -19349,7 +19356,7 @@ mgi:
     n2t: mgi
     ncbi: MGI
     prefixcommons: mgi
-    uniprot: MGI
+    uniprot: DB-0060
     wikidata: P671
   name: Mouse Genome Informatics
   namespace_in_lui: true
@@ -19675,7 +19682,7 @@ mint:
     miriam: mint
     n2t: mint
     prefixcommons: mint
-    uniprot: MINT
+    uniprot: DB-0158
   name: Molecular Interaction Database
   pattern: ^\d{1,7}$
   preferred_prefix: mint
@@ -19826,7 +19833,7 @@ miriam:
     fairsharing: FAIRsharing.ap169a
     miriam: identifiers.namespace
   name: Identifiers.org namespace
-  pattern: ^[a-z_\.]+$
+  pattern: ^[0-9a-z_:\.-]+$
   preferred_prefix: miriam
   synonyms:
   - identifiers.namespace
@@ -20224,7 +20231,7 @@ mobidb:
     fairsharing: FAIRsharing.jwra3e
     miriam: mobidb
     n2t: mobidb
-    uniprot: MobiDB
+    uniprot: DB-0183
   name: MobiDB
   pattern: ^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}$
   preferred_prefix: mobidb
@@ -20871,7 +20878,7 @@ myco.tuber:
     n2t: myco.tuber
     ncbi: TubercuList
     prefixcommons: tuberculist
-    uniprot: TubercuList
+    uniprot: DB-0106
   name: TubercuList knowledge base
   pattern: ^Rv\d{4}(A|B|c)?$
   preferred_prefix: myco.tuber
@@ -21259,12 +21266,13 @@ ncbigene:
     edam: '1027'
     fairsharing: FAIRsharing.5h3maw
     go: NCBIGene
-    hl7: geneCodeNCBI
+    hl7: 2.16.840.1.113883.6.340
     miriam: ncbigene
     n2t: ncbigene
     ncbi: GeneID
     prefixcommons: ncbigene
     re3data: r3d100010650
+    uniprot: DB-0118
     wikidata: P351
   name: Entrez Gene
   pattern: ^\d+$
@@ -21383,7 +21391,7 @@ ncbitaxon:
     edam: '1179'
     fairsharing: FAIRsharing.fj07xj
     go: taxon
-    hl7: NCBI
+    hl7: 2.16.840.1.113883.6.205
     miriam: taxonomy
     n2t: taxonomy
     ncbi: taxon
@@ -21850,7 +21858,7 @@ nextprot:
     fairsharing: FAIRsharing.62evqh
     miriam: nextprot
     n2t: nextprot
-    uniprot: neXtProt
+    uniprot: DB-0161
   name: nextProt
   pattern: ^NX_\w+$
   preferred_prefix: nextprot
@@ -23723,7 +23731,7 @@ omim:
     n2t: mim
     ncbi: MIM
     prefixcommons: omim
-    uniprot: MIM
+    uniprot: DB-0062
     wikidata: P492
   name: Online Mendelian Inheritance in Man
   pattern: ^\d+$
@@ -24468,7 +24476,7 @@ orphanet:
     miriam: orphanet
     n2t: orphanet
     prefixcommons: orphanet
-    uniprot: Orphanet
+    uniprot: DB-0068
     wikidata: P1550
   name: Orphanet
   pattern: ^\d+$
@@ -24591,7 +24599,7 @@ orthodb:
     miriam: orthodb
     n2t: orthodb
     prefixcommons: orthodb
-    uniprot: OrthoDB
+    uniprot: DB-0143
   name: OrthoDB
   pattern: ^\w+$
   preferred_prefix: orthodb
@@ -24868,6 +24876,7 @@ panther.family:
     go: PANTHER
     miriam: panther.family
     n2t: panther.family
+    uniprot: DB-0069
   name: Protein ANalysis THrough Evolutionary Relationships Classification System
   part_of: panther
   pattern: ^PTHR\d{5}(\:SF\d{1,3})?$
@@ -24993,7 +25002,7 @@ pathwaycommons:
     n2t: pathwaycommons
     prefixcommons: pathwaycommons
     re3data: r3d100012731
-    uniprot: PathwayCommons
+    uniprot: DB-0253
   name: Pathway Commons
   pattern: ^\d+$
   preferred_prefix: pathwaycommons
@@ -25310,7 +25319,7 @@ pdb:
     ncbi: PDB
     prefixcommons: pdbj
     re3data: r3d100010910
-    uniprot: RCSB-PDB
+    uniprot: DB-0172
     wikidata: P638
   name: PDB Structure
   pattern: ^[0-9][A-Za-z0-9]{3}$
@@ -25591,7 +25600,7 @@ peptideatlas:
     n2t: peptideatlas
     prefixcommons: peptideatlas
     re3data: r3d100010889
-    uniprot: PeptideAtlas
+    uniprot: DB-0071
   name: PeptideAtlas
   pattern: ^PAp[0-9]{8}$
   preferred_prefix: peptideatlas
@@ -25636,7 +25645,7 @@ peroxibase:
     miriam: peroxibase
     n2t: peroxibase
     prefixcommons: peroxibase
-    uniprot: PeroxiBase
+    uniprot: DB-0072
   name: Peroxibase
   pattern: ^\d+$
   preferred_prefix: peroxibase
@@ -25675,7 +25684,7 @@ pfam:
     n2t: pfam
     ncbi: PFAM
     prefixcommons: pfam
-    uniprot: Pfam
+    uniprot: DB-0073
     wikidata: P3519
   name: Pfam
   pattern: ^PF\d{5}$
@@ -25949,6 +25958,7 @@ pharmgkb.gene:
     miriam: pharmgkb.gene
     n2t: pharmgkb.gene
     prefixcommons: pharmgkb.gene
+    uniprot: DB-0074
     wikidata: P7001
   name: Pharmacogenetics and Pharmacogenomics Knowledge Base
   pattern: ^PA\w+$
@@ -26183,7 +26193,7 @@ phylomedb:
     miriam: phylomedb
     n2t: phylomedb
     prefixcommons: phylomedb
-    uniprot: PhylomeDB
+    uniprot: DB-0144
   name: PhylomeDB
   pattern: ^\w+$
   preferred_prefix: phylomedb
@@ -26319,7 +26329,7 @@ pirsf:
     miriam: pirsf
     n2t: pirsf
     prefixcommons: pirsf
-    uniprot: PIRSF
+    uniprot: DB-0079
   name: PIR Superfamily Classification System
   pattern: ^PIRSF\d{6}$
   preferred_prefix: pirsf
@@ -26751,7 +26761,7 @@ pombase:
     ncbi: PomBase
     prefixcommons: pombase
     re3data: r3d100011478
-    uniprot: PomBase
+    uniprot: DB-0031
     wikidata: P6245
   name: PomBase
   pattern: ^S\w+(\.)?\w+(\.)?$
@@ -26901,7 +26911,7 @@ pr:
     ols: pr
     ontobee: PR
     prefixcommons: pr
-    uniprot: PRO
+    uniprot: DB-0181
     wikidata: P4926
   name: Protein Ontology
   namespace_in_lui: true
@@ -26970,7 +26980,7 @@ pride:
     n2t: pride
     ols: pride
     prefixcommons: pride
-    uniprot: PRIDE
+    uniprot: DB-0130
   name: PRIDE Controlled Vocabulary
   pattern: ^\d+$
   preferred_prefix: pride
@@ -27034,7 +27044,7 @@ prints:
     go: PRINTS
     miriam: prints
     n2t: prints
-    uniprot: PRINTS
+    uniprot: DB-0082
   name: PRINTS compendium of protein fingerprints
   pattern: ^PR\d{5}$
   preferred_prefix: prints
@@ -27184,7 +27194,7 @@ prosite:
     miriam: prosite
     n2t: prosite
     prefixcommons: prosite
-    uniprot: PROSITE
+    uniprot: DB-0084
     wikidata: P4355
   name: PROSITE
   pattern: ^PS\d{5}$
@@ -28157,7 +28167,6 @@ reactome:
     n2t: reactome
     prefixcommons: reactome
     re3data: r3d100010861
-    uniprot: Reactome
     wikidata: P3937
   name: Reactome
   pattern: ^R-[A-Z]{3}-\d+(-\d+)?(\.\d+)?$
@@ -28218,7 +28227,7 @@ rebase:
     n2t: rebase
     prefixcommons: rebase
     re3data: r3d100012171
-    uniprot: REBASE
+    uniprot: DB-0089
   name: REBASE restriction enzyme database
   pattern: ^\d+$
   preferred_prefix: rebase
@@ -28266,7 +28275,7 @@ refseq:
     miriam: refseq
     n2t: refseq
     prefixcommons: refseq
-    uniprot: RefSeq
+    uniprot: DB-0117
   name: Reference Sequence Collection
   pattern: ^(((AC|AP|NC|NG|NM|NP|NR|NT|NW|WP|XM|XP|XR|YP|ZP)_\d+)|(NZ_[A-Z]{2,4}\d+))(\.\d+)?$
   preferred_prefix: refseq
@@ -28532,7 +28541,7 @@ rgd:
     n2t: rgd
     ncbi: RGD
     prefixcommons: rgd
-    uniprot: RGD
+    uniprot: DB-0091
     wikidata: P3853
   name: Rat Genome Database
   pattern: ^\d{4,}$
@@ -28984,7 +28993,7 @@ rouge:
     miriam: rouge
     n2t: rouge
     prefixcommons: rouge
-    uniprot: Rouge
+    uniprot: DB-0092
   name: Rodent Unidentified Gene-Encoded Large Proteins
   pattern: ^m\w+$
   preferred_prefix: rouge
@@ -29265,7 +29274,7 @@ sabiork.reaction:
     n2t: sabiork.reaction
     prefixcommons: sabiork.reaction
     re3data: r3d100011052
-    uniprot: SABIO-RK
+    uniprot: DB-0177
   name: SABIO-RK Reaction
   pattern: ^\d+$
   preferred_prefix: sabiork.reaction
@@ -29345,7 +29354,7 @@ sasbdb:
     miriam: sasbdb
     n2t: sasbdb
     re3data: r3d100012273
-    uniprot: SASBDB
+    uniprot: DB-0258
   name: Small Angle Scattering Biological Data Bank
   pattern: ^[Ss][Aa][Ss][A-Za-z0-9]{3}[0-9]$
   preferred_prefix: sasbdb
@@ -29857,7 +29866,7 @@ sgd:
     n2t: sgd
     ncbi: SGD
     prefixcommons: sgd
-    uniprot: SGD
+    uniprot: DB-0095
     wikidata: P3406
   name: Saccharomyces Genome Database
   pattern: ^((S\d+$)|(Y[A-Z]{2}\d{3}[a-zA-Z](\-[A-Z])?))$
@@ -30207,7 +30216,7 @@ signor:
   mappings:
     fairsharing: FAIRsharing.ss78t4
     miriam: signor
-    uniprot: SIGNOR
+    uniprot: DB-0206
   name: Signaling Network Open Resource
   pattern: ^SIGNOR\-[A-Z]+\d+$
   preferred_prefix: signor
@@ -30392,7 +30401,7 @@ smart:
     miriam: smart
     n2t: smart
     prefixcommons: smart
-    uniprot: SMART
+    uniprot: DB-0097
   name: Simple Modular Architecture Research Tool
   pattern: ^SM\d{5}$
   preferred_prefix: smart
@@ -31073,7 +31082,7 @@ string:
     n2t: string
     prefixcommons: string
     re3data: r3d100010604
-    uniprot: STRING
+    uniprot: DB-0141
   name: Search Tool for Retrieval of Interacting Genes/Proteins
   pattern: ^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z,
     0-9][A-Z, 0-9][0-9])|([0-9][A-Za-z0-9]{3})$
@@ -31202,7 +31211,7 @@ supfam:
     miriam: supfam
     n2t: supfam
     prefixcommons: superfamily
-    uniprot: SUPFAM
+    uniprot: DB-0155
   name: SUPERFAMILY
   pattern: ^\w+$
   preferred_prefix: supfam
@@ -31280,7 +31289,7 @@ swisslipid:
     miriam: slm
     n2t: swisslipid
     re3data: r3d100012603
-    uniprot: SwissLipids
+    uniprot: DB-0197
     wikidata: P8691
   name: SwissLipid
   namespace_in_lui: true
@@ -31699,7 +31708,7 @@ tcdb:
     miriam: tcdb
     n2t: tcdb
     prefixcommons: tcdb
-    uniprot: TCDB
+    uniprot: DB-0135
     wikidata: P7260
   name: Transporter Classification Database
   pattern: ^\d+(\.[A-Z])?(\.\d+)?(\.\d+)?(\.\d+)?$
@@ -32150,7 +32159,7 @@ treefam:
     miriam: treefam
     n2t: treefam
     prefixcommons: treefam
-    uniprot: TreeFam
+    uniprot: DB-0185
   name: TreeFam
   pattern: ^\w{1,2}\d+$
   preferred_prefix: treefam
@@ -32442,7 +32451,7 @@ ucsc:
   homepage: https://genome.ucsc.edu/
   mappings:
     biocontext: UCSC
-    uniprot: UCSC
+    uniprot: DB-0139
     wikidata: P2576
   name: UCSC Genome Browser
   preferred_prefix: ucsc
@@ -33000,8 +33009,6 @@ uniprot.proteome:
     completely sequenced.
   example: UP000005640
   homepage: https://www.uniprot.org/proteomes
-  mappings:
-    uniprot: Proteomes
   name: UniProt Proteomes
   part_of: uniprot
   pattern: ^UP\d{9}$
@@ -33055,6 +33062,9 @@ uniprot.resource:
   part_of: uniprot
   pattern: ^DB-\d{4}$
   preferred_prefix: uniprot.resource
+  synonyms:
+  - uniprot.database
+  - uniprot.db
   uri_format: https://www.uniprot.org/database/$1
 uniprot.tissue:
   description: The UniProt Tissue List is a controlled vocabulary of terms used to
@@ -33267,7 +33277,6 @@ upa:
     ols: upa
     ontobee: UPA
     prefixcommons: unipathway
-    uniprot: UniPathway
   name: Unipathway
   pattern: ^(UCR|UCY|UER|ULS|UPA|UPC|UPX)\d{5}$
   preferred_prefix: UPA
@@ -33676,7 +33685,7 @@ vgnc:
     fairsharing: FAIRsharing.5NhJFK
     miriam: vgnc
     ncbi: VGNC
-    uniprot: VGNC
+    uniprot: DB-0226
   name: Vertebrate Gene Nomenclature Committee
   pattern: ^\d{1,9}$
   preferred_prefix: vgnc
@@ -34525,7 +34534,7 @@ wormbase:
     ncbi: WormBase
     prefixcommons: wormbase
     re3data: r3d100010424
-    uniprot: WormBase
+    uniprot: DB-0110
     wikidata: P3860
   name: WormBase database of nematode biology
   pattern: ^WB[A-Z][a-z]+\d+$
@@ -34727,7 +34736,7 @@ xenbase:
     ncbi: Xenbase
     prefixcommons: xenbase
     re3data: r3d100011331
-    uniprot: Xenbase
+    uniprot: DB-0129
   name: Xenbase
   pattern: ^XB\-\w+\-\d+$
   preferred_prefix: xenbase
@@ -35136,7 +35145,7 @@ zfin:
     n2t: zfin
     ncbi: ZFIN
     prefixcommons: zfin
-    uniprot: ZFIN
+    uniprot: DB-0113
     wikidata: P3870
   name: Zebrafish Information Network Gene
   pattern: ^ZDB\-\w+\-\d+\-\d+$

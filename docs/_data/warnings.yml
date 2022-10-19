@@ -22,6 +22,11 @@ wrong_patterns:
   miriam: ^TEDDY_\d{7}$
   name: Terminology for Description of Dynamics
   prefix: biomodels.teddy
+- correct: ^(\d+)|(\w+)$
+  homepage: http://bioportal.bioontology.org/
+  miriam: ^\d+$
+  name: BioPortal
+  prefix: bioportal
 - correct: ^[-A-Za-z0-9\_]*$
   homepage: https://bio.tools/
   miriam: ^[A-Za-z0-9\_]*$
@@ -97,6 +102,11 @@ wrong_patterns:
   miriam: ^(P)?EO\:\d{7}$
   name: Plant Environment Ontology
   prefix: eo
+- correct: ^(bsg-[dscp]?\d{6})|(FAIRsharing\.\w+)$
+  homepage: https://fairsharing.org/
+  miriam: ^bsg-[dscp]?\d{6}$
+  name: FAIRsharing
+  prefix: fairsharing
 - correct: ^\d+$
   homepage: http://si.washington.edu/projects/fma
   miriam: ^FMA:\d+$
@@ -227,6 +237,11 @@ wrong_patterns:
   miriam: ^MIR:\d{8}$
   name: Identifiers.org Registry
   prefix: mir
+- correct: ^[0-9a-z_:\.-]+$
+  homepage: https://www.ebi.ac.uk
+  miriam: ^[a-z_\.]+$
+  name: Identifiers.org namespace
+  prefix: miriam
 - correct: ^000\d{5}$
   homepage: https://www.ebi.ac.uk/miriam/
   miriam: ^MIR:000\d{5}$
