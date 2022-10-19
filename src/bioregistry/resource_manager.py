@@ -452,6 +452,17 @@ class Manager:
     ) -> List[curies.Record]:
         """Get a list of records for all resources in this manager.
 
+        :param prefix_priority:
+            The order of metaprefixes (or "preferred") for choosing a primary prefix
+        :param uri_prefix_priority:
+            The order of metaprefixes for choosing the primary URI prefix
+        :param include_prefixes: Should prefixes be included with colon delimiters?
+            Setting this to true makes an "omni"-reverse prefix map that can be
+            used to parse both URIs and CURIEs
+        :param strict:
+            If true, errors on URI prefix collisions. If false, sends logging
+            and skips them.
+
         :returns: A list of records for :class:`curies.Converter`
         """
         records: List[curies.Record] = []
