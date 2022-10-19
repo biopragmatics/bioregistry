@@ -1704,15 +1704,18 @@ class Resource(BaseModel):
         rv = cast(str, removesuffix(removeprefix(markdown(rv), "<p>"), "</p>"))
         return markupsafe.Markup(rv)
 
-    def get_record(
+    def get_curies_record(
         self,
         prefix_priority: Optional[Sequence[str]] = None,
         uri_prefix_priority: Optional[Sequence[str]] = None,
-    ) -> curies.Record:
+    ) -> Optional[curies.Record]:
         """Get a record."""
+        uri_prefix = self.get_uri_prefix(priority=uri_prefix_priority)
+        if uri_prefix is None:
+            return None
         prefix = self.get_priority_prefix(priority=prefix_priority)
         prefixes = self.get_synonyms() - {prefix}
-        uri_prefix = self.get_uri_prefix(priority=uri_prefix_priority)
+
         uri_prefixes = self.get_uri_prefixes() - {uri_prefix}
         return curies.Record(
             prefix=prefix,

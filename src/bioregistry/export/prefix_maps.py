@@ -34,7 +34,7 @@ def generate_contexts():
     _write_prefix_map(CONTEXT_BIOREGISTRY_PATH, prefix_map=prefix_map)
     _write_shacl(SHACL_TURTLE_PATH, prefix_map=prefix_map, pattern_map=pattern_map)
 
-    records = manager.get_records()
+    records = manager.get_curies_records()
     RECORDS_PATH.write_text(
         json.dumps(
             [record.to_dict() for record in records],

@@ -61,6 +61,23 @@ __all__ = [
 
 logger = logging.getLogger(__name__)
 
+prefix_blacklist = {"bgee.gene"}
+uri_prefix_blacklist = {
+    "http://www.ebi.ac.uk/ontology-lookup/?termId=$1",
+    "https://purl.obolibrary.org/obo/$1",
+    "http://purl.obolibrary.org/obo/$1",
+    # see https://github.com/biopragmatics/bioregistry/issues/548
+    "https://www.ncbi.nlm.nih.gov/nuccore/$1",
+    "https://www.ebi.ac.uk/ena/data/view/$1",
+}
+prefix_resource_blacklist = {
+    ("orphanet", "http://www.orpha.net/ORDO/Orphanet_$1"),  # biocontext is wrong
+    ("wikidata.property", "http://scholia.toolforge.org/"), # duplicated with wikidata
+    (
+        "uniprot",
+        "https://www.ncbi.nlm.nih.gov/protein/$1",
+    ),  # FIXME not sure how to resolve this
+}
 
 def _synonym_to_canonical(registry: Mapping[str, Resource]) -> NormDict:
     """Return a mapping from several variants of each synonym to the canonical namespace."""
@@ -418,15 +435,27 @@ class Manager:
 
     def get_converter(self, **kwargs) -> curies.Converter:
         """Get a converter from this manager."""
-        return curies.Converter(records=self.get_records(**kwargs))
+        return curies.Converter(records=self.get_curies_records(**kwargs))
 
-    def get_records(self, **kwargs) -> List[curies.Record]:
+    def get_curies_records(self, **kwargs) -> List[curies.Record]:
         """Get a list of records for all resources in this manager.
 
         :param kwargs: Keyword arguments to pass to :meth:`Resource.get_record`
         :returns: A list of records for :class:`curies.Converter`
         """
-        return [resource.get_record(**kwargs) for _, resource in sorted(self.registry.items())]
+        records: List[curie.Record] = []
+        for prefix, resource in sorted(self.registry.items()):
+            record = resource.get_curies_record(**kwargs)
+            if record is None:
+                continue
+            if record.uri_prefix_synonyms:
+                record.uri_prefix_synonyms = [
+                    uri_prefix
+                    for uri_prefix in record.uri_prefix_synonyms
+                    if uri_prefix not in uri_prefix_blacklist and (prefix, uri_prefix) not in prefix_resource_blacklist
+                ]
+            records.append(record)
+        return records
 
     def get_reverse_prefix_map(
         self, include_prefixes: bool = False, strict: bool = False
@@ -452,23 +481,6 @@ class Manager:
                 manager.get_reverse_prefix_map(include_prefixes=True),
             )
         """
-        prefix_blacklist = {"bgee.gene"}
-        uri_prefix_blacklist = {
-            "http://www.ebi.ac.uk/ontology-lookup/?termId=$1",
-            "https://bioentity.link/#/lexicon/public/$1",
-            "https://purl.obolibrary.org/obo/$1",
-            "http://purl.obolibrary.org/obo/$1",
-            # see https://github.com/biopragmatics/bioregistry/issues/548
-            "https://www.ncbi.nlm.nih.gov/nuccore/$1",
-            "https://www.ebi.ac.uk/ena/data/view/$1",
-        }
-        prefix_resource_blacklist = {
-            ("orphanet", "http://www.orpha.net/ORDO/Orphanet_$1"),  # biocontext is wrong
-            (
-                "uniprot",
-                "https://www.ncbi.nlm.nih.gov/protein/$1",
-            ),  # FIXME not sure how to resolve this
-        }
         # stratify resources
         primary_resources, secondary_resources = [], []
         for resource in self.registry.values():
