@@ -4943,19 +4943,10 @@ slots:
 
   phenotype of:
     is_a: related to at instance level
-    description: >-
-      holds between a phenotype and a biological entity, where a phenotype
-      is construed broadly as any kind of quality of an organism part,
-      a collection of these qualities, or a change in quality or qualities
-      (e.g. abnormally increased temperature).
     domain: phenotypic feature
     range: biological entity
     multivalued: true
     inverse: has phenotype
-    notes:
-      - check the domain
-    in_subset:
-      - translator_minimal
 
   # TODO: predicate inverse for occurs in
   occurs in:
@@ -6192,6 +6183,7 @@ slots:
     is_a: affected by
     domain: disease or phenotypic feature
     range: chemical or drug or treatment
+    inverse: has side effect
 
   contraindicated for:
     is_a: related to at instance level
@@ -6514,6 +6506,10 @@ slots:
     description: >-
       connects an association to an instance of supporting study result
 
+  is supporting study result of:
+    is_a: related to at instance level
+    inverse: has supporting study result
+    
   mechanism of action:
     is_a: association slot
     range: boolean
@@ -6961,8 +6957,6 @@ slots:
     is_a: association slot
     description: >-
     range: FDA_approval_status_enum
-
-
 
   supporting study metadata:
     is_a: association slot
@@ -7891,6 +7885,14 @@ classes:
     narrow_mappings:
       - STY:T028   # Gene or Genome
       - GENO:0000897  # Genomic Entity
+
+  epigenomic entity:
+      mixin: true
+      slots:
+        - has biological sequence
+      in_subset:
+        - translator_minimal
+      narrow_mappings:
 
   molecular entity:
     is_a: chemical entity
@@ -8941,6 +8943,15 @@ classes:
       - model_organism_database
 
   ## Genomic Classes
+  nucleosome modification:
+    is_a: biological_entity
+    description: >-
+      A chemical modification of a histone protein within a nucleosome octomer or a substitution of a histone with a variant histone isoform.
+      e.g. Histone 4 Lysine 20 methylation (H4K20me), histone variant H2AZ substituting H2A.
+    mixins:
+      - gene product isoform mixin
+      - genomic entity
+      - epigenomic entity
 
   genome:
     is_a: biological entity
@@ -9072,7 +9083,16 @@ classes:
       - NCIT:C13379
       - SIO:001379
       - UMLS:C1514562
-
+  
+  posttranslational modification:
+    is_a: biological_entity
+    description: >-
+      A chemical modification of a polypeptide or protein that occurs after translation. 
+      e.g. polypeptide cleavage to form separate proteins, methylation or acetylation of histone tail amino acids, 
+      protein ubiquitination.
+    mixins:
+      - gene product isoform mixin
+  
   protein family:
     is_a: biological entity
     exact_mappings:
