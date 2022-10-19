@@ -652,20 +652,21 @@ class Resource(BaseModel):
 
     def get_synonyms(self, include_preferred: bool = False) -> Set[str]:
         """Get synonyms."""
-        rv: Set[str] = set()
-        prefixes = [
-            self.prefix,
-            *(self.synonyms or []),
-            self.get_preferred_prefix() if include_preferred else None,
-        ]
-        for prefix in prefixes:
-            if not prefix:
-                continue
-            for p in (prefix, norm(prefix)):
-                rv.add(p)
-                rv.add(p.upper())
-                rv.add(p.lower())
-        return rv - {self.prefix}
+        return set(self.synonyms or [])
+        # rv: Set[str] = set()
+        # prefixes = [
+        #     self.prefix,
+        #     *(self.synonyms or []),
+        #     self.get_preferred_prefix() if include_preferred else None,
+        # ]
+        # for prefix in prefixes:
+        #     if not prefix:
+        #         continue
+        #     for p in (prefix, norm(prefix)):
+        #         rv.add(p)
+        #         rv.add(p.upper())
+        #         rv.add(p.lower())
+        # return rv - {self.prefix}
 
     def get_preferred_prefix(self) -> Optional[str]:
         """Get the preferred prefix (e.g., with stylization) if it exists.

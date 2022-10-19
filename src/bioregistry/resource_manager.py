@@ -484,6 +484,8 @@ class Manager:
                 if uri_prefix in reverse_prefix_map:
                     if resource.part_of or resource.provides or resource.has_canonical:
                         continue
+                    if resource.prefix == reverse_prefix_map[uri_prefix]:
+                        continue  # this is already in
                     msg = f"Duplicate in {reverse_prefix_map[uri_prefix]} and {resource.prefix} for {uri_prefix}"
                     if not strict:
                         logger.warning(msg)
@@ -539,7 +541,7 @@ class Manager:
         """
         primary_resources, secondary_resources = _stratify_resources(self.registry)
 
-        reverse_prefix_map: Dict[str, str] = {
+        rv: Dict[str, str] = {
             "http://purl.obolibrary.org/obo/": "obo",
             "https://purl.obolibrary.org/obo/": "obo",
         }
@@ -549,15 +551,15 @@ class Manager:
                     continue
                 if uri_prefix in uri_prefix_blacklist:
                     continue
-                if uri_prefix in reverse_prefix_map:
+                if uri_prefix in rv:
                     if resource.part_of or resource.provides or resource.has_canonical:
                         continue
-                    msg = f"Duplicate in {reverse_prefix_map[uri_prefix]} and {resource.prefix} for {uri_prefix}"
+                    msg = f"Duplicate in {rv[uri_prefix]} and {resource.prefix} for {uri_prefix}"
                     if not strict:
                         logger.warning(msg)
                         continue
                     raise ValueError(msg)
-                reverse_prefix_map[uri_prefix] = resource.prefix
+                rv[uri_prefix] = resource.prefix
             if include_prefixes:
                 prefixes_ = [
                     resource.prefix,
@@ -566,10 +568,10 @@ class Manager:
                 ]
                 for prefix_ in prefixes_:
                     if prefix_:
-                        reverse_prefix_map[f"{prefix_}:"] = resource.prefix
-                        reverse_prefix_map[f"{prefix_.upper()}:"] = resource.prefix
-                        reverse_prefix_map[f"{prefix_.lower()}:"] = resource.prefix
-        return reverse_prefix_map
+                        rv[f"{prefix_}:"] = resource.prefix
+                        rv[f"{prefix_.upper()}:"] = resource.prefix
+                        rv[f"{prefix_.lower()}:"] = resource.prefix
+        return rv
 
     def get_prefix_map(
         self,
