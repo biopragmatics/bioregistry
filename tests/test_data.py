@@ -9,6 +9,8 @@ from collections import defaultdict
 from textwrap import dedent
 from typing import Mapping
 
+import curies
+
 import bioregistry
 from bioregistry import Resource, manager
 from bioregistry.constants import BIOREGISTRY_PATH, EMAIL_RE
@@ -557,6 +559,32 @@ class TestRegistry(unittest.TestCase):
         with self.subTest(protocol="https"):
             b = f"https://braininfo.rprc.washington.edu/centraldirectory.aspx?ID={ex}"
             self.assertEqual((prefix, ex), bioregistry.parse_iri(b))
+
+    def test_records(self):
+        """Test generating records."""
+        records = {record.prefix: record for record in bioregistry.manager.get_curies_records()}
+        self.assertNotIn("ctd.gene", set(records))
+        self.assertIn("ncbigene", set(records))
+        ncbigene_record = records["ncbigene"]
+        self.assertIsInstance(ncbigene_record, curies.Record)
+        self.assertEqual("ncbigene", ncbigene_record.prefix)
+        self.assertEqual("https://www.ncbi.nlm.nih.gov/gene/", ncbigene_record.uri_prefix)
+        self.assertIn("EGID", ncbigene_record.prefix_synonyms)
+        self.assertIn("entrez", ncbigene_record.prefix_synonyms)
+        self.assertIn("https://bioregistry.io/ncbigene:", ncbigene_record.uri_prefix_synonyms)
+        self.assertIn("http://identifiers.org/ncbigene:", ncbigene_record.uri_prefix_synonyms)
+        self.assertIn(
+            "https://scholia.toolforge.org/ncbi-gene/", ncbigene_record.uri_prefix_synonyms
+        )
+
+        # Test that all of the CTD gene stuff is rolled into NCBIGene because CTD gene provides for NCBI gene
+        self.assertIn("ctd.gene", ncbigene_record.prefix_synonyms)
+        self.assertIn("ctd.gene:", ncbigene_record.uri_prefix_synonyms)
+        self.assertIn("http://identifiers.org/ctd.gene:", ncbigene_record.uri_prefix_synonyms)
+        self.assertIn("https://bioregistry.io/ctd.gene:", ncbigene_record.uri_prefix_synonyms)
+        self.assertIn(
+            "https://ctdbase.org/detail.go?type=gene&acc=", ncbigene_record.uri_prefix_synonyms
+        )
 
     def test_prefix_map_priorities(self):
         """Test that different lead priorities all work for prefix map generation."""

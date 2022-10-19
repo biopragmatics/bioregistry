@@ -8,7 +8,7 @@
     the prefix should go, which makes them more general than URI prefix strings.
 """
 
-from typing import Collection, List, Mapping, Optional, Sequence, Tuple
+from typing import Collection, Mapping, Optional, Sequence
 
 from .resource_manager import manager
 
@@ -17,7 +17,6 @@ __all__ = [
     "get_uri_prefix",
     "get_prefix_map",
     "get_pattern_map",
-    "get_prefix_list",
 ]
 
 

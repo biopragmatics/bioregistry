@@ -462,53 +462,91 @@ class Manager:
         :param strict:
             If true, errors on URI prefix collisions. If false, sends logging
             and skips them.
-        :raises ValueError: if there are duplicate URI prefixes. This movitates
-            additional curation.
 
         :returns: A list of records for :class:`curies.Converter`
         """
-        records: List[curies.Record] = []
-        reverse_prefix_map: Dict[str, str] = {
+        resources = [resource for resource in self.registry.values() if resource.get_uri_prefix()]
+        primary_uri_prefixes = {
+            resource.prefix: resource.get_uri_prefix(priority=uri_prefix_priority)
+            for resource in resources
+        }
+        primary_prefixes = {
+            resource.prefix: resource.get_priority_prefix(priority=prefix_priority)
+            for resource in resources
+        }
+
+        records: Dict[str, curies.Record] = {}
+        #: A mapping from URI prefixes (both primary and secondary) appearing
+        #: in all records to bioregistry prefixes
+        reverse_uri_prefix_map: Dict[str, str] = {
             "http://purl.obolibrary.org/obo/": "obo",
             "https://purl.obolibrary.org/obo/": "obo",
         }
-        primary_resources, secondary_resources = _stratify_resources(self.registry)
+        #: A mapping from prefixes (both primary and secondary) appearing
+        #: in all records to bioregistry prefixes
+        reverse_pm: Dict[str, str] = {}
+
+        primary_resources, secondary_resources = _stratify_resources(resources)
         for resource in itt.chain(primary_resources, secondary_resources):
-            primary_uri_prefix = resource.get_uri_prefix(priority=uri_prefix_priority)
-            if primary_uri_prefix is None:
-                continue
-            if primary_uri_prefix in reverse_prefix_map:
+            #: If this isn't none, this resource is secondary and should be mapped to a primary resource
+            mapped_prefix = resource.part_of or resource.provides or resource.has_canonical
+
+            primary_uri_prefix = primary_uri_prefixes[resource.prefix]
+            if primary_uri_prefix in reverse_uri_prefix_map:
                 logger.warning(
-                    "duplicate primary prefix: %s for %s that already appeared in %s",
+                    "duplicate primary URI prefix: %s for %s that already appeared in %s",
                     primary_uri_prefix,
                     resource.prefix,
-                    reverse_prefix_map[primary_uri_prefix],
+                    reverse_uri_prefix_map[primary_uri_prefix],
+                )
+                primary_uri_prefix = f"https://bioregistry.io/{resource.prefix}:"
+            reverse_uri_prefix_map[primary_uri_prefix] = resource.prefix
+
+            primary_prefix = primary_prefixes[resource.prefix]
+            if primary_prefix in reverse_pm:
+                logger.warning(
+                    "duplicate primary prefix: %s for %s that already appeared in %s",
+                    primary_prefix,
+                    resource.prefix,
+                    reverse_pm[primary_prefix],
                 )
                 continue
-            reverse_prefix_map[primary_uri_prefix] = resource.prefix
+            reverse_pm[primary_prefix] = resource.prefix
+
+            secondary_prefixes = set()
+            for synonym in resource.get_synonyms():
+                if synonym in reverse_pm:
+                    if reverse_pm[synonym] == resource.prefix:
+                        continue  # duplicate synonym of primary
+                    msg = f"duplicate prefix in {reverse_pm[synonym]} and {resource.prefix}: {synonym}"
+                    _warn_or_raise(msg, strict=strict)
+                    continue
+                reverse_pm[synonym] = primary_prefix
+                secondary_prefixes.add(synonym)
+
             secondary_uri_prefixes = set()
-            prefix = resource.get_priority_prefix(priority=prefix_priority)
-            secondary_prefixes = resource.get_synonyms()
             for uri_prefix in resource.get_uri_prefixes():
                 if (resource.prefix, uri_prefix) in prefix_resource_blacklist:
                     continue
-                if uri_prefix in uri_prefix_blacklist:
+                elif uri_prefix in uri_prefix_blacklist:
                     continue
-                if uri_prefix in reverse_prefix_map:
-                    if resource.part_of or resource.provides or resource.has_canonical:
-                        continue
-                    if resource.prefix == reverse_prefix_map[uri_prefix]:
+                elif uri_prefix in reverse_uri_prefix_map:
+                    if mapped_prefix:
+                        continue  # don't worry, it's deferred alreadu
+                    if resource.prefix == reverse_uri_prefix_map[uri_prefix]:
                         continue  # this is already in
-                    msg = f"Duplicate in {reverse_prefix_map[uri_prefix]} and {resource.prefix} for {uri_prefix}"
-                    if not strict:
-                        logger.warning(msg)
-                        continue
-                    raise ValueError(msg)
-                reverse_prefix_map[uri_prefix] = prefix
-                secondary_uri_prefixes.add(uri_prefix)
+                    msg = (
+                        f"duplicate URI prefix in {reverse_uri_prefix_map[uri_prefix]} "
+                        f"and {resource.prefix}: {uri_prefix}"
+                    )
+                    _warn_or_raise(msg, strict=strict)
+                    continue
+                else:
+                    reverse_uri_prefix_map[uri_prefix] = primary_prefix
+                    secondary_uri_prefixes.add(uri_prefix)
             if include_prefixes:
                 prefixes_ = [
-                    prefix,
+                    primary_prefix,
                     resource.prefix,
                     *resource.get_synonyms(),
                     resource.get_preferred_prefix(),
@@ -516,19 +554,31 @@ class Manager:
                 for prefix_ in prefixes_:
                     if not prefix_:
                         continue
-                    for p in [f"{prefix_}:", f"{prefix_.upper()}:", f"{prefix_.lower()}:"]:
-                        reverse_prefix_map[p] = prefix
-                        secondary_uri_prefixes.add(p)
+                    for prefix_prefix in [
+                        f"{prefix_}:",
+                        f"{prefix_.upper()}:",
+                        f"{prefix_.lower()}:",
+                    ]:
+                        if prefix_prefix in reverse_uri_prefix_map:
+                            if reverse_uri_prefix_map[prefix_prefix] == resource.prefix:
+                                continue
+                            msg = (
+                                f"duplicate prefix prefix in {reverse_uri_prefix_map[prefix_prefix]} "
+                                f"and {resource.prefix}: {prefix_prefix}"
+                            )
+                            _warn_or_raise(msg, strict=strict)
+                            continue
+                        reverse_uri_prefix_map[prefix_prefix] = primary_prefix
+                        secondary_uri_prefixes.add(prefix_prefix)
 
-            record = curies.Record(
-                prefix=prefix,
-                prefix_synonyms=sorted(secondary_prefixes - {prefix}),
+            records[resource.prefix] = curies.Record(
+                prefix=primary_prefix,
+                prefix_synonyms=sorted(secondary_prefixes - {primary_prefix}),
                 uri_prefix=primary_uri_prefix,
                 uri_prefix_synonyms=sorted(secondary_uri_prefixes - {primary_uri_prefix}),
             )
-            records.append(record)
 
-        return records
+        return [record for _, record in sorted(records.items())]
 
     def get_reverse_prefix_map(
         self, include_prefixes: bool = False, strict: bool = False
@@ -554,7 +604,7 @@ class Manager:
                 manager.get_reverse_prefix_map(include_prefixes=True),
             )
         """
-        primary_resources, secondary_resources = _stratify_resources(self.registry)
+        primary_resources, secondary_resources = _stratify_resources(self.registry.values())
 
         rv: Dict[str, str] = {
             "http://purl.obolibrary.org/obo/": "obo",
@@ -1446,9 +1496,9 @@ class Manager:
         )
 
 
-def _stratify_resources(registry):
+def _stratify_resources(resources):
     primary_resources, secondary_resources = [], []
-    for resource in registry.values():
+    for resource in resources:
         if resource.prefix in prefix_blacklist:
             continue
         if resource.part_of or resource.provides or resource.has_canonical:
@@ -1456,6 +1506,12 @@ def _stratify_resources(registry):
         else:
             primary_resources.append(resource)
     return primary_resources, secondary_resources
+
+
+def _warn_or_raise(msg: str, strict: bool = False):
+    if strict:
+        raise ValueError(msg)
+    logger.warning(msg)
 
 
 def prepare_prefix_list(prefix_map: Mapping[str, str]) -> List[Tuple[str, str]]:
