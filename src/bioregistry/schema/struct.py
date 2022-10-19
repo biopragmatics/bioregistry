@@ -33,7 +33,13 @@ from pydantic import BaseModel, Field
 from bioregistry import constants as brc
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, EMAIL_RE, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
-from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
+from bioregistry.utils import (
+    curie_to_str,
+    deduplicate,
+    norm,
+    removeprefix,
+    removesuffix,
+)
 
 try:
     from typing import Literal  # type:ignore
@@ -644,10 +650,22 @@ class Resource(BaseModel):
                 return rv
         return None
 
-    def get_synonyms(self) -> Set[str]:
+    def get_synonyms(self, include_preferred: bool = False) -> Set[str]:
         """Get synonyms."""
-        # TODO aggregate even more from xrefs
-        return set(self.synonyms or {})
+        rv: Set[str] = set()
+        prefixes = [
+            self.prefix,
+            *(self.synonyms or []),
+            self.get_preferred_prefix() if include_preferred else None,
+        ]
+        for prefix in prefixes:
+            if not prefix:
+                continue
+            for p in (prefix, norm(prefix)):
+                rv.add(p)
+                rv.add(p.upper())
+                rv.add(p.lower())
+        return rv - {self.prefix}
 
     def get_preferred_prefix(self) -> Optional[str]:
         """Get the preferred prefix (e.g., with stylization) if it exists.
@@ -1381,7 +1399,8 @@ class Resource(BaseModel):
     def _clip_uri_format(self, uri_format: str) -> Optional[str]:
         count = uri_format.count("$1")
         if 0 == count:
-            logging.debug("formatter missing $1: %s", self.get_name())
+            logging.warning("formatter missing $1: %s", self.get_name())
+            return None
         if uri_format.count("$1") != 1:
             logging.debug("formatter has multiple $1: %s", self.get_name())
             return None

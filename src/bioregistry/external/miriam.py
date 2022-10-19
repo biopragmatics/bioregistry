@@ -95,8 +95,8 @@ def _process(record):
 
 
 SKIP_PROVIDERS = {
-    "ols", # handled by the Bioregistry's metaregistry
-    "bptl", # handled by the Bioregistry's metaregistry
+    "ols",  # handled by the Bioregistry's metaregistry
+    "bptl",  # handled by the Bioregistry's metaregistry
     "bioentitylink",
 }
 
