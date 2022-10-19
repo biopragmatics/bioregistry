@@ -26,20 +26,13 @@ from typing import (
     cast,
 )
 
-import curies
 import pydantic.schema
 from pydantic import BaseModel, Field
 
 from bioregistry import constants as brc
 from bioregistry.constants import BIOREGISTRY_REMOTE_URL, DOCS, EMAIL_RE, URI_FORMAT_KEY
 from bioregistry.license_standardizer import standardize_license
-from bioregistry.utils import (
-    curie_to_str,
-    deduplicate,
-    norm,
-    removeprefix,
-    removesuffix,
-)
+from bioregistry.utils import curie_to_str, deduplicate, removeprefix, removesuffix
 
 try:
     from typing import Literal  # type:ignore
@@ -650,23 +643,9 @@ class Resource(BaseModel):
                 return rv
         return None
 
-    def get_synonyms(self, include_preferred: bool = False) -> Set[str]:
+    def get_synonyms(self) -> Set[str]:
         """Get synonyms."""
-        return set(self.synonyms or [])
-        # rv: Set[str] = set()
-        # prefixes = [
-        #     self.prefix,
-        #     *(self.synonyms or []),
-        #     self.get_preferred_prefix() if include_preferred else None,
-        # ]
-        # for prefix in prefixes:
-        #     if not prefix:
-        #         continue
-        #     for p in (prefix, norm(prefix)):
-        #         rv.add(p)
-        #         rv.add(p.upper())
-        #         rv.add(p.lower())
-        # return rv - {self.prefix}
+        return set(self.synonyms or {})
 
     def get_preferred_prefix(self) -> Optional[str]:
         """Get the preferred prefix (e.g., with stylization) if it exists.
@@ -1385,7 +1364,7 @@ class Resource(BaseModel):
 
         :param priority: The prioirty order for :func:`get_format`.
         :return: The URI prefix. Similar to what's returned by :func:`get_uri_format`, but
-            it MUST have only one ``$1`` and end with ``$1`` to use thi function.
+            it MUST have only one ``$1`` and end with ``$1`` to use the function.
 
         >>> import bioregistry
         >>> bioregistry.get_uri_prefix('chebi')
