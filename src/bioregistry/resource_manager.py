@@ -504,19 +504,21 @@ class Manager:
                         logger.warning(msg)
                         continue
                     raise ValueError(msg)
-                reverse_prefix_map[uri_prefix] = resource.prefix
+                reverse_prefix_map[uri_prefix] = prefix
                 secondary_uri_prefixes.add(uri_prefix)
             if include_prefixes:
                 prefixes_ = [
+                    prefix,
                     resource.prefix,
                     *resource.get_synonyms(),
                     resource.get_preferred_prefix(),
                 ]
                 for prefix_ in prefixes_:
-                    if prefix_:
-                        reverse_prefix_map[f"{prefix_}:"] = resource.prefix
-                        reverse_prefix_map[f"{prefix_.upper()}:"] = resource.prefix
-                        reverse_prefix_map[f"{prefix_.lower()}:"] = resource.prefix
+                    if not prefix_:
+                        continue
+                    for p in [f"{prefix_}:", f"{prefix_.upper()}:", f"{prefix_.lower()}:"]:
+                        reverse_prefix_map[p] = prefix
+                        secondary_uri_prefixes.add(p)
 
             record = curies.Record(
                 prefix=prefix,
