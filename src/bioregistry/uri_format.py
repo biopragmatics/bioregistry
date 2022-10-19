@@ -119,8 +119,3 @@ def get_pattern_map(
         use_preferred=use_preferred,
         blacklist=blacklist,
     )
-
-
-def get_prefix_list(**kwargs) -> List[Tuple[str, str]]:
-    """Get the default priority prefix list."""
-    return manager.get_prefix_list(**kwargs)
