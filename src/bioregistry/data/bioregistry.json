@@ -2224,12 +2224,6 @@
       "name": "Ascomycete phenotype ontology",
       "prefix": "APO"
     },
-    "biocontext": {
-      "is_identifiers": false,
-      "is_obo": true,
-      "prefix": "YPO",
-      "uri_format": "http://purl.obolibrary.org/obo/YPO_$1"
-    },
     "bioportal": {
       "contact": {
         "email": "sgd-helpdesk@lists.stanford.edu",
@@ -2256,7 +2250,6 @@
     },
     "mappings": {
       "aberowl": "APO",
-      "biocontext": "YPO",
       "bioportal": "APO",
       "fairsharing": "FAIRsharing.dyqz3y",
       "obofoundry": "apo",
@@ -83676,11 +83669,18 @@
     "uri_format": "http://www.ymdb.ca/compounds/$1"
   },
   "ypo": {
-    "has_canonical": "apo",
+    "biocontext": {
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "YPO",
+      "uri_format": "http://purl.obolibrary.org/obo/YPO_$1"
+    },
     "mappings": {
+      "biocontext": "YPO",
       "obofoundry": "ypo",
       "ols": "ypo"
     },
+    "name": "Yeast Phenotype Ontology",
     "obofoundry": {
       "contact": "cherry@genome.stanford.edu",
       "contact.label": "Mike Cherry",
@@ -83690,7 +83690,8 @@
       "homepage": "http://www.yeastgenome.org/",
       "name": "Yeast phenotypes",
       "prefix": "ypo"
-    }
+    },
+    "uri_format": "http://purl.obolibrary.org/obo/YPO_$1"
   },
   "yrcpdr": {
     "biocontext": {

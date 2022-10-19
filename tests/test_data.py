@@ -562,7 +562,10 @@ class TestRegistry(unittest.TestCase):
 
     def test_records(self):
         """Test generating records."""
-        records = {record.prefix: record for record in bioregistry.manager.get_curies_records()}
+        records = {
+            record.prefix: record
+            for record in bioregistry.manager.get_curies_records(include_prefixes=True)
+        }
         self.assertNotIn("ctd.gene", set(records))
         self.assertIn("ncbigene", set(records))
         ncbigene_record = records["ncbigene"]
