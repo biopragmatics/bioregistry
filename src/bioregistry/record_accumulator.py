@@ -49,10 +49,10 @@ prefix_resource_blacklist = {
 }
 
 
-def _warn_or_raise(msg: str, strict: bool = False):
+def _debug_or_raise(msg: str, strict: bool = False):
     if strict:
         raise ValueError(msg)
-    logger.warning(msg)
+    logger.debug(msg)
 
 
 def _stratify_resources(resources: Iterable[Resource]) -> Tuple[List[Resource], List[Resource]]:
@@ -131,7 +131,7 @@ def get_records(  # noqa: C901
     def _add_primary_uri_prefix(prefix: str) -> Optional[str]:
         primary_uri_prefix = primary_uri_prefixes[prefix]
         if primary_uri_prefix in reverse_uri_prefix_lookup:
-            logger.warning(
+            logger.debug(
                 "duplicate primary URI prefix: %s for %s that already appeared in %s",
                 primary_uri_prefix,
                 prefix,
@@ -145,7 +145,7 @@ def get_records(  # noqa: C901
     def _add_primary_prefix(prefix: str) -> Optional[str]:
         primary_prefix = primary_prefixes[prefix]
         if primary_prefix in reverse_prefix_lookup:
-            logger.warning(
+            logger.debug(
                 "duplicate primary prefix: %s for %s that already appeared in %s",
                 primary_prefix,
                 prefix,
@@ -160,7 +160,7 @@ def get_records(  # noqa: C901
             if reverse_prefix_lookup[synonym] == prefix:
                 return
             msg = f"duplicate prefix in {reverse_prefix_lookup[synonym]} and {prefix}: {synonym}"
-            _warn_or_raise(msg, strict=strict)
+            _debug_or_raise(msg, strict=strict)
             return
         reverse_prefix_lookup[synonym] = prefix
         secondary_prefixes[prefix].add(synonym)
@@ -174,7 +174,7 @@ def get_records(  # noqa: C901
             if prefix == reverse_uri_prefix_lookup[uri_prefix]:
                 return  # this is already in
             msg = f"duplicate URI prefix in {reverse_uri_prefix_lookup[uri_prefix]} and {prefix}: {uri_prefix}"
-            _warn_or_raise(msg, strict=strict)
+            _debug_or_raise(msg, strict=strict)
             return
         else:
             reverse_uri_prefix_lookup[uri_prefix] = prefix
@@ -193,7 +193,7 @@ def get_records(  # noqa: C901
                     f"duplicate prefix prefix in {reverse_uri_prefix_lookup[prefix_prefix]} "
                     f"and {resource.prefix}: {prefix_prefix}"
                 )
-                _warn_or_raise(msg, strict=strict)
+                _debug_or_raise(msg, strict=strict)
                 continue
             reverse_uri_prefix_lookup[prefix_prefix] = target_prefix
             secondary_uri_prefixes[target_prefix].add(prefix_prefix)

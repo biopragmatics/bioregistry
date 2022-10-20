@@ -17,8 +17,8 @@ from bioregistry.constants import (
 )
 from bioregistry.resource_manager import manager
 
-REVERSE_PREFIX_MAP_PATH = EXPORT_CONTEXTS.joinpath("reverse_prefix_map.json")
-RECORDS_PATH = EXPORT_CONTEXTS.joinpath("bioregistry_records.json")
+REVERSE_PREFIX_MAP_PATH = EXPORT_CONTEXTS.joinpath("bioregistry.rpm.json")
+EXTENDED_PREFIX_MAP_PATH = EXPORT_CONTEXTS.joinpath("bioregistry.epm.json")
 
 
 @click.command()
@@ -36,7 +36,7 @@ def generate_contexts():
     _write_shacl(SHACL_TURTLE_PATH, prefix_map=prefix_map, pattern_map=pattern_map)
 
     records = manager.get_curies_records(include_prefixes=True, strict=False)
-    _write_extended_prefix_map(RECORDS_PATH, records)
+    _write_extended_prefix_map(EXTENDED_PREFIX_MAP_PATH, records)
 
 
 def _collection_prefix_maps():

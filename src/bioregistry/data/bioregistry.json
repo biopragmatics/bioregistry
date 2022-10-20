@@ -78738,7 +78738,8 @@
     ],
     "synonyms": [
       "UPISO"
-    ]
+    ],
+    "uri_format": "http://purl.uniprot.org/isoforms/$1"
   },
   "uniprot.journal": {
     "contributor": {
@@ -78968,12 +78969,21 @@
     "name": "UniProt Variants",
     "part_of": "uniprot",
     "pattern": "^\\d+$",
+    "providers": [
+      {
+        "code": "expasy",
+        "description": "Expasy external page for protein variant",
+        "homepage": "https://web.expasy.org/variant_pages",
+        "name": "ExPaSy",
+        "uri_format": "https://web.expasy.org/variant_pages/VAR_$1.html"
+      }
+    ],
     "synonyms": [
       "SP_VAR",
       "UPVAR",
       "UniProtKB_VAR"
     ],
-    "uri_format": "https://web.expasy.org/variant_pages/VAR_$1.html"
+    "uri_format": "http://purl.uniprot.org/annotation/VAR_$1"
   },
   "uniref": {
     "edam": {
