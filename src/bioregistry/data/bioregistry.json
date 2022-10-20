@@ -2224,12 +2224,6 @@
       "name": "Ascomycete phenotype ontology",
       "prefix": "APO"
     },
-    "biocontext": {
-      "is_identifiers": false,
-      "is_obo": true,
-      "prefix": "YPO",
-      "uri_format": "http://purl.obolibrary.org/obo/YPO_$1"
-    },
     "bioportal": {
       "contact": {
         "email": "sgd-helpdesk@lists.stanford.edu",
@@ -2256,7 +2250,6 @@
     },
     "mappings": {
       "aberowl": "APO",
-      "biocontext": "YPO",
       "bioportal": "APO",
       "fairsharing": "FAIRsharing.dyqz3y",
       "obofoundry": "apo",
@@ -7885,7 +7878,8 @@
       "pattern": "^\\d+$",
       "prefix": "bugbase.expt",
       "uri_format": "http://bugs.sgul.ac.uk/bugsbase/tabs/experiment.php?expt_id=$1&action=view"
-    }
+    },
+    "uri_format": "http://bugs.sgul.ac.uk/bugsbase/tabs/experiment.php?action=view&expt_id=$1"
   },
   "bugbase.protocol": {
     "biocontext": {
@@ -7920,7 +7914,8 @@
       "pattern": "^\\d+$",
       "prefix": "bugbase.protocol",
       "uri_format": "http://bugs.sgul.ac.uk/bugsbase/tabs/protocol.php?protocol_id=$1&amp;action=view"
-    }
+    },
+    "uri_format": "http://bugs.sgul.ac.uk/bugsbase/tabs/protocol.php?action=view&protocol_id=$1"
   },
   "bykdb": {
     "biocontext": {
@@ -15738,7 +15733,8 @@
       "homepage": "http://www.gramene.org/plant_ontology/",
       "name": "Cereal Plant Gross Anatomy",
       "prefix": "gro"
-    }
+    },
+    "preferred_prefix": "CGPA"
   },
   "cpt": {
     "aberowl": {
@@ -19600,7 +19596,8 @@
       "prefix": "disprot.region",
       "sampleId": "DP00086r013",
       "uri_format": "https://www.disprot.org/$1"
-    }
+    },
+    "part_of": "disprot"
   },
   "dlxb": {
     "mappings": {
@@ -24262,6 +24259,7 @@
       "prefix": "ensembl.bacteria",
       "uri_format": "https://bacteria.ensembl.org/id/$1"
     },
+    "part_of": "ensembl",
     "prefixcommons": {
       "description": "Ensembl Genomes consists of five sub-portals (for bacteria, protists, fungi, plants and invertebrate metazoa) designed to complement the availability of vertebrate genomes in Ensembl. This collection is concerned with bacterial genomes.",
       "example": "EBESCT00000015660",
@@ -24372,6 +24370,7 @@
       "prefix": "ensembl.fungi",
       "uri_format": "https://fungi.ensembl.org/id/$1"
     },
+    "part_of": "ensembl",
     "prefixcommons": {
       "description": "Ensembl Genomes consists of five sub-portals (for bacteria, protists, fungi, plants and invertebrate metazoa) designed to complement the availability of vertebrate genomes in Ensembl. This collection is concerned with bacterial genomes.",
       "example": "CADAFLAT00006211",
@@ -27638,13 +27637,6 @@
       "prefix": "fb",
       "providers": [
         {
-          "code": "bioentitylink",
-          "description": "FlyBase through BioEntity Link",
-          "homepage": "https://bioentity.link/",
-          "name": "FlyBase through BioEntity Link",
-          "uri_format": "https://bioentity.link/#/lexicon/public/$1"
-        },
-        {
           "code": "agr",
           "description": "FlyBase through the Alliance of Genome Resources",
           "homepage": "https://www.alliancegenome.org",
@@ -30419,6 +30411,7 @@
       "prefix": "genewiki",
       "uri_format": "http://plugins.biogps.org/cgi-bin/wp.cgi?id=$1"
     },
+    "provides": "ncbigene",
     "uniprot": {
       "abbreviation": "GeneWiki",
       "category": "Miscellaneous databases",
@@ -32356,7 +32349,8 @@
       "prefix": "go.ref",
       "uri_format": "http://www.geneontology.org/cgi-bin/references.cgi#$1"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "uri_format": "https://github.com/geneontology/go-site/blob/master/metadata/gorefs/README.md#goref$1"
   },
   "go.resource": {
     "contributor": {
@@ -46238,13 +46232,6 @@
       "prefix": "mgi",
       "providers": [
         {
-          "code": "bioentitylink",
-          "description": "MGD through BioEntity Link",
-          "homepage": "https://bioentity.link/",
-          "name": "MGD through BioEntity Link",
-          "uri_format": "https://bioentity.link/#/lexicon/public/MGI:$1"
-        },
-        {
           "code": "agr",
           "description": "MGI through the Alliance of Genome Resources",
           "homepage": "https://www.alliancegenome.org",
@@ -47226,7 +47213,8 @@
       "prefix": "mir",
       "uri_format": "https://identifiers.org/registry?query=\"MIR:$1\""
     },
-    "pattern": "^\\d{8}$"
+    "pattern": "^\\d{8}$",
+    "uri_format": "https://registry.identifiers.org/registry?query=MIR:$1"
   },
   "mirbase": {
     "biocontext": {
@@ -51315,6 +51303,7 @@
       "prefix": "NCBI_gi",
       "uri_format": "http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=$1"
     },
+    "has_canonical": "genbank",
     "homepage": "https://www.ncbi.nlm.nih.gov/genbank/sequenceids/",
     "mappings": {
       "biocontext": "NCBIGI",
@@ -64526,13 +64515,7 @@
       "prefix": "PRIDE",
       "uri_format": "http://identifiers.org/pride/$1"
     },
-    "cellosaurus": {
-      "category": "Proteomic databases",
-      "homepage": "https://www.ebi.ac.uk/pride/archive/",
-      "name": "PRoteomics IDEntifications archive",
-      "prefix": "PRIDE",
-      "uri_format": "https://www.ebi.ac.uk/pride/archive/projects/$1"
-    },
+    "example": "0000006",
     "fairsharing": {
       "abbreviation": "PRIDE",
       "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence.",
@@ -64547,7 +64530,6 @@
     "mappings": {
       "aberowl": "PRIDE",
       "biocontext": "PRIDE",
-      "cellosaurus": "PRIDE",
       "fairsharing": "FAIRsharing.e1byny",
       "miriam": "pride",
       "n2t": "pride",
@@ -64584,6 +64566,7 @@
       "name": "PRIDE Controlled Vocabulary",
       "prefix": "pride"
     },
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "description": "The PRIDE PRoteomics IDEntifications database is a centralized, standards compliant, public data repository that provides protein and peptide identifications together with supporting evidence.",
       "example": "1",
@@ -64644,7 +64627,8 @@
         }
       ],
       "uri_format": "https://www.ebi.ac.uk/pride/searchSummary.do?queryTypeSelected=identification%20accession%20number&identificationAccessionNumber=$1"
-    }
+    },
+    "uri_format": "http://purl.obolibrary.org/obo/PRIDE_$1"
   },
   "pride.project": {
     "biocontext": {
@@ -64653,8 +64637,16 @@
       "prefix": "PRIDE.PROJECT",
       "uri_format": "http://identifiers.org/pride.project/$1"
     },
+    "cellosaurus": {
+      "category": "Proteomic databases",
+      "homepage": "https://www.ebi.ac.uk/pride/archive/",
+      "name": "PRoteomics IDEntifications archive",
+      "prefix": "PRIDE",
+      "uri_format": "https://www.ebi.ac.uk/pride/archive/projects/$1"
+    },
     "mappings": {
       "biocontext": "PRIDE.PROJECT",
+      "cellosaurus": "PRIDE",
       "miriam": "pride.project",
       "n2t": "pride.project"
     },
@@ -65719,7 +65711,8 @@
       "prefix": "psipar",
       "uri_format": "https://www.ebi.ac.uk/ontology-lookup/?termId=$1"
     },
-    "pattern": "^\\d+$"
+    "pattern": "^\\d+$",
+    "uri_format": "https://www.ebi.ac.uk/ontology-lookup/?termId=PAR:$1"
   },
   "pso": {
     "aberowl": {
@@ -71335,13 +71328,6 @@
           "homepage": "http://sgd.bio2rdf.org/fct",
           "name": "Bio2RDF",
           "uri_format": "http://sgd.bio2rdf.org/describe/?url=http://bio2rdf.org/sgd:$1"
-        },
-        {
-          "code": "bioentitylink",
-          "description": "SGD through BioEntity Link",
-          "homepage": "https://bioentity.link/",
-          "name": "SGD through BioEntity Link",
-          "uri_format": "https://bioentity.link/#/lexicon/public/$1"
         },
         {
           "code": "agr",
@@ -77877,10 +77863,19 @@
       "uri_format": "http://umbbd.ethz.ch/servlets/pageservlet?ptype=p&pathway_abbr=$1"
     },
     "part_of": "umbbd",
+    "providers": [
+      {
+        "code": "eawag",
+        "description": "Graphical depiction of pathway",
+        "homepage": "http://eawag-bbd.ethz.ch",
+        "name": "Pathway map diagram",
+        "uri_format": "http://eawag-bbd.ethz.ch/$1/$1_map.html"
+      }
+    ],
     "synonyms": [
       "UM-BBD_pathwayID"
     ],
-    "uri_format": "http://eawag-bbd.ethz.ch/$1/$1_map.html"
+    "uri_format": "http://umbbd.ethz.ch/servlets/pageservlet?ptype=p&pathway_abbr=$1"
   },
   "umbbd.reaction": {
     "biocontext": {
@@ -78743,7 +78738,8 @@
     ],
     "synonyms": [
       "UPISO"
-    ]
+    ],
+    "uri_format": "http://purl.uniprot.org/isoforms/$1"
   },
   "uniprot.journal": {
     "contributor": {
@@ -78973,12 +78969,21 @@
     "name": "UniProt Variants",
     "part_of": "uniprot",
     "pattern": "^\\d+$",
+    "providers": [
+      {
+        "code": "expasy",
+        "description": "Expasy external page for protein variant",
+        "homepage": "https://web.expasy.org/variant_pages",
+        "name": "ExPaSy",
+        "uri_format": "https://web.expasy.org/variant_pages/VAR_$1.html"
+      }
+    ],
     "synonyms": [
       "SP_VAR",
       "UPVAR",
       "UniProtKB_VAR"
     ],
-    "uri_format": "https://web.expasy.org/variant_pages/VAR_$1.html"
+    "uri_format": "http://purl.uniprot.org/annotation/VAR_$1"
   },
   "uniref": {
     "edam": {
@@ -80832,7 +80837,8 @@
         "nlx": "144372",
         "scr": "006563"
       }
-    }
+    },
+    "uri_format": "http://viralzone.expasy.org/all_by_protein/$1"
   },
   "virsirna": {
     "biocontext": {
@@ -82578,13 +82584,6 @@
       "prefix": "wb",
       "providers": [
         {
-          "code": "bioentitylink",
-          "description": "WormBase through BioEntity Link",
-          "homepage": "https://bioentity.link/",
-          "name": "WormBase through BioEntity Link",
-          "uri_format": "https://bioentity.link/#/lexicon/public/$1"
-        },
-        {
           "code": "agr",
           "description": "WormBase through the Alliance of Genome Resources",
           "homepage": "https://www.alliancegenome.org",
@@ -83699,11 +83698,18 @@
     "uri_format": "http://www.ymdb.ca/compounds/$1"
   },
   "ypo": {
-    "has_canonical": "apo",
+    "biocontext": {
+      "is_identifiers": false,
+      "is_obo": true,
+      "prefix": "YPO",
+      "uri_format": "http://purl.obolibrary.org/obo/YPO_$1"
+    },
     "mappings": {
+      "biocontext": "YPO",
       "obofoundry": "ypo",
       "ols": "ypo"
     },
+    "name": "Yeast Phenotype Ontology",
     "obofoundry": {
       "contact": "cherry@genome.stanford.edu",
       "contact.label": "Mike Cherry",
@@ -83713,7 +83719,8 @@
       "homepage": "http://www.yeastgenome.org/",
       "name": "Yeast phenotypes",
       "prefix": "ypo"
-    }
+    },
+    "uri_format": "http://purl.obolibrary.org/obo/YPO_$1"
   },
   "yrcpdr": {
     "biocontext": {
@@ -84120,13 +84127,6 @@
       "pattern": "^ZDB\\-\\w+\\-\\d+\\-\\d+$",
       "prefix": "zfin",
       "providers": [
-        {
-          "code": "bioentitylink",
-          "description": "ZFIN through BioEntity Link",
-          "homepage": "https://bioentity.link/",
-          "name": "ZFIN through BioEntity Link",
-          "uri_format": "https://bioentity.link/#/lexicon/public/$1"
-        },
         {
           "code": "agr",
           "description": "ZFIN through the Alliance of Genome Resources",

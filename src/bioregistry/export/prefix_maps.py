@@ -5,9 +5,10 @@
 import json
 from pathlib import Path
 from textwrap import dedent
-from typing import Mapping, Optional
+from typing import Iterable, Mapping, Optional
 
 import click
+import curies
 
 from bioregistry.constants import (
     CONTEXT_BIOREGISTRY_PATH,
@@ -16,7 +17,8 @@ from bioregistry.constants import (
 )
 from bioregistry.resource_manager import manager
 
-REVERSE_PREFIX_MAP_PATH = EXPORT_CONTEXTS.joinpath("reverse_prefix_map.json")
+REVERSE_PREFIX_MAP_PATH = EXPORT_CONTEXTS.joinpath("bioregistry.rpm.json")
+EXTENDED_PREFIX_MAP_PATH = EXPORT_CONTEXTS.joinpath("bioregistry.epm.json")
 
 
 @click.command()
@@ -32,6 +34,9 @@ def generate_contexts():
     pattern_map = manager.get_pattern_map()
     _write_prefix_map(CONTEXT_BIOREGISTRY_PATH, prefix_map=prefix_map)
     _write_shacl(SHACL_TURTLE_PATH, prefix_map=prefix_map, pattern_map=pattern_map)
+
+    records = manager.get_curies_records(include_prefixes=True, strict=False)
+    _write_extended_prefix_map(EXTENDED_PREFIX_MAP_PATH, records)
 
 
 def _collection_prefix_maps():
@@ -100,6 +105,27 @@ def _write_prefix_map(path: Path, *, prefix_map: Mapping[str, str]) -> None:
                 "@context": prefix_map,
             },
         )
+
+
+def record_to_dict(record: curies.Record):
+    """Convert a record to a dict."""
+    rv = {"prefix": record.prefix, "uri_prefix": record.uri_prefix}
+    if record.prefix_synonyms:
+        rv["prefix_synoynms"] = sorted(record.prefix_synonyms)
+    if record.uri_prefix_synonyms:
+        rv["uri_prefix_synonyms"] = sorted(record.uri_prefix_synonyms)
+    return rv
+
+
+def _write_extended_prefix_map(path: Path, records: Iterable[curies.Record]) -> None:
+    path.write_text(
+        json.dumps(
+            [record_to_dict(record) for record in records],
+            indent=4,
+            sort_keys=True,
+            ensure_ascii=False,
+        )
+    )
 
 
 if __name__ == "__main__":

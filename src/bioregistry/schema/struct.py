@@ -645,7 +645,6 @@ class Resource(BaseModel):
 
     def get_synonyms(self) -> Set[str]:
         """Get synonyms."""
-        # TODO aggregate even more from xrefs
         return set(self.synonyms or {})
 
     def get_preferred_prefix(self) -> Optional[str]:
@@ -1306,6 +1305,18 @@ class Resource(BaseModel):
         "prefixcommons",
     )
 
+    def get_priority_prefix(self, priority: Optional[Sequence[str]] = None) -> str:
+        """Get a prioritized prefix."""
+        if not priority:
+            return self.prefix
+        mappings = self.get_mappings()
+        for metaprefix in priority:
+            if metaprefix == "preferred" and self.preferred_prefix:
+                return self.preferred_prefix
+            if metaprefix in mappings:
+                return mappings[metaprefix]
+        return self.prefix
+
     def get_uri_format(self, priority: Optional[Sequence[str]] = None) -> Optional[str]:
         """Get the URI format string for the given prefix, if it's available.
 
@@ -1353,31 +1364,38 @@ class Resource(BaseModel):
 
         :param priority: The prioirty order for :func:`get_format`.
         :return: The URI prefix. Similar to what's returned by :func:`get_uri_format`, but
-            it MUST have only one ``$1`` and end with ``$1`` to use thie function.
+            it MUST have only one ``$1`` and end with ``$1`` to use the function.
 
         >>> import bioregistry
         >>> bioregistry.get_uri_prefix('chebi')
         'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:'
         """
-        # TODO shorten this with similar logic to get_uri_format
-        fmt = self.get_uri_format(priority=priority)
-        if fmt is None:
+        uri_format = self.get_uri_format(priority=priority)
+        if uri_format is None:
             logging.debug("term missing formatter: %s", self.name)
             return None
-        count = fmt.count("$1")
+        return self._clip_uri_format(uri_format)
+
+    def _clip_uri_format(self, uri_format: str) -> Optional[str]:
+        count = uri_format.count("$1")
         if 0 == count:
-            logging.debug("formatter missing $1: %s", self.name)
+            logging.debug("[%s] formatter missing $1: %s", self.prefix, self.get_name())
             return None
-        if fmt.count("$1") != 1:
-            logging.debug("formatter has multiple $1: %s", self.name)
+        if uri_format.count("$1") != 1:
+            logging.debug("[%s] formatter has multiple $1: %s", self.prefix, self.get_name())
             return None
-        if not fmt.endswith("$1"):
-            logging.debug("formatter does not end with $1: %s", self.name)
+        if not uri_format.endswith("$1"):
+            logging.debug("[%s] formatter does not end with $1: %s", self.prefix, self.get_name())
             return None
-        return fmt[: -len("$1")]
+        return uri_format[: -len("$1")]
+
+    def get_uri_prefixes(self) -> Set[str]:
+        """Get the set of all URI prefixes."""
+        uri_prefixes = (self._clip_uri_format(uri_format) for uri_format in self.get_uri_formats())
+        return {uri_prefix for uri_prefix in uri_prefixes if uri_prefix is not None}
 
     def get_uri_formats(self) -> Set[str]:
-        """Get all URI prefixes."""
+        """Get the set of all URI format strings."""
         uri_formats = itt.chain.from_iterable(
             _yield_protocol_variations(uri_format) for uri_format in self._iter_uri_formats()
         )
