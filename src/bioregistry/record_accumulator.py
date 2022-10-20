@@ -86,6 +86,13 @@ def _iterate_prefix_prefix(resource: Resource, *extras: str):
             yield prefix_prefix
 
 
+# TODO handle situations where a URI format string is available but
+#  it is not directly convertable to URI prefix -> use Bioregistry
+#  URL for these (e.g., chemspider, lrg)
+
+# TODO handle when one URI is a subspace of another
+#  (e.g., uniprot.isoform and uniprot)
+
 def get_records(  # noqa: C901
     resources: List[Resource],
     prefix_priority: Optional[Sequence[str]] = None,
