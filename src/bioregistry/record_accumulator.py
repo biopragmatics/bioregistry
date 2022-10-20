@@ -93,6 +93,7 @@ def _iterate_prefix_prefix(resource: Resource, *extras: str):
 # TODO handle when one URI is a subspace of another
 #  (e.g., uniprot.isoform and uniprot)
 
+
 def get_records(  # noqa: C901
     resources: List[Resource],
     prefix_priority: Optional[Sequence[str]] = None,
