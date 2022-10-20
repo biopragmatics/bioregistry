@@ -111,7 +111,7 @@ def record_to_dict(record: curies.Record):
     """Convert a record to a dict."""
     rv = {"prefix": record.prefix, "uri_prefix": record.uri_prefix}
     if record.prefix_synonyms:
-        rv["prefix_synoynms"] = sorted(record.prefix_synonyms)
+        rv["prefix_synonyms"] = sorted(record.prefix_synonyms)
     if record.uri_prefix_synonyms:
         rv["uri_prefix_synonyms"] = sorted(record.uri_prefix_synonyms)
     return rv
