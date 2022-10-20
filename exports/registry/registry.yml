@@ -947,7 +947,7 @@ apo:
   license: CC BY 4.0
   mappings:
     aberowl: APO
-    biocontext: YPO
+    biocontext: APO
     bioportal: APO
     fairsharing: FAIRsharing.dyqz3y
     obofoundry: apo
@@ -3227,7 +3227,7 @@ bugbase.expt:
   name: BugBase Expt
   pattern: ^\d+$
   preferred_prefix: bugbase.expt
-  uri_format: http://bugs.sgul.ac.uk/bugsbase/tabs/experiment.php?expt_id=$1&action=view
+  uri_format: http://bugs.sgul.ac.uk/bugsbase/tabs/experiment.php?action=view&expt_id=$1
 bugbase.protocol:
   description: BugBase is a MIAME-compliant microbial gene expression and comparative
     genomic database. It stores experimental annotation and multiple raw and analysed
@@ -3242,7 +3242,7 @@ bugbase.protocol:
   name: BugBase Protocol
   pattern: ^\d+$
   preferred_prefix: bugbase.protocol
-  uri_format: http://bugs.sgul.ac.uk/bugsbase/tabs/protocol.php?protocol_id=$1&amp;action=view
+  uri_format: http://bugs.sgul.ac.uk/bugsbase/tabs/protocol.php?action=view&protocol_id=$1
 bykdb:
   description: The bacterial tyrosine kinase database (BYKdb) that collects sequences
     of putative and authentic bacterial tyrosine kinases,  providing structural and
@@ -6453,7 +6453,7 @@ cpga:
     bioportal: GRO-CPGA
     obofoundry: gro
   name: Cereal Plant Gross Anatomy
-  preferred_prefix: GRO
+  preferred_prefix: CGPA
   uri_format: http://purl.obolibrary.org/obo/GRO_$1
 cpt:
   contact:
@@ -8174,6 +8174,7 @@ disprot.region:
   mappings:
     miriam: disprot.region
   name: DisProt region
+  part_of: disprot
   pattern: ^DP\d{5}r\d{3}$
   preferred_prefix: disprot.region
   uri_format: https://www.disprot.org/$1
@@ -10195,6 +10196,7 @@ ensembl.bacteria:
     re3data: r3d100011195
     uniprot: DB-0147
   name: Ensembl Bacteria
+  part_of: ensembl
   pattern: ^((EB\w+)|([A-Z0-9]+\_[A-Z0-9]+))$
   preferred_prefix: ensembl.bacteria
   publications:
@@ -10220,6 +10222,7 @@ ensembl.fungi:
     re3data: r3d100011196
     uniprot: DB-0148
   name: Ensembl Fungi, the Ensembl database for accessing genome-scale data from fungi.
+  part_of: ensembl
   pattern: ^[A-Z-a-z0-9]+$
   preferred_prefix: ensembl.fungi
   uri_format: https://fungi.ensembl.org/id/$1
@@ -11515,11 +11518,6 @@ flybase:
     homepage: https://www.alliancegenome.org
     name: FlyBase through the Alliance of Genome Resources
     uri_format: https://www.alliancegenome.org/gene/FB:$1
-  - code: bioentitylink
-    description: FlyBase through BioEntity Link
-    homepage: https://bioentity.link/
-    name: FlyBase through BioEntity Link
-    uri_format: https://bioentity.link/#/lexicon/public/$1
   synonyms:
   - FB
   - FlyBase
@@ -12622,6 +12620,7 @@ genewiki:
   name: Gene Wiki
   pattern: ^\d+$
   preferred_prefix: genewiki
+  provides: ncbigene
   uri_format: http://plugins.biogps.org/cgi-bin/wp.cgi?id=$1
 geno:
   contact:
@@ -13434,7 +13433,7 @@ go.ref:
   namespace_in_lui: true
   pattern: ^\d{7}$
   preferred_prefix: go.ref
-  uri_format: https://github.com/geneontology/go-site/blob/master/metadata/gorefs/goref-$1.md
+  uri_format: https://github.com/geneontology/go-site/blob/master/metadata/gorefs/README.md#goref$1
 go.resource:
   contributor:
     email: cthoyt@gmail.com
@@ -19368,11 +19367,6 @@ mgi:
     homepage: https://www.alliancegenome.org
     name: MGI through the Alliance of Genome Resources
     uri_format: https://www.alliancegenome.org/gene/MGI:$1
-  - code: bioentitylink
-    description: MGD through BioEntity Link
-    homepage: https://bioentity.link/
-    name: MGD through BioEntity Link
-    uri_format: https://bioentity.link/#/lexicon/public/MGI:$1
   - code: mgi.marker
     description: MGI Marker
     homepage: http://www.informatics.jax.org/marker
@@ -19737,7 +19731,7 @@ mir:
   namespace_in_lui: true
   pattern: ^\d{8}$
   preferred_prefix: mir
-  uri_format: https://registry.identifiers.org/registry?query="MIR:$1"
+  uri_format: https://registry.identifiers.org/registry?query=MIR:$1
 mirbase:
   description: The miRBase Sequence Database is a searchable database of published
     miRNA sequences and annotation. The data were previously provided by the miRNA
@@ -21321,6 +21315,7 @@ ncbigi:
     of the sequence record. Each time a sequence record is changed, it is assigned
     a new GI number.
   example: '568815597'
+  has_canonical: genbank
   homepage: https://www.ncbi.nlm.nih.gov/genbank/sequenceids/
   mappings:
     biocontext: NCBIGI
@@ -26969,12 +26964,11 @@ pride:
     together with supporting evidence. This collection references experiments and
     assays.
   download_owl: https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.obo
-  example: '1'
+  example: '0000006'
   homepage: https://github.com/PRIDE-Utilities/pride-ontology
   mappings:
     aberowl: PRIDE
     biocontext: PRIDE
-    cellosaurus: PRIDE
     fairsharing: FAIRsharing.e1byny
     miriam: pride
     n2t: pride
@@ -26982,7 +26976,7 @@ pride:
     prefixcommons: pride
     uniprot: DB-0130
   name: PRIDE Controlled Vocabulary
-  pattern: ^\d+$
+  pattern: ^\d{7}$
   preferred_prefix: pride
   publications:
   - doi: 10.1002/0471250953.bi1308s21
@@ -27007,7 +27001,7 @@ pride:
     title: 'PRIDE: the proteomics identifications database.'
     year: 2005
   repository: https://github.com/PRIDE-Utilities/pride-ontology
-  uri_format: https://www.ebi.ac.uk/pride/archive/assays/$1
+  uri_format: http://purl.obolibrary.org/obo/PRIDE_$1
 pride.project:
   description: The PRIDE PRoteomics IDEntifications database is a centralized, standards
     compliant, public data repository that provides protein and peptide identifications
@@ -27016,6 +27010,7 @@ pride.project:
   homepage: https://www.ebi.ac.uk/pride/
   mappings:
     biocontext: PRIDE.PROJECT
+    cellosaurus: PRIDE
     miriam: pride.project
     n2t: pride.project
   name: PRIDE Project
@@ -27439,7 +27434,7 @@ psipar:
   name: Protein Affinity Reagents
   pattern: ^\d+$
   preferred_prefix: psipar
-  uri_format: https://www.ebi.ac.uk/ontology-lookup/?termId=$1
+  uri_format: https://www.ebi.ac.uk/ontology-lookup/?termId=PAR:$1
 pso:
   contact:
     email: cooperl@oregonstate.edu
@@ -29882,11 +29877,6 @@ sgd:
     homepage: https://www.alliancegenome.org
     name: SGD through the Alliance of Genome Resources
     uri_format: https://www.alliancegenome.org/gene/SGD:$1
-  - code: bioentitylink
-    description: SGD through BioEntity Link
-    homepage: https://bioentity.link/
-    name: SGD through BioEntity Link
-    uri_format: https://bioentity.link/#/lexicon/public/$1
   publications:
   - doi: 10.1093/nar/gkh033
     pmc: PMC308767
@@ -32564,9 +32554,15 @@ umbbd.pathway:
   part_of: umbbd
   pattern: ^\w+$
   preferred_prefix: umbbd.pathway
+  providers:
+  - code: eawag
+    description: Graphical depiction of pathway
+    homepage: http://eawag-bbd.ethz.ch
+    name: Pathway map diagram
+    uri_format: http://eawag-bbd.ethz.ch/$1/$1_map.html
   synonyms:
   - UM-BBD_pathwayID
-  uri_format: http://eawag-bbd.ethz.ch/$1/$1_map.html
+  uri_format: http://umbbd.ethz.ch/servlets/pageservlet?ptype=p&pathway_abbr=$1
 umbbd.reaction:
   description: The University of Minnesota Biocatalysis/Biodegradation Database (UM-BBD)
     contains information on microbial biocatalytic reactions and biodegradation pathways
@@ -32941,7 +32937,7 @@ uniprot.isoform:
     uri_format: http://purl.obolibrary.org/obo/UniProtKB_$1
   synonyms:
   - UPISO
-  uri_format: http://www.uniprot.org/uniprot/$1
+  uri_format: http://purl.uniprot.org/isoforms/$1
 uniprot.journal:
   contributor:
     email: cthoyt@gmail.com
@@ -33097,11 +33093,17 @@ uniprot.var:
   part_of: uniprot
   pattern: ^\d+$
   preferred_prefix: uniprot.var
+  providers:
+  - code: expasy
+    description: Expasy external page for protein variant
+    homepage: https://web.expasy.org/variant_pages
+    name: ExPaSy
+    uri_format: https://web.expasy.org/variant_pages/VAR_$1.html
   synonyms:
   - SP_VAR
   - UPVAR
   - UniProtKB_VAR
-  uri_format: https://web.expasy.org/variant_pages/VAR_$1.html
+  uri_format: http://purl.uniprot.org/annotation/VAR_$1
 uniref:
   description: The UniProt Reference Clusters (UniRef) provide clustered sets of sequences
     from the UniProt Knowledgebase (including isoforms) and selected UniParc records
@@ -33831,7 +33833,7 @@ viralzone:
   name: ViralZone
   pattern: ^\d+$
   preferred_prefix: viralzone
-  uri_format: http://viralzone.expasy.org/all_by_protein/$1.html
+  uri_format: http://viralzone.expasy.org/all_by_protein/$1
 virsirna:
   description: The VIRsiRNA database contains details of siRNA/shRNA which target
     viral genome regions. It provides efficacy information where available, as well
@@ -34545,11 +34547,6 @@ wormbase:
     homepage: https://www.alliancegenome.org
     name: WormBase through the Alliance of Genome Resources
     uri_format: https://www.alliancegenome.org/gene/WB:$1
-  - code: bioentitylink
-    description: WormBase through BioEntity Link
-    homepage: https://bioentity.link/
-    name: WormBase through BioEntity Link
-    uri_format: https://bioentity.link/#/lexicon/public/$1
   - code: wormbase.c_elegans
     description: Pages describing C. Elegans genes.
     homepage: http://www.wormbase.org
@@ -34994,12 +34991,12 @@ ypo:
     name: Mike Cherry
     orcid: 0000-0001-9163-5180
   deprecated: true
-  has_canonical: apo
   homepage: http://www.yeastgenome.org/
   mappings:
+    biocontext: YPO
     obofoundry: ypo
     ols: ypo
-  name: Yeast phenotypes
+  name: Yeast Phenotype Ontology
   preferred_prefix: YPO
   uri_format: http://purl.obolibrary.org/obo/YPO_$1
 yrcpdr:
@@ -35156,11 +35153,6 @@ zfin:
     homepage: https://www.alliancegenome.org
     name: ZFIN through the Alliance of Genome Resources
     uri_format: https://test.alliancegenome.org/gene/ZFIN:$1
-  - code: bioentitylink
-    description: ZFIN through BioEntity Link
-    homepage: https://bioentity.link/
-    name: ZFIN through BioEntity Link
-    uri_format: https://bioentity.link/#/lexicon/public/$1
   publications:
   - doi: 10.1093/nar/gkm956
     pmc: PMC2238839
