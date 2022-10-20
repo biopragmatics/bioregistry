@@ -562,7 +562,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_records(self):
         """Test generating records."""
-        records = {
+        records: Mapping[str, curies.Record] = {
             record.prefix: record
             for record in bioregistry.manager.get_curies_records(include_prefixes=True)
         }
@@ -619,6 +619,9 @@ class TestRegistry(unittest.TestCase):
         self.assertEqual("http://www.kegg.jp/entry/", record.uri_prefix)
         self.assertIn("kegg:", record.uri_prefix_synonyms)
         self.assertIn("kegg.module:", record.uri_prefix_synonyms)
+
+        # Make sure sure primary URI prefix gets upgraded properly from vz -> canonical for -> viralzone
+        self.assertIn("http://viralzone.expasy.org/", records["viralzone"].uri_prefix_synonyms)
 
     def test_prefix_map_priorities(self):
         """Test that different lead priorities all work for prefix map generation."""

@@ -32347,7 +32347,8 @@
       "prefix": "go.ref",
       "uri_format": "http://www.geneontology.org/cgi-bin/references.cgi#$1"
     },
-    "pattern": "^\\d{7}$"
+    "pattern": "^\\d{7}$",
+    "uri_format": "https://github.com/geneontology/go-site/blob/master/metadata/gorefs/README.md#goref$1"
   },
   "go.resource": {
     "contributor": {
@@ -65707,7 +65708,8 @@
       "prefix": "psipar",
       "uri_format": "https://www.ebi.ac.uk/ontology-lookup/?termId=$1"
     },
-    "pattern": "^\\d+$"
+    "pattern": "^\\d+$",
+    "uri_format": "https://www.ebi.ac.uk/ontology-lookup/?termId=PAR:$1"
   },
   "pso": {
     "aberowl": {
@@ -77858,10 +77860,19 @@
       "uri_format": "http://umbbd.ethz.ch/servlets/pageservlet?ptype=p&pathway_abbr=$1"
     },
     "part_of": "umbbd",
+    "providers": [
+      {
+        "code": "eawag",
+        "description": "Graphical depiction of pathway",
+        "homepage": "http://eawag-bbd.ethz.ch",
+        "name": "Pathway map diagram",
+        "uri_format": "http://eawag-bbd.ethz.ch/$1/$1_map.html"
+      }
+    ],
     "synonyms": [
       "UM-BBD_pathwayID"
     ],
-    "uri_format": "http://eawag-bbd.ethz.ch/$1/$1_map.html"
+    "uri_format": "http://umbbd.ethz.ch/servlets/pageservlet?ptype=p&pathway_abbr=$1"
   },
   "umbbd.reaction": {
     "biocontext": {
@@ -80813,7 +80824,8 @@
         "nlx": "144372",
         "scr": "006563"
       }
-    }
+    },
+    "uri_format": "http://viralzone.expasy.org/all_by_protein/$1"
   },
   "virsirna": {
     "biocontext": {

@@ -67,6 +67,25 @@ def _stratify_resources(resources: Iterable[Resource]) -> Tuple[List[Resource], 
     return primary_resources, secondary_resources
 
 
+def _iterate_prefix_prefix(resource: Resource, *extras: str):
+    prefixes_ = [
+        resource.prefix,
+        resource.prefix,
+        *resource.get_synonyms(),
+        resource.get_preferred_prefix(),
+        *extras,
+    ]
+    for prefix_ in prefixes_:
+        if not prefix_:
+            continue
+        for prefix_prefix in [
+            f"{prefix_}:",
+            f"{prefix_.upper()}:",
+            f"{prefix_.lower()}:",
+        ]:
+            yield prefix_prefix
+
+
 def get_records(  # noqa: C901
     resources: List[Resource],
     prefix_priority: Optional[Sequence[str]] = None,
@@ -158,32 +177,18 @@ def get_records(  # noqa: C901
     ) -> None:
         if target_prefix is None:
             target_prefix = resource.prefix
-        prefixes_ = [
-            primary_prefix,
-            resource.prefix,
-            resource.prefix,
-            *resource.get_synonyms(),
-            resource.get_preferred_prefix(),
-        ]
-        for prefix_ in prefixes_:
-            if not prefix_:
-                continue
-            for prefix_prefix in [
-                f"{prefix_}:",
-                f"{prefix_.upper()}:",
-                f"{prefix_.lower()}:",
-            ]:
-                if prefix_prefix in reverse_uri_prefix_lookup:
-                    if reverse_uri_prefix_lookup[prefix_prefix] == resource.prefix:
-                        continue
-                    msg = (
-                        f"duplicate prefix prefix in {reverse_uri_prefix_lookup[prefix_prefix]} "
-                        f"and {resource.prefix}: {prefix_prefix}"
-                    )
-                    _warn_or_raise(msg, strict=strict)
+        for prefix_prefix in _iterate_prefix_prefix(resource, primary_prefix):
+            if prefix_prefix in reverse_uri_prefix_lookup:
+                if reverse_uri_prefix_lookup[prefix_prefix] == resource.prefix:
                     continue
-                reverse_uri_prefix_lookup[prefix_prefix] = target_prefix
-                secondary_uri_prefixes[target_prefix].add(prefix_prefix)
+                msg = (
+                    f"duplicate prefix prefix in {reverse_uri_prefix_lookup[prefix_prefix]} "
+                    f"and {resource.prefix}: {prefix_prefix}"
+                )
+                _warn_or_raise(msg, strict=strict)
+                continue
+            reverse_uri_prefix_lookup[prefix_prefix] = target_prefix
+            secondary_uri_prefixes[target_prefix].add(prefix_prefix)
 
     primary_resources, secondary_resources = _stratify_resources(resource_dict.values())
     for resource in itt.chain(primary_resources):
@@ -208,7 +213,13 @@ def get_records(  # noqa: C901
             prefix = cast(str, provides or canonical)
             # remove from cache so it doesn't get its own entry
             primary_prefix = primary_prefixes.pop(resource.prefix)
-            del primary_uri_prefixes[resource.prefix]
+            if primary_prefix not in reverse_prefix_lookup:
+                reverse_prefix_lookup[primary_prefix] = prefix
+                secondary_prefixes[prefix].add(primary_prefix)
+            primary_uri_prefix = primary_uri_prefixes.pop(resource.prefix)
+            if primary_uri_prefix not in reverse_uri_prefix_lookup:
+                reverse_uri_prefix_lookup[primary_uri_prefix] = prefix
+                secondary_uri_prefixes[prefix].add(primary_uri_prefix)
             _add_synonym(synonym=resource.prefix, prefix=prefix)
             for synonym in resource.get_synonyms():
                 _add_synonym(synonym=synonym, prefix=prefix)
