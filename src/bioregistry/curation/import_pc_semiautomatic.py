@@ -25,6 +25,9 @@ skip = {
     "hdbase",  # doesn't exist anymore, silent redirect
     "mirortho",  # redirects to new site
     "hagr",  # nonsense
+    "recode",  # dead
+    "pathwayontology",  # duplicate of pw
+    "pdbe",  # duplicate
 }
 
 
@@ -51,22 +54,25 @@ def main():
         if prefix in prefixes or prefix in skip or prefix in dead_prefixes or len(prefix) < 4:
             continue
         if bioregistry.normalize_prefix(prefix):
-            tqdm.write(f"duplicate alignment to prefixcommons:{prefix}")
+            tqdm.write(f"[{prefix:15}] duplicate alignment")
             continue
-        if not all(
-            data.get(k)
-            for k in ["name", "description", "homepage", "pattern", "example", "uri_format"]
-        ):
+
+        uri_format = data.get("uri_format")
+        if uri_format is None:
+            continue
+        if not uri_format.endswith("$1"):
+            tqdm.write(f"[{prefix:15}] URI format: {uri_format}")
+            continue
+
+        if not all(data.get(k) for k in ["name", "description", "homepage", "pattern", "example"]):
             continue
 
         example = data["example"]
         if uniprot_pattern.match(example):
-            continue
-        uri_format = data["uri_format"]
-        if not uri_format.endswith("$1"):
+            tqdm.write(f"[{prefix:15}] skipping duplicate of UniProt: {example}")
             continue
 
-        example_url = data["uri_format"].replace("$1", data["example"])
+        example_url = uri_format.replace("$1", data["example"])
 
         tqdm.write(f"checking {prefix}")
         homepage_res = _works(data["homepage"])

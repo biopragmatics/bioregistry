@@ -5120,6 +5120,18 @@
       "pattern": "^[A-Za-z]+\\d+$",
       "prefix": "bgee.gene",
       "uri_format": "https://bgee.org/?page=gene&gene_id=$1"
+    },
+    "prefixcommons": {
+      "description": "Bgee is a database to retrieve and compare gene expression patterns between animal species. Bgee first maps heterogeneous expression data (currently EST, Affymetrix, and in situ hybridization data) on anatomical and developmental ontologies. Then, in order to perform automated cross species comparisons, homology relationships across anatomical ontologies, and comparison criteria between developmental ontologies, are designed.",
+      "example": "FBgn0041195",
+      "homepage": "http://bgee.unil.ch",
+      "keywords": [
+        "gene expression"
+      ],
+      "name": "Bgee DataBase for Gene Expression Evolution",
+      "pattern": "^[A-Z]+\\d+$",
+      "prefix": "bgee",
+      "uri_format": "http://bgee.unil.ch/bgee/bgee?page=gene&action=expression&gene_id=$1"
     }
   },
   "bgee.organ": {
@@ -15410,7 +15422,8 @@
       "biocontext": "COMPULYEAST",
       "fairsharing": "FAIRsharing.rbjs3e",
       "miriam": "compulyeast",
-      "n2t": "compulyeast"
+      "n2t": "compulyeast",
+      "prefixcommons": "compluyeast2dpage"
     },
     "miriam": {
       "deprecated": false,
@@ -15435,6 +15448,18 @@
       "uri_format": "http://compluyeast2dpage.dacya.ucm.es/cgi-bin/2d/2d.cgi?ac=$1"
     },
     "name": "Compluyeast-2D-DB",
+    "prefixcommons": {
+      "description": "Compluyeast-2D-DB is a Two-dimensional polyacrilamide gel electrophoresis federated database built with the Make2DDB package and integrated at the WORLD-2DPAGE of the ExPASy proteomics web server.",
+      "example": "P20029",
+      "homepage": "http://compluyeast2dpage.dacya.ucm.es/",
+      "keywords": [
+        "protein"
+      ],
+      "name": "CompluYeast 2D-PAGE",
+      "pattern": "^P\\d+$",
+      "prefix": "compluyeast2dpage",
+      "uri_format": "http://compluyeast2dpage.dacya.ucm.es/cgi-bin/2d/2d.cgi?ac=$1"
+    },
     "provides": "uniprot"
   },
   "confident.event": {
@@ -16012,7 +16037,21 @@
       "name": "Cereal Plant Gross Anatomy",
       "prefix": "gro"
     },
-    "preferred_prefix": "CGPA"
+    "preferred_prefix": "CGPA",
+    "prefixcommons": {
+      "description": "A controlled vocabulary to describe phenotypic traits in plants. Each trait is a distinguishable feature, characteristic, quality or phenotypic feature of a developing or mature plant, or a plant part.",
+      "example": "GRO:0007143",
+      "homepage": "http://www.gramene.org/plant_ontology/",
+      "keywords": [
+        "obo",
+        "ontology",
+        "anatomy"
+      ],
+      "name": "Plant Ontology",
+      "pattern": "^GRO:\\d+$",
+      "prefix": "gramene.po",
+      "uri_format": "http://www.gramene.org/db/ontology/search?id=$1"
+    }
   },
   "cpt": {
     "aberowl": {
@@ -21956,7 +21995,7 @@
       "go": "EC",
       "miriam": "ec-code",
       "n2t": "ec-code",
-      "prefixcommons": "enzyme",
+      "prefixcommons": "intenz",
       "uniprot": "DB-0024",
       "wikidata": "P591"
     },
@@ -40689,7 +40728,7 @@
         "RNA",
         "regulation"
       ],
-      "name": "Database of experimentally verified IRES structures",
+      "name": "IRESite: The database of experimentally verified IRES structures",
       "pattern": "^\\d+$",
       "prefix": "iresite",
       "uri_format": "http://www.iresite.org/IRESite_web.php?page=view&entry_id=$1"
