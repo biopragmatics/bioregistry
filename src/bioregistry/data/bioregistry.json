@@ -1445,6 +1445,24 @@
     ],
     "uri_format": "http://aims.fao.org/aos/agrovoc/c_$1"
   },
+  "agsd": {
+    "mappings": {
+      "prefixcommons": "agsd"
+    },
+    "prefixcommons": {
+      "description": "The Animal Genome Size Database (AGSD) is a comprehensive catalogue of animal genome size data where haploid DNA contents (C-values, in picograms) are currently available for 4972 species (3231 vertebrates and 1741 non-vertebrates) based on 6518 records from 669 published sources.",
+      "example": "4779",
+      "homepage": "http://www.genomesize.com",
+      "keywords": [
+        "DNA",
+        "genome"
+      ],
+      "name": "Animal Genome Size Database",
+      "pattern": "^\\d+$",
+      "prefix": "agsd",
+      "uri_format": "http://www.genomesize.com/result_species.php?id=$1"
+    }
+  },
   "aism": {
     "aberowl": {
       "description": "The AISM contains terms used in insect biodiversity research for describing structures of the exoskeleton and the skeletomuscular system. It aims to serve as the basic backbone of generalized terms to be expanded with order-specific terminology.",
@@ -5011,7 +5029,8 @@
     "mappings": {
       "biocontext": "BGEE.GENE",
       "miriam": "bgee.gene",
-      "n2t": "bgee.gene"
+      "n2t": "bgee.gene",
+      "prefixcommons": "bgee"
     },
     "miriam": {
       "deprecated": false,
@@ -5857,6 +5876,23 @@
       "uri_format": "https://w3id.org/biolink/vocab/$1"
     }
   },
+  "biomagresbank": {
+    "mappings": {
+      "prefixcommons": "biomagresbank"
+    },
+    "prefixcommons": {
+      "description": "A repository for Data from NMR Spectroscopy on Proteins, Peptides, and Nucleic Acids.",
+      "example": "10046",
+      "homepage": "http://www.bmrb.wisc.edu/",
+      "keywords": [
+        "protein"
+      ],
+      "name": "BioMagResBank",
+      "pattern": "^\\d+$",
+      "prefix": "biomagresbank",
+      "uri_format": "http://www.bmrb.wisc.edu/data_library/generate_summary.php?bmrbId=$1"
+    }
+  },
   "biominder": {
     "biocontext": {
       "is_identifiers": true,
@@ -6349,6 +6385,27 @@
       "pattern": "^\\d+$",
       "prefix": "bionumbers",
       "uri_format": "http://www.bionumbers.hms.harvard.edu/bionumber.aspx?s=y&id=$1&ver=1"
+    }
+  },
+  "biopixie": {
+    "mappings": {
+      "prefixcommons": "biopixie"
+    },
+    "prefixcommons": {
+      "description": "bioPIXIE is a novel system for biological data integration and visualization. It allows you to discover interaction networks and pathways in which your gene(s) (e.g. BNI1, YFL039C) of interest participate.",
+      "example": "12",
+      "homepage": "http://pixie.princeton.edu/pixie/",
+      "keywords": [
+        "gene",
+        "interaction"
+      ],
+      "name": "biological Process Inference from eXperimental Interaction Evidence/Microarray Experiment Functional Integration Technology",
+      "pattern": "^\\d+$",
+      "prefix": "biopixie",
+      "synonyms": [
+        "biopixie_mefit"
+      ],
+      "uri_format": "http://avis.princeton.edu/pixie/viewgraph.php?graphID=$1"
     }
   },
   "bioportal": {
@@ -14944,6 +15001,24 @@
     },
     "pattern": "^\\d{7}$"
   },
+  "collagenmutdb": {
+    "mappings": {
+      "prefixcommons": "cmd"
+    },
+    "prefixcommons": {
+      "description": "This database aims to record all published accounts of variants resulting in osteogenesis imperfecta. Such variants occur in the COL1A1, COL1A2, CRTAP, FKBP10, LEPRE1 and PPIB genes.",
+      "example": "COL3A1",
+      "homepage": "http://www.le.ac.uk/genetics/collagen/",
+      "keywords": [
+        "gene"
+      ],
+      "name": "Collagen Mutation Database",
+      "pattern": "^[A-Z,0-9]+$",
+      "prefix": "cmd",
+      "uri_format": "https://eds.gene.le.ac.uk/home.php?select_db=$1"
+    },
+    "provides": "hgnc.symbol"
+  },
   "colonatlas": {
     "cellosaurus": {
       "category": "Cell line databases/resources",
@@ -16850,6 +16925,24 @@
       "pattern": "^[A-Za-z_0-9]+$",
       "prefix": "cubedb",
       "uri_format": "http://epsf.bmad.bii.a-star.edu.sg/cube/db/data/$1/"
+    }
+  },
+  "cutg": {
+    "mappings": {
+      "prefixcommons": "cutg"
+    },
+    "prefixcommons": {
+      "description": "Codon usage in individual genes has been calculated using the nucleotide sequence data obtained from the GenBank Genetic Sequence Database.  The compilation of codon usage is synchronized with each major release of GenBank.",
+      "example": "9606",
+      "homepage": "http://www.kazusa.or.jp/codon/",
+      "keywords": [
+        "gene",
+        "DNA"
+      ],
+      "name": "Codon Usage Tabulated from GenBank",
+      "pattern": "^\\d+$",
+      "prefix": "cutg",
+      "uri_format": "http://www.kazusa.or.jp/codon/cgi-bin/showcodon.cgi?species=$1"
     }
   },
   "cvdo": {
@@ -21621,7 +21714,7 @@
       "go": "EC",
       "miriam": "ec-code",
       "n2t": "ec-code",
-      "prefixcommons": "intenz",
+      "prefixcommons": "enzyme",
       "wikidata": "P591"
     },
     "miriam": {
@@ -25434,6 +25527,23 @@
       }
     ]
   },
+  "eropmoscow": {
+    "mappings": {
+      "prefixcommons": "eropmoscow"
+    },
+    "prefixcommons": {
+      "description": "EROP-Moscow is a curated oligopeptide (2-50 amino acid residues) sequence database which strives to provide a high level of annotations (such as descriptions of the structure of an oligopeptide, its source and function, post-translational modifications, etc.).",
+      "example": "E00002",
+      "homepage": "http://erop.inbi.ras.ru",
+      "keywords": [
+        "protein"
+      ],
+      "name": "Endogenous Regulatory OligoPeptide knowledgebase-Moscow",
+      "pattern": "^E\\d+$",
+      "prefix": "eropmoscow",
+      "uri_format": "http://erop.inbi.ras.ru/result2.php?PepName=$1"
+    }
+  },
   "erv": {
     "biocontext": {
       "is_identifiers": true,
@@ -25467,6 +25577,23 @@
       "pattern": "^[A-Za-z0-9\\-\\_]+$",
       "prefix": "erv",
       "uri_format": "https://herv.img.cas.cz/s/$1"
+    }
+  },
+  "esldb": {
+    "mappings": {
+      "prefixcommons": "esldb"
+    },
+    "prefixcommons": {
+      "description": "eSLDB is a database of protein subcellular localization annotation for eukaryotic organisms. It contains experimental annotations derived from primary protein databases, homology based annotations and computational predictions.",
+      "example": "HS000015122",
+      "homepage": "http://gpcr.biocomp.unibo.it/esldb",
+      "keywords": [
+        "protein"
+      ],
+      "name": "eukaryotic Subcellular Localization database",
+      "pattern": "^[A-Z]+\\d+$",
+      "prefix": "esldb",
+      "uri_format": "http://gpcr.biocomp.unibo.it/cgi-bin/predictors/esldb/dettagli.cgi?codice=$1"
     }
   },
   "estdab": {
@@ -25554,6 +25681,27 @@
       "pattern": "^\\d{4}\\-\\d{6}\\-\\d{2}$",
       "prefix": "euclinicaltrials",
       "uri_format": "https://www.clinicaltrialsregister.eu/ctr-search/search?query=$1"
+    }
+  },
+  "eugenes": {
+    "mappings": {
+      "prefixcommons": "eugenes"
+    },
+    "prefixcommons": {
+      "description": "euGenes provides a common summary of gene and genomic information from eukaryotic organism databases including gene symbol and full name, chromosome, genetic and molecular map information, Gene Ontology (Function/Location/Process) and gene homology, product information.",
+      "example": "MGgn0008978",
+      "homepage": "http://eugenes.org/",
+      "keywords": [
+        "genome",
+        "ontology"
+      ],
+      "name": "Eukaryotic Genes",
+      "pattern": "^[A-Z]+\\d+$",
+      "prefix": "eugenes",
+      "synonyms": [
+        "eugenes:"
+      ],
+      "uri_format": "http://eugenes.org:7072/.bin/fbidq.html?$1"
     }
   },
   "eupath": {
@@ -27643,6 +27791,25 @@
     "name": "FlyBrain Neuron Database",
     "pattern": "^\\d+$",
     "uri_format": "https://flybrain-ndb.virtualflybrain.org/fmi/xsl/browserecord.xsl@-lay=NDB&Accession+number.op=eq&Accession+number=$1&-find=-find.html"
+  },
+  "flymine": {
+    "mappings": {
+      "prefixcommons": "flymine"
+    },
+    "prefixcommons": {
+      "description": "FlyMine is an integrated database of genomic, expression and protein data for Drosophila, Anopheles and C. elegans. Integrating data makes it possible to run sophisticated data mining queries that span domains of biological knowledge.",
+      "example": "1047874",
+      "homepage": "http://www.flymine.org/",
+      "keywords": [
+        "genome",
+        "protein",
+        "gene expression"
+      ],
+      "name": "FlyMine: An integrated database for Drosophila and Anopheles genomics",
+      "pattern": "^\\d+$",
+      "prefix": "flymine",
+      "uri_format": "http://www.flymine.org/release-25.0/objectDetails.do?id=$1"
+    }
   },
   "fma": {
     "aberowl": {
@@ -29821,6 +29988,24 @@
       "uri_format": "https://www.ncbi.nlm.nih.gov/nuccore/$1"
     },
     "uri_format": "https://www.ncbi.nlm.nih.gov/nucleotide/$1"
+  },
+  "gendis": {
+    "mappings": {
+      "prefixcommons": "gendis"
+    },
+    "prefixcommons": {
+      "description": "Genomic Distribution of structural Superfamilies identifies and classifies evolutionary related proteins at the superfamily level in whole genome databases.",
+      "example": "46946",
+      "homepage": "http://caps.ncbs.res.in/gendis/home.html",
+      "keywords": [
+        "genome",
+        "classification"
+      ],
+      "name": "Genomic Distribution of structural Superfamilies",
+      "pattern": "^\\d+$",
+      "prefix": "gendis",
+      "uri_format": "http://caps.ncbs.res.in/cgi-bin/mini/databases/gendis/sf.cgi?code=$1"
+    }
   },
   "gendr": {
     "mappings": {
