@@ -16007,56 +16007,6 @@
       "uri_format": "https://worldwide.espacenet.com/classification?locale=en_EP#!/CPC=$1"
     }
   },
-  "cpga": {
-    "banana": "GRO",
-    "bioportal": {
-      "contact": {
-        "email": "jaiswalp@oregonstate.edu",
-        "name": "Pankaj Jaiswal"
-      },
-      "description": "A structured controlled vocabulary for the anatomy of Gramineae. Please note that this ontology has now been superseded by the <a http://bioportal.bioontology.org/ontologies/1587> Plant Ontology</a>.",
-      "homepage": "https://planteome.org/",
-      "name": "Cereal Plant Gross Anatomy Ontology",
-      "prefix": "GRO-CPGA",
-      "publication": "https://planteome.org/pub",
-      "version": "unknown"
-    },
-    "deprecated": true,
-    "description": "A structured controlled vocabulary for the anatomy of Graminae. Please note that this ontology has now been superseded by the Plant Ontology.",
-    "example": "0007143",
-    "mappings": {
-      "biocontext": "gro.cpga",
-      "bioportal": "GRO-CPGA",
-      "obofoundry": "gro",
-      "prefixcommons": "gramene.po"
-    },
-    "obofoundry": {
-      "contact": "po-discuss@plantontology.org",
-      "contact.label": "Plant Ontology Administrators",
-      "deprecated": true,
-      "domain": "anatomy and development",
-      "homepage": "http://www.gramene.org/plant_ontology/",
-      "name": "Cereal Plant Gross Anatomy",
-      "prefix": "gro"
-    },
-    "pattern": "^\\d{7}$",
-    "preferred_prefix": "CGPA",
-    "prefixcommons": {
-      "description": "A controlled vocabulary to describe phenotypic traits in plants. Each trait is a distinguishable feature, characteristic, quality or phenotypic feature of a developing or mature plant, or a plant part.",
-      "example": "GRO:0007143",
-      "homepage": "http://www.gramene.org/plant_ontology/",
-      "keywords": [
-        "obo",
-        "ontology",
-        "anatomy"
-      ],
-      "name": "Plant Ontology",
-      "pattern": "^GRO:\\d+$",
-      "prefix": "gramene.po",
-      "uri_format": "http://www.gramene.org/db/ontology/search?id=$1"
-    },
-    "uri_format": "http://www.gramene.org/db/ontology/search?id=GRO:$1"
-  },
   "cpt": {
     "aberowl": {
       "description": "Current Procedural Terminology",
@@ -33506,10 +33456,25 @@
       "prefix": "GRAMENE.GROWTHSTAGE",
       "uri_format": "http://identifiers.org/gramene.growthstage/$1"
     },
+    "bioportal": {
+      "contact": {
+        "email": "jaiswalp@oregonstate.edu",
+        "name": "Pankaj Jaiswal"
+      },
+      "description": "A structured controlled vocabulary for the anatomy of Gramineae. Please note that this ontology has now been superseded by the <a http://bioportal.bioontology.org/ontologies/1587> Plant Ontology</a>.",
+      "homepage": "https://planteome.org/",
+      "name": "Cereal Plant Gross Anatomy Ontology",
+      "prefix": "GRO-CPGA",
+      "publication": "https://planteome.org/pub",
+      "version": "unknown"
+    },
     "mappings": {
       "biocontext": "GRAMENE.GROWTHSTAGE",
+      "bioportal": "GRO-CPGA",
       "miriam": "gramene.growthstage",
-      "n2t": "gramene.growthstage"
+      "n2t": "gramene.growthstage",
+      "obofoundry": "gro",
+      "prefixcommons": "gramene.po"
     },
     "miriam": {
       "deprecated": false,
@@ -33534,7 +33499,34 @@
       "uri_format": "http://www.gramene.org/db/ontology/search?id=GRO:$1"
     },
     "name": "Gramene Growth Stage Ontology",
+    "obofoundry": {
+      "contact": "po-discuss@plantontology.org",
+      "contact.label": "Plant Ontology Administrators",
+      "deprecated": true,
+      "domain": "anatomy and development",
+      "homepage": "http://www.gramene.org/plant_ontology/",
+      "name": "Cereal Plant Gross Anatomy",
+      "prefix": "gro"
+    },
     "pattern": "^\\d{7}$",
+    "prefixcommons": {
+      "description": "A controlled vocabulary to describe phenotypic traits in plants. Each trait is a distinguishable feature, characteristic, quality or phenotypic feature of a developing or mature plant, or a plant part.",
+      "example": "GRO:0007143",
+      "homepage": "http://www.gramene.org/plant_ontology/",
+      "keywords": [
+        "obo",
+        "ontology",
+        "anatomy"
+      ],
+      "name": "Plant Ontology",
+      "pattern": "^GRO:\\d+$",
+      "prefix": "gramene.po",
+      "uri_format": "http://www.gramene.org/db/ontology/search?id=$1"
+    },
+    "synonyms": [
+      "cpga",
+      "gro-cpga"
+    ],
     "uri_format": "http://www.gramene.org/db/ontology/search?id=GRO:$1"
   },
   "gramene.protein": {
@@ -33685,6 +33677,7 @@
       "prefix": "gramene.taxonomy",
       "uri_format": "http://www.gramene.org/db/ontology/search?id=$1"
     },
+    "pattern": "^\\d+$",
     "uri_format": "https://archive.gramene.org/db/ontology/search?id=GR_tax:$1"
   },
   "grassbase": {
@@ -40727,6 +40720,7 @@
     "mappings": {
       "prefixcommons": "iresite"
     },
+    "name": "Database of experimentally verified IRES structures",
     "prefixcommons": {
       "description": "The IRESite database presents information about the experimentally studied IRES (Internal Ribosome Entry Site) segments. IRES regions are known to attract eukaryotic ribosomal translation initiation complex and thus promote translation initiation independently of the presence of the commonly utilized 5'-terminal 7mG cap structure.",
       "example": "322",
