@@ -1,3 +1,5 @@
+"""A script for semi-automatically importing part of Prefix Commons."""
+
 import json
 
 import click
@@ -17,11 +19,11 @@ skip = {
     "intenz",  # already mapped via "enzyme"
     "explorenz",  # already mapped via "enzyme"
     "geisha",  # resolution is broken
-    "gopad", # doesn't exist anymore
-    "genomereviews", # doesn't exist anymore
-    "integr8", # same as genome reviews, doesn't exist anymore
-    "hdbase", # doesn't exist anymore, silent redirect
-    "mirortho", # redirects to new site
+    "gopad",  # doesn't exist anymore
+    "genomereviews",  # doesn't exist anymore
+    "integr8",  # same as genome reviews, doesn't exist anymore
+    "hdbase",  # doesn't exist anymore, silent redirect
+    "mirortho",  # redirects to new site
 }
 
 
@@ -32,6 +34,7 @@ def norm(s: str) -> str:
 
 @click.command()
 def main():
+    """Run semi-automated import of Prefix Commons."""
     dead_stuff_path = BIOREGISTRY_MODULE.join(name="pc_dead_prefixes.json")
     if dead_stuff_path.is_file():
         dead_prefixes = set(json.loads(dead_stuff_path.read_text()))

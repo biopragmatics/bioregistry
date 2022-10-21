@@ -101,6 +101,7 @@ URI_FORMAT_PATHS = [
     ("wikidata", URI_FORMAT_KEY),
     ("uniprot", URI_FORMAT_KEY),
     ("cellosaurus", URI_FORMAT_KEY),
+    ("prefixcommons", URI_FORMAT_KEY),
 ]
 
 
@@ -1004,6 +1005,13 @@ class Resource(BaseModel):
         if example is None:
             return None
         return self.get_curie(example, use_preferred=use_preferred)
+
+    def get_example_iri(self) -> Optional[str]:
+        """Get an example IRI."""
+        example = self.get_example()
+        if example is None:
+            return None
+        return self.get_default_uri(example)
 
     def is_deprecated(self) -> bool:
         """Return if the given prefix corresponds to a deprecated resource.
