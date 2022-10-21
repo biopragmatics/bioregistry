@@ -207,7 +207,64 @@
     <h3>Community and Governance</h3>
     <p>
         This section provides a systematic evaluation and comparison of
-        the governance and standard operating procedures for each registry.
+        the governance and standard operating procedures for each registry. We generated the following list of
+        objective,
+        measurable metrics:
+    </p>
+    <ul>
+        <li>Are there clear, public policies on what content can be added to the registry?</li>
+        <li>Are there clear, public policies on who is allowed to add content to the registry?</li>
+        <li>
+            Are there clear, public policies on why/how content is edited, deprecated, or removed from the registry?
+        </li>
+        <li>
+            Are community members able to petition for updates to resources that they do not "own", for example, if
+            there is a typo in the metadata?
+        </li>
+        <li>
+            Does the community have clear, public policies for handling records that have been abandoned by the
+            submitter/responsible person?
+        </li>
+        <li>
+            Are there clear, public guidelines on how to contribute to the registry? We argue that open contribution,
+            e.g., via a request in an issue tracker or directly by creating a pull
+            request is better due to the ability to better engage other community members and stakeholders
+        </li>
+        <li>
+            Does the registry make its data available under a data-appropriate, permissive, well-understood license
+            (e.g., CC Zero or CC BY 4.0)?
+        </li>
+        <li>Does the registry make its underlying code open source under version control?</li>
+        <li>
+            Are there similar appropriate policies for the code with respect to contribution and moderation as
+            previously described for the content of the registry?
+        </li>
+        <li>
+            Does the community have a public issue tracker related to both curation and technical issues with the
+            registry? A counter-example is that some communities require petitioning the moderator(s) privately by
+            email.
+        </li>
+        <li>
+            Are there clear, public, up-to-date resources listing who has the technical ability to make updates to the
+            registry (i.e., the community moderator(s))?
+        <li>
+            Are the community moderators responsive on the issue tracker? This can be compared between communities using
+            measurements like how many total issues are open on the tracker, how many have been unanswered by a
+            moderator for more than a certain amount of time, how quickly issues are closed on average, etc.
+        </li>
+        <li>Is there a clear, public governance structure for inducting/removing community moderators?</li>
+        <li>Are the moderators from heterogeneous institutions/scientific domains?</li>
+        <li>
+            Are contributions from the community attributed (both on a technical level, e.g., by associating ORCID
+            identifiers to records, and also during scientific publication, e.g., as acknowledgments or including
+            contributors as co-authors)?
+        </li>
+        <li>Does the community have a clear, public code of conduct?</li>
+        <li>Do the moderators (or wider community) organize discussions, such as community meetings or workshops?</li>
+    </ul>
+    <p>
+        We have made a survey of a subset of these questions which are presented in the table below, but, first, an
+        explanation of each field is given.
     </p>
     <dl>
         <dt>Governance Score</dt>
@@ -216,7 +273,7 @@
             with internal-focused scope.
         </dd>
         {{ registry_field_dl(registry_governance_cls, "accepts_external_contributions") }}
-        {{ registry_field_dl(registry_governance_cls, "public_version_control") }}
+        {{ registry_field_dl(registry_governance_cls, "public_version_controlled_data") }}
         {{ registry_field_dl(registry_governance_cls, "issue_tracker") }}
         {{ registry_field_dl(registry_governance_cls, "review_team") }}
         {{ registry_field_dl(registry_governance_cls, "scope") }}
@@ -228,7 +285,7 @@
             <th>Registry</th>
             <th>Score</th>
             <th>Accepts External Contributions</th>
-            <th>Public Version Control</th>
+            <th>Public Version-Controlled Data</th>
             <th>Issue Tracker</th>
             <th>Review Team</th>
             <th>Scope</th>
@@ -243,7 +300,7 @@
                 </td>
                 <td style="text-align: right;">{{ registry.governance.score() }}</td>
                 <td style="text-align: center;">{{ render_circle(registry.governance.accepts_external_contributions) }}</td>
-                <td style="text-align: center;">{{ render_circle(registry.governance.public_version_control, registry.governance.repository) }}</td>
+                <td style="text-align: center;">{{ render_circle(registry.governance.public_version_controlled_data, registry.governance.data_repository) }}</td>
                 <td style="text-align: center;">
                     {% if registry.governance.issue_tracker %}
                         <a href="{{ registry.governance.issue_tracker }}">

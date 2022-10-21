@@ -2,7 +2,6 @@
 
 """A class-based client to a metaregistry."""
 
-import itertools as itt
 import logging
 import typing
 from collections import ChainMap, Counter, defaultdict
@@ -22,6 +21,8 @@ from typing import (
     Union,
     cast,
 )
+
+import curies
 
 from .constants import (
     BIOREGISTRY_REMOTE_URL,
@@ -414,89 +415,72 @@ class Manager:
                 for synonym in resource.get_synonyms():
                     yield synonym, pattern
 
-    def get_reverse_prefix_map(
-        self, include_prefixes: bool = False, strict: bool = False
-    ) -> Mapping[str, str]:
-        """Get a reverse prefix map, pointing to canonical prefixes.
+    def get_converter(self, **kwargs) -> curies.Converter:
+        """Get a converter from this manager."""
+        return curies.Converter(records=self.get_curies_records(**kwargs))
 
+    def get_curies_records(
+        self,
+        prefix_priority: Optional[Sequence[str]] = None,
+        uri_prefix_priority: Optional[Sequence[str]] = None,
+        include_prefixes: bool = False,
+        strict: bool = False,
+    ) -> List[curies.Record]:
+        """Get a list of records for all resources in this manager.
+
+        :param prefix_priority:
+            The order of metaprefixes (or "preferred") for choosing a primary prefix
+        :param uri_prefix_priority:
+            The order of metaprefixes for choosing the primary URI prefix
         :param include_prefixes: Should prefixes be included with colon delimiters?
             Setting this to true makes an "omni"-reverse prefix map that can be
             used to parse both URIs and CURIEs
         :param strict:
             If true, errors on URI prefix collisions. If false, sends logging
             and skips them.
-        :return: A converter
-        :raises ValueError: if there are duplicate URI prefixes. This movitates
-            additional curation.
 
-        .. code-block:: python
-
-            from bioregistry import manager
-            import curies
-
-            converter = curies.Converter.from_reverse_prefix_map(
-                manager.get_reverse_prefix_map(include_prefixes=True),
-            )
+        :returns: A list of records for :class:`curies.Converter`
         """
-        prefix_blacklist = {"bgee.gene"}
-        uri_prefix_blacklist = {
-            "http://www.ebi.ac.uk/ontology-lookup/?termId=$1",
-            "https://bioentity.link/#/lexicon/public/$1",
-            "https://purl.obolibrary.org/obo/$1",
-            "http://purl.obolibrary.org/obo/$1",
-            # see https://github.com/biopragmatics/bioregistry/issues/548
-            "https://www.ncbi.nlm.nih.gov/nuccore/$1",
-            "https://www.ebi.ac.uk/ena/data/view/$1",
-        }
-        prefix_resource_blacklist = {
-            ("orphanet", "http://www.orpha.net/ORDO/Orphanet_$1"),  # biocontext is wrong
-            (
-                "uniprot",
-                "https://www.ncbi.nlm.nih.gov/protein/$1",
-            ),  # FIXME not sure how to resolve this
-        }
-        # stratify resources
-        primary_resources, secondary_resources = [], []
-        for resource in self.registry.values():
-            if resource.prefix in prefix_blacklist:
-                continue
-            if resource.part_of or resource.provides or resource.has_canonical:
-                secondary_resources.append(resource)
-            else:
-                primary_resources.append(resource)
+        from .record_accumulator import get_records
+
+        resources = [
+            resource for _, resource in sorted(self.registry.items()) if resource.get_uri_prefix()
+        ]
+        return get_records(
+            resources,
+            prefix_priority=prefix_priority,
+            uri_prefix_priority=uri_prefix_priority,
+            include_prefixes=include_prefixes,
+            strict=strict,
+        )
+
+    def get_reverse_prefix_map(
+        self, include_prefixes: bool = False, strict: bool = False
+    ) -> Mapping[str, str]:
+        """Get a reverse prefix map, pointing to canonical prefixes."""
+        from .record_accumulator import _iterate_prefix_prefix
 
         rv: Dict[str, str] = {
             "http://purl.obolibrary.org/obo/": "obo",
             "https://purl.obolibrary.org/obo/": "obo",
         }
-        for resource in itt.chain(primary_resources, secondary_resources):
-            for uri_prefix in resource.get_uri_formats():
-                if not uri_prefix.endswith("$1") or uri_prefix.count("$1") > 1:
-                    continue
-                if (resource.prefix, uri_prefix) in prefix_resource_blacklist:
-                    continue
-                if uri_prefix in uri_prefix_blacklist:
-                    continue
+        for record in self.get_curies_records(include_prefixes=include_prefixes, strict=strict):
+            rv[record.uri_prefix] = record.prefix
+            for uri_prefix in record.uri_prefix_synonyms:
                 if uri_prefix in rv:
-                    if resource.part_of or resource.provides or resource.has_canonical:
-                        continue
-                    msg = f"Duplicate in {rv[uri_prefix]} and {resource.prefix} for {uri_prefix}"
-                    if not strict:
-                        logger.warning(msg)
-                        continue
-                    raise ValueError(msg)
-                rv[uri_prefix[:-2]] = resource.prefix
-            if include_prefixes:
-                prefixes_ = [
-                    resource.prefix,
-                    *resource.get_synonyms(),
-                    resource.get_preferred_prefix(),
-                ]
-                for prefix_ in prefixes_:
-                    if prefix_:
-                        rv[f"{prefix_}:"] = resource.prefix
-                        rv[f"{prefix_.upper()}:"] = resource.prefix
-                        rv[f"{prefix_.lower()}:"] = resource.prefix
+                    logger.warning(
+                        f"duplicate secondary URI prefix {uri_prefix} in {record.prefix} that "
+                        f"already appeared in {rv[uri_prefix]}"
+                    )
+                rv[uri_prefix] = record.prefix
+                for synonym in (record.prefix, *record.prefix_synonyms):
+                    rv[f"{synonym}:"] = record.prefix
+
+        for resource in self.registry.values():
+            if not resource.get_uri_prefix():
+                for pp in _iterate_prefix_prefix(resource):
+                    rv[pp] = resource.prefix
+
         return rv
 
     def get_prefix_map(

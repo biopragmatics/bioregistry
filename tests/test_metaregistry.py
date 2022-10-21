@@ -73,8 +73,8 @@ class TestMetaregistry(unittest.TestCase):
                 self.assertIsNotNone(registry.qualities)
                 self.assertIsInstance(registry.qualities.bulk_data, bool)
 
-                if registry.governance.public_version_control:
-                    self.assertIsNotNone(registry.governance.repository)
+                if registry.governance.public_version_controlled_data:
+                    self.assertIsNotNone(registry.governance.data_repository)
                     self.assertIsNotNone(registry.governance.issue_tracker)
 
     def test_get_registry(self):
