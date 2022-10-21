@@ -230,6 +230,7 @@
       "uri_format": "http://purl.obolibrary.org/obo/AAO_$1"
     },
     "description": "A structured controlled vocabulary of the anatomy of Amphibians. Note that AAO is currently being integrated into Uberon.",
+    "example": "0000138",
     "fairsharing": {
       "abbreviation": "AAO",
       "description": "A structured controlled vocabulary of the anatomy of Amphibians. Note that AAO has been integrated into Uberon.",
@@ -258,7 +259,6 @@
       "obofoundry": "aao",
       "prefixcommons": "aao"
     },
-    "no_own_terms": true,
     "obofoundry": {
       "contact": "david.c.blackburn@gmail.com",
       "contact.label": "David Blackburn",
@@ -268,6 +268,7 @@
       "name": "Amphibian gross anatomy",
       "prefix": "aao"
     },
+    "pattern": "^\\d{7]$",
     "prefixcommons": {
       "bioportal": "1090",
       "description": "The Amphibian Anatomical Ontology (AmphibAnat) is an NSF-sponsored project dedicated to constructing semi-automatically a draft ontology of amphibian anatomy. In this project, small, subset ontologies are constructed manually, and data-mining software (that we develop) is used to mine electronic media for instances of concepts and properties to be added to the ontologies.",
@@ -15833,7 +15834,8 @@
     "mappings": {
       "biocontext": "gro.cpga",
       "bioportal": "GRO-CPGA",
-      "obofoundry": "gro"
+      "obofoundry": "gro",
+      "prefixcommons": "gramene.po"
     },
     "obofoundry": {
       "contact": "po-discuss@plantontology.org",
@@ -27796,6 +27798,7 @@
     "mappings": {
       "prefixcommons": "flymine"
     },
+    "name": "An integrated database for Drosophila and Anopheles genomics",
     "prefixcommons": {
       "description": "FlyMine is an integrated database of genomic, expression and protein data for Drosophila, Anopheles and C. elegans. Integrating data makes it possible to run sophisticated data mining queries that span domains of biological knowledge.",
       "example": "1047874",
@@ -30334,6 +30337,23 @@
       }
     ]
   },
+  "geneloc": {
+    "mappings": {
+      "prefixcommons": "geneloc"
+    },
+    "prefixcommons": {
+      "description": "GeneLoc presents an integrated map for each human chromosome, based on data integrated by the GeneLoc algorithm. GeneLoc includes further links to GeneCards, NCBI's Human Genome Sequencing, UniGene, and mapping resources",
+      "example": "17503",
+      "homepage": "http://genecards.weizmann.ac.il/geneloc/",
+      "keywords": [
+        "genome"
+      ],
+      "name": "Gene Location",
+      "pattern": "^\\d+$",
+      "prefix": "geneloc",
+      "uri_format": "http://genecards.weizmann.ac.il/geneloc-bin/marker_cards.pl?id=$1"
+    }
+  },
   "genepio": {
     "aberowl": {
       "description": "The Genomic Epidemiology Ontology (GenEpiO) covers vocabulary necessary to identify, document and research foodborne pathogens and associated outbreaks.",
@@ -31362,6 +31382,26 @@
       "pattern": "^EP\\d{4}$",
       "prefix": "glycoepitope",
       "uri_format": "https://www.glycoepitope.jp/epitopes/$1"
+    }
+  },
+  "glycomapsdb": {
+    "mappings": {
+      "prefixcommons": "glycomapsdb"
+    },
+    "prefixcommons": {
+      "description": "A database of GlycoMaps containing 2585 conformational maps.",
+      "example": "6819",
+      "homepage": "http://www.glycosciences.de/modeling/glycomapsdb/",
+      "keywords": [
+        "small molecule"
+      ],
+      "name": "GlycoMapsDB",
+      "pattern": "^\\d+$",
+      "prefix": "glycomapsdb",
+      "synonyms": [
+        "glycomaps"
+      ],
+      "uri_format": "http://www.glycosciences.de/modeling/glycomapsdb/showdetails.php?mapid=$1"
     }
   },
   "glycomedb": {
@@ -33422,6 +33462,20 @@
     },
     "name": "Global Research Identifier Database"
   },
+  "grin": {
+    "mappings": {
+      "prefixcommons": "grin"
+    },
+    "prefixcommons": {
+      "description": "GRIN provides National Genetic Resources Program (NGRP) personnel and germplasm users continuous access to databases for the maintenance of passport, characterization, evaluation, inventory, and distribution data important for the effective management and utilization of national germplasm collections.",
+      "example": "159787",
+      "homepage": "http://www.ars-grin.gov/",
+      "name": "Germplasm Resources Information Network",
+      "pattern": "^\\d+$",
+      "prefix": "grin",
+      "uri_format": "http://www.ars.usda.gov/research/publications/publications.htm?seq_no_115=$1"
+    }
+  },
   "grin.taxonomy": {
     "biocontext": {
       "is_identifiers": true,
@@ -33987,6 +34041,24 @@
       "prefix": "habronattus"
     }
   },
+  "hagr": {
+    "mappings": {
+      "prefixcommons": "hagr"
+    },
+    "prefixcommons": {
+      "description": "The Human Ageing Genomic Resources (HAGR) is a collection of databases and tools designed to help researchers understand the genetics of human ageing through a combination of functional genomics and evolutionary biology.",
+      "example": "GSTA1",
+      "homepage": "http://genomics.senescence.info/",
+      "keywords": [
+        "genome"
+      ],
+      "name": "Human Ageing Genomic Resources",
+      "pattern": "^[A-Z]+/\\d+$",
+      "prefix": "hagr",
+      "uri_format": "http://genomics.senescence.info/genes/entry.php?hgnc=$1"
+    },
+    "provides": "hgnc.symbol"
+  },
   "hamap": {
     "biocontext": {
       "is_identifiers": true,
@@ -34307,6 +34379,23 @@
     "pattern": "^\\d+$",
     "preferred_prefix": "HBA",
     "uri_format": "https://biopragmatics.github.io/providers/hba/$1"
+  },
+  "hbvar": {
+    "mappings": {
+      "prefixcommons": "hbvar"
+    },
+    "prefixcommons": {
+      "description": "This is a relational database of information about hemoglobin variants and mutations that cause thalassemia.",
+      "example": "2526",
+      "homepage": "http://globin.cse.psu.edu/globin/hbvar",
+      "keywords": [
+        "protein"
+      ],
+      "name": "A Database of Human Hemoglobin Variants and Thalassemias",
+      "pattern": "^\\d+$",
+      "prefix": "hbvar",
+      "uri_format": "http://globin.bx.psu.edu/cgi-bin/hbvar/query_vars3?mode=output&display_format=page&i=$1"
+    }
   },
   "hc.din": {
     "contributor": {
@@ -38843,6 +38932,24 @@
       }
     ]
   },
+  "imotdb": {
+    "mappings": {
+      "prefixcommons": "imotdb"
+    },
+    "prefixcommons": {
+      "description": "The interacting motif database or iMOTdb , lists interacting motifs thatare identified for all structural entries in the PDB. The conserved patterns or finger prints are identified for individual structural entries and also grouped together for reporting the common motifs shared among all superfamily members.",
+      "example": "53784",
+      "homepage": "http://caps.ncbs.res.in/imotdb/",
+      "keywords": [
+        "interaction",
+        "protein"
+      ],
+      "name": "Database of Spatially Interacting Motifs in Proteins",
+      "pattern": "^\\d+$",
+      "prefix": "imotdb",
+      "uri_format": "http://caps.ncbs.res.in/cgi-bin/mini/databases/imotdb/imotdb.cgi?sfcode=$1"
+    }
+  },
   "imr": {
     "biocontext": {
       "is_identifiers": false,
@@ -39147,6 +39254,35 @@
     "uri_format": "https://mednet-communities.net/inn/db/ViewINN.aspx?i=$1",
     "wikidata": {
       "prefix": "P2275"
+    }
+  },
+  "innatedb": {
+    "mappings": {
+      "prefixcommons": "innatedb"
+    },
+    "prefixcommons": {
+      "description": "InnateDB is a publicly available database of the genes, proteins, experimentally-verified interactions and signaling pathways involved in the innate immune response of humans and mice to microbial infection. The database covers the innate immunity interactome by integrating known interactions and pathways from major public databases.",
+      "example": "20021",
+      "homepage": "http://www.innatedb.ca/",
+      "keywords": [
+        "gene",
+        "protein",
+        "interaction",
+        "pathway"
+      ],
+      "name": "A Knowledge Resource for Innate Immunity Interactions and Pathways",
+      "pattern": "^\\d+$",
+      "prefix": "innatedb",
+      "synonyms": [
+        "innatedb allergy"
+      ],
+      "uri_format": "http://www.innatedb.ca/getGeneCard.do?id=$1"
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
     }
   },
   "ino": {
@@ -39701,6 +39837,32 @@
     },
     "uri_format": "https://www.ebi.ac.uk/intact/search?query=$1"
   },
+  "interfil": {
+    "mappings": {
+      "prefixcommons": "interfil"
+    },
+    "prefixcommons": {
+      "description": "The Intermediate Filament Database functions as a continuously updated review of the intermediate filament field and it is hoped that users will contribute to the development and expansion of the database on a regular basis. Contributions may include novel variants, new patients with previously discovered sequence and allelic variants.",
+      "example": "NM_006262",
+      "homepage": "http://www.interfil.org",
+      "keywords": [
+        "genome"
+      ],
+      "name": "Human Intermediate Filament Database",
+      "pattern": "^N[A-Z]_\\d+$",
+      "prefix": "interfil",
+      "synonyms": [
+        "intermediate_filament_db"
+      ],
+      "uri_format": "http://www.interfil.org/details.php?id=$1"
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    }
+  },
   "interlex": {
     "fairsharing": {
       "abbreviation": "InterLex",
@@ -40054,6 +40216,30 @@
         "omics": "02922",
         "scr": "008118"
       }
+    }
+  },
+  "iresite": {
+    "mappings": {
+      "prefixcommons": "iresite"
+    },
+    "prefixcommons": {
+      "description": "The IRESite database presents information about the experimentally studied IRES (Internal Ribosome Entry Site) segments. IRES regions are known to attract eukaryotic ribosomal translation initiation complex and thus promote translation initiation independently of the presence of the commonly utilized 5'-terminal 7mG cap structure.",
+      "example": "322",
+      "homepage": "http://www.iresite.org",
+      "keywords": [
+        "RNA",
+        "regulation"
+      ],
+      "name": "Database of experimentally verified IRES structures",
+      "pattern": "^\\d+$",
+      "prefix": "iresite",
+      "uri_format": "http://www.iresite.org/IRESite_web.php?page=view&entry_id=$1"
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
     }
   },
   "iro": {
@@ -43946,6 +44132,23 @@
     "pattern": "^\\d{7}$",
     "uri_format": "http://bioportal.bioontology.org/ontologies/MAMO/?p=classes&conceptid=http://identifiers.org/mamo/MAMO_$1"
   },
+  "mampol": {
+    "mappings": {
+      "prefixcommons": "mampol"
+    },
+    "prefixcommons": {
+      "description": "The Mammalia Polymorphism Database is a secondary database designed to provide a collection of all the existing polymorphic sequences in the MammaliaOnline query interfaces facilitate data interrogation by different polymorphism parameter values and keyword queries (based on SQL searches).",
+      "example": "MAMpol005339",
+      "homepage": "http://mampol.uab.es",
+      "keywords": [
+        "DNA"
+      ],
+      "name": "Mammalia Polymorphism Database",
+      "pattern": "^MAMpol\\d+$",
+      "prefix": "mampol",
+      "uri_format": "http://mampol.uab.es/cgi-bin/MamPol_s2.pl?Accession=$1"
+    }
+  },
   "mao": {
     "biocontext": {
       "is_identifiers": false,
@@ -45687,6 +45890,30 @@
         "omics": "02633",
         "scr": "010500"
       }
+    }
+  },
+  "metnetdb": {
+    "mappings": {
+      "prefixcommons": "metnetdb"
+    },
+    "name": "Metabolic Network Exchange Database",
+    "prefixcommons": {
+      "description": "The MetNet database (MetNetDB) contains information on networks of metabolic and regulatory and interactions in Arabidopsis. Types of interactions in MetNetDB include transcription, translation, protein modification, assembly, allosteric regulation, translocation from one subcellular compartment to another.",
+      "example": "377369",
+      "homepage": "http://www.metnetdb.org/MetNet_db.htm",
+      "keywords": [
+        "pathway",
+        "interaction",
+        "regulation",
+        "protein",
+        "small molecule",
+        "DNA",
+        "RNA"
+      ],
+      "name": "Metabolic Network Exchange",
+      "pattern": "^\\d+$",
+      "prefix": "metnetdb",
+      "uri_format": "http://metnetonline.org/browse_pathway2.php?pthID=$1"
     }
   },
   "mex": {
@@ -48342,6 +48569,24 @@
       "uri_format": "http://www.mmrrc.org/catalog/getSDS.php?mmrrc_id=$1"
     },
     "name": "Mutant Mouse Resource and Research Centers"
+  },
+  "mmsinc": {
+    "mappings": {
+      "prefixcommons": "mmsinc"
+    },
+    "prefixcommons": {
+      "description": "MMSsINC is a database of commercially-available compounds for virtual screening and chemoinformatic applications. MMsINC contains over 4 million non-redundant chemical compounds in 3D formats.",
+      "example": "MMs00000001",
+      "homepage": "http://mms.dsfarm.unipd.it/MMsINC",
+      "keywords": [
+        "small molecule",
+        "structure"
+      ],
+      "name": "MMsINC",
+      "pattern": "^MMs\\d+$",
+      "prefix": "mmsinc",
+      "uri_format": "http://mms.dsfarm.unipd.it/mmsinc/search/molecule.php?mmscode=$1"
+    }
   },
   "mmsl": {
     "contributor": {

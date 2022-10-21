@@ -15,8 +15,13 @@ skip = {
     "pdb",
     "panther",
     "intenz",  # already mapped via "enzyme"
-    "exploreenz",  # already mapped via "enzyme"
+    "explorenz",  # already mapped via "enzyme"
     "geisha",  # resolution is broken
+    "gopad", # doesn't exist anymore
+    "genomereviews", # doesn't exist anymore
+    "integr8", # same as genome reviews, doesn't exist anymore
+    "hdbase", # doesn't exist anymore, silent redirect
+    "mirortho", # redirects to new site
 }
 
 
