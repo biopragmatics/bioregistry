@@ -202,6 +202,26 @@
       "database": "Q110613797"
     }
   },
+  "aaindex": {
+    "mappings": {
+      "prefixcommons": "aaindex"
+    },
+    "prefixcommons": {
+      "description": "AAindex is a database of numerical indices representing various physicochemical and biochemical properties of amino acids and pairs of amino acids. AAindex consists of three sections now: AAindex1 for the amino acid index of 20 numerical values, AAindex2 for the amino acid mutation matrix and AAindex3 for the statistical protein contact potentials.",
+      "example": "BUNA790102",
+      "homepage": "http://www.genome.ad.jp/aaindex/",
+      "keywords": [
+        "protein"
+      ],
+      "name": "Amino acid indices, substitution matrices and pair-wise contact potentials",
+      "pattern": "^[A-Z]+\\d+$",
+      "prefix": "aaindex",
+      "pubmed_ids": [
+        "17998252"
+      ],
+      "uri_format": "http://www.genome.jp/dbget-bin/www_bget?aaindex:$1"
+    }
+  },
   "aao": {
     "biocontext": {
       "is_identifiers": false,
@@ -1501,6 +1521,27 @@
     },
     "pattern": "^\\d{7}$"
   },
+  "alfred": {
+    "mappings": {
+      "prefixcommons": "alfred"
+    },
+    "prefixcommons": {
+      "description": "ALFRED has been designed to make allele frequency data on anthropologically defined human population samples readily available to the scientific community and to link these polymorphism data to the molecular genetics-human genome databases.",
+      "example": "LO362836C",
+      "homepage": "http://alfred.med.yale.edu",
+      "keywords": [
+        "classification",
+        "genome"
+      ],
+      "name": "The ALlele FREquency Database",
+      "pattern": "^[A-Z]+\\d+$",
+      "prefix": "alfred",
+      "pubmed_ids": [
+        "12519999"
+      ],
+      "uri_format": "https://alfred.med.yale.edu/alfred/recordinfo.asp?UNID=$1"
+    }
+  },
   "allergome": {
     "biocontext": {
       "is_identifiers": true,
@@ -1605,6 +1646,26 @@
       "Alzforum_mut"
     ],
     "uri_format": "https://www.alzforum.org/mutations/$1"
+  },
+  "alzgene": {
+    "mappings": {
+      "prefixcommons": "alzgene"
+    },
+    "prefixcommons": {
+      "description": "The AlzGene database provides a comprehensive, unbiased and regularly updated field synopsis of genetic association studies performed in Alzheimer’s disease. In addition, hundreds of up-to-date meta-analyses are available for all eligible polymorphisms with sufficient data.",
+      "example": "88",
+      "homepage": "http://www.alzgene.org",
+      "keywords": [
+        "gene"
+      ],
+      "name": "Alzheimer Gene Database",
+      "pattern": "^\\d+$",
+      "prefix": "alzgene",
+      "pubmed_ids": [
+        "17192785"
+      ],
+      "uri_format": "http://www.alzgene.org/geneoverview.asp?geneid=$1"
+    }
   },
   "amoebadb": {
     "biocontext": {
@@ -2559,6 +2620,27 @@
     },
     "uri_format": "https://www.arabidopsis.org/servlets/TairObject?type=locus&name=$1"
   },
+  "archdb": {
+    "mappings": {
+      "prefixcommons": "archdb"
+    },
+    "prefixcommons": {
+      "description": "ArchDB is a compilation of structural classifications of loops extracted from known protein structures. Loops in ArchDB have been classified using an improved version (Espadaler et al.) of the original ArchType program published in 1997 by Oliva et al..",
+      "example": "39421",
+      "homepage": "http://sbi.imim.es/archdb",
+      "keywords": [
+        "classification",
+        "protein"
+      ],
+      "name": "ArchDB",
+      "pattern": "^\\d+$",
+      "prefix": "archdb",
+      "pubmed_ids": [
+        "24265221"
+      ],
+      "uri_format": "http://sbi.imim.es/cgi-bin/archdb//loops.pl?loop=$1"
+    }
+  },
   "ardb": {
     "biocontext": {
       "is_identifiers": true,
@@ -3299,6 +3381,29 @@
         "year": 2005
       }
     ]
+  },
+  "astd": {
+    "mappings": {
+      "prefixcommons": "astd"
+    },
+    "prefixcommons": {
+      "description": "The Alternative Splicing and Transcript Diversity (ASTD) database project is creating a database of alternative splice events and transcripts of genes from human, mouse and rat. Full length transcripts are generated with the aim of understanding the mechanism of alternative splicing on a genome-wide scale.",
+      "example": "ENSG00000136147",
+      "homepage": "http://www.ebi.ac.uk/astd/",
+      "keywords": [
+        "gene",
+        "transcript",
+        "alternative splicing"
+      ],
+      "name": "Alternative Splicing and Transcript Diversity",
+      "pattern": "^ENSG\\d+$",
+      "prefix": "astd",
+      "pubmed_ids": [
+        "19059335"
+      ],
+      "uri_format": "http://www.ebi.ac.uk/astd/geneview.html?acc=$1"
+    },
+    "provides": "ensembl"
   },
   "atc": {
     "aberowl": {
@@ -10385,6 +10490,27 @@
       "pattern": "\\d+",
       "prefix": "P683",
       "uri_format": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:$1"
+    }
+  },
+  "chembank": {
+    "mappings": {
+      "prefixcommons": "chembank"
+    },
+    "prefixcommons": {
+      "description": "ChemBank is a public, web-based informatics environment created by the Broad Institute's Chemical Biology Program and funded in large part by the National Cancer Institute's Initiative for Chemical Genetics (ICG).",
+      "example": "1000000",
+      "homepage": "http://chembank.broad.harvard.edu",
+      "keywords": [
+        "chemical",
+        "metabolite"
+      ],
+      "name": "ChemBank",
+      "pattern": "^\\d+$",
+      "prefix": "chembank",
+      "pubmed_ids": [
+        "17947324"
+      ],
+      "uri_format": "http://chembank.broadinstitute.org/chemistry/viewMolecule.htm?cbid=$1"
     }
   },
   "chembl": {
@@ -29489,6 +29615,29 @@
     "pattern": "^\\d+$",
     "uri_format": "https://www.eionet.europa.eu/gemet/en/concept/$1"
   },
+  "genage": {
+    "mappings": {
+      "prefixcommons": "genage"
+    },
+    "name": "The Ageing Gene Database",
+    "prefixcommons": {
+      "description": "GenAge is a database of human and model organism genes related to longevity and aging, maintained by the Human Ageing Genomics Resources (HAGR) group.",
+      "example": "0001",
+      "homepage": "http://genomics.senescence.info/genes/",
+      "keywords": [
+        "aging",
+        "longevity",
+        "genes"
+      ],
+      "name": "GenAge: The Ageing Gene Database",
+      "pattern": "^\\d+$",
+      "prefix": "genage",
+      "pubmed_ids": [
+        "23193293"
+      ],
+      "uri_format": "http://genomics.senescence.info/genes/details.php?id=$1"
+    }
+  },
   "genatlas": {
     "biocontext": {
       "is_identifiers": true,
@@ -29672,6 +29821,30 @@
       "uri_format": "https://www.ncbi.nlm.nih.gov/nuccore/$1"
     },
     "uri_format": "https://www.ncbi.nlm.nih.gov/nucleotide/$1"
+  },
+  "gendr": {
+    "mappings": {
+      "prefixcommons": "gendr"
+    },
+    "name": "The Dietary Restriction Gene Database",
+    "prefixcommons": {
+      "description": "GenDR is a database of genes associated with dietary restriction (DR). GenDR includes two datasets: 1) genes inferred from experiments in model organisms in which genetic manipulations cancel out or disrupt the life-extending effects of DR; 2) genes robustly altered due to DR, derived from a meta-analysis of microarray DR studies in mammals",
+      "example": "2",
+      "homepage": "http://genomics.senescence.info/diet/",
+      "keywords": [
+        "dietary restriction",
+        "aging",
+        "longevity",
+        "genes"
+      ],
+      "name": "GenDR: The Dietary Restriction Gene Database",
+      "pattern": "^\\d+$",
+      "prefix": "gendr",
+      "pubmed_ids": [
+        "22912585"
+      ],
+      "uri_format": "http://genomics.senescence.info/diet/details.php?id=$1"
+    }
   },
   "genecards": {
     "biocontext": {
@@ -42915,6 +43088,23 @@
     "name": "Lonza",
     "pattern": "^\\d+$",
     "uri_format": "https://knowledge.lonza.com/cell?id=$1"
+  },
+  "loqate": {
+    "mappings": {
+      "prefixcommons": "loqate"
+    },
+    "prefixcommons": {
+      "description": "The data presented here is a result of systematically tracking the localization and abundance of 5330 yeast proteins at single-cell resolution under three different stress conditions (DTT, H2O2 and nitrogen starvation) using the GFP-tagged yeast library",
+      "example": "1001",
+      "homepage": "http://www.weizmann.ac.il/molgen/loqate/",
+      "name": "The localization and quantitation atlas of the yeast proteome",
+      "pattern": "^\\d+$",
+      "prefix": "loqate",
+      "pubmed_ids": [
+        "24150937"
+      ],
+      "uri_format": "http://www.weizmann.ac.il/molgen/loqate/gene/view/$1"
+    }
   },
   "lotus": {
     "comment": "IDs are actually leading to the structural part of LOTUS only, which might change in the future. Will adapt the regexp in case.",
@@ -61358,6 +61548,33 @@
       "uri_format": "https://www.pharmgkb.org/accession/$1"
     }
   },
+  "pharmvar": {
+    "mappings": {
+      "prefixcommons": "pharmvar"
+    },
+    "name": "Pharmacogene Variation Consortium",
+    "prefixcommons": {
+      "description": "The Pharmacogene Variation (PharmVar) Consortium is the new home for PGx gene nomenclature serving as a centralized ‘Next-Generation’ Pharmacogene Variation data repository.  The major focus of PharmVar is to catalogue allelic variation of genes impacting drug metabolism, disposition and response and provide a unifying designation system (nomenclature) for the global pharmacogenetic/genomic community. Efforts are synchronized between PharmVar, the Pharmacogenomic KnowledgeBase, and the Clinical Pharmacogenetic Implementation Consortium.",
+      "example": "CYP2A6",
+      "homepage": "https://www.pharmvar.org",
+      "keywords": [
+        "variant",
+        "gene",
+        "pharmacogenomics"
+      ],
+      "name": "PharmVar",
+      "pattern": "^[A-z0-9]+$",
+      "prefix": "pharmvar",
+      "pubmed_ids": [
+        "29134625"
+      ],
+      "synonyms": [
+        "pharmvar.gene"
+      ],
+      "uri_format": "https://www.pharmvar.org/gene/$1"
+    },
+    "provides": "hgnc.symbol"
+  },
   "phenolexplorer": {
     "biocontext": {
       "is_identifiers": true,
@@ -67618,6 +67835,30 @@
       "uri_format": "https://tools.ietf.org/rfc/rfc$1"
     },
     "pattern": "^\\d+$"
+  },
+  "rgap": {
+    "mappings": {
+      "prefixcommons": "rgap"
+    },
+    "prefixcommons": {
+      "description": "This website provides genome sequence from the Nipponbare subspecies of rice and annotation of the 12 rice chromosomes. These data are available through search pages and the Genome Browser that provides an integrated display of annotation data.",
+      "example": "LOC_Os02g13300",
+      "homepage": "http://rice.plantbiology.msu.edu/",
+      "keywords": [
+        "genome",
+        "DNA"
+      ],
+      "name": "Rice Genome Annotation Project",
+      "pattern": "^LOC\\_Os\\d{1,2}g\\d{5}$",
+      "prefix": "rgap",
+      "pubmed_ids": [
+        "17145706"
+      ],
+      "synonyms": [
+        "rice"
+      ],
+      "uri_format": "http://rice.plantbiology.msu.edu/cgi-bin/gbrowse/rice/?name=$1"
+    }
   },
   "rgd": {
     "aberowl": {
@@ -80265,6 +80506,30 @@
       "prefix": "virsirna",
       "uri_format": "http://crdd.osdd.net/servers/virsirnadb/record.php?details=$1"
     }
+  },
+  "virushostdb": {
+    "mappings": {
+      "prefixcommons": "virushostdb"
+    },
+    "prefixcommons": {
+      "description": "Virus-Host DB organizes data about the relationships between viruses and their hosts, represented in the form of pairs of NCBI taxonomy IDs for viruses and their hosts.  Virus-Host DB covers viruses with complete genomes stored in 1) NCBI/RefSeq and 2) GenBank whose accession numbers are listed in EBI Genomes. The host information is collected from RefSeq, GenBank (in free text format), UniProt, ViralZone, and manually curated with additional information obtained by literature surveys.",
+      "example": "438782",
+      "homepage": "https://www.genome.jp/virushostdb/",
+      "keywords": [
+        "virus"
+      ],
+      "name": "Virus-HostDB",
+      "pattern": "^\\d+$",
+      "prefix": "virushostdb",
+      "pubmed_ids": [
+        "26938550"
+      ],
+      "synonyms": [
+        "virus-hostdb"
+      ],
+      "uri_format": "https://www.genome.jp/virushostdb/$1"
+    },
+    "provides": "ncbitaxon"
   },
   "vmc": {
     "biolink": {

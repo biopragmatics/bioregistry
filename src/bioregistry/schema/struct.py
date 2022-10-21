@@ -709,6 +709,7 @@ class Resource(BaseModel):
                 "cropoct",
                 "cheminf",
                 "edam",
+                "prefixcommons",
             ),
         )
 
@@ -735,6 +736,7 @@ class Resource(BaseModel):
                 "cropoct",
                 "cheminf",
                 "edam",
+                "prefixcommons",
             ),
         )
         if rv is not None:
@@ -863,6 +865,7 @@ class Resource(BaseModel):
                 "bioportal",
                 "agroportal",
                 "ecoportal",
+                "prefixcommons",
             ),
         )
 
@@ -975,7 +978,7 @@ class Resource(BaseModel):
         miriam_example = self.get_external("miriam").get("sampleId")
         if miriam_example is not None:
             return miriam_example
-        for metaprefix in ["ncbi", "n2t"]:
+        for metaprefix in ["ncbi", "n2t", "prefixcommons"]:
             example = self.get_external(metaprefix).get("example")
             if example is not None:
                 return example
