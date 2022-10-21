@@ -24,7 +24,7 @@ skip = {
     "integr8",  # same as genome reviews, doesn't exist anymore
     "hdbase",  # doesn't exist anymore, silent redirect
     "mirortho",  # redirects to new site
-    "hagr", # nonsense
+    "hagr",  # nonsense
 }
 
 
