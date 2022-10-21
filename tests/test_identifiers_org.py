@@ -71,6 +71,8 @@ class TestIdentifiersOrg(unittest.TestCase):
             ("cellosaurus", "0001", "cellosaurus:CVCL_0001"),
             ("biomodels.kisao", "0000057", "biomodels.kisao:KISAO_0000057"),
             ("geogeo", "000000001", "geogeo:GEO_000000001"),
+            ("geogeo", "000000001", "geogeo:GEO_000000001"),
+            ("gramene.taxonomy", "013681", "gramene.taxonomy:GR_tax:013681"),
         ]:
             with self.subTest(prefix=prefix, identifier=identifier):
                 self.assertEqual(expected, manager.get_miriam_curie(prefix, identifier))
