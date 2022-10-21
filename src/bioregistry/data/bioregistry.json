@@ -274,7 +274,7 @@
       "name": "Amphibian gross anatomy",
       "prefix": "aao"
     },
-    "pattern": "^\\d{7]$",
+    "pattern": "^\\d{7}$",
     "prefixcommons": {
       "bioportal": "1090",
       "description": "The Amphibian Anatomical Ontology (AmphibAnat) is an NSF-sponsored project dedicated to constructing semi-automatically a draft ontology of amphibian anatomy. In this project, small, subset ontologies are constructed manually, and data-mining software (that we develop) is used to mine electronic media for instances of concepts and properties to be added to the ontologies.",
@@ -17127,6 +17127,13 @@
       "pattern": "^\\d+$",
       "prefix": "cutg",
       "uri_format": "http://www.kazusa.or.jp/codon/cgi-bin/showcodon.cgi?species=$1"
+    },
+    "provides": "ncbitaxon",
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
     }
   },
   "cvdo": {
@@ -25843,6 +25850,12 @@
       "pattern": "^E\\d+$",
       "prefix": "eropmoscow",
       "uri_format": "http://erop.inbi.ras.ru/result2.php?PepName=$1"
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
     }
   },
   "erv": {
@@ -25895,6 +25908,12 @@
       "pattern": "^[A-Z]+\\d+$",
       "prefix": "esldb",
       "uri_format": "http://gpcr.biocomp.unibo.it/cgi-bin/predictors/esldb/dettagli.cgi?codice=$1"
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
     }
   },
   "estdab": {
@@ -26003,6 +26022,12 @@
         "eugenes:"
       ],
       "uri_format": "http://eugenes.org:7072/.bin/fbidq.html?$1"
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
     }
   },
   "eupath": {
@@ -28095,11 +28120,11 @@
     "pattern": "^\\d+$",
     "uri_format": "https://flybrain-ndb.virtualflybrain.org/fmi/xsl/browserecord.xsl@-lay=NDB&Accession+number.op=eq&Accession+number=$1&-find=-find.html"
   },
-  "flymine": {
+  "flymine.chromosome": {
     "mappings": {
       "prefixcommons": "flymine"
     },
-    "name": "An integrated database for Drosophila and Anopheles genomics",
+    "name": "FlyMine Chromosome Band",
     "prefixcommons": {
       "description": "FlyMine is an integrated database of genomic, expression and protein data for Drosophila, Anopheles and C. elegans. Integrating data makes it possible to run sophisticated data mining queries that span domains of biological knowledge.",
       "example": "1047874",
@@ -28113,7 +28138,14 @@
       "pattern": "^\\d+$",
       "prefix": "flymine",
       "uri_format": "http://www.flymine.org/release-25.0/objectDetails.do?id=$1"
-    }
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    },
+    "uri_format": "https://www.flymine.org/flymine/report/ChromosomeBand/$1"
   },
   "fma": {
     "aberowl": {
@@ -30086,29 +30118,6 @@
     "pattern": "^\\d+$",
     "uri_format": "https://www.eionet.europa.eu/gemet/en/concept/$1"
   },
-  "genage": {
-    "mappings": {
-      "prefixcommons": "genage"
-    },
-    "name": "The Ageing Gene Database",
-    "prefixcommons": {
-      "description": "GenAge is a database of human and model organism genes related to longevity and aging, maintained by the Human Ageing Genomics Resources (HAGR) group.",
-      "example": "0001",
-      "homepage": "http://genomics.senescence.info/genes/",
-      "keywords": [
-        "aging",
-        "longevity",
-        "genes"
-      ],
-      "name": "GenAge: The Ageing Gene Database",
-      "pattern": "^\\d+$",
-      "prefix": "genage",
-      "pubmed_ids": [
-        "23193293"
-      ],
-      "uri_format": "http://genomics.senescence.info/genes/details.php?id=$1"
-    }
-  },
   "genatlas": {
     "biocontext": {
       "is_identifiers": true,
@@ -30308,6 +30317,8 @@
     "uri_format": "https://www.ncbi.nlm.nih.gov/nucleotide/$1"
   },
   "gendis": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
     "mappings": {
       "prefixcommons": "gendis"
     },
@@ -30323,30 +30334,12 @@
       "pattern": "^\\d+$",
       "prefix": "gendis",
       "uri_format": "http://caps.ncbs.res.in/cgi-bin/mini/databases/gendis/sf.cgi?code=$1"
-    }
-  },
-  "gendr": {
-    "mappings": {
-      "prefixcommons": "gendr"
     },
-    "name": "The Dietary Restriction Gene Database",
-    "prefixcommons": {
-      "description": "GenDR is a database of genes associated with dietary restriction (DR). GenDR includes two datasets: 1) genes inferred from experiments in model organisms in which genetic manipulations cancel out or disrupt the life-extending effects of DR; 2) genes robustly altered due to DR, derived from a meta-analysis of microarray DR studies in mammals",
-      "example": "2",
-      "homepage": "http://genomics.senescence.info/diet/",
-      "keywords": [
-        "dietary restriction",
-        "aging",
-        "longevity",
-        "genes"
-      ],
-      "name": "GenDR: The Dietary Restriction Gene Database",
-      "pattern": "^\\d+$",
-      "prefix": "gendr",
-      "pubmed_ids": [
-        "22912585"
-      ],
-      "uri_format": "http://genomics.senescence.info/diet/details.php?id=$1"
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
     }
   },
   "genecards": {
@@ -30664,6 +30657,12 @@
       "pattern": "^\\d+$",
       "prefix": "geneloc",
       "uri_format": "http://genecards.weizmann.ac.il/geneloc-bin/marker_cards.pl?id=$1"
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
     }
   },
   "genepio": {
@@ -31727,6 +31726,12 @@
         "glycomaps"
       ],
       "uri_format": "http://www.glycosciences.de/modeling/glycomapsdb/showdetails.php?mapid=$1"
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
     }
   },
   "glycomedb": {
@@ -33819,6 +33824,12 @@
       "pattern": "^\\d+$",
       "prefix": "grin",
       "uri_format": "http://www.ars.usda.gov/research/publications/publications.htm?seq_no_115=$1"
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
     }
   },
   "grin.taxonomy": {
@@ -34386,23 +34397,64 @@
       "prefix": "habronattus"
     }
   },
-  "hagr": {
+  "hagr.genage": {
     "mappings": {
-      "prefixcommons": "hagr"
+      "prefixcommons": "genage"
     },
+    "name": "The Ageing Gene Database",
     "prefixcommons": {
-      "description": "The Human Ageing Genomic Resources (HAGR) is a collection of databases and tools designed to help researchers understand the genetics of human ageing through a combination of functional genomics and evolutionary biology.",
-      "example": "GSTA1",
-      "homepage": "http://genomics.senescence.info/",
+      "description": "GenAge is a database of human and model organism genes related to longevity and aging, maintained by the Human Ageing Genomics Resources (HAGR) group.",
+      "example": "0001",
+      "homepage": "http://genomics.senescence.info/genes/",
       "keywords": [
-        "genome"
+        "aging",
+        "longevity",
+        "genes"
       ],
-      "name": "Human Ageing Genomic Resources",
-      "pattern": "^[A-Z]+/\\d+$",
-      "prefix": "hagr",
-      "uri_format": "http://genomics.senescence.info/genes/entry.php?hgnc=$1"
+      "name": "GenAge: The Ageing Gene Database",
+      "pattern": "^\\d+$",
+      "prefix": "genage",
+      "pubmed_ids": [
+        "23193293"
+      ],
+      "uri_format": "http://genomics.senescence.info/genes/details.php?id=$1"
     },
-    "provides": "hgnc.symbol"
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    }
+  },
+  "hagr.gendr": {
+    "mappings": {
+      "prefixcommons": "gendr"
+    },
+    "name": "The Dietary Restriction Gene Database",
+    "prefixcommons": {
+      "description": "GenDR is a database of genes associated with dietary restriction (DR). GenDR includes two datasets: 1) genes inferred from experiments in model organisms in which genetic manipulations cancel out or disrupt the life-extending effects of DR; 2) genes robustly altered due to DR, derived from a meta-analysis of microarray DR studies in mammals",
+      "example": "2",
+      "homepage": "http://genomics.senescence.info/diet/",
+      "keywords": [
+        "dietary restriction",
+        "aging",
+        "longevity",
+        "genes"
+      ],
+      "name": "GenDR: The Dietary Restriction Gene Database",
+      "pattern": "^\\d+$",
+      "prefix": "gendr",
+      "pubmed_ids": [
+        "22912585"
+      ],
+      "uri_format": "http://genomics.senescence.info/diet/details.php?id=$1"
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    }
   },
   "hamap": {
     "biocontext": {
@@ -34746,6 +34798,12 @@
       "pattern": "^\\d+$",
       "prefix": "hbvar",
       "uri_format": "http://globin.bx.psu.edu/cgi-bin/hbvar/query_vars3?mode=output&display_format=page&i=$1"
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
     }
   },
   "hc.din": {
@@ -39314,6 +39372,8 @@
     ]
   },
   "imotdb": {
+    "comment": "This resource doesn't exist on the web anymore",
+    "deprecated": true,
     "mappings": {
       "prefixcommons": "imotdb"
     },
@@ -39329,6 +39389,12 @@
       "pattern": "^\\d+$",
       "prefix": "imotdb",
       "uri_format": "http://caps.ncbs.res.in/cgi-bin/mini/databases/imotdb/imotdb.cgi?sfcode=$1"
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
     }
   },
   "imr": {
@@ -43889,6 +43955,12 @@
         "24150937"
       ],
       "uri_format": "http://www.weizmann.ac.il/molgen/loqate/gene/view/$1"
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
     }
   },
   "lotus": {
@@ -46339,6 +46411,12 @@
       "pattern": "^\\d+$",
       "prefix": "metnetdb",
       "uri_format": "http://metnetonline.org/browse_pathway2.php?pthID=$1"
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
     }
   },
   "mex": {
@@ -59794,7 +59872,8 @@
       "pattern": "^PF\\d+$",
       "prefix": "pandit",
       "uri_format": "http://www.ebi.ac.uk/goldman-srv/pandit/pandit.cgi?action=browse&fam=$1"
-    }
+    },
+    "provides": "pfam"
   },
   "panorama": {
     "contributor": {
@@ -60131,6 +60210,7 @@
     "mappings": {
       "prefixcommons": "pathguide"
     },
+    "name": "Pathguide",
     "prefixcommons": {
       "description": "Pathguide contains information about 325 biological related resources and molecular interaction related resources.",
       "example": "49",
@@ -61290,7 +61370,8 @@
       "pattern": "^[A-Z,0-9]+$",
       "prefix": "pdbsum",
       "uri_format": "http://www.ebi.ac.uk/pdbsum/$1"
-    }
+    },
+    "provides": "pdb"
   },
   "pdc.study": {
     "contributor": {
@@ -63253,6 +63334,7 @@
     "mappings": {
       "prefixcommons": "pibase"
     },
+    "name": "Database of structurally defined protein interfaces",
     "prefixcommons": {
       "description": "PIBASE is a collection of all protein structural interfaces extracted from the Protein Data Bank and PQS structure databases. Both chain-chain and domain-domain (SCOP and CATH definitions) interfaces are detected.",
       "example": "21692",
@@ -69856,6 +69938,7 @@
     "mappings": {
       "prefixcommons": "rnajunction"
     },
+    "name": "Database of RNA Junctions and Kissing loop Structures",
     "prefixcommons": {
       "description": "Within this database you will to able to find more than 12,000 extracted three-dimensional junction and kissing loop structures as well as detailed annotations for each.",
       "example": "10387",
@@ -70317,9 +70400,14 @@
     }
   },
   "roleo": {
+    "banana": "RoleO",
+    "banana_peel": "_",
+    "example": "0000002",
     "mappings": {
       "prefixcommons": "roleo"
     },
+    "pattern": "^\\d{7}$",
+    "preferred_prefix": "RoleO",
     "prefixcommons": {
       "bioportal": "1538",
       "description": "The Role Ontology (RoleO) is a ontology in the domain of role classification. RoleO aims to standardize role classification and support computer-assisted reasoning.  RoleO is a community-based ontology, and its development follows the OBO Foundry principles.",
@@ -70332,7 +70420,8 @@
       "pattern": "^RoleO_\\d{7}$",
       "prefix": "roleo",
       "uri_format": "http://purl.obolibrary.org/obo/$1"
-    }
+    },
+    "uri_format": "http://purl.obolibrary.org/obo/RoleO_$1"
   },
   "ror": {
     "mappings": {

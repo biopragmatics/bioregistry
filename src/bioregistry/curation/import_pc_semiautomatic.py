@@ -24,6 +24,7 @@ skip = {
     "integr8",  # same as genome reviews, doesn't exist anymore
     "hdbase",  # doesn't exist anymore, silent redirect
     "mirortho",  # redirects to new site
+    "hagr", # nonsense
 }
 
 
@@ -40,7 +41,7 @@ def main():
         dead_prefixes = set(json.loads(dead_stuff_path.read_text()))
     else:
         dead_prefixes = set()
-    print(f"see {dead_stuff_path}")
+    click.echo(f"see {dead_stuff_path}")
 
     uniprot_pattern = bioregistry.get_resource("uniprot").get_pattern_re()
     pc = get_prefixcommons(force_download=False)
@@ -84,7 +85,7 @@ def main():
             dead_prefixes.add(prefix)
             dead_stuff_path.write_text(json.dumps(sorted(dead_prefixes), indent=2))
 
-    print(c)
+    click.echo(c)
 
 
 def _works(url: str) -> bool:

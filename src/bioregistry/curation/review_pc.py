@@ -19,7 +19,6 @@ def main():
         example_iri = resource.get_example_iri()
         if example_iri is None or homepage is None:
             continue
-        webbrowser.open_new_tab(homepage)
         webbrowser.open_new_tab(example_iri)
         res = input(f"[{prefix}] type y or yes to accept, anything else to continue: ")
         if res.lower() in {"yes", "y"}:
