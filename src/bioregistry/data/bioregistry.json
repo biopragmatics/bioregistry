@@ -16008,6 +16008,7 @@
     }
   },
   "cpga": {
+    "banana": "GRO",
     "bioportal": {
       "contact": {
         "email": "jaiswalp@oregonstate.edu",
@@ -16022,6 +16023,7 @@
     },
     "deprecated": true,
     "description": "A structured controlled vocabulary for the anatomy of Graminae. Please note that this ontology has now been superseded by the Plant Ontology.",
+    "example": "0007143",
     "mappings": {
       "biocontext": "gro.cpga",
       "bioportal": "GRO-CPGA",
@@ -16037,6 +16039,7 @@
       "name": "Cereal Plant Gross Anatomy",
       "prefix": "gro"
     },
+    "pattern": "^\\d{7}$",
     "preferred_prefix": "CGPA",
     "prefixcommons": {
       "description": "A controlled vocabulary to describe phenotypic traits in plants. Each trait is a distinguishable feature, characteristic, quality or phenotypic feature of a developing or mature plant, or a plant part.",
@@ -16051,7 +16054,8 @@
       "pattern": "^GRO:\\d+$",
       "prefix": "gramene.po",
       "uri_format": "http://www.gramene.org/db/ontology/search?id=$1"
-    }
+    },
+    "uri_format": "http://www.gramene.org/db/ontology/search?id=GRO:$1"
   },
   "cpt": {
     "aberowl": {
@@ -33646,12 +33650,14 @@
     "uri_format": "http://www.gramene.org/db/literature/pub_search?ref_id=$1"
   },
   "gramene.taxonomy": {
+    "banana": "GR_tax",
     "biocontext": {
       "is_identifiers": true,
       "is_obo": false,
       "prefix": "GRAMENE.TAXONOMY",
       "uri_format": "http://identifiers.org/gramene.taxonomy/$1"
     },
+    "example": "013681",
     "mappings": {
       "biocontext": "GRAMENE.TAXONOMY",
       "miriam": "gramene.taxonomy",
@@ -33678,7 +33684,8 @@
       "pattern": "^GR\\_tax\\:\\d+$",
       "prefix": "gramene.taxonomy",
       "uri_format": "http://www.gramene.org/db/ontology/search?id=$1"
-    }
+    },
+    "uri_format": "https://archive.gramene.org/db/ontology/search?id=GR_tax:$1"
   },
   "grassbase": {
     "contributor": {
