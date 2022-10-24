@@ -30442,6 +30442,29 @@
       "uri_format": "https://www.genecards.org/cgi-bin/carddisp.pl?gene=$1"
     }
   },
+  "genecards.geneloc": {
+    "mappings": {
+      "prefixcommons": "geneloc"
+    },
+    "prefixcommons": {
+      "description": "GeneLoc presents an integrated map for each human chromosome, based on data integrated by the GeneLoc algorithm. GeneLoc includes further links to GeneCards, NCBI's Human Genome Sequencing, UniGene, and mapping resources",
+      "example": "17503",
+      "homepage": "http://genecards.weizmann.ac.il/geneloc/",
+      "keywords": [
+        "genome"
+      ],
+      "name": "Gene Location",
+      "pattern": "^\\d+$",
+      "prefix": "geneloc",
+      "uri_format": "http://genecards.weizmann.ac.il/geneloc-bin/marker_cards.pl?id=$1"
+    },
+    "reviewer": {
+      "email": "cthoyt@gmail.com",
+      "github": "cthoyt",
+      "name": "Charles Tapley Hoyt",
+      "orcid": "0000-0003-4423-4370"
+    }
+  },
   "genedb": {
     "biocontext": {
       "is_identifiers": true,
@@ -30634,29 +30657,6 @@
         "year": 2005
       }
     ]
-  },
-  "geneloc": {
-    "mappings": {
-      "prefixcommons": "geneloc"
-    },
-    "prefixcommons": {
-      "description": "GeneLoc presents an integrated map for each human chromosome, based on data integrated by the GeneLoc algorithm. GeneLoc includes further links to GeneCards, NCBI's Human Genome Sequencing, UniGene, and mapping resources",
-      "example": "17503",
-      "homepage": "http://genecards.weizmann.ac.il/geneloc/",
-      "keywords": [
-        "genome"
-      ],
-      "name": "Gene Location",
-      "pattern": "^\\d+$",
-      "prefix": "geneloc",
-      "uri_format": "http://genecards.weizmann.ac.il/geneloc-bin/marker_cards.pl?id=$1"
-    },
-    "reviewer": {
-      "email": "cthoyt@gmail.com",
-      "github": "cthoyt",
-      "name": "Charles Tapley Hoyt",
-      "orcid": "0000-0003-4423-4370"
-    }
   },
   "genepio": {
     "aberowl": {
@@ -38777,7 +38777,8 @@
     },
     "mappings": {
       "fairsharing": "FAIRsharing.c886cd",
-      "miriam": "iedb"
+      "miriam": "iedb",
+      "prefixcommons": "tied"
     },
     "miriam": {
       "deprecated": false,
@@ -38791,7 +38792,20 @@
       "sampleId": "1038233",
       "uri_format": "https://www.iedb.org/reference/$1"
     },
-    "name": "Immune Epitope Database"
+    "name": "Immune Epitope Database",
+    "prefixcommons": {
+      "description": "The IEDB contains data related to antibody and T cell epitopes for humans, non-human primates, rodents, and other animal species.",
+      "example": "21",
+      "homepage": "http://www.iedb.org",
+      "keywords": [
+        "protein",
+        "small molecule"
+      ],
+      "name": "The Immune Epitope Database (IEDB)",
+      "pattern": "^\\d+$",
+      "prefix": "tied",
+      "uri_format": "http://www.iedb.org/epId/$1"
+    }
   },
   "ietf.language": {
     "contributor": {
@@ -77766,30 +77780,6 @@
     "homepage": "https://www.thermofisher.com",
     "name": "Thermo Fisher Scientific",
     "uri_format": "https://www.thermofisher.com/antibody/product/$1"
-  },
-  "tied": {
-    "mappings": {
-      "prefixcommons": "tied"
-    },
-    "prefixcommons": {
-      "description": "The IEDB contains data related to antibody and T cell epitopes for humans, non-human primates, rodents, and other animal species.",
-      "example": "21",
-      "homepage": "http://www.iedb.org",
-      "keywords": [
-        "protein",
-        "small molecule"
-      ],
-      "name": "The Immune Epitope Database (IEDB)",
-      "pattern": "^\\d+$",
-      "prefix": "tied",
-      "uri_format": "http://www.iedb.org/epId/$1"
-    },
-    "reviewer": {
-      "email": "cthoyt@gmail.com",
-      "github": "cthoyt",
-      "name": "Charles Tapley Hoyt",
-      "orcid": "0000-0003-4423-4370"
-    }
   },
   "tigrfam": {
     "biocontext": {
