@@ -342,11 +342,15 @@
                         Part Of
                     </dt>
                     <dd>
+                        {% if manager.get_name(part_of) %}
                         <a href="{{ url_for("metaregistry_ui.resource", prefix=part_of) }}"
                            class="badge badge-pill badge-light" data-toggle="tooltip"
                            title="{{ manager.get_name(part_of) }}">
                             {{ manager.get_preferred_prefix(part_of) or part_of }}
                         </a>
+                        {% else %}
+                        <span class="badge badge-pill badge-light">{{ part_of }} (not directly registered)</span>
+                        {% endif %}
                     </dd>
                 {% endif %}
                 {% if has_parts %}
